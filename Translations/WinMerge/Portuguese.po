@@ -4,14 +4,14 @@
 # Translators:
 # * Nelson Simão
 # * Lippe35
-# * Hugo Carvalho <hugokarvalho at hotmail.com>
+# * Hugo Carvalho <hugokarvalho at hotmail dot com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2024-10-12 17:04+0100\n"
+"PO-Revision-Date: 2024-10-29 11:11+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -375,7 +375,7 @@ msgid "&Small"
 msgstr "&Pequena"
 
 msgid "&Medium"
-msgstr ""
+msgstr "&Média"
 
 msgid "&Big"
 msgstr "&Grande"
@@ -1539,7 +1539,7 @@ msgid "Items filtered:"
 msgstr "Itens filtrados:"
 
 msgid "&Use custom system colors (Some UI elements may not apply)"
-msgstr ""
+msgstr "&Usar cores personalizadas do sistema (Alguns elementos da interface podem não se aplicar)"
 
 msgid "System"
 msgstr "Sistema"
@@ -1893,7 +1893,7 @@ msgid "&Enable archive file support"
 msgstr "Ativar suporte de arquivos"
 
 msgid "&Detect archive type from file signature"
-msgstr "Detectar tipo de arquivo pela assinatura"
+msgstr "Detetar tipo de arquivo pela assinatura"
 
 msgid "Items saved to or restored from the project file:"
 msgstr "Itens guardados ou restaurados a partir do ficheiro do projeto:"
@@ -2180,10 +2180,10 @@ msgid "Webpage"
 msgstr "Página web"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr "Padrão de URL a &incluir (expressão regular):"
+msgstr "Padrão de URL a &incluir (Expressão regular):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr "Padrão de URL a &excluir (expressão regular):"
+msgstr "Padrão de URL a &excluir (Expressão regular):"
 
 msgid "&User data folder location:"
 msgstr "Localização da pasta de dados do &utilizador:"
@@ -2777,7 +2777,7 @@ msgstr "Guardar alterações em %1?"
 msgid ""
 "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
 msgstr ""
-"%1 é de apenas-leitura. Deseja substituir o ficheiro de apenas-leitura? (Não, para guardar com novo "
+"%1 é de apenas-leitura. Deseja substituir o ficheiro de apenas-leitura? (não, para guardar com novo "
 "nome.)"
 
 msgid "Error backing up file"
@@ -3928,7 +3928,7 @@ msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr ""
-"O descompactador adoptado aplica-se em ambos os ficheiros (apenas um ficheiro necessita de extensão)."
+"O descompactador adotado aplica-se em ambos os ficheiros (apenas um ficheiro necessita de extensão)."
 
 msgid "No prediffer (normal)"
 msgstr "Sem pré-diferenciação (normal)"
@@ -4515,7 +4515,7 @@ msgid "Ignore Columns"
 msgstr "Ignorar colunas"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr "Ignorar comentários (linguagens da família C)"
+msgstr "Ignorar comentários (Linguagens da família C)"
 
 msgid "Ignore CSV Fields"
 msgstr "Ignorar campos de CSV"
@@ -4616,12 +4616,12 @@ msgid ""
 msgstr ""
 "Substituir o texto por outro texto.\r\n"
 "Utilização: Substituir [-i] [-e] FIND REPLACE\r\n"
-"   or: Replace -s\r\n"
+"   ou: Substituir -s\r\n"
 "  FIND    - texto para encontrar\r\n"
 "  REPLACE- texto a ser substituído\r\n"
 "  -i - ignorar maiúsculas/minúsculas (apenas para -e)\r\n"
 "  -e - tratar o texto especificado como uma expressão regular\r\n"
-"  -s - replace using Substitution Filters patterns"
+"  -s - substituir utilizando padrões de Filtros de Substituição"
 
 #, c-format
 msgid ""
