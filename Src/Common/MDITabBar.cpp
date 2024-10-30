@@ -96,7 +96,7 @@ COLORREF CMyTabCtrl::GetBackColor() const
 	const COLORREF clr = GetSysColor(COLOR_3DFACE);
 	if (!m_bOnTitleBar)
 		return clr;
-	if (m_bCustomSystemColor)
+	if (!m_bCustomSystemColor)
 		return  m_bActive ? GetSysColor(COLOR_ACTIVECAPTION) : GetSysColor(COLOR_INACTIVECAPTION);
 	const COLORREF bgclr = m_bActive ?
 		RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255))
@@ -126,7 +126,7 @@ void CMyTabCtrl::OnPaint()
 	if (nCount == 0)
 	{
 		auto winTitleColor = COLOR_WINDOWTEXT;
-		if (m_bOnTitleBar && m_bCustomSystemColor)
+		if (m_bOnTitleBar && !m_bCustomSystemColor)
 			winTitleColor = m_bActive ? COLOR_CAPTIONTEXT : COLOR_INACTIVECAPTIONTEXT;
 		dc.SetTextColor(GetSysColor(winTitleColor));
 		TCHAR szBuf[256];
@@ -393,7 +393,7 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	else
 	{
 		auto txtclr = COLOR_BTNTEXT;
-		if (m_bOnTitleBar && m_bCustomSystemColor)
+		if (m_bOnTitleBar && !m_bCustomSystemColor)
 				txtclr = m_bActive ? COLOR_CAPTIONTEXT : COLOR_INACTIVECAPTIONTEXT;
 		SetTextColor(lpDraw->hDC, GetSysColor(txtclr));
 	}
