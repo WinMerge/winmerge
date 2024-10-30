@@ -48,7 +48,7 @@ public:
 	void SetOnTitleBar(bool onTitleBar) { m_bOnTitleBar = onTitleBar; }
 	bool GetActive() const { return m_bActive; }
 	void SetActive(bool bActive) { m_bActive = bActive; }
-	COLORREF GetBackColor() const;
+	COLORREF GetBackColor();
 	bool GetCustomSystemColor() const { return m_bCustomSystemColor; }
 	void SetCustomSystemColor(bool bCustom) { m_bCustomSystemColor = bCustom; }
 
@@ -84,6 +84,8 @@ protected:
 	void SwapTabs(int nIndexA, int nIndexB);
 	int GetMaxTitleLength() const;
 	void UpdateToolTips(int index);
+	COLORREF GetDwmTitleTextColors();
+	COLORREF GetDwmTitlebarColors();
 };
 
 /**
