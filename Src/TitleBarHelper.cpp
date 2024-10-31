@@ -26,6 +26,12 @@ void CTitleBarHelper::Init(CWnd *pWnd)
 	m_pWnd = pWnd;
 }
 
+int CTitleBarHelper::GetTopMargin() const
+{
+	return m_maximized ?
+		GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER) : 0;
+}
+
 void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
 {
 	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
@@ -33,7 +39,7 @@ void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
 		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
 	if (hIcon == nullptr)
 		return;
-	const int topMargin = (m_maximized ? -m_rc.top : 0);
+	const int topMargin = GetTopMargin();
 	const int height = m_size.cy - topMargin;
 	const int cx = PointToPixel(12.f);
 	const int cy = PointToPixel(12.f);
@@ -123,18 +129,16 @@ CRect CTitleBarHelper::GetButtonRect(int button) const
 {
 	CRect rcPart;
 	const float buttonWidth = PointToPixelF(m_rightMargin) / 3.f;
-	const int topMargin = (m_maximized ? -m_rc.top : 0);
-	rcPart.top = topMargin;
+	rcPart.top = GetTopMargin();
 	rcPart.bottom = m_size.cy;
 	rcPart.left = static_cast<int>(m_size.cx - (3 - button) * buttonWidth);
 	rcPart.right = static_cast<int>(rcPart.left + buttonWidth + 0.5);
 	return rcPart;
 }
 
-void CTitleBarHelper::OnSize(bool maximized, int cx, int cy)
+void CTitleBarHelper::SetSize(int cx, int cy)
 {
 	m_size = CSize(cx, cy);
-	m_maximized = maximized;
 	CClientDC dc(m_pWnd);
 	m_dpi = dc.GetDeviceCaps(LOGPIXELSX);
 	m_pWnd->GetWindowRect(&m_rc);

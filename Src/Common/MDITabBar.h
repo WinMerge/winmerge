@@ -93,8 +93,6 @@ class CMDITabBar : public CControlBar
 private:
 
 	bool m_bOnTitleBar;
-	bool m_bMaximized;
-	int m_top;
 	CMyTabCtrl m_tabCtrl;
 	CFont m_font;
 	CTitleBarHelper m_titleBar;
@@ -102,8 +100,6 @@ private:
 public:
 	CMDITabBar()
 		: m_bOnTitleBar(true)
-		, m_bMaximized(false)
-		, m_top(0)
 	{}
 	virtual ~CMDITabBar() {}
 	BOOL Update(bool bOnTitleBar, bool bMaxmized);

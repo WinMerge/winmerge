@@ -623,11 +623,7 @@ void CMyTabCtrl::UpdateToolTips(int nTabItemIndex)
 BOOL CMDITabBar::Update(bool bOnTitleBar, bool bMaximized)
 {
 	m_bOnTitleBar = bOnTitleBar;
-	m_bMaximized = bMaximized;
-	CRect rc;
-	if (m_bMaximized)
-		AfxGetMainWnd()->GetWindowRect(&rc);
-	m_top = rc.top;
+	m_titleBar.SetMaximized(bMaximized);
 	m_tabCtrl.SetOnTitleBar(bOnTitleBar);
 	return true;
 }
@@ -689,7 +685,7 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	const int pd = pointToPixel(RR_PADDING);
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
-	int my = m_bOnTitleBar ? (m_bMaximized ? (-m_top + 2) : 2) : 0;
+	int my = m_bOnTitleBar ? (m_titleBar.GetTopMargin() + 2) : 0;
 	CSize size(SHRT_MAX, my + tm.tmHeight + (sw + pd) * 2);
 	return size;
 }
@@ -739,12 +735,12 @@ void CMDITabBar::OnNcRButtonUp(UINT nHitTest, CPoint point)
 void CMDITabBar::OnSize(UINT nType, int cx, int cy)
 {
 	__super::OnSize(nType, cx, cy);
-	m_titleBar.OnSize(m_bMaximized, cx, cy);
+	m_titleBar.SetSize(cx, cy);
 	if (m_tabCtrl.m_hWnd)
 	{
 		const int leftMargin = m_bOnTitleBar ? m_titleBar.GetLeftMargin() : 0;
 		const int rightMargin = m_bOnTitleBar ? m_titleBar.GetRightMargin() : 0;
-		const int topMargin = ((m_bMaximized && m_bOnTitleBar) ? -m_top : 0) + (m_bOnTitleBar ? 1 : 0);
+		const int topMargin = ((m_titleBar.GetMaximized() && m_bOnTitleBar) ? m_titleBar.GetTopMargin() : 0) + (m_bOnTitleBar ? 1 : 0);
 		const int bottomMargin = m_bOnTitleBar ? 1 : 0;
 		CSize size{ 0, cy - topMargin - bottomMargin };
 		m_tabCtrl.MoveWindow(leftMargin, topMargin, cx - leftMargin - rightMargin, cy - topMargin - bottomMargin, true);
