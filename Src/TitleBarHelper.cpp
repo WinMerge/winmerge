@@ -9,6 +9,10 @@
 #include "StdAfx.h"
 #include "TitleBarHelper.h"
 
+#if !defined(SM_CXPADDEDBORDER)
+#define SM_CXPADDEDBORDER       92
+#endif
+
 CTitleBarHelper::CTitleBarHelper()
 	: m_pWnd(nullptr)
 	, m_maximized(false)
