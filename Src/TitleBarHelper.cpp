@@ -136,7 +136,7 @@ CRect CTitleBarHelper::GetButtonRect(int button) const
 	rcPart.top = GetTopMargin();
 	rcPart.bottom = m_size.cy;
 	rcPart.left = static_cast<int>(m_size.cx - (3 - button) * buttonWidth);
-	rcPart.right = static_cast<int>(rcPart.left + buttonWidth + 0.5);
+	rcPart.right = static_cast<int>(m_size.cx - (3 - button) * buttonWidth + buttonWidth + 0.5);
 	return rcPart;
 }
 
