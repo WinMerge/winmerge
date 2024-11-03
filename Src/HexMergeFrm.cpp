@@ -269,9 +269,9 @@ void CHexMergeFrame::UpdateHeaderSizes()
 		}
 	}
 	
-	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + nPaneCount - 1, w))
+	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + nPaneCount, w))
 	{
-		std::copy_n(w, nPaneCount - 1, m_nLastSplitPos);
+		std::copy_n(w, nPaneCount, m_nLastSplitPos);
 
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);

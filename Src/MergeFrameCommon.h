@@ -33,7 +33,7 @@ public:
 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
 	}
 protected:
-	int m_nLastSplitPos[2];
+	int m_nLastSplitPos[3];
 private:
 	bool m_bActivated;
 	HICON m_hCurrent;

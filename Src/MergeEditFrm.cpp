@@ -350,9 +350,9 @@ void CMergeEditFrame::UpdateHeaderSizes()
 			w[pane] = (w2 - 4 * pDoc->m_nBuffers) / pDoc->m_nBuffers;
 	}
 
-	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers - 1, w))
+	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers, w))
 	{
-		std::copy_n(w, pDoc->m_nBuffers - 1, m_nLastSplitPos);
+		std::copy_n(w, pDoc->m_nBuffers, m_nLastSplitPos);
 
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);
