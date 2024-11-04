@@ -224,6 +224,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
 	ON_WM_SYSCOMMAND()
+	ON_WM_ENTERMENULOOP()
+	ON_WM_EXITMENULOOP()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -3743,4 +3745,22 @@ void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
 		return;
 	}
 	__super::OnSysCommand(nID, lParam);
+}
+
+void CMainFrame::OnEnterMenuLoop(BOOL bMainMenu)
+{
+	__super::OnEnterMenuLoop(bMainMenu);
+	if (!bMainMenu)
+		return;
+	if (GetOptionsMgr()->GetBool(OPT_HIDE_MAINMENU) && !m_wndMenuBar.IsVisible())
+		__super::ShowControlBar(&m_wndMenuBar, true, 0);
+}
+
+void CMainFrame::OnExitMenuLoop(BOOL bMainMenu)
+{
+	__super::OnExitMenuLoop(bMainMenu);
+	if (!bMainMenu)
+		return;
+	if (GetOptionsMgr()->GetBool(OPT_HIDE_MAINMENU) && m_wndMenuBar.IsVisible())
+		__super::ShowControlBar(&m_wndMenuBar, false, 0);
 }

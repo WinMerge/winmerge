@@ -437,6 +437,8 @@ protected:
 	afx_msg void OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI);
 	afx_msg void OnToggleMainMenu();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+	afx_msg void OnEnterMenuLoop(BOOL bMainMenu);
+	afx_msg void OnExitMenuLoop(BOOL bMainMenu);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
