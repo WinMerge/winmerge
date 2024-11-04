@@ -24,6 +24,7 @@ public:
 		, m_nTooltipTabItemIndex(-1)
 		, m_bOnTitleBar(false)
 		, m_bActive(false)
+		, m_dwInactiveTitleColor(0)
 	{}
 
 protected:
@@ -39,6 +40,7 @@ protected:
 	int   m_nTooltipTabItemIndex;	/**< Index of the tab displaying tooltip */
 	CMDIFrameWnd *m_pMainFrame;
 	CToolTipCtrl m_tooltips;		/**< Tooltip for the tab */
+	COLORREF m_dwInactiveTitleColor;
 
 public:
 	BOOL Create(CMDIFrameWnd* pMainFrame, CWnd* pParent);

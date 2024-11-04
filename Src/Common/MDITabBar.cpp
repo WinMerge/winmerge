@@ -10,6 +10,7 @@
 #include "cecolor.h"
 #include "RoundedRectWithShadow.h"
 #include <dwmapi.h>
+#include <RegKey.h>
 #pragma comment(lib, "dwmapi.lib")
 
 #ifdef _DEBUG
@@ -71,6 +72,15 @@ BOOL CMyTabCtrl::Create(CMDIFrameWnd* pMainFrame, CWnd* pParent)
 	m_pMainFrame = pMainFrame;
 	m_tooltips.Create(m_pMainFrame, TTS_NOPREFIX);
 	m_tooltips.AddTool(this, _T(""));
+	CRegKeyEx reg;
+	constexpr tchar_t* AccentColorInactive = _T("AccentColorInactive");
+	constexpr tchar_t* RegDir = _T("SOFTWARE\\Microsoft\\Windows\\DWM");
+	if (ERROR_SUCCESS == reg.Open(HKEY_CURRENT_USER, RegDir))
+	{
+		const auto clr = reg.ReadDword(AccentColorInactive, 0);
+		if (clr)
+			m_dwInactiveTitleColor = RGB(GetRValue(clr), GetGValue(clr), GetBValue(clr));
+	}
 	return TRUE;
 }
 
@@ -91,8 +101,11 @@ BOOL CMyTabCtrl::PreTranslateMessage(MSG* pMsg)
 COLORREF CMyTabCtrl::GetDwmTitlebarColors()
 {
 	if (!m_bActive)
+	{
+		if (m_dwInactiveTitleColor)
+			return m_dwInactiveTitleColor;
 		return GetSysColor(COLOR_INACTIVECAPTION);
-
+	}
 	DWORD czclr = 0;
 	BOOL opaqueBlend = FALSE;
 	HRESULT hr = DwmGetColorizationColor(&czclr, &opaqueBlend);
@@ -107,7 +120,7 @@ COLORREF CMyTabCtrl::GetDwmTitleTextColors()
 {
 	if (!m_bActive)
 	{
-		COLORREF clr = GetSysColor(COLOR_INACTIVECAPTION);
+		COLORREF clr = m_dwInactiveTitleColor ? m_dwInactiveTitleColor : GetSysColor(COLOR_INACTIVECAPTION);
 		if (GetRValue(clr) < 128 && GetGValue(clr) < 128 && GetBValue(clr) < 128)
 			return RGB(245, 245, 245);
 		return RGB(10, 10, 10);
