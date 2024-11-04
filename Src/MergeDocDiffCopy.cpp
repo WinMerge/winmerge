@@ -881,17 +881,13 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 	{
 		if (ptStart.y < cd_dbegin)
 		{
-			ptSrcStart.x = 0;
-			ptSrcStart.y = cd_dbegin;
-			ptDstStart.x = 0;
-			ptDstStart.y = cd_dbegin;
+			ptSrcStart = { 0, cd_dbegin };
+			ptDstStart = ptSrcStart;
 		}
 		else
 		{
-			ptSrcStart.x = ptStart.x;
-			ptSrcStart.y = ptStart.y;
-			ptDstStart.x = ptStart.x;
-			ptDstStart.y = ptStart.y;
+			ptSrcStart = ptStart;
+			ptDstStart = ptStart;
 			if (srcPane == activePane)
 			{
 				if (ptDstStart.x > m_ptBuf[dstPane]->GetLineLength(ptDstStart.y))
@@ -906,35 +902,37 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 	}
 	else
 	{
-		const int distance = GetDistance(*m_ptBuf[activePane], CEPoint{ worddiffs[firstWordDiff].end[activePane], worddiffs[firstWordDiff].endline[activePane] }, ptStart);
+		const auto& wdiffFirst = worddiffs[firstWordDiff];
+		const int distanceBegin = GetDistance(*m_ptBuf[activePane], CEPoint{ wdiffFirst.begin[activePane], wdiffFirst.beginline[activePane] }, ptStart);
+		const int distanceEnd = GetDistance(*m_ptBuf[activePane], CEPoint{ wdiffFirst.end[activePane], wdiffFirst.endline[activePane] }, ptStart);
 		if (srcPane == activePane)
 		{
-			ptDstStart = Advance(*m_ptBuf[dstPane], CEPoint{ worddiffs[firstWordDiff].end[dstPane], worddiffs[firstWordDiff].endline[dstPane] }, distance);
-			ptSrcStart.x = ptStart.x;
-			ptSrcStart.y = ptStart.y;
+			if (distanceBegin <= 0)
+				ptDstStart = { wdiffFirst.begin[dstPane], wdiffFirst.beginline[dstPane] };
+			else
+				ptDstStart = Advance(*m_ptBuf[dstPane], CEPoint{ wdiffFirst.end[dstPane], wdiffFirst.endline[dstPane] }, distanceEnd);
+			ptSrcStart = ptStart;
 		}
 		else
 		{
-			ptSrcStart = Advance(*m_ptBuf[srcPane], CEPoint{ worddiffs[firstWordDiff].end[srcPane], worddiffs[firstWordDiff].endline[srcPane] }, distance);
-			ptDstStart.x = ptStart.x;
-			ptDstStart.y = ptStart.y;
+			if (distanceBegin <= 0)
+				ptSrcStart = { wdiffFirst.begin[srcPane], wdiffFirst.beginline[srcPane] };
+			else
+				ptSrcStart = Advance(*m_ptBuf[srcPane], CEPoint{ wdiffFirst.end[srcPane], wdiffFirst.endline[srcPane] }, distanceEnd);
+			ptDstStart = ptStart;
 		}
 	}
 	if (lastWordDiff == -1)
 	{
 		if (ptEnd.y > cd_dend)
 		{
-			ptDstEnd.x = 0;
-			ptDstEnd.y = cd_dend + 1;
-			ptSrcEnd.x = 0;
-			ptSrcEnd.y = cd_dend + 1;
+			ptDstEnd = { 0, cd_dend + 1 };
+			ptSrcEnd = { 0, cd_dend + 1 };
 		}
 		else
 		{
-			ptDstEnd.x = ptEnd.x;
-			ptDstEnd.y = ptEnd.y;
-			ptSrcEnd.x = ptEnd.x;
-			ptSrcEnd.y = ptEnd.y;
+			ptDstEnd = ptEnd;
+			ptSrcEnd = ptEnd;
 			if (srcPane == activePane)
 			{
 				if (ptDstEnd.x > m_ptBuf[dstPane]->GetLineLength(ptDstEnd.y))
@@ -949,29 +947,33 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 	}
 	else
 	{
-		const int distance = GetDistance(*m_ptBuf[activePane], CEPoint{ worddiffs[lastWordDiff].end[activePane], worddiffs[lastWordDiff].endline[activePane] }, ptEnd);
+		const auto& wdiffLast = worddiffs[lastWordDiff];
+		const int distanceBegin = GetDistance(*m_ptBuf[activePane], CEPoint{ wdiffLast.begin[activePane], wdiffLast.beginline[activePane] }, ptEnd);
+		const int distanceEnd = GetDistance(*m_ptBuf[activePane], CEPoint{ wdiffLast.end[activePane], wdiffLast.endline[activePane] }, ptEnd);
 		if (srcPane == activePane)
 		{
-			ptDstEnd = Advance(*m_ptBuf[dstPane], CEPoint{ worddiffs[lastWordDiff].end[dstPane], worddiffs[lastWordDiff].endline[dstPane] }, distance);
-			ptSrcEnd.x = ptEnd.x;
-			ptSrcEnd.y = ptEnd.y;
+			if (distanceBegin <= 0)
+				ptDstEnd = { wdiffLast.begin[dstPane], wdiffLast.beginline[dstPane] };
+			else
+				ptDstEnd = Advance(*m_ptBuf[dstPane], CEPoint{ wdiffLast.end[dstPane], wdiffLast.endline[dstPane] }, distanceEnd);
+			ptSrcEnd = ptEnd;
 		}
 		else
 		{
-			ptSrcEnd = Advance(*m_ptBuf[srcPane], CEPoint{ worddiffs[lastWordDiff].end[srcPane], worddiffs[lastWordDiff].endline[srcPane] }, distance);
-			ptDstEnd.x = ptEnd.x;
-			ptDstEnd.y = ptEnd.y;
+			if (distanceBegin <= 0)
+				ptSrcEnd = { wdiffLast.begin[srcPane], wdiffLast.beginline[srcPane] };
+			else
+				ptSrcEnd = Advance(*m_ptBuf[srcPane], CEPoint{ wdiffLast.end[srcPane], wdiffLast.endline[srcPane] }, distanceEnd);
+			ptDstEnd = ptEnd;
 		}
 	}
 	if (ptDstStart.y > cd_dend)
 	{
-		ptDstStart.x = 0;
-		ptDstStart.y = cd_dend + 1;
+		ptDstStart = { 0, cd_dend + 1 };
 	}
 	if (ptSrcStart.y > cd_dend)
 	{
-		ptSrcStart.x = 0;
-		ptSrcStart.y = cd_dend + 1;
+		ptSrcStart = { 0, cd_dend + 1 };
 	}
 	if (ptDstEnd.y < ptDstStart.y)
 		ptDstEnd.y = ptDstStart.y;
@@ -979,13 +981,11 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 		ptSrcEnd.y = ptSrcStart.y;
 	if (ptDstEnd.y > cd_dend)
 	{
-		ptDstEnd.x = 0;
-		ptDstEnd.y = cd_dend + 1;
+		ptDstEnd = { 0, cd_dend + 1 };
 	}
 	if (ptSrcEnd.y > cd_dend)
 	{
-		ptSrcEnd.x = 0;
-		ptSrcEnd.y = cd_dend + 1;
+		ptSrcEnd = { 0, cd_dend + 1 };
 	}
 
 	return std::make_tuple(ptSrcStart, ptSrcEnd, ptDstStart, ptDstEnd);
