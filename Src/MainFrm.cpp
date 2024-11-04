@@ -326,7 +326,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WMU_CHILDFRAMEACTIVATE, &CMainFrame::OnChildFrameActivate)
 	ON_MESSAGE(WMU_CHILDFRAMEACTIVATED, &CMainFrame::OnChildFrameActivated)
 	// Main menu toggle switch
-	ON_COMMAND(ID_TOGGLE_MAIN_MENU, OnToggleMainMenu)
+	ON_COMMAND(ID_VIEW_MAIN_MENU, OnToggleMainMenu)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_MAIN_MENU, OnUpdateToggleMainMenu)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3722,6 +3723,12 @@ void CMainFrame::OnToggleMainMenu()
 	const bool bMenuVisible = static_cast<bool>(m_wndMenuBar.IsVisible());
 	__super::ShowControlBar(&m_wndMenuBar, !bMenuVisible, 0);
 	GetOptionsMgr()->SaveOption(OPT_HIDE_MAINMENU, bMenuVisible);
+	UpdateSystemMenu();
+}
+
+void CMainFrame::OnUpdateToggleMainMenu(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(!GetOptionsMgr()->GetBool(OPT_HIDE_MAINMENU));
 }
 
 void CMainFrame::UpdateSystemMenu()
@@ -3729,13 +3736,18 @@ void CMainFrame::UpdateSystemMenu()
 	CMenu* pSysMenu = GetSystemMenu(FALSE);
 	if (pSysMenu == nullptr)
 		return;
+	BOOL bChecked = !GetOptionsMgr()->GetBool(OPT_HIDE_MAINMENU);
 	const int cnt = pSysMenu->GetMenuItemCount();
 	for (int i = 0; i < cnt; ++i)
 		if (pSysMenu->GetMenuItemID(i) == ID_SHOW_MAIN_MENU)
+		{
+			pSysMenu->CheckMenuItem(i, MF_BYPOSITION | (bChecked ? MF_CHECKED : MF_UNCHECKED));
 			return; // Add only once
+		}
 	String menuTxt = theApp.LoadString(static_cast<UINT>(IDS_SHOW_MAIN_MENU));
 	pSysMenu->AppendMenu(MF_SEPARATOR);
 	pSysMenu->AppendMenu(MF_STRING, ID_SHOW_MAIN_MENU, menuTxt.c_str());
+	pSysMenu->CheckMenuItem(ID_SHOW_MAIN_MENU, MF_BYCOMMAND | (bChecked ? MF_CHECKED : MF_UNCHECKED));
 }
 
 void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)

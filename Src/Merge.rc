@@ -361,7 +361,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
-        MENUITEM "Show/&Hide Main Menu\tShift+F12",ID_TOGGLE_MAIN_MENU
+        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
     END
     POPUP "&Tools"
@@ -508,7 +508,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
-        MENUITEM "Show/&Hide Main Menu\tShift+F12",ID_TOGGLE_MAIN_MENU
+        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
@@ -750,7 +750,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
-        MENUITEM "Show/&Hide Main Menu\tShift+F12",ID_TOGGLE_MAIN_MENU
+        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
@@ -1411,7 +1411,6 @@ BEGIN
     "1",            ID_SEL_DIFF_COPY_1ST,   VIRTKEY, CONTROL, NOINVERT
     "2",            ID_SEL_DIFF_COPY_2ND,   VIRTKEY, CONTROL, NOINVERT
     "3",            ID_SEL_DIFF_COPY_3RD,   VIRTKEY, CONTROL, NOINVERT
-    VK_F12,         ID_TOGGLE_MAIN_MENU,    VIRTKEY, SHIFT, NOINVERT
 END
 
 
@@ -4578,7 +4577,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_SHOW_MAIN_MENU      "Show/&Hide Main Menu\tShift+F12"
+    IDS_SHOW_MAIN_MENU      "Main Men&u"
 END
 
 #endif    // English (United States) resources
