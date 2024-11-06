@@ -41,7 +41,6 @@ private:
 
 	CWnd* m_pWnd;
 	CSize m_size;
-	CRect m_rc;
 	bool m_maximized;
 	bool m_bMouseTracking;
 	int m_nTrackingButton;

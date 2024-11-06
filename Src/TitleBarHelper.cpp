@@ -32,8 +32,7 @@ void CTitleBarHelper::Init(CWnd *pWnd)
 
 int CTitleBarHelper::GetTopMargin() const
 {
-	return m_maximized ?
-		GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER) : 0;
+	return 0;
 }
 
 void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
@@ -145,29 +144,27 @@ void CTitleBarHelper::SetSize(int cx, int cy)
 	m_size = CSize(cx, cy);
 	CClientDC dc(m_pWnd);
 	m_dpi = dc.GetDeviceCaps(LOGPIXELSX);
-	m_pWnd->GetWindowRect(&m_rc);
 }
 
 LRESULT CTitleBarHelper::OnNcHitTest(CPoint pt)
 {
 	if (!m_pWnd)
 		return HTNOWHERE;
-	CClientDC dc(m_pWnd);
 	const int leftMargin = PointToPixel(m_leftMargin);
 	const int rightMargin = PointToPixel(m_rightMargin);
 	const int borderWidth = PointToPixel(6);
 	CRect rc;
-	m_pWnd->GetWindowRect(&rc);
-	if (pt.y < rc.top + borderWidth)
-	{
-		if (pt.x < rc.left + borderWidth)
-			return HTTOPLEFT;
-		else if (rc.right - borderWidth <= pt.x)
-			return HTTOPRIGHT;
-		return HTTOP;
-	}
+	AfxGetMainWnd()->GetWindowRect(&rc);
 	if (!m_maximized)
 	{
+		if (pt.y < rc.top + borderWidth)
+		{
+			if (pt.x < rc.left + borderWidth)
+				return HTTOPLEFT;
+			else if (rc.right - borderWidth <= pt.x)
+				return HTTOPRIGHT;
+			return HTTOP;
+		}
 		if (pt.x < rc.left + borderWidth)
 			return HTLEFT;
 		if (rc.right - borderWidth <= pt.x)

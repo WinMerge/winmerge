@@ -2549,7 +2549,17 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 	RECT rcWindow = lpncsp->rgrc[0];
 	__super::OnNcCalcSize(bCalcValidRects, lpncsp);
 	if (m_bTabsOnTitleBar.value_or(false) && m_wndTabBar.IsVisible())
-		lpncsp->rgrc[0].top = rcWindow.top + 0;
+	{
+		if (IsZoomed())
+		{
+			lpncsp->rgrc[0].top = rcWindow.top + GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER);
+			//lpncsp->rgrc[0].left += 1;
+			//lpncsp->rgrc[0].right -= 1;
+			lpncsp->rgrc[0].bottom -= 1;
+		}
+		else
+			lpncsp->rgrc[0].top = rcWindow.top + 0;
+	}
 }
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
