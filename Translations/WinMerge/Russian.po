@@ -4243,7 +4243,7 @@ msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Параметры плагина WinMerge CompareMSExcelFiles.sct"
 
 msgid "Extract workbook data to multiple files"
-msgstr "Извлечь данные из workbook в несколько файлов"
+msgstr "Извлечь данные рабочей книги в несколько файлов"
 
 msgid "Update external references(links)"
 msgstr "Обновить внешние ссылки (ссылки)"
@@ -4258,7 +4258,7 @@ msgid "Compare cell values"
 msgstr "Сравнить значения ячеек"
 
 msgid "Compare worksheets as image (very slow)"
-msgstr "Сравнить worksheets как изображение (очень медленно)"
+msgstr "Сравнить рабочие листы как изображение (очень медленно)"
 
 msgid " - Image split size: "
 msgstr " - Размер разделения изображения: "
