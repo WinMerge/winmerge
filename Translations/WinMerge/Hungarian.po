@@ -431,7 +431,7 @@ msgid "&Huge"
 msgstr "Hatalmas"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "Menü sáv"
 
 #, c-format
 msgid "&Status Bar"
