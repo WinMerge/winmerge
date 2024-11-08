@@ -361,6 +361,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
+        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
     END
     POPUP "&Tools"
@@ -507,6 +508,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
+        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
@@ -748,6 +750,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
+        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
@@ -4570,6 +4573,11 @@ BEGIN
     ID_MICE_R2L             "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
     ID_MICE_L2RNEXT         "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
     ID_MICE_R2LNEXT         "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SHOW_MAIN_MENU      "Main Men&u"
 END
 
 #endif    // English (United States) resources

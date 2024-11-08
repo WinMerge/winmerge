@@ -199,12 +199,14 @@ void CMenuBar::OnSetFocus(CWnd* pOldWnd)
 	m_bActive = true;
 	m_hwndOldFocus = pOldWnd->m_hWnd;
 	__super::OnSetFocus(pOldWnd);
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WM_ENTERMENULOOP, 1, 0);
 }
 
 void CMenuBar::OnKillFocus(CWnd* pNewWnd)
 {
 	LoseFocus();
 	__super::OnKillFocus(pNewWnd);
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WM_EXITMENULOOP, 1, 0);
 }
 
 void CMenuBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
