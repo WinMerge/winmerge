@@ -427,6 +427,9 @@ msgstr "Με&γάλη"
 msgid "&Huge"
 msgstr ""
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "Γραμμή &Καταστάσεως"

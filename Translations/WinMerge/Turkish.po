@@ -381,6 +381,9 @@ msgstr "&Büyük"
 msgid "&Huge"
 msgstr "Çok &büyük"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Durum çubuğu"
 

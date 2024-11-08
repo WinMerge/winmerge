@@ -381,6 +381,9 @@ msgstr "Ma&re"
 msgid "&Huge"
 msgstr "Uriaș"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "Bară de &stare"
 

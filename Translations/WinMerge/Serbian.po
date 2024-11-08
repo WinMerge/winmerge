@@ -426,6 +426,9 @@ msgstr "&Велика"
 msgid "&Huge"
 msgstr ""
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "&Статусна трака"

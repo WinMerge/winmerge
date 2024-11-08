@@ -384,6 +384,9 @@ msgstr "&Крупные значки"
 msgid "&Huge"
 msgstr "&Огромные значки"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Строка состояния"
 

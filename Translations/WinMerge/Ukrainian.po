@@ -412,6 +412,9 @@ msgstr "&Великі піктограми"
 msgid "&Huge"
 msgstr "&Величезні піктограми"
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "Ря&док стану"

@@ -381,6 +381,9 @@ msgstr "&Stor"
 msgid "&Huge"
 msgstr ""
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "Stat&uslinje"
 

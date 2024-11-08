@@ -437,6 +437,9 @@ msgstr "크게(&B)"
 msgid "&Huge"
 msgstr "매우 크게(&H)"
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "상태 표시줄(&S)"

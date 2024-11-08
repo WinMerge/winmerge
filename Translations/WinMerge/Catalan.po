@@ -429,6 +429,9 @@ msgstr "&Gran"
 msgid "&Huge"
 msgstr "&Immensa"
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "Barra d'est&at"

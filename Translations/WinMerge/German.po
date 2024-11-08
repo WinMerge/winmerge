@@ -431,6 +431,9 @@ msgstr "&Groß"
 msgid "&Huge"
 msgstr "&Riesig"
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "S&tatusleiste"

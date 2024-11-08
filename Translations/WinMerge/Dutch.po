@@ -380,6 +380,9 @@ msgstr "Groot"
 msgid "&Huge"
 msgstr "Enorm"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "Statusbalk"
 

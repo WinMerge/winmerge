@@ -431,6 +431,9 @@ msgstr "&Handia"
 msgid "&Huge"
 msgstr ""
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "&Egoera Barra"

@@ -382,6 +382,9 @@ msgstr "&Velike"
 msgid "&Huge"
 msgstr "O&gromne"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Statusna vrstica"
 

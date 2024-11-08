@@ -428,6 +428,9 @@ msgstr "&Velký"
 msgid "&Huge"
 msgstr ""
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "&Stavový řádek"

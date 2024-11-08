@@ -430,6 +430,9 @@ msgstr "Nagy"
 msgid "&Huge"
 msgstr "Hatalmas"
 
+msgid "Men&u Bar"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "&Állapotsor"

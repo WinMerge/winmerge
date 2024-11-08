@@ -380,6 +380,9 @@ msgstr "&பெரிய"
 msgid "&Huge"
 msgstr "&பெரிய"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&நிலைப் பட்டி"
 

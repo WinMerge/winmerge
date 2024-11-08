@@ -361,7 +361,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
-        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
+        MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
     END
     POPUP "&Tools"
@@ -508,7 +508,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
-        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
+        MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
@@ -750,7 +750,7 @@ BEGIN
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
-        MENUITEM "Main Men&u",                  ID_VIEW_MAIN_MENU
+        MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
@@ -4577,7 +4577,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_SHOW_MAIN_MENU      "Main Men&u"
+    IDS_VIEW_MENU_BAR      "Men&u Bar"
 END
 
 #endif    // English (United States) resources

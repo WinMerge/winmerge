@@ -384,6 +384,9 @@ msgstr "&Maiò"
 msgid "&Huge"
 msgstr "&Tamanta"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "Barra di s&tatu"
 

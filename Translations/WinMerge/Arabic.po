@@ -383,6 +383,9 @@ msgstr "&كبير"
 msgid "&Huge"
 msgstr "&ضخم"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "شريط ال&حالة"
 

@@ -382,6 +382,9 @@ msgstr "Iso"
 msgid "&Huge"
 msgstr "&Valtava"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "Tilarivi"
 

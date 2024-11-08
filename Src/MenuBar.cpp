@@ -9,7 +9,6 @@
 #include "StdAfx.h"
 #include "MenuBar.h"
 
-static const UINT UWM_SHOWPOPUPMENU = WM_APP + 1;
 HHOOK CMenuBar::m_hHook = nullptr;
 CMenuBar* CMenuBar::m_pThis = nullptr;
 
@@ -21,6 +20,7 @@ IMPLEMENT_DYNAMIC(CMenuBar, CToolBar)
 
 BEGIN_MESSAGE_MAP(CMenuBar, CToolBar)
 	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
+	ON_WM_TIMER()
 	ON_WM_KILLFOCUS()
 	ON_WM_SETFOCUS()
 	ON_WM_MOUSEMOVE()
@@ -32,6 +32,7 @@ END_MESSAGE_MAP()
 
 CMenuBar::CMenuBar()
 	: m_hMenu(nullptr)
+	, m_bAlwaysVisible(true)
 	, m_bActive(false)
 	, m_bMouseTracking(false)
 	, m_nMDIButtonDown(-1)
@@ -192,21 +193,41 @@ void CMenuBar::LoseFocus()
 	m_hwndOldFocus = nullptr;
 	ShowKeyboardCues(false);
 	GetToolBarCtrl().SetHotItem(-1);
+	if (!m_bAlwaysVisible)
+		SetTimer(MENUBAR_TIMER_ID, 200, nullptr);
+}
+
+void CMenuBar::Show(bool visible)
+{
+	static_cast<CFrameWnd*>(AfxGetMainWnd())->ShowControlBar(this, visible, 0);
 }
 
 void CMenuBar::OnSetFocus(CWnd* pOldWnd)
 {
 	m_bActive = true;
 	m_hwndOldFocus = pOldWnd->m_hWnd;
+	if (!m_bAlwaysVisible)
+	{
+		KillTimer(MENUBAR_TIMER_ID);
+		Show(true);
+	}
 	__super::OnSetFocus(pOldWnd);
-	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WM_ENTERMENULOOP, 1, 0);
+}
+
+void CMenuBar::OnTimer(UINT_PTR nIDEvent)
+{
+	if (nIDEvent == MENUBAR_TIMER_ID)
+	{
+		KillTimer(MENUBAR_TIMER_ID);
+		if (!m_bAlwaysVisible)
+			Show(false);
+	}
 }
 
 void CMenuBar::OnKillFocus(CWnd* pNewWnd)
 {
 	LoseFocus();
 	__super::OnKillFocus(pNewWnd);
-	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WM_EXITMENULOOP, 1, 0);
 }
 
 void CMenuBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
@@ -323,6 +344,12 @@ void CMenuBar::OnMenuBarMenuItem(UINT nID)
 		AfxGetMainWnd()->PostMessage(WM_KEYUP, VK_DOWN, 0);
 	}
 
+	if (!m_bAlwaysVisible)
+	{
+		KillTimer(MENUBAR_TIMER_ID);
+		Show(true);
+	}
+
 	m_hHook = SetWindowsHookEx(WH_MSGFILTER, MsgFilterProc, nullptr, GetCurrentThreadId());
 
 	CRect rc;
@@ -331,6 +358,10 @@ void CMenuBar::OnMenuBarMenuItem(UINT nID)
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_LEFTBUTTON, rc.left, rc.bottom, AfxGetMainWnd());
 
 	UnhookWindowsHookEx(m_hHook);
+	m_hHook = nullptr;
+
+	if (!m_bAlwaysVisible)
+		SetTimer(MENUBAR_TIMER_ID, 200, nullptr);
 }
 
 void CMenuBar::OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI)

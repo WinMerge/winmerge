@@ -381,6 +381,9 @@ msgstr "大(&B)"
 msgid "&Huge"
 msgstr "特大(&H)"
 
+msgid "Men&u Bar"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "ステータス バー(&S)"
 

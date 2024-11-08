@@ -1038,9 +1038,7 @@
 #define ID_SEL_DIFF_COPY_2ND_3WAY       33274
 #define ID_MICE_L2RNEXT                 33275
 #define ID_MICE_R2LNEXT                 33276
-#define ID_VIEW_MAIN_MENU             33277
-#define ID_SHOW_MAIN_MENU               33278
-#define IDS_SHOW_MAIN_MENU              33279
+#define ID_VIEW_MENU_BAR                33277
 #define ID_TABBAR_AUTO_MAXWIDTH         33351
 #define ID_IMG_VIEWDIFFERENCES          33353
 #define ID_IMG_ZOOM_25                  33354
@@ -1791,6 +1789,7 @@
 #define IDS_COPY_GRANULARITY_INLINE     44542
 #define IDS_COPY_GRANULARITY_LINE       44543
 #define IDS_COPY_GRANULARITY_Character  44544
+#define IDS_VIEW_MENU_BAR               44545
 
 // Next default values for new objects
 // 
