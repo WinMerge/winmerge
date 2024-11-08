@@ -110,10 +110,10 @@ msgid "&Go to...\tCtrl+G"
 msgstr "Перейти к...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr "... перемещенной между лево/центр\tCtrl+Shift+G"
+msgstr "... перемещенной строке между левым/центром\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr "... перемещенной между центр/право\tCtrl+Alt+G"
+msgstr "... перемещенной строке между центром/правым\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "От&крыть"
@@ -727,7 +727,7 @@ msgid "&9 Lines"
 msgstr "&9 строк"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr "Переключить все и 0-9 строк\tCtrl+D"
+msgstr "Переключить все и строки 0-9\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
 msgstr "Инвертировать (скрыть отличные строки)"
@@ -736,7 +736,7 @@ msgid "&Lock Panes"
 msgstr "Заблокировать панели"
 
 msgid "&View Whitespace"
-msgstr "Показы&вать невидимые"
+msgstr "Показы&вать пробельные символы"
 
 msgid "View E&OL"
 msgstr "Показывать EOL"
@@ -775,40 +775,40 @@ msgid "A&dvanced"
 msgstr "Дополнительно"
 
 msgid "Next Difference Between Left and Middle\tAlt+1"
-msgstr "Следующее между левым и средним\tAlt+1"
+msgstr "Следующее отличие между левым/центром\tAlt+1"
 
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr "Предыдущее между левым и средним\tAlt+Shift+1"
+msgstr "Предыдущее отличие между левым/центром\tAlt+Shift+1"
 
 msgid "Next Difference Between Left and Right\tAlt+2"
-msgstr "Следующее между левым и правым\tAlt+2"
+msgstr "Следующее отличие между левым/правым\tAlt+2"
 
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr "Предыдущее между левым и правым\tAlt+Shift+2"
+msgstr "Предыдущее отличие между левым/правым\tAlt+Shift+2"
 
 msgid "Next Difference Between Middle and Right\tAlt+3"
-msgstr "Следующее между средним и правым\tAlt+3"
+msgstr "Следующее отличие между центром/правым\tAlt+3"
 
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr "Предыдущее между средним и правым\tAlt+Shift+3"
+msgstr "Предыдущее отличие между центром/правым\tAlt+Shift+3"
 
 msgid "Next Left Only Difference\tAlt+7"
-msgstr "Следующее только слева\tAlt+7"
+msgstr "Следующее отличие только слева\tAlt+7"
 
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr "Предыдущее только слева\tAlt+Shift+7"
+msgstr "Предыдущее отличие только слева\tAlt+Shift+7"
 
 msgid "Next Middle Only Difference\tAlt+8"
-msgstr "Следующее только в центре\tAlt+8"
+msgstr "Следующее отличие только в центре\tAlt+8"
 
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr "Предыдущее только в центре\tAlt+Shift+8"
+msgstr "Предыдущее отличие только в центре\tAlt+Shift+8"
 
 msgid "Next Right Only Difference\tAlt+9"
-msgstr "Следующее только справа\tAlt+9"
+msgstr "Следующее отличие только справа\tAlt+9"
 
 msgid "Previous Right Only Difference\tAlt+Shift+9"
-msgstr "Предыдущее только справа\tAlt+Shift+9"
+msgstr "Предыдущее отличие только справа\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
 msgstr "Копировать слева"
@@ -967,7 +967,7 @@ msgid "&Open Left"
 msgstr "Открыть левый"
 
 msgid "Open Midd&le"
-msgstr "Открыть средний"
+msgstr "Открыть в центре"
 
 msgid "O&pen Right"
 msgstr "Открыть правый"
@@ -1359,7 +1359,7 @@ msgid "&Don't wrap end of file"
 msgstr "Останавливаться в конце файла"
 
 msgid "Replace in"
-msgstr "Заменить в"
+msgstr "Заменить"
 
 msgid "&Selection"
 msgstr "В выбранном"
@@ -1488,10 +1488,10 @@ msgid "Preprocessor:"
 msgstr "Препроцессор:"
 
 msgid "User 1:"
-msgstr "Пользователь 1:"
+msgstr "Настройка 1:"
 
 msgid "User 2:"
-msgstr "Пользователь 2:"
+msgstr "Настройка 2:"
 
 msgid "Bold"
 msgstr "Жирный"
@@ -1500,7 +1500,7 @@ msgid "&Use customized text colors"
 msgstr "Использовать настраиваемые цвета текста"
 
 msgid "Whitespace:"
-msgstr "Невидимые:"
+msgstr "Пробельные символы:"
 
 msgid "Regular text:"
 msgstr "Обычный текст:"
@@ -1515,13 +1515,13 @@ msgid "Search Marker:"
 msgstr "Маркер поиска:"
 
 msgid "User Defined Marker1:"
-msgstr "Пользоват. маркер1:"
+msgstr "Настраив. маркер1:"
 
 msgid "User Defined Marker2:"
-msgstr "Пользоват. маркер2:"
+msgstr "Настраив. маркер2:"
 
 msgid "User Defined Marker3:"
-msgstr "Пользоват. маркер3:"
+msgstr "Настраив. маркер3:"
 
 msgid "&Use folder compare colors"
 msgstr "Использовать цвета сравнения папок"
@@ -1551,13 +1551,13 @@ msgid "&External editor:"
 msgstr "Внешний редактор:"
 
 msgid "&Filter folder:"
-msgstr "&Фильтры:"
+msgstr "Папка фильтров:"
 
 msgid "Temporary files folder"
 msgstr "Папка временных файлов"
 
 msgid "S&ystem's temp folder"
-msgstr "Системная папка Temp"
+msgstr "Системная временная папка"
 
 msgid "C&ustom folder:"
 msgstr "Указанная папка:"
@@ -1689,16 +1689,16 @@ msgid "Compare"
 msgstr "Сравнение"
 
 msgid "Whitespaces"
-msgstr "Невидимые"
+msgstr "Пробельные символы"
 
 msgid "&Compare"
 msgstr "Сравнение"
 
 msgid "&Ignore change"
-msgstr "Игнорировать измененные невидимые"
+msgstr "Игнорировать изменения"
 
 msgid "I&gnore all"
-msgstr "Игнорировать &все невидимые"
+msgstr "Игнорировать &все"
 
 msgid "E&nable moved block detection"
 msgstr "Обнаружение переме&щенных блоков"
@@ -1932,10 +1932,10 @@ msgid "Missing Right:"
 msgstr "Отсутствует справа:"
 
 msgid "Affects"
-msgstr "Применить"
+msgstr "Влияет"
 
 msgid "(Affects)"
-msgstr "(применить)"
+msgstr "(Влияет)"
 
 msgid "Select Codepage for"
 msgstr "Кодовая страница для"
@@ -1947,7 +1947,7 @@ msgid "File &Saving:"
 msgstr "Сохранения:"
 
 msgid "&Use same codepage for both"
-msgstr "Использовать одну и ту же кодовую страницу"
+msgstr "Использовать одинаковую кодовую страницу для обоих вариантов"
 
 msgid "&Cancel"
 msgstr "&Отмена"
@@ -2079,22 +2079,22 @@ msgid "Enable &Compare As menu"
 msgstr "Добавить в меню '&Сравнить как'"
 
 msgid "&Register shell extension"
-msgstr "Зарегистрировать shell"
+msgstr "Регистрация расширений оболочки"
 
 msgid "&Unregister shell extension"
-msgstr "Удалить shell"
+msgstr "Удаление расширений оболочки"
 
 msgid "Register shell extension for current user &only"
-msgstr "Зарегистрировать shell для текущего пользователя"
+msgstr "Регистрация расширений оболочки только для текущего пользователя"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "Удалить shell для текущего пользователя"
+msgstr "Удаление расширений оболочки  только для текущего пользователя"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr "Зарегистрировать shell для Windows 11"
+msgstr "Регистрация расширений оболочки для &Windows 11 или более поздней версии"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr "Удалить shell для &Windows 11"
+msgstr "Удаление расширений оболочки для W&indows 11 или более поздней версии"
 
 msgid "Jump List"
 msgstr "Список переходов"
@@ -2162,16 +2162,16 @@ msgid "&Enable image compare in folder compare"
 msgstr "Сравнивать изображения в папках сравнения"
 
 msgid "OCR result:"
-msgstr "Результат OCR:"
+msgstr "Результат распознавания:"
 
 msgid "Webpage"
 msgstr "Веб-страница"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr "Шаблон URL для включения (regexp):"
+msgstr "Шаблон URL для включения (Регулярное выражение):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr "Шаблон URL для исключения (regexp):"
+msgstr "Шаблон URL для исключения (Регулярное выражение):"
 
 msgid "&User data folder location:"
 msgstr "Расположение папки данных пользователя:"
@@ -2180,7 +2180,7 @@ msgid "&Separate user data folders for each pane"
 msgstr "Отдельные папки пользовательских данных для каждой панели"
 
 msgid "&Hex View"
-msgstr "&Hex Вид"
+msgstr "16-ричный вид"
 
 msgid "Edit Plugin"
 msgstr "Редактировать плагин"
@@ -2285,16 +2285,16 @@ msgid "&Yes"
 msgstr "&Да"
 
 msgid "Yes to &all"
-msgstr "Да д&ля всех"
+msgstr "Да для всех"
 
 msgid "&No"
 msgstr "&Нет"
 
 msgid "No to a&ll"
-msgstr "Нет д&ля всех"
+msgstr "Нет для всех"
 
 msgid "&Continue"
-msgstr "Про&должить"
+msgstr "Продолжить"
 
 msgid "&Skip"
 msgstr "П&ропустить"
@@ -2653,7 +2653,7 @@ msgstr "Плагин '%2' не может упаковать ваши измен
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "Плагин '%2' не может упаковать ваши изменения из среднего файла обратно в '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
+msgstr "Плагин '%2' не может упаковать ваши изменения из центрального файла обратно в '%1'.\n\nИсходный файл не будет изменен.\n\nСохранить распакованную версию в другой файл?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -2688,10 +2688,10 @@ msgid "Cannot merge differences when documents are not in synch.\n\nRefresh docu
 msgstr "Не удается объединить отличия, если документы не синхронизированы.\n\nОбновите документы, прежде чем продолжить."
 
 msgid "Break at whitespace"
-msgstr "Разбивать по пробельным"
+msgstr "Разбивать по пробельным символам"
 
 msgid "Break at whitespace or punctuation"
-msgstr "Разбивать по пробельным и знакам пунктуации"
+msgstr "Разбивать по пробельным символам и знакам пунктуации"
 
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "Копировать в центр\tAlt+Right"
@@ -2706,10 +2706,10 @@ msgid "Copy from Middle\tAlt+Shift+Left"
 msgstr "Копировать из центра\tAlt+Shift+Left"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr "Копировать в центр и продвинуть\tCtrl+Alt+Right"
+msgstr "Копировать в центр и перейти\tCtrl+Alt+Right"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr "Копировать в центр и продвинуть\tCtrl+Alt+Left"
+msgstr "Копировать в центр и перейти\tCtrl+Alt+Left"
 
 msgid "Copy All to Middle"
 msgstr "Копировать все в центр"
@@ -3882,7 +3882,7 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-битная версия WinMerge не поддерживает Сравнение буфера обмена"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "Не установлена среда выполнения WebView2. Хотите скачать его?"
+msgstr "Не установлена среда выполнения WebView2. Загрузить?"
 
 msgid "New Text Compare"
 msgstr "Создать сравнение текста"
@@ -4035,7 +4035,7 @@ msgid "Ignore Columns"
 msgstr "Игнорировать столбцы"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr "Игнорировать комментарии (семейство C)"
+msgstr "Игнорировать комментарии (семейство языков C)"
 
 msgid "Ignore CSV Fields"
 msgstr "Игнорировать поля CSV"
@@ -4147,13 +4147,13 @@ msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed
 msgstr "HTML Prettier с tidy-html5. \r\nАргументы: Параметры командной строки, передаваемые команде tidy."
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr "JSON Prettier с jq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде jq."
+msgstr "JSON Prettier с командой jq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде jq."
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
 msgstr "XML Prettier с tidy-html5. \r\nАргументы: Параметры командной строки, передаваемые команде tidy."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr "YAML Prettier с yq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде yq."
+msgstr "YAML Prettier с командой yq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде yq."
 
 msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
 msgstr "Предпросмотр Graphviz. \r\nАргументы: Параметры командной строки, передаваемые команде dot."
@@ -4165,16 +4165,16 @@ msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the pla
 msgstr "Предпросмотр PlantUML. \r\nАргументы: Параметры командной строки, передаваемые команде plantuml.jar."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr "CSV Querier с q. \r\nАргументы: Оператор SQL или параметры командной строки, передаваемые команде q."
+msgstr "CSV Querier с командой q. \r\nАргументы: Оператор SQL или параметры командной строки, передаваемые команде q."
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr "TSV Querier с q. \r\nАргументы: Оператор SQL или параметры командной строки, передаваемые команде q."
+msgstr "TSV Querier с командой q. \r\nАргументы: Оператор SQL или параметры командной строки, передаваемые команде q."
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr "JSON Querier с jq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде jq."
+msgstr "JSON Querier с командой jq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде jq."
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr "YAML Querier с yq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде yq."
+msgstr "YAML Querier с командой yq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде yq."
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
 msgstr "Валидатор HTML с tidy-html5. \r\nАргументы: Параметры командной строки, передаваемые команде tidy."
@@ -4264,7 +4264,7 @@ msgid "Compare worksheets as image (very slow)"
 msgstr "Сравнить рабочие листы как изображение (очень медленно)"
 
 msgid " - Image split size: "
-msgstr " - Размер разделения изображения: "
+msgstr " - Размер разделённого изображения: "
 
 msgid "Compare worksheets as HTML"
 msgstr "Сравнить рабочие листы как HTML"
@@ -4336,7 +4336,7 @@ msgid "Use RegExp"
 msgstr "RegExp"
 
 msgid "Find what"
-msgstr "Найди что"
+msgstr "Что найти"
 
 msgid "Replace with"
 msgstr "Заменить на"
