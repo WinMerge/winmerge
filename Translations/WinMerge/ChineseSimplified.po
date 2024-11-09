@@ -387,7 +387,7 @@ msgid "&Huge"
 msgstr "特大(&H)"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "菜单栏(&U)"
 
 msgid "&Status Bar"
 msgstr "状态栏(&S)"
