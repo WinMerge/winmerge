@@ -11,11 +11,8 @@
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
 #include "OptionsPanel.h"
-#include "DirItem.h"
-#include "DirTravel.h"
-#include "paths.h"
-#include "Environment.h"
 #include "SysColorHook.h"
+#include "ColorSchemes.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -59,30 +56,6 @@ void PropColorSchemes::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_COLOR_SCHEME, m_sColorScheme);
 }
 
-static String GetColorSchemesFolder()
-{
-	return paths::ConcatPath(env::GetProgPath(), _T("ColorSchemes"));
-}
-
-static std::vector<String> GetColorSchemeNames()
-{
-	DirItemArray dirs, files;
-	std::vector<String> names;
-
-	LoadAndSortFiles(GetColorSchemesFolder(), &dirs, &files, false);
-
-	for (DirItem& item : files)
-	{
-		String filename;
-		String ext;
-		paths::SplitFilename(item.filename, nullptr, &filename, &ext);
-		if (strutils::compare_nocase(ext, _T("ini")) == 0)
-			names.push_back(filename);
-	}
-
-	return names;
-}
-
 /** 
  * @brief Called before propertysheet is drawn.
  */
@@ -90,7 +63,7 @@ BOOL PropColorSchemes::OnInitDialog()
 {
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COLOR_SCHEMES);
 
-	for (auto& name : GetColorSchemeNames())
+	for (auto& name : ColorSchemes::GetColorSchemeNames())
 	{
 		combo->AddString(name.c_str());
 		if (strutils::compare_nocase(name, m_sColorScheme) == 0)
@@ -109,7 +82,7 @@ void PropColorSchemes::OnCbnSelchangeColorSchemes()
 	GetDlgItemText(IDC_COLOR_SCHEMES, sColorScheme);
 	m_sColorScheme = sColorScheme;
 	WriteOptions();
-	String path = paths::ConcatPath(GetColorSchemesFolder(), sColorScheme + _T(".ini"));
+	String path = ColorSchemes::GetColorSchemePath(sColorScheme);
 	SysColorHook::Unhook(AfxGetInstanceHandle());
 	auto result = GetOptionsMgr()->ImportOptions(path);
 	if (GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
