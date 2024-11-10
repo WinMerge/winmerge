@@ -60,17 +60,17 @@ msgstr "Geselecteerde regel(s) naar links kopiëren"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Geselecteerde regel(s) van links kopiëren"
 
-msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr "Geselecteerd verschil (links) naar klembord kopiëren\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
+msgstr "Geselecteerd verschil (links) naar klembord kopiëren\tCtrl+&1"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
-msgstr "Geselecteerd verschil (rechts) naar klembord kopiëren\tCtrl+2"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
+msgstr "Geselecteerd verschil (rechts) naar klembord kopiëren\tCtrl+&2"
 
-msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr "Geselecteerd verschil (midden) naar klembord kopiëren\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
+msgstr "Geselecteerd verschil (midden) naar klembord kopiëren\tCtrl+&2"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr "Geselecteerd verschil (rechts) naar klembord kopiëren\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
+msgstr "Geselecteerd verschil (rechts) naar klembord kopiëren\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
