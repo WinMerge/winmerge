@@ -63,17 +63,17 @@ msgstr "A kijelölt sor(ok) balra másolása"
 msgid "Copy Selected Line(s) from Left"
 msgstr "A kijelölt sor(ok) másolása balról"
 
-msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr "A kijelölt különbség (bal) vágólapra másolása\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
+msgstr "A kijelölt különbség (bal) vágólapra másolása\tCtrl+&1"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
-msgstr "A kijelölt különbség (jobb) vágólapra &másolása\tCtrl+2"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
+msgstr "A kijelölt különbség (jobb) vágólapra &másolása\tCtrl+&2"
 
-msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr "A kijelölt különbség (középső) vágólapra &másolása\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
+msgstr "A kijelölt különbség (középső) vágólapra &másolása\tCtrl+&2"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr "A kijelölt különbség (jobb) vágólapra &másolása\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
+msgstr "A kijelölt különbség (jobb) vágólapra &másolása\tCtrl+&3"
 
 #, c-format
 msgid "Select Line &Difference\tF4"

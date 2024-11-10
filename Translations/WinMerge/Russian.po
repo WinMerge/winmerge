@@ -64,17 +64,17 @@ msgstr "Копировать выбранные строки влево"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Копировать выбранные строки слева"
 
-msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr "Копировать выбранные отличия (слева) в буфер обмена\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
+msgstr "Копировать выбранные отличия (слева) в буфер обмена\tCtrl+&1"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
-msgstr "Копировать выбранные отличия (справа) в буфер обмена\tCtrl+2"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
+msgstr "Копировать выбранные отличия (справа) в буфер обмена\tCtrl+&2"
 
-msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr "Копировать выбранные отличия (в центре) в буфер обмена\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
+msgstr "Копировать выбранные отличия (в центре) в буфер обмена\tCtrl+&2"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr "Копировать выбранные отличия (справа) в буфер обмена\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
+msgstr "Копировать выбранные отличия (справа) в буфер обмена\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Выбрать &отличие\tF4"

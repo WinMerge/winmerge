@@ -64,17 +64,17 @@ msgstr "Cupià a(e) linea(e) selezziunata(e) versu a manca"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Cupià a(e) linea(e) selezziunata(e) da a manca"
 
-msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr "Cupià a sfarenza selezziunata (manca) in u preme’papei\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
+msgstr "Cupià a sfarenza selezziunata (manca) in u preme’papei\tCtrl+&1"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
-msgstr "Cupià a sfarenza selezziunata (diritta) in u preme’papei\tCtrl+2"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
+msgstr "Cupià a sfarenza selezziunata (diritta) in u preme’papei\tCtrl+&2"
 
-msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr "Cupià a sfarenza selezziunata (centru) in u preme’papei\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
+msgstr "Cupià a sfarenza selezziunata (centru) in u preme’papei\tCtrl+&2"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr "Cupià a sfarenza selezziunata (diritta) in u preme’papei\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
+msgstr "Cupià a sfarenza selezziunata (diritta) in u preme’papei\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "&Selezziunà a sfarenza di linea\tF4"

@@ -63,17 +63,17 @@ msgstr "Copia righe selezionate a sinistra"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copia righe selezionate da sinistra"
 
-msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr "Copia differenze selezionate (a sinistra) negli appunti \tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
+msgstr "Copia differenze selezionate (a sinistra) negli appunti \tCtrl+&1"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
-msgstr "Copia  differenze selezionate (a destra) negli appunti\tCtrl+2"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
+msgstr "Copia  differenze selezionate (a destra) negli appunti\tCtrl+&2"
 
-msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr "Copia differenze selezionate (al centro) negli appunti\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
+msgstr "Copia differenze selezionate (al centro) negli appunti\tCtrl+&2"
 
-msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr "Copia differenze selezionate (a destra) negli appunti\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
+msgstr "Copia differenze selezionate (a destra) negli appunti\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Seleziona &differenze di riga\tF4"
