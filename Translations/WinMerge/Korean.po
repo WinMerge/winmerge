@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2024-10-27 21:48+0900\n"
+"PO-Revision-Date: 2024-11-11 01:52+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -438,7 +438,7 @@ msgid "&Huge"
 msgstr "매우 크게(&H)"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "메뉴 표시줄(&U)"
 
 #, c-format
 msgid "&Status Bar"
@@ -454,7 +454,7 @@ msgstr "필터(&F)..."
 
 #, c-format
 msgid "&Generate Patch..."
-msgstr "패치 만들기(&G)..."
+msgstr "패치 생성(&G)..."
 
 #, c-format
 msgid "&Plugins"
