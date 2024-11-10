@@ -2088,7 +2088,7 @@ msgid "Register shell extension for current user &only"
 msgstr "Регистрация расширений оболочки только для текущего пользователя"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "Удаление расширений оболочки  только для текущего пользователя"
+msgstr "Удаление расширений оболочки только для текущего пользователя"
 
 msgid "Register shell extension for &Windows 11 or later"
 msgstr "Регистрация расширений оболочки для &Windows 11 или более поздней версии"
