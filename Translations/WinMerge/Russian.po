@@ -146,7 +146,7 @@ msgid "Diff &Block Size"
 msgstr "Отличия размера блока"
 
 msgid "&Ignore Color Difference (Color Distance Threshold)"
-msgstr "Игнорировать разницу цветов (порог)"
+msgstr "Игнорировать разницу цветов (порог цветоразличения)"
 
 msgid "Ins&ertion/Deletion Detection"
 msgstr "Обнаружение вставки/удаления"
@@ -3668,7 +3668,7 @@ msgstr "Подсветка"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "Мигать"
+msgstr "Мигание"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
@@ -3680,7 +3680,7 @@ msgstr "Прозрачность блока"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "Порог CD"
+msgstr "Порог цветоразличения"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
@@ -3692,11 +3692,11 @@ msgstr "Нет"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Вертикальный"
+msgstr "Вертикально"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Горизонтальный"
+msgstr "Горизонтально"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
@@ -3761,10 +3761,10 @@ msgid "<Edit here>"
 msgstr "<Редактировать здесь>"
 
 msgid "No differences to select found"
-msgstr "Отличий для выбора не найдено"
+msgstr "Не найдено отличий для выбора"
 
 msgid "No differences found to add as substitution filter"
-msgstr "Отличий не найдено для добавления в фильтр подмены"
+msgstr "Не найдено отличий для добавления в фильтр подмены"
 
 msgid "The pair is already present in the list of Substitution Filters"
 msgstr "Эта пара уже присутствует в списке фильтров подмены"
