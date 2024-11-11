@@ -2871,9 +2871,11 @@ UpdateCaret ()
         }
       else
         {
-          DWORD caretWidth = 2;
+          DWORD caretWidth = 1;
           SystemParametersInfo (SPI_GETCARETWIDTH, 0, &caretWidth, 0);
-          CreateSolidCaret (caretWidth, nCaretHeight);
+          const int dpi = CClientDC (this).GetDeviceCaps (LOGPIXELSX);
+          const int nCaretWidth = MulDiv (caretWidth, dpi, 96);
+          CreateSolidCaret (nCaretWidth, nCaretHeight);
         }
 
       SetCaretPos (TextToClient (m_ptCursorPos));
