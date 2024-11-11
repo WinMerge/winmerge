@@ -2870,7 +2870,11 @@ UpdateCaret ()
           CreateSolidCaret (nCaretWidth, nCaretHeight);
         }
       else
-        CreateSolidCaret (2, nCaretHeight);
+        {
+          DWORD caretWidth = 2;
+          SystemParametersInfo (SPI_GETCARETWIDTH, 0, &caretWidth, 0);
+          CreateSolidCaret (caretWidth, nCaretHeight);
+        }
 
       SetCaretPos (TextToClient (m_ptCursorPos));
       ShowCaret ();
