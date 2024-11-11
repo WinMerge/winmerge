@@ -9,7 +9,10 @@
 #include "SysColorHook.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsInit.h"
 #include "OptionsPanel.h"
+#include "ColorSchemes.h"
+#include "IniOptionsMgr.h"
 #include "Merge.h"
 
 #ifdef _DEBUG
@@ -170,5 +173,18 @@ void PropSysColors::OnDefaults()
 {
 	for (int i = 0; i < static_cast<int>(m_cSysColors.size()); i++)
 		m_cSysColors[i] = SysColorHook::GetOrgSysColor(i);
+	String path = ColorSchemes::GetColorSchemePath(GetOptionsMgr()->GetString(OPT_COLOR_SCHEME));
+	if (path.empty())
+	{
+		m_bEnableSysColorHook = GetOptionsMgr()->GetDefault<bool>(OPT_SYSCOLOR_HOOK_ENABLED);
+	}
+	else
+	{
+		CIniOptionsMgr iniOptions(path);
+		Options::Init(&iniOptions);
+		SysColorHook::Deserialize(iniOptions.GetString(OPT_SYSCOLOR_HOOK_COLORS), m_cSysColors.data());
+		m_bEnableSysColorHook = iniOptions.GetBool(OPT_SYSCOLOR_HOOK_ENABLED);
+	}
+	UpdateData(false);
 	UpdateControls();
 }

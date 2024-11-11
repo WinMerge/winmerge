@@ -16,7 +16,10 @@ String GetColorSchemesFolder()
 
 String GetColorSchemePath(const String& name)
 {
-	return paths::ConcatPath(GetColorSchemesFolder(), name + _T(".ini"));
+	const String path = paths::ConcatPath(GetColorSchemesFolder(), name + _T(".ini"));
+	if (!paths::DoesPathExist(path))
+		return _T("");
+	return path;
 }
 
 std::vector<String> GetColorSchemeNames()
