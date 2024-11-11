@@ -56,6 +56,7 @@ protected:
 	afx_msg void OnBnClickedSysColorHookEnabled();
 	afx_msg void OnCbnSelchangeSysColorName();
 	afx_msg void OnBnClickedSysColor();
+	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
