@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2024-09-19 08:33+0200\n"
+"PO-Revision-Date: 2024-11-12 08:58+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -412,10 +412,10 @@ msgid "Ta&b Bar"
 msgstr "Barre d'&onglets"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "&Afficher la barre d'onglets"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "&Sur la barre de titre"
 
 #, c-format
 msgid "&Toolbar"
@@ -426,7 +426,7 @@ msgid "&Small"
 msgstr "&Petite"
 
 msgid "&Medium"
-msgstr ""
+msgstr "&Moyen"
 
 #, c-format
 msgid "&Big"
@@ -437,7 +437,7 @@ msgid "&Huge"
 msgstr "&Énorme"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "Barre de men&us"
 
 #, c-format
 msgid "&Status Bar"
@@ -1864,7 +1864,7 @@ msgid "Items filtered:"
 msgstr "Éléments filtrés :"
 
 msgid "&Use custom system colors (Some UI elements may not apply)"
-msgstr ""
+msgstr "&Utiliser des couleurs système personnalisées (certains éléments de l'interface utilisateur peuvent ne pas s'appliquer)"
 
 #, c-format
 msgid "System"
@@ -5140,7 +5140,7 @@ msgid "URL Handling"
 msgstr "Gestion des URL"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "Décodage / Encodage"
 
 msgid "Make Uppercase"
 msgstr "Mettre en MAJUSCULES"
@@ -5260,7 +5260,7 @@ msgid "Convert Text with AI..."
 msgstr "Convertir du texte avec l'IA..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Annuler l'échappement des fichiers de propriétés Java"
 
 msgid "Make characters uppercase"
 msgstr "Mettre les caractères en MAJUSCULES"
@@ -5540,7 +5540,7 @@ msgstr ""
 "Utilisation : AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Annuler l'échappement et afficher les fichiers de propriétés Java échappés."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Options du plugin WinMerge CompareMSExcelFiles.sct"
