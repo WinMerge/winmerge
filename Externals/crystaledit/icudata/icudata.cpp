@@ -20,7 +20,7 @@ bool createBinaryRulesHeaderFile(const UChar* rules, const char *name, const cha
 	std::vector<uint8_t> binaryRules(64 * 1024);
 
 	UBreakIterator *iter = ubrk_openRules(rules, static_cast<int32_t>(wcslen(reinterpret_cast<const wchar_t *>(rules))), nullptr, 0, &parseError, &status);
-	int32_t size = ubrk_getBinaryRules(iter, binaryRules.data(), binaryRules.size(), &status);
+	int32_t size = ubrk_getBinaryRules(iter, binaryRules.data(), static_cast<int32_t>(binaryRules.size()), &status);
 
 	FILE* fp = nullptr;
 	fopen_s(&fp, filename, "wt");
