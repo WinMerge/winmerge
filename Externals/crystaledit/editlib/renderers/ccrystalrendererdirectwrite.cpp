@@ -335,7 +335,6 @@ static void GetFontFamilyNameFromFont(IDWriteFont* pFont, wchar_t* fontFamilyNam
 
 static DWRITE_FONT_WEIGHT GetDWriteFontWeight(const LOGFONT& lf, bool bold)
 {
-	DWRITE_FONT_WEIGHT result;
 	const long weight = bold ? (lf.lfWeight + 300) : lf.lfWeight;
 	if (weight <= 100) return DWRITE_FONT_WEIGHT_THIN;
 	else if (weight <= 200) return DWRITE_FONT_WEIGHT_EXTRA_LIGHT;
@@ -373,7 +372,7 @@ void CCrystalRendererDirectWrite::SetFont(const LOGFONT &lf)
 	}
 	m_pCurrentTextFormat = m_pTextFormat[0].get();
 	m_pFont.reset();
-	m_charSize = ::GetCharWidthHeight(m_pTextFormat[0]->Get());
+	m_charSize = ::GetCharWidthHeight(m_pTextFormat[3]->Get());
 }
 
 void CCrystalRendererDirectWrite::SwitchFont(bool italic, bool bold)
