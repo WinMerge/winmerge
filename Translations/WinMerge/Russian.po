@@ -364,7 +364,7 @@ msgid "Ta&b Bar"
 msgstr "Панель вкладок"
 
 msgid "&View Tab Bar"
-msgstr "Просмотр панели вкладок"
+msgstr "Панель просмотра вкладок"
 
 msgid "&On Title Bar"
 msgstr "В строке заголовка"
@@ -385,7 +385,7 @@ msgid "&Huge"
 msgstr "&Огромные значки"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "Панель меню"
 
 msgid "&Status Bar"
 msgstr "&Строка состояния"
