@@ -41,6 +41,20 @@ bool CCrystalRendererGDI::EndDraw()
 	return true;
 }
 
+static LONG GetFontWeight(const LOGFONT& lf, bool bold)
+{
+	const long weight = bold ? (lf.lfWeight + 300) : lf.lfWeight;
+	if (weight <= 100) return FW_THIN;
+	else if (weight <= 200) return FW_EXTRALIGHT;
+	else if (weight <= 300) return FW_LIGHT;
+	else if (weight <= 400) return FW_NORMAL;
+	else if (weight <= 500) return FW_MEDIUM;
+	else if (weight <= 600) return FW_SEMIBOLD;
+	else if (weight <= 700) return FW_BOLD;
+	else if (weight <= 800) return FW_EXTRABOLD;
+	else return FW_BLACK;
+}
+
 void CCrystalRendererGDI::SetFont(const LOGFONT &lf)
 {
 	m_lfBaseFont = lf;
@@ -54,7 +68,7 @@ void CCrystalRendererGDI::SetFont(const LOGFONT &lf)
 			CClientDC dc (CWnd::GetDesktopWindow());
 			m_lfBaseFont.lfHeight = -MulDiv (11, dc.GetDeviceCaps (LOGPIXELSY), 72);
 		}
-		m_lfBaseFont.lfWeight = bold ? FW_BOLD : FW_NORMAL;
+		m_lfBaseFont.lfWeight = GetFontWeight(lf, bold);
 		m_lfBaseFont.lfItalic = (BYTE) italic;
 		if (!m_apFonts[nIndex]->CreateFontIndirect(&m_lfBaseFont))
 			m_apFonts[nIndex].reset(nullptr);
