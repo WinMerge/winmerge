@@ -1158,7 +1158,7 @@ msgid "${8} - The eighth argument"
 msgstr "${8} - Восьмой аргумент"
 
 msgid "${9} - The ninth argument"
-msgstr "${8} - Восьмой аргумент"
+msgstr "${9} - Девятый аргумент"
 
 msgid "${SRC_FILE} - Source file"
 msgstr "${SRC_FILE} - Файл источника"
