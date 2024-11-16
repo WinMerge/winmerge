@@ -23,6 +23,9 @@ public:
 	void SetMaximized(bool maximized) { m_maximized = maximized; }
 	bool GetMaximized() const { return m_maximized; }
 	void SetSize(int cx, int cy);
+	static COLORREF GetBackColor(bool bActive);
+	static COLORREF GetTextColor(bool bActive);
+	static void ReloadAccentColor();
 	LRESULT OnNcHitTest(CPoint pt);
 	void OnNcMouseMove(UINT nHitTest, CPoint point);
 	void OnNcMouseLeave();

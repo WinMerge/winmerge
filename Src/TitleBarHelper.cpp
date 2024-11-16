@@ -8,6 +8,7 @@
 
 #include "StdAfx.h"
 #include "TitleBarHelper.h"
+#include "AccentColor.h"
 
 #if !defined(SM_CXPADDEDBORDER)
 #define SM_CXPADDEDBORDER       92
@@ -287,4 +288,49 @@ COLORREF CTitleBarHelper::GetIntermediateColor(COLORREF a, COLORREF b, float rat
 	const uint8_t G = static_cast<int8_t>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
 	const uint8_t B = static_cast<int8_t>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
 	return RGB(R, G, B);
+}
+
+COLORREF CTitleBarHelper::GetBackColor(bool bActive)
+{
+	if (!CAccentColor::Get().GetColorPrevalence())
+	{
+		const COLORREF clr = GetSysColor(COLOR_3DFACE);
+		const COLORREF bgclr = bActive ?
+			RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255))
+			: clr;
+		return bgclr;
+	}
+	const COLORREF czclr = (!bActive) ?
+		CAccentColor::Get().GetAccentColorInactive() :
+		CAccentColor::Get().GetAccentColor();
+	return czclr != CLR_NONE ? czclr : GetSysColor(COLOR_3DFACE);
+}
+
+COLORREF CTitleBarHelper::GetTextColor(bool bActive)
+{
+	if (!CAccentColor::Get().GetColorPrevalence())
+		return GetSysColor(COLOR_BTNTEXT);
+	if (!bActive)
+	{
+		COLORREF clr = GetSysColor(COLOR_3DFACE);
+		if (GetRValue(clr) < 128 && GetGValue(clr) < 128 && GetBValue(clr) < 128)
+			return RGB(245, 245, 245);
+		return RGB(10, 10, 10);
+	}
+	const COLORREF czclr = CAccentColor::Get().GetAccentColor();
+	if (czclr != CLR_NONE)
+	{
+		const BYTE r = static_cast<BYTE>(czclr >> 16);
+		const BYTE g = static_cast<BYTE>(czclr >> 8);
+		const BYTE b = static_cast<BYTE>(czclr);
+		if (r < 128 && g < 128 && b < 128)
+			return RGB(255, 255, 255);
+		return RGB(0, 0, 0);
+	}
+	return GetSysColor(COLOR_BTNTEXT);
+}
+
+void CTitleBarHelper::ReloadAccentColor()
+{
+	CAccentColor::Get().Reload();
 }

@@ -71,6 +71,10 @@
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
 
+#if !defined(SM_CXPADDEDBORDER)
+#define SM_CXPADDEDBORDER       92
+#endif
+
 using std::vector;
 using boost::begin;
 using boost::end;
@@ -416,7 +420,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		m_bTabsOnTitleBar = GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
 
 	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), false);
-	m_wndTabBar.UpdateCustomSystemColor(GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED));
 
 	if (m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
 	{
@@ -1235,11 +1238,9 @@ void CMainFrame::OnOptions()
 		for (auto pImgMergeFrame : GetAllImgMergeFrames())
 			pImgMergeFrame->RefreshOptions();
 
-		const bool optSysColorHookEnabled = GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED);
-		if (sysColorHookEnabled != optSysColorHookEnabled ||
-			sysColorsSerialized != GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS))
+		if (sysColorHookEnabled != GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED) ||
+		    sysColorsSerialized != GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS))
 		{
-			m_wndTabBar.UpdateCustomSystemColor(optSysColorHookEnabled);
 			theApp.ReloadCustomSysColors();
 			AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
 			RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);

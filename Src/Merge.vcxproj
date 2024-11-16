@@ -913,6 +913,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="Common\AccentColor.cpp" />
     <ClCompile Include="Common\cio.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1456,6 +1457,7 @@
     <ClInclude Include="BasicFlatStatusBar.h" />
     <ClInclude Include="ClipboardHistory.h" />
     <ClInclude Include="ColorSchemes.h" />
+    <ClInclude Include="Common\AccentColor.h" />
     <ClInclude Include="Common\SysColorHook.h" />
     <ClInclude Include="MouseHook.h" />
     <ClInclude Include="MenuBar.h" />
