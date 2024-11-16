@@ -24,6 +24,7 @@ public:
 		, m_nTooltipTabItemIndex(-1)
 		, m_bOnTitleBar(false)
 		, m_bActive(false)
+		, m_dwInactiveTitleColor(0)
 	{}
 
 protected:
@@ -33,11 +34,13 @@ protected:
 	bool m_bCloseButtonDown;
 	bool m_bOnTitleBar;
 	bool m_bActive;
+	bool m_bCustomSystemColor;
 	CRect m_rcCurrentCloseButtom;
 	int   m_nDraggingTabItemIndex;
 	int   m_nTooltipTabItemIndex;	/**< Index of the tab displaying tooltip */
 	CMDIFrameWnd *m_pMainFrame;
 	CToolTipCtrl m_tooltips;		/**< Tooltip for the tab */
+	COLORREF m_dwInactiveTitleColor;
 
 public:
 	BOOL Create(CMDIFrameWnd* pMainFrame, CWnd* pParent);
@@ -47,7 +50,9 @@ public:
 	void SetOnTitleBar(bool onTitleBar) { m_bOnTitleBar = onTitleBar; }
 	bool GetActive() const { return m_bActive; }
 	void SetActive(bool bActive) { m_bActive = bActive; }
-	COLORREF GetBackColor() const;
+	COLORREF GetBackColor();
+	bool GetCustomSystemColor() const { return m_bCustomSystemColor; }
+	void SetCustomSystemColor(bool bCustom) { m_bCustomSystemColor = bCustom; }
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -81,6 +86,8 @@ protected:
 	void SwapTabs(int nIndexA, int nIndexB);
 	int GetMaxTitleLength() const;
 	void UpdateToolTips(int index);
+	COLORREF GetDwmTitleTextColors();
+	COLORREF GetDwmTitlebarColors();
 };
 
 /**
@@ -104,6 +111,7 @@ public:
 	virtual ~CMDITabBar() {}
 	BOOL Update(bool bOnTitleBar, bool bMaxmized);
 	void UpdateActive(bool bActive);
+	void UpdateCustomSystemColor(bool bCustom) { m_tabCtrl.SetCustomSystemColor(bCustom); };
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs() { m_tabCtrl.UpdateTabs(); }
 	bool GetAutoMaxWidth() const { return m_tabCtrl.GetAutoMaxWidth(); }

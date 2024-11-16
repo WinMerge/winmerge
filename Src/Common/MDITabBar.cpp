@@ -9,6 +9,9 @@
 #include "IMDITab.h"
 #include "cecolor.h"
 #include "RoundedRectWithShadow.h"
+#include <dwmapi.h>
+#include <RegKey.h>
+#pragma comment(lib, "dwmapi.lib")
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -69,6 +72,15 @@ BOOL CMyTabCtrl::Create(CMDIFrameWnd* pMainFrame, CWnd* pParent)
 	m_pMainFrame = pMainFrame;
 	m_tooltips.Create(m_pMainFrame, TTS_NOPREFIX);
 	m_tooltips.AddTool(this, _T(""));
+	CRegKeyEx reg;
+	constexpr tchar_t* AccentColorInactive = _T("AccentColorInactive");
+	constexpr tchar_t* RegDir = _T("SOFTWARE\\Microsoft\\Windows\\DWM");
+	if (ERROR_SUCCESS == reg.Open(HKEY_CURRENT_USER, RegDir))
+	{
+		const auto clr = reg.ReadDword(AccentColorInactive, 0);
+		if (clr)
+			m_dwInactiveTitleColor = RGB(GetRValue(clr), GetGValue(clr), GetBValue(clr));
+	}
 	return TRUE;
 }
 
@@ -86,16 +98,60 @@ BOOL CMyTabCtrl::PreTranslateMessage(MSG* pMsg)
 	return __super::PreTranslateMessage(pMsg);
 }
 
+COLORREF CMyTabCtrl::GetDwmTitlebarColors()
+{
+	if (!m_bActive)
+	{
+		if (m_dwInactiveTitleColor)
+			return m_dwInactiveTitleColor;
+		return GetSysColor(COLOR_INACTIVECAPTION);
+	}
+	DWORD czclr = 0;
+	BOOL opaqueBlend = FALSE;
+	HRESULT hr = DwmGetColorizationColor(&czclr, &opaqueBlend);
+	if (SUCCEEDED(hr))
+	{
+		return RGB(static_cast<BYTE>(czclr >> 16), static_cast<BYTE>(czclr >> 8), static_cast<BYTE>(czclr));
+	}
+	return GetSysColor(COLOR_ACTIVECAPTION);
+}
+
+COLORREF CMyTabCtrl::GetDwmTitleTextColors()
+{
+	if (!m_bActive)
+	{
+		COLORREF clr = m_dwInactiveTitleColor ? m_dwInactiveTitleColor : GetSysColor(COLOR_INACTIVECAPTION);
+		if (GetRValue(clr) < 128 && GetGValue(clr) < 128 && GetBValue(clr) < 128)
+			return RGB(245, 245, 245);
+		return RGB(10, 10, 10);
+	}
+	DWORD czclr = 0;
+	BOOL opaqueBlend = FALSE;
+	HRESULT hr = DwmGetColorizationColor(&czclr, &opaqueBlend);
+	if (SUCCEEDED(hr))
+	{
+		const BYTE r = static_cast<BYTE>(czclr >> 16);
+		const BYTE g = static_cast<BYTE>(czclr >> 8);
+		const BYTE b = static_cast<BYTE>(czclr);
+		if (r < 128 && g < 128 && b < 128)
+			return RGB(255, 255, 255);
+		return RGB(0, 0, 0);
+	}
+	return GetSysColor(COLOR_CAPTIONTEXT);
+}
+
 static inline COLORREF getTextColor()
 {
 	return GetSysColor(COLOR_WINDOWTEXT);
 }
 
-COLORREF CMyTabCtrl::GetBackColor() const
+COLORREF CMyTabCtrl::GetBackColor()
 {
 	const COLORREF clr = GetSysColor(COLOR_3DFACE);
 	if (!m_bOnTitleBar)
 		return clr;
+	if (!m_bCustomSystemColor)
+		return GetDwmTitlebarColors();
 	const COLORREF bgclr = m_bActive ?
 		RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255))
 		: clr;
@@ -123,7 +179,9 @@ void CMyTabCtrl::OnPaint()
 	const int nCount = GetItemCount();
 	if (nCount == 0)
 	{
-		dc.SetTextColor(getTextColor());
+		const COLORREF winTitleTextColor = (m_bOnTitleBar && !m_bCustomSystemColor) ?
+			GetDwmTitleTextColors() : GetSysColor(COLOR_WINDOWTEXT);
+		dc.SetTextColor(winTitleTextColor);
 		TCHAR szBuf[256];
 		AfxGetMainWnd()->GetWindowText(szBuf, sizeof(szBuf) / sizeof(szBuf[0]));
 		dc.DrawText(szBuf, -1, &rcClient, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
@@ -387,7 +445,9 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	}
 	else
 	{
-		SetTextColor(lpDraw->hDC, GetSysColor(COLOR_BTNTEXT));
+		const COLORREF txtclr = (m_bOnTitleBar && !m_bCustomSystemColor) ?
+			GetDwmTitleTextColors() : GetSysColor(COLOR_BTNTEXT);
+		SetTextColor(lpDraw->hDC, txtclr);
 	}
 	CSize iconsize(determineIconSize(), determineIconSize());
 	rc.left += sw + pd + iconsize.cx;
