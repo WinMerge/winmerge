@@ -81,8 +81,6 @@ protected:
 	void SwapTabs(int nIndexA, int nIndexB);
 	int GetMaxTitleLength() const;
 	void UpdateToolTips(int index);
-	COLORREF GetDwmTitleTextColor() const;
-	COLORREF GetDwmTitlebarColor() const;
 };
 
 /**
