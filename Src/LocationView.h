@@ -86,7 +86,7 @@ protected:
 	void DrawDiffMarker(CDC* pDC, int yCoord);
 	void CalculateBars();
 	void CalculateBlocks();
-	void CalculateBlocksPixel(int nBlockStart, int nBlockEnd, int nBlockLength,
+	void CalculateBlocksPixel(int nBlockStart, int nBlockEnd,
 			int &nBeginY, int &nEndY);
 	COLORREF GetBackgroundColor();
 	void DrawBackground(CDC* pDC);

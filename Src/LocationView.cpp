@@ -298,10 +298,10 @@ void CLocationView::CalculateBlocks()
 			CalculateBlocksPixel(
 				pView->GetSubLineIndex(bs[i]),
 				pView->GetSubLineIndex(bs[i + 1]),
-				pView->GetSubLines(bs[i + 1]), nBeginY, nEndY);
+				nBeginY, nEndY);
 
 			block.top_line = bs[i];
-			block.bottom_line = bs[i + 1];
+			block.bottom_line = bs[i + 1] - 1;
 			block.top_coord = nBeginY;
 			block.bottom_coord = nEndY;
 			block.diff_index = nDiff;
@@ -324,10 +324,10 @@ void CLocationView::CalculateBlocks()
 
  */
 void CLocationView::CalculateBlocksPixel(int nBlockStart, int nBlockEnd,
-		int nBlockLength, int &nBeginY, int &nEndY)
+		int &nBeginY, int &nEndY)
 {
 	// Count how many line does the diff block have.
-	const int nBlockHeight = nBlockEnd - nBlockStart + nBlockLength;
+	const int nBlockHeight = nBlockEnd - nBlockStart;
 
 	// Convert diff block size from lines to pixels.
 	nBeginY = (int)(nBlockStart * m_lineInPix + Y_OFFSET);
@@ -461,7 +461,7 @@ void CLocationView::OnDraw(CDC* pDC)
 			{
 				int apparent0 = (*iter).top_line;
 				int apparent1 = pDoc->RightLineInMovedBlock(pane, apparent0);
-				const int nBlockHeight = (*iter).bottom_line - (*iter).top_line + 1;
+				const int nBlockHeight = (*iter).bottom_coord - (*iter).top_coord;
 				if (apparent1 != -1)
 				{
 					MovedLine line;
@@ -472,9 +472,9 @@ void CLocationView::OnDraw(CDC* pDC)
 					apparent1 = pView->GetSubLineIndex(apparent1);
 
 					int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
-					int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET - 1);
+					int leftLower = leftUpper + nBlockHeight - 1;
 					int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
-					int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET - 1);
+					int rightLower = rightUpper + nBlockHeight - 1;
 					line.ptLeftUpper.x = line.ptLeftLower.x = m_bar[pane].right - 1;
 					line.ptLeftUpper.y = leftUpper;
 					line.ptLeftLower.y = leftLower;

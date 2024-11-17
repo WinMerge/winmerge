@@ -4356,6 +4356,7 @@ void CMergeEditView::ZoomText(short amount)
 			}
 		}
 	}
+	RepaintLocationPane();
 
 	GetOptionsMgr()->SaveOption(OPT_VIEW_ZOOM, nPointSize * 1000 / nOrgPointSize);
 }
