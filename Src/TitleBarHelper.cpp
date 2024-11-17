@@ -312,7 +312,7 @@ COLORREF CTitleBarHelper::GetTextColor(bool bActive)
 		return GetSysColor(COLOR_BTNTEXT);
 	if (!bActive)
 	{
-		COLORREF clr = GetSysColor(COLOR_3DFACE);
+		const COLORREF clr = GetBackColor(false);
 		if (GetRValue(clr) < 128 && GetGValue(clr) < 128 && GetBValue(clr) < 128)
 			return RGB(245, 245, 245);
 		return RGB(10, 10, 10);
