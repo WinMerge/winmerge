@@ -769,6 +769,6 @@ void CMDITabBar::OnPaint()
 	if (!m_bOnTitleBar)
 		return __super::OnPaint();
 	CPaintDC dc(this);
-	m_titleBar.DrawIcon(AfxGetMainWnd(), dc);
+	m_titleBar.DrawIcon(AfxGetMainWnd(), dc, m_tabCtrl.GetActive());
 	m_titleBar.DrawButtons(dc, CTitleBarHelper::GetTextColor(m_tabCtrl.GetActive()), m_tabCtrl.GetBackColor());
 }

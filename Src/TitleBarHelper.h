@@ -14,7 +14,7 @@ class CTitleBarHelper {
 public:
 	CTitleBarHelper();
 	void Init(CWnd* pWnd);
-	void DrawIcon(CWnd* pWnd, CDC& dc);
+	void DrawIcon(CWnd* pWnd, CDC& dc, bool active);
 	void DrawButtons(CDC& dc, COLORREF textColor, COLORREF backColor);
 	int GetTopMargin() const;
 	int GetLeftMargin() const { return PointToPixel(m_leftMargin); }
@@ -51,4 +51,6 @@ private:
 	unsigned m_nHitTest;
 	float m_leftMargin;
 	float m_rightMargin;
+	HICON m_icon;
+	HICON m_icon_gray;
 };

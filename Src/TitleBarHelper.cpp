@@ -29,6 +29,8 @@ CTitleBarHelper::CTitleBarHelper()
 void CTitleBarHelper::Init(CWnd *pWnd)
 {
 	m_pWnd = pWnd;
+	m_icon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_icon_gray = AfxGetApp()->LoadIcon(IDR_MAINFRAME_ICON_GRAY);
 }
 
 int CTitleBarHelper::GetTopMargin() const
@@ -36,11 +38,9 @@ int CTitleBarHelper::GetTopMargin() const
 	return 0;
 }
 
-void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
+void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc, bool active)
 {
-	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
-	if (hIcon == nullptr)
-		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
+	HICON hIcon = active ? m_icon : m_icon_gray;
 	if (hIcon == nullptr)
 		return;
 	const int topMargin = GetTopMargin();
