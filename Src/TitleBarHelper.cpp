@@ -338,50 +338,49 @@ void CTitleBarHelper::ReloadAccentColor()
 
 HICON CTitleBarHelper::CreateGrayIcon(HICON hIcon)
 {
-    ICONINFO iconInfo;
-    GetIconInfo(hIcon, &iconInfo);
+	ICONINFO iconInfo;
+	GetIconInfo(hIcon, &iconInfo);
 
-    BITMAP bitmap;
-    GetObject(iconInfo.hbmColor, sizeof(BITMAP), &bitmap);
-    const int width = bitmap.bmWidth;
-    const int height = bitmap.bmHeight;
-    const int pixsize = width * height;
+	BITMAP bitmap;
+	GetObject(iconInfo.hbmColor, sizeof(BITMAP), &bitmap);
+	const int width = bitmap.bmWidth;
+	const int height = bitmap.bmHeight;
+	const int pixsize = width * height;
 
-    BITMAPINFO bmi;
-    ZeroMemory(&bmi, sizeof(BITMAPINFO));
-    bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-    bmi.bmiHeader.biWidth = width;
-    bmi.bmiHeader.biHeight = height;
-    bmi.bmiHeader.biPlanes = 1;
-    bmi.bmiHeader.biBitCount = 32;
-    bmi.bmiHeader.biCompression = BI_RGB;
+	BITMAPINFO bmi = {0};
+	bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmi.bmiHeader.biWidth = width;
+	bmi.bmiHeader.biHeight = height;
+	bmi.bmiHeader.biPlanes = 1;
+	bmi.bmiHeader.biBitCount = 32;
+	bmi.bmiHeader.biCompression = BI_RGB;
 
-    RGBQUAD* pixels = new RGBQUAD[pixsize];
-    HDC hdc = GetDC(NULL);
-    GetDIBits(hdc, iconInfo.hbmColor, 0, height, pixels, &bmi, DIB_RGB_COLORS);
+	RGBQUAD* pixels = new RGBQUAD[pixsize];
+	HDC hdc = GetDC(NULL);
+	GetDIBits(hdc, iconInfo.hbmColor, 0, height, pixels, &bmi, DIB_RGB_COLORS);
 
-    for (int i = 0; i < pixsize; i++)
-    {
-        BYTE gray = (BYTE)(0.3 * pixels[i].rgbRed + 0.59 * pixels[i].rgbGreen + 0.11 * pixels[i].rgbBlue);
-        pixels[i].rgbRed = gray;
-        pixels[i].rgbGreen = gray;
-        pixels[i].rgbBlue = gray;
-    }
+	for (int i = 0; i < pixsize; i++)
+	{
+		BYTE gray = (BYTE)(0.3 * pixels[i].rgbRed + 0.59 * pixels[i].rgbGreen + 0.11 * pixels[i].rgbBlue);
+		pixels[i].rgbRed = gray;
+		pixels[i].rgbGreen = gray;
+		pixels[i].rgbBlue = gray;
+	}
 
-    HBITMAP hbmGray = CreateCompatibleBitmap(hdc, width, height);
-    SetDIBits(hdc, hbmGray, 0, height, pixels, &bmi, DIB_RGB_COLORS);
+	HBITMAP hbmGray = CreateCompatibleBitmap(hdc, width, height);
+	SetDIBits(hdc, hbmGray, 0, height, pixels, &bmi, DIB_RGB_COLORS);
 
-    ICONINFO grayIconInfo = iconInfo;
-    grayIconInfo.hbmColor = hbmGray;
-    HICON hGrayIcon = CreateIconIndirect(&grayIconInfo);
+	ICONINFO grayIconInfo = iconInfo;
+	grayIconInfo.hbmColor = hbmGray;
+	HICON hGrayIcon = CreateIconIndirect(&grayIconInfo);
 
-    DeleteObject(iconInfo.hbmColor);
-    DeleteObject(iconInfo.hbmMask);
-    DeleteObject(hbmGray);
-    ReleaseDC(NULL, hdc);
-    delete[] pixels;
+	DeleteObject(iconInfo.hbmColor);
+	DeleteObject(iconInfo.hbmMask);
+	DeleteObject(hbmGray);
+	ReleaseDC(NULL, hdc);
+	delete[] pixels;
 
-    return hGrayIcon;
+	return hGrayIcon;
 }
 
 void CTitleBarHelper::LazyLoadIcon(CWnd* pWnd)
