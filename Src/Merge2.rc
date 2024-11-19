@@ -12,7 +12,6 @@
 // remains consistent on all systems.
 
 IDR_MAINFRAME           ICON                    "res\\Merge.ico"
-IDR_MAINFRAME_ICON_GRAY ICON                    "res\\Merge_gray.ico"
 IDR_MERGEPROJECT        ICON                    "res\\MergeProject.ico"
 IDR_MERGEDOCTYPE        ICON                    "res\\MergeDoc.ico"
 IDR_DIRDOCTYPE          ICON                    "res\\MergeDir.ico"

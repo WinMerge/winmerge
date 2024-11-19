@@ -41,6 +41,8 @@ private:
 
 	void ShowSysMenu(CPoint point);
 	COLORREF GetIntermediateColor(COLORREF a, COLORREF b, float ratio);
+	HICON CreateGrayIcon(HICON hIcon);
+	void LazyLoadIcon(CWnd* pWnd);
 
 	CWnd* m_pWnd;
 	CSize m_size;
