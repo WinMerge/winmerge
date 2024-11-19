@@ -3044,9 +3044,8 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		{
 			TFile(file).copyTo(copiedFile);
 		}
-		catch (Poco::FileException& e)
+		catch (Poco::Exception& e)
 		{
-			
 			LogErrorStringUTF8(e.displayText());
 		}
 	}
