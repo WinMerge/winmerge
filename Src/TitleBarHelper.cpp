@@ -28,6 +28,12 @@ CTitleBarHelper::CTitleBarHelper()
 {
 }
 
+CTitleBarHelper::~CTitleBarHelper()
+{
+	if (m_icon_gray)
+		DestroyIcon(m_icon_gray);
+}
+
 void CTitleBarHelper::Init(CWnd *pWnd)
 {
 	m_pWnd = pWnd;
@@ -40,8 +46,7 @@ int CTitleBarHelper::GetTopMargin() const
 
 void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc, bool active)
 {
-	LazyLoadIcon(pWnd);
-	HICON hIcon = active ? m_icon : m_icon_gray;
+	HICON hIcon = LazyLoadIcon(pWnd, active);
 	if (hIcon == nullptr)
 		return;
 	const int topMargin = GetTopMargin();
@@ -383,12 +388,22 @@ HICON CTitleBarHelper::CreateGrayIcon(HICON hIcon)
 	return hGrayIcon;
 }
 
-void CTitleBarHelper::LazyLoadIcon(CWnd* pWnd)
+HICON CTitleBarHelper::LazyLoadIcon(CWnd* pWnd, bool active)
 {
-	if (m_icon && m_icon_gray)
-		return;
-	m_icon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
-	if (m_icon == nullptr)
-		m_icon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
-	m_icon_gray = (m_icon == nullptr) ? nullptr : CreateGrayIcon(m_icon);
+	if (active)
+	{
+		if (m_icon)
+			return m_icon;
+		m_icon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
+		if (m_icon == nullptr)
+			m_icon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
+		return m_icon;
+	}
+	else
+	{
+		if (m_icon_gray)
+			return m_icon_gray;
+		m_icon_gray = (m_icon == nullptr) ? nullptr : CreateGrayIcon(m_icon);
+		return m_icon_gray;
+	}
 }

@@ -13,6 +13,7 @@
 class CTitleBarHelper {
 public:
 	CTitleBarHelper();
+	~CTitleBarHelper();
 	void Init(CWnd* pWnd);
 	void DrawIcon(CWnd* pWnd, CDC& dc, bool active);
 	void DrawButtons(CDC& dc, COLORREF textColor, COLORREF backColor);
@@ -42,7 +43,7 @@ private:
 	void ShowSysMenu(CPoint point);
 	COLORREF GetIntermediateColor(COLORREF a, COLORREF b, float ratio);
 	HICON CreateGrayIcon(HICON hIcon);
-	void LazyLoadIcon(CWnd* pWnd);
+	HICON LazyLoadIcon(CWnd* pWnd, bool active);
 
 	CWnd* m_pWnd;
 	CSize m_size;
