@@ -23,6 +23,8 @@ CTitleBarHelper::CTitleBarHelper()
 	, m_bMouseTracking(false)
 	, m_nTrackingButton(-1)
 	, m_nHitTest(HTNOWHERE)
+	, m_icon(nullptr)
+	, m_icon_gray(nullptr)
 {
 }
 
@@ -36,11 +38,10 @@ int CTitleBarHelper::GetTopMargin() const
 	return 0;
 }
 
-void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
+void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc, bool active)
 {
-	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
-	if (hIcon == nullptr)
-		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
+	LazyLoadIcon(pWnd);
+	HICON hIcon = active ? m_icon : m_icon_gray;
 	if (hIcon == nullptr)
 		return;
 	const int topMargin = GetTopMargin();
@@ -333,4 +334,61 @@ COLORREF CTitleBarHelper::GetTextColor(bool bActive)
 void CTitleBarHelper::ReloadAccentColor()
 {
 	CAccentColor::Get().Reload();
+}
+
+HICON CTitleBarHelper::CreateGrayIcon(HICON hIcon)
+{
+	ICONINFO iconInfo;
+	GetIconInfo(hIcon, &iconInfo);
+
+	BITMAP bitmap;
+	GetObject(iconInfo.hbmColor, sizeof(BITMAP), &bitmap);
+	const int width = bitmap.bmWidth;
+	const int height = bitmap.bmHeight;
+	const int pixsize = width * height;
+
+	BITMAPINFO bmi = {0};
+	bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmi.bmiHeader.biWidth = width;
+	bmi.bmiHeader.biHeight = height;
+	bmi.bmiHeader.biPlanes = 1;
+	bmi.bmiHeader.biBitCount = 32;
+	bmi.bmiHeader.biCompression = BI_RGB;
+
+	RGBQUAD* pixels = new RGBQUAD[pixsize];
+	HDC hdc = GetDC(NULL);
+	GetDIBits(hdc, iconInfo.hbmColor, 0, height, pixels, &bmi, DIB_RGB_COLORS);
+
+	for (int i = 0; i < pixsize; i++)
+	{
+		BYTE gray = (BYTE)(0.3 * pixels[i].rgbRed + 0.59 * pixels[i].rgbGreen + 0.11 * pixels[i].rgbBlue);
+		pixels[i].rgbRed = gray;
+		pixels[i].rgbGreen = gray;
+		pixels[i].rgbBlue = gray;
+	}
+
+	HBITMAP hbmGray = CreateCompatibleBitmap(hdc, width, height);
+	SetDIBits(hdc, hbmGray, 0, height, pixels, &bmi, DIB_RGB_COLORS);
+
+	ICONINFO grayIconInfo = iconInfo;
+	grayIconInfo.hbmColor = hbmGray;
+	HICON hGrayIcon = CreateIconIndirect(&grayIconInfo);
+
+	DeleteObject(iconInfo.hbmColor);
+	DeleteObject(iconInfo.hbmMask);
+	DeleteObject(hbmGray);
+	ReleaseDC(NULL, hdc);
+	delete[] pixels;
+
+	return hGrayIcon;
+}
+
+void CTitleBarHelper::LazyLoadIcon(CWnd* pWnd)
+{
+	if (m_icon && m_icon_gray)
+		return;
+	m_icon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
+	if (m_icon == nullptr)
+		m_icon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
+	m_icon_gray = (m_icon == nullptr) ? nullptr : CreateGrayIcon(m_icon);
 }
