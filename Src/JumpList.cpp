@@ -172,14 +172,21 @@ bool SetCurrentProcessExplicitAppUserModelID(const std::wstring& appid)
 
 bool AddToRecentDocs(const String& app_path, const String& params, const String& title, const String& desc, const String& icon_path, int icon_index)
 {
-	SHARDAPPIDINFOLINK saiil;
-	saiil.pszAppID = g_appid.c_str();
-	saiil.psl = CreateShellLink(app_path, params, title, desc, icon_path, icon_index);
-	if (saiil.psl == nullptr)
+	__try
+	{
+		SHARDAPPIDINFOLINK saiil;
+		saiil.pszAppID = g_appid.c_str();
+		saiil.psl = CreateShellLink(app_path, params, title, desc, icon_path, icon_index);
+		if (saiil.psl == nullptr)
+			return false;
+		SHAddToRecentDocs(SHARD_APPIDINFOLINK, &saiil);
+		saiil.psl->Release();
+		return true;
+	}
+	__except (EXCEPTION_EXECUTE_HANDLER)
+	{
 		return false;
-	SHAddToRecentDocs(SHARD_APPIDINFOLINK, &saiil);
-	saiil.psl->Release();
-	return true;
+	}
 }
 
 std::vector<Item> GetRecentDocs(size_t nMaxItems)
