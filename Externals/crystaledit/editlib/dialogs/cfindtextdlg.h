@@ -45,6 +45,7 @@ class EDITPADC_CLASS CFindTextDlg : public CDialog
 private :
     void UpdateControls();
     CCrystalTextView * m_pBuddy;
+    CFont m_font;
 
     // Construction
 public :

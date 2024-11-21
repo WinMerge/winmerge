@@ -169,7 +169,18 @@ OnInitDialog ()
   CDialog::OnInitDialog ();
 
   CMemComboBox::LoadSettings();
-  
+
+  LOGFONT lf{}, lfOld{};
+  CFont *pOldFont = m_ctlFindText.GetFont ();
+  if (pOldFont)
+    {
+      pOldFont->GetLogFont (&lfOld);
+      m_pBuddy->GetFont (lf);
+      lf.lfHeight = lfOld.lfHeight;
+      m_font.CreateFontIndirect (&lf);
+      m_ctlFindText.SetFont (&m_font);
+    }
+
   return true;
 }
 

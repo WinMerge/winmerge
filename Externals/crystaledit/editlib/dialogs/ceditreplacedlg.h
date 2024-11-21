@@ -43,6 +43,7 @@ class EDITPADC_CLASS CEditReplaceDlg : public CDialog
   {
 private :
     CCrystalEditView * m_pBuddy;
+    CFont m_font;
     bool m_bFound;
     bool m_bReplaced;
     CEPoint m_ptFoundAt;
