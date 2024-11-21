@@ -1,5 +1,66 @@
 # Change log
 
+## WinMerge 2.16.45.0 - 2024-11-27
+
+### General
+
+- BugFix: Second monitor - BIG title bar v 2.16.44 (#2510,#2512,#2540,#2549)
+- BugFix: Window close button is not extending to the edge of the screen
+    when maximized (#2520)
+- BugFix: When WinMerge window is maximized, it prevents auto-hidden Windows
+    11 taskbar from appearing (#2518)
+- Foreground and background title bars are distinguishable (PR #2497)
+- Title bar background color and text color follow windows settings when not
+    customized (PR #2505)
+- Main Menu toggle Show/Hide (PR #2509)
+- Inactive title text chosen by inactive title color (PR #2544)
+- Reduce the contrast of inactive title bar text (PR #2545)
+- System Icon turn gray when app inactive (PR #2547)
+
+### File compare
+
+- BugFix: Wrong line gets copied over when selecting text (#2499)
+- BugFix: Bug Report: Display Issues When Resizing WinMerge Across Dual
+    Monitors (#2514)
+- BugFix: Diff renders incorrectly with "Cascadia Mono" variant (#2525)
+- BugFix: The height of the lines connecting moving blocks in the location
+    pane may be incorrect
+- BugFix: Crash on opening 2 files via drag & drop (#2548)
+- BugFix: A crash could occur if a single invalid file path was specified in
+    the "Select files or folders" window.
+- Adjust right-click deselect from down to up to preserve RB + scroll anywhere
+    (PR #2511)
+- Press 1-3 to copy current diff line to clipbd while popup menu is open
+    (PR #2532)
+- Caret (text cursor) follow windows settings (PR #2534)
+- Feature Request: Fixed-Width Font in "Find what" and "Replace with" Fields
+    (#2539)
+    
+### Options dialog
+
+- Add a "Defaults" button to the "Options (Colors/System)" dialog. (PR #2506)
+
+### Installer
+
+- BugFix: When uninstalling WinMerge, the Shell Extension for Windows 11 was
+    not uninstalled.
+- Installer - Run PowerShell hidden and with -NoProfile when installing
+    silently (#2515)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2526)
+  - Chinese Traditional (PR #2501,#2524) 
+  - French (PR #2536)
+  - Hungarian (PR #2495,#2523)
+  - Italian (PR #2529)
+  - Japanese
+  - Korean (PR #2496,#2533)
+  - Lithuanian (PR #2503,#2537)
+  - Portuguese (PR #2507)
+  - Russian (PR #2500,#2502,#2521,#2522,#2528,#2531,#2538,#2542)
+
 ## WinMerge 2.16.44 - 2024-10-27
 
 ### General

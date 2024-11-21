@@ -1,102 +1,78 @@
-# WinMerge 2.16.44 Release Notes
+# WinMerge 2.16.45.0 Beta Release Notes
 
 - [About This Release](#about-this-release)
-- [What Is New in 2.16.44](#what-is-new-in-21644)
-- [What Is New in 2.16.43 beta?](#what-is-new-in-21643-beta)
+- [What Is New in 2.16.45.0 beta?](#what-is-new-in-216450-beta)
 - [Known issues](#known-issues)
 
-October 2024
+November 2024
 
 ## About This Release
 
-This is a WinMerge 2.16.44 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.44
+## What Is New in 2.16.45.0 Beta
 
 ### General
 
-- Added Medium size (24px) option to Toolbar icons
-
-### Webpage compare
-
-- BugFix: Differences panel for Webpage mode (winwebdiff#7)
-
-### Plugins
-
-- BugFix: Floating-point precision issue in CompareMSExcelFiles.sct plugin (#2494)
-
-### Translations
-
-- Translation updates:
-  - Brazilian (PR #2493)
-  - Corsican (PR #2490)
-
-## What Is New in 2.16.43 Beta
-
-### General
-
-- BugFix: WinMerge incorrectly states "The selected files are identical" (#2408)
-- Implement Menu Bar as a Toolbar (PR #2400)
-- Add support for placing the tab bar on the title bar (PR #2428)
-- Add One-Hand mice wheel scroll diff and merge (PR #2435)
-- Add Support for Custom System Color Overrides (PR #2376)
-- Easy move small main window when tab on titlebar (PR #2489)
+- BugFix: Second monitor - BIG title bar v 2.16.44 (#2510,#2512,#2540,#2549)
+- BugFix: Window close button is not extending to the edge of the screen
+    when maximized (#2520)
+- BugFix: When WinMerge window is maximized, it prevents auto-hidden Windows
+    11 taskbar from appearing (#2518)
+- Foreground and background title bars are distinguishable (PR #2497)
+- Title bar background color and text color follow windows settings when not
+    customized (PR #2505)
+- Main Menu toggle Show/Hide (PR #2509)
+- Inactive title text chosen by inactive title color (PR #2544)
+- Reduce the contrast of inactive title bar text (PR #2545)
+- System Icon turn gray when app inactive (PR #2547)
 
 ### File compare
 
-- BugFix: Wrong syntax highlighting for TeX files (#2415)
-- BugFix: Text replacement result is wrong. (#2422)
-- Copy Selected Difference to Clipboard (PR #2429)
-- Added Ada parser and default file associations (#2452)
-- Added C++20 modules default file associations cppm and ixx (PR #2464)
-- Anti-aliasing has been applied to the lines that connect moved blocks in the
-    location pane.
-
-### Folder compare
-
-- BugFix: ExitCode always 2 with /enableexitcode with no apparent issues (#2450)
-
-### Webpage compare
-
-- BugFix: Location pane may not render differences (winwebdiff#6)
-
+- BugFix: Wrong line gets copied over when selecting text (#2499)
+- BugFix: Bug Report: Display Issues When Resizing WinMerge Across Dual
+    Monitors (#2514)
+- BugFix: Diff renders incorrectly with "Cascadia Mono" variant (#2525)
+- BugFix: The height of the lines connecting moving blocks in the location
+    pane may be incorrect
+- BugFix: Crash on opening 2 files via drag & drop (#2548)
+- BugFix: A crash could occur if a single invalid file path was specified in
+    the "Select files or folders" window.
+- Adjust right-click deselect from down to up to preserve RB + scroll anywhere
+    (PR #2511)
+- Press 1-3 to copy current diff line to clipbd while popup menu is open
+    (PR #2532)
+- Caret (text cursor) follow windows settings (PR #2534)
+- Feature Request: Fixed-Width Font in "Find what" and "Replace with" Fields
+    (#2539)
+    
 ### Options dialog
 
-- Add a "Defaults" button to the "Options (Project)" dialog. (PR #2401)
-- Add a "Defaults" button to the "Options (Backup Files)" dialog. (PR #2406)
-- Add a "Defaults" button to the "Options (Codepage)" dialog. (PR #2448)
-- Add a "Defaults" button to the "Options (General)" dialog. (PR #2453)
+- Add a "Defaults" button to the "Options (Colors/System)" dialog. (PR #2506)
 
-### Plugins
+### Installer
 
-- Create CompareEscapedJavaPropertiesFiles.sct (PR #2455)
-
-### Manual
-
-- BugFix: 2 mistakes about default values in manual (#2456)
-- Update documentation for "Include unique subfolders contents" setting (PR #2396)
+- BugFix: When uninstalling WinMerge, the Shell Extension for Windows 11 was
+    not uninstalled.
+- Installer - Run PowerShell hidden and with -NoProfile when installing
+    silently (#2515)
 
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR #2397,#2431,#2439,#2454,#2460,#2468,#2477,#2486)
-  - Chinese Simplified (PR #2394,#2461,#2469,#2485)
-  - Dutch (PR #2474)
-  - French (PR #2399,#2444)
-  - Hungarian (PR #2433,#2440,#2458,#2472,#2482)
-  - Italian (PR #2393,#2438,#2446,#2447,#2457,#2467,#2470,#2487)
+  - Brazilian (PR #2526)
+  - Chinese Traditional (PR #2501,#2524) 
+  - French (PR #2536)
+  - Hungarian (PR #2495,#2523)
+  - Italian (PR #2529)
   - Japanese
-  - Korean (PR #2426,#2459,#2473)
-  - Lithuanian (PR #2436,#2443,#2462,#2471,#2483)
-  - Portuguese (PR #2410,#2441,#2480)
-  - Russian (PR #2462)
-
-### Internals
-
-- Make InsertLineNumberInPOFiles.bat and RenewPOFiles.bat work again
+  - Korean (PR #2496,#2533)
+  - Lithuanian (PR #2503,#2537)
+  - Portuguese (PR #2507)
+  - Russian (PR #2500,#2502,#2521,#2522,#2528,#2531,#2538,#2542)
 
 ## Known issues
 
