@@ -1,2 +1,2 @@
-https://repo1.maven.org/maven2/org/apache/tika/tika-app/2.6.0/tika-app-2.6.0.jar
-https://repo1.maven.org/maven2/org/apache/tika/tika-app/2.6.0/tika-app-2.6.0-sources.jar
+https://repo1.maven.org/maven2/org/apache/tika/tika-app/3.0.0/tika-app-3.0.0.jar
+https://repo1.maven.org/maven2/org/apache/tika/tika-app/3.0.0/tika-app-3.0.0-sources.jar

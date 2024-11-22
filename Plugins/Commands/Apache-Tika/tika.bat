@@ -1,12 +1,12 @@
 @echo off
 setlocal EnableDelayedExpansion
-set TikaVer=2.6.0
+set TikaVer=3.0.0
 set TikaJar=tika-app-%TikaVer%.jar
 set DOWNLOAD_URL=https://repo1.maven.org/maven2/org/apache/tika/tika-app/%TikaVer%/%TikaJar%
 set TIKA_PATH=Commands\Apache-Tika\%TikaJar%
 set MESSAGE='Apache Tika is not installed. Do you want to download it from %DOWNLOAD_URL%'
 set TITLE='Apache Tika Plugin'
-set TIKA_SHA256=fa289b58a5c1bb531ace78324625512a9448aa8472b5eb88b65988964048815a
+set TIKA_SHA256=f2c156533fac004d3d30d322555bb1f2581a104558a913bfc74d8c48dcf4541c
 
 cd "%APPDATA%\WinMerge"
 if not exist %TIKA_PATH% (
