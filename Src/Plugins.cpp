@@ -1188,8 +1188,9 @@ CAssureScriptsForThread::~CAssureScriptsForThread()
 		return;
 	if (scripts->Unlock())
 	{
+		auto* scriptsSaved = scripts;
 		delete scripts;
-		CAllThreadsScripts::Remove(scripts);
+		CAllThreadsScripts::Remove(scriptsSaved);
 	}
 }
 
