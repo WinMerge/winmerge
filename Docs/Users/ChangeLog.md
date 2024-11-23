@@ -40,6 +40,10 @@
 
 - Add a "Defaults" button to the "Options (Colors/System)" dialog. (PR #2506)
 
+### Plugins
+
+- Apache Tika plugin: Update Apache Tika to 3.0.0
+
 ### Installer
 
 - BugFix: When uninstalling WinMerge, the Shell Extension for Windows 11 was
@@ -51,7 +55,7 @@
 
 - Translation updates:
   - Brazilian (PR #2526)
-  - Chinese Traditional (PR #2501,#2524) 
+  - Chinese Simplified (PR #2501,#2524) 
   - French (PR #2536)
   - Hungarian (PR #2495,#2523)
   - Italian (PR #2529)
