@@ -19,10 +19,10 @@ public:
 	struct Marker
 	{
 		CString sFindWhat;
-		findtext_flags_t dwFlags;
-		enum COLORINDEX nBgColorIndex;
-		bool bUserDefined;
-		bool bVisible;
+		findtext_flags_t dwFlags = 0;
+		enum COLORINDEX nBgColorIndex = COLORINDEX_NONE;
+		bool bUserDefined = false;
+		bool bVisible = false;
 	};
 
 	CCrystalTextMarkers();

@@ -17,8 +17,8 @@ struct Node
 	String name;
 	String canonicalName;
 	String displayName;
-	bool selected;
-	HTREEITEM hItem;
+	bool selected = false;
+	HTREEITEM hItem = nullptr;
 	std::list<Node> childNodes;
 };
 

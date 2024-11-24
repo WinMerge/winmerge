@@ -38,6 +38,7 @@ struct FileAction
 	 */
 	enum ACT_TYPE
 	{ 
+		ACT_NONE = 0,
 		ACT_COPY = 1, /**< Copy the item(s). */
 		ACT_MOVE,     /**< Move the item(s). */
 		ACT_DEL,      /**< Delete the item(s). */
@@ -46,8 +47,8 @@ struct FileAction
 
 	String src; /**< Source for action */
 	String dest; /**< Destination action */
-	bool dirflag; /**< Is it directory? (`true` means directory) */
-	ACT_TYPE atype; /**< Action's type */
+	bool dirflag = false; /**< Is it directory? (`true` means directory) */
+	ACT_TYPE atype = ACT_NONE; /**< Action's type */
 };
 
 /** 
@@ -75,10 +76,10 @@ struct FileActionItem : public FileAction
 	 * This is an arbitrary value that can be used to associate the item with
 	 * other items. This can be e.g. indext of the item in the GUI.
 	 */
-	int context;
-	int UIResult; /**< Resulting UI action */
-	int UIOrigin; /**< Original UI-side */
-	int UIDestination; /**< Destination UI-side */
+	int context = 0;
+	int UIResult = 0; /**< Resulting UI action */
+	int UIOrigin = 0; /**< Original UI-side */
+	int UIDestination = 0; /**< Destination UI-side */
 };
 
 /** 

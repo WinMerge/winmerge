@@ -101,6 +101,7 @@ CDirView::CDirView()
 		, m_pColItems(nullptr)
 		, m_nActivePane(-1)
 		, m_nExpandSubdirs(DO_NOT_EXPAND)
+		, m_bUserCancelEdit(false)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when

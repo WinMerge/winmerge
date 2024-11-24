@@ -5,11 +5,11 @@
 
 struct CodePageInfo
 {
-	int codepage;
+	int codepage = 0;
 	String desc;
 	String proportionalFont;
 	String fixedWidthFont;
-	char bGDICharset;
+	char bGDICharset = 0;
 };
 
 struct IExconverter

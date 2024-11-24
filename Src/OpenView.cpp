@@ -1083,7 +1083,7 @@ void COpenView::SaveComboboxStates()
 
 struct UpdateButtonStatesThreadParams
 {
-	HWND m_hWnd;
+	HWND m_hWnd = nullptr;
 	PathContext m_paths;
 };
 

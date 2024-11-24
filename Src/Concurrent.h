@@ -10,10 +10,10 @@ namespace Concurrent
 		struct TaskParams
 		{
 			std::function<ResultType()> m_func;
-			HANDLE m_hThread;
-			ResultType m_result;
-			bool m_detached;
-			bool m_completed;
+			HANDLE m_hThread = nullptr;
+			ResultType m_result{};
+			bool m_detached = false;
+			bool m_completed = false;
 		};
 
 		explicit Task(TaskParams *pParams) : m_pParams(pParams)

@@ -341,6 +341,8 @@ SingleItemEnumerator::SingleItemEnumerator(const tchar_t* path, const tchar_t* F
 DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 : m_pView(pView)
 , m_nFlags(nFlags)
+, m_nIndex(-1)
+, m_index(0)
 {
 	if (m_nFlags & Original)
 	{

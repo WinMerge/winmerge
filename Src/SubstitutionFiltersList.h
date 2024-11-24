@@ -17,10 +17,10 @@ class COptionsMgr;
  */
 struct SubstitutionFilter
 {
-	bool enabled;
-	bool useRegExp;
-	bool caseSensitive;
-	bool matchWholeWordOnly;
+	bool enabled = false;
+	bool useRegExp = false;
+	bool caseSensitive = false;
+	bool matchWholeWordOnly = false;
 	String pattern;
 	String replacement;
 };

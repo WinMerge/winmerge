@@ -125,7 +125,7 @@ void DirSelectFilesDlg::Impl::UpdateButtonCaptions()
 	}
 }
 
-DirSelectFilesDlg::DirSelectFilesDlg() : m_pimpl(new DirSelectFilesDlg::Impl(this)) {}
+DirSelectFilesDlg::DirSelectFilesDlg() : m_pimpl(new DirSelectFilesDlg::Impl(this)), m_pdi{} {}
 DirSelectFilesDlg::~DirSelectFilesDlg() = default;
 int DirSelectFilesDlg::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }
 

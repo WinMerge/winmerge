@@ -353,7 +353,7 @@ CString CMessageBoxDialog::GenerateRegistryKey(UINT nMessageID, UINT nHelpID)
 struct ModelessMesssageBoxParam
 {
 	CString strMessage;
-	UINT nType;
+	UINT nType = 0;
 };
 
 /*

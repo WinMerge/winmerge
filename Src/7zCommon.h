@@ -27,7 +27,7 @@ Merge7z::Format *ArchiveGuessFormat(const String&);
 class CTempPathContext
 {
 public:
-	CTempPathContext *m_pParent;
+	CTempPathContext *m_pParent = nullptr;
 	String m_strDisplayRoot[3];
 	String m_strRoot[3];
 	CTempPathContext *DeleteHead();
