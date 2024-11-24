@@ -63,6 +63,7 @@ public:
 	void SetFileControlStates(bool bCanBeEmpty = false, int nMaxItems = -1);
 	void SaveState(LPCTSTR szRegSubKey);
 	void LoadState(LPCTSTR szRegSubKey);
+	static void ClearState(LPCTSTR szRegSubKey);
 	bool AttachSystemImageList();
 	int AddString(LPCTSTR lpszItem);
 	int InsertString(int nIndex, LPCTSTR lpszItem);

@@ -321,6 +321,11 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey)
 		AfxGetApp()->WriteProfileInt(szRegSubKey, _T("Empty"), strItem.IsEmpty());
 }
 
+void CSuperComboBox::ClearState(LPCTSTR szRegSubKey)
+{
+	AfxGetApp()->WriteProfileString(szRegSubKey, nullptr, nullptr);
+}
+
 BOOL CSuperComboBox::OnEditchange()
 {
 	if (m_bHasImageList)
