@@ -28,6 +28,8 @@
 - BugFix: Crash on opening 2 files via drag & drop (#2548)
 - BugFix: A crash could occur if a single invalid file path was specified in
     the "Select files or folders" window.
+- BugFix: "Debug Assertion Failed!" Error When Refreshing After Deleting All
+    Content in Left or Right Pane (#2556)
 - Adjust right-click deselect from down to up to preserve RB + scroll anywhere
     (PR #2511)
 - Press 1-3 to copy current diff line to clipbd while popup menu is open
@@ -39,6 +41,8 @@
 ### Options dialog
 
 - Add a "Defaults" button to the "Options (Colors/System)" dialog. (PR #2506)
+- The "Clear all recent items" button in the Shell Integration category of the
+    Options dialog now clears combobox history as well as jump lists. (#2555)
 
 ### Plugins
 
@@ -63,7 +67,8 @@
   - Korean (PR #2496,#2533)
   - Lithuanian (PR #2503,#2537)
   - Portuguese (PR #2507)
-  - Russian (PR #2500,#2502,#2521,#2522,#2528,#2531,#2538,#2542)
+  - Russian (PR #2500,#2502,#2521,#2522,#2528,#2531,#2538,#2542,frhed#17,
+      frhed#18)
 
 ## WinMerge 2.16.44 - 2024-10-27
 
