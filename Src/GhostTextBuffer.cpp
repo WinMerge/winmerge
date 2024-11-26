@@ -479,6 +479,8 @@ void CGhostTextBuffer::RemoveAllGhostLines()
 
 		// Discard unused entries in one shot
 		m_aLines.resize(newnl);
+		if (newnl == 0)
+			m_aLines.push_back({ nullptr, 0 });
 		RecomputeRealityMapping();
 	}
 }
