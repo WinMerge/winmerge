@@ -392,16 +392,18 @@ CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3], bool ig
 			}
 			wd.beginline[i] = nLine;
 			wd.begin[i] = it->begin[i] - nOffsets[file][nLine-nLineBegin];
-			if (m_ptBuf[file]->GetLineLength(nLine) < wd.begin[i])
+			const int nLineCount = m_ptBuf[file]->GetLineCount();
+			const int nLineLength1 = nLine < nLineCount ? m_ptBuf[file]->GetLineLength(nLine) : 0;
+			if (nLineLength1 < wd.begin[i])
 			{
-				if (wd.beginline[i] < m_ptBuf[file]->GetLineCount() - 1)
+				if (wd.beginline[i] < nLineCount - 1)
 				{
 					wd.begin[i] = 0;
 					wd.beginline[i]++;
 				}
 				else
 				{
-					wd.begin[i] = m_ptBuf[file]->GetLineLength(nLine);
+					wd.begin[i] = nLineLength1;
 				}
 			}
 
@@ -412,16 +414,17 @@ CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3], bool ig
 			}
 			wd.endline[i] = nLine;
 			wd.end[i] = it->end[i]  + 1 - nOffsets[file][nLine-nLineBegin];
-			if (m_ptBuf[file]->GetLineLength(nLine) < wd.end[i])
+			const int nLineLength2 = nLine < nLineCount ? m_ptBuf[file]->GetLineLength(nLine) : 0;
+			if (nLineLength2 < wd.end[i])
 			{
-				if (wd.endline[i] < m_ptBuf[file]->GetLineCount() - 1)
+				if (wd.endline[i] < nLineCount - 1)
 				{
 					wd.end[i] = 0;
 					wd.endline[i]++;
 				}
 				else
 				{
-					wd.end[i] = m_ptBuf[file]->GetLineLength(nLine);
+					wd.end[i] = nLineLength2;
 				}
 			}
 		}
