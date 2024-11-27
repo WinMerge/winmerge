@@ -1535,7 +1535,7 @@ std::vector<DiffRangeInfo> CDiffWrapper::InsertMovedBlocks3Way()
 				{
 					DiffRangeInfo diffInfoT = diffInfo2;
 					for (int pane = 0; pane < 3; ++pane)
-						diffInfoT.end[pane] = std::clamp(diffInfo.begin[pane] + i - 1, 0, diffInfo.end[pane]);
+						diffInfoT.end[pane] = std::clamp(diffInfo.begin[pane] + i - 1, -1, diffInfo.end[pane]);
 					result.push_back(diffInfoT);
 				}
 
@@ -1543,7 +1543,7 @@ std::vector<DiffRangeInfo> CDiffWrapper::InsertMovedBlocks3Way()
 				for (int pane = 0; pane < 3; ++pane)
 				{
 					diffInfoM.begin[pane] = std::clamp(diffInfo.begin[pane] + i, 0, diffInfo.end[pane] + 1);
-					diffInfoM.end[pane] = std::clamp(diffInfo.begin[pane] + i, 0, diffInfo.end[pane]);
+					diffInfoM.end[pane] = std::clamp(diffInfo.begin[pane] + i, -1, diffInfo.end[pane]);
 				}
 				result.push_back(diffInfoM);
 
