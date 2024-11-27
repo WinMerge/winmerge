@@ -12,6 +12,7 @@
 #include "DiffWrapper.h"
 #include <tuple>
 #include <exception>
+#include <array>
 #include <Poco/Exception.h>
 #include "coretools.h"
 #include "DiffList.h"
@@ -1497,6 +1498,64 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	Make3wayDiff(m_pDiffList->GetDiffRangeInfoVector(), diff10.GetDiffRangeInfoVector(), diff12.GetDiffRangeInfoVector(), 
 		Comp02Functor(inf10, inf12), 
 		(usefilters || m_options.m_bIgnoreBlankLines));
+
+	if (GetDetectMovedBlocks())
+		m_pDiffList->GetDiffRangeInfoVector() = InsertMovedBlocks3Way();
+}
+
+std::vector<DiffRangeInfo> CDiffWrapper::InsertMovedBlocks3Way()
+{
+	std::vector<DiffRangeInfo> result;
+	const MovedLines* pMovedLines0 = GetMovedLines(0);
+	const MovedLines* pMovedLines1 = GetMovedLines(1);
+	const MovedLines* pMovedLines2 = GetMovedLines(2);
+	const std::vector<DiffRangeInfo> diffRangeList = m_pDiffList->GetDiffRangeInfoVector();
+	for (const auto& diffInfo : diffRangeList)
+	{
+		const std::array<int, 3> elms = { diffInfo.end[0] + 1 - diffInfo.begin[0], diffInfo.end[1] + 1 - diffInfo.begin[1], diffInfo.end[2] + 1 - diffInfo.begin[2] };
+		const int maxlines = *std::max_element(elms.begin(), elms.end());
+		DiffRangeInfo diffInfo2 = diffInfo;
+		int prevMovedLineI = -1;
+		for (int i = 0; i < maxlines; ++i)
+		{
+			bool movedLine = false;
+			if (diffInfo.begin[0] + i <= diffInfo.end[0])
+				movedLine |= pMovedLines0->LineInBlock(diffInfo.begin[0] + i, MovedLines::SIDE::RIGHT) != -1;
+			if (diffInfo.begin[1] + i <= diffInfo.end[1])
+			{
+				movedLine |= pMovedLines1->LineInBlock(diffInfo.begin[1] + i, MovedLines::SIDE::LEFT) != -1;
+				movedLine |= pMovedLines1->LineInBlock(diffInfo.begin[1] + i, MovedLines::SIDE::RIGHT) != -1;
+			}
+			if (diffInfo.begin[2] + i <= diffInfo.end[2])
+				movedLine |= pMovedLines2->LineInBlock(diffInfo.begin[2] + i, MovedLines::SIDE::LEFT) != -1;
+
+			if (movedLine)
+			{
+				if (prevMovedLineI + 1 < i)
+				{
+					DiffRangeInfo diffInfoT = diffInfo2;
+					for (int pane = 0; pane < 3; ++pane)
+						diffInfoT.end[pane] = std::clamp(diffInfo.begin[pane] + i - 1, 0, diffInfo.end[pane]);
+					result.push_back(diffInfoT);
+				}
+
+				DiffRangeInfo diffInfoM = diffInfo2;
+				for (int pane = 0; pane < 3; ++pane)
+				{
+					diffInfoM.begin[pane] = std::clamp(diffInfo.begin[pane] + i, 0, diffInfo.end[pane] + 1);
+					diffInfoM.end[pane] = std::clamp(diffInfo.begin[pane] + i, 0, diffInfo.end[pane]);
+				}
+				result.push_back(diffInfoM);
+
+				for (int pane = 0; pane < 3; ++pane)
+					diffInfo2.begin[pane] = std::clamp(diffInfo.begin[pane] + i + 1, 0, diffInfo.end[pane] + 1);
+				prevMovedLineI = i;
+			}
+		}
+		if (prevMovedLineI < maxlines - 1)
+			result.push_back(diffInfo2);
+	}
+	return result;
 }
 
 void CDiffWrapper::WritePatchFileHeader(enum output_style tOutput_style, bool bAppendFiles)

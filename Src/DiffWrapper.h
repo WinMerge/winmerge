@@ -198,6 +198,7 @@ public:
 protected:
 	String FormatSwitchString() const;
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
+	std::vector<DiffRangeInfo> InsertMovedBlocks3Way();
 	void WritePatchFile(struct change * script, file_data * inf);
 public:
 	void LoadWinMergeDiffsFromDiffUtilsScript3(
