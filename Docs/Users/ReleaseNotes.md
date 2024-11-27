@@ -50,12 +50,20 @@ Please submit bug reports to our bug-tracker.
 - Caret (text cursor) follow windows settings (PR #2534)
 - Feature Request: Fixed-Width Font in "Find what" and "Replace with" Fields
     (#2539)
-    
+
+### Folder compare
+
+- BugFix: Crash on typing while search is in progress (#1814), (PR #2557)
+
 ### Options dialog
 
 - Add a "Defaults" button to the "Options (Colors/System)" dialog. (PR #2506)
 - The "Clear all recent items" button in the Shell Integration category of the
     Options dialog now clears combobox history as well as jump lists. (#2555)
+
+### Select Files or Folders dialog
+
+- BugFix: Crash on opening 2 files via drag & drop (#2548)
 
 ### Plugins
 
