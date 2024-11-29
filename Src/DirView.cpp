@@ -628,7 +628,8 @@ void CDirView::Redisplay()
 	int alldiffs = 0;
 	DIFFITEM *diffpos = ctxt.GetFirstDiffPosition();
 	const int result = RedisplayChildren(diffpos, 0, cnt, alldiffs);
-	GetParentFrame()->SetLastCompareResult(result < 0 ? -1 : alldiffs);
+	const unsigned int threadState = pDoc->m_diffThread.GetThreadState();
+	GetParentFrame()->SetLastCompareResult((threadState != CDiffThread::THREAD_COMPLETED || result < 0) ? -1 : alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
 	m_pList->SetItemCount(static_cast<int>(m_listViewItems.size()));
