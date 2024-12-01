@@ -5,7 +5,6 @@
  */
 #pragma once
 
-#include "UnicodeString.h"
 #include "TempFile.h"
 #include <memory>
 #include <vector>
