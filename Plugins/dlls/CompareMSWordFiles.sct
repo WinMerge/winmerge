@@ -194,7 +194,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSWordFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     } 
   }
-  var doc = wd.Documents.Open(fileSrc2, -1, -1);
+  var doc = wd.Documents.Open(fileSrc2, 0, -1);
 
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
     fo.WriteLine("[Document Properties]");
@@ -283,7 +283,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSWordFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     } 
   }
-  var doc = wd.Documents.Open(fileSrc2, -1, -1);
+  var doc = wd.Documents.Open(fileSrc2, 0, -1);
 
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
     var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), true, true);
