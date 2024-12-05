@@ -25,5 +25,9 @@ Redis
 Prometheus
 ActiveRecord
 ActiveRecord/Compiler
+DNSSD
+DNSSD/Avahi
+DNSSD/Bonjour
 PocoDoc
 ProGen
+Trace

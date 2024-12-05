@@ -21,6 +21,16 @@
 #include "Poco/Foundation.h"
 #include <cstdint>
 #include <type_traits>
+#if defined(__clang__) || (defined (__GNUC__) && (__GNUC__ >= 3))
+#	if (__cplusplus >= 201703L)
+#		if __has_include(<cxxabi.h>)
+#			include <typeinfo>
+#			include <cxxabi.h>
+#			include <cstdlib>
+#			define POCO_HAVE_CXXABI_H
+#		endif // __has_include(<cxxabi.h>)
+#	endif // __cplusplus >= 201703L
+#endif // defined(__clang__) || (defined (__GNUC__) && (__GNUC__ >= 3))
 
 
 namespace Poco {
@@ -36,7 +46,6 @@ using Int64   = std::int64_t;
 using UInt64  = std::uint64_t;
 using IntPtr  = std::intptr_t;
 using UIntPtr = std::uintptr_t;
-
 
 #if defined(_MSC_VER)
 	#if defined(_WIN64)
@@ -71,6 +80,47 @@ using UIntPtr = std::uintptr_t;
 #elif defined(_DIAB_TOOL)
 	#define POCO_HAVE_INT64 1
 #endif
+
+
+inline std::string Foundation_API demangle(const char* typeName)
+{
+	std::string result(typeName);
+#ifdef POCO_HAVE_CXXABI_H
+	int status;
+	char* demangled = abi::__cxa_demangle(typeName, nullptr, nullptr, &status);
+	if (demangled)
+	{
+		if (status == 0) result = demangled;
+		else
+		{
+			switch (status)
+			{
+				case -1: result = "[ERRMEM]";  break;
+				case -2: result = "[ERRNAME]"; break;
+				case -3: result = "[ERRARG]";  break;
+				default: result = "[ERRUNK]";
+			}
+		}
+
+		std::free(demangled);
+	}
+#endif
+	return result;
+}
+
+
+template <typename T>
+std::string demangle()
+{
+	return demangle(typeid(T).name());
+}
+
+
+template <typename T>
+std::string demangle(const T& t)
+{
+	return demangle(typeid(std::remove_const_t<std::remove_reference_t<decltype(t)>>).name());
+}
 
 
 } // namespace Poco

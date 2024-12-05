@@ -17,9 +17,8 @@
 #include "Poco/Exception.h"
 #include "Poco/Error.h"
 #include "Poco/ErrorHandler.h"
-#include "Poco/Timespan.h"
-#include "Poco/Timestamp.h"
 #include "Poco/Format.h"
+#include "Poco/Error.h"
 #include <signal.h>
 #include <limits.h>
 
@@ -40,6 +39,9 @@
 #	include <time.h>
 #endif
 
+#if POCO_OS == POCO_OS_QNX
+#	include <sys/neutrino.h>
+#endif
 
 #if POCO_OS == POCO_OS_LINUX || POCO_OS == POCO_OS_ANDROID
 #	include <sys/prctl.h>
@@ -89,6 +91,7 @@ namespace
 		return name;
 	}
 
+#ifndef POCO_NO_THREADNAME
 	void setThreadName(const std::string& threadName)
 		/// Sets thread name. Support for this feature varies
 		/// on platforms. Any errors are ignored.
@@ -110,23 +113,29 @@ namespace
 
 	std::string getThreadName()
 	{
-		char name[POCO_MAX_THREAD_NAME_LEN + 1]{'\0'};
+	constexpr size_t nameSize =
+#if (POCO_OS == POCO_OS_QNX)
+			_NTO_THREAD_NAME_MAX;
+#else
+			POCO_MAX_THREAD_NAME_LEN;
+#endif
+		char name[nameSize + 1]{'\0'};
 #if (POCO_OS == POCO_OS_FREE_BSD)
-		pthread_getname_np(pthread_self(), name, POCO_MAX_THREAD_NAME_LEN + 1);
+		pthread_getname_np(pthread_self(), name, nameSize + 1);
 #elif (POCO_OS == POCO_OS_MAC_OS_X)
 	#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 		#if __MAC_OS_X_VERSION_MIN_REQUIRED >= 1060
-			pthread_getname_np(pthread_self(), name, POCO_MAX_THREAD_NAME_LEN + 1);
+			pthread_getname_np(pthread_self(), name, nameSize + 1);
 		#endif
 	#endif // __MAC_OS_X_VERSION_MIN_REQUIRED
 #elif (POCO_OS == POCO_OS_QNX)
-		tName[_NTO_THREAD_NAME_MAX] = {'\0'};
-		pthread_getname_np(pthread_self(), tName, _NTO_THREAD_NAME_MAX);
+		pthread_getname_np(pthread_self(), name, nameSize);
 #else
 		prctl(PR_GET_NAME, name);
 #endif
 		return name;
 	}
+#endif
 }
 
 
@@ -184,10 +193,12 @@ std::string ThreadImpl::getNameImpl() const
 }
 
 
+#ifndef POCO_NO_THREADNAME
 std::string ThreadImpl::getOSThreadNameImpl()
 {
 	return isRunningImpl() ? getThreadName() : "";
 }
+#endif
 
 
 void ThreadImpl::setPriorityImpl(int prio)
@@ -200,8 +211,10 @@ void ThreadImpl::setPriorityImpl(int prio)
 		{
 			struct sched_param par;
 			par.sched_priority = mapPrio(_pData->prio, SCHED_OTHER);
-			if (pthread_setschedparam(_pData->thread, SCHED_OTHER, &par))
-				throw SystemException("cannot set thread priority");
+			int errorCode;
+			if ((errorCode = pthread_setschedparam(_pData->thread, SCHED_OTHER, &par)))
+				throw SystemException(Poco::format("cannot set thread priority (%s)",
+					Error::getMessage(errorCode)));
 		}
 	}
 }
@@ -215,8 +228,10 @@ void ThreadImpl::setOSPriorityImpl(int prio, int policy)
 		{
 			struct sched_param par;
 			par.sched_priority = prio;
-			if (pthread_setschedparam(_pData->thread, policy, &par))
-				throw SystemException("cannot set thread priority");
+			int errorCode;
+			if ((errorCode = pthread_setschedparam(_pData->thread, policy, &par)))
+				throw SystemException(Poco::format("cannot set thread priority (%s)",
+					Error::getMessage(errorCode)));
 		}
 		_pData->prio   = reverseMapPrio(prio, policy);
 		_pData->osPrio = prio;
@@ -297,21 +312,25 @@ void ThreadImpl::startImpl(SharedPtr<Runnable> pTarget)
 
 	if (_pData->stackSize != 0)
 	{
-		if (0 != pthread_attr_setstacksize(&attributes, _pData->stackSize))
+		int errorCode;
+		if ((errorCode = pthread_attr_setstacksize(&attributes, _pData->stackSize)))
 		{
 			pthread_attr_destroy(&attributes);
-			throw SystemException("cannot set thread stack size");
+			throw SystemException(Poco::format("cannot set thread stack size: (%s)",
+				Error::getMessage(errorCode)));
 		}
 	}
 
 	{
 		FastMutex::ScopedLock l(_pData->mutex);
 		_pData->pRunnableTarget = pTarget;
-		if (pthread_create(&_pData->thread, &attributes, runnableEntry, this))
+		int errorCode;
+		if ((errorCode = pthread_create(&_pData->thread, &attributes, runnableEntry, this)))
 		{
 			_pData->pRunnableTarget = 0;
 			pthread_attr_destroy(&attributes);
-			throw SystemException("cannot start thread");
+			throw SystemException(Poco::format("cannot start thread (%s)",
+				Error::getMessage(errorCode)));
 		}
 	}
 	_pData->started = true;
@@ -324,16 +343,20 @@ void ThreadImpl::startImpl(SharedPtr<Runnable> pTarget)
 		{
 			struct sched_param par;
 			par.sched_priority = mapPrio(_pData->prio, SCHED_OTHER);
-			if (pthread_setschedparam(_pData->thread, SCHED_OTHER, &par))
-				throw SystemException("cannot set thread priority");
+			int errorCode;
+			if ((errorCode = pthread_setschedparam(_pData->thread, SCHED_OTHER, &par)))
+				throw SystemException(Poco::format("cannot set thread priority (%s)",
+					Error::getMessage(errorCode)));
 		}
 	}
 	else
 	{
 		struct sched_param par;
 		par.sched_priority = _pData->osPrio;
-		if (pthread_setschedparam(_pData->thread, _pData->policy, &par))
-			throw SystemException("cannot set thread priority");
+		int errorCode;
+		if ((errorCode = pthread_setschedparam(_pData->thread, _pData->policy, &par)))
+			throw SystemException(Poco::format("cannot set thread priority (%s)",
+				Error::getMessage(errorCode)));
 	}
 }
 
@@ -357,11 +380,12 @@ void ThreadImpl::joinImpl()
 
 bool ThreadImpl::joinImpl(long milliseconds)
 {
-	if (_pData->started && _pData->done.tryWait(milliseconds))
+	if (_pData->started && _pData->done.tryWait(milliseconds) && !_pData->joined)
 	{
-		void* result;
-		if (pthread_join(_pData->thread, &result))
-			throw SystemException("cannot join thread");
+		int errorCode;
+		if ((errorCode = pthread_join(_pData->thread, nullptr)))
+			throw SystemException(Poco::format("cannot join thread (%s)",
+				Error::getMessage(errorCode)));
 		_pData->joined = true;
 		return true;
 	}
@@ -410,13 +434,17 @@ void* ThreadImpl::runnableEntry(void* pThread)
 #endif
 
 	ThreadImpl* pThreadImpl = reinterpret_cast<ThreadImpl*>(pThread);
+#ifndef POCO_NO_THREADNAME
 	setThreadName(reinterpret_cast<Thread*>(pThread)->getName());
+#endif
 	AutoPtr<ThreadData> pData = pThreadImpl->_pData;
 
+#ifndef POCO_NO_THREADNAME
 	{
 		FastMutex::ScopedLock lock(pData->mutex);
 		setThreadName(pData->name);
 	}
+#endif
 
 	try
 	{
