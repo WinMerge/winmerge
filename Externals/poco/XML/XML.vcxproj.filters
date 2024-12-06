@@ -117,44 +117,44 @@
     <ClInclude Include="include\Poco\SAX\XMLReader.h">
       <Filter>SAX\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Poco\Xml\expat.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Poco\Xml\expat_external.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\ascii.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\asciitab.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\expat.h">
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\expat_config.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\expat_external.h">
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\iasciitab.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\internal.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\latin1tab.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\nametab.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\utf8tab.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\xmlrole.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\xmltok.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\xmltok_impl.h">
-      <Filter>Expat\Source Files</Filter>
+      <Filter>Expat\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

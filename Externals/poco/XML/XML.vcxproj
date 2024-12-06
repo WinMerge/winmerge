@@ -421,11 +421,11 @@
     <ClInclude Include="include\Poco\Sax\XMLFilter.h" />
     <ClInclude Include="include\Poco\Sax\XMLFilterImpl.h" />
     <ClInclude Include="include\Poco\SAX\XMLReader.h" />
-    <ClInclude Include="include\Poco\Xml\expat.h" />
-    <ClInclude Include="include\Poco\Xml\expat_external.h" />
     <ClInclude Include="src\ascii.h" />
     <ClInclude Include="src\asciitab.h" />
+    <ClInclude Include="src\expat.h" />
     <ClInclude Include="src\expat_config.h" />
+    <ClInclude Include="src\expat_external.h" />
     <ClInclude Include="src\iasciitab.h" />
     <ClInclude Include="src\internal.h" />
     <ClInclude Include="src\latin1tab.h" />
