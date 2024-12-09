@@ -29,12 +29,12 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 		MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
 		short zDelta = HIWORD(pMouseStruct->mouseData);
 
-		if (GetKeyState(VK_MENU) & 0x8000)
+		if (GetAsyncKeyState(VK_MENU) & 0x8000)
 		{
 			HWND hwndTarget = GetForegroundWindow();
-			// When hold Alt key, use nFlags to check MK_CONTROL MK_SHIFT holding got problem, Use GetKeyState() instead.
-			const auto bShiftDown = GetKeyState(VK_SHIFT) & 0x8000;
-			const auto bControlDown = GetKeyState(VK_CONTROL) & 0x8000;
+			// When hold Alt key, use nFlags to check MK_CONTROL MK_SHIFT holding got problem, Use GetAsyncKeyState() instead.
+			const auto bShiftDown = GetAsyncKeyState(VK_SHIFT) & 0x8000;
+			const auto bControlDown = GetAsyncKeyState(VK_CONTROL) & 0x8000;
 			// zDelta > 0 scrool up, < 0 scrool down
 			if (zDelta > 0)
 			{
@@ -107,10 +107,10 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 		MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
 		short zDelta = HIWORD(pMouseStruct->mouseData);
 
-		if (GetKeyState(VK_MENU) & 0x8000)
+		if (GetAsyncKeyState(VK_MENU) & 0x8000)
 		{
 			HWND hwndTarget = GetForegroundWindow();
-			const auto bControlDown = GetKeyState(VK_CONTROL) & 0x8000;
+			const auto bControlDown = GetAsyncKeyState(VK_CONTROL) & 0x8000;
 			// zDelta > 0 scrool right, < 0 scrool left
 			if (zDelta > 0)
 			{
