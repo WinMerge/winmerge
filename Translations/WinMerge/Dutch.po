@@ -1099,6 +1099,9 @@ msgstr "Nummers negeren"
 msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"
 
+msgid "Ignore &end-of-file newline presence"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "Submappen bijvoegen"
 

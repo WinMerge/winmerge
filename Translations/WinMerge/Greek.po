@@ -1319,6 +1319,9 @@ msgstr ""
 msgid "Ignore c&omment differences"
 msgstr ""
 
+msgid "Ignore &end-of-file newline presence"
+msgstr ""
+
 #, c-format
 msgid "&Include subfolders"
 msgstr "Οι Υποφάκελοι να &συμπεριληφθούν"

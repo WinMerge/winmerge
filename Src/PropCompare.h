@@ -35,6 +35,7 @@ public:
 	bool    m_bIgnoreCase;
 	bool    m_bIgnoreNumbers;
 	bool    m_bIgnoreBlankLines;
+	int     m_bIgnoreEofNewlinePresence;
 	int     m_nIgnoreWhite;
 	bool    m_bMovedBlocks;
 	bool    m_bAlignSimilarLines;
