@@ -382,7 +382,7 @@ BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 	if (pMsg->message == WM_SYSKEYDOWN || pMsg->message == WM_SYSKEYUP)
 	{
 		const BOOL bShift = ::GetAsyncKeyState(VK_SHIFT) & 0x8000;
-		if ((!bShift && pMsg->wParam == VK_F10) || pMsg->wParam == VK_MENU)
+		if (!bShift && (pMsg->wParam == VK_F10 || pMsg->wParam == VK_MENU))
 		{
 			if (pMsg->message == WM_SYSKEYDOWN)
 			{
