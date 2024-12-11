@@ -20,6 +20,7 @@ CompareOptions::CompareOptions()
 , m_bIgnoreCase(false)
 , m_bIgnoreEOLDifference(false)
 , m_bIgnoreNumbers(false)
+, m_bIgnoreEofNewlinePresence(false)
 {
 }
 
@@ -95,6 +96,7 @@ void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
 	CompareOptions::SetFromDiffOptions(options);
 	m_bCompletelyBlankOutIgnoredDiffereneces = options.bCompletelyBlankOutIgnoredChanges;
 	m_filterCommentsLines = options.bFilterCommentsLines;
+	m_bIgnoreEofNewlinePresence = options.bIgnoreEofNewlinePresence;
 	m_bIndentHeuristic = options.bIndentHeuristic;
 	switch (options.nDiffAlgorithm)
 	{

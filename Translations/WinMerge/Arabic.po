@@ -1104,6 +1104,9 @@ msgstr ""
 msgid "Ignore c&omment differences"
 msgstr ""
 
+msgid "Ignore &end-of-file newline presence"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "تضمين المجلدات الفرعية"
 
