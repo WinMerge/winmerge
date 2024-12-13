@@ -111,6 +111,7 @@ ByteComparator::ByteComparator(const QuickCompareOptions * options)
 		, m_ignore_eol_diff(options->m_bIgnoreEOLDifference)
 		, m_ignore_blank_lines(options->m_bIgnoreBlankLines)
 		, m_ignore_numbers(options->m_bIgnoreNumbers)
+		, m_ignore_eof_newline_presence(options->m_bIgnoreEofNewlinePresence)
 // state
 		, m_wsflag(false)
 		, m_eol0(false)
@@ -353,6 +354,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					if ((!m_eol0 || !m_eol1) && (orig0 == end0 || orig1 == end1))
 					{
 						// one side had an end-of-line, but the other didn't
+						if (m_ignore_eof_newline_presence)
+							continue;
 						result = RESULT_DIFF;
 						goto exit;
 					}
@@ -379,6 +382,20 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 
 		if (ptr0 == end0 || ptr1 == end1)
 		{
+			if (m_ignore_eof_newline_presence)
+			{
+				if (eof0 || eof1)
+				{
+					HandleSide0Eol((char **) &ptr0, end0, eof0);
+					HandleSide1Eol((char **) &ptr1, end1, eof1);
+
+					if (m_cr0 || m_cr1)
+					{
+						// these flags mean possible split CR/LF
+						goto need_more;
+					}
+				}
+			}
 			if (ptr0 == end0 && ptr1 == end1)
 			{
 				if (!eof0 || !eof1)
