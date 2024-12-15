@@ -132,8 +132,9 @@ TextType;
 struct TextDefinition
 {
 	TextType type;
-	tchar_t name[256];
-	tchar_t exts[256];
+	const tchar_t* name;
+	tchar_t* exts;
+	bool extsIsDynamic;
 	unsigned (* ParseLineX) (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 	unsigned flags;
 //        unsigned tabsize;
@@ -143,7 +144,7 @@ struct TextDefinition
 	unsigned encoding;
 };
 
-extern TextDefinition m_SourceDefs[SRC_MAX_ENTRY];
+extern std::array<TextDefinition, SRC_MAX_ENTRY> m_SourceDefs;
 
 bool IsXKeyword(const tchar_t *pszKey, size_t nKeyLen, const tchar_t *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const tchar_t *, const tchar_t *, size_t));
 bool IsXNumber(const tchar_t* pszChars, int nLength);

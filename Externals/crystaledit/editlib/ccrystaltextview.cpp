@@ -126,17 +126,6 @@ using CrystalLineParser::TEXTBLOCK;
 #endif
 
 
-// The vcruntime.h version of _countf() gives syntax errors starting with VS 15.7.2,
-// but only with `CCrystalTextView::m_SourceDefs` (which is local to this .cpp file), 
-// and only for X64 compilations (Win32 is ok, probably because no alignment issues
-// are involved).  I think that this could be related to C++17 compliance issues.
-// This patch reverts to a 'traditional' definition of _countf(), a pre-existing 
-// part of the CCrystalTextView package.
-#undef _countof
-#ifndef _countof
-#define _countof(array) (sizeof(array)/sizeof(array[0]))
-#endif
-
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
 #ifndef WM_MOUSEHWHEEL
@@ -325,7 +314,7 @@ DoSetTextType (CrystalLineParser::TextDefinition *def)
 bool CCrystalTextView::
 SetTextType (const tchar_t* pszExt)
 {
-  m_CurSourceDef = CrystalLineParser::m_SourceDefs;
+  m_CurSourceDef = &CrystalLineParser::m_SourceDefs[0];
 
   CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (pszExt);
 
@@ -337,8 +326,8 @@ SetTextType (CrystalLineParser::TextType enuType)
 {
   CrystalLineParser::TextDefinition *def;
 
-  m_CurSourceDef = def = CrystalLineParser::m_SourceDefs;
-  for (int i = 0; i < _countof (CrystalLineParser::m_SourceDefs); i++, def++)
+  m_CurSourceDef = def = &CrystalLineParser::m_SourceDefs[0];
+  for (size_t i = 0; i < CrystalLineParser::m_SourceDefs.size(); i++, def++)
     {
       if (def->type == enuType)
         {
@@ -6307,7 +6296,7 @@ OnSourceType (UINT nId)
 void CCrystalTextView::
 OnUpdateSourceType (CCmdUI * pCmdUI)
 {
-  pCmdUI->SetRadio (CrystalLineParser::m_SourceDefs + (pCmdUI->m_nID - ID_SOURCE_PLAIN) == m_CurSourceDef);
+  pCmdUI->SetRadio (&CrystalLineParser::m_SourceDefs[(pCmdUI->m_nID - ID_SOURCE_PLAIN)] == m_CurSourceDef);
 }
 
 int
