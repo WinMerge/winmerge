@@ -101,8 +101,6 @@ void PropEditorSyntax::InitList()
 	m_listSyntax.SetReadOnlyColumn(0);
 	m_listSyntax.SetEditStyle(1, CSubeditList::EditStyle::WILDCARD_DROP_LIST);
 
-	int nLimitTextSize = (sizeof(CrystalLineParser::TextDefinition::exts) / sizeof(CrystalLineParser::TextDefinition::exts[0])) - 1;
-	m_listSyntax.SetLimitTextSize(1, nLimitTextSize);
 
 	String fixedPattern[CrystalLineParser::SRC_XML];
 	Options::EditorSyntax::GetDefaults(GetOptionsMgr(), fixedPattern);
