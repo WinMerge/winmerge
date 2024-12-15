@@ -63,7 +63,6 @@
 #include "Unicode.cpp"
 #include "UnicodeConverter.cpp"
 #include "UTF8Encoding.cpp"
-#include "UTF8String.cpp"
 #include "UTF16Encoding.cpp"
 #include "UTF32Encoding.cpp"
 #include "Windows1250Encoding.cpp"

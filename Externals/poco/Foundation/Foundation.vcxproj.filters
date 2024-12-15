@@ -529,7 +529,6 @@
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Foundation.cpp" />
-    <ClCompile Include="src\utf8proc.c" />
     <ClCompile Include="src\pcre2_chkdint.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
