@@ -522,7 +522,6 @@
     <ClCompile Include="src\UTF32Encoding.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\utf8proc.c" />
     <ClCompile Include="src\Void.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
