@@ -354,8 +354,6 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					if ((!m_eol0 || !m_eol1) && (orig0 == end0 || orig1 == end1))
 					{
 						// one side had an end-of-line, but the other didn't
-						if (m_ignore_eof_newline_presence)
-							continue;
 						result = RESULT_DIFF;
 						goto exit;
 					}
@@ -384,16 +382,50 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 		{
 			if (m_ignore_eof_newline_presence)
 			{
-				if (eof0 || eof1)
+				if (eof0 && eof1)
 				{
-					HandleSide0Eol((char **) &ptr0, end0, eof0);
-					HandleSide1Eol((char **) &ptr1, end1, eof1);
-
-					if (m_cr0 || m_cr1)
+					const size_t rest0 = end0 - ptr0;
+					const size_t rest1 = end1 - ptr1;
+					if ((rest0 == 0 && rest1 == 0) ||
+					    (rest0 == 1 && ((!m_cr0 && *ptr0 == '\r') || ((m_cr0 || !m_eol0) && *ptr0 == '\n'))) ||
+					    (rest0 == 2 && (!m_eol0 && (*ptr0 == '\r' && *(ptr0 + 1) == '\n'))) ||
+					    (rest1 == 1 && ((!m_cr1 && *ptr1 == '\r') || ((m_cr1 || !m_eol1) && *ptr1 == '\n'))) ||
+					    (rest1 == 2 && (!m_eol1 && (*ptr1 == '\r' && *(ptr1 + 1) == '\n'))))
 					{
-						// these flags mean possible split CR/LF
+						ptr0 = end0;
+						ptr1 = end1;
+						result = RESULT_SAME;
+					}
+					else
+					{
+						result = RESULT_DIFF;
+					}
+					goto exit;
+				}
+				else if (eof0 || eof1)
+				{
+					const size_t rest0 = end0 - ptr0;
+					const size_t rest1 = end1 - ptr1;
+					if ((rest0 == 0 && rest1 == 0) ||
+					    (rest0 == 1 && (*ptr0 == '\r' || *ptr0 == '\n')) ||
+					    (rest0 == 2 && (*ptr0 == '\r' && *(ptr0 + 1) == '\n')) ||
+					    (rest1 == 1 && (*ptr1 == '\r' || *ptr1 == '\n')) ||
+					    (rest1 == 2 && (*ptr1 == '\r' && *(ptr1 + 1) == '\n')))
+					{
+						if (end0 - ptr0 >= 1)
+						{
+							m_eol0 = true;
+							ptr0 = end0;
+						}
+						if (end1 - ptr1 >= 1)
+						{
+							m_eol1 = true;
+							ptr1 = end1;
+						}
 						goto need_more;
 					}
+					result = RESULT_DIFF;
+					goto exit;
 				}
 			}
 			if (ptr0 == end0 && ptr1 == end1)
