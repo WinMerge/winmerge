@@ -133,7 +133,6 @@ namespace
 
 	}
 
-
 	TEST_F(ByteCompareTest, IgnoreAllSpace)
 	{
 		CompareEngines::ByteCompare bc;
@@ -819,9 +818,10 @@ namespace
 				memset(buf_right.data(), 'A', buf_right.size());
 
 				buf_left[10] = '\n';
-				buf_left[buf_left.size() - 1] = '\n';
 				buf_right[10] = '\r';
 				buf_right[11] = '\n';
+
+				buf_left[buf_left.size() - 1] = '\n';
 
 				TempFile file_left(filename_left, buf_left.data(), buf_left.size());
 				TempFile file_right(filename_right, buf_right.data(), buf_right.size());
@@ -833,10 +833,14 @@ namespace
 
 			{// same left: no EOL - right: LF
 				std::vector<char> buf_left(WMCMPBUFF * 2 - 1 + i);
-				std::vector<char> buf_right(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_right(WMCMPBUFF * 2 - 1 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_right[10] = '\n';
+				buf_left[10] = '\r';
+				buf_left[11] = '\n';
 
 				buf_right[buf_right.size() - 1] = '\n';
 
@@ -852,11 +856,19 @@ namespace
 		for (int i = 0; i < 3; i++)
 		{
 			{// same left: CRLF - right: no EOL
-				std::vector<char> buf_left(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_left(WMCMPBUFF * 2 - 2 + i);
 				std::vector<char> buf_right(WMCMPBUFF * 2 - 2 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_left[10] = '\n';
+				buf_right[10] = '\r';
+				buf_right[11] = '\n';
+
+				buf_left[19] = '\r';
+				buf_right[20] = '\r';
+				buf_right[21] = '\n';
 
 				buf_left[buf_left.size() - 2] = '\r';
 				buf_left[buf_left.size() - 1] = '\n';
@@ -871,10 +883,18 @@ namespace
 
 			{// same left: no EOL - right: CRLF
 				std::vector<char> buf_left(WMCMPBUFF * 2 - 2 + i);
-				std::vector<char> buf_right(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_right(WMCMPBUFF * 2 - 2 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_right[10] = '\n';
+				buf_left[10] = '\r';
+				buf_left[11] = '\n';
+
+				buf_right[19] = '\r';
+				buf_left[20] = '\r';
+				buf_left[21] = '\n';
 
 				buf_right[buf_right.size() - 2] = '\r';
 				buf_right[buf_right.size() - 1] = '\n';
@@ -891,11 +911,19 @@ namespace
 		for (int i = 0; i < 3; i++)
 		{
 			{// diff left: CR+A - right: no EOL
-				std::vector<char> buf_left(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_left(WMCMPBUFF * 2 - 2 + i);
 				std::vector<char> buf_right(WMCMPBUFF * 2 - 2 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_left[10] = '\n';
+				buf_right[10] = '\r';
+				buf_right[11] = '\n';
+
+				buf_left[19] = '\r';
+				buf_right[20] = '\r';
+				buf_right[21] = '\n';
 
 				buf_left[buf_left.size() - 2] = '\r';
 				buf_left[buf_left.size() - 1] = 'A';
@@ -910,10 +938,18 @@ namespace
 
 			{// diff left: no EOL - right: CR+A
 				std::vector<char> buf_left(WMCMPBUFF * 2 - 2 + i);
-				std::vector<char> buf_right(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_right(WMCMPBUFF * 2 - 2 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_right[10] = '\n';
+				buf_left[10] = '\r';
+				buf_left[11] = '\n';
+
+				buf_right[19] = '\r';
+				buf_left[20] = '\r';
+				buf_left[21] = '\n';
 
 				buf_right[buf_right.size() - 2] = '\r';
 				buf_right[buf_right.size() - 1] = 'A';
@@ -930,11 +966,19 @@ namespace
 		for (int i = 0; i < 3; i++)
 		{
 			{// diff left: LF+LF - right: no EOL
-				std::vector<char> buf_left(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_left(WMCMPBUFF * 2 - 2 + i);
 				std::vector<char> buf_right(WMCMPBUFF * 2 - 2 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_left[10] = '\n';
+				buf_right[10] = '\r';
+				buf_right[11] = '\n';
+
+				buf_left[19] = '\r';
+				buf_right[20] = '\r';
+				buf_right[21] = '\n';
 
 				buf_left[buf_left.size() - 2] = '\n';
 				buf_left[buf_left.size() - 1] = '\n';
@@ -949,10 +993,18 @@ namespace
 
 			{// diff left: no EOL - right: LF+LF
 				std::vector<char> buf_left(WMCMPBUFF * 2 - 2 + i);
-				std::vector<char> buf_right(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_right(WMCMPBUFF * 2 - 2 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_right[10] = '\n';
+				buf_left[10] = '\r';
+				buf_left[11] = '\n';
+
+				buf_right[19] = '\r';
+				buf_left[20] = '\r';
+				buf_left[21] = '\n';
 
 				buf_right[buf_right.size() - 2] = '\n';
 				buf_right[buf_right.size() - 1] = '\n';
@@ -969,11 +1021,19 @@ namespace
 		for (int i = 0; i < 3; i++)
 		{
 			{// diff left: CR+CR - right: no EOL
-				std::vector<char> buf_left(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_left(WMCMPBUFF * 2 - 2 + i);
 				std::vector<char> buf_right(WMCMPBUFF * 2 - 2 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_left[10] = '\n';
+				buf_right[10] = '\r';
+				buf_right[11] = '\n';
+
+				buf_left[19] = '\r';
+				buf_right[20] = '\r';
+				buf_right[21] = '\n';
 
 				buf_left[buf_left.size() - 2] = '\r';
 				buf_left[buf_left.size() - 1] = '\r';
@@ -988,10 +1048,18 @@ namespace
 
 			{// diff left: no EOL - right: CR+CR
 				std::vector<char> buf_left(WMCMPBUFF * 2 - 2 + i);
-				std::vector<char> buf_right(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_right(WMCMPBUFF * 2 - 2 + i);
 
 				memset(buf_left.data(), 'A', buf_left.size());
 				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_right[10] = '\n';
+				buf_left[10] = '\r';
+				buf_left[11] = '\n';
+
+				buf_right[19] = '\r';
+				buf_left[20] = '\r';
+				buf_left[21] = '\n';
 
 				buf_right[buf_right.size() - 2] = '\r';
 				buf_right[buf_right.size() - 1] = '\r';

@@ -349,7 +349,7 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					// these flags mean possible split CR/LF
 					goto need_more;
 				}
-				if (m_eol0 || m_eol1)
+				if (!m_ignore_eof_newline_presence && (m_eol0 || m_eol1))
 				{
 					if ((!m_eol0 || !m_eol1) && (orig0 == end0 || orig1 == end1))
 					{
@@ -424,8 +424,6 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 						}
 						goto need_more;
 					}
-					result = RESULT_DIFF;
-					goto exit;
 				}
 			}
 			if (ptr0 == end0 && ptr1 == end1)
