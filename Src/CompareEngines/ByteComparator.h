@@ -54,7 +54,6 @@ private:
 	bool m_ignore_all_space; /**< Ignore all whitespace changes */
 	bool m_ignore_eol_diff; /**< Ignore differences in EOL bytes */
 	bool m_ignore_blank_lines; /**< Ignore blank lines */
-	bool m_ignore_eof_newline_presence; /**< Ignore end-of-file newline presence */
 	// state
 	bool m_wsflag; /**< ignore_space_change & in a whitespace area */
 	bool m_eol0; /**< 0-side has an eol */
