@@ -129,7 +129,7 @@ int ByteCompare::CompareFiles(DiffFileData* diffData)
 				bfend[i] += rtn;
 				if (m_pOptions->m_bIgnoreEofNewlinePresence)
 				{
-					for (int j = bfstart[i]; j < bfend[i]; ++j)
+					for (int j = (std::max)(bfstart[i], bfend[i] - 4); j < bfend[i]; ++j)
 					{
 						const char c = buff[i][j];
 						if (c == '\r' || c == '\n')
@@ -277,9 +277,7 @@ int ByteCompare::CompareFiles(DiffFileData* diffData)
 
 			// If either unfinished, they differ
 			if (ptr0 != end0 || ptr1 != end1)
-			{
 				diffcode = (diffcode & DIFFCODE::DIFF);
-			}
 			if (diffcode & DIFFCODE::DIFF)
 				return diffcode | DIFFCODE::DIFF;
 			else
