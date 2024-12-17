@@ -129,7 +129,7 @@ int ByteCompare::CompareFiles(DiffFileData* diffData)
 				bfend[i] += rtn;
 				if (m_pOptions->m_bIgnoreEofNewlinePresence)
 				{
-					for (int j = (std::max)(bfstart[i], bfend[i] - 4); j < bfend[i]; ++j)
+					for (int64_t j = (std::max)(bfstart[i], bfend[i] - 4); j < bfend[i]; ++j)
 					{
 						const char c = buff[i][j];
 						if (c == '\r' || c == '\n')
