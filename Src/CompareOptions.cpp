@@ -49,6 +49,7 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	m_bIgnoreCase = options.bIgnoreCase;
 	m_bIgnoreEOLDifference = options.bIgnoreEol;
 	m_bIgnoreNumbers = options.bIgnoreNumbers;
+	m_bIgnoreEofNewlinePresence = options.bIgnoreEofNewlinePresence;
 }
 
 /**
@@ -96,7 +97,6 @@ void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
 	CompareOptions::SetFromDiffOptions(options);
 	m_bCompletelyBlankOutIgnoredDiffereneces = options.bCompletelyBlankOutIgnoredChanges;
 	m_filterCommentsLines = options.bFilterCommentsLines;
-	m_bIgnoreEofNewlinePresence = options.bIgnoreEofNewlinePresence;
 	m_bIndentHeuristic = options.bIndentHeuristic;
 	switch (options.nDiffAlgorithm)
 	{
@@ -189,6 +189,7 @@ void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 	options.bIgnoreEol = m_bIgnoreEOLDifference;
 	options.bIgnoreNumbers = m_bIgnoreNumbers;
 	options.nDiffAlgorithm = m_diffAlgorithm;
+	options.bIgnoreEofNewlinePresence = m_bIgnoreEofNewlinePresence;
 
 	switch (m_ignoreWhitespace)
 	{

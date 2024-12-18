@@ -339,6 +339,18 @@ static void ReplaceChars(std::string & str, const char* chars, const char *rep)
 	}
 }
 
+static void RemoveEOL(std::string& str)
+{
+	if (str.empty())
+		return;
+	if (str.size() >= 2 && str[str.size() - 2] == '\r' && str[str.size() - 1] == '\n')
+		str.erase(str.size() - 2, 2);
+	else if (str.back() == '\n')
+		str.pop_back();
+	else if (str.back() == '\r')
+		str.pop_back();
+}
+
 /**
  * @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
  * @param [in, out]  thisob	Current change
@@ -446,6 +458,11 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		Replace(lineDataLeft, "\r", "\n");
 		Replace(lineDataRight, "\r\n", "\n");
 		Replace(lineDataRight, "\r", "\n");
+	}
+	if (thisob->link == nullptr && m_options.m_bIgnoreEofNewlinePresence && (file_data_ary[0].missing_newline || file_data_ary[1].missing_newline))
+	{
+		RemoveEOL(lineDataLeft);
+		RemoveEOL(lineDataRight);
 	}
 
 	// If both match after filtering, mark this diff hunk as trivial and return.
