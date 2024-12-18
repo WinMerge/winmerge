@@ -1227,6 +1227,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	struct change *next = script;
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
+		m_options.m_bIgnoreEofNewlinePresence ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
@@ -1398,6 +1399,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	diff12.Clear();
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
+		m_options.m_bIgnoreEofNewlinePresence ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
