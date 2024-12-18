@@ -339,6 +339,16 @@ static void ReplaceChars(std::string & str, const char* chars, const char *rep)
 	}
 }
 
+/**
+ * @brief Remove the end-of-line (EOL) characters (LF, CR, or CRLF) from the end of a string.
+ *
+ * This function removes any of the following EOL characters from the end of the string:
+ * - LF (line feed, '\n')
+ * - CR (carriage return, '\r')
+ * - CRLF (carriage return + line feed, "\r\n")
+ *
+ * @param [in,out] str - A string from which the EOL characters will be removed.
+ */
 static void RemoveEOL(std::string& str)
 {
 	if (str.empty())
