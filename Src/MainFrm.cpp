@@ -2808,17 +2808,18 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 			return FALSE;
 		strTipText = strFullText.substr(newline1st + 1).c_str();
 	}
+	constexpr size_t tipBufLen = 512;
 	if (pNMHDR->code == TTN_NEEDTEXTA)
 	{
-		m_upszLongTextA.reset(new CHAR[256]);
+		m_upszLongTextA.reset(new CHAR[tipBufLen]);
 		pTTTA->lpszText = m_upszLongTextA.get();
-		_wcstombsz(pTTTA->lpszText, strTipText, 256);
+		_wcstombsz(pTTTA->lpszText, strTipText, tipBufLen);
 	}
 	else
 	{
-		m_upszLongTextW.reset(new WCHAR[256]);
+		m_upszLongTextW.reset(new WCHAR[tipBufLen]);
 		pTTTW->lpszText = m_upszLongTextW.get();
-		lstrcpyn(pTTTW->lpszText, strTipText, 256);
+		lstrcpyn(pTTTW->lpszText, strTipText, tipBufLen);
 	}
 	*pResult = 0;
 
