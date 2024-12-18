@@ -1103,6 +1103,9 @@ msgstr "Ignurà i &numeri"
 msgid "Ignore c&omment differences"
 msgstr "Ignurà e sfarenze di c&ummentu"
 
+msgid "Ignore &end-of-file newline presence"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "&Include i sottucartulari"
 
