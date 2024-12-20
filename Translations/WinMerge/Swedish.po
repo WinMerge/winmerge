@@ -1105,6 +1105,9 @@ msgstr "Ignorera nummer"
 msgid "Ignore c&omment differences"
 msgstr "Ignorera kommentarskillnader"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "Inkludera undermappar"
 

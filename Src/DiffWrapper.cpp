@@ -340,6 +340,28 @@ static void ReplaceChars(std::string & str, const char* chars, const char *rep)
 }
 
 /**
+ * @brief Remove the end-of-line (EOL) characters (LF, CR, or CRLF) from the end of a string.
+ *
+ * This function removes any of the following EOL characters from the end of the string:
+ * - LF (line feed, '\n')
+ * - CR (carriage return, '\r')
+ * - CRLF (carriage return + line feed, "\r\n")
+ *
+ * @param [in,out] str - A string from which the EOL characters will be removed.
+ */
+static void RemoveEOL(std::string& str)
+{
+	if (str.empty())
+		return;
+	if (str.size() >= 2 && str[str.size() - 2] == '\r' && str[str.size() - 1] == '\n')
+		str.erase(str.size() - 2, 2);
+	else if (str.back() == '\n')
+		str.pop_back();
+	else if (str.back() == '\r')
+		str.pop_back();
+}
+
+/**
  * @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
  * @param [in, out]  thisob	Current change
  * @return Number of trivial diffs inserted
@@ -446,6 +468,11 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		Replace(lineDataLeft, "\r", "\n");
 		Replace(lineDataRight, "\r\n", "\n");
 		Replace(lineDataRight, "\r", "\n");
+	}
+	if (thisob->link == nullptr && m_options.m_bIgnoreMissingTrailingEol && (file_data_ary[0].missing_newline || file_data_ary[1].missing_newline))
+	{
+		RemoveEOL(lineDataLeft);
+		RemoveEOL(lineDataRight);
 	}
 
 	// If both match after filtering, mark this diff hunk as trivial and return.
@@ -1200,6 +1227,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	struct change *next = script;
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
+		m_options.m_bIgnoreMissingTrailingEol ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
@@ -1371,6 +1399,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	diff12.Clear();
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
+		m_options.m_bIgnoreMissingTrailingEol ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	

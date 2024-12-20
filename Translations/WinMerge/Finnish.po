@@ -1101,6 +1101,9 @@ msgstr "Jätä nume&rot huomiotta"
 msgid "Ignore c&omment differences"
 msgstr "Jätä k&ommenttien erot huomiotta"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "Sisällytä alihakemistot"
 

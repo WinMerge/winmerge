@@ -1329,6 +1329,9 @@ msgstr "숫자 무시(&B)"
 msgid "Ignore c&omment differences"
 msgstr "주석 차이 무시(&O)"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 #, c-format
 msgid "&Include subfolders"
 msgstr "하위 폴더 포함(&I)"

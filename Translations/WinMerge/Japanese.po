@@ -1100,6 +1100,9 @@ msgstr "数字を無視する(&B)"
 msgid "Ignore c&omment differences"
 msgstr "コメントの違いを無視する(&O)"
 
+msgid "Ignore &missing trailing EOL"
+msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
+
 msgid "&Include subfolders"
 msgstr "サブフォルダーを含める(&I)"
 

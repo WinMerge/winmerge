@@ -113,6 +113,7 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
 	if (script != nullptr)
 	{
 		const bool usefilters = m_pDiffWrapper->GetOptions().m_filterCommentsLines ||
+			m_pDiffWrapper->GetOptions().m_bIgnoreMissingTrailingEol ||
 			(m_pDiffWrapper->GetFilterList() && m_pDiffWrapper->GetFilterList()->HasRegExps()) ||
 			(m_pDiffWrapper->GetSubstitutionList() && m_pDiffWrapper->GetSubstitutionList()->HasRegExps());
 	

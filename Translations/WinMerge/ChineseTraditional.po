@@ -1327,6 +1327,9 @@ msgstr "忽略數字 (&B)"
 msgid "Ignore c&omment differences"
 msgstr "忽略註解差異 (&O)"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 #, c-format
 msgid "&Include subfolders"
 msgstr "包括子資料夾 (&I)"

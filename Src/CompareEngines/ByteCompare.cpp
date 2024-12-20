@@ -80,6 +80,7 @@ int ByteCompare::CompareFiles(DiffFileData* diffData)
 	// because transform code converted any UCS-2 files to UTF-8
 	// We could compare directly in UCS-2LE here, as an optimization, in that case
 	char buff[2][WMCMPBUFF]; // buffered access to files
+	std::string lasteol[2];
 	int i;
 	unsigned diffcode = 0;
 
@@ -126,11 +127,23 @@ int ByteCompare::CompareFiles(DiffFileData* diffData)
 				if (rtn < space)
 					eof[i] = true;
 				bfend[i] += rtn;
+				if (m_pOptions->m_bIgnoreMissingTrailingEol)
+				{
+					for (int64_t j = (std::max)(bfstart[i], bfend[i] - 4); j < bfend[i]; ++j)
+					{
+						const char c = buff[i][j];
+						if (c == '\r' || c == '\n')
+							lasteol[i].push_back(c);
+						else
+							lasteol[i].clear();
+					}
+				}
 				if (diffData->m_inf[0].desc == diffData->m_inf[1].desc)
 				{
 					bfstart[1] = bfstart[0];
 					bfend[1] = bfend[0];
 					eof[1] = eof[0];
+					lasteol[1] = lasteol[0];
 					diffData->m_FileLocation[1] = diffData->m_FileLocation[0];
 					memcpy(&buff[1][bfend[1] - rtn], &buff[0][bfend[0] - rtn], rtn);
 					break;
@@ -165,7 +178,21 @@ int ByteCompare::CompareFiles(DiffFileData* diffData)
 			}
 			else
 			{
-				diffcode |= DIFFCODE::DIFF;
+				if (m_pOptions->m_bIgnoreMissingTrailingEol)
+				{
+					if ((eof[0] || eof[1]) &&
+						((end0 - ptr0 <= 1 && (lasteol[0] == "\r" || lasteol[0] == "\n" || lasteol[0] == "\r\n") && (end1 == ptr1))) ||
+						((end0 - ptr0 == 2 && (lasteol[0] == "\r\n") && (end1 == ptr1))) ||
+						((end1 - ptr1 <= 1 && (lasteol[1] == "\r" || lasteol[1] == "\n" || lasteol[1] == "\r\n") && (end0 == ptr0))) ||
+						((end1 - ptr1 == 2 && (lasteol[1] == "\r\n") && (end0 == ptr0))))
+						;
+					else
+						diffcode |= DIFFCODE::DIFF;
+				}
+				else
+				{
+					diffcode |= DIFFCODE::DIFF;
+				}
 				ptr0 = end0;
 				ptr1 = end1;
 				// move our current pointers over what we just compared
