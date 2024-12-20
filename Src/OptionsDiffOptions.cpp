@@ -25,7 +25,7 @@ void Init(COptionsMgr *pOptionsMgr)
 	pOptionsMgr->InitOption(OPT_CMP_DIFF_ALGORITHM, (int)0, 0, 4);
 	pOptionsMgr->InitOption(OPT_CMP_INDENT_HEURISTIC, true);
 	pOptionsMgr->InitOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, false);
-	pOptionsMgr->InitOption(OPT_CMP_IGNORE_EOF_NEWLINE_PRESENCE, false);
+	pOptionsMgr->InitOption(OPT_CMP_IGNORE_MISSING_TRAILING_EOL, false);
 }
 
 void Load(const COptionsMgr *pOptionsMgr, DIFFOPTIONS& options)
@@ -37,7 +37,7 @@ void Load(const COptionsMgr *pOptionsMgr, DIFFOPTIONS& options)
 	options.bIgnoreCase = pOptionsMgr->GetBool(OPT_CMP_IGNORE_CASE);
 	options.bIgnoreNumbers = pOptionsMgr->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	options.bIgnoreEol = pOptionsMgr->GetBool(OPT_CMP_IGNORE_EOL);
-	options.bIgnoreEofNewlinePresence = pOptionsMgr->GetBool(OPT_CMP_IGNORE_EOF_NEWLINE_PRESENCE);
+	options.bIgnoreMissingTrailingEol = pOptionsMgr->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
 	options.bIndentHeuristic = pOptionsMgr->GetBool(OPT_CMP_INDENT_HEURISTIC);
 	options.bCompletelyBlankOutIgnoredChanges = pOptionsMgr->GetBool(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
 }
@@ -51,7 +51,7 @@ void Save(COptionsMgr *pOptionsMgr, const DIFFOPTIONS& options)
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, options.bIgnoreCase);
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_NUMBERS, options.bIgnoreNumbers);
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_EOL, options.bIgnoreEol);
-	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_EOF_NEWLINE_PRESENCE, options.bIgnoreEofNewlinePresence);
+	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_MISSING_TRAILING_EOL, options.bIgnoreMissingTrailingEol);
 	pOptionsMgr->SaveOption(OPT_CMP_INDENT_HEURISTIC, options.bIndentHeuristic);
 	pOptionsMgr->SaveOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, options.bCompletelyBlankOutIgnoredChanges);
 }

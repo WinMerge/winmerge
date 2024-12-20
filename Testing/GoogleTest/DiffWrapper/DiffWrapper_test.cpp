@@ -95,13 +95,13 @@ TEST(DiffWrapper, RunFileDiff_NoEol)
 	}
 }
 
-TEST(DiffWrapper, RunFileDiff_IgnoreEofNewlinePresence)
+TEST(DiffWrapper, RunFileDiff_IgnoreMissingTrailingEol)
 {
 	CDiffWrapper dw;
 	DIFFOPTIONS options{};
 	DIFFRANGE dr;
 
-	options.bIgnoreEofNewlinePresence = true;
+	options.bIgnoreMissingTrailingEol = true;
 	for (auto algo : { DIFF_ALGORITHM_DEFAULT, DIFF_ALGORITHM_MINIMAL, DIFF_ALGORITHM_PATIENCE, DIFF_ALGORITHM_HISTOGRAM, DIFF_ALGORITHM_NONE })
 	{
 		options.nDiffAlgorithm = algo;

@@ -1101,7 +1101,7 @@ msgstr "Prezri š&tevilke"
 msgid "Ignore c&omment differences"
 msgstr "Prezri razlike v k&omentarjih"
 
-msgid "Ignore &end-of-file newline presence"
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 msgid "&Include subfolders"

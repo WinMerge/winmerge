@@ -1321,7 +1321,7 @@ msgstr "Ignora els nombres"
 msgid "Ignore c&omment differences"
 msgstr "Ingora les diferències en els comentaris"
 
-msgid "Ignore &end-of-file newline presence"
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 #, c-format

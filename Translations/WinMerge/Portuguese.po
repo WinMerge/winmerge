@@ -1102,7 +1102,7 @@ msgstr "Ignorar números"
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenças de c&omentários"
 
-msgid "Ignore &end-of-file newline presence"
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 msgid "&Include subfolders"

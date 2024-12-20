@@ -1327,7 +1327,7 @@ msgstr "忽略數字 (&B)"
 msgid "Ignore c&omment differences"
 msgstr "忽略註解差異 (&O)"
 
-msgid "Ignore &end-of-file newline presence"
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 #, c-format

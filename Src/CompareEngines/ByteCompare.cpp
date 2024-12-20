@@ -127,7 +127,7 @@ int ByteCompare::CompareFiles(DiffFileData* diffData)
 				if (rtn < space)
 					eof[i] = true;
 				bfend[i] += rtn;
-				if (m_pOptions->m_bIgnoreEofNewlinePresence)
+				if (m_pOptions->m_bIgnoreMissingTrailingEol)
 				{
 					for (int64_t j = (std::max)(bfstart[i], bfend[i] - 4); j < bfend[i]; ++j)
 					{
@@ -178,7 +178,7 @@ int ByteCompare::CompareFiles(DiffFileData* diffData)
 			}
 			else
 			{
-				if (m_pOptions->m_bIgnoreEofNewlinePresence)
+				if (m_pOptions->m_bIgnoreMissingTrailingEol)
 				{
 					if ((eof[0] || eof[1]) &&
 						((end0 - ptr0 <= 1 && (lasteol[0] == "\r" || lasteol[0] == "\n" || lasteol[0] == "\r\n") && (end1 == ptr1))) ||

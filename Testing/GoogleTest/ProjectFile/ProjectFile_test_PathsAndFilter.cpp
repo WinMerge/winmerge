@@ -223,4 +223,13 @@ TEST_F(PathAndFilterTest, GetTableProperties)
 	ASSERT_TRUE(tableAllowNewLinesInQuotes == true);
 }
 
+/**
+ * @brief Read diff options
+ */
+TEST_F(PathAndFilterTest, GetDiffOptions)
+{
+	bool bIgnoreMissingTrailingEol = m_pProjectFileItem->HasIgnoreMissingTrailingEol();
+	ASSERT_TRUE(bIgnoreMissingTrailingEol == true);
+
+}
 }

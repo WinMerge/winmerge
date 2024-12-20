@@ -56,7 +56,7 @@ const char Ignore_cr_diff_element_name[] = "ignore-carriage-return-diff";
 const char Ignore_numbers_element_name[] = "ignore-numbers";
 const char Ignore_codepage_diff_element_name[] = "ignore-codepage-diff";
 const char Ignore_comment_diff_element_name[] = "ignore-comment-diff";
-const char Ignore_eof_newline_presence_element_name[] = "ignore-eof-newline-presence";
+const char Ignore_missing_trailing_eol_element_name[] = "ignore-missing-trailing-eol";
 const char Compare_method_element_name[] = "compare-method";
 const char Hidden_list_element_name[] = "hidden-list";
 const char Hidden_items_element_name[] = "hidden-item";
@@ -211,9 +211,9 @@ public:
 		{
 			currentItem.m_bIgnoreCodepage = atoi(token.c_str()) != 0;
 		}
-		else if (nodename == Ignore_eof_newline_presence_element_name)
+		else if (nodename == Ignore_missing_trailing_eol_element_name)
 		{
-			currentItem.m_bIgnoreEofNewlinePresence = atoi(token.c_str()) != 0;
+			currentItem.m_bIgnoreMissingTrailingEol = atoi(token.c_str()) != 0;
 		}
 		else if (nodename == Ignore_comment_diff_element_name)
 		{
@@ -263,7 +263,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bSaveIgnoreEol(true)
 , m_bSaveIgnoreNumbers(true)
 , m_bSaveIgnoreCodepage(true)
-, m_bSaveIgnoreEofNewlinePresence(true)
+, m_bSaveIgnoreMissingTrailingEol(true)
 , m_bSaveFilterCommentsLines(true)
 , m_bSaveCompareMethod(true)
 , m_bSaveHiddenItems(true)
@@ -436,8 +436,8 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Ignore_numbers_element_name, item.GetIgnoreNumbers() ? "1" : "0");
 				if (item.m_bSaveIgnoreCodepage)
 					writeElement(writer, Ignore_codepage_diff_element_name, item.GetIgnoreCodepage() ? "1" : "0");
-				if (item.m_bSaveIgnoreEofNewlinePresence)
-					writeElement(writer, Ignore_eof_newline_presence_element_name, item.GetIgnoreEofNewlinePresence() ? "1" : "0");
+				if (item.m_bSaveIgnoreMissingTrailingEol)
+					writeElement(writer, Ignore_missing_trailing_eol_element_name, item.GetIgnoreMissingTrailingEol() ? "1" : "0");
 				if (item.m_bSaveFilterCommentsLines)
 					writeElement(writer, Ignore_comment_diff_element_name, item.GetFilterCommentsLines()  ? "1" : "0");
 				if (item.m_bSaveCompareMethod)

@@ -317,8 +317,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_CODEPAGE, OnUpdateDiffIgnoreCP)
 	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_COMMENTS, OnDiffIgnoreComments)
 	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_COMMENTS, OnUpdateDiffIgnoreComments)
-	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_EOF_NEWLINE_PRESENCE, OnDiffIgnoreEofNewlinePresence)
-	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_EOF_NEWLINE_PRESENCE, OnUpdateDiffIgnoreEofNewlinePresence)
+	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnDiffIgnoreMissingTrailingEol)
+	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnUpdateDiffIgnoreMissingTrailingEol)
 	ON_COMMAND(ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS, OnIncludeSubfolders)
 	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS, OnUpdateIncludeSubfolders)
 	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_SIZE, OnCompareMethod)
@@ -3219,15 +3219,15 @@ void CMainFrame::OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI)
 	pCmdUI->Enable();
 }
 
-void CMainFrame::OnDiffIgnoreEofNewlinePresence()
+void CMainFrame::OnDiffIgnoreMissingTrailingEol()
 {
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOF_NEWLINE_PRESENCE, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOF_NEWLINE_PRESENCE));
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_MISSING_TRAILING_EOL, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL));
 	ApplyDiffOptions();
 }
 
-void CMainFrame::OnUpdateDiffIgnoreEofNewlinePresence(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOF_NEWLINE_PRESENCE));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL));
 	pCmdUI->Enable();
 }
 

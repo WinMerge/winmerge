@@ -469,7 +469,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		Replace(lineDataRight, "\r\n", "\n");
 		Replace(lineDataRight, "\r", "\n");
 	}
-	if (thisob->link == nullptr && m_options.m_bIgnoreEofNewlinePresence && (file_data_ary[0].missing_newline || file_data_ary[1].missing_newline))
+	if (thisob->link == nullptr && m_options.m_bIgnoreMissingTrailingEol && (file_data_ary[0].missing_newline || file_data_ary[1].missing_newline))
 	{
 		RemoveEOL(lineDataLeft);
 		RemoveEOL(lineDataRight);
@@ -1227,7 +1227,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	struct change *next = script;
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
-		m_options.m_bIgnoreEofNewlinePresence ||
+		m_options.m_bIgnoreMissingTrailingEol ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
@@ -1399,7 +1399,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	diff12.Clear();
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
-		m_options.m_bIgnoreEofNewlinePresence ||
+		m_options.m_bIgnoreMissingTrailingEol ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	

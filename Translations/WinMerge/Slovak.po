@@ -1101,7 +1101,7 @@ msgstr "Ignorovať čí&sla"
 msgid "Ignore c&omment differences"
 msgstr "Ignorovať rozdielne &komentáre"
 
-msgid "Ignore &end-of-file newline presence"
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 msgid "&Include subfolders"

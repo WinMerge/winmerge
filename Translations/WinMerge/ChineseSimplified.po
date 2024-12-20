@@ -1105,7 +1105,7 @@ msgstr "忽略数字(&B)"
 msgid "Ignore c&omment differences"
 msgstr "忽略注释行差异(&O)"
 
-msgid "Ignore &end-of-file newline presence"
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 msgid "&Include subfolders"

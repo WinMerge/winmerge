@@ -90,7 +90,7 @@ private:
 	bool m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
 	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
-	bool m_bIgnoreEofNewlinePresence; /**< The value of the "Ignore EOF newline presence" setting */
+	bool m_bIgnoreMissingTrailingEol; /**< The value of the "Ignore missing trailing EOL" setting */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
 // Overrides
 	public:
@@ -150,8 +150,8 @@ protected:
 	afx_msg void OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreComments();
 	afx_msg void OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI);
-	afx_msg void OnDiffIgnoreEofNewlinePresence();
-	afx_msg void OnUpdateDiffIgnoreEofNewlinePresence(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreMissingTrailingEol();
+	afx_msg void OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI);
 	afx_msg void OnCompareMethod(UINT nID);
 	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);

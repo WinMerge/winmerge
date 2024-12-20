@@ -593,14 +593,14 @@ namespace
 
 	}
 
-	TEST_F(ByteCompareTest, IgnoreEofNewlinePresence)
+	TEST_F(ByteCompareTest, IgnoreMissingTrailingEol)
 	{
 		CompareEngines::ByteCompare bc;
 		QuickCompareOptions option;
 		std::string filename_left  = "_tmp_.txt";
 		std::string filename_right = "_tmp_2.txt";
 
-		option.m_bIgnoreEofNewlinePresence = true;
+		option.m_bIgnoreMissingTrailingEol = true;
 		bc.SetCompareOptions(option);
 
 		for (int i = 0; i < 3; i++)
@@ -840,14 +840,14 @@ namespace
 		}
 	}
 
-	TEST_F(ByteCompareTest, IgnoreEofNewlinePresenceAndIgnoreEOLDifference)
+	TEST_F(ByteCompareTest, IgnoreMissingTrailingEolAndIgnoreEOLDifference)
 	{
 		CompareEngines::ByteCompare bc;
 		QuickCompareOptions option;
 		std::string filename_left  = "_tmp_.txt";
 		std::string filename_right = "_tmp_2.txt";
 
-		option.m_bIgnoreEofNewlinePresence = true;
+		option.m_bIgnoreMissingTrailingEol = true;
 		option.m_bIgnoreEOLDifference = true;
 		bc.SetCompareOptions(option);
 
@@ -1184,14 +1184,14 @@ namespace
 		}
 	}
 
-	TEST_F(ByteCompareTest, IgnoreEofNewlinePresenceAndIgnoreBlankLines)
+	TEST_F(ByteCompareTest, IgnoreMissingTrailingEolAndIgnoreBlankLines)
 	{
 		CompareEngines::ByteCompare bc;
 		QuickCompareOptions option;
 		std::string filename_left  = "_tmp_.txt";
 		std::string filename_right = "_tmp_2.txt";
 
-		option.m_bIgnoreEofNewlinePresence = true;
+		option.m_bIgnoreMissingTrailingEol = true;
 		option.m_bIgnoreBlankLines = true;
 		bc.SetCompareOptions(option);
 

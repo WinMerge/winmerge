@@ -1099,7 +1099,7 @@ msgstr "எண்&பெர்களை புறக்கணிக்கவு�
 msgid "Ignore c&omment differences"
 msgstr "க&கருத்து வேறுபாடுகளை புறக்கணிக்கவும்"
 
-msgid "Ignore &end-of-file newline presence"
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 msgid "&Include subfolders"

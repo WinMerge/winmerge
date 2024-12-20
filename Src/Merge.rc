@@ -1093,7 +1093,7 @@ BEGIN
         MENUITEM "Ignore codepage &differences", ID_DIFF_OPTIONS_IGNORE_CODEPAGE
         MENUITEM "Ignore num&bers",             IDC_DIFF_IGNORENUMBERS
         MENUITEM "Ignore c&omment differences", ID_DIFF_OPTIONS_IGNORE_COMMENTS
-        MENUITEM "Ignore &end-of-file newline presence", ID_DIFF_OPTIONS_IGNORE_EOF_NEWLINE_PRESENCE
+        MENUITEM "Ignore &missing trailing EOL", ID_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
         MENUITEM SEPARATOR
         MENUITEM "&Include subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
         POPUP "&Compare method:"
@@ -1124,7 +1124,7 @@ BEGIN
         MENUITEM "Ignore codepage &differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
         MENUITEM "Ignore num&bers",             ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
         MENUITEM "Ignore c&omment differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
-        MENUITEM "Ignore &end-of-file newline presence", ID_PROJECT_DIFF_OPTIONS_IGNORE_EOF_NEWLINE_PRESENCE
+        MENUITEM "Ignore &missing trailing EOL", ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
         MENUITEM SEPARATOR
         POPUP "&Compare method:"
         BEGIN
@@ -1954,7 +1954,7 @@ BEGIN
     CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,269,10
     CONTROL         "Ignore c&omment differences",IDC_FILTERCOMMENTS_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
-    CONTROL         "Ignore &end-of-file newline presence",IDC_IGNEOFEOL_CHECK,
+    CONTROL         "Ignore &missing trailing EOL",IDC_IGNEOFEOL_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,239,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,269,10
     CONTROL         "Align &similar lines",IDC_ALIGN_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,269,10

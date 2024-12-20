@@ -36,7 +36,7 @@ public:
 	bool HasIgnoreEol() const;
 	bool HasIgnoreNumbers() const;
 	bool HasIgnoreCodepage() const;
-	bool HasIgnoreEofNewlinePresence() const;
+	bool HasIgnoreMissingTrailingEol() const;
 	bool HasFilterCommentsLines() const;
 	bool HasCompareMethod() const;
 	bool HasHiddenItems() const;
@@ -64,7 +64,7 @@ public:
 	bool GetIgnoreEol() const;
 	bool GetIgnoreNumbers() const;
 	bool GetIgnoreCodepage() const;
-	bool GetIgnoreEofNewlinePresence() const;
+	bool GetIgnoreMissingTrailingEol() const;
 	bool GetFilterCommentsLines() const;
 	int GetCompareMethod() const;
 	const std::vector<String>& GetHiddenItems() const;
@@ -89,7 +89,7 @@ public:
 	void SetIgnoreEol(bool bIgnoreEol);
 	void SetIgnoreNumbers(bool bIgnoreNumbers);
 	void SetIgnoreCodepage(bool bIgnoreCodepage);
-	void SetIgnoreEofNewlinePresence(bool bIgnoreEofNewlinePresence);
+	void SetIgnoreMissingTrailingEol(bool bIgnoreMissingTrailingEol);
 	void SetFilterCommentsLines(bool bFilterCommentsLines);
 	void SetCompareMethod(int nCompareMethod);
 	void SetHiddenItems(const std::vector<String>& hiddenItems);
@@ -107,7 +107,7 @@ public:
 	void SetSaveIgnoreEol(bool bSaveIgnoreEol);
 	void SetSaveIgnoreNumbers(bool bSaveIgnoreNumbers);
 	void SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage);
-	void SetSaveIgnoreEofNewlinePresence(bool bSaveIgnoreEofNewlinePresence);
+	void SetSaveIgnoreMissingTrailingEol(bool bSaveIgnoreMissingTrailingEol);
 	void SetSaveFilterCommentsLines(bool bSaveFilterCommentsLines);
 	void SetSaveCompareMethod(bool bSaveCompareMethod);
 	void SetSaveHiddenItems(bool bSaveHiddenItems);
@@ -137,7 +137,7 @@ private:
 	std::optional<bool> m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
 	std::optional<bool> m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
 	std::optional<bool> m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
-	std::optional<bool> m_bIgnoreEofNewlinePresence; /**< The value of the "Ignore EOF newline presence" setting */
+	std::optional<bool> m_bIgnoreMissingTrailingEol; /**< The value of the "Ignore missing trailing EOL" setting */
 	std::optional<bool> m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	std::optional<int> m_nCompareMethod; /**< The value of the "Compare method" setting */
 	std::vector<String> m_vSavedHiddenItems; /**< The list of hidden items saved */
@@ -151,7 +151,7 @@ private:
 	bool m_bSaveIgnoreEol; /**< Save "Ignore carriage return differences" setting? */
 	bool m_bSaveIgnoreNumbers; /**< Save "Ignore numbers" setting? */
 	bool m_bSaveIgnoreCodepage; /**< Save "Ignore codepage differences" setting? */
-	bool m_bSaveIgnoreEofNewlinePresence; /**< Save "Ignore EOF newline presence" setting? */
+	bool m_bSaveIgnoreMissingTrailingEol; /**< Save "Ignore missing trailing EOL" setting? */
 	bool m_bSaveFilterCommentsLines; /**< Save "Ignore comment differences" setting? */
 	bool m_bSaveCompareMethod; /**< Save "Compare method" setting? */
 	bool m_bSaveHiddenItems;/* Save "Hidden item" settings?*/
@@ -409,12 +409,12 @@ inline bool ProjectFileItem::HasIgnoreCodepage() const
 }
 
 /** 
- * @brief Returns if "Ignore EOF newline presence" setting is defined in projectfile.
- * @return true if project file has "Ignore EOF newline presence" setting definition.
+ * @brief Returns if "Ignore missing trailing EOL" setting is defined in projectfile.
+ * @return true if project file has "Ignore missing trailing EOL" setting definition.
  */
-inline bool ProjectFileItem::HasIgnoreEofNewlinePresence() const
+inline bool ProjectFileItem::HasIgnoreMissingTrailingEol() const
 {
-	return m_bIgnoreEofNewlinePresence.has_value();
+	return m_bIgnoreMissingTrailingEol.has_value();
 }
 
 /** 
@@ -723,21 +723,21 @@ inline void ProjectFileItem::SetIgnoreCodepage(bool bIgnoreCodepage)
 }
 
 /** 
- * @brief Returns the value of the "Ignore EOF newline presence" setting.
- * @return The value of the "Ignore EOF newline presence" setting
+ * @brief Returns the value of the "Ignore missing trailing EOL" setting.
+ * @return The value of the "Ignore missing trailing EOL" setting
  */
-inline bool ProjectFileItem::GetIgnoreEofNewlinePresence() const
+inline bool ProjectFileItem::GetIgnoreMissingTrailingEol() const
 {
-	return m_bIgnoreEofNewlinePresence.value_or(false);
+	return m_bIgnoreMissingTrailingEol.value_or(false);
 }
 
 /** 
- * @brief Set the value of the "Ignore EOF newline presence" setting.
- * @param [in] bIgnoreEofNewlinePresence New value of the "Ignore EOF newline presence" setting to set.
+ * @brief Set the value of the "Ignore missing trailing EOL" setting.
+ * @param [in] bIgnoreMissingTrailingEol New value of the "Ignore missing trailing EOL" setting to set.
  */
-inline void ProjectFileItem::SetIgnoreEofNewlinePresence(bool bIgnoreEofNewlinePresence)
+inline void ProjectFileItem::SetIgnoreMissingTrailingEol(bool bIgnoreMissingTrailingEol)
 {
-	m_bIgnoreEofNewlinePresence = bIgnoreEofNewlinePresence;
+	m_bIgnoreMissingTrailingEol = bIgnoreMissingTrailingEol;
 }
 
 /** 
@@ -897,12 +897,12 @@ inline void ProjectFileItem::SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage)
 }
 
 /** 
- * @brief Set whether to save "Ignore EOF newline presence" setting.
- * @param [in] bSaveIgnoreEofNewlinePresence Whether to save "Ignore EOF newline presence" setting.
+ * @brief Set whether to save "Ignore missing trailing EOL" setting.
+ * @param [in] bSaveIgnoreMissingTrailingEol Whether to save "Ignore missing trailing EOL" setting.
  */
-inline void ProjectFileItem::SetSaveIgnoreEofNewlinePresence(bool bSaveIgnoreEofNewlinePresence)
+inline void ProjectFileItem::SetSaveIgnoreMissingTrailingEol(bool bSaveIgnoreMissingTrailingEol)
 {
-	m_bSaveIgnoreEofNewlinePresence = bSaveIgnoreEofNewlinePresence;
+	m_bSaveIgnoreMissingTrailingEol = bSaveIgnoreMissingTrailingEol;
 }
 
 /** 

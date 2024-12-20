@@ -1329,7 +1329,7 @@ msgstr "숫자 무시(&B)"
 msgid "Ignore c&omment differences"
 msgstr "주석 차이 무시(&O)"
 
-msgid "Ignore &end-of-file newline presence"
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 #, c-format
