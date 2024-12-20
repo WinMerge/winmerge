@@ -17,13 +17,16 @@ private:
 		RightButtonDown,
 		HorizontalScrollSimulated
 	};
-	inline static State m_currentState;
-	static void Transition(State nextState);
+	inline static State m_currentState = State::Idle;
+	inline static void Transition(State nextState) { m_currentState = nextState; };
 	// State matrix definition
-	static const std::function<bool(LPARAM)> stateMatrix[3][6];
+	static const std::function<bool(LPARAM)> stateMatrix[2][8];
 
 	static bool MouseWheelAction(LPARAM lParam);
 	static bool MouseHWheelAction(LPARAM lParam);
 	static bool RightButtonDown_MouseWheel(LPARAM lParam);
 	static bool RightButtonDown_MouseHWheel(LPARAM lParam);
+	static bool RightButtonDown_ButtonClick(bool isLeftButton);
+	inline static bool m_bLeftBtnDown = false;
+	inline static bool m_bMidBtnDown = false;
 };

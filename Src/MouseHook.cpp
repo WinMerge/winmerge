@@ -7,47 +7,49 @@
 #endif
 
 // Define state matrix
-const std::function<bool(LPARAM)> CMouseHook::stateMatrix[3][6] = {
+const std::function<bool(LPARAM)> CMouseHook::stateMatrix[2][8] = {
 	// State::Idle
 	{
-		[](LPARAM) { Transition(State::RightButtonDown); return false; }, // WM_RBUTTONDOWN
-		[](LPARAM) { EndRightWheelScrolling(); return false; }, // WM_RBUTTONUP
-		[](LPARAM) { return false; }, // WM_LBUTTONDOWN
-		[](LPARAM) { return false; }, // WM_MBUTTONUP
-		[](LPARAM lParam) { return MouseWheelAction(lParam); }, // WM_MOUSEWHEEL
-		[](LPARAM lParam) { return MouseHWheelAction(lParam); } // WM_MOUSEHWHEEL
+		[](LPARAM) {                            // WM_RBUTTONDOWN
+			Transition(State::RightButtonDown);
+			return false;
+		},
+		[](LPARAM) {                            // WM_RBUTTONUP
+			EndRightWheelScrolling();
+			return false;
+		},
+		[](LPARAM) { return false; },           // WM_LBUTTONDOWN
+		[](LPARAM) { return false; },           // WM_LBUTTONUP
+		[](LPARAM) { return false; },           // WM_MBUTTONDOWN
+		[](LPARAM) { return false; },           // WM_MBUTTONUP
+		CMouseHook::MouseWheelAction,           // WM_MOUSEWHEEL
+		CMouseHook::MouseHWheelAction           // WM_MOUSEHWHEEL
 	},
 	// State::RightButtonDown
 	{
-		[](LPARAM) { return false; }, // WM_RBUTTONDOWN
-		[](LPARAM) { Transition(State::Idle); EndRightWheelScrolling(); return false; }, // WM_RBUTTONUP
-		[](LPARAM) { Transition(State::Idle); EndRightWheelScrolling(); return false; }, // WM_LBUTTONDOWN
-		[](LPARAM) { Transition(State::HorizontalScrollSimulated); return false; }, // WM_MBUTTONUP
-		[](LPARAM lParam) { return RightButtonDown_MouseWheel(lParam); }, // WM_MOUSEWHEEL
-		[](LPARAM lParam) { return RightButtonDown_MouseHWheel(lParam); } // WM_MOUSEHWHEEL
-	},
-	// State::HorizontalScrollSimulated
-	{
-		[](LPARAM) { return false; }, // WM_RBUTTONDOWN
-		[](LPARAM) { Transition(State::Idle); EndRightWheelScrolling(); return false; }, // WM_RBUTTONUP
-		[](LPARAM) { Transition(State::Idle); EndRightWheelScrolling(); return false; }, // WM_LBUTTONDOWN
-		[](LPARAM) { Transition(State::RightButtonDown); return false; }, // WM_MBUTTONUP
-		[](LPARAM lParam) { // WM_MOUSEWHEEL
-			const auto b = RightButtonDown_MouseWheel(lParam);
-			Transition(State::RightButtonDown);
-			return b;
+		[](LPARAM) { return false; },           // WM_RBUTTONDOWN
+		[](LPARAM) {                            // WM_RBUTTONUP
+			// Release Right button
+			Transition(State::Idle);
+			EndRightWheelScrolling();
+			return false;
 		},
-		[](LPARAM lParam) { // WM_MOUSEHWHEEL
-			const auto b = RightButtonDown_MouseHWheel(lParam);
-			Transition(State::RightButtonDown);
-			return b;
-		}
+		[](LPARAM) {                            // WM_LBUTTONDOWN
+			return CMouseHook::RightButtonDown_ButtonClick(true);
+		},
+		[](LPARAM) {                            // WM_LBUTTONUP
+			return m_bLeftBtnDown ? (m_bLeftBtnDown = false), true : false;
+		},
+		[](LPARAM) {                            // WM_MBUTTONDOWN
+			return CMouseHook::RightButtonDown_ButtonClick(false);
+		},
+		[](LPARAM) {                            // WM_MBUTTONUP
+			return m_bMidBtnDown ? (m_bMidBtnDown = false), true : false;
+		},
+		CMouseHook::RightButtonDown_MouseWheel, // WM_MOUSEWHEEL
+		CMouseHook::RightButtonDown_MouseHWheel // WM_MOUSEHWHEEL
 	}
 };
-
-void CMouseHook::Transition(State nextState) {
-    m_currentState = nextState;
-}
 
 LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
@@ -59,9 +61,11 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 		 {WM_RBUTTONDOWN, 0}
 		,{WM_RBUTTONUP,   1}
 		,{WM_LBUTTONDOWN, 2}
-		,{WM_MBUTTONUP,   3}
-		,{WM_MOUSEWHEEL,  4}
-		,{WM_MOUSEHWHEEL, 5}
+		,{WM_LBUTTONUP  , 3}
+		,{WM_MBUTTONDOWN, 4}
+		,{WM_MBUTTONUP  , 5}
+		,{WM_MOUSEWHEEL,  6}
+		,{WM_MOUSEHWHEEL, 7}
 	};
 	auto it = actionIdx.find(static_cast<UINT>(wParam));
 	if (it != actionIdx.end())
@@ -101,8 +105,9 @@ bool CMouseHook::MouseWheelAction(LPARAM lParam)
 				PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
 				return true;
 			}
-			else if (m_currentState == State::Idle)
+			else
 			{
+				assert(m_currentState == State::Idle);
 				// Alt+ScrollUp as Alt+Up
 				PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
 				return true;
@@ -123,8 +128,9 @@ bool CMouseHook::MouseWheelAction(LPARAM lParam)
 				PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
 				return true;
 			}
-			else if (m_currentState == State::Idle)
+			else
 			{
+				assert(m_currentState == State::Idle);
 				// Alt+ScrollDown as Alt+Down
 				PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
 				return true;
@@ -152,8 +158,9 @@ bool CMouseHook::MouseHWheelAction(LPARAM lParam)
 				PostMessage(hwndTarget, WM_COMMAND, ID_L2RNEXT, 0);
 				return true;
 			}
-			else if (m_currentState == State::Idle)
+			else
 			{
+				assert(m_currentState == State::Idle);
 				// Alt+HScrollRight as Alt+Right
 				PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
 				return true;
@@ -167,8 +174,9 @@ bool CMouseHook::MouseHWheelAction(LPARAM lParam)
 				PostMessage(hwndTarget, WM_COMMAND, ID_R2LNEXT, 0);
 				return true;
 			}
-			else if (m_currentState == State::Idle)
+			else
 			{
+				assert(m_currentState == State::Idle);
 				// Alt+HScrollLeft as Alt+Left
 				PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
 				return true;
@@ -236,4 +244,24 @@ void CMouseHook::UnhookMouseHook()
 		UnhookWindowsHookEx(m_hMouseHook);
 		m_hMouseHook = nullptr;
 	}
+}
+
+bool CMouseHook::RightButtonDown_ButtonClick(bool isLeftButton)
+{
+	const auto bControlDown = GetAsyncKeyState(VK_CONTROL) & 0x8000;
+	if(isLeftButton)
+	{
+		// Hold Right button + Left button click as Alt+Left, plus hold Ctrl as Ctrl+Alt+Left
+		m_bLeftBtnDown = true;
+		StartRightWheelScrolling();
+		PostMessage(GetForegroundWindow(), WM_COMMAND, bControlDown ? ID_R2LNEXT : ID_R2L, 0);
+	}
+	else
+	{
+		// Hold Right button + Middle button click as Alt+Right, plus hold Ctrl as Ctrl+Alt+Right
+		m_bMidBtnDown = true;
+		StartRightWheelScrolling();
+		PostMessage(GetForegroundWindow(), WM_COMMAND, bControlDown ? ID_L2RNEXT : ID_L2R, 0);
+	}
+	return true;
 }
