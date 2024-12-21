@@ -340,25 +340,20 @@ static void ReplaceChars(std::string & str, const char* chars, const char *rep)
 }
 
 /**
- * @brief Remove the end-of-line (EOL) characters (LF, CR, or CRLF) from the end of a string.
- *
- * This function removes any of the following EOL characters from the end of the string:
- * - LF (line feed, '\n')
- * - CR (carriage return, '\r')
- * - CRLF (carriage return + line feed, "\r\n")
- *
- * @param [in,out] str - A string from which the EOL characters will be removed.
+ * @brief Get the end-of-line (EOL) characters (LF, CR, or CRLF) from the end of a string.
+ * @param [in] str - A string from which the EOL characters will be identified.
  */
-static void RemoveEOL(std::string& str)
+static std::string GetEOL(const std::string& str)
 {
 	if (str.empty())
-		return;
+		return "";
 	if (str.size() >= 2 && str[str.size() - 2] == '\r' && str[str.size() - 1] == '\n')
-		str.erase(str.size() - 2, 2);
-	else if (str.back() == '\n')
-		str.pop_back();
-	else if (str.back() == '\r')
-		str.pop_back();
+		return "\r\n";
+	if (str.back() == '\r')
+		return "\r";
+	if (str.back() == '\n')
+		return "\n";
+	return "";
 }
 
 /**
@@ -469,10 +464,12 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		Replace(lineDataRight, "\r\n", "\n");
 		Replace(lineDataRight, "\r", "\n");
 	}
-	if (thisob->link == nullptr && m_options.m_bIgnoreMissingTrailingEol && (file_data_ary[0].missing_newline || file_data_ary[1].missing_newline))
+	if (thisob->link == nullptr && m_options.m_bIgnoreMissingTrailingEol && (file_data_ary[0].missing_newline != file_data_ary[1].missing_newline))
 	{
-		RemoveEOL(lineDataLeft);
-		RemoveEOL(lineDataRight);
+		if (file_data_ary[0].missing_newline && !file_data_ary[1].missing_newline)
+			lineDataLeft += GetEOL(lineDataRight);
+		else if (!file_data_ary[0].missing_newline && file_data_ary[1].missing_newline)
+			lineDataRight += GetEOL(lineDataLeft);
 	}
 
 	// If both match after filtering, mark this diff hunk as trivial and return.
