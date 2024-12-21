@@ -10,6 +10,22 @@ private:
 	inline static void EndRightWheelScrolling() { if (!m_bIgnoreRBUp) return; m_endTimeRightWheelScrolling = std::chrono::system_clock::now(); m_bIgnoreRBUp = false; }
 	inline static HHOOK m_hMouseHook;
 	inline static bool m_bIgnoreRBUp;
-	inline static bool m_bRButtonDown;
 	inline static std::chrono::system_clock::time_point m_endTimeRightWheelScrolling;
+
+	enum class State {
+		Idle,
+		RightButtonDown
+	};
+	inline static State m_currentState = State::Idle;
+	inline static void Transition(State nextState) { m_currentState = nextState; };
+	// State matrix definition
+	static const std::function<bool(LPARAM)> stateMatrix[2][8];
+
+	static bool MouseWheelAction(LPARAM lParam);
+	static bool MouseHWheelAction(LPARAM lParam);
+	static bool RightButtonDown_MouseWheel(LPARAM lParam);
+	static bool RightButtonDown_MouseHWheel(LPARAM lParam);
+	static bool RightButtonDown_ButtonClick(bool isLeftButton);
+	inline static bool m_bLeftBtnDown = false;
+	inline static bool m_bMidBtnDown = false;
 };
