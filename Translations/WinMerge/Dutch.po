@@ -1099,6 +1099,9 @@ msgstr "Nummers negeren"
 msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "Submappen bijvoegen"
 

@@ -1321,6 +1321,9 @@ msgstr "Ignora els nombres"
 msgid "Ignore c&omment differences"
 msgstr "Ingora les diferències en els comentaris"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 #, c-format
 msgid "&Include subfolders"
 msgstr "&Inclou-hi les subcarpetes"

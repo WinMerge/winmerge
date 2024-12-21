@@ -1102,6 +1102,9 @@ msgstr "Ignorar números"
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenças de c&omentários"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "&Incluir subpastas"
 

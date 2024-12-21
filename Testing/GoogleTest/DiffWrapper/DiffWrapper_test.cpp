@@ -95,6 +95,124 @@ TEST(DiffWrapper, RunFileDiff_NoEol)
 	}
 }
 
+TEST(DiffWrapper, RunFileDiff_IgnoreMissingTrailingEol)
+{
+	CDiffWrapper dw;
+	DIFFOPTIONS options{};
+	DIFFRANGE dr;
+
+	options.bIgnoreMissingTrailingEol = true;
+	for (auto algo : { DIFF_ALGORITHM_DEFAULT, DIFF_ALGORITHM_MINIMAL, DIFF_ALGORITHM_PATIENCE, DIFF_ALGORITHM_HISTOGRAM, DIFF_ALGORITHM_NONE })
+	{
+		options.nDiffAlgorithm = algo;
+
+		{
+			DiffList diffList;
+			TempFile left = WriteToTempFile(_T("a\nb\nc1"));
+			TempFile right = WriteToTempFile(_T("a\nb\nc2"));
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.RunFileDiff();
+			EXPECT_EQ(1, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(2, dr.begin[0]);
+			EXPECT_EQ(2, dr.begin[1]);
+			EXPECT_EQ(2, dr.end[0]);
+			EXPECT_EQ(2, dr.end[1]);
+			EXPECT_EQ(OP_DIFF, dr.op);
+		}
+
+		{
+			DiffList diffList;
+			TempFile left = WriteToTempFile(_T("a\nb\nc1\n"));
+			TempFile right = WriteToTempFile(_T("a\nb\nc2"));
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.RunFileDiff();
+			EXPECT_EQ(1, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(2, dr.begin[0]);
+			EXPECT_EQ(2, dr.begin[1]);
+			EXPECT_EQ(2, dr.end[0]);
+			EXPECT_EQ(2, dr.end[1]);
+			EXPECT_EQ(OP_DIFF, dr.op);
+		}
+
+		{
+			DiffList diffList;
+			TempFile left = WriteToTempFile(_T("a\nb\nc1"));
+			TempFile right = WriteToTempFile(_T("a\nb\nc2\n"));
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.RunFileDiff();
+			EXPECT_EQ(1, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(2, dr.begin[0]);
+			EXPECT_EQ(2, dr.begin[1]);
+			EXPECT_EQ(2, dr.end[0]);
+			EXPECT_EQ(2, dr.end[1]);
+			EXPECT_EQ(OP_DIFF, dr.op);
+		}
+
+		{
+			DiffList diffList;
+			TempFile left = WriteToTempFile(_T("a\nb1\nc"));
+			TempFile right = WriteToTempFile(_T("a\nb2\nc"));
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.RunFileDiff();
+			EXPECT_EQ(1, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(1, dr.begin[0]);
+			EXPECT_EQ(1, dr.begin[1]);
+			EXPECT_EQ(1, dr.end[0]);
+			EXPECT_EQ(1, dr.end[1]);
+			EXPECT_EQ(OP_DIFF, dr.op);
+		}
+
+		for (const auto& eol : { _T("\n"), _T("\r"), _T("\r\n") })
+		{
+			DiffList diffList;
+			TempFile left = WriteToTempFile(_T("a\nb\nc"));
+			TempFile right = WriteToTempFile(_T("a\nb\nc") + String(eol));
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.RunFileDiff();
+			EXPECT_EQ(1, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(2, dr.begin[0]);
+			EXPECT_EQ(2, dr.begin[1]);
+			EXPECT_EQ(2, dr.end[0]);
+			EXPECT_EQ(2, dr.end[1]);
+			EXPECT_EQ(OP_TRIVIAL, dr.op);
+		}
+
+		for (const auto& eol : { _T("\n"), _T("\r"), _T("\r\n") })
+		{
+			DiffList diffList;
+			TempFile left = WriteToTempFile(_T("a\nb\nc") + String(eol));
+			TempFile right = WriteToTempFile(_T("a\nb\nc"));
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetOptions(&options);
+			dw.RunFileDiff();
+			EXPECT_EQ(1, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(2, dr.begin[0]);
+			EXPECT_EQ(2, dr.begin[1]);
+			EXPECT_EQ(2, dr.end[0]);
+			EXPECT_EQ(2, dr.end[1]);
+			EXPECT_EQ(OP_TRIVIAL, dr.op);
+		}
+
+	}
+}
+
 TEST(DiffWrapper, RunFileDiff_IgnoreComments)
 {
 	CDiffWrapper dw;

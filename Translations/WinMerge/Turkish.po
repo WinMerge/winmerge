@@ -1100,6 +1100,9 @@ msgstr "&Sayıları yok say"
 msgid "Ignore c&omment differences"
 msgstr "Yo&rum farklılıkları yok sayılsın"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "A&lt klasörler katılsın"
 

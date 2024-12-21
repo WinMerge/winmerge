@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-11-08 21:42+0000\n"
+"POT-Creation-Date: 2024-12-10 09:03+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1093,6 +1093,9 @@ msgid "Ignore num&bers"
 msgstr ""
 
 msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
 msgstr ""
 
 msgid "&Include subfolders"

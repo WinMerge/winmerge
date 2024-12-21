@@ -2,3 +2,4 @@ Docs/Manual/Manual.cfg	text eol=lf
 Docs/Manual/**/*.xml	text eol=lf
 Translations/**/*.po	text eol=lf
 Translations/**/*.pot	text eol=lf
+Testing/Data/Compare/**/ignore_eof_*.txt -text

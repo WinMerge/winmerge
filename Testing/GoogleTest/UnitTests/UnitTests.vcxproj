@@ -888,6 +888,19 @@
     <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\TestData\LeftAndRight.WinMerge" />
+    <None Include="..\TestData\LeftAndRightNonRecursive.WinMerge" />
+    <None Include="..\TestData\LeftAndRightRecursive.WinMerge" />
+    <None Include="..\TestData\PathsAndFilter.WinMerge" />
+    <None Include="..\TestData\SimpleLeft.WinMerge" />
+    <None Include="..\TestData\SimpleRight.WinMerge" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\TestData\DirWatcher\Subdir1\test.txt" />
+    <Text Include="..\TestData\DirWatcher\test.txt" />
+    <Text Include="..\TestData\DirWatcher\test2.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

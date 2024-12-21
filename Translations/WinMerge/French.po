@@ -1328,6 +1328,9 @@ msgstr "Ignorer les nom&bres"
 msgid "Ignore c&omment differences"
 msgstr "Ignorer les différences de c&ommentaire"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 #, c-format
 msgid "&Include subfolders"
 msgstr "&Inclure les sous-dossiers"

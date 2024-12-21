@@ -1100,6 +1100,9 @@ msgstr "Ignoră numerele"
 msgid "Ignore c&omment differences"
 msgstr "Ignoră diferențele de c&omentarii"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "&Include subdirectoare"
 
