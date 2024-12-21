@@ -14,8 +14,7 @@ private:
 
 	enum class State {
 		Idle,
-		RightButtonDown,
-		HorizontalScrollSimulated
+		RightButtonDown
 	};
 	inline static State m_currentState = State::Idle;
 	inline static void Transition(State nextState) { m_currentState = nextState; };

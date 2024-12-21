@@ -67,10 +67,10 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 		,{WM_MOUSEWHEEL,  6}
 		,{WM_MOUSEHWHEEL, 7}
 	};
-	auto it = actionIdx.find(static_cast<UINT>(wParam));
+	const auto it = actionIdx.find(static_cast<UINT>(wParam));
 	if (it != actionIdx.end())
 	{
-		auto bRet = stateMatrix[static_cast<int>(m_currentState)][it->second](lParam);
+		const auto bRet = stateMatrix[static_cast<int>(m_currentState)][it->second](lParam);
 		if (bRet)
 			return 1;
 	}
@@ -80,12 +80,12 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 bool CMouseHook::MouseWheelAction(LPARAM lParam)
 {
-	MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
-	short zDelta = HIWORD(pMouseStruct->mouseData);
+	const MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
+	const short zDelta = HIWORD(pMouseStruct->mouseData);
 
 	if (GetAsyncKeyState(VK_MENU) & 0x8000)
 	{
-		HWND hwndTarget = GetForegroundWindow();
+		const HWND hwndTarget = GetForegroundWindow();
 		// When hold Alt key, use nFlags to check MK_CONTROL MK_SHIFT holding got problem, Use GetAsyncKeyState() instead.
 		const auto bShiftDown = GetAsyncKeyState(VK_SHIFT) & 0x8000;
 		const auto bControlDown = GetAsyncKeyState(VK_CONTROL) & 0x8000;
@@ -142,12 +142,12 @@ bool CMouseHook::MouseWheelAction(LPARAM lParam)
 
 bool CMouseHook::MouseHWheelAction(LPARAM lParam)
 {
-	MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
-	short zDelta = HIWORD(pMouseStruct->mouseData);
+	const MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
+	const short zDelta = HIWORD(pMouseStruct->mouseData);
 
 	if (GetAsyncKeyState(VK_MENU) & 0x8000)
 	{
-		HWND hwndTarget = GetForegroundWindow();
+		const HWND hwndTarget = GetForegroundWindow();
 		const auto bControlDown = GetAsyncKeyState(VK_CONTROL) & 0x8000;
 		// zDelta > 0 scrool right, < 0 scrool left
 		if (zDelta > 0)
@@ -188,23 +188,21 @@ bool CMouseHook::MouseHWheelAction(LPARAM lParam)
 
 bool CMouseHook::RightButtonDown_MouseWheel(LPARAM lParam)
 {
-	MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
-	short zDelta = HIWORD(pMouseStruct->mouseData);
-	HWND hwndTarget = GetForegroundWindow();
+	const MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
+	const short zDelta = HIWORD(pMouseStruct->mouseData);
+	const HWND hwndTarget = GetForegroundWindow();
 	if (zDelta > 0)
 	{
 		// RButton(hold)+ScrollUp as Alt+Up, RButton(hold) MButtonClk WheelScrollUp as Alt+Left
 		StartRightWheelScrolling();
-		PostMessage(hwndTarget, WM_COMMAND, (State::HorizontalScrollSimulated == m_currentState) ?
-			ID_R2L : ID_PREVDIFF, 0);
+		PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
 		return true;
 	}
 	else if (zDelta < 0)
 	{
 		// RButton(hold)+ScrollDown as Alt+Down, RButton(hold) MButtonClk WheelScrollUp as Alt+Right
 		StartRightWheelScrolling();
-		PostMessage(hwndTarget, WM_COMMAND, (State::HorizontalScrollSimulated == m_currentState) ?
-			ID_L2R : ID_NEXTDIFF, 0);
+		PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
 		return true;
 	}
 	return false;
@@ -212,9 +210,9 @@ bool CMouseHook::RightButtonDown_MouseWheel(LPARAM lParam)
 
 bool CMouseHook::RightButtonDown_MouseHWheel(LPARAM lParam)
 {
-	MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
-	short zDelta = HIWORD(pMouseStruct->mouseData);
-	HWND hwndTarget = GetForegroundWindow();
+	const MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
+	const short zDelta = HIWORD(pMouseStruct->mouseData);
+	const HWND hwndTarget = GetForegroundWindow();
 	if (zDelta > 0)
 	{
 		// RButton+ScrollRight as Alt+Right
