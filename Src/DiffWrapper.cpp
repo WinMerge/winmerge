@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-or-later
+0/ SPDX-License-Identifier: GPL-2.0-or-later
 /** 
  * @file  DiffWrapper.cpp
  *
@@ -768,8 +768,9 @@ bool CDiffWrapper::RunFileDiff()
 	struct change *script = nullptr;
 	struct change *script10 = nullptr;
 	struct change *script12 = nullptr;
-	DiffFileData diffdata, diffdata10, diffdata12;
-	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0;
+	struct change *script02 = nullptr;
+	DiffFileData diffdata, diffdata10, diffdata12, diffdata02;
+	int bin_flag = 0, bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
 
 	if (aFiles.GetSize() == 2)
 	{
@@ -807,6 +808,7 @@ bool CDiffWrapper::RunFileDiff()
 	{
 		diffdata10.SetDisplayFilepaths(aFiles[1], aFiles[0]); // store true names for diff utils patch file
 		diffdata12.SetDisplayFilepaths(aFiles[1], aFiles[2]); // store true names for diff utils patch file
+		diffdata02.SetDisplayFilepaths(aFiles[0], aFiles[2]); // store true names for diff utils patch file
 
 		if (!diffdata10.OpenFiles(strFileTemp[1], strFileTemp[0]))
 		{
@@ -821,6 +823,13 @@ bool CDiffWrapper::RunFileDiff()
 		}
 
 		bRet = Diff2Files(&script12, &diffdata12, &bin_flag12, nullptr);
+
+		if (!diffdata02.OpenFiles(strFileTemp[0], strFileTemp[2]))
+		{
+			return false;
+		}
+
+		bRet = Diff2Files(&script02, &diffdata02, &bin_flag02, nullptr);
 	}
 
 	// First determine what happened during comparison
@@ -833,57 +842,17 @@ bool CDiffWrapper::RunFileDiff()
 	file_data * inf = diffdata.m_inf;
 	file_data * inf10 = diffdata10.m_inf;
 	file_data * inf12 = diffdata12.m_inf;
+	file_data * inf02 = diffdata02.m_inf;
 
 	if (aFiles.GetSize() == 2)
 	{
 		if (bin_flag != 0)
-		{
 			m_status.bBinaries = true;
-			if (bin_flag != -1)
-				m_status.Identical = IDENTLEVEL::ALL;
-			else
-				m_status.Identical = IDENTLEVEL::NONE;
-		}
-		else
-		{ // text files according to diffutils, so change script exists
-			m_status.Identical = (script == 0) ? IDENTLEVEL::ALL : IDENTLEVEL::NONE;
-			m_status.bBinaries = false;
-		}
-		m_status.bMissingNL[0] = !!inf[0].missing_newline;
-		m_status.bMissingNL[1] = !!inf[1].missing_newline;
 	}
 	else
 	{
-		m_status.Identical = IDENTLEVEL::NONE;
-		if (bin_flag10 != 0 || bin_flag12 != 0)
-		{
-			m_status.bBinaries = true;
-			if (bin_flag10 != -1 && bin_flag12 != -1)
-				m_status.Identical = IDENTLEVEL::ALL;
-			else if (bin_flag10 != -1)
-				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
-			else if (bin_flag12 != -1)
-				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
-			else
-				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
-		}
-		else
-		{ // text files according to diffutils, so change script exists
-			m_status.bBinaries = false;
-			if (script10 == nullptr && script12 == nullptr)
-				m_status.Identical = IDENTLEVEL::ALL;
-			else if (script10 == nullptr)
-				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
-			else if (script12 == nullptr)
-				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
-			else
-				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
-		}
-		m_status.bMissingNL[0] = !!inf10[1].missing_newline;
-		m_status.bMissingNL[1] = !!inf12[0].missing_newline;
-		m_status.bMissingNL[2] = !!inf12[1].missing_newline;
+		m_status.bBinaries = (bin_flag10 != 0 || bin_flag12 != 0);
 	}
-
 
 	// Create patch file
 	if (!m_status.bBinaries && m_bCreatePatchFile && aFiles.GetSize() == 2)
@@ -899,9 +868,55 @@ bool CDiffWrapper::RunFileDiff()
 			LoadWinMergeDiffsFromDiffUtilsScript(script, diffdata.m_inf);
 		else
 			LoadWinMergeDiffsFromDiffUtilsScript3(
-				script10, script12,
-				diffdata10.m_inf, diffdata12.m_inf);
+				script10, script12, script02,
+				diffdata10.m_inf, diffdata12.m_inf, diffdata02.m_inf);
 	}			
+
+	if (aFiles.GetSize() == 2)
+	{
+		if (bin_flag != 0)
+		{
+			if (bin_flag != -1)
+				m_status.Identical = IDENTLEVEL::ALL;
+			else
+				m_status.Identical = IDENTLEVEL::NONE;
+		}
+		else
+		{ // text files according to diffutils, so change script exists
+			m_status.Identical = (script == 0) ? IDENTLEVEL::ALL : IDENTLEVEL::NONE;
+		}
+		m_status.bMissingNL[0] = !!inf[0].missing_newline;
+		m_status.bMissingNL[1] = !!inf[1].missing_newline;
+	}
+	else
+	{
+		m_status.Identical = IDENTLEVEL::NONE;
+		if (bin_flag10 != 0 || bin_flag12 != 0)
+		{
+			if (bin_flag10 != -1 && bin_flag12 != -1)
+				m_status.Identical = IDENTLEVEL::ALL;
+			else if (bin_flag10 != -1)
+				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
+			else if (bin_flag12 != -1)
+				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
+			else if (bin_flag12 != -1)
+				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
+		}
+		else
+		{ // text files according to diffutils, so change script exists
+			if (IsIdenticalOrIgnorable(script10) && IsIdenticalOrIgnorable(script12))
+				m_status.Identical = IDENTLEVEL::ALL;
+			else if (IsIdenticalOrIgnorable(script10))
+				m_status.Identical = IDENTLEVEL::EXCEPTRIGHT;
+			else if (IsIdenticalOrIgnorable(script12))
+				m_status.Identical = IDENTLEVEL::EXCEPTLEFT;
+			else if (IsIdenticalOrIgnorable(script02))
+				m_status.Identical = IDENTLEVEL::EXCEPTMIDDLE;
+		}
+		m_status.bMissingNL[0] = !!inf10[1].missing_newline;
+		m_status.bMissingNL[1] = !!inf12[0].missing_newline;
+		m_status.bMissingNL[2] = !!inf02[1].missing_newline;
+	}
 
 	// cleanup the script
 	if (aFiles.GetSize() == 2)
@@ -910,6 +925,7 @@ bool CDiffWrapper::RunFileDiff()
 	{
 		FreeDiffUtilsScript(script10);
 		FreeDiffUtilsScript(script12);
+		FreeDiffUtilsScript(script02);
 	}
 
 	// Done with diffutils filedata
@@ -921,6 +937,7 @@ bool CDiffWrapper::RunFileDiff()
 	{
 		diffdata10.Close();
 		diffdata12.Close();
+		diffdata02.Close();
 	}
 
 	if (m_bPluginsEnabled)
@@ -1145,6 +1162,19 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		bRet = false;
 	}
 	return bRet;
+}
+
+bool CDiffWrapper::IsIdenticalOrIgnorable(struct change* script)
+{
+	bool diff = false;
+	struct change *e=nullptr, *p=nullptr;
+	for (e = script; e != nullptr; e = p)
+	{
+		if (!e->trivial)
+			diff = true;
+		p = e->link;
+	}
+	return !diff;
 }
 
 /**
@@ -1388,19 +1418,22 @@ void
 CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	struct change * script10, 
 	struct change * script12,  
+	struct change * script02,  
 	const file_data * inf10, 
-	const file_data * inf12)
+	const file_data * inf12,
+	const file_data * inf02)
 {
-	DiffList diff10, diff12;
+	DiffList diff10, diff12, diff02;
 	diff10.Clear();
 	diff12.Clear();
+	diff02.Clear();
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
 		m_options.m_bIgnoreMissingTrailingEol ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
-	for (int file = 0; file < 2; file++)
+	for (int file = 0; file < 3; file++)
 	{
 		struct change *next = nullptr;
 		int trans_a0, trans_b0, trans_a1, trans_b1;
@@ -1414,6 +1447,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 		{
 		case 0: next = script10; pdiff = &diff10; pinf = inf10; break;
 		case 1: next = script12; pdiff = &diff12; pinf = inf12; break;
+		case 2: next = script02; pdiff = &diff02; pinf = inf02; break;
 		}
 
 		while (next != nullptr)
@@ -1423,7 +1457,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 			struct change *end = find_change(next);
 			
 			/* Disconnect them from the rest of the changes,
-			making them a hunk, and remember the rest for next iteration.  */
+			making them a hunk, and remember the res0 for next iteration.  */
 			next = end->link;
 			end->link = nullptr;
 #ifdef DEBUG
