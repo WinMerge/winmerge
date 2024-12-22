@@ -389,7 +389,7 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					goto need_more;
 				else
 				{
-					result = RESULT_SAME;
+					result = (m_eol0 == m_eol1) ? RESULT_SAME : RESULT_DIFF;
 					goto exit;
 				}
 			}

@@ -397,6 +397,49 @@ namespace
 
 		remove(filename_crlf.c_str());
 		remove(filename_lf.c_str());
+
+		std::string filename_left  = "_tmp_.txt";
+		std::string filename_right = "_tmp_2.txt";
+		for (int i = 0; i < 3; i++)
+		{
+			{// diff left: LF - right: no EOL
+				std::vector<char> buf_left(WMCMPBUFF * 2 + i);
+				std::vector<char> buf_right(WMCMPBUFF * 2 - 1 + i);
+
+				memset(buf_left.data(), 'A', buf_left.size());
+				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_left[10] = '\n';
+				buf_right[10] = '\r';
+				buf_left[buf_left.size() - 1] = '\n';
+
+				TempFile file_left(filename_left, buf_left.data(), buf_left.size());
+				TempFile file_right(filename_right, buf_right.data(), buf_right.size());
+
+				FilePair pair(filename_left, filename_right);
+
+				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			}
+
+			{// diff left: no EOL - right: LF
+				std::vector<char> buf_left(WMCMPBUFF * 2 - 1 + i);
+				std::vector<char> buf_right(WMCMPBUFF * 2 + i);
+
+				memset(buf_left.data(), 'A', buf_left.size());
+				memset(buf_right.data(), 'A', buf_right.size());
+
+				buf_left[10] = '\r';
+				buf_right[10] = '\n';
+				buf_right[buf_right.size() - 1] = '\n';
+
+				TempFile file_left(filename_left, buf_left.data(), buf_left.size());
+				TempFile file_right(filename_right, buf_right.data(), buf_right.size());
+
+				FilePair pair(filename_left, filename_right);
+
+				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			}
+		}
 	}
 
 	TEST_F(ByteCompareTest, IgnoreCase)
@@ -440,6 +483,7 @@ namespace
 
 			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
+
 	}
 
 	TEST_F(ByteCompareTest, IgnoreBlankLines)
