@@ -1,4 +1,4 @@
-0/ SPDX-License-Identifier: GPL-2.0-or-later
+// SPDX-License-Identifier: GPL-2.0-or-later
 /** 
  * @file  DiffWrapper.cpp
  *
@@ -1457,7 +1457,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 			struct change *end = find_change(next);
 			
 			/* Disconnect them from the rest of the changes,
-			making them a hunk, and remember the res0 for next iteration.  */
+			making them a hunk, and remember the rest for next iteration.  */
 			next = end->link;
 			end->link = nullptr;
 #ifdef DEBUG
