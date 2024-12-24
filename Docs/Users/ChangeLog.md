@@ -1,5 +1,42 @@
 # Change log
 
+## WinMerge 2.16.45.1 - 2024-12-27
+
+### General
+
+- BugFix: IME switch not toggle menu when menu hide (PR #2572)
+- Add "Ignore missing trailing EOL" option to Compare settings
+    (PR #2573,#203,#989,#2317)
+
+### File compare
+
+- BugFix: The height of the lines connecting moving blocks in the location
+    pane may be incorrect (#2543)
+
+### Folder compare
+
+- BugFix: Looks like the View Tab Bar "folder icon" is getting a green
+    check-mark before the folder compare has even completed. (#2562)
+
+### Plugins
+
+- BugFix: WinMerge 2.16.44.0 : CompareMSWordFiles.sct Plugin : Forced Enabled
+    Confirm Conversions Pop-Up (#2566)
+
+### Archive support
+
+- Update 7-Zip to 24.09
+
+### Translations
+
+- Translation updates:
+  - Japanese
+  - Korean (PR #2558,#2559)
+
+### Internals
+
+- Update POCO C++ Libraries to 1.14.0
+
 ## WinMerge 2.16.45.0 - 2024-11-27
 
 ### General

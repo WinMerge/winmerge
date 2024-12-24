@@ -28,6 +28,8 @@ vertical-align: middle;
 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
+<li><a href="#what-is-new-in-216451-beta">What Is New in 2.16.45.1
+beta?</a></li>
 <li><a href="#what-is-new-in-216450-beta">What Is New in 2.16.45.0
 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
@@ -38,8 +40,46 @@ beta?</a></li>
 current state of WinMerge development. This release is not recommended
 for the production.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
-<h2 id="what-is-new-in-216450-beta">What Is New in 2.16.45.0 Beta</h2>
+<h2 id="what-is-new-in-216451-beta">What Is New in 2.16.45.1 Beta</h2>
 <h3 id="general">General</h3>
+<ul>
+<li>BugFix: IME switch not toggle menu when menu hide (PR #2572)</li>
+<li>Add &quot;Ignore missing trailing EOL&quot; option to Compare settings (PR
+#2573,#203,#989,#2317)</li>
+</ul>
+<h3 id="file-compare">File compare</h3>
+<ul>
+<li>BugFix: The height of the lines connecting moving blocks in the
+location pane may be incorrect (#2543)</li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>BugFix: Looks like the View Tab Bar &quot;folder icon&quot; is getting a green
+check-mark before the folder compare has even completed. (#2562)</li>
+</ul>
+<h3 id="plugins">Plugins</h3>
+<ul>
+<li>BugFix: WinMerge 2.16.44.0 : CompareMSWordFiles.sct Plugin : Forced
+Enabled Confirm Conversions Pop-Up (#2566)</li>
+</ul>
+<h3 id="archive-support">Archive support</h3>
+<ul>
+<li>Update 7-Zip to 24.09</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>Translation updates:
+<ul>
+<li>Japanese</li>
+<li>Korean (PR #2558,#2559)</li>
+</ul></li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>Update POCO C++ Libraries to 1.14.0</li>
+</ul>
+<h2 id="what-is-new-in-216450-beta">What Is New in 2.16.45.0 Beta</h2>
+<h3 id="general-1">General</h3>
 <ul>
 <li>BugFix: Second monitor - BIG title bar v 2.16.44
 (#2510,#2512,#2540,#2549)</li>
@@ -56,7 +96,7 @@ when not customized (PR #2505)</li>
 <li>Reduce the contrast of inactive title bar text (PR #2545)</li>
 <li>System Icon turn gray when app inactive (PR #2547)</li>
 </ul>
-<h3 id="file-compare">File compare</h3>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li>BugFix: Wrong line gets copied over when selecting text (#2499)</li>
 <li>BugFix: Bug Report: Display Issues When Resizing WinMerge Across
@@ -78,7 +118,7 @@ open (PR #2532)</li>
 <li>Feature Request: Fixed-Width Font in &quot;Find what&quot; and &quot;Replace with&quot;
 Fields (#2539)</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Crash on typing while search is in progress (#1814), (PR
 #2557)</li>
@@ -96,7 +136,7 @@ dialog</h3>
 <ul>
 <li>BugFix: Crash on opening 2 files via drag &amp; drop (#2548)</li>
 </ul>
-<h3 id="plugins">Plugins</h3>
+<h3 id="plugins-1">Plugins</h3>
 <ul>
 <li>Apache Tika plugin: Update Apache Tika to 3.0.0</li>
 </ul>
@@ -107,7 +147,7 @@ dialog</h3>
 <li>Installer - Run PowerShell hidden and with -NoProfile when
 installing silently (#2515)</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
