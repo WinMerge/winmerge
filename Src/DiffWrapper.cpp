@@ -1335,8 +1335,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						last1 = first1 + thisob->inserted - 1;
 						translate_range (&file_data_ary[0], first0, last0, &trans_a0, &trans_b0);
 						translate_range (&file_data_ary[1], first1, last1, &trans_a1, &trans_b1);
-						const int qtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-						const int qtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+						const int qtyLinesLeft = (trans_b0 - trans_a0) + 1
+							- ((!thisob->link && file_data_ary[0].missing_newline) ? 1 : 0); //Determine quantity of lines in this block for left side
+						const int qtyLinesRight = (trans_b1 - trans_a1) + 1
+							- ((!thisob->link && file_data_ary[1].missing_newline) ? 1 : 0); //Determine quantity of lines in this block for right side
 
 						if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
 						{
@@ -1360,8 +1362,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				{
 					if (thisob->trivial)
 						op = OP_TRIVIAL;
-					const int qtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-					const int qtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+					const int qtyLinesLeft = (trans_b0 - trans_a0) + 1
+						- ((!thisob->link && file_data_ary[0].missing_newline) ? 1 : 0); //Determine quantity of lines in this block for left side
+					const int qtyLinesRight = (trans_b1 - trans_a1) + 1
+						- ((!thisob->link && file_data_ary[1].missing_newline) ? 1 : 0); //Determine quantity of lines in this block for right side
 					if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
 					{
 						if (qtyLinesLeft == qtyLinesRight)
