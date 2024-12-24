@@ -1,6 +1,7 @@
 # WinMerge 2.16.45.0 Beta Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.45.1 beta?](#what-is-new-in-216451-beta)
 - [What Is New in 2.16.45.0 beta?](#what-is-new-in-216450-beta)
 - [Known issues](#known-issues)
 
@@ -12,6 +13,43 @@ This is a WinMerge beta release which is meant for preview the current state of
 WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.45.1 Beta
+
+### General
+
+- BugFix: IME switch not toggle menu when menu hide (PR #2572)
+- Add "Ignore missing trailing EOL" option to Compare settings
+    (PR #2573,#203,#989,#2317)
+
+### File compare
+
+- BugFix: The height of the lines connecting moving blocks in the location
+    pane may be incorrect (#2543)
+
+### Folder compare
+
+- BugFix: Looks like the View Tab Bar "folder icon" is getting a green
+    check-mark before the folder compare has even completed. (#2562)
+
+### Plugins
+
+- BugFix: WinMerge 2.16.44.0 : CompareMSWordFiles.sct Plugin : Forced Enabled
+    Confirm Conversions Pop-Up (#2566)
+
+### Archive support
+
+- Update 7-Zip to 24.09
+
+### Translations
+
+- Translation updates:
+  - Japanese
+  - Korean (PR #2558,#2559)
+
+### Internals
+
+- Update POCO C++ Libraries to 1.14.0
 
 ## What Is New in 2.16.45.0 Beta
 
