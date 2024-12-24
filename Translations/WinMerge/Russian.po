@@ -1103,6 +1103,9 @@ msgstr "Игнорировать числа"
 msgid "Ignore c&omment differences"
 msgstr "Игнорировать отличия в комментариях"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "&Включая подпапки"
 

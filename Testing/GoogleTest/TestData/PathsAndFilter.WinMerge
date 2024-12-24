@@ -12,5 +12,18 @@
 		<table-delimiter>	</table-delimiter>
 		<table-quote>"</table-quote>
 		<table-allownewlinesinquotes>1</table-allownewlinesinquotes>
+		<white-spaces>1</white-spaces>
+		<ignore-blank-lines>1</ignore-blank-lines>
+		<ignore-case>1</ignore-case>
+		<ignore-carriage-return-diff>1</ignore-carriage-return-diff>
+		<ignore-numbers>1</ignore-numbers>
+		<ignore-codepage-diff>1</ignore-codepage-diff>
+		<ignore-comment-diff>1</ignore-comment-diff>
+		<ignore-missing-trailing-eol>1</ignore-missing-trailing-eol>
+		<compare-method>1</compare-method>
+		<hidden-list>
+			<hidden-item>file1.txt</hidden-item>
+			<hidden-item>file2.txt</hidden-item>
+		</hidden-list>
 	</paths>
 </project>

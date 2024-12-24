@@ -86,6 +86,8 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE, OnUpdateDiffIgnoreCP)
 	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS, OnDiffIgnoreComments)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS, OnUpdateDiffIgnoreComments)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnDiffIgnoreMissingTrailingEol)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnUpdateDiffIgnoreMissingTrailingEol)
 	ON_COMMAND_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE, OnUpdateCompareMethod)
 	ON_WM_ACTIVATE()
@@ -876,6 +878,8 @@ void COpenView::OnLoadProject()
 			m_bIgnoreNumbers = projItem.GetIgnoreNumbers();
 		if (projItem.HasIgnoreCodepage())
 			m_bIgnoreCodepage = projItem.GetIgnoreCodepage();
+		if (projItem.HasIgnoreMissingTrailingEol())
+			m_bIgnoreMissingTrailingEol = projItem.GetIgnoreMissingTrailingEol();
 		if (projItem.HasFilterCommentsLines())
 			m_bFilterCommentsLines = projItem.GetFilterCommentsLines();
 		if (projItem.HasCompareMethod())
@@ -921,6 +925,7 @@ void COpenView::OnSaveProject()
 	projItem.SetSaveIgnoreEol(bSaveCompareOptions);
 	projItem.SetSaveIgnoreNumbers(bSaveCompareOptions);
 	projItem.SetSaveIgnoreCodepage(bSaveCompareOptions);
+	projItem.SetSaveIgnoreMissingTrailingEol(bSaveCompareOptions);
 	projItem.SetSaveFilterCommentsLines(bSaveCompareOptions);
 	projItem.SetSaveCompareMethod(bSaveCompareOptions);
 	projItem.SetSaveHiddenItems(bSaveHiddenItems);
@@ -986,6 +991,7 @@ void COpenView::OnSaveProject()
 		projItem.SetIgnoreEol(m_bIgnoreEol);
 		projItem.SetIgnoreNumbers(m_bIgnoreNumbers);
 		projItem.SetIgnoreCodepage(m_bIgnoreCodepage);
+		projItem.SetIgnoreMissingTrailingEol(m_bIgnoreMissingTrailingEol);
 		projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
 		projItem.SetCompareMethod(m_nCompareMethod);
 	}
@@ -1612,6 +1618,23 @@ void COpenView::OnDiffIgnoreComments()
 void COpenView::OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_bFilterCommentsLines);
+}
+
+/**
+ * @brief Toggle "Ignore missing trailing EOL" setting.
+ */
+void COpenView::OnDiffIgnoreMissingTrailingEol()
+{
+	m_bIgnoreMissingTrailingEol = !m_bIgnoreMissingTrailingEol;
+}
+
+/**
+ * @brief Update "Ignore missing trailing EOL" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bIgnoreMissingTrailingEol);
 }
 
 /**

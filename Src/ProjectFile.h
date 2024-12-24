@@ -8,6 +8,7 @@
 
 #include "UnicodeString.h"
 #include "PathContext.h"
+#include <optional>
 
 class ProjectFileItem
 {
@@ -35,6 +36,7 @@ public:
 	bool HasIgnoreEol() const;
 	bool HasIgnoreNumbers() const;
 	bool HasIgnoreCodepage() const;
+	bool HasIgnoreMissingTrailingEol() const;
 	bool HasFilterCommentsLines() const;
 	bool HasCompareMethod() const;
 	bool HasHiddenItems() const;
@@ -62,6 +64,7 @@ public:
 	bool GetIgnoreEol() const;
 	bool GetIgnoreNumbers() const;
 	bool GetIgnoreCodepage() const;
+	bool GetIgnoreMissingTrailingEol() const;
 	bool GetFilterCommentsLines() const;
 	int GetCompareMethod() const;
 	const std::vector<String>& GetHiddenItems() const;
@@ -86,6 +89,7 @@ public:
 	void SetIgnoreEol(bool bIgnoreEol);
 	void SetIgnoreNumbers(bool bIgnoreNumbers);
 	void SetIgnoreCodepage(bool bIgnoreCodepage);
+	void SetIgnoreMissingTrailingEol(bool bIgnoreMissingTrailingEol);
 	void SetFilterCommentsLines(bool bFilterCommentsLines);
 	void SetCompareMethod(int nCompareMethod);
 	void SetHiddenItems(const std::vector<String>& hiddenItems);
@@ -103,6 +107,7 @@ public:
 	void SetSaveIgnoreEol(bool bSaveIgnoreEol);
 	void SetSaveIgnoreNumbers(bool bSaveIgnoreNumbers);
 	void SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage);
+	void SetSaveIgnoreMissingTrailingEol(bool bSaveIgnoreMissingTrailingEol);
 	void SetSaveFilterCommentsLines(bool bSaveFilterCommentsLines);
 	void SetSaveCompareMethod(bool bSaveCompareMethod);
 	void SetSaveHiddenItems(bool bSaveHiddenItems);
@@ -112,48 +117,29 @@ private:
 	bool m_bHasLeft; /**< Has left path? */
 	bool m_bHasMiddle; /**< Has middle path? */
 	bool m_bHasRight; /**< Has right path? */
-	String m_leftDesc;
-	String m_middleDesc;
-	String m_rightDesc;
-	bool m_bHasLeftDesc; /**< Has left description? */
-	bool m_bHasMiddleDesc; /**< Has middle description? */
-	bool m_bHasRightDesc; /**< Has right description? */
-	bool m_bHasFilter; /**< Has filter? */
-	String m_filter; /**< Filter name or mask */
-	bool m_bHasSubfolders; /**< Has subfolders? */
-	int m_subfolders; /**< Are subfolders included (recursive scan) */
+	std::optional<String> m_leftDesc;
+	std::optional<String> m_middleDesc;
+	std::optional<String> m_rightDesc;
+	std::optional<String> m_filter; /**< Filter name or mask */
+	std::optional<int> m_subfolders; /**< Are subfolders included (recursive scan) */
 	bool m_bLeftReadOnly; /**< Is left path opened as read-only */
 	bool m_bMiddleReadOnly; /**< Is middle path opened as read-only */
 	bool m_bRightReadOnly; /**< Is right path opened as read-only */
-	bool m_bHasUnpacker; /**< Has unpacker? */
-	String m_unpacker; /**< Unpacker name or pipeline */
-	bool m_bHasPrediffer; /**< Has prediffer? */
-	String m_prediffer; /**< Prediffer name or pipeline */
-	bool m_bHasWindowType; /**< Has window type? */
-	int m_nWindowType; /**< The value of the window type */
-	tchar_t m_cTableDelimiter;
-	bool m_bHasTableDelimiter; /**< Has table delimiter? */
-	tchar_t m_cTableQuote;
-	bool m_bHasTableQuote; /**< Has table quote? */
-	bool m_bTableAllowNewLinesInQuotes;
-	bool m_bHasTableAllowNewLinesInQuotes; /**< Has table allow new lines in quotes? */
-	bool m_bHasIgnoreWhite; /**< Has "Whitespaces" setting? */
-	int m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
-	bool m_bHasIgnoreBlankLines; /**< Has "Ignore blank lines" setting? */
-	bool m_bIgnoreBlankLines; /**< The value of the "Ignore blank lines" setting */
-	bool m_bHasIgnoreCase; /**< Has "Ignore case" setting? */
-	bool m_bIgnoreCase; /**< The value of the "Ignore case" setting */
-	bool m_bHasIgnoreEol; /**< Has "Ignore carriage return differences" setting? */
-	bool m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
-	bool m_bHasIgnoreNumbers; /**< Has "Ignore numbers" setting? */
-	bool m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
-	bool m_bHasIgnoreCodepage; /**< Has "Ignore codepage differences" setting? */
-	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
-	bool m_bHasFilterCommentsLines; /**< Has "Ignore comment differences" setting? */
-	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
-	bool m_bHasCompareMethod; /**< Has "Compare method" setting? */
-	int m_nCompareMethod; /**< The value of the "Compare method" setting */
-	bool m_bHasHiddenItems; /**< Has "Hidden items" setting? */
+	std::optional<String> m_unpacker; /**< Unpacker name or pipeline */
+	std::optional<String> m_prediffer; /**< Prediffer name or pipeline */
+	std::optional<int> m_nWindowType; /**< The value of the window type */
+	std::optional<tchar_t> m_cTableDelimiter;
+	std::optional<tchar_t> m_cTableQuote;
+	std::optional<bool> m_bTableAllowNewLinesInQuotes;
+	std::optional<int> m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
+	std::optional<bool> m_bIgnoreBlankLines; /**< The value of the "Ignore blank lines" setting */
+	std::optional<bool> m_bIgnoreCase; /**< The value of the "Ignore case" setting */
+	std::optional<bool> m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
+	std::optional<bool> m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
+	std::optional<bool> m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
+	std::optional<bool> m_bIgnoreMissingTrailingEol; /**< The value of the "Ignore missing trailing EOL" setting */
+	std::optional<bool> m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
+	std::optional<int> m_nCompareMethod; /**< The value of the "Compare method" setting */
 	std::vector<String> m_vSavedHiddenItems; /**< The list of hidden items saved */
 	bool m_bSaveFilter; /**< Save filter? */
 	bool m_bSaveSubfolders; /**< Save subfolders? */
@@ -165,6 +151,7 @@ private:
 	bool m_bSaveIgnoreEol; /**< Save "Ignore carriage return differences" setting? */
 	bool m_bSaveIgnoreNumbers; /**< Save "Ignore numbers" setting? */
 	bool m_bSaveIgnoreCodepage; /**< Save "Ignore codepage differences" setting? */
+	bool m_bSaveIgnoreMissingTrailingEol; /**< Save "Ignore missing trailing EOL" setting? */
 	bool m_bSaveFilterCommentsLines; /**< Save "Ignore comment differences" setting? */
 	bool m_bSaveCompareMethod; /**< Save "Compare method" setting? */
 	bool m_bSaveHiddenItems;/* Save "Hidden item" settings?*/
@@ -221,7 +208,7 @@ inline bool ProjectFileItem::HasRight() const
  */
 inline bool ProjectFileItem::HasLeftDesc() const
 {
-	return m_bHasLeftDesc;
+	return m_leftDesc.has_value();
 }
 
 /** 
@@ -229,7 +216,7 @@ inline bool ProjectFileItem::HasLeftDesc() const
  */
 inline bool ProjectFileItem::HasMiddleDesc() const
 {
-	return m_bHasMiddleDesc;
+	return m_middleDesc.has_value();
 }
 
 /** 
@@ -238,7 +225,7 @@ inline bool ProjectFileItem::HasMiddleDesc() const
  */
 inline bool ProjectFileItem::HasRightDesc() const
 {
-	return m_bHasRightDesc;
+	return m_rightDesc.has_value();
 }
 
 /** 
@@ -247,7 +234,7 @@ inline bool ProjectFileItem::HasRightDesc() const
  */
 inline String ProjectFileItem::GetLeftDesc() const
 {
-	return m_leftDesc;
+	return m_leftDesc.value_or(_T(""));
 }
 
 /** 
@@ -256,7 +243,7 @@ inline String ProjectFileItem::GetLeftDesc() const
  */
 inline String ProjectFileItem::GetMiddleDesc() const
 {
-	return m_middleDesc;
+	return m_middleDesc.value_or(_T(""));
 }
 
 /** 
@@ -265,7 +252,7 @@ inline String ProjectFileItem::GetMiddleDesc() const
  */
 inline String ProjectFileItem::GetRightDesc() const
 {
-	return m_rightDesc;
+	return m_rightDesc.value_or(_T(""));
 }
 
 /** 
@@ -301,7 +288,7 @@ inline void ProjectFileItem::SetRightDesc(const String& sDesc)
  */
 inline bool ProjectFileItem::HasFilter() const
 {
-	return m_bHasFilter;
+	return m_filter.has_value();
 }
 
 /** 
@@ -310,7 +297,7 @@ inline bool ProjectFileItem::HasFilter() const
  */
 inline bool ProjectFileItem::HasSubfolders() const
 {
-	return m_bHasSubfolders;
+	return m_subfolders.has_value();
 }
 
 /** 
@@ -319,7 +306,7 @@ inline bool ProjectFileItem::HasSubfolders() const
  */
 inline bool ProjectFileItem::HasUnpacker() const
 {
-	return m_bHasUnpacker;
+	return m_unpacker.has_value();
 }
 
 /** 
@@ -328,7 +315,7 @@ inline bool ProjectFileItem::HasUnpacker() const
  */
 inline bool ProjectFileItem::HasPrediffer() const
 {
-	return m_bHasPrediffer;
+	return m_prediffer.has_value();
 }
 
 /** 
@@ -337,7 +324,7 @@ inline bool ProjectFileItem::HasPrediffer() const
  */
 inline bool ProjectFileItem::HasWindowType() const
 {
-	return m_bHasWindowType;
+	return m_nWindowType.has_value();
 }
 
 /** 
@@ -346,7 +333,7 @@ inline bool ProjectFileItem::HasWindowType() const
  */
 inline bool ProjectFileItem::HasTableDelimiter() const
 {
-	return m_bHasTableDelimiter;
+	return m_cTableDelimiter.has_value();
 }
 
 /** 
@@ -355,7 +342,7 @@ inline bool ProjectFileItem::HasTableDelimiter() const
  */
 inline bool ProjectFileItem::HasTableQuote() const
 {
-	return m_bHasTableQuote;
+	return m_cTableQuote.has_value();
 }
 
 /** 
@@ -364,7 +351,7 @@ inline bool ProjectFileItem::HasTableQuote() const
  */
 inline bool ProjectFileItem::HasTableAllowNewLinesInQuotes() const
 {
-	return m_bHasTableAllowNewLinesInQuotes;
+	return m_bTableAllowNewLinesInQuotes.has_value();
 }
 
 /** 
@@ -373,7 +360,7 @@ inline bool ProjectFileItem::HasTableAllowNewLinesInQuotes() const
  */
 inline bool ProjectFileItem::HasIgnoreWhite() const
 {
-	return m_bHasIgnoreWhite;
+	return m_nIgnoreWhite.has_value();
 }
 
 /** 
@@ -382,7 +369,7 @@ inline bool ProjectFileItem::HasIgnoreWhite() const
  */
 inline bool ProjectFileItem::HasIgnoreBlankLines() const
 {
-	return m_bHasIgnoreBlankLines;
+	return m_bIgnoreBlankLines.has_value();
 }
 
 /** 
@@ -391,7 +378,7 @@ inline bool ProjectFileItem::HasIgnoreBlankLines() const
  */
 inline bool ProjectFileItem::HasIgnoreCase() const
 {
-	return m_bHasIgnoreCase;
+	return m_bIgnoreCase.has_value();
 }
 
 /** 
@@ -400,7 +387,7 @@ inline bool ProjectFileItem::HasIgnoreCase() const
  */
 inline bool ProjectFileItem::HasIgnoreEol() const
 {
-	return m_bHasIgnoreEol;
+	return m_bIgnoreEol.has_value();
 }
 
 /**
@@ -409,7 +396,7 @@ inline bool ProjectFileItem::HasIgnoreEol() const
  */
 inline bool ProjectFileItem::HasIgnoreNumbers() const
 {
-	return m_bHasIgnoreNumbers;
+	return m_bIgnoreNumbers.has_value();
 }
 
 /** 
@@ -418,7 +405,16 @@ inline bool ProjectFileItem::HasIgnoreNumbers() const
  */
 inline bool ProjectFileItem::HasIgnoreCodepage() const
 {
-	return m_bHasIgnoreCodepage;
+	return m_bIgnoreCodepage.has_value();
+}
+
+/** 
+ * @brief Returns if "Ignore missing trailing EOL" setting is defined in projectfile.
+ * @return true if project file has "Ignore missing trailing EOL" setting definition.
+ */
+inline bool ProjectFileItem::HasIgnoreMissingTrailingEol() const
+{
+	return m_bIgnoreMissingTrailingEol.has_value();
 }
 
 /** 
@@ -427,7 +423,7 @@ inline bool ProjectFileItem::HasIgnoreCodepage() const
  */
 inline bool ProjectFileItem::HasFilterCommentsLines() const
 {
-	return m_bHasFilterCommentsLines;
+	return m_bFilterCommentsLines.has_value();
 }
 
 /** 
@@ -436,7 +432,7 @@ inline bool ProjectFileItem::HasFilterCommentsLines() const
  */
 inline bool ProjectFileItem::HasCompareMethod() const
 {
-	return m_bHasCompareMethod;
+	return m_nCompareMethod.has_value();
 }
 
 /** 
@@ -445,7 +441,7 @@ inline bool ProjectFileItem::HasCompareMethod() const
  */
 inline bool ProjectFileItem::HasHiddenItems() const
 {
-	return m_bHasHiddenItems;
+	return !m_vSavedHiddenItems.empty();
 }
 
 /** 
@@ -480,7 +476,7 @@ inline bool ProjectFileItem::GetRightReadOnly() const
  */
 inline String ProjectFileItem::GetFilter() const
 {
-	return m_filter;
+	return m_filter.value_or(_T(""));
 }
 
 /** 
@@ -498,7 +494,7 @@ inline void ProjectFileItem::SetFilter(const String& sFilter)
  */
 inline int ProjectFileItem::GetSubfolders() const
 {
-	return m_subfolders;
+	return m_subfolders.value_or(-1);
 }
 
 /** 
@@ -516,7 +512,7 @@ inline void ProjectFileItem::SetSubfolders(bool bSubfolder)
  */
 inline String ProjectFileItem::GetUnpacker() const
 {
-	return m_unpacker;
+	return m_unpacker.value_or(_T(""));
 }
 
 /** 
@@ -534,7 +530,7 @@ inline void ProjectFileItem::SetUnpacker(const String& sUnpacker)
  */
 inline String ProjectFileItem::GetPrediffer() const
 {
-	return m_prediffer;
+	return m_prediffer.value_or(_T(""));
 }
 
 /** 
@@ -552,7 +548,7 @@ inline void ProjectFileItem::SetPrediffer(const String& sPrediffer)
  */
 inline int ProjectFileItem::GetWindowType() const
 {
-	return m_nWindowType;
+	return m_nWindowType.value_or(-1);
 }
 
 /** 
@@ -570,7 +566,7 @@ inline void ProjectFileItem::SetWindowType(int nWindowType)
  */
 inline tchar_t ProjectFileItem::GetTableDelimiter() const
 {
-	return m_cTableDelimiter;
+	return m_cTableDelimiter.value_or(',');
 }
 
 /** 
@@ -588,7 +584,7 @@ inline void ProjectFileItem::SetTableDelimiter(tchar_t cTableDelimiter)
  */
 inline tchar_t ProjectFileItem::GetTableQuote() const
 {
-	return m_cTableQuote;
+	return m_cTableQuote.value_or('\"');
 }
 
 /** 
@@ -606,7 +602,7 @@ inline void ProjectFileItem::SetTableQuote(tchar_t cTableQuote)
  */
 inline bool ProjectFileItem::GetTableAllowNewLinesInQuotes() const
 {
-	return m_bTableAllowNewLinesInQuotes;
+	return m_bTableAllowNewLinesInQuotes.value_or(true);
 }
 
 /** 
@@ -624,7 +620,7 @@ inline void ProjectFileItem::SetTableAllowNewLinesInQuotes(bool bTableAllowNewLi
  */
 inline int ProjectFileItem::GetIgnoreWhite() const
 {
-	return m_nIgnoreWhite;
+	return m_nIgnoreWhite.value_or(0);
 }
 
 /** 
@@ -642,7 +638,7 @@ inline void ProjectFileItem::SetIgnoreWhite(int nIgnoreWhite)
  */
 inline bool ProjectFileItem::GetIgnoreBlankLines() const
 {
-	return m_bIgnoreBlankLines;
+	return m_bIgnoreBlankLines.value_or(false);
 }
 
 /** 
@@ -660,7 +656,7 @@ inline void ProjectFileItem::SetIgnoreBlankLines(bool bIgnoreBlankLines)
  */
 inline bool ProjectFileItem::GetIgnoreCase() const
 {
-	return m_bIgnoreCase;
+	return m_bIgnoreCase.value_or(false);
 }
 
 /** 
@@ -678,7 +674,7 @@ inline void ProjectFileItem::SetIgnoreCase(bool bIgnoreCase)
  */
 inline bool ProjectFileItem::GetIgnoreEol() const
 {
-	return m_bIgnoreEol;
+	return m_bIgnoreEol.value_or(false);
 }
 
 /** 
@@ -696,7 +692,7 @@ inline void ProjectFileItem::SetIgnoreEol(bool bIgnoreEol)
  */
 inline bool ProjectFileItem::GetIgnoreNumbers() const
 {
-	return m_bIgnoreNumbers;
+	return m_bIgnoreNumbers.value_or(false);
 }
 
 /**
@@ -714,7 +710,7 @@ inline void ProjectFileItem::SetIgnoreNumbers(bool bIgnoreNumbers)
  */
 inline bool ProjectFileItem::GetIgnoreCodepage() const
 {
-	return m_bIgnoreCodepage;
+	return m_bIgnoreCodepage.value_or(false);
 }
 
 /** 
@@ -727,12 +723,30 @@ inline void ProjectFileItem::SetIgnoreCodepage(bool bIgnoreCodepage)
 }
 
 /** 
+ * @brief Returns the value of the "Ignore missing trailing EOL" setting.
+ * @return The value of the "Ignore missing trailing EOL" setting
+ */
+inline bool ProjectFileItem::GetIgnoreMissingTrailingEol() const
+{
+	return m_bIgnoreMissingTrailingEol.value_or(false);
+}
+
+/** 
+ * @brief Set the value of the "Ignore missing trailing EOL" setting.
+ * @param [in] bIgnoreMissingTrailingEol New value of the "Ignore missing trailing EOL" setting to set.
+ */
+inline void ProjectFileItem::SetIgnoreMissingTrailingEol(bool bIgnoreMissingTrailingEol)
+{
+	m_bIgnoreMissingTrailingEol = bIgnoreMissingTrailingEol;
+}
+
+/** 
  * @brief Returns the value of the "Ignore comment differences" setting.
  * @return The value of the "Ignore comment differences" setting
  */
 inline bool ProjectFileItem::GetFilterCommentsLines() const
 {
-	return m_bFilterCommentsLines;
+	return m_bFilterCommentsLines.value_or(false);
 }
 
 /** 
@@ -750,7 +764,7 @@ inline void ProjectFileItem::SetFilterCommentsLines(bool bFilterCommentsLines)
  */
 inline int ProjectFileItem::GetCompareMethod() const
 {
-	return m_nCompareMethod;
+	return m_nCompareMethod.value_or(0);
 }
 
 /** 
@@ -880,6 +894,15 @@ inline void ProjectFileItem::SetSaveIgnoreNumbers(bool bSaveIgnoreNumbers)
 inline void ProjectFileItem::SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage)
 {
 	m_bSaveIgnoreCodepage = bSaveIgnoreCodepage;
+}
+
+/** 
+ * @brief Set whether to save "Ignore missing trailing EOL" setting.
+ * @param [in] bSaveIgnoreMissingTrailingEol Whether to save "Ignore missing trailing EOL" setting.
+ */
+inline void ProjectFileItem::SetSaveIgnoreMissingTrailingEol(bool bSaveIgnoreMissingTrailingEol)
+{
+	m_bSaveIgnoreMissingTrailingEol = bSaveIgnoreMissingTrailingEol;
 }
 
 /** 

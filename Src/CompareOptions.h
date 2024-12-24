@@ -87,6 +87,7 @@ struct DIFFOPTIONS
 	bool bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
 	bool bIndentHeuristic; /**< Ident heuristic -option */
 	bool bCompletelyBlankOutIgnoredChanges;
+	bool bIgnoreMissingTrailingEol; /**< Ignore missing trailing EOL -option. */
 };
 
 /**
@@ -105,6 +106,7 @@ public:
 	bool m_bIgnoreCase; /**< Ignore case differences? */
 	bool m_bIgnoreNumbers; /**< Ignore number differences? */
 	bool m_bIgnoreEOLDifference; /**< Ignore EOL style differences? */
+	bool m_bIgnoreMissingTrailingEol; /**< Ignore missing trailing EOL */
 };
 
 /**

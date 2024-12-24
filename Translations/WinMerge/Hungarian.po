@@ -1322,6 +1322,9 @@ msgstr "Számok mellőzése"
 msgid "Ignore c&omment differences"
 msgstr "Megjegyzés különbségek mellőzése"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 #, c-format
 msgid "&Include subfolders"
 msgstr "&Alkönyvtárakkal együtt"

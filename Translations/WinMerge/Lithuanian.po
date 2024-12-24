@@ -1101,6 +1101,9 @@ msgstr "Ignoruoti skai&čius"
 msgid "Ignore c&omment differences"
 msgstr "Nepaisyti skirtumų k&omentaruose"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "Įtraukt&i pakatalogius"
 

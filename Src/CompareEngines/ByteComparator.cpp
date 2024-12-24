@@ -340,6 +340,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			}
 			else // don't skip blank lines, but still ignore eol difference
 			{
+				const char* ptr0b = ptr0;
+				const char* ptr1b = ptr1;
 				HandleSide0Eol((char **) &ptr0, end0, eof0);
 				HandleSide1Eol((char **) &ptr1, end1, eof1);
 
@@ -353,6 +355,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					if ((!m_eol0 || !m_eol1) && (orig0 == end0 || orig1 == end1))
 					{
 						// one side had an end-of-line, but the other didn't
+						ptr0 = ptr0b;
+						ptr1 = ptr1b;
 						result = RESULT_DIFF;
 						goto exit;
 					}
@@ -385,7 +389,7 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					goto need_more;
 				else
 				{
-					result = RESULT_SAME;
+					result = (m_eol0 == m_eol1) ? RESULT_SAME : RESULT_DIFF;
 					goto exit;
 				}
 			}

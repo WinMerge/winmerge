@@ -223,4 +223,35 @@ TEST_F(PathAndFilterTest, GetTableProperties)
 	ASSERT_TRUE(tableAllowNewLinesInQuotes == true);
 }
 
+/**
+ * @brief Read diff options
+ */
+TEST_F(PathAndFilterTest, GetDiffOptions)
+{
+	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreMissingTrailingEol());
+	ASSERT_EQ(true, m_pProjectFileItem->HasFilterCommentsLines());
+	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreCodepage());
+	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreNumbers());
+	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreEol());
+	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreCase());
+	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreBlankLines());
+	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreMissingTrailingEol());
+	ASSERT_EQ(true, m_pProjectFileItem->GetFilterCommentsLines());
+	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreCodepage());
+	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreNumbers());
+	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreEol());
+	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreCase());
+	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreBlankLines());
+}
+
+/**
+ * @brief Read hidden items
+ */
+TEST_F(PathAndFilterTest, GetHiddenItems)
+{
+	ASSERT_EQ(true, m_pProjectFileItem->HasHiddenItems());
+	ASSERT_EQ(2, m_pProjectFileItem->GetHiddenItems().size());
+	ASSERT_EQ(_T("file1.txt"), m_pProjectFileItem->GetHiddenItems()[0]);
+	ASSERT_EQ(_T("file2.txt"), m_pProjectFileItem->GetHiddenItems()[1]);
+}
 }

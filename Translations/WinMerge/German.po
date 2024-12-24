@@ -1324,6 +1324,9 @@ msgstr "&Nummern ignorieren"
 msgid "Ignore c&omment differences"
 msgstr "&Kommentarunterschiede ignorieren"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 #, c-format
 msgid "&Include subfolders"
 msgstr "&Unterordner einbeziehen"

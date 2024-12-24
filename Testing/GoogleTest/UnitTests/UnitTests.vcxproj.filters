@@ -16,6 +16,18 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{4b87ff85-2ba4-475b-823e-af42e45a3098}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestData">
+      <UniqueIdentifier>{26fc7ec7-3745-4a0e-9152-b470022385cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestData\DirWatcher">
+      <UniqueIdentifier>{185652df-51ae-4061-8100-d261f79b6116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestData\DirWatcher\Subdir2">
+      <UniqueIdentifier>{c49154d0-df48-4a75-965a-bd0f362bfa1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestData\DirWatcher\Subdir1">
+      <UniqueIdentifier>{3068dbe3-428a-4a24-aedf-8eed46f308c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Src\charsets.c">
@@ -452,5 +464,36 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\TestData\LeftAndRight.WinMerge">
+      <Filter>TestData</Filter>
+    </None>
+    <None Include="..\TestData\LeftAndRightNonRecursive.WinMerge">
+      <Filter>TestData</Filter>
+    </None>
+    <None Include="..\TestData\LeftAndRightRecursive.WinMerge">
+      <Filter>TestData</Filter>
+    </None>
+    <None Include="..\TestData\PathsAndFilter.WinMerge">
+      <Filter>TestData</Filter>
+    </None>
+    <None Include="..\TestData\SimpleLeft.WinMerge">
+      <Filter>TestData</Filter>
+    </None>
+    <None Include="..\TestData\SimpleRight.WinMerge">
+      <Filter>TestData</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\TestData\DirWatcher\test.txt">
+      <Filter>TestData\DirWatcher</Filter>
+    </Text>
+    <Text Include="..\TestData\DirWatcher\test2.txt">
+      <Filter>TestData\DirWatcher</Filter>
+    </Text>
+    <Text Include="..\TestData\DirWatcher\Subdir1\test.txt">
+      <Filter>TestData\DirWatcher\Subdir1</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -1098,6 +1098,9 @@ msgstr "Пренебрегване на &числа"
 msgid "Ignore c&omment differences"
 msgstr "Пренебрегване на различията в &коментари"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "&Включително подпапки"
 

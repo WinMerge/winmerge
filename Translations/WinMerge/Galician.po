@@ -1102,6 +1102,9 @@ msgstr "Ignorar nú&meros"
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenzas nos c&omentarios"
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "&Include subfolders"
 msgstr "&Incluír subcarpetas"
 

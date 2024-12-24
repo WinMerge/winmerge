@@ -413,6 +413,8 @@ protected:
 	afx_msg void OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreComments();
 	afx_msg void OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreMissingTrailingEol();
+	afx_msg void OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI);
 	afx_msg void OnIncludeSubfolders();
 	afx_msg void OnUpdateIncludeSubfolders(CCmdUI* pCmdUI);
 	afx_msg void OnCompareMethod(UINT nID);

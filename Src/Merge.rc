@@ -1093,6 +1093,7 @@ BEGIN
         MENUITEM "Ignore codepage &differences", ID_DIFF_OPTIONS_IGNORE_CODEPAGE
         MENUITEM "Ignore num&bers",             IDC_DIFF_IGNORENUMBERS
         MENUITEM "Ignore c&omment differences", ID_DIFF_OPTIONS_IGNORE_COMMENTS
+        MENUITEM "Ignore &missing trailing EOL", ID_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
         MENUITEM SEPARATOR
         MENUITEM "&Include subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
         POPUP "&Compare method:"
@@ -1123,6 +1124,7 @@ BEGIN
         MENUITEM "Ignore codepage &differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
         MENUITEM "Ignore num&bers",             ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
         MENUITEM "Ignore c&omment differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
+        MENUITEM "Ignore &missing trailing EOL", ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
         MENUITEM SEPARATOR
         POPUP "&Compare method:"
         BEGIN
@@ -1952,14 +1954,16 @@ BEGIN
     CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,269,10
     CONTROL         "Ignore c&omment differences",IDC_FILTERCOMMENTS_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
-    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,269,10
-    CONTROL         "Align &similar lines",IDC_ALIGN_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,269,10
-    LTEXT           "Diff &algorithm:",IDC_STATIC,7,156,269,10
-    COMBOBOX        IDC_DIFF_ALGORITHM,6,168,270,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,186,269,10
+    CONTROL         "Ignore &missing trailing EOL",IDC_IGNEOFEOL_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,239,10
+    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,269,10
+    CONTROL         "Align &similar lines",IDC_ALIGN_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,269,10
+    LTEXT           "Diff &algorithm:",IDC_STATIC,7,168,269,10
+    COMBOBOX        IDC_DIFF_ALGORITHM,6,180,270,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,198,269,10
     CONTROL         "Completely unhighlight the ignored differences",IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,198,269,10
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,210,269,10
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,240,88,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 285, 242

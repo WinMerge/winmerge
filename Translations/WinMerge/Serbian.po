@@ -1317,6 +1317,9 @@ msgstr ""
 msgid "Ignore c&omment differences"
 msgstr ""
 
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 #, c-format
 msgid "&Include subfolders"
 msgstr "Укључи и потфасцикле"
