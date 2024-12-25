@@ -2,6 +2,7 @@
 
 #include "../utils/ctchar.h"
 #include <cassert>
+#include <array>
 
 #define ISXKEYWORD(keywordlist, key, keylen) CrystalLineParser::IsXKeyword(key, keylen, keywordlist, sizeof(keywordlist)/sizeof(keywordlist[0]), tc::tcsncmp)
 #define ISXKEYWORDI(keywordlist, key, keylen) CrystalLineParser::IsXKeyword(key, keylen, keywordlist, sizeof(keywordlist)/sizeof(keywordlist[0]), tc::tcsnicmp)
