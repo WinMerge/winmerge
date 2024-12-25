@@ -653,6 +653,27 @@ BOMの有無の違いも検出します。</para>
 
     <section>
       <title>
+ファイル末尾の改行文字の有無を無視する<indexterm>
+          <primary>フィルター</primary>
+          <secondary>EOL</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>無効</option> (デフォルト): 行の内容が一致していても、ファイル末尾の改行文字の有無の違いは無視されません。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>有効</option>:
+一方のファイルが改行文字(LFやCRLFなど)で終了しているがもう一方のファイルが改行文字で終了していない場合でも、行の内容が一致していれば、この差異は無視されます。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
 移動ブロックの検出を有効にする<indexterm>
           <primary>moved differences</primary>
         </indexterm></title>

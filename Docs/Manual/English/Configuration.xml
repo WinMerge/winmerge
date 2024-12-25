@@ -837,6 +837,29 @@
 
     <section>
       <title>
+        Ignore missing trailing EOL<indexterm>
+          <primary>filters</primary>
+          <secondary>EOL</secondary>
+        </indexterm>
+      </title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+            <option>Disabled</option> (default): Differences in the presence or absence of trailing EOL characters are detected as differences, even if the content of the lines matches.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <option>Enabled</option>: When one file ends with an EOL character (e.g., LF or CRLF) and the other does not, but the line content matches, these differences are ignored.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
         Enable moved block detection<indexterm>
           <primary>moved differences</primary>
         </indexterm>
