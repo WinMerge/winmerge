@@ -44,6 +44,8 @@ Please submit bug reports to our bug-tracker.
 ### Translations
 
 - Translation updates:
+  - Brazilian (PR #2585)
+  - Hungarian (PR #2586)
   - Japanese
   - Korean (PR #2558,#2559)
 
