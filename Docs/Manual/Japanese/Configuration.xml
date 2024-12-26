@@ -1696,7 +1696,8 @@ Rendering Modes</ulink> for details.</para>
           <term>Word break characters</term>
 
           <listitem>
-            <para>TBD</para>
+            <para>Specifies the symbols that are treated as non-whitespace word separators
+when <guilabel>Break at whitespace or punctuation</guilabel> is selected.</para>
           </listitem>
         </varlistentry>
       </variablelist>
