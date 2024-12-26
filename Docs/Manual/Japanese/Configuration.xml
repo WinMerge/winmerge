@@ -170,6 +170,13 @@ fileref="screenshots/options_btn.png" /> </imageobject><textobject>
 
         <listitem>
           <para>
+<option>Close main window if there is on one MDI child window</option>:
+Pressing <keycap>Esc</keycap> closes a child window, and if there is only
+one child window, it will also close the main window.</para>
+        </listitem>
+
+        <listitem>
+          <para>
 <option>無効</option>: <keycap>Esc</keycap>押下で、WinMergeウィンドウを閉じません。</para>
         </listitem>
       </itemizedlist>
@@ -960,37 +967,6 @@ lines.</para>
 
     <section>
       <title>
-比較後自動的にサブフォルダーを展開する<indexterm>
-          <primary>expand subfolders</primary>
-
-          <secondary>detecting and ignoring differences</secondary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para>
-<option>展開しない</option> (default): 比較後、サブフォルダーは折りたたまれたままになります。</para>
-        </listitem>
-
-        <listitem>
-          <para>
-<option>すべてのサブフォルダーを展開</option>: 比較後、すべてのサブフォルダーが展開されます。</para>
-        </listitem>
-
-        <listitem>
-          <para>
-<option>差異のあるサブフォルダーを展開</option>: 比較後、差異のあるサブフォルダーのみが展開されます。</para>
-        </listitem>
-
-        <listitem>
-          <para>
-<option>同一のサブフォルダーを展開</option>: 比較後、相違点のないサブフォルダーのみが展開されます。</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>
 Include subfolders<indexterm>
           <primary>include subfolders</primary>
 
@@ -1020,43 +996,27 @@ folder.</para>
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
 
-      <variablelist>
-        <varlistentry>
-          <term>展開しない</term>
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>展開しない</option> (default): 比較後、サブフォルダーは折りたたまれたままになります。</para>
+        </listitem>
 
-          <listitem>
-            <para>
-(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>
+<option>すべてのサブフォルダーを展開</option>: 比較後、すべてのサブフォルダーが展開されます。</para>
+        </listitem>
 
-        <varlistentry>
-          <term>すべてのサブフォルダーを展開</term>
+        <listitem>
+          <para>
+<option>差異のあるサブフォルダーを展開</option>: 比較後、差異のあるサブフォルダーのみが展開されます。</para>
+        </listitem>
 
-          <listitem>
-            <para>
-フォルダ比較後、自動的にすべてのサブフォルダを展開します。</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>差異のあるサブフォルダーを展開</term>
-
-          <listitem>
-            <para>
-フォルダ比較後、自動的に差異のあるサブフォルダを展開します。</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>同一のサブフォルダーを展開</term>
-
-          <listitem>
-            <para>
-フォルダ比較後、自動的に同一のサブフォルダを展開します。</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+        <listitem>
+          <para>
+<option>同一のサブフォルダーを展開</option>: 比較後、相違点のないサブフォルダーのみが展開されます。</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
@@ -1243,13 +1203,43 @@ will use addition of the number of available CPU cores.</para>
 Frhed settings<indexterm>
           <primary>frhed</primary>
         </indexterm></title>
-      <para>TBD</para>
       <variablelist>
         <varlistentry>
           <term>View Settings...</term>
 
           <listitem>
-            <para>TBD</para>
+            <para>Here you can choose:</para>
+            <itemizedlist>
+              <listitem>
+                <para>The number of bytes to display per line of hexdump (only applies if
+&quot;Automatically adjust number of bytes per line&quot; is disabled)</para>
+              </listitem>
+              <listitem>
+                <para>If the &quot;Automatically adjust number of bytes per line&quot;- checkbox
+is checked, then the number of bytes displayed per hexdump line is adjusted
+in such a way that the whole window width is used at all times.</para>
+              </listitem>
+              <listitem>
+                <para>The number of digits for the offset length (only applies if &quot;Adjust
+offset length&quot; is disabled)</para>
+              </listitem>
+              <listitem>
+                <para>If the offset length should be automatically adjusted to that of the maximum
+offset (enabled) or right-padded with spaces (disabled)</para>
+              </listitem>
+              <listitem>
+                <para>How to display the values at the caret position, either as signed or as
+unsigned integer values</para>
+              </listitem>
+              <listitem>
+                <para>If read-only mode should be automatically set after opening files.</para>
+              </listitem>
+              <listitem>
+                <para>The name of the text editor that will be called by the
+<menuchoice><guimenu>Edit</guimenu><guimenuitem>Open in text editor
+</guimenuitem></menuchoice> command.</para>
+              </listitem>
+            </itemizedlist>
           </listitem>
         </varlistentry>
 
@@ -1257,7 +1247,26 @@ Frhed settings<indexterm>
           <term>Binary Mode...</term>
 
           <listitem>
-            <para>TBD</para>
+            <para>What kind of byte order to use: Either Little-endian, as used in
+Intel-computers or Big-endian, used for example in computers with a Motorola
+processor. The difference between these modes is thus: Consider a longword,
+which is 4 bytes (named A to D) long.</para>
+
+            <screen>Longword in processor register = ABCD.</screen>
+
+            <para>The least significant bit, which has the value 1, is found in byte "D". In a
+processor register the longword is ordered in this way. If this value is
+written to a position in memory, then by Intel convention the longword is
+written in this way, with the growing offsets to the right:</para>
+
+            <screen>Longword in memory = DCBA.</screen>
+
+            <para>That is, the bytes making up the longword are written in reverse order as
+they are found in a processor register.</para>
+
+            <para>This means that a file written by a Big-endian machine will contain wrong
+longword and word values if read by a Little-endian machine without
+conversion.</para>
           </listitem>
         </varlistentry>
 
@@ -1265,7 +1274,9 @@ Frhed settings<indexterm>
           <term>Character Set...</term>
 
           <listitem>
-            <para>TBD</para>
+            <para>Here you can choose the character set for displaying and writing characters,
+either ANSI (the Windows character set) or OEM (the DOS character set). The
+font size in points can also be chosen.</para>
           </listitem>
         </varlistentry>
       </variablelist>

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-12-26 07:33+0900\n"
+"POT-Creation-Date: 2024-12-26 22:24+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -502,7 +502,7 @@ msgstr ""
 "\\workfiles\\project1</filename>に展開されます。"
 
 #. type: Content of: <article><section><section><example><para><screen>
-#: English/About_Doc.xml:314 English/Configuration.xml:612
+#: English/About_Doc.xml:314 English/Configuration.xml:619
 #, no-wrap
 msgid "TwoWords"
 msgstr "TwoWords"
@@ -820,7 +820,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:210 English/Command_line.xml:294
-#: English/Command_line.xml:417 English/Configuration.xml:270
+#: English/Command_line.xml:417 English/Configuration.xml:277
 #: English/Quick_start.xml:22
 msgid "WinMerge window"
 msgstr "WinMergeウィンドウ"
@@ -854,8 +854,8 @@ msgstr ""
 "しました)"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:226 English/Configuration.xml:813
-#: English/Configuration.xml:841 English/Filters.xml:4 English/Filters.xml:88
+#: English/Command_line.xml:226 English/Configuration.xml:820
+#: English/Configuration.xml:848 English/Filters.xml:4 English/Filters.xml:88
 #: English/Filters.xml:92 English/Filters.xml:137 English/Filters.xml:187
 #: English/Filters.xml:191 English/Filters.xml:532 English/Filters.xml:536
 #: English/Filters.xml:639 English/Filters.xml:766 English/Filters.xml:770
@@ -970,7 +970,7 @@ msgstr ""
 "ジボックスを表示しません。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Command_line.xml:295 English/Configuration.xml:272
+#: English/Command_line.xml:295 English/Configuration.xml:279
 msgid "limiting instances"
 msgstr "インスタンス制限"
 
@@ -1022,7 +1022,7 @@ msgstr ""
 "起動されるようにします。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
-#: English/Command_line.xml:327 English/Configuration.xml:423
+#: English/Command_line.xml:327 English/Configuration.xml:430
 #: English/Faq.xml:114
 msgid "MRU list"
 msgstr "MRU リスト"
@@ -1347,12 +1347,10 @@ msgstr "<option>/noninteractive</option>"
 #: English/Command_line.xml:592 English/Command_line.xml:599
 #: English/Command_line.xml:606 English/Command_line.xml:620
 #: English/Command_line.xml:703 English/Compare_files.xml:1476
-#: English/Compare_images.xml:117 English/Configuration.xml:1560
-#: English/Configuration.xml:1566 English/Configuration.xml:1574
-#: English/Configuration.xml:1582 English/Configuration.xml:2091
-#: English/Configuration.xml:2118 English/Configuration.xml:2132
-#: English/Configuration.xml:2214 English/Configuration.xml:2333
-#: English/Configuration.xml:2728 English/Filters.xml:775
+#: English/Compare_images.xml:117 English/Configuration.xml:2102
+#: English/Configuration.xml:2129 English/Configuration.xml:2143
+#: English/Configuration.xml:2225 English/Configuration.xml:2344
+#: English/Configuration.xml:2739 English/Filters.xml:775
 #: English/Filters.xml:1206 English/Filters.xml:1211 English/Filters.xml:1222
 msgid "TBD"
 msgstr ""
@@ -1640,8 +1638,8 @@ msgstr "Hex形式比較"
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_bin.xml:8 English/Compare_files.xml:6
 #: English/Compare_images.xml:8 English/Compare_table.xml:8
-#: English/Compare_webpages.xml:8 English/Configuration.xml:1030
-#: English/Configuration.xml:1144 English/Filters.xml:67
+#: English/Compare_webpages.xml:8 English/Configuration.xml:1037
+#: English/Configuration.xml:1151 English/Filters.xml:67
 #: English/Intro_diffs.xml:12 English/Quick_start.xml:325
 msgid "comparing files"
 msgstr "ファイルの比較"
@@ -1684,7 +1682,7 @@ msgstr ""
 "較/バイナリページで指定してください。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_dirs.xml:4 English/Configuration.xml:1148
+#: English/Compare_dirs.xml:4 English/Configuration.xml:1155
 #: English/Filters.xml:43 English/Quick_start.xml:239
 msgid "comparing folders"
 msgstr "フォルダーの比較"
@@ -2735,7 +2733,7 @@ msgstr ""
 "ピーコマンドと同じ動作をします。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_dirs.xml:614 English/Configuration.xml:2343
+#: English/Compare_dirs.xml:614 English/Configuration.xml:2354
 msgid "deleting files"
 msgstr "ファイルの削除"
 
@@ -3042,7 +3040,7 @@ msgstr ""
 "guimenuitem> </menuchoice>を選んでください。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_dirs.xml:798 English/Configuration.xml:2248
+#: English/Compare_dirs.xml:798 English/Configuration.xml:2259
 msgid "archiving files"
 msgstr ""
 
@@ -3416,8 +3414,8 @@ msgid "unique folders"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><secondary>
-#: English/Compare_dirs.xml:1050 English/Configuration.xml:1098
-#: English/Configuration.xml:1127
+#: English/Compare_dirs.xml:1050 English/Configuration.xml:1105
+#: English/Configuration.xml:1134
 msgid "comparing"
 msgstr ""
 
@@ -4165,7 +4163,7 @@ msgid "Copies just the source filename into the system clipboard."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_files.xml:134 English/Configuration.xml:2139
+#: English/Compare_files.xml:134 English/Configuration.xml:2150
 msgid "difference colors"
 msgstr ""
 
@@ -4246,7 +4244,7 @@ msgid "The last difference block includes two lines."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:194 English/Configuration.xml:536
+#: English/Compare_files.xml:194 English/Configuration.xml:543
 msgid "ignored differences"
 msgstr ""
 
@@ -4301,7 +4299,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:238 English/Compare_files.xml:917
-#: English/Configuration.xml:864
+#: English/Configuration.xml:871
 msgid "moved differences"
 msgstr ""
 
@@ -4431,7 +4429,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:338 English/Configuration.xml:1999
+#: English/Compare_files.xml:338 English/Configuration.xml:2010
 msgid "line differences"
 msgstr ""
 
@@ -4666,8 +4664,8 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_files.xml:520 English/Configuration.xml:1738
-#: English/Configuration.xml:1909 English/Configuration.xml:2111
+#: English/Compare_files.xml:520 English/Configuration.xml:1749
+#: English/Configuration.xml:1920 English/Configuration.xml:2122
 msgid "editing"
 msgstr ""
 
@@ -5283,7 +5281,7 @@ msgid "for File Compare window"
 msgstr "ファイル比較ウィンドウ"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:1007 English/Configuration.xml:1832
+#: English/Compare_files.xml:1007 English/Configuration.xml:1843
 msgid "tabs"
 msgstr ""
 
@@ -5869,7 +5867,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:1491 English/Compare_files.xml:1776
-#: English/Configuration.xml:1918
+#: English/Configuration.xml:1929
 msgid "rescanning files"
 msgstr ""
 
@@ -7123,11 +7121,11 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:5 English/Configuration.xml:2113
-#: English/Configuration.xml:2127 English/Configuration.xml:2141
-#: English/Configuration.xml:2192 English/Configuration.xml:2210
-#: English/Configuration.xml:2222 English/Configuration.xml:2328
-#: English/Configuration.xml:2345 English/Configuration.xml:2582
+#: English/Configuration.xml:5 English/Configuration.xml:2124
+#: English/Configuration.xml:2138 English/Configuration.xml:2152
+#: English/Configuration.xml:2203 English/Configuration.xml:2221
+#: English/Configuration.xml:2233 English/Configuration.xml:2339
+#: English/Configuration.xml:2356 English/Configuration.xml:2593
 msgid "options"
 msgstr "オプション"
 
@@ -7438,6 +7436,14 @@ msgstr ""
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:234
 msgid ""
+"<option>Close main window if there is on one MDI child window</option>: "
+"Pressing <keycap>Esc</keycap> closes a child window, and if there is only "
+"one child window, it will also close the main window."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:241
+msgid ""
 "<option>Disabled</option>: Pressing <keycap>Esc</keycap> does not close any "
 "WinMerge windows."
 msgstr ""
@@ -7445,12 +7451,12 @@ msgstr ""
 "せん。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:242
+#: English/Configuration.xml:249
 msgid "Automatically verify paths in Open-dialog"
 msgstr "開くダイアログで自動的にパスを検査する"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:247
+#: English/Configuration.xml:254
 msgid ""
 "<option>Enabled</option> (default): The Select Files or Folders dialog "
 "checks both or all three paths as you enter them. The <guibutton>Compare</"
@@ -7463,7 +7469,7 @@ msgstr ""
 "のチェックは、ほんの少しだけ時間がかかることがあります。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:257
+#: English/Configuration.xml:264
 msgid ""
 "<option>Disabled</option>: The <guibutton>Compare</guibutton> button in the "
 "Select Files or Folders dialog is always enabled, and attempts to open any "
@@ -7477,12 +7483,12 @@ msgstr ""
 "かれなかった場合、 エラーダイアログが表示されます。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:269
+#: English/Configuration.xml:276
 msgid "Single instance mode<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "単一インスタンスモード<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:279
+#: English/Configuration.xml:286
 msgid ""
 "<option>Disabled</option> (default): You can run multiple WinMerge "
 "instances. For example, if WinMerge is currently running and you click the "
@@ -7493,7 +7499,7 @@ msgstr ""
 "合、 新たなWinMergeウィンドウが開かれます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:288
+#: English/Configuration.xml:295
 msgid ""
 "<option>Allow only one instance to run</option>: Limits the WinMerge program "
 "to one instance:"
@@ -7502,7 +7508,7 @@ msgstr ""
 "ます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:295
+#: English/Configuration.xml:302
 msgid ""
 "If WinMerge is currently running and you try to start a new instance, no new "
 "application window is opened: the current WinMerge window is used instead."
@@ -7511,7 +7517,7 @@ msgstr ""
 "ウィンドウは開かれず、 代わりに、現在のWinMergeウィンドウが使われます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:303
+#: English/Configuration.xml:310
 msgid ""
 "If you start a new instance with paths (for example on the command line), a "
 "new Compare window is opened in the existing WinMerge window."
@@ -7520,7 +7526,7 @@ msgstr ""
 "合、 新たな比較ウィンドウが、既存のWinMergeウィンドウ中に開かれます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:313
+#: English/Configuration.xml:320
 msgid ""
 "<option>Allow only one instance to run and wait for the instance to "
 "terminate</option>: Similar to the \"Allow only one instance to run\" "
@@ -7538,12 +7544,12 @@ msgstr ""
 "除してしまうアプリケーションとの連携に便利です。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:320
+#: English/Configuration.xml:327
 msgid "Ask when closing multiple windows"
 msgstr "複数のウィンドウを閉じるときに尋ねる"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:325
+#: English/Configuration.xml:332
 msgid ""
 "<option>Disabled</option> (default): If you exit WinMerge while multiple "
 "Compare windows are open, WinMerge prompts you to confirm whether to close "
@@ -7553,7 +7559,7 @@ msgstr ""
 "WinMergeを終了する場合、 WinMergeは、すべてのウィンドウを閉じるかを尋ねます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:333
+#: English/Configuration.xml:340
 msgid ""
 "<option>Enabled</option>: If you click <guibutton>Exit</guibutton> and there "
 "are no pending file changes, WinMerge closes immediately."
@@ -7562,25 +7568,25 @@ msgstr ""
 "ファイル変更が無い場合、 WinMergeは直ちに終了します。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:344 English/Configuration.xml:1096
-#: English/Configuration.xml:1191
+#: English/Configuration.xml:351 English/Configuration.xml:1103
+#: English/Configuration.xml:1198
 msgid "timestamps"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:346 English/Configuration.xml:1781
+#: English/Configuration.xml:353 English/Configuration.xml:1792
 msgid "preserving"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:343
+#: English/Configuration.xml:350
 msgid ""
 "Preserve file time in file compare<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "ファイル比較時のファイル時刻を保つ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:353
+#: English/Configuration.xml:360
 msgid ""
 "<option>Disabled</option> (default): If you save changes to a file in "
 "WinMerge, the timestamp of the file is updated."
@@ -7589,7 +7595,7 @@ msgstr ""
 "ファイルのタイムスタンプが更新されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:360
+#: English/Configuration.xml:367
 msgid ""
 "<option>Enabled</option>: If you save changes to a file in WinMerge, the "
 "timestamp of the file is not changed in your file system."
@@ -7598,18 +7604,18 @@ msgstr ""
 "ム上のファイルのタイムスタンプは更新されません。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:371 English/Configuration.xml:401
+#: English/Configuration.xml:378 English/Configuration.xml:408
 #: English/Open_paths.xml:38 English/Quick_start.xml:75
 msgid "Select Files or Folders dialog"
 msgstr "ファイルまたはフォルダーの選択ダイアログ"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:373
+#: English/Configuration.xml:380
 msgid "opening automatically"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:370
+#: English/Configuration.xml:377
 msgid ""
 "Show \"Select Files or Folders\" dialog on startup<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
@@ -7618,7 +7624,7 @@ msgstr ""
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:380
+#: English/Configuration.xml:387
 msgid ""
 "<option>Disabled</option> (default): The WinMerge window opens when you "
 "launch WinMerge. You must then click <menuchoice> <guimenu>File</guimenu> "
@@ -7631,7 +7637,7 @@ msgstr ""
 "ればなりません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:391
+#: English/Configuration.xml:398
 msgid ""
 "<option>Enabled</option>: The Select Files or Folders dialog opens along "
 "with the WinMerge window when you launch WinMerge."
@@ -7640,7 +7646,7 @@ msgstr ""
 "ルまたはフォルダーの選択ダイアログが開きます。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:400
+#: English/Configuration.xml:407
 msgid ""
 "Close \"Select Files or Folders\" dialog on clicking Compare "
 "button<placeholder type=\"indexterm\" id=\"0\"/>"
@@ -7649,7 +7655,7 @@ msgstr ""
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:408
+#: English/Configuration.xml:415
 msgid ""
 "<option>Disabled</option> (default): When you click <guibutton>Compare</"
 "guibutton> button, the Select File or Folders dialog will remain open "
@@ -7660,7 +7666,7 @@ msgstr ""
 "ます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:414
+#: English/Configuration.xml:421
 msgid ""
 "<option>Enabled</option>: Clicking <guibutton>Compare</guibutton> button "
 "closes the Select Files or Folders dialog."
@@ -7669,18 +7675,18 @@ msgstr ""
 "ファイルまたはフォルダーの選択ダイアログが閉じます。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:422
+#: English/Configuration.xml:429
 msgid "Open-dialog Auto-Completion<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "開くダイアログのオートコンプリート<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:427 English/Configuration.xml:463
+#: English/Configuration.xml:434 English/Configuration.xml:470
 msgid "Choose one of these options:"
 msgstr "次の中から一つ選択してください:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:432
+#: English/Configuration.xml:439
 msgid ""
 "<guilabel>Disabled</guilabel>: No autocompletion is performed when you enter "
 "paths in the Select Files or Folders dialog."
@@ -7689,7 +7695,7 @@ msgstr ""
 "した時、 オートコンプリートは実行されません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:440
+#: English/Configuration.xml:447
 msgid ""
 "<guilabel>From file system</guilabel> (default): Checks paths as you type.  "
 "It attempts to locate paths in the file system that match the letters you "
@@ -7700,7 +7706,7 @@ msgstr ""
 "一致するパスが見つかった場合、パスを補完します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:448
+#: English/Configuration.xml:455
 msgid ""
 "<guilabel>From Most Recent Used list</guilabel>: Checks paths only from the "
 "most recently used (MRU) list. This is handy when you have a limited set of "
@@ -7710,23 +7716,23 @@ msgstr ""
 "調べます。 これは、比較用のパスが限定されている場合に便利です。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:459
+#: English/Configuration.xml:466
 msgid "Auto-reload"
 msgstr "自動再読み込み"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:458
+#: English/Configuration.xml:465
 msgid "Auto-reload modified files<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "変更されたファイルの自動再読み込み<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:468
+#: English/Configuration.xml:475
 msgid "<guilabel>Disabled</guilabel>: Disables automatic reloading."
 msgstr "<guilabel>無効</guilabel>: 自動再読み込みを無効にします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:474
+#: English/Configuration.xml:481
 msgid ""
 "<guilabel>Only on window activated</guilabel> (default): When the WinMerge "
 "window is activated, if the file has been modified, it will reload the "
@@ -7741,7 +7747,7 @@ msgstr ""
 "は、「再びこの質問をしない」をチェックし、 はいボタンを押下してください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:484
+#: English/Configuration.xml:491
 msgid ""
 "<guilabel>Immediately</guilabel>: Reloads the file immediately when it has "
 "been modified.  However, a message box asking if you want to reload the file "
@@ -7754,27 +7760,27 @@ msgstr ""
 "い」をチェックし、 はいボタンを押下してください。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:496
+#: English/Configuration.xml:503
 msgid "Language"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:495
+#: English/Configuration.xml:502
 msgid "Language<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "言語<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:501
+#: English/Configuration.xml:508
 msgid "See <xref linkend=\"Locales_changing\" />."
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:508
+#: English/Configuration.xml:515
 msgid "Compare &gt; General page"
 msgstr "比較 → 一般 ページ"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:511
+#: English/Configuration.xml:518
 msgid ""
 "The options in this page enable you to change some of the ways that WinMerge "
 "detects differences, such as comparing only file size, or ignoring some "
@@ -7785,7 +7791,7 @@ msgstr ""
 "です。"
 
 #. type: Content of: <article><section><important><para>
-#: English/Configuration.xml:518
+#: English/Configuration.xml:525
 msgid ""
 "Customizing difference detection can be useful during comparisons, when you "
 "might not be interested in some differences. However, these options also "
@@ -7798,7 +7804,7 @@ msgstr ""
 "コード中のインデント変更は保存されません。"
 
 #. type: Content of: <article><section><important><para>
-#: English/Configuration.xml:526
+#: English/Configuration.xml:533
 msgid ""
 "For this reason, before you merge any differences, we strongly recommend "
 "resetting the options on this page to their default settings, especially the "
@@ -7811,12 +7817,12 @@ msgstr ""
 "クリックしてください。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:535
+#: English/Configuration.xml:542
 msgid "About ignore options<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "様々な無視オプションについて<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:541
+#: English/Configuration.xml:548
 msgid ""
 "A number of options in the Compare page (described later in this section) "
 "enable you to ignore certain differences. Ignored differences are treated in "
@@ -7827,22 +7833,22 @@ msgstr ""
 "な方法で扱われます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:548
+#: English/Configuration.xml:555
 msgid "They are marked with the Ignored Difference color."
 msgstr "これらは、無視された差異の色でマークされます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:552
+#: English/Configuration.xml:559
 msgid "Ignored differences cannot be merged."
 msgstr "無視された差異はマージできません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:556
+#: English/Configuration.xml:563
 msgid "Ignored differences are not included in difference counts."
 msgstr "無視された差異は、差異の個数に含められません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:561
+#: English/Configuration.xml:568
 msgid ""
 "Files containing only ignored differences are marked as identical in a "
 "folder comparison."
@@ -7851,27 +7857,26 @@ msgstr ""
 "ルとしてマークされます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:571
+#: English/Configuration.xml:578
 msgid "whitespaces"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:573 English/Configuration.xml:683
-#: English/Configuration.xml:738 English/Configuration.xml:767
-#: English/Configuration.xml:791 English/Configuration.xml:1193
-#: English/Configuration.xml:1240 English/Configuration.xml:1276
-#: English/Configuration.xml:1300 English/Configuration.xml:1352
-#: English/Configuration.xml:1376
+#: English/Configuration.xml:580 English/Configuration.xml:690
+#: English/Configuration.xml:745 English/Configuration.xml:774
+#: English/Configuration.xml:798 English/Configuration.xml:1200
+#: English/Configuration.xml:1247 English/Configuration.xml:1271
+#: English/Configuration.xml:1307 English/Configuration.xml:1331
 msgid "detecting and ignoring differences"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:570
+#: English/Configuration.xml:577
 msgid "Whitespaces<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "空白<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:578
+#: English/Configuration.xml:585
 msgid ""
 "Whitespace is the space between words and lines. It is represented in text "
 "files by special, nonprinting characters like spaces, tabs, and linefeeds. "
@@ -7890,7 +7895,7 @@ msgstr ""
 "イトスペースを無視したいかもしれません。"
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:590
+#: English/Configuration.xml:597
 msgid ""
 "The effects of whitespace on changes within lines are visible only when "
 "<option>View line differences</option> is enabled. This is in contrast to "
@@ -7901,60 +7906,60 @@ msgstr ""
 "にハイライトされます。"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Configuration.xml:597
+#: English/Configuration.xml:604
 msgid "Lines with different whitespace"
 msgstr "行と異なるホワイトスペース"
 
 #. type: Content of: <article><section><section><example><para><screen>
-#: English/Configuration.xml:600
+#: English/Configuration.xml:607
 #, no-wrap
 msgid "Two Words"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Configuration.xml:600
+#: English/Configuration.xml:607
 msgid "One space between words:<placeholder type=\"screen\" id=\"0\"/>"
 msgstr "単語間に一つのスペース:<placeholder type=\"screen\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><example><para><screen>
-#: English/Configuration.xml:604
+#: English/Configuration.xml:611
 #, no-wrap
 msgid "Two  Words"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Configuration.xml:604
+#: English/Configuration.xml:611
 msgid "Two spaces between words:<placeholder type=\"screen\" id=\"0\"/>"
 msgstr "単語間に二つのスペース:<placeholder type=\"screen\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><example><para><screen>
-#: English/Configuration.xml:608
+#: English/Configuration.xml:615
 #, no-wrap
 msgid "Two\tWords"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Configuration.xml:608
+#: English/Configuration.xml:615
 msgid "Tab between words:<placeholder type=\"screen\" id=\"0\"/>"
 msgstr "単語間にタブ:<placeholder type=\"screen\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Configuration.xml:612
+#: English/Configuration.xml:619
 msgid "No spaces between words:<placeholder type=\"screen\" id=\"0\"/>"
 msgstr "単語間にスペースなし:<placeholder type=\"screen\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:617
+#: English/Configuration.xml:624
 msgid "You can control whitespace detection by choosing one of these options:"
 msgstr "これらのオプションの一つにより、ホワイトスペースの検出を制御できます:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:623
+#: English/Configuration.xml:630
 msgid "Compare"
 msgstr "比較する"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:627
+#: English/Configuration.xml:634
 msgid ""
 "All whitespace is compared (default). If you are not sure which option your "
 "document requires, this is probably the safest choice. In the example, all "
@@ -7965,12 +7970,12 @@ msgstr ""
 "例では、すべての行が差異として検出されます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:635
+#: English/Configuration.xml:642
 msgid "Ignore change"
 msgstr "変更を無視する"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:639
+#: English/Configuration.xml:646
 msgid ""
 "Compares differences in whitespace. In the example, the first three lines "
 "have different whitespace, but are detected as identical: tabs and multiple "
@@ -7985,12 +7990,12 @@ msgstr ""
 "行の単語は異なります)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:650
+#: English/Configuration.xml:657
 msgid "Ignore all"
 msgstr "すべて無視する"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:654
+#: English/Configuration.xml:661
 msgid ""
 "Ignores all whitespace characters, except linefeeds (so lines are detected "
 "and preserved in a merge). All lines in the example are detected as "
@@ -8000,12 +8005,12 @@ msgstr ""
 "and preserved in a merge)。例のすべての行は、同一行として検出されます。"
 
 #. type: Content of: <article><section><section><note><title>
-#: English/Configuration.xml:663
+#: English/Configuration.xml:670
 msgid "Related topics"
 msgstr "関連するトピック"
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:666
+#: English/Configuration.xml:673
 msgid ""
 "The effects of whitespace settings on line differences is described in <xref "
 "linkend=\"CompareFiles_linediff-highlight\" />."
@@ -8014,7 +8019,7 @@ msgstr ""
 "linkend=\"CompareFiles_linediff-highlight\" />で説明されています。"
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:671
+#: English/Configuration.xml:678
 msgid ""
 "The Options dialog Editor page contains related options that control how "
 "whitespace is used to detect breaks between words. See <xref "
@@ -8025,17 +8030,17 @@ msgstr ""
 "は、 <xref linkend=\"Configuration_viewlinediffs\" />を参照してください"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:681
+#: English/Configuration.xml:688
 msgid "blank lines"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:680
+#: English/Configuration.xml:687
 msgid "Ignore blank lines<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "空行を無視する<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:690
+#: English/Configuration.xml:697
 msgid ""
 "<option>Disabled</option> (default): Empty lines in the source files are "
 "detected and represented in the File Compare window as blank lines with the "
@@ -8045,7 +8050,7 @@ msgstr ""
 "インドウ中で、 「差異あり: 削除」の色の空行で表されされます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:698
+#: English/Configuration.xml:705
 msgid ""
 "<option>Enabled</option>: Empty lines in the source files are ignored. They "
 "are represented in the File Compare window as blank lines with the Ignored "
@@ -8056,17 +8061,17 @@ msgstr ""
 "ら、差異はマージできません。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:710
+#: English/Configuration.xml:717
 msgid "case (letter), detecting and ignoring differences"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:709
+#: English/Configuration.xml:716
 msgid "Ignore case<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "大文字と小文字を区別しない<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:717
+#: English/Configuration.xml:724
 msgid ""
 "<option>Disabled</option> (default): Comparisons are case-sensitive. For "
 "example, <literal>LowerCase</literal>, <literal>LOWERCASE</literal>, and "
@@ -8077,20 +8082,20 @@ msgstr ""
 "<literal>lowercase</literal>はすべて異なります。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:726
+#: English/Configuration.xml:733
 msgid ""
 "<option>Enabled</option>: Differences between lowercase and uppercase "
 "letters are ignored."
 msgstr "<option>有効</option>: 文字間の大文字、 小文字の差異は無視されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><see>
-#: English/Configuration.xml:736 English/Configuration.xml:842
-#: English/Configuration.xml:1779 English/Configuration.xml:1785
+#: English/Configuration.xml:743 English/Configuration.xml:849
+#: English/Configuration.xml:1790 English/Configuration.xml:1796
 msgid "EOL"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:735
+#: English/Configuration.xml:742
 msgid ""
 "Ignore carriage return differences (Windows/Unix/Mac)<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
@@ -8099,7 +8104,7 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:745
+#: English/Configuration.xml:752
 msgid ""
 "<option>Disabled</option> (default): End of line (EOL) style differences are "
 "detected. For example, if you compare two lines that have the same contents "
@@ -8113,42 +8118,42 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:756
+#: English/Configuration.xml:763
 msgid "<option>Enabled</option>: EOL differences are ignored."
 msgstr "<option>有効</option>: EOLの差異は無視されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:765
+#: English/Configuration.xml:772
 msgid "numbers"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:764
+#: English/Configuration.xml:771
 msgid "Ignore numbers<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "数字を無視する<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:774
+#: English/Configuration.xml:781
 msgid "<option>Disabled</option> (default): Numeric differences are detected."
 msgstr "<option>無効</option>(デフォルト): 数字の差異を検出します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:780
+#: English/Configuration.xml:787
 msgid "<option>Enabled</option>: Numeric differences are ignored."
 msgstr "<option>有効</option>: 数字の差異は無視されます。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:789 English/Configuration.xml:2580
+#: English/Configuration.xml:796 English/Configuration.xml:2591
 msgid "codepage"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:788
+#: English/Configuration.xml:795
 msgid "Ignore codepage differences<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "コードページの違いを無視する<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:798
+#: English/Configuration.xml:805
 msgid ""
 "<option>Disabled</option> (default): File encoding differences are detected. "
 "Also, differences between the presence and absence of BOM are detected."
@@ -8157,23 +8162,23 @@ msgstr ""
 "ます。 UTF-8 BOMの有無の違いも検出します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:804
+#: English/Configuration.xml:811
 msgid "<option>Enabled</option>: File encoding differences are ignored."
 msgstr ""
 "<option>Enabled</option>:ファイルエンコーディングの違いは無視されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:815
+#: English/Configuration.xml:822
 msgid "comments"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:812
+#: English/Configuration.xml:819
 msgid "Ignore comment differences<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "コメントの違いを無視する<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:822
+#: English/Configuration.xml:829
 msgid ""
 "<option>Disabled</option> (default): WinMerge compares comments in code, "
 "along with other content."
@@ -8182,7 +8187,7 @@ msgstr ""
 "コメントを比較します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:829
+#: English/Configuration.xml:836
 msgid ""
 "<option>Enabled</option>: This option optimizes comparisons by detecting "
 "comments in certain programming language file types (such as C++ and Java), "
@@ -8195,14 +8200,14 @@ msgstr ""
 "タイプには影響しません。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:840
+#: English/Configuration.xml:847
 msgid "Ignore missing trailing EOL<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "ファイル末尾の改行文字の有無を無視する<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:849
+#: English/Configuration.xml:856
 msgid ""
 "<option>Disabled</option> (default): Differences in the presence or absence "
 "of trailing EOL characters are detected as differences, even if the content "
@@ -8212,7 +8217,7 @@ msgstr ""
 "改行文字の有無の違いは無視されません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:855
+#: English/Configuration.xml:862
 msgid ""
 "<option>Enabled</option>: When one file ends with an EOL character (e.g., LF "
 "or CRLF) and the other does not, but the line content matches, these "
@@ -8223,13 +8228,13 @@ msgstr ""
 "ば、この差異は無視されます。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:863
+#: English/Configuration.xml:870
 msgid "Enable moved block detection<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "移動ブロックの検出を有効にする<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:871
+#: English/Configuration.xml:878
 msgid ""
 "<option>Disabled</option> (default): WinMerge does not detect when "
 "differences are due to moved lines."
@@ -8238,7 +8243,7 @@ msgstr ""
 "ん。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:878
+#: English/Configuration.xml:885
 msgid ""
 "<option>Enabled</option>: WinMerge tries to detect lines that are moved (in "
 "different locations in each file). Moved blocks are indicated by the "
@@ -8256,7 +8261,7 @@ msgstr ""
 "より簡単に視覚化することができます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:890
+#: English/Configuration.xml:897
 msgid ""
 "For an example, see the Location pane description in <xref "
 "linkend=\"Compare_files\" />."
@@ -8265,17 +8270,17 @@ msgstr ""
 "ください。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:900
+#: English/Configuration.xml:907
 msgid "similar lines, aligning"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:899
+#: English/Configuration.xml:906
 msgid "Align similar lines<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "類似行をマッチさせる<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:907
+#: English/Configuration.xml:914
 msgid ""
 "<option>Disabled</option> (default): Lines within difference blocks are "
 "shown as they occur in the source files."
@@ -8284,7 +8289,7 @@ msgstr ""
 "as they occur in the source files."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:914
+#: English/Configuration.xml:921
 msgid ""
 "<option>Enabled</option>: WinMerge tries to detect lines within a difference "
 "blocks that are similar, and adds blank lines in the File panes to align "
@@ -8297,7 +8302,7 @@ msgstr ""
 "は、それほど効果的ではありません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:921
+#: English/Configuration.xml:928
 msgid ""
 "For an example, see the <citetitle>Similar lines</citetitle> description in "
 "<xref linkend=\"CompareFiles_diffcolors\" />."
@@ -8306,22 +8311,22 @@ msgstr ""
 "<citetitle>Similar lines</citetitle>の説明を参照してください。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:931
+#: English/Configuration.xml:938
 msgid "algorithm"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:930
+#: English/Configuration.xml:937
 msgid "Diff algorithm<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Diff アルゴリズム<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:938
+#: English/Configuration.xml:945
 msgid "<option>default</option> (default): The basic greedy diff algorithm."
 msgstr "<option>default</option> (デフォルト): 基本的な差分アルゴリズムです。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:945
+#: English/Configuration.xml:952
 msgid ""
 "<option>minimal</option>: Spend extra time to make sure the smallest "
 "possible diff is produced."
@@ -8330,14 +8335,14 @@ msgstr ""
 "分、比較に時間がかかります。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:952
+#: English/Configuration.xml:959
 msgid ""
 "<option>patience</option>: Use \"patience diff\" algorithm when generating "
 "diff."
 msgstr "<option>patience</option>: patienceアルゴリズムで差分を比較します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:959
+#: English/Configuration.xml:966
 msgid ""
 "<option>histogram</option>: This algorithm extends the patience algorithm to "
 "\"support low-occurrence common elements\"."
@@ -8347,7 +8352,7 @@ msgstr ""
 "ます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:966
+#: English/Configuration.xml:973
 msgid ""
 "<option>none</option>: This algorithm does not detect insertions or "
 "deletions of lines."
@@ -8355,18 +8360,18 @@ msgstr ""
 "<option>none</option>: このアルゴリズムは行の挿入や削除を検出しません。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:976
+#: English/Configuration.xml:983
 msgid "indent heuristic"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:975
+#: English/Configuration.xml:982
 msgid "Enable indent heuristic<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "indent heuristic を有効にする<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:983
+#: English/Configuration.xml:990
 msgid ""
 "<option>Enabled</option> (default): Enable the heuristic that shifts diff "
 "hunk boundaries to make diffs easier to read.  It has no effect if the Diff "
@@ -8377,24 +8382,24 @@ msgstr ""
 "合、効果はありません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:991
+#: English/Configuration.xml:998
 msgid "<option>Disabled</option>: Disable the heuristic."
 msgstr "<option>無効</option>: ヒューリスティックを無効にします。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1000
+#: English/Configuration.xml:1007
 msgid "unhighlight ignored differences"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:999
+#: English/Configuration.xml:1006
 msgid ""
 "Completely unhighlight the ignored differences<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1007
+#: English/Configuration.xml:1014
 msgid ""
 "<option>Disabled</option> (default): Difference lines ignored by line "
 "filters and substitution filters are displayed in the color of Ignored "
@@ -8402,7 +8407,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1015
+#: English/Configuration.xml:1022
 msgid ""
 "<option>Enabled</option>: Makes the color of the different lines ignored by "
 "line filters and substitution filters the same as the color of the identical "
@@ -8410,22 +8415,22 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1025
+#: English/Configuration.xml:1032
 msgid "Compare &gt; Folder page"
 msgstr "比較 → フォルダー ページ"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:1032
+#: English/Configuration.xml:1039
 msgid "detection options"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1029
+#: English/Configuration.xml:1036
 msgid "Compare method<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "比較方法<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1037
+#: English/Configuration.xml:1044
 msgid ""
 "This option lets you determine how complete your file comparisons are. "
 "Choose one of these five choices:"
@@ -8434,12 +8439,12 @@ msgstr ""
 "肢から1つを選んでください。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1043
+#: English/Configuration.xml:1050
 msgid "Full Contents"
 msgstr "フルコンテンツ"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1047
+#: English/Configuration.xml:1054
 msgid ""
 "Default: Full comparison of files by content, with all the bells and "
 "whistles. This method invokes plugins and uses the diffutils engine for "
@@ -8451,12 +8456,12 @@ msgstr ""
 "は、もっとも完璧でオススメの方法です。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1056
+#: English/Configuration.xml:1063
 msgid "Quick Contents"
 msgstr "クイックコンテンツ"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1060
+#: English/Configuration.xml:1067
 msgid ""
 "Slimmed-down comparison of files by content. This method uses streamlined "
 "file comparison code which skips plugins and moved block detection. This "
@@ -8469,7 +8474,7 @@ msgstr ""
 "も高速です。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1069
+#: English/Configuration.xml:1076
 msgid ""
 "Its drawback is that line filters are not applied when comparing. For "
 "example, this method sees file as different even if line filters are set to "
@@ -8480,12 +8485,12 @@ msgstr ""
 "異として検出します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1077
+#: English/Configuration.xml:1084
 msgid "Binary Contents"
 msgstr "バイナリコンテンツ"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1081
+#: English/Configuration.xml:1088
 msgid ""
 "This method is faster than the Quick contents compare method. However, it "
 "does not apply any plugins, line filters, 'Ignore case' option, etc. First, "
@@ -8504,12 +8509,12 @@ msgstr ""
 "されたファイルとの比較に適しています。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1095
+#: English/Configuration.xml:1102
 msgid "Modified Date<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "更新日時<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1104
+#: English/Configuration.xml:1111
 msgid ""
 "Compares only the modification dates on the files, so it is far faster than "
 "either of the contents methods. But obviously, it is only as accurate as the "
@@ -8519,12 +8524,12 @@ msgstr ""
 "しかし、明らかに、それはただ更新日時と同じくらい正確です。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1112
+#: English/Configuration.xml:1119
 msgid "Modified Date and Size"
 msgstr "更新日時とサイズ"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1116
+#: English/Configuration.xml:1123
 msgid ""
 "Similar to <guilabel>Modified Date</guilabel>, but also checks file sizes "
 "when dates are identical."
@@ -8533,17 +8538,17 @@ msgstr ""
 "ズもチェックします。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
-#: English/Configuration.xml:1125
+#: English/Configuration.xml:1132
 msgid "file sizes"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1124
+#: English/Configuration.xml:1131
 msgid "Size<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "サイズ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1133
+#: English/Configuration.xml:1140
 msgid ""
 "Compares only file sizes, so it is fast but not as accurate as the contents "
 "methods."
@@ -8552,12 +8557,12 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:1146 English/Configuration.xml:1150
+#: English/Configuration.xml:1153 English/Configuration.xml:1157
 msgid "stopping after first difference"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1143
+#: English/Configuration.xml:1150
 msgid ""
 "Stop after first difference<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -8566,7 +8571,7 @@ msgstr ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1155
+#: English/Configuration.xml:1162
 msgid ""
 "This option is enabled only when the <guilabel> Quick Contents </guilabel> "
 "compare method is selected."
@@ -8575,7 +8580,7 @@ msgstr ""
 "れた場合にのみ有効となります。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1164
+#: English/Configuration.xml:1171
 msgid ""
 "<option>Disabled</option> (default): WinMerge examines all differences in "
 "the files."
@@ -8584,7 +8589,7 @@ msgstr ""
 "査します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1171
+#: English/Configuration.xml:1178
 msgid ""
 "<option>Enabled</option>: This option optimizes comparisons by examining "
 "files only until the first difference is found, instead always scanning the "
@@ -8594,7 +8599,7 @@ msgstr ""
 "に、 最初の差異が見つかるまでファイルを検査することにより比較を最適化します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1177
+#: English/Configuration.xml:1184
 msgid ""
 "The drawback is that WinMerge may be unable to identify binary files as "
 "binary. This is likely to happen if the first difference is near the "
@@ -8610,14 +8615,14 @@ msgstr ""
 "確かでないなら、このオプションを有効にしないでください。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1190
+#: English/Configuration.xml:1197
 msgid ""
 "Ignore time differences less than 3 seconds<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr "3秒以下の時間差を無視する<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1200
+#: English/Configuration.xml:1207
 msgid ""
 "<option>Disabled</option> (default): Files with different timestamps are "
 "detected as different."
@@ -8626,7 +8631,7 @@ msgstr ""
 "として検出されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1207
+#: English/Configuration.xml:1214
 msgid ""
 "<option>Enabled</option>: Sometimes (for example, when you use network "
 "shares) small differences in timestamps are not significant.  To get more "
@@ -8639,7 +8644,7 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1214
+#: English/Configuration.xml:1221
 msgid ""
 "This option works only with the <guimenuitem> Modified Date </guimenuitem> "
 "and <guimenuitem> Modified Date and Size </guimenuitem> compare methods "
@@ -8652,7 +8657,7 @@ msgstr ""
 "果はありません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><warning><para>
-#: English/Configuration.xml:1227
+#: English/Configuration.xml:1234
 msgid ""
 "This option should be enabled only when the time difference is detected. "
 "Otherwise, it can cause incorrect compare results."
@@ -8661,12 +8666,36 @@ msgstr ""
 "な比較結果の原因となります。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1238 English/Configuration.xml:1298
+#: English/Configuration.xml:1245
+msgid "include subfolders"
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: English/Configuration.xml:1244
+msgid "Include subfolders<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:1254
+msgid ""
+"<option>Enabled</option> (default): WinMerge doing a recursive comparing and "
+"also includes subfolders."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:1260
+msgid ""
+"<option>Disabled</option>: WinMerge only comparing the files in the root "
+"folder."
+msgstr ""
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: English/Configuration.xml:1269
 msgid "expand subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1237 English/Configuration.xml:1297
+#: English/Configuration.xml:1268
 msgid ""
 "Automatically expand subfolders after comparison<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
@@ -8675,7 +8704,7 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1247
+#: English/Configuration.xml:1278
 msgid ""
 "<option>Do not expand</option> (default): Subfolders remain collapsed after "
 "comparison."
@@ -8684,7 +8713,7 @@ msgstr ""
 "ままになります。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1253
+#: English/Configuration.xml:1284
 msgid ""
 "<option>Expand all subfolders</option>: All subfolders are expanded after "
 "comparison."
@@ -8693,7 +8722,7 @@ msgstr ""
 "が展開されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1259
+#: English/Configuration.xml:1290
 msgid ""
 "<option>Expand different subfolders</option>: Only subfolders with "
 "differences are expanded after comparison."
@@ -8702,7 +8731,7 @@ msgstr ""
 "ダーのみが展開されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1265
+#: English/Configuration.xml:1296
 msgid ""
 "<option>Expand identical subfolders</option>: Only subfolders without "
 "differences are expanded after comparison."
@@ -8711,83 +8740,12 @@ msgstr ""
 "ダーのみが展開されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1274
-msgid "include subfolders"
-msgstr ""
-
-#. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1273
-msgid "Include subfolders<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-
-#. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1283
-msgid ""
-"<option>Enabled</option> (default): WinMerge doing a recursive comparing and "
-"also includes subfolders."
-msgstr ""
-
-#. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1289
-msgid ""
-"<option>Disabled</option>: WinMerge only comparing the files in the root "
-"folder."
-msgstr ""
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1306
-msgid "Do not expand"
-msgstr "展開しない"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1310
-msgid ""
-"(default): WinMerge will not automatically expand subfolders after comparing "
-"folders."
-msgstr "(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1316
-msgid "Expand all subfolders"
-msgstr "すべてのサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1320
-msgid ""
-"WinMerge will automatically expand all subfolders after comparing folders."
-msgstr "フォルダ比較後、自動的にすべてのサブフォルダを展開します。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1326
-msgid "Expand different subfolders"
-msgstr "差異のあるサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1330
-msgid ""
-"WinMerge will automatically expand different subfolders after comparing "
-"folders."
-msgstr "フォルダ比較後、自動的に差異のあるサブフォルダを展開します。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1336
-msgid "Expand identical subfolders"
-msgstr "同一のサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1340
-msgid ""
-"WinMerge will automatically expand identical subfolders after comparing "
-"folders."
-msgstr "フォルダ比較後、自動的に同一のサブフォルダを展開します。"
-
-#. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1350
+#: English/Configuration.xml:1305
 msgid "include unique subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1349
+#: English/Configuration.xml:1304
 msgid ""
 "Include unique subfolders contents<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
@@ -8795,7 +8753,7 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1359
+#: English/Configuration.xml:1314
 msgid ""
 "<option>Enabled</option> (default): WinMerge also shows the content from "
 "unique subfolders."
@@ -8804,7 +8762,7 @@ msgstr ""
 "ダー内の内容も表示します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1365
+#: English/Configuration.xml:1320
 msgid ""
 "<option>Disabled</option>: WinMerge ignore unique subfolders when comparing "
 "folders."
@@ -8813,17 +8771,17 @@ msgstr ""
 "無視します。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1374
+#: English/Configuration.xml:1329
 msgid "reparse points"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1373
+#: English/Configuration.xml:1328
 msgid "Ignore reparse points<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "再解析ポイントを無視する<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1383
+#: English/Configuration.xml:1338
 msgid ""
 "<option>Disabled</option> (default): Compares the contents of reparse point "
 "folders as if they were normal folders."
@@ -8832,7 +8790,7 @@ msgstr ""
 "ダーのように比較します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1389
+#: English/Configuration.xml:1344
 msgid ""
 "<option>Enabled</option>: Ignores the contents of folders that are reparse "
 "points. For example, C:\\Users\\All Users is a symbolic link to C:"
@@ -8841,38 +8799,38 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1398
+#: English/Configuration.xml:1353
 msgid "Quick compare"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:1400 English/Configuration.xml:1432
+#: English/Configuration.xml:1355 English/Configuration.xml:1387
 msgid "limit"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1397
+#: English/Configuration.xml:1352
 msgid ""
 "Threshold for switching to quick compare (MB)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr "クイック比較切替閾値 (MB)<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1407
+#: English/Configuration.xml:1362
 msgid ""
 "<option>Disabled</option>: Is not active unless the Compare method is set to "
 "other than <guilabel>Full Contents</guilabel> compare method."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1414
+#: English/Configuration.xml:1369
 msgid ""
 "<option>Enabled</option>: Is active when the Compare method is set to "
 "<guilabel>Full Contents</guilabel> compare method."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1419
+#: English/Configuration.xml:1374
 msgid ""
 "Threshold size for switching to <guilabel>Quick Contents</guilabel> compare "
 "method.  When <guilabel>Full Contents</guilabel> compare method is selected, "
@@ -8881,19 +8839,19 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1430
+#: English/Configuration.xml:1385
 msgid "Binary compare"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1429
+#: English/Configuration.xml:1384
 msgid ""
 "Threshold for switching to binary compare (MB)<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1439
+#: English/Configuration.xml:1394
 msgid ""
 "<option>Disabled</option>: Is not active unless the Compare method is set to "
 "other than <guilabel>Full Contents</guilabel> and <guilabel>Quick Contents</"
@@ -8901,7 +8859,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1446
+#: English/Configuration.xml:1401
 msgid ""
 "<option>Enabled</option>: Is active when the Compare method is set to "
 "<guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel> "
@@ -8909,7 +8867,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1451
+#: English/Configuration.xml:1406
 msgid ""
 "Threshold size for switching to Binary Contents compare method.  When "
 "<guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel> "
@@ -8918,39 +8876,39 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1462
+#: English/Configuration.xml:1417
 msgid "compare threads"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1461
+#: English/Configuration.xml:1416
 msgid "Number of CPU cores to use<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "使用するCPUコアの数<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1467
+#: English/Configuration.xml:1422
 msgid ""
 "Number of threads which use to comparing. With a negative value WinMerge "
 "will use addition of the number of available CPU cores."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1477
+#: English/Configuration.xml:1432
 msgid "table files"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1476
+#: English/Configuration.xml:1431
 msgid "Compare &gt; Table page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "比較 → テーブル ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1481
+#: English/Configuration.xml:1436
 msgid "CSV file patterns"
 msgstr "CSV ファイルとして扱うパターン"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1483
+#: English/Configuration.xml:1438
 msgid ""
 "Specifies file name pattern for comma-separated values files to open in "
 "table format.  To specify multiple items, separate them with a semicolon.  "
@@ -8963,12 +8921,12 @@ msgstr ""
 "は、*.csv を取り除いてください。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1490
+#: English/Configuration.xml:1445
 msgid "TSV file patterns"
 msgstr "TSV ファイルとして扱うパターン"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1492
+#: English/Configuration.xml:1447
 msgid ""
 "Specifies file name pattern for tab-separated values files to open in table "
 "format.  To specify multiple items, separate them with a semicolon.  By "
@@ -8981,12 +8939,12 @@ msgstr ""
 "*.tsv を取り除いてください。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1499
+#: English/Configuration.xml:1454
 msgid "Custom Delimiter-Separated Values"
 msgstr "ユーザー指定文字区切り値"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1501
+#: English/Configuration.xml:1456
 msgid ""
 "If you want to open text files, with values separated by characters other "
 "than commas or tabs, in tabular format, specify the file name pattern and "
@@ -8997,12 +8955,12 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1507
+#: English/Configuration.xml:1462
 msgid "Allow newlines in quotes"
 msgstr "引用符内の改行文字を値として扱う"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1511
+#: English/Configuration.xml:1466
 msgid ""
 "<option>Enabled</option> (default): If there is a newline character between "
 "the quote character and the next quote character, the newline character is "
@@ -9015,7 +8973,7 @@ msgstr ""
 "プションを有効にします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1520
+#: English/Configuration.xml:1475
 msgid ""
 "<option>Disabled</option>: Disable the above.  Disable this option when "
 "opening files with incorrect quotes."
@@ -9024,12 +8982,12 @@ msgstr ""
 "く場合は、 このオプションを無効にしてください。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1529
+#: English/Configuration.xml:1484
 msgid "Quote character"
 msgstr "引用符文字"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1531
+#: English/Configuration.xml:1486
 msgid ""
 "Specifies the character that is treated as quotation marks.  Delimiters "
 "within the text range enclosed by the characters specified here are treated "
@@ -9043,23 +9001,23 @@ msgstr ""
 "ルに存在しない文字を指定してください。"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1541
+#: English/Configuration.xml:1496
 msgid "Compare &gt; Binary page"
 msgstr "比較 → バイナリ ページ"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1545
+#: English/Configuration.xml:1500
 msgid "binary files"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1544
+#: English/Configuration.xml:1499
 msgid "Binary file patterns<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "バイナリファイルとして扱うパターン<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1549
+#: English/Configuration.xml:1504
 msgid ""
 "Specifies file name patterns for binary files to be opened in the binary "
 "compare window.  To specify multiple items, separate them with a semicolon.  "
@@ -9073,47 +9031,154 @@ msgstr ""
 "*.tsv を取り除いてください。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1557
+#: English/Configuration.xml:1512
 msgid "frhed"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1556
+#: English/Configuration.xml:1511
 msgid "Frhed settings<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1563
+#: English/Configuration.xml:1517
 msgid "View Settings..."
 msgstr ""
 
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1520
+msgid "Here you can choose:"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Configuration.xml:1523
+msgid ""
+"The number of bytes to display per line of hexdump (only applies if &quot;"
+"Automatically adjust number of bytes per line&quot; is disabled)"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Configuration.xml:1528
+msgid ""
+"If the &quot;Automatically adjust number of bytes per line&quot;- checkbox "
+"is checked, then the number of bytes displayed per hexdump line is adjusted "
+"in such a way that the whole window width is used at all times."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Configuration.xml:1534
+msgid ""
+"The number of digits for the offset length (only applies if &quot;Adjust "
+"offset length&quot; is disabled)"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Configuration.xml:1538
+msgid ""
+"If the offset length should be automatically adjusted to that of the maximum "
+"offset (enabled) or right-padded with spaces (disabled)"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Configuration.xml:1543
+msgid ""
+"How to display the values at the caret position, either as signed or as "
+"unsigned integer values"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Configuration.xml:1547
+msgid "If read-only mode should be automatically set after opening files."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Configuration.xml:1551
+msgid ""
+"The name of the text editor that will be called by the "
+"<menuchoice><guimenu>Edit</guimenu><guimenuitem>Open in text editor </"
+"guimenuitem></menuchoice> command."
+msgstr ""
+
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1571
+#: English/Configuration.xml:1560
 msgid "Binary Mode..."
 msgstr ""
 
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1563
+msgid ""
+"What kind of byte order to use: Either Little-endian, as used in Intel-"
+"computers or Big-endian, used for example in computers with a Motorola "
+"processor. The difference between these modes is thus: Consider a longword, "
+"which is 4 bytes (named A to D) long."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
+#: English/Configuration.xml:1568
+#, no-wrap
+msgid "Longword in processor register = ABCD."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1570
+msgid ""
+"The least significant bit, which has the value 1, is found in byte \"D\". In "
+"a processor register the longword is ordered in this way. If this value is "
+"written to a position in memory, then by Intel convention the longword is "
+"written in this way, with the growing offsets to the right:"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
+#: English/Configuration.xml:1576
+#, no-wrap
+msgid "Longword in memory = DCBA."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1578
+msgid ""
+"That is, the bytes making up the longword are written in reverse order as "
+"they are found in a processor register."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1581
+msgid ""
+"This means that a file written by a Big-endian machine will contain wrong "
+"longword and word values if read by a Little-endian machine without "
+"conversion."
+msgstr ""
+
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1579
+#: English/Configuration.xml:1588
 msgid "Character Set..."
 msgstr ""
 
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1591
+msgid ""
+"Here you can choose the character set for displaying and writing characters, "
+"either ANSI (the Windows character set) or OEM (the DOS character set). The "
+"font size in points can also be chosen."
+msgstr ""
+
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1592
+#: English/Configuration.xml:1603
 msgid "image files"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1591
+#: English/Configuration.xml:1602
 msgid "Compare &gt; Image page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "比較 → 画像 ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1596
+#: English/Configuration.xml:1607
 msgid "Image file patterns"
 msgstr "画像ファイルとして扱うパターン"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1598
+#: English/Configuration.xml:1609
 msgid ""
 "Specifies file name patterns for image files to be opened in the image "
 "compare window.  To specify multiple items, separate them with a semicolon.  "
@@ -9127,12 +9192,12 @@ msgstr ""
 "示したい場合は、この拡張子を追加してください。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1606
+#: English/Configuration.xml:1617
 msgid "Enable image compare in folder compare"
 msgstr "フォルダー比較で画像比較を有効にする"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1608
+#: English/Configuration.xml:1619
 msgid ""
 "When this option is enabled, folder comparisons will compare files that "
 "match the specified patterns as images.  Metadata differences will be "
@@ -9141,12 +9206,12 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1614
+#: English/Configuration.xml:1625
 msgid "OCR result"
 msgstr "OCRの結果"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1618
+#: English/Configuration.xml:1629
 msgid ""
 "<option>Text only</option> (default): Shows only the text recognized from "
 "the image."
@@ -9154,38 +9219,38 @@ msgstr ""
 "<option>有効</option>(デフォルト): 画像から認識したテキストのみを表示します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1625
+#: English/Configuration.xml:1636
 msgid ""
 "<option>Line-by-line position and text</option>: Shows the recognized text "
 "line by line with its position in the original image."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1632
+#: English/Configuration.xml:1643
 msgid ""
 "<option>Word-by-word position and text</option>: Shows the recognized text "
 "word by word with its position in the original image."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1643
+#: English/Configuration.xml:1654
 msgid "webpages"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1642
+#: English/Configuration.xml:1653
 msgid "Compare &gt; Webpage page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "比較 → Webページ ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1649
+#: English/Configuration.xml:1660
 msgid ""
 "URL pattern to include (Regular expression)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1653
+#: English/Configuration.xml:1664
 msgid ""
 "Enter a regular expression in this field to specify the file paths or URLs "
 "that should be opened in the webpage compare window.  For example, if you "
@@ -9195,14 +9260,14 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1661
+#: English/Configuration.xml:1672
 msgid ""
 "URL pattern to exclude (Regular expression)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1665
+#: English/Configuration.xml:1676
 msgid ""
 "Enter a regular expression to exclude certain file paths or URLs from the "
 "Webpage Comparison window.  This applies to items that match the \"URL "
@@ -9211,19 +9276,19 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1673
+#: English/Configuration.xml:1684
 msgid "User data folder location<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1679
+#: English/Configuration.xml:1690
 msgid ""
 "<option>AppData folder</option> (default): Stores cookies, browsing history, "
 "and cache data in the %APPDATA%\\WinMerge\\WinWebDiff folder."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1685
+#: English/Configuration.xml:1696
 msgid ""
 "<option>Install folder</option>: Saves data in the WinMerge installation "
 "directory, which usually requires administrator permissions to write. This "
@@ -9231,36 +9296,36 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1693
+#: English/Configuration.xml:1704
 msgid ""
 "Separate user data folders for each pane<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1696
+#: English/Configuration.xml:1707
 msgid ""
 "Creates distinct data folders for each pane, preventing data overlap between "
 "them."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1703
+#: English/Configuration.xml:1714
 msgid "message boxes"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1702
+#: English/Configuration.xml:1713
 msgid "Message Boxes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1708
+#: English/Configuration.xml:1719
 msgid "Reset"
 msgstr "リセット"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1711
+#: English/Configuration.xml:1722
 msgid ""
 "WinMerge allows you to suppress some common message boxes. For example, when "
 "two identical files are opened, the message box titled, <guilabel>The files "
@@ -9275,7 +9340,7 @@ msgstr ""
 "することで、そのメッセージを再び表示しないようにすることができます。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1719
+#: English/Configuration.xml:1730
 msgid ""
 "Later, you might decide that you want to see those messages again.  If so, "
 "click the <guibutton>Reset</guibutton> button to make the message boxes "
@@ -9286,7 +9351,7 @@ msgstr ""
 "できます。"
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:1726
+#: English/Configuration.xml:1737
 msgid ""
 "We recommend that you not suppress messages when updating WinMerge to a "
 "newer version. The installer enables their display automatically, but if you "
@@ -9299,32 +9364,32 @@ msgstr ""
 "を使って、メッセージの表示を有効にすることを思い出してください。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:1740 English/Configuration.xml:1911
+#: English/Configuration.xml:1751 English/Configuration.xml:1922
 msgid "options for File Compare window"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1737
+#: English/Configuration.xml:1748
 msgid "Editor &gt; General page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "エディター → 一般 ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1747 English/Configuration.xml:2167
+#: English/Configuration.xml:1758 English/Configuration.xml:2178
 msgid "syntax highlighting"
 msgstr "シンタックスハイライト"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:1749
+#: English/Configuration.xml:1760
 msgid "enabling and disabling"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1746
+#: English/Configuration.xml:1757
 msgid "Highlight syntax<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "シンタックスハイライト<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1756
+#: English/Configuration.xml:1767
 msgid ""
 "<option>Enabled</option> (default): WinMerge can syntax highlight many "
 "programming language and web formats. To see the formats that are supported "
@@ -9338,7 +9403,7 @@ msgstr ""
 "menuchoice>。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1768
+#: English/Configuration.xml:1779
 msgid ""
 "<option>Disabled</option>: Syntax highlighting consumes some processing "
 "power, so if WinMerge screen updating seems to be slow, turning off this "
@@ -9349,12 +9414,12 @@ msgstr ""
 "ん。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1783
+#: English/Configuration.xml:1794
 msgid "end of line"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1778
+#: English/Configuration.xml:1789
 msgid ""
 "Preserve original EOL chars<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -9363,7 +9428,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1792
+#: English/Configuration.xml:1803
 msgid ""
 "<option>Disabled</option> (default): Assumes that files are meant to be "
 "Windows files. If a file does not use the standard Windows line ending, "
@@ -9379,7 +9444,7 @@ msgstr ""
 "スバーには、EOLスタイル <guilabel>Win</guilabel>として表示します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1801
+#: English/Configuration.xml:1812
 msgid ""
 "For most situations you should leave this option disabled: the default "
 "behavior works even when comparing two files that have different line ending "
@@ -9390,7 +9455,7 @@ msgstr ""
 "しょう。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1809
+#: English/Configuration.xml:1820
 msgid ""
 "<option>Enabled</option>: Prevents WinMerge from automatically changing line "
 "endings, so that it detects different EOL styles for every line. This might "
@@ -9403,7 +9468,7 @@ msgstr ""
 "ん。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
-#: English/Configuration.xml:1817
+#: English/Configuration.xml:1828
 msgid ""
 "This is an advanced option for users who are familiar with EOL bytes and who "
 "want to compare files with different EOL styles inside <emphasis>one</"
@@ -9418,22 +9483,22 @@ msgstr ""
 "るためには、 不要であることを憶えておいてください。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:1834
+#: English/Configuration.xml:1845
 msgid "editing options"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1831
+#: English/Configuration.xml:1842
 msgid "Tabs<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "タブ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1840
+#: English/Configuration.xml:1851
 msgid "Tab size"
 msgstr "タブ幅"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1844
+#: English/Configuration.xml:1855
 msgid ""
 "Width of a tab space. Specify a value <replaceable>n</replaceable>: the "
 "resulting width is equivalent to that of <replaceable>n</replaceable> "
@@ -9444,12 +9509,12 @@ msgstr ""
 "4。 最大値は64です。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1853
+#: English/Configuration.xml:1864
 msgid "Tab insert options"
 msgstr "タブ挿入オプション"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1857
+#: English/Configuration.xml:1868
 msgid ""
 "Determines what kind of character is used when you insert a tab in text. "
 "Only one of these options can be enabled:"
@@ -9458,14 +9523,14 @@ msgstr ""
 "のうち、1つだけを有効にすることができます:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1864
+#: English/Configuration.xml:1875
 msgid ""
 "<guilabel>Insert Tabs</guilabel> (default): Uses a single tab character."
 msgstr ""
 "<guilabel>タブを挿入</guilabel>(デフォルト):1つのタブ文字を使用します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1871
+#: English/Configuration.xml:1882
 msgid ""
 "<guilabel>Insert Spaces</guilabel>: Uses one or more spaces (determined by "
 "the <option>Tab size</option>) instead of a tab character. For example, with "
@@ -9476,24 +9541,24 @@ msgstr ""
 "の場合、4つのスペースが挿入されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1886
+#: English/Configuration.xml:1897
 msgid "rendering"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1885
+#: English/Configuration.xml:1896
 msgid "Rendering Mode<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "レンダリングモード<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1893
+#: English/Configuration.xml:1904
 msgid ""
 "<option>GDI</option> (default): Renders text using the Graphics Device "
 "Interface (GDI)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1899
+#: English/Configuration.xml:1910
 msgid ""
 "<option>DirectWrite Modes</option>: Renders text using various DirectWrite "
 "rendering modes, including support for colored emojis on Windows 8.1 and "
@@ -9504,24 +9569,24 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1908
+#: English/Configuration.xml:1919
 msgid ""
 "Editor &gt; Compare/Merge page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "エディター → 比較/マージ ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:1920
+#: English/Configuration.xml:1931
 msgid "enabling and disabling autoscan"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1917
+#: English/Configuration.xml:1928
 msgid "Automatic rescan<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "自動的に再スキャンする<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1927
+#: English/Configuration.xml:1938
 msgid ""
 "<option>Disabled</option> (default): WinMerge rescans automatically when you "
 "merge a difference, or if you manually rescan (for example, click the "
@@ -9532,7 +9597,7 @@ msgstr ""
 "キャンします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1935
+#: English/Configuration.xml:1946
 msgid ""
 "<option>Enabled</option>: Forces WinMerge to rescan after every edit event "
 "(a change to files, like typing)."
@@ -9541,7 +9606,7 @@ msgstr ""
 "イルへの変更)の後、強制的に再スキャンします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><note><para>
-#: English/Configuration.xml:1941
+#: English/Configuration.xml:1952
 msgid ""
 "To avoid slowing down your editing, WinMerge delays automatic rescanning a "
 "little: it waits one second after each edit event.  Because each new edit "
@@ -9553,19 +9618,19 @@ msgstr ""
 "ん。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1954
+#: English/Configuration.xml:1965
 msgid "copy granularity"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1953
+#: English/Configuration.xml:1964
 msgid ""
 "Copy granularity for selected differences<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr "選択された差異のコピー粒度<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1959
+#: English/Configuration.xml:1970
 msgid ""
 "Specifies the copy granularity when copying to another pane by clicking the "
 "<guimenuitem>Copy to right</guimenuitem> menu item etc.  with text selected."
@@ -9574,21 +9639,21 @@ msgstr ""
 "等をクリックして別ペインにコピーするときのコピー粒度を指定します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1967
+#: English/Configuration.xml:1978
 msgid "<option>Diff hunk</option>: Copies diff hunks within the selected text."
 msgstr ""
 "<option>差異ブロック</option> : 選択されたテキスト内の差異ブロックをコピーし"
 "ます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1974
+#: English/Configuration.xml:1985
 msgid ""
 "<option>Inline diff</option>: Copies inline diffs within the selected text."
 msgstr ""
 "<option>行内差異</option>: 選択されたテキスト内の行内差異をコピーします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1981
+#: English/Configuration.xml:1992
 msgid ""
 "<option>Line</option>: Copies the differences within the selected text line "
 "by line."
@@ -9596,7 +9661,7 @@ msgstr ""
 "<option>行</option>: 選択されたテキスト内の差異を行単位でコピーします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1988
+#: English/Configuration.xml:1999
 msgid ""
 "<option>Character</option> (default): Copies the differences within the "
 "selected text character by character."
@@ -9605,17 +9670,17 @@ msgstr ""
 "ピーします。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2001
+#: English/Configuration.xml:2012
 msgid "viewing options"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1998
+#: English/Configuration.xml:2009
 msgid "Line Difference Coloring<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "行内差異の強調<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2006
+#: English/Configuration.xml:2017
 msgid ""
 "These settings enable and configure the detection of <glossterm> line "
 "differences </glossterm> (changes within the lines of difference blocks):"
@@ -9624,12 +9689,12 @@ msgstr ""
 "有効にし、また、その設定をします。:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2015
+#: English/Configuration.xml:2026
 msgid "View line differences"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2021
+#: English/Configuration.xml:2032
 msgid ""
 "<option>Enabled</option> (default): WinMerge highlights differences within "
 "lines. Also enables the <menuchoice> <guimenu>View</guimenu> "
@@ -9640,12 +9705,12 @@ msgstr ""
 "示</guimenuitem> </menuchoice>でも有効にできます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2029
+#: English/Configuration.xml:2040
 msgid "Choose one of these suboptions:"
 msgstr "次のサブオプションから、1つ選択してください:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2034
+#: English/Configuration.xml:2045
 msgid ""
 "<guilabel>Character level</guilabel>: Highlights individual characters that "
 "are different. This option can be useful if you are looking for changes "
@@ -9656,7 +9721,7 @@ msgstr ""
 "つでしょう。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2043
+#: English/Configuration.xml:2054
 msgid ""
 "<guilabel>Word-level</guilabel> (default): Highlights entire words that are "
 "different."
@@ -9665,7 +9730,7 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2050
+#: English/Configuration.xml:2061
 msgid ""
 "<guilabel>Break at whitespace</guilabel> (default): Words are assumed to be "
 "separated by whitespace characters.  This usually works for typical text "
@@ -9675,7 +9740,7 @@ msgstr ""
 "仮定されます。 これは、大抵の典型的なテキストファイルに作用します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2058
+#: English/Configuration.xml:2069
 msgid ""
 "<guilabel>Break at whitespace or punctuation</guilabel>: Considers both "
 "whitespace and punctuation characters to be word breaks. This can useful for "
@@ -9687,7 +9752,7 @@ msgstr ""
 "ために便利です。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2072
+#: English/Configuration.xml:2083
 msgid ""
 "<option>Disabled</option>: WinMerge does not highlight line differences, and "
 "all settings for the level and whitespace options are ignored. Also disables "
@@ -9700,17 +9765,17 @@ msgstr ""
 "ます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2088
+#: English/Configuration.xml:2099
 msgid "Word break characters"
 msgstr ""
 
 #. type: Content of: <article><section><section><note><title>
-#: English/Configuration.xml:2097
+#: English/Configuration.xml:2108
 msgid "Related topic"
 msgstr "関連トピック"
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:2100
+#: English/Configuration.xml:2111
 msgid ""
 "<xref linkend=\"CompareFiles_linediff-highlight\" /> explains in more detail "
 "how WinMerge detects and marks line differences."
@@ -9719,28 +9784,28 @@ msgstr ""
 "どのように検出しマークするのかを、もっと詳細に説明します。"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2110
+#: English/Configuration.xml:2121
 msgid "Editor &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "エディター → 一般 ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2125
+#: English/Configuration.xml:2136
 msgid "color schemes"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2124
+#: English/Configuration.xml:2135
 msgid ""
 "Colors &gt; Color Schemes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "色 → ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2138
+#: English/Configuration.xml:2149
 msgid "Colors &gt; Differences page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "色 → ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2146
+#: English/Configuration.xml:2157
 msgid ""
 "Use this page if you want to change any of the difference colors used in the "
 "File Compare window. You can set the background, deleted, and text color."
@@ -9749,7 +9814,7 @@ msgstr ""
 "で行ってください。 背景、削除、テキストを設定可能です。"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2152 English/Configuration.xml:2233
+#: English/Configuration.xml:2163 English/Configuration.xml:2244
 msgid ""
 "To change a color, click in its box to open a standard Color chooser dialog. "
 "Choose one of the predefined colors or define your own custom color, then "
@@ -9760,25 +9825,25 @@ msgstr ""
 "と、新しい色がボックスに読み込まれます。"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2159 English/Configuration.xml:2182
-#: English/Configuration.xml:2240
+#: English/Configuration.xml:2170 English/Configuration.xml:2193
+#: English/Configuration.xml:2251
 msgid ""
 "To revert to the default colors of a scheme, choose a different scheme and "
 "return to the modified scheme."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2169
+#: English/Configuration.xml:2180
 msgid "color options"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2166
+#: English/Configuration.xml:2177
 msgid "Colors &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "色 → シンタックス ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2174
+#: English/Configuration.xml:2185
 msgid ""
 "By default, the WinMerge File Compare window marks the syntax of certain "
 "kinds of source code, as described in <xref "
@@ -9792,17 +9857,17 @@ msgstr ""
 "ス要素を列挙し、これらのテキストの色と太さを変更可能にします。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2190
+#: English/Configuration.xml:2201
 msgid "text colors"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2189
+#: English/Configuration.xml:2200
 msgid "Colors &gt; Text page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "色 → テキスト ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2197
+#: English/Configuration.xml:2208
 msgid ""
 "Use this page to change the colors used for text. First, check the option, "
 "<guilabel>Use customized text colors</guilabel>. This activates the text "
@@ -9817,28 +9882,28 @@ msgstr ""
 "択することができます。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2208
+#: English/Configuration.xml:2219
 msgid "marker colors"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2207
+#: English/Configuration.xml:2218
 msgid "Colors &gt; Markers page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "色 → マーカー ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2220
+#: English/Configuration.xml:2231
 msgid "folder compare colors"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2219
+#: English/Configuration.xml:2230
 msgid ""
 "Colors &gt; Folder Compare page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "色 → フォルダー比較 ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2227
+#: English/Configuration.xml:2238
 msgid ""
 "By default, the WinMerge Folder Compare window use background colors to show "
 "the status from a item (equal, different, not exists on all sides or "
@@ -9846,41 +9911,41 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2250
+#: English/Configuration.xml:2261
 msgid "configuring support after installation"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2247
+#: English/Configuration.xml:2258
 msgid "Archive Support page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "アーカイブサポートページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2255
+#: English/Configuration.xml:2266
 msgid "This page contains options for configuring archive support using 7-Zip."
 msgstr ""
 "このページは、7-Zip を使用した Winzipアーカイブサポートの設定のためのオプショ"
 "ンを含んでいます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2262 English/Open_paths.xml:60
+#: English/Configuration.xml:2273 English/Open_paths.xml:60
 msgid "7-Zip archives"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2264
+#: English/Configuration.xml:2275
 msgid "enabling and disabling integration"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2261
+#: English/Configuration.xml:2272
 msgid "Enable archive file support<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "アーカイブファイルサポートを有効にする<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2269
+#: English/Configuration.xml:2280
 msgid ""
 "This option controls how WinMerge handles archive files (based on 7-Zip "
 "integration)."
@@ -9889,23 +9954,23 @@ msgstr ""
 "法を制御します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2276
+#: English/Configuration.xml:2287
 msgid "<option>Enabled</option> (default): WinMerge recognizes 7-Zip archives."
 msgstr ""
 "<option>有効</option>(デフォルト): WinMerge は、7-Zipアーカイブを識別します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2283
+#: English/Configuration.xml:2294
 msgid "<option>Disabled</option>: Turns off 7-Zip archive integration."
 msgstr "<option>無効</option>: 7-Zipアーカイブサポートを無効にします。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2293
+#: English/Configuration.xml:2304
 msgid "detecting archive types"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2292
+#: English/Configuration.xml:2303
 msgid ""
 "Detect archive type from file signature<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -9914,7 +9979,7 @@ msgstr ""
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2300
+#: English/Configuration.xml:2311
 msgid ""
 "<option>Disabled</option> (default): WinMerge recognizes only archives whose "
 "file extension is known on your system (for example, in the registry or "
@@ -9925,7 +9990,7 @@ msgstr ""
 "in the registry or through a file association)"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2308
+#: English/Configuration.xml:2319
 msgid ""
 "<option>Enabled</option>: WinMerge can recognize archive files even if their "
 "file extension is not known. To recognize an archive, WinMerge searches the "
@@ -9936,7 +10001,7 @@ msgstr ""
 "WinMerge は、ファイルの先頭から、アーカイブシグネチャバイトを探します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para><tip><para>
-#: English/Configuration.xml:2313
+#: English/Configuration.xml:2324
 msgid ""
 "You can use this option to enable WinMerge to recognize Open Office files."
 msgstr ""
@@ -9944,23 +10009,23 @@ msgstr ""
 "とができます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2326 English/Open_paths.xml:367
+#: English/Configuration.xml:2337 English/Open_paths.xml:367
 #: English/Quick_start.xml:203
 msgid "project files"
 msgstr "プロジェクトファイル"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2325
+#: English/Configuration.xml:2336
 msgid "Project page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "プロジェクトページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2338
+#: English/Configuration.xml:2349
 msgid "System page"
 msgstr "システムページ"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2342
+#: English/Configuration.xml:2353
 msgid ""
 "Send deleted files to Recycle Bin<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
@@ -9968,7 +10033,7 @@ msgstr ""
 ">"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2352
+#: English/Configuration.xml:2363
 msgid ""
 "<option>Enabled</option> (default): Files and folders that you delete in a "
 "Folder Compare window are moved to the Recycle Bin, if it is available."
@@ -9977,7 +10042,7 @@ msgstr ""
 "やフォルダーは、 可能な場合、ゴミ箱へ移動されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
-#: English/Configuration.xml:2359
+#: English/Configuration.xml:2370
 msgid ""
 "Remember: if the Recycle Bin on your system has been deactivated, this "
 "option does not work, and deleted files are lost!"
@@ -9986,7 +10051,7 @@ msgstr ""
 "とを、憶えておいてください。 その場合、ファイルは削除され失われます！"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2369
+#: English/Configuration.xml:2380
 msgid ""
 "<option>Disabled</option>: Files and folders deleted in a directory compare "
 "actually deleted."
@@ -9995,22 +10060,22 @@ msgstr ""
 "ダーは、 本当に削除されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2379
+#: English/Configuration.xml:2390
 msgid "external editor"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2381
+#: English/Configuration.xml:2392
 msgid "configuring"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2378
+#: English/Configuration.xml:2389
 msgid "External editor<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "外部エディター<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2386
+#: English/Configuration.xml:2397
 msgid ""
 "The WinMerge File Compare window provides common editing functions.  If you "
 "prefer using your favorite, full-featured editor, you can configure WinMerge "
@@ -10021,7 +10086,7 @@ msgstr ""
 "ニューから、WinMerge が外部エディターを開くように設定することができます。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2393
+#: English/Configuration.xml:2404
 msgid ""
 "Installation configures Notepad as the default external editor, because it "
 "is found on all Windows systems. To configure a different external editor, "
@@ -10032,7 +10097,7 @@ msgstr ""
 "行ファイルのフルパスを入力してください。"
 
 #. type: Content of: <article><section><section><tip><para>
-#: English/Configuration.xml:2400
+#: English/Configuration.xml:2411
 msgid ""
 "Along with the path, you can include any command line parameters supported "
 "by the external tool, in this format: <command> <replaceable>path to "
@@ -10046,7 +10111,7 @@ msgstr ""
 "replaceable></option>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2413
+#: English/Configuration.xml:2424
 msgid ""
 "To use the configured external editor, right-click a file in the Folder "
 "Compare window and choose <menuchoice> <guimenuitem>Open Left</guimenuitem> "
@@ -10061,22 +10126,22 @@ msgstr ""
 "guimenuitem> </menuchoice>を選択してください。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2429 English/Filters.xml:215
+#: English/Configuration.xml:2440 English/Filters.xml:215
 msgid "Filters folders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2431
+#: English/Configuration.xml:2442
 msgid "specifying default private folder"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2428
+#: English/Configuration.xml:2439
 msgid "Filter folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "フィルターフォルダー<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2436
+#: English/Configuration.xml:2447
 msgid ""
 "Use this field to specify your own private folder for file filters.  By "
 "default this folder is your user profile directory (for example, "
@@ -10089,17 +10154,17 @@ msgstr ""
 "ルフィルターを作成したら、このフォルダーへ自動的に追加されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2446
+#: English/Configuration.xml:2457
 msgid "temporary files, folder used"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2445
+#: English/Configuration.xml:2456
 msgid "Temporary files folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "テンポラリファイルフォルダー<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2451
+#: English/Configuration.xml:2462
 msgid ""
 "Specify the folder where WinMerge stores temporary files. Either one of "
 "these options is available:"
@@ -10108,7 +10173,7 @@ msgstr ""
 "れか1つが有効です:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2458
+#: English/Configuration.xml:2469
 msgid ""
 "<guilabel>System's temp folder</guilabel> (default): For example, this might "
 "be <filename>C:\\Windows\\Temp</filename> on your system."
@@ -10117,7 +10182,7 @@ msgstr ""
 "<filename>C:\\Windows\\Temp</filename>かもしれません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2465
+#: English/Configuration.xml:2476
 msgid ""
 "<guilabel>Custom folder</guilabel>: Click <guibutton>Browse</guibutton> and "
 "select a different folder where you have write access."
@@ -10126,29 +10191,29 @@ msgstr ""
 "フォルダーを選択してください。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2476
+#: English/Configuration.xml:2487
 msgid "backup files, options"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2475
+#: English/Configuration.xml:2486
 msgid "Backup Files page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "バックアップファイルページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2481
+#: English/Configuration.xml:2492
 msgid "This page allows you to control how WinMerge creates backup files."
 msgstr ""
 "このページは、WinMerge がバックアップファイルを作る方法を制御することを可能に"
 "します。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2486
+#: English/Configuration.xml:2497
 msgid "Create backup files in"
 msgstr "作成するバックアップ"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2489
+#: English/Configuration.xml:2500
 msgid ""
 "Specify when WinMerge should create backup files. You can enable or disable "
 "each of these options independently:"
@@ -10157,7 +10222,7 @@ msgstr ""
 "は、それぞれ独立に、有効、または、無効にすることができます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2496
+#: English/Configuration.xml:2507
 msgid ""
 "<guilabel>Folder compare</guilabel> (disabled by default): Backup files are "
 "create whenever files are overwritten (copied)."
@@ -10166,7 +10231,7 @@ msgstr ""
 "ピー)される度に、バックアップファイルが作成されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2504
+#: English/Configuration.xml:2515
 msgid ""
 "<guilabel>File compare</guilabel> (enabled by default): Backup files are "
 "created whenever files are saved."
@@ -10175,12 +10240,12 @@ msgstr ""
 "に、バックアップファイルが作成されます。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2512
+#: English/Configuration.xml:2523
 msgid "Create backup files into"
 msgstr "バックアップファイル生成先"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2515
+#: English/Configuration.xml:2526
 msgid ""
 "Specify where backup files are created. Only one of these options can be "
 "enabled:"
@@ -10189,7 +10254,7 @@ msgstr ""
 "にすることができます:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2522
+#: English/Configuration.xml:2533
 msgid ""
 "<guilabel>Original file's folder</guilabel> (enabled by default): Backup "
 "files are created in the same folder as the source file. This is usually a "
@@ -10202,7 +10267,7 @@ msgstr ""
 "だということです。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2531
+#: English/Configuration.xml:2542
 msgid ""
 "<guilabel>Global backup folder</guilabel> (disabled by default): All backup "
 "files are created in one global folder. This makes them easy to clean up. "
@@ -10216,12 +10281,12 @@ msgstr ""
 "書きします。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2542
+#: English/Configuration.xml:2553
 msgid "Backup filename"
 msgstr "バックアップファイル名"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2545
+#: English/Configuration.xml:2556
 msgid ""
 "When WinMerge creates a backup file, it appends an extension to the source "
 "file name. You can choose either or both of these extension schemes:"
@@ -10230,7 +10295,7 @@ msgstr ""
 "次のうち、 一方か両方の拡張子構成を選ぶことができます:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2553
+#: English/Configuration.xml:2564
 msgid ""
 "<guilabel>Append .bak extension</guilabel> (enabled by default): For "
 "example, the <filename>file.txt</filename> is backed up to <filename>file."
@@ -10241,7 +10306,7 @@ msgstr ""
 "アップされます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2561
+#: English/Configuration.xml:2572
 msgid ""
 "<guilabel>Append timestamp</guilabel> (enabled by default): Timestamps are "
 "almost always unique, so this option usually avoids duplicating backup file "
@@ -10252,7 +10317,7 @@ msgstr ""
 "ルの重複を回避します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2568
+#: English/Configuration.xml:2579
 msgid ""
 "Also, storing a copy of a file each time you save it provides a way to track "
 "changes to the file. However, you should consider that this option can "
@@ -10263,12 +10328,12 @@ msgstr ""
 "べきでしょう。"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2579
+#: English/Configuration.xml:2590
 msgid "Codepage page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "コードページページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2587
+#: English/Configuration.xml:2598
 msgid ""
 "WinMerge detects handles file encoding transparently, and in most cases you "
 "should not need to change the default settings.This page allows you to "
@@ -10279,7 +10344,7 @@ msgstr ""
 "るべきかどうかを指定します。"
 
 #. type: Content of: <article><section><note><para>
-#: English/Configuration.xml:2594
+#: English/Configuration.xml:2605
 msgid ""
 "A full explanation of text encoding and Windows codepages is beyond the "
 "scope of WinMerge documentation. Fortunately, there is lots of information "
@@ -10291,7 +10356,7 @@ msgstr ""
 "す:"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
-#: English/Configuration.xml:2603
+#: English/Configuration.xml:2614
 msgid ""
 "<ulink url=\"https://en.wikipedia.org/wiki/Code_pages\"> Wikipedia: Code "
 "pages </ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
@@ -10299,7 +10364,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
-#: English/Configuration.xml:2616
+#: English/Configuration.xml:2627
 msgid ""
 "<ulink url=\"https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-"
 "ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43\"> Microsoft: Code Pages "
@@ -10307,12 +10372,12 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2626
+#: English/Configuration.xml:2637
 msgid "Default Codepage"
 msgstr "デフォルトコードページ"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2629
+#: English/Configuration.xml:2640
 msgid ""
 "Choose one of these radio buttons to set the default codepage that WinMerge "
 "uses when handling ANSI files:"
@@ -10321,7 +10386,7 @@ msgstr ""
 "めに、 次のラジオボタンから1つ選んでください:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2636
+#: English/Configuration.xml:2647
 msgid ""
 "<guilabel>System codepage</guilabel> (default):The codepage used by your "
 "Windows system. This default is usually the best choice.  However if you "
@@ -10335,7 +10400,7 @@ msgstr ""
 
 #. This is just a guess - don't find any info on this option.
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2645
+#: English/Configuration.xml:2656
 msgid ""
 "<guilabel>According to WinMerge User Interface</guilabel>: The encoding used "
 "by your installation of WinMerge."
@@ -10344,7 +10409,7 @@ msgstr ""
 "WinMerge のインストールに使用したエンコーディングです。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2652
+#: English/Configuration.xml:2663
 msgid ""
 "<guilabel>Custom codepage</guilabel>: Enter the codepage number explicitly. "
 "For example, <userinput>UTF-8</userinput> or <userinput>ISO-8851-1</"
@@ -10355,7 +10420,7 @@ msgstr ""
 "userinput>など。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2661
+#: English/Configuration.xml:2672
 msgid "Detect codepage info for these files: .html, .rc, .xml"
 msgstr "html, .rc, .xml ファイルのコードページ情報を検出する"
 
@@ -10363,7 +10428,7 @@ msgstr "html, .rc, .xml ファイルのコードページ情報を検出する"
 #. why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
 #. or is this understood?
 #. type: Content of: <article><section><section><important><para>
-#: English/Configuration.xml:2665
+#: English/Configuration.xml:2676
 msgid ""
 "Uncheck this option in <filename>WinMerge.exe</filename>.  Characters "
 "conversions can result in lossy conversions and the risk is very high. "
@@ -10376,7 +10441,7 @@ msgstr ""
 "みを表示することができます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2677
+#: English/Configuration.xml:2688
 msgid ""
 "<option>Disabled</option> (default): WinMerge does not read codepage "
 "information from the source files. It uses the default codepage setting "
@@ -10387,7 +10452,7 @@ msgstr ""
 "ます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2685
+#: English/Configuration.xml:2696
 msgid ""
 "<option>Enabled</option>: WinMerge detects the codepage for these "
 "extensions: <filename class=\"extension\">html</filename>, <filename "
@@ -10402,7 +10467,7 @@ msgstr ""
 "ドページオプションの設定を上書きします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2693
+#: English/Configuration.xml:2704
 msgid ""
 "This option is of interest when your documents use a codepage that is "
 "different from the codepage of your Windows configuration."
@@ -10411,7 +10476,7 @@ msgstr ""
 "を使用する場合に重要です。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2699
+#: English/Configuration.xml:2710
 msgid ""
 "For example, you might merge two Slovak or two Japanese files in an English "
 "environment. With this option enabled (and with the required fonts), your "
@@ -10424,7 +10489,7 @@ msgstr ""
 "示されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2706
+#: English/Configuration.xml:2717
 msgid ""
 "WinMerge also detects a codepage difference between the left/right files. To "
 "avoid lossy conversions when you merge, copy, or paste, we suggest that you "
@@ -10435,7 +10500,7 @@ msgstr ""
 "オススメします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><caution><para>
-#: English/Configuration.xml:2713
+#: English/Configuration.xml:2724
 msgid ""
 "When you copy or paste text to an external application, the external "
 "application must use the same codepage as WinMerge does.  Refer to the "
@@ -10450,35 +10515,35 @@ msgstr ""
 "ムコードページをサポートしていない場合、 このオプションは無効にしてください。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2726
+#: English/Configuration.xml:2737
 msgid "Detect codepage for text files using mlang.dll"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2734
+#: English/Configuration.xml:2745
 msgid "Shell Integration page"
 msgstr "シェル統合ページ"
 
 #. type: Content of: <article><title><indexterm><primary>
-#: English/Configuration.xml:2739 English/Faq.xml:95 English/Install.xml:175
+#: English/Configuration.xml:2750 English/Faq.xml:95 English/Install.xml:175
 #: English/Install.xml:190 English/Install.xml:353
 #: English/Version_control.xml:4
 msgid "integration"
 msgstr "統合"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2741 English/Install.xml:192
+#: English/Configuration.xml:2752 English/Install.xml:192
 #: English/Install.xml:355
 msgid "with Windows shell"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2738
+#: English/Configuration.xml:2749
 msgid "Explorer<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "エクスプローラー<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2746
+#: English/Configuration.xml:2757
 msgid ""
 "The <option>Add to context menu</option> option enables you to launch "
 "WinMerge directly from Windows Explorer, comparing items that you have "
@@ -10492,12 +10557,12 @@ msgstr ""
 "きます:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2755
+#: English/Configuration.xml:2766
 msgid "Enable advanced menu"
 msgstr "拡張メニューを有効にする"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2761
+#: English/Configuration.xml:2772
 msgid ""
 "<option>Disabled</option> (default): Only the <guimenuitem>WinMerge</"
 "guimenuitem> shortcut is included in the Windows Explorer context menu."
@@ -10507,7 +10572,7 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2769
+#: English/Configuration.xml:2780
 msgid ""
 "<option>Enabled</option>: Replaces the <guimenuitem>WinMerge</guimenuitem> "
 "shortcut in the Explorer context menu with <guimenuitem>Compare</"
@@ -10518,12 +10583,12 @@ msgstr ""
 "guimenuitem>ショートカットで置き換えます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2782
+#: English/Configuration.xml:2793
 msgid "Enable Compare As menu"
 msgstr "「形式を指定して比較」メニューを有効にする"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2788
+#: English/Configuration.xml:2799
 msgid ""
 "<option>Disabled</option> (default): Removes <guimenuitem>Compare As</"
 "guimenuitem> menu item from Explorer context menu."
@@ -10532,7 +10597,7 @@ msgstr ""
 "guimenuitem>メニューをエクスプローラーのコンテキストメニューから削除します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2796
+#: English/Configuration.xml:2807
 msgid ""
 "<option>Enabled</option>: Adds <guimenuitem>Compare As</guimenuitem> menu "
 "item to Explorer context menu."
@@ -10541,7 +10606,7 @@ msgstr ""
 "をエクスプローラーのコンテキストメニューに追加します。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2807
+#: English/Configuration.xml:2818
 msgid ""
 "<xref linkend=\"OpenPaths_shell-integ\" /> describes how to use the WinMerge "
 "and Compare shortcuts."
@@ -20596,6 +20661,37 @@ msgid "Click <guibutton>OK</guibutton> to close the Select Unpacker dialog."
 msgstr ""
 "<guibutton>OK</guibutton>をクリックして、展開プラグインの選択ダイアログを閉じ"
 "てください。"
+
+#~ msgid "Do not expand"
+#~ msgstr "展開しない"
+
+#~ msgid ""
+#~ "(default): WinMerge will not automatically expand subfolders after "
+#~ "comparing folders."
+#~ msgstr "(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。"
+
+#~ msgid "Expand all subfolders"
+#~ msgstr "すべてのサブフォルダーを展開"
+
+#~ msgid ""
+#~ "WinMerge will automatically expand all subfolders after comparing folders."
+#~ msgstr "フォルダ比較後、自動的にすべてのサブフォルダを展開します。"
+
+#~ msgid "Expand different subfolders"
+#~ msgstr "差異のあるサブフォルダーを展開"
+
+#~ msgid ""
+#~ "WinMerge will automatically expand different subfolders after comparing "
+#~ "folders."
+#~ msgstr "フォルダ比較後、自動的に差異のあるサブフォルダを展開します。"
+
+#~ msgid "Expand identical subfolders"
+#~ msgstr "同一のサブフォルダーを展開"
+
+#~ msgid ""
+#~ "WinMerge will automatically expand identical subfolders after comparing "
+#~ "folders."
+#~ msgstr "フォルダ比較後、自動的に同一のサブフォルダを展開します。"
 
 #~ msgid ""
 #~ "<application>Visual Basic</application> runtime library<placeholder "
