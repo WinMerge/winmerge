@@ -42,7 +42,7 @@ std::array<TextDefinition, SRC_MAX_ENTRY> m_SourceDefs =
 	SRC_PERL, _T ("Perl"), _T ("pl;pm;plx"), false, &ParseLinePerl, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (unsigned)-1,
 	SRC_PHP, _T ("PHP"), _T ("php;php3;php4;php5;phtml"), false, &ParseLinePhp, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
 	SRC_PO, _T ("PO"), _T ("po;pot"), false, &ParseLinePo, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (unsigned)-1,
-	SRC_POWERSHELL, _T ("PowerShell"), _T ("ps1"), false, &ParseLinePowerShell, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("#"), (unsigned)-1,
+	SRC_POWERSHELL, _T ("PowerShell"), _T ("ps1;psm1;psd1"), false, &ParseLinePowerShell, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("#"), (unsigned)-1,
 	SRC_PYTHON, _T ("Python"), _T ("py"), false, &ParseLinePython, SRCOPT_AUTOINDENT|SRCOPT_BRACEGNU, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
 	SRC_REXX, _T ("REXX"), _T ("rex;rexx"), false, &ParseLineRexx, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
 	SRC_RSRC, _T ("Resources"), _T ("rc;dlg;r16;r32;rc2"), false, &ParseLineRsrc, SRCOPT_AUTOINDENT, /*4,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
