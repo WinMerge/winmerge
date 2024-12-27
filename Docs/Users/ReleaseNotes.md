@@ -1,11 +1,11 @@
-# WinMerge 2.16.45.0 Beta Release Notes
+# WinMerge 2.16.45.1 Beta Release Notes
 
 - [About This Release](#about-this-release)
 - [What Is New in 2.16.45.1 beta?](#what-is-new-in-216451-beta)
 - [What Is New in 2.16.45.0 beta?](#what-is-new-in-216450-beta)
 - [Known issues](#known-issues)
 
-November 2024
+December 2024
 
 ## About This Release
 
