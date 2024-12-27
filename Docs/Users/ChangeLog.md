@@ -31,8 +31,10 @@
 
 - Translation updates:
   - Brazilian (PR #2585)
+  - Chinese Simplified (PR #2588) 
   - Hungarian (PR #2586)
   - Italian (PR #2587)
+  - Lithuanian (PR #2591)
   - Japanese
   - Korean (PR #2558,#2559)
 
