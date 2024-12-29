@@ -1104,7 +1104,7 @@ msgid "Ignore c&omment differences"
 msgstr "Игнорировать отличия в комментариях"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "Игнорировать отсутствующий конечный EOL"
 
 msgid "&Include subfolders"
 msgstr "&Включая подпапки"
@@ -1725,7 +1725,7 @@ msgid "&Highlight syntax"
 msgstr "Подсвечивать синтаксис"
 
 msgid "&Preserve original EOL chars"
-msgstr "Сохранить EOL (концы строк)"
+msgstr "Сохранить исходные символы EOL"
 
 msgid "Tabs"
 msgstr "Отступы"
@@ -3201,13 +3201,13 @@ msgid "Middle side attributes."
 msgstr "Атрибуты в центре."
 
 msgid "Left side file EOL type."
-msgstr "Тип конца строки для файла слева."
+msgstr "Тип EOL для файла слева."
 
 msgid "Right side file EOL type."
-msgstr "Тип конца строки для файла справа."
+msgstr "Тип EOL для файла справа."
 
 msgid "Middle side file EOL type."
-msgstr "Тип конца строки для файла в центре."
+msgstr "Тип EOL для файла в центре."
 
 msgid "Left side encoding."
 msgstr "Кодировка слева."
