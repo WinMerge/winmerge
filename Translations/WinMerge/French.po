@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2024-11-12 08:58+0100\n"
+"PO-Revision-Date: 2024-12-30 16:15+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -1329,7 +1329,7 @@ msgid "Ignore c&omment differences"
 msgstr "Ignorer les différences de c&ommentaire"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "Ignorer les EOL de fin &manquants"
 
 #, c-format
 msgid "&Include subfolders"
