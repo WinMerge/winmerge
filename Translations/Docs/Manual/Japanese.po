@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-12-27 08:45+0900\n"
+"POT-Creation-Date: 2025-01-01 21:52+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -5844,12 +5844,12 @@ msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_files.xml:1474
-msgid "syncronization points"
+msgid "synchronization points"
 msgstr ""
 
 #. type: Content of: <article><section><title>
 #: English/Compare_files.xml:1473
-msgid "Syncronization points<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "Synchronization points<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "同期ポイント<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title>
@@ -5880,10 +5880,10 @@ msgstr "ファイルの再スキャン<placeholder type=\"indexterm\" id=\"0\"/>
 #: English/Compare_files.xml:1494
 msgid ""
 "By default, the <guilabel>Automatic rescan</guilabel> option is enabled in "
-"the Editor page of WinMerge options. Rescanning keeps your your compare and "
-"merge operations up to date. Without rescanning, WinMerge differences does "
-"not detect changes that might occur to files while you are comparing them, "
-"for example in an external editor."
+"the Editor page of WinMerge options. Rescanning keeps your compare and merge "
+"operations up to date. Without rescanning, WinMerge differences does not "
+"detect changes that might occur to files while you are comparing them, for "
+"example in an external editor."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
