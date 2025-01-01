@@ -820,7 +820,7 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 		int preferredWindowType = -1;
 		PackingInfo infoUnpacker2;
 		unpackedFileExtension = (infoUnpacker ? infoUnpacker : &infoUnpacker2)
-			->GetUnpackedFileExtension(0, filteredFilenames, preferredWindowType);
+			->GetUnpackedFileExtension(-1, filteredFilenames, preferredWindowType);
 		if (static_cast<int>(nID) <= 0 && preferredWindowType >= 0)
 			nID = ID_MERGE_COMPARE_TEXT + preferredWindowType;
 	}

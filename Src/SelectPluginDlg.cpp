@@ -168,7 +168,7 @@ void CSelectPluginDlg::prepareListbox()
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
 	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
-	unsigned char targetFlags = parseResult.empty() ? 0xff : parseResult.back().targetFlags;
+	uint8_t targetFlags = parseResult.empty() ? 0xff : parseResult.back().targetFlags;
 	INT_PTR nameCount = 0;
 
 	// Target files combobox
@@ -371,8 +371,8 @@ void CSelectPluginDlg::OnSelchangePluginName()
 		CString cstrPluginName = item.pszText;
 		pluginName = cstrPluginName.Trim();
 
-		unsigned char targetFlags = 
-			static_cast<unsigned char>(tc::ttoi(
+		uint8_t targetFlags = 
+			static_cast<uint8_t>(tc::ttoi(
 			reinterpret_cast<const tchar_t*>(m_cboTargetFiles.GetItemDataPtr(m_cboTargetFiles.GetCurSel()))));
 
 		for (const auto& [processType, pluginList] : m_Plugins)

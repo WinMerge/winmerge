@@ -33,7 +33,7 @@ public:
 	struct PipelineItem
 	{
 		String name;
-		unsigned char targetFlags;
+		uint8_t targetFlags;
 		std::vector<String> args;
 		tchar_t quoteChar;
 	};
@@ -89,7 +89,7 @@ public:
 	}
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
 		String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const;
 
 	// Events handler
@@ -151,7 +151,7 @@ public:
 	}
 
 	bool GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
 		String* pPluginPipelineResolved, String& errorMessage) const;
 
 	/**
@@ -181,7 +181,7 @@ public:
 	{
 	}
 
-	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, int>>& plugins,
+	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>>& plugins,
 		String& errorMessage) const;
 
 	bool TransformText(int target, String & text, const std::vector<StringView>& variables, bool& changed);

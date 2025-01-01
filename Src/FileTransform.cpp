@@ -26,10 +26,10 @@ using Poco::Exception;
 
 static Poco::FastMutex g_mutex;
 
-static std::pair<String, unsigned char> parseNameAndTargetFlags(const String& token)
+static std::pair<String, uint8_t> parseNameAndTargetFlags(const String& token)
 {
 	String name;
-	unsigned char targetFlags = 0;
+	uint8_t targetFlags = 0;
 	const auto pos = token.find_first_of(':');
 	if (pos != String::npos)
 	{
@@ -52,7 +52,7 @@ static std::pair<String, unsigned char> parseNameAndTargetFlags(const String& to
 	return { name, targetFlags };
 }
 
-static String makeTargetsPrefix(unsigned char targetFlags)
+static String makeTargetsPrefix(uint8_t targetFlags)
 {
 	if (targetFlags == 0xff)
 		return _T("");
@@ -88,7 +88,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 	bool inQuotes = false;
 	tchar_t quoteChar = 0;
 	std::vector<String> args;
-	unsigned char targetFlags = 0xff;
+	uint8_t targetFlags = 0xff;
 	String token, name;
 	errorMessage.clear();
 	const tchar_t* p = pluginPipeline.c_str();
@@ -299,7 +299,7 @@ ExpandAliases(const String& pluginPipeline, const String& filteredFilenames, con
 }
 
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
-	std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, bool>>& plugins,
+	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const
 {
 	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PACK_UNPACK", errorMessage);
@@ -388,7 +388,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
 	if (!GetPackUnpackPlugin(_T(""), bUrl, true, plugins, nullptr, nullptr, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -497,7 +497,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
 	if (!GetPackUnpackPlugin(filteredText, bUrl, false, plugins, &m_PluginPipeline, &m_URLHandler, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -579,12 +579,12 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 	preferredWindowType = -1;
 	String ext;
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
 	if (GetPackUnpackPlugin(filteredFilenames, false, false, plugins, nullptr, nullptr, errorMessage))
 	{
 		for (auto& [plugin, targetFlags, args, bWithFile] : plugins)
 		{
-			if (!isTargetInFlags(target, targetFlags))
+			if (target != -1 && !isTargetInFlags(target, targetFlags))
 				continue;
 
 			ext += plugin->m_ext;
@@ -611,7 +611,7 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 // transformation prediffing
 
 bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-	std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, bool>>& plugins,
+	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
 	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PREDIFF", errorMessage);
@@ -679,7 +679,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 	// control value
 	bool bHandled = false;
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, bool>> plugins;
+	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
 	if (!GetPrediffPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
@@ -752,7 +752,7 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 ////////////////////////////////////////////////////////////////////////////////
 // transformation text
 
-bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, int>>& plugins,
+bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>>& plugins,
 	String& errorMessage) const
 {
 	auto result = ExpandAliases(this->m_PluginPipeline, _T(""), L"ALIAS_EDITOR_SCRIPT", errorMessage);
@@ -797,7 +797,7 @@ bool EditorScriptInfo::TransformText(int target, String& text, const std::vector
 
 	// control value
 	String errorMessage;
-	std::vector<std::tuple<PluginInfo*, unsigned char, std::vector<String>, int>> plugins;
+	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>> plugins;
 	if (!GetEditorScriptPlugin(plugins, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
