@@ -438,7 +438,7 @@ bool CMergeDoc::TransformText(String& text)
 		return false;
 	const int nActivePane = pwndActiveWindow->m_nThisPane;
 	bool bChanged = false;
-	m_editorScriptInfo.TransformText(text, { m_filePaths[nActivePane] }, bChanged);
+	m_editorScriptInfo.TransformText(nActivePane, text, { m_filePaths[nActivePane] }, bChanged);
 	return bChanged;
 }
 

@@ -77,6 +77,7 @@ void CSelectPluginDlg::DoDataExchange(CDataExchange* pDX)
 	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CSelectPluginDlg)
 	DDX_Control(pDX, IDC_PLUGIN_NAME, m_cboPluginName);
+	DDX_Control(pDX, IDC_PLUGIN_TARGETS, m_cboTargetFiles);
 	DDX_Check(pDX, IDC_PLUGIN_ALLOW_ALL, m_bNoExtensionCheck);
 	DDX_Check(pDX, IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_bOpenInSameFrameType);
 	DDX_Text(pDX, IDC_PLUGIN_DESCRIPTION, m_strDescription);
@@ -91,8 +92,9 @@ void CSelectPluginDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CSelectPluginDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CSelectPluginDlg)
 	ON_BN_CLICKED(IDC_PLUGIN_ALLOW_ALL, OnUnpackerAllowAll)
-	ON_CBN_SELCHANGE(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
-	ON_CBN_SELENDOK(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
+	ON_CBN_SELCHANGE(IDC_PLUGIN_NAME, OnSelchangePluginName)
+	ON_CBN_SELENDOK(IDC_PLUGIN_NAME, OnSelchangePluginName)
+	ON_CBN_SELCHANGE(IDC_PLUGIN_TARGETS, OnSelchangeTargets)
 	ON_BN_CLICKED(IDC_PLUGIN_ALIAS, OnClickedAlias)
 	ON_BN_CLICKED(IDC_PLUGIN_ADDPIPE, OnClickedAddPipe)
 	ON_CBN_EDITCHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
@@ -159,21 +161,36 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CSelectPluginDlg::prepareListbox() 
+void CSelectPluginDlg::prepareListbox()
 {
 	int sel = -1;
 	PluginInfo* pSelPlugin = nullptr;
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
 	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
+	unsigned char targetFlags = parseResult.empty() ? 0xff : parseResult.back().targetFlags;
 	INT_PTR nameCount = 0;
 
+	// Target files combobox
+	SetDlgItemComboBoxList(IDC_PLUGIN_TARGETS,
+		{
+			{ _("All"), _T("255") },
+			{ _("1st"), _T("1") },
+			{ _("2nd"), _T("2") },
+			{ _("3rd"), _T("4") },
+			{ _("1st and 2nd"), _T("3") },
+			{ _("1st and 3rd"), _T("5") },
+			{ _("2nd and 3rd"), _T("6") },
+		}, strutils::format(_T("%d"), targetFlags)
+	);
+
+	// Plugin name combobox
 	m_cboPluginName.SetRedraw(false);
 	m_cboPluginName.ResetContent();
 
 	if (m_pluginType != PluginType::EditorScript)
 	{
-		COMBOBOXEXITEM item{CBEIF_TEXT};
+		COMBOBOXEXITEM item{ CBEIF_TEXT };
 		item.iItem = nameCount++;
 		item.pszText = const_cast<tchar_t*>(noPlugin->m_name.c_str());
 		m_cboPluginName.InsertItem(&item);
@@ -183,7 +200,7 @@ void CSelectPluginDlg::prepareListbox()
 	}
 	else
 	{
-		COMBOBOXEXITEM item{CBEIF_TEXT};
+		COMBOBOXEXITEM item{ CBEIF_TEXT };
 		item.iItem = nameCount++;
 		item.pszText = const_cast<tchar_t*>(noPlugin->m_name.c_str());
 		m_cboPluginName.InsertItem(&item);
@@ -207,7 +224,7 @@ void CSelectPluginDlg::prepareListbox()
 		if (!processType2.empty())
 		{
 			String text = (_T("[") + processType2 + _T("]"));
-			COMBOBOXEXITEM item{CBEIF_TEXT};
+			COMBOBOXEXITEM item{ CBEIF_TEXT };
 			item.iItem = nameCount++;
 			item.pszText = const_cast<tchar_t*>(text.c_str());
 			m_cboPluginName.InsertItem(&item);
@@ -219,7 +236,7 @@ void CSelectPluginDlg::prepareListbox()
 				bool match = plugin->TestAgainstRegList(m_filteredFilenames);
 				if (m_bNoExtensionCheck || match || lastPluginName == name)
 				{
-					COMBOBOXEXITEM item{CBEIF_TEXT|CBEIF_INDENT|CBEIF_LPARAM};
+					COMBOBOXEXITEM item{ CBEIF_TEXT | CBEIF_INDENT | CBEIF_LPARAM };
 					item.iItem = nameCount++;
 					item.iIndent = 1;
 					item.pszText = const_cast<tchar_t*>(name.c_str());
@@ -253,9 +270,9 @@ void CSelectPluginDlg::prepareListbox()
 	else
 	{
 		m_cboPluginName.SetCurSel(sel);
-		OnSelchangeUnpackerName();
+		OnSelchangePluginName();
 	}
-	
+
 	m_cboPluginName.SetRedraw(true);
 }
 
@@ -327,7 +344,7 @@ void CSelectPluginDlg::OnChangePipeline()
 	UpdateData(TRUE);
 }
 
-void CSelectPluginDlg::OnSelchangeUnpackerName() 
+void CSelectPluginDlg::OnSelchangePluginName() 
 {
 	PluginInfo* pPlugin = nullptr;
 	String pluginName;
@@ -353,6 +370,11 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 		m_cboPluginName.GetItem(&item);
 		CString cstrPluginName = item.pszText;
 		pluginName = cstrPluginName.Trim();
+
+		unsigned char targetFlags = 
+			static_cast<unsigned char>(tc::ttoi(
+			reinterpret_cast<const tchar_t*>(m_cboTargetFiles.GetItemDataPtr(m_cboTargetFiles.GetCurSel()))));
+
 		for (const auto& [processType, pluginList] : m_Plugins)
 		{
 			for (const auto& [caption, name, id, plugin] : pluginList)
@@ -365,8 +387,9 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 					String errorMessage;
 					auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
 					if (parseResult.empty())
-						parseResult.push_back({ name, {}, '\0' });
+						parseResult.push_back({ name, targetFlags, {}, '\0' });
 					parseResult.back().name = name;
+					parseResult.back().targetFlags = targetFlags;
 					m_strPluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 					pPlugin = plugin;
 					break;
@@ -392,6 +415,11 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 	m_bOpenInSameFrameType = IsDlgButtonChecked(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE);
 
 	UpdateData (FALSE);
+}
+
+void CSelectPluginDlg::OnSelchangeTargets()
+{
+	OnSelchangePluginName();
 }
 
 void CSelectPluginDlg::OnClickedSettings() 

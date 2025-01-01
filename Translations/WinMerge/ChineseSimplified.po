@@ -1629,8 +1629,11 @@ msgstr "附加属性"
 msgid "Select Plugin"
 msgstr "选择插件"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "插件名称(&N)："
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "扩展名列表："
@@ -1647,7 +1650,7 @@ msgstr "显示所有插件， 不检查文件扩展名"
 msgid "&Open files in the same window type after unpacking"
 msgstr "解包后在同一窗口类型中打开文件(&O)"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "插件流水线(&P)："
 
 msgid "&Alias..."
@@ -4293,6 +4296,27 @@ msgstr "插件流水线 '%1' 别名"
 
 msgid "New plugin description"
 msgstr "新的插件描述"
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "过滤器已应用"

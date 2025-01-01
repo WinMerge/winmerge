@@ -1623,8 +1623,11 @@ msgstr "Papildomos savybės"
 msgid "Select Plugin"
 msgstr "Pasirinkite papildinį"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Papildinio pavadini&mas:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Plėtinių sąrašas:"
@@ -1641,7 +1644,7 @@ msgstr "Rodyti visus papildinius netikrinant plėtinių"
 msgid "&Open files in the same window type after unpacking"
 msgstr "P&o išpakavimo atidaryti failus to paties tipo lange"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "&Papildinio komandų grandinė:"
 
 msgid "&Alias..."
@@ -3865,6 +3868,27 @@ msgstr "Papildinio komandų grandinės '%1' pseudonimas"
 
 msgid "New plugin description"
 msgstr "Naujo papildinio aprašas"
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"

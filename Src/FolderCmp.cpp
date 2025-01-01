@@ -138,7 +138,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			// Invoke unpacking plugins
 			if (infoUnpacker && !paths::IsNullDeviceName(filepathUnpacked[nIndex]))
 			{
-				if (!infoUnpacker->Unpacking(nullptr, filepathUnpacked[nIndex], filteredFilenames, { tFiles[nIndex] }))
+				if (!infoUnpacker->Unpacking(nIndex, nullptr, filepathUnpacked[nIndex], filteredFilenames, { tFiles[nIndex] }))
 					goto exitPrepAndCompare;
 			}
 
@@ -156,7 +156,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
 		{
 		// Invoke prediff'ing plugins
-			if (infoPrediffer && !m_diffFileData.Filepath_Transform(bForceUTF8, encoding[nIndex], filepathUnpacked[nIndex], filepathTransformed[nIndex], filteredFilenames, *infoPrediffer))
+			if (infoPrediffer && !m_diffFileData.Filepath_Transform(nIndex, bForceUTF8, encoding[nIndex], filepathUnpacked[nIndex], filepathTransformed[nIndex], filteredFilenames, *infoPrediffer))
 				goto exitPrepAndCompare;
 		}
 
