@@ -300,45 +300,100 @@ ExpandAliases(const String& pluginPipeline, const String& filteredFilenames, con
 
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
-	String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const
+	String *pPluginPipelineResolved, String& errorMessage) const
 {
 	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PACK_UNPACK", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	if (bUrl)
 	{
+		uint8_t targetFlags = 0xff;
 		std::vector<String> args;
-		bool bWithFile = true;
-		PluginInfo* plugin = nullptr;
-		if (m_URLHandler.empty())
-			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"URL_PACK_UNPACK", filteredFilenames);
+		const auto filenames = strutils::split(filteredFilenames, '|');
+		std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
+		for (int i = 0; i < filenames.size(); ++i)
+		{
+			bool bWithFile = true;
+			const String filename{ filenames[i].data(), filenames[i].size() };
+			PluginInfo* plugin = nullptr;
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"URL_PACK_UNPACK", filename);
+			pluginInfos.push_back({ plugin, bWithFile });
+		}
+		if (!filenames.empty() && std::count(pluginInfos.begin(), pluginInfos.end(), pluginInfos.front()) == filenames.size())
+		{
+			const auto& pluginInfo = pluginInfos.front();
+			if (pluginInfo.first)
+			{
+				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+					{ pluginInfo.first, targetFlags, args, pluginInfo.second });
+			}
+		}
 		else
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"URL_PACK_UNPACK", m_URLHandler);
-		if (plugin)
-			plugins.push_back({ plugin, 0xff, args, bWithFile });
-		if (pURLHandlerResolved)
-			*pURLHandlerResolved = plugin ? plugin->m_name : _T("");
+		{
+			for (int i = 0; i < pluginInfos.size(); ++i)
+			{
+				const auto& pluginInfo = pluginInfos[i];
+				if (isTargetInFlags(i, targetFlags) && pluginInfo.first)
+				{
+					uint8_t targetFlags2 = 1 << i;
+					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+						{ pluginInfo.first, targetFlags2, args, pluginInfo.second });
+				}
+			}
+		}
 	}
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
 	for (auto& [pluginName, targetFlags, args, quoteChar] : result)
 	{
 		PluginInfo* plugin = nullptr;
-		bool bWithFile = true;
 		if (pluginName == _T("<None>") || pluginName == _("<None>"))
 			;
 		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
 		{
-			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredFilenames);
-			if (plugin == nullptr)
-				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredFilenames);
-			if (plugin == nullptr)
+			const auto filenames = strutils::split(filteredFilenames, '|');
+			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
+			for (int i = 0; i < filenames.size(); ++i)
 			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredFilenames);
-				bWithFile = false;
+				bool bWithFile = true;
+				const String filename{ filenames[i].data(), filenames[i].size() };
+				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filename);
+				if (plugin == nullptr)
+					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filename);
+				if (plugin == nullptr)
+				{
+					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filename);
+					bWithFile = false;
+				}
+				pluginInfos.push_back({ plugin, bWithFile });
+			}
+			if (!filenames.empty() && std::count(pluginInfos.begin(), pluginInfos.end(), pluginInfos.front()) == filenames.size())
+			{
+				const auto& pluginInfo = pluginInfos.front();
+				if (pluginInfo.first)
+				{
+					pipelineResolved.push_back({ pluginInfo.first->m_name, targetFlags, args, quoteChar });
+					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+						{ pluginInfo.first, targetFlags, args, pluginInfo.second });
+				}
+			}
+			else
+			{
+				for (int i = 0; i < pluginInfos.size(); ++i)
+				{
+					const auto& pluginInfo = pluginInfos[i];
+					if (isTargetInFlags(i, targetFlags) && pluginInfo.first)
+					{
+						uint8_t targetFlags2 = 1 << i;
+						pipelineResolved.push_back({ pluginInfo.first->m_name, targetFlags2, args, quoteChar });
+						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+							{ pluginInfo.first, targetFlags2, args, pluginInfo.second });
+					}
+				}
 			}
 		}
 		else
 		{
+			bool bWithFile = true;
 			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
 			if (plugin == nullptr)
 			{
@@ -363,14 +418,12 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 					bWithFile = false;
 				}
 			}
-		}
-		if (plugin)
-		{
-			pipelineResolved.push_back({ plugin->m_name, targetFlags, args, quoteChar });
-			if (bReverse)
-				plugins.insert(plugins.begin(), { plugin, targetFlags, args, bWithFile });
-			else
-				plugins.push_back({ plugin, targetFlags, args, bWithFile });
+			if (plugin)
+			{
+				pipelineResolved.push_back({ plugin->m_name, targetFlags, args, quoteChar });
+				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+					{ plugin, targetFlags, args, bWithFile });
+			}
 		}
 	}
 	if (pPluginPipelineResolved)
@@ -389,7 +442,7 @@ bool PackingInfo::pack(int target, String& filepath, const String& dstFilepath, 
 	// control value
 	String errorMessage;
 	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
-	if (!GetPackUnpackPlugin(_T(""), bUrl, true, plugins, nullptr, nullptr, errorMessage))
+	if (!GetPackUnpackPlugin(_T(""), bUrl, true, plugins, nullptr, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
@@ -498,7 +551,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 	// control value
 	String errorMessage;
 	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
-	if (!GetPackUnpackPlugin(filteredText, bUrl, false, plugins, &m_PluginPipeline, &m_URLHandler, errorMessage))
+	if (!GetPackUnpackPlugin(filteredText, bUrl, false, plugins, &m_PluginPipeline, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
@@ -580,7 +633,7 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 	String ext;
 	String errorMessage;
 	std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>> plugins;
-	if (GetPackUnpackPlugin(filteredFilenames, false, false, plugins, nullptr, nullptr, errorMessage))
+	if (GetPackUnpackPlugin(filteredFilenames, false, false, plugins, nullptr, errorMessage))
 	{
 		for (auto& [plugin, targetFlags, args, bWithFile] : plugins)
 		{
@@ -607,6 +660,52 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 	return ext;
 }
 
+/*
+std::pair<PluginInfo*, PluginInfo*> PackingInfo::GetFolderPackUnpackerPlugin(int target, const String& path) const
+{
+	PluginInfo* URLHandler = nullptr;
+	PluginInfo* plugin = nullptr;
+	String dummypath = path;
+	bool isfolder = false;
+	if (paths::IsURL(path))
+	{
+		URLHandler = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"URL_PACK_UNPACK", path);
+		if (!URLHandler)
+			return { nullptr, nullptr };
+		isfolder = plugin::InvokeIsFolder(path, URLHandler->m_lpDispatch);
+		if (!isfolder)
+		{
+			dummypath = paths::ConcatPath(env::GetTemporaryPath(), _T("tmp"));
+			String ext = URLHandler->m_ext;
+			if (!ext.empty())
+				dummypath += ext;
+			else
+				dummypath += paths::FindExtension(path);
+		}
+	}
+	if (!isfolder)
+	{
+		if (GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", dummypath);
+		else if (!GetPluginPipeline().empty())
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", GetPluginPipeline());
+		if (plugin == nullptr)
+		{
+			if (URLHandler == nullptr)
+				return nullptr;
+			formatChild = ArchiveGuessFormat(dummypath);
+			if (formatChild == nullptr)
+				return nullptr;
+		}
+		if (plugin)
+		{
+			if (!plugin::InvokeIsFolder(dummypath, plugin->m_lpDispatch))
+				return nullptr;
+		}
+	}
+}
+*/
+
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
 
@@ -621,21 +720,53 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	for (auto& [pluginName, targetFlags, args, quoteChar] : result)
 	{
 		PluginInfo* plugin = nullptr;
-		bool bWithFile = true;
 		if (pluginName == _T("<None>") || pluginName == _("<None>"))
 			;
 		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
 		{
-			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filteredFilenames);
-			if (plugin == nullptr)
+			const auto filenames = strutils::split(filteredFilenames, '|');
+			std::vector<std::pair<PluginInfo*, bool>> pluginInfos;
+			for (int i = 0; i < filenames.size(); ++i)
 			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filteredFilenames);
-				if (plugin)
-					bWithFile = false;
+				bool bWithFile = true;
+				const String filename{ filenames[i].data(), filenames[i].size() };
+				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filename);
+				if (plugin == nullptr)
+				{
+					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filename);
+					if (plugin)
+						bWithFile = false;
+				}
+				pluginInfos.push_back({ plugin, bWithFile });
+			}
+			if (!filenames.empty() && std::count(pluginInfos.begin(), pluginInfos.end(), pluginInfos.front()) == filenames.size())
+			{
+				const auto& pluginInfo = pluginInfos.front();
+				if (pluginInfo.first)
+				{
+					pipelineResolved.push_back({ pluginInfo.first->m_name, targetFlags, args, quoteChar });
+					plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+						{ pluginInfo.first, targetFlags, args, pluginInfo.second });
+				}
+			}
+			else
+			{
+				for (int i = 0; i < pluginInfos.size(); ++i)
+				{
+					const auto& pluginInfo = pluginInfos[i];
+					if (isTargetInFlags(i, targetFlags) && pluginInfo.first)
+					{
+						uint8_t targetFlags2 = 1 << i;
+						pipelineResolved.push_back({ pluginInfo.first->m_name, targetFlags2, args, quoteChar });
+						plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+							{ pluginInfo.first, targetFlags2, args, pluginInfo.second });
+					}
+				}
 			}
 		}
 		else
 		{
+			bool bWithFile = true;
 			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
 			if (plugin == nullptr)
 			{
@@ -655,14 +786,12 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 				}
 				bWithFile = false;
 			}
-		}
-		if (plugin)
-		{
-			pipelineResolved.push_back({ plugin->m_name, targetFlags, args, quoteChar });
-			if (bReverse)
-				plugins.insert(plugins.begin(), { plugin, targetFlags, args, bWithFile });
-			else
-				plugins.push_back({ plugin, targetFlags, args, bWithFile });
+			if (plugin)
+			{
+				pipelineResolved.push_back({ plugin->m_name, targetFlags, args, quoteChar });
+				plugins.insert(bReverse ? plugins.begin() : plugins.end(),
+					{ plugin, targetFlags, args, bWithFile });
+			}
 		}
 	}
 	if (pPluginPipelineResolved)

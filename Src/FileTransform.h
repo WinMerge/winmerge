@@ -90,7 +90,7 @@ public:
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 		std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
-		String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const;
+		String *pPluginPipelineResolved, String& errorMessage) const;
 
 	// Events handler
 	// WinMerge uses one of these entry points to call a plugin
@@ -126,9 +126,10 @@ public:
 
 	String GetUnpackedFileExtension(int target, const String& filteredFilenames, int& preferredWindowType) const;
 
+	std::pair<PluginInfo*, PluginInfo*> PackingInfo::GetFolderPackUnpackPlugin(int target, const String& path) const;
+
 	void EnableWebBrowserMode() { m_bWebBrowser = true; }
 private:
-	String m_URLHandler;
 	bool m_bWebBrowser;
 };
 
