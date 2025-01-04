@@ -319,7 +319,9 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"URL_PACK_UNPACK", filename);
 			pluginInfos.push_back({ plugin, bWithFile });
 		}
-		if (!filenames.empty() && std::count(pluginInfos.begin(), pluginInfos.end(), pluginInfos.front()) == filenames.size())
+		if (!filenames.empty() &&
+			std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
+				[&](const auto& elem) { return elem == pluginInfos.front(); }))
 		{
 			const auto& pluginInfo = pluginInfos.front();
 			if (pluginInfo.first)
@@ -362,11 +364,14 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 				if (plugin == nullptr)
 				{
 					plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filename);
-					bWithFile = false;
+					if (plugin)
+						bWithFile = false;
 				}
 				pluginInfos.push_back({ plugin, bWithFile });
 			}
-			if (!filenames.empty() && std::count(pluginInfos.begin(), pluginInfos.end(), pluginInfos.front()) == filenames.size())
+			if (!filenames.empty() &&
+				std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
+					[&](const auto& elem) { return elem == pluginInfos.front(); }))
 			{
 				const auto& pluginInfo = pluginInfos.front();
 				if (pluginInfo.first)
@@ -739,7 +744,9 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 				}
 				pluginInfos.push_back({ plugin, bWithFile });
 			}
-			if (!filenames.empty() && std::count(pluginInfos.begin(), pluginInfos.end(), pluginInfos.front()) == filenames.size())
+			if (!filenames.empty() &&
+				std::all_of(pluginInfos.begin() + 1, pluginInfos.end(), 
+					[&](const auto& elem) { return elem == pluginInfos.front(); }))
 			{
 				const auto& pluginInfo = pluginInfos.front();
 				if (pluginInfo.first)
@@ -780,6 +787,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 					}
 					else
 					{
+						plugin = nullptr;
 						errorMessage = strutils::format_string1(_("'%1' is not prediffer plugin"), pluginName);
 					}
 					return false;
