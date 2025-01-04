@@ -1626,8 +1626,11 @@ msgstr "Extra eigenschappen"
 msgid "Select Plugin"
 msgstr "Plugin selecteren"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Naam plugin:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Lijst extensies:"
@@ -1644,7 +1647,7 @@ msgstr "Alle plugins weergeven zonder de extensie te controleren"
 msgid "&Open files in the same window type after unpacking"
 msgstr "Bestanden openen in hetzelfde venstertype na uitpakken"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "Plugin pipeline:"
 
 msgid "&Alias..."
@@ -4311,6 +4314,27 @@ msgstr "Alias voor plugin-pijplijn '%1'"
 
 msgid "New plugin description"
 msgstr "Beschrijving nieuwe plugin"
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filter toegepast"

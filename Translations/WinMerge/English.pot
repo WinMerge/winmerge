@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-12-10 09:03+0000\n"
+"POT-Creation-Date: 2025-01-01 15:10+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1617,7 +1617,10 @@ msgstr ""
 msgid "Select Plugin"
 msgstr ""
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
+msgstr ""
+
+msgid "&Target files:"
 msgstr ""
 
 msgid "Extensions list:"
@@ -1635,7 +1638,7 @@ msgstr ""
 msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr ""
 
 msgid "&Alias..."
@@ -3859,6 +3862,27 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"

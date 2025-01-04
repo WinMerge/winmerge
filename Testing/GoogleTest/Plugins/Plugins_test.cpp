@@ -58,7 +58,7 @@ namespace
 		std::vector<int> subcodes;
 		ppi->FetchPluginInfos(_T("../../Data/Office/excel.xls|../../Data/Office/excel.xls"), &iu, &ip);
 		String file = paths::ConcatPath(oldModulePath, _T("..\\..\\Data\\Office\\excel.xls"));
-		iu->Unpacking(&subcodes, file, _T(".*\\.xls"), { file });
+		iu->Unpacking(0, &subcodes, file, _T(".*\\.xls"), { file });
 	}
 
 	TEST_F(PluginsTest, ParsePluginPipeline)
@@ -114,23 +114,25 @@ namespace
 		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
 		EXPECT_EQ(_T("'a''b'"), pluginPipeline);
 
-		parseResult = PluginForFile::ParsePluginPipeline(_T("a' 'b"), errorMessage);
+		parseResult = PluginForFile::ParsePluginPipeline(_T("a' 'b:1"), errorMessage);
 		EXPECT_TRUE(errorMessage.empty());
 		EXPECT_EQ(1, parseResult.size());
 		EXPECT_EQ(_T("a b"), parseResult[0].name);
+		EXPECT_EQ(0b001, parseResult[0].targetFlags);
 		EXPECT_EQ(0, parseResult[0].args.size());
 		EXPECT_EQ('\'', parseResult[0].quoteChar);
 		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
-		EXPECT_EQ(_T("'a b'"), pluginPipeline);
+		EXPECT_EQ(_T("'a b':1"), pluginPipeline);
 
-		parseResult = PluginForFile::ParsePluginPipeline(_T("a' '\"b\""), errorMessage);
+		parseResult = PluginForFile::ParsePluginPipeline(_T("a' '\"b\":1,3"), errorMessage);
 		EXPECT_TRUE(errorMessage.empty());
 		EXPECT_EQ(1, parseResult.size());
 		EXPECT_EQ(_T("a b"), parseResult[0].name);
+		EXPECT_EQ(0b101, parseResult[0].targetFlags);
 		EXPECT_EQ(0, parseResult[0].args.size());
 		EXPECT_EQ('"', parseResult[0].quoteChar);
 		pluginPipeline = PluginForFile::MakePluginPipeline(parseResult);
-		EXPECT_EQ(_T("\"a b\""), pluginPipeline);
+		EXPECT_EQ(_T("\"a b\":1,3"), pluginPipeline);
 
 		parseResult = PluginForFile::ParsePluginPipeline(_T("\"a b"), errorMessage);
 		EXPECT_TRUE(!errorMessage.empty());

@@ -272,7 +272,7 @@ HRESULT CHexMergeView::LoadFile(const tchar_t* path)
 {
 	CHexMergeDoc *pDoc = static_cast<CHexMergeDoc *>(GetDocument());
 	String strTempFileName = path;
-	if (!pDoc->GetUnpacker()->Unpacking(&m_unpackerSubcodes, strTempFileName, path, { strTempFileName }))
+	if (!pDoc->GetUnpacker()->Unpacking(m_nThisPane, &m_unpackerSubcodes, strTempFileName, path, { strTempFileName }))
 		return E_FAIL;
 	HANDLE h = CreateFile(strTempFileName.c_str(), GENERIC_READ,
 		FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -350,7 +350,7 @@ HRESULT CHexMergeView::SaveFile(const tchar_t* path, bool packing)
 	CHexMergeDoc* pDoc = static_cast<CHexMergeDoc*>(GetDocument());
 	if (packing && !m_unpackerSubcodes.empty())
 	{
-		if (!pDoc->GetUnpacker()->Packing(sIntermediateFilename, path, m_unpackerSubcodes, { path }))
+		if (!pDoc->GetUnpacker()->Packing(m_nThisPane, sIntermediateFilename, path, m_unpackerSubcodes, { path }))
 		{
 			String str = CMergeApp::GetPackingErrorMessage(m_nThisPane, pDoc->m_nBuffers, path, *pDoc->GetUnpacker());
 			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);

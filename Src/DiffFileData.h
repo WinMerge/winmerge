@@ -33,7 +33,7 @@ struct DiffFileData
 	void Close() { Reset(); }
 	void SetDisplayFilepaths(const String& szTrueFilepath1, const String& szTrueFilepath2);
 
-	bool Filepath_Transform(bool bForceUTF8, const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
+	bool Filepath_Transform(int target, bool bForceUTF8, const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
 		const String& filteredFilenames, PrediffingInfo& infoPrediffer);
 
 // Data (public)

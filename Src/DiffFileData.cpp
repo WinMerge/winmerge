@@ -126,8 +126,8 @@ void DiffFileData::Reset()
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-bool DiffFileData::Filepath_Transform(bool bForceUTF8,
-	const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
+bool DiffFileData::Filepath_Transform(int target, bool bForceUTF8,
+	const FileTextEncoding& encoding, const String& filepath, String& filepathTransformed,
 	const String& filteredFilenames, PrediffingInfo& infoPrediffer)
 {
 	// third step : prediff (plugins)
@@ -138,7 +138,7 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	// if a prediffer fails, we consider it is not the good one, that's all
 	// FileTransform_Prediffing returns `false` only if the prediffer works, 
 	// but the data can not be saved to disk (no more place ??)
-	if (!infoPrediffer.Prediffing(filepathTransformed, filteredFilenames, bMayOverwrite, { filepath }))
+	if (!infoPrediffer.Prediffing(target, filepathTransformed, filteredFilenames, bMayOverwrite, { filepath }))
 		return false;
 
 	if ((encoding.m_unicoding && encoding.m_unicoding != ucr::UTF8) || bForceUTF8)

@@ -894,7 +894,7 @@ bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
+		if (!m_infoUnpacker.Unpacking(pane, &m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
 		{
 //			return false;
 		}

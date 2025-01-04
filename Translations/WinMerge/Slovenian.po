@@ -1623,8 +1623,11 @@ msgstr "Dodatne lastnosti"
 msgid "Select Plugin"
 msgstr "Izberi vtičnik"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "I&me vtičnita:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Seznam končnic:"
@@ -1641,7 +1644,7 @@ msgstr "Prikaži vse vtičnike, ne preverjaj končnico"
 msgid "&Open files in the same window type after unpacking"
 msgstr "P&o razpakiranju odpri datoteke v isti vrsti okna"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "Cevovo&d vtičnika:"
 
 msgid "&Alias..."
@@ -4245,6 +4248,27 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
