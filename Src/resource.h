@@ -620,7 +620,7 @@
 #define IDC_INPUTBOX_PROMPT             1633
 #define IDC_INPUTBOX_EDIT               1634
 #define IDC_COPY_GRANULARITY            1635
-#define IDC_PLUGIN_TARGETS               1636
+#define IDC_PLUGIN_TARGETS              1636
 #define IDC_PLUGIN_NAME                 1637
 #define IDC_PLUGIN_ALLOW_ALL            1638
 #define IDC_PLUGIN_EVENT_TYPE           1639
