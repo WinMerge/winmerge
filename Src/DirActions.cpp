@@ -267,7 +267,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 		bUpdateSrc = true;
 		bUpdateDest = true;
 		CopyDiffSideAndProperties(di, act.UIOrigin, act.UIDestination);
-		UnsetDiffSide(di, act.UIOrigin);
+		UnsetDiffSide(ctxt, di, act.UIOrigin);
 		SetDiffCompare(di, DIFFCODE::NOCMP);
 		break;
 
@@ -278,7 +278,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 		}
 		else
 		{
-			UnsetDiffSide(di, act.UIOrigin);
+			UnsetDiffSide(ctxt, di, act.UIOrigin);
 			SetDiffCompare(di, DIFFCODE::NOCMP);
 			bUpdateSrc = true;
 		}
@@ -1093,16 +1093,25 @@ void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst)
  * @note This does not update UI - ReloadItemStatus() does
  * @sa CDirDoc::ReloadItemStatus()
  */
-void UnsetDiffSide(DIFFITEM& di, int index)
+void UnsetDiffSide(const CDiffContext& ctxt, DIFFITEM& di, int index)
 {
 	di.diffcode.diffcode &= ~(DIFFCODE::FIRST << index);
 	di.diffFileInfo[index].ClearPartial();
+	// https://github.com/WinMerge/winmerge/issues/2599
+	for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
+	{
+		if (di.diffcode.exists(i))
+		{
+			di.diffFileInfo[index].filename = di.diffFileInfo[i].filename;
+			break;
+		}
+	}
 	di.nidiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
 	di.nsdiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
 	if (di.HasChildren())
 	{
 		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
-			UnsetDiffSide(*pdic, index);
+			UnsetDiffSide(ctxt, *pdic, index);
 	}
 }
 
