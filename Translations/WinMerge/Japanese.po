@@ -1626,8 +1626,11 @@ msgstr "追加プロパティ"
 msgid "Select Plugin"
 msgstr "プラグインの選択"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "プラグイン名(&N):"
+
+msgid "&Target files:"
+msgstr "対象ファイル(&T)"
 
 msgid "Extensions list:"
 msgstr "拡張子一覧:"
@@ -1644,7 +1647,7 @@ msgstr "拡張子を無視してすべてのプラグインを表示する"
 msgid "&Open files in the same window type after unpacking"
 msgstr "展開プラグイン適用後、ファイルを同じウインドウ タイプで開く(&O)"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "プラグイン パイプライン(&P):"
 
 msgid "&Alias..."
@@ -4249,6 +4252,27 @@ msgstr "プラグインパイプライン '%1' のエイリアス"
 
 msgid "New plugin description"
 msgstr "新しいプラグインの説明"
+
+msgid "All"
+msgstr "すべて"
+
+msgid "1st"
+msgstr "1番目"
+
+msgid "2nd"
+msgstr "2番目"
+
+msgid "3rd"
+msgstr "3番目"
+
+msgid "1st and 2nd"
+msgstr "1番目と2番目"
+
+msgid "1st and 3rd"
+msgstr "1番目と3番目"
+
+msgid "2nd and 3rd"
+msgstr "2番目と3番目"
 
 msgid "Filter applied"
 msgstr "フィルター適用"

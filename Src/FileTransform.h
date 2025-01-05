@@ -12,6 +12,7 @@
 #pragma once
 
 #include <vector>
+#include <optional>
 #include "UnicodeString.h"
 
 class PluginInfo;
@@ -33,6 +34,7 @@ public:
 	struct PipelineItem
 	{
 		String name;
+		uint8_t targetFlags;
 		std::vector<String> args;
 		tchar_t quoteChar;
 	};
@@ -88,8 +90,8 @@ public:
 	}
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
-		String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const;
+		std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
+		String *pPluginPipelineResolved, String& errorMessage) const;
 
 	// Events handler
 	// WinMerge uses one of these entry points to call a plugin
@@ -107,7 +109,7 @@ public:
 	 * @note Event FILE_UNPACK
 	 * Apply only the first correct handler
 	 */
-	bool Unpacking(std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText, const std::vector<StringView>& variables);
+	bool Unpacking(int target, std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText, const std::vector<StringView>& variables);
 
 	/**
 	 * @brief Prepare one file for saving, known handler
@@ -119,15 +121,14 @@ public:
 	 * @note Event FILE_PACK
 	 * Never do Unicode conversion, it was done in SaveFromFile
 	 */
-	bool pack(String & filepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
+	bool pack(int target, String & filepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
-	bool Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
+	bool Packing(int target, const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
-	String GetUnpackedFileExtension(const String& filteredFilenames, int& preferredWindowType) const;
+	String GetUnpackedFileExtension(int target, const String& filteredFilenames, int& preferredWindowType) const;
 
 	void EnableWebBrowserMode() { m_bWebBrowser = true; }
 private:
-	String m_URLHandler;
 	bool m_bWebBrowser;
 };
 
@@ -150,7 +151,7 @@ public:
 	}
 
 	bool GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
-		std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
+		std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, bool>>& plugins,
 		String* pPluginPipelineResolved, String& errorMessage) const;
 
 	/**
@@ -164,7 +165,7 @@ public:
 	 * @note Event FILE_PREDIFF BUFFER_PREDIFF
 	 * Apply only the first correct handler
 	 */
-	bool Prediffing(String & filepath, const String& filteredText, bool bMayOverwrite, const std::vector<StringView>& variables);
+	bool Prediffing(int target, String & filepath, const String& filteredText, bool bMayOverwrite, const std::vector<StringView>& variables);
 };
 
 /**
@@ -180,10 +181,10 @@ public:
 	{
 	}
 
-	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, int>>& plugins,
+	bool GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, uint8_t, std::vector<String>, int>>& plugins,
 		String& errorMessage) const;
 
-	bool TransformText(String & text, const std::vector<StringView>& variables, bool& changed);
+	bool TransformText(int target, String & text, const std::vector<StringView>& variables, bool& changed);
 };
 
 namespace FileTransform

@@ -42,6 +42,7 @@ public:
 	//{{AFX_DATA(CSelectPluginDlg)
 	enum { IDD = IDD_PLUGINS_SELECTPLUGIN };
 	CComboBoxEx	m_cboPluginName;
+	CComboBox	m_cboTargetFiles;
 	bool	m_bNoExtensionCheck;
 	bool	m_bOpenInSameFrameType;
 	String	m_strDescription;
@@ -83,7 +84,8 @@ protected:
 	virtual void OnOK();
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnUnpackerAllowAll();
-	afx_msg void OnSelchangeUnpackerName();
+	afx_msg void OnSelchangePluginName();
+	afx_msg void OnSelchangeTargets();
 	afx_msg void OnClickedAlias();
 	afx_msg void OnClickedAddPipe();
 	afx_msg void OnChangePipeline();

@@ -1625,8 +1625,11 @@ msgstr "Pruprietà addiziunale"
 msgid "Select Plugin"
 msgstr "Selezziunà u modulu d’estensione"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "Nome di u modulu :"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Lista di l’estensioni :"
@@ -1643,7 +1646,7 @@ msgstr "Affissà tutti i moduli d’estensione, ùn cuntrollà micca l’estensi
 msgid "&Open files in the same window type after unpacking"
 msgstr "&Apre i schedarii in u listessu tipu di finestra dopu à a spacchittera"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "&Cundottu di modulu :"
 
 msgid "&Alias..."
@@ -4249,6 +4252,27 @@ msgstr "Cugnome di u cundottu di modulu d’estensione « %1 »"
 
 msgid "New plugin description"
 msgstr "Discrizzione nova di u modulu d’estensione"
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"

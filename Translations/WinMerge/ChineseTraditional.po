@@ -1977,8 +1977,11 @@ msgstr "額外屬性"
 msgid "Select Plugin"
 msgstr "選擇外掛程式"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "外掛程式名稱 (&N)："
+
+msgid "&Target files:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1997,7 +2000,7 @@ msgstr "顯示所有外掛，不檢查副檔名"
 msgid "&Open files in the same window type after unpacking"
 msgstr "解壓縮後以相同視窗類型開啟檔案(&O)"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "外掛程式管線 (&P)："
 
 msgid "&Alias..."
@@ -4942,6 +4945,27 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"

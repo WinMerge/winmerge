@@ -34,6 +34,7 @@ static Merge7zFormatMergePluginImpl *GetInstance()
 
 Merge7z::Format *Merge7zFormatMergePluginImpl::GuessFormat(const String& path)
 {
+	// TODO: Support plugin pipeline and plugin aliases.
 	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
 		return nullptr;
 	Merge7zFormatMergePluginImpl *format = GetInstance();

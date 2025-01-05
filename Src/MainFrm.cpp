@@ -820,7 +820,7 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 		int preferredWindowType = -1;
 		PackingInfo infoUnpacker2;
 		unpackedFileExtension = (infoUnpacker ? infoUnpacker : &infoUnpacker2)
-			->GetUnpackedFileExtension(filteredFilenames, preferredWindowType);
+			->GetUnpackedFileExtension(-1, filteredFilenames, preferredWindowType);
 		if (static_cast<int>(nID) <= 0 && preferredWindowType >= 0)
 			nID = ID_MERGE_COMPARE_TEXT + preferredWindowType;
 	}
@@ -3031,7 +3031,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		CWaitCursor wait;
 		copiedFile = file;
 		PackingInfo infoUnpacker2 = infoUnpacker ? *infoUnpacker : PackingInfo{};
-		if (!infoUnpacker2.Unpacking(nullptr, copiedFile, copiedFile, { copiedFile }))
+		if (!infoUnpacker2.Unpacking(0, nullptr, copiedFile, copiedFile, { copiedFile }))
 		{
 			String sError = strutils::format_string1(_("File not unpacked: %1"), file);
 			AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);

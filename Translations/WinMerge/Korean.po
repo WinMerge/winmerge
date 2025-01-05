@@ -1975,8 +1975,11 @@ msgstr "추가 속성"
 msgid "Select Plugin"
 msgstr "플러그인 선택"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "플러그인 이름(&N):"
+
+msgid "&Target files:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1995,7 +1998,7 @@ msgstr "모든 플러그인을 표시하고, 확장을 확인하지 않음"
 msgid "&Open files in the same window type after unpacking"
 msgstr "압축을 푼 후 동일한 창 유형의 파일 열기(&O)"
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr "플러그인 파이프라인(&P):"
 
 msgid "&Alias..."
@@ -4968,6 +4971,27 @@ msgstr "플러그인 파이프라인 '%1'의 별칭"
 
 msgid "New plugin description"
 msgstr "새 플러그인 설명"
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "필터 적용됨"

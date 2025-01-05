@@ -205,7 +205,7 @@ int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 
 	// Unpacking the file here, save the result in a temporary file
 	m_strTempFileName = pszFileNameInit;
-	if (!infoUnpacker.Unpacking(&m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker, { m_strTempFileName }))
+	if (!infoUnpacker.Unpacking(m_nThisPane, &m_unpackerSubcodes, m_strTempFileName, sToFindUnpacker, { m_strTempFileName }))
 	{
 		InitNew(); // leave crystal editor in valid, empty state
 		return FileLoadResult::FRESULT_ERROR_UNPACK;
@@ -516,7 +516,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// If we are saving user files
 		// we need an unpacker/packer, at least a "do nothing" one
 		// repack the file here, overwrite the temporary file we did save in
-		bSaveSuccess = infoUnpacker.Packing(sIntermediateFilename, pszFileName, m_unpackerSubcodes, { pszFileName });
+		bSaveSuccess = infoUnpacker.Packing(m_nThisPane, sIntermediateFilename, pszFileName, m_unpackerSubcodes, { pszFileName });
 		if (!bSaveSuccess)
 			sError = GetSysError();
 		try

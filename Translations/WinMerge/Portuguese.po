@@ -1628,8 +1628,11 @@ msgstr "Propriedades adicionais"
 msgid "Select Plugin"
 msgstr "Selecionar plugin"
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr "&Nome do plugin:"
+
+msgid "&Target files:"
+msgstr ""
 
 msgid "Extensions list:"
 msgstr "Lista de extensões:"
@@ -1646,8 +1649,8 @@ msgstr "Mostrar todos os plugins, não verifica a extensão"
 msgid "&Open files in the same window type after unpacking"
 msgstr "Abrir ficheiros no mesmo tipo de janela depois de desempacotar"
 
-msgid "&Plugin Pipeline:"
-msgstr "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
+msgstr "&Plugin pipeline:"
 
 msgid "&Alias..."
 msgstr "&Abreviatura..."
@@ -4293,6 +4296,27 @@ msgstr "Abreviatura para pipeline do plugin '%1'"
 
 msgid "New plugin description"
 msgstr "Nova descrição do plugin"
+
+msgid "All"
+msgstr ""
+
+msgid "1st"
+msgstr ""
+
+msgid "2nd"
+msgstr ""
+
+msgid "3rd"
+msgstr ""
+
+msgid "1st and 2nd"
+msgstr ""
+
+msgid "1st and 3rd"
+msgstr ""
+
+msgid "2nd and 3rd"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"
