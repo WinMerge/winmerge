@@ -1972,7 +1972,7 @@ msgid "Plugin &name:"
 msgstr "Bővítmény neve:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "&Célfájlok:"
 
 #, c-format
 msgid "Extensions list:"
@@ -4924,25 +4924,25 @@ msgid "New plugin description"
 msgstr "Új bővítmény leírás"
 
 msgid "All"
-msgstr ""
+msgstr "Összes"
 
 msgid "1st"
-msgstr ""
+msgstr "1."
 
 msgid "2nd"
-msgstr ""
+msgstr "2."
 
 msgid "3rd"
-msgstr ""
+msgstr "3."
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1. és 2."
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1. és 3."
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2. és 3."
 
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"
