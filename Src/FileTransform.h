@@ -12,6 +12,7 @@
 #pragma once
 
 #include <vector>
+#include <optional>
 #include "UnicodeString.h"
 
 class PluginInfo;
@@ -125,8 +126,6 @@ public:
 	bool Packing(int target, const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
 	String GetUnpackedFileExtension(int target, const String& filteredFilenames, int& preferredWindowType) const;
-
-	std::pair<PluginInfo*, PluginInfo*> PackingInfo::GetFolderPackUnpackPlugin(int target, const String& path) const;
 
 	void EnableWebBrowserMode() { m_bWebBrowser = true; }
 private:

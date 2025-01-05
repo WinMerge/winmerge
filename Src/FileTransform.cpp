@@ -665,52 +665,6 @@ String PackingInfo::GetUnpackedFileExtension(int target, const String& filteredF
 	return ext;
 }
 
-/*
-std::pair<PluginInfo*, PluginInfo*> PackingInfo::GetFolderPackUnpackerPlugin(int target, const String& path) const
-{
-	PluginInfo* URLHandler = nullptr;
-	PluginInfo* plugin = nullptr;
-	String dummypath = path;
-	bool isfolder = false;
-	if (paths::IsURL(path))
-	{
-		URLHandler = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"URL_PACK_UNPACK", path);
-		if (!URLHandler)
-			return { nullptr, nullptr };
-		isfolder = plugin::InvokeIsFolder(path, URLHandler->m_lpDispatch);
-		if (!isfolder)
-		{
-			dummypath = paths::ConcatPath(env::GetTemporaryPath(), _T("tmp"));
-			String ext = URLHandler->m_ext;
-			if (!ext.empty())
-				dummypath += ext;
-			else
-				dummypath += paths::FindExtension(path);
-		}
-	}
-	if (!isfolder)
-	{
-		if (GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
-			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", dummypath);
-		else if (!GetPluginPipeline().empty())
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", GetPluginPipeline());
-		if (plugin == nullptr)
-		{
-			if (URLHandler == nullptr)
-				return nullptr;
-			formatChild = ArchiveGuessFormat(dummypath);
-			if (formatChild == nullptr)
-				return nullptr;
-		}
-		if (plugin)
-		{
-			if (!plugin::InvokeIsFolder(dummypath, plugin->m_lpDispatch))
-				return nullptr;
-		}
-	}
-}
-*/
-
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
 
