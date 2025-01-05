@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2024-12-24 20:50-0300\n"
+"PO-Revision-Date: 2025-01-04 23:49-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1627,7 +1627,7 @@ msgid "Plugin &name:"
 msgstr "Nome do &Plugin:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "Arquivos des&tino:"
 
 msgid "Extensions list:"
 msgstr "Lista das extensões:"
@@ -3870,25 +3870,25 @@ msgid "New plugin description"
 msgstr "Descrição de novo plugin"
 
 msgid "All"
-msgstr ""
+msgstr "Todos"
 
 msgid "1st"
-msgstr ""
+msgstr "1º"
 
 msgid "2nd"
-msgstr ""
+msgstr "2º"
 
 msgid "3rd"
-msgstr ""
+msgstr "3º"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1º e 2º"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1º e 3º"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2º e 3º"
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"
