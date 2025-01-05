@@ -6,6 +6,22 @@
 #  define WM_MOUSEHWHEEL 0x20e
 #endif
 
+static bool IsWindowDialog(HWND hwndTarget)
+{
+	tchar_t className[256];
+	if (GetClassName(hwndTarget, className, sizeof(className) / sizeof(className[0])) == 0)
+		return false;
+	return tc::tcscmp(className, _T("#32770")) == 0;
+}
+
+static void PostCommandMessage(WPARAM wParam)
+{
+	HWND hwndTarget = GetForegroundWindow();
+	if (IsWindowDialog(hwndTarget))
+		return;
+	PostMessage(hwndTarget, WM_COMMAND, wParam, 0);
+}
+
 LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if (nCode < 0)
@@ -31,7 +47,6 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 		if (GetAsyncKeyState(VK_MENU) & 0x8000)
 		{
-			HWND hwndTarget = GetForegroundWindow();
 			// When hold Alt key, use nFlags to check MK_CONTROL MK_SHIFT holding got problem, Use GetAsyncKeyState() instead.
 			const auto bShiftDown = GetAsyncKeyState(VK_SHIFT) & 0x8000;
 			const auto bControlDown = GetAsyncKeyState(VK_CONTROL) & 0x8000;
@@ -42,19 +57,19 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				if (bShiftDown && bControlDown)
 				{
 					// Alt+Ctrl+Shift+ScrollUp as Alt+Ctrl+Left
-					PostMessage(hwndTarget, WM_COMMAND, ID_R2LNEXT, 0);
+					PostCommandMessage(ID_R2LNEXT);
 					return 1;
 				}
 				else if (bShiftDown)
 				{
 					// Alt+Shift+ScrollUp as Alt+Left
-					PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
+					PostCommandMessage(ID_R2L);
 					return 1;
 				}
 				else if (!m_bRButtonDown)
 				{
 					// Alt+ScrollUp as Alt+Up
-					PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
+					PostCommandMessage(ID_PREVDIFF);
 					return 1;
 				}
 			}
@@ -64,19 +79,19 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				if (bShiftDown && bControlDown)
 				{
 					// Alt+Ctrl+Shift+ScrollDown as Alt+Ctrl+Right
-					PostMessage(hwndTarget, WM_COMMAND, ID_L2RNEXT, 0);
+					PostCommandMessage(ID_L2RNEXT);
 					return 1;
 				}
 				else if (bShiftDown)
 				{
 					// Alt+Shift+ScrollDown as Alt+Right
-					PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
+					PostCommandMessage(ID_L2R);
 					return 1;
 				}
 				else if (!m_bRButtonDown)
 				{
 					// Alt+ScrollDown as Alt+Down
-					PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
+					PostCommandMessage(ID_NEXTDIFF);
 					return 1;
 				}
 			}
@@ -90,14 +105,14 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 			{
 				// RButton+ScrollUp as Alt+Up
 				StartRightWheelScrolling();
-				PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
+				PostCommandMessage(ID_PREVDIFF);
 				return 1;
 			}
 			else if (zDelta < 0)
 			{
 				// RButton+ScrollDown as Alt+Down
 				StartRightWheelScrolling();
-				PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
+				PostCommandMessage(ID_NEXTDIFF);
 				return 1;
 			}
 		}
@@ -117,13 +132,13 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				if (bControlDown)
 				{
 					// Alt+Ctrl+HScrollRight as Alt+Ctrl+Right
-					PostMessage(hwndTarget, WM_COMMAND, ID_L2RNEXT, 0);
+					PostCommandMessage(ID_L2RNEXT);
 					return 1;
 				}
 				else if (!m_bRButtonDown)
 				{
 					// Alt+HScrollRight as Alt+Right
-					PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
+					PostCommandMessage(ID_L2R);
 					return 1;
 				}
 			}
@@ -132,13 +147,13 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				if (bControlDown)
 				{
 					// Alt+Ctrl+HScrollLeft as Alt+Ctrl+Left
-					PostMessage(hwndTarget, WM_COMMAND, ID_R2LNEXT, 0);
+					PostCommandMessage(ID_R2LNEXT);
 					return 1;
 				}
 				else if (!m_bRButtonDown)
 				{
 					// Alt+HScrollLeft as Alt+Left
-					PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
+					PostCommandMessage(ID_R2L);
 					return 1;
 				}
 			}
@@ -152,14 +167,14 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 			{
 				// RButton+ScrollRight as Alt+Right
 				StartRightWheelScrolling();
-				PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
+				PostCommandMessage(ID_L2R);
 				return 1;
 			}
 			else if (zDelta < 0)
 			{
 				// RButton+ScrollLeft as Alt+Left
 				StartRightWheelScrolling();
-				PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
+				PostCommandMessage(ID_R2L);
 				return 1;
 			}
 		}
