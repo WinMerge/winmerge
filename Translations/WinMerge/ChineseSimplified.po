@@ -1633,7 +1633,7 @@ msgid "Plugin &name:"
 msgstr "插件名称(&N)："
 
 msgid "&Target files:"
-msgstr ""
+msgstr "目标文件(&T)："
 
 msgid "Extensions list:"
 msgstr "扩展名列表："
@@ -4298,25 +4298,25 @@ msgid "New plugin description"
 msgstr "新的插件描述"
 
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 msgid "1st"
-msgstr ""
+msgstr "第一个"
 
 msgid "2nd"
-msgstr ""
+msgstr "第二个"
 
 msgid "3rd"
-msgstr ""
+msgstr "第三个"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "第一个和第二个"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "第一个和第三个"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "第二个和第三个"
 
 msgid "Filter applied"
 msgstr "过滤器已应用"
