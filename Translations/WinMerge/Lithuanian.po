@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-12-10 09:03+0000\n"
-"PO-Revision-Date: 2024-12-27 09:09+0200\n"
+"POT-Creation-Date: 2025-01-01 15:10+0000\n"
+"PO-Revision-Date: 2025-01-06 07:55+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1627,7 +1627,7 @@ msgid "Plugin &name:"
 msgstr "Papildinio pavadini&mas:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "Rezulta&to failai:"
 
 msgid "Extensions list:"
 msgstr "Plėtinių sąrašas:"
@@ -3870,25 +3870,25 @@ msgid "New plugin description"
 msgstr "Naujo papildinio aprašas"
 
 msgid "All"
-msgstr ""
+msgstr "Visus"
 
 msgid "1st"
-msgstr ""
+msgstr "1-ą"
 
 msgid "2nd"
-msgstr ""
+msgstr "2-ą"
 
 msgid "3rd"
-msgstr ""
+msgstr "3-ą"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1-ą ir 2-ą"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1-ą ir 3-ą"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2-ą ir 3-ą"
 
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"
