@@ -1,18 +1,48 @@
-# WinMerge 2.16.45.1 Beta Release Notes
+# WinMerge 2.16.46 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.46](#what-is-new-in-21646)
 - [What Is New in 2.16.45.1 beta?](#what-is-new-in-216451-beta)
 - [What Is New in 2.16.45.0 beta?](#what-is-new-in-216450-beta)
 - [Known issues](#known-issues)
 
-December 2024
+January 2025
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.46 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.46
+
+### General
+
+- BugFix: ALT-F4 opens Tools menu instead of exit from WinMerge (#2592)
+### Folder compare
+
+- BugFix: Compare - Text files different and case also different
+    - bug when delete and copy (#2599)
+
+### Plugins
+
+- Enable per-file plugin application with file number specification (PR #2598)
+
+### Manual
+
+- BugFix: Typos and minor errors in WinMerge manual (#2597)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2601) 
+  - Chinese Simplified (PR #2603) 
+  - French (PR #2595)
+  - Hungarian (PR #2602)
+  - Japanese
+  - Lithuanian (PR #2604) 
+  - Russian (PR #2593,#2609)
 
 ## What Is New in 2.16.45.1 Beta
 

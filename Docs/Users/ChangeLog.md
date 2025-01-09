@@ -1,5 +1,34 @@
 # Change log
 
+## WinMerge 2.16.46 - 2025-01-27
+
+### General
+
+- BugFix: ALT-F4 opens Tools menu instead of exit from WinMerge (#2592)
+### Folder compare
+
+- BugFix: Compare - Text files different and case also different
+    - bug when delete and copy (#2599)
+
+### Plugins
+
+- Enable per-file plugin application with file number specification (PR #2598)
+
+### Manual
+
+- BugFix: Typos and minor errors in WinMerge manual (#2597)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2601) 
+  - Chinese Simplified (PR #2603) 
+  - French (PR #2595)
+  - Hungarian (PR #2602)
+  - Japanese
+  - Lithuanian (PR #2604) 
+  - Russian (PR #2593,#2609)
+
 ## WinMerge 2.16.45.1 - 2024-12-27
 
 ### General
