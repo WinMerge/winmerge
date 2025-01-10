@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 26.12.2024\n"
+"Project-Id-Version: WinMerge (Language) 10.01.2025\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-12-26 11:28+0100\n"
+"PO-Revision-Date: 2025-01-10 11:13+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -1635,7 +1635,7 @@ msgid "Plugin &name:"
 msgstr "&Nome plugin:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "&File destinazione:"
 
 msgid "Extensions list:"
 msgstr "Elenco estensioni:"
@@ -4317,25 +4317,25 @@ msgid "New plugin description"
 msgstr "Nuova descrizione plugin"
 
 msgid "All"
-msgstr ""
+msgstr "Tutti"
 
 msgid "1st"
-msgstr ""
+msgstr "Primo"
 
 msgid "2nd"
-msgstr ""
+msgstr "Secondo"
 
 msgid "3rd"
-msgstr ""
+msgstr "terzo"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "Primo e secondo"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "Primo e terzo"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "Secondo e terzo"
 
 msgid "Filter applied"
 msgstr "Filtro applicato"
