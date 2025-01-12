@@ -38,9 +38,11 @@ Please submit bug reports to our bug-tracker.
 - Translation updates:
   - Brazilian (PR #2601) 
   - Chinese Simplified (PR #2603) 
-  - French (PR #2595)
+  - French (PR #2595,#2612)
   - Hungarian (PR #2602)
+  - Italian (PR #2610)
   - Japanese
+  - Korean (PR #2611)
   - Lithuanian (PR #2604) 
   - Russian (PR #2593,#2609)
 
