@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2024-12-30 16:15+0100\n"
+"PO-Revision-Date: 2025-01-12 12:58+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -1978,7 +1978,7 @@ msgid "Plugin &name:"
 msgstr "&Nom du plugin :"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "&Fichiers cibles :"
 
 #, c-format
 msgid "Extensions list:"
@@ -4978,25 +4978,25 @@ msgid "New plugin description"
 msgstr "Description du nouveau plugin"
 
 msgid "All"
-msgstr ""
+msgstr "Tous"
 
 msgid "1st"
-msgstr ""
+msgstr "1er"
 
 msgid "2nd"
-msgstr ""
+msgstr "2ème"
 
 msgid "3rd"
-msgstr ""
+msgstr "3ème"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1er et 2ème"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1er et 3ème"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2ème et 3ème"
 
 msgid "Filter applied"
 msgstr "Filtre appliqué"
