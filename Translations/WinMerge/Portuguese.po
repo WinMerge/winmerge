@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2024-10-29 11:11+0000\n"
+"PO-Revision-Date: 2025-01-13 23:19+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -384,7 +384,7 @@ msgid "&Huge"
 msgstr "&Enorme"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "Barra de men&us"
 
 msgid "&Status Bar"
 msgstr "Barra de esta&do"
@@ -552,13 +552,13 @@ msgid "Sw&ap Panes"
 msgstr "Troc&ar painéis"
 
 msgid "Swap &1st | 2nd"
-msgstr "Trocar &1º | 2º"
+msgstr "Trocar &1.º | 2.º"
 
 msgid "Swap &2nd | 3rd"
-msgstr "Trocar &2º | 3º"
+msgstr "Trocar &2.º | 3.º"
 
 msgid "Swap 1st | &3rd"
-msgstr "Trocar 1º | &3º"
+msgstr "Trocar 1.º | &3.º"
 
 msgid "Com&pare Statistics..."
 msgstr "Comparar estatísticas..."
@@ -576,10 +576,10 @@ msgid "Co&mpare\tEnter"
 msgstr "Comparar\tEnter"
 
 msgid "&Next Difference\tAlt+Down"
-msgstr "Diferença seguinte\tAlt+Down"
+msgstr "Diferença seguinte\tAlt+Baixo"
 
 msgid "&Previous Difference\tAlt+Up"
-msgstr "Diferença anterior\tAlt+Up"
+msgstr "Diferença anterior\tAlt+Cima"
 
 msgid "&First Difference\tAlt+Home"
 msgstr "Primeira diferença\tAlt+Home"
@@ -591,10 +591,10 @@ msgid "&Last Difference\tAlt+End"
 msgstr "Última diferença\tAlt+End"
 
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Copiar para a direita\tAlt+Right"
+msgstr "Copiar para a direita\tAlt+Direita"
 
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Copiar para a esquerda\tAlt+Left"
+msgstr "Copiar para a esquerda\tAlt+Esquerda"
 
 msgid "&Delete\tDel"
 msgstr "&Eliminar\tDel"
@@ -837,16 +837,16 @@ msgid "Copy Selected Line(s) from Ri&ght to"
 msgstr "Copiar linha(s) selecionada(s) da dir&eita para"
 
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr "Copiar da esquerda\tAlt+Shift+Right"
+msgstr "Copiar da esquerda\tAlt+Shift+Direita"
 
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "Copiar da direita\tAlt+Shift+Left"
+msgstr "Copiar da direita\tAlt+Shift+Esquerda"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "C&opiar para a direita e avançar\tCtrl+Alt+Right"
+msgstr "C&opiar para a direita e avançar\tCtrl+Alt+Direita"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Copiar &para a esquerda e avançar\tCtrl+Alt+Left"
+msgstr "Copiar &para a esquerda e avançar\tCtrl+Alt+Esquerda"
 
 msgid "Copy &All to Right"
 msgstr "Copiar tudo para a &direita"
@@ -1100,10 +1100,10 @@ msgid "Ignore num&bers"
 msgstr "Ignorar números"
 
 msgid "Ignore c&omment differences"
-msgstr "Ignorar diferenças de c&omentários"
+msgstr "Ignorar diferenças nos c&omentários"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "Ignorar presença ou ausência de um carácter de nova linha no fim do ficheiro"
 
 msgid "&Include subfolders"
 msgstr "&Incluir subpastas"
@@ -1229,7 +1229,7 @@ msgid "Re&ad-only"
 msgstr "Apen&as-leitura"
 
 msgid "Swap 1st | 2nd"
-msgstr "Trocar 1º | 2º"
+msgstr "Trocar 1.º | 2.º"
 
 msgid "&Browse..."
 msgstr "&Explorar..."
@@ -1241,7 +1241,7 @@ msgid "Rea&d-only"
 msgstr "Apenas-leitura"
 
 msgid "Swap 2nd | 3rd"
-msgstr "Trocar 2º | 3º"
+msgstr "Trocar 2.º | 3.º"
 
 msgid "B&rowse..."
 msgstr "Explora&r..."
@@ -1253,7 +1253,7 @@ msgid "Read-o&nly"
 msgstr "Apenas-leitura"
 
 msgid "Swap 1st | 3rd"
-msgstr "Trocar 1º | 3º"
+msgstr "Trocar 1.º | 3.º"
 
 msgid "Browse..."
 msgstr "Explorar..."
@@ -1632,7 +1632,7 @@ msgid "Plugin &name:"
 msgstr "&Nome do plugin:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "Ficheiros de &destino:"
 
 msgid "Extensions list:"
 msgstr "Lista de extensões:"
@@ -2687,7 +2687,7 @@ msgstr "A comparar itens..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr "%.1f[itens/seg]"
+msgstr "%.1f[itens/seg.]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selecione duas pastas existentes ou ficheiros para comparar."
@@ -3174,31 +3174,31 @@ msgid "Short Result"
 msgstr "Resultado resumido"
 
 msgid "Left Attributes"
-msgstr "Atributos Esq"
+msgstr "Atributos esquerda"
 
 msgid "Right Attributes"
-msgstr "Atributos Dtª"
+msgstr "Atributos direita"
 
 msgid "Middle Attributes"
-msgstr "Atributos Meio"
+msgstr "Atributos meio"
 
 msgid "Left EOL"
-msgstr "EOL Esq"
+msgstr "EOL Esquerda"
 
 msgid "Middle EOL"
 msgstr "EOL Meio"
 
 msgid "Right EOL"
-msgstr "EOL Dtª"
+msgstr "EOL Direita"
 
 msgid "Left Encoding"
-msgstr "Codificação Esq"
+msgstr "Codificação esquerda"
 
 msgid "Right Encoding"
-msgstr "Codificação Dtª"
+msgstr "Codificação direita"
 
 msgid "Middle Encoding"
-msgstr "Codificação Meio"
+msgstr "Codificação meio"
 
 msgid "Ignored Diff"
 msgstr "Diferença ignorada"
@@ -3814,28 +3814,28 @@ msgid ""
 "Previous Difference (Alt+Up)"
 msgstr ""
 "\n"
-"Diferença anterior (Alt+Up)"
+"Diferença anterior (Alt+Cima)"
 
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
 msgstr ""
 "\n"
-"Diferença seguinte (Alt+Down)"
+"Diferença seguinte (Alt+Baixo)"
 
 msgid ""
 "\n"
 "Previous Conflict (Alt+Shift+Up)"
 msgstr ""
 "\n"
-"Conflito Anterior (Alt+Shift+Up)"
+"Conflito Anterior (Alt+Shift+Cima)"
 
 msgid ""
 "\n"
 "Next Conflict (Alt+Shift+Down)"
 msgstr ""
 "\n"
-"Conflito Seguinte (Alt+Shift+Down)"
+"Conflito Seguinte (Alt+Shift+Baixo)"
 
 msgid ""
 "\n"
@@ -3863,28 +3863,28 @@ msgid ""
 "Copy to Right (Alt+Right)"
 msgstr ""
 "\n"
-"Copiar para a direita (Alt+Right)"
+"Copiar para a direita (Alt+Direita)"
 
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)"
 msgstr ""
 "\n"
-"Copiar para a esquerda (Alt+Left)"
+"Copiar para a esquerda (Alt+Esquerda)"
 
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
-"Copiar para a direita e avançar (Ctrl+Alt+Right)"
+"Copiar para a direita e avançar (Ctrl+Alt+Direita)"
 
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
-"Copiar para a esquerda e avançar (Ctrl+Alt+Left)"
+"Copiar para a esquerda e avançar (Ctrl+Alt+Esquerda)"
 
 msgid ""
 "\n"
@@ -4298,25 +4298,25 @@ msgid "New plugin description"
 msgstr "Nova descrição do plugin"
 
 msgid "All"
-msgstr ""
+msgstr "Tudo"
 
 msgid "1st"
-msgstr ""
+msgstr "1.º"
 
 msgid "2nd"
-msgstr ""
+msgstr "2.º"
 
 msgid "3rd"
-msgstr ""
+msgstr "3.º"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1.º e 2.º"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1.º e 3.º"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2.º e 3.º"
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"
