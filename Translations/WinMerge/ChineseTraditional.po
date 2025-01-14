@@ -2531,6 +2531,9 @@ msgstr "外掛程式"
 msgid "&Enable plugins"
 msgstr "啟用外掛程式 (&E)"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "檔案篩選器："
 

@@ -2522,6 +2522,9 @@ msgstr "Bővítmények"
 msgid "&Enable plugins"
 msgstr "Bővítmények bekapcsolása"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Fájlszűrők:"
 

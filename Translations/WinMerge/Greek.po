@@ -2511,6 +2511,9 @@ msgstr "Αρθρώματα"
 msgid "&Enable plugins"
 msgstr "Ενεργοποίηση Αρθρωμάτων"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 

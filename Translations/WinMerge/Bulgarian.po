@@ -2063,6 +2063,9 @@ msgstr "Добавки"
 msgid "&Enable plugins"
 msgstr "Включване на &добавките"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Филтри за файлове:"
 

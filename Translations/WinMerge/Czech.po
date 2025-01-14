@@ -2514,6 +2514,9 @@ msgstr "Pluginy"
 msgid "&Enable plugins"
 msgstr "&Povolit pluginy"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 

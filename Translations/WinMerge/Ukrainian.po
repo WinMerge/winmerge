@@ -2498,6 +2498,9 @@ msgstr "Доповнення"
 msgid "&Enable plugins"
 msgstr "&Ввімкнути доповнення"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 

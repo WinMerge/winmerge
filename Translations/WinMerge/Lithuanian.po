@@ -2058,6 +2058,9 @@ msgstr "Papildiniai"
 msgid "&Enable plugins"
 msgstr "Įjungti &papildinius"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Failų filtrai:"
 

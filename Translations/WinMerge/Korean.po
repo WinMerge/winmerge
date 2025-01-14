@@ -2529,6 +2529,9 @@ msgstr "플러그인"
 msgid "&Enable plugins"
 msgstr "플러그인 활성화(&E)"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "파일 필터:"
 

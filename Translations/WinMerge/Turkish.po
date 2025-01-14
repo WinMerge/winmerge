@@ -2057,6 +2057,9 @@ msgstr "Eklentiler"
 msgid "&Enable plugins"
 msgstr "&Eklentiler kullanılsın"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Dosya süzgeçleri:"
 

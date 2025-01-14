@@ -2067,6 +2067,9 @@ msgstr "الإضافات"
 msgid "&Enable plugins"
 msgstr "تفعيل الإضافات"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 

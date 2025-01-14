@@ -2512,6 +2512,9 @@ msgstr "උපකාරක"
 msgid "&Enable plugins"
 msgstr "&උපකාරක බලය වැඩිකිරීම"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 

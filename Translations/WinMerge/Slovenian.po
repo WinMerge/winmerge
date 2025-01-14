@@ -2066,6 +2066,9 @@ msgstr "Vtičniki"
 msgid "&Enable plugins"
 msgstr "&Omogoči vtičnike"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtri datotek:"
 

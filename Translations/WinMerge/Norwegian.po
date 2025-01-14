@@ -2070,6 +2070,9 @@ msgstr "Programtillegg"
 msgid "&Enable plugins"
 msgstr "&Aktiver programtillegg"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 

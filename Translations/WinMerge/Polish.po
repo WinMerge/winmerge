@@ -2059,6 +2059,9 @@ msgstr "Wtyczki"
 msgid "&Enable plugins"
 msgstr "Włącz wtyczki"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtry pliku:"
 

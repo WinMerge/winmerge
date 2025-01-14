@@ -2066,6 +2066,9 @@ msgstr "Rozšírenia"
 msgid "&Enable plugins"
 msgstr "&Povoliť rozšírenia"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtre súborov:"
 

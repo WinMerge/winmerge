@@ -2075,6 +2075,9 @@ msgstr "插件"
 msgid "&Enable plugins"
 msgstr "启用插件(&E)"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "文件过滤器："
 

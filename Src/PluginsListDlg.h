@@ -30,8 +30,8 @@ public:
 
 protected:
 	void InitList();
-	void AddPlugins();
-	void AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType);
+	void SetPlugins(int sel);
+	void AddPluginsToList(const wchar_t *pluginEvent);
 	void RefreshList();
 	void AddPlugin(unsigned id);
 	void EditPlugin();
@@ -55,10 +55,12 @@ protected:
 	afx_msg void OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDropDownPatterns();
 	afx_msg void OnCloseUpPatterns();
+	afx_msg void OnSelchangePluginType();
 	afx_msg void OnHelp();
 	DECLARE_MESSAGE_MAP()
 
 public:
 	CComboBox m_comboPatterns;
+	CComboBox m_comboType;
 	CListCtrl m_list; /**< A list control for plugins. */	
 };

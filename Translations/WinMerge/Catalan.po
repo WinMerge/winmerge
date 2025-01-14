@@ -2521,6 +2521,9 @@ msgstr "&Connectors"
 msgid "&Enable plugins"
 msgstr "&Habilita els Connectors"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtres de fitxer:"
 

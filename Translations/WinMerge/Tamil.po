@@ -2064,6 +2064,9 @@ msgstr "செருகுகள்"
 msgid "&Enable plugins"
 msgstr "&செருகுநிரல்களை இயக்கு"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "கோப்பு வடிப்பான்கள்:"
 

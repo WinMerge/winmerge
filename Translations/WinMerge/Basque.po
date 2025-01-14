@@ -2516,6 +2516,9 @@ msgstr "Pluginak"
 msgid "&Enable plugins"
 msgstr "Gaitu &pluginak"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 

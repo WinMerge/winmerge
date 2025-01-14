@@ -2060,6 +2060,9 @@ msgstr "Плагины"
 msgid "&Enable plugins"
 msgstr "&Включить плагины"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Фильтры файлов:"
 

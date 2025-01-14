@@ -2497,6 +2497,9 @@ msgstr "Додаци"
 msgid "&Enable plugins"
 msgstr "Омогући додатк&е"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 

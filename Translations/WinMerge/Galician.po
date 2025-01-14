@@ -2067,6 +2067,9 @@ msgstr "Complementos"
 msgid "&Enable plugins"
 msgstr "Habilitar compl&ementos"
 
+msgid "Plugin type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtros de ficheiro:"
 
