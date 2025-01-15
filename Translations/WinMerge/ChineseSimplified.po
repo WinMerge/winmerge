@@ -2075,8 +2075,8 @@ msgstr "插件"
 msgid "&Enable plugins"
 msgstr "启用插件(&E)"
 
-msgid "Plugin type:"
-msgstr ""
+msgid "Plugin &type:"
+msgstr "插件类型(&T)："
 
 msgid "File filters:"
 msgstr "文件过滤器："
@@ -2208,9 +2208,6 @@ msgstr "十六进制查看(&H)"
 
 msgid "Edit Plugin"
 msgstr "编辑插件"
-
-msgid "Plugin &type:"
-msgstr "插件类型(&T)："
 
 msgid "&Category:"
 msgstr "类别(&C)："

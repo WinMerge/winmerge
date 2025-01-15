@@ -2067,7 +2067,7 @@ msgstr "Lisäosat"
 msgid "&Enable plugins"
 msgstr "Ota laajennukset käyttöön"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2205,9 +2205,6 @@ msgid "&Hex View"
 msgstr "&Hexanäkymä"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

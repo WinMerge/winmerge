@@ -2059,8 +2059,8 @@ msgstr "Wtyczki"
 msgid "&Enable plugins"
 msgstr "Włącz wtyczki"
 
-msgid "Plugin type:"
-msgstr ""
+msgid "Plugin &type:"
+msgstr "Typ wtyczki:"
 
 msgid "File filters:"
 msgstr "Filtry pliku:"
@@ -2192,9 +2192,6 @@ msgstr "Widok szesnastkowy"
 
 msgid "Edit Plugin"
 msgstr ""
-
-msgid "Plugin &type:"
-msgstr "Typ wtyczki:"
 
 msgid "&Category:"
 msgstr "Kategoria:"

@@ -2063,7 +2063,7 @@ msgstr "Добавки"
 msgid "&Enable plugins"
 msgstr "Включване на &добавките"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2195,9 +2195,6 @@ msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

@@ -2057,7 +2057,7 @@ msgstr "Eklentiler"
 msgid "&Enable plugins"
 msgstr "&Eklentiler kullanılsın"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2189,9 +2189,6 @@ msgid "&Hex View"
 msgstr "Onaltılık &görünüm"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

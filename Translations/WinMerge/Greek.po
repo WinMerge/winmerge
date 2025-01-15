@@ -2511,7 +2511,7 @@ msgstr "Αρθρώματα"
 msgid "&Enable plugins"
 msgstr "Ενεργοποίηση Αρθρωμάτων"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2660,9 +2660,6 @@ msgid "&Hex View"
 msgstr ""
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

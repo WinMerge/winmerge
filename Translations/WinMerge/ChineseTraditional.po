@@ -2531,7 +2531,7 @@ msgstr "外掛程式"
 msgid "&Enable plugins"
 msgstr "啟用外掛程式 (&E)"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2680,9 +2680,6 @@ msgid "&Hex View"
 msgstr "二進制顯示 (&H)"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

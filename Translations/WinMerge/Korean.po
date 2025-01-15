@@ -2529,8 +2529,8 @@ msgstr "플러그인"
 msgid "&Enable plugins"
 msgstr "플러그인 활성화(&E)"
 
-msgid "Plugin type:"
-msgstr ""
+msgid "Plugin &type:"
+msgstr "플러그인(&T):"
 
 msgid "File filters:"
 msgstr "파일 필터:"
@@ -2679,9 +2679,6 @@ msgstr "16진수 보기(&H)"
 
 msgid "Edit Plugin"
 msgstr "편집 플러그인"
-
-msgid "Plugin &type:"
-msgstr "플러그인(&T):"
 
 msgid "&Category:"
 msgstr "범주(&C):"

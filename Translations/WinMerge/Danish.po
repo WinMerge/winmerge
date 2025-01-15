@@ -2519,7 +2519,7 @@ msgstr "Plugins"
 msgid "&Enable plugins"
 msgstr "&Aktiver plugins"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2668,9 +2668,6 @@ msgid "&Hex View"
 msgstr ""
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

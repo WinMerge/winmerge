@@ -2512,7 +2512,7 @@ msgstr "උපකාරක"
 msgid "&Enable plugins"
 msgstr "&උපකාරක බලය වැඩිකිරීම"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2661,9 +2661,6 @@ msgid "&Hex View"
 msgstr ""
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

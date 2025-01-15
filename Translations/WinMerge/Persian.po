@@ -2521,7 +2521,7 @@ msgstr " افزايه ها"
 msgid "&Enable plugins"
 msgstr "&E فعال سازي افزايه ها "
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2670,9 +2670,6 @@ msgid "&Hex View"
 msgstr ""
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

@@ -2064,7 +2064,7 @@ msgstr "செருகுகள்"
 msgid "&Enable plugins"
 msgstr "&செருகுநிரல்களை இயக்கு"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2196,9 +2196,6 @@ msgid "&Hex View"
 msgstr "&ஹெக்ஸ் வியூ"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

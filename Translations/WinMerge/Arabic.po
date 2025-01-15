@@ -2067,7 +2067,7 @@ msgstr "الإضافات"
 msgid "&Enable plugins"
 msgstr "تفعيل الإضافات"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2199,9 +2199,6 @@ msgid "&Hex View"
 msgstr "ع&رض بصيغة نظام عد ستة عشري"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

@@ -2066,7 +2066,7 @@ msgstr "Vtičniki"
 msgid "&Enable plugins"
 msgstr "&Omogoči vtičnike"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2198,9 +2198,6 @@ msgid "&Hex View"
 msgstr "16-tiški prikaz"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

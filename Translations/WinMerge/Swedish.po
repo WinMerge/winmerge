@@ -2079,7 +2079,7 @@ msgstr "Programtillägg"
 msgid "&Enable plugins"
 msgstr "Aktivera programtillägg"
 
-msgid "Plugin type:"
+msgid "Plugin &type:"
 msgstr ""
 
 msgid "File filters:"
@@ -2211,9 +2211,6 @@ msgid "&Hex View"
 msgstr "Hex visning"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

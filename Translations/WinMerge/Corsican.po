@@ -2068,8 +2068,8 @@ msgstr "Moduli d’estensione"
 msgid "&Enable plugins"
 msgstr "&Attivà i moduli d’estensione"
 
-msgid "Plugin type:"
-msgstr ""
+msgid "Plugin &type:"
+msgstr "Tipu di &modulu d’estensione :"
 
 msgid "File filters:"
 msgstr "Filtri di schedariu :"
@@ -2201,9 +2201,6 @@ msgstr "Vista &esadecimale"
 
 msgid "Edit Plugin"
 msgstr "Mudificà u modulu d’estensione"
-
-msgid "Plugin &type:"
-msgstr "Tipu di &modulu d’estensione :"
 
 msgid "&Category:"
 msgstr "&Categuria :"

@@ -2058,8 +2058,8 @@ msgstr "Papildiniai"
 msgid "&Enable plugins"
 msgstr "Įjungti &papildinius"
 
-msgid "Plugin type:"
-msgstr ""
+msgid "Plugin &type:"
+msgstr "Papildinio &tipas:"
 
 msgid "File filters:"
 msgstr "Failų filtrai:"
@@ -2191,9 +2191,6 @@ msgstr "Žiūrėti &Hex režimu"
 
 msgid "Edit Plugin"
 msgstr "Redaguoti papildinį"
-
-msgid "Plugin &type:"
-msgstr "Papildinio &tipas:"
 
 msgid "&Category:"
 msgstr "&Kategorija:"
