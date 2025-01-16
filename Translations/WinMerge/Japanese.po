@@ -2070,7 +2070,7 @@ msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
 
 msgid "Plugin &type:"
-msgstr "プラグインの種類(&T)"
+msgstr "プラグインの種類(&T):"
 
 msgid "File filters:"
 msgstr "ファイル フィルター:"

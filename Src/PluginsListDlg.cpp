@@ -79,6 +79,8 @@ BOOL PluginsListDlg::OnInitDialog()
 
 	
 	InitList();
+	SetDlgItemComboBoxList(IDC_PLUGIN_TYPE, { _("Unpacker"), _("Prediffer"), _("Editor script") });
+	m_comboType.SetCurSel(0);
 	SetPlugins(0);
 	m_list.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
 
@@ -210,7 +212,10 @@ void PluginsListDlg::AddPlugin(unsigned id)
 			return;
 		String errmsg;
 		if (internal_plugin::AddPlugin(*info, errmsg))
+		{
+			m_comboType.SetCurSel(id == ID_PLUGIN_ADD_UNPACKER ? 0 : 1);
 			break;
+		}
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
 	}
 	RefreshList();
@@ -422,6 +427,7 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
  */
 void PluginsListDlg::OnSelchangePluginType()
 {
+	SetPlugins(m_comboType.GetCurSel());
 }
 
 /**
