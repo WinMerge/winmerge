@@ -507,44 +507,6 @@ void CMainFrame::OnDestroy(void)
 		RevokeDragDrop(m_hWnd);
 }
 
-static HMENU GetSubmenu(HMENU menu, int nthSubmenu)
-{
-	for (int nth = 0, i = 0; i < ::GetMenuItemCount(menu); i++)
-	{
-		if (::GetSubMenu(menu, i) != nullptr)
-		{
-			if (nth == nthSubmenu)
-				return ::GetSubMenu(menu, i);
-			nth++;
-		}
-	}
-	// error, submenu not found
-	return nullptr;
-}
-
-static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, int nthSubmenu)
-{
-	int i;
-	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
-		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == nIDFirstMenuItem)
-			break;
-	HMENU menu = ::GetSubMenu(mainMenu, i);
-	if (!menu)
-		return nullptr;
-	return GetSubmenu(menu, nthSubmenu);
-}
-
-/**
- * @brief Find the scripts submenu from the main menu
- * As now this is the first submenu in "Plugins" menu
- * We find the "Plugins" menu by looking for a menu 
- *  starting with ID_UNPACK_MANUAL.
- */
-HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
-{
-	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, 1);
-}
-
 /**
  * @brief Create a new menu for the view..
  * @param [in] view Menu view either MENU_DEFAULT, MENU_MERGEVIEW or MENU_DIRVIEW.
@@ -726,7 +688,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
 			if (topMenuId == ID_NO_PREDIFFER)
 			{
-				UpdatePrediffersMenu();
+				UpdatePrediffersMenu(pPopupMenu);
 			}
 			else if (topMenuId == ID_MERGE_COMPARE_TEXT)
 			{
@@ -2011,16 +1973,12 @@ CMergeEditView * CMainFrame::GetActiveMergeEditView()
 	return pFrame->GetMergeDoc()->GetActiveMergeView();
 }
 
-void CMainFrame::UpdatePrediffersMenu()
+void CMainFrame::UpdatePrediffersMenu(CMenu* pPredifferMenu)
 {
-	CMenu* menu = GetMenu();
-	if (menu == nullptr)
-	{
+	if (pPredifferMenu == nullptr)
 		return;
-	}
 
-	HMENU hMainMenu = menu->m_hMenu;
-	HMENU prediffersSubmenu = GetPrediffersSubmenu(hMainMenu);
+	HMENU prediffersSubmenu = pPredifferMenu->m_hMenu;
 	if (prediffersSubmenu != nullptr)
 	{
 		CMergeEditView * pEditView = GetActiveMergeEditView();

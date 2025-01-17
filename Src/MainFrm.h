@@ -148,8 +148,7 @@ public:
 	HMENU NewWebPageDiffViewMenu();
 	HMENU NewOpenViewMenu();
 	HMENU NewDefaultMenu(int ID = 0);
-	HMENU GetPrediffersSubmenu(HMENU mainMenu);
-	void UpdatePrediffersMenu();
+	void UpdatePrediffersMenu(CMenu* pPredifferMenu);
 
 	bool DoFileOrFolderOpen(const PathContext *pFiles = nullptr,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
