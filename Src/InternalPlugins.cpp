@@ -716,7 +716,7 @@ Info* GetInternalPluginInfo(const PluginInfo* plugin)
 
 bool FindPluginNameConflict(const Info& info)
 {
-	for (auto& eventNames : { plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::EditorScriptEventNames })
+	for (auto& eventNames : { plugin::ProtocolHanlderEventNames, plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::EditorScriptEventNames })
 	{
 		if (std::find(eventNames.begin(), eventNames.end(), info.m_event) != eventNames.end())
 		{
@@ -830,7 +830,7 @@ bool RemovePlugin(const Info& info, String& errmsg)
 		return false;
 	for (auto it = list.begin(); it != list.end(); ++it)
 	{
-		if (it->m_name == info.m_name)
+		if (it->m_name == info.m_name && it->m_event == info.m_event)
 		{
 			list.erase(it);
 			break;

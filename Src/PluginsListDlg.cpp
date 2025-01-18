@@ -87,6 +87,11 @@ BOOL PluginsListDlg::OnInitDialog()
 	CheckDlgButton(IDC_PLUGINS_ENABLE, 
 		GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? BST_CHECKED : BST_UNCHECKED);
 
+	m_constraint.InitializeCurrentSize(this);
+	m_constraint.SubclassWnd(); // install subclassing
+	// persist size via registry
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("PluginsListDlg"), false);
+
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -108,7 +113,7 @@ void PluginsListDlg::InitList()
 	title = _("Type");
 	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(100));
 	title = _("Description");
-	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, pointToPixel(350));
+	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, pointToPixel(600));
 }
 
 /**

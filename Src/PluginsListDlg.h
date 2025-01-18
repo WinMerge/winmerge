@@ -7,6 +7,7 @@
 
 #include "TrDialogs.h"
 #include "UnicodeString.h"
+#include "CMoveConstraint.h"
 
 class PluginInfo;
 namespace internal_plugin { struct Info; }
@@ -63,4 +64,5 @@ public:
 	CComboBox m_comboPatterns;
 	CComboBox m_comboType;
 	CListCtrl m_list; /**< A list control for plugins. */	
+	prdlg::CMoveConstraint m_constraint; /**< Resizes dialog controls when dialog resized */
 };
