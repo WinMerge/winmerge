@@ -2078,6 +2078,9 @@ msgstr "Plugin-uri"
 msgid "&Enable plugins"
 msgstr "Activ&ează plugin-uri"
 
+msgid "Plugin &type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtre fișiere:"
 
@@ -2207,9 +2210,6 @@ msgid "&Hex View"
 msgstr "Afișare &hexadecimală"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

@@ -2060,6 +2060,9 @@ msgstr "Плагины"
 msgid "&Enable plugins"
 msgstr "&Включить плагины"
 
+msgid "Plugin &type:"
+msgstr "Тип плагина:"
+
 msgid "File filters:"
 msgstr "Фильтры файлов:"
 
@@ -2190,9 +2193,6 @@ msgstr "16-ричный вид"
 
 msgid "Edit Plugin"
 msgstr "Редактировать плагин"
-
-msgid "Plugin &type:"
-msgstr "Тип плагина:"
 
 msgid "&Category:"
 msgstr "Категория"

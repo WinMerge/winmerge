@@ -2067,6 +2067,9 @@ msgstr "Complementos"
 msgid "&Enable plugins"
 msgstr "Habilitar compl&ementos"
 
+msgid "Plugin &type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr "Filtros de ficheiro:"
 
@@ -2196,9 +2199,6 @@ msgid "&Hex View"
 msgstr "Vista &hexadecimal"
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"

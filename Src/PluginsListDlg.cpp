@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_PLUGIN_DEFAULTS, OnBnClickedFileFiltesDefaults)
 	ON_CBN_DROPDOWN(IDC_PLUGIN_FILEFILTERS, OnDropDownPatterns)
 	ON_CBN_CLOSEUP(IDC_PLUGIN_FILEFILTERS, OnCloseUpPatterns)
+	ON_CBN_SELCHANGE(IDC_PLUGIN_TYPE, OnSelchangePluginType)
 	ON_NOTIFY(NM_DBLCLK, IDC_PLUGINSLIST_LIST, OnNMDblclkList)
 	ON_NOTIFY(LVN_ITEMCHANGING, IDC_PLUGINSLIST_LIST, OnLVNItemChanging)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_PLUGINSLIST_LIST, OnLVNItemChanged)
@@ -58,6 +59,7 @@ PluginsListDlg::~PluginsListDlg()
 void PluginsListDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_PLUGIN_TYPE, m_comboType);
 	DDX_Control(pDX, IDC_PLUGINSLIST_LIST, m_list);
 	DDX_Control(pDX, IDC_PLUGIN_FILEFILTERS, m_comboPatterns);
 }
@@ -77,11 +79,18 @@ BOOL PluginsListDlg::OnInitDialog()
 
 	
 	InitList();
-	AddPlugins();
+	SetDlgItemComboBoxList(IDC_PLUGIN_TYPE, { _("Unpacker"), _("Prediffer"), _("Editor script") });
+	m_comboType.SetCurSel(0);
+	SetPlugins(0);
 	m_list.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
 
 	CheckDlgButton(IDC_PLUGINS_ENABLE, 
 		GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? BST_CHECKED : BST_UNCHECKED);
+
+	m_constraint.InitializeCurrentSize(this);
+	m_constraint.SubclassWnd(); // install subclassing
+	// persist size via registry
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("PluginsListDlg"), false);
 
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -102,34 +111,40 @@ void PluginsListDlg::InitList()
 	String title = _("Name");
 	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(150));
 	title = _("Type");
-	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(150));
+	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(100));
 	title = _("Description");
-	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, pointToPixel(300));
+	m_list.InsertColumn(2, title.c_str(), LVCFMT_LEFT, pointToPixel(600));
 }
 
 /**
  * @brief Add found plugins to the list.
  */
-void PluginsListDlg::AddPlugins()
+void PluginsListDlg::SetPlugins(int sel)
 {
-	String type = _("Unpacker");
-	AddPluginsToList(L"URL_PACK_UNPACK", type);
-	for (const auto& event : plugin::UnpackerEventNames)
-		AddPluginsToList(event.c_str(), type);
-	type = _("Prediffer");
-	for (const auto& event : plugin::PredifferEventNames)
-		AddPluginsToList(event.c_str(), type);
-	type = _("Editor script");
-	for (const auto& event : plugin::EditorScriptEventNames)
-		AddPluginsToList(event.c_str(), type);
+	m_list.DeleteAllItems();
+	if (sel == 0)
+	{
+		AddPluginsToList(L"URL_PACK_UNPACK");
+		for (const auto& event : plugin::UnpackerEventNames)
+			AddPluginsToList(event.c_str());
+	}
+	else if (sel == 1)
+	{
+		for (const auto& event : plugin::PredifferEventNames)
+			AddPluginsToList(event.c_str());
+	}
+	else if (sel == 2)
+	{
+		for (const auto& event : plugin::EditorScriptEventNames)
+			AddPluginsToList(event.c_str() );
+	}
 }
 
 /**
  * @brief Add plugins of given event type to the list.
  * @param [in] pluginEvent Event type for plugins to add.
- * @param [in] pluginType String to use as type in the list.
  */
-void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType)
+void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent)
 {
 	PluginArray * piPluginArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(pluginEvent);
@@ -146,7 +161,7 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 		String desc = containsNonAsciiChars  ? plugin->m_description : tr(ucr::toUTF8(plugin->m_description));
 		strutils::replace(desc, _T("\r"), _T(""));
 		strutils::replace(desc, _T("\n"), _T(" "));
-		m_list.SetItemText(ind, 1, (pluginType + _T("/") + processType2).c_str());
+		m_list.SetItemText(ind, 1, processType2.c_str());
 		m_list.SetItemText(ind, 2, desc.c_str());
 		m_list.SetCheck(ind, !plugin->m_disabled);
 		m_list.SetItemData(ind, reinterpret_cast<DWORD_PTR>(plugin.get()));
@@ -180,8 +195,7 @@ void PluginsListDlg::RefreshList()
 	auto pos = m_list.GetFirstSelectedItemPosition();
 	if (pos)
 		index = m_list.GetNextSelectedItem(pos);
-	m_list.DeleteAllItems();
-	AddPlugins();
+	SetPlugins(m_comboType.GetCurSel());
 	if (index >= m_list.GetItemCount())
 		index = m_list.GetItemCount() - 1;
 	if (index > 0)
@@ -203,7 +217,10 @@ void PluginsListDlg::AddPlugin(unsigned id)
 			return;
 		String errmsg;
 		if (internal_plugin::AddPlugin(*info, errmsg))
+		{
+			m_comboType.SetCurSel(id == ID_PLUGIN_ADD_UNPACKER ? 0 : 1);
 			break;
+		}
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
 	}
 	RefreshList();
@@ -408,6 +425,14 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 		EnableDlgItem(IDC_PLUGIN_EDIT, info != nullptr);
 		EnableDlgItem(IDC_PLUGIN_REMOVE, (info && info->m_userDefined));
 	}
+}
+
+/**
+ * @brief Prepares multi-selection drop list 
+ */
+void PluginsListDlg::OnSelchangePluginType()
+{
+	SetPlugins(m_comboType.GetCurSel());
 }
 
 /**

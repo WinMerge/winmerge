@@ -2078,6 +2078,9 @@ msgstr "Plugin"
 msgid "&Enable plugins"
 msgstr "&Abilita plugin"
 
+msgid "Plugin &type:"
+msgstr "&Tipo plugin:"
+
 msgid "File filters:"
 msgstr "Filtri file:"
 
@@ -2208,9 +2211,6 @@ msgstr "Vista &esadecimale"
 
 msgid "Edit Plugin"
 msgstr "Modifica plugin"
-
-msgid "Plugin &type:"
-msgstr "&Tipo plugin:"
 
 msgid "&Category:"
 msgstr "&Categoria:"

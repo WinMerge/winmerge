@@ -2514,6 +2514,9 @@ msgstr "Dodaci"
 msgid "&Enable plugins"
 msgstr "&Omogući dodatke"
 
+msgid "Plugin &type:"
+msgstr ""
+
 msgid "File filters:"
 msgstr ""
 
@@ -2660,9 +2663,6 @@ msgid "&Hex View"
 msgstr ""
 
 msgid "Edit Plugin"
-msgstr ""
-
-msgid "Plugin &type:"
 msgstr ""
 
 msgid "&Category:"
