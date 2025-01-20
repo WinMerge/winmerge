@@ -872,7 +872,7 @@ void CDirView::OnCtxtDirCopy()
 	if (counts.count > 0)
 	{
 		int ans = AfxMessageBox(_("Some selected items are identical or skipped.\nDo you want to copy only the items with differences?").c_str(),
-			MB_YESNOCANCEL | MB_DONT_ASK_AGAIN, IDS_COPY_ONLYDIFFITEMS);
+			MB_YESNOCANCEL | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_COPY_ONLYDIFFITEMS);
 		if (ans == IDCANCEL)
 			return;
 		copyOnlyDiffItems = (ans == IDYES);
