@@ -1097,7 +1097,13 @@ void CopyDiffSideAndProperties(CDiffContext& ctxt, DIFFITEM& di, int src, int ds
 		di.diffFileInfo[dst].flags = di.diffFileInfo[src].flags;
 	}
 	if (di.HasChildren())
-		UpdateStatusFromDisk(ctxt, di, dst);
+	{
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+		{
+			CopyDiffSideAndProperties(ctxt, *pdic, src, dst);
+			UpdateStatusFromDisk(ctxt, di, dst);
+		}
+	}
 }
 
 /**

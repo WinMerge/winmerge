@@ -371,7 +371,7 @@ struct DirActions
 		{
 			if (IsItemIdenticalOrSkipped(*pdi))
 				return true;
-			pdi->GetFwdSiblingLink();
+			pdi = pdi->GetFwdSiblingLink();
 		}
 		return false;
 	}
