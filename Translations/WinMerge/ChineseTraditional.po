@@ -3538,7 +3538,7 @@ msgstr "全部到... (%1)"
 msgid "Differences to... (%1)"
 msgstr "差異到... (%1)"
 
-msgid "Some selected items are identical or skipped. Do you want to copy only the items with differences?"
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
 msgstr ""
 
 #, c-format

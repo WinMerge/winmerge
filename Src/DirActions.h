@@ -140,6 +140,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths);
 
 bool IsItemCopyable(const DIFFITEM &di, int index);
+bool IsItemCopyable(const DIFFITEM &di, int index, bool includeIdenticalOrSkipped);
 bool IsItemMovable(const DIFFITEM &di, int index);
 bool IsItemDeletable(const DIFFITEM &di, int index);
 bool IsItemDeletableOnBoth(const CDiffContext& ctxt, const DIFFITEM &di);
@@ -364,7 +365,7 @@ struct DirActions
 	bool IsItemIdenticalOrSkipped(const DIFFITEM& di) const
 	{
 		if (!di.HasChildren())
-			return (di.diffcode.diffcode != 0 && (di.diffcode.isResultSame() || di.diffcode.isResultFiltered()));
+			return (di.diffcode.diffcode != 0 && (di.diffcode.isResultSame() || di.diffcode.isResultFiltered() || di.diffcode.isResultError()));
 		DIFFITEM* pdi = di.GetFirstChild();
 		while (pdi)
 		{
@@ -380,8 +381,18 @@ struct DirActions
 		const DIFFITEM& di = *it.second;
 		const int srcidx = SideToIndex(m_ctxt, src);
 		const int dstidx = SideToIndex(m_ctxt, dst);
-		if (di.diffcode.diffcode != 0 && !m_RO[dstidx] && IsItemCopyable(di, srcidx))
+		if (di.diffcode.diffcode != 0 && !m_RO[dstidx] && IsItemCopyable(di, srcidx, includeIdenticalOrSkipped))
 		{
+			if (!includeIdenticalOrSkipped && it.second->HasChildren())
+			{
+				const DIFFITEM* pdi = it.second->GetFirstChild();
+				while (pdi)
+				{
+					CopyItem(pscript, it, includeIdenticalOrSkipped, src, dst);
+					pdi = pdi->GetFwdSiblingLink();
+				}
+				return pscript;
+			}
 			FileActionItem act;
 			act.src  = GetItemFileName(m_ctxt, di, srcidx);
 			act.dest = GetItemFileName(m_ctxt, di, dstidx);

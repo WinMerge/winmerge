@@ -369,6 +369,21 @@ bool IsItemCopyable(const DIFFITEM &di, int index)
 	return true;
 }
 
+bool IsItemCopyable(const DIFFITEM &di, int index, bool includeIdenticalOrSkipped)
+{
+	if (!includeIdenticalOrSkipped)
+	{
+		// don't let them mess with error items
+		if (di.diffcode.isResultError()) return false;
+		// can't copy same items
+		if (di.diffcode.isResultSame()) return false;
+	}
+	// impossible if not existing
+	if (!di.diffcode.exists(index)) return false;
+	// everything else can be copied to other side
+	return true;
+}
+
 /// is it possible to move item to left ?
 bool IsItemMovable(const DIFFITEM &di, int index)
 {
