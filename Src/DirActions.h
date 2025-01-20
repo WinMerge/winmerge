@@ -167,7 +167,7 @@ int GetColImage(const DIFFITEM &di);
 
 void SetDiffStatus(DIFFITEM& di, unsigned  diffcode, unsigned mask);
 void SetDiffCompare(DIFFITEM& di, unsigned diffcode);
-void CopyDiffSideAndProperties(CDiffContext& ctxt, DIFFITEM& di, int src, int dst);
+void CopyDiffSideAndProperties(CDiffContext& ctxt, DIFFITEM& di, int src, int dst, int action);
 void UnsetDiffSide(const CDiffContext& ctxt, DIFFITEM& di, int index);
 void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index);
 int UpdateCompareFlagsAfterSync(DIFFITEM& di, bool bRecursive);
@@ -366,12 +366,10 @@ struct DirActions
 	{
 		if (!di.HasChildren())
 			return (di.diffcode.diffcode != 0 && (di.diffcode.isResultSame() || di.diffcode.isResultFiltered() || di.diffcode.isResultError()));
-		DIFFITEM* pdi = di.GetFirstChild();
-		while (pdi)
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
 		{
-			if (IsItemIdenticalOrSkipped(*pdi))
+			if (IsItemIdenticalOrSkipped(*pdic))
 				return true;
-			pdi = pdi->GetFwdSiblingLink();
 		}
 		return false;
 	}
@@ -385,12 +383,8 @@ struct DirActions
 		{
 			if (!includeIdenticalOrSkipped && it.second->HasChildren())
 			{
-				const DIFFITEM* pdi = it.second->GetFirstChild();
-				while (pdi)
-				{
-					CopyItem(pscript, { it.first, pdi }, includeIdenticalOrSkipped, src, dst);
-					pdi = pdi->GetFwdSiblingLink();
-				}
+				for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+					CopyItem(pscript, { it.first, pdic }, includeIdenticalOrSkipped, src, dst);
 				return pscript;
 			}
 			FileActionItem act;
@@ -404,7 +398,7 @@ struct DirActions
 			act.context = it.first;
 			act.dirflag = di.diffcode.isDirectory();
 			act.atype = FileAction::ACT_COPY;
-			act.UIResult = FileActionItem::UI_SYNC;
+			act.UIResult = includeIdenticalOrSkipped ? FileActionItem::UI_COPY : FileActionItem::UI_COPY_DIFFITEMS;
 			act.UIOrigin = srcidx;
 			act.UIDestination = dstidx;
 			pscript->AddActionItem(act);
