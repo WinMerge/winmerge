@@ -374,17 +374,17 @@ struct DirActions
 		return false;
 	}
 
-	FileActionScript *CopyItem(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it, bool includeIdenticalOrSkipped, SIDE_TYPE src, SIDE_TYPE dst) const
+	FileActionScript *CopyItem(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it, bool copyOnlyDiffItems, SIDE_TYPE src, SIDE_TYPE dst) const
 	{
 		const DIFFITEM& di = *it.second;
 		const int srcidx = SideToIndex(m_ctxt, src);
 		const int dstidx = SideToIndex(m_ctxt, dst);
-		if (di.diffcode.diffcode != 0 && !m_RO[dstidx] && IsItemCopyable(di, srcidx, includeIdenticalOrSkipped))
+		if (di.diffcode.diffcode != 0 && !m_RO[dstidx] && IsItemCopyable(di, srcidx, copyOnlyDiffItems))
 		{
-			if (!includeIdenticalOrSkipped && it.second->HasChildren())
+			if (copyOnlyDiffItems && it.second->HasChildren())
 			{
 				for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
-					CopyItem(pscript, { it.first, pdic }, includeIdenticalOrSkipped, src, dst);
+					CopyItem(pscript, { it.first, pdic }, copyOnlyDiffItems, src, dst);
 				return pscript;
 			}
 			FileActionItem act;
@@ -398,7 +398,7 @@ struct DirActions
 			act.context = it.first;
 			act.dirflag = di.diffcode.isDirectory();
 			act.atype = FileAction::ACT_COPY;
-			act.UIResult = includeIdenticalOrSkipped ? FileActionItem::UI_COPY : FileActionItem::UI_COPY_DIFFITEMS;
+			act.UIResult = copyOnlyDiffItems ? FileActionItem::UI_COPY_DIFFITEMS : FileActionItem::UI_COPY;
 			act.UIOrigin = srcidx;
 			act.UIDestination = dstidx;
 			pscript->AddActionItem(act);
@@ -409,13 +409,13 @@ struct DirActions
 	template<SIDE_TYPE src, SIDE_TYPE to>
 	FileActionScript *CopyDiffItems(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
-		return CopyItem(pscript, it, false, src, to);
+		return CopyItem(pscript, it, true, src, to);
 	}
 
 	template<SIDE_TYPE src, SIDE_TYPE to>
 	FileActionScript *Copy(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
-		return CopyItem(pscript, it, true, src, to);
+		return CopyItem(pscript, it, false, src, to);
 	}
 
 	FileActionScript *MoveItem(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it, SIDE_TYPE src, SIDE_TYPE dst) const
