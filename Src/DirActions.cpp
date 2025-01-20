@@ -1087,7 +1087,7 @@ int GetColImage(const DIFFITEM &di)
 void CopyDiffSideAndProperties(CDiffContext& ctxt, DIFFITEM& di, int src, int dst, int action)
 {
 	if (di.diffcode.exists(src) &&
-		action != FileActionItem::UI_COPY_DIFFITEMS || di.diffcode.isResultDiff())
+		(action != FileActionItem::UI_COPY_DIFFITEMS || di.diffcode.isResultDiff()))
 	{
 		di.diffcode.diffcode |= (DIFFCODE::FIRST << dst);
 		// copy file properties other than ctime 
