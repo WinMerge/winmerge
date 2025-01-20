@@ -388,7 +388,7 @@ struct DirActions
 				const DIFFITEM* pdi = it.second->GetFirstChild();
 				while (pdi)
 				{
-					CopyItem(pscript, it, includeIdenticalOrSkipped, src, dst);
+					CopyItem(pscript, { it.first, pdi }, includeIdenticalOrSkipped, src, dst);
 					pdi = pdi->GetFwdSiblingLink();
 				}
 				return pscript;
