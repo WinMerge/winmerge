@@ -2765,6 +2765,9 @@ msgstr "Tümünü... (%1)"
 msgid "Differences to... (%1)"
 msgstr "Farklı olanları... (%1)"
 
+msgid "Some selected items are identical or skipped. Do you want to copy only the items with differences?"
+msgstr ""
+
 #, c-format
 msgid "Left (%1)"
 msgstr "Soldakini (%1)"

@@ -361,7 +361,21 @@ struct DirActions
 		return ::IsItemNavigableDiff(m_ctxt, di);
 	}
 
-	FileActionScript *CopyItem(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it, SIDE_TYPE src, SIDE_TYPE dst) const
+	bool IsItemIdenticalOrSkipped(const DIFFITEM& di) const
+	{
+		if (!di.HasChildren())
+			return (di.diffcode.diffcode != 0 && (di.diffcode.isResultSame() || di.diffcode.isResultFiltered()));
+		DIFFITEM* pdi = di.GetFirstChild();
+		while (pdi)
+		{
+			if (IsItemIdenticalOrSkipped(*pdi))
+				return true;
+			pdi->GetFwdSiblingLink();
+		}
+		return false;
+	}
+
+	FileActionScript *CopyItem(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it, bool includeIdenticalOrSkipped, SIDE_TYPE src, SIDE_TYPE dst) const
 	{
 		const DIFFITEM& di = *it.second;
 		const int srcidx = SideToIndex(m_ctxt, src);
@@ -388,9 +402,15 @@ struct DirActions
 	}
 
 	template<SIDE_TYPE src, SIDE_TYPE to>
+	FileActionScript *CopyDiffItems(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
+	{
+		return CopyItem(pscript, it, false, src, to);
+	}
+
+	template<SIDE_TYPE src, SIDE_TYPE to>
 	FileActionScript *Copy(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it) const
 	{
-		return CopyItem(pscript, it, src, to);
+		return CopyItem(pscript, it, true, src, to);
 	}
 
 	FileActionScript *MoveItem(FileActionScript *pscript, const std::pair<int, const DIFFITEM *>& it, SIDE_TYPE src, SIDE_TYPE dst) const

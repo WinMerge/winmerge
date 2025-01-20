@@ -2766,6 +2766,9 @@ msgstr "De Todos pra... (%1)"
 msgid "Differences to... (%1)"
 msgstr "Das Diferenças pra... (%1)"
 
+msgid "Some selected items are identical or skipped. Do you want to copy only the items with differences?"
+msgstr ""
+
 #, c-format
 msgid "Left (%1)"
 msgstr "Esquerda (%1)"

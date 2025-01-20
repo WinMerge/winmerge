@@ -1801,6 +1801,7 @@
 #define IDS_COPY_GRANULARITY_LINE       44643
 #define IDS_COPY_GRANULARITY_Character  44644
 #define IDS_VIEW_MENU_BAR               44645
+#define IDS_COPY_ONLYDIFFITEMS          44646
 
 // Next default values for new objects
 // 

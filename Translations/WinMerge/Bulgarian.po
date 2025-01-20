@@ -2975,6 +2975,9 @@ msgstr "Всички към… (%1)"
 msgid "Differences to... (%1)"
 msgstr "Различия към… (%1)"
 
+msgid "Some selected items are identical or skipped. Do you want to copy only the items with differences?"
+msgstr ""
+
 #, c-format
 msgid "Left (%1)"
 msgstr "Ляво (%1)"

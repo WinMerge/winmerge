@@ -3809,6 +3809,7 @@ BEGIN
     IDS_COPY_BOTH_TO2       "Both to... (%1 of %2)"
     IDS_COPY_ALL_TO2        "All to... (%1 of %2)"
     IDS_COPY_DIFFERENCES_TO2 "Differences to... (%1 of %2)"
+    IDS_COPY_ONLYDIFFITEMS  "Some selected items are identical or skipped. Do you want to copy only the items with differences?"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
