@@ -255,7 +255,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 	case FileActionItem::UI_SYNC:
 		bUpdateSrc = true;
 		bUpdateDest = true;
-		CopyDiffSideAndProperties(di, act.UIOrigin, act.UIDestination);
+		CopyDiffSideAndProperties(ctxt, di, act.UIOrigin, act.UIDestination);
 		if (ctxt.GetCompareDirs() > 2)
 			SetDiffCompare(di, DIFFCODE::NOCMP);
 		else
@@ -266,7 +266,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 	case FileActionItem::UI_MOVE:
 		bUpdateSrc = true;
 		bUpdateDest = true;
-		CopyDiffSideAndProperties(di, act.UIOrigin, act.UIDestination);
+		CopyDiffSideAndProperties(ctxt, di, act.UIOrigin, act.UIDestination);
 		UnsetDiffSide(ctxt, di, act.UIOrigin);
 		SetDiffCompare(di, DIFFCODE::NOCMP);
 		break;
@@ -1083,7 +1083,7 @@ int GetColImage(const DIFFITEM &di)
  * @note This does not update UI - ReloadItemStatus() does
  * @sa CDirDoc::ReloadItemStatus()
  */
-void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst)
+void CopyDiffSideAndProperties(CDiffContext& ctxt, DIFFITEM& di, int src, int dst)
 {
 	if (di.diffcode.exists(src))
 	{
@@ -1097,10 +1097,7 @@ void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst)
 		di.diffFileInfo[dst].flags = di.diffFileInfo[src].flags;
 	}
 	if (di.HasChildren())
-	{
-		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
-			CopyDiffSideAndProperties(*pdic, src, dst);
-	}
+		UpdateStatusFromDisk(ctxt, di, dst);
 }
 
 /**
@@ -1207,7 +1204,8 @@ int UpdateCompareFlagsAfterSync(DIFFITEM& di, bool bRecursive)
 			di.diffcode.diffcode |= flag;
 		}
 	}
-	else {
+	else
+	{
 		// Update compare flags for files and directories in tree mode.
 		// (Do not update directory compare flags when not in tree mode.)
 		if (!di.diffcode.isDirectory() || bRecursive)

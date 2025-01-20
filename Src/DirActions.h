@@ -167,7 +167,7 @@ int GetColImage(const DIFFITEM &di);
 
 void SetDiffStatus(DIFFITEM& di, unsigned  diffcode, unsigned mask);
 void SetDiffCompare(DIFFITEM& di, unsigned diffcode);
-void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst);
+void CopyDiffSideAndProperties(CDiffContext& ctxt, DIFFITEM& di, int src, int dst);
 void UnsetDiffSide(const CDiffContext& ctxt, DIFFITEM& di, int index);
 void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index);
 int UpdateCompareFlagsAfterSync(DIFFITEM& di, bool bRecursive);
