@@ -370,9 +370,9 @@ bool IsItemCopyable(const DIFFITEM &di, int index)
 	return true;
 }
 
-bool IsItemCopyable(const DIFFITEM &di, int index, bool includeIdenticalOrSkipped)
+bool IsItemCopyable(const DIFFITEM &di, int index, bool copyOnlyDiffItems)
 {
-	if (!includeIdenticalOrSkipped)
+	if (copyOnlyDiffItems)
 	{
 		// don't let them mess with error items
 		if (di.diffcode.isResultError()) return false;

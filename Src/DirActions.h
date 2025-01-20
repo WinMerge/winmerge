@@ -140,7 +140,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths);
 
 bool IsItemCopyable(const DIFFITEM &di, int index);
-bool IsItemCopyable(const DIFFITEM &di, int index, bool includeIdenticalOrSkipped);
+bool IsItemCopyable(const DIFFITEM &di, int index, bool copyOnlyDiffItems);
 bool IsItemMovable(const DIFFITEM &di, int index);
 bool IsItemDeletable(const DIFFITEM &di, int index);
 bool IsItemDeletableOnBoth(const CDiffContext& ctxt, const DIFFITEM &di);
