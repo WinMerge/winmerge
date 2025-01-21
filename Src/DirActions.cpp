@@ -357,19 +357,6 @@ DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 	return 0;
 }
 
-/// is it possible to copy item to left ?
-bool IsItemCopyable(const DIFFITEM &di, int index)
-{
-	// don't let them mess with error items
-	if (di.diffcode.isResultError()) return false;
-	// can't copy same items
-	if (di.diffcode.isResultSame()) return false;
-	// impossible if not existing
-	if (!di.diffcode.exists(index)) return false;
-	// everything else can be copied to other side
-	return true;
-}
-
 bool IsItemCopyable(const DIFFITEM &di, int index, bool copyOnlyDiffItems)
 {
 	if (copyOnlyDiffItems)

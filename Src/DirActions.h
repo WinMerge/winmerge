@@ -139,7 +139,6 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 
 DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths);
 
-bool IsItemCopyable(const DIFFITEM &di, int index);
 bool IsItemCopyable(const DIFFITEM &di, int index, bool copyOnlyDiffItems);
 bool IsItemMovable(const DIFFITEM &di, int index);
 bool IsItemDeletable(const DIFFITEM &di, int index);
@@ -233,7 +232,7 @@ struct DirActions
 	template <SIDE_TYPE src, SIDE_TYPE dst>
 	bool IsItemCopyableOnTo(const DIFFITEM& di) const
 	{
-		return (di.diffcode.diffcode != 0 && !m_RO[SideToIndex(m_ctxt, dst)] && ::IsItemCopyable(di, SideToIndex(m_ctxt, src)));
+		return (di.diffcode.diffcode != 0 && !m_RO[SideToIndex(m_ctxt, dst)] && ::IsItemCopyable(di, SideToIndex(m_ctxt, src), false));
 	}
 
 	template <SIDE_TYPE src>
