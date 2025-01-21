@@ -136,6 +136,7 @@ private:
 	void DoOpenWithEditor(SIDE_TYPE stype);
 	void DoOpenParentFolder(SIDE_TYPE stype);
 	void DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool openableForDir = true);
+	void RemoveDuplicatedActions(FileActionScript & actions);
 	void ConfirmAndPerformActions(FileActionScript & actions);
 	void PerformActionList(FileActionScript & actions);
 	void UpdateAfterFileScript(FileActionScript & actionList);

@@ -951,6 +951,7 @@ void CDirView::DoDirAction(DirActions::method_type func, const String& status_me
 		FileActionScript *rsltScript;
 		rsltScript = std::accumulate(begin, end, &actionScript, MakeDirActions(func));
 		ASSERT(rsltScript == &actionScript);
+		actionScript.RemoveDuplicates();
 		// Now we prompt, and execute actions
 		ConfirmAndPerformActions(actionScript);
 	} catch (ContentsChangedException& e) {
@@ -988,6 +989,7 @@ void CDirView::DoDirActionTo(SIDE_TYPE stype, DirActions::method_type func, cons
 		FileActionScript *rsltScript;
 		rsltScript = std::accumulate(begin, end, &actionScript, MakeDirActions(func));
 		ASSERT(rsltScript == &actionScript);
+		actionScript.RemoveDuplicates();
 		// Now we prompt, and execute actions
 		ConfirmAndPerformActions(actionScript);
 	} catch (ContentsChangedException& e) {

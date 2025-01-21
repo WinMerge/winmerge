@@ -110,6 +110,7 @@ public:
 	void AddActionItem(FileActionItem & item) { m_actions.push_back(item); }
 
 	FileActionItem RemoveTailActionItem();
+	void RemoveDuplicates();
 
 	/**
 	 * Get first action item in the list.

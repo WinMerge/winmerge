@@ -381,7 +381,7 @@ struct DirActions
 		const int dstidx = SideToIndex(m_ctxt, dst);
 		if (di.diffcode.diffcode != 0 && !m_RO[dstidx] && IsItemCopyable(di, srcidx, copyOnlyDiffItems))
 		{
-			if (copyOnlyDiffItems && it.second->HasChildren())
+			if (it.second->HasChildren())
 			{
 				for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
 					CopyItem(pscript, { it.first, pdic }, copyOnlyDiffItems, src, dst);

@@ -52,6 +52,24 @@ FileActionItem FileActionScript::RemoveTailActionItem()
 }
 
 /**
+ * @brief Removes duplicate entries from a vector of FileActionItem objects.
+ */
+void FileActionScript::RemoveDuplicates()
+{
+	auto compare = [](const FileActionItem& a, const FileActionItem& b) {
+		return std::tie(a.src, a.dest, a.atype) < std::tie(b.src, b.dest, b.atype);
+		};
+	
+	auto equal = [](const FileActionItem& a, const FileActionItem& b) {
+		return std::tie(a.src, a.dest, a.atype) == std::tie(b.src, b.dest, b.atype);
+		};
+	
+	std::sort(m_actions.begin(), m_actions.end(), compare);
+	
+	m_actions.erase(std::unique(m_actions.begin(), m_actions.end(), equal), m_actions.end());
+}
+
+/**
  * @brief Create ShellFileOperations operation lists from our scripts.
  *
  * We use ShellFileOperations internally to do actual file operations.
