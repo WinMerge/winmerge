@@ -64,11 +64,12 @@ struct FileActionItem : public FileAction
 	 */
 	enum UI_RESULT
 	{
-		UI_SYNC = 1,   /**< Make items identical (synchronized). */
-		UI_MOVE,       /**< Move items. */
-		UI_DEL,        /**< Remove left item. */
-		UI_DONT_CARE,  /**< Ignore the GUI change. */
-		UI_RENAME      /**< Rename item. */
+		UI_COPY = 1,       /**< Copy items. */
+		UI_COPY_DIFFITEMS, /**< Copy diff items. */
+		UI_MOVE,           /**< Move items. */
+		UI_DEL,            /**< Remove left item. */
+		UI_DONT_CARE,      /**< Ignore the GUI change. */
+		UI_RENAME          /**< Rename item. */
 	};
 
 	/**
@@ -109,6 +110,7 @@ public:
 	void AddActionItem(FileActionItem & item) { m_actions.push_back(item); }
 
 	FileActionItem RemoveTailActionItem();
+	void RemoveDuplicates();
 
 	/**
 	 * Get first action item in the list.

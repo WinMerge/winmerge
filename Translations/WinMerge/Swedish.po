@@ -3015,6 +3015,9 @@ msgstr "Samtliga till... (%1)"
 msgid "Differences to... (%1)"
 msgstr "Skillnader till... (%1)"
 
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
+
 #, c-format
 msgid "Left (%1)"
 msgstr "Vänster (%1)"
