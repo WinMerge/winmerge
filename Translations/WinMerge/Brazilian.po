@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2025-01-04 23:49-0300\n"
+"PO-Revision-Date: 2025-01-22 23:10-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -2767,7 +2767,7 @@ msgid "Differences to... (%1)"
 msgstr "Das Diferenças pra... (%1)"
 
 msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
-msgstr ""
+msgstr "Alguns itens selecionados são idênticos ou foram ignorados.\nDeseja copiar apenas os itenc com diferenças?"
 
 #, c-format
 msgid "Left (%1)"
