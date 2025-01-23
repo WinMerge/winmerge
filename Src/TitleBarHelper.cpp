@@ -41,7 +41,8 @@ void CTitleBarHelper::Init(CWnd *pWnd)
 
 int CTitleBarHelper::GetTopMargin() const
 {
-	return 0;
+	return m_maximized ?
+		(GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER)) : 0;
 }
 
 void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc, bool active)

@@ -2541,7 +2541,7 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 	{
 		if (IsZoomed())
 		{
-			lpncsp->rgrc[0].top = rcWindow.top + GetSystemMetrics(SM_CYFRAME) + GetSystemMetrics(SM_CXPADDEDBORDER);
+			lpncsp->rgrc[0].top = rcWindow.top + 0;
 			//lpncsp->rgrc[0].left += 1;
 			//lpncsp->rgrc[0].right -= 1;
 			lpncsp->rgrc[0].bottom -= 1;
