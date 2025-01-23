@@ -3525,7 +3525,7 @@ msgid "Differences to... (%1)"
 msgstr "Különbségek ehhez...(%1)"
 
 msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
-msgstr ""
+msgstr "Néhány kiválasztott elem azonos vagy kimaradt.\nCsak a különbségeket tartalmazó elemeket szeretné másolni?"
 
 #, c-format
 msgid "Left (%1)"
