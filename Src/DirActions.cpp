@@ -365,6 +365,8 @@ bool IsItemCopyable(const DIFFITEM &di, int index, bool copyOnlyDiffItems)
 		if (di.diffcode.isResultError()) return false;
 		// can't copy same items
 		if (di.diffcode.isResultSame()) return false;
+		// can't copy skipped items
+		if (di.diffcode.isResultFiltered()) return false;
 	}
 	// impossible if not existing
 	if (!di.diffcode.exists(index)) return false;
