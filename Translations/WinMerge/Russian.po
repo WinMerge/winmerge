@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2023-04-27 00:00+0000\n"
-"Last-Translator: wvxwxvw\n"
+"PO-Revision-Date: 2025-01-24 00:00+0000\n"
+"Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2037,7 +2037,7 @@ msgid "Confirm Copy"
 msgstr "Подтверждения"
 
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Вы действительно хотите скопировать XXX элементов?"
+msgstr "Хотите скопировать XXX элементов?"
 
 msgid "From left"
 msgstr "Слева"
@@ -2769,7 +2769,7 @@ msgid "Differences to... (%1)"
 msgstr "Отличия... (%1)"
 
 msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
-msgstr ""
+msgstr "Некоторые выбранные элементы идентичны или пропущены.\nХотите скопировать только элементы с отличиями?"
 
 #, c-format
 msgid "Left (%1)"
@@ -2810,25 +2810,25 @@ msgstr "(%1 из %2 файлов обработано)"
 
 #, c-format
 msgid "Are you sure you want to delete\n\n%1 ?"
-msgstr "Уверены, что хотите удалить\n\n%1 ?"
+msgstr "Хотите удалить\n\n%1 ?"
 
 msgid "Are you sure you want to copy?"
-msgstr "Уверены, что хотите копировать?"
+msgstr "Хотите копировать?"
 
 #, c-format
 msgid "Are you sure you want to copy %d items?"
-msgstr "Уверены, что хотите копировать %d элементов?"
+msgstr "Хотите копировать %d элементов?"
 
 #, c-format
 msgid "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
 msgstr "Операция прервана!\n\nСодержимое папки изменено, путь\n%1\nне был найден.\n\nОбновите сравнение."
 
 msgid "Are you sure you want to move?"
-msgstr "Уверены, что хотите переместить?"
+msgstr "Хотите переместить?"
 
 #, c-format
 msgid "Are you sure you want to move %d items?"
-msgstr "Уверены, что хотите переместить %d элементов?"
+msgstr "Хотите переместить %d элементов?"
 
 msgid "Confirm Move"
 msgstr "Подтвердите перемещение"
@@ -3298,7 +3298,7 @@ msgid "The folder exists only in other side and cannot be opened.\n\nDo you want
 msgstr "Папка существует только на одной стороне и не может быть открыта.\n\nСоздать подходящую папку:\n%1\nна другой стороне и открыть эти папки?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr "Уверены, что хотите скопировать все отличия в другой файл?"
+msgstr "Хотите скопировать все отличия в другой файл?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Перейти к следующему файлу?"
