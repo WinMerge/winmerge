@@ -32,9 +32,9 @@
   - Italian (PR #2610,#2627)
   - Japanese
   - Korean (PR #2611)
-  - Lithuanian (PR #2604)
+  - Lithuanian (PR #2604,#2628)
   - Portuguese (PR #2614)
-  - Russian (PR #2593,#2609)
+  - Russian (PR #2593,#2609,#2629)
 
 ## WinMerge 2.16.45.1 - 2024-12-27
 
