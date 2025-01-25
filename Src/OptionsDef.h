@@ -313,6 +313,9 @@ inline const String OPT_TABBAR_AUTO_MAXWIDTH {_T("Settings/TabBarAutoMaxWidth"s)
 // MRU
 inline const String OPT_MRU_MAX {_T("Settings/MRUMax"s)};
 
+// Experimentals
+inline const String OPT_MOUSE_HOOK_ENABLED {_T("Settings/MouseHookEnabled"s)};
+
 // Font options
 inline const String OPT_FONT_FILECMP {_T("Font/"s)};
 inline const String OPT_FONT_DIRCMP {_T("FontDirCompare/"s)};

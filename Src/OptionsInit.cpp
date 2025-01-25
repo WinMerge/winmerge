@@ -248,6 +248,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SYSCOLOR_HOOK_ENABLED, false);
 	pOptions->InitOption(OPT_SYSCOLOR_HOOK_COLORS, _T(""));
 
+	pOptions->InitOption(OPT_MOUSE_HOOK_ENABLED, true);
+
 	Options::CustomColors::Init(pOptions);
 	Options::DiffOptions::Init(pOptions);
 	Options::DiffColors::Init(pOptions);

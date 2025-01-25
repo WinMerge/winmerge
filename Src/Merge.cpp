@@ -429,7 +429,8 @@ BOOL CMergeApp::InitInstance()
 			return FALSE;
 	}
 
-	CMouseHook::SetMouseHook();
+	if (GetOptionsMgr()->GetBool(OPT_MOUSE_HOOK_ENABLED))
+		CMouseHook::SetMouseHook();
 
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
