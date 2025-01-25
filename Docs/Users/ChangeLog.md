@@ -6,6 +6,9 @@
 
 - BugFix: ALT-F4 opens Tools menu instead of exit from WinMerge (#2592)
 
+- BugFix: Fixes an issue causing a momentary drawing shift when launching
+    WinMerge with Windows animation effects enabled and the window maximized.
+
 ### Folder compare
 
 - BugFix: Compare - Text files different and case also different
@@ -14,6 +17,9 @@
 - Add a Prompt to Copy Only Differences in Folder Comparison (PR #2622)
 
 ### Plugins
+
+- BugFix: Fixes an issue where the Plugins → Prediffer menu is not displayed
+    correctly since version 2.16.43.
 
 - Enable per-file plugin application with file number specification (PR #2598)
 
