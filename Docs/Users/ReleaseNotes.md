@@ -29,7 +29,7 @@ Please submit bug reports to our bug-tracker.
 - BugFix: Compare - Text files different and case also different
     - bug when delete and copy (#2599)
 
-- Add a Prompt to Copy Only Differences in Folder Comparison (PR #2622)
+- Add a Prompt to Copy Only Differences in Folder Comparison (PR #2622,#198,#1168,#1350,#1995)
 
 ### Plugins
 
@@ -38,7 +38,7 @@ Please submit bug reports to our bug-tracker.
 
 - Enable per-file plugin application with file number specification (PR #2598)
 
-- Some Plugins window fixes (PR #2621,#198,#1168,#1350,#1995)
+- Some Plugins window fixes (PR #2621)
 
 ### Manual
 
