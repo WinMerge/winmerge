@@ -5,6 +5,7 @@
 ### General
 
 - BugFix: ALT-F4 opens Tools menu instead of exit from WinMerge (#2592)
+
 ### Folder compare
 
 - BugFix: Compare - Text files different and case also different
@@ -31,7 +32,7 @@
   - Hungarian (PR #2602)
   - Italian (PR #2610,#2627)
   - Japanese
-  - Korean (PR #2611)
+  - Korean (PR #2611,#2630)
   - Lithuanian (PR #2604,#2628)
   - Portuguese (PR #2614)
   - Russian (PR #2593,#2609,#2629)
