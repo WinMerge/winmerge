@@ -33,7 +33,7 @@ Please submit bug reports to our bug-tracker.
 
 ### Plugins
 
-- BugFix: Fixes an issue where the Plugins Å® Prediffer menu is not displayed
+- BugFix: Fixes an issue where the Plugins ‚Üí Prediffer menu is not displayed
     correctly since version 2.16.43.
 
 - Enable per-file plugin application with file number specification (PR #2598)
