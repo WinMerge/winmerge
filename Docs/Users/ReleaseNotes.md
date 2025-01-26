@@ -36,6 +36,9 @@ Please submit bug reports to our bug-tracker.
 - BugFix: Fixes an issue where the Plugins → Prediffer menu is not displayed
     correctly since version 2.16.43.
 
+- BugFix: Fixed an issue in the CompareMSPowerPointFiles.sct plugin that
+    caused error 0x80048010 when comparing PowerPoint files
+
 - Enable per-file plugin application with file number specification (PR #2598)
 
 - Some Plugins window fixes (PR #2621)
