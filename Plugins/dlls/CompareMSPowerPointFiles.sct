@@ -55,6 +55,7 @@ var MsgCannotGetMacros = "${Cannot get Macros.\r\n" +
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var wsh = new ActiveXObject("WScript.Shell");
 var mergeApp;
+var ppObjList = new Array();
 
 function isAccessibleVBAProject(prs) {
   try {
@@ -174,6 +175,12 @@ function get_PluginExtendedProperties() {
 
 function PluginOnEvent(eventType, obj) {
   mergeApp = obj;
+  if (eventType == 1) {
+    for (var i = 0; i < ppObjList.length; i++) {
+      ppObjList[i].Quit();
+      ppObjList[i] = null;
+    }
+  }
 }
 
 function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
@@ -205,7 +212,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   }
  
   for (var it = new Enumerator(prs.Slides); !it.atEnd(); it.moveNext()) {
-      var sld = it.item();
+    var sld = it.item();
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
       fo.WriteLine("[" + sld.Name + "]");
       writeTextsInShapes(fo, sld);
@@ -238,8 +245,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   prs.Saved = true;
   prs.Close();
   prs = null;
-  pp.Quit();
-  pp = null;
+  pp.WindowState = 2; // ppWindowMinimized
+  ppObjList.push(pp);
   fo.Close();
   fo = null;
 
@@ -330,8 +337,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   prs.Saved = true;
   prs.Close();
   prs = null;
-  pp.Quit();
-  pp = null;
+  pp.WindowState = 2; // ppWindowMinimized
+  ppObjList.push(pp);
 
   pbChanged = true;
   pSubcode = 0;
