@@ -5,13 +5,13 @@
 # * Patriccollu di Santa Maria è Sichè <patriccollu at gmail.com>
 #
 # Translators:
-# * Patriccollu di Santa Maria è Sichè, 2021-2024
+# * Patriccollu di Santa Maria è Sichè, 2021-2025
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-10-16 08:43+0000\n"
-"PO-Revision-Date: 2024-10-23 18:09+0200\n"
+"POT-Creation-Date: 2025-01-20 20:14+0000\n"
+"PO-Revision-Date: 2025-01-27 18:38+0100\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Poedit-Language: Corsican\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.5.2\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -364,19 +364,19 @@ msgid "Ta&b Bar"
 msgstr "Barra d’&unghjette"
 
 msgid "&View Tab Bar"
-msgstr "Affissà a barra d’&unghjetta"
+msgstr "&Affissà a barra d’unghjetta"
 
 msgid "&On Title Bar"
-msgstr "Nant’à a &barra di titulu"
+msgstr "&Nant’à a barra di titulu"
 
 msgid "&Toolbar"
-msgstr "&Barra d’attrezzi"
+msgstr "Barra d’a&ttrezzi"
 
 msgid "&Small"
 msgstr "&Chjuca"
 
 msgid "&Medium"
-msgstr ""
+msgstr "Me&diana"
 
 msgid "&Big"
 msgstr "&Maiò"
@@ -385,10 +385,10 @@ msgid "&Huge"
 msgstr "&Tamanta"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "Barra di &listinu"
 
 msgid "&Status Bar"
-msgstr "Barra di s&tatu"
+msgstr "&Barra di statu"
 
 msgid "&Tools"
 msgstr "&Attrezzi"
@@ -565,7 +565,7 @@ msgid "Com&pare Statistics..."
 msgstr "Statistiche di &paragone…"
 
 msgid "Refresh\tF5"
-msgstr "&Attualizà\tF5"
+msgstr "Attualiz&à\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "Attuali&zà a selezzione\tCtrl+F5"
@@ -742,7 +742,7 @@ msgid "View E&OL"
 msgstr "Affissà i caratteri di &fine di linea"
 
 msgid "Vie&w Line Differences"
-msgstr "Affissà e sfarenze di &linea"
+msgstr "&Affissà e sfarenze di linea"
 
 msgid "View Line &Numbers"
 msgstr "Affissà i &numeri di linea"
@@ -1086,7 +1086,7 @@ msgid "Ig&nore all"
 msgstr "&Tuttu ignurà"
 
 msgid "Ignore blan&k lines"
-msgstr "Ignurà e &linee bianche"
+msgstr "Ignurà e linee &bianche"
 
 msgid "Ignore &case"
 msgstr "Ignurà a &cassa"
@@ -1104,7 +1104,7 @@ msgid "Ignore c&omment differences"
 msgstr "Ignurà e sfarenze di c&ummentu"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "Ignurà e fini di &linea assente"
 
 msgid "&Include subfolders"
 msgstr "&Include i sottucartulari"
@@ -1629,7 +1629,7 @@ msgid "Plugin &name:"
 msgstr "Nome di u modulu :"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "Schedarii di destina&zione :"
 
 msgid "Extensions list:"
 msgstr "Lista di l’estensioni :"
@@ -1846,14 +1846,14 @@ msgid ""
 "Need to restart session."
 msgstr ""
 "Avventà l’infurmazione di pagina di codice per sti tipi di schedariu : .html, .rc, .xml\n"
-"Què richiede di rilancià a sessione."
+"St’ozzione richiede di rilancià a sessione."
 
 msgid ""
 "Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
 "Avventà a pagina di codice per i schedarii di testu cù mlang.dll\n"
-"Què richiede di rilancià a sessione."
+"St’ozzione richiede di rilancià a sessione."
 
 msgid "Options"
 msgstr "Ozzioni"
@@ -2191,7 +2191,7 @@ msgid "URL pattern to &exclude (Regular expression):"
 msgstr "Mudellu d’indirizzu web à esclude (espressione regulare) :"
 
 msgid "&User data folder location:"
-msgstr "&Lucalizazione di u cartulare di dati di l’utilizatore :"
+msgstr "&Piazza di u cartulare di dati di l’utilizatore :"
 
 msgid "&Separate user data folders for each pane"
 msgstr "&Cartulare di dati di l’utilizatore sfarente per ogni pannellu"
@@ -2506,7 +2506,7 @@ msgid "Name"
 msgstr "Nome"
 
 msgid "Location"
-msgstr "Lucalizazione"
+msgstr "Piazza"
 
 msgid "Filters"
 msgstr "Filtri"
@@ -2980,8 +2980,12 @@ msgstr "Tutti versu… (%1)"
 msgid "Differences to... (%1)"
 msgstr "Sfarenze versu… (%1)"
 
-msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Do you want to copy only the items with differences?"
 msgstr ""
+"Certì elementi selezziunati sò uguali o tralasciati.\n"
+"Vulete cupià solu l’elementi cù sfarenze ?"
 
 #, c-format
 msgid "Left (%1)"
@@ -3638,7 +3642,7 @@ msgid "The changes of EOL are conflicting."
 msgstr "I cambiamenti di caratteru di fine di linea sò in cunflittu."
 
 msgid "Location Pane"
-msgstr "Pannellu di lucalizazione"
+msgstr "Pannellu di pusizione"
 
 msgid "Diff Pane"
 msgstr "Pannellu di e sfarenze"
@@ -4005,7 +4009,7 @@ msgstr ""
 "$linenum: Numeru di linea di a pusizione attuale di u cursore"
 
 msgid "default"
-msgstr "predefinitu"
+msgstr "predefinita"
 
 msgid "minimal"
 msgstr "minimale"
@@ -4017,7 +4021,7 @@ msgid "histogram"
 msgstr "graficu à barre"
 
 msgid "none"
-msgstr "nisunu"
+msgstr "nisuna"
 
 msgid "GDI"
 msgstr "GDI"
@@ -4257,25 +4261,25 @@ msgid "New plugin description"
 msgstr "Discrizzione nova di u modulu d’estensione"
 
 msgid "All"
-msgstr ""
+msgstr "Tutti"
 
 msgid "1st"
-msgstr ""
+msgstr "1ᵘ"
 
 msgid "2nd"
-msgstr ""
+msgstr "2ᵘ"
 
 msgid "3rd"
-msgstr ""
+msgstr "3ᵘ"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1ᵘ è 2ᵘ"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1ᵘ è 3ᵘ"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2ᵘ è 3ᵘ"
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
