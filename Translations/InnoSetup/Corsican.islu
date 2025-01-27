@@ -2,14 +2,15 @@
 ;
 ;     History of Corsican translations:
 ;
+;     - Updated on January 27th, 2025 for version 2.16.47 by Patriccollu di Santa Maria è Sichè
 ;     - Updated on February 15th, 2023 for version 2.16.28 by Patriccollu di Santa Maria è Sichè
 ;     - Updated on April 25th, 2022 for version 2.16.20 by Patriccollu di Santa Maria è Sichè
 ;     - Created on December 6th, 2021 for version 2.16.17 by Patriccollu di Santa Maria è Sichè
 
 [Messages]
 
-WizardInfoBefore=License Agreement
-InfoBeforeLabel=GNU General Public License
+WizardInfoBefore=Cuntrattu di licenza
+InfoBeforeLabel=Licenza publica generale GNU
 
 [CustomMessages]
 
@@ -65,7 +66,7 @@ SlovakLanguage=Listini è dialoghi sluvacchi
 SlovenianLanguage=Listini è dialoghi sluveni
 SpanishLanguage=Listini è dialoghi spagnoli
 SwedishLanguage=Listini è dialoghi svedesi
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=Listini è dialoghi tamili
 TurkishLanguage=Listini è dialoghi turchi
 UkrainianLanguage=Listini è dialoghi ucraniani
 
