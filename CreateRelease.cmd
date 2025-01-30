@@ -48,7 +48,7 @@ for /d %%d in (Build\ARM64\Release\?.*.*) do (
 )
 popd
 
-call UploadToVirusTotal.cmd
+rem call UploadToVirusTotal.cmd
 
 popd
 
