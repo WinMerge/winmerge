@@ -1,39 +1,36 @@
-// OutputView.h : interface of the COutputView class
+// OutputDoc.h : interface of the COutputDoc class
 //
 /////////////////////////////////////////////////////////////////////////////
 
 #pragma once
 
-#include "CCrystalTextView.h"
+#include "CCrystalTextBuffer.h"
 
-class COutputView : public CCrystalTextView
+class COutputDoc : public CDocument
 {
-public:
-	COutputView();
-	DECLARE_DYNCREATE(COutputView)
-protected:
-	CCrystalParser m_xParser;
+protected: // create from serialization only
+	COutputDoc();
+	DECLARE_DYNCREATE(COutputDoc)
 
 	// Attributes
 public:
-	virtual CCrystalTextBuffer* LocateTextBuffer() override;
-
-protected:
+	CCrystalTextBuffer m_xTextBuffer;
 
 	// Operations
 public:
 
 	// Overrides
 		// ClassWizard generated virtual function overrides
-		//{{AFX_VIRTUAL(COutputView)
+		//{{AFX_VIRTUAL(COutputDoc)
 public:
-	virtual BOOL PreCreateWindow(CREATESTRUCT& cs) override;
-	virtual void OnInitialUpdate() override;
+	virtual BOOL OnNewDocument();
+	virtual void Serialize(CArchive& ar);
+	virtual void DeleteContents();
 	//}}AFX_VIRTUAL
 
 // Implementation
 public:
-	virtual ~COutputView();
+	virtual ~COutputDoc();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -43,17 +40,10 @@ protected:
 
 	// Generated message map functions
 protected:
-	//{{AFX_MSG(COutputView)
+	//{{AFX_MSG(COutputDoc)
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
-
-#ifndef _DEBUG  // debug version in OutputView.cpp
-inline COutputDoc* COutputView::GetDocument()
-{
-	return (COutputDoc*)m_pDocument;
-}
-#endif
 
 /////////////////////////////////////////////////////////////////////////////
 

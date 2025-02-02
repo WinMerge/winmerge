@@ -70,6 +70,8 @@
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
+#include "OutputBar.h"
+#include "OutputView.h"
 
 #if !defined(SM_CXPADDEDBORDER)
 #define SM_CXPADDEDBORDER       92
@@ -447,6 +449,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		__super::ShowControlBar(&m_wndTabBar, false, 0);
 
 	m_wndOutputBar.Create(this);
+	COutputView* pOutputView = new COutputView;
+//	pOutputView->Create(nullptr, nullptr, AFX_WS_DEFAULT_VIEW, CRect(0, 0, 0, 0), &m_wndOutputBar, 1, nullptr);
 	__super::ShowControlBar(&m_wndOutputBar, false, 0);
 
 	if (!m_wndStatusBar.Create(this))

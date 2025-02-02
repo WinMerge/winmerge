@@ -759,6 +759,9 @@
     <ClCompile Include="OutputView.cpp">
       <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OutputDoc.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1452,6 +1455,9 @@
       <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OutputView.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputDoc.h">
       <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
