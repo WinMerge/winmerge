@@ -17,6 +17,7 @@
 #include "MyReBar.h"
 #include "MenuBar.h"
 #include "MDITabBar.h"
+#include "OutputBar.h"
 #include "BasicFlatStatusBar.h"
 #include "PathContext.h"
 #include "OptionsDef.h"
@@ -255,6 +256,7 @@ protected:
 	CMenuBar m_wndMenuBar;
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
+	COutputBar m_wndOutputBar;
 	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
 
 	// Tweak MDI client window behavior

@@ -446,6 +446,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
 		__super::ShowControlBar(&m_wndTabBar, false, 0);
 
+	m_wndOutputBar.Create(this);
+	__super::ShowControlBar(&m_wndOutputBar, false, 0);
+
 	if (!m_wndStatusBar.Create(this))
 	{
 		TRACE0("Failed to create status bar\n");

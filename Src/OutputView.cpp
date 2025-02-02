@@ -1,0 +1,75 @@
+// OutputView.cpp : implementation of the COutputView class
+//
+
+#include "stdafx.h"
+#include "OutputView.h"
+#include "editcmd.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+// COutputView
+
+IMPLEMENT_DYNCREATE(COutputView, CCrystalTextView)
+
+BEGIN_MESSAGE_MAP(COutputView, CCrystalTextView)
+	//{{AFX_MSG_MAP(COutputView)
+	//}}AFX_MSG_MAP
+	// Standard printing commands
+END_MESSAGE_MAP()
+
+/////////////////////////////////////////////////////////////////////////////
+// COutputView construction/destruction
+
+COutputView::COutputView()
+{
+	// TODO: add construction code here
+	SetParser(&m_xParser);
+}
+
+COutputView::~COutputView()
+{
+}
+
+BOOL COutputView::PreCreateWindow(CREATESTRUCT& cs)
+{
+	// TODO: Modify the Window class or styles here by modifying
+	//  the CREATESTRUCT cs
+
+	return CCrystalTextView::PreCreateWindow(cs);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+// COutputView diagnostics
+
+#ifdef _DEBUG
+void COutputView::AssertValid() const
+{
+	CCrystalTextView::AssertValid();
+}
+
+void COutputView::Dump(CDumpContext& dc) const
+{
+	__super::Dump(dc);
+}
+
+#endif //_DEBUG
+
+/////////////////////////////////////////////////////////////////////////////
+// COutputView message handlers
+
+CCrystalTextBuffer* COutputView::LocateTextBuffer()
+{
+	return nullptr;
+}
+
+void COutputView::OnInitialUpdate()
+{
+	__super::OnInitialUpdate();
+}
+

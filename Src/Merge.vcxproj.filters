@@ -753,6 +753,12 @@
     <ClCompile Include="Common\AccentColor.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OutputBar.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputView.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1441,6 +1447,12 @@
     </ClInclude>
     <ClInclude Include="Common\AccentColor.h">
       <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputBar.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputView.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
