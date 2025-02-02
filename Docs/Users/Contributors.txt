@@ -282,7 +282,7 @@ Other Contributors (code, ideas, testing..):
 * stonee-K
 * yuanshouyan1823
 * Mauricio Gracia Gutierrez
-* HaroldPetersInskipp (Midnight color schema)
+* HaroldPetersInskipp (Midnight color scheme)
 * srgank
 * baka0815
 * Yurii Hordiienko 
@@ -298,6 +298,7 @@ Other Contributors (code, ideas, testing..):
 * petacreepers23
 * libraplanet
 * Steve Lambillion
+* Rob Kodey (VS Dark color scheme)
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)
