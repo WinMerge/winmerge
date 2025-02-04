@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-01-20 20:14+0000\n"
+"POT-Creation-Date: 2025-02-04 08:38+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3363,6 +3363,9 @@ msgid "Location Pane"
 msgstr ""
 
 msgid "Diff Pane"
+msgstr ""
+
+msgid "Output Pane"
 msgstr ""
 
 msgid "Patch file successfully written."

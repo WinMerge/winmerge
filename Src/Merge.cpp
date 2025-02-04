@@ -35,7 +35,9 @@
 #include "DirFrame.h"
 #include "MergeDoc.h"
 #include "DirDoc.h"
+#include "OutputDoc.h"
 #include "DirView.h"
+#include "OutputView.h"
 #include "PropBackups.h"
 #include "FileOrFolderSelect.h"
 #include "FileFilterHelper.h"
@@ -104,6 +106,7 @@ CMergeApp::CMergeApp() :
 , m_pDiffTemplate(nullptr)
 , m_pHexMergeTemplate(nullptr)
 , m_pDirTemplate(nullptr)
+, m_pOutputTemplate(nullptr)
 , m_mainThreadScripts(nullptr)
 , m_nLastCompareResult(-1)
 , m_bNonInteractive(false)
@@ -536,6 +539,21 @@ CMultiDocTemplate* CMergeApp::GetDirTemplate()
 		AddDocTemplate(m_pDirTemplate);
 	}
 	return m_pDirTemplate;
+}
+
+CMultiDocTemplate* CMergeApp::GetOutputTemplate()
+{
+	if (!m_pOutputTemplate)
+	{
+		// Outputectory view
+		m_pOutputTemplate = new CMultiDocTemplate(
+			IDR_DIRDOCTYPE,
+			RUNTIME_CLASS(COutputDoc),
+			nullptr,
+			RUNTIME_CLASS(COutputView));
+		AddDocTemplate(m_pOutputTemplate);
+	}
+	return m_pOutputTemplate;
 }
 
 static void OpenContributersFile(int&)

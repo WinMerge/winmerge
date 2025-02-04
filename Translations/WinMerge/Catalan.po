@@ -4306,6 +4306,9 @@ msgstr "Subfinestra d'ubicació"
 msgid "Diff Pane"
 msgstr "Subfinestra de diferències"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "El pedaç s'ha generat satisfactòriament."

@@ -4039,6 +4039,9 @@ msgstr "Positionsleiste"
 msgid "Diff Pane"
 msgstr "Unterschiedsleiste"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Die Patchdatei wurde erfolgreich geschrieben."

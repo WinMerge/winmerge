@@ -3372,6 +3372,9 @@ msgstr "Panel lokalizacji"
 msgid "Diff Pane"
 msgstr "Panel różnic"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Łatka została utworzona."
 

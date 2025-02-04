@@ -4230,6 +4230,9 @@ msgstr "Kokaleku Panela"
 msgid "Diff Pane"
 msgstr "Ezberdint. Panela"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Eranskina agiria ongi idatzi da."

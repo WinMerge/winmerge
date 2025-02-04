@@ -3370,6 +3370,9 @@ msgstr "Konum panosu"
 msgid "Diff Pane"
 msgstr "Fark panosu"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Yama dosyası kaydedildi."
 

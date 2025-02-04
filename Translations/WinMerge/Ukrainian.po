@@ -4214,6 +4214,9 @@ msgstr "Місця розташування"
 msgid "Diff Pane"
 msgstr "Відмінності"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Латка успішно записана."

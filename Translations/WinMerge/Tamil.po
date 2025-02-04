@@ -3639,6 +3639,9 @@ msgstr "இருப்பிடம் பலகம்"
 msgid "Diff Pane"
 msgstr "டிஃப் பேன்"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "பேட்ச் கோப்பு வெற்றிகரமாக எழுதப்பட்டது."
 

@@ -60,6 +60,7 @@ public:
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
+	CMultiDocTemplate* m_pOutputTemplate;
 	std::unique_ptr<CLanguageSelect> m_pLangDlg;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
@@ -105,6 +106,7 @@ public:
 	CMultiDocTemplate* GetDiffTemplate();
 	CMultiDocTemplate* GetHexMergeTemplate();
 	CMultiDocTemplate* GetDirTemplate();
+	CMultiDocTemplate* GetOutputTemplate();
 
 	virtual UINT GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault) override;
 	virtual BOOL WriteProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nValue) override;

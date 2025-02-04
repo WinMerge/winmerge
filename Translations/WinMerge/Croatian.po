@@ -4228,6 +4228,9 @@ msgstr "Položaj panela"
 msgid "Diff Pane"
 msgstr "Panel razlika"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Datoteka razlika je pohranjena."

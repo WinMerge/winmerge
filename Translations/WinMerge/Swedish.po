@@ -3710,6 +3710,9 @@ msgstr "Översiktsruta"
 msgid "Diff Pane"
 msgstr "Ruta för differensöverssikt"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Patchfilen sparades."
 

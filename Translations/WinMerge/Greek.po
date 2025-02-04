@@ -4206,6 +4206,9 @@ msgstr "Πεδίο Εντοπισμού"
 msgid "Diff Pane"
 msgstr "Πεδίο Διαφορών"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Η εγγραφή του αρχείου patch ολοκληρώθηκε επιτυχώς."

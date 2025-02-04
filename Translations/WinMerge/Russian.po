@@ -3373,6 +3373,9 @@ msgstr "Панель управления"
 msgid "Diff Pane"
 msgstr "Панель сравнения"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Патч успешно записан."
 

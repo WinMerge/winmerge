@@ -4218,6 +4218,9 @@ msgstr "Location Pane"
 msgid "Diff Pane"
 msgstr "Diff Pane"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Patch file successfully written."

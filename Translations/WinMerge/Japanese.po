@@ -3647,6 +3647,9 @@ msgstr "ロケーション ペイン"
 msgid "Diff Pane"
 msgstr "Diff ペイン"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "パッチ ファイルの書き込みに成功しました。"
 

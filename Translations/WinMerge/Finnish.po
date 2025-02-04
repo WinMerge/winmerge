@@ -3687,6 +3687,9 @@ msgstr "Sijaintiruutu"
 msgid "Diff Pane"
 msgstr "Eroavuusruutu"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Paikkaustiedoston kirjoitus onnistui."
 

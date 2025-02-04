@@ -4271,6 +4271,9 @@ msgstr " چهارگوش مکان "
 msgid "Diff Pane"
 msgstr " چهارگوش تفاوت "
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr " پرونده وصله  با موفقيت نوشته شد "

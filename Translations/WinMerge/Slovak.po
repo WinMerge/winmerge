@@ -3633,6 +3633,9 @@ msgstr "Panel polohy"
 msgid "Diff Pane"
 msgstr "Panel rozdielu"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Súbor so záplatou bol úspešne zapísaný."
 

@@ -4160,6 +4160,9 @@ msgstr "Poloha"
 msgid "Diff Pane"
 msgstr "Rozdíly"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Opravný soubor byl úspěšně vytvořen."

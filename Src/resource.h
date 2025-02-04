@@ -777,6 +777,7 @@
 #define ID_VIEW_DETAIL_BAR              32819
 #define ID_VIEW_LOCATION_BAR            32820
 #define ID_VIEW_DIR_STATISTICS          32821
+#define ID_VIEW_OUTPUT_BAR              32822
 #define ID_VIEW_LINEDIFFS               32823
 #define ID_VIEW_LINENUMBERS             32825
 #define ID_VIEW_TAB_BAR                 32826
@@ -1577,6 +1578,7 @@
 #define IDS_MERGE_MODE                  42181
 #define IDS_LOCBAR_CAPTION              42201
 #define IDS_DIFFBAR_CAPTION             42202
+#define IDS_OUTPUTBAR_CAPTION           42203
 #define IDS_DIFF_SUCCEEDED              42400
 #define IDS_DIFF_ITEM1NOTFOUND          42401
 #define IDS_DIFF_ITEM2NOTFOUND          42402

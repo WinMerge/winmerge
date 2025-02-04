@@ -4306,6 +4306,9 @@ msgstr "位置窗格"
 msgid "Diff Pane"
 msgstr "近察窗格"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "修補檔案成功寫入。"

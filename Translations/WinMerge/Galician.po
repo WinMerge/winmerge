@@ -3642,6 +3642,9 @@ msgstr "Panel de situación"
 msgid "Diff Pane"
 msgstr "Panel de diferenzas"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Escribíuse correctamente o ficheiro de parche."
 

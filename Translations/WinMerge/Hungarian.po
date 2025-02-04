@@ -4288,6 +4288,9 @@ msgstr "Eltérések helye"
 msgid "Diff Pane"
 msgstr "Eltérés panel"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "A Patch fájl sikeresen elkészült."

@@ -3371,6 +3371,9 @@ msgstr "Painel de Localização"
 msgid "Diff Pane"
 msgstr "Painel das Diferenças"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Arquivo do patch gravado com sucesso."
 

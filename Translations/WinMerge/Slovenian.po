@@ -3640,6 +3640,9 @@ msgstr "Podokno lokacije"
 msgid "Diff Pane"
 msgstr "Podokno razlik"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Datoteka popravka je bila uspešno zapisana."
 

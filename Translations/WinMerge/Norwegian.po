@@ -3668,6 +3668,9 @@ msgstr "Lokaliseringspanel"
 msgid "Diff Pane"
 msgstr "Forskjellspanel"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Fil med rettelser vellykket skrevet."
 

@@ -4318,6 +4318,9 @@ msgstr "Volet de localisation"
 msgid "Diff Pane"
 msgstr "Volet des différences"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Fichier de retouche écrit avec succès."

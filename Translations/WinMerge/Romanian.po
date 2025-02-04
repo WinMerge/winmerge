@@ -3718,6 +3718,9 @@ msgstr "Panou locație"
 msgid "Diff Pane"
 msgstr "Panou diferențe"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Fișierul petic a fost scris cu succes."
 

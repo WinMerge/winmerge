@@ -3371,6 +3371,9 @@ msgstr "Vietos polangis"
 msgid "Diff Pane"
 msgstr "Skirtumų polangis"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Pataisų failas sėkmingai įrašytas."
 

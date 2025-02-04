@@ -3694,6 +3694,9 @@ msgstr "Locatievenster"
 msgid "Diff Pane"
 msgstr "Verschilvenster"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Patch-bestand succesvol geschreven."
 

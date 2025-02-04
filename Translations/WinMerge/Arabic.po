@@ -3617,6 +3617,9 @@ msgstr "الجزء الخاص بالموقع"
 msgid "Diff Pane"
 msgstr "الجزء الخاص بأداة مقارنة الملفات Diff"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "ملف التصحيح (Patch) تم كتابتة بنجاح."
 

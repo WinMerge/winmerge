@@ -70,6 +70,7 @@
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
+#include "OutputDoc.h"
 #include "OutputBar.h"
 #include "OutputView.h"
 
@@ -436,7 +437,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
-	
+
 	if (!m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
 	{
 		TRACE0("Failed to create tab bar\n");
@@ -447,11 +448,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
 		__super::ShowControlBar(&m_wndTabBar, false, 0);
-
-	m_wndOutputBar.Create(this);
-	COutputView* pOutputView = new COutputView;
-//	pOutputView->Create(nullptr, nullptr, AFX_WS_DEFAULT_VIEW, CRect(0, 0, 0, 0), &m_wndOutputBar, 1, nullptr);
-	__super::ShowControlBar(&m_wndOutputBar, false, 0);
 
 	if (!m_wndStatusBar.Create(this))
 	{
@@ -470,6 +466,27 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
 		__super::ShowControlBar(&m_wndStatusBar, false, 0);
+
+	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM|CBRS_ALIGN_LEFT|CBRS_ALIGN_RIGHT);
+
+	String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
+	if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
+	{
+		TRACE0("Failed to create tab bar\n");
+		return -1;      // fail to create
+	}
+	COutputView* pOutputView = new COutputView;
+	CDocument* pOutputDoc = theApp.GetOutputTemplate()->CreateNewDocument();
+	const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
+	pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0,0,100,40), &m_wndOutputBar, 200, nullptr);
+	pOutputDoc->AddView(pOutputView);
+
+	m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
+	m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
+	CRect rc{ 0, 0, 0, 0 };
+	DockControlBar(&m_wndOutputBar);
+
+	__super::ShowControlBar(&m_wndOutputBar, true, 0);
 
 	theApp.RegisterIdleFunc([this]() {
 		m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));

@@ -3636,6 +3636,9 @@ msgstr "Kарта"
 msgid "Diff Pane"
 msgstr "Панел с различия"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Кръпката е успешно запазена."
 

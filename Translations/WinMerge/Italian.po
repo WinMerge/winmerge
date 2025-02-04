@@ -3698,6 +3698,9 @@ msgstr "Pannello posizione"
 msgid "Diff Pane"
 msgstr "Pannello differenze"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Scrittura file patch completata."
 

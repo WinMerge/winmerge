@@ -3666,6 +3666,9 @@ msgstr "定位窗格"
 msgid "Diff Pane"
 msgstr "差异窗格"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "补丁文件写入成功。"
 

@@ -4316,6 +4316,9 @@ msgstr "위치 패널"
 msgid "Diff Pane"
 msgstr "차이점 패널"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "패치 파일을 성공적으로 기록했습니다."
