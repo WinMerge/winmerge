@@ -467,27 +467,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
 		__super::ShowControlBar(&m_wndStatusBar, false, 0);
 
-	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM|CBRS_ALIGN_LEFT|CBRS_ALIGN_RIGHT);
-
-	String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
-	if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
-	{
-		TRACE0("Failed to create tab bar\n");
-		return -1;      // fail to create
-	}
-	COutputView* pOutputView = new COutputView;
-	CDocument* pOutputDoc = theApp.GetOutputTemplate()->CreateNewDocument();
-	const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
-	pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0,0,100,40), &m_wndOutputBar, 200, nullptr);
-	pOutputDoc->AddView(pOutputView);
-
-	m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
-	m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
-	CRect rc{ 0, 0, 0, 0 };
-	DockControlBar(&m_wndOutputBar);
-
-	__super::ShowControlBar(&m_wndOutputBar, true, 0);
-
 	theApp.RegisterIdleFunc([this]() {
 		m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
 		RegisterDragDrop(m_hWnd, m_pDropHandler);
@@ -3764,6 +3743,30 @@ void CMainFrame::UpdateSystemMenu()
 	pSysMenu->CheckMenuItem(ID_VIEW_MENU_BAR, MF_BYCOMMAND | (bChecked ? MF_CHECKED : MF_UNCHECKED));
 }
 
+void CMainFrame::ShowOutputPane()
+{
+	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+
+	String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
+	if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
+	{
+		TRACE0("Failed to create tab bar\n");
+		return;
+	}
+	COutputView* pOutputView = new COutputView;
+	CDocument* pOutputDoc = theApp.GetOutputTemplate()->CreateNewDocument();
+	const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
+	pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
+	pOutputDoc->AddView(pOutputView);
+
+	m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
+	m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
+	CRect rc{ 0, 0, 0, 0 };
+	DockControlBar(&m_wndOutputBar);
+
+	__super::ShowControlBar(&m_wndOutputBar, true, 0);
+}
+
 void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
 {
 	if (nID == ID_VIEW_MENU_BAR)
@@ -3773,3 +3776,4 @@ void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 	__super::OnSysCommand(nID, lParam);
 }
+

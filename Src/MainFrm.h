@@ -459,6 +459,7 @@ private:
 	HMENU NewMenu( int view, int ID );
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	void UpdateSystemMenu();
+	void ShowOutputPane();
 	std::unique_ptr<WCHAR[]> m_upszLongTextW;
 	std::unique_ptr<CHAR[]> m_upszLongTextA;
 };
