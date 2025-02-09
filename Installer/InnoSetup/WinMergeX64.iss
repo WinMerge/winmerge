@@ -811,6 +811,23 @@ function LocalAlloc(uFlags: UINT; uBytes: DWORD): DWORD_PTR;
 function LocalFree(hMem: DWORD_PTR): DWORD_PTR;
   external 'LocalFree@Kernel32.dll stdcall';
 
+function GetOriginalUserName(): string;
+var
+  TempFile: string;
+  Output: AnsiString;
+  ResultCode: Integer;
+begin
+  TempFile := ExpandConstant('{commonappdata}\whoami_output.txt');
+  if ExecAsOriginalUser('cmd.exe', '/C whoami > "' + TempFile + '"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then begin
+    if LoadStringFromFile(TempFile, Output) then begin
+      Result := Trim(Output);
+    end;
+  end;
+  if Result = '' then
+    Result := GetUserNameString();
+  DeleteFile(TempFile);
+end;
+  
 function GetUserSID(UserName: string): string;
 var
   Sid: DWORD_PTR;
@@ -838,6 +855,23 @@ begin
   end;
 
   LocalFree(Sid);
+end;
+
+function GetOriginalUserSID(param: string): string;
+var
+  UserName: string;
+begin
+  if g_OriginalUserSID <> '' then begin
+    Result := g_OriginalUserSID;
+    exit
+  end;
+
+  UserName := GetOriginalUserName();
+  g_OriginalUserSID := GetUserSID(UserName);
+  if g_OriginalUserSID = '' then
+    RaiseException('Could not retrieve the SID for user: ' + UserName);
+
+  Result := g_OriginalUserSID
 end;
 
 {Determines whether or not the user chose to create a start menu}
@@ -880,13 +914,13 @@ End;
 {Determines whether or not TortoiseGit is installed}
 Function TortoiseGitInstalled(): boolean;
 Begin
-    Result := RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\TortoiseGit') or RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\Classes\Directory\Background\shellex\ContextMenuDWORD_PTRrs\TortoiseGit');
+    Result := RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\TortoiseGit') or RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\Classes\Directory\Background\shellex\ContextMenuHandlers\TortoiseGit');
 End;
 
 {Determines whether or not TortoiseSVN is installed}
 Function TortoiseSVNInstalled(): boolean;
 Begin
-    Result := RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\TortoiseSVN') or RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\Classes\Directory\Background\shellex\ContextMenuDWORD_PTRrs\TortoiseSVN');
+    Result := RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\TortoiseSVN') or RegKeyExists(HKEY_LOCAL_MACHINE, 'SOFTWARE\Classes\Directory\Background\shellex\ContextMenuHandlers\TortoiseSVN');
 End;
 
 Function OldGroup(): string;
@@ -1214,23 +1248,3 @@ Begin
   else
     Result := false;
 End;
-
-function GetOriginalUserSID(param: string): string;
-var
-  UserName: string;
-begin
-  if g_OriginalUserSID <> '' then begin
-    Result := g_OriginalUserSID;
-    exit
-  end;
-
-  UserName := GetEnv('USERNAME');
-  if UserName = '' then
-    UserName := GetUserNameString();
-
-  g_OriginalUserSID := GetUserSID(UserName);
-  if g_OriginalUserSID = '' then
-    g_OriginalUserSID := GetUserSID(GetUserNameString());
-
-  Result := g_OriginalUserSID
-end;
