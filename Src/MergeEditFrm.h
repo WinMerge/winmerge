@@ -68,7 +68,6 @@ public:
 
 // Implementation
 private:
-	bool EnsureValidDockState(CDockState& state);
 	void SavePosition();
 	void SaveActivePane();
 	virtual ~CMergeEditFrame();
