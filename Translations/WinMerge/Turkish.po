@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-09-08 20:55+0000\n"
+"POT-Creation-Date: 2025-01-20 20:14+0000\n"
 "PO-Revision-Date: 2023-10-28 09:38+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
@@ -44,34 +44,34 @@ msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Sol&dan kopyala\tAlt+Shift+Sağa"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr "Seçilmiş satır(lar)ı ortaya kopyala"
+msgstr "Seçilmiş satırları ortaya kopyala"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr "Seçilmiş satır(lar)ı sağa kopyala"
+msgstr "Seçilmiş satırları sağa kopyala"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr "Seçilmiş satır(lar)ı ortadan kopyala"
+msgstr "Seçilmiş satırları ortadan kopyala"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr "Seçilmiş satır(lar)ı sağdan kopyala"
+msgstr "Seçilmiş satırları sağdan kopyala"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr "Seçilmiş satır(lar)ı sola kopyala"
+msgstr "Seçilmiş satırları sola kopyala"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr "Seçilmiş satır(lar)ı soldan kopyala"
+msgstr "Seçilmiş satırları soldan kopyala"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr ""
+msgstr "Seçilmiş farkı (sol) panoya kopyala\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "Seçilmiş farkı (sağ) panoya kopyala\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "Seçilmiş farkı (orta) panoya kopyala\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr ""
+msgstr "Seçilmiş farkı (sağ) panoya kopyala\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Satır &farkını seç\tF4"
@@ -229,13 +229,13 @@ msgid "&Vector Image Scaling"
 msgstr "&Vektör görsel ölçekleme"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "&Canlandırma ayarları"
 
 msgid "&Blink interval"
-msgstr ""
+msgstr "&Yanıp sönme sıklığı"
 
 msgid "&Overlay animation interval"
-msgstr ""
+msgstr "&Kaplama canlandırması sıklığı"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "Görsellerden &ayıklanan metni karşılaştır"
@@ -265,7 +265,7 @@ msgid "Fit to Window"
 msgstr "&Pencereye sığdır"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "&Etkinlik eşitleme"
 
 msgid "&Enabled"
 msgstr "&Açık"
@@ -361,10 +361,10 @@ msgid "Ta&b Bar"
 msgstr "&Sekme çubuğu"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "&Sekme çubuğu görüntülensin"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "&Başlık çubuğunda"
 
 msgid "&Toolbar"
 msgstr "&Araç çubuğu"
@@ -373,7 +373,7 @@ msgid "&Small"
 msgstr "Küçük"
 
 msgid "&Medium"
-msgstr ""
+msgstr "&Orta"
 
 msgid "&Big"
 msgstr "&Büyük"
@@ -382,7 +382,7 @@ msgid "&Huge"
 msgstr "Çok &büyük"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "Me&nü çubuğu"
 
 msgid "&Status Bar"
 msgstr "&Durum çubuğu"
@@ -874,10 +874,10 @@ msgid "&Transform with editor script..."
 msgstr "&Düzenleyici betiği ile dönüştür..."
 
 msgid "Scripts for &copying"
-msgstr ""
+msgstr "&Kopyalama betiği"
 
 msgid "Select &editor script..."
-msgstr ""
+msgstr "&Düzenleyici betiğini seçin..."
 
 msgid "Sp&lit"
 msgstr "Bö&l"
@@ -1101,7 +1101,7 @@ msgid "Ignore c&omment differences"
 msgstr "Yo&rum farklılıkları yok sayılsın"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "&Sondaki eksik satır sonu yok sayılsın"
 
 msgid "&Include subfolders"
 msgstr "A&lt klasörler katılsın"
@@ -1131,79 +1131,79 @@ msgid "&Load Project..."
 msgstr "Proje yük&le..."
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "${*} - Tüm değişkenler"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "${1} - Birinci değişken"
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "${2} - İkinci değişken"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "${3} - Üçüncü değişken"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "${4} - Dördüncü değişken"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "${5} - Beşinci değişken"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "${6} - Altıncı değişken"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "${7} - Yedinci değişken"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "${8} - Sekizinci değişken"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "${9} - Dokuzuncu değişken"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - Kaynak dosya"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Kaynak klasör"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - Kaynak adres"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Kaynak adres iletişim kuralı"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Kaynak adres son eki"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - Hedef dosya"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Hedef klasör"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - Hedef adres"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - Hedef adres iletişim kuralı"
 
 msgid "${DST_URL_SUFFIX} - Destination URL suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - Hedef adres son eki"
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - WinMerge ana klasörü"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - Betik dosyası"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "Ayıklama &eklentisi ekle..."
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "Ön &farklılaştırıcı eklentisi ekle..."
 
 msgid "&Duplicate plugin..."
-msgstr ""
+msgstr "Çif&t eklentisi..."
 
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
@@ -1539,7 +1539,7 @@ msgid "Items filtered:"
 msgstr "Süzülmüş ögeler:"
 
 msgid "&Use custom system colors (Some UI elements may not apply)"
-msgstr ""
+msgstr "Özel &sistem renkleri kullanılsın (bazı arayüz bileşenlerine uygulanmayabilir)"
 
 msgid "System"
 msgstr "Sistem"
@@ -1626,7 +1626,7 @@ msgid "Plugin &name:"
 msgstr "Eklenti &adı:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "&Hedef dosyalar:"
 
 msgid "Extensions list:"
 msgstr "Uzantı Listesi:"
@@ -1647,7 +1647,7 @@ msgid "&Plugin pipeline:"
 msgstr "&Eklenti bağlantı yolu:"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "&Kısaltma..."
 
 msgid "Stop"
 msgstr "Durdur"
@@ -1746,7 +1746,7 @@ msgid "&Automatic rescan"
 msgstr "Otomatik olarak yeniden t&aransın"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Seçilmiş &farkların kopyalama düzeyi:"
 
 msgid "Line Difference Coloring"
 msgstr "Satır farklılıkları renklendirilsin"
@@ -2058,7 +2058,7 @@ msgid "&Enable plugins"
 msgstr "&Eklentiler kullanılsın"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "Eklenti &türü:"
 
 msgid "File filters:"
 msgstr "Dosya süzgeçleri:"
@@ -2189,34 +2189,34 @@ msgid "&Hex View"
 msgstr "Onaltılık &görünüm"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Eklentiyi düzenle"
 
 msgid "&Category:"
-msgstr ""
+msgstr "&Kategori:"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "&Menü başlığı:"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "&Pencere türü:"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "&Ayıklanmış dosya uzantısı:"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "&Gerekli değişkenler"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "&Düzenleyici betiği oluştur"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "&Komut satırı:"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "&Betik dosya uzantısı:"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "Betik &içeriği:"
 
 msgid "EXT"
 msgstr "EXT"
@@ -2312,7 +2312,7 @@ msgid "To make this message box visible again, press the Reset button on the Mes
 msgstr "Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümünde İleti kutuları grubu altındaki Sıfırla düğmesine tıklayın."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Karşılaştır/Birleştir"
 
 msgid "Syntax"
 msgstr "Söz dizimi"
@@ -2660,7 +2660,7 @@ msgstr "'%2' eklentisi, orta dosyada yapılmış değişiklikleri yeniden '%1' i
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "'%2' uygulama eki, sağ dosyada yapılmış değişiklikleri yeniden '%1' içine sıkıştıramadı.\n\nÖzgün dosya değiştirilmeyecek.\n\nAyıklanmış sürümü başka bir dosyaya kaydetmek ister misiniz?"
+msgstr "'%2' eklentisi, sağ dosyada yapılmış değişiklikleri yeniden '%1' içine sıkıştıramadı.\n\nÖzgün dosya değiştirilmeyecek.\n\nAyıklanmış sürümü başka bir dosyaya kaydetmek ister misiniz?"
 
 #, c-format
 msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
@@ -2766,7 +2766,7 @@ msgid "Differences to... (%1)"
 msgstr "Farklı olanları... (%1)"
 
 msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
-msgstr ""
+msgstr "Seçilmiş bazı ögeler aynı ya da atlandı.\nYalnızca farkları olan ögeleri kopyalamak ister misiniz?"
 
 #, c-format
 msgid "Left (%1)"
@@ -3824,7 +3824,7 @@ msgstr "Eklenti bağlantı yolunda tırnak karakteri eksik: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "'%1' adlı bir eklenti zaten var."
 
 msgid "Specify plugin arguments"
 msgstr "Eklenti değişkenlerini belirtin"
@@ -3847,53 +3847,53 @@ msgstr "'%1' dosyasında '%2' eklentisi ile ön farklılaştırma yapılırken b
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Eklenti hattında çevrim başvurusu: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "Adres işleyici"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Dosya ayıklayıcı"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Dosya ya da klasör ayıklayıcı"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Ayıklayıcı kısaltması"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Ön farklılaştırıcı kısaltması"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Düzenleyici betiği kısaltması"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "'%1' eklenti hattı kısaltması"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Yeni eklenti açıklaması"
 
 msgid "All"
-msgstr ""
+msgstr "Tümü"
 
 msgid "1st"
-msgstr ""
+msgstr "Birinci"
 
 msgid "2nd"
-msgstr ""
+msgstr "İkinci"
 
 msgid "3rd"
-msgstr ""
+msgstr "Üçüncü"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "Birinci ve ikinci"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "Birinci ve üçüncü"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "İkinci ve üçüncü"
 
 msgid "Filter applied"
 msgstr "Süzgeç uygulandı"
@@ -3933,7 +3933,7 @@ msgid "Clipboard Compare"
 msgstr "Pano karşılaştırması"
 
 msgid "&Print..."
-msgstr "&Yazdır"
+msgstr "&Yazdır..."
 
 msgid "Pre&v Page"
 msgstr "Ö&nceki sayfa"
@@ -3951,40 +3951,40 @@ msgid "Zoom &Out"
 msgstr "&Uzaklaştır"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Karşılaştırılıyor..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Yakınlaştıma:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Fark parçası"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Satır arası fark"
 
 msgid "Line"
-msgstr ""
+msgstr "Satır"
 
 msgid "Character"
-msgstr ""
+msgstr "Karakter"
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
-msgstr ""
+msgstr "\nÖnceki fark (Alt+Yukarı)\n(Sağ Tuş+Tekerlek Yukarı)\n(Alt+Tekerlek Yukarı)"
 
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
-msgstr ""
+msgstr "\nSonraki fark (Alt+Aşağı)\n(Sağ Tuş+Tekerlek Aşağı)\n(Alt+Tekerlek Aşağı)"
 
 msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
-msgstr ""
+msgstr "\nSağa kopyala (Alt+Sağ)\n(Sağ Tuş+Tekerlek Sağa)\n(Alt+Tekerlek Sağa)\n(Alt+Shift+Tekerlek Aşağı)"
 
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
-msgstr ""
+msgstr "\nSola kopyala (Alt+Sol)\n(Sağ Tuş+Tekerlek Sola)\n(Alt+Tekerlek Sola)\n(Alt+Shift+Tekerlek Yukarı)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
-msgstr ""
+msgstr "\nSağa kopyala ve ilerle (Ctrl+Alt+Sağ)\n(Ctrl+Alt+Tekerlek Sağa)\n(Ctrl+Alt+Shift+Tekerlek Aşağı)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
-msgstr ""
+msgstr "\nSola kopyala ve ilerle (Ctrl+Alt+Sol)\n(Ctrl+Alt+Tekerlek Sola)\n(Ctrl+Alt+Shift+Tekerlek Yukarı)"
 
 msgid "Prettification"
 msgstr "Sadeleştirme"
@@ -4008,7 +4008,7 @@ msgid "URL Handling"
 msgstr "Adres işleme"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "Kod çözme / Kodlama"
 
 msgid "Make Uppercase"
 msgstr "Büyük harflere dönüştür"
@@ -4125,10 +4125,10 @@ msgid "Disassemble Native Code"
 msgstr "Doğal kodu çözümle"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Metni yapay zeka ile dönüştür..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Java özellikleri dosyalarından kaçınma"
 
 msgid "Make characters uppercase"
 msgstr "Büyük harflere dönüştür"
@@ -4252,7 +4252,7 @@ msgid "Prediff Line Filter"
 msgstr "Ön farklılaştırıcı satır süzgeci"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Tarih ve saat ekleme işlevi"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 msgstr "cURL ile HTTP URL şema işleyici.\r\nParametreler: curl komutuna aktarılacak komut satırı parametreleri."
@@ -4261,25 +4261,25 @@ msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options 
 msgstr "Windows kayıt defteri adresi şema işleyici. \r\nParametreler: reg.exe komutuna aktarılacak komut satırı parametreleri."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Temel metin işlevleri"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "Yapay zeka destekli metin dönüştürme işlevleri"
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "OpenAI API kullanan metin dönüştürücü.\r\nKullanım: AIConvertText KOMUT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Kaçınılan Java özellikleri dosyalarından kaçınma ve görüntüle."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge eklentisi ayarları"
 
 msgid "Extract workbook data to multiple files"
-msgstr "Çalışma kitabı verilerini birkaç dosyaya ayıklansın"
+msgstr "Çalışma kitabı verileri birkaç dosyaya ayıklansın"
 
 msgid "Update external references(links)"
-msgstr "Dış referanslar (bağlantılar) güncellensin"
+msgstr "Dış başvurular (bağlantılar) güncellensin"
 
 msgid "Compare document properties"
 msgstr "Belge özellikleri karşılaştırılsın"
