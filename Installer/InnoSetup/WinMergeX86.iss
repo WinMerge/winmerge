@@ -436,6 +436,8 @@ Source: ..\..\Build\{#ARCH}\Release\WinMergeU.exe; DestDir: {app}; Flags: prompt
 ; Visual Elements
 Source: ..\..\Build\{#ARCH}\Release\WinMergeU.VisualElementsManifest.xml; DestDir: {app}; Flags: promptifolder; Components: Core
 Source: ..\..\Build\{#ARCH}\Release\LogoImages\*.png; DestDir: {app}\LogoImages; Flags: promptifolder; Components: Core
+; Resources
+Source: ..\..\Build\{#ARCH}\Release\Resources\*.png; DestDir: {app}\Resources; Flags: promptifolder; Components: Core
 
 ; Shell extension
 Source: ..\..\Build\ShellExtension\{#ShellExtension32bit}; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; \

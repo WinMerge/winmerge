@@ -9,7 +9,8 @@
 #include "stdafx.h"
 #include "AboutDlg.h"
 #include "TrDialogs.h"
-#include "Bitmap.h"
+#include "paths.h"
+#include "Environment.h"
 #include "resource.h" // IDD_ABOUTBOX
 
  // https://www.gnu.org/graphics/gnu-ascii.html
@@ -104,7 +105,7 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_SPLASH), _T("IMAGE")))
+	if (!m_image.Load(paths::ConcatPath(env::GetProgPath(), _T("Resources\\splash.png")).c_str()))
 	{
 		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
 	}

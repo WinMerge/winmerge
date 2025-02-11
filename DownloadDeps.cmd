@@ -88,6 +88,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     mkdir Build\%%i\%%j\Commands\tidy-html5 2> NUL
     mkdir Build\%%i\%%j\Commands\msys2\usr\bin 2> NUL
     mkdir Build\%%i\%%j\Commands\md4c 2> NUL
+    mkdir Build\%%i\%%j\Resources 2> NUL
     if not "Build\%%i\Release" == "Build\%%i\%%j" (
       echo ** Merge7z
       xcopy /s/y Build\%%i\Release\Merge7z Build\%%i\%%j\Merge7z\
@@ -123,6 +124,8 @@ for %%i in (x86 x64 ARM ARM64) do (
     copy Plugins\dlls\%%i\*.dll Build\%%i\%%j\MergePlugins\
     echo ** ShellExtension
     xcopy /s/y Build\ShellExtension\WinMergeContextMenuPackage.msix Build\%%i\%%j
+    echo ** Resources
+    copy Src\res\splash.png Build\%%i\%%j\Resources\
   )
 )
 
