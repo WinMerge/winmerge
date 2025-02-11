@@ -432,6 +432,9 @@ msgstr "超大圖示 (&H)"
 msgid "Men&u Bar"
 msgstr ""
 
+msgid "Output &Pane"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "狀態列 (&S)"

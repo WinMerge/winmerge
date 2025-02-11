@@ -385,6 +385,9 @@ msgstr "&Enorme"
 msgid "Men&u Bar"
 msgstr "Barra de Men&u"
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Barra de Status"
 

@@ -439,6 +439,9 @@ msgstr "&Énorme"
 msgid "Men&u Bar"
 msgstr "Barre de men&us"
 
+msgid "Output &Pane"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "Barre d'&état"

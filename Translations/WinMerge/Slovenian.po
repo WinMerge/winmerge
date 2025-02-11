@@ -385,6 +385,9 @@ msgstr "O&gromne"
 msgid "Men&u Bar"
 msgstr ""
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Statusna vrstica"
 

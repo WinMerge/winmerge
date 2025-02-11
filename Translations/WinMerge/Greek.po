@@ -430,6 +430,9 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
+msgid "Output &Pane"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "Γραμμή &Καταστάσεως"

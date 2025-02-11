@@ -387,6 +387,9 @@ msgstr "&Tamanta"
 msgid "Men&u Bar"
 msgstr "Barra di &listinu"
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Barra di statu"
 

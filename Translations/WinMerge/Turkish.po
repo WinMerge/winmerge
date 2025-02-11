@@ -384,6 +384,9 @@ msgstr "Çok &büyük"
 msgid "Men&u Bar"
 msgstr "Me&nü çubuğu"
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Durum çubuğu"
 

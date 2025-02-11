@@ -440,6 +440,8 @@ protected:
 	afx_msg void OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI);
 	afx_msg void OnViewMenuBar();
 	afx_msg void OnUpdateViewMenuBar(CCmdUI* pCmdUI);
+	afx_msg void OnViewOutputBar();
+	afx_msg void OnUpdateViewOutputBar(CCmdUI* pCmdUI);
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
@@ -459,7 +461,9 @@ private:
 	HMENU NewMenu( int view, int ID );
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	void UpdateSystemMenu();
-	void ShowOutputPane();
+	void ShowOutputPane(bool bShow);
+	bool EnsureValidDockState(CDockState& state);
+	void SavePosition();
 	std::unique_ptr<WCHAR[]> m_upszLongTextW;
 	std::unique_ptr<CHAR[]> m_upszLongTextA;
 };

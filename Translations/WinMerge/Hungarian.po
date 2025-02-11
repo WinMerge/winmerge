@@ -433,6 +433,9 @@ msgstr "Hatalmas"
 msgid "Men&u Bar"
 msgstr "Menü sáv"
 
+msgid "Output &Pane"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "&Állapotsor"

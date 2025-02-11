@@ -440,6 +440,9 @@ msgstr "매우 크게(&H)"
 msgid "Men&u Bar"
 msgstr "메뉴 표시줄(&U)"
 
+msgid "Output &Pane"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "상태 표시줄(&S)"

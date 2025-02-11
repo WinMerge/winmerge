@@ -362,6 +362,7 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
+        MENUITEM "Output &Pane",                ID_VIEW_OUTPUT_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
     END
     POPUP "&Tools"
@@ -509,6 +510,7 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
+        MENUITEM "Output &Pane",                ID_VIEW_OUTPUT_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
@@ -754,6 +756,7 @@ BEGIN
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
+        MENUITEM "Output &Pane",                ID_VIEW_OUTPUT_BAR
         MENUITEM SEPARATOR
         MENUITEM "Refresh\tF5",                 ID_REFRESH
     END

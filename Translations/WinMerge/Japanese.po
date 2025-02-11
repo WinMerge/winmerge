@@ -384,6 +384,9 @@ msgstr "特大(&H)"
 msgid "Men&u Bar"
 msgstr "メニューバー(&U)"
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "ステータス バー(&S)"
 

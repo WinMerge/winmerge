@@ -269,6 +269,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
 	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnUpdateToolbarSize)
+	ON_COMMAND(ID_VIEW_OUTPUT_BAR, OnViewOutputBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_OUTPUT_BAR, OnUpdateViewOutputBar)
 	// [Plugins] menu
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
@@ -506,6 +508,7 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 
 void CMainFrame::OnDestroy(void)
 {
+	SavePosition();
 	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 }
@@ -2238,6 +2241,23 @@ void CMainFrame::OnUpdateViewMenuBar(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Show/hide output pane
+ */
+void CMainFrame::OnViewOutputBar()
+{
+	const bool visible = m_wndOutputBar.m_hWnd != nullptr && !!m_wndOutputBar.IsVisible();
+	ShowOutputPane(!visible);
+}
+
+/**
+ * @brief Updates "Output pane" menuitem.
+ */
+void CMainFrame::OnUpdateViewOutputBar(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndOutputBar.m_hWnd != nullptr && !!m_wndOutputBar.IsVisible());
+}
+
+/**
  * @brief Show/hide statusbar.
  */
 void CMainFrame::OnViewStatusBar()
@@ -3743,28 +3763,89 @@ void CMainFrame::UpdateSystemMenu()
 	pSysMenu->CheckMenuItem(ID_VIEW_MENU_BAR, MF_BYCOMMAND | (bChecked ? MF_CHECKED : MF_UNCHECKED));
 }
 
-void CMainFrame::ShowOutputPane()
+void CMainFrame::ShowOutputPane(bool bShow)
 {
-	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
-
-	String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
-	if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
+	if (m_wndOutputBar.m_hWnd == nullptr)
 	{
-		TRACE0("Failed to create tab bar\n");
-		return;
+		EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+
+		String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
+		if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
+		{
+			TRACE0("Failed to create tab bar\n");
+			return;
+		}
+		COutputView* pOutputView = new COutputView;
+		CDocument* pOutputDoc = theApp.GetOutputTemplate()->CreateNewDocument();
+		const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
+		pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
+		pOutputDoc->AddView(pOutputView);
+
+		m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
+		m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+		CRect rc{ 0, 0, 0, 0 };
+		DockControlBar(&m_wndOutputBar);
+
+		CDockState pDockState;
+		pDockState.LoadState(_T("Settings-MainFrame"));
+		if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+			SetDockState(pDockState);
+		// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+		m_wndOutputBar.LoadState(_T("Settings-MainFrame"));
 	}
-	COutputView* pOutputView = new COutputView;
-	CDocument* pOutputDoc = theApp.GetOutputTemplate()->CreateNewDocument();
-	const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
-	pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
-	pOutputDoc->AddView(pOutputView);
 
-	m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
-	m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM);
-	CRect rc{ 0, 0, 0, 0 };
-	DockControlBar(&m_wndOutputBar);
+	__super::ShowControlBar(&m_wndOutputBar, bShow, 0);
+}
+/**
+ * @brief We must use this function before a call to SetDockState
+ *
+ * @note Without this, SetDockState will assert or crash if a bar from the
+ * CDockState is missing in the current CMergeEditFrame.
+ * The bars are identified with their ID. This means the missing bar bug is triggered
+ * when we run WinMerge after changing the ID of a bar.
+ */
+bool CMainFrame::EnsureValidDockState(CDockState& state)
+{
+	for (int i = (int)state.m_arrBarInfo.GetSize() - 1; i >= 0; i--)
+	{
+		bool barIsCorrect = true;
+		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
+		if (pInfo == nullptr)
+			barIsCorrect = false;
+		else
+		{
+			if (!pInfo->m_bFloating)
+			{
+				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
+				if (pInfo->m_pBar == nullptr)
+					barIsCorrect = false; //toolbar id's probably changed	
+			}
+		}
 
-	__super::ShowControlBar(&m_wndOutputBar, true, 0);
+		if (!barIsCorrect)
+			state.m_arrBarInfo.RemoveAt(i);
+	}
+	return true;
+}
+
+/**
+ * @brief Save coordinates of the frame, splitters, and bars
+ *
+ * @note Do not save the maximized/restored state here. We are interested
+ * in the state of the active frame, and maybe this frame is not active
+ */
+void CMainFrame::SavePosition()
+{
+	if (m_wndOutputBar.m_hWnd != nullptr)
+	{
+		// save the bars layout
+		// save docking positions and sizes
+		CDockState m_pDockState;
+		GetDockState(m_pDockState);
+		m_pDockState.SaveState(_T("Settings-MainFrame"));
+		// for the dimensions of the output pane, use the CSizingControlBar save
+		m_wndOutputBar.SaveState(_T("Settings-MainFrame"));
+	}	
 }
 
 void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)

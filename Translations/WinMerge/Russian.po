@@ -387,6 +387,9 @@ msgstr "&Огромные значки"
 msgid "Men&u Bar"
 msgstr "Панель меню"
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Строка состояния"
 

@@ -383,6 +383,9 @@ msgstr "&பெரிய"
 msgid "Men&u Bar"
 msgstr ""
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&நிலைப் பட்டி"
 

@@ -385,6 +385,9 @@ msgstr "&Obrovská"
 msgid "Men&u Bar"
 msgstr ""
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Stavový riadok"
 

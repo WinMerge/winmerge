@@ -386,6 +386,9 @@ msgstr "&Gigantesca"
 msgid "Men&u Bar"
 msgstr "Barra men&u"
 
+msgid "Output &Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Barra stato"
 
