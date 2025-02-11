@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "OutputView.h"
+#include "OutputDoc.h"
 #include "editcmd.h"
 
 #ifdef _DEBUG
@@ -56,6 +57,12 @@ void COutputView::AssertValid() const
 void COutputView::Dump(CDumpContext& dc) const
 {
 	__super::Dump(dc);
+}
+
+COutputDoc* COutputView::GetDocument() // non-debug version is inline
+{
+	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(COutputDoc)));
+	return static_cast<COutputDoc*>(m_pDocument);
 }
 
 #endif //_DEBUG

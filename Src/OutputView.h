@@ -6,6 +6,8 @@
 
 #include "CCrystalTextView.h"
 
+class COutputDoc;
+
 class COutputView : public CCrystalTextView
 {
 public:
@@ -17,6 +19,7 @@ protected:
 	// Attributes
 public:
 	virtual CCrystalTextBuffer* LocateTextBuffer() override;
+	COutputDoc* GetDocument();
 
 protected:
 
