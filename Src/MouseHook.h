@@ -1,3 +1,5 @@
+#include <chrono>
+
 class CMouseHook
 {
 public:
