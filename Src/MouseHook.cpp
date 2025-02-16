@@ -1,6 +1,5 @@
 #include <StdAfx.h>
 #include "MouseHook.h"
-#include <chrono>
 
 #ifndef WM_MOUSEHWHEEL
 #  define WM_MOUSEHWHEEL 0x20e

@@ -101,7 +101,7 @@ static bool RegisterShellExtension(bool unregister, bool peruser)
 		ShellExecuteEx(&sei);
 
 		regsvr32 = paths::ConcatPath(szSysWow64, _T("regsvr32.exe"));
-		args = options + _T("\"") + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
+		args = options + _T(" \"") + paths::ConcatPath(progpath, _T("ShellExtensionU.dll")) + _T("\"");
 		sei.lpFile = regsvr32.c_str();
 		sei.lpParameters = args.c_str();
 		return !!ShellExecuteEx(&sei);
