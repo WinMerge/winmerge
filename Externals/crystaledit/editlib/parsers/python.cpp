@@ -437,7 +437,7 @@ unsigned
 CrystalLineParser::ParseLinePython (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | 0xFF000000);
 
   bool bRedefineBlock = true;
   bool bDecIndex = false;
@@ -509,10 +509,11 @@ out:
           continue;
         }
 
-      //  Triple quotes """....""""
+      //  Triple quotes """....""" or '''...'''
       if (dwCookie & COOKIE_RAWSTRING)
         {
-          if (I >= 2 && I >= nTripleQuotesBegin + 5 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && *tc::tcharprev(pszChars, pszChars + nPrevI) == '"')
+          const char ch = COOKIE_GET_RAWSTRING_DELIMITER(dwCookie);
+          if (I >= 2 && I >= nTripleQuotesBegin + 5 && pszChars[I] == ch && pszChars[nPrevI] == ch && *tc::tcharprev(pszChars, pszChars + nPrevI) == ch)
             {
               dwCookie &= ~COOKIE_RAWSTRING;
               bRedefineBlock = true;
@@ -547,6 +548,7 @@ out:
               nTripleQuotesBegin = I;
               DEFINE_BLOCK (I, COLORINDEX_STRING);
               dwCookie |= COOKIE_RAWSTRING;
+              COOKIE_SET_RAWSTRING_DELIMITER(dwCookie, '"');
               continue;
             }
 
@@ -558,6 +560,16 @@ out:
 
       if (pszChars[I] == '\'')
         {
+          //  Triple quotes
+          if (I + 2 < nLength && pszChars[I + 1] == '\'' && pszChars[I + 2] == '\'')
+            {
+              nTripleQuotesBegin = I;
+              DEFINE_BLOCK (I, COLORINDEX_STRING);
+              dwCookie |= COOKIE_RAWSTRING;
+              COOKIE_SET_RAWSTRING_DELIMITER(dwCookie, '\'');
+              continue;
+            }
+
           // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
           if (!I || !xisalnum (pszChars[nPrevI]))
             {
@@ -594,6 +606,6 @@ out:
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
-    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
+    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | 0xFF000000);
   return dwCookie;
 }
