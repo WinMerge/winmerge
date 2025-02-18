@@ -141,7 +141,7 @@ static COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 	iniFilePath = paths::ConcatPath(env::GetProgPath(), _T("winmerge.ini"));
 	if (paths::DoesPathExist(iniFilePath) == paths::IS_EXISTING_FILE)
 		return new CIniOptionsMgr(iniFilePath);
-	return new CRegOptionsMgr();
+	return new CRegOptionsMgr(_T("Thingamahoochie\\WinMerge\\"));
 }
 
 static HANDLE CreateMutexHandle()

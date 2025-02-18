@@ -6,7 +6,6 @@
  */
 #pragma once
 
-#include <Windows.h>
 #include "OptionsMgr.h"
 
 class COptionsMgr;
@@ -45,19 +44,11 @@ public:
 	virtual void SetSerializing(bool serializing = true) override { m_serializing = serializing; }
 
 protected:
-	static std::map<String, String> Load(const String& iniFilePath);
 	int LoadValueFromBuf(const String& strName, const String& textValue, varprop::VariantValue& value);
-	const tchar_t *GetFilePath() const { return m_filePath.c_str(); }
-	int SaveValueToFile(const String& strValueName,
-		const varprop::VariantValue& value);
-	static unsigned __stdcall AsyncWriterThreadProc(void *pParam);
 
 private:
 	bool m_serializing;
 	std::map<String, String> m_iniFileKeyValues;
-	String m_filePath;
-	HANDLE m_hThread;
-	HANDLE m_hEvent;
-	DWORD m_dwThreadId;
-	DWORD m_dwQueueCount;
+	class IOHandler;
+	std::unique_ptr<IOHandler> m_pIOHandler;
 };

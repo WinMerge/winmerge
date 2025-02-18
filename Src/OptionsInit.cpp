@@ -8,7 +8,6 @@
 #include <vector>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "RegOptionsMgr.h"
 #include "OptionsCustomColors.h"
 #include "OptionsDiffOptions.h"
 #include "OptionsDiffColors.h"
@@ -38,11 +37,6 @@ namespace Options
  */
 void Init(COptionsMgr *pOptions)
 {
-	if (typeid(*pOptions) == typeid(CRegOptionsMgr))
-	{
-		static_cast<CRegOptionsMgr*>(pOptions)->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
-	}
-
 	LANGID LangId = GetUserDefaultLangID();
 	pOptions->InitOption(OPT_SELECTED_LANGUAGE, static_cast<int>(LangId));
 

@@ -31,7 +31,7 @@ String tr(const std::string& str)
 	return ucr::toTString(str);
 }
 
-CRegOptionsMgr m_option;
+CRegOptionsMgr m_option(_T("Thingamahoochie\\WinMerge\\"));
 
 COptionsMgr * GetOptionsMgr()
 {

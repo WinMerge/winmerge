@@ -1,12 +1,11 @@
-/** 
- * @file OptionsMgr.h
+/**
+ * @file RegOptionsMgr.h
  *
  * @brief Declaration for Registry options class.
  *
  */
 #pragma once
 
-#include <Windows.h>
 #include "OptionsMgr.h"
 
 class COptionsMgr;
@@ -14,27 +13,26 @@ class COptionsMgr;
 /**
  * @brief Registry-based implementation of OptionsMgr interface (q.v.).
  */
-class CRegOptionsMgr: public COptionsMgr
+class CRegOptionsMgr : public COptionsMgr
 {
 public:
-	CRegOptionsMgr();
+	explicit CRegOptionsMgr(const String& path);
 	virtual ~CRegOptionsMgr();
 	CRegOptionsMgr(const CRegOptionsMgr&) = delete;
 	CRegOptionsMgr& operator=(const CRegOptionsMgr&) = delete;
 
-	int SetRegRootKey(const String& path);
 	void CloseKeys();
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) override;
 	virtual int InitOption(const String& name, const String& defaultValue) override;
-	virtual int InitOption(const String& name, const tchar_t *defaultValue) override;
-	virtual int InitOption(const String& name, int defaultValue, bool serializable=true) override;
+	virtual int InitOption(const String& name, const tchar_t* defaultValue) override;
+	virtual int InitOption(const String& name, int defaultValue, bool serializable = true) override;
 	virtual int InitOption(const String& name, bool defaultValue) override;
 
 	virtual int SaveOption(const String& name) override;
 	virtual int SaveOption(const String& name, const varprop::VariantValue& value) override;
 	virtual int SaveOption(const String& name, const String& value) override;
-	virtual int SaveOption(const String& name, const tchar_t *value) override;
+	virtual int SaveOption(const String& name, const tchar_t* value) override;
 	virtual int SaveOption(const String& name, int value) override;
 	virtual int SaveOption(const String& name, bool value) override;
 
@@ -45,28 +43,13 @@ public:
 	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const override;
 	virtual int ImportOptions(const String& filename) override;
 
-	virtual void SetSerializing(bool serializing=true) override { m_serializing = serializing; }
+	virtual void SetSerializing(bool serializing = true) override { m_serializing = serializing; }
 
 protected:
-	HKEY OpenKey(const String& strPath, bool bAlwaysCreate);
-	void CloseKey(HKEY hKey, const String& strPath);
-	int LoadValueFromBuf(const String& strName, DWORD type, const BYTE* data, varprop::VariantValue &value);
-	int LoadValueFromReg(HKEY hKey, const String& strName,
-		varprop::VariantValue &value);
-	static int SaveValueToReg(HKEY hKey, const String& strValueName,
-		const varprop::VariantValue& value);
-	static unsigned __stdcall AsyncWriterThreadProc(void *pParam);
-	int ExportAllUnloadedValues(HKEY hKey, const String& strPath, const String& filename) const;
-	int ImportAllUnloadedValues(const String& filename);
+	int LoadValueFromBuf(const String& strName, unsigned type, const unsigned char* data, varprop::VariantValue& value);
 
 private:
-	String m_registryRoot; /**< Registry path where to store options. */
 	bool m_serializing;
-	bool m_bCloseHandle;
-	std::map<String, HKEY> m_hKeys;
-	DWORD m_dwThreadId;
-	DWORD m_dwQueueCount;
-	HANDLE m_hThread;
-	HANDLE m_hEvent;
-	CRITICAL_SECTION m_cs;
+	class IOHandler;
+	std::unique_ptr<IOHandler> m_pIOHandler;
 };
