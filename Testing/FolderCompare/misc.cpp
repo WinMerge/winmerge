@@ -1,11 +1,12 @@
 #include "pch.h"
 #include <iostream>
+#include <Windows.h>
 #include "UnicodeString.h"
 #include "unicoder.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
 
-CRegOptionsMgr m_optionsMgr;
+CRegOptionsMgr m_optionsMgr(_T("Thingamahoochie\\WinMerge\\"));
 
 COptionsMgr * GetOptionsMgr()
 {
