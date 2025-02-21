@@ -436,6 +436,9 @@
     <ClCompile Include="src\Bugcheck.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\Channel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Clock.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -462,6 +465,21 @@
     </ClCompile>
     <ClCompile Include="src\Foundation.cpp" />
     <ClCompile Include="src\Latin2Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\LogFile.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Logger.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\LoggingFactory.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\LoggingRegistry.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\LogStream.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\NumberFormatter.cpp">
@@ -795,6 +813,9 @@
     <ClCompile Include="src\Hash.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\WindowsConsoleChannel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Poco\Any.h" />
@@ -818,6 +839,10 @@
     <ClInclude Include="include\Poco\Foundation.h" />
     <ClInclude Include="include\Poco\Instantiator.h" />
     <ClInclude Include="include\Poco\Latin2Encoding.h" />
+    <ClInclude Include="include\Poco\LogFile.h" />
+    <ClInclude Include="include\Poco\Logger.h" />
+    <ClInclude Include="include\Poco\LoggingFactory.h" />
+    <ClInclude Include="include\Poco\LoggingRegistry.h" />
     <ClInclude Include="include\Poco\MetaProgramming.h" />
     <ClInclude Include="include\Poco\NamedTuple.h" />
     <ClInclude Include="include\Poco\Nullable.h" />

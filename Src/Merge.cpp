@@ -69,6 +69,8 @@
 #include "MouseHook.h"
 #include "SysColorHook.h"
 #include <../src/mfc/afximpl.h>
+#include "Poco/Logger.h"
+#include "Poco/WindowsConsoleChannel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -316,6 +318,10 @@ BOOL CMergeApp::InitInstance()
 			FreeConsole();
 		}
 	}
+
+	Poco::Channel::Ptr pchannel = new Poco::WindowsConsoleChannel();
+	Poco::Logger& log = Poco::Logger::create("test", pchannel);
+	log.error("test");
 
 	// Initialize temp folder
 	SetupTempPath();

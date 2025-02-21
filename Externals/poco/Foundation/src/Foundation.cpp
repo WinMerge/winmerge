@@ -26,6 +26,13 @@
 #include "Path.cpp"
 // Hashing
 #include "Hash.cpp"
+// Logging
+#include "Channel.cpp"
+#include "Logger.cpp"
+#include "LoggingRegistry.cpp"
+#include "Message.cpp"
+#include "Configurable.cpp"
+#include "WindowsConsoleChannel.cpp"
 // Notifications
 #include "AbstractObserver.cpp"
 #include "Notification.cpp"
