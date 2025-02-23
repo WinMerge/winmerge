@@ -1462,6 +1462,7 @@
     <ClInclude Include="ColorSchemes.h" />
     <ClInclude Include="Common\AccentColor.h" />
     <ClInclude Include="Common\SysColorHook.h" />
+    <ClInclude Include="ILogger.h" />
     <ClInclude Include="MouseHook.h" />
     <ClInclude Include="MenuBar.h" />
     <ClInclude Include="Common\cio.h" />
@@ -1487,6 +1488,7 @@
     <ClInclude Include="OutputBar.h" />
     <ClInclude Include="OutputDoc.h" />
     <ClInclude Include="OutputView.h" />
+    <ClInclude Include="PocoLogger.h" />
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />

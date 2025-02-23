@@ -70,7 +70,9 @@
 #include "SysColorHook.h"
 #include <../src/mfc/afximpl.h>
 #include "Poco/Logger.h"
-#include "Poco/WindowsConsoleChannel.h"
+#include "Poco/SimpleFileChannel.h"
+#include "Poco/PatternFormatter.h"
+#include "Poco/FormattingChannel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -319,9 +321,13 @@ BOOL CMergeApp::InitInstance()
 		}
 	}
 
-	Poco::Channel::Ptr pchannel = new Poco::WindowsConsoleChannel();
-	Poco::Logger& log = Poco::Logger::create("test", pchannel);
-	log.error("test");
+	Poco::AutoPtr<Poco::SimpleFileChannel> fileChannel(new Poco::SimpleFileChannel("log.txt"));
+	Poco::AutoPtr<Poco::PatternFormatter> formatter(new Poco::PatternFormatter);
+	formatter->setProperty("pattern", "%Y-%m-%d %H:%M:%S [%p] %t");
+	Poco::AutoPtr<Poco::FormattingChannel> formattingChannel(new Poco::FormattingChannel(formatter, fileChannel));
+	Poco::Logger& log = Poco::Logger::create("test", formattingChannel);
+	log.error("test1");
+	log.error("test2");
 
 	// Initialize temp folder
 	SetupTempPath();
