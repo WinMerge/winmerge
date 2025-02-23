@@ -120,6 +120,5 @@ void CCharConvDlg::OnPreview()
       m_sPreview = pszNew;
       UpdateData (false);
     }
-  if (pszNew != nullptr)
-    free (pszNew);
+  free (pszNew);
 }

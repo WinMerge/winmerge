@@ -1057,21 +1057,12 @@ void charsets_init(void)
 
 void charsets_cleanup(void)
 {
-	if (index1)
-	{
-		free((void *)index1);
-		index1 = NULL;
-	}
-	if (index2)
-	{
-		free((void *)index2);
-		index2 = NULL;
-	}
-	if (index3)
-	{
-		free((void *)index3);
-		index3 = NULL;
-	}
+	free((void *)index1);
+	index1 = NULL;
+	free((void *)index2);
+	index2 = NULL;
+	free((void *)index3);
+	index3 = NULL;
 }
 
 

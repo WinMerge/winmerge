@@ -1561,8 +1561,7 @@ SaveLastSearch(LastSearchInfos *lastSearch)
 {
   //  Save Replace parameters for 'F3' command
   m_bLastReplace = true;
-  if (m_pszLastFindWhat != nullptr)
-    free (m_pszLastFindWhat);
+  free (m_pszLastFindWhat);
   m_pszLastFindWhat = tc::tcsdup (lastSearch->m_sText);
   m_dwLastReplaceFlags = 0;
   if (lastSearch->m_bMatchCase)
@@ -1626,8 +1625,7 @@ ReplaceSelection (const tchar_t* pszNewText, size_t cchNewText, DWORD dwFlags, b
           else
             text.Empty ();
           m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_REPLACE);  //  [JRT+FRD]
-          if (lpszNewStr != nullptr)
-            free(lpszNewStr);
+          free(lpszNewStr);
         }
     }
   else
@@ -2614,8 +2612,7 @@ OnToolsCharCoding ()
 
           m_pTextBuffer->FlushUndoGroup (this);
         }
-      if (pszNew != nullptr)
-        free (pszNew);
+      free (pszNew);
     }
 }
 
