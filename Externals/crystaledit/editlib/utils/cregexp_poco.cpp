@@ -209,7 +209,7 @@ int RxReplace(const tchar_t* rep, const tchar_t* Src, int /*len*/, RxMatchRes ma
                 } else return -1;
                 break;
             case 0:
-                if (dest) free(dest);
+                free(dest);
                 return -1; // error
             case _T('r'): Ch = _T('\r'); add(&dlen, &dest, &Ch, 1, flag); break;
             case _T('n'): Ch = _T('\n'); add(&dlen, &dest, &Ch, 1, flag); break;

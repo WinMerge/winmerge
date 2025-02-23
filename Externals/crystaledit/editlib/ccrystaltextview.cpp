@@ -5745,8 +5745,7 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
               size_t nPos = ::FindStringHelper (line, line.GetLength (), static_cast<const tchar_t*>(line) + ptCurrentPos.x, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
               if (nPos != -1)
                 {
-                  if (m_pszMatched != nullptr)
-                    free(m_pszMatched);
+                  free(m_pszMatched);
                   m_pszMatched = tc::tcsdup (line);
                   if (nEolns)
                     {
@@ -5784,8 +5783,7 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
                 }
               else
                 {
-                  if (m_pszMatched != nullptr)
-                    free(m_pszMatched);
+                  free(m_pszMatched);
                   m_pszMatched = nullptr;
                 }
 
@@ -5840,8 +5838,7 @@ FindText (const LastSearchInfos * lastSearch)
 
   //  Save search parameters for 'F3' command
   m_bLastSearch = true;
-  if (m_pszLastFindWhat != nullptr)
-    free (m_pszLastFindWhat);
+  free (m_pszLastFindWhat);
   m_pszLastFindWhat = tc::tcsdup (lastSearch->m_sText);
   m_dwLastSearchFlags = dwSearchFlags;
 
