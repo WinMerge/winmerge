@@ -762,6 +762,9 @@
     <ClCompile Include="OutputDoc.cpp">
       <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1397,15 +1400,6 @@
     <ClInclude Include="MergeAppCOMClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest-printers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\internal\gtest-port.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IDirDoc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1460,10 +1454,7 @@
     <ClInclude Include="OutputDoc.h">
       <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ILogger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PocoLogger.h">
+    <ClInclude Include="Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

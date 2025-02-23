@@ -69,7 +69,6 @@
 #include "MouseHook.h"
 #include "SysColorHook.h"
 #include <../src/mfc/afximpl.h>
-#include "LoggerFactory.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
