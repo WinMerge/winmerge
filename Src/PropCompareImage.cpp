@@ -89,6 +89,8 @@ BOOL PropCompareImage::OnInitDialog()
 void PropCompareImage::OnDefaults()
 {
 	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS);
+	m_bEnableImageCompare = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
+	m_nOcrResultType = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_IMG_OCR_RESULT_TYPE);
 	UpdateData(FALSE);
 }
 
