@@ -6,6 +6,8 @@
  * @brief Declaration file for CAccentColor class
  */
 
+#pragma once
+
 class CAccentColor
 {
 public:
