@@ -6,12 +6,12 @@
 class Logger
 {
 public:
-	enum class LogLevel : int { ERROR, WARN, INFO };
+	enum class LogLevel : int { ERR, WARN, INFO };
 
 	static Logger& Get() { static Logger logger; return logger; }
 	template<class T> void Info(const T& msg) { if (m_level >= LogLevel::INFO) Log(LogLevel::INFO, msg); }
 	template<class T> void Warn(const T& msg) { if (m_level >= LogLevel::WARN) Log(LogLevel::WARN, msg); }
-	template<class T> void Error(const T& msg) { if (m_level >= LogLevel::ERROR) Log(LogLevel::ERROR, msg); }
+	template<class T> void Error(const T& msg) { if (m_level >= LogLevel::ERR) Log(LogLevel::ERR, msg); }
 	void Log(LogLevel level, const String& msg);
 	void Log(LogLevel level, const std::string& msg);
 	void SetOutputFunction(std::function<void(LogLevel level, const String& msg)> func) { m_func = func; }

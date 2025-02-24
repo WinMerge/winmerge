@@ -34,6 +34,7 @@
 #include "Exceptions.h"
 #include "parsers/crystallineparser.h"
 #include "SyntaxColors.h"
+#include "Logger.h"
 #include "MergeApp.h"
 #include "SubstitutionList.h"
 #include "codepage_detect.h"
@@ -953,7 +954,7 @@ bool CDiffWrapper::RunFileDiff()
 				}
 				catch (Exception& e)
 				{
-					LogErrorStringUTF8(e.displayText());
+					RootLogger::Error(e.displayText());
 				}
 				strFileTemp[file].erase();
 			}

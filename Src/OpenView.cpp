@@ -14,6 +14,7 @@
 #include "OpenView.h"
 #include <vector>
 #include "UnicodeString.h"
+#include "Logger.h"
 #include "Merge.h"
 #include "OpenDoc.h"
 #include "ProjectFile.h"
@@ -292,7 +293,7 @@ void COpenView::OnInitialUpdate()
 		if (ind != CB_ERR)
 			m_ctlExt.SetCurSel(ind);
 		else
-			LogErrorString(_T("Failed to add string to filters combo list!"));
+			RootLogger::Error(_T("Failed to add string to filters combo list!"));
 	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))

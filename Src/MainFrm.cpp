@@ -33,6 +33,10 @@
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
 #include "WebPageDiffFrm.h"
+#include "OutputDoc.h"
+#include "OutputBar.h"
+#include "OutputView.h"
+#include "Logger.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
 #include "ConflictFileParser.h"
@@ -70,9 +74,6 @@
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
-#include "OutputDoc.h"
-#include "OutputBar.h"
-#include "OutputView.h"
 
 #if !defined(SM_CXPADDEDBORDER)
 #define SM_CXPADDEDBORDER       92
@@ -3029,7 +3030,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		}
 		catch (Poco::Exception& e)
 		{
-			LogErrorStringUTF8(e.displayText());
+			RootLogger::Error(e.displayText());
 		}
 	}
 	m_tempFiles.push_back(wTemp);

@@ -10,6 +10,7 @@
 #include "ccrystaltextview.h"
 #include "UniFile.h"
 #include "FileLoadResult.h"
+#include "Logger.h"
 #include "locality.h"
 #include "paths.h"
 #include "OptionsDef.h"
@@ -366,7 +367,7 @@ int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 		}
 		catch (Exception& e)
 		{
-			LogErrorStringUTF8(e.displayText());
+			RootLogger::Error(e.displayText());
 		}
 	}
 	return nRetVal;
@@ -436,10 +437,10 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		{
 			sError = uniErr.GetError();
 			if (bTempFile)
-				LogErrorString(strutils::format(_T("Opening file %s failed: %s"),
+				RootLogger::Error(strutils::format(_T("Opening file %s failed: %s"),
 					pszFileName, sError));
 			else
-				LogErrorString(strutils::format(_T("Opening file %s failed: %s"),
+				RootLogger::Error(strutils::format(_T("Opening file %s failed: %s"),
 					sIntermediateFilename, sError));
 		}
 		return SAVE_FAILED;
@@ -525,7 +526,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		}
 		catch (Exception& e)
 		{
-			LogErrorStringUTF8(e.displayText());
+			RootLogger::Error(e.displayText());
 		}
 		if (!bSaveSuccess)
 		{

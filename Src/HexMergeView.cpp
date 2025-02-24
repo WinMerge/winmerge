@@ -21,6 +21,7 @@
 #include "OptionsMgr.h"
 #include "Environment.h"
 #include "Constants.h"
+#include "Logger.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -374,7 +375,7 @@ HRESULT CHexMergeView::SaveFile(const tchar_t* path, bool packing)
 	hr = SE(DeleteFile(sIntermediateFilename.c_str()));
 	if (hr != S_OK)
 	{
-		LogErrorString(strutils::format(_T("DeleteFile(%s) failed: %s"),
+		RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed: %s"),
 			sIntermediateFilename, GetSysError(hr)));
 	}
 	return S_OK;

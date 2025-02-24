@@ -51,6 +51,7 @@
 #include "charsets.h"
 #include "markdown.h"
 #include "stringdiffs.h"
+#include "Logger.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -780,7 +781,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	if (nRescanResult == RESCAN_FILE_ERR)
 	{
 		s = _("An error occurred while comparing the files.");
-		LogErrorString(s);
+		RootLogger::Error(s);
 		ShowMessageBox(s, MB_ICONSTOP);
 		return;
 	}
@@ -788,7 +789,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	if (nRescanResult == RESCAN_TEMP_ERR)
 	{
 		s = _("Temporary files could not be created. Check your temporary path settings.");
-		LogErrorString(s);
+		RootLogger::Error(s);
 		ShowMessageBox(s, MB_ICONSTOP);
 		return;
 	}

@@ -41,23 +41,6 @@ COptionsMgr * GetOptionsMgr()
 	return pApp->GetMergeOptionsMgr();
 }
 
-// Send message to log and debug window
-void LogErrorString(const String& sz)
-{
-	if (sz.empty()) return;
-	CString now = COleDateTime::GetCurrentTime().Format();
-	TRACE(_T("%s: %s\n"), (const tchar_t*)now, sz.c_str());
-}
-
-// Send message to log and debug window
-void LogErrorStringUTF8(const std::string& sz)
-{
-	if (sz.empty()) return;
-	String str = ucr::toTString(sz);
-	CString now = COleDateTime::GetCurrentTime().Format();
-	TRACE(_T("%s: %s\n"), (const tchar_t*)now, str.c_str());
-}
-
 /**
  * @brief Load string resource and return as CString.
  * @param [in] id Resource string ID.

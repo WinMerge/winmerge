@@ -670,6 +670,11 @@
     <ClCompile Include="..\..\Src\Common\lwdisp.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Logger.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="..\..\Src\markdown.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -835,6 +840,7 @@
     <ClInclude Include="..\..\Src\FolderCmp.h" />
     <ClInclude Include="..\..\Src\Common\LogFile.h" />
     <ClInclude Include="..\..\Src\Common\lwdisp.h" />
+    <ClInclude Include="..\..\Src\Logger.h" />
     <ClInclude Include="..\..\Src\markdown.h" />
     <ClInclude Include="..\..\Src\MergeApp.h" />
     <ClInclude Include="..\..\Src\MergeAppCOMClass.h" />

@@ -416,7 +416,7 @@ a good habit to write error message to logfile also.</p>
 
 <h4>Writing to log:</h4>
 <p>Simplest way to write errormessage to log is using
-<code>void LogErrorString(LPCTSTR sz)</code> defined in <code>stdafx.h</code>. Another
+<code>void RootLogger::Error(LPCTSTR sz)</code> defined in <code>stdafx.h</code>. Another
 way is to directly use <code>gLog</code> which is global instance of
 <code>CLogFile</code>. Log is written to users temporary directory (<code>$temp</code>) with name
 <code>WinMerge.log</code>.</p>
