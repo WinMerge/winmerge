@@ -16,4 +16,5 @@
 #include <ctime>
 #include <cctype>
 #include <array>
+#include <chrono>
 #include <boost/flyweight.hpp>

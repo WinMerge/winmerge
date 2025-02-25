@@ -41,6 +41,7 @@ class CMainFrame;
 class CImgMergeFrame;
 class CWebPageDiffFrame;
 class DirWatcher;
+class COutputDoc;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -345,6 +346,7 @@ protected:
 	DropHandler *m_pDropHandler;
 	std::unique_ptr<DirWatcher> m_pDirWatcher;
 	std::optional<bool> m_bTabsOnTitleBar;
+	COutputDoc* m_pOutputDoc;
 
 // Generated message map functions
 protected:
@@ -382,6 +384,7 @@ protected:
 	afx_msg void OnFileOpenProject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnUser1(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnUser2(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnWindowCloseAll();
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();

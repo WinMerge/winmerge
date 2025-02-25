@@ -2,6 +2,10 @@
 
 #include "UnicodeString.h"
 #include <functional>
+#include <chrono>
+#include <iomanip>
+#include <sstream>
+#include <ctime>
 
 class Logger
 {
@@ -14,11 +18,12 @@ public:
 	template<class T> void Error(const T& msg) { if (m_level >= LogLevel::ERR) Log(LogLevel::ERR, msg); }
 	void Log(LogLevel level, const String& msg);
 	void Log(LogLevel level, const std::string& msg);
-	void SetOutputFunction(std::function<void(LogLevel level, const String& msg)> func) { m_func = func; }
+	void SetLogLevel(LogLevel level) { m_level = level; }
+	void SetOutputFunction(std::function<void(LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)> func) { m_func = func; }
 
 private:
 	LogLevel m_level;
-	std::function<void(LogLevel level, const String& msg)> m_func;
+	std::function<void(LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)> m_func;
 };
 
 namespace RootLogger
@@ -27,3 +32,16 @@ namespace RootLogger
 	template<class T> static void Warn(const T& msg) { Logger::Get().Warn(msg); }
 	template<class T> static void Error(const T& msg) { Logger::Get().Error(msg); }
 }
+
+struct LogMessage
+{
+	LogMessage(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& text)
+		: level(level), tp(tp), text(text) { }
+	LogMessage(LogMessage&& other) noexcept
+		: level(other.level), tp(other.tp), text(std::move(other.text)) { }
+	String format() const;
+	Logger::LogLevel level;
+	std::chrono::system_clock::time_point tp;
+	String text;
+};
+

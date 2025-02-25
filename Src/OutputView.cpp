@@ -72,7 +72,7 @@ COutputDoc* COutputView::GetDocument() // non-debug version is inline
 
 CCrystalTextBuffer* COutputView::LocateTextBuffer()
 {
-	return nullptr;
+	return &GetDocument()->m_xTextBuffer;
 }
 
 void COutputView::OnInitialUpdate()

@@ -228,6 +228,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_DESTROY()
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
+	ON_MESSAGE(WM_USER+2, OnUser2)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
@@ -381,6 +382,7 @@ CMainFrame::CMainFrame()
 , m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
 , m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
 , m_pDirWatcher(new DirWatcher())
+, m_pOutputDoc(nullptr)
 {
 }
 
@@ -421,6 +423,15 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
+
+	Logger::Get().SetOutputFunction([this](Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)
+		{
+			LogMessage* p = new LogMessage(level, tp, msg);
+			PostMessage(WM_USER + 2, reinterpret_cast<WPARAM>(p), 0);
+		});
+
+	RootLogger::Error(_T("test"));
+	RootLogger::Error(_T("test2"));
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
@@ -2393,6 +2404,28 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
+LRESULT CMainFrame::OnUser2(WPARAM wParam, LPARAM lParam)
+{
+	LogMessage* pLogMessage = reinterpret_cast<LogMessage*>(wParam);
+	if (pLogMessage->level >= Logger::LogLevel::ERR && m_wndOutputBar.m_hWnd == nullptr)
+		ShowOutputPane(true);
+
+	if (!m_pOutputDoc)
+	{
+		m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
+		m_pOutputDoc->m_xTextBuffer.InitNew();
+	}
+	String text = pLogMessage->format();
+	CCrystalTextBuffer& buf = m_pOutputDoc->m_xTextBuffer;
+	int nEndLine, nEndChar;
+	POSITION pos = m_pOutputDoc->GetFirstViewPosition();
+	CCrystalTextView* pTextView = static_cast<CCrystalTextView*>(m_pOutputDoc->GetNextView(pos));
+	buf.InsertText(pTextView, buf.GetLineCount() - 1, 0, text.c_str(), text.length(), nEndLine, nEndChar, 0, false);
+
+	delete pLogMessage;
+	return 0;
+}
+
 /**
  * @brief Close all open windows.
  * 
@@ -3777,10 +3810,15 @@ void CMainFrame::ShowOutputPane(bool bShow)
 			return;
 		}
 		COutputView* pOutputView = new COutputView;
-		CDocument* pOutputDoc = theApp.GetOutputTemplate()->CreateNewDocument();
+		if (!m_pOutputDoc)
+		{
+			m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
+			m_pOutputDoc->m_xTextBuffer.InitNew();
+		}
 		const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
 		pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
-		pOutputDoc->AddView(pOutputView);
+		m_pOutputDoc->AddView(pOutputView);
+		pOutputView->AttachToBuffer();
 
 		m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
 		m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
