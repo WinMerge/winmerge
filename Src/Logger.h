@@ -22,7 +22,7 @@ public:
 	void SetOutputFunction(std::function<void(LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)> func) { m_func = func; }
 
 private:
-	LogLevel m_level;
+	LogLevel m_level = LogLevel::INFO;
 	std::function<void(LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)> m_func;
 };
 

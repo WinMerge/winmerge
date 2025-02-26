@@ -31,7 +31,7 @@ String LogMessage::format() const
 	const tchar_t* levelStr = (level == Logger::LogLevel::ERR) ? _T("ERROR") :
 		(level == Logger::LogLevel::WARN) ? _T("WARN") : _T("INFO");
 
-	oss << _T(" [") << levelStr << _T("] ") << text;
+	oss << _T(" [") << levelStr << _T("] ") << text << std::endl;
 
 	return oss.str();
 }

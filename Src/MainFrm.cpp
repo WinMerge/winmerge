@@ -430,8 +430,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			PostMessage(WM_USER + 2, reinterpret_cast<WPARAM>(p), 0);
 		});
 
-	RootLogger::Error(_T("test"));
-	RootLogger::Error(_T("test2"));
+	RootLogger::Info(_T("test"));
+	RootLogger::Warn(_T("test2"));
+	RootLogger::Error(_T("test3"));
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
@@ -3818,7 +3819,12 @@ void CMainFrame::ShowOutputPane(bool bShow)
 		const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
 		pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
 		m_pOutputDoc->AddView(pOutputView);
+
 		pOutputView->AttachToBuffer();
+		pOutputView->SetColorContext(theApp.GetMainSyntaxColors());
+		LOGFONT lf = m_lfDiff;
+		lf.lfHeight = static_cast<LONG>(lf.lfHeight * GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0);
+		pOutputView->SetFont(lf);
 
 		m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
 		m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
