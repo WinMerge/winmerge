@@ -59,6 +59,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
 	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
 	pOptions->InitOption(OPT_SHOW_TABBAR, true);
+	pOptions->InitOption(OPT_SHOW_OUTPUTBAR, false);
 	pOptions->InitOption(OPT_REBAR_STATE, _T(""));
 	pOptions->InitOption(OPT_TOOLBAR_SIZE, 0, 0, 2);
 	pOptions->InitOption(OPT_RESIZE_PANES, false);

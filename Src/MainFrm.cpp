@@ -425,14 +425,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	Logger::Get().SetOutputFunction([this](Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)
-		{
-			LogMessage* p = new LogMessage(level, tp, msg);
-			PostMessage(WM_USER + 2, reinterpret_cast<WPARAM>(p), 0);
-		});
-
-	RootLogger::Info(_T("test"));
-	RootLogger::Warn(_T("test2"));
-	RootLogger::Error(_T("test3"));
+		{ OutputLog(level, tp, msg, level == Logger::LogLevel::ERR); } );
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
@@ -488,6 +481,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	});
 
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
+
+	if (GetOptionsMgr()->GetBool(OPT_SHOW_OUTPUTBAR))
+	{
+		ShowOutputPane(true);
+	}
 
 	UpdateSystemMenu();
 
@@ -2259,6 +2257,7 @@ void CMainFrame::OnUpdateViewMenuBar(CCmdUI* pCmdUI)
 void CMainFrame::OnViewOutputBar()
 {
 	const bool visible = m_wndOutputBar.m_hWnd != nullptr && !!m_wndOutputBar.IsVisible();
+	GetOptionsMgr()->SaveOption(OPT_SHOW_OUTPUTBAR, !visible);
 	ShowOutputPane(!visible);
 }
 
@@ -2408,7 +2407,7 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 LRESULT CMainFrame::OnUser2(WPARAM wParam, LPARAM lParam)
 {
 	LogMessage* pLogMessage = reinterpret_cast<LogMessage*>(wParam);
-	if (pLogMessage->level >= Logger::LogLevel::ERR && m_wndOutputBar.m_hWnd == nullptr)
+	if (lParam != 0 && m_wndOutputBar.m_hWnd == nullptr)
 		ShowOutputPane(true);
 
 	if (!m_pOutputDoc)
@@ -3688,6 +3687,13 @@ void CMainFrame::WaitAndDoMessageLoop(bool& completed, int ms)
 			lIdleCount = 0;
 		Sleep(ms);
 	}
+}
+
+void CMainFrame::OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show)
+{
+	LogMessage * p = new LogMessage(level, tp, msg);
+	if (!PostMessage(WM_USER + 2, reinterpret_cast<WPARAM>(p), show))
+		delete p;
 }
 
 void CMainFrame::UpdateDocTitle()

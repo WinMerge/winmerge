@@ -349,6 +349,9 @@ msgstr "I&zhod\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Uredi"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopiraj\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "&Prilepi\tCtrl+V"
 
@@ -666,9 +669,6 @@ msgstr "Po&vrni\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Iz&reži\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopiraj\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Najdi... \tCtrl+F"

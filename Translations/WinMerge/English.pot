@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-02-11 11:34+0000\n"
+"POT-Creation-Date: 2025-02-26 20:33+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -343,6 +343,9 @@ msgstr ""
 msgid "&Edit"
 msgstr ""
 
+msgid "&Copy\tCtrl+C"
+msgstr ""
+
 msgid "&Paste\tCtrl+V"
 msgstr ""
 
@@ -659,9 +662,6 @@ msgid "&Redo\tCtrl+Y"
 msgstr ""
 
 msgid "Cu&t\tCtrl+X"
-msgstr ""
-
-msgid "&Copy\tCtrl+C"
 msgstr ""
 
 msgid "F&ind...\tCtrl+F"

@@ -349,6 +349,9 @@ msgstr "Poistu\tCtrl+Q"
 msgid "&Edit"
 msgstr "Muokkaa"
 
+msgid "&Copy\tCtrl+C"
+msgstr "Kopioi\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "Liitä\tCtrl+V"
 
@@ -666,9 +669,6 @@ msgstr "Tee uudestaan\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Leikkaa\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "Kopioi\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Ets&i...\tCtrl+F"

@@ -389,6 +389,10 @@ msgid "&Edit"
 msgstr "&E ويرايش "
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&C رونوشت برداري \tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&P چسباندن \tCtrl+V"
 
@@ -791,10 +795,6 @@ msgstr "&R تکرار آخرين دستور \tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&t برش \tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&C رونوشت برداري \tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

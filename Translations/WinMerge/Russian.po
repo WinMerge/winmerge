@@ -351,6 +351,9 @@ msgstr "В&ыход\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Правка"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&Копировать\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "&Вставить\tCtrl+V"
 
@@ -668,9 +671,6 @@ msgstr "В&ернуть\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Вы&резать\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&Копировать\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Найти...\tCtrl+F"

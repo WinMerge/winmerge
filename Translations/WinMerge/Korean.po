@@ -397,6 +397,10 @@ msgid "&Edit"
 msgstr "편집(&E)"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "복사(&C)\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
 
@@ -799,10 +803,6 @@ msgstr "다시 실행(&R)\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "잘라내기(&T)\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "복사(&C)\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

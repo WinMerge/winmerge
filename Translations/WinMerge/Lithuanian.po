@@ -349,6 +349,9 @@ msgstr "&Išeiti\tCtrl+Q"
 msgid "&Edit"
 msgstr "R&edaguoti"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopijuoti\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "Įter&pti\tCtrl+V"
 
@@ -666,9 +669,6 @@ msgstr "Paka&rtoti\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Iškirp&ti\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopijuoti\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "R&asti...\tCtrl+F"

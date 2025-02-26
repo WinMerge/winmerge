@@ -388,6 +388,10 @@ msgid "&Edit"
 msgstr "&Uređivanje"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopiraj\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Zalijepi\tCtrl+V"
 
@@ -790,10 +794,6 @@ msgstr "&Vrati\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "Od&reži\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopiraj\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

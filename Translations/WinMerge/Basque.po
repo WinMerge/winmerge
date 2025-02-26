@@ -391,6 +391,10 @@ msgid "&Edit"
 msgstr "&Editatu"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopiatu\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Itsatsi\tCtrl+V"
 
@@ -793,10 +797,6 @@ msgstr "Birre&gin\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Ebaki\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopiatu\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

@@ -348,6 +348,9 @@ msgstr "Çı&kış\tCtrl+Q"
 msgid "&Edit"
 msgstr "Düz&enle"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopyala\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "Ya&pıştır\tCtrl+V"
 
@@ -665,9 +668,6 @@ msgstr "Yi&nele\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "K&es\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopyala\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Bul...\tCtrl+F"

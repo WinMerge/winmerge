@@ -353,6 +353,9 @@ msgstr "退出(&X)\tCtrl+Q"
 msgid "&Edit"
 msgstr "编辑(&E)"
 
+msgid "&Copy\tCtrl+C"
+msgstr "复制(&C)\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "粘贴(&P)\tCtrl+V"
 
@@ -670,9 +673,6 @@ msgstr "重作(&R)\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "剪切(&T)\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "复制(&C)\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "查找(&I)...\tCtrl+F"

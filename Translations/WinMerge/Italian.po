@@ -350,6 +350,9 @@ msgstr "&Esci\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Modifica"
 
+msgid "&Copy\tCtrl+C"
+msgstr "C&opia\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "I&ncolla\tCtrl+V"
 
@@ -667,9 +670,6 @@ msgstr "&Ripristina\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "&Taglia\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "C&opia\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Tro&va...\tCtrl+F"

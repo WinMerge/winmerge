@@ -348,6 +348,9 @@ msgstr "終了(&X)\tCtrl+Q"
 msgid "&Edit"
 msgstr "編集(&E)"
 
+msgid "&Copy\tCtrl+C"
+msgstr "コピー(&C)\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "貼り付け(&P)\tCtrl+V"
 
@@ -665,9 +668,6 @@ msgstr "やり直し(&R)\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "切り取り(&T)\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "コピー(&C)\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "検索(&I)...\tCtrl+F"

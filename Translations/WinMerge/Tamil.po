@@ -347,6 +347,9 @@ msgstr "வெளி& வெளியேறு\tCtrl+Q"
 msgid "&Edit"
 msgstr "&திருத்து"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&நகலெடு\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "&ஒட்டு\tCtrl+V"
 
@@ -664,9 +667,6 @@ msgstr "&மீண்டும்\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Cu&t\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&நகலெடு\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "F&ind...\tCtrl+F"

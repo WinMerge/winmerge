@@ -388,6 +388,10 @@ msgid "&Edit"
 msgstr "Úpr&avy"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopírovat\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Vložit\tCtrl+V"
 
@@ -790,10 +794,6 @@ msgstr "Znov&u\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "Vyj&mout\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopírovat\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

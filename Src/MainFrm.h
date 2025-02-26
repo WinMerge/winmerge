@@ -23,6 +23,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "FileOpenFlags.h"
+#include "Logger.h"
 
 class BCMenu;
 class CDirView;
@@ -229,6 +230,7 @@ public:
 	CMenuBar* GetMenuBar() { return &m_wndMenuBar; }
 	CToolBar* GetToolbar() { return &m_wndToolBar; }
 	static void WaitAndDoMessageLoop(bool& completed, int ms);
+	void OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;

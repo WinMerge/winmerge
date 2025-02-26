@@ -388,6 +388,10 @@ msgid "&Edit"
 msgstr "&සංස්කරණය කරන්න"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "පිටපත් කිරීම\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "ඇලවීම\tCtrl+V"
 
@@ -790,10 +794,6 @@ msgstr "නැවත කිරීම\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "වෙන් කීරීම\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "පිටපත් කිරීම\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

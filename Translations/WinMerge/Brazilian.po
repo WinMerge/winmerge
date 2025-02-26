@@ -349,6 +349,9 @@ msgstr "S&air\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Editar"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&Copiar\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "&Colar\tCtrl+V"
 
@@ -666,9 +669,6 @@ msgstr "&Refazer\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Co&rtar\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&Copiar\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "A&char...\tCtrl+F"

@@ -390,6 +390,10 @@ msgid "&Edit"
 msgstr "S&zerkesztés"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Másolás\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Beillesztés\tCtrl+V"
 
@@ -792,10 +796,6 @@ msgstr "Még&is\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Kivágás\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Másolás\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

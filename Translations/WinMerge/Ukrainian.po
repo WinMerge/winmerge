@@ -372,6 +372,10 @@ msgid "&Edit"
 msgstr "&Редакція"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Копіювати\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Вставити\tCtrl+V"
 
@@ -774,10 +778,6 @@ msgstr "Пов&ернути\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "Ви&різати\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Копіювати\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

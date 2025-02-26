@@ -350,6 +350,9 @@ msgstr "&خروج\tCtrl+Q"
 msgid "&Edit"
 msgstr "&تحرير"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&نسخ"
+
 msgid "&Paste\tCtrl+V"
 msgstr "&لصق"
 
@@ -667,9 +670,6 @@ msgstr "&إعادة الأمر"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "&قص"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&نسخ"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&بحث"

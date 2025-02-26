@@ -396,6 +396,10 @@ msgid "&Edit"
 msgstr "&Édition"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "Cop&ier\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Co&ller\tCtrl+V"
 
@@ -798,10 +802,6 @@ msgstr "&Rétablir\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Couper\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "Cop&ier\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

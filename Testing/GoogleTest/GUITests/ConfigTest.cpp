@@ -119,6 +119,7 @@ namespace
 		{ OPT_SHOW_TOOLBAR, varprop::VT_BOOL, {}, {} },
 		{ OPT_SHOW_STATUSBAR, varprop::VT_BOOL, {}, {} },
 		{ OPT_SHOW_TABBAR, varprop::VT_BOOL, {}, {} },
+		{ OPT_SHOW_OUTPUTBAR, varprop::VT_BOOL, {}, {} },
 		{ OPT_TOOLBAR_SIZE, varprop::VT_INT, {0, 1, 2}, {} },
 		{ OPT_RESIZE_PANES, varprop::VT_BOOL, {}, {} },
 		//
