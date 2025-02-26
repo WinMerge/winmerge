@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-01-01 21:52+0900\n"
+"POT-Creation-Date: 2025-02-27 08:28+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3943,7 +3943,7 @@ msgid "Shortcuts: <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Compare_files.xml:1462 ./English/Shortcut_keys.xml:149
+#: ./English/Compare_files.xml:1462 ./English/Shortcut_keys.xml:190
 msgid "Refresh"
 msgstr ""
 
@@ -4462,7 +4462,7 @@ msgstr ""
 
 #. type: Content of: <appendix><table><title>
 #: ./English/Compare_images.xml:163 ./English/Compare_images.xml:168
-#: ./English/Shortcut_keys.xml:893
+#: ./English/Shortcut_keys.xml:735
 msgid "Zoom"
 msgstr ""
 
@@ -13283,829 +13283,654 @@ msgstr ""
 
 #. type: Content of: <appendix><table><title>
 #: ./English/Shortcut_keys.xml:11
-msgid "Folder compare"
+msgid "General"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><thead><row><entry>
-#: ./English/Shortcut_keys.xml:16 ./English/Shortcut_keys.xml:121
-#: ./English/Shortcut_keys.xml:368 ./English/Shortcut_keys.xml:502
-#: ./English/Shortcut_keys.xml:568 ./English/Shortcut_keys.xml:642
-#: ./English/Shortcut_keys.xml:898
+#: ./English/Shortcut_keys.xml:16 ./English/Shortcut_keys.xml:57
+#: ./English/Shortcut_keys.xml:162 ./English/Shortcut_keys.xml:409
+#: ./English/Shortcut_keys.xml:543 ./English/Shortcut_keys.xml:609
+#: ./English/Shortcut_keys.xml:683 ./English/Shortcut_keys.xml:740
 msgid "Keys"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><thead><row><entry>
-#: ./English/Shortcut_keys.xml:18 ./English/Shortcut_keys.xml:123
-#: ./English/Shortcut_keys.xml:370 ./English/Shortcut_keys.xml:504
-#: ./English/Shortcut_keys.xml:570 ./English/Shortcut_keys.xml:644
-#: ./English/Shortcut_keys.xml:900
+#: ./English/Shortcut_keys.xml:18 ./English/Shortcut_keys.xml:59
+#: ./English/Shortcut_keys.xml:164 ./English/Shortcut_keys.xml:411
+#: ./English/Shortcut_keys.xml:545 ./English/Shortcut_keys.xml:611
+#: ./English/Shortcut_keys.xml:685 ./English/Shortcut_keys.xml:742
 msgid "Function"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: ./English/Shortcut_keys.xml:24
-msgid "<keycap>Enter</keycap>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:26
-msgid "Open selected file or folder"
+msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Tab</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: ./English/Shortcut_keys.xml:30
+msgid "Switch to the next tab"
+msgstr ""
+
+#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
+#: ./English/Shortcut_keys.xml:35
+msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>Tab</keycap> </keycombo>"
+msgstr ""
+
+#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
+#: ./English/Shortcut_keys.xml:43
+msgid "Switch to the previous tab"
+msgstr ""
+
+#. type: Content of: <appendix><table><title>
+#: ./English/Shortcut_keys.xml:52
+msgid "Folder compare"
+msgstr ""
+
+#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
+#: ./English/Shortcut_keys.xml:65
+msgid "<keycap>Enter</keycap>"
+msgstr ""
+
+#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
+#: ./English/Shortcut_keys.xml:67
+msgid "Open selected file or folder"
+msgstr ""
+
+#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
+#: ./English/Shortcut_keys.xml:71
 msgid "<keycap>Backspace</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:32
+#: ./English/Shortcut_keys.xml:73
 msgid "Open parent folder if possible (available only when subfolders are not included in compare)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:37 ./English/Shortcut_keys.xml:147
+#: ./English/Shortcut_keys.xml:78 ./English/Shortcut_keys.xml:188
 msgid "<keycap>F5</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:39
+#: ./English/Shortcut_keys.xml:80
 msgid "Rescan folders"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:43 ./English/Shortcut_keys.xml:376
+#: ./English/Shortcut_keys.xml:84 ./English/Shortcut_keys.xml:417
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Home</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:49
+#: ./English/Shortcut_keys.xml:90
 msgid "Go to first different file or folder"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:53 ./English/Shortcut_keys.xml:386
+#: ./English/Shortcut_keys.xml:94 ./English/Shortcut_keys.xml:427
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>End</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:59
+#: ./English/Shortcut_keys.xml:100
 msgid "Go to last different file or folder"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:63 ./English/Shortcut_keys.xml:396
+#: ./English/Shortcut_keys.xml:104 ./English/Shortcut_keys.xml:437
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Enter</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:69
+#: ./English/Shortcut_keys.xml:110
 msgid "Go to currently selected item (if scrolled off-screen)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:73 ./English/Shortcut_keys.xml:406
+#: ./English/Shortcut_keys.xml:114 ./English/Shortcut_keys.xml:447
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Up Arrow</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:79
+#: ./English/Shortcut_keys.xml:120
 msgid "Go to previous different file or folder"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:83 ./English/Shortcut_keys.xml:416
+#: ./English/Shortcut_keys.xml:124 ./English/Shortcut_keys.xml:457
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Down Arrow</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:89
+#: ./English/Shortcut_keys.xml:130
 msgid "Go to next different file or folder"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:93 ./English/Shortcut_keys.xml:448
+#: ./English/Shortcut_keys.xml:134 ./English/Shortcut_keys.xml:489
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Left Arrow</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:99
+#: ./English/Shortcut_keys.xml:140
 msgid "Copy selected items from right to left"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:103 ./English/Shortcut_keys.xml:458
+#: ./English/Shortcut_keys.xml:144 ./English/Shortcut_keys.xml:499
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Right Arrow</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:109
+#: ./English/Shortcut_keys.xml:150
 msgid "Copy selected items from left to right"
 msgstr ""
 
 #. type: Content of: <appendix><table><title>
-#: ./English/Shortcut_keys.xml:116
+#: ./English/Shortcut_keys.xml:157
 msgid "File compare"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:129
+#: ./English/Shortcut_keys.xml:170
 msgid "<keycap>Esc</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:131
+#: ./English/Shortcut_keys.xml:172
 msgid "Close window (if enabled in options)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:135
+#: ./English/Shortcut_keys.xml:176
 msgid "<keycap>F4</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:137
+#: ./English/Shortcut_keys.xml:178
 msgid "Show next line difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:141
+#: ./English/Shortcut_keys.xml:182
 msgid "<keycap>Shift</keycap>+<keycap>F4</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:143
+#: ./English/Shortcut_keys.xml:184
 msgid "Show previous line difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:153
+#: ./English/Shortcut_keys.xml:194
 msgid "<keycap>Ctrl</keycap>+<keycap>F5</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:155
+#: ./English/Shortcut_keys.xml:196
 msgid "Reload"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:159
+#: ./English/Shortcut_keys.xml:200
 msgid "<keycap>F6</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:161
+#: ./English/Shortcut_keys.xml:202
 msgid "Change to next pane (active file)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:165
+#: ./English/Shortcut_keys.xml:206
 msgid "<keycap>Shift</keycap>+<keycap>F6</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:167
+#: ./English/Shortcut_keys.xml:208
 msgid "Change to previous pane (active file)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:171
+#: ./English/Shortcut_keys.xml:212
 msgid "<keycap>F7</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:173 ./English/Shortcut_keys.xml:412
-#: ./English/Shortcut_keys.xml:512
+#: ./English/Shortcut_keys.xml:214 ./English/Shortcut_keys.xml:453
+#: ./English/Shortcut_keys.xml:553
 msgid "Go to previous difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:177
+#: ./English/Shortcut_keys.xml:218
 msgid "<keycap>Shift</keycap>+<keycap>F7</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:179 ./English/Shortcut_keys.xml:433
+#: ./English/Shortcut_keys.xml:220 ./English/Shortcut_keys.xml:474
 msgid "Go to previous conflict"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:183
+#: ./English/Shortcut_keys.xml:224
 msgid "<keycap>Ctrl</keycap>+<keycap>F7</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:185
+#: ./English/Shortcut_keys.xml:226
 msgid "Go to previous file"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:189
+#: ./English/Shortcut_keys.xml:230
 msgid "<keycap>F8</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:191 ./English/Shortcut_keys.xml:422
-#: ./English/Shortcut_keys.xml:518
+#: ./English/Shortcut_keys.xml:232 ./English/Shortcut_keys.xml:463
+#: ./English/Shortcut_keys.xml:559
 msgid "Go to next difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:195
+#: ./English/Shortcut_keys.xml:236
 msgid "<keycap>Shift</keycap>+<keycap>F8</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:197 ./English/Shortcut_keys.xml:444
+#: ./English/Shortcut_keys.xml:238 ./English/Shortcut_keys.xml:485
 msgid "Go to next conflict"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:201
+#: ./English/Shortcut_keys.xml:242
 msgid "<keycap>Ctrl</keycap>+<keycap>F8</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:203
+#: ./English/Shortcut_keys.xml:244
 msgid "Go to next file"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:207
+#: ./English/Shortcut_keys.xml:248
 msgid "<keycap>F9</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:209
+#: ./English/Shortcut_keys.xml:250
 msgid "Merge Mode on or off (toggle)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:213
+#: ./English/Shortcut_keys.xml:254
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:219
+#: ./English/Shortcut_keys.xml:260
 msgid "Begin column selection"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:223
+#: ./English/Shortcut_keys.xml:264
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>D</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:229
+#: ./English/Shortcut_keys.xml:270
 msgid "Toggle diff context mode"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:233
+#: ./English/Shortcut_keys.xml:274
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>E</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:240
+#: ./English/Shortcut_keys.xml:281
 msgid "Open with external editor"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:244
+#: ./English/Shortcut_keys.xml:285
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:250
+#: ./English/Shortcut_keys.xml:291
 msgid "Go to difference or line"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:254 ./English/Shortcut_keys.xml:265
+#: ./English/Shortcut_keys.xml:295 ./English/Shortcut_keys.xml:306
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>G</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:261
+#: ./English/Shortcut_keys.xml:302
 msgid "Go to moved line (2 panes)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:272
+#: ./English/Shortcut_keys.xml:313
 msgid "Go to moved line between left side and middle (3 panes)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:276
+#: ./English/Shortcut_keys.xml:317
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>G</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:283
+#: ./English/Shortcut_keys.xml:324
 msgid "Go to moved line between middle and right side (3 panes)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:287
+#: ./English/Shortcut_keys.xml:328
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>M</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:294
+#: ./English/Shortcut_keys.xml:335
 msgid "Add marker"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:298
+#: ./English/Shortcut_keys.xml:339
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>M</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:305
+#: ./English/Shortcut_keys.xml:346
 msgid "Do auto merge"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:309
+#: ./English/Shortcut_keys.xml:350
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>S</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:315
+#: ./English/Shortcut_keys.xml:356
 msgid "Add synchronization point"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:319
+#: ./English/Shortcut_keys.xml:360
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>U</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:325
+#: ./English/Shortcut_keys.xml:366
 msgid "Convert selected text to lower case"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:329
+#: ./English/Shortcut_keys.xml:370
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>U</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:336
+#: ./English/Shortcut_keys.xml:377
 msgid "Convert selected text to upper case"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:340
+#: ./English/Shortcut_keys.xml:381
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Y</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:346
+#: ./English/Shortcut_keys.xml:387
 msgid "Redo previously undone action"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:350
+#: ./English/Shortcut_keys.xml:391
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:356
+#: ./English/Shortcut_keys.xml:397
 msgid "Undo last action"
 msgstr ""
 
 #. type: Content of: <appendix><table><title>
-#: ./English/Shortcut_keys.xml:363
+#: ./English/Shortcut_keys.xml:404
 msgid "Difference navigation and merging (normal mode)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:382
+#: ./English/Shortcut_keys.xml:423
 msgid "Go to first difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:392
+#: ./English/Shortcut_keys.xml:433
 msgid "Go to last difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:402
+#: ./English/Shortcut_keys.xml:443
 msgid "Go to current difference or select difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:426
+#: ./English/Shortcut_keys.xml:467
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Up Arrow</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:437
+#: ./English/Shortcut_keys.xml:478
 msgid "<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down Arrow</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:454 ./English/Shortcut_keys.xml:524
+#: ./English/Shortcut_keys.xml:495 ./English/Shortcut_keys.xml:565
 msgid "Copy difference from right side to left side"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:464 ./English/Shortcut_keys.xml:530
+#: ./English/Shortcut_keys.xml:505 ./English/Shortcut_keys.xml:571
 msgid "Copy difference from left side to right side"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:468 ./English/Shortcut_keys.xml:534
+#: ./English/Shortcut_keys.xml:509 ./English/Shortcut_keys.xml:575
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Left Arrow</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:476 ./English/Shortcut_keys.xml:542
+#: ./English/Shortcut_keys.xml:517 ./English/Shortcut_keys.xml:583
 msgid "Copy difference from right side to left side and select next difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:481 ./English/Shortcut_keys.xml:547
+#: ./English/Shortcut_keys.xml:522 ./English/Shortcut_keys.xml:588
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Right Arrow</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:489 ./English/Shortcut_keys.xml:555
+#: ./English/Shortcut_keys.xml:530 ./English/Shortcut_keys.xml:596
 msgid "Copy difference from left side to right side and select next difference"
 msgstr ""
 
 #. type: Content of: <appendix><table><title>
-#: ./English/Shortcut_keys.xml:497
+#: ./English/Shortcut_keys.xml:538
 msgid "Difference navigation and merging (merge mode)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:510
+#: ./English/Shortcut_keys.xml:551
 msgid "<keycap>Up Arrow</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:516
+#: ./English/Shortcut_keys.xml:557
 msgid "<keycap>Down Arrow</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:522
+#: ./English/Shortcut_keys.xml:563
 msgid "<keycap>Left Arrow</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:528
+#: ./English/Shortcut_keys.xml:569
 msgid "<keycap>Right Arrow</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><title>
-#: ./English/Shortcut_keys.xml:563
+#: ./English/Shortcut_keys.xml:604
 msgid "Find and Replace"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:576
+#: ./English/Shortcut_keys.xml:617
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>F</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:582
+#: ./English/Shortcut_keys.xml:623
 msgid "Find text (opens Find dialog)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:586
+#: ./English/Shortcut_keys.xml:627
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>H</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:592
+#: ./English/Shortcut_keys.xml:633
 msgid "Replace text (opens Replace dialog)"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:596
+#: ./English/Shortcut_keys.xml:637
 msgid "<keycap>F3</keycap>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:598
+#: ./English/Shortcut_keys.xml:639
 msgid "Find next"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:602
+#: ./English/Shortcut_keys.xml:643
 msgid "<keycombo> <keycap>Shift</keycap> <keycap>F3</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:608
+#: ./English/Shortcut_keys.xml:649
 msgid "Find previous"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:612
+#: ./English/Shortcut_keys.xml:653
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>F3</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:618
+#: ./English/Shortcut_keys.xml:659
 msgid "Find selected text in file"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:622
+#: ./English/Shortcut_keys.xml:663
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F3</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:630
+#: ./English/Shortcut_keys.xml:671
 msgid "Find selected text upwards in file"
 msgstr ""
 
 #. type: Content of: <appendix><table><title>
-#: ./English/Shortcut_keys.xml:637
+#: ./English/Shortcut_keys.xml:678
 msgid "Bookmarks"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:650
+#: ./English/Shortcut_keys.xml:691
 msgid "<keycombo> <keycap>F2</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:654
+#: ./English/Shortcut_keys.xml:695
 msgid "Next Bookmark"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:658
+#: ./English/Shortcut_keys.xml:699
 msgid "<keycombo> <keycap>Shift</keycap> <keycap>F2</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:664
+#: ./English/Shortcut_keys.xml:705
 msgid "Previous Bookmark"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:668
+#: ./English/Shortcut_keys.xml:709
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:674
+#: ./English/Shortcut_keys.xml:715
 msgid "Toggle Bookmark"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:678
+#: ./English/Shortcut_keys.xml:719
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F2</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:686
+#: ./English/Shortcut_keys.xml:727
 msgid "Clear all Bookmarks"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:690
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>0</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:696
-msgid "Go to Bookmark 0"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:700
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>0</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:706
-msgid "Toggle Bookmark 0"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:710
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>1</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:716
-msgid "Go to Bookmark 1"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:720
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>1</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:726
-msgid "Toggle Bookmark 1"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:730
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>2</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:736
-msgid "Go to Bookmark 2"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:740
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>2</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:746
-msgid "Toggle Bookmark 2"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:750
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>3</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:756
-msgid "Go to Bookmark 3"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:760
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>3</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:766
-msgid "Toggle Bookmark 3"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:770
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>4</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:776
-msgid "Go to Bookmark 4"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:780
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>4</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:786
-msgid "Toggle Bookmark 4"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:790
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>5</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:796
-msgid "Go to Bookmark 5"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:800
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>5</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:806
-msgid "Toggle Bookmark 5"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:810
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>6</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:816
-msgid "Go to Bookmark 6"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:820
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>6</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:826
-msgid "Toggle Bookmark 6"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:830
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>7</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:836
-msgid "Go to Bookmark 7"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:840
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>7</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:846
-msgid "Toggle Bookmark 7"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:850
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>8</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:856
-msgid "Go to Bookmark 8"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:860
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>8</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:866
-msgid "Toggle Bookmark 8"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:870
-msgid "<keycombo> <keycap>Alt</keycap> <keycap>9</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:876
-msgid "Go to Bookmark 9"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:880
-msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>9</keycap> </keycombo>"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:886
-msgid "Toggle Bookmark 9"
-msgstr ""
-
-#. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:906
+#: ./English/Shortcut_keys.xml:748
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>+</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:912 ./English/Shortcut_keys.xml:942
+#: ./English/Shortcut_keys.xml:754 ./English/Shortcut_keys.xml:784
 msgid "Increase text size"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:916
+#: ./English/Shortcut_keys.xml:758
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>-</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:922 ./English/Shortcut_keys.xml:952
+#: ./English/Shortcut_keys.xml:764 ./English/Shortcut_keys.xml:794
 msgid "Decrease text size"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:926
+#: ./English/Shortcut_keys.xml:768
 msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>*</keycap> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:932
+#: ./English/Shortcut_keys.xml:774
 msgid "Reset text zoom to default size"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:936
+#: ./English/Shortcut_keys.xml:778
 msgid "<keycombo> <keycap>Ctrl</keycap> <mousebutton>MouseWheel Up</mousebutton> </keycombo>"
 msgstr ""
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
-#: ./English/Shortcut_keys.xml:946
+#: ./English/Shortcut_keys.xml:788
 msgid "<keycombo> <keycap>Ctrl</keycap> <mousebutton>MouseWheel Down</mousebutton> </keycombo>"
 msgstr ""
 
