@@ -7,6 +7,38 @@
   <para>WinMergeは、他のWindowsアプリケーションで一般的に使用されている、 おなじみのショートカットキーを含んでいます。</para>
 
   <table>
+    <title>全般</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>キー</entry>
+
+          <entry>機能</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Tab</keycap> </keycombo></entry>
+
+          <entry>次のタブに移動する</entry>
+
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>Tab</keycap>
+</keycombo></entry>
+
+          <entry>前のタブに移動する</entry>
+
+        </row>
+
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
     <title>フォルダー比較</title>
 
     <tgroup cols="2">
@@ -504,125 +536,6 @@ Arrow</keycap> </keycombo></entry>
           <entry>全てのブックマークをクリア</entry>
         </row>
 
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>0</keycap> </keycombo></entry>
-
-          <entry>ブックマーク0へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>0</keycap> </keycombo></entry>
-
-          <entry>ブックマーク0の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>1</keycap> </keycombo></entry>
-
-          <entry>ブックマーク1 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>1</keycap> </keycombo></entry>
-
-          <entry>ブックマーク1の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>2</keycap> </keycombo></entry>
-
-          <entry>ブックマーク2 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>2</keycap> </keycombo></entry>
-
-          <entry>ブックマーク2の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>3</keycap> </keycombo></entry>
-
-          <entry>ブックマーク3 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>3</keycap> </keycombo></entry>
-
-          <entry>ブックマーク3の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>4</keycap> </keycombo></entry>
-
-          <entry>ブックマーク4 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>4</keycap> </keycombo></entry>
-
-          <entry>ブックマーク4の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>5</keycap> </keycombo></entry>
-
-          <entry>ブックマーク5 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>5</keycap> </keycombo></entry>
-
-          <entry>ブックマーク5の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>6</keycap> </keycombo></entry>
-
-          <entry>ブックマーク6 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>6</keycap> </keycombo></entry>
-
-          <entry>ブックマーク6の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>7</keycap> </keycombo></entry>
-
-          <entry>ブックマーク7 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>7</keycap> </keycombo></entry>
-
-          <entry>ブックマーク7の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>8</keycap> </keycombo></entry>
-
-          <entry>ブックマーク8 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>8</keycap> </keycombo></entry>
-
-          <entry>ブックマーク8の作成・削除</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>9</keycap> </keycombo></entry>
-
-          <entry>ブックマーク9 へ移動</entry>
-        </row>
-
-        <row>
-          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>9</keycap> </keycombo></entry>
-
-          <entry>ブックマーク9の作成・削除</entry>
-        </row>
       </tbody>
     </tgroup>
   </table>

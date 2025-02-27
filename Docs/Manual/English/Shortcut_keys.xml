@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <appendix id="Shortcut_keys">
   <title>Shortcut keys<indexterm>
       <primary>shortcut keys</primary>
@@ -6,6 +6,47 @@
 
   <para>WinMerge includes most of the familiar shortcut keys commonly used in
   other Windows applications.</para>
+
+  <table>
+    <title>General</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Keys</entry>
+
+          <entry>Function</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>Tab</keycap>
+            </keycombo></entry>
+
+          <entry>Switch to the next tab</entry>
+
+        </row>
+
+        <row>
+          <entry><keycombo>
+              <keycap>Ctrl</keycap>
+
+              <keycap>Shift</keycap>
+
+              <keycap>Tab</keycap>
+            </keycombo></entry>
+
+          <entry>Switch to the previous tab</entry>
+
+        </row>
+
+      </tbody>
+    </tgroup>
+  </table>
 
   <table>
     <title>Folder compare</title>
@@ -686,205 +727,6 @@
           <entry>Clear all Bookmarks</entry>
         </row>
 
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>0</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 0</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>0</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 0</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>1</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 1</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>1</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 1</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>2</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 2</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>2</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 2</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>3</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 3</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>3</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 3</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>4</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 4</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>4</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 4</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>5</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 5</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>5</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 5</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>6</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 6</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>6</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 6</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>7</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 7</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>7</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 7</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>8</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 8</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>8</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 8</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Alt</keycap>
-
-              <keycap>9</keycap>
-            </keycombo></entry>
-
-          <entry>Go to Bookmark 9</entry>
-        </row>
-
-        <row>
-          <entry><keycombo>
-              <keycap>Ctrl</keycap>
-
-              <keycap>9</keycap>
-            </keycombo></entry>
-
-          <entry>Toggle Bookmark 9</entry>
-        </row>
       </tbody>
     </tgroup>
   </table>
