@@ -74,6 +74,7 @@
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
+#include <../src/mfc/afximpl.h>
 
 #if !defined(SM_CXPADDEDBORDER)
 #define SM_CXPADDEDBORDER       92
@@ -3810,6 +3811,8 @@ void CMainFrame::ShowOutputPane(bool bShow)
 	{
 		EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
 
+		RemoveBarBorder();
+
 		String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
 		if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
 		{
@@ -3877,6 +3880,17 @@ bool CMainFrame::EnsureValidDockState(CDockState& state)
 			state.m_arrBarInfo.RemoveAt(i);
 	}
 	return true;
+}
+
+void CMainFrame::RemoveBarBorder()
+{
+	afxData.cxBorder2 = 0;
+	afxData.cyBorder2 = 0;
+	for (int i = 0; i < 4; ++i)
+	{
+		CControlBar* pBar = GetControlBar(i + AFX_IDW_DOCKBAR_TOP);
+		pBar->SetBarStyle(pBar->GetBarStyle() & ~(CBRS_BORDER_ANY | CBRS_BORDER_3D));
+	}
 }
 
 /**

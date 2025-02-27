@@ -469,6 +469,7 @@ private:
 	void ShowOutputPane(bool bShow);
 	bool EnsureValidDockState(CDockState& state);
 	void SavePosition();
+	void RemoveBarBorder();
 	std::unique_ptr<WCHAR[]> m_upszLongTextW;
 	std::unique_ptr<CHAR[]> m_upszLongTextA;
 };
