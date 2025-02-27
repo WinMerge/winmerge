@@ -3860,7 +3860,8 @@ void CMainFrame::SavePosition()
 {
 	if (m_wndOutputBar.m_hWnd != nullptr)
 	{
-		__super::ShowControlBar(&m_wndOutputBar, GetOptionsMgr()->GetBool(OPT_SHOW_OUTPUTBAR), 0);
+		if (!m_wndOutputBar.IsVisible())
+			GetOptionsMgr()->SaveOption(OPT_SHOW_OUTPUTBAR, false);
 		// save the bars layout
 		// save docking positions and sizes
 		CDockState m_pDockState;

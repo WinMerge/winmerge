@@ -39,6 +39,7 @@
 #include "SubstitutionList.h"
 #include "codepage_detect.h"
 #include "cio.h"
+#include "Logger.h"
 
 using Poco::Exception;
 
@@ -983,7 +984,7 @@ void CDiffWrapper::AddDiffRange(DiffList *pDiffList, unsigned begin0, unsigned e
 	}
 	catch (std::exception& e)
 	{
-		AppErrorMessageBox(ucr::toTString(e.what()));
+		RootLogger::Error(e.what());
 	}
 }
 
@@ -995,7 +996,7 @@ void CDiffWrapper::AddDiffRange(DiffList *pDiffList, DIFFRANGE &dr)
 	}
 	catch (std::exception& e)
 	{
-		AppErrorMessageBox(ucr::toTString(e.what()));
+		RootLogger::Error(e.what());
 	}
 }
 

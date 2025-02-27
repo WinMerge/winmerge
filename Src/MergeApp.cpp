@@ -4,6 +4,7 @@
 #include "VersionInfo.h"
 #include "Constants.h"
 #include "unicoder.h"
+#include "Logger.h"
 
 // Get user language description of error, if available
 String GetSysError(int nerr /* =-1 */)
@@ -78,6 +79,7 @@ String tr(const char *msgctxt, const std::string &str)
 void AppErrorMessageBox(const String& msg)
 {
 	AppMsgBox::error(msg);
+	RootLogger::Error(msg);
 }
 
 void* AppGetMainHWND()
