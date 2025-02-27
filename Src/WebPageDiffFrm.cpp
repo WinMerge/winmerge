@@ -7,6 +7,7 @@
 
 #include "stdafx.h"
 #include "WebPageDiffFrm.h"
+#include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
 #include "BCMenu.h"
@@ -502,7 +503,7 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
 
-	CMergeFrameCommon::RemoveBarBorder();
+	FrameWndHelper::RemoveBarBorder(this);
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
@@ -545,7 +546,7 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	CDockState pDockState;
 	pDockState.LoadState(_T("Settings-WebPageDiffFrame"));
-	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+	if (FrameWndHelper::EnsureValidDockState(this, pDockState)) // checks for valid so won't ASSERT
 		SetDockState(pDockState);
 	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
 	m_wndLocationBar.LoadState(_T("Settings-WebPageDiffFrame"));

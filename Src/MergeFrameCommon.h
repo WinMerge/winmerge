@@ -25,10 +25,8 @@ public:
 	static String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
 	static void ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI);
 	static std::pair<int, int> MenuIDtoXY(UINT nID, int nActivePane, int nBuffers);
-	bool EnsureValidDockState(CDockState& state);
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
-	void RemoveBarBorder();
 	virtual BOOL IsTabbedMDIChild()
 	{
 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
