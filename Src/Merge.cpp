@@ -68,6 +68,7 @@
 #include "BCMenu.h"
 #include "MouseHook.h"
 #include "SysColorHook.h"
+#include "Logger.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
@@ -614,6 +615,26 @@ int CMergeApp::ExitInstance()
 	return exitstatus;
 }
 
+static String makeLogString(const tchar_t* lpszPrompt, int result)
+{
+	const std::vector<String> Answers = {
+		_T(""),
+		_("OK"),
+		_("Cancel"),
+		_("Abort"),
+		_("Retry"),
+		_("Ignore"),
+		_("Yes"),
+		_("No"),
+		_("Close"),
+		_("Help"),
+		_("Try Again"),
+		_("Continue"),
+	};
+	String msg = String(lpszPrompt) + _T(": ") + Answers[result];
+	return msg;
+}
+
 int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt)
 {
 	// This is a convenient point for breakpointing !!!
@@ -654,7 +675,15 @@ int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPromp
 		m_pMainWnd->ShowWindow(SW_RESTORE);
 
 	// Display the message box dialog and return the result.
-	return static_cast<int>(dlgMessage.DoModal());
+	int result = static_cast<int>(dlgMessage.DoModal());
+	String const msg = makeLogString(lpszPrompt, result);
+	if ((nType & MB_ICONERROR) != 0)
+		RootLogger::Error(msg);
+	else if ((nType & MB_ICONWARNING) != 0)
+		RootLogger::Warn(msg);
+	else
+		RootLogger::Info(msg);
+	return result;
 }
 
 bool CMergeApp::IsReallyIdle() const

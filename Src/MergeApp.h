@@ -22,6 +22,8 @@ struct AboutInfo
 String GetSysError(int nerr = -1);
 
 COptionsMgr * GetOptionsMgr();
+void LogErrorString(const String& sz);
+void LogErrorStringUTF8(const std::string& sz);
 void AppErrorMessageBox(const String& msg);
 void* AppGetMainHWND();
 

@@ -42,6 +42,18 @@ COptionsMgr * GetOptionsMgr()
 	return pApp->GetMergeOptionsMgr();
 }
 
+// Send message to log and debug window
+void LogErrorString(const String& sz)
+{
+	RootLogger::Error(sz);
+}
+
+// Send message to log and debug window
+void LogErrorStringUTF8(const std::string& sz)
+{
+	RootLogger::Error(sz);
+}
+
 /**
  * @brief Load string resource and return as CString.
  * @param [in] id Resource string ID.
