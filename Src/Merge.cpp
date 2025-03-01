@@ -62,6 +62,7 @@
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
 #include "OptionsProject.h"
+#include "OptionsFont.h"
 #include "MergeAppCOMClass.h"
 #include "RegKey.h"
 #include "Win_VersionHelper.h"
@@ -435,6 +436,9 @@ BOOL CMergeApp::InitInstance()
 
 	if (GetOptionsMgr()->GetBool(OPT_MOUSE_HOOK_ENABLED))
 		CMouseHook::SetMouseHook();
+
+	m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
+	m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
 
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;

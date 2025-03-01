@@ -5,6 +5,10 @@
 #include "OutputView.h"
 #include "OutputDoc.h"
 #include "editcmd.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
+#include "MainFrm.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -78,5 +82,8 @@ CCrystalTextBuffer* COutputView::LocateTextBuffer()
 void COutputView::OnInitialUpdate()
 {
 	__super::OnInitialUpdate();
+	LOGFONT lf = theApp.m_lfDiff;
+	lf.lfHeight = static_cast<LONG>(lf.lfHeight * GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0);
+	SetFont(lf);
 }
 

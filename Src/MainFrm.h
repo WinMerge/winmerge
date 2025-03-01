@@ -138,8 +138,6 @@ public:
 // Attributes
 public:	
 	bool m_bShowErrors; /**< Show folder compare error items? */
-	LOGFONT m_lfDiff; /**< MergeView user-selected font */
-	LOGFONT m_lfDir; /**< DirView user-selected font */
 	static const tchar_t szClassName[];
 
 // Operations

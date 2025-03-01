@@ -380,8 +380,6 @@ CMainFrame::CMainFrame()
 : m_bFirstTime(true)
 , m_pDropHandler(nullptr)
 , m_bShowErrors(false)
-, m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
-, m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
 , m_pDirWatcher(new DirWatcher())
 , m_pOutputDoc(nullptr)
 {
@@ -484,9 +482,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_OUTPUTBAR))
-	{
 		ShowOutputPane(true);
-	}
 
 	UpdateSystemMenu();
 
@@ -1521,7 +1517,7 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 			{
 				CDirView *pView = pDoc->GetMainView();
 				if (pView != nullptr)
-					pView->SetFont(m_lfDir);
+					pView->SetFont(theApp.m_lfDir);
 			}
 		}
 	}
@@ -1532,7 +1528,7 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 			CMergeDoc *pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
 			if (pMergeDoc != nullptr)
 				for (auto& pView: pMergeDoc->GetViewList())
-					pView->SetFont(m_lfDiff);
+					pView->SetFont(theApp.m_lfDiff);
 		}
 	}
 }
@@ -1558,9 +1554,9 @@ void CMainFrame::OnViewSelectfont()
 	// CF_FIXEDPITCHONLY = 0x00004000L
 	// in case you are a developer and want to disable it to test with, eg, a Chinese capable font
 	if (frame == FRAME_FOLDER)
-		lf = &m_lfDir;
+		lf = &theApp.m_lfDir;
 	else
-		lf = &m_lfDiff;
+		lf = &theApp.m_lfDiff;
 
 	cf.lpLogFont = lf;
 	cf.hwndOwner = m_hWnd;
@@ -1585,14 +1581,14 @@ void CMainFrame::OnViewUsedefaultfont()
 	if (frame == FRAME_FOLDER)
 	{
 		Options::Font::Reset(GetOptionsMgr(), OPT_FONT_DIRCMP);
-		m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
-		Options::Font::Save(GetOptionsMgr(), OPT_FONT_DIRCMP, &m_lfDir, false);
+		theApp.m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
+		Options::Font::Save(GetOptionsMgr(), OPT_FONT_DIRCMP, &theApp.m_lfDir, false);
 	}
 	else
 	{
 		Options::Font::Reset(GetOptionsMgr(), OPT_FONT_FILECMP);
-		m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
-		Options::Font::Save(GetOptionsMgr(), OPT_FONT_FILECMP, &m_lfDiff, false);
+		theApp.m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
+		Options::Font::Save(GetOptionsMgr(), OPT_FONT_FILECMP, &theApp.m_lfDiff, false);
 	}
 
 	UpdateFont(frame);
@@ -3831,9 +3827,6 @@ void CMainFrame::ShowOutputPane(bool bShow)
 
 		pOutputView->AttachToBuffer();
 		pOutputView->SetColorContext(theApp.GetMainSyntaxColors());
-		LOGFONT lf = m_lfDiff;
-		lf.lfHeight = static_cast<LONG>(lf.lfHeight * GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0);
-		pOutputView->SetFont(lf);
 
 		m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
 		m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
