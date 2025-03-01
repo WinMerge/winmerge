@@ -2417,7 +2417,14 @@ LRESULT CMainFrame::OnUser2(WPARAM wParam, LPARAM lParam)
 	int nEndLine, nEndChar;
 	POSITION pos = m_pOutputDoc->GetFirstViewPosition();
 	CCrystalTextView* pTextView = static_cast<CCrystalTextView*>(m_pOutputDoc->GetNextView(pos));
+	const bool isCursorAtLastLine = (pTextView && pTextView->GetCursorPos().y + 1 == buf.GetLineCount());
 	buf.InsertText(pTextView, buf.GetLineCount() - 1, 0, text.c_str(), text.length(), nEndLine, nEndChar, 0, false);
+	if (isCursorAtLastLine)
+	{
+		CEPoint pt{ nEndChar, nEndLine };
+		pTextView->SetCursorPos(pt);
+		pTextView->EnsureVisible(pt);
+	}
 
 	delete pLogMessage;
 	return 0;

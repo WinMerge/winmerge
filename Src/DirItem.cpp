@@ -10,6 +10,7 @@
 #include "UnicodeString.h"
 #include "paths.h"
 #include "TFile.h"
+#include "Logger.h"
 #include "DebugNew.h"
 #include <filesystem>
 
@@ -72,8 +73,9 @@ bool DirItem::Update(const String &sFilePath)
 
 			retVal = true;
 		}
-		catch (...)
+		catch (Poco::Exception& e)
 		{
+			RootLogger::Error(e.displayText());
 		}
 	}
 	return retVal;

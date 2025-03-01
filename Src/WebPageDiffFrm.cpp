@@ -26,7 +26,9 @@
 #include "Constants.h"
 #include "Environment.h"
 #include "UniFile.h"
+#include "Logger.h"
 #include <Poco/RegularExpression.h>
+#include <Poco/Exception.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -377,8 +379,9 @@ bool CWebPageDiffFrame::MatchURLPattern(const String& url)
 		Poco::RegularExpression reExclude(ucr::toUTF8(excludePattern));
 		return !reExclude.match(textu8);
 	}
-	catch (...)
+	catch (Poco::RegularExpressionException& e)
 	{
+		RootLogger::Error(e.displayText());
 		return false;
 	}
 }
