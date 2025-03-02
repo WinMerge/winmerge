@@ -353,6 +353,9 @@ msgstr "Kopiëren\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Plakken\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Alles selecteren\tCtrl+A"
+
 msgid "&Options..."
 msgstr "Opties..."
 
@@ -478,9 +481,6 @@ msgstr "Rechts alleen-lezen"
 
 msgid "&File Encoding..."
 msgstr "Bestandscodering..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Alles selecteren\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Identieke items weergeven"

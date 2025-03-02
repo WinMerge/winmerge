@@ -355,6 +355,9 @@ msgstr "&Kopiraj\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Prilepi\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Izberi &vse\tCtrl+A"
+
 msgid "&Options..."
 msgstr "&Možnosti..."
 
@@ -480,9 +483,6 @@ msgstr "De&sno samo-za-branje"
 
 msgid "&File Encoding..."
 msgstr "De&kodiranje datoteke..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Izberi &vse\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Prikaži &enake vnose"

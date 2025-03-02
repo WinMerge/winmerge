@@ -355,6 +355,9 @@ msgstr "&Kopírovať\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Prilepiť\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Vybr&ať všetko\tCtrl+A"
+
 msgid "&Options..."
 msgstr "&Nastavenia..."
 
@@ -480,9 +483,6 @@ msgstr "&Pravý len na čítanie"
 
 msgid "&File Encoding..."
 msgstr "&Kódovanie súboru..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Vybr&ať všetko\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Zobraziť &zhodné položky"

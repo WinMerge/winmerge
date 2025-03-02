@@ -395,6 +395,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "Προ&σάρτηση\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Επιλογή Ό&λων\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "Επιλ&ογές..."
 
@@ -555,10 +559,6 @@ msgstr "Δεξιό για Ανάγν&ωση μόνο"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Κωδικοσελίδα Αρχείου..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Επιλογή Ό&λων\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

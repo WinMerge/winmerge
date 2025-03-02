@@ -359,6 +359,9 @@ msgstr "复制(&C)\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "粘贴(&P)\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "全选(&A)\tCtrl+A"
+
 msgid "&Options..."
 msgstr "选项(&O)..."
 
@@ -484,9 +487,6 @@ msgstr "右侧只读(&G)"
 
 msgid "&File Encoding..."
 msgstr "文件编码(&F)..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "全选(&A)\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "显示相同项(&I)"

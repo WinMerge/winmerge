@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-02-26 20:33+0000\n"
+"POT-Creation-Date: 2025-03-01 20:50+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -349,6 +349,9 @@ msgstr ""
 msgid "&Paste\tCtrl+V"
 msgstr ""
 
+msgid "Select &All\tCtrl+A"
+msgstr ""
+
 msgid "&Options..."
 msgstr ""
 
@@ -473,9 +476,6 @@ msgid "Ri&ght Read-only"
 msgstr ""
 
 msgid "&File Encoding..."
-msgstr ""
-
-msgid "Select &All\tCtrl+A"
 msgstr ""
 
 msgid "Show &Identical Items"

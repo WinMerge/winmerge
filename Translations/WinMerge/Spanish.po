@@ -358,6 +358,9 @@ msgstr "&Copiar\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Pegar\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Seleccion&ar todo\tCtrl+A"
+
 msgid "&Options..."
 msgstr "C&onfiguración..."
 
@@ -483,9 +486,6 @@ msgstr "Derec&ho solo lectura"
 
 msgid "&File Encoding..."
 msgstr "Codi&ficación de archivo..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Seleccion&ar todo\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Mostrar elementos &idénticos"

@@ -396,6 +396,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Zalijepi\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Označi &sve\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "Pos&tavke..."
 
@@ -556,10 +560,6 @@ msgstr "Samo za čitanje - d&esna"
 #, c-format
 msgid "&File Encoding..."
 msgstr "De&kodiranje datoteke..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Označi &sve\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

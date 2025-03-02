@@ -404,6 +404,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "Co&ller\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Sélectionner &tout\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "&Préférences..."
 
@@ -564,10 +568,6 @@ msgstr "Panneau Droi&te en lecture seule"
 #, c-format
 msgid "&File Encoding..."
 msgstr "Encodage de fic&hier..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Sélectionner &tout\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

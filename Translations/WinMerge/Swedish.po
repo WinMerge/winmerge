@@ -357,6 +357,9 @@ msgstr "Kopiera\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Klistra in\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Markera allt\tCtrl+A"
+
 msgid "&Options..."
 msgstr "Alternativ..."
 
@@ -484,9 +487,6 @@ msgstr "Skrivskydda höger"
 
 msgid "&File Encoding..."
 msgstr "Filkodning/teckenuppsättning..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Markera allt\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Visa identiska objekt"

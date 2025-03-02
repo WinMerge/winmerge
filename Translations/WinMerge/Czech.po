@@ -396,6 +396,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Vložit\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Vybr&at vše\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "Možnost&i..."
 
@@ -556,10 +560,6 @@ msgstr "Pr&avý pouze pro čtení"
 #, c-format
 msgid "&File Encoding..."
 msgstr "Kódo&vání souborů"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Vybr&at vše\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

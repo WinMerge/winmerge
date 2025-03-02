@@ -356,6 +356,9 @@ msgstr "C&opia\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "I&ncolla\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Se&leziona tutto\tCtrl+A"
+
 msgid "&Options..."
 msgstr "Op&zioni..."
 
@@ -481,9 +484,6 @@ msgstr "F&ile di destra in sola lettura"
 
 msgid "&File Encoding..."
 msgstr "Codifica &file..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Se&leziona tutto\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Visualizza elementi &identici"

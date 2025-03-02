@@ -405,6 +405,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "전체 선택(&A)\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "옵션(&O)..."
 
@@ -565,10 +569,6 @@ msgstr "오른쪽 읽기 전용(&G)"
 #, c-format
 msgid "&File Encoding..."
 msgstr "파일 인코딩(&F)..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "전체 선택(&A)\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

@@ -396,6 +396,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "ඇලවීම\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "සියල්ල  තෝරන්න\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "&විකල්පයන්..."
 
@@ -556,10 +560,6 @@ msgstr "Ri&ght Read-only"
 #, c-format
 msgid "&File Encoding..."
 msgstr "ගොනුව කේතීකරණය..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "සියල්ල  තෝරන්න\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

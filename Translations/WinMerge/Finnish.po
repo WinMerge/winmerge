@@ -355,6 +355,9 @@ msgstr "Kopioi\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Liitä\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Valitse kaikki\tCtrl+A"
+
 msgid "&Options..."
 msgstr "Asetukset..."
 
@@ -480,9 +483,6 @@ msgstr "Oikea vain luku"
 
 msgid "&File Encoding..."
 msgstr "Tiedoston koodaus..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Valitse kaikki\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Näytä yhtäläiset kohteet"

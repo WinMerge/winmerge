@@ -399,6 +399,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Einfügen\tStrg+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "&Alles markieren\tStrg+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "Einstellunge&n..."
 
@@ -559,10 +563,6 @@ msgstr "&Rechts schreibgeschützt"
 #, c-format
 msgid "&File Encoding..."
 msgstr "Dateic&odierung..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "&Alles markieren\tStrg+A"
 
 #, c-format
 msgid "Show &Identical Items"

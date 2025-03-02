@@ -355,6 +355,9 @@ msgstr "&Kopijuoti\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Įter&pti\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "P&ažymėti viską\tCtrl+A"
+
 msgid "&Options..."
 msgstr "Nu&ostatos..."
 
@@ -480,9 +483,6 @@ msgstr "&Dešinysis tik skaitymui"
 
 msgid "&File Encoding..."
 msgstr "&Failo koduotė..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "P&ažymėti viską\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Rodyti v&ienodus elementus"

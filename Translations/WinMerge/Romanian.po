@@ -354,6 +354,9 @@ msgstr "&Copiază\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "Li&pește\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Selecte&ază tot\tCtrl+A"
+
 msgid "&Options..."
 msgstr "&Opțiuni..."
 
@@ -479,9 +482,6 @@ msgstr "Protejat la scriere în dreapta"
 
 msgid "&File Encoding..."
 msgstr "Codar&e caractere fișiere..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Selecte&ază tot\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Arată elementele &identice"

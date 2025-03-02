@@ -356,6 +356,9 @@ msgstr "&Copiar...\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Colar\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Selecionar &tudo\tCtrl+A"
+
 msgid "&Options..."
 msgstr "&Opções..."
 
@@ -481,9 +484,6 @@ msgstr "Apenas-leitura o da &direita"
 
 msgid "&File Encoding..."
 msgstr "Codificação de ficheiro..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Selecionar &tudo\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Mostrar itens idênticos"

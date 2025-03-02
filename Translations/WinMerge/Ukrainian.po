@@ -380,6 +380,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Вставити\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "В&ибрати все\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "&Налаштування..."
 
@@ -540,10 +544,6 @@ msgstr "Ф&айл справа лише для читання"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Кодування файлу..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "В&ибрати все\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

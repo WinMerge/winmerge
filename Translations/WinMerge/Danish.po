@@ -397,6 +397,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Indsæt\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Vælg &alt\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "I&ndstillinger..."
 
@@ -557,10 +561,6 @@ msgstr "&Højre skrivebeskyttet"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Fil Kodning..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Vælg &alt\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

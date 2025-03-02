@@ -357,6 +357,9 @@ msgstr "&Cupià\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Incullà\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "T&uttu selezziunà\tCtrl+A"
+
 msgid "&Options..."
 msgstr "&Ozzioni…"
 
@@ -482,9 +485,6 @@ msgstr "Schedariu à &diritta in lettura sola"
 
 msgid "&File Encoding..."
 msgstr "Cudi&ficazione di schedariu…"
-
-msgid "Select &All\tCtrl+A"
-msgstr "T&uttu selezziunà\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Affissà l’elementi &identichi"

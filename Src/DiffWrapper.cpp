@@ -39,7 +39,6 @@
 #include "SubstitutionList.h"
 #include "codepage_detect.h"
 #include "cio.h"
-#include "Logger.h"
 
 using Poco::Exception;
 

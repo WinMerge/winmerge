@@ -397,6 +397,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "貼上 (&P)\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "全選 (&A)\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "選項 (&O)..."
 
@@ -559,10 +563,6 @@ msgstr "右側唯讀 (&G)"
 #, c-format
 msgid "&File Encoding..."
 msgstr "檔案編碼 (&F)..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "全選 (&A)\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

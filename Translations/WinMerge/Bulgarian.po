@@ -352,6 +352,9 @@ msgstr "&Копиране\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Поставяне\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Избиране на &всичко\tCtrl+A"
+
 msgid "&Options..."
 msgstr "&Настройки…"
 
@@ -477,9 +480,6 @@ msgstr "Отдяс&но само за четене"
 
 msgid "&File Encoding..."
 msgstr "Избиране на &кодировка…"
-
-msgid "Select &All\tCtrl+A"
-msgstr "Избиране на &всичко\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Показване на &еднакви"

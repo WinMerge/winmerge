@@ -354,6 +354,9 @@ msgstr "Ko&pier\tCtrl+C"
 msgid "&Paste\tCtrl+V"
 msgstr "&Lim inn\tCtrl+V"
 
+msgid "Select &All\tCtrl+A"
+msgstr "Me&rk alt\tCtrl+A"
+
 msgid "&Options..."
 msgstr "&Innstillinger..."
 
@@ -479,9 +482,6 @@ msgstr "H&øyre skrivebeskyttet"
 
 msgid "&File Encoding..."
 msgstr "Filko&ding..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Me&rk alt\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Vis &identiske objekter"

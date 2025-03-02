@@ -356,6 +356,9 @@ msgstr "&نسخ"
 msgid "&Paste\tCtrl+V"
 msgstr "&لصق"
 
+msgid "Select &All\tCtrl+A"
+msgstr "&تحديد الكل\tCtrl+A"
+
 msgid "&Options..."
 msgstr "خ&يارات..."
 
@@ -481,9 +484,6 @@ msgstr "الجزء الأي&من للقراءة فقط"
 
 msgid "&File Encoding..."
 msgstr "ترمي&ز الملف..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "&تحديد الكل\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "عرض العناصر ال&متشابهة"

@@ -394,6 +394,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Налепи\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Изабери &све\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "Изб&ор..."
 
@@ -554,10 +558,6 @@ msgstr "Само за читање - д&есна"
 #, c-format
 msgid "&File Encoding..."
 msgstr "Де&кодирање датотеке..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Изабери &све\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

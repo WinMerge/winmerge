@@ -398,6 +398,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Beillesztés\tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Összes kijelölése\tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "&Beállítások..."
 
@@ -558,10 +562,6 @@ msgstr "Jobb oldal csak olvasható"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Fájl kódolás..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Összes kijelölése\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"

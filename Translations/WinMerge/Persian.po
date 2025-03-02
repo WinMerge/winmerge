@@ -397,6 +397,10 @@ msgid "&Paste\tCtrl+V"
 msgstr "&P چسباندن \tCtrl+V"
 
 #, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "&A انتخاب همگي \tCtrl+A"
+
+#, c-format
 msgid "&Options..."
 msgstr "&O خيارات ... "
 
@@ -557,10 +561,6 @@ msgstr "&g طرف راست فقط خواندني "
 #, c-format
 msgid "&File Encoding..."
 msgstr "&F کدبندي پرونده ... "
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "&A انتخاب همگي \tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
