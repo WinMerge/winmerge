@@ -11,6 +11,8 @@
 #include "paths.h"
 #include "Merge.h"
 #include "FileTransform.h"
+#include "FileLocation.h"
+#include "Logger.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -132,6 +134,25 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 		}
 	}
+}
+
+void CMergeFrameCommon::LogComparisonStart(int nFiles, const FileLocation ifileloc[])
+{
+	RootLogger::Info(nFiles < 3 ?
+			strutils::format_string2(_("Comparing %1 with %2"), ifileloc[0].filepath, ifileloc[1].filepath) : 
+			strutils::format_string3(_("Comparing %1 with %2 and %3"), ifileloc[0].filepath, ifileloc[1].filepath, ifileloc[2].filepath));
+}
+
+void CMergeFrameCommon::LogComparisonStart(const PathContext& paths)
+{
+	RootLogger::Info((paths.GetSize() < 3) ?
+			strutils::format_string2(_("Comparing %1 with %2"), paths[0], paths[1]) : 
+			strutils::format_string3(_("Comparing %1 with %2 and %3"), paths[0], paths[1], paths[2]));
+}
+
+void CMergeFrameCommon::LogComparisonCompleted(int result, int diffCount)
+{
+	RootLogger::Info(strutils::format(_("Comparison completed: %d differences found"), diffCount));
 }
 
 String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[],

@@ -2307,6 +2307,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	int nBuffer;
 	FileLocation fileloc[3];
 
+	CMergeFrameCommon::LogComparisonStart(nFiles, ifileloc);
+
 	std::copy_n(ifileloc, 3, fileloc);
 
 	// Filter out invalid codepages, or editor will display all blank
@@ -2508,6 +2510,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			}
 			
 		}
+
+		CMergeFrameCommon::LogComparisonCompleted(nRescanResult, m_diffList.GetSignificantDiffs());
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created

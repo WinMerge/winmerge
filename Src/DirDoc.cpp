@@ -176,6 +176,8 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 		for (nIndex = 0; nIndex < m_nDirs; nIndex++)
 			m_pTempPathContext->m_strRoot[nIndex] = m_pCtxt->GetNormalizedPath(nIndex);
 	}
+
+	CMergeFrameCommon::LogComparisonStart(paths);
 }
 
 

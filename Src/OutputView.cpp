@@ -82,8 +82,8 @@ CCrystalTextBuffer* COutputView::LocateTextBuffer()
 void COutputView::OnInitialUpdate()
 {
 	__super::OnInitialUpdate();
-	LOGFONT lf = theApp.m_lfDiff;
-	lf.lfHeight = static_cast<LONG>(lf.lfHeight * GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0);
-	SetFont(lf);
+	SetRevisionMarkWidth(0);
+	SetSelectionMargin(false);
+	SetFont(theApp.m_lfDiff);
 }
 

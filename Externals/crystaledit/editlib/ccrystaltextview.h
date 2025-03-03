@@ -231,10 +231,14 @@ protected :
     HACCEL m_hAccel;
     bool m_bVertScrollBarLocked, m_bHorzScrollBarLocked;
     CEPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
+    int m_nRevMarkWidth;
+
     void UpdateCaret ();
     void SetAnchor (const CEPoint & ptNewAnchor);
     int GetTopMarginHeight ();
     int GetMarginWidth (CDC *pdc = nullptr);
+    int GetRevisionMarkWidth() const { return m_nRevMarkWidth; }
+    void SetRevisionMarkWidth(int width) { m_nRevMarkWidth = width; };
     bool IsValidTextPos (const CEPoint &point);
     bool IsValidTextPosX (const CEPoint &point);
     bool IsValidTextPosY (const CEPoint &point);

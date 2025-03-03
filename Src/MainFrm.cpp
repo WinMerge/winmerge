@@ -1530,6 +1530,13 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 				for (auto& pView: pMergeDoc->GetViewList())
 					pView->SetFont(theApp.m_lfDiff);
 		}
+		if (m_pOutputDoc)
+		{
+			POSITION pos = m_pOutputDoc->GetFirstViewPosition();
+			COutputView* pView = static_cast<COutputView*>(m_pOutputDoc->GetNextView(pos));
+			if (pView)
+				pView->SetFont(theApp.m_lfDiff);
+		}
 	}
 }
 
