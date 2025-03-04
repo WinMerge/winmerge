@@ -82,17 +82,28 @@ static void DrawRoundedRectangle(Gdiplus::Graphics& graphics, Gdiplus::Pen& pen,
 
 void CTitleBarHelper::DrawButtons(CDC& dc, COLORREF textColor, COLORREF backColor)
 {
-	Gdiplus::Graphics graphics(dc.m_hDC);
-	CRect rcIcons[3], rcButtons[3];
+	CRect rcButtons[3];
+	for (int i = 0; i < 3; i++)
+		rcButtons[i] = GetButtonRect(i);
+	const int buttonsWidth = rcButtons[2].right - rcButtons[0].left;
+	const int buttonsHeight = rcButtons[0].Height();
+
+	CDC memDC;
+	memDC.CreateCompatibleDC(&dc);
+	CBitmap bmp;
+	bmp.CreateCompatibleBitmap(&dc, buttonsWidth, buttonsHeight);
+	CBitmap* pOldBmp = memDC.SelectObject(&bmp);
+
+	Gdiplus::Graphics graphics(memDC.m_hDC);
+	CRect rcIcons[3];
 	const float buttonWidth = PointToPixelF(m_rightMargin) / 3.f;
 	const int iconSize = PointToPixel(6.75);
 	for (int i = 0; i < 3; i++)
 	{
-		rcButtons[i] = GetButtonRect(i);
 		rcIcons[i] = rcButtons[i];
-		rcIcons[i].left = static_cast<int>(rcIcons[i].left + (buttonWidth - iconSize) / 2);
+		rcIcons[i].left = static_cast<int>(rcIcons[i].left + (buttonWidth - iconSize) / 2) - rcButtons[0].left;
 		rcIcons[i].right = static_cast<int>(rcIcons[i].left + iconSize);
-		rcIcons[i].top = static_cast<int>(rcIcons[i].top + (rcButtons[i].Height() - iconSize) / 2);
+		rcIcons[i].top = static_cast<int>(rcIcons[i].top + (rcButtons[i].Height() - iconSize) / 2) - rcButtons[0].top;
 		rcIcons[i].bottom = static_cast<int>(rcIcons[i].top + iconSize);
 
 		COLORREF colorref;
@@ -103,7 +114,7 @@ void CTitleBarHelper::DrawButtons(CDC& dc, COLORREF textColor, COLORREF backColo
 			colorref = backColor;
 		color.SetFromCOLORREF(colorref);
 		Gdiplus::SolidBrush brush(color);
-		graphics.FillRectangle(&brush, rcButtons[i].left, rcButtons[i].top, rcButtons[i].Width(), rcButtons[i].Height());
+		graphics.FillRectangle(&brush, rcButtons[i].left - rcButtons[0].left, rcButtons[i].top - rcButtons[0].top, rcButtons[i].Width(), rcButtons[i].Height());
 	}
 	
 	graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
@@ -134,6 +145,10 @@ void CTitleBarHelper::DrawButtons(CDC& dc, COLORREF textColor, COLORREF backColo
 	Gdiplus::Pen pen2(penColor, PointToPixelF(0.75));
 	graphics.DrawLine(&pen2, Gdiplus::Point(rcIcons[2].left, rcIcons[2].top), Gdiplus::Point(rcIcons[2].right, rcIcons[2].bottom));
 	graphics.DrawLine(&pen2, Gdiplus::Point(rcIcons[2].left, rcIcons[2].bottom), Gdiplus::Point(rcIcons[2].right, rcIcons[2].top));
+
+	dc.BitBlt(rcButtons[0].left, rcButtons[0].top, buttonsWidth, buttonsHeight, &memDC, 0, 0, SRCCOPY);
+
+	memDC.SelectObject(pOldBmp);
 }
 
 CRect CTitleBarHelper::GetButtonRect(int button) const
