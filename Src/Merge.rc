@@ -4181,7 +4181,7 @@ STRINGTABLE
 BEGIN
     IDS_LOCBAR_CAPTION      "Location Pane"
     IDS_DIFFBAR_CAPTION     "Diff Pane"
-    IDS_OUTPUTBAR_CAPTION     "Output Pane"
+    IDS_OUTPUTBAR_CAPTION   "Output Pane"
 END
 
 // CREATE PATCH

@@ -11,6 +11,7 @@
 
 class PrediffingInfo;
 class PackingInfo;
+class CompareStats;
 struct FileLocation;
 
 class CMergeFrameCommon: public CMDIChildWnd
@@ -24,6 +25,7 @@ public:
 	static void LogComparisonStart(int nFiles, const FileLocation ifileloc[]);
 	static void LogComparisonStart(const PathContext& paths);
 	static void LogComparisonCompleted(int result, int diffCount);
+	static void LogComparisonCompleted(int result, const CompareStats& stats);
 	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (const tchar_t*, UINT, UINT)> funcMessageBox);
 	static String GetTitleString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
 	static String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);

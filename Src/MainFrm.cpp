@@ -3829,18 +3829,16 @@ void CMainFrame::ShowOutputPane(bool bShow)
 			TRACE0("Failed to create tab bar\n");
 			return;
 		}
-		COutputView* pOutputView = new COutputView;
 		if (!m_pOutputDoc)
 		{
 			m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
 			m_pOutputDoc->m_xTextBuffer.InitNew();
 		}
+		COutputView* pOutputView = new COutputView;
 		const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
 		pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
 		m_pOutputDoc->AddView(pOutputView);
-
-		pOutputView->AttachToBuffer();
-		pOutputView->SetColorContext(theApp.GetMainSyntaxColors());
+		pOutputView->SendMessage(WM_INITIALUPDATE);
 
 		m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
 		m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);

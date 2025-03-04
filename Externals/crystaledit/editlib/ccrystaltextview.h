@@ -237,8 +237,6 @@ protected :
     void SetAnchor (const CEPoint & ptNewAnchor);
     int GetTopMarginHeight ();
     int GetMarginWidth (CDC *pdc = nullptr);
-    int GetRevisionMarkWidth() const { return m_nRevMarkWidth; }
-    void SetRevisionMarkWidth(int width) { m_nRevMarkWidth = width; };
     bool IsValidTextPos (const CEPoint &point);
     bool IsValidTextPosX (const CEPoint &point);
     bool IsValidTextPosY (const CEPoint &point);
@@ -712,6 +710,8 @@ public :
     void SetTopMargin (bool bTopMargin);
     bool GetSelectionMargin () const { return m_bSelMargin; }
     void SetSelectionMargin (bool bSelMargin);
+    int GetRevisionMarkWidth() const { return m_nRevMarkWidth; }
+    void SetRevisionMarkWidth(int width) { m_nRevMarkWidth = width; };
     bool GetViewLineNumbers() const { return m_bViewLineNumbers; }
     void SetViewLineNumbers(bool bViewLineNumbers);
     int  GetLineUsedAsHeaders () const { return m_nLineNumberUsedAsHeaders; }

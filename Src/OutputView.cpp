@@ -85,5 +85,7 @@ void COutputView::OnInitialUpdate()
 	SetRevisionMarkWidth(0);
 	SetSelectionMargin(false);
 	SetFont(theApp.m_lfDiff);
+	AttachToBuffer();
+	SetColorContext(theApp.GetMainSyntaxColors());
 }
 

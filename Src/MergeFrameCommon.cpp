@@ -13,6 +13,7 @@
 #include "FileTransform.h"
 #include "FileLocation.h"
 #include "Logger.h"
+#include "CompareStats.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -152,6 +153,18 @@ void CMergeFrameCommon::LogComparisonStart(const PathContext& paths)
 
 void CMergeFrameCommon::LogComparisonCompleted(int result, int diffCount)
 {
+	RootLogger::Info(strutils::format(_("Comparison completed: %d differences found"), diffCount));
+}
+
+void CMergeFrameCommon::LogComparisonCompleted(int result, const CompareStats& stats)
+{
+	int diffCount = 0;
+	for (auto type : {
+		CompareStats::RESULT_DIFF, CompareStats::RESULT_BINDIFF,
+		CompareStats::RESULT_LUNIQUE, CompareStats::RESULT_MUNIQUE, CompareStats::RESULT_RUNIQUE,
+		CompareStats::RESULT_LMISSING, CompareStats::RESULT_MMISSING, CompareStats::RESULT_RMISSING
+		})
+		diffCount += stats.GetCount(type);
 	RootLogger::Info(strutils::format(_("Comparison completed: %d differences found"), diffCount));
 }
 
