@@ -146,14 +146,21 @@ void CMergeStatusBar::OnPaint()
 	const COLORREF clr3DFaceLight = LightenColor(clr3DFace, 0.5);
 	const COLORREF clrWordDiffLight = LightenColor(m_cachedColors.clrWordDiff, 0.5);
 	const COLORREF clrBtnText = GetSysColor(COLOR_BTNTEXT);
+
 	CPaintDC dc(this);
 	CRect rect;
 	GetClientRect(&rect);
-	dc.FillSolidRect(&rect, clr3DFace);
-	dc.SetBkMode(TRANSPARENT);
+	CBitmap bitmap;
+	bitmap.CreateCompatibleBitmap(&dc, rect.Width(), rect.Height());
+	CDC memDC;
+	memDC.CreateCompatibleDC(&dc);
+	CBitmap* pOldBitmap = memDC.SelectObject(&bitmap);
+
+	memDC.FillSolidRect(&rect, GetSysColor(COLOR_3DFACE));
+	memDC.SetBkMode(TRANSPARENT);
 	CFont* pFont = GetFont();
-	CFont* pOldFont = pFont ? dc.SelectObject(pFont) : nullptr;
-	const int radius = MulDiv (3, dc.GetDeviceCaps (LOGPIXELSY), 72);
+	CFont* pOldFont = pFont ? memDC.SelectObject(pFont) : nullptr;
+	const int radius = MulDiv (3, memDC.GetDeviceCaps (LOGPIXELSY), 72);
 	for (int i = 0; i < nParts; i++)
 	{
 		const unsigned style = GetPaneStyle(i);
@@ -161,27 +168,29 @@ void CMergeStatusBar::OnPaint()
 		ctrl.GetRect(i, &rcPart);
 		const bool lighten = (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane);
 		if (lighten)
-			DrawRoundedRect(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
+			DrawRoundedRect(memDC.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
 		const bool disabled = (style & SBPS_DISABLED) != 0;
 		if (!disabled)
 		{
 			if (m_bDiff[i % nColumnsPerPane])
 			{
-				dc.SetTextColor(m_cachedColors.clrWordDiffText == -1 ?
+				memDC.SetTextColor(m_cachedColors.clrWordDiffText == -1 ?
 					theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_NORMALTEXT) : m_cachedColors.clrWordDiffText);
-				DrawRoundedRect(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, lighten ? clrWordDiffLight : m_cachedColors.clrWordDiff, clr3DFace);
+				DrawRoundedRect(memDC.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, lighten ? clrWordDiffLight : m_cachedColors.clrWordDiff, clr3DFace);
 			}
 			else
 			{
-				dc.SetTextColor(clrBtnText);
+				memDC.SetTextColor(clrBtnText);
 			}
 			CRect rcText = rcPart;
 			rcText.left += radius;
-			dc.DrawText(ctrl.GetText(i), &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+			memDC.DrawText(ctrl.GetText(i), &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
 	if (pOldFont)
-		dc.SelectObject(pOldFont);
+		memDC.SelectObject(pOldFont);
+	dc.BitBlt(0, 0, rect.Width(), rect.Height(), &memDC, 0, 0, SRCCOPY);
+	memDC.SelectObject(pOldBitmap);
 }
 
 void CMergeStatusBar::Resize(int widths[])

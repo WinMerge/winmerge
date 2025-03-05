@@ -63,25 +63,38 @@ void CBasicFlatStatusBar::OnPaint()
 {
 	const COLORREF clr3DFace = GetSysColor(COLOR_3DFACE);
 	const COLORREF clr3DFaceLight = LightenColor(clr3DFace, 0.5);
+
 	CPaintDC dc(this);
 	CRect rect;
 	GetClientRect(&rect);
+
 	CStatusBarCtrl& ctrl = GetStatusBarCtrl();
 	int parts[32];
 	const int nParts = ctrl.GetParts(32, parts);
-	dc.FillSolidRect(&rect, clr3DFace);
-	dc.SetTextColor(GetSysColor(COLOR_BTNTEXT));
-	dc.SetBkMode(TRANSPARENT);
+
+	CDC memDC;
+	memDC.CreateCompatibleDC(&dc);
+	CBitmap bmp;
+	bmp.CreateCompatibleBitmap(&dc, rect.Width(), rect.Height());
+	CBitmap* pOldBmp = memDC.SelectObject(&bmp);
+
+	memDC.FillSolidRect(&rect, clr3DFace);
+	memDC.SetTextColor(GetSysColor(COLOR_BTNTEXT));
+	memDC.SetBkMode(TRANSPARENT);
+
 	CFont* pFont = GetFont();
-	CFont* pOldFont = pFont ? dc.SelectObject(pFont) : nullptr;
-	const int radius = MulDiv (3, dc.GetDeviceCaps (LOGPIXELSY), 72);
+	CFont* pOldFont = pFont ? memDC.SelectObject(pFont) : nullptr;
+	const int radius = MulDiv(3, memDC.GetDeviceCaps(LOGPIXELSY), 72);
+
 	for (int i = 0; i < nParts; i++)
 	{
 		const unsigned style = GetPaneStyle(i);
 		CRect rcPart;
 		ctrl.GetRect(i, &rcPart);
+
 		if (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane)
-			DrawRoundedRect(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
+			DrawRoundedRect(memDC.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
+
 		const bool disabled = (style & SBPS_DISABLED) != 0;
 		if (!disabled)
 		{
@@ -93,11 +106,16 @@ void CBasicFlatStatusBar::OnPaint()
 				text.Trim();
 				text.Replace(_T("\t"), _T("  "));
 			}
-			dc.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+			memDC.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
+
 	if (pOldFont)
-		dc.SelectObject(pOldFont);
+		memDC.SelectObject(pOldFont);
+
+	dc.BitBlt(0, 0, rect.Width(), rect.Height(), &memDC, 0, 0, SRCCOPY);
+
+	memDC.SelectObject(pOldBmp);
 }
 
 BOOL CBasicFlatStatusBar::OnEraseBkgnd(CDC* pDC)
