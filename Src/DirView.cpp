@@ -2549,7 +2549,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		if (m_elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);
 		GetMainFrame()->StartFlashing();
-		CMergeFrameCommon::LogComparisonCompleted(0, *pDoc->GetDiffContext().m_pCompareStats);
+		CMergeFrameCommon::LogComparisonCompleted(*pDoc->GetDiffContext().m_pCompareStats);
 
 	}
 	else if (wParam == CDiffThread::EVENT_COMPARE_PROGRESSED)

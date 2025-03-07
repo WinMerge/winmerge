@@ -2511,7 +2511,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			
 		}
 
-		CMergeFrameCommon::LogComparisonCompleted(nRescanResult, m_diffList.GetSignificantDiffs());
+		CMergeFrameCommon::LogComparisonCompleted(m_diffList.GetSignificantDiffs());
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created

@@ -151,12 +151,12 @@ void CMergeFrameCommon::LogComparisonStart(const PathContext& paths)
 			strutils::format_string3(_("Comparing %1 with %2 and %3"), paths[0], paths[1], paths[2]));
 }
 
-void CMergeFrameCommon::LogComparisonCompleted(int result, int diffCount)
+void CMergeFrameCommon::LogComparisonCompleted(int diffCount)
 {
 	RootLogger::Info(strutils::format(_("Comparison completed: %d differences found"), diffCount));
 }
 
-void CMergeFrameCommon::LogComparisonCompleted(int result, const CompareStats& stats)
+void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
 {
 	int diffCount = 0;
 	for (auto type : {

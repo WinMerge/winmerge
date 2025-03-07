@@ -3992,6 +3992,18 @@ msgstr "\nКопировать направо и перейти (Ctrl+Alt+Right)
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)\n(Ctrl+Alt+Колесо влево)\n(Ctrl+Alt+Shift+Колесо вверх)"
 
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+#, c-format
+msgid "Comparison completed: %d differences found"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Приукрашивание"
 

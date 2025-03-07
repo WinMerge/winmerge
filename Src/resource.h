@@ -1803,6 +1803,9 @@
 #define IDS_COPY_GRANULARITY_Character  44644
 #define IDS_VIEW_MENU_BAR               44645
 #define IDS_COPY_ONLYDIFFITEMS          44646
+#define IDS_LOG_COMPARE_2               44650
+#define IDS_LOG_COMPARE_3               44651
+#define IDS_LOG_COMPARE_RESULT          44652
 
 // Next default values for new objects
 // 
