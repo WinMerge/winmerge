@@ -34,9 +34,23 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
+//  C/C++ keywords (MSVC5.0 + POET5.0)
 static const tchar_t * s_apszCppKeywordList[] =
   {
+    _T ("_Alignas"),
+    _T ("_Alignof"),
+    _T ("_Atomic"),
+    _T ("_BitInt"),
+    _T ("_Bool"),
+    _T ("_Complex"),
+    _T ("_Decimal128"),
+    _T ("_Decimal32"),
+    _T ("_Decimal64"),    
+    _T ("_Generic"),
+    _T ("_Imaginary"),
+    _T ("_Noreturn"),
+    _T ("_Static_assert"),
+    _T ("_Thread_local"),
     _T ("__asm"),
     _T ("__based"),
     _T ("__cdecl"),
@@ -116,6 +130,7 @@ static const tchar_t * s_apszCppKeywordList[] =
     _T ("final"),
     _T ("float"),
     _T ("for"),
+    _T ("fortran"),
     _T ("friend"),
     _T ("goto"),
     _T ("if"),
@@ -147,6 +162,7 @@ static const tchar_t * s_apszCppKeywordList[] =
     _T ("register"),
     _T ("reinterpret_cast"),
     _T ("requires"),
+    _T ("restrict"),
     _T ("return"),
     _T ("short"),
     _T ("signed"),
@@ -167,6 +183,8 @@ static const tchar_t * s_apszCppKeywordList[] =
     _T ("typedef"),
     _T ("typeid"),
     _T ("typename"),
+    _T ("typeof"),
+    _T ("typeof_unqual"),
     _T ("union"),
     _T ("unsigned"),
     _T ("useindex"),
