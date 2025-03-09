@@ -22,12 +22,13 @@ public:
 	bool IsActivated() const { return m_bActivated; }
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
-	static String GetDiffStatusString(int curDiff, int diffCount);
-	static void LogComparisonStart(int nFiles, const FileLocation ifileloc[], PackingInfo* infoUnpacker, PrediffingInfo* infoPrediffer);
-	static void LogComparisonStart(const PathContext& paths);
+	static void LogComparisonStart(int nFiles, const FileLocation ifileloc[], const PackingInfo* infoUnpackerconst , const PrediffingInfo* infoPrediffer);
+	static void LogComparisonStart(const PathContext& paths, const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
 	static void LogComparisonCompleted(int diffCount);
 	static void LogComparisonCompleted(const CompareStats& stats);
 	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (const tchar_t*, UINT, UINT)> funcMessageBox);
+	static String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
+	static String GetDiffStatusString(int curDiff, int diffCount);
 	static String GetTitleString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
 	static String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
 	static void ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI);

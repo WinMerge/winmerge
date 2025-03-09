@@ -137,30 +137,20 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 	}
 }
 
-void CMergeFrameCommon::LogComparisonStart(int nFiles, const FileLocation ifileloc[], PackingInfo* infoUnpacker, PrediffingInfo* infoPrediffer)
+void CMergeFrameCommon::LogComparisonStart(int nFiles, const FileLocation ifileloc[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
 {
 	String s = (nFiles < 3 ?
 			strutils::format_string2(_("Comparing %1 with %2"), ifileloc[0].filepath, ifileloc[1].filepath) : 
 			strutils::format_string3(_("Comparing %1 with %2 and %3"), ifileloc[0].filepath, ifileloc[1].filepath, ifileloc[2].filepath));
-	String p;
-	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
-		p = _T("Unpacker: ") + infoUnpacker->GetPluginPipeline();
-	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
-	{
-		if (!p.empty())
-			p += _T(", ");
-		p += _T("Prediffer: ") + infoPrediffer->GetPluginPipeline();
-	}
-	if (!p.empty())
-		s += _T(" (") + p + _T(")");
-	RootLogger::Info(s);
+	RootLogger::Info(s + GetPluginInfoString(infoUnpacker, infoPrediffer));
 }
 
-void CMergeFrameCommon::LogComparisonStart(const PathContext& paths)
+void CMergeFrameCommon::LogComparisonStart(const PathContext& paths, const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
 {
-	RootLogger::Info((paths.GetSize() < 3) ?
+	String s = (paths.GetSize() < 3) ?
 			strutils::format_string2(_("Comparing %1 with %2"), paths[0], paths[1]) : 
-			strutils::format_string3(_("Comparing %1 with %2 and %3"), paths[0], paths[1], paths[2]));
+			strutils::format_string3(_("Comparing %1 with %2 and %3"), paths[0], paths[1], paths[2]);
+	RootLogger::Info(s + GetPluginInfoString(infoUnpacker, infoPrediffer));
 }
 
 String CMergeFrameCommon::GetDiffStatusString(int curDiffIndex, int diffCount)
@@ -198,6 +188,22 @@ void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
 		})
 		diffCount += stats.GetCount(type);
 	LogComparisonCompleted(diffCount);
+}
+
+String CMergeFrameCommon::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+{
+	String p;
+	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
+		p = _T("Unpacker: ") + infoUnpacker->GetPluginPipeline();
+	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+	{
+		if (!p.empty())
+			p += _T(", ");
+		p += _T("Prediffer: ") + infoPrediffer->GetPluginPipeline();
+	}
+	if (p.empty())
+		return _T("");
+	return _T(" (") + p + _T(")");
 }
 
 String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[],

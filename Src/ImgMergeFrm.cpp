@@ -1139,7 +1139,7 @@ void CImgMergeFrame::UpdateSplitter()
 
 bool CImgMergeFrame::OpenImages()
 {
-	CMergeFrameCommon::LogComparisonStart(m_filePaths);
+	CMergeFrameCommon::LogComparisonStart(m_filePaths, &m_infoUnpacker, nullptr);
 
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
