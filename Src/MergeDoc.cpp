@@ -1467,35 +1467,7 @@ void CMergeDoc::OnUpdateStatusRO(CCmdUI* pCmdUI)
  */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	tchar_t sCnt[32] = { 0 };
-	String s;
-	const int nDiffs = m_diffList.GetSignificantDiffs();
-	
-	// Files are identical - show text "Identical"
-	if (nDiffs <= 0)
-		s = _("Identical");
-	
-	// There are differences, but no selected diff
-	// - show amount of diffs
-	else if (GetCurrentDiff() < 0)
-	{
-		s = nDiffs == 1 ? _("1 Difference Found") : _("%1 Differences Found");
-		_itot_s(nDiffs, sCnt, 10);
-		strutils::replace(s, _T("%1"), sCnt);
-	}
-	
-	// There are differences and diff selected
-	// - show diff number and amount of diffs
-	else
-	{
-		tchar_t sIdx[32] = { 0 };
-		s = _("Difference %1 of %2");
-		const int signInd = m_diffList.GetSignificantIndex(GetCurrentDiff());
-		_itot_s(signInd + 1, sIdx, 10);
-		strutils::replace(s, _T("%1"), sIdx);
-		_itot_s(nDiffs, sCnt, 10);
-		strutils::replace(s, _T("%2"), sCnt);
-	}
+	const String s = CMergeFrameCommon::GetDiffStatusString(GetCurrentDiff(), m_diffList.GetSignificantDiffs());
 	pCmdUI->SetText(s.c_str());
 }
 
@@ -2306,8 +2278,10 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	int nRescanResult = RESCAN_OK;
 	int nBuffer;
 	FileLocation fileloc[3];
+	PrediffingInfo prediffer;
 
-	CMergeFrameCommon::LogComparisonStart(nFiles, ifileloc);
+	m_diffWrapper.GetPrediffer(&prediffer);
+	CMergeFrameCommon::LogComparisonStart(nFiles, ifileloc, &m_infoUnpacker, &prediffer);
 
 	std::copy_n(ifileloc, 3, fileloc);
 

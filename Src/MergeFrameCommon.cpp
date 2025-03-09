@@ -137,11 +137,23 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 	}
 }
 
-void CMergeFrameCommon::LogComparisonStart(int nFiles, const FileLocation ifileloc[])
+void CMergeFrameCommon::LogComparisonStart(int nFiles, const FileLocation ifileloc[], PackingInfo* infoUnpacker, PrediffingInfo* infoPrediffer)
 {
-	RootLogger::Info(nFiles < 3 ?
+	String s = (nFiles < 3 ?
 			strutils::format_string2(_("Comparing %1 with %2"), ifileloc[0].filepath, ifileloc[1].filepath) : 
 			strutils::format_string3(_("Comparing %1 with %2 and %3"), ifileloc[0].filepath, ifileloc[1].filepath, ifileloc[2].filepath));
+	String p;
+	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
+		p = _T("Unpacker: ") + infoUnpacker->GetPluginPipeline();
+	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+	{
+		if (!p.empty())
+			p += _T(", ");
+		p += _T("Prediffer: ") + infoPrediffer->GetPluginPipeline();
+	}
+	if (!p.empty())
+		s += _T(" (") + p + _T(")");
+	RootLogger::Info(s);
 }
 
 void CMergeFrameCommon::LogComparisonStart(const PathContext& paths)
@@ -151,9 +163,29 @@ void CMergeFrameCommon::LogComparisonStart(const PathContext& paths)
 			strutils::format_string3(_("Comparing %1 with %2 and %3"), paths[0], paths[1], paths[2]));
 }
 
+String CMergeFrameCommon::GetDiffStatusString(int curDiffIndex, int diffCount)
+{
+	if (diffCount <= 0)
+		return _("Identical");
+
+	if (curDiffIndex < 0)
+		return diffCount == 1 ? _("1 Difference Found") :
+			  strutils::format_string1(_("%1 Differences Found"), strutils::to_str(diffCount));
+
+	tchar_t sCnt[32] {};
+	tchar_t sIdx[32] {};
+	String s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
+	const int signInd = curDiffIndex;
+	_itot_s(signInd + 1, sIdx, 10);
+	strutils::replace(s, _T("%1"), sIdx);
+	_itot_s(diffCount, sCnt, 10);
+	strutils::replace(s, _T("%2"), sCnt);
+	return s;
+}
+
 void CMergeFrameCommon::LogComparisonCompleted(int diffCount)
 {
-	RootLogger::Info(strutils::format(_("Comparison completed: %d differences found"), diffCount));
+	RootLogger::Info(_("Comparison completed: ") + GetDiffStatusString(-1, diffCount));
 }
 
 void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
@@ -165,7 +197,7 @@ void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
 		CompareStats::RESULT_LMISSING, CompareStats::RESULT_MMISSING, CompareStats::RESULT_RMISSING
 		})
 		diffCount += stats.GetCount(type);
-	RootLogger::Info(strutils::format(_("Comparison completed: %d differences found"), diffCount));
+	LogComparisonCompleted(diffCount);
 }
 
 String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[],

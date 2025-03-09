@@ -434,6 +434,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 	}
 	if (pPluginPipelineResolved)
 		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
+
 	return true;
 }
 
@@ -630,6 +631,7 @@ bool PackingInfo::Unpacking(int target, std::vector<int>* handlerSubcodes, Strin
 				return false;
 		}
 	}
+	
 	return true;
 }
 
