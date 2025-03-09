@@ -24,6 +24,7 @@
 #include <Poco/RegularExpression.h>
 #include <windows.h>
 #include "MergeApp.h"
+#include "Logger.h"
 #include "unicoder.h"
 #include "FileFilterMgr.h"
 #include "lwdisp.h"
@@ -325,7 +326,7 @@ ScriptletError(const String & scriptletFilepath, const tchar_t *szError)
 		+ scriptletFilepath
 		+ _T("> ")
 		+ szError;
-    LogErrorString(msg);
+    RootLogger::Error(msg);
 }
 
 static String
@@ -748,7 +749,7 @@ static vector<String>& LoadTheScriptletList()
 	{
 		bool enabledWSH = plugin::IsWindowsScriptThere();
 		if (!enabledWSH)
-			LogErrorString(_T("\n  .sct plugins disabled (Windows Script Host not found)"));
+			RootLogger::Error(_T("\n  .sct plugins disabled (Windows Script Host not found)"));
 
 		for (const auto path : {
 				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins")),

@@ -13,6 +13,7 @@
 
 #include "stdafx.h"
 #include "ImgMergeFrm.h"
+#include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
 #include "BCMenu.h"
@@ -529,7 +530,7 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
 
-	CMergeFrameCommon::RemoveBarBorder();
+	FrameWndHelper::RemoveBarBorder(this);
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
@@ -577,7 +578,7 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	CDockState pDockState;
 	pDockState.LoadState(_T("Settings-ImgMergeFrame"));
-	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+	if (FrameWndHelper::EnsureValidDockState(this, pDockState)) // checks for valid so won't ASSERT
 		SetDockState(pDockState);
 	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
 	m_wndLocationBar.LoadState(_T("Settings-ImgMergeFrame"));
@@ -746,6 +747,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				static_cast<unsigned>(-1), static_cast<unsigned>(-1),
 				compareResult == 0);
 		}
+
+		CMergeFrameCommon::LogFileSaved(m_filePaths[pane]);
 	}
 	return true;
 }
@@ -806,6 +809,8 @@ RETRY:
 		UpdateLastCompareResult();
 		m_fileInfo[pane].Update(m_filePaths[pane]);
 		UpdateHeaderPath(pane);
+
+		CMergeFrameCommon::LogFileSaved(m_filePaths[pane]);
 	}
 	return true;
 }
@@ -1138,6 +1143,8 @@ void CImgMergeFrame::UpdateSplitter()
 
 bool CImgMergeFrame::OpenImages()
 {
+	CMergeFrameCommon::LogComparisonStart(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
+
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
@@ -1153,6 +1160,9 @@ bool CImgMergeFrame::OpenImages()
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
 	else
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
+
+	CMergeFrameCommon::LogComparisonCompleted(m_pImgMergeWindow->GetDiffCount());
+
 	return bResult;
 }
 
@@ -1449,35 +1459,7 @@ LRESULT CImgMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 
 void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	tchar_t sCnt[32] = { 0 };
-	String s;
-	const int nDiffs = m_pImgMergeWindow->GetDiffCount();
-	
-	// Files are identical - show text "Identical"
-	if (nDiffs <= 0)
-		s = theApp.LoadString(IDS_IDENTICAL);
-	
-	// There are differences, but no selected diff
-	// - show amount of diffs
-	else if (m_pImgMergeWindow->GetCurrentDiffIndex() < 0)
-	{
-		s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
-		_itot_s(nDiffs, sCnt, 10);
-		strutils::replace(s, _T("%1"), sCnt);
-	}
-	
-	// There are differences and diff selected
-	// - show diff number and amount of diffs
-	else
-	{
-		tchar_t sIdx[32] = { 0 };
-		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
-		const int signInd = m_pImgMergeWindow->GetCurrentDiffIndex();
-		_itot_s(signInd + 1, sIdx, 10);
-		strutils::replace(s, _T("%1"), sIdx);
-		_itot_s(nDiffs, sCnt, 10);
-		strutils::replace(s, _T("%2"), sCnt);
-	}
+	const String s = CMergeFrameCommon::GetDiffStatusString(m_pImgMergeWindow->GetCurrentDiffIndex(), m_pImgMergeWindow->GetDiffCount());
 	pCmdUI->SetText(s.c_str());
 }
 	

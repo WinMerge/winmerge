@@ -4,14 +4,6 @@
 #include "RegOptionsMgr.h"
 #include "OptionsDef.h"
 
-void LogErrorStringUTF8(const std::string& sz)
-{
-}
-
-void LogErrorString(const String& sz)
-{
-}
-
 void AppErrorMessageBox(const String& msg)
 {
 }

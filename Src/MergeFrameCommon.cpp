@@ -11,6 +11,9 @@
 #include "paths.h"
 #include "Merge.h"
 #include "FileTransform.h"
+#include "FileLocation.h"
+#include "Logger.h"
+#include "CompareStats.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -68,17 +71,6 @@ void CMergeFrameCommon::SaveWindowState()
 		WINDOWPLACEMENT wp = { sizeof(WINDOWPLACEMENT) };
 		GetWindowPlacement(&wp);
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
-	}
-}
-
-void CMergeFrameCommon::RemoveBarBorder()
-{
-	afxData.cxBorder2 = 0;
-	afxData.cyBorder2 = 0;
-	for (int i = 0; i < 4; ++i)
-	{
-		CControlBar* pBar = GetControlBar(i + AFX_IDW_DOCKBAR_TOP);
-		pBar->SetBarStyle(pBar->GetBarStyle() & ~(CBRS_BORDER_ANY | CBRS_BORDER_3D));
 	}
 }
 
@@ -143,6 +135,95 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 		}
 	}
+}
+
+void CMergeFrameCommon::LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+{
+	String str[3];
+	for (int i = 0; i < nFiles; ++i)
+	{
+		str[i] = ifileloc[i].filepath;
+		if (descs && !descs[i].empty())
+			str[i] += _T("(") + descs[i] + _T(")");
+	}
+	String s = (nFiles < 3 ?
+		strutils::format_string2(_("Comparing %1 with %2"), str[0], str[1]) :
+		strutils::format_string3(_("Comparing %1 with %2 and %3"), str[0], str[1], str[2])
+		);
+	RootLogger::Info(s + GetPluginInfoString(infoUnpacker, infoPrediffer));
+}
+
+void CMergeFrameCommon::LogComparisonStart(const PathContext& paths, const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+{
+	String str[3];
+	for (int i = 0; i < paths.GetSize(); ++i)
+	{
+		str[i] = paths[i];
+		if (descs && !descs[i].empty())
+			str[i] += _T("(") + descs[i] + _T(")");
+	}
+	String s = (paths.GetSize() < 3) ?
+			strutils::format_string2(_("Comparing %1 with %2"), str[0], str[1]) : 
+			strutils::format_string3(_("Comparing %1 with %2 and %3"), str[0], str[1], str[2]);
+	RootLogger::Info(s + GetPluginInfoString(infoUnpacker, infoPrediffer));
+}
+
+String CMergeFrameCommon::GetDiffStatusString(int curDiffIndex, int diffCount)
+{
+	if (diffCount <= 0)
+		return _("Identical");
+
+	if (curDiffIndex < 0)
+		return diffCount == 1 ? _("1 Difference Found") :
+			  strutils::format_string1(_("%1 Differences Found"), strutils::to_str(diffCount));
+
+	tchar_t sCnt[32] {};
+	tchar_t sIdx[32] {};
+	String s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
+	const int signInd = curDiffIndex;
+	_itot_s(signInd + 1, sIdx, 10);
+	strutils::replace(s, _T("%1"), sIdx);
+	_itot_s(diffCount, sCnt, 10);
+	strutils::replace(s, _T("%2"), sCnt);
+	return s;
+}
+
+void CMergeFrameCommon::LogComparisonCompleted(int diffCount)
+{
+	RootLogger::Info(_("Comparison completed: ") + GetDiffStatusString(-1, diffCount));
+}
+
+void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
+{
+	int diffCount = 0;
+	for (auto type : {
+		CompareStats::RESULT_DIFF, CompareStats::RESULT_BINDIFF,
+		CompareStats::RESULT_LUNIQUE, CompareStats::RESULT_MUNIQUE, CompareStats::RESULT_RUNIQUE,
+		CompareStats::RESULT_LMISSING, CompareStats::RESULT_MMISSING, CompareStats::RESULT_RMISSING
+		})
+		diffCount += stats.GetCount(type);
+	LogComparisonCompleted(diffCount);
+}
+
+void CMergeFrameCommon::LogFileSaved(const String& path)
+{
+	RootLogger::Info(_("File saved: ") + path);
+}
+
+String CMergeFrameCommon::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+{
+	String p;
+	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
+		p = _T("Unpacker: ") + infoUnpacker->GetPluginPipeline();
+	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+	{
+		if (!p.empty())
+			p += _T(", ");
+		p += _T("Prediffer: ") + infoPrediffer->GetPluginPipeline();
+	}
+	if (p.empty())
+		return _T("");
+	return _T(" (") + p + _T(")");
 }
 
 String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[],
@@ -363,38 +444,6 @@ std::pair<int, int> CMergeFrameCommon::MenuIDtoXY(UINT nID, int nActivePane, int
 		return { -1, -1 };
 	}
 	return { srcPane, dstPane };
-}
-
-/**
- * @brief We must use this function before a call to SetDockState
- *
- * @note Without this, SetDockState will assert or crash if a bar from the 
- * CDockState is missing in the current CMergeEditFrame.
- * The bars are identified with their ID. This means the missing bar bug is triggered
- * when we run WinMerge after changing the ID of a bar. 
- */
-bool CMergeFrameCommon::EnsureValidDockState(CDockState& state)
-{
-	for (int i = (int) state.m_arrBarInfo.GetSize()-1 ; i >= 0; i--) 
-	{
-		bool barIsCorrect = true;
-		CControlBarInfo* pInfo = (CControlBarInfo*)state.m_arrBarInfo[i];
-		if (pInfo == nullptr) 
-			barIsCorrect = false;
-		else
-		{
-			if (! pInfo->m_bFloating) 
-			{
-				pInfo->m_pBar = GetControlBar(pInfo->m_nBarID);
-				if (pInfo->m_pBar == nullptr) 
-					barIsCorrect = false; //toolbar id's probably changed	
-			}
-		}
-
-		if (! barIsCorrect)
-			state.m_arrBarInfo.RemoveAt(i);
-	}
-	return true;
 }
 
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)

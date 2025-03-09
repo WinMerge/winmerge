@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-01-20 20:14+0000\n"
+"POT-Creation-Date: 2025-03-08 10:40+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -343,7 +343,13 @@ msgstr ""
 msgid "&Edit"
 msgstr ""
 
+msgid "&Copy\tCtrl+C"
+msgstr ""
+
 msgid "&Paste\tCtrl+V"
+msgstr ""
+
+msgid "Select &All\tCtrl+A"
 msgstr ""
 
 msgid "&Options..."
@@ -377,6 +383,9 @@ msgid "&Huge"
 msgstr ""
 
 msgid "Men&u Bar"
+msgstr ""
+
+msgid "Output &Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -467,9 +476,6 @@ msgid "Ri&ght Read-only"
 msgstr ""
 
 msgid "&File Encoding..."
-msgstr ""
-
-msgid "Select &All\tCtrl+A"
 msgstr ""
 
 msgid "Show &Identical Items"
@@ -656,9 +662,6 @@ msgid "&Redo\tCtrl+Y"
 msgstr ""
 
 msgid "Cu&t\tCtrl+X"
-msgstr ""
-
-msgid "&Copy\tCtrl+C"
 msgstr ""
 
 msgid "F&ind...\tCtrl+F"
@@ -3365,6 +3368,9 @@ msgstr ""
 msgid "Diff Pane"
 msgstr ""
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr ""
 
@@ -3977,6 +3983,17 @@ msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ct
 msgstr ""
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed: "
 msgstr ""
 
 msgid "Prettification"

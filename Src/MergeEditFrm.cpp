@@ -13,6 +13,7 @@
 
 #include "stdafx.h"
 #include "MergeEditFrm.h"
+#include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
@@ -170,7 +171,7 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM|CBRS_ALIGN_LEFT|CBRS_ALIGN_RIGHT);
 
-	RemoveBarBorder();
+	FrameWndHelper::RemoveBarBorder(this);
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
@@ -210,7 +211,7 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// load docking positions and sizes
 	CDockState pDockState;
 	pDockState.LoadState(_T("Settings"));
-	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+	if (FrameWndHelper::EnsureValidDockState(this, pDockState)) // checks for valid so won't ASSERT
 		SetDockState(pDockState);
 	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
 	m_wndLocationBar.LoadState(_T("Settings"));

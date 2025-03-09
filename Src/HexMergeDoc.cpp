@@ -331,6 +331,8 @@ bool CHexMergeDoc::DoFileSave(int nBuffer)
 						static_cast<unsigned>(-1), static_cast<unsigned>(-1),
 							compareResult == 0);
 				}
+
+				CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
 			}
 		}
 	}
@@ -365,6 +367,9 @@ bool CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 		m_filePaths.SetPath(nBuffer, strPath);
 		UpdateLastCompareResult();
 		UpdateHeaderPath(nBuffer);
+
+		CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
+
 		return true;
 	}
 	return false;

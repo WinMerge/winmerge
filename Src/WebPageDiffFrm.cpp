@@ -7,6 +7,7 @@
 
 #include "stdafx.h"
 #include "WebPageDiffFrm.h"
+#include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
 #include "BCMenu.h"
@@ -25,7 +26,9 @@
 #include "Constants.h"
 #include "Environment.h"
 #include "UniFile.h"
+#include "Logger.h"
 #include <Poco/RegularExpression.h>
+#include <Poco/Exception.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -376,8 +379,9 @@ bool CWebPageDiffFrame::MatchURLPattern(const String& url)
 		Poco::RegularExpression reExclude(ucr::toUTF8(excludePattern));
 		return !reExclude.match(textu8);
 	}
-	catch (...)
+	catch (Poco::RegularExpressionException& e)
 	{
+		RootLogger::Error(e.displayText());
 		return false;
 	}
 }
@@ -447,6 +451,9 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 				m_callbackOnOpenCompleted = nullptr;
 			}
 			m_bCompareCompleted = true;
+
+			CMergeFrameCommon::LogComparisonCompleted(m_pWebDiffWindow->GetDiffCount());
+
 			return S_OK;
 		});
 	bool bResult;
@@ -502,7 +509,7 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
 
-	CMergeFrameCommon::RemoveBarBorder();
+	FrameWndHelper::RemoveBarBorder(this);
 
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
@@ -545,7 +552,7 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	CDockState pDockState;
 	pDockState.LoadState(_T("Settings-WebPageDiffFrame"));
-	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
+	if (FrameWndHelper::EnsureValidDockState(this, pDockState)) // checks for valid so won't ASSERT
 		SetDockState(pDockState);
 	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
 	m_wndLocationBar.LoadState(_T("Settings-WebPageDiffFrame"));
@@ -855,6 +862,8 @@ void CWebPageDiffFrame::UpdateSplitter()
 
 bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 {
+	CMergeFrameCommon::LogComparisonStart(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
+
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
@@ -1013,32 +1022,7 @@ void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	}
 	else
 	{
-		const int nDiffs = m_pWebDiffWindow->GetDiffCount();
-
-		// Files are identical - show text "Identical"
-		if (nDiffs <= 0)
-			s = theApp.LoadString(IDS_IDENTICAL);
-
-		// There are differences, but no selected diff
-		// - show amount of diffs
-		else if (m_pWebDiffWindow->GetCurrentDiffIndex() < 0)
-		{
-			s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
-			_itot_s(nDiffs, sCnt, 10);
-			strutils::replace(s, _T("%1"), sCnt);
-		}
-
-		// There are differences and diff selected
-		// - show diff number and amount of diffs
-		else
-		{
-			s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
-			const int signInd = m_pWebDiffWindow->GetCurrentDiffIndex();
-			_itot_s(signInd + 1, sIdx, 10);
-			strutils::replace(s, _T("%1"), sIdx);
-			_itot_s(nDiffs, sCnt, 10);
-			strutils::replace(s, _T("%2"), sCnt);
-		}
+		s = CMergeFrameCommon::GetDiffStatusString(m_pWebDiffWindow->GetCurrentDiffIndex(), m_pWebDiffWindow->GetDiffCount());
 	}
 	pCmdUI->SetText(s.c_str());
 }

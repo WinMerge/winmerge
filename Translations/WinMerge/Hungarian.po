@@ -390,8 +390,16 @@ msgid "&Edit"
 msgstr "S&zerkesztés"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Másolás\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Beillesztés\tCtrl+V"
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Összes kijelölése\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -432,6 +440,9 @@ msgstr "Hatalmas"
 
 msgid "Men&u Bar"
 msgstr "Menü sáv"
+
+msgid "Output &Pane"
+msgstr ""
 
 #, c-format
 msgid "&Status Bar"
@@ -551,10 +562,6 @@ msgstr "Jobb oldal csak olvasható"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Fájl kódolás..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Összes kijelölése\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -789,10 +796,6 @@ msgstr "Még&is\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Kivágás\tCtrl+X"
-
-#, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Másolás\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -4288,6 +4291,9 @@ msgstr "Eltérések helye"
 msgid "Diff Pane"
 msgstr "Eltérés panel"
 
+msgid "Output Pane"
+msgstr ""
+
 #, c-format
 msgid "Patch file successfully written."
 msgstr "A Patch fájl sikeresen elkészült."
@@ -5037,6 +5043,17 @@ msgstr "\nMásolás jobbra és előre (Ctrl+Alt+jobbra)\n(Ctrl+Alt+görgő jobbr
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 msgstr "\nMásolás balra és előre (Ctrl+Alt+balra)\n(Ctrl+Alt+görgő balra)\n(Ctrl+Alt+Shift+görgő fel)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed: "
+msgstr ""
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
