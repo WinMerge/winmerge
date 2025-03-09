@@ -747,6 +747,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				static_cast<unsigned>(-1), static_cast<unsigned>(-1),
 				compareResult == 0);
 		}
+
+		CMergeFrameCommon::LogFileSaved(m_filePaths[pane]);
 	}
 	return true;
 }
@@ -807,6 +809,8 @@ RETRY:
 		UpdateLastCompareResult();
 		m_fileInfo[pane].Update(m_filePaths[pane]);
 		UpdateHeaderPath(pane);
+
+		CMergeFrameCommon::LogFileSaved(m_filePaths[pane]);
 	}
 	return true;
 }

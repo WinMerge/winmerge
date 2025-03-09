@@ -26,6 +26,7 @@ public:
 	static void LogComparisonStart(const PathContext& paths, const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
 	static void LogComparisonCompleted(int diffCount);
 	static void LogComparisonCompleted(const CompareStats& stats);
+	static void LogFileSaved(const String& path);
 	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (const tchar_t*, UINT, UINT)> funcMessageBox);
 	static String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
 	static String GetDiffStatusString(int curDiff, int diffCount);

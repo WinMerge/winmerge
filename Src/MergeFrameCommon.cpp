@@ -190,6 +190,11 @@ void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
 	LogComparisonCompleted(diffCount);
 }
 
+void CMergeFrameCommon::LogFileSaved(const String& path)
+{
+	RootLogger::Info(_("File saved: ") + path);
+}
+
 String CMergeFrameCommon::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
 {
 	String p;
