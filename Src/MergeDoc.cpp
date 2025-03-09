@@ -1076,6 +1076,8 @@ bool CMergeDoc::DoSaveAs(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer)
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
 		result = true;
+
+		CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
 	}
 	return result;
 }
