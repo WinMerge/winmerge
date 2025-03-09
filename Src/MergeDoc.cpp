@@ -2285,7 +2285,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	PrediffingInfo prediffer;
 
 	m_diffWrapper.GetPrediffer(&prediffer);
-	CMergeFrameCommon::LogComparisonStart(nFiles, ifileloc, &m_infoUnpacker, &prediffer);
+	CMergeFrameCommon::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer);
 
 	std::copy_n(ifileloc, 3, fileloc);
 

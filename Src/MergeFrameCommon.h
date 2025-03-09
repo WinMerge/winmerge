@@ -22,8 +22,8 @@ public:
 	bool IsActivated() const { return m_bActivated; }
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
-	static void LogComparisonStart(int nFiles, const FileLocation ifileloc[], const PackingInfo* infoUnpackerconst , const PrediffingInfo* infoPrediffer);
-	static void LogComparisonStart(const PathContext& paths, const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
+	static void LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpackerconst , const PrediffingInfo* infoPrediffer);
+	static void LogComparisonStart(const PathContext& paths, const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
 	static void LogComparisonCompleted(int diffCount);
 	static void LogComparisonCompleted(const CompareStats& stats);
 	static void LogFileSaved(const String& path);

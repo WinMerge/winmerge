@@ -137,19 +137,34 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 	}
 }
 
-void CMergeFrameCommon::LogComparisonStart(int nFiles, const FileLocation ifileloc[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+void CMergeFrameCommon::LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
 {
+	String str[3];
+	for (int i = 0; i < nFiles; ++i)
+	{
+		str[i] = ifileloc[i].filepath;
+		if (descs && !descs[i].empty())
+			str[i] += _T("(") + descs[i] + _T(")");
+	}
 	String s = (nFiles < 3 ?
-			strutils::format_string2(_("Comparing %1 with %2"), ifileloc[0].filepath, ifileloc[1].filepath) : 
-			strutils::format_string3(_("Comparing %1 with %2 and %3"), ifileloc[0].filepath, ifileloc[1].filepath, ifileloc[2].filepath));
+		strutils::format_string2(_("Comparing %1 with %2"), str[0], str[1]) :
+		strutils::format_string3(_("Comparing %1 with %2 and %3"), str[0], str[1], str[2])
+		);
 	RootLogger::Info(s + GetPluginInfoString(infoUnpacker, infoPrediffer));
 }
 
-void CMergeFrameCommon::LogComparisonStart(const PathContext& paths, const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+void CMergeFrameCommon::LogComparisonStart(const PathContext& paths, const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
 {
+	String str[3];
+	for (int i = 0; i < paths.GetSize(); ++i)
+	{
+		str[i] = paths[i];
+		if (descs && !descs[i].empty())
+			str[i] += _T("(") + descs[i] + _T(")");
+	}
 	String s = (paths.GetSize() < 3) ?
-			strutils::format_string2(_("Comparing %1 with %2"), paths[0], paths[1]) : 
-			strutils::format_string3(_("Comparing %1 with %2 and %3"), paths[0], paths[1], paths[2]);
+			strutils::format_string2(_("Comparing %1 with %2"), str[0], str[1]) : 
+			strutils::format_string3(_("Comparing %1 with %2 and %3"), str[0], str[1], str[2]);
 	RootLogger::Info(s + GetPluginInfoString(infoUnpacker, infoPrediffer));
 }
 

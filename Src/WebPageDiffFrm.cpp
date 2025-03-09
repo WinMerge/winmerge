@@ -862,7 +862,7 @@ void CWebPageDiffFrame::UpdateSplitter()
 
 bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 {
-	CMergeFrameCommon::LogComparisonStart(m_filePaths, &m_infoUnpacker, nullptr);
+	CMergeFrameCommon::LogComparisonStart(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
 
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
