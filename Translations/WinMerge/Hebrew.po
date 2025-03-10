@@ -1,0 +1,4448 @@
+# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"POT-Creation-Date: 2025-01-20 20:14+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../Src\n"
+"X-Generator: Poedit 3.5\n"
+
+#. LANGUAGE, SUBLANGUAGE
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr ""
+
+msgid "Copy to Middle"
+msgstr "העתק לאמצע"
+
+msgid "C&opy to Right\tAlt+Right"
+msgstr "העתק לימין\tAlt+Right"
+
+msgid "Copy from Middle"
+msgstr "העתק מהאמצע"
+
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "העתק מהימין\tAlt+Shift+Left"
+
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "העתק לשמאל\tAlt+Left"
+
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "העתק מהשמאל\tAlt+Shift+Right"
+
+msgid "Copy Selected Line(s) to Middle"
+msgstr "העתק שורה(ות) נבחרות לאמצע"
+
+msgid "Copy Selected Line(s) to Right"
+msgstr "העתק שורה(ות) נבחרות לימין"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr "העתק שורה(ות) נבחרות מהאמצע"
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "העתק שורה(ות) נבחרות מהימין"
+
+msgid "Copy Selected Line(s) to Left"
+msgstr "העתק שורה(ות) נבחרות לשמאל"
+
+msgid "Copy Selected Line(s) from Left"
+msgstr "העתק שורה(ות) נבחרות מהשמאל"
+
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
+msgstr "העתק שינוי נבחר (שמאל) ללוח\tCtrl+1"
+
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
+msgstr "העתק שינוי נבחר (ימין) ללוח\tCtrl+2"
+
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
+msgstr "העתק שינוי נבחר (אמצע) ללוח\tCtrl+2"
+
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
+msgstr "העתק שינוי נבחר (ימין) ללוח\tCtrl+3"
+
+msgid "Select Line &Difference\tF4"
+msgstr "בחר הבדל בשורה\tF4"
+
+msgid "Add this change to Substitution &Filters"
+msgstr "הוסף שינוי זה למסנני החלפה"
+
+msgid "Add to &Line Filters"
+msgstr "הוסף למסנני שורות"
+
+msgid "&Undo"
+msgstr "בטל"
+
+msgid "&Redo"
+msgstr "בצע שוב"
+
+msgid "Cu&t"
+msgstr "גזור"
+
+msgid "&Copy"
+msgstr "העתק"
+
+msgid "&Paste"
+msgstr "הדבק"
+
+msgid "&Scripts"
+msgstr "סקריפטים"
+
+msgid "< Empty >"
+msgstr "< ריק >"
+
+msgid "&Go to...\tCtrl+G"
+msgstr "עבור אל...\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr "עבור לשורה שהוזזה בין השמאל לאמצע\tCtrl+Shift+G"
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr "עבור לשורה שהוזזה בין האמצע לימין\tCtrl+Alt+G"
+
+msgid "Op&en"
+msgstr "פתח"
+
+msgid "With &Registered Application"
+msgstr "פתח עם יישום רשום"
+
+msgid "With &External Editor\tCtrl+Alt+E"
+msgstr "פתח עם עורך חיצוני\tCtrl+Alt+E"
+
+msgid "&With..."
+msgstr "פתח עם..."
+
+msgid "Open &Parent Folder..."
+msgstr "פתח תיקייה אב..."
+
+msgid "S&hell Menu"
+msgstr "תפריט מעטפת"
+
+msgid "Use First Line as Headers"
+msgstr "השתמש בשורה הראשונה ככותרות"
+
+msgid "Auto-Fit All Columns"
+msgstr "התאם אוטומטית את כל העמודות"
+
+msgid "View &Differences"
+msgstr "הצג הבדלים"
+
+msgid "Diff &Block Size"
+msgstr "גודל בלוק הבדל"
+
+msgid "&Ignore Color Difference (Color Distance Threshold)"
+msgstr "התעלם מהבדלי צבע (סף מרחק צבע)"
+
+msgid "Ins&ertion/Deletion Detection"
+msgstr "זיהוי הוספה/מחיקה"
+
+msgid "&None"
+msgstr "ללא"
+
+msgid "&Vertical"
+msgstr "אנכי"
+
+msgid "&Horizontal"
+msgstr "אופקי"
+
+msgid "&Previous Page"
+msgstr "עמוד קודם"
+
+msgid "&Next Page"
+msgstr "עמוד הבא"
+
+msgid "&Active Pane"
+msgstr "חלונית פעילה"
+
+msgid "Rotate &Right 90deg"
+msgstr "סובב ימינה 90°"
+
+msgid "Rotate &Left 90deg"
+msgstr "סובב שמאלה 90°"
+
+msgid "Flip V&ertically"
+msgstr "הפוך אנכית"
+
+msgid "Flip H&orizontally"
+msgstr "הפוך אופקית"
+
+msgid "&Zoom"
+msgstr "התקרב/התרחק"
+
+msgid "25%"
+msgstr "25%"
+
+msgid "Zoom &In\tCtrl++"
+msgstr "התקרב\tCtrl++"
+
+msgid "Zoom &Out\tCtrl+-"
+msgstr "התרחק\tCtrl+-"
+
+#. Zoom to normal
+msgid "&Normal\tCtrl+*"
+msgstr "רגיל\tCtrl+*"
+
+msgid "&Overlay"
+msgstr "שכבת-על"
+
+msgid "&Alpha Blend"
+msgstr "שקיפות מדורגת"
+
+msgid "Alpha &Blend Animation"
+msgstr "אנימציית שקיפות מדורגת"
+
+msgid "Dragging &Mode"
+msgstr "מצב גרירה"
+
+msgid "&Move"
+msgstr "הזז"
+
+msgid "&Adjust Offset"
+msgstr "התאם היסט"
+
+msgid "&Vertical Wipe"
+msgstr "מחיקה אנכית"
+
+msgid "&Horizontal Wipe"
+msgstr "מחיקה אופקית"
+
+msgid "Rectangle &Select"
+msgstr "בחירה מלבנית"
+
+msgid "&Set Background Color"
+msgstr "הגדר צבע רקע"
+
+msgid "&Vector Image Scaling"
+msgstr "קנה מידה לתמונת וקטור"
+
+msgid "&Animation Settings"
+msgstr "הגדרות אנימציה"
+
+msgid "&Blink interval"
+msgstr "מרווח הבהוב"
+
+msgid "&Overlay animation interval"
+msgstr "מרווח אנימציית שכבת-על"
+
+msgid "Compare Extracted &Text From Images"
+msgstr "השווה טקסט שחולץ מתמונות"
+
+msgid "Co&mpare"
+msgstr "השווה"
+
+msgid "&Screenshots"
+msgstr "צילומי מסך"
+
+msgid "&Full Size Screenshots"
+msgstr "צילומי מסך בגודל מלא"
+
+msgid "&HTMLs"
+msgstr "מסמכי HTML"
+
+msgid "&Texts"
+msgstr "טקסטים"
+
+msgid "&Resource Trees"
+msgstr "עצים משאביים"
+
+msgid "&Size"
+msgstr "גודל"
+
+msgid "Fit to Window"
+msgstr "התאם לחלון"
+
+msgid "&Event Sync"
+msgstr "סנכרון אירועים"
+
+msgid "&Enabled"
+msgstr "מופעל"
+
+msgid "&Scroll"
+msgstr "גלילה"
+
+msgid "&Click"
+msgstr "לחיצה"
+
+msgid "&Input"
+msgstr "קלט"
+
+msgid "&GoBack/Forward"
+msgstr "חזור/התקדם"
+
+msgid "Clear &Browsing Data"
+msgstr "נקה נתוני גלישה"
+
+msgid "&Disk Cache"
+msgstr "מטמון דיסק"
+
+msgid "&Cookies"
+msgstr "עוגיות"
+
+msgid "&Browsing History"
+msgstr "היסטוריית גלישה"
+
+msgid "&All Profile"
+msgstr "כל הפרופיל"
+
+msgid "&File"
+msgstr "קובץ"
+
+msgid "&New"
+msgstr "חדש"
+
+msgid "&Text"
+msgstr "טקסט"
+
+msgid "T&able"
+msgstr "טבלה"
+
+msgid "&Binary"
+msgstr "בינארי"
+
+msgid "&Image"
+msgstr "תמונה"
+
+msgid "&Webpage"
+msgstr "דף אינטרנט"
+
+msgid "New (&3 panes)"
+msgstr "חדש (3 חלוניות)"
+
+msgid "&Open...\tCtrl+O"
+msgstr "פתח...\tCtrl+O"
+
+msgid "Open Conflic&t File..."
+msgstr "פתח קובץ סתירה..."
+
+msgid "Open C&lipboard"
+msgstr "פתח לוח"
+
+msgid "Open Pro&ject...\tCtrl+J"
+msgstr "פתח פרויקט...\tCtrl+J"
+
+msgid "Sa&ve Project..."
+msgstr "שמור פרויקט..."
+
+msgid "Recent Projects"
+msgstr "פרויקטים אחרונים"
+
+msgid "Recent F&iles Or Folders"
+msgstr "קבצים או תיקיות אחרונים"
+
+msgid "E&xit\tCtrl+Q"
+msgstr "צא\tCtrl+Q"
+
+msgid "&Edit"
+msgstr "עריכה"
+
+msgid "&Paste\tCtrl+V"
+msgstr "הדבק\tCtrl+V"
+
+msgid "&Options..."
+msgstr "אפשרויות..."
+
+msgid "&View"
+msgstr "תצוגה"
+
+msgid "Ta&b Bar"
+msgstr "סרגל לשוניות"
+
+msgid "&View Tab Bar"
+msgstr "הצג סרגל לשוניות"
+
+msgid "&On Title Bar"
+msgstr "בסרגל הכותרת"
+
+msgid "&Toolbar"
+msgstr "סרגל כלים"
+
+msgid "&Small"
+msgstr "קטן"
+
+msgid "&Medium"
+msgstr "בינוני"
+
+msgid "&Big"
+msgstr "גדול"
+
+msgid "&Huge"
+msgstr "ענק"
+
+msgid "Men&u Bar"
+msgstr "סרגל תפריטים"
+
+msgid "&Status Bar"
+msgstr "סרגל מצב"
+
+msgid "&Tools"
+msgstr "כלים"
+
+msgid "&Filters..."
+msgstr "מסננים..."
+
+msgid "&Generate Patch..."
+msgstr "צור טלאי..."
+
+msgid "&Plugins"
+msgstr "תוספים"
+
+msgid "P&lugin Settings..."
+msgstr "הגדרות תוספים..."
+
+msgid "Ma&nual Prediffer"
+msgstr "השוואה ידנית מוקדמת"
+
+msgid "A&utomatic Prediffer"
+msgstr "השוואה אוטומטית מוקדמת"
+
+msgid "&Manual Unpacking"
+msgstr "פריסה ידנית"
+
+msgid "&Automatic Unpacking"
+msgstr "פריסה אוטומטית"
+
+msgid "&Reload plugins"
+msgstr "טען מחדש תוספים"
+
+msgid "&Window"
+msgstr "חלון"
+
+msgid "Cl&ose\tCtrl+W"
+msgstr "סגור\tCtrl+W"
+
+msgid "Clo&se All"
+msgstr "סגור הכול"
+
+msgid "Change &Pane\tF6"
+msgstr "החלף חלונית\tF6"
+
+msgid "Tile &Horizontally"
+msgstr "סדר אופקית"
+
+msgid "Tile &Vertically"
+msgstr "סדר אנכית"
+
+msgid "&Cascade"
+msgstr "פרוש מדורג"
+
+msgid "&Help"
+msgstr "עזרה"
+
+msgid "&WinMerge Help\tF1"
+msgstr "עזרה WinMerge\tF1"
+
+msgid "R&elease Notes"
+msgstr "הערות גרסה"
+
+msgid "&Translations"
+msgstr "תרגומים"
+
+msgid "C&onfiguration"
+msgstr "תצורה"
+
+msgid "&GNU General Public License"
+msgstr "רישיון ציבורי כללי של GNU"
+
+msgid "&About WinMerge..."
+msgstr "אודות WinMerge..."
+
+msgid "&Read-only"
+msgstr "קריאה בלבד"
+
+msgid "L&eft Read-only"
+msgstr "שמאל לקריאה בלבד"
+
+msgid "M&iddle Read-only"
+msgstr "אמצע לקריאה בלבד"
+
+msgid "Ri&ght Read-only"
+msgstr "ימין לקריאה בלבד"
+
+msgid "&File Encoding..."
+msgstr "קידוד קובץ..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "בחר הכול\tCtrl+A"
+
+msgid "Show &Identical Items"
+msgstr "הצג פריטים זהים"
+
+msgid "Show &Different Items"
+msgstr "הצג פריטים שונים"
+
+msgid "Show L&eft Unique Items"
+msgstr "הצג פריטים ייחודיים בשמאל"
+
+msgid "Show Midd&le Unique Items"
+msgstr "הצג פריטים ייחודיים באמצע"
+
+msgid "Show Ri&ght Unique Items"
+msgstr "הצג פריטים ייחודיים בימין"
+
+msgid "Show S&kipped Items"
+msgstr "הצג פריטים שהוחמצו"
+
+msgid "S&how Binary Files"
+msgstr "הצג קבצים בינאריים"
+
+msgid "&3-way Compare"
+msgstr "השוואה תלת-כיוונית"
+
+msgid "Show &Left Only Different Items"
+msgstr "הצג פריטים שונים רק בשמאל"
+
+msgid "Show &Middle Only Different Items"
+msgstr "הצג פריטים שונים רק באמצע"
+
+msgid "Show &Right Only Different Items"
+msgstr "הצג פריטים שונים רק בימין"
+
+msgid "Show L&eft Only Missing Items"
+msgstr "הצג פריטים חסרים רק בשמאל"
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr "הצג פריטים חסרים רק באמצע"
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr "הצג פריטים חסרים רק בימין"
+
+msgid "Show Hidd&en Items"
+msgstr "הצג פריטים מוסתרים"
+
+msgid "Tree &Mode"
+msgstr "מצב עץ"
+
+msgid "E&xpand Subfolders"
+msgstr "הרחב תיקיות משנה"
+
+msgid "&All Subfolders"
+msgstr "כל תיקיות המשנה"
+
+msgid "&Different Subfolders"
+msgstr "תיקיות משנה שונות"
+
+msgid "&Identical Subfolders"
+msgstr "תיקיות משנה זהות"
+
+msgid "&Collapse All Subfolders"
+msgstr "כווץ את כל תיקיות המשנה"
+
+msgid "Select &Font..."
+msgstr "בחר גופן..."
+
+msgid "Use Default Font"
+msgstr "השתמש בגופן ברירת מחדל"
+
+msgid "Sw&ap Panes"
+msgstr "החלף חלוניות"
+
+msgid "Swap &1st | 2nd"
+msgstr "החלף 1 | 2"
+
+msgid "Swap &2nd | 3rd"
+msgstr "החלף 2 | 3"
+
+msgid "Swap 1st | &3rd"
+msgstr "החלף 1 | 3"
+
+msgid "Com&pare Statistics..."
+msgstr "השווה נתונים סטטיסטיים..."
+
+msgid "Refresh\tF5"
+msgstr "רענן\tF5"
+
+msgid "&Refresh Selected\tCtrl+F5"
+msgstr "רענן נבחרים\tCtrl+F5"
+
+msgid "&Merge"
+msgstr "מזג"
+
+msgid "Co&mpare\tEnter"
+msgstr "השווה\tEnter"
+
+msgid "&Next Difference\tAlt+Down"
+msgstr "הבדל הבא\tAlt+Down"
+
+msgid "&Previous Difference\tAlt+Up"
+msgstr "הבדל קודם\tAlt+Up"
+
+msgid "&First Difference\tAlt+Home"
+msgstr "הבדל ראשון\tAlt+Home"
+
+msgid "&Current Difference\tAlt+Enter"
+msgstr "הבדל נוכחי\tAlt+Enter"
+
+msgid "&Last Difference\tAlt+End"
+msgstr "הבדל אחרון\tAlt+End"
+
+msgid "Copy to &Right\tAlt+Right"
+msgstr "העתק לימין\tAlt+Right"
+
+msgid "Copy to L&eft\tAlt+Left"
+msgstr "העתק לשמאל\tAlt+Left"
+
+msgid "&Delete\tDel"
+msgstr "מחק\tDel"
+
+msgid "&Customize Columns..."
+msgstr "התאם עמודות..."
+
+msgid "Generate &Report..."
+msgstr "צור דוח..."
+
+msgid "&Edit with Unpacker..."
+msgstr "ערוך עם מפענח..."
+
+msgid "&Save\tCtrl+S"
+msgstr "שמור\tCtrl+S"
+
+msgid "Sav&e"
+msgstr "שמור"
+
+msgid "Save &Left"
+msgstr "שמור שמאל"
+
+msgid "Save &Middle"
+msgstr "שמור אמצע"
+
+msgid "Save &Right"
+msgstr "שמור ימין"
+
+msgid "Save &As"
+msgstr "שמור בשם"
+
+msgid "Save &Left As..."
+msgstr "שמור שמאל בשם..."
+
+msgid "Save &Middle As..."
+msgstr "שמור אמצע בשם..."
+
+msgid "Save &Right As..."
+msgstr "שמור ימין בשם..."
+
+msgid "&Print...\tCtrl+P"
+msgstr "הדפס...\tCtrl+P"
+
+msgid "Page Set&up..."
+msgstr "הגדרת עמוד..."
+
+msgid "Print Previe&w..."
+msgstr "תצוגה מקדימה להדפסה..."
+
+msgid "&Convert Line Endings to"
+msgstr "המר סיומות שורות ל"
+
+msgid "Mer&ge Mode\tF9"
+msgstr "מצב מיזוג\tF9"
+
+msgid "Reloa&d\tCtrl+F5"
+msgstr "טען מחדש\tCtrl+F5"
+
+msgid "Reco&mpare As"
+msgstr "השווה מחדש כ"
+
+msgid "&Undo\tCtrl+Z"
+msgstr "בטל\tCtrl+Z"
+
+msgid "&Redo\tCtrl+Y"
+msgstr "בצע שוב\tCtrl+Y"
+
+msgid "Cu&t\tCtrl+X"
+msgstr "גזור\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "העתק\tCtrl+C"
+
+msgid "F&ind...\tCtrl+F"
+msgstr "חפש...\tCtrl+F"
+
+msgid "Repla&ce...\tCtrl+H"
+msgstr "החלף...\tCtrl+H"
+
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr "סמן...\tCtrl+Shift+M"
+
+msgid "Advanced"
+msgstr "מתקדם"
+
+msgid "&Copy With Line Numbers\tCtrl+Shift+C"
+msgstr "העתק עם מספרי שורות\tCtrl+Shift+C"
+
+msgid "&Bookmarks"
+msgstr "סימניות"
+
+msgid "&Toggle Bookmark\tCtrl+F2"
+msgstr "הפעל/כבה סימניה\tCtrl+F2"
+
+msgid "&Next Bookmark\tF2"
+msgstr "סימניה הבאה\tF2"
+
+msgid "&Previous bookmark\tShift+F2"
+msgstr "סימניה קודמת\tShift+F2"
+
+msgid "&Clear All Bookmarks"
+msgstr "נקה את כל הסימניות"
+
+msgid "Syntax Highlight"
+msgstr "הדגשת תחביר"
+
+msgid "&Diff Context"
+msgstr "הקשר הבדלים"
+
+msgid "&All Lines"
+msgstr "כל השורות"
+
+msgid "&0 Lines"
+msgstr "0 שורות"
+
+msgid "&1 Line"
+msgstr "1 שורה"
+
+msgid "&3 Lines"
+msgstr "3 שורות"
+
+msgid "&5 Lines"
+msgstr "5 שורות"
+
+msgid "&7 Lines"
+msgstr "7 שורות"
+
+msgid "&9 Lines"
+msgstr "9 שורות"
+
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr "הפעל/כבה הכל ו-0-9 שורות\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr "הפוך (הסתר שורות שונות)"
+
+msgid "&Lock Panes"
+msgstr "נעל חלוניות"
+
+msgid "&View Whitespace"
+msgstr "הצג רווחים"
+
+msgid "View E&OL"
+msgstr "הצג סיומות שורות"
+
+msgid "Vie&w Line Differences"
+msgstr "הצג הבדלים בשורות"
+
+msgid "View Line &Numbers"
+msgstr "הצג מספרי שורות"
+
+msgid "View &Margins"
+msgstr "הצג שוליים"
+
+msgid "View To&p Margins"
+msgstr "הצג שוליים עליונים"
+
+msgid "W&rap Lines"
+msgstr "גלישת שורות"
+
+msgid "Split V&ertically"
+msgstr "פצל אנכית"
+
+msgid "Diff &Pane"
+msgstr "חלונית הבדלים"
+
+msgid "Lo&cation Pane"
+msgstr "חלונית מיקום"
+
+msgid "Ne&xt Conflict\tAlt+Shift+Down"
+msgstr "סתירה הבאה\tAlt+Shift+Down"
+
+msgid "Pre&vious Conflict\tAlt+Shift+Up"
+msgstr "סתירה קודמת\tAlt+Shift+Up"
+
+msgid "A&dvanced"
+msgstr "מתקדם"
+
+msgid "Next Difference Between Left and Middle\tAlt+1"
+msgstr "הבדל הבא בין השמאל לאמצע\tAlt+1"
+
+msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
+msgstr "הבדל קודם בין השמאל לאמצע\tAlt+Shift+1"
+
+msgid "Next Difference Between Left and Right\tAlt+2"
+msgstr "הבדל הבא בין השמאל לימין\tAlt+2"
+
+msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
+msgstr "הבדל קודם בין השמאל לימין\tAlt+Shift+2"
+
+msgid "Next Difference Between Middle and Right\tAlt+3"
+msgstr "הבדל הבא בין האמצע לימין\tAlt+3"
+
+msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
+msgstr "הבדל קודם בין האמצע לימין\tAlt+Shift+3"
+
+msgid "Next Left Only Difference\tAlt+7"
+msgstr "הבדל הבא בשמאל בלבד\tAlt+7"
+
+msgid "Previous Left Only Difference\tAlt+Shift+7"
+msgstr "הבדל קודם בשמאל בלבד\tAlt+Shift+7"
+
+msgid "Next Middle Only Difference\tAlt+8"
+msgstr "הבדל הבא באמצע בלבד\tAlt+8"
+
+msgid "Previous Middle Only Difference\tAlt+Shift+8"
+msgstr "הבדל קודם באמצע בלבד\tAlt+Shift+8"
+
+msgid "Next Right Only Difference\tAlt+9"
+msgstr "הבדל הבא בימין בלבד\tAlt+9"
+
+msgid "Previous Right Only Difference\tAlt+Shift+9"
+msgstr "הבדל קודם בימין בלבד\tAlt+Shift+9"
+
+msgid "Copy from &Left to"
+msgstr "העתק מהשמאל אל"
+
+msgid "&Middle"
+msgstr "האמצע"
+
+msgid "&Right"
+msgstr "הימין"
+
+msgid "Copy from &Middle to"
+msgstr "העתק מהאמצע אל"
+
+msgid "&Left"
+msgstr "השמאל"
+
+msgid "Copy from &Right to"
+msgstr "העתק מהימין אל"
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr "העתק שורה(ות) נבחרות מהשמאל אל"
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr "העתק שורה(ות) נבחרות מהאמצע אל"
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr "העתק שורה(ות) נבחרות מהימין אל"
+
+msgid "Copy from Left\tAlt+Shift+Right"
+msgstr "העתק מהשמאל\tAlt+Shift+Right"
+
+msgid "Copy from Right\tAlt+Shift+Left"
+msgstr "העתק מהימין\tAlt+Shift+Left"
+
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "העתק לימין והתקדם\tCtrl+Alt+Right"
+
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "העתק לשמאל והתקדם\tCtrl+Alt+Left"
+
+msgid "Copy &All to Right"
+msgstr "העתק הכל לימין"
+
+msgid "Cop&y All to Left"
+msgstr "העתק הכל לשמאל"
+
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr "מיזוג אוטומטי\tCtrl+Alt+M"
+
+msgid "Add &Synchronization Point\tAlt+S"
+msgstr "הוסף נקודת סנכרון\tAlt+S"
+
+msgid "Clear Sync&hronization Points"
+msgstr "נקה נקודות סנכרון"
+
+msgid "Unpac&ker"
+msgstr "מפענח"
+
+msgid "&Prediffer"
+msgstr "השוואה מוקדמת"
+
+msgid "Apply Pre&differ..."
+msgstr "הפעל השוואה מוקדמת..."
+
+msgid "&Transform with editor script..."
+msgstr "המר באמצעות סקריפט עורך..."
+
+msgid "Scripts for &copying"
+msgstr "סקריפטים להעתקה"
+
+msgid "Select &editor script..."
+msgstr "בחר סקריפט עורך..."
+
+msgid "Sp&lit"
+msgstr "פצל"
+
+msgid "Comp&are"
+msgstr "השווה"
+
+msgid "Compare in new &window"
+msgstr "השווה בחלון חדש"
+
+msgid "Compare Non-hor&izontally..."
+msgstr "השווה לא אופקית..."
+
+msgid "&Delete"
+msgstr "מחק"
+
+msgid "&Both"
+msgstr "שניהם"
+
+msgid "&All"
+msgstr "הכל"
+
+msgid "Re&name"
+msgstr "שנה שם"
+
+msgid "&Hide Items"
+msgstr "הסתר פריטים"
+
+msgid "&Open Left"
+msgstr "פתח שמאל"
+
+msgid "Open Midd&le"
+msgstr "פתח אמצע"
+
+msgid "O&pen Right"
+msgstr "פתח ימין"
+
+msgid "Cop&y Pathnames"
+msgstr "העתק נתיבי קבצים"
+
+msgid "Copy &Filenames"
+msgstr "העתק שמות קבצים"
+
+msgid "Copy Items To Clip&board"
+msgstr "העתק פריטים ללוח"
+
+msgid "Copy All Di&splayed Columns"
+msgstr "העתק את כל העמודות המוצגות"
+
+msgid "&Zip"
+msgstr "כיווץ"
+
+#, c-format
+msgid "Both to... (%1 of %2)"
+msgstr "שניהם אל... (%1 מתוך %2)"
+
+#, c-format
+msgid "All to... (%1 of %2)"
+msgstr "הכל אל... (%1 מתוך %2)"
+
+#, c-format
+msgid "Differences to... (%1 of %2)"
+msgstr "הבדלים אל... (%1 מתוך %2)"
+
+msgid "Left Shell menu"
+msgstr "תפריט מעטפת שמאל"
+
+msgid "Middle Shell menu"
+msgstr "תפריט מעטפת אמצע"
+
+msgid "Right Shell menu"
+msgstr "תפריט מעטפת ימין"
+
+msgid "Both Shell menu"
+msgstr "תפריט מעטפת שניהם"
+
+msgid "All Shell menu"
+msgstr "תפריט מעטפת הכל"
+
+msgid "Copy"
+msgstr "העתק"
+
+msgid "&Copy Full Path"
+msgstr "העתק נתיב מלא"
+
+msgid "Copy &Filename"
+msgstr "העתק שם קובץ"
+
+msgid "&Edit Caption"
+msgstr "ערוך כותרת"
+
+msgid "&Open..."
+msgstr "פתח..."
+
+msgid "Unpacker Settings"
+msgstr "הגדרות מפענח"
+
+msgid "<None>"
+msgstr "<ללא>"
+
+msgid "<Automatic>"
+msgstr "<אוטומטי>"
+
+msgid "&Select..."
+msgstr "בחר..."
+
+msgid "Prediffer Settings"
+msgstr "הגדרות השוואה מוקדמת"
+
+msgid "G&o to Diff"
+msgstr "עבור להבדל"
+
+msgid "&No Moved Blocks"
+msgstr "ללא בלוקים שהוזזו"
+
+msgid "&All Moved Blocks"
+msgstr "כל הבלוקים שהוזזו"
+
+msgid "W&hitespaces"
+msgstr "רווחים"
+
+msgid "Com&pare"
+msgstr "השווה"
+
+msgid "I&gnore changes"
+msgstr "התעלם משינויים"
+
+msgid "Ig&nore all"
+msgstr "התעלם מהכל"
+
+msgid "Ignore blan&k lines"
+msgstr "התעלם משורות ריקות"
+
+msgid "Ignore &case"
+msgstr "התעלם מרישיות"
+
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr "התעלם מהבדלים בהחזרת שורה (Windows/Unix/Mac)"
+
+msgid "Ignore codepage &differences"
+msgstr "התעלם מהבדלי קידוד תווים"
+
+msgid "Ignore num&bers"
+msgstr "התעלם ממספרים"
+
+msgid "Ignore c&omment differences"
+msgstr "התעלם מהבדלי הערות"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "התעלם מהיעדר סיום שורה"
+
+msgid "&Include subfolders"
+msgstr "כלול תיקיות משנה"
+
+msgid "&Compare method:"
+msgstr "שיטת השוואה:"
+
+msgid "Full Contents"
+msgstr "תוכן מלא"
+
+msgid "Quick Contents"
+msgstr "תוכן מהיר"
+
+msgid "Binary Contents"
+msgstr "תוכן בינארי"
+
+msgid "Modified Date"
+msgstr "תאריך שינוי"
+
+msgid "Modified Date and Size"
+msgstr "תאריך שינוי וגודל"
+
+msgid "Size"
+msgstr "גודל"
+
+msgid "&Load Project..."
+msgstr "טען פרויקט..."
+
+msgid "${*} - All arguments"
+msgstr "${*} - כל הפרמטרים"
+
+msgid "${1} - The first argument"
+msgstr "${1} - הפרמטר הראשון"
+
+msgid "${2} - The second argument"
+msgstr "${2} - הפרמטר השני"
+
+msgid "${3} - The third argument"
+msgstr "${3} - הפרמטר השלישי"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - הפרמטר הרביעי"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - הפרמטר החמישי"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - הפרמטר השישי"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - הפרמטר השביעי"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - הפרמטר השמיני"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - הפרמטר התשיעי"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - קובץ מקור"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - תיקיית מקור"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - כתובת URL מקורית"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - פרוטוקול כתובת מקורית"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - סיומת כתובת מקורית"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - קובץ יעד"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - תיקיית יעד"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - כתובת URL יעד"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - פרוטוקול כתובת יעד"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - סיומת כתובת יעד"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - תיקיית הבית של WinMerge"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - קובץ סקריפט"
+
+msgid "Add &unpacker plugin..."
+msgstr "הוסף תוסף מפענח..."
+
+msgid "Add &prediffer plugin..."
+msgstr "הוסף תוסף השוואה מוקדמת..."
+
+msgid "&Duplicate plugin..."
+msgstr "שכפל תוסף..."
+
+msgid "About WinMerge"
+msgstr "אודות WinMerge"
+
+msgid "Visit the WinMerge Homepage!"
+msgstr "בקר בדף הבית של WinMerge!"
+
+msgid "OK"
+msgstr "אישור"
+
+msgid "Contributors"
+msgstr "תורמים"
+
+msgid "Select Files or Folders"
+msgstr "בחר קבצים או תיקיות"
+
+msgid "&1st File or Folder"
+msgstr "קובץ או תיקיה ראשונה"
+
+msgid "Re&ad-only"
+msgstr "קריאה בלבד"
+
+msgid "Swap 1st | 2nd"
+msgstr "החלף 1 | 2"
+
+msgid "&Browse..."
+msgstr "עיון..."
+
+msgid "&2nd File or Folder"
+msgstr "קובץ או תיקיה שנייה"
+
+msgid "Rea&d-only"
+msgstr "קריאה בלבד"
+
+msgid "Swap 2nd | 3rd"
+msgstr "החלף 2 | 3"
+
+msgid "B&rowse..."
+msgstr "עיון..."
+
+msgid "&3rd File or Folder (Optional)"
+msgstr "קובץ או תיקיה שלישית (אופציונלי)"
+
+msgid "Read-o&nly"
+msgstr "קריאה בלבד"
+
+msgid "Swap 1st | 3rd"
+msgstr "החלף 1 | 3"
+
+msgid "Browse..."
+msgstr "עיון..."
+
+msgid " Folder: Filter"
+msgstr "תיקיה: סינון"
+
+msgid " File: Prediffer Plugin"
+msgstr "קובץ: תוסף השוואה מוקדמת"
+
+msgid " File: Unpacker Plugin"
+msgstr "קובץ: תוסף מפענח"
+
+msgid "Se&lect..."
+msgstr "בחר..."
+
+msgid "Cancel"
+msgstr "ביטול"
+
+msgid "Status:"
+msgstr "מצב:"
+
+msgid "Help"
+msgstr "עזרה"
+
+msgid "General"
+msgstr "כללי"
+
+msgid "Automatically &scroll to first difference"
+msgstr "גלול אוטומטית להבדל הראשון"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "גלול אוטומטית להבדל בשורה הראשונה"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "סגור חלונות עם 'Esc':"
+
+msgid "&Automatically verify paths in Open-dialog"
+msgstr "בדוק אוטומטית נתיבים בדיאלוג פתיחה"
+
+msgid "Single instance mode:"
+msgstr "מצב מופע יחיד:"
+
+msgid "As&k when closing multiple windows"
+msgstr "שאל בעת סגירת מספר חלונות"
+
+msgid "&Preserve file time in file compare"
+msgstr "שמור זמן קובץ בהשוואת קבצים"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "הצג חלון 'בחר קבצים או תיקיות' בעת ההפעלה"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "סגור את חלון 'בחר קבצים או תיקיות' בלחיצה על כפתור השוואה"
+
+msgid "Op&en-dialog Auto-Completion:"
+msgstr "השלמה אוטומטית בחלון פתיחה:"
+
+msgid "Auto-&reload modified files:"
+msgstr "טען מחדש קבצים ששונו אוטומטית:"
+
+msgid "Language:"
+msgstr "שפה:"
+
+msgid "Defaults"
+msgstr "ברירות מחדל"
+
+msgid "Find"
+msgstr "חפש"
+
+msgid "Fi&nd what:"
+msgstr "חפש את:"
+
+msgid "Match &whole word only"
+msgstr "התאם רק מילים שלמות"
+
+msgid "Match &case"
+msgstr "התאם רישיות"
+
+msgid "Regular &expression"
+msgstr "ביטוי רגולרי"
+
+msgid "D&on't wrap end of file"
+msgstr "אל תגלוש לסוף הקובץ"
+
+msgid "&Don't close this dialog box"
+msgstr "אל תסגור חלון זה"
+
+msgid "&Find Next"
+msgstr "חפש הבא"
+
+msgid "Find &Prev"
+msgstr "חפש קודם"
+
+msgid "&Ok"
+msgstr "אישור"
+
+msgid "Replace"
+msgstr "החלף"
+
+msgid "Re&place with:"
+msgstr "החלף ב:"
+
+msgid "&Don't wrap end of file"
+msgstr "אל תגלוש לסוף הקובץ"
+
+msgid "Replace in"
+msgstr "החלפה ב"
+
+msgid "&Selection"
+msgstr "בחירה"
+
+msgid "Wh&ole file"
+msgstr "כל הקובץ"
+
+msgid "Find Pre&v"
+msgstr "חפש קודם"
+
+msgid "&Replace"
+msgstr "החלף"
+
+msgid "Replace &All"
+msgstr "החלף הכל"
+
+msgid "Markers"
+msgstr "סמנים"
+
+msgid "Enable &Markers"
+msgstr "הפעל סמנים"
+
+msgid "New"
+msgstr "חדש"
+
+msgid "&Background color:"
+msgstr "צבע רקע:"
+
+msgid "&Apply"
+msgstr "החל"
+
+msgid "Line Filters"
+msgstr "מסנני שורות"
+
+msgid "Enable Line Filters"
+msgstr "הפעל מסנני שורות"
+
+msgid "Regular Expressions (one per line):"
+msgstr "ביטויים רגולריים (אחד בכל שורה):"
+
+msgid "Edit"
+msgstr "ערוך"
+
+msgid "Remove"
+msgstr "הסר"
+
+msgid "Substitution Filters"
+msgstr "מסנני החלפה"
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr "השינויים שמופיעים בלוחות כזוגות הרשומים מטה יתעלמו או יסומנו כבלתי משמעותיים. טלאים לא יושפעו."
+
+msgid "Enable"
+msgstr "הפעל"
+
+msgid "Add"
+msgstr "הוסף"
+
+msgid "Clear"
+msgstr "נקה"
+
+msgid "Colors"
+msgstr "צבעים"
+
+msgid "Color Scheme:"
+msgstr "ערכת צבעים:"
+
+msgid "Background"
+msgstr "רקע"
+
+msgid "Deleted"
+msgstr "נמחק"
+
+msgid "Text"
+msgstr "טקסט"
+
+msgid "Difference:"
+msgstr "הבדל:"
+
+msgid "Selected Difference:"
+msgstr "הבדל נבחר:"
+
+msgid "Ignored Difference:"
+msgstr "הבדל שהתעלמו ממנו:"
+
+msgid "Moved:"
+msgstr "הוזז:"
+
+msgid "Selected Moved:"
+msgstr "הוזז נבחר:"
+
+msgid "Same As The Next (3 panes):"
+msgstr "זהה להבא (3 חלוניות):"
+
+msgid "Same As The Next (Selected):"
+msgstr "זהה להבא (נבחר):"
+
+msgid "Word Difference:"
+msgstr "הבדל מילים:"
+
+msgid "Selected Word Diff:"
+msgstr "הבדל מילים נבחר:"
+
+msgid "Dialog"
+msgstr "חלונית"
+
+msgid "Keywords:"
+msgstr "מילות מפתח:"
+
+msgid "Function names:"
+msgstr "שמות פונקציות:"
+
+msgid "Comments:"
+msgstr "הערות:"
+
+msgid "Numbers:"
+msgstr "מספרים:"
+
+msgid "Operators:"
+msgstr "אופרטורים:"
+
+msgid "Strings:"
+msgstr "מחרוזות:"
+
+msgid "Preprocessor:"
+msgstr "מעבד מוקדם:"
+
+msgid "User 1:"
+msgstr "משתמש 1:"
+
+msgid "User 2:"
+msgstr "משתמש 2:"
+
+msgid "Bold"
+msgstr "מודגש"
+
+msgid "&Use customized text colors"
+msgstr "השתמש בצבעי טקסט מותאמים אישית"
+
+msgid "Whitespace:"
+msgstr "רווחים:"
+
+msgid "Regular text:"
+msgstr "טקסט רגיל:"
+
+msgid "Selection:"
+msgstr "בחירה:"
+
+msgid "Margin:"
+msgstr "שוליים:"
+
+msgid "Search Marker:"
+msgstr "סמן חיפוש:"
+
+msgid "User Defined Marker1:"
+msgstr "סמן מותאם אישית 1:"
+
+msgid "User Defined Marker2:"
+msgstr "סמן מותאם אישית 2:"
+
+msgid "User Defined Marker3:"
+msgstr "סמן מותאם אישית 3:"
+
+msgid "&Use folder compare colors"
+msgstr "השתמש בצבעי השוואת תיקיות"
+
+msgid "Items equal:"
+msgstr "פריטים זהים:"
+
+msgid "Items different:"
+msgstr "פריטים שונים:"
+
+msgid "Items not exists all:"
+msgstr "פריטים שלא קיימים כולם:"
+
+msgid "Items filtered:"
+msgstr "פריטים שסוננו:"
+
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr "השתמש בצבעי מערכת מותאמים אישית (ייתכן שחלק מרכיבי הממשק לא יחולו)"
+
+msgid "System"
+msgstr "מערכת"
+
+msgid "&Send deleted files to Recycle Bin"
+msgstr "שלח קבצים שנמחקו לסל המיחזור"
+
+msgid "&External editor:"
+msgstr "עורך חיצוני:"
+
+msgid "&Filter folder:"
+msgstr "סינון תיקיה:"
+
+msgid "Temporary files folder"
+msgstr "תיקיית קבצים זמניים"
+
+msgid "S&ystem's temp folder"
+msgstr "תיקיית קבצים זמניים של המערכת"
+
+msgid "C&ustom folder:"
+msgstr "תיקיה מותאמת אישית:"
+
+msgid "Br&owse..."
+msgstr "עיון..."
+
+msgid "Patch Generator"
+msgstr "יוצר טלאים"
+
+msgid "File&1:"
+msgstr "קובץ 1:"
+
+msgid "File&2:"
+msgstr "קובץ 2:"
+
+msgid "&Swap"
+msgstr "החלף"
+
+msgid "&Copy to Clipboard"
+msgstr "העתק ללוח"
+
+msgid "&Append to existing file"
+msgstr "צרף לקובץ קיים"
+
+msgid "&Result:"
+msgstr "תוצאה:"
+
+msgid "Bro&wse..."
+msgstr "עיון..."
+
+msgid "&Format"
+msgstr "תבנית"
+
+msgid "St&yle:"
+msgstr "סגנון:"
+
+msgid "&Context:"
+msgstr "הקשר:"
+
+msgid "Inclu&de command line"
+msgstr "כלול שורת פקודה"
+
+msgid "Open to e&xternal editor"
+msgstr "פתח בעורך חיצוני"
+
+msgid "Display Columns"
+msgstr "הצגת עמודות"
+
+msgid "Move &Up"
+msgstr "העבר למעלה"
+
+msgid "Move &Down"
+msgstr "העבר למטה"
+
+msgid "&Additional Properties"
+msgstr "מאפיינים נוספים"
+
+msgid "Additional Properties"
+msgstr "מאפיינים נוספים"
+
+msgid "Select Plugin"
+msgstr "בחר תוסף"
+
+msgid "Plugin &name:"
+msgstr "שם התוסף:"
+
+msgid "&Target files:"
+msgstr "קבצי יעד:"
+
+msgid "Extensions list:"
+msgstr "רשימת סיומות:"
+
+msgid "Description:"
+msgstr "תיאור:"
+
+msgid "Default arguments:"
+msgstr "פרמטרים ברירת מחדל:"
+
+msgid "Display all plugins, don't check the extension"
+msgstr "הצג את כל התוספים, אל תבדוק את הסיומת"
+
+msgid "&Open files in the same window type after unpacking"
+msgstr "פתח קבצים באותו סוג חלון לאחר פריסה"
+
+msgid "&Plugin pipeline:"
+msgstr "צינור תוספים:"
+
+msgid "&Alias..."
+msgstr "כינוי..."
+
+msgid "Stop"
+msgstr "עצור"
+
+msgid "Pause"
+msgstr "השהה"
+
+msgid "Continue"
+msgstr "המשך"
+
+msgid "&Number of CPU cores to use:"
+msgstr "מספר ליבות מעבד לשימוש:"
+
+msgid "Items total:"
+msgstr "סה\"כ פריטים:"
+
+msgid "Items compared:"
+msgstr "פריטים שהושוו:"
+
+msgid "Go to"
+msgstr "עבור אל"
+
+msgid "G&o to:"
+msgstr "עבור אל:"
+
+msgid "File"
+msgstr "קובץ"
+
+msgid "Go to what"
+msgstr "עבור אל מה"
+
+msgid "Li&ne"
+msgstr "שורה"
+
+msgid "&Difference"
+msgstr "הבדל"
+
+msgid "&Go to"
+msgstr "עבור אל"
+
+msgid "Compare"
+msgstr "השווה"
+
+msgid "Whitespaces"
+msgstr "רווחים"
+
+msgid "&Compare"
+msgstr "השווה"
+
+msgid "&Ignore change"
+msgstr "התעלם משינוי"
+
+msgid "I&gnore all"
+msgstr "התעלם מהכל"
+
+msgid "E&nable moved block detection"
+msgstr "הפעל זיהוי בלוקים שהוזזו"
+
+msgid "Align &similar lines"
+msgstr "יישר שורות דומות"
+
+msgid "Diff &algorithm:"
+msgstr "אלגוריתם השוואה:"
+
+msgid "Enable indent &heuristic"
+msgstr "הפעל היגיון הזחה"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "בטל הדגשה לחלוטין עבור הבדלים שהתעלמו מהם"
+
+msgid "Editor"
+msgstr "עורך"
+
+msgid "&Highlight syntax"
+msgstr "הדגש תחביר"
+
+msgid "&Preserve original EOL chars"
+msgstr "שמור על תווי סיום שורה מקוריים"
+
+msgid "Tabs"
+msgstr "טאבים"
+
+msgid "&Tab size:"
+msgstr "גודל טאבים:"
+
+msgid "&Insert Tabs"
+msgstr "הוסף טאבים"
+
+msgid "Insert &Spaces"
+msgstr "הוסף רווחים"
+
+msgid "&Rendering Mode:"
+msgstr "מצב עיבוד:"
+
+msgid "&Automatic rescan"
+msgstr "סריקה מחדש אוטומטית"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "רמת פירוט העתקה עבור הבדלים נבחרים:"
+
+msgid "Line Difference Coloring"
+msgstr "צביעת הבדלים בשורות"
+
+msgid "View line differences"
+msgstr "הצג הבדלים בשורות"
+
+msgid "&Character level"
+msgstr "רמת תו"
+
+msgid "&Word-level:"
+msgstr "רמת מילה:"
+
+msgid "W&ord break characters:"
+msgstr "תווים לפיצול מילים:"
+
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge מאפשר הסתרת חלונות הודעה נפוצים. לחץ על כפתור איפוס כדי להחזיר את כל ההודעות."
+
+msgid "Reset"
+msgstr "אפס"
+
+msgid "File Filters"
+msgstr "מסנני קבצים"
+
+msgid "Test..."
+msgstr "בדיקה..."
+
+msgid "Install..."
+msgstr "התקן..."
+
+msgid "New..."
+msgstr "חדש..."
+
+msgid "Edit..."
+msgstr "ערוך..."
+
+msgid "Delete..."
+msgstr "מחק..."
+
+msgid "Save modified files?"
+msgstr "לשמור קבצים ששונו?"
+
+msgid "Left side file"
+msgstr "קובץ צד שמאל"
+
+msgid "&Save changes"
+msgstr "שמור שינויים"
+
+msgid "&Discard changes"
+msgstr "בטל שינויים"
+
+msgid "Middle side file"
+msgstr "קובץ צד אמצע"
+
+msgid "Sa&ve changes"
+msgstr "שמור שינויים"
+
+msgid "Discard c&hanges"
+msgstr "בטל שינויים"
+
+msgid "Right side file"
+msgstr "קובץ צד ימין"
+
+msgid "S&ave changes"
+msgstr "שמור שינויים"
+
+msgid "Dis&card changes"
+msgstr "בטל שינויים"
+
+msgid "Disca&rd All"
+msgstr "בטל הכל"
+
+msgid "Codepage"
+msgstr "קידוד תווים"
+
+msgid "Default Codepage"
+msgstr "קידוד ברירת מחדל"
+
+msgid "Select the default codepage assumed when loading non-Unicode files:"
+msgstr "בחר קידוד ברירת מחדל בעת טעינת קבצים שאינם Unicode:"
+
+msgid "System codepage"
+msgstr "קידוד מערכת"
+
+msgid "According to WinMerge User Interface"
+msgstr "בהתאם לממשק המשתמש של WinMerge"
+
+msgid "Custom codepage:"
+msgstr "קידוד מותאם אישית:"
+
+msgid ""
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
+"Need to restart session."
+msgstr ""
+"זהה קידוד עבור סוגי קבצים אלו: .html, .rc, .xml\n"
+"נדרש להפעיל מחדש את ההפעלה."
+
+msgid ""
+"Detect codepage for text files with mlang.dll\n"
+"Need to restart session."
+msgstr ""
+"זהה קידוד עבור קבצי טקסט עם mlang.dll\n"
+"נדרש להפעיל מחדש את ההפעלה."
+
+msgid "Options"
+msgstr "אפשרויות"
+
+msgid "Import..."
+msgstr "ייבוא..."
+
+msgid "Export..."
+msgstr "ייצוא..."
+
+msgid "Folder Compare Report"
+msgstr "דוח השוואת תיקיות"
+
+msgid "Report &File:"
+msgstr "קובץ דוח:"
+
+msgid "&Style:"
+msgstr "סגנון:"
+
+msgid "&Include File Compare Report"
+msgstr "כלול דוח השוואת קבצים"
+
+msgid "Shared or Private Filter"
+msgstr "מסנן משותף או פרטי"
+
+msgid "Which type of filter do you want to create?"
+msgstr "איזה סוג מסנן ברצונך ליצור?"
+
+msgid "Shared Filter (for all users on this machine)"
+msgstr "מסנן משותף (לכל המשתמשים במחשב זה)"
+
+msgid "Private Filter (only for current user)"
+msgstr "מסנן פרטי (רק עבור המשתמש הנוכחי)"
+
+msgid "Archive Support"
+msgstr "תמיכה בארכיון"
+
+msgid "&Enable archive file support"
+msgstr "הפעל תמיכה בקבצי ארכיון"
+
+msgid "&Detect archive type from file signature"
+msgstr "זהה סוג ארכיון מחתימת הקובץ"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "פריטים שנשמרו או שוחזרו מקובץ הפרויקט:"
+
+msgid "Compare Statistics"
+msgstr "סטטיסטיקות השוואה"
+
+msgid "Folders:"
+msgstr "תיקיות:"
+
+msgid "Files:"
+msgstr "קבצים:"
+
+msgid "Different"
+msgstr "שונה"
+
+msgid "Binary:"
+msgstr "בינארי:"
+
+msgid "Unique"
+msgstr "ייחודי"
+
+msgid "Left:"
+msgstr "שמאל:"
+
+msgid "Right:"
+msgstr "ימין:"
+
+msgid "Identical"
+msgstr "זהה"
+
+msgid "Total:"
+msgstr "סה\"כ:"
+
+msgid "Close"
+msgstr "סגור"
+
+msgid "Middle:"
+msgstr "אמצע:"
+
+msgid "Missing Left:"
+msgstr "חסר בשמאל:"
+
+msgid "Missing Middle:"
+msgstr "חסר באמצע:"
+
+msgid "Missing Right:"
+msgstr "חסר בימין:"
+
+msgid "Affects"
+msgstr "משפיע"
+
+msgid "(Affects)"
+msgstr "(משפיע)"
+
+msgid "Select Codepage for"
+msgstr "בחר קידוד עבור"
+
+msgid "&File Loading:"
+msgstr "טעינת קובץ:"
+
+msgid "File &Saving:"
+msgstr "שמירת קובץ:"
+
+msgid "&Use same codepage for both"
+msgstr "השתמש באותו קידוד עבור שניהם"
+
+msgid "&Cancel"
+msgstr "ביטול"
+
+msgid "Test Filter"
+msgstr "בדוק מסנן"
+
+msgid "Testing filter:"
+msgstr "בדיקת מסנן:"
+
+msgid "&Enter text to test:"
+msgstr "הזן טקסט לבדיקה:"
+
+msgid "&Folder Name"
+msgstr "שם תיקיה"
+
+msgid "Result:"
+msgstr "תוצאה:"
+
+msgid "&Test"
+msgstr "בדיקה"
+
+msgid "&Close"
+msgstr "סגור"
+
+msgid "Table"
+msgstr "טבלה"
+
+msgid "File type"
+msgstr "סוג קובץ"
+
+msgid "&CSV"
+msgstr "CSV"
+
+msgid "&TSV"
+msgstr "TSV"
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr "ערכים מופרדים במפריד מותאם אישית"
+
+msgid "D&elimiter character:"
+msgstr "תו מפריד:"
+
+msgid "&Allow newlines in quotes"
+msgstr "אפשר שורות חדשות במרכאות"
+
+msgid "&Quote character:"
+msgstr "תו ציטוט:"
+
+msgid "Backup Files"
+msgstr "קבצי גיבוי"
+
+msgid "Create backup files in:"
+msgstr "צור קבצי גיבוי ב:"
+
+msgid "&Folder compare"
+msgstr "השוואת תיקיות"
+
+msgid "Fil&e compare"
+msgstr "השוואת קבצים"
+
+msgid "Create backup files into:"
+msgstr "צור קבצי גיבוי אל:"
+
+msgid "&Original file's folder"
+msgstr "תיקיית הקובץ המקורי"
+
+msgid "&Global backup folder:"
+msgstr "תיקיית גיבוי גלובלית:"
+
+msgid "Backup filename:"
+msgstr "שם קובץ הגיבוי:"
+
+msgid "&Append .bak extension"
+msgstr "הוסף סיומת .bak"
+
+msgid "A&ppend timestamp"
+msgstr "הוסף חותמת זמן"
+
+msgid "Confirm Copy"
+msgstr "אישור העתקה"
+
+msgid "Are you sure you want to copy XXX items?"
+msgstr "האם אתה בטוח שברצונך להעתיק XXX פריטים?"
+
+msgid "From left"
+msgstr "משמאל"
+
+msgid "To right"
+msgstr "לימין"
+
+msgid "Don't ask this &question again."
+msgstr "אל תשאל שאלה זו שוב."
+
+msgid "Yes"
+msgstr "כן"
+
+msgid "No"
+msgstr "לא"
+
+msgid "Plugins"
+msgstr "תוספים"
+
+msgid "&Enable plugins"
+msgstr "הפעל תוספים"
+
+msgid "Plugin &type:"
+msgstr "סוג תוסף:"
+
+msgid "File filters:"
+msgstr "מסנני קבצים:"
+
+msgid "&Plugin arguments:"
+msgstr "פרמטרים לתוסף:"
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr "אפשר פריסה/השוואה מוקדמת אוטומטית עבור התוסף"
+
+msgid "Shell Integration"
+msgstr "שילוב מעטפת"
+
+msgid "Explorer"
+msgstr "סייר"
+
+msgid "&Add to context menu"
+msgstr "הוסף לתפריט ההקשר"
+
+msgid "E&nable advanced menu"
+msgstr "הפעל תפריט מתקדם"
+
+msgid "Enable &Compare As menu"
+msgstr "הפעל תפריט 'השווה כ'"
+
+msgid "&Register shell extension"
+msgstr "רשום הרחבת מעטפת"
+
+msgid "&Unregister shell extension"
+msgstr "הסר רישום הרחבת מעטפת"
+
+msgid "Register shell extension for current user &only"
+msgstr "רשום הרחבת מעטפת רק עבור המשתמש הנוכחי"
+
+msgid "Unregister shell extension for current user on&ly"
+msgstr "הסר רישום הרחבת מעטפת רק עבור המשתמש הנוכחי"
+
+msgid "Register shell extension for &Windows 11 or later"
+msgstr "רשום הרחבת מעטפת עבור Windows 11 ואילך"
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr "הסר רישום הרחבת מעטפת עבור Windows 11 ואילך"
+
+msgid "Jump List"
+msgstr "רשימת קפיצה"
+
+msgid "Clear all recent items"
+msgstr "נקה את כל הפריטים האחרונים"
+
+msgctxt "Options dialog|Categories"
+msgid "Folder"
+msgstr "תיקיה"
+
+msgid "S&top after first difference"
+msgstr "עצור לאחר ההבדל הראשון"
+
+msgid "Ign&ore time differences less than 3 seconds"
+msgstr "התעלם מהבדלי זמן קטנים מ-3 שניות"
+
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "הרחב תיקיות משנה אוטומטית לאחר השוואה:"
+
+msgid "Include &unique subfolders contents"
+msgstr "כלול תוכן תיקיות משנה ייחודיות"
+
+msgid "Ignore &reparse points"
+msgstr "התעלם מנקודות הפניה מחדש"
+
+msgid "Threshold for switching to &quick compare (MB):"
+msgstr "סף למעבר להשוואה מהירה (MB):"
+
+msgid "Threshold for switching to &binary compare (MB):"
+msgstr "סף למעבר להשוואה בינארית (MB):"
+
+msgid "File patterns:"
+msgstr "תבניות קבצים:"
+
+msgid "Custom Delimiter-Separated Values"
+msgstr "ערכים מופרדים במפריד מותאם אישית"
+
+msgctxt "Options dialog|Categories"
+msgid "Binary"
+msgstr "בינארי"
+
+msgid "Binary file &patterns:"
+msgstr "תבניות קבצים בינאריים:"
+
+msgid "Frhed settings"
+msgstr "הגדרות Frhed"
+
+msgid "View &Settings..."
+msgstr "הצג הגדרות..."
+
+msgid "&Binary Mode..."
+msgstr "מצב בינארי..."
+
+msgid "&Character Set..."
+msgstr "ערכת תווים..."
+
+msgid "Image"
+msgstr "תמונה"
+
+msgid "Image file &patterns:"
+msgstr "תבניות קובצי תמונה:"
+
+msgid "&Enable image compare in folder compare"
+msgstr "אפשר השוואת תמונות בהשוואת תיקיות"
+
+msgid "OCR result:"
+msgstr "תוצאת OCR:"
+
+msgid "Webpage"
+msgstr "דף אינטרנט"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr "תבנית URL לכלילה (ביטוי רגולרי):"
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr "תבנית URL להחרגה (ביטוי רגולרי):"
+
+msgid "&User data folder location:"
+msgstr "מיקום תיקיית נתוני משתמש:"
+
+msgid "&Separate user data folders for each pane"
+msgstr "הפרד תיקיות נתוני משתמש לכל חלונית"
+
+msgid "&Hex View"
+msgstr "תצוגת הקס"
+
+msgid "Edit Plugin"
+msgstr "ערוך תוסף"
+
+msgid "&Category:"
+msgstr "קטגוריה:"
+
+msgid "&Menu caption:"
+msgstr "כיתוב בתפריט:"
+
+msgid "&Window type:"
+msgstr "סוג חלון:"
+
+msgid "&Unpacked file extension:"
+msgstr "סיומת קובץ לאחר פריסה:"
+
+msgid "&Require arguments"
+msgstr "דורש פרמטרים"
+
+msgid "&Generate editor script"
+msgstr "צור סקריפט עורך"
+
+msgid "Command &line:"
+msgstr "שורת פקודה:"
+
+msgid "&Script file extension:"
+msgstr "סיומת קובץ סקריפט:"
+
+msgid "Script &body:"
+msgstr "תוכן סקריפט:"
+
+msgid "Unknown error attempting to open project file."
+msgstr "שגיאה לא ידועה בעת ניסיון לפתוח קובץ פרויקט."
+
+msgid "Unknown error attempting to save project file."
+msgstr "שגיאה לא ידועה בעת ניסיון לשמור קובץ פרויקט."
+
+msgid "Project file successfully loaded."
+msgstr "קובץ הפרויקט נטען בהצלחה."
+
+msgid "Project file successfully saved."
+msgstr "קובץ הפרויקט נשמר בהצלחה."
+
+msgid ""
+"\n"
+"Undo (Ctrl+Z)"
+msgstr ""
+"\n"
+"ביטול (Ctrl+Z)"
+
+msgid ""
+"\n"
+"Redo (Ctrl+Y)"
+msgstr ""
+"\n"
+"חזור (Ctrl+Y)"
+
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
+msgstr ""
+"\n"
+"השוואת קבצים\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge השוואת קבצים"
+
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
+msgstr ""
+"\n"
+"השוואת תיקיות\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge השוואת תיקיות"
+
+msgid ""
+"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in "
+"the Help menu for details."
+msgstr "WinMerge מגיע ללא אחריות כלל. זהו תוכנה חופשית ואתה מוזמן להפיץ אותה תחת תנאים מסוימים; ראה את רישיון ה-GNU בתפריט העזרה לפרטים נוספים."
+
+msgid "&Abort"
+msgstr "בטל"
+
+msgid "&Retry"
+msgstr "נסה שוב"
+
+msgid "&Ignore"
+msgstr "התעלם"
+
+msgid "Ignore &all"
+msgstr "התעלם מהכל"
+
+msgid "&Yes"
+msgstr "כן"
+
+msgid "Yes to &all"
+msgstr "כן להכל"
+
+msgid "&No"
+msgstr "לא"
+
+msgid "No to a&ll"
+msgstr "לא להכל"
+
+msgid "&Continue"
+msgstr "המשך"
+
+msgid "&Skip"
+msgstr "דלג"
+
+msgid "Skip &all"
+msgstr "דלג על הכל"
+
+msgid "Don't display this &message again."
+msgstr "אל תציג הודעה זו שוב."
+
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr "כדי להציג מחדש את חלון ההודעה, לחץ על כפתור האיפוס בלשונית הודעות בתיבת הדו-שיח אפשרויות."
+
+msgid "Compare/Merge"
+msgstr "השוואה/מיזוג"
+
+msgid "Syntax"
+msgstr "תחביר"
+
+msgid "Color Schemes"
+msgstr "ערכות צבעים"
+
+msgid "Folder Compare"
+msgstr "השוואת תיקיות"
+
+msgid "Project"
+msgstr "פרויקט"
+
+msgid "Differences"
+msgstr "הבדלים"
+
+msgid "Message Boxes"
+msgstr "חלונות הודעה"
+
+msgid "To:"
+msgstr "אל:"
+
+msgid "From left:"
+msgstr "משמאל:"
+
+msgid "To left:"
+msgstr "אל שמאל:"
+
+msgid "From right:"
+msgstr "מימין:"
+
+msgid "To right:"
+msgstr "אל ימין:"
+
+msgid "From middle:"
+msgstr "מאמצע:"
+
+msgid "To middle:"
+msgstr "אל אמצע:"
+
+#, c-format
+msgid "Version %1"
+msgstr "גרסה %1"
+
+msgid "X64"
+msgstr "X64"
+
+#, c-format
+msgid "Options (%1)"
+msgstr "אפשרויות (%1)"
+
+msgid "All message boxes are now displayed again."
+msgstr "כל חלונות ההודעות מוצגים שוב."
+
+#, c-format
+msgid ""
+"Value in Tab size -field is not in range WinMerge accepts.\n"
+"\n"
+"Please use values 1 - %1."
+msgstr ""
+"הערך בשדה גודל טאבים אינו בטווח המקובל ב-WinMerge.\n"
+"\n"
+"אנא השתמש בערכים בין 1 ל-%1."
+
+msgid "Open"
+msgstr "פתח"
+
+msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+msgstr "תוכניות|*.exe;*.bat;*.cmd|כל הקבצים (*.*)|*.*||"
+
+msgid "All Files (*.*)|*.*||"
+msgstr "כל הקבצים (*.*)|*.*||"
+
+msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+msgstr "קובצי פרויקט WinMerge (*.WinMerge)|*.WinMerge||"
+
+msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+msgstr "קובצי אפשרויות (*.ini)|*.ini|כל הקבצים (*.*)|*.*||"
+
+msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+msgstr "קובצי טקסט (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|כל הקבצים (*.*)|*.*||"
+
+msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+msgstr "קובצי HTML (*.htm,*.html)|*.htm;*.html|כל הקבצים (*.*)|*.*||"
+
+msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr "קובצי XML (*.xml)|*.xml|כל הקבצים (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "אל תרחיב"
+
+msgid "Expand all subfolders"
+msgstr "הרחב את כל תיקיות המשנה"
+
+msgid "Expand different subfolders"
+msgstr "הרחב תיקיות משנה שונות"
+
+msgid "Expand identical subfolders"
+msgstr "הרחב תיקיות משנה זהות"
+
+msgid "File Type"
+msgstr "סוג קובץ"
+
+msgid "Extension"
+msgstr "סיומת"
+
+msgid "Message"
+msgstr "הודעה"
+
+msgid "Answer"
+msgstr "תשובה"
+
+msgid "Item"
+msgstr "פריט"
+
+msgid "Load"
+msgstr "טען"
+
+msgid "Save"
+msgstr "שמור"
+
+msgid "Include Subfolders"
+msgstr "כלול תיקיות משנה"
+
+msgid "Compare Options"
+msgstr "אפשרויות השוואה"
+
+msgid "Hidden Items"
+msgstr "פריטים מוסתרים"
+
+msgid "Name"
+msgstr "שם"
+
+msgid "Location"
+msgstr "מיקום"
+
+msgid "Filters"
+msgstr "מסננים"
+
+msgid "[F] "
+msgstr "[F] "
+
+msgid "Description"
+msgstr "תיאור"
+
+msgid "Select filename for new filter"
+msgstr "בחר שם קובץ למסנן חדש"
+
+msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+msgstr "מסנני קבצים (*.flt)|*.flt|כל הקבצים (*.*)|*.*||"
+
+#, c-format
+msgid ""
+"Cannot find file filter template file!\n"
+"\n"
+"Please copy file %1 to WinMerge/Filters folder:\n"
+"%2."
+msgstr ""
+"לא ניתן למצוא את קובץ תבנית מסנן הקבצים!\n"
+"\n"
+"אנא העתק את הקובץ %1 לתיקיית WinMerge/Filters:\n"
+"%2."
+
+#, c-format
+msgid ""
+"Cannot copy filter template file to filter folder:\n"
+"%1\n"
+"\n"
+"Please make sure the folder exists and is writable."
+msgstr ""
+"לא ניתן להעתיק את קובץ תבנית המסנן לתיקיית המסננים:\n"
+"%1\n"
+"\n"
+"אנא ודא שהתיקיה קיימת וניתן לכתוב בה."
+
+msgid ""
+"User's filter file folder is not defined!\n"
+"\n"
+"Please select filter folder in Options/System."
+msgstr ""
+"תיקיית מסנני המשתמש אינה מוגדרת!\n"
+"\n"
+"אנא בחר תיקיית מסננים באפשרויות/מערכת."
+
+#, c-format
+msgid ""
+"Failed to delete the filter file:\n"
+"%1\n"
+"\n"
+"Maybe the file is read-only?"
+msgstr ""
+"נכשל במחיקת קובץ המסנן:\n"
+"%1\n"
+"\n"
+"ייתכן שהקובץ לקריאה בלבד?"
+
+msgid "Locate filter file to install"
+msgstr "אתר קובץ מסנן להתקנה"
+
+msgid "Filter file already exists. Overwrite existing filter?"
+msgstr "קובץ המסנן כבר קיים. להחליף את המסנן הקיים?"
+
+msgid "Regular expression"
+msgstr "ביטוי רגולרי"
+
+msgid "Folder Comparison Results"
+msgstr "תוצאות השוואת תיקיות"
+
+msgid "File Comparison"
+msgstr "השוואת קבצים"
+
+msgid "Untitled left"
+msgstr "ללא שם - שמאל"
+
+msgid "Untitled middle"
+msgstr "ללא שם - אמצע"
+
+msgid "Untitled right"
+msgstr "ללא שם - ימין"
+
+msgid "Merge"
+msgstr "מזג"
+
+msgid "1 Difference Found"
+msgstr "נמצא הבדל אחד"
+
+#. Abbreviation from "Read Only"
+msgid "RO"
+msgstr "לקריאה בלבד"
+
+#, c-format
+msgid "Item %1 of %2"
+msgstr "פריט %1 מתוך %2"
+
+#, c-format
+msgid "Items: %1"
+msgstr "פריטים: %1"
+
+msgid "Comparing items..."
+msgstr "משווה פריטים..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f[פריטים/שנייה]"
+
+msgid "Select two existing folders or files to compare."
+msgstr "בחר שתי תיקיות או קבצים קיימים להשוואה."
+
+msgid "Folder Selection"
+msgstr "בחירת תיקיה"
+
+msgid "Select two (or three) folders or two (or three) files to compare."
+msgstr "בחר שתי (או שלוש) תיקיות או שניים (או שלושה) קבצים להשוואה."
+
+msgid "Left (1st) path is invalid!"
+msgstr "הנתיב השמאלי (1) אינו חוקי!"
+
+msgid "Middle (2nd) path is invalid!"
+msgstr "הנתיב האמצעי (2) אינו חוקי!"
+
+msgid "Right (2nd) path is invalid!"
+msgstr "הנתיב הימני (2) אינו חוקי!"
+
+msgid "Right (3rd) path is invalid!"
+msgstr "הנתיב הימני (3) אינו חוקי!"
+
+msgid "Both paths are invalid!"
+msgstr "שני הנתיבים אינם חוקיים!"
+
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr "הנתיבים השמאלי (1) והאמצעי (2) אינם חוקיים!"
+
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr "הנתיבים השמאלי (1) והימני (3) אינם חוקיים!"
+
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr "הנתיבים האמצעי (2) והימני (3) אינם חוקיים!"
+
+msgid "All paths are invalid!"
+msgstr "כל הנתיבים אינם חוקיים!"
+
+msgid "Only enabled for file comparisons"
+msgstr "מאופשר רק להשוואת קבצים"
+
+msgid "Cannot compare file and folder!"
+msgstr "לא ניתן להשוות בין קובץ לתיקיה!"
+
+#, c-format
+msgid "File not found: %1"
+msgstr "קובץ לא נמצא: %1"
+
+#, c-format
+msgid "File not unpacked: %1"
+msgstr "הקובץ לא נפרס: %1"
+
+#, c-format
+msgid ""
+"Cannot open file\n"
+"%1\n"
+"\n"
+"%2"
+msgstr ""
+"לא ניתן לפתוח את הקובץ\n"
+"%1\n"
+"\n"
+"%2"
+
+msgid "Failed to parse conflict file."
+msgstr "כשל בניתוח קובץ הסתירה."
+
+#, c-format
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
+msgstr ""
+"הקובץ\n"
+"%1\n"
+"אינו קובץ סתירה."
+
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the files?\n"
+"\n"
+msgstr ""
+"אתה עומד להשוות קבצים גדולים מאוד.\n"
+"הצגת תוכן הקבצים דורשת כמות גדולה מאוד של זיכרון.\n"
+"האם להציג רק את תוצאות ההשוואה ולא את התוכן?\n"
+"\n"
+
+msgid "Save As"
+msgstr "שמור בשם"
+
+#, c-format
+msgid "Save changes to %1?"
+msgstr "לשמור שינויים ב-%1?"
+
+#, c-format
+msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
+msgstr "%1 מסומן כקובץ לקריאה בלבד. האם ברצונך לדרוס את הקובץ? (בחר לא כדי לשמור בשם אחר.)"
+
+msgid "Error backing up file"
+msgstr "שגיאה בגיבוי הקובץ"
+
+#, c-format
+msgid ""
+"Unable to backup original file:\n"
+"%1\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"לא ניתן לגבות את הקובץ המקורי:\n"
+"%1\n"
+"\n"
+"להמשיך בכל זאת?"
+
+#, c-format
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press OK)\n"
+"\t- abort the current operation (Press Cancel)?"
+msgstr ""
+"שמירת הקובץ נכשלה.\n"
+"%1\n"
+"%2\n"
+"האם ברצונך:\n"
+"\t- להשתמש בשם קובץ אחר (לחץ על אישור)\n"
+"\t- לבטל את הפעולה (לחץ על ביטול)?"
+
+msgid "Save Left File As"
+msgstr "שמור קובץ שמאל בשם"
+
+msgid "Save Middle File As"
+msgstr "שמור קובץ אמצע בשם"
+
+msgid "Save Right File As"
+msgstr "שמור קובץ ימין בשם"
+
+msgid "Break at whitespace"
+msgstr "פיצול ברווחים"
+
+msgid "Break at whitespace or punctuation"
+msgstr "פיצול ברווחים או סימני פיסוק"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr "העתק לאמצע\tAlt+Right"
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr "העתק לאמצע\tAlt+Left"
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr "העתק מהאמצע\tAlt+Shift+Right"
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr "העתק מהאמצע\tAlt+Shift+Left"
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr "העתק לאמצע והתקדם\tCtrl+Alt+Right"
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr "העתק לאמצע והתקדם\tCtrl+Alt+Left"
+
+msgid "Copy All to Middle"
+msgstr "העתק הכל לאמצע"
+
+msgid "Are you sure you want to copy?"
+msgstr "האם אתה בטוח שברצונך להעתיק?"
+
+#, c-format
+msgid "Are you sure you want to copy %d items?"
+msgstr "האם אתה בטוח שברצונך להעתיק %d פריטים?"
+
+msgid "Confirm Move"
+msgstr "אישור העברה"
+
+msgid "The file or folder name is invalid."
+msgstr "שם הקובץ או התיקיה אינו חוקי."
+
+msgid "Unknown archive format"
+msgstr "פורמט ארכיון לא ידוע"
+
+msgid "Filename"
+msgstr "שם קובץ"
+
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "תיקיה"
+
+msgid "Comparison result"
+msgstr "תוצאת השוואה"
+
+msgid "Left Date"
+msgstr "תאריך שמאל"
+
+msgid "Right Date"
+msgstr "תאריך ימין"
+
+msgid "Middle Date"
+msgstr "תאריך אמצע"
+
+msgid "Left Size"
+msgstr "גודל שמאל"
+
+msgid "Right Size"
+msgstr "גודל ימין"
+
+msgid "Middle Size"
+msgstr "גודל אמצע"
+
+msgid "Right Size (Short)"
+msgstr "גודל ימין (מקוצר)"
+
+msgid "Left Size (Short)"
+msgstr "גודל שמאל (מקוצר)"
+
+msgid "Middle Size (Short)"
+msgstr "גודל אמצע (מקוצר)"
+
+msgid "Left Creation Time"
+msgstr "זמן יצירה שמאל"
+
+msgid "Right Creation Time"
+msgstr "זמן יצירה ימין"
+
+msgid "Middle Creation Time"
+msgstr "זמן יצירה אמצע"
+
+msgid "Newer File"
+msgstr "קובץ חדש יותר"
+
+msgid "Left File Version"
+msgstr "גרסת קובץ שמאל"
+
+msgid "Right File Version"
+msgstr "גרסת קובץ ימין"
+
+msgid "Middle File Version"
+msgstr "גרסת קובץ אמצע"
+
+msgid "Short Result"
+msgstr "תוצאה מקוצרת"
+
+msgid "Left Attributes"
+msgstr "מאפייני שמאל"
+
+msgid "Right Attributes"
+msgstr "מאפייני ימין"
+
+msgid "Middle Attributes"
+msgstr "מאפייני אמצע"
+
+msgid "Left EOL"
+msgstr "סוף שורה שמאל"
+
+msgid "Middle EOL"
+msgstr "סוף שורה אמצע"
+
+msgid "Right EOL"
+msgstr "סוף שורה ימין"
+
+msgid "Left Encoding"
+msgstr "קידוד שמאל"
+
+msgid "Right Encoding"
+msgstr "קידוד ימין"
+
+msgid "Middle Encoding"
+msgstr "קידוד אמצע"
+
+msgid "Ignored Diff"
+msgstr "הבדל שהתעלמו ממנו"
+
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "בינארי"
+
+msgid "Unpacker"
+msgstr "מחלץ"
+
+msgid "Prediffer"
+msgstr "השוואה מוקדמת"
+
+msgid "Left"
+msgstr "שמאל"
+
+msgid "Middle"
+msgstr "אמצע"
+
+msgid "Right"
+msgstr "ימין"
+
+msgid "Diff"
+msgstr "הבדל"
+
+msgid "Left Duplicate Count"
+msgstr "מספר כפילויות שמאל"
+
+msgid "Right Duplicate Count"
+msgstr "מספר כפילויות ימין"
+
+msgid "Middle Duplicate Count"
+msgstr "מספר כפילויות אמצע"
+
+msgid "Move"
+msgstr "העבר"
+
+msgid "Audio"
+msgstr "שמע"
+
+msgid "Calendar"
+msgstr "לוח שנה"
+
+msgid "Communication"
+msgstr "תקשורת"
+
+msgid "Contact"
+msgstr "איש קשר"
+
+msgid "Devices"
+msgstr "התקנים"
+
+msgid "Document"
+msgstr "מסמך"
+
+msgid "Home"
+msgstr "בית"
+
+msgid "Journal"
+msgstr "יומן"
+
+msgid "Link"
+msgstr "קישור"
+
+msgid "Media"
+msgstr "מדיה"
+
+msgid "Music"
+msgstr "מוזיקה"
+
+msgid "Note"
+msgstr "פתק"
+
+msgid "Photo"
+msgstr "תמונה"
+
+msgid "RecordedTV"
+msgstr "טלוויזיה מוקלטת"
+
+msgid "Search"
+msgstr "חיפוש"
+
+msgid "Security"
+msgstr "אבטחה"
+
+msgid "Software"
+msgstr "תוכנה"
+
+msgid "Task"
+msgstr "משימה"
+
+msgid "Video"
+msgstr "וידאו"
+
+msgid "Hash"
+msgstr "גיבוב"
+
+msgid "Unable to compare files"
+msgstr "לא ניתן להשוות קבצים"
+
+msgid "Item aborted"
+msgstr "הפריט בוטל"
+
+msgid "File skipped"
+msgstr "הקובץ דולג"
+
+msgid "Folder skipped"
+msgstr "התיקיה דולגה"
+
+#, c-format
+msgid "Left only: %1"
+msgstr "רק בשמאל: %1"
+
+#, c-format
+msgid "Middle only: %1"
+msgstr "רק באמצע: %1"
+
+#, c-format
+msgid "Right only: %1"
+msgstr "רק בימין: %1"
+
+#, c-format
+msgid "Does not exist in %1"
+msgstr "לא קיים ב-%1"
+
+msgid "Binary files are identical"
+msgstr "קבצים בינאריים זהים"
+
+msgid "Binary files are different"
+msgstr "קבצים בינאריים שונים"
+
+msgid "Files are different"
+msgstr "קבצים שונים"
+
+msgid "Folders are different"
+msgstr "תיקיות שונות"
+
+msgid "Left Only"
+msgstr "רק בשמאל"
+
+msgid "Right Only"
+msgstr "רק בימין"
+
+msgid "Middle Only"
+msgstr "רק באמצע"
+
+msgid "No item in left"
+msgstr "אין פריט בשמאל"
+
+msgid "No item in right"
+msgstr "אין פריט בימין"
+
+msgid "No item in middle"
+msgstr "אין פריט באמצע"
+
+msgid "Error"
+msgstr "שגיאה"
+
+msgid "Text files are identical"
+msgstr "קבצי טקסט זהים"
+
+msgid "Text files are different"
+msgstr "קבצי טקסט שונים"
+
+msgid "Image files are identical"
+msgstr "קבצי תמונה זהים"
+
+msgid "Image files are different"
+msgstr "קבצי תמונה שונים"
+
+#, c-format
+msgid "Group%d"
+msgstr "קבוצה %d"
+
+#, c-format
+msgid "Elapsed time: %ld ms"
+msgstr "זמן שחלף: %ld מילישניות"
+
+msgid "1 item selected"
+msgstr "פריט אחד נבחר"
+
+#, c-format
+msgid "%1 items selected"
+msgstr "%1 פריטים נבחרו"
+
+msgid "Filename or folder name."
+msgstr "שם קובץ או תיקיה."
+
+msgid "Subfolder name when subfolders are included."
+msgstr "שם תיקיית משנה כאשר תיקיות משנה כלולות."
+
+msgid "Comparison result, long form."
+msgstr "תוצאת השוואה, תצורה מלאה."
+
+msgid "Left side modification date."
+msgstr "תאריך שינוי צד שמאל."
+
+msgid "Right side modification date."
+msgstr "תאריך שינוי צד ימין."
+
+msgid "Middle side modification date."
+msgstr "תאריך שינוי צד אמצע."
+
+msgid "File's extension."
+msgstr "סיומת קובץ."
+
+msgid "Left file size in bytes."
+msgstr "גודל קובץ שמאל בבייטים."
+
+msgid "Right file size in bytes."
+msgstr "גודל קובץ ימין בבייטים."
+
+msgid "Middle file size in bytes."
+msgstr "גודל קובץ אמצע בבייטים."
+
+msgid "Left file size abbreviated."
+msgstr "גודל קובץ שמאל (מקוצר)."
+
+msgid "Right file size abbreviated."
+msgstr "גודל קובץ ימין (מקוצר)."
+
+msgid "Middle file size abbreviated."
+msgstr "גודל קובץ אמצע (מקוצר)."
+
+msgid "Left side creation time."
+msgstr "זמן יצירה צד שמאל."
+
+msgid "Right side creation time."
+msgstr "זמן יצירה צד ימין."
+
+msgid "Middle side creation time."
+msgstr "זמן יצירה צד אמצע."
+
+msgid "Tells which side has newer modification date."
+msgstr "מציין איזה צד בעל תאריך שינוי חדש יותר."
+
+msgid "Short comparison result."
+msgstr "תוצאת השוואה מקוצרת."
+
+msgid "Left side attributes."
+msgstr "מאפייני צד שמאל."
+
+msgid "Right side attributes."
+msgstr "מאפייני צד ימין."
+
+msgid "Middle side attributes."
+msgstr "מאפייני צד אמצע."
+
+msgid "Left side file EOL type."
+msgstr "סוג סוף שורה של קובץ בצד שמאל."
+
+msgid "Right side file EOL type."
+msgstr "סוג סוף שורה של קובץ בצד ימין."
+
+msgid "Middle side file EOL type."
+msgstr "סוג סוף שורה של קובץ בצד אמצע."
+
+msgid "Left side encoding."
+msgstr "קידוד צד שמאל."
+
+msgid "Right side encoding."
+msgstr "קידוד צד ימין."
+
+msgid "Middle side encoding."
+msgstr "קידוד צד אמצע."
+
+msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+msgstr "מספר ההבדלים שהתעלמו מהם בקובץ. הבדלים אלו מתעלמים על ידי WinMerge ולא ניתן למזג אותם."
+
+msgid "Number of differences in file. This number does not include ignored differences."
+msgstr "מספר ההבדלים בקובץ. מספר זה אינו כולל הבדלים שהתעלמו מהם."
+
+msgid "Shows an asterisk (*) if the file is binary."
+msgstr "מציג כוכבית (*) אם הקובץ בינארי."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr "שם תוסף מחלץ או צינור עיבוד."
+
+msgid "Prediffer plugin name or pipeline."
+msgstr "שם תוסף השוואה מוקדמת או צינור עיבוד."
+
+#, c-format
+msgid "Compare %1 with %2"
+msgstr "השווה %1 עם %2"
+
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr "השווה %1 עם %2 ו-%3"
+
+msgid "Comma-separated list"
+msgstr "רשימה מופרדת בפסיקים"
+
+msgid "Tab-separated list"
+msgstr "רשימה מופרדת בטאבים"
+
+msgid "Simple HTML"
+msgstr "HTML פשוט"
+
+msgid "Simple XML"
+msgstr "XML פשוט"
+
+msgid "The report file already exists. Do you want to overwrite existing file?"
+msgstr "קובץ הדוח כבר קיים. האם ברצונך להחליף את הקובץ הקיים?"
+
+#, c-format
+msgid ""
+"Error creating the report:\n"
+"%1"
+msgstr ""
+"שגיאה ביצירת הדוח:\n"
+"%1"
+
+msgid "The report has been created successfully."
+msgstr "הדוח נוצר בהצלחה."
+
+msgid "Cannot add a synchronization point at this line."
+msgstr "לא ניתן להוסיף נקודת סנכרון בשורה זו."
+
+msgid "The same file is opened in both panels."
+msgstr "אותו קובץ פתוח בשתי החלוניות."
+
+msgid "The selected files are identical."
+msgstr "הקבצים שנבחרו זהים."
+
+msgid "An error occurred while comparing the files."
+msgstr "אירעה שגיאה בעת השוואת הקבצים."
+
+msgid "Temporary files could not be created. Check your temporary path settings."
+msgstr "לא ניתן ליצור קבצים זמניים. בדוק את הגדרות נתיב הקבצים הזמניים שלך."
+
+msgid "The selected folder is invalid."
+msgstr "התיקיה שנבחרה אינה חוקית."
+
+msgid "Cannot open a binary file to editor."
+msgstr "לא ניתן לפתוח קובץ בינארי בעורך."
+
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "האם אתה בטוח שברצונך להעתיק את כל ההבדלים לקובץ השני?"
+
+msgid "Do you want to move to the next file?"
+msgstr "האם לעבור לקובץ הבא?"
+
+msgid "Do you want to move to the previous file?"
+msgstr "האם לעבור לקובץ הקודם?"
+
+msgid "Do you want to move to the next page?"
+msgstr "האם לעבור לעמוד הבא?"
+
+msgid "Do you want to move to the previous page?"
+msgstr "האם לעבור לעמוד הקודם?"
+
+msgid "Do you want to move to the first file?"
+msgstr "האם לעבור לקובץ הראשון?"
+
+msgid "Do you want to move to the last file?"
+msgstr "האם לעבור לקובץ האחרון?"
+
+msgid "No difference"
+msgstr "אין הבדל"
+
+msgid "Line difference"
+msgstr "הבדל בשורה"
+
+#, c-format
+msgid "Replaced %1 string(s)."
+msgstr "הוחלפו %1 מחרוזות."
+
+#, c-format
+msgid "Cannot find string \"%s\"."
+msgstr "לא ניתן למצוא את המחרוזת \"%s\"."
+
+msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
+msgstr "אתה נכנס כעת למצב מיזוג. כדי לכבות את מצב המיזוג, לחץ על מקש F9."
+
+msgid "The change of codepage has been merged."
+msgstr "השינוי בקידוד הדף מוזג."
+
+msgid "The changes of codepage are conflicting."
+msgstr "השינויים בקידוד הדף מתנגשים."
+
+msgid "The change of EOL has been merged."
+msgstr "השינוי בסוג סוף השורה מוזג."
+
+msgid "The changes of EOL are conflicting."
+msgstr "השינויים בסוג סוף השורה מתנגשים."
+
+msgid "Location Pane"
+msgstr "חלונית מיקום"
+
+msgid "Diff Pane"
+msgstr "חלונית השוואה"
+
+msgid "Patch file successfully written."
+msgstr "קובץ התיקון נכתב בהצלחה."
+
+msgid "1. item is not found!"
+msgstr "הפריט הראשון לא נמצא!"
+
+msgid "2. item is not found!"
+msgstr "הפריט השני לא נמצא!"
+
+msgid "The patch file already exists. Do you want to overwrite it?"
+msgstr "קובץ התיקון כבר קיים. האם להחליף אותו?"
+
+msgid "Normal"
+msgstr "רגיל"
+
+msgid "Context"
+msgstr "הקשר"
+
+msgid "Unified"
+msgstr "מאוחד"
+
+#, c-format
+msgid "Could not write to file %1."
+msgstr "לא ניתן לכתוב לקובץ %1."
+
+#, c-format
+msgid "The specified output path is not an absolute path: %1"
+msgstr "נתיב הפלט שצוין אינו נתיב מוחלט: %1"
+
+msgid "Specify an output file."
+msgstr "ציין קובץ פלט."
+
+msgid "Cannot create a patch file from binary files."
+msgstr "לא ניתן ליצור קובץ תיקון מקבצים בינאריים."
+
+msgid ""
+"Please save all files first.\n"
+"\n"
+"Creating a patch requires that there are no unsaved changes in files."
+msgstr ""
+"אנא שמור את כל הקבצים תחילה.\n"
+"\n"
+"יצירת קובץ תיקון מחייבת שלא יהיו שינויים שלא נשמרו בקבצים."
+
+msgid "Folder does not exist."
+msgstr "התיקיה אינה קיימת."
+
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
+msgstr ""
+"תמיכה בארכיונים אינה מופעלת.\n"
+"לא נמצאו כל הרכיבים הנדרשים (7-Zip ו/או Merge7z*.dll) עבור תמיכת ארכיונים.\n"
+"ראה את המדריך למידע נוסף על תמיכת ארכיונים וכיצד להפעיל אותה."
+
+msgid "Select file for export"
+msgstr "בחר קובץ לייצוא"
+
+msgid "Select file for import"
+msgstr "בחר קובץ לייבוא"
+
+msgid "Options imported from the file."
+msgstr "אפשרויות יובאו מהקובץ."
+
+msgid "Options exported to the file."
+msgstr "אפשרויות יוצאו לקובץ."
+
+msgid "Failed to import options from the file."
+msgstr "ייבוא האפשרויות מהקובץ נכשל."
+
+msgid "Failed to write options to the file."
+msgstr "כתיבת האפשרויות לקובץ נכשלה."
+
+msgid ""
+"You are about to close several compare windows.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+"אתה עומד לסגור מספר חלונות השוואה.\n"
+"\n"
+"האם להמשיך?"
+
+msgid "Mixed"
+msgstr "מעורב"
+
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "בינארי"
+
+msgid "None"
+msgstr "ללא"
+
+#, c-format
+msgid "Marker Color %d"
+msgstr "צבע סימון %d"
+
+msgid "New Pattern"
+msgstr "תבנית חדשה"
+
+msgid "Type"
+msgstr "סוג"
+
+msgid "Editor script"
+msgstr "סקריפט עורך"
+
+msgid ""
+"\n"
+"Difference in the Current Line (F4)"
+msgstr ""
+"\n"
+"הבדל בשורה הנוכחית (F4)"
+
+msgid ""
+"\n"
+"Options"
+msgstr ""
+"\n"
+"אפשרויות"
+
+msgid ""
+"\n"
+"Refresh (F5)"
+msgstr ""
+"\n"
+"רענן (F5)"
+
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)"
+msgstr ""
+"\n"
+"הבדל קודם (Alt+Up)"
+
+msgid ""
+"\n"
+"Next Difference (Alt+Down)"
+msgstr ""
+"\n"
+"הבדל הבא (Alt+Down)"
+
+msgid ""
+"\n"
+"Previous Conflict (Alt+Shift+Up)"
+msgstr ""
+"\n"
+"סתירה קודמת (Alt+Shift+Up)"
+
+msgid ""
+"\n"
+"Next Conflict (Alt+Shift+Down)"
+msgstr ""
+"\n"
+"סתירה הבאה (Alt+Shift+Down)"
+
+msgid ""
+"\n"
+"First Difference (Alt+Home)"
+msgstr ""
+"\n"
+"הבדל ראשון (Alt+Home)"
+
+msgid ""
+"\n"
+"Current Difference (Alt+Enter)"
+msgstr ""
+"\n"
+"הבדל נוכחי (Alt+Enter)"
+
+msgid ""
+"\n"
+"Last Difference (Alt+End)"
+msgstr ""
+"\n"
+"הבדל אחרון (Alt+End)"
+
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)"
+msgstr ""
+"\n"
+"העתק לימין (Alt+Right)"
+
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)"
+msgstr ""
+"\n"
+"העתק לשמאל (Alt+Left)"
+
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)"
+msgstr ""
+"\n"
+"העתק לימין והתקדם (Ctrl+Alt+Right)"
+
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)"
+msgstr ""
+"\n"
+"העתק לשמאל והתקדם (Ctrl+Alt+Left)"
+
+msgid ""
+"\n"
+"Copy All to Right"
+msgstr ""
+"\n"
+"העתק הכל לימין"
+
+msgid ""
+"\n"
+"Copy All to Left"
+msgstr ""
+"\n"
+"העתק הכל לשמאל"
+
+msgid ""
+"\n"
+"Auto Merge (Ctrl+Alt+M)"
+msgstr ""
+"\n"
+"מיזוג אוטומטי (Ctrl+Alt+M)"
+
+msgid "No prediffer (normal)"
+msgstr "ללא השוואה מוקדמת (רגיל)"
+
+msgid "Suggested plugins"
+msgstr "תוספים מוצעים"
+
+msgid "All plugins"
+msgstr "כל התוספים"
+
+#, c-format
+msgid "Private Build: %1"
+msgstr "בנייה פרטית: %1"
+
+msgid "Your software is up to date."
+msgstr "התוכנה שלך מעודכנת."
+
+#, c-format
+msgid ""
+"A new version of WinMerge is available.\n"
+"%1 is now available (you have %2). Would you like to download it now?"
+msgstr ""
+"גרסה חדשה של WinMerge זמינה.\n"
+"%1 זמינה כעת (ברשותך %2). האם להוריד אותה כעת?"
+
+msgid "Failed to download latest version information"
+msgstr "הורדת מידע על הגרסה העדכנית נכשלה"
+
+msgid "Plugin Settings"
+msgstr "הגדרות תוסף"
+
+msgid "WSH not found - .sct scripts disabled"
+msgstr "WSH לא נמצא - סקריפטים מסוג .sct הושבתו"
+
+#, c-format
+msgid "G&o to Line %1"
+msgstr "עבור לשורה %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr "עבור לשורה שהוזזה\tCtrl+Shift+G"
+
+msgid "Disabled"
+msgstr "מושבת"
+
+msgid "From file system"
+msgstr "ממערכת הקבצים"
+
+msgid "From Most Recently Used list"
+msgstr "מרשימת הקבצים שנעשה בהם שימוש לאחרונה"
+
+msgid "No Highlighting"
+msgstr "ללא הדגשה"
+
+msgid "Batch"
+msgstr "אצווה"
+
+msgid "Portable Object"
+msgstr "אובייקט נייד"
+
+msgid "Resources"
+msgstr "משאבים"
+
+msgid "Shell"
+msgstr "מעטפת"
+
+msgid "Close &Left Tabs"
+msgstr "סגור כרטיסיות שמאל"
+
+msgid "Close R&ight Tabs"
+msgstr "סגור כרטיסיות ימין"
+
+msgid "Close &Other Tabs"
+msgstr "סגור כרטיסיות אחרות"
+
+msgid "Enable &Auto Max Width"
+msgstr "אפשר רוחב מקסימלי אוטומטי"
+
+msgid "We&bpage"
+msgstr "דף אינטרנט"
+
+msgid "W&rap Text"
+msgstr "גלישת טקסט"
+
+#, c-format
+msgid "%1 is not installed."
+msgstr "%1 אינו מותקן."
+
+#, c-format
+msgid "%1 does not exist. Do you want to create it?"
+msgstr "%1 אינו קיים. האם ליצור אותו?"
+
+msgid "Failed to create folder."
+msgstr "יצירת התיקיה נכשלה."
+
+msgid "default"
+msgstr "ברירת מחדל"
+
+msgid "minimal"
+msgstr "מינימלי"
+
+msgid "patience"
+msgstr "סבלנות"
+
+msgid "histogram"
+msgstr "היסטוגרמה"
+
+msgid "none"
+msgstr "ללא"
+
+msgid "GDI"
+msgstr "GDI"
+
+msgid "DirectWrite Default"
+msgstr "ברירת מחדל של DirectWrite"
+
+msgid "DirectWrite Aliased"
+msgstr "DirectWrite עם החלקה"
+
+msgid "DirectWrite GDI Classic"
+msgstr "DirectWrite GDI קלאסי"
+
+msgid "DirectWrite GDI Natural"
+msgstr "DirectWrite GDI טבעי"
+
+msgid "DirectWrite Natural"
+msgstr "DirectWrite טבעי"
+
+msgid "DirectWrite Natural Symmetric"
+msgstr "DirectWrite טבעי סימטרי"
+
+msgid "MDI child window or main window"
+msgstr "חלון בן MDI או חלון ראשי"
+
+msgid "MDI child window only"
+msgstr "רק חלון בן MDI"
+
+msgid "Close main window if there is only one MDI child window"
+msgstr "סגור את החלון הראשי אם יש רק חלון בן MDI אחד"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Diff"
+msgstr "הבדל"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Highlight"
+msgstr "הדגשה"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Blink"
+msgstr "הבהוב"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Size"
+msgstr "גודל בלוק"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Alpha"
+msgstr "אלפא של בלוק"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "CD Threshold"
+msgstr "סף CD"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Ins/Del Detection"
+msgstr "זיהוי הוספה/מחיקה"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "None"
+msgstr "ללא"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Vertical"
+msgstr "אנכי"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Horizontal"
+msgstr "אופקי"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Overlay"
+msgstr "חפיפה"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha"
+msgstr "אלפא"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "XOR"
+msgstr "XOR"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Blend"
+msgstr "שילוב אלפא"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Animation"
+msgstr "אנימציית אלפא"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Zoom"
+msgstr "התקרבות"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Page:"
+msgstr "עמוד:"
+
+#, c-format
+msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
+msgstr "נקודה: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
+
+#, c-format
+msgid "Dist: %g  "
+msgstr "מרחק: %g  "
+
+#, c-format
+msgid "Dist: %g, %g  "
+msgstr "מרחק: %g, %g  "
+
+#, c-format
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "עמוד: %d/%d  התקרבות: %d%%  %dx%dpx  %dbpp  "
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr "Rc: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "הפוך: %s  "
+
+#, c-format
+msgid "Rotated: %d  "
+msgstr "מסובב: %d  "
+
+msgid "All pages"
+msgstr "כל העמודים"
+
+msgid "<Edit here>"
+msgstr "<ערוך כאן>"
+
+msgid "No differences to select found"
+msgstr "לא נמצאו הבדלים לבחירה"
+
+msgid "No differences found to add as substitution filter"
+msgstr "לא נמצאו הבדלים להוספה כמסנן החלפה"
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr "הזוג כבר קיים ברשימת מסנני ההחלפה"
+
+msgid "Add this change to Substitution Filters?"
+msgstr "להוסיף שינוי זה למסנני ההחלפה?"
+
+msgid "Text only"
+msgstr "טקסט בלבד"
+
+msgid "Line-by-line position and text"
+msgstr "מיקום וטקסט שורה-אחר-שורה"
+
+msgid "Word-by-word position and text"
+msgstr "מיקום וטקסט מילה-אחר-מילה"
+
+msgid "AppData folder"
+msgstr "תיקיית AppData"
+
+msgid "Install folder"
+msgstr "תיקיית התקנה"
+
+msgid "Allow only one instance to run"
+msgstr "אפשר להריץ מופע אחד בלבד"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr "אפשר להריץ מופע אחד בלבד והמתן לסיומו"
+
+msgid "Only on window activated"
+msgstr "רק כאשר חלון מופעל"
+
+msgid "Immediately"
+msgstr "מיידית"
+
+msgid "Al&l"
+msgstr "הכ&ל"
+
+msgid "&Others"
+msgstr "&אחרים"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "שם התוסף חסר בצינור התוספים: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "מרכאות חסרות בצינור התוספים: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "שם התוסף '%1' כבר קיים."
+
+msgid "Specify plugin arguments"
+msgstr "ציין פרמטרים לתוסף"
+
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr "התוסף לא נמצא או לא תקין: %1"
+
+#, c-format
+msgid "'%1' is not unpacker plugin"
+msgstr "'%1' אינו תוסף מחלץ"
+
+#, c-format
+msgid "'%1' is not prediffer plugin"
+msgstr "'%1' אינו תוסף השוואה מוקדמת"
+
+#, c-format
+msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr "אירעה שגיאה בעת השוואה מוקדמת של הקובץ '%1' עם התוסף '%2'. ההשוואה המוקדמת לא תיושם עוד."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "ייחוס מעגלי בצינור התוספים: %1"
+
+msgid "URL Handler"
+msgstr "מטפל בכתובות URL"
+
+msgid "File Unpacker"
+msgstr "מחלץ קבצים"
+
+msgid "File or Folder Unpacker"
+msgstr "מחלץ קובץ או תיקיה"
+
+msgid "Alias for Unpacker"
+msgstr "כינוי למחלץ"
+
+msgid "Alias for Prediffer"
+msgstr "כינוי לתוסף השוואה מוקדמת"
+
+msgid "Alias for Editor script"
+msgstr "כינוי לסקריפט עורך"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "כינוי לצינור תוספים '%1'"
+
+msgid "New plugin description"
+msgstr "תיאור תוסף חדש"
+
+msgid "All"
+msgstr "הכל"
+
+msgid "1st"
+msgstr "ראשון"
+
+msgid "2nd"
+msgstr "שני"
+
+msgid "3rd"
+msgstr "שלישי"
+
+msgid "1st and 2nd"
+msgstr "ראשון ושני"
+
+msgid "1st and 3rd"
+msgstr "ראשון ושלישי"
+
+msgid "2nd and 3rd"
+msgstr "שני ושלישי"
+
+msgid "Filter applied"
+msgstr "המסנן הופעל"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "לוח גזירים ב-%s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"היסטוריית לוח גזירים מושבתת.\r\n"
+"כדי להפעיל אותה, לחץ על מקש Windows + V ולאחר מכן לחץ על כפתור 'הפעל'."
+
+msgid "This system does not support clipboard history."
+msgstr "מערכת זו אינה תומכת בהיסטוריית לוח גזירים."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "גרסת 32 ביט של WinMerge אינה תומכת בהשוואת לוח גזירים"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2 Runtime אינו מותקן. האם ברצונך להוריד אותו?"
+
+msgid "New Text Compare"
+msgstr "השוואת טקסט חדשה"
+
+msgid "New Table Compare"
+msgstr "השוואת טבלה חדשה"
+
+msgid "New Binary Compare"
+msgstr "השוואה בינארית חדשה"
+
+msgid "New Image Compare"
+msgstr "השוואת תמונה חדשה"
+
+msgid "New Webpage Compare"
+msgstr "השוואת דף אינטרנט חדשה"
+
+msgid "Clipboard Compare"
+msgstr "השוואת לוח גזירים"
+
+msgid "&Print..."
+msgstr "&הדפס..."
+
+msgid "Pre&v Page"
+msgstr "עמוד קו&דם"
+
+msgid "&Two Page"
+msgstr "&שני עמודים"
+
+msgid "&One Page"
+msgstr "&עמוד אחד"
+
+msgid "Zoom &In"
+msgstr "התקרבות &פנימה"
+
+msgid "Zoom &Out"
+msgstr "התרחקות &החוצה"
+
+msgid "Comparing..."
+msgstr "משווה..."
+
+msgid "Zoom:"
+msgstr "התקרבות:"
+
+msgid "Diff hunk"
+msgstr "גוש הבדלים"
+
+msgid "Inline diff"
+msgstr "הבדלים פנימיים"
+
+msgid "Line"
+msgstr "שורה"
+
+msgid "Character"
+msgstr "תו"
+
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)\n"
+"(Right Button+Wheel Up)\n"
+"(Alt+Wheel Up)"
+msgstr ""
+"\n"
+"הבדל קודם (Alt+Up)\n"
+"(כפתור ימני+גלגלת למעלה)\n"
+"(Alt+גלגלת למעלה)"
+
+msgid ""
+"\n"
+"Next Difference (Alt+Down)\n"
+"(Right Button+Wheel Down)\n"
+"(Alt+Wheel Down)"
+msgstr ""
+"\n"
+"הבדל הבא (Alt+Down)\n"
+"(כפתור ימני+גלגלת למטה)\n"
+"(Alt+גלגלת למטה)"
+
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)\n"
+"(Right Button+Wheel Right)\n"
+"(Alt+Wheel Right)\n"
+"(Alt+Shift+Wheel Down)"
+msgstr ""
+"\n"
+"העתק לימין (Alt+Right)\n"
+"(כפתור ימני+גלגלת ימינה)\n"
+"(Alt+גלגלת ימינה)\n"
+"(Alt+Shift+גלגלת למטה)"
+
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)\n"
+"(Right Button+Wheel Left)\n"
+"(Alt+Wheel Left)\n"
+"(Alt+Shift+Wheel Up)"
+msgstr ""
+"\n"
+"העתק לשמאל (Alt+Left)\n"
+"(כפתור ימני+גלגלת שמאלה)\n"
+"(Alt+גלגלת שמאלה)\n"
+"(Alt+Shift+גלגלת למעלה)"
+
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)\n"
+"(Ctrl+Alt+Wheel Right)\n"
+"(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+"\n"
+"העתק לימין והתקדם (Ctrl+Alt+Right)\n"
+"(Ctrl+Alt+גלגלת ימינה)\n"
+"(Ctrl+Alt+Shift+גלגלת למטה)"
+
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)\n"
+"(Ctrl+Alt+Wheel Left)\n"
+"(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+"\n"
+"העתק לשמאל והתקדם (Ctrl+Alt+Left)\n"
+"(Ctrl+Alt+גלגלת שמאלה)\n"
+"(Ctrl+Alt+Shift+גלגלת למעלה)"
+
+msgid "Prettification"
+msgstr "עיצוב"
+
+msgid "Content Extraction"
+msgstr "חילוץ תוכן"
+
+msgid "Preview"
+msgstr "תצוגה מקדימה"
+
+msgid "Data Query"
+msgstr "שאילתת נתונים"
+
+msgid "Validation"
+msgstr "אימות"
+
+msgid "Decompilation"
+msgstr "פירוק קוד"
+
+msgid "URL Handling"
+msgstr "טיפול בכתובת URL"
+
+msgid "Decoding / Encoding"
+msgstr "פענוח / קידוד"
+
+msgid "Make Uppercase"
+msgstr "הפוך לאותיות גדולות"
+
+msgid "Make Lowercase"
+msgstr "הפוך לאותיות קטנות"
+
+msgid "Remove Duplicate Lines"
+msgstr "הסר שורות כפולות"
+
+msgid "Count Duplicate Lines"
+msgstr "ספור שורות כפולות"
+
+msgid "Sort Lines Ascending"
+msgstr "מיין שורות בסדר עולה"
+
+msgid "Sort Lines Descending"
+msgstr "מיין שורות בסדר יורד"
+
+msgid "Reverse Columns"
+msgstr "הפוך עמודות"
+
+msgid "Reverse Lines"
+msgstr "הפוך שורות"
+
+msgid "Replace..."
+msgstr "החלף..."
+
+msgid "Apply Filter Command..."
+msgstr "הפעל פקודת מסנן..."
+
+msgid "Tokenize..."
+msgstr "פצל לטוקנים..."
+
+msgid "Trim Spaces"
+msgstr "הסר רווחים"
+
+msgid "Select Columns..."
+msgstr "בחר עמודות..."
+
+msgid "Select Lines..."
+msgstr "בחר שורות..."
+
+msgid "Insert Date"
+msgstr "הוסף תאריך"
+
+msgid "Insert Time"
+msgstr "הוסף שעה"
+
+msgid "Apply Patch..."
+msgstr "הפעל תיקון..."
+
+msgid "Ignore Columns"
+msgstr "התעלם מעמודות"
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr "התעלם מהערות (שפות בסגנון C)"
+
+msgid "Ignore CSV Fields"
+msgstr "התעלם משדות CSV"
+
+msgid "Ignore TSV Fields"
+msgstr "התעלם משדות TSV"
+
+msgid "Ignore Leading Line Numbers"
+msgstr "התעלם ממספרי שורות מובילים"
+
+msgid "Apply Prediff Substitution Filters"
+msgstr "הפעל מסנני החלפה מוקדמים"
+
+msgid "Prettify HTML"
+msgstr "ייפה HTML"
+
+msgid "Prettify JSON"
+msgstr "ייפה JSON"
+
+msgid "Prettify XML"
+msgstr "ייפה XML"
+
+msgid "Prettify YAML"
+msgstr "ייפה YAML"
+
+msgid "Preview Graphviz"
+msgstr "תצוגה מקדימה של Graphviz"
+
+msgid "Preview Markdown"
+msgstr "תצוגה מקדימה של Markdown"
+
+msgid "Preview PlantUML"
+msgstr "תצוגה מקדימה של PlantUML"
+
+msgid "Query CSV Data..."
+msgstr "בצע שאילתה על נתוני CSV..."
+
+msgid "Query TSV Data..."
+msgstr "בצע שאילתה על נתוני TSV..."
+
+msgid "Query JSON Data..."
+msgstr "בצע שאילתה על נתוני JSON..."
+
+msgid "Query YAML Data..."
+msgstr "בצע שאילתה על נתוני YAML..."
+
+msgid "Validate HTML"
+msgstr "אמת HTML"
+
+msgid "Disassemble JVM Bytecode"
+msgstr "פרק קוד JVM Bytecode"
+
+msgid "Disassemble IL Code"
+msgstr "פרק קוד IL"
+
+msgid "Disassemble Native Code"
+msgstr "פרק קוד מקורי"
+
+msgid "Convert Text with AI..."
+msgstr "המר טקסט באמצעות בינה מלאכותית..."
+
+msgid "Unescape Java properties files"
+msgstr "בטל התמרה בקובצי מאפייני Java"
+
+msgid "Make characters uppercase"
+msgstr "הפוך תווים לאותיות גדולות"
+
+msgid "Make characters lowercase"
+msgstr "הפוך תווים לאותיות קטנות"
+
+msgid "Remove duplicate lines"
+msgstr "הסר שורות כפולות"
+
+msgid "Count duplicate lines"
+msgstr "ספור שורות כפולות"
+
+msgid "Sort lines ascending"
+msgstr "מיין שורות בסדר עולה"
+
+msgid "Sort lines descending"
+msgstr "מיין שורות בסדר יורד"
+
+msgid "Reverse columns"
+msgstr "הפוך עמודות"
+
+msgid "Reverse lines"
+msgstr "הפוך שורות"
+
+msgid "Trim spaces"
+msgstr "הסר רווחים"
+
+msgid ""
+"Select some columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching columns\r\n"
+"  -i - ignore case\r\n"
+"  -g - enable global flag\r\n"
+"  -e - use PATTERNS for matching"
+msgstr ""
+"בחר עמודות מסוימות.\r\n"
+"שימוש: SelectColumns RANGES\r\n"
+"   או: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+"  RANGES   - רשימת טווחי עמודות לבחירה. (לדוגמה: -3,5-10,30-)\r\n"
+"  PATTERNS - ביטוי רגולרי\r\n"
+"  -v - בחר עמודות שאינן תואמות\r\n"
+"  -i - התעלם מרישיות\r\n"
+"  -g - אפשר דגל גלובלי\r\n"
+"  -e - השתמש ב-PATTERNS להתאמה"
+
+msgid ""
+"Select some lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+"   or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching lines\r\n"
+"  -i - ignore case\r\n"
+"  -e - use PATTERNS for matching"
+msgstr ""
+"בחר שורות מסוימות.\r\n"
+"שימוש: SelectLines RANGES\r\n"
+"   או: SelectLines [-v] [-i] -e PATTERNS\r\n"
+"  RANGES   - רשימת טווחי שורות לבחירה. (לדוגמה: -3,5-10,30-)\r\n"
+"  PATTERNS - ביטוי רגולרי\r\n"
+"  -v - בחר שורות שאינן תואמות\r\n"
+"  -i - התעלם מרישיות\r\n"
+"  -e - השתמש ב-PATTERNS להתאמה"
+
+msgid ""
+"HTML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"עיצוב HTML עם tidy-html5.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת tidy."
+
+msgid ""
+"JSON Prettier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
+msgstr ""
+"עיצוב JSON עם פקודת jq.\r\n"
+"ארגומנטים: מסנן או אפשרויות שורת פקודה המועברות לפקודת jq."
+
+msgid ""
+"XML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"עיצוב XML עם tidy-html5.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת tidy."
+
+msgid ""
+"YAML Prettier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
+msgstr ""
+"עיצוב YAML עם פקודת yq.\r\n"
+"ארגומנטים: מסנן או אפשרויות שורת פקודה המועברות לפקודת yq."
+
+msgid ""
+"Graphviz Previewer. \r\n"
+"Arguments: Command line options passed to the dot command."
+msgstr ""
+"תצוגה מקדימה של Graphviz.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת dot."
+
+msgid ""
+"Markdown Previewer. \r\n"
+"Arguments: Command line options passed to the md2html command."
+msgstr ""
+"תצוגה מקדימה של Markdown.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת md2html."
+
+msgid ""
+"PlantUML Previewer. \r\n"
+"Arguments: Command line options passed to the plantuml.jar command."
+msgstr ""
+"תצוגה מקדימה של PlantUML.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת plantuml.jar."
+
+msgid ""
+"CSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
+msgstr ""
+"שאילתת CSV עם פקודת q.\r\n"
+"ארגומנטים: משפט SQL או אפשרויות שורת פקודה המועברות לפקודת q."
+
+msgid ""
+"TSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
+msgstr ""
+"שאילתת TSV עם פקודת q.\r\n"
+"ארגומנטים: משפט SQL או אפשרויות שורת פקודה המועברות לפקודת q."
+
+msgid ""
+"JSON Querier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
+msgstr ""
+"שאילתת JSON עם פקודת jq.\r\n"
+"ארגומנטים: מסנן או אפשרויות שורת פקודה המועברות לפקודת jq."
+
+msgid ""
+"YAML Querier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
+msgstr ""
+"שאילתת YAML עם פקודת yq.\r\n"
+"ארגומנטים: מסנן או אפשרויות שורת פקודה המועברות לפקודת yq."
+
+msgid ""
+"HTML Validator with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"אימות HTML עם tidy-html5.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת tidy."
+
+msgid ""
+"JVM bytecode disassembler with javap. \r\n"
+"Arguments: Command line options passed to the javap command."
+msgstr ""
+"פירוק קוד JVM bytecode עם javap.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת javap."
+
+msgid ""
+"IL disassembler with ildasm. \r\n"
+"Arguments: Command line options passed to the ildasm command."
+msgstr ""
+"פירוק קוד IL עם ildasm.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת ildasm."
+
+msgid ""
+"Native code disassembler with dumpbin. \r\n"
+"Arguments: Command line options passed to the dumpbin command."
+msgstr ""
+"פירוק קוד מקורי עם dumpbin.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת dumpbin."
+
+msgid ""
+"General content extractor with Apache Tika. \r\n"
+"Arguments: Command line options passed to the tika-app.jar."
+msgstr ""
+"חילוץ תוכן כללי עם Apache Tika.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות ל-tika-app.jar."
+
+msgid "Apply patch using GNU patch"
+msgstr "הפעל תיקון באמצעות GNU patch"
+
+msgid "Display the text content of MS Excel files"
+msgstr "הצגת תוכן טקסט של קבצי MS Excel"
+
+msgid "Display the text content of MS PowerPoint files"
+msgstr "הצגת תוכן טקסט של קבצי MS PowerPoint"
+
+msgid "Display the text content of MS Visio files"
+msgstr "הצגת תוכן טקסט של קבצי MS Visio"
+
+msgid "Display the text content of MS Word files"
+msgstr "הצגת תוכן טקסט של קבצי MS Word"
+
+msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+msgstr "התעלם מחלק מהעמודות - רשימת העמודות להתעלמות מגיעה משם התוסף או מהארגומנט"
+
+msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+msgstr "התוסף מתעלם מהערות (//... ו-/* ... */) בקובצי C, C++, PHP ו-JavaScript."
+
+msgid "Prediff Line Filter"
+msgstr "מסנן שורות מוקדם"
+
+msgid "Date and time insertion function"
+msgstr "פונקציה להוספת תאריך ושעה"
+
+msgid ""
+"HTTP URL Scheme Handler with curl. \r\n"
+"Arguments: Command line options passed to the curl command."
+msgstr ""
+"מעבד ערכת כתובות HTTP עם curl.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת curl."
+
+msgid ""
+"Windows Registry URL Scheme Handler. \r\n"
+"Arguments: Command line options passed to the reg.exe command."
+msgstr ""
+"מעבד ערכת כתובות ברישום Windows.\r\n"
+"ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת reg.exe."
+
+msgid "Basic text functions"
+msgstr "פונקציות טקסט בסיסיות"
+
+msgid "AI-assisted text conversion functions"
+msgstr "פונקציות להמרת טקסט בסיוע בינה מלאכותית"
+
+msgid ""
+"Text converter using OpenAI API.\r\n"
+"Usage: AIConvertText PROMPT"
+msgstr ""
+"ממיר טקסט באמצעות OpenAI API.\r\n"
+"שימוש: AIConvertText PROMPT"
+
+msgid "Unescape and display escaped Java properties files."
+msgstr "המרת תווים והצגת קבצי מאפיינים של Java."
+
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr "אפשרויות התוסף CompareMSExcelFiles.sct עבור WinMerge"
+
+msgid "Extract workbook data to multiple files"
+msgstr "חלץ נתוני חוברת עבודה לקבצים מרובים"
+
+msgid "Update external references(links)"
+msgstr "עדכן הפניות חיצוניות (קישורים)"
+
+msgid "Compare document properties"
+msgstr "השווה מאפייני מסמך"
+
+msgid "Compare names"
+msgstr "השווה שמות"
+
+msgid "Compare cell values"
+msgstr "השווה ערכי תאים"
+
+msgid "Compare worksheets as image (very slow)"
+msgstr "השווה גיליונות עבודה כתמונה (איטי מאוד)"
+
+msgid " - Image split size: "
+msgstr " - גודל חלוקת תמונה: "
+
+msgid "Compare worksheets as HTML"
+msgstr "השווה גיליונות עבודה כ-HTML"
+
+msgid "Compare formulas"
+msgstr "השווה נוסחאות"
+
+msgid "Compare texts in shapes"
+msgstr "השווה טקסטים בתוך צורות"
+
+msgid "Compare headers and footers"
+msgstr "השווה כותרות עליונות ותחתונות"
+
+msgid ""
+"Cannot get Macros.\r\n"
+"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n"
+"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgstr ""
+"אין אפשרות לקבל מאקרואים.\r\n"
+"   כדי לאפשר ל-WinMerge להשוות מאקרואים, השתמש ב-MS Office לשינוי ההגדרות ב'אבטחת מאקרו' עבור היישום הנוכחי.\r\n"
+"   יש להפעיל את האפשרות 'אמון בגישה לפרויקט Visual Basic' כדי להשתמש בפונקציה זו ב-WinMerge.\r\n"
+
+msgid "Compare VBA macros"
+msgstr "השווה מאקרואים VBA"
+
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr "אפשרויות התוסף CompareMSWordFiles.sct עבור WinMerge"
+
+msgid "Extract document data to multiple files"
+msgstr "חלץ נתוני מסמך לקבצים מרובים"
+
+msgid "Compare bookmarks"
+msgstr "השווה סימניות"
+
+msgid "Compare text contents of documents"
+msgstr "השווה תוכן טקסט במסמכים"
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr "השווה מסמכים כקובץ HTML (איטי מאוד)"
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr "אפשרויות התוסף CompareMSPowerPointFiles.sct עבור WinMerge"
+
+msgid "Extract slide data to multiple files"
+msgstr "חלץ נתוני שקופיות לקבצים מרובים"
+
+msgid "Compare slides as image (very slow)"
+msgstr "השווה שקופיות כתמונה (איטי מאוד)"
+
+msgid "Compare texts in notes page"
+msgstr "השווה טקסטים בעמוד הערות"
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr "אפשרויות התוסף CompareMSVisioFiles.sct עבור WinMerge"
+
+msgid "Extract page data to multiple files"
+msgstr "חלץ נתוני עמוד לקבצים מרובים"
+
+msgid "Compare pages as image (very slow)"
+msgstr "השווה עמודים כתמונה (איטי מאוד)"
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr "אפשרויות התוסף PrediffLineFilter.sct עבור WinMerge"
+
+msgid "Delete"
+msgstr "מחק"
+
+msgid "Enabled"
+msgstr "מופעל"
+
+msgid "Ignore Case"
+msgstr "התעלם מרישיות"
+
+msgid "Use RegExp"
+msgstr "השתמש בביטוי רגולרי"
+
+msgid "Find what"
+msgstr "מצא את"
+
+msgid "Replace with"
+msgstr "החלף ב"
+
+msgid "Settings"
+msgstr "הגדרות"
+
+msgid ""
+"Column Ranges To Ignore:\n"
+"e.g.)  3,10-20,32-33\n"
+msgstr ""
+"טווחי עמודות להתעלמות:\n"
+"למשל)  3,10-20,32-33\n"
+
+#, c-format
+msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgstr "הזן את שם הקובץ שעליו יוחל התיקון '%1'"
+
+#, c-format
+msgid "File '%1' does not exist"
+msgstr "הקובץ '%1' אינו קיים"
+
+msgid "Enter the command line arguments for patch command"
+msgstr "הזן את ארגומנטי שורת הפקודה עבור פקודת התיקון"
+
+#, c-format
+msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgstr "הזן את שם התיקייה שעליה יוחל התיקון '%1'"
+
+#, c-format
+msgid "Folder '%1' does not exist"
+msgstr "התיקייה '%1' אינה קיימת"
+
+msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgstr "אין לציין את אפשרות שורת הפקודה '-p0' עבור קובץ תיקון הכולל נתיבים מוחלטים"
+
+msgid "AI.sct WinMerge Plugin Options"
+msgstr "אפשרויות התוסף AI.sct עבור WinMerge"
+
+msgid "Enter prompt"
+msgstr "הזן הנחיה"
+
+#, c-format
+msgid ""
+"Enter your OpenAI API key.\r\n"
+" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
+" - The API key is stored in the environment variable %1."
+msgstr ""
+"הזן את מפתח ה-API של OpenAI.\r\n"
+" - השימוש בתוסף זה מחייב רישום ב-OpenAI ועלול להיות כרוך בתשלום.\r\n"
+" - מפתח ה-API מאוחסן במשתנה הסביבה %1."
+
+msgid "Environment variable name for OpenAI API key"
+msgstr "שם משתנה הסביבה עבור מפתח API של OpenAI"
+
+msgid "OpenAI API key"
+msgstr "מפתח API של OpenAI"
+
+msgid "Temperature"
+msgstr "טמפרטורה"
+
+msgid "Maximum length"
+msgstr "אורך מרבי"
+
+msgid "Model"
+msgstr "מודל"
+
+msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr "מפתח ה-API של OpenAI השתנה. יש להפעיל מחדש את WinMerge כדי להחיל את השינויים."
