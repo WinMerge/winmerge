@@ -19,7 +19,7 @@ msgstr ""
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr ""
+msgstr "LANG_HEBREW, SUBLANG_HEBREW_ISRAEL"
 
 msgid "Copy to Middle"
 msgstr "העתק לאמצע"
