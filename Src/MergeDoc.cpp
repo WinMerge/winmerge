@@ -2277,15 +2277,15 @@ void CMergeDoc::SetTextType(const String& ext)
 bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		const bool bRO[], const String strDesc[])
 {
+	PrediffingInfo prediffer;
+	m_diffWrapper.GetPrediffer(&prediffer);
+	CMergeFrameCommon::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer);
+
 	CWaitCursor waitstatus;
 	IDENTLEVEL identical = IDENTLEVEL::NONE;
 	int nRescanResult = RESCAN_OK;
 	int nBuffer;
 	FileLocation fileloc[3];
-	PrediffingInfo prediffer;
-
-	m_diffWrapper.GetPrediffer(&prediffer);
-	CMergeFrameCommon::LogComparisonStart(nFiles, ifileloc, strDesc, &m_infoUnpacker, &prediffer);
 
 	std::copy_n(ifileloc, 3, fileloc);
 

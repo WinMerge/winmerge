@@ -227,6 +227,8 @@ CImgMergeFrame::~CImgMergeFrame()
 
 bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent)
 {
+	CMergeFrameCommon::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+
 	CWaitCursor waitstatus;
 	int nNormalBuffer = 0;
 	for (int pane = 0; pane < nFiles; ++pane)
@@ -271,6 +273,8 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 		m_pImgMergeWindow->FirstDiff();
 
 	GetMainFrame()->WatchDocuments(this);
+
+	CMergeFrameCommon::LogComparisonCompleted(m_pImgMergeWindow->GetDiffCount());
 
 	return true;
 }
@@ -1143,8 +1147,6 @@ void CImgMergeFrame::UpdateSplitter()
 
 bool CImgMergeFrame::OpenImages()
 {
-	CMergeFrameCommon::LogComparisonStart(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
-
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
@@ -1160,8 +1162,6 @@ bool CImgMergeFrame::OpenImages()
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
 	else
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
-
-	CMergeFrameCommon::LogComparisonCompleted(m_pImgMergeWindow->GetDiffCount());
 
 	return bResult;
 }

@@ -186,6 +186,8 @@ CWebPageDiffFrame::~CWebPageDiffFrame()
 
 bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback)
 {
+	CMergeFrameCommon::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+
 	m_callbackOnOpenCompleted = callback;
 	m_bCompareCompleted = false;
 	
@@ -862,8 +864,6 @@ void CWebPageDiffFrame::UpdateSplitter()
 
 bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 {
-	CMergeFrameCommon::LogComparisonStart(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
-
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];

@@ -170,8 +170,10 @@ void CMergeFrameCommon::LogComparisonStart(const PathContext& paths, const Strin
 
 String CMergeFrameCommon::GetDiffStatusString(int curDiffIndex, int diffCount)
 {
-	if (diffCount <= 0)
+	if (diffCount == 0)
 		return _("Identical");
+	if (diffCount < 0)
+		return _("Different");
 
 	if (curDiffIndex < 0)
 		return diffCount == 1 ? _("1 Difference Found") :

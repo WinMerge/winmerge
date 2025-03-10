@@ -67,15 +67,15 @@ public:
 	LOGFONT m_lfDiff; /**< MergeView user-selected font */
 	LOGFONT m_lfDir; /**< DirView user-selected font */
 	bool m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
-	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
-	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
+	SyntaxColors* GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
+	CCrystalTextMarkers* GetMainMarkers() const { return m_pMarkers.get(); }
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
 
 	WORD GetLangId() const;
 	String GetLangName() const;
-	void SetIndicators(CStatusBar &, const UINT *, int) const;
+	void SetIndicators(CStatusBar&, const UINT*, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
@@ -90,6 +90,7 @@ public:
 	void AddToRecentProjectsMRU(const tchar_t* sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
+	int GetLastCompareResult() const { return m_nLastCompareResult; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper* GetGlobalFileFilter();
