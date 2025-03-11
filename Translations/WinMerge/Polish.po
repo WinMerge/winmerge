@@ -2836,7 +2836,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Zamierzasz zamknąć okno porównujące foldery. Czy na pewno chcesz zamknąć okno?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr "Zamierzasz zamknąć okno porównywania folderu, któremy poświęcono znaczną ilość czasu. Czy na pewno chcesz zamknąć okno?"
+msgstr "Zamierzasz zamknąć okno porównywania folderu, któremu poświęcono znaczną ilość czasu. Czy na pewno chcesz zamknąć okno?"
 
 msgid "The file or folder name is invalid."
 msgstr "Nazwa pliku lub folderu jest nieprawidłowa."
