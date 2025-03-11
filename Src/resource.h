@@ -1806,6 +1806,7 @@
 #define IDS_LOG_COMPARE_2               44650
 #define IDS_LOG_COMPARE_3               44651
 #define IDS_LOG_COMPARE_RESULT          44652
+#define IDS_LOG_FILE_SAVED              44653
 
 // Next default values for new objects
 // 

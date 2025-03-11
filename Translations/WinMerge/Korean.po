@@ -5161,7 +5161,10 @@ msgstr ""
 msgid "Comparing %1 with %2 and %3"
 msgstr ""
 
-msgid "Comparison completed: "
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
 msgstr ""
 
 msgid "Prettification"

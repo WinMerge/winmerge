@@ -192,7 +192,7 @@ String CMergeFrameCommon::GetDiffStatusString(int curDiffIndex, int diffCount)
 
 void CMergeFrameCommon::LogComparisonCompleted(int diffCount)
 {
-	RootLogger::Info(_("Comparison completed: ") + GetDiffStatusString(-1, diffCount));
+	RootLogger::Info(_("Comparison completed") + _T(": ") + GetDiffStatusString(-1, diffCount));
 }
 
 void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
@@ -209,7 +209,7 @@ void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
 
 void CMergeFrameCommon::LogFileSaved(const String& path)
 {
-	RootLogger::Info(_("File saved: ") + path);
+	RootLogger::Info(_("File saved") + _T(": ") + path);
 }
 
 String CMergeFrameCommon::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)

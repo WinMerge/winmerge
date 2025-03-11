@@ -2423,14 +2423,14 @@ LRESULT CMainFrame::OnUser2(WPARAM wParam, LPARAM lParam)
 	CCrystalTextBuffer& buf = m_pOutputDoc->m_xTextBuffer;
 	int nEndLine, nEndChar;
 	POSITION pos = m_pOutputDoc->GetFirstViewPosition();
-	CCrystalTextView* pTextView = static_cast<CCrystalTextView*>(m_pOutputDoc->GetNextView(pos));
-	const bool isCursorAtLastLine = (pTextView && pTextView->GetCursorPos().y + 1 == buf.GetLineCount());
-	buf.InsertText(pTextView, buf.GetLineCount() - 1, 0, text.c_str(), text.length(), nEndLine, nEndChar, 0, false);
+	CCrystalTextView* pOutputView = static_cast<CCrystalTextView*>(m_pOutputDoc->GetNextView(pos));
+	const bool isCursorAtLastLine = (pOutputView && pOutputView->GetCursorPos().y + 1 == buf.GetLineCount());
+	buf.InsertText(pOutputView, buf.GetLineCount() - 1, 0, text.c_str(), text.length(), nEndLine, nEndChar, 0, false);
 	if (isCursorAtLastLine)
 	{
 		CEPoint pt{ nEndChar, nEndLine };
-		pTextView->SetCursorPos(pt);
-		pTextView->EnsureVisible(pt);
+		pOutputView->SetCursorPos(pt);
+		pOutputView->EnsureVisible(pt);
 	}
 
 	delete pLogMessage;
@@ -3839,6 +3839,9 @@ void CMainFrame::ShowOutputPane(bool bShow)
 		pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
 		m_pOutputDoc->AddView(pOutputView);
 		pOutputView->SendMessage(WM_INITIALUPDATE);
+
+		CEPoint pt{ 0, pOutputView->GetLineCount() - 1 };
+		pOutputView->SetCursorPos(pt);
 
 		m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
 		m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
