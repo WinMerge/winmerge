@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2025-03-12**:
+Status from **2025-03-14**:
 
 ## WinMerge
 
@@ -112,6 +112,7 @@ Status from **2025-03-12**:
 | Galician             |     - |          - |     - |            - |        - |             |
 | German               |     - |          - |     - |            - |        - |             |
 | Greek                |     - |          - |     - |            - |        - |             |
+| Hebrew               |     - |          - |     - |            - |        - |             |
 | Hungarian            |     - |          - |     - |            - |        - |             |
 | Italian              |     - |          - |     - |            - |        - |             |
 | Japanese             |     - |          - |     - |            - |        - |             |
@@ -258,6 +259,9 @@ Status from **2025-03-12**:
 
  * Greek
    - [Polyvios J. Simopoulos](mailto:polyvios.j.simopoulos%20at%20gmail.com)
+
+ * Hebrew
+   - Y-Ploni
 
  * Hungarian
    - [Márton Balázs](mailto:documan%20at%20users.sourceforge.net)
