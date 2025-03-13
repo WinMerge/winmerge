@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Install">
+  <title>השגה והתקנה של WinMerge<indexterm>
+      <primary>התקנת WinMerge</primary>
+    </indexterm></title>
+
+  <para>ניתן להתקין את WinMerge באמצעות המתקין או על ידי פריקת קבצים מארכיון. השימוש
+במתקין הוא השיטה המומלצת.</para>
+
+  <section>
+    <title>השגת קבצים</title>
+
+    <para>ניתן להוריד תמיד את הגרסה האחרונה מדף הבית של WinMerge: <ulink
+url="https://winmerge.org/">WinMerge.org</ulink>. שים לב שעיכובים יכולים
+להתרחש בעדכון דפי הבית עבור הגרסאות האחרונות, אך דף מצב הפרויקט ב-<ulink
+url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
+מציג את הקבצים האחרונים. גרסאות יציבות זמינות גם במספר אתרי הורדת קבצים.</para>
+  </section>
+
+  <section>
+	<title>תאימות</title>
+	
+	<itemizedlist>
+	  <listitem>
+	    <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.16.8/">WinMerge
+2.16.8 (64 bit)</ulink> תומך ב-Windows 7 ואילך. הוא פועל על Windows 64 ביט.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.16.8/">WinMerge
+2.16.8 (32 bit)</ulink> תומך ב-Windows XP SP3 ואילך. הוא פועל הן על Windows
+32 ביט והן על Windows 64 ביט.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.16.0/">WinMerge
+2.16.0</ulink> תומך ב-Windows XP SP3 ואילך. הוא פועל הן על Windows 32 ביט
+והן על Windows 64 ביט.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge
+2.14.0</ulink> הייתה הגרסה האחרונה שתמכה ב-Windows 2000.</para>
+	  </listitem>
+	  <listitem>
+	    <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge
+2.12.4</ulink> הייתה הגרסה האחרונה שתמכה ב-Windows 95, 98, ME ו-NT.</para>
+	  </listitem>
+	  <listitem>
+	    <para>WinMerge אינו נתמך ב-Windows RT.</para>
+	  </listitem>
+	</itemizedlist>
+  </section>
+  
+  <section id="Installing_usinginstaller">
+    <title>שימוש במתקין (מומלץ)</title>
+    <para></para>
+    <note>
+      <para>המתקין דורש הרשאות משתמש מנהל. אם אין לך הרשאות משתמש מנהל, אתה יכול להתקין
+את WinMerge על ידי חילוץ מקובץ ארכיון (ראה <xref
+linkend="InstallFromArchive" />) או על ידי שימוש במתקין לכל משתמש
+(WinMerge-x.x.x-x64-PerUser-Setup.exe).</para>
+    </note>
+
+    <para>השימוש במתקין מומלץ לרוב המשתמשים. המתקין מבקש את המיקום שבו WinMerge
+מותקן. לאחר מכן הוא מתקין את הקבצים, מגדיר את שילוב המעטפת ומוסיף את
+WinMerge לתפריט התחל. כדי להתקין את WinMerge:</para>
+
+    <orderedlist>
+      <listitem>
+        <simpara>הפעל את קובץ ההפעלה של המתקין (בדרך כלל בשם
+<filename>WinMerge-<replaceable>גרסה</replaceable>-setup.exe</filename>).</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>לחץ על <guibutton>הבא</guibutton> במסך הסכם הרישיון.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>בדף בחר מיקום יעד, קבל את המיקום עבור WinMerge או, אם תבחר מיקום אחר, אנו
+ממליצים שתתקין את WinMerge בתיקייה משלו. לחץ על <guibutton>הבא</guibutton>.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>בדף בחר רכיבים, בחר אחת מההתקנות שהוגדרו מראש בפקד העליון. אנו ממליצים על
+תצורת <guilabel>אופייני</guilabel> עבור רוב המשתמשים. התיבה התחתונה מציגה את
+כל הרכיבים הזמינים. אתה יכול לשנות את תצורת ברירת המחדל על ידי סימון או
+ביטול הסימון של רכיבים. לדוגמה, אם אתה רוצה להשתמש בלוקליזציה של WinMerge
+עבור שפה שונה מאנגלית, בחר את רכיב <guilabel>שפות</guilabel>.</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>קבצי ליבה של WinMerge<indexterm>
+                <primary>קבצי הפעלה של WinMerge</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>קובץ ההפעלה של WinMerge, עזרה וקבצים נחוצים אחרים. לא ניתן לבטל את הסימון.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>הרחבת מעטפת WinMerge 32 ביט<indexterm>
+                <primary>הרחבת מעטפת</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>האפשרות מאפשרת לך להפעיל את WinMerge ישירות מסייר Windows, ולהשוות פריטים
+שבחרת שם.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>מסננים</term>
+
+            <listitem>
+              <para>קבצי מסנן קבצים מאפשרים לך לצמצם את היקף ההשוואות.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>תוספים</term>
+
+            <listitem>
+              <para>תוספי WinMerge הם dlls או scriptlets מותאמים אישית, הכתובים ב-COM API, שבהם
+אתה יכול להשתמש כדי לעבד נתונים מראש לפני השוואה.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>שפות</term>
+
+            <listitem>
+              <para>קבצי תרגום של WinMerge. אם אתה רוצה להגדיר את WinMerge לשימוש בשפה שונה
+מאנגלית, הרחב פריט זה ובחר תרגום זמין אחד או יותר. המתקין יוצר תיקיית משנה
+שפות בתיקיית WinMerge, המכילה קובץ תרגום *.po עבור כל אחת מהבחירות שלך. לאחר
+ההתקנה, אתה יכול לפתוח את WinMerge ולשנות את הלוקליזציה שלו לאחת משפות קובץ
+התרגום. ראה <xref linkend="Locales" /> לפרטים.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>לחץ על <guibutton>הבא</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>בדף בחר תיקיית תפריט התחלה, הגדר קיצורי דרך של WinMerge.</simpara>
+
+        <itemizedlist>
+          <listitem>
+            <para>קבל את הגדרת ברירת המחדל כדי ליצור קיצור דרך לתוכנית, או ציין תיקייה אחרת.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחלופין, סמן את האפשרות <guilabel>אל תיצור תיקיית תפריט התחלה</guilabel>.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>לחץ על <guibutton>הבא</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <para>בדף בחר משימות נוספות, ציין משימות נוספות:<indexterm>
+            <primary>שילוב</primary>
+
+            <secondary>עם מערכת בקרת גרסאות</secondary>
+          </indexterm><indexterm>
+            <primary>VCS</primary>
+
+            <see>מערכות בקרת גרסאות</see>
+          </indexterm></para>
+
+        <variablelist>
+          <varlistentry>
+            <term>אפשר שילוב של תפריט הקשר של סייר</term>
+
+            <listitem>
+              <indexterm>
+                <primary>שילוב</primary>
+
+                <secondary>עם מעטפת Windows</secondary>
+              </indexterm>
+
+              <indexterm>
+                <primary>שילוב מעטפת Windows</primary>
+              </indexterm>
+
+              <para>מאפשר לך <link linkend="OpenPaths_shell-integ">להפעיל פעולות השוואה של
+WinMerge מסייר Windows</link> (ניתן להפעיל או להשבית שילוב זה מאוחר יותר
+באפשרויות WinMerge).</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>הוסף את תיקיית WinMerge לנתיב המערכת שלך</term>
+
+            <listitem>
+              <para>מוסיף את תיקיית ההתקנה של WinMerge למשתנה סביבת הנתיב של המערכת שלך.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>שלב עם TortoiseCVS<indexterm>
+                <primary>שילוב של TortoiseCVS</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>מגדיר את WinMerge להיות יישום ההבדל של TortoiseCVS.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>שלב עם TortoiseSVN<indexterm>
+                <primary>שילוב של TortoiseSVN</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>מגדיר את WinMerge להיות יישום ההבדל של TortoiseSVN.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>שלב עם TortoiseGit<indexterm>
+                <primary>שילוב של TortoiseGit</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>מגדיר את WinMerge להיות יישום ההבדל של TortoiseGit.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>צור קיצור דרך בשולחן העבודה</term>
+
+            <listitem>
+              <para>מוסיף את קיצור הדרך של WinMerge לשולחן העבודה של Windows.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>לחץ על <guibutton>הבא</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>בדף אשף המיזוג התלת-כיווני, רשום את WinMerge ככלי מיזוג תלת-כיווני עבור
+TortoiseSVN/Git.</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>רשום את WinMerge ככלי מיזוג תלת-כיווני<indexterm>
+                <primary>כלי מיזוג תלת-כיווני</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>רשום את WinMerge ככלי מיזוג תלת-כיווני עבור TortoiseSVN/Git.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>מזג בלוח הימני</term>
+
+            <listitem>
+              <para>מזג בלוח הימני.</para>
+            </listitem>
+          </varlistentry>
+
+
+          <varlistentry>
+            <term>מזג בלוח המרכזי</term>
+
+            <listitem>
+              <para>מזג בלוח המרכזי.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>מזג בלוח השמאלי</term>
+
+            <listitem>
+              <para>מזג בלוח השמאלי.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>מיזוג אוטומטי בעת ההפעלה</term>
+
+            <listitem>
+              <para>לחלופין, השבת את האפשרות <guilabel>מיזוג אוטומטי בעת ההפעלה</guilabel>.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>לחץ על <guibutton>הבא</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>בדף מוכן להתקנה, אמת את בחירות ההתקנה שלך. במידת הצורך, לחץ על
+<guibutton>חזור</guibutton> כדי לשנות משהו בדף קודם. כשאתה בטוח שאתה מוכן
+להמשיך, לחץ על <guibutton>התקן</guibutton>.</simpara>
+      <para></para>
+      </listitem>
+
+      <listitem>
+        <simpara>לאחר שהמתקין העתיק קבצים, המסך הסופי מופיע. באמצעות שתי תיבות הסימון, אשר אם
+יש לפתוח את תיקיית תפריט ההתחלה של WinMerge שנוצרה, ואם יש להפעיל את יישום
+WinMerge.</simpara>
+      </listitem>
+    </orderedlist>
+  </section>
+
+  <section id="InstallFromArchive">
+    <title>התקנה מארכיון<indexterm>
+        <primary>ארכיון, התקנת WinMerge ממנו</primary>
+      </indexterm></title>
+
+    <para>WinMerge די עצמאי מרכיבי מערכת אחרים. הוא אינו משולב בצורה הדוקה עם Windows,
+ואינו משתמש במספר רב של DLLs.</para>
+
+    <para>לקבצי ארכיון יש מבנה התיקיות הנכון. יש לפרוק את WinMerge תוך שמירה על מבנה
+תיקיות זה בתיקיית היעד. לדוגמה, לתיקיית השורש שנוצרה תחת <filename
+class="directory">C:\Program Files\</filename> יש את השם, <filename
+class="directory">WinMerge-<replaceable>גרסה</replaceable></filename>
+(לדוגמה, <filename class="directory">WinMerge-2.6.0</filename>). אתה יכול
+לשנות את שם תיקייה זו או להעתיק את הקבצים שלה לתיקייה אחרת (תוך שמירה על
+מבנה התיקיות!).</para>
+
+    <para>לאחר פריקת הקבצים, WinMerge מוכן לפעולה! שילוב מעטפת ושילוב ארכיון עשויים
+לדרוש שלבים נוספים, כמתואר בסעיף הבא.</para>
+  </section>
+
+  <section>
+    <title>הפעלת שילוב מעטפת של סייר Windows ללא המתקין <indexterm>
+        <primary>שילוב</primary>
+
+        <secondary>עם מעטפת Windows</secondary>
+      </indexterm><indexterm>
+        <primary>שילוב מעטפת Windows</primary>
+      </indexterm></title>
+
+    <para>אם אינך משתמש בתוכנית ההתקנה ואתה רוצה להפעיל את שילוב המעטפת של סייר
+Windows, עליך לרשום את ה-DLL של שילוב המעטפת
+(<filename>ShellExtension*.dll</filename>) בנפרד.</para>
+
+    <note>
+      <para>התקנת שילוב מעטפת דורשת הרשאות משתמש מנהל.</para>
+    </note>
+
+    <para>פתח את WinMerge והשתמש ב-<xref linkend="Configuration_shell-integ" /> בחלון
+אפשרויות. בחלון אפשרויות השתמש בלחצני <guibutton>רשום הרחבת
+מעטפת</guibutton> או <guibutton>בטל רישום הרחבת מעטפת</guibutton>.</para>
+  </section>
+</article>

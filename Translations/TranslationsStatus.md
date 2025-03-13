@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2025-01-25**:
+Status from **2025-03-12**:
 
 ## WinMerge
 
@@ -13,7 +13,7 @@ Status from **2025-01-25**:
 | Catalan              |  1420 |       1328 |     0 |           92 |     93 % |             |
 | ChineseSimplified    |  1420 |       1420 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |  1420 |       1299 |     0 |          121 |     91 % |  2022-02-19 |
-| Corsican             |  1420 |       1408 |     0 |           12 |     99 % |  2024-10-23 |
+| Corsican             |  1420 |       1420 |     0 |            0 |    100 % |  2025-01-27 |
 | Croatian             |  1420 |        630 |     1 |          789 |     44 % |  2009-02-13 |
 | Czech                |  1420 |        605 |     0 |          815 |     42 % |             |
 | Danish               |  1420 |        639 |     0 |          781 |     45 % |  2013-01-13 |
@@ -24,6 +24,7 @@ Status from **2025-01-25**:
 | Galician             |  1420 |       1317 |     0 |          103 |     92 % |  2023-11-24 |
 | German               |  1420 |       1342 |     0 |           78 |     94 % |  2023-08-08 |
 | Greek                |  1420 |        605 |     0 |          815 |     42 % |             |
+| Hebrew               |  1420 |       1314 |     0 |          106 |     92 % |             |
 | Hungarian            |  1420 |       1419 |     0 |            1 |     99 % |  2021-03-15 |
 | Italian              |  1420 |       1420 |     0 |            0 |    100 % |  2025-01-23 |
 | Japanese             |  1420 |       1420 |     0 |            0 |    100 % |  2025-01-21 |
@@ -32,7 +33,7 @@ Status from **2025-01-25**:
 | Norwegian            |  1420 |        730 |     0 |          690 |     51 % |             |
 | Persian              |  1420 |        641 |     0 |          779 |     45 % |  2013-08-15 |
 | Polish               |  1420 |       1355 |     0 |           65 |     95 % |  2023-11-28 |
-| Portuguese           |  1420 |       1419 |     0 |            1 |     99 % |  2025-01-13 |
+| Portuguese           |  1420 |       1420 |     0 |            0 |    100 % |  2025-02-20 |
 | Romanian             |  1420 |       1306 |     0 |          114 |     91 % |  2023-11-07 |
 | Russian              |  1420 |       1420 |     0 |            0 |    100 % |  2025-01-24 |
 | Serbian              |  1420 |        632 |     0 |          788 |     44 % |             |
@@ -42,7 +43,7 @@ Status from **2025-01-25**:
 | Spanish              |  1420 |       1317 |     0 |          103 |     92 % |  2023-11-24 |
 | Swedish              |  1420 |       1232 |     2 |          186 |     86 % |  2023-02-08 |
 | Tamil                |  1420 |       1218 |     0 |          202 |     85 % |  2023-07-24 |
-| Turkish              |  1420 |       1326 |     0 |           94 |     93 % |  2023-10-28 |
+| Turkish              |  1420 |       1420 |     0 |            0 |    100 % |  2023-10-28 |
 | Ukrainian            |  1420 |        708 |     0 |          712 |     49 % |  2009-06-13 |
 
 ## ShellExtension
@@ -67,6 +68,7 @@ Status from **2025-01-25**:
 | Galician             |    10 |         10 |     0 |            0 |    100 % |  2023-11-03 |
 | German               |    10 |         10 |     0 |            0 |    100 % |  2023-02-20 |
 | Greek                |    10 |          3 |     0 |            7 |     30 % |             |
+| Hebrew               |    10 |         10 |     0 |            0 |    100 % |             |
 | Hungarian            |    10 |         10 |     0 |            0 |    100 % |             |
 | Italian              |    10 |         10 |     0 |            0 |    100 % |  2024-03-09 |
 | Japanese             |    10 |         10 |     0 |            0 |    100 % |             |
@@ -153,6 +155,7 @@ Status from **2025-01-25**:
 | Galician             |     - |          - |     - |            - |        - |             |
 | German               |     - |          - |     - |            - |        - |             |
 | Greek                |     - |          - |     - |            - |        - |             |
+| Hebrew               |     - |          - |     - |            - |        - |             |
 | Hungarian            |     - |          - |     - |            - |        - |             |
 | Italian              |     - |          - |     - |            - |        - |             |
 | Japanese             |     - |          - |     - |            - |        - |             |
@@ -215,7 +218,7 @@ Status from **2025-01-25**:
 
  * Corsican
    - [Patriccollu di Santa Maria è Sichè](mailto:patriccollu%20at%20gmail.com) *Maintainer*
-   - Patriccollu di Santa Maria è Sichè, 2021-2024
+   - Patriccollu di Santa Maria è Sichè, 2021-2025
 
  * Croatian
    - [Hasan Osmanagić](mailto:hasan.osmanagic%20at%20public.carnet.hr)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-02-27 08:28+0900\n"
+"POT-Creation-Date: 2025-03-13 08:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10066,136 +10066,141 @@ msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:182
-msgid "Hungarian"
+msgid "Hebrew"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:186
-msgid "Italian"
+msgid "Hungarian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:190
-msgid "Japanese"
+msgid "Italian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:194
-msgid "Korean"
+msgid "Japanese"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:198
-msgid "Lithuanian"
+msgid "Korean"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:202
-msgid "Norwegian"
+msgid "Lithuanian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:206
-msgid "Persian"
+msgid "Norwegian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:210
-msgid "Polish"
+msgid "Persian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:214
-msgid "Portuguese"
+msgid "Polish"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:218
-msgid "Portuguese (Brazilian)"
+msgid "Portuguese"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:222
-msgid "Romanian"
+msgid "Portuguese (Brazilian)"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:226
-msgid "Russian"
+msgid "Romanian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:230
-msgid "Serbian"
+msgid "Russian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:234
-msgid "Sinhala"
+msgid "Serbian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:238
-msgid "Slovak"
+msgid "Sinhala"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:242
-msgid "Slovenian"
+msgid "Slovak"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:246
-msgid "Spanish"
+msgid "Slovenian"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:250
-msgid "Swedish"
+msgid "Spanish"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:254
-msgid "Tamil"
+msgid "Swedish"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:258
-msgid "Turkish"
+msgid "Tamil"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: ./English/Locales.xml:262
+msgid "Turkish"
+msgstr ""
+
+#. type: Content of: <article><section><itemizedlist><listitem><simpara>
+#: ./English/Locales.xml:266
 msgid "Ukrainian"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Locales.xml:269
+#: ./English/Locales.xml:273
 msgid "translations, reporting errors"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Locales.xml:268
+#: ./English/Locales.xml:272
 msgid "Reporting errors in translation<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Locales.xml:272
+#: ./English/Locales.xml:276
 msgid "Please submit any errors you find in translations as bugs to our <ulink url=\"https://github.com/WinMerge/winmerge/issues\">bug-list</ulink>.  It would be great if you also provide a corrected version of the translated text."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Locales.xml:281
+#: ./English/Locales.xml:285
 msgid "submitting translations"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Locales.xml:280
+#: ./English/Locales.xml:284
 msgid "Submitting a new translation<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Locales.xml:284
+#: ./English/Locales.xml:288
 msgid "If you would like to add your language to the list, then please read the <ulink url=\"https://winmerge.org/translations/\">translation documentation</ulink> on the WinMerge Web site to learn how. Most of the translations are incomplete, so your help improving them would be appreciated. Translating (or improving translation) does not require you to have all the compile tools or to know about WinMerge internals. You just need to follow the instructions in the preceding link. And if you have problems, ask for help from us in one of the <ulink url=\"https://forums.winmerge.org/\">WinMerge forums</ulink>."
 msgstr ""
 

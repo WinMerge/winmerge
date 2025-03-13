@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_webpages">
+  <?target dbhh topicname="IDH_Compare_webpages" topicid ="005"?>
+
+  <title>השוואת דפי אינטרנט</title>
+
+  <indexterm>
+    <primary>השוואת קבצים</primary>
+    <secondary>דפי אינטרנט</secondary>
+  </indexterm>
+
+  <para>
+נושא זה מתאר כיצד להשוות דפי אינטרנט באמצעות חלון השוואת דפי אינטרנט. <note><para>
+תכונה זו עדיין ניסיונית ועשויה להיות לא יציבה ואיטית מאוד.</para>
+</note></para>
+
+  <section id="Compare_webpage_starting">
+    <title>התחלת פעולת השוואת דפי אינטרנט</title>
+
+    <para>אתה יכול להתחיל פעולת השוואת דפי אינטרנט מחלון WinMerge או מחלון שורת
+הפקודה.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>מתוך חלון WinMerge</term>
+
+        <listitem>
+          <para>
+לחץ על <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>פתח</guimenuitem>
+</menuchoice>. ציין את שניים או שלושה כתובות האתר שברצונך להשוות בתיבת
+הדו-שיח "בחר קובץ או תיקיה" ובחר את פריט התפריט <guimenuitem>דף
+אינטרנט</guimenuitem> מתפריט הנפתח של לחצן
+ה-<guibutton>השווה</guibutton>. <mediaobject>
+<imageobject> <imagedata fileref="screenshots/OpenDlg2.png" format="PNG" />
+</imageobject><textobject>
+                <phrase>חלון בחר קבצים או תיקיות</phrase>
+              </textobject>
+            </mediaobject></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>מחלון שורת פקודה</term>
+
+        <listitem>
+          <para>הפעל את <command>WinMergeU.exe</command>, שנמצא בספריית ההתקנה של
+WinMerge. בארגומנטי הפקודה שלך, כלול שניים או שלושה כתובות אתרים של דפי
+האינטרנט שברצונך להשוות וציין את אפשרות שורת הפקודה <option>/t
+webpage</option>. למידע נוסף על השימוש בשורת הפקודה, ראה <xref
+linkend="Command_line" />.</para>
+
+          <example>
+            <title>שורת פקודה</title>
+
+            <para>
+<userinput> "C:\Program Files\WinMerge\WinMergeU.exe" /t webpage
+https://example.net https://example.com </userinput></para>
+          </example>
+
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_webpage_window">
+    <title>חלון השוואת דפי אינטרנט</title>
+
+    <para>
+    </para>
+
+    <mediaobject>
+<imageobject> <imagedata fileref="screenshots/webcmp1.png" format="PNG" />
+</imageobject><textobject>
+        <phrase>חלון השוואת דפי אינטרנט</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>
+כאשר מוצג חלון ההשוואה של דפי האינטרנט, תפריט דף האינטרנט יתווסף לשורת
+התפריטים. פריטי התפריט בתפריט דף האינטרנט הם כדלקמן. חלק מאותה הפונקציונליות
+כמו פריטי תפריט אלה זמין בחלונית המיקום.</para>
+
+    <section>
+      <title>
+Webpage menu<indexterm>
+          <primary>תפריט דף אינטרנט</primary>
+        </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>הצג הבדלים</term>
+          <listitem>
+            <para>
+מפעיל או משבית צביעת הבדלי טקסט עבור דפי אינטרנט.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <section>
+        <title>
+Compare menu<indexterm>
+            <primary>תפריט השוואה</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>צילומי מסך</term>
+            <listitem>
+              <para>
+ממיר את הטווח המוצג כעת של דפי אינטרנט לתמונות ומשווה אותם בחלון השוואת
+התמונות.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>צילומי מסך בגודל מלא</term>
+            <listitem>
+              <para>
+יוצר תמונות של כל האזור של דפי אינטרנט ומשווה אותם בחלון השוואת התמונות.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>HTMLs</term>
+            <listitem>
+              <para>
+השווה את תוכן ה-HTML של דפי אינטרנט בחלון השוואת הקבצים.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>טקסטים</term>
+            <listitem>
+              <para>
+מחלץ חלקי טקסט של דפי אינטרנט ומשווה אותם בחלון השוואת הקבצים.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>עצי משאבים</term>
+            <listitem>
+              <para>
+השווה עצי משאבים של דפי אינטרנט בחלון השוואת התיקיות.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Size menu<indexterm>
+            <primary>תפריט גודל</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>התאם לחלון</term>
+            <listitem>
+              <para>
+מתאים את גודל התצוגה של דף האינטרנט לגודל של כל חלונית.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>רוחב x גובה</term>
+            <listitem>
+              <para>
+משנה את גודל התצוגה של דף האינטרנט לגודל שצוין.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Event Sync menu<indexterm>
+            <primary>תפריט סנכרון אירועים</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>מופעל</term>
+            <listitem>
+              <para>
+הפעל או השבת את פונקציית הסנכרון של אירועים כגון גלילה ולחיצה.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>גלילה</term>
+            <listitem>
+              <para>
+הפעל או השבת סנכרון גלילה.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>לחץ</term>
+            <listitem>
+              <para>
+הפעל או השבת סנכרון לחיצה.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>קלט</term>
+            <listitem>
+              <para>
+הפעל או השבת סנכרון קלט.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>חזור/התקדם</term>
+            <listitem>
+              <para>
+הפעל או השבת סנכרון של חזרה לדף הקודם או קדימה לדף הבא.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Clear Browsing Data menu<indexterm>
+            <primary>תפריט נקה נתוני גלישה</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>מטמון דיסק</term>
+            <listitem>
+              <para>
+מנקה רק מטמון דיסק בנתוני גלישה.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>עוגיות</term>
+            <listitem>
+              <para>
+מנקה רק עוגיות בנתוני גלישה.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>היסטוריית גלישה</term>
+            <listitem>
+              <para>
+מנקה רק היסטוריית גלישה בנתוני גלישה.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>כל הפרופיל</term>
+            <listitem>
+              <para>
+מנקה את כל נתוני הגלישה.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <para>
+        </para>
+   
+      </section>
+
+    </section>
+
+    <section>
+      <title>
+מגבלות נוכחיות</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+לא ניתן להשוות דפי אינטרנט המשתמשים ברכיב FRAMESET שהוצא משימוש כעת.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+ייתכן שלא ניתן להשוות את התוכן בתוך רכיב ה-IFRAME או שייתכן שלא יסונכרנו
+אירועים.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+השוואת דפי אינטרנט עם תוכן שונה מאוד עשויה להימשך זמן רב.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+  </section>
+
+</article>

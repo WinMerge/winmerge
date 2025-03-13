@@ -1,0 +1,2369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Plugins">
+  <title>תוספים<indexterm>
+      <primary>תוספים</primary>
+    </indexterm></title>
+
+  <para>תוספי WinMerge הם קובצי dll מותאמים אישית או סקריפטים, הכתובים ב-COM API,
+המעבדים מראש נתונים לפני השוואה. לדוגמה, אתה יכול להשתמש בתוסף כדי לחלץ
+נתוני טקסט מקבצי MS Word כדי ש-WinMerge יוכל להשוות.</para>
+  
+  <para>כל תוסף הוא:<indexterm>
+      <primary>התקנת תוספים</primary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para>קובץ dll בודד או סקריפט (<filename class="extension">sct</filename>)</para>
+    </listitem>
+
+    <listitem>
+      <para>מותקן בתת התיקייה <filename class="directory">MergePlugins</filename>. מספר
+תוספים יכולים להיות מותקנים עבורך על ידי WinMerge.</para>
+    </listitem>
+
+    <listitem>
+      <para>קל להתקנה: כדי להתקין תוסף שאינו כלול בהתקנת WinMerge, פשוט העתק את קובץ
+התוסף ל-<filename class="directory">MergePlugins</filename>. התוסף זמין בפעם
+הבאה שתפתח את WinMerge. אתה יכול למצוא תוספים נוספים באינטרנט, שנכתבו על ידי
+מפתחים אחרים.</para>
+    </listitem>
+  </itemizedlist>
+
+  <section>
+    <title>סוגי תוספים</title>
+
+    <para>תוספים מקובצים לשלוש קטגוריות עיקריות:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>השלמה לעורך<indexterm>
+            <primary>תוספי השלמה לעורך</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>סוג זה של תוסף מבצע פעולות מותאמות אישית על טקסט נבחר בעורך הפעיל (חלונית
+קובץ) של חלון השוואת הקבצים.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>פורק: המרת קובץ לפורמט טקסט<indexterm>
+            <primary>תוספי פריקה</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>סוג זה של תוסף ממיר קובץ דחוס לפורמט שניתן לצפות בו על ידי פירוקו. הקובץ
+המקורי לא משתנה: נוצר קובץ זמני שהומר ונטען ב-WinMerge.</para>
+
+          <para>תוספי פריקה פועלים על קבצים שלמים, לא על טקסט נבחר או הבדלים בתוך
+קבצים. לכן, הם זמינים רק כאשר אתה מפעיל השוואות קבצים, מחלון השוואת התיקיות
+או מתיבת הדו-שיח בחר קבצים או תיקיות. תוספי פריקה אינם זמינים בחלון השוואת
+הקבצים.</para>
+
+          <para>לפעמים ניתן לארוז מחדש את הקובץ שנפרק (ראה את הפרטים ב-<xref
+linkend="Plugins_available" /> כדי לבדוק אם תוסף תומך באריזה מחדש). לאחר
+מכן, תוכל למזג ולשמור את הקובץ שהומר. האריזה נעשית אוטומטית במקרה זה. כדי
+להיות בטוחים, אנו ממליצים לשנות את שם הקובץ שהומר כשאתה שומר אותו.</para>
+
+          <note>
+            <para>כשאתה משווה תיקיות, WinMerge יכול לתת תוצאות שונות עבור קבצים דחוסים ולא
+דחוסים. לדוגמה, קבצים זהים כאשר הם אינם דחוסים עשויים להיות שונים אם הם
+כוללים את תאריך היצירה. WinMerge מיישם את הפורק בכל המצבים, ואתה בטוח שתקבל
+את אותה תוצאה כשאתה משווה תיקייה, או כשאתה ממזג שתי גרסאות של קובץ.</para>
+          </note>
+
+          <para>תוסף לדוגמה: <xref linkend="CompareMSExcelFiles" /> מציג את תוכן הטקסט של
+קובץ <application>Excel</application> של <trademark
+class="registered">Microsoft</trademark>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>מבדל מראש: עיבוד מראש של קבצים כדי להסתיר כמה הבדלים<indexterm>
+            <primary>תוספי מבדל מראש</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>סוג זה של תוסף אינו פועל על קבצי המקור המוצגים בחלון ההשוואה. במקום זאת הוא
+פועל על עותקים זמניים של הקבצים, והעותקים נסרקים לאחר מכן כדי ליצור את רשימת
+ההבדלים.</para>
+
+          <para>תוסף לדוגמה: <xref linkend="IgnoreColumns" /> מתעלם מההבדלים בתוך עמודות
+שצוינו, תוך הצגת התווים בעמודות אלה.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>תוספים מוצעים ומצבים אוטומטיים</title>
+
+    <para>כיצד WinMerge מצליח ליישם את התוסף הנכון עבור קובץ נתון? כל תוסף מציין רשימה
+של סיומות קבצים (רשומות גם בסעיף <xref linkend="Plugins_available" /> של כל
+תוסף, תחת <citetitle>מסנן קבצים</citetitle>). הסיומות משמשות לשיוך סוג קובץ
+אחד או יותר לתוסף: כאשר סיומת של קובץ מושווה תואמת לסיומת ברשימה של התוסף,
+התוסף נחשב ל-<firstterm>תוסף מוצע.</firstterm></para>
+
+    <para>ישנן אפשרויות WinMerge נפרדות עבור סוגי הפריקה והמבדל מראש, המתוארות בהמשך
+נושא זה, המאפשרות לך להחיל את התוספים באופן ידני או אוטומטי. אין מצב אוטומטי
+עבור תוספי השלמה לעורך.</para>
+
+    <para>כשאתה מחיל תוספים על קובץ נבחר באמצעות מצב אוטומטי, WinMerge מחפש ברשימת
+התוספים המוצעים שלו עבור סוג קובץ זה, ומחיל את התוסף הראשון ששמו
+תואם. החיפוש מתבצע בסדר אלפביתי, כך שאם יש מספר תוספים מוצעים עבור סוג קובץ,
+מוחל רק הראשון שנמצא.</para>
+  </section>
+
+  <section>
+    <title>החלת תוספים</title>
+
+    <para>תת-הסעיפים הבאים מתארים כיצד להחיל כל סוג של תוסף. השיטות שונות עבור כל סוג
+של תוסף, וגם משתנות בהתאם אם אתה משווה תיקיות או קבצים.</para>
+
+    <section>
+      <title>החלת תוספי השלמה לעורך בחלון השוואת הקבצים</title>
+
+      <para>כאשר הסמן שלך נמצא באחד מחלוניות הקובץ של חלון השוואת הקבצים, לחץ על
+<menuchoice> <guimenu>תוספים</guimenu> <guisubmenu>סקריפטים</guisubmenu>
+</menuchoice> ובחר אחת מהפונקציות הבאות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><function>הפוך לאותיות גדולות</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>הפוך לאותיות קטנות</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>הסר שורות כפולות</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>ספור שורות כפולות</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>מיין שורות בסדר עולה</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>מיין שורות בסדר יורד</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>הפוך עמודות</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>הפוך שורות</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>בחר עמודות...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>בחר שורות...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>החלף...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>החל פקודת מסנן...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>נתח לאסימונים...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>גזום רווחים</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>הוסף תאריך</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>הוסף שעה</function></para>
+        </listitem>
+      </itemizedlist>
+
+      <para>הפונקציות תורמות לתפריט <guisubmenu>סקריפטים</guisubmenu> על ידי התוספים
+<xref linkend="EditorAddin" /> ו-<xref linkend="Plugins_datetime" />.</para>
+
+      <note>
+        <para>תוספי השלמה לעורך אינם זמינים בחלון השוואת התיקיות.</para>
+      </note>
+    </section>
+
+    <section>
+      <title>החלת תוספי פריקה בחלון השוואת התיקיות</title>
+
+      <para>לפני החלת תוספי פריקה, אתה יכול להגדיר את המצב שלו למצב אוטומטי או ידני.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>כדי להגדיר מצב אוטומטי עבור סוג זה של תוסף, לחץ על <menuchoice>
+<guimenu>תוספים</guimenu> <guimenuitem>פריקה אוטומטית</guimenuitem>
+</menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>כדי להגדיר מצב ידני, לחץ על <menuchoice> <guimenu>תוספים</guimenu>
+<guimenuitem>פריקה ידנית</guimenuitem> </menuchoice>.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>זכור ללחוץ על <keycap>F5</keycap> כדי לטעון מחדש את חלון השוואת התיקיות
+באמצעות ההגדרה החדשה.</para>
+
+      <section>
+        <title>שימוש במצב אוטומטי</title>
+
+        <para>כדי להחיל תוספים כאשר מוגדרת פריקה אוטומטית, פשוט הפעל פעולת השוואה על קובץ
+בחלון השוואת התיקיות. אם סוג הקובץ הציע תוסף פריקה (אם קיים) מעבד מראש את
+הקובץ לפני ש-WinMerge פותח אותו בחלון השוואת הקבצים.</para>
+
+        <para>לדוגמה, נניח שלחצת לחיצה ימנית על קובץ MS Word <filename>doc</filename>
+ובחרת <guimenuitem>השווה</guimenuitem> (גם בהנחה שהתוסף <xref
+linkend="Plugins_msword" /> זמין). WinMerge ממיר את קובץ ה-doc (או ליתר
+דיוק, עותק שלו) לקובץ טקסט רגיל ופותח אותו בחלון השוואת הקבצים.</para>
+      </section>
+
+      <section>
+        <title>שימוש במצב ידני</title>
+
+        <para>מצב ידני מאפשר לך לבחור תוסף פריקה שונה מזה שנבחר עבורך במצב אוטומטי. אתה
+יכול גם להפעיל את ההשוואה ללא תוסף.</para>
+
+        <para>כדי להחיל תוספים כאשר מוגדרת פריקה ידנית:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>בחר את הקובץ שברצונך להשוות.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ על <menuchoice> <guimenu>תוספים</guimenu> <guimenuitem>ערוך עם
+פורק</guimenuitem> </menuchoice>.</para>
+
+            <para>פריט תפריט זה מופעל רק אם סוג הקובץ הנבחר נתמך על ידי תוסף פריקה זמין.</para>
+          </listitem>
+
+          <listitem>
+            <para>בתיבת הדו-שיח בחר פורק:</para>
+
+            <xi:include href="select_unpacker.xml"
+                        xmlns:xi="http://www.w3.org/2001/XInclude"
+                        xpointer="element(select-unpacker-proc)" />
+          </listitem>
+
+          <listitem>
+            <para>לחץ על <guibutton>אישור</guibutton> כדי לסגור את תיבת הדו-שיח בחר פורק
+ולהפעיל את השוואת הקבצים.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section>
+      <title>החלת תוספי פריקה בתיבת הדו-שיח בחר קבצים או תיקיות</title>
+
+      <para>אתה יכול להשתמש בתיבת הדו-שיח בחר פורק כדי להחיל תוסף כאשר אתה מפעיל השוואת
+קבצים מתיבת הדו-שיח בחר קבצים או תיקיות. ראה <xref
+linkend="Open_paths_unpacker" /> לפרטים.</para>
+    </section>
+
+    <section>
+      <title>החלת תוספי מבדל מראש בחלון השוואת התיקיות</title>
+
+      <para>עם תוספי מבדל מראש, אתה מגדיר את המצב
+(<firstterm>&lt;אוטומטי&gt;</firstterm> או
+<firstterm>&lt;ללא&gt;</firstterm>) או את שם התוסף עבור קבצים בודדים. (השווה
+זאת לתוספי פריקה, שבהם אתה מגדיר את המצב עבור כל הקבצים.) כלומר, לחלק
+מהקבצים באותה תיקייה יש מצבי מבדל מראש שונים.</para>
+
+      <para>כדי להגדיר את המצב עבור קובץ אחד או יותר בחלון השוואת התיקיות, לחץ לחיצה
+ימנית על הקבצים ובחר <menuchoice> <guimenu>הגדרות תוסף</guimenu>
+<guisubmenu>הגדרות מבדל מראש</guisubmenu> </menuchoice>, ואז בחר אחת
+מאפשרויות תפריט המשנה:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guisubmenu>&lt;אוטומטי&gt;</guisubmenu> בוחר את תוסף המבדל מראש הראשון
+הזמין עבור סוג הקובץ.</para>
+        </listitem>
+
+        <listitem>
+          <para><guisubmenu>&lt;ללא&gt;</guisubmenu> פירושו שלא נעשה שימוש בתוסף מבדל מראש.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>לחץ על <keycap>F5</keycap> כדי לעדכן את החלון.</para>
+
+      <note>
+        <para>כשאתה פותח תיקיית משנה במהלך השוואה לא רקורסיבית, המצב תמיד מאופס
+ל-<guimenuitem>&lt;ללא&gt;</guimenuitem>.</para>
+      </note>
+
+      <para>כשאתה פותח קובץ מחלון השוואת התיקיות, הגדרת המבדל מראש שלך עבור קובץ זה
+מוחלת לפני פתיחת חלון השוואת הקבצים.</para>
+    </section>
+
+    <section>
+      <title>החלת תוספי מבדל מראש בחלון השוואת הקבצים</title>
+
+      <para>בחלון השוואת הקבצים, אתה יכול להחיל תוסף מבדל מראש על ידי לחיצה על
+<menuchoice> <guimenu>תוספים</guimenu> <guisubmenu>מבדל מראש</guisubmenu>
+</menuchoice> ובחירה באחד מהתוספים ברשימה. תוספים מוצעים מצוינים בראש
+הרשימה. הקבצים מושווים שוב לאחר החלת התוסף, כך שאינך צריך לסרוק מחדש את
+הקבצים.</para>
+    </section>
+  </section>
+
+  <section id="Plugins_available">
+    <title>תוספים זמינים<indexterm>
+        <primary>קובצי dll של Visual Basic עבור תוספים</primary>
+      </indexterm><indexterm>
+        <primary>תוספים</primary>
+
+        <secondary>קובצי dll של Visual Basic</secondary>
+      </indexterm></title>
+
+    <section id="CompareEscapedJavaPropertiesFiles">
+      <title><filename>CompareEscapedJavaPropertiesFiles<indexterm>
+          <primary>קובץ התוסף CompareEscapedJavaPropertiesFiles</primary>
+        </indexterm></filename></title>
+
+      <para>תוסף זה מבטל את ההימלטות של קבצי Java .properties לצפייה קלה, ואז מבריח אותם
+מחדש בעת השמירה.</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.properties</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="CompareMSExcelFiles">
+      <title><filename>CompareMSExcelFiles<indexterm>
+          <primary>קובץ התוסף CompareMSExcelFiles</primary>
+        </indexterm></filename></title>
+
+      <para>מציג את תוכן הטקסט של קובץ <application>Excel</application> של <trademark
+class="registered">Microsoft</trademark>, ומסיר את כל הפורמטים והאובייקטים
+המוטבעים.</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.xls</filename>, <filename
+class="extension">*.xlsx</filename>, <filename
+class="extension">*.xlsm</filename>, <filename
+class="extension">*.xlsb</filename>, <filename
+class="extension">*.xla</filename>, <filename
+class="extension">*.xlax</filename>, <filename
+class="extension">*.xltx</filename>, <filename
+class="extension">*.xltm</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>כן</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Excel</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_powerpnt">
+      <title><filename>CompareMSPowerPointFiles<indexterm>
+          <primary>קובץ התוסף CompareMSPowerPointFiles</primary>
+        </indexterm></filename></title>
+
+      <para>מציג את תוכן הטקסט של קובץ <application>PowerPoint</application> של
+<trademark class="registered">Microsoft</trademark>, ומסיר את כל הפורמטים
+והאובייקטים המוטבעים.</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.ppt</filename>, <filename
+class="extension">*.pptx</filename>, <filename
+class="extension">*.pptm</filename>, <filename
+class="extension">*.ppa</filename>, <filename
+class="extension">*.ppam</filename>, <filename
+class="extension">*.pot</filename>, <filename
+class="extension">*.potx</filename>, <filename
+class="extension">*.potm</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>כן</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>PowerPoint</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_visio">
+      <title><filename>CompareMSVisioFiles<indexterm>
+          <primary>קובץ התוסף CompareMSVisioFiles</primary>
+        </indexterm></filename></title>
+
+      <para>מציג את תוכן הטקסט של קובץ <application>Visio</application> של <trademark
+class="registered">Microsoft</trademark>, ומסיר את כל הפורמטים והאובייקטים
+המוטבעים.</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.vsd</filename>, <filename
+class="extension">*.vsdx</filename>, <filename
+class="extension">*.vsdm</filename>, <filename
+class="extension">*.vss</filename>, <filename
+class="extension">*.vssx</filename>, <filename
+class="extension">*.vssm</filename>, <filename
+class="extension">*.vst</filename>, <filename
+class="extension">*.vstx</filename>, <filename
+class="extension">*.vstm</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>כן</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Visio</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_msword">
+      <title><filename>CompareMSWordFiles<indexterm>
+          <primary>קובץ התוסף CompareMSWordFiles</primary>
+        </indexterm></filename></title>
+
+      <para>מציג את תוכן הטקסט של קובץ <application>Word</application> של <trademark
+class="registered">Microsoft</trademark>, ומסיר את כל הפורמטים והאובייקטים
+המוטבעים.</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+	    <seg><filename class="extension">*.doc</filename>, <filename
+class="extension">*.docx</filename>, <filename
+class="extension">*.docm</filename>, <filename
+class="extension">*.dot</filename>, <filename
+class="extension">*.dotx</filename>, <filename
+class="extension">*.dotm</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>כן</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Word</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyHTML">
+      <title><filename>PrettifyHTML<indexterm>
+          <primary>קובץ התוסף PrettifyHTML</primary>
+        </indexterm></filename></title>
+
+      <para>כלי לייפוי HTML עם tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyHTML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.html</filename>, <filename
+class="extension">*.htm</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyXML">
+      <title><filename>PrettifyXML<indexterm>
+          <primary>קובץ התוסף PrettifyXML</primary>
+        </indexterm></filename></title>
+
+      <para>כלי לייפוי XML עם tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyXML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.xml</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyJSON">
+      <title><filename>PrettifyJSON<indexterm>
+          <primary>קובץ התוסף PrettifyJSON</primary>
+        </indexterm></filename></title>
+
+      <para>כלי לייפוי JSON עם פקודת jq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyJSON</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות סינון או שורת פקודה מועברות לפקודת jq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.json</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyYAML">
+      <title><filename>PrettifyYAML<indexterm>
+          <primary>קובץ התוסף PrettifyYAML</primary>
+        </indexterm></filename></title>
+
+      <para>כלי לייפוי YAML עם פקודת yq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyYAML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות סינון או שורת פקודה מועברות לפקודת yq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.yaml</filename>, <filename
+class="extension">*.yml</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://stedolan.github.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryCSV">
+      <title><filename>QueryCSV<indexterm>
+          <primary>קובץ התוסף QueryCSV</primary>
+        </indexterm></filename></title>
+
+      <para>כלי שאילתות CSV עם פקודת q</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryCSV</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>משפט SQL או אפשרויות שורת פקודה מועברות לפקודת q</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryTSV">
+      <title><filename>QueryTSV<indexterm>
+          <primary>קובץ התוסף QueryTSV</primary>
+        </indexterm></filename></title>
+
+      <para>כלי שאילתות TSV עם פקודת q</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryTSV</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>משפט SQL או אפשרויות שורת פקודה מועברות לפקודת q</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.tsv</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryJSON">
+      <title><filename>QueryJSON<indexterm>
+          <primary>קובץ התוסף QueryJSON</primary>
+        </indexterm></filename></title>
+
+      <para>כלי שאילתות JSON עם פקודת jq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryJSON</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות סינון או שורת פקודה מועברות לפקודת jq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.json</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryYAML">
+      <title><filename>QueryYAML<indexterm>
+          <primary>קובץ התוסף QueryYAML</primary>
+        </indexterm></filename></title>
+
+      <para>כלי שאילתות YAML עם פקודת yq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryYAML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות סינון או שורת פקודה מועברות לפקודת yq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.yaml</filename>, <filename
+class="extension">*.yml</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidateHTML">
+      <title><filename>ValidateHTML<indexterm>
+          <primary>קובץ התוסף ValidateHTML</primary>
+        </indexterm></filename></title>
+
+      <para>כלי אימות HTML עם tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ValidateHTML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.html</filename>, <filename
+class="extension">*.htm</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewGraphviz">
+      <title><filename>PreviewGraphviz<indexterm>
+          <primary>קובץ התוסף PreviewGraphviz</primary>
+        </indexterm></filename></title>
+
+      <para>כלי תצוגה מקדימה של Graphviz</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewGraphviz</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת dot</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.gv</filename>, <filename
+class="extension">,*.dot</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewMarkdown">
+      <title><filename>PreviewMarkdown<indexterm>
+          <primary>קובץ התוסף PreviewMarkdown</primary>
+        </indexterm></filename></title>
+
+      <para>כלי תצוגה מקדימה של Markdown</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewMarkdown</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת md2html</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.md</filename>, <filename
+class="extension">,*.markdown</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://github.com/mity/md4c">md4c</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewPlantUML">
+      <title><filename>PreviewPlantUML<indexterm>
+          <primary>קובץ התוסף PreviewPlantUML</primary>
+        </indexterm></filename></title>
+
+      <para>כלי תצוגה מקדימה של PlantUML</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewPlantUML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת plantuml.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.pu</filename>, <filename
+class="extension">,*.puml</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://plantuml.com/">PlantUML</ulink>, <ulink
+url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ApacheTika">
+      <title><filename>ApacheTika<indexterm>
+          <primary>קובץ התוסף ApacheTika</primary>
+        </indexterm></filename></title>
+
+      <para>כלי לחילוץ תוכן כללי עם Apache Tika</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ApacheTika</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות ל-tika-app.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.*</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleJVM">
+      <title><filename>DisassembleJVM<indexterm>
+          <primary>קובץ התוסף DisassembleJVM</primary>
+        </indexterm></filename></title>
+
+      <para>כלי לפירוק קוד בייט של JVM עם javap</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleJVM</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת javap</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.class</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleIL">
+      <title><filename>DisassembleIL<indexterm>
+          <primary>קובץ התוסף DisassembleIL</primary>
+        </indexterm></filename></title>
+
+      <para>כלי לפירוק קוד IL עם ildasm</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleIL</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת ildasm</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.obj</filename>, <filename
+class="extension">*.lib</filename>, <filename
+class="extension">*.exe</filename>, <filename
+class="extension">*.dll</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleNative">
+      <title><filename>DisassembleNative<indexterm>
+          <primary>קובץ התוסף DisassembleNative</primary>
+        </indexterm></filename></title>
+
+      <para>כלי לפירוק קוד מקורי עם dumpbin</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleNative</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ארגומנטים</replaceable></option></term>
+          <listitem>
+            <para>אפשרויות שורת הפקודה מועברות לפקודת dumpbin</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.obj</filename>, <filename
+class="extension">*.lib</filename>, <filename
+class="extension">*.exe</filename>, <filename
+class="extension">*.dll</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ExecFilterCommand">
+      <title><filename>ExecFilterCommand<indexterm>
+          <primary>קובץ התוסף ExecFilterCommand</primary>
+        </indexterm></filename></title>
+
+      <para>מחליף פקודת מסנן</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ExecFilterCommand</command> <arg choice="opt"
+rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>פקודה</replaceable></option></term>
+          <listitem>
+            <para>פקודה להפעלה. %1 בפקודה מוחלף בשם הקובץ</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeUpper">
+      <title><filename>MakeUpper<indexterm>
+          <primary>קובץ התוסף MakeUpper</primary>
+        </indexterm></filename></title>
+
+      <para>הופך תווים לאותיות רישיות</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeLower">
+      <title><filename>MakeLower<indexterm>
+          <primary>קובץ התוסף MakeLower</primary>
+        </indexterm></filename></title>
+
+      <para>הופך תווים לאותיות קטנות</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_RemoveDuplicates">
+      <title><filename>RemoveDuplicates<indexterm>
+          <primary>קובץ התוסף RemoveDuplicates</primary>
+        </indexterm></filename></title>
+
+      <para>מסיר שורות כפולות</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_CountDuplicates">
+      <title><filename>CountDuplicates<indexterm>
+          <primary>קובץ התוסף CountDuplicates</primary>
+        </indexterm></filename></title>
+
+      <para>סופר שורות כפולות</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortAscending">
+      <title><filename>SortAscending<indexterm>
+          <primary>קובץ התוסף SortAscending</primary>
+        </indexterm></filename></title>
+
+      <para>ממיין שורות בסדר עולה</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortDescending">
+      <title><filename>SortDescending<indexterm>
+          <primary>קובץ התוסף SortDescending</primary>
+        </indexterm></filename></title>
+
+      <para>ממיין שורות בסדר יורד</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseColumns">
+      <title><filename>ReverseColumns<indexterm>
+          <primary>קובץ התוסף ReverseColumns</primary>
+        </indexterm></filename></title>
+
+      <para>הופך עמודות</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseLines">
+      <title><filename>ReverseLines<indexterm>
+          <primary>קובץ התוסף ReverseLines</primary>
+        </indexterm></filename></title>
+
+      <para>הופך שורות</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectColumns">
+      <title><filename>SelectColumns<indexterm>
+          <primary>קובץ התוסף SelectColumns</primary>
+        </indexterm></filename></title>
+
+      <para>בוחר כמה עמודות</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectColumns</command> <arg choice="opt"
+rep="norepeat"><replaceable>טווחים</replaceable></arg></cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectColumns</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-g</option></arg>
+<arg><option>-e</option> <replaceable>דפוסים</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>טווחים</replaceable></option></term>
+          <listitem>
+            <para>רשימה של טווחי עמודות לבחירה. (לדוגמה, -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>דפוסים</replaceable></option></term>
+          <listitem>
+            <para>ביטוי רגולרי</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>בחר עמודות שאינן תואמות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>התעלם מאותיות רישיות/קטנות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-g</option></term>
+          <listitem>
+            <para>אפשר דגל גלובלי</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>השתמש ב-<replaceable>דפוסים</replaceable> להתאמה</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectLines">
+      <title><filename>SelectLines<indexterm>
+          <primary>קובץ התוסף SelectLines</primary>
+        </indexterm></filename></title>
+
+      <para>בחר כמה שורות</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectLines</command> <arg choice="opt"
+rep="norepeat"><replaceable>טווחים</replaceable></arg></cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectLines</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-e</option>
+<replaceable>דפוסים</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>טווחים</replaceable></option></term>
+          <listitem>
+            <para>רשימה של טווחי שורות לבחירה. (לדוגמה, -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>דפוסים</replaceable></option></term>
+          <listitem>
+            <para>ביטוי רגולרי</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>בחר שורות שאינן תואמות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>התעלם מאותיות רישיות/קטנות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>השתמש ב-<replaceable>דפוסים</replaceable> להתאמה</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Replace">
+      <title><filename>Replace<indexterm>
+          <primary>קובץ התוסף Replace</primary>
+        </indexterm></filename></title>
+
+      <para>מחליף טקסט בטקסט אחר</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>Replace</command> <arg><option>-i</option></arg>
+<arg><option>-e</option></arg> <arg
+rep="norepeat"><replaceable>טקסט_לחיפוש</replaceable></arg> <arg
+rep="norepeat"><replaceable>טקסט_להחלפה</replaceable></arg></cmdsynopsis>
+
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>טקסט_לחיפוש</replaceable></option></term>
+          <listitem>
+            <para>טקסט לחיפוש</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>טקסט_להחלפה</replaceable></option></term>
+          <listitem>
+            <para>טקסט להחלפה</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>התעלם מאותיות רישיות/קטנות (רק עבור -e)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>התייחס לטקסט שצוין כביטוי רגולרי</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Tokenize">
+      <title><filename>Tokenize<indexterm>
+          <primary>קובץ התוסף Tokenize</primary>
+        </indexterm></filename></title>
+
+      <para>מנתח לבחירה לאסימונים</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>Tokenize</command> <arg
+rep="norepeat"><replaceable>דפוסים</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>דפוסים</replaceable></option></term>
+          <listitem>
+            <para>ביטוי רגולרי לניתוח לאסימונים. (לדוגמה [^\w]+)</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Trim">
+      <title><filename>Trim<indexterm>
+          <primary>קובץ התוסף Trim</primary>
+        </indexterm></filename></title>
+
+      <para>גזום רווחים</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>אריזה</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>תלות</segtitle>
+
+          <seglistitem>
+            <seg>חילוץ</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+
+            <seg>מארח הסקריפטים של Windows</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="IgnoreColumns">
+      <title><filename>IgnoreColumns<indexterm>
+          <primary>קובץ התוסף IgnoreColumns</primary>
+        </indexterm></filename></title>
+
+      <para>תוסף זה מתעלם מתווים בעמודות שצוינו. העמודה הראשונה היא מספר 1.</para>
+
+      <para>שים לב שתוסף זה אינו תומך בקבצים עם טאבים: התוסף לא נכשל, אבל כל הטאבים
+מטופלים כתווים רגילים.</para>
+
+      <para>כדי לציין עמודות, השתמש בתיבת הדו-שיח של הגדרות התוסף או שנה את שם
+ה-<filename>dll</filename> באמצעות השדות הבאים כפרמטרים:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>מפרידים בין טווחים: _ או ,</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>מפרידים בין מינימום למקסימום: <emphasis>כל דבר אחר</emphasis></simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>מינימום ומקסימום כלולים.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>כאשר מקסימום = מינימום, ניתן להשמיט את המקסימום.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <example>
+        <title>דוגמאות <filename>IgnoreColumns</filename></title>
+
+<variablelist>
+          <varlistentry>
+            <term><filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 - 33.dll</filename></term>
+
+            <listitem>
+              <simpara>התעלם מכל התווים בעמודה 3, ובעמודות 10 עד 20, ו-32 עד 33.</simpara>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
+
+            <listitem>
+              <simpara>התעלם מכל התווים בעמודה 1 ובעמודות 30 עד 40.</simpara>
+            </listitem>
+          </varlistentry>
+        </variablelist></example>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <seglistitem>
+            <seg>מבדל מראש</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>כן</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreCommentsC<indexterm>
+          <primary>קובץ התוסף IgnoreCommentsC</primary>
+        </indexterm></filename></title>
+
+      <para>התוסף מתעלם מהערות בתוך מפרידי<constant>
+//</constant>... ו-<constant>/*</constant> ... <constant>*/</constant> בקבצי
+C, C++, PHP ו-JavaScript.</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <seglistitem>
+            <seg>מבדל מראש</seg>
+
+            <seg><filename class="extension">*.cpp</filename>, <filename
+class="extension">*.cxx</filename>, <filename
+class="extension">*.h</filename>, <filename
+class="extension">*.hxx</filename>, <filename
+class="extension">*.c</filename>, <filename
+class="extension">*.php</filename>, <filename
+class="extension">*.js</filename>, <filename
+class="extension">*.cs</filename>, <filename
+class="extension">*.ts</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsComma<indexterm>
+          <primary>קובץ התוסף IgnoreFieldsComma</primary>
+        </indexterm></filename></title>
+
+      <para>תוסף זה מיועד לקבצים עם שדות ופסיקים כמפרידים (קבצי CSV, לדוגמה). הוא מתעלם
+מתווי המפריד. השדה הראשון הוא מספר 1.</para>
+
+      <para>כדי לציין את התוחמים, השתמש בתיבת הדו-שיח של הגדרות התוסף או שנה את השם של
+<filename>dll</filename> באמצעות אותם שדות פרמטרים המשמשים עבור <xref
+linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <seglistitem>
+            <seg>מבדל מראש</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>כן</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsTab<indexterm>
+          <primary>קובץ התוסף IgnoreFieldsTab</primary>
+        </indexterm></filename></title>
+
+      <para>תוסף זה מיועד לקבצים המשתמשים בשדות וטאבים כמפרידים (קבצים של
+<application>Excel, לדוגמה</application> השמורים בתבנית <filename
+class="extension">*.txt</filename>). הוא מתעלם מתווי המפריד. השדה הראשון הוא
+מספר 1.</para>
+
+      <para>כדי לציין את התוחמים, השתמש בתיבת הדו-שיח של הגדרות התוסף או שנה את השם של
+<filename>dll</filename> באמצעות אותם שדות פרמטרים המשמשים עבור <xref
+linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <seglistitem>
+            <seg>מבדל מראש</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>כן</seg>
+
+            <seg>כן</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreLeadingLineNumbers<indexterm>
+          <primary>קובץ התוסף IgnoreLeadingLineNumbers</primary>
+        </indexterm></filename></title>
+
+      <para>תוסף זה מתעלם ממספרי השורות המובילים בקבצי טקסט (לדוגמה, קבצי NC ו-BASIC).</para>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>ארגומנטים של התוסף</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <segtitle>דרישה</segtitle>
+
+          <seglistitem>
+            <seg>מבדל מראש</seg>
+
+            <seg><filename class="extension">*.nc</filename></seg>
+
+            <seg>לא</seg>
+
+            <seg>לא</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="EditorAddin">
+      <title><filename>editor addin<indexterm>
+          <primary>קובץ התוסף addin לעורך</primary>
+        </indexterm></filename></title>
+
+      <para>מוסיף כמה פונקציות לתפריט <menuchoice> <guimenu>תוספים</guimenu>
+<guisubmenu>סקריפטים</guisubmenu> </menuchoice>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>הפוך לאותיות רישיות</guimenuitem> המר את הבחירה לאותיות רישיות.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>הפוך לאותיות קטנות</guimenuitem> המר את הבחירה לאותיות קטנות.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>הסר שורות כפולות</guimenuitem> הסר שורות כפולות בבחירה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>ספור שורות כפולות</guimenuitem> הסר שורות כפולות בבחירה והכנס
+את מספר השורות הכפולות מימין.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>מיין שורות בסדר עולה</guimenuitem> מיין את הבחירה בסדר עולה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>מיין שורות בסדר יורד</guimenuitem> מיין את הבחירה בסדר יורד.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>הפוך עמודות</guimenuitem> הפוך עמודות בבחירה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>הפוך שורות</guimenuitem> הפוך שורות בבחירה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>בחר עמודות...</guimenuitem> בחר כמה עמודות בבחירה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>בחר שורות...</guimenuitem> בחר כמה שורות בבחירה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>החלף...</guimenuitem> החלף טקסט בבחירה בטקסט אחר.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>החל פקודת סינון...</guimenuitem> החלף את הבחירה בפלט של פקודת
+הסינון שצוינה. ציון %1 בארגומנט של פקודת הסינון מחליף אותו בשם הקובץ של
+החלונית הפעילה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>פצל לאסימונים...</guimenuitem> מחליף את מפריד האסימונים בשורה
+חדשה בבחירה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>חתוך רווחים</guimenuitem> הסר רווחים בתחילת ובסוף השורות
+בבחירה.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+          <segtitle>מסנן קבצים</segtitle>
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <seglistitem>
+            <seg>תוספת לעורך</seg>
+            <seg>*</seg>
+            <seg>לא</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_datetime">
+      <title><filename>insert datetime<indexterm>
+          <primary>קובץ התוסף insert datetime</primary>
+        </indexterm></filename></title>
+
+      <para>מוסיף שתי פונקציות לתפריט <menuchoice> <guimenu>תוספים</guimenu>
+<guisubmenu>סקריפטים</guisubmenu> </menuchoice>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>הכנס תאריך</guimenuitem> הכנס תאריך בתבנית האזור הנוכחי.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>הכנס שעה</guimenuitem> הכנס שעה בתבנית האזור הנוכחי.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>קטגוריה</segtitle>
+
+          <segtitle>מסנן קבצים</segtitle>
+
+          <segtitle>תמיכה בתיבת הדו-שיח של ההגדרות</segtitle>
+
+          <seglistitem>
+            <seg>תוספת לעורך</seg>
+
+            <seg>*</seg>
+
+            <seg>לא</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+  </section>
+
+  <section>
+    <title>Requirements<indexterm>
+        <primary>תוספים</primary>
+
+        <secondary>דרישה למארח הסקריפטים של Windows</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>מארח הסקריפטים של Windows</title>
+
+      <para>תוספים מסוימים להשלמת עורך דורשים רכיב אופציונלי זה מבית <trademark
+class="registered">Microsoft</trademark>.</para>
+
+      <para>הוא כבר אמור להיות כלול בגרסת Windows שלך, אלא אם כן אתה משתמש בגרסה ישנה
+מאוד מלפני Windows XP.</para>
+    </section>
+  </section>
+</article>

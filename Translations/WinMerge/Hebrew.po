@@ -1,6 +1,9 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Y-Ploni
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -8,7 +11,7 @@ msgstr ""
 "POT-Creation-Date: 2025-01-20 20:14+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
-"Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
+"Language-Team: Hebrew <winmerge-translate@lists.sourceforge.net>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -886,6 +889,60 @@ msgstr "השווה בחלון חדש"
 msgid "Compare Non-hor&izontally..."
 msgstr "השווה לא אופקית..."
 
+msgid "Compare Non-hor&izontally"
+msgstr ""
+
+msgid "First &left item with second left item"
+msgstr ""
+
+msgid "First &right item with second right item"
+msgstr ""
+
+msgid "&First left item with second right item"
+msgstr ""
+
+msgid "&Second left item with first right item"
+msgstr ""
+
+msgid "Co&mpare As"
+msgstr ""
+
+#, c-format
+msgid "Left to Middle (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Left to Right (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Left to... (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Middle to Left (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Middle to Right (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Middle to... (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Right to Middle (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Right to Left (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Right to... (%1 of %2)"
+msgstr ""
+
 msgid "&Delete"
 msgstr "מחק"
 
@@ -912,6 +969,26 @@ msgstr "פתח ימין"
 
 msgid "Cop&y Pathnames"
 msgstr "העתק נתיבי קבצים"
+
+#, c-format
+msgid "Left (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Middle (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Right (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "Both (%1 of %2)"
+msgstr ""
+
+#, c-format
+msgid "All (%1 of %2)"
+msgstr ""
 
 msgid "Copy &Filenames"
 msgstr "העתק שמות קבצים"
@@ -2147,6 +2224,33 @@ msgstr "סיומת קובץ סקריפט:"
 msgid "Script &body:"
 msgstr "תוכן סקריפט:"
 
+msgid "EXT"
+msgstr ""
+
+msgid "CAP"
+msgstr ""
+
+msgid "NUM"
+msgstr ""
+
+msgid "SCRL"
+msgstr ""
+
+msgid "OVR"
+msgstr ""
+
+msgid "REC"
+msgstr ""
+
+msgid "\nNew Documents (Ctrl+N)"
+msgstr ""
+
+msgid "\nOpen (Ctrl+O)"
+msgstr ""
+
+msgid "\nSave (Ctrl+S)"
+msgstr ""
+
 msgid "Unknown error attempting to open project file."
 msgstr "שגיאה לא ידועה בעת ניסיון לפתוח קובץ פרויקט."
 
@@ -2452,11 +2556,17 @@ msgstr ""
 msgid "Locate filter file to install"
 msgstr "אתר קובץ מסנן להתקנה"
 
+msgid "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
+msgstr ""
+
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr "קובץ המסנן כבר קיים. להחליף את המסנן הקיים?"
 
 msgid "Regular expression"
 msgstr "ביטוי רגולרי"
+
+msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgstr ""
 
 msgid "Folder Comparison Results"
 msgstr "תוצאות השוואת תיקיות"
@@ -2473,8 +2583,44 @@ msgstr "ללא שם - אמצע"
 msgid "Untitled right"
 msgstr "ללא שם - ימין"
 
+msgid "Base File"
+msgstr ""
+
+msgid "Theirs File"
+msgstr ""
+
+msgid "Mine File"
+msgstr ""
+
+msgid "Original File"
+msgstr ""
+
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr ""
+
+#, c-format
+msgid "Line: %s"
+msgstr ""
+
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
 msgid "Merge"
 msgstr "מזג"
+
+#, c-format
+msgid "Difference %1 of %2"
+msgstr ""
+
+#, c-format
+msgid "%1 Differences Found"
+msgstr ""
 
 msgid "1 Difference Found"
 msgstr "נמצא הבדל אחד"
@@ -2626,6 +2772,30 @@ msgstr ""
 "\t- להשתמש בשם קובץ אחר (לחץ על אישור)\n"
 "\t- לבטל את הפעולה (לחץ על ביטול)?"
 
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
+
+#, c-format
+msgid "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
+
+#, c-format
+msgid "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
+msgstr ""
+
+#, c-format
+msgid "%1\nis marked read-only. Would you like to override the read-only item?"
+msgstr ""
+
+#, c-format
+msgid "Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"
+msgstr ""
+
 msgid "Save Left File As"
 msgstr "שמור קובץ שמאל בשם"
 
@@ -2634,6 +2804,13 @@ msgstr "שמור קובץ אמצע בשם"
 
 msgid "Save Right File As"
 msgstr "שמור קובץ ימין בשם"
+
+#, c-format
+msgid "The file\n%1\nhas disappeared. Please save a copy of the file to continue."
+msgstr ""
+
+msgid "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
+msgstr ""
 
 msgid "Break at whitespace"
 msgstr "פיצול ברווחים"
@@ -2662,6 +2839,98 @@ msgstr "העתק לאמצע והתקדם\tCtrl+Alt+Left"
 msgid "Copy All to Middle"
 msgstr "העתק הכל לאמצע"
 
+#, c-format
+msgid "Right to Left (%1)"
+msgstr ""
+
+#, c-format
+msgid "Right to Middle (%1)"
+msgstr ""
+
+#, c-format
+msgid "Middle to Left (%1)"
+msgstr ""
+
+#, c-format
+msgid "Middle to Right (%1)"
+msgstr ""
+
+#, c-format
+msgid "Left to Right (%1)"
+msgstr ""
+
+#, c-format
+msgid "Left to Middle (%1)"
+msgstr ""
+
+#, c-format
+msgid "Left to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "Middle to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "Right to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "Both to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "All to... (%1)"
+msgstr ""
+
+#, c-format
+msgid "Differences to... (%1)"
+msgstr ""
+
+msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgstr ""
+
+#, c-format
+msgid "Left (%1)"
+msgstr ""
+
+#, c-format
+msgid "Middle (%1)"
+msgstr ""
+
+#, c-format
+msgid "Right (%1)"
+msgstr ""
+
+#, c-format
+msgid "Both (%1)"
+msgstr ""
+
+#, c-format
+msgid "All (%1)"
+msgstr ""
+
+msgid "Left side - select destination folder:"
+msgstr ""
+
+msgid "Middle side - select destination folder:"
+msgstr ""
+
+msgid "Right side - select destination folder:"
+msgstr ""
+
+#, c-format
+msgid "(%1 Files Affected)"
+msgstr ""
+
+#, c-format
+msgid "(%1 of %2 Files Affected)"
+msgstr ""
+
+#, c-format
+msgid "Are you sure you want to delete\n\n%1 ?"
+msgstr ""
+
 msgid "Are you sure you want to copy?"
 msgstr "האם אתה בטוח שברצונך להעתיק?"
 
@@ -2669,14 +2938,38 @@ msgstr "האם אתה בטוח שברצונך להעתיק?"
 msgid "Are you sure you want to copy %d items?"
 msgstr "האם אתה בטוח שברצונך להעתיק %d פריטים?"
 
+#, c-format
+msgid "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+msgstr ""
+
+msgid "Are you sure you want to move?"
+msgstr ""
+
+#, c-format
+msgid "Are you sure you want to move %d items?"
+msgstr ""
+
 msgid "Confirm Move"
 msgstr "אישור העברה"
+
+msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgstr ""
+
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
 
 msgid "The file or folder name is invalid."
 msgstr "שם הקובץ או התיקיה אינו חוקי."
 
+#, c-format
+msgid "Failed to execute external editor: %1"
+msgstr ""
+
 msgid "Unknown archive format"
 msgstr "פורמט ארכיון לא ידוע"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 msgid "Filename"
 msgstr "שם קובץ"
@@ -2927,6 +3220,15 @@ msgstr "שגיאה"
 msgid "Text files are identical"
 msgstr "קבצי טקסט זהים"
 
+msgid " (Middle and right are identical)"
+msgstr ""
+
+msgid " (Left and right are identical)"
+msgstr ""
+
+msgid " (Left and middle are identical)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "קבצי טקסט שונים"
 
@@ -3001,6 +3303,15 @@ msgstr "זמן יצירה צד אמצע."
 
 msgid "Tells which side has newer modification date."
 msgstr "מציין איזה צד בעל תאריך שינוי חדש יותר."
+
+msgid "Left side file version, only for some file types."
+msgstr ""
+
+msgid "Right side file version, only for some file types."
+msgstr ""
+
+msgid "Middle side file version, only for some file types."
+msgstr ""
 
 msgid "Short comparison result."
 msgstr "תוצאת השוואה מקוצרת."
@@ -3096,11 +3407,18 @@ msgstr "אירעה שגיאה בעת השוואת הקבצים."
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "לא ניתן ליצור קבצים זמניים. בדוק את הגדרות נתיב הקבצים הזמניים שלך."
 
+msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgstr ""
+
 msgid "The selected folder is invalid."
 msgstr "התיקיה שנבחרה אינה חוקית."
 
 msgid "Cannot open a binary file to editor."
 msgstr "לא ניתן לפתוח קובץ בינארי בעורך."
+
+#, c-format
+msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
+msgstr ""
 
 msgid "Are you sure you want to copy all differences to the other file?"
 msgstr "האם אתה בטוח שברצונך להעתיק את כל ההבדלים לקובץ השני?"
@@ -3123,6 +3441,22 @@ msgstr "האם לעבור לקובץ הראשון?"
 msgid "Do you want to move to the last file?"
 msgstr "האם לעבור לקובץ האחרון?"
 
+#, c-format
+msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgstr ""
+
+msgid "Information lost due to encoding errors: both files"
+msgstr ""
+
+msgid "Information lost due to encoding errors: first file"
+msgstr ""
+
+msgid "Information lost due to encoding errors: second file"
+msgstr ""
+
+msgid "Information lost due to encoding errors: third file"
+msgstr ""
+
 msgid "No difference"
 msgstr "אין הבדל"
 
@@ -3139,6 +3473,10 @@ msgstr "לא ניתן למצוא את המחרוזת \"%s\"."
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
 msgstr "אתה נכנס כעת למצב מיזוג. כדי לכבות את מצב המיזוג, לחץ על מקש F9."
+
+#, c-format
+msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
+msgstr ""
 
 msgid "The change of codepage has been merged."
 msgstr "השינוי בקידוד הדף מוזג."
@@ -3169,6 +3507,10 @@ msgstr "הפריט השני לא נמצא!"
 
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "קובץ התיקון כבר קיים. האם להחליף אותו?"
+
+#, c-format
+msgid "[%1 files selected]"
+msgstr ""
 
 msgid "Normal"
 msgstr "רגיל"
@@ -3383,6 +3725,21 @@ msgstr ""
 "\n"
 "מיזוג אוטומטי (Ctrl+Alt+M)"
 
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File (Ctrl+F8)"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File (Ctrl+F7)"
+msgstr ""
+
+msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
+msgstr ""
+
 msgid "No prediffer (normal)"
 msgstr "ללא השוואה מוקדמת (רגיל)"
 
@@ -3475,6 +3832,9 @@ msgstr "%1 אינו קיים. האם ליצור אותו?"
 
 msgid "Failed to create folder."
 msgstr "יצירת התיקיה נכשלה."
+
+msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgstr ""
 
 msgid "default"
 msgstr "ברירת מחדל"
@@ -4064,6 +4424,16 @@ msgstr "הפוך עמודות"
 msgid "Reverse lines"
 msgstr "הפוך שורות"
 
+msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgstr ""
+
+#, c-format
+msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+msgstr ""
+
+msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+msgstr ""
+
 msgid "Trim spaces"
 msgstr "הסר רווחים"
 
@@ -4239,6 +4609,12 @@ msgstr "התעלם מחלק מהעמודות - רשימת העמודות להת�
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
 msgstr "התוסף מתעלם מהערות (//... ו-/* ... */) בקובצי C, C++, PHP ו-JavaScript."
+
+msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+msgstr ""
+
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
 
 msgid "Prediff Line Filter"
 msgstr "מסנן שורות מוקדם"

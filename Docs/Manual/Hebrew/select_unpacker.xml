@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC  "-//OASIS//DTD DocBook XML V4.5//EN"  "../Tools/dtd/docbookx.dtd">
+<section id="select-unpacker">
+  <title>שימוש בתיבת הדו-שיח בחר Unpacker</title>
+
+  <orderedlist id="select-unpacker-proc">
+    <listitem>
+      <para>הגדר בחירת תוספים אוטומטית או בחר תוסף באופן ידני:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>כדי להשתמש במצב אוטומטי (שמחיל את התוסף הזמין הראשון), ודא
+ש-<guilabel>&lt;אוטומטי&gt;</guilabel> מוצג בפקד <guilabel>File
+unpacker</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>כדי לבחור תוסף אחר (אם זמין), השתמש בפקד <guilabel>File unpacker</guilabel>
+כדי לבחור את התוסף.</para>
+
+          <para>כברירת מחדל, פקד זה מפרט רק תוספים מוצעים עבור סוג הקובץ שבחרת להשוואה. כדי
+לראות את כל התוספים הזמינים, הפעל את האפשרות <guilabel>הצג את כל האורזים, אל
+תבדוק את הסיומת</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>כדי להשיק את ההשוואה מבלי להשתמש בתוסף כלשהו, בחר
+<guimenuitem>&lt;ללא&gt;</guimenuitem> בפקד <guilabel>File
+unpacker</guilabel>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>לחץ על <guibutton>אישור</guibutton> כדי לסגור את תיבת הדו-שיח בחר Unpacker.</para>
+    </listitem>
+  </orderedlist>
+</section>

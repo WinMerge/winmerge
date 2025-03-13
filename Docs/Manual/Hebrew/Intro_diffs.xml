@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Intro_diffs">
+  <title>סקירה כללית של השוואה ומיזוג קבצים</title>
+
+  <para>נושא זה מתאר כיצד WinMerge מזהה ומציג הבדלים בתוך קבצי טקסט, ומדגים פעולות
+השוואה ומיזוג קבצים פשוטות. ראה <xref linkend="Compare_bin" /> למידע קשור על
+קבצי hex.</para>
+
+  <section id="Intro_diffs_comparing">
+    <title>השוואת קבצים<indexterm>
+        <primary>השוואת קבצים</primary>
+
+        <secondary>סקירה כללית</secondary>
+      </indexterm></title>
+
+    <para>בדרך כלל אנו משווים שני קבצים הקשורים זה לזה בצורה כלשהי, כגון שתי גרסאות
+שנערכו בזמנים שונים או על ידי אנשים שונים. אם תבדוק שני קבצים כאלה, אתה יכול
+בדרך כלל לראות כמה אזורים דומים, וגם לזהות כמה סוגים של הבדלים: תווים ומילים
+שונים, שורות שונות, אפילו בלוקים שלמים של טקסט שונים. אבל ניסיון להבין את כל
+ההבדלים בין שני קבצים על ידי סריקתם בעורך המועדף עליך יכול להיות מייגע ונוטה
+לשגיאות. כלי הבדלים/מיזוג מיוחדים כמו WinMerge נועדו להפוך את העבודה הזו
+ליותר שיטתית ויעילה.</para>
+
+    <para>כלי הבדלים פשוט שרוב האנשים השתמשו בו הוא בודק איות: הוא מעביר אותך באופן
+שיטתי דרך מסמך, מדגיש מילים השונות מאלה שבמילון שלו, ועוזר לך לפתור כל בעיית
+איות. עם זאת, הסתכלות רק על תווים ומילים אינה דרך יעילה להבין הבדלים בין
+קבצים מרובים. מסיבה זו, כלי הבדלים רבים משתמשים בשורות כיחידת ההשוואה
+הבסיסית במקום זאת.</para>
+
+    <para>WinMerge משתמש גם בשורות כיחידת ההבדל הבסיסית שלו. מילים ותווים אינם מטופלים
+בנפרד בפעולות השוואה ומיזוג. כדי להמחיש, שקול שני קבצים זהים מלבד שורה אחת
+ששונה. אם לשתי הגרסאות של השורה יש ארבע מילים שונות ולאחת הגרסאות יש רווח
+נוסף, אז אנו אומרים שלקובץ יש הבדל אחד, לא חמישה.</para>
+
+    <para>אם מהיר יותר להשוות שורות ממילים, לפעמים זה גם מועיל להתייחס לבלוק שלם של
+שורות כהבדל יחיד, במקום להשוות שורה אחת בכל פעם. כפי שנראה בהמשך, זיהוי
+הבדלים מרובי שורות הופך גם את המיזוג ליעיל יותר.</para>
+
+    <section>
+      <title>פעולת השוואה פשוטה</title>
+
+      <para>סעיף זה מציע דוגמה פשוטה המדגימה כיצד להשוות הבדלי שורות בין שני קבצים
+ב-WinMerge:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>באמצעות עורך טקסט, צור שני קבצים עם השמות והתכנים המוצגים כאן, תוך הקפדה
+לשמור על המילים ומעברי השורות בדיוק:</para>
+
+          <formalpara>
+            <title>קובץ 1:</title>
+
+            <para><screen>זה איטי להשוות מילים
+ותווים. במקום זאת,
+WinMerge משווה שורות.
+תאמין או לא.</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>קובץ 2:</title>
+
+            <para><screen>זה איטי להשוות מילים.
+WinMerge משווה שורות.
+תאמין או לא.</screen></para>
+          </formalpara>
+        </listitem>
+
+        <listitem>
+          <para>הפעל את WinMerge. לדוגמה, לחץ פעמיים על <inlinemediaobject>
+<imageobject> <imagedata contentwidth="32" fileref="screenshots/wm_icon.png"
+/> </imageobject><textobject>
+                <phrase>קיצור דרך לשולחן העבודה של WinMerge</phrase>
+              </textobject>
+            </inlinemediaobject> קיצור הדרך של WinMerge בשולחן העבודה.</para>
+        </listitem>
+
+        <listitem>
+          <para>בתיבת הדו-שיח בחר קבצים ותיקיות, ציין את <filename>File1</filename> כקובץ
+<guilabel>ראשון</guilabel> ואת <filename>File2</filename> כקובץ
+<guilabel>שני</guilabel>, ואז לחץ על <guibutton>השווה</guibutton>. חלון
+השוואת הקבצים מציג את שני הקבצים בלוח הקבצים השמאלי והימני, כך:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/missing_lines.png" /> </imageobject><textobject>
+              <phrase>צילום מסך של השוואת קבצים</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>האלמנטים מתוארים בפירוט רב יותר ב-<xref linkend="Compare_files" />. הנה כמה
+תכונות שעליך לשים לב אליהן בדוגמה זו:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>מספר ההבדלים</term>
+
+              <listitem>
+                <para>ההודעה בשורת המצב בתחתית חלון WinMerge אומרת לך שזוהו שני הבדלים.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>צבעי הבדלים</term>
+
+              <listitem>
+                <para>בלוקי הבדלים מסומנים בצבע הרקע של ההבדלים (זהב, כברירת מחדל).</para>
+
+                <para>ניתן להפעיל הבדלי שורות כדי לסמן טקסט שהשתנה בתוך בלוקי הבדלים, באמצעות צבע
+הרקע של המילה (צהוב בהיר, כברירת מחדל).</para>
+
+                <para>שורות זהות אינן מסומנות: יש להן רקע לבן, כמו השורה השלישית בדוגמה.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>שורות ריקות</term>
+
+              <listitem>
+                <para>שים לב שבלוח ההשוואה השמאלי, לשורה השנייה יש טקסט: ללוח השני יש שורה אפורה
+ריקה באותו מיקום. שורה ריקה זו אינה קיימת בקובץ המקור
+<filename>File2</filename>, אז מה היא עושה ב-WinMerge?</para>
+
+                <para>WinMerge מוסיף שורה ריקה אפורה אחת או יותר בגרסה אחת של הבדל כאשר לגרסה
+השנייה יש יותר שורות. שורות אפורות ריקות אלה אינן מייצגות שורות ריקות בקובץ
+המקור; הן רק מצייני מיקום בתצוגה. מטרת קווי מציין המיקום היא לשמור על יישור
+אנכי של הגרסאות השמאליות והימניות של הבדלים. לכן בדוגמה שלנו, הטקסט,
+<computeroutput>WinMerge משווה שורות</computeroutput>, מופיע זה לצד זה בחלון
+ההשוואה, למרות שהוא נמצא בשורות שונות בקבצי המקור. זה מקל על השוואת הבדלים
+ב-WinMerge מאשר בעורך רגיל.</para>
+
+                <tip>
+                  <para>אחת ההשלכות של השורות הריקות היא ששני הלוחות בחלון השוואת הקבצים מציגים תמיד
+את אותו מספר כולל של שורות, גם אם לקבצי המקור שלהם אין.</para>
+                </tip>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para>כעת, כשאתה מבין כיצד WinMerge מזהה ומציג הבדלים, אתה יכול להשתמש בפונקציות
+ההשוואה ביעילות, כפי שמוצג בשלבים הבאים.</para>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                <phrase>לחצן הבדל נוכחי</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>הבדל
+נוכחי</guibutton> בסרגל הכלים (או הקש <keycombo> <keycap>Alt</keycap>
+<keycap>Enter</keycap> </keycombo>). אם לחצן זה אינו מופעל (לדוגמה, אם הסמן
+שלך נמצא בשורה אחרת), לחץ על <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                <phrase>לחצן הבדל ראשון</phrase>
+              </textobject>
+            </inlinemediaobject>
+הבדל ראשון (או הקש <keycombo> <keycap>Alt</keycap> <keycap>Home</keycap>
+</keycombo>) במקום זאת.</para>
+
+          <para>כשאתה בוחר הבדל, שתי הגרסאות נטענות בלוח ההבדלים. לוח ההבדלים מאשר אילו
+שורות כלולות בהבדל, ומאפשר לך לבחון אותן בנפרד משאר הקובץ. בדוגמה שלנו,
+להבדל 1 יש בבירור שתי שורות.</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="588"
+fileref="screenshots/filecomp_diffpane1.png" /> </imageobject><textobject>
+              <phrase>השוואת קבצים - לוח הבדלים</phrase>
+            </textobject>
+          </mediaobject>
+          <para></para>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                <phrase>כפתור ההבדל הבא</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>הבדל
+הבא</guibutton> בסרגל הכלים (או לחץ על <keycombo> <keycap>Alt</keycap>
+<keycap>Enter</keycap> </keycombo>). זה קופץ מעל השורה הזהה (שאינה הבדל)
+ובוחר את השורה האחרונה.</para>
+
+          <para>הגעת לסוף הקובץ והזדמן לך לבחון כל הבדל. זו הייתה דוגמה טריוויאלית - היו רק
+שני הבדלים - וישנן דרכים אחרות להשוות הבדלים ב-WinMerge. אבל זה מדגים את
+היעילות של שימוש בפקדי הניווט של WinMerge.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section id="Intro_diffs_merging">
+    <title>מיזוג קבצים<indexterm>
+        <primary>מיזוג הבדלים</primary>
+
+        <secondary>סקירה כללית ודוגמה</secondary>
+      </indexterm></title>
+
+    <para>מטרת המיזוג היא לשלב שינויים משני קבצים לקובץ אחד. מיזוג מרחיב את המושגים
+והפונקציות המשמשים בפעולת ההשוואה: אנא קרא את הסעיף הקודם לפני שתתחיל בסעיף
+זה. בנוסף לזיהוי הבדלים בין שתי גרסאות קובץ, אנו פותרים את ההבדלים ושומרים
+את התוצאה בגרסת <glossterm>יעד</glossterm> יחידה.</para>
+
+    <para>מיזוג קבצים מאפשר פיתוח מקבילי, וזו משימה נפוצה בסביבות צוות. לדוגמה, נניח
+שאתה ואדם אחר רוצים להוסיף קוד לאותו קובץ תוכנית בו זמנית. שניכם מתחילים
+בעותק זהה של הקובץ, אך במהלך הפיתוח אתה יוצר גרסאות נפרדות שאינן זהות. בשלב
+מסוים, יש למזג את שתי הגרסאות לגרסה אחת השומרת על השינויים מכל תורם.</para>
+
+    <para>מיזוג יכול להיגרם (או אפילו ליזום) על ידי מערכות בקרת גרסאות כמו Subversion
+ו-Git. לדוגמה, מערכת בקרת הגרסאות שלך עשויה למנוע ממך לשלוח שינויים למאגר
+שלה עקב התנגשויות מיזוג. התנגשות יכולה להתרחש אם מישהו אחר בדק גרסה אחרת של
+אותו קובץ בזמן שעבדת על הגרסה שלך, ומערכת בקרת הגרסאות לא הצליחה למזג
+אוטומטית את ההבדלים. כאשר זה קורה, ייתכן שתצטרך למזג את הגרסאות המתנגשות
+לפני שתנסה שוב לתרום את הגרסה שלך. למערכות רבות יש כלי הבדלים ומיזוג
+משולבים, אך ייתכן שתעדיף להשתמש ב-WinMerge במקום זאת.</para>
+
+    <para>בדיוק כמו בהשוואה, אתה משתמש בפקדי סרגל הכלים של WinMerge (או קיצורי מקשים)
+כדי לעבור באופן שיטתי בין ההבדלים. פתור כל הבדל על ידי העתקת
+<glossterm>המועמד</glossterm> השמאלי או הימני שלו לצד השני. כאשר פתרת את כל
+ההבדלים, WinMerge מודיע לך שכל ההבדלים נפתרו (הגרסאות זהות), וסיימת למזג.</para>
+
+    <section>
+      <title>פעולת מיזוג פשוטה</title>
+
+      <para>תרגיל קצר זה מדגים כיצד להשתמש בפקדים בחלון השוואת הקבצים בצורה שיטתית כדי
+למזג את הקבצים הפשוטים המוצגים קודם לכן:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>לחץ על <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                <phrase>לחצן הבדל נוכחי</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>הבדל
+נוכחי</guibutton> בסרגל הכלים כדי לבחור את ההבדל הראשון. אם לחצן זה אינו
+מופעל, לחץ על <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                <phrase>לחצן הבדל ראשון</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>הבדל
+ראשון</guibutton> במקום זאת.</para>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+                <phrase>כפתור העתק לימין</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>העתק
+ימינה</guibutton> כדי למזג את ההבדל 1 מ-<filename>File1</filename>
+ל-<filename>File2</filename>. ב-<filename>File</filename>2, שים לב ששורת
+ההבדל הבודדת מוחלפת בשתי השורות מ-<filename>File1</filename>, והשורה הריקה
+האפורה נעלמה כעת.</para>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                <phrase>כפתור ההבדל הבא</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>הבדל
+הבא</guibutton> כדי לבחור את ההבדל 2. זה קל יותר מאשר למצוא ולבחור את ההבדל
+בעצמך. זה שימושי במיוחד אם אתה רוצה לעבור בין כל ההבדלים מבלי לפספס אף אחד
+בטעות.</para>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+                <phrase>כפתור העתק לשמאל</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>העתק
+שמאלה</guibutton> כדי למזג את ההבדל 2 מ-<filename>File2</filename>
+ל-<filename>File1</filename>.</para>
+
+          <para>ההודעה שהקבצים זהים אומרת לך שהמיזוג הושלם:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filemerged1.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על <guibutton>אישור</guibutton> כדי לסגור את ההודעה. הודעת סטטוס ההבדל
+משתנה מ-<computeroutput>הבדל 1 מתוך 1</computeroutput>
+ל-<computeroutput>זהה</computeroutput>.</para>
+        </listitem>
+
+        <listitem>
+          <para>הקש <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> כדי
+לשמור את השינויים שלך.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>למרות שפשוט מאוד, דוגמה זו מדגימה מתודולוגיה בסיסית שבה אתה יכול להשתמש כדי
+לעבור בין השוואה בכל אורך, ולמזג כל הבדל בזה אחר זה עד שתקבל את התוצאה
+הרצויה.</para>
+    </section>
+
+    <section>
+      <title>בחירת קובץ תוצאת מיזוג <indexterm>
+          <primary>מיזוג הבדלים</primary>
+
+          <secondary>קובץ תוצאה</secondary>
+        </indexterm><indexterm>
+          <primary>קובץ תוצאה, במיזוג</primary>
+        </indexterm></title>
+
+      <para>אתה שולט היכן נשמרת תוצאת המיזוג שלך. לחלון השוואת הקבצים של WinMerge אין
+לוח תוצאות נפרד, כפי שיש לכלי מיזוג מסוימים. אז האסטרטגיה הפשוטה ביותר היא
+לשמור את השינויים שלך בקובץ מקור אחד, שניים או שלושה. הקש <keycombo>
+<keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo> בכל עת כדי לשמור את
+השינויים הנוכחיים בכל הקבצים; לחלופין, לחץ על <menuchoice>
+<guimenu>קובץ</guimenu> <guimenuitem>שמור שמאלי</guimenuitem> </menuchoice>,
+<menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>שמור אמצעי</guimenuitem>
+</menuchoice> או <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>שמור
+ימני</guimenuitem> </menuchoice> כדי לשמור רק קובץ אחד.</para>
+
+      <para>כדי לכתוב לקובץ שלישי במקום כל אחד מקבצי המקור, השתמש ב-<menuchoice>
+<guimenu>קובץ</guimenu> <guimenuitem>שמור בשם</guimenuitem>
+</menuchoice>. לדוגמה, קובץ היעד שלך עשוי להיות קובץ ההבדלים או קובץ
+ההתנגשות שנוצר על ידי מערכת בקרת גרסאות.</para>
+
+      <para>באופן דומה, בשורת הפקודה של WinMerge, אתה יכול להשאיר את שתי גרסאות המקור או
+את שלושתן ללא שינוי על ידי שימוש בטיעון <option>קובץ פלט</option>
+האופציונלי, כמתואר ב-<xref linkend="Command_line" />.</para>
+    </section>
+  </section>
+</article>

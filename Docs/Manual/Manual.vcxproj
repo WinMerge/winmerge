@@ -146,9 +146,9 @@
     <OutDir>..\..\Build\Manual\htmlhelp</OutDir>
     <IntDir>..\..\BuildTmp\Manual\htmlhelp</IntDir>
     <TargetName>WinMerge.chm</TargetName>
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
     <NMakeOutput>
     </NMakeOutput>
   </PropertyGroup>
@@ -159,9 +159,9 @@
     <TargetName>WinMerge.chm</TargetName>
     <NMakeOutput>
     </NMakeOutput>
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -170,24 +170,24 @@
     <TargetName>WinMerge.chm</TargetName>
     <NMakeOutput>
     </NMakeOutput>
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <TargetName>WinMerge.chm</TargetName>
     <NMakeOutput />
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <TargetName>WinMerge.chm</TargetName>
     <NMakeOutput />
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -197,24 +197,24 @@
     <TargetName>WinMerge.chm</TargetName>
     <NMakeOutput>
     </NMakeOutput>
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <TargetName>WinMerge.chm</TargetName>
     <NMakeOutput />
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <TargetName>WinMerge.chm</TargetName>
     <NMakeOutput />
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -356,6 +356,32 @@
     <Xml Include="English\xsl\htmlhelp.xsl" />
     <Xml Include="English\_Copyrights.xml" />
     <Xml Include="English\_VersionNumbers.xml" />
+    <Xml Include="Hebrew\About_Doc.xml" />
+    <Xml Include="Hebrew\Command_line.xml" />
+    <Xml Include="Hebrew\Compare_bin.xml" />
+    <Xml Include="Hebrew\Compare_dirs.xml" />
+    <Xml Include="Hebrew\Compare_files.xml" />
+    <Xml Include="Hebrew\Compare_images.xml" />
+    <Xml Include="Hebrew\Compare_table.xml" />
+    <Xml Include="Hebrew\Compare_webpages.xml" />
+    <Xml Include="Hebrew\Configuration.xml" />
+    <Xml Include="Hebrew\Faq.xml" />
+    <Xml Include="Hebrew\Filters.xml" />
+    <Xml Include="Hebrew\Index.xml" />
+    <Xml Include="Hebrew\Install.xml" />
+    <Xml Include="Hebrew\Introduction.xml" />
+    <Xml Include="Hebrew\Intro_diffs.xml" />
+    <Xml Include="Hebrew\Locales.xml" />
+    <Xml Include="Hebrew\Open_paths.xml" />
+    <Xml Include="Hebrew\Plugins.xml" />
+    <Xml Include="Hebrew\Quick_start.xml" />
+    <Xml Include="Hebrew\select_unpacker.xml" />
+    <Xml Include="Hebrew\Shortcut_keys.xml" />
+    <Xml Include="Hebrew\Version_control.xml" />
+    <Xml Include="Hebrew\xsl\html.xsl" />
+    <Xml Include="Hebrew\xsl\htmlhelp.xsl" />
+    <Xml Include="Hebrew\_Copyrights.xml" />
+    <Xml Include="Hebrew\_VersionNumbers.xml" />
     <Xml Include="Japanese\About_Doc.xml" />
     <Xml Include="Japanese\Command_line.xml" />
     <Xml Include="Japanese\Compare_bin.xml" />
@@ -465,6 +491,87 @@
     <Image Include="English\screenshots\word-diff-allwhite.png" />
     <Image Include="English\screenshots\word-diff-nochange.png" />
     <Image Include="English\screenshots\word-diff-nowhite.png" />
+    <Image Include="Hebrew\screenshots\aborted.png" />
+    <Image Include="Hebrew\screenshots\allleft_btn.png" />
+    <Image Include="Hebrew\screenshots\allright_btn.png" />
+    <Image Include="Hebrew\screenshots\binary.png" />
+    <Image Include="Hebrew\screenshots\binarydiff.png" />
+    <Image Include="Hebrew\screenshots\char-diff-01.png" />
+    <Image Include="Hebrew\screenshots\copyl_adv_btn.png" />
+    <Image Include="Hebrew\screenshots\copyl_button.png" />
+    <Image Include="Hebrew\screenshots\copyr_adv_btn.png" />
+    <Image Include="Hebrew\screenshots\copyr_button.png" />
+    <Image Include="Hebrew\screenshots\ctx_menu_advanced.png" />
+    <Image Include="Hebrew\screenshots\ctx_menu_copy1.png" />
+    <Image Include="Hebrew\screenshots\ctx_menu_copy2.png" />
+    <Image Include="Hebrew\screenshots\ctx_menu_simple.png" />
+    <Image Include="Hebrew\screenshots\currentdiff_btn.png" />
+    <Image Include="Hebrew\screenshots\diff-blocks-01.png" />
+    <Image Include="Hebrew\screenshots\diff_inline_btn.png" />
+    <Image Include="Hebrew\screenshots\equal.png" />
+    <Image Include="Hebrew\screenshots\equaltextfile.png" />
+    <Image Include="Hebrew\screenshots\error.png" />
+    <Image Include="Hebrew\screenshots\filecomp1.png" />
+    <Image Include="Hebrew\screenshots\filecomp_context1.png" />
+    <Image Include="Hebrew\screenshots\filecomp_diffpane1.png" />
+    <Image Include="Hebrew\screenshots\filecomp_inlinediff.png" />
+    <Image Include="Hebrew\screenshots\filecomp_margin1.png" />
+    <Image Include="Hebrew\screenshots\filecomp_margin2.png" />
+    <Image Include="Hebrew\screenshots\filemerged1.png" />
+    <Image Include="Hebrew\screenshots\fileskip.png" />
+    <Image Include="Hebrew\screenshots\file_headerbar1.png" />
+    <Image Include="Hebrew\screenshots\firstdiff_btn.png" />
+    <Image Include="Hebrew\screenshots\foldercmp_progress.png" />
+    <Image Include="Hebrew\screenshots\foldercmp_unique1.png" />
+    <Image Include="Hebrew\screenshots\foldercmp_unique2.png" />
+    <Image Include="Hebrew\screenshots\foldercomp1.png" />
+    <Image Include="Hebrew\screenshots\foldercomp_2same.png" />
+    <Image Include="Hebrew\screenshots\folderdiff.png" />
+    <Image Include="Hebrew\screenshots\foldersame.png" />
+    <Image Include="Hebrew\screenshots\folderskip.png" />
+    <Image Include="Hebrew\screenshots\folderup.png" />
+    <Image Include="Hebrew\screenshots\folderup_disable.png" />
+    <Image Include="Hebrew\screenshots\hexcmp1.png" />
+    <Image Include="Hebrew\screenshots\ignore-blank-lines.png" />
+    <Image Include="Hebrew\screenshots\imgcmp1.png" />
+    <Image Include="Hebrew\screenshots\lastdiff_btn.png" />
+    <Image Include="Hebrew\screenshots\lfile.png" />
+    <Image Include="Hebrew\screenshots\lfolder.png" />
+    <Image Include="Hebrew\screenshots\line-diff-punctuation.png" />
+    <Image Include="Hebrew\screenshots\linediff.png" />
+    <Image Include="Hebrew\screenshots\locpane_currentdiff.png" />
+    <Image Include="Hebrew\screenshots\locpane_diffs.png" />
+    <Image Include="Hebrew\screenshots\locpane_moved_diffs.png" />
+    <Image Include="Hebrew\screenshots\locpane_viewbar.png" />
+    <Image Include="Hebrew\screenshots\merge_menu.png" />
+    <Image Include="Hebrew\screenshots\mfile.png" />
+    <Image Include="Hebrew\screenshots\mfolder.png" />
+    <Image Include="Hebrew\screenshots\missing_lines.png" />
+    <Image Include="Hebrew\screenshots\moved-01.png" />
+    <Image Include="Hebrew\screenshots\nav_uparrow_btn.png" />
+    <Image Include="Hebrew\screenshots\nextdiff_btn.png" />
+    <Image Include="Hebrew\screenshots\notequal.png" />
+    <Image Include="Hebrew\screenshots\notequaltextfile.png" />
+    <Image Include="Hebrew\screenshots\OpenDlg1.png" />
+    <Image Include="Hebrew\screenshots\OpenDlg2.png" />
+    <Image Include="Hebrew\screenshots\open_icon.png" />
+    <Image Include="Hebrew\screenshots\options_btn.png" />
+    <Image Include="Hebrew\screenshots\prevdiff_btn.png" />
+    <Image Include="Hebrew\screenshots\projfile_save.png" />
+    <Image Include="Hebrew\screenshots\refresh_btn.png" />
+    <Image Include="Hebrew\screenshots\rfile.png" />
+    <Image Include="Hebrew\screenshots\rfolder.png" />
+    <Image Include="Hebrew\screenshots\simlines-diffs-off.png" />
+    <Image Include="Hebrew\screenshots\simlines-diffs-on.png" />
+    <Image Include="Hebrew\screenshots\tblcomp1.png" />
+    <Image Include="Hebrew\screenshots\tfs_configure.png" />
+    <Image Include="Hebrew\screenshots\treeview-01.png" />
+    <Image Include="Hebrew\screenshots\undo_btn.png" />
+    <Image Include="Hebrew\screenshots\webcmp1.png" />
+    <Image Include="Hebrew\screenshots\wm_icon.png" />
+    <Image Include="Hebrew\screenshots\word-diff-allwhite.png" />
+    <Image Include="Hebrew\screenshots\word-diff-nochange.png" />
+    <Image Include="Hebrew\screenshots\word-diff-nowhite.png" />
     <Image Include="Japanese\screenshots\aborted.png" />
     <Image Include="Japanese\screenshots\allleft_btn.png" />
     <Image Include="Japanese\screenshots\allright_btn.png" />

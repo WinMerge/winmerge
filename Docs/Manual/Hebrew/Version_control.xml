@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Version_control">
+  <title>שימוש ב-WinMerge עם כלים אחרים<indexterm>
+      <primary>שילוב</primary>
+    </indexterm></title>
+
+  <para>השוואה ומיזוג קבצים הם לעתים קרובות משימות משנה בתהליך גדול יותר של ניהול
+שינויים. מסיבה זו, WinMerge משמש לעתים קרובות לא רק בפני עצמו, אלא גם בשילוב
+עם כלים אחרים. בנוסף, כלי diff ומיזוג מספקים תכונות שונות, ולכן לפעמים כדאי
+לשלב כלים שונים. נושא זה מתאר את השיטות העיקריות לשימוש ב-WinMerge עם כלים
+אחרים.</para>
+
+  <section>
+    <title>שימוש בממשק שורת הפקודה (CLI)</title>
+
+    <para>ממשק שורת הפקודה (CLI) של WinMerge, המתואר ב-<xref linkend="Command_line"
+/>, מאפשר לך להפעיל את WinMerge מחלון שורת הפקודה, מסקריפטים או מכלי או
+תוכנית אחרים. בעצם, כל תוכנית המאפשרת לך לקרוא לקובץ הפעלה חיצוני עם נתיב
+אחד לפחות, יכולה לשמש להפעלת פעולת WinMerge.</para>
+
+    <para>הנה רק כמה דוגמאות:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>קובץ אצווה יכול להפעיל את WinMerge ולאפשר למשתמשים לציין פרמטרים באופן
+אינטראקטיבי:</para>
+
+        <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /u /dl %3 /dr %5 %6 %7</literallayout>
+      </listitem>
+
+      <listitem>
+        <para>לקוח Subversion מאפשר לך לקרוא לתוכנית diff חיצונית ולהעביר פרמטרים, כך:</para>
+
+        <literallayout>$ svn diff --diff-cmd "C:\Program Files\WinMerge\WinMergeU.exe" -x "-dl -dr" myfile </literallayout>
+      </listitem>
+    </itemizedlist>
+
+    <tip>
+      <para>באופן דומה, כלי GUI רבים (כגון לקוחות בקרת גרסאות ו-IDE) הכוללים כלי diff
+מובנים מאפשרים לך להגדיר את WinMerge ככלי ה-diff המוגדר כברירת מחדל
+שלהם. הסעיף הבא מתאר כיצד להשתמש ב-WinMerge בדרך זו עם TortoiseSVN ו-Visual
+Studio Team Foundation Server. עבור כלים אחרים, כגון Eclipse ו-Perforce,
+בדוק את התיעוד שלהם או חפש באינטרנט פרטים ודוגמאות.</para>
+    </tip>
+  </section>
+
+  <section id="VersionControl_vcs">
+    <title>שימוש ב-WinMerge עם מערכות בקרת גרסאות<indexterm>
+        <primary>מערכות בקרת גרסאות</primary>
+
+        <secondary>שילוב עם</secondary>
+      </indexterm></title>
+
+    <para>ניתן להגדיר את WinMerge לקיים אינטראקציה עם כמה מערכות בקרת גרסאות (VCS)
+נתמכות. סעיף זה מתאר את שילוב ה-VCS ומספק כמה דוגמאות.</para>
+
+    <section>
+      <title>שימוש ב-WinMerge ככלי diff של מערכת בקרת גרסאות</title>
+
+      <indexterm>
+        <primary>שילוב של TortoiseSVN</primary>
+      </indexterm>
+
+      <para>כשאתה משווה קבצים ב-TortoiseCVS, TortoiseSVN או TortoiseGit, אתה יכול לגרום
+ל-VCS להפעיל את WinMerge במקום כלי ה-diff המקורי שלו. אתה יכול להגדיר חלק
+מהשילובים האלה במהלך <link linkend="Installing_usinginstaller">התקנת
+WinMerge</link>.</para>
+
+      <example>
+        <title>שילוב של TortoiseSVN</title>
+
+        <para>הנה דוגמה לפעולת diff ב-TortoiseSVN המשתמשת בשילוב WinMerge. השילוב עם
+TortoiseCVS ו-TortoiseGit דומה.</para>
+
+<orderedlist>
+          <listitem>
+            <para>בסייר Windows, נווט אל עותק עבודה של Subversion שבדקת.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ לחיצה ימנית על קובץ שנמצא תחת ניהול Subversion (בדרך כלל מצוין על ידי
+סמל TortoiseSVN מובהק), ולחץ על <guimenu>TortoiseSVN</guimenu> בתפריט ההקשר.</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>אם הקובץ לא שונה, תפריט ההקשר מכיל את קיצור הדרך, <guimenuitem>השוואה לגרסה
+קודמת</guimenuitem>. פקודה זו משווה את הגרסה שנבדקה של הקובץ עם הגרסה הקודמת
+שנבדקה במאגר.</para>
+              </listitem>
+
+              <listitem>
+                <para>אם שינית את הקובץ, תפריט ההקשר מכיל את אותו קיצור דרך <guimenuitem>השוואה
+לגרסה קודמת</guimenuitem>, בתוספת קיצור הדרך
+<guimenuitem>השוואה</guimenuitem>. פקודה זו משווה את הגרסה שלך לגרסה הנוכחית
+(זו שבדקת). זה שימושי לבדיקת השינויים שביצעת.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>בחר קיצור דרך <guimenuitem>השוואה לגרסה קודמת</guimenuitem> או
+<guimenuitem>השוואה</guimenuitem>. חלון WinMerge נפתח, עם גרסאות הקובץ
+המיועדות שנטענו בחלון השוואת הקבצים.</para>
+          </listitem>
+        </orderedlist><para>קיצור הדרך <menuchoice> <guimenu>TortoiseSVN</guimenu>
+<guimenuitem>השוואה</guimenuitem> </menuchoice> זמין להשוואת כל שני קבצים
+במערכת הקבצים שלך, לא רק קבצים שמנוהלים על ידי Subversion. כדי להדגים כיצד
+שילוב WinMerge פועל במקרה זה:</para>
+
+<orderedlist>
+          <listitem>
+            <para>בסייר Windows, החזק <keycap>Ctrl</keycap>, בחר שני קבצים ולחץ לחיצה ימנית.</para>
+          </listitem>
+
+          <listitem>
+            <para>בחר <menuchoice> <guimenu>TortoiseSVN</guimenu>
+<guimenuitem>השוואה</guimenuitem> </menuchoice> בתפריט ההקשר.</para>
+
+            <para>חלון WinMerge נפתח, עם הקבצים שנבחרו שנטענו בחלון השוואת הקבצים.</para>
+          </listitem>
+        </orderedlist></example>
+
+      <example>
+        <title>שילוב Visual Studio Team Foundation Server</title>
+
+        <para>אתה יכול להגדיר ידנית את WinMerge ככלי ברירת המחדל לשימוש ב-Visual Studio
+כדי להציג הבדלים ב-Team Foundation Server (TFS). ניתן להגדיר מערכות בקרת
+גרסאות אחרות בדרכים דומות מאוד.</para>
+
+<orderedlist>
+          <listitem>
+            <para>ב-Visual Studio, נווט לתפריט <menuchoice> <guimenu>כלים</guimenu>
+<guimenuitem>אפשרויות...</guimenuitem> </menuchoice>.</para>
+          </listitem>
+		  
+          <listitem>
+            <para>תחת <menuchoice> <guimenu>בקרת מקור</guimenu> </menuchoice>, מצא את
+האפשרויות <menuchoice> <guimenu> Visual Studio Team Foundation
+Server</guimenu> </menuchoice>.</para>
+          </listitem>
+		  
+          <listitem>
+            <para>לחץ על כפתור <guimenuitem>הגדר כלי משתמש...</guimenuitem>.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ על כפתור <guimenuitem>הוסף...</guimenuitem>.</para>
+          </listitem>
+		  
+		  <listitem>
+            <mediaobject>
+<imageobject> <imagedata fileref="screenshots/tfs_configure.png"
+format="PNG" /> </imageobject></mediaobject>
+			<para>הקלד את האפשרויות הבאות בכלי התצורה.</para>
+			<itemizedlist>
+              <listitem>
+                <para>סיומת: .*</para>
+              </listitem>
+
+              <listitem>
+                <para>פעולה: השוואה</para>
+              </listitem>
+			  
+			  <listitem>
+                <para>פקודה: {נתיב ל-WinMerge}\WinMergeU.exe</para>
+              </listitem>
+			  
+			  <listitem>
+                <para>ארגומנטים: /e /u /dl %6 /dr %7 %1 %2</para>
+              </listitem>
+            </itemizedlist>
+			<para>כאשר {נתיב ל-WinMerge} הוא הנתיב שבו WinMerge מותקן. בצילום המסך למעלה הוא
+מותקן בנתיב ההתקנה המוגדר כברירת מחדל C:\Program Files
+(x86)\WinMerge\WinMergeU.exe</para>
+			<para>הארגומנטים מתוארים תחת <xref linkend="Command_line" />.</para>
+          </listitem>
+        </orderedlist><para>בכל פעם שתגיד ל-TFS להשוות שני קבצים, הוא ישתמש כעת ב-WinMerge.</para>
+      </example>
+    </section>
+  </section>
+</article>

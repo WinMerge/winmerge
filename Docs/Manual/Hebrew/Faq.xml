@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Faq">
+  <title>שאלות נפוצות</title>
+
+  <section>
+    <title>שאלות כלליות</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>האם WinMerge פועל בגרסאות Windows ישנות יותר?</para>
+        </question>
+        <answer>
+          <para><indexterm>
+              <primary>קובצי הפעלה של WinMerge, Unicode ו-ANSI</primary>
+            </indexterm><indexterm>
+              <primary>Unicode</primary>
+              <secondary>תמיכת WinMerge</secondary>
+            </indexterm><indexterm>
+              <primary>ANSI</primary>
+              <secondary>תמיכת WinMerge</secondary>
+            </indexterm>החל מגרסה 2.14, WinMerge סיימה
+את התמיכה במערכות Windows ישנות יותר בנות 32 סיביות, כולל Windows 9x, ME
+ו-NT4. בנוסף, WinMerge גרסה 2.16 אינה תומכת ב-Windows 2000.</para>
+          <para>בעבר, WinMerge סיפקה קובץ הפעלה של ANSI (8 סיביות),
+<filename>WinMerge.exe</filename>, שעוצב סביב קידודי העמודים הישנים של
+Windows. <filename>WinMerge.exe</filename> אחסן באופן פנימי רק את תווי
+ה-ANSI הנתמכים על ידי קידוד העמודים של Windows. לקובץ הפעלה זה היו מגבלות
+חמורות לעבודה עם Unicode: אם פתחת קובץ Unicode, התווים הומרו לקידוד ה-ANSI
+של Windows. מכיוון שיש למעלה מ-100,000 תווי Unicode, ורק 256 יכולים להיות
+מיוצגים בערכת התווים של ANSI, אובדן נתונים יכול להתרחש. ההמרה עשויה להיות
+משוערת (לדוגמה, אבדות ניקוד) או בלתי אפשרית: תווים הוחלפו בסימני שאלה (
+<literal>?</literal> ).</para>
+          <para><filename>WinMerge.exe</filename> גם לא יכול היה לפתוח קבצים עם שמות מחוץ
+לקידוד ה-ANSI הנוכחי. לדוגמה, במערכת אנגלית,
+<filename>WinMerge.exe</filename> לא יכול היה לפתוח קובץ עם שם עברי.</para>
+          <para>WinMerge פיתחה את קובץ ההפעלה <filename>WinMergeU.exe</filename> התומך
+ב-Unicode כדי לעבוד עם מערכות Windows חדשות יותר מבוססות
+Unicode. ל-<filename>WinMergeU.exe</filename> אין אף אחת מהמגבלות של קובץ
+ההפעלה ANSI.</para>
+          <para><filename>WinMergeU.exe</filename> הותקן כברירת מחדל במשך זמן מה, ומכיוון
+שנותרו מעט מערכות Windows מבוססות ANSI, הערך של תחזוקת
+<filename>WinMerge.exe</filename> הוא מינימלי. נכון לגרסה 2.14, WinMerge כבר
+לא כולל את <filename>WinMerge.exe</filename> במתקין.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>אני רוצה להשוות תיקיות, אבל אני לא יכול לבחור תיקייה בתיבת הדו-שיח
+עיון.<indexterm>
+              <primary>תיקיות</primary>
+
+              <secondary>בחירה בתיבת הדו-שיח בחר קבצים או תיקיות</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>עיין בתוכן התיקייה לתיקייה שברצונך להשוות. אל תבחר אף אחד מהקבצים או תיקיות
+המשנה, פשוט לחץ על <guibutton>פתח</guibutton> כאשר <literal>בחירת
+תיקייה</literal> מוצגת בשדה <guilabel>שם קובץ</guilabel>. אם כבר בחרת קבצים
+או תיקיות משנה, פשוט הקלד מחרוזת אקראית בשדה <guilabel>שם קובץ</guilabel>
+ולחץ על <guibutton>פתח</guibutton>. אם שם הקובץ שהזנת לא נמצא, WinMerge פותח
+את התיקייה.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>האם יש לך תוכניות לתמוך במערכות הפעלה אחרות מלבד Windows?</para>
+        </question>
+
+        <answer>
+          <para>אין כרגע תוכניות לתמיכה מרובת פלטפורמות, אך אתה יכול לנסות את הגרסה הלא
+רשמית <ulink url="https://github.com/datadiode/winmerge2011"> WinMerge
+2011</ulink> מאת Jochen Neubeck. גרסה זו אמורה לעבוד עם Wine גם תחת Linux.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>מדוע אין שילוב CVS?<indexterm>
+              <primary>מערכות בקרת גרסאות</primary>
+
+              <secondary>שילוב עם</secondary>
+            </indexterm><indexterm>
+              <primary>שילוב</primary>
+
+              <secondary>עם מערכות בקרת גרסאות</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>מתן שילוב עם CVS הוא בעל ערך מפוקפק מכיוון שכבר יש כל כך הרבה לקוחות CVS
+טובים. עם זאת, WinMerge אכן מספק שילוב עם פונקציית ה-diff של אחד מהלקוחות
+האלה, TortoiseCVS (כמתואר ב<xref linkend="Version_control" />). כמו כן,
+WinMerge יכול לפתור קבצי התנגשות (ראה <xref linkend="ResolveConflictFiles"
+/>).</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>מהי רשימת MRU?<indexterm>
+              <primary>רשימת MRU</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>MRU הוא קיצור של <quote>Most Recently Used</quote> (האחרונים שבשימוש),
+ומתייחס לרשימות ההיסטוריה בתיבת הדו-שיח בחר קבצים או תיקיות. הרשימה מכילה את
+עשרים הנתיבים האחרונים שבהם השתמשת בכל צד.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>האם WinMerge יכול לפתוח קבצי OpenOffice?<indexterm>
+              <primary>OpenOffice, פתיחת קבצים ב-WinMerge</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>קבצי OpenOffice הם ארכיונים. כדי שתוכל לפתוח אותם ב-WinMerge, עליך להגדיר
+תמיכה בארכיון:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>ב-WinMerge, לחץ על הלחצן <guibutton>אפשרויות</guibutton> (או לחץ על
+<menuchoice> <guimenu>עריכה</guimenu> <guimenuitem>אפשרויות</guimenuitem>
+</menuchoice>). בדף תמיכה בארכיון, הפעל את האפשרות <guilabel>זהה סוג ארכיון
+מחתימת קובץ</guilabel></para>
+            </listitem>
+          </itemizedlist>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>מדוע קבצים גדולים מופיעים לפעמים כשונים בחלון השוואת התיקיות, אך זהים בחלון
+השוואת הקבצים?</para>
+        </question>
+
+        <answer>
+          <para>זה מכיוון ש-WinMerge תמיד משתמש בשיטת ההשוואה <guilabel>תוכן מהיר</guilabel>
+לקבצים גדולים. שיטה זו מאפשרת ל-WinMerge להשוות קבצים גדולים ביעילות רבה
+יותר. כדי לבדוק אם זה גורם להתנהגות שאתה רואה, אתה יכול לנסות להעלות את סף
+<guilabel>תוכן מהיר</guilabel> לקבצים גדולים. ראה את הדיון בשיטה זו ב<xref
+linkend="Compare_dirs_starting" /> כדי ללמוד כיצד.</para>
+        </answer>
+      </qandaentry>
+
+    </qandaset>
+  </section>
+
+  <section>
+    <title>השוואת קבצים</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>מדוע כל השורות בקבצים שלי מסומנות כשונות (צבעוניות), למרות שאני יודע שלא כל
+השורות שונות?</para>
+        </question>
+
+        <answer>
+          <para>אולי לקבצים שלך יש סגנונות סיום שורה שונים (לדוגמה, Windows ו-Unix). כברירת
+מחדל, WinMerge משווה סגנונות סיום שורה. כדי להשבית אותו, לחץ על <menuchoice>
+<guimenu>עריכה</guimenu> <guimenuitem>אפשרויות</guimenuitem>
+</menuchoice>. בדף השוואה, הפעל (סמן) את האפשרות <guilabel>התעלם מהבדלי
+החזרת גררה</guilabel>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>שאלות על העורך</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>אני רואה סימני שאלה במקום אותיות בקבצים.</para>
+        </question>
+
+        <answer>
+          <para>זה מה שאנחנו מכנים <glossterm>המרת אובדן</glossterm>.</para>
+<!--<para>
+For Unicode files (UCS-2, UTF-8), use <filename>WinMergeU.exe</filename>.</para>-->
+          
+
+          <para>עבור קבצי ANSI, זה נובע כנראה מבעיות בקידוד עמודים. כדי לפתור בעיות, לחץ על
+<menuchoice> <guimenu>עריכה</guimenu> <guimenuitem>אפשרויות</guimenuitem>
+</menuchoice>. לאחר מכן, בדף קידודי עמודים, ראה אם האפשרות <guilabel>זהה
+מידע קידוד עמודים</guilabel> מסומנת. אם כן, בטל את הבחירה באפשרות, לחץ על
+<guibutton>אישור</guibutton>, ובדוק אם זה עוזר.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>אני לא יכול לבחור גופנים פרופורציונליים עבור העורך.</para>
+        </question>
+
+        <answer>
+          <para>למרבה הצער, WinMerge תומך רק בגופנים לא פרופורציונליים.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>מהו <glossterm>עיכוב של סריקה מחדש אוטומטית</glossterm>? מדוע זה נחוץ?</para>
+        </question>
+
+        <answer>
+          <para>כאשר <guilabel>סריקה מחדש אוטומטית</guilabel> מופעלת (בדף עורך של אפשרויות),
+WinMerge מעכב סריקה מחדש בזמן שאתה עורך קבצים. כלומר, לא מתבצעת סריקה מחדש
+עד זמן קצר לאחר שתפסיק להקליד. ללא עיכוב זה, WinMerge היה סורק מחדש לאחר כל
+תו מוקלד, מה שהופך את תהליך העריכה לאיטי מדי. העיכוב משפר במיוחד את עריכת
+קבצים גדולים יותר, שיכולים לקחת כמה שניות לסרוק מחדש.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>האם אוכל להדפיס קבצים מחלוניות הקבצים בחלון השוואת קבצים?</para>
+        </question>
+
+        <answer>
+          <para>כן, יש תמיכה בסיסית בהדפסה: לחץ על <menuchoice> <guimenu>קובץ</guimenu>
+<guimenuitem>הדפס</guimenuitem> </menuchoice>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>האם אוכל להסתיר שורות דומות בהשוואת קבצים, כך שרק שורות שונות יהיו גלויות?</para>
+        </question>
+
+        <answer>
+          <para>כן, אתה יכול להציג רק שורות שונות על ידי לחיצה על <menuchoice>
+<guimenu>תצוגה</guimenu><guimenuitem>הקשר Diff</guimenuitem> <guimenuitem>0
+שורות</guimenuitem> </menuchoice>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>WinMerge ככלי השוואה או Diff חיצוני</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>אני רוצה ש-WinMerge ייסגר בלחיצה אחת על <keycap>Esc</keycap> לאחר שסיימתי?</para>
+        </question>
+
+        <answer>
+          <para>פתח את WinMerge משורת הפקודה, וכלול את המתג <option>-e</option>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>אני לא רוצה לראות את ההודעה <guilabel>הקבצים זהים</guilabel> כשאני משווה
+קבצים זהים, אני רק רוצה ש-WinMerge ייסגר.</para>
+        </question>
+
+        <answer>
+          <para>השתמש במתג שורת הפקודה <option>-x</option>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>כיצד אוכל להימנע ממילוי רשימות ההיסטוריה של תיבת הדו-שיח בחר קבצים או תיקיות
+בנתיבים זמניים?</para>
+        </question>
+
+        <answer>
+          <para>בקש מהתוכנית החיצונית שלך להפעיל את WinMerge עם האפשרות
+<option>/ub</option>, שאומרת ל-WinMerge לא להוסיף את הקבצים ל-MRU.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>אבל התוכנית שבה אני משתמש לא מאפשרת פרמטרים של שורת פקודה!</para>
+        </question>
+
+        <answer>
+          <para>צור קובץ אצווה המכיל אחת מהשורות האלה (אך לא את שתיהן):</para>
+
+          <itemizedlist>
+            <listitem>
+              <screen>CALL "<replaceable>&lt;winmerge path&gt;\WinMerge</replaceable>" /e /u %1 %2 %3</screen>
+            </listitem>
+
+            <listitem>
+              <screen>start "WinMerge" "<replaceable>&lt;winmerge path&gt;</replaceable>" /e /u %1 %2 %3</screen>
+            </listitem>
+          </itemizedlist>
+
+          <para>הפעל קובץ אצווה זה מהתוכנית שלך.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>תמיכה בארכיון</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>כיצד אוכל לפתוח את קבצי התיקון בסגנון פרי שמפתחי WinMerge משתמשים בהם בעת
+שליחת תיקונים?<indexterm>
+              <primary>קבצי תיקון, בסגנון פרי</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>תיקוני פרי הם קבצי zip המכילים קבצים מקוריים וששונו בספריות
+שונות. ל-WinMerge יש תמיכה פנימית (הפתעה!) לטיפול בקבצים אלה: פשוט הפעל
+פעולת השוואה, ובחר את קובץ ה-zip עבור הצדדים השמאלי והימני. WinMerge פותח את
+תוכן קובץ ה-zip בחלון השוואת תיקיות, ומשווה את הקבצים המקוריים והשתנו.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>האם WinMerge יכול לפתוח קבצי ארכיון עם סיומות קבצים לא סטנדרטיות? (לדוגמה,
+קבצי .jar כקבצי zip)</para>
+        </question>
+
+        <answer>
+          <para>כן: לחץ על הכפתור <guibutton>אפשרויות</guibutton> (או לחץ על <menuchoice>
+<guimenu>עריכה</guimenu> <guimenuitem>אפשרויות</guimenuitem>
+</menuchoice>). בדף תמיכה בארכיון, אפשר את האפשרות <guilabel>גילוי סוג
+ארכיון מחתימת קובץ</guilabel>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section id="Faq_encoding">
+    <title>קידוד טקסט (דפי קוד)<indexterm>
+        <primary>ANSI</primary>
+
+        <secondary>איתור בקבצים באמצעות פנקס רשימות</secondary>
+      </indexterm></title>
+
+    <qandaset>
+      <qandaentry>
+        <question id="Faq_detectencoding">
+          <para id="Faq_detectencoding_text">כיצד אוכל לדעת אם הקובץ שלי מקודד בדף הקוד המקומי של Windows (ANSI)?</para>
+        </question>
+
+        <answer>
+          <para>פתח את הקובץ בפנקס הרשימות של Windows (לדוגמה, לחץ על <menuchoice>
+<guimenu>התחל</guimenu> <guisubmenu>(כל) התוכניות</guisubmenu>
+<guisubmenu>עזרים</guisubmenu> <guimenuitem>פנקס רשימות</guimenuitem>
+</menuchoice>). לחץ על <menuchoice> <guimenu>קובץ</guimenu>
+<guimenuitem>שמירה בשם</guimenuitem> </menuchoice>, ובתיבת הדו-שיח שמירה
+בשם, גלול לפריט <guilabel>קידוד</guilabel> ברשימה הנפתחת. הערכים האפשריים
+כוללים:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>ANSI</guilabel>: הקובץ כנראה בדף הקוד המקומי של Windows. אם הקובץ
+כולו באנגלית ופיסוק רגיל, אז הקובץ הוא גם ב-ASCII.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Unicode</guilabel>: הקובץ כנראה בקידוד ברירת המחדל של Windows
+Unicode, UCS-2LE.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>UTF-8</guilabel>: הקובץ בקידוד Unicode חוצה פלטפורמות, UTF-8.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Unicode big endian</guilabel>: הקובץ בקידוד Unicode שונה שמעט נעשה
+בו שימוש או נתמך ב-Windows, כנראה UCS-2BE.</para>
+            </listitem>
+          </itemizedlist>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>קבצי תיקון<indexterm>
+        <primary>קבצי תיקון</primary>
+
+        <secondary>יצירה עם diffutils</secondary>
+      </indexterm><indexterm>
+        <primary>diffutils</primary>
+
+        <secondary>טלאי WinMerge תואמים ל-</secondary>
+      </indexterm></title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>האם יש דרך ליצור קבצי תיקון משורת הפקודה?</para>
+        </question>
+
+        <answer>
+          <para>לא. זה עשוי להתווסף בגרסאות מאוחרות יותר. עד אז, אתה יכול להשתמש ביציאת
+Win32 של <filename>diffutils</filename>. ניתן להוריד את הגרסה האחרונה של
+<filename>diffutils</filename> (וטלאי) מדף הפרויקט <application>SourceForge
+GnuWin32</application>: <ulink
+url="https://sourceforge.net/projects/gnuwin32/">
+https://sourceforge.net/projects/gnuwin32</ulink>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>האם ניתן להחיל תיקונים באמצעות WinMerge?</para>
+        </question>
+
+        <answer>
+          <para>אתה יכול להחיל תיקונים באמצעות התוסף הניסיוני ApplyPatch.sct. הסיומות של
+התיקונים הנתמכות על ידי התוסף הן .diff או .patch.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+    <para></para>
+  </section>
+</article>
