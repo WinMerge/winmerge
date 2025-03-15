@@ -11,6 +11,13 @@
 <xsl:import href="../../Shared/xsl/html.xsl"/>
 
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+html/param.xsl  parameters
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<xsl:param name="chunker.output.encoding" select="'iso-8859-8'"/>
+<xsl:param name="l10n.gentext.language" select="'he'"/>
+<xsl:param name="l10n.gentext.default.language" select="'he'"/>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
 Custom parameters
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
 <!-- Define suffix to appear after title text in head/title element of 
