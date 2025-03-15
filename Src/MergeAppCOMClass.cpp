@@ -3,6 +3,7 @@
 #include "MergeAppCOMClass.h"
 #include "OptionsMgr.h"
 #include "MergeApp.h"
+#include "Logger.h"
 #include "resource.h"
 
 MergeAppCOMClass::MergeAppCOMClass()
@@ -207,7 +208,7 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::InputBox(BSTR prompt, VARIANT varTit
 
 HRESULT STDMETHODCALLTYPE MergeAppCOMClass::LogError(BSTR text)
 {
-	LogErrorString(text);
+	RootLogger::Error(text);
 	return S_OK;
 }
 

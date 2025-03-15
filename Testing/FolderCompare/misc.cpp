@@ -43,16 +43,6 @@ String LoadResString(unsigned id)
 	return _T("Nothing");
 }
 
-void LogErrorStringUTF8(const std::string& sz)
-{
-	std::cout << sz;
-}
-
-void LogErrorString(const String& sz)
-{
-	std::cout << ucr::toUTF8(sz);
-}
-
 void AppErrorMessageBox(const String& msg)
 {
 	MessageBox(NULL, msg.c_str(), NULL, MB_ICONSTOP);

@@ -350,8 +350,14 @@ msgstr "S&aír\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Editar"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&Copiar\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "&Pegar\tCtrl+V"
+
+msgid "Select &All\tCtrl+A"
+msgstr "S&eleccionar todo\tCtrl+A"
 
 msgid "&Options..."
 msgstr "&C&onfiguración..."
@@ -384,6 +390,9 @@ msgid "&Huge"
 msgstr "&Enorme"
 
 msgid "Men&u Bar"
+msgstr ""
+
+msgid "Output &Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -475,9 +484,6 @@ msgstr "&Dereito só lectura"
 
 msgid "&File Encoding..."
 msgstr "Codi&ficación de archivo..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "S&eleccionar todo\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Mostrar elementos &idénticos"
@@ -664,9 +670,6 @@ msgstr "&Refacer\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Cor&tar\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&Copiar\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "B&uscar...\tCtrl+F"
@@ -3642,6 +3645,9 @@ msgstr "Panel de situación"
 msgid "Diff Pane"
 msgstr "Panel de diferenzas"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Escribíuse correctamente o ficheiro de parche."
 
@@ -4369,6 +4375,20 @@ msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ct
 msgstr ""
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
 msgstr ""
 
 msgid "Prettification"

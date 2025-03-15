@@ -331,6 +331,8 @@ bool CHexMergeDoc::DoFileSave(int nBuffer)
 						static_cast<unsigned>(-1), static_cast<unsigned>(-1),
 							compareResult == 0);
 				}
+
+				CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
 			}
 		}
 	}
@@ -365,6 +367,9 @@ bool CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 		m_filePaths.SetPath(nBuffer, strPath);
 		UpdateLastCompareResult();
 		UpdateHeaderPath(nBuffer);
+
+		CMergeFrameCommon::LogFileSaved(m_filePaths[nBuffer]);
+
 		return true;
 	}
 	return false;
@@ -513,6 +518,8 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, const tchar_t* filename, bool readO
  */
 bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[])
 {
+	CMergeFrameCommon::LogComparisonStart(nFiles, fileloc, strDesc, &m_infoUnpacker, nullptr);
+
 	CWaitCursor waitstatus;
 	CHexMergeFrame *pf = GetParentFrame();
 	ASSERT(pf != nullptr);
@@ -553,6 +560,8 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 	}
 
 	GetMainFrame()->WatchDocuments(this);
+
+	CMergeFrameCommon::LogComparisonCompleted(theApp.GetLastCompareResult() != 0 ? -1 : 0);
 
 	return bSucceeded;
 }

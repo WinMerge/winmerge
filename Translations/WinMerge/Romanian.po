@@ -348,8 +348,14 @@ msgstr "Ieșir&e\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Editare"
 
+msgid "&Copy\tCtrl+C"
+msgstr "&Copiază\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "Li&pește\tCtrl+V"
+
+msgid "Select &All\tCtrl+A"
+msgstr "Selecte&ază tot\tCtrl+A"
 
 msgid "&Options..."
 msgstr "&Opțiuni..."
@@ -382,6 +388,9 @@ msgid "&Huge"
 msgstr "Uriaș"
 
 msgid "Men&u Bar"
+msgstr ""
+
+msgid "Output &Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -473,9 +482,6 @@ msgstr "Protejat la scriere în dreapta"
 
 msgid "&File Encoding..."
 msgstr "Codar&e caractere fișiere..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Selecte&ază tot\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Arată elementele &identice"
@@ -662,9 +668,6 @@ msgstr "&Refă\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "&Taie\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "&Copiază\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Găsește...\tCtrl+F"
@@ -3718,6 +3721,9 @@ msgstr "Panou locație"
 msgid "Diff Pane"
 msgstr "Panou diferențe"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "Fișierul petic a fost scris cu succes."
 
@@ -4459,6 +4465,20 @@ msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ct
 msgstr ""
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
 msgstr ""
 
 msgid "Prettification"

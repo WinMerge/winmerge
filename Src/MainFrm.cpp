@@ -33,6 +33,10 @@
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
 #include "WebPageDiffFrm.h"
+#include "OutputDoc.h"
+#include "OutputBar.h"
+#include "OutputView.h"
+#include "Logger.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
 #include "ConflictFileParser.h"
@@ -70,6 +74,7 @@
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
+#include "FrameWndHelper.h"
 
 #if !defined(SM_CXPADDEDBORDER)
 #define SM_CXPADDEDBORDER       92
@@ -224,6 +229,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_DESTROY()
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
+	ON_MESSAGE(WM_USER+2, OnUser2)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
@@ -266,6 +272,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
 	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnUpdateToolbarSize)
+	ON_COMMAND(ID_VIEW_OUTPUT_BAR, OnViewOutputBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_OUTPUT_BAR, OnUpdateViewOutputBar)
 	// [Plugins] menu
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
@@ -372,9 +380,8 @@ CMainFrame::CMainFrame()
 : m_bFirstTime(true)
 , m_pDropHandler(nullptr)
 , m_bShowErrors(false)
-, m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
-, m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
 , m_pDirWatcher(new DirWatcher())
+, m_pOutputDoc(nullptr)
 {
 }
 
@@ -416,6 +423,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
+	Logger::Get().SetOutputFunction([this](Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)
+		{ OutputLog(level, tp, msg, level == Logger::LogLevel::ERR); } );
+
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
 	if (IsWin10_OrGreater())
@@ -434,7 +444,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
-	
+
 	if (!m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
 	{
 		TRACE0("Failed to create tab bar\n");
@@ -471,6 +481,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
+	if (GetOptionsMgr()->GetBool(OPT_SHOW_OUTPUTBAR))
+		ShowOutputPane(true);
+
 	UpdateSystemMenu();
 
 	return 0;
@@ -503,6 +516,7 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 
 void CMainFrame::OnDestroy(void)
 {
+	SavePosition();
 	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 }
@@ -1503,7 +1517,7 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 			{
 				CDirView *pView = pDoc->GetMainView();
 				if (pView != nullptr)
-					pView->SetFont(m_lfDir);
+					pView->SetFont(theApp.m_lfDir);
 			}
 		}
 	}
@@ -1514,7 +1528,14 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 			CMergeDoc *pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
 			if (pMergeDoc != nullptr)
 				for (auto& pView: pMergeDoc->GetViewList())
-					pView->SetFont(m_lfDiff);
+					pView->SetFont(theApp.m_lfDiff);
+		}
+		if (m_pOutputDoc)
+		{
+			POSITION pos = m_pOutputDoc->GetFirstViewPosition();
+			COutputView* pView = static_cast<COutputView*>(m_pOutputDoc->GetNextView(pos));
+			if (pView)
+				pView->SetFont(theApp.m_lfDiff);
 		}
 	}
 }
@@ -1540,9 +1561,9 @@ void CMainFrame::OnViewSelectfont()
 	// CF_FIXEDPITCHONLY = 0x00004000L
 	// in case you are a developer and want to disable it to test with, eg, a Chinese capable font
 	if (frame == FRAME_FOLDER)
-		lf = &m_lfDir;
+		lf = &theApp.m_lfDir;
 	else
-		lf = &m_lfDiff;
+		lf = &theApp.m_lfDiff;
 
 	cf.lpLogFont = lf;
 	cf.hwndOwner = m_hWnd;
@@ -1567,14 +1588,14 @@ void CMainFrame::OnViewUsedefaultfont()
 	if (frame == FRAME_FOLDER)
 	{
 		Options::Font::Reset(GetOptionsMgr(), OPT_FONT_DIRCMP);
-		m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
-		Options::Font::Save(GetOptionsMgr(), OPT_FONT_DIRCMP, &m_lfDir, false);
+		theApp.m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
+		Options::Font::Save(GetOptionsMgr(), OPT_FONT_DIRCMP, &theApp.m_lfDir, false);
 	}
 	else
 	{
 		Options::Font::Reset(GetOptionsMgr(), OPT_FONT_FILECMP);
-		m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
-		Options::Font::Save(GetOptionsMgr(), OPT_FONT_FILECMP, &m_lfDiff, false);
+		theApp.m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
+		Options::Font::Save(GetOptionsMgr(), OPT_FONT_FILECMP, &theApp.m_lfDiff, false);
 	}
 
 	UpdateFont(frame);
@@ -2235,6 +2256,24 @@ void CMainFrame::OnUpdateViewMenuBar(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Show/hide output pane
+ */
+void CMainFrame::OnViewOutputBar()
+{
+	const bool visible = m_wndOutputBar.m_hWnd != nullptr && !!m_wndOutputBar.IsVisible();
+	GetOptionsMgr()->SaveOption(OPT_SHOW_OUTPUTBAR, !visible);
+	ShowOutputPane(!visible);
+}
+
+/**
+ * @brief Updates "Output pane" menuitem.
+ */
+void CMainFrame::OnUpdateViewOutputBar(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndOutputBar.m_hWnd != nullptr && !!m_wndOutputBar.IsVisible());
+}
+
+/**
  * @brief Show/hide statusbar.
  */
 void CMainFrame::OnViewStatusBar()
@@ -2366,6 +2405,35 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 	IMergeDoc* pMergeDoc = GetActiveIMergeDoc();
 	if (pMergeDoc)
 		pMergeDoc->CheckFileChanged();
+	return 0;
+}
+
+LRESULT CMainFrame::OnUser2(WPARAM wParam, LPARAM lParam)
+{
+	LogMessage* pLogMessage = reinterpret_cast<LogMessage*>(wParam);
+	if (lParam != 0 && m_wndOutputBar.m_hWnd == nullptr)
+		ShowOutputPane(true);
+
+	if (!m_pOutputDoc)
+	{
+		m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
+		m_pOutputDoc->m_xTextBuffer.InitNew();
+	}
+	String text = pLogMessage->format();
+	CCrystalTextBuffer& buf = m_pOutputDoc->m_xTextBuffer;
+	int nEndLine, nEndChar;
+	POSITION pos = m_pOutputDoc->GetFirstViewPosition();
+	CCrystalTextView* pOutputView = static_cast<CCrystalTextView*>(m_pOutputDoc->GetNextView(pos));
+	const bool isCursorAtLastLine = (pOutputView && pOutputView->GetCursorPos().y + 1 == buf.GetLineCount());
+	buf.InsertText(pOutputView, buf.GetLineCount() - 1, 0, text.c_str(), text.length(), nEndLine, nEndChar, 0, false);
+	if (isCursorAtLastLine)
+	{
+		CEPoint pt{ nEndChar, nEndLine };
+		pOutputView->SetCursorPos(pt);
+		pOutputView->EnsureVisible(pt);
+	}
+
+	delete pLogMessage;
 	return 0;
 }
 
@@ -3006,7 +3074,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		}
 		catch (Poco::Exception& e)
 		{
-			LogErrorStringUTF8(e.displayText());
+			RootLogger::Error(e.displayText());
 		}
 	}
 	m_tempFiles.push_back(wTemp);
@@ -3632,6 +3700,13 @@ void CMainFrame::WaitAndDoMessageLoop(bool& completed, int ms)
 	}
 }
 
+void CMainFrame::OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show)
+{
+	LogMessage * p = new LogMessage(level, tp, msg);
+	if (!PostMessage(WM_USER + 2, reinterpret_cast<WPARAM>(p), show))
+		delete p;
+}
+
 void CMainFrame::UpdateDocTitle()
 {
 	CDocManager* pDocManager = AfxGetApp()->m_pDocManager;
@@ -3740,6 +3815,71 @@ void CMainFrame::UpdateSystemMenu()
 	pSysMenu->CheckMenuItem(ID_VIEW_MENU_BAR, MF_BYCOMMAND | (bChecked ? MF_CHECKED : MF_UNCHECKED));
 }
 
+void CMainFrame::ShowOutputPane(bool bShow)
+{
+	if (m_wndOutputBar.m_hWnd == nullptr)
+	{
+		EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+
+		FrameWndHelper::RemoveBarBorder(this);
+
+		String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
+		if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
+		{
+			TRACE0("Failed to create tab bar\n");
+			return;
+		}
+		if (!m_pOutputDoc)
+		{
+			m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
+			m_pOutputDoc->m_xTextBuffer.InitNew();
+		}
+		COutputView* pOutputView = new COutputView;
+		const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
+		pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
+		m_pOutputDoc->AddView(pOutputView);
+		pOutputView->SendMessage(WM_INITIALUPDATE);
+
+		CEPoint pt{ 0, pOutputView->GetLineCount() - 1 };
+		pOutputView->SetCursorPos(pt);
+
+		m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
+		m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+		CRect rc{ 0, 0, 0, 0 };
+		DockControlBar(&m_wndOutputBar);
+
+		CDockState pDockState;
+		pDockState.LoadState(_T("Settings-MainFrame"));
+		if (FrameWndHelper::EnsureValidDockState(this, pDockState)) // checks for valid so won't ASSERT
+			SetDockState(pDockState);
+		// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+		m_wndOutputBar.LoadState(_T("Settings-MainFrame"));
+	}
+
+	__super::ShowControlBar(&m_wndOutputBar, bShow, 0);
+}
+/**
+ * @brief Save coordinates of the frame, splitters, and bars
+ *
+ * @note Do not save the maximized/restored state here. We are interested
+ * in the state of the active frame, and maybe this frame is not active
+ */
+void CMainFrame::SavePosition()
+{
+	if (m_wndOutputBar.m_hWnd != nullptr)
+	{
+		if (!m_wndOutputBar.IsVisible())
+			GetOptionsMgr()->SaveOption(OPT_SHOW_OUTPUTBAR, false);
+		// save the bars layout
+		// save docking positions and sizes
+		CDockState m_pDockState;
+		GetDockState(m_pDockState);
+		m_pDockState.SaveState(_T("Settings-MainFrame"));
+		// for the dimensions of the output pane, use the CSizingControlBar save
+		m_wndOutputBar.SaveState(_T("Settings-MainFrame"));
+	}	
+}
+
 void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
 {
 	if (nID == ID_VIEW_MENU_BAR)
@@ -3749,3 +3889,4 @@ void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 	__super::OnSysCommand(nID, lParam);
 }
+

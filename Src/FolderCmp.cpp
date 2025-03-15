@@ -21,6 +21,7 @@
 #include "TFile.h"
 #include "FileFilterHelper.h"
 #include "PropertySystem.h"
+#include "Logger.h"
 #include "MergeApp.h"
 #include "DebugNew.h"
 
@@ -388,17 +389,17 @@ exitPrepAndCompare:
 		
 		// delete the temp files after comparison
 		if (filepathTransformed[0] != filepathUnpacked[0] && !filepathTransformed[0].empty())
-			try { TFile(filepathTransformed[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[0])); }
+			try { TFile(filepathTransformed[0]).remove(); } catch (...) { RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[0])); }
 		if (filepathTransformed[1] != filepathUnpacked[1] && !filepathTransformed[1].empty())
-			try { TFile(filepathTransformed[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[1])); }
+			try { TFile(filepathTransformed[1]).remove(); } catch (...) { RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[1])); }
 		if (nDirs > 2 && filepathTransformed[2] != filepathUnpacked[2] && !filepathTransformed[2].empty())
-			try { TFile(filepathTransformed[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[2])); }
+			try { TFile(filepathTransformed[2]).remove(); } catch (...) { RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[2])); }
 		if (filepathUnpacked[0] != tFiles[0] && !filepathUnpacked[0].empty())
-			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[0])); }
+			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[0])); }
 		if (filepathUnpacked[1] != tFiles[1] && !filepathUnpacked[1].empty())
-			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[1])); }
+			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[1])); }
 		if (nDirs > 2 && filepathUnpacked[2] != tFiles[2] && !filepathUnpacked[2].empty())
-			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[2])); }
+			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[2])); }
 
 		// When comparing empty file and nonexistent file, `DIFFCODE::SAME` flag is set to the variable `code`, so change the flag to `DIFFCODE::DIFF`
 		// Also when disabling ignore codepage option and the encodings of files are not equal, change the flag to `DIFFCODE::DIFF even if  `DIFFCODE::SAME` flag is set to the variable `code`

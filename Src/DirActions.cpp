@@ -14,6 +14,7 @@
 #include "DirActions.h"
 #include "MergeApp.h"
 #include "UnicodeString.h"
+#include "Logger.h"
 #include "7zCommon.h"
 #include "ShellFileOperations.h"
 #include "DiffItem.h"
@@ -228,7 +229,7 @@ void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & action
 
 	// Invalid operation
 	default: 
-		LogErrorString(_T("Unknown fileoperation in CDirView::ConfirmActionList()"));
+		RootLogger::Error(_T("Unknown fileoperation in CDirView::ConfirmActionList()"));
 		throw "Unknown fileoperation in ConfirmActionList()";
 		break;
 	}
@@ -1221,7 +1222,7 @@ int UpdateCompareFlagsAfterSync(DIFFITEM& di, bool bRecursive)
 /**
  * @brief Update the paths of the diff items recursively.
  * @param[in] nDirs Number of directories to compare.
- * @param[in,out] diÅ@Item to update the path.
+ * @param[in,out] di Item to update the path.
  */
 void UpdatePaths(int nDirs, DIFFITEM& di)
 {

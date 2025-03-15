@@ -231,6 +231,8 @@ protected :
     HACCEL m_hAccel;
     bool m_bVertScrollBarLocked, m_bHorzScrollBarLocked;
     CEPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
+    int m_nRevMarkWidth;
+
     void UpdateCaret ();
     void SetAnchor (const CEPoint & ptNewAnchor);
     int GetTopMarginHeight ();
@@ -708,6 +710,8 @@ public :
     void SetTopMargin (bool bTopMargin);
     bool GetSelectionMargin () const { return m_bSelMargin; }
     void SetSelectionMargin (bool bSelMargin);
+    int GetRevisionMarkWidth() const { return m_nRevMarkWidth; }
+    void SetRevisionMarkWidth(int width) { m_nRevMarkWidth = width; };
     bool GetViewLineNumbers() const { return m_bViewLineNumbers; }
     void SetViewLineNumbers(bool bViewLineNumbers);
     int  GetLineUsedAsHeaders () const { return m_nLineNumberUsedAsHeaders; }

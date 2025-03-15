@@ -31,7 +31,7 @@
 #include "codepage_detect.h"
 #include "Environment.h"
 #include "TFile.h"
-#include "MergeApp.h"
+#include "Logger.h"
 
 using Poco::SharedMemory;
 using Poco::FileOutputStream;
@@ -103,7 +103,7 @@ const tchar_t *storageForPlugins::GetDestFileName()
 			}
 			catch (Exception& e)
 			{
-				LogErrorStringUTF8(e.displayText());
+				RootLogger::Error(e.displayText());
 			}
 		}
 	}
@@ -125,7 +125,7 @@ void storageForPlugins::ValidateNewFile()
 		}
 		catch (Exception& e)
 		{
-			LogErrorStringUTF8(e.displayText());
+			RootLogger::Error(e.displayText());
 		}
 		// we may reuse the temp filename
 		// tempFilenameDst.Empty();
@@ -142,7 +142,7 @@ void storageForPlugins::ValidateNewFile()
 			}
 			catch (Exception& e)
 			{
-				LogErrorStringUTF8(e.displayText());
+				RootLogger::Error(e.displayText());
 			}
 		}
 		else
