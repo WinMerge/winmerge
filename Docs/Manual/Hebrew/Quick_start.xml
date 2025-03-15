@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Quick_start">
+  <title>התחלה מהירה</title>
+
+  <section>
+    <title><indexterm>
+        <primary>תחילת העבודה עם WinMerge</primary>
+      </indexterm><indexterm>
+        <primary>בחירת קבצים ותיקיות</primary>
+
+        <secondary>תחילת עבודה</secondary>
+      </indexterm>בחירת קבצים ותיקיות להשוואה</title>
+
+    <para>לאחר שהתקנת את WinMerge, עבור על ההליך והדיונים בנושא זה כדי ללמוד את
+הפעולות והמושגים הבסיסיים של WinMerge. השיטות המוצגות אינן הדרכים היחידות
+לעשות דברים: בדרך כלל ישנן מספר דרכים לעשות כל משימה. כשתסיים, תוכל להמשיך
+ללמוד שיטות אחרות ומיומנויות מתקדמות יותר, המכוסות בנושאי עזרה אחרים.</para>
+
+    <section>
+      <title><indexterm><primary>חלון WinMerge</primary></indexterm>פתח את חלון WinMerge</title>
+
+      <para>הנה כמה מהשיטות שבהן תוכל להשתמש:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>לחץ פעמיים על קיצור הדרך של WinMerge בשולחן העבודה.</para>
+        </listitem>
+
+        <listitem>
+          <para>נווט למפעיל WinMerge בתפריט התחלה שלך.</para>
+        </listitem>
+
+        <listitem>
+          <para>בחלון שורת פקודה, עבור לתיקיית ההתקנה של WinMerge והזן
+<command>WinMergeU</command>.</para>
+        </listitem>
+
+        <listitem>
+          <para>הקש <keycombo><keycap>Windows</keycap><keycap>R</keycap></keycombo> והזן
+<command>winmerge</command>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>פתח את תיבת הדו-שיח <guilabel>בחר קבצים או תיקיות</guilabel></title>
+
+      <para>בחלון WinMerge השתמש בשיטות הבאות כדי לפתוח את תיבת הדו-שיח <guilabel>בחר
+קבצים או תיקיות</guilabel>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>לחץ על
+<menuchoice><guimenu>קובץ</guimenu><guimenuitem>פתח</guimenuitem></menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על לחצן סרגל הכלים <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>כפתור הפתיחה של WinMerge</phrase></textobject>
+            </inlinemediaobject> פתח.</para>
+        </listitem>
+
+        <listitem>
+          <para>הקש <keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title><indexterm><primary>תיבת הדו-שיח בחר קבצים או תיקיות</primary></indexterm> תיבת הדו-שיח <guilabel>בחר קבצים או
+תיקיות</guilabel></title>
+
+      <para>
+<mediaobject>
+<imageobject> <imagedata fileref="screenshots/OpenDlg1.png" format="PNG" />
+</imageobject><textobject>
+            <phrase>חלון בחר קבצים או תיקיות</phrase>
+          </textobject>
+        </mediaobject></para>
+
+      <section>
+        <title>ציין את הקבצים והתיקיות</title>
+
+        <para>בשדות <guilabel>ראשון</guilabel> ו-<guilabel>שני</guilabel>, ציין את הקבצים
+והתיקיות להשוואה. השתמש באחת מהשיטות הבאות:</para>
+
+        <para><itemizedlist>
+            <listitem>
+              <para>הזן את שמות הנתיבים ישירות לשדות.</para>
+            </listitem>
+
+            <listitem>
+              <para>לחץ על הכפתור <guibutton>עיון</guibutton> כדי לנווט לנתיב הרצוי.</para>
+
+              <para>בתיבת הדו-שיח פתיחה, הטקסט <literal>בחירת תיקייה</literal>, מוצג בתחילה בשדה
+<guilabel>שם קובץ</guilabel>. הבחירה שלך תלויה בסוג ההשוואה שאתה רוצה לעשות:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>אם אתה משווה קבצים, בחר את קובץ היעד. הטקסט <literal>בחירת תיקייה</literal>
+מוחלף בבחירה שלך.</para>
+                </listitem>
+
+                <listitem>
+                  <para>אם אתה משווה תיקיות, פתח את תיקיית היעד; אל תבחר קובץ. הטקסט <literal>בחירת
+תיקייה</literal> נשאר במקום.</para>
+                </listitem>
+              </itemizedlist>
+
+              <para>לחץ על <guibutton>פתח</guibutton> כדי לסגור את תיבת הדו-שיח פתיחה ולטעון את
+הבחירה שלך בשדה <guilabel>ראשון</guilabel> או <guilabel>שני</guilabel>. אם
+ציינת תיקיות, השדה כולל קו נטוי הפוך ( \ ) בסוף הנתיב.</para>
+            </listitem>
+
+            <listitem>
+              <para>לחץ על תיבת הבחירה ובחר נתיב ששימש בעבר.</para>
+
+              <tip>
+                <para>כדי להקל על בחירת נתיבים בשימוש תדיר, שקול לאפשר את האפשרות <guilabel>השלמה
+אוטומטית של תיבת דו-שיח פתיחה</guilabel>. עם אפשרות זו, WinMerge מציג רשימה
+של נתיבים זמינים כשאתה מקליד בשדות. ראה <xref linkend="Configuration" />
+לפרטים.</para>
+              </tip>
+              <para></para>
+            </listitem>
+
+            <listitem>
+              <para>גרור ושחרר קובץ או תיקייה לתוך תיבת הדו-שיח או לשדה
+<guilabel>ראשון</guilabel> או <guilabel>שני</guilabel>.</para>
+            </listitem>
+          </itemizedlist></para>
+
+        <para><note><para>ניתן לבחור רק זוג אחד של קבצים או זוג אחד של תיקיות להשוואה. אם תבחר קובץ
+ותיקייה או אם אחד מהקבצים או התיקיות לא נמצא, WinMerge משבית את הכפתור
+<guibutton>השווה</guibutton> בתיבת הדו-שיח.</para>
+
+            <para>הודעת הסטטוס בתחתית תיבת הדו-שיח גם מודיעה לך אם אחד מהנתיבים אינו חוקי.</para>
+</note></para>
+      </section>
+
+      <section>
+        <title>שלוט בהיקף של השוואות תיקיות</title>
+
+        <para>אם אתה משווה תיקיות, אתה יכול להשתמש בשדה <guilabel>סנן</guilabel> כדי להסיר
+קבצים מסוימים מהפעולה. השדה מציין קבוצת משנה של קבצים בנתיבים הנבחרים שיש
+לכלול; כל הקבצים הלא מוגדרים אינם נכללים.</para>
+
+        <para>ניתן להזין מסכות קבצים כדי לסנן קבצים עם סיומות מסוימות. לדוגמה, ביטוי זה
+כולל רק קבצי מקור C ו-C++; כל סוגי הקבצים האחרים מוסרים מהבחירה שלך.</para>
+
+        <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
+
+        <para>לסינון חזק יותר, הזן קובץ סינון במקום מסכות קבצים: לחץ על כפתור
+<guibutton>בחר</guibutton> ליד השדה <guilabel>מסננים</guilabel> כדי לבחור
+מרשימה של מסננים זמינים. מסנני קבצים מכילים כל מספר של כללים כדי לכלול או לא
+לכלול קבצים. WinMerge מתקין קבוצה של קבצי סינון, שניתן לערוך או להרחיב
+באמצעות הקבצים שלך.</para>
+
+        <para>ראה <xref linkend="Filters" /> לפרטים מלאים על מסכות קבצים וקבצי סינון.</para>
+
+        <para>תיבת הסימון <guilabel>כלול תיקיות משנה</guilabel> מספקת דרך נוספת לשלוט על
+היקף השוואות התיקיות. אם תסמן אפשרות זו, WinMerge ישווה באופן רקורסיבי
+תיקיות משנה, ויציג את כל הקבצים והתיקיות שהוא מוצא בתצוגה אחת. אם תבטל את
+האפשרות, רק התיקייה הנוכחית תושווה ותיקיות המשנה יופיעו בשמן (ללא התוכן
+שלהן), כך שתוכל לעיין בהן.</para>
+      </section>
+
+      <section>
+        <title>השתמש בתוספי Unpacker</title>
+        <para>שדה Unpacker מאפשר לך לבצע פעולות השוואה על תוספים.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>דרכים אחרות לפתוח קבצים ותיקיות<indexterm>
+          <primary>קבצי פרויקט</primary>
+        </indexterm><indexterm>
+          <primary>שורת פקודה</primary>
+
+          <secondary>פתיחת קבצים ותיקיות</secondary>
+        </indexterm></title>
+
+      <para>תיבת הדו-שיח <guilabel>בחר קבצים או תיקיות</guilabel> היא הממשק הראשי לפתיחת
+קבצים ותיקיות. אבל אתה יכול להשתמש גם בדרכים רבות אחרות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><xref linkend="OpenPaths_project" /> הם הדרך הקלה והמהירה ביותר לפתוח נתיבים
+בשימוש תדיר.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><xref linkend="OpenPaths_shell-integ" />.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>השתמש בממשק <xref linkend="Command_line" /> כדי להפעיל את WinMerge מיישומים
+אחרים, משורת פקודה, או קובץ אצווה או סקריפט.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>גרור ושחרר קבצים ותיקיות ישירות לחלון WinMerge או על קיצור הדרך של WinMerge
+בשולחן העבודה.</simpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section>
+    <title><indexterm>
+        <primary>השוואת תיקיות</primary>
+
+        <secondary>תחילת עבודה</secondary>
+      </indexterm><indexterm>
+        <primary>חלון השוואת תיקיות</primary>
+
+        <secondary>תחילת עבודה</secondary>
+      </indexterm>השוואת תיקיות</title>
+
+    <para>אם בחרת שתי תיקיות בתיבת הדו-שיח פתיחה, ייפתח חלון השוואת תיקיות. חלון
+השוואת תיקיות הוא רשימה טבלאית של פריטים שנמצאו בתיקיות המושוות. כל שורה
+מציגה מידע על קובץ שנמצא, כאשר שם הקובץ בעמודה השמאלית ומידע נוסף בעמודות
+האחרות:</para>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>חלון השוואת תיקיות</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>ל-WinMerge אין מושג של צדדים <wordasword>מקוריים</wordasword>
+ו-<wordasword>משתנים</wordasword>. במקום זאת, הוא פשוט מראה מה שונה בין שתי
+תיקיות נבחרות. קובץ או תיקייה שנמצאים רק בצד אחד מוצגים פשוט כפריט ייחודי
+בצד זה, לא כתוספת או הסרה. לדוגמה, בעמודה <guilabel>תוצאת השוואה</guilabel>
+של האיור הקודם, <filename>Merge.aps</filename>
+ו-<filename>Merge.rc.bak</filename> נמצאים כל אחד רק באחת מהתיקיות המושוות.</para>
+
+    <para>ניתן לנהל קבצים ותיקיות בדרכים רבות באמצעות תפריט <guimenu>מיזוג</guimenu>,
+כפתורי סרגל הכלים או תפריט ההקשר (קליק ימני). הפעולה החשובה ביותר היא להפוך
+קבצים או תיקיות לזהים בשני הצדדים על ידי בחירת אחד ממספר פריטי העתקה. כאשר
+מעתיקים קובץ או תיקייה לצד השני, ערך תוצאת ההשוואה משתנה
+ל-<literal>זהה</literal>.</para>
+
+    <para>אם קובץ או תיקייה קיימים בשני הצדדים (וזה לא קובץ בינארי) ניתן לפתוח אותם
+להשוואת קבצים באמצעות אחת מהשיטות הבאות:<itemizedlist>
+        <listitem>
+          <simpara>לחץ על <menuchoice> <guimenuitem>השווה</guimenuitem>
+<guimenuitem>מיזוג</guimenuitem> </menuchoice> בתפריט WinMerge.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>לחץ לחיצה ימנית על השורה ובחר בקיצור הדרך <guimenuitem>השווה</guimenuitem>.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>לחץ פעמיים על השורה.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>בחר את השורה ולחץ על <keycap>Enter</keycap>.</simpara>
+        </listitem>
+      </itemizedlist>אם אתה משווה תיקיית משנה, טבלת ההשוואה של התיקייה החדשה נטענת בחלון השוואת
+התיקיות הנוכחי. כאשר סיימת עם השוואת התיקייה הזו, תוכל לחזור לתיקיית האב שלה
+על ידי לחיצה כפולה על <inlinemediaobject>
+<imageobject> <imagedata contentwidth="23"
+fileref="screenshots/nav_uparrow_btn.png" /> </imageobject><textobject>
+          <phrase>כפתור חץ למעלה של סייר</phrase>
+        </textobject>
+      </inlinemediaobject> חץ
+למעלה בראש עמודת שם הקובץ.</para>
+
+    <para>אם אתה משווה קובץ, WinMerge פותח את חלון השוואת הקבצים, המתואר בסעיף הבא. אם
+תשנה קובץ בחלון השוואת הקבצים, ואז תחזור לחלון השוואת התיקיות, תראה שהנתונים
+של הקובץ מתעדכנים שם.</para>
+  </section>
+
+  <section id="QuickStart_comparingfiles">
+    <title><indexterm>
+        <primary>השוואת קבצים</primary>
+
+        <secondary>תחילת עבודה</secondary>
+      </indexterm><indexterm>
+        <primary>חלון השוואת קבצים</primary>
+
+        <secondary>תחילת עבודה</secondary>
+      </indexterm>השוואת קבצים</title>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>חלון השוואת קבצים</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>חלון השוואת הקבצים מציג את שני הקבצים שנבחרו זה לצד זה, בחלוניות קבצים
+נפרדות. שורות שונות מודגשות בצבע רקע. שורה אחת או יותר של שורות שונות רצופות
+יוצרות הבדל אחד (או <glossterm>diff</glossterm>). בדוגמה הקודמת, הבדל בודד
+נבחר בחלוניות הקבצים ומוצג בפני עצמו בחלונית ההבדלים. WinMerge עובד בעיקר עם
+הבדלים אלה, ולא עם שורות נפרדות. כאשר אתה ממזג הבדל, אתה מעתיק את כל השורות
+שלו מצד אחד לצד השני.</para>
+
+    <para><important>
+        <para>שים לב כיצד WinMerge ממלא שורות חסרות, כך ששורות דומות תמיד מיושרות אנכית,
+זו לצד זו. זה שונה מרוב תוכניות ההשוואה/מיזוג האחרות, ועלול לקחת זמן ללמוד.</para>
+      </important></para>
+
+    <para>ל-WinMerge יש עורך משולב פשוט הכולל הקלדה בסיסית, העתקה, גזירה והדבקה של
+טקסט. אם <guilabel>סריקה חוזרת אוטומטית</guilabel> מופעלת, WinMerge מעדכן את
+הבדלי הקבצים בזמן שאתה עורך קובץ. אם <guilabel>סריקה חוזרת
+אוטומטית</guilabel> מושבתת, אתה יכול לעדכן קבצים על ידי בחירה ב-<menuchoice>
+<guimenu>ערוך</guimenu> <guimenuitem>רענן</guimenuitem> </menuchoice>, לחיצה
+על כפתור סרגל הכלים <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+          <phrase>לחצן רענן</phrase>
+        </textobject>
+      </inlinemediaobject> או לחיצה
+על <keycap>F5</keycap>.</para>
+  </section>
+</article>

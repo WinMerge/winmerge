@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Open_paths">
+  <title>פתיחת קבצים ותיקיות<indexterm>
+      <primary>פתיחת קבצים ותיקיות</primary>
+    </indexterm></title>
+
+  <para>WinMerge מספקת מספר דרכים לציין נתיבים ולפתוח קבצים או תיקיות:<indexterm>
+      <primary>תיקיות</primary>
+
+      <secondary>בחירה בתיבת הדו-שיח בחר קבצים או תיקיות</secondary>
+    </indexterm><indexterm>
+      <primary>קבצים</primary>
+
+      <secondary>בחירה בתיבת הדו-שיח בחר קבצים או תיקיות</secondary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para><xref linkend="OpenPaths_opendialog" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_shell-integ" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_dragndrop" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_project" /></para>
+    </listitem>
+  </itemizedlist>
+
+  <section id="OpenPaths_opendialog">
+    <title>בחר תיבת דו-שיח קבצים או תיקיות<indexterm>
+        <primary>תיבת הדו-שיח בחר קבצים או תיקיות</primary>
+      </indexterm></title>
+
+    <para><xref linkend="Quick_start" /> מתאר את תיבת הדו-שיח בחר קבצים או
+תיקיות. סעיף זה מספק פרטים נוספים, וכמה טיפים לשימוש יעיל יותר בתיבת הדו-שיח
+בחר קבצים או תיקיות.</para>
+
+    <section>
+      <title>שימוש במשתני סביבה<indexterm>
+          <primary>משתני סביבה, בנתיבי יעד השוואה</primary>
+        </indexterm></title>
+
+      <para>אתה יכול להשתמש במשתני סביבה בנתיבים שלך. Windows מרחיב את שם המשתנה בין
+מפרידי % (אחוז). לדוגמה, אם למשתנה סביבה בשם <envar>WORKDIR</envar> יש את
+הערך <filename class="directory">c:\workfiles</filename>, אז הנתיב
+<envar>%WORKDIR%\project1</envar> מורחב ל-<filename
+class="directory">c:\workfiles\project1</filename> .</para>
+    </section>
+
+    <section id="OpeningArchives">
+      <title>פתיחת קבצי ארכיון<indexterm>
+          <primary>ארכיוני 7-Zip</primary>
+
+          <secondary>פְּתִיחָה</secondary>
+        </indexterm></title>
+
+      <para>תמיכת הארכיון של WinMerge מסופקת בתוסף 7-Zip. ראה <xref linkend="Install" />
+כדי להתקין תוסף זה.</para>
+
+      <para>פתיחת שני קבצי ארכיון דומה לפתיחת קבצים רגילים: ציין שני קבצי ארכיון בשדות
+<guilabel>ראשון</guilabel> ו-<guilabel>שני</guilabel> של תיבת הדו-שיח
+פתח. אם WinMerge מזהה את פורמט הארכיון, הוא פותח את תוכן קבצי הארכיון בחלון
+השוואת תיקיות.</para>
+
+      <para>הנושא <xref linkend="Compare_dirs" /> מתאר כיצד לעבוד עם קבצי
+ארכיון. לדוגמה, אם קובץ ארכיון מכיל שתי תיקיות משנה בשם <filename
+class="directory">Original/</filename> ו-<filename
+class="directory">Altered/</filename>, אתה יכול להשוות את התוכן של שתי
+תיקיות המשנה על ידי ציון אותו קובץ ארכיון משני הצדדים בתיבת הדו-שיח בחר
+קבצים או תיקיות או בשורת הפקודה של WinMerge.</para>
+
+      <tip>
+        <para>כשאתה גורר קובץ ארכיון לחלון WinMerge, לחץ על <keycap>Shift</keycap> בעת
+שחרור הקובץ: WinMerge מעתיק אוטומטית את אותו שם קובץ לשני הצדדים ופותח את
+קובץ הארכיון.</para>
+      </tip>
+    </section>
+
+    <section id="Open_paths_filters">
+      <title>החלת מסננים<indexterm>
+          <primary>מסננים</primary>
+
+          <secondary>החלה בתיבת הדו-שיח בחר קבצים או תיקיות</secondary>
+        </indexterm></title>
+
+      <para>שדה העריכה <guilabel>מסנן</guilabel> מאפשר לך להגביל את הקבצים שיכללו
+בהשוואת התיקיות שלך. אתה יכול לציין מסכת קובץ אחת או יותר, או מסנן קבצים
+בודד (לא שניהם).</para>
+
+      <para>מסכה היא ביטוי פשוט המבוסס על סיומות קבצים. לדוגמה, רשימה זו של מסכות קבצים
+כוללת רק קבצים עם הסיומות שצוינו; כל השאר אינם נכללים בבחירה כאשר פעולת
+ההשוואה מתחילה:</para>
+
+      <screen>*.h;*.cpp;*.txt,*.ini</screen>
+
+      <para>מסכות קבצים מעשיות לסינון פשוט; לבחירה מתקדמת יותר, השתמש בקבצי סינון. קבצי
+סינון הם אוספים של ביטויים רגולריים שיכולים לכלול או לא לכלול
+קבצים. WinMerge מתקין מספר קבצי סינון מוגדרים מראש בתיקייה
+<filename>מסננים</filename> שלו, ואתה יכול ליצור משלך גם כן.</para>
+
+      <para>כדי לציין מסנן, לחץ על הלחצן <guibutton>בחר</guibutton> ליד השדה
+<guilabel>מסננים</guilabel> כדי לבחור מרשימת המסננים הזמינים. לחלופין, לחץ
+על הרשימה הנפתחת מסנן ובחר קובץ מסנן ששימש לאחרונה.</para>
+
+      <para>למידע מלא על מסכות סינון וקבצי סינון, ראה <xref linkend="Filters" />.</para>
+    </section>
+
+    <section id="Open_paths_unpacker">
+      <title>בחירת פורק להשוואות קבצים<indexterm>
+          <primary>תוספי פריקה</primary>
+        </indexterm></title>
+
+      <para>פורקים הם תוספים המותקנים עם WinMerge כדי לספק פונקציונליות שאינה בשימוש
+כברירת מחדל. תוספים שניתן להשתמש בהם כדי לעבד מראש סוגים מסוימים של קבצים
+לפני השוואתם. לדוגמה, WinMerge בדרך כלל לא יכול להשוות קבצי MS Word doc, אבל
+על ידי פריקתם, אתה יכול להשוות רק את תוכן הטקסט. ראה <xref linkend="Plugins"
+/> לפרטים.</para>
+
+      <para>כדי להחיל תוסף על השוואת הקבצים שלך, לחץ על הלחצן <guibutton>בחר</guibutton>
+עבור האפשרות <guilabel>פורק</guilabel>. בתיבת הדו-שיח בחר פורק:</para>
+
+      <xi:include href="select_unpacker.xml"
+                  xmlns:xi="http://www.w3.org/2001/XInclude"
+                  xpointer="element(select-unpacker-proc)" />
+
+      <para>הבחירה שלך מוצגת בשדה <guilabel>פורק</guilabel>. שים לב שאינך יכול לבחור
+פורק בעת הפעלת פעולת השוואת תיקיות.</para>
+    </section>
+  </section>
+
+  <section id="OpenPaths_shell-integ">
+    <title><indexterm>
+        <primary>שילוב מעטפת Windows</primary>
+      </indexterm><indexterm>
+        <primary>תפריט הקשר, קיצורי דרך של WinMerge בסייר Windows</primary>
+      </indexterm>הפעלת פעולות WinMerge בסייר Windows</title>
+
+    <para>שילוב מעטפת Windows האופציונלי מאפשר לך להפעיל פעולות השוואה של WinMerge
+ישירות מסייר Windows, באמצעות קיצורי דרך של WinMerge בתפריט ההקשר.</para>
+
+<!--WinMerge provides two optional types of integration with Windows Explorer. The first type lets you launch WinMerge compare operations directly from Windows Explorer, skipping the Select Files or Folders dialog. The second type lets you run Windows shell commands from the WinMerge window.-->
+    
+
+    <section>
+      <title>הפעלת שילוב סייר Windows</title>
+
+      <para>שילוב מעטפת סייר Windows זמין רק אם הוא מופעל. אתה יכול להפעיל אותו או <link
+linkend="Installing_usinginstaller">במהלך התקנת WinMerge</link> או מאוחר
+יותר, באמצעות <xref linkend="Configuration_shell-integ" /> בחלון
+אפשרויות. בחלון אפשרויות, הגדר את האפשרות <option>הוסף לתפריט
+ההקשר</option>, כולל אפשרויות המשנה שלה אם תרצה.</para>
+    </section>
+
+    <section>
+      <title>שימוש בקיצור הדרך של WinMerge</title>
+
+      <para>אם תפעיל את <option>הוסף לתפריט ההקשר</option> ללא אפשרות המשנה של התפריט
+המתקדם, קיצור הדרך <guimenuitem>WinMerge</guimenuitem> יתווסף לתפריט ההקשר
+של סייר. לדוגמה:</para>
+
+      <para>כדי להשתמש בשילוב המעטפת הבסיסי, התחל בבחירת שני נתיבים בסייר Windows. לאחר
+מכן, לחץ לחיצה ימנית ובחר WinMerge בתפריט ההקשר. לדוגמה:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/ctx_menu_simple.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>פקודת WinMerge בתפריט ההקשר של סייר Windows</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>WinMerge פותח את הנתיבים ישירות בחלון השוואת קבצים או השוואת תיקיות.</para>
+
+      <para>הצדדים השמאלי והימני נקבעים לפי סדר המיון בסייר Windows. בצילום המסך הקודם,
+רשימת הקבצים של סייר Windows היא בסדר עולה, כך ש-WinMerge נפתח עם
+<filename>File2</filename> בצד הראשון ו-<filename>File1</filename> בצד השני.</para>
+
+      <note>
+        <para>אם לא ניתן לפתוח אף אחד מהנתיבים מסיבה כלשהי, WinMerge פותח את תיבת הדו-שיח
+בחר קבצים או תיקיות, שבה תוכל לציין נתיבים חדשים. באופן דומה, אם תבחר רק
+נתיב בודד, תיבת הדו-שיח בחר קבצים או תיקיות נפתחת עם הקובץ או התיקייה שנבחרו
+בשדה <guilabel>ראשון</guilabel>, ומשאירה את הנתיב <guilabel>שני</guilabel>
+לציין.</para>
+      </note>
+
+      <para>קיצור הדרך <guimenuitem>WinMerge</guimenuitem> מהיר וקל לשימוש, אך אתה יכול
+להשוות רק קבצים או תיקיות שאתה יכול לבחור בו-זמנית בסייר Windows. לבחירות
+גמישות יותר, שקול להפעיל את התפריט המתקדם, המתואר בסעיף הבא.</para>
+    </section>
+
+    <section>
+      <title>שימוש בתפריט המתקדם</title>
+
+      <para>אם תבחר את <option>אפשר תפריט מתקדם</option>, קיצור הדרך
+<guimenuitem>WinMerge</guimenuitem> מוחלף בשני קיצורי דרך
+<guimenuitem>השווה</guimenuitem>:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/ctx_menu_advanced.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>תפריט הקשר מתקדם של WinMerge</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>השתמש בקיצורי הדרך <guimenuitem>השווה</guimenuitem> בסדר הזה:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>לחץ לחיצה ימנית על הנתיב הראשון ובחר <guimenuitem>השווה
+ל</guimenuitem>. WinMerge מאחסן את הנתיב בזיכרון עד שתבחר את הנתיב השני.</para>
+        </listitem>
+
+        <listitem>
+          <para>אם תחליט שבחרת את הנתיב הראשון הלא נכון, תוכל לשנות אותו לפני שתבחר את הנתיב
+השני:</para>
+
+          <para>לחץ לחיצה ימנית על הנתיב החדש ובחר את קיצור הדרך <guimenuitem>בחר מחדש
+ראשון</guimenuitem>. הבחירה החדשה עוקפת את הנתיב הקודם שלך, ואתה יכול להמשיך
+לשלב הבא.</para>
+        </listitem>
+
+        <listitem>
+          <para>נווט אל הקובץ או התיקייה השנייה שברצונך להשוות. הנתיב השני יכול להיות בכל
+תיקייה, או אפילו בחלון סייר Windows אחר מהנתיב הראשון. לחץ לחיצה ימנית על
+הנתיב השני ובחר <guimenuitem>השווה</guimenuitem>.</para>
+
+          <para>WinMerge פותח את חלון השוואת הקבצים או השוואת התיקיות, וטוען את הנתיבים
+הראשון והשני בצדדים הראשון והשני, בהתאמה.</para>
+        </listitem>
+      </orderedlist>
+
+      <note>
+        <para>אם תלחץ על <guimenuitem>השווה</guimenuitem> לפני שתציין את הנתיב הראשון,
+תיבת הדו-שיח בחר קבצים או תיקיות תיפתח, עם הבחירה שלך כנתיב הראשון
+(<guilabel>ראשון</guilabel>). ציין את הנתיב השני בשדה
+<guilabel>שני</guilabel> כדי להמשיך בהשוואה.</para>
+      </note>
+
+<!--              <tip>
+<para>When you use this method, take advantage 
+of the Select Files or Folders dialog's MRU list. This is very handy when you need 
+to compare one file/folder against several files/folders.</para> </tip> -->
+      
+
+      <para>הנתיבים <guimenuitem>השווה ל</guimenuitem> מאוחסנים בזיכרון עד לפתיחת
+WinMerge. כתוצאה מכך, אינך צריך לבחור את שני הקבצים בו-זמנית או אפילו
+באמצעות אותו תצוגת סייר Windows: אתה יכול לבחור אחד, לפתוח ספרייה אחרת
+ולבחור את השני. שני הנתיבים מושלכים מהזיכרון לאחר פעולת השוואה. המשמעות היא
+שאינך יכול לבחור נתיב <guimenuitem>השווה ל</guimenuitem> אחד ולהשוות אותו
+מול מספר נתיבים.</para>
+    </section>
+
+    <section>
+      <title>צירוף תיקיות משנה בעת שימוש בשילוב סייר Windows<indexterm>
+          <primary>השוואת תיקיות רקורסיבית</primary>
+
+          <secondary>ציון בתיבת הדו-שיח בחר קבצים או תיקיות</secondary>
+        </indexterm><indexterm>
+          <primary>תיקיות משנה</primary>
+
+          <seealso>השוואת תיקיות רקורסיבית</seealso>
+        </indexterm></title>
+
+      <para>כברירת מחדל, השוואות תיקיות שאתה מבצע באמצעות קיצור הדרך
+<guimenuitem>WinMerge</guimenuitem> או <guimenuitem>השווה</guimenuitem> הן
+רקורסיביות. יש דרך להפעיל השוואות לא רקורסיביות עם שילוב סייר Windows:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>השבת את <guilabel>צרף תיקיות משנה</guilabel> בדף תיקייה של תיבת הדו-שיח
+אפשרויות WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+
+      <tip>
+        <para>לחץ על <keycap>Ctrl</keycap> תוך כדי בחירת קיצור הדרך
+<guimenuitem>WinMerge</guimenuitem> או <guimenuitem>השווה</guimenuitem>
+בתפריט ההקשר של סייר Windows כדי לאלץ השוואה הפוכה עם הגדרות 'צרף תיקיות
+משנה' הנוכחיות.</para>
+      </tip>
+    </section>
+  </section>
+
+  <section id="OpenPaths_dragndrop">
+    <title><indexterm>
+        <primary>גרור ושחרר, בחלון WinMerge</primary>
+      </indexterm>שימוש בגרירה ושחרור</title>
+
+    <para>מכל מקור של Windows המאפשר לך לגרור אובייקטים, כגון סייר Windows או שולחן
+העבודה, אתה יכול לגרור ולשחרר נתיב אחד או שניים לתוך חלון WinMerge. אם תשחרר
+רק נתיב אחד לתוך WinMerge, תיבת הדו-שיח בחר קבצים או תיקיות תיפתח כדי שתוכל
+לבחור את הנתיב השני. אם הנתיב הבודד מציין קובץ פרויקט, קובץ הפרויקט נפתח.</para>
+
+    <para>כברירת מחדל, WinMerge אכן מצורף תיקיות משנה בפעולות השוואה. כדי לא לצרף
+תיקיות משנה, לחץ והחזק את <keycap>Ctrl</keycap> תוך כדי שחרור נתיבים. מקש
+שימושי נוסף בעת שחרור נתיבים הוא <keycap>Shift</keycap>: כדי לפתוח את אותו
+נתיב משני צידי חלון השוואה, לחץ והחזק את <keycap>Shift</keycap> תוך כדי
+שחרור רק נתיב אחד. זוהי דרך נוחה לפתוח קבצי ארכיון (ראה <xref
+linkend="OpeningArchives" />).</para>
+
+    <para>אתה יכול לשחרר נתיבים לתוך תיבת הדו-שיח בחר קבצים או תיקיות. הליך טיפוסי הוא
+לגרור ולשחרר את הנתיב הראשון לתוך חלון WinMerge, ולאחר מכן לגרור ולשחרר את
+הנתיב השני לתוך תיבת הדו-שיח בחר קבצים או תיקיות. כאשר נתיב משוחרר לתוך תיבת
+הדו-שיח בחר קבצים או תיקיות, הוא נטען לתוך השדה נתיב 1 או 2:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>1</term>
+
+        <listitem>
+          <para>אם השדה הראשון ריק או ששני שדות הנתיב כבר מכילים נתיבים</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>2</term>
+
+        <listitem>
+          <para>אם הנתיב הראשון אינו ריק והנתיב השני ריק</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="OpenPaths_project">
+    <title><indexterm>
+        <primary>קבצי פרויקט</primary>
+      </indexterm><indexterm>
+        <primary>שורת פקודה</primary>
+
+        <secondary>ציון קבצי פרויקט</secondary>
+      </indexterm>קבצי פרויקט</title>
+
+    <para>אתה יכול לשמור את הנתיבים והמסננים הפתוחים כעת בקובץ פרויקט. לאחר מכן, אתה
+יכול בקלות לפתוח את הפרויקט מאוחר יותר כדי להשוות את אותם קבצים. קבצי פרויקט
+שימושיים אם אתה משווה את אותם קבצים שוב ושוב.</para>
+
+    <section>
+      <title>שימוש בקבצי פרויקט</title>
+
+      <para>כדי להשתמש בקובץ פרויקט בחלון WinMerge, לחץ על <menuchoice>
+<guimenu>קובץ</guimenu> <guimenuitem>פתח פרויקט</guimenuitem>
+</menuchoice>. WinMerge קורא את הנתיבים מקובץ הפרויקט. אם לקובץ הפרויקט יש
+שניים או שלושה נתיבים, נפתחים שניים או שלושה נתיבים. אם ניתן רק נתיב אחד או
+שאחד מהנתיבים אינו חוקי, WinMerge פותח את תיבת הדו-שיח בחר קבצים או תיקיות,
+שבה תוכל להוסיף או לתקן את פרטי הנתיב. הנה כמה דברים שכדאי לקחת בחשבון:</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>אם תציין שני קבצי פרויקט, קבצי הפרויקט עצמם יושוו.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>אם תציין קובץ פרויקט כקובץ השמאלי אך לא תציין קובץ ימני, קובץ הפרויקט הבודד
+ייפתח כאילו השתמשת בפקודה <menuchoice> <guimenu>קובץ</guimenu>
+<guimenuitem>פתח פרויקט</guimenuitem> </menuchoice>.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>אם תציין קובץ פרויקט כקובץ השמאלי וכל קובץ אחר בצד ימין, יושוו תוכן קובץ
+הפרויקט והקובץ השני.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para>כדי לציין קובץ פרויקט בשורת הפקודה, פשוט הזן אותו כנתיב קובץ בודד.</para>
+    </section>
+
+    <section>
+      <title>עריכה ושמירה של קבצי פרויקט</title>
+
+      <para>כדי לשמור קובץ פרויקט, לחץ על <menuchoice> <guimenu>קובץ</guimenu>
+<guimenuitem>שמור פרויקט</guimenuitem> </menuchoice>. תיבת הדו-שיח
+<guilabel>קובץ פרויקט</guilabel> מספקת שדות ואפשרויות שתוכל לערוך בקלות כדי
+לבנות קובץ פרויקט. אם חלון השוואה פתוח כעת, תיבת הדו-שיח <guilabel>קובץ
+פרויקט</guilabel> מאותחלת עם ערכים מההשוואה הנוכחית; אחרת, אתה מספק את
+הערכים בעצמך. כדי להשתמש בפרויקט קיים, לחץ על <guibutton>פתח</guibutton>
+ובחר פרויקט כדי לטעון את הערכים שלו (כל הערכים הקיימים מוחלפים בתיבת
+הדו-שיח).</para>
+
+      <para>כשתסיים לערוך, לחץ על <guibutton>שמור</guibutton> כדי לאחסן את הקובץ.</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/projfile_save.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>תיבת הדו-שיח קובץ פרויקט</phrase>
+        </textobject>
+      </mediaobject>
+    </section>
+
+    <section>
+      <title>פורמט קובץ פרויקט</title>
+
+      <para>קבצי פרויקט הם קבצי XML פשוטים עם סיומת <filename
+class="extension">.WinMerge</filename>. לדוגמה:</para>
+
+      <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;project&gt;
+   &lt;paths&gt;
+      &lt;left&gt;c:\work\project1&lt;/left&gt;
+      &lt;left-readonly&gt;1&lt;/left-readonly&gt;
+      &lt;middle&gt;c:\work\project2&lt;/middle&gt;
+      &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;
+      &lt;right&gt;c:\work\project3&lt;/right&gt;
+      &lt;right-readonly&gt;0&lt;/right-readonly&gt;
+      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;
+      &lt;subfolders&gt;0&lt;/subfolders&gt;
+   &lt;/paths&gt;
+&lt;/project&gt;</screen>
+
+      <para>קובץ פרויקט מכיל רכיב <sgmltag>נתיבים</sgmltag> שיכול להכיל אחד מכל אחד
+מהרכיבים האלה:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term><sgmltag>שמאלי</sgmltag></term>
+
+          <listitem>
+            <para>נתיב שמאלי לפתיחה</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>שמאל-desc</sgmltag></term>
+
+          <listitem>
+            <para>תיאור שמאלי</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>שמאל-לקריאה בלבד</sgmltag></term>
+
+          <listitem>
+            <para>1 = פתח לקריאה בלבד</para>
+
+            <para>0 = פתח כרגיל</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>אמצעי</sgmltag></term>
+
+          <listitem>
+            <para>נתיב אמצעי לפתיחה</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>אמצע-desc</sgmltag></term>
+
+          <listitem>
+            <para>תיאור אמצעי</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>אמצע-לקריאה בלבד</sgmltag></term>
+
+          <listitem>
+            <para>1 = פתח לקריאה בלבד</para>
+
+            <para>0 = פתח כרגיל</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ימין</sgmltag></term>
+
+          <listitem>
+            <para>נתיב ימני לפתיחה</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ימין-desc</sgmltag></term>
+
+          <listitem>
+            <para>תיאור ימני</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ימין-לקריאה בלבד</sgmltag></term>
+
+          <listitem>
+            <para>1 = פתח לקריאה בלבד</para>
+
+            <para>0 = פתח כרגיל</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>מסנן</sgmltag></term>
+
+          <listitem>
+            <para>שם מסנן קבצים או רשימת סיומות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>תיקיות משנה</sgmltag></term>
+
+          <listitem>
+            <para>0 = לא נכללות תיקיות משנה</para>
+
+            <para>1 = נכללות תיקיות משנה</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>פורק</sgmltag></term>
+
+          <listitem>
+            <para>שם תוסף פורק או צינור תוספים</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>מבדל מראש</sgmltag></term>
+
+          <listitem>
+            <para>שם תוסף Prediffer או צינור תוספים</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>סוג-חלון</sgmltag></term>
+
+          <listitem>
+            <para>1 = חלון השוואת טקסט</para>
+
+            <para>2 = חלון השוואת טבלאות</para>
+
+            <para>3 = חלון השוואה בינארית</para>
+
+            <para>4 = חלון השוואת תמונות</para>
+
+            <para>5 = חלון השוואת דפי אינטרנט</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>מפריד-טבלה</sgmltag></term>
+
+          <listitem>
+            <para>מפריד לעריכת טבלאות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>רווחים לבנים</sgmltag></term>
+
+          <listitem>
+            <para>0 = השווה רווחים לבנים</para>
+
+            <para>1 = התעלם משינויים ברווחים לבנים</para>
+
+            <para>2 = התעלם מכל הרווחים הלבנים</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>התעלם-משורות-ריקות</sgmltag></term>
+
+          <listitem>
+            <para>0 = אל תתעלם משורות ריקות</para>
+
+            <para>1 = התעלם משורות ריקות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>התעלם-אותיות-גדולות-קטנות</sgmltag></term>
+
+          <listitem>
+            <para>0 = אל תתעלם מאותיות גדולות/קטנות</para>
+
+            <para>1 = התעלם מאותיות גדולות/קטנות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>התעלם-מהבדלי-החזרת-כרכרה</sgmltag></term>
+
+          <listitem>
+            <para>0 = אל תתעלם מהבדלי החזרת כרכרה</para>
+
+            <para>1 = התעלם מהבדלי החזרת כרכרה</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>התעלם-מספרים</sgmltag></term>
+
+          <listitem>
+            <para>0 = אל תתעלם ממספרים</para>
+
+            <para>1 = התעלם ממספרים</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>התעלם-מהבדלי-קידוד</sgmltag></term>
+
+          <listitem>
+            <para>0 = אל תתעלם מהבדלי קידוד</para>
+
+            <para>1 = התעלם מהבדלי קידוד</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>התעלם-מהבדלי-תגובות</sgmltag></term>
+
+          <listitem>
+            <para>0 = אל תתעלם מהבדלי תגובות</para>
+
+            <para>1 = התעלם מהבדלי תגובות</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>שיטת-השוואה</sgmltag></term>
+
+          <listitem>
+            <para>0 = תוכן מלא</para>
+
+            <para>1 = תוכן מהיר</para>
+
+            <para>2 = תוכן בינארי</para>
+
+            <para>3 = תאריך שינוי</para>
+
+            <para>4 = תאריך שינוי וגודל</para>
+
+            <para>5 = גודל</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>אף אחד מהשדות אינו נדרש, והם יכולים להיות ריקים (<literal>לדוגמה,
+&lt;left&gt;&lt;/left&gt; או &lt;left/&gt;</literal>).</para>
+    </section>
+  </section>
+</article>

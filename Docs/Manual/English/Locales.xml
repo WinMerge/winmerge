@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <article id="Locales">
   <title>Locale support<indexterm>
       <primary>localizing WinMerge</primary>
@@ -176,6 +176,10 @@
 
       <listitem>
         <simpara>Greek</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Hebrew</simpara>
       </listitem>
 
       <listitem>

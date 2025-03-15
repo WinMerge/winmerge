@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Locales">
+  <title>תמיכה בשפה מקומית<indexterm>
+      <primary>התאמת WinMerge לשפה מקומית</primary>
+    </indexterm></title>
+
+  <para>ממשק המשתמש של WinMerge הוא באנגלית כברירת מחדל, אך באפשרותך להתאים את
+ההתקנה שלך
+לשxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxפה
+שתבחר.</para>
+
+  <para>שים לב שהתאמה לשפה המקומית אינה חורגת מעבר לתרגום מחרוזות. לדוגמה, זה לא
+משפיע על האופן שבו מספרים מחולקים או איך מילים מסודרות לפי סדר אלפביתי. (יש
+לטפל בבעיות אלה באופן Windows המקובל על ידי שימוש בהגדרות האזוריות בלוח
+הבקרה.)</para>
+
+  <para>התאמת התקנת WinMerge לשפה המקומית כרוכה בשני השלבים הבסיסיים הבאים:</para>
+
+  <orderedlist>
+    <listitem>
+      <para><xref linkend="Locales_config_files" />: הפוך קובץ שפה אחד או יותר לזמינים
+עבור WinMerge.</para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="Locales_changing" />: בחר אחד מקבצי השפה שהוגדרו.</para>
+    </listitem>
+  </orderedlist>
+
+  <section id="Locales_config_files">
+    <title>הגדרת ההתאמה לשפה המקומית</title>
+
+    <para>הגדרת התאמה לשפה המקומית כרוכה בפשטות בהפיכת קובץ התרגום שלה לזמין עבור
+WinMerge, בין אם במהלך ההתקנה ובין אם לאחריה.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>הכי קל להגדיר קובץ שפה במהלך התקנת WinMerge. ההוראות ב-<xref
+linkend="Installing_usinginstaller" /> מתארות כיצד להשתמש בדף בחר רכיבים כדי
+להתקין קובץ תרגום אחד או יותר.</para>
+      </listitem>
+
+      <listitem>
+        <para>אם לא הגדרת קובץ שפה כאשר התקנת את WinMerge (או שלא השתמשת בהתקנה כלל), אין
+צורך להתקין מחדש את WinMerge. אתה יכול לקבל את קבצי התרגום העדכניים ביותר
+מאתר WinMerge ולהגדיר אותו בעצמך:</para>
+
+        <orderedlist>
+          <listitem>
+            <simpara>צור תיקייה בשם <filename class="directory" >שפות</filename> תחת ספריית
+ההתקנה של WinMerge (היכן שנמצא <filename>WinMergeU.exe</filename>), אם היא
+עדיין לא קיימת.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>עבור אל אתר ה<ulink url="https://winmerge.org/downloads/">הורדות של
+WinMerge</ulink>. הורד אחד מקבצי הקבצים הבינאריים בארכיון (בפורמט Zip או 7z)
+עבור גרסת WinMerge הנוכחית ושמור אותו במערכת הקבצים שלך.</simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>פתח את הארכיון שהורדת, ואתר את קבצי ה-<filename>*.po</filename>, כאשר * היא
+שפה (לדוגמה, <filename>Swedish.po</filename> עבור התרגום השוודי). חלץ את
+קבצי השפה הרצויים לתת התיקייה <filename>שפות</filename> בספריית ההתקנה של
+WinMerge.</simpara>
+          </listitem>
+        </orderedlist>
+
+        <para>קבצי השפה זמינים כעת בפעם הבאה שתפעיל את WinMerge.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="Locales_changing">
+    <title>שינוי שפת הממשק של WinMerge</title>
+
+    <para>אם הגדרת קובץ תרגום אחד או יותר, כמתואר בסעיף הקודם, תוכל לשנות את ההתאמה
+לשפה המקומית של WinMerge לכל אחד מהם:</para>
+
+    <orderedlist>
+      <listitem>
+        <simpara>הפעל את WinMerge.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>בחר <guimenuitem>אפשרויות</guimenuitem> מתפריט <guimenu>ערוך</guimenu>.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>בחר את השפה שלך ולחץ על <guibutton>אישור</guibutton> בדף הכללי של תיבת
+הדו-שיח אפשרויות.</simpara>
+      </listitem>
+    </orderedlist>
+
+    <para>השפה של ממשק המשתמש של WinMerge מתעדכנת באופן מיידי.</para>
+  </section>
+
+  <section>
+    <title>התאמות לשפה המקומית של WinMerge זמינות<indexterm>
+        <primary>התאמות לשפה המקומית, זמינות</primary>
+      </indexterm></title>
+
+    <para>התאמות לשפה המקומית של WinMerge שנתרמו עד כה כוללות את התרגומים הבאים:</para>
+
+    <itemizedlist>
+      <listitem>
+        <simpara>ערבית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>בסקית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>בולגרית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>קטלאנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>סינית (פשוטה ומסורתית כאחד)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>קורסיקאית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>קרואטית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>צ'כית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>דנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>הולנדית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>פינית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>צרפתית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>גליציאנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>גרמנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>יוונית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Hebrew</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>הונגרית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>איטלקית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>יפנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>קוריאנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>ליטאית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>נורווגית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>פרסית</simpara>
+      </listitem>
+	  
+      <listitem>
+        <simpara>פולנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>פורטוגזית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>פורטוגזית (ברזילאית)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>רומנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>רוסית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>סרבית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>סינהאלה</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>סלובקית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>סלובנית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>ספרדית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>שוודית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>טמילית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>טורקית</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>אוקראינית</simpara>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section>
+    <title>דיווח על שגיאות בתרגום<indexterm>
+        <primary>תרגומים, דיווח על שגיאות</primary>
+      </indexterm></title>
+
+    <para>אנא שלח כל שגיאה שתמצא בתרגומים כבאגים ל-<ulink
+url="https://github.com/WinMerge/winmerge/issues">רשימת הבאגים</ulink>
+שלנו. יהיה נהדר אם תספק גם גרסה מתוקנת של הטקסט המתורגם.</para>
+  </section>
+
+  <section>
+    <title>שליחת תרגום חדש<indexterm>
+        <primary>שליחת תרגומים</primary>
+      </indexterm></title>
+
+    <para>אם ברצונך להוסיף את השפה שלך לרשימה, אנא קרא את <ulink
+url="https://winmerge.org/translations/">תיעוד התרגום</ulink> באתר האינטרנט
+של WinMerge כדי ללמוד כיצד. רוב התרגומים אינם שלמים, ולכן העזרה שלך בשיפורם
+תתקבל בברכה. תרגום (או שיפור תרגום) אינו מחייב אותך להחזיק בכל כלי ההידור או
+לדעת על הפנימיות של WinMerge. אתה רק צריך לעקוב אחר ההוראות בקישור
+הקודם. ואם יש לך בעיות, בקש מאיתנו עזרה באחד מ<ulink
+url="https://forums.winmerge.org/">פורומי WinMerge</ulink>.</para>
+  </section>
+</article>

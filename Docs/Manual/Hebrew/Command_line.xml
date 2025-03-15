@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Command_line">
+  <title>שורת פקודה<indexterm>
+      <primary>שורת פקודה</primary>
+    </indexterm><indexterm>
+      <primary>שורת הפקודה של WinMerge</primary>
+
+      <see>שורת פקודה</see>
+    </indexterm></title>
+
+  <para>שורת הפקודה של WinMerge מקבלת מספר פרמטרים בנוסף לנתיבים להשוואה. רוב
+הפרמטרים הללו מיועדים לשימוש ב-WinMerge ככלי השוואה חיצוני או להפעלת השוואה
+מקובץ אצווה.</para>
+
+  <para>השתמש באחד מהפורמטים האלה עבור פקודת WinMerge:</para>
+
+  <para><cmdsynopsis sepchar=" ">
+<command>WinMergeU</command> <arg choice="opt"
+rep="norepeat"><option>/?</option></arg></cmdsynopsis></para>
+
+  <para><cmdsynopsis sepchar=" ">
+<command>WinMergeU</command> <arg choice="opt"
+rep="norepeat"><option>/r</option></arg> <arg choice="opt"
+rep="norepeat"><option>/r-</option></arg> <arg choice="opt"
+rep="norepeat"><option>/e</option></arg> <arg choice="opt"
+rep="norepeat"><option>/f</option> <replaceable>filter</replaceable></arg>
+<arg choice="opt" rep="norepeat"><option>/m</option>
+<replaceable>compare-method</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/t</option>
+<replaceable>window-type</replaceable></arg> <arg><option>/x</option></arg>
+<arg><option>/xq</option></arg> <arg><option>/s</option></arg>
+<arg><option>/sw</option></arg> <arg><option>/s-</option></arg> <arg
+choice="opt" rep="norepeat"><option>/ul</option></arg> <arg choice="opt"
+rep="norepeat"><option>/um</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ur</option></arg> <arg choice="opt"
+rep="norepeat"><option>/u</option></arg> <arg choice="opt"
+rep="norepeat"><option>/wl</option></arg> <arg choice="opt"
+rep="norepeat"><option>/wm</option></arg> <arg choice="opt"
+rep="norepeat"><option>/wr</option></arg> <arg choice="opt"
+rep="norepeat"><option>/new</option></arg> <arg choice="opt"
+rep="norepeat"><option>/self-compare</option></arg> <arg choice="opt"
+rep="norepeat"><option>/clipboard-compare</option></arg>
+<arg><option>/minimize</option></arg> <arg><option>/maximize</option></arg>
+<arg choice="opt" rep="norepeat"><option>/fl</option></arg> <arg
+choice="opt" rep="norepeat"><option>/fm</option></arg> <arg choice="opt"
+rep="norepeat"><option>/fr</option></arg> <arg choice="opt"
+rep="norepeat"><option>/l</option>
+<replaceable>linenumber</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/c</option> <replaceable>charpos</replaceable></arg>
+<arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
+<replaceable>delimiter</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/dl</option>
+<replaceable>leftdesc</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/dm</option>
+<replaceable>middledesc</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/dr</option>
+<replaceable>rightdesc</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/al</option></arg> <arg choice="opt"
+rep="norepeat"><option>/am</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ar</option></arg> <arg choice="opt"
+rep="norepeat"><option>/noninteractive</option></arg> <arg choice="opt"
+rep="norepeat"><option>/noprefs</option></arg> <arg choice="opt"
+rep="norepeat"><option>/enableexitcode</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorews</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignoreblanklines</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorecase</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignoreeol</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorecodepage</option></arg> <arg choice="opt"
+rep="norepeat"><option>/ignorecomments</option></arg> <arg choice="opt"
+rep="norepeat"><option>/unpacker</option>
+<replaceable>unpacker-name</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/prediffer</option>
+<replaceable>prediffer-name</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/cp</option>
+<replaceable>codepage</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/fileext</option>
+<replaceable>file-extension</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/cfg</option>
+<replaceable>name=value</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/inifile</option>
+<replaceable>inifile</replaceable></arg> <arg choice="plain"
+rep="norepeat"><replaceable>leftpath</replaceable></arg> <arg cchoice="opt"
+rep="norepeat"><replaceable>middlepath</replaceable></arg> <arg
+choice="plain" rep="norepeat"><replaceable>rightpath</replaceable></arg>
+<arg choice="opt" rep="norepeat"><option>/o</option>
+<replaceable>outputpath</replaceable></arg> <arg choice="opt"
+rep="norepeat"><option>/or</option>
+<replaceable>reportpath</replaceable></arg></cmdsynopsis></para>
+
+  <cmdsynopsis sepchar=" ">
+<command>WinMergeU</command> <arg choice="plain"
+rep="norepeat"><replaceable>conflictfile</replaceable></arg></cmdsynopsis>
+
+  <para>הזנת הפקודה ללא פרמטרים או נתיבים פשוט פותחת את חלון WinMerge. פרמטרים
+מקודמים בקו נטוי קדימה ( <literal>/</literal> ) או בתו מקף (
+<literal>-</literal> ). לנתיבים אין תו קידומת.</para>
+
+  <variablelist>
+    <varlistentry>
+      <term><option>/?</option></term>
+      <listitem>
+        <para>פותח את עזרה של WinMerge בנושא זה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>השוואת תיקיות רקורסיבית</primary>
+      </indexterm>
+      <term><option>/r</option></term>
+      <listitem>
+        <para>משווה את כל הקבצים בכל תיקיות המשנה (השוואה רקורסיבית). תיקיות ייחודיות
+(המתרחשות רק בצד אחד) מפורטות בתוצאת ההשוואה כפריטים נפרדים. שים לב שצירוף
+תיקיות משנה יכול להגדיל את זמן ההשוואה באופן משמעותי. ללא פרמטר זה, WinMerge
+מפרטת רק קבצים ותיקיות משנה ברמה העליונה של שתי תיקיות היעד. זה לא משווה את
+תיקיות המשנה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>השוואת תיקיות לא רקורסיבית</primary>
+      </indexterm>
+      <term><option>/r-</option></term>
+      <listitem>
+        <para>משווה את כל הקבצים בתוך התיקיות שצוינו אך לא כולל את הקבצים ותיקיות המשנה
+בתוך תיקיות המשנה שלו. זה מאפשר זמן השוואה קצר יותר.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>חלון WinMerge</primary>
+        <secondary>סגירה</secondary>
+      </indexterm>
+
+      <term><option>/e</option></term>
+      <listitem>
+        <para>מאפשר לך לסגור את WinMerge בלחיצה אחת על מקש <keycap>Esc</keycap>. זה שימושי
+כאשר אתה משתמש ב-WinMerge כיישום השוואה חיצוני: אתה יכול לסגור את WinMerge
+במהירות, כמו תיבת דו-שיח. ללא פרמטר זה, ייתכן שתצטרך ללחוץ על
+<keycap>Esc</keycap> מספר פעמים כדי לסגור את כל החלונות שלו.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>מסננים</primary>
+        <secondary>החלה בשורת הפקודה</secondary>
+      </indexterm>
+
+      <term><option>/f</option></term>
+      <listitem>
+        <para>מחילה מסנן מוגדר כדי להגביל את ההשוואה. המסנן יכול להיות מסכת קבצים כמו
+<filename><userinput>*.h *.cpp</userinput></filename>, או השם של מסנן קבצים
+כמו <userinput>XML/HTML Devel</userinput>. הוסף סימני ציטוט סביב מסכת מסנן
+או שם המכילים רווחים.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>שיטת השוואה</primary>
+        <secondary>החלה בשורת הפקודה</secondary>
+      </indexterm>
+
+      <term><option>/m <replaceable>compare-method</replaceable></option></term>
+      <listitem>
+        <para>מגדיר את שיטת ההשוואה לשימוש בהשוואה. זה יכול להיות אחד ממילות המפתח
+<userinput>Full</userinput>, <userinput>Quick</userinput>,
+<userinput>Binary</userinput>, <userinput>Date</userinput>,
+<userinput>SizeDate</userinput> או <userinput>Size</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>סוג חלון</primary>
+        <secondary>החלה בשורת הפקודה</secondary>
+      </indexterm>
+
+      <term><option>/t <replaceable>window-type</replaceable></option></term>
+      <listitem>
+        <para>מציין את סוג החלון בו יוצגו קבצים. זה יכול להיות אחד ממילות המפתח
+<userinput>Text</userinput>, <userinput>Table</userinput>,
+<userinput>Binary</userinput>, <userinput>Image</userinput> או
+<userinput>Webpage</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/x</option></term>
+      <listitem>
+        <para>סוגר את WinMerge (לאחר הצגת תיבת דו-שיח של מידע) כאשר אתה מתחיל השוואה של
+קבצים זהים. לפרמטר אין השפעה לאחר ההשוואה, למשל אם הקבצים הופכים זהים כתוצאה
+ממיזוג או עריכה. פרמטר זה שימושי כאשר אתה משתמש ב-WinMerge כיישום השוואה
+חיצוני, או כאשר אתה רוצה לבטל שלבים מיותרים על ידי התעלמות מקבצים שאין להם
+הבדלים.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/xq</option></term>
+      <listitem>
+        <para>דומה ל-<option>/x</option> אבל לא מציג את ההודעה על קבצים זהים.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>חלון WinMerge</primary>
+        <secondary>הגבלת מופעים</secondary>
+      </indexterm>
+
+      <term><option>/s</option></term>
+      <listitem>
+        <para>מגביל את חלונות WinMerge למופע בודד. לדוגמה, אם WinMerge כבר פועל, השוואה
+חדשה נפתחת באותו מופע. ללא פרמטר זה, מותרים חלונות מרובים: תלוי בהגדרות
+אחרות, השוואה חדשה עשויה להיפתח בחלון הקיים או בחלון חדש.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>הגבל את חלון WinMerge למופע אחד כמו גם את האפשרות /s. עם זאת, הוא ממתין עד
+שהמופע המציג את החלון יסתיים.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/s-</option></term>
+      <listitem>
+        <para>ודא שמופע אחר תמיד מבוצע, תוך התעלמות מהערך של האפשרות "אפשר להפעיל רק מופע
+אחד".</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>רשימת MRU</primary>
+      </indexterm>
+
+      <term><option>/ul</option></term>
+      <listitem>
+        <para>מונע מ-WinMerge להוסיף את הנתיב השמאלי לרשימת הנמצאים בשימוש האחרון
+(MRU). יישומים חיצוניים לא אמורים להוסיף נתיבים לרשימת MRU בתיבת הדו-שיח בחר
+קבצים או תיקיות.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/um</option></term>
+      <listitem>
+        <para>מונע מ-WinMerge להוסיף את הנתיב האמצעי לרשימת הנמצאים בשימוש האחרון
+(MRU). יישומים חיצוניים לא אמורים להוסיף נתיבים לרשימת MRU בתיבת הדו-שיח בחר
+קבצים או תיקיות.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ur</option></term>
+      <listitem>
+        <para>מונע מ-WinMerge להוסיף את הנתיב הימני לרשימת הנמצאים בשימוש האחרון
+(MRU). יישומים חיצוניים לא אמורים להוסיף נתיבים לרשימת MRU בתיבת הדו-שיח בחר
+קבצים או תיקיות.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/u</option></term>
+      <listitem>
+        <para>מונע מ-WinMerge להוסיף כל נתיב (שמאלי או ימני) לרשימת הנמצאים בשימוש האחרון
+(MRU). יישומים חיצוניים לא אמורים להוסיף נתיבים לרשימת MRU בתיבת הדו-שיח בחר
+קבצים או תיקיות.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>הגנה על קבצים</primary>
+      </indexterm>
+
+      <term><option>/wl</option></term>
+      <listitem>
+        <para>פותח את הצד השמאלי כקריאה בלבד. השתמש בזה כשאתה לא רוצה לשנות פריטים בצד
+שמאל בהשוואה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/wm</option></term>
+      <listitem>
+        <para>פותח את הצד האמצעי כקריאה בלבד. השתמש בזה כשאתה לא רוצה לשנות פריטים בצד
+ימין בהשוואה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/wr</option></term>
+      <listitem>
+        <para>פותח את הצד הימני כקריאה בלבד. השתמש בזה כשאתה לא רוצה לשנות פריטים בצד ימין
+בהשוואה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/new</option></term>
+      <listitem>
+        <para>פותח חלון ריק חדש.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>משווה את הקובץ שצוין עם עותק של הקובץ.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/clipboard-compare</option></term>
+      <listitem>
+        <para>משווה את שתי התוכן העדכניים ביותר של היסטוריית הלוח.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>חלון WinMerge</primary>
+        <secondary>פתיחה ממוזערת או מוגדלת</secondary>
+      </indexterm>
+
+      <term><option>/minimize</option></term>
+      <listitem>
+        <para>מפעיל את WinMerge כחלון ממוזער. אפשרות זו יכולה להיות שימושית במהלך השוואות
+ממושכות.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/maximize</option></term>
+      <listitem>
+        <para>מפעיל את WinMerge כחלון מוגדל.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fl</option></term>
+      <listitem>
+        <para>מגדיר מיקוד לצד שמאל בעת ההפעלה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fm</option></term>
+      <listitem>
+        <para>מגדיר מיקוד לצד האמצעי בעת ההפעלה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fr</option></term>
+      <listitem>
+        <para>מגדיר מיקוד לצד ימין בעת ההפעלה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/l <replaceable>linenumber</replaceable></option></term>
+      <listitem>
+        <para>מציין מספר שורה לקפיצה אליה לאחר טעינת הקבצים.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/c <replaceable>charpos</replaceable></option></term>
+      <listitem>
+        <para>מציין מיקום תו לקפיצה אליו לאחר טעינת הקבצים.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
+      <listitem>
+        <para>מציין תו מפריד לעריכת טבלה. כדי לציין תו טאב, ציין "tab", "\t", או "\x09".</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/dl</option></term>
+      <listitem>
+        <para>מציין תיאור בשורת הכותרת בצד שמאל, תוך עקיפת טקסט ברירת המחדל של התיקייה או
+שם הקובץ. לדוגמה: <userinput>/dl "Version 1.0</userinput>" או <userinput>/dl
+WorkingCopy</userinput>. השתמש בסימני ציטוט סביב תיאורים המכילים רווחים.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/dm</option></term>
+      <listitem>
+        <para>מציין תיאור בשורת הכותרת בצד האמצעי, בדיוק כמו <option>/dl</option>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/dr</option></term>
+      <listitem>
+        <para>מציין תיאור בשורת הכותרת בצד ימין, בדיוק כמו <option>/dl</option>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/al</option></term>
+      <listitem>
+        <para>ממזג אוטומטית בצד שמאל בעת ההפעלה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/am</option></term>
+      <listitem>
+        <para>ממזג אוטומטית בצד האמצעי בעת ההפעלה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ar</option></term>
+      <listitem>
+        <para>ממזג אוטומטית בצד ימין בעת ההפעלה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noninteractive</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noprefs</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/enableexitcode</option></term>
+      <listitem>
+        <para>מגדיר את קוד היציאה של התהליך לתוצאת ההשוואה: 0 – זהה, 1 – שונה, 2 – שגיאה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorews</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreblanklines</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecase</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreeol</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecodepage</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecomments</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/unpacker</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/prediffer</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cp</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fileext <replaceable>file-extension</replaceable></option></term>
+      <listitem>
+        <para>מציין סיומת קובץ לקביעת הדגשת תחביר.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cfg</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option><replaceable>leftpath</replaceable></option></term>
+      <listitem>
+        <para>מציין את התיקייה, הקובץ או קובץ הפרויקט לפתיחה בצד שמאל.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option><replaceable>middlepath</replaceable></option></term>
+      <listitem>
+        <para>מציין את התיקייה, הקובץ או קובץ הפרויקט לפתיחה בצד האמצעי.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option><replaceable>rightpath</replaceable></option></term>
+      <listitem>
+        <para>מציין את התיקייה, הקובץ או קובץ הפרויקט לפתיחה בצד ימין.</para>
+
+        <para>WinMerge לא יכול להשוות קבצים לתיקיות, כך שפרמטרי הנתיב
+(<option><replaceable>leftpath</replaceable></option>,
+<option><replaceable>middlepath</replaceable></option>
+ו-<option><replaceable>rightpath</replaceable></option>) חייבים להצביע על
+אותו סוג יעד (תיקיות או קבצים). אם WinMerge לא יכול למצוא אף אחד מהנתיבים
+שצוינו, הוא פותח את תיבת הדו-שיח בחר קבצים או תיקיות, שבה תוכל לעיין בנתיבים
+הנכונים.</para>
+
+        <tip>
+          <para>בהשוואות קבצים, אתה יכול לציין שם תיקייה באחד מפרמטרי הנתיב, כל עוד התיקייה
+מכילה קובץ עם אותו שם כמו זה שצוין בנתיב הקובץ האחר.</para>
+
+          <para>לדוגמה, שקול את הפקודה הזו:</para>
+
+          <para><userinput>WinMergeU <filename>C:\Folder\File.txt</filename> <filename
+class="directory">C:\Folder2</filename> </userinput></para>
+
+          <para>אם <filename class="directory">C:\Folder2</filename> מכיל קובץ בשם
+<filename>File.txt</filename>: WinMerge פותר באופן משתמע את הנתיב השני כמפרט
+קובץ, ומשווה את שני הקבצים. כמובן, הפקודה אינה חוקית אם <filename
+class="directory">C:\Folder2</filename> <emphasis>לא</emphasis> מכילה קובץ
+בשם <filename>File.txt</filename>.</para>
+        </tip>
+        <para></para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>מיזוג הבדלים</primary>
+        <secondary>קובץ תוצאה</secondary>
+      </indexterm>
+
+      <term><option>/o <replaceable>outputpath</replaceable></option></term>
+      <listitem>
+        <para>מציין נתיב קובץ פלט אופציונלי שבו ברצונך לשמור את קבצי התוצאה הממוזגים.</para>
+
+        <para>נתיב הפלט נדיר כאשר אתה מפעיל את WinMerge משורת הפקודה. הוא נועד לשימוש עם
+כלי בקרת גרסאות, שבהם ייתכן שיהיה עליך לציין נתיב פלט עבור קובץ
+<wordasword>התוצאה</wordasword>. אם אתה מציין נתיב פלט, WinMerge עדיין מציג
+רק שניים או שלושה קבצים בחלון השוואת הקבצים. עם זאת, אם אתה שומר אחד מהקבצים
+האלה, הוא נכתב לנתיב הפלט, ומשאיר את שניים או שלושת קבצי המקור ללא פגע.</para>
+
+        <para>מערכות בקרת גרסאות מתייחסות בדרך כלל לקבצי המקור והתוצאה באמצעות מונחים כמו
+<glossterm>שלהם</glossterm>, <glossterm>שלי</glossterm>,
+ו-<glossterm>מוזג</glossterm> או <glossterm>נפתר</glossterm>. אם אתה מציין
+נתיב פלט בשורת הפקודה של WinMerge, ואתה עובד עם מערכת בקרת גרסאות, עליך
+לרשום את הקבצים בסדר זה.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/or</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>קבצי קונפליקט</primary>
+        <secondary>ציון בשורת הפקודה</secondary>
+      </indexterm>
+
+      <term><option><replaceable>conflictfile</replaceable></option></term>
+      <listitem>
+        <para>מציין קובץ קונפליקט, שנוצר בדרך כלל על ידי מערכת בקרת גרסאות. קובץ הקונפליקט
+נפתח בחלון השוואת הקבצים, שבו אתה יכול למזג ולפתור קונפליקטים, כמתואר
+ב-<xref linkend="ResolveConflictFiles" />. שים לב שלא ניתן להשתמש בנתיבים
+אחרים עם קובץ קונפליקט.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>קובץ ini</primary>
+        <secondary>ציון בשורת הפקודה</secondary>
+      </indexterm>
+
+      <term><option>/inifile <replaceable>inifile</replaceable></option></term>
+      <listitem>
+        <para>מציין קובץ INI המשמש לטעינה ושמירת הגדרות במקום הרישום.</para>
+      </listitem>
+    </varlistentry>
+
+  </variablelist>
+</article>

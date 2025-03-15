@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appendix id="Shortcut_keys">
+  <title>מקלטי קיצור<indexterm>
+      <primary>מקלטי קיצור</primary>
+    </indexterm></title>
+
+  <para>WinMerge כולל את רוב מקלטי הקיצור המוכרים הנפוצים ביישומי Windows אחרים.</para>
+
+  <table>
+    <title>כללי</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>מקלטים</entry>
+
+          <entry>פונקציה</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Tab</keycap> </keycombo></entry>
+
+          <entry>עבור ללשונית הבאה</entry>
+
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>Tab</keycap>
+</keycombo></entry>
+
+          <entry>עבור ללשונית הקודמת</entry>
+
+        </row>
+
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>השוואת תיקיות</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>מקלטים</entry>
+
+          <entry>פונקציה</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Enter</keycap></entry>
+
+          <entry>פתח קובץ או תיקייה נבחרים</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Backspace</keycap></entry>
+
+          <entry>פתח תיקיית אב אם אפשר (זמין רק כאשר תיקיות משנה אינן כלולות בהשוואה)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F5</keycap></entry>
+
+          <entry>סרוק מחדש תיקיות</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Home</keycap> </keycombo></entry>
+
+          <entry>עבור לקובץ או לתיקייה השונים הראשונים</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>End</keycap> </keycombo></entry>
+
+          <entry>עבור לקובץ או לתיקייה השונים האחרונים</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Enter</keycap> </keycombo></entry>
+
+          <entry>עבור לפריט שנבחר כעת (אם הוא מגולל מחוץ למסך)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Up Arrow</keycap> </keycombo></entry>
+
+          <entry>עבור לקובץ או לתיקייה השונים הקודמים</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Down Arrow</keycap> </keycombo></entry>
+
+          <entry>עבור לקובץ או לתיקייה השונים הבאים</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Left Arrow</keycap> </keycombo></entry>
+
+          <entry>העתק פריטים נבחרים מימין לשמאל</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Right Arrow</keycap> </keycombo></entry>
+
+          <entry>העתק פריטים נבחרים משמאל לימין</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>השוואת קבצים</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>מקלטים</entry>
+
+          <entry>פונקציה</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Esc</keycap></entry>
+
+          <entry>סגור חלון (אם מופעל באפשרויות)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F4</keycap></entry>
+
+          <entry>הצג את ההבדל בשורה הבאה</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Shift</keycap>+<keycap>F4</keycap></entry>
+
+          <entry>הצג את ההבדל בשורה הקודמת</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F5</keycap></entry>
+
+          <entry>רענן</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F5</keycap></entry>
+
+          <entry>טען מחדש</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F6</keycap></entry>
+
+          <entry>עבור לחלונית הבאה (קובץ פעיל)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Shift</keycap>+<keycap>F6</keycap></entry>
+
+          <entry>עבור לחלונית הקודמת (קובץ פעיל)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F7</keycap></entry>
+
+          <entry>עבור להבדל הקודם</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Shift</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>עבור לקונפליקט הקודם</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F7</keycap></entry>
+
+          <entry>עבור לקובץ הקודם</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F8</keycap></entry>
+
+          <entry>עבור להבדל הבא</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Shift</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>עבור לקונפליקט הבא</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Ctrl</keycap>+<keycap>F8</keycap></entry>
+
+          <entry>Go to next file</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F9</keycap></entry>
+
+          <entry>Merge Mode on or off (toggle)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo></entry>
+
+          <entry>Begin column selection</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>D</keycap> </keycombo></entry>
+
+          <entry>Toggle diff context mode</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>E</keycap>
+</keycombo></entry>
+
+          <entry>Open with external editor</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap> </keycombo></entry>
+
+          <entry>Go to difference or line</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>G</keycap>
+</keycombo></entry>
+
+          <entry>Go to moved line (2 panes)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>G</keycap>
+</keycombo></entry>
+
+          <entry>Go to moved line between left side and middle (3 panes)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>G</keycap>
+</keycombo></entry>
+
+          <entry>Go to moved line between middle and right side (3 panes)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>M</keycap>
+</keycombo></entry>
+
+          <entry>Add marker</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>M</keycap>
+</keycombo></entry>
+
+          <entry>Do auto merge</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>S</keycap> </keycombo></entry>
+
+          <entry>Add synchronization point</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>U</keycap> </keycombo></entry>
+
+          <entry>המר טקסט נבחר לאותיות קטנות</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>U</keycap>
+</keycombo></entry>
+
+          <entry>המר טקסט נבחר לאותיות גדולות</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Y</keycap> </keycombo></entry>
+
+          <entry>בצע שוב פעולה שבוטלה בעבר</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo></entry>
+
+          <entry>בטל את הפעולה האחרונה</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>ניווט ומיזוג הבדלים (מצב רגיל)</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>מקלטים</entry>
+
+          <entry>פונקציה</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Home</keycap> </keycombo></entry>
+
+          <entry>עבור להבדל הראשון</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>End</keycap> </keycombo></entry>
+
+          <entry>עבור להבדל האחרון</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Enter</keycap> </keycombo></entry>
+
+          <entry>עבור להבדל הנוכחי או בחר הבדל</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Up Arrow</keycap> </keycombo></entry>
+
+          <entry>עבור להבדל הקודם</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Down Arrow</keycap> </keycombo></entry>
+
+          <entry>עבור להבדל הבא</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Up
+Arrow</keycap> </keycombo></entry>
+
+          <entry>עבור לקונפליקט הקודם</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down
+Arrow</keycap> </keycombo></entry>
+
+          <entry>עבור לקונפליקט הבא</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Left Arrow</keycap> </keycombo></entry>
+
+          <entry>העתק הבדל מצד ימין לצד שמאל</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Right Arrow</keycap> </keycombo></entry>
+
+          <entry>העתק הבדל מצד שמאל לצד ימין</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Left
+Arrow</keycap> </keycombo></entry>
+
+          <entry>העתק הבדל מצד ימין לצד שמאל ובחר את ההבדל הבא</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Right
+Arrow</keycap> </keycombo></entry>
+
+          <entry>העתק הבדל מצד שמאל לצד ימין ובחר את ההבדל הבא</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>ניווט ומיזוג הבדלים (מצב מיזוג)</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>מקלטים</entry>
+
+          <entry>פונקציה</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycap>Up Arrow</keycap></entry>
+
+          <entry>עבור להבדל הקודם</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Down Arrow</keycap></entry>
+
+          <entry>עבור להבדל הבא</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Left Arrow</keycap></entry>
+
+          <entry>העתק הבדל מצד ימין לצד שמאל</entry>
+        </row>
+
+        <row>
+          <entry><keycap>Right Arrow</keycap></entry>
+
+          <entry>העתק הבדל מצד שמאל לצד ימין</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Left
+Arrow</keycap> </keycombo></entry>
+
+          <entry>העתק הבדל מצד ימין לצד שמאל ובחר את ההבדל הבא</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>Right
+Arrow</keycap> </keycombo></entry>
+
+          <entry>העתק הבדל מצד שמאל לצד ימין ובחר את ההבדל הבא</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>חיפוש והחלפה</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>מקלטים</entry>
+
+          <entry>פונקציה</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F</keycap> </keycombo></entry>
+
+          <entry>חפש טקסט (פותח תיבת דו-שיח חיפוש)</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>H</keycap> </keycombo></entry>
+
+          <entry>החלף טקסט (פותח תיבת דו-שיח החלפה)</entry>
+        </row>
+
+        <row>
+          <entry><keycap>F3</keycap></entry>
+
+          <entry>חפש את הבא</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Shift</keycap> <keycap>F3</keycap> </keycombo></entry>
+
+          <entry>חפש את הקודם</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F3</keycap> </keycombo></entry>
+
+          <entry>חפש טקסט נבחר בקובץ</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F3</keycap>
+</keycombo></entry>
+
+          <entry>חפש טקסט נבחר כלפי מעלה בקובץ</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>סימניות</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>מקלטים</entry>
+
+          <entry>פונקציה</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>סימניה הבאה</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Shift</keycap> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>סימניה קודמת</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo></entry>
+
+          <entry>החלף סימניה</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> <keycap>F2</keycap>
+</keycombo></entry>
+
+          <entry>נקה את כל הסימניות</entry>
+        </row>
+
+      </tbody>
+    </tgroup>
+  </table>
+
+  <table>
+    <title>זום</title>
+
+    <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>מקלטים</entry>
+
+          <entry>פונקציה</entry>
+        </row>
+      </thead>
+
+      <tbody>
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>+</keycap> </keycombo></entry>
+
+          <entry>הגדל את גודל הטקסט</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>-</keycap> </keycombo></entry>
+
+          <entry>הקטן את גודל הטקסט</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <keycap>*</keycap> </keycombo></entry>
+
+          <entry>אפס את זום הטקסט לגודל ברירת מחדל</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <mousebutton>MouseWheel Up</mousebutton>
+</keycombo></entry>
+
+          <entry>הגדל את גודל הטקסט</entry>
+        </row>
+
+        <row>
+          <entry><keycombo> <keycap>Ctrl</keycap> <mousebutton>MouseWheel Down</mousebutton>
+</keycombo></entry>
+
+          <entry>הקטן את גודל הטקסט</entry>
+        </row>
+      </tbody>
+    </tgroup>
+  </table>
+</appendix>

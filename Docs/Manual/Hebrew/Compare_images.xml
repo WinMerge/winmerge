@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_images">
+  <?target dbhh topicname="IDH_Compare_images" topicid ="003"?>
+
+  <title>השוואת קבצי תמונה</title>
+
+  <indexterm>
+    <primary>השוואת קבצים</primary>
+    <secondary>תמונות</secondary>
+  </indexterm>
+
+  <para>נושא זה מתאר כיצד להשוות תמונות באמצעות חלון השוואת התמונות.</para>
+
+  <section id="Compare_images_starting">
+    <title>התחלת פעולת השוואת תמונות</title>
+
+    <para>אתה יכול להתחיל פעולת השוואת תמונות מחלון WinMerge או מחלון שורת הפקודה.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>מתוך חלון WinMerge</term>
+
+        <listitem>
+          <para>לחץ על <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>פתח</guimenuitem>
+</menuchoice>. השתמש בתיבת הדו-שיח בחר קבצים או תיקיות כדי לציין את תמונות
+המקור השמאליות והימניות להשוואה. לפרטים נוספים על תיבת הדו-שיח בחר קבצים או
+תיקיה, ראה <xref linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>מחלון שורת פקודה</term>
+
+        <listitem>
+          <para>הפעל את <command>WinMergeU.exe</command>, שנמצא בספריית ההתקנה של
+WinMerge. בארגומנטי הפקודה שלך, כלול את התמונות השמאליות והימניות
+להשוואה. למידע נוסף על השימוש בשורת הפקודה, ראה <xref linkend="Command_line"
+/>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_images_window">
+    <title>חלון השוואת תמונות</title>
+
+    <para>WinMerge תומך בסוגים רבים של תמונות ויכול להדגיש את ההבדלים עם בלוקים. אפשר
+גם לכסות את התמונות.</para>
+
+    <mediaobject>
+<imageobject> <imagedata fileref="screenshots/imgcmp1.png" format="PNG" />
+</imageobject><textobject>
+        <phrase>חלון השוואת תמונות</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>אתה יכול להגדיר את רוב האפשרויות ב-<guilabel>חלונית המיקום</guilabel>:</para>
+
+    <section>
+      <title>Difference<indexterm>
+        <primary>הבדל</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>הדגש</term>
+          <listitem>
+            <para>באמצעות תיבת הסימון <guilabel>הדגש</guilabel> אתה יכול להפעיל או לבטל את
+הדגשת הבדלי התמונה.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>הבהב</term>
+          <listitem>
+            <para>אם ההדגשה מופעלת, אתה יכול אפילו לגרום לה להבהב על ידי סימון תיבת הסימון
+<guilabel>הבהב</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>גודל בלוק</term>
+          <listitem>
+            <para>המחוון <guilabel>גודל בלוק</guilabel> מגדיר את גודל הבלוקים שמדגישים את
+הבדלי התמונה.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>אלפא בלוק</term>
+          <listitem>
+            <para>המחוון <guilabel>אלפא בלוק</guilabel> מגדיר עד כמה חזק מיזוג האלפא של
+הבלוקים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>סף מרחק צבע</term>
+          <listitem>
+            <para>המחוון <guilabel>CD</guilabel> מגדיר את ה-<emphasis>סף מרחק צבע</emphasis>
+שמסייע להתעלם מהבדלי צבע.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>זיהוי הוספה/מחיקה</term>
+          <listitem>
+            <para>TBD</para>
+            <itemizedlist>
+              <listitem><guilabel>ללא</guilabel></listitem>
+              <listitem><guilabel>אנכי</guilabel></listitem>
+              <listitem><guilabel>אופקי</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Overlaying<indexterm>
+        <primary>כיסוי</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>מצב</term>
+          <listitem>
+            <para>כרגע <emphasis>מצבי הכיסוי</emphasis> הבאים אפשריים:</para>
+            <itemizedlist>
+              <listitem><guilabel>ללא</guilabel></listitem>
+              <listitem><guilabel>XOR</guilabel></listitem>
+              <listitem><guilabel>מיזוג אלפא</guilabel></listitem>
+              <listitem><guilabel>אנימציית מיזוג אלפא</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>אלפא</term>
+          <listitem>
+            <para>המחוון <guilabel>אלפא</guilabel> מגדיר עד כמה חזק מיזוג האלפא של צמתי הכיסוי
+<guilabel>מיזוג אלפא</guilabel> או <guilabel>אנימציית מיזוג אלפא</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Zooming<indexterm>
+        <primary>זום</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>זום</term>
+          <listitem>
+            <para>באמצעות המחוון <guilabel>זום</guilabel> אתה יכול להתקרב או להתרחק מהתמונות.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>עמוד</term>
+          <listitem>
+            <para>אם פורמט התמונה תומך במספר עמודים, תוכל לבחור את העמוד הנוכחי באמצעות תיבת
+המספר <guilabel>עמוד</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+  </section>
+
+</article>

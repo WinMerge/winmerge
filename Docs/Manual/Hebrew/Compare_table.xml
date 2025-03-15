@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_table">
+  <?target dbhh topicname="IDH_Compare_table" topicid ="004"?>
+
+  <title>השוואה בפורמט טבלה</title>
+
+  <indexterm>
+    <primary>השוואת קבצים</primary>
+
+    <secondary>טבלה</secondary>
+  </indexterm>
+
+  <para>בגרסה 2.16.7 ואילך, ניתן להציג ולערוך קבצי ערכים מופרדים בתווים מפרידים כגון
+CSV ו-TSV בפורמט טבלה כמו תוכנת גיליון אלקטרוני. פעולות עריכה, מעבר להבדלים
+ופעולות מיזוג בפורמט זה זהות לפעולות בחלון קובץ טקסט רגיל.</para>
+
+  <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/tblcomp1.png" format="PNG" /> </imageobject><textobject>
+      <phrase>השוואה בפורמט טבלה</phrase>
+    </textobject>
+  </mediaobject>
+  
+  <section id="Compare_files_in_table_format">
+    <title>Comparing in table format<indexterm>
+        <primary>השוואה בפורמט טבלה</primary>
+      </indexterm></title>
+
+    <para>האם קבצים נפתחים בפורמט טבלה תלוי אם שם הקובץ תואם לדפוסים מוגדרים. כברירת
+מחדל, אם סיומת הקובץ היא .csv או .tsv, הוא ייפתח בפורמט טבלה. אם ברצונך
+לשנות את הדפוסים, ציין זאת בדף השוואה/טבלה בתיבת הדו-שיח אפשרויות.</para>
+
+    <para>אם ברצונך לפתוח אותו באופן זמני בפורמט טבלה לאחר פתיחתו כטקסט רגיל, לחץ על
+<menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>השווה מחדש כ</guimenuitem>
+<guimenuitem>טבלה</guimenuitem> </menuchoice>. אם מופיעה תיבת הדו-שיח טבלה,
+בחר את סוג הקובץ ולחץ על <guilabel>אישור</guilabel>.</para>
+    
+    <para>
+אם ברצונך לפתוח זמנית קבצים שנפתחו בפורמט טבלה כקבצי טקסט רגילים, לחץ על
+<menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>השווה מחדש כ</guimenuitem>
+<guimenuitem>טקסט</guimenuitem> </menuchoice>.</para>
+  </section>
+
+  <section id="Table_settings">
+    <title>Table format settings<indexterm>
+        <primary>הגדרות פורמט טבלה</primary>
+      </indexterm></title>
+
+    <para>
+כברירת מחדל, הנתונים בקבצי טקסט של ערכים המופרדים בתווים מפרידים מטופלים
+באופן הבא<itemizedlist>
+        <listitem>
+          <para>קבצי CSV מופרדים בפסיקים וקבצי TSV מופרדים בטאבים, והערכים מוצגים לפי
+עמודות.</para>
+        </listitem>
+        <listitem>
+          <para>עם זאת, תווי מפריד בתוך הטווח המצוטט (גרשיים כפולים) מטופלים כערכים.</para>
+        </listitem>
+        <listitem>
+          <para>כמו כן, תווי EOL (CR או LF) בתוך הטווח המצוטט מטופלים כערכים.</para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <para>
+אם ברצונך לשנות את ההגדרות שלמעלה, תוכל לעשות זאת בדף השוואה/טבלה בתיבת
+הדו-שיח אפשרויות או בתיבת הדו-שיח טבלה שמופיעה בעת לחיצה על <menuchoice>
+<guimenu>קובץ</guimenu> <guimenuitem>השווה מחדש כ</guimenuitem>
+<guimenuitem>טבלה</guimenuitem> </menuchoice>. ראה <xref
+linkend="Configuration_compare_table" /> לפרטים.</para>
+
+  </section>
+
+  <section id="Table_operations">
+    <title>Table format-specific operations<indexterm>
+        <primary>פעולות ספציפיות לפורמט טבלה</primary>
+      </indexterm></title>
+
+    <para>
+      <itemizedlist>
+        <listitem>
+          <para>אתה יכול לשנות את רוחב העמודה על ידי גרירת גבול העמודה של כותרת עמודה.</para>
+        </listitem>
+        <listitem>
+          <para>לחיצה כפולה על גבול עמודה בכותרת עמודה מתאימה אוטומטית את רוחב העמודה בהתאם
+לתוכן העמודה.</para>
+        </listitem>
+        <listitem>
+          <para>טקסט נבחר אנכית על ידי גרירת עמודה בכותרת העמודה.</para>
+        </listitem>
+        <listitem>
+          <para>
+כאשר פריט התפריט <menuchoice> <guimenu>תצוגה</guimenu> <guimenuitem>גלישת
+שורות</guimenuitem> </menuchoice> מסומן, הטקסט ייגלוש בכל עמודה. סמן פריט
+תפריט זה אם ברצונך לראות ערכי שדה מרובי שורות.</para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+  </section>
+
+</article>

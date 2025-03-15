@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-02-27 08:28+0900\n"
+"POT-Creation-Date: 2025-03-13 08:29+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -15187,122 +15187,127 @@ msgstr "ギリシア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
 #: English/Locales.xml:182
+msgid "Hebrew"
+msgstr ""
+
+#. type: Content of: <article><section><itemizedlist><listitem><simpara>
+#: English/Locales.xml:186
 msgid "Hungarian"
 msgstr "ハンガリー語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:186
+#: English/Locales.xml:190
 msgid "Italian"
 msgstr "イタリア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:190
+#: English/Locales.xml:194
 msgid "Japanese"
 msgstr "日本語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:194
+#: English/Locales.xml:198
 msgid "Korean"
 msgstr "韓国語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:198
+#: English/Locales.xml:202
 msgid "Lithuanian"
 msgstr "リトアニア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:202
+#: English/Locales.xml:206
 msgid "Norwegian"
 msgstr "ノルウェー語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:206
+#: English/Locales.xml:210
 msgid "Persian"
 msgstr "ペルシア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:210
+#: English/Locales.xml:214
 msgid "Polish"
 msgstr "ポーランド語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:214
+#: English/Locales.xml:218
 msgid "Portuguese"
 msgstr "ポルトガル語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:218
+#: English/Locales.xml:222
 msgid "Portuguese (Brazilian)"
 msgstr "ブラジルポルトガル語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:222
+#: English/Locales.xml:226
 msgid "Romanian"
 msgstr "ルーマニア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:226
+#: English/Locales.xml:230
 msgid "Russian"
 msgstr "ロシア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:230
+#: English/Locales.xml:234
 msgid "Serbian"
 msgstr "セルビア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:234
+#: English/Locales.xml:238
 msgid "Sinhala"
 msgstr "シンハラ語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:238
+#: English/Locales.xml:242
 msgid "Slovak"
 msgstr "スロバキア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:242
+#: English/Locales.xml:246
 msgid "Slovenian"
 msgstr "スロベニア語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:246
+#: English/Locales.xml:250
 msgid "Spanish"
 msgstr "スペイン語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:250
+#: English/Locales.xml:254
 msgid "Swedish"
 msgstr "スウェーデン語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:254
+#: English/Locales.xml:258
 msgid "Tamil"
 msgstr "タミル語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:258
+#: English/Locales.xml:262
 msgid "Turkish"
 msgstr "トルコ語"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
-#: English/Locales.xml:262
+#: English/Locales.xml:266
 msgid "Ukrainian"
 msgstr "ウクライナ語"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Locales.xml:269
+#: English/Locales.xml:273
 msgid "translations, reporting errors"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Locales.xml:268
+#: English/Locales.xml:272
 msgid ""
 "Reporting errors in translation<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "翻訳ミスの報告<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Locales.xml:272
+#: English/Locales.xml:276
 msgid ""
 "Please submit any errors you find in translations as bugs to our <ulink "
 "url=\"https://github.com/WinMerge/winmerge/issues\">bug-list</ulink>.  It "
@@ -15314,17 +15319,17 @@ msgstr ""
 "翻訳された文章の訂正版を提供してくだされば幸いです。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Locales.xml:281
+#: English/Locales.xml:285
 msgid "submitting translations"
 msgstr "翻訳の提出"
 
 #. type: Content of: <article><section><title>
-#: English/Locales.xml:280
+#: English/Locales.xml:284
 msgid "Submitting a new translation<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "新しい翻訳の提出<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Locales.xml:284
+#: English/Locales.xml:288
 msgid ""
 "If you would like to add your language to the list, then please read the "
 "<ulink url=\"https://winmerge.org/translations/\">translation documentation</"

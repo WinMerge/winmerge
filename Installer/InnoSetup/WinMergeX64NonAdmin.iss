@@ -143,6 +143,7 @@ Name: French; MessagesFile: compiler:Languages\French.isl,..\..\Translations\Inn
 Name: Galician; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Galician.isl,..\..\Translations\InnoSetup\Galician.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt
 Name: German; MessagesFile: compiler:Languages\German.isl,..\..\Translations\InnoSetup\German.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-German.txt
 Name: Greek; MessagesFile: compiler:Languages\Greek.isl,..\..\Translations\InnoSetup\Greek.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt
+Name: Hebrew; MessagesFile: compiler:Languages\Hebrew.isl,..\..\Translations\InnoSetup\Hebrew.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Hebrew.txt
 Name: Hungarian; MessagesFile: compiler:Languages\Hungarian.isl,..\..\Translations\InnoSetup\Hungarian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Hungarian.txt
 Name: Italian; MessagesFile: compiler:Languages\Italian.isl,..\..\Translations\InnoSetup\Italian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt
 Name: Japanese; MessagesFile: compiler:Languages\Japanese.isl,..\..\Translations\InnoSetup\Japanese.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt
@@ -233,6 +234,9 @@ Name: Languages\German; Description: {cm:GermanLanguage}; Flags: disablenouninst
 
 Name: Languages\Greek; Description: {cm:GreekLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Greek
 Name: Languages\Greek; Description: {cm:GreekLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Greek
+
+Name: Languages\Hebrew; Description: {cm:HebrewLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Hebrew
+Name: Languages\Hebrew; Description: {cm:HebrewLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Hebrew
 
 Name: Languages\Hungarian; Description: {cm:HungarianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Hungarian
 Name: Languages\Hungarian; Description: {cm:HungarianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Hungarian
@@ -488,6 +492,10 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-German.txt; DestDir: {app}\Docs; C
 Source: ..\..\Translations\WinMerge\Greek.po; DestDir: {app}\Languages; Components: Languages\Greek; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\ShellExtension\Greek.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Greek; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Components: Languages\Greek
+Source: ..\..\Translations\WinMerge\Hebrew.po; DestDir: {app}\Languages; Components: Languages\Hebrew; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\ShellExtension\Hebrew.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Hebrew; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\Docs\Readme\ReadMe-Hebrew.txt; DestDir: {app}\Docs; Components: Languages\Hebrew
+Source: ..\..\Build\Manual\htmlhelp\WinMergeHebrew.chm; DestDir: {app}\Docs; Components: Languages\Hebrew
 Source: ..\..\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\ShellExtension\Hungarian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp

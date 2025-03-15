@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Introduction">
+  <title>מבוא ל-WinMerge</title>
+
+  <para>WinMerge הוא כלי להשוואה ומיזוג <ulink url="https://opensource.org/">קוד
+פתוח</ulink> עבור Windows. WinMerge יכול להשוות שתי תיקיות או שלושה קבצים,
+ולהציג הבדלים בפורמט טקסט חזותי שקל להבין ולטפל בו.</para>
+
+  <para>WinMerge שימושי ביותר לקביעת מה השתנה בין גרסאות פרויקט, ואז מיזוג שינויים
+בין גרסאות. ניתן להשתמש ב-WinMerge ככלי הבדלים/מיזוג חיצוני או כיישום עצמאי.</para>
+
+  <para>בנוסף, ל-WinMerge יש תכונות תמיכה מועילות רבות שהופכות השוואה, סינכרון
+ומיזוג לקלים ושימושיים ככל האפשר. כמה שפות תכנות ופורמטי קבצים אחרים מודגשים
+בתחביר.</para>
+
+  <para>WinMerge אינו עורך הקסדצימלי. WinMerge יכול להציג את תוכן הקבצים הבינאריים
+וההבדלים ביניהם. אבל המידע מיועד לצפייה בלבד: עריכת קבצים בינאריים עם
+WinMerge עלולה לשבור את הקבצים.</para>
+
+  <para>מטרת הפיתוח של WinMerge היא להפוך את ההשוואה, הסינכרון והמיזוג של תיקיות
+וקבצים לקלים ומהירים, תוך שמירה על אמינות מירבית. קלות השימוש היא בעלת
+חשיבות מרכזית להפחתת שגיאות.</para>
+  
+  <para>הגרסה האחרונה &WinMergeVersion; נחשבת לתוכנית יציבה ואמינה לשימוש.</para>
+
+  <note>
+    <para>WinMerge אינו תוכנה חופשית (כפי שאתרים רבים באינטרנט ציינו): הוא מורשה
+<ulink url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink>.</para>
+    <para>אנו מספקים לך כלי טוב בחינם, אז אנא כבד את הסכם הרישיון שלך והגש לנו
+שיפורים. אנו שמחים לקבל עזרה בשיפור WinMerge, לטובת כל משתמשי WinMerge.</para>
+  </note>
+
+  <section>
+    <title>גרסאות WinMerge<indexterm>
+        <primary>גרסאות WinMerge</primary>
+      </indexterm></title>
+
+    <para>ישנם שני סוגים של גרסאות הזמינות בדף <ulink
+url="https://sourceforge.net/projects/winmerge/files/">הורדות</ulink>.</para>
+
+    <section>
+      <title><indexterm>
+          <primary>גרסאות WinMerge יציבות</primary>
+        </indexterm>גרסאות יציבות</title>
+
+      <para><ulink url="https://sourceforge.net/projects/winmerge/files/stable/">גרסאות
+יציבות</ulink> מומלצות לרוב המשתמשים. אם אינך בטוח באיזו גרסה להשתמש, השתמש
+בגרסה היציבה האחרונה. לגרסאות יציבות יש מספר אחרון זוגי, לדוגמה, 2.14.0,
+2.16.2 ו-2.16.4.</para>
+    </section>
+
+    <section>
+      <title><indexterm>
+          <primary>גרסאות WinMerge בטא</primary>
+        </indexterm>גרסאות בטא</title>
+
+      <para><ulink url="https://sourceforge.net/projects/winmerge/files/beta/">גרסאות
+בטא</ulink> מיועדות לאנשים שרוצים לבדוק את התכונות והשיפורים האחרונים שנעשו
+לאחר הגרסה היציבה האחרונה. גרסאות בטא אינן נבדקות באותה מידה כמו גרסאות
+יציבות וכנראה שיש בהן כמה באגים. לגרסאות בטא יש מספר אחרון אי זוגי, לדוגמה
+2.16.3 ו-2.16.5. ניתן להשתמש בגרסאות בטא בייצור, מכיוון שלא מצופה שיהיו בהן
+באגים גדולים. אבל תמיד יש סיכון בשימוש במהדורות ברמת בטא, אז שקול זאת
+בזהירות. ניסינו להוציא סדרה יציבה חדשה פעם בשנה, אז אולי כדאי לחכות כמה
+חודשים למהדורה היציבה הבאה...</para>
+    </section>
+  </section>
+
+  <section>
+    <title><indexterm>
+        <primary>תמיכת WinMerge</primary>
+
+        <secondary>דיווח על באגים</secondary>
+      </indexterm>קבלת תמיכה ודיווח על באגים</title>
+
+    <para>ה-<emphasis>פורומים לדיון</emphasis> הם הדרך המהירה ביותר לקבל עזרה:</para>
+    <itemizedlist>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winmerge/discussions">דיונים ב-WinMerge</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winimerge/discussions">דיונים בהשוואת תמונות</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/website/discussions">דיונים באתר</ulink>
+      </listitem>
+    </itemizedlist>
+
+    <para>אם אתה מוצא באג, אנא שלח אותו כ-<ulink
+url="https://github.com/WinMerge/winmerge/issues">דוח באגים</ulink>. אנא צרף
+כמה שיותר מידע שתוכל: לכל הפחות, מספר הגרסה של WinMerge שבו אתה משתמש. אם
+אתה יכול, צרף גם יומן תצורה, שאותו תוכל להציג על ידי לחיצה על <menuchoice>
+<guimenu>עזרה</guimenu> <guimenuitem>תצורה</guimenuitem> </menuchoice> בחלון
+WinMerge. מידע טוב בדוח באגים מגדיל את הסיכוי שהבאג שלך יתוקן במהירות.</para>
+
+    <important>
+      <para>כלול את מספר הגרסה בדוחות באגים. אתה יכול לבדוק את מספר הגרסה על ידי לחיצה
+על <menuchoice> <guimenu>עזרה</guimenu> <guimenuitem>אודות
+WinMerge</guimenuitem> </menuchoice>.</para>
+    </important>
+  </section>
+
+  <section>
+    <title><indexterm>
+        <primary>פיתוח WinMerge</primary>
+      </indexterm>קוד המקור ופיתוח של WinMerge</title>
+
+    <para>קוד המקור של WinMerge זמין באתר ה<ulink
+url="https://winmerge.org/source-code/">אינטרנט</ulink> שלנו ובדפי הפרויקט
+<ulink url="https://github.com/WinMerge/">GitHub</ulink>. כל אחד יכול להוריד
+את קבצי המקור, ללמוד אותם ולשנות אותם. אם אתה מוצא (ומתקן) באגים, משפר משהו
+וכדומה, אנא שלח לנו את השינויים שלך כתיקונים או בקשות משיכה ועזור לשפר מוצר
+זה! אם תפרסם את הגרסה השונה שלך, אתה נדרש לפרסם גם את השינויים בקוד
+המקור. זה מה שרישיון <ulink
+url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> עוסק בו: אנא כבד
+אותו.</para>
+
+    <para>עבודת הפיתוח של WinMerge נעשית על ידי אנשים בזמנם הפנוי. אף אחד לא מקבל
+תשלום עבור שיפור WinMerge. אנחנו מנסים לתקן באגים כשאנחנו מוצאים אותם או
+כשמישהו מדווח לנו עליהם. אנחנו באמת מנסים - אנחנו משתמשים גם ב-WinMerge. אבל
+אין הבטחות מוחלטות לתכונות חדשות. אנחנו תמיד מעריכים כל עזרה עם WinMerge,
+בין אם זה בדיקה, תיעוד, תרגום או קידוד.</para>
+  </section>
+</article>

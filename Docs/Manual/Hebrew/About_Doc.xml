@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="About_Doc">
+  <title>אודות עזרת WinMerge</title>
+
+  <para>זוהי העזרה עבור WinMerge &WinMergeVersion;.</para>
+
+  <section>
+    <title>קהלי יעד והיקף</title>
+
+    <para>עזרת WinMerge מיועדת הן למשתמשים חדשים והן למשתמשים מנוסים. היא מסבירה כיצד
+להשתמש ב-WinMerge ומתעדת את יכולותיו והגבלותיו.</para>
+  </section>
+
+  <section>
+    <title>כיצד לגשת לעזרה</title>
+
+    <para>נושאי עזרת WinMerge זמינים בשתי צורות:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>עזרת Microsoft HTML (<filename>WinMerge.chm</filename>), הממוקמת בספריית
+ההתקנה של WinMerge\Docs.</para>
+      </listitem>
+
+      <listitem>
+        <para>מדריך HTML באתר האינטרנט של WinMerge.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>ניתן לגשת לעזרת WinMerge בכמה דרכים:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>תפריט עזרה של WinMerge</term>
+
+        <listitem>
+          <para>בעת השימוש ב-WinMerge, יש ללחוץ על <menuchoice> <guimenu>עזרה</guimenu>
+<guimenuitem>עזרת WinMerge</guimenuitem> </menuchoice>. עזרת HTML תיפתח
+מההתחלה (נושא זה).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>עזרה תלויה הקשר</term>
+
+        <listitem>
+          <para>בעת השימוש בכל חלון של WinMerge, יש ללחוץ על <keycap>F1</keycap>. אם ישנו
+נושא עזרה ספציפי עבור החלון הנוכחי, העזרה תיפתח בנושא זה. אחרת, העזרה תיפתח
+מההתחלה.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>שורת הפקודה של WinMerge</term>
+
+        <listitem>
+          <para>יש להשתמש בפרמטר /? או -? בעת הפעלת WinMerge משורת הפקודה. עזרת HTML תיפתח
+מההתחלה.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>אתר האינטרנט של WinMerge</term>
+
+        <listitem>
+          <para>יש לפתוח את דפדפן האינטרנט ולהיכנס לכתובת <ulink
+url="https://winmerge.org/">winmerge.org</ulink>. תחת <ulink
+url="https://winmerge.org/docs/">תיעוד</ulink>, יש ללחוץ על הקישור <ulink
+url="https://manual.winmerge.org/">מדריך</ulink> לגרסת העזרה העדכנית ביותר.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>כיצד להשתמש בעזרה</title>
+
+    <para>יש לקרוא את הנושאים הבאים כדי ללמוד את יסודות השימוש ב-WinMerge,</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><xref linkend="Quick_start" /></term>
+
+        <listitem>
+          <para>מספק התחלה מהירה עם WinMerge ומציג את השימוש הבסיסי בו.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_dirs" /></term>
+
+        <listitem>
+          <para>מסביר על חלון השוואת התיקיות, הפעולות הזמינות והתאמת תצוגת התוצאות.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_files" /></term>
+
+        <listitem>
+          <para>מסביר על חלון השוואת/מיזוג קבצים, הפעולות הזמינות, שיטות הניווט והמצבים
+השונים.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_images" /></term>
+
+        <listitem>
+          <para>מסביר על חלון השוואת/מיזוג תמונות.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_bin" /></term>
+
+        <listitem>
+          <para>מסביר על חלון השוואת/מיזוג הקסדצימלי.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_table" /></term>
+
+        <listitem>
+          <para>מסביר על חלון השוואת/מיזוג טבלאות.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Compare_webpages" /></term>
+
+        <listitem>
+          <para>מסביר על חלון השוואת דפי אינטרנט.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Configuration" /></term>
+
+        <listitem>
+          <para>מסביר כיצד להתאים אישית את WinMerge, כולל טיפול ברווחים, צבעים וקידוד טקסט.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>כדי ללמוד עוד על WinMerge, יש לקרוא את הנושאים הבאים:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term><xref linkend="Open_paths" /></term>
+
+        <listitem>
+          <para>מציג דרכים שונות לפתוח קבצים ותיקיות ב-WinMerge - יש לא מעט! למשל, האם ידעת
+כיצד להשתמש בתפריט ההקשר של Shell Extension במצב מתקדם?</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Plugins" /></term>
+
+        <listitem>
+          <para>מתאר את התכונות האופציונליות הנוספות שתוכל להוסיף ל-WinMerge באמצעות מנגנון
+התוספים שלו.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Filters" /></term>
+
+        <listitem>
+          <para>מסביר כיצד לשלוט במה מושווה בחלון השוואת התיקיות או הקבצים.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Command_line" /></term>
+
+        <listitem>
+          <para>מציג את הפרמטרים של שורת הפקודה לשימוש ב-WinMerge עם כלים אחרים או מסקריפט.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><xref linkend="Faq" /></term>
+
+        <listitem>
+          <para>מכיל תשובות לשאלות נפוצות רבות שנשאלות על ידי משתמשים ומפתחים.</para>
+
+          <para>לפני שליחת שאלות ל-<ulink
+url="https://github.com/WinMerge/winmerge/">GitHub</ulink>, יש לבדוק תחילה
+אם השאלה שלך כבר נענתה ב-<xref linkend="Faq" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>Documentation conventions<indexterm>
+        <primary>conventions, documentation</primary>
+      </indexterm></title>
+    <para></para>
+    <informaltable>
+      <tgroup cols="2">
+        <thead>
+          <row>
+            <entry>דוגמה</entry>
+
+            <entry>מציין</entry>
+          </row>
+        </thead>
+
+        <tbody>
+          <row>
+            <entry>הזן <userinput>UTF-8</userinput> בשדה.<para>לחץ על כפתור <guibutton>עיון</guibutton> כדי לנווט לנתיב.</para><para>לחץ על <keycap>F5</keycap> כדי לרענן את החלון.</para></entry>
+
+            <entry>גופן מודגש בטקסט תיאורי עשוי לציין:<itemizedlist>
+                <listitem>
+                  <para>ערך או מחרוזת שעליך להזין</para>
+                </listitem>
+
+                <listitem>
+                  <para>שם של כפתור בממשק גרפי או מקש</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry>לחץ <keycombo> <keycap>Ctrl</keycap> <keycap>O</keycap> </keycombo></entry>
+
+            <entry><wordasword>לחץ</wordasword> מציין פעולה במקלדת. בדוגמה זו, יש ללחוץ על
+המקשים <keycap>Ctrl</keycap> ו-<keycap>O</keycap> יחד.</entry>
+          </row>
+
+          <row>
+            <entry><para>לחץ על <guibutton>אישור</guibutton>.</para></entry>
+
+            <entry>לחיצה מציינת לחיצה שמאלית בעכבר על אובייקט, כגון פריט תפריט או כפתור.</entry>
+          </row>
+
+          <row>
+            <entry>לחץ <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>פתח</guimenuitem>
+</menuchoice>.</entry>
+
+            <entry>החץ מציין ניווט בתפריט. בדוגמה, יש לבחור את הפריט
+<guimenuitem>פתח</guimenuitem> בתפריט <guimenu>קובץ</guimenu> של WinMerge.</entry>
+          </row>
+
+          <row>
+            <entry>לחץ לחיצה ימנית על השורה ובחר בקיצור הדרך <guimenuitem>השווה</guimenuitem>.</entry>
+
+            <entry>לחץ על הלחצן הימני של העכבר על אובייקט כדי לפתוח את תפריט ההקשר שלו, ואז לחץ
+לחיצה שמאלית או ימנית על הפריט המצוין בתפריט ההקשר.</entry>
+          </row>
+
+          <row>
+            <entry>הזן <replaceable>options file</replaceable>.ini<para>השתמש בשדה <guilabel>סינון</guilabel> כדי להחריג קבצים מהפעולה.</para><para>שורה אחת או יותר שונות ברצף יוצרות הבדל אחד (או
+<glossterm>diff</glossterm>).</para></entry>
+
+            <entry>טקסט מוטה (נטוי) יכול לייצג:<itemizedlist>
+                <listitem>
+                  <para>ערך או מחרוזת שניתן להחליף. בדוגמה הראשונה, יש להחליף את המונח הנטוי בשם
+קובץ אמיתי, אך יש להזין את סיומת הקובץ <filename>ini</filename> בדיוק כפי
+שהיא נכתבה.</para>
+                </listitem>
+
+                <listitem>
+                  <para>שם של שדה, תפריט או פקד בחלון של WinMerge.</para>
+                </listitem>
+
+                <listitem>
+                  <para>מילה או ביטוי משמעותיים המוצגים.</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry>הנתיב <envar>%WORKDIR%\project1</envar> מתורגם ל-<filename
+class="directory">C:\workfiles\project1</filename>.<para><screen
+            format="linespecific">שתי מילים</screen></para></entry>
+
+            <entry>טקסט ברוחב אחיד יכול לציין:<itemizedlist>
+                <listitem>
+                  <para>נתיב או שם של קובץ או פריט מערכת אחר</para>
+                </listitem>
+
+                <listitem>
+                  <para>קטעי קוד לדוגמה</para>
+                </listitem>
+
+                <listitem>
+                  <para>פלט לדוגמה</para>
+                </listitem>
+
+                <listitem>
+                  <para>מידע שאתה מזין בטופס או בשורת הפקודה</para>
+                </listitem>
+              </itemizedlist></entry>
+          </row>
+
+          <row>
+            <entry><cmdsynopsis sepchar=" ">
+<command moreinfo="none">command</command> <arg choice="plain"
+rep="norepeat"><replaceable>inputpath</replaceable></arg> <arg choice="opt"
+rep="norepeat"><replaceable>outputpath</replaceable></arg></cmdsynopsis></entry>
+
+            <entry>בשורות תחביר, סוגריים מציינים רכיבים אופציונליים. בדוגמה זו, יש להזין נתיב
+קלט עם הפקודה; ניתן להזין נתיב פלט, אך הפקודה תקפה גם בלעדיו.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </informaltable>
+    <para></para>
+  </section>
+</article>

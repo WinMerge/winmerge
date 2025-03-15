@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_bin">
+  <?target dbhh topicname="IDH_Compare_bin" topicid ="002"?>
+
+  <title>השוואה בפורמט הקסדצימלי</title>
+
+  <indexterm>
+    <primary>השוואת קבצים</primary>
+
+    <secondary>בינארי</secondary>
+  </indexterm>
+
+  <para>WinMerge יכול להציג ולערוך את הקבצים שלך בפורמט הקסדצימלי.</para>
+  
+  <mediaobject>
+<imageobject> <imagedata fileref="screenshots/hexcmp1.png" format="PNG" />
+</imageobject><textobject>
+      <phrase>חלון השוואת HEX</phrase>
+    </textobject>
+  </mediaobject>
+  
+  <para>
+האם קבצים נפתחים בפורמט הקסדצימלי תלוי אם שם הקובץ תואם לדפוסים
+מוגדרים. כברירת מחדל, אם סיומת הקובץ היא .bin או .frx, הוא ייפתח בפורמט
+הקסדצימלי. אם ברצונך לשנות את הדפוסים, ציין זאת בדף השוואה/בינארי בתיבת
+הדו-שיח אפשרויות.</para>
+</article>

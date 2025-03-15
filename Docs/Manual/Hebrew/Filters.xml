@@ -1,0 +1,1135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Filters">
+  <title>שימוש במסננים<indexterm>
+      <primary>מסננים</primary>
+
+      <seealso>מסנני קבצים</seealso>
+
+      <seealso>מסיכות קבצים</seealso>
+
+      <seealso>מסנני שורות</seealso>
+
+      <seealso>מסנני החלפה</seealso>
+    </indexterm></title>
+
+  <para>כשאתה משווה קבצים או תיקיות, אתה יכול להשתמש במסננים כדי לצמצם את היקף
+ההשוואה. זה יכול להיות שימושי כשאתה רוצה לפשט את תוצאת ההשוואה על ידי ביטול
+הבדלים שאינך מעוניין בהם. מסננים הם כללים המבוססים על ביטויים
+רגולריים. WinMerge משתמש במנוע הביטויים הרגולריים הפופולרי PCRE (ביטויים
+רגולריים תואמי Perl).<indexterm>
+      <primary>ביטויים רגולריים</primary>
+
+      <secondary>מנוע נתמך</secondary>
+    </indexterm><indexterm>
+      <primary>מנוע ביטויים רגולריים PCRE</primary>
+    </indexterm><indexterm>
+      <primary>regexp</primary>
+
+      <see>ביטויים רגולריים</see>
+    </indexterm></para>
+
+  <para>הפונקציה הבסיסית של סינון היא פשוטה: הערכת כל פריט שבדרך כלל יושווה (תיקייה,
+קובץ או שורה בתוך קובץ), ואם ביטוי המסנן תואם לפריט היעד, החל את
+המסנן. בהתאם לסוג המסנן, הפריט נכלל או לא נכלל בהשוואה.</para>
+
+  <para>ישנם מסנני WinMerge שונים עבור פעולות השוואת תיקיות והשוואת קבצים:</para>
+
+  <variablelist>
+    <varlistentry>
+      <term>השוואת תיקיות: מסיכות קבצים ומסנני קבצים<indexterm>
+          <primary>השוואת תיקיות</primary>
+
+          <secondary>סינון</secondary>
+        </indexterm></term>
+
+      <listitem>
+        <para>אתה יכול לציין קבצים שיכללו בהשוואת תיקיות על ידי שימוש במסיכות קבצים
+פשוטות, או, לסינון מורכב יותר, על ידי החלת כללים מרובים שצוינו במסנן
+קבצים. אינך יכול להחיל גם מסיכת קבצים וגם מסנן קבצים באותה פעולה.</para>
+
+        <para>קבצים ותיקיות שמסוננים מוסתרים בתוצאה כברירת מחדל, וזה בדרך כלל מה שאתה
+רוצה. אתה יכול ללחוץ על <menuchoice> <guimenu>תצוגה</guimenu>
+<guimenuitem>הצג פריטים שדולגו</guimenuitem> </menuchoice> כדי לבטל את
+ההסתרה של פריטים מסוננים, אך חלון השוואת התיקיות מציג רק מידע מינימלי
+עליהם. לדוגמה, אינך יכול לדעת אם קובץ שדולג הוא קובץ טקסט או בינארי.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>השוואות קבצים: מסנני שורות ומסנני החלפה<indexterm>
+          <primary>השוואת קבצים</primary>
+
+          <secondary>סינון</secondary>
+        </indexterm></term>
+
+      <listitem>
+        <para>מסנני שורות מוחלים רק על פעולות השוואת קבצים. הם מאפשרים לך להתעלם מהבדלי
+שורה בודדים.</para>
+        <para>מסנני החלפה מוחלים רק על פעולות השוואת קבצים. הם מחליפים את המחרוזות בגוש
+ה-diff במחרוזות שצוינו, משווים אותן ומתעלמים מגוש ה-diff אם תוצאות ההחלפה
+תואמות. הם שימושיים להתעלמות ממספר רב של שינויים לא מעניינים.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+  <section id="Filters_Mask">
+    <title>שימוש במסיכות קבצים<indexterm>
+        <primary>מסיכות קבצים</primary>
+      </indexterm><indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>מסיכות קבצים</secondary>
+      </indexterm><indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>בהשוואות תיקיות</secondary>
+      </indexterm></title>
+
+    <para>אתה יכול להשתמש במסיכות <glossterm>קבצים</glossterm> אחת או יותר שמציינות
+סיומות קבצים שיכללו בהשוואת תיקיות. כל שאר הקבצים מושמטים מהבחירה שלך.</para>
+
+    <section id="Filters_MaskApply">
+      <title>הגדרה והחלה של מסיכות קבצים<indexterm>
+          <primary>שורת פקודה</primary>
+
+          <secondary>החלת מסיכות קבצים</secondary>
+        </indexterm></title>
+
+      <para>הגדר והחל מסיכת קבצים בזמן שאתה מפעיל את פעולת השוואת התיקיות שלך:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>אם אתה משתמש בתיבת הדו-שיח בחר קבצים או תיקיות, לאחר בחירת התיקיות
+<guilabel>1</guilabel> ו-<guilabel>2</guilabel>, הזן מסיכת קבצים אחת או יותר
+בשדה <guilabel>מסנן</guilabel>. המסכות מוחלות כשאתה מתחיל את פעולת השוואת
+התיקיות.</para>
+        </listitem>
+
+        <listitem>
+          <para>אם אתה משתמש בשורת הפקודה של WinMerge, השתמש בדגל <option>-f</option> כדי
+לציין מסיכות קבצים (ראה את הדוגמה בסעיף הבא).</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>זכור, אינך יכול לציין גם מסיכת קבצים וגם מסנן קבצים בשדה או בשורת הפקודה.</para>
+    </section>
+
+    <section id="Filters_MaskSyntax">
+      <title>תחביר ודוגמה של מסיכת קבצים<indexterm>
+          <primary>כללים</primary>
+
+          <secondary>מסיכות קבצים</secondary>
+        </indexterm><indexterm>
+          <primary>מסננים</primary>
+
+          <secondary>מסיכות קבצים</secondary>
+        </indexterm><indexterm>
+          <primary>ביטויים רגולריים</primary>
+
+          <secondary>במסיכות קבצים</secondary>
+        </indexterm></title>
+
+      <para>השתמש בתחביר זה עבור מסיכות קבצים:</para>
+
+      <synopsis>[!](*.[<replaceable>סיומת</replaceable>]|<replaceable>מסיכת תיקייה</replaceable>\)[<replaceable>מפריד</replaceable>[!](*.<replaceable>סיומת</replaceable>|<replaceable>מסיכת תיקייה</replaceable>\) ...]</synopsis>
+
+      <para>מפרידים חוקיים הם רווחים, פסיקים, נקודתיים או נקודה-פסיק.</para>
+
+      <para>מסיכה ללא סיומת ( <filename>*.</filename> ) בוחרת קבצים ללא סיומת כלשהי,
+כגון <filename><filename>README</filename></filename>.</para>
+
+      <para>ב-2.16.19 ואילך, אם תשים סימן קריאה (<filename>!</filename>) לפני מסיכה,
+קבצים התואמים למסיכה זו לא ייכללו. כמו כן, קו נטוי הפוך
+(<filename>\</filename>) אחרי המסיכה יגרום למסיכה להתאים לתיקיות במקום
+לקבצים.</para>
+
+      <example>
+        <title>מסיכת קבצים</title>
+
+        <para>בדוגמה זו של שורת הפקודה, פעולת השוואת התיקיות כוללת רק קבצים עם סיומות
+<filename>xml</filename> או <filename>txt</filename>. כל שאר הקבצים מושמטים:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f *.xml;*.txt</userinput></para>
+      </example>
+
+      <example>
+        <title>החרגת תיקיות (ב-2.16.19 ואילך)</title>
+
+        <para>בדוגמה זו של שורת הפקודה, פעולת השוואת התיקיות אינה כוללת תיקיות
+<filename>.git</filename> ו-<filename>.vs</filename>:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f !.git\;!.vs\</userinput></para>
+      </example>
+    </section>
+  </section>
+
+  <section id="Filters_FileFilter">
+    <title>שימוש במסנני קבצים<indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>מסנני קבצים</secondary>
+      </indexterm><indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>בהשוואות תיקיות</secondary>
+      </indexterm></title>
+
+    <para><glossterm>מסנני קבצים</glossterm> הם קבצי טקסט עם סיומת של
+<filename>flt</filename>. הם מאפשרים לך להחיל כללי סינון מרובים על השוואת
+תיקיות. בניגוד למסיכות קבצים, מסנני קבצים יכולים לכלול או לא לכלול התאמות.</para>
+
+    <para><indexterm>
+        <primary>מסנני קבצים</primary>
+
+        <secondary>תבנית</secondary>
+      </indexterm>WinMerge מתקין מספר מסנני קבצים
+מוגדרים מראש. אם מסנני קבצים אלה אינם מספקים את הסינון הדרוש לך, תוכל ליצור
+מסננים משלך. כדי להקל על משימה זו, WinMerge מספק גם קובץ תבנית בשם
+<filename>FileFilter.tmpl</filename>. סעיף זה מתאר כיצד להחיל מסנני קבצים על
+השוואות, ומתעד את תחביר מסנן הקבצים. <xref linkend="Filters_dlg" /> מתאר
+כיצד להוסיף, לערוך ולנהל מסננים.</para>
+
+    <section id="Filters_FileFilterLoc">
+      <title>מיקומי מסנני קבצים<indexterm>
+          <primary>תיקיות סינון</primary>
+
+          <secondary>מיקומים</secondary>
+        </indexterm><indexterm>
+          <primary>מסנני קבצים</primary>
+
+          <secondary>מיקומים</secondary>
+        </indexterm></title>
+
+      <para>WinMerge מזהה אוטומטית מסנני קבצים במיקומים אלה:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>תיקיית המשנה מסננים בתיקיית ההתקנה של WinMerge</term>
+
+          <listitem>
+            <para>כאן מותקנים מסנני הקבצים המוגדרים מראש. לדוגמה, <filename>C:\Program
+Files\WinMerge\Filters</filename>. אתה יכול ליצור או להעתיק קבצי מסנן במיקום
+זה כדי להפוך אותם לזמינים לכל המשתמשים במערכת שלך.</para>
+
+            <para>לפני יצירת מסנן קבצים חדש, בדוק אם המסננים המוגדרים מראש כבר מכילים את מה
+שאתה צריך. אם לא, ייתכן שתמצא דוגמאות שימושיות לכללים בקבצים הקיימים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>תיקיית מסננים פרטית ברירת מחדל</term>
+
+          <listitem>
+            <para>המיקום של תיקייה זו מוגדר בדף מערכת של אפשרויות WinMerge. כברירת מחדל, הוא
+מצוין כתיקיית משנה בתיקיית פרופיל המשתמש שלך (לדוגמה,
+<filename>Documents</filename> ב-Windows 10). מסננים שנוצרים או מועתקים לכאן
+בדרך כלל גלויים רק לך. אם אתה יוצר מסנני קבצים חדשים, אתה יכול להעתיק אותם
+לכאן כדי לשמור אותם פרטיים.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>לפני שתוכל להחיל מסנני קבצים הקיימים בכל תיקייה אחרת, עליך להתקין אותם
+תחילה.</para>
+    </section>
+
+    <section id="Filters_FileFilterApply">
+      <title>החלת מסנני קבצים<indexterm>
+          <primary>מסנני קבצים</primary>
+
+          <secondary>החלה</secondary>
+        </indexterm></title>
+
+      <para>אתה יכול להחיל מסנן קבצים באמצעות אחת מהשיטות הבאות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>כשאתה מפעיל השוואת תיקיות מתיבת הדו-שיח בחר קבצים או תיקיות:</para>
+
+          <orderedlist>
+            <listitem>
+              <para>לאחר בחירת התיקיות <guilabel>1</guilabel> ו-<guilabel>2</guilabel>, לחץ על
+<guibutton>בחר</guibutton> ליד השדה <guilabel>מסנן</guilabel>.</para>
+            </listitem>
+
+            <listitem>
+              <para>בתיבת הדו-שיח מסננים, השתמש בכרטיסייה מסנני קבצים כדי לבחור מסנן קבצים
+ולטעון אותו בשדה <guilabel>מסנן</guilabel>.</para>
+
+              <note>
+                <para>אם מסנן קבצים מופעל כעת, מסנן הקבצים שנבחר כבר נטען בשדה
+<guilabel>מסנן</guilabel>.</para>
+              </note>
+              <para></para>
+            </listitem>
+
+            <listitem>
+              <para>המשך בפעולת ההשוואה. הקובץ בשדה <guilabel>מסנן</guilabel> מוחל כשאתה מתחיל
+את הפעולה.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para>כדי לשנות את סינון הקבצים לאחר שכבר הפעלת פעולת השוואת תיקיות (לדוגמה, החלת
+מסנן אחר או השבתת סינון):</para>
+
+          <orderedlist>
+            <listitem>
+              <para>לחץ על <menuchoice> <guimenu>כלים</guimenu>
+<guimenuitem>מסננים</guimenuitem> </menuchoice>.</para>
+            </listitem>
+
+            <listitem>
+              <para>בתיבת הדו-שיח מסננים, הגדר את הגדרת מסנן הקבצים החדשה שלך ולחץ על
+<guibutton>אישור</guibutton>.</para>
+            </listitem>
+
+            <listitem>
+              <para>הסינון החדש לא מוחל אוטומטית כשאתה סוגר את תיבת הדו-שיח מסננים: הקש
+<keycap>F5</keycap> כדי לראות את התוצאות החדשות בחלון השוואת התיקיות.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para><indexterm>
+              <primary>שורת פקודה</primary>
+
+              <secondary>החלת מסנני קבצים</secondary>
+            </indexterm>כשאתה מפעיל השוואת תיקיות משורת הפקודה
+של WinMerge, השתמש בדגל <option>-f</option> כדי לציין מסנן קבצים.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>זכור, אינך יכול להחיל גם מסיכת קבצים וגם מסנן קבצים בשדה או בשורת הפקודה.</para>
+    </section>
+
+    <section id="Filters_FileFilterSyntax">
+      <title>תחביר מסנן קבצים<indexterm>
+          <primary>כללים</primary>
+
+          <secondary>מסנן קבצים</secondary>
+        </indexterm><indexterm>
+          <primary>מסנני קבצים</primary>
+
+          <secondary>תחביר</secondary>
+        </indexterm></title>
+
+      <para>סעיף זה מתאר את התחביר של מסנני קבצים של WinMerge ומספק הנחיות לכתיבתם.</para>
+
+      <para>תו המפריד להערות הוא <code>##</code>. לאחר מפריד הערות, כל התווים בשורה
+מתעלמים מהם. WinMerge מתעלם מרוב תווי הרווח הלבן בכללים. עם זאת, הערה חייבת
+תמיד להיות מוקדמת על ידי תו רווח לבן (רווח או טאב) אחד או יותר. כדי להשתמש
+ב-<code>##</code> כתווים בכלל, השמט את קידומת הרווח הלבן.</para>
+
+      <para>שתי השורות הנדרשות הראשונות של מסנן קבצים הן:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>שם</term>
+
+          <listitem>
+            <para>שם המסנן המופיע בתיבת הדו-שיח קבצים</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>def</term>
+
+          <listitem>
+            <para>סוג הסינון שיש להחיל. ציין אחד מהערכים הבאים:</para>
+
+            <variablelist>
+              <varlistentry>
+                <term>כלול</term>
+
+                <listitem>
+                  <para>כולל הכל מלבד פריטים התואמים לכלל שצוין.</para>
+                </listitem>
+              </varlistentry>
+
+              <varlistentry>
+                <term>אל תכלול</term>
+
+                <listitem>
+                  <para>לא כולל הכל מלבד פריטים התואמים לכלל שצוין.</para>
+
+                  <para>כשאתה בוחר בשיטת החרגה, עליך גם להוסיף כלל <guilabel>d</guilabel> (ספרייה)
+שמציין את תיקיות המשנה. בדרך כלל כדאי לציין את כל תיקיות המשנה, כך:</para>
+
+                  <screen>d: \\*$ ## תיקיות משנה</screen>
+                </listitem>
+              </varlistentry>
+            </variablelist>
+
+            <tip>
+              <para>אל תבלבל בין מונחים אלה. זכור, במסנני קבצים, כלל <guilabel>כלול</guilabel>
+לא מציין מה לכלול, הוא מציין מה <emphasis>לא</emphasis> לכלול. באופן דומה,
+<guilabel>אל תכלול</guilabel> לא מציין מה לא לכלול, הוא מציין מה לא לא
+לכלול.</para>
+            </tip>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>לאחר מכן, הקובץ שלך צריך להכיל כלל סינון אחד או יותר. אתה יכול להוסיף כמה
+כללים שאתה רוצה. חייב להיות כלל אחד לשורה, וכל כלל חייב להיות בשורה אחת בלבד
+(אין לאפשר מעברי שורה בכלל). כל כלל מורכב ממייעד סוג <guilabel>f:</guilabel>
+או <guilabel>d:</guilabel>, ואחריו ביטוי רגולרי, כאשר:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>f: <replaceable>regexp</replaceable></term>
+
+          <listitem>
+            <para>התאמות לקבצים, או</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>d: <replaceable>regexp</replaceable></term>
+
+          <listitem>
+            <para>התאמות לתיקיות</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>ב-2.16.19 ואילך, הוצגו מזהי הסוג <guilabel>f!:</guilabel>
+ו-<guilabel>d!:</guilabel> כדי לא לכלול חלק מהקבצים או התיקיות התואמים
+ל-<guilabel>f:</guilabel> ו-<guilabel>d:</guilabel>.</para>
+
+      <para>בין רבים מתווים מיוחדים של regexp, הבאים חשובים במיוחד בכללי מסנן
+קבצים:<indexterm>
+          <primary>ביטויים רגולריים</primary>
+
+          <secondary>תווים מיוחדים במסננים</secondary>
+        </indexterm><indexterm>
+          <primary>ביטויים רגולריים</primary>
+
+          <secondary>במסנני קבצים</secondary>
+        </indexterm></para>
+
+      <variablelist>
+        <varlistentry>
+          <term>^ (תחילת שורה)</term>
+
+          <listitem>
+            <para>נדרש לעתים קרובות כדי שהכללים יעבדו כראוי.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>$ (סוף שורה)</term>
+
+          <listitem>
+            <para>נדרש לעתים קרובות כדי שהכללים יעבדו כראוי. לדוגמה:</para>
+
+            <screen>\.c$ ## תואם רק לשמות קבצים עם הסיומת <filename>c</filename>.
+\.c ## תואם לכל סיומת שמתחילה ב-<filename>c</filename>, כמו <filename>cpp</filename> ו-<filename>com</filename>.</screen>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>\ (בריחה)</term>
+
+          <listitem>
+            <para>מכריח תווים מיוחדים להתאים לתווים רגילים. לדוגמה, כדי להתאים שם תיקייה, הקדם
+את תו המפריד של קו נטוי הפוך של התיקייה עם קו נטוי הפוך
+(<code>\\</code>). כדי להתאים את הנקודה בשם קובץ, ציין קו נטוי הפוך ואחריו
+נקודה (<code>\.</code>).</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>לא נעשה שימוש בתווים מיוחדים או בתווים כלליים כדי להתאים לשמות קבצים. כדי
+להתאים את כל שמות הקבצים מסוג מסוים, פשוט השמט את שם הקובץ.</para>
+
+      <para>הכללים אינם תלויי אותיות רישיות/קטנות. לדוגמה, <code>f: \.bat$</code> תואם
+ל-<filename>winmerge.bat</filename> ו-<filename>compare.BAT</filename>.</para>
+
+      <example>
+        <title>דוגמאות לכללי סינון קבצים</title>
+
+        <para>כמה כללי סינון קבצים פשוטים:</para>
+
+<screen>f: \.cpp$ ## התאם לקבצי <filename>*.cpp</filename>
+f: \.h$ ## התאם לקבצי <filename>*.h</filename>
+f: ^My ## התאם לקבצי <filename>My*.*</filename>
+f: Dlg\. ## התאם לקבצי <filename>*Dlg.*</filename>
+d: \\test$ ## התאם לתיקיות <filename>test</filename>
+d: ^\\Build$ ## התאם לתיקיות <filename>Build</filename>
+d: Temp$ ## התאם לתיקיות <filename>*Temp</filename> (לדוגמה, <filename>FirstTemp</filename>)
+d: Src ## התאם לתיקיות <filename>*Src*</filename></screen><para>כמה כללים עם ביטויים רגולריים מורכבים יותר:</para>
+
+<screen format="linespecific">f: ^\.#.*$ ## קבצי <filename>.#filename.version</filename>
+f: Dlg\.c(pp)?$ ## קבצי <filename>*Dlg.c</filename> ו-<filename>*Dlg.cpp</filename>
+f: ^I.*\.h$ ## קבצי <filename>I*.h</filename>
+f: Srv[1-9]\.def$ ## קבצי <filename>*Srv1.def</filename> עד <filename>*Srv9.def</filename>
+f: ^[h,k,m] ## קבצי <filename>h*.*</filename>, <filename>k*.*</filename> ו-<filename>m*.*</filename></screen></example>
+    </section>
+  </section>
+
+  <section id="Filters_LineFilter">
+    <title>שימוש במסנני שורות<indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>שורה</secondary>
+      </indexterm><indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>בהשוואות קבצים</secondary>
+      </indexterm></title>
+
+    <para>בהשוואת קבצים, אתה יכול להשתמש במסנני שורות כדי להתעלם משורות
+בודדות. לדוגמה, אתה עשוי להשתמש במסנני שורות כדי להתעלם מהערות או מסוג קוד
+שנוצר מסוים, כמו חותמות זמן של מערכת בקרת גרסאות. כל מסנן שורות הוא כלל,
+ואתה יכול להחיל כל מספר של מסנני שורות על השוואת קבצים.</para>
+
+    <para>כדי ללמוד כיצד להוסיף, לערוך ולנהל מסננים, ראה <xref linkend="Filters_dlg"
+/>.</para>
+
+    <section id="Filters_LineFilterApply">
+      <title>החלת מסנני שורות</title>
+
+      <para>אתה יכול להחיל מסנני שורות באמצעות אחת מהשיטות הבאות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>כשאתה מפעיל השוואת קבצים מתיבת הדו-שיח בחר קבצים או תיקיות</para>
+
+          <orderedlist>
+            <listitem>
+              <para>לאחר בחירת הקבצים <guilabel>1</guilabel> ו-<guilabel>2</guilabel>, לחץ על
+<guibutton>בחר</guibutton> ליד השדה <guilabel>מסנן</guilabel>.</para>
+            </listitem>
+
+            <listitem>
+              <para>בתיבת הדו-שיח מסננים, השתמש בכרטיסייה מסנני שורות כדי להפעיל את מסנני השורות
+שבהם ברצונך להשתמש (אם יש), או כדי לראות אילו מסנני שורות מופעלים כעת.</para>
+
+              <note>
+                <para>השדה <guilabel>מסנן</guilabel> לא מציין אילו מסנני שורות מופעלים.</para>
+              </note>
+              <para></para>
+            </listitem>
+
+            <listitem>
+              <para>המשך בפעולת השוואת הקבצים. מסנני השורות המופעלים מוחלים כשאתה מתחיל את
+הפעולה.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+
+        <listitem>
+          <para>לאחר שכבר הפעלת פעולת השוואת קבצים (לדוגמה, כדי להחיל מסננים שונים או להשבית
+סינון)</para>
+
+          <orderedlist>
+            <listitem>
+              <para>לחץ על <menuchoice> <guimenu>כלים</guimenu>
+<guimenuitem>מסננים</guimenuitem> </menuchoice>.</para>
+            </listitem>
+
+            <listitem>
+              <para>פתח את הכרטיסייה מסנני קבצים.</para>
+            </listitem>
+
+            <listitem>
+              <para>סמן את מסנני השורות הבודדים שברצונך להחיל ובטל את הסימון של מסננים שאינך
+רוצה להחיל.</para>
+
+              <para>אתה יכול גם להוסיף, לערוך ולהסיר מסננים מהרשימה באמצעות הכפתורים
+<guibutton>חדש</guibutton>, <guibutton>ערוך</guibutton>
+ו-<guibutton>הסר</guibutton>.</para>
+            </listitem>
+
+            <listitem>
+              <para>כדי להפעיל סינון שורות, סמן את <guilabel>אפשר מסנני שורות</guilabel>. כדי
+לכבות סינון שורות, בטל את הסימון של האפשרות.</para>
+            </listitem>
+
+            <listitem>
+              <para>לחץ על <guibutton>אישור</guibutton> כדי לסגור את תיבת הדו-שיח מסנני קבצים.</para>
+            </listitem>
+
+            <listitem>
+              <para>לחץ על <keycap>F5</keycap> כדי להחיל את השינויים שלך ולרענן את חלון השוואת
+הקבצים.</para>
+            </listitem>
+          </orderedlist>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Filters_LineFilterSyntax">
+      <title>תחביר מסנן שורות<indexterm>
+          <primary>כללים</primary>
+
+          <secondary>מסנן שורות</secondary>
+        </indexterm><indexterm>
+          <primary>מסננים</primary>
+
+          <secondary>שורה</secondary>
+        </indexterm><indexterm>
+          <primary>ביטויים רגולריים</primary>
+
+          <secondary>במסנני שורות</secondary>
+        </indexterm></title>
+
+      <para>מסנן שורות הוא כלל המוערך כנגד כל הבדל בשורה בודדת בקבצים המושווים שלך, אם
+כללי מסנן שורות מופעלים. כאשר כלל תואם להבדל בשורה בודדת, ההבדל מתעלם ממנו.</para>
+
+      <para>הבדלים שמתעלמים מהם מסומנים בחלון השוואת הקבצים בצבע <guilabel>הבדל שמתעלמים
+ממנו</guilabel> (כפי שהוגדר בדף צבעים של אפשרויות WinMerge). זה מאפשר לך
+להבחין בין הבדלים שמתעלמים מהם מסוגים אחרים. עם זאת, אינך יכול לבחור או למזג
+הבדל שמתעלמים ממנו.</para>
+
+      <para>התאמת מסנן שורות ניתנת לתיאור במונחים של שני רעיונות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>כאשר כלל תואם לכל חלק מהשורה, ההבדל כולו מתעלמים ממנו. לכן, אינך יכול לסנן
+רק חלק משורה. לדוגמה, נניח שלשני קבצים יש את ההבדל הבא בשורה בודדת:</para>
+
+          <formalpara>
+            <title>קובץ 1:</title>
+
+            <para><screen># Jean Sibelius</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>קובץ 2:</title>
+
+            <para><screen># Janne Sibelius</screen></para>
+          </formalpara>
+
+          <para>ללא סינון, השורה מזוהה כהבדל. אבל אם נחיל כלל מסנן שורות עם הביטוי,
+<code>^#</code>, השורות מדווחות כזהות, מכיוון שהביטוי מציין רק את התו
+הראשון, התואם בשני הקבצים.</para>
+        </listitem>
+
+        <listitem>
+          <para>כלל מוחל על הבדל מרובה שורות רק אם כל השורות תואמות. לדוגמה, שקול את ההבדל
+הזה בשתי שורות:</para>
+
+          <formalpara>
+            <title>קובץ 1:</title>
+
+            <para><screen># Jean Sibelius
+# Pekka Himanen</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>קובץ 2:</title>
+
+            <para><screen># Janne Sibelius
+Pekka Himanen</screen></para>
+          </formalpara>
+
+          <para>אותו כלל <code>^#</code> תואם לשורה הראשונה, אך לא לשורה השנייה. לכן, לא
+מתעלמים מההבדל.</para>
+        </listitem>
+      </itemizedlist>
+
+      <tip>
+        <para>בדרך כלל מומלץ להשתמש בסמן תחילת שורה ( <code>^</code> ) וסוף שורה (
+<code>$</code> ) כדי לשלוט בדפוסים שלך במדויק, מכיוון שהכלל מוחל אם כל חלק
+משורה תואם לביטוי.</para>
+      </tip>
+
+      <example>
+        <title>מסנני שורות לדוגמה</title>
+
+<screen format="linespecific">^MYTAG$</screen><para>מסנן שורות שתואמות בדיוק ל-<literal>MYTAG</literal></para>
+
+<screen format="linespecific">^::</screen><para>מסנן שורות שמתחילות ב-<literal>::</literal></para>
+
+<screen format="linespecific">^/\*.*\*/$</screen><para>מסנן שורות שמתחילות ב-<literal><constant>/*</constant></literal> ומסתיימות
+ב-<literal>*/</literal></para>
+
+<screen format="linespecific">^[1-5]00</screen><para>מסנן שורות שמתחילות במספרים 100, 200, 300, 400 ו-500</para>
+      </example>
+
+      <example>
+        <title>כלל מסנן שורות התואם לשורות CVS Id</title>
+
+        <para>שורות CVS Id נראות כך:</para>
+
+<screen>// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $</screen><para>... וניתן לסנן עם כלל זה:</para>
+
+<screen>^// \WId: .*\$</screen></example>
+
+      <example>
+        <title>סנן הערות מספרי שורות בקבצי po</title>
+
+        <para>הערות מספרי שורות של po נראות כך:</para>
+
+<screen>#: src/filename.c:766</screen><para>... וניתן לסנן עם כלל זה:</para>
+
+<screen>^#</screen></example>
+    </section>
+  </section>
+
+  <section id="Filters_SubstitutionFilter">
+    <title>שימוש במסנני החלפה<indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>החלפה</secondary>
+      </indexterm><indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>בהשוואות קבצים</secondary>
+      </indexterm></title>
+
+    <para>TBD</para>
+  </section>
+
+  <section id="Filters_dlg">
+    <title>שימוש בתיבת הדו-שיח מסננים<indexterm>
+        <primary>תיבת דו-שיח מסננים</primary>
+      </indexterm><indexterm>
+        <primary>מסננים</primary>
+
+        <secondary>ניהול והפעלה</secondary>
+      </indexterm></title>
+
+    <para>סעיף זה מתאר את תיבת הדו-שיח מסננים, המספקת פונקציות ליצירה וניהול של מסנני
+קבצים ומסנני שורות.</para>
+
+    <para>כדי לפתוח את תיבת הדו-שיח מסננים, השתמש באחת מהשיטות הבאות:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>בתיבת הדו-שיח בחר קבצים או תיקיות, לחץ על <guibutton>בחר</guibutton> מימין
+לשדה <guilabel>מסנן</guilabel>. אתה משתמש בשיטה זו כשאתה רוצה להחיל מסנן
+קבצים על פעולת השוואת תיקיות.</para>
+      </listitem>
+
+      <listitem>
+        <para>לחץ על <menuchoice> <guimenu>כלים</guimenu>
+<guimenuitem>מסננים</guimenuitem> </menuchoice>. ניתן להשתמש בשיטה זו בכל
+עת, למעט כאשר תיבת הדו-שיח בחר קבצים או תיקיות פתוחה.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>בתיבת הדו-שיח מסננים יש כרטיסייה לכל סוג של מסנן WinMerge:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>מסנני קבצים</term>
+
+        <listitem>
+          <para>בחר כרטיסייה זו כדי לעבוד עם מסנני קבצים עבור פעולות השוואת תיקיות.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>מסנני שורות</term>
+
+        <listitem>
+          <para>בחר כרטיסייה זו כדי לעבוד עם מסנני שורות עבור פעולות השוואת קבצים.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>מסנני החלפה</term>
+
+        <listitem>
+          <para>בחר כרטיסייה זו כדי לעבוד עם מסנני החלפה עבור פעולות השוואת קבצים.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <section id="Filters_FileFiltersTab">
+      <title>שימוש בכרטיסייה מסנני קבצים<indexterm>
+          <primary>מסנני קבצים</primary>
+
+          <secondary>הפעלה</secondary>
+        </indexterm></title>
+
+      <para>החלק העיקרי של כרטיסייה זו הוא רשימה של מסנני קבצים הזמינים עבור פעולות
+השוואת תיקיות. הרשימה כוללת מסנני קבצים משותפים, פרטיים ומוגדרים ש-WinMerge
+מכיר, כמתואר ב-<xref linkend="Filters_FileFilterLoc" />.</para>
+
+      <section id="Filters_FileFilterEnabling">
+        <title>הפעלה והשבתה של מסנני קבצים</title>
+
+        <para>עליך להפעיל מסנן קבצים כדי להפוך אותו לזמין בפעולת השוואת תיקיות, או להשבית
+מסנן נוכחי כדי למנוע את השימוש בו:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>פתח את תיבת הדו-שיח מסננים, אם היא עדיין לא פתוחה.</para>
+          </listitem>
+
+          <listitem>
+            <para>בחר מסנן קבצים או <guimenuitem>&lt;ללא&gt;</guimenuitem> מהרשימה.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ על <guibutton>אישור</guibutton> כדי לסגור את תיבת הדו-שיח מסננים.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>ישנן מספר דרכים להחיל מסנני קבצים לאחר הפעלתם. לפרטים, ראה <xref
+linkend="Filters_FileFilterApply" />.</para>
+      </section>
+
+      <section id="Filters_FileFilterCfg">
+        <title>הגדרת מסנני קבצים</title>
+
+        <para>השתמש בלחצנים אלה כדי לנהל את רשימת <guilabel>מסנני קבצים</guilabel> שלך
+וליצור מסנני קבצים חדשים:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>בדוק</term>
+
+            <listitem>
+              <para>בחר מסנן קבצים ברשימה ולחץ על <guibutton>בדוק</guibutton> כדי לראות במהירות
+כיצד המסנן עובד. ראה <xref linkend="Filters_TestingDlg" /> לפרטים.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>התקן</term>
+
+            <listitem>
+              <para>מאפשר לך לאתר מסנן קבצים ומוסיף אותו לרשימת המסננים. מסנני קבצים שאינם
+בתיקייה המשותפת או הפרטית המוגדרת כברירת מחדל אינם מזוהים אלא אם אתה מתקין
+אותם.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>חדש</term>
+
+            <listitem>
+              <para>יוצר עותק חדש של תבנית קבצים בתיקיות המסננים המשותפות או הפרטיות, ופותח אותו
+בעורך ברירת המחדל שלך. ערוך את התבנית והוסף את הכללים שלך, כמתואר ב-<xref
+linkend="Filters_CreatingFile" />.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>ערוך</term>
+
+            <listitem>
+              <para>בחר מסנן קבצים ברשימה ולחץ על <guibutton>ערוך</guibutton> כדי לפתוח את הקובץ
+בעורך ברירת המחדל שלך.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>מחק</term>
+
+            <listitem>
+              <para>בחר מסנן קבצים ברשימה ולחץ על <guibutton>מחק</guibutton> כדי למחוק את הקובץ
+ולהסיר אותו מהרשימה. כן, הקובץ באמת נמחק!</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>השינויים שלך נשמרים כשאתה לוחץ על <guibutton>אישור</guibutton> כדי לסגור את
+תיבת הדו-שיח מסננים. מסנני שורות מאוחסנים ברישום של Windows.</para>
+      </section>
+
+      <section id="Filters_CreatingFile">
+        <title>יצירת מסנן קבצים</title>
+
+        <para>אם מסנני הקבצים המותקנים עם WinMerge אינם מספקים את הסינון הדרוש לך, אתה
+יכול ליצור מסננים משלך:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>לחץ על <menuchoice> <guimenu>כלים</guimenu>
+<guimenuitem>מסננים</guimenuitem> </menuchoice>. או, מתיבת הדו-שיח בחר קבצים
+או תיקיות, לחץ על <guibutton>בחר</guibutton> מימין לשדה
+<guilabel>מסנן</guilabel>.</para>
+          </listitem>
+
+          <listitem id="Filters_New_step">
+            <para>בכרטיסייה מסנני קבצים של תיבת הדו-שיח מסננים, לחץ על
+<guibutton>חדש</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>בתיבת הדו-שיח מסנן משותף או פרטי, בחר <guilabel>מסנן משותף</guilabel> או
+<guilabel>מסנן פרטי</guilabel> (ראה <xref linkend="Filters_FileFilterLoc" />
+לשימושים בהם) ולחץ על <keycap>אישור</keycap>.</para>
+
+            <para>תיבת הדו-שיח בחר שם קובץ למסנן חדש נפתחת בתיקיית הקבצים המשותפת או הפרטית
+במערכת שלך (אם התיקייה הפרטית אינה קיימת, WinMerge יוצר אותה).</para>
+          </listitem>
+
+          <listitem>
+            <para>בתיבת הדו-שיח בחר שם קובץ למסנן חדש, הזן שם קובץ חדש ולחץ על
+<guibutton>שמור</guibutton>.</para>
+
+            <note>
+              <para>אל תבחר שם קובץ קיים: כדי לערוך קובץ קיים, חזור לשלב <xref
+linkend="Filters_New_step" /> ולחץ על ערוך במקום על חדש.</para>
+            </note>
+
+            <para>WinMerge מאתחל את הקובץ החדש עם התוכן של התבנית
+<filename>FileFilter.tmpl</filename>, ופותח אותו בעורך הטקסט המוגדר כברירת
+מחדל שלך.</para>
+          </listitem>
+
+          <listitem>
+            <para>פעל בהתאם להוראות התבנית כדי לערוך את התבנית, לעדכן את שם מציין המיקום
+והתיאור ולהוסיף כללי מסנן כמתואר ב-<xref linkend="Filters_FileFilterSyntax"
+/>. שמור את הקובץ בעורך הטקסט שלך.</para>
+
+            <tip>
+              <para>אם אתה רוצה לבדוק במהירות כלל שאתה מגדיר, נסה ללחוץ על בדוק בתיבת הדו-שיח
+מסננים. ראה <xref linkend="Filters_TestingDlg" /> לפרטים.</para>
+            </tip>
+            <para></para>
+          </listitem>
+
+          <listitem>
+            <para>אם יצרת את מסנן הקבצים שלך באחת מתיקיות <filename>מסננים</filename>
+הסטנדרטיות, ותיבת הדו-שיח מסננים אינה מציגה את מסנן הקבצים החדש שלך, נסה
+ללחוץ על <guibutton>אישור</guibutton> כדי לסגור אותה, ואז לחץ על
+<menuchoice> <guimenu>כלים</guimenu> <guimenuitem>מסננים</guimenuitem>
+</menuchoice> שוב כדי לפתוח אותה מחדש. רשימת <guilabel>מסנני
+קבצים</guilabel> צריכה לכלול כעת את מסנן הקבצים החדש.</para>
+
+            <para>אם שמרת את הקובץ במיקום חלופי במערכת הקבצים שלך), WinMerge לא יכול לזהות
+אותו אלא אם אתה מתקין אותו. כדי להפוך מסנן קבצים לניתן לזיהוי בכל מקום
+במערכת שלך:</para>
+
+            <orderedlist numeration="loweralpha">
+              <listitem>
+                <para>לחץ על <guibutton>התקן</guibutton> בתיבת הדו-שיח מסננים.</para>
+              </listitem>
+
+              <listitem>
+                <para>בתיבת הדו-שיח אתר קובץ מסנן להתקנה, נווט לקובץ <filename>flt</filename>
+במערכת שלך ולחץ על <guibutton>פתח</guibutton>. רשימת מסנני הקבצים צריכה
+לכלול כעת את מסנן הקבצים המותקן.</para>
+              </listitem>
+            </orderedlist>
+          </listitem>
+        </orderedlist>
+      </section>
+
+      <section id="Filters_TestingDlg">
+        <title>בדיקת כללי מסנן קבצים<indexterm>
+            <primary>מסנני קבצים</primary>
+
+            <secondary>בדיקה</secondary>
+          </indexterm><indexterm>
+            <primary>בדיקת מסנני קבצים</primary>
+          </indexterm></title>
+
+        <para>השתמש בתיבת הדו-שיח בדוק מסנן כדי לבדוק במהירות מסנן קבצים כנגד נתוני דוגמה,
+כדי לעזור לך לפתח כללים חדשים או כדי להבין כיצד כללים קיימים עובדים. זה יכול
+להיות קל יותר מאשר הפעלת פעולת השוואה מלאה.</para>
+
+        <para>החל מתיבת הדו-שיח מסננים:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>בכרטיסייה מסנני קבצים, בחר את מסנן הקבצים שברצונך לבדוק.</para>
+          </listitem>
+
+          <listitem>
+            <para>אם אתה רוצה לראות את הכללים שאתה הולך לבדוק, לחץ על
+<guibutton>ערוך</guibutton> עכשיו כדי לפתוח את הקובץ כדי שתוכל לצפות בו
+במהלך השלבים הבאים.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ על <guibutton>בדוק</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>בתיבת הדו-שיח בדוק מסנן, בחר את סוג הכלל לבדיקה:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>כדי לבדוק כלל קובץ <guilabel>f:</guilabel> במסנן הקבצים שלך, בטל את הסימון
+של האפשרות <guilabel>שם תיקייה</guilabel>.</para>
+              </listitem>
+
+              <listitem>
+                <para>כדי לבדוק כלל תיקייה <guilabel>d:</guilabel>, סמן את האפשרות <guilabel>שם
+תיקייה</guilabel>.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>הזן את הטקסט לבדיקה.</para>
+
+            <para>הטקסט צריך להיות מתאים לסוג הכלל שאתה בודק. לדוגמה, אם סימנת את האפשרות
+<guilabel>שם תיקייה</guilabel>, סביר להניח שתרצה להזין שם תיקייה, כגון
+\temp.</para>
+
+            <para>התיבה <guilabel>תוצאה</guilabel> מציגה את הערך שהזנת, ואחריו את הסטטוס שלו:
+<computeroutput>עבר</computeroutput> או
+<computeroutput>נכשל</computeroutput>.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section id="Filters_LineFiltersTab">
+      <title>שימוש בכרטיסייה מסנני שורות<indexterm>
+          <primary>מסנני שורות</primary>
+
+          <secondary>הפעלה</secondary>
+        </indexterm></title>
+
+      <para>השתמש בכרטיסייה זו כדי להגדיר ולהפעיל מסנני שורות עבור פעולות השוואת
+קבצים. הכרטיסייה כוללת רשימה של כללים. כל כלל מכיל ביטוי רגולרי יחיד. אתה
+יכול להחיל כל שילוב של כללים מהרשימה על השוואת קבצים.</para>
+
+      <section id="Filters_LineFilterCfg">
+        <title>הגדרת מסנני שורות</title>
+
+        <para>מתחת לרשימת <guilabel>ביטויים רגולריים</guilabel> יש תיבת עריכה ולחצנים שבהם
+תוכל להשתמש כדי לתחזק את הרשימה בכל עת על ידי הוספה, עריכה והסרה של כללים.</para>
+
+        <para>כדי להוסיף כלל חדש:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>לחץ על <guibutton>חדש</guibutton>. סמן העריכה שלך מופעל אוטומטית בתיבת
+העריכה.</para>
+          </listitem>
+
+          <listitem>
+            <para>הזן ביטוי בתיבת העריכה שמתחת לרשימת <guilabel>ביטויים רגולריים</guilabel>.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ על <guibutton>שמור</guibutton> כדי לטעון את הביטוי בשורה חדשה ברשימה.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>כדי לערוך כלל קיים:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>בחר את השורה ולחץ על <guibutton>ערוך</guibutton>.</para>
+          </listitem>
+
+          <listitem>
+            <para>ערוך את הביטוי בתיבת העריכה.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ על <guibutton>שמור</guibutton><guibutton> </guibutton>כשסיימת.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>כדי למחוק כלל קיים, בחר (סמן) את הכלל ולחץ על <guibutton>הסר</guibutton>.</para>
+      </section>
+
+      <section id="Filters_LineFilterEnabling">
+        <title>הפעלה והשבתה של מסנני שורות<indexterm>
+            <primary>מסנני שורות</primary>
+
+            <secondary>רשימת זמינים</secondary>
+          </indexterm></title>
+
+        <orderedlist>
+          <listitem>
+            <para>ברשימת <guilabel>ביטויים רגולריים</guilabel>, סמן רק את המסננים שברצונך
+להחיל ובטל את הסימון של כל המסננים שאינך רוצה להחיל.</para>
+          </listitem>
+
+          <listitem>
+            <para>סמן או בטל את הסימון של האפשרות <guilabel>אפשר מסנני שורות</guilabel>. אם
+תפעיל סינון, כל הכללים המסומנים כעת ברשימת <guilabel>ביטוי רגולרי</guilabel>
+ישמשו. אם הסינון כבוי, לא ישמשו כללים גם אם הם מסומנים.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ על <guibutton>אישור</guibutton> כדי לסגור את תיבת הדו-שיח מסננים ולשמור
+את ההגדרות שלך.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>ישנן מספר דרכים להחיל מסנני קבצים לאחר הפעלתם. לפרטים, ראה <xref
+linkend="Filters_LineFilterApply" />.</para>
+      </section>
+    </section>
+
+    <section id="Filters_SubstitutionFiltersTab">
+      <title>שימוש בכרטיסייה מסנני החלפה<indexterm>
+          <primary>מסנני החלפה</primary>
+
+          <secondary>הפעלה</secondary>
+        </indexterm></title>
+
+        <para>TBD</para>
+
+      <section id="Filters_SubstitutionFilterCfg">
+        <title>הגדרת מסנני החלפה</title>
+
+        <para>TBD</para>
+
+      </section>
+
+      <section id="Filters_SubstitutionFilterEnabling">
+        <title>הפעלה והשבתה של מסנני החלפה<indexterm>
+            <primary>מסנני החלפה</primary>
+
+            <secondary>רשימת זמינים</secondary>
+          </indexterm></title>
+
+        <para>TBD</para>
+      </section>
+    </section>
+  </section>
+
+  <section id="AboutFilters_regexp">
+    <title>קבלת עזרה בביטויים רגולריים<indexterm>
+        <primary>ביטויים רגולריים</primary>
+
+        <secondary>קבלת עזרה</secondary>
+      </indexterm></title>
+
+    <para>ביטויים רגולריים יכולים להיות מורכבים מאוד. למרבה המזל, רוב מסנני הקבצים
+ב-WinMerge כוללים ביטויי סיומת פשוטים, כפי שמוצג בדוגמאות בנושא זה. קבצי
+המסנן המותקנים עם WinMerge כוללים דוגמאות שימושיות רבות אחרות.</para>
+
+    <para>לבסוף, ישנם משאבים רבים באינטרנט לעזרה ב-regexps, כולל אתרים אלה:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>אתר טוב המוקדש ל-regexps:</term>
+
+        <listitem>
+          <simpara><ulink
+url="https://www.regular-expressions.info/">https://www.regular-expressions.info/</ulink></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>הדרכה:</term>
+
+        <listitem>
+          <simpara><ulink
+url="http://www.zvon.org/comp/r/tut-Regexp.html">http://www.zvon.org/comp/r/tut-Regexp.html</ulink></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>עיון מהיר ב-PDF:</term>
+
+        <listitem>
+          <simpara><ulink
+url="https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf">
+https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf</ulink></simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+</article>

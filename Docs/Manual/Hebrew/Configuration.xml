@@ -1,0 +1,2362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Configuration">
+  <title>
+Options and configuration<indexterm>
+      <primary>אפשרויות</primary>
+    </indexterm></title>
+
+  <para>
+תיבת הדו-שיח אפשרויות מאפשרת לך להתאים אישית תכונות רבות של WinMerge. כדי
+להגדיר אפשרויות WinMerge:</para>
+
+  <orderedlist>
+    <listitem>
+      <para>
+לחץ על <menuchoice> <guimenu>עריכה</guimenu>
+<guimenuitem>אפשרויות</guimenuitem> </menuchoice> בתפריט או על לחצן
+ה-<inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/options_btn.png" /> </imageobject><textobject>
+            <phrase>לחצן אפשרויות WinMerge</phrase>
+          </textobject>
+        </inlinemediaobject>
+<guibutton>אפשרויות</guibutton> בסרגל הכלים.</para>
+
+      <para>
+תיבת הדו-שיח אפשרויות מכילה מספר דפים, שכל אחד מהם מכיל קבוצה של אפשרויות
+קשורות. אתה יכול לפתוח כל דף על ידי לחיצה על הכותרת שלו ברשימת
+ה-<guilabel>קטגוריות</guilabel>, בצד שמאל של תיבת הדו-שיח.</para>
+    </listitem>
+
+    <listitem>
+      <para>
+הגדר את האפשרויות שברצונך לשנות באמצעות אחת או שתי השיטות הבאות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>ישירות בדפי האפשרויות.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+ייבוא קובץ <filename>.ini</filename> של אפשרויות שייצאת בעבר (ראה <xref
+linkend="Configuration_importexport" /> לפרטים).</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>
+לאחר שהגדרת את כל האפשרויות שלך, לחץ על <guibutton>אישור</guibutton> כדי
+לשמור אותן ולסגור את תיבת הדו-שיח.</para>
+    </listitem>
+  </orderedlist>
+
+  <para>
+נושא זה מתאר את האפשרויות בפירוט. ישנו סעיף לכל דף בתיבת הדו-שיח אפשרויות.</para>
+
+  <section id="Configuration_importexport">
+    <title>
+Importing and Exporting options<indexterm>
+        <primary>ייבוא קבצי אפשרויות</primary>
+      </indexterm><indexterm>
+        <primary>ייצוא קבצי אפשרויות</primary>
+      </indexterm></title>
+
+    <para>
+אם אתה משנה אפשרויות לעתים קרובות עבור תרחישי השוואה או מיזוג שונים, או אם
+אתה רוצה לשתף את ההגדרות שלך עם משתמשי WinMerge אחרים, שקול לשמור את ההגדרות
+שלך על ידי ייצוא שלהן לקובץ אפשרויות. לאחר מכן, בכל פעם שתרצה להשתמש בהגדרות
+אלה, תוכל פשוט לייבא את קובץ האפשרויות במקום להגדיר אפשרויות באופן ידני.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>כדי לייבא אפשרויות</term>
+
+        <listitem>
+          <para>
+כשברצונך לעשות שימוש חוזר באפשרויות השמורות שלך, לחץ על
+<guibutton>ייבא</guibutton>. בתיבת הדו-שיח בחר קובץ לייבוא, נווט אל קובץ
+ה-<filename>ini</filename> השמור ולחץ על <guibutton>פתח</guibutton>.</para>
+
+          <para>
+הערכים בקובץ האפשרויות המיובא שלך מחליפים את כל ההגדרות הקיימות.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>כדי לייצא אפשרויות</term>
+
+        <listitem>
+          <para>
+לאחר שהגדרת את האפשרויות שלך כרצונך, לחץ על
+<guibutton>ייצא</guibutton>. בתיבת הדו-שיח בחר קובץ לייצוא, ציין נתיב ושם
+עבור קובץ האפשרויות שלך (הסוג <filename>ini</filename> מצורף אוטומטית), ולחץ
+על <guibutton>שמור</guibutton>.</para>
+
+          <para>
+בקובץ ה-<filename>ini</filename> שנוצר, כל שורה מכילה צמד שם-ערך המגדיר
+אפשרות בודדת.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Configuration_general">
+    <title>דף כללי</title>
+
+    <para>לדף הכללי יש אפשרויות אלה:</para>
+
+    <section>
+      <title>
+Automatically scroll to first difference<indexterm>
+          <primary>גלילה אוטומטית להבדל הראשון</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): חלון ההשוואה נפתח לראש התיקיה או הקובץ,
+ללא הבדל שנבחר.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: כשהוא נפתח לראשונה, חלון ההשוואה בוחר את ההבדל
+הראשון, וגולל למיקום אם יש צורך.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>
+עבור השוואת תיקיות, בוחר את הקובץ או התיקיות השונים הראשונים.</para>
+            </listitem>
+
+            <listitem>
+              <para>
+עבור השוואת קבצים, בוחר את בלוק ההבדלים הראשון בקבצים.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Automatically scroll to first inline difference<indexterm>
+          <primary>גלילה אוטומטית להבדל המוטבע הראשון</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): בעת מעבר לבלוק הבדלים, לא גולל אוטומטית
+להבדל המוטבע הראשון בתוך שורות הטקסט.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: בעת מעבר לבלוק הבדלים, גולל אוטומטית להבדל המוטבע
+הראשון בתוך שורות הטקסט.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Close Windows with '<keycap>Esc</keycap>'<indexterm>
+          <primary>סגירת חלונות באמצעות מקש Esc</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>חלון צאצא MDI או חלון ראשי</option> (ברירת מחדל): מאפשר לך להשתמש
+במקש <keycap>Esc</keycap> כדי לסגור חלונות WinMerge. הקשה על
+<keycap>Esc</keycap> פעם אחת סוגרת חלון אחד, כך שכאשר חלון השוואת קבצים אחד
+פתוח, נדרשות שלוש הקשות כדי לסגור את WinMerge: תחילה את חלון השוואת הקבצים,
+לאחר מכן את חלון השוואת התיקיות ולבסוף את חלון WinMerge.</para>
+
+          <para>
+שים לב שבשורת הפקודה של WinMerge, הפרמטר <parameter>-e</parameter> מאפשר לך
+לסגור את WinMerge על ידי הקשה על <keycap>Esc</keycap> פעם אחת בלבד.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>חלון צאצא MDI בלבד</option>: הקשה על <keycap>Esc</keycap> סוגרת חלון
+צאצא, אך לא את החלון הראשי האחרון שנותר.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>סגור חלון ראשי אם יש רק חלון צאצא MDI אחד</option>: הקשה על
+<keycap>Esc</keycap> סוגרת חלון צאצא, ואם יש רק חלון צאצא אחד, היא תסגור גם
+את החלון הראשי.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מושבת</option>: הקשה על <keycap>Esc</keycap> אינה סוגרת אף חלון של
+WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>אמת אוטומטית נתיבים בתיבת הדו-שיח פתח</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מופעל</option> (ברירת מחדל): תיבת הדו-שיח בחר קבצים או תיקיות בודקת
+את שני הנתיבים או את שלושתם כשאתה מזין אותם. לחצן
+ה-<guibutton>השווה</guibutton> נשאר מושבת עד ששני הנתיבים או שלושתם
+מאומתים. שים לב שבדיקה זו עלולה לגרום לעיכוב כלשהו.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מושבת</option>: לחצן ה-<guibutton>השווה</guibutton> בתיבת הדו-שיח
+בחר קבצים או תיקיות מופעל תמיד, ומנסה לפתוח את כל הנתיבים שאתה מציין. מכיוון
+שאין עיכוב במהלך האימות, הדבר יכול להאיץ את בחירת הנתיבים. עם זאת, אם לא
+ניתן לפתוח את הנתיב, מוצגת תיבת דו-שיח שגיאה.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Single instance mode<indexterm>
+          <primary>חלון WinMerge</primary>
+
+          <secondary>הגבלת מופעים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): אתה יכול להפעיל מופעים מרובים של
+WinMerge. לדוגמה, אם WinMerge פועל כעת ואתה לוחץ על קיצור הדרך לשולחן העבודה
+של WinMerge, נפתח חלון WinMerge חדש.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>אפשר להפעיל מופע אחד בלבד</option>: מגביל את תוכנית WinMerge למופע
+אחד:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>
+אם WinMerge פועל כעת ואתה מנסה להפעיל מופע חדש, לא נפתח חלון יישום חדש:
+במקום זאת נעשה שימוש בחלון WinMerge הנוכחי.</para>
+            </listitem>
+
+            <listitem>
+              <para>
+אם אתה מפעיל מופע חדש עם נתיבים (לדוגמה בשורת הפקודה), נפתח חלון השוואה חדש
+בחלון WinMerge הקיים.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>אפשר להפעיל מופע אחד בלבד והמתן עד שהמופע יסתיים</option>: בדומה
+לאפשרות "אפשר להפעיל מופע אחד בלבד", הגדרה זו מגבילה את WinMerge לחלון יישום
+יחיד. עם זאת, היא גם מבטיחה שתהליך WinMerge לא יסתיים עד לסגירת חלון
+היישום. זה שימושי במצבים שבהם יישומים חיצוניים, כמו SourceTree, צריכים
+להמתין ש-WinMerge יסיים לפני שהם יכולים למחוק בבטחה קבצים זמניים.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>שאל בעת סגירת חלונות מרובים</title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): אם אתה יוצא מ-WinMerge כאשר חלונות
+השוואה מרובים פתוחים, WinMerge מבקש ממך לאשר האם לסגור את כל החלונות.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: אם תלחץ על <guibutton>יציאה</guibutton> ואין שינויים
+ממתינים בקובץ, WinMerge נסגר מיד.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Preserve file time in file compare<indexterm>
+          <primary>חותמות זמן</primary>
+
+          <secondary>שימור</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): אם אתה שומר שינויים בקובץ ב-WinMerge,
+חותמת הזמן של הקובץ מתעדכנת.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: אם אתה שומר שינויים בקובץ ב-WinMerge, חותמת הזמן של
+הקובץ לא משתנה במערכת הקבצים שלך.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Show "Select Files or Folders" dialog on startup<indexterm>
+          <primary>תיבת הדו-שיח בחר קבצים או תיקיות</primary>
+
+          <secondary>פתיחה אוטומטית</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): חלון WinMerge נפתח כשאתה מפעיל את
+WinMerge. עליך ללחוץ על <menuchoice> <guimenu>קובץ</guimenu>
+<guimenuitem>פתח</guimenuitem> </menuchoice> כדי לפתוח את בחר קבצים או
+תיקיות.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: תיבת הדו-שיח בחר קבצים או תיקיות נפתחת יחד עם חלון
+WinMerge כשאתה מפעיל את WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Close "Select Files or Folders" dialog on clicking Compare
+button<indexterm>
+          <primary>תיבת הדו-שיח בחר קבצים או תיקיות</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): כאשר תלחץ על לחצן
+ה-<guibutton>השווה</guibutton>, תיבת הדו-שיח בחר קבצים או תיקיות תישאר פתוחה
+במקום להיסגר.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: לחיצה על לחצן ה-<guibutton>השווה</guibutton> סוגרת
+את תיבת הדו-שיח בחר קבצים או תיקיות.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Open-dialog Auto-Completion<indexterm>
+          <primary>רשימת MRU</primary>
+        </indexterm></title>
+
+      <para>בחר אחת מהאפשרויות הבאות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>מושבת</guilabel>: לא מתבצעת השלמה אוטומטית כאשר אתה מזין נתיבים
+בתיבת הדו-שיח בחר קבצים או תיקיות.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>ממערכת הקבצים</guilabel> (ברירת מחדל): בודק נתיבים כשאתה
+מקליד. הוא מנסה לאתר נתיבים במערכת הקבצים התואמים לאותיות שאתה מקליד, ואם
+נמצא נתיב תואם, משלים את הנתיב.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>מרשימת השימוש האחרון ביותר</guilabel>: בודק נתיבים רק מרשימת
+השימוש האחרון ביותר (MRU). זה שימושי כאשר יש לך קבוצה מוגבלת של נתיבים
+להשוואה.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Auto-reload modified files<indexterm>
+          <primary>טעינה מחדש אוטומטית</primary>
+        </indexterm></title>
+
+      <para>בחר אחת מהאפשרויות הבאות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>מושבת</guilabel>: משבית טעינה מחדש אוטומטית.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>רק כאשר החלון מופעל</guilabel> (ברירת מחדל): כאשר חלון WinMerge
+מופעל, אם הקובץ שונה, הוא יטען מחדש את הקובץ. עם זאת, תוצג תיבת הודעה שתשאל
+אם ברצונך לטעון מחדש את הקובץ בשלב זה. אם אינך רוצה לראות את תיבת ההודעה
+הזו, סמן את "אל תשאל שאלה זו שוב" ולחץ על הלחצן כן.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>מיידית</guilabel>: טוען מחדש את הקובץ באופן מיידי כאשר הוא
+שונה. עם זאת, תוצג תיבת הודעה שתשאל אם ברצונך לטעון מחדש את הקובץ בשלב
+זה. אם אינך רוצה לראות את תיבת ההודעה הזו, סמן את "אל תשאל שאלה זו שוב" ולחץ
+על הלחצן כן.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Language<indexterm>
+          <primary>שפה</primary>
+        </indexterm></title>
+
+      <para>
+ראה <xref linkend="Locales_changing" />.</para>
+
+    </section>
+  </section>
+
+  <section id="Configuration_compare">
+    <title>השוואה &gt; דף כללי</title>
+
+    <para>
+האפשרויות בדף זה מאפשרות לך לשנות חלק מהדרכים שבהן WinMerge מזהה הבדלים,
+כגון השוואה של גודל הקובץ בלבד, או התעלמות מסוגים מסוימים של הבדלים, כגון
+רישיות.</para>
+
+    <important>
+      <para>
+התאמה אישית של זיהוי ההבדלים יכולה להיות שימושית במהלך השוואות, כאשר ייתכן
+שאינך מעוניין בחלק מההבדלים. עם זאת, אפשרויות אלה משפיעות גם על
+מיזוג. לדוגמה, אם תתעלם משינויי רווח לבן, אז שינויי כניסה בקבצי קוד מקור לא
+יישמרו בעת המיזוג.</para>
+
+      <para>
+מסיבה זו, לפני שתמזג הבדלים כלשהם, אנו ממליצים בחום לאפס את האפשרויות בדף זה
+להגדרות ברירת המחדל שלהן, במיוחד את אפשרויות ההתעלמות. כדי לאפס את כל
+האפשרויות בדף זה, לחץ על הלחצן <guibutton>ברירות מחדל</guibutton>.</para>
+    </important>
+
+    <section>
+      <title>
+About ignore options<indexterm>
+          <primary>הבדלים שהתעלמו מהם</primary>
+        </indexterm></title>
+
+      <para>
+מספר אפשרויות בדף ההשוואה (שמתואר בהמשך בסעיף זה) מאפשרות לך להתעלם מהבדלים
+מסוימים. הבדלים שהתעלמו מהם מטופלים בדרכים מיוחדות ב-WinMerge:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>הם מסומנים בצבע ההבדל שהתעלמו ממנו.</para>
+        </listitem>
+
+        <listitem>
+          <para>לא ניתן למזג הבדלים שהתעלמו מהם.</para>
+        </listitem>
+
+        <listitem>
+          <para>הבדלים שהתעלמו מהם אינם נכללים בספירות ההבדלים.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+קבצים המכילים רק הבדלים שהתעלמו מהם מסומנים כזהים בהשוואת תיקיות.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Whitespaces<indexterm>
+          <primary>רווחים לבנים</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <para>
+רווח לבן הוא הרווח בין מילים ושורות. הוא מיוצג בקבצי טקסט על ידי תווים
+מיוחדים שאינם מודפסים, כמו רווחים, טאבים והזנות שורות. המשמעות של רווח לבן
+תלויה באופן שבו אתה רוצה לקרוא או לעבד הבדלים. ייתכן שחשוב לזהות את כל
+השינויים ברווח לבן. לעומת זאת, ייתכן שתעדיף להתייחס לכל הרווח הלבן כאחד, בין
+אם זה רווח אחד, שני רווחים, כניסה או טאב. ובמסמכים מובנים מסוימים (כמו
+רשימות מופרדות בפסיקים), ייתכן שתרצה להתעלם מכל הרווח הלבן.</para>
+
+      <note>
+        <para>
+ההשפעות של רווח לבן על שינויים בתוך שורות גלויות רק כאשר <option>הצג הבדלי
+שורות</option> מופעלת. זאת בניגוד לבלוקים של הבדלים, שתמיד מודגשים.</para>
+      </note>
+
+      <example>
+        <title>שורות עם רווח לבן שונה</title>
+
+        <para>
+One space between words:<screen format="linespecific">שתי מילים</screen></para>
+
+        <para>
+Two spaces between words:<screen format="linespecific">שתי  מילים</screen></para>
+
+        <para>
+Tab between words:<screen format="linespecific">שתי	מילים</screen></para>
+
+        <para>
+No spaces between words:<screen format="linespecific">שתי מילים</screen></para>
+      </example>
+
+      <para>
+אתה יכול לשלוט על זיהוי רווחים לבנים על ידי בחירה באחת מהאפשרויות הבאות:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>השווה</term>
+
+          <listitem>
+            <para>
+כל הרווח הלבן מושווה (ברירת מחדל). אם אינך בטוח איזו אפשרות המסמך שלך דורש,
+זו כנראה הבחירה הבטוחה ביותר. בדוגמה, כל השורות מזוהות כשונות.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>התעלם משינוי</term>
+
+          <listitem>
+            <para>
+משווה הבדלים ברווח לבן. בדוגמה, בשלוש השורות הראשונות יש רווח לבן שונה, אך
+הן מזוהות כזהות: טאבים ומרובים מטופלים כאילו הם רווח בודד. בשורה האחרונה אין
+רווח לבן, ולכן ההבדל <emphasis>לא</emphasis> מתעלמים ממנו (למעשה, המילים
+בשתי השורות האחרונות שונות):</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>התעלם מהכל</term>
+
+          <listitem>
+            <para>
+מתעלם מכל תווי הרווח הלבן, למעט הזנות שורה (כך ששורות מזוהות ונשמרות
+במיזוג). כל השורות בדוגמה מזוהות כזהות.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <note>
+        <title>נושאים קשורים</title>
+
+        <para>
+ההשפעות של הגדרות הרווח הלבן על הבדלי שורות מתוארות ב-<xref
+linkend="CompareFiles_linediff-highlight" />.</para>
+
+        <para>
+דף העורך של תיבת הדו-שיח אפשרויות מכיל אפשרויות קשורות השולטות כיצד נעשה
+שימוש ברווח לבן כדי לזהות מעברים בין מילים. ראה <xref
+linkend="Configuration_viewlinediffs" /> לפרטים.</para>
+      </note>
+    </section>
+
+    <section>
+      <title>
+Ignore blank lines<indexterm>
+          <primary>שורות ריקות</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): שורות ריקות בקבצי המקור מזוהות ומיוצגות
+בחלון השוואת הקבצים כש שורות ריקות עם צבעי ההבדל שנמחק.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: מתעלמים משורות ריקות בקבצי המקור. הם מיוצגים בחלון
+השוואת הקבצים כש שורות ריקות עם צבעי ההבדל שהתעלמו ממנו. עם זאת, לא ניתן
+למזג את ההבדל.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignore case<indexterm>
+          <primary>רישיות (אות), זיהוי והתעלמות מהבדלים</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): השוואות תלויות רישיות. לדוגמה,
+<literal>אותיותקטנות</literal>, <literal>אותיותגדולות</literal>,
+ו-<literal>אותיותקטנות</literal> כולן שונות.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: מתעלמים מהבדלים בין אותיות קטנות לאותיות גדולות.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignore carriage return differences (Windows/Unix/Mac)<indexterm>
+          <primary>EOL</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): מזוהים הבדלים בסגנון סוף שורה
+(EOL). לדוגמה, אם אתה משווה שתי שורות עם אותו תוכן אך עם סיומי שורה שונים,
+השורות נחשבות לשונות. כשזה קורה, WinMerge מציג דו-שיח המבקש ממך לאשר האם
+לזהות או להתעלם מההבדל.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: מתעלמים מהבדלי EOL.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignore numbers<indexterm>
+          <primary>מספרים</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>מושבת</option> (ברירת מחדל): מזוהים הבדלים מספריים.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מופעל</option>: מתעלמים מהבדלים מספריים.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Ignore codepage differences<indexterm>
+          <primary>דף קוד</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): מזוהים הבדלים בקידוד קבצים. כמו כן,
+מזוהים הבדלים בין נוכחות והיעדרות של BOM.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: הבדלים בקידוד קבצים מתעלמים מהם.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+התעלם מהבדלי תגובות<indexterm>
+          <primary>מסננים</primary>
+
+          <secondary>comments</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): WinMerge משווה תגובות בקוד, יחד עם
+תוכן אחר.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: אפשרות זו מייעלת השוואות על ידי זיהוי תגובות בסוגי
+קבצים מסוימים של שפות תכנות (כגון C++ ו-Java), והתעלמות מהם. הזיהוי מבוסס על
+הדגשת תחביר, כך שאין לו השפעה על סוגי קבצים שאינם נתמכים על ידי WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+התעלם מסיום שורה חסר<indexterm>
+          <primary>מסננים</primary>
+          <secondary>EOL</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): הבדלים בנוכחות או היעדרות של תווי
+סיום שורה מזוהים כהבדלים, גם אם התוכן של השורות תואם.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: כאשר קובץ אחד מסתיים בתו סיום שורה (לדוגמה, LF או
+CRLF) והשני לא, אך תוכן השורה תואם, הבדלים אלה מתעלמים מהם.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+הפעל זיהוי בלוקים שהועברו<indexterm>
+          <primary>הבדלים שהועברו</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): WinMerge לא מזהה מתי הבדלים נובעים
+משורות שהועברו.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: WinMerge מנסה לזהות שורות שהועברו (במיקומים שונים
+בכל קובץ). בלוקים שהועברו מסומנים בצבעי ההבדלים <guilabel>הועבר</guilabel>
+ו- <guilabel>הועבר נבחר</guilabel>. אם סרגל המיקומים מוצג, מיקומי הבדלים
+תואמים בסרגלי המיקומים השמאלי והימני מחוברים באמצעות קו. הצגת בלוקים שהועברו
+יכולה להקל על הדמיית שינויים בקבצים, אם אין יותר מדי.</para>
+
+          <para>
+לדוגמה, ראה את תיאור חלונית המיקום ב<xref linkend="Compare_files" />.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+יישר שורות דומות<indexterm>
+          <primary>שורות דומות, יישור</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): שורות בתוך בלוקי הבדלים מוצגות כפי
+שהן מופיעות בקבצי המקור.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: WinMerge מנסה לזהות שורות בתוך בלוקי הבדלים
+הדומות, ומוסיף שורות ריקות בחלוניות הקבצים כדי ליישר אותן. אפשרות זו יעילה
+ביותר כאשר שורות דומות למדי; פחות יעילה אם השורות שונות מדי.</para>
+
+          <para>
+לדוגמה, ראה את התיאור <citetitle>שורות דומות</citetitle> ב<xref
+linkend="CompareFiles_diffcolors" />.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+אלגוריתם השוואה<indexterm>
+          <primary>אלגוריתם</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>default</option> (ברירת מחדל): אלגוריתם ההשוואה החמדני הבסיסי.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>minimal</option>: השקיעו זמן נוסף כדי לוודא שההפרש הקטן ביותר האפשרי
+נוצר.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>patience</option>: השתמש באלגוריתם "הפרש סבלני" בעת יצירת הפרש.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>histogram</option>: אלגוריתם זה מרחיב את אלגוריתם הסבלנות ל"תמיכה
+באלמנטים נפוצים בעלי שכיחות נמוכה".</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>none</option>: אלגוריתם זה אינו מזהה הוספות או מחיקות של שורות.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+הפעל היוריסטיקה של הזחה<indexterm>
+          <primary>היוריסטיקה של הזחה</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (ברירת מחדל): הפעל את ההיוריסטיקה שמזיזה גבולות של
+חלקי הבדלים כדי להקל על קריאת הבדלים. אין לה השפעה אם אלגוריתם ההבדלים הוא
+ברירת מחדל.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: השבת את ההיוריסטיקה.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+הסר לחלוטין את הדגשת ההבדלים שהתעלמו מהם<indexterm>
+          <primary>הסר לחלוטין את הדגשת ההבדלים שהתעלמו מהם</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): שורות הבדלים שהתעלמו מהן על ידי
+מסנני שורות ומסנני החלפה מוצגות בצבע של הבדל שהתעלמו ממנו.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: הופך את הצבע של השורות השונות שהתעלמו מהן על ידי
+מסנני שורות ומסנני החלפה לאותו צבע של השורות הזהות.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_folder">
+    <title>השוואה &gt; דף תיקייה</title>
+
+    <section id="Configuration_compmethod">
+      <title>
+שיטת השוואה<indexterm>
+          <primary>השוואת קבצים</primary>
+
+          <secondary>אפשרויות זיהוי</secondary>
+        </indexterm></title>
+
+      <para>
+אפשרות זו מאפשרת לך לקבוע עד כמה השוואות הקבצים שלך שלמות. בחר אחת מחמש
+האפשרויות הבאות:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>תוכן מלא</term>
+
+          <listitem>
+            <para>
+ברירת מחדל: השוואה מלאה של קבצים לפי תוכן, עם כל הפעמונים והשריקות. שיטה זו
+מפעילה תוספים ומשתמשת במנוע diffutils לביצוע הבדלים מדויקים לחלוטין וזיהוי
+בלוקים שהועברו. זוהי השיטה המלאה והמומלצת ביותר.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>תוכן מהיר</term>
+
+          <listitem>
+            <para>
+השוואה מצומצמת של קבצים לפי תוכן. שיטה זו משתמשת בקוד השוואת קבצים יעיל
+שמדלג על תוספים ועל זיהוי בלוקים שהועברו. שיטה זו מהירה יותר מ<guilabel>
+תוכן מלא </guilabel>, מכיוון שהיא אינה טוענת את הקבצים.</para>
+
+            <para>
+החיסרון שלה הוא שמסנני שורות אינם מוחלים בעת ההשוואה. לדוגמה, שיטה זו רואה
+בקובץ כשונה גם אם מסנני שורות מוגדרים להתעלם מכל ההבדלים בקבצים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>תוכן בינארי</term>
+
+          <listitem>
+            <para>
+שיטה זו מהירה יותר משיטת ההשוואה של תוכן מהיר. עם זאת, היא אינה מחילה
+תוספים, מסנני שורות, אפשרות 'התעלם ממקרה', וכו'. תחילה, היא משווה את גדלי
+הקבצים, ואם הם שונים, היא מתייחסת לתוכן הקובץ כשונה מבלי להשוות אותו. אם
+גדלי הקבצים תואמים, היא פשוט משווה את תוכן הקובץ בבתים. לא מתבצע זיהוי קידוד
+קבצים, זיהוי סיום שורה או זיהוי קבצים בינאריים. שיטת השוואה זו טובה להשוואת
+קבצים לקבצים מגובים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+תאריך שינוי<indexterm>
+              <primary>חותמות זמן</primary>
+
+              <secondary>השוואה</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>
+משווה רק את תאריכי השינוי בקבצים, כך שהוא מהיר בהרבה מכל אחת משיטות
+התוכן. אבל ברור, שהוא מדויק רק כמו תאריכי השינוי.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>תאריך שינוי וגודל</term>
+
+          <listitem>
+            <para>
+דומה ל<guilabel>תאריך שינוי</guilabel>, אבל גם בודק גדלי קבצים כאשר התאריכים
+זהים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+גודל<indexterm>
+              <primary>גדלי קבצים</primary>
+
+              <secondary>השוואה</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>
+משווה רק גדלי קבצים, כך שהוא מהיר אבל לא מדויק כמו שיטות התוכן.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>
+עצור לאחר ההבדל הראשון<indexterm>
+          <primary>השוואת קבצים</primary>
+
+          <secondary>עצירה לאחר ההבדל הראשון</secondary>
+        </indexterm><indexterm>
+          <primary>השוואת תיקיות</primary>
+
+          <secondary>עצירה לאחר ההבדל הראשון</secondary>
+        </indexterm></title>
+
+      <para>
+אפשרות זו מופעלת רק כאשר שיטת ההשוואה <guilabel> תוכן מהיר </guilabel>
+נבחרת.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): WinMerge בוחן את כל ההבדלים בקבצים.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: אפשרות זו מייעלת השוואות על ידי בדיקת קבצים רק עד
+שנמצא ההבדל הראשון, במקום לסרוק תמיד את כל הקבצים.</para>
+
+          <para>
+החיסרון הוא ש-WinMerge עשוי שלא להיות מסוגל לזהות קבצים בינאריים
+כבינאריים. זה צפוי לקרות אם ההבדל הראשון קרוב לתחילת הקובץ. אם אתה יודע איזה
+סוג קבצים אתה משווה (לדוגמה, אילו קבצים הם בינאריים), אפשרות זו יכולה להיות
+דרך טובה להאיץ את ההשוואות. עם זאת, אל תפעיל אפשרות זו אם אינך בטוח איזה סוג
+קבצים אתה משווה.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+התעלם מהבדלי זמנים הקטנים מ-3 שניות<indexterm>
+          <primary>חותמות זמן</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): קבצים עם חותמות זמן שונות מזוהים
+כשונים.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: לפעמים (לדוגמה, כאשר אתה משתמש בתיקיות רשת) הבדלים
+קטנים בחותמות זמן אינם משמעותיים. כדי לקבל תוצאות משמעותיות יותר במצבים
+כאלה, אפשרות זו מאפשרת לך להתעלם מהבדלי זמן הקטנים משלוש שניות.</para>
+
+          <para>
+אפשרות זו פועלת רק עם שיטות ההשוואה <guimenuitem> תאריך שינוי </guimenuitem>
+ו- <guimenuitem> תאריך שינוי וגודל </guimenuitem> (המתוארות ב<xref
+linkend="Configuration_compmethod" />). אין לה השפעה עם שיטות אחרות.</para>
+
+          <warning>
+            <para>
+אפשרות זו צריכה להיות מופעלת רק כאשר מזוהה הפרש הזמן. אחרת, היא עלולה לגרום
+לתוצאות השוואה שגויות.</para>
+          </warning>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+כלול תיקיות משנה<indexterm>
+          <primary>כלול תיקיות משנה</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (ברירת מחדל): WinMerge מבצע השוואה רקורסיבית וכולל
+גם תיקיות משנה.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: WinMerge משווה רק את הקבצים בתיקיית השורש.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+הרחב אוטומטית תיקיות משנה לאחר השוואה<indexterm>
+          <primary>הרחב תיקיות משנה</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Do not expand</option> (ברירת מחדל): תיקיות משנה נשארות מכווצות לאחר
+השוואה.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Expand all subfolders</option>: כל תיקיות המשנה מורחבות לאחר השוואה.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Expand different subfolders</option>: רק תיקיות משנה עם הבדלים
+מורחבות לאחר השוואה.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Expand identical subfolders</option>: רק תיקיות משנה ללא הבדלים
+מורחבות לאחר השוואה.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+כלול תוכן של תיקיות משנה ייחודיות<indexterm>
+          <primary>כלול תיקיות משנה ייחודיות</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (ברירת מחדל): WinMerge מציג גם את התוכן מתיקיות
+משנה ייחודיות.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: WinMerge מתעלם מתיקיות משנה ייחודיות בעת השוואת
+תיקיות.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+התעלם מנקודות ניתוח מחדש<indexterm>
+          <primary>נקודות ניתוח מחדש</primary>
+
+          <secondary>זיהוי והתעלמות מהבדלים</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): משווה את התוכן של תיקיות נקודת ניתוח
+מחדש כאילו היו תיקיות רגילות.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: מתעלם מתוכן התיקיות שהן נקודות ניתוח מחדש. לדוגמה,
+C:\Users\All Users הוא קישור סמלי ל-C:\ProgramData, והפעלת אפשרות זו תדלג על
+השוואת התיקייה C:\Users\All Users.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+סף למעבר להשוואה מהירה (MB)<indexterm>
+          <primary>השוואה מהירה</primary>
+
+          <secondary>מגבלה</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option>: אינו פעיל אלא אם שיטת ההשוואה מוגדרת לשונה משיטת
+ההשוואה <guilabel>תוכן מלא</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: פעיל כאשר שיטת ההשוואה מוגדרת לשיטת ההשוואה
+<guilabel>תוכן מלא</guilabel>.</para>
+
+          <para>
+גודל סף למעבר לשיטת ההשוואה <guilabel>תוכן מהיר</guilabel>. כאשר שיטת
+ההשוואה <guilabel>תוכן מלא</guilabel> נבחרת, קבצים גדולים יותר (במגה בייטים)
+מערך זה מושווים באמצעות שיטת ההשוואה <guilabel>תוכן מהיר</guilabel>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+סף למעבר להשוואה בינארית (MB)<indexterm>
+          <primary>השוואה בינארית</primary>
+
+          <secondary>מגבלה</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option>: אינו פעיל אלא אם שיטת ההשוואה מוגדרת לשונה משיטת
+ההשוואה <guilabel>תוכן מלא</guilabel> ו-<guilabel>תוכן מהיר</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: פעיל כאשר שיטת ההשוואה מוגדרת לשיטת ההשוואה
+<guilabel>תוכן מלא</guilabel> או <guilabel>תוכן מהיר</guilabel>.</para>
+
+          <para>
+גודל סף למעבר לשיטת ההשוואה תוכן בינארי. כאשר שיטת ההשוואה <guilabel>תוכן
+מלא</guilabel> או <guilabel>תוכן מהיר</guilabel> נבחרת, קבצים גדולים יותר
+(במגה בייטים) מערך זה מושווים באמצעות שיטת ההשוואה <guilabel>תוכן
+בינארי</guilabel>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+מספר ליבות CPU לשימוש<indexterm>
+          <primary>חוטי השוואה</primary>
+        </indexterm></title>
+
+      <para>
+מספר החוטים המשמשים להשוואה. עם ערך שלילי WinMerge ישתמש בתוספת של מספר
+ליבות ה-CPU הזמינות.</para>
+    </section>
+
+  </section>
+
+  <section id="Configuration_compare_table">
+    <title>
+השוואה &gt; דף טבלה<indexterm>
+        <primary>קבצי טבלה</primary>
+      </indexterm></title>
+    <section>
+      <title>תבניות קבצי CSV</title>
+      <para>
+מציין תבנית שם קובץ עבור קבצי ערכים מופרדים בפסיקים לפתיחה בפורמט טבלה. כדי
+לציין מספר פריטים, הפרד אותם באמצעות נקודה-פסיק. כברירת מחדל, מצוין
+*.csv. אם אינך רוצה לפתוח את הקבצים עם הסיומת .csv בפורמט טבלה. מחק את
+ה-*.csv.</para>
+    </section>
+
+    <section>
+      <title>תבניות קבצי TSV</title>
+      <para>
+מציין תבנית שם קובץ עבור קבצי ערכים מופרדים בטאבים לפתיחה בפורמט טבלה. כדי
+לציין מספר פריטים, הפרד אותם באמצעות נקודה-פסיק. כברירת מחדל, מצוין
+*.tsv. אם אינך רוצה לפתוח את הקבצים עם הסיומת .tsv בפורמט טבלה. מחק את
+ה-*.tsv.</para>
+    </section>
+
+    <section>
+      <title>ערכים מופרדים במפריד מותאם אישית</title>
+      <para>
+אם ברצונך לפתוח קבצי טקסט, עם ערכים המופרדים על ידי תווים שאינם פסיקים או
+טאבים, בפורמט טבלאי, ציין את תבנית שם הקובץ ואת המפריד.</para>
+    </section>
+
+    <section>
+      <title>אפשר שורות חדשות בתוך מרכאות</title>
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (ברירת מחדל): אם יש תו שורה חדשה בין תו המרכאות לתו
+המרכאות הבא, תו השורה החדשה מטופל כחלק מערך. הפעל אפשרות זו אם ברצונך לעבד
+קבצי CSV/TSV המכילים מספר שורות בשדה אחד.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: השבת את האמור לעיל. השבת אפשרות זו בעת פתיחת
+קבצים עם מרכאות שגויות.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>תו מרכאות</title>
+      <para>
+מציין את התו שמטופל כסימני ציטוט. מפרידים בטווח הטקסט הסגור על ידי התווים
+המצוינים כאן מטופלים כחלק מערך. שדה זה יכול להיות ריק. כדי לפתוח קבצים שבהם
+סימני הציטוט הם ערכים בלבד, השאר אותו ריק או ציין תו שאינו קיים בקובץ.</para>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_binary">
+    <title>השוואה &gt; דף בינארי</title>
+    <section>
+      <title>
+תבניות קבצים בינאריים<indexterm>
+          <primary>קבצים בינאריים</primary>
+        </indexterm></title>
+      <para>
+מציין תבניות שמות קבצים עבור קבצים בינאריים שייפתחו בחלון ההשוואה
+הבינארית. כדי לציין מספר פריטים, הפרד אותם באמצעות נקודה-פסיק. כברירת מחדל,
+מצוין *.bin. אם אינך רוצה שקבצים עם הסיומת .bin ייפתחו בחלון ההשוואה
+הבינארית, הסר את ה-*.bin מהרשימה.</para>
+    </section>
+    <section>
+      <title>
+הגדרות Frhed<indexterm>
+          <primary>Frhed</primary>
+        </indexterm></title>
+      <variablelist>
+        <varlistentry>
+          <term>הגדרות תצוגה...</term>
+
+          <listitem>
+            <para>כאן תוכל לבחור:</para>
+            <itemizedlist>
+              <listitem>
+                <para>את מספר הבתים להצגה בשורה של hexdump (חל רק אם &quot;התאם אוטומטית את מספר
+הבתים לשורה&quot; מושבת)</para>
+              </listitem>
+              <listitem>
+                <para>אם תיבת הסימון &quot;התאם אוטומטית את מספר הבתים לשורה&quot; מסומנת, אז מספר
+הבתים המוצגים בשורה של hexdump מותאם באופן כזה שכל רוחב החלון משמש בכל עת.</para>
+              </listitem>
+              <listitem>
+                <para>מספר הספרות לאורך ההיסט (חל רק אם &quot;התאם אורך היסט&quot; מושבת)</para>
+              </listitem>
+              <listitem>
+                <para>אם אורך ההיסט צריך להיות מותאם אוטומטית לזה של ההיסט המרבי (מופעל) או מרופד
+מימין ברווחים (מושבת)</para>
+              </listitem>
+              <listitem>
+                <para>כיצד להציג את הערכים במיקום הסמן, כערכי שלמים חתומים או כערכי שלמים לא
+חתומים</para>
+              </listitem>
+              <listitem>
+                <para>אם מצב קריאה בלבד צריך להיות מוגדר אוטומטית לאחר פתיחת קבצים.</para>
+              </listitem>
+              <listitem>
+                <para>שם עורך הטקסט שייקרא על ידי הפקודה
+<menuchoice><guimenu>עריכה</guimenu><guimenuitem>פתח בעורך
+טקסט</guimenuitem></menuchoice>.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>מצב בינארי...</term>
+
+          <listitem>
+            <para>איזה סוג של סדר בתים להשתמש: או Little-endian, כפי שמשמש במחשבי אינטל או
+Big-endian, משמש למשל במחשבים עם מעבד מוטורולה. ההבדל בין מצבים אלה הוא
+כדלקמן: שקול longword, שאורכו 4 בתים (ששמם A עד D).</para>
+
+            <screen>Longword באוגר מעבד = ABCD.</screen>
+
+            <para>הסיבית הכי פחות משמעותית, שערכה 1, נמצאת בבית "D". באוגר מעבד, ה-longword
+מסודר בצורה זו. אם ערך זה נכתב למיקום בזיכרון, אז לפי מוסכמת אינטל
+ה-longword נכתב בצורה זו, עם ההיסטים הגדלים מימין:</para>
+
+            <screen>Longword בזיכרון = DCBA.</screen>
+
+            <para>כלומר, הבתים המרכיבים את ה-longword נכתבים בסדר הפוך כפי שהם נמצאים באוגר
+מעבד.</para>
+
+            <para>זה אומר שקובץ שנכתב על ידי מכונת Big-endian יכיל ערכי longword ומילים שגויים
+אם ייקרא על ידי מכונת Little-endian ללא המרה.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>ערכת תווים...</term>
+
+          <listitem>
+            <para>כאן תוכל לבחור את ערכת התווים להצגה וכתיבת תווים, ANSI (ערכת התווים של
+Windows) או OEM (ערכת התווים של DOS). ניתן לבחור גם את גודל הגופן בנקודות.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_image">
+    <title>
+השוואה &gt; דף תמונה<indexterm>
+        <primary>קבצי תמונה</primary>
+      </indexterm></title>
+    <section>
+      <title>תבניות קבצי תמונה</title>
+      <para>
+מציין תבניות שמות קבצים עבור קבצי תמונה שייפתחו בחלון השוואת התמונות. כדי
+לציין מספר פריטים, הפרד אותם באמצעות נקודה-פסיק. כברירת מחדל, הסיומות .pdf,
+.svg, .wmf ו-.emf אינן ברשימה. הוסף אותן אם ברצונך שקבצים עם סיומות אלה
+יוצגו בחלון השוואת התמונות.</para>
+    </section>
+
+    <section>
+      <title>אפשר השוואת תמונות בהשוואת תיקיות</title>
+      <para>
+כאשר אפשרות זו מופעלת, השוואות תיקיות ישוו קבצים התואמים לתבניות שצוינו
+כתמונות. הבדלי מטא נתונים יתעלמו, וסף מרחק צבע יוחל כדי לקבוע הבדלים חזותיים
+בין תמונות.</para>
+    </section>
+
+    <section>
+      <title>תוצאת OCR</title>
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>טקסט בלבד</option> (ברירת מחדל): מציג רק את הטקסט שזוהה מהתמונה.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מיקום וטקסט שורה אחר שורה</option>: מציג את הטקסט המזוהה שורה אחר
+שורה עם מיקומו בתמונה המקורית.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מיקום וטקסט מילה אחר מילה</option>: מציג את הטקסט המזוהה מילה אחר
+מילה עם מיקומו בתמונה המקורית.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_compare_webpage">
+    <title>
+השוואה &gt; דף אינטרנט<indexterm>
+        <primary>דפי אינטרנט</primary>
+      </indexterm></title>
+
+    <section>
+      <title>
+תבנית URL לכלול (ביטוי רגולרי)<indexterm>
+        </indexterm></title>
+      <para>
+הזן ביטוי רגולרי בשדה זה כדי לציין את נתיבי הקבצים או כתובות האתרים שאמורים
+להיפתח בחלון השוואת דפי האינטרנט. לדוגמה, אם תזין את הביטוי הרגולרי
+<code>.*\.html?|https?://.*</code>, קבצים עם הסיומת .html או .htm וכתובות
+אתרים המתחילות ב-http:// או https:// ייפתחו בחלון השוואת דפי האינטרנט.</para>
+    </section>
+
+    <section>
+      <title>
+תבנית URL לא לכלול (ביטוי רגולרי)<indexterm>
+        </indexterm></title>
+      <para>
+הזן ביטוי רגולרי כדי לא לכלול נתיבי קבצים או כתובות אתרים מסוימות מחלון
+השוואת דפי האינטרנט. זה חל על פריטים התואמים לשדה "תבנית URL לכלול". השתמש
+בזה כדי לא לכלול תבניות ספציפיות שאינך רוצה לכלול.</para>
+    </section>
+
+    <section>
+      <title>
+מיקום תיקיית נתוני משתמש<indexterm>
+        </indexterm></title>
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>תיקיית AppData</option> (ברירת מחדל): שומר קבצי cookie, היסטוריית
+גלישה ונתוני מטמון בתיקייה %APPDATA%\WinMerge\WinWebDiff.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>תיקיית התקנה</option>: שומר נתונים בספריית ההתקנה של WinMerge, שבדרך
+כלל דורשת הרשאות מנהל מערכת לכתיבה. זה בדרך כלל לא מומלץ.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+הפרד תיקיות נתוני משתמש עבור כל חלונית<indexterm>
+        </indexterm></title>
+      <para>יוצר תיקיות נתונים נפרדות עבור כל חלונית, ומונע חפיפה בנתונים ביניהן.</para>
+    </section>
+  </section>
+
+  <section id="Configuration_messageboxes">
+    <title>
+דף תיבות הודעות<indexterm>
+        <primary>תיבות הודעות</primary>
+      </indexterm></title>
+
+    <section>
+      <title>איפוס</title>
+
+      <para>
+WinMerge מאפשר לך לדכא כמה תיבות הודעות נפוצות. לדוגמה, כאשר שני קבצים זהים
+נפתחים, תיבת ההודעות שכותרתה, <guilabel>הקבצים זהים</guilabel>, נפתחת בדרך
+כלל. אם אינך רוצה שתיבה זו תוצג יותר, תוכל לאפשר (לסמן) את האפשרות בתיבת
+הודעה זו שלא להציג את ההודעה שוב.</para>
+
+      <para>
+מאוחר יותר, ייתכן שתחליט שברצונך לראות את ההודעות האלה שוב. אם כן, לחץ על
+הלחצן <guibutton>איפוס</guibutton> כדי לגרום לתיבות ההודעות להופיע שוב.</para>
+
+      <note>
+        <para>
+אנו ממליצים שלא תדכא הודעות בעת עדכון WinMerge לגרסה חדשה יותר. המתקין מאפשר
+את התצוגה שלהן באופן אוטומטי, אך אם אינך משתמש במתקין, זכור לאפשר תצוגת
+הודעות באמצעות הלחצן <guibutton>איפוס</guibutton>.</para>
+      </note>
+    </section>
+  </section>
+
+  <section id="Configuration_editor_general">
+    <title>
+עורך &gt; דף כללי<indexterm>
+        <primary>עריכה</primary>
+
+        <secondary>אפשרויות עבור חלון השוואת קבצים</secondary>
+      </indexterm></title>
+
+    <section id="Configuration_syntaxhighlight">
+      <title>
+הדגש תחביר<indexterm>
+          <primary>הדגשת תחביר</primary>
+
+          <secondary>אפשרות והשבתה</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (ברירת מחדל): WinMerge יכול להדגיש תחביר של שפות
+תכנות ופורמטי אינטרנט רבים. כדי לראות את הפורמטים הנתמכים כברירת מחדל, לחץ
+על <menuchoice> <guimenu>תצוגה</guimenu> <guimenuitem>הדגשת
+תחביר</guimenuitem> </menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: הדגשת תחביר צורכת כוח עיבוד כלשהו, ​​אז אם עדכון
+המסך של WinMerge נראה איטי, כיבוי אפשרות זו עשוי לעזור.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+שמור תווי EOL מקוריים<indexterm>
+          <primary>EOL</primary>
+
+          <secondary>שימור</secondary>
+        </indexterm><indexterm>
+          <primary>סוף שורה</primary>
+
+          <see>EOL</see>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): מניח שקבצים נועדו להיות קבצי
+Windows. אם קובץ אינו משתמש בסיום השורה הסטנדרטי של Windows, WinMerge רואה
+בכך שגיאה. הוא משנה בשקט את סיומי השורה לסגנון Windows במקום לזהות אותם
+כהבדלים. לפיכך, שורת המצב של חלון השוואת הקבצים מציגה את סגנון ה-EOL
+כ-<guilabel>Win</guilabel>.</para>
+
+          <para>
+ברוב המצבים עליך להשאיר אפשרות זו מושבתת: התנהגות ברירת המחדל פועלת גם בעת
+השוואת שני קבצים בעלי סגנונות סיום שורה שונים.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: מונע מ-WinMerge לשנות אוטומטית סיומות שורות, כך
+שהוא מזהה סגנונות EOL שונים לכל שורה. זה עשוי להיות שימושי לטיפול בקבצים
+ממערכות עם סגנונות EOL שונים (לדוגמה, Windows ו-Unix).</para>
+
+          <important>
+            <para>
+זוהי אפשרות מתקדמת עבור משתמשים שמכירים בתוי EOL ורוצים להשוות קבצים עם
+סגנונות EOL שונים בתוך קובץ <emphasis>אחד</emphasis>. אנו ממליצים שלא תפעיל
+אפשרות זו אלא אם כן אתה זקוק לפונקציונליות מתקדמת זו. זכור, אפשרות זו אינה
+נדרשת כדי להשוות שני קבצים עם סגנונות EOL שונים.</para>
+          </important>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+טאבים<indexterm>
+          <primary>טאבים</primary>
+
+          <secondary>אפשרויות עריכה</secondary>
+        </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>גודל טאב</term>
+
+          <listitem>
+            <para>
+רוחב של רווח טאב. ציין ערך <replaceable>n</replaceable>: הרוחב המתקבל שווה
+לזה של <replaceable>n</replaceable> תווים. ברירת מחדל: 4. הערך המרבי הוא 64.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>אפשרויות הוספת טאב</term>
+
+          <listitem>
+            <para>
+קובע איזה סוג תו משמש בעת הוספת טאב בטקסט. רק אחת מהאפשרויות האלה יכולה
+להיות מופעלת:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>
+<guilabel>הכנס טאבים</guilabel> (ברירת מחדל): משתמש בתו טאב בודד.</para>
+              </listitem>
+
+              <listitem>
+                <para>
+<guilabel>הכנס רווחים</guilabel>: משתמש ברווח אחד או יותר (שנקבע על ידי
+<option>גודל טאב</option>) במקום בתו טאב. לדוגמה, עם גודל הטאב המוגדר כברירת
+מחדל, מוכנסים ארבעה רווחים.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>
+מצב רינדור<indexterm>
+          <primary>רינדור</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>GDI</option> (ברירת מחדל): מבצע רינדור טקסט באמצעות Graphics Device
+Interface (GDI).</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>מצבי DirectWrite</option>: מבצע רינדור טקסט באמצעות מצבי רינדור
+DirectWrite שונים, כולל תמיכה באימוג'י צבעוניים ב-Windows 8.1 ואילך. זמין רק
+בגרסת 64 ביט של WinMerge. ראה <ulink
+url="https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants">מצבי
+רינדור DirectWrite</ulink> לפרטים.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_editor_comparemerge">
+    <title>
+עורך &gt; דף השוואה/מיזוג<indexterm>
+        <primary>עריכה</primary>
+
+        <secondary>אפשרויות עבור חלון השוואת קבצים</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>
+סריקה מחדש אוטומטית<indexterm>
+          <primary>סריקה חוזרת של קבצים</primary>
+
+          <secondary>אפשרות והשבתת סריקה אוטומטית</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): WinMerge סורק מחדש אוטומטית כאשר אתה
+ממזג הבדל, או אם אתה סורק מחדש ידנית (לדוגמה, לחץ על הלחצן <guibutton>סריקה
+מחדש</guibutton>).</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: מאלץ את WinMerge לסרוק מחדש לאחר כל אירוע עריכה
+(שינוי בקבצים, כמו הקלדה).</para>
+
+          <note>
+            <para>
+כדי להימנע מהאטת העריכה שלך, WinMerge מעכב את הסריקה מחדש האוטומטית מעט: הוא
+ממתין שנייה אחת לאחר כל אירוע עריכה. מכיוון שכל אירוע עריכה חדש מאפס את
+הטיימר, לא מתרחשות סריקות מחדש עד שאתה עוצר או מפסיק לערוך.</para>
+          </note>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+גרעיניות העתקה עבור הבדלים נבחרים<indexterm>
+          <primary>גרעיניות העתקה</primary>
+        </indexterm></title>
+
+      <para>
+מציין את גרעיניות ההעתקה בעת העתקה לחלונית אחרת על ידי לחיצה על פריט התפריט
+<guimenuitem>העתק לימין</guimenuitem> וכו' עם טקסט נבחר.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>חלק הבדל</option>: מעתיק חלקי הבדל בתוך הטקסט שנבחר.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>הבדל בשורה</option>: מעתיק הבדלים בשורה בתוך הטקסט שנבחר.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>שורה</option>: מעתיק את ההבדלים בתוך הטקסט שנבחר שורה אחר שורה.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>תו</option> (ברירת מחדל): מעתיק את ההבדלים בתוך הטקסט שנבחר תו אחר
+תו.</para>
+        </listitem>
+
+      </itemizedlist>
+    </section>
+
+    <section id="Configuration_viewlinediffs">
+      <title>
+צביעת הבדלי שורות<indexterm>
+          <primary>הבדלי שורות</primary>
+
+          <secondary>אפשרויות תצוגה</secondary>
+        </indexterm></title>
+
+      <para>
+הגדרות אלה מאפשרות ומגדירות את זיהוי <glossterm> הבדלי שורות </glossterm>
+(שינויים בתוך השורות של בלוקי הבדלים):</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>הצג הבדלי שורות</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para>
+<option>Enabled</option> (ברירת מחדל): WinMerge מדגיש הבדלים בתוך
+שורות. מאפשר גם את פריט התפריט <menuchoice> <guimenu>תצוגה</guimenu>
+<guimenuitem>הצג הבדלי שורות</guimenuitem> </menuchoice>.</para>
+
+                <para>בחר אחת מאפשרויות המשנה האלה:</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para>
+<guilabel>רמת תו</guilabel>: מדגיש תווים בודדים השונים זה מזה. אפשרות זו
+יכולה להיות שימושית אם אתה מחפש שינויים בתוך מילים, או עבור פורמטי קבצים
+שאין להם מעברי מילים ברורים.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para>
+<guilabel>רמת מילה</guilabel> (ברירת מחדל): מדגיש מילים שלמות השונות זו מזו.</para>
+
+                    <itemizedlist>
+                      <listitem>
+                        <para>
+<guilabel>שבור ברווח לבן</guilabel> (ברירת מחדל): מניחים שמילים מופרדות על
+ידי תווי רווח לבן. זה בדרך כלל עובד עבור קבצי טקסט טיפוסיים.</para>
+                      </listitem>
+
+                      <listitem>
+                        <para>
+<guilabel>שבור ברווח לבן או פיסוק</guilabel>: מחשיב גם תווי רווח לבן וגם
+תווי פיסוק כמעברי מילים. זה יכול להיות שימושי לטיפול ברשימות המופרדות בסימני
+פיסוק (כמו רשימות מופרדות בפסיקים).</para>
+                      </listitem>
+                    </itemizedlist>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+
+              <listitem>
+                <para>
+<option>Disabled</option>: WinMerge אינו מדגיש הבדלי שורות, וכל ההגדרות עבור
+אפשרויות הרמה והרווח הלבן מתעלמות מהן. משבית גם את פריט התפריט <menuchoice>
+<guimenu>תצוגה</guimenu> <guimenuitem>הצג הבדלי שורות</guimenuitem>
+</menuchoice>.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>תווי שבירת מילים</term>
+
+          <listitem>
+            <para>מציין את הסמלים שמטופלים כמפרידי מילים שאינם רווח לבן כאשר נבחר
+<guilabel>שבור ברווח לבן או פיסוק</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <note>
+        <title>נושא קשור</title>
+
+        <para>
+<xref linkend="CompareFiles_linediff-highlight" /> מסביר בפירוט רב יותר כיצד
+WinMerge מזהה ומסמן הבדלי שורות.</para>
+      </note>
+    </section>
+
+  </section>
+
+  <section id="Configuration_editor_syntax">
+    <title>
+עורך &gt; דף תחביר<indexterm>
+        <primary>עריכה</primary>
+
+        <secondary>אפשרויות</secondary>
+      </indexterm></title>
+
+    <para>
+TBD</para>
+  </section>
+
+  <section id="Configuration_colors_colorschemes">
+    <title>
+צבעים &gt; דף ערכות צבעים<indexterm>
+        <primary>ערכות צבעים</primary>
+
+        <secondary>אפשרויות</secondary>
+      </indexterm></title>
+
+    <para>
+TBD</para>
+  </section>
+
+  <section id="Configuration_colors_differences">
+    <title>
+צבעים &gt; דף הבדלים<indexterm>
+        <primary>צבעי הבדל</primary>
+
+        <secondary>אפשרויות</secondary>
+      </indexterm></title>
+
+    <para>
+השתמש בדף זה אם ברצונך לשנות כל אחד מצבעי ההבדלים המשמשים בחלון השוואת
+הקבצים. אתה יכול להגדיר את הרקע, צבע שנמחק וצבע טקסט.</para>
+
+    <para>
+כדי לשנות צבע, לחץ בתיבה שלו כדי לפתוח תיבת דו-שיח סטנדרטית לבחירת
+צבעים. בחר אחד מהצבעים המוגדרים מראש או הגדר צבע מותאם אישית משלך, ואז לחץ
+על <guibutton>אישור</guibutton> כדי לטעון את הצבע החדש בתיבה.</para>
+
+    <para>
+כדי לחזור לצבעי ברירת המחדל של ערכה, בחר ערכה אחרת וחזור לערכה ששונתה.</para>
+  </section>
+
+  <section id="Configuration_colors_syntax">
+    <title>
+צבעים &gt; דף תחביר<indexterm>
+        <primary>הדגשת תחביר</primary>
+
+        <secondary>אפשרויות צבע</secondary>
+      </indexterm></title>
+
+    <para>
+כברירת מחדל, חלון השוואת הקבצים של WinMerge מסמן את התחביר של סוגים מסוימים
+של קוד מקור, כמתואר ב<xref linkend="Configuration_syntaxhighlight" />. דף זה
+מפרט את רכיבי התחביר המזוהים ומאפשר לך לשנות את צבע הטקסט והמשקל שלהם.</para>
+
+    <para>
+כדי לחזור לצבעי ברירת המחדל של ערכה, בחר ערכה אחרת וחזור לערכה ששונתה.</para>
+  </section>
+
+  <section id="Configuration_colors_text">
+    <title>
+צבעים &gt; דף טקסט<indexterm>
+        <primary>צבעי טקסט</primary>
+
+        <secondary>אפשרויות</secondary>
+      </indexterm></title>
+
+    <para>
+השתמש בדף זה כדי לשנות את הצבעים המשמשים לטקסט. ראשית, סמן את האפשרות
+<guilabel>השתמש בצבעי טקסט מותאמים אישית</guilabel>. זה מפעיל את אפשרויות
+הטקסט. יש אפשרות לשלושה סוגי טקסט: רווח לבן, טקסט רגיל וטקסט נבחר. עבור כל
+סוג של טקסט, אתה יכול לבחור צבע עבור הרקע והטקסט.</para>
+  </section>
+
+  <section id="Configuration_colors_marker">
+    <title>
+צבעים &gt; דף סמנים<indexterm>
+        <primary>צבעי סמן</primary>
+
+        <secondary>אפשרויות</secondary>
+      </indexterm></title>
+
+    <para>TBD</para>
+  </section>
+
+  <section id="Configuration_colors_foldercompare">
+    <title>
+צבעים &gt; דף השוואת תיקיות<indexterm>
+        <primary>צבעי השוואת תיקיות</primary>
+
+        <secondary>אפשרויות</secondary>
+      </indexterm></title>
+
+    <para>
+כברירת מחדל, חלון השוואת התיקיות של WinMerge משתמש בצבעי רקע כדי להציג את
+הסטטוס מפריט (שווה, שונה, לא קיים בכל הצדדים או מסונן).</para>
+
+    <para>
+כדי לשנות צבע, לחץ בתיבה שלו כדי לפתוח תיבת דו-שיח סטנדרטית לבחירת
+צבעים. בחר אחד מהצבעים המוגדרים מראש או הגדר צבע מותאם אישית משלך, ואז לחץ
+על <guibutton>אישור</guibutton> כדי לטעון את הצבע החדש בתיבה.</para>
+
+    <para>
+כדי לחזור לצבעי ברירת המחדל של ערכה, בחר ערכה אחרת וחזור לערכה ששונתה.</para>
+  </section>
+
+  <section id="Configuration_archive">
+    <title>
+דף תמיכה בארכיון<indexterm>
+        <primary>ארכיון קבצים</primary>
+
+        <secondary>הגדרת תמיכה לאחר ההתקנה</secondary>
+      </indexterm></title>
+
+    <para>
+דף זה מכיל אפשרויות להגדרת תמיכה בארכיון באמצעות 7-Zip.</para>
+
+    <section>
+      <title>
+אפשר תמיכה בקבצי ארכיון<indexterm>
+          <primary>ארכיוני 7-Zip</primary>
+
+          <secondary>אפשרות והשבתת שילוב</secondary>
+        </indexterm></title>
+
+      <para>
+אפשרות זו שולטת כיצד WinMerge מטפל בקבצי ארכיון (בהתבסס על שילוב 7-Zip).</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (ברירת מחדל): WinMerge מזהה ארכיוני 7-Zip.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: מכבה את שילוב ארכיון 7-Zip.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+זהה סוג ארכיון מחתימת קובץ<indexterm>
+          <primary>זיהוי סוגי ארכיון</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): WinMerge מזהה רק ארכיונים שהסיומת
+שלהם ידועה במערכת שלך (לדוגמה, במרשם או באמצעות שיוך קבצים).</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: WinMerge יכול לזהות קבצי ארכיון גם אם סיומת הקובץ
+שלהם אינה ידועה. כדי לזהות ארכיון, WinMerge מחפש את תחילת הקובץ עבור בייטי
+חתימת הארכיון.<tip>
+              <para>
+אתה יכול להשתמש באפשרות זו כדי לאפשר ל-WinMerge לזהות קבצי Open Office.</para>
+            </tip>
+          </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_Project">
+    <title>
+דף פרויקט<indexterm>
+        <primary>קבצי פרויקט</primary>
+
+        <secondary>אפשרויות</secondary>
+      </indexterm></title>
+
+    <para>
+TBD</para>
+  </section>
+
+  <section id="Configuration_system">
+    <title>דף מערכת</title>
+
+    <section>
+      <title>
+שלח קבצים שנמחקו לסל המיחזור<indexterm>
+          <primary>מחיקת קבצים</primary>
+
+          <secondary>אפשרויות</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Enabled</option> (ברירת מחדל): קבצים ותיקיות שאתה מוחק בחלון השוואת
+תיקיות מועברים לסל המיחזור, אם הוא זמין.</para>
+
+          <important>
+            <para>
+זכור: אם סל המיחזור במערכת שלך בוטל, אפשרות זו לא תפעל, וקבצים שנמחקו יאבדו!</para>
+          </important>
+          <para></para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Disabled</option>: קבצים ותיקיות שנמחקו בהשוואת ספריות נמחקים בפועל.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="Configuration_external_editor">
+      <title>
+עורך חיצוני<indexterm>
+          <primary>עורך חיצוני</primary>
+
+          <secondary>הגדרה</secondary>
+        </indexterm></title>
+
+      <para>
+חלון השוואת הקבצים של WinMerge מספק פונקציות עריכה נפוצות. אם אתה מעדיף
+להשתמש בעורך המועדף עליך, העשיר בתכונות, אתה יכול להגדיר את WinMerge לפתוח
+עורך חיצוני מתפריט ההקשר של השוואת תיקיות.</para>
+
+      <para>
+ההתקנה מגדירה את Notepad כעורך החיצוני המוגדר כברירת מחדל, מכיוון שהוא נמצא
+בכל מערכות Windows. כדי להגדיר עורך חיצוני שונה, הזן את הנתיב המלא לקובץ
+ההפעלה שלו.</para>
+
+      <tip>
+        <para>
+יחד עם הנתיב, אתה יכול לכלול כל פרמטרי שורת פקודה הנתמכים על ידי הכלי
+החיצוני, בפורמט זה: <command> <replaceable>נתיב לקובץ הפעלה</replaceable>
+</command> <option>-אפשרות1</option> <option>-אפשרות2</option> <option>
+<replaceable>...</replaceable> </option></para>
+      </tip>
+
+      <para>
+כדי להשתמש בעורך החיצוני שהוגדר, לחץ לחיצה ימנית על קובץ בחלון השוואת
+התיקיות ובחר <menuchoice> <guimenuitem>פתח שמאלי</guimenuitem>
+<guimenuitem>עם עורך חיצוני</guimenuitem> </menuchoice> או <menuchoice>
+<guimenuitem>פתח ימני</guimenuitem> <guimenuitem>עם עורך
+חיצוני</guimenuitem> </menuchoice>.</para>
+    </section>
+
+    <section>
+      <title>
+תיקיית סינון<indexterm>
+          <primary>תיקיות סינון</primary>
+
+          <secondary>ציון תיקייה פרטית ברירת מחדל</secondary>
+        </indexterm></title>
+
+      <para>
+השתמש בשדה זה כדי לציין תיקייה פרטית משלך עבור מסנני קבצים. כברירת מחדל,
+תיקייה זו היא ספריית פרופיל המשתמש שלך (לדוגמה, <filename>מסמכים</filename>
+ב-Windows 10). כשאתה יוצר מסנן קבצים, הוא מתווסף אוטומטית לתיקייה זו.</para>
+    </section>
+
+    <section>
+      <title>
+תיקיית קבצים זמניים<indexterm>
+          <primary>קבצים זמניים, תיקייה בשימוש</primary>
+        </indexterm></title>
+
+      <para>
+ציין את התיקייה שבה WinMerge מאחסן קבצים זמניים. אחת מהאפשרויות הבאות זמינה:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>תיקיית temp של המערכת</guilabel> (ברירת מחדל): לדוגמה, זה יכול
+להיות <filename>C:\Windows\Temp</filename> במערכת שלך.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>תיקייה מותאמת אישית</guilabel>: לחץ על <guibutton>עיון</guibutton>
+ובחר תיקייה אחרת שבה יש לך גישה לכתיבה.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_backup">
+    <title>
+דף קבצי גיבוי<indexterm>
+        <primary>קבצי גיבוי, אפשרויות</primary>
+      </indexterm></title>
+
+    <para>
+דף זה מאפשר לך לשלוט כיצד WinMerge יוצר קבצי גיבוי.</para>
+
+    <section>
+      <title>צור קבצי גיבוי ב</title>
+
+      <para>
+ציין מתי WinMerge צריך ליצור קבצי גיבוי. אתה יכול להפעיל או לבטל כל אחת
+מהאפשרויות האלה באופן עצמאי:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>השוואת תיקיות</guilabel> (מושבת כברירת מחדל): קבצי גיבוי נוצרים
+בכל פעם שקבצים מוחלפים (מועתקים).</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>השוואת קבצים</guilabel> (מופעל כברירת מחדל): קבצי גיבוי נוצרים בכל
+פעם שקבצים נשמרים.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>צור קבצי גיבוי אל</title>
+
+      <para>
+ציין היכן קבצי גיבוי נוצרים. רק אחת מהאפשרויות האלה יכולה להיות מופעלת:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>תיקיית הקובץ המקורי</guilabel> (מופעל כברירת מחדל): קבצי גיבוי
+נוצרים באותה תיקייה כמו קובץ המקור. זו בדרך כלל בחירה טובה. החיסרון הוא
+שניקוי קבצי גיבוי בתיקיות גדולות יכול לקחת הרבה עבודה.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>תיקיית גיבוי גלובלית</guilabel> (מושבת כברירת מחדל): כל קבצי
+הגיבוי נוצרים בתיקייה גלובלית אחת. זה מקל עליהם לניקוי. אבל, אם ישנם קבצי
+מקור מרובים עם אותו שם קובץ, אז קובץ הגיבוי האחרון דורס את הקודם באותו שם.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>שם קובץ גיבוי</title>
+
+      <para>
+כאשר WinMerge יוצר קובץ גיבוי, הוא מוסיף סיומת לשם קובץ המקור. אתה יכול
+לבחור באחת או בשתיהן של תוכניות הסיומת האלה:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>הוסף סיומת .bak</guilabel> (מופעל כברירת מחדל): לדוגמה,
+<filename>file.txt</filename> מגובה אל <filename>file.txt.bak</filename>.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>הוסף חותמת זמן</guilabel> (מופעל כברירת מחדל): חותמות זמן כמעט
+תמיד ייחודיות, כך שאפשרות זו בדרך כלל נמנעת משכפול שמות קבצי גיבוי כאשר
+לקבצי המקור יש את אותם שמות.</para>
+
+          <para>
+כמו כן, אחסון עותק של קובץ בכל פעם שאתה שומר אותו מספק דרך לעקוב אחר שינויים
+בקובץ. עם זאת, עליך לשקול שאפשרות זו יכולה ליצור הרבה קבצים.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_codepage">
+    <title>
+דף קידוד<indexterm>
+        <primary>דף קוד</primary>
+
+        <secondary>אפשרויות</secondary>
+      </indexterm></title>
+
+    <para>
+WinMerge מזהה ומטפל בקידוד קבצים בשקיפות, וברוב המקרים אינך צריך לשנות את
+הגדרות ברירת המחדל. דף זה מאפשר לך לציין את קידודי העמודים של פורמטי קבצים
+מסוימים, אם תצטרך.</para>
+
+    <note>
+      <para>
+הסבר מלא על קידוד טקסט וקידודי עמודים של Windows הוא מעבר לתחום התיעוד של
+WinMerge. למרבה המזל, יש הרבה מידע עליהם באינטרנט. לדוגמה, הנה כמה מקומות
+להתחיל בהם:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<ulink url="https://en.wikipedia.org/wiki/Code_pages"> ויקיפדיה: קידודי
+עמודים </ulink>, <ulink
+url="https://en.wikipedia.org/wiki/Character_encoding"> קידוד תווים </ulink></para>
+        </listitem>
+
+        <listitem>
+          <para>
+<ulink
+url="https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43">
+Microsoft: קידודי עמודים הנתמכים על ידי Windows </ulink></para>
+        </listitem>
+      </itemizedlist>
+    </note>
+
+    <section>
+      <title>קידוד עמודים ברירת מחדל</title>
+
+      <para>
+בחר אחד מכפתורי הרדיו האלה כדי להגדיר את קידוד העמודים ברירת המחדל
+ש-WinMerge משתמש בו בעת טיפול בקבצי ANSI:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>קידוד עמודים של המערכת</guilabel> (ברירת מחדל): קידוד העמודים שבו
+משתמשת מערכת Windows שלך. ברירת מחדל זו היא בדרך כלל הבחירה הטובה ביותר. עם
+זאת, אם אתה יודע שאתה משווה קבצים שאינם משתמשים בקידוד העמודים של המערכת,
+שקול אחת מהאפשרויות האחרות.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<!--This is just a guess - don't find any info on this option.-->
+<guilabel>בהתאם לממשק המשתמש של WinMerge</guilabel>: הקידוד המשמש את ההתקנה
+שלך של WinMerge.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<guilabel>קידוד עמודים מותאם אישית</guilabel>: הזן את מספר קידוד העמודים
+במפורש. לדוגמה, <userinput>UTF-8</userinput> או
+<userinput>ISO-8851-1</userinput>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>זהה מידע קידוד עמודים עבור קבצים אלה: .html, .rc, .xml</title>
+
+      <important>
+        <para>
+<!--What option? The one in the Options page? If it should always be unchecked, 
+why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
+or is this understood?-->
+בטל את הסימון באפשרות זו ב-<filename>WinMerge.exe</filename>. המרות תווים
+עלולות לגרום להמרות אובדניות והסיכון גבוה
+מאוד. <filename>WinMerge.exe</filename> יכול להציג קבצים רק עם קידוד העמודים
+הנוכחי שלך.</para>
+      </important>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (ברירת מחדל): WinMerge אינו קורא מידע קידוד עמודים
+מקבצי המקור. הוא משתמש בהגדרת קידוד העמודים ברירת המחדל במקום זאת.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: WinMerge מזהה את קידוד העמודים עבור סיומות אלה:
+<filename class="extension">html</filename>, <filename
+class="extension">rc</filename> (קבצי משאבים עבור VC++) ו-<filename
+class="extension">xml</filename>. קידוד העמודים המזוהה דורס את ההגדרה עבור
+אפשרות קידוד העמודים ברירת המחדל.</para>
+
+          <para>
+אפשרות זו מעניינת כאשר המסמכים שלך משתמשים בקידוד עמודים ששונה מקידוד
+העמודים של תצורת Windows שלך.</para>
+
+          <para>
+לדוגמה, אתה עשוי למזג שני קבצים סלובקיים או שני קבצים יפניים בסביבה
+אנגלית. כאשר אפשרות זו מופעלת (ועם הגופנים הנדרשים), הקבצים הסלובקיים או
+היפניים שלך מוצגים באמצעות תווים סלובקיים או יפניים.</para>
+
+          <para>
+WinMerge מזהה גם הבדל בקידוד העמודים בין הקבצים השמאליים/ימניים. כדי להימנע
+מהמרות אובדניות כאשר אתה ממזג, מעתיק או מדביק, אנו מציעים שתתעלם ממידע קידוד
+העמודים.</para>
+
+          <caution>
+            <para>
+כאשר אתה מעתיק או מדביק טקסט ליישום חיצוני, היישום החיצוני חייב להשתמש באותו
+קידוד עמודים שבו משתמש WinMerge. עיין בתיעוד של העורך החיצוני שלך. להעתקה
+ל-WinMerge, Internet Explorer מציע בחירת קידוד עמודים. אם העורך החיצוני שלך
+אינו תומך בקידודי עמודים מותאמים אישית, השבת אפשרות זו.</para>
+          </caution>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>זהה קידוד עמודים עבור קבצי טקסט באמצעות mlang.dll</title>
+
+      <para>TBD</para>
+
+    </section>
+  </section>
+
+  <section id="Configuration_shell-integ">
+    <title>דף שילוב מעטפת</title>
+
+    <section id="Configuration_winexplorer-integ">
+      <title>
+סייר<indexterm>
+          <primary>שילוב</primary>
+
+          <secondary>עם מעטפת Windows</secondary>
+        </indexterm></title>
+
+      <para>
+האפשרות <option>הוסף לתפריט ההקשר</option> מאפשרת לך להפעיל את WinMerge
+ישירות מ-Windows Explorer, ולהשוות פריטים שבחרת שם. הוא מופעל או מושבת
+כברירת מחדל במהלך התקנת WinMerge. אם הוא מופעל, אתה יכול גם להפעיל אחת או את
+שתיהן מהאפשרויות האלה:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>אפשר תפריט מתקדם</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para>
+<option>Disabled</option> (ברירת מחדל): רק קיצור הדרך
+<guimenuitem>WinMerge</guimenuitem> כלול בתפריט ההקשר של Windows Explorer.</para>
+              </listitem>
+
+              <listitem>
+                <para>
+<option>Enabled</option>: מחליף את קיצור הדרך
+<guimenuitem>WinMerge</guimenuitem> בתפריט ההקשר של Explorer בקיצורי דרך של
+<guimenuitem>השווה</guimenuitem>.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>אפשר תפריט השווה כ</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para>
+<option>Disabled</option> (ברירת מחדל): מסיר את פריט התפריט
+<guimenuitem>השווה כ</guimenuitem> מתפריט ההקשר של Explorer.</para>
+              </listitem>
+
+              <listitem>
+                <para>
+<option>Enabled</option>: מוסיף את פריט התפריט <guimenuitem>השווה
+כ</guimenuitem> לתפריט ההקשר של Explorer.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+<xref linkend="OpenPaths_shell-integ" /> מתאר כיצד להשתמש בקיצורי הדרך של
+WinMerge והשווה.</para>
+    </section>
+  </section>
+</article>

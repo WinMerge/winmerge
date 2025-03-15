@@ -1,0 +1,1472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_files">
+  <?target dbhh topicname="IDH_Compare_files" topicid ="001"?>
+
+  <title>השוואה ומיזוג של קבצי טקסט<indexterm>
+      <primary>השוואת קבצים</primary>
+    </indexterm></title>
+
+  <para>נושא זה מתאר כיצד להשתמש בחלון השוואת הקבצים של WinMerge כדי להשוות ולמזג
+קבצי טקסט. כדי להבין את המושגים הבסיסיים על הבדלים הנדונים כאן, אנו מציעים
+לך לקרוא תחילה <xref linkend="Intro_diffs" />. ראה <xref
+linkend="Compare_bin" /> למידע קשור על קבצי hex.</para>
+
+  <section id="Compare_files_starting">
+    <title>התחלת פעולת השוואת קבצים</title>
+
+    <para>אתה יכול להתחיל פעולת השוואת קבצים מחלון WinMerge או מחלון שורת הפקודה.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>מתוך חלון WinMerge</term>
+
+        <listitem>
+          <para>לחץ על <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>פתח</guimenuitem>
+</menuchoice>. השתמש בתיבת הדו-שיח בחר קבצים או תיקיות כדי לציין את קבצי
+המקור השמאליים והימניים להשוואה. לפרטים נוספים על תיבת הדו-שיח בחר קבצים או
+תיקיות, ראה <xref linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>מחלון שורת פקודה</term>
+
+        <listitem>
+          <para>הפעל את <command>WinMergeU.exe</command>, שנמצא בספריית ההתקנה של
+WinMerge. בארגומנטים של הפקודה שלך, כלול את הקבצים השמאליים והימניים
+להשוואה. למידע נוסף על שימוש בשורת הפקודה, ראה <xref linkend="Command_line"
+/>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_files_window">
+    <title>חלון השוואת קבצים<indexterm>
+        <primary>חלון השוואת קבצים</primary>
+
+        <seealso>חלון השוואה</seealso>
+      </indexterm><indexterm>
+        <primary>חלון השוואה</primary>
+
+        <secondary>קובץ</secondary>
+      </indexterm></title>
+
+    <para>חלון השוואת הקבצים מציג קבצים מושווים בשני לוחות קבצים, זה לצד זה. סרגל
+הכלים ותפריט ההקשר של WinMerge מספקים פונקציות לצפייה, ניווט ומיזוג של
+הבדלים. צילום המסך למטה מציג השוואה של שתי גרסאות של קובץ.</para>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>חלון השוואת קבצים</phrase>
+      </textobject>
+    </mediaobject>
+
+    <section>
+      <title>לוחות קבצים<indexterm>
+          <primary>לוחות קבצים</primary>
+        </indexterm></title>
+
+      <para>לוחות הקבצים השמאלי והימני מציגים את תוכן הטקסט ואת ההבדלים של שני הקבצים
+המושווים. לוחות הקבצים הם האזור העיקרי לניווט ולמיזוג הבדלים, וגם מאפשרים לך
+לערוך את הטקסט ישירות. סעיף זה מתאר את התכונות התומכות בפעולות אלה, ודרכים
+שבהן תוכל להתאים אישית את לוחות הקבצים.</para>
+
+      <section>
+        <title>כותרת לוח קבצים</title>
+
+        <para>הכותרת בראש כל לוח קבצים מציגה את הנתיב המלא של קובץ המקור. שמות הקבצים
+השמאליים והימניים מזוהים גם הם בכותרת חלון ההשוואה, מעל לוחות הקבצים.</para>
+
+        <para>אחד מלוחות הקבצים תמיד פעיל (מסומן על ידי רקע הכותרת הכהה); השני לא פעיל ויש
+לו פס כותרת בהיר יותר. אתה יכול לערוך רק בלוח הפעיל (כמתואר ב-<xref
+linkend="CompareFiles_editing" />). לחץ בכל צד כדי להפוך אותו לפעיל ולהפוך
+את הצד השני ללא פעיל.</para>
+
+        <para>כוכבית (*) לפני שם הקובץ בכותרת מציינת שיש שינויים שלא נשמרו בקובץ.</para>
+
+        <para>לתפריט ההקשר של סרגל הכותרת יש קיצורי דרך שימושיים להעתקה ולהדבקה של פרטי
+קובץ:</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>העתק נתיב מלא<indexterm>
+                <primary>העתק נתיב מלא</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>מעתיק את הנתיב המלא של קובץ המקור ללוח המערכת.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>העתקת שם קובץ<indexterm>
+                <primary>פונקציית העתקת שם קובץ</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>מעתיק רק את שם קובץ המקור ללוח המערכת.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_diffcolors">
+        <title>הדגשת הבדלים<indexterm>
+            <primary>צבעי הבדל</primary>
+
+            <secondary>בלוחות קבצים</secondary>
+          </indexterm></title>
+
+        <para>WinMerge מדגיש מספר סוגים של הבדלים בלוחות הקבצים. הדף צבעים בתיבת הדו-שיח
+אפשרויות מגדיר ערכה של צבעי רקע וטקסט עבור רוב סוגי ההבדלים, עם וריאציות
+המציינות את מצבם: לא נבחר, נבחר או נמחק. סעיף זה מתאר כיצד מזוהה ומוצג כל
+אחד מסוגי ההבדלים הבסיסיים.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>הבדל</term>
+
+            <listitem>
+              <para>בלוק הבדל מכיל שורה רציפה אחת או יותר השונות זו מזו. צבע הרקע של ההבדל
+המוגדר כברירת מחדל הוא זהב, אך שורות ריקות מסומנות בצבע שנמחק.</para>
+
+              <para>עבור מסך זה ומסכים אחרים בסעיף זה, הפעלנו את <option>הצג מספרי
+שורות</option> כדי להראות אילו שורות בקבצי המקור מושווות.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="489"
+fileref="screenshots/diff-blocks-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>צבעי רקע של בלוק הבדל</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <para>השוואה זו מזהה שלושה בלוקים שונים:</para>
+
+              <orderedlist>
+                <listitem>
+                  <para>ההבדל הראשון הוא שורה בודדת.</para>
+                </listitem>
+
+                <listitem>
+                  <para>לשורה הריקה ב-<filename>קובץ2</filename> אין שורה ריקה מקבילה
+ב-<filename>קובץ1</filename>. WinMerge מתייחס להעדר השורה הריקה כאל הבדל
+שנמחק, המסומן כאן בצבע האפור המוגדר כברירת מחדל.</para>
+                </listitem>
+
+                <listitem>
+                  <para>בלוק ההבדל האחרון כולל שתי שורות.</para>
+                </listitem>
+              </orderedlist>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>הבדל שהתעלמו ממנו<indexterm>
+                <primary>הבדלים שהתעלמו מהם</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>צבע זה מסמן תוכן שהגדרת את WinMerge להתעלם ממנו. בניגוד לבלוקים שונים, תוכן
+שהתעלמו ממנו אינו מושווה, הוא פשוט מודגש כדי לעזור לך לראות ממה
+התעלמו. הבדלים שהתעלמו מהם כוללים:</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>שורות ריקות, אם הפעלת את <option>התעלם משורות ריקות</option> בדף ההשוואה של
+תיבת הדו-שיח אפשרויות.</para>
+                </listitem>
+
+                <listitem>
+                  <para>הבדלים התואמים לדפוסים במסנני שורות שהגדרת (ראה <xref linkend="Filters" />
+כדי ללמוד כיצד).</para>
+                </listitem>
+              </itemizedlist>
+
+              <para>הדוגמה הבאה חוזרת על ההשוואה הקודמת, הפעם כאשר <option>התעלם משורות
+ריקות</option> מופעל. כעת ישנם רק שני הבדלים. השורה הריקה בצד ימין מסומנת
+בצבע ההבדלים שהתעלמו מהם.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="492"
+fileref="screenshots/ignore-blank-lines.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>צבעי בלוק הבדל עם דיף שהתעלמו ממנו</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>הועבר<indexterm>
+                <primary>הבדלים שהועברו</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>הבדלים שהועברו הם שורות זהות שנמצאו במיקומים שונים בקבצים המושווים, אם
+<option>איתור בלוקים שהועברו</option> מופעל בדף ההשוואה של תיבת הדו-שיח
+אפשרויות. צילום המסך הבא חוזר על ההשוואה הקודמת, הפעם כאשר איתור בלוקים
+שהועברו מופעל.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="490"
+fileref="screenshots/moved-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>צבעי בלוק הבדל עם זיהוי בלוק שהועבר</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <para>שים לב ששתי השורות הזהות (המכילות <literal>a</literal>
+ו-<literal>c</literal>) שנמצאות במיקומים שונים מסומנות בצבע הכתום המוגדר
+כברירת מחדל. השפעה נוספת של זיהוי בלוקים שהועברו במקרה זה היא ששתי השורות
+האחרונות הן כעת שני הבדלים נפרדים במקום בלוק הבדל בודד.</para>
+
+              <para>במקרים מסוימים, הצגת הבדלים שהועברו יכולה להקל על הדמיה של שינויים
+בקבצים. עם זאת, יותר מדי שורות שהועברו עלולות להקשות על הניווט בהשוואה
+שלך. השתמש בשיקול הדעת שלך!</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>הבדל מילים</term>
+
+            <listitem>
+              <para>WinMerge יכול לסמן את הטקסט שהשתנה עם בלוקי הבדלים. הבדלי שורות מסומנים בצבע
+ההבדל של המילה. ראה <xref linkend="CompareFiles_linediff-highlight" />
+לפרטים.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>שורות דומות<indexterm>
+                <primary>שורות דומות, בהבדלים</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>WinMerge מנסה ליישר שורות דומות בתוך בלוקי הבדלים כאשר אתה מפעיל את
+<option>יישר שורות דומות</option> בדף ההשוואה של תיבת הדו-שיח אפשרויות. מה
+המשמעות של <quote>דומה</quote>? באופן כללי, תכונה זו פועלת בצורה הטובה ביותר
+במקרים פשוטים, למשל כאשר לשורות יש קווי דמיון חזקים. כאשר מזוהות, שורות
+דומות מותאמות ליישור בלוח הקבצים. האיור הבא מציג השוואות של אותם שני קבצים,
+לפני ואחרי הפעלת האפשרות <option>יישר שורות דומות</option>:</para>
+
+              <simplelist columns="2" type="horiz">
+                <member><emphasis role="strong">מושבת</emphasis>: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="273"
+fileref="screenshots/simlines-diffs-off.png" /> </imageobject><textobject>
+                      <phrase>השווה ללא התאמת שורות דומות</phrase>
+                    </textobject>
+                  </inlinemediaobject></member>
+
+                <member><emphasis role="strong">מופעל</emphasis>: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="273"
+fileref="screenshots/simlines-diffs-on.png" /> </imageobject><textobject>
+                      <phrase>השווה שורות דומות תואמות</phrase>
+                    </textobject>
+                  </inlinemediaobject></member>
+              </simplelist>
+
+              <para>בהשוואה השנייה, השורות <quote>עכברים</quote> ו-<quote>עכברים ו-א</quote>
+מזוהות כדומות. WinMerge מוסיף שורות ריקות בתצוגה כדי לגרום לשורות אלה להופיע
+באותה רמה בתוך בלוק ההבדלים.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_linediff-highlight">
+        <title>הדגשת הבדלי שורות<indexterm>
+            <primary>הבדלי שורות</primary>
+
+            <secondary>איתור</secondary>
+          </indexterm><indexterm>
+            <primary>רווח לבן</primary>
+
+            <secondary>בהבדלי שורות</secondary>
+          </indexterm></title>
+
+        <para>לפעמים מועיל להדגיש לא רק בלוקי הבדלים, אלא גם את הטקסט בתוכם שהשתנה. אתה
+יכול להשבית או להפעיל אותם בשתי דרכים:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>הגדר את כל האפשרויות <option>הצג הבדלי שורות</option> בדף העורך של תיבת
+הדו-שיח אפשרויות.</para>
+          </listitem>
+
+          <listitem>
+            <para>לחץ על <menuchoice> <guimenu>תצוגה</guimenu> <guimenuitem>הצג הבדלי
+שורות</guimenuitem> </menuchoice> כדי להפעיל או לבטל הבדלי שורות.</para>
+          </listitem>
+        </itemizedlist>
+
+        <note>
+          <para>זכור שפונקציות הניווט והמיזוג של WinMerge (כגון הבדל הבא או העתק שמאלה)
+פועלות על בלוקי הבדלים, לא על הבדלי שורות בתוכם.</para>
+        </note>
+
+        <para>סעיף זה מתאר כיצד מזוהים ומסומנים הבדלי שורות. שים לב שההשפעה של אפשרויות
+אלה מושפעת גם מהגדרות הרווח הלבן הנוכחיות שלך בדף ההשוואה של תיבת הדו-שיח
+אפשרויות.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term id="wordlevel-linediffs">Word-level line differences<indexterm>
+                <primary>הבדלי מילים</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>הדוגמאות הבאות מראות כיצד מוצגים הבדלי שורות ברמת המילים עם כל אחת מהגדרות
+הרווח הלבן:</para>
+
+              <example>
+                <title>הבדלי שורות עם רווח לבן: השוואה</title>
+
+                <para>WinMerge מזהה את כל המילים והרווחים השונים:</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-allwhite.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>דיף שורות ברמת המילים השוואת רווח לבן</phrase>
+                  </textobject>
+                </mediaobject></example>
+
+              <example>
+                <title>הבדלי שורות עם רווח לבן: התעלם משינוי</title>
+
+                <para>רווחים וטאבים מרובים מטופלים באותו אופן כמו רווח בודד. בדוגמה, הרווח הנוסף
+בין שתי המילים האחרונות אינו מסומן:</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-nochange.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>דיף שורות ברמת המילים השוואת ללא שינויי רווח לבן</phrase>
+                  </textobject>
+                </mediaobject></example>
+
+              <example>
+                <title>הבדלי שורות עם רווח לבן: התעלמות מהכל</title>
+
+                <para>לא מושווים רווחים בין מילים, ולכן שורות אלה מטופלות כזהות:</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-nowhite.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>דיף שורות ברמת המילים השוואת ללא רווח לבן</phrase>
+                  </textobject>
+                </mediaobject></example>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>הבדלי שורות ברמת התווים<indexterm>
+                <primary>הבדלי שורות ברמת התווים</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>הבדל שורות ברמת התווים כולל את התווים השונים הראשונים והאחרונים במילה, ואת
+כל התווים שביניהם. הבדל יחיד ברמת התווים יכול להקיף מילים סמוכות. הדוגמה
+הבאה ממחישה:</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="485"
+fileref="screenshots/char-diff-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>דיף שורות ברמת התווים השוואה ללא רווח לבן</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <note>
+                <para>כמו בהבדלי שורות ברמת המילים, הדגשת תווים משתנה בהתאם לאופן שבו WinMerge
+מוגדר לזיהוי מעברי מילים. בדוגמה, הרווח הנוסף אחרי המילה
+<literal>תרופה</literal> ב-<filename>קובץ2</filename> מודגש רק אם מושווה
+רווח לבן.</para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Breaks for words or character<indexterm>
+                <primary>שבירת מילים בהבדלי שורות</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>ניתן להפריד מילים ותווים בהבדלי שורות באמצעות רווח לבן, או באמצעות שילוב של
+רווח לבן וסימני פיסוק. רווח לבן (ברירת המחדל) הוא הבחירה הטיפוסית להשוואת
+רוב קבצי הטקסט. כל הדוגמאות הקודמות להבדלי שורות משתמשות ברווח לבן כדי לשבור
+מילים ותווים.</para>
+
+              <para>במקרים מסוימים, מועיל לשבור בסימני פיסוק. לדוגמה, צילום המסך הבא משווה רשימה
+מופרדת בפסיקים. כדי להדגיש הבדלי שורות משמעותיים, הפעלנו את <option>שבור
+ברווח לבן או בסימני פיסוק</option> בדף עורך תיבת הדו-שיח אפשרויות.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="494"
+fileref="screenshots/line-diff-punctuation.png" format="PNG" />
+</imageobject><textobject>
+                  <phrase>דיף שורות ברמת התווים השוואה ללא רווח לבן</phrase>
+                </textobject>
+              </mediaobject>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_editing">
+        <title>File pane editing features<indexterm>
+            <primary>עריכה</primary>
+
+            <secondary>תכונות בחלון השוואת קבצים</secondary>
+          </indexterm></title>
+
+        <para>למרות ש-WinMerge אינו עורך או IDE בעל תכונות מלאות, הוא מספק פונקציות עריכה
+בסיסיות, כמו <guilabel>בטל</guilabel> ו-<guilabel>בצע שוב</guilabel>,
+<guilabel>חפש</guilabel> ו-<guilabel>החלף</guilabel>, ו-<guilabel>עבור
+אל</guilabel>. משימות עריכה בסיסיות אלה נחוצות לעתים קרובות במהלך מיזוג
+(לדוגמה, כדי לשנות טקסט בתוך הבדלים). ניתן לערוך בחלונית הקבצים הפעילה
+(זכור, לחץ על חלונית כדי להפוך אותה לפעילה). שינויים לא נכתבים לקובץ עד
+שתשמור חלונית לקובץ תוצאה.</para>
+
+        <para>תכונות העריכה של WinMerge כוללות גם הדגשת תחביר. תכונה אופציונלית זו תומכת
+במספר פורמטי קבצים, ותוכל להגדיר את הצבעים המשמשים. שים לב שהדגשת תחביר לא
+מוחלת בתוך הבדלים, כפי שמראה צילום המסך הקודם.</para>
+
+        <tip>
+          <para>ודא ש-<guilabel>סריקה חוזרת אוטומטית</guilabel> מופעלת, כמתואר ב-<xref
+linkend="Compare_files_scan" />. אם לא, רענן את התצוגה באופן ידני (הקש F5)
+לפני ואחרי עריכת קובץ, כדי להבטיח שזיהוי ההבדלים של WinMerge מעודכן.</para>
+        </tip>
+      </section>
+
+      <section id="CompareFiles_fonts">
+        <title>File pane fonts<indexterm>
+            <primary>גופנים</primary>
+
+            <secondary>בחירה בחלון השוואת קבצים</secondary>
+          </indexterm></title>
+
+        <para>תוכל לבחור גופנים עבור חלונית הקבצים על ידי לחיצה על <menuchoice>
+<guimenu>תצוגה</guimenu> <guimenuitem>בחר גופן</guimenuitem>
+</menuchoice>. WinMerge תומך רק בגופנים ברוחב קבוע.</para>
+
+        <para>הנה הצעות לגבי גופנים לשימוש ב-WinMerge עם שפות מזרח אסיה:</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>סינית מפושטת: גופנים ברוחב קבוע <guilabel>SimSun</guilabel> או
+<guilabel>SimHei</guilabel></simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>סינית מסורתית: גופן ברוחב קבוע <guilabel>MingLiU</guilabel></simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>יפנית: גופנים ברוחב קבוע <guilabel>MS Gothic</guilabel> או <guilabel>MS
+Mincho</guilabel></simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>קוריאנית: גופן ברוחב קבוע <guilabel>GulimChe</guilabel> (לא
+<guilabel>Gulim</guilabel>, מכיוון שגרסה זו משתמשת בסימנים ברווח יחסי שאינם
+מיושרים במרכז בתאי רשת ומיושרים בצורה גרועה במצב רוחב קבוע).</simpara>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>File pane margins<indexterm>
+            <primary>שוליים</primary>
+
+            <secondary>בלוחות קבצים</secondary>
+          </indexterm></title>
+
+        <para>לחלוניות הקבצים יש שוליים אפורים אופציונליים המציגים מספרי שורות וכמה
+סמלים. כדי להציג או להסתיר את השוליים, לחץ על <menuchoice>
+<guimenu>תצוגה</guimenu> <guimenuitem>הצג שוליים</guimenuitem>
+</menuchoice>. אם אתה משתמש במספר חלונות השוואת קבצים, תוכל לשלוט בשוליים
+עבור כל חלון בנפרד. השוליים יכולים להציג כל אחת מהתכונות האלה, או את כולן:</para>
+
+        <indexterm>
+          <primary>מספרי שורות</primary>
+
+          <secondary>בלוחות קבצים</secondary>
+        </indexterm>
+
+        <indexterm>
+          <primary>סימניות</primary>
+        </indexterm>
+
+        <indexterm>
+          <primary>גלישת מילים</primary>
+
+          <secondary>בלוחות קבצים</secondary>
+        </indexterm>
+
+        <itemizedlist>
+          <listitem>
+            <para>מספרי שורות, אם <menuchoice> <guimenu>תצוגה</guimenu> <guimenuitem>הצג מספרי
+שורות</guimenuitem> </menuchoice> מופעל.</para>
+          </listitem>
+
+          <listitem>
+            <para>סימניות, אם <menuchoice> <guimenu>עריכה</guimenu>
+<guisubmenu>סימניות</guisubmenu> </menuchoice> מופעל. סימניה היא עיגול כחול,
+בשוליים ליד שורה, שתוכל לגרום ל-WinMerge לזכור ולחזור אליה.</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>כדי להגדיר סימניה בשורה, לחץ פעמיים בשוליים שלה (או הקש <keycombo>
+<keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>). אותה פעולה מוחקת
+סימניה קיימת.</para>
+              </listitem>
+
+              <listitem>
+                <para>כדי לנווט בין סימניות, לחץ על <menuchoice> <guimenu>עריכה</guimenu>
+<guimenuitem>סימניות</guimenuitem> </menuchoice> ובחר
+<guimenuitem>הבא</guimenuitem> או <guimenuitem>הקודם</guimenuitem>.</para>
+              </listitem>
+
+              <listitem>
+                <para>לחץ פעמיים על סימניה בודדת כדי למחוק אותה (או הקש <keycombo>
+<keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>).</para>
+              </listitem>
+
+              <listitem>
+                <para>לחץ על <menuchoice> <guimenu>עריכה</guimenu>
+<guimenuitem>סימניות</guimenuitem> <guimenuitem>נקה את כל
+הסימניות</guimenuitem> </menuchoice> כדי למחוק את כל הסימניות.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>סמלי חץ של גלישת מילים, אם <menuchoice> <guimenu>תצוגה</guimenu>
+<guimenuitem>גלישת שורות</guimenuitem> </menuchoice> מופעל.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>צילום המסך הבא מציג שוליים עם סימניות וגלישת מילים מופעלות. ללא מספרי שורות,
+רוחב השוליים הוא מינימלי.</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="384"
+fileref="screenshots/filecomp_margin1.png" format="PNG" /> </imageobject><textobject>
+            <phrase>שוליים של חלון השוואת קבצים עם סימניה וגלישת מילים</phrase>
+          </textobject>
+        </mediaobject>
+
+        <para>צילום המסך הבא מציג שוליים עם סימניות ומספרי שורות מופעלים. שים לב שהשוליים
+רחבים יותר. למעשה, השוליים רחבים מספיק עבור מספר השורה הגדול ביותר. לכן,
+השוליים עבור קבצים גדולים עם שורות רבות יכולים להיות רחבים למדי.</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentdepth="77" contentwidth="384"
+fileref="screenshots/filecomp_margin2.png" format="PNG" /> </imageobject><textobject>
+            <phrase>שוליים של חלון השוואת קבצים עם סימניה ומספרי שורות</phrase>
+          </textobject>
+        </mediaobject>
+      </section>
+    </section>
+
+    <section id="Compare_files_functions">
+      <title>Toolbar and menus<indexterm>
+          <primary>סרגל כלים, עם חלון השוואת קבצים</primary>
+        </indexterm><indexterm>
+          <primary>תפריטים, עם חלון השוואת קבצים</primary>
+        </indexterm></title>
+
+      <para>סרגל הכלים והתפריטים של WinMerge מספקים מגוון פונקציות לניווט, בחירה ומיזוג
+הבדלים בתוך קבצים.</para>
+
+      <note>
+        <para>קיצורי הדרך של WinMerge הם בעלי אותם שמות ולחצנים בין אם אתה פותח חלון
+השוואת תיקיות או השוואת קבצים. עם זאת, הפונקציות מתנהגות אחרת: עם חלון
+השוואת קבצים, הפונקציות פועלות על הבדלים בתוך קבצים, לא על הבדלים בתוך
+תיקיות.</para>
+      </note>
+
+      <para>פונקציות ההבדלים שבהן תוכל להשתמש תלויות בהקשר שלך, אשר משתנה לעתים קרובות
+תוך כדי עבודה. זה אומר שפונקציה זמינה רק כאשר הפעולה שלה אפשרית עבור מיקום
+נתון או תנאי אחר בסביבת WinMerge שלך. לדוגמה, אם תלחץ על שורת טקסט בתוך
+הבדל, תוכל לשים לב שכמה לחצני ניווט ומיזוג הופכים לזמינים בסרגל הכלים. אם
+תלחץ על אזור אחר של טקסט שאינו בתוך הבדל, פונקציות אלה יהפכו ללא זמינות.</para>
+
+      <para>פונקציות ההבדלים זמינות בסרגל הכלים של WinMerge, וגם באמצעות מנגנונים
+חלופיים אלה:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>תפריטי WinMerge, במיוחד <guimenu>מיזוג</guimenu></para>
+        </listitem>
+
+        <listitem>
+          <para>תפריטי הקשר בתוך חלון השוואת הקבצים (כשאתה לוחץ לחיצה ימנית על טקסט)</para>
+        </listitem>
+
+        <listitem>
+          <para>קיצורי מקלדת</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>פונקציות ההבדלים מתוארות ב-<xref linkend="Compare_files_nav" /> וב-<xref
+linkend="Compare_files_merge" />, בהמשך נושא זה. <xref linkend="Quick_start"
+/> ו-<xref linkend="Intro_diffs" /> מספקים דוגמאות להשוואה ומיזוג.</para>
+
+      <section>
+        <title>Merge Mode<indexterm>
+            <primary>מצב מיזוג</primary>
+          </indexterm></title>
+
+        <para><menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>מצב מיזוג</guimenuitem>
+</menuchoice> (או הקש <keycap>F9</keycap>) משחזר את קיצורי המקשים הבודדים של
+WinMerge 1.7.1 עבור פונקציות מיזוג וניווט בהבדלים:</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>מקשי <keycap>חץ למעלה</keycap> ו-<keycap>חץ למטה</keycap> עבור הפונקציות
+<function>הבדל קודם</function> ו-<function>הבדל הבא</function>.</simpara>
+            <para></para>
+          </listitem>
+
+          <listitem>
+            <simpara>מקשי <keycap>חץ שמאלה</keycap> ו-<keycap>חץ ימינה</keycap> עבור הפונקציות
+<function>העתק שמאלה</function> ו-<function>העתק ימינה</function>.</simpara>
+          </listitem>
+        </itemizedlist>
+
+        <para>מצב מיזוג משמיט את מקש <keycap>Alt</keycap> עבור פעולות נפוצות אלה (מה שהופך
+אותן למהירות יותר לשימוש ממצב רגיל). שים לב שצירופי המקשים
+<keycap>Shift</keycap> ו-<keycap>Alt</keycap> <keycap>חץ</keycap> פועלים
+במצב מיזוג באותו אופן כמו במצב רגיל.</para>
+
+        <para>מצב מיזוג מצוין בשורת המצב על ידי הטקסט <guilabel>מזג</guilabel>.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>חלונית מיקום</title>
+
+      <indexterm>
+        <primary>חלונית מיקום, חלון השוואת קבצים</primary>
+      </indexterm>
+
+      <indexterm>
+        <primary>ניווט בין הבדלים</primary>
+      </indexterm>
+
+      <para>חלונית המיקום, משמאל לחלוניות הקבצים, ממפה את כל אורכם של הקבצים המושווים
+לשני פסים אנכיים (המתאימים לחלוניות הקבצים השמאלית והימנית). זה שימושי
+במיוחד לעבודה עם קבצים ארוכים מדי כדי לנווט בהם בקלות בחלוניות הקבצים.</para>
+
+      <para>חלונית המיקום מציגה מספר סוגים של פריטים:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_diffs.png" /> </imageobject><textobject>
+                <phrase>שורות הבדל של חלונית מיקום</phrase>
+              </textobject>
+            </inlinemediaobject> בלוקים של הבדלים</term>
+
+          <listitem>
+            <para>כל בלוק הבדלים בחלוניות הקבצים מצוין בחלונית המיקום על ידי קו אופקי על פני
+כל פס אנכי. העובי, הצבע והמיקומים של קווים אלה הם רמזים לגבי הגודל (מספר
+השורות), הסוגים וההתפלגות של כל ההבדלים בקבצים. לדוגמה, הצבע של קו זהה לצבע
+של בלוק ההבדלים המתאים. חלונית המיקום בצילום המסך הקודם מציגה הבדלים בסיסיים
+רבים (זהב) וכמה בלוקים ריקים של הבדלים (אפור).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
+                <phrase>מצביע הבדל נוכחי של חלונית מיקום</phrase>
+              </textobject>
+            </inlinemediaobject> הבדל נוכחי</term>
+
+          <listitem>
+            <para>אם בחרת הבדל, חלונית המיקום מסמנת את שורת ההבדל הנוכחית עם זוג משולשים קטנים
+משני צידי הפסים האנכיים. אם תנווט להבדל אחר, המצביע יעלה או ירד עם
+המיקום. גלילת חלונית הקבצים אינה משנה את מיקום מצביע ההבדל (או כל אחת משורות
+ההבדל) בחלונית המיקום.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_viewbar.png" /> </imageobject><textobject>
+                <phrase>סרגל אזור תצוגה של חלונית מיקום</phrase>
+              </textobject>
+            </inlinemediaobject> אזור תצוגה</term>
+
+          <listitem>
+            <para>האזור של הקבצים הגלויים כעת בחלוניות הקבצים מצוין על ידי סרגל תצוגה מוצל
+(שקוף למחצה) מעל חלונית המיקום. הגובה והמיקום של סרגל האזור תואמים לחלק
+מהקבצים הגלוי באזור הגלילה. לדוגמה, אתה עשוי לראות את הסרגל מתרחב או מתכווץ
+אם תשנה את גובה חלוניות הקבצים שלך. סנכרון זה של סרגל התצוגה של חלונית
+המיקום וחלוניות הקבצים מאפשר ניווט מהיר וכמה פעולות שימושיות:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>כשאתה גולל את חלוניות הקבצים, אזור התצוגה בחלונית המיקום זז איתו.</para>
+              </listitem>
+
+              <listitem>
+                <para>לעומת זאת, אתה יכול לגרור את סרגל אזור התצוגה בחלונית המיקום למעלה או למטה
+כדי לגלול את חלוניות הקבצים. פעולה זו של אגודל פס הגלילה שימושית מאוד לניווט
+בקבצים ארוכים.</para>
+              </listitem>
+
+              <listitem>
+                <para>לחץ בכל מקום בחלונית המיקום כדי לקפוץ למיקום המתאים בחלוניות הקבצים.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Moved differences<indexterm>
+              <primary>הבדלים שהועברו</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>הבדלים שהועברו הם שורות זהות במיקומים שונים. הם מוצגים רק אם האפשרות הפעל
+זיהוי בלוקים שהועברו מסומנת בדף השוואה בתיבת הדו-שיח אפשרויות. ראה <xref
+linkend="CompareFiles_diffcolors" /> לפרטים נוספים על הבדלים שהועברו בחלונית
+הקבצים. חלונית המיקום מציירת קו המחבר הבדלים שהועברו בסרגלי המיקום השמאלי
+והימני. לדוגמה:</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="576"
+fileref="screenshots/locpane_moved_diffs.png" format="PNG" /> </imageobject><textobject>
+                <phrase>חלונית מיקום עם הבדל שהועבר</phrase>
+              </textobject>
+            </mediaobject>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>The Location pane's context menu contains these shortcuts:<indexterm>
+          <primary>תפריט הקשר</primary>
+
+          <secondary>חלונית מיקום</secondary>
+        </indexterm><indexterm>
+          <primary>פונקציות של בלוקים שהועברו</primary>
+        </indexterm></para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>עבור לשורה 1</guimenuitem>: מעביר את הסמן לראש הקובץ.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>עבור אל</guimenuitem>: מעביר את הסמן לשורה שאתה מציין (מתואר
+ב-<xref linkend="Compare_files_nav_functions" />).</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>ללא בלוקים שהועברו</guimenuitem>: מכבה את צבע ההבדל שהועבר עבור
+בלוקים שהועברו.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>כל הבלוקים שהועברו</guimenuitem>: מדליק את צבע ההבדל שהועבר
+עבור כל הבלוקים שהועברו.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>בלוק שהועבר עבור ההבדל הנוכחי</guimenuitem>: מדליק את צבע ההבדל
+שהועבר רק עבור ההבדל הנבחר הנוכחי שהועבר.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Diff pane<indexterm>
+          <primary>חלונית הבדלים, חלון השוואת קבצים</primary>
+        </indexterm></title>
+
+      <para>חלונית ההבדלים מציגה את התוכן של שני הצדדים של הבדל נבחר.</para>
+
+      <para>כשאתה בוחר הבדל, שתי הגרסאות נטענות בצדדים העליון והתחתון של חלונית
+ההבדלים. בדרך זו, חלונית ההבדלים מאשרת אילו שורות כלולות בהבדל, ומאפשרת לך
+לבחון אותן בבידוד משאר הקובץ.</para>
+
+      <para>אתה יכול למזג הבדלים ישירות בחלונית ההבדלים על ידי לחיצה ימנית בצד העליון או
+התחתון ובחירה באפשרות <guimenuitem>העתק לימין</guimenuitem> או
+<guimenuitem>העתק לשמאל</guimenuitem>.</para>
+    </section>
+
+    <section>
+      <title>Status bars<indexterm>
+          <primary>שורות מצב</primary>
+
+          <secondary>עבור חלון השוואת קבצים</secondary>
+        </indexterm><indexterm>
+          <primary>טאבים</primary>
+
+          <secondary>קידוד תווים</secondary>
+        </indexterm></title>
+
+      <para>כל חלונית קבצים מכילה שורת מצב בתחתית. שורת המצב מכילה מספר חלוניות עם סוגי
+מידע שונים על המסמך ועל המיקום שלך בו:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>מצב שורה</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>Ln</guilabel>: מספר שורה בקובץ המקור.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Col</guilabel>: מיקום עמודה של הסמן ומספר העמודות הכולל בשורה.</para>
+
+                <para><guilabel>Col</guilabel> סופר טאבים כ-<replaceable>n</replaceable> רווחים,
+כאשר <replaceable>n</replaceable> הוא מספר התווים המוגדר כ-<guilabel>גודל
+טאב</guilabel> בדף עורך של אפשרויות WinMerge (4 כברירת מחדל).</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Ch</guilabel>: מיקום תו של הסמן ומספר התווים הכולל בשורה.</para>
+
+                <para><guilabel>Ch</guilabel> סופר טאבים כתווי טאב בודדים.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>EOL</guilabel>: סגנון הזנת שורה של השורה הנוכחית (מוצג רק כאשר
+האפשרות <guilabel>שמור על תווי EOL מקוריים</guilabel> מופעלת בדף עורך של
+אפשרויות WinMerge).</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>מצב קריאה בלבד</term>
+
+          <listitem>
+            <para><guilabel>RO</guilabel> מוצג בחלונית אם הקובץ מוגדר לקריאה בלבד (כמתואר
+ב-<xref linkend="protectingfiles" />). אחרת החלונית ריקה.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>קידוד קבצים</term>
+
+          <listitem>
+            <para>מספר דף קוד עבור קבצי ANSI, סוג קידוד Unicode עבור קבצי Unicode.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>סגנון EOL</term>
+
+          <listitem>
+            <para>סגנון EOL של הקובץ: <guilabel>Win</guilabel> עבור קבצי Windows/DOS (CRLF),
+<guilabel>Unix</guilabel> (LF), <guilabel>Mac</guilabel> (CR), או
+<guilabel>מעורב</guilabel>.</para>
+
+            <note>
+              <para>כאשר נעשה שימוש בסגנון EOL לשורה, סגנון EOL של הקובץ לא מוצג (חלונית זו
+ריקה).</para>
+            </note>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>כאשר חלון השוואת קבצים פתוח, שורת המצב של חלון WinMerge מציגה את אחת מהודעות
+אלה לגבי הקבצים המושווים:<itemizedlist>
+          <listitem>
+            <para><guilabel>זהים</guilabel>: הקבצים אינם מכילים הבדלים</para>
+          </listitem>
+
+          <listitem>
+            <para><guilabel>נמצאו <replaceable>n</replaceable> הבדלים</guilabel>: מספר ההבדלים
+שזוהו, מוצג רק כאשר לא נבחר הבדל.</para>
+          </listitem>
+
+          <listitem>
+            <para><guilabel>הבדל <replaceable>x</replaceable> מתוך
+<replaceable>n</replaceable></guilabel>: מספר הרצף של ההבדל שנבחר במספר
+הכולל של הבדלים, החל מ-1.</para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
+  </section>
+
+  <section id="Compare_files_nav">
+    <title>Navigating differences<indexterm>
+        <primary>ניווט בין הבדלים</primary>
+
+        <secondary>חלון השוואת קבצים</secondary>
+      </indexterm></title>
+
+    <para>סעיף זה מתאר כיצד לנווט ולבחור הבדלים בחלון השוואת קבצים. שים לב שכאשר אתה
+בוחר הבדל, הוא תמיד נבחר בשתי חלוניות הקבצים או בשלושתן.</para>
+
+    <tip>
+      <para>כדי לחסוך זמן, הפעל את <guilabel>גלול אוטומטית להבדל הראשון</guilabel> בדף
+הכללי של אפשרויות WinMerge. אז לא תצטרך לנווט באופן ידני להבדל הראשון ולבחור
+אותו.</para>
+    </tip>
+
+    <section id="Compare_files_nav_functions">
+      <title>Navigation functions<indexterm>
+          <primary>פונקציות WinMerge</primary>
+
+          <secondary>ניווט בין הבדלים בחלון השוואת קבצים</secondary>
+        </indexterm><indexterm>
+          <primary>פונקציות ניווט</primary>
+
+          <secondary>השוואת קבצים</secondary>
+        </indexterm></title>
+
+      <para>הנה הפונקציות לניווט בין הבדלים בחלון השוואת קבצים, וקיצורי הדרך שלהן בסרגל
+הכלים והתפריטים:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Difference in the Current Line/Select Line Difference<indexterm>
+              <primary>פונקציית הבדל בשורה הנוכחית</primary>
+            </indexterm><indexterm>
+              <primary>פונקציית בחר הבדל שורה</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מופעל אם לחצת על (או בחרת) טקסט בתוך הבדל בחלונית קבצים. בוחר את הבדלי
+המילים בתוך השורה. לדוגמה:</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="562"
+fileref="screenshots/linediff.png" format="PNG" /> </imageobject><textobject>
+                <phrase>דוגמה לבחירת הבדל שורה</phrase>
+              </textobject>
+            </mediaobject>
+            <para></para>
+
+            <para>אם אתה רוצה לבחור את בלוק ההבדלים עצמו, השתמש במקום זאת ב-<command>הבדל
+נוכחי</command>.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/diff_inline_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן הבדל בשורה הנוכחית</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>עריכה</guimenu> <guimenuitem>בחר הבדל
+שורה</guimenuitem> </menuchoice>, <keycap>F4</keycap>, תפריט הקשר בחלונית
+קבצים בתוך הבדל.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Next Difference<indexterm>
+              <primary>פונקציית הבדל הבא</primary>
+
+              <secondary>עם השוואת קבצים</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>בוחר את ההבדל הבא מתחת למיקום הסמן הנוכחי שלך במסמך (לא בהכרח ביחס להבדל
+הנוכחי). השתמש כדי לעבור בין הבדלים ברצף מכל נקודה. זמין למעט כאשר ההבדל
+האחרון נבחר כעת.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>כפתור ההבדל הבא</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>הבדל הבא</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>חץ למטה</keycap>
+</keycombo> (או <keycap>חץ למטה</keycap> במצב מיזוג).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Previous Difference<indexterm>
+              <primary>פונקציית הבדל קודם</primary>
+
+              <secondary>עם השוואת קבצים</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>בוחר את ההבדל הקודם מעל מיקום הסמן הנוכחי שלך (לא בהכרח ביחס להבדל
+הנוכחי). השתמש כדי לחזור ברצף בין הבדלים. זמין למעט כאשר ההבדל הראשון נבחר
+כעת.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/prevdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן הבדל קודם</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>הבדל קודם</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>חץ למעלה</keycap>
+</keycombo> (או <keycap>חץ למעלה</keycap> במצב מיזוג).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>First Difference<indexterm>
+              <primary>פונקציית הבדל ראשון</primary>
+
+              <secondary>עם השוואת קבצים</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>השתמש בזה כדי להתחיל להשוות או למזג הבדלים, או כדי לאתר את ההבדל הראשון מכל
+מיקום אחר. זמין למעט כאשר ההבדל הראשון נבחר כעת. אתה יכול גם לבחור הבדל על
+ידי לחיצה כפולה על הטקסט שלו.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן הבדל ראשון</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>הבדל ראשון</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>Home</keycap>
+</keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Current Difference<indexterm>
+              <primary>פונקציית הבדל נוכחי</primary>
+
+              <secondary>עם השוואת קבצים</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>לפונקציה זו יש שני מצבי פעולה:</para>
+
+            <para><itemizedlist>
+                <listitem>
+                  <simpara>אם הסמן שלך נמצא בתוך הבדל אך לא נבחר הבדל, פונקציה זו בוחרת את כל
+ההבדל. זוהי דרך שימושית מאוד לבחור הבדל באמצעות המקלדת.</simpara>
+                </listitem>
+
+                <listitem>
+                  <simpara>כאשר יש הבדל נוכחי, הפונקציה קופצת למיקום הזה. זה שימושי אם גללת את ההבדל
+הנבחר מחוץ לתצוגה, ואתה רוצה לחזור במהירות למיקום שלו.</simpara>
+                </listitem>
+              </itemizedlist></para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן הבדל נוכחי</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>הבדל נוכחי</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>Enter</keycap>
+</keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Last Difference<indexterm>
+              <primary>פונקציית הבדל אחרון</primary>
+
+              <secondary>עם השוואת קבצים</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מופעל למעט כאשר ההבדל האחרון נבחר כעת.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן הבדל אחרון</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>הבדל אחרון</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>End</keycap>
+</keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Go to<indexterm>
+              <primary>פונקציית מעבר אל</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מאפשר לך לקפוץ למספר שורה או למספר הבדל (לדוגמה, הבדל 2 הוא ההבדל
+השני). פותח את תיבת הדו-שיח מעבר אל, שבה אתה מציין את המספר, באיזה קובץ
+להשתמש (שמאלי או ימני), ואת סוג המיקום (שורה או הבדל).</para>
+
+            <tip>
+              <para>מספר השורה מעבר אל יכול להיות שימושי כאשר אתה צריך למזג את אותו שינוי מקובץ
+אחד למספר קבצי יעד. קפיצה להבדל מסוים יכולה להיות מהירה יותר מאשר שימוש
+ב-<guimenuitem>חפש</guimenuitem> כדי לחפש טקסט, או מעבר בין הבדלים.</para>
+            </tip>
+            <para></para>
+
+            <para>קיצורי דרך: <menuchoice> <guimenu>עריכה</guimenu> <guimenuitem>מעבר
+אל</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>G</keycap> </keycombo>, תפריט הקשר בחלונית קבצים וחלונית מיקום.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Go to Moved Line<indexterm>
+              <primary>פונקציית מעבר אל</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מאפשר לקפוץ אל המקור/יעד של ההבדל הנוכחי בפאנל האחר (2 פאנלים).</para>
+
+            <para>קיצורי דרך: <keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap>
+<keycap>G</keycap> </keycombo>, תפריט הקשר בחלונית קבצים וחלונית הבדלים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Go to Moved Line Between Left and Middle<indexterm>
+              <primary>פונקציית מעבר אל</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מאפשר לקפוץ אל המקור/יעד של ההבדל הנוכחי בפאנל האחר (3 פאנלים).</para>
+
+            <para>קיצורי דרך: <keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap>
+<keycap>G</keycap> </keycombo>, תפריט הקשר בחלונית קבצים וחלונית הבדלים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Go to Moved Line Between Middle and Right<indexterm>
+              <primary>פונקציית מעבר אל</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מאפשר לקפוץ אל המקור/יעד של ההבדל הנוכחי בפאנל האחר (3 פאנלים).</para>
+
+            <para>קיצורי דרך: <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
+<keycap>G</keycap> </keycombo>, תפריט הקשר בחלונית קבצים וחלונית הבדלים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>רענן</term>
+
+          <listitem>
+            <para>ראה <xref linkend="Compare_files_merge_functions" />.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+  </section>
+
+  <section id="Compare_files_syncpoints">
+    <title>Synchronization points<indexterm>
+        <primary>נקודות סנכרון</primary>
+      </indexterm></title>
+    <para>TBD</para>
+  </section>
+
+  <section id="Compare_files_merge">
+    <title>Merging differences<indexterm>
+        <primary>מיזוג הבדלים</primary>
+      </indexterm></title>
+
+    <para>מיזוג מעתיק הבדלים מחלונית קבצים אחת לאחרת: משמאל לימין, או מימין לשמאל. זה
+שונה מעריכת טקסט ישירה באמצעות פונקציות העריכה של WinMerge (שמתוארות מוקדם
+יותר בנושא זה).</para>
+
+    <section id="Compare_files_scan">
+      <title>Rescanning files<indexterm>
+          <primary>סריקה חוזרת של קבצים</primary>
+        </indexterm></title>
+
+      <para>כברירת מחדל, האפשרות <guilabel>סריקה חוזרת אוטומטית</guilabel> מופעלת בדף
+עורך של אפשרויות WinMerge. סריקה חוזרת שומרת על פעולות ההשוואה והמיזוג שלך
+מעודכנות. ללא סריקה חוזרת, WinMerge אינו מזהה שינויים שעלולים להתרחש בקבצים
+בזמן שאתה משווה אותם, לדוגמה בעורך חיצוני.</para>
+
+      <para>סריקה חוזרת מתרחשת כאשר אתה מבצע פעולות מסוימות (כמו מיזוג הבדל או עריכת
+קובץ) במהלך השוואת קבצים. אם קובץ השתנה, WinMerge מציג תיבת דו-שיח המייעצת
+לך שאפליקציה אחרת עדכנה את הקובץ, ושואלת אם ברצונך לטעון מחדש את הקובץ.</para>
+
+      <para>לחץ על <guibutton>כן</guibutton> כדי לטעון מחדש את הקובץ לפני שתמשיך, או
+<guibutton>לא</guibutton> כדי להתעלם מהשינויים ולעבוד עם הגרסה הטעונה הקודמת
+של הקובץ.</para>
+
+      <important>
+        <para>אם <guilabel>סריקה חוזרת אוטומטית</guilabel> מושבתת, או אם אתה חושד שקובץ
+עשוי להשתנות, אנו ממליצים בחום להפעיל <guimenuitem>רענן</guimenuitem>
+<emphasis>לפני</emphasis> ביצוע פעולת מיזוג כלשהי: לחץ על <menuchoice>
+<guimenu>עריכה</guimenu> <guimenuitem>רענן</guimenuitem> </menuchoice> או על
+לחצן סרגל הכלים <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+              <phrase>לחצן רענן</phrase>
+            </textobject>
+          </inlinemediaobject>, או הקש
+<keycap>F5</keycap>.</para>
+
+        <para>אם תוצאת מיזוג נראית שגויה, לחץ על <menuchoice> <guimenu>עריכה</guimenu>
+<guimenuitem>בטל</guimenuitem> </menuchoice> או הקש <keycombo>
+<keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo> כדי לבטל את
+המיזוג. לאחר מכן סרוק מחדש את הקבצים ונסה למזג שוב.</para>
+      </important>
+    </section>
+
+    <section id="Compare_files_merge_functions">
+      <title>Merge functions<indexterm>
+          <primary>פונקציות WinMerge</primary>
+
+          <secondary>מיזוג</secondary>
+        </indexterm></title>
+
+      <para>פונקציות המיזוג יכולות לבחור במשתמע הבדלים בהתבסס על מיקום הסמן או בחירת
+טקסט. לדוגמה, אם תלחץ בכל מקום בהבדל ואז תלחץ על לחצן סרגל הכלים
+<guibutton>העתק ימינה</guibutton>, כל בלוק ההבדל ימוזג. זה מקל על מיזוג
+הבדלים קטנים רבים. באופן דומה, אם אתה בוחר טקסט המשתרע על כל או חלק ממספר
+הבדלים, כל ההבדלים הכלולים ממוזגים באמצעות פקודת מיזוג בודדת.</para>
+
+      <para>אם תוצאת פעולת מיזוג אינה כפי שציפית, תוכל ללחוץ על
+<guibutton>בטל</guibutton> כדי להפוך את הפעולה.</para>
+
+      <para>הנה פונקציות המיזוג וקיצורי הדרך שלהן בסרגל הכלים והתפריטים:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Copy Right<indexterm>
+              <primary>פונקציית העתק ימינה</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מעתיק הבדל אחד או יותר משמאל לימין. שים לב שאין צורך לבחור הבדלים באופן מלא:
+בפשטותו, זה אומר להחליף טקסט בהבדל היעד בטקסט בהבדל המקור. אבל מכיוון
+שהבדלים יכולים להכיל גם שורות ריקות, ניתן ליצור או להסיר שורות חדשות.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+                  <phrase>כפתור העתק לימין</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>העתק לימין</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>ימין</keycap>
+</keycombo> (או <keycap>ימין</keycap> במצב מיזוג), תפריט הקשר בחלונית קבצים
+בתוך הבדל, ובחלונית הבדלים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Copy Left<indexterm>
+              <primary>פונקציית העתק שמאלה</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מעתיק את ההבדל הנוכחי מחלונית הקבצים הימנית לשמאלית. ראה תיאור <command>העתק
+ימינה</command> לפרטים.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+                  <phrase>כפתור העתק לשמאל</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>העתק לשמאל</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>שמאל</keycap>
+</keycombo> (או <keycap>שמאל</keycap> במצב מיזוג), תפריט הקשר בחלונית קבצים
+בתוך הבדל, ובחלונית הבדלים.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Copy Right and Advance<indexterm>
+              <primary>פונקציית העתק ימינה והתקדם</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>ממזג את ההבדל הנוכחי מהפאנל הימני לשמאלי, ואז בוחר את ההבדל הבא (אם
+קיים). שווה ערך ל-<command>העתק ימינה</command> ו-<command>הבדל
+הבא</command> בפעולה אחת.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן העתק ימינה והתקדם</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>העתק לשמאל</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
+<keycap>ימין</keycap> </keycombo>, תפריט הקשר בפאנל הקבצים בתוך הבדל.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Copy Left and Advance<indexterm>
+              <primary>פונקציית העתק שמאלה והתקדם</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>ממזג את ההבדל הנוכחי משמאל לימין, ואז בוחר את ההבדל הבא (אם קיים). שווה ערך
+ל-<command>העתק שמאלה</command> ו-<command>הבדל הבא</command> בפעולה אחת.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/copyl_adv_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן העתק שמאלה והתקדם</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>העתק לשמאל</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
+<keycap>שמאל</keycap> </keycombo>, תפריט הקשר בפאנל הקבצים בתוך הבדל.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>All Right<indexterm>
+              <primary>פונקציית הכל ימינה</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מעתיק את כל ההבדלים מחלונית הקבצים השמאלית לימנית. השתמש כדי לסנכרן שני
+קבצים באמצעות פקודה אחת. באופן דומה, אתה יכול לסגת מהמיזוג כולו על ידי לחיצה
+על לחצן ה-<inlinemediaobject>
+<imageobject> <imagedata contentdepth="11"
+fileref="screenshots/undo_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן רענן</phrase>
+                </textobject>
+              </inlinemediaobject> בטל או הקשה על
+<keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo>.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן הכל ימינה</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>העתק לשמאל</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>שמאל</keycap>
+</keycombo>, תפריט הקשר בחלונית קבצים בתוך הבדל.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>All Left<indexterm>
+              <primary>פונקציית הכל שמאלה</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מעתיק את כל ההבדלים מחלונית הקבצים הימנית לשמאלית. למעשה, מחליף את התוכן של
+חלונית הקבצים השמאלית. ראה דומה ל-<command>הכל ימינה</command>.</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן הכל שמאלה</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>מזג</guimenu> <guimenuitem>העתק לשמאל</guimenuitem>
+</menuchoice>, <keycombo> <keycap>Alt</keycap> <keycap>שמאל</keycap>
+</keycombo>, תפריט הקשר בחלונית קבצים בתוך הבדל.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Refresh<indexterm>
+              <primary>פונקציית רענון</primary>
+
+              <seealso>סריקה חוזרת של קבצים</seealso>
+            </indexterm></term>
+
+          <listitem>
+            <para>סורק מחדש קבצים כדי לעדכן הבדלים. השתמש לאחר ביצוע שינויים בקבצים, אם הסריקה
+האוטומטית מושבתת (ראה <xref linkend="Compare_files_scan" /> לפרטים).</para>
+
+            <para>קיצורי דרך: לחצן <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+                  <phrase>לחצן רענן</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>תצוגה</guimenu> <guimenuitem>רענן</guimenuitem>
+</menuchoice>, <keycap>F5</keycap>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="ResolveConflictFiles">
+      <title>Resolving conflict files<indexterm>
+          <primary>קבצי קונפליקט</primary>
+        </indexterm></title>
+
+      <para>אתה יכול להשתמש ב-WinMerge כדי לפתור קבצי התנגשות שמערכות בקרת גרסאות
+מסוימות מייצרות במהלך פעולות המיזוג שלהן. קובץ התנגשות נוצר כאשר מיזוג נתקל
+בהבדלים שלא ניתן לפתור אוטומטית. זהו קובץ בודד המכיל את התוכן הממוזג שלא
+הושלם של שני הקבצים. WinMerge מפריד את קובץ ההתנגשות לקבצים נפרדים ופותח את
+הקבצים האלה בחלון השוואת קבצים. לאחר מכן אתה יכול להשתמש בפונקציות ההשוואה
+והמיזוג של WinMerge כדי לפתור את ההתנגשויות ולשמור את קובץ התוצאה הממוזג.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>לחץ על <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>פתח קובץ
+התנגשות</guimenuitem> </menuchoice>, והשתמש בתיבת הדו-שיח פתח כדי לבחור את
+קובץ ההתנגשות במערכת הקבצים שלך. קובץ ההתנגשות נפתח בחלון השוואת קבצים:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>כותרת הקובץ של החלונית השמאלית היא <guilabel>קובץ שלהם</guilabel>. צד זה
+מייצג את הקובץ שנמצא בדרך כלל במאגר של מערכת בקרת הגרסאות. בדרך כלל לא ניתן
+לערוך קובץ זה, ולכן WinMerge מגדיר את חלונית הקבצים השמאלית לקריאה בלבד. זה
+אומר שניתן למזג הבדלים רק מקובץ זה לקובץ האחר.</para>
+            </listitem>
+
+            <listitem>
+              <para>חלונית הקבצים הימנית נקראת <guilabel>קובץ שלי</guilabel>. צד זה הוא עותק
+העבודה של הקובץ. יש לבצע את כל השינויים לקובץ זה, שהוא קובץ התוצאה.</para>
+
+              <para>הצד של <guilabel>קובץ שלי</guilabel> מוגדר כמשונה לאחר פתיחת קובץ התנגשות
+(תשים לב לכוכבית בכותרת של חלונית הקבצים). זה מאפשר לך לשמור את הקובץ
+במהירות אם הוא לא דורש שינויים כלשהם. זה גם מבטיח שלא תשכח לפתור את
+הקבצים. אם תבחר לא לשמור את הקובץ, קובץ ההתנגשות המקורי לא ישונה.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>השתמש בכל פונקציות ההשוואה והמיזוג הרגילות המתוארות קודם לכן בנושא זה כדי
+לפתור את ההתנגשויות בחלונית קובץ שלי.</para>
+        </listitem>
+
+        <listitem>
+          <para>כשתסיים, לחץ על <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap>
+</keycombo> כדי לשמור את צד <guilabel>קובץ שלי</guilabel> כקובץ
+התוצאה. כברירת מחדל, הגרסה החדשה דורסת את קובץ ההתנגשות המקורי. לחלופין, אתה
+יכול ללחוץ על <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>שמור
+ימני</guimenuitem> <guimenuitem>שמור בשם</guimenuitem> </menuchoice>, ולבחור
+שם קובץ אחר.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>מערכות רבות לבקרת גרסאות מאפשרות לך להגדיר כלי מיזוג חיצוני. אם שלך עושה
+זאת, ייתכן שתוכל לגרום למערכת בקרת הגרסאות שלך להפעיל את WinMerge אוטומטית
+כאשר מתרחשת התנגשות מיזוג.</para>
+
+      <para>אתה יכול גם לפתוח קובץ התנגשות משורת הפקודה של WinMerge, שמקבלת שלושה
+פרמטרים של שם קובץ: <option>שלהם</option>, <option>שלי</option>,
+ואופציונלית, <option>נפתר</option> (אם אתה רוצה קובץ תוצאה שונה מקובץ
+ההתנגשות). למידע נוסף, ראה <xref linkend="Command_line" />. נתיב יחיד לקובץ
+ההתנגשות מתקבל גם בשורת הפקודה.</para>
+    </section>
+  </section>
+</article>

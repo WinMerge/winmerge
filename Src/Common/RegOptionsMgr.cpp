@@ -689,7 +689,9 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 		retVal = COption::OPT_OK;
 	}
 
-	return m_pIOHandler->Remove(name);
+	m_pIOHandler->Remove(name);
+
+	return retVal;
 }
 
 int CRegOptionsMgr::FlushOptions()

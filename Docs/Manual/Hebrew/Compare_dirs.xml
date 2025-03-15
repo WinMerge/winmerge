@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_dirs">
+  <title>השוואה ומיזוג תיקיות<indexterm>
+      <primary>השוואת תיקיות</primary>
+    </indexterm></title>
+
+  <para>נושא זה מתאר כיצד להשוות ולמזג תיקיות באמצעות חלון השוואת התיקיות.</para>
+
+  <section id="Compare_dirs_starting">
+    <title>התחלת פעולת השוואת תיקיות</title>
+
+    <para>אתה יכול להתחיל פעולת השוואת תיקיות מחלון WinMerge או מחלון שורת הפקודה.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>מתוך חלון WinMerge</term>
+
+        <listitem>
+          <para>לחץ על <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>פתח</guimenuitem>
+</menuchoice>. השתמש בתיבת הדו-שיח בחר קבצים או תיקיות כדי לציין את התיקיות
+השמאלית והימנית להשוואה. כברירת מחדל, ההשוואה כוללת את כל הקבצים בתיקיות,
+והיא רקורסיבית (כוללת תיקיות משנה). כדי לשנות אפשרויות אלה ולקבל פרטים
+נוספים על תיבת הדו-שיח בחר קבצים או תיקיות, ראה <xref linkend="Open_paths"
+/>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>מחלון שורת פקודה</term>
+
+        <listitem>
+          <para>הפעל את <command>WinMergeU.exe</command>, שנמצא בספריית ההתקנה של
+WinMerge. בארגומנטים של הפקודה שלך, כלול את התיקיות השמאלית והימנית
+להשוואה. כברירת מחדל, ההשוואה כוללת את כל הקבצים בתיקיות, והיא לא
+רקורסיבית. כדי לשנות אפשרויות אלה ולקבל מידע על אפשרויות פקודה אחרות, ראה
+<xref linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <tip>
+      <title>טיפים</title>
+
+      <variablelist>
+        <varlistentry>
+          <term>מצב רקורסיבי<indexterm>
+              <primary>השוואת תיקיות רקורסיבית</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>מצב רקורסיבי שימושי לגילוי ותפעול קבצים שונים במבנה תיקיות שלם. עם זאת, זה
+יכול להיות איטי אם יש תיקיות משנה וקבצים רבים. עבור מבני ספריות מקוננים
+עמוק, שקול להפעיל את <xref linkend="Compare_dirs_treeview" /> לניווט קל יותר
+בחלון ההשוואה.</para>
+
+            <para>למצב לא רקורסיבי יש את היתרון של מהירות כאשר יש תיקיות משנה רבות שאין צורך
+לבדוק אותן. כמו כן, התצוגה יכולה להיות קלה יותר לניהול מכיוון שהיא מציגה
+פריטים רק בתיקיות שנבחרו.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>השוואות תוכן מהיר</term>
+
+          <listitem>
+            <para>השיטה <guilabel>תוכן מהיר</guilabel> להשוואת קבצים, המתוארת ב-<xref
+linkend="Configuration" />, יכולה להיות שימושית כאשר אתה משווה קבצים
+בינאריים גדולים; והיא משמשת אוטומטית להשוואת קבצים גדולים מ-4
+מגה-בייט. חסרונות אפשריים הם שמסנני שורות לא עובדים, ואין מידע על ספירת
+הבדלים בחלון השוואת התיקיות. זה לא אמור להיות משנה ברוב המקרים, מכיוון
+שקבצים גדולים כאלה הם בדרך כלל בינאריים.</para>
+
+            <para>כדי להשתמש בשיטה זו, הגדר אותה לפני פעולת ההשוואה שלך: בדף ההשוואה של
+אפשרויות WinMerge, לחץ על התפריט הנפתח <guilabel>שיטת השוואת
+קבצים</guilabel> ובחר <guimenuitem>תוכן מהיר</guimenuitem>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>עבור משתמשים מתקדמים</term>
+
+          <listitem>
+            <para>אתה יכול לשנות את מגבלת גודל הקובץ של 4 מגה-בייט של <guilabel>השווה לפי תוכן
+מהיר</guilabel>, לדוגמה אם יש לך הרבה קבצי טקסט גדולים מאוד. כדי לעשות זאת,
+הפעל את הפקודה <command>regedit</command> של Windows, נווט למילת מפתח זו
+ושנה את ערכה: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>כרגיל, היזהר בעת עריכת
+הרישום!</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </tip>
+
+    <section>
+      <title>חלון התקדמות השוואת תיקיות<indexterm>
+          <primary>חלון התקדמות השוואת תיקיות</primary>
+        </indexterm></title>
+
+      <para>כשאתה מתחיל פעולת השוואת תיקיות, WinMerge מציג את חלון המצב הזה:</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/foldercmp_progress.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>חלון התקדמות השוואת תיקיות</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>אם פעולת ההשוואה מהירה, ייתכן שלא תשים לב לחלון ההתקדמות, שנסגר ברגע
+ש-WinMerge מציג את תוצאת השוואת התיקיות. חלון ההתקדמות מציג את מספר הקבצים
+והתיקיות שיש לכלול בפעולה ואת המספר שהושווה עד כה. סרגל ההתקדמות מייצג גרפית
+את הפריטים שהושוו.</para>
+
+      <note>
+        <para>מכיוון שההשוואות של הקבצים הן בדרך כלל בגדלים שונים, נתוני הסטטוס לא מציינים
+את הזמן שחלף או שנותר. לדוגמה, יחס של 50/100 לא בהכרח אומר שמחצית מזמן פעולת
+ההשוואה פג.</para>
+      </note>
+
+      <para><!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
+I get the partial list, but no Abort indicator.-->
+אתה יכול ללחוץ על <guibutton>עצור</guibutton> כדי לסיים את הפעולה בכל עת
+לפני שפעולת ההשוואה מסתיימת. חלון השוואת התיקיות מוצג עם התוצאות שחושבו
+באותה תקופה, תוך השמטת כל התוצאות שלא הושלמו.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_window">
+    <title>חלון השוואת תיקיות<indexterm>
+        <primary>חלון השוואת תיקיות</primary>
+
+        <seealso>חלון השוואה</seealso>
+      </indexterm><indexterm>
+        <primary>חלון השוואה</primary>
+
+        <secondary>תיקייה</secondary>
+      </indexterm><indexterm>
+        <primary>תיקיות משנה</primary>
+
+        <secondary>בחלון השוואת תיקיות</secondary>
+      </indexterm></title>
+
+    <para>חלון השוואת התיקיות מציג את התוצאה של השוואת תיקיות. שני תצוגות שונות
+זמינות:</para>
+
+    <variablelist>
+      <varlistentry id="Compare_dirs_tabview">
+        <term>תצוגה טבלאית<indexterm>
+            <primary>תצוגה טבלאית, חלון השוואה</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>בתצוגה טבלאית, כל קובץ או תיקייה בתוצאה רשומים בשורה. זוהי תצוגת ברירת
+המחדל. הנה דוגמה:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry id="Compare_dirs_treeview">
+        <term remap="" xreflabel="תצוגת עץ">תצוגת עץ<indexterm>
+            <primary>תצוגת עץ, חלון השוואה</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>בתצוגת העץ, תיקיות ניתנות להרחבה וכיווץ, ומכילות קבצים ותיקיות משנה. תצוגת
+העץ זמינה רק בהשוואות רקורסיביות. לדוגמה:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="599"
+fileref="screenshots/treeview-01.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+
+          <itemizedlist>
+            <listitem>
+              <para>כדי להרחיב או לכווץ תיקייה בודדת, לחץ על פקד הפלוס או המינוס ליד סמל
+התיקייה, או לחץ פעמיים בכל מקום בשורה.</para>
+            </listitem>
+
+            <listitem>
+              <para>כדי להרחיב או לכווץ את כל התיקיות בתצוגה, לחץ על <menuchoice>
+<guimenu>תצוגה</guimenu> <guimenuitem>הרחב תיקיות משנה</guimenuitem>
+<guimenuitem>כל תיקיות המשנה</guimenuitem> </menuchoice> או <menuchoice>
+<guimenu>תצוגה</guimenu> <guimenuitem>כווץ את כל תיקיות המשנה</guimenuitem>
+</menuchoice> בתפריט.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>במהלך השוואה רקורסיבית (כלומר, אם הפעלת את האפשרות <option>כלול תיקיות
+משנה</option> בתיבת הדו-שיח בחר קבצים או תיקיות כאשר הפעלת את ההשוואה), תוכל
+ללחוץ על הפקודה <menuchoice> <guimenu>תצוגה</guimenu> <guimenuitem>מצב
+עץ</guimenuitem> </menuchoice> כדי לעבור בין שתי התצוגות. הפקודה
+<menuchoice> <guimenu>תצוגה</guimenu> <guimenuitem>מצב עץ</guimenuitem>
+</menuchoice> מושבתת עבור השוואות לא רקורסיביות.</para>
+
+    <para>בשתי התצוגות, העמודות מציגות סוגי נתונים שונים עבור כל פריט תוצאה. אתה יכול
+לשלוט על מיון הפריטים בתצוגה על ידי לחיצה על כותרת עמודה. זה משנה את המיון
+בשתי דרכים:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>מחליף (הופך) את סדר המיון של העמודה.</para>
+      </listitem>
+
+      <listitem>
+        <para>ממיין מחדש את כל השורות בתצוגה לפי העמודה.</para>
+      </listitem>
+    </itemizedlist>
+
+    <section>
+      <title>תוצאות השוואה רקורסיביות ולא רקורסיביות<indexterm>
+          <primary>השוואת תיקיות רקורסיבית</primary>
+
+          <secondary>הצגת תוצאות</secondary>
+        </indexterm><indexterm>
+          <primary>השוואת תיקיות לא רקורסיבית</primary>
+
+          <secondary>הצגת תוצאות</secondary>
+        </indexterm></title>
+
+      <para>חלון השוואת התיקיות נראה ומתנהג קצת אחרת עבור השוואות רקורסיביות ולא
+רקורסיביות:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>השוואת תיקיות רקורסיבית</term>
+
+          <listitem>
+            <para>תוצאת ההשוואה כוללת את כל תיקיות המשנה. אתה יכול לשלוט על סוגי הפריטים
+המוצגים בתוך התיקיות על ידי בחירת האפשרויות בתפריט <guimenu>תצוגה</guimenu>
+(לדוגמה, <guimenuitem>הצג פריטים זהים</guimenuitem>). העמודה תיקייה תמיד
+ריקה: מוצגים רק הקבצים בתוך התיקיות. כדי לראות את תיקיית המשנה של פריט,
+הסתכל על הנתיב שלו בעמודה תוצאת ההשוואה. תיקיות שקיימות רק בצד אחד מוצגות אם
+אחת מהאפשרויות בתפריט <guimenu>תצוגה</guimenu>, <guimenuitem>הצג קבצים
+ייחודיים משמאל</guimenuitem>, <guimenuitem>הצג קבצים ייחודיים
+באמצע</guimenuitem> או <guimenuitem>הצג קבצים ייחודיים מימין</guimenuitem>,
+מופעלת.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>השוואת תיקיות לא רקורסיבית</term>
+
+          <listitem>
+            <para>התוצאה כוללת רק את הקבצים ותיקיות המשנה ברמה העליונה של התיקיות שנבחרו. עם
+זאת, אתה יכול לגלוש לכל תיקיית משנה שברצונך להשוות.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>סמלי קבצים ותיקיות<indexterm>
+          <primary>סמלים</primary>
+
+          <secondary>חלון השוואת תיקיות</secondary>
+        </indexterm></title>
+
+      <para>בחלון השוואת התיקיות, קבצים ותיקיות מושווים ומחולקים למספר קטגוריות. בכל
+שורה, הקטגוריה מזוהה בבירור בעמודה השמאלית עם אחד מהסמלים הבאים:</para>
+
+      <simplelist>
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/equaltextfile.png" format="PNG" /> </imageobject></inlinemediaobject> קבצי טקסט זהים</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/binary.png"
+format="PNG" /> </imageobject></inlinemediaobject> קבצים בינאריים זהים</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/equal.png"
+format="PNG" /> </imageobject></inlinemediaobject> קבצים זהים (סוג לא נקבע)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/notequaltextfile.png" format="PNG" /> </imageobject></inlinemediaobject> קבצי טקסט שונים</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/binarydiff.png" format="PNG" /> </imageobject></inlinemediaobject> קבצים בינאריים שונים</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/notequal.png" format="PNG" /> </imageobject></inlinemediaobject> קבצים שונים (סוג לא נקבע)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/foldersame.png" format="PNG" /> </imageobject></inlinemediaobject> תיקיות זהות (בתצוגת עץ בלבד)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/folderdiff.png" format="PNG" /> </imageobject></inlinemediaobject> תיקיות שונות (בתצוגת עץ בלבד)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/lfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject> תיקיות משמאל בלבד</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/mfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject> תיקיות מאמצע בלבד</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/rfolder.png"
+format="PNG" /> </imageobject></inlinemediaobject> תיקיות מימין בלבד</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/lfile.png"
+format="PNG" /> </imageobject></inlinemediaobject> קבצים משמאל בלבד</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/mfile.png"
+format="PNG" /> </imageobject></inlinemediaobject> קבצים מאמצע בלבד</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/rfile.png"
+format="PNG" /> </imageobject></inlinemediaobject> קבצים מימין בלבד</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/folderskip.png" format="PNG" /> </imageobject></inlinemediaobject> ספריות שדולגו (מסוננות)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/fileskip.png" format="PNG" /> </imageobject></inlinemediaobject> קבצים שדולגו (מסוננים)</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/error.png"
+format="PNG" /> </imageobject></inlinemediaobject> פריטים שלא ניתן להשוות;
+לדוגמה כאשר תוכנית אחרת נעלה את הקובץ.</member>
+
+        <member><inlinemediaobject>
+<imageobject> <imagedata contentwidth="16" fileref="screenshots/aborted.png"
+format="PNG" /> </imageobject></inlinemediaobject> פריט שבוטל. WinMerge לא סיים
+להשוות פריט זה כאשר ההשוואה הופסקה. התוצאה לא ידועה.</member>
+      </simplelist>
+    </section>
+
+    <section>
+      <title>ניווט בחלון השוואת התיקיות</title>
+
+      <indexterm>
+        <primary>פונקציות ניווט</primary>
+
+        <secondary>השוואת תיקיות</secondary>
+      </indexterm>
+
+      <para>אתה יכול להשתמש בעכבר כמו גם ב-<link linkend="Shortcut_keys">מקלדת</link>
+וקיצורי דרך של תפריט ההקשר כדי לנווט בחלון השוואת התיקיות. אתה יכול גם
+להשתמש בכפתורי סרגל הכלים. לדוגמה, הכפתור <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+            <phrase>כפתור ההבדל הבא</phrase>
+          </textobject>
+        </inlinemediaobject> <guimenuitem>ההבדל הבא</guimenuitem> מוצא
+את הקובץ או התיקייה השונים הבאים ובוחר אותם.</para>
+
+      <note>
+        <para>ניווט לקבצים ותיקיות ייחודיים מתבצע באותו אופן כמו ניווט לקבצים שונים.</para>
+      </note>
+
+      <para>אתה יכול לבחור מספר קבצים ותיקיות. עם זאת, פעולות מסוימות (כגון <command>שנה
+שם</command>) אינן זמינות עם בחירות מרובות.</para>
+
+      <para>השתמש בכפתורי הניווט (<guibutton>הבדל הבא</guibutton>, <guibutton>הבדל
+קודם</guibutton> וכן הלאה) כדי לעבור בין ההבדלים בקבצים המושווים. השתמש
+בפונקציות WinMerge כדי למזג תוכן על ידי העתקה, העברה או מחיקה של קובץ או
+תיקיית משנה אחת או יותר.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_fileops">
+    <title>פעולות קובץ בהשוואת תיקיות<indexterm>
+        <primary>פעולות קובץ</primary>
+
+        <secondary>בחלון השוואת תיקיות</secondary>
+      </indexterm><indexterm>
+        <primary>חלון השוואת תיקיות</primary>
+
+        <secondary>פעולות קובץ</secondary>
+      </indexterm></title>
+
+    <para>חלון השוואת התיקיות תומך בפעולות נפוצות על קבצים, כמו עריכה, העתקה, מחיקה,
+העברה ושינוי שם (העברה שווה לפעולת העתקה ואחריה מחיקה). אתה יכול להשתמש
+בפעולות הקובץ האלה ובכמה פונקציות מיוחדות של WinMerge כדי למזג את התוכן של
+תיקיות. אתה יכול גם לפתוח קבצים באמצעות תוכניות משויכות או עורכים חיצוניים.</para>
+
+    <para>הדרך הנוחה ביותר לבצע את רוב המשימות האלה היא ללחוץ לחיצה ימנית על פריט אחד
+או יותר ולהשתמש בתפריט ההקשר, שבו כל פעולות הקובץ זמינות.</para>
+
+    <section>
+      <title>העתקת קבצים<indexterm>
+          <primary>העתקת קבצים</primary>
+
+          <secondary>בחלון השוואת תיקיות</secondary>
+        </indexterm></title>
+
+      <para>פעולת הקובץ הנפוצה ביותר בחלון השוואת התיקיות היא העתקת קבצים מצד לצד. ישנם
+מספר צורות של פונקציית ההעתקה של WinMerge: כולם מעתיקים רק קבצים שונים,
+מכיוון שהעתקת קבצים זהים אינה מועילה במיזוג. פונקציות ההעתקה זמינות בתפריט
+ההקשר, בתפריט WinMerge ובסרגל הכלים:</para>
+
+      <section>
+        <title>קיצורי דרך להעתקה בתפריט ההקשר</title>
+
+        <para>בתפריט ההקשר של חלון השוואת התיקיות, לפריט <guimenuitem>העתקה</guimenuitem>
+יש תפריט משנה עם ארבעה קיצורי דרך:</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="526"
+fileref="screenshots/ctx_menu_copy1.png" format="PNG" /> </imageobject><textobject>
+            <phrase>תפריט הקשר להעתקה בחלון השוואת תיקיות</phrase>
+          </textobject>
+        </mediaobject>
+
+        <itemizedlist>
+          <listitem>
+            <para><guimenuitem>משמאל לימין</guimenuitem> ו-<guimenuitem>מימין
+לשמאל</guimenuitem> מעתיקים את הבחירה (או רק את הפריטים בבחירה שניתן להעתיק)
+מצד אחד לצד השני. בדוגמה, הסיומת <guilabel>(2 מתוך 4)</guilabel> מציינת שרק
+שני הקבצים השונים יועתקו; הקבצים הזהים לא יועתקו. קיצורי דרך אלה זמינים רק
+אם אחד מהקבצים שבחרת שונה: אם אתה בוחר רק קבצים זהים, קיצורי הדרך אינם
+זמינים.</para>
+          </listitem>
+
+          <listitem>
+            <para><guimenuitem>משמאל ל...</guimenuitem> ו-<guimenuitem>מימין
+ל...</guimenuitem> מאפשרים לך לציין ספריית יעד העתקה במערכת שלך, במקום
+תיקייה מושווית. כאשר תיבת הדו-שיח עיון בתיקיות נפתחת, נווט אל ספריית היעד
+במערכת שלך (או צור תיקיית יעד חדשה) ולחץ על <guibutton>אישור</guibutton>.</para>
+          </listitem>
+        </itemizedlist>
+        <para>בחלון השוואת התיקיות עם שלוש תיקיות, לפריט <guimenuitem>העתקה</guimenuitem>
+יש תפריט משנה עם תשעה קיצורי דרך:</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="410"
+fileref="screenshots/ctx_menu_copy2.png" format="PNG" /> </imageobject><textobject>
+            <phrase>תפריט הקשר להעתקה בחלון השוואת תיקיות</phrase>
+          </textobject>
+        </mediaobject>
+
+      </section>
+
+      <section>
+        <title>פקודות העתקה של סרגל הכלים והתפריט</title>
+
+        <para>בסרגל הכלים של השוואת התיקיות, <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+              <phrase>כפתור העתק לימין</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>העתק לימין</guibutton> ו-<inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+              <phrase>כפתור העתק לשמאל</phrase>
+            </textobject>
+          </inlinemediaobject> <guibutton>העתק לשמאל</guibutton> מבצעים
+את אותה משימה כמו קיצורי הדרך בתפריט ההקשר <guimenuitem>משמאל
+לימין</guimenuitem> ו-<guimenuitem>מימין לשמאל</guimenuitem>: הם מעתיקים מצד
+לצד רק קבצים שניתן להעתיק. עם זאת, פקודות אלה אינן מציגות ישירות את מספר
+הקבצים להעתקה; במקום זאת, הן מציגות תיבת דו-שיח אישור שבה תוכל לבדוק רשימה
+של נתיבי קבצי מקור ויעד.</para>
+
+        <para>בתפריט WinMerge, <menuchoice> <guimenu>מיזוג</guimenu> <guimenuitem>העתק
+לימין</guimenuitem> </menuchoice> ו-<menuchoice> <guimenu>מיזוג</guimenu>
+<guimenuitem>העתק לשמאל</guimenuitem> </menuchoice> מתנהגים באותו אופן כמו
+פקודות ההעתקה של סרגל הכלים.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>מחיקת קבצים<indexterm>
+          <primary>מחיקת קבצים</primary>
+
+          <secondary>בחלון השוואת תיקיות</secondary>
+        </indexterm></title>
+
+      <para>אתה יכול להשתמש בפריט תפריט ההקשר <guimenuitem>מחק</guimenuitem> כדי למחוק
+פריטים נבחרים בכל אחד מהצדדים או בכולם. כמו פעולות קובץ אחרות,
+ל-<guimenuitem>מחק</guimenuitem> יש תפריט משנה עם קיצורי דרך
+<guimenuitem>שמאל</guimenuitem>, <guimenuitem>אמצע</guimenuitem>,
+<guimenuitem>ימין</guimenuitem> ו-<guimenuitem>הכל</guimenuitem>.</para>
+
+      <warning>
+        <para>אנו ממליצים בחום לשמור על האפשרות <guilabel>שלח קבצים שנמחקו לסל
+המיחזור</guilabel> מופעלת ראה <xref linkend="Configuration" />), כדי שתוכל
+לבטל מחיקות במקרה של תאונות. בנוסף, עליך לשמור על סל המיחזור מופעל: אפשרות
+WinMerge לא עובדת אם אתה משבית את סל המיחזור ב-Windows. שוב, אינך יכול לבטל
+מחיקת קובץ או תיקייה אלא אם כן אתה משתמש גם באפשרות WinMerge <guilabel>שלח
+קבצים שנמחקו לסל המיחזור</guilabel> וגם בסל המיחזור של Windows!</para>
+      </warning>
+    </section>
+
+    <section>
+      <title>שינוי שם קבצים<indexterm>
+          <primary>שינוי שם קבצים</primary>
+
+          <secondary>בחלון השוואת תיקיות</secondary>
+        </indexterm></title>
+
+      <para>כדי לשנות שם של קובץ או תיקייה, בחר <guimenuitem>שנה שם</guimenuitem> בתפריט
+ההקשר שלו או הקש <keycap>F2</keycap>. לאחר מכן שנה את השם בתיבת העריכה והקש
+<keycap>Enter</keycap>, או הקש <keycap>Esc</keycap> כדי לבטל. אתה יכול לשנות
+שם רק של קובץ או תיקייה בודדים. שים לב ששינוי שם משנה פריטים בשני הצדדים או
+בכל שלושת הצדדים: לא ניתן כרגע לשנות שם של פריט רק בצד אחד.</para>
+    </section>
+
+    <section>
+      <title>פתיחת קבצים<indexterm>
+          <primary>פתיחת קבצים</primary>
+
+          <secondary>בחלון השוואת תיקיות</secondary>
+        </indexterm></title>
+
+      <para>בתפריט ההקשר, אתה יכול להשתמש ב-<guimenuitem>פתח משמאל</guimenuitem>,
+<guimenuitem>פתח באמצע</guimenuitem> או <guimenuitem>פתח
+מימין</guimenuitem>, בהתאם לצד שבו אתה רוצה לפעול. לכל פריט תפריט
+<guimenuitem>פתח</guimenuitem> יש תפריט משנה עם קיצורי הדרך האלה:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>עם יישום רשום</term>
+
+          <listitem>
+            <para>פותח את הקובץ עם היישום (אם יש) שרשום ב-Windows עבור סוג הקובץ.</para>
+
+            <tip>
+              <para>קיצור דרך זה בדרך כלל פותח תיקייה בסייר Windows חדש.</para>
+            </tip>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>עם עורך חיצוני</term>
+
+          <listitem>
+            <para>פותח את הקובץ עם עורך חיצוני. עורך ברירת המחדל הוא Notepad, אך אתה יכול
+להגדיר עורך אחר באפשרויות WinMerge.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>עם...</term>
+
+          <listitem>
+            <para>פותח את תיבת הדו-שיח <guilabel>פתח באמצעות</guilabel>, שבה תוכל לציין יישום
+לפתיחת הקובץ שלך.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>העתקת נתיבי קבצים או שמות קבצים<indexterm>
+          <primary>נתיבי קבצים</primary>
+
+          <secondary>העתקה מחלון השוואת תיקיות</secondary>
+        </indexterm><indexterm>
+          <primary>שמות קבצים</primary>
+
+          <secondary>העתקה מחלון השוואת תיקיות</secondary>
+        </indexterm></title>
+
+      <para>קיצורי הדרך <guimenuitem>העתק נתיב קובץ</guimenuitem> ו-<guimenuitem>העתק
+שמות קבצים</guimenuitem> בתפריט ההקשר מעתיקים את נתיב הקובץ או את שם הקובץ
+של פריטים נבחרים ללוח Windows. לאחר מכן תוכל להדביק את המידע המועתק לקובץ או
+ליישום, לדוגמה כדי ליצור רשימה של קבצים ששונו או יומן שינויים.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>העתק נתיבי קבצים</guimenuitem> כולל תפריט עם שלושה קיצורי דרך,
+בדומה לפעולות קובץ אחרות. הוא מעתיק את נתיבי הקבצים המלאים של פריט אחד או
+יותר שנבחרו ללוח, שורה אחת בכל פעם.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>העתק שמות קבצים</guimenuitem> מעתיק רק שמות קבצים ללא נתיבים.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section id="protectingfiles">
+      <title>הגנה על קבצים<indexterm>
+          <primary>חלון השוואת תיקיות</primary>
+
+          <secondary>הגנה על קבצים ב-</secondary>
+        </indexterm><indexterm>
+          <primary>הגנה על קבצים</primary>
+        </indexterm><indexterm>
+          <primary>קבצים לקריאה בלבד</primary>
+
+          <see>הגנה על קבצים</see>
+        </indexterm></title>
+
+      <para>כדי להגן על הקבצים והתיקיות משני צידי ההשוואה מפני שינויים, הפעל את תיבת
+הסימון <menuchoice> <guimenu>קובץ</guimenu> <guimenuitem>שמאל לקריאה
+בלבד</guimenuitem> </menuchoice>, <menuchoice> <guimenu>קובץ</guimenu>
+<guimenuitem>אמצע לקריאה בלבד</guimenuitem> </menuchoice> או <menuchoice>
+<guimenu>קובץ</guimenu> <guimenuitem>ימין לקריאה בלבד</guimenuitem>
+</menuchoice>.</para>
+
+      <important>
+        <para>הגדרת האפשרות קריאה בלבד מגנה על קבצים ותיקיות רק בתצוגת ההשוואה הנוכחית;
+היא אינה משפיעה על תכונות הקובץ שלהם ב-Windows.</para>
+      </important>
+
+      <para>מצב מוגן זה עובר בירושה על ידי קבצים שאתה פותח בהשוואת התיקיות. לדוגמה, אם
+אתה משווה שתי תיקיות, מגדיר צד אחד לקריאה בלבד ופותח שני קבצים להשוואה,
+הקובץ הפתוח בצד המוגן מוגן מפני כתיבה. באופן דומה, אינך יכול להעתיק קובץ
+מהצד הלא מוגן לצד המוגן.</para>
+
+      <para>הקוד <guilabel>RO</guilabel> בלוח הצד השמאלי, האמצעי או הימני בשורת המצב
+(ליד הפינה הימנית התחתונה של החלון) מציין שהצד הוא כרגע לקריאה בלבד.</para>
+    </section>
+
+    <section>
+      <title>רענון פריטים נבחרים בתצוגה<indexterm>
+          <primary>רענון תצוגה</primary>
+        </indexterm></title>
+
+      <para>רענון מלא של תיקיות גדולות יכול לקחת זמן רב. ב-WinMerge 2.2 ומטה, תמיד היית
+צריך לבצע רענון מלא כדי לעדכן קבצים לאחר עריכתם מחוץ ל-WinMerge. החל מגרסה
+2.4, WinMerge יכול לרענן רק פריטים נבחרים: בחר
+<guimenuitem>רענן</guimenuitem> מתפריט ההקשר או <menuchoice>
+<guimenu>תצוגה</guimenu> <guimenuitem>רענן נבחר</guimenuitem> </menuchoice>
+מהתפריט הראשי.</para>
+    </section>
+
+    <section>
+      <title>ארכיון קבצים<indexterm>
+          <primary>ארכיון קבצים</primary>
+
+          <secondary>בחלון השוואת תיקיות</secondary>
+        </indexterm></title>
+
+      <para>השתמש בפריט התפריט <guimenu>Zip</guimenu> בתפריט ההקשר כדי ליצור קובץ ארכיון
+חדש המכיל את הפריטים שתבחר.</para>
+
+      <note>
+        <para>תמיכה בארכיון דורשת שהתקנת את תוסף WinMerge 7-Zip.</para>
+      </note>
+
+      <para>לפריט התפריט <guimenu>Zip</guimenu> יש תפריט משנה עם חמישה קיצורי דרך:</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>שמאל</term>
+
+          <listitem>
+            <para>מוסיף קבצים ותיקיות בצד שמאל באופן רקורסיבי לקובץ הארכיון</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>אמצע</term>
+
+          <listitem>
+            <para>מוסיף קבצים ותיקיות אמצעיים באופן רקורסיבי לקובץ הארכיון</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>ימין</term>
+
+          <listitem>
+            <para>מוסיף קבצים ותיקיות בצד ימין באופן רקורסיבי לקובץ הארכיון</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>שניהם</term>
+
+          <listitem>
+            <para>מוסיף קבצים ותיקיות באופן רקורסיבי משני הצדדים לקובץ הארכיון. מכיוון ששמות
+הקבצים זהים, הם מתווספים לתיקיות משנה שונות, בשם <filename
+class="directory">מקורי</filename> ו-<filename
+class="directory">משונה</filename>, בתוך הארכיון: קבצי צד שמאל מוכנסים
+ל-<filename class="directory">מקורי</filename>, וקבצי צד ימין מוכנסים לתוך
+<filename class="directory">משונה</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>הכל</term>
+
+          <listitem>
+            <para>מוסיף קבצים ותיקיות באופן רקורסיבי מכל הצדדים לקובץ הארכיון. מכיוון ששמות
+הקבצים זהים, הם מתווספים לתיקיות משנה שונות, בשם <filename
+class="directory">מקורי</filename> ו-<filename
+class="directory">משונה</filename>, בתוך הארכיון: קבצי צד שמאל מוכנסים
+ל-<filename class="directory">מקורי</filename>, וקבצי צד ימין מוכנסים לתוך
+<filename class="directory">משונה</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>הבדלים</term>
+
+          <listitem>
+            <para>כמו <guimenuitem>שניהם</guimenuitem>, אך מוסיף רק קבצים שונים (כולל קבצים
+ייחודיים) משני הצדדים.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>כשאתה בוחר אחד מקיצורי הדרך של <guimenu>Zip</guimenu>, תיבת הדו-שיח שמירה
+בשם מבקשת ממך את שם קובץ הארכיון ואת סוגו. WinMerge לא יכול להוסיף קבצים
+לקבצי ארכיון קיימים: הוא תמיד יוצר קובץ ארכיון חדש.</para>
+
+<!--Original:
+WinMerge looks for subfolders Original/ and Altered/ in archive files. If archive file contains these 
+subfolders and same filename is given to both sides WinMerge compares contents of those two folders.
+ 
+If directory compare shows contents of archive files WinMerge updates changes done to files in file 
+compare into original archive file. But WinMerge does not update archive contents for files 
+added/deleted/copied. User can create a new archive file using above menuitems instead. 
+-->
+      
+
+      <tip>
+        <para>WinMerge יכול להשוות את התוכן של קבצי ארכיון בעלי אותו שם בשני הצדדים:
+WinMerge מחפש את תיקיות המשנה <filename class="directory">מקורי</filename>
+ו-<filename class="directory">משונה</filename>, ומשווה את התוכן של שתי
+התיקיות האלה.</para>
+      </tip>
+
+      <para>אם השוואת תיקיות כוללת את התוכן של קובץ ארכיון, כל שינוי שנעשה בקבצים
+הכלולים ב-WinMerge (לדוגמה, שימוש בפעולת קובץ <guimenuitem>פתח</guimenuitem>
+כדי לערוך את הקובץ) נשמר בקובץ הארכיון. אבל אתה לא יכול לעדכן את תוכן
+הארכיון באמצעות פעולות הקובץ <guimenuitem>העתקה</guimenuitem>,
+<guimenuitem>העברה</guimenuitem> או <guimenuitem>מחיקה</guimenuitem> של
+WinMerge. במקום זאת, צור קובץ ארכיון חדש באמצעות אחד מקיצורי הדרך
+<guimenuitem>Zip</guimenuitem>.</para>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_browsing">
+    <title>גלישה בתיקיות בחלון השוואת תיקיות<indexterm>
+        <primary>תיקיות</primary>
+
+        <secondary>גלישה בחלון השוואת תיקיות</secondary>
+      </indexterm></title>
+
+    <para>סעיף זה דן בדרכים לגלוש בתיקיות הרשומות בחלון השוואת תיקיות. כשאתה גולש
+בתיקייה, אתה מבצע פעולת השוואה חדשה לגמרי. התוצאה שלה מחליפה את התוצאה
+הנוכחית בחלון.</para>
+
+    <section>
+      <title>גלישה בתיקיות בהשוואה לא רקורסיבית</title>
+
+      <para>אף על פי שהשוואת תיקיות לא רקורסיבית אינה כוללת את התוכן של תיקיות משנה,
+תיקיות המשנה עצמן רשומות כקבצים בתוצאה. באופן דומה, תיקיית האב של התיקייה
+המושווית רשומה כקובץ בראש הטבלה. על ידי פתיחת התיקיות האלה ישירות בחלון
+השוואת התיקיות, אתה יכול לגלוש באופן סלקטיבי בעץ ספריות. גישה זו - השוואת רק
+תת-הספריות שבהן אתה מתעניין - יכולה להיות יעילה יותר מביצוע השוואה רקורסיבית
+בעץ הספריות כולו.</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>גלישה בתיקיית האב</term>
+
+          <listitem>
+            <para>כדי להשוות את תיקיית האב <inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup.png" format="PNG" />
+</imageobject></inlinemediaobject>
+(נתיב <guilabel>..</guilabel> בחלק העליון), לחץ פעמיים על השורה שלו, או בחר
+את השורה והקש <keycap>Enter</keycap>.</para>
+
+            <para>לפעמים לא ניתן לפתוח את תיקיית האב (לדוגמה אם אין לך הרשאות לגשת אליה). שני
+הסמלים האלה מציינים אם ניתן לפתוח תיקיית אב:</para>
+
+            <simplelist type="vert">
+              <member><inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup.png" format="PNG" />
+</imageobject></inlinemediaobject> ניתן לפתוח את תיקיית האב.</member>
+
+              <member><inlinemediaobject>
+<imageobject> <imagedata fileref="screenshots/folderup_disable.png"
+format="PNG" /> </imageobject></inlinemediaobject> לא ניתן לפתוח את תיקיית האב.</member>
+            </simplelist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>גלישה בתיקיית משנה בודדת הקיימת בשני הצדדים או בכל שלושת הצדדים</term>
+
+          <listitem>
+            <para>כדי להשוות תיקיית משנה בודדת הקיימת בשני הצדדים או בכל שלושת הצדדים, לחץ
+פעמיים על התיקייה בחלון השוואת התיקיות.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>גלישה בתיקיית משנה בודדת הקיימת רק בצד אחד</term>
+
+          <listitem>
+            <para>אם תגלוש לתיקיית משנה הקיימת רק בצד אחד, WinMerge יכול ליצור תיקייה חדשה
+ותואמת בצד השני בהתאמה לשני הצדדים האחרים. ראה <xref
+linkend="CompareDirs_browse_unique" /> לפרטים.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>גלישה בשתי תיקיות משנה שונות</term>
+
+          <listitem>
+            <para>אינך יכול להשוות שתי תיקיות משנה (כלומר, בחירת שתי שורות) כאשר תיקיות המשנה
+בכל צד שונות. רק אם השווית בעבר תיקיות זהות (לדוגמה, על ידי גלישה בתיקיית
+משנה בודדת בתוצאת השוואה) תוכל להשוות שתי תיקיות משנה. תחילה בחר את שתי
+התיקיות בחלון השוואת התיקיות, כפי שמוצג באיור הבא:</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="572"
+fileref="screenshots/foldercomp_2same.png" format="PNG" /> </imageobject><textobject>
+                <phrase>חלון השוואת תיקיות, שתי תיקיות נבחרות</phrase>
+              </textobject>
+            </mediaobject>
+            <para></para>
+
+            <para>לסדר הבחירה יש משמעות: התיקייה שאתה בוחר ראשונה היא התיקייה השמאלית בתוצאה;
+התיקייה השנייה שנבחרת הופכת לתיקייה הימנית בתוצאה.</para>
+
+            <para>כאשר שתי התיקיות נבחרות, לחץ לחיצה ימנית ובחר
+<guimenuitem>השווה</guimenuitem> (או לחץ על <menuchoice>
+<guimenu>מיזוג</guimenu> <guimenuitem>השווה</guimenuitem> </menuchoice>
+בתפריט).</para>
+
+            <tip>
+              <para>שוב, פעולת <guimenuitem>השווה</guimenuitem> זמינה רק כאשר נתיבי התיקיות
+השמאליות והימניות הנוכחיות זהים בחלון השוואת התיקיות, כפי שמוצג בצילום המסך
+הקודם. לדוגמה, היא אינה זמינה אם החלון הנוכחי משווה שתי תיקיות שונות.</para>
+            </tip>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="CompareDirs_browse_unique">
+      <title>גלישה בתיקיות ייחודיות<indexterm>
+          <primary>תיקיות ייחודיות</primary>
+
+          <secondary>השוואה</secondary>
+        </indexterm></title>
+
+      <para>ב-WinMerge 2.6 ומטה, לא יכולת לגלוש לתיקיות ייחודיות (תיקיות הקיימות רק בצד
+אחד של תוצאת השוואה), מכיוון ש-WinMerge לא יכול להשוות תיקייה קיימת לתיקייה
+לא קיימת. כדי להעתיק משהו מתיקייה ייחודית ב-WinMerge, היית צריך ליצור תחילה
+עותק של מבנה התיקיות כולו.</para>
+
+      <para>עם זאת, ייתכן שתעדיף לא להעתיק את מבנה התיקיות כולו. החל מגרסה 2.8, WinMerge
+מספק דרך חלופית ליצור תיקייה חדשה וריקה במקום זאת. זה מאפשר לך להעתיק רק את
+האלמנטים שאתה רוצה מהתיקייה המקורית והייחודית לתיקייה הריקה שנוצרה. הליך זה
+מדגים:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>גלול אל התיקייה הייחודית (בחר את התיקייה והקש <keycap>Enter,</keycap> לחץ
+עליה פעמיים, או לחץ עליה לחיצה ימנית ובחר
+<guimenuitem>השווה</guimenuitem>). לדוגמה:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="590"
+fileref="screenshots/foldercmp_unique1.png" format="PNG" /> </imageobject><textobject>
+              <phrase>חלון השוואת תיקיות, השוואת תיקייה ייחודית</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>הודעה של WinMerge מודיעה לך שהתיקייה קיימת רק בצד אחד ולא ניתן לפתוח
+אותה. לאחר מכן ההודעה מבקשת ממך לאשר אם ברצונך ליצור תיקייה תואמת ולפתוח
+אותה כצד השני של תוצאת ההשוואה.</para>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על <guibutton>כן</guibutton> כדי לאשר (<guibutton>לא</guibutton> מבטל את
+ההשוואה). בתוצאת ההשוואה החדשה, התיקייה הייחודית נפתחת בצד שמאל, והתיקייה
+הריקה החדשה שנוצרה נמצאת בצד ימין:</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="590"
+fileref="screenshots/foldercmp_unique2.png" format="PNG" /> </imageobject><textobject>
+              <phrase>חלון השוואת תיקיות לאחר גלישה לתיקיות ייחודיות וליצירת תיקיות</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>בתוצאת ההשוואה, תוכל להעתיק או להעביר פריטים (לדוגמה, באמצעות תפריט ההקשר של
+לחיצה ימנית) מהתיקייה הייחודית לתיקייה שנוצרה.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section id="Compare_dirs_customizing">
+    <title>התאמה אישית של חלון השוואת התיקיות<indexterm>
+        <primary>חלון השוואת תיקיות</primary>
+
+        <secondary>התאמה אישית</secondary>
+      </indexterm></title>
+
+    <para>סעיף זה מתאר כיצד לשלוט על האופן שבו חלון השוואת התיקיות מציג תוצאות. אתה
+יכול להתאים אישית את התצוגה על ידי הצגה, הסתרה וסידור מחדש של עמודות הטבלה.</para>
+
+    <section>
+      <title>הצגה והסתרה של סוגי קבצים<indexterm>
+          <primary>תפריט תצוגה</primary>
+
+          <secondary>חלון השוואת תיקיות</secondary>
+        </indexterm></title>
+
+      <para>התפריט <guimenu>תצוגה</guimenu> מכיל קיצורי דרך אלה להצגה או הסתרה של סוגי
+פריטים. הפעל (סמן) אפשרות תפריט כדי להציג את הפריט; השבת אותה כדי להסתיר את
+הפריט.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>הצג פריטים זהים</guimenuitem>: קבצים שזוהו כזהים</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>הצג פריטים שונים</guimenuitem>: קבצים שזוהו כשונים</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>הצג פריטים ייחודיים משמאל</guimenuitem>: קבצים וספריות הקיימים
+רק בצד שמאל</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>הצג פריטים ייחודיים באמצע</guimenuitem>: קבצים וספריות הקיימים
+רק באמצע</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>הצג פריטים ייחודיים מימין</guimenuitem>: קבצים וספריות הקיימים
+רק בצד ימין</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>הצג פריטים שדולגו</guimenuitem>: קבצים וספריות שהושמטו על ידי
+מסנני קבצים</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>הצג קבצים בינאריים</guimenuitem>: קבצים שזוהו כבינאריים</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>שינוי מיון עמודות</title>
+
+      <para>השורות בחלון השוואת התיקיות מסודרות בהתאם לסדר המיון של עמודה מסוימת. עמודת
+מיון זו מסומנת על ידי חץ קטן בכותרת שלה. החץ מצביע למעלה אם העמודה ממוינת
+בסדר עולה, למטה אם בסדר יורד. דוגמת השוואת התיקיות בראש נושא זה ממוינת לפי
+העמודה שם קובץ, בסדר עולה.</para>
+
+      <para>כדי לבחור עמודת סדר אחרת, פשוט לחץ בכותרת של עמודה זו. העמודה שנבחרה מוגדרת
+לסדר המיון המוגדר כברירת מחדל שלה וכל השורות מסודרות מחדש לפי סדר המיון של
+עמודה זו.</para>
+
+      <para>כדי לשנות את כיוון המיון של עמודה שכבר נמצאת כעמודת המיון, לחץ שוב בכותרת
+שלה. כלומר, לחיצה על כותרת עמודת מיון הופכת את הסדר שלה (מעבר בין סדר עולה
+ליורד).</para>
+    </section>
+
+    <section>
+      <title>הוספה, הסרה וסידור מחדש של עמודות</title>
+
+      <para>כדי לשנות את העמודות המוצגות בחלון השוואת התיקיות:</para>
+
+      <orderedlist>
+        <listitem>
+          <para>לחץ לחיצה ימנית על כותרת עמודה כלשהי ובחר <guimenuitem>התאם אישית
+עמודות</guimenuitem>. לחלופין, לחץ על <menuchoice> <guimenu>כלים</guimenu>
+<guimenuitem>התאם אישית עמודות</guimenuitem> </menuchoice></para>
+        </listitem>
+
+        <listitem>
+          <para>תיבת הדו-שיח הצג עמודות מכילה רשימה של כל שמות העמודות הזמינים, כל אחד עם
+תיבת סימון. הגדר את העמודות באמצעות שילוב כלשהו של הפעולות הבאות:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>סמן את העמודות שברצונך להציג (שים לב שבחירת הפריט ברשימה אינה מספיקה)</para>
+            </listitem>
+
+            <listitem>
+              <para>בטל את הסימון של העמודות שברצונך להסתיר.</para>
+            </listitem>
+
+            <listitem>
+              <para>כדי לשנות את סדר העמודות, בחר פריט אחד או יותר ולחץ על <guibutton>הזז
+למעלה</guibutton> או <guibutton>הזז למטה</guibutton>.</para>
+            </listitem>
+
+            <listitem>
+              <para>לחץ על <guibutton>ברירות מחדל</guibutton> אם ברצונך לשחזר את תצורת העמודות
+המוגדרת כברירת מחדל של WinMerge, תוך עקיפת התצורה המותאמת אישית שלך.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>לחץ על <guibutton>אישור</guibutton>.</para>
+        </listitem>
+      </orderedlist>
+
+      <para><indexterm>
+          <primary>תיבת הדו-שיח הצג עמודות</primary>
+        </indexterm>העמודות הבאות בתיבת הדו-שיח הצג עמודות
+מוצגות כברירת מחדל בחלון השוואת התיקיות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>שם קובץ</guilabel>: שם הפריט המושווה. בהשוואה לא רקורסיבית, עמודה
+זו כוללת קבצים ותיקיות; בהשוואה רקורסיבית, היא אינה כוללת תיקיות: במקום זאת,
+התיקיות רשומות בעמודה תיקייה.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>תיקייה</guilabel>: נתיב תיקיית המשנה המושווית, ביחס לתיקייה
+המושווית. עבור השוואה לא רקורסיבית עמודה זו תמיד ריקה: תיקיות רשומות בעמודה
+<guilabel>שם קובץ</guilabel> במקום זאת.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>תוצאת השוואה</guilabel>: תוצאת השוואה מפורטת (ראה גם
+<guilabel>תוצאה קצרה</guilabel>).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>תאריך שמאלי</guilabel>, <guilabel>תאריך אמצעי</guilabel>,
+<guilabel>תאריך ימני</guilabel>: תאריכי שינוי של פריט בכל צד. החדש מבין שני
+התאריכים (או התאריך עבור כל פריט ייחודי) מקודם בכוכבית ( * ).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>סיומת</guilabel>: סיומת קובץ, שימושית למיון.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>העמודות הנוספות הבאות זמינות בתיבת הדו-שיח הצג עמודות:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>תוצאה קצרה</guilabel>: מציג את העמודה <guilabel>תוצאת
+השוואה</guilabel> בצורה תמציתית (מימין בלבד).</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>בינארי</guilabel>: העמודה מכילה כוכבית ( * ) כאשר הקובץ הוא קובץ
+בינארי. זה שימושי למיון ולשימוש בעמודה <guilabel>תוצאה קצרה</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>תכונות שמאליות</guilabel>, <guilabel>תכונות אמצעיות</guilabel>,
+<guilabel>תכונות ימניות</guilabel>: מציג תכונות קובץ.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>זמן יצירה שמאלי</guilabel>, <guilabel>זמן יצירה אמצעי</guilabel>,
+<guilabel>זמן יצירה ימני</guilabel>: זמן יצירת פריט.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>קידוד שמאלי</guilabel>, <guilabel>קידוד אמצעי</guilabel>,
+<guilabel>קידוד ימני</guilabel>: קידוד קובץ. מציג את מספר דף הקוד עבור קבצי
+ANSI וקידוד Unicode עבור קבצי Unicode.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>גרסת קובץ שמאלית</guilabel>, <guilabel>גרסת קובץ
+אמצעית</guilabel>, <guilabel>גרסת קובץ ימנית</guilabel>: מספר גרסה מהקובץ,
+אם קיים. שים לב שהגרסה ניתנת לקריאה בלבד עבור סוגי קבצים בינאריים מסוימים
+שידוע שבדרך כלל יש להם משאב גרסה.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>גודל שמאלי</guilabel>, <guilabel>גודל אמצעי</guilabel>,
+<guilabel>גודל ימני</guilabel>: גודל קובץ בבייטים.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>גודל שמאלי (קצר)</guilabel>, <guilabel>גודל אמצעי
+(קצר)</guilabel>, <guilabel>גודל ימני (קצר)</guilabel>: גרסאות קצרות יותר של
+גדלי קבצים, מעוגלות ל-KB, MB או GB.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>קובץ חדש יותר</guilabel>: מציג איזה צד חדש יותר.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>הבדלים</guilabel>: מספר ההבדלים שנמצאו בין קבצים, למעט הבדלים
+שאולי התעלמו מהם.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>דיף שהתעלמו ממנו</guilabel>: מספר ההבדלים שהתעלמו מהם בתוך
+קבצים. אלה הם הבדלים שהתעלמו מהם על ידי מסנני שורות.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>EOL שמאלי</guilabel>, <guilabel>EOL אמצעי</guilabel>,
+<guilabel>EOL ימני</guilabel>: מציג את סגנון ה-EOL (מעבר שורה) של קבצים.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>הסתרת פריטים</title>
+
+      <para>אתה יכול להסתיר במהירות פריט נבחר אחד או יותר באמצעות קיצור הדרך
+<guimenuitem>הסתר פריטים</guimenuitem> בתפריט ההקשר. הפריטים נשארים מוסתרים
+עד שתתרענן את התצוגה (הקש <keycap>F5</keycap>) או לחץ על <menuchoice>
+<guimenu>תצוגה</guimenu> <guimenuitem>הצג פריטים מוסתרים</guimenuitem>
+</menuchoice>.</para>
+
+      <tip>
+        <para>הכר את <guimenuitem>הסתר פריטים</guimenuitem>: זה יכול לחסוך לך זמן רב על
+ידי ביטול פריטים שכבר טיפלת בהם, או שאינם מעניינים כרגע, מהתצוגה. לדוגמה,
+אתה עשוי להסתיר קבצים לאחר מיזוגם, מה שמקל לראות אילו פריטים נותרו למיזוג.</para>
+      </tip>
+    </section>
+  </section>
+
+  <section id="CompareDirs_winshell">
+    <title>שימוש בפקודות מעטפת Windows מחלון השוואת התיקיות</title>
+
+    <para>אתה יכול ללחוץ לחיצה ימנית על בחירה בחלון השוואת התיקיות ולהפעיל פקודות
+מעטפת Windows ישירות מתפריט ההקשר.</para>
+
+    <para>אם הבחירה מתרחשת בשני הצדדים, אתה יכול לבחור בתפריט <guimenu>מעטפת
+שמאלית</guimenu> או <guimenu>מעטפת ימנית</guimenu>. אם הבחירה מתרחשת בכל
+הצדדים, אתה יכול לבחור בתפריט <guimenu>מעטפת שמאלית</guimenu>,
+<guimenu>מעטפת אמצעית</guimenu> או <guimenu>מעטפת ימנית</guimenu>. אם הפריט
+מתרחש רק בצד אחד, רק תפריט המעטפת של צד זה זמין.</para>
+
+    <caution>
+      <para>אנא שקול שפקודות תפריט המעטפת פועלות לחלוטין מחוץ ל-WinMerge. כתוצאה מכך,
+ייתכן ש-WinMerge לא תגיב לפעולות מסוימות באותו אופן כמו פעולות המבוצעות בתוך
+WinMerge. לדוגמה, אם אתה מוחק קובץ באמצעות שילוב זה במקום להשתמש בפקודה
+<command>מחק</command> של WinMerge, השינוי אינו מוצג אוטומטית בחלון השוואת
+התיקיות (עליך לרענן ידנית את החלון כדי לראות את השינוי).</para>
+    </caution>
+  </section>
+  <para></para>
+</article>

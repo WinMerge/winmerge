@@ -190,7 +190,7 @@ const struct LangFileInfo::rg LangFileInfo::rg[] =
 		LANG_GUJARATI,		"GUJARATI\0"
 	},
 	{
-		LANG_HEBREW,		"HEBREW\0"
+		LANG_HEBREW,		"HEBREW\0"						"ISRAEL\0"
 	},
 	{
 		LANG_HINDI,			"HINDI\0"
