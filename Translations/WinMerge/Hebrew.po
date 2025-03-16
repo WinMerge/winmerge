@@ -346,8 +346,14 @@ msgstr "צא\tCtrl+Q"
 msgid "&Edit"
 msgstr "עריכה"
 
+msgid "&Copy\tCtrl+C"
+msgstr "העתק\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "הדבק\tCtrl+V"
+
+msgid "Select &All\tCtrl+A"
+msgstr "בחר הכול\tCtrl+A"
 
 msgid "&Options..."
 msgstr "אפשרויות..."
@@ -381,6 +387,9 @@ msgstr "ענק"
 
 msgid "Men&u Bar"
 msgstr "סרגל תפריטים"
+
+msgid "Output &Pane"
+msgstr ""
 
 msgid "&Status Bar"
 msgstr "סרגל מצב"
@@ -471,9 +480,6 @@ msgstr "ימין לקריאה בלבד"
 
 msgid "&File Encoding..."
 msgstr "קידוד קובץ..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "בחר הכול\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "הצג פריטים זהים"
@@ -660,9 +666,6 @@ msgstr "בצע שוב\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "גזור\tCtrl+X"
-
-msgid "&Copy\tCtrl+C"
-msgstr "העתק\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "חפש...\tCtrl+F"
@@ -3496,6 +3499,9 @@ msgstr "חלונית מיקום"
 msgid "Diff Pane"
 msgstr "חלונית השוואה"
 
+msgid "Output Pane"
+msgstr ""
+
 msgid "Patch file successfully written."
 msgstr "קובץ התיקון נכתב בהצלחה."
 
@@ -4255,6 +4261,20 @@ msgstr ""
 "העתק לשמאל והתקדם (Ctrl+Alt+Left)\n"
 "(Ctrl+Alt+גלגלת שמאלה)\n"
 "(Ctrl+Alt+Shift+גלגלת למעלה)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
+msgstr ""
 
 msgid "Prettification"
 msgstr "עיצוב"
