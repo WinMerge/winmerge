@@ -3275,13 +3275,13 @@ void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 		String pluginNames;
 		const PackingInfo* infoUnpacker = pMergeDoc->GetUnpacker();
 		if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
-			pluginNames += infoUnpacker->GetPluginPipeline() + _T("&");
+			pluginNames += infoUnpacker->GetPluginPipeline() + _T("&&");
 		const PrediffingInfo* infoPrediffer = pMergeDoc->GetPrediffer();
 		if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
-			pluginNames += infoPrediffer->GetPluginPipeline() + _T("&");
+			pluginNames += infoPrediffer->GetPluginPipeline() + _T("&&");
 		const EditorScriptInfo* infoEditorScript = pMergeDoc->GetEditorScript();
 		if (infoEditorScript && !infoEditorScript->GetPluginPipeline().empty())
-			pluginNames += infoEditorScript->GetPluginPipeline() + _T("&");
+			pluginNames += infoEditorScript->GetPluginPipeline() + _T("&&");
 		pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 	}
 	else
