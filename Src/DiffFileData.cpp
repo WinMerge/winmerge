@@ -13,6 +13,8 @@
 #include "diff.h"
 #include "FileTransform.h"
 #include "unicoder.h"
+#include "Logger.h"
+#include "MergeApp.h"
 #include "DebugNew.h"
 
 /**
@@ -75,11 +77,23 @@ bool DiffFileData::DoOpenFiles()
 		{
 			cio::tsopen_s(&m_inf[i].desc, m_FileLocation[i].filepath, O_RDONLY | O_BINARY, _SH_DENYNO, _S_IREAD);
 			if (m_inf[i].desc < 0)
+			{
+				RootLogger::Error(strutils::format(
+					_("Failed to open file: '%s'. errno=%d: %s"),
+						m_FileLocation[i].filepath, errno, 
+					ucr::toTStringFromACP(std::error_code(errno, std::generic_category()).message())));
 				return false;
+			}
 
 			// Get file stats (diffutils uses these)
 			if (cio::fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
+			{
+				RootLogger::Error(strutils::format(
+					_("Failed to retrieve file stats for: '%s'. errno=%d: %s"),
+						m_FileLocation[i].filepath, errno,
+					ucr::toTStringFromACP(std::error_code(errno, std::generic_category()).message())));
 				return false;
+			}
 		}
 		
 		if (same_file)
