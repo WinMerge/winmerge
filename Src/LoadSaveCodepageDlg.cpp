@@ -98,6 +98,21 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 			IExconverter *pexconv = Exconverter::getInstance();
 			if (pexconv != nullptr)
 				cpi = pexconv->enumCodePages();
+			const static int ManualAddTypeList[] = { 437, 850, 858, 860, 863, 861, 1200, 1201, 65000 };
+			for (int cp : ManualAddTypeList)
+			{
+				auto it = std::find_if(cpi.begin(), cpi.end(),
+					[&](const CodePageInfo& info) { return info.codepage == cp; });
+				if (it == cpi.end())
+				{
+					CodePageInfo cpii{};
+					pexconv->getCodepageDescription(cp, cpii.desc);
+					cpii.codepage = cp;
+					cpi.push_back(cpii);
+				}
+			}
+			std::sort(cpi.begin(), cpi.end(),
+				[](const CodePageInfo& a, const CodePageInfo& b) { return a.codepage < b.codepage; });
 			::PostMessage(hwnd, WM_APP, 0, 0);
 			return cpi;
 		});
