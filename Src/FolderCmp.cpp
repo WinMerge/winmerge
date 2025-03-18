@@ -53,6 +53,18 @@ void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt)
 {
 }
 
+void FolderCmp::LogError(const DIFFITEM& di)
+{
+	PathContext paths;
+	m_pCtxt->GetComparePaths(di, paths);
+	const String s = (m_pCtxt->GetCompareDirs() < 3 ?
+			strutils::format_string2(_("Failed to compare %1 with %2: "), paths[0], paths[1]) : 
+			strutils::format_string3(_("Failed to compare %1 with %2 and %3: "), paths[0], paths[1], paths[2]))
+			+ strutils::format(
+			_("(errno=%d: %s)"), errno, ucr::toTStringFromACP(std::error_code(errno, std::generic_category()).message()));
+	RootLogger::Error(s);
+}
+
 /**
  * @brief Prepare files (run plugins) & compare them, and return diffcode.
  * This is function to compare two files in folder compare. It is not used in
@@ -382,6 +394,8 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			}
 		}
 exitPrepAndCompare:
+		const int errnoSaved = errno;
+
 		m_diffFileData.Reset();
 		diffdata10.Reset();
 		diffdata12.Reset();
@@ -405,6 +419,12 @@ exitPrepAndCompare:
 		// Also when disabling ignore codepage option and the encodings of files are not equal, change the flag to `DIFFCODE::DIFF even if  `DIFFCODE::SAME` flag is set to the variable `code`
 		if (!di.diffcode.existAll() || (!m_pCtxt->m_bIgnoreCodepage && !std::equal(encoding + 1, encoding + nDirs, encoding)))
 			code = (code & ~DIFFCODE::COMPAREFLAGS) | DIFFCODE::DIFF;
+
+		if (DIFFCODE::isResultError(code))
+		{
+			errno = errnoSaved;
+			LogError(di);
+		}
 	}
 	else if (nCompMethod == CMP_BINARY_CONTENT)
 	{
@@ -414,6 +434,8 @@ exitPrepAndCompare:
 		PathContext tFiles;
 		m_pCtxt->GetComparePaths(di, tFiles);
 		code = m_pBinaryCompare->CompareFiles(tFiles, di);
+		if (DIFFCODE::isResultError(code))
+			LogError(di);
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
 	{
@@ -422,6 +444,8 @@ exitPrepAndCompare:
 
 		m_pTimeSizeCompare->SetAdditionalOptions(m_pCtxt->m_bIgnoreSmallTimeDiff);
 		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, m_pCtxt->GetCompareDirs(), di);
+		if (DIFFCODE::isResultError(code))
+			LogError(di);
 	}
 	else if (nCompMethod == CMP_IMAGE_CONTENT)
 	{
@@ -434,6 +458,8 @@ exitPrepAndCompare:
 		PathContext tFiles;
 		m_pCtxt->GetComparePaths(di, tFiles);
 		code = DIFFCODE::IMAGE | m_pImageCompare->CompareFiles(tFiles, di);
+		if (DIFFCODE::isResultError(code))
+			LogError(di);
 	}
 	else
 	{

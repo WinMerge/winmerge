@@ -43,6 +43,7 @@ public:
 	~FolderCmp();
 	bool RunPlugins(PluginsContext * plugCtxt, String &errStr);
 	void CleanupAfterPlugins(PluginsContext *plugCtxt);
+	void LogError(const DIFFITEM& di);
 	int prepAndCompareFiles(DIFFITEM &di);
 
 	int m_ndiffs;
