@@ -1141,31 +1141,31 @@ msgstr "Ladda projekt..."
 msgid "${*} - All arguments"
 msgstr "${*} - Alla argument"
 
-msgid "${1} - The first argumentet"
+msgid "${1} - The first argument"
 msgstr "${1} - Det första argumentet"
 
-msgid "${2} - The second argumentet"
+msgid "${2} - The second argument"
 msgstr "${2} - Det andra argumentet"
 
-msgid "${3} - The third argumentet"
+msgid "${3} - The third argument"
 msgstr "${3} - Det tredje argumentet"
 
-msgid "${4} - The fourth argumentet"
+msgid "${4} - The fourth argument"
 msgstr "${4} - Det fjärde argumentet"
 
-msgid "${5} - The fifth argumentet"
+msgid "${5} - The fifth argument"
 msgstr "${5} - Det femte argumentet"
 
-msgid "${6} - The sixth argumentet"
+msgid "${6} - The sixth argument"
 msgstr "${6} - Det sjätte argumentet"
 
-msgid "${7} - The seventh argumentet"
+msgid "${7} - The seventh argument"
 msgstr "${7} - Det sjunde argumentet"
 
-msgid "${8} - The eighth argumenett"
+msgid "${8} - The eighth argument"
 msgstr "${9} - Det åttonde argumentet"
 
-msgid "${9} - The ninth argumentet"
+msgid "${9} - The ninth argument"
 msgstr "${9} - Det nionde argumentet"
 
 msgid "${SRC_FILE} - Source file"
@@ -1177,8 +1177,8 @@ msgstr "${SRC_FOLDER} - Källkatalogr"
 msgid "${SRC_URL} - Source URL"
 msgstr "${SRC_URL} - KällURL"
 
-msgid ","
-msgstr ","
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr ""
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
 msgstr "${SRC_URL_SUFFIX} - KällURL-suffix"
@@ -4408,7 +4408,7 @@ msgstr "Skriv ut"
 msgid "Pre&v Page"
 msgstr "Förra sidan"
 
-msgid "&Two Pages"
+msgid "&Two Page"
 msgstr "Två sidor"
 
 msgid "&One Page"
