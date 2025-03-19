@@ -2423,14 +2423,16 @@ LRESULT CMainFrame::OnUser2(WPARAM wParam, LPARAM lParam)
 	CCrystalTextBuffer& buf = m_pOutputDoc->m_xTextBuffer;
 	int nEndLine, nEndChar;
 	POSITION pos = m_pOutputDoc->GetFirstViewPosition();
-	CCrystalTextView* pOutputView = static_cast<CCrystalTextView*>(m_pOutputDoc->GetNextView(pos));
+	COutputView* pOutputView = static_cast<COutputView*>(m_pOutputDoc->GetNextView(pos));
 	const bool isCursorAtLastLine = (pOutputView && pOutputView->GetCursorPos().y + 1 == buf.GetLineCount());
 	buf.InsertText(pOutputView, buf.GetLineCount() - 1, 0, text.c_str(), text.length(), nEndLine, nEndChar, 0, false);
 	if (isCursorAtLastLine)
 	{
 		CEPoint pt{ nEndChar, nEndLine };
 		pOutputView->SetCursorPos(pt);
-		pOutputView->EnsureVisible(pt);
+		CEPoint ptStart{ 0, (std::max)(0, nEndLine - pOutputView->GetScreenLines()) };
+		CEPoint ptEnd{ 0, (std::max)(0, nEndLine) };
+		pOutputView->EnsureVisible(ptStart, ptEnd);
 	}
 
 	delete pLogMessage;

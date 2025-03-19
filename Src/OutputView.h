@@ -20,6 +20,7 @@ protected:
 public:
 	virtual CCrystalTextBuffer* LocateTextBuffer() override;
 	COutputDoc* GetDocument();
+	using CCrystalTextView::GetScreenLines;
 
 protected:
 

@@ -7046,8 +7046,20 @@ void CCrystalTextView::EnsureVisible (CEPoint ptStart, CEPoint ptEnd)
   //BEGIN SW
   int nSubLineCount = GetSubLineCount();
   int nNewTopSubLine = m_nTopSubLine;
-  CEPoint subLinePos;
 
+  if (ptStart != ptEnd)
+    {
+      CEPoint subLinePosEnd;
+      CharPosToPoint(ptEnd.y, ptEnd.x, subLinePosEnd);
+      subLinePosEnd.y += GetSubLineIndex(ptEnd.y);
+
+      if (subLinePosEnd.y >= nNewTopSubLine + GetScreenLines())
+          nNewTopSubLine = subLinePosEnd.y - GetScreenLines() + 1;
+      if (subLinePosEnd.y < nNewTopSubLine)
+          nNewTopSubLine = subLinePosEnd.y;
+    }
+
+  CEPoint subLinePos;
   CharPosToPoint( ptStart.y, ptStart.x, subLinePos );
   subLinePos.y += GetSubLineIndex( ptStart.y );
 
