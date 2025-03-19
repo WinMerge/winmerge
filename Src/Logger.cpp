@@ -16,7 +16,7 @@ void Logger::Log(LogLevel level, const std::string& msg)
 }
 
 
-String LogMessage::format() const
+String LogMessage::format(const String& dateTimePattern, bool milliseconds) const
 {
 	auto timeT = std::chrono::system_clock::to_time_t(tp);
 	auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch()) % 1000;
@@ -25,8 +25,9 @@ String LogMessage::format() const
 	localtime_s(&tm, &timeT);
 
 	std::basic_ostringstream<tchar_t> oss;
-	oss << std::put_time(&tm, _T("%Y-%m-%dT%H:%M:%S"))
-		<< '.' << std::setw(3) << std::setfill(_T('0')) << millis.count();
+	oss << std::put_time(&tm, dateTimePattern.c_str());
+	if (milliseconds)
+		oss << '.' << std::setw(3) << std::setfill(_T('0')) << millis.count();
 
 	const tchar_t* levelStr = (level == Logger::LogLevel::ERR) ? _T("ERROR") :
 		(level == Logger::LogLevel::WARN) ? _T("WARN") : _T("INFO");

@@ -2419,7 +2419,8 @@ LRESULT CMainFrame::OnUser2(WPARAM wParam, LPARAM lParam)
 		m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
 		m_pOutputDoc->m_xTextBuffer.InitNew();
 	}
-	String text = pLogMessage->format();
+	static const String pattern = _T("%Y-%m-%dT%H:%M:%S");
+	String text = pLogMessage->format(pattern, true);
 	CCrystalTextBuffer& buf = m_pOutputDoc->m_xTextBuffer;
 	int nEndLine, nEndChar;
 	POSITION pos = m_pOutputDoc->GetFirstViewPosition();

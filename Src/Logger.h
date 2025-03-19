@@ -39,7 +39,7 @@ struct LogMessage
 		: level(level), tp(tp), text(text) { }
 	LogMessage(LogMessage&& other) noexcept
 		: level(other.level), tp(other.tp), text(std::move(other.text)) { }
-	String format() const;
+	String format(const String& dateTimePattern, bool milliseconds) const;
 	Logger::LogLevel level;
 	std::chrono::system_clock::time_point tp;
 	String text;
