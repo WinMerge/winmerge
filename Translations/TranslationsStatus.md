@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2025-03-14**:
+Status from **2025-03-20**:
 
 ## WinMerge
 
@@ -41,7 +41,7 @@ Status from **2025-03-14**:
 | Slovak               |  1420 |       1184 |     0 |          236 |     83 % |  2022-02-17 |
 | Slovenian            |  1420 |       1320 |     0 |          100 |     92 % |  2024-01-28 |
 | Spanish              |  1420 |       1317 |     0 |          103 |     92 % |  2023-11-24 |
-| Swedish              |  1420 |       1232 |     2 |          186 |     86 % |  2023-02-08 |
+| Swedish              |  1420 |       1415 |     2 |            3 |     99 % |  2023-02-08 |
 | Tamil                |  1420 |       1218 |     0 |          202 |     85 % |  2023-07-24 |
 | Turkish              |  1420 |       1420 |     0 |            0 |    100 % |  2023-10-28 |
 | Ukrainian            |  1420 |        708 |     0 |          712 |     49 % |  2009-06-13 |
@@ -351,6 +351,7 @@ Status from **2025-03-14**:
    - [Hans Eriksson](mailto:hans.ericson%20at%20bredband.net)
    - [pgert](mailto:pgert%20at%20yahoo.se)
    - [Timmy Almroth](mailto:timmy.almroth%20at%20tim-international.net)
+   - [Hans Eriksson](mailto:hanseriksson980@gmail.com)
 
  * Tamil
    - [தமிழ்நேரம்](mailto:https://TamilNeram.github.io)
