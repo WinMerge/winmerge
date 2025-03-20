@@ -17,14 +17,14 @@ set docbook_outputdir_final=%docbook_build_path%\%docbook_outputdir%
 if not exist "%docbook_outputdir%" mkdir "%docbook_outputdir%"
 if not exist "%docbook_outputdir_final%" mkdir "%docbook_outputdir_final%"
 
-if "%1" == "/build" (
+if "%4" == "/build" (
   if exist "%docbook_outputdir_final%\%2" (
     copy "%docbook_outputdir_final%\%2" %1\%2 2> NUL > NUL
   )
   for /f "tokens=*" %%i in ('dir /a:-d /b /o:d /t:w %1') do set NEWEST=%%~nxi
   del %1\%2 2> NUL
   if "!NEWEST!" == "%2" goto end
-) else if "%1" == "/clean" (
+) else if "%4" == "/clean" (
   del "%docbook_outputdir_final%\%2"
   goto end
 )
