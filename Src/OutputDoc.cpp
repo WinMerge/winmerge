@@ -5,6 +5,7 @@
 #include "OutputDoc.h"
 #include "OutputView.h"
 #include "utils/filesup.h"
+#include "ccrystaltextmarkers.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,8 +28,10 @@ END_MESSAGE_MAP()
 
 #pragma warning(disable:4355)
 COutputDoc::COutputDoc()
+: m_pMarkers(new CCrystalTextMarkers())
 {
-	// TODO: add one-time construction code here
+	m_pMarkers->SetMarker(_T("error"), "[ERROR]", 0, COLORINDEX_HIGHLIGHTBKGND1);
+	m_pMarkers->SetMarker(_T("warn"), "[WARN]", 0, COLORINDEX_HIGHLIGHTBKGND2);
 }
 
 COutputDoc::~COutputDoc()

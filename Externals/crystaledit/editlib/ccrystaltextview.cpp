@@ -6984,7 +6984,8 @@ CString CCrystalTextView::GetTextBufferEol(int nLine) const
 
 void CCrystalTextView::SetMarkersContext(CCrystalTextMarkers * pMarkers)
 {
-  pMarkers->AddView(this);
+  if (pMarkers)
+    pMarkers->AddView(this);
   m_pMarkers = pMarkers;
 }
 

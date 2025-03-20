@@ -6,6 +6,8 @@
 
 #include "CCrystalTextBuffer.h"
 
+class CCrystalTextMarkers;
+
 class COutputDoc : public CDocument
 {
 protected: // create from serialization only
@@ -15,6 +17,7 @@ protected: // create from serialization only
 	// Attributes
 public:
 	CCrystalTextBuffer m_xTextBuffer;
+	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
 
 	// Operations
 public:

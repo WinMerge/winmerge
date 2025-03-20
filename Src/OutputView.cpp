@@ -87,5 +87,6 @@ void COutputView::OnInitialUpdate()
 	SetFont(theApp.m_lfDiff);
 	AttachToBuffer();
 	SetColorContext(theApp.GetMainSyntaxColors());
+	SetMarkersContext(GetDocument()->m_pMarkers.get());
 }
 
