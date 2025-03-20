@@ -3195,6 +3195,13 @@ msgstr "找到 %1 個差異"
 msgid "1 Difference Found"
 msgstr "找到 1 個差異"
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 #, c-format
 msgid "RO"

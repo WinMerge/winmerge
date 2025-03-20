@@ -14,6 +14,7 @@
 #include "FileLocation.h"
 #include "Logger.h"
 #include "CompareStats.h"
+#include "IMergeDoc.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -190,56 +191,11 @@ String CMergeFrameCommon::GetDiffStatusString(int curDiffIndex, int diffCount)
 	return s;
 }
 
-void CMergeFrameCommon::LogComparisonCompleted(int diffCount)
+static String GetTitleStringFlags(const IMergeDoc& mergeDoc)
 {
-	RootLogger::Info(_("Comparison completed") + _T(": ") + GetDiffStatusString(-1, diffCount));
-}
-
-void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
-{
-	int diffCount = 0;
-	for (auto type : {
-		CompareStats::RESULT_DIFF, CompareStats::RESULT_BINDIFF,
-		CompareStats::RESULT_LUNIQUE, CompareStats::RESULT_MUNIQUE, CompareStats::RESULT_RUNIQUE,
-		CompareStats::RESULT_LMISSING, CompareStats::RESULT_MMISSING, CompareStats::RESULT_RMISSING
-		})
-		diffCount += stats.GetCount(type);
-	LogComparisonCompleted(diffCount);
-}
-
-void CMergeFrameCommon::LogFileSaved(const String& path)
-{
-	RootLogger::Info(_("File saved") + _T(": ") + path);
-}
-
-String CMergeFrameCommon::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
-{
-	String p;
-	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
-		p = _T("Unpacker: ") + infoUnpacker->GetPluginPipeline();
-	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
-	{
-		if (!p.empty())
-			p += _T(", ");
-		p += _T("Prediffer: ") + infoPrediffer->GetPluginPipeline();
-	}
-	if (p.empty())
-		return _T("");
-	return _T(" (") + p + _T(")");
-}
-
-String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[],
-	const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs)
-{
-	const int nBuffers = paths.GetSize();
-	String sFileName[3];
-	String sTitle;
-	for (int nBuffer = 0; nBuffer < paths.GetSize(); nBuffer++)
-		sFileName[nBuffer] = !desc[nBuffer].empty() ? desc[nBuffer] : paths::FindFileName(paths[nBuffer]);
-	if (std::count(&sFileName[0], &sFileName[0] + nBuffers, sFileName[0]) == nBuffers)
-		sTitle = sFileName[0] + strutils::format(_T(" x %d"), nBuffers);
-	else
-		sTitle = strutils::join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
+	const PackingInfo* pInfoUnpacker = mergeDoc.GetUnpacker();
+	const PrediffingInfo* pInfoPrediffer = mergeDoc.GetPrediffer();
+	const bool hasTrivialDiffs = mergeDoc.GetTrivialCount();
 	String flags;
 	if (pInfoUnpacker && !pInfoUnpacker->GetPluginPipeline().empty())
 		flags += _T("U");
@@ -247,7 +203,38 @@ String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String 
 		flags += _T("P");
 	if (hasTrivialDiffs)
 		flags += _T("F");
-	return (flags.empty() ? _T("") : (_T("(") + flags + _T(") "))) + sTitle;
+	return (flags.empty() ? _T("") : (_T("(") + flags + _T(") ")));
+}
+
+String CMergeFrameCommon::GetTitleString(const IMergeDoc& mergeDoc)
+{
+	PathContext paths;
+	const int nBuffers = mergeDoc.GetFileCount();
+	String sFileName[3];
+	String sTitle;
+	for (int nBuffer = 0; nBuffer < nBuffers; nBuffer++)
+	{
+		const String desc = mergeDoc.GetDescription(nBuffer);
+		sFileName[nBuffer] = !desc.empty() ? desc : paths::FindFileName(mergeDoc.GetPath(nBuffer));
+	}
+	if (std::count(&sFileName[0], &sFileName[0] + nBuffers, sFileName[0]) == nBuffers)
+		sTitle = sFileName[0] + strutils::format(_T(" x %d"), nBuffers);
+	else
+		sTitle = strutils::join(&sFileName[0], &sFileName[0] + nBuffers, _T(" - "));
+	return GetTitleStringFlags(mergeDoc) + sTitle;
+}
+
+String CMergeFrameCommon::GetTooltipString(const IMergeDoc& mergeDoc)
+{
+	PathContext paths;
+	String desc[3];
+	const int nBuffers = mergeDoc.GetFileCount();
+	for (int i = 0; i < nBuffers; ++i)
+	{
+		desc[i] = mergeDoc.GetDescription(i);
+		paths.SetPath(i, mergeDoc.GetPath(i), false);
+	}
+	return GetTooltipString(paths, desc, mergeDoc.GetUnpacker(), mergeDoc.GetPrediffer(), mergeDoc.GetTrivialCount() > 0);
 }
 
 String CMergeFrameCommon::GetTooltipString(const PathContext& paths, const String desc[],
@@ -284,6 +271,52 @@ String CMergeFrameCommon::GetTooltipString(const PathContext& paths, const Strin
 	if (hasTrivialDiffs)
 		sTitle += _("Filter applied") + _T("\n");
 	return sTitle;
+}
+
+void CMergeFrameCommon::LogComparisonCompleted(const IMergeDoc& mergeDoc)
+{
+	RootLogger::Info(_("Comparison completed") + _T(": ") + GetTitleStringFlags(mergeDoc) + GetDiffStatusString(-1, mergeDoc.GetDiffCount()));
+}
+
+void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
+{
+	const int errorCount = stats.GetCount(CompareStats::RESULT_ERROR);
+	if (errorCount > 0)
+	{
+		String s = errorCount == 1 ? _("1 Error Found") :
+			  strutils::format_string1(_("%1 Errors Found"), strutils::to_str(errorCount));
+		RootLogger::Warn(_("Comparison completed") + _T(": ") + s);
+		return;
+	}
+	int diffCount = 0;
+	for (auto type : {
+		CompareStats::RESULT_DIFF, CompareStats::RESULT_BINDIFF,
+		CompareStats::RESULT_LUNIQUE, CompareStats::RESULT_MUNIQUE, CompareStats::RESULT_RUNIQUE,
+		CompareStats::RESULT_LMISSING, CompareStats::RESULT_MMISSING, CompareStats::RESULT_RMISSING
+		})
+		diffCount += stats.GetCount(type);
+	RootLogger::Info(_("Comparison completed") + _T(": ") + GetDiffStatusString(-1, diffCount));
+}
+
+void CMergeFrameCommon::LogFileSaved(const String& path)
+{
+	RootLogger::Info(_("File saved") + _T(": ") + path);
+}
+
+String CMergeFrameCommon::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)
+{
+	String p;
+	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
+		p = _("Unpacker") + _T(": ") + infoUnpacker->GetPluginPipeline();
+	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+	{
+		if (!p.empty())
+			p += _T(", ");
+		p += _("Prediffer") + _T(": ") + infoPrediffer->GetPluginPipeline();
+	}
+	if (p.empty())
+		return _T("");
+	return _T(" (") + p + _T(")");
 }
 
 void CMergeFrameCommon::ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI)

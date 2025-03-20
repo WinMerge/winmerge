@@ -2668,6 +2668,13 @@ msgstr "%1 eroa löytyi"
 msgid "1 Difference Found"
 msgstr "1 ero löytyi"
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 msgid "RO"
 msgstr "RO"

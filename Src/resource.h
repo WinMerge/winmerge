@@ -1313,6 +1313,8 @@
 #define IDS_DIRVIEW_STATUS_FMT_FOCUS    40840
 #define IDS_DIRVIEW_STATUS_FMT_NOFOCUS  40841
 #define IDS_DIRVIEW_STATUS_COMPARING    40842
+#define IDS_NO_ERR_SEL_FMT              40843
+#define IDS_1_ERR_FOUND                 40844
 #define IDS_ERROR_INCOMPARABLE          41200
 #define IDS_DIRSEL_TAG                  41201
 #define IDS_OPEN_FILESDIRS              41202

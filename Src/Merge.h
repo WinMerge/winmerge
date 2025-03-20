@@ -16,6 +16,7 @@
 #define WMU_CHILDFRAMEACTIVATE					(WM_APP + 12)
 #define WMU_CHILDFRAMEACTIVATED					(WM_APP + 13)
 constexpr UINT_PTR IDT_UPDATEMAINMENU = 1;
+constexpr UINT_PTR IDT_FLUSHLOG = 2;
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH

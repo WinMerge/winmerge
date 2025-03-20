@@ -274,7 +274,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 
 	GetMainFrame()->WatchDocuments(this);
 
-	CMergeFrameCommon::LogComparisonCompleted(m_pImgMergeWindow->GetDiffCount());
+	CMergeFrameCommon::LogComparisonCompleted(*this);
 
 	return true;
 }
@@ -1124,7 +1124,7 @@ void CImgMergeFrame::UpdateHeaderSizes()
  */
 void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(*this);
 	CMergeFrameCommon::SetTitle(sTitle.c_str());
 	if (m_hWnd != nullptr)
 		SetWindowText(sTitle.c_str());
@@ -1269,7 +1269,15 @@ bool CImgMergeFrame::CloseNow()
  */
 CString CImgMergeFrame::GetTooltipString() const
 {
-	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr).c_str();
+	return CMergeFrameCommon::GetTooltipString(*this).c_str();
+}
+
+/**
+ * @brief Returns the number of differences found
+ */
+int CImgMergeFrame::GetDiffCount() const
+{
+	return m_pImgMergeWindow->GetDiffCount();
 }
 
 /**

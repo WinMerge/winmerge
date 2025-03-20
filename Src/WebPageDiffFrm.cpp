@@ -454,7 +454,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 			}
 			m_bCompareCompleted = true;
 
-			CMergeFrameCommon::LogComparisonCompleted(m_pWebDiffWindow->GetDiffCount());
+			CMergeFrameCommon::LogComparisonCompleted(*this);
 
 			return S_OK;
 		});
@@ -834,7 +834,7 @@ void CWebPageDiffFrame::UpdateHeaderSizes()
  */
 void CWebPageDiffFrame::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(*this);
 	CMergeFrameCommon::SetTitle(sTitle.c_str());
 	if (m_hWnd != nullptr)
 	{
@@ -895,7 +895,15 @@ bool CWebPageDiffFrame::CloseNow()
  */
 CString CWebPageDiffFrame::GetTooltipString() const
 {
-	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr).c_str();
+	return CMergeFrameCommon::GetTooltipString(*this).c_str();
+}
+
+/**
+ * @brief Returns the number of differences found
+ */
+int CWebPageDiffFrame::GetDiffCount() const
+{
+	return m_pWebDiffWindow->GetDiffCount();
 }
 
 /**

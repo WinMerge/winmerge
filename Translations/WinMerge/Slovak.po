@@ -2649,6 +2649,13 @@ msgstr "nájdených %1 rozdielov"
 msgid "1 Difference Found"
 msgstr "nájdený jeden rozdiel"
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 msgid "RO"
 msgstr "RO"

@@ -158,6 +158,7 @@ int CHexMergeDoc::UpdateLastCompareResult()
 			break;
 	}
 	GetParentFrame()->SetLastCompareResult(bDiff);
+	m_hasDiff = bDiff;
 	return bDiff ? 1 : 0;
 }
 
@@ -481,7 +482,7 @@ bool CHexMergeDoc::CloseNow()
  */
 CString CHexMergeDoc::GetTooltipString() const
 {
-	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr).c_str();
+	return CMergeFrameCommon::GetTooltipString(*this).c_str();
 }
 
 /**
@@ -561,7 +562,7 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 
 	GetMainFrame()->WatchDocuments(this);
 
-	CMergeFrameCommon::LogComparisonCompleted(theApp.GetLastCompareResult() != 0 ? -1 : 0);
+	CMergeFrameCommon::LogComparisonCompleted(*this);
 
 	return bSucceeded;
 }
@@ -697,7 +698,7 @@ void CHexMergeDoc::RefreshOptions()
  */
 void CHexMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(*this);
 	CDocument::SetTitle(sTitle.c_str());
 	if (auto* pParentFrame = GetParentFrame())
 		pParentFrame->SetWindowText(sTitle.c_str());

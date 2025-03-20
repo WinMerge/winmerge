@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-03-11 08:24+0000\n"
+"POT-Creation-Date: 2025-03-20 14:02+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2541,6 +2541,13 @@ msgid "%1 Differences Found"
 msgstr ""
 
 msgid "1 Difference Found"
+msgstr ""
+
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
 msgstr ""
 
 #. Abbreviation from "Read Only"

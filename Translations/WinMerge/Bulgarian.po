@@ -2650,6 +2650,13 @@ msgstr "%1 различия"
 msgid "1 Difference Found"
 msgstr "1 различие"
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 msgid "RO"
 msgstr "СЧ"

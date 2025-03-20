@@ -681,9 +681,9 @@ int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPromp
 	// Display the message box dialog and return the result.
 	int result = static_cast<int>(dlgMessage.DoModal());
 	String const msg = makeLogString(lpszPrompt, result);
-	if ((nType & MB_ICONERROR) != 0)
+	if ((nType & MB_ICONMASK) == MB_ICONERROR)
 		RootLogger::Error(msg);
-	else if ((nType & MB_ICONWARNING) != 0)
+	else if ((nType & MB_ICONMASK) == MB_ICONWARNING)
 		RootLogger::Warn(msg);
 	else
 		RootLogger::Info(msg);

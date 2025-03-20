@@ -3169,6 +3169,13 @@ msgstr "%1 forskelle fundet"
 msgid "1 Difference Found"
 msgstr "1 forskel fundet"
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 #, c-format
 msgid "RO"

@@ -18,9 +18,11 @@ protected: // create from serialization only
 public:
 	CCrystalTextBuffer m_xTextBuffer;
 	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
+	int m_nMaxLineCount;
 
 	// Operations
 public:
+	void AppendLineWithAutoTrim(const String& text);
 
 	// Overrides
 		// ClassWizard generated virtual function overrides

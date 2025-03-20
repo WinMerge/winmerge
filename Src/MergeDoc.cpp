@@ -2023,9 +2023,7 @@ bool CMergeDoc::CloseNow()
  */
 CString CMergeDoc::GetTooltipString() const
 {
-	PrediffingInfo infoPrediffer;
-	GetPrediffer(&infoPrediffer);
-	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, &infoPrediffer, m_nTrivialDiffs > 0).c_str();
+	return CMergeFrameCommon::GetTooltipString(*this).c_str();
 }
 
 /**
@@ -2489,7 +2487,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 			
 		}
 
-		CMergeFrameCommon::LogComparisonCompleted(m_diffList.GetSignificantDiffs());
+		CMergeFrameCommon::LogComparisonCompleted(*this);
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created
@@ -2711,9 +2709,7 @@ bool CMergeDoc::IsEditedAfterRescan(int nBuffer) const
  */
 void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
-	PrediffingInfo infoPrediffer;
-	GetPrediffer(&infoPrediffer);
-	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, &infoPrediffer, m_nTrivialDiffs > 0);
+	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(*this);
 	CDocument::SetTitle(sTitle.c_str());
 }
 

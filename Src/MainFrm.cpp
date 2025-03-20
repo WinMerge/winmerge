@@ -229,7 +229,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_DESTROY()
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
-	ON_MESSAGE(WM_USER+2, OnUser2)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
@@ -383,6 +382,7 @@ CMainFrame::CMainFrame()
 , m_pDirWatcher(new DirWatcher())
 , m_pOutputDoc(nullptr)
 {
+	InitializeCriticalSection(&m_cs);
 }
 
 CMainFrame::~CMainFrame()
@@ -444,7 +444,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
-
+	
 	if (!m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
 	{
 		TRACE0("Failed to create tab bar\n");
@@ -511,6 +511,11 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 			DrawMenuBar();
 
 		OnUpdateFrameTitle(FALSE);
+	}
+	else if (nIDEvent == IDT_FLUSHLOG)
+	{
+		KillTimer(nIDEvent);
+		ProcessLog();
 	}
 }
 
@@ -2408,36 +2413,36 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-LRESULT CMainFrame::OnUser2(WPARAM wParam, LPARAM lParam)
+void CMainFrame::ProcessLog()
 {
-	LogMessage* pLogMessage = reinterpret_cast<LogMessage*>(wParam);
-	if (lParam != 0 && m_wndOutputBar.m_hWnd == nullptr)
+	static const String pattern = _T("%Y-%m-%dT%H:%M:%S");
+
+	EnterCriticalSection(&m_cs);
+
+	const bool bShow = std::any_of(m_logBuffer.begin(), m_logBuffer.end(),
+		[](const auto& msg) { return msg.second; });
+
+	if (bShow != 0 && m_wndOutputBar.m_hWnd == nullptr)
 		ShowOutputPane(true);
 
 	if (!m_pOutputDoc)
-	{
 		m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
-		m_pOutputDoc->m_xTextBuffer.InitNew();
-	}
-	static const String pattern = _T("%Y-%m-%dT%H:%M:%S");
-	String text = pLogMessage->format(pattern, true);
-	CCrystalTextBuffer& buf = m_pOutputDoc->m_xTextBuffer;
-	int nEndLine, nEndChar;
-	POSITION pos = m_pOutputDoc->GetFirstViewPosition();
-	COutputView* pOutputView = static_cast<COutputView*>(m_pOutputDoc->GetNextView(pos));
-	const bool isCursorAtLastLine = (pOutputView && pOutputView->GetCursorPos().y + 1 == buf.GetLineCount());
-	buf.InsertText(pOutputView, buf.GetLineCount() - 1, 0, text.c_str(), text.length(), nEndLine, nEndChar, 0, false);
-	if (isCursorAtLastLine)
-	{
-		CEPoint pt{ nEndChar, nEndLine };
-		pOutputView->SetCursorPos(pt);
-		CEPoint ptStart{ 0, (std::max)(0, nEndLine - pOutputView->GetScreenLines()) };
-		CEPoint ptEnd{ 0, (std::max)(0, nEndLine) };
-		pOutputView->EnsureVisible(ptStart, ptEnd);
-	}
 
-	delete pLogMessage;
-	return 0;
+	size_t size = 0;
+	for (const auto& msg : m_logBuffer)
+		size += msg.first->text.length() + 32;
+	String text;
+	text.reserve(size);
+	for (const auto& msg : m_logBuffer)
+	{
+		text += msg.first->format(pattern, true);
+		delete msg.first;
+	}
+	m_logBuffer.clear();
+
+	LeaveCriticalSection(&m_cs);
+
+	m_pOutputDoc->AppendLineWithAutoTrim(text);
 }
 
 /**
@@ -3705,9 +3710,21 @@ void CMainFrame::WaitAndDoMessageLoop(bool& completed, int ms)
 
 void CMainFrame::OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show)
 {
-	LogMessage * p = new LogMessage(level, tp, msg);
-	if (!PostMessage(WM_USER + 2, reinterpret_cast<WPARAM>(p), show))
-		delete p;
+	LogMessage* p = new LogMessage(level, tp, msg);
+
+	EnterCriticalSection(&m_cs);
+
+	m_logBuffer.emplace_back(p, show);
+	if (m_logBuffer.size() == 1)
+	{
+		if (!SetTimer(IDT_FLUSHLOG, 100, nullptr))
+		{
+			m_logBuffer.pop_back();
+			delete p;
+		}
+	}
+
+	LeaveCriticalSection(&m_cs);
 }
 
 void CMainFrame::UpdateDocTitle()
@@ -3832,11 +3849,10 @@ void CMainFrame::ShowOutputPane(bool bShow)
 			TRACE0("Failed to create tab bar\n");
 			return;
 		}
+
 		if (!m_pOutputDoc)
-		{
 			m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
-			m_pOutputDoc->m_xTextBuffer.InitNew();
-		}
+
 		COutputView* pOutputView = new COutputView;
 		const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
 		pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
@@ -3892,4 +3908,3 @@ void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 	__super::OnSysCommand(nID, lParam);
 }
-

@@ -24,15 +24,18 @@ String LogMessage::format(const String& dateTimePattern, bool milliseconds) cons
 	std::tm tm;
 	localtime_s(&tm, &timeT);
 
-	std::basic_ostringstream<tchar_t> oss;
-	oss << std::put_time(&tm, dateTimePattern.c_str());
+	std::array<tchar_t, 64> dateTimeBuffer{};
+	tc::tcsftime(dateTimeBuffer.data(), dateTimeBuffer.size(), dateTimePattern.c_str(), &tm);
+
+	String dateTimeStr = dateTimeBuffer.data();
 	if (milliseconds)
-		oss << '.' << std::setw(3) << std::setfill(_T('0')) << millis.count();
+		dateTimeStr += strutils::format(_T(".%03d"), millis.count());
 
 	const tchar_t* levelStr = (level == Logger::LogLevel::ERR) ? _T("ERROR") :
 		(level == Logger::LogLevel::WARN) ? _T("WARN") : _T("INFO");
 
-	oss << _T(" [") << levelStr << _T("] ") << text << std::endl;
+	String msg = text;
+	strutils::replace(msg, _T("\n"), _T("\n  "));
 
-	return oss.str();
+	return String(_T(" [")) + levelStr + _T("] ") + msg + _T("\n");
 }

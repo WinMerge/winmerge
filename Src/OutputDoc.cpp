@@ -29,9 +29,11 @@ END_MESSAGE_MAP()
 #pragma warning(disable:4355)
 COutputDoc::COutputDoc()
 : m_pMarkers(new CCrystalTextMarkers())
+, m_nMaxLineCount(10000)
 {
-	m_pMarkers->SetMarker(_T("error"), "[ERROR]", 0, COLORINDEX_HIGHLIGHTBKGND1);
-	m_pMarkers->SetMarker(_T("warn"), "[WARN]", 0, COLORINDEX_HIGHLIGHTBKGND2);
+	m_pMarkers->SetMarker(_T("warn"), "[WARN]", 0, COLORINDEX_MARKERBKGND1);
+	m_pMarkers->SetMarker(_T("error"), "[ERROR]", 0, COLORINDEX_MARKERBKGND2);
+	m_xTextBuffer.InitNew();
 }
 
 COutputDoc::~COutputDoc()
@@ -43,11 +45,33 @@ BOOL COutputDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return false;
 
-	m_xTextBuffer.InitNew();
 	return true;
 }
 
+void COutputDoc::AppendLineWithAutoTrim(const String& text)
+{
+	CCrystalTextBuffer& buf = m_xTextBuffer;
+	int nEndLine, nEndChar;
+	POSITION pos = GetFirstViewPosition();
+	COutputView* pOutputView = static_cast<COutputView*>(GetNextView(pos));
+	const bool isCursorAtLastLine = (pOutputView && pOutputView->GetCursorPos().y + 1 == buf.GetLineCount());
+	buf.InsertText(pOutputView, buf.GetLineCount() - 1, 0, text.c_str(), text.length(), nEndLine, nEndChar, 0, false);
+	if (buf.GetLineCount() > m_nMaxLineCount)
+	{
+		const int nDeleteLines = m_nMaxLineCount / 10;
+		buf.DeleteText(pOutputView, 0, 0, nDeleteLines, 0, 0, false);
+		nEndLine -= nDeleteLines;
+	}
 
+	if (isCursorAtLastLine)
+	{
+		CEPoint pt{ nEndChar, nEndLine };
+		pOutputView->SetCursorPos(pt);
+		CEPoint ptStart{ 0, (std::max)(0, nEndLine - pOutputView->GetScreenLines()) };
+		CEPoint ptEnd{ 0, (std::max)(0, nEndLine) };
+		pOutputView->EnsureVisible(ptStart, ptEnd);
+	}
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // COutputDoc serialization

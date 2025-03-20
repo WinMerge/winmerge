@@ -391,7 +391,7 @@ msgid "Men&u Bar"
 msgstr "メニューバー(&U)"
 
 msgid "Output &Pane"
-msgstr ""
+msgstr "出力ペイン(&P)"
 
 msgid "&Status Bar"
 msgstr "ステータス バー(&S)"
@@ -2649,10 +2649,17 @@ msgstr "差異 %1 / %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "%1 個の差異が見つかりました"
+msgstr "%1 件の差異が見つかりました"
 
 msgid "1 Difference Found"
-msgstr "1 個の差異が見つかりました"
+msgstr "1 件の差異が見つかりました"
+
+#, c-format
+msgid "%1 Errors Found"
+msgstr "%1 件のエラーが発生しました"
+
+msgid "1 Error Found"
+msgstr "1 件のエラーが発生しました"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -3651,7 +3658,7 @@ msgid "Diff Pane"
 msgstr "Diff ペイン"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "出力 ペイン"
 
 msgid "Patch file successfully written."
 msgstr "パッチ ファイルの書き込みに成功しました。"
@@ -4443,10 +4450,10 @@ msgid "Comparing %1 with %2 and %3"
 msgstr "%1 と %2 と %3 を比較しています"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "比較が完了しました"
 
 msgid "File saved"
-msgstr ""
+msgstr "ファイルが保存されました"
 
 msgid "Prettification"
 msgstr "整形"

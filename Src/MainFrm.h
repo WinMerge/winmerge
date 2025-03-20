@@ -347,6 +347,8 @@ protected:
 	std::unique_ptr<DirWatcher> m_pDirWatcher;
 	std::optional<bool> m_bTabsOnTitleBar;
 	COutputDoc* m_pOutputDoc;
+	std::vector<std::pair<LogMessage*, bool>> m_logBuffer;
+	CRITICAL_SECTION m_cs;
 
 // Generated message map functions
 protected:
@@ -384,7 +386,6 @@ protected:
 	afx_msg void OnFileOpenProject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnUser1(WPARAM wParam, LPARAM lParam);
-	afx_msg LRESULT OnUser2(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnWindowCloseAll();
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
@@ -465,9 +466,8 @@ private:
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	void UpdateSystemMenu();
 	void ShowOutputPane(bool bShow);
-	bool EnsureValidDockState(CDockState& state);
 	void SavePosition();
-	void RemoveBarBorder();
+	void ProcessLog();
 	std::unique_ptr<WCHAR[]> m_upszLongTextW;
 	std::unique_ptr<CHAR[]> m_upszLongTextA;
 };

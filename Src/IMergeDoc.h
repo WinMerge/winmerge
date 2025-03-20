@@ -1,14 +1,13 @@
 #pragma once
 
 #include "UnicodeString.h"
-#include "IMDITab.h"
 
 struct IDirDoc;
 class PackingInfo;
 class PrediffingInfo;
 class EditorScriptInfo;
 
-struct IMergeDoc : public IMDITab
+struct IMergeDoc
 {
 	enum class FileChange
 	{
@@ -31,5 +30,7 @@ struct IMergeDoc : public IMDITab
 	virtual String GetPath(int pane) const = 0;
 	virtual String GetDescription(int pane) const = 0;
 	virtual bool GetReadOnly(int pane) const = 0;
+	virtual int GetDiffCount() const = 0;
+	virtual int GetTrivialCount() const = 0;
 };
 
