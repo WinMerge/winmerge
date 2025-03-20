@@ -423,7 +423,7 @@ msgstr "&Величезні піктограми"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -903,6 +903,9 @@ msgstr "Пане&ль порівняння"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Панель місць &розташування"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4223,9 +4226,6 @@ msgstr "Місця розташування"
 #, c-format
 msgid "Diff Pane"
 msgstr "Відмінності"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

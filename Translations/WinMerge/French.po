@@ -447,7 +447,7 @@ msgstr "&Énorme"
 msgid "Men&u Bar"
 msgstr "Barre de men&us"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -927,6 +927,9 @@ msgstr "&Détail des différences"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Barre de locali&sation"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4327,9 +4330,6 @@ msgstr "Volet de localisation"
 #, c-format
 msgid "Diff Pane"
 msgstr "Volet des différences"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

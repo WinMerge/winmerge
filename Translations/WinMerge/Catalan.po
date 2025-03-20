@@ -440,7 +440,7 @@ msgstr "&Immensa"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -920,6 +920,9 @@ msgstr "Subfinest&ra de diferències"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Subfinestra d'&ubicació"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4315,9 +4318,6 @@ msgstr "Subfinestra d'ubicació"
 #, c-format
 msgid "Diff Pane"
 msgstr "Subfinestra de diferències"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

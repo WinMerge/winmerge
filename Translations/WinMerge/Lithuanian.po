@@ -391,7 +391,7 @@ msgstr "&Milžiniški mygtukai"
 msgid "Men&u Bar"
 msgstr "Meni&u juosta"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -765,6 +765,9 @@ msgstr "Skirtumų &polangis"
 
 msgid "Lo&cation Pane"
 msgstr "Vi&etos polangis"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Ki&tas konfliktas\tAlt+Shift+Down"
@@ -3380,9 +3383,6 @@ msgstr "Vietos polangis"
 
 msgid "Diff Pane"
 msgstr "Skirtumų polangis"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Pataisų failas sėkmingai įrašytas."

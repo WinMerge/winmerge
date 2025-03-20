@@ -448,7 +448,7 @@ msgstr "매우 크게(&H)"
 msgid "Men&u Bar"
 msgstr "메뉴 표시줄(&U)"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -928,6 +928,9 @@ msgstr "차이점 패널(&P)"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "위치 패널(&C)"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4325,9 +4328,6 @@ msgstr "위치 패널"
 #, c-format
 msgid "Diff Pane"
 msgstr "차이점 패널"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

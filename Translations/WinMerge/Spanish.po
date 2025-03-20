@@ -394,7 +394,7 @@ msgstr "&Enorme"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -768,6 +768,9 @@ msgstr "&Panel de diferencias"
 
 msgid "Lo&cation Pane"
 msgstr "Panel de lo&calización"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Conflicto si&guiente\tAlt+Mayús+Abajo"
@@ -3653,9 +3656,6 @@ msgstr "Panel de localización"
 
 msgid "Diff Pane"
 msgstr "Panel de diferencias"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Archivo de parche escrito correctamente."

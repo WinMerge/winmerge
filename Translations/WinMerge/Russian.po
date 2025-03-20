@@ -393,7 +393,7 @@ msgstr "&Огромные значки"
 msgid "Men&u Bar"
 msgstr "Панель меню"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -767,6 +767,9 @@ msgstr "Пане&ль сравнения"
 
 msgid "Lo&cation Pane"
 msgstr "Панель управления"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Следующий конфликт\tAlt+Shift+Down"
@@ -3382,9 +3385,6 @@ msgstr "Панель управления"
 
 msgid "Diff Pane"
 msgstr "Панель сравнения"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Патч успешно записан."

@@ -441,7 +441,7 @@ msgstr "Hatalmas"
 msgid "Men&u Bar"
 msgstr "Menü sáv"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -921,6 +921,9 @@ msgstr "Eltérés panel"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Eltérések helye"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4297,9 +4300,6 @@ msgstr "Eltérések helye"
 #, c-format
 msgid "Diff Pane"
 msgstr "Eltérés panel"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

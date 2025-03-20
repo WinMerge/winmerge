@@ -388,7 +388,7 @@ msgstr "&Огромен"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -762,6 +762,9 @@ msgstr "Панел с &различия"
 
 msgid "Lo&cation Pane"
 msgstr "Миниатюрна &карта"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "С&ледващ конфликт\tAlt+Shift+Down"
@@ -3645,9 +3648,6 @@ msgstr "Kарта"
 
 msgid "Diff Pane"
 msgstr "Панел с различия"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Кръпката е успешно запазена."

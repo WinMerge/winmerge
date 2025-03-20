@@ -391,7 +391,7 @@ msgstr "O&gromne"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -765,6 +765,9 @@ msgstr "Podokno &razlik"
 
 msgid "Lo&cation Pane"
 msgstr "Podokno loka&cije"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Nas&lednji spor\tAlt+Shift+Down"
@@ -3649,9 +3652,6 @@ msgstr "Podokno lokacije"
 
 msgid "Diff Pane"
 msgstr "Podokno razlik"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Datoteka popravka je bila uspešno zapisana."

@@ -389,7 +389,7 @@ msgstr "&பெரிய"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -763,6 +763,9 @@ msgstr "டிஃப் &பேன்"
 
 msgid "Lo&cation Pane"
 msgstr "லோ&கேஷன் பலகம்"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Ne&xt மோதல்\tAlt+Shift+Down"
@@ -3648,9 +3651,6 @@ msgstr "இருப்பிடம் பலகம்"
 
 msgid "Diff Pane"
 msgstr "டிஃப் பேன்"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "பேட்ச் கோப்பு வெற்றிகரமாக எழுதப்பட்டது."

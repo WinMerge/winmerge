@@ -392,7 +392,7 @@ msgstr "&ضخم"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -766,6 +766,9 @@ msgstr "ال&جزء الخاص بأداة مقارنة الملفات Diff"
 
 msgid "Lo&cation Pane"
 msgstr "الجزء الخاص &بالموقع"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "التضارب التالي\tAlt+Shift+Down"
@@ -3626,9 +3629,6 @@ msgstr "الجزء الخاص بالموقع"
 
 msgid "Diff Pane"
 msgstr "الجزء الخاص بأداة مقارنة الملفات Diff"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "ملف التصحيح (Patch) تم كتابتة بنجاح."

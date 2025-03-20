@@ -393,7 +393,7 @@ msgstr "Enorm"
 msgid "Men&u Bar"
 msgstr "Mynyrad"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -769,6 +769,9 @@ msgstr "Jämförelseöversikt"
 
 msgid "Lo&cation Pane"
 msgstr "Positionsruta"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Nästa konflikt\tAlt+Shift+Down"
@@ -3719,9 +3722,6 @@ msgstr "Översiktsruta"
 
 msgid "Diff Pane"
 msgstr "Ruta för differensöverssikt"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Patchfilen sparades."

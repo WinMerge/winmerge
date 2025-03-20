@@ -440,7 +440,7 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -920,6 +920,9 @@ msgstr "&P چهارگوش تفاوت "
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "&c چهارگوش مکان يابي "
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4280,9 +4283,6 @@ msgstr " چهارگوش مکان "
 #, c-format
 msgid "Diff Pane"
 msgstr " چهارگوش تفاوت "
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

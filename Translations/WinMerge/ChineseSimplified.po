@@ -395,7 +395,7 @@ msgstr "特大(&H)"
 msgid "Men&u Bar"
 msgstr "菜单栏(&U)"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -769,6 +769,9 @@ msgstr "对比窗格(&P)"
 
 msgid "Lo&cation Pane"
 msgstr "定位窗格(&C)"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "下一处冲突(&X)\tAlt+Shift+Down"
@@ -3675,9 +3678,6 @@ msgstr "定位窗格"
 
 msgid "Diff Pane"
 msgstr "差异窗格"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "补丁文件写入成功。"

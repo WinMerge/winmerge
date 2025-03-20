@@ -440,7 +440,7 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -920,6 +920,9 @@ msgstr "H&orisontalt panel"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "V&ertikalt panel"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4271,9 +4274,6 @@ msgstr "Placerings vindue"
 #, c-format
 msgid "Diff Pane"
 msgstr "Forskels vindue"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

@@ -389,7 +389,7 @@ msgstr "Enorm"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -763,6 +763,9 @@ msgstr "Verschilvenster"
 
 msgid "Lo&cation Pane"
 msgstr "Locatievenster"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Volgend conflict\tAlt+Shift+Omlaag"
@@ -3703,9 +3706,6 @@ msgstr "Locatievenster"
 
 msgid "Diff Pane"
 msgstr "Verschilvenster"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Patch-bestand succesvol geschreven."

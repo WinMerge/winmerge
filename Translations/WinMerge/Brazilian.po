@@ -391,7 +391,7 @@ msgstr "&Enorme"
 msgid "Men&u Bar"
 msgstr "Barra de Men&u"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -765,6 +765,9 @@ msgstr "Painel da &Diferenciação"
 
 msgid "Lo&cation Pane"
 msgstr "Pa&inel de Localização"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Pr&óximo Conflito\tAlt+Shift+Pra Baixo"
@@ -3380,9 +3383,6 @@ msgstr "Painel de Localização"
 
 msgid "Diff Pane"
 msgstr "Painel das Diferenças"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Arquivo do patch gravado com sucesso."

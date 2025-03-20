@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2025-03-20 14:02+0000\n"
+"POT-Creation-Date: 2025-03-21 07:56+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -385,7 +385,7 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -758,6 +758,9 @@ msgid "Diff &Pane"
 msgstr ""
 
 msgid "Lo&cation Pane"
+msgstr ""
+
+msgid "Output Pane"
 msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -3373,9 +3376,6 @@ msgid "Location Pane"
 msgstr ""
 
 msgid "Diff Pane"
-msgstr ""
-
-msgid "Output Pane"
 msgstr ""
 
 msgid "Patch file successfully written."

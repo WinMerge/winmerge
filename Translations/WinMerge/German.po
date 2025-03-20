@@ -442,7 +442,7 @@ msgstr "&Riesig"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -922,6 +922,9 @@ msgstr "U&nterschiedsleiste"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "&Positionsleiste"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4048,9 +4051,6 @@ msgstr "Positionsleiste"
 #, c-format
 msgid "Diff Pane"
 msgstr "Unterschiedsleiste"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

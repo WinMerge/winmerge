@@ -392,7 +392,7 @@ msgstr "Ogromny"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -766,6 +766,9 @@ msgstr "&Panel różnic"
 
 msgid "Lo&cation Pane"
 msgstr "Panel lokaliza&cji"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Następny konflikt\tAlt+Shift+Down"
@@ -3381,9 +3384,6 @@ msgstr "Panel lokalizacji"
 
 msgid "Diff Pane"
 msgstr "Panel różnic"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Łatka została utworzona."

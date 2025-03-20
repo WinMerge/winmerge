@@ -439,7 +439,7 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -919,6 +919,9 @@ msgstr "&Rozdílový panel"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "&Polohový panel"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4169,9 +4172,6 @@ msgstr "Poloha"
 #, c-format
 msgid "Diff Pane"
 msgstr "Rozdíly"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

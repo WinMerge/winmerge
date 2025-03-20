@@ -393,7 +393,7 @@ msgstr "&Tamanta"
 msgid "Men&u Bar"
 msgstr "Barra di &listinu"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -767,6 +767,9 @@ msgstr "Pannellu di &e sfarenze"
 
 msgid "Lo&cation Pane"
 msgstr "Pannellu di pusizi&one"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "&Cunflittu seguente\tAlt+Maius+Inghjò"
@@ -3656,9 +3659,6 @@ msgstr "Pannellu di pusizione"
 
 msgid "Diff Pane"
 msgstr "Pannellu di e sfarenze"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "U schedariu di currezzioni hè statu scrittu currettamente."

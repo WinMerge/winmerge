@@ -440,7 +440,7 @@ msgstr "超大圖示 (&H)"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -926,6 +926,9 @@ msgstr "差異窗格 (&P)"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "位置窗格 (&P)"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4315,9 +4318,6 @@ msgstr "位置窗格"
 #, c-format
 msgid "Diff Pane"
 msgstr "近察窗格"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

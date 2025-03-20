@@ -442,7 +442,7 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -922,6 +922,9 @@ msgstr "Ezberd &Panela"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Kokalek&u Panela"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4239,9 +4242,6 @@ msgstr "Kokaleku Panela"
 #, c-format
 msgid "Diff Pane"
 msgstr "Ezberdint. Panela"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

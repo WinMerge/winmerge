@@ -439,7 +439,7 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -919,6 +919,9 @@ msgstr "Panel &razlika"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Panel &položaja"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4237,9 +4240,6 @@ msgstr "Položaj panela"
 #, c-format
 msgid "Diff Pane"
 msgstr "Panel razlika"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

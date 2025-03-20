@@ -390,8 +390,8 @@ msgstr "特大(&H)"
 msgid "Men&u Bar"
 msgstr "メニューバー(&U)"
 
-msgid "Output &Pane"
-msgstr "出力ペイン(&P)"
+msgid "&Output Pane"
+msgstr "出力ペイン(&O)"
 
 msgid "&Status Bar"
 msgstr "ステータス バー(&S)"
@@ -764,6 +764,9 @@ msgstr "Diff ペイン(&P)"
 
 msgid "Lo&cation Pane"
 msgstr "ロケーション ペイン(&C)"
+
+msgid "Output Pane"
+msgstr "出力 ペイン"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "次のコンフリクト(&X)\tAlt+Shift+Down"
@@ -3656,9 +3659,6 @@ msgstr "ロケーション ペイン"
 
 msgid "Diff Pane"
 msgstr "Diff ペイン"
-
-msgid "Output Pane"
-msgstr "出力 ペイン"
 
 msgid "Patch file successfully written."
 msgstr "パッチ ファイルの書き込みに成功しました。"

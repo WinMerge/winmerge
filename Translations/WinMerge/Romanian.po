@@ -390,7 +390,7 @@ msgstr "Uriaș"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -764,6 +764,9 @@ msgstr "&Panoul cu diferențe"
 
 msgid "Lo&cation Pane"
 msgstr "Panoul cu lo&cația"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Conflictul următor\tAlt+Shift+Down"
@@ -3727,9 +3730,6 @@ msgstr "Panou locație"
 
 msgid "Diff Pane"
 msgstr "Panou diferențe"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Fișierul petic a fost scris cu succes."

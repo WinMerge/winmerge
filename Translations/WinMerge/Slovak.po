@@ -391,7 +391,7 @@ msgstr "&Obrovská"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -765,6 +765,9 @@ msgstr "&Panel rozdielov"
 
 msgid "Lo&cation Pane"
 msgstr "Panel &polohy"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Ďa&lší konflikt\tAlt+Shift+↓"
@@ -3642,9 +3645,6 @@ msgstr "Panel polohy"
 
 msgid "Diff Pane"
 msgstr "Panel rozdielu"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Súbor so záplatou bol úspešne zapísaný."

@@ -439,7 +439,7 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -919,6 +919,9 @@ msgstr "Diff &Pane"
 #, fuzzy, c-format
 msgid "Lo&cation Pane"
 msgstr "Lo&cation Pane"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4227,9 +4230,6 @@ msgstr "Location Pane"
 #, c-format
 msgid "Diff Pane"
 msgstr "Diff Pane"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

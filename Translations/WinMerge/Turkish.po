@@ -390,7 +390,7 @@ msgstr "Çok &büyük"
 msgid "Men&u Bar"
 msgstr "Me&nü çubuğu"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -764,6 +764,9 @@ msgstr "Fark panos&u"
 
 msgid "Lo&cation Pane"
 msgstr "&Konum panosu"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "S&onraki çelişki\tAlt+Shift+Aşağı"
@@ -3379,9 +3382,6 @@ msgstr "Konum panosu"
 
 msgid "Diff Pane"
 msgstr "Fark panosu"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Yama dosyası kaydedildi."

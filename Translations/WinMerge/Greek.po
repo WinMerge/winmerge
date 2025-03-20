@@ -438,7 +438,7 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -918,6 +918,9 @@ msgstr "&Πεδίο Διαφορών"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Πεδίο &Εντοπισμού"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -4215,9 +4218,6 @@ msgstr "Πεδίο Εντοπισμού"
 #, c-format
 msgid "Diff Pane"
 msgstr "Πεδίο Διαφορών"
-
-msgid "Output Pane"
-msgstr ""
 
 #, c-format
 msgid "Patch file successfully written."

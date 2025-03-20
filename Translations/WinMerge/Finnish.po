@@ -391,7 +391,7 @@ msgstr "&Valtava"
 msgid "Men&u Bar"
 msgstr ""
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -765,6 +765,9 @@ msgstr "Eroavuusruutu"
 
 msgid "Lo&cation Pane"
 msgstr "Sijaintiruutu"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Seu&raava ristiriita\tAlt+Shift+Down"
@@ -3696,9 +3699,6 @@ msgstr "Sijaintiruutu"
 
 msgid "Diff Pane"
 msgstr "Eroavuusruutu"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "Paikkaustiedoston kirjoitus onnistui."

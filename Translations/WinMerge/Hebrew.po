@@ -388,7 +388,7 @@ msgstr "ענק"
 msgid "Men&u Bar"
 msgstr "סרגל תפריטים"
 
-msgid "Output &Pane"
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -762,6 +762,9 @@ msgstr "חלונית הבדלים"
 
 msgid "Lo&cation Pane"
 msgstr "חלונית מיקום"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "סתירה הבאה\tAlt+Shift+Down"
@@ -3505,9 +3508,6 @@ msgstr "חלונית מיקום"
 
 msgid "Diff Pane"
 msgstr "חלונית השוואה"
-
-msgid "Output Pane"
-msgstr ""
 
 msgid "Patch file successfully written."
 msgstr "קובץ התיקון נכתב בהצלחה."
