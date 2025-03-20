@@ -427,6 +427,7 @@ CCrystalTextView::CCrystalTextView ()
 , m_pCrystalRendererSaved(nullptr)
 , m_nColumnResizing(-1)
 , m_nLineNumberUsedAsHeaders(-1)
+, m_nRevMarkWidth(MARGIN_REV_WIDTH)
 {
 #ifdef _WIN64
   if (m_nRenderingMode == RENDERING_MODE::GDI)
@@ -2569,8 +2570,11 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
     }
 
   // draw line revision marks
-  CRect rc(rect.right - MARGIN_REV_WIDTH, rect.top, rect.right, rect.bottom);
-  m_pCrystalRenderer->FillSolidRectangle (rc, clrRevisionMark);
+  if (m_nRevMarkWidth > 0)
+    {
+      CRect rc(rect.right - m_nRevMarkWidth, rect.top, rect.right, rect.bottom);
+      m_pCrystalRenderer->FillSolidRectangle (rc, clrRevisionMark);
+    }
 
   if (!m_bSelMargin)
     return;
@@ -6211,7 +6215,7 @@ GetMarginWidth (CDC *pdc /*= nullptr*/)
   else
     {
       if (pdc == nullptr || !pdc->IsPrinting ())
-        nMarginWidth += MARGIN_REV_WIDTH; // Space for revision marks
+        nMarginWidth += m_nRevMarkWidth; // Space for revision marks
     }
 
   return nMarginWidth;
@@ -6980,7 +6984,8 @@ CString CCrystalTextView::GetTextBufferEol(int nLine) const
 
 void CCrystalTextView::SetMarkersContext(CCrystalTextMarkers * pMarkers)
 {
-  pMarkers->AddView(this);
+  if (pMarkers)
+    pMarkers->AddView(this);
   m_pMarkers = pMarkers;
 }
 
@@ -7042,8 +7047,20 @@ void CCrystalTextView::EnsureVisible (CEPoint ptStart, CEPoint ptEnd)
   //BEGIN SW
   int nSubLineCount = GetSubLineCount();
   int nNewTopSubLine = m_nTopSubLine;
-  CEPoint subLinePos;
 
+  if (ptStart != ptEnd)
+    {
+      CEPoint subLinePosEnd;
+      CharPosToPoint(ptEnd.y, ptEnd.x, subLinePosEnd);
+      subLinePosEnd.y += GetSubLineIndex(ptEnd.y);
+
+      if (subLinePosEnd.y >= nNewTopSubLine + GetScreenLines())
+          nNewTopSubLine = subLinePosEnd.y - GetScreenLines() + 1;
+      if (subLinePosEnd.y < nNewTopSubLine)
+          nNewTopSubLine = subLinePosEnd.y;
+    }
+
+  CEPoint subLinePos;
   CharPosToPoint( ptStart.y, ptStart.x, subLinePos );
   subLinePos.y += GetSubLineIndex( ptStart.y );
 

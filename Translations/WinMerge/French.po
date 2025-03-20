@@ -396,8 +396,16 @@ msgid "&Edit"
 msgstr "&Édition"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "Cop&ier\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Co&ller\tCtrl+V"
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Sélectionner &tout\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -438,6 +446,9 @@ msgstr "&Énorme"
 
 msgid "Men&u Bar"
 msgstr "Barre de men&us"
+
+msgid "&Output Pane"
+msgstr ""
 
 #, c-format
 msgid "&Status Bar"
@@ -557,10 +568,6 @@ msgstr "Panneau Droi&te en lecture seule"
 #, c-format
 msgid "&File Encoding..."
 msgstr "Encodage de fic&hier..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Sélectionner &tout\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -797,10 +804,6 @@ msgid "Cu&t\tCtrl+X"
 msgstr "&Couper\tCtrl+X"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "Cop&ier\tCtrl+C"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "Rec&hercher...\tCtrl+F"
 
@@ -924,6 +927,9 @@ msgstr "&Détail des différences"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Barre de locali&sation"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -3198,6 +3204,13 @@ msgstr "%1 différences trouvées"
 msgid "1 Difference Found"
 msgstr "1 différence trouvée"
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 #, c-format
 msgid "RO"
@@ -5147,6 +5160,20 @@ msgstr ""
 "Copier vers la Gauche et Avancer (Ctrl+Alt+Gauche)\n"
 "(Ctrl+Alt+Molette Gauche)\n"
 "(Ctrl+Alt+Maj+Molette vers le Haut)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embellissement"

@@ -655,7 +655,7 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 
 	m_titleBar.Init(this);
 
-	CWnd::Create(nullptr, nullptr, WS_CHILD | WS_VISIBLE, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST + 30);
+	CWnd::Create(nullptr, nullptr, WS_CHILD | WS_VISIBLE, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_LAST - 1);
 
 	if (!m_tabCtrl.Create(pMainFrame, this))
 		return FALSE;

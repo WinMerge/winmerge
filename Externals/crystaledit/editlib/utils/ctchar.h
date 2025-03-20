@@ -5,6 +5,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cstdarg>
+#include <ctime>
 
 #if defined(_WIN32)
 #define STRSAFE_NO_DEPRECATE
@@ -85,6 +86,7 @@ namespace tc
 	constexpr auto tcscmplogical = ::wcscmplogical;
 	constexpr auto tcsspn = ::wcsspn;
 	constexpr auto tcsdup = ::wcsdup;
+	constexpr auto tcsftime = wcsftime;
 	inline tchar_t* tcschr(const tchar_t* str, tchar_t ch) { return const_cast<tchar_t*>(::wcschr(str, ch)); }
 	inline tchar_t* tcsrchr(const tchar_t* str, tchar_t ch) { return const_cast<tchar_t*>(::wcsrchr(str, ch)); }
 	inline tchar_t* tcsstr(const tchar_t* str, const tchar_t* substr) { return const_cast<tchar_t*>(::wcsstr(str, substr)); }
@@ -119,6 +121,7 @@ namespace tc
 	constexpr auto tcscmplogical = ::strcmplogical;
 	constexpr auto tcsspn = ::strspn;
 	constexpr auto tcsdup = ::strdup;
+	constexpr auto tcsftime = strftime;
 	inline tchar_t* tcschr(const tchar_t* str, tchar_t ch) { return const_cast<tchar_t*>(::strchr(str, ch)); }
 	inline tchar_t* tcsrchr(const tchar_t* str, tchar_t ch) { return const_cast<tchar_t*>(::strrchr(str, ch)); }
 	inline tchar_t* tcsstr(const tchar_t* str, const tchar_t* substr) { return const_cast<tchar_t*>(::strstr(str, substr)); }
