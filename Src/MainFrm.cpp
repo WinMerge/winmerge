@@ -2422,7 +2422,7 @@ void CMainFrame::ProcessLog()
 	const bool bShow = std::any_of(m_logBuffer.begin(), m_logBuffer.end(),
 		[](const auto& msg) { return msg.second; });
 
-	if (bShow != 0 && m_wndOutputBar.m_hWnd == nullptr)
+	if (bShow && m_wndOutputBar.m_hWnd == nullptr)
 		ShowOutputPane(true);
 
 	if (!m_pOutputDoc)
