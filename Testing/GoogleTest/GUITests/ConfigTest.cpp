@@ -224,7 +224,7 @@ namespace
 		{ OPT_CMP_INDENT_HEURISTIC, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, varprop::VT_BOOL, {}, {}},
 		// Image Compare options
-		{ OPT_CMP_IMG_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.bmp;*.cut;*.dds;*.dng;*.exr;*.g3;*.gif;*.heic;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"}},
+		{ OPT_CMP_IMG_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.bmp;*.cut;*.dds;*.dng;*.exr;*.g3;*.gif;*.heic;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxl;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"}},
 		{ OPT_CMP_IMG_SHOWDIFFERENCES, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_IMG_OVERLAYMODE, varprop::VT_INT, {0, 1, 2, 3}, {}},
 		{ OPT_CMP_IMG_OVERLAYALPHA, varprop::VT_INT, {0, 3000, 7000, 10000}, {}},
