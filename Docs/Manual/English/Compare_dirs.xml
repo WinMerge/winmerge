@@ -1263,7 +1263,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guilabel>Comparison result</guilabel>: Verbose comparison
+          <para><guilabel>Comparison Result</guilabel>: Verbose comparison
           result (see also <guilabel>Short Result</guilabel>).</para>
         </listitem>
 
@@ -1286,7 +1286,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       <itemizedlist>
         <listitem>
           <para><guilabel>Short Result</guilabel>: Displays the
-          <guilabel>Comparison result</guilabel> column in a brief (Right only)
+          <guilabel>Comparison Result</guilabel> column in a brief (Right only)
           form.</para>
         </listitem>
 
@@ -1388,10 +1388,10 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     context menu.</para>
 
     <para>If the selection occurs on both sides, you can choose either the
-    <guimenu>Left shell menu</guimenu> or <guimenu>Right shell menu</guimenu>.
+    <guimenu>Left Shell Menu</guimenu> or <guimenu>Right Shell Menu</guimenu>.
     If the selection occurs on all sides, you can choose the
-    <guimenu>Left shell menu</guimenu>, <guimenu>Middle shell menu</guimenu> or
-    <guimenu>Right shell menu</guimenu>. If the item occurs only on one side,
+    <guimenu>Left Shell Menu</guimenu>, <guimenu>Middle Shell Menu</guimenu> or
+    <guimenu>Right Shell Menu</guimenu>. If the item occurs only on one side,
     only that side's shell menu is available.</para>
 
     <caution>

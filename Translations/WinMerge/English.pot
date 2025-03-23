@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-03-21 15:44+0000\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
+"POT-Creation-Date: 2025-03-23 21:12+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1101,7 +1101,7 @@ msgstr ""
 msgid "&Include Subfolders"
 msgstr ""
 
-msgid "&Compare Method:"
+msgid "&Compare Method"
 msgstr ""
 
 msgid "Full Contents"
@@ -1251,13 +1251,16 @@ msgstr ""
 msgid "Browse..."
 msgstr ""
 
-msgid "Folder: Filter"
+msgid " Folder: Filter"
 msgstr ""
 
-msgid "File: Prediffer Plugin"
+msgid "&Include subfolders"
 msgstr ""
 
-msgid "File: Unpacker Plugin"
+msgid " File: Prediffer Plugin"
+msgstr ""
+
+msgid " File: Unpacker Plugin"
 msgstr ""
 
 msgid "Se&lect..."
@@ -1275,37 +1278,37 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-msgid "Automatically &Scroll to First Difference"
+msgid "Automatically &scroll to first difference"
 msgstr ""
 
-msgid "Automatically S&croll to First Inline Difference"
+msgid "Automatically s&croll to first inline difference"
 msgstr ""
 
-msgid "Cl&ose Windows with 'Esc':"
+msgid "Cl&ose windows with 'Esc':"
 msgstr ""
 
-msgid "&Automatically Verify Paths in Open-dialog"
+msgid "&Automatically verify paths in Open dialog"
 msgstr ""
 
-msgid "Single Instance Mode:"
+msgid "Single instance mode:"
 msgstr ""
 
-msgid "As&k When Closing Multiple Windows"
+msgid "As&k when closing multiple windows"
 msgstr ""
 
-msgid "&Preserve File Time in File Compare"
+msgid "&Preserve file time in file compare"
 msgstr ""
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr ""
 
-msgid "Close \"Select Files or Folders\" Dialog on Compare"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
-msgid "Op&en Dialog Autocompletion:"
+msgid "Op&en dialog Auto completion:"
 msgstr ""
 
-msgid "Auto-&reload Modified Files:"
+msgid "Auto-&reload modified files:"
 msgstr ""
 
 msgid "Language:"
@@ -1317,22 +1320,22 @@ msgstr ""
 msgid "Find"
 msgstr ""
 
-msgid "Fi&nd What:"
+msgid "Fi&nd what:"
 msgstr ""
 
-msgid "Match &Whole Word Only"
+msgid "Match &whole word only"
 msgstr ""
 
-msgid "Match &Case"
+msgid "Match &case"
 msgstr ""
 
-msgid "Regular &Expression"
+msgid "Regular &expression"
 msgstr ""
 
-msgid "D&on't Wrap at End of File"
+msgid "D&on't wrap end of file"
 msgstr ""
 
-msgid "&Don't Close This Dialog"
+msgid "&Don't close this dialog"
 msgstr ""
 
 msgid "&Find Next"
@@ -1347,19 +1350,19 @@ msgstr ""
 msgid "Replace"
 msgstr ""
 
-msgid "Re&place With:"
+msgid "Re&place with:"
 msgstr ""
 
-msgid "&Don't Wrap at End of File"
+msgid "&Don't wrap at end of file"
 msgstr ""
 
-msgid "Replace In"
+msgid "Replace in"
 msgstr ""
 
 msgid "&Selection"
 msgstr ""
 
-msgid "Wh&ole File"
+msgid "Wh&ole file"
 msgstr ""
 
 msgid "Find Pre&v"
@@ -1374,13 +1377,13 @@ msgstr ""
 msgid "Markers"
 msgstr ""
 
-msgid "Enable &Markers"
+msgid "Enable &markers"
 msgstr ""
 
 msgid "New"
 msgstr ""
 
-msgid "&Background Color:"
+msgid "&Background color:"
 msgstr ""
 
 msgid "&Apply"
@@ -1464,7 +1467,7 @@ msgstr ""
 msgid "Keywords:"
 msgstr ""
 
-msgid "Function Names:"
+msgid "Function names:"
 msgstr ""
 
 msgid "Comments:"
@@ -1491,13 +1494,13 @@ msgstr ""
 msgid "Bold"
 msgstr ""
 
-msgid "&Use Customized Text Colors"
+msgid "&Use customized text colors"
 msgstr ""
 
 msgid "Whitespace:"
 msgstr ""
 
-msgid "Regular Text:"
+msgid "Regular text:"
 msgstr ""
 
 msgid "Selection:"
@@ -1518,22 +1521,22 @@ msgstr ""
 msgid "User Defined Marker 3:"
 msgstr ""
 
-msgid "&Use Folder Compare Colors"
+msgid "&Use folder compare colors"
 msgstr ""
 
-msgid "Items Equal:"
+msgid "Items equal:"
 msgstr ""
 
-msgid "Items Different:"
+msgid "Items different:"
 msgstr ""
 
-msgid "Items Missing:"
+msgid "Items missing:"
 msgstr ""
 
-msgid "Items Filtered:"
+msgid "Items filtered:"
 msgstr ""
 
-msgid "&Use Custom System Colors"
+msgid "&Use custom system colors"
 msgstr ""
 
 msgid "System"
@@ -1542,19 +1545,19 @@ msgstr ""
 msgid "&Use Recycle Bin"
 msgstr ""
 
-msgid "&External Editor:"
+msgid "&External editor:"
 msgstr ""
 
-msgid "&Filter Folder:"
+msgid "&Filter folder:"
 msgstr ""
 
-msgid "Temporary Files Folder:"
+msgid "Temporary files folder"
 msgstr ""
 
-msgid "S&ystem Temp Folder"
+msgid "S&ystem temp folder"
 msgstr ""
 
-msgid "C&ustom Folder:"
+msgid "C&ustom folder:"
 msgstr ""
 
 msgid "Br&owse..."
@@ -1572,10 +1575,10 @@ msgstr ""
 msgid "&Swap"
 msgstr ""
 
-msgid "&Copy to Clipboard"
+msgid "&Copy to clipboard"
 msgstr ""
 
-msgid "&Append to Existing File"
+msgid "&Append to existing file"
 msgstr ""
 
 msgid "&Result:"
@@ -1593,10 +1596,10 @@ msgstr ""
 msgid "&Context:"
 msgstr ""
 
-msgid "Inclu&de Command Line"
+msgid "Inclu&de command line"
 msgstr ""
 
-msgid "Open in E&xternal Editor"
+msgid "Open in e&xternal editor"
 msgstr ""
 
 msgid "Display Columns"
@@ -1617,28 +1620,28 @@ msgstr ""
 msgid "Select Plugin"
 msgstr ""
 
-msgid "Plugin &Name:"
+msgid "Plugin &name:"
 msgstr ""
 
-msgid "&Target Files:"
+msgid "&Target files:"
 msgstr ""
 
-msgid "Extensions List:"
+msgid "Extensions list:"
 msgstr ""
 
 msgid "Description:"
 msgstr ""
 
-msgid "Default Arguments:"
+msgid "Default arguments:"
 msgstr ""
 
-msgid "Display All Plugins (Ignore Extension)"
+msgid "Display all plugins (Ignore extension)"
 msgstr ""
 
-msgid "&Open Files in Same Window Type After Unpacking"
+msgid "&Open files in same window type after unpacking"
 msgstr ""
 
-msgid "&Plugin Pipeline:"
+msgid "&Plugin pipeline:"
 msgstr ""
 
 msgid "&Alias..."
@@ -1653,13 +1656,13 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-msgid "&CPU Cores to Use:"
+msgid "C&PU cores to use:"
 msgstr ""
 
-msgid "Items Total:"
+msgid "Items total:"
 msgstr ""
 
-msgid "Items Compared:"
+msgid "Items compared:"
 msgstr ""
 
 msgid "Go to"
@@ -1671,7 +1674,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-msgid "Go to What"
+msgid "Go to what"
 msgstr ""
 
 msgid "Li&ne"
@@ -1692,70 +1695,91 @@ msgstr ""
 msgid "&Compare"
 msgstr ""
 
-msgid "&Ignore Change"
+msgid "&Ignore change"
 msgstr ""
 
-msgid "I&gnore All"
+msgid "I&gnore all"
 msgstr ""
 
-msgid "E&nable Moved Block Detection"
+msgid "Ignore blan&k lines"
 msgstr ""
 
-msgid "Align &Similar Lines"
+msgid "Ignore &case"
 msgstr ""
 
-msgid "Diff &Algorithm:"
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
 msgstr ""
 
-msgid "Enable Indent &Heuristic"
+msgid "Ignore num&bers"
 msgstr ""
 
-msgid "Completely Unhighlight the Ignored Differences"
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr ""
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
 msgstr ""
 
 msgid "Editor"
 msgstr ""
 
-msgid "&Highlight Syntax"
+msgid "&Highlight syntax"
 msgstr ""
 
-msgid "&Preserve Original EOL"
+msgid "&Preserve original EOL"
 msgstr ""
 
 msgid "Tabs"
 msgstr ""
 
-msgid "&Tab Size:"
+msgid "&Tab size:"
 msgstr ""
 
-msgid "&Insert Tabs"
+msgid "&Insert tabs"
 msgstr ""
 
-msgid "Insert &Spaces"
+msgid "Insert &spaces"
 msgstr ""
 
-msgid "&Rendering Mode:"
+msgid "&Rendering mode:"
 msgstr ""
 
-msgid "&Automatic Rescan"
+msgid "&Automatic rescan"
 msgstr ""
 
-msgid "Copy &Granularity for Selected Differences:"
+msgid "Copy &granularity for selected differences:"
 msgstr ""
 
 msgid "Line Difference Coloring"
 msgstr ""
 
-msgid "View Line Differences"
+msgid "View line differences"
 msgstr ""
 
-msgid "&Character-Level"
+msgid "&Character-level"
 msgstr ""
 
-msgid "&Word-Level:"
+msgid "&Word-level:"
 msgstr ""
 
-msgid "W&ord Break Characters:"
+msgid "W&ord break characters:"
 msgstr ""
 
 msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
@@ -1785,31 +1809,31 @@ msgstr ""
 msgid "Save Modified Files?"
 msgstr ""
 
-msgid "Left Side File"
+msgid "Left side file"
 msgstr ""
 
-msgid "&Save Changes"
+msgid "&Save changes"
 msgstr ""
 
-msgid "&Discard Changes"
+msgid "&Discard changes"
 msgstr ""
 
-msgid "Middle Side File"
+msgid "Middle side file"
 msgstr ""
 
-msgid "Sa&ve Changes"
+msgid "Sa&ve changes"
 msgstr ""
 
-msgid "Discard C&hanges"
+msgid "Discard c&hanges"
 msgstr ""
 
-msgid "Right Side File"
+msgid "Right side file"
 msgstr ""
 
-msgid "S&ave Changes"
+msgid "S&ave changes"
 msgstr ""
 
-msgid "Dis&card Changes"
+msgid "Dis&card changes"
 msgstr ""
 
 msgid "Disca&rd All"
@@ -1824,19 +1848,19 @@ msgstr ""
 msgid "Select the default codepage for non-Unicode files:"
 msgstr ""
 
-msgid "System Codepage"
+msgid "System codepage"
 msgstr ""
 
 msgid "According to WinMerge User Interface"
 msgstr ""
 
-msgid "Custom Codepage:"
+msgid "Custom codepage:"
 msgstr ""
 
-msgid "Detect codepage for: .html, .rc, .xml\nRestart Required."
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
 msgstr ""
 
-msgid "Detect codepage for files with mlang.dll\nRestart Required."
+msgid "Detect codepage for files with mlang.dll\nRestart required."
 msgstr ""
 
 msgid "Options"
@@ -1851,13 +1875,13 @@ msgstr ""
 msgid "Folder Compare Report"
 msgstr ""
 
-msgid "Report &File:"
+msgid "Report &file:"
 msgstr ""
 
 msgid "&Style:"
 msgstr ""
 
-msgid "&Include File Compare Report"
+msgid "&Include file compare report"
 msgstr ""
 
 msgid "Shared or Private Filter"
@@ -1875,10 +1899,10 @@ msgstr ""
 msgid "Archive Support"
 msgstr ""
 
-msgid "&Enable Archive File Support"
+msgid "&Enable archive file support"
 msgstr ""
 
-msgid "&Detect Archive Type from File Signature"
+msgid "&Detect archive type from file signature"
 msgstr ""
 
 msgid "Items saved to or restored from the project file:"
@@ -1944,7 +1968,7 @@ msgstr ""
 msgid "File &Saving:"
 msgstr ""
 
-msgid "&Use Same Codepage for Both"
+msgid "&Use same codepage for both"
 msgstr ""
 
 msgid "&Cancel"
@@ -1953,10 +1977,10 @@ msgstr ""
 msgid "Test Filter"
 msgstr ""
 
-msgid "Testing Filter:"
+msgid "Testing filter:"
 msgstr ""
 
-msgid "&Enter Text to Test:"
+msgid "&Enter text to test:"
 msgstr ""
 
 msgid "&Folder Name"
@@ -1974,7 +1998,7 @@ msgstr ""
 msgid "Table"
 msgstr ""
 
-msgid "File Type"
+msgid "File type"
 msgstr ""
 
 msgid "&CSV"
@@ -1986,43 +2010,43 @@ msgstr ""
 msgid "Custom &Delimiter-Separated Values"
 msgstr ""
 
-msgid "D&elimiter Character:"
+msgid "D&elimiter character:"
 msgstr ""
 
-msgid "&Allow Newlines in Quotes"
+msgid "&Allow newlines in quotes"
 msgstr ""
 
-msgid "&Quote Character:"
+msgid "&Quote character:"
 msgstr ""
 
 msgid "Backup Files"
 msgstr ""
 
-msgid "Create Backup Files In:"
+msgid "Create backup files in:"
 msgstr ""
 
-msgid "&Folder Compare"
+msgid "&Folder compare"
 msgstr ""
 
-msgid "Fil&e Compare"
+msgid "Fil&e compare"
 msgstr ""
 
-msgid "Create Backup Files Into:"
+msgid "Create backup files into:"
 msgstr ""
 
-msgid "&Original File's Folder"
+msgid "&Original file's folder"
 msgstr ""
 
-msgid "&Global Backup Folder:"
+msgid "&Global backup folder:"
 msgstr ""
 
-msgid "Backup Filename:"
+msgid "Backup filename:"
 msgstr ""
 
-msgid "&Append .bak Extension"
+msgid "&Append .bak extension"
 msgstr ""
 
-msgid "A&ppend Timestamp"
+msgid "A&ppend timestamp"
 msgstr ""
 
 msgid "Confirm Copy"
@@ -2031,10 +2055,10 @@ msgstr ""
 msgid "Are you sure you want to copy XXX items?"
 msgstr ""
 
-msgid "From Left"
+msgid "From left"
 msgstr ""
 
-msgid "To Right"
+msgid "To right"
 msgstr ""
 
 msgid "Don't ask this &question again."
@@ -2049,19 +2073,19 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-msgid "&Enable Plugins"
+msgid "&Enable plugins"
 msgstr ""
 
-msgid "Plugin &Type:"
+msgid "Plugin &type:"
 msgstr ""
 
-msgid "File Filters:"
+msgid "File filters:"
 msgstr ""
 
-msgid "&Plugin Arguments:"
+msgid "&Plugin arguments:"
 msgstr ""
 
-msgid "Enable &Automatic Unpacking/Prediffing"
+msgid "Enable &automatic unpacking/prediffing"
 msgstr ""
 
 msgid "Shell Integration"
@@ -2070,13 +2094,13 @@ msgstr ""
 msgid "Explorer"
 msgstr ""
 
-msgid "&Add to Context Menu"
+msgid "&Add to context menu"
 msgstr ""
 
-msgid "E&nable Advanced Menu"
+msgid "E&nable advanced menu"
 msgstr ""
 
-msgid "Enable &Compare As Menu"
+msgid "Enable &Compare As menu"
 msgstr ""
 
 msgid "&Register Shell Extension"
@@ -2100,35 +2124,38 @@ msgstr ""
 msgid "Jump List"
 msgstr ""
 
-msgid "Clear All Recent Items"
+msgid "Clear all recent items"
 msgstr ""
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr ""
 
-msgid "S&top After First Difference"
+msgid "&Compare method:"
 msgstr ""
 
-msgid "Ign&ore Time Differences Less Than 3 Seconds"
+msgid "S&top after first difference"
 msgstr ""
 
-msgid "&Expand Subfolders After Comparison:"
+msgid "Ign&ore time differences less than 3 seconds"
 msgstr ""
 
-msgid "Include &Unique Subfolders Contents"
+msgid "Expand subfolders &after comparison:"
 msgstr ""
 
-msgid "Ignore &Reparse Points"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
-msgid "Switch to &Quick Compare when size exceeds (MB):"
+msgid "Ignore &reparse points"
 msgstr ""
 
-msgid "Switch to &Binary Compare when size exceeds (MB):"
+msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr ""
 
-msgid "File Patterns:"
+msgid "Switch to &binary compare when size exceeds (MB):"
+msgstr ""
+
+msgid "File patterns:"
 msgstr ""
 
 msgid "Custom Delimiter-Separated Values"
@@ -2138,10 +2165,10 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr ""
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr ""
 
-msgid "Frhed Settings"
+msgid "Frhed settings"
 msgstr ""
 
 msgid "View &Settings..."
@@ -2156,28 +2183,28 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr ""
 
-msgid "&Enable Image Compare in Folder Compare"
+msgid "&Enable image compare in folder compare"
 msgstr ""
 
-msgid "OCR Result:"
+msgid "OCR result:"
 msgstr ""
 
 msgid "Webpage"
 msgstr ""
 
-msgid "URL Pattern to &Include (Regular Expression):"
+msgid "URL pattern to &include (Regular expression):"
 msgstr ""
 
-msgid "URL Pattern to &Exclude (Regular Expression):"
+msgid "URL pattern to &exclude (Regular expression):"
 msgstr ""
 
-msgid "&User Data Folder Location:"
+msgid "&User data folder location:"
 msgstr ""
 
-msgid "&Separate User Data Folders for Each Pane"
+msgid "&Separate user data folders for each pane"
 msgstr ""
 
 msgid "&Hex View"
@@ -2189,28 +2216,28 @@ msgstr ""
 msgid "&Category:"
 msgstr ""
 
-msgid "&Menu Caption:"
+msgid "&Menu caption:"
 msgstr ""
 
-msgid "&Window Type:"
+msgid "&Window type:"
 msgstr ""
 
-msgid "&Unpacked File Extension:"
+msgid "&Unpacked file extension:"
 msgstr ""
 
-msgid "&Require Arguments"
+msgid "&Require arguments"
 msgstr ""
 
-msgid "&Generate Editor Script"
+msgid "&Generate editor script"
 msgstr ""
 
-msgid "Command &Line:"
+msgid "Command &line:"
 msgstr ""
 
-msgid "&Script File Extension:"
+msgid "&Script file extension:"
 msgstr ""
 
-msgid "Script &Body:"
+msgid "Script &body:"
 msgstr ""
 
 msgid "EXT"
@@ -2276,19 +2303,19 @@ msgstr ""
 msgid "&Ignore"
 msgstr ""
 
-msgid "Ignore &All"
+msgid "Ignore &all"
 msgstr ""
 
 msgid "&Yes"
 msgstr ""
 
-msgid "Yes to &All"
+msgid "Yes to &all"
 msgstr ""
 
 msgid "&No"
 msgstr ""
 
-msgid "No to A&ll"
+msgid "No to a&ll"
 msgstr ""
 
 msgid "&Continue"
@@ -2297,7 +2324,7 @@ msgstr ""
 msgid "&Skip"
 msgstr ""
 
-msgid "Skip &All"
+msgid "Skip &all"
 msgstr ""
 
 msgid "Don't display this &message again."
@@ -2330,22 +2357,22 @@ msgstr ""
 msgid "To:"
 msgstr ""
 
-msgid "From Left:"
+msgid "From left:"
 msgstr ""
 
-msgid "To Left:"
+msgid "To left:"
 msgstr ""
 
-msgid "From Right:"
+msgid "From right:"
 msgstr ""
 
-msgid "To Right:"
+msgid "To right:"
 msgstr ""
 
-msgid "From Middle:"
+msgid "From middle:"
 msgstr ""
 
-msgid "To Middle:"
+msgid "To middle:"
 msgstr ""
 
 #, c-format
@@ -2378,7 +2405,7 @@ msgstr ""
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr ""
 
-msgid "Options Files (*.ini)|*.ini|All Files (*.*)|*.*||"
+msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr ""
 
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
@@ -2390,16 +2417,16 @@ msgstr ""
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr ""
 
-msgid "Do Not Expand"
+msgid "Do not expand"
 msgstr ""
 
-msgid "Expand All Subfolders"
+msgid "Expand all subfolders"
 msgstr ""
 
-msgid "Expand Different Subfolders"
+msgid "Expand different subfolders"
 msgstr ""
 
-msgid "Expand Identical Subfolders"
+msgid "Expand identical subfolders"
 msgstr ""
 
 msgid "File Type"
@@ -2477,7 +2504,7 @@ msgstr ""
 msgid "Filter file exists. Overwrite?"
 msgstr ""
 
-msgid "Regular Expression"
+msgid "Regular expression"
 msgstr ""
 
 msgid "Filters updated. Refresh all open folder compares?\n\nSelect 'No' to refresh later."
@@ -2511,7 +2538,7 @@ msgid "Original File"
 msgstr ""
 
 #, c-format
-msgid "Ln: %s, Col: %d/%d, Ch: %d/%d, EOL: %s"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""
 
 #, c-format
@@ -2519,11 +2546,11 @@ msgid "Line: %s"
 msgstr ""
 
 #, c-format
-msgid "Ln: %s, Col: %d/%d, Ch: %d/%d"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
 #, c-format
-msgid " Sel: %d | %d"
+msgid "  Sel: %d | %d"
 msgstr ""
 
 msgid "Merge"
@@ -2552,7 +2579,7 @@ msgstr ""
 msgid "Items: %1"
 msgstr ""
 
-msgid "Comparing Items..."
+msgid "Comparing items..."
 msgstr ""
 
 #, c-format
@@ -2634,7 +2661,7 @@ msgstr ""
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr ""
 
-msgid "Error Backing up File"
+msgid "Error backing up file"
 msgstr ""
 
 #, c-format
@@ -2685,10 +2712,10 @@ msgstr ""
 msgid "Cannot merge unsynched documents.\n\nRefresh before continuing."
 msgstr ""
 
-msgid "Break at Whitespace"
+msgid "Break at whitespace"
 msgstr ""
 
-msgid "Break at Whitespace or Punctuation"
+msgid "Break at whitespace or punctuation"
 msgstr ""
 
 msgid "Copy to &Middle\tAlt+Right"
@@ -3093,13 +3120,13 @@ msgstr ""
 msgid "Text files are identical"
 msgstr ""
 
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 msgid "Text files are different"
@@ -3239,10 +3266,10 @@ msgstr ""
 msgid "Compare %1 with %2 and %3"
 msgstr ""
 
-msgid "Comma-Separated List"
+msgid "Comma-separated list"
 msgstr ""
 
-msgid "Tab-Separated List"
+msgid "Tab-separated list"
 msgstr ""
 
 msgid "Simple HTML"
@@ -3276,7 +3303,7 @@ msgstr ""
 msgid "Could not create temporary files. Check your temporary path settings."
 msgstr ""
 
-msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare tab of Options."
+msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 
 msgid "Selected folder is invalid."
@@ -3562,10 +3589,10 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-msgid "From File System"
+msgid "From file system"
 msgstr ""
 
-msgid "From Most Recently Used List"
+msgid "From Most Recently Used list"
 msgstr ""
 
 msgid "No Highlighting"
@@ -3729,31 +3756,31 @@ msgid "Page:"
 msgstr ""
 
 #, c-format
-msgid "Pt: (%d, %d), RGBA: (%d, %d, %d, %d) "
+msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 msgstr ""
 
 #, c-format
-msgid "Dist: %g "
+msgid "Dist: %g  "
 msgstr ""
 
 #, c-format
-msgid "Dist: %g, %g "
+msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d, Zoom: %d%% %dx%dpx %dbpp "
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
 #, c-format
-msgid "Rc: (%d, %d) "
+msgid "Rc: (%d, %d)  "
 msgstr ""
 
 #, c-format
-msgid "Flipped: %s "
+msgid "Flipped: %s  "
 msgstr ""
 
 #, c-format
-msgid "Rotated: %d "
+msgid "Rotated: %d  "
 msgstr ""
 
 msgid "All pages"
@@ -4169,13 +4196,13 @@ msgstr ""
 msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
 msgstr ""
 
-msgid "JSON Prettier (jq).\r\nArguments: jq filter/options."
+msgid "JSON Prettier (jq).\r\nArguments: jq filter/command line options."
 msgstr ""
 
 msgid "XML Prettier (tidy-html5).\r\nArguments: tidy command line options."
 msgstr ""
 
-msgid "YAML Prettier (yq).\r\nArguments: yq filter/options."
+msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
 msgstr ""
 
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
@@ -4193,10 +4220,10 @@ msgstr ""
 msgid "TSV Querier (q).\r\nArguments: SQL statement/q options."
 msgstr ""
 
-msgid "JSON Querier (jq).\r\nArguments: jq filter/options."
+msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."
 msgstr ""
 
-msgid "YAML Querier (yq).\r\nArguments: yq filter/options."
+msgid "YAML Querier (yq).\r\nArguments: yq filter/command line options."
 msgstr ""
 
 msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
@@ -4211,7 +4238,7 @@ msgstr ""
 msgid "Native code disassembler (dumpbin).\r\nArguments: dumpbin command line options."
 msgstr ""
 
-msgid "Content extractor (Apache Tika).\r\nArguments: tika-app.jar options."
+msgid "Content extractor (Apache Tika).\r\nArguments: tika-app.jar command line options."
 msgstr ""
 
 msgid "Apply patch (GNU patch)"
@@ -4250,7 +4277,7 @@ msgstr ""
 msgid "HTTP URL Scheme Handler (curl).\r\nArguments: curl command line options."
 msgstr ""
 
-msgid "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe options."
+msgid "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
 msgstr ""
 
 msgid "Basic text functions"

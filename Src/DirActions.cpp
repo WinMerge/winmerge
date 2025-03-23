@@ -32,7 +32,7 @@ static void ThrowConfirmationNeededException(const CDiffContext& ctxt, const Str
 
 ContentsChangedException::ContentsChangedException(const String& failpath)
 	: m_msg(strutils::format_string1(
-	        _("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
+	        _("Operation aborted!\n\nFolder contents changed, path\n%1\nnot found.\n\nRefresh the compare."),
 	        failpath))
 {
 }
@@ -783,7 +783,7 @@ bool GetOpenOneItem(const CDiffContext& ctxt, DIFFITEM *pos1, const DIFFITEM *pd
 		{
 			String invalid = path1Exists == paths::IS_EXISTING_DIR ? paths[0] : paths[1];
 			errmsg = strutils::format_string1(
-				_("Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."),
+				_("Operation aborted!\n\nFolder contents changed, path\n%1\nnot found.\n\nRefresh the compare."),
 				invalid);
 			return false;
 		}
@@ -858,7 +858,7 @@ bool GetOpenTwoItems(const CDiffContext& ctxt, SELECTIONTYPE selectionType, DIFF
 		isDir = true;
 		if (paths::GetPairComparability(paths) != paths::IS_EXISTING_DIR)
 		{
-			errmsg = _("The selected folder is invalid.");
+			errmsg = _("Selected folder is invalid.");
 			return false;
 		}
 	}
@@ -964,7 +964,7 @@ bool GetOpenThreeItems(const CDiffContext& ctxt, DIFFITEM *pos1, DIFFITEM *pos2,
 		isDir = true;
 		if (paths::GetPairComparability(paths) != paths::IS_EXISTING_DIR)
 		{
-			errmsg = _("The selected folder is invalid.");
+			errmsg = _("Selected folder is invalid.");
 			return false;
 		} 
 	}
@@ -1221,7 +1221,7 @@ int UpdateCompareFlagsAfterSync(DIFFITEM& di, bool bRecursive)
 /**
  * @brief Update the paths of the diff items recursively.
  * @param[in] nDirs Number of directories to compare.
- * @param[in,out] diÅ@Item to update the path.
+ * @param[in,out] diÔøΩ@Item to update the path.
  */
 void UpdatePaths(int nDirs, DIFFITEM& di)
 {

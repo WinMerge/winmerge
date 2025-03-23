@@ -75,7 +75,7 @@ function get_PluginEvent() {
 }
 
 function get_PluginDescription() {
-  return "Apply patch using GNU patch";
+  return "Apply patch (GNU patch)";
 }
 
 function get_PluginFileFilters() {
@@ -114,7 +114,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     filePatched = regRead("Files\\Right/Item_0", "");
   }
 
-  var msg = fmt(translate("${Enter the name of the file to which the patch '%1' will be applied}"), [ fso.GetFileName(fileSrc) ]);
+  var msg = fmt(translate("${Enter filename for patch '%1'}"), [ fso.GetFileName(fileSrc) ]);
   while (true) {
     filePatched = mergeApp.InputBox(msg, PLUGIN_NAME, filePatched);
     if (filePatched === "") {
@@ -125,7 +125,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   }
 
   var cmdLine = "type \"" + fileSrc + "\" | patch --binary $FILE";
-  msg = translate("${Enter the command line arguments for patch command}");
+  msg = translate("${Enter command line arguments for patch}");
   cmdLine = mergeApp.InputBox(msg, PLUGIN_NAME, cmdLine);
   if (cmdLine === "") { return false; }
   cmdLine = cmdLine.replace("$FILE", fileDst);
@@ -169,7 +169,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     dirPatched = regRead("Files\\Right/Item_0", "");
   }
 
-  var msg = fmt(translate("${Enter the name of the folder to which the patch '%1' will be applied}"), [ fso.GetFileName(fileSrc) ]);
+  var msg = fmt(translate("${Enter folder name for patch '%1'}"), [ fso.GetFileName(fileSrc) ]);
   while (true) {
     dirPatched = mergeApp.InputBox(msg, PLUGIN_NAME, dirPatched);
     if (dirPatched === "") {
@@ -184,7 +184,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   var stripCount = guessStripCount(files, dirPatched);
 
   var cmdLine = "type \"" + fileSrc + "\" | patch --binary -p" + stripCount;
-  msg = translate("${Enter the command line arguments for patch command}");
+  msg = translate("${Enter command line arguments for patch}");
   cmdLine = mergeApp.InputBox(msg, PLUGIN_NAME, cmdLine);
   if (cmdLine === "") {
     fso.CopyFile(fileSrc, fso.BuildPath(folderDst, fso.GetFileName(fileSrc)) + ".txt");

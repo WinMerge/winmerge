@@ -302,21 +302,21 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 		DoMergeValue(m_ptBuf[0]->getEncoding(), m_ptBuf[1]->getEncoding(), m_ptBuf[2]->getEncoding(), dstPane);
 	if (mergedEncoding.first == Merged)
 	{
-		ShowMessageBox(_("The change of codepage has been merged."), MB_ICONINFORMATION);
+		ShowMessageBox(_("Codepage change merged."), MB_ICONINFORMATION);
 		m_ptBuf[dstPane]->setEncoding(mergedEncoding.second);
 	}
 	else if (mergedEncoding.first == Conflict)
-		ShowMessageBox(_("The changes of codepage are conflicting."), MB_ICONINFORMATION);
+		ShowMessageBox(_("Codepage changes are conflicting."), MB_ICONINFORMATION);
 
 	std::pair<MergeResult, CRLFSTYLE> mergedEOLStyle =
 		DoMergeValue(m_ptBuf[0]->GetCRLFMode(), m_ptBuf[1]->GetCRLFMode(), m_ptBuf[2]->GetCRLFMode(), dstPane);
 	if (mergedEOLStyle.first == Merged)
 	{
-		ShowMessageBox(_("The change of EOL has been merged."), MB_ICONINFORMATION);
+		ShowMessageBox(_("EOL change merged."), MB_ICONINFORMATION);
 		m_ptBuf[dstPane]->SetCRLFMode(mergedEOLStyle.second);
 	}
 	else if (mergedEOLStyle.first == Conflict)
-		ShowMessageBox(_("The changes of EOL are conflicting."), MB_ICONINFORMATION);
+		ShowMessageBox(_("EOL changes are conflicting."), MB_ICONINFORMATION);
 
 	RescanSuppress suppressRescan(*this);
 
@@ -383,7 +383,7 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 
 	ShowMessageBox(
 		strutils::format_string2(
-			_("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"),
+			_("Automatic merges: %1\nUnresolved conflicts: %2"),
 			strutils::format(_T("%d"), autoMergedCount),
 			strutils::format(_T("%d"), unresolvedConflictCount)),
 		MB_ICONINFORMATION);

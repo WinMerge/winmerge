@@ -24,7 +24,7 @@ function get_PluginEvent() {
 }
 
 function get_PluginDescription() {
-	return "Date and time insertion function";
+	return "Date and time insertion";
 }
 
 function get_PluginFileFilters() {

@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+# This file is from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Maintainer:
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
-"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2023-02-19 00:07+0000\n"
 "PO-Revision-Date: 2023-03-12 14:56+0100\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"

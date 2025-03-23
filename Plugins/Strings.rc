@@ -117,82 +117,82 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION6 "Sort lines descending"
     IDS_PLUGIN_DESCRIPTION7 "Reverse columns"
     IDS_PLUGIN_DESCRIPTION8 "Reverse lines"
-    IDS_PLUGIN_DESCRIPTION9 "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+    IDS_PLUGIN_DESCRIPTION9 "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
     IDS_PLUGIN_DESCRIPTION10 
-                            "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+                            "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
     IDS_PLUGIN_DESCRIPTION11 
-                            "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+                            "Tokenize. \r\nUsage: Tokenize PATTERNS\r\n PATTERNS - regex (e.g. [^\\w]+)"
     IDS_PLUGIN_DESCRIPTION12 "Trim spaces"
     IDS_PLUGIN_DESCRIPTION13 
-                            "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+                            "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
     IDS_PLUGIN_DESCRIPTION14 
-                            "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+                            "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
 END
 
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_DESCRIPTION23 
-                            "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+                            "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
     IDS_PLUGIN_DESCRIPTION24 
-                            "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+                            "JSON Prettier (jq).\r\nArguments: jq filter/command line options."
     IDS_PLUGIN_DESCRIPTION25 
-                            "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+                            "XML Prettier (tidy-html5).\r\nArguments: tidy command line options."
     IDS_PLUGIN_DESCRIPTION26 
-                            "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+                            "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
     IDS_PLUGIN_DESCRIPTION27 
-                            "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+                            "Graphviz Previewer.\r\nArguments: dot command line options."
     IDS_PLUGIN_DESCRIPTION28 
-                            "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+                            "Markdown Previewer.\r\nArguments: md2html command line options."
     IDS_PLUGIN_DESCRIPTION29 
-                            "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+                            "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
     IDS_PLUGIN_DESCRIPTION30 
-                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+                            "CSV Querier (q).\r\nArguments: SQL statement/q options."
     IDS_PLUGIN_DESCRIPTION31 
-                            "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+                            "TSV Querier (q).\r\nArguments: SQL statement/q options."
     IDS_PLUGIN_DESCRIPTION32 
-                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+                            "JSON Querier (jq).\r\nArguments: jq filter/command line options."
     IDS_PLUGIN_DESCRIPTION33 
-                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+                            "YAML Querier (yq).\r\nArguments: yq filter/command line options."
 END
 
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_DESCRIPTION34 
-                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+                            "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
     IDS_PLUGIN_DESCRIPTION35 
-                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+                            "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
     IDS_PLUGIN_DESCRIPTION36 
-                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+                            "IL disassembler (ildasm).\r\nArguments: ildasm command line options."
     IDS_PLUGIN_DESCRIPTION37 
-                            "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+                            "Native code disassembler (dumpbin).\r\nArguments: dumpbin command line options."
     IDS_PLUGIN_DESCRIPTION38 
-                            "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-    IDS_PLUGIN_DESCRIPTION39 "Apply patch using GNU patch"
-    IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS Excel files"
-    IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS PowerPoint files"
-    IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Visio files"
-    IDS_PLUGIN_DESCRIPTION43 "Display the text content of MS Word files"
+                            "Content extractor (Apache Tika).\r\nArguments: tika-app.jar command line options."
+    IDS_PLUGIN_DESCRIPTION39 "Apply patch (GNU patch)"
+    IDS_PLUGIN_DESCRIPTION40 "Display MS Excel text content"
+    IDS_PLUGIN_DESCRIPTION41 "Display MS PowerPoint text content"
+    IDS_PLUGIN_DESCRIPTION42 "Display MS Visio text content"
+    IDS_PLUGIN_DESCRIPTION43 "Display MS Word text content"
     IDS_PLUGIN_DESCRIPTION44 
-                            "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+                            "Ignore columns - list from plugin name/argument"
     IDS_PLUGIN_DESCRIPTION45 
-                            "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+                            "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
     IDS_PLUGIN_DESCRIPTION46 
-                            "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+                            "Ignore fields - list from plugin name/argument"
     IDS_PLUGIN_DESCRIPTION47 
-			    "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+			    "Ignore leading line numbers (e.g., NC, BASIC)."
     IDS_PLUGIN_DESCRIPTION48 "Prediff Line Filter"
-    IDS_PLUGIN_DESCRIPTION49 "Date and time insertion function"
+    IDS_PLUGIN_DESCRIPTION49 "Date and time insertion"
     IDS_PLUGIN_DESCRIPTION50
-                            "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+                            "HTTP URL Scheme Handler (curl).\r\nArguments: curl command line options."
 END
 
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_DESCRIPTION51 
-                            "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+                            "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
     IDS_PLUGIN_DESCRIPTION52 "Basic text functions"
-    IDS_PLUGIN_DESCRIPTION53 "AI-assisted text conversion functions"
-    IDS_PLUGIN_DESCRIPTION54 "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+    IDS_PLUGIN_DESCRIPTION53 "AI-assisted text conversion"
+    IDS_PLUGIN_DESCRIPTION54 "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
     IDS_PLUGIN_DESCRIPTION55 "Unescape and display escaped Java properties files."
 END
 
@@ -202,7 +202,7 @@ BEGIN
                             "CompareMSExcelFiles.sct WinMerge Plugin Options"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR2 
                             "Extract workbook data to multiple files"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR3 "Update external references(links)"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR3 "Update external references (links)"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR4 "Compare document properties"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR5 "Compare names"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR6 "Compare cell values"
@@ -214,7 +214,7 @@ BEGIN
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR11 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR12 "Compare headers and footers"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 
-                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+                            "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 END
 
 STRINGTABLE
@@ -232,7 +232,7 @@ BEGIN
     IDS_PLUGIN_COMPAREMSWORDFILES_STR7 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSWORDFILES_STR8 "Compare VBA macros"
     IDS_PLUGIN_COMPAREMSWORDFILES_STR9
-                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+                            "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 END
 
 STRINGTABLE
@@ -252,7 +252,7 @@ BEGIN
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR6 "Compare texts in notes page"
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR7 "Compare VBA macros"
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR8
-                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+                            "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 END
 
 STRINGTABLE
@@ -264,7 +264,7 @@ BEGIN
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR4 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR5 "Compare VBA macros"
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR6
-                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+                            "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 END
 
 STRINGTABLE
@@ -283,25 +283,25 @@ END
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_IGNORE_STR1  "Settings"
-    IDS_PLUGIN_IGNORE_STR2  "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+    IDS_PLUGIN_IGNORE_STR2  "Column Ranges to Ignore:\ne.g.) 3,10-20,32-33\n"
 END
 
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_APPLYPATCH_STR1 
-                            "Enter the name of the file to which the patch '%1' will be applied"
+                            "Enter filename for patch '%1'"
     IDS_PLUGIN_APPLYPATCH_STR2 "File '%1' does not exist"
     IDS_PLUGIN_APPLYPATCH_STR3 
-                            "Enter the command line arguments for patch command"
+                            "Enter command line arguments for patch"
     IDS_PLUGIN_APPLYPATCH_STR4 
-                            "Enter the name of the folder to which the patch '%1' will be applied"
+                            "Enter folder name for patch '%1'"
 END
 
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_APPLYPATCH_STR5 "Folder '%1' does not exist"
     IDS_PLUGIN_APPLYPATCH_STR6 
-                            "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+                            "Do not use '-p0' for patch files with absolute paths"
 END
 
 STRINGTABLE
@@ -311,7 +311,7 @@ BEGIN
     IDS_PLUGIN_EDITORADDIN_STR2
                             "Enter prompt"
     IDS_PLUGIN_EDITORADDIN_STR3 
-                            "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+                            "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
     IDS_PLUGIN_EDITORADDIN_STR4
                             "Environment variable name for OpenAI API key"
     IDS_PLUGIN_EDITORADDIN_STR5
@@ -323,7 +323,7 @@ BEGIN
     IDS_PLUGIN_EDITORADDIN_STR8
                             "Model"
     IDS_PLUGIN_EDITORADDIN_STR9
-                            "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+                            "OpenAI API key changed. Restart to apply."
 END
 
 #endif    // English (United States) resources

@@ -970,13 +970,13 @@ Pekka Himanen</screen></para>
             Filter</guilabel> (see <xref linkend="Filters_FileFilterLoc" /> for
             their uses) and click <keycap>OK</keycap>.</para>
 
-            <para>The Select filename for new filter dialog opens in the shared
+            <para>The Select Filename for New Filter dialog opens in the shared
             or private files folder on your system (if the private folder does
             not exist, WinMerge creates it).</para>
           </listitem>
 
           <listitem>
-            <para>In the Select filename for new filter dialog, enter a new file
+            <para>In the Select Filename for New Filter dialog, enter a new file
             name and click <guibutton>Save</guibutton>.</para>
 
             <note>
@@ -1027,7 +1027,7 @@ Pekka Himanen</screen></para>
               </listitem>
 
               <listitem>
-                <para>In the Locate filter file to install dialog, navigate to
+                <para>In the Locate Filter File to Install dialog, navigate to
                 the <filename>flt</filename> file on your system, and click
                 <guibutton>Open</guibutton>. The File Filters list should now
                 include the installed file filter.</para>

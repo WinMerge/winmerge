@@ -2270,7 +2270,7 @@ void CMergeEditView::OnUpdateCopyLinesFromRight(CCmdUI* pCmdUI)
 void CMergeEditView::OnAllLeft()
 {
 	UINT userChoice = 0;
-	String msg = _("Are you sure you want to copy all differences to the other file?");
+	String msg = _("Copy all differences to other file?");
 	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
 		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
 	if (userChoice == IDNO)
@@ -2306,7 +2306,7 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 void CMergeEditView::OnAllRight()
 {
 	UINT userChoice = 0;
-	String msg = _("Are you sure you want to copy all differences to the other file?");
+	String msg = _("Copy all differences to other file?");
 	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
 		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
 	if (userChoice == IDNO)

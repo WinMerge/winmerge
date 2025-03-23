@@ -28,7 +28,7 @@ namespace
 {
 const char *COLHDR_FILENAME     = N_("Filename");
 const char *COLHDR_DIR          = NC_("DirView|ColumnHeader", "Folder");
-const char *COLHDR_RESULT       = N_("Comparison result");
+const char *COLHDR_RESULT       = N_("Comparison Result");
 const char *COLHDR_LTIMEM       = N_("Left Date");
 const char *COLHDR_RTIMEM       = N_("Right Date");
 const char *COLHDR_MTIMEM       = N_("Middle Date");
@@ -101,8 +101,8 @@ const char *COLDESC_MEOL_TYPE   = N_("Middle side file EOL type.");
 const char *COLDESC_LENCODING   = N_("Left side encoding.");
 const char *COLDESC_RENCODING   = N_("Right side encoding.");
 const char *COLDESC_MENCODING   = N_("Middle side encoding.");
-const char *COLDESC_NIDIFFS     = N_("Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged.");
-const char *COLDESC_NSDIFFS     = N_("Number of differences in file. This number does not include ignored differences.");
+const char *COLDESC_NIDIFFS     = N_("Number of ignored differences in file. Ignored and cannot be merged.");
+const char *COLDESC_NSDIFFS     = N_("Number of differences in file (excluding ignored).");
 const char *COLDESC_BINARY      = N_("Shows an asterisk (*) if the file is binary.");
 const char *COLDESC_UNPACKER    = N_("Unpacker plugin name or pipeline.");
 const char *COLDESC_PREDIFFER   = N_("Prediffer plugin name or pipeline.");

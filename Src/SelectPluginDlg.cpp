@@ -51,7 +51,7 @@ void CSelectPluginDlg::Initialize(PluginType pluginType)
 	automaticPlugin.reset(new PluginInfo);
 	automaticPlugin->m_lpDispatch = nullptr;
 	automaticPlugin->m_name = _("<Automatic>");
-	automaticPlugin->m_description = _T("The adapted unpacker is applied to both files (one file only needs the extension).");
+	automaticPlugin->m_description = _T("Adapted unpacker applied to both files (one needs extension).");
 
 	const std::vector<std::wstring>& events = *EventNamesArray[static_cast<int>(pluginType)];
 	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames, events, 0).second;

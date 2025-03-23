@@ -391,7 +391,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	if (globalPath.empty() && userPath.empty())
 	{
 		AfxMessageBox(
-			_("User's filter file folder is not defined!\n\nPlease select filter folder in Options/System.").c_str(), MB_ICONSTOP);
+			_("User's filter folder is not defined!\n\nSelect filter folder in Options/System.").c_str(), MB_ICONSTOP);
 		return;
 	}
 
@@ -401,7 +401,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	if (paths::DoesPathExist(templatePath) != paths::IS_EXISTING_FILE)
 	{
 		String msg = strutils::format_string2(
-			_("Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."),
+			_("Cannot find filter template!\n\nCopy %1 to WinMerge/Filters Folder:\n%2."),
 			FILE_FILTER_TEMPLATE, templatePath);
 		AfxMessageBox(msg.c_str(), MB_ICONERROR);
 		return;
@@ -424,7 +424,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		path = paths::AddTrailingSlash(path);
 	
 	String s;
-	if (SelectFile(GetSafeHwnd(), s, false, path.c_str(), _("Select filename for new filter"),
+	if (SelectFile(GetSafeHwnd(), s, false, path.c_str(), _("Select Filename for New Filter"),
 		_("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||")))
 	{
 		// Fix file extension
@@ -452,7 +452,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		if (!fileIn.OpenReadOnly(templatePath) || !fileOut.OpenCreate(s))
 		{
 			String msg = strutils::format_string1(
-				_( "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."),
+				_( "Cannot copy filter template:\n%1\n\nMake sure the folder exists and is writable."),
 				templatePath);
 			AfxMessageBox(msg.c_str(), MB_ICONERROR);
 			return;
@@ -514,7 +514,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 			else
 			{
 				String msg = strutils::format_string1(
-					_("Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"),
+					_("Failed to delete filter:\n%1\n\nFile may be read-only."),
 					path);
 				AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 			}
@@ -565,7 +565,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	String s;
 	String path;
 
-	if (SelectFile(GetSafeHwnd(), s, true, path.c_str(),_("Locate filter file to install"),
+	if (SelectFile(GetSafeHwnd(), s, true, path.c_str(),_("Locate Filter File to Install"),
 		_("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||")))
 	{
 		String userPath = pGlobalFileFilter->GetUserFilterPathWithCreate();

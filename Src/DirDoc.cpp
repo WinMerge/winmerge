@@ -811,7 +811,7 @@ bool CDirDoc::MoveableToNextDiff()
 {
 	if (m_pDirView == nullptr)
 		return false;
-	CMessageBoxDialog dlg(nullptr, _("Do you want to move to the next file?").c_str());
+	CMessageBoxDialog dlg(nullptr, _("Move to next file?").c_str());
 	const int nFormerResult = dlg.GetFormerResult();
 	if (nFormerResult != -1 && nFormerResult == IDNO)
 		return false;
@@ -822,7 +822,7 @@ bool CDirDoc::MoveableToPrevDiff()
 {
 	if (m_pDirView == nullptr)
 		return false;
-	CMessageBoxDialog dlg(nullptr, _("Do you want to move to the previous file?").c_str());
+	CMessageBoxDialog dlg(nullptr, _("Move to previous file?").c_str());
 	const int nFormerResult = dlg.GetFormerResult();
 	if (nFormerResult != -1 && nFormerResult == IDNO)
 		return false;
@@ -833,7 +833,7 @@ void CDirDoc::MoveToNextDiff(IMergeDoc *pMergeDoc)
 {
 	if (m_pDirView == nullptr)
 		return;
-	if (AfxMessageBox(_("Do you want to move to the next file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTFILE) == IDYES)
+	if (AfxMessageBox(_("Move to next file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTFILE) == IDYES)
 	{
 		pMergeDoc->CloseNow();
 		m_pDirView->OpenNextDiff();
@@ -845,7 +845,7 @@ void CDirDoc::MoveToPrevDiff(IMergeDoc *pMergeDoc)
 {
 	if (m_pDirView == nullptr)
 		return;
-	if (AfxMessageBox(_("Do you want to move to the previous file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVFILE) == IDYES)
+	if (AfxMessageBox(_("Move to previous file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVFILE) == IDYES)
 	{
 		pMergeDoc->CloseNow();
 		m_pDirView->OpenPrevDiff();
@@ -857,7 +857,7 @@ void CDirDoc::MoveToFirstFile(IMergeDoc* pMergeDoc)
 {
 	if (m_pDirView == nullptr)
 		return;
-	if (AfxMessageBox(_("Do you want to move to the first file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_FIRSTFILE) == IDYES)
+	if (AfxMessageBox(_("Move to first file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_FIRSTFILE) == IDYES)
 	{
 		pMergeDoc->CloseNow();
 		m_pDirView->OpenFirstFile();
@@ -869,7 +869,7 @@ void CDirDoc::MoveToNextFile(IMergeDoc* pMergeDoc)
 {
 	if (m_pDirView == nullptr)
 		return;
-	if (AfxMessageBox(_("Do you want to move to the next file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTFILE) == IDYES)
+	if (AfxMessageBox(_("Move to next file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTFILE) == IDYES)
 	{
 		pMergeDoc->CloseNow();
 		m_pDirView->OpenNextFile();
@@ -881,7 +881,7 @@ void CDirDoc::MoveToPrevFile(IMergeDoc* pMergeDoc)
 {
 	if (m_pDirView == nullptr)
 		return;
-	if (AfxMessageBox(_("Do you want to move to the previous file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVFILE) == IDYES)
+	if (AfxMessageBox(_("Move to previous file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVFILE) == IDYES)
 	{
 		pMergeDoc->CloseNow();
 		m_pDirView->OpenPrevFile();
@@ -893,7 +893,7 @@ void CDirDoc::MoveToLastFile(IMergeDoc* pMergeDoc)
 {
 	if (m_pDirView == nullptr)
 		return;
-	if (AfxMessageBox(_("Do you want to move to the last file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_LASTFILE) == IDYES)
+	if (AfxMessageBox(_("Move to last file?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_LASTFILE) == IDYES)
 	{
 		pMergeDoc->CloseNow();
 		m_pDirView->OpenLastFile();

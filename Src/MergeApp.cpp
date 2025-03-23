@@ -199,7 +199,7 @@ AboutInfo::AboutInfo()
 	version += _T(")");
 #endif
 
-	copyright = _("WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details.");
+	copyright = _("WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details.");
 	copyright += _T("\n");
 	copyright += verinfo.GetLegalCopyright();
 	copyright += _T(" - All rights reserved.");

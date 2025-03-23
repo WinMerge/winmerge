@@ -157,13 +157,13 @@ function GetStringsFromRcFile(sRcFilePath) {
 function CreateMasterPotFile(sPotPath, oStrings) {
   var oPotFile = oFSO.CreateTextFile(sPotPath, true);
   
-  oPotFile.WriteLine("# This file is part from WinMerge <https://winmerge.org/>");
+  oPotFile.WriteLine("# This file is from WinMerge <https://winmerge.org/>");
   oPotFile.WriteLine("# Released under the \"GNU General Public License\"");
   oPotFile.WriteLine("#");
   oPotFile.WriteLine("msgid \"\"");
   oPotFile.WriteLine("msgstr \"\"");
   oPotFile.WriteLine("\"Project-Id-Version: WinMerge Shell Extension\\n\"");
-  oPotFile.WriteLine("\"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\\n\"");
+  oPotFile.WriteLine("\"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\\n\"");
   oPotFile.WriteLine("\"POT-Creation-Date: " + GetPotCreationDate() + "\\n\"");
   oPotFile.WriteLine("\"PO-Revision-Date: \\n\"");
   oPotFile.WriteLine("\"Last-Translator: \\n\"");

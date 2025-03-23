@@ -52,7 +52,7 @@ Public Property Get PluginEvent() As String
 End Property
 
 Public Property Get PluginDescription() As String
-    PluginDescription = "Display the text content of MS Excel files."
+    PluginDescription = "Display MS Excel text content."
 End Property
 
 Public Property Get PluginFileFilters() As String

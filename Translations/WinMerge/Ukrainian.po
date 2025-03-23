@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+# This file is from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2009-06-13 00:58+0200\n"
 "Last-Translator: Warrior <warr11r@rambler.ru>\n"
@@ -45,22 +45,22 @@ msgstr "Копіювати на &ліву панель\tAlt+Left"
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Копіювати з&ліва\tAlt+Shift+Right"
 
-msgid "Copy Selected Line(s) to Middle"
+msgid "Copy Selected Lines to Middle"
 msgstr "Копіювати виділені рядки в центр"
 
-msgid "Copy Selected Line(s) to Right"
+msgid "Copy Selected Lines to Right"
 msgstr "Копіювати обрані рядки праворуч"
 
-msgid "Copy Selected Line(s) from Middle"
+msgid "Copy Selected Lines from Middle"
 msgstr "Копіювати обрані рядки з цетру"
 
-msgid "Copy Selected Line(s) from Right"
+msgid "Copy Selected Lines from Right"
 msgstr "Копіювати обрані рядки справа"
 
-msgid "Copy Selected Line(s) to Left"
+msgid "Copy Selected Lines to Left"
 msgstr "Копіювати обрані рядки ліворуч"
 
-msgid "Copy Selected Line(s) from Left"
+msgid "Copy Selected Lines from Left"
 msgstr "Копіювати обрані рядки зліва"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Select Line &Difference\tF4"
 msgstr "Вибрати від&мінність\tF4"
 
-msgid "Add this change to Substitution &Filters"
+msgid "Add to Substitution &Filters"
 msgstr "Додати цю зміну до ф&ільтрів підміни"
 
 msgid "Add to &Line Filters"
@@ -146,7 +146,7 @@ msgstr "Показувати &відмінності"
 msgid "Diff &Block Size"
 msgstr "Відмінності розміру &блоку"
 
-msgid "&Ignore Color Difference (Color Distance Threshold)"
+msgid "&Ignore Color Difference"
 msgstr "&Ігнорувати різницю кольорів (поріг)"
 
 msgid "Ins&ertion/Deletion Detection"
@@ -242,13 +242,13 @@ msgstr "&Масштаб зображень"
 msgid "&Animation Settings"
 msgstr ""
 
-msgid "&Blink interval"
+msgid "&Blink Interval"
 msgstr ""
 
-msgid "&Overlay animation interval"
+msgid "&Overlay Animation Interval"
 msgstr ""
 
-msgid "Compare Extracted &Text From Images"
+msgid "Compare Extracted &Text from Images"
 msgstr "Порівняти витягнутий з зображення &текст"
 
 msgid "Co&mpare"
@@ -290,7 +290,7 @@ msgstr ""
 msgid "&Input"
 msgstr ""
 
-msgid "&GoBack/Forward"
+msgid "&Go Back/Forward"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -305,7 +305,7 @@ msgstr "&Файли cookies"
 msgid "&Browsing History"
 msgstr "&Історія переглядів"
 
-msgid "&All Profile"
+msgid "&All Profiles"
 msgstr ""&Усі профілі"
 
 #, c-format
@@ -361,7 +361,7 @@ msgid "Recent Projects"
 msgstr "Нещодавні проекти"
 
 #, c-format
-msgid "Recent F&iles Or Folders"
+msgid "Recent F&iles or Folders"
 msgstr "Останні ф&айли та теки"
 
 msgid "E&xit\tCtrl+Q"
@@ -456,7 +456,7 @@ msgid "&Automatic Unpacking"
 msgstr "&Автоматичне розпакування"
 
 #, c-format
-msgid "&Reload plugins"
+msgid "&Reload Plugins"
 msgstr "Перезавантажити всі &доповнення"
 
 #, c-format
@@ -514,20 +514,19 @@ msgstr "&GNU General Public License"
 msgid "&About WinMerge..."
 msgstr "Про про&граму WinMerge..."
 
-#, c-format
-msgid "&Read-only"
+msgid "&Read-Only"
 msgstr ""
 
 #, c-format
-msgid "L&eft Read-only"
+msgid "L&eft Read-Only"
 msgstr "&Файл зліва лише для читання"
 
 #, c-format
-msgid "M&iddle Read-only"
+msgid "M&iddle Read-Only"
 msgstr "&Тільки для читання"
 
 #, c-format
-msgid "Ri&ght Read-only"
+msgid "Ri&ght Read-Only"
 msgstr "Ф&айл справа лише для читання"
 
 #, c-format
@@ -809,7 +808,7 @@ msgid "&Next Bookmark\tF2"
 msgstr "&Наступна закладка\tF2"
 
 #, c-format
-msgid "&Previous bookmark\tShift+F2"
+msgid "&Previous Bookmark\tShift+F2"
 msgstr "&Попередня закладка\tShift+F2"
 
 #, c-format
@@ -913,52 +912,40 @@ msgstr ""
 msgid "A&dvanced"
 msgstr ""
 
-#, c-format
-msgid "Next Difference Between Left and Middle\tAlt+1"
+msgid "Next Difference (Left/Middle)\tAlt+1"
 msgstr ""
 
-#, c-format
-msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
+msgid "Previous Difference (Left/Middle)\tAlt+Shift+1"
 msgstr ""
 
-#, c-format
-msgid "Next Difference Between Left and Right\tAlt+2"
+msgid "Next Difference (Left/Right)\tAlt+2"
 msgstr ""
 
-#, c-format
-msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
+msgid "Previous Difference (Left/Right)\tAlt+Shift+2"
 msgstr ""
 
-#, c-format
-msgid "Next Difference Between Middle and Right\tAlt+3"
+msgid "Next Difference (Middle/Right)\tAlt+3"
 msgstr ""
 
-#, c-format
-msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
+msgid "Previous Difference (Middle/Right)\tAlt+Shift+3"
 msgstr ""
 
-#, c-format
-msgid "Next Left Only Difference\tAlt+7"
+msgid "Next Left-Only Difference\tAlt+7"
 msgstr ""
 
-#, c-format
-msgid "Previous Left Only Difference\tAlt+Shift+7"
+msgid "Previous Left-Only Difference\tAlt+Shift+7"
 msgstr ""
 
-#, c-format
-msgid "Next Middle Only Difference\tAlt+8"
+msgid "Next Middle-Only Difference\tAlt+8"
 msgstr ""
 
-#, c-format
-msgid "Previous Middle Only Difference\tAlt+Shift+8"
+msgid "Previous Middle-Only Difference\tAlt+Shift+8"
 msgstr ""
 
-#, c-format
-msgid "Next Right Only Difference\tAlt+9"
+msgid "Next Right-Only Difference\tAlt+9"
 msgstr ""
 
-#, c-format
-msgid "Previous Right Only Difference\tAlt+Shift+9"
+msgid "Previous Right-Only Difference\tAlt+Shift+9"
 msgstr ""
 
 msgid "Copy from &Left to"
@@ -982,13 +969,13 @@ msgstr "&Ліворуч"
 msgid "Copy from &Right to"
 msgstr ""
 
-msgid "Copy Selected Line(s) from Le&ft to"
+msgid "Copy Selected Lines from Le&ft to"
 msgstr ""
 
-msgid "Copy Selected Line(s) from Mi&ddle to"
+msgid "Copy Selected Lines from Mi&ddle to"
 msgstr ""
 
-msgid "Copy Selected Line(s) from Ri&ght to"
+msgid "Copy Selected Lines from Ri&ght to"
 msgstr ""
 
 #, c-format
@@ -1034,13 +1021,13 @@ msgstr "&Попереднє порівняння"
 msgid "Apply Pre&differ..."
 msgstr ""
 
-msgid "&Transform with editor script..."
+msgid "&Transform with Editor Script..."
 msgstr ""
 
-msgid "Scripts for &copying"
+msgid "Scripts for &Copying"
 msgstr ""
 
-msgid "Select &editor script..."
+msgid "Select &Editor Script..."
 msgstr ""
 
 #, c-format
@@ -1051,7 +1038,7 @@ msgstr ""
 msgid "Comp&are"
 msgstr "По&рівняти"
 
-msgid "Compare in new &window"
+msgid "Compare in New &Window"
 msgstr ""
 
 msgid "Compare Non-hor&izontally..."
@@ -1061,20 +1048,16 @@ msgstr ""
 msgid "Compare Non-hor&izontally"
 msgstr ""
 
-#, c-format
-msgid "First &left item with second left item"
+msgid "First &Left with Second Left"
 msgstr ""
 
-#, c-format
-msgid "First &right item with second right item"
+msgid "First &Right with Second Right"
 msgstr ""
 
-#, c-format
-msgid "&First left item with second right item"
+msgid "&First Left with Second Right"
 msgstr ""
 
-#, c-format
-msgid "&Second left item with first right item"
+msgid "&Second Left with First Right"
 msgstr ""
 
 #, c-format
@@ -1150,7 +1133,7 @@ msgid "O&pen Right"
 msgstr "В&ідкрити правий файл"
 
 #, c-format
-msgid "Cop&y Pathnames"
+msgid "Cop&y Paths"
 msgstr "Скопіювати &шляхи"
 
 #, c-format
@@ -1177,8 +1160,7 @@ msgstr ""
 msgid "Copy &Filenames"
 msgstr "Скопіювати &імена файлів"
 
-#, c-format
-msgid "Copy Items To Clip&board"
+msgid "Copy Items to Clip&board"
 msgstr ""
 
 msgid "Copy All Di&splayed Columns"
@@ -1200,22 +1182,20 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-#, c-format
-msgid "Left Shell menu"
-msgstr "Ліве меню оболонки"
+msgid "Left Shell Menu"
+msgstr ""
 
-#, c-format
-msgid "Middle Shell menu"
+msgid "Middle Shell Menu"
 msgstr ""
 
 #, c-format
-msgid "Right Shell menu"
+msgid "Right Shell Menu"
 msgstr "Праве меню оболонки"
 
-msgid "Both Shell menu"
+msgid "Both Shell Menu"
 msgstr ""
 
-msgid "All Shell menu"
+msgid "All Shell Menu"
 msgstr ""
 
 #, c-format
@@ -1275,44 +1255,44 @@ msgid "Com&pare"
 msgstr "Порівняти"
 
 #, c-format
-msgid "I&gnore changes"
+msgid "I&gnore Changes"
 msgstr "Нехтувати змінами"
 
 #, c-format
-msgid "Ig&nore all"
+msgid "Ig&nore All"
 msgstr "Нехтувати всюди"
 
 #, c-format
-msgid "Ignore blan&k lines"
+msgid "Ignore Blan&k Lines"
 msgstr "Нехтувати порожніми &лініями"
 
 #, c-format
-msgid "Ignore &case"
+msgid "Ignore &Case"
 msgstr "Нехтувати р&егістр"
 
 #, c-format
-msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
 msgstr "Нехтувати різницею в кінцях рядків (Win/Unix/Mac)"
 
 #, c-format
-msgid "Ignore codepage &differences"
+msgid "Ignore Codepage &Differences"
 msgstr ""
 
-msgid "Ignore num&bers"
+msgid "Ignore Num&bers"
 msgstr ""
 
-msgid "Ignore c&omment differences"
+msgid "Ignore C&omment Differences"
 msgstr ""
 
-msgid "Ignore &missing trailing EOL"
+msgid "Ignore &Missing Trailing EOL"
 msgstr ""
 
 #, c-format
-msgid "&Include subfolders"
+msgid "&Include Subfolders"
 msgstr "&Враховуючи підтеки"
 
 #, c-format
-msgid "&Compare method:"
+msgid "&Compare Method"
 msgstr ""
 
 #, c-format
@@ -1343,79 +1323,79 @@ msgstr "За розміром"
 msgid "&Load Project..."
 msgstr ""
 
-msgid "${*} - All arguments"
+msgid "${*} - All Arguments"
 msgstr ""
 
-msgid "${1} - The first argument"
+msgid "${1} - First Argument"
 msgstr ""
 
-msgid "${2} - The second argument"
+msgid "${2} - Second Argument"
 msgstr ""
 
-msgid "${3} - The third argument"
+msgid "${3} - Third Argument"
 msgstr ""
 
-msgid "${4} - The fourth argument"
+msgid "${4} - Fourth Argument"
 msgstr ""
 
-msgid "${5} - The fifth argument"
+msgid "${5} - Fifth Argument"
 msgstr ""
 
-msgid "${6} - The sixth argument"
+msgid "${6} - Sixth Argument"
 msgstr ""
 
-msgid "${7} - The seventh argument"
+msgid "${7} - Seventh Argument"
 msgstr ""
 
-msgid "${8} - The eighth argument"
+msgid "${8} - Eighth Argument"
 msgstr ""
 
-msgid "${9} - The ninth argument"
+msgid "${9} - Ninth Argument"
 msgstr ""
 
-msgid "${SRC_FILE} - Source file"
+msgid "${SRC_FILE} - Source File"
 msgstr ""
 
-msgid "${SRC_FOLDER} - Source folder"
+msgid "${SRC_FOLDER} - Source Folder"
 msgstr ""
 
 msgid "${SRC_URL} - Source URL"
 msgstr ""
 
-msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
 msgstr ""
 
-msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
 msgstr ""
 
-msgid "${DST_FILE} - Destination file"
+msgid "${DST_FILE} - Destination File"
 msgstr ""
 
-msgid "${DST_FOLDER} - Destination folder"
+msgid "${DST_FOLDER} - Destination Folder"
 msgstr ""
 
 msgid "${DST_URL} - Destination URL"
 msgstr ""
 
-msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
 msgstr ""
 
-msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
 msgstr ""
 
-msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgid "${WINMERGE_HOME} - WinMerge Home Directory"
 msgstr ""
 
-msgid "${SCRIPT_FILE} - Script file"
+msgid "${SCRIPT_FILE} - Script File"
 msgstr ""
 
-msgid "Add &unpacker plugin..."
+msgid "Add &Unpacker Plugin..."
 msgstr ""
 
-msgid "Add &prediffer plugin..."
+msgid "Add &Prediffer Plugin..."
 msgstr ""
 
-msgid "&Duplicate plugin..."
+msgid "&Duplicate Plugin..."
 msgstr ""
 
 #, c-format
@@ -1489,6 +1469,9 @@ msgstr "Перегляд ..."
 msgid " Folder: Filter"
 msgstr ""
 
+msgid "&Include subfolders"
+msgstr "&Враховуючи підтеки"
+
 msgid " File: Prediffer Plugin"
 msgstr ""
 
@@ -1527,7 +1510,7 @@ msgid "Cl&ose windows with 'Esc':"
 msgstr "За&кривати вікна клавішею 'Esc':"
 
 #, c-format
-msgid "&Automatically verify paths in Open-dialog"
+msgid "&Automatically verify paths in Open dialog"
 msgstr "Автоматично перевіряти шляхи в діалозі відкриття файлів"
 
 msgid "Single instance mode:"
@@ -1549,7 +1532,7 @@ msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
-msgid "Op&en-dialog Auto-Completion:"
+msgid "Op&en dialog Auto completion:"
 msgstr "Діалог Автоматичного доповнення:"
 
 msgid "Auto-&reload modified files:"
@@ -1588,7 +1571,7 @@ msgid "D&on't wrap end of file"
 msgstr "Н&е зупинятися при досягненні кінця файлу "
 
 #, c-format
-msgid "&Don't close this dialog box"
+msgid "&Don't close this dialog"
 msgstr ""
 
 #, c-format
@@ -1612,7 +1595,7 @@ msgid "Re&place with:"
 msgstr "За&міна: "
 
 #, c-format
-msgid "&Don't wrap end of file"
+msgid "&Don't wrap at end of file"
 msgstr "Не зупинятися при досягненні кінця файлу"
 
 #, c-format
@@ -1643,7 +1626,7 @@ msgid "Markers"
 msgstr ""
 
 #, c-format
-msgid "Enable &Markers"
+msgid "Enable &markers"
 msgstr ""
 
 #, c-format
@@ -1680,7 +1663,7 @@ msgstr "Вилучити"
 msgid "Substitution Filters"
 msgstr ""
 
-msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgid "Changes to the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr ""
 
 msgid "Enable"
@@ -1732,11 +1715,11 @@ msgid "Selected Moved:"
 msgstr "Відзначені переміщені:"
 
 #, c-format
-msgid "Same As The Next (3 panes):"
+msgid "Same As Next (3 panes):"
 msgstr ""
 
 #, c-format
-msgid "Same As The Next (Selected):"
+msgid "Same As Next (Selected):"
 msgstr ""
 
 #, c-format
@@ -1816,15 +1799,15 @@ msgid "Search Marker:"
 msgstr ""
 
 #, c-format
-msgid "User Defined Marker1:"
+msgid "User Defined Marker 1:"
 msgstr ""
 
 #, c-format
-msgid "User Defined Marker2:"
+msgid "User Defined Marker 2:"
 msgstr ""
 
 #, c-format
-msgid "User Defined Marker3:"
+msgid "User Defined Marker 3:"
 msgstr ""
 
 msgid "&Use folder compare colors"
@@ -1836,13 +1819,13 @@ msgstr ""
 msgid "Items different:"
 msgstr ""
 
-msgid "Items not exists all:"
+msgid "Items missing:"
 msgstr ""
 
 msgid "Items filtered:"
 msgstr ""
 
-msgid "&Use custom system colors (Some UI elements may not apply)"
+msgid "&Use custom system colors"
 msgstr ""
 
 #, c-format
@@ -1850,7 +1833,7 @@ msgid "System"
 msgstr "Система"
 
 #, c-format
-msgid "&Send deleted files to Recycle Bin"
+msgid "&Use Recycle Bin"
 msgstr "Переміщувати вилучені файли до кошика"
 
 #, c-format
@@ -1866,7 +1849,7 @@ msgid "Temporary files folder"
 msgstr "Тека для тимчасових файлів"
 
 #, c-format
-msgid "S&ystem's temp folder"
+msgid "S&ystem temp folder"
 msgstr "Системна тека Temp"
 
 #, c-format
@@ -1894,7 +1877,7 @@ msgid "&Swap"
 msgstr "Поміняти"
 
 #, c-format
-msgid "&Copy to Clipboard"
+msgid "&Copy to clipboard"
 msgstr "Копіювати в буфер обміну"
 
 #, c-format
@@ -1926,7 +1909,7 @@ msgid "Inclu&de command line"
 msgstr "Ввім&кнути командний рядок"
 
 #, c-format
-msgid "Open to e&xternal editor"
+msgid "Open in e&xternal editor"
 msgstr "Відкрити у зовнішньому редакторі"
 
 #, c-format
@@ -1967,10 +1950,10 @@ msgstr "Опис:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension"
+msgid "Display all plugins (Ignore extension)"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking"
+msgid "&Open files in same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin pipeline:"
@@ -1991,7 +1974,7 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
+msgid "C&PU cores to use:"
 msgstr ""
 
 #, c-format
@@ -2046,6 +2029,27 @@ msgstr "Нехтувати зміненими пропусками"
 msgid "I&gnore all"
 msgstr "Нехтувати &всіма пропусками"
 
+msgid "Ignore blan&k lines"
+msgstr "Нехтувати порожніми &лініями"
+
+msgid "Ignore &case"
+msgstr "Нехтувати р&егістр"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "Виявлення перемі&щених блоків"
@@ -2071,7 +2075,7 @@ msgid "&Highlight syntax"
 msgstr "Підсвічувати синтаксис"
 
 #, c-format
-msgid "&Preserve original EOL chars"
+msgid "&Preserve original EOL"
 msgstr "Оригінальні символи закінчення рядка"
 
 #, c-format
@@ -2082,15 +2086,14 @@ msgstr "Відступи"
 msgid "&Tab size:"
 msgstr "Розмір &відступу:"
 
-#, c-format
-msgid "&Insert Tabs"
-msgstr "&Табуляції"
+msgid "&Insert tabs"
+msgstr ""
 
 #, c-format
-msgid "Insert &Spaces"
+msgid "Insert &spaces"
 msgstr "&Пропуски"
 
-msgid "&Rendering Mode:"
+msgid "&Rendering mode:"
 msgstr ""
 
 #, c-format
@@ -2109,7 +2112,7 @@ msgid "View line differences"
 msgstr "Показувати відмінності в рядку"
 
 #, c-format
-msgid "&Character level"
+msgid "&Character-level"
 msgstr "За символами"
 
 #, c-format
@@ -2120,7 +2123,7 @@ msgstr "За словами:"
 msgid "W&ord break characters:"
 msgstr "Символи, якимми розбиваються слова"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
 msgstr "WinMerge не показує деякі повідомлення. Натисніть Скинути, щоб демонструвалися всі повідомлення."
 
 #, c-format
@@ -2150,7 +2153,7 @@ msgid "Delete..."
 msgstr "Вилучити..."
 
 #, c-format
-msgid "Save modified files?"
+msgid "Save Modified Files?"
 msgstr "Зберегти зміни у файлах"
 
 #, c-format
@@ -2202,7 +2205,7 @@ msgid "Default Codepage"
 msgstr "Звичайна сторінка кодування"
 
 #, c-format
-msgid "Select the default codepage assumed when loading non-Unicode files:"
+msgid "Select the default codepage for non-Unicode files:"
 msgstr "Виберіть звичайну сторінку кодування для не Юнікодних файлів:"
 
 #, c-format
@@ -2217,12 +2220,12 @@ msgstr "Залежно від інтерфейсу користувача WinMer
 msgid "Custom codepage:"
 msgstr "Кодова сторінка користувача:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
 msgstr ""
 "Виявлення інформації про кодову сторінку для файлів\n"
 " .html, .rc, .xml вимагає перезапуску."
 
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgid "Detect codepage for files with mlang.dll\nRestart required."
 msgstr ""
 
 #, c-format
@@ -2242,7 +2245,7 @@ msgid "Folder Compare Report"
 msgstr "Звіт порівняння тек"
 
 #, c-format
-msgid "Report &File:"
+msgid "Report &file:"
 msgstr "&Файл звіту:"
 
 #, c-format
@@ -2250,7 +2253,7 @@ msgid "&Style:"
 msgstr "&Стиль:"
 
 #, c-format
-msgid "&Include File Compare Report"
+msgid "&Include file compare report"
 msgstr ""
 
 #, c-format
@@ -2258,15 +2261,15 @@ msgid "Shared or Private Filter"
 msgstr "Загальні і особисті фільтри"
 
 #, c-format
-msgid "Which type of filter do you want to create?"
+msgid "What type of filter do you want?"
 msgstr "Який тип фільтру ви хочете створити?"
 
 #, c-format
-msgid "Shared Filter (for all users on this machine)"
+msgid "Shared Filter (for all users)"
 msgstr "Загальний фільтр (для всіх користувачів цього ПК)"
 
 #, c-format
-msgid "Private Filter (only for current user)"
+msgid "Private Filter (current user only)"
 msgstr "Особистий фільтр (лише для поточного користувача)"
 
 #, c-format
@@ -2507,7 +2510,7 @@ msgstr ""
 msgid "&Plugin arguments:"
 msgstr ""
 
-msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgid "Enable &automatic unpacking/prediffing"
 msgstr ""
 
 #, c-format
@@ -2530,23 +2533,23 @@ msgid "Enable &Compare As menu"
 msgstr ""
 
 #, c-format
-msgid "&Register shell extension"
+msgid "&Register Shell Extension"
 msgstr ""
 
 #, c-format
-msgid "&Unregister shell extension"
+msgid "&Unregister Shell Extension"
 msgstr ""
 
-msgid "Register shell extension for current user &only"
+msgid "Register Shell Extension for Current User &Only"
 msgstr ""
 
-msgid "Unregister shell extension for current user on&ly"
+msgid "Unregister Shell Extension for Current User On&ly"
 msgstr ""
 
-msgid "Register shell extension for &Windows 11 or later"
+msgid "Register Shell Extension for &Windows 11"
 msgstr ""
 
-msgid "Unregister shell extension for W&indows 11 or later"
+msgid "Unregister Shell Extension for W&indows 11"
 msgstr ""
 
 msgid "Jump List"
@@ -2559,6 +2562,9 @@ msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Тека"
 
+msgid "&Compare method:"
+msgstr ""
+
 #, c-format
 msgid "S&top after first difference"
 msgstr "&Зупинятися після першої відмінності"
@@ -2567,7 +2573,7 @@ msgstr "&Зупинятися після першої відмінності"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Нехтувати різницею часу, меншою 3 секунд"
 
-msgid "&Automatically expand subfolders after comparison:"
+msgid "Expand subfolders &after comparison:"
 msgstr ""
 
 #, c-format
@@ -2578,10 +2584,10 @@ msgstr ""
 msgid "Ignore &reparse points"
 msgstr ""
 
-msgid "Threshold for switching to &quick compare (MB):"
+msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr ""
 
-msgid "Threshold for switching to &binary compare (MB):"
+msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr ""
 
 msgid "File patterns:"
@@ -2712,18 +2718,18 @@ msgstr ""
 msgid "\nSave (Ctrl+S)"
 msgstr ""
 
-msgid "Unknown error attempting to open project file."
+msgid "Unknown error opening project file."
 msgstr "Невідома помилка при відкритті файлу проекту."
 
-msgid "Unknown error attempting to save project file."
+msgid "Unknown error saving project file."
 msgstr "Невідома помилка при збереженні файлу проекту."
 
 #, c-format
-msgid "Project file successfully loaded."
+msgid "Project file loaded."
 msgstr "Файл проекту успішно завантажений."
 
 #, c-format
-msgid "Project file successfully saved."
+msgid "Project file saved."
 msgstr "Файл проекту успішно збережений."
 
 #, c-format
@@ -2771,7 +2777,7 @@ msgstr ""
 "WinMerge Порівняння тек"
 
 #, c-format
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
 msgstr "WinMerge поставляється БЕЗ БУДЬ-ЯКОЇ ГАРАНТІЇ. Це вільне ПО і ми привітаємо його поширення згідно деяких умов; ознайомтеся з GNU General Public License в меню Довідка для докладнішої інформації."
 
 #, c-format
@@ -2822,7 +2828,7 @@ msgstr "Проп&устити все"
 msgid "Don't display this &message again."
 msgstr "Не показувати &це повідомлення знову "
 
-msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
 msgstr ""
 
 msgid "Compare/Merge"
@@ -2891,10 +2897,7 @@ msgid "All message boxes are now displayed again."
 msgstr "Тепер всі повідомлення знову відображатимуться."
 
 #, c-format
-msgid ""
-"Value in Tab size -field is not in range WinMerge accepts.\n"
-"\n"
-"Please use values 1 - %1."
+msgid "Tab size value is out of range. Please use 1 - %1."
 msgstr ""
 "Розмір табуляції виходить за межі застосованих значень.\n"
 "\n"
@@ -2996,7 +2999,7 @@ msgid "Description"
 msgstr "Опис"
 
 #, c-format
-msgid "Select filename for new filter"
+msgid "Select Filename for New Filter"
 msgstr "Вкажіть ім'я файлу для нового фільтра"
 
 #, c-format
@@ -3004,7 +3007,7 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Файли фільтрів (*.flt)|*.flt|Всі файли (*.*)|*.*||"
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgid "Cannot find filter template!\n\nCopy %1 to WinMerge/Filters Folder:\n%2."
 msgstr ""
 "Не вдалося знайти файл фільтра!\n"
 "\n"
@@ -3013,10 +3016,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Cannot copy filter template file to filter folder:\n"
+"Cannot copy filter template:\n"
 "%1\n"
 "\n"
-"Please make sure the folder exists and is writable."
+"Make sure the folder exists and is writable."
 msgstr ""
 "Неможливо скопіювати файл фільтра в теку з фільтрами:\n"
 "%1\n"
@@ -3025,9 +3028,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"User's filter file folder is not defined!\n"
+"User's filter folder is not defined!\n"
 "\n"
-"Please select filter folder in Options/System."
+"Select filter folder in Options/System."
 msgstr ""
 "Тека з фільтрами користувача не визначена!\n"
 "\n"
@@ -3035,10 +3038,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Failed to delete the filter file:\n"
+"Failed to delete filter:\n"
 "%1\n"
 "\n"
-"Maybe the file is read-only?"
+"File may be read-only."
 msgstr ""
 "Неможливо вилучити файл фільтра:\n"
 "%1\n"
@@ -3046,28 +3049,28 @@ msgstr ""
 "Можливо файл використовується."
 
 #, c-format
-msgid "Locate filter file to install"
+msgid "Locate Filter File to Install"
 msgstr "Вказати  файл фільтра"
 
 #, c-format
 msgid ""
 "Installing filter file failed.\n"
 "\n"
-"Could not copy new filter file to filter folder."
+"Could not copy new filter to folder."
 msgstr ""
 "Помилка встановлення фільтра.\n"
 "\n"
 "Неможливо скопіювати файл фільтра в теку з фільтрами."
 
 #, c-format
-msgid "Filter file already exists. Overwrite existing filter?"
+msgid "Filter file exists. Overwrite?"
 msgstr "Фільтр уже існує. Перезаписати?"
 
 #, c-format
 msgid "Regular expression"
 msgstr "Регулярний вираз"
 
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgid "Filters updated. Refresh all open folder compares?\n\nSelect 'No' to refresh later."
 msgstr ""
 "Фільтри були поновлені. Ви хочете поновити всі відкриті порівняння тек?\n"
 "\n"
@@ -3082,15 +3085,15 @@ msgid "File Comparison"
 msgstr "Порівняння файлів"
 
 #, c-format
-msgid "Untitled left"
+msgid "Untitled Left"
 msgstr "Безіменний ліворуч"
 
 #, c-format
-msgid "Untitled middle"
+msgid "Untitled Middle"
 msgstr ""
 
 #, c-format
-msgid "Untitled right"
+msgid "Untitled Right"
 msgstr "Безіменний праворуч"
 
 msgid "Base File"
@@ -3160,7 +3163,7 @@ msgstr "Триває порівняння..."
 msgid "%.1f[items/sec]"
 msgstr ""
 
-msgid "Select two existing folders or files to compare."
+msgid "Select two existing folders/files to compare."
 msgstr "Виберіть дві ІСНУЮЧІ теки або файли для порівняння."
 
 #, c-format
@@ -3168,7 +3171,7 @@ msgid "Folder Selection"
 msgstr "Вибір теки"
 
 #, c-format
-msgid "Select two (or three) folders or two (or three) files to compare."
+msgid "Select two (or three) folders/files to compare."
 msgstr ""
 
 #, c-format
@@ -3239,16 +3242,13 @@ msgid "Failed to parse conflict file."
 msgstr "Помилка розбирання файлу конфліктів"
 
 #, c-format
-msgid ""
-"The file\n"
-"%1\n"
-"is not a conflict file."
+msgid "The file\n%1\nis not a conflict file."
 msgstr ""
 "Файл\n"
 "%1\n"
 "не є файлом конфліктів"
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr ""
 
 #, c-format
@@ -3260,7 +3260,7 @@ msgid "Save changes to %1?"
 msgstr "Зберегти зміни в %1?"
 
 #, c-format
-msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
+msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr "%1 позначений як лише для читання. Чи згодні ви замінити цей файл? (Не дозволяє вказати нове ім'я файлу)"
 
 #, c-format
@@ -3280,7 +3280,7 @@ msgstr ""
 "Продовжити в будь-якому випадку?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
 msgstr ""
 "Файл не збережений.\n"
 "%1\n"
@@ -3290,12 +3290,7 @@ msgstr ""
 "\t- скасувати поточну операцію (Натисніть Скасувати)?"
 
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
-"\n"
-"The original file will not be changed.\n"
-"\n"
-"Do you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 "Доповнення '%2' не може запакувати ваші зміни назад в файл ліворуч '%1'.\n"
 "\n"
@@ -3304,16 +3299,11 @@ msgstr ""
 "Хочете зберегти розпаковану версію в інший файл?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
-"\n"
-"The original file will not be changed.\n"
-"\n"
-"Do you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 "Доповнення '%2' не може запакувати ваші зміни назад в файл праворуч '%1'.\n"
 "\n"
@@ -3323,11 +3313,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Another application has updated file\n"
+"Another application updated\n"
 "%1\n"
 "since WinMerge loaded it.\n"
 "\n"
-"Overwrite changed file?"
+"Overwrite?"
 msgstr ""
 "Іншим застосуноком змінений файл\n"
 "%1\n"
@@ -3338,16 +3328,11 @@ msgstr ""
 #, c-format
 msgid ""
 "%1\n"
-"is marked read-only. Would you like to override the read-only item?"
+"is read-only. Override?"
 msgstr "%1 позначений як лише для читання. Чи згодні ви замінити цей файл?"
 
 #, c-format
-msgid ""
-"Another application has updated file\n"
-"%1\n"
-"since WinMerge scanned it last time.\n"
-"\n"
-"Do you want to reload the file?"
+msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
 msgstr ""
 "Іншим застосунком змінено файл\n"
 "%1\n"
@@ -3369,9 +3354,9 @@ msgstr "Зберегти файл праворуч як..."
 
 #, c-format
 msgid ""
-"The file\n"
+"File\n"
 "%1\n"
-"has disappeared. Please save a copy of the file to continue."
+"not found. Save a copy to continue."
 msgstr ""
 "Файл\n"
 "%1\n"
@@ -3379,9 +3364,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Cannot merge differences when documents are not in synch.\n"
+"Cannot merge unsynched documents.\n"
 "\n"
-"Refresh documents before continuing."
+"Refresh before continuing."
 msgstr ""
 "Неможливе злиття відмінностей , коли документи не синхронізовані.\n"
 "\n"
@@ -3462,7 +3447,7 @@ msgstr ""
 msgid "Differences to... (%1)"
 msgstr ""
 
-msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgid "Some selected items are identical or skipped.\nCopy only items with differences?"
 msgstr ""
 
 #, c-format
@@ -3486,15 +3471,15 @@ msgid "All (%1)"
 msgstr ""
 
 #, c-format
-msgid "Left side - select destination folder:"
+msgid "Left Side - Select Destination Folder:"
 msgstr "Ліва сторона - вибір теки призначення:"
 
 #, c-format
-msgid "Middle side - select destination folder:"
+msgid "Middle Side - Select Destination Folder:"
 msgstr ""
 
 #, c-format
-msgid "Right side - select destination folder:"
+msgid "Right Side - Select Destination Folder:"
 msgstr "Права сторона - вибір теки призначення:"
 
 #, c-format
@@ -3526,11 +3511,11 @@ msgstr "Ви впевнені, що хочете скопіювати %d еле�
 msgid ""
 "Operation aborted!\n"
 "\n"
-"Folder contents at disks has changed, path\n"
+"Folder contents changed, path\n"
 "%1\n"
-"was not found.\n"
+"not found.\n"
 "\n"
-"Please refresh the compare."
+"Refresh the compare."
 msgstr ""
 "Операція перервана!\n"
 "\n"
@@ -3552,10 +3537,10 @@ msgid "Confirm Move"
 msgstr "Підтвердження переміщення"
 
 #, c-format
-msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgid "Close the folder comparison window?"
 msgstr ""
 
-msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgid "Close the folder comparison window, which took a long time?"
 msgstr ""
 
 msgid "The file or folder name is invalid."
@@ -3569,7 +3554,7 @@ msgstr "Неможливо виконати %1"
 msgid "Unknown archive format"
 msgstr "Невідомий формат архіву"
 
-msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgid "Failed to extract archive.\nCompare as text file?"
 msgstr ""
 
 #, c-format
@@ -3581,7 +3566,7 @@ msgid "Folder"
 msgstr "Тека"
 
 #, c-format
-msgid "Comparison result"
+msgid "Comparison Result"
 msgstr "Результат порівняння"
 
 #, c-format
@@ -4017,11 +4002,11 @@ msgid "Middle side encoding."
 msgstr ""
 
 #, c-format
-msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+msgid "Number of ignored differences in file. Ignored and cannot be merged."
 msgstr "Кількість ігнорованих відмінностей у файлі. Ці відмінності були ігноровані WinMerge і не можуть бути опрацьовані."
 
 #, c-format
-msgid "Number of differences in file. This number does not include ignored differences."
+msgid "Number of differences in file (excluding ignored)."
 msgstr "Кількість відмінностей у файлі. Ігноровані відмінності не враховані."
 
 #, c-format
@@ -4059,7 +4044,7 @@ msgid "Simple XML"
 msgstr "Простий XML"
 
 #, c-format
-msgid "The report file already exists. Do you want to overwrite existing file?"
+msgid "Report file already exists. Overwrite?"
 msgstr "Файл звіту вже існує. Перезаписати??"
 
 #, c-format
@@ -4071,29 +4056,29 @@ msgstr ""
 "%1"
 
 #, c-format
-msgid "The report has been created successfully."
+msgid "Report created successfully."
 msgstr "Звіт успішно створений"
 
 msgid "Cannot add a synchronization point at this line."
 msgstr ""
 
 #, c-format
-msgid "The same file is opened in both panels."
+msgid "Same file is opened in both panes."
 msgstr "На обох панелях відкритий той самий файл"
 
 #, c-format
-msgid "The selected files are identical."
+msgid "Selected files are identical."
 msgstr "Вибрані файли не мають відмінностей"
 
 #, c-format
-msgid "An error occurred while comparing the files."
+msgid "An error occurred while comparing files."
 msgstr "При порівнянні файлів виникла помилка."
 
 #, c-format
-msgid "Temporary files could not be created. Check your temporary path settings."
+msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "Тимчасові файли не можуть бути створені. Перевірте налаштування шляхів для тимчасових файлів"
 
-msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "Ці файли мають різні типи позначок закінчень рядка.\n"
 "\n"
@@ -4102,20 +4087,15 @@ msgstr ""
 "Увага: Якщо вас не цікавлять розходження в закінченнях рядка, налаштуйте опцію 'Нехтувати різницею в закінченнях рядків' на вкладці Порівняння в Налаштуваннях."
 
 #, c-format
-msgid "The selected folder is invalid."
+msgid "Selected folder is invalid."
 msgstr "Неможливо відкрити вибрану теку."
 
 #, c-format
-msgid "Cannot open a binary file to editor."
+msgid "Cannot open a binary file in Editor."
 msgstr "Неможливо відкрити бінарний файл у редакторі."
 
 #, c-format
-msgid ""
-"The folder exists only in other side and cannot be opened.\n"
-"\n"
-"Do you want to create a matching folder:\n"
-"%1\n"
-"to the other side and open these folders?"
+msgid "Create matching folder:\n%1\non the other side and open?"
 msgstr ""
 "Тека існує лише з одної сторони і не може бути відкрита.\n"
 "\n"
@@ -4123,33 +4103,33 @@ msgstr ""
 "%1\n"
 "з іншої сторони і відкрити обидві?"
 
-msgid "Are you sure you want to copy all differences to the other file?"
+msgid "Copy all differences to other file?"
 msgstr ""
 
 #, c-format
-msgid "Do you want to move to the next file?"
+msgid "Move to next file?"
 msgstr ""
 
 #, c-format
-msgid "Do you want to move to the previous file?"
+msgid "Move to previous file?"
 msgstr ""
 
 #, c-format
-msgid "Do you want to move to the next page?"
+msgid "Move to next page?"
 msgstr ""
 
 #, c-format
-msgid "Do you want to move to the previous page?"
+msgid "Move to previous page?"
 msgstr ""
 
-msgid "Do you want to move to the first file?"
+msgid "Move to first file?"
 msgstr ""
 
-msgid "Do you want to move to the last file?"
+msgid "Move to last file?"
 msgstr ""
 
 #, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
 msgstr ""
 "Різні кодування: лівий файл - (cp%d), правий файл - (cp%d).\n"
 "Кожний з файлів може бути показаний в своєму кодуванні, але їхнє злиття або копіювання може пошкодити інформацію.\n"
@@ -4187,23 +4167,23 @@ msgstr "Замінено %1 рядків."
 msgid "Cannot find string \"%s\"."
 msgstr "Не вдалося знайти рядок \"%s\"."
 
-msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
+msgid "Entering Merge Mode. Press F9 to turn off."
 msgstr ""
 
 #, c-format
-msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
+msgid "Automatic merges: %1\nUnresolved conflicts: %2"
 msgstr ""
 
-msgid "The change of codepage has been merged."
+msgid "Codepage change merged."
 msgstr ""
 
-msgid "The changes of codepage are conflicting."
+msgid "Codepage changes are conflicting."
 msgstr ""
 
-msgid "The change of EOL has been merged."
+msgid "EOL change merged."
 msgstr ""
 
-msgid "The changes of EOL are conflicting."
+msgid "EOL changes are conflicting."
 msgstr ""
 
 #, c-format
@@ -4215,17 +4195,17 @@ msgid "Diff Pane"
 msgstr "Відмінності"
 
 #, c-format
-msgid "Patch file successfully written."
+msgid "Patch file written."
 msgstr "Латка успішно записана."
 
-msgid "1. item is not found!"
+msgid "First item not found!"
 msgstr ""
 
-msgid "2. item is not found!"
+msgid "Second item not found!"
 msgstr ""
 
 #, c-format
-msgid "The patch file already exists. Do you want to overwrite it?"
+msgid "Patch file already exists. Overwrite?"
 msgstr "Латка вже існує. Хочете перезаписати її?"
 
 #, c-format
@@ -4249,21 +4229,21 @@ msgid "Could not write to file %1."
 msgstr "Нема можливості записати у файл %1."
 
 #, c-format
-msgid "The specified output path is not an absolute path: %1"
+msgid "Output path is not absolute: %1"
 msgstr "Зазначений шлях для кінцевого файлу не є абсолютним: %1"
 
 msgid "Specify an output file."
 msgstr "Вказати кінцевий файл."
 
 #, c-format
-msgid "Cannot create a patch file from binary files."
+msgid "Cannot create patch from binary files."
 msgstr "Неможливо створити латку з бінарних файлів"
 
 #, c-format
 msgid ""
-"Please save all files first.\n"
+"Save all files first.\n"
 "\n"
-"Creating a patch requires that there are no unsaved changes in files."
+"Creating a patch requires no unsaved changes."
 msgstr ""
 "Спочатку збережіть всі файли.\n"
 "\n"
@@ -4273,7 +4253,7 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Тека не існує"
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid "Archive support not enabled.\n7-Zip and/or Merge7z*.dll not found.\nSee manual for archive support."
 msgstr ""
 "Підтримка архівів не ввімкнена.\n"
 " \n"
@@ -4289,26 +4269,26 @@ msgid "Select file for import"
 msgstr "Вибрати файл для імпорту"
 
 #, c-format
-msgid "Options imported from the file."
+msgid "Options imported from file."
 msgstr "Опції, імпортовані з файлу."
 
 #, c-format
-msgid "Options exported to the file."
+msgid "Options exported to file."
 msgstr "Опції, експортовані в файл."
 
 #, c-format
-msgid "Failed to import options from the file."
+msgid "Failed to import options from file."
 msgstr "Помилка імпорту опцій з файлу."
 
 #, c-format
-msgid "Failed to write options to the file."
+msgid "Failed to write options to file."
 msgstr "Помилка експорту опцій в файл."
 
 #, c-format
 msgid ""
-"You are about to close several compare windows.\n"
+"Close multiple compare windows?\n"
 "\n"
-"Do you want to continue?"
+"Continue?"
 msgstr ""
 "Ви хочете закрити закрити відразу кілька вікон порівняння.\n"
 "\n"
@@ -4342,7 +4322,7 @@ msgid "Editor script"
 msgstr "Сценарій редактора"
 
 #, c-format
-msgid "\nDifference in the Current Line (F4)"
+msgid "\nDifference in Current Line (F4)"
 msgstr ""
 
 #, c-format
@@ -4415,18 +4395,18 @@ msgstr ""
 msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
-msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
+msgid "Adapted unpacker applied to both files (one needs extension)."
 msgstr "Автоматичний підбір розпакувальника (вкажіть розширення хоча б одного з файлів)."
 
 #, c-format
-msgid "No prediffer (normal)"
+msgid "No Prediffer (Normal)"
 msgstr "Без попереднього порівняння"
 
 #, c-format
-msgid "Suggested plugins"
+msgid "Suggested Plugins"
 msgstr "Рекомендовані доповнення"
 
-msgid "All plugins"
+msgid "All Plugins"
 msgstr ""
 
 #, c-format
@@ -4437,7 +4417,7 @@ msgid "Your software is up to date."
 msgstr ""
 
 #, c-format
-msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr ""
 
 #, c-format
@@ -4517,7 +4497,7 @@ msgid "%1 is not installed."
 msgstr ""
 
 #, c-format
-msgid "%1 does not exist. Do you want to create it?"
+msgid "%1 does not exist. Create it?"
 msgstr ""
 
 #, c-format
@@ -4525,7 +4505,7 @@ msgid "Failed to create folder."
 msgstr ""
 
 #, c-format
-msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgid "Parameters:\n$file: Current file path\n$linenum: Current cursor line number"
 msgstr ""
 
 msgid "default"
@@ -4570,7 +4550,7 @@ msgstr ""
 msgid "MDI child window only"
 msgstr ""
 
-msgid "Close main window if there is only one MDI child window"
+msgid "Close main window if only one MDI child window"
 msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
@@ -4675,13 +4655,13 @@ msgstr ""
 msgid "<Edit here>"
 msgstr ""
 
-msgid "No differences to select found"
+msgid "No differences found to select"
 msgstr ""
 
 msgid "No differences found to add as substitution filter"
 msgstr ""
 
-msgid "The pair is already present in the list of Substitution Filters"
+msgid "The pair is already in the Substitution Filters list"
 msgstr ""
 
 msgid "Add this change to Substitution Filters?"
@@ -4706,7 +4686,7 @@ msgstr ""
 msgid "Allow only one instance to run"
 msgstr "Дозволити запуск лише однієї копії"
 
-msgid "Allow only one instance to run and wait for the instance to terminate"
+msgid "Allow only one instance; wait for termination"
 msgstr ""
 
 msgid "Only on window activated"
@@ -4722,15 +4702,15 @@ msgid "&Others"
 msgstr ""
 
 #, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
+msgid "Missing plugin name in pipeline: %1"
 msgstr ""
 
 #, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
+msgid "Missing quote in plugin pipeline: %1"
 msgstr ""
 
 #, c-format
-msgid "The plugin name '%1' already exists."
+msgid "Plugin name '%1' already exists."
 msgstr ""
 
 msgid "Specify plugin arguments"
@@ -4741,15 +4721,15 @@ msgid "Plugin not found or invalid: %1"
 msgstr ""
 
 #, c-format
-msgid "'%1' is not unpacker plugin"
+msgid "'%1' is not an unpacker plugin"
 msgstr ""
 
 #, c-format
-msgid "'%1' is not prediffer plugin"
+msgid "'%1' is not a prediffer plugin"
 msgstr ""
 
 #, c-format
-msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr ""
 
 #, c-format
@@ -4809,16 +4789,16 @@ msgstr ""
 msgid "Clipboard at %s"
 msgstr ""
 
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr ""
 
 msgid "This system does not support clipboard history."
 msgstr ""
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr ""
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgid "WebView2 runtime not installed. Download it?"
 msgstr ""
 
 msgid "New Text Compare"
@@ -5061,119 +5041,119 @@ msgstr ""
 msgid "Reverse lines"
 msgstr ""
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgid "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
 msgstr ""
 
 #, c-format
-msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+msgid "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
 msgstr ""
 
-msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+msgid "Tokenize. \r\nUsage: Tokenize PATTERNS\r\n PATTERNS - regex (e.g. [^\\w]+)"
 msgstr ""
 
 msgid "Trim spaces"
 msgstr ""
 
-msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
 msgstr ""
 
-msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
 msgstr ""
 
-msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
 msgstr ""
 
-msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+msgid "JSON Prettier (jq).\r\nArguments: jq filter/command line options."
 msgstr ""
 
-msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgid "XML Prettier (tidy-html5).\r\nArguments: tidy command line options."
 msgstr ""
 
-msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
 msgstr ""
 
-msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr ""
 
-msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgid "Markdown Previewer.\r\nArguments: md2html command line options."
 msgstr ""
 
-msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr ""
 
-msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q options."
 msgstr ""
 
-msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q options."
 msgstr ""
 
-msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."
 msgstr ""
 
-msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+msgid "YAML Querier (yq).\r\nArguments: yq filter/command line options."
 msgstr ""
 
-msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
 msgstr ""
 
-msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+msgid "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
 msgstr ""
 
-msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+msgid "IL disassembler (ildasm).\r\nArguments: ildasm command line options."
 msgstr ""
 
-msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+msgid "Native code disassembler (dumpbin).\r\nArguments: dumpbin command line options."
 msgstr ""
 
-msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+msgid "Content extractor (Apache Tika).\r\nArguments: tika-app.jar command line options."
 msgstr ""
 
-msgid "Apply patch using GNU patch"
+msgid "Apply patch (GNU patch)"
 msgstr ""
 
-msgid "Display the text content of MS Excel files"
+msgid "Display MS Excel text content"
 msgstr ""
 
-msgid "Display the text content of MS PowerPoint files"
+msgid "Display MS PowerPoint text content"
 msgstr ""
 
-msgid "Display the text content of MS Visio files"
+msgid "Display MS Visio text content"
 msgstr ""
 
-msgid "Display the text content of MS Word files"
+msgid "Display MS Word text content"
 msgstr ""
 
-msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+msgid "Ignore columns - list from plugin name/argument"
 msgstr ""
 
-msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
 msgstr ""
 
-msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+msgid "Ignore fields - list from plugin name/argument"
 msgstr ""
 
-msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgid "Ignore leading line numbers (e.g., NC, BASIC)."
 msgstr ""
 
 msgid "Prediff Line Filter"
 msgstr ""
 
-msgid "Date and time insertion function"
+msgid "Date and time insertion"
 msgstr ""
 
-msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgid "HTTP URL Scheme Handler (curl).\r\nArguments: curl command line options."
 msgstr ""
 
-msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgid "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
 msgstr ""
 
 msgid "Basic text functions"
 msgstr ""
 
-msgid "AI-assisted text conversion functions"
+msgid "AI-assisted text conversion"
 msgstr ""
 
-msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
 msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
@@ -5185,7 +5165,7 @@ msgstr ""
 msgid "Extract workbook data to multiple files"
 msgstr ""
 
-msgid "Update external references(links)"
+msgid "Update external references (links)"
 msgstr ""
 
 msgid "Compare document properties"
@@ -5215,7 +5195,7 @@ msgstr ""
 msgid "Compare headers and footers"
 msgstr ""
 
-msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr ""
 
 msgid "Compare VBA macros"
@@ -5281,29 +5261,29 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgid "Column Ranges to Ignore:\ne.g.) 3,10-20,32-33\n"
 msgstr ""
 
 #, c-format
-msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgid "Enter filename for patch '%1'"
 msgstr ""
 
 #, c-format
 msgid "File '%1' does not exist"
 msgstr ""
 
-msgid "Enter the command line arguments for patch command"
+msgid "Enter command line arguments for patch"
 msgstr ""
 
 #, c-format
-msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgid "Enter folder name for patch '%1'"
 msgstr ""
 
 #, c-format
 msgid "Folder '%1' does not exist"
 msgstr ""
 
-msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgid "Do not use '-p0' for patch files with absolute paths"
 msgstr ""
 
 msgid "AI.sct WinMerge Plugin Options"
@@ -5313,7 +5293,7 @@ msgid "Enter prompt"
 msgstr ""
 
 #, c-format
-msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
 msgstr ""
 
 msgid "Environment variable name for OpenAI API key"
@@ -5331,5 +5311,5 @@ msgstr ""
 msgid "Model"
 msgstr ""
 
-msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgid "OpenAI API key changed. Restart to apply."
 msgstr ""

@@ -246,7 +246,7 @@
     </section>
 
     <section>
-      <title>Automatically verify paths in Open-dialog</title>
+      <title>Automatically verify paths in Open dialog</title>
 
       <itemizedlist>
         <listitem>
@@ -317,7 +317,7 @@
 
         <listitem>
           <para>
-            <option>Allow only one instance to run and wait for the instance to terminate</option>: Similar to the "Allow only one instance to run" option, this setting restricts WinMerge to a single application window. However, it also ensures that the WinMerge process does not terminate until the application window is closed. This is useful for situations where external applications, like SourceTree, need to wait for WinMerge to finish before they can safely delete temporary files.
+            <option>Allow only one instance; wait for termination</option>: Similar to the "Allow only one instance to run" option, this setting restricts WinMerge to a single application window. However, it also ensures that the WinMerge process does not terminate until the application window is closed. This is useful for situations where external applications, like SourceTree, need to wait for WinMerge to finish before they can safely delete temporary files.
           </para>
         </listitem>
       </itemizedlist>
@@ -426,7 +426,7 @@
 
     <section>
       <title>
-        Open-dialog Auto-Completion<indexterm>
+        Open dialog Auto completion<indexterm>
           <primary>MRU list</primary>
         </indexterm>
       </title>
@@ -1265,7 +1265,7 @@
 
     <section>
       <title>
-        Automatically expand subfolders after comparison<indexterm>
+        Expand subfolders after comparison<indexterm>
           <primary>expand subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
@@ -1349,7 +1349,7 @@
 
     <section>
       <title>
-        Threshold for switching to quick compare (MB)<indexterm>
+        Switch to quick compare when size exceeds (MB)<indexterm>
           <primary>Quick compare</primary>
 
           <secondary>limit</secondary>
@@ -1381,7 +1381,7 @@
 
     <section>
       <title>
-        Threshold for switching to binary compare (MB)<indexterm>
+        Switch to binary compare when size exceeds (MB)<indexterm>
           <primary>Binary compare</primary>
 
           <secondary>limit</secondary>
@@ -1413,7 +1413,7 @@
 
     <section>
       <title>
-        Number of CPU cores to use<indexterm>
+        CPU cores to use<indexterm>
           <primary>compare threads</primary>
         </indexterm>
       </title>
@@ -1786,7 +1786,7 @@
 
     <section>
       <title>
-        Preserve original EOL chars<indexterm>
+        Preserve original EOL<indexterm>
           <primary>EOL</primary>
 
           <secondary>preserving</secondary>

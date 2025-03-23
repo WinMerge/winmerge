@@ -237,7 +237,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 		{
 			m_nBufferType[pane] = BUFFERTYPE::UNNAMED;
 			if (m_strDesc[pane].empty())
-				m_strDesc[pane] = (pane == 0) ? _("Untitled left") : ((nFiles < 3 || pane == 2) ? _("Untitled right") : _("Untitled middle"));
+				m_strDesc[pane] = (pane == 0) ? _("Untitled Left") : ((nFiles < 3 || pane == 2) ? _("Untitled Right") : _("Untitled Middle"));
 		}
 		else
 		{
@@ -333,7 +333,7 @@ void CImgMergeFrame::DoAutoMerge(int dstPane)
 
 	AfxMessageBox(
 		strutils::format_string2(
-			_("The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"), 
+			_("Automatic merges: %1\nUnresolved conflicts: %2"), 
 			strutils::format(_T("%d"), autoMergedCount),
 			strutils::format(_T("%d"), m_pImgMergeWindow->GetConflictCount())).c_str(),
 		MB_ICONINFORMATION);
@@ -371,7 +371,7 @@ void CImgMergeFrame::CheckFileChanged(void)
 	{
 		if (IsFileChangedOnDisk(pane) == FileChange::Changed)
 		{
-			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
+			String msg = strutils::format_string1(_("Another application updated\n%1\nsince last scan.\n\nReload?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
 			{
 				OnFileReload();
@@ -713,7 +713,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 			bool result = m_strSaveAsPath.empty() ? m_pImgMergeWindow->SaveImage(pane) : m_pImgMergeWindow->SaveImageAs(pane, m_strSaveAsPath.c_str());
 			if (!result)
 			{
-				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), filename, GetSysError());
+				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"), filename, GetSysError());
 				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 				if (answer == IDOK)
 					return DoFileSaveAs(pane);
@@ -775,7 +775,7 @@ RETRY:
 		int savepoint = m_pImgMergeWindow->GetSavePoint(pane);
 		if (!m_pImgMergeWindow->SaveImageAs(pane, filename.c_str()))
 		{
-			String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), strPath, GetSysError());
+			String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"), strPath, GetSysError());
 			int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
 			if (answer == IDOK)
 				goto RETRY;
@@ -1661,7 +1661,7 @@ void CImgMergeFrame::OnNextdiff()
 		m_pImgMergeWindow->NextDiff();
 	else if (m_pImgMergeWindow->GetCurrentMaxPage() != m_pImgMergeWindow->GetMaxPageCount() - 1)
 	{
-		if (AfxMessageBox(_("Do you want to move to the next page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTPAGE) == IDYES)
+		if (AfxMessageBox(_("Move to next page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_NEXTPAGE) == IDYES)
 		{
 			m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() + 1);
 			UpdateLastCompareResult();
@@ -1698,7 +1698,7 @@ void CImgMergeFrame::OnPrevdiff()
 	}
 	else if (m_pImgMergeWindow->GetCurrentMaxPage() != 0)
 	{
-		if (AfxMessageBox(_("Do you want to move to the previous page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVPAGE) == IDYES)
+		if (AfxMessageBox(_("Move to previous page?").c_str(), MB_YESNO | MB_DONT_ASK_AGAIN, IDS_MOVE_TO_PREVPAGE) == IDYES)
 		{
 			m_pImgMergeWindow->SetCurrentPageAll(m_pImgMergeWindow->GetCurrentMaxPage() - 1);
 			UpdateLastCompareResult();
@@ -1880,7 +1880,7 @@ void CImgMergeFrame::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnAllLeft()
 {
 	UINT userChoice = 0;
-	String msg = _("Are you sure you want to copy all differences to the other file?");
+	String msg = _("Copy all differences to other file?");
 	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
 		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
 	if (userChoice == IDNO)
@@ -1912,7 +1912,7 @@ void CImgMergeFrame::OnUpdateAllLeft(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnAllRight()
 {
 	UINT userChoice = 0;
-	String msg = _("Are you sure you want to copy all differences to the other file?");
+	String msg = _("Copy all differences to other file?");
 	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
 		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
 	if (userChoice == IDNO)

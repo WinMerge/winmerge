@@ -266,7 +266,7 @@
     and <wordasword>changed</wordasword> sides. Instead, it simply shows what is
     different between two selected folders. A file or folder that is found only
     on one side is simply shown as a unique item on that side, not as added or
-    removed. For example, in the <guilabel>Comparison result </guilabel>column
+    removed. For example, in the <guilabel>Comparison Result </guilabel>column
     of the preceding figure, <filename>Merge.aps</filename> and
     <filename>Merge.rc.bak</filename> are each found in only one of the compared
     folders.</para>
@@ -275,7 +275,7 @@
     <guimenu>Merge</guimenu> menu, toolbar buttons, or context (right-click)
     menu. The most important action is making files or folders identical in both
     sides by selecting one of several Copy items. When you copy a file or folder
-    to other side, the Comparison result value changes to
+    to other side, the Comparison Result value changes to
     <literal>Identical</literal>.</para>
 
     <para>If a file or folder exists in both sides (and it is not a binary file)

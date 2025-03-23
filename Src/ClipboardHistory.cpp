@@ -117,7 +117,7 @@ namespace ClipboardHistory
 							time(&item.timestamp);
 						item.pTextTempFile = CreateTempTextFile(i == 0 ?
 								GetClipboardText() :
-								(!Clipboard::IsHistoryEnabled() ? _("Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button.") : _T("")));
+								(!Clipboard::IsHistoryEnabled() ? _("Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on.") : _T("")));
 					}
 				}
 			}
@@ -141,7 +141,7 @@ namespace ClipboardHistory
 				if (i == 0)
 					time(&item.timestamp);
 				item.pTextTempFile = CreateTempTextFile(
-					i == 0 ? GetClipboardText() : _("The 32-bit version of WinMerge does not support Clipboard Compare"));
+					i == 0 ? GetClipboardText() : _("32-bit WinMerge does not support Clipboard Compare"));
 			}
 #endif
 			return result;

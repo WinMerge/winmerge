@@ -2037,14 +2037,14 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes,
 	String strDesc2[3];
 	if (nPanes == 2)
 	{
-		strDesc2[0] = _("Untitled left");
-		strDesc2[1] = _("Untitled right");
+		strDesc2[0] = _("Untitled Left");
+		strDesc2[1] = _("Untitled Right");
 	}
 	else
 	{
-		strDesc2[0] = _("Untitled left");
-		strDesc2[1] = _("Untitled middle");
-		strDesc2[2] = _("Untitled right");
+		strDesc2[0] = _("Untitled Left");
+		strDesc2[1] = _("Untitled Middle");
+		strDesc2[2] = _("Untitled Right");
 	}
 	for (int i = 0; i < nPanes; ++i)
 	{
@@ -3475,7 +3475,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 
 	if (!addAllMenu)
 	{
-		pMenu->AppendMenu(MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
+		pMenu->AppendMenu(MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested Plugins").c_str());
 	}
 	else
 	{
@@ -3496,7 +3496,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	else
 	{
 		pMenu->AppendMenu(MF_SEPARATOR, 0);
-		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
+		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All Plugins").c_str());
 	}
 
 	std::list<String> processTypes;

@@ -37,7 +37,7 @@ Public Property Get PluginEvent() As String
 End Property
 
 Public Property Get PluginDescription() As String
-  PluginDescription = "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+  PluginDescription = "Ignore leading line numbers (e.g., NC, BASIC)."
 End Property
 
 Public Property Get PluginFileFilters() As String
