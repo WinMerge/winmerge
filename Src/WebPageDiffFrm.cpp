@@ -204,7 +204,7 @@ bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const
 		{
 			m_nBufferType[pane] = BUFFERTYPE::UNNAMED;
 			if (m_strDesc[pane].empty())
-				m_strDesc[pane] = (pane == 0) ? _("Untitled left") : ((nFiles < 3 || pane == 2) ? _("Untitled right") : _("Untitled middle"));
+				m_strDesc[pane] = (pane == 0) ? _("Untitled Left") : ((nFiles < 3 || pane == 2) ? _("Untitled Right") : _("Untitled Middle"));
 			if (paths::IsNullDeviceName(fileloc[pane].filepath))
 				m_filePaths.SetPath(pane, _T("about:blank"), false);
 		}
@@ -282,7 +282,7 @@ void CWebPageDiffFrame::CheckFileChanged(void)
 	{
 		if (IsFileChangedOnDisk(pane) == FileChange::Changed)
 		{
-			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
+			String msg = strutils::format_string1(_("Another application updated\n%1\nsince last scan.\n\nReload?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
 			{
 				OnFileReload();
@@ -412,7 +412,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 	if (!m_pWebDiffWindow->IsWebView2Installed())
 	{
-		if (IDYES == AfxMessageBox(_("WebView2 runtime is not installed. Do you want to download it?").c_str(), MB_ICONWARNING | MB_YESNO))
+		if (IDYES == AfxMessageBox(_("WebView2 runtime not installed. Download it?").c_str(), MB_ICONWARNING | MB_YESNO))
 		{
 			m_pWebDiffWindow->DownloadWebView2();
 		}

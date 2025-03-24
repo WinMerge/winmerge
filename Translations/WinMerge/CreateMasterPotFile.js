@@ -240,13 +240,13 @@ function GetStringBlacklist(sTxtFilePath) {
 function CreateMasterPotFile(sPotPath, oStrings) {
   var oPotFile = oFSO.CreateTextFile(sPotPath, true);
   
-  oPotFile.Write("# This file is part from WinMerge <https://winmerge.org/>\n");
+  oPotFile.Write("# This file is from WinMerge <https://winmerge.org/>\n");
   oPotFile.Write("# Released under the \"GNU General Public License\"\n");
   oPotFile.Write("#\n");
   oPotFile.Write("msgid \"\"\n");
   oPotFile.Write("msgstr \"\"\n");
   oPotFile.Write("\"Project-Id-Version: WinMerge\\n\"\n");
-  oPotFile.Write("\"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\\n\"\n");
+  oPotFile.Write("\"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\\n\"\n");
   oPotFile.Write("\"POT-Creation-Date: " + GetPotCreationDate() + "\\n\"\n");
   oPotFile.Write("\"PO-Revision-Date: \\n\"\n");
   oPotFile.Write("\"Last-Translator: \\n\"\n");

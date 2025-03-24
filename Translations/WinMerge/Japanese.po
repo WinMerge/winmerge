@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+# This file is from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
 "PO-Revision-Date: 2025-01-21 07:48+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
@@ -43,22 +43,22 @@ msgstr "左側にコピー(&Y)\tAlt+Left"
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "左側からコピー(&F)\tAlt+Shift+Right"
 
-msgid "Copy Selected Line(s) to Middle"
+msgid "Copy Selected Lines to Middle"
 msgstr "選択した行を中央にコピー"
 
-msgid "Copy Selected Line(s) to Right"
+msgid "Copy Selected Lines to Right"
 msgstr "選択した行を右側にコピー"
 
-msgid "Copy Selected Line(s) from Middle"
+msgid "Copy Selected Lines from Middle"
 msgstr "選択した行を中央からコピー"
 
-msgid "Copy Selected Line(s) from Right"
+msgid "Copy Selected Lines from Right"
 msgstr "選択した行を右側からコピー"
 
-msgid "Copy Selected Line(s) to Left"
+msgid "Copy Selected Lines to Left"
 msgstr "選択した行を左側にコピー"
 
-msgid "Copy Selected Line(s) from Left"
+msgid "Copy Selected Lines from Left"
 msgstr "選択した行を左側からコピー"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
@@ -76,7 +76,7 @@ msgstr "選択した差異(右側)をクリップボードへコピー\tCtrl+&3"
 msgid "Select Line &Difference\tF4"
 msgstr "行内差異を選択(&D)\tF4"
 
-msgid "Add this change to Substitution &Filters"
+msgid "Add to Substitution &Filters"
 msgstr "この差異を置換フィルターに追加する(&F)"
 
 msgid "Add to &Line Filters"
@@ -142,7 +142,7 @@ msgstr "差異を表示(&D)"
 msgid "Diff &Block Size"
 msgstr "Diff ブロック サイズ(&B)"
 
-msgid "&Ignore Color Difference (Color Distance Threshold)"
+msgid "&Ignore Color Difference"
 msgstr "色の違いを無視する (色距離の閾値)(&I)"
 
 msgid "Ins&ertion/Deletion Detection"
@@ -231,13 +231,13 @@ msgstr "ベクター画像スケーリング(&V)"
 msgid "&Animation Settings"
 msgstr "アニメーション設定(&A)"
 
-msgid "&Blink interval"
+msgid "&Blink Interval"
 msgstr "ブリンク周期(&B)"
 
-msgid "&Overlay animation interval"
+msgid "&Overlay Animation Interval"
 msgstr "オーバーレイアニメーション周期(&O)"
 
-msgid "Compare Extracted &Text From Images"
+msgid "Compare Extracted &Text from Images"
 msgstr "画像から抽出したテキストを比較(&T)"
 
 msgid "Co&mpare"
@@ -279,7 +279,7 @@ msgstr "クリック(&C)"
 msgid "&Input"
 msgstr "入力(&I)"
 
-msgid "&GoBack/Forward"
+msgid "&Go Back/Forward"
 msgstr "戻る/進む(&G)"
 
 msgid "Clear &Browsing Data"
@@ -294,7 +294,7 @@ msgstr "クッキー(&C)"
 msgid "&Browsing History"
 msgstr "閲覧履歴(&B)"
 
-msgid "&All Profile"
+msgid "&All Profiles"
 msgstr "すべてのプロファイル(&A)"
 
 msgid "&File"
@@ -339,7 +339,7 @@ msgstr "プロジェクトを保存(&V)..."
 msgid "Recent Projects"
 msgstr "最近使用したプロジェクト"
 
-msgid "Recent F&iles Or Folders"
+msgid "Recent F&iles or Folders"
 msgstr "最近使用したファイルまたはフォルダー(&I)"
 
 msgid "E&xit\tCtrl+Q"
@@ -423,7 +423,7 @@ msgstr "手動展開(&M)"
 msgid "&Automatic Unpacking"
 msgstr "自動展開(&A)"
 
-msgid "&Reload plugins"
+msgid "&Reload Plugins"
 msgstr "プラグインの再読み込み(&R)"
 
 msgid "&Window"
@@ -468,16 +468,16 @@ msgstr "&GNU General Public License"
 msgid "&About WinMerge..."
 msgstr "WinMerge について(&A)..."
 
-msgid "&Read-only"
+msgid "&Read-Only"
 msgstr "読み取り専用(&R)"
 
-msgid "L&eft Read-only"
+msgid "L&eft Read-Only"
 msgstr "左側を読み取り専用(&E)"
 
-msgid "M&iddle Read-only"
+msgid "M&iddle Read-Only"
 msgstr "中央を読み取り専用(&I)"
 
-msgid "Ri&ght Read-only"
+msgid "Ri&ght Read-Only"
 msgstr "右側を読み取り専用(&G)"
 
 msgid "&File Encoding..."
@@ -693,7 +693,7 @@ msgstr "ブックマークの作成・削除(&T)\tCtrl+F2"
 msgid "&Next Bookmark\tF2"
 msgstr "次のブックマークへ移動(&N)\tF2"
 
-msgid "&Previous bookmark\tShift+F2"
+msgid "&Previous Bookmark\tShift+F2"
 msgstr "前のブックマークへ移動(&P)\tShift+F2"
 
 msgid "&Clear All Bookmarks"
@@ -777,40 +777,40 @@ msgstr "前のコンフリクト(&V)\tAlt+Shift+Up"
 msgid "A&dvanced"
 msgstr "高度な操作(&D)"
 
-msgid "Next Difference Between Left and Middle\tAlt+1"
+msgid "Next Difference (Left/Middle)\tAlt+1"
 msgstr "次の左側と中央の差異\tAlt+1"
 
-msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
+msgid "Previous Difference (Left/Middle)\tAlt+Shift+1"
 msgstr "前の左側と中央の差異\tAlt+Shift+1"
 
-msgid "Next Difference Between Left and Right\tAlt+2"
+msgid "Next Difference (Left/Right)\tAlt+2"
 msgstr "次の左側と右側の差異\tAlt+2"
 
-msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
+msgid "Previous Difference (Left/Right)\tAlt+Shift+2"
 msgstr "前の左側と右側の差異\tAlt+Shift+2"
 
-msgid "Next Difference Between Middle and Right\tAlt+3"
+msgid "Next Difference (Middle/Right)\tAlt+3"
 msgstr "次の中央と右側の差異\tAlt+3"
 
-msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
+msgid "Previous Difference (Middle/Right)\tAlt+Shift+3"
 msgstr "前の中央と右側の差異\tAlt+Shift+3"
 
-msgid "Next Left Only Difference\tAlt+7"
+msgid "Next Left-Only Difference\tAlt+7"
 msgstr "次の左側のみの差異\tAlt+7"
 
-msgid "Previous Left Only Difference\tAlt+Shift+7"
+msgid "Previous Left-Only Difference\tAlt+Shift+7"
 msgstr "前の左側のみの差異\tAlt+Shift+7"
 
-msgid "Next Middle Only Difference\tAlt+8"
+msgid "Next Middle-Only Difference\tAlt+8"
 msgstr "次の中央のみの差異\tAlt+8"
 
-msgid "Previous Middle Only Difference\tAlt+Shift+8"
+msgid "Previous Middle-Only Difference\tAlt+Shift+8"
 msgstr "前の中央のみの差異\tAlt+Shift+8"
 
-msgid "Next Right Only Difference\tAlt+9"
+msgid "Next Right-Only Difference\tAlt+9"
 msgstr "次の右側のみの差異\tAlt+9"
 
-msgid "Previous Right Only Difference\tAlt+Shift+9"
+msgid "Previous Right-Only Difference\tAlt+Shift+9"
 msgstr "前の右側のみの差異\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
@@ -831,13 +831,13 @@ msgstr "左側(&L)"
 msgid "Copy from &Right to"
 msgstr "右側からコピー(&R)"
 
-msgid "Copy Selected Line(s) from Le&ft to"
+msgid "Copy Selected Lines from Le&ft to"
 msgstr "選択した行を左側からコピー(&F)"
 
-msgid "Copy Selected Line(s) from Mi&ddle to"
+msgid "Copy Selected Lines from Mi&ddle to"
 msgstr "選択した行を中央からコピー(&D)"
 
-msgid "Copy Selected Line(s) from Ri&ght to"
+msgid "Copy Selected Lines from Ri&ght to"
 msgstr "選択した行を右側からコピー(&G)"
 
 msgid "Copy from Left\tAlt+Shift+Right"
@@ -876,13 +876,13 @@ msgstr "比較前処理プラグイン(&P)"
 msgid "Apply Pre&differ..."
 msgstr "比較前処理プラグインを適用(&D)..."
 
-msgid "&Transform with editor script..."
+msgid "&Transform with Editor Script..."
 msgstr "エディター スクリプトで変換(&T)..."
 
-msgid "Scripts for &copying"
+msgid "Scripts for &Copying"
 msgstr "コピー時適用エディタースクリプト(&C)"
 
-msgid "Select &editor script..."
+msgid "Select &Editor Script..."
 msgstr "エディタスクリプトの選択(&E)..."
 
 msgid "Sp&lit"
@@ -891,7 +891,7 @@ msgstr "分割(&L)"
 msgid "Comp&are"
 msgstr "比較(&A)"
 
-msgid "Compare in new &window"
+msgid "Compare in New &Window"
 msgstr "新しいウインドウで比較(&W)"
 
 msgid "Compare Non-hor&izontally..."
@@ -900,16 +900,16 @@ msgstr "非水平的に比較する(&I)..."
 msgid "Compare Non-hor&izontally"
 msgstr "非水平的に比較する(&I)"
 
-msgid "First &left item with second left item"
+msgid "First &Left with Second Left"
 msgstr "1 番目の左側項目と 2 番目の左側項目(&L)"
 
-msgid "First &right item with second right item"
+msgid "First &Right with Second Right"
 msgstr "1 番目の右側項目と 2 番目の右側項目(&R)"
 
-msgid "&First left item with second right item"
+msgid "&First Left with Second Right"
 msgstr "1 番目の左側項目と 2 番目の右側項目(&F)"
 
-msgid "&Second left item with first right item"
+msgid "&Second Left with First Right"
 msgstr "2 番目の左側項目と 1 番目の右側項目(&S)"
 
 msgid "Co&mpare As"
@@ -975,7 +975,7 @@ msgstr "中央を開く(&L)"
 msgid "O&pen Right"
 msgstr "右側を開く(&P)"
 
-msgid "Cop&y Pathnames"
+msgid "Cop&y Paths"
 msgstr "パス名をコピー(&Y)"
 
 #, c-format
@@ -1001,7 +1001,7 @@ msgstr "すべて (%1 / %2)"
 msgid "Copy &Filenames"
 msgstr "ファイル名をコピー(&F)"
 
-msgid "Copy Items To Clip&board"
+msgid "Copy Items to Clip&board"
 msgstr "項目をクリップボードにコピー(&B)"
 
 msgid "Copy All Di&splayed Columns"
@@ -1022,19 +1022,19 @@ msgstr "すべてを... (%1 / %2)"
 msgid "Differences to... (%1 of %2)"
 msgstr "差異を... (%1 / %2)"
 
-msgid "Left Shell menu"
+msgid "Left Shell Menu"
 msgstr "左側シェル メニュー"
 
-msgid "Middle Shell menu"
+msgid "Middle Shell Menu"
 msgstr "中央シェル メニュー"
 
-msgid "Right Shell menu"
+msgid "Right Shell Menu"
 msgstr "右側シェル メニュー"
 
-msgid "Both Shell menu"
+msgid "Both Shell Menu"
 msgstr "両側シェル メニュー"
 
-msgid "All Shell menu"
+msgid "All Shell Menu"
 msgstr "全てのシェル メニュー"
 
 msgid "Copy"
@@ -1082,38 +1082,38 @@ msgstr "空白(&H)"
 msgid "Com&pare"
 msgstr "比較する(&P)"
 
-msgid "I&gnore changes"
+msgid "I&gnore Changes"
 msgstr "変更を無視(&G)"
 
-msgid "Ig&nore all"
+msgid "Ig&nore All"
 msgstr "すべて無視(&N)"
 
-msgid "Ignore blan&k lines"
+msgid "Ignore Blan&k Lines"
 msgstr "空行を無視する(&K)"
 
-msgid "Ignore &case"
+msgid "Ignore &Case"
 msgstr "大文字と小文字を区別しない(&C)"
 
-msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
 msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
 
-msgid "Ignore codepage &differences"
+msgid "Ignore Codepage &Differences"
 msgstr "コードページの違いを無視する(&D)"
 
-msgid "Ignore num&bers"
+msgid "Ignore Num&bers"
 msgstr "数字を無視する(&B)"
 
-msgid "Ignore c&omment differences"
+msgid "Ignore C&omment Differences"
 msgstr "コメントの違いを無視する(&O)"
 
-msgid "Ignore &missing trailing EOL"
+msgid "Ignore &Missing Trailing EOL"
 msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
 
-msgid "&Include subfolders"
+msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
-msgid "&Compare method:"
-msgstr "比較方法(&C):"
+msgid "&Compare Method"
+msgstr "比較方法(&C)"
 
 msgid "Full Contents"
 msgstr "フルコンテンツ"
@@ -1136,79 +1136,79 @@ msgstr "サイズのみ"
 msgid "&Load Project..."
 msgstr "プロジェクトを読み込み(&L)..."
 
-msgid "${*} - All arguments"
+msgid "${*} - All Arguments"
 msgstr "${*} - すべての引数"
 
-msgid "${1} - The first argument"
+msgid "${1} - First Argument"
 msgstr "${1} - 最初の引数"
 
-msgid "${2} - The second argument"
+msgid "${2} - Second Argument"
 msgstr "${2} - 2番目の引数"
 
-msgid "${3} - The third argument"
+msgid "${3} - Third Argument"
 msgstr "${3} - 3番目の引数"
 
-msgid "${4} - The fourth argument"
+msgid "${4} - Fourth Argument"
 msgstr "${4} - 4番目の引数"
 
-msgid "${5} - The fifth argument"
+msgid "${5} - Fifth Argument"
 msgstr "${5} - 5番目の引数"
 
-msgid "${6} - The sixth argument"
+msgid "${6} - Sixth Argument"
 msgstr "${6} - 6番目の引数"
 
-msgid "${7} - The seventh argument"
+msgid "${7} - Seventh Argument"
 msgstr "${7} - 7番目の引数"
 
-msgid "${8} - The eighth argument"
+msgid "${8} - Eighth Argument"
 msgstr "${8} - 8番目の引数"
 
-msgid "${9} - The ninth argument"
+msgid "${9} - Ninth Argument"
 msgstr "${9} - 9番目の引数"
 
-msgid "${SRC_FILE} - Source file"
+msgid "${SRC_FILE} - Source File"
 msgstr "${SRC_FILE} - ソースファイル"
 
-msgid "${SRC_FOLDER} - Source folder"
+msgid "${SRC_FOLDER} - Source Folder"
 msgstr "${SRC_FOLDER} - ソースフォルダー"
 
 msgid "${SRC_URL} - Source URL"
 msgstr "${SRC_URL} - ソースURL"
 
-msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
 msgstr "${SRC_URL_PROTOCOL} - ソースURLプロトコル"
 
-msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
 msgstr "${SRC_URL_SUFFIX} - ソースURLサフィックス"
 
-msgid "${DST_FILE} - Destination file"
+msgid "${DST_FILE} - Destination File"
 msgstr "${DST_FILE} - 宛先ファイル"
 
-msgid "${DST_FOLDER} - Destination folder"
+msgid "${DST_FOLDER} - Destination Folder"
 msgstr "${DST_FOLDER} - 宛先フォルダー"
 
 msgid "${DST_URL} - Destination URL"
 msgstr "${DST_URL} - 宛先URL"
 
-msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
 msgstr "${DST_URL_PROTOCOL} - 宛先URLプロトコル"
 
-msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
 msgstr "${DST_URL_SUFFIX} - 宛先URLサフィックス"
 
-msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgid "${WINMERGE_HOME} - WinMerge Home Directory"
 msgstr "${WINMERGE_HOME} - WinMergeホームディレクトリ"
 
-msgid "${SCRIPT_FILE} - Script file"
+msgid "${SCRIPT_FILE} - Script File"
 msgstr "${SCRIPT_FILE} - スクリプトファイル"
 
-msgid "Add &unpacker plugin..."
+msgid "Add &Unpacker Plugin..."
 msgstr "展開プラグインを追加(&U)..."
 
-msgid "Add &prediffer plugin..."
+msgid "Add &Prediffer Plugin..."
 msgstr "比較前処理プラグインを追加(&P)..."
 
-msgid "&Duplicate plugin..."
+msgid "&Duplicate Plugin..."
 msgstr "プラグインを複製(&D)..."
 
 msgid "About WinMerge"
@@ -1265,6 +1265,9 @@ msgstr "参照..."
 msgid " Folder: Filter"
 msgstr " フォルダー: フィルター"
 
+msgid "&Include subfolders"
+msgstr "サブフォルダーを含める(&I)"
+
 msgid " File: Prediffer Plugin"
 msgstr " ファイル: 比較前処理プラグイン"
 
@@ -1295,7 +1298,7 @@ msgstr "自動的に最初の行内差異にスクロールする(&C)"
 msgid "Cl&ose windows with 'Esc':"
 msgstr "'Esc' キーでウィンドウを閉じる(&O):"
 
-msgid "&Automatically verify paths in Open-dialog"
+msgid "&Automatically verify paths in Open dialog"
 msgstr "[開く] ダイアログで自動的にパスを検査する(&A)"
 
 msgid "Single instance mode:"
@@ -1313,7 +1316,7 @@ msgstr "起動時に [ファイルまたはフォルダーの選択] ダイア�
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "[比較] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
 
-msgid "Op&en-dialog Auto-Completion:"
+msgid "Op&en dialog Auto completion:"
 msgstr "[開く] ダイアログのオートコンプリート(&E):"
 
 msgid "Auto-&reload modified files:"
@@ -1343,7 +1346,7 @@ msgstr "正規表現(&E)"
 msgid "D&on't wrap end of file"
 msgstr "最後まで検索した後ループしない(&O)"
 
-msgid "&Don't close this dialog box"
+msgid "&Don't close this dialog"
 msgstr "このダイアログ ボックスを閉じない(&D)"
 
 msgid "&Find Next"
@@ -1361,7 +1364,7 @@ msgstr "置換"
 msgid "Re&place with:"
 msgstr "置換後の文字列(&P):"
 
-msgid "&Don't wrap end of file"
+msgid "&Don't wrap at end of file"
 msgstr "ファイルの終端で折り返さない(&D)"
 
 msgid "Replace in"
@@ -1385,7 +1388,7 @@ msgstr "すべて置換(&A)"
 msgid "Markers"
 msgstr "マーカー"
 
-msgid "Enable &Markers"
+msgid "Enable &markers"
 msgstr "マーカーを有効にする(&M)"
 
 msgid "New"
@@ -1415,7 +1418,7 @@ msgstr "削除"
 msgid "Substitution Filters"
 msgstr "置換フィルター"
 
-msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgid "Changes to the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "以下の置換リストで両ファイルの差異ブロックの内容を置換します。置換した結果、内容が一致した場合、そのブロックの元々の差異は無視されます。生成するパッチには影響しません。"
 
 msgid "Enable"
@@ -1457,12 +1460,12 @@ msgstr "移動ブロック:"
 msgid "Selected Moved:"
 msgstr "選択された移動ブロック:"
 
-msgid "Same As The Next (3 panes):"
+msgid "Same As Next (3 panes):"
 msgstr ""
 "差異:\n"
 "(ただし隣接ペインと同じ)"
 
-msgid "Same As The Next (Selected):"
+msgid "Same As Next (Selected):"
 msgstr ""
 "選択された差異:\n"
 "(ただし隣接ペインと同じ)"
@@ -1524,13 +1527,13 @@ msgstr "マージン:"
 msgid "Search Marker:"
 msgstr "検索マーカー:"
 
-msgid "User Defined Marker1:"
+msgid "User Defined Marker 1:"
 msgstr "ユーザー定義マーカー 1:"
 
-msgid "User Defined Marker2:"
+msgid "User Defined Marker 2:"
 msgstr "ユーザー定義マーカー 2:"
 
-msgid "User Defined Marker3:"
+msgid "User Defined Marker 3:"
 msgstr "ユーザー定義マーカー 3:"
 
 msgid "&Use folder compare colors"
@@ -1542,19 +1545,19 @@ msgstr "同一項目:"
 msgid "Items different:"
 msgstr "差異項目:"
 
-msgid "Items not exists all:"
+msgid "Items missing:"
 msgstr "すべて存在しない項目:"
 
 msgid "Items filtered:"
 msgstr "無視された項目:"
 
-msgid "&Use custom system colors (Some UI elements may not apply)"
+msgid "&Use custom system colors"
 msgstr "カスタムシステムカラーを使用する（一部のUI要素には適用されません）"
 
 msgid "System"
 msgstr "システム"
 
-msgid "&Send deleted files to Recycle Bin"
+msgid "&Use Recycle Bin"
 msgstr "削除されたファイルをごみ箱に移動する(&S)"
 
 msgid "&External editor:"
@@ -1566,7 +1569,7 @@ msgstr "フィルター用フォルダー(&F):"
 msgid "Temporary files folder"
 msgstr "テンポラリ ファイル用フォルダー"
 
-msgid "S&ystem's temp folder"
+msgid "S&ystem temp folder"
 msgstr "システムのテンポラリ フォルダー(&Y)"
 
 msgid "C&ustom folder:"
@@ -1587,7 +1590,7 @@ msgstr "ファイル &2:"
 msgid "&Swap"
 msgstr "交換(&S)"
 
-msgid "&Copy to Clipboard"
+msgid "&Copy to clipboard"
 msgstr "クリップボードにコピー(&C)"
 
 msgid "&Append to existing file"
@@ -1611,7 +1614,7 @@ msgstr "コンテキスト(&C):"
 msgid "Inclu&de command line"
 msgstr "コマンド行を含める(&D)"
 
-msgid "Open to e&xternal editor"
+msgid "Open in e&xternal editor"
 msgstr "外部エディターで開く(&X)"
 
 msgid "Display Columns"
@@ -1647,10 +1650,10 @@ msgstr "説明:"
 msgid "Default arguments:"
 msgstr "デフォルト引数:"
 
-msgid "Display all plugins, don't check the extension"
+msgid "Display all plugins (Ignore extension)"
 msgstr "拡張子を無視してすべてのプラグインを表示する"
 
-msgid "&Open files in the same window type after unpacking"
+msgid "&Open files in same window type after unpacking"
 msgstr "展開プラグイン適用後、ファイルを同じウインドウ タイプで開く(&O)"
 
 msgid "&Plugin pipeline:"
@@ -1668,7 +1671,7 @@ msgstr "一時停止"
 msgid "Continue"
 msgstr "再開"
 
-msgid "&Number of CPU cores to use:"
+msgid "C&PU cores to use:"
 msgstr "使用するCPUコアの数(&N):"
 
 msgid "Items total:"
@@ -1713,6 +1716,27 @@ msgstr "変更を無視(&I)"
 msgid "I&gnore all"
 msgstr "すべて無視(&G)"
 
+msgid "Ignore blan&k lines"
+msgstr "空行を無視する(&K)"
+
+msgid "Ignore &case"
+msgstr "大文字と小文字を区別しない(&C)"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "数字を無視する(&B)"
+
+msgid "Ignore codepage &differences"
+msgstr "コードページの違いを無視する(&D)"
+
+msgid "Ignore c&omment differences"
+msgstr "コメントの違いを無視する(&O)"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
+
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
 
@@ -1734,7 +1758,7 @@ msgstr "エディター"
 msgid "&Highlight syntax"
 msgstr "シンタックス ハイライトを有効にする(&H)"
 
-msgid "&Preserve original EOL chars"
+msgid "&Preserve original EOL"
 msgstr "元の EOL 文字を保存する(&P)"
 
 msgid "Tabs"
@@ -1743,13 +1767,13 @@ msgstr "タブ"
 msgid "&Tab size:"
 msgstr "タブ幅(&T):"
 
-msgid "&Insert Tabs"
+msgid "&Insert tabs"
 msgstr "タブを挿入(&I)"
 
-msgid "Insert &Spaces"
+msgid "Insert &spaces"
 msgstr "スペースを挿入(&S)"
 
-msgid "&Rendering Mode:"
+msgid "&Rendering mode:"
 msgstr "レンダリングモード(&R):"
 
 msgid "&Automatic rescan"
@@ -1764,7 +1788,7 @@ msgstr "行内差異の色付け"
 msgid "View line differences"
 msgstr "行内差異を表示する"
 
-msgid "&Character level"
+msgid "&Character-level"
 msgstr "文字単位(&C)"
 
 msgid "&Word-level:"
@@ -1773,7 +1797,7 @@ msgstr "単語単位(&W):"
 msgid "W&ord break characters:"
 msgstr "単語区切り文字(&O)"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
 msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
 
 msgid "Reset"
@@ -1797,7 +1821,7 @@ msgstr "編集..."
 msgid "Delete..."
 msgstr "削除..."
 
-msgid "Save modified files?"
+msgid "Save Modified Files?"
 msgstr "変更されたファイルを保存しますか?"
 
 msgid "Left side file"
@@ -1836,7 +1860,7 @@ msgstr "コードページ"
 msgid "Default Codepage"
 msgstr "デフォルト コードページ"
 
-msgid "Select the default codepage assumed when loading non-Unicode files:"
+msgid "Select the default codepage for non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
 msgid "System codepage"
@@ -1849,15 +1873,15 @@ msgid "Custom codepage:"
 msgstr "指定したコードページ:"
 
 msgid ""
-"Detect codepage info for these type of files: .html, .rc, .xml\n"
-"Need to restart session."
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
 msgstr ""
 ".html, .rc, .xml ファイルのコードページ情報を検出する\n"
 "セッションの再起動が必要です。"
 
 msgid ""
-"Detect codepage for text files with mlang.dll\n"
-"Need to restart session."
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
 msgstr ""
 "'mlang.dll' を使用してファイルのコードページを検出する\n"
 "この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッションの再起動が必要です。"
@@ -1874,25 +1898,25 @@ msgstr "エクスポート..."
 msgid "Folder Compare Report"
 msgstr "フォルダー比較レポート"
 
-msgid "Report &File:"
+msgid "Report &file:"
 msgstr "レポート ファイル(&F):"
 
 msgid "&Style:"
 msgstr "スタイル(&S):"
 
-msgid "&Include File Compare Report"
+msgid "&Include file compare report"
 msgstr "ファイル比較レポートを含める(&I)"
 
 msgid "Shared or Private Filter"
 msgstr "共有/プライベート フィルター"
 
-msgid "Which type of filter do you want to create?"
+msgid "What type of filter do you want?"
 msgstr "どのタイプのフィルターを作成しますか?"
 
-msgid "Shared Filter (for all users on this machine)"
+msgid "Shared Filter (for all users)"
 msgstr "共有フィルター (このマシン上のすべてのユーザーに有効)"
 
-msgid "Private Filter (only for current user)"
+msgid "Private Filter (current user only)"
 msgstr "プライベート フィルター (現在のユーザーのみ)"
 
 msgid "Archive Support"
@@ -2084,7 +2108,7 @@ msgstr "ファイル フィルター:"
 msgid "&Plugin arguments:"
 msgstr "プラグイン引数(&P):"
 
-msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgid "Enable &automatic unpacking/prediffing"
 msgstr "自動展開/自動比較前処理をこのプラグインで有効にする(&A)"
 
 msgid "Shell Integration"
@@ -2102,22 +2126,22 @@ msgstr "拡張メニューを有効にする(&N)"
 msgid "Enable &Compare As menu"
 msgstr "「形式を指定して比較」メニューを有効にする(&C)"
 
-msgid "&Register shell extension"
+msgid "&Register Shell Extension"
 msgstr "シェル拡張を登録(&R)"
 
-msgid "&Unregister shell extension"
+msgid "&Unregister Shell Extension"
 msgstr "シェル拡張の登録を解除(&U)"
 
-msgid "Register shell extension for current user &only"
+msgid "Register Shell Extension for Current User &Only"
 msgstr "現在のユーザーのみシェル拡張を登録(&O)"
 
-msgid "Unregister shell extension for current user on&ly"
+msgid "Unregister Shell Extension for Current User On&ly"
 msgstr "現在のユーザーのみシェル拡張の登録を解除(&L)"
 
-msgid "Register shell extension for &Windows 11 or later"
+msgid "Register Shell Extension for &Windows 11"
 msgstr "Windows 11 以降用シェル拡張を登録(&W)"
 
-msgid "Unregister shell extension for W&indows 11 or later"
+msgid "Unregister Shell Extension for W&indows 11"
 msgstr "Windows 11 以降用シェル拡張の登録を解除(&I)"
 
 msgid "Jump List"
@@ -2130,13 +2154,16 @@ msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "フォルダー"
 
+msgid "&Compare method:"
+msgstr "比較方法(&C):"
+
 msgid "S&top after first difference"
 msgstr "最初の差異で比較を終了する(&T)"
 
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 秒以下の時間差を無視する(&O)"
 
-msgid "&Automatically expand subfolders after comparison:"
+msgid "Expand subfolders &after comparison:"
 msgstr "比較後自動的にサブフォルダーを展開する(&A):"
 
 msgid "Include &unique subfolders contents"
@@ -2145,10 +2172,10 @@ msgstr "片方にしか存在しないサブフォルダー内も含める(&U)"
 msgid "Ignore &reparse points"
 msgstr "再解析ポイントを無視する(&R)"
 
-msgid "Threshold for switching to &quick compare (MB):"
+msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr "クイック比較切替閾値 (MB)(&Q):"
 
-msgid "Threshold for switching to &binary compare (MB):"
+msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
 msgid "File patterns:"
@@ -2275,16 +2302,16 @@ msgstr ""
 "\n"
 "保存 (Ctrl+S)"
 
-msgid "Unknown error attempting to open project file."
+msgid "Unknown error opening project file."
 msgstr "未知のエラー: プロジェクト ファイルが開けません。"
 
-msgid "Unknown error attempting to save project file."
+msgid "Unknown error saving project file."
 msgstr "未知のエラー: プロジェクト ファイルが保存できません。"
 
-msgid "Project file successfully loaded."
+msgid "Project file loaded."
 msgstr "プロジェクト ファイルが読み込まれました。"
 
-msgid "Project file successfully saved."
+msgid "Project file saved."
 msgstr "プロジェクト ファイルが保存されました。"
 
 msgid ""
@@ -2335,8 +2362,8 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge Folder Compare"
 
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
+msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
 
 msgid "&Abort"
 msgstr "中止(&A)"
@@ -2374,7 +2401,7 @@ msgstr "すべてスキップ(&A)"
 msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
-msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
 msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログのメッセージボックス ページで [リセット] ボタンを押してください。"
 
 msgid "Compare/Merge"
@@ -2434,10 +2461,7 @@ msgid "All message boxes are now displayed again."
 msgstr "すべてのメッセージボックスが、再び表示されます。"
 
 #, c-format
-msgid ""
-"Value in Tab size -field is not in range WinMerge accepts.\n"
-"\n"
-"Please use values 1 - %1."
+msgid "Tab size value is out of range. Please use 1 - %1."
 msgstr ""
 "タブ サイズが範囲外です。\n"
 "\n"
@@ -2524,7 +2548,7 @@ msgstr "[F] "
 msgid "Description"
 msgstr "説明"
 
-msgid "Select filename for new filter"
+msgid "Select Filename for New Filter"
 msgstr "新しいフィルターのファイル名を指定してください"
 
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
@@ -2532,9 +2556,9 @@ msgstr "ファイル フィルター (*.flt)|*.flt|すべてのファイル (*.*
 
 #, c-format
 msgid ""
-"Cannot find file filter template file!\n"
+"Cannot find filter template!\n"
 "\n"
-"Please copy file %1 to WinMerge/Filters folder:\n"
+"Copy %1 to WinMerge/Filters Folder:\n"
 "%2."
 msgstr ""
 "ファイル フィルターのテンプレート ファイルが見つかりません!\n"
@@ -2544,19 +2568,19 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Cannot copy filter template file to filter folder:\n"
+"Cannot copy filter template:\n"
 "%1\n"
 "\n"
-"Please make sure the folder exists and is writable."
+"Make sure the folder exists and is writable."
 msgstr ""
 "フィルターのテンプレート ファイルをフォルダー %1 にコピーできません。\n"
 "\n"
 "フォルダーの存在または書き込み可能であるか確認してください。"
 
 msgid ""
-"User's filter file folder is not defined!\n"
+"User's filter folder is not defined!\n"
 "\n"
-"Please select filter folder in Options/System."
+"Select filter folder in Options/System."
 msgstr ""
 "ユーザーのフィルター ファイル用フォルダーが定義されていません。\n"
 "\n"
@@ -2564,37 +2588,37 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Failed to delete the filter file:\n"
+"Failed to delete filter:\n"
 "%1\n"
 "\n"
-"Maybe the file is read-only?"
+"File may be read-only."
 msgstr ""
 "フィルター ファイル %1 の削除に失敗しました。\n"
 "\n"
 "そのファイルは読み取り専用ではありませんか?"
 
-msgid "Locate filter file to install"
+msgid "Locate Filter File to Install"
 msgstr "インストールするフィルター ファイルを選択"
 
 msgid ""
 "Installing filter file failed.\n"
 "\n"
-"Could not copy new filter file to filter folder."
+"Could not copy new filter to folder."
 msgstr ""
 "フィルター ファイルのインストールに失敗しました。\n"
 "\n"
 "新しいフィルター ファイルをフィルター フォルダーにコピーできません。"
 
-msgid "Filter file already exists. Overwrite existing filter?"
+msgid "Filter file exists. Overwrite?"
 msgstr "フィルター ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 msgid "Regular expression"
 msgstr "正規表現"
 
 msgid ""
-"Filters were updated. Do you want to refresh all open folder compares?\n"
+"Filters updated. Refresh all open folder compares?\n"
 "\n"
-"If you do not want to refresh all compares now you can select 'No' and refresh compares later."
+"Select 'No' to refresh later."
 msgstr ""
 "フィルターが更新されました。現在開いているすべてのフォルダー比較ウィンドウを更新しますか?\n"
 "\n"
@@ -2606,13 +2630,13 @@ msgstr "フォルダー比較結果"
 msgid "File Comparison"
 msgstr "ファイル比較"
 
-msgid "Untitled left"
+msgid "Untitled Left"
 msgstr "左無題"
 
-msgid "Untitled middle"
+msgid "Untitled Middle"
 msgstr "中無題"
 
-msgid "Untitled right"
+msgid "Untitled Right"
 msgstr "右無題"
 
 msgid "Base File"
@@ -2683,13 +2707,13 @@ msgstr "項目を比較しています..."
 msgid "%.1f[items/sec]"
 msgstr "%.1f[項目/秒]"
 
-msgid "Select two existing folders or files to compare."
+msgid "Select two existing folders/files to compare."
 msgstr "存在するフォルダーまたはファイルを選択してください。"
 
 msgid "Folder Selection"
 msgstr "Folder Selection"
 
-msgid "Select two (or three) folders or two (or three) files to compare."
+msgid "Select two (or three) folders/files to compare."
 msgstr "比較するフォルダーまたはファイルを 2 つ (または 3 つ) 選択してください。"
 
 msgid "Left (1st) path is invalid!"
@@ -2749,20 +2773,13 @@ msgid "Failed to parse conflict file."
 msgstr "コンフリクト ファイルの解析に失敗しました。"
 
 #, c-format
-msgid ""
-"The file\n"
-"%1\n"
-"is not a conflict file."
+msgid "The file\n%1\nis not a conflict file."
 msgstr ""
 "ファイル\n"
 "%1\n"
 "はコンフリクト ファイルではありません。"
 
-msgid ""
-"You are about to compare very large files.\n"
-"Showing the contents of the files requires a very large amount of memory.\n"
-"Do you want to show only the comparison results, not the contents of the files?\n"
-"\n"
+msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr ""
 "非常に大きなファイルを比較しようとしています。\n"
 "内容を表示するには大量のメモリが必要です。\n"
@@ -2779,7 +2796,7 @@ msgstr ""
 "変更を保存しますか?"
 
 #, c-format
-msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
+msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr "%1 は読み取り専用ファイルです。読み取り専用ファイルを上書きしますか? (新しいファイル名では保存しません。)"
 
 msgid "Error backing up file"
@@ -2798,13 +2815,7 @@ msgstr ""
 "無視して続けますか?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t- use a different filename (Press OK)\n"
-"\t- abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
 msgstr ""
 "ファイルの保存に失敗しました。\n"
 "%1\n"
@@ -2813,12 +2824,7 @@ msgstr ""
 "- 中止する場合は [キャンセル] を押してください。"
 
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
-"\n"
-"The original file will not be changed.\n"
-"\n"
-"Do you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 "プラグイン '%2' は、修正内容を左側のファイル '%1' に書き戻すことができません。\n"
 "\n"
@@ -2827,12 +2833,7 @@ msgstr ""
 "展開されたものを別ファイルに保存しますか?"
 
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
-"\n"
-"The original file will not be changed.\n"
-"\n"
-"Do you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 "プラグイン '%2' は、修正内容を中央のファイル '%1' に書き戻すことができません。\n"
 "\n"
@@ -2841,12 +2842,7 @@ msgstr ""
 "展開されたものを別ファイルに保存しますか?"
 
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
-"\n"
-"The original file will not be changed.\n"
-"\n"
-"Do you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 "プラグイン '%2' は、修正内容を右側のファイル '%1' に書き戻すことができません。\n"
 "\n"
@@ -2856,11 +2852,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Another application has updated file\n"
+"Another application updated\n"
 "%1\n"
 "since WinMerge loaded it.\n"
 "\n"
-"Overwrite changed file?"
+"Overwrite?"
 msgstr ""
 "%1\n"
 "このファイルは WinMerge 以外のアプリケーションで修正されています。修正されたファイルに上書きしますか?"
@@ -2868,18 +2864,13 @@ msgstr ""
 #, c-format
 msgid ""
 "%1\n"
-"is marked read-only. Would you like to override the read-only item?"
+"is read-only. Override?"
 msgstr ""
 "%1\n"
 "は、読み取り専用です。読み取り専用の項目を上書きしますか?"
 
 #, c-format
-msgid ""
-"Another application has updated file\n"
-"%1\n"
-"since WinMerge scanned it last time.\n"
-"\n"
-"Do you want to reload the file?"
+msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
 msgstr ""
 "他のアプリケーションがファイル\n"
 "%1\n"
@@ -2897,18 +2888,18 @@ msgstr "右側のファイルを名前を付けて保存"
 
 #, c-format
 msgid ""
-"The file\n"
+"File\n"
 "%1\n"
-"has disappeared. Please save a copy of the file to continue."
+"not found. Save a copy to continue."
 msgstr ""
 "ファイル\n"
 "%1\n"
 "は消滅しました。続行するためにファイルのコピーを保存してください。"
 
 msgid ""
-"Cannot merge differences when documents are not in synch.\n"
+"Cannot merge unsynched documents.\n"
 "\n"
-"Refresh documents before continuing."
+"Refresh before continuing."
 msgstr ""
 "ドキュメントが同期化していないときはマージできません。\n"
 "\n"
@@ -2991,7 +2982,7 @@ msgstr "差異を... (%1)"
 
 msgid ""
 "Some selected items are identical or skipped.\n"
-"Do you want to copy only the items with differences?"
+"Copy only items with differences?"
 msgstr ""
 "選択した項目の一部が同一かスキップされた項目です。\n"
 "差異のある項目だけをコピーしますか？"
@@ -3016,13 +3007,13 @@ msgstr "両側 (%1)"
 msgid "All (%1)"
 msgstr "すべて (%1)"
 
-msgid "Left side - select destination folder:"
+msgid "Left Side - Select Destination Folder:"
 msgstr "左側 - コピー/移動先フォルダーの指定:"
 
-msgid "Middle side - select destination folder:"
+msgid "Middle Side - Select Destination Folder:"
 msgstr "中央 - コピー/移動先フォルダーの指定:"
 
-msgid "Right side - select destination folder:"
+msgid "Right Side - Select Destination Folder:"
 msgstr "右側 - コピー/移動先フォルダーの指定:"
 
 #, c-format
@@ -3055,11 +3046,11 @@ msgstr "本当に %d 項目をコピーしますか?"
 msgid ""
 "Operation aborted!\n"
 "\n"
-"Folder contents at disks has changed, path\n"
+"Folder contents changed, path\n"
 "%1\n"
-"was not found.\n"
+"not found.\n"
 "\n"
-"Please refresh the compare."
+"Refresh the compare."
 msgstr ""
 "操作を中断しました!\n"
 "\n"
@@ -3079,10 +3070,10 @@ msgstr "%d 個の項目を移動しますか?"
 msgid "Confirm Move"
 msgstr "移動の確認"
 
-msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgid "Close the folder comparison window?"
 msgstr "フォルダー比較中のウィンドウを閉じようとしています。本当にウィンドウを閉じますか?"
 
-msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgid "Close the folder comparison window, which took a long time?"
 msgstr "比較にかなりの時間を要したウィンドウを閉じようとしています。本当にウィンドウを閉じますか?"
 
 msgid "The file or folder name is invalid."
@@ -3096,8 +3087,8 @@ msgid "Unknown archive format"
 msgstr "未知のアーカイブ形式です"
 
 msgid ""
-"Failed to extract archive files.\n"
-"Do you want to compare the archive files as text files?"
+"Failed to extract archive.\n"
+"Compare as text file?"
 msgstr ""
 "アーカイブファイルの展開に失敗しました。\n"
 "アーカイブファイルをテキストファイルとして比較しますか?"
@@ -3109,7 +3100,7 @@ msgctxt "DirView|ColumnHeader"
 msgid "Folder"
 msgstr "フォルダー"
 
-msgid "Comparison result"
+msgid "Comparison Result"
 msgstr "比較結果"
 
 msgid "Left Date"
@@ -3474,10 +3465,10 @@ msgstr "右側の文字コードです。"
 msgid "Middle side encoding."
 msgstr "中央の文字コードです。"
 
-msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+msgid "Number of ignored differences in file. Ignored and cannot be merged."
 msgstr "ファイル内で無視した差異の数です。この差異は WinMerge によって無視され、マージされません。"
 
-msgid "Number of differences in file. This number does not include ignored differences."
+msgid "Number of differences in file (excluding ignored)."
 msgstr "ファイル内の差異の数です。この数値は無視した差異数を含みません。"
 
 msgid "Shows an asterisk (*) if the file is binary."
@@ -3509,7 +3500,7 @@ msgstr "シンプルな HTML 形式"
 msgid "Simple XML"
 msgstr "シンプルな XML 形式"
 
-msgid "The report file already exists. Do you want to overwrite existing file?"
+msgid "Report file already exists. Overwrite?"
 msgstr "レポート ファイルは既に存在しています。既存のファイルを上書きしますか?"
 
 #, c-format
@@ -3520,30 +3511,25 @@ msgstr ""
 "レポート生成エラー:\n"
 "%1"
 
-msgid "The report has been created successfully."
+msgid "Report created successfully."
 msgstr "レポートの生成に成功しました。"
 
 msgid "Cannot add a synchronization point at this line."
 msgstr "この行には同期ポイントを追加できません。"
 
-msgid "The same file is opened in both panels."
+msgid "Same file is opened in both panes."
 msgstr "同じファイルが両側のパネルで開かれています。"
 
-msgid "The selected files are identical."
+msgid "Selected files are identical."
 msgstr "選択されたファイルは同一です。"
 
-msgid "An error occurred while comparing the files."
+msgid "An error occurred while comparing files."
 msgstr "ファイルの比較時にエラーが発生しました。"
 
-msgid "Temporary files could not be created. Check your temporary path settings."
+msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "テンポラリ ファイルが作成できません。テンポラリ パス設定を確認してください。"
 
-msgid ""
-"These files use different carriage return types.\n"
-"\n"
-"Do you want to treat all carriage return types as equivalent for this comparison?\n"
-"\n"
-"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "ファイル内に異なる改行文字が存在しています。\n"
 "\n"
@@ -3553,51 +3539,43 @@ msgstr ""
 "[編集]→[設定]→[比較] の「改行文字の違いを無視する(R) (Windows/Unix/Mac)」を\n"
 "有効にしてください。"
 
-msgid "The selected folder is invalid."
+msgid "Selected folder is invalid."
 msgstr "選択されたフォルダーは無効です。"
 
-msgid "Cannot open a binary file to editor."
+msgid "Cannot open a binary file in Editor."
 msgstr "バイナリ ファイルをエディターで開くことはできません。"
 
 #, c-format
-msgid ""
-"The folder exists only in other side and cannot be opened.\n"
-"\n"
-"Do you want to create a matching folder:\n"
-"%1\n"
-"to the other side and open these folders?"
+msgid "Create matching folder:\n%1\non the other side and open?"
 msgstr ""
 "フォルダーは片方にのみにしか存在せず、開くことができません。\n"
 "\n"
 "他方にマッチする以下のフォルダーを作成し、フォルダーを開きますか?:\n"
 "%1"
 
-msgid "Are you sure you want to copy all differences to the other file?"
+msgid "Copy all differences to other file?"
 msgstr "本当にすべての差異を他のファイルにコピーしますか?"
 
-msgid "Do you want to move to the next file?"
+msgid "Move to next file?"
 msgstr "次のファイルに移動しますか?"
 
-msgid "Do you want to move to the previous file?"
+msgid "Move to previous file?"
 msgstr "前のファイルに移動しますか?"
 
-msgid "Do you want to move to the next page?"
+msgid "Move to next page?"
 msgstr "次のページに移動しますか?"
 
-msgid "Do you want to move to the previous page?"
+msgid "Move to previous page?"
 msgstr "前のページに移動しますか?"
 
-msgid "Do you want to move to the first file?"
+msgid "Move to first file?"
 msgstr "最初のファイルに移動しますか?"
 
-msgid "Do you want to move to the last file?"
+msgid "Move to last file?"
 msgstr "最後のファイルに移動しますか?"
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files.\n"
-"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
 msgstr ""
 "開いたファイルで異なったコードページが検出されました。左(cp%d)、右(cp%d)\n"
 "各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\n"
@@ -3629,29 +3607,29 @@ msgstr "%1 個の文字列を置換しました。"
 msgid "Cannot find string \"%s\"."
 msgstr "文字列 \"%s\" が見つかりません。"
 
-msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
+msgid "Entering Merge Mode. Press F9 to turn off."
 msgstr ""
 "マージモードに切り替えます。マージモードはカーソル キーのみでマージしたり、次や前の差異に移動できるモードです。\n"
 "マージモードをオフにしたい場合は、F9 キーを押してください。"
 
 #, c-format
 msgid ""
-"The number of automatically merged changes: %1\n"
-"The number of unresolved conflicts: %2"
+"Automatic merges: %1\n"
+"Unresolved conflicts: %2"
 msgstr ""
 "自動的にマージされた変更の数: %1\n"
 "解決されていないコンフリクトの数: %2"
 
-msgid "The change of codepage has been merged."
+msgid "Codepage change merged."
 msgstr "コードページの変更がマージされました。"
 
-msgid "The changes of codepage are conflicting."
+msgid "Codepage changes are conflicting."
 msgstr "コードページの変更がコンフリクトしています。"
 
-msgid "The change of EOL has been merged."
+msgid "EOL change merged."
 msgstr "改行コードの変更がマージされました。"
 
-msgid "The changes of EOL are conflicting."
+msgid "EOL changes are conflicting."
 msgstr "改行コードの変更がコンフリクトしています。"
 
 msgid "Location Pane"
@@ -3660,16 +3638,16 @@ msgstr "ロケーション ペイン"
 msgid "Diff Pane"
 msgstr "Diff ペイン"
 
-msgid "Patch file successfully written."
+msgid "Patch file written."
 msgstr "パッチ ファイルの書き込みに成功しました。"
 
-msgid "1. item is not found!"
+msgid "First item not found!"
 msgstr "1. 項目が見つかりません!"
 
-msgid "2. item is not found!"
+msgid "Second item not found!"
 msgstr "2. 項目が見つかりません!"
 
-msgid "The patch file already exists. Do you want to overwrite it?"
+msgid "Patch file already exists. Overwrite?"
 msgstr "出力結果ファイルは既に存在しています。上書きしますか?"
 
 #, c-format
@@ -3690,19 +3668,19 @@ msgid "Could not write to file %1."
 msgstr "ファイル %1 に書き込めません。"
 
 #, c-format
-msgid "The specified output path is not an absolute path: %1"
+msgid "Output path is not absolute: %1"
 msgstr "指定した出力パスは、絶対パスではありません: %1"
 
 msgid "Specify an output file."
 msgstr "出力パスを指定してください。"
 
-msgid "Cannot create a patch file from binary files."
+msgid "Cannot create patch from binary files."
 msgstr "バイナリ ファイルからパッチ ファイルは生成できません。"
 
 msgid ""
-"Please save all files first.\n"
+"Save all files first.\n"
 "\n"
-"Creating a patch requires that there are no unsaved changes in files."
+"Creating a patch requires no unsaved changes."
 msgstr ""
 "まず先にすべてのファイルを保存してください。\n"
 "\n"
@@ -3712,9 +3690,9 @@ msgid "Folder does not exist."
 msgstr "フォルダーは存在しません。"
 
 msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+"Archive support not enabled.\n"
+"7-Zip and/or Merge7z*.dll not found.\n"
+"See manual for archive support."
 msgstr ""
 "アーカイブ サポートが有効になっていません。\n"
 "アーカイブ サポートの為に必要なコンポーネント (7-Zip と Merge7z*.dll) が見つかりません。\n"
@@ -3726,22 +3704,22 @@ msgstr "エクスポートするファイルを指定してください"
 msgid "Select file for import"
 msgstr "インポートするファイルを選択してください"
 
-msgid "Options imported from the file."
+msgid "Options imported from file."
 msgstr "設定情報をファイルからインポートしました。"
 
-msgid "Options exported to the file."
+msgid "Options exported to file."
 msgstr "設定情報をファイルにエクスポートしました。"
 
-msgid "Failed to import options from the file."
+msgid "Failed to import options from file."
 msgstr "ファイルから設定情報のインポートに失敗しました。"
 
-msgid "Failed to write options to the file."
+msgid "Failed to write options to file."
 msgstr "ファイルへの設定情報の書き込みに失敗しました。"
 
 msgid ""
-"You are about to close several compare windows.\n"
+"Close multiple compare windows?\n"
 "\n"
-"Do you want to continue?"
+"Continue?"
 msgstr ""
 "複数の比較ウィンドウを閉じようとしています。\n"
 "\n"
@@ -3772,7 +3750,7 @@ msgstr "エディター スクリプト"
 
 msgid ""
 "\n"
-"Difference in the Current Line (F4)"
+"Difference in Current Line (F4)"
 msgstr ""
 "\n"
 "現在の行内差異 (F4)"
@@ -3917,16 +3895,16 @@ msgstr ""
 "\n"
 "前のファイル (Ctrl+F7)"
 
-msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
+msgid "Adapted unpacker applied to both files (one needs extension)."
 msgstr "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルに拡張子が必要です)"
 
-msgid "No prediffer (normal)"
+msgid "No Prediffer (Normal)"
 msgstr "比較前処理プラグインを使用しない (標準)"
 
-msgid "Suggested plugins"
+msgid "Suggested Plugins"
 msgstr "関連するプラグイン"
 
-msgid "All plugins"
+msgid "All Plugins"
 msgstr "すべてのプラグイン"
 
 #, c-format
@@ -3938,8 +3916,8 @@ msgstr "お使いのソフトウェアは最新版です。"
 
 #, c-format
 msgid ""
-"A new version of WinMerge is available.\n"
-"%1 is now available (you have %2). Would you like to download it now?"
+"WinMerge update available.\n"
+"%1 available (you have %2). Download now?"
 msgstr ""
 "新しいバージョンの WinMerge が利用可能です。\n"
 "%1 をダウンロードしますか? (現在 %2 を使用中)"
@@ -4006,16 +3984,16 @@ msgid "%1 is not installed."
 msgstr "%1 がインストールされていません。"
 
 #, c-format
-msgid "%1 does not exist. Do you want to create it?"
+msgid "%1 does not exist. Create it?"
 msgstr "%1 は存在しません。作成しますか?"
 
 msgid "Failed to create folder."
 msgstr "フォルダーの作成に失敗しました。"
 
 msgid ""
-"You can specify the following parameters to the path:\n"
-"$file: Path name of the current file\n"
-"$linenum: Line number of the current cursor position"
+"Parameters:\n"
+"$file: Current file path\n"
+"$linenum: Current cursor line number"
 msgstr ""
 "次のパラメーターが指定可能です。\n"
 "$file: 現在のファイルのパス名\n"
@@ -4063,7 +4041,7 @@ msgstr "MDI 子ウインドウまたはメインウインドウ"
 msgid "MDI child window only"
 msgstr "MDI 子ウインドウのみ"
 
-msgid "Close main window if there is only one MDI child window"
+msgid "Close main window if only one MDI child window"
 msgstr "MDI 子ウィンドウが 1 つしかない場合、メインウィンドウを閉じる"
 
 msgctxt "ImgMergeFrame|LocationPane"
@@ -4168,13 +4146,13 @@ msgstr "全ページ"
 msgid "<Edit here>"
 msgstr "<ここを編集>"
 
-msgid "No differences to select found"
+msgid "No differences found to select"
 msgstr "選択する差異がありません"
 
 msgid "No differences found to add as substitution filter"
 msgstr "置換フィルターに追加する差異がありません"
 
-msgid "The pair is already present in the list of Substitution Filters"
+msgid "The pair is already in the Substitution Filters list"
 msgstr "このペアは、既に置換フィルターのリストに存在しています"
 
 msgid "Add this change to Substitution Filters?"
@@ -4198,7 +4176,7 @@ msgstr "インストール フォルダー"
 msgid "Allow only one instance to run"
 msgstr "1 つのみインスタンスを起動する"
 
-msgid "Allow only one instance to run and wait for the instance to terminate"
+msgid "Allow only one instance; wait for termination"
 msgstr "1 つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
 
 msgid "Only on window activated"
@@ -4214,15 +4192,15 @@ msgid "&Others"
 msgstr "その他(&O)"
 
 #, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
+msgid "Missing plugin name in pipeline: %1"
 msgstr "プラグイン パイプラインにプラグイン名が指定されていません: %1"
 
 #, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
+msgid "Missing quote in plugin pipeline: %1"
 msgstr "プラグイン パイプラインが引用符で閉じていません: %1"
 
 #, c-format
-msgid "The plugin name '%1' already exists."
+msgid "Plugin name '%1' already exists."
 msgstr "プラグイン名 '%1' は既に存在しています。"
 
 msgid "Specify plugin arguments"
@@ -4233,15 +4211,15 @@ msgid "Plugin not found or invalid: %1"
 msgstr "プラグインが見つからないまたは無効です: %1"
 
 #, c-format
-msgid "'%1' is not unpacker plugin"
+msgid "'%1' is not an unpacker plugin"
 msgstr "'%1'は展開プラグインではありません"
 
 #, c-format
-msgid "'%1' is not prediffer plugin"
+msgid "'%1' is not a prediffer plugin"
 msgstr "'%1'は比較前処理プラグインではありません"
 
 #, c-format
-msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr "プラグイン'%2'でファイル'%1'の比較前処理を実行中にエラーが発生しました。比較前処理は適用されませんでした。"
 
 #, c-format
@@ -4302,8 +4280,8 @@ msgid "Clipboard at %s"
 msgstr "クリップボード %s"
 
 msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
 "クリップボード履歴が無効になっています。\r\n"
 "クリップボード履歴を有効にするには、Windows キー + V を押下後、[有効にする] ボタンをクリックしてください。"
@@ -4311,10 +4289,10 @@ msgstr ""
 msgid "This system does not support clipboard history."
 msgstr "このシステムではクリップボード履歴はサポートされていません。"
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "32bit版 WinMerge ではクリップボード比較はサポートされていません。"
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgid "WebView2 runtime not installed. Download it?"
 msgstr "WebView2 ランタイムがインストールされていません。ダウンロードしますか?"
 
 msgid "New Text Compare"
@@ -4624,14 +4602,14 @@ msgid "Reverse lines"
 msgstr "行を逆順にします"
 
 msgid ""
-"Replace text with another text.\r\n"
+"Replace text.\r\n"
 "Usage: Replace [-i] [-e] FIND REPLACE\r\n"
-"   or: Replace -s\r\n"
-"  FIND    - text to find\r\n"
-"  REPLACE - text to replace\r\n"
-"  -i - ignore case (only for -e)\r\n"
-"  -e - treat the specified text as a regular expression\r\n"
-"  -s - replace using Substitution Filters patterns"
+" or: Replace -s\r\n"
+" FIND - text to find\r\n"
+" REPLACE - text to replace\r\n"
+" -i - ignore case (only for -e)\r\n"
+" -e - regex\r\n"
+" -s - use Substitution Filters"
 msgstr ""
 "テキストを置換します。\r\n"
 "使い方: Replace [-i] [-e] FIND REPLACE\r\n"
@@ -4644,18 +4622,18 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Apply filter command. \r\n"
+"Apply filter. \r\n"
 "Usage: ExecFilterCommand COMMAND\r\n"
-"  COMMAND - command to execute. %1 in the command is replaced with the filename."
+" COMMAND - command to execute. %1 = filename."
 msgstr ""
 "フィルター コマンドを適用します。\r\n"
 "使い方: ExecFilterCommand COMMAND\r\n"
 "  COMMAND - 実行するコマンド。コマンド内の %1 はファイル名に置き換わります。"
 
 msgid ""
-"Tokenize selection. \r\n"
+"Tokenize. \r\n"
 "Usage: Tokenize PATTERNS\r\n"
-"  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+" PATTERNS - regex (e.g. [^\\w]+)"
 msgstr ""
 "トークン分割を行います。\r\n"
 "使い方: Tokenize PATTERNS\r\n"
@@ -4665,15 +4643,15 @@ msgid "Trim spaces"
 msgstr "行頭行末の空白を削除します"
 
 msgid ""
-"Select some columns.\r\n"
+"Select columns.\r\n"
 "Usage: SelectColumns RANGES\r\n"
-"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
-"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n"
-"  PATTERNS - regular expression\r\n"
-"  -v - select non-matching columns\r\n"
-"  -i - ignore case\r\n"
-"  -g - enable global flag\r\n"
-"  -e - use PATTERNS for matching"
+" or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+" RANGES - column ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -g - enable global flag\r\n"
+" -e - use PATTERNS"
 msgstr ""
 "指定した列を抽出します。\r\n"
 "使い方: SelectColumns RANGES\r\n"
@@ -4686,14 +4664,14 @@ msgstr ""
 "  -e - パターン マッチングに PATTERNS を使用します"
 
 msgid ""
-"Select some lines.\r\n"
+"Select lines.\r\n"
 "Usage: SelectLines RANGES\r\n"
-"   or: SelectLines [-v] [-i] -e PATTERNS\r\n"
-"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n"
-"  PATTERNS - regular expression\r\n"
-"  -v - select non-matching lines\r\n"
-"  -i - ignore case\r\n"
-"  -e - use PATTERNS for matching"
+" or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+" RANGES - line ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -e - use PATTERNS"
 msgstr ""
 "指定した行を抽出します。\r\n"
 "使い方: SelectLines RANGES\r\n"
@@ -4705,160 +4683,160 @@ msgstr ""
 "  -e - パターン マッチングに PATTERNS を使用します"
 
 msgid ""
-"HTML Prettier with tidy-html5. \r\n"
-"Arguments: Command line options passed to the tidy command."
+"HTML Prettier (tidy-html5).\r\n"
+"Arguments: tidy command line options."
 msgstr ""
 "tidy-html5 を使用して HTML ファイルを整形します。\r\n"
 "引数: tidy コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"JSON Prettier with jq command. \r\n"
-"Arguments: Filter or command line options passed to the jq command."
+"JSON Prettier (jq).\r\n"
+"Arguments: jq filter/command line options."
 msgstr ""
 "jq コマンドを使用して JSON ファイルを整形します。\r\n"
 "引数: フィルターまたは jq コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"XML Prettier with tidy-html5. \r\n"
-"Arguments: Command line options passed to the tidy command."
+"XML Prettier (tidy-html5).\r\n"
+"Arguments: tidy command line options."
 msgstr ""
 "tidy-html5 を使用して XML ファイルを整形します。\r\n"
 "引数: tidy コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"YAML Prettier with yq command. \r\n"
-"Arguments: Filter or command line options passed to the yq command."
+"YAML Prettier (yq).\r\n"
+"Arguments: yq filter/command line options."
 msgstr ""
 "yq コマンドを使用して YAML ファイルを整形します。\r\n"
 "引数: フィルターまたは yq コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"Graphviz Previewer. \r\n"
-"Arguments: Command line options passed to the dot command."
+"Graphviz Previewer.\r\n"
+"Arguments: dot command line options."
 msgstr ""
 "Graphviz ファイルを画像化して表示します。\r\n"
 "引数: dot コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"Markdown Previewer. \r\n"
-"Arguments: Command line options passed to the md2html command."
+"Markdown Previewer.\r\n"
+"Arguments: md2html command line options."
 msgstr ""
 "Markdown ファイルをHTMLに変換して表示します。\r\n"
 "引数: md2html コマンドに渡すコマンドラインオプション。"
 
 msgid ""
-"PlantUML Previewer. \r\n"
-"Arguments: Command line options passed to the plantuml.jar command."
+"PlantUML Previewer.\r\n"
+"Arguments: plantuml.jar command line options."
 msgstr ""
 "PlantUML ファイルを画像に変換して表示します。\r\n"
 "引数: plantuml.jar コマンドに渡すコマンドラインオプション。"
 
 msgid ""
-"CSV Querier with q command. \r\n"
-"Arguments: SQL statement or command line options passed to the q command."
+"CSV Querier (q).\r\n"
+"Arguments: SQL statement/q options."
 msgstr ""
 "q コマンドを使用して CSV ファイルからデータを抽出します。\r\n"
 "引数: SQL文または q コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"TSV Querier with q command. \r\n"
-"Arguments: SQL statement or command line options passed to the q command."
+"TSV Querier (q).\r\n"
+"Arguments: SQL statement/q options."
 msgstr ""
 "q コマンドを使用して TSV ファイルからデータを抽出します。\r\n"
 "引数: SQL文または q コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"JSON Querier with jq command. \r\n"
-"Arguments: Filter or command line options passed to the jq command."
+"JSON Querier (jq).\r\n"
+"Arguments: jq filter/command line options."
 msgstr ""
 "jq コマンドを使用して JSON ファイルからデータを抽出します。\r\n"
 "引数: フィルターまたは jq コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"YAML Querier with yq command. \r\n"
-"Arguments: Filter or command line options passed to the yq command."
+"YAML Querier (yq).\r\n"
+"Arguments: yq filter/command line options."
 msgstr ""
 "yq コマンドを使用して YAML ファイルからデータを抽出します。\r\n"
 "引数: フィルターまたは yq コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"HTML Validator with tidy-html5. \r\n"
-"Arguments: Command line options passed to the tidy command."
+"HTML Validator (tidy-html5).\r\n"
+"Arguments: tidy command line options."
 msgstr ""
 "tidy-html5 を使用して HTML ファイルを検証します。\r\n"
 "引数: tidy コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"JVM bytecode disassembler with javap. \r\n"
-"Arguments: Command line options passed to the javap command."
+"JVM bytecode disassembler (javap).\r\n"
+"Arguments: javap command line options."
 msgstr ""
 "javap を使用して JVM バイトコードを逆アセンブルします。\r\n"
 "引数: javap コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"IL disassembler with ildasm. \r\n"
-"Arguments: Command line options passed to the ildasm command."
+"IL disassembler (ildasm).\r\n"
+"Arguments: ildasm command line options."
 msgstr ""
 "ildasm を使用して IL コードを逆アセンブルします。\r\n"
 "引数: ildasm コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"Native code disassembler with dumpbin. \r\n"
-"Arguments: Command line options passed to the dumpbin command."
+"Native code disassembler (dumpbin).\r\n"
+"Arguments: dumpbin command line options."
 msgstr ""
 "dumpbin を使用してネイティブ コードを逆アセンブルします。\r\n"
 "引数: dumpbin コマンドに渡すコマンドライン オプション。"
 
 msgid ""
-"General content extractor with Apache Tika. \r\n"
-"Arguments: Command line options passed to the tika-app.jar."
+"Content extractor (Apache Tika).\r\n"
+"Arguments: tika-app.jar command line options."
 msgstr ""
 "Apache Tika を使用してファイルからテキストを抽出します。\r\n"
 "引数: tika-app.jar に渡すコマンドライン オプション。"
 
-msgid "Apply patch using GNU patch"
+msgid "Apply patch (GNU patch)"
 msgstr "GNU patch を使用してパッチを適用します。"
 
-msgid "Display the text content of MS Excel files"
+msgid "Display MS Excel text content"
 msgstr "MS Excel ファイルの内容を表示します。"
 
-msgid "Display the text content of MS PowerPoint files"
+msgid "Display MS PowerPoint text content"
 msgstr "MS PowerPoint ファイルの内容を表示します。"
 
-msgid "Display the text content of MS Visio files"
+msgid "Display MS Visio text content"
 msgstr "MS Visio ファイルの内容を表示します。"
 
-msgid "Display the text content of MS Word files"
+msgid "Display MS Word text content"
 msgstr "MS Word ファイルの内容を表示します。"
 
-msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+msgid "Ignore columns - list from plugin name/argument"
 msgstr "列を無視します。無視される列のリストはプラグイン ファイル名またはプラグイン引数で指定します。"
 
-msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
 msgstr "C、C++、PHP または JavaScript ファイルのコメント (//... と /* ... */) を無視します。"
 
-msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+msgid "Ignore fields - list from plugin name/argument"
 msgstr "フィールドを無視します。無視されるフィールドのリストはプラグイン ファイル名またはプラグイン引数で指定します。"
 
-msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgid "Ignore leading line numbers (e.g., NC, BASIC)."
 msgstr "このプラグインは、テキストファイル（例：NCファイルやBASICファイル）の先頭にある行番号を無視します。"
 
 msgid "Prediff Line Filter"
 msgstr "比較前処理置換フィルター"
 
-msgid "Date and time insertion function"
+msgid "Date and time insertion"
 msgstr "日付または時刻の挿入機能"
 
 msgid ""
-"HTTP URL Scheme Handler with curl. \r\n"
-"Arguments: Command line options passed to the curl command."
+"HTTP URL Scheme Handler (curl).\r\n"
+"Arguments: curl command line options."
 msgstr ""
 "curl を使用して HTTP URL スキーマを処理します。\r\n"
 "引数: curl コマンドに渡すコマンドライン オプション"
 
 msgid ""
-"Windows Registry URL Scheme Handler. \r\n"
-"Arguments: Command line options passed to the reg.exe command."
+"Windows Registry URL Scheme Handler.\r\n"
+"Arguments: reg.exe command line options."
 msgstr ""
 "Windows レジストリ URL スキーマを処理します。\r\n"
 "引数: reg.exe コマンドに渡すコマンドライン オプション"
@@ -4866,11 +4844,11 @@ msgstr ""
 msgid "Basic text functions"
 msgstr "基本的なテキスト処理"
 
-msgid "AI-assisted text conversion functions"
+msgid "AI-assisted text conversion"
 msgstr "AIによるテキスト変換機能"
 
 msgid ""
-"Text converter using OpenAI API.\r\n"
+"Text converter (OpenAI API).\r\n"
 "Usage: AIConvertText PROMPT"
 msgstr ""
 "OpenAI APIを使用してテキストを変換します。\r\n"
@@ -4885,7 +4863,7 @@ msgstr "CompareMSExcelFiles.sct WinMerge プラグインオプション"
 msgid "Extract workbook data to multiple files"
 msgstr "ワークブックの情報を複数ファイルに展開する"
 
-msgid "Update external references(links)"
+msgid "Update external references (links)"
 msgstr "比較時、外部参照(リンク)を更新する"
 
 msgid "Compare document properties"
@@ -4917,8 +4895,8 @@ msgstr "ヘッダーとフッターを比較する"
 
 msgid ""
 "Cannot get Macros.\r\n"
-"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n"
-"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+"Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
+""
 msgstr ""
 "マクロを取得できません。\r\n"
 "WinMergeでマクロを比較するには、MS Officeを使用して、現在のアプリケーションのマクロセキュリティの設定を変更してください。\r\n"
@@ -4988,14 +4966,14 @@ msgid "Settings"
 msgstr "設定"
 
 msgid ""
-"Column Ranges To Ignore:\n"
-"e.g.)  3,10-20,32-33\n"
+"Column Ranges to Ignore:\n"
+"e.g.) 3,10-20,32-33\n"
 msgstr ""
 "無視する列番号\n"
 "例)  3,10-20,32-33\n"
 
 #, c-format
-msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgid "Enter filename for patch '%1'"
 msgstr ""
 "パッチ '%1' を適用するファイルを指定してください\r\n"
 "(※ 指定したファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
@@ -5004,11 +4982,11 @@ msgstr ""
 msgid "File '%1' does not exist"
 msgstr "ファイル '%1' は存在しません"
 
-msgid "Enter the command line arguments for patch command"
+msgid "Enter command line arguments for patch"
 msgstr "patch コマンドへ渡す引数を指定してください"
 
 #, c-format
-msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgid "Enter folder name for patch '%1'"
 msgstr ""
 "パッチ '%1' を適用するフォルダーを指定してください\r\n"
 "(※ 指定したフォルダ内のファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
@@ -5017,7 +4995,7 @@ msgstr ""
 msgid "Folder '%1' does not exist"
 msgstr "フォルダー'%1' は存在しません"
 
-msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgid "Do not use '-p0' for patch files with absolute paths"
 msgstr "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
 
 msgid "AI.sct WinMerge Plugin Options"
@@ -5028,9 +5006,9 @@ msgstr "プロンプトを入力してください"
 
 #, c-format
 msgid ""
-"Enter your OpenAI API key.\r\n"
-" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
-" - The API key is stored in the environment variable %1."
+"Enter OpenAI API key.\r\n"
+"- Requires OpenAI registration (fees may apply).\r\n"
+"- Key stored in env var %1."
 msgstr ""
 "OpenAI API キーを入力してください。\r\n"
 " ※ このプラグインを利用するには、OpenAIへの登録が必要であり、料金がかかります。\r\n"
@@ -5051,5 +5029,5 @@ msgstr "Maximum length"
 msgid "Model"
 msgstr "モデル"
 
-msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgid "OpenAI API key changed. Restart to apply."
 msgstr "OpenAI APIキーが変更されました。 変更を適用するには、WinMerge を再起動してください。"

@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+# This file is from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2025-03-13 08:29+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
@@ -3765,7 +3765,7 @@ msgstr ""
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:1266
 msgid ""
-"<guilabel>Comparison result</guilabel>: Verbose comparison result (see also "
+"<guilabel>Comparison Result</guilabel>: Verbose comparison result (see also "
 "<guilabel>Short Result</guilabel>)."
 msgstr ""
 "<guilabel>比較結果</guilabel>: 冗長な比較結果 (<guilabel>簡易結果表示</"
@@ -3797,7 +3797,7 @@ msgstr "次の追加列が、列表示ダイアログで使用可能です。"
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:1288
 msgid ""
-"<guilabel>Short Result</guilabel>: Displays the <guilabel>Comparison result</"
+"<guilabel>Short Result</guilabel>: Displays the <guilabel>Comparison Result</"
 "guilabel> column in a brief (Right only)  form."
 msgstr ""
 "<guilabel>簡易結果表示</guilabel>:<guilabel>比較結果</guilabel>列を簡潔な形式"
@@ -3960,9 +3960,9 @@ msgstr ""
 #: English/Compare_dirs.xml:1390
 msgid ""
 "If the selection occurs on both sides, you can choose either the "
-"<guimenu>Left shell menu</guimenu> or <guimenu>Right shell menu</guimenu>.  "
+"<guimenu>Left Shell Menu</guimenu> or <guimenu>Right Shell Menu</guimenu>.  "
 "If the selection occurs on all sides, you can choose the <guimenu>Left shell "
-"menu</guimenu>, <guimenu>Middle shell menu</guimenu> or <guimenu>Right shell "
+"menu</guimenu>, <guimenu>Middle Shell Menu</guimenu> or <guimenu>Right shell "
 "menu</guimenu>. If the item occurs only on one side, only that side's shell "
 "menu is available."
 msgstr ""
@@ -5349,7 +5349,7 @@ msgstr ""
 #: English/Compare_files.xml:1047
 msgid ""
 "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only "
-"when the <guilabel>Preserve original EOL chars</guilabel> option is enabled "
+"when the <guilabel>Preserve original EOL</guilabel> option is enabled "
 "in the Editor page of WinMerge options)."
 msgstr ""
 
@@ -7452,7 +7452,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:249
-msgid "Automatically verify paths in Open-dialog"
+msgid "Automatically verify paths in Open dialog"
 msgstr "開くダイアログで自動的にパスを検査する"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -7676,7 +7676,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:429
-msgid "Open-dialog Auto-Completion<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "Open dialog Auto completion<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "開くダイアログのオートコンプリート<placeholder type=\"indexterm\" id=\"0\"/>"
 
@@ -8697,7 +8697,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1268
 msgid ""
-"Automatically expand subfolders after comparison<placeholder "
+"Expand subfolders after comparison<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "比較後自動的にサブフォルダーを展開する<placeholder type=\"indexterm\" "
@@ -8811,7 +8811,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1352
 msgid ""
-"Threshold for switching to quick compare (MB)<placeholder type=\"indexterm\" "
+"Switch to quick compare when size exceeds (MB)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr "クイック比較切替閾値 (MB)<placeholder type=\"indexterm\" id=\"0\"/>"
 
@@ -8846,7 +8846,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1384
 msgid ""
-"Threshold for switching to binary compare (MB)<placeholder "
+"Switch to binary compare when size exceeds (MB)<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
@@ -8882,7 +8882,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1416
-msgid "Number of CPU cores to use<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "CPU cores to use<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "使用するCPUコアの数<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -9421,7 +9421,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1789
 msgid ""
-"Preserve original EOL chars<placeholder type=\"indexterm\" id=\"0\"/"
+"Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "元のEOL文字を保存する<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
@@ -12891,7 +12891,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:973
 msgid ""
-"The Select filename for new filter dialog opens in the shared or private "
+"The Select Filename for New Filter dialog opens in the shared or private "
 "files folder on your system (if the private folder does not exist, WinMerge "
 "creates it)."
 msgstr ""
@@ -12902,7 +12902,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:979
 msgid ""
-"In the Select filename for new filter dialog, enter a new file name and "
+"In the Select Filename for New Filter dialog, enter a new file name and "
 "click <guibutton>Save</guibutton>."
 msgstr ""
 "「新しいフィルターのファイル名を指定してください」ダイアログで、 ファイル名を"
@@ -12991,7 +12991,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><orderedlist><listitem><orderedlist><listitem><para>
 #: English/Filters.xml:1030
 msgid ""
-"In the Locate filter file to install dialog, navigate to the <filename>flt</"
+"In the Locate Filter File to Install dialog, navigate to the <filename>flt</"
 "filename> file on your system, and click <guibutton>Open</guibutton>. The "
 "File Filters list should now include the installed file filter."
 msgstr ""
@@ -16536,7 +16536,7 @@ msgstr ""
 
 #. type: Content of: <article><section><title>
 #: English/Plugins.xml:110
-msgid "Suggested plugins and automatic modes"
+msgid "Suggested Plugins and automatic modes"
 msgstr "提案されたプラグインと自動モード"
 
 #. type: Content of: <article><section><para>
@@ -16574,9 +16574,9 @@ msgstr ""
 #: English/Plugins.xml:125
 msgid ""
 "When you apply plugins to a selected file using automatic mode, WinMerge "
-"searches its list of suggested plugins for that file type, and applies the "
+"searches its list of Suggested Plugins for that file type, and applies the "
 "first plugin whose name matches. The search is performed in alphabetical "
-"order, so if there are multiple suggested plugins for a file type, only the "
+"order, so if there are multiple Suggested Plugins for a file type, only the "
 "first one found is applied."
 msgstr ""
 "自動モードを使用して選択したファイルにプラグインを適用すると、 WinMergeは、そ"
@@ -16946,7 +16946,7 @@ msgstr "ファイル比較ウィンドウでの比較前処理プラグインの
 msgid ""
 "In the File Compare window, you can apply a prediffer plugin by clicking "
 "<menuchoice> <guimenu>Plugins</guimenu> <guisubmenu>Prediffer</guisubmenu> </"
-"menuchoice> and choosing one of the plugins in the list. Suggested plugins "
+"menuchoice> and choosing one of the plugins in the list. Suggested Plugins "
 "are indicated at the top of the list. The files are compared again after the "
 "plugin is applied, so you don't need to rescan the files."
 msgstr ""
@@ -18984,7 +18984,7 @@ msgstr "コンボボックスをクリックして、以前使用したパスを
 #: English/Quick_start.xml:135
 msgid ""
 "To make it easier to select frequently-used paths, consider enabling the "
-"<guilabel>Open-dialog Auto-completion</guilabel> option. With this option, "
+"<guilabel>Open dialog Auto completion</guilabel> option. With this option, "
 "WinMerge shows a list of paths available as you type in the fields. See "
 "<xref linkend=\"Configuration\" /> for details."
 msgstr ""
@@ -19202,7 +19202,7 @@ msgid ""
 "<wordasword>changed</wordasword> sides. Instead, it simply shows what is "
 "different between two selected folders. A file or folder that is found only "
 "on one side is simply shown as a unique item on that side, not as added or "
-"removed. For example, in the <guilabel>Comparison result </guilabel>column "
+"removed. For example, in the <guilabel>Comparison Result </guilabel>column "
 "of the preceding figure, <filename>Merge.aps</filename> and <filename>Merge."
 "rc.bak</filename> are each found in only one of the compared folders."
 msgstr ""
@@ -19221,7 +19221,7 @@ msgid ""
 "guimenu> menu, toolbar buttons, or context (right-click)  menu. The most "
 "important action is making files or folders identical in both sides by "
 "selecting one of several Copy items. When you copy a file or folder to other "
-"side, the Comparison result value changes to <literal>Identical</literal>."
+"side, the Comparison Result value changes to <literal>Identical</literal>."
 msgstr ""
 "<guimenu>マージ(M)</guimenu>メニュー、ツールバーボタン、または、コンテキスト"
 "(右クリック)メニューなど、 多くの方法で、ファイルとフォルダーを管理できま"
@@ -20478,7 +20478,7 @@ msgstr ""
 #. type: Content of: <section><orderedlist><listitem><itemizedlist><listitem><para>
 #: English/select_unpacker.xml:23
 msgid ""
-"By default, this control lists only suggested plugins for the file type you "
+"By default, this control lists only Suggested Plugins for the file type you "
 "selected to compare. To see all available plugins, enable the option, "
 "<guilabel>Display all packers, don't check the extension</guilabel>."
 msgstr ""

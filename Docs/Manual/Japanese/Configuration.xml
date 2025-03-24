@@ -1095,7 +1095,7 @@ files bigger (in mega bytes) than this value are compared using
 
     <section>
       <title>
-Threshold for switching to binary compare (MB)<indexterm>
+Switch to binary compare when size exceeds (MB)<indexterm>
           <primary>Binary compare</primary>
 
           <secondary>limit</secondary>

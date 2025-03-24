@@ -185,7 +185,7 @@ int CPatchTool::CreatePatch()
 
 		if (bResult && writeFileCount > 0)
 		{
-			AfxMessageBox((_("Patch file successfully written.") + _T("\n") + dlgPatch.m_fileResult).c_str(),
+			AfxMessageBox((_("Patch file written.") + _T("\n") + dlgPatch.m_fileResult).c_str(),
 				MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_DIFF_SUCCEEDED);
 			
 			m_sPatchFile = dlgPatch.m_fileResult;

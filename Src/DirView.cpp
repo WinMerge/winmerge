@@ -351,7 +351,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_BOTH, OnUpdateCtxtDirCopyBothTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_ALL, OnUpdateCtxtDirCopyBothTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnUpdateCtxtDirCopyBothDiffsOnlyTo)
-	// Context menu -> Left/Middle/Right Shell menu
+	// Context menu -> Left/Middle/Right Shell Menu
 	ON_COMMAND_RANGE(ID_DIR_SHELL_CONTEXT_MENU_LEFT, ID_DIR_SHELL_CONTEXT_MENU_ALL, OnCtxtDirShellContextMenu)
 	// Context menu -> Plugin settings
 	ON_COMMAND_RANGE(ID_PREDIFFER_SETTINGS_NONE, ID_PREDIFFER_SETTINGS_SELECT, OnPluginSettings)
@@ -871,7 +871,7 @@ void CDirView::OnCtxtDirCopy()
 	Counts counts = Count(&DirActions::IsItemIdenticalOrSkipped);
 	if (counts.count > 0)
 	{
-		int ans = AfxMessageBox(_("Some selected items are identical or skipped.\nDo you want to copy only the items with differences?").c_str(),
+		int ans = AfxMessageBox(_("Some selected items are identical or skipped.\nCopy only items with differences?").c_str(),
 			MB_YESNOCANCEL | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_COPY_ONLYDIFFITEMS);
 		if (ans == IDCANCEL)
 			return;
@@ -968,11 +968,11 @@ void CDirView::DoDirActionTo(SIDE_TYPE stype, DirActions::method_type func, cons
 	String selectfolder_title;
 
 	if (stype == SIDE_LEFT)
-		selectfolder_title = _("Left side - select destination folder:");
+		selectfolder_title = _("Left Side - Select Destination Folder:");
 	else if (stype == SIDE_MIDDLE)
-		selectfolder_title = _("Middle side - select destination folder:");
+		selectfolder_title = _("Middle Side - Select Destination Folder:");
 	else if (stype == SIDE_RIGHT)
-		selectfolder_title = _("Right side - select destination folder:");
+		selectfolder_title = _("Right Side - Select Destination Folder:");
 
 	if (!SelectFolder(destPath, startPath.c_str(), selectfolder_title))
 		return;
@@ -1396,7 +1396,7 @@ static bool CreateFoldersPair(const PathContext& paths)
 		{
 			String message =
 				strutils::format_string1( 
-					_("The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"),
+					_("Create matching folder:\n%1\non the other side and open?"),
 					path);
 			int res = AfxMessageBox(message.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_CREATE_PAIR_FOLDER);
 			if (res == IDYES)
@@ -1439,7 +1439,7 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
 		PathContext filteredPaths;
 		FileLocation fileloc[3];
 		String strDesc[3];
-		const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("Untitled middle"), _("Untitled right") };
+		const String sUntitled[] = { _("Untitled Left"), paths.GetSize() < 3 ? _("Untitled Right") : _("Untitled Middle"), _("Untitled Right") };
 		for (int i = 0; i < paths.GetSize(); ++i)
 		{
 			if (paths::DoesPathExist(paths[i]) == paths::DOES_NOT_EXIST)
@@ -1613,7 +1613,7 @@ void CDirView::OpenSelectionAs(UINT id)
 	}
 
 	// Open identical and different files
-	const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("Untitled middle"), _("Untitled right") };
+	const String sUntitled[] = { _("Untitled Left"), paths.GetSize() < 3 ? _("Untitled Right") : _("Untitled Middle"), _("Untitled Right") };
 	fileopenflags_t dwFlags[3] = { 0 };
 	String strDesc[3];
 	PathContext filteredPaths;

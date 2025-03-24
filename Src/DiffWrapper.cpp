@@ -756,7 +756,7 @@ bool CDiffWrapper::RunFileDiff()
 			{
 				// display a message box
 				String sError = strutils::format_string2(
-					_("An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."),
+					_("Error prediffing '%1' with '%2'. Prediffing disabled."),
 					strFileTemp[file].c_str(),
 					m_infoPrediffer->GetPluginPipeline().c_str());
 				AppErrorMessageBox(sError);

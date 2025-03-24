@@ -139,7 +139,7 @@ void CPatchDlg::OnOK()
 		}
 		if (!paths::IsPathAbsolute(m_fileResult))
 		{
-			String msg = strutils::format_string1(_("The specified output path is not an absolute path: %1"),
+			String msg = strutils::format_string1(_("Output path is not absolute: %1"),
 				m_fileResult);
 			AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 			m_ctlResult.SetFocus();

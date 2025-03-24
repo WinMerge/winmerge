@@ -492,7 +492,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		// normal line : append an EOL
 		if (nCrlfStyle == CRLFSTYLE::AUTOMATIC || nCrlfStyle == CRLFSTYLE::MIXED)
 		{
-			// either the EOL of the line (when preserve original EOL chars is on)
+			// either the EOL of the line (when Preserve original EOL is on)
 			sLine += GetLineEol(line);
 		}
 		else

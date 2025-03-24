@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
-"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2025-03-13 08:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
@@ -2432,7 +2432,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Compare_dirs.xml:1266
-msgid "<guilabel>Comparison result</guilabel>: Verbose comparison result (see also <guilabel>Short Result</guilabel>)."
+msgid "<guilabel>Comparison Result</guilabel>: Verbose comparison result (see also <guilabel>Short Result</guilabel>)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -2452,7 +2452,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Compare_dirs.xml:1288
-msgid "<guilabel>Short Result</guilabel>: Displays the <guilabel>Comparison result</guilabel> column in a brief (Right only)  form."
+msgid "<guilabel>Short Result</guilabel>: Displays the <guilabel>Comparison Result</guilabel> column in a brief (Right only)  form."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -2537,7 +2537,7 @@ msgstr ""
 
 #. type: Content of: <article><section><para>
 #: ./English/Compare_dirs.xml:1390
-msgid "If the selection occurs on both sides, you can choose either the <guimenu>Left shell menu</guimenu> or <guimenu>Right shell menu</guimenu>.  If the selection occurs on all sides, you can choose the <guimenu>Left shell menu</guimenu>, <guimenu>Middle shell menu</guimenu> or <guimenu>Right shell menu</guimenu>. If the item occurs only on one side, only that side's shell menu is available."
+msgid "If the selection occurs on both sides, you can choose either the <guimenu>Left Shell Menu</guimenu> or <guimenu>Right Shell Menu</guimenu>.  If the selection occurs on all sides, you can choose the <guimenu>Left Shell Menu</guimenu>, <guimenu>Middle Shell Menu</guimenu> or <guimenu>Right Shell Menu</guimenu>. If the item occurs only on one side, only that side's shell menu is available."
 msgstr ""
 
 #. type: Content of: <article><section><caution><para>
@@ -3572,7 +3572,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: ./English/Compare_files.xml:1047
-msgid "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only when the <guilabel>Preserve original EOL chars</guilabel> option is enabled in the Editor page of WinMerge options)."
+msgid "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only when the <guilabel>Preserve original EOL</guilabel> option is enabled in the Editor page of WinMerge options)."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
@@ -5132,7 +5132,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:249
-msgid "Automatically verify paths in Open-dialog"
+msgid "Automatically verify paths in Open dialog"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -5172,7 +5172,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:320
-msgid "<option>Allow only one instance to run and wait for the instance to terminate</option>: Similar to the \"Allow only one instance to run\" option, this setting restricts WinMerge to a single application window. However, it also ensures that the WinMerge process does not terminate until the application window is closed. This is useful for situations where external applications, like SourceTree, need to wait for WinMerge to finish before they can safely delete temporary files."
+msgid "<option>Allow only one instance; wait for termination</option>: Similar to the \"Allow only one instance to run\" option, this setting restricts WinMerge to a single application window. However, it also ensures that the WinMerge process does not terminate until the application window is closed. This is useful for situations where external applications, like SourceTree, need to wait for WinMerge to finish before they can safely delete temporary files."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
@@ -5259,7 +5259,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:429
-msgid "Open-dialog Auto-Completion<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "Open dialog Auto completion<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
@@ -5922,7 +5922,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:1268
-msgid "Automatically expand subfolders after comparison<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "Expand subfolders after comparison<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -5997,7 +5997,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:1352
-msgid "Threshold for switching to quick compare (MB)<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "Switch to quick compare when size exceeds (MB)<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -6022,7 +6022,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:1384
-msgid "Threshold for switching to binary compare (MB)<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "Switch to binary compare when size exceeds (MB)<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -6047,7 +6047,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:1416
-msgid "Number of CPU cores to use<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "CPU cores to use<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
@@ -6419,7 +6419,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:1789
-msgid "Preserve original EOL chars<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
+msgid "Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -8649,12 +8649,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: ./English/Filters.xml:973
-msgid "The Select filename for new filter dialog opens in the shared or private files folder on your system (if the private folder does not exist, WinMerge creates it)."
+msgid "The Select Filename for New Filter dialog opens in the shared or private files folder on your system (if the private folder does not exist, WinMerge creates it)."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: ./English/Filters.xml:979
-msgid "In the Select filename for new filter dialog, enter a new file name and click <guibutton>Save</guibutton>."
+msgid "In the Select Filename for New Filter dialog, enter a new file name and click <guibutton>Save</guibutton>."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><note><para>
@@ -8694,7 +8694,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><orderedlist><listitem><para>
 #: ./English/Filters.xml:1030
-msgid "In the Locate filter file to install dialog, navigate to the <filename>flt</filename> file on your system, and click <guibutton>Open</guibutton>. The File Filters list should now include the installed file filter."
+msgid "In the Locate Filter File to Install dialog, navigate to the <filename>flt</filename> file on your system, and click <guibutton>Open</guibutton>. The File Filters list should now include the installed file filter."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
@@ -11108,7 +11108,7 @@ msgstr ""
 
 #. type: Content of: <article><section><title>
 #: ./English/Plugins.xml:110
-msgid "Suggested plugins and automatic modes"
+msgid "Suggested Plugins and automatic modes"
 msgstr ""
 
 #. type: Content of: <article><section><para>
@@ -11123,7 +11123,7 @@ msgstr ""
 
 #. type: Content of: <article><section><para>
 #: ./English/Plugins.xml:125
-msgid "When you apply plugins to a selected file using automatic mode, WinMerge searches its list of suggested plugins for that file type, and applies the first plugin whose name matches. The search is performed in alphabetical order, so if there are multiple suggested plugins for a file type, only the first one found is applied."
+msgid "When you apply plugins to a selected file using automatic mode, WinMerge searches its list of Suggested Plugins for that file type, and applies the first plugin whose name matches. The search is performed in alphabetical order, so if there are multiple Suggested Plugins for a file type, only the first one found is applied."
 msgstr ""
 
 #. type: Content of: <article><section><title>
@@ -11373,7 +11373,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><para>
 #: ./English/Plugins.xml:363
-msgid "In the File Compare window, you can apply a prediffer plugin by clicking <menuchoice> <guimenu>Plugins</guimenu> <guisubmenu>Prediffer</guisubmenu> </menuchoice> and choosing one of the plugins in the list. Suggested plugins are indicated at the top of the list. The files are compared again after the plugin is applied, so you don't need to rescan the files."
+msgid "In the File Compare window, you can apply a prediffer plugin by clicking <menuchoice> <guimenu>Plugins</guimenu> <guisubmenu>Prediffer</guisubmenu> </menuchoice> and choosing one of the plugins in the list. Suggested Plugins are indicated at the top of the list. The files are compared again after the plugin is applied, so you don't need to rescan the files."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
@@ -13093,7 +13093,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><para><itemizedlist><listitem><tip><para>
 #: ./English/Quick_start.xml:135
-msgid "To make it easier to select frequently-used paths, consider enabling the <guilabel>Open-dialog Auto-completion</guilabel> option. With this option, WinMerge shows a list of paths available as you type in the fields. See <xref linkend=\"Configuration\" /> for details."
+msgid "To make it easier to select frequently-used paths, consider enabling the <guilabel>Open dialog Auto completion</guilabel> option. With this option, WinMerge shows a list of paths available as you type in the fields. See <xref linkend=\"Configuration\" /> for details."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para><itemizedlist><listitem><para>
@@ -13203,12 +13203,12 @@ msgstr ""
 
 #. type: Content of: <article><section><para>
 #: ./English/Quick_start.xml:265
-msgid "WinMerge does not have a concept of <wordasword>original</wordasword> and <wordasword>changed</wordasword> sides. Instead, it simply shows what is different between two selected folders. A file or folder that is found only on one side is simply shown as a unique item on that side, not as added or removed. For example, in the <guilabel>Comparison result </guilabel>column of the preceding figure, <filename>Merge.aps</filename> and <filename>Merge.rc.bak</filename> are each found in only one of the compared folders."
+msgid "WinMerge does not have a concept of <wordasword>original</wordasword> and <wordasword>changed</wordasword> sides. Instead, it simply shows what is different between two selected folders. A file or folder that is found only on one side is simply shown as a unique item on that side, not as added or removed. For example, in the <guilabel>Comparison Result </guilabel>column of the preceding figure, <filename>Merge.aps</filename> and <filename>Merge.rc.bak</filename> are each found in only one of the compared folders."
 msgstr ""
 
 #. type: Content of: <article><section><para>
 #: ./English/Quick_start.xml:274
-msgid "You can manage files and folders in many ways using the <guimenu>Merge</guimenu> menu, toolbar buttons, or context (right-click)  menu. The most important action is making files or folders identical in both sides by selecting one of several Copy items. When you copy a file or folder to other side, the Comparison result value changes to <literal>Identical</literal>."
+msgid "You can manage files and folders in many ways using the <guimenu>Merge</guimenu> menu, toolbar buttons, or context (right-click)  menu. The most important action is making files or folders identical in both sides by selecting one of several Copy items. When you copy a file or folder to other side, the Comparison Result value changes to <literal>Identical</literal>."
 msgstr ""
 
 #. type: Content of: <article><section><para>
@@ -14164,7 +14164,7 @@ msgstr ""
 
 #. type: Content of: <section><orderedlist><listitem><itemizedlist><listitem><para>
 #: ./English/select_unpacker.xml:23
-msgid "By default, this control lists only suggested plugins for the file type you selected to compare. To see all available plugins, enable the option, <guilabel>Display all packers, don't check the extension</guilabel>."
+msgid "By default, this control lists only Suggested Plugins for the file type you selected to compare. To see all available plugins, enable the option, <guilabel>Display all packers, don't check the extension</guilabel>."
 msgstr ""
 
 #. type: Content of: <section><orderedlist><listitem><itemizedlist><listitem><para>

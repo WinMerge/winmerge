@@ -16,7 +16,7 @@ STDMETHODIMP CWinMergeScript::get_PluginEvent(BSTR *pVal)
 
 STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 {
-  *pVal = SysAllocString(L"The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files.");
+  *pVal = SysAllocString(L"Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */).");
   return S_OK;
 }
 

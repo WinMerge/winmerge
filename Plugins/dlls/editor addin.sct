@@ -74,52 +74,52 @@ function get_PluginExtendedProperties() {
   "SortDescending.MenuCaption=Sort Lines Descending;" +
   "SortDescending.Description=Sort lines descending;" +
   "ExecFilterCommand.MenuCaption=Apply Filter Command...;" +
-  "ExecFilterCommand.Description=Apply filter command. \r\n" +
+  "ExecFilterCommand.Description=Apply filter. \r\n" +
     "Usage: ExecFilterCommand COMMAND\r\n"+ 
-    "  COMMAND - command to execute. %1 in the command is replaced with the filename.;" +
+    " COMMAND - command to execute. %1 = filename.;" +
   "ExecFilterCommand.ArgumentsRequired;" +
   "Tokenize.MenuCaption=Tokenize...;" +
-  "Tokenize.Description=Tokenize selection. \r\n" +
+  "Tokenize.Description=Tokenize. \r\n" +
     "Usage: Tokenize PATTERNS\r\n" +
-    "  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+);" +
+    " PATTERNS - regex (e.g. [^\\w]+);" +
   "Tokenize.ArgumentsRequired;" +
   "Tokenize.Arguments=[^\\w]+;" +
   "Trim.MenuCaption=Trim Spaces;" +
   "Trim.Description=Trim spaces;" +
   "SelectColumns.MenuCaption=Select Columns...;" +
-  "SelectColumns.Description=Select some columns.\r\n" +
+  "SelectColumns.Description=Select columns.\r\n" +
     "Usage: SelectColumns RANGES\r\n" +
-    "   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n" +
-    "  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n" +
-    "  PATTERNS - regular expression\r\n" +  
-    "  -v - select non-matching columns\r\n" +  
-    "  -i - ignore case\r\n" +  
-    "  -g - enable global flag\r\n" +  
-    "  -e - use PATTERNS for matching;" +
+    " or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n" +
+    " RANGES - column ranges (-3,5-10,30-)\r\n" +
+    " PATTERNS - regex\r\n" +  
+    " -v - select non-matching\r\n" +  
+    " -i - ignore case\r\n" +  
+    " -g - enable global flag\r\n" +  
+    " -e - use PATTERNS;" +
   "SelectColumns.ArgumentsRequired;" +
   "SelectLines.MenuCaption=Select Lines...;" +
-  "SelectLines.Description=Select some lines.\r\n" +  
+  "SelectLines.Description=Select lines.\r\n" +  
     "Usage: SelectLines RANGES\r\n" +  
-    "   or: SelectLines [-v] [-i] -e PATTERNS\r\n" +  
-    "  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n" +  
-    "  PATTERNS - regular expression\r\n" +  
-    "  -v - select non-matching lines\r\n" +  
-    "  -i - ignore case\r\n" +  
-    "  -e - use PATTERNS for matching;" +
+    " or: SelectLines [-v] [-i] -e PATTERNS\r\n" +  
+    " RANGES - line ranges (-3,5-10,30-)\r\n" +  
+    " PATTERNS - regex\r\n" +  
+    " -v - select non-matching\r\n" +  
+    " -i - ignore case\r\n" +  
+    " -e - use PATTERNS;" +
   "SelectLines.ArgumentsRequired;" +
   "ReverseColumns.MenuCaption=Reverse Columns;" +
   "ReverseColumns.Description=Reverse columns;" +
   "ReverseLines.MenuCaption=Reverse Lines;" +
   "ReverseLines.Description=Reverse lines;" +
   "Replace.MenuCaption=Replace...;" +
-  "Replace.Description=Replace text with another text.\r\n" +  
+  "Replace.Description=Replace text.\r\n" +  
     "Usage: Replace [-i] [-e] FIND REPLACE\r\n" +  
-    "   or: Replace -s\r\n" +  
-    "  FIND    - text to find\r\n" +  
-    "  REPLACE - text to replace\r\n" +  
-    "  -i - ignore case (only for -e)\r\n" +  
-    "  -e - treat the specified text as a regular expression\r\n" +
-    "  -s - replace using Substitution Filters patterns;" +
+    " or: Replace -s\r\n" +  
+    " FIND - text to find\r\n" +  
+    " REPLACE - text to replace\r\n" +  
+    " -i - ignore case (only for -e)\r\n" +  
+    " -e - regex\r\n" +
+    " -s - use Substitution Filters;" +
   "Replace.ArgumentsRequired;";
 }
 

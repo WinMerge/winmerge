@@ -56,7 +56,7 @@ void CMergeDoc::Showlinediff(CMergeEditView *pView, bool bReversed)
 	if (std::all_of(rc, rc + m_nBuffers, [](auto& rc) { return rc.first.y == -1; }))
 	{
 		String caption = _("Line difference");
-		String msg = _("No differences to select found");
+		String msg = _("No differences found to select");
 		MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 		return;
 	}
@@ -105,7 +105,7 @@ void CMergeDoc::AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed)
 		String str1 = SubstitutionFiltersList.GetAt(f).replacement;
 		if ( str0 == selectedText[0] && str1 == selectedText[1])
 		{
-			String caption = _("The pair is already present in the list of Substitution Filters");
+			String caption = _("The pair is already in the Substitution Filters list");
 			String msg = strutils::format(_T("\"%s\" <-> \"%s\""), selectedText[0], selectedText[1]);
 			MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 			return; /// The substitution pair is already registered

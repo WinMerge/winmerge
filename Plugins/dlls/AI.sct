@@ -35,9 +35,9 @@ var variables = new Array();
 var mergeApp;
 
 function get_PluginEvent() { return "EDITOR_SCRIPT"; }
-function get_PluginDescription() { return "AI-assisted text conversion functions"; }
+function get_PluginDescription() { return "AI-assisted text conversion"; }
 function get_PluginFileFilters() { return ".*"; }
-function get_PluginExtendedProperties() { return "GenerateUnpacker;AIConvertText.MenuCaption=Convert Text with AI...;AIConvertText.Description=Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT;AIConvertText.ArgumentsRequired;"; }
+function get_PluginExtendedProperties() { return "GenerateUnpacker;AIConvertText.MenuCaption=Convert Text with AI...;AIConvertText.Description=Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT;AIConvertText.ArgumentsRequired;"; }
 function get_PluginArguments() { return pluginArguments; }
 function put_PluginArguments(NewValue) { pluginArguments = NewValue; }
 function get_PluginVariables() { return variables.join("\0"); }
@@ -154,7 +154,7 @@ function getOpenAIKey() {
   if (openAIKey === "" || openAIKey === "%" + keyEnvName + "%") {
     try { openAIKey = wsh.RegRead("HKEY_CURRENT_USER\\Environment\\" + keyEnvName); } catch (e) { openAIKey = ""; }
     if (openAIKey === "") {
-      var msg = mergeApp.Translate("Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1.");
+      var msg = mergeApp.Translate("Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1.");
       msg = msg.replace("%1", keyEnvName);
       openAIKey = mergeApp.InputBox(msg, "AIConvertText plugin", "");
       if (openAIKey !== "")
@@ -435,7 +435,7 @@ function btnOk_onclick() {
   regWrite(REGKEY_PATH + "OpenAI.Model", cboModel.value, "REG_SZ");
   if (txtApiKey.value !== openAIKey) {
     setEnvVal(txtApiKeyEnvName.value, txtApiKey.value);
-    alert("${OpenAI API key has changed. Please restart WinMerge to apply the changes.}");
+    alert("${OpenAI API key changed. Restart to apply.}");
   }
 
   saveSettingsToXMLFile(xmlFilePath, settings);

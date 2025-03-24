@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+# This file is from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
-"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2023-02-19 00:07+0000\n"
 "PO-Revision-Date: 2023-07-06 08:38+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"

@@ -174,7 +174,7 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	else if (uMsg == BFFM_VALIDATEFAILED)
 	{
 		String strMessage = 
-			strutils::format_string1(_("%1 does not exist. Do you want to create it?"), (tchar_t *)lParam);
+			strutils::format_string1(_("%1 does not exist. Create it?"), (tchar_t *)lParam);
 		int answer = MessageBox(hwnd, strMessage.c_str(), nullptr, MB_YESNO);
 		if (answer == IDYES)
 		{

@@ -1353,7 +1353,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 			if (bMultiFile)
 			{
 				// Multiple files or folder
-				str = strutils::format_string1(_("%1\nis marked read-only. Would you like to override the read-only item?"), strSavePath);
+				str = strutils::format_string1(_("%1\nis read-only. Override?"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
 						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
@@ -1361,7 +1361,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 			else
 			{
 				// Single file
-				str = strutils::format_string1(_("%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"), strSavePath);
+				str = strutils::format_string1(_("%1 is read-only. Override? Or 'No' to save as new filename?"), strSavePath);
 				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
 						IDS_SAVEREADONLY_FMT);
@@ -1411,10 +1411,10 @@ String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& 
 	String pluginName = plugin.GetPluginPipeline();
 	return strutils::format_string2(
 		pane == 0 ? 
-			_("Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
+			_("Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?")
 			: (pane == paneCount - 1) ? 
-				_("Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?")
-				: _("Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"),
+				_("Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?")
+				: _("Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"),
 		path, pluginName);
 }
 
@@ -1444,7 +1444,7 @@ bool CMergeApp::LoadProjectFile(const String& sProject, ProjectFile &project)
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = _("Unknown error attempting to open project file.");
+		String sErr = _("Unknown error opening project file.");
 		sErr += ucr::toTString(e.displayText());
 		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);
@@ -1462,7 +1462,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 	}
 	catch (Poco::Exception& e)
 	{
-		String sErr = _("Unknown error attempting to save project file.");
+		String sErr = _("Unknown error saving project file.");
 		sErr += ucr::toTString(e.displayText());
 		String msg = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sProject, sErr);
 		AfxMessageBox(msg.c_str(), MB_ICONSTOP);

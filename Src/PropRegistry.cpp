@@ -87,9 +87,9 @@ BOOL PropRegistry::OnInitDialog()
 	m_tooltips.Create(this);
 	m_tooltips.SetMaxTipWidth(600);
 	m_tooltips.AddTool(GetDlgItem(IDC_EXT_EDITOR_PATH), 
-		_("You can specify the following parameters to the path:\n"
-		  "$file: Path name of the current file\n"
-		  "$linenum: Line number of the current cursor position").c_str());
+		_("Parameters:\n"
+		  "$file: Current file path\n"
+		  "$linenum: Current cursor line number").c_str());
 	return TRUE;
 }
 

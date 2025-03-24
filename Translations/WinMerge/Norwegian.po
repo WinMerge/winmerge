@@ -1,4 +1,4 @@
-# This file is part from WinMerge <https://winmerge.org/>
+# This file is from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: FTno\n"
@@ -43,22 +43,22 @@ msgstr "Kopier til &venstre\tAlt+Venstre"
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Kopier &fra venstre\tAlt+Shift+Høyre"
 
-msgid "Copy Selected Line(s) to Middle"
+msgid "Copy Selected Lines to Middle"
 msgstr "Kopier valgte linje(r) til midten"
 
-msgid "Copy Selected Line(s) to Right"
+msgid "Copy Selected Lines to Right"
 msgstr "Kopier valgte linje(r) til høyre"
 
-msgid "Copy Selected Line(s) from Middle"
+msgid "Copy Selected Lines from Middle"
 msgstr "Kopier valgte linje(r) fra midten"
 
-msgid "Copy Selected Line(s) from Right"
+msgid "Copy Selected Lines from Right"
 msgstr "Kopier valgte linje(r) fra høyre"
 
-msgid "Copy Selected Line(s) to Left"
+msgid "Copy Selected Lines to Left"
 msgstr "Kopier valgte linje(r) til venstre"
 
-msgid "Copy Selected Line(s) from Left"
+msgid "Copy Selected Lines from Left"
 msgstr "Kopier valgte linje(r) fra venstre"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Select Line &Difference\tF4"
 msgstr "&Marker linjeforskjell\tF4"
 
-msgid "Add this change to Substitution &Filters"
+msgid "Add to Substitution &Filters"
 msgstr ""
 
 msgid "Add to &Line Filters"
@@ -142,7 +142,7 @@ msgstr "Vis &forskjeller"
 msgid "Diff &Block Size"
 msgstr ""
 
-msgid "&Ignore Color Difference (Color Distance Threshold)"
+msgid "&Ignore Color Difference"
 msgstr ""
 
 msgid "Ins&ertion/Deletion Detection"
@@ -231,13 +231,13 @@ msgstr ""
 msgid "&Animation Settings"
 msgstr ""
 
-msgid "&Blink interval"
+msgid "&Blink Interval"
 msgstr ""
 
-msgid "&Overlay animation interval"
+msgid "&Overlay Animation Interval"
 msgstr ""
 
-msgid "Compare Extracted &Text From Images"
+msgid "Compare Extracted &Text from Images"
 msgstr ""
 
 msgid "Co&mpare"
@@ -279,7 +279,7 @@ msgstr ""
 msgid "&Input"
 msgstr ""
 
-msgid "&GoBack/Forward"
+msgid "&Go Back/Forward"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -294,7 +294,7 @@ msgstr ""
 msgid "&Browsing History"
 msgstr ""
 
-msgid "&All Profile"
+msgid "&All Profiles"
 msgstr ""
 
 msgid "&File"
@@ -339,7 +339,7 @@ msgstr "Lagre pr&osjekt..."
 msgid "Recent Projects"
 msgstr "Seneste prosjekter"
 
-msgid "Recent F&iles Or Folders"
+msgid "Recent F&iles or Folders"
 msgstr "Nylige f&iler eller mapper"
 
 msgid "E&xit\tCtrl+Q"
@@ -423,7 +423,7 @@ msgstr "&Manuell utpakking"
 msgid "&Automatic Unpacking"
 msgstr "&Automatisk utpakking"
 
-msgid "&Reload plugins"
+msgid "&Reload Plugins"
 msgstr "&Gjeninnlast programtillegg"
 
 msgid "&Window"
@@ -468,16 +468,16 @@ msgstr "&GNU General Public License"
 msgid "&About WinMerge..."
 msgstr "Om Win&Merge..."
 
-msgid "&Read-only"
+msgid "&Read-Only"
 msgstr "Skrive&beskyttet"
 
-msgid "L&eft Read-only"
+msgid "L&eft Read-Only"
 msgstr "Venstre skrive&beskyttet"
 
-msgid "M&iddle Read-only"
+msgid "M&iddle Read-Only"
 msgstr "M&idten skrivebeskyttet"
 
-msgid "Ri&ght Read-only"
+msgid "Ri&ght Read-Only"
 msgstr "H&øyre skrivebeskyttet"
 
 msgid "&File Encoding..."
@@ -693,7 +693,7 @@ msgstr "&Vis/Skjul bokmerke\tCtrl+F2"
 msgid "&Next Bookmark\tF2"
 msgstr "&Neste bokmerke\tF2"
 
-msgid "&Previous bookmark\tShift+F2"
+msgid "&Previous Bookmark\tShift+F2"
 msgstr "&Forrige bokmerke\tShift+F2"
 
 msgid "&Clear All Bookmarks"
@@ -777,40 +777,40 @@ msgstr "Forri&ge konflikt\tAlt+Shift+Up"
 msgid "A&dvanced"
 msgstr "Avanse&rt"
 
-msgid "Next Difference Between Left and Middle\tAlt+1"
+msgid "Next Difference (Left/Middle)\tAlt+1"
 msgstr ""
 
-msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
+msgid "Previous Difference (Left/Middle)\tAlt+Shift+1"
 msgstr ""
 
-msgid "Next Difference Between Left and Right\tAlt+2"
+msgid "Next Difference (Left/Right)\tAlt+2"
 msgstr ""
 
-msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
+msgid "Previous Difference (Left/Right)\tAlt+Shift+2"
 msgstr ""
 
-msgid "Next Difference Between Middle and Right\tAlt+3"
+msgid "Next Difference (Middle/Right)\tAlt+3"
 msgstr ""
 
-msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
+msgid "Previous Difference (Middle/Right)\tAlt+Shift+3"
 msgstr ""
 
-msgid "Next Left Only Difference\tAlt+7"
+msgid "Next Left-Only Difference\tAlt+7"
 msgstr ""
 
-msgid "Previous Left Only Difference\tAlt+Shift+7"
+msgid "Previous Left-Only Difference\tAlt+Shift+7"
 msgstr ""
 
-msgid "Next Middle Only Difference\tAlt+8"
+msgid "Next Middle-Only Difference\tAlt+8"
 msgstr ""
 
-msgid "Previous Middle Only Difference\tAlt+Shift+8"
+msgid "Previous Middle-Only Difference\tAlt+Shift+8"
 msgstr ""
 
-msgid "Next Right Only Difference\tAlt+9"
+msgid "Next Right-Only Difference\tAlt+9"
 msgstr ""
 
-msgid "Previous Right Only Difference\tAlt+Shift+9"
+msgid "Previous Right-Only Difference\tAlt+Shift+9"
 msgstr ""
 
 msgid "Copy from &Left to"
@@ -831,13 +831,13 @@ msgstr "&Venstre"
 msgid "Copy from &Right to"
 msgstr "Kopier fra &høyre til"
 
-msgid "Copy Selected Line(s) from Le&ft to"
+msgid "Copy Selected Lines from Le&ft to"
 msgstr "Kopier valgte linje(r) fra &venstre til"
 
-msgid "Copy Selected Line(s) from Mi&ddle to"
+msgid "Copy Selected Lines from Mi&ddle to"
 msgstr "Kopier valgte linje(r) fra mi&dten til"
 
-msgid "Copy Selected Line(s) from Ri&ght to"
+msgid "Copy Selected Lines from Ri&ght to"
 msgstr "Kopier valgte linje(r) fra hø&yre til"
 
 msgid "Copy from Left\tAlt+Shift+Right"
@@ -876,13 +876,13 @@ msgstr "&Prediffer"
 msgid "Apply Pre&differ..."
 msgstr ""
 
-msgid "&Transform with editor script..."
+msgid "&Transform with Editor Script..."
 msgstr ""
 
-msgid "Scripts for &copying"
+msgid "Scripts for &Copying"
 msgstr ""
 
-msgid "Select &editor script..."
+msgid "Select &Editor Script..."
 msgstr ""
 
 msgid "Sp&lit"
@@ -891,7 +891,7 @@ msgstr "S&plitt"
 msgid "Comp&are"
 msgstr "Samm&enlign"
 
-msgid "Compare in new &window"
+msgid "Compare in New &Window"
 msgstr ""
 
 msgid "Compare Non-hor&izontally..."
@@ -900,16 +900,16 @@ msgstr ""
 msgid "Compare Non-hor&izontally"
 msgstr ""
 
-msgid "First &left item with second left item"
+msgid "First &Left with Second Left"
 msgstr ""
 
-msgid "First &right item with second right item"
+msgid "First &Right with Second Right"
 msgstr ""
 
-msgid "&First left item with second right item"
+msgid "&First Left with Second Right"
 msgstr ""
 
-msgid "&Second left item with first right item"
+msgid "&Second Left with First Right"
 msgstr ""
 
 msgid "Co&mpare As"
@@ -975,7 +975,7 @@ msgstr ""
 msgid "O&pen Right"
 msgstr "Å&pne høyre"
 
-msgid "Cop&y Pathnames"
+msgid "Cop&y Paths"
 msgstr "Kop&ier baner"
 
 #, c-format
@@ -1001,7 +1001,7 @@ msgstr ""
 msgid "Copy &Filenames"
 msgstr "Kopier &filnavn"
 
-msgid "Copy Items To Clip&board"
+msgid "Copy Items to Clip&board"
 msgstr ""
 
 msgid "Copy All Di&splayed Columns"
@@ -1022,19 +1022,19 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-msgid "Left Shell menu"
+msgid "Left Shell Menu"
 msgstr "Venstre skallmeny"
 
-msgid "Middle Shell menu"
+msgid "Middle Shell Menu"
 msgstr ""
 
-msgid "Right Shell menu"
+msgid "Right Shell Menu"
 msgstr "Høyre skallmeny"
 
-msgid "Both Shell menu"
+msgid "Both Shell Menu"
 msgstr ""
 
-msgid "All Shell menu"
+msgid "All Shell Menu"
 msgstr ""
 
 msgid "Copy"
@@ -1082,38 +1082,38 @@ msgstr "&Blanktegn"
 msgid "Com&pare"
 msgstr "Sammen&lign"
 
-msgid "I&gnore changes"
+msgid "I&gnore Changes"
 msgstr "I&gnorer endringer"
 
-msgid "Ig&nore all"
+msgid "Ig&nore All"
 msgstr "Ig&norer alle"
 
-msgid "Ignore blan&k lines"
+msgid "Ignore Blan&k Lines"
 msgstr "Ignorer blan&ke linjer"
 
-msgid "Ignore &case"
+msgid "Ignore &Case"
 msgstr "Ignorer store/små &bokstaver"
 
-msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
 msgstr "Igno&rer linjebruddforskjeller (Windows/Unix/Mac)"
 
-msgid "Ignore codepage &differences"
+msgid "Ignore Codepage &Differences"
 msgstr ""
 
-msgid "Ignore num&bers"
+msgid "Ignore Num&bers"
 msgstr ""
 
-msgid "Ignore c&omment differences"
+msgid "Ignore C&omment Differences"
 msgstr ""
 
-msgid "Ignore &missing trailing EOL"
+msgid "Ignore &Missing Trailing EOL"
 msgstr ""
 
-msgid "&Include subfolders"
+msgid "&Include Subfolders"
 msgstr "&Inkluder undermapper"
 
-msgid "&Compare method:"
-msgstr "&Sammenligningsmetode:"
+msgid "&Compare Method"
+msgstr "&Sammenligningsmetode"
 
 msgid "Full Contents"
 msgstr "Fullt innhold"
@@ -1136,79 +1136,79 @@ msgstr "Størrelse"
 msgid "&Load Project..."
 msgstr ""
 
-msgid "${*} - All arguments"
+msgid "${*} - All Arguments"
 msgstr ""
 
-msgid "${1} - The first argument"
+msgid "${1} - First Argument"
 msgstr ""
 
-msgid "${2} - The second argument"
+msgid "${2} - Second Argument"
 msgstr ""
 
-msgid "${3} - The third argument"
+msgid "${3} - Third Argument"
 msgstr ""
 
-msgid "${4} - The fourth argument"
+msgid "${4} - Fourth Argument"
 msgstr ""
 
-msgid "${5} - The fifth argument"
+msgid "${5} - Fifth Argument"
 msgstr ""
 
-msgid "${6} - The sixth argument"
+msgid "${6} - Sixth Argument"
 msgstr ""
 
-msgid "${7} - The seventh argument"
+msgid "${7} - Seventh Argument"
 msgstr ""
 
-msgid "${8} - The eighth argument"
+msgid "${8} - Eighth Argument"
 msgstr ""
 
-msgid "${9} - The ninth argument"
+msgid "${9} - Ninth Argument"
 msgstr ""
 
-msgid "${SRC_FILE} - Source file"
+msgid "${SRC_FILE} - Source File"
 msgstr ""
 
-msgid "${SRC_FOLDER} - Source folder"
+msgid "${SRC_FOLDER} - Source Folder"
 msgstr ""
 
 msgid "${SRC_URL} - Source URL"
 msgstr ""
 
-msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
 msgstr ""
 
-msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
 msgstr ""
 
-msgid "${DST_FILE} - Destination file"
+msgid "${DST_FILE} - Destination File"
 msgstr ""
 
-msgid "${DST_FOLDER} - Destination folder"
+msgid "${DST_FOLDER} - Destination Folder"
 msgstr ""
 
 msgid "${DST_URL} - Destination URL"
 msgstr ""
 
-msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
 msgstr ""
 
-msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
 msgstr ""
 
-msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgid "${WINMERGE_HOME} - WinMerge Home Directory"
 msgstr ""
 
-msgid "${SCRIPT_FILE} - Script file"
+msgid "${SCRIPT_FILE} - Script File"
 msgstr ""
 
-msgid "Add &unpacker plugin..."
+msgid "Add &Unpacker Plugin..."
 msgstr ""
 
-msgid "Add &prediffer plugin..."
+msgid "Add &Prediffer Plugin..."
 msgstr ""
 
-msgid "&Duplicate plugin..."
+msgid "&Duplicate Plugin..."
 msgstr ""
 
 msgid "About WinMerge"
@@ -1265,6 +1265,9 @@ msgstr "Bla gjennom.."
 msgid " Folder: Filter"
 msgstr ""
 
+msgid "&Include subfolders"
+msgstr "&Inkluder undermapper"
+
 msgid " File: Prediffer Plugin"
 msgstr ""
 
@@ -1295,7 +1298,7 @@ msgstr ""
 msgid "Cl&ose windows with 'Esc':"
 msgstr "L&ukk vinduer med 'Esc':"
 
-msgid "&Automatically verify paths in Open-dialog"
+msgid "&Automatically verify paths in Open dialog"
 msgstr "Verifiser baner automatisk i Åpne-dialog"
 
 msgid "Single instance mode:"
@@ -1313,7 +1316,7 @@ msgstr "Vis \"Velg filer eller mapper\" dialog ved oppstart"
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
-msgid "Op&en-dialog Auto-Completion:"
+msgid "Op&en dialog Auto completion:"
 msgstr "Auto-fullførelse for Å&pne-dialog:"
 
 msgid "Auto-&reload modified files:"
@@ -1343,7 +1346,7 @@ msgstr "Regulære &uttrykk"
 msgid "D&on't wrap end of file"
 msgstr "Ikke br&yt ved filende"
 
-msgid "&Don't close this dialog box"
+msgid "&Don't close this dialog"
 msgstr ""
 
 msgid "&Find Next"
@@ -1361,7 +1364,7 @@ msgstr "Erstatt"
 msgid "Re&place with:"
 msgstr "Ers&tatt med:"
 
-msgid "&Don't wrap end of file"
+msgid "&Don't wrap at end of file"
 msgstr "&Ikke bryt ved filende"
 
 msgid "Replace in"
@@ -1385,7 +1388,7 @@ msgstr "Erstatt &alle"
 msgid "Markers"
 msgstr ""
 
-msgid "Enable &Markers"
+msgid "Enable &markers"
 msgstr ""
 
 msgid "New"
@@ -1416,7 +1419,7 @@ msgid "Substitution Filters"
 msgstr ""
 
 msgid ""
-"The changes that appear on the panels as the listed pairs below will be "
+"Changes to the listed pairs below will be "
 "ignored or marked as insignificant. Patches are unaffected."
 msgstr ""
 
@@ -1459,10 +1462,10 @@ msgstr "Flyttet:"
 msgid "Selected Moved:"
 msgstr "Valgt flyttet:"
 
-msgid "Same As The Next (3 panes):"
+msgid "Same As Next (3 panes):"
 msgstr ""
 
-msgid "Same As The Next (Selected):"
+msgid "Same As Next (Selected):"
 msgstr ""
 
 msgid "Word Difference:"
@@ -1522,13 +1525,13 @@ msgstr ""
 msgid "Search Marker:"
 msgstr ""
 
-msgid "User Defined Marker1:"
+msgid "User Defined Marker 1:"
 msgstr ""
 
-msgid "User Defined Marker2:"
+msgid "User Defined Marker 2:"
 msgstr ""
 
-msgid "User Defined Marker3:"
+msgid "User Defined Marker 3:"
 msgstr ""
 
 msgid "&Use folder compare colors"
@@ -1540,19 +1543,19 @@ msgstr ""
 msgid "Items different:"
 msgstr ""
 
-msgid "Items not exists all:"
+msgid "Items missing:"
 msgstr ""
 
 msgid "Items filtered:"
 msgstr ""
 
-msgid "&Use custom system colors (Some UI elements may not apply)"
+msgid "&Use custom system colors"
 msgstr ""
 
 msgid "System"
 msgstr "System"
 
-msgid "&Send deleted files to Recycle Bin"
+msgid "&Use Recycle Bin"
 msgstr "&Send slettede filer til papirkurven"
 
 msgid "&External editor:"
@@ -1564,7 +1567,7 @@ msgstr "&Filter-mappe:"
 msgid "Temporary files folder"
 msgstr "Mappe for midlertidige filer"
 
-msgid "S&ystem's temp folder"
+msgid "S&ystem temp folder"
 msgstr "S&ystemets midlertidige mappe"
 
 msgid "C&ustom folder:"
@@ -1585,7 +1588,7 @@ msgstr "Fil&2:"
 msgid "&Swap"
 msgstr "B&ytt"
 
-msgid "&Copy to Clipboard"
+msgid "&Copy to clipboard"
 msgstr "&Kopier til utklippstavle"
 
 msgid "&Append to existing file"
@@ -1609,7 +1612,7 @@ msgstr "&Kontekst:"
 msgid "Inclu&de command line"
 msgstr "Inklud&er kommandolinje"
 
-msgid "Open to e&xternal editor"
+msgid "Open in e&xternal editor"
 msgstr "Åpne i e&ksternt redigeringsprogram"
 
 msgid "Display Columns"
@@ -1645,10 +1648,10 @@ msgstr "Beskrivelse:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension"
+msgid "Display all plugins (Ignore extension)"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking"
+msgid "&Open files in same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin pipeline:"
@@ -1666,7 +1669,7 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
+msgid "C&PU cores to use:"
 msgstr ""
 
 msgid "Items total:"
@@ -1711,6 +1714,27 @@ msgstr "Ignorer e&ndringer"
 msgid "I&gnore all"
 msgstr "Ignorer &alle"
 
+msgid "Ignore blan&k lines"
+msgstr "Ignorer blan&ke linjer"
+
+msgid "Ignore &case"
+msgstr "Ignorer store/små &bokstaver"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
 msgid "E&nable moved block detection"
 msgstr "&Aktiver flyttet blokk-oppdagelse"
 
@@ -1732,7 +1756,7 @@ msgstr "Redigering"
 msgid "&Highlight syntax"
 msgstr "&Marker syntaksen"
 
-msgid "&Preserve original EOL chars"
+msgid "&Preserve original EOL"
 msgstr "&Bevar originale EOL-tegn"
 
 msgid "Tabs"
@@ -1741,13 +1765,13 @@ msgstr "Tabulator"
 msgid "&Tab size:"
 msgstr "&Tabulatorstørrelse:"
 
-msgid "&Insert Tabs"
+msgid "&Insert tabs"
 msgstr "Sett inn tabulatorer"
 
-msgid "Insert &Spaces"
+msgid "Insert &spaces"
 msgstr "Sett inn mellomrom"
 
-msgid "&Rendering Mode:"
+msgid "&Rendering mode:"
 msgstr ""
 
 msgid "&Automatic rescan"
@@ -1762,7 +1786,7 @@ msgstr "Linjeforskjells-farger"
 msgid "View line differences"
 msgstr "Vis linjeforskjeller"
 
-msgid "&Character level"
+msgid "&Character-level"
 msgstr "&Tegnnivå"
 
 msgid "&Word-level:"
@@ -1772,8 +1796,8 @@ msgid "W&ord break characters:"
 msgstr ""
 
 msgid ""
-"WinMerge allows hiding some common message boxes. Press the Reset button to "
-"make all message boxes visible again."
+"Some messages can be hidden by the user. Press Reset to "
+"make all messages visible again."
 msgstr ""
 "WinMerge tillater å skjule noen vanlige meldingsbokser. Trykk tilbakestill-"
 "knappen for å gjøre alle meldingsboksene synlige igjen."
@@ -1799,7 +1823,7 @@ msgstr "Rediger..."
 msgid "Delete..."
 msgstr "Slett..."
 
-msgid "Save modified files?"
+msgid "Save Modified Files?"
 msgstr "Lagre endrede filer?"
 
 msgid "Left side file"
@@ -1838,7 +1862,7 @@ msgstr "Tegnsett"
 msgid "Default Codepage"
 msgstr "Standard tegnsett"
 
-msgid "Select the default codepage assumed when loading non-Unicode files:"
+msgid "Select the default codepage for non-Unicode files:"
 msgstr ""
 "Velg standard tegnsett som blir antatt når det lastes ikke-Unicode filer:"
 
@@ -1852,15 +1876,15 @@ msgid "Custom codepage:"
 msgstr "Egendefinert tegnsett:"
 
 msgid ""
-"Detect codepage info for these type of files: .html, .rc, .xml\n"
-"Need to restart session."
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
 msgstr ""
 "Oppdag tegnsett-info for disse filer: .html, .rc, .xml\n"
 "Nødvendig å starte programmet på nytt."
 
 msgid ""
-"Detect codepage for text files with mlang.dll\n"
-"Need to restart session."
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
 msgstr ""
 
 msgid "Options"
@@ -1875,25 +1899,25 @@ msgstr "Eksporter..."
 msgid "Folder Compare Report"
 msgstr "Mappesammenlignings-rapport"
 
-msgid "Report &File:"
+msgid "Report &file:"
 msgstr "Rapport&fil:"
 
 msgid "&Style:"
 msgstr "&Stil:"
 
-msgid "&Include File Compare Report"
+msgid "&Include file compare report"
 msgstr ""
 
 msgid "Shared or Private Filter"
 msgstr "Delt eller privat filter"
 
-msgid "Which type of filter do you want to create?"
+msgid "What type of filter do you want?"
 msgstr "Hvilken filtertype vil du opprette?"
 
-msgid "Shared Filter (for all users on this machine)"
+msgid "Shared Filter (for all users)"
 msgstr "Delt filter (for alle brukere på denne maskin)"
 
-msgid "Private Filter (only for current user)"
+msgid "Private Filter (current user only)"
 msgstr "Privat filter (bare for aktuelle bruker)"
 
 msgid "Archive Support"
@@ -2085,7 +2109,7 @@ msgstr ""
 msgid "&Plugin arguments:"
 msgstr ""
 
-msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgid "Enable &automatic unpacking/prediffing"
 msgstr ""
 
 msgid "Shell Integration"
@@ -2103,22 +2127,22 @@ msgstr "&Aktiver avansert meny"
 msgid "Enable &Compare As menu"
 msgstr ""
 
-msgid "&Register shell extension"
+msgid "&Register Shell Extension"
 msgstr ""
 
-msgid "&Unregister shell extension"
+msgid "&Unregister Shell Extension"
 msgstr ""
 
-msgid "Register shell extension for current user &only"
+msgid "Register Shell Extension for Current User &Only"
 msgstr ""
 
-msgid "Unregister shell extension for current user on&ly"
+msgid "Unregister Shell Extension for Current User On&ly"
 msgstr ""
 
-msgid "Register shell extension for &Windows 11 or later"
+msgid "Register Shell Extension for &Windows 11"
 msgstr ""
 
-msgid "Unregister shell extension for W&indows 11 or later"
+msgid "Unregister Shell Extension for W&indows 11"
 msgstr ""
 
 msgid "Jump List"
@@ -2131,13 +2155,16 @@ msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Mappe"
 
+msgid "&Compare method:"
+msgstr "&Sammenligningsmetode:"
+
 msgid "S&top after first difference"
 msgstr "S&topp etter første forskjell"
 
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orer tidsforskjeller mindre enn 3 sekunder"
 
-msgid "&Automatically expand subfolders after comparison:"
+msgid "Expand subfolders &after comparison:"
 msgstr ""
 
 msgid "Include &unique subfolders contents"
@@ -2146,10 +2173,10 @@ msgstr ""
 msgid "Ignore &reparse points"
 msgstr ""
 
-msgid "Threshold for switching to &quick compare (MB):"
+msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr ""
 
-msgid "Threshold for switching to &binary compare (MB):"
+msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr ""
 
 msgid "File patterns:"
@@ -2276,16 +2303,16 @@ msgstr ""
 "\n"
 "Lagre (Ctrl+S)"
 
-msgid "Unknown error attempting to open project file."
+msgid "Unknown error opening project file."
 msgstr "Ukjent feil ved forsøk på å åpne prosjektfil."
 
-msgid "Unknown error attempting to save project file."
+msgid "Unknown error saving project file."
 msgstr "Ukjent feil ved forsøk på å lagre prosjektfil."
 
-msgid "Project file successfully loaded."
+msgid "Project file loaded."
 msgstr "Prosjektfil lastet vellykket."
 
-msgid "Project file successfully saved."
+msgid "Project file saved."
 msgstr "Prosjektfil lagret vellykket."
 
 msgid ""
@@ -2336,10 +2363,7 @@ msgstr ""
 "WinMerge.Mappesammenligning\n"
 "WinMerge Mappesammenligning"
 
-msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
-"are welcome to redistribute it under certain circumstances; see the GNU "
-"General Public License in the Help menu for details."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
 msgstr ""
 "WinMerge kommer med ABSOLUTT INGEN GARANTIER. Dette er gratis programvare og "
 "du er velkommen til å videredistribuere den under visse omstendigheter; se "
@@ -2381,9 +2405,7 @@ msgstr "Hopp over &alle"
 msgid "Don't display this &message again."
 msgstr "Ikke vis denne &meldingen igjen."
 
-msgid ""
-"To make this message box visible again, press the Reset button on the "
-"Message Boxes page of the Options dialog."
+msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
 msgstr ""
 
 msgid "Compare/Merge"
@@ -2443,10 +2465,7 @@ msgid "All message boxes are now displayed again."
 msgstr "Alle meldingsbokser vises nå igjen."
 
 #, c-format
-msgid ""
-"Value in Tab size -field is not in range WinMerge accepts.\n"
-"\n"
-"Please use values 1 - %1."
+msgid "Tab size value is out of range. Please use 1 - %1."
 msgstr ""
 "Verdi i Tabulator-størrelsesfeltet er ikke innen område WinMerge "
 "aksepterer.\n"
@@ -2538,22 +2557,22 @@ msgstr "[F] "
 msgid "Description"
 msgstr "Beskrivelse"
 
-msgid "Select filename for new filter"
+msgid "Select Filename for New Filter"
 msgstr "Velg navn for nytt filter"
 
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filfiltere (*.flt)|*.flt|Alle filer (*.*)|*.*||"
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgid "Cannot find filter template!\n\nCopy %1 to WinMerge/Filters Folder:\n%2."
 msgstr "Kan ikke finne filfilter-mal!\n\nKopier filen %1 til WinMerge/Filtermappe:\n%2."
 
 #, c-format
 msgid ""
-"Cannot copy filter template file to filter folder:\n"
+"Cannot copy filter template:\n"
 "%1\n"
 "\n"
-"Please make sure the folder exists and is writable."
+"Make sure the folder exists and is writable."
 msgstr ""
 "Kan ikke kopiere filtermal til filtermappe:\n"
 "%1\n"
@@ -2561,9 +2580,9 @@ msgstr ""
 "Forsikre om at mappen eksisterer og kan skrives til."
 
 msgid ""
-"User's filter file folder is not defined!\n"
+"User's filter folder is not defined!\n"
 "\n"
-"Please select filter folder in Options/System."
+"Select filter folder in Options/System."
 msgstr ""
 "Brukers filterfil-mappe er ikke definert!\n"
 "\n"
@@ -2571,39 +2590,35 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Failed to delete the filter file:\n"
+"Failed to delete filter:\n"
 "%1\n"
 "\n"
-"Maybe the file is read-only?"
+"File may be read-only."
 msgstr ""
 "Kunne ikke slette filter-filen:\n"
 "%1\n"
 "\n"
 "Kanskje filen er skrivebeskyttet?"
 
-msgid "Locate filter file to install"
+msgid "Locate Filter File to Install"
 msgstr "Velg filter-fil å installere"
 
 msgid ""
 "Installing filter file failed.\n"
 "\n"
-"Could not copy new filter file to filter folder."
+"Could not copy new filter to folder."
 msgstr ""
 "Installering av filter-fil feilet.\n"
 "\n"
 "Kunne ikke kopiere ny filter-fil til filter-mappe."
 
-msgid "Filter file already exists. Overwrite existing filter?"
+msgid "Filter file exists. Overwrite?"
 msgstr "Filter-fil eksisterer allerede. Overskrive eksisterende filter?"
 
 msgid "Regular expression"
 msgstr "Regulære uttrykk"
 
-msgid ""
-"Filters were updated. Do you want to refresh all open folder compares?\n"
-"\n"
-"If you do not want to refresh all compares now you can select 'No' and "
-"refresh compares later."
+msgid "Filters updated. Refresh all open folder compares?\n\nSelect 'No' to refresh later."
 msgstr ""
 "Filtre ble oppdaterte. Vil du gjenoppfriske alle åpne mappesammenligninger?\n"
 "\n"
@@ -2616,13 +2631,13 @@ msgstr "Resultat av mappesammenligning"
 msgid "File Comparison"
 msgstr "Filsammenligning"
 
-msgid "Untitled left"
+msgid "Untitled Left"
 msgstr "Venstre uten tittel"
 
-msgid "Untitled middle"
+msgid "Untitled Middle"
 msgstr "Midten uten tittel"
 
-msgid "Untitled right"
+msgid "Untitled Right"
 msgstr "Høyre uten tittel"
 
 msgid "Base File"
@@ -2693,13 +2708,13 @@ msgstr "Sammenligner objekter..."
 msgid "%.1f[items/sec]"
 msgstr ""
 
-msgid "Select two existing folders or files to compare."
+msgid "Select two existing folders/files to compare."
 msgstr "Velg to eksisterende mapper eller filer for å sammenligne."
 
 msgid "Folder Selection"
 msgstr "Mappe-valg"
 
-msgid "Select two (or three) folders or two (or three) files to compare."
+msgid "Select two (or three) folders/files to compare."
 msgstr ""
 
 msgid "Left (1st) path is invalid!"
@@ -2759,21 +2774,13 @@ msgid "Failed to parse conflict file."
 msgstr "Kunne ikke analysere konflikt-fil."
 
 #, c-format
-msgid ""
-"The file\n"
-"%1\n"
-"is not a conflict file."
+msgid "The file\n%1\nis not a conflict file."
 msgstr ""
 "Filen\n"
 "%1\n"
 "er ikke en konfliktfil."
 
-msgid ""
-"You are about to compare very large files.\n"
-"Showing the contents of the files requires a very large amount of memory.\n"
-"Do you want to show only the comparison results, not the contents of the "
-"files?\n"
-"\n"
+msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr ""
 
 msgid "Save As"
@@ -2784,9 +2791,7 @@ msgid "Save changes to %1?"
 msgstr "Lagre endringer til %1?"
 
 #, c-format
-msgid ""
-"%1 is marked read-only. Would you like to override the read-only file? (No "
-"to save as new filename.)"
+msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr ""
 "%1 er merket som skrivebeskyttet. Vil du overskrive den skrivebeskyttede "
 "filen? (Nei for å lagre filen med et annet navn.)"
@@ -2807,13 +2812,7 @@ msgstr ""
 "Fortsette likevel?"
 
 #, c-format
-msgid ""
-"Saving file failed.\n"
-"%1\n"
-"%2\n"
-"Do you want to:\n"
-"\t- use a different filename (Press OK)\n"
-"\t- abort the current operation (Press Cancel)?"
+msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
 msgstr ""
 "Lagring av fil feilet.\n"
 "%1\n"
@@ -2823,12 +2822,7 @@ msgstr ""
 "\t- avbryt den aktuelle operasjonen (Klikk Avbryt)?"
 
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
-"\n"
-"The original file will not be changed.\n"
-"\n"
-"Do you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 "Programtillegg '%2' kan ikke pakke endringene dine for venstre fil tilbake "
 "inn i '%1'.\n"
@@ -2838,21 +2832,11 @@ msgstr ""
 "Vil du lagre den utpakkede versjonen til en annen fil?"
 
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
-"\n"
-"The original file will not be changed.\n"
-"\n"
-"Do you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
-"\n"
-"The original file will not be changed.\n"
-"\n"
-"Do you want to save the unpacked version to another file?"
+msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
 msgstr ""
 "Programtillegg '%2' kan ikke pakke endringene dine for høyre fil tilbake inn "
 "i '%1'.\n"
@@ -2863,11 +2847,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Another application has updated file\n"
+"Another application updated\n"
 "%1\n"
 "since WinMerge loaded it.\n"
 "\n"
-"Overwrite changed file?"
+"Overwrite?"
 msgstr ""
 "Et annet program har oppdatert filen\n"
 "%1\n"
@@ -2878,18 +2862,13 @@ msgstr ""
 #, c-format
 msgid ""
 "%1\n"
-"is marked read-only. Would you like to override the read-only item?"
+"is read-only. Override?"
 msgstr ""
 "%1\n"
 "er markert skrivebeskyttet. Vil du overskrive det skrivebeskyttede objekt?"
 
 #, c-format
-msgid ""
-"Another application has updated file\n"
-"%1\n"
-"since WinMerge scanned it last time.\n"
-"\n"
-"Do you want to reload the file?"
+msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
 msgstr ""
 "Et annet program har oppdatert filen\n"
 "%1\n"
@@ -2908,18 +2887,18 @@ msgstr "Lagre høyre fil som"
 
 #, c-format
 msgid ""
-"The file\n"
+"File\n"
 "%1\n"
-"has disappeared. Please save a copy of the file to continue."
+"not found. Save a copy to continue."
 msgstr ""
 "Filen\n"
 "%1\n"
 "har forsvunnet. Lagre en kopi av filen for å fortsette."
 
 msgid ""
-"Cannot merge differences when documents are not in synch.\n"
+"Cannot merge unsynched documents.\n"
 "\n"
-"Refresh documents before continuing."
+"Refresh before continuing."
 msgstr ""
 "Kan ikke slå sammen forskjeller når dokumenter ikke er synkrone.\n"
 "\n"
@@ -3000,7 +2979,7 @@ msgstr ""
 msgid "Differences to... (%1)"
 msgstr ""
 
-msgid "Some selected items are identical or skipped.\nDo you want to copy only the items with differences?"
+msgid "Some selected items are identical or skipped.\nCopy only items with differences?"
 msgstr ""
 
 #, c-format
@@ -3023,13 +3002,13 @@ msgstr "Begge (%1)"
 msgid "All (%1)"
 msgstr ""
 
-msgid "Left side - select destination folder:"
+msgid "Left Side - Select Destination Folder:"
 msgstr "Venstre side - velg målmappe:"
 
-msgid "Middle side - select destination folder:"
+msgid "Middle Side - Select Destination Folder:"
 msgstr ""
 
-msgid "Right side - select destination folder:"
+msgid "Right Side - Select Destination Folder:"
 msgstr "Høyre side - velg målmappe:"
 
 #, c-format
@@ -3061,11 +3040,11 @@ msgstr "Er du sikker på at du vil kopiere %d objekter?"
 msgid ""
 "Operation aborted!\n"
 "\n"
-"Folder contents at disks has changed, path\n"
+"Folder contents changed, path\n"
 "%1\n"
-"was not found.\n"
+"not found.\n"
 "\n"
-"Please refresh the compare."
+"Refresh the compare."
 msgstr ""
 "Operasjon avbrutt!\n"
 "\n"
@@ -3085,12 +3064,10 @@ msgstr "Er du sikker på at du vil flytte %d objekter?"
 msgid "Confirm Move"
 msgstr "Bekreft flytting"
 
-msgid ""
-"You are about to close the window that is comparing folders. Are you sure "
-"you want to close the window?"
+msgid "Close the folder comparison window?"
 msgstr ""
 
-msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgid "Close the folder comparison window, which took a long time?"
 msgstr ""
 
 msgid "The file or folder name is invalid."
@@ -3103,7 +3080,7 @@ msgstr "Feilet i å kjøre eksternt redigeringsprogram: %1"
 msgid "Unknown archive format"
 msgstr "Ukjent arkivformat"
 
-msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgid "Failed to extract archive.\nCompare as text file?"
 msgstr ""
 
 msgid "Filename"
@@ -3113,7 +3090,7 @@ msgctxt "DirView|ColumnHeader"
 msgid "Folder"
 msgstr "Mappe"
 
-msgid "Comparison result"
+msgid "Comparison Result"
 msgstr "Resultat av sammenligningen"
 
 msgid "Left Date"
@@ -3478,16 +3455,12 @@ msgstr "Høyre side koding."
 msgid "Middle side encoding."
 msgstr ""
 
-msgid ""
-"Number of ignored differences in file. These differences are ignored by "
-"WinMerge and cannot be merged."
+msgid "Number of ignored differences in file. Ignored and cannot be merged."
 msgstr ""
 "Antall ignorerte forskjeller i filen. Disse forskjeller ignoreres av "
 "WinMerge og kan ikke slås sammen."
 
-msgid ""
-"Number of differences in file. This number does not include ignored "
-"differences."
+msgid "Number of differences in file (excluding ignored)."
 msgstr ""
 "Antall forskjeller i filen. Dette antall inkluderer ikke ignorerte "
 "forskjeller."
@@ -3521,7 +3494,7 @@ msgstr "Enkel HTML"
 msgid "Simple XML"
 msgstr "Enkel XML"
 
-msgid "The report file already exists. Do you want to overwrite existing file?"
+msgid "Report file already exists. Overwrite?"
 msgstr "Rapportfilen eksisterer allerede. Vil du overskrive eksisterende fil?"
 
 #, c-format
@@ -3532,35 +3505,27 @@ msgstr ""
 "Feil ved oppretting av rapporten:\n"
 "%1"
 
-msgid "The report has been created successfully."
+msgid "Report created successfully."
 msgstr "Rapporten er vellykket opprettet."
 
 msgid "Cannot add a synchronization point at this line."
 msgstr ""
 
-msgid "The same file is opened in both panels."
+msgid "Same file is opened in both panes."
 msgstr "Samme filen er åpen i begge paneler."
 
-msgid "The selected files are identical."
+msgid "Selected files are identical."
 msgstr "De valgte filene er identiske."
 
-msgid "An error occurred while comparing the files."
+msgid "An error occurred while comparing files."
 msgstr "Det skjedde en feil under sammenligning av filene."
 
 msgid ""
-"Temporary files could not be created. Check your temporary path settings."
+"Could not create temporary files. Check your temporary path settings."
 msgstr ""
 "Midlertidige filer kan ikke opprettes. Sjekk TEMP-mappebane innstillinger."
 
-msgid ""
-"These files use different carriage return types.\n"
-"\n"
-"Do you want to treat all carriage return types as equivalent for this "
-"comparison?\n"
-"\n"
-"Note: If you always want to treat all carriage return types as equivalent, "
-"set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in "
-"the Compare tab of the options dialog (available under Edit/Options)."
+msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "Disse filene har forskjellig linjeskifttype.\n"
 "\n"
@@ -3571,19 +3536,14 @@ msgstr ""
 "sammenligningsarket i innstillingsdialogen (tilgjengelig under Rediger/"
 "Innstillinger)."
 
-msgid "The selected folder is invalid."
+msgid "Selected folder is invalid."
 msgstr "Den valgte mappen er ugyldig."
 
-msgid "Cannot open a binary file to editor."
+msgid "Cannot open a binary file in Editor."
 msgstr "Kan ikke åpne en binærfil til redigering."
 
 #, c-format
-msgid ""
-"The folder exists only in other side and cannot be opened.\n"
-"\n"
-"Do you want to create a matching folder:\n"
-"%1\n"
-"to the other side and open these folders?"
+msgid "Create matching folder:\n%1\non the other side and open?"
 msgstr ""
 "Mappen eksisterer bare på andre siden og kan ikke åpnes.\n"
 "\n"
@@ -3591,34 +3551,29 @@ msgstr ""
 "%1\n"
 "på andre siden og åpne disse mapper?"
 
-msgid "Are you sure you want to copy all differences to the other file?"
+msgid "Copy all differences to other file?"
 msgstr ""
 
-msgid "Do you want to move to the next file?"
+msgid "Move to next file?"
 msgstr ""
 
-msgid "Do you want to move to the previous file?"
+msgid "Move to previous file?"
 msgstr ""
 
-msgid "Do you want to move to the next page?"
+msgid "Move to next page?"
 msgstr ""
 
-msgid "Do you want to move to the previous page?"
+msgid "Move to previous page?"
 msgstr ""
 
-msgid "Do you want to move to the first file?"
+msgid "Move to first file?"
 msgstr ""
 
-msgid "Do you want to move to the last file?"
+msgid "Move to last file?"
 msgstr ""
 
 #, c-format
-msgid ""
-"Different codepages found in left (cp%d) and right (cp%d) files.\n"
-"Displaying each file in its codepage will give a better display but merging/"
-"copying will be dangerous.\n"
-"Would you like to treat both files as being in the default Windows codepage "
-"(recommended)?"
+msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
 msgstr ""
 "Forskjellige tegnsett funnet i venstre (cp%d) og høyre (cp%d) filer.\n"
 "Visning av hver fil i sitt tegnsett ser best ut, men sammenslåing/kopiering "
@@ -3652,27 +3607,25 @@ msgstr "Erstattet %1 streng(er)."
 msgid "Cannot find string \"%s\"."
 msgstr "Kan ikke finne strengen \"%s\"."
 
-msgid ""
-"You are now entering Merge Mode. If you want to turn off Merge Mode, press "
-"F9 key."
+msgid "Entering Merge Mode. Press F9 to turn off."
 msgstr ""
 
 #, c-format
 msgid ""
-"The number of automatically merged changes: %1\n"
-"The number of unresolved conflicts: %2"
+"Automatic merges: %1\n"
+"Unresolved conflicts: %2"
 msgstr ""
 
-msgid "The change of codepage has been merged."
+msgid "Codepage change merged."
 msgstr ""
 
-msgid "The changes of codepage are conflicting."
+msgid "Codepage changes are conflicting."
 msgstr ""
 
-msgid "The change of EOL has been merged."
+msgid "EOL change merged."
 msgstr ""
 
-msgid "The changes of EOL are conflicting."
+msgid "EOL changes are conflicting."
 msgstr ""
 
 msgid "Location Pane"
@@ -3681,16 +3634,16 @@ msgstr "Lokaliseringspanel"
 msgid "Diff Pane"
 msgstr "Forskjellspanel"
 
-msgid "Patch file successfully written."
+msgid "Patch file written."
 msgstr "Fil med rettelser vellykket skrevet."
 
-msgid "1. item is not found!"
+msgid "First item not found!"
 msgstr ""
 
-msgid "2. item is not found!"
+msgid "Second item not found!"
 msgstr ""
 
-msgid "The patch file already exists. Do you want to overwrite it?"
+msgid "Patch file already exists. Overwrite?"
 msgstr "Rettelsesfilen eksisterer allerede. Vil du overskrive den?"
 
 #, c-format
@@ -3711,19 +3664,19 @@ msgid "Could not write to file %1."
 msgstr "Kunne ikke skrive til fil %1."
 
 #, c-format
-msgid "The specified output path is not an absolute path: %1"
+msgid "Output path is not absolute: %1"
 msgstr "Den spesifiserte utdata-bane er ikke en absolutt bane: %1"
 
 msgid "Specify an output file."
 msgstr "Spesifiser en utdata-fil."
 
-msgid "Cannot create a patch file from binary files."
+msgid "Cannot create patch from binary files."
 msgstr "Kan ikke opprette en patch-fil fra binære filer."
 
 msgid ""
-"Please save all files first.\n"
+"Save all files first.\n"
 "\n"
-"Creating a patch requires that there are no unsaved changes in files."
+"Creating a patch requires no unsaved changes."
 msgstr ""
 "Lagre alle filer først.\n"
 "\n"
@@ -3733,11 +3686,7 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Mappe eksisterer ikke."
 
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot "
-"be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support not enabled.\n7-Zip and/or Merge7z*.dll not found.\nSee manual for archive support."
 msgstr ""
 "Arkivstøtte er ikke arkivert.\n"
 "Alle nødvendig komponenter (7-Zip og/eller Merge7z*.dll) for arkivstøtte ble "
@@ -3750,22 +3699,22 @@ msgstr "Velg fil for eksport"
 msgid "Select file for import"
 msgstr "Velg fil for import"
 
-msgid "Options imported from the file."
+msgid "Options imported from file."
 msgstr "Innstillinger importert fra filen."
 
-msgid "Options exported to the file."
+msgid "Options exported to file."
 msgstr "Innstillinger eksportert til filen."
 
-msgid "Failed to import options from the file."
+msgid "Failed to import options from file."
 msgstr "Feilet i å  importere innstillinger fra filen."
 
-msgid "Failed to write options to the file."
+msgid "Failed to write options to file."
 msgstr "Feilet i å skrive innstillinger til filen."
 
 msgid ""
-"You are about to close several compare windows.\n"
+"Close multiple compare windows?\n"
 "\n"
-"Do you want to continue?"
+"Continue?"
 msgstr ""
 "Du er i ferd med å lukke flere sammenlignings-vinduer.\n"
 "\n"
@@ -3796,7 +3745,7 @@ msgstr "Redigeringsskript"
 
 msgid ""
 "\n"
-"Difference in the Current Line (F4)"
+"Difference in Current Line (F4)"
 msgstr ""
 "\n"
 "Forskjell i den gjeldende linjen (F4)"
@@ -3917,20 +3866,18 @@ msgstr ""
 "\n"
 "Forrige fil (Ctrl+F7)"
 
-msgid ""
-"The adapted unpacker is applied to both files (one file only needs the "
-"extension)."
+msgid "Adapted unpacker applied to both files (one needs extension)."
 msgstr ""
 "Den tilpassede utpakkeren brukes på begge filer (bare en fil behøver "
 "filendelsen)."
 
-msgid "No prediffer (normal)"
+msgid "No Prediffer (Normal)"
 msgstr "Ingen prediffer (normal)"
 
-msgid "Suggested plugins"
+msgid "Suggested Plugins"
 msgstr "Foreslåtte programtillegg"
 
-msgid "All plugins"
+msgid "All Plugins"
 msgstr ""
 
 #, c-format
@@ -3942,8 +3889,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"A new version of WinMerge is available.\n"
-"%1 is now available (you have %2). Would you like to download it now?"
+"WinMerge update available.\n"
+"%1 available (you have %2). Download now?"
 msgstr ""
 
 msgid "Failed to download latest version information"
@@ -4008,16 +3955,16 @@ msgid "%1 is not installed."
 msgstr ""
 
 #, c-format
-msgid "%1 does not exist. Do you want to create it?"
+msgid "%1 does not exist. Create it?"
 msgstr ""
 
 msgid "Failed to create folder."
 msgstr ""
 
 msgid ""
-"You can specify the following parameters to the path:\n"
-"$file: Path name of the current file\n"
-"$linenum: Line number of the current cursor position"
+"Parameters:\n"
+"$file: Current file path\n"
+"$linenum: Current cursor line number"
 msgstr ""
 
 msgid "default"
@@ -4062,7 +4009,7 @@ msgstr ""
 msgid "MDI child window only"
 msgstr ""
 
-msgid "Close main window if there is only one MDI child window"
+msgid "Close main window if only one MDI child window"
 msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
@@ -4167,13 +4114,13 @@ msgstr ""
 msgid "<Edit here>"
 msgstr ""
 
-msgid "No differences to select found"
+msgid "No differences found to select"
 msgstr ""
 
 msgid "No differences found to add as substitution filter"
 msgstr ""
 
-msgid "The pair is already present in the list of Substitution Filters"
+msgid "The pair is already in the Substitution Filters list"
 msgstr ""
 
 msgid "Add this change to Substitution Filters?"
@@ -4197,7 +4144,7 @@ msgstr ""
 msgid "Allow only one instance to run"
 msgstr "Tillat bare en instans å kjøre"
 
-msgid "Allow only one instance to run and wait for the instance to terminate"
+msgid "Allow only one instance; wait for termination"
 msgstr ""
 
 msgid "Only on window activated"
@@ -4213,15 +4160,15 @@ msgid "&Others"
 msgstr ""
 
 #, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
+msgid "Missing plugin name in pipeline: %1"
 msgstr ""
 
 #, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
+msgid "Missing quote in plugin pipeline: %1"
 msgstr ""
 
 #, c-format
-msgid "The plugin name '%1' already exists."
+msgid "Plugin name '%1' already exists."
 msgstr ""
 
 msgid "Specify plugin arguments"
@@ -4232,15 +4179,15 @@ msgid "Plugin not found or invalid: %1"
 msgstr ""
 
 #, c-format
-msgid "'%1' is not unpacker plugin"
+msgid "'%1' is not an unpacker plugin"
 msgstr ""
 
 #, c-format
-msgid "'%1' is not prediffer plugin"
+msgid "'%1' is not a prediffer plugin"
 msgstr ""
 
 #, c-format
-msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
 msgstr ""
 
 #, c-format
@@ -4300,19 +4247,16 @@ msgstr ""
 msgid "Clipboard at %s"
 msgstr ""
 
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the "
-"Turn on button."
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr ""
 
 msgid "This system does not support clipboard history."
 msgstr ""
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr ""
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgid "WebView2 runtime not installed. Download it?"
 msgstr ""
 
 msgid "New Text Compare"
@@ -4569,175 +4513,165 @@ msgstr ""
 msgid "Reverse lines"
 msgstr ""
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgid "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
 msgstr ""
 
 #, c-format
-msgid ""
-"Apply filter command. \r\n"
-"Usage: ExecFilterCommand COMMAND\r\n"
-"  COMMAND - command to execute. %1 in the command is replaced with the "
-"filename."
+msgid "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
 msgstr ""
 
 msgid ""
-"Tokenize selection. \r\n"
+"Tokenize. \r\n"
 "Usage: Tokenize PATTERNS\r\n"
-"  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+" PATTERNS - regex (e.g. [^\\w]+)"
 msgstr ""
 
 msgid "Trim spaces"
 msgstr ""
 
 msgid ""
-"Select some columns.\r\n"
+"Select columns.\r\n"
 "Usage: SelectColumns RANGES\r\n"
-"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
-"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n"
-"  PATTERNS - regular expression\r\n"
-"  -v - select non-matching columns\r\n"
-"  -i - ignore case\r\n"
-"  -g - enable global flag\r\n"
-"  -e - use PATTERNS for matching"
+" or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+" RANGES - column ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -g - enable global flag\r\n"
+" -e - use PATTERNS"
 msgstr ""
 
 msgid ""
-"Select some lines.\r\n"
+"Select lines.\r\n"
 "Usage: SelectLines RANGES\r\n"
-"   or: SelectLines [-v] [-i] -e PATTERNS\r\n"
-"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n"
-"  PATTERNS - regular expression\r\n"
-"  -v - select non-matching lines\r\n"
-"  -i - ignore case\r\n"
-"  -e - use PATTERNS for matching"
+" or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+" RANGES - line ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -e - use PATTERNS"
 msgstr ""
 
 msgid ""
-"HTML Prettier with tidy-html5. \r\n"
-"Arguments: Command line options passed to the tidy command."
+"HTML Prettier (tidy-html5).\r\n"
+"Arguments: tidy command line options."
 msgstr ""
 
 msgid ""
-"JSON Prettier with jq command. \r\n"
-"Arguments: Filter or command line options passed to the jq command."
+"JSON Prettier (jq).\r\n"
+"Arguments: jq filter/command line options."
 msgstr ""
 
 msgid ""
-"XML Prettier with tidy-html5. \r\n"
-"Arguments: Command line options passed to the tidy command."
+"XML Prettier (tidy-html5).\r\n"
+"Arguments: tidy command line options."
 msgstr ""
 
 msgid ""
-"YAML Prettier with yq command. \r\n"
-"Arguments: Filter or command line options passed to the yq command."
+"YAML Prettier (yq).\r\n"
+"Arguments: yq filter/command line options."
 msgstr ""
 
-msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr ""
 
-msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgid "Markdown Previewer.\r\nArguments: md2html command line options."
 msgstr ""
 
-msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
-msgstr ""
-
-msgid ""
-"CSV Querier with q command. \r\n"
-"Arguments: SQL statement or command line options passed to the q command."
+msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr ""
 
 msgid ""
-"TSV Querier with q command. \r\n"
-"Arguments: SQL statement or command line options passed to the q command."
+"CSV Querier (q).\r\n"
+"Arguments: SQL statement/q options."
 msgstr ""
 
 msgid ""
-"JSON Querier with jq command. \r\n"
-"Arguments: Filter or command line options passed to the jq command."
+"TSV Querier (q).\r\n"
+"Arguments: SQL statement/q options."
 msgstr ""
 
 msgid ""
-"YAML Querier with yq command. \r\n"
-"Arguments: Filter or command line options passed to the yq command."
+"JSON Querier (jq).\r\n"
+"Arguments: jq filter/command line options."
 msgstr ""
 
 msgid ""
-"HTML Validator with tidy-html5. \r\n"
-"Arguments: Command line options passed to the tidy command."
+"YAML Querier (yq).\r\n"
+"Arguments: yq filter/command line options."
 msgstr ""
 
 msgid ""
-"JVM bytecode disassembler with javap. \r\n"
-"Arguments: Command line options passed to the javap command."
+"HTML Validator (tidy-html5).\r\n"
+"Arguments: tidy command line options."
 msgstr ""
 
 msgid ""
-"IL disassembler with ildasm. \r\n"
-"Arguments: Command line options passed to the ildasm command."
+"JVM bytecode disassembler (javap).\r\n"
+"Arguments: javap command line options."
 msgstr ""
 
 msgid ""
-"Native code disassembler with dumpbin. \r\n"
-"Arguments: Command line options passed to the dumpbin command."
+"IL disassembler (ildasm).\r\n"
+"Arguments: ildasm command line options."
 msgstr ""
 
 msgid ""
-"General content extractor with Apache Tika. \r\n"
-"Arguments: Command line options passed to the tika-app.jar."
-msgstr ""
-
-msgid "Apply patch using GNU patch"
-msgstr ""
-
-msgid "Display the text content of MS Excel files"
-msgstr ""
-
-msgid "Display the text content of MS PowerPoint files"
-msgstr ""
-
-msgid "Display the text content of MS Visio files"
-msgstr ""
-
-msgid "Display the text content of MS Word files"
+"Native code disassembler (dumpbin).\r\n"
+"Arguments: dumpbin command line options."
 msgstr ""
 
 msgid ""
-"Ignore some columns - ignored columns list from the plugin name or the "
-"plugin argument"
+"Content extractor (Apache Tika).\r\n"
+"Arguments: tika-app.jar command line options."
 msgstr ""
 
-msgid ""
-"The plugin ignores comments (//... and /* ... */) in C, C++, PHP and "
-"JavaScript files."
+msgid "Apply patch (GNU patch)"
 msgstr ""
 
-msgid ""
-"Ignore some fields - ignored fields list from the plugin name or the plugin "
-"argument"
+msgid "Display MS Excel text content"
 msgstr ""
 
-msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgid "Display MS PowerPoint text content"
+msgstr ""
+
+msgid "Display MS Visio text content"
+msgstr ""
+
+msgid "Display MS Word text content"
+msgstr ""
+
+msgid "Ignore columns - list from plugin name/argument"
+msgstr ""
+
+msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
+msgstr ""
+
+msgid "Ignore fields - list from plugin name/argument"
+msgstr ""
+
+msgid "Ignore leading line numbers (e.g., NC, BASIC)."
 msgstr ""
 
 msgid "Prediff Line Filter"
 msgstr ""
 
-msgid "Date and time insertion function"
+msgid "Date and time insertion"
 msgstr ""
 
-msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgid "HTTP URL Scheme Handler (curl).\r\nArguments: curl command line options."
 msgstr ""
 
-msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgid "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
 msgstr ""
 
 msgid "Basic text functions"
 msgstr ""
 
-msgid "AI-assisted text conversion functions"
+msgid "AI-assisted text conversion"
 msgstr ""
 
-msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
 msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
@@ -4749,7 +4683,7 @@ msgstr ""
 msgid "Extract workbook data to multiple files"
 msgstr ""
 
-msgid "Update external references(links)"
+msgid "Update external references (links)"
 msgstr ""
 
 msgid "Compare document properties"
@@ -4779,7 +4713,7 @@ msgstr ""
 msgid "Compare headers and footers"
 msgstr ""
 
-msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr ""
 
 msgid "Compare VBA macros"
@@ -4845,29 +4779,29 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgid "Column Ranges to Ignore:\ne.g.) 3,10-20,32-33\n"
 msgstr ""
 
 #, c-format
-msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgid "Enter filename for patch '%1'"
 msgstr ""
 
 #, c-format
 msgid "File '%1' does not exist"
 msgstr ""
 
-msgid "Enter the command line arguments for patch command"
+msgid "Enter command line arguments for patch"
 msgstr ""
 
 #, c-format
-msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgid "Enter folder name for patch '%1'"
 msgstr ""
 
 #, c-format
 msgid "Folder '%1' does not exist"
 msgstr ""
 
-msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgid "Do not use '-p0' for patch files with absolute paths"
 msgstr ""
 
 msgid "AI.sct WinMerge Plugin Options"
@@ -4877,7 +4811,7 @@ msgid "Enter prompt"
 msgstr ""
 
 #, c-format
-msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
 msgstr ""
 
 msgid "Environment variable name for OpenAI API key"
@@ -4895,5 +4829,5 @@ msgstr ""
 msgid "Model"
 msgstr ""
 
-msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgid "OpenAI API key changed. Restart to apply."
 msgstr ""

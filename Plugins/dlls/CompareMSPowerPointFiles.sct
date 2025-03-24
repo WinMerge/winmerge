@@ -49,8 +49,7 @@
 
 var REGKEY_PATH = "Plugins\\CompareMSPowerPointFiles.sct/";
 var MsgCannotGetMacros = "${Cannot get Macros.\r\n" +
-  "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" +
-  "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n}";
+  "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security.}";
 
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var wsh = new ActiveXObject("WScript.Shell");
@@ -158,7 +157,7 @@ function get_PluginEvent() {
 }
 
 function get_PluginDescription() {
-  return "Display the text content of MS PowerPoint files";
+  return "Display MS PowerPoint text content";
 }
 
 function get_PluginFileFilters() {

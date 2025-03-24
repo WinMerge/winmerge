@@ -48,7 +48,7 @@ function get_PluginEvent() {
 }
 
 function get_PluginDescription() {
-  return "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files).";
+  return "Ignore leading line numbers (e.g., NC, BASIC).";
 }
 
 function get_PluginFileFilters() {

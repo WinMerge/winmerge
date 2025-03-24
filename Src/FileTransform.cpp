@@ -158,7 +158,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 		{
 			if (name.empty() || (sep == '|' && !*p))
 			{
-				errorMessage = strutils::format_string1(_("Missing plugin name in plugin pipeline: %1"), pluginPipeline);
+				errorMessage = strutils::format_string1(_("Missing plugin name in pipeline: %1"), pluginPipeline);
 				break;
 			}
 			result.push_back({ name, targetFlags, args, quoteChar });
@@ -168,7 +168,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 		}
 	};
 	if (inQuotes)
-		errorMessage = strutils::format_string1(_("Missing quotation mark in plugin pipeline: %1"), pluginPipeline);
+		errorMessage = strutils::format_string1(_("Missing quote in plugin pipeline: %1"), pluginPipeline);
 	return result;
 }
 
@@ -417,7 +417,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 						else
 						{
 							plugin = nullptr;
-							errorMessage = strutils::format_string1(_("'%1' is not unpacker plugin"), pluginName);
+							errorMessage = strutils::format_string1(_("'%1' is not an unpacker plugin"), pluginName);
 						}
 						return false;
 					}
@@ -743,7 +743,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 					else
 					{
 						plugin = nullptr;
-						errorMessage = strutils::format_string1(_("'%1' is not prediffer plugin"), pluginName);
+						errorMessage = strutils::format_string1(_("'%1' is not a prediffer plugin"), pluginName);
 					}
 					return false;
 				}

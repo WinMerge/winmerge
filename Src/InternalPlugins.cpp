@@ -790,7 +790,7 @@ bool AddPlugin(const Info& info, String& errmsg)
 {
 	if (FindPluginNameConflict(info))
 	{
-		errmsg = strutils::format_string1(_("The plugin name '%1' already exists."), info.m_name);
+		errmsg = strutils::format_string1(_("Plugin name '%1' already exists."), info.m_name);
 		return false;
 	}
 	std::list<internal_plugin::Info> list;
