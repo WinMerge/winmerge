@@ -262,6 +262,8 @@ void CWebPageDiffFrame::SetDirDoc(IDirDoc * pDirDoc)
 IMergeDoc::FileChange CWebPageDiffFrame::IsFileChangedOnDisk(int pane) const
 {
 	DiffFileInfo dfi;
+	if (paths::IsURL(m_filePaths[pane]))
+		return FileChange::NoChange;
 	if (!dfi.Update(m_filePaths[pane]))
 		return FileChange::Removed;
 	int tolerance = 0;
@@ -468,7 +470,8 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
-		m_fileInfo[pane].Update(m_filePaths[pane]);
+		if (!paths::IsURL(m_filePaths[pane]))
+			m_fileInfo[pane].Update(m_filePaths[pane]);
 	}
 
 	// Merge frame has also a dockable bar at the very left
@@ -693,7 +696,10 @@ void CWebPageDiffFrame::OnFileReload()
 			{
 				MoveOnLoad(nActivePane);
 				for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
-					m_fileInfo[pane].Update(m_filePaths[pane]);
+				{
+					if (!paths::IsURL(m_filePaths[pane]))
+						m_fileInfo[pane].Update(m_filePaths[pane]);
+				}
 				return S_OK;
 			}));
 }
