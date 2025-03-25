@@ -1,69 +1,48 @@
 [![logo](Docs/Logos/WinMerge_logo_24bit.png)](https://github.com/WinMerge/winmerge)
 
-
 # WinMerge
+
+[WinMerge](https://winmerge.org/) is an open source differencing and merging tool for Windows. It can compare files and folders, presenting differences in a visual format that is easy to understand and manipulate.
+
 [![Build status](https://ci.appveyor.com/api/projects/status/h3v3ap1kswi1tyyt?svg=true)](https://ci.appveyor.com/project/sdottaka/winmerge/build/artifacts)
 [![CI](https://github.com/WinMerge/winmerge/workflows/CI/badge.svg)](https://github.com/WinMerge/winmerge/actions)
 [![sourceforge.net downloads](https://img.shields.io/sourceforge/dt/winmerge)](https://sourceforge.net/projects/winmerge/files/)
 [![Github Releases All](https://img.shields.io/github/downloads/winmerge/winmerge/total.svg)](https://github.com/WinMerge/winmerge/releases/latest)
 [![Translation status](https://img.shields.io/badge/translations-38-green)](https://github.com/WinMerge/winmerge/blob/master/Translations/TranslationsStatus.md)
 
-[WinMerge](https://winmerge.org/) is an open source differencing and merging tool
-for Windows. WinMerge can compare files and folders, presenting differences
-in a visual format that is easy to understand and manipulate.
+---
 
-## Build Requirements
+## How to Contribute
 
-### Visual Studio 2017
+   You will need to [fork the main WinMerge repository](https://github.com/WinMerge/winmerge/fork) and create a branch on that fork.
+   
+   Format your code using [Eric Allman indentation](https://en.wikipedia.org/wiki/Indentation_style#Allman_style).
+   
+   When your code is ready for review/merge, create a Pull Request, explaining the changes made.
+   
+---
 
- * *Community*, *Professional* or *Enterprise* Edition
- * VC++ 2017 latest v141 tools
- * Visual C++ compilers and libraries for (ARM, ARM64)
- * Windows XP support for C++
- * Visual C++ MFC for (x86 and x64, ARM, ARM64)
- * Visual C++ ATL for (x86 and x64, ARM, ARM64)
- * Windows 10 SDK
+## Themes
 
-### Visual Studio 2019
+WinMerge allows you to choose from several pre-made themes and create your own. 
 
- * *Community*, *Professional* or *Enterprise* Edition
- * MSVC v142 - VS 2019 C++ (x64/x86, ARM, ARM64) build tools (Latest)
- * C++ MFC for latest v142 build tools (x86 & x64, ARM, ARM64)
- * C++ ATL for latest v142 build tools (x86 & x64, ARM, ARM64)
- * Windows 10 SDK
+### Quick theming instructions
 
-### Visual Studio 2022
+1. open `Options` and navigate to the `Colors` section
+2. adjust colors to your liking in each subsection
+3. the `Export...` option will give you an `ini` file with all settings
+4. copy `your install folder\WinMerge\ColorSchemes\Twilight.ini` to `YourNewTheme.ini`
+5. copy the corresponding color settings from the exported `ini` file to `YourNewTheme.ini`
+6. you can then place your theme file in to the `ColorSchemes` folder and select it in `Options`
 
- * *Community*, *Professional* or *Enterprise* Edition
- * MSVC v143 Buildtools (x64/x86, ARM, ARM64)
- * C++ MFC for latest v143 build tools (x64/x86, ARM, ARM64)
- * C++ ATL for latest v143 build tools (x64/x86, ARM, ARM64)
- * Windows 10 SDK
- 
-### Other utilities/programs
-
- * git
- * Inno Setup 5.x and 6.x
- * 7-Zip
- * Python
- * Pandoc
- * MSYS2 and MSYS2 packages (po4a and diffutils)
-
-## How to Build
-
-~~~
-git clone --recurse-submodules https://github.com/WinMerge/winmerge
-cd winmerge
-DownloadDeps.cmd
-BuildAll.vs2022.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2019.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
-~~~
+---
 
 ## Folder Structure
 
 Source code for the WinMerge program, its plugins, filters, setup program,
 and various utilities are all kept in the subfolders listed below.
 
-The changelog file is in `Docs/Users/ChangeLog.md` and it documents 
+The changelog file is in `Docs/Users/ChangeLog.md` - it documents 
 both user-visible and significant changes.
 
 Subfolders include:
@@ -117,21 +96,62 @@ Subfolders include:
    It contains temporary files created during the compilation and can be 
    safely deleted. 
 
-
-## How to CONTRIBUTE
-
-   You will need to fork the main Winmerge repository and create a branch on that fork
-   
-   Your new code needs to follow [Eric Allman indentation](https://en.wikipedia.org/wiki/Indentation_style#Allman_style)
-   
-   When your code is ready for a review/merge create a pull request explaining the changes that you made
-   
+---
 
 ## How to RUN and DEBUG
 
-   The winmerge folder has different Visual Studio solution files (.sln) that you can use to build, debug and run while you test your changes
+   The WinMerge folder has different Visual Studio solution files (.sln) that you can use to build, debug and run while you test your changes.
    
    If you have run any of the BuildAll scripts you can run WinMerge from path `\Build\X64\Release\WinMergeU.exe` 
-   if your architecture is not `X64` look for any of the other folders generated after the build has finished
+   
+   If your architecture is not `X64` look for any of the other folders generated after the build has finished.
    
    Another way to Debug, run the exe from previous step, then from VS attach to the running process.
+
+---
+
+## Build WinMerge
+
+### Visual Studio 2017
+
+ * *Community*, *Professional* or *Enterprise* Edition
+ * VC++ 2017 latest v141 tools
+ * Visual C++ compilers and libraries for (ARM, ARM64)
+ * Windows XP support for C++
+ * Visual C++ MFC for (x86 and x64, ARM, ARM64)
+ * Visual C++ ATL for (x86 and x64, ARM, ARM64)
+ * Windows 10 SDK
+
+### Visual Studio 2019
+
+ * *Community*, *Professional* or *Enterprise* Edition
+ * MSVC v142 - VS 2019 C++ (x64/x86, ARM, ARM64) build tools (Latest)
+ * C++ MFC for latest v142 build tools (x86 & x64, ARM, ARM64)
+ * C++ ATL for latest v142 build tools (x86 & x64, ARM, ARM64)
+ * Windows 10 SDK
+
+### Visual Studio 2022
+
+ * *Community*, *Professional* or *Enterprise* Edition
+ * MSVC v143 Buildtools (x64/x86, ARM, ARM64)
+ * C++ MFC for latest v143 build tools (x64/x86, ARM, ARM64)
+ * C++ ATL for latest v143 build tools (x64/x86, ARM, ARM64)
+ * Windows 10 SDK
+ 
+### Other utilities/programs
+
+ * git
+ * Inno Setup 5.x and 6.x
+ * 7-Zip
+ * Python
+ * Pandoc
+ * MSYS2 and MSYS2 packages (po4a and diffutils)
+
+## How to Build
+
+~~~
+git clone --recurse-submodules https://github.com/WinMerge/winmerge
+cd winmerge
+DownloadDeps.cmd
+BuildAll.vs2022.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2019.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
+~~~
