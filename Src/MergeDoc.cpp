@@ -781,7 +781,6 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	if (nRescanResult == RESCAN_FILE_ERR)
 	{
 		s = _("An error occurred while comparing files.");
-		RootLogger::Error(s);
 		ShowMessageBox(s, MB_ICONSTOP);
 		return;
 	}
@@ -789,7 +788,6 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 	if (nRescanResult == RESCAN_TEMP_ERR)
 	{
 		s = _("Could not create temporary files. Check your temporary path settings.");
-		RootLogger::Error(s);
 		ShowMessageBox(s, MB_ICONSTOP);
 		return;
 	}

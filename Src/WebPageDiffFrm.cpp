@@ -469,10 +469,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	bResult = OpenUrls(callback);
 
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
-	{
-		if (!paths::IsURL(m_filePaths[pane]))
-			m_fileInfo[pane].Update(m_filePaths[pane]);
-	}
+		m_fileInfo[pane].Update(m_filePaths[pane]);
 
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
@@ -696,10 +693,7 @@ void CWebPageDiffFrame::OnFileReload()
 			{
 				MoveOnLoad(nActivePane);
 				for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
-				{
-					if (!paths::IsURL(m_filePaths[pane]))
-						m_fileInfo[pane].Update(m_filePaths[pane]);
-				}
+					m_fileInfo[pane].Update(m_filePaths[pane]);
 				return S_OK;
 			}));
 }

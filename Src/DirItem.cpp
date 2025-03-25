@@ -52,7 +52,7 @@ bool DirItem::Update(const String &sFilePath)
 	flags.reset();
 	mtime = 0;
 
-	if (!sFilePath.empty())
+	if (!sFilePath.empty() && !paths::IsURL(sFilePath))
 	{
 		try
 		{
@@ -75,7 +75,7 @@ bool DirItem::Update(const String &sFilePath)
 		}
 		catch (Poco::Exception& e)
 		{
-			RootLogger::Error(e.displayText());
+			RootLogger::Warn(e.displayText());
 		}
 	}
 	return retVal;
