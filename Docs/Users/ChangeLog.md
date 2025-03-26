@@ -8,7 +8,6 @@
 - BugFix: "Another application has updated" message when window is deactivated
     (#2668)
 - Reduced flickering of title bar buttons and the status bar.
-- Add Visual Studio Dark color scheme (PR #2634)
 - Rewrite English.pot, add JXL image extension (PR #2682)
 
 ### File compare
@@ -36,6 +35,7 @@
 
 ### Color schemes
 
+- Add Visual Studio Dark color scheme (PR #2634)
 - Twilight - new dark theme (PR #1430)
 
 ### Installer
