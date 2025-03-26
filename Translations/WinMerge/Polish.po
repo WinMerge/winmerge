@@ -4220,10 +4220,10 @@ msgstr "Przeglądarka Markdown. \r\nArgumenty: Opcje wiersza poleceń przekazywa
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr "Przeglądarka PlantUML. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia plantuml.jar."
 
-msgid "CSV Querier (q).\r\nArguments: SQL statement/q options."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr "CSV Querier z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
 
-msgid "TSV Querier (q).\r\nArguments: SQL statement/q options."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr "TSV Querier z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."

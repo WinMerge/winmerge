@@ -5227,10 +5227,10 @@ msgstr "Jelölés előnézeti program. \r\nArgumentumok: Az md2html parancsnak m
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr "PlantUML előnézeti program. \r\nArgumentumok: A plantuml.jar parancsnak megfelelő parancssori opciók."
 
-msgid "CSV Querier (q).\r\nArguments: SQL statement/q options."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr "CSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
 
-msgid "TSV Querier (q).\r\nArguments: SQL statement/q options."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr "TSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."

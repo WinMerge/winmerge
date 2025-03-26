@@ -5324,14 +5324,14 @@ msgstr "PlantUML 預覽器。\r\n參數：傳遞給 plantuml.jar 命令的命令
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q options."
+"Arguments: SQL statement/q comannd line options."
 msgstr ""
 "使用 q 命令進行 CSV 查詢。\r\n"
 "參數：SQL 語句或傳遞給 q 命令的命令行選項。"
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q options."
+"Arguments: SQL statement/q comannd line options."
 msgstr ""
 "使用 q 命令進行 TSV 查詢。\r\n"
 "參數：SQL 語句或傳遞給 q 命令的命令行選項。"

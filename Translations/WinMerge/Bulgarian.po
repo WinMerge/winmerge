@@ -4588,12 +4588,12 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q options."
+"Arguments: SQL statement/q comannd line options."
 msgstr ""
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q options."
+"Arguments: SQL statement/q comannd line options."
 msgstr ""
 
 msgid ""

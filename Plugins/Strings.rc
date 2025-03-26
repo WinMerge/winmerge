@@ -146,9 +146,9 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION29 
                             "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
     IDS_PLUGIN_DESCRIPTION30 
-                            "CSV Querier (q).\r\nArguments: SQL statement/q options."
+                            "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
     IDS_PLUGIN_DESCRIPTION31 
-                            "TSV Querier (q).\r\nArguments: SQL statement/q options."
+                            "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
     IDS_PLUGIN_DESCRIPTION32 
                             "JSON Querier (jq).\r\nArguments: jq filter/command line options."
     IDS_PLUGIN_DESCRIPTION33 
