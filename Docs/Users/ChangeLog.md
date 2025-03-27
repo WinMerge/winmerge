@@ -36,7 +36,7 @@
 ### Color schemes
 
 - Add Visual Studio Dark color scheme (PR #2634)
-- Twilight - new dark theme (PR #1430)
+- Twilight - new dark theme (PR #2694)
 
 ### Installer
 
