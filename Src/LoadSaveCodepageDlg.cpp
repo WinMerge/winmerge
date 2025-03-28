@@ -99,8 +99,9 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 			if (pexconv != nullptr)
 				cpi = pexconv->enumCodePages();
 			const static int ManualAddTypeList[] = { 437, 850, 858, 860, 863, 861, 1200, 1201, 65000 };
-			for (int cp : ManualAddTypeList)
+			for (int codepage : ManualAddTypeList)
 			{
+				const int cp = codepage;
 				auto it = std::find_if(cpi.begin(), cpi.end(),
 					[&](const CodePageInfo& info) { return info.codepage == cp; });
 				if (it == cpi.end())

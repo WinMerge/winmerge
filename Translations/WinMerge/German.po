@@ -4964,10 +4964,10 @@ msgstr "Markdown-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befe
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr "PlantUML-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl plantuml.jar übergeben werden."
 
-msgid "CSV Querier (q).\r\nArguments: SQL statement/q options."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr "CSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
 
-msgid "TSV Querier (q).\r\nArguments: SQL statement/q options."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr "TSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."

@@ -45,7 +45,6 @@ for the production.</p>
 <li>BugFix: &quot;Another application has updated&quot; message when window is
 deactivated (#2668)</li>
 <li>Reduced flickering of title bar buttons and the status bar.</li>
-<li>Add Visual Studio Dark color scheme (PR #2634)</li>
 <li>Rewrite English.pot, add JXL image extension (PR #2682)</li>
 </ul>
 <h3 id="file-compare">File compare</h3>
@@ -72,8 +71,11 @@ unregistered when clicking the Unregister shell extension button in the
 Shell Integration options. (#2419)</li>
 <li>Modify the &quot;Options (Compare &gt; Image)&quot; dialog. (PR #2655)</li>
 </ul>
-<h3 id="select-files-or-folders-dialog">Select Files or Folders
-dialog</h3>
+<h3 id="color-schemes">Color schemes</h3>
+<ul>
+<li>Add Visual Studio Dark color scheme (PR #2634)</li>
+<li>Twilight - new dark theme (PR #2694)</li>
+</ul>
 <h3 id="installer">Installer</h3>
 <ul>
 <li>BugFix: Context menu not working if installed from non-elevated (non
@@ -90,10 +92,10 @@ admin) user on win 10 x64 (#2638) (PR #2639)</li>
 <li>Brazilian (PR #2675,#2688)</li>
 <li>Corsican (PR #2632,#2676)</li>
 <li>Hebrew (PR #2673)</li>
-<li>Italian (PR #2689)</li>
+<li>Italian (PR #2689,#2689)</li>
 <li>Japanese</li>
 <li>Polish (PR #2671)</li>
-<li>Portuguese (PR #2650)</li>
+<li>Portuguese (PR #2650,#2695)</li>
 <li>Swedish (PR #2679)</li>
 <li>Turkish (PR #2636)</li>
 </ul></li>
@@ -102,9 +104,13 @@ admin) user on win 10 x64 (#2638) (PR #2639)</li>
 <ul>
 <li>BugFix: Fix build in VS2022 17.13.0 (PR #2645)</li>
 <li>BugFix: Use zopflipng to reduce size of splash.png (PR #2646)</li>
+<li>README major update, Twilight theme minor edit (PR #2696)</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>
+<li>Pressing OK in the Options window while the INI file specified by
+/inifile is open for comparison in WinMerge may corrupt the file.
+(#2685)</li>
 <li>Suggestion to make the result of image comparison more reliable
 (#1391)</li>
 <li>Crashes when comparing large files (#325)</li>

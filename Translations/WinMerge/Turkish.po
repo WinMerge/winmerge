@@ -4245,10 +4245,10 @@ msgstr "Markdown ön izleyici. \r\nParametreler: Dot komutuna aktarılacak komut
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr "PlantUML ön izleyici. \r\nParametreler: Plantuml.jar komutuna aktarılacak komut satırı parametreleri."
 
-msgid "CSV Querier (q).\r\nArguments: SQL statement/q options."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr "CSV sorgulayıcı: q komutu. \r\nParametreler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
 
-msgid "TSV Querier (q).\r\nArguments: SQL statement/q options."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr "TSV sorgulayıcı: q komutu. \r\nParametreler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."

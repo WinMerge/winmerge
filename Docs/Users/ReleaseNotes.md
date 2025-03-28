@@ -21,7 +21,6 @@ Please submit bug reports to our bug-tracker.
 - BugFix: "Another application has updated" message when window is deactivated
     (#2668)
 - Reduced flickering of title bar buttons and the status bar.
-- Add Visual Studio Dark color scheme (PR #2634)
 - Rewrite English.pot, add JXL image extension (PR #2682)
 
 ### File compare
@@ -47,7 +46,10 @@ Please submit bug reports to our bug-tracker.
     Shell Integration options. (#2419)
 - Modify the "Options (Compare > Image)" dialog. (PR #2655)
 
-### Select Files or Folders dialog
+### Color schemes
+
+- Add Visual Studio Dark color scheme (PR #2634)
+- Twilight - new dark theme (PR #2694)
 
 ### Installer
 
@@ -64,10 +66,10 @@ Please submit bug reports to our bug-tracker.
   - Brazilian (PR #2675,#2688)
   - Corsican (PR #2632,#2676)
   - Hebrew (PR #2673)
-  - Italian (PR #2689)
+  - Italian (PR #2689,#2689)
   - Japanese
   - Polish (PR #2671)
-  - Portuguese (PR #2650)
+  - Portuguese (PR #2650,#2695)
   - Swedish (PR #2679)
   - Turkish (PR #2636)
 
@@ -75,9 +77,11 @@ Please submit bug reports to our bug-tracker.
 
 - BugFix: Fix build in VS2022 17.13.0 (PR #2645)
 - BugFix: Use zopflipng to reduce size of splash.png (PR #2646)
+- README major update, Twilight theme minor edit (PR #2696)
 
 ## Known issues
 
+ - Pressing OK in the Options window while the INI file specified by /inifile is open for comparison in WinMerge may corrupt the file. (#2685)
  - Suggestion to make the result of image comparison more reliable (#1391)
  - Crashes when comparing large files (#325)
  - Very slow to compare significantly different directories (#322)
