@@ -347,8 +347,14 @@ msgstr "Afsluiten\tCtrl+Q"
 msgid "&Edit"
 msgstr "Bewerken"
 
+msgid "&Copy\tCtrl+C"
+msgstr "Kopiëren\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "Plakken\tCtrl+V"
+
+msgid "Select &All\tCtrl+A"
+msgstr "Alles selecteren\tCtrl+A"
 
 msgid "&Options..."
 msgstr "Opties..."
@@ -381,6 +387,9 @@ msgid "&Huge"
 msgstr "Enorm"
 
 msgid "Men&u Bar"
+msgstr ""
+
+msgid "&Output Pane"
 msgstr ""
 
 msgid "&Status Bar"
@@ -472,9 +481,6 @@ msgstr "Rechts alleen-lezen"
 
 msgid "&File Encoding..."
 msgstr "Bestandscodering..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "Alles selecteren\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Identieke items weergeven"
@@ -662,9 +668,6 @@ msgstr "Opnieuw\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "Knippen\tCtrl+X"
 
-msgid "&Copy\tCtrl+C"
-msgstr "Kopiëren\tCtrl+C"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "Zoeken...\tCtrl+F"
 
@@ -760,6 +763,9 @@ msgstr "Verschilvenster"
 
 msgid "Lo&cation Pane"
 msgstr "Locatievenster"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Volgend conflict\tAlt+Shift+Omlaag"
@@ -2693,6 +2699,13 @@ msgstr "%1 verschillen gevonden"
 msgid "1 Difference Found"
 msgstr "Eén verschil gevonden"
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 msgid "RO"
 msgstr "AL"
@@ -4438,6 +4451,20 @@ msgstr ""
 "Naar links kopiëren en verder gaan (Ctrl+Alt+Links)\n"
 "(Ctrl+Alt+Wiel links)\n"
 "(Ctrl+Alt+Shift+Wiel omhoog)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Mooi maken"

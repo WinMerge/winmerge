@@ -348,8 +348,14 @@ msgstr "終了(&X)\tCtrl+Q"
 msgid "&Edit"
 msgstr "編集(&E)"
 
+msgid "&Copy\tCtrl+C"
+msgstr "コピー(&C)\tCtrl+C"
+
 msgid "&Paste\tCtrl+V"
 msgstr "貼り付け(&P)\tCtrl+V"
+
+msgid "Select &All\tCtrl+A"
+msgstr "すべて選択(&A)\tCtrl+A"
 
 msgid "&Options..."
 msgstr "設定(&O)..."
@@ -383,6 +389,9 @@ msgstr "特大(&H)"
 
 msgid "Men&u Bar"
 msgstr "メニューバー(&U)"
+
+msgid "&Output Pane"
+msgstr "出力ペイン(&O)"
 
 msgid "&Status Bar"
 msgstr "ステータス バー(&S)"
@@ -473,9 +482,6 @@ msgstr "右側を読み取り専用(&G)"
 
 msgid "&File Encoding..."
 msgstr "ファイル エンコーディング(&F)..."
-
-msgid "Select &All\tCtrl+A"
-msgstr "すべて選択(&A)\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "同一項目の表示(&I)"
@@ -663,9 +669,6 @@ msgstr "やり直し(&R)\tCtrl+Y"
 msgid "Cu&t\tCtrl+X"
 msgstr "切り取り(&T)\tCtrl+X"
 
-msgid "&Copy\tCtrl+C"
-msgstr "コピー(&C)\tCtrl+C"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "検索(&I)...\tCtrl+F"
 
@@ -761,6 +764,9 @@ msgstr "Diff ペイン(&P)"
 
 msgid "Lo&cation Pane"
 msgstr "ロケーション ペイン(&C)"
+
+msgid "Output Pane"
+msgstr "出力 ペイン"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "次のコンフリクト(&X)\tAlt+Shift+Down"
@@ -2670,10 +2676,17 @@ msgstr "差異 %1 / %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "%1 個の差異が見つかりました"
+msgstr "%1 件の差異が見つかりました"
 
 msgid "1 Difference Found"
-msgstr "1 個の差異が見つかりました"
+msgstr "1 件の差異が見つかりました"
+
+#, c-format
+msgid "%1 Errors Found"
+msgstr "%1 件のエラーが発生しました"
+
+msgid "1 Error Found"
+msgstr "1 件のエラーが発生しました"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -4405,6 +4418,20 @@ msgstr ""
 "左側へコピーし次へ (Ctrl+Alt+Left)\n"
 "(Ctrl+Alt+Wheel Left)\n"
 "(Ctrl+Alt+Shift+Wheel Up)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr "%1 と %2 を比較しています"
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr "%1 と %2 と %3 を比較しています"
+
+msgid "Comparison completed"
+msgstr "比較が完了しました"
+
+msgid "File saved"
+msgstr "ファイルが保存されました"
 
 msgid "Prettification"
 msgstr "整形"

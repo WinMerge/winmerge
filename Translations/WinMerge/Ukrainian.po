@@ -372,8 +372,16 @@ msgid "&Edit"
 msgstr "&Редакція"
 
 #, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Копіювати\tCtrl+C"
+
+#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Вставити\tCtrl+V"
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "В&ибрати все\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -413,6 +421,9 @@ msgid "&Huge"
 msgstr "&Величезні піктограми"
 
 msgid "Men&u Bar"
+msgstr ""
+
+msgid "&Output Pane"
 msgstr ""
 
 #, c-format
@@ -532,10 +543,6 @@ msgstr "Ф&айл справа лише для читання"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Кодування файлу..."
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "В&ибрати все\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -772,10 +779,6 @@ msgid "Cu&t\tCtrl+X"
 msgstr "Ви&різати\tCtrl+X"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Копіювати\tCtrl+C"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "Зна&йти...\tCtrl+F"
 
@@ -899,6 +902,9 @@ msgstr "Пане&ль порівняння"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "Панель місць &розташування"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -3142,6 +3148,13 @@ msgstr "%1 відмінностей знайшлося"
 msgid "1 Difference Found"
 msgstr "Знайдена всього одна відмінність"
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 #, c-format
 msgid "RO"
@@ -4871,6 +4884,20 @@ msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ct
 msgstr ""
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
 msgstr ""
 
 msgid "Prettification"

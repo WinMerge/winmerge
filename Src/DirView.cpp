@@ -426,7 +426,7 @@ void CDirView::OnInitialUpdate()
 	// Load user-selected font
 	if (GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP + OPT_FONT_USECUSTOM))
 	{
-		m_font.CreateFontIndirect(&GetMainFrame()->m_lfDir);
+		m_font.CreateFontIndirect(&theApp.m_lfDir);
 		CWnd::SetFont(&m_font, TRUE);
 	}
 
@@ -2549,6 +2549,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		if (m_elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);
 		GetMainFrame()->StartFlashing();
+		CMergeFrameCommon::LogComparisonCompleted(*pDoc->GetDiffContext().m_pCompareStats);
+
 	}
 	else if (wParam == CDiffThread::EVENT_COMPARE_PROGRESSED)
 	{

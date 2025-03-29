@@ -873,6 +873,18 @@ String toTString(const std::string& str)
 #endif
 }
 
+String toTStringFromACP(const std::string& str)
+{
+#ifndef UNICODE
+	return str;
+#else
+	String retval;
+	bool lossy = false;
+	maketstring(retval, str.c_str(), str.length(), GetACP(), &lossy);
+	return retval;
+#endif
+}
+
 void toUTF16(const String& tstr, std::wstring& wstr)
 {
 #ifdef UNICODE

@@ -13,6 +13,7 @@
 #include "PathContext.h"
 #include "FileLocation.h"
 #include "IMergeDoc.h"
+#include "IMDITab.h"
 #include "FileTransform.h"
 
 struct IDirDoc;
@@ -22,7 +23,7 @@ class CHexMergeView;
 /**
  * @brief Document class for bytewise merging two files presented as hexdumps
  */
-class CHexMergeDoc : public CDocument, public IMergeDoc
+class CHexMergeDoc : public CDocument, public IMergeDoc, public IMDITab
 {
 public:
 	enum class BUFFERTYPE
@@ -78,6 +79,8 @@ public:
 	String GetPath(int pane) const override { return m_filePaths[pane]; }
 	bool GetReadOnly(int pane) const override;
 	CString GetTooltipString() const override;
+	int GetDiffCount() const override { return m_hasDiff.value_or(false) ? -1 : 0; }
+	int GetTrivialCount() const override { return 0; }
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	void RefreshOptions();
@@ -112,6 +115,7 @@ protected:
 	BUFFERTYPE m_nBufferType[3];
 	PackingInfo m_infoUnpacker;
 	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
+	std::optional<bool> m_hasDiff;
 
 // Generated message map functions
 protected:

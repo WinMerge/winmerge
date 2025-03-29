@@ -14,6 +14,7 @@
 #include "EditorFilepathBar.h"
 #include "PathContext.h"
 #include "DiffFileInfo.h"
+#include "IMDITab.h"
 #include "IMergeDoc.h"
 #include "WinIMergeLib.h"
 #include "LocationBar.h"
@@ -27,7 +28,7 @@ struct IDirDoc;
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
  */
-class CImgMergeFrame : public CMergeFrameCommon,public IMergeDoc
+class CImgMergeFrame : public CMergeFrameCommon, public IMergeDoc, public IMDITab
 {
 	private:
 	enum class BUFFERTYPE
@@ -69,6 +70,8 @@ public:
 	String GetPath(int pane) const override { return m_filePaths[pane]; }
 	bool GetReadOnly(int pane) const override { return m_bRO[pane]; }
 	CString GetTooltipString() const override;
+	int GetDiffCount() const override;
+	int GetTrivialCount() const override { return 0; }
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;

@@ -95,6 +95,7 @@ DATE:		BY:					DESCRIPTION:
 #include "paths.h"
 #include "Environment.h"
 #include "Merge7zFormatRegister.h"
+#include "Logger.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -635,7 +636,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				}
 				if (res.files[0].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(res.files[0].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[0])), false));
+					VERIFY(::DeleteFile(res.files[0].c_str()) || (RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), res.files[0])), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[0].c_str());
 				res.files[0] = ucr::toTString(pTmp);
@@ -667,7 +668,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				}
 				if (res.files[1].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(res.files[1].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[1])), false));
+					VERIFY(::DeleteFile(res.files[1].c_str()) || (RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), res.files[1])), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[1].c_str());
 				res.files[1] = OLE2T(pTmp);
@@ -698,7 +699,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				}
 				if (res.files[2].find(path) == 0)
 				{
-					VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[2])), false));
+					VERIFY(::DeleteFile(res.files[2].c_str()) || (RootLogger::Error(strutils::format(_T("DeleteFile(%s) failed"), res.files[2])), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[2].c_str());
 				res.files[2] = OLE2T(pTmp);

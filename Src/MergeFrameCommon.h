@@ -11,6 +11,9 @@
 
 class PrediffingInfo;
 class PackingInfo;
+class CompareStats;
+struct FileLocation;
+struct IMergeDoc;
 
 class CMergeFrameCommon: public CMDIChildWnd
 {
@@ -21,14 +24,20 @@ public:
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
 	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (const tchar_t*, UINT, UINT)> funcMessageBox);
-	static String GetTitleString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
-	static String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
+	static String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
+	static String GetDiffStatusString(int curDiff, int diffCount);
+	static String GetTitleString(const IMergeDoc& mergeDoc);
+	static String GetTooltipString(const IMergeDoc& mergeDoc);
+	static String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo* pInfoUnpacker, const PrediffingInfo* pInfoPrediffer, bool hasTrivialDiffs = false);
+	static void LogComparisonStart(int nFiles, const FileLocation ifileloc[], const String descs[], const PackingInfo* infoUnpackerconst , const PrediffingInfo* infoPrediffer);
+	static void LogComparisonStart(const PathContext& paths, const String descs[], const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
+	static void LogComparisonCompleted(const IMergeDoc& mergeDoc);
+	static void LogComparisonCompleted(const CompareStats& stats);
+	static void LogFileSaved(const String& path);
 	static void ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI);
 	static std::pair<int, int> MenuIDtoXY(UINT nID, int nActivePane, int nBuffers);
-	bool EnsureValidDockState(CDockState& state);
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
-	void RemoveBarBorder();
 	virtual BOOL IsTabbedMDIChild()
 	{
 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
