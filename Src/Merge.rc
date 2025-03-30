@@ -1329,7 +1329,7 @@ BEGIN
     BEGIN
         MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
-        MENUITEM "Clear &All",                  ID_OUTPUTVIEW_CLEAR_ALL
+        MENUITEM "Clear &All",                  ID_EDIT_CLEAR_ALL
     END
 END
 

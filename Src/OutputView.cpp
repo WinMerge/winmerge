@@ -24,7 +24,7 @@ IMPLEMENT_DYNCREATE(COutputView, CCrystalTextView)
 BEGIN_MESSAGE_MAP(COutputView, CCrystalTextView)
 	//{{AFX_MSG_MAP(COutputView)
 	ON_WM_CONTEXTMENU()
-	ON_COMMAND(ID_OUTPUTVIEW_CLEAR_ALL, OnClearAll)
+	ON_COMMAND(ID_EDIT_CLEAR_ALL, OnClearAll)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 END_MESSAGE_MAP()
@@ -50,6 +50,23 @@ BOOL COutputView::PreCreateWindow(CREATESTRUCT& cs)
 	return CCrystalTextView::PreCreateWindow(cs);
 }
 
+BOOL COutputView::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_KEYDOWN)
+	{
+		if (pMsg->wParam == 'A' && GetKeyState(VK_CONTROL) < 0)
+		{
+			SelectAll();
+			return TRUE;
+		}
+		else if (pMsg->wParam == 'C' && GetKeyState(VK_CONTROL) < 0)
+		{
+			Copy();
+			return TRUE;
+		}
+	}
+	return __super::PreTranslateMessage(pMsg);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // COutputView diagnostics
