@@ -1,6 +1,7 @@
 #include <StdAfx.h>
 #include "Merge.h"
 #include "TrDialogs.h"
+#include "Logger.h"
 
 IMPLEMENT_DYNAMIC(CTrDialog, CDialog)
 IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
@@ -31,6 +32,38 @@ BOOL CTrDialog::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	__super::OnInitDialog();
 	return TRUE;
+}
+
+static String makeLogString(const String& prompt, int result)
+{
+	const std::vector<String> Answers = {
+		_T(""),
+		_("OK"),
+		_("Cancel"),
+		_("Abort"),
+		_("Retry"),
+		_("Ignore"),
+		_("Yes"),
+		_("No"),
+		_("Close"),
+		_("Help"),
+		_("Try Again"),
+		_("Continue"),
+	};
+	String msg = prompt + _T(": ") + Answers[result];
+	return msg;
+}
+
+void CTrDialog::OnOK()
+{
+	RootLogger::Info(GetTitleText() + _T(": ") + _("OK"));
+	__super::OnOK();
+}
+
+void CTrDialog::OnCancel()
+{
+	RootLogger::Info(GetTitleText() + _T(": ") + _("Cancel"));
+	__super::OnOK();
 }
 
 BOOL CTrPropertyPage::OnInitDialog()

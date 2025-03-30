@@ -1022,6 +1022,7 @@ void CDirView::ConfirmAndPerformActions(FileActionScript & actionList)
 		INT_PTR ans = dlg.DoModal();
 		if (ans != IDOK && ans != IDYES)
 			return;
+		RootLogger::Info(e.m_question + _T(": ") + e.m_fromPath + _T(" -> ") + e.m_toPath + _T(": ") + _("Yes"));
 	}
 	PerformActionList(actionList);
 }

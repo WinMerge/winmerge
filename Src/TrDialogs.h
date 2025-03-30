@@ -101,6 +101,8 @@ public:
 	using CDialog::CDialog;
 
 	virtual BOOL OnInitDialog();
+	virtual void OnOK();
+	virtual void OnCancel();
 };
 
 class CTrPropertyPage : public CPropertyPage, public DlgUtils<CTrPropertyPage>
