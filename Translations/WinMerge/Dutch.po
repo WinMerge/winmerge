@@ -1210,6 +1210,9 @@ msgstr "Voorvergelijkingsplugin toevoegen..."
 msgid "&Duplicate Plugin..."
 msgstr "Plugin dupliceren..."
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Over WinMerge"
 

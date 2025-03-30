@@ -23,6 +23,8 @@ IMPLEMENT_DYNCREATE(COutputView, CCrystalTextView)
 
 BEGIN_MESSAGE_MAP(COutputView, CCrystalTextView)
 	//{{AFX_MSG_MAP(COutputView)
+	ON_WM_CONTEXTMENU()
+	ON_COMMAND(ID_OUTPUTVIEW_CLEAR_ALL, OnClearAll)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 END_MESSAGE_MAP()
@@ -90,3 +92,19 @@ void COutputView::OnInitialUpdate()
 	SetMarkersContext(GetDocument()->m_pMarkers.get());
 }
 
+void COutputView::OnContextMenu(CWnd* pWnd, CPoint point)
+{
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_OUTPUTVIEW));
+	theApp.TranslateMenu(menu.m_hMenu);
+
+	CMenu* pPopup = menu.GetSubMenu(0);
+	ASSERT(pPopup != nullptr);
+
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);
+}
+
+void COutputView::OnClearAll()
+{
+	GetDocument()->ClearAll();
+}

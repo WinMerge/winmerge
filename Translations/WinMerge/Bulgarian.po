@@ -1209,6 +1209,9 @@ msgstr ""
 msgid "&Duplicate Plugin..."
 msgstr ""
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Относно WinMerge"
 

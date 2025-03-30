@@ -1213,6 +1213,9 @@ msgstr "Adicionar plugin de &pré-diferenciação..."
 msgid "&Duplicate Plugin..."
 msgstr "Plugin de &uplicação..."
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
 

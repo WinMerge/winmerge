@@ -1214,6 +1214,9 @@ msgstr "Добавить плагин предсравнения..."
 msgid "&Duplicate Plugin..."
 msgstr "Дублировать плагин..."
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "О программе WinMerge"
 

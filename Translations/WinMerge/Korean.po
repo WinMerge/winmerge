@@ -1449,6 +1449,9 @@ msgstr "사전 차이점 플러그인 추가(&P)..."
 msgid "&Duplicate Plugin..."
 msgstr "중복 플러그인(&D)..."
 
+msgid "Clear &All"
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "WinMerge 정보"

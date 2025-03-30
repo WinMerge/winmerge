@@ -1211,6 +1211,9 @@ msgstr "Ön &farklılaştırıcı eklentisi ekle..."
 msgid "&Duplicate Plugin..."
 msgstr "Çif&t eklentisi..."
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
 

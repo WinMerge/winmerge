@@ -23,6 +23,7 @@ public:
 	// Operations
 public:
 	void AppendLineWithAutoTrim(const String& text);
+	void ClearAll();
 
 	// Overrides
 		// ClassWizard generated virtual function overrides

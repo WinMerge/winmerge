@@ -1212,6 +1212,9 @@ msgstr "Pridėti &parengėją..."
 msgid "&Duplicate Plugin..."
 msgstr "&Dubliuoti papildinį..."
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
 

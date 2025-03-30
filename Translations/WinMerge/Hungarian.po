@@ -1442,6 +1442,9 @@ msgstr "&Elővizsgáló bővítmény hozzáadása..."
 msgid "&Duplicate Plugin..."
 msgstr "Bővítmény &duplikálása..."
 
+msgid "Clear &All"
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "A WinMerge névjegye"

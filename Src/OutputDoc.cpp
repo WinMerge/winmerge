@@ -73,6 +73,15 @@ void COutputDoc::AppendLineWithAutoTrim(const String& text)
 	}
 }
 
+void COutputDoc::ClearAll()
+{
+	CCrystalTextBuffer& buf = m_xTextBuffer;
+	POSITION pos = GetFirstViewPosition();
+	COutputView* pOutputView = static_cast<COutputView*>(GetNextView(pos));
+	buf.DeleteText(pOutputView, 0, 0, 
+		buf.GetLineCount() - 1, 0, 0, false);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // COutputDoc serialization
 

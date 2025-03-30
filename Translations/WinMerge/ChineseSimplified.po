@@ -1216,6 +1216,9 @@ msgstr "添加预比较插件(&P)..."
 msgid "&Duplicate Plugin..."
 msgstr "复制插件(&D)..."
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
 

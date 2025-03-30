@@ -1448,6 +1448,9 @@ msgstr "Ajouter le plugin &Pré-comparaison..."
 msgid "&Duplicate Plugin..."
 msgstr "Plugin &Dupliquer..."
 
+msgid "Clear &All"
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "À propos de WinMerge"
@@ -5451,19 +5454,11 @@ msgstr ""
 "Prévisualisateur PlantUML.\r\n"
 "Arguments : Options de ligne de commande transmises à la commande plantuml.jar."
 
-msgid ""
-"CSV Querier (q).\r\n"
-"Arguments: SQL statement/q options."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr ""
-"Requêteur CSV avec la commande q.\r\n"
-"Arguments : instruction SQL ou options de ligne de commande transmises à la commande q."
 
-msgid ""
-"TSV Querier (q).\r\n"
-"Arguments: SQL statement/q options."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
 msgstr ""
-"Requêteur TSV avec la commande q.\r\n"
-"Arguments : instruction SQL ou options de ligne de commande transmises à la commande q."
 
 msgid ""
 "JSON Querier (jq).\r\n"

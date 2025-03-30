@@ -48,6 +48,10 @@ protected:
 	// Generated message map functions
 protected:
 	//{{AFX_MSG(COutputView)
+	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg void OnCopy();
+	afx_msg void OnSelectAll();
+	afx_msg void OnClearAll();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

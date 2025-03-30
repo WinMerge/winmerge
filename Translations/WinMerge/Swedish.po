@@ -1216,6 +1216,9 @@ msgstr "Lägg till predifferplugin"
 msgid "&Duplicate Plugin..."
 msgstr "Duplicera plugin"
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Om WinMerge"
 

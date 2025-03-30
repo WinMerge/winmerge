@@ -1213,6 +1213,9 @@ msgstr "Dodaj wtyczkę porównującą..."
 msgid "&Duplicate Plugin..."
 msgstr ""
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "O programie WinMerge"
 

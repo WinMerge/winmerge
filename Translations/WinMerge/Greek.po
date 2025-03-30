@@ -1439,6 +1439,9 @@ msgstr ""
 msgid "&Duplicate Plugin..."
 msgstr ""
 
+msgid "Clear &All"
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "Περί του WinMerge"

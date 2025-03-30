@@ -1214,6 +1214,9 @@ msgstr "Aghjunghje u modulu d’estensione di u &preparagone…"
 msgid "&Duplicate Plugin..."
 msgstr "Modulu d’estensione in &doppiu…"
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
 

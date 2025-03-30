@@ -1209,6 +1209,9 @@ msgstr "הוסף תוסף השוואה מוקדמת..."
 msgid "&Duplicate Plugin..."
 msgstr "שכפל תוסף..."
 
+msgid "Clear &All"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "אודות WinMerge"
 
