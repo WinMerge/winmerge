@@ -342,9 +342,7 @@ BEGIN
     END
     POPUP "&Edit"
     BEGIN
-        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
         MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
-        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Options...",                 ID_OPTIONS
     END

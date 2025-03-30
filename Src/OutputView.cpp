@@ -52,18 +52,10 @@ BOOL COutputView::PreCreateWindow(CREATESTRUCT& cs)
 
 BOOL COutputView::PreTranslateMessage(MSG* pMsg)
 {
-	if (pMsg->message == WM_KEYDOWN)
+	if (pMsg->message >= WM_KEYFIRST && pMsg->message <= WM_KEYLAST)
 	{
-		if (pMsg->wParam == 'A' && GetKeyState(VK_CONTROL) < 0)
-		{
-			SelectAll();
+		if (::TranslateAccelerator (m_hWnd, static_cast<CFrameWnd *>(AfxGetMainWnd())->GetDefaultAccelerator(), pMsg))
 			return TRUE;
-		}
-		else if (pMsg->wParam == 'C' && GetKeyState(VK_CONTROL) < 0)
-		{
-			Copy();
-			return TRUE;
-		}
 	}
 	return __super::PreTranslateMessage(pMsg);
 }

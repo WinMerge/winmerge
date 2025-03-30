@@ -550,7 +550,7 @@ CMultiDocTemplate* CMergeApp::GetOutputTemplate()
 {
 	if (!m_pOutputTemplate)
 	{
-		// Outputectory view
+		// Output view
 		m_pOutputTemplate = new CMultiDocTemplate(
 			IDR_DIRDOCTYPE,
 			RUNTIME_CLASS(COutputDoc),
