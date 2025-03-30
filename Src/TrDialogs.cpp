@@ -63,7 +63,7 @@ void CTrDialog::OnOK()
 void CTrDialog::OnCancel()
 {
 	RootLogger::Info(GetTitleText() + _T(": ") + _("Cancel"));
-	__super::OnOK();
+	__super::OnCancel();
 }
 
 BOOL CTrPropertyPage::OnInitDialog()
