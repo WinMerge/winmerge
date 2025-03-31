@@ -3,6 +3,7 @@
 #include "EditBinaryFiles.h"
 #include "WinMergeScript.h"
 #include "Unpacker.h"
+#include "Common.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript
@@ -55,7 +56,7 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	*pbChanged = VARIANT_FALSE;
 	*pbSuccess = VARIANT_FALSE;
 
-	if (Unpack(srcFilepath, destFilepath))
+	if (Unpack(srcFilepath, destFilepath, m_pMergeApp))
 	{
 		*pbChanged = VARIANT_TRUE;
 		*pbSuccess = VARIANT_TRUE;
@@ -73,7 +74,7 @@ STDMETHODIMP CWinMergeScript::PackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOOL 
 	*pbChanged = VARIANT_FALSE;
 	*pbSuccess = VARIANT_FALSE;
 
-	if (Pack(srcFilepath, destFilepath))
+	if (Pack(srcFilepath, destFilepath, m_pMergeApp))
 	{
 		*pbChanged = VARIANT_TRUE;
 		*pbSuccess = VARIANT_TRUE;
@@ -86,4 +87,10 @@ STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
 {
 	*pbHandled = VARIANT_FALSE;
 	return E_NOTIMPL;
+}
+
+STDMETHODIMP CWinMergeScript::PluginOnEvent(int iEventType, IDispatch* pDispatch)
+{
+	m_pMergeApp = pDispatch;
+	return S_OK;
 }

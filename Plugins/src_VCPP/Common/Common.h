@@ -8,4 +8,5 @@ CString MergeApp_GetOptionString(IDispatch* pDispatch, const CString& sName, con
 HRESULT MergeApp_SaveOption(IDispatch* pDispatch, BSTR bstrName, VARIANT& varValue);
 HRESULT MergeApp_SaveOptionString(IDispatch* pDispatch, const CString& sName, const CString& sValue);
 BSTR MergeApp_Translate(IDispatch* pDispatch, BSTR bstrText);
+HRESULT MergeApp_LogError(IDispatch* pDispatch, const CString& sMessage);
 void TranslateDialog(HWND h, IDispatch* pDispatch);

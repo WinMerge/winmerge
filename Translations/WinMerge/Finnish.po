@@ -385,6 +385,9 @@ msgstr "&Valtava"
 msgid "Men&u Bar"
 msgstr ""
 
+msgid "&Output Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "Tilarivi"
 
@@ -762,6 +765,9 @@ msgstr "Eroavuusruutu"
 
 msgid "Lo&cation Pane"
 msgstr "Sijaintiruutu"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Seu&raava ristiriita\tAlt+Shift+Down"
@@ -1204,6 +1210,9 @@ msgid "Add &Prediffer Plugin..."
 msgstr ""
 
 msgid "&Duplicate Plugin..."
+msgstr ""
+
+msgid "Clear &All"
 msgstr ""
 
 msgid "About WinMerge"
@@ -2681,6 +2690,13 @@ msgstr "%1 eroa löytyi"
 
 msgid "1 Difference Found"
 msgstr "1 ero löytyi"
+
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -4344,6 +4360,20 @@ msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ct
 msgstr ""
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
 msgstr ""
 
 msgid "Prettification"

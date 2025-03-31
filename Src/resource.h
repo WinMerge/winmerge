@@ -30,6 +30,7 @@
 #define IDR_POPUP_PLUGIN_COMMAND_LINE_MENU 126
 #define IDR_POPUP_PLUGIN_ADD_MENU       127
 #define IDR_POPUP_DIRVIEW_COMPAREMETHOD 128
+#define IDR_POPUP_OUTPUTVIEW            129
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_SAVECLOSING                 203
@@ -776,6 +777,7 @@
 #define ID_VIEW_DETAIL_BAR              32819
 #define ID_VIEW_LOCATION_BAR            32820
 #define ID_VIEW_DIR_STATISTICS          32821
+#define ID_VIEW_OUTPUT_BAR              32822
 #define ID_VIEW_LINEDIFFS               32823
 #define ID_VIEW_LINENUMBERS             32825
 #define ID_VIEW_TAB_BAR                 32826
@@ -1312,6 +1314,8 @@
 #define IDS_DIRVIEW_STATUS_FMT_FOCUS    40840
 #define IDS_DIRVIEW_STATUS_FMT_NOFOCUS  40841
 #define IDS_DIRVIEW_STATUS_COMPARING    40842
+#define IDS_NO_ERR_SEL_FMT              40843
+#define IDS_1_ERR_FOUND                 40844
 #define IDS_ERROR_INCOMPARABLE          41200
 #define IDS_DIRSEL_TAG                  41201
 #define IDS_OPEN_FILESDIRS              41202
@@ -1576,6 +1580,7 @@
 #define IDS_MERGE_MODE                  42181
 #define IDS_LOCBAR_CAPTION              42201
 #define IDS_DIFFBAR_CAPTION             42202
+#define IDS_OUTPUTBAR_CAPTION           42203
 #define IDS_DIFF_SUCCEEDED              42400
 #define IDS_DIFF_ITEM1NOTFOUND          42401
 #define IDS_DIFF_ITEM2NOTFOUND          42402
@@ -1801,6 +1806,10 @@
 #define IDS_COPY_GRANULARITY_Character  44644
 #define IDS_VIEW_MENU_BAR               44645
 #define IDS_COPY_ONLYDIFFITEMS          44646
+#define IDS_LOG_COMPARE_2               44650
+#define IDS_LOG_COMPARE_3               44651
+#define IDS_LOG_COMPARE_RESULT          44652
+#define IDS_LOG_FILE_SAVED              44653
 
 // Next default values for new objects
 // 

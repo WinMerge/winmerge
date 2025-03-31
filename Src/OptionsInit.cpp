@@ -41,6 +41,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SELECTED_LANGUAGE, static_cast<int>(LangId));
 
 	// Initialise options (name, default value)
+	pOptions->InitOption(OPT_LOGGING, 0);
+
 	pOptions->InitOption(OPT_SHOW_UNIQUE_LEFT, true);
 	pOptions->InitOption(OPT_SHOW_UNIQUE_MIDDLE, true);
 	pOptions->InitOption(OPT_SHOW_UNIQUE_RIGHT, true);
@@ -59,6 +61,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SHOW_TOOLBAR, true);
 	pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
 	pOptions->InitOption(OPT_SHOW_TABBAR, true);
+	pOptions->InitOption(OPT_SHOW_OUTPUTBAR, false);
 	pOptions->InitOption(OPT_REBAR_STATE, _T(""));
 	pOptions->InitOption(OPT_TOOLBAR_SIZE, 0, 0, 2);
 	pOptions->InitOption(OPT_RESIZE_PANES, false);

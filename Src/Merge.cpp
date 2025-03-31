@@ -35,7 +35,9 @@
 #include "DirFrame.h"
 #include "MergeDoc.h"
 #include "DirDoc.h"
+#include "OutputDoc.h"
 #include "DirView.h"
+#include "OutputView.h"
 #include "PropBackups.h"
 #include "FileOrFolderSelect.h"
 #include "FileFilterHelper.h"
@@ -60,12 +62,14 @@
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
 #include "OptionsProject.h"
+#include "OptionsFont.h"
 #include "MergeAppCOMClass.h"
 #include "RegKey.h"
 #include "Win_VersionHelper.h"
 #include "BCMenu.h"
 #include "MouseHook.h"
 #include "SysColorHook.h"
+#include "Logger.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
@@ -104,6 +108,7 @@ CMergeApp::CMergeApp() :
 , m_pDiffTemplate(nullptr)
 , m_pHexMergeTemplate(nullptr)
 , m_pDirTemplate(nullptr)
+, m_pOutputTemplate(nullptr)
 , m_mainThreadScripts(nullptr)
 , m_nLastCompareResult(-1)
 , m_bNonInteractive(false)
@@ -432,6 +437,9 @@ BOOL CMergeApp::InitInstance()
 	if (GetOptionsMgr()->GetBool(OPT_MOUSE_HOOK_ENABLED))
 		CMouseHook::SetMouseHook();
 
+	m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
+	m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
+
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
@@ -538,6 +546,21 @@ CMultiDocTemplate* CMergeApp::GetDirTemplate()
 	return m_pDirTemplate;
 }
 
+CMultiDocTemplate* CMergeApp::GetOutputTemplate()
+{
+	if (!m_pOutputTemplate)
+	{
+		// Output view
+		m_pOutputTemplate = new CMultiDocTemplate(
+			IDR_DIRDOCTYPE,
+			RUNTIME_CLASS(COutputDoc),
+			nullptr,
+			RUNTIME_CLASS(COutputView));
+		AddDocTemplate(m_pOutputTemplate);
+	}
+	return m_pOutputTemplate;
+}
+
 static void OpenContributersFile(int&)
 {
 	CMergeApp::OpenFileToExternalEditor(paths::ConcatPath(env::GetProgPath(), ContributorsPath));
@@ -596,6 +619,26 @@ int CMergeApp::ExitInstance()
 	return exitstatus;
 }
 
+static String makeLogString(const tchar_t* lpszPrompt, int result)
+{
+	const std::vector<String> Answers = {
+		_T(""),
+		_("OK"),
+		_("Cancel"),
+		_("Abort"),
+		_("Retry"),
+		_("Ignore"),
+		_("Yes"),
+		_("No"),
+		_("Close"),
+		_("Help"),
+		_("Try Again"),
+		_("Continue"),
+	};
+	String msg = String(lpszPrompt) + _T(": ") + Answers[result];
+	return msg;
+}
+
 int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt)
 {
 	// This is a convenient point for breakpointing !!!
@@ -636,7 +679,13 @@ int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPromp
 		m_pMainWnd->ShowWindow(SW_RESTORE);
 
 	// Display the message box dialog and return the result.
-	return static_cast<int>(dlgMessage.DoModal());
+	int result = static_cast<int>(dlgMessage.DoModal());
+	String const msg = makeLogString(lpszPrompt, result);
+	if ((nType & MB_ICONMASK) == MB_ICONERROR || (nType & MB_ICONMASK) == MB_ICONWARNING)
+		RootLogger::Warn(msg);
+	else
+		RootLogger::Info(msg);
+	return result;
 }
 
 bool CMergeApp::IsReallyIdle() const

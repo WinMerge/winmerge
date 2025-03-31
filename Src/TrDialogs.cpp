@@ -1,6 +1,7 @@
 #include <StdAfx.h>
 #include "Merge.h"
 #include "TrDialogs.h"
+#include "Logger.h"
 
 IMPLEMENT_DYNAMIC(CTrDialog, CDialog)
 IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
@@ -31,6 +32,18 @@ BOOL CTrDialog::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	__super::OnInitDialog();
 	return TRUE;
+}
+
+void CTrDialog::OnOK()
+{
+	RootLogger::Info(GetTitleText() + _T(": ") + _("OK"));
+	__super::OnOK();
+}
+
+void CTrDialog::OnCancel()
+{
+	RootLogger::Info(GetTitleText() + _T(": ") + _("Cancel"));
+	__super::OnCancel();
 }
 
 BOOL CTrPropertyPage::OnInitDialog()

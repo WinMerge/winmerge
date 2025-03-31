@@ -20,6 +20,7 @@
 #include "Environment.h"
 #include "TFile.h"
 #include "paths.h"
+#include "Logger.h"
 #include "MergeApp.h"
 
 using Poco::Exception;
@@ -537,7 +538,7 @@ bool PackingInfo::Packing(int target, const String& srcFilepath, const String& d
 	catch (Poco::Exception& e)
 	{
 		DWORD dwErrCode = GetLastError();
-		LogErrorStringUTF8(e.displayText());
+		RootLogger::Error(e.displayText());
 		SetLastError(dwErrCode);
 		return false;
 	}
@@ -954,7 +955,7 @@ bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 			}
 			catch (Exception& e)
 			{
-				LogErrorStringUTF8(e.displayText());
+				RootLogger::Error(e.displayText());
 			}
 		}
 		// and change the filepath if everything works
@@ -968,7 +969,7 @@ bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 		}
 		catch (Exception& e)
 		{
-			LogErrorStringUTF8(e.displayText());
+			RootLogger::Error(e.displayText());
 		}
 	}
 

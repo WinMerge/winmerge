@@ -42,10 +42,12 @@ public:
 	STDMETHOD(PackBufferA)(/*[in]*/ SAFEARRAY ** pBuffer, /*[in]*/ INT * pSize, /*[in]*/ VARIANT_BOOL * pbChanged, /*[in]*/ INT subcode, /*[out, retval]*/ VARIANT_BOOL * pbSuccess);
 	STDMETHOD(UnpackBufferA)(/*[in]*/ SAFEARRAY ** pBuffer, /*[in]*/ INT * pSize, /*[in]*/ VARIANT_BOOL * pbChanged, /*[in]*/ INT * pSubcode, /*[out, retval]*/ VARIANT_BOOL * pbSuccess);
 	STDMETHOD(ShowSettingsDialog)(/*[out, retval]*/ VARIANT_BOOL * pbHandled);
+	STDMETHOD(PluginOnEvent)(/*[in]*/int iEventType, /*[in]*/IDispatch* pDispatch);
 	STDMETHOD(get_PluginIsAutomatic)(/*[out, retval]*/ VARIANT_BOOL *pVal);
 	STDMETHOD(get_PluginFileFilters)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(get_PluginDescription)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(get_PluginEvent)(/*[out, retval]*/ BSTR *pVal);
+	CComPtr<IDispatch> m_pMergeApp;
 };
 
 #endif //__WINMERGESCRIPT_H_

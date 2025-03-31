@@ -33,6 +33,10 @@
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
 #include "WebPageDiffFrm.h"
+#include "OutputDoc.h"
+#include "OutputBar.h"
+#include "OutputView.h"
+#include "Logger.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
 #include "ConflictFileParser.h"
@@ -70,6 +74,10 @@
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
+#include "FrameWndHelper.h"
+#include <Poco/Logger.h>
+#include <Poco/AsyncChannel.h>
+#include <Poco/SimpleFileChannel.h>
 
 #if !defined(SM_CXPADDEDBORDER)
 #define SM_CXPADDEDBORDER       92
@@ -266,6 +274,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
 	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnUpdateToolbarSize)
+	ON_COMMAND(ID_VIEW_OUTPUT_BAR, OnViewOutputBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_OUTPUT_BAR, OnUpdateViewOutputBar)
 	// [Plugins] menu
 	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
 	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
@@ -372,10 +382,12 @@ CMainFrame::CMainFrame()
 : m_bFirstTime(true)
 , m_pDropHandler(nullptr)
 , m_bShowErrors(false)
-, m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
-, m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
 , m_pDirWatcher(new DirWatcher())
+, m_pOutputDoc(nullptr)
+, m_pLogChannel(nullptr)
+, m_logging(GetOptionsMgr()->GetInt(OPT_LOGGING))
 {
+	InitializeCriticalSection(&m_cs);
 }
 
 CMainFrame::~CMainFrame()
@@ -415,6 +427,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
+
+	Logger::Get().SetOutputFunction([this](Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg)
+		{ OutputLog(level, tp, msg, level == Logger::LogLevel::ERR); } );
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
@@ -471,6 +486,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
+	if (GetOptionsMgr()->GetBool(OPT_SHOW_OUTPUTBAR))
+		ShowOutputPane(true);
+
 	UpdateSystemMenu();
 
 	return 0;
@@ -499,10 +517,16 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 
 		OnUpdateFrameTitle(FALSE);
 	}
+	else if (nIDEvent == IDT_FLUSHLOG)
+	{
+		KillTimer(nIDEvent);
+		ProcessLog();
+	}
 }
 
 void CMainFrame::OnDestroy(void)
 {
+	SavePosition();
 	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 }
@@ -1503,7 +1527,7 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 			{
 				CDirView *pView = pDoc->GetMainView();
 				if (pView != nullptr)
-					pView->SetFont(m_lfDir);
+					pView->SetFont(theApp.m_lfDir);
 			}
 		}
 	}
@@ -1514,7 +1538,14 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 			CMergeDoc *pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
 			if (pMergeDoc != nullptr)
 				for (auto& pView: pMergeDoc->GetViewList())
-					pView->SetFont(m_lfDiff);
+					pView->SetFont(theApp.m_lfDiff);
+		}
+		if (m_pOutputDoc)
+		{
+			POSITION pos = m_pOutputDoc->GetFirstViewPosition();
+			COutputView* pView = static_cast<COutputView*>(m_pOutputDoc->GetNextView(pos));
+			if (pView)
+				pView->SetFont(theApp.m_lfDiff);
 		}
 	}
 }
@@ -1540,9 +1571,9 @@ void CMainFrame::OnViewSelectfont()
 	// CF_FIXEDPITCHONLY = 0x00004000L
 	// in case you are a developer and want to disable it to test with, eg, a Chinese capable font
 	if (frame == FRAME_FOLDER)
-		lf = &m_lfDir;
+		lf = &theApp.m_lfDir;
 	else
-		lf = &m_lfDiff;
+		lf = &theApp.m_lfDiff;
 
 	cf.lpLogFont = lf;
 	cf.hwndOwner = m_hWnd;
@@ -1567,14 +1598,14 @@ void CMainFrame::OnViewUsedefaultfont()
 	if (frame == FRAME_FOLDER)
 	{
 		Options::Font::Reset(GetOptionsMgr(), OPT_FONT_DIRCMP);
-		m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
-		Options::Font::Save(GetOptionsMgr(), OPT_FONT_DIRCMP, &m_lfDir, false);
+		theApp.m_lfDir = Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP);
+		Options::Font::Save(GetOptionsMgr(), OPT_FONT_DIRCMP, &theApp.m_lfDir, false);
 	}
 	else
 	{
 		Options::Font::Reset(GetOptionsMgr(), OPT_FONT_FILECMP);
-		m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
-		Options::Font::Save(GetOptionsMgr(), OPT_FONT_FILECMP, &m_lfDiff, false);
+		theApp.m_lfDiff = Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP);
+		Options::Font::Save(GetOptionsMgr(), OPT_FONT_FILECMP, &theApp.m_lfDiff, false);
 	}
 
 	UpdateFont(frame);
@@ -2235,6 +2266,24 @@ void CMainFrame::OnUpdateViewMenuBar(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Show/hide output pane
+ */
+void CMainFrame::OnViewOutputBar()
+{
+	const bool visible = m_wndOutputBar.m_hWnd != nullptr && !!m_wndOutputBar.IsVisible();
+	GetOptionsMgr()->SaveOption(OPT_SHOW_OUTPUTBAR, !visible);
+	ShowOutputPane(!visible);
+}
+
+/**
+ * @brief Updates "Output pane" menuitem.
+ */
+void CMainFrame::OnUpdateViewOutputBar(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_wndOutputBar.m_hWnd != nullptr && !!m_wndOutputBar.IsVisible());
+}
+
+/**
  * @brief Show/hide statusbar.
  */
 void CMainFrame::OnViewStatusBar()
@@ -2367,6 +2416,52 @@ LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 	if (pMergeDoc)
 		pMergeDoc->CheckFileChanged();
 	return 0;
+}
+
+void CMainFrame::ProcessLog()
+{
+	static const String pattern = _T("%Y-%m-%dT%H:%M:%S");
+
+	EnterCriticalSection(&m_cs);
+
+	const bool bShow = std::any_of(m_logBuffer.begin(), m_logBuffer.end(),
+		[](const auto& msg) { return msg.second; });
+
+	if (bShow && (m_wndOutputBar.m_hWnd == nullptr || !m_wndOutputBar.IsVisible()))
+		ShowOutputPane(true);
+
+	if (!m_pOutputDoc)
+		m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
+
+	if (m_logging > 0 && !m_pLogChannel)
+	{
+		Poco::Channel::Ptr pSimpleFileChannel= new Poco::SimpleFileChannel(
+			ucr::toUTF8(paths::ConcatPath(env::GetTemporaryPath(), _T("WinMerge.log"))));
+		m_pLogChannel = new Poco::AsyncChannel(pSimpleFileChannel);
+	}
+	
+	size_t size = 0;
+	for (const auto& msg : m_logBuffer)
+		size += msg.first->text.length() + 34;
+	String text;
+	text.reserve(size);
+	for (const auto& msg : m_logBuffer)
+	{
+		const String logline = msg.first->format(pattern, true);
+		text += logline + _T("\r\n");
+		if (m_logging > 0 && m_pLogChannel)
+		{
+			static const Poco::Message::Priority prio[] = { Poco::Message::PRIO_ERROR, Poco::Message::PRIO_WARNING, Poco::Message::PRIO_INFORMATION };
+			if (m_logging == 1 || (m_logging == 2 && msg.first->level <= Logger::LogLevel::WARN))
+				m_pLogChannel->log(Poco::Message("", ucr::toUTF8(logline), prio[static_cast<int>(msg.first->level)]));
+		}
+		delete msg.first;
+	}
+	m_logBuffer.clear();
+
+	LeaveCriticalSection(&m_cs);
+
+	m_pOutputDoc->AppendLineWithAutoTrim(text);
 }
 
 /**
@@ -3006,7 +3101,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		}
 		catch (Poco::Exception& e)
 		{
-			LogErrorStringUTF8(e.displayText());
+			RootLogger::Error(e.displayText());
 		}
 	}
 	m_tempFiles.push_back(wTemp);
@@ -3632,6 +3727,25 @@ void CMainFrame::WaitAndDoMessageLoop(bool& completed, int ms)
 	}
 }
 
+void CMainFrame::OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show)
+{
+	LogMessage* p = new LogMessage(level, tp, msg);
+
+	EnterCriticalSection(&m_cs);
+
+	m_logBuffer.emplace_back(p, show);
+	if (m_logBuffer.size() == 1)
+	{
+		if (!SetTimer(IDT_FLUSHLOG, 100, nullptr))
+		{
+			m_logBuffer.pop_back();
+			delete p;
+		}
+	}
+
+	LeaveCriticalSection(&m_cs);
+}
+
 void CMainFrame::UpdateDocTitle()
 {
 	CDocManager* pDocManager = AfxGetApp()->m_pDocManager;
@@ -3738,6 +3852,70 @@ void CMainFrame::UpdateSystemMenu()
 	}
 	const bool bChecked = GetOptionsMgr()->GetBool(OPT_SHOW_MENUBAR);
 	pSysMenu->CheckMenuItem(ID_VIEW_MENU_BAR, MF_BYCOMMAND | (bChecked ? MF_CHECKED : MF_UNCHECKED));
+}
+
+void CMainFrame::ShowOutputPane(bool bShow)
+{
+	if (m_wndOutputBar.m_hWnd == nullptr)
+	{
+		EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+
+		FrameWndHelper::RemoveBarBorder(this);
+
+		String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
+		if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
+		{
+			TRACE0("Failed to create tab bar\n");
+			return;
+		}
+
+		if (!m_pOutputDoc)
+			m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
+
+		COutputView* pOutputView = new COutputView;
+		const DWORD dwStyle = AFX_WS_DEFAULT_VIEW & ~WS_BORDER;
+		pOutputView->Create(nullptr, nullptr, dwStyle, CRect(0, 0, 100, 40), &m_wndOutputBar, 200, nullptr);
+		m_pOutputDoc->AddView(pOutputView);
+		pOutputView->SendMessage(WM_INITIALUPDATE);
+
+		CEPoint pt{ 0, pOutputView->GetLineCount() - 1 };
+		pOutputView->SetCursorPos(pt);
+
+		m_wndOutputBar.SetBarStyle(m_wndOutputBar.GetBarStyle() | CBRS_SIZE_DYNAMIC | CBRS_ALIGN_BOTTOM);
+		m_wndOutputBar.EnableDocking(CBRS_ALIGN_TOP | CBRS_ALIGN_BOTTOM | CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+		CRect rc{ 0, 0, 0, 0 };
+		DockControlBar(&m_wndOutputBar);
+
+		CDockState pDockState;
+		pDockState.LoadState(_T("Settings-MainFrame"));
+		if (FrameWndHelper::EnsureValidDockState(this, pDockState)) // checks for valid so won't ASSERT
+			SetDockState(pDockState);
+		// for the dimensions of the diff and location pane, use the CSizingControlBar loader
+		m_wndOutputBar.LoadState(_T("Settings-MainFrame"));
+	}
+
+	__super::ShowControlBar(&m_wndOutputBar, bShow, 0);
+}
+/**
+ * @brief Save coordinates of the frame, splitters, and bars
+ *
+ * @note Do not save the maximized/restored state here. We are interested
+ * in the state of the active frame, and maybe this frame is not active
+ */
+void CMainFrame::SavePosition()
+{
+	if (m_wndOutputBar.m_hWnd != nullptr)
+	{
+		if (!m_wndOutputBar.IsVisible())
+			GetOptionsMgr()->SaveOption(OPT_SHOW_OUTPUTBAR, false);
+		// save the bars layout
+		// save docking positions and sizes
+		CDockState m_pDockState;
+		GetDockState(m_pDockState);
+		m_pDockState.SaveState(_T("Settings-MainFrame"));
+		// for the dimensions of the output pane, use the CSizingControlBar save
+		m_wndOutputBar.SaveState(_T("Settings-MainFrame"));
+	}	
 }
 
 void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)

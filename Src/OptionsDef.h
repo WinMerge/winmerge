@@ -10,6 +10,9 @@
 // User's language
 inline const String OPT_SELECTED_LANGUAGE{_T("Locale/LanguageId"s)};
 
+// Logging
+inline const String OPT_LOGGING {_T("Settings/Logging"s)};
+
 // View-menu
 inline const String OPT_SHOW_UNIQUE_LEFT {_T("Settings/ShowUniqueLeft"s)};
 inline const String OPT_SHOW_UNIQUE_MIDDLE {_T("Settings/ShowUniqueMiddle"s)};
@@ -31,6 +34,7 @@ inline const String OPT_SHOW_MENUBAR {_T("Settings/ShowMenubar"s)};
 inline const String OPT_SHOW_TOOLBAR {_T("Settings/ShowToolbar"s)};
 inline const String OPT_SHOW_STATUSBAR {_T("Settings/ShowStatusbar"s)};
 inline const String OPT_SHOW_TABBAR {_T("Settings/ShowTabbar"s)};
+inline const String OPT_SHOW_OUTPUTBAR {_T("Settings/ShowOutputbar"s)};
 inline const String OPT_REBAR_STATE {_T("Settings/ReBarState"s)};
 inline const String OPT_TOOLBAR_SIZE {_T("Settings/ToolbarSize"s)};
 inline const String OPT_RESIZE_PANES {_T("Settings/AutoResizePanes"s)};

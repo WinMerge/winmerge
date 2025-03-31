@@ -47,6 +47,7 @@
 #include <functional>
 #include <cassert>
 #include <ctime>
+#include <chrono>
 #include <boost/flyweight.hpp>
 
 /**

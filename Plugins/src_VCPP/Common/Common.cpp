@@ -6,6 +6,7 @@
 constexpr int DISPID_Translate = 1;
 constexpr int DISPID_GetOption = 2;
 constexpr int DISPID_SaveOption = 3;
+constexpr int DISPID_LogError = 6;
 
 static std::pair<CString, CString> SplitKeyValueName(BSTR bstrName)
 {
@@ -122,6 +123,17 @@ BSTR MergeApp_Translate(IDispatch* pDispatch, BSTR bstrText)
 	if (FAILED(hr))
 		return SysAllocString(bstrText);
 	return varResult.bstrVal;
+}
+
+HRESULT MergeApp_LogError(IDispatch* pDispatch, const CString& sMessage)
+{
+	if (!pDispatch)
+		return E_FAIL;
+	CComBSTR bstrText{ sMessage };
+	VARIANT varText{ VT_BSTR };
+	varText.bstrVal = bstrText;
+	CComDispatchDriver drv(pDispatch);
+	return drv.Invoke1(DISPID_LogError, &varText);
 }
 
 HRESULT MergeApp_SaveOptionString(IDispatch* pDispatch, const CString& sName, const CString& sValue)

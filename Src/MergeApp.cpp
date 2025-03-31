@@ -4,6 +4,7 @@
 #include "VersionInfo.h"
 #include "Constants.h"
 #include "unicoder.h"
+#include "Logger.h"
 
 // Get user language description of error, if available
 String GetSysError(int nerr /* =-1 */)
@@ -44,18 +45,13 @@ COptionsMgr * GetOptionsMgr()
 // Send message to log and debug window
 void LogErrorString(const String& sz)
 {
-	if (sz.empty()) return;
-	CString now = COleDateTime::GetCurrentTime().Format();
-	TRACE(_T("%s: %s\n"), (const tchar_t*)now, sz.c_str());
+	RootLogger::Error(sz);
 }
 
 // Send message to log and debug window
 void LogErrorStringUTF8(const std::string& sz)
 {
-	if (sz.empty()) return;
-	String str = ucr::toTString(sz);
-	CString now = COleDateTime::GetCurrentTime().Format();
-	TRACE(_T("%s: %s\n"), (const tchar_t*)now, str.c_str());
+	RootLogger::Error(sz);
 }
 
 /**
@@ -95,6 +91,7 @@ String tr(const char *msgctxt, const std::string &str)
 void AppErrorMessageBox(const String& msg)
 {
 	AppMsgBox::error(msg);
+	RootLogger::Error(msg);
 }
 
 void* AppGetMainHWND()

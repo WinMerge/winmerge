@@ -440,6 +440,9 @@ msgstr "매우 크게(&H)"
 msgid "Men&u Bar"
 msgstr "메뉴 표시줄(&U)"
 
+msgid "&Output Pane"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "상태 표시줄(&S)"
@@ -925,6 +928,9 @@ msgstr "차이점 패널(&P)"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "위치 패널(&C)"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -1442,6 +1448,9 @@ msgstr "사전 차이점 플러그인 추가(&P)..."
 
 msgid "&Duplicate Plugin..."
 msgstr "중복 플러그인(&D)..."
+
+msgid "Clear &All"
+msgstr ""
 
 #, c-format
 msgid "About WinMerge"
@@ -3220,6 +3229,13 @@ msgstr "%1개 차이점 발견"
 #, c-format
 msgid "1 Difference Found"
 msgstr "1개 차이점 발견"
+
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
 
 #. Abbreviation from "Read Only"
 #, c-format
@@ -5124,6 +5140,20 @@ msgstr ""
 "왼쪽으로 복사 및 진행 (Ctrl+Alt+⭠)\n"
 "(Ctrl+Alt+휠 ⭠)\n"
 "(Ctrl+Alt+Shift+휠 ⭡)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
+msgstr ""
 
 msgid "Prettification"
 msgstr "꾸미기"

@@ -386,6 +386,9 @@ msgstr "&Gigantesca"
 msgid "Men&u Bar"
 msgstr "Barra men&u"
 
+msgid "&Output Pane"
+msgstr ""
+
 msgid "&Status Bar"
 msgstr "&Barra stato"
 
@@ -763,6 +766,9 @@ msgstr "&Pannello differenze"
 
 msgid "Lo&cation Pane"
 msgstr "Pannello posi&zione"
+
+msgid "Output Pane"
+msgstr ""
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Conflitto &successivo\tAlt+Maiusc+Giù"
@@ -1206,6 +1212,9 @@ msgstr "Aggiungi plugin &pre-differenza..."
 
 msgid "&Duplicate Plugin..."
 msgstr "Plugin &duplicato..."
+
+msgid "Clear &All"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "Informazioni su WinMerge"
@@ -2683,6 +2692,13 @@ msgstr "%1 differenze trovate"
 
 msgid "1 Difference Found"
 msgstr "1 differenza trovata"
+
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -4469,6 +4485,20 @@ msgstr ""
 "Copia a sinistra e avanza (Ctrl+Alt+Sinistra)\n"
 "(Ctrl+Alt+Rotellina Sinistra)\n"
 "(Ctrl+Alt+Maiusc+Rotellina Su)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Abbellimento"

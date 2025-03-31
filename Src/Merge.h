@@ -16,6 +16,7 @@
 #define WMU_CHILDFRAMEACTIVATE					(WM_APP + 12)
 #define WMU_CHILDFRAMEACTIVATED					(WM_APP + 13)
 constexpr UINT_PTR IDT_UPDATEMAINMENU = 1;
+constexpr UINT_PTR IDT_FLUSHLOG = 2;
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
@@ -60,19 +61,22 @@ public:
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
+	CMultiDocTemplate* m_pOutputTemplate;
 	std::unique_ptr<CLanguageSelect> m_pLangDlg;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
+	LOGFONT m_lfDiff; /**< MergeView user-selected font */
+	LOGFONT m_lfDir; /**< DirView user-selected font */
 	bool m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
-	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
-	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
+	SyntaxColors* GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
+	CCrystalTextMarkers* GetMainMarkers() const { return m_pMarkers.get(); }
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
 
 	WORD GetLangId() const;
 	String GetLangName() const;
-	void SetIndicators(CStatusBar &, const UINT *, int) const;
+	void SetIndicators(CStatusBar&, const UINT*, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
@@ -87,6 +91,7 @@ public:
 	void AddToRecentProjectsMRU(const tchar_t* sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
+	int GetLastCompareResult() const { return m_nLastCompareResult; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper* GetGlobalFileFilter();
@@ -105,6 +110,7 @@ public:
 	CMultiDocTemplate* GetDiffTemplate();
 	CMultiDocTemplate* GetHexMergeTemplate();
 	CMultiDocTemplate* GetDirTemplate();
+	CMultiDocTemplate* GetOutputTemplate();
 
 	virtual UINT GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault) override;
 	virtual BOOL WriteProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nValue) override;

@@ -432,6 +432,9 @@ msgstr ""
 msgid "Men&u Bar"
 msgstr ""
 
+msgid "&Output Pane"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "&S ميله وضعيت "
@@ -917,6 +920,9 @@ msgstr "&P چهارگوش تفاوت "
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "&c چهارگوش مکان يابي "
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -1433,6 +1439,9 @@ msgid "Add &Prediffer Plugin..."
 msgstr ""
 
 msgid "&Duplicate Plugin..."
+msgstr ""
+
+msgid "Clear &All"
 msgstr ""
 
 #, c-format
@@ -3195,6 +3204,13 @@ msgstr " تفاوتهاي پيدا شده = %1"
 msgid "1 Difference Found"
 msgstr " يک تفاوت پيدا شد "
 
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
+
 #. Abbreviation from "Read Only"
 #, c-format
 msgid "RO"
@@ -4945,6 +4961,20 @@ msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ct
 msgstr ""
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
 msgstr ""
 
 msgid "Prettification"

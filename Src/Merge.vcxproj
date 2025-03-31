@@ -943,6 +943,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="EditPluginDlg.cpp" />
+    <ClCompile Include="FrameWndHelper.cpp" />
     <ClCompile Include="InternalPlugins.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -951,10 +952,21 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClInclude Include="FrameWndHelper.h" />
+    <ClInclude Include="Logger.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
     <ClCompile Include="MenuBar.cpp" />
     <ClCompile Include="MergeDocDiffCopy.cpp" />
     <ClCompile Include="MouseHook.cpp" />
     <ClCompile Include="MyReBar.cpp" />
+    <ClCompile Include="OutputBar.cpp" />
+    <ClCompile Include="OutputDoc.cpp" />
+    <ClCompile Include="OutputView.cpp" />
     <ClCompile Include="PropCompareWebPage.cpp" />
     <ClCompile Include="PropEditorCompareMerge.cpp" />
     <ClCompile Include="PropertySystem.cpp">
@@ -1442,15 +1454,6 @@
     <ClInclude Include="..\Externals\boost\boost\config.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\compiler\visualc.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\select_compiler_config.hpp" />
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest-printers.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\internal\gtest-port.h">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
@@ -1481,6 +1484,9 @@
     <ClInclude Include="IDirDoc.h" />
     <ClInclude Include="InternalPlugins.h" />
     <ClInclude Include="MyReBar.h" />
+    <ClInclude Include="OutputBar.h" />
+    <ClInclude Include="OutputDoc.h" />
+    <ClInclude Include="OutputView.h" />
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />

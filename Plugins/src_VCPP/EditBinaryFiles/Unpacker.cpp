@@ -4,6 +4,7 @@
 #include "Unpacker.h"
 #include "unicheck.h"
 #include "Setting.h"
+#include "Common.h"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ class Packer
 public:
 	static int HexValue(TCHAR uch);
 public:
-	Packer(LPCWSTR srcFilepath, LPCWSTR destFilepath);
+	Packer(LPCWSTR srcFilepath, LPCWSTR destFilepath, IDispatch* pDispatch);
 
 	bool Unpack();
 	bool Pack();
@@ -57,20 +58,21 @@ private:
 	StdFile m_out;
 	unicodingInfo m_uninfo;
 	unsigned char m_escape;
+	IDispatch* m_pMergeApp;
 };
 
-bool Unpack(LPCWSTR srcFilepath, LPCWSTR destFilepath)
+bool Unpack(LPCWSTR srcFilepath, LPCWSTR destFilepath, IDispatch* pDispatch)
 {
-	Packer pack(srcFilepath, destFilepath);
+	Packer pack(srcFilepath, destFilepath, pDispatch);
 	if (!pack.Unpack()) return false;
 	return true;
 }
 
 
 
-bool Pack(LPCWSTR srcFilepath, LPCWSTR destFilepath)
+bool Pack(LPCWSTR srcFilepath, LPCWSTR destFilepath, IDispatch* pMergeApp)
 {
-	Packer pack(srcFilepath, destFilepath);
+	Packer pack(srcFilepath, destFilepath, pMergeApp);
 	if (!pack.Pack()) return false;
 	return true;
 }
@@ -86,13 +88,15 @@ ValidEscape(TCHAR ch)
 	return true;
 }
 
-Packer::Packer(LPCWSTR srcFilepath, LPCWSTR destFilepath)
+Packer::Packer(LPCWSTR srcFilepath, LPCWSTR destFilepath, IDispatch* pDispatch)
 : m_srcFilepath(srcFilepath)
 , m_destFilepath(destFilepath)
+, m_pMergeApp(pDispatch)
 {
 	m_escape = '#';
 	TCHAR buff[2] = _T("#");
 	LPCTSTR settings = _T("Software\\Thingamahoochie\\WinMerge_Plugins\\EditBinaryFiles");
+
 	if (ReadSetting(settings, _T("EscapeChar"), buff, sizeof(buff)/sizeof(buff[0])))
 	{
 		if (buff[1] == 0 && ValidEscape(buff[0]))
@@ -347,6 +351,8 @@ Packer::LogError(LPCTSTR fmt, ...)
 	// so we can see error even tho logging not yet implemented
 	_vsntprintf(buffer, sizeof(buffer)/sizeof(buffer[0]), fmt, args);
 	va_end(args);
+
+	MergeApp_LogError(m_pMergeApp, buffer);
 
 	if (0)
 	{

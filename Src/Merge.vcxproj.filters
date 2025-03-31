@@ -753,6 +753,21 @@
     <ClCompile Include="Common\AccentColor.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OutputBar.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputView.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputDoc.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameWndHelper.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1388,15 +1403,6 @@
     <ClInclude Include="MergeAppCOMClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest-printers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\internal\gtest-port.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IDirDoc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1440,6 +1446,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\AccentColor.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputBar.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputView.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputDoc.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWndHelper.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

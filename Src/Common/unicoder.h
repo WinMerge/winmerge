@@ -97,6 +97,7 @@ void dealloc(void *ptr);
 
 String toTString(const std::wstring& str);
 String toTString(const std::string& str);
+String toTStringFromACP(const std::string& str);
 void toUTF16(const String& tstr, std::wstring& wstr);
 inline std::wstring toUTF16(const String& tstr)
 {

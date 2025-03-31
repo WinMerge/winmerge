@@ -17,11 +17,14 @@
 #include "MyReBar.h"
 #include "MenuBar.h"
 #include "MDITabBar.h"
+#include "OutputBar.h"
 #include "BasicFlatStatusBar.h"
 #include "PathContext.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "FileOpenFlags.h"
+#include "Logger.h"
+#include <Poco/Channel.h>
 
 class BCMenu;
 class CDirView;
@@ -40,6 +43,7 @@ class CMainFrame;
 class CImgMergeFrame;
 class CWebPageDiffFrame;
 class DirWatcher;
+class COutputDoc;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -135,8 +139,6 @@ public:
 // Attributes
 public:	
 	bool m_bShowErrors; /**< Show folder compare error items? */
-	LOGFONT m_lfDiff; /**< MergeView user-selected font */
-	LOGFONT m_lfDir; /**< DirView user-selected font */
 	static const tchar_t szClassName[];
 
 // Operations
@@ -227,6 +229,7 @@ public:
 	CMenuBar* GetMenuBar() { return &m_wndMenuBar; }
 	CToolBar* GetToolbar() { return &m_wndToolBar; }
 	static void WaitAndDoMessageLoop(bool& completed, int ms);
+	void OutputLog(Logger::LogLevel level, const std::chrono::system_clock::time_point& tp, const String& msg, bool show);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -255,7 +258,10 @@ protected:
 	CMenuBar m_wndMenuBar;
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
+	COutputBar m_wndOutputBar;
 	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
+	Poco::Channel::Ptr m_pLogChannel;
+	int m_logging;
 
 	// Tweak MDI client window behavior
 	class CMDIClient : public CWnd
@@ -343,6 +349,9 @@ protected:
 	DropHandler *m_pDropHandler;
 	std::unique_ptr<DirWatcher> m_pDirWatcher;
 	std::optional<bool> m_bTabsOnTitleBar;
+	COutputDoc* m_pOutputDoc;
+	std::vector<std::pair<LogMessage*, bool>> m_logBuffer;
+	CRITICAL_SECTION m_cs;
 
 // Generated message map functions
 protected:
@@ -438,6 +447,8 @@ protected:
 	afx_msg void OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI);
 	afx_msg void OnViewMenuBar();
 	afx_msg void OnUpdateViewMenuBar(CCmdUI* pCmdUI);
+	afx_msg void OnViewOutputBar();
+	afx_msg void OnUpdateViewOutputBar(CCmdUI* pCmdUI);
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
@@ -457,6 +468,9 @@ private:
 	HMENU NewMenu( int view, int ID );
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	void UpdateSystemMenu();
+	void ShowOutputPane(bool bShow);
+	void SavePosition();
+	void ProcessLog();
 	std::unique_ptr<WCHAR[]> m_upszLongTextW;
 	std::unique_ptr<CHAR[]> m_upszLongTextA;
 };

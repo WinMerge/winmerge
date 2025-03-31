@@ -432,6 +432,9 @@ msgstr "超大圖示 (&H)"
 msgid "Men&u Bar"
 msgstr ""
 
+msgid "&Output Pane"
+msgstr ""
+
 #, c-format
 msgid "&Status Bar"
 msgstr "狀態列 (&S)"
@@ -923,6 +926,9 @@ msgstr "差異窗格 (&P)"
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "位置窗格 (&P)"
+
+msgid "Output Pane"
+msgstr ""
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -1439,6 +1445,9 @@ msgid "Add &Prediffer Plugin..."
 msgstr ""
 
 msgid "&Duplicate Plugin..."
+msgstr ""
+
+msgid "Clear &All"
 msgstr ""
 
 #, c-format
@@ -3215,6 +3224,13 @@ msgstr "找到 %1 個差異"
 #, c-format
 msgid "1 Difference Found"
 msgstr "找到 1 個差異"
+
+#, c-format
+msgid "%1 Errors Found"
+msgstr ""
+
+msgid "1 Error Found"
+msgstr ""
 
 #. Abbreviation from "Read Only"
 #, c-format
@@ -5043,6 +5059,20 @@ msgstr "\n複製到右側後到下一個 (Ctrl+Alt+Right)\n(Ctrl+Alt+滾輪右�
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 msgstr "\n複製到左側後到下一個 (Ctrl+Alt+Left)\n(Ctrl+Alt+滾輪左滾)\n(Ctrl+Alt+Shift+滾輪上滾)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr ""
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr ""
+
+msgid "Comparison completed"
+msgstr ""
+
+msgid "File saved"
+msgstr ""
 
 msgid "Prettification"
 msgstr "美化"

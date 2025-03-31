@@ -362,6 +362,7 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
+        MENUITEM "&Output Pane",                ID_VIEW_OUTPUT_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
     END
     POPUP "&Tools"
@@ -509,6 +510,7 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
+        MENUITEM "&Output Pane",                ID_VIEW_OUTPUT_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
@@ -754,6 +756,7 @@ BEGIN
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
+        MENUITEM "Output Pane",                 ID_VIEW_OUTPUT_BAR
         MENUITEM SEPARATOR
         MENUITEM "Refresh\tF5",                 ID_REFRESH
     END
@@ -1318,6 +1321,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_OUTPUTVIEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
+        MENUITEM "Clear &All",                  ID_EDIT_CLEAR_ALL
+    END
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -3681,6 +3693,8 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
     IDS_1_DIFF_FOUND        "1 Difference Found"
+    IDS_NO_ERR_SEL_FMT      "%1 Errors Found"
+    IDS_1_ERR_FOUND         "1 Error Found"
     IDS_STATUSBAR_READONLY  "RO" //#. Abbreviation from "Read Only"
 END
 
@@ -4176,6 +4190,7 @@ STRINGTABLE
 BEGIN
     IDS_LOCBAR_CAPTION      "Location Pane"
     IDS_DIFFBAR_CAPTION     "Diff Pane"
+    IDS_OUTPUTBAR_CAPTION   "Output Pane"
 END
 
 // CREATE PATCH
@@ -4619,6 +4634,14 @@ END
 STRINGTABLE
 BEGIN
     IDS_VIEW_MENU_BAR      "Men&u Bar"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_LOG_COMPARE_2       "Comparing %1 with %2"
+    IDS_LOG_COMPARE_3       "Comparing %1 with %2 and %3"
+    IDS_LOG_COMPARE_RESULT  "Comparison completed"
+    IDS_LOG_FILE_SAVED      "File saved"
 END
 
 #endif    // English (United States) resources

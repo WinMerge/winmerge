@@ -17,6 +17,7 @@
 #include "MergeCmdLineInfo.h"
 #include "JumpList.h"
 #include "SuperComboBox.h"
+#include "Logger.h"
 #include "Merge.h"
 
 #ifdef _DEBUG
@@ -277,7 +278,7 @@ void PropShell::GetContextRegValues()
 	{
 		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
 			RegDir, retVal, GetSysError(retVal));
-		LogErrorString(msg);
+		RootLogger::Error(msg);
 		return;
 	}
 
@@ -320,7 +321,7 @@ void PropShell::SaveMergePath()
 	{
 		String msg = strutils::format(_T("Failed to open registry key HKCU/%s:\n\t%d : %s"),
 			RegDir, retVal, GetSysError(retVal));
-		LogErrorString(msg);
+		RootLogger::Error(msg);
 		return;
 	}
 
@@ -330,7 +331,7 @@ void PropShell::SaveMergePath()
 	{
 		String msg = strutils::format(_T("Failed to set registry value %s:\n\t%d : %s"),
 			f_RegValuePath, retVal, GetSysError(retVal));
-		LogErrorString(msg);
+		RootLogger::Error(msg);
 	}
 
 	// Determine bitmask for shell extension
@@ -355,7 +356,7 @@ void PropShell::SaveMergePath()
 	{
 		String msg = strutils::format(_T("Failed to set registry value %s to %d:\n\t%d : %s"),
 			f_RegValueEnabled, dwContextEnabled, retVal, GetSysError(retVal));
-		LogErrorString(msg);
+		RootLogger::Error(msg);
 	}
 }
 
