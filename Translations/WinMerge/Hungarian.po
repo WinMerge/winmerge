@@ -434,7 +434,7 @@ msgid "Men&u Bar"
 msgstr "Menü sáv"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "&Kimenet panel"
 
 #, c-format
 msgid "&Status Bar"
@@ -923,7 +923,7 @@ msgid "Lo&cation Pane"
 msgstr "Eltérések helye"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Kimenet panel"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -1443,7 +1443,7 @@ msgid "&Duplicate Plugin..."
 msgstr "Bővítmény &duplikálása..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "&Összes törlése"
 
 #, c-format
 msgid "About WinMerge"
@@ -3213,10 +3213,10 @@ msgstr "1 különbség található"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "%1 hiba található"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "1 hiba található"
 
 #. Abbreviation from "Read Only"
 #, c-format
@@ -5037,17 +5037,17 @@ msgstr "\nMásolás balra és előre (Ctrl+Alt+balra)\n(Ctrl+Alt+görgő balra)\
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "%1 összehasonlítása ezzel: %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "%1 összehasonlítása ezekkel: %2 és %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Összehasonlítás kész"
 
 msgid "File saved"
-msgstr ""
+msgstr "Fájl mentve"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
