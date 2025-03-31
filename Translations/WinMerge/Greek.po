@@ -387,16 +387,8 @@ msgid "&Edit"
 msgstr "&Επεξεργασία"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "Αντι&γραφή\tCtrl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Προ&σάρτηση\tCtrl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Επιλογή Ό&λων\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -559,6 +551,10 @@ msgstr "Δεξιό για Ανάγν&ωση μόνο"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Κωδικοσελίδα Αρχείου..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Επιλογή Ό&λων\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -793,6 +789,10 @@ msgstr "Επανάλη&ψη\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "Απο&κοπή\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "Αντι&γραφή\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

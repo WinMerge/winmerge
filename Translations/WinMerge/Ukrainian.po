@@ -372,16 +372,8 @@ msgid "&Edit"
 msgstr "&Редакція"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Копіювати\tCtrl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Вставити\tCtrl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "В&ибрати все\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -543,6 +535,10 @@ msgstr "Ф&айл справа лише для читання"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Кодування файлу..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "В&ибрати все\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -777,6 +773,10 @@ msgstr "Пов&ернути\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "Ви&різати\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Копіювати\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

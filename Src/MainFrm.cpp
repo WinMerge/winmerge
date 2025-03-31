@@ -75,6 +75,9 @@
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
 #include "FrameWndHelper.h"
+#include <Poco/Logger.h>
+#include <Poco/AsyncChannel.h>
+#include <Poco/SimpleFileChannel.h>
 
 #if !defined(SM_CXPADDEDBORDER)
 #define SM_CXPADDEDBORDER       92
@@ -381,6 +384,8 @@ CMainFrame::CMainFrame()
 , m_bShowErrors(false)
 , m_pDirWatcher(new DirWatcher())
 , m_pOutputDoc(nullptr)
+, m_pLogChannel(nullptr)
+, m_logging(GetOptionsMgr()->GetInt(OPT_LOGGING))
 {
 	InitializeCriticalSection(&m_cs);
 }
@@ -2422,20 +2427,34 @@ void CMainFrame::ProcessLog()
 	const bool bShow = std::any_of(m_logBuffer.begin(), m_logBuffer.end(),
 		[](const auto& msg) { return msg.second; });
 
-	if (bShow && m_wndOutputBar.m_hWnd == nullptr)
+	if (bShow && (m_wndOutputBar.m_hWnd == nullptr || !m_wndOutputBar.IsVisible()))
 		ShowOutputPane(true);
 
 	if (!m_pOutputDoc)
 		m_pOutputDoc = static_cast<COutputDoc*>(theApp.GetOutputTemplate()->CreateNewDocument());
 
+	if (m_logging > 0 && !m_pLogChannel)
+	{
+		Poco::Channel::Ptr pSimpleFileChannel= new Poco::SimpleFileChannel(
+			ucr::toUTF8(paths::ConcatPath(env::GetTemporaryPath(), _T("WinMerge.log"))));
+		m_pLogChannel = new Poco::AsyncChannel(pSimpleFileChannel);
+	}
+	
 	size_t size = 0;
 	for (const auto& msg : m_logBuffer)
-		size += msg.first->text.length() + 32;
+		size += msg.first->text.length() + 34;
 	String text;
 	text.reserve(size);
 	for (const auto& msg : m_logBuffer)
 	{
-		text += msg.first->format(pattern, true);
+		const String logline = msg.first->format(pattern, true);
+		text += logline + _T("\r\n");
+		if (m_logging > 0 && m_pLogChannel)
+		{
+			static const Poco::Message::Priority prio[] = { Poco::Message::PRIO_ERROR, Poco::Message::PRIO_WARNING, Poco::Message::PRIO_INFORMATION };
+			if (m_logging == 1 || (m_logging == 2 && msg.first->level <= Logger::LogLevel::WARN))
+				m_pLogChannel->log(Poco::Message("", ucr::toUTF8(logline), prio[static_cast<int>(msg.first->level)]));
+		}
 		delete msg.first;
 	}
 	m_logBuffer.clear();

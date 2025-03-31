@@ -349,14 +349,8 @@ msgstr "I&zhod\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Uredi"
 
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopiraj\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "&Prilepi\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "Izberi &vse\tCtrl+A"
 
 msgid "&Options..."
 msgstr "&Možnosti..."
@@ -483,6 +477,9 @@ msgstr "De&sno samo-za-branje"
 
 msgid "&File Encoding..."
 msgstr "De&kodiranje datoteke..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "Izberi &vse\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Prikaži &enake vnose"
@@ -669,6 +666,9 @@ msgstr "Po&vrni\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Iz&reži\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopiraj\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Najdi... \tCtrl+F"

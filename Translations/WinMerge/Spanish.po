@@ -352,14 +352,8 @@ msgstr "&Salir\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Editar"
 
-msgid "&Copy\tCtrl+C"
-msgstr "&Copiar\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "&Pegar\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "Seleccion&ar todo\tCtrl+A"
 
 msgid "&Options..."
 msgstr "C&onfiguración..."
@@ -486,6 +480,9 @@ msgstr "Derec&ho solo lectura"
 
 msgid "&File Encoding..."
 msgstr "Codi&ficación de archivo..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "Seleccion&ar todo\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Mostrar elementos &idénticos"
@@ -672,6 +669,9 @@ msgstr "&Rehacer\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Cor&tar\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "&Copiar\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Buscar...\tCtrl+F"

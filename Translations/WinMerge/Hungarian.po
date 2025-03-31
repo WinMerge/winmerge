@@ -390,16 +390,8 @@ msgid "&Edit"
 msgstr "S&zerkesztés"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Másolás\tCtrl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Beillesztés\tCtrl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Összes kijelölése\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -562,6 +554,10 @@ msgstr "Jobb oldal csak olvasható"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Fájl kódolás..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Összes kijelölése\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -796,6 +792,10 @@ msgstr "Még&is\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Kivágás\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Másolás\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

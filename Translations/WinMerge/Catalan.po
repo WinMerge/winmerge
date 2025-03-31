@@ -389,16 +389,8 @@ msgid "&Edit"
 msgstr "E&dita"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "C&opia\tControl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "Engan&xa\tControl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Selecciona-ho &tot\tControl+A"
 
 #, c-format
 msgid "&Options..."
@@ -561,6 +553,10 @@ msgstr "Fes la dre&ta de només lectura"
 #, c-format
 msgid "&File Encoding..."
 msgstr "Codificació de caràcters del &fitxer..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Selecciona-ho &tot\tControl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -795,6 +791,10 @@ msgstr "Re&fés\tControl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Retalla\tControl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "C&opia\tControl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

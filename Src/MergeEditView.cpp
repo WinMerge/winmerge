@@ -1292,6 +1292,8 @@ void CMergeEditView::OnEditUndo()
 		GetParentFrame()->SetActiveView(this, true);
 		if(CCrystalEditViewEx::DoEditUndo())
 		{
+			CMergeFrameCommon::LogUndo();
+
 			--pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_nThisPane);
 			pDoc->FlushAndRescan();
@@ -2477,6 +2479,8 @@ void CMergeEditView::OnEditRedo()
 		GetParentFrame()->SetActiveView(this, true);
 		if(CCrystalEditViewEx::DoEditRedo())
 		{
+			CMergeFrameCommon::LogRedo();
+
 			++pDoc->curUndo;
 			pDoc->UpdateHeaderPath(m_nThisPane);
 			pDoc->FlushAndRescan();

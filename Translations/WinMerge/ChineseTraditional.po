@@ -389,16 +389,8 @@ msgid "&Edit"
 msgstr "編輯 (&E)"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "複製 (&C)\tCtrl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "貼上 (&P)\tCtrl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "全選 (&A)\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -563,6 +555,10 @@ msgstr "右側唯讀 (&G)"
 #, c-format
 msgid "&File Encoding..."
 msgstr "檔案編碼 (&F)..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "全選 (&A)\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -797,6 +793,10 @@ msgstr "取消復原 (&R)\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "剪下 (&U)\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "複製 (&C)\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

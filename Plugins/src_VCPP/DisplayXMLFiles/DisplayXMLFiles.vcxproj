@@ -117,6 +117,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
+  <ImportGroup Label="Shared">
+    <Import Project="..\Common\Common.vcxitems" Label="Shared" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
@@ -138,7 +141,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -182,7 +185,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -224,7 +227,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -265,7 +268,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -307,7 +310,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;NDEBUG;WIN32;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -353,7 +356,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;NDEBUG;WIN32;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -396,7 +399,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;NDEBUG;WIN32;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -438,7 +441,7 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;NDEBUG;WIN32;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;XML_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

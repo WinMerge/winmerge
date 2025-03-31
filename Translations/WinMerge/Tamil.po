@@ -347,14 +347,8 @@ msgstr "வெளி& வெளியேறு\tCtrl+Q"
 msgid "&Edit"
 msgstr "&திருத்து"
 
-msgid "&Copy\tCtrl+C"
-msgstr "&நகலெடு\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "&ஒட்டு\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "&அனைத்தையும் தேர்ந்தெடு\tCtrl+A"
 
 msgid "&Options..."
 msgstr "&விருப்பங்கள்..."
@@ -481,6 +475,9 @@ msgstr "வல&வலது படிக்க மட்டும்"
 
 msgid "&File Encoding..."
 msgstr "&கோப்பு குறியாக்கம்..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "&அனைத்தையும் தேர்ந்தெடு\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "ஒரே மாதிரியான பொருட்களைக் காண்பி"
@@ -667,6 +664,9 @@ msgstr "&மீண்டும்\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Cu&t\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "&நகலெடு\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "F&ind...\tCtrl+F"

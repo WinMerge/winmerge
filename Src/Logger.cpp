@@ -37,5 +37,5 @@ String LogMessage::format(const String& dateTimePattern, bool milliseconds) cons
 	String msg = text;
 	strutils::replace(msg, _T("\n"), _T("\n  "));
 
-	return dateTimeStr + _T(" [") + levelStr + _T("] ") + msg + _T("\n");
+	return dateTimeStr + _T(" [") + levelStr + _T("] ") + msg;
 }

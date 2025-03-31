@@ -348,14 +348,8 @@ msgstr "&Avslutt\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Rediger"
 
-msgid "&Copy\tCtrl+C"
-msgstr "Ko&pier\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "&Lim inn\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "Me&rk alt\tCtrl+A"
 
 msgid "&Options..."
 msgstr "&Innstillinger..."
@@ -482,6 +476,9 @@ msgstr "H&øyre skrivebeskyttet"
 
 msgid "&File Encoding..."
 msgstr "Filko&ding..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "Me&rk alt\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Vis &identiske objekter"
@@ -668,6 +665,9 @@ msgstr "Ann&uler angre\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "&Klipp ut\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "Ko&pier\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "S&øk...\tCtrl+F"

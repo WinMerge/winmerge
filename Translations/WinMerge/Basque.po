@@ -391,16 +391,8 @@ msgid "&Edit"
 msgstr "&Editatu"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopiatu\tCtrl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Itsatsi\tCtrl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Hautatu &Denak\t Ctrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -563,6 +555,10 @@ msgstr "Eskuina Irakurri-bakarrik"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Agiria Kodeatzen..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Hautatu &Denak\t Ctrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -797,6 +793,10 @@ msgstr "Birre&gin\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Ebaki\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopiatu\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

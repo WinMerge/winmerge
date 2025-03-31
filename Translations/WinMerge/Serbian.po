@@ -386,16 +386,8 @@ msgid "&Edit"
 msgstr "Ур&еди"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "Умно&жи\tCtrl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Налепи\tCtrl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Изабери &све\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -558,6 +550,10 @@ msgstr "Само за читање - д&есна"
 #, c-format
 msgid "&File Encoding..."
 msgstr "Де&кодирање датотеке..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Изабери &све\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -792,6 +788,10 @@ msgstr "&Понови\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "Исе&ци\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "Умно&жи\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

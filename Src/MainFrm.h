@@ -24,6 +24,7 @@
 #include "OptionsMgr.h"
 #include "FileOpenFlags.h"
 #include "Logger.h"
+#include <Poco/Channel.h>
 
 class BCMenu;
 class CDirView;
@@ -259,6 +260,8 @@ protected:
 	CMDITabBar m_wndTabBar;
 	COutputBar m_wndOutputBar;
 	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
+	Poco::Channel::Ptr m_pLogChannel;
+	int m_logging;
 
 	// Tweak MDI client window behavior
 	class CMDIClient : public CWnd

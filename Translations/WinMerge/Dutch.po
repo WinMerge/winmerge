@@ -347,14 +347,8 @@ msgstr "Afsluiten\tCtrl+Q"
 msgid "&Edit"
 msgstr "Bewerken"
 
-msgid "&Copy\tCtrl+C"
-msgstr "Kopiëren\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "Plakken\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "Alles selecteren\tCtrl+A"
 
 msgid "&Options..."
 msgstr "Opties..."
@@ -481,6 +475,9 @@ msgstr "Rechts alleen-lezen"
 
 msgid "&File Encoding..."
 msgstr "Bestandscodering..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "Alles selecteren\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Identieke items weergeven"
@@ -667,6 +664,9 @@ msgstr "Opnieuw\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Knippen\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "Kopiëren\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Zoeken...\tCtrl+F"

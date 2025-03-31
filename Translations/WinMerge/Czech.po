@@ -388,16 +388,8 @@ msgid "&Edit"
 msgstr "Úpr&avy"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopírovat\tCtrl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Vložit\tCtrl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Vybr&at vše\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -560,6 +552,10 @@ msgstr "Pr&avý pouze pro čtení"
 #, c-format
 msgid "&File Encoding..."
 msgstr "Kódo&vání souborů"
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Vybr&at vše\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -794,6 +790,10 @@ msgstr "Znov&u\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "Vyj&mout\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopírovat\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

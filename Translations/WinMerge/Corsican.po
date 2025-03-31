@@ -351,14 +351,8 @@ msgstr "&Esce\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Mudificà"
 
-msgid "&Copy\tCtrl+C"
-msgstr "&Cupià\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "&Incullà\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "T&uttu selezziunà\tCtrl+A"
 
 msgid "&Options..."
 msgstr "&Ozzioni…"
@@ -485,6 +479,9 @@ msgstr "Schedariu à &diritta in lettura sola"
 
 msgid "&File Encoding..."
 msgstr "Cudi&ficazione di schedariu…"
+
+msgid "Select &All\tCtrl+A"
+msgstr "T&uttu selezziunà\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Affissà l’elementi &identichi"
@@ -671,6 +668,9 @@ msgstr "&Rifà\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "&Taglià\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "&Cupià\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Ri&cercà…\tCtrl+F"

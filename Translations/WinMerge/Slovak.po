@@ -349,14 +349,8 @@ msgstr "&Koniec\tCtrl+Q"
 msgid "&Edit"
 msgstr "&Upraviť"
 
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopírovať\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "&Prilepiť\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "Vybr&ať všetko\tCtrl+A"
 
 msgid "&Options..."
 msgstr "&Nastavenia..."
@@ -483,6 +477,9 @@ msgstr "&Pravý len na čítanie"
 
 msgid "&File Encoding..."
 msgstr "&Kódovanie súboru..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "Vybr&ať všetko\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Zobraziť &zhodné položky"
@@ -669,6 +666,9 @@ msgstr "&Vpred\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Vy&strihnúť\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopírovať\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Hľadať...\tCtrl+F"

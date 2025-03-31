@@ -24,9 +24,9 @@
 #include <stdio.h>
 #include "DisplayXMLFiles.h"
 #include "WinMergeScript.h"
+#include "Common.h"
 #include "expat.h"
 #include "expat_maps.h"
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript
@@ -314,11 +314,11 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 		// There was an error
 		// Give a warning and return without converting anything
 		char sError[1024];
-		sprintf(sError, "%s at line %d\n",
+		sprintf(sError, "The xml has an error: %s at line %d",
 			XML_ErrorString(XML_GetErrorCode(parser)),
 			XML_GetCurrentLineNumber(parser));
 		
-		::MessageBoxA(NULL, sError, "The xml has an error", MB_OK | MB_ICONWARNING | MB_SETFOREGROUND | MB_TOPMOST);
+		MergeApp_LogError(m_pMergeApp, sError);
 		XML_ParserFree(parser);
 		delete [] buf;
 		fclose(pInput);
@@ -351,4 +351,10 @@ STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
 {
 	*pbHandled = VARIANT_FALSE;
 	return E_NOTIMPL;
+}
+
+STDMETHODIMP CWinMergeScript::PluginOnEvent(int iEventType, IDispatch* pDispatch)
+{
+	m_pMergeApp = pDispatch;
+	return S_OK;
 }

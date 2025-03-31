@@ -10,6 +10,9 @@
 // User's language
 inline const String OPT_SELECTED_LANGUAGE{_T("Locale/LanguageId"s)};
 
+// Logging
+inline const String OPT_LOGGING {_T("Settings/Logging"s)};
+
 // View-menu
 inline const String OPT_SHOW_UNIQUE_LEFT {_T("Settings/ShowUniqueLeft"s)};
 inline const String OPT_SHOW_UNIQUE_MIDDLE {_T("Settings/ShowUniqueMiddle"s)};

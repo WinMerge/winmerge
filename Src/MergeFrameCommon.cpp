@@ -15,6 +15,7 @@
 #include "Logger.h"
 #include "CompareStats.h"
 #include "IMergeDoc.h"
+#include "cepoint.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -301,6 +302,40 @@ void CMergeFrameCommon::LogComparisonCompleted(const CompareStats& stats)
 void CMergeFrameCommon::LogFileSaved(const String& path)
 {
 	RootLogger::Info(_("File saved") + _T(": ") + path);
+}
+
+void CMergeFrameCommon::LogCopyDiff(int srcPane, int dstPane, int nDiff)
+{
+	RootLogger::Info(strutils::format(_T("Copy diff: pane %d to %d (hunk %d)"),
+		srcPane, dstPane, nDiff));
+}
+
+void CMergeFrameCommon::LogCopyLines(int srcPane, int dstPane, int firstLine, int lastLine)
+{
+	RootLogger::Info(strutils::format(_T("Copy lines: pane %d to %d (vline %d-%d)"),
+		srcPane, dstPane, firstLine, lastLine));
+}
+
+void CMergeFrameCommon::LogCopyInlineDiffs(int srcPane, int dstPane, int nDiff, int firstWordDiff, int lastWordDiff)
+{
+	RootLogger::Info(strutils::format(_T("Copy inline diffs: pane %d to %d (hunk %d, wdiff %d-%d)"),
+		srcPane, dstPane, nDiff, firstWordDiff, lastWordDiff));
+}
+
+void CMergeFrameCommon::LogCopyCharacters(int srcPane, int dstPane,  int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd)
+{
+	RootLogger::Info(strutils::format(_T("Copy chars: pane %d to %d (hunk %d, vline %d,%d-%d,%d)"),
+		srcPane, dstPane, nDiff, ptStart.y, ptStart.x, ptEnd.y, ptEnd.x));
+}
+
+void CMergeFrameCommon::LogUndo()
+{
+	RootLogger::Info(_("Undo"));
+}
+
+void CMergeFrameCommon::LogRedo()
+{
+	RootLogger::Info(_("Redo"));
 }
 
 String CMergeFrameCommon::GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer)

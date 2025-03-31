@@ -12,6 +12,8 @@
 #include "MergeEditView.h"
 #include "DiffList.h"
 #include "MergeLineFlags.h"
+#include "MergeFrameCommon.h"
+#include "Logger.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -581,6 +583,8 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		// reset the mod status of the source view because we do make some
 		// changes, but none that concern the source text
 		sbuf.SetModified(bSrcWasMod);
+
+		CMergeFrameCommon::LogCopyDiff(srcPane, dstPane, nDiff);
 	}
 
 	suppressRescan.Clear(); // done suppress Rescan
@@ -674,6 +678,8 @@ bool CMergeDoc::LineListCopy(int srcPane, int dstPane, int nDiff, int firstLine,
 	// reset the mod status of the source view because we do make some
 	// changes, but none that concern the source text
 	sbuf.SetModified(bSrcWasMod);
+
+	CMergeFrameCommon::LogCopyLines(srcPane, dstPane, firstLine, lastLine);
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
@@ -791,6 +797,8 @@ bool CMergeDoc::InlineDiffListCopy(int srcPane, int dstPane, int nDiff, int firs
 	// reset the mod status of the source view because we do make some
 	// changes, but none that concern the source text
 	sbuf.SetModified(bSrcWasMod);
+
+	CMergeFrameCommon::LogCopyInlineDiffs(srcPane, dstPane, nDiff, firstWordDiff, lastWordDiff);
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
@@ -1056,6 +1064,8 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 	// reset the mod status of the source view because we do make some
 	// changes, but none that concern the source text
 	sbuf.SetModified(bSrcWasMod);
+
+	CMergeFrameCommon::LogCopyCharacters(srcPane, dstPane,  nDiff, ptStart, ptEnd);
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();

@@ -350,14 +350,8 @@ msgstr "&خروج\tCtrl+Q"
 msgid "&Edit"
 msgstr "&تحرير"
 
-msgid "&Copy\tCtrl+C"
-msgstr "&نسخ"
-
 msgid "&Paste\tCtrl+V"
 msgstr "&لصق"
-
-msgid "Select &All\tCtrl+A"
-msgstr "&تحديد الكل\tCtrl+A"
 
 msgid "&Options..."
 msgstr "خ&يارات..."
@@ -484,6 +478,9 @@ msgstr "الجزء الأي&من للقراءة فقط"
 
 msgid "&File Encoding..."
 msgstr "ترمي&ز الملف..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "&تحديد الكل\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "عرض العناصر ال&متشابهة"
@@ -670,6 +667,9 @@ msgstr "&إعادة الأمر"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "&قص"
+
+msgid "&Copy\tCtrl+C"
+msgstr "&نسخ"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&بحث"

@@ -389,16 +389,8 @@ msgid "&Edit"
 msgstr "&Rediger"
 
 #, c-format
-msgid "&Copy\tCtrl+C"
-msgstr "Ko&pier\tCtrl+C"
-
-#, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "&Indsæt\tCtrl+V"
-
-#, c-format
-msgid "Select &All\tCtrl+A"
-msgstr "Vælg &alt\tCtrl+A"
 
 #, c-format
 msgid "&Options..."
@@ -561,6 +553,10 @@ msgstr "&Højre skrivebeskyttet"
 #, c-format
 msgid "&File Encoding..."
 msgstr "&Fil Kodning..."
+
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Vælg &alt\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -795,6 +791,10 @@ msgstr "&Gendan\tCtrl+Y"
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Klip\tCtrl+X"
+
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "Ko&pier\tCtrl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

@@ -24,6 +24,7 @@ import "ocidl.idl";
 		[id(7), helpstring("method UnpackFile")] HRESULT UnpackFile([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess);
 		[id(8), helpstring("method PackFile")] HRESULT PackFile([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT pSubcode, [out, retval] VARIANT_BOOL * pbSuccess);
 		[id(9), helpstring("method ShowSettingsDialog")] HRESULT ShowSettingsDialog([out, retval] VARIANT_BOOL * pbHandled);
+		[id(10), helpstring("method PluginOnEvent")] HRESULT PluginOnEvent([in] int iEventType, [in] IDispatch* pDispatch);
 	};
 
 [

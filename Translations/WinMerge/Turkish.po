@@ -348,14 +348,8 @@ msgstr "Çı&kış\tCtrl+Q"
 msgid "&Edit"
 msgstr "Düz&enle"
 
-msgid "&Copy\tCtrl+C"
-msgstr "&Kopyala\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "Ya&pıştır\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "&Tümünü seç\tCtrl+A"
 
 msgid "&Options..."
 msgstr "&Ayarlar..."
@@ -482,6 +476,9 @@ msgstr "S&ağ salt okunur olsun"
 
 msgid "&File Encoding..."
 msgstr "&Dosya kodlaması..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "&Tümünü seç\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Aynı ögeleri &görüntüle"
@@ -668,6 +665,9 @@ msgstr "Yi&nele\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "K&es\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopyala\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Bul...\tCtrl+F"

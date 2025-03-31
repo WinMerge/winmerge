@@ -26,6 +26,14 @@
 #include "Path.cpp"
 // Hashing
 #include "Hash.cpp"
+// Logging
+#include "AsyncChannel.cpp"
+#include "Channel.cpp"
+#include "LogFile.cpp"
+#include "LoggingRegistry.cpp"
+#include "SimpleFileChannel.cpp"
+#include "Message.cpp"
+#include "Configurable.cpp"
 // Notifications
 #include "AbstractObserver.cpp"
 #include "Notification.cpp"

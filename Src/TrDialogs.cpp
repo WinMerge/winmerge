@@ -34,26 +34,6 @@ BOOL CTrDialog::OnInitDialog()
 	return TRUE;
 }
 
-static String makeLogString(const String& prompt, int result)
-{
-	const std::vector<String> Answers = {
-		_T(""),
-		_("OK"),
-		_("Cancel"),
-		_("Abort"),
-		_("Retry"),
-		_("Ignore"),
-		_("Yes"),
-		_("No"),
-		_("Close"),
-		_("Help"),
-		_("Try Again"),
-		_("Continue"),
-	};
-	String msg = prompt + _T(": ") + Answers[result];
-	return msg;
-}
-
 void CTrDialog::OnOK()
 {
 	RootLogger::Info(GetTitleText() + _T(": ") + _("OK"));

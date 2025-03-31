@@ -346,14 +346,8 @@ msgstr "צא\tCtrl+Q"
 msgid "&Edit"
 msgstr "עריכה"
 
-msgid "&Copy\tCtrl+C"
-msgstr "העתק\tCtrl+C"
-
 msgid "&Paste\tCtrl+V"
 msgstr "הדבק\tCtrl+V"
-
-msgid "Select &All\tCtrl+A"
-msgstr "בחר הכול\tCtrl+A"
 
 msgid "&Options..."
 msgstr "אפשרויות..."
@@ -480,6 +474,9 @@ msgstr "ימין לקריאה בלבד"
 
 msgid "&File Encoding..."
 msgstr "קידוד קובץ..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "בחר הכול\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "הצג פריטים זהים"
@@ -666,6 +663,9 @@ msgstr "בצע שוב\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "גזור\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "העתק\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "חפש...\tCtrl+F"

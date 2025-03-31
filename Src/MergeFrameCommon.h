@@ -14,6 +14,7 @@ class PackingInfo;
 class CompareStats;
 struct FileLocation;
 struct IMergeDoc;
+struct CEPoint;
 
 class CMergeFrameCommon: public CMDIChildWnd
 {
@@ -34,6 +35,12 @@ public:
 	static void LogComparisonCompleted(const IMergeDoc& mergeDoc);
 	static void LogComparisonCompleted(const CompareStats& stats);
 	static void LogFileSaved(const String& path);
+	static void LogCopyDiff(int srcPane, int dstPane, int nDiff);
+	static void LogCopyLines(int srcPane, int dstPane, int firstLine, int lastLine);
+	static void LogCopyInlineDiffs(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine);
+	static void LogCopyCharacters(int srcPane, int dstPane,  int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd);
+	static void LogUndo();
+	static void LogRedo();
 	static void ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI);
 	static std::pair<int, int> MenuIDtoXY(UINT nID, int nActivePane, int nBuffers);
 	void SaveWindowState();
