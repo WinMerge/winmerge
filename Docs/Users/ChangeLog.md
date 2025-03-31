@@ -9,6 +9,7 @@
     (#2668)
 - Reduced flickering of title bar buttons and the status bar.
 - Rewrite English.pot, add JXL image extension (PR #2682)
+- Add Output Pane for Logs and Messages (PR #2663)
 
 ### File compare
 
@@ -50,7 +51,8 @@
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR #2675,#2688)
+  - Brazilian (PR #2675,#2688,#2697)
+  - Chinese Simplified (PR #2700) 
   - Corsican (PR #2632,#2676)
   - Hebrew (PR #2673)
   - Italian (PR #2689,#2689)
