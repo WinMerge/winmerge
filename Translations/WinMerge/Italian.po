@@ -768,7 +768,7 @@ msgid "Lo&cation Pane"
 msgstr "Pannello posi&zione"
 
 msgid "Output Pane"
-msgstr "pannello output"
+msgstr "Pannello output"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Conflitto &successivo\tAlt+Maiusc+Giù"
@@ -1214,7 +1214,7 @@ msgid "&Duplicate Plugin..."
 msgstr "Plugin &duplicato..."
 
 msgid "Clear &All"
-msgstr "&azzera tutto"
+msgstr "&Azzera tutto"
 
 msgid "About WinMerge"
 msgstr "Informazioni su WinMerge"
@@ -2695,7 +2695,7 @@ msgstr "1 differenza trovata"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr "Trovati 51 errori"
+msgstr "Trovati %1 errori"
 
 msgid "1 Error Found"
 msgstr "Trovato 1 errore"
