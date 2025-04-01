@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2025-03-26 22:45-0300\n"
+"PO-Revision-Date: 2025-03-31 22:45-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -386,7 +386,7 @@ msgid "Men&u Bar"
 msgstr "Barra de Men&u"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "Tela de Resultad&os"
 
 msgid "&Status Bar"
 msgstr "&Barra de Status"
@@ -767,7 +767,7 @@ msgid "Lo&cation Pane"
 msgstr "Pa&inel de Localização"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Tela de Resultados"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Pr&óximo Conflito\tAlt+Shift+Pra Baixo"
@@ -1213,7 +1213,7 @@ msgid "&Duplicate Plugin..."
 msgstr "&Duplicar Plugin..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "Limp&ar Tudo"
 
 msgid "About WinMerge"
 msgstr "Sobre o WinMerge"
@@ -2584,10 +2584,10 @@ msgstr "1 Diferença Achada"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "%1 Erros Encontrados"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "1 Erro Encontrado"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -4029,17 +4029,17 @@ msgstr "\nCopiar para a Esquerda e Avançar (Ctrl+Alt+Esquerda)\n(Ctrl+Alt+Rolag
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Comparando %1 com %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Comparando %1 com %2 e %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Comparação finalizada"
 
 msgid "File saved"
-msgstr ""
+msgstr "Arquivo salvo"
 
 msgid "Prettification"
 msgstr "Embelezamento"
