@@ -22,6 +22,7 @@
 #include "SyntaxColors.h"
 #include "MergeCmdLineInfo.h"
 #include "editcmd.h"
+#include "ClipBoard.h"
 #include "gtest/gtest.h"
 
 String getProjectRoot()
@@ -289,6 +290,177 @@ TEST(FileCompare, LastLineEOL)
 	pFrame->PostMessage(WM_CLOSE);
 	dlg.SetFormerResult(nPrevFormerResult);
 	dlg2.SetFormerResult(nPrevFormerResult2);
+}
+
+bool PutToClipboard2(const String& text, HWND hwnd)
+{
+	bool result = false;
+	for (int i = 0; i < 10; ++i)
+	{
+		SetFocus(hwnd);
+		result = PutToClipboard(text, hwnd);
+		EXPECT_EQ(true, result);
+		if (result)
+			break;
+		Sleep(10);
+	}
+	return result;
+}
+
+TEST(FileCompare, Issue2702)
+{
+	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
+	EXPECT_TRUE(GetMainFrame()->DoFileNew(ID_MERGE_COMPARE_TEXT, 2));
+	CFrameWnd* pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_NE(nullptr, pFrame);
+	if (pFrame == nullptr)
+		return;
+	CMergeDoc* pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	EXPECT_NE(nullptr, pDoc);
+	if (pDoc == nullptr)
+		return;
+	CMergeEditView *pViewLeft = pDoc->GetView(0, 0);
+	String text = _T("aaa\r\nbbb\r\nccc\r\n");
+	EXPECT_EQ(true, PutToClipboard2(text, pViewLeft->m_hWnd));
+	pViewLeft->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+	pViewLeft->SendMessage(WM_COMMAND, ID_REFRESH);
+	for (int l = 0; l < 4; ++l)
+	{
+		EXPECT_EQ(1, pDoc->GetDiffCount());
+		CMergeEditView *pView = pDoc->GetView(0, 1);
+		pView->SetCursorPos({ 0, l });
+		pView->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+		pView->SendMessage(WM_COMMAND, ID_REFRESH);
+		EXPECT_EQ(0, pDoc->GetDiffCount());
+		pView->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	}
+	pViewLeft->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	pFrame->PostMessage(WM_CLOSE);
+	dlg.SetFormerResult(nPrevFormerResult);
+}
+
+TEST(FileCompare, Issue2702_2)
+{
+	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
+	EXPECT_TRUE(GetMainFrame()->DoFileNew(ID_MERGE_COMPARE_TEXT, 2));
+	CFrameWnd* pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_NE(nullptr, pFrame);
+	if (pFrame == nullptr)
+		return;
+	CMergeDoc* pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	EXPECT_NE(nullptr, pDoc);
+	if (pDoc == nullptr)
+		return;
+	CMergeEditView *pViewLeft = pDoc->GetView(0, 0);
+	String text = _T("aaa\r\nbbb\r\nccc\r\nddd\r\n");
+	EXPECT_EQ(true, PutToClipboard2(text, pViewLeft->m_hWnd));
+	pViewLeft->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+	CMergeEditView *pViewRight = pDoc->GetView(0, 1);
+	text = _T("ddd\r\n");
+	EXPECT_EQ(true, PutToClipboard2(text, pViewRight->m_hWnd));
+	pViewRight->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+	pViewRight->SendMessage(WM_COMMAND, ID_REFRESH);
+	for (int l = 0; l < 4; ++l)
+	{
+		EXPECT_EQ(1, pDoc->GetDiffCount()) << "l=" << l;
+		pViewRight->SetCursorPos({ 0, l });
+		text = _T("aaa\r\nbbb\r\nccc\r\n");
+		EXPECT_EQ(true, PutToClipboard2(text, pViewRight->m_hWnd));
+		pViewRight->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+		pViewRight->SendMessage(WM_COMMAND, ID_REFRESH);
+		CString left, right;
+		pViewLeft->GetTextWithoutEmptys(0, 0, pViewLeft->GetLineCount() - 1, 0, left);
+		pViewRight->GetTextWithoutEmptys(0, 0, pViewRight->GetLineCount() - 1, 0, right);
+		ASSERT_EQ(0, pDoc->GetDiffCount()) << "l=" << l << " left=" << (const tchar_t*)left << " right=" << (const tchar_t*)right;
+		pViewRight->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	}
+	pViewLeft->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	pFrame->PostMessage(WM_CLOSE);
+	dlg.SetFormerResult(nPrevFormerResult);
+}
+
+TEST(FileCompare, Issue2702_3)
+{
+	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
+	EXPECT_TRUE(GetMainFrame()->DoFileNew(ID_MERGE_COMPARE_TEXT, 2));
+	CFrameWnd* pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_NE(nullptr, pFrame);
+	if (pFrame == nullptr)
+		return;
+	CMergeDoc* pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	EXPECT_NE(nullptr, pDoc);
+	if (pDoc == nullptr)
+		return;
+	CMergeEditView *pViewLeft = pDoc->GetView(0, 0);
+	String text = _T("aaa\r\nbbb\r\nccc\r\nddd\r\n");
+	EXPECT_EQ(true, PutToClipboard2(text, pViewLeft->m_hWnd));
+	pViewLeft->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+	CMergeEditView *pViewRight = pDoc->GetView(0, 1);
+	text = _T("aaa\r\n");
+	EXPECT_EQ(true, PutToClipboard2(text, pViewRight->m_hWnd));
+	pViewRight->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+	pViewRight->SendMessage(WM_COMMAND, ID_REFRESH);
+	for (int l = 1; l < 5; ++l)
+	{
+		EXPECT_EQ(1, pDoc->GetDiffCount()) << "l=" << l;
+		pViewRight->SetCursorPos({ 0, l });
+		text = _T("bbb\r\nccc\r\nddd\r\n");
+		EXPECT_EQ(true, PutToClipboard2(text, pViewRight->m_hWnd));
+		pViewRight->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+		pViewRight->SendMessage(WM_COMMAND, ID_REFRESH);
+		CString left, right;
+		pViewLeft->GetTextWithoutEmptys(0, 0, pViewLeft->GetLineCount() - 1, 0, left);
+		pViewRight->GetTextWithoutEmptys(0, 0, pViewRight->GetLineCount() - 1, 0, right);
+		ASSERT_EQ(0, pDoc->GetDiffCount()) << "l=" << l << " left=" << (const tchar_t*)left << " right=" << (const tchar_t*)right;
+		pViewRight->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	}
+	pViewLeft->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	pFrame->PostMessage(WM_CLOSE);
+	dlg.SetFormerResult(nPrevFormerResult);
+}
+
+TEST(FileCompare, Issue2702_4)
+{
+	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
+	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);
+	EXPECT_TRUE(GetMainFrame()->DoFileNew(ID_MERGE_COMPARE_TEXT, 2));
+	CFrameWnd* pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_NE(nullptr, pFrame);
+	if (pFrame == nullptr)
+		return;
+	CMergeDoc* pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	EXPECT_NE(nullptr, pDoc);
+	if (pDoc == nullptr)
+		return;
+	CMergeEditView *pViewLeft = pDoc->GetView(0, 0);
+	String text = _T("aaa\r\nbbb\r\nccc\r\nddd\r\neee\r\n");
+	EXPECT_EQ(true, PutToClipboard2(text, pViewLeft->m_hWnd));
+	pViewLeft->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+	CMergeEditView *pViewRight = pDoc->GetView(0, 1);
+	text = _T("aaa\r\neee\r\n");
+	EXPECT_EQ(true, PutToClipboard2(text, pViewRight->m_hWnd));
+	pViewRight->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+	pViewRight->SendMessage(WM_COMMAND, ID_REFRESH);
+	for (int l = 1; l < 5; ++l)
+	{
+		EXPECT_EQ(1, pDoc->GetDiffCount()) << "l=" << l;
+		pViewRight->SetCursorPos({ 0, l });
+		text = _T("bbb\r\nccc\r\nddd\r\n");
+		EXPECT_EQ(true, PutToClipboard2(text, pViewRight->m_hWnd));
+		pViewRight->SendMessage(WM_COMMAND, ID_EDIT_PASTE);
+		pViewRight->SendMessage(WM_COMMAND, ID_REFRESH);
+		CString left, right;
+		pViewLeft->GetTextWithoutEmptys(0, 0, pViewLeft->GetLineCount() - 1, 0, left);
+		pViewRight->GetTextWithoutEmptys(0, 0, pViewRight->GetLineCount() - 1, 0, right);
+		ASSERT_EQ(0, pDoc->GetDiffCount()) << "l=" << l << " left=" << (const tchar_t*)left << " right=" << (const tchar_t*)right;
+		pViewRight->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	}
+	pViewLeft->SendMessage(WM_COMMAND, ID_EDIT_UNDO);
+	pFrame->PostMessage(WM_CLOSE);
+	dlg.SetFormerResult(nPrevFormerResult);
 }
 
 TEST(FolderCompare, IgnoreEOL)
