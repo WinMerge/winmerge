@@ -2326,10 +2326,10 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Backup Files"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,6,269,10
+    LTEXT           "Create backup files for:",IDC_STATIC,7,6,269,10
     CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,259,10
     CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,259,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,42,269,10
+    LTEXT           "Create backup files in:",IDC_STATIC,7,42,269,10
     CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,54,259,10
     CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",BS_AUTORADIOBUTTON,17,66,259,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,78,195,14,ES_AUTOHSCROLL | WS_GROUP
