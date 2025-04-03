@@ -2474,7 +2474,7 @@ msgid "Backup Files"
 msgstr "Εφεδρικά Αρχεία"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Δημιουργία εφεδρικών αρχείων ενώ γίνεται:"
 
 #, c-format
@@ -2486,7 +2486,7 @@ msgid "Fil&e compare"
 msgstr "Σύγκριση &Αρχείων"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Δημιουργία εφεδρικών αρχείων εντός:"
 
 #, c-format

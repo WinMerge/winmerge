@@ -2492,9 +2492,8 @@ msgstr "Caractère de citation :"
 msgid "Backup Files"
 msgstr "Fichiers d'archive"
 
-#, c-format
-msgid "Create backup files in:"
-msgstr "Créer les fichiers d'archive sous :"
+msgid "Create backup files for:"
+msgstr ""
 
 #, c-format
 msgid "&Folder compare"
@@ -2505,8 +2504,8 @@ msgid "Fil&e compare"
 msgstr "Comparaison de &fichiers"
 
 #, c-format
-msgid "Create backup files into:"
-msgstr "Créer les fichiers d'archive dans :"
+msgid "Create backup files in:"
+msgstr "Créer les fichiers d'archive sous :"
 
 #, c-format
 msgid "&Original file's folder"

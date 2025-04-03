@@ -2031,7 +2031,7 @@ msgstr ""
 msgid "Backup Files"
 msgstr ""
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr ""
 
 msgid "&Folder compare"
@@ -2040,7 +2040,7 @@ msgstr ""
 msgid "Fil&e compare"
 msgstr ""
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr ""
 
 msgid "&Original file's folder"

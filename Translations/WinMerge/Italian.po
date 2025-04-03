@@ -2050,7 +2050,7 @@ msgstr "Carattere &virgolette:"
 msgid "Backup Files"
 msgstr "File di backup"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Crea copie di backup in:"
 
 msgid "&Folder compare"
@@ -2059,7 +2059,7 @@ msgstr "Confron&to tra cartelle"
 msgid "Fil&e compare"
 msgstr "Confronto tra &file"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Crea copie di backup in:"
 
 msgid "&Original file's folder"

@@ -2039,7 +2039,7 @@ msgstr "Символ кавычки:"
 msgid "Backup Files"
 msgstr "Резервные копии"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Создавать резервные файлы при:"
 
 msgid "&Folder compare"
@@ -2048,7 +2048,7 @@ msgstr "Сравнении &папок"
 msgid "Fil&e compare"
 msgstr "Сравнении &файлов"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Создавать резервные файлы в:"
 
 msgid "&Original file's folder"

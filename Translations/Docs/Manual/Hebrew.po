@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-03-13 08:29+0900\n"
+"POT-Creation-Date: 2025-04-04 08:10+0900\n"
 "PO-Revision-Date: 2025-03-13 09:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -3922,9 +3922,9 @@ msgstr ""
 msgid ""
 "If the selection occurs on both sides, you can choose either the "
 "<guimenu>Left Shell Menu</guimenu> or <guimenu>Right Shell Menu</guimenu>.  "
-"If the selection occurs on all sides, you can choose the <guimenu>Left shell "
-"menu</guimenu>, <guimenu>Middle Shell Menu</guimenu> or <guimenu>Right shell "
-"menu</guimenu>. If the item occurs only on one side, only that side's shell "
+"If the selection occurs on all sides, you can choose the <guimenu>Left Shell "
+"Menu</guimenu>, <guimenu>Middle Shell Menu</guimenu> or <guimenu>Right Shell "
+"Menu</guimenu>. If the item occurs only on one side, only that side's shell "
 "menu is available."
 msgstr ""
 "אם הבחירה מתרחשת בשני הצדדים, אתה יכול לבחור בתפריט <guimenu>מעטפת שמאלית</"
@@ -5566,8 +5566,8 @@ msgstr "<guilabel>Ch</guilabel> סופר טאבים כתווי טאב בודדי
 #: English/Compare_files.xml:1047
 msgid ""
 "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only "
-"when the <guilabel>Preserve original EOL</guilabel> option is enabled "
-"in the Editor page of WinMerge options)."
+"when the <guilabel>Preserve original EOL </guilabel> option is enabled in "
+"the Editor page of WinMerge options)."
 msgstr ""
 "<guilabel>EOL</guilabel>: סגנון הזנת שורה של השורה הנוכחית (מוצג רק כאשר "
 "האפשרות <guilabel>שמור על תווי EOL מקוריים</guilabel> מופעלת בדף עורך של "
@@ -7965,13 +7965,13 @@ msgstr ""
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:320
 msgid ""
-"<option>Allow only one instance to run and wait for the instance to "
-"terminate</option>: Similar to the \"Allow only one instance to run\" "
-"option, this setting restricts WinMerge to a single application window. "
-"However, it also ensures that the WinMerge process does not terminate until "
-"the application window is closed. This is useful for situations where "
-"external applications, like SourceTree, need to wait for WinMerge to finish "
-"before they can safely delete temporary files."
+"<option>Allow only one instance; wait for termination</option>: Similar to "
+"the \"Allow only one instance to run\" option, this setting restricts "
+"WinMerge to a single application window. However, it also ensures that the "
+"WinMerge process does not terminate until the application window is closed. "
+"This is useful for situations where external applications, like SourceTree, "
+"need to wait for WinMerge to finish before they can safely delete temporary "
+"files."
 msgstr ""
 "<option>אפשר להפעיל מופע אחד בלבד והמתן עד שהמופע יסתיים</option>: בדומה "
 "לאפשרות \"אפשר להפעיל מופע אחד בלבד\", הגדרה זו מגבילה את WinMerge לחלון "
@@ -9107,8 +9107,7 @@ msgstr "הרחב תיקיות משנה"
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1268
 msgid ""
-"Expand subfolders after comparison<placeholder "
-"type=\"indexterm\" id=\"0\"/>"
+"Expand subfolders after comparison<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "הרחב אוטומטית תיקיות משנה לאחר השוואה<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -9222,8 +9221,8 @@ msgstr "מגבלה"
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1352
 msgid ""
-"Switch to quick compare when size exceeds (MB)<placeholder type=\"indexterm\" "
-"id=\"0\"/>"
+"Switch to quick compare when size exceeds (MB)<placeholder "
+"type=\"indexterm\" id=\"0\"/>"
 msgstr "סף למעבר להשוואה מהירה (MB)<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -9882,8 +9881,8 @@ msgstr "סוף שורה"
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1789
 msgid ""
-"Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/"
-"><placeholder type=\"indexterm\" id=\"1\"/>"
+"Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
+"type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "שמור תווי EOL מקוריים<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -10657,7 +10656,7 @@ msgstr "דף זה מאפשר לך לשלוט כיצד WinMerge יוצר קבצי
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2500
-msgid "Create backup files in"
+msgid "Create backup files for"
 msgstr "צור קבצי גיבוי ב"
 
 #. type: Content of: <article><section><section><para>
@@ -10689,7 +10688,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2526
-msgid "Create backup files into"
+msgid "Create backup files in"
 msgstr "צור קבצי גיבוי אל"
 
 #. type: Content of: <article><section><section><para>
@@ -17074,7 +17073,7 @@ msgstr ""
 
 #. type: Content of: <article><section><title>
 #: English/Plugins.xml:110
-msgid "Suggested Plugins and automatic modes"
+msgid "Suggested plugins and automatic modes"
 msgstr "תוספים מוצעים ומצבים אוטומטיים"
 
 #. type: Content of: <article><section><para>
@@ -17110,9 +17109,9 @@ msgstr ""
 #: English/Plugins.xml:125
 msgid ""
 "When you apply plugins to a selected file using automatic mode, WinMerge "
-"searches its list of Suggested Plugins for that file type, and applies the "
+"searches its list of suggested plugins for that file type, and applies the "
 "first plugin whose name matches. The search is performed in alphabetical "
-"order, so if there are multiple Suggested Plugins for a file type, only the "
+"order, so if there are multiple suggested plugins for a file type, only the "
 "first one found is applied."
 msgstr ""
 "כשאתה מחיל תוספים על קובץ נבחר באמצעות מצב אוטומטי, WinMerge מחפש ברשימת "
@@ -17472,7 +17471,7 @@ msgstr "החלת תוספי מבדל מראש בחלון השוואת הקבצי
 msgid ""
 "In the File Compare window, you can apply a prediffer plugin by clicking "
 "<menuchoice> <guimenu>Plugins</guimenu> <guisubmenu>Prediffer</guisubmenu> </"
-"menuchoice> and choosing one of the plugins in the list. Suggested Plugins "
+"menuchoice> and choosing one of the plugins in the list. Suggested plugins "
 "are indicated at the top of the list. The files are compared again after the "
 "plugin is applied, so you don't need to rescan the files."
 msgstr ""
@@ -19637,7 +19636,7 @@ msgstr "לחץ על תיבת הבחירה ובחר נתיב ששימש בעבר.
 #: English/Quick_start.xml:135
 msgid ""
 "To make it easier to select frequently-used paths, consider enabling the "
-"<guilabel>Open dialog Auto completion</guilabel> option. With this option, "
+"<guilabel>Open-dialog Auto-completion</guilabel> option. With this option, "
 "WinMerge shows a list of paths available as you type in the fields. See "
 "<xref linkend=\"Configuration\" /> for details."
 msgstr ""
@@ -21089,7 +21088,7 @@ msgstr ""
 #. type: Content of: <section><orderedlist><listitem><itemizedlist><listitem><para>
 #: English/select_unpacker.xml:23
 msgid ""
-"By default, this control lists only Suggested Plugins for the file type you "
+"By default, this control lists only suggested plugins for the file type you "
 "selected to compare. To see all available plugins, enable the option, "
 "<guilabel>Display all packers, don't check the extension</guilabel>."
 msgstr ""

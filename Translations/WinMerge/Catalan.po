@@ -2484,7 +2484,7 @@ msgid "Backup Files"
 msgstr "Fitxers de còpia de seguretat"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Crea els fitxers de còpia de seguretat en:"
 
 #, c-format
@@ -2496,7 +2496,7 @@ msgid "Fil&e compare"
 msgstr "Comparació de &fitxers"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Crea els fitxers de còpia de seguretat a:"
 
 #, c-format

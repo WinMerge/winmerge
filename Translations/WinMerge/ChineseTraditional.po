@@ -2494,7 +2494,7 @@ msgid "Backup Files"
 msgstr "備份檔案"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "產生備份檔於："
 
 #, c-format
@@ -2506,7 +2506,7 @@ msgid "Fil&e compare"
 msgstr "比較檔案時 (&E)"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "產生備份檔至："
 
 #, c-format

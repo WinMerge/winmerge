@@ -2049,7 +2049,7 @@ msgstr ""
 msgid "Backup Files"
 msgstr "Sikkerhetskopifiler"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Opprett sikkerhetskopifiler i:"
 
 msgid "&Folder compare"
@@ -2058,7 +2058,7 @@ msgstr "&Mappe-sammenligning"
 msgid "Fil&e compare"
 msgstr "&Fil-sammenligning"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Opprett sikkerhetskopifiler til:"
 
 msgid "&Original file's folder"

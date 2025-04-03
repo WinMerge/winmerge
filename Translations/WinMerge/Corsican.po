@@ -2047,7 +2047,7 @@ msgstr "&Caratteru di citazione :"
 msgid "Backup Files"
 msgstr "Schedarii di salvaguardia"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Creà i schedarii di salvaguardia in :"
 
 msgid "&Folder compare"
@@ -2056,7 +2056,7 @@ msgstr "Paragone di &cartulare"
 msgid "Fil&e compare"
 msgstr "Paragone di &schedariu"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Creà i schedarii di salvaguardia in :"
 
 msgid "&Original file's folder"

@@ -2477,7 +2477,7 @@ msgid "Backup Files"
 msgstr "Sigurnost"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Pohrani rezervnu datoteku pri:"
 
 #, c-format
@@ -2489,7 +2489,7 @@ msgid "Fil&e compare"
 msgstr "Usporedbi &datoteka"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Pohrani rezervnu datoteku u:"
 
 #, c-format

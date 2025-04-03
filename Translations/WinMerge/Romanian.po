@@ -2057,7 +2057,7 @@ msgstr "Caracterul de citare:"
 msgid "Backup Files"
 msgstr "Copii de siguranță"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Crează copii de siguranță pentru:"
 
 msgid "&Folder compare"
@@ -2066,7 +2066,7 @@ msgstr "Comparare &directoare"
 msgid "Fil&e compare"
 msgstr "Comparare fiși&ere"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Crează copii de siguranță în:"
 
 msgid "&Original file's folder"

@@ -2048,7 +2048,7 @@ msgstr "引用符文字(&Q)"
 msgid "Backup Files"
 msgstr "バックアップ ファイル"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "バックアップ ファイル作成:"
 
 msgid "&Folder compare"
@@ -2057,7 +2057,7 @@ msgstr "フォルダー比較(&F)"
 msgid "Fil&e compare"
 msgstr "ファイル比較(&E)"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "バックアップ ファイル作成先:"
 
 msgid "&Original file's folder"

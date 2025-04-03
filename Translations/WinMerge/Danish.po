@@ -2482,7 +2482,7 @@ msgid "Backup Files"
 msgstr "Backup filer"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Opret backup filer som:"
 
 #, c-format
@@ -2494,7 +2494,7 @@ msgid "Fil&e compare"
 msgstr "Fil& sammenligning"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Gem backup filer i:"
 
 #, c-format

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-03-13 08:29+0900\n"
+"POT-Creation-Date: 2025-04-04 08:10+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3572,7 +3572,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: ./English/Compare_files.xml:1047
-msgid "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only when the <guilabel>Preserve original EOL</guilabel> option is enabled in the Editor page of WinMerge options)."
+msgid "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only when the <guilabel>Preserve original EOL </guilabel> option is enabled in the Editor page of WinMerge options)."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
@@ -6936,7 +6936,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:2500
-msgid "Create backup files in"
+msgid "Create backup files for"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
@@ -6956,7 +6956,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:2526
-msgid "Create backup files into"
+msgid "Create backup files in"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
@@ -11108,7 +11108,7 @@ msgstr ""
 
 #. type: Content of: <article><section><title>
 #: ./English/Plugins.xml:110
-msgid "Suggested Plugins and automatic modes"
+msgid "Suggested plugins and automatic modes"
 msgstr ""
 
 #. type: Content of: <article><section><para>
@@ -11123,7 +11123,7 @@ msgstr ""
 
 #. type: Content of: <article><section><para>
 #: ./English/Plugins.xml:125
-msgid "When you apply plugins to a selected file using automatic mode, WinMerge searches its list of Suggested Plugins for that file type, and applies the first plugin whose name matches. The search is performed in alphabetical order, so if there are multiple Suggested Plugins for a file type, only the first one found is applied."
+msgid "When you apply plugins to a selected file using automatic mode, WinMerge searches its list of suggested plugins for that file type, and applies the first plugin whose name matches. The search is performed in alphabetical order, so if there are multiple suggested plugins for a file type, only the first one found is applied."
 msgstr ""
 
 #. type: Content of: <article><section><title>
@@ -11373,7 +11373,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><para>
 #: ./English/Plugins.xml:363
-msgid "In the File Compare window, you can apply a prediffer plugin by clicking <menuchoice> <guimenu>Plugins</guimenu> <guisubmenu>Prediffer</guisubmenu> </menuchoice> and choosing one of the plugins in the list. Suggested Plugins are indicated at the top of the list. The files are compared again after the plugin is applied, so you don't need to rescan the files."
+msgid "In the File Compare window, you can apply a prediffer plugin by clicking <menuchoice> <guimenu>Plugins</guimenu> <guisubmenu>Prediffer</guisubmenu> </menuchoice> and choosing one of the plugins in the list. Suggested plugins are indicated at the top of the list. The files are compared again after the plugin is applied, so you don't need to rescan the files."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
@@ -13093,7 +13093,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><para><itemizedlist><listitem><tip><para>
 #: ./English/Quick_start.xml:135
-msgid "To make it easier to select frequently-used paths, consider enabling the <guilabel>Open dialog Auto completion</guilabel> option. With this option, WinMerge shows a list of paths available as you type in the fields. See <xref linkend=\"Configuration\" /> for details."
+msgid "To make it easier to select frequently-used paths, consider enabling the <guilabel>Open-dialog Auto-completion</guilabel> option. With this option, WinMerge shows a list of paths available as you type in the fields. See <xref linkend=\"Configuration\" /> for details."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para><itemizedlist><listitem><para>
@@ -14164,7 +14164,7 @@ msgstr ""
 
 #. type: Content of: <section><orderedlist><listitem><itemizedlist><listitem><para>
 #: ./English/select_unpacker.xml:23
-msgid "By default, this control lists only Suggested Plugins for the file type you selected to compare. To see all available plugins, enable the option, <guilabel>Display all packers, don't check the extension</guilabel>."
+msgid "By default, this control lists only suggested plugins for the file type you selected to compare. To see all available plugins, enable the option, <guilabel>Display all packers, don't check the extension</guilabel>."
 msgstr ""
 
 #. type: Content of: <section><orderedlist><listitem><itemizedlist><listitem><para>

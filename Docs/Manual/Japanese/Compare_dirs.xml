@@ -1008,9 +1008,12 @@ types known to usually have a version resource.</para>
 
     <para>フォルダー比較ウィンドウ内で選択項目を右クリックし、 コンテキストメニューから直接Windowsのシェルコマンドを起動することができます。</para>
 
-    <para>両側を選択した場合、<guimenu>左側シェルメニュー</guimenu>、<guimenu>中央シェルメニュー</guimenu>か
-<guimenu>右側シェルメニュー</guimenu>のどちらかを選ぶことができます。
-アイテムが片側だけにある場合、そちら側のシェルメニューのみが有効です。</para>
+    <para>If the selection occurs on both sides, you can choose either the
+<guimenu>Left Shell Menu</guimenu> or <guimenu>Right Shell Menu</guimenu>.
+If the selection occurs on all sides, you can choose the <guimenu>Left Shell
+Menu</guimenu>, <guimenu>Middle Shell Menu</guimenu> or <guimenu>Right Shell
+Menu</guimenu>. If the item occurs only on one side, only that side's shell
+menu is available.</para>
 
     <caution>
       <para>シェルメニューコマンドは、完全にWinMergeの外側で実行されることを、よく考えてください。

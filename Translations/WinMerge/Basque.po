@@ -2479,7 +2479,7 @@ msgid "Backup Files"
 msgstr "Babeskopia Agiriak"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Sortu babeskopia agiriak hemen:"
 
 #, c-format
@@ -2491,7 +2491,7 @@ msgid "Fil&e compare"
 msgstr "A&giri alderaketa"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Sortu babeskopia agiriak honen barnean:"
 
 #, c-format

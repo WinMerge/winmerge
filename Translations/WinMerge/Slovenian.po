@@ -2045,7 +2045,7 @@ msgstr "Z&nak narekovaja:"
 msgid "Backup Files"
 msgstr "Datoteke varnostnih kopij"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Ustvari datoteke varnostnih kopij v:"
 
 msgid "&Folder compare"
@@ -2054,7 +2054,7 @@ msgstr "Primerjava &map"
 msgid "Fil&e compare"
 msgstr "Primerjava &datotek"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Ustvari datoteke varnostnih kopij v:"
 
 msgid "&Original file's folder"

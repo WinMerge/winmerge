@@ -2492,7 +2492,7 @@ msgid "Backup Files"
 msgstr "파일 백업"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "다음 위치에 백업 파일 만들기:"
 
 #, c-format
@@ -2504,7 +2504,7 @@ msgid "Fil&e compare"
 msgstr "파일 비교(&E)"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "백업 파일 만들기 위치:"
 
 #, c-format

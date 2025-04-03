@@ -2038,7 +2038,7 @@ msgstr "Znak cudzysłowu:"
 msgid "Backup Files"
 msgstr "Pliki kopii zapasowej"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Twórz kopię zapasową plików w:"
 
 msgid "&Folder compare"
@@ -2047,7 +2047,7 @@ msgstr "Porównywarce folderów"
 msgid "Fil&e compare"
 msgstr "Porównywarce plików"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Utwórz pliki kopii zapasowej w:"
 
 msgid "&Original file's folder"

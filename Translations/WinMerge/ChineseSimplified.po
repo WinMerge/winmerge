@@ -2054,7 +2054,7 @@ msgstr "引号字符(&Q)："
 msgid "Backup Files"
 msgstr "备份文件"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "在下列操作中创建备份文件："
 
 msgid "&Folder compare"
@@ -2063,7 +2063,7 @@ msgstr "文件夹比较(&F)"
 msgid "Fil&e compare"
 msgstr "文件比较(&E)"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "备份文件创建在："
 
 msgid "&Original file's folder"

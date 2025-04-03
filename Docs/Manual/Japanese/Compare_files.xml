@@ -892,8 +892,8 @@ of chars in the line.</para>
 
               <listitem>
                 <para><guilabel>EOL</guilabel>: Linefeed style of the current line (shown only
-when the <guilabel>Preserve original EOL</guilabel> option is enabled
-in the Editor page of WinMerge options).</para>
+when the <guilabel>Preserve original EOL </guilabel> option is enabled in
+the Editor page of WinMerge options).</para>
               </listitem>
             </itemizedlist>
           </listitem>

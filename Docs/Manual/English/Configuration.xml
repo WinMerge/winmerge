@@ -2497,7 +2497,7 @@
     </para>
 
     <section>
-      <title>Create backup files in</title>
+      <title>Create backup files for</title>
 
       <para>
         Specify when WinMerge should create backup files. You can enable or
@@ -2523,7 +2523,7 @@
     </section>
 
     <section>
-      <title>Create backup files into</title>
+      <title>Create backup files in</title>
 
       <para>
         Specify where backup files are created. Only one of these options

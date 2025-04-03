@@ -2042,7 +2042,7 @@ msgstr "&Знак за кавички:"
 msgid "Backup Files"
 msgstr "Резервни файлове"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Създаване на резервни копия при:"
 
 msgid "&Folder compare"
@@ -2051,7 +2051,7 @@ msgstr "Сравняване на &папки"
 msgid "Fil&e compare"
 msgstr "Сравняване на &файлове"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Създаване на резервни копия в:"
 
 msgid "&Original file's folder"

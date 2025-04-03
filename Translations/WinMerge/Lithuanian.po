@@ -2037,7 +2037,7 @@ msgstr "&Kabučių simbolis:"
 msgid "Backup Files"
 msgstr "Rezervinių failų kurimo"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Kurti rezervinius failus kai:"
 
 msgid "&Folder compare"
@@ -2046,7 +2046,7 @@ msgstr "Lyginami &katalogai"
 msgid "Fil&e compare"
 msgstr "Lyginami fai&lai"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Kurti rezervinius failus:"
 
 msgid "&Original file's folder"

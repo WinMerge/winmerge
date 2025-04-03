@@ -2477,7 +2477,7 @@ msgid "Backup Files"
 msgstr "Zálohování souborů"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Vytvářet záložní soubory pro:"
 
 #, c-format
@@ -2489,7 +2489,7 @@ msgid "Fil&e compare"
 msgstr "&souborů"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Umístění záložních souborů:"
 
 #, c-format

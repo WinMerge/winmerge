@@ -2046,7 +2046,7 @@ msgstr "&Lainausmerkki:"
 msgid "Backup Files"
 msgstr "Varmuuskopiot"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Luo varmuuskopiot:"
 
 msgid "&Folder compare"
@@ -2055,7 +2055,7 @@ msgstr "Kansiovertailu"
 msgid "Fil&e compare"
 msgstr "Tiedostovertailu"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Luo varmuuskopiotiedostot:"
 
 msgid "&Original file's folder"

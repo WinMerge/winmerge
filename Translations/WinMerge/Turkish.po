@@ -2036,7 +2036,7 @@ msgstr "&Tırnak karakteri:"
 msgid "Backup Files"
 msgstr "Yedekleme dosyaları"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Şunların yedeği alınsın:"
 
 msgid "&Folder compare"
@@ -2045,7 +2045,7 @@ msgstr "&Klasör karşılaştırma"
 msgid "Fil&e compare"
 msgstr "Dosya karşı&laştırma"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Yedek dosyalarının konumu:"
 
 msgid "&Original file's folder"

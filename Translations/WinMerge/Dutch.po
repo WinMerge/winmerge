@@ -2055,7 +2055,7 @@ msgstr "Citaat-teken:"
 msgid "Backup Files"
 msgstr "Backupbestanden"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Backupbestanden aanmaken in:"
 
 msgid "&Folder compare"
@@ -2064,7 +2064,7 @@ msgstr "Mappen vergelijken"
 msgid "Fil&e compare"
 msgstr "Bestanden vergelijken"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Backupbestanden aanmaken in:"
 
 msgid "&Original file's folder"

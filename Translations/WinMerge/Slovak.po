@@ -2045,7 +2045,7 @@ msgstr "Znak ú&vodzovky:"
 msgid "Backup Files"
 msgstr "Záložné súbory"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Vytvárať záložné súbory v:"
 
 msgid "&Folder compare"
@@ -2054,7 +2054,7 @@ msgstr "Porovnávanie &priečinkov"
 msgid "Fil&e compare"
 msgstr "Porovnávanie &súborov"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Vytvárať záložné súbory do:"
 
 msgid "&Original file's folder"

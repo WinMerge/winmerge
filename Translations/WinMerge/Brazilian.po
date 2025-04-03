@@ -2037,7 +2037,7 @@ msgstr "&Caractere de citação:"
 msgid "Backup Files"
 msgstr "Arquivos de Backup"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Criar arquivos de backup em:"
 
 msgid "&Folder compare"
@@ -2046,7 +2046,7 @@ msgstr "&Comparar as pastas"
 msgid "Fil&e compare"
 msgstr "Com&parar arquivos"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Criar arquivos de backup em:"
 
 msgid "&Original file's folder"

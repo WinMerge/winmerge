@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-03-13 08:29+0900\n"
+"POT-Creation-Date: 2025-04-04 08:10+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -3961,15 +3961,11 @@ msgstr ""
 msgid ""
 "If the selection occurs on both sides, you can choose either the "
 "<guimenu>Left Shell Menu</guimenu> or <guimenu>Right Shell Menu</guimenu>.  "
-"If the selection occurs on all sides, you can choose the <guimenu>Left shell "
-"menu</guimenu>, <guimenu>Middle Shell Menu</guimenu> or <guimenu>Right shell "
-"menu</guimenu>. If the item occurs only on one side, only that side's shell "
+"If the selection occurs on all sides, you can choose the <guimenu>Left Shell "
+"Menu</guimenu>, <guimenu>Middle Shell Menu</guimenu> or <guimenu>Right Shell "
+"Menu</guimenu>. If the item occurs only on one side, only that side's shell "
 "menu is available."
 msgstr ""
-"両側を選択した場合、<guimenu>左側シェルメニュー</guimenu>、<guimenu>中央シェ"
-"ルメニュー</guimenu>か <guimenu>右側シェルメニュー</guimenu>のどちらかを選ぶ"
-"ことができます。 アイテムが片側だけにある場合、そちら側のシェルメニューのみが"
-"有効です。"
 
 #. type: Content of: <article><section><caution><para>
 #: English/Compare_dirs.xml:1398
@@ -5349,8 +5345,8 @@ msgstr ""
 #: English/Compare_files.xml:1047
 msgid ""
 "<guilabel>EOL</guilabel>: Linefeed style of the current line (shown only "
-"when the <guilabel>Preserve original EOL</guilabel> option is enabled "
-"in the Editor page of WinMerge options)."
+"when the <guilabel>Preserve original EOL </guilabel> option is enabled in "
+"the Editor page of WinMerge options)."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
@@ -7528,13 +7524,13 @@ msgstr ""
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:320
 msgid ""
-"<option>Allow only one instance to run and wait for the instance to "
-"terminate</option>: Similar to the \"Allow only one instance to run\" "
-"option, this setting restricts WinMerge to a single application window. "
-"However, it also ensures that the WinMerge process does not terminate until "
-"the application window is closed. This is useful for situations where "
-"external applications, like SourceTree, need to wait for WinMerge to finish "
-"before they can safely delete temporary files."
+"<option>Allow only one instance; wait for termination</option>: Similar to "
+"the \"Allow only one instance to run\" option, this setting restricts "
+"WinMerge to a single application window. However, it also ensures that the "
+"WinMerge process does not terminate until the application window is closed. "
+"This is useful for situations where external applications, like SourceTree, "
+"need to wait for WinMerge to finish before they can safely delete temporary "
+"files."
 msgstr ""
 "<option>1つのみインスタンスを起動し、既起動インスタンスの終了を待つ</"
 "option>：「1つのみインスタンスを起動する」オプションと同様に、この設定は"
@@ -8697,8 +8693,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1268
 msgid ""
-"Expand subfolders after comparison<placeholder "
-"type=\"indexterm\" id=\"0\"/>"
+"Expand subfolders after comparison<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "比較後自動的にサブフォルダーを展開する<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -8811,8 +8806,8 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1352
 msgid ""
-"Switch to quick compare when size exceeds (MB)<placeholder type=\"indexterm\" "
-"id=\"0\"/>"
+"Switch to quick compare when size exceeds (MB)<placeholder "
+"type=\"indexterm\" id=\"0\"/>"
 msgstr "クイック比較切替閾値 (MB)<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -9421,8 +9416,8 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1789
 msgid ""
-"Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/"
-"><placeholder type=\"indexterm\" id=\"1\"/>"
+"Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
+"type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 "元のEOL文字を保存する<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -10216,7 +10211,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2500
-msgid "Create backup files in"
+msgid "Create backup files for"
 msgstr "作成するバックアップ"
 
 #. type: Content of: <article><section><section><para>
@@ -10248,7 +10243,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:2526
-msgid "Create backup files into"
+msgid "Create backup files in"
 msgstr "バックアップファイル生成先"
 
 #. type: Content of: <article><section><section><para>
@@ -16536,7 +16531,7 @@ msgstr ""
 
 #. type: Content of: <article><section><title>
 #: English/Plugins.xml:110
-msgid "Suggested Plugins and automatic modes"
+msgid "Suggested plugins and automatic modes"
 msgstr "提案されたプラグインと自動モード"
 
 #. type: Content of: <article><section><para>
@@ -16574,9 +16569,9 @@ msgstr ""
 #: English/Plugins.xml:125
 msgid ""
 "When you apply plugins to a selected file using automatic mode, WinMerge "
-"searches its list of Suggested Plugins for that file type, and applies the "
+"searches its list of suggested plugins for that file type, and applies the "
 "first plugin whose name matches. The search is performed in alphabetical "
-"order, so if there are multiple Suggested Plugins for a file type, only the "
+"order, so if there are multiple suggested plugins for a file type, only the "
 "first one found is applied."
 msgstr ""
 "自動モードを使用して選択したファイルにプラグインを適用すると、 WinMergeは、そ"
@@ -16946,7 +16941,7 @@ msgstr "ファイル比較ウィンドウでの比較前処理プラグインの
 msgid ""
 "In the File Compare window, you can apply a prediffer plugin by clicking "
 "<menuchoice> <guimenu>Plugins</guimenu> <guisubmenu>Prediffer</guisubmenu> </"
-"menuchoice> and choosing one of the plugins in the list. Suggested Plugins "
+"menuchoice> and choosing one of the plugins in the list. Suggested plugins "
 "are indicated at the top of the list. The files are compared again after the "
 "plugin is applied, so you don't need to rescan the files."
 msgstr ""
@@ -18984,7 +18979,7 @@ msgstr "コンボボックスをクリックして、以前使用したパスを
 #: English/Quick_start.xml:135
 msgid ""
 "To make it easier to select frequently-used paths, consider enabling the "
-"<guilabel>Open dialog Auto completion</guilabel> option. With this option, "
+"<guilabel>Open-dialog Auto-completion</guilabel> option. With this option, "
 "WinMerge shows a list of paths available as you type in the fields. See "
 "<xref linkend=\"Configuration\" /> for details."
 msgstr ""
@@ -20478,7 +20473,7 @@ msgstr ""
 #. type: Content of: <section><orderedlist><listitem><itemizedlist><listitem><para>
 #: English/select_unpacker.xml:23
 msgid ""
-"By default, this control lists only Suggested Plugins for the file type you "
+"By default, this control lists only suggested plugins for the file type you "
 "selected to compare. To see all available plugins, enable the option, "
 "<guilabel>Display all packers, don't check the extension</guilabel>."
 msgstr ""

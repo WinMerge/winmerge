@@ -2046,7 +2046,7 @@ msgstr ""
 msgid "Backup Files"
 msgstr "ملفات النسخ الاحتياطي"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "إنشاء ملفات نسخ احتياطي في:"
 
 msgid "&Folder compare"
@@ -2055,7 +2055,7 @@ msgstr "&مقارنة المجلدات"
 msgid "Fil&e compare"
 msgstr "م&قارنة الملفات"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "إنشاء ملفات احتياطية في:"
 
 msgid "&Original file's folder"

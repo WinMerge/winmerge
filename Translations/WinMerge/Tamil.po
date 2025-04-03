@@ -2043,7 +2043,7 @@ msgstr "&மேற்கோள் எழுத்து:"
 msgid "Backup Files"
 msgstr "காப்பு கோப்புகள்"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "இதில் காப்பு கோப்புகளை உருவாக்கு:"
 
 msgid "&Folder compare"
@@ -2052,7 +2052,7 @@ msgstr "&கோப்புறை ஒப்பிடு"
 msgid "Fil&e compare"
 msgstr "ஒப்பிடவும் நிரப்பவும்"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "காப்பு கோப்புகளை உருவாக்கவும்:"
 
 msgid "&Original file's folder"

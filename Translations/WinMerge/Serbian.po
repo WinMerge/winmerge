@@ -2460,7 +2460,7 @@ msgid "Backup Files"
 msgstr "Резервне датотеке"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Направи резервне датотеке у:"
 
 #, c-format
@@ -2472,7 +2472,7 @@ msgid "Fil&e compare"
 msgstr "Упор&еди датотеке"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Направи резервне датотеке у:"
 
 #, c-format

@@ -2042,7 +2042,7 @@ msgstr "תו ציטוט:"
 msgid "Backup Files"
 msgstr "קבצי גיבוי"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "צור קבצי גיבוי ב:"
 
 msgid "&Folder compare"
@@ -2051,7 +2051,7 @@ msgstr "השוואת תיקיות"
 msgid "Fil&e compare"
 msgstr "השוואת קבצים"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "צור קבצי גיבוי אל:"
 
 msgid "&Original file's folder"

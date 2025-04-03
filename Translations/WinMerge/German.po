@@ -2479,7 +2479,7 @@ msgid "Backup Files"
 msgstr "Sicherungsdateien"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Sicherungsdateien erzeugen beim:"
 
 #, c-format
@@ -2491,7 +2491,7 @@ msgid "Fil&e compare"
 msgstr "&Dateivergleich"
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Sicherungsdateien erzeugen im:"
 
 #, c-format

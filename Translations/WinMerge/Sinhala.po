@@ -2475,7 +2475,7 @@ msgid "Backup Files"
 msgstr "රක්ෂිත ලිපි ගොනු"
 
 #, c-format
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "රක්ෂිත ලිපි ගොනු තුළ නිර්මාණය"
 
 #, c-format
@@ -2487,7 +2487,7 @@ msgid "Fil&e compare"
 msgstr "ගොනු සසෑදීම "
 
 #, c-format
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "රක්ෂිත ලිපි ගොනු තුළට නිර්මාණය"
 
 #, c-format

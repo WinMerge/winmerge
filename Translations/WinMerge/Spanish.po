@@ -2048,7 +2048,7 @@ msgstr "Ca&rácter de comilla:"
 msgid "Backup Files"
 msgstr "Copias de seguridad"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Crear copias de:"
 
 msgid "&Folder compare"
@@ -2057,7 +2057,7 @@ msgstr "Comparación de &carpetas"
 msgid "Fil&e compare"
 msgstr "Comparación d&e archivos"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Crear copias en:"
 
 msgid "&Original file's folder"

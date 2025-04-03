@@ -2058,7 +2058,7 @@ msgstr "Tecken för citat:"
 msgid "Backup Files"
 msgstr "Säkerhetskopierade filer"
 
-msgid "Create backup files in:"
+msgid "Create backup files for:"
 msgstr "Skapa säkerhetskopior i:"
 
 msgid "&Folder compare"
@@ -2067,7 +2067,7 @@ msgstr "Katalogjämförelse"
 msgid "Fil&e compare"
 msgstr "Filjämförelse"
 
-msgid "Create backup files into:"
+msgid "Create backup files in:"
 msgstr "Skapa säkerhetskopior i:"
 
 msgid "&Original file's folder"
