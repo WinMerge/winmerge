@@ -2486,7 +2486,7 @@ msgstr "Visszaállítási fájlok"
 
 #, c-format
 msgid "Create backup files for:"
-msgstr "Visszaállítási fájlok készítése itt:"
+msgstr "Visszaállítási fájlok készítése ehhez:"
 
 #, c-format
 msgid "&Folder compare"
@@ -2498,7 +2498,7 @@ msgstr "&Fájl összehasonlításkor"
 
 #, c-format
 msgid "Create backup files in:"
-msgstr "Visszaállítási fájlok készítése ide:"
+msgstr "Visszaállítási fájlok készítése itt:"
 
 #, c-format
 msgid "&Original file's folder"
