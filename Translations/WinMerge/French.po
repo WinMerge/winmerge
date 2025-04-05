@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2025-01-12 12:58+0100\n"
+"PO-Revision-Date: 2025-04-04 23:51+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -440,7 +440,7 @@ msgid "Men&u Bar"
 msgstr "Barre de men&us"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "&Panneau de sortie"
 
 #, c-format
 msgid "&Status Bar"
@@ -929,7 +929,7 @@ msgid "Lo&cation Pane"
 msgstr "Barre de locali&sation"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Panneau de sortie"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -1449,7 +1449,7 @@ msgid "&Duplicate Plugin..."
 msgstr "Plugin &Dupliquer..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "&Tout effacer"
 
 #, c-format
 msgid "About WinMerge"
@@ -1523,7 +1523,7 @@ msgid " Folder: Filter"
 msgstr " Dossier : filtre"
 
 msgid "&Include subfolders"
-msgstr ""
+msgstr "&Inclure les sous-dossiers"
 
 msgid " File: Prediffer Plugin"
 msgstr " Fichier : Plugin pré-différence"
@@ -2089,7 +2089,7 @@ msgid "Ignore &case"
 msgstr "Ignorer la ca&sse"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Ignorer les différences de &fin de ligne (Windows/Unix/Mac)"
 
 msgid "Ignore num&bers"
 msgstr "Ignorer les nom&bres"
@@ -2493,7 +2493,7 @@ msgid "Backup Files"
 msgstr "Fichiers d'archive"
 
 msgid "Create backup files for:"
-msgstr ""
+msgstr "Créer des fichiers de sauvegarde pour :"
 
 #, c-format
 msgid "&Folder compare"
@@ -3128,10 +3128,10 @@ msgid ""
 "\n"
 "File may be read-only."
 msgstr ""
-"Impossible de supprimer le fichier de filtre :\n"
+"Impossible de supprimer le filtre :\n"
 "%1\n"
 "\n"
-"Le fichier est peut-être en lecture seule ?"
+"Le fichier est peut-être en lecture seule."
 
 #, c-format
 msgid "Locate Filter File to Install"
@@ -3232,10 +3232,10 @@ msgstr "1 différence trouvée"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "%1 Erreurs trouvées"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "%1 Erreur trouvée"
 
 #. Abbreviation from "Read Only"
 #, c-format
@@ -3337,18 +3337,21 @@ msgid "Failed to parse conflict file."
 msgstr "L'analyse du fichier en conflit a échoué."
 
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
 "Le fichier\n"
 "%1\n"
 "n'est pas un fichier en conflit."
 
-msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
+msgid ""
+"Comparing large files requires significant memory.\n"
+"Show only comparison results (not file contents)?"
 msgstr ""
-"Vous êtes sur le point de comparer de très gros fichiers.\n"
-"L'affichage du contenu des fichiers nécessite une très grande quantité de mémoire.\n"
-"Voulez-vous afficher uniquement les résultats de la comparaison, pas le contenu des fichiers ?\n"
-"\n"
+"La comparaison de fichiers volumineux nécessite beaucoup de mémoire.\n"
+"Afficher uniquement les résultats de la comparaison (et non le contenu des fichiers) ?"
 
 #, c-format
 msgid "Save As"
@@ -3381,7 +3384,12 @@ msgstr ""
 "Continuer quand même ?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"\t- Use different filename (OK)\n"
+"\t- Abort (Cancel)?"
 msgstr ""
 "L'enregistrement du fichier a échoué.\n"
 "%1\n"
@@ -3391,7 +3399,10 @@ msgstr ""
 "\t- annuler l'opération en cours (choisir Annuler) ?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to left file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "Le plugin '%2' ne peut compresser le fichier modifié de Gauche dans '%1'.\n"
 "\n"
@@ -3400,7 +3411,10 @@ msgstr ""
 "Voulez-vous enregistrer la version décompressée dans un autre fichier ?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to middle file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "Le plugin '%2' ne peut compresser le fichier modifié du Milieu dans '%1'.\n"
 "\n"
@@ -3409,7 +3423,10 @@ msgstr ""
 "Voulez-vous enregistrer la version décompressée dans un autre fichier ?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to right file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "Le plugin '%2' ne peut compresser le fichier modifié de Droite dans '%1'.\n"
 "\n"
@@ -3440,7 +3457,12 @@ msgstr ""
 "est en lecture seule. Voulez-vous outrepasser la lecture seule de l'élément ?"
 
 #, c-format
-msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
+msgid ""
+"Another application updated\n"
+"%1\n"
+"since last scan.\n"
+"\n"
+"Reload?"
 msgstr ""
 "Une autre application a mis à jour le fichier\n"
 "%1\n"
@@ -3556,8 +3578,12 @@ msgstr "Tout vers… (%1)"
 msgid "Differences to... (%1)"
 msgstr "Différences vers… (%1)"
 
-msgid "Some selected items are identical or skipped.\nCopy only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Copy only items with differences?"
 msgstr ""
+"Certains éléments sélectionnés sont identiques ou ignorés.\n"
+"Copier uniquement les éléments présentant des différences ?"
 
 #, c-format
 msgid "Left (%1)"
@@ -4191,7 +4217,12 @@ msgstr "Erreur lors de la comparaison des fichiers."
 msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "Les fichiers temporaires ne peuvent être créés. Vérifier le chemin du dossier 'temporaire' dans les préférences de WinMerge."
 
-msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
+msgid ""
+"Files use different EOL.\n"
+"\n"
+"Treat all EOL as equivalent?\n"
+"\n"
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "Ces fichiers utilisent différents type de fin de ligne.\n"
 "\n"
@@ -4208,7 +4239,10 @@ msgid "Cannot open a binary file in Editor."
 msgstr "Impossible d'ouvrir un fichier binaire avec l'éditeur."
 
 #, c-format
-msgid "Create matching folder:\n%1\non the other side and open?"
+msgid ""
+"Create matching folder:\n"
+"%1\n"
+"on the other side and open?"
 msgstr ""
 "Le dossier existe seulement dans l'autre panneau et ne peut pas être ouvert.\n"
 "\n"
@@ -4242,7 +4276,10 @@ msgid "Move to last file?"
 msgstr "Voulez-vous passer au dernier fichier ?"
 
 #, c-format
-msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
+msgid ""
+"Different codepages: left (cp%d), right (cp%d).\n"
+"Display in codepage (better display) or default Windows codepage (safer merging)?\n"
+"(Recommended: default Windows codepage)"
 msgstr ""
 "Les fichiers n'ont pas la même page de code à Gauche (cp%d) et à Droite (cp%d).\n"
 "L'affichage est ainsi meilleurs cependant les copies/fusions seront dangereuses.\n"
@@ -5143,17 +5180,17 @@ msgstr ""
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Comparaison de %1 avec %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Comparaison de %1 avec %2 et %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Comparaison effectuée"
 
 msgid "File saved"
-msgstr ""
+msgstr "Fichier enregistré"
 
 msgid "Prettification"
 msgstr "Embellissement"
@@ -5453,11 +5490,19 @@ msgstr ""
 "Prévisualisateur PlantUML.\r\n"
 "Arguments : Options de ligne de commande transmises à la commande plantuml.jar."
 
-msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
+msgid ""
+"CSV Querier (q).\r\n"
+"Arguments: SQL statement/q comannd line options."
 msgstr ""
+"Requêteur CSV (q).\r\n"
+"Arguments : options de ligne de commande transmises à la commande q."
 
-msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
+msgid ""
+"TSV Querier (q).\r\n"
+"Arguments: SQL statement/q comannd line options."
 msgstr ""
+"Requêteur TSV avec la commande (q).\r\n"
+"Arguments : options de ligne de commande transmises à la commande q."
 
 msgid ""
 "JSON Querier (jq).\r\n"
@@ -5610,11 +5655,9 @@ msgstr "Comparer les en-têtes et les pieds de page"
 msgid ""
 "Cannot get Macros.\r\n"
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
-""
 msgstr ""
-"Impossible d'obtenir l'accès aux macros.\r\n"
-"    Pour autoriser WinMerge à comparer les macros, utiliser MS Office pour modifier les paramètres de la sécurité des macros pour l'application actuelle.\r\n"
-"    La fonction d'accès au projet Visual Basic doit être activée pour utiliser cette fonctionnalité dans WinMerge.\r\n"
+"Impossible d'obtenir des macros.\r\n"
+"Activez l'option \"Autoriser l'accès au projet Visual Basic\" dans la sécurité des macros de MS Office."
 
 msgid "Compare VBA macros"
 msgstr "Comparer les macros VBA"
