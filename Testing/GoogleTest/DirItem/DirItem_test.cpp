@@ -43,7 +43,7 @@ namespace
 	TEST_F(DirItemTest, Construct1)
 	{
 		DirItem item;
-		EXPECT_TRUE(item.ctime == 0);
+		EXPECT_TRUE(item.ctime == Poco::Timestamp::TIMEVAL_MIN);
 	}
 
 

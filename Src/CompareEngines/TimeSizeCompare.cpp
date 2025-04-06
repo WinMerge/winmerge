@@ -74,7 +74,7 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 
 		for (int i = 0; i < nfiles; ++i)
 		{
-			if (di.diffFileInfo[i].mtime == 0 && di.diffcode.exists(i))
+			if (di.diffFileInfo[i].mtime == Poco::Timestamp::TIMEVAL_MIN && di.diffcode.exists(i))
 				code = DIFFCODE::CMPERR;
 		}
 	}

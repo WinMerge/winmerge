@@ -32,7 +32,7 @@ struct DirItem
 	FileFlags flags; /**< file attributes */
 	
 	enum : uint64_t { FILE_SIZE_NONE = UINT64_MAX };
-	DirItem() : ctime(0), mtime(0), size(DirItem::FILE_SIZE_NONE) { }
+	DirItem() : ctime(Poco::Timestamp::TIMEVAL_MIN), mtime(Poco::Timestamp::TIMEVAL_MIN), size(DirItem::FILE_SIZE_NONE) { }
 	void SetFile(const String &fullPath);
 	String GetFile() const;
 	bool Update(const String &sFilePath);

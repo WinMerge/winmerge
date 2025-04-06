@@ -538,21 +538,21 @@ namespace
 
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(1);
-		di.diffFileInfo[0].mtime = 0;
-		di.diffFileInfo[1].mtime = 0;
+		di.diffFileInfo[0].mtime = Poco::Timestamp::TIMEVAL_MIN;
+		di.diffFileInfo[1].mtime = Poco::Timestamp::TIMEVAL_MIN;
 		tsc.SetAdditionalOptions(true);
 		EXPECT_EQ(DIFFCODE::CMPERR, tsc.CompareFiles(CMP_DATE, 2, di));
 
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(1);
 		di.diffFileInfo[0].mtime = 1 * 1000 * 1000;
-		di.diffFileInfo[1].mtime = 0;
+		di.diffFileInfo[1].mtime = Poco::Timestamp::TIMEVAL_MIN;
 		tsc.SetAdditionalOptions(true);
 		EXPECT_EQ(DIFFCODE::CMPERR, tsc.CompareFiles(CMP_DATE, 2, di));
 
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(1);
-		di.diffFileInfo[0].mtime = 0;
+		di.diffFileInfo[0].mtime = Poco::Timestamp::TIMEVAL_MIN;
 		di.diffFileInfo[1].mtime = 1 * 1000 * 1000;
 		tsc.SetAdditionalOptions(true);
 		EXPECT_EQ(DIFFCODE::CMPERR, tsc.CompareFiles(CMP_DATE, 2, di));
@@ -563,16 +563,16 @@ namespace
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(1);
 		di.diffcode.setSideFlag(2);
-		di.diffFileInfo[0].mtime = 0;
-		di.diffFileInfo[1].mtime = 0;
-		di.diffFileInfo[2].mtime = 0;
+		di.diffFileInfo[0].mtime = Poco::Timestamp::TIMEVAL_MIN;
+		di.diffFileInfo[1].mtime = Poco::Timestamp::TIMEVAL_MIN;
+		di.diffFileInfo[2].mtime = Poco::Timestamp::TIMEVAL_MIN;
 		tsc.SetAdditionalOptions(true);
 		EXPECT_EQ(DIFFCODE::CMPERR, tsc.CompareFiles(CMP_DATE, 3, di));
 
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(1);
 		di.diffcode.setSideFlag(2);
-		di.diffFileInfo[0].mtime = 0;
+		di.diffFileInfo[0].mtime = Poco::Timestamp::TIMEVAL_MIN;
 		di.diffFileInfo[1].mtime = 1 * 1000 * 1000;
 		di.diffFileInfo[2].mtime = 1 * 1000 * 1000;
 		tsc.SetAdditionalOptions(true);
@@ -582,7 +582,7 @@ namespace
 		di.diffcode.setSideFlag(1);
 		di.diffcode.setSideFlag(2);
 		di.diffFileInfo[0].mtime = 1 * 1000 * 1000;
-		di.diffFileInfo[1].mtime = 0;
+		di.diffFileInfo[1].mtime = Poco::Timestamp::TIMEVAL_MIN;
 		di.diffFileInfo[2].mtime = 1 * 1000 * 1000;
 		tsc.SetAdditionalOptions(true);
 		EXPECT_EQ(DIFFCODE::CMPERR, tsc.CompareFiles(CMP_DATE, 3, di));
@@ -592,7 +592,7 @@ namespace
 		di.diffcode.setSideFlag(2);
 		di.diffFileInfo[0].mtime = 1 * 1000 * 1000;
 		di.diffFileInfo[1].mtime = 1 * 1000 * 1000;
-		di.diffFileInfo[2].mtime = 0;
+		di.diffFileInfo[2].mtime = Poco::Timestamp::TIMEVAL_MIN;
 		tsc.SetAdditionalOptions(true);
 		EXPECT_EQ(DIFFCODE::CMPERR, tsc.CompareFiles(CMP_DATE, 3, di));
 	}

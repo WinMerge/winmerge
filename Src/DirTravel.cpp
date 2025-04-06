@@ -98,11 +98,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 			// Anyway that is not sensible case for normal files so we can
 			// just use zero for their time.
 			ent.ctime = Timestamp::fromFileTimeNP(ff.ftCreationTime.dwLowDateTime, ff.ftCreationTime.dwHighDateTime);
-			if (ent.ctime < 0)
-				ent.ctime = 0;
 			ent.mtime = Timestamp::fromFileTimeNP(ff.ftLastWriteTime.dwLowDateTime, ff.ftLastWriteTime.dwHighDateTime);
-			if (ent.mtime < 0)
-				ent.mtime = 0;
 
 			if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 				ent.size = DirItem::FILE_SIZE_NONE;  // No size for directories
