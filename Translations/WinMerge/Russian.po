@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2025-01-24 00:00+0000\n"
+"PO-Revision-Date: 2025-04-08 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -388,7 +388,7 @@ msgid "Men&u Bar"
 msgstr "Панель меню"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "Панель вывода"
 
 msgid "&Status Bar"
 msgstr "&Строка состояния"
@@ -700,7 +700,7 @@ msgid "&Previous Bookmark\tShift+F2"
 msgstr "&Предыдущая закладка\tShift+F2"
 
 msgid "&Clear All Bookmarks"
-msgstr "&Удалить все закладки"
+msgstr "Очистить все закладки"
 
 msgid "Syntax Highlight"
 msgstr "Подсветка синтаксиса"
@@ -769,7 +769,7 @@ msgid "Lo&cation Pane"
 msgstr "Панель управления"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Панель вывода"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Следующий конфликт\tAlt+Shift+Down"
@@ -1215,7 +1215,7 @@ msgid "&Duplicate Plugin..."
 msgstr "Дублировать плагин..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "Очистить все"
 
 msgid "About WinMerge"
 msgstr "О программе WinMerge"
@@ -1725,7 +1725,7 @@ msgid "Ignore &case"
 msgstr "Игнорировать р&егистр"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Игнорировать отличия EOL (Windows/Unix/Mac)"
 
 msgid "Ignore num&bers"
 msgstr "Игнорировать числа"
@@ -2586,10 +2586,10 @@ msgstr "Найдено всего одно отличие"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "Найдено ошибок %1"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "Найдена 1 ошибка"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -4031,17 +4031,17 @@ msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)\n(
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Сравнение %1 с %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Сравнение %1 с %2 и %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Сравнение завершено"
 
 msgid "File saved"
-msgstr ""
+msgstr "Файл сохранен"
 
 msgid "Prettification"
 msgstr "Приукрашивание"
