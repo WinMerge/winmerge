@@ -353,7 +353,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Prilepi\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "&Možnosti..."
+msgstr "&Možnosti...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Prikaz"

@@ -356,7 +356,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Pegar\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "C&onfiguración..."
+msgstr "C&onfiguración...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Ver"

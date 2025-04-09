@@ -354,7 +354,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "Wklej\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "Opcje..."
+msgstr "Opcje...\tCtrl+,"
 
 msgid "&View"
 msgstr "Widok"

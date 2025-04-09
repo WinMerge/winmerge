@@ -354,7 +354,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Colar\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "&Opções..."
+msgstr "&Opções...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Ver"

@@ -352,7 +352,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "Ya&pıştır\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "&Ayarlar..."
+msgstr "&Ayarlar...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Görünüm"

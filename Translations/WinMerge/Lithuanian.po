@@ -353,7 +353,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "Įter&pti\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "Nu&ostatos..."
+msgstr "Nu&ostatos...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Vaizdas"

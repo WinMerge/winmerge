@@ -354,7 +354,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&لصق"
 
 msgid "&Options...\tCtrl+,"
-msgstr "خ&يارات..."
+msgstr "خ&يارات...\tCtrl+,"
 
 msgid "&View"
 msgstr "&عرض"

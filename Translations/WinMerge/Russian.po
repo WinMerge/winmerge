@@ -355,7 +355,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Вставить\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "&Настройки..."
+msgstr "&Настройки...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Вид"

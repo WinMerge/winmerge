@@ -402,7 +402,7 @@ msgstr "붙여넣기(&P)\tCtrl+V"
 
 #, c-format
 msgid "&Options...\tCtrl+,"
-msgstr "옵션(&O)..."
+msgstr "옵션(&O)...\tCtrl+,"
 
 #, c-format
 msgid "&View"

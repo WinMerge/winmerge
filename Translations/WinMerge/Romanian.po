@@ -352,7 +352,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "Li&pește\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "&Opțiuni..."
+msgstr "&Opțiuni...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Vizualizare"

@@ -352,7 +352,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Lim inn\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "&Innstillinger..."
+msgstr "&Innstillinger...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Vis"

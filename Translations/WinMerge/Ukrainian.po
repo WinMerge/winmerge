@@ -377,7 +377,7 @@ msgstr "&Вставити\tCtrl+V"
 
 #, c-format
 msgid "&Options...\tCtrl+,"
-msgstr "&Налаштування..."
+msgstr "&Налаштування...\tCtrl+,"
 
 #, c-format
 msgid "&View"

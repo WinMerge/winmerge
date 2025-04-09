@@ -355,7 +355,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "Klistra in\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "Alternativ..."
+msgstr "Alternativ...\tCtrl+,"
 
 msgid "&View"
 msgstr "Visa"

@@ -391,7 +391,7 @@ msgstr "&Налепи\tCtrl+V"
 
 #, c-format
 msgid "&Options...\tCtrl+,"
-msgstr "Изб&ор..."
+msgstr "Изб&ор...\tCtrl+,"
 
 #, c-format
 msgid "&View"

@@ -351,7 +351,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&ஒட்டு\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "&விருப்பங்கள்..."
+msgstr "&விருப்பங்கள்...\tCtrl+,"
 
 msgid "&View"
 msgstr "&பார்வை"

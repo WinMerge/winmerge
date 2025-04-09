@@ -394,7 +394,7 @@ msgstr "&P چسباندن \tCtrl+V"
 
 #, c-format
 msgid "&Options...\tCtrl+,"
-msgstr "&O خيارات ... "
+msgstr "&O خيارات ... \tCtrl+,"
 
 #, c-format
 msgid "&View"

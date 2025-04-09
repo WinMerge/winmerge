@@ -393,7 +393,7 @@ msgstr "ඇලවීම\tCtrl+V"
 
 #, c-format
 msgid "&Options...\tCtrl+,"
-msgstr "&විකල්පයන්..."
+msgstr "&විකල්පයන්...\tCtrl+,"
 
 #, c-format
 msgid "&View"
