@@ -241,6 +241,12 @@
     <None Include="..\Translations\ShellExtension\Corsican.po">
       <Filter>Translations\ShellExtension</Filter>
     </None>
+    <None Include="..\Translations\WinMerge\Hebrew.po">
+      <Filter>Translations\WinMerge</Filter>
+    </None>
+    <None Include="..\Translations\ShellExtension\Hebrew.po">
+      <Filter>Translations\ShellExtension</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource FIles">

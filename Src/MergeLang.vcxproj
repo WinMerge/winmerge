@@ -230,6 +230,7 @@ popd
     <None Include="..\Translations\ShellExtension\Galician.po" />
     <None Include="..\Translations\ShellExtension\German.po" />
     <None Include="..\Translations\ShellExtension\Greek.po" />
+    <None Include="..\Translations\ShellExtension\Hebrew.po" />
     <None Include="..\Translations\ShellExtension\Hungarian.po" />
     <None Include="..\Translations\ShellExtension\Italian.po" />
     <None Include="..\Translations\ShellExtension\Japanese.po" />
@@ -270,6 +271,7 @@ popd
     <None Include="..\Translations\WinMerge\Galician.po" />
     <None Include="..\Translations\WinMerge\German.po" />
     <None Include="..\Translations\WinMerge\Greek.po" />
+    <None Include="..\Translations\WinMerge\Hebrew.po" />
     <None Include="..\Translations\WinMerge\Hungarian.po" />
     <None Include="..\Translations\WinMerge\Italian.po" />
     <None Include="..\Translations\WinMerge\Japanese.po" />
