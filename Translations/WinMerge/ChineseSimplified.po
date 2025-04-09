@@ -356,8 +356,8 @@ msgstr "编辑(&E)"
 msgid "&Paste\tCtrl+V"
 msgstr "粘贴(&P)\tCtrl+V"
 
-msgid "&Options..."
-msgstr "选项(&O)..."
+msgid "&Options...\tCtrl+,"
+msgstr "选项(&O)...\tCtrl+,"
 
 msgid "&View"
 msgstr "视图(&V)"

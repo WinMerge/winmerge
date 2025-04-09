@@ -391,8 +391,8 @@ msgid "&Paste\tCtrl+V"
 msgstr "Προ&σάρτηση\tCtrl+V"
 
 #, c-format
-msgid "&Options..."
-msgstr "Επιλ&ογές..."
+msgid "&Options...\tCtrl+,"
+msgstr "Επιλ&ογές...\tCtrl+,"
 
 #, c-format
 msgid "&View"

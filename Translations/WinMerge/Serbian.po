@@ -390,7 +390,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Налепи\tCtrl+V"
 
 #, c-format
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "Изб&ор..."
 
 #, c-format

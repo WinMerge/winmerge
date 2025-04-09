@@ -349,8 +349,8 @@ msgstr "עריכה"
 msgid "&Paste\tCtrl+V"
 msgstr "הדבק\tCtrl+V"
 
-msgid "&Options..."
-msgstr "אפשרויות..."
+msgid "&Options...\tCtrl+,"
+msgstr "אפשרויות...\tCtrl+,"
 
 msgid "&View"
 msgstr "תצוגה"

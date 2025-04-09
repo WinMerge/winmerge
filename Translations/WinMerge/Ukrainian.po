@@ -376,7 +376,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Вставити\tCtrl+V"
 
 #, c-format
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "&Налаштування..."
 
 #, c-format

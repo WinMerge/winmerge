@@ -352,8 +352,8 @@ msgstr "Muokkaa"
 msgid "&Paste\tCtrl+V"
 msgstr "Liitä\tCtrl+V"
 
-msgid "&Options..."
-msgstr "Asetukset..."
+msgid "&Options...\tCtrl+,"
+msgstr "Asetukset...\tCtrl+,"
 
 msgid "&View"
 msgstr "Näkymä"

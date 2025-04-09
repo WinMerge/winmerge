@@ -344,7 +344,7 @@ BEGIN
     BEGIN
         MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Options...",                 ID_OPTIONS
+        MENUITEM "&Options...\tCtrl+,",         ID_OPTIONS
     END
     POPUP "&View"
     BEGIN
@@ -453,7 +453,7 @@ BEGIN
     BEGIN
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Options...",                 ID_OPTIONS
+        MENUITEM "&Options...\tCtrl+,",         ID_OPTIONS
     END
     POPUP "&View"
     BEGIN
@@ -688,7 +688,7 @@ BEGIN
         END
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "&Options...",                 ID_OPTIONS
+        MENUITEM "&Options...\tCtrl+,",         ID_OPTIONS
     END
     POPUP "&View"
     BEGIN
@@ -1381,6 +1381,7 @@ BEGIN
     "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
     "Z",            ID_EDIT_REDO,           VIRTKEY, SHIFT, CONTROL, NOINVERT
+    VK_OEM_COMMA,   ID_OPTIONS,             VIRTKEY, CONTROL, NOINVERT
     VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
     VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_DOWN,        ID_NEXTDIFF,            VIRTKEY, ALT, NOINVERT
@@ -1487,7 +1488,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,390,245,70,20
     LTEXT           "Status:",IDC_OPEN_STATUS,6,272,440,12
     PUSHBUTTON      "Help",ID_HELP,383,10,72,14
-    CONTROL         "&Options...",IDC_OPTIONS,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,29,72,14
+    CONTROL         "&Options...\tCtrl+,",IDC_OPTIONS,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,29,72,14
 END
 
 IDD_PROPPAGE_GENERAL DIALOGEX 0, 0, 285, 242

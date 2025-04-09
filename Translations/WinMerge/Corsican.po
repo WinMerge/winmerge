@@ -354,8 +354,8 @@ msgstr "&Mudificà"
 msgid "&Paste\tCtrl+V"
 msgstr "&Incullà\tCtrl+V"
 
-msgid "&Options..."
-msgstr "&Ozzioni…"
+msgid "&Options...\tCtrl+,"
+msgstr "&Ozzioni…\tCtrl+,"
 
 msgid "&View"
 msgstr "&Vista"

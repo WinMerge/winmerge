@@ -395,8 +395,8 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Itsatsi\tCtrl+V"
 
 #, c-format
-msgid "&Options..."
-msgstr "&Aukerak..."
+msgid "&Options...\tCtrl+,"
+msgstr "&Aukerak...\tCtrl+,"
 
 #, c-format
 msgid "&View"

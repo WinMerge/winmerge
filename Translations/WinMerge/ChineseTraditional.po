@@ -393,8 +393,8 @@ msgid "&Paste\tCtrl+V"
 msgstr "貼上 (&P)\tCtrl+V"
 
 #, c-format
-msgid "&Options..."
-msgstr "選項 (&O)..."
+msgid "&Options...\tCtrl+,"
+msgstr "選項 (&O)...\tCtrl+,"
 
 #, c-format
 msgid "&View"

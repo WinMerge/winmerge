@@ -352,7 +352,7 @@ msgstr "&Uredi"
 msgid "&Paste\tCtrl+V"
 msgstr "&Prilepi\tCtrl+V"
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "&Možnosti..."
 
 msgid "&View"

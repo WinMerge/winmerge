@@ -393,8 +393,8 @@ msgid "&Paste\tCtrl+V"
 msgstr "Engan&xa\tControl+V"
 
 #, c-format
-msgid "&Options..."
-msgstr "O&pcions..."
+msgid "&Options...\tCtrl+,"
+msgstr "O&pcions...\tControl+,"
 
 #, c-format
 msgid "&View"

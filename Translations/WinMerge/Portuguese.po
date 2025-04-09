@@ -353,7 +353,7 @@ msgstr "&Editar"
 msgid "&Paste\tCtrl+V"
 msgstr "&Colar\tCtrl+V"
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "&Opções..."
 
 msgid "&View"

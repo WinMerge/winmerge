@@ -354,7 +354,7 @@ msgstr "Redigera"
 msgid "&Paste\tCtrl+V"
 msgstr "Klistra in\tCtrl+V"
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "Alternativ..."
 
 msgid "&View"

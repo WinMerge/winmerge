@@ -401,7 +401,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
 
 #, c-format
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "옵션(&O)..."
 
 #, c-format

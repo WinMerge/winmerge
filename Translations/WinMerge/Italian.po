@@ -353,8 +353,8 @@ msgstr "&Modifica"
 msgid "&Paste\tCtrl+V"
 msgstr "I&ncolla\tCtrl+V"
 
-msgid "&Options..."
-msgstr "Op&zioni..."
+msgid "&Options...\tCtrl+,"
+msgstr "Op&zioni...\tCtrl+,"
 
 msgid "&View"
 msgstr "&Visualizza"

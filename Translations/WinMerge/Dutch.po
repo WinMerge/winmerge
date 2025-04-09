@@ -350,8 +350,8 @@ msgstr "Bewerken"
 msgid "&Paste\tCtrl+V"
 msgstr "Plakken\tCtrl+V"
 
-msgid "&Options..."
-msgstr "Opties..."
+msgid "&Options...\tCtrl+,"
+msgstr "Opties...\tCtrl+,"
 
 msgid "&View"
 msgstr "Beeld"

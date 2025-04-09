@@ -351,8 +351,8 @@ msgstr "編集(&E)"
 msgid "&Paste\tCtrl+V"
 msgstr "貼り付け(&P)\tCtrl+V"
 
-msgid "&Options..."
-msgstr "設定(&O)..."
+msgid "&Options...\tCtrl+,"
+msgstr "設定(&O)...\tCtrl+,"
 
 msgid "&View"
 msgstr "表示(&V)"

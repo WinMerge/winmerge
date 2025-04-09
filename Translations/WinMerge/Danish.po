@@ -393,8 +393,8 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Indsæt\tCtrl+V"
 
 #, c-format
-msgid "&Options..."
-msgstr "I&ndstillinger..."
+msgid "&Options...\tCtrl+,"
+msgstr "I&ndstillinger...\tCtrl+,"
 
 #, c-format
 msgid "&View"

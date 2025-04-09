@@ -353,7 +353,7 @@ msgstr "Edycja"
 msgid "&Paste\tCtrl+V"
 msgstr "Wklej\tCtrl+V"
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "Opcje..."
 
 msgid "&View"

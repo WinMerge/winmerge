@@ -351,7 +351,7 @@ msgstr "Düz&enle"
 msgid "&Paste\tCtrl+V"
 msgstr "Ya&pıştır\tCtrl+V"
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "&Ayarlar..."
 
 msgid "&View"

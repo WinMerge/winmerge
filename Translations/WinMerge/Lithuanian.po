@@ -352,7 +352,7 @@ msgstr "R&edaguoti"
 msgid "&Paste\tCtrl+V"
 msgstr "Įter&pti\tCtrl+V"
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "Nu&ostatos..."
 
 msgid "&View"

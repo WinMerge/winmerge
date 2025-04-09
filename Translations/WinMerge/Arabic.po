@@ -353,7 +353,7 @@ msgstr "&تحرير"
 msgid "&Paste\tCtrl+V"
 msgstr "&لصق"
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "خ&يارات..."
 
 msgid "&View"

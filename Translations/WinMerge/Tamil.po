@@ -350,7 +350,7 @@ msgstr "&திருத்து"
 msgid "&Paste\tCtrl+V"
 msgstr "&ஒட்டு\tCtrl+V"
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "&விருப்பங்கள்..."
 
 msgid "&View"

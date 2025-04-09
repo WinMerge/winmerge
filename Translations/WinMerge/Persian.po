@@ -393,7 +393,7 @@ msgid "&Paste\tCtrl+V"
 msgstr "&P چسباندن \tCtrl+V"
 
 #, c-format
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr "&O خيارات ... "
 
 #, c-format

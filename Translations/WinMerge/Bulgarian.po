@@ -349,8 +349,8 @@ msgstr "П&роменяне"
 msgid "&Paste\tCtrl+V"
 msgstr "&Поставяне\tCtrl+V"
 
-msgid "&Options..."
-msgstr "&Настройки…"
+msgid "&Options...\tCtrl+,"
+msgstr "&Настройки…\tCtrl+,"
 
 msgid "&View"
 msgstr "И&зглед"

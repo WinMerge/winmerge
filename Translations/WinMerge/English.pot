@@ -346,7 +346,7 @@ msgstr ""
 msgid "&Paste\tCtrl+V"
 msgstr ""
 
-msgid "&Options..."
+msgid "&Options...\tCtrl+,"
 msgstr ""
 
 msgid "&View"

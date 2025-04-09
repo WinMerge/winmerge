@@ -392,8 +392,8 @@ msgid "&Paste\tCtrl+V"
 msgstr "&Zalijepi\tCtrl+V"
 
 #, c-format
-msgid "&Options..."
-msgstr "Pos&tavke..."
+msgid "&Options...\tCtrl+,"
+msgstr "Pos&tavke...\tCtrl+,"
 
 #, c-format
 msgid "&View"
