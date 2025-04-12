@@ -10,17 +10,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Italian) 31.03.2025\n"
+"Project-Id-Version: WinMerge (Italian) 12.04.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2025-03-31 18:22+0200\n"
+"PO-Revision-Date: 2025-04-12 15:46+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -4499,35 +4499,35 @@ msgstr "Confronto completato"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Impossibile confrontare %1 con %2:"
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Impossibile confrontare %1 con %2 e %3:"
 
 msgid "File saved"
 msgstr "File salvato"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Copia file..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Spostamento file..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Eliminazione file..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Cestino"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Permanentemente eliminati"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "Operazione file completata correttamente."
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "Operazione file annullata"
 
 msgid "Prettification"
 msgstr "Abbellimento"
