@@ -399,9 +399,8 @@ msgstr "&Édition"
 msgid "&Paste\tCtrl+V"
 msgstr "Co&ller\tCtrl+V"
 
-#, c-format
-msgid "&Options..."
-msgstr "&Préférences..."
+msgid "&Options...\tCtrl+,"
+msgstr "&Préférences...\tCtrl+,"
 
 #, c-format
 msgid "&View"
