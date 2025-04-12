@@ -98,6 +98,7 @@ public:
 
 	void SetParentWindow(HWND hWnd);
 	void UseRecycleBin(bool bUseRecycleBin);
+	bool UseRecycleBin();
 	bool Run();
 
 	// Manipulate the FileActionList
@@ -157,6 +158,15 @@ inline void FileActionScript::SetParentWindow(HWND hWnd)
 inline void FileActionScript::UseRecycleBin(bool bUseRecycleBin)
 {
 	m_bUseRecycleBin = bUseRecycleBin;
+}
+
+/**
+ * @brief Does user want to move deleted files to Recycle Bin?
+ * @return If `true` deleted files are moved to Recycle Bin.
+ */
+inline bool FileActionScript::UseRecycleBin()
+{
+	return m_bUseRecycleBin;
 }
 
 /**

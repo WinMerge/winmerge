@@ -1806,10 +1806,19 @@
 #define IDS_COPY_GRANULARITY_Character  44644
 #define IDS_VIEW_MENU_BAR               44645
 #define IDS_COPY_ONLYDIFFITEMS          44646
-#define IDS_LOG_COMPARE_2               44650
-#define IDS_LOG_COMPARE_3               44651
-#define IDS_LOG_COMPARE_RESULT          44652
-#define IDS_LOG_FILE_SAVED              44653
+#define IDS_LOG_COMPARING_2             44650
+#define IDS_LOG_COMPARING_3             44651
+#define IDS_LOG_COMPARE_COMPLETED       44652
+#define IDS_LOG_COMPARE_ERROR_2         44653
+#define IDS_LOG_COMPARE_ERROR_3         44654
+#define IDS_LOG_FILE_SAVED              44655
+#define IDS_LOG_COPYING_FILES           44656
+#define IDS_LOG_MOVING_FILES            44657
+#define IDS_LOG_DELETING_FILES          44658
+#define IDS_LOG_RECYCLEBIN              44659
+#define IDS_LOG_PERMANENTLY_DELETED     44660
+#define IDS_LOG_FILEOPERATION_COMPLETED 44661
+#define IDS_LOG_FILEOPERATION_CANCELED  44662
 
 // Next default values for new objects
 // 
