@@ -253,7 +253,3 @@ UseLastSearch ()
   m_bNoClose = lastSearch.m_bNoClose;
 }
 
-void CFindTextDlg::PostNcDestroy()
-{
-  delete this;
-}
