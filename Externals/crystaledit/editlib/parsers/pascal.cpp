@@ -151,7 +151,7 @@ unsigned
 CrystalLineParser::ParseLinePascal (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2 | COOKIE_BLOCK_STYLE);
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
 
   bool bRedefineBlock = true;
   bool bDecIndex = false;
@@ -176,7 +176,7 @@ CrystalLineParser::ParseLinePascal (unsigned dwCookie, const tchar_t *pszChars, 
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
-          else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING | COOKIE_BLOCK_STYLE))
+          else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_STRING);
             }
@@ -223,32 +223,12 @@ out:
         }
 
       //  Char constant '..'
-      if (dwCookie & COOKIE_CHAR || dwCookie & COOKIE_BLOCK_STYLE)
+      if (dwCookie & COOKIE_CHAR)
         {
           if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
-              // Multiline string ('''...''')?
-              if (((nLength >= I + 1) && (pszChars[I+1] == '\'')) || (dwCookie & COOKIE_BLOCK_STYLE))
-                {
-                  if (dwCookie & COOKIE_BLOCK_STYLE)
-                  {
-                      // End of multiline string
-                      dwCookie &= ~COOKIE_BLOCK_STYLE;                      
-                  }
-                  else 
-                  {
-                      // Start of multiline string
-                      dwCookie |= COOKIE_BLOCK_STYLE;
-                      // Skip one
-                      I++;
-                  }
-                }
-              else
-              {
-                  dwCookie &= ~COOKIE_CHAR;
-                  
-                  bRedefineBlock = true;
-              }
+              dwCookie &= ~COOKIE_CHAR;
+              bRedefineBlock = true;
             }
           continue;
         }
@@ -300,7 +280,7 @@ out:
               continue;
             }
         }
-      if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '(') // (*
+      if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '(')
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
@@ -341,6 +321,6 @@ out:
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
-    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2 | COOKIE_BLOCK_STYLE);
+    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
   return dwCookie;
 }
