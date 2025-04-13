@@ -3467,7 +3467,7 @@ void CDirView::OnUpdateHideFilenames(CCmdUI* pCmdUI)
 template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 void CDirView::OnCtxtDirMove()
 {
-	DoDirAction(&DirActions::Move<srctype, dsttype>, _("Moveing files..."));
+	DoDirAction(&DirActions::Move<srctype, dsttype>, _("Moving files..."));
 }
 
 /// User chose (context menu) Move left to...
