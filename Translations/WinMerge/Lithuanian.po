@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-03-31 09:12+0000\n"
-"PO-Revision-Date: 2025-04-01 18:55+0200\n"
+"POT-Creation-Date: 2025-04-12 14:14+0000\n"
+"PO-Revision-Date: 2025-04-14 14:14+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -4040,35 +4040,35 @@ msgstr "Palyginimas baigtas"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Nepavyko %1 ir %2 palyginimas: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Nepavyko %1, %2 ir %3 palyginimas: "
 
 msgid "File saved"
 msgstr "Failas išsaugotas"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Failų kopijavimas..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Failų perkėlimas..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Failų trynimas..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Šiukšliadėžė"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Visam laikui ištrinta"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "Failo operacija baigta sėkmingai"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "Failo operacija atšaukta"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
