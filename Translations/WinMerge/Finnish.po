@@ -3,6 +3,7 @@
 #
 # Translators:
 # * Veikko
+# * 6sto
 #
 msgid ""
 msgstr ""
@@ -44,43 +45,43 @@ msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Kopioi &vasemmalta\tAlt+Shift+Right"
 
 msgid "Copy Selected Lines to Middle"
-msgstr "Kopioi valittu(t) rivi(t) keskelle"
+msgstr "Kopioi valitut rivit keskelle"
 
 msgid "Copy Selected Lines to Right"
-msgstr "Kopioi valittu(t) rivi(t) oikealle"
+msgstr "Kopioi valitut rivit oikealle"
 
 msgid "Copy Selected Lines from Middle"
-msgstr "Kopioi valittu(t) rivi(t) keskeltä"
+msgstr "Kopioi valitut rivit keskeltä"
 
 msgid "Copy Selected Lines from Right"
-msgstr "Kopioi valittu(t) rivi(t) oikealta"
+msgstr "Kopioi valitut rivit oikealta"
 
 msgid "Copy Selected Lines to Left"
-msgstr "Kopioi valittu(t) rivi(t) vasemmalle"
+msgstr "Kopioi valitut rivit vasemmalle"
 
 msgid "Copy Selected Lines from Left"
-msgstr "Kopioi valittu(t) rivi(t) vasemmalta"
+msgstr "Kopioi valitut rivit vasemmalta"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr ""
+msgstr "Kopioi valittu ero (vasen) leikepöydälle\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "Kopioi valittu ero (oikea) leikepöydälle\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "Kopioi valittu ero (keskimmäinen) leikepöydälle\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr ""
+msgstr "Kopioi valittu ero (oikea) leikepöydälle\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
-msgstr "Valitse riviero\tF4"
+msgstr "Valitse rivi&ero\tF4"
 
 msgid "Add to Substitution &Filters"
-msgstr ""
+msgstr "Lisää korvauss&uodattimiin"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "Lisää &rivisuodattimiin"
 
 msgid "&Undo"
 msgstr "K&umoa"
@@ -98,7 +99,7 @@ msgid "&Paste"
 msgstr "Lii&tä"
 
 msgid "&Scripts"
-msgstr "Skriptit"
+msgstr "&Skriptit"
 
 msgid "< Empty >"
 msgstr "< Tyhjä >"
@@ -107,8 +108,7 @@ msgid "&Go to...\tCtrl+G"
 msgstr "&Siirry...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
-"Siirry kohtaan Siirretty viiva vasemman ja keskimmäisen välillä\tCtrl+Shift+G"
+msgstr "Siirry siirrettyyn riviin vasemman ja keskimmäisen välillä\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
 msgstr "Siirry siirrettyyn riviin keskimmäisen ja oikean välissä\tCtrl+Alt+G"
@@ -144,13 +144,13 @@ msgid "Diff &Block Size"
 msgstr "Ero&lohkon koko"
 
 msgid "&Ignore Color Difference"
-msgstr "Ohita värierot (värietäisyyskynnys)"
+msgstr "Ohita värierot"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr "Lisäyksen/poiston tunnistus"
+msgstr "Lisäyks&en/poiston tunnistus"
 
 msgid "&None"
-msgstr "Ei mitään"
+msgstr "&Ei mitään"
 
 msgid "&Vertical"
 msgstr "&Pystysuora"
@@ -180,17 +180,17 @@ msgid "Flip H&orizontally"
 msgstr "Käännä &vaakatasossa"
 
 msgid "&Zoom"
-msgstr "Zoomaa"
+msgstr "&Zoomaa"
 
 #, c-format
 msgid "25%"
-msgstr "25%"
+msgstr "25 %"
 
 msgid "Zoom &In\tCtrl++"
-msgstr "Suurenna\tCtrl++"
+msgstr "&Suurenna\tCtrl++"
 
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Pienennä\tCtrl+-"
+msgstr "&Pienennä\tCtrl+-"
 
 #. Zoom to normal
 msgid "&Normal\tCtrl+*"
@@ -203,13 +203,13 @@ msgid "&Alpha Blend"
 msgstr "&Alfasekoitus"
 
 msgid "Alpha &Blend Animation"
-msgstr "Alpha &sekoitusanimaatio"
+msgstr "Alfa&sekoitusanimaatio"
 
 msgid "Dragging &Mode"
 msgstr "Veto&tila"
 
 msgid "&Move"
-msgstr "Siirrä"
+msgstr "&Siirrä"
 
 msgid "&Adjust Offset"
 msgstr "&Säädä siirtymää"
@@ -221,7 +221,7 @@ msgid "&Horizontal Wipe"
 msgstr "&Vaakapyyhintä"
 
 msgid "Rectangle &Select"
-msgstr ""
+msgstr "&Suorakaidevalinta"
 
 msgid "&Set Background Color"
 msgstr "A&seta taustaväri"
@@ -230,13 +230,13 @@ msgid "&Vector Image Scaling"
 msgstr "&Vektorikuvan skaalaus"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "&Animaatioasetukset"
 
 msgid "&Blink Interval"
-msgstr ""
+msgstr "&Välkyntäväli"
 
 msgid "&Overlay Animation Interval"
-msgstr ""
+msgstr "&Peittoanimaation väli"
 
 msgid "Compare Extracted &Text from Images"
 msgstr "Vertaa kuvista poimittua &tekstiä"
@@ -248,10 +248,10 @@ msgid "&Screenshots"
 msgstr "Kuvakaappauk&set"
 
 msgid "&Full Size Screenshots"
-msgstr "&Täyden koon kuvakaappaukset"
+msgstr "&Täysikokoiset kuvakaappaukset"
 
 msgid "&HTMLs"
-msgstr "&HTMLs"
+msgstr "&HTML:t"
 
 msgid "&Texts"
 msgstr "&Tekstit"
@@ -266,24 +266,24 @@ msgid "Fit to Window"
 msgstr "Sovita ikkunaan"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "Tapahtumien s&ynkronointi"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "Käytöss&ä"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "&Vieritys"
 
 msgid "&Click"
-msgstr ""
+msgstr "Napsa&utus"
 
 msgid "&Input"
-msgstr ""
+msgstr "S&yöte"
 
 msgid "&Go Back/Forward"
-msgstr ""
+msgstr "&Takaisin/Eteenpäin"
 
-msgid "Clear &Browsing Data"
+msgid "Clear &Browse Data"
 msgstr "Tyhjennä &selaustiedot"
 
 msgid "&Disk Cache"
@@ -292,17 +292,17 @@ msgstr "&Levyvälimuisti"
 msgid "&Cookies"
 msgstr "&Evästeet"
 
-msgid "&Browsing History"
+msgid "&Browse History"
 msgstr "&Selaushistoria"
 
 msgid "&All Profiles"
-msgstr "Koko &profiili"
+msgstr "Kaikki &profiilit"
 
 msgid "&File"
-msgstr "Tiedosto"
+msgstr "&Tiedosto"
 
 msgid "&New"
-msgstr "Uusi"
+msgstr "&Uusi"
 
 msgid "&Text"
 msgstr "&Teksti"
@@ -311,7 +311,7 @@ msgid "T&able"
 msgstr "T&aulukko"
 
 msgid "&Binary"
-msgstr "Binääri"
+msgstr "&Binääri"
 
 msgid "&Image"
 msgstr "&Kuva"
@@ -323,10 +323,10 @@ msgid "New (&3 panes)"
 msgstr "Uusi (&3 ruutua)"
 
 msgid "&Open...\tCtrl+O"
-msgstr "Avaa...\tCtrl+O"
+msgstr "&Avaa...\tCtrl+O"
 
 msgid "Open Conflic&t File..."
-msgstr "Avaa ristiriitatiedosto..."
+msgstr "Avaa &ristiriitatiedosto..."
 
 msgid "Open C&lipboard"
 msgstr "Avaa &leikepöytä"
@@ -335,184 +335,184 @@ msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Avaa pro&jekti...\tCtrl+J"
 
 msgid "Sa&ve Project..."
-msgstr "Tallenna projekti..."
+msgstr "&Tallenna projekti..."
 
 msgid "Recent Projects"
-msgstr "Viimeiset projektit"
+msgstr "Viimeisimmät projektit"
 
 msgid "Recent F&iles or Folders"
 msgstr "Viimeaikaiset t&iedostot tai kansiot"
 
 msgid "E&xit\tCtrl+Q"
-msgstr "Poistu\tCtrl+Q"
+msgstr "&Lopeta\tCtrl+Q"
 
 msgid "&Edit"
-msgstr "Muokkaa"
+msgstr "&Muokkaa"
 
 msgid "&Paste\tCtrl+V"
-msgstr "Liitä\tCtrl+V"
+msgstr "&Liitä\tCtrl+V"
 
 msgid "&Options...\tCtrl+,"
-msgstr "Asetukset...\tCtrl+,"
+msgstr "&Asetukset...\tCtrl+,"
 
 msgid "&View"
-msgstr "Näkymä"
+msgstr "&Näkymä"
 
 msgid "Ta&b Bar"
-msgstr "Välilehdet"
+msgstr "Väli&lehtipalkki"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "&Näytä välilehtipalkki"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "&Otsikkorivillä"
 
 msgid "&Toolbar"
-msgstr "Työkalurivi"
+msgstr "T&yökalurivi"
 
 msgid "&Small"
-msgstr "Pieni"
+msgstr "&Pieni"
 
 msgid "&Medium"
-msgstr ""
+msgstr "Keski&kokoinen"
 
 msgid "&Big"
-msgstr "Iso"
+msgstr "&Iso"
 
 msgid "&Huge"
 msgstr "&Valtava"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "&Valikkorivi"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "T&ulostusruutu"
 
 msgid "&Status Bar"
-msgstr "Tilarivi"
+msgstr "&Tilarivi"
 
 msgid "&Tools"
-msgstr "Työkalut"
+msgstr "&Työkalut"
 
 msgid "&Filters..."
-msgstr "Suotimet..."
+msgstr "&Suotimet..."
 
 msgid "&Generate Patch..."
-msgstr "Luo korjaustiedosto..."
+msgstr "&Luo korjaustiedosto..."
 
 msgid "&Plugins"
-msgstr "Lisäosat"
+msgstr "&Laajennukset"
 
 msgid "P&lugin Settings..."
-msgstr "&Lisäosien asetukset..."
+msgstr "&Laajennusten asetukset..."
 
 msgid "Ma&nual Prediffer"
-msgstr "Manuaalinen esivertailu"
+msgstr "&Manuaalinen esivertailu"
 
 msgid "A&utomatic Prediffer"
-msgstr "Automaattinen esivertailu"
+msgstr "&Automaattinen esivertailu"
 
 msgid "&Manual Unpacking"
-msgstr "Manuaalinen purku"
+msgstr "M&anuaalinen purku"
 
 msgid "&Automatic Unpacking"
-msgstr "Automaattinen purku"
+msgstr "A&utomaattinen purku"
 
 msgid "&Reload Plugins"
-msgstr "Lataa lisäosat uudelleen"
+msgstr "Lataa laajennukset &uudelleen"
 
 msgid "&Window"
-msgstr "Ikkuna"
+msgstr "&Ikkuna"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr "Sulje\tCtrl+W"
+msgstr "&Sulje\tCtrl+W"
 
 msgid "Clo&se All"
-msgstr "Sulje kaikki"
+msgstr "Sulje &kaikki"
 
 msgid "Change &Pane\tF6"
-msgstr "Vaihda ruutua\tF6"
+msgstr "Vaihda &ruutua\tF6"
 
 msgid "Tile &Horizontally"
-msgstr "Vierekkäin vaakasuunnassa"
+msgstr "Vierekkäin &vaakasuunnassa"
 
 msgid "Tile &Vertically"
-msgstr "Vierekkäin pystysunnassa"
+msgstr "Vierekkäin &pystysuunnassa"
 
 msgid "&Cascade"
-msgstr "Limittäin"
+msgstr "&Limittäin"
 
 msgid "&Help"
-msgstr "Ohje"
+msgstr "&Ohje"
 
 msgid "&WinMerge Help\tF1"
-msgstr "WinMerge Ohje\tF1"
+msgstr "WinMerge-&ohje\tF1"
 
 msgid "R&elease Notes"
-msgstr "Versiotiedot"
+msgstr "&Versiotiedot"
 
 msgid "&Translations"
-msgstr "Käännökset"
+msgstr "&Käännökset"
 
 msgid "C&onfiguration"
-msgstr "Asetukset"
+msgstr "&Asetukset"
 
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
 
 msgid "&About WinMerge..."
-msgstr "Tietoj&a WinMergestä..."
+msgstr "Tietoja &WinMergestä..."
 
 msgid "&Read-Only"
 msgstr "&Vain luku"
 
 msgid "L&eft Read-Only"
-msgstr "Vasen vain luku"
+msgstr "&Vasen vain luku"
 
 msgid "M&iddle Read-Only"
 msgstr "Kesk&immäinen vain luku"
 
 msgid "Ri&ght Read-Only"
-msgstr "Oikea vain luku"
+msgstr "&Oikea vain luku"
 
 msgid "&File Encoding..."
-msgstr "Tiedoston koodaus..."
+msgstr "Tiedoston &koodaus..."
 
 msgid "Select &All\tCtrl+A"
-msgstr "Valitse kaikki\tCtrl+A"
+msgstr "Valitse k&aikki\tCtrl+A"
 
 msgid "Show &Identical Items"
-msgstr "Näytä yhtäläiset kohteet"
+msgstr "Näytä &samanlaiset kohteet"
 
 msgid "Show &Different Items"
-msgstr "Näytä eroavat kohteet"
+msgstr "Näytä &eroavat kohteet"
 
 msgid "Show L&eft Unique Items"
-msgstr "Näytä yksilölliset kohteet vasemmalla"
+msgstr "Näytä &yksilölliset vasemmat kohteet"
 
 msgid "Show Midd&le Unique Items"
 msgstr "Näytä yksilö&lliset keskimmäiset kohteet"
 
 msgid "Show Ri&ght Unique Items"
-msgstr "Näytä yksilölliset kohteet oikealla"
+msgstr "Näytä yksilölliset &oikeat kohteet"
 
 msgid "Show S&kipped Items"
 msgstr "Näytä ohitetut &kohteet"
 
 msgid "S&how Binary Files"
-msgstr "Näytä binääritiedostot"
+msgstr "N&äytä binääritiedostot"
 
 msgid "&3-way Compare"
-msgstr "&3-suuntainen vertailu"
+msgstr "&Kolmisuuntainen vertailu"
 
 msgid "Show &Left Only Different Items"
-msgstr "Näytä vasemmalla vain eroavat kohteet"
+msgstr "Näytä &vasemmalla vain eroavat kohteet"
 
 msgid "Show &Middle Only Different Items"
-msgstr "Näytä keskellä vain eroavat kohteet"
+msgstr "Näytä &keskellä vain eroavat kohteet"
 
 msgid "Show &Right Only Different Items"
-msgstr "Näytä oikealla vain eroavat kohteet"
+msgstr "Näytä &oikealla vain eroavat kohteet"
 
 msgid "Show L&eft Only Missing Items"
 msgstr "Näytä vas&emmalla vain puuttuvat kohteet"
@@ -524,25 +524,25 @@ msgid "Show Rig&ht Only Missing Items"
 msgstr "Näytä oik&alla vain puuttuvat kohteet"
 
 msgid "Show Hidd&en Items"
-msgstr "Näytä piilotetut kohteet"
+msgstr "Näytä piilot&etut kohteet"
 
 msgid "Tree &Mode"
-msgstr "Puunäkymä"
+msgstr "Puu&tila"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "Laajenna &alikansiot"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "&Kaikki alikansiot"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "&Eriävät alikansiot"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "&Samanlaiset alikansiot"
 
 msgid "&Collapse All Subfolders"
-msgstr "Tiivistä kaikki alikansiot"
+msgstr "&Tiivistä kaikki alikansiot"
 
 msgid "Select &Font..."
 msgstr "Valitse &fontti..."
@@ -551,82 +551,82 @@ msgid "Use Default Font"
 msgstr "Käytä oletusfonttia"
 
 msgid "Sw&ap Panes"
-msgstr "Vaihda ruudut"
+msgstr "Vaihd&a ruudut"
 
 msgid "Swap &1st | 2nd"
-msgstr "Vaihda &1. | toinen"
+msgstr "Vaihda &1. | 2."
 
 msgid "Swap &2nd | 3rd"
-msgstr "Vaihda &2. | kolmas"
+msgstr "Vaihda &2. | 3."
 
 msgid "Swap 1st | &3rd"
-msgstr "Vaihda 1. | &kolmas"
+msgstr "Vaihda 1. | &3."
 
 msgid "Com&pare Statistics..."
-msgstr "Vertaa tilastoja..."
+msgstr "Ver&taa tilastoja..."
 
 msgid "Refresh\tF5"
-msgstr ""
+msgstr "Päivitä\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Päivitä valitut\tCtrl+F5"
+msgstr "&Päivitä valitut\tCtrl+F5"
 
 msgid "&Merge"
-msgstr "Yhdistä"
+msgstr "&Yhdistä"
 
 msgid "Co&mpare\tEnter"
-msgstr "Vertaa\tEnter"
+msgstr "Ver&taa\tEnter"
 
 msgid "&Next Difference\tAlt+Down"
-msgstr "Seuraava ero\tAlt+Down"
+msgstr "&Seuraava ero\tAlt+Down"
 
 msgid "&Previous Difference\tAlt+Up"
-msgstr "Edellinen ero\tAlt+Up"
+msgstr "&Edellinen ero\tAlt+Up"
 
 msgid "&First Difference\tAlt+Home"
-msgstr "Ensimmäinen ero\tAlt+Home"
+msgstr "&Ensimmäinen ero\tAlt+Home"
 
 msgid "&Current Difference\tAlt+Enter"
-msgstr "Nykyinen ero\tAlt+Enter"
+msgstr "&Nykyinen ero\tAlt+Enter"
 
 msgid "&Last Difference\tAlt+End"
-msgstr "Viimeinen ero\tAlt+End"
+msgstr "&Viimeinen ero\tAlt+End"
 
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Kopioi oikealle\tAlt+Right"
+msgstr "Kopioi &oikealle\tAlt+Right"
 
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Kopioi vasemmalle\tAlt+Left"
+msgstr "Kopioi v&asemmalle\tAlt+Left"
 
 msgid "&Delete\tDel"
-msgstr "Poista\tDel"
+msgstr "&Poista\tDel"
 
 msgid "&Customize Columns..."
-msgstr "Muokkaa sarakkeita..."
+msgstr "&Mukauta sarakkeita..."
 
 msgid "Generate &Report..."
 msgstr "Luo &raportti..."
 
 msgid "&Edit with Unpacker..."
-msgstr "Muokkaa ti&edoston purkajalla..."
+msgstr "&Muokkaa purkajalla..."
 
 msgid "&Save\tCtrl+S"
-msgstr "Tallenna\tCtrl+S"
+msgstr "&Tallenna\tCtrl+S"
 
 msgid "Sav&e"
 msgstr "Tall&enna"
 
 msgid "Save &Left"
-msgstr "Ta&llenna vasen"
+msgstr "Tallenna &vasen"
 
 msgid "Save &Middle"
 msgstr "&Tallenna keskimmäinen"
 
 msgid "Save &Right"
-msgstr "Tallenna oikea"
+msgstr "Tallenna &oikea"
 
 msgid "Save &As"
-msgstr "T&allenna nimellä"
+msgstr "Tallenna &nimellä"
 
 msgid "Save &Left As..."
 msgstr "Tallenna vasen nime&llä..."
@@ -638,73 +638,73 @@ msgid "Save &Right As..."
 msgstr "Tallenna oikea &nimellä..."
 
 msgid "&Print...\tCtrl+P"
-msgstr "Tulosta...\tCtrl+P"
+msgstr "&Tulosta...\tCtrl+P"
 
 msgid "Page Set&up..."
-msgstr "Sivun asetukset..."
+msgstr "Sivun a&setukset..."
 
 msgid "Print Previe&w..."
-msgstr "Tulostuksen esikatselu..."
+msgstr "Tulostuksen esikatsel&u..."
 
 msgid "&Convert Line Endings to"
-msgstr "Muunna &rivinloput >"
+msgstr "Muunna &rivinloput muotoon"
 
 msgid "Mer&ge Mode\tF9"
-msgstr "Yhdistäminen\tF9"
+msgstr "&Yhdistämistila\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr ""
+msgstr "Lataa uu&delleen\tCtrl+F5"
 
 msgid "Reco&mpare As"
-msgstr "Vertaa uudelleen"
+msgstr "Ver&taa uudelleen nimellä"
 
 msgid "&Undo\tCtrl+Z"
-msgstr "Kumoa\tCtrl+Z"
+msgstr "&Kumoa\tCtrl+Z"
 
 msgid "&Redo\tCtrl+Y"
-msgstr "Tee uudestaan\tCtrl+Y"
+msgstr "Tee &uudelleen\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
-msgstr "Leikkaa\tCtrl+X"
+msgstr "&Leikkaa\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
-msgstr "Kopioi\tCtrl+C"
+msgstr "&Kopioi\tCtrl+C"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Ets&i...\tCtrl+F"
 
 msgid "Repla&ce...\tCtrl+H"
-msgstr "Korvaa...\tCtrl+H"
+msgstr "&Korvaa...\tCtrl+H"
 
 msgid "&Marker...\tCtrl+Shift+M"
 msgstr "&Merkki...\tCtrl+Shift+M"
 
 msgid "Advanced"
-msgstr "Edistynyt"
+msgstr "Lisäasetukset"
 
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "Kopioi myös rivinumerot\tCtrl+Shift+C"
+msgstr "&Kopioi rivinumeroineen\tCtrl+Shift+C"
 
 msgid "&Bookmarks"
-msgstr "Kirjanmerkit"
+msgstr "&Kirjanmerkit"
 
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "Kirjanmerkki on/ei\tCtrl+F2"
+msgstr "&Vaihda kirjanmerkki\tCtrl+F2"
 
 msgid "&Next Bookmark\tF2"
-msgstr "Seuraava kirjanmerkki\tF2"
+msgstr "&Seuraava kirjanmerkki\tF2"
 
 msgid "&Previous Bookmark\tShift+F2"
-msgstr "Edellinen kirjanmerkki\tShift+F2"
+msgstr "&Edellinen kirjanmerkki\tShift+F2"
 
 msgid "&Clear All Bookmarks"
-msgstr "Poista kaikki kirjanmerkit"
+msgstr "&Poista kaikki kirjanmerkit"
 
 msgid "Syntax Highlight"
 msgstr "Syntaksin korostus"
 
 msgid "&Diff Context"
-msgstr "&Ero-konteksti"
+msgstr "&Erokonteksti"
 
 msgid "&All Lines"
 msgstr "K&aikki rivit"
@@ -734,40 +734,40 @@ msgid "&Invert (Hide Different Lines)"
 msgstr "Käänteinen (p&iilota erilaiset rivit)"
 
 msgid "&Lock Panes"
-msgstr "Lukitse ruudut"
+msgstr "&Lukitse ruudut"
 
 msgid "&View Whitespace"
-msgstr "Välilyönnit"
+msgstr "Näytä &välilyönnit"
 
 msgid "View E&OL"
 msgstr "Näytä E&OL"
 
 msgid "Vie&w Line Differences"
-msgstr "Näytä rivierot"
+msgstr "Näytä &rivierot"
 
 msgid "View Line &Numbers"
-msgstr "Näytä rivinumerot"
+msgstr "Näytä rivi&numerot"
 
 msgid "View &Margins"
 msgstr "Näytä &marginaalit"
 
 msgid "View To&p Margins"
-msgstr "Näytä ylimmät &marginaalit"
+msgstr "Näytä &ylämarginaalit"
 
 msgid "W&rap Lines"
 msgstr "&Rivitä"
 
 msgid "Split V&ertically"
-msgstr "Jaa pystysuunnassa"
+msgstr "Jaa p&ystysuunnassa"
 
 msgid "Diff &Pane"
-msgstr "Eroavuusruutu"
+msgstr "&Eroruutu"
 
 msgid "Lo&cation Pane"
-msgstr "Sijaintiruutu"
+msgstr "&Sijaintiruutu"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Tulostusruutu"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Seu&raava ristiriita\tAlt+Shift+Down"
@@ -776,70 +776,70 @@ msgid "Pre&vious Conflict\tAlt+Shift+Up"
 msgstr "E&dellinen ristiriita\tAlt+Shift+Up"
 
 msgid "A&dvanced"
-msgstr "E&distynyt"
+msgstr "Lisä&asetukset"
 
 msgid "Next Difference (Left/Middle)\tAlt+1"
-msgstr "Seuraava ero vasemmassa ja keskimmäisessä\tAlt+1"
+msgstr "Seuraava ero (vasen/keskimmäinen)\tAlt+1"
 
 msgid "Previous Difference (Left/Middle)\tAlt+Shift+1"
-msgstr "Edellinen ero vasemmassa ja keskimmäisessä\tAlt+Shift+1"
+msgstr "Edellinen ero (vasen/keskimmäinen)\tAlt+Shift+1"
 
 msgid "Next Difference (Left/Right)\tAlt+2"
-msgstr "Seuraava ero vasemmassa ja oikeassa\tAlt+2"
+msgstr "Seuraava ero (vasen/oikea)\tAlt+2"
 
 msgid "Previous Difference (Left/Right)\tAlt+Shift+2"
-msgstr "Edellinen ero vasemmassa ja oikeassa\tAlt+Shift+2"
+msgstr "Edellinen ero (vasen/oikea)\tAlt+Shift+2"
 
 msgid "Next Difference (Middle/Right)\tAlt+3"
-msgstr "Seuraava ero keskimmäisessä ja oikeassa\tAlt+3"
+msgstr "Seuraava ero (keskimmäinen/oikea)\tAlt+3"
 
 msgid "Previous Difference (Middle/Right)\tAlt+Shift+3"
-msgstr "Edellinen ero keskimmäisessä ja oikeassa\tAlt+Shift+3"
+msgstr "Edellinen ero (keskimmäinen/oikea)\tAlt+Shift+3"
 
 msgid "Next Left-Only Difference\tAlt+7"
-msgstr "Seuraava ero vain vasemmassa\tAlt+7"
+msgstr "Seuraava ero (vain vasen)\tAlt+7"
 
 msgid "Previous Left-Only Difference\tAlt+Shift+7"
-msgstr "Edellinen ero vain vasemmassa\tAlt+Shift+7"
+msgstr "Edellinen ero (vain vasen)\tAlt+Shift+7"
 
 msgid "Next Middle-Only Difference\tAlt+8"
-msgstr "Seuraava ero vain keskimmäisessä\tAlt+8"
+msgstr "Seuraava ero (vain keskimmäinen)\tAlt+8"
 
 msgid "Previous Middle-Only Difference\tAlt+Shift+8"
-msgstr "Edellinen ero vain keskimmäisessä\tAlt+Shift+8"
+msgstr "Edellinen ero (vain keskimmäinen)\tAlt+Shift+8"
 
 msgid "Next Right-Only Difference\tAlt+9"
-msgstr "Seuraava ero vain oikeassa\tAlt+9"
+msgstr "Seuraava ero (vain oikea)\tAlt+9"
 
 msgid "Previous Right-Only Difference\tAlt+Shift+9"
-msgstr "Edellinen ero vain oikeassaa\tAlt+Shift+9"
+msgstr "Edellinen ero (vain oikea)\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Kopioi &vasemmalta ->"
 
 msgid "&Middle"
-msgstr "&Keski"
+msgstr "&Keskelle"
 
 msgid "&Right"
-msgstr "Oikea"
+msgstr "&Oikealle"
 
 msgid "Copy from &Middle to"
 msgstr "Kopioi &keskeltä ->"
 
 msgid "&Left"
-msgstr "Vasen"
+msgstr "&Vasemmalle"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Kopioi &oikealta ->"
 
 msgid "Copy Selected Lines from Le&ft to"
-msgstr "Kopioi valittu(t) rivi(t) &vasemmalta ->"
+msgstr "Kopioi valitut rivit vasemma&lta ->"
 
 msgid "Copy Selected Lines from Mi&ddle to"
-msgstr "Kopioi valittu(t) rivi(t) &keskeltä ->"
+msgstr "Kopioi valitut rivit ke&skeltä ->"
 
 msgid "Copy Selected Lines from Ri&ght to"
-msgstr "Kopioi valittu(t) rivi(t) &oikealta ->"
+msgstr "Kopioi valitut rivit oikea&lta ->"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopioi vasemmalta\tAlt+Shift+Right"
@@ -848,16 +848,16 @@ msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "Kopioi oikealta\tAlt+Shift+Left"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Kopioi oikealle ja etene\tCtrl+Alt+Right"
+msgstr "K&opioi oikealle ja etene\tCtrl+Alt+Right"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Kopioi vasemmalle ja etene\tCtrl+Alt+Left"
+msgstr "Kopioi &vasemmalle ja etene\tCtrl+Alt+Left"
 
 msgid "Copy &All to Right"
-msgstr "Kopioi kaikki oikealle"
+msgstr "Kopioi &kaikki oikealle"
 
 msgid "Cop&y All to Left"
-msgstr "Kopioi kaikki vasemmalle"
+msgstr "Kopi&oi kaikki vasemmalle"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr "A&utomaattinen yhdistäminen\tCtrl+Alt+M"
@@ -869,28 +869,28 @@ msgid "Clear Sync&hronization Points"
 msgstr "Poista syn&kronointipisteet"
 
 msgid "Unpac&ker"
-msgstr "Pur&kaja"
+msgstr "Purka&ja"
 
 msgid "&Prediffer"
-msgstr "Esivertailu"
+msgstr "&Esivertailu"
 
 msgid "Apply Pre&differ..."
-msgstr "Käytä &ennakointia..."
+msgstr "Käytä esi&vertailua..."
 
 msgid "&Transform with Editor Script..."
-msgstr "&Muunna editoriskriptillä..."
+msgstr "&Muunna muokkausskriptillä..."
 
 msgid "Scripts for &Copying"
-msgstr ""
+msgstr "&Skriptit kopiointiin"
 
 msgid "Select &Editor Script..."
-msgstr ""
+msgstr "Valitse &muokkausskripti..."
 
 msgid "Sp&lit"
 msgstr "J&aa"
 
 msgid "Comp&are"
-msgstr "Vertaa"
+msgstr "Vert&aa"
 
 msgid "Compare in New &Window"
 msgstr "Vertaa uudessa &ikkunassa"
@@ -899,22 +899,22 @@ msgid "Compare Non-hor&izontally..."
 msgstr "Vertaa e&i-vaakasuunnassa..."
 
 msgid "Compare Non-hor&izontally"
-msgstr "Vertaa ei-vaakasuunnassa"
+msgstr "Vertaa e&i-vaakasuunnassa"
 
 msgid "First &Left with Second Left"
-msgstr "Ensimmäinen &vasen kohde toisen vasemman kohteen kanssa"
+msgstr "Ensimmäinen &vasen ja toinen vasen"
 
 msgid "First &Right with Second Right"
-msgstr "Ensimmäinen &oikea kohde toisen oikean kohteen kanssa"
+msgstr "Ensimmäinen &oikea ja toinen oikea"
 
 msgid "&First Left with Second Right"
-msgstr "&Ensimmäinen vasen kohde toisen oikean kohteen kanssa"
+msgstr "&Ensimmäinen vasen ja toinen oikea"
 
 msgid "&Second Left with First Right"
-msgstr "&Toinen vasen kohde ensimmäisen oikean kohteen kanssa"
+msgstr "&Toinen vasen ja ensimmäinen oikea"
 
 msgid "Co&mpare As"
-msgstr "Vertaa >"
+msgstr "Vertaa &nimellä"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
@@ -934,11 +934,11 @@ msgstr "Keskeltä vasemmalle (%1 / %2)"
 
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr "Vasemmalta oikealle (%1 / %2)"
+msgstr "Keskeltä oikealle (%1 / %2)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr "Keskellä... (%1 / %2)"
+msgstr "Keskeltä... (%1 / %2)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
@@ -953,31 +953,31 @@ msgid "Right to... (%1 of %2)"
 msgstr "Oikealta... (%1 / %2)"
 
 msgid "&Delete"
-msgstr "Poista"
+msgstr "&Poista"
 
 msgid "&Both"
-msgstr "Molemmat"
+msgstr "&Molemmat"
 
 msgid "&All"
 msgstr "K&aikki"
 
 msgid "Re&name"
-msgstr "Nimeä uudelleen"
+msgstr "&Nimeä uudelleen"
 
 msgid "&Hide Items"
-msgstr "Piilota kohteet"
+msgstr "&Piilota kohteet"
 
 msgid "&Open Left"
-msgstr "Avaa vasen"
+msgstr "Avaa &vasen"
 
 msgid "Open Midd&le"
 msgstr "Avaa ke&skimmäinen"
 
 msgid "O&pen Right"
-msgstr "Avaa oikea"
+msgstr "&Avaa oikea"
 
 msgid "Cop&y Paths"
-msgstr "Kopioi polkunimet"
+msgstr "Kopioi &polut"
 
 #, c-format
 msgid "Left (%1 of %2)"
@@ -1000,16 +1000,16 @@ msgid "All (%1 of %2)"
 msgstr "Kaikki (%1 / %2)"
 
 msgid "Copy &Filenames"
-msgstr "Kopioi tiedostonimet"
+msgstr "Kopioi &tiedostonimet"
 
 msgid "Copy Items to Clip&board"
 msgstr "Kopioi kohteet leike&pöydälle"
 
 msgid "Copy All Di&splayed Columns"
-msgstr ""
+msgstr "Kopioi kaikki näyttö&sarakkeet"
 
 msgid "&Zip"
-msgstr "Pakkaa"
+msgstr "&Pakkaa"
 
 #, c-format
 msgid "Both to... (%1 of %2)"
@@ -1021,40 +1021,40 @@ msgstr "Kaikki... (%1 / %2)"
 
 #, c-format
 msgid "Differences to... (%1 of %2)"
-msgstr "Eroavaisuudet... (%1 / %2)"
+msgstr "Erot... (%1 / %2)"
 
 msgid "Left Shell Menu"
-msgstr "Vasen Shell-valikko"
+msgstr "Vasen liittymävalikko"
 
 msgid "Middle Shell Menu"
 msgstr "Keskimmäinen liittymävalikko"
 
 msgid "Right Shell Menu"
-msgstr "Oikea Shell-valikko"
+msgstr "Oikea liittymävalikko"
 
 msgid "Both Shell Menu"
-msgstr ""
+msgstr "Molempien liittymävalikko"
 
 msgid "All Shell Menu"
-msgstr ""
+msgstr "Kaikkien liittymävalikko"
 
 msgid "Copy"
 msgstr "Kopioi"
 
 msgid "&Copy Full Path"
-msgstr "Kopioi täysi polku"
+msgstr "&Kopioi koko polku"
 
 msgid "Copy &Filename"
-msgstr "Kopioi tiedostonimi"
+msgstr "Kopioi &tiedostonimi"
 
 msgid "&Edit Caption"
 msgstr "Muokkaa &otsikkoa"
 
 msgid "&Open..."
-msgstr ""
+msgstr "&Avaa..."
 
 msgid "Unpacker Settings"
-msgstr "Pakkauksen purkuasetukset"
+msgstr "Purkuasetukset"
 
 msgid "<None>"
 msgstr "<Ei mitään>"
@@ -1063,43 +1063,43 @@ msgid "<Automatic>"
 msgstr "<Automaattinen>"
 
 msgid "&Select..."
-msgstr "Valitse..."
+msgstr "&Valitse..."
 
 msgid "Prediffer Settings"
-msgstr "Esivertailun asetukset"
+msgstr "Esivertailuasetukset"
 
 msgid "G&o to Diff"
-msgstr "Siirry eroon"
+msgstr "Siirry er&oon"
 
 msgid "&No Moved Blocks"
-msgstr "Ei siirrettyjä lohkoja"
+msgstr "&Ei siirrettyjä lohkoja"
 
 msgid "&All Moved Blocks"
-msgstr "Kaikki siirretyt lohkot"
+msgstr "&Kaikki siirretyt lohkot"
 
 msgid "W&hitespaces"
-msgstr "Välilyönnit"
+msgstr "&Välilyönnit"
 
 msgid "Com&pare"
-msgstr "Vertaa"
+msgstr "Ve&rtaa"
 
 msgid "I&gnore Changes"
-msgstr "Hylkää muutokset"
+msgstr "O&hita muutokset"
 
 msgid "Ig&nore All"
-msgstr "Hylkää kaikki"
+msgstr "Ohi&ta kaikki"
 
 msgid "Ignore Blan&k Lines"
-msgstr "Ohita tyhjät rivit"
+msgstr "Ohita tyh&jät rivit"
 
 msgid "Ignore &Case"
-msgstr "Ohita kirjainkoko"
+msgstr "Ohita &kirjainkoko"
 
 msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
-msgstr "Ohita rivinvaihtoerot (Windows/Unix/Mac)"
+msgstr "O&hita rivinvaihtoerot (Windows/Unix/Mac)"
 
 msgid "Ignore Codepage &Differences"
-msgstr "Ohita koodisivuerot"
+msgstr "Ohita koo&disivuerot"
 
 msgid "Ignore Num&bers"
 msgstr "Jätä nume&rot huomiotta"
@@ -1108,13 +1108,13 @@ msgid "Ignore C&omment Differences"
 msgstr "Jätä k&ommenttien erot huomiotta"
 
 msgid "Ignore &Missing Trailing EOL"
-msgstr ""
+msgstr "Ohita &puuttuva lopun EOL"
 
 msgid "&Include Subfolders"
-msgstr "Sisällytä alihakemistot"
+msgstr "&Sisällytä alikansiot"
 
 msgid "&Compare Method"
-msgstr "Vertailumenetelmä"
+msgstr "&Vertailutapa"
 
 msgid "Full Contents"
 msgstr "Koko sisältö"
@@ -1123,13 +1123,13 @@ msgid "Quick Contents"
 msgstr "Pikasisältö"
 
 msgid "Binary Contents"
-msgstr "Binaarinen sisältö"
+msgstr "Binäärinen sisältö"
 
 msgid "Modified Date"
-msgstr "Muutospäivämäärä"
+msgstr "Muokattu päivämäärä"
 
 msgid "Modified Date and Size"
-msgstr "Muutospäivä ja koko"
+msgstr "Muokattu päivämäärä ja koko"
 
 msgid "Size"
 msgstr "Koko"
@@ -1137,83 +1137,83 @@ msgstr "Koko"
 msgid "&Load Project..."
 msgstr "&Lataa projekti..."
 
-msgid "${*} - All Arguments"
-msgstr ""
+msgid "<span class="math-inline">\{\*\} \- All Arguments"
+msgstr "</span>{*} - Kaikki argumentit"
 
-msgid "${1} - First Argument"
-msgstr ""
+msgid "<span class="math-inline">\{1\} \- First Argument"
+msgstr "</span>{1} - Ensimmäinen argumentti"
 
-msgid "${2} - Second Argument"
-msgstr ""
+msgid "<span class="math-inline">\{2\} \- Second Argument"
+msgstr "</span>{2} - Toinen argumentti"
 
-msgid "${3} - Third Argument"
-msgstr ""
+msgid "<span class="math-inline">\{3\} \- Third Argument"
+msgstr "</span>{3} - Kolmas argumentti"
 
-msgid "${4} - Fourth Argument"
-msgstr ""
+msgid "<span class="math-inline">\{4\} \- Fourth Argument"
+msgstr "</span>{4} - Neljäs argumentti"
 
-msgid "${5} - Fifth Argument"
-msgstr ""
+msgid "<span class="math-inline">\{5\} \- Fifth Argument"
+msgstr "</span>{5} - Viides argumentti"
 
-msgid "${6} - Sixth Argument"
-msgstr ""
+msgid "<span class="math-inline">\{6\} \- Sixth Argument"
+msgstr "</span>{6} - Kuudes argumentti"
 
-msgid "${7} - Seventh Argument"
-msgstr ""
+msgid "<span class="math-inline">\{7\} \- Seventh Argument"
+msgstr "</span>{7} - Seitsemäs argumentti"
 
-msgid "${8} - Eighth Argument"
-msgstr ""
+msgid "<span class="math-inline">\{8\} \- Eighth Argument"
+msgstr "</span>{8} - Kahdeksas argumentti"
 
-msgid "${9} - Ninth Argument"
-msgstr ""
+msgid "<span class="math-inline">\{9\} \- Ninth Argument"
+msgstr "</span>{9} - Yhdeksäs argumentti"
 
-msgid "${SRC_FILE} - Source File"
-msgstr ""
+msgid "<span class="math-inline">\{SRC\_FILE\} \- Source File"
+msgstr "</span>{SRC_FILE} - Lähdetiedosto"
 
-msgid "${SRC_FOLDER} - Source Folder"
-msgstr ""
+msgid "<span class="math-inline">\{SRC\_FOLDER\} \- Source Folder"
+msgstr "</span>{SRC_FOLDER} - Lähdekansio"
 
-msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgid "<span class="math-inline">\{SRC\_URL\} \- Source URL"
+msgstr "</span>{SRC_URL} - Lähde-URL"
 
-msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
-msgstr ""
+msgid "<span class="math-inline">\{SRC\_URL\_PROTOCOL\} \- Source URL Protocol"
+msgstr "</span>{SRC_URL_PROTOCOL} - Lähde-URL-protokolla"
 
-msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
-msgstr ""
+msgid "<span class="math-inline">\{SRC\_URL\_SUFFIX\} \- Source URL Suffix"
+msgstr "</span>{SRC_URL_SUFFIX} - Lähde-URL-pääte"
 
-msgid "${DST_FILE} - Destination File"
-msgstr ""
+msgid "<span class="math-inline">\{DST\_FILE\} \- Destination File"
+msgstr "</span>{DST_FILE} - Kohdetiedosto"
 
-msgid "${DST_FOLDER} - Destination Folder"
-msgstr ""
+msgid "<span class="math-inline">\{DST\_FOLDER\} \- Destination Folder"
+msgstr "</span>{DST_FOLDER} - Kohdekansio"
 
-msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgid "<span class="math-inline">\{DST\_URL\} \- Destination URL"
+msgstr "</span>{DST_URL} - Kohde-URL"
 
-msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
-msgstr ""
+msgid "<span class="math-inline">\{DST\_URL\_PROTOCOL\} \- Destination URL Protocol"
+msgstr "</span>{DST_URL_PROTOCOL} - Kohde-URL-protokolla"
 
-msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
-msgstr ""
+msgid "<span class="math-inline">\{DST\_URL\_SUFFIX\} \- Destination URL Suffix"
+msgstr "</span>{DST_URL_SUFFIX} - Kohde-URL-pääte"
 
-msgid "${WINMERGE_HOME} - WinMerge Home Directory"
-msgstr ""
+msgid "<span class="math-inline">\{WINMERGE\_HOME\} \- WinMerge Home Directory"
+msgstr "</span>{WINMERGE_HOME} - WinMergen kotihakemisto"
 
-msgid "${SCRIPT_FILE} - Script File"
-msgstr ""
+msgid "<span class="math-inline">\{SCRIPT\_FILE\} \- Script File"
+msgstr "</span>{SCRIPT_FILE} - Skriptitiedosto"
 
 msgid "Add &Unpacker Plugin..."
-msgstr ""
+msgstr "Lisää &purkulaajennus..."
 
 msgid "Add &Prediffer Plugin..."
-msgstr ""
+msgstr "Lisää &esivertailulaajennus..."
 
 msgid "&Duplicate Plugin..."
-msgstr ""
+msgstr "&Monista laajennus..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "Tyhjennä k&aikki"
 
 msgid "About WinMerge"
 msgstr "Tietoja WinMergestä"
@@ -1234,13 +1234,13 @@ msgid "&1st File or Folder"
 msgstr "&1. tiedosto tai kansio"
 
 msgid "Re&ad-only"
-msgstr "Vain luku"
+msgstr "&Vain luku"
 
 msgid "Swap 1st | 2nd"
-msgstr "Vaihda 1. | toinen"
+msgstr "Vaihda 1. | 2."
 
 msgid "&Browse..."
-msgstr "Selaa..."
+msgstr "&Selaa..."
 
 msgid "&2nd File or Folder"
 msgstr "&2. tiedosto tai kansio"
@@ -1249,10 +1249,10 @@ msgid "Rea&d-only"
 msgstr "&Vain luku"
 
 msgid "Swap 2nd | 3rd"
-msgstr "Vaihda 2. | kolmas"
+msgstr "Vaihda 2. | 3."
 
 msgid "B&rowse..."
-msgstr "Selaa..."
+msgstr "&Selaa..."
 
 msgid "&3rd File or Folder (Optional)"
 msgstr "&3. tiedosto tai kansio (valinnainen)"
@@ -1261,7 +1261,7 @@ msgid "Read-o&nly"
 msgstr "Vai&n luku"
 
 msgid "Swap 1st | 3rd"
-msgstr "Vaihda 1. | kolmas"
+msgstr "Vaihda 1. | 3."
 
 msgid "Browse..."
 msgstr "Selaa..."
@@ -1270,13 +1270,13 @@ msgid " Folder: Filter"
 msgstr " Kansio: Suodin"
 
 msgid "&Include subfolders"
-msgstr "Sisällytä alihakemistot"
+msgstr "&Sisällytä alikansiot"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Tiedosto: Esivertailulaajennus"
 
 msgid " File: Unpacker Plugin"
-msgstr " Tiedosto: Purkaja-lisäosa"
+msgstr " Tiedosto: Purkulaajennus"
 
 msgid "Se&lect..."
 msgstr "Va&litse..."
@@ -1291,40 +1291,40 @@ msgid "Help"
 msgstr "Ohje"
 
 msgid "General"
-msgstr "Yleinen"
+msgstr "Yleiset"
 
 msgid "Automatically &scroll to first difference"
-msgstr "Siirry automaattisesti ensimmäiseen eroavuuteen"
+msgstr "Siirry automaattisesti &ensimmäiseen eroon"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr "Rullaa automaattisesti en&simmäiseen rivin sisäiseen eroon"
+msgstr "&Rullaa automaattisesti ensimmäiseen rivin sisäiseen eroon"
 
 msgid "Cl&ose windows with 'Esc':"
-msgstr "Sulje ikkuna 'Esc':llä:"
+msgstr "Sulje &ikkuna 'Esc':llä:"
 
 msgid "&Automatically verify paths in Open dialog"
-msgstr "Tarkista polut automaattisesti Avaa-valintaikkunassa"
+msgstr "&Tarkista polut automaattisesti Avaa-valintaikkunassa"
 
 msgid "Single instance mode:"
 msgstr "Yhden instanssin tila:"
 
 msgid "As&k when closing multiple windows"
-msgstr "Kysy monikerta-ikkunoita suljettaessa"
+msgstr "&Kysy suljettaessa useita ikkunoita"
 
 msgid "&Preserve file time in file compare"
-msgstr "Säilytä tiedostoaika tiedostovertailussa"
+msgstr "&Säilytä tiedostoaika tiedostovertailussa"
 
 msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Näytä \"Valitse tiedostot tai kansiot\"-valintaikkuna käynnistyksessä"
+msgstr "Näytä \"Valitse tiedostot tai kansiot\" -valintaikkuna käynnistyksessä"
 
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
+msgstr "Sulje \"Valitse tiedostot tai kansiot\" -valintaikkuna napsautettaessa Vertaa-painiketta"
 
 msgid "Op&en dialog Auto completion:"
-msgstr ""
+msgstr "Avaa-valintaikkunan automaattinen &täydennys:"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "Lataa &muokatut tiedostot automaattisesti uudelleen:"
 
 msgid "Language:"
 msgstr "Kieli:"
@@ -1336,64 +1336,64 @@ msgid "Find"
 msgstr "Etsi"
 
 msgid "Fi&nd what:"
-msgstr "Etsittävä:"
+msgstr "&Etsittävä:"
 
 msgid "Match &whole word only"
 msgstr "Vain &kokonaiset sanat"
 
 msgid "Match &case"
-msgstr "Sama kirjainkoko"
+msgstr "Sama kirjain&koko"
 
 msgid "Regular &expression"
-msgstr "Säännöllinen lauseke"
+msgstr "Säännöllinen lausek&e"
 
 msgid "D&on't wrap end of file"
-msgstr "Älä rivitä tiedoston loppua"
+msgstr "Äl&ä rivitä tiedoston lopussa"
 
 msgid "&Don't close this dialog"
 msgstr "&Älä sulje tätä valintaikkunaa"
 
 msgid "&Find Next"
-msgstr "Etsi seuraava"
+msgstr "&Etsi seuraava"
 
 msgid "Find &Prev"
 msgstr "Etsi &edellinen"
 
 msgid "&Ok"
-msgstr "OK"
+msgstr "&OK"
 
 msgid "Replace"
 msgstr "Korvaa"
 
 msgid "Re&place with:"
-msgstr "Korvaava:"
+msgstr "&Korvaava:"
 
 msgid "&Don't wrap at end of file"
-msgstr "Älä rivitä tiedoston loppua"
+msgstr "Älä &rivitä tiedoston lopussa"
 
 msgid "Replace in"
 msgstr "Korvaa kohteessa"
 
 msgid "&Selection"
-msgstr "Valinta"
+msgstr "&Valinta"
 
 msgid "Wh&ole file"
-msgstr "Koko tiedosto"
+msgstr "K&oko tiedosto"
 
 msgid "Find Pre&v"
 msgstr "Etsi e&dellinen"
 
 msgid "&Replace"
-msgstr "Korvaa"
+msgstr "&Korvaa"
 
 msgid "Replace &All"
-msgstr "Korvaa kaikki"
+msgstr "Korvaa k&aikki"
 
 msgid "Markers"
 msgstr "Merkitsimet"
 
 msgid "Enable &markers"
-msgstr "Ota &merkitsemiset käyttöön"
+msgstr "Ota &merkitsimet käyttöön"
 
 msgid "New"
 msgstr "Uusi"
@@ -1402,13 +1402,13 @@ msgid "&Background color:"
 msgstr "&Taustaväri:"
 
 msgid "&Apply"
-msgstr "Käytä"
+msgstr "&Käytä"
 
 msgid "Line Filters"
 msgstr "Rivisuodattimet"
 
 msgid "Enable Line Filters"
-msgstr "Käytä rivisuodattimia"
+msgstr "Ota rivisuodattimet käyttöön"
 
 msgid "Regular Expressions (one per line):"
 msgstr "Säännölliset lausekkeet (yksi rivillä):"
@@ -1420,14 +1420,14 @@ msgid "Remove"
 msgstr "Poista"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Korvaussuodattimet"
 
 msgid ""
 "Changes to the listed pairs below will be "
 "ignored or marked as insignificant. Patches are unaffected."
 msgstr ""
-"Muutokset, jotka näkyvät paneeleissa alla lueteltuina pareina, jätetään "
-"huomiotta tai merkitään merkityksettömiksi. Korjauksiin ne eivät vaikuta."
+"Muutokset alla lueteltuihin pareihin jätetään huomiotta tai merkitään "
+"merkityksettömiksi. Korjaustiedostoihin tämä ei vaikuta."
 
 msgid "Enable"
 msgstr "Ota käyttöön"
@@ -1454,7 +1454,7 @@ msgid "Text"
 msgstr "Teksti"
 
 msgid "Difference:"
-msgstr "Erilaisuus:"
+msgstr "Ero:"
 
 msgid "Selected Difference:"
 msgstr "Valittu ero:"
@@ -1514,7 +1514,7 @@ msgid "Bold"
 msgstr "Lihavoitu"
 
 msgid "&Use customized text colors"
-msgstr "Käytä mukautettuja tekstivärejä"
+msgstr "&Käytä mukautettuja tekstivärejä"
 
 msgid "Whitespace:"
 msgstr "Välilyönti:"
@@ -1532,103 +1532,103 @@ msgid "Search Marker:"
 msgstr "Hakumerkki:"
 
 msgid "User Defined Marker 1:"
-msgstr "Käyttäjän määrittämä merkintä1:"
+msgstr "Käyttäjän määrittämä merkki 1:"
 
 msgid "User Defined Marker 2:"
-msgstr "Käyttäjän määrittämä merkintä2:"
+msgstr "Käyttäjän määrittämä merkki 2:"
 
 msgid "User Defined Marker 3:"
-msgstr "Käyttäjän määrittämä merkintä3:"
+msgstr "Käyttäjän määrittämä merkki 3:"
 
 msgid "&Use folder compare colors"
-msgstr "Käytä kansiovertailun värejä"
+msgstr "&Käytä kansiovertailun värejä"
 
 msgid "Items equal:"
-msgstr "Yhtä suuret kohteet:"
+msgstr "Samanlaiset kohteet:"
 
 msgid "Items different:"
 msgstr "Eroavat kohteet:"
 
 msgid "Items missing:"
-msgstr "Kaikki kohteet, joita ei ole:"
+msgstr "Puuttuvat kohteet:"
 
 msgid "Items filtered:"
 msgstr "Suodatetut kohteet:"
 
 msgid "&Use custom system colors"
-msgstr ""
+msgstr "Käytä &mukautettuja järjestelmävärejä"
 
 msgid "System"
 msgstr "Järjestelmä"
 
 msgid "&Use Recycle Bin"
-msgstr "Siirrä poistetut tiedostot roskakoriin"
+msgstr "&Käytä roskakoria"
 
 msgid "&External editor:"
-msgstr "Ulkoinen editori:"
+msgstr "&Ulkoinen editori:"
 
 msgid "&Filter folder:"
-msgstr "Suodatinkansio:"
+msgstr "&Suodatinkansio:"
 
 msgid "Temporary files folder"
-msgstr "Kansio tilapäisille tiedostoille"
+msgstr "Tilapäistiedostojen kansio"
 
 msgid "S&ystem temp folder"
-msgstr "Järjestelmän tilapäiskansio"
+msgstr "&Järjestelmän tilapäiskansio"
 
 msgid "C&ustom folder:"
-msgstr "Mukautettu kansio:"
+msgstr "&Mukautettu kansio:"
 
 msgid "Br&owse..."
-msgstr "Selaa..."
+msgstr "&Selaa..."
 
 msgid "Patch Generator"
-msgstr "Korjausgeneraattori"
+msgstr "Korjaustiedostogeneraattori"
 
 msgid "File&1:"
-msgstr "Tiedosto1:"
+msgstr "Tiedosto&1:"
 
 msgid "File&2:"
-msgstr "Tiedosto2:"
+msgstr "Tiedosto&2:"
 
 msgid "&Swap"
-msgstr "Vaihda"
+msgstr "&Vaihda"
 
 msgid "&Copy to clipboard"
-msgstr "Kopioi leikepöydälle"
+msgstr "&Kopioi leikepöydälle"
 
 msgid "&Append to existing file"
-msgstr "Lisää olem&assa olevaan tiedostoon"
+msgstr "&Lisää olemassa olevaan tiedostoon"
 
 msgid "&Result:"
-msgstr "Tulokset:"
+msgstr "&Tulos:"
 
 msgid "Bro&wse..."
-msgstr "Selaa..."
+msgstr "&Selaa..."
 
 msgid "&Format"
-msgstr "Formaatti"
+msgstr "&Muoto"
 
 msgid "St&yle:"
-msgstr "Ty&yli:"
+msgstr "&Tyyli:"
 
 msgid "&Context:"
-msgstr "Konteksti:"
+msgstr "&Konteksti:"
 
 msgid "Inclu&de command line"
-msgstr "Sisällytä komentorivi"
+msgstr "&Sisällytä komentorivi"
 
 msgid "Open in e&xternal editor"
-msgstr "Avaa ulkoiseen editoriin"
+msgstr "Avaa ulkoiseen e&ditoriin"
 
 msgid "Display Columns"
 msgstr "Näytä sarakkeet"
 
 msgid "Move &Up"
-msgstr "Siirrä ylös"
+msgstr "Siirrä &ylös"
 
 msgid "Move &Down"
-msgstr "Siirrä alas"
+msgstr "Siirrä &alas"
 
 msgid "&Additional Properties"
 msgstr "&Lisäominaisuudet"
@@ -1637,13 +1637,13 @@ msgid "Additional Properties"
 msgstr "Lisäominaisuudet"
 
 msgid "Select Plugin"
-msgstr "Valitse laajennus (Plugin)"
+msgstr "Valitse laajennus"
 
 msgid "Plugin &name:"
 msgstr "Laajennuksen &nimi:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "&Kohdetiedostot:"
 
 msgid "Extensions list:"
 msgstr "Päätelista:"
@@ -1655,17 +1655,16 @@ msgid "Default arguments:"
 msgstr "Oletusargumentit:"
 
 msgid "Display all plugins (Ignore extension)"
-msgstr ""
+msgstr "Näytä kaikki laajennukset (ohita pääte)"
 
 msgid "&Open files in same window type after unpacking"
-msgstr ""
-"Avaa tied&ostot samassa ikkunatyypissä pakkauksen purkamisen jälkeen"
+msgstr "&Avaa tiedostot samassa ikkunatyypissä purkamisen jälkeen"
 
 msgid "&Plugin pipeline:"
 msgstr "&Laajennusputki:"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "&Alias..."
 
 msgid "Stop"
 msgstr "Pysäytä"
@@ -1677,7 +1676,7 @@ msgid "Continue"
 msgstr "Jatka"
 
 msgid "C&PU cores to use:"
-msgstr ""
+msgstr "Käytettävät &suoritinytimet:"
 
 msgid "Items total:"
 msgstr "Kohteita yhteensä:"
@@ -1686,10 +1685,10 @@ msgid "Items compared:"
 msgstr "Verratut kohteet:"
 
 msgid "Go to"
-msgstr "Siirry >"
+msgstr "Siirry"
 
 msgid "G&o to:"
-msgstr "Siirry:"
+msgstr "&Siirry:"
 
 msgid "File"
 msgstr "Tiedosto"
@@ -1698,55 +1697,55 @@ msgid "Go to what"
 msgstr "Siirry mihin"
 
 msgid "Li&ne"
-msgstr "Rivi"
+msgstr "&Rivi"
 
 msgid "&Difference"
-msgstr "Erilaisuus"
+msgstr "&Ero"
 
 msgid "&Go to"
-msgstr "Siirry kohteeseen"
+msgstr "&Siirry"
 
 msgid "Compare"
 msgstr "Vertaa"
 
 msgid "Whitespaces"
-msgstr "Välilyönti"
+msgstr "Välilyönnit"
 
 msgid "&Compare"
-msgstr "Vertaa"
+msgstr "&Vertaa"
 
 msgid "&Ignore change"
-msgstr "Hylkää muutos"
+msgstr "&Hylkää muutos"
 
 msgid "I&gnore all"
-msgstr "Hylkää kaikki"
+msgstr "Hylkää k&aikki"
 
 msgid "Ignore blan&k lines"
-msgstr "Ohita tyhjät rivit"
+msgstr "Ohita t&yhjät rivit"
 
 msgid "Ignore &case"
-msgstr "Ohita kirjainkoko"
+msgstr "Ohita kirjain&koko"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "O&hita rivinvaihtoerot (Windows/Unix/Mac)"
 
 msgid "Ignore num&bers"
 msgstr "Jätä nume&rot huomiotta"
 
 msgid "Ignore codepage &differences"
-msgstr "Ohita koodisivuerot"
+msgstr "Ohita koodisivu&erot"
 
 msgid "Ignore c&omment differences"
 msgstr "Jätä k&ommenttien erot huomiotta"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "Ohita &puuttuva lopun EOL"
 
 msgid "E&nable moved block detection"
-msgstr "Ota siirretyn lohkon tunnistus käyttöön"
+msgstr "Ota siirrety&n lohkon tunnistus käyttöön"
 
 msgid "Align &similar lines"
-msgstr ""
+msgstr "Kohdista &samanlaiset rivit"
 
 msgid "Diff &algorithm:"
 msgstr "Ero&algoritmi:"
@@ -1755,46 +1754,46 @@ msgid "Enable indent &heuristic"
 msgstr "Ota käyttöön &heuristinen sisennys"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Poista ohitettujen erojen korostus kokonaan"
 
 msgid "Editor"
 msgstr "Muokkain"
 
 msgid "&Highlight syntax"
-msgstr "Korosta syntaksi"
+msgstr "&Korosta syntaksi"
 
 msgid "&Preserve original EOL"
-msgstr "Säilytä alkuperäiset EOL merkit"
+msgstr "&Säilytä alkuperäinen EOL"
 
 msgid "Tabs"
-msgstr "Välilehdet"
+msgstr "Sarkaimet"
 
 msgid "&Tab size:"
-msgstr "Välilehden koko:"
+msgstr "&Sarkaimen koko:"
 
 msgid "&Insert tabs"
-msgstr "Lisää välilehtiä"
+msgstr "Lisää &sarkaimia"
 
 msgid "Insert &spaces"
-msgstr "Lisää välilyöntejä"
+msgstr "Lisää &välilyöntejä"
 
 msgid "&Rendering mode:"
 msgstr "&Hahmonnustila:"
 
 msgid "&Automatic rescan"
-msgstr "Automaattinen uusi haku"
+msgstr "&Automaattinen uudelleenskannaus"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Kopioinnin &tarkkuus valituille eroille:"
 
 msgid "Line Difference Coloring"
 msgstr "Rivierojen väritys"
 
 msgid "View line differences"
-msgstr "Näytä rivin erot"
+msgstr "Näytä rivierot"
 
 msgid "&Character-level"
-msgstr "Merkkitaso"
+msgstr "&Merkkitaso"
 
 msgid "&Word-level:"
 msgstr "&Sanataso:"
@@ -1806,17 +1805,17 @@ msgid ""
 "Some messages can be hidden by the user. Press Reset to "
 "make all messages visible again."
 msgstr ""
-"WinMerge sallii joidenkin yleisten viestiruutujen kätkemisen. Paina Palauta "
-"tehdäksesi kaikki viestiruudut uudelleen näkyviksi."
+"Käyttäjä voi piilottaa joitakin viestiruutuja. Paina Palauta tehdäksesi "
+"kaikki viestiruudut uudelleen näkyviksi."
 
 msgid "Reset"
 msgstr "Palauta"
 
 msgid "File Filters"
-msgstr "Tiedostosuodattimet"
+msgstr "Tiedostosuotimet"
 
 msgid "Test..."
-msgstr "Testi..."
+msgstr "Testaa..."
 
 msgid "Install..."
 msgstr "Asenna..."
@@ -1837,28 +1836,28 @@ msgid "Left side file"
 msgstr "Vasen tiedosto"
 
 msgid "&Save changes"
-msgstr "Tallenna muutokset"
-
-msgid "&Discard changes"
-msgstr "Hylkää muutokset"
-
-msgid "Middle side file"
-msgstr "Keskimmäinen sivutiedosto"
-
-msgid "Sa&ve changes"
 msgstr "&Tallenna muutokset"
 
+msgid "&Discard changes"
+msgstr "&Hylkää muutokset"
+
+msgid "Middle side file"
+msgstr "Keskimmäinen tiedosto"
+
+msgid "Sa&ve changes"
+msgstr "T&allenna muutokset"
+
 msgid "Discard c&hanges"
-msgstr "Hylkää &muutokset"
+msgstr "&Hylkää muutokset"
 
 msgid "Right side file"
 msgstr "Oikea tiedosto"
 
 msgid "S&ave changes"
-msgstr "Tallenna muutokset"
+msgstr "Ta&llenna muutokset"
 
 msgid "Dis&card changes"
-msgstr "Hylkää muutokset"
+msgstr "Hyl&kää muutokset"
 
 msgid "Disca&rd All"
 msgstr "Hylkää &kaikki"
@@ -1867,25 +1866,25 @@ msgid "Codepage"
 msgstr "Koodisivu"
 
 msgid "Default Codepage"
-msgstr "Koodisivu (oletus)"
+msgstr "Oletuskoodisivu"
 
 msgid "Select the default codepage for non-Unicode files:"
-msgstr "Valitse oletuskoodisivu ladattaessa muita kuin Unicode-tiedostoja:"
+msgstr "Valitse oletuskoodisivu ei-Unicode-tiedostoille:"
 
 msgid "System codepage"
 msgstr "Järjestelmän koodisivu"
 
 msgid "According to WinMerge User Interface"
-msgstr "WinMerge-käyttöliittymän mukaan"
+msgstr "WinMergen käyttöliittymän mukaan"
 
 msgid "Custom codepage:"
 msgstr "Mukautettu koodisivu:"
 
 msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr ""
+msgstr "Tunnista koodisivu: .html, .rc, .xml\nUudelleenkäynnistys vaaditaan."
 
 msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
+msgstr "Tunnista koodisivu tiedostoille mlang.dll:n avulla\nUudelleenkäynnistys vaaditaan."
 
 msgid "Options"
 msgstr "Asetukset"
@@ -1897,25 +1896,25 @@ msgid "Export..."
 msgstr "Vie..."
 
 msgid "Folder Compare Report"
-msgstr "Kansiovertailun raportti"
+msgstr "Kansiovertailuraportti"
 
 msgid "Report &file:"
-msgstr "Raporttitiedosto:"
+msgstr "Raportti&tiedosto:"
 
 msgid "&Style:"
-msgstr "Tyyli:"
+msgstr "&Tyyli:"
 
 msgid "&Include file compare report"
-msgstr "S&isällytä tiedoston vertailuraportti"
+msgstr "S&isällytä tiedostovertailuraportti"
 
 msgid "Shared or Private Filter"
-msgstr "Yhteinen tai yksityinen suodatin"
+msgstr "Jaettu vai yksityinen suodatin"
 
 msgid "What type of filter do you want?"
-msgstr "Minkä tyyppisen suodattimen haluat luoda?"
+msgstr "Minkä tyyppisen suodattimen haluat?"
 
 msgid "Shared Filter (for all users)"
-msgstr "Yhteinen suodatin (kaikille tämän koneen käyttäjille)"
+msgstr "Jaettu suodatin (kaikille käyttäjille)"
 
 msgid "Private Filter (current user only)"
 msgstr "Yksityinen suodatin (vain nykyiselle käyttäjälle)"
@@ -1924,16 +1923,16 @@ msgid "Archive Support"
 msgstr "Arkistotuki"
 
 msgid "&Enable archive file support"
-msgstr "Käytä arkistotiedostojen tukea"
+msgstr "&Ota arkistotiedostojen tuki käyttöön"
 
 msgid "&Detect archive type from file signature"
-msgstr "Tunnista arkistotyyppi tiedoston allekirjoituksesta"
+msgstr "&Tunnista arkistotyyppi tiedoston allekirjoituksesta"
 
 msgid "Items saved to or restored from the project file:"
 msgstr "Projektitiedostoon tallennetut tai siitä palautetut kohteet:"
 
 msgid "Compare Statistics"
-msgstr "Vertaa tilastoja"
+msgstr "Vertailutilastot"
 
 msgid "Folders:"
 msgstr "Kansiot:"
@@ -1942,13 +1941,13 @@ msgid "Files:"
 msgstr "Tiedostot:"
 
 msgid "Different"
-msgstr "Poikkeava"
+msgstr "Eroavat"
 
 msgid "Binary:"
 msgstr "Binääri:"
 
 msgid "Unique"
-msgstr "Yksikäsitteinen"
+msgstr "Yksilölliset"
 
 msgid "Left:"
 msgstr "Vasen:"
@@ -1957,7 +1956,7 @@ msgid "Right:"
 msgstr "Oikea:"
 
 msgid "Identical"
-msgstr "Samanlainen"
+msgstr "Samanlaiset"
 
 msgid "Total:"
 msgstr "Yhteensä:"
@@ -1978,46 +1977,46 @@ msgid "Missing Right:"
 msgstr "Puuttuva oikea:"
 
 msgid "Affects"
-msgstr "Vaikutukset"
+msgstr "Vaikuttaa"
 
 msgid "(Affects)"
-msgstr "(Vaikutukset)"
+msgstr "(Vaikuttaa)"
 
 msgid "Select Codepage for"
-msgstr "Valitse koodisivu"
+msgstr "Valitse koodisivu kohteelle"
 
 msgid "&File Loading:"
-msgstr "Tiedoston lataus:"
+msgstr "Tiedoston &lataus:"
 
 msgid "File &Saving:"
-msgstr "Tiedoston tallennus:"
+msgstr "Tiedoston &tallennus:"
 
 msgid "&Use same codepage for both"
-msgstr "Käytä samaa koodisivua molemmille"
+msgstr "&Käytä samaa koodisivua molemmille"
 
 msgid "&Cancel"
-msgstr "Peruuta"
+msgstr "&Peruuta"
 
 msgid "Test Filter"
-msgstr "Testaa suodin"
+msgstr "Testaa suodatinta"
 
 msgid "Testing filter:"
-msgstr "Testataan suodinta:"
+msgstr "Testataan suodatinta:"
 
 msgid "&Enter text to test:"
-msgstr "Anna testiteksti:"
+msgstr "&Syötä testattava teksti:"
 
 msgid "&Folder Name"
-msgstr "Kansionimi"
+msgstr "&Kansionimi"
 
 msgid "Result:"
 msgstr "Tulos:"
 
 msgid "&Test"
-msgstr "Testi"
+msgstr "&Testaa"
 
 msgid "&Close"
-msgstr "Sulje"
+msgstr "&Sulje"
 
 msgid "Table"
 msgstr "Taulukko"
@@ -2032,52 +2031,52 @@ msgid "&TSV"
 msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr "Mukautetut ja &erottimella erotetut arvot"
+msgstr "Mukautetut &erotin-erotellut arvot"
 
 msgid "D&elimiter character:"
 msgstr "&Erotinmerkki:"
 
 msgid "&Allow newlines in quotes"
-msgstr "&Salli uudet rivit lainauksissa"
+msgstr "&Salli rivinvaihdot lainausmerkeissä"
 
 msgid "&Quote character:"
 msgstr "&Lainausmerkki:"
 
 msgid "Backup Files"
-msgstr "Varmuuskopiot"
+msgstr "Varmuuskopiotiedostot"
 
 msgid "Create backup files for:"
-msgstr "Luo varmuuskopiot:"
+msgstr "Luo varmuuskopiotiedostot kohteelle:"
 
 msgid "&Folder compare"
-msgstr "Kansiovertailu"
+msgstr "&Kansiovertailu"
 
 msgid "Fil&e compare"
-msgstr "Tiedostovertailu"
+msgstr "&Tiedostovertailu"
 
 msgid "Create backup files in:"
-msgstr "Luo varmuuskopiotiedostot:"
+msgstr "Luo varmuuskopiotiedostot kohteeseen:"
 
 msgid "&Original file's folder"
-msgstr "Alkuperäiseen tiedostokansioon"
+msgstr "&Alkuperäisen tiedoston kansio"
 
 msgid "&Global backup folder:"
-msgstr "Yleiseen varmuuskopiokansioon:"
+msgstr "&Yleinen varmuuskopiokansio:"
 
 msgid "Backup filename:"
-msgstr "Varmuuskopion nimi:"
+msgstr "Varmuuskopion tiedostonimi:"
 
 msgid "&Append .bak extension"
-msgstr "Liitä .b&ak pääte"
+msgstr "&Liitä .bak-pääte"
 
 msgid "A&ppend timestamp"
-msgstr "Liitä aikaleima"
+msgstr "&Liitä aikaleima"
 
 msgid "Confirm Copy"
-msgstr "Vahvista kopionti"
+msgstr "Vahvista kopiointi"
 
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Oletko varma, että haluat kopioida XXX kohdetta?"
+msgstr "Haluatko varmasti kopioida XXX kohdetta?"
 
 msgid "From left"
 msgstr "Vasemmalta"
@@ -2086,7 +2085,7 @@ msgid "To right"
 msgstr "Oikealle"
 
 msgid "Don't ask this &question again."
-msgstr "Älä tee tätä kysymystä vastaisuudessa."
+msgstr "&Älä kysy tätä uudelleen."
 
 msgid "Yes"
 msgstr "Kyllä"
@@ -2095,39 +2094,37 @@ msgid "No"
 msgstr "Ei"
 
 msgid "Plugins"
-msgstr "Lisäosat"
+msgstr "Laajennukset"
 
 msgid "&Enable plugins"
-msgstr "Ota laajennukset käyttöön"
+msgstr "&Ota laajennukset käyttöön"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "Laajennuksen &tyyppi:"
 
 msgid "File filters:"
-msgstr "Tiedostosuodattimet:"
+msgstr "Tiedostosuotimet:"
 
 msgid "&Plugin arguments:"
 msgstr "&Laajennuksen argumentit:"
 
 msgid "Enable &automatic unpacking/prediffing"
-msgstr ""
-"Ota laajennukselle käyttöön automaattinen pakkauksen purku/"
-"ennakkotarkistus"
+msgstr "Ota käyttöön &automaattinen purku/esivertailu"
 
 msgid "Shell Integration"
-msgstr "Shell integraatio"
+msgstr "Shell-integraatio"
 
 msgid "Explorer"
 msgstr "Resurssienhallinta"
 
 msgid "&Add to context menu"
-msgstr "Lisää pikavalikkoon"
+msgstr "&Lisää pikavalikkoon"
 
 msgid "E&nable advanced menu"
-msgstr "Ota käyttöön Lisäasetukset-valikko"
+msgstr "&Ota käyttöön lisäasetusvalikko"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Ota käyttöön &Vertaa nimellä -valikko"
 
 msgid "&Register Shell Extension"
 msgstr "&Rekisteröi liittymälaajennus"
@@ -2142,61 +2139,57 @@ msgid "Unregister Shell Extension for Current User On&ly"
 msgstr "Poista &liittymälaajennuksen rekisteröinti vain nykyiseltä käyttäjältä"
 
 msgid "Register Shell Extension for &Windows 11"
-msgstr ""
-"Rekisteröi komentotulkin laajennus &Windows 11:lle tai uudemmalle "
-"versiolle"
+msgstr "Rekisteröi liittymälaajennus &Windows 11:lle"
 
 msgid "Unregister Shell Extension for W&indows 11"
-msgstr ""
-"Poista komentotulkin laajennuksen rekisteröinti  &Windows 11:lle tai "
-"uudemmalle versiolle"
+msgstr "Poista liittymälaajennuksen rekisteröinti W&indows 11:ltä"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Hyppylista"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Tyhjennä kaikki viimeisimmät kohteet"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Kansio"
 
 msgid "&Compare method:"
-msgstr "Vertailumenetelmä:"
+msgstr "&Vertailutapa:"
 
 msgid "S&top after first difference"
-msgstr "Pysäytä ensimmäisen eron jälkeen"
+msgstr "&Pysäytä ensimmäisen eron jälkeen"
 
 msgid "Ign&ore time differences less than 3 seconds"
-msgstr "Jätä alle 3 sekunnin aikaerot huomiotta"
+msgstr "&Ohita alle 3 sekunnin aikaerot"
 
 msgid "Expand subfolders &after comparison:"
-msgstr ""
+msgstr "Laajenna alikansiot vertailun &jälkeen:"
 
 msgid "Include &unique subfolders contents"
-msgstr ""
+msgstr "Sisällytä &yksilöllisten alikansioiden sisältö"
 
 msgid "Ignore &reparse points"
 msgstr "Ohita &uudelleenjäsennyskohdat"
 
 msgid "Switch to &quick compare when size exceeds (MB):"
-msgstr "Kynnysarvo, jossa siirrytään &nopeaan vertailuun (MB):"
+msgstr "Vaihda &pikavetailuun kun koko ylittää (Mt):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
-msgstr "Kynnysarvo, jossa siirrytään &binaariseen vertailuun (MB):"
+msgstr "Vaihda &binäärivertailuun kun koko ylittää (Mt):"
 
 msgid "File patterns:"
 msgstr "Tiedostomallit:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr "Mukautetulla erottimella erotetut arvot"
+msgstr "Mukautetut erotin-erotellut arvot"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binääri"
 
 msgid "Binary file &patterns:"
-msgstr "Binaaritiedosto&malli:"
+msgstr "Binääritiedosto&mallit:"
 
 msgid "Frhed settings"
 msgstr "Frhed-asetukset"
@@ -2217,7 +2210,7 @@ msgid "Image file &patterns:"
 msgstr "Kuvatiedosto&mallit:"
 
 msgid "&Enable image compare in folder compare"
-msgstr "Ota kuvi&en vertailu käyttöön kansiovertailussa"
+msgstr "&Ota kuvien vertailu käyttöön kansiovertailussa"
 
 msgid "OCR result:"
 msgstr "OCR-tulos:"
@@ -2241,34 +2234,34 @@ msgid "&Hex View"
 msgstr "&Hexanäkymä"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Muokkaa laajennusta"
 
 msgid "&Category:"
-msgstr ""
+msgstr "&Kategoria:"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "&Valikkoteksti:"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "&Ikkunatyyppi:"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "&Puretun tiedoston pääte:"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "&Vaadi argumentit"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "&Luo muokkausskripti"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "Komento&rivi:"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "&Skriptitiedoston pääte:"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "Skriptin &runko:"
 
 msgid "EXT"
 msgstr "EXT"
@@ -2307,19 +2300,19 @@ msgid ""
 "Save (Ctrl+S)"
 msgstr ""
 "\n"
-"Tallenna (CTRL+S)"
+"Tallenna (Ctrl+S)"
 
 msgid "Unknown error opening project file."
 msgstr "Tuntematon virhe avattaessa projektitiedostoa."
 
 msgid "Unknown error saving project file."
-msgstr "Tuntematon virhe yritettäessä tallentaa projektitiedosto."
+msgstr "Tuntematon virhe tallennettaessa projektitiedostoa."
 
 msgid "Project file loaded."
-msgstr "Projektitiedoston lataus onnistui."
+msgstr "Projektitiedosto ladattu."
 
 msgid "Project file saved."
-msgstr "Projektitiedoston tallennus onnistui."
+msgstr "Projektitiedosto tallennettu."
 
 msgid ""
 "\n"
@@ -2345,12 +2338,12 @@ msgid ""
 "WinMerge File Compare"
 msgstr ""
 "\n"
-"FileCompare\n"
+"Tiedostovertailu\n"
 "\n"
 "\n"
 "\n"
 "WinMerge.FileCompare\n"
-"WinMerge File Compare"
+"WinMerge-tiedostovertailu"
 
 msgid ""
 "\n"
@@ -2362,60 +2355,67 @@ msgid ""
 "WinMerge Folder Compare"
 msgstr ""
 "\n"
-"FolderCompare\n"
+"Kansiovertailu\n"
 "\n"
 "\n"
 "\n"
 "WinMerge.FolderCompare\n"
-"WinMerge Folder Compare"
+"WinMerge-kansiovertailu"
 
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
+msgid ""
+"WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be "
+"redistributed under the conditions of the GNU General Public License - see "
+"the Help menu for details."
 msgstr ""
-"WinMergellä ei ole MITÄÄN TAKUUTA. Tämä on ilmainen ohjelmisto ja voit jakaa "
-"sen uudelleen tietyissä olosuhteissa; lisätietoja on Ohje-valikon GNU "
-"General Public License-osiossa."
+"WinMergellä EI OLE MITÄÄN TAKUUTA. Se on ilmainen ohjelmisto ja sitä voidaan "
+"levittää GNU General Public License -ehdoilla - katso lisätietoja Ohje-"
+"valikosta."
 
 msgid "&Abort"
-msgstr "Poistu"
+msgstr "&Keskeytä"
 
 msgid "&Retry"
-msgstr "Yritä uudelleen"
+msgstr "&Yritä uudelleen"
 
 msgid "&Ignore"
-msgstr "Ohita"
+msgstr "&Ohita"
 
 msgid "Ignore &all"
-msgstr "Ohita kaikki"
+msgstr "Ohita k&aikki"
 
 msgid "&Yes"
-msgstr "Kyllä"
+msgstr "&Kyllä"
 
 msgid "Yes to &all"
-msgstr "Kyllä kaikkiin"
+msgstr "&Kyllä kaikkiin"
 
 msgid "&No"
-msgstr "Ei"
+msgstr "&Ei"
 
 msgid "No to a&ll"
-msgstr "Ei kaikkiin"
+msgstr "&Ei kaikkiin"
 
 msgid "&Continue"
-msgstr "Jatka"
+msgstr "&Jatka"
 
 msgid "&Skip"
-msgstr "Ohita"
+msgstr "O&hita"
 
 msgid "Skip &all"
-msgstr "Ohita kaikki"
+msgstr "Ohita k&aikki"
 
 msgid "Don't display this &message again."
-msgstr "Älä näytä tätä ilmoitusta uudestaan."
+msgstr "Älä näytä tätä &viestiä uudelleen."
 
-msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
+msgid ""
+"To make this message box visible, press Reset on the Message Boxes page in "
+"Options."
 msgstr ""
+"Saadaksesi tämän viestiruudun näkyviin, paina Palauta-painiketta Asetukset-"
+"ikkunan Viestiruudut-sivulla."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Vertaa/Yhdistä"
 
 msgid "Syntax"
 msgstr "Syntaksi"
@@ -2430,7 +2430,7 @@ msgid "Project"
 msgstr "Projekti"
 
 msgid "Differences"
-msgstr "Erilaisuudet"
+msgstr "Erot"
 
 msgid "Message Boxes"
 msgstr "Viestiruudut"
@@ -2468,14 +2468,11 @@ msgid "Options (%1)"
 msgstr "Asetukset (%1)"
 
 msgid "All message boxes are now displayed again."
-msgstr "Kaikki ilmoitusruudut näkyvät nyt uudelleen."
+msgstr "Kaikki viestiruudut näytetään nyt uudelleen."
 
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
-msgstr ""
-"Arvo välilehden koko-kentässä ei ole WinMergen hyväksymällä alueella.\n"
-"\n"
-"Käytä arvoja 1 - %1."
+msgstr "Sarkainkoko on alueen ulkopuolella. Käytä arvoa 1 - %1."
 
 msgid "Open"
 msgstr "Avaa"
@@ -2487,7 +2484,7 @@ msgid "All Files (*.*)|*.*||"
 msgstr "Kaikki tiedostot (*.*)|*.*||"
 
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
-msgstr "WinMerge projektitiedostot (*.WinMerge)|*.WinMerge||"
+msgstr "WinMerge-projektitiedostot (*.WinMerge)|*.WinMerge||"
 
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Asetustiedostot (*.ini)|*.ini|Kaikki tiedostot (*.*)|*.*||"
@@ -2507,16 +2504,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-tiedostot (*.xml)|*.xml|Kaikki tiedostot (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Älä laajenna"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Laajenna kaikki alikansiot"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Laajenna eroavat alikansiot"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Laajenna samanlaiset alikansiot"
 
 msgid "File Type"
 msgstr "Tiedostotyyppi"
@@ -2558,20 +2555,20 @@ msgid "Filters"
 msgstr "Suotimet"
 
 msgid "[F] "
-msgstr "[F] "
+msgstr "[S] "
 
 msgid "Description"
 msgstr "Kuvaus"
 
 msgid "Select Filename for New Filter"
-msgstr "Valitse tiedostonimi uudelle suodattimelle"
+msgstr "Valitse tiedostonimi uudelle suotimelle"
 
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Tiedostosuotimet (*.flt)|*.flt|Kaikki tiedostot (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find filter template!\n\nCopy %1 to WinMerge/Filters Folder:\n%2."
-msgstr ""
+msgstr "Suodatinmallia ei löydy!\n\nKopioi %1 WinMergen suodatinkansioon:\n%2."
 
 #, c-format
 msgid ""
@@ -2580,7 +2577,7 @@ msgid ""
 "\n"
 "Make sure the folder exists and is writable."
 msgstr ""
-"Suodatin mallitiedostoa ei voi kopioida suodatinkansioon:\n"
+"Suodatinmallia ei voi kopioida suodatinkansioon:\n"
 "%1\n"
 "\n"
 "Varmista, että kansio on olemassa ja kirjoitettavissa."
@@ -2592,7 +2589,7 @@ msgid ""
 msgstr ""
 "Käyttäjän suodatinkansiota ei ole määritelty!\n"
 "\n"
-"Valitse suodatinkansio valikosta Asetukset/Järjestelmä."
+"Valitse suodatinkansio Asetukset/Järjestelmä-välilehdeltä."
 
 #, c-format
 msgid ""
@@ -2601,10 +2598,10 @@ msgid ""
 "\n"
 "File may be read-only."
 msgstr ""
-"Suodatintiedoston poistaminen epäonnistui:\n"
+"Suotimen poistaminen epäonnistui:\n"
 "%1\n"
 "\n"
-"Ehkä tiedosto on kirjoitussuojattu?"
+"Tiedosto voi olla vain luku -tilassa."
 
 msgid "Locate Filter File to Install"
 msgstr "Etsi asennettava suodatintiedosto"
@@ -2616,23 +2613,22 @@ msgid ""
 msgstr ""
 "Suodatintiedoston asentaminen epäonnistui.\n"
 "\n"
-"Uutta suodatintiedostoa ei voinut kopioida suodatinkansioon."
+"Uutta suodatinta ei voitu kopioida kansioon."
 
 msgid "Filter file exists. Overwrite?"
-msgstr ""
-"Suodatintiedosto on jo olemassa. Haluatko korvata olemassa olevan "
-"suodattimen?"
+msgstr "Suodatintiedosto on jo olemassa. Korvataanko?"
 
 msgid "Regular expression"
 msgstr "Säännöllinen lauseke"
 
-msgid "Filters updated. Refresh all open folder compares?\n\nSelect 'No' to refresh later."
-msgstr ""
-"Suodattimet päivitettiin. Haluatko päivittää kaikki avoimet "
-"kansiovertailut?\n"
+msgid ""
+"Filters updated. Refresh all open folder compares?\n"
 "\n"
-"Jos et halua päivittää kaikkia vertailuja nyt, valitse Ei ja päivitä "
-"vertailut myöhemmin."
+"Select 'No' to refresh later."
+msgstr ""
+"Suotimet päivitetty. Päivitetäänkö kaikki avoimet kansiovertailut?\n"
+"\n"
+"Valitse 'Ei' päivittääksesi myöhemmin."
 
 msgid "Folder Comparison Results"
 msgstr "Kansiovertailun tulokset"
@@ -2653,36 +2649,36 @@ msgid "Base File"
 msgstr "Perustiedosto"
 
 msgid "Theirs File"
-msgstr "Niiden tiedosto"
+msgstr "Heidän tiedosto"
 
 msgid "Mine File"
-msgstr "Minun tiedosto"
+msgstr "Oma tiedosto"
 
 msgid "Original File"
 msgstr "Alkuperäinen tiedosto"
 
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr "Rivi: %s  Sar: %d/%d  Merkki: %d/%d  EOL: %s"
 
 #, c-format
 msgid "Line: %s"
 msgstr "Rivi: %s"
 
 #, c-format
-msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr "Rivi: %s  Sar: %d/%d  Merkki: %d/%d"
 
 #, c-format
-msgid "  Sel: %d | %d"
-msgstr "  Val: %d | %d"
+msgid "  Sel: %d | %d"
+msgstr "  Val: %d | %d"
 
 msgid "Merge"
 msgstr "Yhdistä"
 
 #, c-format
 msgid "Difference %1 of %2"
-msgstr "Eroavuus %1 / %2"
+msgstr "Ero %1 / %2"
 
 #, c-format
 msgid "%1 Differences Found"
@@ -2693,58 +2689,56 @@ msgstr "1 ero löytyi"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "%1 virhettä löytyi"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "1 virhe löytyi"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
-msgstr "RO"
+msgstr "VL"
 
 #, c-format
 msgid "Item %1 of %2"
-msgstr "Kohta %1 / %2"
+msgstr "Kohde %1 / %2"
 
 #, c-format
 msgid "Items: %1"
-msgstr "Kohdat: %1"
+msgstr "Kohteita: %1"
 
 msgid "Comparing items..."
 msgstr "Verrataan kohteita..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f [kohdetta/s]"
 
 msgid "Select two existing folders/files to compare."
-msgstr "Valitse vertailuun kaksi olemassa olevaa kansioita tai tiedostoa."
+msgstr "Valitse kaksi olemassaolevaa kansiota/tiedostoa vertailtavaksi."
 
 msgid "Folder Selection"
 msgstr "Kansion valinta"
 
 msgid "Select two (or three) folders/files to compare."
-msgstr ""
-"Valitse kaksi (tai kolme) kansiota tai kaksi (tai kolme) tiedostoa vertailua "
-"varten."
+msgstr "Valitse kaksi (tai kolme) kansiota/tiedostoa vertailtavaksi."
 
 msgid "Left (1st) path is invalid!"
-msgstr "Vasen (1.) polku ei kelpaa!"
+msgstr "Vasen (1.) polku on virheellinen!"
 
 msgid "Middle (2nd) path is invalid!"
-msgstr "Keskimmäinen (2.) polku ei kelpaa!"
+msgstr "Keskimmäinen (2.) polku on virheellinen!"
 
 msgid "Right (2nd) path is invalid!"
-msgstr "Oikea (2.) polku ei kelpaa!"
+msgstr "Oikea (2.) polku on virheellinen!"
 
 msgid "Right (3rd) path is invalid!"
-msgstr "Oikea (3.) polku ei kelpaa!"
+msgstr "Oikea (3.) polku on virheellinen!"
 
 msgid "Both paths are invalid!"
-msgstr "Kummatkin polut ovat virheellisiä!"
+msgstr "Molemmat polut ovat virheellisiä!"
 
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr "Vasen (1.) ja keskimmäinen (2.) polut eivät kelpaa!"
+msgstr "Vasen (1.) ja keskimmäinen (2.) polut ovat virheellisiä!"
 
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr "Vasen (1.) ja oikea (3.) polut ovat virheellisiä!"
@@ -2756,7 +2750,7 @@ msgid "All paths are invalid!"
 msgstr "Kaikki polut ovat virheellisiä!"
 
 msgid "Only enabled for file comparisons"
-msgstr "Käytössä vain tiedostojen vertailussa"
+msgstr "Käytössä vain tiedostovertailuissa"
 
 msgid "Cannot compare file and folder!"
 msgstr "Tiedostoa ja kansiota ei voi verrata!"
@@ -2767,7 +2761,7 @@ msgstr "Tiedostoa ei löytynyt: %1"
 
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "Tiedostoa ei ole purettu: %1"
+msgstr "Tiedostoa ei purettu: %1"
 
 #, c-format
 msgid ""
@@ -2791,12 +2785,12 @@ msgstr ""
 "%1\n"
 "ei ole ristiriitatiedosto."
 
-msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
+msgid ""
+"Comparing large files requires significant memory.\n"
+"Show only comparison results (not file contents)?"
 msgstr ""
-"Olet vertaamassa hyvin suuria tiedostoja.\n"
-"Tiedostojen sisällön näyttäminen vaatii erittäin paljon muistia.\n"
-"Haluatko näyttää vain vertailutulokset, ei tiedostojen sisältöä?\n"
-"\n"
+"Suurten tiedostojen vertailu vaatii paljon muistia.\n"
+"Näytetäänkö vain vertailutulokset (ei tiedoston sisältöä)?"
 
 msgid "Save As"
 msgstr "Tallenna nimellä"
@@ -2808,11 +2802,11 @@ msgstr "Tallennetaanko muutokset tiedostoon %1?"
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr ""
-"%1 on merkitty vain luku-tilaan. Haluatko ohittaa vain luku-tiedoston? (Ei "
-"tarkoita 'Tallenna nimellä'"
+"%1 on vain luku -tilassa. Ohitetaanko? Vai 'Ei' tallentaaksesi uudella "
+"tiedostonimellä?"
 
 msgid "Error backing up file"
-msgstr "Virhe varmuuskopioinnissa"
+msgstr "Virhe varmuuskopioidessa tiedostoa"
 
 #, c-format
 msgid ""
@@ -2821,48 +2815,54 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Alkuperäisen tiedoston varmuuskopiointi ei onnistu:\n"
+"Alkuperäistä tiedostoa ei voi varmuuskopioida:\n"
 "%1\n"
 "\n"
-"Jatketaanko?"
+"Jatketaanko silti?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
-msgstr ""
-"Tiedoston tallentaminen epäonnistui.\n"
+msgid ""
+"Saving file failed.\n"
 "%1\n"
 "%2\n"
-"Haluatko:\n"
-"\t- käyttää eri tiedostonimeä (paina Ok)\n"
-"\t- keskeyttää nykyisen työvaiheen (paina Peruuta)?"
+"\t- Use different filename (OK)\n"
+"\t- Abort (Cancel)?"
+msgstr ""
+"Tiedoston tallennus epäonnistui.\n"
+"%1\n"
+"%2\n"
+"\t- Käytä eri tiedostonimeä (OK)\n"
+"\t- Keskeytä (Peruuta)?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to left file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
-"Laajennus '%2' ei voi pakata muutoksia vasempaan tiedostoon takaisin '%1'.\n"
+"Laajennus '%2' ei voi pakata muutoksia vasempaan tiedostoon '%1'.\n"
 "\n"
-"Alkuperäinen tiedosto jää koskemattomaksi.\n"
-"\n"
-"Haluatko tallentaa puretun version toiseen tiedostoon?"
+"Alkuperäinen muuttumaton. Tallennetaanko purettu versio?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to middle file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
-"Laajennus '%2' ei voi pakata keskimmäiseen tiedostoon tekemiäsi muutoksia "
-"takaisin tiedostoon '%1'.\n"
+"Laajennus '%2' ei voi pakata muutoksia keskimmäiseen tiedostoon '%1'.\n"
 "\n"
-"Alkuperäistä tiedostoa ei muuteta.\n"
-"\n"
-"Haluatko tallentaa puretun version toiseen tiedostoon?"
+"Alkuperäinen muuttumaton. Tallennetaanko purettu versio?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to right file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
-"Laajennus '%2' ei voi pakata muutoksia oikeaan tiedostoon takaisin '%1'.\n"
+"Laajennus '%2' ei voi pakata muutoksia oikeaan tiedostoon '%1'.\n"
 "\n"
-"Alkuperäinen tiedosto jää koskemattomaksi.\n"
-"\n"
-"Haluatko tallentaa puretun version toiseen tiedostoon?"
+"Alkuperäinen muuttumaton. Tallennetaanko purettu versio?"
 
 #, c-format
 msgid ""
@@ -2874,9 +2874,9 @@ msgid ""
 msgstr ""
 "Toinen sovellus on päivittänyt tiedoston\n"
 "%1\n"
-"WinMergen latauksen jälkeen.\n"
+"sen jälkeen kun WinMerge latasi sen.\n"
 "\n"
-"Korvataanko muuttunut tiedosto?"
+"Korvataanko?"
 
 #, c-format
 msgid ""
@@ -2884,16 +2884,21 @@ msgid ""
 "is read-only. Override?"
 msgstr ""
 "%1\n"
-"on merkitty vain luku-tilaan. Haluatko ohittaa vain-luku kohteen?"
+"on vain luku -tilassa. Ohitetaanko?"
 
 #, c-format
-msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
+msgid ""
+"Another application updated\n"
+"%1\n"
+"since last scan.\n"
+"\n"
+"Reload?"
 msgstr ""
 "Toinen sovellus on päivittänyt tiedoston\n"
 "%1\n"
-"WinMergen skannattua sen viimeksi.\n"
+"viimeisen skannauksen jälkeen.\n"
 "\n"
-"Haluatko uudelleenladata tiedoston?"
+"Ladataanko uudelleen?"
 
 msgid "Save Left File As"
 msgstr "Tallenna vasen tiedosto nimellä"
@@ -2902,7 +2907,7 @@ msgid "Save Middle File As"
 msgstr "Tallenna keskimmäinen tiedosto nimellä"
 
 msgid "Save Right File As"
-msgstr "Talleta oikea tiedosto nimellä"
+msgstr "Tallenna oikea tiedosto nimellä"
 
 #, c-format
 msgid ""
@@ -2910,24 +2915,24 @@ msgid ""
 "%1\n"
 "not found. Save a copy to continue."
 msgstr ""
-"Tiedosto\n"
+"Tiedostoa\n"
 "%1\n"
-"on kadonnut. Tallenna kopio tiedostosta jatkaaksesi."
+"ei löydy. Tallenna kopio jatkaaksesi."
 
 msgid ""
 "Cannot merge unsynched documents.\n"
 "\n"
 "Refresh before continuing."
 msgstr ""
-"Eroja ei voi yhdistää, jos asiakirjat eivät ole synkronissa.\n"
+"Ei-synkronoitua asiakirjaa ei voi yhdistää.\n"
 "\n"
-"Päivitä asiakirjat ennen jatkamista."
+"Päivitä ennen jatkamista."
 
 msgid "Break at whitespace"
-msgstr "Rivinvaihto tyhjätilamerkissä"
+msgstr "Katkaise välilyönnistä"
 
 msgid "Break at whitespace or punctuation"
-msgstr "Rivinvaihto tyhjätilassa tai pilkutuksessa"
+msgstr "Katkaise välilyönnistä tai välimerkistä"
 
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "Kopioi &keskelle\tAlt+Oikea"
@@ -2972,7 +2977,7 @@ msgstr "Vasemmalta oikealle (%1)"
 
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr "Vasemmalle keskelle (%1)"
+msgstr "Vasemmalta keskelle (%1)"
 
 #, c-format
 msgid "Left to... (%1)"
@@ -2980,7 +2985,7 @@ msgstr "Vasemmalta... (%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
-msgstr "Keskellä... (%1)"
+msgstr "Keskeltä... (%1)"
 
 #, c-format
 msgid "Right to... (%1)"
@@ -2998,8 +3003,12 @@ msgstr "Kaikki... (%1)"
 msgid "Differences to... (%1)"
 msgstr "Erot... (%1)"
 
-msgid "Some selected items are identical or skipped.\nCopy only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Copy only items with differences?"
 msgstr ""
+"Osa valituista kohteista on identtisiä tai ohitettu.\n"
+"Kopioidaanko vain kohteet, joissa on eroja?"
 
 #, c-format
 msgid "Left (%1)"
@@ -3022,21 +3031,21 @@ msgid "All (%1)"
 msgstr "Kaikki (%1)"
 
 msgid "Left Side - Select Destination Folder:"
-msgstr "Vasen puoli - valitse kohdekansio:"
+msgstr "Vasen puoli - Valitse kohdekansio:"
 
 msgid "Middle Side - Select Destination Folder:"
-msgstr "Keskimmäinen - valitse kohdekansio:"
+msgstr "Keskimmäinen puoli - Valitse kohdekansio:"
 
 msgid "Right Side - Select Destination Folder:"
-msgstr "Oikea puoli - valitse kohdekansio:"
+msgstr "Oikea puoli - Valitse kohdekansio:"
 
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(%1 tiedostoa muokattu)"
+msgstr "(%1 tiedostoa vaikutti)"
 
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(%1 / %2 tiedostoon vaikutettu)"
+msgstr "(%1 / %2 tiedostosta vaikutti)"
 
 #, c-format
 msgid ""
@@ -3044,16 +3053,16 @@ msgid ""
 "\n"
 "%1 ?"
 msgstr ""
-"Oletko varma, että haluat poistaa kohteen\n"
+"Haluatko varmasti poistaa\n"
 "\n"
 "%1 ?"
 
 msgid "Are you sure you want to copy?"
-msgstr "Oletko varma, että haluat kopioida?"
+msgstr "Haluatko varmasti kopioida?"
 
 #, c-format
 msgid "Are you sure you want to copy %d items?"
-msgstr "Oletko varma, että haluat kopioida %d kohdetta?"
+msgstr "Haluatko varmasti kopioida %d kohdetta?"
 
 #, c-format
 msgid ""
@@ -3065,37 +3074,36 @@ msgid ""
 "\n"
 "Refresh the compare."
 msgstr ""
-"Toiminto keskeytettiin!\n"
+"Toiminto keskeytetty!\n"
 "\n"
-"Kansion sisältö levyllä on muuttunut, polkua\n"
+"Kansion sisältö muuttui, polkua\n"
 "%1\n"
-"ei löytynyt.\n"
+"ei löydy.\n"
 "\n"
 "Päivitä vertailu."
 
 msgid "Are you sure you want to move?"
-msgstr "Oletko varma, että haluat siirtää?"
+msgstr "Haluatko varmasti siirtää?"
 
 #, c-format
 msgid "Are you sure you want to move %d items?"
-msgstr "Oletko varma, että haluat siirtää %d kohdetta?"
+msgstr "Haluatko varmasti siirtää %d kohdetta?"
 
 msgid "Confirm Move"
 msgstr "Vahvista siirto"
 
 msgid "Close the folder comparison window?"
-msgstr ""
-"Olet sulkemassa kansioiden vertailuikkunaa. Haluatko varmasti sulkea ikkunan?"
+msgstr "Suljetaanko kansiovertailuikkuna?"
 
 msgid "Close the folder comparison window, which took a long time?"
-msgstr ""
+msgstr "Suljetaanko kansiovertailuikkuna, jonka avaaminen kesti kauan?"
 
 msgid "The file or folder name is invalid."
 msgstr "Tiedoston tai kansion nimi on virheellinen."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "Ulkoisen editorin ajo epäonnistui: %1"
+msgstr "Ulkoisen editorin suoritus epäonnistui: %1"
 
 msgid "Unknown archive format"
 msgstr "Tuntematon arkistomuoto"
@@ -3104,8 +3112,8 @@ msgid ""
 "Failed to extract archive.\n"
 "Compare as text file?"
 msgstr ""
-"Arkistotiedostojen purkaminen epäonnistui.\n"
-"Haluatko verrata arkistotiedostoja tekstitiedostoina?"
+"Arkiston purkaminen epäonnistui.\n"
+"Verrataanko tekstitiedostona?"
 
 msgid "Filename"
 msgstr "Tiedostonimi"
@@ -3115,7 +3123,7 @@ msgid "Folder"
 msgstr "Kansio"
 
 msgid "Comparison Result"
-msgstr "Vertailutulokset"
+msgstr "Vertailutulos"
 
 msgid "Left Date"
 msgstr "Vasen päiväys"
@@ -3124,7 +3132,7 @@ msgid "Right Date"
 msgstr "Oikea päiväys"
 
 msgid "Middle Date"
-msgstr "Keskimmäinen päivä"
+msgstr "Keskimmäinen päiväys"
 
 msgid "Left Size"
 msgstr "Vasen koko"
@@ -3169,13 +3177,13 @@ msgid "Short Result"
 msgstr "Lyhyt tulos"
 
 msgid "Left Attributes"
-msgstr "Vasemmat määritteet"
+msgstr "Vasemmat attribuutit"
 
 msgid "Right Attributes"
-msgstr "Oikeat määritteet"
+msgstr "Oikeat attribuutit"
 
 msgid "Middle Attributes"
-msgstr "Keskimmäinen attribuutit"
+msgstr "Keskimmäiset attribuutit"
 
 msgid "Left EOL"
 msgstr "Vasen EOL"
@@ -3196,7 +3204,7 @@ msgid "Middle Encoding"
 msgstr "Keskimmäinen koodaus"
 
 msgid "Ignored Diff"
-msgstr "Ohitetut erot"
+msgstr "Ohitettu ero"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3212,7 +3220,7 @@ msgid "Left"
 msgstr "Vasen"
 
 msgid "Middle"
-msgstr "Keski"
+msgstr "Keskimmäinen"
 
 msgid "Right"
 msgstr "Oikea"
@@ -3221,13 +3229,13 @@ msgid "Diff"
 msgstr "Ero"
 
 msgid "Left Duplicate Count"
-msgstr "Vasen kaksoiskappaleiden määrä"
+msgstr "Vasemman kaksoiskappaleen määrä"
 
 msgid "Right Duplicate Count"
-msgstr "Oikea kaksoiskappaleiden määrä"
+msgstr "Oikean kaksoiskappaleen määrä"
 
 msgid "Middle Duplicate Count"
-msgstr "Keskimmäinen kaksoiskappaleiden määrä"
+msgstr "Keskimmäisen kaksoiskappaleen määrä"
 
 msgid "Move"
 msgstr "Siirrä"
@@ -3248,13 +3256,13 @@ msgid "Devices"
 msgstr "Laitteet"
 
 msgid "Document"
-msgstr "Dokumentti"
+msgstr "Asiakirja"
 
 msgid "Home"
 msgstr "Koti"
 
 msgid "Journal"
-msgstr "Aikakauslehti"
+msgstr "Lehti"
 
 msgid "Link"
 msgstr "Linkki"
@@ -3266,7 +3274,7 @@ msgid "Music"
 msgstr "Musiikki"
 
 msgid "Note"
-msgstr "Huomautus"
+msgstr "Muistio"
 
 msgid "Photo"
 msgstr "Valokuva"
@@ -3278,7 +3286,7 @@ msgid "Search"
 msgstr "Haku"
 
 msgid "Security"
-msgstr "Turvallisuus"
+msgstr "Tietoturva"
 
 msgid "Software"
 msgstr "Ohjelmisto"
@@ -3290,7 +3298,7 @@ msgid "Video"
 msgstr "Video"
 
 msgid "Hash"
-msgstr "Tiiviste (hash)"
+msgstr "Tiiviste"
 
 msgid "Unable to compare files"
 msgstr "Tiedostoja ei voi verrata"
@@ -3321,16 +3329,16 @@ msgid "Does not exist in %1"
 msgstr "Ei ole kohteessa %1"
 
 msgid "Binary files are identical"
-msgstr "Binaaritiedostot ovat samanlaisia"
+msgstr "Binääritiedostot ovat identtiset"
 
 msgid "Binary files are different"
-msgstr "Binaaritiedostot ovat erilaisia"
+msgstr "Binääritiedostot ovat erilaiset"
 
 msgid "Files are different"
-msgstr "Tiedostot ovat erilaisia"
+msgstr "Tiedostot ovat erilaiset"
 
 msgid "Folders are different"
-msgstr "Kansiot ovat erilaisia"
+msgstr "Kansiot ovat erilaiset"
 
 msgid "Left Only"
 msgstr "Vain vasen"
@@ -3354,29 +3362,29 @@ msgid "Error"
 msgstr "Virhe"
 
 msgid "Text files are identical"
-msgstr "Tekstitiedostot ovat samanlaisia"
+msgstr "Tekstitiedostot ovat identtiset"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Keskimmäinen ja oikea ovat identtiset)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Vasen ja oikea ovat identtiset)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Vasen ja keskimmäinen ovat identtiset)"
 
 msgid "Text files are different"
-msgstr "Tekstitiedostot ovat erilaisia"
+msgstr "Tekstitiedostot ovat erilaiset"
 
 msgid "Image files are identical"
 msgstr "Kuvatiedostot ovat identtiset"
 
 msgid "Image files are different"
-msgstr "Kuvatiedostot ovat erilaisia"
+msgstr "Kuvatiedostot ovat erilaiset"
 
 #, c-format
 msgid "Group%d"
-msgstr "Ryhmä%d"
+msgstr "Ryhmä %d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3393,28 +3401,28 @@ msgid "Filename or folder name."
 msgstr "Tiedosto- tai kansionimi."
 
 msgid "Subfolder name when subfolders are included."
-msgstr "Alikansion nimi, kun alikansiot ovat mukana."
+msgstr "Alikansion nimi, kun alikansiot sisältyvät."
 
 msgid "Comparison result, long form."
-msgstr "Vertailutulokset, pitkä muoto."
+msgstr "Vertailutulos, pitkä muoto."
 
 msgid "Left side modification date."
-msgstr "Vasemman muokkauspäivä."
+msgstr "Vasemman puolen muokkauspäiväys."
 
 msgid "Right side modification date."
-msgstr "Oikean muokkauspäivä."
+msgstr "Oikean puolen muokkauspäiväys."
 
 msgid "Middle side modification date."
-msgstr "Keskimmäinen sivu muokkauspäivä."
+msgstr "Keskimmäisen puolen muokkauspäiväys."
 
 msgid "File's extension."
-msgstr "Tiedostopäätteet."
+msgstr "Tiedostopääte."
 
 msgid "Left file size in bytes."
-msgstr "Vasemman tiedoston koko tavuina."
+msgstr "Vasen tiedostokoko tavuina."
 
 msgid "Right file size in bytes."
-msgstr "Oikean tiedoston koko tavuina."
+msgstr "Oikea tiedostokoko tavuina."
 
 msgid "Middle file size in bytes."
 msgstr "Keskimmäinen tiedostokoko tavuina."
@@ -3426,7 +3434,7 @@ msgid "Right file size abbreviated."
 msgstr "Oikea tiedostokoko lyhennettynä."
 
 msgid "Middle file size abbreviated."
-msgstr "Keskimmäinen tiedosto koko lyhennetty."
+msgstr "Keskimmäinen tiedostokoko lyhennettynä."
 
 msgid "Left side creation time."
 msgstr "Vasemman puolen luontiaika."
@@ -3435,31 +3443,31 @@ msgid "Right side creation time."
 msgstr "Oikean puolen luontiaika."
 
 msgid "Middle side creation time."
-msgstr "Keskimmäisen sivun luontiaika."
+msgstr "Keskimmäisen puolen luontiaika."
 
 msgid "Tells which side has newer modification date."
-msgstr "Kertoo kummallako puolella on uudempi muutospäivä."
+msgstr "Kertoo, kummalla puolella on uudempi muokkauspäiväys."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Vasemman puolen tiedostoversio, vain tietyille tiedostotyypeille."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Oikean puolen tiedostoversio, vain tietyille tiedostotyypeille."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Keskimmäisen puolen tiedostoversio, vain tietyille tiedostotyypeille."
 
 msgid "Short comparison result."
 msgstr "Lyhyt vertailutulos."
 
 msgid "Left side attributes."
-msgstr "Vasemman puolen määritteet."
+msgstr "Vasemman puolen attribuutit."
 
 msgid "Right side attributes."
-msgstr "Oikean puolen määritteet."
+msgstr "Oikean puolen attribuutit."
 
 msgid "Middle side attributes."
-msgstr "Keskimmäinen sivu määritteet."
+msgstr "Keskimmäisen puolen attribuutit."
 
 msgid "Left side file EOL type."
 msgstr "Vasemman tiedoston EOL-tyyppi."
@@ -3468,7 +3476,7 @@ msgid "Right side file EOL type."
 msgstr "Oikean tiedoston EOL-tyyppi."
 
 msgid "Middle side file EOL type."
-msgstr "Keskimmäinen sivu tiedosto EOL-tyyppi."
+msgstr "Keskimmäisen tiedoston EOL-tyyppi."
 
 msgid "Left side encoding."
 msgstr "Vasemman puolen koodaus."
@@ -3477,37 +3485,36 @@ msgid "Right side encoding."
 msgstr "Oikean puolen koodaus."
 
 msgid "Middle side encoding."
-msgstr "Keskimmäinen sivu koodaus."
+msgstr "Keskimmäisen puolen koodaus."
 
 msgid "Number of ignored differences in file. Ignored and cannot be merged."
-msgstr ""
-"Tiedostossa useita ohitettuja eroja. WinMerge on ohittanut nämä erot, eikä "
-"niitä voi yhdistää."
+msgstr "Ohitettujen erojen määrä tiedostossa. Ohitettu eikä voi yhdistää."
 
 msgid "Number of differences in file (excluding ignored)."
+msgstr "Tiedoston erojen lukumäärä (pois lukien ohitetut)."
 
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Näyttää tähden(*), jos tiedosto on binäärinen."
+msgstr "Näyttää tähden (*), jos tiedosto on binäärinen."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr "Pakkauksen purkuohjelman laajennuksen nimi tai putki."
+msgstr "Purkulaajennuksen nimi tai putki."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Ennakointilaajennuksen nimi tai putki."
+msgstr "Esivertailulaajennuksen nimi tai putki."
 
 #, c-format
 msgid "Compare %1 with %2"
-msgstr "Vertaa %1 -> %2"
+msgstr "Vertaa %1 ja %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr "Vertaa %1 -> %2 -> %3"
+msgstr "Vertaa %1, %2 ja %3"
 
 msgid "Comma-separated list"
-msgstr "Pilkuilla erotettu lista"
+msgstr "Pilkuin erotettu lista"
 
 msgid "Tab-separated list"
-msgstr "Sarkain erotettu lista"
+msgstr "Sarkaimin erotettu lista"
 
 msgid "Simple HTML"
 msgstr "Yksinkertainen HTML"
@@ -3516,137 +3523,146 @@ msgid "Simple XML"
 msgstr "Yksinkertainen XML"
 
 msgid "Report file already exists. Overwrite?"
-msgstr "Raportti on jo olemassa. Haluatko korvata sen sisällön?"
+msgstr "Raporttitiedosto on jo olemassa. Korvataanko?"
 
 #, c-format
 msgid ""
 "Error creating the report:\n"
 "%1"
 msgstr ""
-"Raportin luominen epäonnistui:\n"
+"Virhe luotaessa raporttia:\n"
 "%1"
 
 msgid "Report created successfully."
-msgstr "Raportin luominen onnistui."
+msgstr "Raportti luotu onnistuneesti."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr "Synkronointipistettä ei voi lisätä tällä rivillä."
+msgstr "Synkronointipistettä ei voi lisätä tälle riville."
 
 msgid "Same file is opened in both panes."
-msgstr "Sama tiedosto on avatttu molemmissa paneeleissa."
+msgstr "Sama tiedosto on avattu molemmissa ruuduissa."
 
 msgid "Selected files are identical."
-msgstr "Valitut tiedostot ovat identtisiä."
+msgstr "Valitut tiedostot ovat identtiset."
 
 msgid "An error occurred while comparing files."
-msgstr "Virhe tiedostojen vertaamisessa."
+msgstr "Virhe tapahtui tiedostoja verrattaessa."
 
 msgid ""
 "Could not create temporary files. Check your temporary path settings."
 msgstr ""
-"Väliaikaisia tiedostoja ei voi luoda. Tarkista väliaikaiset polkuasetukset."
+"Tilapäistiedostoja ei voitu luoda. Tarkista tilapäispolun asetukset."
 
-msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
+msgid ""
+"Files use different EOL.\n"
+"\n"
+"Treat all EOL as equivalent?\n"
+"\n"
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of "
+"Options."
 msgstr ""
-"Nämä tiedostot käyttävät erilaisia rivinvaihtotyyppejä.\n"
+"Tiedostot käyttävät eri EOL-merkintöjä.\n"
 "\n"
-"Haluatko käsitellä kaikki rivinvaihdot samanlaisina tässä vertailussa?\n"
+"Käsitelläänkö kaikki EOL-merkinnät samanarvoisina?\n"
 "\n"
-"Huomaa: Jos haluat käsitellä kaikki rivinvaihtotyypit aina samanlaisina, "
-"aseta vaihtoehto 'Ohita rivinvaihtoerot (Windows/Unix/Mac)' Vertaa "
-"välilehden Asetukset-valintaikkunassa (Muokkaa/Asetukset)."
+"Aseta 'Ohita EOL-erot (Windows/Unix/Mac)' Asetusten Vertaa-osiossa."
 
 msgid "Selected folder is invalid."
-msgstr "Valittu kansio ei kelpaa."
+msgstr "Valittu kansio on virheellinen."
 
 msgid "Cannot open a binary file in Editor."
-msgstr "Binaaritiedostoa voi avata editoriin."
+msgstr "Binääritiedostoa ei voi avata muokkaimessa."
 
 #, c-format
-msgid "Create matching folder:\n%1\non the other side and open?"
-msgstr ""
-"Kansio on olemassa vain toisella puolella, eikä sitä voi avata.\n"
-"\n"
-"Haluatko luoda vastaavan kansion:\n"
+msgid ""
+"Create matching folder:\n"
 "%1\n"
-"toiselle puolelle ja avata nämä kansiot?"
+"on the other side and open?"
+msgstr ""
+"Luodaanko vastaava kansio:\n"
+"%1\n"
+"toiselle puolelle ja avataanko?"
 
 msgid "Copy all differences to other file?"
-msgstr ""
+msgstr "Kopioidaanko kaikki erot toiseen tiedostoon?"
 
 msgid "Move to next file?"
-msgstr "Haluatko siirtyä seuraavaan tiedostoon?"
+msgstr "Siirrytäänkö seuraavaan tiedostoon?"
 
 msgid "Move to previous file?"
-msgstr "Haluatko siirtyä edelliseen tiedostoon?"
+msgstr "Siirrytäänkö edelliseen tiedostoon?"
 
 msgid "Move to next page?"
-msgstr "Haluatko siirtyä seuraavalle sivulle?"
+msgstr "Siirrytäänkö seuraavalle sivulle?"
 
 msgid "Move to previous page?"
-msgstr "Haluatko siirtyä edelliselle sivulle?"
+msgstr "Siirrytäänkö edelliselle sivulle?"
 
 msgid "Move to first file?"
-msgstr "Haluatko siirtyä ensimmäiseen tiedostoon?"
+msgstr "Siirrytäänkö ensimmäiseen tiedostoon?"
 
 msgid "Move to last file?"
-msgstr "Haluatko siirtyä viimeiseen tiedostoon?"
+msgstr "Siirrytäänkö viimeiseen tiedostoon?"
 
 #, c-format
-msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
+msgid ""
+"Different codepages: left (cp%d), right (cp%d).\n"
+"Display in codepage (better display) or default Windows codepage (safer "
+"merging)?\n"
+"(Recommended: default Windows codepage)"
 msgstr ""
-"Eri koodisivut vasemman (cp%d) ja oikean (cp%d) puolen tiedostoilla.\n"
-"Tiedostojen näyttäminen omalla koodivullaan antaa paremman näytön, mutta "
-"yhdistäminen/kopiointi on vaarallista.\n"
-"Haluatko käsitellä molemmat tiedostot Windowsin oletusmerkistöllä (suositus)?"
+"Eri koodisivut: vasen (cp%d), oikea (cp%d).\n"
+"Näytetäänkö omalla koodisivulla (parempi näyttö) vai Windowsin oletuskoodi"
+"sivulla (turvallisempi yhdistäminen)?\n"
+"(Suositus: Windowsin oletuskoodisivu)"
 
 msgid "Information lost due to encoding errors: both files"
-msgstr "Tietoja menetettiin koodausvirheistä johtuen: molemmat tiedostot"
+msgstr "Tietoja menetetty koodausvirheiden vuoksi: molemmat tiedostot"
 
 msgid "Information lost due to encoding errors: first file"
-msgstr "Koodausvirheiden vuoksi menetetyt tiedot: ensimmäinen tiedosto"
+msgstr "Tietoja menetetty koodausvirheiden vuoksi: ensimmäinen tiedosto"
 
 msgid "Information lost due to encoding errors: second file"
-msgstr "Koodausvirheiden vuoksi menetetyt tiedot: toinen tiedosto"
+msgstr "Tietoja menetetty koodausvirheiden vuoksi: toinen tiedosto"
 
 msgid "Information lost due to encoding errors: third file"
-msgstr "Koodausvirheiden vuoksi menetetyt tiedot: kolmas tiedosto"
+msgstr "Tietoja menetetty koodausvirheiden vuoksi: kolmas tiedosto"
 
 msgid "No difference"
-msgstr "Ei eroja"
+msgstr "Ei eroa"
 
 msgid "Line difference"
-msgstr "Rivien välinen ero"
+msgstr "Riviero"
 
 #, c-format
 msgid "Replaced %1 string(s)."
-msgstr "Korvattu %1 merkkijono(a)."
+msgstr "Korvattiin %1 merkkijono(a)."
 
 #, c-format
 msgid "Cannot find string \"%s\"."
 msgstr "Merkkijonoa \"%s\" ei löydy."
 
-msgid "Entering Merge Mode. Press F9 to turn off."
+msgid ""
+"Entering Merge Mode. Press F9 to turn off."
 msgstr ""
-"Olet nyt siirtymässä yhdistämistilaan. Jos haluat poistua yhdistämistilasta, "
-"paina F9-näppäintä."
+"Siirrytään yhdistämistilaan. Poistu painamalla F9."
 
 #, c-format
 msgid ""
 "Automatic merges: %1\n"
 "Unresolved conflicts: %2"
 msgstr ""
-"Automaattisesti yhdistettyjen muutosten määrä: %1\n"
-"Ratkaisemattomien ristiriitojen määrä: %2"
+"Automaattiset yhdistämiset: %1\n"
+"Ratkaisemattomat ristiriidat: %2"
 
 msgid "Codepage change merged."
-msgstr "Koodisivun muutos on yhdistetty."
+msgstr "Koodisivun muutos yhdistetty."
 
 msgid "Codepage changes are conflicting."
 msgstr "Koodisivun muutokset ovat ristiriitaisia."
 
 msgid "EOL change merged."
-msgstr "EOL-muutos on yhdistetty."
+msgstr "EOL-muutos yhdistetty."
 
 msgid "EOL changes are conflicting."
 msgstr "EOL-muutokset ovat ristiriitaisia."
@@ -3655,19 +3671,19 @@ msgid "Location Pane"
 msgstr "Sijaintiruutu"
 
 msgid "Diff Pane"
-msgstr "Eroavuusruutu"
+msgstr "Eroruutu"
 
 msgid "Patch file written."
-msgstr "Paikkaustiedoston kirjoitus onnistui."
+msgstr "Korjaustiedosto kirjoitettu."
 
 msgid "First item not found!"
-msgstr "1. kohdetta ei löydy!"
+msgstr "Ensimmäistä kohdetta ei löydy!"
 
 msgid "Second item not found!"
-msgstr "2. kohdetta ei löydy!"
+msgstr "Toista kohdetta ei löydy!"
 
 msgid "Patch file already exists. Overwrite?"
-msgstr "Paikkaustiedosto on jo olemassa. Haluatko korvata sen?"
+msgstr "Korjaustiedosto on jo olemassa. Korvataanko?"
 
 #, c-format
 msgid "[%1 files selected]"
@@ -3684,37 +3700,38 @@ msgstr "Yhtenäistetty"
 
 #, c-format
 msgid "Could not write to file %1."
-msgstr "Ei voitu kirjoittaa tiedostoon %1."
+msgstr "Tiedostoon %1 ei voitu kirjoittaa."
 
 #, c-format
 msgid "Output path is not absolute: %1"
-msgstr "Määritetty kohdepolku ei ole absoluuttinen polku: %1"
+msgstr "Tulostuspolku ei ole absoluuttinen: %1"
 
 msgid "Specify an output file."
-msgstr "Määrittele kohdetiedost."
+msgstr "Määritä tulostustiedosto."
 
 msgid "Cannot create patch from binary files."
-msgstr "Paikkaustiedostoa ei voi luoda binääritiedostoista."
+msgstr "Korjaustiedostoa ei voi luoda binääritiedostoista."
 
 msgid ""
 "Save all files first.\n"
 "\n"
 "Creating a patch requires no unsaved changes."
 msgstr ""
-"Tallenna ensin kaikki tiedostot.\n"
+"Tallenna kaikki tiedostot ensin.\n"
 "\n"
-"Korjaustiedoston luominen edellyttää, että tiedostoissa ei ole "
-"tallentamattomia muutoksia."
+"Korjaustiedoston luominen edellyttää tallentamattomia muutoksia."
 
 msgid "Folder does not exist."
 msgstr "Kansiota ei ole olemassa."
 
-msgid "Archive support not enabled.\n7-Zip and/or Merge7z*.dll not found.\nSee manual for archive support."
+msgid ""
+"Archive support not enabled.\n"
+"7-Zip and/or Merge7z*.dll not found.\n"
+"See manual for archive support."
 msgstr ""
 "Arkistotuki ei ole käytössä.\n"
-"Kaikkia tarvittavia osia (7-Zip ja/tai Merge7z *. Dll) arkistojen tukeen ei "
-"löydy.\n"
-"Katso käyttöohjeesta lisätietoja arkistotuesta ja kuinka se otetaan käyttöön."
+"7-Zip ja/tai Merge7z*.dll ei löydy.\n"
+"Katso ohjeesta lisätietoja arkistotuesta."
 
 msgid "Select file for export"
 msgstr "Valitse vietävä tiedosto"
@@ -3729,19 +3746,19 @@ msgid "Options exported to file."
 msgstr "Asetukset viety tiedostoon."
 
 msgid "Failed to import options from file."
-msgstr "Asetuksien tuonti tiedostosta epäonnistui."
+msgstr "Asetusten tuonti tiedostosta epäonnistui."
 
 msgid "Failed to write options to file."
-msgstr "Asetuksien kirjoitus tiedostoon epäonnistui."
+msgstr "Asetusten kirjoitus tiedostoon epäonnistui."
 
 msgid ""
 "Close multiple compare windows?\n"
 "\n"
 "Continue?"
 msgstr ""
-"Olet sulkemassa useita vertailuikkunoita.\n"
+"Suljetaanko useita vertailuikkunoita?\n"
 "\n"
-"Haluatko jatkaa?"
+"Jatketaanko?"
 
 msgid "Mixed"
 msgstr "Sekoitettu"
@@ -3755,23 +3772,23 @@ msgstr "Ei mitään"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr "Merkin väri %d"
+msgstr "Merkinnän väri %d"
 
 msgid "New Pattern"
-msgstr "Uusi kuvio"
+msgstr "Uusi malli"
 
 msgid "Type"
 msgstr "Tyyppi"
 
 msgid "Editor script"
-msgstr "Muokkainskripti"
+msgstr "Muokkausskripti"
 
 msgid ""
 "\n"
 "Difference in Current Line (F4)"
 msgstr ""
 "\n"
-"Ero nykyisessä rivissä (F4)"
+"Ero nykyisellä rivillä (F4)"
 
 msgid ""
 "\n"
@@ -3792,28 +3809,28 @@ msgid ""
 "Previous Difference (Alt+Up)"
 msgstr ""
 "\n"
-"Edellinen ero (Alt+Up)"
+"Edellinen ero (Alt+Ylös)"
 
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
 msgstr ""
 "\n"
-"Seuraava ero (Alt+Down)"
+"Seuraava ero (Alt+Alas)"
 
 msgid ""
 "\n"
 "Previous Conflict (Alt+Shift+Up)"
 msgstr ""
 "\n"
-"Edellinen ristiriita (Alt+Shift+Up)"
+"Edellinen ristiriita (Alt+Shift+Ylös)"
 
 msgid ""
 "\n"
 "Next Conflict (Alt+Shift+Down)"
 msgstr ""
 "\n"
-"Seuraava ristiriita (Alt+Shift+Down)"
+"Seuraava ristiriita (Alt+Shift+Alas)"
 
 msgid ""
 "\n"
@@ -3837,29 +3854,29 @@ msgstr ""
 "Viimeinen ero (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nKopioi oikealle (Alt+Oikea)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nKopioi vasemmalle (Alt+Vasen)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nKopioi oikealle ja etene (Ctrl+Alt+Oikea)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nKopioi vasemmalle ja etene (Ctrl+Alt+Vasen)"
 
 msgid "\nCopy All to Right"
-msgstr ""
+msgstr "\nKopioi kaikki oikealle"
 
 msgid "\nCopy All to Left"
-msgstr ""
+msgstr "\nKopioi kaikki vasemmalle"
 
 msgid ""
 "\n"
 "Auto Merge (Ctrl+Alt+M)"
 msgstr ""
 "\n"
-"Yhdistä automaattisesti (Ctrl+Alt+M)"
+"Automaattinen yhdistäminen (Ctrl+Alt+M)"
 
 msgid ""
 "\n"
@@ -3891,45 +3908,45 @@ msgstr ""
 
 msgid "Adapted unpacker applied to both files (one needs extension)."
 msgstr ""
-"Mukautettua purkajaa käytetään molempiin tiedostoihin (vain yksi tiedosto "
-"tarvitsee päätteen)."
+"Mukautettua purkajaa sovelletaan molempiin tiedostoihin (toinen tarvitsee "
+"päätteen)."
 
 msgid "No Prediffer (Normal)"
 msgstr "Ei esivertailua (normaali)"
 
 msgid "Suggested Plugins"
-msgstr "Suositellut lisäosat"
+msgstr "Ehdotetut laajennukset"
 
 msgid "All Plugins"
 msgstr "Kaikki laajennukset"
 
 #, c-format
 msgid "Private Build: %1"
-msgstr "Yksityinen rakenne: %1"
+msgstr "Yksityinen koontiversio: %1"
 
 msgid "Your software is up to date."
-msgstr "Ohjelmisto on ajan tasalla."
+msgstr "Ohjelmistosi on ajan tasalla."
 
 #, c-format
 msgid ""
 "WinMerge update available.\n"
 "%1 available (you have %2). Download now?"
 msgstr ""
-"WinMergen uusi versio on saatavilla.\n"
-"%1 on nyt saatavilla (sinulla on %2). Haluatko ladata sen nyt?"
+"WinMerge-päivitys saatavilla.\n"
+"%1 saatavilla (sinulla on %2). Ladataanko nyt?"
 
 msgid "Failed to download latest version information"
 msgstr "Uusimpien versiotietojen lataaminen epäonnistui"
 
 msgid "Plugin Settings"
-msgstr "Lisäosien asetukset"
+msgstr "Laajennusten asetukset"
 
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH ei löytynyt - .sct skriptit poistettu käytöstä"
+msgstr "WSH:ta ei löydy - .sct-skriptit poistettu käytöstä"
 
 #, c-format
 msgid "G&o to Line %1"
-msgstr "Siirry riville %1"
+msgstr "S&iirry riville %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Siirry siirrettyyn riviin\tCtrl+Shift+G"
@@ -3941,13 +3958,13 @@ msgid "From file system"
 msgstr "Tiedostojärjestelmästä"
 
 msgid "From Most Recently Used list"
-msgstr "MRU listalta"
+msgstr "Viimeksi käytettyjen listasta"
 
 msgid "No Highlighting"
 msgstr "Ei korostusta"
 
 msgid "Batch"
-msgstr "Erä"
+msgstr "Eräajo"
 
 msgid "Portable Object"
 msgstr "Siirrettävä objekti"
@@ -3962,38 +3979,38 @@ msgid "Close &Left Tabs"
 msgstr "Sulje vasemmat väli&lehdet"
 
 msgid "Close R&ight Tabs"
-msgstr "Sulje oikeat väl&ilehdet"
+msgstr "Sulje o&ikeat välilehdet"
 
 msgid "Close &Other Tabs"
 msgstr "Sulje &muut välilehdet"
 
 msgid "Enable &Auto Max Width"
-msgstr "Käytä &automaattista maksimi leveyttä"
+msgstr "Ota käyttöön &automaattinen enimmäisleveys"
 
 msgid "We&bpage"
 msgstr "Ver&kkosivu"
 
 msgid "W&rap Text"
-msgstr ""
+msgstr "&Rivitä teksti"
 
 msgid "%1 is not installed."
 msgstr "%1 ei ole asennettu."
 
 #, c-format
 msgid "%1 does not exist. Create it?"
-msgstr "%1 ei ole. Haluatko luoda sen?"
+msgstr "%1 ei ole olemassa. Luodaanko se?"
 
 msgid "Failed to create folder."
-msgstr "Kansiota ei voitu luoda."
+msgstr "Kansion luonti epäonnistui."
 
 msgid ""
 "Parameters:\n"
 "$file: Current file path\n"
 "$linenum: Current cursor line number"
 msgstr ""
-"Voit määrittää polulle seuraavat parametrit:\n"
-"$file: Nykyisen tiedostopolun nimi\n"
-"$linenum: Kohdistimen nykyisen sijainnin rivinumero"
+"Parametrit:\n"
+"$file: Nykyinen tiedostopolku\n"
+"$linenum: Kohdistimen nykyinen rivinumero"
 
 msgid "default"
 msgstr "oletus"
@@ -4002,43 +4019,43 @@ msgid "minimal"
 msgstr "minimaalinen"
 
 msgid "patience"
-msgstr "kärsivällisyyttä"
+msgstr "kärsivällisyys"
 
 msgid "histogram"
 msgstr "histogrammi"
 
 msgid "none"
-msgstr "ei mikään"
+msgstr "ei mitään"
 
 msgid "GDI"
 msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr "DirectWrite oletus"
+msgstr "DirectWrite Oletus"
 
 msgid "DirectWrite Aliased"
-msgstr "DirectWrite alias"
+msgstr "DirectWrite Aliasoitu"
 
 msgid "DirectWrite GDI Classic"
-msgstr "DirectWrite GDI klassinen"
+msgstr "DirectWrite GDI Klassinen"
 
 msgid "DirectWrite GDI Natural"
-msgstr "DirectWrite GDI luonnollinen"
+msgstr "DirectWrite GDI Luonnollinen"
 
 msgid "DirectWrite Natural"
-msgstr "DirectWrite luonnollinen"
+msgstr "DirectWrite Luonnollinen"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr "DirectWrite Natural symmetrinen"
+msgstr "DirectWrite Luonnollinen Symmetrinen"
 
 msgid "MDI child window or main window"
-msgstr "MDI ali-ikkuna tai pääikkuna"
+msgstr "MDI-ali-ikkuna tai pääikkuna"
 
 msgid "MDI child window only"
-msgstr "Vain MDI ali-ikkuna"
+msgstr "Vain MDI-ali-ikkuna"
 
 msgid "Close main window if only one MDI child window"
-msgstr "Sulje pääikkuna, jos on vain yksi MDI ali-ikkuna"
+msgstr "Sulje pääikkuna, jos vain yksi MDI-ali-ikkuna"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -4058,11 +4075,11 @@ msgstr "Lohkon koko"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "Lohko Alfa"
+msgstr "Lohkon alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "CD kynnys"
+msgstr "CD-kynnys"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
@@ -4109,32 +4126,32 @@ msgid "Page:"
 msgstr "Sivu:"
 
 #, c-format
-msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
+msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
+msgstr "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
-msgid "Dist: %g  "
-msgstr "Dist: %g  "
+msgid "Dist: %g  "
+msgstr "Dist: %g  "
 
 #, c-format
-msgid "Dist: %g, %g  "
-msgstr "Dist: %g, %g  "
+msgid "Dist: %g, %g  "
+msgstr "Dist: %g, %g  "
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
-msgstr ""
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Sivu: %d/%d  Suurennus: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
-msgid "Rc: (%d, %d)  "
-msgstr "Rc: (%d, %d)  "
+msgid "Rc: (%d, %d)  "
+msgstr "Rc: (%d, %d)  "
 
 #, c-format
-msgid "Flipped: %s  "
-msgstr "Käännetty: %s "
+msgid "Flipped: %s  "
+msgstr "Käännetty: %s  "
 
 #, c-format
-msgid "Rotated: %d  "
-msgstr "Kierretty: %d "
+msgid "Rotated: %d  "
+msgstr "Pyöritetty: %d  "
 
 msgid "All pages"
 msgstr "Kaikki sivut"
@@ -4143,16 +4160,16 @@ msgid "<Edit here>"
 msgstr "<Muokkaa tässä>"
 
 msgid "No differences found to select"
-msgstr "Valittavissa olevia eroja ei löydy"
+msgstr "Valittavia eroja ei löytynyt"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Korvaussuodattimeksi lisättäviä eroja ei löytynyt"
 
 msgid "The pair is already in the Substitution Filters list"
-msgstr ""
+msgstr "Pari on jo korvaussuodatinluettelossa"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Lisätäänkö tämä muutos korvaussuodattimiin?"
 
 msgid "Text only"
 msgstr "Vain teksti"
@@ -4170,19 +4187,16 @@ msgid "Install folder"
 msgstr "Asennuskansio"
 
 msgid "Allow only one instance to run"
-msgstr ""
+msgstr "Salli vain yhden ilmentymän suoritus"
 
-msgid ""
-"Allow only one instance; wait for termination"
-msgstr ""
-"Salli vain yhden instanssin suorittaminen ja odota, että instanssi "
-"lopetetaan"
+msgid "Allow only one instance; wait for termination"
+msgstr "Salli vain yhden instanssin suoritus; odota sen päättymistä"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Vain ikkunan aktivoinnin yhteydessä"
 
 msgid "Immediately"
-msgstr ""
+msgstr "Välittömästi"
 
 msgid "Al&l"
 msgstr "K&aikki"
@@ -4192,7 +4206,7 @@ msgstr "&Muut"
 
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
-msgstr "Puuttuva lisäosan nimi laajennusputkessa: %1"
+msgstr "Puuttuva laajennuksen nimi laajennusputkessa: %1"
 
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
@@ -4200,76 +4214,76 @@ msgstr "Puuttuva lainausmerkki laajennusputkessa: %1"
 
 #, c-format
 msgid "Plugin name '%1' already exists."
-msgstr ""
+msgstr "Laajennuksen nimi '%1' on jo olemassa."
 
 msgid "Specify plugin arguments"
 msgstr "Määritä laajennuksen argumentit"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Laajennusta ei löytynyt tai se on virheellinen: %1"
 
 #, c-format
 msgid "'%1' is not an unpacker plugin"
-msgstr ""
+msgstr "'%1' ei ole purkulaajennus"
 
 #, c-format
 msgid "'%1' is not a prediffer plugin"
-msgstr ""
+msgstr "'%1' ei ole esivertailulaajennus"
 
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
-msgstr ""
+msgstr "Virhe esivertailtaessa '%1' tiedostolla '%2'. Esivertailu pois käytöstä."
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Silmukka laajennusputkessa: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "URL-käsittelijä"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Tiedoston purkaja"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Tiedoston tai kansion purkaja"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Purkajan alias"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Esivertailijan alias"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Editoriskriptin alias"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Laajennusputken '%1' alias"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Uusi laajennuksen kuvaus"
 
 msgid "All"
-msgstr ""
+msgstr "Kaikki"
 
 msgid "1st"
-msgstr ""
+msgstr "1."
 
 msgid "2nd"
-msgstr ""
+msgstr "2."
 
 msgid "3rd"
-msgstr ""
+msgstr "3."
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1. ja 2."
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1. ja 3."
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2. ja 3."
 
 msgid "Filter applied"
 msgstr "Sovellettu suodatin"
@@ -4279,7 +4293,7 @@ msgid "Clipboard at %s"
 msgstr "Leikepöytä %s"
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
-msgstr ""
+msgstr "Leikepöydän historia pois käytöstä.\r\nOta käyttöön: Windows-näppäin + V, sitten Ota käyttöön."
 
 msgid "This system does not support clipboard history."
 msgstr "Tämä järjestelmä ei tue leikepöydän historiaa."
@@ -4291,119 +4305,119 @@ msgid "WebView2 runtime not installed. Download it?"
 msgstr "WebView2-runtimea ei ole asennettu. Haluatko ladata sen?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Uusi tekstivertailu"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Uusi taulukko&vertailu"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Uusi &binaarivertailu"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Uusi ku&vavertailu"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Uusi ver&kkosivuvertailu"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Leike&pöytävertailu"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Tulosta..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "&Edellinen sivu"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Kaksi sivua"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Yksi sivu"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "&Lähennä"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "&Loitonna"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Verrataan..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Suurennus:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Erolohko"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Tekstinsisäinen ero"
 
 msgid "Line"
-msgstr ""
+msgstr "Rivi"
 
 msgid "Character"
-msgstr ""
+msgstr "Merkki"
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
-msgstr ""
+msgstr "\nEdellinen ero (Alt+Ylös)\n(Oikea painike + Rulla ylös)\n(Alt+Rulla ylös)"
 
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
-msgstr ""
+msgstr "\nSeuraava ero (Alt+Alas)\n(Oikea painike + Rulla alas)\n(Alt+Rulla alas)"
 
 msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
-msgstr ""
+msgstr "\nKopioi oikealle (Alt+Oikea)\n(Oikea painike + Rulla oikealle)\n(Alt+Rulla oikealle)\n(Alt+Vaihto+Rulla alas)"
 
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
-msgstr ""
+msgstr "\nKopioi vasemmalle (Alt+Vasen)\n(Oikea painike + Rulla vasemmalle)\n(Alt+Rulla vasemmalle)\n(Alt+Vaihto+Rulla ylös)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
-msgstr ""
+msgstr "\nKopioi oikealle ja siirry (Ctrl+Alt+Oikea)\n(Ctrl+Alt+Rulla oikealle)\n(Ctrl+Alt+Vaihto+Rulla alas)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
-msgstr ""
+msgstr "\nKopioi vasemmalle ja siirry (Ctrl+Alt+Vasen)\n(Ctrl+Alt+Rulla vasemmalle)\n(Ctrl+Alt+Vaihto+Rulla ylös)"
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Verrataan %1 ja %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Verrataan %1, %2 ja %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Vertailu valmis"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Vertailu %1 ja %2 epäonnistui: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Vertailu %1, %2 ja %3 epäonnistui: "
 
 msgid "File saved"
-msgstr ""
+msgstr "Tiedosto tallennettu"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Kopioidaan tiedostoja..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Siirretään tiedostoja..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Poistetaan tiedostoja..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Roskakori"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Poistettu pysyvästi"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "Tiedostotoiminto suoritettiin onnistuneesti"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "Tiedostotoiminto peruutettu"
 
 msgid "Prettification"
 msgstr "Kaunistelu"
@@ -4412,22 +4426,22 @@ msgid "Content Extraction"
 msgstr "Sisällön purkaminen"
 
 msgid "Preview"
-msgstr ""
+msgstr "Esikatselu"
 
 msgid "Data Query"
 msgstr "Tietojen kysely"
 
 msgid "Validation"
-msgstr "Todentaminen"
+msgstr "Validointi"
 
 msgid "Decompilation"
 msgstr "Purkaminen"
 
 msgid "URL Handling"
-msgstr "URL käsittely"
+msgstr "URL-käsittely"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "Dekoodaus / Enkoodaus"
 
 msgid "Make Uppercase"
 msgstr "Isot kirjaimet"
@@ -4460,7 +4474,7 @@ msgid "Apply Filter Command..."
 msgstr "Sovella suodatinkomentoa..."
 
 msgid "Tokenize..."
-msgstr "Tokenaatio..."
+msgstr "Tokenisoi..."
 
 msgid "Trim Spaces"
 msgstr "Trimmaa välit"
@@ -4478,13 +4492,13 @@ msgid "Insert Time"
 msgstr "Lisää aika"
 
 msgid "Apply Patch..."
-msgstr "Toteuta korjaus..."
+msgstr "Sovella korjaustiedostoa..."
 
 msgid "Ignore Columns"
 msgstr "Jätä sarakkeet huomiotta"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr "Ohita kommentit ( C-ryhmän kielet)"
+msgstr "Ohita kommentit (C-ryhmän kielet)"
 
 msgid "Ignore CSV Fields"
 msgstr "Jätä CSV-kentät huomiotta"
@@ -4493,7 +4507,7 @@ msgid "Ignore TSV Fields"
 msgstr "Jätä TSV-kentät huomiotta"
 
 msgid "Ignore Leading Line Numbers"
-msgstr ""
+msgstr "Ohita rivinumerot alussa"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr "Käytä Prediff-korvaussuodattimia"
@@ -4511,13 +4525,13 @@ msgid "Prettify YAML"
 msgstr "Kaunistele YAML"
 
 msgid "Preview Graphviz"
-msgstr ""
+msgstr "Esikatsele Graphviz"
 
 msgid "Preview Markdown"
-msgstr ""
+msgstr "Esikatsele Markdown"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "Esikatsele PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "CSV-tietojen kysely..."
@@ -4535,7 +4549,7 @@ msgid "Validate HTML"
 msgstr "Validoi HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr "Pura JVM:n bittikoodi"
+msgstr "Pura JVM:n tavukoodi"
 
 msgid "Disassemble IL Code"
 msgstr "Pura IL-koodi"
@@ -4544,10 +4558,10 @@ msgid "Disassemble Native Code"
 msgstr "Pura natiivikoodi"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Muunna teksti tekoälyllä..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Poista ohjausmerkit Java properties -tiedostoista"
 
 msgid "Make characters uppercase"
 msgstr "Isot kirjaimet"
@@ -4574,31 +4588,20 @@ msgid "Reverse lines"
 msgstr "Käänteiset rivit"
 
 msgid "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
-msgstr ""
-"Korvaa teksti toisella tekstillä.\r\n"
-"Käyttö: Replace [-i ] [-e] FIND REPLACE\r\n"
-" or: Replace -s\r\n"
-"  FIND    - etsittävä teksti\r\n"
-"  REPLACE - korvattava teksti\r\n"
-"  -i - ohita kirjainkoko (vain -e:lle)\r\n"
-"  -e - käsittelee määritettyä tekstiä säännöllisenä lausekkeena\r\n"
-" -s - use Substitution Filters"
+msgstr "Korvaa teksti.\r\nKäyttö: Replace [-i] [-e] ETSI KORVAA\r\n tai: Replace -s\r\n ETSI - etsittävä teksti\r\n KORVAA - korvaava teksti\r\n -i - ohita kirjainkoko (vain -e)\r\n -e - regex\r\n -s - käytä korvaussuodattimia"
 
 #, c-format
 msgid "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
-msgstr ""
-"Sovella suodatinkomentoa\r\n"
-"Käyttö: ExecFilterCommand COMMAND\n"
-"  COMMAND - suoritettava komento. komennon %1 korvataan tiedostonimellä."
+msgstr "Sovella suodatinta.\r\nKäyttö: ExecFilterCommand KOMENTO\r\n KOMENTO - suoritettava komento. %1 = tiedostonimi."
 
 msgid ""
 "Tokenize. \r\n"
 "Usage: Tokenize PATTERNS\r\n"
 " PATTERNS - regex (e.g. [^\\w]+)"
 msgstr ""
-"Tokenisoi valinta\r\n"
-"Käyttö: Tokenize PATTERNS\r\n"
-"  PATTERNS - säännöllinen lauseke tokenisointia varten. (esim. [^\\w]+)"
+"Tokenisoi.\r\n"
+"Käyttö: Tokenize LAUSEKKEET\r\n"
+" LAUSEKKEET - regex (esim. [^\\w]+)"
 
 msgid "Trim spaces"
 msgstr "Trimmaa välit"
@@ -4614,15 +4617,15 @@ msgid ""
 " -g - enable global flag\r\n"
 " -e - use PATTERNS"
 msgstr ""
-"Valitse joitakin sarakkeita.\r\n"
-"Käyttö: SelectColumns RANGES\r\n"
-"   tai: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
-"  RANGES - luettelo valittavista sarakealueista. (esim. -3,5-10,30-)\r\n"
-"  PATTERNS - säännöllinen lauseke\r\n"
-"  -v - valitsee sarakkeet, jotka eivät vastaa toisiaan\r\n"
-"  -i - jätä huomiotta isot ja pienet kirjaimet\r\n"
-"  -g - ottaa käyttöön globaalin lipun\r\n"
-"  -e - käyttää PATTERNS:ia täsmäytykseen"
+"Valitse sarakkeet.\r\n"
+"Käyttö: SelectColumns ALUEET\r\n"
+" tai: SelectColumns [-v] [-i] [-g] -e LAUSEKKEET\r\n"
+" ALUEET - sarakealueet (esim. -3,5-10,30-)\r\n"
+" LAUSEKKEET - regex\r\n"
+" -v - valitse ei-vastaavat\r\n"
+" -i - ohita kirjainkoko\r\n"
+" -g - ota käyttöön globaali lippu\r\n"
+" -e - käytä LAUSEKKEITA"
 
 msgid ""
 "Select lines.\r\n"
@@ -4634,123 +4637,117 @@ msgid ""
 " -i - ignore case\r\n"
 " -e - use PATTERNS"
 msgstr ""
-"Valitse joitakin rivejä.\r\n"
-"Käyttö: SelectLines RANGES\r\n"
-"   tai: SelectLines [-v] [-i] -e PATTERNS\r\n"
-"  RANGES - luettelo valittavista rivialueista. (esim. -3,5-10,30-)\r\n"
-"  PATTERNS - säännöllinen lauseke\r\n"
-"  -v - valitsee ei-täsmäävät rivit\r\n"
-"  -i - jätä huomiotta isot ja pienet kirjaimet\r\n"
-"  -e - käytä PATTERNS:ia sovittamiseen"
+"Valitse rivit.\r\n"
+"Käyttö: SelectLines ALUEET\r\n"
+" tai: SelectLines [-v] [-i] -e LAUSEKKEET\r\n"
+" ALUEET - rivialueet (esim. -3,5-10,30-)\r\n"
+" LAUSEKKEET - regex\r\n"
+" -v - valitse ei-vastaavat\r\n"
+" -i - ohita kirjainkoko\r\n"
+" -e - käytä LAUSEKKEITA"
 
 msgid ""
 "HTML Prettier (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
-"HTML kaunistelu tidy-html5:n avulla\r\n"
-"Argumentit: Komentorivin vaihtoehdot, jotka välitetään tidy-komennolle."
+"HTML-kaunistelu (tidy-html5).\r\n"
+"Argumentit: tidy-komentorivivalitsimet."
 
 msgid ""
 "JSON Prettier (jq).\r\n"
 "Arguments: jq filter/command line options."
 msgstr ""
-"JSON kaunistelu jq-komennolla\r\n"
-"Argumentit: Suodattimen tai komentorivin vaihtoehdot, jotka välitetään jq-"
-"komennolle."
+"JSON-kaunistelu (jq).\r\n"
+"Argumentit: jq-suodatin/komentorivivalitsimet."
 
 msgid ""
 "XML Prettier (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
-"XML Prettier with tidy-html5\r\n"
-"Argumentit: Komentorivin vaihtoehdot, jotka välitetään tidy-komennolle."
+"XML-kaunistelu (tidy-html5).\r\n"
+"Argumentit: tidy-komentorivivalitsimet."
 
 msgid ""
 "YAML Prettier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
-"YAML kaunistelu yq-komennolla\n"
-"Argumentit: Suodattimen tai komentorivin vaihtoehdot, jotka välitetään yq-"
-"komennolle."
+"YAML-kaunistelu (yq).\r\n"
+"Argumentit: yq-suodatin/komentorivivalitsimet."
 
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
-msgstr ""
+msgstr "Graphviz-esikatselin.\r\nArgumentit: dot-komentorivivalitsimet."
 
 msgid "Markdown Previewer.\r\nArguments: md2html command line options."
-msgstr ""
+msgstr "Markdown-esikatselin.\r\nArgumentit: md2html-komentorivivalitsimet."
 
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
-msgstr ""
+msgstr "PlantUML-esikatselin.\r\nArgumentit: plantuml.jar-komentorivivalitsimet."
 
 msgid ""
 "CSV Querier (q).\r\n"
 "Arguments: SQL statement/q comannd line options."
 msgstr ""
-"CSV Querier q-komennolla\r\n"
-"Argumentit: SQL-lause tai komentorivin asetukset, jotka välitetään q-"
-"komennolle."
+"CSV-kysely (q).\r\n"
+"Argumentit: SQL-lause/q-komentorivivalitsimet."
 
 msgid ""
 "TSV Querier (q).\r\n"
 "Arguments: SQL statement/q comannd line options."
 msgstr ""
-"TSV Querier q-komennolla\r\n"
-"Argumentit: SQL-lause tai komentorivin asetukset, jotka välitetään q-"
-"komennolle."
+"TSV-kysely (q).\r\n"
+"Argumentit: SQL-lause/q-komentorivivalitsimet."
 
 msgid ""
 "JSON Querier (jq).\r\n"
 "Arguments: jq filter/command line options."
 msgstr ""
-"JSON Querier jq-komennolla\r\n"
-"Argumentit: Suodattimen tai komentorivin vaihtoehdot, jotka välitetään jq-"
-"komennolle."
+"JSON-kysely (jq).\r\n"
+"Argumentit: jq-suodatin/komentorivivalitsimet."
 
 msgid ""
 "YAML Querier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
-"YAML Querier yq-komennolla\r\n"
-"Argumentit: Suodattimen tai komentorivin vaihtoehdot, jotka välitetään yq-"
-"komennolle."
+"YAML-kysely (yq).\r\n"
+"Argumentit: yq-suodatin/komentorivivalitsimet."
 
 msgid ""
 "HTML Validator (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
-"HTML-validoija tidy-html5:llä\r\n"
-"Argumentit: Komentorivin vaihtoehdot, jotka välitetään tidy-komennolle."
+"HTML-validointi (tidy-html5).\r\n"
+"Argumentit: tidy-komentorivivalitsimet."
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"
 "Arguments: javap command line options."
 msgstr ""
-"JVM:n tavukoodin purkaja javapin avulla\r\n"
-"Argumentit: Komentorivin vaihtoehdot, jotka välitetään javap-komennolle."
+"JVM-tavukoodin purkaja (javap).\r\n"
+"Argumentit: javap-komentorivivalitsimet."
 
 msgid ""
 "IL disassembler (ildasm).\r\n"
 "Arguments: ildasm command line options."
 msgstr ""
-"IL-disassembler ildasmilla\r\n"
-"Argumentit: Komentorivin vaihtoehdot, jotka välitetään ildasm-komennolle."
+"IL-purkaja (ildasm).\r\n"
+"Argumentit: ildasm-komentorivivalitsimet."
 
 msgid ""
 "Native code disassembler (dumpbin).\r\n"
 "Arguments: dumpbin command line options."
 msgstr ""
-"Natiivikoodin purkuohjelma dumpbinin kanssa\r\n"
-"Argumentit: Komentorivin vaihtoehdot, jotka välitetään dumpbin-komennolle."
+"Natiivikoodin purkaja (dumpbin).\r\n"
+"Argumentit: dumpbin-komentorivivalitsimet."
 
 msgid ""
 "Content extractor (Apache Tika).\r\n"
 "Arguments: tika-app.jar command line options."
 msgstr ""
-"Yleinen sisällön poiminta Apache Tikan avulla\r\n"
-"Argumentit: Komentorivin vaihtoehdot, jotka välitetään tika-app.jarille."
+"Sisällön purkaja (Apache Tika).\r\n"
+"Argumentit: tika-app.jar-komentorivivalitsimet."
 
 msgid "Apply patch (GNU patch)"
-msgstr ""
+msgstr "Sovella korjaustiedostoa (GNU patch)"
 
 msgid "Display MS Excel text content"
 msgstr "Näytä MS Excel-tiedostojen tekstisisältö"
@@ -4765,204 +4762,200 @@ msgid "Display MS Word text content"
 msgstr "Näytä MS Word -tiedostojen tekstisisältö"
 
 msgid "Ignore columns - list from plugin name/argument"
-msgstr ""
-"Ohita jotkin sarakkeet – ohitettujen sarakkeiden luettelo laajennuksen "
-"nimestä tai laajennuksen argumentista"
+msgstr "Ohita sarakkeet - luettelo laajennuksen nimestä/argumentista"
 
 msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
-msgstr ""
-"Laajennus ei huomioi kommentteja (//... ja /* ... */) C-, C++-, PHP- ja "
-"JavaScript-tiedostoissa."
+msgstr "Ohita C-, C++-, PHP- ja JavaScript-kommentit (//... ja /* ... */)."
 
 msgid "Ignore fields - list from plugin name/argument"
-msgstr ""
+msgstr "Ohita kentät - luettelo laajennuksen nimestä/argumentista"
 
 msgid "Ignore leading line numbers (e.g., NC, BASIC)."
-msgstr ""
+msgstr "Ohita rivinumerot alussa (esim. NC, BASIC)."
 
 msgid "Prediff Line Filter"
 msgstr "Prediff-rivisuodatin"
 
 msgid "Date and time insertion"
-msgstr ""
+msgstr "Päivämäärän ja ajan lisäys"
 
 msgid ""
 "HTTP URL Scheme Handler (curl).\r\n"
 "Arguments: curl command line options."
 msgstr ""
-"HTTP-URL-skeeman käsittelijä curlilla\r\n"
-"Argumentit: Curl-komennolle annetut komentorivin vaihtoehdot."
+"HTTP URL -kaavion käsittelijä (curl).\r\n"
+"Argumentit: curl-komentorivivalitsimet."
 
 msgid ""
 "Windows Registry URL Scheme Handler.\r\n"
 "Arguments: reg.exe command line options."
 msgstr ""
-"Windowsin rekisterin URL-suunnitelman käsittelijä\r\n"
-"Argumentit: Komentorivin asetukset, jotka välitetään reg.exe-komentoon."
+"Windowsin rekisterin URL-kaavion käsittelijä.\r\n"
+"Argumentit: reg.exe-komentorivivalitsimet."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Tekstin perustoiminnot"
 
 msgid "AI-assisted text conversion"
-msgstr ""
+msgstr "Tekoälyavusteinen tekstinmuunnos"
 
 msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Tekstinmuunnin (OpenAI API).\r\nKäyttö: AIConvertText KEHOTE"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Poista ohjausmerkit ja näytä Java properties -tiedostot."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSExcelFiles.sct WinMerge-laajennuksen asetukset"
 
 msgid "Extract workbook data to multiple files"
-msgstr ""
+msgstr "Pura työkirjan tiedot useisiin tiedostoihin"
 
 msgid "Update external references (links)"
-msgstr ""
+msgstr "Päivitä ulkoiset viittaukset (linkit)"
 
 msgid "Compare document properties"
-msgstr ""
+msgstr "Vertaa asiakirjan ominaisuuksia"
 
 msgid "Compare names"
-msgstr ""
+msgstr "Vertaa nimiä"
 
 msgid "Compare cell values"
-msgstr ""
+msgstr "Vertaa solujen arvoja"
 
 msgid "Compare worksheets as image (very slow)"
-msgstr ""
+msgstr "Vertaa laskentataulukoita kuvana (erittäin hidas)"
 
 msgid " - Image split size: "
-msgstr ""
+msgstr " - Kuvan jakokoko: "
 
 msgid "Compare worksheets as HTML"
-msgstr ""
+msgstr "Vertaa laskentataulukoita HTML:nä"
 
 msgid "Compare formulas"
-msgstr ""
+msgstr "Vertaa kaavoja"
 
 msgid "Compare texts in shapes"
-msgstr ""
+msgstr "Vertaa tekstejä muodoissa"
 
 msgid "Compare headers and footers"
-msgstr ""
+msgstr "Vertaa ylä- ja alatunnisteita"
 
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
-msgstr ""
+msgstr "Makroja ei voi hakea.\r\nOta käyttöön 'Luota Visual Basic Projectin käyttöoikeuteen' MS Officen makrojen suojausasetuksissa."
 
 msgid "Compare VBA macros"
-msgstr ""
+msgstr "Vertaa VBA-makroja"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSWordFiles.sct WinMerge-laajennuksen asetukset"
 
 msgid "Extract document data to multiple files"
-msgstr ""
+msgstr "Pura asiakirjan tiedot useisiin tiedostoihin"
 
 msgid "Compare bookmarks"
-msgstr ""
+msgstr "Vertaa kirjanmerkkejä"
 
 msgid "Compare text contents of documents"
-msgstr ""
+msgstr "Vertaa asiakirjojen tekstisisältöjä"
 
 msgid "Compare documents as HTML file (very slow)"
-msgstr ""
+msgstr "Vertaa asiakirjoja HTML-tiedostona (erittäin hidas)"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSPowerPointFiles.sct WinMerge-laajennuksen asetukset"
 
 msgid "Extract slide data to multiple files"
-msgstr ""
+msgstr "Pura diojen tiedot useisiin tiedostoihin"
 
 msgid "Compare slides as image (very slow)"
-msgstr ""
+msgstr "Vertaa dioja kuvana (erittäin hidas)"
 
 msgid "Compare texts in notes page"
-msgstr ""
+msgstr "Vertaa tekstejä muistiinpanosivulla"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSVisioFiles.sct WinMerge-laajennuksen asetukset"
 
 msgid "Extract page data to multiple files"
-msgstr ""
+msgstr "Pura sivun tiedot useisiin tiedostoihin"
 
 msgid "Compare pages as image (very slow)"
-msgstr ""
+msgstr "Vertaa sivuja kuvana (erittäin hidas)"
 
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "PrediffLineFilter.sct WinMerge-laajennuksen asetukset"
 
 msgid "Delete"
-msgstr ""
+msgstr "&Poista"
 
 msgid "Enabled"
-msgstr ""
+msgstr "&Käytössä"
 
 msgid "Ignore Case"
-msgstr ""
+msgstr "Ohita &kirjainkoko"
 
 msgid "Use RegExp"
-msgstr ""
+msgstr "Käytä säännöllistä &lauseketta"
 
 msgid "Find what"
-msgstr ""
+msgstr "&Etsi:"
 
 msgid "Replace with"
-msgstr ""
+msgstr "Kor&vaa:"
 
 msgid "Settings"
-msgstr ""
+msgstr "&Asetukset"
 
 msgid "Column Ranges to Ignore:\ne.g.) 3,10-20,32-33\n"
-msgstr ""
+msgstr "Ohitettavat sarakealueet:\nesim.) 3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter filename for patch '%1'"
-msgstr ""
+msgstr "Anna tiedostonimi korjaustiedostolle '%1'"
 
 #, c-format
 msgid "File '%1' does not exist"
-msgstr ""
+msgstr "Tiedostoa '%1' ei ole olemassa"
 
 msgid "Enter command line arguments for patch"
-msgstr ""
+msgstr "Anna komentoriviargumentit korjaustiedostolle"
 
 #, c-format
 msgid "Enter folder name for patch '%1'"
-msgstr ""
+msgstr "Anna kansion nimi korjaustiedostolle '%1'"
 
 #, c-format
 msgid "Folder '%1' does not exist"
-msgstr ""
+msgstr "Kansiota '%1' ei ole olemassa"
 
 msgid "Do not use '-p0' for patch files with absolute paths"
-msgstr ""
+msgstr "Älä käytä '-p0' korjaustiedostoille, joilla on absoluuttiset polut"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "AI.sct WinMerge-laajennuksen asetukset"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Anna kehote"
 
 #, c-format
 msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
-msgstr ""
+msgstr "Anna OpenAI API -avain.\r\n- Vaatii OpenAI-rekisteröinnin (voi olla maksullinen).\r\n- Avain tallennetaan ympäristömuuttujaan %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "OpenAI API -avaimen ympäristömuuttujan nimi"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "OpenAI API -avain"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Lämpötila"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Enimmäispituus"
 
 msgid "Model"
-msgstr ""
+msgstr "Malli"
 
 msgid "OpenAI API key changed. Restart to apply."
-msgstr ""
+msgstr "OpenAI API -avain vaihdettu. Ota käyttöön käynnistämällä uudelleen."
