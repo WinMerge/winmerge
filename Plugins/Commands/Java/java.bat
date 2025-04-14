@@ -15,9 +15,9 @@ set MESSAGE='OpenJDK is not installed. Do you want to download it from %DOWNLOAD
 set TITLE='OpenJDK'
 set OPENJDK_SHA256=9f70eba3f2631674a2d7d3aa01150d697f68be16ad76662ff948d7fe1b4985d8
 
-cd "%APPDATA%\WinMerge"
+cd /d "%APPDATA%\WinMerge"
 if not exist %OPENJDK_JAVA_PATH% (
-  cd "%~dp0..\.."
+  cd /d "%~dp0..\.."
   if not exist %OPENJDK_JAVA_PATH% (
     mkdir "%APPDATA%\WinMerge" 2> NUL
     pushd "%APPDATA%\WinMerge"
