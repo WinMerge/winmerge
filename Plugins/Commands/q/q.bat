@@ -16,12 +16,12 @@ set MESSAGE='q command is not installed. Do you want to download it from %DOWNLO
 set TITLE='CSV/TSV Data Querier Plugin'
 set SHA256=f534ab37868d4fd5a472f8be0936b42583bc08860f92fa8135ab16c0d80a03f1
 
-cd "%APPDATA%\WinMerge"
+cd /d "%APPDATA%\WinMerge"
 if not exist %Q_PATH% (
-  cd "%~dp0..\.."
+  cd /d "%~dp0..\.."
   if not exist %Q_PATH% (
     mkdir "%APPDATA%\WinMerge" 2> NUL
-    cd "%APPDATA%\WinMerge"
+    cd /d "%APPDATA%\WinMerge"
     for %%i in (%Q_PATH%) do mkdir %%~pi 2> NUL
     powershell "if ((New-Object -com WScript.Shell).Popup(%MESSAGE%,0,%TITLE%,1) -ne 1) { throw }" > NUL
     if errorlevel 1 (

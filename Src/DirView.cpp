@@ -1031,17 +1031,56 @@ void CDirView::ConfirmAndPerformActions(FileActionScript & actionList)
  * @brief Perform an array of actions
  * @note There can be only COPY or DELETE actions, not both!
  */
-void CDirView::PerformActionList(FileActionScript & actionScript)
+void CDirView::PerformActionList(FileActionScript& actionScript)
 {
 	// Check option and enable putting deleted items to Recycle Bin
-	if (GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN))
-		actionScript.UseRecycleBin(true);
-	else
-		actionScript.UseRecycleBin(false);
+	actionScript.UseRecycleBin(GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN));
 
 	actionScript.SetParentWindow(GetMainFrame()->GetSafeHwnd());
 
 	theApp.AddOperation();
+
+	String src, dst, op;
+	const int itemCount = actionScript.GetActionItemCount();
+	if (itemCount >= 1)
+	{
+		FileActionItem item = actionScript.GetHeadActionItem();
+		if (itemCount == 1)
+		{
+			src = item.src;
+			dst = item.dest;
+		}
+		else
+		{
+			const CDiffContext& ctxt = GetDiffContext();
+			src = ctxt.GetPath(item.UIOrigin);
+			if (item.atype == FileActionItem::ACT_DEL)
+			{
+				dst = actionScript.UseRecycleBin() ? _("Recycle Bin") : _("Permanently deleted");
+			}
+			else
+			{
+				if (item.UIResult != FileActionItem::UI_DONT_CARE)
+					dst = ctxt.GetPath(item.UIDestination);
+				else
+					dst = (!actionScript.m_destBase.empty()) ? actionScript.m_destBase : item.dest;
+			}
+		}
+		if (item.atype == FileActionItem::ACT_COPY)
+			op = _("Copying files...");
+		else if (item.atype == FileActionItem::ACT_MOVE)
+			op = _("Moving files...");
+		else if (item.atype == FileActionItem::ACT_DEL)
+			op = _("Deleting files...");
+		else
+			ASSERT(FALSE);
+		String msg = op + _T(" (") + src;
+		if (itemCount > 1)
+			msg += _T(", ") + strutils::format_string1(_("Items: %1"), strutils::to_str(itemCount));
+		msg +=  + _T(" -> ") + dst + _T(")");
+		RootLogger::Info(msg);
+	}
+
 	bool succeeded = actionScript.Run();
 	if (succeeded)
 		UpdateAfterFileScript(actionScript);
@@ -1050,6 +1089,11 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 		throw FileOperationException(_T("File operation failed"));
 	m_firstDiffItem.reset();
 	m_lastDiffItem.reset();
+
+	if (succeeded)
+		RootLogger::Info(_("File operation completed successfully"));
+	if (actionScript.IsCanceled())
+		RootLogger::Info(_("File operation canceled"));
 }
 
 /**
@@ -3423,7 +3467,7 @@ void CDirView::OnUpdateHideFilenames(CCmdUI* pCmdUI)
 template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 void CDirView::OnCtxtDirMove()
 {
-	DoDirAction(&DirActions::Move<srctype, dsttype>, _("Moveing files..."));
+	DoDirAction(&DirActions::Move<srctype, dsttype>, _("Moving files..."));
 }
 
 /// User chose (context menu) Move left to...

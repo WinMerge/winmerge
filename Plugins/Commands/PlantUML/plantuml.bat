@@ -8,12 +8,12 @@ set MESSAGE='PlantUML is not installed. Do you want to download it and its depen
 set TITLE='PlantUML Plugin'
 set PlantUML_SHA256=0404edcf0af28e5b409bc17aa59ad8b05051f47347377749c46c8018135d0dec
 
-cd "%APPDATA%\WinMerge"
+cd /d "%APPDATA%\WinMerge"
 if not exist %PlantUML_PATH% (
-  cd "%~dp0..\.."
+  cd /d "%~dp0..\.."
   if not exist %PlantUML_PATH% (
     mkdir "%APPDATA%\WinMerge" 2> NUL
-    cd "%APPDATA%\WinMerge"
+    cd /d "%APPDATA%\WinMerge"
     for %%i in (%PlantUML_PATH%) do mkdir %%~pi 2> NUL
     powershell "if ((New-Object -com WScript.Shell).Popup(%MESSAGE%,0,%TITLE%,1) -ne 1) { throw }" > NUL
     if errorlevel 1 (

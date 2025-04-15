@@ -94,7 +94,6 @@ protected :
     virtual void OnCancel ();
     afx_msg void OnRegExp ();
     afx_msg void OnFindPrev ();
-    virtual void PostNcDestroy ();
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP ()
   };

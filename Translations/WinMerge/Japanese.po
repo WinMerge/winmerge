@@ -4433,8 +4433,37 @@ msgstr "%1 と %2 と %3 を比較しています"
 msgid "Comparison completed"
 msgstr "比較が完了しました"
 
+#, c-format
+msgid "Failed to compare %1 with %2: "
+msgstr "%1 と %2 の比較に失敗しました: "
+
+#, c-format
+msgid "Failed to compare %1 with %2 and %3: "
+msgstr "%1 と %2 と %3 の比較に失敗しました: "
+
 msgid "File saved"
 msgstr "ファイルが保存されました"
+
+msgid "Copying files..."
+msgstr "ファイルをコピーしています..."
+
+msgid "Moving files..."
+msgstr "ファイルを移動しています..."
+
+msgid "Deleting files..."
+msgstr "ファイルを削除しています..."
+
+msgid "Recycle Bin"
+msgstr "ゴミ箱"
+
+msgid "Permanently deleted"
+msgstr "完全に削除"
+
+msgid "File operation completed successfully"
+msgstr "ファイル操作が正常に完了しました"
+
+msgid "File operation canceled"
+msgstr "ファイル操作がキャンセルされました"
 
 msgid "Prettification"
 msgstr "整形"

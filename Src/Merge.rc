@@ -4639,10 +4639,19 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_LOG_COMPARE_2       "Comparing %1 with %2"
-    IDS_LOG_COMPARE_3       "Comparing %1 with %2 and %3"
-    IDS_LOG_COMPARE_RESULT  "Comparison completed"
+    IDS_LOG_COMPARING_2     "Comparing %1 with %2"
+    IDS_LOG_COMPARING_3     "Comparing %1 with %2 and %3"
+    IDS_LOG_COMPARE_COMPLETED "Comparison completed"
+    IDS_LOG_COMPARE_ERROR_2 "Failed to compare %1 with %2: "
+    IDS_LOG_COMPARE_ERROR_3 "Failed to compare %1 with %2 and %3: "
     IDS_LOG_FILE_SAVED      "File saved"
+    IDS_LOG_COPYING_FILES   "Copying files..."
+    IDS_LOG_MOVING_FILES    "Moving files..."
+    IDS_LOG_DELETING_FILES  "Deleting files..."
+    IDS_LOG_RECYCLEBIN      "Recycle Bin"
+    IDS_LOG_PERMANENTLY_DELETED "Permanently deleted"
+    IDS_LOG_FILEOPERATION_COMPLETED  "File operation completed successfully"
+    IDS_LOG_FILEOPERATION_CANCELED "File operation canceled"
 END
 
 #endif    // English (United States) resources

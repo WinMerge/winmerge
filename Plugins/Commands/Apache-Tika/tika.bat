@@ -8,12 +8,12 @@ set MESSAGE='Apache Tika is not installed. Do you want to download it from %DOWN
 set TITLE='Apache Tika Plugin'
 set TIKA_SHA256=f2c156533fac004d3d30d322555bb1f2581a104558a913bfc74d8c48dcf4541c
 
-cd "%APPDATA%\WinMerge"
+cd /d "%APPDATA%\WinMerge"
 if not exist %TIKA_PATH% (
-  cd "%~dp0..\.."
+  cd /d "%~dp0..\.."
   if not exist %TIKA_PATH% (
     mkdir "%APPDATA%\WinMerge" 2> NUL
-    cd "%APPDATA%\WinMerge"
+    cd /d "%APPDATA%\WinMerge"
     for %%i in (%TIKA_PATH%) do mkdir %%~pi 2> NUL
     powershell "if ((New-Object -com WScript.Shell).Popup(%MESSAGE%,0,%TITLE%,1) -ne 1) { throw }" > NUL
     if errorlevel 1 (

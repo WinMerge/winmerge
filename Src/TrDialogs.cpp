@@ -53,6 +53,18 @@ BOOL CTrPropertyPage::OnInitDialog()
 	return TRUE;
 }
 
+void CTrPropertyPage::OnOK()
+{
+	RootLogger::Info(GetTitleText() + _T(": ") + _("OK"));
+	__super::OnOK();
+}
+
+void CTrPropertyPage::OnCancel()
+{
+	RootLogger::Info(GetTitleText() + _T(": ") + _("Cancel"));
+	__super::OnCancel();
+}
+
 BOOL CTrDialogBar::Create(CWnd* pParentWnd, LPCTSTR lpszTemplateName,
 	UINT nStyle, UINT nID)
 {

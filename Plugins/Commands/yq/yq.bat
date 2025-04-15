@@ -6,12 +6,12 @@ set MESSAGE='yq command is not installed. Do you want to download it from %DOWNL
 set TITLE='YAML Data Querier Plugin'
 set SHA256=fde958b4f5830d0cb878bedcb4a3155e4b269520ceeb33966d9b326fb5c62bb2
 
-cd "%APPDATA%\WinMerge"
+cd /d "%APPDATA%\WinMerge"
 if not exist %YQ_PATH% (
-  cd "%~dp0..\.."
+  cd /d "%~dp0..\.."
   if not exist %YQ_PATH% (
     mkdir "%APPDATA%\WinMerge" 2> NUL
-    cd "%APPDATA%\WinMerge"
+    cd /d "%APPDATA%\WinMerge"
     for %%i in (%YQ_PATH%) do mkdir %%~pi 2> NUL
     powershell "if ((New-Object -com WScript.Shell).Popup(%MESSAGE%,0,%TITLE%,1) -ne 1) { throw }" > NUL
     if errorlevel 1 (

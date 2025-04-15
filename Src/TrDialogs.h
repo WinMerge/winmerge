@@ -112,6 +112,8 @@ public:
 	using CPropertyPage::CPropertyPage;
 
 	virtual BOOL OnInitDialog();
+	virtual void OnOK();
+	virtual void OnCancel();
 };
 
 class CTrDialogBar : public CDialogBar, public DlgUtils<CTrDialogBar>
