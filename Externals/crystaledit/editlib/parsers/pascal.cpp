@@ -228,35 +228,58 @@ out:
           if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               // Multiline string ('''...''')?
-
               bool isMultilineStartOrEnd = ((pszChars[nPrevI] == '\'') && (nLength >= I + 1) && (pszChars[I + 1] == '\''));
               if ((isMultilineStartOrEnd && ((nLength < I + 2) || (pszChars[I + 2] != '\''))) || (dwCookie & COOKIE_BLOCK_STYLE))
                 {
                   // Inside a multiline string there is no other syntax highlighting
                   if (!isMultilineStartOrEnd)
-                      continue;
+                    continue;
 
                   if (dwCookie & COOKIE_BLOCK_STYLE)
-                  {
+                    {
                       // End of multiline string
                       dwCookie &= ~COOKIE_BLOCK_STYLE;         
                       bRedefineBlock = true;
                       I++;
-                  }
+                    }
                   else 
-                  {
-                      // Start of multiline string
-                      dwCookie |= COOKIE_BLOCK_STYLE;
-                      // Skip one
-                      I++;
-                  }
+                    {
+                      // Start of multiline string? Check if the rest of the line is "empty"
+                      bool lineEndReached = true;
+                      for (int nLineBreak = I+2; nLineBreak < nLength; nLineBreak++)
+                        {
+                          if (pszChars[nLineBreak] == '\r' || pszChars[nLineBreak] == '\n')
+                            {
+                              // line end found
+                              break;
+                            }
+                          // space or tab are valid behind the start
+                          else if (pszChars[nLineBreak] != ' ' && pszChars[nLineBreak] != '\t')
+                            {
+                              lineEndReached = false;
+                              break;
+                            }
+                        }
+
+                      if (lineEndReached)
+                        {
+                          dwCookie |= COOKIE_BLOCK_STYLE;
+                          // Skip one
+                          I++;
+                        }
+                      else
+                        {
+                          dwCookie &= ~COOKIE_CHAR;
+                          bRedefineBlock = true;
+                        }
+                    }
                 }
               else
-              {
+                {
                   dwCookie &= ~COOKIE_CHAR;
                   
                   bRedefineBlock = true;
-              }
+                }
             }
           continue;
         }
