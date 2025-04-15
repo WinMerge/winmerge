@@ -226,7 +226,7 @@ out:
           if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               // Multiline string ('''...''')?
-              if (((nLength >= I + 1) && (pszChars[I+1] == '\'')) || (dwCookie & COOKIE_BLOCK_STYLE))
+              if ((((nLength >= I + 1) && (pszChars[I+1] == '\'')) && ((nLength < I + 2) || (pszChars[I + 2] != '\''))) || (dwCookie & COOKIE_BLOCK_STYLE))
                 {
                   if (dwCookie & COOKIE_BLOCK_STYLE)
                   {
