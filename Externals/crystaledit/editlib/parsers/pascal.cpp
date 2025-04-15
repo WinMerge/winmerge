@@ -222,18 +222,26 @@ out:
           continue;
         }
 
-      //  Char constant '..'
+      //  Char constant '..' or inside a multiline string
       if (dwCookie & COOKIE_CHAR || dwCookie & COOKIE_BLOCK_STYLE)
         {
           if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               // Multiline string ('''...''')?
-              if ((((nLength >= I + 1) && (pszChars[I+1] == '\'')) && ((nLength < I + 2) || (pszChars[I + 2] != '\''))) || (dwCookie & COOKIE_BLOCK_STYLE))
+
+              bool isMultilineStartOrEnd = ((pszChars[nPrevI] == '\'') && (nLength >= I + 1) && (pszChars[I + 1] == '\''));
+              if ((isMultilineStartOrEnd && ((nLength < I + 2) || (pszChars[I + 2] != '\''))) || (dwCookie & COOKIE_BLOCK_STYLE))
                 {
+                  // Inside a multiline string there is no other syntax highlighting
+                  if (!isMultilineStartOrEnd)
+                      continue;
+
                   if (dwCookie & COOKIE_BLOCK_STYLE)
                   {
                       // End of multiline string
-                      dwCookie &= ~COOKIE_BLOCK_STYLE;                      
+                      dwCookie &= ~COOKIE_BLOCK_STYLE;         
+                      bRedefineBlock = true;
+                      I++;
                   }
                   else 
                   {
