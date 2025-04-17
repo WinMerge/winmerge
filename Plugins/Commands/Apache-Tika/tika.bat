@@ -28,4 +28,4 @@ if not exist %TIKA_PATH% (
     )
   )
 )
-"%~dp0..\Java\java.bat" -jar "%CD%\%TIKA_PATH%" %3 %4 %5 %6 %7 %8 %9 "%~1" > "%~2"
+call "%~dp0..\Java\java.bat" -jar "%CD%\%TIKA_PATH%" %3 %4 %5 %6 %7 %8 %9 "%~1" > "%~2"
