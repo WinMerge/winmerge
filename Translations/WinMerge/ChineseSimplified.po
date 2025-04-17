@@ -1294,6 +1294,9 @@ msgstr "状态："
 msgid "Help"
 msgstr "帮助"
 
+msgid "&Options..."
+msgstr "选项(&O)..."
+
 msgid "General"
 msgstr "常规"
 
@@ -4486,35 +4489,35 @@ msgstr "比较已完成"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "比较 %1 和 %2 失败："
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "比较 %1 %2 和 %3 失败："
 
 msgid "File saved"
 msgstr "文件已保存"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "复制文件..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "移动文件..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "删除文件..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "回收站"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "已永久删除"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "文件操作已成功完成"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "文件操作已取消"
 
 msgid "Prettification"
 msgstr "格式美化"

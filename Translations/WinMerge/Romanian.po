@@ -1289,6 +1289,9 @@ msgstr "Stare:"
 msgid "Help"
 msgstr "Ajutor"
 
+msgid "&Options..."
+msgstr "&Opțiuni..."
+
 msgid "General"
 msgstr "General"
 

@@ -1291,6 +1291,9 @@ msgstr "Estado:"
 msgid "Help"
 msgstr "Axuda"
 
+msgid "&Options..."
+msgstr "&C&onfiguración..."
+
 msgid "General"
 msgstr "Xeral"
 

@@ -1289,6 +1289,9 @@ msgstr "ステータス:"
 msgid "Help"
 msgstr "ヘルプ"
 
+msgid "&Options..."
+msgstr "設定(&O)..."
+
 msgid "General"
 msgstr "一般"
 

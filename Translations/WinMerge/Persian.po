@@ -1541,6 +1541,9 @@ msgstr " وضعيت : "
 msgid "Help"
 msgstr " راهنما "
 
+msgid "&Options..."
+msgstr "&O خيارات ... "
+
 #, c-format
 msgid "General"
 msgstr " عمومي "

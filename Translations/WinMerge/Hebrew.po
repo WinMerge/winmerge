@@ -1287,6 +1287,9 @@ msgstr "מצב:"
 msgid "Help"
 msgstr "עזרה"
 
+msgid "&Options..."
+msgstr "אפשרויות..."
+
 msgid "General"
 msgstr "כללי"
 

@@ -1542,6 +1542,9 @@ msgstr "Állapot:"
 msgid "Help"
 msgstr "Súgó"
 
+msgid "&Options..."
+msgstr "&Beállítások..."
+
 #, c-format
 msgid "General"
 msgstr "Általános"
@@ -5048,35 +5051,35 @@ msgstr "Összehasonlítás kész"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Nem sikerült %1 összehasonlítása ezzel: %2"
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Nem sikerült %1 összehasonlítása ezekkel: %2 és %3"
 
 msgid "File saved"
 msgstr "Fájl mentve"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Fájlok másolása..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Fájlok áthelyezése..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Fájlok törlése..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Lomtár"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Véglegesen törölve"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "A fájlművelet sikeresen befejeződött"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "A fájlművelet megszakítva"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

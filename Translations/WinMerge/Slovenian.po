@@ -1290,6 +1290,9 @@ msgstr "Stanje:"
 msgid "Help"
 msgstr "Pomoč"
 
+msgid "&Options..."
+msgstr "&Možnosti..."
+
 msgid "General"
 msgstr "Splošno"
 

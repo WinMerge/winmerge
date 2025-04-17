@@ -1293,6 +1293,9 @@ msgstr "الحالة:"
 msgid "Help"
 msgstr "مساعدة"
 
+msgid "&Options..."
+msgstr "خ&يارات..."
+
 msgid "General"
 msgstr "عام"
 

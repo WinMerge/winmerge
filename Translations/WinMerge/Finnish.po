@@ -1290,6 +1290,9 @@ msgstr "Tila:"
 msgid "Help"
 msgstr "Ohje"
 
+msgid "&Options..."
+msgstr "Asetukset..."
+
 msgid "General"
 msgstr "Yleinen"
 

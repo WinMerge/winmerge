@@ -1540,6 +1540,9 @@ msgstr ""
 msgid "Help"
 msgstr "Nápověda"
 
+msgid "&Options..."
+msgstr "Možnost&i..."
+
 #, c-format
 msgid "General"
 msgstr "Obecné"
