@@ -1541,6 +1541,9 @@ msgstr "Estat:"
 msgid "Help"
 msgstr "Ajuda"
 
+msgid "&Options..."
+msgstr "O&pcions..."
+
 #, c-format
 msgid "General"
 msgstr "General"

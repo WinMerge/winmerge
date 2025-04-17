@@ -1292,6 +1292,9 @@ msgstr "Statu :"
 msgid "Help"
 msgstr "Aiutu"
 
+msgid "&Options..."
+msgstr "&Ozzioni…"
+
 msgid "General"
 msgstr "Generale"
 

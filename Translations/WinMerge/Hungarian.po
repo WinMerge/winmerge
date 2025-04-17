@@ -1542,6 +1542,9 @@ msgstr "Állapot:"
 msgid "Help"
 msgstr "Súgó"
 
+msgid "&Options..."
+msgstr "&Beállítások..."
+
 #, c-format
 msgid "General"
 msgstr "Általános"

@@ -1504,6 +1504,9 @@ msgstr "Статус:"
 msgid "Help"
 msgstr "Довідка"
 
+msgid "&Options..."
+msgstr "&Налаштування..."
+
 #, c-format
 msgid "General"
 msgstr "Основні"

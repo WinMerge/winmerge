@@ -1289,6 +1289,9 @@ msgstr "Durum:"
 msgid "Help"
 msgstr "Yardım"
 
+msgid "&Options..."
+msgstr "&Ayarlar..."
+
 msgid "General"
 msgstr "Genel"
 

@@ -1543,6 +1543,9 @@ msgstr "Egoera:"
 msgid "Help"
 msgstr "Laguntza"
 
+msgid "&Options..."
+msgstr "&Aukerak..."
+
 #, c-format
 msgid "General"
 msgstr "Orokorra"

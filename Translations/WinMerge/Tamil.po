@@ -1288,6 +1288,9 @@ msgstr "நிலை:"
 msgid "Help"
 msgstr "உதவி"
 
+msgid "&Options..."
+msgstr "&விருப்பங்கள்..."
+
 msgid "General"
 msgstr "பொது"
 

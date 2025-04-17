@@ -1527,6 +1527,9 @@ msgstr "Стање"
 msgid "Help"
 msgstr "Помоћ"
 
+msgid "&Options..."
+msgstr "Изб&ор..."
+
 #, c-format
 msgid "General"
 msgstr "Општи избор"

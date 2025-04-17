@@ -1540,6 +1540,9 @@ msgstr "Status:"
 msgid "Help"
 msgstr "Pomoć"
 
+msgid "&Options..."
+msgstr "Pos&tavke..."
+
 #, c-format
 msgid "General"
 msgstr "Opće"

@@ -1547,6 +1547,9 @@ msgstr "狀態："
 msgid "Help"
 msgstr "說明"
 
+msgid "&Options..."
+msgstr "選項 (&O)..."
+
 #, c-format
 msgid "General"
 msgstr "一般"

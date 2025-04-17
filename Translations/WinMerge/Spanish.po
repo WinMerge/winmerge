@@ -1293,6 +1293,9 @@ msgstr "Estado:"
 msgid "Help"
 msgstr "Ayuda"
 
+msgid "&Options..."
+msgstr "C&onfiguración..."
+
 msgid "General"
 msgstr "General"
 

@@ -1290,6 +1290,9 @@ msgstr "Būsena:"
 msgid "Help"
 msgstr "Pagalba"
 
+msgid "&Options..."
+msgstr "Nu&ostatos..."
+
 msgid "General"
 msgstr "Bendros"
 

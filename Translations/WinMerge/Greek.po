@@ -1539,6 +1539,9 @@ msgstr "Κατάσταση:"
 msgid "Help"
 msgstr "Βοήθεια"
 
+msgid "&Options..."
+msgstr "Επιλ&ογές..."
+
 #, c-format
 msgid "General"
 msgstr "Γενικά"

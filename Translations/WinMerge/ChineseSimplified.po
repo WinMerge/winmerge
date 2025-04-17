@@ -1294,6 +1294,9 @@ msgstr "状态："
 msgid "Help"
 msgstr "帮助"
 
+msgid "&Options..."
+msgstr "选项(&O)..."
+
 msgid "General"
 msgstr "常规"
 
