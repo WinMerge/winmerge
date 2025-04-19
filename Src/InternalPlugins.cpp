@@ -478,6 +478,8 @@ protected:
 		{
 			if (name == _T("SRC_FILE"))
 				strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
+			if (name == _T("SRC_FILE_SHORT"))
+				strutils::replace(command, _T("${SRC_FILE_SHORT}"), paths::GetShortPath(fileSrc));
 			else if (name == _T("DST_FILE"))
 				strutils::replace(command, _T("${DST_FILE}"), fileDst);
 			else if (name == _T("SRC_FOLDER"))

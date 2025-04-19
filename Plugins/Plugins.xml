@@ -176,7 +176,7 @@
     <extended-properties value="ProcessType=Content Extraction;MenuCaption=Apache Tika;GenerateEditorScript" />
     <arguments value="-eUTF-8 -t" />
     <unpack-file>
-      <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" "${SRC_FILE}" "${DST_FILE}" ${*}</command>
+      <command>"${WINMERGE_HOME}\Commands\apache-tika\tika.bat" "${SRC_FILE_SHORT}" "${DST_FILE}" ${*}</command>
     </unpack-file>
   </plugin>
   <plugin name="DisassembleJVM">

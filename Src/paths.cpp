@@ -297,6 +297,19 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	return sLong;
 }
 
+String GetShortPath(const String& longPath)
+{
+	DWORD bufferSize = GetShortPathName(longPath.c_str(), nullptr, 0);
+	if (bufferSize == 0)
+		return longPath;
+	String shortPath(bufferSize, '\0');
+	DWORD result = GetShortPathName(longPath.c_str(), &shortPath[0], bufferSize);
+	if (result == 0 || result >= bufferSize)
+		return longPath;
+	shortPath.resize(result);
+	return shortPath;
+}
+
 /**
  * @brief Check if the path exist and create the folder if needed.
  * This function checks if path exists. If path does not yet exist
