@@ -1041,7 +1041,7 @@ void CDirView::PerformActionList(FileActionScript& actionScript)
 	theApp.AddOperation();
 
 	String src, dst, op;
-	const int itemCount = actionScript.GetActionItemCount();
+	const int itemCount = static_cast<int>(actionScript.GetActionItemCount());
 	if (itemCount >= 1)
 	{
 		FileActionItem item = actionScript.GetHeadActionItem();
