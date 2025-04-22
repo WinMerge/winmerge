@@ -1,5 +1,44 @@
 # Change log
 
+## WinMerge 2.16.48 - 2025-04-27
+
+### General
+
+- FR: Add `Ctrl+,` keyboard shortcut to open Options dialog box (#2705)
+- Update Merge.rc (PR #2711)
+
+### File compare
+
+ - BugFix: [BUG} Phantom line added when identical blocks of text pasted
+     (#2702)
+ - BugFix: Fixed crash when quitting WinMerge while the search dialog is open
+ - Syntax/Pascal: Add initialization and finalization (PR #2719)
+ - Syntax/Pascal: Support multiline strings (PR #2720)
+
+### Folder compare
+
+- BugFix: Unable to compare files with zero mtime using
+    "Modified Date and Size" (#2714)
+
+### Plugins
+
+ - BugFix: ApacheTika and PlantUML plugins: Fixed issue where no error message
+     was displayed when execution failed (#715)
+ - BugFix: ApacheTika plugin: Fixed failure to run when the filename contained 
+     non-alphanumeric characters (now uses the short filename instead) (#715)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2706,#2715,#2726)
+  - Chinese Simplified (PR #2710,#2730)
+  - Corsican (PR #2722)
+  - French (PR #2716)
+  - Hungarian (PR #2703,#2713,#2724)
+  - Italian (PR #2704,#2723,#2737)
+  - Japanese
+  - Lithuanian (PR #2708)
+
 ## WinMerge 2.16.47 - 2025-03-31
 
 ### General

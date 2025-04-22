@@ -1,17 +1,57 @@
-# WinMerge 2.16.47 Beta Release Notes
+# WinMerge 2.16.48 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.48](#what-is-new-in-21648)
 - [What Is New in 2.16.47 beta?](#what-is-new-in-21647-beta)
 - [Known issues](#known-issues)
 
-March 2025
+April 2025
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.46 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.48
+
+### General
+
+- FR: Add `Ctrl+,` keyboard shortcut to open Options dialog box (#2705)
+- Update Merge.rc (PR #2711)
+
+### File compare
+
+ - BugFix: [BUG} Phantom line added when identical blocks of text pasted
+     (#2702)
+ - BugFix: Fixed crash when quitting WinMerge while the search dialog is open
+ - Syntax/Pascal: Add initialization and finalization (PR #2719)
+ - Syntax/Pascal: Support multiline strings (PR #2720)
+
+### Folder compare
+
+- BugFix: Unable to compare files with zero mtime using
+    "Modified Date and Size" (#2714)
+
+### Plugins
+
+ - BugFix: ApacheTika and PlantUML plugins: Fixed issue where no error message
+     was displayed when execution failed (#715)
+ - BugFix: ApacheTika plugin: Fixed failure to run when the filename contained 
+     non-alphanumeric characters (now uses the short filename instead) (#715)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2706,#2715,#2726)
+  - Chinese Simplified (PR #2710,#2730)
+  - Corsican (PR #2722)
+  - French (PR #2716)
+  - Hungarian (PR #2703,#2713,#2724)
+  - Italian (PR #2704,#2723,#2737)
+  - Japanese
+  - Lithuanian (PR #2708)
 
 ## What Is New in 2.16.47 Beta
 
