@@ -237,10 +237,29 @@ out:
 
                   if (dwCookie & COOKIE_BLOCK_STYLE)
                     {
-                      // End of multiline string
-                      dwCookie &= ~COOKIE_BLOCK_STYLE;         
-                      bRedefineBlock = true;
-                      I++;
+                      // End of multiline string? Check if there is only space in front
+                      bool lineStartReached = true;
+                      for (int nLineStart = I - 2; nLineStart > 0; nLineStart--)
+                        {
+                          if (pszChars[nLineStart] == '\r' || pszChars[nLineStart] == '\n')
+                          {
+                              // line start found
+                              break;
+                          }
+                          // space or tab are valid before the end
+                          else if (pszChars[nLineStart] != ' ' && pszChars[nLineStart] != '\t')
+                          {
+                              lineStartReached = false;
+                              break;
+                          }
+                        }
+
+                      if (lineStartReached)
+                        {
+                          dwCookie &= ~COOKIE_BLOCK_STYLE;
+                          bRedefineBlock = true;
+                          I++;
+                        }
                     }
                   else 
                     {
