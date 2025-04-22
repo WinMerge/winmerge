@@ -151,7 +151,7 @@ unsigned
 CrystalLineParser::ParseLinePascal (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2 | COOKIE_BLOCK_STYLE);
+    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2 | COOKIE_RAWSTRING);
 
   bool bRedefineBlock = true;
   bool bDecIndex = false;
@@ -176,7 +176,7 @@ CrystalLineParser::ParseLinePascal (unsigned dwCookie, const tchar_t *pszChars, 
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
-          else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING | COOKIE_BLOCK_STYLE))
+          else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING | COOKIE_RAWSTRING))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_STRING);
             }
@@ -223,40 +223,40 @@ out:
         }
 
       //  Char constant '..' or inside a multiline string
-      if (dwCookie & COOKIE_CHAR || dwCookie & COOKIE_BLOCK_STYLE)
+      if (dwCookie & COOKIE_CHAR || dwCookie & COOKIE_RAWSTRING)
         {
           if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               // Multiline string ('''...''')?
-              bool isMultilineStartOrEnd = ((pszChars[nPrevI] == '\'') && (nLength >= I + 1) && (pszChars[I + 1] == '\''));
-              if ((isMultilineStartOrEnd && ((nLength < I + 2) || (pszChars[I + 2] != '\''))) || (dwCookie & COOKIE_BLOCK_STYLE))
+              const bool isMultilineStartOrEnd = ((pszChars[nPrevI] == '\'') && (nLength >= I + 1) && (pszChars[I + 1] == '\''));
+              if ((isMultilineStartOrEnd && ((nLength < I + 2) || (pszChars[I + 2] != '\''))) || (dwCookie & COOKIE_RAWSTRING))
                 {
                   // Inside a multiline string there is no other syntax highlighting
                   if (!isMultilineStartOrEnd)
                     continue;
 
-                  if (dwCookie & COOKIE_BLOCK_STYLE)
+                  if (dwCookie & COOKIE_RAWSTRING)
                     {
                       // End of multiline string? Check if there is only space in front
                       bool lineStartReached = true;
                       for (int nLineStart = I - 2; nLineStart > 0; nLineStart--)
                         {
                           if (pszChars[nLineStart] == '\r' || pszChars[nLineStart] == '\n')
-                          {
+                            {
                               // line start found
                               break;
-                          }
+                            }
                           // space or tab are valid before the end
                           else if (pszChars[nLineStart] != ' ' && pszChars[nLineStart] != '\t')
-                          {
+                            {
                               lineStartReached = false;
                               break;
-                          }
+                            }
                         }
 
                       if (lineStartReached)
                         {
-                          dwCookie &= ~COOKIE_BLOCK_STYLE;
+                          dwCookie &= ~COOKIE_RAWSTRING;
                           bRedefineBlock = true;
                           I++;
                         }
@@ -282,7 +282,7 @@ out:
 
                       if (lineEndReached)
                         {
-                          dwCookie |= COOKIE_BLOCK_STYLE;
+                          dwCookie |= COOKIE_RAWSTRING;
                           // Skip one
                           I++;
                         }
@@ -391,6 +391,6 @@ out:
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
-    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2 | COOKIE_BLOCK_STYLE);
+    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2 | COOKIE_RAWSTRING);
   return dwCookie;
 }
