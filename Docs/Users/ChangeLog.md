@@ -25,7 +25,7 @@
  - BugFix: Fixed an issue where comparisons could fail when tab characters
      were present.
  - BugFix: Fixed incorrect line wrapping in certain HTML elements.
- - BugFix: Fixed an issue where differences within <pre> elements could appear
+ - BugFix: Fixed an issue where differences within \<pre\> elements could appear
      concatenated instead of on separate lines.
 
 ### Plugins
