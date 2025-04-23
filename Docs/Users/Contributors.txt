@@ -105,6 +105,9 @@ Localization:
 * Greek:
   Polyvios J. Simopoulos <polyvios.j.simopoulos@gmail.com>
 
+* Hebrew:
+  Y-Ploni
+
 * Hungarian:
   Márton Balázs <documan@users.sourceforge.net>
   Mihalicza József <jmihalicza@gmail.com>
