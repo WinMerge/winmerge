@@ -34,6 +34,14 @@ Please submit bug reports to our bug-tracker.
 - BugFix: Unable to compare files with zero mtime using
     "Modified Date and Size" (#2714)
 
+### Webpage compare
+
+ - BugFix: Fixed an issue where comparisons could fail when tab characters
+     were present.
+ - BugFix: Fixed incorrect line wrapping in certain HTML elements.
+ - BugFix: Fixed an issue where differences within <pre> elements could appear
+     concatenated instead of on separate lines.
+
 ### Plugins
 
  - BugFix: ApacheTika and PlantUML plugins: Fixed issue where no error message
