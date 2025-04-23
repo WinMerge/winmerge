@@ -9,7 +9,7 @@ April 2025
 
 ## About This Release
 
-This is a WinMerge 2.16.46 stable release.
+This is a WinMerge 2.16.48 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
