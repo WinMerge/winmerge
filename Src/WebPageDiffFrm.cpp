@@ -326,12 +326,15 @@ void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 			m_nBufferType[event.pane] = BUFFERTYPE::NORMAL;
 			m_strDesc[event.pane].clear();
 		}
-		String curUrl = m_pWebDiffWindow->GetCurrentUrl(event.pane);
+		const String curUrl = m_pWebDiffWindow->GetCurrentUrl(event.pane);
 		if (!isTempFile(curUrl) && curUrl != _T("about:blank"))
 		{
 			m_filePaths[event.pane] = paths::isFileURL(curUrl) ? paths::FromURL(curUrl) : curUrl;
 			UpdateHeaderPath(event.pane);
 		}
+		RootLogger::Info(strutils::format(_T("%s event: (pane: %d, url: %s)"),
+			(event.type == WebDiffEvent::SourceChanged) ? _T("SourceChanged") : _T("TabChanged"),
+			event.pane, m_filePaths[event.pane]));
 		break;
 	}
 	case WebDiffEvent::CompareStateChanged:
@@ -396,12 +399,12 @@ bool CWebPageDiffFrame::MatchURLPattern(const String& url)
 BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
-	if (!IsLoadable())
+	HMODULE hModule = nullptr;
+	if (!IsLoadable() || (hModule = GetModuleHandleW(L"WinWebDiffLib.dll")) == nullptr)
+	{
+		RootLogger::Error(_T("Failed to load WinWebDiffLib.dll"));
 		return FALSE;
-
-	HMODULE hModule = GetModuleHandleW(L"WinWebDiffLib.dll");
-	if (hModule == nullptr)
-		return FALSE;
+	}
 
 	IWebDiffWindow * (*pfnWinWebDiff_CreateWindow)(HINSTANCE hInstance, HWND hWndParent, int nID) =
 		(IWebDiffWindow * (*)(HINSTANCE hInstance, HWND hWndParent, int nID))GetProcAddress(hModule, "WinWebDiff_CreateWindow");

@@ -456,12 +456,12 @@ bool CImgMergeFrame::IsLoadable()
 BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
-	if (!IsLoadable())
+	HMODULE hModule = nullptr;
+	if (!IsLoadable() || (hModule = GetModuleHandleW(L"WinIMergeLib.dll")) == nullptr)
+	{
+		RootLogger::Error(_T("Failed to load WinIMergeLib.dll"));
 		return FALSE;
-
-	HMODULE hModule = GetModuleHandleW(L"WinIMergeLib.dll");
-	if (hModule == nullptr)
-		return FALSE;
+	}
 
 	IImgMergeWindow * (*pfnWinIMerge_CreateWindow)(HINSTANCE hInstance, HWND hWndParent, int nID) =
 		(IImgMergeWindow * (*)(HINSTANCE hInstance, HWND hWndParent, int nID))GetProcAddress(hModule, "WinIMerge_CreateWindow");
