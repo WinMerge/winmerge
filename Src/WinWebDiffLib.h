@@ -69,6 +69,8 @@ struct IWebDiffWindow
 		COMPARING,
 		COMPARED,
 	};
+	enum class LogLevel : int { ERR, WARN, INFO };
+
 	struct DiffOptions
 	{
 		enum DiffAlgorithm {
@@ -83,6 +85,7 @@ struct IWebDiffWindow
 		int  diffAlgorithm; /**< Diff algorithm -option. */
 		bool indentHeuristic; /**< Ident heuristic -option */
 		bool completelyBlankOutIgnoredChanges;
+		bool ignoreEOLNewlinePresence;
 	};
 	struct ColorSettings
 	{
@@ -114,6 +117,7 @@ struct IWebDiffWindow
 		COLORREF	clrSelWordDiffDeleted;	/**< Selected word difference deleted color */
 		COLORREF	clrSelWordDiffText;	/**< Selected word difference text color */
 	};
+	using LogCallback = void(*)(LogLevel level, const wchar_t *msg);
 
 	virtual bool IsWebView2Installed() const = 0;
 	virtual bool DownloadWebView2() const = 0;
@@ -192,6 +196,8 @@ struct IWebDiffWindow
 	virtual void SetSyncEventFlag(EventType event, bool flag) = 0;
 	virtual CompareState GetCompareState() const = 0;
 	virtual void RaiseEvent(const WebDiffEvent& e) = 0;
+	virtual LogCallback GetLogCallback() const = 0;
+	virtual void SetLogCallback(LogCallback logCallback) = 0;
 };
 
 struct IWebToolWindow

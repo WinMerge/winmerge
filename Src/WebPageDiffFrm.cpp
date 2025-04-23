@@ -412,6 +412,24 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		return FALSE;
 	}
 
+	m_pWebDiffWindow->SetLogCallback(
+		([](IWebDiffWindow::LogLevel level, const wchar_t* msg)
+			{
+				switch (level)
+				{
+				case IWebDiffWindow::LogLevel::ERR:
+					RootLogger::Error(msg);
+					break;
+				case IWebDiffWindow::LogLevel::WARN:
+					RootLogger::Warn(msg);
+					break;
+				default:
+					RootLogger::Info(msg);
+					break;
+				}
+			})
+	);
+
 	if (!m_pWebDiffWindow->IsWebView2Installed())
 	{
 		if (IDYES == AfxMessageBox(_("WebView2 runtime not installed. Download it?").c_str(), MB_ICONWARNING | MB_YESNO))
