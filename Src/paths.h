@@ -36,7 +36,6 @@ String FindExtension(const String& path);
 String RemoveExtension(const String& path);
 void normalize(String & sPath);
 String GetLongPath(const String& szPath, bool bExpandEnvs = true);
-String GetShortPath(const String& longPath);
 bool CreateIfNeeded(const String& szPath);
 PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveFile)(const String&) = nullptr);
 bool IsDirectory(const String& path);
