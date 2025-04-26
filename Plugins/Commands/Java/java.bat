@@ -1,13 +1,7 @@
 @echo off
-
-set ASCII_CHECK_RESULT=0
-echo %* > %TEMP%\_check_ascii_tmp.txt
-find "?" < %TEMP%\_check_ascii_tmp.txt > NUL && set ASCII_CHECK_RESULT=1
-del %TEMP%\_check_ascii_tmp.txt > NUL
-
 where /q java.exe
 if %ERRORLEVEL% == 0 (
-  if "%ASCII_CHECK_RESULT%"=="0" ( java %* ) else ( powershell -c java %* )
+  java %*
   goto :eof
 )
 
@@ -43,4 +37,4 @@ if not exist %OPENJDK_JAVA_PATH% (
     )
   )
 )
-if "%ASCII_CHECK_RESULT%"=="0" ( "%OPENJDK_JAVA_PATH%" %* ) else ( powershell -c "%OPENJDK_JAVA_PATH%" %* )
+"%OPENJDK_JAVA_PATH%" %*
