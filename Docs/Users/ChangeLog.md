@@ -4,6 +4,8 @@
 
 ### General
 
+- BugFix: Setting the toolbar icons to "Extra Large" cannot save the settings.
+    (#2748)
 - FR: Add `Ctrl+,` keyboard shortcut to open Options dialog box (#2705)
 - Update Merge.rc (PR #2711)
 
@@ -19,6 +21,8 @@
 
 - BugFix: Unable to compare files with zero mtime using
     "Modified Date and Size" (#2714)
+- BugFix: Windows7 Winmerge v2.16.46.0 crash prone 
+    (#1 WinMerge crashes after successfully deleting files.) (#2746)
 
 ### Webpage compare
 
