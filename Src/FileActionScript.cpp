@@ -60,6 +60,10 @@ void FileActionScript::RemoveDuplicates()
 		return std::tie(a.src, a.dest, a.atype) < std::tie(b.src, b.dest, b.atype);
 		};
 	
+	auto compare_by_context = [](const FileActionItem& a, const FileActionItem& b) {
+		return a.context < b.context;
+		};
+	
 	auto equal = [](const FileActionItem& a, const FileActionItem& b) {
 		return std::tie(a.src, a.dest, a.atype) == std::tie(b.src, b.dest, b.atype);
 		};
@@ -67,6 +71,8 @@ void FileActionScript::RemoveDuplicates()
 	std::sort(m_actions.begin(), m_actions.end(), compare);
 	
 	m_actions.erase(std::unique(m_actions.begin(), m_actions.end(), equal), m_actions.end());
+
+	std::sort(m_actions.begin(), m_actions.end(), compare_by_context);
 }
 
 /**
