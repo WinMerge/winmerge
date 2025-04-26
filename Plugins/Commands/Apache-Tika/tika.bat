@@ -29,6 +29,7 @@ if not exist %TIKA_PATH% (
   )
 )
 set TEMP_FILE=%TEMP%\tempfile_%RANDOM%%~x1
+chcp 1252 >NUL
 (echo "%~1") | findstr /C:"%~1" >NUL
 if errorlevel 1 (
   if /i "%~1"=="%~s1" (
