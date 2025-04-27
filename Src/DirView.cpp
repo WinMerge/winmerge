@@ -1924,12 +1924,14 @@ void CDirView::GetItemFileNames(int sel, PathContext * paths) const
  */
 void CDirView::DoOpen(SIDE_TYPE stype)
 {
-	int sel = GetSingleSelectedItem();
-	if (sel == -1) return;
-	DirItemIterator dirBegin = SelBegin();
-	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
-	if (file.empty()) return;
-	shell::Edit(file.c_str());
+	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
+	{
+		if (IsItemOpenableOn(*it, SideToIndex(GetDiffContext(), stype))) {
+			String file = GetSelectedFileName(it, stype, GetDiffContext());
+			if (!file.empty())
+				shell::Edit(file.c_str());
+		}
+	}
 }
 
 /// Open with dialog for file on selected side
@@ -1946,23 +1948,26 @@ void CDirView::DoOpenWith(SIDE_TYPE stype)
 /// Open selected file  on specified side to external editor
 void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 {
-	int sel = GetSingleSelectedItem();
-	if (sel == -1) return;
-	DirItemIterator dirBegin = SelBegin();
-	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
-	if (file.empty()) return;
-
-	CMergeApp::OpenFileToExternalEditor(file);
+	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
+	{
+		if (IsItemOpenableOnWith(*it, SideToIndex(GetDiffContext(), stype))) {
+			String file = GetSelectedFileName(it, stype, GetDiffContext());
+			if (!file.empty())
+				CMergeApp::OpenFileToExternalEditor(file);
+		}
+	}
 }
 
 void CDirView::DoOpenParentFolder(SIDE_TYPE stype)
 {
-	int sel = GetSingleSelectedItem();
-	if (sel == -1) return;
-	DirItemIterator dirBegin = SelBegin();
-	String file = GetSelectedFileName(dirBegin, stype, GetDiffContext());
-	if (file.empty()) return;
-	shell::OpenParentFolder(file.c_str());
+	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
+	{
+		if (IsParentFolderOpenable(*it, SideToIndex(GetDiffContext(), stype))) {
+			String file = GetSelectedFileName(it, stype, GetDiffContext());
+			if (!file.empty())
+				shell::OpenParentFolder(file.c_str());
+		}
+	}
 }
 
 /// Update context menuitem "Open left | with editor"
@@ -1970,7 +1975,8 @@ template<SIDE_TYPE stype>
 void CDirView::OnUpdateCtxtDirOpenWithEditor(CCmdUI* pCmdUI)
 {
 	Counts counts = Count(&DirActions::IsItemOpenableOnWith<stype>);
-	pCmdUI->Enable(counts.count > 0 && counts.total == 1);
+	int selected = GetSelectedCount();
+	pCmdUI->Enable(counts.count > 0 && selected == counts.count);
 }
 
 // return selected item index, or -1 if none or multiple
@@ -1988,7 +1994,8 @@ template<SIDE_TYPE stype>
 void CDirView::OnUpdateCtxtDirOpen(CCmdUI* pCmdUI)
 {
 	Counts counts = Count(&DirActions::IsItemOpenableOn<stype>);
-	pCmdUI->Enable(counts.count > 0 && counts.total == 1);
+	int selected = GetSelectedCount();
+	pCmdUI->Enable(counts.count > 0 && selected == counts.count);
 }
 
 // Enable/disable Open Left With menu choice on context menu
@@ -2004,7 +2011,8 @@ template<SIDE_TYPE stype>
 void CDirView::OnUpdateCtxtDirOpenParentFolder(CCmdUI* pCmdUI)
 {
 	Counts counts = Count(&DirActions::IsParentFolderOpenable<stype>);
-	pCmdUI->Enable(counts.count > 0 && counts.total == 1);
+	int selected = GetSelectedCount();
+	pCmdUI->Enable(counts.count > 0 && selected == counts.count);
 }
 
 // Used for Open
