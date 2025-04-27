@@ -38,6 +38,7 @@
      was displayed when execution failed (#715)
  - BugFix: ApacheTika plugin: Fixed failure to run when the filename contained 
      non-alphanumeric characters (now uses the short filename instead) (#715)
+ - AIConvertText plugin: Added models gpt-4.1, gpt-4.1-mini, and gpt-4.1-nano
 
 ### Translations
 
