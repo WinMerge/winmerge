@@ -7,22 +7,23 @@
 # Translators:
 # * Lolo S. <slolo2000 at hotmail.com>
 # * Need74 <need74 at free.fr>
+# * t3chnob0y <t3chnob0y at outlook.com>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge\n"
+"Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2023-02-19 00:07+0000\n"
-"PO-Revision-Date: 2024-03-30 10:14+0100\n"
-"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
+"POT-Creation-Date: 2025-03-23 10:57+0000\n"
+"PO-Revision-Date: 2025-04-28 08:45-0500\n"
+"Last-Translator: t3chnob0y <t3chnoboy at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -49,7 +50,7 @@ msgstr "Win&Merge"
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr "Comparer c&omme =>"
+msgstr "Comp&arer en tant que"
 
 #: ShellExtension.rc:114
 #, c-format
