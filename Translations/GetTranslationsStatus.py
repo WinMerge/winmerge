@@ -434,13 +434,13 @@ class PoStatus(Status):
            return
         
         if os.access(filepath, os.R_OK): #If PO(T) file can read...
-          reMsgId = re.compile('^msgid "(.*)"$', re.IGNORECASE)
-          reMsgStr = re.compile('^msgstr "(.*)"$', re.IGNORECASE)
-          reMsgContinued = re.compile('^"(.*)"$', re.IGNORECASE)
-          reTranslator = re.compile('^# \* (.*)$', re.IGNORECASE)
-          rePoRevisionDate = re.compile('PO-Revision-Date: ([0-9 :\+\-]+)', re.IGNORECASE)
-          rePotCreationDate = re.compile('POT-Creation-Date: ([0-9 :\+\-]+)', re.IGNORECASE)
-          rePoeditLanguage = re.compile('X-Poedit-Language: ([A-Z \(\)\-_]+)', re.IGNORECASE)
+          reMsgId = re.compile(r'^msgid "(.*)"$', re.IGNORECASE)
+          reMsgStr = re.compile(r'^msgstr "(.*)"$', re.IGNORECASE)
+          reMsgContinued = re.compile(r'^"(.*)"$', re.IGNORECASE)
+          reTranslator = re.compile(r'^# \* (.*)$', re.IGNORECASE)
+          rePoRevisionDate = re.compile(r'PO-Revision-Date: ([0-9 :\+\-]+)', re.IGNORECASE)
+          rePotCreationDate = re.compile(r'POT-Creation-Date: ([0-9 :\+\-]+)', re.IGNORECASE)
+          rePoeditLanguage = re.compile(r'X-Poedit-Language: ([A-Z \(\)\-_]+)', re.IGNORECASE)
           
           iMsgStarted = 0
           sMsgId = ''
@@ -479,8 +479,8 @@ class PoStatus(Status):
                           bIsMaintainer = False
                       elif reTranslator.findall(line): #If translator/maintainer...
                           translator = reTranslator.findall(line)
-                          if re.findall('\<(.*)\>', translator[0]): #If mail address exists...
-                              tmp = re.findall('(.*) \<(.*)\>', translator[0])
+                          if re.findall(r'\<(.*)\>', translator[0]): #If mail address exists...
+                              tmp = re.findall(r'(.*) \<(.*)\>', translator[0])
                               sName = tmp[0][0]
                               sMail = tmp[0][1]
                           else: #If mail address NOT exists...
@@ -539,8 +539,8 @@ class PoStatus(Status):
     def _getCharsetFromPoFile(self, filepath):
         charset = ''
         if os.access(filepath, os.R_OK): #If PO(T) file can read...
-            reContentTypeCharset = re.compile('charset=([A-Z0-9\-]+)', re.IGNORECASE)
-            rePoeditSourceCharset = re.compile('X-Poedit-SourceCharset: ([A-Z0-9\-]+)', re.IGNORECASE)
+            reContentTypeCharset = re.compile(r'charset=([A-Z0-9\-]+)', re.IGNORECASE)
+            rePoeditSourceCharset = re.compile(r'X-Poedit-SourceCharset: ([A-Z0-9\-]+)', re.IGNORECASE)
             
             pofile = open(filepath, 'r', errors='ignore')
             
