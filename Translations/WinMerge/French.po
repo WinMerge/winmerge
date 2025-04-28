@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2025-04-04 23:51+0200\n"
+"PO-Revision-Date: 2025-04-28 14:28+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -5193,35 +5193,35 @@ msgstr "Comparaison effectuée"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Échec de la comparaison de %1 avec %2 : "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "La comparaison de %1 avec %2 et %3 a échoué : "
 
 msgid "File saved"
 msgstr "Fichier enregistré"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Copie des fichiers..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Déplacement de fichiers..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Suppression des fichiers…"
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Corbeille"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Supprimé définitivement"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "L'opération sur le fichier s'est déroulée avec succès"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "Opération sur le fichier annulée"
 
 msgid "Prettification"
 msgstr "Embellissement"
