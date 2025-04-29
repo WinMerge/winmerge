@@ -1,6 +1,7 @@
 # WinMerge 2.16.48 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.48.2](#what-is-new-in-216482)
 - [What Is New in 2.16.48](#what-is-new-in-21648)
 - [What Is New in 2.16.47 beta?](#what-is-new-in-21647-beta)
 - [Known issues](#known-issues)
@@ -13,6 +14,12 @@ This is a WinMerge 2.16.48 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.48.2
+
+### Installer
+
+- BugFix: Installing as "NT Authority/SYSTEM" does not work on some langauges. (#2752, #2758)
 
 ## What Is New in 2.16.48
 
