@@ -17,6 +17,15 @@ function LocalAlloc(uFlags: UINT; uBytes: DWORD): DWORD_PTR;
 
 function LocalFree(hMem: DWORD_PTR): DWORD_PTR;
   external 'LocalFree@Kernel32.dll stdcall';
+  
+function OemToCharA(lpszSrc, lpszDst: PAnsiChar): BOOL;
+  external 'OemToCharA@user32.dll stdcall';
+
+function ConvertOemToAnsi(const OemStr: AnsiString): AnsiString;
+begin
+  SetLength(Result, Length(OemStr) + 1);
+  OemToCharA(PAnsiChar(OemStr), PAnsiChar(Result));
+end;
 
 function GetOriginalUserName(): string;
 var
@@ -27,7 +36,7 @@ begin
   TempFile := ExpandConstant('{commonappdata}\whoami_output.txt');
   if ExecAsOriginalUser('cmd.exe', '/C whoami > "' + TempFile + '"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then begin
     if LoadStringFromFile(TempFile, Output) then begin
-      Result := Trim(Output);
+      Result := Trim(ConvertOemToAnsi(Output));
     end;
   end;
   if Result = '' then
@@ -75,8 +84,13 @@ begin
 
   UserName := GetOriginalUserName();
   g_OriginalUserSID := GetUserSID(UserName);
-  if g_OriginalUserSID = '' then
+  if g_OriginalUserSID = '' then begin
+    UserName := GetUserNameString();
+    g_OriginalUserSID := GetUserSID(UserName);
+  end;
+  if g_OriginalUserSID = '' then begin
     RaiseException('Could not retrieve the SID for user: ' + UserName);
+  end;
 
   Result := g_OriginalUserSID
 end;
