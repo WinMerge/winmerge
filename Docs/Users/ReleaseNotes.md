@@ -1,4 +1,4 @@
-# WinMerge 2.16.48 Release Notes
+# WinMerge 2.16.48.2 Release Notes
 
 - [About This Release](#about-this-release)
 - [What Is New in 2.16.48.2](#what-is-new-in-216482)
