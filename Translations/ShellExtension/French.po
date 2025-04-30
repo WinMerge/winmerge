@@ -7,13 +7,14 @@
 # Translators:
 # * Lolo S. <slolo2000 at hotmail.com>
 # * Need74 <need74 at free.fr>
+# * t3chnob0y <t3chnob0y at outlook.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2023-02-19 00:07+0000\n"
-"PO-Revision-Date: 2024-03-30 10:14+0100\n"
+"PO-Revision-Date: 2025-04-30 10:22+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -49,7 +50,7 @@ msgstr "Win&Merge"
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr "Comparer c&omme =>"
+msgstr "Comp&arer en tant que"
 
 #: ShellExtension.rc:114
 #, c-format
@@ -74,4 +75,4 @@ msgstr "Sélectionner &Milieu"
 #: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
-msgstr "Re-sélectionner &Gauche"
+msgstr "Resélectionner &Gauche"
