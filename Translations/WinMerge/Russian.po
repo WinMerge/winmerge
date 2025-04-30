@@ -4045,35 +4045,35 @@ msgstr "Сравнение завершено"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Не удалось сравнить %1 с %2: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Не удалось сравнить %1 с %2 и %3: "
 
 msgid "File saved"
 msgstr "Файл сохранен"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Копирование файлов..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Перемещение файлов..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Удаление файлов..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Корзина"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Удалено без возможности восстановления"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "Файловая операция успешно завершена"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "Файловая операция отменена"
 
 msgid "Prettification"
 msgstr "Приукрашивание"
