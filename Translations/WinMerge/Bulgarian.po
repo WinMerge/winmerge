@@ -1545,7 +1545,7 @@ msgstr "Еднакви елементи:"
 msgid "Items different:"
 msgstr "Различни елементи:"
 
-msgid "Items not exists all:"
+msgid "Items missing:"
 msgstr "Несъществуващи елементи:"
 
 msgid "Items filtered:"
