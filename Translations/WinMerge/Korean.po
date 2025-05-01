@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2025-01-25 00:09+0900\n"
+"PO-Revision-Date: 2025-05-01 17:18+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -441,7 +441,7 @@ msgid "Men&u Bar"
 msgstr "메뉴 표시줄(&U)"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "출력 창(&O)"
 
 #, c-format
 msgid "&Status Bar"
@@ -930,7 +930,7 @@ msgid "Lo&cation Pane"
 msgstr "위치 패널(&C)"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "출력 창"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -1450,7 +1450,7 @@ msgid "&Duplicate Plugin..."
 msgstr "중복 플러그인(&D)..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "모두 지우기(&A)"
 
 #, c-format
 msgid "About WinMerge"
@@ -2093,7 +2093,7 @@ msgid "Ignore &case"
 msgstr "대소문자 무시(&C)"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "EOL 차이 무시 (Windows/Unix/Mac)"
 
 msgid "Ignore num&bers"
 msgstr "숫자 무시(&B)"
@@ -3134,7 +3134,7 @@ msgstr ""
 "필터 파일 삭제 실패:\n"
 "%1\n"
 "\n"
-"혹시 파일이 읽기 전용인가요?"
+"파일은 읽기 전용일 수 있습니다."
 
 #, c-format
 msgid "Locate Filter File to Install"
@@ -3235,10 +3235,10 @@ msgstr "1개 차이점 발견"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "%1개의 오류 발견"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "1개의 오류 발견"
 
 #. Abbreviation from "Read Only"
 #, c-format
@@ -3339,18 +3339,21 @@ msgid "Failed to parse conflict file."
 msgstr "불일치 파일 분석에 실패함."
 
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
 "다음\n"
 "%1\n"
 "파일은 충돌 파일이 아닙니다."
 
-msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
+msgid ""
+"Comparing large files requires significant memory.\n"
+"Show only comparison results (not file contents)?"
 msgstr ""
-"매우 큰 파일을 비교하려고 합니다.\n"
-"파일 내용을 표시하려면 매우 많은 메모리가 필요합니다.\n"
-"파일 내용이 아닌 비교 결과만 표시하시겠습니까?\n"
-"\n"
+"대용량 파일을 비교하려면 상당한 메모리가 필요합니다.\n"
+"파일 내용이 아닌 비교 결과만 표시하시겠습니까?"
 
 #, c-format
 msgid "Save As"
@@ -3362,7 +3365,7 @@ msgstr "변경 내용을 %1에 저장하시겠습니까?"
 
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
-msgstr "%1은 읽기 전용으로 표시됩니다. 읽기 전용 파일을 재정의하시겠습니까? (새 파일 이름으로 저장하려면 \"아니오\"입니다"
+msgstr "%1은(는) 읽기 전용입니다. 재정의하시겠습니까? 아니면 새 파일 이름으로 저장하려면 '아니오'를 선택하시겠습니까?"
 
 #, c-format
 msgid "Error backing up file"
@@ -3381,7 +3384,12 @@ msgstr ""
 "그래도 계속하시겠습니까?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"\t- Use different filename (OK)\n"
+"\t- Abort (Cancel)?"
 msgstr ""
 "파일 저장에 실패했습니다.\n"
 "%1\n"
@@ -3391,7 +3399,10 @@ msgstr ""
 "\t- 현재 작업 중단 (취소 누르기)"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to left file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "플러그인 '%2'에서 왼쪽 파일에 대한 변경 내용을 '%1'에 다시 압축할 수 없습니다.\n"
 "\n"
@@ -3400,7 +3411,10 @@ msgstr ""
 "압축을 푼 버전을 다른 파일에 저장하시겠습니까?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to middle file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "플러그인 '%2'이(가) 중간 파일에 대한 변경 내용을 '%1'에 다시 압축할 수 없습니다.\n"
 "\n"
@@ -3409,7 +3423,10 @@ msgstr ""
 "압축을 푼 버전을 다른 파일에 저장하시겠습니까?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to right file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "플러그인 '%2'이(가) 올바른 파일에 대한 변경 내용을 '%1'에 다시 압축할 수 없습니다.\n"
 "\n"
@@ -3440,7 +3457,12 @@ msgstr ""
 "읽기 전용으로 표시됩니다. 읽기 전용 항목을 재정의하시겠습니까?"
 
 #, c-format
-msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
+msgid ""
+"Another application updated\n"
+"%1\n"
+"since last scan.\n"
+"\n"
+"Reload?"
 msgstr ""
 "WinMerge가 마지막으로 검색한 이후\n"
 "%1\n"
@@ -4193,7 +4215,12 @@ msgstr "파일 비교 중 오류가 발생했습니다."
 msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "임시 파일을 만들 수 없습니다. 임시 경로 설정을 확인하세요."
 
-msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
+msgid ""
+"Files use different EOL.\n"
+"\n"
+"Treat all EOL as equivalent?\n"
+"\n"
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "이러한 파일은 서로 다른 캐리지 반환 형식을 사용합니다.\n"
 "\n"
@@ -4210,7 +4237,10 @@ msgid "Cannot open a binary file in Editor."
 msgstr "바이너리 파일은 편집기로 열 수 없습니다."
 
 #, c-format
-msgid "Create matching folder:\n%1\non the other side and open?"
+msgid ""
+"Create matching folder:\n"
+"%1\n"
+"on the other side and open?"
 msgstr ""
 "폴더가 다른 쪽에만 존재하며 열 수 없습니다.\n"
 "\n"
@@ -4244,7 +4274,10 @@ msgid "Move to last file?"
 msgstr "마지막 파일로 이동하시겠습니까?"
 
 #, c-format
-msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
+msgid ""
+"Different codepages: left (cp%d), right (cp%d).\n"
+"Display in codepage (better display) or default Windows codepage (safer merging)?\n"
+"(Recommended: default Windows codepage)"
 msgstr ""
 "왼쪽 (cp%d) 및 오른쪽 (cp%d) 파일에서 서로 다른 코드페이지가 발견되었습니다.\n"
 "각 파일을 코드페이지에 표시하면 더 잘 표시되지만 병합/복사는 위험할 수 있습니다.\n"
@@ -5146,46 +5179,46 @@ msgstr ""
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "%1과 %2 비교"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "%1과 %2 및 %3 비교"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "비교 완료"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "%1과 %2를 비교하지 못했습니다: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "%1과 %2 및 %3을 비교하지 못했습니다: "
 
 msgid "File saved"
-msgstr ""
+msgstr "파일이 저장되었습니다"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "파일 복사 중..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "파일 이동 중..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "파일 삭제 중..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "휴지통"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "영구 삭제"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "파일 작업이 성공적으로 완료되었습니다"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "파일 작업이 취소되었습니다"
 
 msgid "Prettification"
 msgstr "꾸미기"
@@ -5650,11 +5683,9 @@ msgstr "머리글과 바닥글 비교"
 msgid ""
 "Cannot get Macros.\r\n"
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
-""
 msgstr ""
-"매크로를 가져올 수 없습니다.\r\n"
-" WinMerge가 매크로를 비교할 수 있도록 하려면 MS Office를 사용하여 현재 응용 프로그램의 매크로 보안 설정을 변경합니다.\r\n"
-" WinMerge에서 이 기능을 사용하려면 Visual Basic Project 기능에 대한 신뢰 액세스를 설정해야 합니다.\r\n"
+"매크로를 가져올 수 없습니다.\n"
+"MS Office 매크로 보안에서 '시각적 기본 프로젝트에 대한 신뢰 액세스'를 활성화합니다."
 
 msgid "Compare VBA macros"
 msgstr "VBA 매크로 비교"
