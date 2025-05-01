@@ -89,6 +89,7 @@ Localization:
   gandf
   Lolo S. <slolo2000 at hotmail.com>
   Need74
+  t3chnob0y
 
 * Galician:
   Medulio
