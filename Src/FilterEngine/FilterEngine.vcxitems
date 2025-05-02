@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{9c37e5d8-1dc0-4eac-aadb-5fc8be4fb1bc}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="$(MSBuildThisFileDirectory)parser.y">
+      <ExcludedFromBuild>false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command>$(SolutionDir)\Build\msys2\usr\bin\lemon %(FullPath) -T$(SolutionDir)\Build\msys2\usr\share\lemon\lempar.c</Command>
+      <Outputs>%(RelativeDir)\parse.cpp</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)lexer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parser.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="$(MSBuildThisFileDirectory)lexer.re">
+      <ExcludedFromBuild>
+      </ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command>$(SolutionDir)\Build\msys2\usr\bin\re2c.exe %(FullPath) -o %(RelativeDir)\lexer.cpp</Command>
+      <Outputs>%(RelativeDir)\lexer.cpp</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)node.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)parser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)parser_internal.h" />
+  </ItemGroup>
+</Project>

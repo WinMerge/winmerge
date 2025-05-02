@@ -1,0 +1,269 @@
+State 0:
+          where_clause ::= * expr
+          expr ::= * expr OR expr
+          expr ::= * expr AND expr
+          expr ::= * NOT expr
+          expr ::= * comparison
+          expr ::= * LPAREN expr RPAREN
+          comparison ::= * IDENTIFIER EQ literal
+          comparison ::= * IDENTIFIER NE literal
+          comparison ::= * IDENTIFIER LT literal
+          comparison ::= * IDENTIFIER LE literal
+          comparison ::= * IDENTIFIER GT literal
+          comparison ::= * IDENTIFIER GE literal
+
+                           NOT shift        2      
+                    IDENTIFIER shift        11     
+                        LPAREN shift        1      
+                  where_clause accept
+                          expr shift        13     
+                    comparison shift        13       /* because comparison==expr */
+
+State 1:
+          expr ::= * expr OR expr
+          expr ::= * expr AND expr
+          expr ::= * NOT expr
+          expr ::= * comparison
+          expr ::= * LPAREN expr RPAREN
+          expr ::= LPAREN * expr RPAREN
+          comparison ::= * IDENTIFIER EQ literal
+          comparison ::= * IDENTIFIER NE literal
+          comparison ::= * IDENTIFIER LT literal
+          comparison ::= * IDENTIFIER LE literal
+          comparison ::= * IDENTIFIER GT literal
+          comparison ::= * IDENTIFIER GE literal
+
+                           NOT shift        2      
+                    IDENTIFIER shift        11     
+                        LPAREN shift        1      
+                          expr shift        12     
+                    comparison shift        12       /* because comparison==expr */
+
+State 2:
+          expr ::= * expr OR expr
+          expr ::= * expr AND expr
+          expr ::= * NOT expr
+          expr ::= NOT * expr
+          expr ::= * comparison
+          expr ::= * LPAREN expr RPAREN
+          comparison ::= * IDENTIFIER EQ literal
+          comparison ::= * IDENTIFIER NE literal
+          comparison ::= * IDENTIFIER LT literal
+          comparison ::= * IDENTIFIER LE literal
+          comparison ::= * IDENTIFIER GT literal
+          comparison ::= * IDENTIFIER GE literal
+
+                           NOT shift        2      
+                    IDENTIFIER shift        11     
+                        LPAREN shift        1      
+                          expr shift-reduce 3      expr ::= NOT expr
+                    comparison shift-reduce 3      expr ::= NOT expr  /* because comparison==expr */
+
+State 3:
+          expr ::= * expr OR expr
+          expr ::= * expr AND expr
+          expr ::= expr AND * expr
+          expr ::= * NOT expr
+          expr ::= * comparison
+          expr ::= * LPAREN expr RPAREN
+          comparison ::= * IDENTIFIER EQ literal
+          comparison ::= * IDENTIFIER NE literal
+          comparison ::= * IDENTIFIER LT literal
+          comparison ::= * IDENTIFIER LE literal
+          comparison ::= * IDENTIFIER GT literal
+          comparison ::= * IDENTIFIER GE literal
+
+                           NOT shift        2      
+                    IDENTIFIER shift        11     
+                        LPAREN shift        1      
+                          expr shift-reduce 2      expr ::= expr AND expr
+                    comparison shift-reduce 2      expr ::= expr AND expr  /* because comparison==expr */
+
+State 4:
+          expr ::= * expr OR expr
+          expr ::= expr OR * expr
+          expr ::= * expr AND expr
+          expr ::= * NOT expr
+          expr ::= * comparison
+          expr ::= * LPAREN expr RPAREN
+          comparison ::= * IDENTIFIER EQ literal
+          comparison ::= * IDENTIFIER NE literal
+          comparison ::= * IDENTIFIER LT literal
+          comparison ::= * IDENTIFIER LE literal
+          comparison ::= * IDENTIFIER GT literal
+          comparison ::= * IDENTIFIER GE literal
+
+                           NOT shift        2      
+                    IDENTIFIER shift        11     
+                        LPAREN shift        1      
+                          expr shift        14     
+                    comparison shift        14       /* because comparison==expr */
+
+State 5:
+          comparison ::= IDENTIFIER GE * literal
+          literal ::= * TRUE_LITERAL
+          literal ::= * FALSE_LITERAL
+          literal ::= * INTEGER_LITERAL
+          literal ::= * STRING_LITERAL
+
+                  TRUE_LITERAL shift-reduce 11     literal ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 12     literal ::= FALSE_LITERAL
+               INTEGER_LITERAL shift-reduce 13     literal ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 14     literal ::= STRING_LITERAL
+                       literal shift-reduce 10     comparison ::= IDENTIFIER GE literal
+
+State 6:
+          comparison ::= IDENTIFIER GT * literal
+          literal ::= * TRUE_LITERAL
+          literal ::= * FALSE_LITERAL
+          literal ::= * INTEGER_LITERAL
+          literal ::= * STRING_LITERAL
+
+                  TRUE_LITERAL shift-reduce 11     literal ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 12     literal ::= FALSE_LITERAL
+               INTEGER_LITERAL shift-reduce 13     literal ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 14     literal ::= STRING_LITERAL
+                       literal shift-reduce 9      comparison ::= IDENTIFIER GT literal
+
+State 7:
+          comparison ::= IDENTIFIER LE * literal
+          literal ::= * TRUE_LITERAL
+          literal ::= * FALSE_LITERAL
+          literal ::= * INTEGER_LITERAL
+          literal ::= * STRING_LITERAL
+
+                  TRUE_LITERAL shift-reduce 11     literal ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 12     literal ::= FALSE_LITERAL
+               INTEGER_LITERAL shift-reduce 13     literal ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 14     literal ::= STRING_LITERAL
+                       literal shift-reduce 8      comparison ::= IDENTIFIER LE literal
+
+State 8:
+          comparison ::= IDENTIFIER LT * literal
+          literal ::= * TRUE_LITERAL
+          literal ::= * FALSE_LITERAL
+          literal ::= * INTEGER_LITERAL
+          literal ::= * STRING_LITERAL
+
+                  TRUE_LITERAL shift-reduce 11     literal ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 12     literal ::= FALSE_LITERAL
+               INTEGER_LITERAL shift-reduce 13     literal ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 14     literal ::= STRING_LITERAL
+                       literal shift-reduce 7      comparison ::= IDENTIFIER LT literal
+
+State 9:
+          comparison ::= IDENTIFIER NE * literal
+          literal ::= * TRUE_LITERAL
+          literal ::= * FALSE_LITERAL
+          literal ::= * INTEGER_LITERAL
+          literal ::= * STRING_LITERAL
+
+                  TRUE_LITERAL shift-reduce 11     literal ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 12     literal ::= FALSE_LITERAL
+               INTEGER_LITERAL shift-reduce 13     literal ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 14     literal ::= STRING_LITERAL
+                       literal shift-reduce 6      comparison ::= IDENTIFIER NE literal
+
+State 10:
+          comparison ::= IDENTIFIER EQ * literal
+          literal ::= * TRUE_LITERAL
+          literal ::= * FALSE_LITERAL
+          literal ::= * INTEGER_LITERAL
+          literal ::= * STRING_LITERAL
+
+                  TRUE_LITERAL shift-reduce 11     literal ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 12     literal ::= FALSE_LITERAL
+               INTEGER_LITERAL shift-reduce 13     literal ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 14     literal ::= STRING_LITERAL
+                       literal shift-reduce 5      comparison ::= IDENTIFIER EQ literal
+
+State 11:
+          comparison ::= IDENTIFIER * EQ literal
+          comparison ::= IDENTIFIER * NE literal
+          comparison ::= IDENTIFIER * LT literal
+          comparison ::= IDENTIFIER * LE literal
+          comparison ::= IDENTIFIER * GT literal
+          comparison ::= IDENTIFIER * GE literal
+
+                            EQ shift        10     
+                            NE shift        9      
+                            LT shift        8      
+                            LE shift        7      
+                            GT shift        6      
+                            GE shift        5      
+
+State 12:
+          expr ::= expr * OR expr
+          expr ::= expr * AND expr
+          expr ::= LPAREN expr * RPAREN
+
+                           AND shift        3      
+                            OR shift        4      
+                        RPAREN shift-reduce 4      expr ::= LPAREN expr RPAREN
+
+State 13:
+      (0) where_clause ::= expr *
+          expr ::= expr * OR expr
+          expr ::= expr * AND expr
+
+                             $ reduce       0      where_clause ::= expr
+                           AND shift        3      
+                            OR shift        4      
+
+State 14:
+          expr ::= expr * OR expr
+      (1) expr ::= expr OR expr *
+          expr ::= expr * AND expr
+
+                           AND shift        3      
+                     {default} reduce       1      expr ::= expr OR expr
+
+----------------------------------------------------
+Symbols:
+The first-set of non-terminals is shown after the name.
+
+    0: $:
+    1: AND (precedence=2)
+    2: OR (precedence=1)
+    3: NOT (precedence=4)
+    4: TRUE_LITERAL
+    5: FALSE_LITERAL
+    6: IDENTIFIER
+    7: INTEGER_LITERAL
+    8: STRING_LITERAL
+    9: EQ (precedence=3)
+   10: NE (precedence=3)
+   11: LT (precedence=3)
+   12: LE (precedence=3)
+   13: GT (precedence=3)
+   14: GE (precedence=3)
+   15: LPAREN
+   16: RPAREN
+   17: where_clause: NOT IDENTIFIER LPAREN
+   18: expr: NOT IDENTIFIER LPAREN
+   19: comparison: IDENTIFIER
+   20: literal: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL
+----------------------------------------------------
+Syntax-only Symbols:
+The following symbols never carry semantic content.
+
+$ AND OR NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL
+STRING_LITERAL EQ NE LT LE GT GE LPAREN RPAREN where_clause
+----------------------------------------------------
+Rules:
+   0: where_clause ::= expr.
+   1: expr ::= expr OR expr. [OR precedence=1]
+   2: expr ::= expr AND expr. [AND precedence=2]
+   3: expr ::= NOT expr. [NOT precedence=4]
+   4: expr ::= LPAREN expr RPAREN.
+   5: comparison ::= IDENTIFIER EQ literal. [EQ precedence=3]
+   6: comparison ::= IDENTIFIER NE literal. [NE precedence=3]
+   7: comparison ::= IDENTIFIER LT literal. [LT precedence=3]
+   8: comparison ::= IDENTIFIER LE literal. [LE precedence=3]
+   9: comparison ::= IDENTIFIER GT literal. [GT precedence=3]
+  10: comparison ::= IDENTIFIER GE literal. [GE precedence=3]
+  11: literal ::= TRUE_LITERAL.
+  12: literal ::= FALSE_LITERAL.
+  13: literal ::= INTEGER_LITERAL.
+  14: literal ::= STRING_LITERAL.
+  15: expr ::= comparison.

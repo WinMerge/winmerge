@@ -1,0 +1,16 @@
+#define AND                              1
+#define OR                               2
+#define NOT                              3
+#define TRUE_LITERAL                     4
+#define FALSE_LITERAL                    5
+#define IDENTIFIER                       6
+#define INTEGER_LITERAL                  7
+#define STRING_LITERAL                   8
+#define EQ                               9
+#define NE                              10
+#define LT                              11
+#define LE                              12
+#define GT                              13
+#define GE                              14
+#define LPAREN                          15
+#define RPAREN                          16

@@ -36,6 +36,9 @@ https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.5.2-1-any.pkg.tar.z
 https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
 https://mirror.msys2.org/msys/i686/msys2-runtime-3.2.0-14-i686.pkg.tar.zst!Build\msys2_tmp ^
 https://mirror.msys2.org/msys/i686/patch-2.7.6-1-i686.pkg.tar.xz!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/lemon-3.46.1-1-i686.pkg.tar.zst!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/re2c-3.1-2-i686.pkg.tar.zst!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/gcc-libs-13.3.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
 pushd "%~dp0"
@@ -71,6 +74,10 @@ mkdir Build\msys2\usr\share 2> NUL
 copy Build\msys2_tmp\usr\bin\patch.exe Build\msys2\usr\bin\
 copy Build\msys2_tmp\usr\bin\msys-2.0.dll Build\msys2\usr\bin\
 copy Build\msys2_tmp\usr\bin\msys-gcc_s-1.dll Build\msys2\usr\bin\
+copy Build\msys2_tmp\usr\bin\msys-gcc_s-seh-1.dll Build\msys2\usr\bin\
+copy "Build\msys2_tmp\usr\bin\msys-stdc++-6.dll" Build\msys2\usr\bin\
+copy Build\msys2_tmp\usr\bin\lemon.exe Build\msys2\usr\bin\
+copy Build\msys2_tmp\usr\bin\re2c.exe Build\msys2\usr\bin\
 xcopy /s /y Build\msys2_tmp\usr\share\*.* Build\msys2\usr\share\
 rmdir /q /s Build\msys2_tmp\ > NUL 2> NUL
 
