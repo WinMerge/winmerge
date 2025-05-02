@@ -111,6 +111,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND_RANGE(ID_OPEN_WITH_UNPACKER, ID_OPEN_WITH_UNPACKER, OnCompare)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
+	ON_WM_THEMECHANGED()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
 	ON_WM_WINDOWPOSCHANGING()
@@ -141,6 +142,7 @@ COpenView::COpenView()
 	, m_bIgnoreCodepage(false)
 	, m_bFilterCommentsLines(false)
 	, m_nCompareMethod(0)
+	, m_hTheme(nullptr)
 {
 	// CWnd::EnableScrollBarCtrl() called inside CScrollView::UpdateBars() is quite slow.
 	// Therefore, set m_bInsideUpdate = TRUE so that CScrollView::UpdateBars() does almost nothing.
@@ -375,7 +377,18 @@ void COpenView::OnPaint()
 	CRect rcGrip = rc;
 	rcGrip.left = rc.right - GetSystemMetrics(SM_CXVSCROLL);
 	rcGrip.top = rc.bottom - GetSystemMetrics(SM_CYHSCROLL);
-	dc.DrawFrameControl(&rcGrip, DFC_SCROLL, DFCS_SCROLLSIZEGRIP);
+	if (IsVista_OrGreater() && m_hTheme == nullptr && IsThemeActive())
+	{
+		m_hTheme = OpenThemeData(m_hWnd, WC_SCROLLBAR);
+	}
+	if (m_hTheme != nullptr)
+	{
+		DrawThemeBackground(m_hTheme, dc.m_hDC, SBP_SIZEBOX, 0, &rcGrip, nullptr);
+	}
+	else
+	{
+		dc.DrawFrameControl(&rcGrip, DFC_SCROLL, DFCS_SCROLLSIZEGRIP);
+	}
 
 	// Draw a line to separate the Status Line
 	CPen newPen(PS_SOLID, 1, RGB(208, 208, 208));	// a very light gray
@@ -389,6 +402,20 @@ void COpenView::OnPaint()
 	dc.SelectObject(oldpen);
 
 	__super::OnPaint();
+}
+
+LRESULT COpenView::OnThemeChanged()
+{
+	if (m_hTheme != nullptr)
+	{
+		CloseThemeData(m_hTheme);
+		m_hTheme = nullptr;
+	}
+	if (m_hTheme == nullptr && IsThemeActive())
+	{
+		m_hTheme = OpenThemeData(m_hWnd, WC_SCROLLBAR);
+	}
+	return 0;
 }
 
 void COpenView::OnLButtonUp(UINT nFlags, CPoint point)
@@ -522,6 +549,12 @@ void COpenView::OnDestroy()
 {
 	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
+
+	if (m_hTheme != nullptr)
+	{
+		CloseThemeData(m_hTheme);
+		m_hTheme = nullptr;
+	}
 
 	__super::OnDestroy();
 }
