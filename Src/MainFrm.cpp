@@ -2659,7 +2659,8 @@ BOOL CMainFrame::CreateToolbar()
 		return FALSE;
 	}
 
-	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT | TBSTYLE_TRANSPARENT) ||
+	// Remove TBSTYLE_TOOLTIPS if you don't want tooltips
+	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT | TBSTYLE_TRANSPARENT | TBSTYLE_TOOLTIPS) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
 		return FALSE;
@@ -2671,9 +2672,9 @@ BOOL CMainFrame::CreateToolbar()
 		return FALSE;
 	}
 
-	// Remove this if you don't want tool tips or a resizable toolbar
+	// Remove this if you don't want a resizable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
+		CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 
 	m_wndReBar.AddBar(&m_wndMenuBar);

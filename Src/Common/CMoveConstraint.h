@@ -216,6 +216,7 @@ private:
 	int m_nOrigX;
 	int m_nOrigY;
 	EGRIP m_nGrip;
+	HTHEME m_hTheme;
 	bool m_bOriginalFetched;
 	int m_nMinX;
 	int m_nMinY;
