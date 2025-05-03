@@ -1,13 +1,18 @@
 #include "parser.h"
 #include "parser_internal.h"
+#include "node.h"
 #include <iostream>
 #include <string>
 #include <map>
 
-YYSTYPE yylval;
-char* yytext;
+extern YYSTYPE yylval;
+const char* yytext;
+YYSTYPE result;
 
-extern unsigned char* yycursor;
+extern char* yycursor;
+extern char* YYMARKER;
+extern char* YYCURSOR;
+extern char* YYLIMIT;
 extern int yylex();
 
 int main()
@@ -16,19 +21,24 @@ int main()
 	std::cout << "WHERE??????????: ";
 	std::getline(std::cin, whereClause);
 
-	unsigned char* input = (unsigned char*)whereClause.c_str();
+	char* input = (char*)whereClause.c_str();
 	yycursor = input;
+	YYCURSOR = input;
+	YYLIMIT = YYCURSOR + whereClause.length();
 
 	void* parser = ParseAlloc(malloc);
 	int token;
+	std::string tmp;
 
 	while ((token = yylex()) != 0) {
 		Parse(parser, token, yylval);
-		yytext = (char*)yycursor;
+		tmp = std::string(yycursor, YYCURSOR - yycursor);
+		yycursor = YYCURSOR;
+		yytext = tmp.c_str();
 	}
 	Parse(parser, 0, yylval);
 
-	ExprNode* rootNode = (ExprNode*)parser;
+	ExprNode* rootNode = (ExprNode*)result.node;
 
 	if (rootNode)
 	{
@@ -39,8 +49,14 @@ int main()
 			{"is_active", true}
 		};
 
-		bool result = rootNode->evaluate(data);
-		std::cout << "????: " << (result ? "true" : "false") << std::endl;
+		auto result = rootNode->evaluate(data);
+		if (auto boolVal = std::get_if<bool>(&result))
+			std::cout << "result: " << (*boolVal ? "true" : "false") << std::endl;
+		else if (auto intVal = std::get_if<int>(&result))
+			std::cout << "result: " << *intVal << std::endl;
+		else if (auto strVal = std::get_if<std::string>(&result))
+			std::cout << "result: " << *strVal << std::endl;
+		else
 
 		delete rootNode;
 	}

@@ -14,3 +14,5 @@
 #define GE                              14
 #define LPAREN                          15
 #define RPAREN                          16
+#define PLUS                            17
+#define MINUS                           18

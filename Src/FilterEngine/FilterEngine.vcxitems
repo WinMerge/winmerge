@@ -19,6 +19,10 @@
       <FileType>Document</FileType>
       <Command>$(SolutionDir)\Build\msys2\usr\bin\lemon %(FullPath) -T$(SolutionDir)\Build\msys2\usr\share\lemon\lempar.c</Command>
       <Outputs>%(RelativeDir)\parse.cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)\parser.c</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)\parser.c</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)\parser.c</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\parser.c</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

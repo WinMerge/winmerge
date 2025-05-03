@@ -64,48 +64,104 @@ struct NotNode : public ExprNode
 
 struct ComparisonNode : public ExprNode
 {
-	std::string field;
 	std::string op;
-	ExprNode* value;
-	ComparisonNode(const std::string& f, const std::string& o, ExprNode* v) : field(f), op(o), value(v) {}
-	~ComparisonNode() { delete value; }
-	ValueType evaluate(const std::map<std::string, ValueType>& data) const override {
+	ExprNode* left;
+	ExprNode* right;
+	ComparisonNode(ExprNode* l, const std::string& o, ExprNode* r) : left(l), op(o), right(r) {}
+	~ComparisonNode() { delete left; delete right; }
+	ValueType evaluate(const std::map<std::string, ValueType>& data) const override
+	{
+		/*
 		if (data.find(field) == data.end()) {
 			std::cerr << "Error: Field '" << field << "' not found." << std::endl;
 			return false;
 		}
-		const auto& fieldValue = data.at(field);
-		auto val = value->evaluate(data);
-		if (auto intVal = std::get_if<int>(&val))
+		*/
+		auto lval = left->evaluate(data);
+		auto rval = right->evaluate(data);
+		if (auto lvalInt = std::get_if<int>(&lval))
 		{
-			if (auto dataInt = std::get_if<int>(&fieldValue))
+			if (auto rvalInt = std::get_if<int>(&rval))
 			{
-				if (op == "==") return *dataInt == *intVal;
-				if (op == "!=") return *dataInt != *intVal;
-				if (op == "<")  return *dataInt < *intVal;
-				if (op == "<=") return *dataInt <= *intVal;
-				if (op == ">")  return *dataInt > *intVal;
-				if (op == ">=") return *dataInt >= *intVal;
+				if (op == "==") return *rvalInt == *lvalInt;
+				if (op == "!=") return *rvalInt != *lvalInt;
+				if (op == "<")  return *rvalInt < *lvalInt;
+				if (op == "<=") return *rvalInt <= *lvalInt;
+				if (op == ">")  return *rvalInt > *lvalInt;
+				if (op == ">=") return *rvalInt >= *lvalInt;
 			}
 		}
-		else if (auto stringVal = std::get_if<std::string>(&val))
+		else if (auto lvalString = std::get_if<std::string>(&lval))
 		{
-			if (auto dataString = std::get_if<std::string>(&fieldValue))
+			if (auto rvalString = std::get_if<std::string>(&rval))
 			{
-				if (op == "==") return *dataString == *stringVal;
-				if (op == "!=") return *dataString != *stringVal;
+				if (op == "==") return *rvalString == *lvalString;
+				if (op == "!=") return *rvalString != *lvalString;
 			}
 		}
-		else if (auto boolVal = std::get_if<bool>(&val))
+		else if (auto lvalBool = std::get_if<bool>(&lval))
 		{
-			if (auto dataBool = std::get_if<bool>(&fieldValue))
+			if (auto rvalBool = std::get_if<bool>(&rval))
 			{
-				if (op == "==") return *dataBool == *boolVal;
-				if (op == "!=") return *dataBool != *boolVal;
+				if (op == "==") return *rvalBool == *lvalBool;
+				if (op == "!=") return *rvalBool != *lvalBool;
 			}
 		}
-		std::cerr << "Error: Invalid comparison between field '" << field << "' and value." << std::endl;
+//		std::cerr << "Error: Invalid comparison between field '" << field << "' and value." << std::endl;
 		return false;
+	}
+};
+
+struct ArithmeticNode : public ExprNode
+{
+	std::string op;
+	ExprNode* left;
+	ExprNode* right;
+	ArithmeticNode(ExprNode* l, const std::string& o, ExprNode* r) : left(l), op(o), right(r) {}
+	~ArithmeticNode() { delete left; delete right; }
+	ValueType evaluate(const std::map<std::string, ValueType>& data) const override
+	{
+		auto lval = left->evaluate(data);
+		auto rval = right->evaluate(data);
+		if (auto lvalInt = std::get_if<int>(&lval))
+		{
+			if (auto rvalInt = std::get_if<int>(&rval))
+			{
+				if (op == "+") return *rvalInt + *lvalInt;
+				if (op == "-") return *rvalInt - *lvalInt;
+			}
+		}
+		else if (auto lvalString = std::get_if<std::string>(&lval))
+		{
+			if (auto rvalString = std::get_if<std::string>(&rval))
+			{
+				if (op == "+") return *rvalString + *lvalString;
+			}
+		}
+		else if (auto lvalBool = std::get_if<bool>(&lval))
+		{
+			if (auto rvalBool = std::get_if<bool>(&rval))
+			{
+				if (op == "+") return *rvalBool + *lvalBool;
+			}
+		}
+//		std::cerr << "Error: Invalid comparison between field '" << field << "' and value." << std::endl;
+		return false;
+	}
+};
+
+struct FieldNode : public ExprNode
+{
+	std::string field;
+	FieldNode(const std::string& v) : field(v) {}
+	ValueType evaluate(const std::map<std::string, ValueType>& data) const override
+	{
+		if (data.find(field) == data.end())
+		{
+			std::cerr << "Error: Field '" << field << "' not found." << std::endl;
+			return false;
+		}
+		return data.at(field);
 	}
 };
 

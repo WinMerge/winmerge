@@ -3,17 +3,18 @@
 #include <string>
 #include <variant>
 
-typedef std::variant<int, std::string, bool> ValueType;
+struct ExprNode;
+
 typedef struct {
-    ValueType value;
-    std::string string;
+    const char* string;
     int integer;
     bool boolean;
+    ExprNode* node;
 } YYSTYPE;
 
 extern YYSTYPE yylval;
-extern char* yytext;
-int yylex(const char* str);
-int Parse(void* yyp, int yymajor, YYSTYPE yyminor);
+extern const char* yytext;
+int yylex();
+void Parse(void* yyp, int yymajor, YYSTYPE yyminor);
 void* ParseAlloc(void* (*mallocProc)(size_t));
 void ParseFree(void* yyp, void (*freeProc)(void*));
