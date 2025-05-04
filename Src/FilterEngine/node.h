@@ -188,7 +188,9 @@ struct IntLiteral : public ExprNode
 struct StringLiteral : public ExprNode
 {
 	std::string value;
-	StringLiteral(const std::string& v) : value(v) {}
+	StringLiteral(const std::string& v) : value(v)
+	{
+	}
 	ValueType evaluate(const std::map<std::string, ValueType>& data) const override
 	{
 		return value;

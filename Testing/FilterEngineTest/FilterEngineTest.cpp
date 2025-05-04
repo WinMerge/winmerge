@@ -5,40 +5,15 @@
 #include <string>
 #include <map>
 
-extern YYSTYPE yylval;
-const char* yytext;
-YYSTYPE result;
-
-extern char* yycursor;
-extern char* YYMARKER;
-extern char* YYCURSOR;
-extern char* YYLIMIT;
-extern int yylex();
+ExprNode* ParseFilterCondition(const std::string& str);
 
 int main()
 {
-	std::string whereClause;
-	std::cout << "WHERE??????????: ";
-	std::getline(std::cin, whereClause);
+	std::string str;
+	std::cout << "Filter condition: ";
+	std::getline(std::cin, str);
 
-	char* input = (char*)whereClause.c_str();
-	yycursor = input;
-	YYCURSOR = input;
-	YYLIMIT = YYCURSOR + whereClause.length();
-
-	void* parser = ParseAlloc(malloc);
-	int token;
-	std::string tmp;
-
-	while ((token = yylex()) != 0) {
-		Parse(parser, token, yylval);
-		tmp = std::string(yycursor, YYCURSOR - yycursor);
-		yycursor = YYCURSOR;
-		yytext = tmp.c_str();
-	}
-	Parse(parser, 0, yylval);
-
-	ExprNode* rootNode = (ExprNode*)result.node;
+	ExprNode* rootNode = ParseFilterCondition(str);
 
 	if (rootNode)
 	{
@@ -57,15 +32,13 @@ int main()
 		else if (auto strVal = std::get_if<std::string>(&result))
 			std::cout << "result: " << *strVal << std::endl;
 		else
-
+			std::cout << "result: unknown type" << std::endl;
 		delete rootNode;
 	}
 	else
 	{
-		std::cerr << "???????????" << std::endl;
+		std::cerr << "error" << std::endl;
 	}
-
-	ParseFree(parser, free);
 
 	return 0;
 }

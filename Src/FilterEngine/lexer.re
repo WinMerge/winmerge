@@ -11,20 +11,6 @@ re2c:eof = 0;
 #include <iostream>
 #include <vector>
 
-YYSTYPE yylval;
-std::vector<char*> strings;
-
-void lexerError(const char* msg) {
-    std::cerr << "Lexer Error: " << msg << std::endl;
-}
-
-const char* dupString(const char* str)
-{
-    char* newStr = _strdup(str);
-    strings.push_back(newStr);
-    return newStr;
-}
-
 char* yycursor = nullptr;
 char* YYMARKER = nullptr;
 char* YYCURSOR = nullptr;
@@ -46,11 +32,25 @@ begin:
                           return IDENTIFIER;
                         }
     [0-9]+            { yylval.integer = std::stoi(std::string((const char*)yycursor, YYCURSOR - yycursor)); return INTEGER_LITERAL; }
-    '"' [^"]* '"'     {
-                          std::string tmp = std::string((const char*)yycursor, YYCURSOR - yycursor);
-                          yylval.string = dupString(tmp.c_str());
-                          return STRING_LITERAL;
-                      }
+    "\"" {
+		const char* start = YYCURSOR;
+		std::string str;
+		while (*YYCURSOR != '\0') {
+			if (*YYCURSOR == '"') {
+				if (*(YYCURSOR + 1) == '"') {
+					str += '"';
+					YYCURSOR += 2;
+				} else {
+					++YYCURSOR;
+					break;
+				}
+			} else {
+				str += *YYCURSOR++;
+			}
+		}
+		yylval.string = dupString(str.c_str());
+		return STRING_LITERAL;
+    }
     "="               { return EQ; }
     "!="              { return NE; }
     "<"               { return LT; }
