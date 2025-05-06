@@ -16,3 +16,5 @@
 #define RPAREN                          16
 #define PLUS                            17
 #define MINUS                           18
+#define STAR                            19
+#define SLASH                           20

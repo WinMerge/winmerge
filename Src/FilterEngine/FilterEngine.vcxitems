@@ -14,36 +14,36 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="$(MSBuildThisFileDirectory)parser.y">
+    <CustomBuild Include="$(MSBuildThisFileDirectory)FilterParser.y">
       <ExcludedFromBuild>false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command>$(SolutionDir)\Build\msys2\usr\bin\lemon %(FullPath) -T$(SolutionDir)\Build\msys2\usr\share\lemon\lempar.c</Command>
       <Outputs>%(RelativeDir)\parse.cpp</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RelativeDir)\parser.c</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RelativeDir)\parser.c</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RelativeDir)\parser.c</Outputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RelativeDir)\parser.c</Outputs>
+      <Outputs>%(RelativeDir)\FilterParser.c</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)lexer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)parser.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)FilterExpression.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FilterEngine.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FilterLexer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FilterParser.c">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)parser.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FilterParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="$(MSBuildThisFileDirectory)lexer.re">
+    <CustomBuild Include="$(MSBuildThisFileDirectory)FilterLexer.re">
       <ExcludedFromBuild>
       </ExcludedFromBuild>
       <FileType>Document</FileType>
-      <Command>$(SolutionDir)\Build\msys2\usr\bin\re2c.exe %(FullPath) -o %(RelativeDir)\lexer.cpp</Command>
-      <Outputs>%(RelativeDir)\lexer.cpp</Outputs>
+      <Command>$(SolutionDir)\Build\msys2\usr\bin\re2c.exe %(FullPath) -o %(RelativeDir)\FilterLexer.cpp</Command>
+      <Outputs>%(RelativeDir)\FilterLexer.cpp</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)node.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)parser.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)parser_internal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FilterExpression.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FilterEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FilterParser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FilterEngineInternal.h" />
   </ItemGroup>
 </Project>

@@ -525,8 +525,8 @@ The first-set of non-terminals is shown after the name.
 Syntax-only Symbols:
 The following symbols never carry semantic content.
 
-$ AND OR NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL
-STRING_LITERAL EQ NE LT LE GT GE LPAREN RPAREN PLUS MINUS where_clause
+$ AND OR NOT TRUE_LITERAL FALSE_LITERAL EQ NE LT LE GT GE LPAREN RPAREN PLUS
+MINUS where_clause
 ----------------------------------------------------
 Rules:
    0: where_clause ::= expr.
