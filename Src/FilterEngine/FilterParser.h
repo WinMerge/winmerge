@@ -19,3 +19,4 @@
 #define STAR                            19
 #define SLASH                           20
 #define MOD                             21
+#define COMMA                           22

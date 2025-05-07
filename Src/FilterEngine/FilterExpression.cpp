@@ -132,8 +132,20 @@ FieldNode::FieldNode(const CDiffContext* ctxt, const std::wstring& v) : ctxt(ctx
 //		std::cerr << "Error: Invalid field'" << field << "' and value." << std::endl;
 	}
 }
+
 ValueType FieldNode::evaluate(const DIFFITEM& di) const
 {
 	return func(ctxt, di);
+}
+
+FunctionNode::FunctionNode(const CDiffContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args)
+	: functionName(name), args(args)
+{
+
+}
+
+ValueType FunctionNode::evaluate(const DIFFITEM& di) const
+{
+	return false;
 }
 

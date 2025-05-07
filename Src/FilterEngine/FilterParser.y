@@ -45,4 +45,9 @@ term(A) ::= FALSE_LITERAL.      { A.node = new BoolLiteral(false); }
 term(A) ::= INTEGER_LITERAL(B). { A.node = new IntLiteral(B.integer); }
 term(A) ::= STRING_LITERAL(B).  { A.node = new StringLiteral(B.string); }
 term(A) ::= IDENTIFIER(B).      { A.node = new FieldNode(pCtx->ctxt, B.string); }
+term(A) ::= IDENTIFIER(B) LPAREN RPAREN. { A.node = new FunctionNode(pCtx->ctxt, B.string, {}); }
+term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. { A.node = new FunctionNode(pCtx->ctxt, B.string, C.nodeList); }
 term(A) ::= LPAREN arithmetic(B) RPAREN. { A = B; }
+
+expr_list(A) ::= expr(B). { A.nodeList = new std::vector<ExprNode*>{ B.node }; }
+expr_list(A) ::= expr_list(B) COMMA expr(C). { B.nodeList->push_back(C.node); A.nodeList = B.nodeList; }

@@ -114,6 +114,16 @@ struct FieldNode : public ExprNode
 	ValueType evaluate(const DIFFITEM& di) const override;
 };
 
+struct FunctionNode : public ExprNode
+{
+	const CDiffContext* ctxt;
+	std::wstring functionName;
+	std::vector<ExprNode*>* args;
+	std::function<ValueType(const CDiffContext* ctxt, const DIFFITEM& di)> func;
+	FunctionNode(const CDiffContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args);
+	ValueType evaluate(const DIFFITEM& di) const override;
+};
+
 struct BoolLiteral : public ExprNode
 {
 	bool value;
