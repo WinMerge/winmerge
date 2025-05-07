@@ -18,7 +18,6 @@
       <ExcludedFromBuild>false</ExcludedFromBuild>
       <FileType>Document</FileType>
       <Command>$(SolutionDir)\Build\msys2\usr\bin\lemon %(FullPath) -T$(SolutionDir)\Build\msys2\usr\share\lemon\lempar.c</Command>
-      <Outputs>%(RelativeDir)\parse.cpp</Outputs>
       <Outputs>%(RelativeDir)\FilterParser.c</Outputs>
     </CustomBuild>
   </ItemGroup>

@@ -53,9 +53,9 @@ namespace
 		di.diffFileInfo[1].filename = L"Alice.txt";
 		di.diffFileInfo[1].size = 1000;
 
-		result = FilterEngine::Parse(L"LeftSize <= 1000", ctxt);
+		result = FilterEngine::Parse(L"LeftSize <= 100 * (1 + 9)", ctxt);
 		EXPECT_TRUE(FilterEngine::Evaluate(result.root, di));
-		result = FilterEngine::Parse(L"LeftSize < 1000", ctxt);
+		result = FilterEngine::Parse(L"LeftSize < 200 + 20 * 40", ctxt);
 		EXPECT_FALSE(FilterEngine::Evaluate(result.root, di));
 
 		result = FilterEngine::Parse(L"LeftName = \"Alice.txt\"", ctxt);
