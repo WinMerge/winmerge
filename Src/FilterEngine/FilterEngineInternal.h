@@ -7,13 +7,24 @@
 struct ExprNode;
 class CDiffContext;
 
-typedef struct {
+struct YYSTYPE
+{
 	const wchar_t* string;
 	int integer;
 	bool boolean;
-	const CDiffContext* ctxt;
 	ExprNode* node;
-} YYSTYPE;
+};
+
+struct FilterParseContext
+{
+	FilterParseContext(const CDiffContext* ctxt)
+		: ctxt(ctxt)
+		, rootNode(nullptr)
+	{
+	}
+	const CDiffContext* ctxt;
+	ExprNode* rootNode;
+};
 
 struct FilterLexer
 {
@@ -58,7 +69,6 @@ struct FilterLexer
 	std::vector<wchar_t*> strings;
 };
 
-extern YYSTYPE resultFilterExpression;
-void Parse(void* yyp, int yymajor, YYSTYPE yyminor);
+void Parse(void* yyp, int yymajor, YYSTYPE yyminor, FilterParseContext* pCtx);
 void* ParseAlloc(void* (*mallocProc)(size_t));
 void ParseFree(void* yyp, void (*freeProc)(void*));

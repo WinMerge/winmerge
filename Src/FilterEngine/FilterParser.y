@@ -8,13 +8,14 @@
 %left PLUS MINUS.
 
 %token_type {YYSTYPE}
+%extra_argument { FilterParseContext* pCtx }
 
 %include {
 #include "FilterEngineInternal.h"
 #include "FilterExpression.h"
 }
 
-filter_expr ::= expr(A). { resultFilterExpression.node = A.node; }
+filter_expr ::= expr(A). { pCtx->rootNode = A.node; }
 
 expr(A) ::= expr(B) OR expr(C).   { A.node = new OrNode(B.node, C.node); }
 expr(A) ::= expr(B) AND expr(C).  { A.node = new AndNode(B.node, C.node); }
@@ -39,5 +40,5 @@ term(A) ::= TRUE_LITERAL.       { A.node = new BoolLiteral(true); }
 term(A) ::= FALSE_LITERAL.      { A.node = new BoolLiteral(false); }
 term(A) ::= INTEGER_LITERAL(B). { A.node = new IntLiteral(B.integer); }
 term(A) ::= STRING_LITERAL(B).  { A.node = new StringLiteral(B.string); }
-term(A) ::= IDENTIFIER(B).      { A.node = new FieldNode(B.ctxt, B.string); }
+term(A) ::= IDENTIFIER(B).      { A.node = new FieldNode(pCtx->ctxt, B.string); }
 term(A) ::= LPAREN arithmetic(B) RPAREN. { A = B; }

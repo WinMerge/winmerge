@@ -9,23 +9,21 @@ YYSTYPE resultFilterExpression;
 
 static ExprNode* ParseFilterExpression(const std::wstring& str, const CDiffContext& ctxt)
 {
+	FilterParseContext parseContext(&ctxt);
 	FilterLexer lexer(str);
 	void* parser = ParseAlloc(malloc);
 	int token;
 
-	lexer.yylval.ctxt = &ctxt;
 	while ((token = lexer.yylex()) != 0)
 	{
-		Parse(parser, token, lexer.yylval);
+		Parse(parser, token, lexer.yylval, &parseContext);
 		lexer.yycursor = lexer.YYCURSOR;
 	}
-	Parse(parser, 0, lexer.yylval);
-
-	ExprNode* rootNode = (ExprNode*)resultFilterExpression.node;
+	Parse(parser, 0, lexer.yylval, &parseContext);
 
 	ParseFree(parser, free);
 
-	return rootNode;
+	return parseContext.rootNode;
 }
 
 
