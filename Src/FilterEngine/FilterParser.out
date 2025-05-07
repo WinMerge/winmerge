@@ -15,7 +15,10 @@ State 0:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -24,17 +27,19 @@ State 0:
           term ::= * LPAREN arithmetic RPAREN
 
                            NOT shift        2      
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        1      
+                         MINUS shift        17     
                    filter_expr accept
-                          expr shift        26     
-                    comparison shift        26       /* because comparison==expr */
-                    arithmetic shift        17     
-                          term shift        17       /* because term==arithmetic */
+                          expr shift        30     
+                    comparison shift        30       /* because comparison==expr */
+                    arithmetic shift        19     
+                         unary shift        19       /* because unary==arithmetic */
+                          term shift        19       /* because term==unary */
 
 State 1:
           expr ::= * expr OR expr
@@ -53,7 +58,10 @@ State 1:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -63,16 +71,18 @@ State 1:
           term ::= LPAREN * arithmetic RPAREN
 
                            NOT shift        2      
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        1      
-                          expr shift        25     
-                    comparison shift        25       /* because comparison==expr */
-                    arithmetic shift        16     
-                          term shift        16       /* because term==arithmetic */
+                         MINUS shift        17     
+                          expr shift        29     
+                    comparison shift        29       /* because comparison==expr */
+                    arithmetic shift        18     
+                         unary shift        18       /* because unary==arithmetic */
+                          term shift        18       /* because term==unary */
 
 State 2:
           expr ::= * expr OR expr
@@ -91,7 +101,10 @@ State 2:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -100,16 +113,18 @@ State 2:
           term ::= * LPAREN arithmetic RPAREN
 
                            NOT shift        2      
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        1      
+                         MINUS shift        17     
                           expr shift-reduce 3      expr ::= NOT expr
                     comparison shift-reduce 3      expr ::= NOT expr  /* because comparison==expr */
-                    arithmetic shift        17     
-                          term shift        17       /* because term==arithmetic */
+                    arithmetic shift        19     
+                         unary shift        19       /* because unary==arithmetic */
+                          term shift        19       /* because term==unary */
 
 State 3:
           expr ::= * expr OR expr
@@ -128,7 +143,10 @@ State 3:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -137,16 +155,18 @@ State 3:
           term ::= * LPAREN arithmetic RPAREN
 
                            NOT shift        2      
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        1      
+                         MINUS shift        17     
                           expr shift-reduce 2      expr ::= expr AND expr
                     comparison shift-reduce 2      expr ::= expr AND expr  /* because comparison==expr */
-                    arithmetic shift        17     
-                          term shift        17       /* because term==arithmetic */
+                    arithmetic shift        19     
+                         unary shift        19       /* because unary==arithmetic */
+                          term shift        19       /* because term==unary */
 
 State 4:
           expr ::= * expr OR expr
@@ -165,7 +185,10 @@ State 4:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -174,16 +197,18 @@ State 4:
           term ::= * LPAREN arithmetic RPAREN
 
                            NOT shift        2      
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        1      
-                          expr shift        29     
-                    comparison shift        29       /* because comparison==expr */
-                    arithmetic shift        17     
-                          term shift        17       /* because term==arithmetic */
+                         MINUS shift        17     
+                          expr shift        31     
+                    comparison shift        31       /* because comparison==expr */
+                    arithmetic shift        19     
+                         unary shift        19       /* because unary==arithmetic */
+                          term shift        19       /* because term==unary */
 
 State 5:
           comparison ::= arithmetic GE * arithmetic
@@ -191,7 +216,10 @@ State 5:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -199,14 +227,16 @@ State 5:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        19     
-                          term shift        19       /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift        21     
+                         unary shift        21       /* because unary==arithmetic */
+                          term shift        21       /* because term==unary */
 
 State 6:
           comparison ::= arithmetic GT * arithmetic
@@ -214,7 +244,10 @@ State 6:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -222,14 +255,16 @@ State 6:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        20     
-                          term shift        20       /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift        22     
+                         unary shift        22       /* because unary==arithmetic */
+                          term shift        22       /* because term==unary */
 
 State 7:
           comparison ::= arithmetic LE * arithmetic
@@ -237,7 +272,10 @@ State 7:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -245,14 +283,16 @@ State 7:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        21     
-                          term shift        21       /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift        23     
+                         unary shift        23       /* because unary==arithmetic */
+                          term shift        23       /* because term==unary */
 
 State 8:
           comparison ::= arithmetic LT * arithmetic
@@ -260,7 +300,10 @@ State 8:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -268,14 +311,16 @@ State 8:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        22     
-                          term shift        22       /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift        24     
+                         unary shift        24       /* because unary==arithmetic */
+                          term shift        24       /* because term==unary */
 
 State 9:
           comparison ::= arithmetic NE * arithmetic
@@ -283,7 +328,10 @@ State 9:
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -291,21 +339,26 @@ State 9:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        23     
-                          term shift        23       /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift        25     
+                         unary shift        25       /* because unary==arithmetic */
+                          term shift        25       /* because term==unary */
 
 State 10:
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -314,22 +367,27 @@ State 10:
           term ::= * LPAREN arithmetic RPAREN
           term ::= LPAREN * arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        18     
-                          term shift        18       /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift        20     
+                         unary shift        20       /* because unary==arithmetic */
+                          term shift        20       /* because term==unary */
 
 State 11:
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= arithmetic SLASH * arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= arithmetic MOD * arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -337,22 +395,27 @@ State 11:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        27     
-                          term shift        27       /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift-reduce 15     arithmetic ::= arithmetic MOD arithmetic
+                         unary shift-reduce 15     arithmetic ::= arithmetic MOD arithmetic  /* because unary==arithmetic */
+                          term shift-reduce 15     arithmetic ::= arithmetic MOD arithmetic  /* because term==unary */
 
 State 12:
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
-          arithmetic ::= arithmetic STAR * arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= arithmetic SLASH * arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -360,22 +423,55 @@ State 12:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        28     
-                          term shift        28       /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift-reduce 14     arithmetic ::= arithmetic SLASH arithmetic
+                         unary shift-reduce 14     arithmetic ::= arithmetic SLASH arithmetic  /* because unary==arithmetic */
+                          term shift-reduce 14     arithmetic ::= arithmetic SLASH arithmetic  /* because term==unary */
 
 State 13:
+          arithmetic ::= * arithmetic PLUS arithmetic
+          arithmetic ::= * arithmetic MINUS arithmetic
+          arithmetic ::= * arithmetic STAR arithmetic
+          arithmetic ::= arithmetic STAR * arithmetic
+          arithmetic ::= * arithmetic SLASH arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER
+          term ::= * LPAREN arithmetic RPAREN
+
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        10     
+                         MINUS shift        17     
+                    arithmetic shift-reduce 13     arithmetic ::= arithmetic STAR arithmetic
+                         unary shift-reduce 13     arithmetic ::= arithmetic STAR arithmetic  /* because unary==arithmetic */
+                          term shift-reduce 13     arithmetic ::= arithmetic STAR arithmetic  /* because term==unary */
+
+State 14:
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= arithmetic MINUS * arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -383,22 +479,27 @@ State 13:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift-reduce 12     arithmetic ::= arithmetic MINUS arithmetic
-                          term shift-reduce 12     arithmetic ::= arithmetic MINUS arithmetic  /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift        27     
+                         unary shift        27       /* because unary==arithmetic */
+                          term shift        27       /* because term==unary */
 
-State 14:
+State 15:
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= arithmetic PLUS * arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -406,22 +507,27 @@ State 14:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift-reduce 11     arithmetic ::= arithmetic PLUS arithmetic
-                          term shift-reduce 11     arithmetic ::= arithmetic PLUS arithmetic  /* because term==arithmetic */
+                         MINUS shift        17     
+                    arithmetic shift        28     
+                         unary shift        28       /* because unary==arithmetic */
+                          term shift        28       /* because term==unary */
 
-State 15:
+State 16:
           comparison ::= arithmetic EQ * arithmetic
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * term
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
@@ -429,41 +535,39 @@ State 15:
           term ::= * IDENTIFIER
           term ::= * LPAREN arithmetic RPAREN
 
-                  TRUE_LITERAL shift-reduce 15     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 16     term ::= FALSE_LITERAL
-                    IDENTIFIER shift-reduce 19     term ::= IDENTIFIER
-               INTEGER_LITERAL shift-reduce 17     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 18     term ::= STRING_LITERAL
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
                         LPAREN shift        10     
-                    arithmetic shift        24     
-                          term shift        24       /* because term==arithmetic */
-
-State 16:
-          comparison ::= arithmetic * EQ arithmetic
-          comparison ::= arithmetic * NE arithmetic
-          comparison ::= arithmetic * LT arithmetic
-          comparison ::= arithmetic * LE arithmetic
-          comparison ::= arithmetic * GT arithmetic
-          comparison ::= arithmetic * GE arithmetic
-          arithmetic ::= arithmetic * PLUS arithmetic
-          arithmetic ::= arithmetic * MINUS arithmetic
-          arithmetic ::= arithmetic * STAR arithmetic
-          arithmetic ::= arithmetic * SLASH arithmetic
-          term ::= LPAREN arithmetic * RPAREN
-
-                            EQ shift        15     
-                            NE shift        9      
-                            LT shift        8      
-                            LE shift        7      
-                            GT shift        6      
-                            GE shift        5      
-                        RPAREN shift-reduce 20     term ::= LPAREN arithmetic RPAREN
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                         MINUS shift        17     
+                    arithmetic shift        26     
+                         unary shift        26       /* because unary==arithmetic */
+                          term shift        26       /* because term==unary */
 
 State 17:
+          unary ::= * MINUS unary
+          unary ::= MINUS * unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER
+          term ::= * LPAREN arithmetic RPAREN
+
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift-reduce 21     term ::= IDENTIFIER
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        10     
+                         MINUS shift        17     
+                         unary shift-reduce 16     unary ::= MINUS unary
+                          term shift-reduce 16     unary ::= MINUS unary  /* because term==unary */
+
+State 18:
           comparison ::= arithmetic * EQ arithmetic
           comparison ::= arithmetic * NE arithmetic
           comparison ::= arithmetic * LT arithmetic
@@ -474,110 +578,179 @@ State 17:
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
+          term ::= LPAREN arithmetic * RPAREN
 
-                            EQ shift        15     
+                            EQ shift        16     
                             NE shift        9      
                             LT shift        8      
                             LE shift        7      
                             GT shift        6      
                             GE shift        5      
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                        RPAREN shift-reduce 22     term ::= LPAREN arithmetic RPAREN
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
 
-State 18:
+State 19:
+          comparison ::= arithmetic * EQ arithmetic
+          comparison ::= arithmetic * NE arithmetic
+          comparison ::= arithmetic * LT arithmetic
+          comparison ::= arithmetic * LE arithmetic
+          comparison ::= arithmetic * GT arithmetic
+          comparison ::= arithmetic * GE arithmetic
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
+
+                            EQ shift        16     
+                            NE shift        9      
+                            LT shift        8      
+                            LE shift        7      
+                            GT shift        6      
+                            GE shift        5      
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
+
+State 20:
+          arithmetic ::= arithmetic * PLUS arithmetic
+          arithmetic ::= arithmetic * MINUS arithmetic
+          arithmetic ::= arithmetic * STAR arithmetic
+          arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
           term ::= LPAREN arithmetic * RPAREN
 
-                        RPAREN shift-reduce 20     term ::= LPAREN arithmetic RPAREN
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                        RPAREN shift-reduce 22     term ::= LPAREN arithmetic RPAREN
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
 
-State 19:
+State 21:
      (10) comparison ::= arithmetic GE arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
 
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
                      {default} reduce       10     comparison ::= arithmetic GE arithmetic
 
-State 20:
+State 22:
       (9) comparison ::= arithmetic GT arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
 
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
                      {default} reduce       9      comparison ::= arithmetic GT arithmetic
 
-State 21:
+State 23:
       (8) comparison ::= arithmetic LE arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
 
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
                      {default} reduce       8      comparison ::= arithmetic LE arithmetic
 
-State 22:
+State 24:
       (7) comparison ::= arithmetic LT arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
 
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
                      {default} reduce       7      comparison ::= arithmetic LT arithmetic
 
-State 23:
+State 25:
       (6) comparison ::= arithmetic NE arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
 
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
                      {default} reduce       6      comparison ::= arithmetic NE arithmetic
 
-State 24:
+State 26:
       (5) comparison ::= arithmetic EQ arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
 
-                          PLUS shift        14     
-                         MINUS shift        13     
-                          STAR shift        12     
-                         SLASH shift        11     
+                          PLUS shift        15     
+                         MINUS shift        14     
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
                      {default} reduce       5      comparison ::= arithmetic EQ arithmetic
 
-State 25:
+State 27:
+          arithmetic ::= arithmetic * PLUS arithmetic
+          arithmetic ::= arithmetic * MINUS arithmetic
+     (12) arithmetic ::= arithmetic MINUS arithmetic *
+          arithmetic ::= arithmetic * STAR arithmetic
+          arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
+
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
+                     {default} reduce       12     arithmetic ::= arithmetic MINUS arithmetic
+
+State 28:
+          arithmetic ::= arithmetic * PLUS arithmetic
+     (11) arithmetic ::= arithmetic PLUS arithmetic *
+          arithmetic ::= arithmetic * MINUS arithmetic
+          arithmetic ::= arithmetic * STAR arithmetic
+          arithmetic ::= arithmetic * SLASH arithmetic
+          arithmetic ::= arithmetic * MOD arithmetic
+
+                          STAR shift        13     
+                         SLASH shift        12     
+                           MOD shift        11     
+                     {default} reduce       11     arithmetic ::= arithmetic PLUS arithmetic
+
+State 29:
           expr ::= expr * OR expr
           expr ::= expr * AND expr
           expr ::= LPAREN expr * RPAREN
@@ -586,7 +759,7 @@ State 25:
                             OR shift        4      
                         RPAREN shift-reduce 4      expr ::= LPAREN expr RPAREN
 
-State 26:
+State 30:
       (0) filter_expr ::= expr *
           expr ::= expr * OR expr
           expr ::= expr * AND expr
@@ -595,29 +768,7 @@ State 26:
                            AND shift        3      
                             OR shift        4      
 
-State 27:
-          arithmetic ::= arithmetic * PLUS arithmetic
-          arithmetic ::= arithmetic * MINUS arithmetic
-          arithmetic ::= arithmetic * STAR arithmetic
-          arithmetic ::= arithmetic * SLASH arithmetic
-     (14) arithmetic ::= arithmetic SLASH arithmetic *
-
-                          PLUS shift        14     
-                         MINUS shift        13     
-                     {default} reduce       14     arithmetic ::= arithmetic SLASH arithmetic
-
-State 28:
-          arithmetic ::= arithmetic * PLUS arithmetic
-          arithmetic ::= arithmetic * MINUS arithmetic
-          arithmetic ::= arithmetic * STAR arithmetic
-     (13) arithmetic ::= arithmetic STAR arithmetic *
-          arithmetic ::= arithmetic * SLASH arithmetic
-
-                          PLUS shift        14     
-                         MINUS shift        13     
-                     {default} reduce       13     arithmetic ::= arithmetic STAR arithmetic
-
-State 29:
+State 31:
           expr ::= expr * OR expr
       (1) expr ::= expr OR expr *
           expr ::= expr * AND expr
@@ -646,21 +797,23 @@ The first-set of non-terminals is shown after the name.
    14: GE (precedence=3)
    15: LPAREN
    16: RPAREN
-   17: PLUS (precedence=6)
-   18: MINUS (precedence=6)
-   19: STAR (precedence=5)
-   20: SLASH (precedence=5)
-   21: filter_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
-   22: expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
-   23: comparison: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
-   24: arithmetic: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
-   25: term: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
+   17: PLUS (precedence=5)
+   18: MINUS (precedence=5)
+   19: STAR (precedence=6)
+   20: SLASH (precedence=6)
+   21: MOD (precedence=6)
+   22: filter_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   23: expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   24: comparison: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   25: arithmetic: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   26: unary: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   27: term: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
 ----------------------------------------------------
 Syntax-only Symbols:
 The following symbols never carry semantic content.
 
 $ AND OR NOT TRUE_LITERAL FALSE_LITERAL EQ NE LT LE GT GE LPAREN RPAREN PLUS
-MINUS STAR SLASH filter_expr
+MINUS STAR SLASH MOD filter_expr
 ----------------------------------------------------
 Rules:
    0: filter_expr ::= expr.
@@ -674,15 +827,18 @@ Rules:
    8: comparison ::= arithmetic LE arithmetic. [LE precedence=3]
    9: comparison ::= arithmetic GT arithmetic. [GT precedence=3]
   10: comparison ::= arithmetic GE arithmetic. [GE precedence=3]
-  11: arithmetic ::= arithmetic PLUS arithmetic. [PLUS precedence=6]
-  12: arithmetic ::= arithmetic MINUS arithmetic. [MINUS precedence=6]
-  13: arithmetic ::= arithmetic STAR arithmetic. [STAR precedence=5]
-  14: arithmetic ::= arithmetic SLASH arithmetic. [SLASH precedence=5]
-  15: term ::= TRUE_LITERAL.
-  16: term ::= FALSE_LITERAL.
-  17: term ::= INTEGER_LITERAL.
-  18: term ::= STRING_LITERAL.
-  19: term ::= IDENTIFIER.
-  20: term ::= LPAREN arithmetic RPAREN.
-  21: expr ::= comparison.
-  22: arithmetic ::= term.
+  11: arithmetic ::= arithmetic PLUS arithmetic. [PLUS precedence=5]
+  12: arithmetic ::= arithmetic MINUS arithmetic. [MINUS precedence=5]
+  13: arithmetic ::= arithmetic STAR arithmetic. [STAR precedence=6]
+  14: arithmetic ::= arithmetic SLASH arithmetic. [SLASH precedence=6]
+  15: arithmetic ::= arithmetic MOD arithmetic. [MOD precedence=6]
+  16: unary ::= MINUS unary. [MINUS precedence=5]
+  17: term ::= TRUE_LITERAL.
+  18: term ::= FALSE_LITERAL.
+  19: term ::= INTEGER_LITERAL.
+  20: term ::= STRING_LITERAL.
+  21: term ::= IDENTIFIER.
+  22: term ::= LPAREN arithmetic RPAREN.
+  23: expr ::= comparison.
+  24: arithmetic ::= unary.
+  25: unary ::= term.

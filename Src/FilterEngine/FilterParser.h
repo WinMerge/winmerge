@@ -18,3 +18,4 @@
 #define MINUS                           18
 #define STAR                            19
 #define SLASH                           20
+#define MOD                             21

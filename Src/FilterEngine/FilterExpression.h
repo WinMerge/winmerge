@@ -7,7 +7,7 @@
 
 class CDiffContext;
 class DIFFITEM;
-typedef std::variant<int, size_t, std::wstring, bool> ValueType;
+typedef std::variant<int64_t, std::wstring, bool> ValueType;
 
 struct ExprNode
 {
@@ -92,6 +92,19 @@ struct ArithmeticNode : public ExprNode
 	ValueType evaluate(const DIFFITEM& di) const override;
 };
 
+struct NegateNode : public ExprNode
+{
+	ExprNode* right;
+	NegateNode(ExprNode* r) : right(r)
+	{
+	}
+	~NegateNode()
+	{
+		delete right;
+	}
+	ValueType evaluate(const DIFFITEM& di) const override;
+};
+
 struct FieldNode : public ExprNode
 {
 	const CDiffContext* ctxt;
@@ -115,8 +128,8 @@ struct BoolLiteral : public ExprNode
 
 struct IntLiteral : public ExprNode
 {
-	int value;
-	IntLiteral(int v) : value(v)
+	int64_t value;
+	IntLiteral(int64_t v) : value(v)
 	{
 	}
 	inline ValueType evaluate(const DIFFITEM& di) const override

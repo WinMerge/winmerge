@@ -40,18 +40,9 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->evaluate(di);
 	auto rval = right->evaluate(di);
-	if (auto lvalInt = std::get_if<int>(&lval))
+	if (auto lvalInt = std::get_if<int64_t>(&lval))
 	{
-		if (auto rvalSizet = std::get_if<size_t>(&rval))
-		{
-			if (op == L"==") return *lvalInt == *rvalSizet;
-			if (op == L"!=") return *lvalInt != *rvalSizet;
-			if (op == L"<")  return *lvalInt <  *rvalSizet;
-			if (op == L"<=") return *lvalInt <= *rvalSizet;
-			if (op == L">")  return *lvalInt >  *rvalSizet;
-			if (op == L">=") return *lvalInt >= *rvalSizet;
-		}
-		if (auto rvalInt = std::get_if<int>(&rval))
+		if (auto rvalInt = std::get_if<int64_t>(&rval))
 		{
 			if (op == L"==") return *lvalInt == *rvalInt;
 			if (op == L"!=") return *lvalInt != *rvalInt;
@@ -59,27 +50,6 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 			if (op == L"<=") return *lvalInt <= *rvalInt;
 			if (op == L">")  return *lvalInt >  *rvalInt;
 			if (op == L">=") return *lvalInt >= *rvalInt;
-		}
-	}
-	if (auto lvalSizet = std::get_if<size_t>(&lval))
-	{
-		if (auto rvalSizet = std::get_if<size_t>(&rval))
-		{
-			if (op == L"==") return *lvalSizet == *rvalSizet;
-			if (op == L"!=") return *lvalSizet != *rvalSizet;
-			if (op == L"<")  return *lvalSizet <  *rvalSizet;
-			if (op == L"<=") return *lvalSizet <= *rvalSizet;
-			if (op == L">")  return *lvalSizet >  *rvalSizet;
-			if (op == L">=") return *lvalSizet >= *rvalSizet;
-		}
-		if (auto rvalInt = std::get_if<int>(&rval))
-		{
-			if (op == L"==") return *lvalSizet == *rvalInt;
-			if (op == L"!=") return *lvalSizet != *rvalInt;
-			if (op == L"<")  return *lvalSizet <  *rvalInt;
-			if (op == L"<=") return *lvalSizet <= *rvalInt;
-			if (op == L">")  return *lvalSizet >  *rvalInt;
-			if (op == L">=") return *lvalSizet >= *rvalInt;
 		}
 	}
 	else if (auto lvalString = std::get_if<std::wstring>(&lval))
@@ -106,38 +76,15 @@ ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->evaluate(di);
 	auto rval = right->evaluate(di);
-	if (auto lvalInt = std::get_if<int>(&lval))
+	if (auto lvalInt = std::get_if<int64_t>(&lval))
 	{
-		if (auto rvalInt = std::get_if<int>(&rval))
+		if (auto rvalInt = std::get_if<int64_t>(&rval))
 		{
 			if (op == L"+") return *lvalInt + *rvalInt;
 			if (op == L"-") return *lvalInt - *rvalInt;
 			if (op == L"*") return *lvalInt * *rvalInt;
 			if (op == L"/") return *lvalInt / *rvalInt;
-		}
-		if (auto rvalSizet = std::get_if<size_t>(&rval))
-		{
-			if (op == L"+") return *lvalInt + *rvalSizet;
-			if (op == L"-") return *lvalInt - *rvalSizet;
-			if (op == L"*") return *lvalInt * *rvalSizet;
-			if (op == L"/") return *lvalInt / *rvalSizet;
-		}
-	}
-	else if (auto lvalSizet = std::get_if<int>(&lval))
-	{
-		if (auto rvalInt = std::get_if<int>(&rval))
-		{
-			if (op == L"+") return *lvalSizet + *rvalInt;
-			if (op == L"-") return *lvalSizet - *rvalInt;
-			if (op == L"*") return *lvalSizet * *rvalInt;
-			if (op == L"/") return *lvalSizet / *rvalInt;
-		}
-		if (auto rvalSizet = std::get_if<size_t>(&rval))
-		{
-			if (op == L"+") return *lvalSizet + *rvalSizet;
-			if (op == L"-") return *lvalSizet - *rvalSizet;
-			if (op == L"*") return *lvalSizet * *rvalSizet;
-			if (op == L"/") return *lvalSizet / *rvalSizet;
+			if (op == L"%") return *lvalInt % *rvalInt;
 		}
 	}
 	else if (auto lvalString = std::get_if<std::wstring>(&lval))
@@ -158,9 +105,18 @@ ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
 	return false;
 }
 
+ValueType NegateNode::evaluate(const DIFFITEM& di) const
+{
+	auto rval = right->evaluate(di);
+	if (auto rvalInt = std::get_if<int64_t>(&rval))
+		return -*rvalInt;
+//		std::cerr << "Error: Invalid comparison between field '" << field << "' and value." << std::endl;
+	return false;
+}
+
 FieldNode::FieldNode(const CDiffContext* ctxt, const std::wstring& v) : ctxt(ctxt), field(v)
 {
-	int index;
+	int64_t index;
 	if (v.find(L"Left") == 0)
 		index = 0;
 	else if (v.find(L"Middle") == 0)
@@ -168,7 +124,7 @@ FieldNode::FieldNode(const CDiffContext* ctxt, const std::wstring& v) : ctxt(ctx
 	else if (v.find(L"Right") == 0)
 		index = ctxt->GetCompareDirs() < 3 ? 1 : 2;
 	if (v.find(L"Size") == v.length() - 4)
-		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) { return di.diffFileInfo[index].size; };
+		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) { return (int64_t)di.diffFileInfo[index].size; };
 	else if (v.find(L"Name") == v.length() - 4)
 		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) { return di.diffFileInfo[index].filename.get(); };
 	else

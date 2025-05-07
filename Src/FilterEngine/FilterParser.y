@@ -1,11 +1,11 @@
-%token AND OR NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL EQ NE LT LE GT GE LPAREN RPAREN PLUS MINUS STAR SLASH.
+%token AND OR NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL EQ NE LT LE GT GE LPAREN RPAREN PLUS MINUS STAR SLASH MOD.
 
 %left OR.
 %left AND.
 %left EQ NE LT LE GT GE.
 %right NOT.
-%left STAR SLASH.
 %left PLUS MINUS.
+%left STAR SLASH MOD.
 
 %token_type {YYSTYPE}
 %extra_argument { FilterParseContext* pCtx }
@@ -34,7 +34,11 @@ arithmetic(A) ::= arithmetic(B) PLUS arithmetic(C).  { A.node = new ArithmeticNo
 arithmetic(A) ::= arithmetic(B) MINUS arithmetic(C). { A.node = new ArithmeticNode(B.node, L"-", C.node); }
 arithmetic(A) ::= arithmetic(B) STAR arithmetic(C).  { A.node = new ArithmeticNode(B.node, L"*", C.node); }
 arithmetic(A) ::= arithmetic(B) SLASH arithmetic(C). { A.node = new ArithmeticNode(B.node, L"/", C.node); }
-arithmetic(A) ::= term(A).
+arithmetic(A) ::= arithmetic(B) MOD arithmetic(C).   { A.node = new ArithmeticNode(B.node, L"%", C.node); }
+arithmetic(A) ::= unary(A).
+
+unary(A) ::= MINUS unary(B). { A.node = new NegateNode(B.node); }
+unary(A) ::= term(A).
 
 term(A) ::= TRUE_LITERAL.       { A.node = new BoolLiteral(true); }
 term(A) ::= FALSE_LITERAL.      { A.node = new BoolLiteral(false); }

@@ -29,21 +29,7 @@ begin:
 						}
 	[0-9]+            { yylval.integer = std::stoi(std::wstring((const wchar_t*)yycursor, YYCURSOR - yycursor)); return INTEGER_LITERAL; }
 	"\"" {
-		const wchar_t* start = YYCURSOR;
-		std::wstring str;
-		while (*YYCURSOR != '\0') {
-			if (*YYCURSOR == '"') {
-				if (*(YYCURSOR + 1) == '"') {
-					str += '"';
-					YYCURSOR += 2;
-				} else {
-					++YYCURSOR;
-					break;
-				}
-			} else {
-				str += *YYCURSOR++;
-			}
-		}
+		std::wstring str = unescapeQuotes(YYCURSOR);
 		yylval.string = dupString(str.c_str());
 		return STRING_LITERAL;
 	}
@@ -59,6 +45,7 @@ begin:
 	"-"               { return MINUS; }
 	"*"               { return STAR; }
 	"/"               { return SLASH; }
+	"%"               { return MOD; }
 	$                 { return 0; }
 	.                 { lexerError(L"?????"); return 0; }
 	*/

@@ -10,7 +10,7 @@ class CDiffContext;
 struct YYSTYPE
 {
 	const wchar_t* string;
-	int integer;
+	int64_t integer;
 	bool boolean;
 	ExprNode* node;
 };
@@ -41,6 +41,32 @@ struct FilterLexer
 	}
 
 	int yylex();
+
+	std::wstring unescapeQuotes(wchar_t*& str)
+	{
+		std::wstring result;
+		const wchar_t* start = str;
+		while (*str != '\0')
+		{
+			if (*str == '"')
+			{
+				if (*(str + 1) == '"')
+				{
+					result += '"';
+					str += 2;
+				}
+				else
+				{
+					break;
+				}
+			}
+			else
+			{
+				result += *str++;
+			}
+		}
+		return result;
+	}
 
 	const wchar_t* dupString(const wchar_t* str)
 	{
