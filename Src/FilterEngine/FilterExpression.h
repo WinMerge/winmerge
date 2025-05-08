@@ -119,8 +119,12 @@ struct FunctionNode : public ExprNode
 	const CDiffContext* ctxt;
 	std::wstring functionName;
 	std::vector<ExprNode*>* args;
-	std::function<ValueType(const CDiffContext* ctxt, const DIFFITEM& di)> func;
+	std::function<ValueType(const CDiffContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args)> func;
 	FunctionNode(const CDiffContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args);
+	~FunctionNode()
+	{
+		delete args;
+	}
 	ValueType evaluate(const DIFFITEM& di) const override;
 };
 

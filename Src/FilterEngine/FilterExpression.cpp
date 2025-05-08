@@ -141,11 +141,27 @@ ValueType FieldNode::evaluate(const DIFFITEM& di) const
 FunctionNode::FunctionNode(const CDiffContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args)
 	: functionName(name), args(args)
 {
-
+	if (functionName == L"abs")
+	{
+		if (args->size() != 2)
+			throw std::runtime_error("abs function requires 2 arguments");
+		func = [](const CDiffContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
+			auto arg1 = (*args)[0]->evaluate(di);
+			auto arg2 = (*args)[0]->evaluate(di);
+			if (auto arg1Int = std::get_if<int64_t>(&arg1))
+				if (auto arg2Int = std::get_if<int64_t>(&arg2))
+					return abs(*arg1Int - *arg2Int);
+			throw std::runtime_error("abs function requires 2 integer arguments");
+		};
+	}
+	else
+	{
+//		std::cerr << "Error: Invalid field'" << field << "' and value." << std::endl;
+	}
 }
 
 ValueType FunctionNode::evaluate(const DIFFITEM& di) const
 {
-	return false;
+	return func(ctxt, di, args);
 }
 
