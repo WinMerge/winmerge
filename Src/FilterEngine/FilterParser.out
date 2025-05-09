@@ -1,16 +1,19 @@
 State 0:
-          filter_expr ::= * expr
-          expr ::= * expr OR expr
-          expr ::= * expr AND expr
-          expr ::= * NOT expr
-          expr ::= * comparison
-          expr ::= * LPAREN expr RPAREN
-          comparison ::= * arithmetic EQ arithmetic
-          comparison ::= * arithmetic NE arithmetic
-          comparison ::= * arithmetic LT arithmetic
-          comparison ::= * arithmetic LE arithmetic
-          comparison ::= * arithmetic GT arithmetic
-          comparison ::= * arithmetic GE arithmetic
+          filter_expr ::= * or_expr
+          or_expr ::= * or_expr OR and_expr
+          or_expr ::= * and_expr
+          and_expr ::= * and_expr AND not_expr
+          and_expr ::= * not_expr
+          not_expr ::= * NOT not_expr
+          not_expr ::= * cmp_expr
+          cmp_expr ::= * arithmetic EQ arithmetic
+          cmp_expr ::= * arithmetic NE arithmetic
+          cmp_expr ::= * arithmetic LT arithmetic
+          cmp_expr ::= * arithmetic LE arithmetic
+          cmp_expr ::= * arithmetic GT arithmetic
+          cmp_expr ::= * arithmetic GE arithmetic
+          cmp_expr ::= * arithmetic
+          cmp_expr ::= * LPAREN expr RPAREN
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
@@ -23,221 +26,252 @@ State 0:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
-                           NOT shift        4      
+                           NOT shift        6      
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        3      
+                        LPAREN shift        4      
                          MINUS shift        19     
                    filter_expr accept
-                          expr shift        32     
-                    comparison shift        32       /* because comparison==expr */
-                    arithmetic shift        21     
-                         unary shift        21       /* because unary==arithmetic */
-                          term shift        21       /* because term==unary */
-
-State 1:
-          expr ::= * expr OR expr
-          expr ::= * expr AND expr
-          expr ::= * NOT expr
-          expr ::= * comparison
-          expr ::= * LPAREN expr RPAREN
-          comparison ::= * arithmetic EQ arithmetic
-          comparison ::= * arithmetic NE arithmetic
-          comparison ::= * arithmetic LT arithmetic
-          comparison ::= * arithmetic LE arithmetic
-          comparison ::= * arithmetic GT arithmetic
-          comparison ::= * arithmetic GE arithmetic
-          arithmetic ::= * arithmetic PLUS arithmetic
-          arithmetic ::= * arithmetic MINUS arithmetic
-          arithmetic ::= * arithmetic STAR arithmetic
-          arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * arithmetic MOD arithmetic
-          arithmetic ::= * unary
-          unary ::= * MINUS unary
-          unary ::= * term
-          term ::= * TRUE_LITERAL
-          term ::= * FALSE_LITERAL
-          term ::= * INTEGER_LITERAL
-          term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
-          term ::= * IDENTIFIER LPAREN RPAREN
-          term ::= IDENTIFIER LPAREN * RPAREN
-          term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= IDENTIFIER LPAREN * expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
-          expr_list ::= * expr
-          expr_list ::= * expr_list COMMA expr
-
-                           NOT shift        4      
-                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        36     
-               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        3      
-                        RPAREN shift-reduce 22     term ::= IDENTIFIER LPAREN RPAREN
-                         MINUS shift        19     
-                          expr shift        35     
-                    comparison shift        35       /* because comparison==expr */
-                    arithmetic shift        21     
-                         unary shift        21       /* because unary==arithmetic */
-                          term shift        21       /* because term==unary */
-                     expr_list shift        34     
-
-State 2:
-          expr ::= * expr OR expr
-          expr ::= * expr AND expr
-          expr ::= * NOT expr
-          expr ::= * comparison
-          expr ::= * LPAREN expr RPAREN
-          comparison ::= * arithmetic EQ arithmetic
-          comparison ::= * arithmetic NE arithmetic
-          comparison ::= * arithmetic LT arithmetic
-          comparison ::= * arithmetic LE arithmetic
-          comparison ::= * arithmetic GT arithmetic
-          comparison ::= * arithmetic GE arithmetic
-          arithmetic ::= * arithmetic PLUS arithmetic
-          arithmetic ::= * arithmetic MINUS arithmetic
-          arithmetic ::= * arithmetic STAR arithmetic
-          arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * arithmetic MOD arithmetic
-          arithmetic ::= * unary
-          unary ::= * MINUS unary
-          unary ::= * term
-          term ::= * TRUE_LITERAL
-          term ::= * FALSE_LITERAL
-          term ::= * INTEGER_LITERAL
-          term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
-          term ::= * IDENTIFIER LPAREN RPAREN
-          term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
-          expr_list ::= expr_list COMMA * expr
-
-                           NOT shift        4      
-                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        36     
-               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        3      
-                         MINUS shift        19     
-                          expr shift        33     
-                    comparison shift        33       /* because comparison==expr */
-                    arithmetic shift        21     
-                         unary shift        21       /* because unary==arithmetic */
-                          term shift        21       /* because term==unary */
-
-State 3:
-          expr ::= * expr OR expr
-          expr ::= * expr AND expr
-          expr ::= * NOT expr
-          expr ::= * comparison
-          expr ::= * LPAREN expr RPAREN
-          expr ::= LPAREN * expr RPAREN
-          comparison ::= * arithmetic EQ arithmetic
-          comparison ::= * arithmetic NE arithmetic
-          comparison ::= * arithmetic LT arithmetic
-          comparison ::= * arithmetic LE arithmetic
-          comparison ::= * arithmetic GT arithmetic
-          comparison ::= * arithmetic GE arithmetic
-          arithmetic ::= * arithmetic PLUS arithmetic
-          arithmetic ::= * arithmetic MINUS arithmetic
-          arithmetic ::= * arithmetic STAR arithmetic
-          arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * arithmetic MOD arithmetic
-          arithmetic ::= * unary
-          unary ::= * MINUS unary
-          unary ::= * term
-          term ::= * TRUE_LITERAL
-          term ::= * FALSE_LITERAL
-          term ::= * INTEGER_LITERAL
-          term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
-          term ::= * IDENTIFIER LPAREN RPAREN
-          term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
-          term ::= LPAREN * arithmetic RPAREN
-
-                           NOT shift        4      
-                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        36     
-               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        3      
-                         MINUS shift        19     
-                          expr shift        31     
-                    comparison shift        31       /* because comparison==expr */
+                       or_expr shift        31     
+                      and_expr shift        34     
+                      not_expr shift        34       /* because not_expr==and_expr */
+                      cmp_expr shift        34       /* because cmp_expr==not_expr */
                     arithmetic shift        20     
                          unary shift        20       /* because unary==arithmetic */
                           term shift        20       /* because term==unary */
 
-State 4:
-          expr ::= * expr OR expr
-          expr ::= * expr AND expr
-          expr ::= * NOT expr
-          expr ::= NOT * expr
-          expr ::= * comparison
-          expr ::= * LPAREN expr RPAREN
-          comparison ::= * arithmetic EQ arithmetic
-          comparison ::= * arithmetic NE arithmetic
-          comparison ::= * arithmetic LT arithmetic
-          comparison ::= * arithmetic LE arithmetic
-          comparison ::= * arithmetic GT arithmetic
-          comparison ::= * arithmetic GE arithmetic
+State 1:
+          or_expr ::= * or_expr OR and_expr
+          or_expr ::= * and_expr
+          and_expr ::= * and_expr AND not_expr
+          and_expr ::= * not_expr
+          not_expr ::= * NOT not_expr
+          not_expr ::= * cmp_expr
+          cmp_expr ::= * arithmetic EQ arithmetic
+          cmp_expr ::= * arithmetic NE arithmetic
+          cmp_expr ::= * arithmetic LT arithmetic
+          cmp_expr ::= * arithmetic LE arithmetic
+          cmp_expr ::= * arithmetic GT arithmetic
+          cmp_expr ::= * arithmetic GE arithmetic
+          cmp_expr ::= * arithmetic
+          cmp_expr ::= * LPAREN expr RPAREN
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
           arithmetic ::= * arithmetic SLASH arithmetic
           arithmetic ::= * arithmetic MOD arithmetic
           arithmetic ::= * unary
+          expr ::= * or_expr
           unary ::= * MINUS unary
           unary ::= * term
           term ::= * TRUE_LITERAL
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
+          term ::= IDENTIFIER LPAREN * RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= IDENTIFIER LPAREN * expr_list RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
+          expr_list ::= * expr
+          expr_list ::= * expr_list COMMA expr
 
-                           NOT shift        4      
+                           NOT shift        6      
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        3      
+                        LPAREN shift        4      
+                        RPAREN shift-reduce 21     term ::= IDENTIFIER LPAREN RPAREN
                          MINUS shift        19     
-                          expr shift-reduce 3      expr ::= NOT expr
-                    comparison shift-reduce 3      expr ::= NOT expr  /* because comparison==expr */
-                    arithmetic shift        21     
-                         unary shift        21       /* because unary==arithmetic */
-                          term shift        21       /* because term==unary */
+                       or_expr shift        35     
+                      and_expr shift        34     
+                      not_expr shift        34       /* because not_expr==and_expr */
+                      cmp_expr shift        34       /* because cmp_expr==not_expr */
+                    arithmetic shift        20     
+                          expr shift-reduce 25     expr_list ::= expr
+                         unary shift        20       /* because unary==arithmetic */
+                          term shift        20       /* because term==unary */
+                     expr_list shift        30     
+
+State 2:
+          or_expr ::= * or_expr OR and_expr
+          or_expr ::= * and_expr
+          and_expr ::= * and_expr AND not_expr
+          and_expr ::= * not_expr
+          not_expr ::= * NOT not_expr
+          not_expr ::= * cmp_expr
+          cmp_expr ::= * arithmetic EQ arithmetic
+          cmp_expr ::= * arithmetic NE arithmetic
+          cmp_expr ::= * arithmetic LT arithmetic
+          cmp_expr ::= * arithmetic LE arithmetic
+          cmp_expr ::= * arithmetic GT arithmetic
+          cmp_expr ::= * arithmetic GE arithmetic
+          cmp_expr ::= * arithmetic
+          cmp_expr ::= * LPAREN expr RPAREN
+          arithmetic ::= * arithmetic PLUS arithmetic
+          arithmetic ::= * arithmetic MINUS arithmetic
+          arithmetic ::= * arithmetic STAR arithmetic
+          arithmetic ::= * arithmetic SLASH arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          expr ::= * or_expr
+          unary ::= * MINUS unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER LPAREN RPAREN
+          term ::= * IDENTIFIER LPAREN expr_list RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
+          term ::= LPAREN * expr RPAREN
+
+                           NOT shift        6      
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift        36     
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        4      
+                         MINUS shift        19     
+                       or_expr shift        35     
+                      and_expr shift        34     
+                      not_expr shift        34       /* because not_expr==and_expr */
+                      cmp_expr shift        34       /* because cmp_expr==not_expr */
+                    arithmetic shift        20     
+                          expr shift        32     
+                         unary shift        20       /* because unary==arithmetic */
+                          term shift        20       /* because term==unary */
+
+State 3:
+          or_expr ::= * or_expr OR and_expr
+          or_expr ::= * and_expr
+          and_expr ::= * and_expr AND not_expr
+          and_expr ::= * not_expr
+          not_expr ::= * NOT not_expr
+          not_expr ::= * cmp_expr
+          cmp_expr ::= * arithmetic EQ arithmetic
+          cmp_expr ::= * arithmetic NE arithmetic
+          cmp_expr ::= * arithmetic LT arithmetic
+          cmp_expr ::= * arithmetic LE arithmetic
+          cmp_expr ::= * arithmetic GT arithmetic
+          cmp_expr ::= * arithmetic GE arithmetic
+          cmp_expr ::= * arithmetic
+          cmp_expr ::= * LPAREN expr RPAREN
+          arithmetic ::= * arithmetic PLUS arithmetic
+          arithmetic ::= * arithmetic MINUS arithmetic
+          arithmetic ::= * arithmetic STAR arithmetic
+          arithmetic ::= * arithmetic SLASH arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          expr ::= * or_expr
+          unary ::= * MINUS unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER LPAREN RPAREN
+          term ::= * IDENTIFIER LPAREN expr_list RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
+          expr_list ::= expr_list COMMA * expr
+
+                           NOT shift        6      
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift        36     
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        4      
+                         MINUS shift        19     
+                       or_expr shift        35     
+                      and_expr shift        34     
+                      not_expr shift        34       /* because not_expr==and_expr */
+                      cmp_expr shift        34       /* because cmp_expr==not_expr */
+                    arithmetic shift        20     
+                          expr shift-reduce 26     expr_list ::= expr_list COMMA expr
+                         unary shift        20       /* because unary==arithmetic */
+                          term shift        20       /* because term==unary */
+
+State 4:
+          or_expr ::= * or_expr OR and_expr
+          or_expr ::= * and_expr
+          and_expr ::= * and_expr AND not_expr
+          and_expr ::= * not_expr
+          not_expr ::= * NOT not_expr
+          not_expr ::= * cmp_expr
+          cmp_expr ::= * arithmetic EQ arithmetic
+          cmp_expr ::= * arithmetic NE arithmetic
+          cmp_expr ::= * arithmetic LT arithmetic
+          cmp_expr ::= * arithmetic LE arithmetic
+          cmp_expr ::= * arithmetic GT arithmetic
+          cmp_expr ::= * arithmetic GE arithmetic
+          cmp_expr ::= * arithmetic
+          cmp_expr ::= * LPAREN expr RPAREN
+          cmp_expr ::= LPAREN * expr RPAREN
+          arithmetic ::= * arithmetic PLUS arithmetic
+          arithmetic ::= * arithmetic MINUS arithmetic
+          arithmetic ::= * arithmetic STAR arithmetic
+          arithmetic ::= * arithmetic SLASH arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          expr ::= * or_expr
+          unary ::= * MINUS unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER LPAREN RPAREN
+          term ::= * IDENTIFIER LPAREN expr_list RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
+          term ::= LPAREN * expr RPAREN
+
+                           NOT shift        6      
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift        36     
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        4      
+                         MINUS shift        19     
+                       or_expr shift        35     
+                      and_expr shift        34     
+                      not_expr shift        34       /* because not_expr==and_expr */
+                      cmp_expr shift        34       /* because cmp_expr==not_expr */
+                    arithmetic shift        20     
+                          expr shift        33     
+                         unary shift        20       /* because unary==arithmetic */
+                          term shift        20       /* because term==unary */
 
 State 5:
-          expr ::= * expr OR expr
-          expr ::= * expr AND expr
-          expr ::= expr AND * expr
-          expr ::= * NOT expr
-          expr ::= * comparison
-          expr ::= * LPAREN expr RPAREN
-          comparison ::= * arithmetic EQ arithmetic
-          comparison ::= * arithmetic NE arithmetic
-          comparison ::= * arithmetic LT arithmetic
-          comparison ::= * arithmetic LE arithmetic
-          comparison ::= * arithmetic GT arithmetic
-          comparison ::= * arithmetic GE arithmetic
+          or_expr ::= or_expr OR * and_expr
+          and_expr ::= * and_expr AND not_expr
+          and_expr ::= * not_expr
+          not_expr ::= * NOT not_expr
+          not_expr ::= * cmp_expr
+          cmp_expr ::= * arithmetic EQ arithmetic
+          cmp_expr ::= * arithmetic NE arithmetic
+          cmp_expr ::= * arithmetic LT arithmetic
+          cmp_expr ::= * arithmetic LE arithmetic
+          cmp_expr ::= * arithmetic GT arithmetic
+          cmp_expr ::= * arithmetic GE arithmetic
+          cmp_expr ::= * arithmetic
+          cmp_expr ::= * LPAREN expr RPAREN
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
@@ -250,38 +284,38 @@ State 5:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
-                           NOT shift        4      
+                           NOT shift        6      
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        3      
+                        LPAREN shift        4      
                          MINUS shift        19     
-                          expr shift-reduce 2      expr ::= expr AND expr
-                    comparison shift-reduce 2      expr ::= expr AND expr  /* because comparison==expr */
-                    arithmetic shift        21     
-                         unary shift        21       /* because unary==arithmetic */
-                          term shift        21       /* because term==unary */
+                      and_expr shift        37     
+                      not_expr shift        37       /* because not_expr==and_expr */
+                      cmp_expr shift        37       /* because cmp_expr==not_expr */
+                    arithmetic shift        20     
+                         unary shift        20       /* because unary==arithmetic */
+                          term shift        20       /* because term==unary */
 
 State 6:
-          expr ::= * expr OR expr
-          expr ::= expr OR * expr
-          expr ::= * expr AND expr
-          expr ::= * NOT expr
-          expr ::= * comparison
-          expr ::= * LPAREN expr RPAREN
-          comparison ::= * arithmetic EQ arithmetic
-          comparison ::= * arithmetic NE arithmetic
-          comparison ::= * arithmetic LT arithmetic
-          comparison ::= * arithmetic LE arithmetic
-          comparison ::= * arithmetic GT arithmetic
-          comparison ::= * arithmetic GE arithmetic
+          not_expr ::= * NOT not_expr
+          not_expr ::= NOT * not_expr
+          not_expr ::= * cmp_expr
+          cmp_expr ::= * arithmetic EQ arithmetic
+          cmp_expr ::= * arithmetic NE arithmetic
+          cmp_expr ::= * arithmetic LT arithmetic
+          cmp_expr ::= * arithmetic LE arithmetic
+          cmp_expr ::= * arithmetic GT arithmetic
+          cmp_expr ::= * arithmetic GE arithmetic
+          cmp_expr ::= * arithmetic
+          cmp_expr ::= * LPAREN expr RPAREN
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
@@ -294,87 +328,100 @@ State 6:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
-                           NOT shift        4      
+                           NOT shift        6      
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        3      
+                        LPAREN shift        4      
                          MINUS shift        19     
-                          expr shift        37     
-                    comparison shift        37       /* because comparison==expr */
+                      not_expr shift-reduce 3      not_expr ::= NOT not_expr
+                      cmp_expr shift-reduce 3      not_expr ::= NOT not_expr  /* because cmp_expr==not_expr */
+                    arithmetic shift        20     
+                         unary shift        20       /* because unary==arithmetic */
+                          term shift        20       /* because term==unary */
+
+State 7:
+          and_expr ::= and_expr AND * not_expr
+          not_expr ::= * NOT not_expr
+          not_expr ::= * cmp_expr
+          cmp_expr ::= * arithmetic EQ arithmetic
+          cmp_expr ::= * arithmetic NE arithmetic
+          cmp_expr ::= * arithmetic LT arithmetic
+          cmp_expr ::= * arithmetic LE arithmetic
+          cmp_expr ::= * arithmetic GT arithmetic
+          cmp_expr ::= * arithmetic GE arithmetic
+          cmp_expr ::= * arithmetic
+          cmp_expr ::= * LPAREN expr RPAREN
+          arithmetic ::= * arithmetic PLUS arithmetic
+          arithmetic ::= * arithmetic MINUS arithmetic
+          arithmetic ::= * arithmetic STAR arithmetic
+          arithmetic ::= * arithmetic SLASH arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER LPAREN RPAREN
+          term ::= * IDENTIFIER LPAREN expr_list RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
+
+                           NOT shift        6      
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift        36     
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        4      
+                         MINUS shift        19     
+                      not_expr shift-reduce 2      and_expr ::= and_expr AND not_expr
+                      cmp_expr shift-reduce 2      and_expr ::= and_expr AND not_expr  /* because cmp_expr==not_expr */
+                    arithmetic shift        20     
+                         unary shift        20       /* because unary==arithmetic */
+                          term shift        20       /* because term==unary */
+
+State 8:
+          cmp_expr ::= arithmetic GE * arithmetic
+          arithmetic ::= * arithmetic PLUS arithmetic
+          arithmetic ::= * arithmetic MINUS arithmetic
+          arithmetic ::= * arithmetic STAR arithmetic
+          arithmetic ::= * arithmetic SLASH arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER LPAREN RPAREN
+          term ::= * IDENTIFIER LPAREN expr_list RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
+
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift        36     
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        2      
+                         MINUS shift        19     
                     arithmetic shift        21     
                          unary shift        21       /* because unary==arithmetic */
                           term shift        21       /* because term==unary */
 
-State 7:
-          comparison ::= arithmetic GE * arithmetic
-          arithmetic ::= * arithmetic PLUS arithmetic
-          arithmetic ::= * arithmetic MINUS arithmetic
-          arithmetic ::= * arithmetic STAR arithmetic
-          arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * arithmetic MOD arithmetic
-          arithmetic ::= * unary
-          unary ::= * MINUS unary
-          unary ::= * term
-          term ::= * TRUE_LITERAL
-          term ::= * FALSE_LITERAL
-          term ::= * INTEGER_LITERAL
-          term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
-          term ::= * IDENTIFIER LPAREN RPAREN
-          term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
-
-                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        36     
-               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
-                         MINUS shift        19     
-                    arithmetic shift        23     
-                         unary shift        23       /* because unary==arithmetic */
-                          term shift        23       /* because term==unary */
-
-State 8:
-          comparison ::= arithmetic GT * arithmetic
-          arithmetic ::= * arithmetic PLUS arithmetic
-          arithmetic ::= * arithmetic MINUS arithmetic
-          arithmetic ::= * arithmetic STAR arithmetic
-          arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * arithmetic MOD arithmetic
-          arithmetic ::= * unary
-          unary ::= * MINUS unary
-          unary ::= * term
-          term ::= * TRUE_LITERAL
-          term ::= * FALSE_LITERAL
-          term ::= * INTEGER_LITERAL
-          term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
-          term ::= * IDENTIFIER LPAREN RPAREN
-          term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
-
-                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        36     
-               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
-                         MINUS shift        19     
-                    arithmetic shift        24     
-                         unary shift        24       /* because unary==arithmetic */
-                          term shift        24       /* because term==unary */
-
 State 9:
-          comparison ::= arithmetic LE * arithmetic
+          cmp_expr ::= arithmetic GT * arithmetic
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
@@ -387,84 +434,24 @@ State 9:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
-                         MINUS shift        19     
-                    arithmetic shift        25     
-                         unary shift        25       /* because unary==arithmetic */
-                          term shift        25       /* because term==unary */
-
-State 10:
-          comparison ::= arithmetic LT * arithmetic
-          arithmetic ::= * arithmetic PLUS arithmetic
-          arithmetic ::= * arithmetic MINUS arithmetic
-          arithmetic ::= * arithmetic STAR arithmetic
-          arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * arithmetic MOD arithmetic
-          arithmetic ::= * unary
-          unary ::= * MINUS unary
-          unary ::= * term
-          term ::= * TRUE_LITERAL
-          term ::= * FALSE_LITERAL
-          term ::= * INTEGER_LITERAL
-          term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
-          term ::= * IDENTIFIER LPAREN RPAREN
-          term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
-
-                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        36     
-               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
-                         MINUS shift        19     
-                    arithmetic shift        26     
-                         unary shift        26       /* because unary==arithmetic */
-                          term shift        26       /* because term==unary */
-
-State 11:
-          arithmetic ::= * arithmetic PLUS arithmetic
-          arithmetic ::= * arithmetic MINUS arithmetic
-          arithmetic ::= * arithmetic STAR arithmetic
-          arithmetic ::= * arithmetic SLASH arithmetic
-          arithmetic ::= * arithmetic MOD arithmetic
-          arithmetic ::= * unary
-          unary ::= * MINUS unary
-          unary ::= * term
-          term ::= * TRUE_LITERAL
-          term ::= * FALSE_LITERAL
-          term ::= * INTEGER_LITERAL
-          term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
-          term ::= * IDENTIFIER LPAREN RPAREN
-          term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
-          term ::= LPAREN * arithmetic RPAREN
-
-                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
-                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        36     
-               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
-                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
                     arithmetic shift        22     
                          unary shift        22       /* because unary==arithmetic */
                           term shift        22       /* because term==unary */
 
-State 12:
-          comparison ::= arithmetic NE * arithmetic
+State 10:
+          cmp_expr ::= arithmetic LE * arithmetic
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
@@ -477,21 +464,81 @@ State 12:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
-                    arithmetic shift        27     
-                         unary shift        27       /* because unary==arithmetic */
-                          term shift        27       /* because term==unary */
+                    arithmetic shift        23     
+                         unary shift        23       /* because unary==arithmetic */
+                          term shift        23       /* because term==unary */
+
+State 11:
+          cmp_expr ::= arithmetic LT * arithmetic
+          arithmetic ::= * arithmetic PLUS arithmetic
+          arithmetic ::= * arithmetic MINUS arithmetic
+          arithmetic ::= * arithmetic STAR arithmetic
+          arithmetic ::= * arithmetic SLASH arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER LPAREN RPAREN
+          term ::= * IDENTIFIER LPAREN expr_list RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
+
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift        36     
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        2      
+                         MINUS shift        19     
+                    arithmetic shift        24     
+                         unary shift        24       /* because unary==arithmetic */
+                          term shift        24       /* because term==unary */
+
+State 12:
+          cmp_expr ::= arithmetic NE * arithmetic
+          arithmetic ::= * arithmetic PLUS arithmetic
+          arithmetic ::= * arithmetic MINUS arithmetic
+          arithmetic ::= * arithmetic STAR arithmetic
+          arithmetic ::= * arithmetic SLASH arithmetic
+          arithmetic ::= * arithmetic MOD arithmetic
+          arithmetic ::= * unary
+          unary ::= * MINUS unary
+          unary ::= * term
+          term ::= * TRUE_LITERAL
+          term ::= * FALSE_LITERAL
+          term ::= * INTEGER_LITERAL
+          term ::= * STRING_LITERAL
+          term ::= * IDENTIFIER LPAREN RPAREN
+          term ::= * IDENTIFIER LPAREN expr_list RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
+
+                  TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
+                 FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
+                    IDENTIFIER shift        36     
+               INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
+                STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
+                        LPAREN shift        2      
+                         MINUS shift        19     
+                    arithmetic shift        25     
+                         unary shift        25       /* because unary==arithmetic */
+                          term shift        25       /* because term==unary */
 
 State 13:
           arithmetic ::= * arithmetic PLUS arithmetic
@@ -507,17 +554,17 @@ State 13:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
                     arithmetic shift-reduce 15     arithmetic ::= arithmetic MOD arithmetic
                          unary shift-reduce 15     arithmetic ::= arithmetic MOD arithmetic  /* because unary==arithmetic */
@@ -537,17 +584,17 @@ State 14:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
                     arithmetic shift-reduce 14     arithmetic ::= arithmetic SLASH arithmetic
                          unary shift-reduce 14     arithmetic ::= arithmetic SLASH arithmetic  /* because unary==arithmetic */
@@ -567,17 +614,17 @@ State 15:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
                     arithmetic shift-reduce 13     arithmetic ::= arithmetic STAR arithmetic
                          unary shift-reduce 13     arithmetic ::= arithmetic STAR arithmetic  /* because unary==arithmetic */
@@ -597,21 +644,21 @@ State 16:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
-                    arithmetic shift        29     
-                         unary shift        29       /* because unary==arithmetic */
-                          term shift        29       /* because term==unary */
+                    arithmetic shift        28     
+                         unary shift        28       /* because unary==arithmetic */
+                          term shift        28       /* because term==unary */
 
 State 17:
           arithmetic ::= * arithmetic PLUS arithmetic
@@ -627,24 +674,24 @@ State 17:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
-                    arithmetic shift        30     
-                         unary shift        30       /* because unary==arithmetic */
-                          term shift        30       /* because term==unary */
+                    arithmetic shift        29     
+                         unary shift        29       /* because unary==arithmetic */
+                          term shift        29       /* because term==unary */
 
 State 18:
-          comparison ::= arithmetic EQ * arithmetic
+          cmp_expr ::= arithmetic EQ * arithmetic
           arithmetic ::= * arithmetic PLUS arithmetic
           arithmetic ::= * arithmetic MINUS arithmetic
           arithmetic ::= * arithmetic STAR arithmetic
@@ -657,21 +704,21 @@ State 18:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
-                    arithmetic shift        28     
-                         unary shift        28       /* because unary==arithmetic */
-                          term shift        28       /* because term==unary */
+                    arithmetic shift        27     
+                         unary shift        27       /* because unary==arithmetic */
+                          term shift        27       /* because term==unary */
 
 State 19:
           unary ::= * MINUS unary
@@ -681,90 +728,80 @@ State 19:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
-          term ::= * IDENTIFIER
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
-          term ::= * LPAREN arithmetic RPAREN
+          term ::= * IDENTIFIER
+          term ::= * LPAREN expr RPAREN
 
                   TRUE_LITERAL shift-reduce 17     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 18     term ::= FALSE_LITERAL
                     IDENTIFIER shift        36     
                INTEGER_LITERAL shift-reduce 19     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 20     term ::= STRING_LITERAL
-                        LPAREN shift        11     
+                        LPAREN shift        2      
                          MINUS shift        19     
                          unary shift-reduce 16     unary ::= MINUS unary
                           term shift-reduce 16     unary ::= MINUS unary  /* because term==unary */
 
 State 20:
-          comparison ::= arithmetic * EQ arithmetic
-          comparison ::= arithmetic * NE arithmetic
-          comparison ::= arithmetic * LT arithmetic
-          comparison ::= arithmetic * LE arithmetic
-          comparison ::= arithmetic * GT arithmetic
-          comparison ::= arithmetic * GE arithmetic
+          cmp_expr ::= arithmetic * EQ arithmetic
+          cmp_expr ::= arithmetic * NE arithmetic
+          cmp_expr ::= arithmetic * LT arithmetic
+          cmp_expr ::= arithmetic * LE arithmetic
+          cmp_expr ::= arithmetic * GT arithmetic
+          cmp_expr ::= arithmetic * GE arithmetic
+     (30) cmp_expr ::= arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
           arithmetic ::= arithmetic * MOD arithmetic
-          term ::= LPAREN arithmetic * RPAREN
 
                             EQ shift        18     
                             NE shift        12     
-                            LT shift        10     
-                            LE shift        9      
-                            GT shift        8      
-                            GE shift        7      
-                        RPAREN shift-reduce 24     term ::= LPAREN arithmetic RPAREN
+                            LT shift        11     
+                            LE shift        10     
+                            GT shift        9      
+                            GE shift        8      
                           PLUS shift        17     
                          MINUS shift        16     
                           STAR shift        15     
                          SLASH shift        14     
                            MOD shift        13     
+                     {default} reduce       30     cmp_expr ::= arithmetic
 
 State 21:
-          comparison ::= arithmetic * EQ arithmetic
-          comparison ::= arithmetic * NE arithmetic
-          comparison ::= arithmetic * LT arithmetic
-          comparison ::= arithmetic * LE arithmetic
-          comparison ::= arithmetic * GT arithmetic
-          comparison ::= arithmetic * GE arithmetic
+      (9) cmp_expr ::= arithmetic GE arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
           arithmetic ::= arithmetic * MOD arithmetic
 
-                            EQ shift        18     
-                            NE shift        12     
-                            LT shift        10     
-                            LE shift        9      
-                            GT shift        8      
-                            GE shift        7      
                           PLUS shift        17     
                          MINUS shift        16     
                           STAR shift        15     
                          SLASH shift        14     
                            MOD shift        13     
+                     {default} reduce       9      cmp_expr ::= arithmetic GE arithmetic
 
 State 22:
+      (8) cmp_expr ::= arithmetic GT arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
           arithmetic ::= arithmetic * SLASH arithmetic
           arithmetic ::= arithmetic * MOD arithmetic
-          term ::= LPAREN arithmetic * RPAREN
 
-                        RPAREN shift-reduce 24     term ::= LPAREN arithmetic RPAREN
                           PLUS shift        17     
                          MINUS shift        16     
                           STAR shift        15     
                          SLASH shift        14     
                            MOD shift        13     
+                     {default} reduce       8      cmp_expr ::= arithmetic GT arithmetic
 
 State 23:
-     (10) comparison ::= arithmetic GE arithmetic *
+      (7) cmp_expr ::= arithmetic LE arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
@@ -776,10 +813,10 @@ State 23:
                           STAR shift        15     
                          SLASH shift        14     
                            MOD shift        13     
-                     {default} reduce       10     comparison ::= arithmetic GE arithmetic
+                     {default} reduce       7      cmp_expr ::= arithmetic LE arithmetic
 
 State 24:
-      (9) comparison ::= arithmetic GT arithmetic *
+      (6) cmp_expr ::= arithmetic LT arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
@@ -791,10 +828,10 @@ State 24:
                           STAR shift        15     
                          SLASH shift        14     
                            MOD shift        13     
-                     {default} reduce       9      comparison ::= arithmetic GT arithmetic
+                     {default} reduce       6      cmp_expr ::= arithmetic LT arithmetic
 
 State 25:
-      (8) comparison ::= arithmetic LE arithmetic *
+      (5) cmp_expr ::= arithmetic NE arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
@@ -806,25 +843,26 @@ State 25:
                           STAR shift        15     
                          SLASH shift        14     
                            MOD shift        13     
-                     {default} reduce       8      comparison ::= arithmetic LE arithmetic
+                     {default} reduce       5      cmp_expr ::= arithmetic NE arithmetic
 
 State 26:
-      (7) comparison ::= arithmetic LT arithmetic *
-          arithmetic ::= arithmetic * PLUS arithmetic
-          arithmetic ::= arithmetic * MINUS arithmetic
-          arithmetic ::= arithmetic * STAR arithmetic
-          arithmetic ::= arithmetic * SLASH arithmetic
-          arithmetic ::= arithmetic * MOD arithmetic
+     (10) cmp_expr ::= LPAREN expr RPAREN *
+     (24) term ::= LPAREN expr RPAREN *
 
-                          PLUS shift        17     
-                         MINUS shift        16     
-                          STAR shift        15     
-                         SLASH shift        14     
-                           MOD shift        13     
-                     {default} reduce       7      comparison ::= arithmetic LT arithmetic
+                             $ reduce       10     cmp_expr ::= LPAREN expr RPAREN
+                             $ reduce       24      ** Parsing conflict **
+                           AND reduce       10     cmp_expr ::= LPAREN expr RPAREN
+                           AND reduce       24      ** Parsing conflict **
+                            OR reduce       10     cmp_expr ::= LPAREN expr RPAREN
+                            OR reduce       24      ** Parsing conflict **
+                        RPAREN reduce       10     cmp_expr ::= LPAREN expr RPAREN
+                        RPAREN reduce       24      ** Parsing conflict **
+                         COMMA reduce       10     cmp_expr ::= LPAREN expr RPAREN
+                         COMMA reduce       24      ** Parsing conflict **
+                     {default} reduce       24     term ::= LPAREN expr RPAREN
 
 State 27:
-      (6) comparison ::= arithmetic NE arithmetic *
+      (4) cmp_expr ::= arithmetic EQ arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
@@ -836,24 +874,9 @@ State 27:
                           STAR shift        15     
                          SLASH shift        14     
                            MOD shift        13     
-                     {default} reduce       6      comparison ::= arithmetic NE arithmetic
+                     {default} reduce       4      cmp_expr ::= arithmetic EQ arithmetic
 
 State 28:
-      (5) comparison ::= arithmetic EQ arithmetic *
-          arithmetic ::= arithmetic * PLUS arithmetic
-          arithmetic ::= arithmetic * MINUS arithmetic
-          arithmetic ::= arithmetic * STAR arithmetic
-          arithmetic ::= arithmetic * SLASH arithmetic
-          arithmetic ::= arithmetic * MOD arithmetic
-
-                          PLUS shift        17     
-                         MINUS shift        16     
-                          STAR shift        15     
-                         SLASH shift        14     
-                           MOD shift        13     
-                     {default} reduce       5      comparison ::= arithmetic EQ arithmetic
-
-State 29:
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
      (12) arithmetic ::= arithmetic MINUS arithmetic *
@@ -866,7 +889,7 @@ State 29:
                            MOD shift        13     
                      {default} reduce       12     arithmetic ::= arithmetic MINUS arithmetic
 
-State 30:
+State 29:
           arithmetic ::= arithmetic * PLUS arithmetic
      (11) arithmetic ::= arithmetic PLUS arithmetic *
           arithmetic ::= arithmetic * MINUS arithmetic
@@ -879,64 +902,59 @@ State 30:
                            MOD shift        13     
                      {default} reduce       11     arithmetic ::= arithmetic PLUS arithmetic
 
-State 31:
-          expr ::= expr * OR expr
-          expr ::= expr * AND expr
-          expr ::= LPAREN expr * RPAREN
-
-                           AND shift        5      
-                            OR shift        6      
-                        RPAREN shift-reduce 4      expr ::= LPAREN expr RPAREN
-
-State 32:
-      (0) filter_expr ::= expr *
-          expr ::= expr * OR expr
-          expr ::= expr * AND expr
-
-                             $ reduce       0      filter_expr ::= expr
-                           AND shift        5      
-                            OR shift        6      
-
-State 33:
-          expr ::= expr * OR expr
-          expr ::= expr * AND expr
-     (26) expr_list ::= expr_list COMMA expr *
-
-                           AND shift        5      
-                            OR shift        6      
-                     {default} reduce       26     expr_list ::= expr_list COMMA expr
-
-State 34:
+State 30:
           term ::= IDENTIFIER LPAREN expr_list * RPAREN
           expr_list ::= expr_list * COMMA expr
 
-                        RPAREN shift-reduce 23     term ::= IDENTIFIER LPAREN expr_list RPAREN
-                         COMMA shift        2      
+                        RPAREN shift-reduce 22     term ::= IDENTIFIER LPAREN expr_list RPAREN
+                         COMMA shift        3      
+
+State 31:
+      (0) filter_expr ::= or_expr *
+          or_expr ::= or_expr * OR and_expr
+
+                             $ reduce       0      filter_expr ::= or_expr
+                            OR shift        5      
+
+State 32:
+          term ::= LPAREN expr * RPAREN
+
+                        RPAREN shift-reduce 24     term ::= LPAREN expr RPAREN
+
+State 33:
+          cmp_expr ::= LPAREN expr * RPAREN
+          term ::= LPAREN expr * RPAREN
+
+                        RPAREN shift        26     
+
+State 34:
+     (27) or_expr ::= and_expr *
+          and_expr ::= and_expr * AND not_expr
+
+                           AND shift        7      
+                     {default} reduce       27     or_expr ::= and_expr
 
 State 35:
-          expr ::= expr * OR expr
-          expr ::= expr * AND expr
-     (25) expr_list ::= expr *
+          or_expr ::= or_expr * OR and_expr
+     (32) expr ::= or_expr *
 
-                           AND shift        5      
-                            OR shift        6      
-                     {default} reduce       25     expr_list ::= expr
+                            OR shift        5      
+                     {default} reduce       32     expr ::= or_expr
 
 State 36:
-     (21) term ::= IDENTIFIER *
           term ::= IDENTIFIER * LPAREN RPAREN
           term ::= IDENTIFIER * LPAREN expr_list RPAREN
+     (23) term ::= IDENTIFIER *
 
                         LPAREN shift        1      
-                     {default} reduce       21     term ::= IDENTIFIER
+                     {default} reduce       23     term ::= IDENTIFIER
 
 State 37:
-          expr ::= expr * OR expr
-      (1) expr ::= expr OR expr *
-          expr ::= expr * AND expr
+      (1) or_expr ::= or_expr OR and_expr *
+          and_expr ::= and_expr * AND not_expr
 
-                           AND shift        5      
-                     {default} reduce       1      expr ::= expr OR expr
+                           AND shift        7      
+                     {default} reduce       1      or_expr ::= or_expr OR and_expr
 
 ----------------------------------------------------
 Symbols:
@@ -966,12 +984,15 @@ The first-set of non-terminals is shown after the name.
    21: MOD (precedence=6)
    22: COMMA
    23: filter_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   24: expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   25: comparison: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   26: arithmetic: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   27: unary: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   28: term: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
-   29: expr_list: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   24: or_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   25: and_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   26: not_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   27: cmp_expr: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   28: arithmetic: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   29: expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   30: unary: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+   31: term: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
+   32: expr_list: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
 ----------------------------------------------------
 Syntax-only Symbols:
 The following symbols never carry semantic content.
@@ -980,17 +1001,17 @@ $ AND OR NOT TRUE_LITERAL FALSE_LITERAL EQ NE LT LE GT GE LPAREN RPAREN PLUS
 MINUS STAR SLASH MOD COMMA filter_expr
 ----------------------------------------------------
 Rules:
-   0: filter_expr ::= expr.
-   1: expr ::= expr OR expr. [OR precedence=1]
-   2: expr ::= expr AND expr. [AND precedence=2]
-   3: expr ::= NOT expr. [NOT precedence=4]
-   4: expr ::= LPAREN expr RPAREN.
-   5: comparison ::= arithmetic EQ arithmetic. [EQ precedence=3]
-   6: comparison ::= arithmetic NE arithmetic. [NE precedence=3]
-   7: comparison ::= arithmetic LT arithmetic. [LT precedence=3]
-   8: comparison ::= arithmetic LE arithmetic. [LE precedence=3]
-   9: comparison ::= arithmetic GT arithmetic. [GT precedence=3]
-  10: comparison ::= arithmetic GE arithmetic. [GE precedence=3]
+   0: filter_expr ::= or_expr.
+   1: or_expr ::= or_expr OR and_expr. [OR precedence=1]
+   2: and_expr ::= and_expr AND not_expr. [AND precedence=2]
+   3: not_expr ::= NOT not_expr. [NOT precedence=4]
+   4: cmp_expr ::= arithmetic EQ arithmetic. [EQ precedence=3]
+   5: cmp_expr ::= arithmetic NE arithmetic. [NE precedence=3]
+   6: cmp_expr ::= arithmetic LT arithmetic. [LT precedence=3]
+   7: cmp_expr ::= arithmetic LE arithmetic. [LE precedence=3]
+   8: cmp_expr ::= arithmetic GT arithmetic. [GT precedence=3]
+   9: cmp_expr ::= arithmetic GE arithmetic. [GE precedence=3]
+  10: cmp_expr ::= LPAREN expr RPAREN.
   11: arithmetic ::= arithmetic PLUS arithmetic. [PLUS precedence=5]
   12: arithmetic ::= arithmetic MINUS arithmetic. [MINUS precedence=5]
   13: arithmetic ::= arithmetic STAR arithmetic. [STAR precedence=6]
@@ -1001,12 +1022,16 @@ Rules:
   18: term ::= FALSE_LITERAL.
   19: term ::= INTEGER_LITERAL.
   20: term ::= STRING_LITERAL.
-  21: term ::= IDENTIFIER.
-  22: term ::= IDENTIFIER LPAREN RPAREN.
-  23: term ::= IDENTIFIER LPAREN expr_list RPAREN.
-  24: term ::= LPAREN arithmetic RPAREN.
+  21: term ::= IDENTIFIER LPAREN RPAREN.
+  22: term ::= IDENTIFIER LPAREN expr_list RPAREN.
+  23: term ::= IDENTIFIER.
+  24: term ::= LPAREN expr RPAREN.
   25: expr_list ::= expr.
   26: expr_list ::= expr_list COMMA expr.
-  27: expr ::= comparison.
-  28: arithmetic ::= unary.
-  29: unary ::= term.
+  27: or_expr ::= and_expr.
+  28: and_expr ::= not_expr.
+  29: not_expr ::= cmp_expr.
+  30: cmp_expr ::= arithmetic.
+  31: arithmetic ::= unary.
+  32: expr ::= or_expr.
+  33: unary ::= term.

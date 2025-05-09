@@ -121,7 +121,7 @@
 #endif
 /************* Begin control #defines *****************************************/
 #define YYCODETYPE unsigned char
-#define YYNOCODE 30
+#define YYNOCODE 33
 #define YYACTIONTYPE unsigned char
 #define ParseTOKENTYPE YYSTYPE
 typedef union {
@@ -145,17 +145,17 @@ typedef union {
 #define ParseCTX_FETCH
 #define ParseCTX_STORE
 #define YYNSTATE             38
-#define YYNRULE              30
+#define YYNRULE              34
 #define YYNRULE_WITH_ACTION  27
 #define YYNTOKEN             23
 #define YY_MAX_SHIFT         37
-#define YY_MIN_SHIFTREDUCE   55
-#define YY_MAX_SHIFTREDUCE   84
-#define YY_ERROR_ACTION      85
-#define YY_ACCEPT_ACTION     86
-#define YY_NO_ACTION         87
-#define YY_MIN_REDUCE        88
-#define YY_MAX_REDUCE        117
+#define YY_MIN_SHIFTREDUCE   57
+#define YY_MAX_SHIFTREDUCE   90
+#define YY_ERROR_ACTION      91
+#define YY_ACCEPT_ACTION     92
+#define YY_NO_ACTION         93
+#define YY_MIN_REDUCE        94
+#define YY_MAX_REDUCE        127
 #define YY_MIN_DSTRCTR       0
 #define YY_MAX_DSTRCTR       0
 /************* End control #defines *******************************************/
@@ -240,68 +240,68 @@ typedef union {
 **  yy_default[]       Default action for each state.
 **
 *********** Begin parsing tables **********************************************/
-#define YY_ACTTAB_COUNT (162)
+#define YY_ACTTAB_COUNT (163)
 static const YYACTIONTYPE yy_action[] = {
- /*     0 */    86,   32,   32,   21,   21,   21,   23,   23,   23,   18,
- /*    10 */    12,   10,    9,    8,    7,    5,   79,   17,   16,   15,
- /*    20 */    14,   13,   18,   12,   10,    9,    8,    7,  104,  104,
- /*    30 */    17,   16,   15,   14,   13,    4,   72,   73,   36,   74,
- /*    40 */    75,    4,   72,   73,   36,   74,   75,    3,   77,   78,
- /*    50 */    19,    1,   87,    3,   87,    2,   19,   87,   72,   73,
- /*    60 */    36,   74,   75,   35,   35,   21,   21,   21,   34,   11,
- /*    70 */    87,   87,   19,   79,   17,   16,   15,   14,   13,   15,
- /*    80 */    14,   13,   87,   33,   33,   21,   21,   21,   31,   31,
- /*    90 */    20,   20,   20,   91,   91,   21,   21,   21,   90,   90,
- /*   100 */    21,   21,   21,   37,   37,   21,   21,   21,   17,   16,
- /*   110 */    15,   14,   13,   24,   24,   24,   25,   25,   25,   26,
- /*   120 */    26,   26,   22,   22,   22,   27,   27,   27,  103,  103,
- /*   130 */   103,  102,  102,  102,  101,  101,  101,   29,   29,   29,
- /*   140 */    30,   30,   30,   28,   28,   28,    5,    6,   88,    5,
- /*   150 */     6,    5,    6,   87,   87,   87,   87,   87,   87,   87,
- /*   160 */    87,   59,
+ /*     0 */    35,   34,   34,   34,   20,  119,   20,   20,   30,   18,
+ /*    10 */    12,   11,   10,    9,    8,  110,  110,   17,   16,   15,
+ /*    20 */    14,   13,    6,   74,   75,   36,   76,   77,    6,   74,
+ /*    30 */    75,   36,   76,   77,    4,   78,   21,   19,   21,   21,
+ /*    40 */     4,    7,   81,   19,   92,   31,   34,   34,   34,   20,
+ /*    50 */    26,   20,   20,   35,   34,   34,   34,   20,   32,   20,
+ /*    60 */    20,    5,   35,   34,   34,   34,   20,  120,   20,   20,
+ /*    70 */    35,   34,   34,   34,   20,   33,   20,   20,   74,   75,
+ /*    80 */    36,   76,   77,    1,   93,   37,   37,   37,   20,    2,
+ /*    90 */    20,   20,   19,   97,   97,   20,   79,   20,   20,   96,
+ /*   100 */    96,   20,    3,   20,   20,   17,   16,   15,   14,   13,
+ /*   110 */   104,  104,  104,   93,   22,   93,   22,   22,   23,   93,
+ /*   120 */    23,   23,   24,   93,   24,   24,  104,   25,   93,   25,
+ /*   130 */    25,   93,  104,  109,   93,  109,  109,  108,   93,  108,
+ /*   140 */   108,  107,   93,  107,  107,   28,   93,   28,   28,   29,
+ /*   150 */    93,   29,   29,   27,   93,   27,   27,   15,   14,   13,
+ /*   160 */    94,   93,    5,
 };
 static const YYCODETYPE yy_lookahead[] = {
- /*     0 */    23,   24,   25,   26,   27,   28,   26,   27,   28,    9,
- /*    10 */    10,   11,   12,   13,   14,    1,   16,   17,   18,   19,
- /*    20 */    20,   21,    9,   10,   11,   12,   13,   14,   27,   28,
- /*    30 */    17,   18,   19,   20,   21,    3,    4,    5,    6,    7,
- /*    40 */     8,    3,    4,    5,    6,    7,    8,   15,   16,   16,
- /*    50 */    18,   15,   30,   15,   30,   22,   18,   30,    4,    5,
- /*    60 */     6,    7,    8,   24,   25,   26,   27,   28,   29,   15,
- /*    70 */    30,   30,   18,   16,   17,   18,   19,   20,   21,   19,
- /*    80 */    20,   21,   30,   24,   25,   26,   27,   28,   24,   25,
- /*    90 */    26,   27,   28,   24,   25,   26,   27,   28,   24,   25,
- /*   100 */    26,   27,   28,   24,   25,   26,   27,   28,   17,   18,
- /*   110 */    19,   20,   21,   26,   27,   28,   26,   27,   28,   26,
- /*   120 */    27,   28,   26,   27,   28,   26,   27,   28,   26,   27,
- /*   130 */    28,   26,   27,   28,   26,   27,   28,   26,   27,   28,
- /*   140 */    26,   27,   28,   26,   27,   28,    1,    2,    0,    1,
- /*   150 */     2,    1,    2,   30,   30,   30,   30,   30,   30,   30,
- /*   160 */    30,   16,   30,   30,   30,   30,   30,   30,   30,   30,
- /*   170 */    30,   30,   30,   30,   30,   23,   23,   23,   23,   23,
- /*   180 */    23,   23,   23,   23,   23,
+ /*     0 */    24,   25,   26,   27,   28,   29,   30,   31,   32,    9,
+ /*    10 */    10,   11,   12,   13,   14,   30,   31,   17,   18,   19,
+ /*    20 */    20,   21,    3,    4,    5,    6,    7,    8,    3,    4,
+ /*    30 */     5,    6,    7,    8,   15,   16,   28,   18,   30,   31,
+ /*    40 */    15,    1,   16,   18,   23,   24,   25,   26,   27,   28,
+ /*    50 */    16,   30,   31,   24,   25,   26,   27,   28,   29,   30,
+ /*    60 */    31,    2,   24,   25,   26,   27,   28,   29,   30,   31,
+ /*    70 */    24,   25,   26,   27,   28,   29,   30,   31,    4,    5,
+ /*    80 */     6,    7,    8,   15,   33,   25,   26,   27,   28,   15,
+ /*    90 */    30,   31,   18,   26,   27,   28,   16,   30,   31,   26,
+ /*   100 */    27,   28,   22,   30,   31,   17,   18,   19,   20,   21,
+ /*   110 */     0,    1,    2,   33,   28,   33,   30,   31,   28,   33,
+ /*   120 */    30,   31,   28,   33,   30,   31,   16,   28,   33,   30,
+ /*   130 */    31,   33,   22,   28,   33,   30,   31,   28,   33,   30,
+ /*   140 */    31,   28,   33,   30,   31,   28,   33,   30,   31,   28,
+ /*   150 */    33,   30,   31,   28,   33,   30,   31,   19,   20,   21,
+ /*   160 */     0,   33,    2,   33,   33,   33,   33,   33,   33,   33,
+ /*   170 */    33,   33,   33,   33,   33,   33,   33,   33,   33,   33,
+ /*   180 */    33,   33,   33,   33,   23,   23,
 };
 #define YY_SHIFT_COUNT    (37)
 #define YY_SHIFT_MIN      (0)
-#define YY_SHIFT_MAX      (150)
+#define YY_SHIFT_MAX      (160)
 static const unsigned char yy_shift_ofst[] = {
- /*     0 */    38,   32,   38,   38,   38,   38,   38,   54,   54,   54,
- /*    10 */    54,   54,   54,   54,   54,   54,   54,   54,   54,   54,
- /*    20 */     0,   13,   57,   91,   91,   91,   91,   91,   91,   60,
- /*    30 */    60,  145,  148,  150,   33,  150,   36,   14,
+ /*     0 */    25,   19,   25,   25,   25,   25,   25,   25,   74,   74,
+ /*    10 */    74,   74,   74,   74,   74,   74,   74,   74,   74,   74,
+ /*    20 */     0,   88,   88,   88,   88,   88,  110,   88,  138,  138,
+ /*    30 */    80,  160,   26,   34,   40,   59,   68,   40,
 };
 #define YY_REDUCE_COUNT (19)
-#define YY_REDUCE_MIN   (-23)
-#define YY_REDUCE_MAX   (117)
+#define YY_REDUCE_MIN   (-24)
+#define YY_REDUCE_MAX   (125)
 static const signed char yy_reduce_ofst[] = {
- /*     0 */   -23,   39,   59,   64,   69,   74,   79,  -20,   87,   90,
- /*    10 */    93,   96,   99,  102,  105,  108,  111,  114,  117,    1,
+ /*     0 */    21,  -24,   29,   38,   46,   60,   67,   73,    8,   86,
+ /*    10 */    90,   94,   99,  105,  109,  113,  117,  121,  125,  -15,
 };
 static const YYACTIONTYPE yy_default[] = {
- /*     0 */    85,   85,   85,   85,   85,   85,   85,   85,   85,   85,
- /*    10 */    85,   85,   85,   85,   85,   85,   85,   85,   85,   85,
- /*    20 */    85,   85,   85,   98,   97,   96,   95,   94,   93,  100,
- /*    30 */    99,   85,   85,  114,   85,  113,  109,   89,
+ /*     0 */    91,   91,   91,   91,   91,   91,   91,   91,   91,   91,
+ /*    10 */    91,   91,   91,   91,   91,   91,   91,   91,   91,   91,
+ /*    20 */   124,  103,  102,  101,  100,   99,  118,   98,  106,  105,
+ /*    30 */    91,   91,   91,   91,  121,  126,  117,   95,
 };
 /********** End of lemon-generated parsing tables *****************************/
 
@@ -428,12 +428,15 @@ static const char *const yyTokenName[] = {
   /*   21 */ "MOD",
   /*   22 */ "COMMA",
   /*   23 */ "filter_expr",
-  /*   24 */ "expr",
-  /*   25 */ "comparison",
-  /*   26 */ "arithmetic",
-  /*   27 */ "unary",
-  /*   28 */ "term",
-  /*   29 */ "expr_list",
+  /*   24 */ "or_expr",
+  /*   25 */ "and_expr",
+  /*   26 */ "not_expr",
+  /*   27 */ "cmp_expr",
+  /*   28 */ "arithmetic",
+  /*   29 */ "expr",
+  /*   30 */ "unary",
+  /*   31 */ "term",
+  /*   32 */ "expr_list",
 };
 #endif /* defined(YYCOVERAGE) || !defined(NDEBUG) */
 
@@ -441,17 +444,17 @@ static const char *const yyTokenName[] = {
 /* For tracing reduce actions, the names of all rules are required.
 */
 static const char *const yyRuleName[] = {
- /*   0 */ "filter_expr ::= expr",
- /*   1 */ "expr ::= expr OR expr",
- /*   2 */ "expr ::= expr AND expr",
- /*   3 */ "expr ::= NOT expr",
- /*   4 */ "expr ::= LPAREN expr RPAREN",
- /*   5 */ "comparison ::= arithmetic EQ arithmetic",
- /*   6 */ "comparison ::= arithmetic NE arithmetic",
- /*   7 */ "comparison ::= arithmetic LT arithmetic",
- /*   8 */ "comparison ::= arithmetic LE arithmetic",
- /*   9 */ "comparison ::= arithmetic GT arithmetic",
- /*  10 */ "comparison ::= arithmetic GE arithmetic",
+ /*   0 */ "filter_expr ::= or_expr",
+ /*   1 */ "or_expr ::= or_expr OR and_expr",
+ /*   2 */ "and_expr ::= and_expr AND not_expr",
+ /*   3 */ "not_expr ::= NOT not_expr",
+ /*   4 */ "cmp_expr ::= arithmetic EQ arithmetic",
+ /*   5 */ "cmp_expr ::= arithmetic NE arithmetic",
+ /*   6 */ "cmp_expr ::= arithmetic LT arithmetic",
+ /*   7 */ "cmp_expr ::= arithmetic LE arithmetic",
+ /*   8 */ "cmp_expr ::= arithmetic GT arithmetic",
+ /*   9 */ "cmp_expr ::= arithmetic GE arithmetic",
+ /*  10 */ "cmp_expr ::= LPAREN expr RPAREN",
  /*  11 */ "arithmetic ::= arithmetic PLUS arithmetic",
  /*  12 */ "arithmetic ::= arithmetic MINUS arithmetic",
  /*  13 */ "arithmetic ::= arithmetic STAR arithmetic",
@@ -462,15 +465,19 @@ static const char *const yyRuleName[] = {
  /*  18 */ "term ::= FALSE_LITERAL",
  /*  19 */ "term ::= INTEGER_LITERAL",
  /*  20 */ "term ::= STRING_LITERAL",
- /*  21 */ "term ::= IDENTIFIER",
- /*  22 */ "term ::= IDENTIFIER LPAREN RPAREN",
- /*  23 */ "term ::= IDENTIFIER LPAREN expr_list RPAREN",
- /*  24 */ "term ::= LPAREN arithmetic RPAREN",
+ /*  21 */ "term ::= IDENTIFIER LPAREN RPAREN",
+ /*  22 */ "term ::= IDENTIFIER LPAREN expr_list RPAREN",
+ /*  23 */ "term ::= IDENTIFIER",
+ /*  24 */ "term ::= LPAREN expr RPAREN",
  /*  25 */ "expr_list ::= expr",
  /*  26 */ "expr_list ::= expr_list COMMA expr",
- /*  27 */ "expr ::= comparison",
- /*  28 */ "arithmetic ::= unary",
- /*  29 */ "unary ::= term",
+ /*  27 */ "or_expr ::= and_expr",
+ /*  28 */ "and_expr ::= not_expr",
+ /*  29 */ "not_expr ::= cmp_expr",
+ /*  30 */ "cmp_expr ::= arithmetic",
+ /*  31 */ "arithmetic ::= unary",
+ /*  32 */ "expr ::= or_expr",
+ /*  33 */ "unary ::= term",
 };
 #endif /* NDEBUG */
 
@@ -891,52 +898,56 @@ static void yy_shift(
 /* For rule J, yyRuleInfoLhs[J] contains the symbol on the left-hand side
 ** of that rule */
 static const YYCODETYPE yyRuleInfoLhs[] = {
-    23,  /* (0) filter_expr ::= expr */
-    24,  /* (1) expr ::= expr OR expr */
-    24,  /* (2) expr ::= expr AND expr */
-    24,  /* (3) expr ::= NOT expr */
-    24,  /* (4) expr ::= LPAREN expr RPAREN */
-    25,  /* (5) comparison ::= arithmetic EQ arithmetic */
-    25,  /* (6) comparison ::= arithmetic NE arithmetic */
-    25,  /* (7) comparison ::= arithmetic LT arithmetic */
-    25,  /* (8) comparison ::= arithmetic LE arithmetic */
-    25,  /* (9) comparison ::= arithmetic GT arithmetic */
-    25,  /* (10) comparison ::= arithmetic GE arithmetic */
-    26,  /* (11) arithmetic ::= arithmetic PLUS arithmetic */
-    26,  /* (12) arithmetic ::= arithmetic MINUS arithmetic */
-    26,  /* (13) arithmetic ::= arithmetic STAR arithmetic */
-    26,  /* (14) arithmetic ::= arithmetic SLASH arithmetic */
-    26,  /* (15) arithmetic ::= arithmetic MOD arithmetic */
-    27,  /* (16) unary ::= MINUS unary */
-    28,  /* (17) term ::= TRUE_LITERAL */
-    28,  /* (18) term ::= FALSE_LITERAL */
-    28,  /* (19) term ::= INTEGER_LITERAL */
-    28,  /* (20) term ::= STRING_LITERAL */
-    28,  /* (21) term ::= IDENTIFIER */
-    28,  /* (22) term ::= IDENTIFIER LPAREN RPAREN */
-    28,  /* (23) term ::= IDENTIFIER LPAREN expr_list RPAREN */
-    28,  /* (24) term ::= LPAREN arithmetic RPAREN */
-    29,  /* (25) expr_list ::= expr */
-    29,  /* (26) expr_list ::= expr_list COMMA expr */
-    24,  /* (27) expr ::= comparison */
-    26,  /* (28) arithmetic ::= unary */
-    27,  /* (29) unary ::= term */
+    23,  /* (0) filter_expr ::= or_expr */
+    24,  /* (1) or_expr ::= or_expr OR and_expr */
+    25,  /* (2) and_expr ::= and_expr AND not_expr */
+    26,  /* (3) not_expr ::= NOT not_expr */
+    27,  /* (4) cmp_expr ::= arithmetic EQ arithmetic */
+    27,  /* (5) cmp_expr ::= arithmetic NE arithmetic */
+    27,  /* (6) cmp_expr ::= arithmetic LT arithmetic */
+    27,  /* (7) cmp_expr ::= arithmetic LE arithmetic */
+    27,  /* (8) cmp_expr ::= arithmetic GT arithmetic */
+    27,  /* (9) cmp_expr ::= arithmetic GE arithmetic */
+    27,  /* (10) cmp_expr ::= LPAREN expr RPAREN */
+    28,  /* (11) arithmetic ::= arithmetic PLUS arithmetic */
+    28,  /* (12) arithmetic ::= arithmetic MINUS arithmetic */
+    28,  /* (13) arithmetic ::= arithmetic STAR arithmetic */
+    28,  /* (14) arithmetic ::= arithmetic SLASH arithmetic */
+    28,  /* (15) arithmetic ::= arithmetic MOD arithmetic */
+    30,  /* (16) unary ::= MINUS unary */
+    31,  /* (17) term ::= TRUE_LITERAL */
+    31,  /* (18) term ::= FALSE_LITERAL */
+    31,  /* (19) term ::= INTEGER_LITERAL */
+    31,  /* (20) term ::= STRING_LITERAL */
+    31,  /* (21) term ::= IDENTIFIER LPAREN RPAREN */
+    31,  /* (22) term ::= IDENTIFIER LPAREN expr_list RPAREN */
+    31,  /* (23) term ::= IDENTIFIER */
+    31,  /* (24) term ::= LPAREN expr RPAREN */
+    32,  /* (25) expr_list ::= expr */
+    32,  /* (26) expr_list ::= expr_list COMMA expr */
+    24,  /* (27) or_expr ::= and_expr */
+    25,  /* (28) and_expr ::= not_expr */
+    26,  /* (29) not_expr ::= cmp_expr */
+    27,  /* (30) cmp_expr ::= arithmetic */
+    28,  /* (31) arithmetic ::= unary */
+    29,  /* (32) expr ::= or_expr */
+    30,  /* (33) unary ::= term */
 };
 
 /* For rule J, yyRuleInfoNRhs[J] contains the negative of the number
 ** of symbols on the right-hand side of that rule. */
 static const signed char yyRuleInfoNRhs[] = {
-   -1,  /* (0) filter_expr ::= expr */
-   -3,  /* (1) expr ::= expr OR expr */
-   -3,  /* (2) expr ::= expr AND expr */
-   -2,  /* (3) expr ::= NOT expr */
-   -3,  /* (4) expr ::= LPAREN expr RPAREN */
-   -3,  /* (5) comparison ::= arithmetic EQ arithmetic */
-   -3,  /* (6) comparison ::= arithmetic NE arithmetic */
-   -3,  /* (7) comparison ::= arithmetic LT arithmetic */
-   -3,  /* (8) comparison ::= arithmetic LE arithmetic */
-   -3,  /* (9) comparison ::= arithmetic GT arithmetic */
-   -3,  /* (10) comparison ::= arithmetic GE arithmetic */
+   -1,  /* (0) filter_expr ::= or_expr */
+   -3,  /* (1) or_expr ::= or_expr OR and_expr */
+   -3,  /* (2) and_expr ::= and_expr AND not_expr */
+   -2,  /* (3) not_expr ::= NOT not_expr */
+   -3,  /* (4) cmp_expr ::= arithmetic EQ arithmetic */
+   -3,  /* (5) cmp_expr ::= arithmetic NE arithmetic */
+   -3,  /* (6) cmp_expr ::= arithmetic LT arithmetic */
+   -3,  /* (7) cmp_expr ::= arithmetic LE arithmetic */
+   -3,  /* (8) cmp_expr ::= arithmetic GT arithmetic */
+   -3,  /* (9) cmp_expr ::= arithmetic GE arithmetic */
+   -3,  /* (10) cmp_expr ::= LPAREN expr RPAREN */
    -3,  /* (11) arithmetic ::= arithmetic PLUS arithmetic */
    -3,  /* (12) arithmetic ::= arithmetic MINUS arithmetic */
    -3,  /* (13) arithmetic ::= arithmetic STAR arithmetic */
@@ -947,15 +958,19 @@ static const signed char yyRuleInfoNRhs[] = {
    -1,  /* (18) term ::= FALSE_LITERAL */
    -1,  /* (19) term ::= INTEGER_LITERAL */
    -1,  /* (20) term ::= STRING_LITERAL */
-   -1,  /* (21) term ::= IDENTIFIER */
-   -3,  /* (22) term ::= IDENTIFIER LPAREN RPAREN */
-   -4,  /* (23) term ::= IDENTIFIER LPAREN expr_list RPAREN */
-   -3,  /* (24) term ::= LPAREN arithmetic RPAREN */
+   -3,  /* (21) term ::= IDENTIFIER LPAREN RPAREN */
+   -4,  /* (22) term ::= IDENTIFIER LPAREN expr_list RPAREN */
+   -1,  /* (23) term ::= IDENTIFIER */
+   -3,  /* (24) term ::= LPAREN expr RPAREN */
    -1,  /* (25) expr_list ::= expr */
    -3,  /* (26) expr_list ::= expr_list COMMA expr */
-   -1,  /* (27) expr ::= comparison */
-   -1,  /* (28) arithmetic ::= unary */
-   -1,  /* (29) unary ::= term */
+   -1,  /* (27) or_expr ::= and_expr */
+   -1,  /* (28) and_expr ::= not_expr */
+   -1,  /* (29) not_expr ::= cmp_expr */
+   -1,  /* (30) cmp_expr ::= arithmetic */
+   -1,  /* (31) arithmetic ::= unary */
+   -1,  /* (32) expr ::= or_expr */
+   -1,  /* (33) unary ::= term */
 };
 
 static void yy_accept(yyParser*);  /* Forward Declaration */
@@ -997,161 +1012,165 @@ static YYACTIONTYPE yy_reduce(
   */
 /********** Begin reduce actions **********************************************/
         YYMINORTYPE yylhsminor;
-      case 0: /* filter_expr ::= expr */
+      case 0: /* filter_expr ::= or_expr */
 #line 18 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { pCtx->rootNode = yymsp[0].minor.yy0.node; }
-#line 1003 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1018 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
-      case 1: /* expr ::= expr OR expr */
+      case 1: /* or_expr ::= or_expr OR and_expr */
 #line 20 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new OrNode(yymsp[-2].minor.yy0.node, yymsp[0].minor.yy0.node); }
-#line 1008 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1023 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 2: /* expr ::= expr AND expr */
-#line 21 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+      case 2: /* and_expr ::= and_expr AND not_expr */
+#line 23 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new AndNode(yymsp[-2].minor.yy0.node, yymsp[0].minor.yy0.node); }
-#line 1014 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1029 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 3: /* expr ::= NOT expr */
-#line 22 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yymsp[-1].minor.yy0.node = new NotNode(yymsp[0].minor.yy0.node); }
-#line 1020 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-        break;
-      case 4: /* expr ::= LPAREN expr RPAREN */
-      case 24: /* term ::= LPAREN arithmetic RPAREN */ yytestcase(yyruleno==24);
-#line 24 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yymsp[-2].minor.yy0 = yymsp[-1].minor.yy0; }
-#line 1026 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-        break;
-      case 5: /* comparison ::= arithmetic EQ arithmetic */
+      case 3: /* not_expr ::= NOT not_expr */
 #line 26 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L"==", yymsp[0].minor.yy0.node); }
-#line 1031 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-  yymsp[-2].minor.yy0 = yylhsminor.yy0;
+{ yymsp[-1].minor.yy0.node = new NotNode(yymsp[0].minor.yy0.node); }
+#line 1035 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
-      case 6: /* comparison ::= arithmetic NE arithmetic */
-#line 27 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L"!=", yymsp[0].minor.yy0.node); }
-#line 1037 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-  yymsp[-2].minor.yy0 = yylhsminor.yy0;
-        break;
-      case 7: /* comparison ::= arithmetic LT arithmetic */
-#line 28 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L"<",  yymsp[0].minor.yy0.node); }
-#line 1043 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-  yymsp[-2].minor.yy0 = yylhsminor.yy0;
-        break;
-      case 8: /* comparison ::= arithmetic LE arithmetic */
+      case 4: /* cmp_expr ::= arithmetic EQ arithmetic */
 #line 29 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L"<=", yymsp[0].minor.yy0.node); }
-#line 1049 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L"==", yymsp[0].minor.yy0.node); }
+#line 1040 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 9: /* comparison ::= arithmetic GT arithmetic */
+      case 5: /* cmp_expr ::= arithmetic NE arithmetic */
 #line 30 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L">",  yymsp[0].minor.yy0.node); }
-#line 1055 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L"!=", yymsp[0].minor.yy0.node); }
+#line 1046 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 10: /* comparison ::= arithmetic GE arithmetic */
+      case 6: /* cmp_expr ::= arithmetic LT arithmetic */
 #line 31 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L">=", yymsp[0].minor.yy0.node); }
-#line 1061 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L"<",  yymsp[0].minor.yy0.node); }
+#line 1052 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
+        break;
+      case 7: /* cmp_expr ::= arithmetic LE arithmetic */
+#line 32 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L"<=", yymsp[0].minor.yy0.node); }
+#line 1058 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+  yymsp[-2].minor.yy0 = yylhsminor.yy0;
+        break;
+      case 8: /* cmp_expr ::= arithmetic GT arithmetic */
+#line 33 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L">",  yymsp[0].minor.yy0.node); }
+#line 1064 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+  yymsp[-2].minor.yy0 = yylhsminor.yy0;
+        break;
+      case 9: /* cmp_expr ::= arithmetic GE arithmetic */
+#line 34 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, L">=", yymsp[0].minor.yy0.node); }
+#line 1070 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+  yymsp[-2].minor.yy0 = yylhsminor.yy0;
+        break;
+      case 10: /* cmp_expr ::= LPAREN expr RPAREN */
+      case 24: /* term ::= LPAREN expr RPAREN */ yytestcase(yyruleno==24);
+#line 36 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yymsp[-2].minor.yy0 = yymsp[-1].minor.yy0; }
+#line 1077 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 11: /* arithmetic ::= arithmetic PLUS arithmetic */
-#line 33 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 38 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, L"+", yymsp[0].minor.yy0.node); }
-#line 1067 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1082 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 12: /* arithmetic ::= arithmetic MINUS arithmetic */
-#line 34 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 39 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, L"-", yymsp[0].minor.yy0.node); }
-#line 1073 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1088 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 13: /* arithmetic ::= arithmetic STAR arithmetic */
-#line 35 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 40 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, L"*", yymsp[0].minor.yy0.node); }
-#line 1079 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1094 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 14: /* arithmetic ::= arithmetic SLASH arithmetic */
-#line 36 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 41 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, L"/", yymsp[0].minor.yy0.node); }
-#line 1085 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1100 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 15: /* arithmetic ::= arithmetic MOD arithmetic */
-#line 37 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 42 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, L"%", yymsp[0].minor.yy0.node); }
-#line 1091 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1106 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 16: /* unary ::= MINUS unary */
-#line 40 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 47 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yymsp[-1].minor.yy0.node = new NegateNode(yymsp[0].minor.yy0.node); }
-#line 1097 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1112 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 17: /* term ::= TRUE_LITERAL */
-#line 43 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 50 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yymsp[0].minor.yy0.node = new BoolLiteral(true); }
-#line 1102 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1117 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 18: /* term ::= FALSE_LITERAL */
-#line 44 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 51 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yymsp[0].minor.yy0.node = new BoolLiteral(false); }
-#line 1107 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1122 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 19: /* term ::= INTEGER_LITERAL */
-#line 45 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 52 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new IntLiteral(yymsp[0].minor.yy0.integer); }
-#line 1112 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1127 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
       case 20: /* term ::= STRING_LITERAL */
-#line 46 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 53 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new StringLiteral(yymsp[0].minor.yy0.string); }
-#line 1118 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1133 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
-      case 21: /* term ::= IDENTIFIER */
-#line 47 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new FieldNode(pCtx->ctxt, yymsp[0].minor.yy0.string); }
-#line 1124 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-  yymsp[0].minor.yy0 = yylhsminor.yy0;
-        break;
-      case 22: /* term ::= IDENTIFIER LPAREN RPAREN */
-#line 48 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+      case 21: /* term ::= IDENTIFIER LPAREN RPAREN */
+#line 54 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new FunctionNode(pCtx->ctxt, yymsp[-2].minor.yy0.string, {}); }
-#line 1130 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1139 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 23: /* term ::= IDENTIFIER LPAREN expr_list RPAREN */
-#line 49 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+      case 22: /* term ::= IDENTIFIER LPAREN expr_list RPAREN */
+#line 55 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.node = new FunctionNode(pCtx->ctxt, yymsp[-3].minor.yy0.string, yymsp[-1].minor.yy0.nodeList); }
-#line 1136 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1145 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-3].minor.yy0 = yylhsminor.yy0;
         break;
+      case 23: /* term ::= IDENTIFIER */
+#line 56 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0.node = new FieldNode(pCtx->ctxt, yymsp[0].minor.yy0.string); }
+#line 1151 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+  yymsp[0].minor.yy0 = yylhsminor.yy0;
+        break;
       case 25: /* expr_list ::= expr */
-#line 52 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 59 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0.nodeList = new std::vector<ExprNode*>{ yymsp[0].minor.yy0.node }; }
-#line 1142 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1157 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
       case 26: /* expr_list ::= expr_list COMMA expr */
-#line 53 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 60 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yymsp[-2].minor.yy0.nodeList->push_back(yymsp[0].minor.yy0.node); yylhsminor.yy0.nodeList = yymsp[-2].minor.yy0.nodeList; }
-#line 1148 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1163 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       default:
-      /* (27) expr ::= comparison (OPTIMIZED OUT) */ assert(yyruleno!=27);
-      /* (28) arithmetic ::= unary (OPTIMIZED OUT) */ assert(yyruleno!=28);
-      /* (29) unary ::= term (OPTIMIZED OUT) */ assert(yyruleno!=29);
+      /* (27) or_expr ::= and_expr */ yytestcase(yyruleno==27);
+      /* (28) and_expr ::= not_expr (OPTIMIZED OUT) */ assert(yyruleno!=28);
+      /* (29) not_expr ::= cmp_expr (OPTIMIZED OUT) */ assert(yyruleno!=29);
+      /* (30) cmp_expr ::= arithmetic */ yytestcase(yyruleno==30);
+      /* (31) arithmetic ::= unary (OPTIMIZED OUT) */ assert(yyruleno!=31);
+      /* (32) expr ::= or_expr */ yytestcase(yyruleno==32);
+      /* (33) unary ::= term (OPTIMIZED OUT) */ assert(yyruleno!=33);
         break;
 /********** End reduce actions ************************************************/
   };

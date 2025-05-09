@@ -116,7 +116,7 @@ ValueType NegateNode::evaluate(const DIFFITEM& di) const
 
 FieldNode::FieldNode(const CDiffContext* ctxt, const std::wstring& v) : ctxt(ctxt), field(v)
 {
-	int64_t index;
+	int64_t index = 0;
 	if (v.find(L"Left") == 0)
 		index = 0;
 	else if (v.find(L"Middle") == 0)
@@ -143,15 +143,13 @@ FunctionNode::FunctionNode(const CDiffContext* ctxt, const std::wstring& name, s
 {
 	if (functionName == L"abs")
 	{
-		if (args->size() != 2)
-			throw std::runtime_error("abs function requires 2 arguments");
+		if (args->size() != 1)
+			throw std::runtime_error("abs function requires 1 arguments");
 		func = [](const CDiffContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
 			auto arg1 = (*args)[0]->evaluate(di);
-			auto arg2 = (*args)[0]->evaluate(di);
 			if (auto arg1Int = std::get_if<int64_t>(&arg1))
-				if (auto arg2Int = std::get_if<int64_t>(&arg2))
-					return abs(*arg1Int - *arg2Int);
-			throw std::runtime_error("abs function requires 2 integer arguments");
+				return abs(*arg1Int);
+			throw std::runtime_error("abs function requires 1 integer arguments");
 		};
 	}
 	else
