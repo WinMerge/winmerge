@@ -32,7 +32,7 @@ msgstr "LANG_SWEDISH, SUBLANG_DEFAULT"
 #: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
-msgstr "SkalFörlängning"
+msgstr "ShellExtension"
 
 #: ShellExtension.rc:112
 #, c-format
@@ -42,7 +42,7 @@ msgstr "WinMerge"
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "Jämför som"
 
 #: ShellExtension.rc:114
 #, c-format
