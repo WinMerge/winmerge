@@ -209,6 +209,7 @@ Localization:
   Göran Håkansson <goran.x.hakansson@telia.com>
   pgert <pgert at yahoo.se>
   Timmy Almroth <timmy.almroth at tim-international.net>
+  Sweden12
 
 * Tamil:
   தமிழ்நேரம் <https://TamilNeram.github.io>
