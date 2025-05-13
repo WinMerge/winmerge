@@ -30,7 +30,7 @@
 var REGKEY_PATH = "Plugins\\AI.sct/";
 var wsh = new ActiveXObject("WScript.Shell");
 var fso = new ActiveXObject("Scripting.FileSystemObject");
-var pluginArguments = "";
+var pluginArguments = "\"\"";
 var variables = new Array();
 var mergeApp;
 

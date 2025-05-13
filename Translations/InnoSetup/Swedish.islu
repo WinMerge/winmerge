@@ -1,16 +1,16 @@
 ﻿[Messages]
 
-WizardInfoBefore=License Agreement
-InfoBeforeLabel=GNU General Public License
+WizardInfoBefore=Licensavtal
+InfoBeforeLabel=GNU Generell Publik Licens
 
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Valfria finesser:
+OptionalFeatures=Valfria funktioner:
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Särlig Installation
+TypicalInstallation=Typisk Installation
 FullInstallation=Full Installation
 CompactInstallation=Kompakt Installation
 CustomInstallation=Anpassad Installation
@@ -19,7 +19,7 @@ CustomInstallation=Anpassad Installation
 AppCoreFiles=WinMerge Kärnfiler
 Filters=Filter
 Plugins=Insticksprogram
-ShellExtension32bit=32-bit WinMerge ShellExtension
+ShellExtension32bit=32-bitars WinMerge ShellExtension
 
 ;Localization Components
 Languages=Språk
@@ -29,17 +29,17 @@ BulgarianLanguage=Bulgariska menyer och dialoger
 CatalanLanguage=Katalanska menyer och dialoger
 ChineseSimplifiedLanguage=Kinesiska (Förenklad) menyer och dialoger
 ChineseTraditionalLanguage=Kinesiska (Traditionell) menyer och dialoger
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=Korsikanska menyer och dialoger
 CroatianLanguage=Kroatiska menyer och dialoger
 CzechLanguage=Tjeckiska menyer och dialoger
 DanishLanguage=Danska menyer och dialoger
 DutchLanguage=Nederländska menyer och dialoger
-FinnishLanguage=Finnska menyer och dialoger
+FinnishLanguage=Finska menyer och dialoger
 FrenchLanguage=Franska menyer och dialoger
 GalicianLanguage=Galiciska menyer och dialoger
 GermanLanguage=Tyska menyer och dialoger
 GreekLanguage=Grekiska menyer och dialoger
-HebrewLanguage=Hebrew menus and dialogs
+HebrewLanguage=Hebreiska menyer och dialoger
 HungarianLanguage=Ungerska menyer och dialoger
 ItalianLanguage=Italienska menyer och dialoger
 JapaneseLanguage=Japanska menyer och dialoger
@@ -48,8 +48,8 @@ LithuanianLanguage=Litauiska menyer och dialoger
 NorwegianLanguage=Norska menyer och dialoger
 PersianLanguage=Persiska menyer och dialoger
 PolishLanguage=Polska menyer och dialoger
-PortugueseBrazilLanguage=Portugisiska (Brasiliansk) menyer och dialoger
-PortugueseLanguage=Portugisiska (Iberisk) menyer och dialoger
+PortugueseBrazilLanguage=Portugisiska (Brasilianska) menyer och dialoger
+PortugueseLanguage=Portugisiska (Iberiska) menyer och dialoger
 RomanianLanguage=Rumänska menyer och dialoger
 RussianLanguage=Ryska menyer och dialoger
 SerbianLanguage=Serbiska menyer och dialoger
@@ -58,7 +58,7 @@ SlovakLanguage=Slovakiska menyer och dialoger
 SlovenianLanguage=Slovenska menyer och dialoger
 SpanishLanguage=Spanska menyer och dialoger
 SwedishLanguage=Svenska menyer och dialoger
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=Tamilska menyer och dialoger
 TurkishLanguage=Turkiska menyer och dialoger
 UkrainianLanguage=Ukrainska menyer och dialoger
 
@@ -76,7 +76,7 @@ RegisterWinMergeAs3WayMergeTool=Registera WinMerge som ett 3-vägs eningsverktyg
 MergeAtRightPane=Ena i höger ruta
 MergeAtCenterPane=Ena i den centrala rutan
 MergeAtLeftPane=Ena i vänster ruta
-AutoMergeAtStartup=Auto-ena vid uppkörningstid
+AutoMergeAtStartup=Auto-ena vid uppstart
 
 ;Icon Labels
 ReadMe=Läs Mig
@@ -85,8 +85,8 @@ ViewStartMenuFolder=Visa WinMerges startkatalog
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har upptäckt att Ni har ändrat sökvägen till Er startmeny från "%s" till "%s". Vill Ni ta bort den tidigare startmenykatalogen?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=WinMerges ShellExtension ktäver en omstart av Explorer för att uppdatera. Vill du starta om Explorer?
 
 ; Project file description
-ProjectFileDesc=WinMerge Projektfil
+ProjectFileDesc=WinMerges Projektfil
 

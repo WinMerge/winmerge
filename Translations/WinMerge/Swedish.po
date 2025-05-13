@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-01-14 12:20+0000\n"
-"PO-Revision-Date: 2023-02-08 16:24+0100\n"
-"Last-Translator: Hans Eriksson <hanseriksson879@gmail.com>\n"
+"PO-Revision-Date: 2025-05-04 20:56+0100\n"
+"Last-Translator: Hans Eriksson <hanseriksson980@gmail.com>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -385,10 +385,10 @@ msgid "&Huge"
 msgstr "Enorm"
 
 msgid "Men&u Bar"
-msgstr "Mynyrad"
+msgstr "Menyrad"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "Utmatningsruta"
 
 msgid "&Status Bar"
 msgstr "Statusfält"
@@ -537,7 +537,7 @@ msgid "E&xpand Subfolders"
 msgstr "Expandera underkataloger"
 
 msgid "&All Subfolders"
-msgstr "Alla undserkataloger"
+msgstr "Alla underkataloger"
 
 msgid "&Different Subfolders"
 msgstr "Olika underkataloger"
@@ -771,7 +771,7 @@ msgid "Lo&cation Pane"
 msgstr "Positionsruta"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Utmatningsruta"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Nästa konflikt\tAlt+Shift+Down"
@@ -906,7 +906,7 @@ msgid "Compare Non-hor&izontally"
 msgstr "Jämför icke-Vågrätt"
 
 msgid "First &Left with Second Left"
-msgstr "Första vänsta med det andra vänsta objektet"
+msgstr "Första vänstra med det andra vänstra objektet"
 
 msgid "First &Right with Second Right"
 msgstr "Första högra med det andra högra objektet"
@@ -915,7 +915,7 @@ msgid "&First Left with Second Right"
 msgstr "Första vänstra med det andra högra objektet"
 
 msgid "&Second Left with First Right"
-msgstr "Andra vänsta med det första högra objektet"
+msgstr "Andra vänstra med det första högra objektet"
 
 msgid "Co&mpare As"
 msgstr "Jämför som"
@@ -1037,10 +1037,10 @@ msgid "Right Shell Menu"
 msgstr "Gränssnittsmeny höger"
 
 msgid "Both Shell Menu"
-msgstr "Båda Shellmeny"
+msgstr "Båda Gränssnittsmenyerna"
 
 msgid "All Shell Menu"
-msgstr "Allt Shellmemy"
+msgstr "Alla Gränssnittsmenyer"
 
 msgid "Copy"
 msgstr "Kopiera"
@@ -1115,7 +1115,7 @@ msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignorera saknat avslutande radslut"
 
 msgid "&Include Subfolders"
-msgstr "Inkludera undermappar"
+msgstr "Inkludera underkataloger"
 
 msgid "&Compare Method"
 msgstr "Jämförelsemetod"
@@ -1181,7 +1181,7 @@ msgid "${SRC_URL} - Source URL"
 msgstr "${SRC_URL} - KällURL"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - KällURL-Protokoll"
 
 msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
 msgstr "${SRC_URL_SUFFIX} - KällURL-suffix"
@@ -1217,7 +1217,7 @@ msgid "&Duplicate Plugin..."
 msgstr "Duplicera plugin"
 
 msgid "Clear &All"
-msgstr ""
+msgstr "Rensa allt"
 
 msgid "About WinMerge"
 msgstr "Om WinMerge"
@@ -1325,8 +1325,7 @@ msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Visa \"Välj filer eller kataloger\" dialogen vid uppstart"
 
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-"Stäng dialogrutan \"Välj filer eller kataloger\" när ''OK''-knappen klickas"
+msgstr "Stäng  \"Välj filer eller kataloger\"-dialogen när 'Jämför'-knappen klickas"
 
 msgid "Op&en dialog Auto completion:"
 msgstr "Automatisk komplettering för Öppna-dialog:"
@@ -1564,7 +1563,7 @@ msgid "Items filtered:"
 msgstr "Objekt filtrerade:"
 
 msgid "&Use custom system colors"
-msgstr "Använd anpassade systemfärger (Några gränssnittselement kanskle intev påverkas"
+msgstr "Använd anpassade systemfärger"
 
 msgid "System"
 msgstr "System"
@@ -1735,13 +1734,13 @@ msgid "Ignore &case"
 msgstr "Ignorera skillnader i VERSALER och gemener"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Ignorera radslutsskillnader (Windows/Unix/Mac)"
 
 msgid "Ignore num&bers"
 msgstr "Ignorera nummer"
 
 msgid "Ignore codepage &differences"
-msgstr ""
+msgstr "Ignorera kodnings-skillnader"
 
 msgid "Ignore c&omment differences"
 msgstr "Ignorera kommentarskillnader"
@@ -1892,15 +1891,15 @@ msgid ""
 "Detect codepage for: .html, .rc, .xml\n"
 "Restart required."
 msgstr ""
-"Detektera teckenkodningsinfo för dessa typer av filer: .html, .rc, .xml\n"
-"(Sessionen kommer att behöva läsas in på nytt)"
+"Detektera teckenkodning för: .html, .rc, .xml\n"
+"(Omstart av WinMerge krävs)"
 
 msgid ""
 "Detect codepage for files with mlang.dll\n"
 "Restart required."
 msgstr ""
 "Detektera teckenkodning för textfiler med mlang.dll\n"
-"(Sessionen kommer att behöva läsas in på nytt)"
+"(Omstart av WinMerge krävs)"
 
 msgid "Options"
 msgstr "Alternativ"
@@ -2274,7 +2273,7 @@ msgid "Command &line:"
 msgstr "Komandorad"
 
 msgid "&Script file extension:"
-msgstr "Skripts filämdeöse"
+msgstr "Skripts filändelse"
 
 msgid "Script &body:"
 msgstr "Skriptkropp:"
@@ -2421,8 +2420,7 @@ msgid "Don't display this &message again."
 msgstr "Visa inte det här meddelandet igen."
 
 msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
-msgstr ""
-"För att göra meddelanderutan synlig igen trycker du på knappen Återställ på "
+msgstr "För att göra meddelanderutan synlig igen trycker du på knappen Återställ på "
 "sidan Meddelanderutor i dialogrutan Alternativ."
 
 msgid "Compare/Merge"
@@ -2483,10 +2481,7 @@ msgstr "Alla dialogmeddelanden visas nu igen."
 
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
-msgstr ""
-"Värdet för tabbstorlek är inte inom det intervall som WinMerge godtar.\n"
-"\n"
-"Vänligen ange värden mellan 1 - %1."
+msgstr "Värdet för tabbstorlek är inte inom det intervall som WinMerge godtar. Vänligen ange värden mellan 1 - %1."
 
 msgid "Open"
 msgstr "Öppna"
@@ -2708,10 +2703,10 @@ msgstr "1 skillnad funnen"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "&1 fel funna"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "1 fel funnet"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -2820,9 +2815,7 @@ msgstr "Spara ändringar i %1?"
 
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
-msgstr ""
-"%1 är skrivskyddad. Vill du skriva över filen (välj Nej för att spara filen "
-"under annat namn)?"
+msgstr "%1 är skrivskyddad. Vill du skriva över filen (välj Nej för att spara filen under annat namn)?"
 
 msgid "Error backing up file"
 msgstr "Fel vid säkerhetskopiering av filen"
@@ -3099,9 +3092,7 @@ msgid "Confirm Move"
 msgstr "Bekräfta flytt"
 
 msgid "Close the folder comparison window?"
-msgstr ""
-"Du är på väg att stänga fönstret som jämför kataloger. Är du säker på att du "
-"vill stänga fönstret?"
+msgstr "Du är på väg att stänga fönstret som jämför kataloger. Är du säker på att du vill stänga fönstret?"
 
 msgid "Close the folder comparison window, which took a long time?"
 msgstr "Du är på väg att stänga katalogjämförelsefönstret som tog mycket tid. Är du säker på att du vill stänga fönstret?"
@@ -3496,13 +3487,10 @@ msgid "Middle side encoding."
 msgstr "Filkodning/teckenuppsättning för mitten."
 
 msgid "Number of ignored differences in file. Ignored and cannot be merged."
-msgstr ""
-"Antalet ignorerade skillnader i filen. Dessa skillnader ignorerades av "
-"WinMerge och kan inte sammanfogas."
+msgstr "Antalet ignorerade skillnader i filen. Dessa skillnader ignorerades av WinMerge och kan inte sammanfogas."
 
 msgid "Number of differences in file (excluding ignored)."
-msgstr ""
-"Antalet skillnader i filen. Detta antal omfattar inte ignorerade skillnader."
+msgstr "Antalet skillnader i filen. Detta antal omfattar inte ignorerade skillnader."
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Visar en asterisk (*) om filen är binär."
@@ -3652,9 +3640,7 @@ msgid "Cannot find string \"%s\"."
 msgstr "Kan inte hitta strängen \"%s\"."
 
 msgid "Entering Merge Mode. Press F9 to turn off."
-msgstr ""
-"Du går nu in i sammanfogningsläge. Om du vill avbryta detta läge, så tryck "
-"''F9''."
+msgstr "Du går nu in i sammanfogningsläge. Om du vill avbryta detta läge, tryck på 'F9'."
 
 #, c-format
 msgid ""
@@ -4327,10 +4313,7 @@ msgid "Clipboard at %s"
 msgstr "Klippbordet vid %s"
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
-msgstr ""
-"Klippbordshistorik är inaktiverat.\r\n"
-"För att aktivera Klippbordshistorik, tryck på Windows-tangenten + V och klicka "
-"sedan på knappen Aktivera."
+msgstr "Klippbordshistorik är inaktiverat.\r\n" För att aktivera Klippbordshistorik, tryck på Windows-tangenten + V och klicka sedan på knappen Aktivera."
 
 msgid "This system does not support clipboard history."
 msgstr "Det här systemet stöder inte Klippbordshistorik."
@@ -4354,7 +4337,7 @@ msgid "New Image Compare"
 msgstr "Ny bildjämförelse"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Ny Webbsidojämförelse"
 
 msgid "Clipboard Compare"
 msgstr "Klippbordsjämförelse"
@@ -4396,65 +4379,65 @@ msgid "Character"
 msgstr "Tecken"
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
-msgstr "\nTidigare skillnad (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr "\nTidigare skillnad (Alt+Upp)\n(Höger Knapp+Hjul Upp)\n(Alt+Hjul Upp)"
 
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
-msgstr "\nNästa skillnad (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr "\nNästa skillnad (Alt+Ner)\n(Höger Knapp+Hjul Ner)\n(Alt+Hjul Ner)"
 
 msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
-msgstr "\nKopiera till höger (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgstr "\nKopiera till höger (Alt+Höger)\n(Höger Knapp+Hjul Höger)\n(Alt+Hjul Höger)\n(Alt+Shift+Hjul Ner)"
 
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
-msgstr "\nKopiera till vänster (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr "\nKopiera till vänster (Alt+Vänster)\n(Höger Knapp+Hjul Vänster)\n(Alt+Hjul Vänster)\n(Alt+Shift+Hjul Upp)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
-msgstr "\nKopiera till höger och avancera (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr "\nKopiera till höger och avancera (Ctrl+Alt+Höger)\n(Ctrl+Alt+Hjul Höger)\n(Ctrl+Alt+Shift+Hjul Ner)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
-msgstr "\nKopiera till vänster ovh avancera (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr "\nKopiera till vänster och avancera (Ctrl+Alt+Vänster)\n(Ctrl+Alt+Hjul Vänster)\n(Ctrl+Alt+Shift+Hjul Upp)"
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Jämför %1 med %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Jämför %1 med %2 och %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Jämförelse färdig"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Kunde inte jämföra %1 med %2:"
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Kunde inte jämföra %1 med %2 och %3:"
 
 msgid "File saved"
-msgstr ""
+msgstr "Fil sparad"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Kopierar filer..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Flyttar filer..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Tar bort filer..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Papperskorg"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Permanent borttagen"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "Filoperation framgångsrikt gjord"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "Filoperation avbruten"
 
 msgid "Prettification"
 msgstr "Finputsning"
@@ -4478,7 +4461,7 @@ msgid "URL Handling"
 msgstr "URL-hantering"
 
 msgid "Decoding / Encoding"
-msgstr "Avkodning"/ Kodning
+msgstr "Avkodning / Kodning"
 
 msgid "Make Uppercase"
 msgstr "Gör till VERSALER"
@@ -4917,7 +4900,7 @@ msgid "Compare VBA macros"
 msgstr "Jämför VBA-makron"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr ""CompareMSWordFiles.sct WinMerge Plugin-alternativ"
+msgstr "CompareMSWordFiles.sct WinMerge Plugin-alternativ"
 
 msgid "Extract document data to multiple files"
 msgstr "Extrahera dokumentdata till flera filer"
@@ -4929,7 +4912,7 @@ msgid "Compare text contents of documents"
 msgstr "Jämför textinnehåll i dokument"
 
 msgid "Compare documents as HTML file (very slow)"
-msgstr "Jämför dokument som HTML-fil (väldigt låmgsamt)"
+msgstr "Jämför dokument som HTML-fil (väldigt långsamt)"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSPowerPointFiles.sct WinMerge Plugin-alternativ"
@@ -5009,10 +4992,10 @@ msgstr "Ange inmatning"
 
 #, c-format
 msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
-msgstr "Ange din OpewnAI-nyckel.\r\n - Användning av denna plugin kräver registration med OpenAI och kostar pengar.\r\n - API-nyckeln iagras i omgivningsvariabeln %1."
+msgstr "Ange din OpenAI-nyckel.\r\n - Användning av denna plugin kräver registration med OpenAI och kostar pengar.\r\n - API-nyckeln iagras i omgivningsvariabeln %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr "Omgivningsvariabelnamn för OpenAI ApI-nyckel"
+msgstr "Omgivningsvariabelnamn för OpenAI API-nyckel"
 
 msgid "OpenAI API key"
 msgstr "OpenAI API-nyckel"
