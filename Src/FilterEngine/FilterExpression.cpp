@@ -15,18 +15,22 @@ ValueType OrNode::evaluate(const DIFFITEM& di) const
 
 	auto rval = right->evaluate(di);
 	auto rbool = std::get_if<bool>(&rval);
-	return rbool && *rbool;
+	if (rbool && *rbool) return true;
+	return std::monostate{};
 }
 
 ValueType AndNode::evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->evaluate(di);
 	auto lbool = std::get_if<bool>(&lval);
-	if (!lbool || !*lbool) return false;
+	if (!lbool) return std::monostate{};
+	if (!*lbool) return false;
 
 	auto rval = right->evaluate(di);
 	auto rbool = std::get_if<bool>(&rval);
-	return rbool && *rbool;
+	if (!rbool) return std::monostate{};
+	if (!*rbool) return false;
+	return true;
 }
 
 ValueType NotNode::evaluate(const DIFFITEM& di) const

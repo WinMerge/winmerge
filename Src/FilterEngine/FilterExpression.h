@@ -8,7 +8,7 @@
 
 class CDiffContext;
 class DIFFITEM;
-typedef std::variant<int64_t, Poco::Timestamp, std::wstring, bool> ValueType;
+typedef std::variant<std::monostate, int64_t, Poco::Timestamp, std::wstring, bool> ValueType;
 
 struct ExprNode
 {
