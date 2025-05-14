@@ -116,17 +116,30 @@ ValueType NegateNode::evaluate(const DIFFITEM& di) const
 
 FieldNode::FieldNode(const CDiffContext* ctxt, const std::wstring& v) : ctxt(ctxt), field(v)
 {
+	int prefixlen = 0;
+	const wchar_t* p = v.c_str();
 	int64_t index = 0;
-	if (v.find(L"Left") == 0)
+	if (v.compare(0, 4, L"Left") == 0)
+	{
 		index = 0;
-	else if (v.find(L"Middle") == 0)
+		prefixlen = 4;
+	}
+	else if (v.compare(0, 6, L"Middle") == 0)
+	{
 		index = 1;
-	else if (v.find(L"Right") == 0)
+		prefixlen = 6;
+	}
+	else if (v.compare(0, 5, L"Right") == 0)
+	{
 		index = ctxt->GetCompareDirs() < 3 ? 1 : 2;
-	if (v.find(L"Size") == v.length() - 4)
-		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) { return (int64_t)di.diffFileInfo[index].size; };
-	else if (v.find(L"Name") == v.length() - 4)
-		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) { return di.diffFileInfo[index].filename.get(); };
+		prefixlen = 5;
+	}
+	if (v.compare(prefixlen, 4, L"Size") == 0)
+		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) -> int64_t { return static_cast<int64_t>(di.diffFileInfo[index].size); };
+	else if (v.compare(prefixlen, 4, L"Date") == 0)
+		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) -> Poco::Timestamp { return di.diffFileInfo[index].mtime; };
+	else if (v.compare(prefixlen, 4, L"Name") == 0)
+		func = [index](const CDiffContext* ctxt, const DIFFITEM& di)-> std::wstring { return di.diffFileInfo[index].filename.get(); };
 	else
 	{
 //		std::cerr << "Error: Invalid field'" << field << "' and value." << std::endl;

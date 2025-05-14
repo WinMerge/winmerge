@@ -4,10 +4,11 @@
 #include <string>
 #include <map>
 #include <variant>
+#include <Poco/Timestamp.h>
 
 class CDiffContext;
 class DIFFITEM;
-typedef std::variant<int64_t, std::wstring, bool> ValueType;
+typedef std::variant<int64_t, Poco::Timestamp, std::wstring, bool> ValueType;
 
 struct ExprNode
 {

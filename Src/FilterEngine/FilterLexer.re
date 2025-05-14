@@ -23,7 +23,10 @@ begin:
 	"TRUE"            { yylval.boolean = true; return TRUE_LITERAL; }
 	"FALSE"           { yylval.boolean = false; return FALSE_LITERAL; }
 	[a-zA-Z_][a-zA-Z0-9_]* {
-						  std::wstring tmp = std::wstring((const wchar_t*)yycursor, YYCURSOR - yycursor);
+						  const wchar_t* p = yycursor;
+						  while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
+						    p++;
+						  std::wstring tmp = std::wstring(p, YYCURSOR - p);
 						  yylval.string = dupString(tmp.c_str());
 						  return IDENTIFIER;
 						}

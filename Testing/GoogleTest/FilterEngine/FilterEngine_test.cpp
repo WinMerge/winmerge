@@ -55,7 +55,7 @@ namespace
 
 		result = FilterEngine::Parse(L"abs(-100) == 100", ctxt);
 		EXPECT_TRUE(FilterEngine::Evaluate(result.root, di));
-		result = FilterEngine::Parse(L"abs(LeftSize - RightSize) == 100", ctxt);
+		result = FilterEngine::Parse(L"abs(LeftSize - RightSize) == (1100 - 1000)", ctxt);
 		EXPECT_TRUE(FilterEngine::Evaluate(result.root, di));
 		result = FilterEngine::Parse(L"LeftSize <= 100 * (1 + 9)", ctxt);
 		EXPECT_TRUE(FilterEngine::Evaluate(result.root, di));
