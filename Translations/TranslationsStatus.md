@@ -353,6 +353,7 @@ Status from **2025-05-16**:
    - [pgert](mailto:pgert%20at%20yahoo.se)
    - [Timmy Almroth](mailto:timmy.almroth%20at%20tim-international.net)
    - [Hans Eriksson](mailto:hanseriksson980@gmail.com)
+   - Sweden12
 
  * Tamil
    - [தமிழ்நேரம்](mailto:https://TamilNeram.github.io)
