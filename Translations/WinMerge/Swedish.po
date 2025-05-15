@@ -7,6 +7,7 @@
 # * pgert <pgert at yahoo.se> (!!)
 # * Timmy Almroth <timmy.almroth at tim-international.net>
 # * Hans Eriksson <hanseriksson980@gmail.com>
+# * Sweden12
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

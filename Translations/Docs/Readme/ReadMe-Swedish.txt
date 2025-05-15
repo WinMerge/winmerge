@@ -1,9 +1,9 @@
 ﻿WINMERGE
 
 WinMerge är ett Öppet Källkods jämför- och sammanslagningsverktyg för Windows. 
-WinMerge kan jämföra både kataloger och filer visande skillnader i ett visuellt 
+WinMerge kan jämföra både kataloger och filer samt visa skillnader i ett visuellt 
 textformat,som är enkelt att förstå och hantera. WinMerge kan användas som ett 
-externt skillnads/sammanslagnings-verktyg eller som en självständig tillämpning.
+externt skillnads- och sammanslagnings-verktyg eller som en självständig tillämpning.
 
 WinMerge har många hjälpsamma stödfunktioner för att göra jämförelser, 
 synkroniseringar och sammanslagningar så lätt och användbart som möjligt. 
@@ -53,4 +53,3 @@ användbar information för utvecklare.
 
 
 - WinMerges Utvecklare
-
