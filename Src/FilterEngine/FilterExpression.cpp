@@ -16,6 +16,8 @@ ValueType OrNode::evaluate(const DIFFITEM& di) const
 	auto rval = right->evaluate(di);
 	auto rbool = std::get_if<bool>(&rval);
 	if (rbool && *rbool) return true;
+
+	if (lbool || rbool) return false;
 	return std::monostate{};
 }
 
@@ -56,6 +58,18 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 			if (op == L">=") return *lvalInt >= *rvalInt;
 		}
 	}
+	else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
+	{
+		if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
+		{
+			if (op == L"==") return *lvalTimestamp == *rvalTimestamp;
+			if (op == L"!=") return *lvalTimestamp != *rvalTimestamp;
+			if (op == L"<")  return *lvalTimestamp <  *rvalTimestamp;
+			if (op == L"<=") return *lvalTimestamp <= *rvalTimestamp;
+			if (op == L">")  return *lvalTimestamp >  *rvalTimestamp;
+			if (op == L">=") return *lvalTimestamp >= *rvalTimestamp;
+		}
+	}
 	else if (auto lvalString = std::get_if<std::wstring>(&lval))
 	{
 		if (auto rvalString = std::get_if<std::wstring>(&rval))
@@ -72,8 +86,11 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 			if (op == L"!=") return *lvalBool != *rvalBool;
 		}
 	}
-//		std::cerr << "Error: Invalid comparison between field '" << field << "' and value." << std::endl;
-	return false;
+	if (op == L"==")
+		return false;
+	else if (op == L"!=")
+		return true;
+	return std::monostate{};
 }
 
 ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
@@ -91,6 +108,18 @@ ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
 			if (op == L"%") return *lvalInt % *rvalInt;
 		}
 	}
+	if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
+	{
+		if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
+		{
+			if (op == L"-") return *lvalTimestamp - *rvalTimestamp;
+		}
+		if (auto rvalInt = std::get_if<int64_t>(&rval))
+		{
+			if (op == L"+") return *lvalTimestamp + *rvalInt;
+			if (op == L"-") return *lvalTimestamp - *rvalInt;
+		}
+	}
 	else if (auto lvalString = std::get_if<std::wstring>(&lval))
 	{
 		if (auto rvalString = std::get_if<std::wstring>(&rval))
@@ -105,8 +134,7 @@ ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
 			if (op == L"+") return *rvalBool + *lvalBool;
 		}
 	}
-//		std::cerr << "Error: Invalid comparison between field '" << field << "' and value." << std::endl;
-	return false;
+	return std::monostate{};
 }
 
 ValueType NegateNode::evaluate(const DIFFITEM& di) const
@@ -114,8 +142,7 @@ ValueType NegateNode::evaluate(const DIFFITEM& di) const
 	auto rval = right->evaluate(di);
 	if (auto rvalInt = std::get_if<int64_t>(&rval))
 		return -*rvalInt;
-//		std::cerr << "Error: Invalid comparison between field '" << field << "' and value." << std::endl;
-	return false;
+	return std::monostate{};
 }
 
 FieldNode::FieldNode(const CDiffContext* ctxt, const std::wstring& v) : ctxt(ctxt), field(v)
