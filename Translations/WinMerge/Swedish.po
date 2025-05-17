@@ -436,11 +436,9 @@ msgstr "Stäng alla"
 msgid "Change &Pane\tF6"
 msgstr "Växla ruta\tF6"
 
-#, fuzzy
 msgid "Tile &Horizontally"
 msgstr "Ordna horisontellt"
 
-#, fuzzy
 msgid "Tile &Vertically"
 msgstr "Ordna vertikalt"
 
