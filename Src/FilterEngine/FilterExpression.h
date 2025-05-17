@@ -6,7 +6,7 @@
 #include <variant>
 #include <Poco/Timestamp.h>
 
-class CDiffContext;
+struct FilterContext;
 class DIFFITEM;
 typedef std::variant<std::monostate, int64_t, Poco::Timestamp, std::wstring, bool> ValueType;
 
@@ -25,7 +25,7 @@ struct OrNode : public ExprNode
 	OrNode(ExprNode* l, ExprNode* r) : left(l), right(r)
 	{
 	}
-	~OrNode()
+	virtual ~OrNode()
 	{
 		delete left;
 		delete right;
@@ -40,7 +40,7 @@ struct AndNode : public ExprNode
 	AndNode(ExprNode* l, ExprNode* r) : left(l), right(r)
 	{
 	}
-	~AndNode()
+	virtual ~AndNode()
 	{
 		delete left;
 		delete right;
@@ -54,7 +54,7 @@ struct NotNode : public ExprNode
 	NotNode(ExprNode* e) : expr(e)
 	{
 	}
-	~NotNode()
+	virtual ~NotNode()
 	{
 		delete expr;
 	}
@@ -69,7 +69,7 @@ struct ComparisonNode : public ExprNode
 	ComparisonNode(ExprNode* l, const std::wstring& o, ExprNode* r) : left(l), op(o), right(r)
 	{
 	}
-	~ComparisonNode()
+	virtual ~ComparisonNode()
 	{
 		delete left;
 		delete right;
@@ -85,7 +85,7 @@ struct ArithmeticNode : public ExprNode
 	ArithmeticNode(ExprNode* l, const std::wstring& o, ExprNode* r) : left(l), op(o), right(r)
 	{
 	}
-	~ArithmeticNode()
+	virtual ~ArithmeticNode()
 	{
 		delete left;
 		delete right;
@@ -99,7 +99,7 @@ struct NegateNode : public ExprNode
 	NegateNode(ExprNode* r) : right(r)
 	{
 	}
-	~NegateNode()
+	virtual ~NegateNode()
 	{
 		delete right;
 	}
@@ -108,22 +108,29 @@ struct NegateNode : public ExprNode
 
 struct FieldNode : public ExprNode
 {
-	const CDiffContext* ctxt;
+	const FilterContext* ctxt;
 	std::wstring field;
-	std::function<ValueType(const CDiffContext* ctxt, const DIFFITEM& di)> func;
-	FieldNode(const CDiffContext* ctxt, const std::wstring& v);
+	std::function<ValueType(const FilterContext* ctxt, const DIFFITEM& di)> func;
+	FieldNode(const FilterContext* ctxt, const std::wstring& v);
 	ValueType evaluate(const DIFFITEM& di) const override;
 };
 
 struct FunctionNode : public ExprNode
 {
-	const CDiffContext* ctxt;
+	const FilterContext* ctxt;
 	std::wstring functionName;
 	std::vector<ExprNode*>* args;
-	std::function<ValueType(const CDiffContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args)> func;
-	FunctionNode(const CDiffContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args);
-	~FunctionNode()
+	std::function<ValueType(const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args)> func;
+	FunctionNode(const FilterContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args);
+	virtual ~FunctionNode()
 	{
+		if (args)
+		{
+			for (auto arg : *args)
+			{
+				delete arg;
+			}
+		}
 		delete args;
 	}
 	ValueType evaluate(const DIFFITEM& di) const override;

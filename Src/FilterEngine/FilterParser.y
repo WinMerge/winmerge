@@ -8,10 +8,11 @@
 %left STAR SLASH MOD.
 
 %token_type {YYSTYPE}
-%extra_argument { FilterParseContext* pCtx }
+%extra_argument { FilterContext* pCtx }
 
 %include {
 #include "FilterEngineInternal.h"
+#include "FilterEngine.h"
 #include "FilterExpression.h"
 }
 
@@ -51,9 +52,9 @@ term(A) ::= TRUE_LITERAL.       { A.node = new BoolLiteral(true); }
 term(A) ::= FALSE_LITERAL.      { A.node = new BoolLiteral(false); }
 term(A) ::= INTEGER_LITERAL(B). { A.node = new IntLiteral(B.integer); }
 term(A) ::= STRING_LITERAL(B).  { A.node = new StringLiteral(B.string); }
-term(A) ::= IDENTIFIER(B) LPAREN RPAREN. { A.node = new FunctionNode(pCtx->ctxt, B.string, {}); }
-term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. { A.node = new FunctionNode(pCtx->ctxt, B.string, C.nodeList); }
-term(A) ::= IDENTIFIER(B).      { A.node = new FieldNode(pCtx->ctxt, B.string); }
+term(A) ::= IDENTIFIER(B) LPAREN RPAREN. { A.node = new FunctionNode(pCtx, B.string, {}); }
+term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. { A.node = new FunctionNode(pCtx, B.string, C.nodeList); }
+term(A) ::= IDENTIFIER(B).      { A.node = new FieldNode(pCtx, B.string); }
 term(A) ::= LPAREN expr(B) RPAREN. { A = B; }
 
 expr_list(A) ::= expr(B). { A.nodeList = new std::vector<ExprNode*>{ B.node }; }

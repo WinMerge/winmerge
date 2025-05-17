@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "FilterExpression.h"
+#include "FilterEngineInternal.h"
+#include "FilterEngine.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include <iostream>
@@ -145,7 +147,7 @@ ValueType NegateNode::evaluate(const DIFFITEM& di) const
 	return std::monostate{};
 }
 
-FieldNode::FieldNode(const CDiffContext* ctxt, const std::wstring& v) : ctxt(ctxt), field(v)
+FieldNode::FieldNode(const FilterContext* ctxt, const std::wstring& v) : ctxt(ctxt), field(v)
 {
 	int prefixlen = 0;
 	const wchar_t* p = v.c_str();
@@ -162,15 +164,15 @@ FieldNode::FieldNode(const CDiffContext* ctxt, const std::wstring& v) : ctxt(ctx
 	}
 	else if (v.compare(0, 5, L"Right") == 0)
 	{
-		index = ctxt->GetCompareDirs() < 3 ? 1 : 2;
+		index = ctxt->ctxt->GetCompareDirs() < 3 ? 1 : 2;
 		prefixlen = 5;
 	}
 	if (v.compare(prefixlen, 4, L"Size") == 0)
-		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) -> int64_t { return static_cast<int64_t>(di.diffFileInfo[index].size); };
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> int64_t { return static_cast<int64_t>(di.diffFileInfo[index].size); };
 	else if (v.compare(prefixlen, 4, L"Date") == 0)
-		func = [index](const CDiffContext* ctxt, const DIFFITEM& di) -> Poco::Timestamp { return di.diffFileInfo[index].mtime; };
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> Poco::Timestamp { return di.diffFileInfo[index].mtime; };
 	else if (v.compare(prefixlen, 4, L"Name") == 0)
-		func = [index](const CDiffContext* ctxt, const DIFFITEM& di)-> std::wstring { return di.diffFileInfo[index].filename.get(); };
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> std::wstring { return di.diffFileInfo[index].filename.get(); };
 	else
 	{
 //		std::cerr << "Error: Invalid field'" << field << "' and value." << std::endl;
@@ -182,19 +184,35 @@ ValueType FieldNode::evaluate(const DIFFITEM& di) const
 	return func(ctxt, di);
 }
 
-FunctionNode::FunctionNode(const CDiffContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args)
-	: functionName(name), args(args)
+FunctionNode::FunctionNode(const FilterContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args)
+	: ctxt(ctxt), functionName(name), args(args)
 {
 	if (functionName == L"abs")
 	{
 		if (args->size() != 1)
 			throw std::runtime_error("abs function requires 1 arguments");
-		func = [](const CDiffContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
+		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
 			auto arg1 = (*args)[0]->evaluate(di);
 			if (auto arg1Int = std::get_if<int64_t>(&arg1))
 				return abs(*arg1Int);
-			throw std::runtime_error("abs function requires 1 integer arguments");
+			return std::monostate{};
 		};
+	}
+	else if (functionName == L"today")
+	{
+		if (args && args->size() != 0)
+			throw std::runtime_error("today function requires 0 arguments");
+		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType {
+				return *ctxt->today;
+			};
+	}
+	else if (functionName == L"now")
+	{
+		if (args && args->size() != 0)
+			throw std::runtime_error("now function requires 0 arguments");
+		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType {
+				return *ctxt->now;
+			};
 	}
 	else
 	{

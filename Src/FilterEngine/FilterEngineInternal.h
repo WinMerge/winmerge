@@ -5,7 +5,7 @@
 #include <vector>
 
 struct ExprNode;
-class CDiffContext;
+struct FilterContext;
 
 struct YYSTYPE
 {
@@ -14,17 +14,6 @@ struct YYSTYPE
 	bool boolean;
 	ExprNode* node;
 	std::vector<ExprNode*> *nodeList;
-};
-
-struct FilterParseContext
-{
-	FilterParseContext(const CDiffContext* ctxt)
-		: ctxt(ctxt)
-		, rootNode(nullptr)
-	{
-	}
-	const CDiffContext* ctxt;
-	ExprNode* rootNode;
 };
 
 struct FilterLexer
@@ -96,6 +85,6 @@ struct FilterLexer
 	std::vector<wchar_t*> strings;
 };
 
-void Parse(void* yyp, int yymajor, YYSTYPE yyminor, FilterParseContext* pCtx);
+void Parse(void* yyp, int yymajor, YYSTYPE yyminor, FilterContext* pCtx);
 void* ParseAlloc(void* (*mallocProc)(size_t));
 void ParseFree(void* yyp, void (*freeProc)(void*));

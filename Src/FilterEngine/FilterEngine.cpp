@@ -4,39 +4,66 @@
 #include "FilterEngineInternal.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
+#include <Poco/LocalDateTime.h>
 
 YYSTYPE resultFilterExpression;
 
-static ExprNode* ParseFilterExpression(const std::wstring& str, const CDiffContext& ctxt)
+FilterContext::FilterContext(const CDiffContext* ctxt)
+	: ctxt(ctxt)
+	, rootNode(nullptr)
+	, now(nullptr)
+	, today(nullptr)
 {
-	FilterParseContext parseContext(&ctxt);
-	FilterLexer lexer(str);
-	void* parser = ParseAlloc(malloc);
+	UpdateTimestamp();
+}
+
+FilterContext::~FilterContext()
+{
+	delete now;
+	delete today;
+	delete rootNode;
+}
+
+void FilterContext::UpdateTimestamp()
+{
+	if (now)
+	{
+		delete now;
+		now = nullptr;
+	}
+	if (today)
+	{
+		delete today;
+		today = nullptr;
+	}
+	now = new Poco::Timestamp();
+	Poco::LocalDateTime ldt(*now);
+	Poco::LocalDateTime midnight(ldt.year(), ldt.month(), ldt.day(), 0, 0, 0);
+	today = new Poco::Timestamp(midnight.timestamp());
+}
+
+void FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
+{
+	delete ctxt.rootNode;
+	ctxt.UpdateTimestamp();
+
+	FilterLexer lexer(expression);
+	void* prs = ParseAlloc(malloc);
 	int token;
 
 	while ((token = lexer.yylex()) != 0)
 	{
-		Parse(parser, token, lexer.yylval, &parseContext);
+		::Parse(prs, token, lexer.yylval, &ctxt);
 		lexer.yycursor = lexer.YYCURSOR;
 	}
-	Parse(parser, 0, lexer.yylval, &parseContext);
+	::Parse(prs, 0, lexer.yylval, &ctxt);
 
-	ParseFree(parser, free);
-
-	return parseContext.rootNode;
+	::ParseFree(prs, free);
 }
 
-
-FilterEngine::ParseResult FilterEngine::Parse(const std::wstring& expression, const CDiffContext& ctxt)
+bool FilterEngine::Evaluate(FilterContext& ctxt, const DIFFITEM& di)
 {
-	ParseResult result;
-	result.root.reset(ParseFilterExpression(expression, ctxt));
-	return result;
-}
-
-bool FilterEngine::Evaluate(const std::shared_ptr<ExprNode>& expr, const DIFFITEM& di)
-{
-	auto result = expr->evaluate(di);
+	auto result = ctxt.rootNode->evaluate(di);
 	if (auto boolVal = std::get_if<bool>(&result))
 		return *boolVal;
 	return false;
