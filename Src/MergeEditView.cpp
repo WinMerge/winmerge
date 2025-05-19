@@ -1268,12 +1268,56 @@ void CMergeEditView::OnEditPaste()
 /**
  * @brief Called when "Paste" item is updated
  */
-void CMergeEditView::OnUpdateEditPaste(CCmdUI* pCmdUI)
+void CMergeEditView::OnEditPaste()
 {
-	if (QueryEditable())
-		CCrystalEditViewEx::OnUpdateEditPaste(pCmdUI);
-	else
-		pCmdUI->Enable(false);
+    if (!QueryEditable())
+        return;
+
+    CCrystalTextBuffer *pTextBuffer = m_pTextBuffer; 
+    CMergeDoc* pDoc = GetDocument(); // Get the document
+
+    if (pTextBuffer != nullptr) 
+    {
+        // CRITICAL: Always set the cursor and selection to the very beginning
+        // of the *actual content* of the buffer (real line 0).
+        // This overrides any clicks on ghost lines.
+
+        if (pTextBuffer->GetLineCount() > 0)
+        {
+            // Target real line 0.
+            // Get its current length to select it all for replacement.
+            int lengthOfRealLine0 = pTextBuffer->GetLineLength(0); 
+            
+            // Set the cursor explicitly to the start of real line 0.
+            // This is important because CCrystalTextView::Paste() might use the
+            // current cursor position if the selection is zero-length or in complex ways.
+            SetCursorPos(CEPoint(0, 0)); 
+            
+            // Now, set the selection to encompass all of real line 0.
+            SetSelection(CEPoint(0, 0), CEPoint(lengthOfRealLine0, 0));
+        }
+        else
+        {
+            // Buffer is completely empty (no lines at all).
+            // This case should be rare if InitNew works.
+            SetCursorPos(CEPoint(0, 0)); 
+            SetSelection(CEPoint(0,0), CEPoint(0,0));
+        }
+        
+        // Update caret to reflect the new cursor position and selection
+        // *before* Paste() is called. This might be key for the base class
+        // to correctly recognize the intended replacement target.
+        UpdateCaret(); 
+    }
+
+    // Call the base class's Paste method. It should now:
+    // 1. See the selection on real line 0.
+    // 2. Delete the selected text (e.g., "Line 1" or an empty line).
+    // 3. Insert the clipboard content starting at (0,0) on real line 0.
+    CCrystalEditViewEx::Paste(); 
+    
+    if (m_pTextBuffer) 
+        m_pTextBuffer->SetModified(true);
 }
 
 /**
