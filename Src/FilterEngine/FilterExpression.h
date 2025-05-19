@@ -1,5 +1,6 @@
 #pragma once
 
+#include "FilterParser.h"
 #include <iostream>
 #include <string>
 #include <map>
@@ -8,7 +9,7 @@
 
 struct FilterContext;
 class DIFFITEM;
-typedef std::variant<std::monostate, int64_t, Poco::Timestamp, std::wstring, bool> ValueType;
+typedef std::variant<std::monostate, int64_t, Poco::Timestamp, std::string, bool> ValueType;
 
 struct ExprNode
 {
@@ -63,11 +64,29 @@ struct NotNode : public ExprNode
 
 struct ComparisonNode : public ExprNode
 {
-	std::wstring op;
+	int op;
 	ExprNode* left;
 	ExprNode* right;
-	ComparisonNode(ExprNode* l, const std::wstring& o, ExprNode* r) : left(l), op(o), right(r)
+	ComparisonNode(ExprNode* l, const std::string& o, ExprNode* r) : left(l), right(r)
 	{
+		if (o == "==")
+			op = EQ;
+		else if (o == "!=")
+			op = NE;
+		else if (o == "<")
+			op = LT;
+		else if (o == "<=")
+			op = LE;
+		else if (o == ">")
+			op = GT;
+		else if (o == ">=")
+			op = GE;
+		else if (o == "CONTAINS")
+			op = CONTAINS;
+		else if (o == "MATCHES")
+			op = MATCHES;
+		else
+			op = EQ;
 	}
 	virtual ~ComparisonNode()
 	{
@@ -79,10 +98,10 @@ struct ComparisonNode : public ExprNode
 
 struct ArithmeticNode : public ExprNode
 {
-	std::wstring op;
+	char op;
 	ExprNode* left;
 	ExprNode* right;
-	ArithmeticNode(ExprNode* l, const std::wstring& o, ExprNode* r) : left(l), op(o), right(r)
+	ArithmeticNode(ExprNode* l, char o, ExprNode* r) : left(l), op(o), right(r)
 	{
 	}
 	virtual ~ArithmeticNode()
@@ -109,19 +128,19 @@ struct NegateNode : public ExprNode
 struct FieldNode : public ExprNode
 {
 	const FilterContext* ctxt;
-	std::wstring field;
+	std::string field;
 	std::function<ValueType(const FilterContext* ctxt, const DIFFITEM& di)> func;
-	FieldNode(const FilterContext* ctxt, const std::wstring& v);
+	FieldNode(const FilterContext* ctxt, const std::string& v);
 	ValueType evaluate(const DIFFITEM& di) const override;
 };
 
 struct FunctionNode : public ExprNode
 {
 	const FilterContext* ctxt;
-	std::wstring functionName;
+	std::string functionName;
 	std::vector<ExprNode*>* args;
 	std::function<ValueType(const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args)> func;
-	FunctionNode(const FilterContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args);
+	FunctionNode(const FilterContext* ctxt, const std::string& name, std::vector<ExprNode*>* args);
 	virtual ~FunctionNode()
 	{
 		if (args)
@@ -162,8 +181,8 @@ struct IntLiteral : public ExprNode
 
 struct StringLiteral : public ExprNode
 {
-	std::wstring value;
-	StringLiteral(const std::wstring& v) : value(v)
+	std::string value;
+	StringLiteral(const std::string& v) : value(v)
 	{
 	}
 	inline ValueType evaluate(const DIFFITEM& di) const override

@@ -52,45 +52,55 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 	{
 		if (auto rvalInt = std::get_if<int64_t>(&rval))
 		{
-			if (op == L"==") return *lvalInt == *rvalInt;
-			if (op == L"!=") return *lvalInt != *rvalInt;
-			if (op == L"<")  return *lvalInt <  *rvalInt;
-			if (op == L"<=") return *lvalInt <= *rvalInt;
-			if (op == L">")  return *lvalInt >  *rvalInt;
-			if (op == L">=") return *lvalInt >= *rvalInt;
+			if (op == EQ) return *lvalInt == *rvalInt;
+			if (op == NE) return *lvalInt != *rvalInt;
+			if (op == LT) return *lvalInt <  *rvalInt;
+			if (op == LE) return *lvalInt <= *rvalInt;
+			if (op == GT) return *lvalInt >  *rvalInt;
+			if (op == GE) return *lvalInt >= *rvalInt;
 		}
 	}
 	else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
 	{
 		if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
 		{
-			if (op == L"==") return *lvalTimestamp == *rvalTimestamp;
-			if (op == L"!=") return *lvalTimestamp != *rvalTimestamp;
-			if (op == L"<")  return *lvalTimestamp <  *rvalTimestamp;
-			if (op == L"<=") return *lvalTimestamp <= *rvalTimestamp;
-			if (op == L">")  return *lvalTimestamp >  *rvalTimestamp;
-			if (op == L">=") return *lvalTimestamp >= *rvalTimestamp;
+			if (op == EQ) return *lvalTimestamp == *rvalTimestamp;
+			if (op == NE) return *lvalTimestamp != *rvalTimestamp;
+			if (op == LT) return *lvalTimestamp <  *rvalTimestamp;
+			if (op == LE) return *lvalTimestamp <= *rvalTimestamp;
+			if (op == GT) return *lvalTimestamp >  *rvalTimestamp;
+			if (op == GE) return *lvalTimestamp >= *rvalTimestamp;
 		}
 	}
-	else if (auto lvalString = std::get_if<std::wstring>(&lval))
+	else if (auto lvalString = std::get_if<std::string>(&lval))
 	{
-		if (auto rvalString = std::get_if<std::wstring>(&rval))
+		if (auto rvalString = std::get_if<std::string>(&rval))
 		{
-			if (op == L"==") return *lvalString == *rvalString;
-			if (op == L"!=") return *lvalString != *rvalString;
+			if (op == EQ) return *lvalString == *rvalString;
+			if (op == NE) return *lvalString != *rvalString;
+			if (op == CONTAINS)
+			{
+				std::string l = ucr::toUTF8(strutils::makelower(ucr::toTString(*lvalString)));
+				std::string r = ucr::toUTF8(strutils::makelower(ucr::toTString(*rvalString)));
+				return (l.find(r) != std::string::npos);
+			}
+			if (op == MATCHES)
+			{
+				return *lvalString != *rvalString;
+			}
 		}
 	}
 	else if (auto lvalBool = std::get_if<bool>(&lval))
 	{
 		if (auto rvalBool = std::get_if<bool>(&rval))
 		{
-			if (op == L"==") return *lvalBool == *rvalBool;
-			if (op == L"!=") return *lvalBool != *rvalBool;
+			if (op == EQ) return *lvalBool == *rvalBool;
+			if (op == NE) return *lvalBool != *rvalBool;
 		}
 	}
-	if (op == L"==")
+	if (op == EQ)
 		return false;
-	else if (op == L"!=")
+	else if (op == NE)
 		return true;
 	return std::monostate{};
 }
@@ -103,37 +113,37 @@ ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
 	{
 		if (auto rvalInt = std::get_if<int64_t>(&rval))
 		{
-			if (op == L"+") return *lvalInt + *rvalInt;
-			if (op == L"-") return *lvalInt - *rvalInt;
-			if (op == L"*") return *lvalInt * *rvalInt;
-			if (op == L"/") return *lvalInt / *rvalInt;
-			if (op == L"%") return *lvalInt % *rvalInt;
+			if (op == '+') return *lvalInt + *rvalInt;
+			if (op == '-') return *lvalInt - *rvalInt;
+			if (op == '*') return *lvalInt * *rvalInt;
+			if (op == '/') return *lvalInt / *rvalInt;
+			if (op == '%') return *lvalInt % *rvalInt;
 		}
 	}
 	if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
 	{
 		if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
 		{
-			if (op == L"-") return *lvalTimestamp - *rvalTimestamp;
+			if (op == '-') return *lvalTimestamp - *rvalTimestamp;
 		}
 		if (auto rvalInt = std::get_if<int64_t>(&rval))
 		{
-			if (op == L"+") return *lvalTimestamp + *rvalInt;
-			if (op == L"-") return *lvalTimestamp - *rvalInt;
+			if (op == '+') return *lvalTimestamp + *rvalInt;
+			if (op == '-') return *lvalTimestamp - *rvalInt;
 		}
 	}
-	else if (auto lvalString = std::get_if<std::wstring>(&lval))
+	else if (auto lvalString = std::get_if<std::string>(&lval))
 	{
-		if (auto rvalString = std::get_if<std::wstring>(&rval))
+		if (auto rvalString = std::get_if<std::string>(&rval))
 		{
-			if (op == L"+") return *rvalString + *lvalString;
+			if (op == '+') return *rvalString + *lvalString;
 		}
 	}
 	else if (auto lvalBool = std::get_if<bool>(&lval))
 	{
 		if (auto rvalBool = std::get_if<bool>(&rval))
 		{
-			if (op == L"+") return *rvalBool + *lvalBool;
+			if (op == '+') return *rvalBool + *lvalBool;
 		}
 	}
 	return std::monostate{};
@@ -147,35 +157,35 @@ ValueType NegateNode::evaluate(const DIFFITEM& di) const
 	return std::monostate{};
 }
 
-FieldNode::FieldNode(const FilterContext* ctxt, const std::wstring& v) : ctxt(ctxt), field(v)
+FieldNode::FieldNode(const FilterContext* ctxt, const std::string& v) : ctxt(ctxt), field(v)
 {
 	int prefixlen = 0;
-	const wchar_t* p = v.c_str();
+	const char* p = v.c_str();
 	int64_t index = 0;
-	if (v.compare(0, 4, L"Left") == 0)
+	if (v.compare(0, 4, "Left") == 0)
 	{
 		index = 0;
 		prefixlen = 4;
 	}
-	else if (v.compare(0, 6, L"Middle") == 0)
+	else if (v.compare(0, 6, "Middle") == 0)
 	{
 		index = 1;
 		prefixlen = 6;
 	}
-	else if (v.compare(0, 5, L"Right") == 0)
+	else if (v.compare(0, 5, "Right") == 0)
 	{
 		index = ctxt->ctxt->GetCompareDirs() < 3 ? 1 : 2;
 		prefixlen = 5;
 	}
-	if (v.compare(prefixlen, 4, L"Size") == 0)
+	if (v.compare(prefixlen, 4, "Size") == 0)
 		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> int64_t { return static_cast<int64_t>(di.diffFileInfo[index].size); };
-	else if (v.compare(prefixlen, 4, L"Date") == 0)
+	else if (v.compare(prefixlen, 4, "Date") == 0)
 		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> Poco::Timestamp { return di.diffFileInfo[index].mtime; };
-	else if (v.compare(prefixlen, 4, L"Name") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> std::wstring { return di.diffFileInfo[index].filename.get(); };
+	else if (v.compare(prefixlen, 4, "Name") == 0)
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> std::string { return ucr::toUTF8(di.diffFileInfo[index].filename.get()); };
 	else
 	{
-//		std::cerr << "Error: Invalid field'" << field << "' and value." << std::endl;
+		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
 	}
 }
 
@@ -184,10 +194,10 @@ ValueType FieldNode::evaluate(const DIFFITEM& di) const
 	return func(ctxt, di);
 }
 
-FunctionNode::FunctionNode(const FilterContext* ctxt, const std::wstring& name, std::vector<ExprNode*>* args)
+FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, std::vector<ExprNode*>* args)
 	: ctxt(ctxt), functionName(name), args(args)
 {
-	if (functionName == L"abs")
+	if (functionName == "abs")
 	{
 		if (args->size() != 1)
 			throw std::runtime_error("abs function requires 1 arguments");
@@ -198,7 +208,7 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::wstring& name, 
 			return std::monostate{};
 		};
 	}
-	else if (functionName == L"today")
+	else if (functionName == "today")
 	{
 		if (args && args->size() != 0)
 			throw std::runtime_error("today function requires 0 arguments");
@@ -206,7 +216,7 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::wstring& name, 
 				return *ctxt->today;
 			};
 	}
-	else if (functionName == L"now")
+	else if (functionName == "now")
 	{
 		if (args && args->size() != 0)
 			throw std::runtime_error("now function requires 0 arguments");
@@ -216,7 +226,7 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::wstring& name, 
 	}
 	else
 	{
-//		std::cerr << "Error: Invalid field'" << field << "' and value." << std::endl;
+		throw std::runtime_error("Unknown function: " + std::string(functionName.begin(), functionName.end()));
 	}
 }
 

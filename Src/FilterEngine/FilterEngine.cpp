@@ -4,6 +4,7 @@
 #include "FilterEngineInternal.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
+#include "unicoder.h"
 #include <Poco/LocalDateTime.h>
 
 YYSTYPE resultFilterExpression;
@@ -46,18 +47,16 @@ void FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
 {
 	delete ctxt.rootNode;
 	ctxt.UpdateTimestamp();
-
-	FilterLexer lexer(expression);
+	std::string expressionStr = ucr::toUTF8(expression);
+	FilterLexer lexer(expressionStr);
 	void* prs = ParseAlloc(malloc);
 	int token;
-
 	while ((token = lexer.yylex()) != 0)
 	{
 		::Parse(prs, token, lexer.yylval, &ctxt);
 		lexer.yycursor = lexer.YYCURSOR;
 	}
 	::Parse(prs, 0, lexer.yylval, &ctxt);
-
 	::ParseFree(prs, free);
 }
 

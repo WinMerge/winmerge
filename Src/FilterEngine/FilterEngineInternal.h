@@ -9,7 +9,7 @@ struct FilterContext;
 
 struct YYSTYPE
 {
-	const wchar_t* string;
+	const char* string;
 	int64_t integer;
 	bool boolean;
 	ExprNode* node;
@@ -18,10 +18,10 @@ struct YYSTYPE
 
 struct FilterLexer
 {
-	FilterLexer(const std::wstring& input)
-		: yycursor((wchar_t*)input.c_str())
-		, YYCURSOR((wchar_t*)input.c_str())
-		, YYLIMIT((wchar_t*)input.c_str() + input.length())
+	FilterLexer(const std::string& input)
+		: yycursor((char*)input.c_str())
+		, YYCURSOR((char*)input.c_str())
+		, YYLIMIT((char*)input.c_str() + input.length())
 	{
 	}
 
@@ -32,10 +32,10 @@ struct FilterLexer
 
 	int yylex();
 
-	std::wstring unescapeQuotes(wchar_t*& str)
+	std::string unescapeQuotes(char*& str)
 	{
-		std::wstring result;
-		const wchar_t* start = str;
+		std::string result;
+		const char* start = str;
 		while (*str != '\0')
 		{
 			if (*str == '"')
@@ -58,9 +58,9 @@ struct FilterLexer
 		return result;
 	}
 
-	const wchar_t* dupString(const wchar_t* str)
+	const char* dupString(const char* str)
 	{
-		wchar_t* newStr = _wcsdup(str);
+		char* newStr = _strdup(str);
 		strings.push_back(newStr);
 		return newStr;
 	}
@@ -72,17 +72,17 @@ struct FilterLexer
 		strings.clear();
 	}
 
-	void lexerError(const wchar_t* msg)
+	void lexerError(const char* msg)
 	{
 		std::cerr << "Lexer Error: " << msg << std::endl;
 	}
 
 	YYSTYPE yylval{};
-	wchar_t* yycursor = nullptr;
-	wchar_t* YYMARKER = nullptr;
-	wchar_t* YYCURSOR = nullptr;
-	wchar_t* YYLIMIT = nullptr;
-	std::vector<wchar_t*> strings;
+	char* yycursor = nullptr;
+	char* YYMARKER = nullptr;
+	char* YYCURSOR = nullptr;
+	char* YYLIMIT = nullptr;
+	std::vector<char*> strings;
 };
 
 void Parse(void* yyp, int yymajor, YYSTYPE yyminor, FilterContext* pCtx);

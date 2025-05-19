@@ -75,6 +75,10 @@ namespace
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		FilterEngine::Parse(L"RightName = \"Bob.txt\"", fc);
 		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		FilterEngine::Parse(L"LeftName CONTAINS \"alice\"", fc);
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		FilterEngine::Parse(L"RightName contains \".txt\"", fc);
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 	}
 
 }  // namespace
