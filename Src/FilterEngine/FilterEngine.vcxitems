@@ -43,6 +43,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterExpression.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterParser.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FilterEngineInternal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FilterLexer.h" />
   </ItemGroup>
 </Project>

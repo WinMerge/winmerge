@@ -7,10 +7,8 @@ re2c:eof = 0;
 
 #include "pch.h"
 #include "FilterParser.h"
-#include "FilterEngineInternal.h"
+#include "FilterLexer.h"
 #include <string>
-#include <iostream>
-#include <vector>
 
 int FilterLexer::yylex()
 {
@@ -58,3 +56,45 @@ begin:
 	.                 { return LEXER_ERR_UNKNOWN_CHAR; }
 	*/
 }
+
+std::string FilterLexer::unescapeQuotes(char*& str)
+{
+	std::string result;
+	const char* start = str;
+	while (*str != '\0')
+	{
+		if (*str == '"')
+		{
+			if (*(str + 1) == '"')
+			{
+				result += '"';
+				str += 2;
+			}
+			else
+			{
+				str++;
+				break;
+			}
+		}
+		else
+		{
+			result += *str++;
+		}
+	}
+	return result;
+}
+
+const char* FilterLexer::dupString(const char* str)
+{
+	char* newStr = _strdup(str);
+	strings.push_back(newStr);
+	return newStr;
+}
+
+void FilterLexer::freeStrings()
+{
+	for (auto str : strings)
+		free(str);
+	strings.clear();
+}
+

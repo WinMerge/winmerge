@@ -1,12 +1,10 @@
 #include "pch.h"
 #include "FilterExpression.h"
-#include "FilterEngineInternal.h"
+#include "FilterLexer.h"
 #include "FilterEngine.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
-#include <iostream>
 #include <string>
-#include <map>
 #include <variant>
 
 ValueType OrNode::evaluate(const DIFFITEM& di) const

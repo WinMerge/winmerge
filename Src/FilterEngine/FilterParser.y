@@ -11,9 +11,9 @@
 %extra_argument { FilterContext* pCtx }
 
 %include {
-#include "FilterEngineInternal.h"
-#include "FilterEngine.h"
+#include "FilterLexer.h"
 #include "FilterExpression.h"
+#include "FilterEngine.h"
 }
 
 %syntax_error {

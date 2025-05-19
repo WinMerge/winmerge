@@ -28,9 +28,9 @@
 /************ Begin %include sections from the grammar ************************/
 #line 13 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
-#include "FilterEngineInternal.h"
-#include "FilterEngine.h"
+#include "FilterLexer.h"
 #include "FilterExpression.h"
+#include "FilterEngine.h"
 #line 35 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 /**************** End of %include directives **********************************/
 /* These constants specify the various numeric values for terminal symbols.

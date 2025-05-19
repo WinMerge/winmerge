@@ -1,13 +1,15 @@
 #include "pch.h"
 #include "FilterEngine.h"
 #include "FilterExpression.h"
-#include "FilterEngineInternal.h"
+#include "FilterLexer.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "unicoder.h"
 #include <Poco/LocalDateTime.h>
 
-YYSTYPE resultFilterExpression;
+extern void Parse(void* yyp, int yymajor, YYSTYPE yyminor, FilterContext* pCtx);
+extern void* ParseAlloc(void* (*mallocProc)(size_t));
+extern void ParseFree(void* yyp, void (*freeProc)(void*));
 
 FilterContext::FilterContext(const CDiffContext* ctxt)
 	: ctxt(ctxt)

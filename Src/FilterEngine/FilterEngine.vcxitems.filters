@@ -24,7 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)FilterEngineInternal.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)FilterLexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterEngine.h">
