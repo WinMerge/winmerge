@@ -14,15 +14,26 @@ FilterContext::FilterContext(const CDiffContext* ctxt)
 	, rootNode(nullptr)
 	, now(nullptr)
 	, today(nullptr)
+	, errorCode(0)
 {
 	UpdateTimestamp();
 }
 
+
 FilterContext::~FilterContext()
+{
+	Clear();
+}
+
+void FilterContext::Clear()
 {
 	delete now;
 	delete today;
 	delete rootNode;
+	now = nullptr;
+	today = nullptr;
+	rootNode = nullptr;
+	errorCode = 0;
 }
 
 void FilterContext::UpdateTimestamp()
@@ -43,9 +54,9 @@ void FilterContext::UpdateTimestamp()
 	today = new Poco::Timestamp(midnight.timestamp());
 }
 
-void FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
+bool FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
 {
-	delete ctxt.rootNode;
+	ctxt.Clear();
 	ctxt.UpdateTimestamp();
 	std::string expressionStr = ucr::toUTF8(expression);
 	FilterLexer lexer(expressionStr);
@@ -53,11 +64,17 @@ void FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
 	int token;
 	while ((token = lexer.yylex()) != 0)
 	{
+		if (token < 0)
+		{
+			ctxt.errorCode = -token;
+			break;
+		}
 		::Parse(prs, token, lexer.yylval, &ctxt);
 		lexer.yycursor = lexer.YYCURSOR;
 	}
 	::Parse(prs, 0, lexer.yylval, &ctxt);
 	::ParseFree(prs, free);
+	return (ctxt.errorCode == 0);
 }
 
 bool FilterEngine::Evaluate(FilterContext& ctxt, const DIFFITEM& di)

@@ -35,9 +35,12 @@ begin:
 	[0-9]+            { yylval.integer = std::stoi(std::string((const char*)yycursor, YYCURSOR - yycursor)); return INTEGER_LITERAL; }
 	"\"" {
 		std::string str = unescapeQuotes(YYCURSOR);
+		if (*(YYCURSOR - 1) != '"')
+			return LEXER_ERR_UNTERMINATED_STRING;
 		yylval.string = dupString(str.c_str());
 		return STRING_LITERAL;
 	}
+	"=="              { return EQ; }
 	"="               { return EQ; }
 	"!="              { return NE; }
 	"<"               { return LT; }
@@ -52,6 +55,6 @@ begin:
 	"/"               { return SLASH; }
 	"%"               { return MOD; }
 	$                 { return 0; }
-	.                 { lexerError("?????"); return 0; }
+	.                 { return LEXER_ERR_UNKNOWN_CHAR; }
 	*/
 }

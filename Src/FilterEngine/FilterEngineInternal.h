@@ -18,6 +18,11 @@ struct YYSTYPE
 
 struct FilterLexer
 {
+	enum ErrorCode {
+		LEXER_ERR_UNKNOWN_CHAR = -1,
+		LEXER_ERR_UNTERMINATED_STRING = -2,
+	};
+
 	FilterLexer(const std::string& input)
 		: yycursor((char*)input.c_str())
 		, YYCURSOR((char*)input.c_str())
@@ -47,6 +52,7 @@ struct FilterLexer
 				}
 				else
 				{
+					str++;
 					break;
 				}
 			}
@@ -70,11 +76,6 @@ struct FilterLexer
 		for (auto str : strings)
 			free(str);
 		strings.clear();
-	}
-
-	void lexerError(const char* msg)
-	{
-		std::cerr << "Lexer Error: " << msg << std::endl;
 	}
 
 	YYSTYPE yylval{};

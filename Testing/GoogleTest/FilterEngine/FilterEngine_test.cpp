@@ -59,26 +59,36 @@ namespace
 		Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tdz);
 		di.diffFileInfo[1].mtime = dt1.timestamp();
 
-		FilterEngine::Parse(L"LeftDate < now()", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftDate < now()", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"LeftDate != RightDate", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftDate != RightDate", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"abs(-100) == 100", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"abs(-100) == 100", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"abs(LeftSize - RightSize) == (1100 - 1000)", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"abs(LeftSize - RightSize) == (1100 - 1000)", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"LeftSize <= 100 * (1 + 9)", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftSize <= 100 * (1 + 9)", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"LeftSize < 200 + 20 * 40", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftSize < 200 + 20 * 40", fc));
 		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"LeftName = \"Alice.txt\"", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftName = \"Alice.txt\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"RightName = \"Bob.txt\"", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"RightName = \"Bob.txt\"", fc));
 		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"LeftName CONTAINS \"alice\"", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftName CONTAINS \"alice\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		FilterEngine::Parse(L"RightName contains \".txt\"", fc);
+		EXPECT_TRUE(FilterEngine::Parse(L"RightName contains \".txt\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+	}
+
+	TEST_F(FilterEngineTest, ParseError)
+	{
+		PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+		CDiffContext ctxt(paths, 0);
+		FilterContext fc(&ctxt);
+		EXPECT_FALSE(FilterEngine::Parse(L"LeftDate $ a", fc));
+		EXPECT_FALSE(FilterEngine::Parse(L"LeftName = \"aaa", fc));
+		EXPECT_FALSE(FilterEngine::Parse(L"LeftSize = 100 RightSize < 100", fc));
 	}
 
 }  // namespace

@@ -16,6 +16,14 @@
 #include "FilterExpression.h"
 }
 
+%syntax_error {
+    pCtx->errorCode = FilterEngine::ERROR_SYNTAX_ERROR;
+}
+
+%parse_failure {
+    pCtx->errorCode = FilterEngine::ERROR_PARSE_FAILURE;
+}
+
 filter_expr ::= or_expr(A). { pCtx->rootNode = A.node; }
 
 or_expr(A) ::= or_expr(B) OR and_expr(C).  { A.node = new OrNode(B.node, C.node); }
