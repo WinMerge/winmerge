@@ -159,7 +159,7 @@ FieldNode::FieldNode(const FilterContext* ctxt, const std::string& v) : ctxt(ctx
 {
 	int prefixlen = 0;
 	const char* p = v.c_str();
-	int64_t index = 0;
+	int index = 0;
 	if (v.compare(0, 4, "Left") == 0)
 	{
 		index = 0;
@@ -175,16 +175,28 @@ FieldNode::FieldNode(const FilterContext* ctxt, const std::string& v) : ctxt(ctx
 		index = ctxt->ctxt->GetCompareDirs() < 3 ? 1 : 2;
 		prefixlen = 5;
 	}
-	if (v.compare(prefixlen, 4, "Size") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> int64_t { return static_cast<int64_t>(di.diffFileInfo[index].size); };
+	if (v.compare(prefixlen, 4, "Name") == 0)
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+			if (di.diffcode.exists(index)) return ucr::toUTF8(di.diffFileInfo[index].filename.get()); else return std::monostate{};
+		};
+	else if (v.compare(prefixlen, 6, "Folder") == 0)
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+			return ucr::toUTF8(di.diffFileInfo[index].path.get());
+		};
+	else if (v.compare(prefixlen, 4, "Size") == 0)
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
+			return static_cast<int64_t>(di.diffFileInfo[index].size);
+		};
 	else if (v.compare(prefixlen, 4, "Date") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> Poco::Timestamp { return di.diffFileInfo[index].mtime; };
-	else if (v.compare(prefixlen, 4, "Name") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> std::string { return ucr::toUTF8(di.diffFileInfo[index].filename.get()); };
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
+			return di.diffFileInfo[index].mtime;
+		};
+	else if (v.compare(prefixlen, 12, "CreationTime") == 0)
+		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
+			return di.diffFileInfo[index].ctime;
+		};
 	else
-	{
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
-	}
 }
 
 ValueType FieldNode::evaluate(const DIFFITEM& di) const
