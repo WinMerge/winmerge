@@ -1,5 +1,5 @@
-#ifndef POINTEE_DWA200415_HPP
-# define POINTEE_DWA200415_HPP
+#ifndef BOOST_POINTEE_DWA200415_HPP
+#define BOOST_POINTEE_DWA200415_HPP
 
 //
 // Copyright David Abrahams 2004. Use, modification and distribution is
@@ -13,64 +13,50 @@
 // http://www.boost.org/libs/iterator/doc/pointee.html
 //
 
-# include <boost/detail/is_incrementable.hpp>
-# include <boost/iterator/iterator_traits.hpp>
-# include <boost/type_traits/add_const.hpp>
-# include <boost/type_traits/remove_cv.hpp>
-# include <boost/mpl/if.hpp>
-# include <boost/mpl/eval_if.hpp>
-
 #include <iterator>
+#include <type_traits>
+
+#include <boost/detail/is_incrementable.hpp>
 
 namespace boost {
+namespace detail {
 
-namespace detail
+template< typename P >
+struct smart_ptr_pointee
 {
-  template <class P>
-  struct smart_ptr_pointee
-  {
-      typedef typename P::element_type type;
-  };
+    using type = typename P::element_type;
+};
 
-  template <class Iterator>
-  struct iterator_pointee
-  {
-      typedef typename std::iterator_traits<Iterator>::value_type value_type;
+template<
+    typename Iterator,
+    typename = typename std::remove_reference< decltype(*std::declval< Iterator& >()) >::type
+>
+struct iterator_pointee
+{
+    using type = typename std::iterator_traits< Iterator >::value_type;
+};
 
-      struct impl
-      {
-          template <class T>
-          static char test(T const&);
+template< typename Iterator, typename Reference >
+struct iterator_pointee< Iterator, const Reference >
+{
+    using type = typename std::add_const< typename std::iterator_traits< Iterator >::value_type >::type;
+};
 
-          static char (& test(value_type&) )[2];
+} // namespace detail
 
-          static Iterator& x;
-      };
-
-      BOOST_STATIC_CONSTANT(bool, is_constant = sizeof(impl::test(*impl::x)) == 1);
-
-      typedef typename mpl::if_c<
-#  if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x551))
-          ::boost::detail::iterator_pointee<Iterator>::is_constant
-#  else
-          is_constant
-#  endif
-        , typename add_const<value_type>::type
-        , value_type
-      >::type type;
-  };
-}
-
-template <class P>
-struct pointee
-  : mpl::eval_if<
-        detail::is_incrementable<P>
-      , detail::iterator_pointee<P>
-      , detail::smart_ptr_pointee<P>
-    >
+template< typename P >
+struct pointee :
+    public std::conditional<
+        detail::is_incrementable< P >::value,
+        detail::iterator_pointee< P >,
+        detail::smart_ptr_pointee< P >
+    >::type
 {
 };
 
+template< typename P >
+using pointee_t = typename pointee< P >::type;
+
 } // namespace boost
 
-#endif // POINTEE_DWA200415_HPP
+#endif // BOOST_POINTEE_DWA200415_HPP

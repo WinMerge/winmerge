@@ -1197,12 +1197,20 @@ struct aligned_struct;
 template <> struct aligned_struct<1> { char data; };
 template <> struct aligned_struct<2> { short data; };
 template <> struct aligned_struct<4> { int data; };
-template <> struct aligned_struct<8> { double data; };
+//8 byte alignment does not propely work in x86 if attribute is not used.
+//If a user declares a variable with 8 byte alignment, such as a double
+//the compiler will not realign the stack.
+// 
+//If _declspec(align) is used MSVC will realign the stack.
+//
+//Disabled specialization
+//template <> struct aligned_struct<8> { double data; };
 
 #define BOOST_MOVE_ALIGNED_STRUCT(x) \
   template <> struct aligned_struct<x> { \
     __declspec(align(x)) char data; \
   }
+BOOST_MOVE_ALIGNED_STRUCT(8);
 BOOST_MOVE_ALIGNED_STRUCT(16);
 BOOST_MOVE_ALIGNED_STRUCT(32);
 BOOST_MOVE_ALIGNED_STRUCT(64);

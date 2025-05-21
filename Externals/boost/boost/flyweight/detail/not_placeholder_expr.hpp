@@ -1,4 +1,4 @@
-/* Copyright 2006-2018 Joaquin M Lopez Munoz.
+/* Copyright 2006-2024 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -27,7 +27,7 @@
  */
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
-#include <boost/detail/workaround.hpp>
+#include <boost/config/workaround.hpp>
 
 #if BOOST_WORKAROUND(__GNUC__, <4)||\
     BOOST_WORKAROUND(__GNUC__,==4)&&(__GNUC_MINOR__<2)||\

@@ -1,4 +1,4 @@
-/* Copyright 2006-2022 Joaquin M Lopez Munoz.
+/* Copyright 2006-2024 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -15,11 +15,11 @@
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <algorithm>
+#include <boost/config/workaround.hpp>
 #include <boost/core/invoke_swap.hpp>
-#include <boost/detail/atomic_count.hpp>
-#include <boost/detail/workaround.hpp>
 #include <boost/flyweight/refcounted_fwd.hpp>
 #include <boost/flyweight/tracking_tag.hpp>
+#include <boost/smart_ptr/detail/atomic_count.hpp>
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
 #include <utility>

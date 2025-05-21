@@ -1,4 +1,4 @@
-/* Copyright 2006-2019 Joaquin M Lopez Munoz.
+/* Copyright 2006-2024 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -14,7 +14,7 @@
 #endif
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
-#include <boost/detail/workaround.hpp>
+#include <boost/config/workaround.hpp>
 #include <boost/flyweight/detail/perfect_fwd.hpp>
 #include <boost/flyweight/detail/value_tag.hpp>
 
@@ -62,16 +62,16 @@ struct default_value_policy:value_marker
     rep_type(rep_type&& r):x(std::move(r.x)){}
 #endif
 
-    operator const value_type&()const{return x;}
+    operator const value_type&()const BOOST_NOEXCEPT{return x;}
 
     value_type x;
   };
 
-  static void construct_value(const rep_type&){}
-  static void copy_value(const rep_type&){}
+  static void key_construct_value(const rep_type&){}
+  static void copy_construct_value(const rep_type&,const value_type&){}
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
-  static void move_value(const rep_type&){}
+  static void move_construct_value(const rep_type&,value_type&&){}
 #endif
 };
 

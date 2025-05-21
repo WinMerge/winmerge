@@ -15,17 +15,6 @@
 #include <boost/function_equal.hpp>
 #include <boost/core/typeinfo.hpp>
 #include <boost/core/ref.hpp>
-#include <boost/type_traits/has_trivial_copy.hpp>
-#include <boost/type_traits/has_trivial_destructor.hpp>
-#include <boost/type_traits/is_const.hpp>
-#include <boost/type_traits/is_integral.hpp>
-#include <boost/type_traits/is_volatile.hpp>
-#include <boost/type_traits/composite_traits.hpp>
-#include <boost/type_traits/conditional.hpp>
-#include <boost/type_traits/alignment_of.hpp>
-#include <boost/type_traits/enable_if.hpp>
-#include <boost/type_traits/integral_constant.hpp>
-#include <boost/type_traits/is_function.hpp>
 #include <boost/assert.hpp>
 #include <boost/config.hpp>
 #include <boost/config/workaround.hpp>
@@ -33,6 +22,7 @@
 #include <string>
 #include <memory>
 #include <new>
+#include <type_traits>
 
 #if defined(BOOST_MSVC)
 #   pragma warning( push )
@@ -43,10 +33,8 @@
 // retained because used in a test
 #define BOOST_FUNCTION_TARGET_FIX(x)
 
-#  define BOOST_FUNCTION_ENABLE_IF_NOT_INTEGRAL(Functor,Type)              \
-      typename ::boost::enable_if_<          \
-                           !(::boost::is_integral<Functor>::value), \
-                           Type>::type
+#define BOOST_FUNCTION_ENABLE_IF_NOT_INTEGRAL(Functor,Type) \
+  typename std::enable_if< !std::is_integral<Functor>::value, Type>::type
 
 namespace boost {
   namespace detail {
@@ -131,15 +119,15 @@ namespace boost {
       template<typename F>
       class get_function_tag
       {
-        typedef typename conditional<(is_pointer<F>::value),
+        typedef typename std::conditional<std::is_pointer<F>::value,
                                    function_ptr_tag,
                                    function_obj_tag>::type ptr_or_obj_tag;
 
-        typedef typename conditional<(is_member_pointer<F>::value),
+        typedef typename std::conditional<std::is_member_pointer<F>::value,
                                    member_ptr_tag,
                                    ptr_or_obj_tag>::type ptr_or_obj_or_mem_tag;
 
-        typedef typename conditional<(is_reference_wrapper<F>::value),
+        typedef typename std::conditional<is_reference_wrapper<F>::value,
                                    function_obj_ref_tag,
                                    ptr_or_obj_or_mem_tag>::type or_ref_tag;
 
@@ -204,8 +192,8 @@ namespace boost {
         BOOST_STATIC_CONSTANT
           (bool,
            value = ((sizeof(F) <= sizeof(function_buffer) &&
-                     (alignment_of<function_buffer>::value
-                      % alignment_of<F>::value == 0))));
+                     (std::alignment_of<function_buffer>::value
+                      % std::alignment_of<F>::value == 0))));
       };
 
       template <typename F,typename A>
@@ -306,7 +294,7 @@ namespace boost {
         // Function objects that fit in the small-object buffer.
         static inline void
         manager(const function_buffer& in_buffer, function_buffer& out_buffer,
-                functor_manager_operation_type op, true_type)
+                functor_manager_operation_type op, std::true_type)
         {
           functor_manager_common<Functor>::manage_small(in_buffer,out_buffer,op);
         }
@@ -314,7 +302,7 @@ namespace boost {
         // Function objects that require heap allocation
         static inline void
         manager(const function_buffer& in_buffer, function_buffer& out_buffer,
-                functor_manager_operation_type op, false_type)
+                functor_manager_operation_type op, std::false_type)
         {
           if (op == clone_functor_tag) {
             // Clone the functor
@@ -355,7 +343,7 @@ namespace boost {
                 functor_manager_operation_type op, function_obj_tag)
         {
           manager(in_buffer, out_buffer, op,
-                  integral_constant<bool, (function_allows_small_object_optimization<functor_type>::value)>());
+                  std::integral_constant<bool, (function_allows_small_object_optimization<functor_type>::value)>());
         }
 
         // For member pointers, we use the small-object optimization buffer.
@@ -363,7 +351,7 @@ namespace boost {
         manager(const function_buffer& in_buffer, function_buffer& out_buffer,
                 functor_manager_operation_type op, member_ptr_tag)
         {
-          manager(in_buffer, out_buffer, op, true_type());
+          manager(in_buffer, out_buffer, op, std::true_type());
         }
 
       public:
@@ -401,7 +389,7 @@ namespace boost {
         // Function objects that fit in the small-object buffer.
         static inline void
         manager(const function_buffer& in_buffer, function_buffer& out_buffer,
-                functor_manager_operation_type op, true_type)
+                functor_manager_operation_type op, std::true_type)
         {
           functor_manager_common<Functor>::manage_small(in_buffer,out_buffer,op);
         }
@@ -409,7 +397,7 @@ namespace boost {
         // Function objects that require heap allocation
         static inline void
         manager(const function_buffer& in_buffer, function_buffer& out_buffer,
-                functor_manager_operation_type op, false_type)
+                functor_manager_operation_type op, std::false_type)
         {
           typedef functor_wrapper<Functor,Allocator> functor_wrapper_type;
 
@@ -460,7 +448,7 @@ namespace boost {
                 functor_manager_operation_type op, function_obj_tag)
         {
           manager(in_buffer, out_buffer, op,
-                  integral_constant<bool, (function_allows_small_object_optimization<functor_type>::value)>());
+                  std::integral_constant<bool, (function_allows_small_object_optimization<functor_type>::value)>());
         }
 
       public:
@@ -529,8 +517,8 @@ public:
 
       detail::function::function_buffer type_result;
       type_result.members.type.type = &BOOST_CORE_TYPEID(Functor);
-      type_result.members.type.const_qualified = is_const<Functor>::value;
-      type_result.members.type.volatile_qualified = is_volatile<Functor>::value;
+      type_result.members.type.const_qualified = std::is_const<Functor>::value;
+      type_result.members.type.volatile_qualified = std::is_volatile<Functor>::value;
       get_vtable()->manager(functor, type_result,
                       detail::function::check_functor_type_tag);
       return static_cast<Functor*>(type_result.members.obj_ptr);
@@ -544,7 +532,7 @@ public:
       detail::function::function_buffer type_result;
       type_result.members.type.type = &BOOST_CORE_TYPEID(Functor);
       type_result.members.type.const_qualified = true;
-      type_result.members.type.volatile_qualified = is_volatile<Functor>::value;
+      type_result.members.type.volatile_qualified = std::is_volatile<Functor>::value;
       get_vtable()->manager(functor, type_result,
                       detail::function::check_functor_type_tag);
       // GCC 2.95.3 gets the CV qualifiers wrong here, so we
@@ -553,8 +541,8 @@ public:
     }
 
   template<typename F>
-    typename boost::enable_if_< !boost::is_function<F>::value, bool >::type
-	contains(const F& f) const
+    typename std::enable_if< !std::is_function<F>::value, bool >::type
+    contains(const F& f) const
     {
       if (const F* fp = this->template target<F>())
       {
@@ -565,8 +553,8 @@ public:
     }
 
   template<typename Fn>
-    typename boost::enable_if_< boost::is_function<Fn>::value, bool >::type
-	contains(Fn& f) const
+    typename std::enable_if< std::is_function<Fn>::value, bool >::type
+    contains(Fn& f) const
     {
       typedef Fn* F;
       if (const F* fp = this->template target<F>())
