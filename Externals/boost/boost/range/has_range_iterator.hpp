@@ -18,7 +18,7 @@
 #include <boost/mpl/has_xxx.hpp>
 #include <boost/range/iterator.hpp>
 #include <boost/type_traits/remove_reference.hpp>
-#include <boost/utility/enable_if.hpp>
+#include <boost/core/enable_if.hpp>
 
 namespace boost
 {

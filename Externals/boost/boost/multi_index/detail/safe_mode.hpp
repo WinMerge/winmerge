@@ -119,7 +119,7 @@
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <algorithm>
 #include <boost/core/addressof.hpp>
-  #include <boost/core/noncopyable.hpp>
+#include <boost/core/noncopyable.hpp>
 #include <boost/multi_index/detail/access_specifier.hpp>
 #include <boost/multi_index/detail/any_container_view.hpp>
 #include <boost/multi_index/detail/iter_adaptor.hpp>
@@ -131,7 +131,7 @@
 #endif
 
 #if defined(BOOST_HAS_THREADS)
-#include <boost/detail/lightweight_mutex.hpp>
+#include <boost/smart_ptr/detail/lightweight_mutex.hpp>
 #include <boost/multi_index/detail/scoped_bilock.hpp>
 #endif
 

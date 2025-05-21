@@ -67,7 +67,7 @@ namespace core
 
 inline void sp_thread_sleep() BOOST_NOEXCEPT
 {
-#if defined(BOOST_HAS_PTHREADS) && !defined(__ANDROID__)
+#if defined(BOOST_HAS_PTHREADS) && !defined(__ANDROID__) && !defined(__OHOS__)
 
     int oldst;
     pthread_setcancelstate( PTHREAD_CANCEL_DISABLE, &oldst );
@@ -85,7 +85,7 @@ inline void sp_thread_sleep() BOOST_NOEXCEPT
 
     nanosleep( &rqtp, 0 );
 
-#if defined(BOOST_HAS_PTHREADS) && !defined(__ANDROID__)
+#if defined(BOOST_HAS_PTHREADS) && !defined(__ANDROID__) && !defined(__OHOS__)
 
     pthread_setcancelstate( oldst, &oldst );
 

@@ -1,4 +1,4 @@
-/* Copyright 2006-2015 Joaquin M Lopez Munoz.
+/* Copyright 2006-2024 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -14,8 +14,8 @@
 #endif
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
+#include <boost/config/workaround.hpp>
 #include <boost/detail/templated_streams.hpp>
-#include <boost/detail/workaround.hpp>
 #include <boost/parameter/parameters.hpp>
 #include <boost/preprocessor/punctuation/comma.hpp>
 #include <iosfwd>
@@ -139,7 +139,7 @@ BOOST_FLYWEIGHT_COMPLETE_COMP_OPS_DECL(
 template<typename T,BOOST_FLYWEIGHT_TYPENAME_TEMPL_ARGS(_)>
 inline void swap(
   flyweight<T,BOOST_FLYWEIGHT_TEMPL_ARGS(_)>& x,
-  flyweight<T,BOOST_FLYWEIGHT_TEMPL_ARGS(_)>& y);
+  flyweight<T,BOOST_FLYWEIGHT_TEMPL_ARGS(_)>& y)BOOST_NOEXCEPT;
 
 template<
   BOOST_TEMPLATED_STREAM_ARGS(ElemType,Traits)
@@ -199,8 +199,8 @@ namespace flyweights{
 #endif
 
 template<typename T,BOOST_FLYWEIGHT_TYPENAME_TEMPL_ARGS(_)>
-inline std::size_t hash_value(
-  const flyweight<T,BOOST_FLYWEIGHT_TEMPL_ARGS(_)>& x);
+inline std::size_t
+hash_value(const flyweight<T,BOOST_FLYWEIGHT_TEMPL_ARGS(_)>& x)BOOST_NOEXCEPT;
 
 #if !defined(BOOST_NO_ARGUMENT_DEPENDENT_LOOKUP)
 } /* namespace flyweights */

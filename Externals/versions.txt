@@ -4,7 +4,7 @@ Versions of external components
 This file lists versions of the external components we are using.
 
 - POCO: 1.14.0
-- boost: 1.85.0
+- boost: 1.88.0
 - frhed: 0.10904.2017.15
 - WinIMerge: 1.0.45.0
   - freeimage: 3.18.0

@@ -26,8 +26,11 @@
 #include <boost/iterator/iterator_traits.hpp>
 #include <boost/iterator/iterator_facade.hpp>
 #include <boost/mpl/if.hpp>
+#include <boost/mpl/eval_if.hpp>
 #include <boost/mpl/not.hpp>
+#include <boost/mpl/and.hpp>
 #include <boost/mpl/or.hpp>
+#include <boost/mpl/identity.hpp>
 #include <boost/type_traits/is_abstract.hpp>
 #include <boost/type_traits/is_array.hpp>
 #include <boost/type_traits/is_base_and_derived.hpp>
@@ -41,7 +44,7 @@
 #include <boost/range/has_range_iterator.hpp>
 #include <boost/range/algorithm/equal.hpp>
 #include <boost/range/detail/safe_bool.hpp>
-#include <boost/utility/enable_if.hpp>
+#include <boost/core/enable_if.hpp>
 #include <boost/next_prior.hpp>
 #include <iterator>
 #include <algorithm>

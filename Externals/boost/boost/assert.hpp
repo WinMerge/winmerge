@@ -46,7 +46,13 @@
 
 namespace boost
 {
+#if defined(BOOST_ASSERT_HANDLER_IS_NORETURN)
+    BOOST_NORETURN
+#endif
     void assertion_failed(char const * expr, char const * function, char const * file, long line); // user defined
+#if defined(BOOST_ASSERT_HANDLER_IS_NORETURN)
+    BOOST_NORETURN
+#endif
     void assertion_failed_msg(char const * expr, char const * msg, char const * function, char const * file, long line); // user defined
 } // namespace boost
 
