@@ -78,9 +78,15 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 			if (op == NE) return *lvalString != *rvalString;
 			if (op == CONTAINS)
 			{
-				std::string l = ucr::toUTF8(strutils::makelower(ucr::toTString(*lvalString)));
-				std::string r = ucr::toUTF8(strutils::makelower(ucr::toTString(*rvalString)));
-				return (l.find(r) != std::string::npos);
+				auto searcher = std::boyer_moore_horspool_searcher(
+					rvalString->begin(), rvalString->end(),
+					[](char a, char b) {
+						return std::tolower(static_cast<unsigned char>(a)) ==
+							std::tolower(static_cast<unsigned char>(b));
+					}
+				);
+				auto it = std::search(lvalString->begin(), lvalString->end(), searcher);
+				return (it != lvalString->end());
 			}
 			if (op == MATCHES)
 			{

@@ -58,6 +58,8 @@ namespace
 		di.diffFileInfo[1].size = 1100;
 		Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tdz);
 		di.diffFileInfo[1].mtime = dt1.timestamp();
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
 
 		EXPECT_TRUE(FilterEngine::Parse(L"LeftDate < now()", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
