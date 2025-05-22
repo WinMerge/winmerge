@@ -710,7 +710,8 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 			{
 				if (di.diffcode.isResultError())
 					bCompareFailure = true;
-				else if (di.diffcode.isResultNone() || di.diffcode.isResultAbort())
+				else if ((di.diffcode.isResultNone() && !di.diffcode.isResultFiltered()) ||
+						di.diffcode.isResultAbort())
 					bCompareIndeterminate = true;
 			}
 		}
