@@ -1400,6 +1400,7 @@ Global
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Src\FilterEngine\FilterEngine.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Plugins\src_VCPP\Common\Common.vcxitems*{a644fba4-d76e-4500-b4b7-04d7a245359a}*SharedItemsImports = 4
 		Plugins\src_VCPP\Common\Common.vcxitems*{aa88b46e-b2e2-4b03-8cd5-1e9d60db6ab2}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4

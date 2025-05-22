@@ -81,6 +81,8 @@ namespace
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"RightName contains \".txt\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"RightName matches \"a.*t\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 	}
 
 	TEST_F(FilterEngineTest, ParseError)

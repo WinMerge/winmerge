@@ -181,6 +181,7 @@
     <Import Project="diffutils\diffutils.vcxitems" Label="Shared" />
     <Import Project="CompareEngines\CompareEngines.vcxitems" Label="Shared" />
     <Import Project="..\Externals\crystaledit\editlib\editlibparsers.vcxitems" Label="Shared" />
+    <Import Project="FilterEngine\FilterEngine.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />

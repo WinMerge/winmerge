@@ -6,6 +6,7 @@
 #include "DiffItem.h"
 #include <string>
 #include <variant>
+#include <Poco/RegularExpression.h>
 
 ValueType OrNode::evaluate(const DIFFITEM& di) const
 {
@@ -79,18 +80,20 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 			if (op == CONTAINS)
 			{
 				auto searcher = std::boyer_moore_horspool_searcher(
-					rvalString->begin(), rvalString->end(),
+					rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
 					[](char a, char b) {
 						return std::tolower(static_cast<unsigned char>(a)) ==
 							std::tolower(static_cast<unsigned char>(b));
 					}
 				);
-				auto it = std::search(lvalString->begin(), lvalString->end(), searcher);
-				return (it != lvalString->end());
+				using iterator = std::string::const_iterator;
+				std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
+				return (result.first != result.second);
 			}
 			if (op == MATCHES)
 			{
-				return *lvalString != *rvalString;
+				Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+				return regex.match(*lvalString);
 			}
 		}
 	}
@@ -147,7 +150,7 @@ ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
 	{
 		if (auto rvalBool = std::get_if<bool>(&rval))
 		{
-			if (op == '+') return *rvalBool + *lvalBool;
+			if (op == '+') return static_cast<int64_t>(*rvalBool + *lvalBool);
 		}
 	}
 	return std::monostate{};
