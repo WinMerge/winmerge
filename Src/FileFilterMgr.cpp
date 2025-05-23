@@ -22,6 +22,7 @@ using Poco::Glob;
 using Poco::RegularExpression;
 
 static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter);
+static void AddFilterExpression(vector<String> *filterList, String & str);
 
 /**
  * @brief Destructor, frees all filters.
@@ -151,6 +152,10 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
 	}
 }
 
+static void AddFilterExpression(vector<String>* filterList, String& str)
+{
+}
+
 /**
  * @brief Parse a filter file, and add it to array if valid.
  *
@@ -227,6 +232,12 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(2);
 			AddFilterPattern(&pfilter->dirfilters, str, false);
 		}
+		else if (0 == sLine.compare(0, 2, _T("e:"), 2))
+		{
+			// expression filter
+			String str = sLine.substr(2);
+			AddFilterExpression(&pfilter->expressionFilters, str);
+		}
 		else if (0 == sLine.compare(0, 3, _T("f!:"), 3))
 		{
 			// file filter
@@ -238,6 +249,12 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			// directory filter
 			String str = sLine.substr(3);
 			AddFilterPattern(&pfilter->dirfiltersExclude, str, false);
+		}
+		else if (0 == sLine.compare(0, 3, _T("e!:"), 2))
+		{
+			// expression filter
+			String str = sLine.substr(3);
+			AddFilterExpression(&pfilter->expressionFiltersExclude, str);
 		}
 	} while (bLinesLeft);
 

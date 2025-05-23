@@ -61,6 +61,8 @@ struct FileFilter
 	std::vector<FileFilterElementPtr> filefiltersExclude; /**< List of rules for files (exclude) */
 	std::vector<FileFilterElementPtr> dirfilters;  /**< List of rules for directories */
 	std::vector<FileFilterElementPtr> dirfiltersExclude;  /**< List of rules for directories (exclude) */
+	std::vector<String> expressionFilters; /**< List of filter expressions */
+	std::vector<String> expressionFiltersExclude; /**< List of filter expressions (exclude) */
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 	
