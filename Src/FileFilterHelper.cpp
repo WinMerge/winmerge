@@ -10,6 +10,7 @@
 #include "UnicodeString.h"
 #include "FilterList.h"
 #include "DirItem.h"
+#include "DiffItem.h"
 #include "FileFilterMgr.h"
 #include "paths.h"
 #include "Environment.h"
@@ -26,6 +27,7 @@ FileFilterHelper::FileFilterHelper()
 , m_bUseMask(true)
 , m_fileFilterMgr(new FileFilterMgr)
 , m_currentFilter(nullptr)
+, m_pCtxt(nullptr)
 {
 }
 
@@ -255,6 +257,11 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 			return true;
 		return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
 	}
+}
+
+bool FileFilterHelper::includeFile(const DIFFITEM& di) const
+{
+	return true;
 }
 
 /**

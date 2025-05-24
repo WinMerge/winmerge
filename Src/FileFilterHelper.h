@@ -14,6 +14,8 @@
 class FileFilterMgr;
 class FilterList;
 struct FileFilter;
+class DIFFITEM;
+class CDiffContext;
 
 /**
  * @brief File extension of file filter files.
@@ -41,6 +43,7 @@ class IDiffFilter
 {
 public:
 	virtual bool includeFile(const String& szFileName) const = 0;
+	virtual bool includeFile(const DIFFITEM& di) const = 0;
 	virtual bool includeDir(const String& szDirName) const = 0;
 	bool includeFile(const String& szFileName1, const String& szFileName2) const
 	{
@@ -129,14 +132,19 @@ public:
 	bool SetFilter(const String &filter);
 
 	bool includeFile(const String& szFileName) const override;
+	bool includeFile(const DIFFITEM& di) const override;
 	bool includeDir(const String& szDirName) const override;
 
 	void CloneFrom(const FileFilterHelper* pHelper);
+
+	void SetDiffContext(CDiffContext* pCtxt) { m_pCtxt = pCtxt; }
+	bool ParseFilterExpressions();
 
 protected:
 	std::tuple<String, String, String, String> ParseExtensions(const String &extensions) const;
 
 private:
+	CDiffContext* m_pCtxt;
 	std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
 	std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */

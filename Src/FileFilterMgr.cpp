@@ -112,13 +112,7 @@ void FileFilterMgr::DeleteAllFilters()
 	m_filters.clear();
 }
 
-/**
- * @brief Add a single pattern (if nonempty & valid) to a pattern list.
- *
- * @param [in] filterList List where pattern is added.
- * @param [in] str Temporary variable (ie, it may be altered)
- */
-static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter)
+static bool RemoveComment(String& str)
 {
 	const String& commentLeader = _T("##"); // Starts comment
 	str = strutils::trim_ws_begin(str);
@@ -126,7 +120,7 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
 	// Ignore lines beginning with '##'
 	size_t pos = str.find(commentLeader);
 	if (pos == 0)
-		return;
+		return true;
 
 	// Find possible comment-separator '<whitespace>##'
 	while (pos != std::string::npos && !(str[pos - 1] == ' ' || str[pos - 1] == '\t'))
@@ -136,7 +130,18 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
 	if (pos != std::string::npos)
 		str = str.substr(0, pos);
 	str = strutils::trim_ws_end(str);
-	if (str.empty())
+	return (str.empty());
+}
+
+/**
+ * @brief Add a single pattern (if nonempty & valid) to a pattern list.
+ *
+ * @param [in] filterList List where pattern is added.
+ * @param [in] str Temporary variable (ie, it may be altered)
+ */
+static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter)
+{
+	if (RemoveComment(str))
 		return;
 
 	int re_opts = RegularExpression::RE_CASELESS;
@@ -152,8 +157,18 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
 	}
 }
 
+/**
+ * @brief Add a single expression (if nonempty & valid) to a pattern list.
+ *
+ * @param [in] filterList List where pattern is added.
+ * @param [in] str Temporary variable (ie, it may be altered)
+*/
 static void AddFilterExpression(vector<String>* filterList, String& str)
 {
+	if (RemoveComment(str))
+		return;
+	str = strutils::trim_ws(str);
+	filterList->push_back(str);
 }
 
 /**
