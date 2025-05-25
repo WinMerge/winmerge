@@ -261,7 +261,21 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 
 bool FileFilterHelper::includeFile(const DIFFITEM& di) const
 {
-	return true;
+	if (!di.diffcode.isThreeway())
+	{
+		bool result = IDiffFilter::includeFile(
+			paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+			paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename));
+		return result;
+	}
+	else
+	{
+		bool result = IDiffFilter::includeFile(
+			paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+			paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
+			paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[2].filename));
+		return result;
+	}
 }
 
 /**

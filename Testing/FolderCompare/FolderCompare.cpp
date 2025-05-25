@@ -76,7 +76,7 @@ int main()
 	while (pos)
 	{
 		DIFFITEM& di = ctx.GetNextDiffRefPosition(pos);
-		if (ctx.m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename))
+		if (ctx.m_piFilterGlobal->includeFile(di))
 		{
 			FolderCmp folderCmp(&ctx);
 			folderCmp.prepAndCompareFiles(di);
