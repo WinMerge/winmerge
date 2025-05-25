@@ -4,7 +4,7 @@ setlocal
 call BuildBin.vs2017.cmd x86 || goto :eof
 endlocal
 setlocal
-call BuildBin.vs2022.cmd ARM || goto :eof
+call BuildBin.vs2017.cmd ARM || goto :eof
 endlocal
 setlocal
 call BuildBin.vs2022.cmd ARM64 || goto :eof
