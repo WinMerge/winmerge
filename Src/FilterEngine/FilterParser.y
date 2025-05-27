@@ -1,4 +1,4 @@
-%token AND OR NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL EQ NE LT LE GT GE CONTAINS MATCHES LPAREN RPAREN PLUS MINUS STAR SLASH MOD COMMA.
+%token AND OR NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER EQ NE LT LE GT GE CONTAINS MATCHES LPAREN RPAREN PLUS MINUS STAR SLASH MOD COMMA.
 
 %left OR.
 %left AND.
@@ -57,10 +57,14 @@ expr(A) ::= or_expr(A).
 unary(A) ::= MINUS unary(B). { A.node = new NegateNode(B.node); }
 unary(A) ::= term(A).
 
-term(A) ::= TRUE_LITERAL.       { A.node = new BoolLiteral(true); }
-term(A) ::= FALSE_LITERAL.      { A.node = new BoolLiteral(false); }
-term(A) ::= INTEGER_LITERAL(B). { A.node = new IntLiteral(B.integer); }
-term(A) ::= STRING_LITERAL(B).  { A.node = new StringLiteral(B.string); }
+term(A) ::= TRUE_LITERAL.        { A.node = new BoolLiteral(true); }
+term(A) ::= FALSE_LITERAL.       { A.node = new BoolLiteral(false); }
+term(A) ::= INTEGER_LITERAL(B).  { A.node = new IntLiteral(B.integer); }
+term(A) ::= STRING_LITERAL(B).   { A.node = new StringLiteral(B.string); }
+term(A) ::= SIZE_LITERAL(B).     { A.node = new SizeLiteral(B.string); }
+term(A) ::= DATETIME_LITERAL(B). { A.node = new DateTimeLiteral(B.string); }
+term(A) ::= TIME_LITERAL(B).     { A.node = new TimeLiteral(B.string); }
+term(A) ::= VERSION_LITERAL(B).  { A.node = new VersionLiteral(B.string); }
 term(A) ::= IDENTIFIER(B) LPAREN RPAREN. { A.node = new FunctionNode(pCtx, B.string, {}); }
 term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. { A.node = new FunctionNode(pCtx, B.string, C.nodeList); }
 term(A) ::= IDENTIFIER(B).      { A.node = new FieldNode(pCtx, B.string); }

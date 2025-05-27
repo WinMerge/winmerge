@@ -83,6 +83,78 @@ namespace
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"RightName matches \"a.*t\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"1weeks == 7days", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1week == 7day", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1w == 7d", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1days == 24hours", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1day == 24hour", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1d == 24hr", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1d == 24h", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1hours == 60minutes", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1hour == 60minute", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1h == 60min", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1h == 60m", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1minutes == 60seconds", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1minute == 60second", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1min == 60sec", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1m == 60s", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1seconds == 1000milliseconds", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1second == 1000millisecond", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1sec == 1000msec", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1s == 1000ms", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"1KB == 1024", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1MB == 1024KB", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1GB == 1024MB", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"1TB == 1024GB", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"v\"2.16.48.2\" == v\"002.016.048.002\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" == d\"2025-05-27 00:00:00\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" == d\"2025-05-21\" + 1week", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" == d\"2025-05-27\" + 1day", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 11:34:56\" + 1hour", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:33:56\" + 1minute", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:34:55\" + 1second", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:34:55\" + 1000millisecond", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 	}
 
 	TEST_F(FilterEngineTest, ParseError)

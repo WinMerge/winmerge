@@ -22,6 +22,40 @@ begin:
 	"FALSE"           { yylval.boolean = false; return FALSE_LITERAL; }
 	"CONTAINS"        { return CONTAINS; }
 	"MATCHES"         { return MATCHES; }
+	[0-9]+("KB"|"MB"|"GB"|"TB") {
+		const char* p = yycursor;
+		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
+			p++;
+		std::string lit(p, YYCURSOR - p);
+		yylval.string = dupString(lit.c_str());
+		return SIZE_LITERAL;
+	}
+	[0-9]+("weeks"|"week"|"w"|"days"|"day"|"d"|"hours"|"hour"|"hr"|"h"|"minutes"|"minute"|"min"|"m"|"seconds"|"second"|"sec"|"s"|"milliseconds"|"millisecond"|"msec"|"ms") {
+		const char* p = yycursor;
+		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
+			p++;
+		std::string lit(p, YYCURSOR - p);
+		yylval.string = dupString(lit.c_str());
+		return TIME_LITERAL;
+	}
+	"d\"" {
+		std::string str = unescapeQuotes(YYCURSOR);
+		if (*(YYCURSOR - 1) != '"')
+			return LEXER_ERR_UNTERMINATED_STRING;
+		yylval.string = dupString(str.c_str());
+		return DATETIME_LITERAL;
+	}
+	"v\"" {
+		std::string str = unescapeQuotes(YYCURSOR);
+		if (*(YYCURSOR - 1) != '"')
+			return LEXER_ERR_UNTERMINATED_STRING;
+		yylval.string = dupString(str.c_str());
+		return VERSION_LITERAL;
+	}
+	[0-9]+ {
+		yylval.integer = std::stoi(std::string((const char*)yycursor, YYCURSOR - yycursor));
+		return INTEGER_LITERAL;
+	}
 	[a-zA-Z_][a-zA-Z0-9_]* {
 		const char* p = yycursor;
 		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
@@ -30,7 +64,6 @@ begin:
 		yylval.string = dupString(tmp.c_str());
 		return IDENTIFIER;
 	}
-	[0-9]+            { yylval.integer = std::stoi(std::string((const char*)yycursor, YYCURSOR - yycursor)); return INTEGER_LITERAL; }
 	"\"" {
 		std::string str = unescapeQuotes(YYCURSOR);
 		if (*(YYCURSOR - 1) != '"')

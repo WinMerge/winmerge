@@ -27,6 +27,10 @@ State 0:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -35,9 +39,13 @@ State 0:
                            NOT shift        5      
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                    filter_expr accept
@@ -78,6 +86,10 @@ State 1:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= IDENTIFIER LPAREN * RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -90,11 +102,15 @@ State 1:
                            NOT shift        5      
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
-                        RPAREN shift-reduce 22     term ::= IDENTIFIER LPAREN RPAREN
+                        RPAREN shift-reduce 26     term ::= IDENTIFIER LPAREN RPAREN
                          MINUS shift        20     
                        or_expr shift        36     
                       and_expr shift        35     
@@ -102,7 +118,7 @@ State 1:
                       cmp_expr shift        35       /* because cmp_expr==not_expr */
                     arithmetic shift        21     
                          unary shift        21       /* because unary==arithmetic */
-                          expr shift-reduce 26     expr_list ::= expr
+                          expr shift-reduce 30     expr_list ::= expr
                           term shift        21       /* because term==unary */
                      expr_list shift        32     
 
@@ -135,6 +151,10 @@ State 2:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -144,9 +164,13 @@ State 2:
                            NOT shift        5      
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                        or_expr shift        36     
@@ -187,6 +211,10 @@ State 3:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -196,9 +224,13 @@ State 3:
                            NOT shift        5      
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                        or_expr shift        36     
@@ -207,7 +239,7 @@ State 3:
                       cmp_expr shift        35       /* because cmp_expr==not_expr */
                     arithmetic shift        21     
                          unary shift        21       /* because unary==arithmetic */
-                          expr shift-reduce 27     expr_list ::= expr_list COMMA expr
+                          expr shift-reduce 31     expr_list ::= expr_list COMMA expr
                           term shift        21       /* because term==unary */
 
 State 4:
@@ -237,6 +269,10 @@ State 4:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -245,9 +281,13 @@ State 4:
                            NOT shift        5      
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                       and_expr shift        38     
@@ -282,6 +322,10 @@ State 5:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -290,9 +334,13 @@ State 5:
                            NOT shift        5      
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                       not_expr shift-reduce 3      not_expr ::= NOT not_expr
@@ -326,6 +374,10 @@ State 6:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -334,9 +386,13 @@ State 6:
                            NOT shift        5      
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                       not_expr shift-reduce 2      and_expr ::= and_expr AND not_expr
@@ -359,6 +415,10 @@ State 7:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -366,9 +426,13 @@ State 7:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        22     
@@ -389,6 +453,10 @@ State 8:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -396,9 +464,13 @@ State 8:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        23     
@@ -419,6 +491,10 @@ State 9:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -426,9 +502,13 @@ State 9:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        24     
@@ -449,6 +529,10 @@ State 10:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -456,9 +540,13 @@ State 10:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        25     
@@ -479,6 +567,10 @@ State 11:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -486,9 +578,13 @@ State 11:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        26     
@@ -509,6 +605,10 @@ State 12:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -516,9 +616,13 @@ State 12:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        27     
@@ -539,6 +643,10 @@ State 13:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -546,9 +654,13 @@ State 13:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        28     
@@ -569,6 +681,10 @@ State 14:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -576,9 +692,13 @@ State 14:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift-reduce 16     arithmetic ::= arithmetic MOD arithmetic
@@ -599,6 +719,10 @@ State 15:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -606,9 +730,13 @@ State 15:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift-reduce 15     arithmetic ::= arithmetic SLASH arithmetic
@@ -629,6 +757,10 @@ State 16:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -636,9 +768,13 @@ State 16:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift-reduce 14     arithmetic ::= arithmetic STAR arithmetic
@@ -659,6 +795,10 @@ State 17:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -666,9 +806,13 @@ State 17:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        30     
@@ -689,6 +833,10 @@ State 18:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -696,9 +844,13 @@ State 18:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        31     
@@ -719,6 +871,10 @@ State 19:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -726,9 +882,13 @@ State 19:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                     arithmetic shift        29     
@@ -743,6 +903,10 @@ State 20:
           term ::= * FALSE_LITERAL
           term ::= * INTEGER_LITERAL
           term ::= * STRING_LITERAL
+          term ::= * SIZE_LITERAL
+          term ::= * DATETIME_LITERAL
+          term ::= * TIME_LITERAL
+          term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
           term ::= * IDENTIFIER
@@ -750,9 +914,13 @@ State 20:
 
                   TRUE_LITERAL shift-reduce 18     term ::= TRUE_LITERAL
                  FALSE_LITERAL shift-reduce 19     term ::= FALSE_LITERAL
-                    IDENTIFIER shift        37     
                INTEGER_LITERAL shift-reduce 20     term ::= INTEGER_LITERAL
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
+                  SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
+              DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
+                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+               VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
+                    IDENTIFIER shift        37     
                         LPAREN shift        2      
                          MINUS shift        20     
                          unary shift-reduce 17     unary ::= MINUS unary
@@ -767,7 +935,7 @@ State 21:
           cmp_expr ::= arithmetic * GE arithmetic
           cmp_expr ::= arithmetic * CONTAINS arithmetic
           cmp_expr ::= arithmetic * MATCHES arithmetic
-     (31) cmp_expr ::= arithmetic *
+     (35) cmp_expr ::= arithmetic *
           arithmetic ::= arithmetic * PLUS arithmetic
           arithmetic ::= arithmetic * MINUS arithmetic
           arithmetic ::= arithmetic * STAR arithmetic
@@ -787,7 +955,7 @@ State 21:
                           STAR shift        16     
                          SLASH shift        15     
                            MOD shift        14     
-                     {default} reduce       31     cmp_expr ::= arithmetic
+                     {default} reduce       35     cmp_expr ::= arithmetic
 
 State 22:
      (11) cmp_expr ::= arithmetic MATCHES arithmetic *
@@ -939,7 +1107,7 @@ State 32:
           term ::= IDENTIFIER LPAREN expr_list * RPAREN
           expr_list ::= expr_list * COMMA expr
 
-                        RPAREN shift-reduce 23     term ::= IDENTIFIER LPAREN expr_list RPAREN
+                        RPAREN shift-reduce 27     term ::= IDENTIFIER LPAREN expr_list RPAREN
                          COMMA shift        3      
 
 State 33:
@@ -952,29 +1120,29 @@ State 33:
 State 34:
           term ::= LPAREN expr * RPAREN
 
-                        RPAREN shift-reduce 25     term ::= LPAREN expr RPAREN
+                        RPAREN shift-reduce 29     term ::= LPAREN expr RPAREN
 
 State 35:
-     (28) or_expr ::= and_expr *
+     (32) or_expr ::= and_expr *
           and_expr ::= and_expr * AND not_expr
 
                            AND shift        6      
-                     {default} reduce       28     or_expr ::= and_expr
+                     {default} reduce       32     or_expr ::= and_expr
 
 State 36:
           or_expr ::= or_expr * OR and_expr
-     (33) expr ::= or_expr *
+     (37) expr ::= or_expr *
 
                             OR shift        4      
-                     {default} reduce       33     expr ::= or_expr
+                     {default} reduce       37     expr ::= or_expr
 
 State 37:
           term ::= IDENTIFIER * LPAREN RPAREN
           term ::= IDENTIFIER * LPAREN expr_list RPAREN
-     (24) term ::= IDENTIFIER *
+     (28) term ::= IDENTIFIER *
 
                         LPAREN shift        1      
-                     {default} reduce       24     term ::= IDENTIFIER
+                     {default} reduce       28     term ::= IDENTIFIER
 
 State 38:
       (1) or_expr ::= or_expr OR and_expr *
@@ -993,35 +1161,39 @@ The first-set of non-terminals is shown after the name.
     3: NOT (precedence=4)
     4: TRUE_LITERAL
     5: FALSE_LITERAL
-    6: IDENTIFIER
-    7: INTEGER_LITERAL
-    8: STRING_LITERAL
-    9: EQ (precedence=3)
-   10: NE (precedence=3)
-   11: LT (precedence=3)
-   12: LE (precedence=3)
-   13: GT (precedence=3)
-   14: GE (precedence=3)
-   15: CONTAINS (precedence=3)
-   16: MATCHES (precedence=3)
-   17: LPAREN
-   18: RPAREN
-   19: PLUS (precedence=5)
-   20: MINUS (precedence=5)
-   21: STAR (precedence=6)
-   22: SLASH (precedence=6)
-   23: MOD (precedence=6)
-   24: COMMA
-   25: filter_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   26: or_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   27: and_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   28: not_expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   29: cmp_expr: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   30: arithmetic: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   31: unary: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   32: expr: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
-   33: term: TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN
-   34: expr_list: NOT TRUE_LITERAL FALSE_LITERAL IDENTIFIER INTEGER_LITERAL STRING_LITERAL LPAREN MINUS
+    6: INTEGER_LITERAL
+    7: STRING_LITERAL
+    8: SIZE_LITERAL
+    9: DATETIME_LITERAL
+   10: TIME_LITERAL
+   11: VERSION_LITERAL
+   12: IDENTIFIER
+   13: EQ (precedence=3)
+   14: NE (precedence=3)
+   15: LT (precedence=3)
+   16: LE (precedence=3)
+   17: GT (precedence=3)
+   18: GE (precedence=3)
+   19: CONTAINS (precedence=3)
+   20: MATCHES (precedence=3)
+   21: LPAREN
+   22: RPAREN
+   23: PLUS (precedence=5)
+   24: MINUS (precedence=5)
+   25: STAR (precedence=6)
+   26: SLASH (precedence=6)
+   27: MOD (precedence=6)
+   28: COMMA
+   29: filter_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   30: or_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   31: and_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   32: not_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   33: cmp_expr: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   34: arithmetic: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   35: unary: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   36: expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   37: term: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN
+   38: expr_list: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
 ----------------------------------------------------
 Syntax-only Symbols:
 The following symbols never carry semantic content.
@@ -1052,16 +1224,20 @@ Rules:
   19: term ::= FALSE_LITERAL.
   20: term ::= INTEGER_LITERAL.
   21: term ::= STRING_LITERAL.
-  22: term ::= IDENTIFIER LPAREN RPAREN.
-  23: term ::= IDENTIFIER LPAREN expr_list RPAREN.
-  24: term ::= IDENTIFIER.
-  25: term ::= LPAREN expr RPAREN.
-  26: expr_list ::= expr.
-  27: expr_list ::= expr_list COMMA expr.
-  28: or_expr ::= and_expr.
-  29: and_expr ::= not_expr.
-  30: not_expr ::= cmp_expr.
-  31: cmp_expr ::= arithmetic.
-  32: arithmetic ::= unary.
-  33: expr ::= or_expr.
-  34: unary ::= term.
+  22: term ::= SIZE_LITERAL.
+  23: term ::= DATETIME_LITERAL.
+  24: term ::= TIME_LITERAL.
+  25: term ::= VERSION_LITERAL.
+  26: term ::= IDENTIFIER LPAREN RPAREN.
+  27: term ::= IDENTIFIER LPAREN expr_list RPAREN.
+  28: term ::= IDENTIFIER.
+  29: term ::= LPAREN expr RPAREN.
+  30: expr_list ::= expr.
+  31: expr_list ::= expr_list COMMA expr.
+  32: or_expr ::= and_expr.
+  33: and_expr ::= not_expr.
+  34: not_expr ::= cmp_expr.
+  35: cmp_expr ::= arithmetic.
+  36: arithmetic ::= unary.
+  37: expr ::= or_expr.
+  38: unary ::= term.
