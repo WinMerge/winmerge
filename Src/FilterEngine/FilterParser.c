@@ -45,7 +45,7 @@
 #define STRING_LITERAL                  7
 #define SIZE_LITERAL                    8
 #define DATETIME_LITERAL                9
-#define TIME_LITERAL                   10
+#define DURATION_LITERAL                   10
 #define VERSION_LITERAL                11
 #define IDENTIFIER                     12
 #define EQ                             13
@@ -425,7 +425,7 @@ static const char *const yyTokenName[] = {
   /*    7 */ "STRING_LITERAL",
   /*    8 */ "SIZE_LITERAL",
   /*    9 */ "DATETIME_LITERAL",
-  /*   10 */ "TIME_LITERAL",
+  /*   10 */ "DURATION_LITERAL",
   /*   11 */ "VERSION_LITERAL",
   /*   12 */ "IDENTIFIER",
   /*   13 */ "EQ",
@@ -485,7 +485,7 @@ static const char *const yyRuleName[] = {
  /*  21 */ "term ::= STRING_LITERAL",
  /*  22 */ "term ::= SIZE_LITERAL",
  /*  23 */ "term ::= DATETIME_LITERAL",
- /*  24 */ "term ::= TIME_LITERAL",
+ /*  24 */ "term ::= DURATION_LITERAL",
  /*  25 */ "term ::= VERSION_LITERAL",
  /*  26 */ "term ::= IDENTIFIER LPAREN RPAREN",
  /*  27 */ "term ::= IDENTIFIER LPAREN expr_list RPAREN",
@@ -944,7 +944,7 @@ static const YYCODETYPE yyRuleInfoLhs[] = {
     37,  /* (21) term ::= STRING_LITERAL */
     37,  /* (22) term ::= SIZE_LITERAL */
     37,  /* (23) term ::= DATETIME_LITERAL */
-    37,  /* (24) term ::= TIME_LITERAL */
+    37,  /* (24) term ::= DURATION_LITERAL */
     37,  /* (25) term ::= VERSION_LITERAL */
     37,  /* (26) term ::= IDENTIFIER LPAREN RPAREN */
     37,  /* (27) term ::= IDENTIFIER LPAREN expr_list RPAREN */
@@ -988,7 +988,7 @@ static const signed char yyRuleInfoNRhs[] = {
    -1,  /* (21) term ::= STRING_LITERAL */
    -1,  /* (22) term ::= SIZE_LITERAL */
    -1,  /* (23) term ::= DATETIME_LITERAL */
-   -1,  /* (24) term ::= TIME_LITERAL */
+   -1,  /* (24) term ::= DURATION_LITERAL */
    -1,  /* (25) term ::= VERSION_LITERAL */
    -3,  /* (26) term ::= IDENTIFIER LPAREN RPAREN */
    -4,  /* (27) term ::= IDENTIFIER LPAREN expr_list RPAREN */
@@ -1183,9 +1183,9 @@ static YYACTIONTYPE yy_reduce(
 #line 1183 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
-      case 24: /* term ::= TIME_LITERAL */
+      case 24: /* term ::= DURATION_LITERAL */
 #line 66 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new TimeLiteral(yymsp[0].minor.yy0.string); }
+{ yylhsminor.yy0.node = new DurationLiteral(yymsp[0].minor.yy0.string); }
 #line 1189 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;

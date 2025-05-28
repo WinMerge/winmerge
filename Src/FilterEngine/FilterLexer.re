@@ -36,7 +36,7 @@ begin:
 			p++;
 		std::string lit(p, YYCURSOR - p);
 		yylval.string = dupString(lit.c_str());
-		return TIME_LITERAL;
+		return DURATION_LITERAL;
 	}
 	"d\"" {
 		std::string str = unescapeQuotes(YYCURSOR);

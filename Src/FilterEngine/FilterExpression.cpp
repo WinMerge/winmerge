@@ -43,73 +43,133 @@ ValueType NotNode::evaluate(const DIFFITEM& di) const
 	return *boolVal ? false : true;
 }
 
+ComparisonNode::ComparisonNode(ExprNode* l, const std::string& o, ExprNode* r) : left(l), right(r)
+{
+	if (o == "==")
+		op = EQ;
+	else if (o == "!=")
+		op = NE;
+	else if (o == "<")
+		op = LT;
+	else if (o == "<=")
+		op = LE;
+	else if (o == ">")
+		op = GT;
+	else if (o == ">=")
+		op = GE;
+	else if (o == "CONTAINS")
+		op = CONTAINS;
+	else if (o == "MATCHES")
+		op = MATCHES;
+	else
+		op = EQ;
+}
+
 ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->evaluate(di);
 	auto rval = right->evaluate(di);
-	if (auto lvalInt = std::get_if<int64_t>(&lval))
-	{
-		if (auto rvalInt = std::get_if<int64_t>(&rval))
+	auto compare = [](int op, const ValueType& lval, const ValueType& rval) -> ValueType
 		{
-			if (op == EQ) return *lvalInt == *rvalInt;
-			if (op == NE) return *lvalInt != *rvalInt;
-			if (op == LT) return *lvalInt <  *rvalInt;
-			if (op == LE) return *lvalInt <= *rvalInt;
-			if (op == GT) return *lvalInt >  *rvalInt;
-			if (op == GE) return *lvalInt >= *rvalInt;
-		}
-	}
-	else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
-	{
-		if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
-		{
-			if (op == EQ) return *lvalTimestamp == *rvalTimestamp;
-			if (op == NE) return *lvalTimestamp != *rvalTimestamp;
-			if (op == LT) return *lvalTimestamp <  *rvalTimestamp;
-			if (op == LE) return *lvalTimestamp <= *rvalTimestamp;
-			if (op == GT) return *lvalTimestamp >  *rvalTimestamp;
-			if (op == GE) return *lvalTimestamp >= *rvalTimestamp;
-		}
-	}
-	else if (auto lvalString = std::get_if<std::string>(&lval))
-	{
-		if (auto rvalString = std::get_if<std::string>(&rval))
-		{
-			if (op == EQ) return *lvalString == *rvalString;
-			if (op == NE) return *lvalString != *rvalString;
-			if (op == CONTAINS)
+			if (auto lvalInt = std::get_if<int64_t>(&lval))
 			{
-				auto searcher = std::boyer_moore_horspool_searcher(
-					rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
-					[](char a, char b) {
-						return std::tolower(static_cast<unsigned char>(a)) ==
-							std::tolower(static_cast<unsigned char>(b));
+				if (auto rvalInt = std::get_if<int64_t>(&rval))
+				{
+					if (op == EQ) return *lvalInt == *rvalInt;
+					if (op == NE) return *lvalInt != *rvalInt;
+					if (op == LT) return *lvalInt < *rvalInt;
+					if (op == LE) return *lvalInt <= *rvalInt;
+					if (op == GT) return *lvalInt > *rvalInt;
+					if (op == GE) return *lvalInt >= *rvalInt;
+				}
+			}
+			else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
+			{
+				if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
+				{
+					if (op == EQ) return *lvalTimestamp == *rvalTimestamp;
+					if (op == NE) return *lvalTimestamp != *rvalTimestamp;
+					if (op == LT) return *lvalTimestamp < *rvalTimestamp;
+					if (op == LE) return *lvalTimestamp <= *rvalTimestamp;
+					if (op == GT) return *lvalTimestamp > *rvalTimestamp;
+					if (op == GE) return *lvalTimestamp >= *rvalTimestamp;
+				}
+			}
+			else if (auto lvalString = std::get_if<std::string>(&lval))
+			{
+				if (auto rvalString = std::get_if<std::string>(&rval))
+				{
+					if (op == EQ) return *lvalString == *rvalString;
+					if (op == NE) return *lvalString != *rvalString;
+					if (op == LT) return *lvalString < *rvalString;
+					if (op == LE) return *lvalString <= *rvalString;
+					if (op == GT) return *lvalString > *rvalString;
+					if (op == GE) return *lvalString >= *rvalString;
+					if (op == CONTAINS)
+					{
+						auto searcher = std::boyer_moore_horspool_searcher(
+							rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
+							[](char a, char b) {
+								return std::tolower(static_cast<unsigned char>(a)) ==
+									std::tolower(static_cast<unsigned char>(b));
+							}
+						);
+						using iterator = std::string::const_iterator;
+						std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
+						return (result.first != result.second);
 					}
-				);
-				using iterator = std::string::const_iterator;
-				std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
-				return (result.first != result.second);
+					if (op == MATCHES)
+					{
+						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						return regex.match(*lvalString);
+					}
+				}
 			}
-			if (op == MATCHES)
+			else if (auto lvalBool = std::get_if<bool>(&lval))
 			{
-				Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-				return regex.match(*lvalString);
+				if (auto rvalBool = std::get_if<bool>(&rval))
+				{
+					if (op == EQ) return *lvalBool == *rvalBool;
+					if (op == NE) return *lvalBool != *rvalBool;
+				}
 			}
-		}
-	}
-	else if (auto lvalBool = std::get_if<bool>(&lval))
+			if (op == EQ)
+				return false;
+			else if (op == NE)
+				return true;
+			return std::monostate{};
+		};
+	auto lvalArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&lval);
+	auto rvalArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&rval);
+	if (!lvalArray && !rvalArray)
 	{
-		if (auto rvalBool = std::get_if<bool>(&rval))
-		{
-			if (op == EQ) return *lvalBool == *rvalBool;
-			if (op == NE) return *lvalBool != *rvalBool;
-		}
+		return compare(op, lval, rval);
 	}
-	if (op == EQ)
-		return false;
-	else if (op == NE)
-		return true;
-	return std::monostate{};
+	else if (lvalArray && !rvalArray)
+	{
+		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		for (const auto& item : *(lvalArray->get()))
+			result->emplace_back(ValueType2{ compare(op, item.value, rval) });
+		return result;
+	}
+	else if (!lvalArray && rvalArray)
+	{
+		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		for (const auto& item : *(rvalArray->get()))
+			result->emplace_back(ValueType2{ compare(op, lval, item.value) });
+		return result;
+	}
+	else
+	{
+		const size_t maxSize = (std::max)(lvalArray->get()->size(), rvalArray->get()->size());
+		const size_t minSize = (std::min)(lvalArray->get()->size(), rvalArray->get()->size());
+		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		for (size_t i = 0; i < minSize; ++i)
+			result->emplace_back(ValueType2{ compare(op, lvalArray->get()->at(i).value, rvalArray->get()->at(i).value) });
+		for (size_t i = 0; i < maxSize - minSize; ++i)
+			result->emplace_back(ValueType2{ std::monostate{} });
+		return result;
+	}
 }
 
 ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
@@ -184,28 +244,127 @@ FieldNode::FieldNode(const FilterContext* ctxt, const std::string& v) : ctxt(ctx
 		index = ctxt->ctxt->GetCompareDirs() < 3 ? 1 : 2;
 		prefixlen = 5;
 	}
-	if (v.compare(prefixlen, 4, "Name") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-			if (di.diffcode.exists(index)) return ucr::toUTF8(di.diffFileInfo[index].filename.get()); else return std::monostate{};
-		};
-	else if (v.compare(prefixlen, 6, "Folder") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-			return ucr::toUTF8(di.diffFileInfo[index].path.get());
-		};
-	else if (v.compare(prefixlen, 4, "Size") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
-			return static_cast<int64_t>(di.diffFileInfo[index].size);
-		};
-	else if (v.compare(prefixlen, 4, "Date") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
-			return di.diffFileInfo[index].mtime;
-		};
-	else if (v.compare(prefixlen, 12, "CreationTime") == 0)
-		func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
-			return di.diffFileInfo[index].ctime;
-		};
+	if (prefixlen == 0)
+	{
+		if (v == "Name")
+		{
+			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				for (int i = 0; i < dirs; ++i)
+				{
+					if (di.diffcode.exists(i))
+						values->emplace_back(ValueType2{ ucr::toUTF8(di.diffFileInfo[i].filename.get()) });
+					else
+						values->emplace_back(ValueType2{ std::monostate{} });
+				}
+				return values;
+			};
+		}
+		else if (v == "Folder")
+		{
+			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				for (int i = 0; i < dirs; ++i)
+				{
+					values->emplace_back(ValueType2{ ucr::toUTF8(di.diffFileInfo[i].path.get()) });
+				}
+				return values;
+			};
+		}
+		else if (v == "Size")
+		{
+			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
+				for (int i = 0; i < dirs; ++i)
+				{
+					if (di.diffcode.exists(i))
+						values->emplace_back(ValueType2{ static_cast<int64_t>(di.diffFileInfo[i].size) });
+					else
+						values->emplace_back(ValueType2{ std::monostate{} });
+				}
+				return values;
+			};
+		}
+		else if (v == "Date")
+		{
+			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
+				for (int i = 0; i < dirs; ++i)
+				{
+					if (di.diffcode.exists(i))
+						values->emplace_back(ValueType2{ di.diffFileInfo[i].mtime });
+					else
+						values->emplace_back(ValueType2{ std::monostate{} });
+				}
+				return values;
+			};
+		}
+		else if (v == "CreationTime")
+		{
+			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
+				for (int i = 0; i < dirs; ++i)
+				{
+					if (di.diffcode.exists(i))
+						values->emplace_back(ValueType2{ di.diffFileInfo[i].ctime });
+					else
+						values->emplace_back(ValueType2{ std::monostate{} });
+				}
+				return values;
+			};
+		}
+		else if (v == "FileVersion")
+		{
+			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
+				for (int i = 0; i < dirs; ++i)
+				{
+					if (di.diffcode.exists(i))
+						values->emplace_back(ValueType2{ di.diffFileInfo[i].version.GetFileVersionQWORD() });
+					else
+						values->emplace_back(ValueType2{ std::monostate{} });
+				}
+				return values;
+			};
+		}
+		else
+			throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
+	}
 	else
-		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
+	{
+		if (v.compare(prefixlen, 4, "Name") == 0)
+			func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+			if (di.diffcode.exists(index)) return ucr::toUTF8(di.diffFileInfo[index].filename.get()); else return std::monostate{};
+			};
+		else if (v.compare(prefixlen, 6, "Folder") == 0)
+			func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+			return ucr::toUTF8(di.diffFileInfo[index].path.get());
+			};
+		else if (v.compare(prefixlen, 4, "Size") == 0)
+			func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
+			if (di.diffcode.exists(index)) return static_cast<int64_t>(di.diffFileInfo[index].size); else return std::monostate{};
+			};
+		else if (v.compare(prefixlen, 4, "Date") == 0)
+			func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
+			if (di.diffcode.exists(index)) return di.diffFileInfo[index].mtime; else return std::monostate{};
+			};
+		else if (v.compare(prefixlen, 12, "CreationTime") == 0)
+			func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
+			if (di.diffcode.exists(index)) return di.diffFileInfo[index].ctime; else return std::monostate{};
+			};
+		else if (v.compare(prefixlen, 11, "FileVersion") == 0)
+			func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
+			if (di.diffcode.exists(index)) return di.diffFileInfo[index].version.GetFileVersionQWORD() ; else return std::monostate{};
+			};
+		else
+			throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
+	}
 }
 
 ValueType FieldNode::evaluate(const DIFFITEM& di) const
@@ -232,16 +391,16 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 		if (args && args->size() != 0)
 			throw std::runtime_error("today function requires 0 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType {
-				return *ctxt->today;
-			};
+			return *ctxt->today;
+		};
 	}
 	else if (functionName == "now")
 	{
 		if (args && args->size() != 0)
 			throw std::runtime_error("now function requires 0 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType {
-				return *ctxt->now;
-			};
+			return *ctxt->now;
+		};
 	}
 	else
 	{
@@ -249,8 +408,102 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 	}
 }
 
+FunctionNode::~FunctionNode()
+{
+	if (args)
+	{
+		for (auto arg : *args)
+		{
+			delete arg;
+		}
+	}
+	delete args;
+}
+
 ValueType FunctionNode::evaluate(const DIFFITEM& di) const
 {
 	return func(ctxt, di, args);
 }
 
+SizeLiteral::SizeLiteral(const std::string& v)
+{
+	std::string numberPart = v.substr(0, v.find_first_not_of("0123456789"));
+	std::string unitPart = v.substr(numberPart.length());
+	int64_t number = std::stoll(numberPart);
+	if (unitPart == "KB" || unitPart == "kb")
+		value = number * 1024LL;
+	else if (unitPart == "MB" || unitPart == "mb")
+		value = number * 1024LL * 1024LL;
+	else if (unitPart == "GB" || unitPart == "gb")
+		value = number * 1024LL * 1024LL * 1024LL;
+	else if (unitPart == "TB" || unitPart == "tb")
+		value = number * 1024LL * 1024LL * 1024LL * 1024LL;
+	else
+		value = number;
+}
+
+DateTimeLiteral::DateTimeLiteral(const std::string& v)
+{
+	static const std::vector<std::string> formats = {
+		Poco::DateTimeFormat::ISO8601_FORMAT,
+		Poco::DateTimeFormat::ISO8601_FRAC_FORMAT,
+		"%Y-%m-%d %H:%M:%S",
+		"%Y-%m-%d",
+		"%Y/%m/%d %H:%M:%S",
+		"%Y/%m/%d",
+		"%Y.%m.%d %H:%M:%S",
+		"%Y.%m.%d",
+		"%d-%b-%Y %H:%M:%S",
+		"%d-%b-%Y",
+	};
+
+	Poco::DateTime dt;
+	int tz = 0;
+	bool parsed = false;
+	for (const auto& fmt : formats)
+	{
+		try
+		{
+			Poco::DateTimeParser::parse(fmt, v, dt, tz);
+			value = dt.timestamp();
+			parsed = true;
+			break;
+		}
+		catch (Poco::SyntaxException&)
+		{
+			// Try next format
+		}
+	}
+	if (!parsed)
+	{
+		throw std::invalid_argument("Unrecognized date/time format: " + v);
+	}
+}
+
+DurationLiteral::DurationLiteral(const std::string& v)
+{
+	std::string numberPart = v.substr(0, v.find_first_not_of("0123456789"));
+	std::string unitPart = v.substr(numberPart.length());
+	int64_t number = std::stoll(numberPart);
+	if (unitPart == "w" || unitPart == "week" || unitPart == "weeks")
+		value = number * 604800LL * 1000000LL;
+	else if (unitPart == "d" || unitPart == "day" || unitPart == "days")
+		value = number * 86400LL * 1000000LL;
+	else if (unitPart == "h" || unitPart == "hr" || unitPart == "hour" || unitPart == "hours")
+		value = number * 3600LL * 1000000LL;
+	else if (unitPart == "m" || unitPart == "min" || unitPart == "minute" || unitPart == "minutes")
+		value = number * 60LL * 1000000LL;
+	else if (unitPart == "s" || unitPart == "sec" || unitPart == "second" || unitPart == "seconds")
+		value = number * 1LL * 1000000LL;
+	else if (unitPart == "ms" || unitPart == "msec" || unitPart == "millisecond" || unitPart == "milliseconds")
+		value = number * 1000LL;
+	else
+		value = number;
+}
+
+VersionLiteral::VersionLiteral(const std::string& v)
+{
+	int major = 0, minor = 0, build = 0, revision = 0;
+	sscanf_s(v.c_str(), "%d.%d.%d.%d", &major, &minor, &build, &revision);
+	value = (static_cast<int64_t>(major) << 48) + (static_cast<int64_t>(minor) << 32) + (static_cast<int64_t>(build) << 16) + revision;
+}

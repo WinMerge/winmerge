@@ -7,7 +7,7 @@
 #define STRING_LITERAL                   7
 #define SIZE_LITERAL                     8
 #define DATETIME_LITERAL                 9
-#define TIME_LITERAL                    10
+#define DURATION_LITERAL                    10
 #define VERSION_LITERAL                 11
 #define IDENTIFIER                      12
 #define EQ                              13

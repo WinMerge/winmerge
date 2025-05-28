@@ -412,7 +412,7 @@ yy36:
 			p++;
 		std::string lit(p, YYCURSOR - p);
 		yylval.string = dupString(lit.c_str());
-		return TIME_LITERAL;
+		return DURATION_LITERAL;
 	}
 #line 418 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterLexer.cpp"
 yy37:
