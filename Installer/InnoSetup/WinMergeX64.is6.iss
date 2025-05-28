@@ -58,7 +58,7 @@
 [Setup]
 AppName=WinMerge
 AppVersion={#AppVersion}
-AppVerName=WinMerge {#AppVersion} {#ARCH}
+AppVerName=WinMerge {#ARCH}
 AppPublisher=Thingamahoochie Software
 AppPublisherURL=https://WinMerge.org/
 AppSupportURL=https://WinMerge.org/
