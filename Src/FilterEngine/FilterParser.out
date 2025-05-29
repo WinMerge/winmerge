@@ -29,7 +29,7 @@ State 0:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -43,7 +43,7 @@ State 0:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -88,7 +88,7 @@ State 1:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= IDENTIFIER LPAREN * RPAREN
@@ -106,7 +106,7 @@ State 1:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -153,7 +153,7 @@ State 2:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -168,7 +168,7 @@ State 2:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -213,7 +213,7 @@ State 3:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -228,7 +228,7 @@ State 3:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -271,7 +271,7 @@ State 4:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -285,7 +285,7 @@ State 4:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -324,7 +324,7 @@ State 5:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -338,7 +338,7 @@ State 5:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -376,7 +376,7 @@ State 6:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -390,7 +390,7 @@ State 6:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -417,7 +417,7 @@ State 7:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -430,7 +430,7 @@ State 7:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -455,7 +455,7 @@ State 8:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -468,7 +468,7 @@ State 8:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -493,7 +493,7 @@ State 9:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -506,7 +506,7 @@ State 9:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -531,7 +531,7 @@ State 10:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -544,7 +544,7 @@ State 10:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -569,7 +569,7 @@ State 11:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -582,7 +582,7 @@ State 11:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -607,7 +607,7 @@ State 12:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -620,7 +620,7 @@ State 12:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -645,7 +645,7 @@ State 13:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -658,7 +658,7 @@ State 13:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -683,7 +683,7 @@ State 14:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -696,7 +696,7 @@ State 14:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -721,7 +721,7 @@ State 15:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -734,7 +734,7 @@ State 15:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -759,7 +759,7 @@ State 16:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -772,7 +772,7 @@ State 16:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -797,7 +797,7 @@ State 17:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -810,7 +810,7 @@ State 17:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -835,7 +835,7 @@ State 18:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -848,7 +848,7 @@ State 18:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -873,7 +873,7 @@ State 19:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -886,7 +886,7 @@ State 19:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -905,7 +905,7 @@ State 20:
           term ::= * STRING_LITERAL
           term ::= * SIZE_LITERAL
           term ::= * DATETIME_LITERAL
-          term ::= * TIME_LITERAL
+          term ::= * DURATION_LITERAL
           term ::= * VERSION_LITERAL
           term ::= * IDENTIFIER LPAREN RPAREN
           term ::= * IDENTIFIER LPAREN expr_list RPAREN
@@ -918,7 +918,7 @@ State 20:
                 STRING_LITERAL shift-reduce 21     term ::= STRING_LITERAL
                   SIZE_LITERAL shift-reduce 22     term ::= SIZE_LITERAL
               DATETIME_LITERAL shift-reduce 23     term ::= DATETIME_LITERAL
-                  TIME_LITERAL shift-reduce 24     term ::= TIME_LITERAL
+              DURATION_LITERAL shift-reduce 24     term ::= DURATION_LITERAL
                VERSION_LITERAL shift-reduce 25     term ::= VERSION_LITERAL
                     IDENTIFIER shift        37     
                         LPAREN shift        2      
@@ -1165,7 +1165,7 @@ The first-set of non-terminals is shown after the name.
     7: STRING_LITERAL
     8: SIZE_LITERAL
     9: DATETIME_LITERAL
-   10: TIME_LITERAL
+   10: DURATION_LITERAL
    11: VERSION_LITERAL
    12: IDENTIFIER
    13: EQ (precedence=3)
@@ -1184,16 +1184,16 @@ The first-set of non-terminals is shown after the name.
    26: SLASH (precedence=6)
    27: MOD (precedence=6)
    28: COMMA
-   29: filter_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
-   30: or_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
-   31: and_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
-   32: not_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
-   33: cmp_expr: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
-   34: arithmetic: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
-   35: unary: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
-   36: expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
-   37: term: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN
-   38: expr_list: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL TIME_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   29: filter_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   30: or_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   31: and_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   32: not_expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   33: cmp_expr: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   34: arithmetic: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   35: unary: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   36: expr: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
+   37: term: TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN
+   38: expr_list: NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER LPAREN MINUS
 ----------------------------------------------------
 Syntax-only Symbols:
 The following symbols never carry semantic content.
@@ -1226,7 +1226,7 @@ Rules:
   21: term ::= STRING_LITERAL.
   22: term ::= SIZE_LITERAL.
   23: term ::= DATETIME_LITERAL.
-  24: term ::= TIME_LITERAL.
+  24: term ::= DURATION_LITERAL.
   25: term ::= VERSION_LITERAL.
   26: term ::= IDENTIFIER LPAREN RPAREN.
   27: term ::= IDENTIFIER LPAREN expr_list RPAREN.

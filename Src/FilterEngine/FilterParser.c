@@ -45,7 +45,7 @@
 #define STRING_LITERAL                  7
 #define SIZE_LITERAL                    8
 #define DATETIME_LITERAL                9
-#define DURATION_LITERAL                   10
+#define DURATION_LITERAL               10
 #define VERSION_LITERAL                11
 #define IDENTIFIER                     12
 #define EQ                             13
@@ -1068,79 +1068,79 @@ static YYACTIONTYPE yy_reduce(
         break;
       case 4: /* cmp_expr ::= arithmetic EQ arithmetic */
 #line 38 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, "==", yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "==", yymsp[0].minor.yy0.node); }
 #line 1072 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 5: /* cmp_expr ::= arithmetic NE arithmetic */
 #line 39 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, "!=", yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "!=", yymsp[0].minor.yy0.node); }
 #line 1078 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 6: /* cmp_expr ::= arithmetic LT arithmetic */
 #line 40 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, "<",  yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "<",  yymsp[0].minor.yy0.node); }
 #line 1084 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 7: /* cmp_expr ::= arithmetic LE arithmetic */
 #line 41 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, "<=", yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "<=", yymsp[0].minor.yy0.node); }
 #line 1090 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 8: /* cmp_expr ::= arithmetic GT arithmetic */
 #line 42 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, ">",  yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, ">",  yymsp[0].minor.yy0.node); }
 #line 1096 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 9: /* cmp_expr ::= arithmetic GE arithmetic */
 #line 43 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, ">=", yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, ">=", yymsp[0].minor.yy0.node); }
 #line 1102 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 10: /* cmp_expr ::= arithmetic CONTAINS arithmetic */
 #line 44 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, "CONTAINS", yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "CONTAINS", yymsp[0].minor.yy0.node); }
 #line 1108 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 11: /* cmp_expr ::= arithmetic MATCHES arithmetic */
 #line 45 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ComparisonNode(yymsp[-2].minor.yy0.node, "MATCHES", yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "MATCHES", yymsp[0].minor.yy0.node); }
 #line 1114 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 12: /* arithmetic ::= arithmetic PLUS arithmetic */
 #line 48 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, '+', yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "+", yymsp[0].minor.yy0.node); }
 #line 1120 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 13: /* arithmetic ::= arithmetic MINUS arithmetic */
 #line 49 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, '-', yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "-", yymsp[0].minor.yy0.node); }
 #line 1126 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 14: /* arithmetic ::= arithmetic STAR arithmetic */
 #line 50 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, '*', yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "*", yymsp[0].minor.yy0.node); }
 #line 1132 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 15: /* arithmetic ::= arithmetic SLASH arithmetic */
 #line 51 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, '/', yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "/", yymsp[0].minor.yy0.node); }
 #line 1138 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 16: /* arithmetic ::= arithmetic MOD arithmetic */
 #line 52 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0.node = new ArithmeticNode(yymsp[-2].minor.yy0.node, '%', yymsp[0].minor.yy0.node); }
+{ yylhsminor.yy0.node = new BinaryOpNode(yymsp[-2].minor.yy0.node, "%", yymsp[0].minor.yy0.node); }
 #line 1144 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;

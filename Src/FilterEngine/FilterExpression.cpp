@@ -8,14 +8,31 @@
 #include <variant>
 #include <Poco/RegularExpression.h>
 
+static std::optional<bool> evalAsBool(const ValueType& val)
+{
+	auto boolVal = std::get_if<bool>(&val);
+	if (boolVal) return *boolVal;
+
+	auto ary = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&val);
+	if (ary)
+	{
+		const auto& vec = *ary->get();
+		return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
+			const auto boolVal = std::get_if<bool>(&item.value);
+			return boolVal && *boolVal;
+			});
+	}
+	return std::nullopt;
+}
+
 ValueType OrNode::evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->evaluate(di);
-	auto lbool = std::get_if<bool>(&lval);
+	auto lbool = evalAsBool(lval);
 	if (lbool && *lbool) return true;
 
 	auto rval = right->evaluate(di);
-	auto rbool = std::get_if<bool>(&rval);
+	auto rbool = evalAsBool(rval);
 	if (rbool && *rbool) return true;
 
 	if (lbool || rbool) return false;
@@ -25,12 +42,12 @@ ValueType OrNode::evaluate(const DIFFITEM& di) const
 ValueType AndNode::evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->evaluate(di);
-	auto lbool = std::get_if<bool>(&lval);
+	auto lbool = evalAsBool(lval);
 	if (!lbool) return std::monostate{};
 	if (!*lbool) return false;
 
 	auto rval = right->evaluate(di);
-	auto rbool = std::get_if<bool>(&rval);
+	auto rbool = evalAsBool(rval);
 	if (!rbool) return std::monostate{};
 	if (!*rbool) return false;
 	return true;
@@ -39,11 +56,12 @@ ValueType AndNode::evaluate(const DIFFITEM& di) const
 ValueType NotNode::evaluate(const DIFFITEM& di) const
 {
 	auto val = expr->evaluate(di);
-	auto boolVal = std::get_if<bool>(&val);
+	auto boolVal = evalAsBool(val);
+	if (!boolVal) return std::monostate{};
 	return *boolVal ? false : true;
 }
 
-ComparisonNode::ComparisonNode(ExprNode* l, const std::string& o, ExprNode* r) : left(l), right(r)
+BinaryOpNode::BinaryOpNode(ExprNode* l, const std::string& o, ExprNode* r) : left(l), right(r)
 {
 	if (o == "==")
 		op = EQ;
@@ -61,15 +79,25 @@ ComparisonNode::ComparisonNode(ExprNode* l, const std::string& o, ExprNode* r) :
 		op = CONTAINS;
 	else if (o == "MATCHES")
 		op = MATCHES;
+	else if (o == "+")
+		op = PLUS;
+	else if (o == "-")
+		op = MINUS;
+	else if (o == "*")
+		op = STAR;
+	else if (o == "/")
+		op = SLASH;
+	else if (o == "%")
+		op = MOD;
 	else
-		op = EQ;
+		op = o.at(0);
 }
 
-ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
+ValueType BinaryOpNode::evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->evaluate(di);
 	auto rval = right->evaluate(di);
-	auto compare = [](int op, const ValueType& lval, const ValueType& rval) -> ValueType
+	auto compute = [](int op, const ValueType& lval, const ValueType& rval) -> ValueType
 		{
 			if (auto lvalInt = std::get_if<int64_t>(&lval))
 			{
@@ -81,6 +109,11 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 					if (op == LE) return *lvalInt <= *rvalInt;
 					if (op == GT) return *lvalInt > *rvalInt;
 					if (op == GE) return *lvalInt >= *rvalInt;
+					if (op == PLUS) return *lvalInt + *rvalInt;
+					if (op == MINUS) return *lvalInt - *rvalInt;
+					if (op == STAR) return *lvalInt * *rvalInt;
+					if (op == SLASH) return *lvalInt / *rvalInt;
+					if (op == MOD) return *lvalInt % *rvalInt;
 				}
 			}
 			else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
@@ -93,6 +126,12 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 					if (op == LE) return *lvalTimestamp <= *rvalTimestamp;
 					if (op == GT) return *lvalTimestamp > *rvalTimestamp;
 					if (op == GE) return *lvalTimestamp >= *rvalTimestamp;
+					if (op == MINUS) return *lvalTimestamp - *rvalTimestamp;
+				}
+				else if (auto rvalInt = std::get_if<int64_t>(&rval))
+				{
+					if (op == PLUS) return *lvalTimestamp + *rvalInt;
+					if (op == MINUS) return *lvalTimestamp - *rvalInt;
 				}
 			}
 			else if (auto lvalString = std::get_if<std::string>(&lval))
@@ -105,6 +144,7 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 					if (op == LE) return *lvalString <= *rvalString;
 					if (op == GT) return *lvalString > *rvalString;
 					if (op == GE) return *lvalString >= *rvalString;
+					if (op == PLUS) return *rvalString + *lvalString;
 					if (op == CONTAINS)
 					{
 						auto searcher = std::boyer_moore_horspool_searcher(
@@ -131,6 +171,7 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 				{
 					if (op == EQ) return *lvalBool == *rvalBool;
 					if (op == NE) return *lvalBool != *rvalBool;
+					if (op == PLUS) return static_cast<int64_t>(*rvalBool + *lvalBool);
 				}
 			}
 			if (op == EQ)
@@ -143,20 +184,20 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 	auto rvalArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&rval);
 	if (!lvalArray && !rvalArray)
 	{
-		return compare(op, lval, rval);
+		return compute(op, lval, rval);
 	}
 	else if (lvalArray && !rvalArray)
 	{
 		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
 		for (const auto& item : *(lvalArray->get()))
-			result->emplace_back(ValueType2{ compare(op, item.value, rval) });
+			result->emplace_back(ValueType2{ compute(op, item.value, rval) });
 		return result;
 	}
 	else if (!lvalArray && rvalArray)
 	{
 		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
 		for (const auto& item : *(rvalArray->get()))
-			result->emplace_back(ValueType2{ compare(op, lval, item.value) });
+			result->emplace_back(ValueType2{ compute(op, lval, item.value) });
 		return result;
 	}
 	else
@@ -165,55 +206,11 @@ ValueType ComparisonNode::evaluate(const DIFFITEM& di) const
 		const size_t minSize = (std::min)(lvalArray->get()->size(), rvalArray->get()->size());
 		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
 		for (size_t i = 0; i < minSize; ++i)
-			result->emplace_back(ValueType2{ compare(op, lvalArray->get()->at(i).value, rvalArray->get()->at(i).value) });
+			result->emplace_back(ValueType2{ compute(op, lvalArray->get()->at(i).value, rvalArray->get()->at(i).value) });
 		for (size_t i = 0; i < maxSize - minSize; ++i)
 			result->emplace_back(ValueType2{ std::monostate{} });
 		return result;
 	}
-}
-
-ValueType ArithmeticNode::evaluate(const DIFFITEM& di) const
-{
-	auto lval = left->evaluate(di);
-	auto rval = right->evaluate(di);
-	if (auto lvalInt = std::get_if<int64_t>(&lval))
-	{
-		if (auto rvalInt = std::get_if<int64_t>(&rval))
-		{
-			if (op == '+') return *lvalInt + *rvalInt;
-			if (op == '-') return *lvalInt - *rvalInt;
-			if (op == '*') return *lvalInt * *rvalInt;
-			if (op == '/') return *lvalInt / *rvalInt;
-			if (op == '%') return *lvalInt % *rvalInt;
-		}
-	}
-	if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
-	{
-		if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
-		{
-			if (op == '-') return *lvalTimestamp - *rvalTimestamp;
-		}
-		if (auto rvalInt = std::get_if<int64_t>(&rval))
-		{
-			if (op == '+') return *lvalTimestamp + *rvalInt;
-			if (op == '-') return *lvalTimestamp - *rvalInt;
-		}
-	}
-	else if (auto lvalString = std::get_if<std::string>(&lval))
-	{
-		if (auto rvalString = std::get_if<std::string>(&rval))
-		{
-			if (op == '+') return *rvalString + *lvalString;
-		}
-	}
-	else if (auto lvalBool = std::get_if<bool>(&lval))
-	{
-		if (auto rvalBool = std::get_if<bool>(&rval))
-		{
-			if (op == '+') return static_cast<int64_t>(*rvalBool + *lvalBool);
-		}
-	}
-	return std::monostate{};
 }
 
 ValueType NegateNode::evaluate(const DIFFITEM& di) const
@@ -383,6 +380,44 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 			auto arg1 = (*args)[0]->evaluate(di);
 			if (auto arg1Int = std::get_if<int64_t>(&arg1))
 				return abs(*arg1Int);
+			return std::monostate{};
+		};
+	}
+	else if (functionName == "anyof")
+	{
+		if (args->size() != 1)
+			throw std::runtime_error("anyof function requires 1 arguments");
+		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
+			auto arg1 = (*args)[0]->evaluate(di);
+			if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+			{
+				const auto& vec = *arrayVal->get();
+				return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
+					const auto boolVal = std::get_if<bool>(&item.value);
+					return boolVal && *boolVal;
+					});
+			}
+			if (auto arg1Bool = std::get_if<bool>(&arg1))
+				return *arg1Bool;
+			return std::monostate{};
+		};
+	}
+	else if (functionName == "allof")
+	{
+		if (args->size() != 1)
+			throw std::runtime_error("allof function requires 1 arguments");
+		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
+			auto arg1 = (*args)[0]->evaluate(di);
+			if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+			{
+				const auto& vec = *arrayVal->get();
+				return std::all_of(vec.begin(), vec.end(), [](const ValueType2& item) {
+					const auto boolVal = std::get_if<bool>(&item.value);
+					return boolVal && *boolVal;
+					});
+			}
+			if (auto arg1Bool = std::get_if<bool>(&arg1))
+				return *arg1Bool;
 			return std::monostate{};
 		};
 	}

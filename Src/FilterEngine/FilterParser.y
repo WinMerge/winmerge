@@ -35,21 +35,21 @@ and_expr(A) ::= not_expr(A).
 not_expr(A) ::= NOT not_expr(B). { A.node = new NotNode(B.node); }
 not_expr(A) ::= cmp_expr(A).
 
-cmp_expr(A) ::= arithmetic(B) EQ arithmetic(C). { A.node = new ComparisonNode(B.node, "==", C.node); }
-cmp_expr(A) ::= arithmetic(B) NE arithmetic(C). { A.node = new ComparisonNode(B.node, "!=", C.node); }
-cmp_expr(A) ::= arithmetic(B) LT arithmetic(C). { A.node = new ComparisonNode(B.node, "<",  C.node); }
-cmp_expr(A) ::= arithmetic(B) LE arithmetic(C). { A.node = new ComparisonNode(B.node, "<=", C.node); }
-cmp_expr(A) ::= arithmetic(B) GT arithmetic(C). { A.node = new ComparisonNode(B.node, ">",  C.node); }
-cmp_expr(A) ::= arithmetic(B) GE arithmetic(C). { A.node = new ComparisonNode(B.node, ">=", C.node); }
-cmp_expr(A) ::= arithmetic(B) CONTAINS arithmetic(C). { A.node = new ComparisonNode(B.node, "CONTAINS", C.node); }
-cmp_expr(A) ::= arithmetic(B) MATCHES  arithmetic(C). { A.node = new ComparisonNode(B.node, "MATCHES", C.node); }
+cmp_expr(A) ::= arithmetic(B) EQ arithmetic(C). { A.node = new BinaryOpNode(B.node, "==", C.node); }
+cmp_expr(A) ::= arithmetic(B) NE arithmetic(C). { A.node = new BinaryOpNode(B.node, "!=", C.node); }
+cmp_expr(A) ::= arithmetic(B) LT arithmetic(C). { A.node = new BinaryOpNode(B.node, "<",  C.node); }
+cmp_expr(A) ::= arithmetic(B) LE arithmetic(C). { A.node = new BinaryOpNode(B.node, "<=", C.node); }
+cmp_expr(A) ::= arithmetic(B) GT arithmetic(C). { A.node = new BinaryOpNode(B.node, ">",  C.node); }
+cmp_expr(A) ::= arithmetic(B) GE arithmetic(C). { A.node = new BinaryOpNode(B.node, ">=", C.node); }
+cmp_expr(A) ::= arithmetic(B) CONTAINS arithmetic(C). { A.node = new BinaryOpNode(B.node, "CONTAINS", C.node); }
+cmp_expr(A) ::= arithmetic(B) MATCHES  arithmetic(C). { A.node = new BinaryOpNode(B.node, "MATCHES", C.node); }
 cmp_expr(A) ::= arithmetic(A).
 
-arithmetic(A) ::= arithmetic(B) PLUS arithmetic(C).  { A.node = new ArithmeticNode(B.node, '+', C.node); }
-arithmetic(A) ::= arithmetic(B) MINUS arithmetic(C). { A.node = new ArithmeticNode(B.node, '-', C.node); }
-arithmetic(A) ::= arithmetic(B) STAR arithmetic(C).  { A.node = new ArithmeticNode(B.node, '*', C.node); }
-arithmetic(A) ::= arithmetic(B) SLASH arithmetic(C). { A.node = new ArithmeticNode(B.node, '/', C.node); }
-arithmetic(A) ::= arithmetic(B) MOD arithmetic(C).   { A.node = new ArithmeticNode(B.node, '%', C.node); }
+arithmetic(A) ::= arithmetic(B) PLUS arithmetic(C).  { A.node = new BinaryOpNode(B.node, "+", C.node); }
+arithmetic(A) ::= arithmetic(B) MINUS arithmetic(C). { A.node = new BinaryOpNode(B.node, "-", C.node); }
+arithmetic(A) ::= arithmetic(B) STAR arithmetic(C).  { A.node = new BinaryOpNode(B.node, "*", C.node); }
+arithmetic(A) ::= arithmetic(B) SLASH arithmetic(C). { A.node = new BinaryOpNode(B.node, "/", C.node); }
+arithmetic(A) ::= arithmetic(B) MOD arithmetic(C).   { A.node = new BinaryOpNode(B.node, "%", C.node); }
 arithmetic(A) ::= unary(A).
 
 expr(A) ::= or_expr(A).

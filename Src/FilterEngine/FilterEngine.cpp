@@ -21,7 +21,6 @@ FilterContext::FilterContext(const CDiffContext* ctxt)
 	UpdateTimestamp();
 }
 
-
 FilterContext::~FilterContext()
 {
 	Clear();
@@ -81,8 +80,19 @@ bool FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
 
 bool FilterEngine::Evaluate(FilterContext& ctxt, const DIFFITEM& di)
 {
-	auto result = ctxt.rootNode->evaluate(di);
-	if (auto boolVal = std::get_if<bool>(&result))
+	const auto result = ctxt.rootNode->evaluate(di);
+
+	if (const auto boolVal = std::get_if<bool>(&result))
 		return *boolVal;
+
+	if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&result))
+	{
+		const auto& vec = *arrayVal->get();
+		return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
+			const auto boolVal = std::get_if<bool>(&item.value);
+			return boolVal && *boolVal;
+			});
+	}
+
 	return false;
 }

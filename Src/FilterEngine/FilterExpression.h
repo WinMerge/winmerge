@@ -69,32 +69,16 @@ struct NotNode : public ExprNode
 	ExprNode* expr;
 };
 
-struct ComparisonNode : public ExprNode
+struct BinaryOpNode : public ExprNode
 {
-	ComparisonNode(ExprNode* l, const std::string& o, ExprNode* r);
-	virtual ~ComparisonNode()
+	BinaryOpNode(ExprNode* l, const std::string& o, ExprNode* r);
+	virtual ~BinaryOpNode()
 	{
 		delete left;
 		delete right;
 	}
 	ValueType evaluate(const DIFFITEM& di) const override;
 	int op;
-	ExprNode* left;
-	ExprNode* right;
-};
-
-struct ArithmeticNode : public ExprNode
-{
-	ArithmeticNode(ExprNode* l, char o, ExprNode* r) : left(l), op(o), right(r)
-	{
-	}
-	virtual ~ArithmeticNode()
-	{
-		delete left;
-		delete right;
-	}
-	ValueType evaluate(const DIFFITEM& di) const override;
-	char op;
 	ExprNode* left;
 	ExprNode* right;
 };
