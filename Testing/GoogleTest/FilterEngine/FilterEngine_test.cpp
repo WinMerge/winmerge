@@ -45,7 +45,6 @@ namespace
 
 	TEST_F(FilterEngineTest, Parse1)
 	{
-		return;
 		PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
 		CDiffContext ctxt(paths, 0);
 		FilterContext fc(&ctxt);
@@ -64,6 +63,8 @@ namespace
 
 		EXPECT_TRUE(FilterEngine::Parse(L"Size <= 1000", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"allequal(Size)", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"allof(Size <= 1000)", fc));
 		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"anyof(Size <= 1000)", fc));
@@ -274,9 +275,9 @@ namespace
 		PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
 		CDiffContext ctxt(paths, 0);
 		FilterContext fc(&ctxt);
-//		EXPECT_FALSE(FilterEngine::Parse(L"LeftDate $ a", fc));
+		EXPECT_FALSE(FilterEngine::Parse(L"LeftDate $ a", fc));
 		EXPECT_FALSE(FilterEngine::Parse(L"LeftName = \"aaa", fc));
-//		EXPECT_FALSE(FilterEngine::Parse(L"LeftSize = 100 RightSize < 100", fc));
+		EXPECT_FALSE(FilterEngine::Parse(L"LeftSize = 100 RightSize < 100", fc));
 	}
 
 }  // namespace

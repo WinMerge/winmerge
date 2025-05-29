@@ -13,6 +13,8 @@ struct FilterContext
 	~FilterContext();
 	void Clear();
 	void UpdateTimestamp();
+	ExprNode* RegisterNode(ExprNode* node);
+	std::vector<ExprNode*> allocatedNodes;
 	const CDiffContext* ctxt;
 	Poco::Timestamp* now;
 	Poco::Timestamp* today;

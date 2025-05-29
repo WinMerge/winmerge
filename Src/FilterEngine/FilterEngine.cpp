@@ -28,6 +28,12 @@ FilterContext::~FilterContext()
 
 void FilterContext::Clear()
 {
+	if (!rootNode)
+	{
+		for (auto node : allocatedNodes)
+			delete node;
+	}
+	allocatedNodes.clear();
 	delete now;
 	delete today;
 	delete rootNode;
@@ -35,6 +41,12 @@ void FilterContext::Clear()
 	today = nullptr;
 	rootNode = nullptr;
 	errorCode = 0;
+}
+
+ExprNode* FilterContext::RegisterNode(ExprNode * node)
+{
+	if (node) allocatedNodes.push_back(node);
+	return node;
 }
 
 void FilterContext::UpdateTimestamp()
@@ -80,7 +92,7 @@ bool FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
 
 bool FilterEngine::Evaluate(FilterContext& ctxt, const DIFFITEM& di)
 {
-	const auto result = ctxt.rootNode->evaluate(di);
+	const auto result = ctxt.rootNode->Evaluate(di);
 
 	if (const auto boolVal = std::get_if<bool>(&result))
 		return *boolVal;

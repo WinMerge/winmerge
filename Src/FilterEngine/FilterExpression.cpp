@@ -25,13 +25,13 @@ static std::optional<bool> evalAsBool(const ValueType& val)
 	return std::nullopt;
 }
 
-ValueType OrNode::evaluate(const DIFFITEM& di) const
+ValueType OrNode::Evaluate(const DIFFITEM& di) const
 {
-	auto lval = left->evaluate(di);
+	auto lval = left->Evaluate(di);
 	auto lbool = evalAsBool(lval);
 	if (lbool && *lbool) return true;
 
-	auto rval = right->evaluate(di);
+	auto rval = right->Evaluate(di);
 	auto rbool = evalAsBool(rval);
 	if (rbool && *rbool) return true;
 
@@ -39,23 +39,23 @@ ValueType OrNode::evaluate(const DIFFITEM& di) const
 	return std::monostate{};
 }
 
-ValueType AndNode::evaluate(const DIFFITEM& di) const
+ValueType AndNode::Evaluate(const DIFFITEM& di) const
 {
-	auto lval = left->evaluate(di);
+	auto lval = left->Evaluate(di);
 	auto lbool = evalAsBool(lval);
 	if (!lbool) return std::monostate{};
 	if (!*lbool) return false;
 
-	auto rval = right->evaluate(di);
+	auto rval = right->Evaluate(di);
 	auto rbool = evalAsBool(rval);
 	if (!rbool) return std::monostate{};
 	if (!*rbool) return false;
 	return true;
 }
 
-ValueType NotNode::evaluate(const DIFFITEM& di) const
+ValueType NotNode::Evaluate(const DIFFITEM& di) const
 {
-	auto val = expr->evaluate(di);
+	auto val = expr->Evaluate(di);
 	auto boolVal = evalAsBool(val);
 	if (!boolVal) return std::monostate{};
 	return *boolVal ? false : true;
@@ -93,10 +93,10 @@ BinaryOpNode::BinaryOpNode(ExprNode* l, const std::string& o, ExprNode* r) : lef
 		op = o.at(0);
 }
 
-ValueType BinaryOpNode::evaluate(const DIFFITEM& di) const
+ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 {
-	auto lval = left->evaluate(di);
-	auto rval = right->evaluate(di);
+	auto lval = left->Evaluate(di);
+	auto rval = right->Evaluate(di);
 	auto compute = [](int op, const ValueType& lval, const ValueType& rval) -> ValueType
 		{
 			if (auto lvalInt = std::get_if<int64_t>(&lval))
@@ -213,9 +213,9 @@ ValueType BinaryOpNode::evaluate(const DIFFITEM& di) const
 	}
 }
 
-ValueType NegateNode::evaluate(const DIFFITEM& di) const
+ValueType NegateNode::Evaluate(const DIFFITEM& di) const
 {
-	auto rval = right->evaluate(di);
+	auto rval = right->Evaluate(di);
 	if (auto rvalInt = std::get_if<int64_t>(&rval))
 		return -*rvalInt;
 	return std::monostate{};
@@ -364,7 +364,7 @@ FieldNode::FieldNode(const FilterContext* ctxt, const std::string& v) : ctxt(ctx
 	}
 }
 
-ValueType FieldNode::evaluate(const DIFFITEM& di) const
+ValueType FieldNode::Evaluate(const DIFFITEM& di) const
 {
 	return func(ctxt, di);
 }
@@ -377,7 +377,7 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 		if (args->size() != 1)
 			throw std::runtime_error("abs function requires 1 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
-			auto arg1 = (*args)[0]->evaluate(di);
+			auto arg1 = (*args)[0]->Evaluate(di);
 			if (auto arg1Int = std::get_if<int64_t>(&arg1))
 				return abs(*arg1Int);
 			return std::monostate{};
@@ -388,7 +388,7 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 		if (args->size() != 1)
 			throw std::runtime_error("anyof function requires 1 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
-			auto arg1 = (*args)[0]->evaluate(di);
+			auto arg1 = (*args)[0]->Evaluate(di);
 			if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
 			{
 				const auto& vec = *arrayVal->get();
@@ -407,7 +407,7 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 		if (args->size() != 1)
 			throw std::runtime_error("allof function requires 1 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
-			auto arg1 = (*args)[0]->evaluate(di);
+			auto arg1 = (*args)[0]->Evaluate(di);
 			if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
 			{
 				const auto& vec = *arrayVal->get();
@@ -419,6 +419,37 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 			if (auto arg1Bool = std::get_if<bool>(&arg1))
 				return *arg1Bool;
 			return std::monostate{};
+		};
+	}
+	else if (functionName == "allequal")
+	{
+		if (args->size() < 1)
+			throw std::runtime_error("allequal function requires at least 1 arguments");
+		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
+			ValueType first = args->at(0)->Evaluate(di);
+			if (auto pArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&first); pArray && *pArray)
+			{
+				const auto& vec = **pArray;
+				if (vec.size() <= 1)
+					return true;
+				const ValueType& base = vec[0].value;
+				for (size_t i = 1; i < vec.size(); ++i)
+				{
+					if (!(vec[i].value == base))
+						return false;
+				}
+				return true;
+			}
+			else
+			{
+				for (size_t i = 1; i < args->size(); ++i)
+				{
+					ValueType val = args->at(i)->Evaluate(di);
+					if (!(val == first))
+						return false;
+				}
+				return true;
+			}
 		};
 	}
 	else if (functionName == "today")
@@ -455,7 +486,7 @@ FunctionNode::~FunctionNode()
 	delete args;
 }
 
-ValueType FunctionNode::evaluate(const DIFFITEM& di) const
+ValueType FunctionNode::Evaluate(const DIFFITEM& di) const
 {
 	return func(ctxt, di, args);
 }
