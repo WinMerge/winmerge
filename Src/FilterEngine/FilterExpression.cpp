@@ -1,3 +1,8 @@
+/**
+ * @file  FilterExpression.cpp
+ *
+ * @brief This file implements the filter expression evaluation logic for the FilterEngine.
+ */
 #include "pch.h"
 #include "FilterExpression.h"
 #include "FilterLexer.h"
@@ -7,6 +12,10 @@
 #include <string>
 #include <variant>
 #include <Poco/RegularExpression.h>
+#include <Poco/Exception.h>
+#include <Poco/LocalDateTime.h>
+#include <Poco/DateTimeFormat.h>
+#include <Poco/DateTimeParser.h>
 
 static std::optional<bool> evalAsBool(const ValueType& val)
 {
@@ -374,8 +383,8 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 {
 	if (functionName == "abs")
 	{
-		if (args->size() != 1)
-			throw std::runtime_error("abs function requires 1 arguments");
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("abs function requires 1 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
 			auto arg1 = (*args)[0]->Evaluate(di);
 			if (auto arg1Int = std::get_if<int64_t>(&arg1))
@@ -385,8 +394,8 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 	}
 	else if (functionName == "anyof")
 	{
-		if (args->size() != 1)
-			throw std::runtime_error("anyof function requires 1 arguments");
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("anyof function requires 1 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
 			auto arg1 = (*args)[0]->Evaluate(di);
 			if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
@@ -404,8 +413,8 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 	}
 	else if (functionName == "allof")
 	{
-		if (args->size() != 1)
-			throw std::runtime_error("allof function requires 1 arguments");
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("allof function requires 1 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
 			auto arg1 = (*args)[0]->Evaluate(di);
 			if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
@@ -423,8 +432,8 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 	}
 	else if (functionName == "allequal")
 	{
-		if (args->size() < 1)
-			throw std::runtime_error("allequal function requires at least 1 arguments");
+		if (!args || args->size() < 1)
+			throw std::invalid_argument("allequal function requires at least 1 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
 			ValueType first = args->at(0)->Evaluate(di);
 			if (auto pArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&first); pArray && *pArray)
@@ -455,7 +464,7 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 	else if (functionName == "today")
 	{
 		if (args && args->size() != 0)
-			throw std::runtime_error("today function requires 0 arguments");
+			throw std::invalid_argument("today function requires 0 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType {
 			return *ctxt->today;
 		};
@@ -463,7 +472,7 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 	else if (functionName == "now")
 	{
 		if (args && args->size() != 0)
-			throw std::runtime_error("now function requires 0 arguments");
+			throw std::invalid_argument("now function requires 0 arguments");
 		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType {
 			return *ctxt->now;
 		};

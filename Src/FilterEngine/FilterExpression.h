@@ -1,3 +1,8 @@
+/**
+ * @file  FilterExpression.h
+ *
+ * @brief Filter expression evaluation classes.
+ */
 #pragma once
 
 #include "FilterParser.h"
@@ -6,11 +11,7 @@
 #include <map>
 #include <variant>
 #include <vector>
-#include <Poco/Exception.h>
 #include <Poco/Timestamp.h>
-#include <Poco/LocalDateTime.h>
-#include <Poco/DateTimeFormat.h>
-#include <Poco/DateTimeParser.h>
 
 struct FilterContext;
 class DIFFITEM;

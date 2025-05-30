@@ -276,8 +276,19 @@ namespace
 		CDiffContext ctxt(paths, 0);
 		FilterContext fc(&ctxt);
 		EXPECT_FALSE(FilterEngine::Parse(L"LeftDate $ a", fc));
+		EXPECT_EQ(FilterEngine::ERROR_UNKNOWN_CHAR, fc.errorCode);
 		EXPECT_FALSE(FilterEngine::Parse(L"LeftName = \"aaa", fc));
+		EXPECT_EQ(FilterEngine::ERROR_UNTERMINATED_STRING, fc.errorCode);
 		EXPECT_FALSE(FilterEngine::Parse(L"LeftSize = 100 RightSize < 100", fc));
+		EXPECT_EQ(FilterEngine::ERROR_SYNTAX_ERROR, fc.errorCode);
+		EXPECT_FALSE(FilterEngine::Parse(L"LeftDate = d\"2025-13-32 25:60:61\"", fc));
+		EXPECT_EQ(FilterEngine::ERROR_INVALID_LITERAL, fc.errorCode);
+		EXPECT_FALSE(FilterEngine::Parse(L"aaa(1234)", fc));
+		EXPECT_EQ(FilterEngine::ERROR_UNDEFINED_IDENTIFIER, fc.errorCode);
+		EXPECT_FALSE(FilterEngine::Parse(L"aaa = 1234", fc));
+		EXPECT_EQ(FilterEngine::ERROR_UNDEFINED_IDENTIFIER, fc.errorCode);
+		EXPECT_FALSE(FilterEngine::Parse(L"abs()", fc));
+		EXPECT_EQ(FilterEngine::ERROR_INVALID_ARGUMENT_COUNT, fc.errorCode);
 	}
 
 }  // namespace

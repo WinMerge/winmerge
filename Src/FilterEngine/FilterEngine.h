@@ -1,3 +1,8 @@
+/**
+ * @file  FilterEngine.h
+ *
+ * @brief Header file for the FilterEngine class, which provides functionality to parse and evaluate filter expressions.
+ */
 #pragma once
 
 #include <string>
@@ -5,6 +10,7 @@
 class CDiffContext;
 class DIFFITEM;
 struct ExprNode;
+struct YYSTYPE;
 namespace Poco { class Timestamp; }
 
 struct FilterContext
@@ -13,8 +19,7 @@ struct FilterContext
 	~FilterContext();
 	void Clear();
 	void UpdateTimestamp();
-	ExprNode* RegisterNode(ExprNode* node);
-	std::vector<ExprNode*> allocatedNodes;
+	void DefaultDestructor(YYSTYPE& yystype);
 	const CDiffContext* ctxt;
 	Poco::Timestamp* now;
 	Poco::Timestamp* today;
@@ -31,7 +36,10 @@ public:
 		ERROR_UNKNOWN_CHAR = 1,
 		ERROR_UNTERMINATED_STRING = 2,
 		ERROR_SYNTAX_ERROR = 3,
-		ERROR_PARSE_FAILURE = 4
+		ERROR_PARSE_FAILURE = 4,
+		ERROR_INVALID_LITERAL = 5,
+		ERROR_UNDEFINED_IDENTIFIER = 6,
+		ERROR_INVALID_ARGUMENT_COUNT = 7,
 	};
 	static bool Parse(const std::wstring& expression, FilterContext& ctxt);
 	static bool Evaluate(FilterContext& ctxt, const DIFFITEM& di);

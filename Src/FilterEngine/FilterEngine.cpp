@@ -1,3 +1,8 @@
+/**
+ * @file  FilterEngine.cpp
+ *
+ * @brief Filter engine implementation.
+ */
 #include "pch.h"
 #include "FilterEngine.h"
 #include "FilterExpression.h"
@@ -26,14 +31,14 @@ FilterContext::~FilterContext()
 	Clear();
 }
 
+void FilterContext::DefaultDestructor(YYSTYPE& yystype)
+{
+	delete yystype.node;
+	yystype.node = nullptr;
+}
+
 void FilterContext::Clear()
 {
-	if (!rootNode)
-	{
-		for (auto node : allocatedNodes)
-			delete node;
-	}
-	allocatedNodes.clear();
 	delete now;
 	delete today;
 	delete rootNode;
@@ -41,12 +46,6 @@ void FilterContext::Clear()
 	today = nullptr;
 	rootNode = nullptr;
 	errorCode = 0;
-}
-
-ExprNode* FilterContext::RegisterNode(ExprNode * node)
-{
-	if (node) allocatedNodes.push_back(node);
-	return node;
 }
 
 void FilterContext::UpdateTimestamp()
@@ -75,11 +74,12 @@ bool FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
 	FilterLexer lexer(expressionStr);
 	void* prs = ParseAlloc(malloc);
 	int token;
+	int lastError = 0;
 	while ((token = lexer.yylex()) != 0)
 	{
 		if (token < 0)
 		{
-			ctxt.errorCode = -token;
+			lastError = -token;
 			break;
 		}
 		::Parse(prs, token, lexer.yylval, &ctxt);
@@ -87,6 +87,8 @@ bool FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
 	}
 	::Parse(prs, 0, lexer.yylval, &ctxt);
 	::ParseFree(prs, free);
+	if (lastError != 0)
+		ctxt.errorCode = lastError;
 	return (ctxt.errorCode == 0);
 }
 

@@ -1,3 +1,8 @@
+/**
+ * @file  FilterLexer.h
+ *
+ * @brief Header file for the FilterLexer class, which is responsible for tokenizing filter expressions.
+ */
 #pragma once
 
 #include <string>
@@ -31,14 +36,14 @@ struct FilterLexer
 
 	~FilterLexer()
 	{
-		freeStrings();
+		FreeStrings();
 	}
 
 	int yylex();
 
-	std::string unescapeQuotes(char*& str);
-	const char* dupString(const char* str);
-	void freeStrings();
+	std::string UnescapeQuotes(char*& str);
+	const char* DupString(const char* str);
+	void FreeStrings();
 
 	YYSTYPE yylval{};
 	char* yycursor = nullptr;

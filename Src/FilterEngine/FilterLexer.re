@@ -1,3 +1,8 @@
+/**
+ * @file  FilterLexer.re
+ *
+ * @brief Lexer for the filter parser.
+ */
 /*!re2c
 re2c:define:YYCTYPE = char;
 re2c:yyfill:enable = 0;
@@ -27,7 +32,7 @@ begin:
 		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
 			p++;
 		std::string lit(p, YYCURSOR - p);
-		yylval.string = dupString(lit.c_str());
+		yylval.string = DupString(lit.c_str());
 		return SIZE_LITERAL;
 	}
 	[0-9]+("weeks"|"week"|"w"|"days"|"day"|"d"|"hours"|"hour"|"hr"|"h"|"minutes"|"minute"|"min"|"m"|"seconds"|"second"|"sec"|"s"|"milliseconds"|"millisecond"|"msec"|"ms") {
@@ -35,21 +40,21 @@ begin:
 		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
 			p++;
 		std::string lit(p, YYCURSOR - p);
-		yylval.string = dupString(lit.c_str());
+		yylval.string = DupString(lit.c_str());
 		return DURATION_LITERAL;
 	}
 	"d\"" {
-		std::string str = unescapeQuotes(YYCURSOR);
+		std::string str = UnescapeQuotes(YYCURSOR);
 		if (*(YYCURSOR - 1) != '"')
 			return LEXER_ERR_UNTERMINATED_STRING;
-		yylval.string = dupString(str.c_str());
+		yylval.string = DupString(str.c_str());
 		return DATETIME_LITERAL;
 	}
 	"v\"" {
-		std::string str = unescapeQuotes(YYCURSOR);
+		std::string str = UnescapeQuotes(YYCURSOR);
 		if (*(YYCURSOR - 1) != '"')
 			return LEXER_ERR_UNTERMINATED_STRING;
-		yylval.string = dupString(str.c_str());
+		yylval.string = DupString(str.c_str());
 		return VERSION_LITERAL;
 	}
 	[0-9]+ {
@@ -61,14 +66,14 @@ begin:
 		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
 			p++;
 		std::string tmp = std::string(p, YYCURSOR - p);
-		yylval.string = dupString(tmp.c_str());
+		yylval.string = DupString(tmp.c_str());
 		return IDENTIFIER;
 	}
 	"\"" {
-		std::string str = unescapeQuotes(YYCURSOR);
+		std::string str = UnescapeQuotes(YYCURSOR);
 		if (*(YYCURSOR - 1) != '"')
 			return LEXER_ERR_UNTERMINATED_STRING;
-		yylval.string = dupString(str.c_str());
+		yylval.string = DupString(str.c_str());
 		return STRING_LITERAL;
 	}
 	"=="              { return EQ; }
@@ -90,7 +95,7 @@ begin:
 	*/
 }
 
-std::string FilterLexer::unescapeQuotes(char*& str)
+std::string FilterLexer::UnescapeQuotes(char*& str)
 {
 	std::string result;
 	const char* start = str;
@@ -117,14 +122,14 @@ std::string FilterLexer::unescapeQuotes(char*& str)
 	return result;
 }
 
-const char* FilterLexer::dupString(const char* str)
+const char* FilterLexer::DupString(const char* str)
 {
 	char* newStr = _strdup(str);
 	strings.push_back(newStr);
 	return newStr;
 }
 
-void FilterLexer::freeStrings()
+void FilterLexer::FreeStrings()
 {
 	for (auto str : strings)
 		free(str);
