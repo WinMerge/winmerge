@@ -1063,7 +1063,7 @@ static YYACTIONTYPE yy_reduce(
         YYMINORTYPE yylhsminor;
       case 0: /* filter_expr ::= or_expr */
 #line 28 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ pCtx->rootNode = yymsp[0].minor.yy0.node; }
+{ pCtx->rootNode.reset(yymsp[0].minor.yy0.node); }
 #line 1067 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 1: /* or_expr ::= or_expr OR and_expr */

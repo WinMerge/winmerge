@@ -39,31 +39,18 @@ void FilterContext::DefaultDestructor(YYSTYPE& yystype)
 
 void FilterContext::Clear()
 {
-	delete now;
-	delete today;
-	delete rootNode;
-	now = nullptr;
-	today = nullptr;
-	rootNode = nullptr;
+	now.reset();
+	today.reset();
+	rootNode.reset();
 	errorCode = 0;
 }
 
 void FilterContext::UpdateTimestamp()
 {
-	if (now)
-	{
-		delete now;
-		now = nullptr;
-	}
-	if (today)
-	{
-		delete today;
-		today = nullptr;
-	}
-	now = new Poco::Timestamp();
+	now.reset(new Poco::Timestamp());
 	Poco::LocalDateTime ldt(*now);
 	Poco::LocalDateTime midnight(ldt.year(), ldt.month(), ldt.day(), 0, 0, 0);
-	today = new Poco::Timestamp(midnight.timestamp());
+	today.reset(new Poco::Timestamp(midnight.timestamp()));
 }
 
 bool FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)

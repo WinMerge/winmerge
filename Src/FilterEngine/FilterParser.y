@@ -25,7 +25,7 @@
 %parse_failure { pCtx->errorCode = FilterEngine::ERROR_PARSE_FAILURE; }
 %default_destructor { pCtx->DefaultDestructor($$); }
 
-filter_expr ::= or_expr(A). { pCtx->rootNode = A.node; }
+filter_expr ::= or_expr(A). { pCtx->rootNode.reset(A.node); }
 
 or_expr(A) ::= or_expr(B) OR and_expr(C).  { A.node = new OrNode(B.node, C.node); }
 or_expr(A) ::= and_expr(A).

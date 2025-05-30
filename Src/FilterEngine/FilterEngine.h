@@ -6,6 +6,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 class CDiffContext;
 class DIFFITEM;
@@ -21,9 +22,9 @@ struct FilterContext
 	void UpdateTimestamp();
 	void DefaultDestructor(YYSTYPE& yystype);
 	const CDiffContext* ctxt;
-	Poco::Timestamp* now;
-	Poco::Timestamp* today;
-	ExprNode* rootNode;
+	std::unique_ptr<Poco::Timestamp> now;
+	std::unique_ptr<Poco::Timestamp> today;
+	std::unique_ptr<ExprNode> rootNode;
 	int errorCode;
 };
 
