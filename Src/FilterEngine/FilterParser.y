@@ -13,98 +13,144 @@
 %left STAR SLASH MOD.
 
 %token_type {YYSTYPE}
+%token_prefix TK_
 %extra_argument { FilterContext* pCtx }
 
 %include {
 #include "FilterLexer.h"
 #include "FilterExpression.h"
 #include "FilterEngine.h"
+#include <Poco/Exception.h>
 }
 
 %syntax_error { pCtx->errorCode = FilterEngine::ERROR_SYNTAX_ERROR; }
 %parse_failure { pCtx->errorCode = FilterEngine::ERROR_PARSE_FAILURE; }
-%default_destructor { pCtx->DefaultDestructor($$); }
+%default_destructor { pCtx->YYSTYPEDestructor($$); }
 
-filter_expr ::= or_expr(A). { pCtx->rootNode.reset(A.node); }
+filter_expr ::= or_expr(A). {
+	if (pCtx->errorCode == 0 && pCtx->optimize)
+	{
+		try
+		{
+			pCtx->rootNode.reset(A.node->Optimize());
+		}
+		catch (Poco::RegularExpressionException&)
+		{
+			pCtx->errorCode = FilterEngine::ERROR_INVALID_REGULAR_EXPRESSION;
+			pCtx->rootNode.reset(A.node);
+		}
+		catch (const std::exception&)
+		{
+			pCtx->rootNode.reset(A.node);
+		}
+	}
+	else
+	{
+		pCtx->rootNode.reset(A.node);
+	}
+}
 
-or_expr(A) ::= or_expr(B) OR and_expr(C).  { A.node = new OrNode(B.node, C.node); }
+or_expr(A) ::= or_expr(B) OR and_expr(C).             { A = { new OrNode(B.node, C.node) }; }
 or_expr(A) ::= and_expr(A).
 
-and_expr(A) ::= and_expr(B) AND not_expr(C). { A.node = new AndNode(B.node, C.node); }
+and_expr(A) ::= and_expr(B) AND not_expr(C).          { A = { new AndNode(B.node, C.node) }; }
 and_expr(A) ::= not_expr(A).
 
-not_expr(A) ::= NOT not_expr(B). { A.node = new NotNode(B.node); }
+not_expr(A) ::= NOT not_expr(B).                      { A = { new NotNode(B.node) }; }
 not_expr(A) ::= cmp_expr(A).
 
-cmp_expr(A) ::= arithmetic(B) EQ arithmetic(C).       { A.node = new BinaryOpNode(B.node, "==", C.node); }
-cmp_expr(A) ::= arithmetic(B) NE arithmetic(C).       { A.node = new BinaryOpNode(B.node, "!=", C.node); }
-cmp_expr(A) ::= arithmetic(B) LT arithmetic(C).       { A.node = new BinaryOpNode(B.node, "<",  C.node); }
-cmp_expr(A) ::= arithmetic(B) LE arithmetic(C).       { A.node = new BinaryOpNode(B.node, "<=", C.node); }
-cmp_expr(A) ::= arithmetic(B) GT arithmetic(C).       { A.node = new BinaryOpNode(B.node, ">",  C.node); }
-cmp_expr(A) ::= arithmetic(B) GE arithmetic(C).       { A.node = new BinaryOpNode(B.node, ">=", C.node); }
-cmp_expr(A) ::= arithmetic(B) CONTAINS arithmetic(C). { A.node = new BinaryOpNode(B.node, "CONTAINS", C.node); }
-cmp_expr(A) ::= arithmetic(B) MATCHES  arithmetic(C). { A.node = new BinaryOpNode(B.node, "MATCHES", C.node); }
+cmp_expr(A) ::= arithmetic(B) EQ arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_EQ, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) NE arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_NE, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) LT arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_LT,  C.node) }; }
+cmp_expr(A) ::= arithmetic(B) LE arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_LE, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) GT arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_GT,  C.node) }; }
+cmp_expr(A) ::= arithmetic(B) GE arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_GE, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) CONTAINS arithmetic(C). { A = { new BinaryOpNode(B.node, TK_CONTAINS, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) MATCHES  arithmetic(C). { A = { new BinaryOpNode(B.node, TK_MATCHES, C.node) }; }
 cmp_expr(A) ::= arithmetic(A).
 
-arithmetic(A) ::= arithmetic(B) PLUS arithmetic(C).   { A.node = new BinaryOpNode(B.node, "+", C.node); }
-arithmetic(A) ::= arithmetic(B) MINUS arithmetic(C).  { A.node = new BinaryOpNode(B.node, "-", C.node); }
-arithmetic(A) ::= arithmetic(B) STAR arithmetic(C).   { A.node = new BinaryOpNode(B.node, "*", C.node); }
-arithmetic(A) ::= arithmetic(B) SLASH arithmetic(C).  { A.node = new BinaryOpNode(B.node, "/", C.node); }
-arithmetic(A) ::= arithmetic(B) MOD arithmetic(C).    { A.node = new BinaryOpNode(B.node, "%", C.node); }
+arithmetic(A) ::= arithmetic(B) PLUS arithmetic(C).   { A = { new BinaryOpNode(B.node, TK_PLUS, C.node) }; }
+arithmetic(A) ::= arithmetic(B) MINUS arithmetic(C).  { A = { new BinaryOpNode(B.node, TK_MINUS, C.node) }; }
+arithmetic(A) ::= arithmetic(B) STAR arithmetic(C).   { A = { new BinaryOpNode(B.node, TK_STAR, C.node) }; }
+arithmetic(A) ::= arithmetic(B) SLASH arithmetic(C).  { A = { new BinaryOpNode(B.node, TK_SLASH, C.node) }; }
+arithmetic(A) ::= arithmetic(B) MOD arithmetic(C).    { A = { new BinaryOpNode(B.node, TK_MOD, C.node) }; }
 arithmetic(A) ::= unary(A).
 
 expr(A) ::= or_expr(A).
 
-unary(A) ::= MINUS unary(B). { A.node = new NegateNode(B.node); }
+unary(A) ::= MINUS unary(B).       { A = { new NegateNode(B.node) }; }
 unary(A) ::= term(A).
 
-term(A) ::= TRUE_LITERAL.          { A.node = new BoolLiteral(true); }
-term(A) ::= FALSE_LITERAL.         { A.node = new BoolLiteral(false); }
-term(A) ::= INTEGER_LITERAL(B).    { A.node = new IntLiteral(B.integer); }
-term(A) ::= STRING_LITERAL(B).     { A.node = new StringLiteral(B.string); }
-term(A) ::= SIZE_LITERAL(B).       { A.node = new SizeLiteral(B.string); }
+term(A) ::= TRUE_LITERAL.          { A = { new BoolLiteral(true) }; }
+term(A) ::= FALSE_LITERAL.         { A = { new BoolLiteral(false) }; }
+term(A) ::= INTEGER_LITERAL(B).    { A = { new IntLiteral(B.integer) }; }
+term(A) ::= STRING_LITERAL(B).     { A = { new StringLiteral(B.string) }; }
+term(A) ::= SIZE_LITERAL(B).       { A = { new SizeLiteral(B.string) }; }
 term(A) ::= DATETIME_LITERAL(B).{
-  try {
+  try
+  {
+    A = {};
     A.node = new DateTimeLiteral(B.string);
-  } catch (const std::exception&) {
+  }
+  catch (const std::exception&)
+  {
     pCtx->errorCode = FilterEngine::ERROR_INVALID_LITERAL;
-    A.node = nullptr;
   }
 }
-term(A) ::= DURATION_LITERAL(B).   { A.node = new DurationLiteral(B.string); }
-term(A) ::= VERSION_LITERAL(B).    { A.node = new VersionLiteral(B.string); }
+term(A) ::= DURATION_LITERAL(B).   { A = { new DurationLiteral(B.string) }; }
+term(A) ::= VERSION_LITERAL(B).    { A = { new VersionLiteral(B.string) }; }
 term(A) ::= IDENTIFIER(B) LPAREN RPAREN. {
-  try {
+  try
+  {
+    A = {};
     A.node = new FunctionNode(pCtx, B.string, {});
-  } catch (const std::invalid_argument&) {
+  }
+  catch (const std::invalid_argument&)
+  {
     pCtx->errorCode = FilterEngine::ERROR_INVALID_ARGUMENT_COUNT;
-    A.node = nullptr;
-  } catch (const std::runtime_error&) {
+  }
+  catch (const std::runtime_error&)
+  {
     pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
-    A.node = nullptr;
   }
 }
 term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. {
-  try {
+  try
+  {
+    A = {};
     A.node = new FunctionNode(pCtx, B.string, C.nodeList);
-  } catch (const std::invalid_argument&) {
+  }
+  catch (const std::invalid_argument&)
+  {
     pCtx->errorCode = FilterEngine::ERROR_INVALID_ARGUMENT_COUNT;
-    A.node = nullptr;
-  } catch (const std::runtime_error&) {
+    pCtx->YYSTYPEDestructor(C);
+  }
+  catch (const std::runtime_error&)
+  {
     pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
-    A.node = nullptr;
+    pCtx->YYSTYPEDestructor(C);
   }
 }
 term(A) ::= IDENTIFIER(B). {
-  try {
+  try
+  {
+    A = {};
     A.node = new FieldNode(pCtx, B.string);
-  } catch (const std::exception&) {
+  }
+  catch (const std::exception&)
+  {
     pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
-    A.node = nullptr;
   }
 }
 term(A) ::= LPAREN expr(B) RPAREN. { A = B; }
 
-expr_list(A) ::= expr(B). { A.nodeList = new std::vector<ExprNode*>{ B.node }; }
-expr_list(A) ::= expr_list(B) COMMA expr(C). { B.nodeList->push_back(C.node); A.nodeList = B.nodeList; }
+expr_list(A) ::= expr(B). {
+  A = {};
+  A.nodeList = new std::vector<ExprNode*>{ B.node };
+}
+expr_list(A) ::= expr_list(B) COMMA expr(C). {
+  A = {};
+  B.nodeList->push_back(C.node);
+  A.nodeList = B.nodeList;
+}
 

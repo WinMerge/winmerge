@@ -18,10 +18,6 @@ extern void ParseFree(void* yyp, void (*freeProc)(void*));
 
 FilterContext::FilterContext(const CDiffContext* ctxt)
 	: ctxt(ctxt)
-	, rootNode(nullptr)
-	, now(nullptr)
-	, today(nullptr)
-	, errorCode(0)
 {
 	UpdateTimestamp();
 }
@@ -31,10 +27,17 @@ FilterContext::~FilterContext()
 	Clear();
 }
 
-void FilterContext::DefaultDestructor(YYSTYPE& yystype)
+void FilterContext::YYSTYPEDestructor(YYSTYPE& yystype)
 {
+	if (yystype.nodeList)
+	{
+		for (auto& node : *yystype.nodeList)
+			delete node;
+		delete yystype.nodeList;
+	}
 	delete yystype.node;
 	yystype.node = nullptr;
+	yystype.nodeList = nullptr;
 }
 
 void FilterContext::Clear()

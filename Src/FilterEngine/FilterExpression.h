@@ -12,11 +12,12 @@
 #include <variant>
 #include <vector>
 #include <Poco/Timestamp.h>
+#include <Poco/RegularExpression.h>
 
 struct FilterContext;
 class DIFFITEM;
 struct ValueType2;
-using ValueType = std::variant<std::monostate, bool, int64_t, Poco::Timestamp, std::string, std::unique_ptr<std::vector<ValueType2>>>;
+using ValueType = std::variant<std::monostate, bool, int64_t, Poco::Timestamp, std::shared_ptr<Poco::RegularExpression>, std::string, std::unique_ptr<std::vector<ValueType2>>>;
 struct ValueType2 { ValueType value; };
 
 struct ExprNode
@@ -24,6 +25,7 @@ struct ExprNode
 	virtual ~ExprNode()
 	{
 	}
+	virtual ExprNode* Optimize() { return this; }
 	virtual ValueType Evaluate(const DIFFITEM& di) const = 0;
 };
 
@@ -72,12 +74,13 @@ struct NotNode : public ExprNode
 
 struct BinaryOpNode : public ExprNode
 {
-	BinaryOpNode(ExprNode* l, const std::string& o, ExprNode* r);
+	BinaryOpNode(ExprNode* l, int o, ExprNode* r);
 	virtual ~BinaryOpNode()
 	{
 		delete left;
 		delete right;
 	}
+	ExprNode* Optimize() override;
 	ValueType Evaluate(const DIFFITEM& di) const override;
 	int op;
 	ExprNode* left;
@@ -148,6 +151,7 @@ struct SizeLiteral : public ExprNode
 struct DateTimeLiteral : public ExprNode
 {
 	DateTimeLiteral(const std::string& v);
+	DateTimeLiteral(const Poco::Timestamp& v) : value(v) { }
 	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
 	Poco::Timestamp value;
 };
@@ -164,5 +168,12 @@ struct VersionLiteral : public ExprNode
 	VersionLiteral(const std::string& v);
 	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
 	int64_t value;
+};
+
+struct RegularExpressionLiteral : public ExprNode
+{
+	RegularExpressionLiteral(const std::string& v);
+	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	std::shared_ptr<Poco::RegularExpression> value;
 };
 

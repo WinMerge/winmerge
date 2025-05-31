@@ -20,12 +20,13 @@ struct FilterContext
 	~FilterContext();
 	void Clear();
 	void UpdateTimestamp();
-	void DefaultDestructor(YYSTYPE& yystype);
-	const CDiffContext* ctxt;
+	void YYSTYPEDestructor(YYSTYPE& yystype);
+	bool optimize = true;
+	const CDiffContext* ctxt = nullptr;
 	std::unique_ptr<Poco::Timestamp> now;
 	std::unique_ptr<Poco::Timestamp> today;
 	std::unique_ptr<ExprNode> rootNode;
-	int errorCode;
+	int errorCode = 0;
 };
 
 class FilterEngine
@@ -39,8 +40,9 @@ public:
 		ERROR_SYNTAX_ERROR = 3,
 		ERROR_PARSE_FAILURE = 4,
 		ERROR_INVALID_LITERAL = 5,
-		ERROR_UNDEFINED_IDENTIFIER = 6,
-		ERROR_INVALID_ARGUMENT_COUNT = 7,
+		ERROR_INVALID_REGULAR_EXPRESSION = 6,
+		ERROR_UNDEFINED_IDENTIFIER = 7,
+		ERROR_INVALID_ARGUMENT_COUNT = 8,
 	};
 	static bool Parse(const std::wstring& expression, FilterContext& ctxt);
 	static bool Evaluate(FilterContext& ctxt, const DIFFITEM& di);

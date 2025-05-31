@@ -13,11 +13,11 @@ struct ExprNode;
 
 struct YYSTYPE
 {
+	ExprNode* node;
+	std::vector<ExprNode*> *nodeList;
 	const char* string;
 	int64_t integer;
 	bool boolean;
-	ExprNode* node;
-	std::vector<ExprNode*> *nodeList;
 };
 
 struct FilterLexer

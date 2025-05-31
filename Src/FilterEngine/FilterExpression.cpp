@@ -70,36 +70,77 @@ ValueType NotNode::Evaluate(const DIFFITEM& di) const
 	return *boolVal ? false : true;
 }
 
-BinaryOpNode::BinaryOpNode(ExprNode* l, const std::string& o, ExprNode* r) : left(l), right(r)
+static std::optional<int64_t> getConstIntValue(const ExprNode* node)
 {
-	if (o == "==")
-		op = EQ;
-	else if (o == "!=")
-		op = NE;
-	else if (o == "<")
-		op = LT;
-	else if (o == "<=")
-		op = LE;
-	else if (o == ">")
-		op = GT;
-	else if (o == ">=")
-		op = GE;
-	else if (o == "CONTAINS")
-		op = CONTAINS;
-	else if (o == "MATCHES")
-		op = MATCHES;
-	else if (o == "+")
-		op = PLUS;
-	else if (o == "-")
-		op = MINUS;
-	else if (o == "*")
-		op = STAR;
-	else if (o == "/")
-		op = SLASH;
-	else if (o == "%")
-		op = MOD;
-	else
-		op = o.at(0);
+	if (auto intNode = dynamic_cast<const IntLiteral*>(node))
+		return intNode->value;
+	if (auto sizeNode = dynamic_cast<const SizeLiteral*>(node))
+		return sizeNode->value;
+	if (auto durationNode = dynamic_cast<const DurationLiteral*>(node))
+		return durationNode->value;
+	if (auto versionNode = dynamic_cast<const VersionLiteral*>(node))
+		return versionNode->value;
+	return std::nullopt;
+}
+
+static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
+{
+	auto lInt = getConstIntValue(left);
+	auto rInt = getConstIntValue(right);
+	if (lInt && rInt)
+	{
+		int64_t result = 0;
+		switch (op)
+		{
+		case TK_PLUS:  result = *lInt + *rInt; break;
+		case TK_MINUS: result = *lInt - *rInt; break;
+		case TK_STAR:  result = *lInt * *rInt; break;
+		case TK_SLASH: if (*rInt != 0) result = *lInt / *rInt; else return nullptr; break;
+		case TK_MOD:   if (*rInt != 0) result = *lInt % *rInt; else return nullptr; break;
+		default: return nullptr;
+		}
+		return new IntLiteral(result);
+	}
+	auto lStr = dynamic_cast<StringLiteral*>(left);
+	auto rStr = dynamic_cast<StringLiteral*>(right);
+	if (lStr && rStr && op == TK_PLUS)
+	{
+		std::string concat = lStr->value + rStr->value;
+		return new StringLiteral(concat);
+	}
+	auto lDateTime = dynamic_cast<DateTimeLiteral*>(left);
+	if (lDateTime && rInt)
+	{
+		if (op == TK_PLUS) return new DateTimeLiteral(lDateTime->value + *rInt);
+		if (op == TK_MINUS) return new DateTimeLiteral(lDateTime->value - *rInt);
+	}
+	return nullptr;
+}
+
+BinaryOpNode::BinaryOpNode(ExprNode* l, int o, ExprNode* r) : left(l), right(r), op(o)
+{
+}
+
+ExprNode* BinaryOpNode::Optimize()
+{
+	if (!left || !right)
+		return this;
+	left = left->Optimize();
+	right = right->Optimize();
+	if (ExprNode* folded = TryFoldConstants(left, op, right))
+	{
+		delete this;
+		return folded;
+	}
+	if (op == TK_MATCHES)
+	{
+		if (auto strNode = dynamic_cast<StringLiteral*>(right))
+		{
+			right = new RegularExpressionLiteral(strNode->value);
+			delete strNode;
+		}
+	}
+	return this;
 }
 
 ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
@@ -112,49 +153,49 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 			{
 				if (auto rvalInt = std::get_if<int64_t>(&rval))
 				{
-					if (op == EQ) return *lvalInt == *rvalInt;
-					if (op == NE) return *lvalInt != *rvalInt;
-					if (op == LT) return *lvalInt < *rvalInt;
-					if (op == LE) return *lvalInt <= *rvalInt;
-					if (op == GT) return *lvalInt > *rvalInt;
-					if (op == GE) return *lvalInt >= *rvalInt;
-					if (op == PLUS) return *lvalInt + *rvalInt;
-					if (op == MINUS) return *lvalInt - *rvalInt;
-					if (op == STAR) return *lvalInt * *rvalInt;
-					if (op == SLASH) return *lvalInt / *rvalInt;
-					if (op == MOD) return *lvalInt % *rvalInt;
+					if (op == TK_EQ) return *lvalInt == *rvalInt;
+					if (op == TK_NE) return *lvalInt != *rvalInt;
+					if (op == TK_LT) return *lvalInt < *rvalInt;
+					if (op == TK_LE) return *lvalInt <= *rvalInt;
+					if (op == TK_GT) return *lvalInt > *rvalInt;
+					if (op == TK_GE) return *lvalInt >= *rvalInt;
+					if (op == TK_PLUS) return *lvalInt + *rvalInt;
+					if (op == TK_MINUS) return *lvalInt - *rvalInt;
+					if (op == TK_STAR) return *lvalInt * *rvalInt;
+					if (op == TK_SLASH) return *lvalInt / *rvalInt;
+					if (op == TK_MOD) return *lvalInt % *rvalInt;
 				}
 			}
 			else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
 			{
 				if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
 				{
-					if (op == EQ) return *lvalTimestamp == *rvalTimestamp;
-					if (op == NE) return *lvalTimestamp != *rvalTimestamp;
-					if (op == LT) return *lvalTimestamp < *rvalTimestamp;
-					if (op == LE) return *lvalTimestamp <= *rvalTimestamp;
-					if (op == GT) return *lvalTimestamp > *rvalTimestamp;
-					if (op == GE) return *lvalTimestamp >= *rvalTimestamp;
-					if (op == MINUS) return *lvalTimestamp - *rvalTimestamp;
+					if (op == TK_EQ) return *lvalTimestamp == *rvalTimestamp;
+					if (op == TK_NE) return *lvalTimestamp != *rvalTimestamp;
+					if (op == TK_LT) return *lvalTimestamp < *rvalTimestamp;
+					if (op == TK_LE) return *lvalTimestamp <= *rvalTimestamp;
+					if (op == TK_GT) return *lvalTimestamp > *rvalTimestamp;
+					if (op == TK_GE) return *lvalTimestamp >= *rvalTimestamp;
+					if (op == TK_MINUS) return *lvalTimestamp - *rvalTimestamp;
 				}
 				else if (auto rvalInt = std::get_if<int64_t>(&rval))
 				{
-					if (op == PLUS) return *lvalTimestamp + *rvalInt;
-					if (op == MINUS) return *lvalTimestamp - *rvalInt;
+					if (op == TK_PLUS) return *lvalTimestamp + *rvalInt;
+					if (op == TK_MINUS) return *lvalTimestamp - *rvalInt;
 				}
 			}
 			else if (auto lvalString = std::get_if<std::string>(&lval))
 			{
 				if (auto rvalString = std::get_if<std::string>(&rval))
 				{
-					if (op == EQ) return *lvalString == *rvalString;
-					if (op == NE) return *lvalString != *rvalString;
-					if (op == LT) return *lvalString < *rvalString;
-					if (op == LE) return *lvalString <= *rvalString;
-					if (op == GT) return *lvalString > *rvalString;
-					if (op == GE) return *lvalString >= *rvalString;
-					if (op == PLUS) return *rvalString + *lvalString;
-					if (op == CONTAINS)
+					if (op == TK_EQ) return *lvalString == *rvalString;
+					if (op == TK_NE) return *lvalString != *rvalString;
+					if (op == TK_LT) return *lvalString < *rvalString;
+					if (op == TK_LE) return *lvalString <= *rvalString;
+					if (op == TK_GT) return *lvalString > *rvalString;
+					if (op == TK_GE) return *lvalString >= *rvalString;
+					if (op == TK_PLUS) return *rvalString + *lvalString;
+					if (op == TK_CONTAINS)
 					{
 						auto searcher = std::boyer_moore_horspool_searcher(
 							rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
@@ -167,25 +208,30 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 						std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
 						return (result.first != result.second);
 					}
-					if (op == MATCHES)
+					if (op == TK_MATCHES)
 					{
 						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
 						return regex.match(*lvalString);
 					}
+				}
+				if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
+				{
+					if (op == TK_MATCHES)
+						return rvalRegexp->get()->match(*lvalString);
 				}
 			}
 			else if (auto lvalBool = std::get_if<bool>(&lval))
 			{
 				if (auto rvalBool = std::get_if<bool>(&rval))
 				{
-					if (op == EQ) return *lvalBool == *rvalBool;
-					if (op == NE) return *lvalBool != *rvalBool;
-					if (op == PLUS) return static_cast<int64_t>(*rvalBool + *lvalBool);
+					if (op == TK_EQ) return *lvalBool == *rvalBool;
+					if (op == TK_NE) return *lvalBool != *rvalBool;
+					if (op == TK_PLUS) return static_cast<int64_t>(*rvalBool + *lvalBool);
 				}
 			}
-			if (op == EQ)
+			if (op == TK_EQ)
 				return false;
-			else if (op == NE)
+			else if (op == TK_NE)
 				return true;
 			return std::monostate{};
 		};
@@ -582,3 +628,9 @@ VersionLiteral::VersionLiteral(const std::string& v)
 	sscanf_s(v.c_str(), "%d.%d.%d.%d", &major, &minor, &build, &revision);
 	value = (static_cast<int64_t>(major) << 48) + (static_cast<int64_t>(minor) << 32) + (static_cast<int64_t>(build) << 16) + revision;
 }
+
+RegularExpressionLiteral::RegularExpressionLiteral(const std::string& v)
+{
+	value.reset(new Poco::RegularExpression(v, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8));
+}
+

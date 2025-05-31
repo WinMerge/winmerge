@@ -245,11 +245,11 @@ namespace
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 11:34:56\" + 1hour", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:33:56\" + 1minute", fc));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:35:56\" - 1minute", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:34:55\" + 1second", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:34:55\" + 1000millisecond", fc));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:34:57\" - 1000millisecond", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 
 		EXPECT_TRUE(FilterEngine::Parse(L"v\"2.16.48.3\" == v\"002.016.048.002\"", fc));
@@ -289,6 +289,10 @@ namespace
 		EXPECT_EQ(FilterEngine::ERROR_UNDEFINED_IDENTIFIER, fc.errorCode);
 		EXPECT_FALSE(FilterEngine::Parse(L"abs()", fc));
 		EXPECT_EQ(FilterEngine::ERROR_INVALID_ARGUMENT_COUNT, fc.errorCode);
+		EXPECT_FALSE(FilterEngine::Parse(L"abs(1, 2)", fc));
+		EXPECT_EQ(FilterEngine::ERROR_INVALID_ARGUMENT_COUNT, fc.errorCode);
+		EXPECT_FALSE(FilterEngine::Parse(L"LeftName matches \"[[\"", fc));
+		EXPECT_EQ(FilterEngine::ERROR_INVALID_REGULAR_EXPRESSION, fc.errorCode);
 	}
 
 }  // namespace
