@@ -27,6 +27,7 @@ struct FilterContext
 	std::unique_ptr<Poco::Timestamp> today;
 	std::unique_ptr<ExprNode> rootNode;
 	int errorCode = 0;
+	int errorPosition = -1;
 };
 
 class FilterEngine

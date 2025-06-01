@@ -12,8 +12,8 @@
 #include <variant>
 #include <vector>
 #include <Poco/Timestamp.h>
-#include <Poco/RegularExpression.h>
 
+namespace Poco { class RegularExpression; }
 struct FilterContext;
 class DIFFITEM;
 struct ValueType2;
@@ -22,23 +22,20 @@ struct ValueType2 { ValueType value; };
 
 struct ExprNode
 {
-	virtual ~ExprNode()
-	{
-	}
+	virtual ~ExprNode() { }
 	virtual ExprNode* Optimize() { return this; }
 	virtual ValueType Evaluate(const DIFFITEM& di) const = 0;
 };
 
 struct OrNode : public ExprNode
 {
-	OrNode(ExprNode* l, ExprNode* r) : left(l), right(r)
-	{
-	}
+	OrNode(ExprNode* l, ExprNode* r) : left(l), right(r) { }
 	virtual ~OrNode()
 	{
 		delete left;
 		delete right;
 	}
+	ExprNode* Optimize() override;
 	ValueType Evaluate(const DIFFITEM& di) const override;
 	ExprNode* left;
 	ExprNode* right;
@@ -46,14 +43,13 @@ struct OrNode : public ExprNode
 
 struct AndNode : public ExprNode
 {
-	AndNode(ExprNode* l, ExprNode* r) : left(l), right(r)
-	{
-	}
+	AndNode(ExprNode* l, ExprNode* r) : left(l), right(r) { }
 	virtual ~AndNode()
 	{
 		delete left;
 		delete right;
 	}
+	ExprNode* Optimize() override;
 	ValueType Evaluate(const DIFFITEM& di) const override;
 	ExprNode* left;
 	ExprNode* right;
@@ -61,20 +57,19 @@ struct AndNode : public ExprNode
 
 struct NotNode : public ExprNode
 {
-	NotNode(ExprNode* e) : expr(e)
-	{
-	}
+	NotNode(ExprNode* e) : expr(e) { }
 	virtual ~NotNode()
 	{
 		delete expr;
 	}
+	ExprNode* Optimize() override;
 	ValueType Evaluate(const DIFFITEM& di) const override;
 	ExprNode* expr;
 };
 
 struct BinaryOpNode : public ExprNode
 {
-	BinaryOpNode(ExprNode* l, int o, ExprNode* r);
+	BinaryOpNode(ExprNode* l, int o, ExprNode* r) : left(l), right(r), op(o) { }
 	virtual ~BinaryOpNode()
 	{
 		delete left;
@@ -89,13 +84,12 @@ struct BinaryOpNode : public ExprNode
 
 struct NegateNode : public ExprNode
 {
-	NegateNode(ExprNode* r) : right(r)
-	{
-	}
+	NegateNode(ExprNode* r) : right(r) { }
 	virtual ~NegateNode()
 	{
 		delete right;
 	}
+	ExprNode* Optimize() override;
 	ValueType Evaluate(const DIFFITEM& di) const override;
 	ExprNode* right;
 };

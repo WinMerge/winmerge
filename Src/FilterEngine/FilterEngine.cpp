@@ -46,6 +46,7 @@ void FilterContext::Clear()
 	today.reset();
 	rootNode.reset();
 	errorCode = 0;
+	errorPosition = -1;
 }
 
 void FilterContext::UpdateTimestamp()
@@ -64,21 +65,33 @@ bool FilterEngine::Parse(const std::wstring& expression, FilterContext& ctxt)
 	FilterLexer lexer(expressionStr);
 	void* prs = ParseAlloc(malloc);
 	int token;
-	int lastError = 0;
+	int firstError = 0;
 	while ((token = lexer.yylex()) != 0)
 	{
 		if (token < 0)
 		{
-			lastError = -token;
+			firstError = -token;
+			ctxt.errorPosition = static_cast<int>(lexer.yycursor  - expressionStr.c_str());
 			break;
 		}
 		::Parse(prs, token, lexer.yylval, &ctxt);
+		if (ctxt.errorCode != 0)
+		{
+			firstError = ctxt.errorCode;
+			ctxt.errorPosition = static_cast<int>(lexer.yycursor - expressionStr.c_str());
+			break;
+		}
 		lexer.yycursor = lexer.YYCURSOR;
 	}
 	::Parse(prs, 0, lexer.yylval, &ctxt);
+	if (firstError == 0 && ctxt.errorCode != 0)
+	{
+		firstError = ctxt.errorCode;
+		ctxt.errorPosition = static_cast<int>(lexer.yycursor - expressionStr.c_str());
+	}
 	::ParseFree(prs, free);
-	if (lastError != 0)
-		ctxt.errorCode = lastError;
+	if (firstError != 0)
+		ctxt.errorCode = firstError;
 	return (ctxt.errorCode == 0);
 }
 

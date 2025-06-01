@@ -23,9 +23,15 @@
 #include <Poco/Exception.h>
 }
 
-%syntax_error { pCtx->errorCode = FilterEngine::ERROR_SYNTAX_ERROR; }
-%parse_failure { pCtx->errorCode = FilterEngine::ERROR_PARSE_FAILURE; }
-%default_destructor { pCtx->YYSTYPEDestructor($$); }
+%syntax_error {
+	pCtx->errorCode = FilterEngine::ERROR_SYNTAX_ERROR;
+}
+%parse_failure {
+	pCtx->errorCode = FilterEngine::ERROR_PARSE_FAILURE;
+}
+%default_destructor {
+	pCtx->YYSTYPEDestructor($$);
+}
 
 filter_expr ::= or_expr(A). {
 	if (pCtx->errorCode == 0 && pCtx->optimize)

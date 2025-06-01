@@ -34,6 +34,23 @@ static std::optional<bool> evalAsBool(const ValueType& val)
 	return std::nullopt;
 }
 
+ExprNode* OrNode::Optimize()
+{
+	if (!left || !right)
+		return this;
+	left = left->Optimize();
+	right = right->Optimize();
+	auto lBool = dynamic_cast<BoolLiteral*>(left);
+	auto rBool = dynamic_cast<BoolLiteral*>(right);
+	if (lBool && rBool)
+	{
+		const bool result = lBool->value || rBool->value;
+		delete this;
+		return new BoolLiteral(result);
+	}
+	return this;
+}
+
 ValueType OrNode::Evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->Evaluate(di);
@@ -48,6 +65,23 @@ ValueType OrNode::Evaluate(const DIFFITEM& di) const
 	return std::monostate{};
 }
 
+ExprNode* AndNode::Optimize()
+{
+	if (!left || !right)
+		return this;
+	left = left->Optimize();
+	right = right->Optimize();
+	auto lBool = dynamic_cast<BoolLiteral*>(left);
+	auto rBool = dynamic_cast<BoolLiteral*>(right);
+	if (lBool && rBool)
+	{
+		const bool result = lBool->value && rBool->value;
+		delete this;
+		return new BoolLiteral(result);
+	}
+	return this;
+}
+
 ValueType AndNode::Evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->Evaluate(di);
@@ -60,6 +94,21 @@ ValueType AndNode::Evaluate(const DIFFITEM& di) const
 	if (!rbool) return std::monostate{};
 	if (!*rbool) return false;
 	return true;
+}
+
+ExprNode* NotNode::Optimize()
+{
+	if (!expr)
+		return this;
+	expr = expr->Optimize();
+	auto boolVal = dynamic_cast<BoolLiteral*>(expr);
+	if (boolVal)
+	{
+		const bool result = !boolVal->value;
+		delete this;
+		return new BoolLiteral(result);
+	}
+	return this;
 }
 
 ValueType NotNode::Evaluate(const DIFFITEM& di) const
@@ -89,6 +138,22 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 	auto rInt = getConstIntValue(right);
 	if (lInt && rInt)
 	{
+		if (op >= TK_EQ && op <= TK_GE)
+		{
+			bool result;
+			switch (op)
+			{
+			case TK_EQ: result = *lInt == *rInt; break;
+			case TK_NE: result = *lInt != *rInt; break;
+			case TK_LT: result = *lInt < *rInt; break;
+			case TK_LE: result = *lInt <= *rInt; break;
+			case TK_GT: result = *lInt > *rInt; break;
+			case TK_GE: result = *lInt >= *rInt; break;
+			default: return nullptr;
+			}
+			return new BoolLiteral(result);
+		}
+
 		int64_t result = 0;
 		switch (op)
 		{
@@ -103,22 +168,94 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 	}
 	auto lStr = dynamic_cast<StringLiteral*>(left);
 	auto rStr = dynamic_cast<StringLiteral*>(right);
-	if (lStr && rStr && op == TK_PLUS)
+	if (lStr && rStr)
 	{
-		std::string concat = lStr->value + rStr->value;
-		return new StringLiteral(concat);
+		if (op >= TK_EQ && op <= TK_GE)
+		{
+			bool result = false;
+			switch (op)
+			{
+			case TK_EQ: result = lStr->value == rStr->value; break;
+			case TK_NE: result = lStr->value != rStr->value; break;
+			case TK_LT: result = lStr->value < rStr->value; break;
+			case TK_LE: result = lStr->value <= rStr->value; break;
+			case TK_GT: result = lStr->value > rStr->value; break;
+			case TK_GE: result = lStr->value >= rStr->value; break;
+			}
+			return new BoolLiteral(result);
+		}
+
+		std::string result;
+		switch (op)
+		{
+		case TK_PLUS:  result = lStr->value + rStr->value; break;
+		default: return nullptr;
+		}
+		return new StringLiteral(result);
+	}
+	auto lBool = dynamic_cast<BoolLiteral*>(left);
+	auto rBool = dynamic_cast<BoolLiteral*>(right);
+	if (lBool && rBool)
+	{
+		if (op >= TK_EQ && op <= TK_GE)
+		{
+			bool result = false;
+			switch (op)
+			{
+			case TK_EQ: result = lBool->value == rBool->value; break;
+			case TK_NE: result = lBool->value != rBool->value; break;
+			case TK_LT: result = lBool->value < rBool->value; break;
+			case TK_LE: result = lBool->value <= rBool->value; break;
+			case TK_GT: result = lBool->value > rBool->value; break;
+			case TK_GE: result = lBool->value >= rBool->value; break;
+			default: return nullptr;
+			}
+			return new BoolLiteral(result);
+		}
+
+		int64_t result;
+		switch (op)
+		{
+		case TK_PLUS: result = lBool->value + rBool->value; break;
+		case TK_MINUS: result = lBool->value - rBool->value; break;
+		default: return nullptr;
+		}
+		return new IntLiteral(result);
 	}
 	auto lDateTime = dynamic_cast<DateTimeLiteral*>(left);
+	auto rDateTime = dynamic_cast<DateTimeLiteral*>(right);
+	if (lDateTime && rDateTime)
+	{
+		if (op >= TK_EQ && op <= TK_GE)
+		{
+			bool result = false;
+			switch (op)
+			{
+			case TK_EQ: result = lDateTime->value == rDateTime->value; break;
+			case TK_NE: result = lDateTime->value != rDateTime->value; break;
+			case TK_LT: result = lDateTime->value < rDateTime->value; break;
+			case TK_LE: result = lDateTime->value <= rDateTime->value; break;
+			case TK_GT: result = lDateTime->value > rDateTime->value; break;
+			case TK_GE: result = lDateTime->value >= rDateTime->value; break;
+			default: return nullptr;
+			}
+			return new BoolLiteral(result);
+		}
+
+		Poco::Timestamp result;
+		switch (op)
+		{
+		case TK_MINUS: result = lDateTime->value - rDateTime->value; break;
+		default: return nullptr;
+		}
+		return new DateTimeLiteral(result);
+	}
 	if (lDateTime && rInt)
 	{
 		if (op == TK_PLUS) return new DateTimeLiteral(lDateTime->value + *rInt);
 		if (op == TK_MINUS) return new DateTimeLiteral(lDateTime->value - *rInt);
 	}
 	return nullptr;
-}
-
-BinaryOpNode::BinaryOpNode(ExprNode* l, int o, ExprNode* r) : left(l), right(r), op(o)
-{
 }
 
 ExprNode* BinaryOpNode::Optimize()
@@ -226,7 +363,12 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 				{
 					if (op == TK_EQ) return *lvalBool == *rvalBool;
 					if (op == TK_NE) return *lvalBool != *rvalBool;
+					if (op == TK_LT) return *lvalBool < *rvalBool;
+					if (op == TK_LE) return *lvalBool <= *rvalBool;
+					if (op == TK_GT) return *lvalBool > *rvalBool;
+					if (op == TK_GE) return *lvalBool >= *rvalBool;
 					if (op == TK_PLUS) return static_cast<int64_t>(*rvalBool + *lvalBool);
+					if (op == TK_MINUS) return static_cast<int64_t>(*rvalBool - *lvalBool);
 				}
 			}
 			if (op == TK_EQ)
@@ -268,11 +410,98 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 	}
 }
 
+ExprNode* NegateNode::Optimize()
+{
+	if (!right)
+		return this;
+	right = right->Optimize();
+	auto rInt = getConstIntValue(right);
+	if (rInt)
+	{
+		delete this;
+		return new IntLiteral(-*rInt);
+	}
+	return this;
+}
+
 ValueType NegateNode::Evaluate(const DIFFITEM& di) const
 {
 	auto rval = right->Evaluate(di);
 	if (auto rvalInt = std::get_if<int64_t>(&rval))
 		return -*rvalInt;
+	return std::monostate{};
+}
+
+static auto ExistsField(int index, const FilterContext* ctxt, const DIFFITEM& di)-> ValueType
+{
+	return di.diffcode.exists(index);
+}
+
+static auto NameField(int index, const FilterContext* ctxt, const DIFFITEM& di)-> ValueType
+{
+	if (di.diffcode.exists(index))
+		return ucr::toUTF8(di.diffFileInfo[index].filename.get());
+	return std::monostate{};
+}
+
+static auto PathField(int index, const FilterContext* ctxt, const DIFFITEM& di)-> ValueType
+{
+	return ucr::toUTF8(di.diffFileInfo[index].path.get());
+}
+
+static auto SizeField(int index, const FilterContext* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+		return static_cast<int64_t>(di.diffFileInfo[index].size);
+	return std::monostate{};
+}
+
+static auto DateField(int index, const FilterContext* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+		return di.diffFileInfo[index].mtime;
+	return std::monostate{};
+}
+
+static auto CreationTimeField(int index, const FilterContext* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+		return di.diffFileInfo[index].ctime;
+	return std::monostate{};
+}
+
+static auto FileVersionField(int index, const FilterContext* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+		return di.diffFileInfo[index].version.GetFileVersionQWORD();
+	return std::monostate{};
+}
+
+static auto AttributesField(int index, const FilterContext* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+		return di.diffFileInfo[index].flags.attributes;
+	return std::monostate{};
+}
+
+static auto AttrStrField(int index, const FilterContext* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+		return ucr::toUTF8(di.diffFileInfo[index].flags.ToString());
+	return std::monostate{};
+}
+
+static auto CodepageField(int index, const FilterContext* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+		return di.diffFileInfo[index].encoding.m_codepage;
+	return std::monostate{};
+}
+
+static auto EncodingField(int index, const FilterContext* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+		return ucr::toUTF8(di.diffFileInfo[index].encoding.GetName());
 	return std::monostate{};
 }
 
@@ -296,132 +525,124 @@ FieldNode::FieldNode(const FilterContext* ctxt, const std::string& v) : ctxt(ctx
 		index = ctxt->ctxt->GetCompareDirs() < 3 ? 1 : 2;
 		prefixlen = 5;
 	}
-	if (prefixlen == 0)
-	{
-		if (v == "Name")
-		{
-			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
-				const int dirs = ctxt->ctxt->GetCompareDirs();
-				for (int i = 0; i < dirs; ++i)
-				{
-					if (di.diffcode.exists(i))
-						values->emplace_back(ValueType2{ ucr::toUTF8(di.diffFileInfo[i].filename.get()) });
-					else
-						values->emplace_back(ValueType2{ std::monostate{} });
-				}
-				return values;
-			};
-		}
-		else if (v == "Folder")
-		{
-			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
-				const int dirs = ctxt->ctxt->GetCompareDirs();
-				for (int i = 0; i < dirs; ++i)
-				{
-					values->emplace_back(ValueType2{ ucr::toUTF8(di.diffFileInfo[i].path.get()) });
-				}
-				return values;
-			};
-		}
-		else if (v == "Size")
-		{
-			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-				const int dirs = ctxt->ctxt->GetCompareDirs();
-				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
-				for (int i = 0; i < dirs; ++i)
-				{
-					if (di.diffcode.exists(i))
-						values->emplace_back(ValueType2{ static_cast<int64_t>(di.diffFileInfo[i].size) });
-					else
-						values->emplace_back(ValueType2{ std::monostate{} });
-				}
-				return values;
-			};
-		}
-		else if (v == "Date")
-		{
-			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-				const int dirs = ctxt->ctxt->GetCompareDirs();
-				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
-				for (int i = 0; i < dirs; ++i)
-				{
-					if (di.diffcode.exists(i))
-						values->emplace_back(ValueType2{ di.diffFileInfo[i].mtime });
-					else
-						values->emplace_back(ValueType2{ std::monostate{} });
-				}
-				return values;
-			};
-		}
-		else if (v == "CreationTime")
-		{
-			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-				const int dirs = ctxt->ctxt->GetCompareDirs();
-				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
-				for (int i = 0; i < dirs; ++i)
-				{
-					if (di.diffcode.exists(i))
-						values->emplace_back(ValueType2{ di.diffFileInfo[i].ctime });
-					else
-						values->emplace_back(ValueType2{ std::monostate{} });
-				}
-				return values;
-			};
-		}
-		else if (v == "FileVersion")
-		{
-			func = [](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-				const int dirs = ctxt->ctxt->GetCompareDirs();
-				std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
-				for (int i = 0; i < dirs; ++i)
-				{
-					if (di.diffcode.exists(i))
-						values->emplace_back(ValueType2{ di.diffFileInfo[i].version.GetFileVersionQWORD() });
-					else
-						values->emplace_back(ValueType2{ std::monostate{} });
-				}
-				return values;
-			};
-		}
-		else
-			throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
-	}
+	ValueType (*functmp)(int, const FilterContext*, const DIFFITEM&) = nullptr;
+	if (v.compare(prefixlen, 6, "Exists") == 0)
+		functmp = ExistsField;
+	else if (v.compare(prefixlen, 4, "Name") == 0)
+		functmp = NameField;
+	else if (v.compare(prefixlen, 4, "Path") == 0)
+		functmp = PathField;
+	else if (v.compare(prefixlen, 4, "Size") == 0)
+		functmp = SizeField;
+	else if (v.compare(prefixlen, 4, "Date") == 0)
+		functmp = DateField;
+	else if (v.compare(prefixlen, 10, "Attributes") == 0)
+		functmp = AttributesField;
+	else if (v.compare(prefixlen, 10, "AttrStr") == 0)
+		functmp = AttrStrField;
+	else if (v.compare(prefixlen, 12, "CreationTime") == 0)
+		functmp = CreationTimeField;
+	else if (v.compare(prefixlen, 11, "FileVersion") == 0)
+		functmp = FileVersionField;
+	else if (v.compare(prefixlen, 8, "Codepage") == 0)
+		functmp = CodepageField;
+	else if (v.compare(prefixlen, 8, "Encoding") == 0)
+		functmp = EncodingField;
 	else
-	{
-		if (v.compare(prefixlen, 4, "Name") == 0)
-			func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-			if (di.diffcode.exists(index)) return ucr::toUTF8(di.diffFileInfo[index].filename.get()); else return std::monostate{};
-			};
-		else if (v.compare(prefixlen, 6, "Folder") == 0)
-			func = [index](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
-			return ucr::toUTF8(di.diffFileInfo[index].path.get());
-			};
-		else if (v.compare(prefixlen, 4, "Size") == 0)
-			func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
-			if (di.diffcode.exists(index)) return static_cast<int64_t>(di.diffFileInfo[index].size); else return std::monostate{};
-			};
-		else if (v.compare(prefixlen, 4, "Date") == 0)
-			func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
-			if (di.diffcode.exists(index)) return di.diffFileInfo[index].mtime; else return std::monostate{};
-			};
-		else if (v.compare(prefixlen, 12, "CreationTime") == 0)
-			func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
-			if (di.diffcode.exists(index)) return di.diffFileInfo[index].ctime; else return std::monostate{};
-			};
-		else if (v.compare(prefixlen, 11, "FileVersion") == 0)
-			func = [index](const FilterContext* ctxt, const DIFFITEM& di) -> ValueType {
-			if (di.diffcode.exists(index)) return di.diffFileInfo[index].version.GetFileVersionQWORD() ; else return std::monostate{};
-			};
-		else
-			throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
-	}
+		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
+	if (prefixlen > 0)
+		func = [index, functmp](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType { return functmp(index, ctxt, di); };
+	else
+		func = [functmp](const FilterContext* ctxt, const DIFFITEM& di)-> ValueType {
+			const int dirs = ctxt->ctxt->GetCompareDirs();
+			std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
+			for (int i = 0; i < dirs; ++i)
+				values->emplace_back(ValueType2{ functmp(i, ctxt, di) });
+			return values;
+		};
 }
 
 ValueType FieldNode::Evaluate(const DIFFITEM& di) const
 {
 	return func(ctxt, di);
+}
+
+static auto AbsFunc(const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{ 
+	auto arg1 = (*args)[0]->Evaluate(di);
+	if (auto arg1Int = std::get_if<int64_t>(&arg1))
+		return abs(*arg1Int);
+	return std::monostate{};
+}
+
+static auto AnyOfFunc(const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto arg1 = (*args)[0]->Evaluate(di);
+	if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+	{
+		const auto& vec = *arrayVal->get();
+		return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
+			const auto boolVal = std::get_if<bool>(&item.value);
+			return boolVal && *boolVal;
+			});
+	}
+	if (auto arg1Bool = std::get_if<bool>(&arg1))
+		return *arg1Bool;
+	return std::monostate{};
+}
+
+static auto AllOfFunc(const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto arg1 = (*args)[0]->Evaluate(di);
+	if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+	{
+		const auto& vec = *arrayVal->get();
+		return std::all_of(vec.begin(), vec.end(), [](const ValueType2& item) {
+			const auto boolVal = std::get_if<bool>(&item.value);
+			return boolVal && *boolVal;
+			});
+	}
+	if (auto arg1Bool = std::get_if<bool>(&arg1))
+		return *arg1Bool;
+	return std::monostate{};
+}
+
+static auto AllEqualFunc(const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType first = args->at(0)->Evaluate(di);
+	if (auto pArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&first); pArray && *pArray)
+	{
+		const auto& vec = **pArray;
+		if (vec.size() <= 1)
+			return true;
+		const ValueType& base = vec[0].value;
+		for (size_t i = 1; i < vec.size(); ++i)
+		{
+			if (!(vec[i].value == base))
+				return false;
+		}
+		return true;
+	}
+	else
+	{
+		for (size_t i = 1; i < args->size(); ++i)
+		{
+			ValueType val = args->at(i)->Evaluate(di);
+			if (!(val == first))
+				return false;
+		}
+		return true;
+	}
+}
+
+static auto TodayFunc(const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return *ctxt->today;
+}
+
+static auto NowFunc(const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return *ctxt->now;
 }
 
 FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, std::vector<ExprNode*>* args)
@@ -431,97 +652,37 @@ FunctionNode::FunctionNode(const FilterContext* ctxt, const std::string& name, s
 	{
 		if (!args || args->size() != 1)
 			throw std::invalid_argument("abs function requires 1 arguments");
-		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
-			auto arg1 = (*args)[0]->Evaluate(di);
-			if (auto arg1Int = std::get_if<int64_t>(&arg1))
-				return abs(*arg1Int);
-			return std::monostate{};
-		};
+		func = AbsFunc;
 	}
 	else if (functionName == "anyof")
 	{
 		if (!args || args->size() != 1)
 			throw std::invalid_argument("anyof function requires 1 arguments");
-		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
-			auto arg1 = (*args)[0]->Evaluate(di);
-			if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
-			{
-				const auto& vec = *arrayVal->get();
-				return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
-					const auto boolVal = std::get_if<bool>(&item.value);
-					return boolVal && *boolVal;
-					});
-			}
-			if (auto arg1Bool = std::get_if<bool>(&arg1))
-				return *arg1Bool;
-			return std::monostate{};
-		};
+		func = AnyOfFunc;
 	}
 	else if (functionName == "allof")
 	{
 		if (!args || args->size() != 1)
 			throw std::invalid_argument("allof function requires 1 arguments");
-		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
-			auto arg1 = (*args)[0]->Evaluate(di);
-			if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
-			{
-				const auto& vec = *arrayVal->get();
-				return std::all_of(vec.begin(), vec.end(), [](const ValueType2& item) {
-					const auto boolVal = std::get_if<bool>(&item.value);
-					return boolVal && *boolVal;
-					});
-			}
-			if (auto arg1Bool = std::get_if<bool>(&arg1))
-				return *arg1Bool;
-			return std::monostate{};
-		};
+		func = AllOfFunc;
 	}
 	else if (functionName == "allequal")
 	{
 		if (!args || args->size() < 1)
 			throw std::invalid_argument("allequal function requires at least 1 arguments");
-		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType { 
-			ValueType first = args->at(0)->Evaluate(di);
-			if (auto pArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&first); pArray && *pArray)
-			{
-				const auto& vec = **pArray;
-				if (vec.size() <= 1)
-					return true;
-				const ValueType& base = vec[0].value;
-				for (size_t i = 1; i < vec.size(); ++i)
-				{
-					if (!(vec[i].value == base))
-						return false;
-				}
-				return true;
-			}
-			else
-			{
-				for (size_t i = 1; i < args->size(); ++i)
-				{
-					ValueType val = args->at(i)->Evaluate(di);
-					if (!(val == first))
-						return false;
-				}
-				return true;
-			}
-		};
+		func = AllEqualFunc;
 	}
 	else if (functionName == "today")
 	{
 		if (args && args->size() != 0)
 			throw std::invalid_argument("today function requires 0 arguments");
-		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType {
-			return *ctxt->today;
-		};
+		func = TodayFunc;
 	}
 	else if (functionName == "now")
 	{
 		if (args && args->size() != 0)
 			throw std::invalid_argument("now function requires 0 arguments");
-		func = [](const FilterContext* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType {
-			return *ctxt->now;
-		};
+		func = NowFunc;
 	}
 	else
 	{

@@ -413,6 +413,10 @@ namespace
 		EXPECT_EQ(FilterEngine::ERROR_INVALID_ARGUMENT_COUNT, fc.errorCode);
 		EXPECT_FALSE(FilterEngine::Parse(L"LeftName matches \"[[\"", fc));
 		EXPECT_EQ(FilterEngine::ERROR_INVALID_REGULAR_EXPRESSION, fc.errorCode);
+		EXPECT_FALSE(FilterEngine::Parse(L"abs(1)) + abc(2)", fc));
+		EXPECT_EQ(FilterEngine::ERROR_SYNTAX_ERROR, fc.errorCode);
+		EXPECT_FALSE(FilterEngine::Parse(L")LeftSize == 1", fc));
+		EXPECT_EQ(FilterEngine::ERROR_SYNTAX_ERROR, fc.errorCode);
 	}
 
 }  // namespace
