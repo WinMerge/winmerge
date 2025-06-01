@@ -43,7 +43,7 @@ namespace
 		// Objects declared here can be used by all tests in the test case for Foo.
 	};
 
-	TEST_F(FilterEngineTest, Parse1)
+	TEST_F(FilterEngineTest, Literals)
 	{
 		PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
 		CDiffContext ctxt(paths, 0);
@@ -61,82 +61,88 @@ namespace
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(1);
 
-		EXPECT_TRUE(FilterEngine::Parse(L"Size <= 1000", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"allequal(Size)", fc));
-		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"allof(Size <= 1000)", fc));
-		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"anyof(Size <= 1000)", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"LeftDate < now()", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"LeftDate != RightDate", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"abs(-100) == 100", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"abs(LeftSize - RightSize) == (1100 - 1000)", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"LeftSize <= 100 * (1 + 9)", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"LeftSize < 200 + 20 * 40", fc));
-		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"LeftName = \"Alice.txt\"", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"RightName = \"Bob.txt\"", fc));
-		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"LeftName CONTAINS \"alice\"", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"RightName contains \".txt\"", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-		EXPECT_TRUE(FilterEngine::Parse(L"RightName matches \"a.*t\"", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-
 		EXPECT_TRUE(FilterEngine::Parse(L"123 == 123", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"123 == 124", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"2 < 3", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"3 < 3", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"2 <= 3", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"3 <= 3", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"3 <= 2", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"3 > 2", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"3 > 3", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"3 >= 2", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"3 >= 3", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"2 >= 3", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"3 != 3", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"3 != 2", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" == d\"2025-05-27\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" == d\"2025-05-28\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" < d\"2025-05-28\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" < d\"2025-05-28\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" <= d\"2025-05-28\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" <= d\"2025-05-28\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-29\" <= d\"2025-05-28\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" > d\"2025-05-27\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" > d\"2025-05-28\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" >= d\"2025-05-27\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" >= d\"2025-05-28\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
-
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" >= d\"2025-05-29\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" != d\"2025-05-28\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" != d\"2025-05-27\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+
 		EXPECT_TRUE(FilterEngine::Parse(L"\"abc\" == \"abc\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"\"abc\" == \"abd\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"\"abb\" < \"abc\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"\"abb\" < \"abb\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"\"abb\" <= \"abc\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"\"abc\" <= \"abc\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"\"abd\" <= \"abc\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"\"abc\" > \"abb\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"\"abc\" > \"abc\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"\"abc\" >= \"abb\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"\"abc\" >= \"abc\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"\"abc\" >= \"abd\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 
 		EXPECT_TRUE(FilterEngine::Parse(L"v\"2.16.48.2\" == v\"002.016.048.002\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
@@ -235,10 +241,35 @@ namespace
 		EXPECT_TRUE(FilterEngine::Parse(L"2TB == 1024GB", fc));
 		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 
-		EXPECT_TRUE(FilterEngine::Parse(L"v\"2.16.48.2\" == v\"002.016.048.002\"", fc));
-		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" == d\"2025-05-27 00:00:00\"", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" == d\"2025-05-27 00:00:01\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" < d\"2025-05-27 00:00:01\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" < d\"2025-05-27 00:00:00\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" <= d\"2025-05-27 00:00:00\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" <= d\"2025-05-27 00:00:01\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27 00:00:02\" <= d\"2025-05-27 00:00:01\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27 00:00:01\" > d\"2025-05-27 00:00:00\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27 00:00:01\" > d\"2025-05-27 00:00:01\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27 00:00:01\" >= d\"2025-05-27 00:00:00\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27 00:00:01\" >= d\"2025-05-27 00:00:01\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27 00:00:01\" >= d\"2025-05-27 00:00:02\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" != d\"2025-05-27 00:00:01\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-27\" != d\"2025-05-27 00:00:00\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" == d\"2025-05-21\" + 1week", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" == d\"2025-05-27\" + 1day", fc));
@@ -252,8 +283,6 @@ namespace
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28 12:34:56\" == d\"2025-05-28 12:34:57\" - 1000millisecond", fc));
 		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 
-		EXPECT_TRUE(FilterEngine::Parse(L"v\"2.16.48.3\" == v\"002.016.048.002\"", fc));
-		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-28\" == d\"2025-05-27 00:00:00\"", fc));
 		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-29\" == d\"2025-05-21\" + 1week", fc));
@@ -268,6 +297,97 @@ namespace
 		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
 		EXPECT_TRUE(FilterEngine::Parse(L"d\"2025-05-29 12:34:56\" == d\"2025-05-28 12:34:55\" + 1000millisecond", fc));
 		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"TRUE", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"FALSE", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"true", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"false", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"true = TRUE", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"true = false", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"false = FALSE", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"false = true", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"not TRUE", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"not FALSE", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"TRUE and TRUE", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"TRUE and FALSE", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"FALSE and TRUE", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"FALSE and FALSE", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+
+		EXPECT_TRUE(FilterEngine::Parse(L"TRUE OR TRUE", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"TRUE OR FALSE", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"FALSE OR TRUE", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"FALSE OR FALSE", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+
+	}
+
+	TEST_F(FilterEngineTest, FileAttributes)
+	{
+		PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+		CDiffContext ctxt(paths, 0);
+		FilterContext fc(&ctxt);
+		DIFFITEM di;
+		int tdz = 0;
+		di.diffFileInfo[0].filename = L"Alice.txt";
+		di.diffFileInfo[0].size = 1000;
+		Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34:56", tdz);
+		di.diffFileInfo[0].mtime = dt0.timestamp();
+		di.diffFileInfo[1].filename = L"Alice.txt";
+		di.diffFileInfo[1].size = 1100;
+		Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tdz);
+		di.diffFileInfo[1].mtime = dt1.timestamp();
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+
+		EXPECT_TRUE(FilterEngine::Parse(L"Size <= 1000", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"allequal(Size)", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"allof(Size <= 1000)", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"anyof(Size <= 1000)", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftDate < now()", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftDate != RightDate", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"abs(-100) == 100", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"abs(LeftSize - RightSize) == (1100 - 1000)", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftSize <= 100 * (1 + 9)", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftSize < 200 + 20 * 40", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftName = \"Alice.txt\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"RightName = \"Bob.txt\"", fc));
+		EXPECT_FALSE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"LeftName CONTAINS \"alice\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"RightName contains \".txt\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
+		EXPECT_TRUE(FilterEngine::Parse(L"RightName matches \"a.*t\"", fc));
+		EXPECT_TRUE(FilterEngine::Evaluate(fc, di));
 	}
 
 	TEST_F(FilterEngineTest, ParseError)
