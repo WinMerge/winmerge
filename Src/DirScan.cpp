@@ -33,8 +33,6 @@
 #include "Plugins.h"
 #include "MergeAppCOMClass.h"
 #include "MergeApp.h"
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
 #include "PathContext.h"
 #include "DebugNew.h"
 
@@ -488,7 +486,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 
 	if (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT)
 	{
-		nworkers = GetOptionsMgr()->GetInt(OPT_CMP_COMPARE_THREADS);
+		nworkers = myStruct->nThreadCount;
 		if (nworkers <= 0)
 			nworkers += Environment::processorCount();
 		nworkers = std::clamp(nworkers, 1, static_cast<int>(Environment::processorCount()));
