@@ -31,6 +31,7 @@ struct DiffFuncStruct
 	Poco::BasicEvent<int> m_listeners; /**< Event listeners */
 	int nThreadState; /**< Thread state. */
 	int nCollectThreadState; /**< Collect thread state. */
+	int nThreadCount; /**< Number of threads used for compare. */
 	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
 	Poco::Semaphore *pSemaphore; /**< Semaphore for synchronizing threads. */
 	std::function<void (DiffFuncStruct*)> m_fncCollect;
@@ -40,6 +41,7 @@ struct DiffFuncStruct
 	DiffFuncStruct()
 		: context(nullptr)
 		, nThreadState(0/*CDiffThread::THREAD_NOTSTARTED*/)
+		, nThreadCount(1)
 		, nCollectThreadState(0/*CDiffThread::THREAD_NOTSTARTED*/)
 		, m_pAbortgate(nullptr)
 		, pSemaphore(nullptr)
@@ -76,6 +78,7 @@ public:
 	CDiffThread();
 	~CDiffThread();
 	void SetContext(CDiffContext * pCtx);
+	void SetThreadCount(int count);
 	unsigned CompareDirectories();
 	template<class T>
 	void AddListener(T *pObj, void (T::*pMethod)(int& state)) {
@@ -118,6 +121,15 @@ private:
 inline void CDiffThread::SetContext(CDiffContext * pCtx)
 {
 	m_pDiffContext = pCtx;
+}
+
+/**
+ * @brief Sets number of threads used for compare.
+ * @param [in] count Number of threads to use for compare.
+ */
+inline void CDiffThread::SetThreadCount(int count)
+{
+	m_pDiffParm->nThreadCount = count;
 }
 
 /**
