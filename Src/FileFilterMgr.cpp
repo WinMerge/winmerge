@@ -13,6 +13,7 @@
 #include <Poco/RegularExpression.h>
 #include "DirTravel.h"
 #include "DirItem.h"
+#include "DiffItem.h"
 #include "UnicodeString.h"
 #include "FileFilter.h"
 #include "UniFile.h"
@@ -248,13 +249,13 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(2);
 			AddFilterPattern(&pfilter->dirfilters, str, false);
 		}
-		else if (0 == sLine.compare(0, 3, _T("fe:"), 2))
+		else if (0 == sLine.compare(0, 3, _T("fe:"), 3))
 		{
 			// file expression filter
 			String str = sLine.substr(3);
 			AddFilterExpression(&pfilter->fileExpressionFilters, str);
 		}
-		else if (0 == sLine.compare(0, 3, _T("de:"), 2))
+		else if (0 == sLine.compare(0, 3, _T("de:"), 3))
 		{
 			// directory expression filter
 			String str = sLine.substr(3);
@@ -272,13 +273,13 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(3);
 			AddFilterPattern(&pfilter->dirfiltersExclude, str, false);
 		}
-		else if (0 == sLine.compare(0, 4, _T("fe!:"), 2))
+		else if (0 == sLine.compare(0, 4, _T("fe!:"), 4))
 		{
 			// file expression filter
 			String str = sLine.substr(4);
 			AddFilterExpression(&pfilter->fileExpressionFiltersExclude, str);
 		}
-		else if (0 == sLine.compare(0, 4, _T("de!:"), 2))
+		else if (0 == sLine.compare(0, 4, _T("de!:"), 4))
 		{
 			// directory expression filter
 			String str = sLine.substr(4);
@@ -358,6 +359,53 @@ bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const St
 	return false;
 }
 
+bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const DIFFITEM& di)
+{
+	if (filterList->size() == 0)
+		return false;
+
+	const int nDirs = di.diffcode.isThreeway() ? 3 : 2;
+	for (int i = 0; i < nDirs; ++i)
+	{
+		const String& szTest = paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
+		std::string compString, compStringFileName;
+		ucr::toUTF8(szTest, compString);
+		vector<FileFilterElementPtr>::const_iterator iter = filterList->begin();
+		while (iter != filterList->end())
+		{
+			RegularExpression::Match match;
+			try
+			{
+				if ((*iter)->_fileNameOnly && compStringFileName.empty())
+					ucr::toUTF8(paths::FindFileName(szTest), compStringFileName);
+				if ((*iter)->regexp.match((*iter)->_fileNameOnly ? compStringFileName : compString, 0, match) > 0)
+					return true;
+			}
+			catch (...)
+			{
+				// TODO:
+			}
+
+			++iter;
+		}
+	}
+	return false;
+}
+
+bool TestAgainstExpressionList(const vector<FilterExpressionPtr>* filterList, const DIFFITEM& di)
+{
+	if (filterList->size() == 0)
+		return false;
+
+	for (const auto& filter : *filterList)
+	{
+		if (filter->errorCode == 0 && filter->Evaluate(di))
+			return true;
+	}
+
+	return false;
+}
+
 /**
  * @brief Test given filename against filefilter.
  *
@@ -382,6 +430,34 @@ bool FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
 	return pFilter->default_include;
 }
 
+void FileFilterMgr::SetDiffContext(FileFilter * pFilter, const CDiffContext* pDiffContext)
+{
+	for (auto& filters :
+		{ pFilter->fileExpressionFilters, pFilter->fileExpressionFiltersExclude, pFilter->dirExpressionFilters, pFilter->dirExpressionFiltersExclude })
+	{
+		for (const auto& filter : filters)
+			filter->SetDiffContext(pDiffContext);
+	}
+}
+
+bool FileFilterMgr::TestFileDiffItemAgainstFilter(const FileFilter* pFilter, const DIFFITEM& di) const
+{
+	if (pFilter == nullptr)
+		return true;
+	bool matched = TestAgainstRegList(&pFilter->filefilters, di);
+	if (!matched && TestAgainstExpressionList(&pFilter->fileExpressionFilters, di))
+		matched = true;
+	if (matched)
+	{
+		matched = !TestAgainstRegList(&pFilter->filefiltersExclude, di);
+		if (!matched && !TestAgainstExpressionList(&pFilter->fileExpressionFiltersExclude, di))
+			matched = true;
+	}
+	if (matched)
+		return !pFilter->default_include;
+	return pFilter->default_include;
+}
+
 /**
  * @brief Test given directory name against filefilter.
  *
@@ -403,6 +479,24 @@ bool FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
 		if (pFilter->dirfiltersExclude.empty() || !TestAgainstRegList(&pFilter->dirfiltersExclude, szDirName))
 			return !pFilter->default_include;
 	}
+	return pFilter->default_include;
+}
+
+bool FileFilterMgr::TestDirDiffItemAgainstFilter(const FileFilter* pFilter, const DIFFITEM& di) const
+{
+	if (pFilter == nullptr)
+		return true;
+	bool matched = TestAgainstRegList(&pFilter->dirfilters, di);
+	if (!matched && TestAgainstExpressionList(&pFilter->dirExpressionFilters, di))
+		matched = true;
+	if (matched)
+	{
+		matched = !TestAgainstRegList(&pFilter->dirfiltersExclude, di);
+		if (!matched && !TestAgainstExpressionList(&pFilter->dirExpressionFiltersExclude, di))
+			matched = true;
+	}
+	if (matched)
+		return !pFilter->default_include;
 	return pFilter->default_include;
 }
 

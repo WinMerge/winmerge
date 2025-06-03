@@ -42,9 +42,11 @@ struct FileFilterInfo
 class IDiffFilter
 {
 public:
+	virtual void SetDiffContext(const CDiffContext* pCtxt) = 0;
 	virtual bool includeFile(const String& szFileName) const = 0;
 	virtual bool includeFile(const DIFFITEM& di) const = 0;
 	virtual bool includeDir(const String& szDirName) const = 0;
+	virtual bool includeDir(const DIFFITEM& di) const = 0;
 	bool includeFile(const String& szFileName1, const String& szFileName2) const
 	{
 		if (!szFileName1.empty())
@@ -131,20 +133,19 @@ public:
 	String GetFilterNameOrMask() const;
 	bool SetFilter(const String &filter);
 
+	void SetDiffContext(const CDiffContext* pCtxt) override;
 	bool includeFile(const String& szFileName) const override;
 	bool includeFile(const DIFFITEM& di) const override;
 	bool includeDir(const String& szDirName) const override;
+	bool includeDir(const DIFFITEM& di) const override;
 
 	void CloneFrom(const FileFilterHelper* pHelper);
 
-	void SetDiffContext(CDiffContext* pCtxt) { m_pCtxt = pCtxt; }
-	bool SetFilterExpressions();
 
 protected:
 	std::tuple<String, String, String, String> ParseExtensions(const String &extensions) const;
 
 private:
-	CDiffContext* m_pCtxt;
 	std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
 	std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */

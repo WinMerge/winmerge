@@ -10,6 +10,9 @@
 #include "UnicodeString.h"
 #include "FileFilter.h"
 
+class DIFFITEM;
+class CDiffContext;
+
 /**
  * @brief Return values for many filter functions.
  */
@@ -60,6 +63,9 @@ public:
 	// methods to actually use filter
 	bool TestFileNameAgainstFilter(const FileFilter * pFilter, const String& szFileName) const;
 	bool TestDirNameAgainstFilter(const FileFilter * pFilter, const String& szDirName) const;
+	void SetDiffContext(FileFilter* pFilter, const CDiffContext* pDiffContext);
+	bool TestFileDiffItemAgainstFilter(const FileFilter * pFilter, const DIFFITEM& di) const;
+	bool TestDirDiffItemAgainstFilter(const FileFilter * pFilter, const DIFFITEM& di) const;
 
 	void DeleteAllFilters();
 	void CloneFrom(const FileFilterMgr* fileFilterMgr);

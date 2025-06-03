@@ -257,6 +257,7 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pGlobalFileFilter->ReloadUpdatedFilters();
 	m_fileHelper.CloneFrom(pGlobalFileFilter);
 	pCtxt->m_piFilterGlobal = &m_fileHelper;
+	pCtxt->m_piFilterGlobal->SetDiffContext(pCtxt);
 	
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;

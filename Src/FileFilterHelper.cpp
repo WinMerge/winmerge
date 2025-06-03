@@ -27,7 +27,6 @@ FileFilterHelper::FileFilterHelper()
 , m_bUseMask(true)
 , m_fileFilterMgr(new FileFilterMgr)
 , m_currentFilter(nullptr)
-, m_pCtxt(nullptr)
 {
 }
 
@@ -227,6 +226,15 @@ static String addPeriodIfNoExtension(const String& path)
 	return ret;
 }
 
+void FileFilterHelper::SetDiffContext(const CDiffContext* pCtxt)
+{
+	if (m_bUseMask)
+		return;
+	if (m_fileFilterMgr == nullptr || m_currentFilter == nullptr)
+		return;
+	return m_fileFilterMgr->SetDiffContext(m_currentFilter, pCtxt);
+}
+
 /**
  * @brief Check if any of filefilter rules match to filename.
  *
@@ -261,20 +269,29 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 
 bool FileFilterHelper::includeFile(const DIFFITEM& di) const
 {
-	if (!di.diffcode.isThreeway())
+	if (m_bUseMask)
 	{
-		bool result = IDiffFilter::includeFile(
-			paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
-			paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename));
-		return result;
+		if (!di.diffcode.isThreeway())
+		{
+			bool result = IDiffFilter::includeFile(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename));
+			return result;
+		}
+		else
+		{
+			bool result = IDiffFilter::includeFile(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[2].filename));
+			return result;
+		}
 	}
 	else
 	{
-		bool result = IDiffFilter::includeFile(
-			paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
-			paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
-			paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[2].filename));
-		return result;
+		if (m_fileFilterMgr == nullptr || m_currentFilter ==nullptr)
+			return true;
+		return m_fileFilterMgr->TestFileDiffItemAgainstFilter(m_currentFilter, di);
 	}
 }
 
@@ -312,6 +329,34 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 		strDirName += szDirName;
 
 		return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, strDirName);
+	}
+}
+
+bool FileFilterHelper::includeDir(const DIFFITEM& di) const
+{
+	if (m_bUseMask)
+	{
+		if (!di.diffcode.isThreeway())
+		{
+			bool result = IDiffFilter::includeDir(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename));
+			return result;
+		}
+		else
+		{
+			bool result = IDiffFilter::includeDir(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[2].filename));
+			return result;
+		}
+	}
+	else
+	{
+		if (m_fileFilterMgr == nullptr || m_currentFilter ==nullptr)
+			return true;
+		return m_fileFilterMgr->TestDirDiffItemAgainstFilter(m_currentFilter, di);
 	}
 }
 
