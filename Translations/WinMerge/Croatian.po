@@ -3040,10 +3040,6 @@ msgid "Filters"
 msgstr "Filtri..."
 
 #, c-format
-msgid "[F] "
-msgstr "[F] "
-
-#, c-format
 msgid "Description"
 msgstr "Opis"
 

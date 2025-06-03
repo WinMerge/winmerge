@@ -2488,9 +2488,6 @@ msgstr "Расположение"
 msgid "Filters"
 msgstr "Фильтры"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Описание"
 

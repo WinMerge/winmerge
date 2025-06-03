@@ -3064,10 +3064,6 @@ msgid "Filters"
 msgstr "Szűrők"
 
 #, c-format
-msgid "[F] "
-msgstr "[F] "
-
-#, c-format
 msgid "Description"
 msgstr "Leírás"
 

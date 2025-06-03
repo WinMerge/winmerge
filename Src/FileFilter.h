@@ -12,6 +12,8 @@
 #include <Poco/RegularExpression.h>
 #include "UnicodeString.h"
 
+struct FilterExpression;
+
 /**
  * @brief FileFilter rule.
  *
@@ -41,6 +43,7 @@ struct FileFilterElement
 };
 
 typedef std::shared_ptr<FileFilterElement> FileFilterElementPtr;
+typedef std::shared_ptr<FilterExpression> FilterExpressionPtr;
 
 /**
  * @brief One actual filter.
@@ -61,12 +64,15 @@ struct FileFilter
 	std::vector<FileFilterElementPtr> filefiltersExclude; /**< List of rules for files (exclude) */
 	std::vector<FileFilterElementPtr> dirfilters;  /**< List of rules for directories */
 	std::vector<FileFilterElementPtr> dirfiltersExclude;  /**< List of rules for directories (exclude) */
-	std::vector<String> expressionFilters; /**< List of filter expressions */
-	std::vector<String> expressionFiltersExclude; /**< List of filter expressions (exclude) */
+	std::vector<FilterExpressionPtr> fileExpressionFilters; /**< List of file filter expressions */
+	std::vector<FilterExpressionPtr> fileExpressionFiltersExclude; /**< List of file filter expressions (exclude) */
+	std::vector<FilterExpressionPtr> dirExpressionFilters; /**< List of dir filter expressions */
+	std::vector<FilterExpressionPtr> dirExpressionFiltersExclude; /**< List of dir filter expressions (exclude) */
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 	
 	static void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
+	static void EmptyExpressionList(std::vector<FilterExpressionPtr> *filterList);
 	void CloneFrom(const FileFilter* filter);
 };
 

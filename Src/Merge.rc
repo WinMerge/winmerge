@@ -3638,7 +3638,6 @@ BEGIN
     IDS_FILTERFILE_NAMETITLE "Name"
     IDS_FILTERFILE_PATHTITLE "Location"
     IDS_FILTER_TITLE        "Filters"
-    IDS_FILTER_PREFIX       "[F] "
     IDS_FILTERFILE_DESCTITLE "Description"
     IDS_FILEFILTER_SAVENEW  "Select Filename for New Filter"
     IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"

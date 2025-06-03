@@ -29,8 +29,8 @@
 #line 19 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
 #include "FilterLexer.h"
+#include "FilterExpressionNodes.h"
 #include "FilterExpression.h"
-#include "FilterEngine.h"
 #include <Poco/Exception.h>
 #line 36 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 /**************** End of %include directives **********************************/
@@ -139,10 +139,10 @@ typedef union {
 #ifndef YYSTACKDEPTH
 #define YYSTACKDEPTH 100
 #endif
-#define ParseARG_SDECL  FilterContext* pCtx ;
-#define ParseARG_PDECL , FilterContext* pCtx 
+#define ParseARG_SDECL  FilterExpression* pCtx ;
+#define ParseARG_PDECL , FilterExpression* pCtx 
 #define ParseARG_PARAM ,pCtx 
-#define ParseARG_FETCH  FilterContext* pCtx =yypParser->pCtx ;
+#define ParseARG_FETCH  FilterExpression* pCtx =yypParser->pCtx ;
 #define ParseARG_STORE yypParser->pCtx =pCtx ;
 #define YYREALLOC realloc
 #define YYFREE free
@@ -638,7 +638,7 @@ static void yy_destructor(
 {
 #line 32 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
-	pCtx->YYSTYPEDestructor((yypminor->yy0));
+	YYSTYPEDestructor((yypminor->yy0));
 
 #line 643 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 }
@@ -1075,7 +1075,7 @@ static YYACTIONTYPE yy_reduce(
 		}
 		catch (Poco::RegularExpressionException&)
 		{
-			pCtx->errorCode = FilterEngine::ERROR_INVALID_REGULAR_EXPRESSION;
+			pCtx->errorCode = FilterExpression::ERROR_INVALID_REGULAR_EXPRESSION;
 			pCtx->rootNode.reset(yymsp[0].minor.yy0.node);
 		}
 		catch (const std::exception&)
@@ -1228,7 +1228,7 @@ static YYACTIONTYPE yy_reduce(
   }
   catch (const std::exception&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_INVALID_LITERAL;
+    pCtx->errorCode = FilterExpression::ERROR_INVALID_LITERAL;
   }
 }
 #line 1234 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
@@ -1256,11 +1256,11 @@ static YYACTIONTYPE yy_reduce(
   }
   catch (const std::invalid_argument&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_INVALID_ARGUMENT_COUNT;
+    pCtx->errorCode = FilterExpression::ERROR_INVALID_ARGUMENT_COUNT;
   }
   catch (const std::runtime_error&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
+    pCtx->errorCode = FilterExpression::ERROR_UNDEFINED_IDENTIFIER;
   }
 }
 #line 1266 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
@@ -1276,13 +1276,13 @@ static YYACTIONTYPE yy_reduce(
   }
   catch (const std::invalid_argument&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_INVALID_ARGUMENT_COUNT;
-    pCtx->YYSTYPEDestructor(yymsp[-1].minor.yy0);
+    pCtx->errorCode = FilterExpression::ERROR_INVALID_ARGUMENT_COUNT;
+    YYSTYPEDestructor(yymsp[-1].minor.yy0);
   }
   catch (const std::runtime_error&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
-    pCtx->YYSTYPEDestructor(yymsp[-1].minor.yy0);
+    pCtx->errorCode = FilterExpression::ERROR_UNDEFINED_IDENTIFIER;
+    YYSTYPEDestructor(yymsp[-1].minor.yy0);
   }
 }
 #line 1288 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
@@ -1298,7 +1298,7 @@ static YYACTIONTYPE yy_reduce(
   }
   catch (const std::exception&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
+    pCtx->errorCode = FilterExpression::ERROR_UNDEFINED_IDENTIFIER;
   }
 }
 #line 1304 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
@@ -1379,7 +1379,7 @@ static void yy_parse_failed(
 /************ Begin %parse_failure code ***************************************/
 #line 29 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
-	pCtx->errorCode = FilterEngine::ERROR_PARSE_FAILURE;
+	pCtx->errorCode = FilterExpression::ERROR_PARSE_FAILURE;
 #line 1383 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 /************ End %parse_failure code *****************************************/
   ParseARG_STORE /* Suppress warning about unused %extra_argument variable */
@@ -1401,7 +1401,7 @@ static void yy_syntax_error(
 /************ Begin %syntax_error code ****************************************/
 #line 26 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
-	pCtx->errorCode = FilterEngine::ERROR_SYNTAX_ERROR;
+	pCtx->errorCode = FilterExpression::ERROR_SYNTAX_ERROR;
 #line 1405 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 /************ End %syntax_error code ******************************************/
   ParseARG_STORE /* Suppress warning about unused %extra_argument variable */

@@ -20,6 +20,8 @@ struct YYSTYPE
 	bool boolean;
 };
 
+extern void YYSTYPEDestructor(YYSTYPE& yystype);
+
 struct FilterLexer
 {
 	enum ErrorCode {

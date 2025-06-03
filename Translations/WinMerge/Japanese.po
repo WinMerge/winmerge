@@ -2548,9 +2548,6 @@ msgstr "場所"
 msgid "Filters"
 msgstr "フィルター"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "説明"
 

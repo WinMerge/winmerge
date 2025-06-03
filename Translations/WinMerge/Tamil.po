@@ -2543,9 +2543,6 @@ msgstr "இடம்"
 msgid "Filters"
 msgstr "வடிப்பான்கள்"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "விளக்கம்"
 

@@ -14,23 +14,23 @@
 
 %token_type {YYSTYPE}
 %token_prefix TK_
-%extra_argument { FilterContext* pCtx }
+%extra_argument { FilterExpression* pCtx }
 
 %include {
 #include "FilterLexer.h"
+#include "FilterExpressionNodes.h"
 #include "FilterExpression.h"
-#include "FilterEngine.h"
 #include <Poco/Exception.h>
 }
 
 %syntax_error {
-	pCtx->errorCode = FilterEngine::ERROR_SYNTAX_ERROR;
+	pCtx->errorCode = FilterExpression::ERROR_SYNTAX_ERROR;
 }
 %parse_failure {
-	pCtx->errorCode = FilterEngine::ERROR_PARSE_FAILURE;
+	pCtx->errorCode = FilterExpression::ERROR_PARSE_FAILURE;
 }
 %default_destructor {
-	pCtx->YYSTYPEDestructor($$);
+	YYSTYPEDestructor($$);
 }
 
 filter_expr ::= or_expr(A). {
@@ -42,7 +42,7 @@ filter_expr ::= or_expr(A). {
 		}
 		catch (Poco::RegularExpressionException&)
 		{
-			pCtx->errorCode = FilterEngine::ERROR_INVALID_REGULAR_EXPRESSION;
+			pCtx->errorCode = FilterExpression::ERROR_INVALID_REGULAR_EXPRESSION;
 			pCtx->rootNode.reset(A.node);
 		}
 		catch (const std::exception&)
@@ -100,7 +100,7 @@ term(A) ::= DATETIME_LITERAL(B).{
   }
   catch (const std::exception&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_INVALID_LITERAL;
+    pCtx->errorCode = FilterExpression::ERROR_INVALID_LITERAL;
   }
 }
 term(A) ::= DURATION_LITERAL(B).   { A = { new DurationLiteral(B.string) }; }
@@ -113,11 +113,11 @@ term(A) ::= IDENTIFIER(B) LPAREN RPAREN. {
   }
   catch (const std::invalid_argument&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_INVALID_ARGUMENT_COUNT;
+    pCtx->errorCode = FilterExpression::ERROR_INVALID_ARGUMENT_COUNT;
   }
   catch (const std::runtime_error&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
+    pCtx->errorCode = FilterExpression::ERROR_UNDEFINED_IDENTIFIER;
   }
 }
 term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. {
@@ -128,13 +128,13 @@ term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. {
   }
   catch (const std::invalid_argument&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_INVALID_ARGUMENT_COUNT;
-    pCtx->YYSTYPEDestructor(C);
+    pCtx->errorCode = FilterExpression::ERROR_INVALID_ARGUMENT_COUNT;
+    YYSTYPEDestructor(C);
   }
   catch (const std::runtime_error&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
-    pCtx->YYSTYPEDestructor(C);
+    pCtx->errorCode = FilterExpression::ERROR_UNDEFINED_IDENTIFIER;
+    YYSTYPEDestructor(C);
   }
 }
 term(A) ::= IDENTIFIER(B). {
@@ -145,7 +145,7 @@ term(A) ::= IDENTIFIER(B). {
   }
   catch (const std::exception&)
   {
-    pCtx->errorCode = FilterEngine::ERROR_UNDEFINED_IDENTIFIER;
+    pCtx->errorCode = FilterExpression::ERROR_UNDEFINED_IDENTIFIER;
   }
 }
 term(A) ::= LPAREN expr(B) RPAREN. { A = B; }

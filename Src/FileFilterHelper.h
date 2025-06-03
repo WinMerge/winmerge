@@ -138,7 +138,7 @@ public:
 	void CloneFrom(const FileFilterHelper* pHelper);
 
 	void SetDiffContext(CDiffContext* pCtxt) { m_pCtxt = pCtxt; }
-	bool ParseFilterExpressions();
+	bool SetFilterExpressions();
 
 protected:
 	std::tuple<String, String, String, String> ParseExtensions(const String &extensions) const;

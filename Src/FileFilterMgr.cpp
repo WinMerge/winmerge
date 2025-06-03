@@ -7,6 +7,7 @@
 
 #include "pch.h"
 #include "FileFilterMgr.h"
+#include "FilterEngine/FilterExpression.h"
 #include <vector>
 #include <Poco/Glob.h>
 #include <Poco/RegularExpression.h>
@@ -163,12 +164,12 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
  * @param [in] filterList List where pattern is added.
  * @param [in] str Temporary variable (ie, it may be altered)
 */
-static void AddFilterExpression(vector<String>* filterList, String& str)
+static void AddFilterExpression(vector<FilterExpressionPtr>* filterList, String& str)
 {
 	if (RemoveComment(str))
 		return;
 	str = strutils::trim_ws(str);
-	filterList->push_back(str);
+	filterList->emplace_back(new FilterExpression(ucr::toUTF8(str)));
 }
 
 /**
@@ -247,11 +248,17 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(2);
 			AddFilterPattern(&pfilter->dirfilters, str, false);
 		}
-		else if (0 == sLine.compare(0, 2, _T("e:"), 2))
+		else if (0 == sLine.compare(0, 3, _T("fe:"), 2))
 		{
-			// expression filter
-			String str = sLine.substr(2);
-			AddFilterExpression(&pfilter->expressionFilters, str);
+			// file expression filter
+			String str = sLine.substr(3);
+			AddFilterExpression(&pfilter->fileExpressionFilters, str);
+		}
+		else if (0 == sLine.compare(0, 3, _T("de:"), 2))
+		{
+			// directory expression filter
+			String str = sLine.substr(3);
+			AddFilterExpression(&pfilter->dirExpressionFilters, str);
 		}
 		else if (0 == sLine.compare(0, 3, _T("f!:"), 3))
 		{
@@ -265,11 +272,17 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(3);
 			AddFilterPattern(&pfilter->dirfiltersExclude, str, false);
 		}
-		else if (0 == sLine.compare(0, 3, _T("e!:"), 2))
+		else if (0 == sLine.compare(0, 4, _T("fe!:"), 2))
 		{
-			// expression filter
-			String str = sLine.substr(3);
-			AddFilterExpression(&pfilter->expressionFiltersExclude, str);
+			// file expression filter
+			String str = sLine.substr(4);
+			AddFilterExpression(&pfilter->fileExpressionFiltersExclude, str);
+		}
+		else if (0 == sLine.compare(0, 4, _T("de!:"), 2))
+		{
+			// directory expression filter
+			String str = sLine.substr(4);
+			AddFilterExpression(&pfilter->dirExpressionFiltersExclude, str);
 		}
 	} while (bLinesLeft);
 

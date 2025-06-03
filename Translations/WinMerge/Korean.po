@@ -3075,10 +3075,6 @@ msgid "Filters"
 msgstr "필터"
 
 #, c-format
-msgid "[F] "
-msgstr "[F] "
-
-#, c-format
 msgid "Description"
 msgstr "설명"
 
