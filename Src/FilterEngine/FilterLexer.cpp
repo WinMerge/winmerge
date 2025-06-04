@@ -1349,7 +1349,6 @@ yy105:
 std::string FilterLexer::UnescapeQuotes(char*& str)
 {
 	std::string result;
-	const char* start = str;
 	while (*str != '\0')
 	{
 		if (*str == '"')
