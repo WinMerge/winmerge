@@ -103,14 +103,6 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 		filefiltersExclude.emplace_back(std::make_shared<FileFilterElement>(filter->filefiltersExclude[i].get()));
 	}
 
-	filefiltersExclude.clear();
-	count = filter->filefiltersExclude.size();
-	filefiltersExclude.reserve(count);
-	for (size_t i = 0; i < count; i++)
-	{
-		filefiltersExclude.emplace_back(std::make_shared<FileFilterElement>(filter->filefiltersExclude[i].get()));
-	}
-
 	dirfiltersExclude.clear();
 	count = filter->dirfiltersExclude.size();
 	dirfiltersExclude.reserve(count);

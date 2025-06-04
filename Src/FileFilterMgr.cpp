@@ -12,7 +12,6 @@
 #include <Poco/Glob.h>
 #include <Poco/RegularExpression.h>
 #include "DirTravel.h"
-#include "DirItem.h"
 #include "DiffItem.h"
 #include "UnicodeString.h"
 #include "FileFilter.h"
@@ -24,7 +23,7 @@ using Poco::Glob;
 using Poco::RegularExpression;
 
 static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter);
-static void AddFilterExpression(vector<String> *filterList, String & str);
+static void AddFilterExpression(vector<FilterExpressionPtr>* filterList, String& str);
 
 /**
  * @brief Destructor, frees all filters.
@@ -160,9 +159,9 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
 }
 
 /**
- * @brief Add a single expression (if nonempty & valid) to a pattern list.
+ * @brief Add a single expression (if nonempty & valid) to a expression list.
  *
- * @param [in] filterList List where pattern is added.
+ * @param [in] filterList List where expression is added.
  * @param [in] str Temporary variable (ie, it may be altered)
 */
 static void AddFilterExpression(vector<FilterExpressionPtr>* filterList, String& str)
@@ -359,6 +358,13 @@ bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const St
 	return false;
 }
 
+/**
+ * @brief Test given DIFFITEM against given regexp list.
+ * @param [in] filterList List of regexps to test against.
+ * @param [in] di DIFFITEM to test against regexps.
+ * @return true if DIFFITEM passes
+ * @note Matching stops when first match is found.
+ */
 bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const DIFFITEM& di)
 {
 	if (filterList->size() == 0)
@@ -392,6 +398,13 @@ bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const DI
 	return false;
 }
 
+/**
+ * @brief Test given DIFFITEM against given expression list.
+ * @param [in] filterList List of expressions to test against.
+ * @param [in] di DIFFITEM to test against regexps.
+ * @return true if DIFFITEM passes
+ * @note Matching stops when first match is found.
+ */
 bool TestAgainstExpressionList(const vector<FilterExpressionPtr>* filterList, const DIFFITEM& di)
 {
 	if (filterList->size() == 0)
@@ -430,6 +443,11 @@ bool FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
 	return pFilter->default_include;
 }
 
+/**
+ * @brief Set diff context for all filters in the given file filter.
+ * @param [in] pFilter Pointer to file filter.
+ * @param [in] pDiffContext Pointer to diff context to set for all filters.
+ */
 void FileFilterMgr::SetDiffContext(FileFilter * pFilter, const CDiffContext* pDiffContext)
 {
 	for (auto& filters :
@@ -440,6 +458,12 @@ void FileFilterMgr::SetDiffContext(FileFilter * pFilter, const CDiffContext* pDi
 	}
 }
 
+/**
+ * @brief Test given DIFFITEM against filefilter.
+ * @param [in] pFilter Pointer to filefilter
+ * @param [in] di DIFFITEM to test
+ * @return true if DIFFITEM passes the filter
+ */
 bool FileFilterMgr::TestFileDiffItemAgainstFilter(const FileFilter* pFilter, const DIFFITEM& di) const
 {
 	if (pFilter == nullptr)
@@ -482,6 +506,12 @@ bool FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
 	return pFilter->default_include;
 }
 
+/**
+ * @brief Test given DIFFITEM against filefilter.
+ * @param [in] pFilter Pointer to filefilter
+ * @param [in] di DIFFITEM to test
+ * @return true if DIFFITEM passes the filter
+ */
 bool FileFilterMgr::TestDirDiffItemAgainstFilter(const FileFilter* pFilter, const DIFFITEM& di) const
 {
 	if (pFilter == nullptr)

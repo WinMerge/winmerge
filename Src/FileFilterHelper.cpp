@@ -9,7 +9,6 @@
 #include "FileFilterHelper.h"
 #include "UnicodeString.h"
 #include "FilterList.h"
-#include "DirItem.h"
 #include "DiffItem.h"
 #include "FileFilterMgr.h"
 #include "paths.h"
