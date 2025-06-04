@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include "FileFilterHelper.h"
+#include "FileFilter.h"
 #include "Environment.h"
 #include "paths.h"
 
@@ -63,6 +64,11 @@ namespace
 		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
 		EXPECT_TRUE(filtername.compare(_T("simple include dir")) == 0);
 
+		filterpath = m_fileFilterHelper.GetFileFilterPath(_T("error include"));
+		EXPECT_TRUE(filterpath.find_first_of(_T("Filters\\error_include.flt")) != String::npos);
+		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
+		EXPECT_TRUE(filtername.compare(_T("error include")) == 0);
+
 		filterpath = m_fileFilterHelper.GetFileFilterPath(_T("non-existent file filter name"));
 		EXPECT_TRUE(filterpath.empty());
 
@@ -102,6 +108,11 @@ namespace
 			{
 				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_dir.flt"))  != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple directory filter long description")) == 0);
+			}
+			else if ((*it).name.compare(_T("error include")) == 0)
+			{
+				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\error_include.flt"))  != String::npos);
+				EXPECT_TRUE((*it).description.compare(_T("error file filter long description")) == 0);
 			}
 			else
 			{
@@ -235,6 +246,10 @@ namespace
 
 	}
 
-
+	TEST_F(FileFilterHelperTest, Error)
+	{
+		m_fileFilterHelper.SetFilter(_T("error include"));
+		EXPECT_EQ(8, m_fileFilterHelper.GetCurrentFilter()->errors.size());
+	}
 
 }  // namespace

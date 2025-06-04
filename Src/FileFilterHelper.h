@@ -114,12 +114,13 @@ public:
 	String GetGlobalFilterPathWithCreate() const;
 	String GetUserFilterPathWithCreate() const;
 
-	FileFilterMgr * GetManager() const;
+	FileFilterMgr* GetManager() const;
 	void SetFileFilterPath(const String& szFileFilterPath);
-	std::vector<FileFilterInfo> GetFileFilters(String & selected) const;
+	std::vector<FileFilterInfo> GetFileFilters(String& selected) const;
 	String GetFileFilterName(const String& filterPath) const;
 	String GetFileFilterPath(const String& filterName) const;
-	void SetUserFilterPath(const String & filterPath);
+	void SetUserFilterPath(const String& filterPath);
+	FileFilter* GetCurrentFilter() const { return m_currentFilter; }
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();

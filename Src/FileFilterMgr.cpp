@@ -11,6 +11,7 @@
 #include <vector>
 #include <Poco/Glob.h>
 #include <Poco/RegularExpression.h>
+#include <Poco/Exception.h>
 #include "DirTravel.h"
 #include "DiffItem.h"
 #include "UnicodeString.h"
@@ -22,8 +23,8 @@ using std::vector;
 using Poco::Glob;
 using Poco::RegularExpression;
 
-static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter);
-static void AddFilterExpression(vector<FilterExpressionPtr>* filterList, String& str);
+static void AddFilterPattern(FileFilter* pfilter, vector<FileFilterElementPtr> *filterList, String& str, bool fileFilter, int lineNumber);
+static void AddFilterExpression(FileFilter* pfilter, vector<FilterExpressionPtr>* filterList, String& str, int lineNumber);
 
 /**
  * @brief Destructor, frees all filters.
@@ -137,14 +138,15 @@ static bool RemoveComment(String& str)
 /**
  * @brief Add a single pattern (if nonempty & valid) to a pattern list.
  *
+ * @param [in] pfilter Pointer to file filter, used for error reporting.
  * @param [in] filterList List where pattern is added.
  * @param [in] str Temporary variable (ie, it may be altered)
+ * @param [in] lineNumber Line number in filter file, used for error reporting.
  */
-static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter)
+static void AddFilterPattern(FileFilter* pfilter, vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter, int lineNumber)
 {
 	if (RemoveComment(str))
 		return;
-
 	int re_opts = RegularExpression::RE_CASELESS;
 	std::string regexString = ucr::toUTF8(str);
 	re_opts |= RegularExpression::RE_UTF8;
@@ -152,24 +154,29 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
 	{
 		filterList->push_back(FileFilterElementPtr(new FileFilterElement(regexString, re_opts, fileFilter)));
 	}
-	catch (...)
+	catch (Poco::RegularExpressionException e)
 	{
-		// TODO:
+		pfilter->errors.emplace_back(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, lineNumber, -1, str, e.message());
 	}
 }
 
 /**
  * @brief Add a single expression (if nonempty & valid) to a expression list.
  *
+ * @param [in] pfilter Pointer to file filter, used for error reporting.
  * @param [in] filterList List where expression is added.
  * @param [in] str Temporary variable (ie, it may be altered)
+ * @param [in] lineNumber Line number in filter file, used for error reporting.
 */
-static void AddFilterExpression(vector<FilterExpressionPtr>* filterList, String& str)
+static void AddFilterExpression(FileFilter* pfilter, vector<FilterExpressionPtr>* filterList, String& str, int lineNumber)
 {
 	if (RemoveComment(str))
 		return;
 	str = strutils::trim_ws(str);
-	filterList->emplace_back(new FilterExpression(ucr::toUTF8(str)));
+	std::shared_ptr<FilterExpression> pExpression(new FilterExpression(ucr::toUTF8(str)));
+	if (pExpression->errorCode != 0)
+		pfilter->errors.emplace_back(pExpression->errorCode, lineNumber, pExpression->errorPosition, str, pExpression->errorMessage);
+	filterList->emplace_back(pExpression);
 }
 
 /**
@@ -202,6 +209,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 	String sLine;
 	bool lossy = false;
 	bool bLinesLeft = true;
+	int lineNumber = 0;
 	do
 	{
 		// Returns false when last line is read
@@ -240,50 +248,51 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		{
 			// file filter
 			String str = sLine.substr(2);
-			AddFilterPattern(&pfilter->filefilters, str, true);
+			AddFilterPattern(pfilter, &pfilter->filefilters, str, true, lineNumber);
 		}
 		else if (0 == sLine.compare(0, 2, _T("d:"), 2))
 		{
 			// directory filter
 			String str = sLine.substr(2);
-			AddFilterPattern(&pfilter->dirfilters, str, false);
+			AddFilterPattern(pfilter, &pfilter->dirfilters, str, false, lineNumber);
 		}
 		else if (0 == sLine.compare(0, 3, _T("fe:"), 3))
 		{
 			// file expression filter
 			String str = sLine.substr(3);
-			AddFilterExpression(&pfilter->fileExpressionFilters, str);
+			AddFilterExpression(pfilter, &pfilter->fileExpressionFilters, str, lineNumber);
 		}
 		else if (0 == sLine.compare(0, 3, _T("de:"), 3))
 		{
 			// directory expression filter
 			String str = sLine.substr(3);
-			AddFilterExpression(&pfilter->dirExpressionFilters, str);
+			AddFilterExpression(pfilter, &pfilter->dirExpressionFilters, str, lineNumber);
 		}
 		else if (0 == sLine.compare(0, 3, _T("f!:"), 3))
 		{
 			// file filter
 			String str = sLine.substr(3);
-			AddFilterPattern(&pfilter->filefiltersExclude, str, true);
+			AddFilterPattern(pfilter, &pfilter->filefiltersExclude, str, true, lineNumber);
 		}
 		else if (0 == sLine.compare(0, 3, _T("d!:"), 3))
 		{
 			// directory filter
 			String str = sLine.substr(3);
-			AddFilterPattern(&pfilter->dirfiltersExclude, str, false);
+			AddFilterPattern(pfilter, &pfilter->dirfiltersExclude, str, false, lineNumber);
 		}
 		else if (0 == sLine.compare(0, 4, _T("fe!:"), 4))
 		{
 			// file expression filter
 			String str = sLine.substr(4);
-			AddFilterExpression(&pfilter->fileExpressionFiltersExclude, str);
+			AddFilterExpression(pfilter, &pfilter->fileExpressionFiltersExclude, str, lineNumber);
 		}
 		else if (0 == sLine.compare(0, 4, _T("de!:"), 4))
 		{
 			// directory expression filter
 			String str = sLine.substr(4);
-			AddFilterExpression(&pfilter->dirExpressionFiltersExclude, str);
+			AddFilterExpression(pfilter, &pfilter->dirExpressionFiltersExclude, str, lineNumber);
 		}
+		lineNumber++;
 	} while (bLinesLeft);
 
 	return pfilter;
@@ -412,7 +421,7 @@ bool TestAgainstExpressionList(const vector<FilterExpressionPtr>* filterList, co
 
 	for (const auto& filter : *filterList)
 	{
-		if (filter->errorCode == 0 && filter->Evaluate(di))
+		if (filter->Evaluate(di))
 			return true;
 	}
 

@@ -9,18 +9,18 @@
 namespace
 {
 	// The fixture for testing paths functions.
-	class FilterEngineTest : public testing::Test
+	class FilterExpressionTest : public testing::Test
 	{
 	protected:
 		// You can remove any or all of the following functions if its body
 		// is	empty.
 
-		FilterEngineTest()
+		FilterExpressionTest()
 		{
 			// You can do set-up work for each test	here.
 		}
 
-		virtual ~FilterEngineTest()
+		virtual ~FilterExpressionTest()
 		{
 			// You can do clean-up work	that doesn't throw exceptions here.
 		}
@@ -43,7 +43,7 @@ namespace
 		// Objects declared here can be used by all tests in the test case for Foo.
 	};
 
-	TEST_F(FilterEngineTest, Literals)
+	TEST_F(FilterExpressionTest, Literals)
 	{
 		// Test case for evaluating filter expressions with literal values.
 		// This function sets up a test context, initializes test data, and verifies
@@ -353,7 +353,7 @@ namespace
 
 	}
 
-	TEST_F(FilterEngineTest, FileAttributes)
+	TEST_F(FilterExpressionTest, FileAttributes)
 	{
 		PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
 		CDiffContext ctxt(paths, 0);
@@ -405,34 +405,34 @@ namespace
 		EXPECT_TRUE(fe.Evaluate(di));
 	}
 
-	TEST_F(FilterEngineTest, ParseError)
+	TEST_F(FilterExpressionTest, ParseError)
 	{
 		PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
 		CDiffContext ctxt(paths, 0);
 		FilterExpression fe;
 		fe.SetDiffContext(&ctxt);
 		EXPECT_FALSE(fe.Parse("LeftDate $ a"));
-		EXPECT_EQ(FilterExpression::ERROR_UNKNOWN_CHAR, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_UNKNOWN_CHAR, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("LeftName = \"aaa"));
-		EXPECT_EQ(FilterExpression::ERROR_UNTERMINATED_STRING, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_UNTERMINATED_STRING, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("LeftSize = 100 RightSize < 100"));
-		EXPECT_EQ(FilterExpression::ERROR_SYNTAX_ERROR, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("LeftDate = d\"2025-13-32 25:60:61\""));
-		EXPECT_EQ(FilterExpression::ERROR_INVALID_LITERAL, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_INVALID_LITERAL, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("aaa(1234)"));
-		EXPECT_EQ(FilterExpression::ERROR_UNDEFINED_IDENTIFIER, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_UNDEFINED_IDENTIFIER, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("aaa = 1234"));
-		EXPECT_EQ(FilterExpression::ERROR_UNDEFINED_IDENTIFIER, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_UNDEFINED_IDENTIFIER, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("abs()"));
-		EXPECT_EQ(FilterExpression::ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("abs(1, 2)"));
-		EXPECT_EQ(FilterExpression::ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("LeftName matches \"[[\""));
-		EXPECT_EQ(FilterExpression::ERROR_INVALID_REGULAR_EXPRESSION, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, fe.errorCode);
 		EXPECT_FALSE(fe.Parse("abs(1)) + abc(2)"));
-		EXPECT_EQ(FilterExpression::ERROR_SYNTAX_ERROR, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
 		EXPECT_FALSE(fe.Parse(")LeftSize == 1"));
-		EXPECT_EQ(FilterExpression::ERROR_SYNTAX_ERROR, fe.errorCode);
+		EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
 	}
 
 }  // namespace

@@ -7,6 +7,7 @@
 
 #include <string>
 #include <memory>
+#include "FilterError.h"
 
 class CDiffContext;
 class DIFFITEM;
@@ -16,18 +17,6 @@ namespace Poco { class Timestamp; }
 
 struct FilterExpression
 {
-	enum ErrorCode
-	{
-		ERROR_NO_ERROR = 0,
-		ERROR_UNKNOWN_CHAR = 1,
-		ERROR_UNTERMINATED_STRING = 2,
-		ERROR_SYNTAX_ERROR = 3,
-		ERROR_PARSE_FAILURE = 4,
-		ERROR_INVALID_LITERAL = 5,
-		ERROR_INVALID_REGULAR_EXPRESSION = 6,
-		ERROR_UNDEFINED_IDENTIFIER = 7,
-		ERROR_INVALID_ARGUMENT_COUNT = 8,
-	};
 	FilterExpression();
 	FilterExpression(const FilterExpression& other);
 	FilterExpression(const std::string& expression);
@@ -44,6 +33,7 @@ struct FilterExpression
 	std::unique_ptr<Poco::Timestamp> today;
 	std::unique_ptr<ExprNode> rootNode;
 	std::string expression;
-	int errorCode = 0;
+	FilterErrorCode errorCode = FILTER_ERROR_NO_ERROR;
 	int errorPosition = -1;
+	std::string errorMessage;
 };

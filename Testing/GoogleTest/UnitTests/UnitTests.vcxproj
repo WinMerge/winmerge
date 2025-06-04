@@ -117,28 +117,7 @@
     <Import Project="..\..\..\Src\CompareEngines\CompareEngines.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Src\FilterEngine\FilterEngine.vcxitems" Label="Shared" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -498,21 +477,6 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\FileFilter.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\FileFilterHelper.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\FileFilterMgr.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\FileFlags.cpp" />
     <ClCompile Include="..\..\..\Src\FileTextEncoding.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -525,11 +489,6 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileVersion.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\FilterList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -608,7 +567,7 @@
     <ClCompile Include="..\DirWatcher\DirWatcher_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\FilterEngine\FilterEngine_test.cpp" />
+    <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp" />
     <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -864,14 +823,10 @@
     <ClInclude Include="..\..\..\Src\DirWatcher.h" />
     <ClInclude Include="..\..\..\Src\Environment.h" />
     <ClInclude Include="..\..\..\Src\Common\ExConverter.h" />
-    <ClInclude Include="..\..\..\Src\FileFilter.h" />
-    <ClInclude Include="..\..\..\Src\FileFilterHelper.h" />
-    <ClInclude Include="..\..\..\Src\FileFilterMgr.h" />
     <ClInclude Include="..\..\..\Src\FileFlags.h" />
     <ClInclude Include="..\..\..\Src\FileTextEncoding.h" />
     <ClInclude Include="..\..\..\Src\FileTransform.h" />
     <ClInclude Include="..\..\..\Src\FileVersion.h" />
-    <ClInclude Include="..\..\..\Src\FilterList.h" />
     <ClInclude Include="..\..\..\Src\Common\LogFile.h" />
     <ClInclude Include="..\..\..\Src\Common\lwdisp.h" />
     <ClInclude Include="..\..\..\Src\LineFiltersList.h" />

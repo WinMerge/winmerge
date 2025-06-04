@@ -51,15 +51,6 @@
     <ClCompile Include="..\..\..\Src\Common\ExConverter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\FileFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\FileFilterHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\FileFilterMgr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\FileTextEncoding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,9 +58,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileVersion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\FilterList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\lwdisp.c">
@@ -312,7 +300,7 @@
     <ClCompile Include="..\..\..\Src\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\FilterEngine\FilterEngine_test.cpp">
+    <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffContext.cpp">
@@ -347,15 +335,6 @@
     <ClInclude Include="..\..\..\Src\Common\ExConverter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Src\FileFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Src\FileFilterHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Src\FileFilterMgr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Src\FileTextEncoding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -363,9 +342,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\FileVersion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Src\FilterList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\Common\LogFile.h">

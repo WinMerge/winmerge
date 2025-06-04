@@ -57,7 +57,7 @@ void FilterExpression::Clear()
 	now.reset();
 	today.reset();
 	rootNode.reset();
-	errorCode = 0;
+	errorCode = FILTER_ERROR_NO_ERROR;
 	errorPosition = -1;
 }
 
@@ -76,12 +76,12 @@ bool FilterExpression::Parse()
 	FilterLexer lexer(expression);
 	void* prs = ParseAlloc(malloc);
 	int token;
-	int firstError = 0;
+	FilterErrorCode firstError = FILTER_ERROR_NO_ERROR;
 	while ((token = lexer.yylex()) != 0)
 	{
 		if (token < 0)
 		{
-			firstError = -token;
+			firstError = static_cast<FilterErrorCode>(-token);
 			errorPosition = static_cast<int>(lexer.yycursor  - expression.c_str());
 			break;
 		}

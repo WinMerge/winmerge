@@ -6,6 +6,7 @@
  */
 #pragma once
 
+#include "FilterError.h"
 #include <vector>
 #include <memory>
 #define POCO_NO_UNWINDOWS 1
@@ -42,6 +43,19 @@ struct FileFilterElement
 	}
 };
 
+struct FileFilterErrorInfo
+{
+	int line; /**< Line number in filter file where error occurred */
+	FilterErrorCode errorCode; /**< Error code, see FilterErrorCode enum for values */
+	int errorPosition; /**< Position in line where error occurred, if applicable */
+	String srcText; /**< Source text of the line where error occurred, if applicable */
+	std::string errorText; /**< Text describing the error, if applicable */
+	FileFilterErrorInfo(FilterErrorCode code, int lineNumber, int position, const String& src, const std::string& msg) :
+		errorCode(code), line(lineNumber), errorPosition(position), srcText(src), errorText(msg)
+	{
+	}
+};
+
 typedef std::shared_ptr<FileFilterElement> FileFilterElementPtr;
 typedef std::shared_ptr<FilterExpression> FilterExpressionPtr;
 
@@ -68,6 +82,7 @@ struct FileFilter
 	std::vector<FilterExpressionPtr> fileExpressionFiltersExclude; /**< List of file filter expressions (exclude) */
 	std::vector<FilterExpressionPtr> dirExpressionFilters; /**< List of dir filter expressions */
 	std::vector<FilterExpressionPtr> dirExpressionFiltersExclude; /**< List of dir filter expressions (exclude) */
+	std::vector<FileFilterErrorInfo> errors; /**< List of errors in filter file */
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 	

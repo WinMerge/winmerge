@@ -1129,21 +1129,6 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="FileActionScript.cpp" />
-    <ClCompile Include="FileFilter.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="FileFilterHelper.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="FileFilterMgr.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="FileFiltersDlg.cpp" />
     <ClCompile Include="FileFlags.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -1167,11 +1152,6 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="FileVersion.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="FilterList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1550,9 +1530,6 @@
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="FileActionScript.h" />
-    <ClInclude Include="FileFilter.h" />
-    <ClInclude Include="FileFilterHelper.h" />
-    <ClInclude Include="FileFilterMgr.h" />
     <ClInclude Include="FileFiltersDlg.h" />
     <ClInclude Include="FileFlags.h" />
     <ClInclude Include="FileLocation.h" />
@@ -1563,7 +1540,6 @@
     <ClInclude Include="FileTextStats.h" />
     <ClInclude Include="FileTransform.h" />
     <ClInclude Include="FileVersion.h" />
-    <ClInclude Include="FilterList.h" />
     <ClInclude Include="FolderCmp.h" />
     <ClInclude Include="GhostTextBuffer.h" />
     <ClInclude Include="GhostTextView.h" />
