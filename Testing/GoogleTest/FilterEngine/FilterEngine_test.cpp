@@ -45,8 +45,15 @@ namespace
 
 	TEST_F(FilterEngineTest, Literals)
 	{
+		// Test case for evaluating filter expressions with literal values.
+		// This function sets up a test context, initializes test data, and verifies
+		// the behavior of the FilterExpression class.
+
+		// Initialize path context and diff context for the test.
 		PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
 		CDiffContext ctxt(paths, 0);
+
+		// Set up DIFFITEM object with file information and timestamps.
 		DIFFITEM di;
 		int tdz = 0;
 		di.diffFileInfo[0].filename = L"Alice.txt";
@@ -57,12 +64,16 @@ namespace
 		di.diffFileInfo[1].size = 1100;
 		Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tdz);
 		di.diffFileInfo[1].mtime = dt1.timestamp();
+
+		// Set side flags for the diff code.
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(1);
 
+		// Initialize FilterExpression and set the diff context.
 		FilterExpression fe;
 		fe.SetDiffContext(&ctxt);
 
+		// Verify that the filter expression correctly parses and evaluates literals.
 		EXPECT_TRUE(fe.Parse("123 == 123"));
 		EXPECT_TRUE(fe.Evaluate(di));
 		EXPECT_TRUE(fe.Parse("123 == 124"));
