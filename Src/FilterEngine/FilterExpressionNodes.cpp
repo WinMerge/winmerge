@@ -131,12 +131,28 @@ static std::optional<int64_t> getConstIntValue(const ExprNode* node)
 	return std::nullopt;
 }
 
+/**
+ * @brief Attempts to fold constants in an expression tree.
+ *
+ * This function evaluates constant expressions involving two nodes and an operator.
+ * If both nodes represent constant values, it computes the result and returns a new
+ * literal node representing the folded constant. Otherwise, it returns nullptr.
+ *
+ * @param left The left-hand side expression node.
+ * @param op The operator to apply (e.g., TK_PLUS, TK_EQ).
+ * @param right The right-hand side expression node.
+ * @return A new ExprNode representing the folded constant, or nullptr if folding is not possible.
+ */
 static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 {
+	// Extract constant integer values from the left and right nodes.
 	auto lInt = getConstIntValue(left);
 	auto rInt = getConstIntValue(right);
+
+	// If both nodes are constants, attempt to fold them.
 	if (lInt && rInt)
 	{
+		// Handle comparison operators (e.g., ==, !=, <, <=, >, >=).
 		if (op >= TK_EQ && op <= TK_GE)
 		{
 			bool result;
@@ -148,21 +164,30 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 			case TK_LE: result = *lInt <= *rInt; break;
 			case TK_GT: result = *lInt > *rInt; break;
 			case TK_GE: result = *lInt >= *rInt; break;
-			default: return nullptr;
+			default: return nullptr; // Invalid operator.
 			}
+			// Return a boolean literal representing the comparison result.
 			return new BoolLiteral(result);
 		}
 
+		// Handle arithmetic operators (e.g., +, -, *, /, %).
 		int64_t result = 0;
 		switch (op)
 		{
 		case TK_PLUS:  result = *lInt + *rInt; break;
 		case TK_MINUS: result = *lInt - *rInt; break;
 		case TK_STAR:  result = *lInt * *rInt; break;
-		case TK_SLASH: if (*rInt != 0) result = *lInt / *rInt; else return nullptr; break;
-		case TK_MOD:   if (*rInt != 0) result = *lInt % *rInt; else return nullptr; break;
-		default: return nullptr;
+		case TK_SLASH: 
+			// Avoid division by zero.
+			if (*rInt != 0) result = *lInt / *rInt; else return nullptr; 
+			break;
+		case TK_MOD:   
+			// Avoid modulo by zero.
+			if (*rInt != 0) result = *lInt % *rInt; else return nullptr; 
+			break;
+		default: return nullptr; // Invalid operator.
 		}
+		// Return an integer literal representing the arithmetic result.
 		return new IntLiteral(result);
 	}
 	auto lStr = dynamic_cast<StringLiteral*>(left);
