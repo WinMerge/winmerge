@@ -474,8 +474,8 @@ bool FileFilterMgr::TestFileDiffItemAgainstFilter(const FileFilter* pFilter, con
 	if (matched)
 	{
 		matched = !TestAgainstRegList(&pFilter->filefiltersExclude, di);
-		if (!matched && !TestAgainstExpressionList(&pFilter->fileExpressionFiltersExclude, di))
-			matched = true;
+		if (matched)
+			matched = !TestAgainstExpressionList(&pFilter->fileExpressionFiltersExclude, di);
 	}
 	if (matched)
 		return !pFilter->default_include;
@@ -522,8 +522,8 @@ bool FileFilterMgr::TestDirDiffItemAgainstFilter(const FileFilter* pFilter, cons
 	if (matched)
 	{
 		matched = !TestAgainstRegList(&pFilter->dirfiltersExclude, di);
-		if (!matched && !TestAgainstExpressionList(&pFilter->dirExpressionFiltersExclude, di))
-			matched = true;
+		if (matched)
+			matched = !TestAgainstExpressionList(&pFilter->dirExpressionFiltersExclude, di);
 	}
 	if (matched)
 		return !pFilter->default_include;
