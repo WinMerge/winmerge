@@ -10,8 +10,6 @@
 #include <Poco/RegularExpression.h>
 #include "unicoder.h"
 
-struct FileFilter;
-
 /**
  * @brief Container for one filtering rule / compiled expression.
  * This structure holds compiled regular expression and a original expression
@@ -42,17 +40,17 @@ public:
 	~FilterList();
 	
 	void AddRegExp(const std::string& regularExpression, bool exclude = false, bool throwIfInvalid = false);
-	void SetFileFilter(bool dir, std::shared_ptr<FileFilter> fileFilter) { m_isDirFilter = dir; m_fileFilter = fileFilter; }
 	void RemoveAllFilters();
 	bool HasRegExps() const;
+	const std::vector<filter_item_ptr>& GetList() const { return m_list; }
+	const std::vector<filter_item_ptr>& GetExcludeList() const { return m_listExclude; }
 	bool Match(const std::string& string, int codepage = ucr::CP_UTF_8);
+	static bool Match(const std::vector <filter_item_ptr>& list, const std::string& string);
 	void CloneFrom(const FilterList* filterList);
 
 private:
 	std::vector <filter_item_ptr> m_list;
 	std::vector <filter_item_ptr> m_listExclude;
-	std::shared_ptr<FileFilter> m_fileFilter; /**< Pointer to FileFilter object, if any. */
-	bool m_isDirFilter; /**< True if this is a directory filter. */
 };
 
 /** 

@@ -189,12 +189,11 @@ void FileFilterHelper::SetMask(const String& strMask)
 	m_pMaskFileFilter->AddRegExp(regexp_str_file, false);
 	if (!regexp_str_file_excluded.empty())
 		m_pMaskFileFilter->AddRegExp(regexp_str_file_excluded, true);
-	m_pMaskFileFilter->SetFileFilter(false, pRegexOrExpressionFilter);
 	m_pMaskDirFilter->RemoveAllFilters();
 	m_pMaskDirFilter->AddRegExp(regexp_str_dir, false);
 	if (!regexp_str_dir_excluded.empty())
 		m_pMaskDirFilter->AddRegExp(regexp_str_dir_excluded, true);
-	m_pMaskDirFilter->SetFileFilter(true, pRegexOrExpressionFilter);
+	m_pRegexOrExpressionFilter = pRegexOrExpressionFilter;
 }
 
 static String addPeriodIfNoExtension(const String& path)
