@@ -8,7 +8,10 @@
 #include "pch.h"
 #include "FileFilter.h"
 #include "FilterEngine/FilterExpression.h"
+#include "unicoder.h"
 #include <vector>
+#include <Poco/RegularExpression.h>
+#include <Poco/Exception.h>
 
 using std::vector;
 
@@ -25,6 +28,44 @@ FileFilter::~FileFilter()
 	EmptyExpressionList(&fileExpressionFiltersExclude);
 	EmptyExpressionList(&dirExpressionFilters);
 	EmptyExpressionList(&dirExpressionFiltersExclude);
+}
+
+/**
+ * @brief Add a single pattern (if nonempty & valid) to a pattern list.
+ *
+ * @param [in] filterList List where pattern is added.
+ * @param [in] str Temporary variable (ie, it may be altered)
+ * @param [in] lineNumber Line number in filter file, used for error reporting.
+ */
+void FileFilter::AddFilterPattern(vector<FileFilterElementPtr>* filterList, const String& str, bool fileFilter, int lineNumber)
+{
+	int re_opts = Poco::RegularExpression::RE_CASELESS;
+	std::string regexString = ucr::toUTF8(str);
+	re_opts |= Poco::RegularExpression::RE_UTF8;
+	try
+	{
+		filterList->push_back(FileFilterElementPtr(new FileFilterElement(regexString, re_opts, fileFilter)));
+	}
+	catch (Poco::RegularExpressionException e)
+	{
+		errors.emplace_back(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, lineNumber, -1, str, e.message());
+	}
+}
+
+/**
+ * @brief Add a single expression (if nonempty & valid) to a expression list.
+ *
+ * @param [in] filterList List where expression is added.
+ * @param [in] str Temporary variable (ie, it may be altered)
+ * @param [in] lineNumber Line number in filter file, used for error reporting.
+*/
+void FileFilter::AddFilterExpression(vector<FilterExpressionPtr>* filterList, const String& str, int lineNumber)
+{
+	String str2 = strutils::trim_ws(str);
+	std::shared_ptr<FilterExpression> pExpression(new FilterExpression(ucr::toUTF8(str)));
+	if (pExpression->errorCode != 0)
+		errors.emplace_back(pExpression->errorCode, lineNumber, pExpression->errorPosition, str2, pExpression->errorMessage);
+	filterList->emplace_back(pExpression);
 }
 
 /**

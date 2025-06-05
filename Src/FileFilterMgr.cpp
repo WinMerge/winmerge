@@ -23,9 +23,6 @@ using std::vector;
 using Poco::Glob;
 using Poco::RegularExpression;
 
-static void AddFilterPattern(FileFilter* pfilter, vector<FileFilterElementPtr> *filterList, String& str, bool fileFilter, int lineNumber);
-static void AddFilterExpression(FileFilter* pfilter, vector<FilterExpressionPtr>* filterList, String& str, int lineNumber);
-
 /**
  * @brief Destructor, frees all filters.
  */
@@ -147,17 +144,7 @@ static void AddFilterPattern(FileFilter* pfilter, vector<FileFilterElementPtr> *
 {
 	if (RemoveComment(str))
 		return;
-	int re_opts = RegularExpression::RE_CASELESS;
-	std::string regexString = ucr::toUTF8(str);
-	re_opts |= RegularExpression::RE_UTF8;
-	try
-	{
-		filterList->push_back(FileFilterElementPtr(new FileFilterElement(regexString, re_opts, fileFilter)));
-	}
-	catch (Poco::RegularExpressionException e)
-	{
-		pfilter->errors.emplace_back(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, lineNumber, -1, str, e.message());
-	}
+	pfilter->AddFilterPattern(filterList, str, fileFilter, lineNumber);
 }
 
 /**
@@ -172,11 +159,7 @@ static void AddFilterExpression(FileFilter* pfilter, vector<FilterExpressionPtr>
 {
 	if (RemoveComment(str))
 		return;
-	str = strutils::trim_ws(str);
-	std::shared_ptr<FilterExpression> pExpression(new FilterExpression(ucr::toUTF8(str)));
-	if (pExpression->errorCode != 0)
-		pfilter->errors.emplace_back(pExpression->errorCode, lineNumber, pExpression->errorPosition, str, pExpression->errorMessage);
-	filterList->emplace_back(pExpression);
+	pfilter->AddFilterExpression(filterList, str, lineNumber);
 }
 
 /**

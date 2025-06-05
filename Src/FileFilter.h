@@ -86,6 +86,8 @@ struct FileFilter
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 	
+	void AddFilterPattern(std::vector<FileFilterElementPtr>* filterList, const String& str, bool fileFilter, int lineNumber);
+	void AddFilterExpression(std::vector<FilterExpressionPtr>* filterList, const String& str, int lineNumber);
 	static void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
 	static void EmptyExpressionList(std::vector<FilterExpressionPtr> *filterList);
 	void CloneFrom(const FileFilter* filter);
