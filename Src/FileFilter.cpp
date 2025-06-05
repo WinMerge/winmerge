@@ -8,7 +8,9 @@
 #include "pch.h"
 #include "FileFilter.h"
 #include "FilterEngine/FilterExpression.h"
+#include "DiffItem.h"
 #include "unicoder.h"
+#include "paths.h"
 #include <vector>
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
@@ -168,3 +170,198 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 		dirExpressionFiltersExclude.emplace_back(std::make_shared<FilterExpression>(*filter->dirExpressionFiltersExclude[i].get()));
 	}
 }
+
+/**
+ * @brief Test given string against given regexp list.
+ *
+ * @param [in] filterList List of regexps to test against.
+ * @param [in] szTest String to test against regexps.
+ * @return true if string passes
+ * @note Matching stops when first match is found.
+ */
+bool TestAgainstRegList(const vector<FileFilterElementPtr>* filterList, const String& szTest)
+{
+	if (filterList->size() == 0)
+		return false;
+
+	std::string compString, compStringFileName;
+	ucr::toUTF8(szTest, compString);
+	vector<FileFilterElementPtr>::const_iterator iter = filterList->begin();
+	while (iter != filterList->end())
+	{
+		Poco::RegularExpression::Match match;
+		try
+		{
+			if ((*iter)->_fileNameOnly && compStringFileName.empty())
+				ucr::toUTF8(paths::FindFileName(szTest), compStringFileName);
+			if ((*iter)->regexp.match((*iter)->_fileNameOnly ? compStringFileName : compString, 0, match) > 0)
+				return true;
+		}
+		catch (...)
+		{
+			// TODO:
+		}
+
+		++iter;
+	}
+	return false;
+}
+
+/**
+ * @brief Test given DIFFITEM against given regexp list.
+ * @param [in] filterList List of regexps to test against.
+ * @param [in] di DIFFITEM to test against regexps.
+ * @return true if DIFFITEM passes
+ * @note Matching stops when first match is found.
+ */
+bool TestAgainstRegList(const vector<FileFilterElementPtr>* filterList, const DIFFITEM& di)
+{
+	if (filterList->size() == 0)
+		return false;
+
+	const int nDirs = di.diffcode.isThreeway() ? 3 : 2;
+	for (int i = 0; i < nDirs; ++i)
+	{
+		const String& szTest = paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
+		std::string compString, compStringFileName;
+		ucr::toUTF8(szTest, compString);
+		vector<FileFilterElementPtr>::const_iterator iter = filterList->begin();
+		while (iter != filterList->end())
+		{
+			Poco::RegularExpression::Match match;
+			try
+			{
+				if ((*iter)->_fileNameOnly && compStringFileName.empty())
+					ucr::toUTF8(paths::FindFileName(szTest), compStringFileName);
+				if ((*iter)->regexp.match((*iter)->_fileNameOnly ? compStringFileName : compString, 0, match) > 0)
+					return true;
+			}
+			catch (...)
+			{
+				// TODO:
+			}
+
+			++iter;
+		}
+	}
+	return false;
+}
+
+/**
+ * @brief Test given DIFFITEM against given expression list.
+ * @param [in] filterList List of expressions to test against.
+ * @param [in] di DIFFITEM to test against regexps.
+ * @return true if DIFFITEM passes
+ * @note Matching stops when first match is found.
+ */
+bool TestAgainstExpressionList(const vector<FilterExpressionPtr>* filterList, const DIFFITEM& di)
+{
+	if (filterList->size() == 0)
+		return false;
+
+	for (const auto& filter : *filterList)
+	{
+		if (filter->Evaluate(di))
+			return true;
+	}
+
+	return false;
+}
+
+/**
+ * @brief Test given filename against filefilter.
+ *
+ * Test filename against active filefilter. If matching rule is found
+ * we must first determine type of rule that matched. If we return false
+ * from this function directory scan marks file as skipped.
+ *
+ * @param [in] szFileName Filename to test
+ * @return true if file passes the filter
+ */
+bool FileFilter::TestFileNameAgainstFilter(const String& szFileName) const
+{
+	if (TestAgainstRegList(&filefilters, szFileName))
+	{
+		if (filefiltersExclude.empty() || !TestAgainstRegList(&filefiltersExclude, szFileName))
+			return !default_include;
+	}
+	return default_include;
+}
+
+/**
+ * @brief Set diff context for all filters in the given file filter.
+ * @param [in] pDiffContext Pointer to diff context to set for all filters.
+ */
+void FileFilter::SetDiffContext(const CDiffContext* pDiffContext)
+{
+	for (auto& filters :
+		{ fileExpressionFilters, fileExpressionFiltersExclude, dirExpressionFilters, dirExpressionFiltersExclude })
+	{
+		for (const auto& filter : filters)
+			filter->SetDiffContext(pDiffContext);
+	}
+}
+
+/**
+ * @brief Test given DIFFITEM against filefilter.
+ * @param [in] di DIFFITEM to test
+ * @return true if DIFFITEM passes the filter
+ */
+bool FileFilter::TestFileDiffItemAgainstFilter(const DIFFITEM& di) const
+{
+	bool matched = TestAgainstRegList(&filefilters, di);
+	if (!matched && TestAgainstExpressionList(&fileExpressionFilters, di))
+		matched = true;
+	if (matched)
+	{
+		matched = !TestAgainstRegList(&filefiltersExclude, di);
+		if (matched)
+			matched = !TestAgainstExpressionList(&fileExpressionFiltersExclude, di);
+	}
+	if (matched)
+		return !default_include;
+	return default_include;
+}
+
+/**
+ * @brief Test given directory name against filefilter.
+ *
+ * Test directory name against active filefilter. If matching rule is found
+ * we must first determine type of rule that matched. If we return false
+ * from this function directory scan marks file as skipped.
+ *
+ * @param [in] szDirName Directory name to test
+ * @return true if directory name passes the filter
+ */
+bool FileFilter::TestDirNameAgainstFilter(const String& szDirName) const
+{
+	if (TestAgainstRegList(&dirfilters, szDirName))
+	{
+		if (dirfiltersExclude.empty() || !TestAgainstRegList(&dirfiltersExclude, szDirName))
+			return !default_include;
+	}
+	return default_include;
+}
+
+/**
+ * @brief Test given DIFFITEM against filefilter.
+ * @param [in] di DIFFITEM to test
+ * @return true if DIFFITEM passes the filter
+ */
+bool FileFilter::TestDirDiffItemAgainstFilter(const DIFFITEM& di) const
+{
+	bool matched = TestAgainstRegList(&dirfilters, di);
+	if (!matched && TestAgainstExpressionList(&dirExpressionFilters, di))
+		matched = true;
+	if (matched)
+	{
+		matched = !TestAgainstRegList(&dirfiltersExclude, di);
+		if (matched)
+			matched = !TestAgainstExpressionList(&dirExpressionFiltersExclude, di);
+	}
+	if (matched)
+		return !default_include;
+	return default_include;
+}
+
+

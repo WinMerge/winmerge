@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include "FilterList.h"
+#include "FileFilter.h"
 #include <vector>
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
@@ -154,4 +155,7 @@ void FilterList::CloneFrom(const FilterList* filterList)
 	{
 		m_listExclude.emplace_back(std::make_shared<filter_item>(filterList->m_listExclude[i].get()));
 	}
+
+	m_isDirFilter = filterList->m_isDirFilter;
+	m_fileFilter = filterList->m_fileFilter;
 }

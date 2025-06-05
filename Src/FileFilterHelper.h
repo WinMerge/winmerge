@@ -144,7 +144,7 @@ public:
 
 
 protected:
-	std::tuple<String, String, String, String> ParseExtensions(const String &extensions) const;
+	std::tuple<String, String, String, String, std::shared_ptr<FileFilter>> ParseExtensions(const String &extensions) const;
 
 private:
 	std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */

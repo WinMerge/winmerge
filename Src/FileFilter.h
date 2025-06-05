@@ -14,6 +14,8 @@
 #include "UnicodeString.h"
 
 struct FilterExpression;
+class CDiffContext;
+class DIFFITEM;
 
 /**
  * @brief FileFilter rule.
@@ -91,6 +93,12 @@ struct FileFilter
 	static void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
 	static void EmptyExpressionList(std::vector<FilterExpressionPtr> *filterList);
 	void CloneFrom(const FileFilter* filter);
+	// methods to actually use filter
+	bool TestFileNameAgainstFilter(const String& szFileName) const;
+	void SetDiffContext(const CDiffContext* pDiffContext);
+	bool TestFileDiffItemAgainstFilter(const DIFFITEM& di) const;
+	bool TestDirNameAgainstFilter(const String& szDirName) const;
+	bool TestDirDiffItemAgainstFilter(const DIFFITEM& di) const;
 };
 
 typedef std::shared_ptr<FileFilter> FileFilterPtr;
