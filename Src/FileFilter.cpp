@@ -46,7 +46,7 @@ void FileFilter::AddFilterPattern(vector<FileFilterElementPtr>* filterList, cons
 	{
 		filterList->push_back(FileFilterElementPtr(new FileFilterElement(regexString, re_opts, fileFilter)));
 	}
-	catch (Poco::RegularExpressionException e)
+	catch (const Poco::RegularExpressionException& e)
 	{
 		errors.emplace_back(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, lineNumber, -1, str, e.message());
 	}
