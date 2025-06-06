@@ -170,14 +170,7 @@ int main()
 			while (pos)
 			{
 				DIFFITEM& di = ctx.GetNextDiffRefPosition(pos);
-				if ((paths.GetSize() == 2 && ctx.m_piFilterGlobal->includeFile(
-						paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename), 
-						paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename))
-					||
-					(paths.GetSize() == 3 && ctx.m_piFilterGlobal->includeFile(
-						paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename), 
-						paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
-						paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[2].filename)))))
+				if (ctx.m_piFilterGlobal->includeFile(di))
 				{
 					FolderCmp folderCmp(&ctx);
 					folderCmp.prepAndCompareFiles(di);

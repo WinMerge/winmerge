@@ -2487,9 +2487,6 @@ msgstr "Lokalizacja"
 msgid "Filters"
 msgstr "Filtry"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Opis"
 

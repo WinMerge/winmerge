@@ -3055,10 +3055,6 @@ msgid "Filters"
 msgstr " صافيها "
 
 #, c-format
-msgid "[F] "
-msgstr "[F] "
-
-#, c-format
 msgid "Description"
 msgstr " شرح "
 

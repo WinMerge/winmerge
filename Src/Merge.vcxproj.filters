@@ -207,15 +207,6 @@
     <ClCompile Include="Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileFilterHelper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileFilterMgr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FileFlags.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -226,9 +217,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileVersion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FilterList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FolderCmp.cpp">
@@ -836,15 +824,6 @@
     <ClInclude Include="Exceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileFilter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileFilterHelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileFilterMgr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FileFlags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -861,9 +840,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileVersion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FilterList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FolderCmp.h">

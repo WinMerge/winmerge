@@ -2575,9 +2575,6 @@ msgstr "Percorso"
 msgid "Filters"
 msgstr "Filtri"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Descrizione"
 

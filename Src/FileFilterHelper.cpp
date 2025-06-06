@@ -9,7 +9,7 @@
 #include "FileFilterHelper.h"
 #include "UnicodeString.h"
 #include "FilterList.h"
-#include "DirItem.h"
+#include "DiffItem.h"
 #include "FileFilterMgr.h"
 #include "paths.h"
 #include "Environment.h"
@@ -177,7 +177,8 @@ void FileFilterHelper::SetMask(const String& strMask)
 		throw "Filter mask tried to set when masks disabled!";
 	}
 	m_sMask = strMask;
-	auto [regExpFile, regExpFileExclude, regExpDir, regExpDirExclude] = ParseExtensions(strMask);
+	auto [regExpFile, regExpFileExclude, regExpDir, regExpDirExclude, pRegexOrExpressionFilter]
+		= ParseExtensions(strMask);
 
 	std::string regexp_str_file = ucr::toUTF8(regExpFile);
 	std::string regexp_str_file_excluded = ucr::toUTF8(regExpFileExclude);
@@ -192,6 +193,7 @@ void FileFilterHelper::SetMask(const String& strMask)
 	m_pMaskDirFilter->AddRegExp(regexp_str_dir, false);
 	if (!regexp_str_dir_excluded.empty())
 		m_pMaskDirFilter->AddRegExp(regexp_str_dir_excluded, true);
+	m_pRegexOrExpressionFilter = pRegexOrExpressionFilter;
 }
 
 static String addPeriodIfNoExtension(const String& path)
@@ -225,6 +227,15 @@ static String addPeriodIfNoExtension(const String& path)
 	return ret;
 }
 
+void FileFilterHelper::SetDiffContext(const CDiffContext* pCtxt)
+{
+	if (m_bUseMask)
+		return;
+	if (m_fileFilterMgr == nullptr || m_currentFilter == nullptr)
+		return;
+	return m_currentFilter->SetDiffContext(pCtxt);
+}
+
 /**
  * @brief Check if any of filefilter rules match to filename.
  *
@@ -253,7 +264,35 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 	{
 		if (m_fileFilterMgr == nullptr || m_currentFilter ==nullptr)
 			return true;
-		return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
+		return m_currentFilter->TestFileNameAgainstFilter(szFileName);
+	}
+}
+
+bool FileFilterHelper::includeFile(const DIFFITEM& di) const
+{
+	if (m_bUseMask)
+	{
+		if (!di.diffcode.isThreeway())
+		{
+			bool result = IDiffFilter::includeFile(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename));
+			return result;
+		}
+		else
+		{
+			bool result = IDiffFilter::includeFile(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[2].filename));
+			return result;
+		}
+	}
+	else
+	{
+		if (m_fileFilterMgr == nullptr || m_currentFilter ==nullptr)
+			return true;
+		return m_currentFilter->TestFileDiffItemAgainstFilter(di);
 	}
 }
 
@@ -290,7 +329,35 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 		String strDirName(_T("\\"));
 		strDirName += szDirName;
 
-		return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, strDirName);
+		return m_currentFilter->TestDirNameAgainstFilter(strDirName);
+	}
+}
+
+bool FileFilterHelper::includeDir(const DIFFITEM& di) const
+{
+	if (m_bUseMask)
+	{
+		if (!di.diffcode.isThreeway())
+		{
+			bool result = IDiffFilter::includeDir(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename));
+			return result;
+		}
+		else
+		{
+			bool result = IDiffFilter::includeDir(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[2].filename));
+			return result;
+		}
+	}
+	else
+	{
+		if (m_fileFilterMgr == nullptr || m_currentFilter ==nullptr)
+			return true;
+		return m_currentFilter->TestDirDiffItemAgainstFilter(di);
 	}
 }
 
@@ -335,7 +402,7 @@ static String ConvertWildcardPatternToRegexp(const String& pattern)
  * @param [in] Extension list/mask to convert to regular expression.
  * @return Regular expression that matches extension list.
  */
-std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(const String &extensions) const
+std::tuple<String, String, String, String, std::shared_ptr<FileFilter>> FileFilterHelper::ParseExtensions(const String &extensions) const
 {
 	String strFileParsed;
 	String strDirParsed;
@@ -394,7 +461,7 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 		strDirParsed = strutils::join(dirPatterns.begin(), dirPatterns.end(), _T("|"));
 	String strFileParsedExclude = strutils::join(filePatternsExclude.begin(), filePatternsExclude.end(), _T("|"));
 	String strDirParsedExclude = strutils::join(dirPatternsExclude.begin(), dirPatternsExclude.end(), _T("|"));
-	return { strFileParsed, strFileParsedExclude, strDirParsed, strDirParsedExclude };
+	return { strFileParsed, strFileParsedExclude, strDirParsed, strDirParsedExclude, nullptr };
 }
 
 /** 

@@ -2486,9 +2486,6 @@ msgstr "Vieta"
 msgid "Filters"
 msgstr "Filtrai"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Aprašas"
 

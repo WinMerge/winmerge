@@ -2553,9 +2553,6 @@ msgstr "الموقع"
 msgid "Filters"
 msgstr "المرشحات"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "الوصف"
 

@@ -2551,9 +2551,6 @@ msgstr "Emplacement"
 msgid "Filters"
 msgstr "Filtres"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Description"
 

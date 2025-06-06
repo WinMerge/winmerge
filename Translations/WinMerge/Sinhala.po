@@ -3038,10 +3038,6 @@ msgid "Filters"
 msgstr "පෙරහන"
 
 #, c-format
-msgid "[F] "
-msgstr "[F] "
-
-#, c-format
 msgid "Description"
 msgstr "විස්තරය"
 

@@ -2557,9 +2557,6 @@ msgstr "Plassering"
 msgid "Filters"
 msgstr "Filter"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Beskrivelse"
 

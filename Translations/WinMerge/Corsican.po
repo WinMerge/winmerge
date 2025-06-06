@@ -2577,9 +2577,6 @@ msgstr "Piazza"
 msgid "Filters"
 msgstr "Filtri"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Discrizzione"
 

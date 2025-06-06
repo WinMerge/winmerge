@@ -3037,10 +3037,6 @@ msgid "Filters"
 msgstr "Φίλτρα"
 
 #, c-format
-msgid "[F] "
-msgstr ""
-
-#, c-format
 msgid "Description"
 msgstr "Περιγραφή"
 
