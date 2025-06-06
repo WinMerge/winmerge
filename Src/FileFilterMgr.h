@@ -10,9 +10,6 @@
 #include "UnicodeString.h"
 #include "FileFilter.h"
 
-class DIFFITEM;
-class CDiffContext;
-
 /**
  * @brief Return values for many filter functions.
  */
