@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-05-29 10:25+0200\n"
+"PO-Revision-Date: 2025-06-06 14:25+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -3019,67 +3019,67 @@ msgid "Middle Duplicate Count"
 msgstr "Dublikatų kiekis viduryje"
 
 msgid "Move"
-msgstr ""
+msgstr "Perkelti"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Kalendorius"
 
 msgid "Communication"
-msgstr ""
+msgstr "Komunikavimas"
 
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktas"
 
 msgid "Devices"
-msgstr ""
+msgstr "Įrenginiai"
 
 msgid "Document"
-msgstr ""
+msgstr "Dokumentas"
 
 msgid "Home"
-msgstr ""
+msgstr "Namas"
 
 msgid "Journal"
-msgstr ""
+msgstr "Žurnalas"
 
 msgid "Link"
-msgstr ""
+msgstr "Nuoroda"
 
 msgid "Media"
-msgstr ""
+msgstr "Media"
 
 msgid "Music"
-msgstr ""
+msgstr "Muzika"
 
 msgid "Note"
-msgstr ""
+msgstr "Pastaba"
 
 msgid "Photo"
-msgstr ""
+msgstr "Fotografija"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "TV įrašas"
 
 msgid "Search"
-msgstr ""
+msgstr "Paieška"
 
 msgid "Security"
-msgstr ""
+msgstr "Saugumas"
 
 msgid "Software"
-msgstr ""
+msgstr "Programinė įranga"
 
 msgid "Task"
-msgstr ""
+msgstr "Užduotis"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Hash"
-msgstr ""
+msgstr "Maiša"
 
 msgid "Unable to compare files"
 msgstr "Neįmanoma palyginti failų"
