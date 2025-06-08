@@ -17,6 +17,7 @@
 #include "Clock.cpp"
 #include "DateTime.cpp"
 #include "DateTimeFormat.cpp"
+#include "DateTimeFormatter.cpp"
 #include "DateTimeParser.cpp"
 #include "LocalDateTime.cpp"
 #include "Stopwatch.cpp"

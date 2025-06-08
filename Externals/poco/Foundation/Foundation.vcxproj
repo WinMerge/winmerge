@@ -448,6 +448,9 @@
     <ClCompile Include="src\DateTimeFormat.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\DateTimeFormatter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\DateTimeParser.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>

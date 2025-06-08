@@ -565,6 +565,9 @@
     <ClCompile Include="src\Timezone.cpp">
       <Filter>DateTime\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\DateTimeFormatter.cpp">
+      <Filter>DateTime\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Poco\Any.h">

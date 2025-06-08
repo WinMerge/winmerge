@@ -13,7 +13,9 @@
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
 #include <Poco/LocalDateTime.h>
+#include <Poco/Timezone.h>
 #include <Poco/DateTimeFormat.h>
+#include <Poco/DateTimeFormatter.h>
 #include <Poco/DateTimeParser.h>
 
 static std::optional<bool> evalAsBool(const ValueType& val)
@@ -487,6 +489,16 @@ static auto DateField(int index, const FilterExpression* ctxt, const DIFFITEM& d
 	return std::monostate{};
 }
 
+static auto DateStrField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+	{
+		Poco::LocalDateTime ldt(Poco::Timezone::tzd(), di.diffFileInfo[index].mtime);
+		return Poco::DateTimeFormatter::format(ldt, "%Y-%m-%d");
+	}
+	return std::monostate{};
+}
+
 static auto CreationTimeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
 	if (di.diffcode.exists(index))
@@ -558,6 +570,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = PathField;
 	else if (v.compare(prefixlen, 4, "Size") == 0)
 		functmp = SizeField;
+	else if (v.compare(prefixlen, 7, "DateStr") == 0)
+		functmp = DateStrField;
 	else if (v.compare(prefixlen, 4, "Date") == 0)
 		functmp = DateField;
 	else if (v.compare(prefixlen, 10, "Attributes") == 0)
