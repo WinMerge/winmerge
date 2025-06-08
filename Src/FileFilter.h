@@ -99,6 +99,8 @@ struct FileFilter
 	bool TestFileDiffItemAgainstFilter(const DIFFITEM& di) const;
 	bool TestDirNameAgainstFilter(const String& szDirName) const;
 	bool TestDirDiffItemAgainstFilter(const DIFFITEM& di) const;
+	static bool TestAgainstRegList(const std::vector<FileFilterElementPtr>* filterList, const DIFFITEM& di);
+	static bool TestAgainstExpressionList(const std::vector<FilterExpressionPtr>* filterList, const DIFFITEM& di);
 };
 
 typedef std::shared_ptr<FileFilter> FileFilterPtr;

@@ -148,7 +148,9 @@ protected:
 
 private:
 	std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
+	std::unique_ptr<FilterList> m_pMaskFileFilterExclude; /*< Filter for filemasks (*.cpp) */
 	std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
+	std::unique_ptr<FilterList> m_pMaskDirFilterExclude;  /*< Filter for dirmasks */
 	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilter;
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
 	std::unique_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */

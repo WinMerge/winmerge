@@ -33,14 +33,12 @@ FilterList::~FilterList()
  * The regular expression is compiled and studied for better performance.
  * @param [in] regularExpression Regular expression string.
  * @param [in] encoding Expression encoding.
- * @param [in] excluded 
  */
-void FilterList::AddRegExp(const std::string& regularExpression, bool exclude, bool throwIfInvalid)
+void FilterList::AddRegExp(const std::string& regularExpression, bool throwIfInvalid)
 {
 	try
 	{
-		auto& list = exclude ? m_listExclude : m_list;
-		list.push_back(filter_item_ptr(new filter_item(regularExpression, RegularExpression::RE_UTF8)));
+		m_list.push_back(filter_item_ptr(new filter_item(regularExpression, RegularExpression::RE_UTF8)));
 	}
 	catch (Poco::RegularExpressionException& e)
 	{
@@ -49,7 +47,7 @@ void FilterList::AddRegExp(const std::string& regularExpression, bool exclude, b
 	}
 }
 
-bool FilterList::Match(const std::vector <filter_item_ptr>& list, const std::string& string)
+static bool match(const std::vector <filter_item_ptr>& list, const std::string& string)
 {
 	if (list.empty())
 		return false;
@@ -92,11 +90,7 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 			ucr::convert(ucr::NONE, codepage, reinterpret_cast<const unsigned char *>(string.c_str()), 
 					string.length(), ucr::UTF8, ucr::CP_UTF_8, &buf);
 
-	const bool retval = Match(m_list, (buf.size > 0) ? std::string(reinterpret_cast<const char*>(buf.ptr), buf.size) : string);
-	if (!retval)
-		return false;
-
-	return !Match(m_listExclude, (buf.size > 0) ? std::string(reinterpret_cast<const char*>(buf.ptr), buf.size) : string);
+	return match(m_list, (buf.size > 0) ? std::string(reinterpret_cast<const char*>(buf.ptr), buf.size) : string);
 }
 
 /**
@@ -117,14 +111,5 @@ void FilterList::CloneFrom(const FilterList* filterList)
 	for (size_t i = 0; i < count; i++)
 	{
 		m_list.emplace_back(std::make_shared<filter_item>(filterList->m_list[i].get()));
-	}
-
-	m_listExclude.clear();
-
-	count = filterList->m_listExclude.size();
-	m_listExclude.reserve(count);
-	for (size_t i = 0; i < count; i++)
-	{
-		m_listExclude.emplace_back(std::make_shared<filter_item>(filterList->m_listExclude[i].get()));
 	}
 }
