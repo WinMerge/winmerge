@@ -66,7 +66,10 @@ void FileFilter::AddFilterExpression(vector<FilterExpressionPtr>* filterList, co
 	String str2 = strutils::trim_ws(str);
 	std::shared_ptr<FilterExpression> pExpression(new FilterExpression(ucr::toUTF8(str)));
 	if (pExpression->errorCode != 0)
+	{
 		errors.emplace_back(pExpression->errorCode, lineNumber, pExpression->errorPosition, str2, pExpression->errorMessage);
+		return;
+	}
 	filterList->emplace_back(pExpression);
 }
 
@@ -169,6 +172,8 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 	{
 		dirExpressionFiltersExclude.emplace_back(std::make_shared<FilterExpression>(*filter->dirExpressionFiltersExclude[i].get()));
 	}
+
+	errors = filter->errors;
 }
 
 /**

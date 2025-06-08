@@ -4516,6 +4516,36 @@ msgstr "文件操作已成功完成"
 msgid "File operation canceled"
 msgstr "文件操作已取消"
 
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
 msgid "Prettification"
 msgstr "格式美化"
 

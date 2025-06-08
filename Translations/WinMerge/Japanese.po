@@ -4465,6 +4465,36 @@ msgstr "ファイル操作が正常に完了しました"
 msgid "File operation canceled"
 msgstr "ファイル操作がキャンセルされました"
 
+msgid "No error"
+msgstr "エラーはありません"
+
+msgid "Unknown character in filter expression"
+msgstr "フィルター式に不明な文字があります"
+
+msgid "Unterminated string literal"
+msgstr "文字列リテラルが閉じられていません"
+
+msgid "Syntax error in filter expression"
+msgstr "フィルター式の構文エラーです"
+
+msgid "Failed to parse filter expression"
+msgstr "フィルター式の解析に失敗しました"
+
+msgid "Invalid literal value"
+msgstr "無効なリテラル値です"
+
+msgid "Invalid regular expression"
+msgstr "無効な正規表現です"
+
+msgid "Undefined identifier"
+msgstr "未定義の識別子です"
+
+msgid "Invalid number of arguments"
+msgstr "引数の数が正しくありません"
+
+msgid "Unknown error"
+msgstr "不明なエラーです"
+
 msgid "Prettification"
 msgstr "整形"
 

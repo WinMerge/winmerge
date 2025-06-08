@@ -249,6 +249,18 @@ void FileFilterHelper::SetDiffContext(const CDiffContext* pCtxt)
 	return m_currentFilter->SetDiffContext(pCtxt);
 }
 
+std::vector<const FileFilterErrorInfo*> FileFilterHelper::GetErrorList() const
+{
+	std::vector<const FileFilterErrorInfo*> list;
+	FileFilter* pfilter = m_bUseMask ? m_pRegexOrExpressionFilter.get() : m_currentFilter;
+	if (pfilter)
+	{
+		for (const auto& error : pfilter->errors)
+			list.push_back(&error);
+	}
+	return list;
+}
+
 /**
  * @brief Check if any of filefilter rules match to filename.
  *
@@ -519,15 +531,11 @@ std::tuple<String, String, String, String, std::shared_ptr<FileFilter>> FileFilt
 	String ext(extensions);
 	String prefix;
 	std::shared_ptr<FileFilter> pRegexOrExpressionFilter;
-
-	ext += _T(";"); // Add one separator char to end
-	size_t pos = findSeparator(ext, prefix);
-	
-	while (pos != String::npos)
+	size_t pos = 0;
+	for (;;)
 	{
-		String token = ext.substr(0, pos); // Get first extension
-		ext = ext.substr(pos + 1); // Remove extension + separator
-		
+		pos = findSeparator(ext, prefix);
+		String token = ext.substr(0, pos == String::npos ? ext.size() : pos);
 		if (token.length() >= 1 && prefix.empty())
 		{
 			// Only "*." or "*.something" allowed, other ignored
@@ -562,7 +570,7 @@ std::tuple<String, String, String, String, std::shared_ptr<FileFilter>> FileFilt
 				pRegexOrExpressionFilter->default_include = false;
 				pRegexOrExpressionFilter->name = extensions;
 			}
-			token = token.substr(prefix.size());
+			token = token.substr(token.find(':') + 1);
 			if (prefix == _T("f:"))
 				pRegexOrExpressionFilter->AddFilterPattern(
 					&pRegexOrExpressionFilter->filefilters, token, true, 0);
@@ -588,7 +596,9 @@ std::tuple<String, String, String, String, std::shared_ptr<FileFilter>> FileFilt
 				pRegexOrExpressionFilter->AddFilterExpression(
 					&pRegexOrExpressionFilter->dirExpressionFiltersExclude, token, 0);
 		}
-		pos = findSeparator(ext, prefix);
+		if (pos == String::npos)
+			break; // No more separators found
+		ext = ext.substr(pos + 1); // Remove extension + separator
 	}
 
 	if (filePatterns.empty() && (!pRegexOrExpressionFilter || (pRegexOrExpressionFilter->filefilters.empty() && pRegexOrExpressionFilter->fileExpressionFilters.empty())))

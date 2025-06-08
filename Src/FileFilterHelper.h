@@ -16,6 +16,7 @@ class FilterList;
 struct FileFilter;
 class DIFFITEM;
 class CDiffContext;
+struct FileFilterErrorInfo;
 
 /**
  * @brief File extension of file filter files.
@@ -43,6 +44,7 @@ class IDiffFilter
 {
 public:
 	virtual void SetDiffContext(const CDiffContext* pCtxt) = 0;
+	virtual std::vector<const FileFilterErrorInfo*> GetErrorList() const = 0;
 	virtual bool includeFile(const String& szFileName) const = 0;
 	virtual bool includeFile(const DIFFITEM& di) const = 0;
 	virtual bool includeDir(const String& szDirName) const = 0;
@@ -121,6 +123,7 @@ public:
 	String GetFileFilterPath(const String& filterName) const;
 	void SetUserFilterPath(const String& filterPath);
 	FileFilter* GetCurrentFilter() const { return m_currentFilter; }
+	FileFilter* GetRegexOrExpressionFilter() const { return m_pRegexOrExpressionFilter.get(); }
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
@@ -135,6 +138,7 @@ public:
 	bool SetFilter(const String &filter);
 
 	void SetDiffContext(const CDiffContext* pCtxt) override;
+	std::vector<const FileFilterErrorInfo*> GetErrorList() const override;
 	bool includeFile(const String& szFileName) const override;
 	bool includeFile(const DIFFITEM& di) const override;
 	bool includeDir(const String& szDirName) const override;

@@ -478,6 +478,21 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileFlags.cpp" />
+    <ClCompile Include="..\..\..\Src\FileFilter.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileFilterHelper.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileFilterMgr.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="..\..\..\Src\FileTextEncoding.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -489,6 +504,11 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileVersion.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FilterList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -824,9 +844,13 @@
     <ClInclude Include="..\..\..\Src\Environment.h" />
     <ClInclude Include="..\..\..\Src\Common\ExConverter.h" />
     <ClInclude Include="..\..\..\Src\FileFlags.h" />
+    <ClInclude Include="..\..\..\Src\FileFilter.h" />
+    <ClInclude Include="..\..\..\Src\FileFilterHelper.h" />
+    <ClInclude Include="..\..\..\Src\FileFilterMgr.h" />
     <ClInclude Include="..\..\..\Src\FileTextEncoding.h" />
     <ClInclude Include="..\..\..\Src\FileTransform.h" />
     <ClInclude Include="..\..\..\Src\FileVersion.h" />
+    <ClInclude Include="..\..\..\Src\FilterList.h" />
     <ClInclude Include="..\..\..\Src\Common\LogFile.h" />
     <ClInclude Include="..\..\..\Src\Common\lwdisp.h" />
     <ClInclude Include="..\..\..\Src\LineFiltersList.h" />

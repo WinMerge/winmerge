@@ -4,6 +4,8 @@
 #include "DiffThread.h"
 #include "DiffWrapper.h"
 #include "FileFilterHelper.h"
+#include "FileFilter.h"
+#include "FilterErrorMessages.h"
 #include "FolderCmp.h"
 #include "DirScan.h"
 #include "paths.h"
@@ -104,6 +106,13 @@ int main()
 		{
 			std::wstring mask = cmd.substr(2);
 			filter.SetMask(mask.c_str());
+			if (filter.GetRegexOrExpressionFilter() && filter.GetRegexOrExpressionFilter()->errors.size() > 0)
+			{
+				for (auto error : filter.GetRegexOrExpressionFilter()->errors)
+				{
+					std::wcout << FormatFilterErrorSummary(error) << "\n";
+				}
+			}
 		}
 		else if (cmd[0] == L'm') // Set method
 		{
@@ -143,6 +152,7 @@ int main()
 			ctx.m_pCompareStats = &cmpstats;
 			ctx.m_bRecursive = true;
 			ctx.m_piFilterGlobal = &filter;
+			filter.SetDiffContext(&ctx);
 
 			CDiffThread diffThread;
 			diffThread.SetContext(&ctx);

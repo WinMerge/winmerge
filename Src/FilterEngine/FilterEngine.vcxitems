@@ -14,26 +14,6 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\FileFilter.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\FileFilterHelper.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\FileFilterMgr.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\FilterList.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FilterExpression.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -72,10 +52,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\FileFilter.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\FileFilterHelper.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\FileFilterMgr.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\FilterList.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterError.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterExpression.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterExpressionNodes.h" />

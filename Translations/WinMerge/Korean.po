@@ -5216,6 +5216,36 @@ msgstr "파일 작업이 성공적으로 완료되었습니다"
 msgid "File operation canceled"
 msgstr "파일 작업이 취소되었습니다"
 
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
 msgid "Prettification"
 msgstr "꾸미기"
 
