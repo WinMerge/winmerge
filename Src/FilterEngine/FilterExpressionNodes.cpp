@@ -17,6 +17,7 @@
 #include <Poco/DateTimeFormat.h>
 #include <Poco/DateTimeFormatter.h>
 #include <Poco/DateTimeParser.h>
+#include <Poco/String.h>
 
 static std::optional<bool> evalAsBool(const ValueType& val)
 {
@@ -201,12 +202,12 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 			bool result = false;
 			switch (op)
 			{
-			case TK_EQ: result = lStr->value == rStr->value; break;
-			case TK_NE: result = lStr->value != rStr->value; break;
-			case TK_LT: result = lStr->value < rStr->value; break;
-			case TK_LE: result = lStr->value <= rStr->value; break;
-			case TK_GT: result = lStr->value > rStr->value; break;
-			case TK_GE: result = lStr->value >= rStr->value; break;
+			case TK_EQ: result = Poco::icompare(lStr->value, rStr->value) == 0; break;
+			case TK_NE: result = Poco::icompare(lStr->value, rStr->value) != 0; break;
+			case TK_LT: result = Poco::icompare(lStr->value, rStr->value) < 0; break;
+			case TK_LE: result = Poco::icompare(lStr->value, rStr->value) <= 0; break;
+			case TK_GT: result = Poco::icompare(lStr->value, rStr->value) > 0; break;
+			case TK_GE: result = Poco::icompare(lStr->value, rStr->value) >= 0; break;
 			}
 			return new BoolLiteral(result);
 		}
@@ -351,12 +352,12 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 			{
 				if (auto rvalString = std::get_if<std::string>(&rval))
 				{
-					if (op == TK_EQ) return *lvalString == *rvalString;
-					if (op == TK_NE) return *lvalString != *rvalString;
-					if (op == TK_LT) return *lvalString < *rvalString;
-					if (op == TK_LE) return *lvalString <= *rvalString;
-					if (op == TK_GT) return *lvalString > *rvalString;
-					if (op == TK_GE) return *lvalString >= *rvalString;
+					if (op == TK_EQ) return Poco::icompare(*lvalString, *rvalString) == 0;
+					if (op == TK_NE) return Poco::icompare(*lvalString, *rvalString) != 0;
+					if (op == TK_LT) return Poco::icompare(*lvalString, *rvalString) < 0;
+					if (op == TK_LE) return Poco::icompare(*lvalString, *rvalString) <= 0;
+					if (op == TK_GT) return Poco::icompare(*lvalString, *rvalString) > 0;
+					if (op == TK_GE) return Poco::icompare(*lvalString, *rvalString) >= 0;
 					if (op == TK_PLUS) return *rvalString + *lvalString;
 					if (op == TK_CONTAINS)
 					{
@@ -544,47 +545,47 @@ static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITE
 FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(ctxt), field(v)
 {
 	int prefixlen = 0;
-	const char* p = v.c_str();
 	int side = 0;
-	if (v.compare(0, 4, "Left") == 0)
+	std::string vl = Poco::toLower(v);
+	if (vl.compare(0, 4, "left") == 0)
 	{
 		side = 0;
 		prefixlen = 4;
 	}
-	else if (v.compare(0, 6, "Middle") == 0)
+	else if (vl.compare(0, 6, "middle") == 0)
 	{
 		side = 1;
 		prefixlen = 6;
 	}
-	else if (v.compare(0, 5, "Right") == 0)
+	else if (vl.compare(0, 5, "right") == 0)
 	{
 		side = -1;
 		prefixlen = 5;
 	}
 	ValueType (*functmp)(int, const FilterExpression*, const DIFFITEM&) = nullptr;
-	if (v.compare(prefixlen, 6, "Exists") == 0)
+	if (strcmp(vl.c_str() + prefixlen, "exists") == 0)
 		functmp = ExistsField;
-	else if (v.compare(prefixlen, 4, "Name") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "name") == 0)
 		functmp = NameField;
-	else if (v.compare(prefixlen, 4, "Path") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "path") == 0)
 		functmp = PathField;
-	else if (v.compare(prefixlen, 4, "Size") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "size") == 0)
 		functmp = SizeField;
-	else if (v.compare(prefixlen, 7, "DateStr") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "datestr") == 0)
 		functmp = DateStrField;
-	else if (v.compare(prefixlen, 4, "Date") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "date") == 0)
 		functmp = DateField;
-	else if (v.compare(prefixlen, 10, "Attributes") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "attributes") == 0)
 		functmp = AttributesField;
-	else if (v.compare(prefixlen, 10, "AttrStr") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "attrstr") == 0)
 		functmp = AttrStrField;
-	else if (v.compare(prefixlen, 12, "CreationTime") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "creationtime") == 0)
 		functmp = CreationTimeField;
-	else if (v.compare(prefixlen, 11, "FileVersion") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "fileversion") == 0)
 		functmp = FileVersionField;
-	else if (v.compare(prefixlen, 8, "Codepage") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "codepage") == 0)
 		functmp = CodepageField;
-	else if (v.compare(prefixlen, 8, "Encoding") == 0)
+	else if (strcmp(vl.c_str() + prefixlen, "encoding") == 0)
 		functmp = EncodingField;
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
@@ -684,7 +685,7 @@ static auto NowFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vecto
 }
 
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
-	: ctxt(ctxt), functionName(name), args(args)
+	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
 	if (functionName == "abs")
 	{

@@ -492,7 +492,7 @@ static std::size_t findSeparator(const String& str, String& prefix, std::size_t 
 	bool allowOnlyBasicSeparators = false;
 	while (startPos < str.size() && str[startPos] == ' ')
 		++startPos;
-	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("fe!:"), _T("de!:"), _T("[F]")};
+	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("fe!:"), _T("de!:") };
 	for (const auto& pf : prefixes)
 	{
 		if (str.compare(startPos, pf.size(), pf) == 0)
@@ -570,7 +570,7 @@ std::tuple<String, String, String, String, std::shared_ptr<FileFilter>> FileFilt
 				pRegexOrExpressionFilter->default_include = false;
 				pRegexOrExpressionFilter->name = extensions;
 			}
-			token = token.substr(token.find(':') + 1);
+			token = strutils::trim_ws(token.substr(token.find(':') + 1));
 			if (prefix == _T("f:"))
 				pRegexOrExpressionFilter->AddFilterPattern(
 					&pRegexOrExpressionFilter->filefilters, token, true, 0);
