@@ -234,7 +234,7 @@ bool FileFilter::TestAgainstRegList(const vector<FileFilterElementPtr>* filterLi
 	if (i >= nDirs)
 		return false;
 
-	const String& szTest = paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
+	const String& szTest = (di.diffFileInfo[i].IsDirectory() ? _T("\\") : _T("")) + paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
 	std::string compString, compStringFileName;
 	ucr::toUTF8(szTest, compString);
 	vector<FileFilterElementPtr>::const_iterator iter = filterList->begin();
