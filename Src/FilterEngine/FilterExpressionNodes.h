@@ -6,6 +6,7 @@
 #pragma once
 
 #include "FilterParser.h"
+#include "FileContentRef.h"
 #include <iostream>
 #include <string>
 #include <map>
@@ -17,7 +18,7 @@ namespace Poco { class RegularExpression; }
 struct FilterExpression;
 class DIFFITEM;
 struct ValueType2;
-using ValueType = std::variant<std::monostate, bool, int64_t, Poco::Timestamp, std::shared_ptr<Poco::RegularExpression>, std::string, std::unique_ptr<std::vector<ValueType2>>>;
+using ValueType = std::variant<std::monostate, bool, int64_t, Poco::Timestamp, std::shared_ptr<Poco::RegularExpression>, std::string, FileContentRef, std::unique_ptr<std::vector<ValueType2>>>;
 struct ValueType2 { ValueType value; };
 
 struct ExprNode

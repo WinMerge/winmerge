@@ -14,6 +14,10 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FileContentRef.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FilterExpression.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -52,6 +56,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FileContentRef.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterError.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterExpression.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterExpressionNodes.h" />

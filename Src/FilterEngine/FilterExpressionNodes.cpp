@@ -6,8 +6,10 @@
 #include "pch.h"
 #include "FilterExpressionNodes.h"
 #include "FilterExpression.h"
+#include "FileContentRef.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
+#include "paths.h"
 #include <string>
 #include <variant>
 #include <Poco/RegularExpression.h>
@@ -542,6 +544,16 @@ static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITE
 	return std::monostate{};
 }
 
+static auto ContentField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+	{
+		const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
+		return FileContentRef{ ucr::toUTF8(paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath)) };
+	}
+	return std::monostate{};
+}
+
 FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(ctxt), field(v)
 {
 	int prefixlen = 0;
@@ -587,6 +599,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = CodepageField;
 	else if (strcmp(vl.c_str() + prefixlen, "encoding") == 0)
 		functmp = EncodingField;
+	else if (strcmp(vl.c_str() + prefixlen, "content") == 0)
+		functmp = ContentField;
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
 	if (prefixlen > 0)
