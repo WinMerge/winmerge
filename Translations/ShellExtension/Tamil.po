@@ -43,34 +43,34 @@ msgstr "ஒடுநீட்டிப்பு"
 #: ShellExtension.rc:112
 #, c-format
 msgid "Win&Merge"
-msgstr "&சாளரஒன்றிணை"
+msgstr "சாளரஒன்றிணை"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "என ஒப்பிடு"
 
 #: ShellExtension.rc:114
 #, c-format
 msgid "&Compare"
-msgstr "&ஒப்பிடு"
+msgstr "ஒப்பிடு"
 
 #: ShellExtension.rc:115
 #, c-format
 msgid "Compare&..."
-msgstr "ஒப்பிடு&..."
+msgstr "ஒப்பிடு..."
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
-msgstr "&இடது தேர்ந்தெடு"
+msgstr "இடது தேர்ந்தெடு"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
-msgstr "&நடுவை தேர்ந்தெடு"
+msgstr "நடுவை தேர்ந்தெடு"
 
 #: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
-msgstr "&இடது மறு-தேர்வு"
+msgstr "இடது மறு-தேர்வு"
