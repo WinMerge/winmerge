@@ -26,6 +26,7 @@ begin:
 	"TRUE"            { yylval.boolean = true; return TK_TRUE_LITERAL; }
 	"FALSE"           { yylval.boolean = false; return TK_FALSE_LITERAL; }
 	"CONTAINS"        { return TK_CONTAINS; }
+	"RECONTAINS"      { return TK_RECONTAINS; }
 	"MATCHES"         { return TK_MATCHES; }
 	[0-9]+("KB"|"MB"|"GB"|"TB") {
 		const char* p = yycursor;

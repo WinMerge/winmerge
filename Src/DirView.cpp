@@ -4401,68 +4401,6 @@ void CDirView::GetColors (int nRow, int nCol, COLORREF& clrBk, COLORREF& clrText
 	}
 }
 
-void CDirView::OnSearch()
-{
-	CDirDoc *pDoc = GetDocument();
-	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
-	int nRows = m_pList->GetItemCount();
-	CDiffContext& ctxt = GetDiffContext();
-
-	for (int currRow = nRows - 1; currRow >= 0; currRow--)
-	{
-		DIFFITEM *pos = GetItemKey(currRow);
-		if (IsDiffItemSpecial(pos))
-			continue;
-
-		bool bFound = false;
-		DIFFITEM &di = GetDiffItem(currRow);
-		PathContext paths;
-
-		for (int i = 0; i < pDoc->m_nDirs; i++)
-		{
-			if (di.diffcode.exists(i) && !di.diffcode.isDirectory())
-			{
-				GetItemFileNames(currRow, &paths);
-				UniMemFile ufile;
-				if (!ufile.OpenReadOnly(paths[i]))
-					continue;
-
-				ufile.SetUnicoding(di.diffFileInfo[i].encoding.m_unicoding);
-				ufile.SetBom(di.diffFileInfo[i].encoding.m_bom);
-				ufile.SetCodepage(di.diffFileInfo[i].encoding.m_codepage);
-
-				ufile.ReadBom();
-
-				String line;
-				for (;;)
-				{
-					bool lossy = false;
-					if (!ufile.ReadString(line, &lossy))
-						break;
-					
-					if (tc::tcsstr(line.c_str(), _T("DirView")))
-					{
-						bFound = true;
-						break;
-					}
-				}
-
-				ufile.Close();
-				if (bFound)
-					break;
-			}
-		}
-		if (!bFound)
-		{
-			String hiddden_item_path = di.getItemRelativePath();
-			SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
-			DeleteItem(currRow);
-			ctxt.m_vCurrentlyHiddenItems.push_back(hiddden_item_path);
-		}
-	}
-	m_pList->SetRedraw(TRUE);	// Turn updating back on
-}
-
 /**
  * @brief Drag files/directories from folder compare listing view.
  */

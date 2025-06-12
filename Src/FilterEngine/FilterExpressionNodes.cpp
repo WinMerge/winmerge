@@ -298,7 +298,7 @@ ExprNode* BinaryOpNode::Optimize()
 		delete this;
 		return folded;
 	}
-	if (op == TK_MATCHES)
+	if (op == TK_RECONTAINS || op == TK_MATCHES)
 	{
 		if (auto strNode = dynamic_cast<StringLiteral*>(right))
 		{
@@ -374,6 +374,12 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 						std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
 						return (result.first != result.second);
 					}
+					if (op == TK_RECONTAINS)
+					{
+						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						Poco::RegularExpression::Match match;
+						return (regex.match(*lvalString, match) > 0);
+					}
 					if (op == TK_MATCHES)
 					{
 						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
@@ -382,8 +388,34 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 				}
 				if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
 				{
+					if (op == TK_RECONTAINS)
+					{
+						Poco::RegularExpression::Match match;
+						return (rvalRegexp->get()->match(*lvalString, match) > 0);
+					}
 					if (op == TK_MATCHES)
 						return rvalRegexp->get()->match(*lvalString);
+				}
+			}
+			else if (auto lvalContent = std::get_if<std::shared_ptr<FileContentRef>>(&lval))
+			{
+				if (auto rvalContent = std::get_if<std::shared_ptr<FileContentRef>>(&rval))
+				{
+					if (op == TK_EQ) return lvalContent->get()->operator==(*rvalContent->get());
+					if (op == TK_NE) return !(lvalContent->get()->operator==(*rvalContent->get()));
+				}
+				if (auto rvalString = std::get_if<std::string>(&rval))
+				{
+					if (op == TK_CONTAINS) return lvalContent->get()->Contains(*rvalString);
+					if (op == TK_RECONTAINS)
+					{
+						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						return lvalContent->get()->REContains(regex);
+					}
+				}
+				if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
+				{
+					if (op == TK_RECONTAINS) return lvalContent->get()->REContains(*rvalRegexp->get());
 				}
 			}
 			else if (auto lvalBool = std::get_if<bool>(&lval))
@@ -473,7 +505,7 @@ static auto NameField(int index, const FilterExpression* ctxt, const DIFFITEM& d
 	return std::monostate{};
 }
 
-static auto PathField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
+static auto FolderField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
 {
 	return ucr::toUTF8(di.diffFileInfo[index].path.get());
 }
@@ -544,12 +576,30 @@ static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITE
 	return std::monostate{};
 }
 
+static auto FullPathField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+	{
+		const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
+		return ucr::toUTF8(paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath));
+	}
+	return std::monostate{};
+}
+
 static auto ContentField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
 	if (di.diffcode.exists(index))
 	{
 		const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
-		return FileContentRef{ ucr::toUTF8(paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath)) };
+		std::shared_ptr<FileContentRef> content{ new FileContentRef };
+		content->path = paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath);
+		content->item.size = di.diffFileInfo[index].size;
+		content->item.flags = di.diffFileInfo[index].flags;
+		content->item.mtime = di.diffFileInfo[index].mtime;
+		content->item.ctime = di.diffFileInfo[index].ctime;
+		content->item.version = di.diffFileInfo[index].version;
+		content->item.encoding = di.diffFileInfo[index].encoding;
+		return content;
 	}
 	return std::monostate{};
 }
@@ -579,8 +629,10 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = ExistsField;
 	else if (strcmp(vl.c_str() + prefixlen, "name") == 0)
 		functmp = NameField;
-	else if (strcmp(vl.c_str() + prefixlen, "path") == 0)
-		functmp = PathField;
+	else if (strcmp(vl.c_str() + prefixlen, "fullpath") == 0)
+		functmp = FullPathField;
+	else if (strcmp(vl.c_str() + prefixlen, "folder") == 0)
+		functmp = FolderField;
 	else if (strcmp(vl.c_str() + prefixlen, "size") == 0)
 		functmp = SizeField;
 	else if (strcmp(vl.c_str() + prefixlen, "datestr") == 0)
