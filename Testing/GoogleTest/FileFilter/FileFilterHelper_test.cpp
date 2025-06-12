@@ -17,9 +17,11 @@ namespace
 		di.diffFileInfo[0].path = path;
 		di.diffFileInfo[0].filename = left;
 		di.diffFileInfo[0].mtime = Poco::Timestamp();
+		di.diffFileInfo[0].flags.attributes = FILE_ATTRIBUTE_DIRECTORY;
 		di.diffFileInfo[1].path = path;
 		di.diffFileInfo[1].filename = right;
 		di.diffFileInfo[1].mtime = Poco::Timestamp();
+		di.diffFileInfo[1].flags.attributes = FILE_ATTRIBUTE_DIRECTORY;
 	}
 
 	// The fixture for testing string differencing functions.
@@ -284,7 +286,6 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
 		SetDiffItem(_T("abc\\def"), _T("a.obj"), _T("a.obj"), true, di);
 		EXPECT_EQ(false, m_fileFilterHelper.includeFile(di));
-		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
 		SetDiffItem(_T("abc\\def"), _T("svv"), _T("svv"), false, di);
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(di));
 

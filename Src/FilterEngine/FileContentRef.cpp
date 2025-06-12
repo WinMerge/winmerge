@@ -1,22 +1,18 @@
 #include "pch.h"
 #include "FileContentRef.h"
+#include "UnicodeString.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "UniFile.h"
 #include "codepage_detect.h"
 #include "paths.h"
 #include "MergeApp.h"
+#include <algorithm>
+#include <functional>
+#include <Poco/RegularExpression.h>
 
-bool FileContentRef::operator==(const FileContentRef& other) const
+static void GuessEncoding(UniMemFile& file, const String& path)
 {
-	return path == other.path;
-}
-
-bool FileContentRef::Contains(const std::string& str) const
-{
-	UniMemFile file;
-	if (!file.OpenReadOnly(path))
-		return false;
 	file.ReadBom();
 	if (!file.HasBom())
 	{
@@ -29,15 +25,63 @@ bool FileContentRef::Contains(const std::string& str) const
 			iGuessEncodingType);
 		file.SetCodepage(encoding.m_codepage);
 	}
-	String line, eol;
-	bool lossy = false;
-	//file.ReadString(line, eol, lossy);
+}
+
+bool FileContentRef::operator==(const FileContentRef& other) const
+{
+	return path == other.path;
+}
+
+bool FileContentRef::Contains(const std::string& str) const
+{
+	UniMemFile file;
+	if (!file.OpenReadOnly(path))
+		return false;
+	GuessEncoding(file, path);
+	String searchStr = ucr::toTString(str);
+	strutils::makelower(searchStr);
+	std::boyer_moore_horspool_searcher<String::const_iterator> searcher(searchStr.begin(), searchStr.end());
+	bool linesToRead = true;
+	bool found = false;
+	do
+	{
+		bool lossy;
+		String line, eol;
+		linesToRead = file.ReadString(line, eol, &lossy);
+		strutils::makelower(line);
+		using iterator = String::const_iterator;
+		std::pair<iterator, iterator> result = searcher(line.begin(), line.end());
+		if (result.first != result.second)
+		{
+			found = true;
+			break;
+		}
+	} while (linesToRead);
 	file.Close();
-	return true;
+	return found;
 }
 
 bool FileContentRef::REContains(const Poco::RegularExpression& regexp) const
 {
-	return true;
+	UniMemFile file;
+	if (!file.OpenReadOnly(path))
+		return false;
+	GuessEncoding(file, path);
+	bool linesToRead = true;
+	bool found = false;
+	do
+	{
+		bool lossy;
+		String line, eol;
+		linesToRead = file.ReadString(line, eol, &lossy);
+		Poco::RegularExpression::Match match;
+		if (regexp.match(ucr::toUTF8(line), match) > 0)
+		{
+			found = true;
+			break;
+		}
+	} while (linesToRead);
+	file.Close();
+	return found;
 }
 
