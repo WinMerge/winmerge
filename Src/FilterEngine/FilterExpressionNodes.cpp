@@ -528,20 +528,17 @@ static auto ExistsField(int index, const FilterExpression* ctxt, const DIFFITEM&
 
 static auto NameField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
 {
-	if (di.diffcode.exists(index))
-		return ucr::toUTF8(di.diffFileInfo[index].filename.get());
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return ucr::toUTF8(di.diffFileInfo[index].filename.get());
 }
 
 static auto ExtensionField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
 {
-	if (di.diffcode.exists(index))
-	{
-		const std::string ext = ucr::toUTF8(paths::FindExtension(di.diffFileInfo[index].filename.get()));
-		return ext.c_str() + strspn(ext.c_str(), ".");
-	}
-
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	const std::string ext = ucr::toUTF8(paths::FindExtension(di.diffFileInfo[index].filename.get()));
+	return ext.c_str() + strspn(ext.c_str(), ".");
 }
 
 static auto FolderField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
@@ -551,47 +548,45 @@ static auto FolderField(int index, const FilterExpression* ctxt, const DIFFITEM&
 
 static auto SizeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-		return static_cast<int64_t>(di.diffFileInfo[index].size);
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return static_cast<int64_t>(di.diffFileInfo[index].size);
 }
 
 static auto DateField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-		return di.diffFileInfo[index].mtime;
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return di.diffFileInfo[index].mtime;
 }
 
 static auto DateStrField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-	{
-		Poco::LocalDateTime ldt(Poco::Timezone::tzd(), di.diffFileInfo[index].mtime);
-		return Poco::DateTimeFormatter::format(ldt, "%Y-%m-%d");
-	}
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	Poco::LocalDateTime ldt(Poco::Timezone::tzd(), di.diffFileInfo[index].mtime);
+	return Poco::DateTimeFormatter::format(ldt, "%Y-%m-%d");
 }
 
 static auto CreationTimeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-		return di.diffFileInfo[index].ctime;
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return di.diffFileInfo[index].ctime;
 }
 
 static auto FileVersionField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-		return di.diffFileInfo[index].version.GetFileVersionQWORD();
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return di.diffFileInfo[index].version.GetFileVersionQWORD();
 }
 
 static auto AttributesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-		return di.diffFileInfo[index].flags.attributes;
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return di.diffFileInfo[index].flags.attributes;
 }
 
 static auto AttrStrField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
@@ -603,44 +598,40 @@ static auto AttrStrField(int index, const FilterExpression* ctxt, const DIFFITEM
 
 static auto CodepageField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-		return di.diffFileInfo[index].encoding.m_codepage;
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return di.diffFileInfo[index].encoding.m_codepage;
 }
 
 static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-		return ucr::toUTF8(di.diffFileInfo[index].encoding.GetName());
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return ucr::toUTF8(di.diffFileInfo[index].encoding.GetName());
 }
 
 static auto FullPathField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-	{
-		const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
-		return ucr::toUTF8(paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath));
-	}
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
+	return ucr::toUTF8(paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath));
 }
 
 static auto ContentField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-	{
-		const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
-		std::shared_ptr<FileContentRef> content{ new FileContentRef };
-		content->path = paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath);
-		content->item.size = di.diffFileInfo[index].size;
-		content->item.flags = di.diffFileInfo[index].flags;
-		content->item.mtime = di.diffFileInfo[index].mtime;
-		content->item.ctime = di.diffFileInfo[index].ctime;
-		content->item.version = di.diffFileInfo[index].version;
-		content->item.encoding = di.diffFileInfo[index].encoding;
-		return content;
-	}
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
+	std::shared_ptr<FileContentRef> content{ new FileContentRef };
+	content->path = paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath);
+	content->item.size = di.diffFileInfo[index].size;
+	content->item.flags = di.diffFileInfo[index].flags;
+	content->item.mtime = di.diffFileInfo[index].mtime;
+	content->item.ctime = di.diffFileInfo[index].ctime;
+	content->item.version = di.diffFileInfo[index].version;
+	content->item.encoding = di.diffFileInfo[index].encoding;
+	return content;
 }
 
 FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(ctxt), field(v)
