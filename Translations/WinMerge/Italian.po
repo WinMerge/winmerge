@@ -2575,9 +2575,6 @@ msgstr "Percorso"
 msgid "Filters"
 msgstr "Filtri"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Descrizione"
 
@@ -4579,6 +4576,36 @@ msgstr "Operazione file completata correttamente."
 
 msgid "File operation canceled"
 msgstr "Operazione file annullata"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Abbellimento"

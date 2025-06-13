@@ -32,6 +32,7 @@
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
 #include "FileFilterHelper.h"
+#include "FilterErrorMessages.h"
 #include "DirActions.h"
 #include "DirScan.h"
 #include "MessageBoxDialog.h"
@@ -257,9 +258,21 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pGlobalFileFilter->ReloadUpdatedFilters();
 	m_fileHelper.CloneFrom(pGlobalFileFilter);
 	pCtxt->m_piFilterGlobal = &m_fileHelper;
+	pCtxt->m_piFilterGlobal->SetDiffContext(pCtxt);
 	
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
+
+	CheckFilter();
+}
+
+void CDirDoc::CheckFilter()
+{
+	for (const auto* error: m_pCtxt->m_piFilterGlobal->GetErrorList())
+	{
+		String msg = FormatFilterErrorSummary(*error);
+		RootLogger::Error(msg);
+	}
 }
 
 /**

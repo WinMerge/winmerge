@@ -282,7 +282,7 @@ void COpenView::OnInitialUpdate()
 
 	if (!bMask)
 	{
-		String filterPrefix = _("[F] ");
+		String filterPrefix = _T("[F] ");
 		filterNameOrMask = filterPrefix + filterNameOrMask;
 	}
 
@@ -629,7 +629,7 @@ void COpenView::OnSwapButton()
 void COpenView::OnCompare(UINT nID)
 {
 	int pathsType; // enum from paths::PATH_EXISTENCE in paths.h
-	const String filterPrefix = _("[F] ");
+	const String filterPrefix = _T("[F] ");
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 
 	UpdateData(TRUE);
@@ -989,7 +989,7 @@ void COpenView::OnSaveProject()
 	if (bSaveFileFilter && !m_strExt.empty())
 	{
 		// Remove possbile prefix from the filter name
-		String prefix = _("[F] ");
+		String prefix = _T("[F] ");
 		String strExt = m_strExt;
 		size_t ind = strExt.find(prefix, 0);
 		if (ind == 0)
@@ -1521,7 +1521,7 @@ void COpenView::OnSelectFilter()
 	}
 	else
 	{
-		String filterPrefix = _("[F] ");
+		String filterPrefix = _T("[F] ");
 		filterNameOrMask = filterPrefix + filterNameOrMask;
 		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
 	}
