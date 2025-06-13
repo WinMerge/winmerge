@@ -10,6 +10,21 @@
 #include <algorithm>
 #include <functional>
 #include <Poco/RegularExpression.h>
+#include <Poco/Exception.h>
+using NTSTATUS = LONG;
+#include "HashCalc.h"
+
+static std::vector<uint8_t> CalculateHashValue(const String& path, const tchar_t* algoname)
+{
+	std::vector<uint8_t> hash;
+	HANDLE hFile = CreateFile(path.c_str(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+	if (hFile != INVALID_HANDLE_VALUE)
+	{
+		CalculateHashValue(hFile, algoname, hash);
+		CloseHandle(hFile);
+	}
+	return hash;
+}
 
 static void GuessEncoding(UniMemFile& file, const String& path)
 {
@@ -29,7 +44,13 @@ static void GuessEncoding(UniMemFile& file, const String& path)
 
 bool FileContentRef::operator==(const FileContentRef& other) const
 {
-	return path == other.path;
+	std::vector<uint8_t> hash1 = CalculateHashValue(path, _T("SHA256"));
+	if (hash1.empty())
+		return false;
+	std::vector<uint8_t> hash2 = CalculateHashValue(other.path, _T("SHA256"));
+	if (hash2.empty())
+		return false;
+	return hash1 == hash2;
 }
 
 bool FileContentRef::Contains(const std::string& str) const
@@ -69,18 +90,24 @@ bool FileContentRef::REContains(const Poco::RegularExpression& regexp) const
 	GuessEncoding(file, path);
 	bool linesToRead = true;
 	bool found = false;
-	do
+	try
 	{
-		bool lossy;
-		String line, eol;
-		linesToRead = file.ReadString(line, eol, &lossy);
-		Poco::RegularExpression::Match match;
-		if (regexp.match(ucr::toUTF8(line), match) > 0)
+		do
 		{
-			found = true;
-			break;
-		}
-	} while (linesToRead);
+			bool lossy;
+			String line, eol;
+			linesToRead = file.ReadString(line, eol, &lossy);
+			Poco::RegularExpression::Match match;
+			if (regexp.match(ucr::toUTF8(line), match) > 0)
+			{
+				found = true;
+				break;
+			}
+		} while (linesToRead);
+	}
+	catch (const Poco::RegularExpressionException&)
+	{
+	}
 	file.Close();
 	return found;
 }

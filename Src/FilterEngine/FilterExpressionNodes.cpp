@@ -376,22 +376,43 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 					}
 					if (op == TK_RECONTAINS)
 					{
-						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-						Poco::RegularExpression::Match match;
-						return (regex.match(*lvalString, match) > 0);
+						try
+						{
+							Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+							Poco::RegularExpression::Match match;
+							return (regex.match(*lvalString, match) > 0);
+						}
+						catch (const Poco::RegularExpressionException&)
+						{
+							return false;
+						}
 					}
 					if (op == TK_MATCHES)
 					{
-						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-						return regex.match(*lvalString);
+						try
+						{
+							Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+							return regex.match(*lvalString);
+						}
+						catch (const Poco::RegularExpressionException&)
+						{
+							return false;
+						}
 					}
 				}
 				if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
 				{
 					if (op == TK_RECONTAINS)
 					{
-						Poco::RegularExpression::Match match;
-						return (rvalRegexp->get()->match(*lvalString, match) > 0);
+						try
+						{
+							Poco::RegularExpression::Match match;
+							return (rvalRegexp->get()->match(*lvalString, match) > 0);
+						}
+						catch (const Poco::RegularExpressionException&)
+						{
+							return false;
+						}
 					}
 					if (op == TK_MATCHES)
 						return rvalRegexp->get()->match(*lvalString);
@@ -409,8 +430,15 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 					if (op == TK_CONTAINS) return lvalContent->get()->Contains(*rvalString);
 					if (op == TK_RECONTAINS)
 					{
-						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-						return lvalContent->get()->REContains(regex);
+						try
+						{
+							Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+							return lvalContent->get()->REContains(regex);
+						}
+						catch (const Poco::RegularExpressionException&)
+						{
+							return false;
+						}
 					}
 				}
 				if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
@@ -502,6 +530,17 @@ static auto NameField(int index, const FilterExpression* ctxt, const DIFFITEM& d
 {
 	if (di.diffcode.exists(index))
 		return ucr::toUTF8(di.diffFileInfo[index].filename.get());
+	return std::monostate{};
+}
+
+static auto ExtensionField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
+{
+	if (di.diffcode.exists(index))
+	{
+		const std::string ext = ucr::toUTF8(paths::FindExtension(di.diffFileInfo[index].filename.get()));
+		return ext.c_str() + strspn(ext.c_str(), ".");
+	}
+
 	return std::monostate{};
 }
 
@@ -629,6 +668,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = ExistsField;
 	else if (strcmp(vl.c_str() + prefixlen, "name") == 0)
 		functmp = NameField;
+	else if (strcmp(vl.c_str() + prefixlen, "extension") == 0)
+		functmp = ExtensionField;
 	else if (strcmp(vl.c_str() + prefixlen, "fullpath") == 0)
 		functmp = FullPathField;
 	else if (strcmp(vl.c_str() + prefixlen, "folder") == 0)

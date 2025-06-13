@@ -373,6 +373,8 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName matches \"a.*t\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftExtension = \"txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, ParseError)
