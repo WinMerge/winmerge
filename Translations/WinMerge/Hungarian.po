@@ -3064,10 +3064,6 @@ msgid "Filters"
 msgstr "Szűrők"
 
 #, c-format
-msgid "[F] "
-msgstr "[F] "
-
-#, c-format
 msgid "Description"
 msgstr "Leírás"
 
@@ -5080,6 +5076,36 @@ msgstr "A fájlművelet sikeresen befejeződött"
 
 msgid "File operation canceled"
 msgstr "A fájlművelet megszakítva"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

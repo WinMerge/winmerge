@@ -2486,9 +2486,6 @@ msgstr "Vieta"
 msgid "Filters"
 msgstr "Filtrai"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "Aprašas"
 
@@ -4072,6 +4069,36 @@ msgstr "Failo operacija baigta sėkmingai"
 
 msgid "File operation canceled"
 msgstr "Failo operacija atšaukta"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Sutvarkymas"

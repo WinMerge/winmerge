@@ -184,7 +184,7 @@ std::shared_ptr<FilterList> LineFiltersList::MakeFilterList(bool throwIfInvalid)
 		{
 			try
 			{
-				plist->AddRegExp(ucr::toUTF8(item->filterStr), false, throwIfInvalid);
+				plist->AddRegExp(ucr::toUTF8(item->filterStr), throwIfInvalid);
 			}
 			catch (const std::runtime_error& e)
 			{

@@ -114,7 +114,7 @@ void DIFFITEM::Swap(int idx1, int idx2)
 
 void DIFFITEM::ClearAllAdditionalProperties()
 {
-	const int n = ((diffcode.diffcode & DIFFCODE::THREEWAY) != 0) ? 3 : 2;
+	const int n = diffcode.isThreeway() ? 3 : 2;
 	for (int i = 0; i < n; ++i)
 		diffFileInfo[i].m_pAdditionalProperties.reset();
 	if (HasChildren())
@@ -223,7 +223,7 @@ void DIFFCODE::swap(int idx1, int idx2)
 	bool binflag2 = (diffcode & (BINSIDE1 << idx2));
 	Set(BINSIDE1 << idx1, binflag2 ? (BINSIDE1 << idx1) : 0);
 	Set(BINSIDE1 << idx2, binflag1 ? (BINSIDE1 << idx2) : 0);
-	if ((diffcode & THREEWAY) != 0)
+	if (isThreeway())
 	{
 		int idx = -1;
 		switch (diffcode & COMPAREFLAGS3WAY)
