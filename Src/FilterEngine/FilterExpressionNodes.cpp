@@ -772,6 +772,44 @@ static auto AllEqualFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 	}
 }
 
+static auto LengthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto arg1 = (*args)[0]->Evaluate(di);
+	if (auto arg1String = std::get_if<std::string>(&arg1))
+		return arg1String->length();
+	return std::monostate{};
+}
+
+static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 2 || args->size() > 3)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(di);
+	auto argStart = (*args)[1]->Evaluate(di);
+	std::optional<ValueType> argLen;
+	if (args->size() == 3)
+		argLen = (*args)[2]->Evaluate(di);
+
+	const std::string* str = std::get_if<std::string>(&argStr);
+	const int64_t* start = std::get_if<int64_t>(&argStart);
+	const int64_t* len = argLen ? std::get_if<int64_t>(&*argLen) : nullptr;
+
+	if (!str || !start)
+		return std::monostate{};
+
+	int64_t s = *start;
+	if (s < 0)
+		s += static_cast<int64_t>(str->length());
+	if (s < 0 || s > str->length())
+		return std::string{};
+
+	if (!len)
+		return str->substr(s);
+	else
+		return str->substr(s, static_cast<size_t>(*len));
+}
+
 static auto TodayFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	return *ctxt->today;
@@ -808,6 +846,18 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		if (!args || args->size() < 1)
 			throw std::invalid_argument("allequal function requires at least 1 arguments");
 		func = AllEqualFunc;
+	}
+	else if (functionName == "length")
+	{
+		if (!args || args->size() < 1)
+			throw std::invalid_argument("length function requires 1 arguments");
+		func = LengthFunc;
+	}
+	else if (functionName == "substr")
+	{
+		if (!args || (args->size() < 2 || args->size() > 3))
+			throw std::invalid_argument("substr function requires 2 or 3 arguments: substr(string, start [, length])");
+		func = SubstrFunc;
 	}
 	else if (functionName == "today")
 	{

@@ -125,6 +125,22 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("\"abc\" >= \"abd\""));
 	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0, 4) = \"abcd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0, 5) = \"abcd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0, 0) = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0, 3) = \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 2, 2) = \"cd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -1, 2) = \"d\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -2, 2) = \"cd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -5, 2) = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("v\"2.16.48.2\" == v\"002.016.048.002\""));
 	EXPECT_TRUE(fe.Evaluate(di));
