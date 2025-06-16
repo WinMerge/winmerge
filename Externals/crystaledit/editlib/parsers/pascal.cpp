@@ -176,6 +176,10 @@ CrystalLineParser::ParseLinePascal (unsigned dwCookie, const tchar_t *pszChars, 
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
+          else if (dwCookie & (COOKIE_PREPROCESSOR))
+            {
+              DEFINE_BLOCK (nPos, COLORINDEX_PREPROCESSOR);
+            }
           else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING | COOKIE_RAWSTRING))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_STRING);
@@ -326,6 +330,17 @@ out:
           continue;
         }
 
+      //  Compiler directives {$....}
+      if (dwCookie & COOKIE_PREPROCESSOR)
+        {
+          if (pszChars[I] == '}')
+            {
+              dwCookie &= ~COOKIE_PREPROCESSOR;
+              bRedefineBlock = true;
+            }
+          continue;
+        }
+
       if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/')
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
@@ -357,8 +372,15 @@ out:
           continue;
         }
 
-      if (pszChars[I] == '{')
+      if (pszChars[I] == '{') // {
         {
+          if (I + 1 < nLength && pszChars[I + 1] == '$') // {$
+            {
+              //  Compiler directives {$....}
+              DEFINE_BLOCK (I, COLORINDEX_PREPROCESSOR);
+              dwCookie |= COOKIE_PREPROCESSOR;
+              continue;
+            }
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT2;
           continue;
