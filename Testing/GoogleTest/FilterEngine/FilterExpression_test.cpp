@@ -5,6 +5,12 @@
 #include "DiffItem.h"
 #include "PathContext.h"
 #include "Poco/DateTimeParser.h"
+#include "Poco/Timezone.h"
+#include "Environment.h"
+#include "paths.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "MergeApp.h"
 
 struct FilterTestParam { bool optimize; };
 
@@ -23,14 +29,16 @@ TEST_P(FilterExpressionTest, Literals)
 
 	// Set up DIFFITEM object with file information and timestamps.
 	DIFFITEM di;
-	int tdz = 0;
+	int tzd;
 	di.diffFileInfo[0].filename = L"Alice.txt";
 	di.diffFileInfo[0].size = 1000;
-	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34:56", tdz);
+	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34:56", tzd);
+	dt0 -= Poco::Timezone::tzd() * 1000;
 	di.diffFileInfo[0].mtime = dt0.timestamp();
 	di.diffFileInfo[1].filename = L"Alice.txt";
 	di.diffFileInfo[1].size = 1100;
-	Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tdz);
+	Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tzd);
+	dt1 -= Poco::Timezone::tzd() * 1000;
 	di.diffFileInfo[1].mtime = dt1.timestamp();
 
 	// Set side flags for the diff code.
@@ -140,6 +148,24 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -2, 2) = \"cd\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -5, 2) = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0) = \"abcd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 2) = \"cd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 4) = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -1) = \"d\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("length(\"abcd\") = 4"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("length(\"\") = 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(\"abcd\", \"ab\", \"cd\") = \"cdcd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(\"\", \"ab\", \"cd\") = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(\"abcd\", \"cd\", \"\") = \"ab\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("v\"2.16.48.2\" == v\"002.016.048.002\""));
@@ -340,20 +366,35 @@ TEST_P(FilterExpressionTest, Literals)
 
 TEST_P(FilterExpressionTest, FileAttributes)
 {
-	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src", L"E:\\dev\\winmerge\\src");
 	CDiffContext ctxt(paths, 0);
 	DIFFITEM di;
-	int tdz = 0;
+	int tzd;
+	di.diffFileInfo[0].path = L"abc";
 	di.diffFileInfo[0].filename = L"Alice.txt";
 	di.diffFileInfo[0].size = 1000;
-	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34:56", tdz);
+	di.diffFileInfo[0].flags.attributes = FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE;
+	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:56", tzd);
+	dt0.makeUTC(Poco::Timezone::tzd());
 	di.diffFileInfo[0].mtime = dt0.timestamp();
-	di.diffFileInfo[1].filename = L"Alice.txt";
-	di.diffFileInfo[1].size = 1100;
-	Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tdz);
-	di.diffFileInfo[1].mtime = dt1.timestamp();
+	di.diffFileInfo[0].ctime = dt0.timestamp();
+	di.diffFileInfo[0].encoding.SetCodepage(65001);
+	di.diffFileInfo[0].version.SetFileVersion(0x00020010, 0x00300002);
+	di.diffFileInfo[1].path = L"abc";
+	di.diffFileInfo[2].path = L"abc";
+	di.diffFileInfo[2].filename = L"Alice.txt";
+	di.diffFileInfo[2].size = 1100;
+	di.diffFileInfo[2].flags.attributes = FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE;
+	Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tzd);
+	dt1.makeUTC(Poco::Timezone::tzd());
+	di.diffFileInfo[2].mtime = dt1.timestamp();
+	di.diffFileInfo[2].ctime = dt1.timestamp();
+	di.diffFileInfo[2].encoding.SetCodepage(65001);
+	di.diffFileInfo[2].version.SetFileVersion(0x00020010, 0x00300002);
 	di.diffcode.setSideFlag(0);
-	di.diffcode.setSideFlag(1);
+	di.diffcode.setSideFlag(2);
+	di.nsdiffs = 3;
+	di.nidiffs = 2;
 
 	FilterExpression fe;
 	fe.SetDiffContext(&ctxt);
@@ -371,6 +412,12 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftDate != RightDate"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftDate != MiddleDate"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftCreationTime != RightCreationTime"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftCreationTime != MiddleCreationTime"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("abs(-100) == 100"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("abs(LeftSize - RightSize) == (1100 - 1000)"));
@@ -379,6 +426,8 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftSize < 200 + 20 * 40"));
 	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleSize != 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftName = \"Alice.txt\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName = \"Bob.txt\""));
@@ -389,7 +438,93 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName matches \"a.*t\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleName != \"Alice.txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftExtension = \"txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleExtension != \"txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftFolder = \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleFolder = \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftDateStr = \"2025-05-16\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleDateStr != \"2025-05-16\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("DiffCode != 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("Differences = 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("IgnoredDiffs = 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftFullPath = \"C:\\dev\\winmerge\\src\\abc\\Alice.txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleFullPath != \"D:\\dev\\winmerge\\src\\abc\\Alice.txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightAttributes > 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleAttributes != 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftAttrStr = \"RHSA\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleAttrStr != \"RHSA\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftCodepage = 65001"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleCodepage != 65001"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftEncoding = \"UTF-8\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleEncoding != \"UTF-8\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftVersion = v\"2.16.48.2\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleVersion != v\"2.16.48.2\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftExists"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightExists"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("MiddleExists"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("Not MiddleExists"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, Content)
+{
+	const String dir = paths::ConcatPath(env::GetProgPath(), L"..\\TestData");
+	PathContext paths(dir, dir);
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	di.diffFileInfo[1].filename = L"LeftAndRight.WinMerge";
+	di.diffFileInfo[1].path = L"";
+	di.diffcode.setSideFlag(1);
+	
+	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+
+	EXPECT_TRUE(fe.Parse("RightContent contains \"UTF-8\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftContent contains \"UTF-8\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightContent recontains \"xml.*UTF-8\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftContent recontains \"xml.*UTF-8\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("linecount(RightContent) = 7"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, 0, 1) contains \"<?xml version='1.0' encoding='UTF-8'?>\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, 1, 2) contains \"paths\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, 1) contains \"</projects>\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, -1) contains \"</projects>\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
@@ -425,6 +560,55 @@ TEST_P(FilterExpressionTest, ParseError)
 	EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
 	EXPECT_FALSE(fe.Parse(")LeftSize == 1"));
 	EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
+}
+
+TEST_P(FilterExpressionTest, Test1)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	int tzd = 0;
+	di.diffFileInfo[0].filename = L"Alice.txt";
+	di.diffFileInfo[0].size = 1000;
+	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34:56", tzd);
+	dt0.makeUTC(Poco::Timezone::tzd());
+	di.diffFileInfo[0].mtime = dt0.timestamp();
+	di.diffFileInfo[1].filename = L"Alice.txt";
+	di.diffFileInfo[1].size = 1100;
+	Poco::DateTime dt1 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M:%S", "2025-05-16 15:34:57", tzd);
+	dt1.makeUTC(Poco::Timezone::tzd());
+	di.diffFileInfo[1].mtime = dt1.timestamp();
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	EXPECT_TRUE(fe.Parse("1 or true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("1 or false"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("true or 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("true or 1"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("1 or 1"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("1 and true"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("1 and false"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("true and 1"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("true and 1"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("1 and 1"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("not 1"));
+	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 INSTANTIATE_TEST_SUITE_P(

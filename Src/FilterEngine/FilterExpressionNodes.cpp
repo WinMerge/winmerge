@@ -120,7 +120,7 @@ ValueType NotNode::Evaluate(const DIFFITEM& di) const
 	auto val = expr->Evaluate(di);
 	auto boolVal = evalAsBool(val);
 	if (!boolVal) return std::monostate{};
-	return *boolVal ? false : true;
+	return !*boolVal;
 }
 
 static std::optional<int64_t> getConstIntValue(const ExprNode* node)
@@ -579,7 +579,9 @@ static auto FileVersionField(int index, const FilterExpression* ctxt, const DIFF
 {
 	if (!di.diffcode.exists(index))
 		return std::monostate{};
-	return di.diffFileInfo[index].version.GetFileVersionQWORD();
+	if (di.diffFileInfo[index].version.IsCleared())
+		ctxt->ctxt->UpdateVersion(const_cast<DIFFITEM&>(di), index);
+	return static_cast<int64_t>(di.diffFileInfo[index].version.GetFileVersionQWORD());
 }
 
 static auto AttributesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
@@ -591,16 +593,31 @@ static auto AttributesField(int index, const FilterExpression* ctxt, const DIFFI
 
 static auto AttrStrField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	if (di.diffcode.exists(index))
-		return ucr::toUTF8(di.diffFileInfo[index].flags.ToString());
-	return std::monostate{};
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return ucr::toUTF8(di.diffFileInfo[index].flags.ToString());
 }
 
 static auto CodepageField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
 	if (!di.diffcode.exists(index))
 		return std::monostate{};
-	return di.diffFileInfo[index].encoding.m_codepage;
+	return static_cast<int64_t>(di.diffFileInfo[index].encoding.m_codepage);
+}
+
+static auto DiffCodeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return static_cast<int64_t>(di.diffcode.diffcode);
+}
+
+static auto DifferencesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return di.nsdiffs;
+}
+
+static auto IgnoredDiffsField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return di.nidiffs;
 }
 
 static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
@@ -655,35 +672,51 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		prefixlen = 5;
 	}
 	ValueType (*functmp)(int, const FilterExpression*, const DIFFITEM&) = nullptr;
-	if (strcmp(vl.c_str() + prefixlen, "exists") == 0)
+	const char* p = vl.c_str() + prefixlen;
+	if (strcmp(p, "exists") == 0)
 		functmp = ExistsField;
-	else if (strcmp(vl.c_str() + prefixlen, "name") == 0)
+	else if (strcmp(p, "name") == 0)
 		functmp = NameField;
-	else if (strcmp(vl.c_str() + prefixlen, "extension") == 0)
+	else if (strcmp(p, "extension") == 0)
 		functmp = ExtensionField;
-	else if (strcmp(vl.c_str() + prefixlen, "fullpath") == 0)
+	else if (strcmp(p, "fullpath") == 0)
 		functmp = FullPathField;
-	else if (strcmp(vl.c_str() + prefixlen, "folder") == 0)
+	else if (strcmp(p, "folder") == 0)
 		functmp = FolderField;
-	else if (strcmp(vl.c_str() + prefixlen, "size") == 0)
+	else if (strcmp(p, "size") == 0)
 		functmp = SizeField;
-	else if (strcmp(vl.c_str() + prefixlen, "datestr") == 0)
+	else if (strcmp(p, "datestr") == 0)
 		functmp = DateStrField;
-	else if (strcmp(vl.c_str() + prefixlen, "date") == 0)
+	else if (strcmp(p, "date") == 0)
 		functmp = DateField;
-	else if (strcmp(vl.c_str() + prefixlen, "attributes") == 0)
+	else if (strcmp(p, "attributes") == 0)
 		functmp = AttributesField;
-	else if (strcmp(vl.c_str() + prefixlen, "attrstr") == 0)
+	else if (strcmp(p, "attrstr") == 0)
 		functmp = AttrStrField;
-	else if (strcmp(vl.c_str() + prefixlen, "creationtime") == 0)
+	else if (strcmp(p, "creationtime") == 0)
 		functmp = CreationTimeField;
-	else if (strcmp(vl.c_str() + prefixlen, "fileversion") == 0)
+	else if (strcmp(p, "version") == 0)
 		functmp = FileVersionField;
-	else if (strcmp(vl.c_str() + prefixlen, "codepage") == 0)
+	else if (strcmp(p, "codepage") == 0)
 		functmp = CodepageField;
-	else if (strcmp(vl.c_str() + prefixlen, "encoding") == 0)
+	else if (strcmp(p, "encoding") == 0)
 		functmp = EncodingField;
-	else if (strcmp(vl.c_str() + prefixlen, "content") == 0)
+	else if (strcmp(p, "diffcode") == 0)
+	{
+		functmp = DiffCodeField;
+		side = -2;
+	}
+	else if (strcmp(p, "differences") == 0)
+	{
+		functmp = DifferencesField;
+		side = -2;
+	}
+	else if (strcmp(p, "ignoreddiffs") == 0)
+	{
+		functmp = IgnoredDiffsField;
+		side = -2;
+	}
+	else if (strcmp(p, "content") == 0)
 		functmp = ContentField;
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
@@ -776,7 +809,7 @@ static auto LengthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 {
 	auto arg1 = (*args)[0]->Evaluate(di);
 	if (auto arg1String = std::get_if<std::string>(&arg1))
-		return arg1String->length();
+		return static_cast<int64_t>(arg1String->length());
 	return std::monostate{};
 }
 
@@ -806,8 +839,55 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 
 	if (!len)
 		return str->substr(s);
-	else
-		return str->substr(s, static_cast<size_t>(*len));
+	return str->substr(s, static_cast<size_t>(*len));
+}
+
+static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto arg1 = (*args)[0]->Evaluate(di);
+	if (auto arg1ContentRef = std::get_if<std::shared_ptr<FileContentRef>>(&arg1))
+		return static_cast<int64_t>(arg1ContentRef->get()->LineCount());
+	return std::monostate{};
+}
+
+static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 2 || args->size() > 3)
+		return std::monostate{};
+
+	auto argContentRef = (*args)[0]->Evaluate(di);
+	auto argStart = (*args)[1]->Evaluate(di);
+	std::optional<ValueType> argLen;
+	if (args->size() == 3)
+		argLen = (*args)[2]->Evaluate(di);
+
+	const auto contentref = std::get_if<std::shared_ptr<FileContentRef>>(&argContentRef);
+	const int64_t* start = std::get_if<int64_t>(&argStart);
+	const int64_t* len = argLen ? std::get_if<int64_t>(&*argLen) : nullptr;
+
+	if (!contentref || !start)
+		return std::monostate{};
+
+	return contentref->get()->Sublines(*start, len ? *len : -1);
+}
+
+static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() != 3)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(di);
+	auto argFrom = (*args)[1]->Evaluate(di);
+	auto argTo = (*args)[2]->Evaluate(di);
+
+	const std::string* str = std::get_if<std::string>(&argStr);
+	const std::string* from = std::get_if<std::string>(&argFrom);
+	const std::string* to = std::get_if<std::string>(&argTo);
+
+	if (!str || !from || !to || from->empty())
+		return std::monostate{};
+
+	return Poco::replace(*str, *from, *to);
 }
 
 static auto TodayFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -858,6 +938,24 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		if (!args || (args->size() < 2 || args->size() > 3))
 			throw std::invalid_argument("substr function requires 2 or 3 arguments: substr(string, start [, length])");
 		func = SubstrFunc;
+	}
+	else if (functionName == "linecount")
+	{
+		if (!args || args->size() < 1)
+			throw std::invalid_argument("linecount function requires 1 arguments");
+		func = LineCountFunc;
+	}
+	else if (functionName == "sublines")
+	{
+		if (!args || (args->size() < 2 || args->size() > 3))
+			throw std::invalid_argument("sublines nesfunction requires 2 or 3 arguments: sublines(content, start [, length])");
+		func = SublinesFunc;
+	}
+	else if (functionName == "replace")
+	{
+		if (!args || (args->size() < 2 || args->size() > 3))
+			throw std::invalid_argument("replace function requires exactly 3 arguments: replace(string, from, to)");
+		func = ReplaceFunc;
 	}
 	else if (functionName == "today")
 	{
@@ -934,6 +1032,9 @@ DateTimeLiteral::DateTimeLiteral(const std::string& v)
 		try
 		{
 			Poco::DateTimeParser::parse(fmt, v, dt, tz);
+			dt.makeUTC(
+				(fmt == Poco::DateTimeFormat::ISO8601_FORMAT || fmt == Poco::DateTimeFormat::ISO8601_FRAC_FORMAT)
+					? tz : Poco::Timezone::tzd());
 			value = dt.timestamp();
 			parsed = true;
 			break;

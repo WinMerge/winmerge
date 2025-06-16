@@ -112,3 +112,69 @@ bool FileContentRef::REContains(const Poco::RegularExpression& regexp) const
 	return found;
 }
 
+std::string FileContentRef::Sublines(int64_t start, int64_t len) const
+{
+	UniMemFile file;
+	if (!file.OpenReadOnly(path))
+		return "";
+	GuessEncoding(file, path);
+	bool linesToRead = true;
+	std::vector<String> lines;
+	if (start >= 0 && len >= 0)
+	{
+		size_t count = 0;
+		do
+		{
+			bool lossy;
+			String line, eol;
+			linesToRead = file.ReadString(line, eol, &lossy);
+			if (count >= start && count < start + len)
+				lines.push_back(line + eol);
+			if (lines.size() >= static_cast<size_t>(len))
+				break;
+			++count;
+		} while (linesToRead);
+		file.Close();
+		return ucr::toUTF8(strutils::join(lines.begin(), lines.end(), _T("")));
+	}
+	do
+	{
+		bool lossy;
+		String line, eol;
+		linesToRead = file.ReadString(line, eol, &lossy);
+		lines.push_back(line + eol);
+	} while (linesToRead);
+	if (start < 0)
+	{
+		start = static_cast<int64_t>(lines.size()) + start;
+		if (start < 0)
+			start = 0;
+	}
+	if (start >= static_cast<int64_t>(lines.size()))
+		return "";
+	if (len < 0)
+		len = static_cast<int64_t>(lines.size()) - start;
+	int64_t end = std::min<int64_t>(start + len, lines.size());
+	file.Close();
+	return ucr::toUTF8(strutils::join(lines.begin() + start, lines.begin() + end, _T("")));
+}
+
+size_t FileContentRef::LineCount() const
+{
+	UniMemFile file;
+	if (!file.OpenReadOnly(path))
+		return static_cast<size_t>(-1);
+	GuessEncoding(file, path);
+	bool linesToRead = true;
+	size_t count = 0;
+	do
+	{
+		bool lossy;
+		String line, eol;
+		linesToRead = file.ReadString(line, eol, &lossy);
+		++count;
+	} while (linesToRead);
+	file.Close();
+	return count;
+}
+
