@@ -994,19 +994,28 @@ ValueType FunctionNode::Evaluate(const DIFFITEM& di) const
 
 SizeLiteral::SizeLiteral(const std::string& v)
 {
-	std::string numberPart = v.substr(0, v.find_first_not_of("0123456789"));
-	std::string unitPart = v.substr(numberPart.length());
-	int64_t number = std::stoll(numberPart);
-	if (unitPart == "KB" || unitPart == "kb")
-		value = number * 1024LL;
-	else if (unitPart == "MB" || unitPart == "mb")
-		value = number * 1024LL * 1024LL;
-	else if (unitPart == "GB" || unitPart == "gb")
-		value = number * 1024LL * 1024LL * 1024LL;
-	else if (unitPart == "TB" || unitPart == "tb")
-		value = number * 1024LL * 1024LL * 1024LL * 1024LL;
+	size_t pos = 0;
+	while (pos < v.size() && (isdigit(v[pos]) || v[pos] == '.'))
+		++pos;
+	std::string numberPart = v.substr(0, pos);
+	std::string unitPart = v.substr(pos);
+	std::transform(unitPart.begin(), unitPart.end(), unitPart.begin(), ::tolower);
+	double number = 0.0;
+	try
+	{
+		number = std::stod(numberPart);
+	}
+	catch (...) { }
+	if (unitPart == "kb")
+		value = static_cast<int64_t>(number * 1024LL);
+	else if (unitPart == "mb")
+		value = static_cast<int64_t>(number * 1024LL * 1024LL);
+	else if (unitPart == "gb")
+		value = static_cast<int64_t>(number * 1024LL * 1024LL * 1024LL);
+	else if (unitPart == "tb")
+		value = static_cast<int64_t>(number * 1024LL * 1024LL * 1024LL * 1024LL);
 	else
-		value = number;
+		value = static_cast<int64_t>(number);
 }
 
 DateTimeLiteral::DateTimeLiteral(const std::string& v)
@@ -1052,23 +1061,32 @@ DateTimeLiteral::DateTimeLiteral(const std::string& v)
 
 DurationLiteral::DurationLiteral(const std::string& v)
 {
-	std::string numberPart = v.substr(0, v.find_first_not_of("0123456789"));
-	std::string unitPart = v.substr(numberPart.length());
-	int64_t number = std::stoll(numberPart);
+	size_t pos = 0;
+	while (pos < v.size() && (isdigit(v[pos]) || v[pos] == '.'))
+		++pos;
+	std::string numberPart = v.substr(0, pos);
+	std::string unitPart = v.substr(pos);
+	std::transform(unitPart.begin(), unitPart.end(), unitPart.begin(), ::tolower);
+	double number = 0.0;
+	try
+	{
+		number = std::stod(numberPart);
+	}
+	catch (...) { }
 	if (unitPart == "w" || unitPart == "week" || unitPart == "weeks")
-		value = number * 604800LL * 1000000LL;
+		value = static_cast<int64_t>(number * 604800LL * 1000000LL);
 	else if (unitPart == "d" || unitPart == "day" || unitPart == "days")
-		value = number * 86400LL * 1000000LL;
+		value = static_cast<int64_t>(number * 86400LL * 1000000LL);
 	else if (unitPart == "h" || unitPart == "hr" || unitPart == "hour" || unitPart == "hours")
-		value = number * 3600LL * 1000000LL;
+		value = static_cast<int64_t>(number * 3600LL * 1000000LL);
 	else if (unitPart == "m" || unitPart == "min" || unitPart == "minute" || unitPart == "minutes")
-		value = number * 60LL * 1000000LL;
+		value = static_cast<int64_t>(number * 60LL * 1000000LL);
 	else if (unitPart == "s" || unitPart == "sec" || unitPart == "second" || unitPart == "seconds")
-		value = number * 1LL * 1000000LL;
+		value = static_cast<int64_t>(number * 1LL * 1000000LL);
 	else if (unitPart == "ms" || unitPart == "msec" || unitPart == "millisecond" || unitPart == "milliseconds")
-		value = number * 1000LL;
+		value = static_cast<int64_t>(number * 1000LL);
 	else
-		value = number;
+		value = static_cast<int64_t>(number);
 }
 
 VersionLiteral::VersionLiteral(const std::string& v)

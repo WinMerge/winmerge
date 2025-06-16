@@ -191,6 +191,8 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1days == 24hours"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("0.25days == 6hours"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1day == 24hour"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1d == 24hr"));
@@ -199,13 +201,19 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1hours == 60minutes"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("0.5hours == 30minutes"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1hour == 60minute"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1h == 60min"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("0.5h == 30min"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1h == 60m"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1minutes == 60seconds"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("0.1minutes == 6seconds"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1minute == 60second"));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -249,11 +257,19 @@ TEST_P(FilterExpressionTest, Literals)
 
 	EXPECT_TRUE(fe.Parse("1KB == 1024"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("0.5KB == 512"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1MB == 1024KB"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("0.5MB == 512KB"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1GB == 1024MB"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("0.5GB == 512MB"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1TB == 1024GB"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("0.5TB == 512GB"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("2KB == 1024"));
@@ -492,7 +508,7 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
-TEST_P(FilterExpressionTest, Content)
+TEST_P(FilterExpressionTest, Content1)
 {
 	const String dir = paths::ConcatPath(env::GetProgPath(), L"..\\TestData");
 	PathContext paths(dir, dir);
@@ -517,15 +533,47 @@ TEST_P(FilterExpressionTest, Content)
 	EXPECT_TRUE(fe.Parse("LeftContent recontains \"xml.*UTF-8\""));
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("linecount(RightContent) = 7"));
-	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("sublines(RightContent, 0, 1) contains \"<?xml version='1.0' encoding='UTF-8'?>\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("sublines(RightContent, 1, 2) contains \"paths\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, 1) contains \"</projects>\""));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, 1) contains \"</project>\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, -1) contains \"</projects>\""));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, -1) contains \"</project>\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, ContentEmpty)
+{
+	const String dir = paths::ConcatPath(env::GetProgPath(), L"..\\..\\Data\\Compare");
+	PathContext paths(paths::ConcatPath(dir, _T("dir1")), paths::ConcatPath(dir, _T("dir2")));
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	di.diffFileInfo[1].filename = L"file123_0.txt";
+	di.diffFileInfo[1].path = L"";
+	di.diffcode.setSideFlag(1);
+	
+	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+
+	EXPECT_TRUE(fe.Parse("RightContent contains \"UTF-8\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightContent recontains \"xml.*UTF-8\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("linecount(RightContent) = 0"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, 0, 1) contains \"<?xml version='1.0' encoding='UTF-8'?>\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, 1, 2) contains \"paths\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, 1) contains \"</project>\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, -1) contains \"</project>\""));
+	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, ParseError)

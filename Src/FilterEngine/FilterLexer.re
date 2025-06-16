@@ -28,7 +28,7 @@ begin:
 	"CONTAINS"        { return TK_CONTAINS; }
 	"RECONTAINS"      { return TK_RECONTAINS; }
 	"MATCHES"         { return TK_MATCHES; }
-	[0-9]+("KB"|"MB"|"GB"|"TB") {
+	([0-9]+([.][0-9]+)?)("KB"|"MB"|"GB"|"TB") {
 		const char* p = yycursor;
 		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
 			p++;
@@ -36,7 +36,7 @@ begin:
 		yylval.string = DupString(lit.c_str());
 		return TK_SIZE_LITERAL;
 	}
-	[0-9]+("weeks"|"week"|"w"|"days"|"day"|"d"|"hours"|"hour"|"hr"|"h"|"minutes"|"minute"|"min"|"m"|"seconds"|"second"|"sec"|"s"|"milliseconds"|"millisecond"|"msec"|"ms") {
+	([0-9]+([.][0-9]+)?)("weeks"|"week"|"w"|"days"|"day"|"d"|"hours"|"hour"|"hr"|"h"|"minutes"|"minute"|"min"|"m"|"seconds"|"second"|"sec"|"s"|"milliseconds"|"millisecond"|"msec"|"ms") {
 		const char* p = yycursor;
 		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
 			p++;

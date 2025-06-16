@@ -128,7 +128,7 @@ std::string FileContentRef::Sublines(int64_t start, int64_t len) const
 			bool lossy;
 			String line, eol;
 			linesToRead = file.ReadString(line, eol, &lossy);
-			if (count >= start && count < start + len)
+			if (count >= start && count < start + len && (!line.empty() || !eol.empty()))
 				lines.push_back(line + eol);
 			if (lines.size() >= static_cast<size_t>(len))
 				break;
@@ -142,7 +142,8 @@ std::string FileContentRef::Sublines(int64_t start, int64_t len) const
 		bool lossy;
 		String line, eol;
 		linesToRead = file.ReadString(line, eol, &lossy);
-		lines.push_back(line + eol);
+		if (!line.empty() || !eol.empty())
+			lines.push_back(line + eol);
 	} while (linesToRead);
 	if (start < 0)
 	{
@@ -172,7 +173,8 @@ size_t FileContentRef::LineCount() const
 		bool lossy;
 		String line, eol;
 		linesToRead = file.ReadString(line, eol, &lossy);
-		++count;
+		if (!line.empty() || !eol.empty())
+			++count;
 	} while (linesToRead);
 	file.Close();
 	return count;
