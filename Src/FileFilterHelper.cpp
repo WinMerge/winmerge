@@ -492,7 +492,7 @@ static std::size_t findSeparator(const String& str, String& prefix, std::size_t 
 	bool allowOnlyBasicSeparators = false;
 	while (startPos < str.size() && str[startPos] == ' ')
 		++startPos;
-	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("fe!:"), _T("de!:") };
+	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("fe!:"), _T("de!:"), _T("fp:") };
 	for (const auto& pf : prefixes)
 	{
 		if (str.compare(startPos, pf.size(), pf) == 0)
@@ -513,6 +513,41 @@ static std::size_t findSeparator(const String& str, String& prefix, std::size_t 
 			return i;
 	}
 	return String::npos;
+}
+
+/**
+ * @brief Merge filter into regex or expression filter.
+ */
+static void mergeFilter(FileFilter* dest, const FileFilter* src)
+{
+	for (const auto& fileFilter : src->filefilters)
+	{
+		if (!src->default_include)
+			dest->filefilters.push_back(fileFilter);
+		else
+			dest->filefiltersExclude.push_back(fileFilter);
+	}
+	for (const auto& dirFilter : src->dirfilters)
+	{
+		if (!src->default_include)
+			dest->dirfilters.push_back(dirFilter);
+		else
+			dest->dirfiltersExclude.push_back(dirFilter);
+	}
+	for (const auto& fileExpressionFilter : src->fileExpressionFilters)
+	{
+		if (!src->default_include)
+			dest->fileExpressionFilters.push_back(fileExpressionFilter);
+		else
+			dest->fileExpressionFiltersExclude.push_back(fileExpressionFilter);
+	}
+	for (const auto& dirExpressionFilter : src->dirExpressionFilters)
+	{
+		if (!src->default_include)
+			dest->dirExpressionFilters.push_back(dirExpressionFilter);
+		else
+			dest->dirExpressionFiltersExclude.push_back(dirExpressionFilter);
+	}
 }
 
 /** 
@@ -595,6 +630,16 @@ std::tuple<String, String, String, String, std::shared_ptr<FileFilter>> FileFilt
 			else if (prefix == _T("de!:"))
 				pRegexOrExpressionFilter->AddFilterExpression(
 					&pRegexOrExpressionFilter->dirExpressionFiltersExclude, token, 0);
+			else if (prefix == _T("fp:"))
+			{
+				const String path = GetFileFilterPath(token);
+				if (!path.empty())
+				{
+					const FileFilter* filter = m_fileFilterMgr->GetFilterByPath(path);
+					if (filter)
+						mergeFilter(pRegexOrExpressionFilter.get(), filter);
+				}
+			}
 		}
 		if (pos == String::npos)
 			break; // No more separators found
@@ -660,15 +705,12 @@ bool FileFilterHelper::SetFilter(const String &filter)
 	{
 		UseMask(false);
 		SetFileFilterPath(path);
+		return true;
 	}
-	else
-	{
-		UseMask(true);
-		SetMask(flt);
-		SetFileFilterPath(_T(""));
-		return false;
-	}
-	return true;
+	UseMask(true);
+	SetMask(flt);
+	SetFileFilterPath(_T(""));
+	return false;
 }
 
 /** 

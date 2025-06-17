@@ -133,20 +133,14 @@ static bool CheckFileForVersion(const String& ext)
 void CDiffContext::UpdateVersion(DIFFITEM &di, int nIndex) const
 {
 	DiffFileInfo & dfi = di.diffFileInfo[nIndex];
-	// Check only binary files
-	dfi.version.SetFileVersionNone();
-
-	if (di.diffcode.isDirectory())
+	if (!di.diffcode.exists(nIndex) || di.diffcode.isDirectory() || !CheckFileForVersion(paths::FindExtension(di.diffFileInfo[nIndex].filename)))
+	{
+		dfi.version.SetFileVersionNone();
 		return;
+	}
 	
-	String spath;
-	if (!di.diffcode.exists(nIndex))
-		return;
-	String ext = paths::FindExtension(di.diffFileInfo[nIndex].filename);
-	if (!CheckFileForVersion(ext))
-		return;
-	spath = di.getFilepath(nIndex, GetNormalizedPath(nIndex));
-	spath = paths::ConcatPath(spath, di.diffFileInfo[nIndex].filename);
+	const String spath = paths::ConcatPath(
+		di.getFilepath(nIndex, GetNormalizedPath(nIndex)), di.diffFileInfo[nIndex].filename);
 	
 	// Get version info if it exists
 	CVersionInfo ver(spath.c_str());

@@ -17,9 +17,20 @@
  * @brief Default constructor.
  */
 FileVersion::FileVersion()
-: m_fileVersionMS(0xffffffff)
-, m_fileVersionLS(0xffffffff)
 {
+	Clear();
+}
+
+FileVersion::FileVersion(const FileVersion& other)
+{
+	m_fileVersion.store(other.m_fileVersion.load(std::memory_order_relaxed), std::memory_order_relaxed);
+}
+
+FileVersion& FileVersion::operator=(const FileVersion& other)
+{
+	if (this != &other)
+		m_fileVersion.store(other.m_fileVersion.load(std::memory_order_relaxed), std::memory_order_relaxed);
+	return *this;
 }
 
 /**
@@ -29,11 +40,14 @@ FileVersion::FileVersion()
  */
 String FileVersion::GetFileVersionString() const
 {
-	if (m_fileVersionMS == 0xffffffff && m_fileVersionLS >= 0xfffffffe)
+	auto version = m_fileVersion.load(std::memory_order_relaxed);
+	if (version == 0xFFFFFFFFFFFFFFFEULL)
 		return _T("");
 
-	return strutils::format(_T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
-		LOWORD(m_fileVersionMS), HIWORD(m_fileVersionLS),
-		LOWORD(m_fileVersionLS));
+	unsigned int fileVersionMS = static_cast<unsigned int>(version >> 32);
+	unsigned int fileVersionLS = static_cast<unsigned int>(version & 0xFFFFFFFFULL);
+	return strutils::format(_T("%u.%u.%u.%u"), HIWORD(fileVersionMS),
+		LOWORD(fileVersionMS), HIWORD(fileVersionLS),
+		LOWORD(fileVersionLS));
 }
 

@@ -5,6 +5,7 @@
  */
 #pragma once
 
+#include <atomic>
 #include "UnicodeString.h"
 
 /**
@@ -15,17 +16,18 @@
 class FileVersion
 {
 private:
-	unsigned m_fileVersionMS; //*< File version most significant dword. */
-	unsigned m_fileVersionLS; //*< File version least significant dword. */
+	std::atomic_uint64_t m_fileVersion;
 
 public:
 	FileVersion();
+	FileVersion(const FileVersion& other);
+	FileVersion& operator=(const FileVersion& other);
 	void Clear();
-	bool IsCleared() const { return m_fileVersionMS == 0xffffffff && m_fileVersionLS == 0xffffffff; };
+	bool IsCleared() const;
 	void SetFileVersion(unsigned versionMS, unsigned versionLS);
-	void SetFileVersionNone() { m_fileVersionMS = 0xffffffff; m_fileVersionLS = 0xfffffffe; };
+	void SetFileVersionNone();
 	String GetFileVersionString() const;
-	uint64_t GetFileVersionQWORD() const { return (static_cast<uint64_t>(m_fileVersionMS) << 32) + m_fileVersionLS; };
+	uint64_t GetFileVersionQWORD() const;
 };
 
 /**
@@ -33,7 +35,23 @@ public:
  */
 inline void FileVersion::Clear()
 {
-	m_fileVersionMS = m_fileVersionLS = 0xffffffff;
+	m_fileVersion.store(0xFFFFFFFFFFFFFFFFULL, std::memory_order_relaxed);
+}
+
+inline bool FileVersion::IsCleared() const
+{
+	return m_fileVersion.load(std::memory_order_relaxed) == 0xFFFFFFFFFFFFFFFFULL;
+}
+
+inline void FileVersion::SetFileVersion(unsigned versionMS, unsigned versionLS)
+{
+	uint64_t combined = (static_cast<uint64_t>(versionMS) << 32) | versionLS;
+	m_fileVersion.store(combined, std::memory_order_relaxed);
+}
+
+inline void FileVersion::SetFileVersionNone()
+{
+	m_fileVersion.store(0xFFFFFFFFFFFFFFFEULL, std::memory_order_relaxed);
 }
 
 /**
@@ -41,9 +59,7 @@ inline void FileVersion::Clear()
  * @param [in] versionMS Most significant dword for version.
  * @param [in] versionLS Least significant dword for version.
  */
-inline void FileVersion::SetFileVersion(unsigned versionMS, unsigned versionLS)
+inline uint64_t FileVersion::GetFileVersionQWORD() const
 {
-	m_fileVersionMS = versionMS;
-	m_fileVersionLS = versionLS;
+	return m_fileVersion.load(std::memory_order_relaxed);
 }
-
