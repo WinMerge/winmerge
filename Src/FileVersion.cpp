@@ -41,7 +41,7 @@ FileVersion& FileVersion::operator=(const FileVersion& other)
 String FileVersion::GetFileVersionString() const
 {
 	auto version = m_fileVersion.load(std::memory_order_relaxed);
-	if (version == 0xFFFFFFFFFFFFFFFEULL)
+	if (version >= 0xFFFFFFFFFFFFFFFEULL)
 		return _T("");
 
 	unsigned int fileVersionMS = static_cast<unsigned int>(version >> 32);

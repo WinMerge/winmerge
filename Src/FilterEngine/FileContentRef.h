@@ -12,6 +12,6 @@ struct FileContentRef
 	bool operator==(const FileContentRef& other) const;
 	bool Contains(const std::string& str) const;
 	bool REContains(const Poco::RegularExpression& regexp) const;
-	std::string Sublines(int64_t start, int64_t len) const;
+	std::string Sublines(int start, int len) const;
 	size_t LineCount() const;
 };

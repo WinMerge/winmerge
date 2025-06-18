@@ -28,6 +28,8 @@ namespace
 	class FileFilterHelperTest : public testing::Test
 	{
 	protected:
+		String m_oldProgPath;
+
 		// You can remove any or all of the following functions if its body
 		// is	empty.
 
@@ -48,7 +50,8 @@ namespace
 		{
 			// Code	here will be called	immediately	after the constructor (right
 			// before each test).
-			env::SetProgPath(env::GetProgPath() + _T("/../FileFilter"));
+			m_oldProgPath = env::GetProgPath();
+			env::SetProgPath(m_oldProgPath + _T("/../FileFilter"));
 			m_fileFilterHelper.LoadAllFileFilters();
 		}
 
@@ -56,6 +59,7 @@ namespace
 		{
 			// Code	here will be called	immediately	after each test	(right
 			// before the destructor).
+			env::SetProgPath(m_oldProgPath);
 		}
 
 		// Objects declared here can be used by all tests in the test case for Foo.

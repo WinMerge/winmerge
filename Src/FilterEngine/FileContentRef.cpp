@@ -10,21 +10,8 @@
 #include <algorithm>
 #include <functional>
 #include <Poco/RegularExpression.h>
+#include <Poco/FileStream.h>
 #include <Poco/Exception.h>
-using NTSTATUS = LONG;
-#include "HashCalc.h"
-
-static std::vector<uint8_t> CalculateHashValue(const String& path, const tchar_t* algoname)
-{
-	std::vector<uint8_t> hash;
-	HANDLE hFile = CreateFile(path.c_str(), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
-	if (hFile != INVALID_HANDLE_VALUE)
-	{
-		CalculateHashValue(hFile, algoname, hash);
-		CloseHandle(hFile);
-	}
-	return hash;
-}
 
 static void GuessEncoding(UniMemFile& file, const String& path)
 {
@@ -44,13 +31,34 @@ static void GuessEncoding(UniMemFile& file, const String& path)
 
 bool FileContentRef::operator==(const FileContentRef& other) const
 {
-	std::vector<uint8_t> hash1 = CalculateHashValue(path, _T("SHA256"));
-	if (hash1.empty())
+	try {
+		Poco::FileInputStream fs1(ucr::toUTF8(path), std::ios::binary);
+		Poco::FileInputStream fs2(ucr::toUTF8(other.path), std::ios::binary);
+
+		if (!fs1.good() || !fs2.good()) return false;
+
+		const size_t bufferSize = 4096;
+		char buffer1[bufferSize];
+		char buffer2[bufferSize];
+
+		while (true) {
+			fs1.read(buffer1, bufferSize);
+			fs2.read(buffer2, bufferSize);
+
+			std::streamsize count1 = fs1.gcount();
+			std::streamsize count2 = fs2.gcount();
+
+			if (count1 != count2) return false;
+			if (count1 == 0) return true; // end of both
+
+			if (std::memcmp(buffer1, buffer2, static_cast<size_t>(count1)) != 0)
+				return false;
+		}
+	}
+	catch (const Poco::Exception&)
+	{
 		return false;
-	std::vector<uint8_t> hash2 = CalculateHashValue(other.path, _T("SHA256"));
-	if (hash2.empty())
-		return false;
-	return hash1 == hash2;
+	}
 }
 
 bool FileContentRef::Contains(const std::string& str) const
@@ -112,7 +120,7 @@ bool FileContentRef::REContains(const Poco::RegularExpression& regexp) const
 	return found;
 }
 
-std::string FileContentRef::Sublines(int64_t start, int64_t len) const
+std::string FileContentRef::Sublines(int start, int len) const
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(path))
@@ -147,15 +155,15 @@ std::string FileContentRef::Sublines(int64_t start, int64_t len) const
 	} while (linesToRead);
 	if (start < 0)
 	{
-		start = static_cast<int64_t>(lines.size()) + start;
+		start = static_cast<int>(lines.size()) + start;
 		if (start < 0)
 			start = 0;
 	}
-	if (start >= static_cast<int64_t>(lines.size()))
+	if (start >= static_cast<int>(lines.size()))
 		return "";
 	if (len < 0)
-		len = static_cast<int64_t>(lines.size()) - start;
-	int64_t end = std::min<int64_t>(start + len, lines.size());
+		len = static_cast<int>(lines.size()) - start;
+	size_t end = std::min<int>(start + len, lines.size());
 	file.Close();
 	return ucr::toUTF8(strutils::join(lines.begin() + start, lines.begin() + end, _T("")));
 }

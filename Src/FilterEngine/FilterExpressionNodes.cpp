@@ -538,7 +538,7 @@ static auto ExtensionField(int index, const FilterExpression* ctxt, const DIFFIT
 	if (!di.diffcode.exists(index))
 		return std::monostate{};
 	const std::string ext = ucr::toUTF8(paths::FindExtension(di.diffFileInfo[index].filename.get()));
-	return ext.c_str() + strspn(ext.c_str(), ".");
+	return std::string(ext.c_str() + strspn(ext.c_str(), "."));
 }
 
 static auto FolderField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
@@ -588,7 +588,7 @@ static auto AttributesField(int index, const FilterExpression* ctxt, const DIFFI
 {
 	if (!di.diffcode.exists(index))
 		return std::monostate{};
-	return di.diffFileInfo[index].flags.attributes;
+	return static_cast<int64_t>(di.diffFileInfo[index].flags.attributes);
 }
 
 static auto AttrStrField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
@@ -612,12 +612,12 @@ static auto DiffCodeField(int index, const FilterExpression* ctxt, const DIFFITE
 
 static auto DifferencesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	return di.nsdiffs;
+	return static_cast<int64_t>(di.nsdiffs);
 }
 
 static auto IgnoredDiffsField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	return di.nidiffs;
+	return static_cast<int64_t>(di.nidiffs);
 }
 
 static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType

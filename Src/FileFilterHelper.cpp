@@ -548,6 +548,7 @@ static void mergeFilter(FileFilter* dest, const FileFilter* src)
 		else
 			dest->dirExpressionFiltersExclude.push_back(dirExpressionFilter);
 	}
+	dest->errors.insert(dest->errors.end(), src->errors.begin(), src->errors.end());
 }
 
 /** 

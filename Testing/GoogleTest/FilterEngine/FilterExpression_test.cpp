@@ -524,6 +524,10 @@ TEST_P(FilterExpressionTest, Content1)
 	
 	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
 
+	EXPECT_TRUE(fe.Parse("RightContent = RightContent"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightContent != LeftContent"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent contains \"UTF-8\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftContent contains \"UTF-8\""));
