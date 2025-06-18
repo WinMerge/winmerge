@@ -564,6 +564,10 @@ TEST_P(FilterExpressionTest, ContentEmpty)
 	
 	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
 
+	EXPECT_TRUE(fe.Parse("RightContent = RightContent"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightContent != LeftContent"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent contains \"UTF-8\""));
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent recontains \"xml.*UTF-8\""));
