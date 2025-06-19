@@ -2583,9 +2583,6 @@ msgstr "இடம்"
 msgid "Filters"
 msgstr "வடிப்பான்கள்"
 
-msgid "[F] "
-msgstr "[F] "
-
 msgid "Description"
 msgstr "விளக்கம்"
 
@@ -4562,6 +4559,36 @@ msgstr "கோப்பு செயல்பாடு வெற்றிகர�
 
 msgid "File operation canceled"
 msgstr "கோப்பு செயல்பாடு கைவிடப்பட்டது"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "அழகானமாக்கல்"

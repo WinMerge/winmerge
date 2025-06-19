@@ -1269,7 +1269,11 @@ static bool AddToRecentDocs(const PathContext& paths,
 	if (recurse.has_value())
 		params += *recurse ? _T("/r ") : _T("/r- ");
 	if (!filter.empty())
-		params += _T("/f \"") + filter + _T("\" ");
+	{
+		String filter2 = filter;
+		strutils::replace(filter2, _T("\""), _T("\"\""));
+		params += _T("/f \"") + filter2 + _T("\" ");
+	}
 	switch (nID)
 	{
 	case ID_MERGE_COMPARE_TEXT:  params += _T("/t text "); break;

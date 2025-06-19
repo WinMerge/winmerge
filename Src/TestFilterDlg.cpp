@@ -88,11 +88,11 @@ bool CTestFilterDlg::CheckText(String text) const
 	{
 		// Convert any forward slashes to canonical Windows-style backslashes
 		strutils::replace(text, _T("/"), _T("\\"));
-		return m_pFileFilterMgr->TestDirNameAgainstFilter(m_pFileFilter, text);
+		return m_pFileFilter->TestDirNameAgainstFilter(text);
 	}
 	else
 	{
-		return m_pFileFilterMgr->TestFileNameAgainstFilter(m_pFileFilter, text);
+		return m_pFileFilter->TestFileNameAgainstFilter(text);
 	}
 }
 
