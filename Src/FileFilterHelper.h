@@ -124,6 +124,7 @@ public:
 	void SetUserFilterPath(const String& filterPath);
 	FileFilter* GetCurrentFilter() const { return m_currentFilter; }
 	FileFilter* GetRegexOrExpressionFilter() const { return m_pRegexOrExpressionFilter.get(); }
+	FileFilter* GetRegexOrExpressionFilterExclude() const { return m_pRegexOrExpressionFilterExclude.get(); }
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
@@ -148,7 +149,8 @@ public:
 
 
 protected:
-	std::tuple<String, String, String, String, std::shared_ptr<FileFilter>> ParseExtensions(const String &extensions) const;
+	std::tuple<String, String, String, String, std::shared_ptr<FileFilter>, std::shared_ptr<FileFilter>>
+		ParseExtensions(const String &extensions) const;
 
 private:
 	std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
@@ -156,6 +158,7 @@ private:
 	std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
 	std::unique_ptr<FilterList> m_pMaskDirFilterExclude;  /*< Filter for dirmasks */
 	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilter;
+	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilterExclude;
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
 	std::unique_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
 	String m_sFileFilterPath;        /*< Path to current filter */

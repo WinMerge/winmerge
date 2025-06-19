@@ -109,9 +109,12 @@ int main()
 			if (filter.GetRegexOrExpressionFilter() && filter.GetRegexOrExpressionFilter()->errors.size() > 0)
 			{
 				for (auto error : filter.GetRegexOrExpressionFilter()->errors)
-				{
 					std::wcout << FormatFilterErrorSummary(error) << "\n";
-				}
+			}
+			if (filter.GetRegexOrExpressionFilterExclude() && filter.GetRegexOrExpressionFilterExclude()->errors.size() > 0)
+			{
+				for (auto error : filter.GetRegexOrExpressionFilterExclude()->errors)
+					std::wcout << FormatFilterErrorSummary(error) << "\n";
 			}
 		}
 		else if (cmd[0] == L'm') // Set method
