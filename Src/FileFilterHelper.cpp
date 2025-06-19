@@ -654,7 +654,7 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 					const FileFilter* filter = m_fileFilterMgr->GetFilterByPath(path);
 					if (filter)
 					{
-						if (filter->default_include)
+						if (!filter->default_include)
 							mergeFilter(pRegexOrExpressionFilter.get(), filter);
 						else
 						{
