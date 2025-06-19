@@ -291,18 +291,18 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 	// append a point if there is no extension
 	strFileName = addPeriodIfNoExtension(strFileName);
 
-	std::string utf8 = ucr::toUTF8(strFileName);
-	bool result = m_pMaskFileFilter->Match(utf8);
+	std::string strFileNameUtf8 = ucr::toUTF8(strFileName);
+	bool result = m_pMaskFileFilter->Match(strFileNameUtf8);
 	if (!result)
 	{
 		if (m_pRegexOrExpressionFilter)
-			result = TestAgainstRegList(&m_pRegexOrExpressionFilter->dirfilters, strFileName);
+			result = TestAgainstRegList(&m_pRegexOrExpressionFilter->filefilters, strFileName);
 	}
 	if (!result)
 		return false;
-	if (m_pMaskFileFilterExclude->Match(utf8))
+	if (m_pMaskFileFilterExclude->Match(strFileNameUtf8))
 		return false;
-	if (m_pRegexOrExpressionFilter && TestAgainstRegList(&m_pRegexOrExpressionFilter->dirfiltersExclude, strFileName))
+	if (m_pRegexOrExpressionFilter && TestAgainstRegList(&m_pRegexOrExpressionFilter->filefiltersExclude, strFileName))
 		return false;
 	if (m_pRegexOrExpressionFilterExclude && !m_pRegexOrExpressionFilterExclude->TestFileNameAgainstFilter(strFileName))
 		return false;
@@ -401,8 +401,8 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 	// append a point if there is no extension
 	strDirName = addPeriodIfNoExtension(strDirName);
 
-	std::string utf8 = ucr::toUTF8(strDirName);
-	bool result = m_pMaskDirFilter->Match(utf8);
+	std::string strDirNameUtf8 = ucr::toUTF8(strDirName);
+	bool result = m_pMaskDirFilter->Match(strDirNameUtf8);
 	if (!result)
 	{
 		if (m_pRegexOrExpressionFilter)
@@ -410,7 +410,7 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 	}
 	if (!result)
 		return false;
-	if (m_pMaskDirFilterExclude->Match(utf8))
+	if (m_pMaskDirFilterExclude->Match(strDirNameUtf8))
 		return false;
 	if (m_pRegexOrExpressionFilter && TestAgainstRegList(&m_pRegexOrExpressionFilter->dirfiltersExclude, strDirName))
 		return false;
@@ -667,6 +667,10 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 							mergeFilter(pRegexOrExpressionFilterExclude.get(), filter);
 						}
 					}
+				}
+				else
+				{
+					pRegexOrExpressionFilter->errors.emplace_back(FILTER_ERROR_FILTER_NAME_NOT_FOUND, -1, -1, token, "");
 				}
 			}
 		}

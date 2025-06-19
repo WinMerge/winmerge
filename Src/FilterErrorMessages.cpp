@@ -27,6 +27,8 @@ String GetFilterErrorMessage(FilterErrorCode code)
 		return _("Undefined identifier");
 	case FILTER_ERROR_INVALID_ARGUMENT_COUNT:
 		return _("Invalid number of arguments");
+	case FILTER_ERROR_FILTER_NAME_NOT_FOUND:
+		return _("Filter name not found");
 	default:
 		return _("Unknown error");
 	}
