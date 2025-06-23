@@ -1362,9 +1362,6 @@ msgstr "&Rasti kitą"
 msgid "Find &Prev"
 msgstr "Rasti &praeitą"
 
-msgid "&Ok"
-msgstr "&Gerai"
-
 msgid "Replace"
 msgstr "Pakeisti"
 
@@ -1403,6 +1400,9 @@ msgstr "Naujas"
 
 msgid "&Background color:"
 msgstr "&Fono spalva:"
+
+msgid "&Ok"
+msgstr "&Gerai"
 
 msgid "&Apply"
 msgstr "T&aikyti"
@@ -1808,6 +1808,12 @@ msgstr "Atkurti"
 
 msgid "File Filters"
 msgstr "Failo filtrai"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testas..."
@@ -4095,6 +4101,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

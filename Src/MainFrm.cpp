@@ -812,10 +812,8 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 	}
 	FileFilterHelper filterImg, filterBin;
 	const String& imgPatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);
-	filterImg.UseMask(true);
 	filterImg.SetMask(imgPatterns);
 	const String& binPatterns = GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS);
-	filterBin.UseMask(true);
 	filterBin.SetMask(binPatterns);
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
@@ -2102,7 +2100,6 @@ void CMainFrame::OnToolsFilters()
 	FileFiltersDlg fileFiltersDlg;
 	auto lineFilters = std::make_unique<LineFiltersList>(LineFiltersList());
 	auto SubstitutionFilters = std::make_unique<SubstitutionFiltersList>(SubstitutionFiltersList());
-	String selectedFilter;
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 	const String origFilter = pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
@@ -2113,8 +2110,7 @@ void CMainFrame::OnToolsFilters()
 	// Make sure all filters are up-to-date
 	pGlobalFileFilter->ReloadUpdatedFilters();
 
-	fileFiltersDlg.SetFilterArray(pGlobalFileFilter->GetFileFilters(selectedFilter));
-	fileFiltersDlg.SetSelected(selectedFilter);
+	fileFiltersDlg.SetFileFilterHelper(pGlobalFileFilter);
 	const bool lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
@@ -2128,28 +2124,8 @@ void CMainFrame::OnToolsFilters()
 
 	if (sht.DoModal() == IDOK)
 	{
-		String strNone = _("<None>");
-		String path = fileFiltersDlg.GetSelected();
-		if (!path.empty())
-		{
-			if (path.find(strNone) != String::npos)
-			{
-				// Don't overwrite mask we already have
-				if (!pGlobalFileFilter->IsUsingMask())
-				{
-					String sFilter(_T("*.*"));
-					pGlobalFileFilter->SetFilter(sFilter);
-					GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
-				}
-			}
-			else
-			{
-				pGlobalFileFilter->SetFileFilterPath(path);
-				pGlobalFileFilter->UseMask(false);
-				String sFilter = pGlobalFileFilter->GetFilterNameOrMask();
-				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
-			}
-		}
+		String sFilter = pGlobalFileFilter->GetFilterNameOrMask();
+		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 

@@ -96,26 +96,9 @@ namespace
 		EXPECT_TRUE(filtername.empty());
 	}
 
-	TEST_F(FileFilterHelperTest, SetFileFilterPath)
-	{
-		String selected;
-		m_fileFilterHelper.SetFileFilterPath(_T(""));
-		std::vector<FileFilterInfo> filters = m_fileFilterHelper.GetFileFilters(selected);
-		EXPECT_TRUE(selected.compare(_T("")) == 0);
-
-		m_fileFilterHelper.SetFileFilterPath(_T("non-existent file filter path"));
-		filters = m_fileFilterHelper.GetFileFilters(selected);
-		EXPECT_TRUE(selected.compare(_T("")) == 0);
-
-		m_fileFilterHelper.SetFileFilterPath(m_fileFilterHelper.GetFileFilterPath(_T("simple include file")).c_str());
-		filters = m_fileFilterHelper.GetFileFilters(selected);
-		EXPECT_TRUE(selected.find_first_of(_T("Filters\\simple_include_file.flt")) != String::npos);
-	}
-
 	TEST_F(FileFilterHelperTest, GetFileFilters)
 	{
-		String selected;
-		std::vector<FileFilterInfo> filters = m_fileFilterHelper.GetFileFilters(selected);
+		std::vector<FileFilterInfo> filters = m_fileFilterHelper.GetFileFilters();
 
 		for (std::vector<FileFilterInfo>::iterator it = filters.begin(); it != filters.end(); it++)
 		{
@@ -141,10 +124,9 @@ namespace
 		}
 	}
 
-	TEST_F(FileFilterHelperTest, SetFilter)
+	TEST_F(FileFilterHelperTest, SetMask1)
 	{
-		m_fileFilterHelper.SetFilter(_T("simple include file"));
-		EXPECT_EQ(false, m_fileFilterHelper.IsUsingMask());
+		m_fileFilterHelper.SetMask(_T("simple include file"));
 
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
@@ -157,7 +139,7 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.ext")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
-		m_fileFilterHelper.SetFilter(_T("simple include dir"));
+		m_fileFilterHelper.SetMask(_T("fp:simple include dir"));
 
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
@@ -171,11 +153,8 @@ namespace
 
 	}
 
-	TEST_F(FileFilterHelperTest, SetMask)
+	TEST_F(FileFilterHelperTest, SetMask2)
 	{
-		m_fileFilterHelper.UseMask(true);
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
-
 		m_fileFilterHelper.SetMask(_T(""));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
@@ -196,7 +175,6 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
 		m_fileFilterHelper.SetMask(_T("*.c;*.cpp;*.cxx"));
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cxx")));
@@ -210,7 +188,6 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
 		m_fileFilterHelper.SetMask(_T("!*.h"));
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cxx")));
@@ -224,7 +201,6 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
 		m_fileFilterHelper.SetMask(_T("*.c*;!*.cxx;!Makefile;!.git\\;!abc\\;!de*hi\\;!Debug\\;!Release\\"));
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.cxx")));
@@ -248,13 +224,11 @@ namespace
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\Debug")));
 
 		m_fileFilterHelper.SetMask(_T("abc.\\def.\\*.*"));
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("abc\\def\\efg")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("abc.1\\def\\efg")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("abc\\def.1\\efg")));
 
 		m_fileFilterHelper.SetMask(_T("abc.\\def.\\"));
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("abc\\def")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("abc.1\\def")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("abc\\def.1")));
@@ -263,13 +237,11 @@ namespace
 
 		// Test for bugs introduced in version 2.16.26
 		m_fileFilterHelper.SetMask(_T("*.*"));
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T(".git\\config")));
 		SetDiffItem(_T(".git"), _T("config"), _T("config"), true, di);
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(di));
 
 		m_fileFilterHelper.SetMask(_T("f: \\.o$ ; f: \\.lib$ ; f: \\.bak$; d: \\\\\\.svn$; d: \\\\_svn$;d:\\\\cvs$;d:\\\\\\.git$;d:\\\\\\.bzr$;d:\\\\\\.hg$;"));
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		SetDiffItem(_T("abc"), _T("a.o"), _T("A.o"), true, di);
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(di));
 		SetDiffItem(_T(""), _T("abc.lib"), _T("abc.lib"), true, di);
@@ -297,8 +269,8 @@ namespace
 
 	TEST_F(FileFilterHelperTest, Error)
 	{
-		m_fileFilterHelper.SetFilter(_T("error include"));
-		EXPECT_EQ(8, m_fileFilterHelper.GetCurrentFilter()->errors.size());
+		m_fileFilterHelper.SetMask(_T("fp:error include"));
+		EXPECT_EQ((size_t)8, m_fileFilterHelper.GetErrorList().size());
 	}
 
 }  // namespace

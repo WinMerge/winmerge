@@ -1361,9 +1361,6 @@ msgstr "次を検索(&F)"
 msgid "Find &Prev"
 msgstr "前を検索(&P)"
 
-msgid "&Ok"
-msgstr "&OK"
-
 msgid "Replace"
 msgstr "置換"
 
@@ -1402,6 +1399,9 @@ msgstr "新規"
 
 msgid "&Background color:"
 msgstr "背景色(&B)"
+
+msgid "&Ok"
+msgstr "&OK"
 
 msgid "&Apply"
 msgstr "適用(&A)"
@@ -1811,6 +1811,12 @@ msgstr "リセット"
 
 msgid "File Filters"
 msgstr "ファイル フィルター"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "テスト..."
@@ -4491,6 +4497,9 @@ msgstr "未定義の識別子です"
 
 msgid "Invalid number of arguments"
 msgstr "引数の数が正しくありません"
+
+msgid "Filter name not found"
+msgstr ""
 
 msgid "Unknown error"
 msgstr "不明なエラーです"

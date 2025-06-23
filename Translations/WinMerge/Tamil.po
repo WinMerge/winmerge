@@ -1373,9 +1373,6 @@ msgstr "அடுத்து கண்டுபிடி"
 msgid "Find &Prev"
 msgstr "முந்தையதைக் கண்டுபிடி"
 
-msgid "&Ok"
-msgstr "சரி"
-
 msgid "Replace"
 msgstr "மாற்று"
 
@@ -1414,6 +1411,9 @@ msgstr "புதிய"
 
 msgid "&Background color:"
 msgstr "பின்னணி நிறம்:"
+
+msgid "&Ok"
+msgstr "சரி"
 
 msgid "&Apply"
 msgstr "இடு"
@@ -1828,6 +1828,12 @@ msgstr "மீட்டமை"
 
 msgid "File Filters"
 msgstr "கோப்பு வடிப்பான்கள்"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "சோதனை..."
@@ -4585,6 +4591,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

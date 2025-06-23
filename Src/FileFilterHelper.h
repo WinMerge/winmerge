@@ -117,12 +117,10 @@ public:
 	String GetUserFilterPathWithCreate() const;
 
 	FileFilterMgr* GetManager() const;
-	void SetFileFilterPath(const String& szFileFilterPath);
-	std::vector<FileFilterInfo> GetFileFilters(String& selected) const;
+	std::vector<FileFilterInfo> GetFileFilters() const;
 	String GetFileFilterName(const String& filterPath) const;
 	String GetFileFilterPath(const String& filterName) const;
 	void SetUserFilterPath(const String& filterPath);
-	FileFilter* GetCurrentFilter() const { return m_currentFilter; }
 	FileFilter* GetRegexOrExpressionFilter() const { return m_pRegexOrExpressionFilter.get(); }
 	FileFilter* GetRegexOrExpressionFilterExclude() const { return m_pRegexOrExpressionFilterExclude.get(); }
 
@@ -131,12 +129,9 @@ public:
 
 	void LoadFileFilterDirPattern(const String& dir, const String& szPattern);
 
-	void UseMask(bool bUseMask);
 	void SetMask(const String& strMask);
 
-	bool IsUsingMask() const;
 	String GetFilterNameOrMask() const;
-	bool SetFilter(const String &filter);
 
 	void SetDiffContext(const CDiffContext* pCtxt) override;
 	std::vector<const FileFilterErrorInfo*> GetErrorList() const override;
@@ -159,11 +154,9 @@ private:
 	std::unique_ptr<FilterList> m_pMaskDirFilterExclude;  /*< Filter for dirmasks */
 	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilter;
 	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilterExclude;
-	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
 	std::unique_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
-	String m_sFileFilterPath;        /*< Path to current filter */
+	std::vector<String> m_sFileFilterPath;        /*< Path to current filter */
 	String m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
-	bool m_bUseMask;   /*< If `true` file mask is used, filter otherwise */
 	String m_sGlobalFilterPath;    /*< Path for shared filters */
 	String m_sUserSelFilterPath;     /*< Path for user's private filters */
 };
@@ -175,12 +168,3 @@ inline FileFilterMgr * FileFilterHelper::GetManager() const
 {
 	return m_fileFilterMgr.get();
 }
-
-/**
- * @brief Returns true if active filter is a mask.
- */
-inline bool FileFilterHelper::IsUsingMask() const
-{
-	return m_bUseMask;
-}
-

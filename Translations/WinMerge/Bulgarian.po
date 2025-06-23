@@ -1359,9 +1359,6 @@ msgstr "&Търсене"
 msgid "Find &Prev"
 msgstr "Търсене &назад"
 
-msgid "&Ok"
-msgstr "&Добре"
-
 msgid "Replace"
 msgstr "Заменяне"
 
@@ -1400,6 +1397,9 @@ msgstr "&Нов"
 
 msgid "&Background color:"
 msgstr "Цвят на &фона:"
+
+msgid "&Ok"
+msgstr "&Добре"
 
 msgid "&Apply"
 msgstr "&Прилагане"
@@ -1805,6 +1805,12 @@ msgstr "Нулиране"
 
 msgid "File Filters"
 msgstr "Филтри за файлове"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Изпробване..."
@@ -4469,6 +4475,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

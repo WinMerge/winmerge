@@ -1365,9 +1365,6 @@ msgstr "&Siguiente"
 msgid "Find &Prev"
 msgstr "&Anterior"
 
-msgid "&Ok"
-msgstr "Ace&ptar"
-
 msgid "Replace"
 msgstr "Reemplazar"
 
@@ -1406,6 +1403,9 @@ msgstr "Nuevo"
 
 msgid "&Background color:"
 msgstr "Color de fondo:"
+
+msgid "&Ok"
+msgstr "Ace&ptar"
 
 msgid "&Apply"
 msgstr "&Aplicar"
@@ -1811,6 +1811,12 @@ msgstr "Restablecer"
 
 msgid "File Filters"
 msgstr "Filtros de archivo"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Probar..."
@@ -4435,6 +4441,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

@@ -49,7 +49,6 @@
 #define IDD_CONFIRM_COPY                236
 #define IDD_PLUGINS_LIST                237
 #define IDD_PLUGINS_SELECTPLUGIN        238
-#define IDD_DIR_FILTER                  240
 #define IDD_ENCODINGERROR               241
 #define IDD_SELECT_FILES_OR_FOLDERS     247
 #define IDD_DIALOG_WINDOWSMANAGER       251
@@ -594,6 +593,9 @@
 #define IDC_JUMP_LIST                   1429
 #define IDC_CLEAR_ALL_RECENT_ITEMS      1430
 #define IDC_ITEMS_PER_SEC               1431
+#define IDC_FILTERFILE_MASK_BTN         1432
+#define IDC_FILTERFILE_PRESET_BTN       1433
+#define IDC_FILTERFILE_MASK             1434
 #define IDC_EXPAND_SUBDIRS              1600
 #define IDC_FILEENCODING                1601
 #define IDC_PLUGIN                      1602
@@ -1827,7 +1829,8 @@
 #define IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION 44669
 #define IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER 44670
 #define IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT 44671
-#define IDS_FILTER_ERROR_UNKNOWN_ERROR 44672
+#define IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND 44672
+#define IDS_FILTER_ERROR_UNKNOWN_ERROR 44673
 
 // Next default values for new objects
 // 

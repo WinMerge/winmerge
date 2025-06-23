@@ -1641,10 +1641,6 @@ msgid "Find &Prev"
 msgstr "找上一個 (&P)"
 
 #, c-format
-msgid "&Ok"
-msgstr "確定 (&O)"
-
-#, c-format
 msgid "Replace"
 msgstr "取代"
 
@@ -1694,6 +1690,10 @@ msgstr "新增"
 #, c-format
 msgid "&Background color:"
 msgstr "背景顏色 (&B)"
+
+#, c-format
+msgid "&Ok"
+msgstr "確定 (&O)"
 
 #, c-format
 msgid "&Apply"
@@ -2192,6 +2192,12 @@ msgstr "重設"
 
 msgid "File Filters"
 msgstr "檔案篩選器"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "測試..."
@@ -5127,6 +5133,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

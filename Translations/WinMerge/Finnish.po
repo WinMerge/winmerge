@@ -1362,9 +1362,6 @@ msgstr "Etsi seuraava"
 msgid "Find &Prev"
 msgstr "Etsi &edellinen"
 
-msgid "&Ok"
-msgstr "OK"
-
 msgid "Replace"
 msgstr "Korvaa"
 
@@ -1403,6 +1400,9 @@ msgstr "Uusi"
 
 msgid "&Background color:"
 msgstr "&Taustaväri:"
+
+msgid "&Ok"
+msgstr "OK"
 
 msgid "&Apply"
 msgstr "Käytä"
@@ -1817,6 +1817,12 @@ msgstr "Palauta"
 
 msgid "File Filters"
 msgstr "Tiedostosuodattimet"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testi..."
@@ -4430,6 +4436,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

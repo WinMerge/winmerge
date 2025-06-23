@@ -247,7 +247,6 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	if (m_pDirView)
 		pCtxt->m_pPropertySystem.reset(new PropertySystem(m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames()));
 
-	m_imgfileFilter.UseMask(true);
 	m_imgfileFilter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	pCtxt->m_pImgfileFilter = &m_imgfileFilter;
 

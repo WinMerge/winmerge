@@ -1632,10 +1632,6 @@ msgid "Find &Prev"
 msgstr "&Anterior"
 
 #, c-format
-msgid "&Ok"
-msgstr "&D'acord"
-
-#, c-format
 msgid "Replace"
 msgstr "Substitueix"
 
@@ -1685,6 +1681,10 @@ msgstr "Nova"
 #, c-format
 msgid "&Background color:"
 msgstr "Color de fons:"
+
+#, c-format
+msgid "&Ok"
+msgstr "&D'acord"
 
 #, c-format
 msgid "&Apply"
@@ -2182,6 +2182,12 @@ msgstr "Reinicialitza"
 
 msgid "File Filters"
 msgstr "Filtres de fitxer"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "&Prova..."
@@ -5146,6 +5152,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

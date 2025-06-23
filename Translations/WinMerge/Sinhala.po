@@ -1631,10 +1631,6 @@ msgid "Find &Prev"
 msgstr ""
 
 #, c-format
-msgid "&Ok"
-msgstr "&හරි"
-
-#, c-format
 msgid "Replace"
 msgstr "ප්‍රතිස්ථාපනය කරන්න"
 
@@ -1684,6 +1680,10 @@ msgstr "නව"
 #, c-format
 msgid "&Background color:"
 msgstr ""
+
+#, c-format
+msgid "&Ok"
+msgstr "&හරි"
 
 #, c-format
 msgid "&Apply"
@@ -2180,6 +2180,12 @@ msgid "Reset"
 msgstr "යලි පිහිටුවීමට"
 
 msgid "File Filters"
+msgstr ""
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
 msgstr ""
 
 msgid "Test..."
@@ -4991,6 +4997,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

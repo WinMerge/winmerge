@@ -1631,10 +1631,6 @@ msgid "Find &Prev"
 msgstr ""
 
 #, c-format
-msgid "&Ok"
-msgstr "&OK"
-
-#, c-format
 msgid "Replace"
 msgstr "Nahradit"
 
@@ -1684,6 +1680,10 @@ msgstr "&Nový"
 #, c-format
 msgid "&Background color:"
 msgstr ""
+
+#, c-format
+msgid "&Ok"
+msgstr "&OK"
 
 #, c-format
 msgid "&Apply"
@@ -2182,6 +2182,12 @@ msgid "Reset"
 msgstr "V&rátit"
 
 msgid "File Filters"
+msgstr ""
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
 msgstr ""
 
 msgid "Test..."
@@ -4936,6 +4942,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

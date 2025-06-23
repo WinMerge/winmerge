@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-06-08 21:16+0000\n"
+"POT-Creation-Date: 2025-06-20 08:19+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1356,9 +1356,6 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&Ok"
-msgstr ""
-
 msgid "Replace"
 msgstr ""
 
@@ -1396,6 +1393,9 @@ msgid "New"
 msgstr ""
 
 msgid "&Background color:"
+msgstr ""
+
+msgid "&Ok"
 msgstr ""
 
 msgid "&Apply"
@@ -1801,6 +1801,12 @@ msgid "Reset"
 msgstr ""
 
 msgid "File Filters"
+msgstr ""
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
 msgstr ""
 
 msgid "Test..."
@@ -4090,6 +4096,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

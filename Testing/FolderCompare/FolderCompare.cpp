@@ -62,7 +62,6 @@ int main()
 	int dm = CMP_CONTENT; // Default compare method
 	PathContext paths(_T(""), _T("")); // Default empty paths
 	FileFilterHelper filter;
-	filter.UseMask(true);
 	filter.SetMask(_T("*.*"));
 
 	std::wcout << L"WinMerge folder comparison test tool\n";

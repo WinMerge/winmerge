@@ -1365,9 +1365,6 @@ msgstr "البحث في ال&تالي"
 msgid "Find &Prev"
 msgstr "البحث في ال&سابق"
 
-msgid "&Ok"
-msgstr "&موافق"
-
 msgid "Replace"
 msgstr "استبدال"
 
@@ -1406,6 +1403,9 @@ msgstr "جديد"
 
 msgid "&Background color:"
 msgstr "&لون الخلفية:"
+
+msgid "&Ok"
+msgstr "&موافق"
 
 msgid "&Apply"
 msgstr "ت&طبيق"
@@ -1812,6 +1812,12 @@ msgid "Reset"
 msgstr "إعادة تعيين"
 
 msgid "File Filters"
+msgstr ""
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
 msgstr ""
 
 msgid "Test..."
@@ -4377,6 +4383,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

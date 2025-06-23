@@ -8,8 +8,7 @@
 
 #include "TrDialogs.h"
 #include <vector>
-
-struct FileFilterInfo;
+#include "FileFilterHelper.h"
 
 /**
  * @brief Class for dialog allowing user to select
@@ -22,14 +21,14 @@ class FileFiltersDlg : public CTrPropertyPage
 // Construction
 public:
 	FileFiltersDlg();   // standard constructor
-	void SetFilterArray(const std::vector<FileFilterInfo>& fileFilters);
-	String GetSelected();
-	void SetSelected(const String & selected);
+	void SetFileFilterHelper(FileFilterHelper* pFileFilterHelper);
 
 // Implementation data
 private:
-	String m_sFileFilterPath;
 	CPoint m_ptLastMousePos;
+	String m_sMask;
+	std::unique_ptr<FileFilterHelper> m_pFileFilterHelper;
+	FileFilterHelper* m_pFileFilterHelperOrg;
 	std::vector<FileFilterInfo> m_Filters;
 
 // Dialog Data
@@ -44,7 +43,6 @@ protected:
 	void SelectFilterByIndex(int index);
 	void SelectFilterByFilePath(const String& path);
 	void AddToGrid(int filterIndex);
-	bool IsFilterItemNone(int item) const;
 	void UpdateFiltersList();
 	void EditFileFilter(const String& path);
 

@@ -1363,9 +1363,6 @@ msgstr "&Găsește următorul"
 msgid "Find &Prev"
 msgstr "Găsește precedentul"
 
-msgid "&Ok"
-msgstr "&Ok"
-
 msgid "Replace"
 msgstr "Înlocuiește"
 
@@ -1404,6 +1401,9 @@ msgstr "Nou"
 
 msgid "&Background color:"
 msgstr "Culoare fundal:"
+
+msgid "&Ok"
+msgstr "&Ok"
 
 msgid "&Apply"
 msgstr "&Aplică"
@@ -1817,6 +1817,12 @@ msgstr "Reinițializare"
 
 msgid "File Filters"
 msgstr "Filtre de fișiere"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testează..."
@@ -4481,6 +4487,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

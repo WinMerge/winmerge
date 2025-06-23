@@ -1640,10 +1640,6 @@ msgid "Find &Prev"
 msgstr "이전 찾기(&P)"
 
 #, c-format
-msgid "&Ok"
-msgstr "확인(&O)"
-
-#, c-format
 msgid "Replace"
 msgstr "바꾸기"
 
@@ -1693,6 +1689,10 @@ msgstr "새로 만들기"
 #, c-format
 msgid "&Background color:"
 msgstr "배경 색상(&B):"
+
+#, c-format
+msgid "&Ok"
+msgstr "확인(&O)"
 
 #, c-format
 msgid "&Apply"
@@ -2190,6 +2190,12 @@ msgstr "재설정"
 
 msgid "File Filters"
 msgstr "파일 필터"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "테스트..."
@@ -5241,6 +5247,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

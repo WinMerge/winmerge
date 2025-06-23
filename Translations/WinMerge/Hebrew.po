@@ -1359,9 +1359,6 @@ msgstr "חפש הבא"
 msgid "Find &Prev"
 msgstr "חפש קודם"
 
-msgid "&Ok"
-msgstr "אישור"
-
 msgid "Replace"
 msgstr "החלף"
 
@@ -1400,6 +1397,9 @@ msgstr "חדש"
 
 msgid "&Background color:"
 msgstr "צבע רקע:"
+
+msgid "&Ok"
+msgstr "אישור"
 
 msgid "&Apply"
 msgstr "החל"
@@ -1805,6 +1805,12 @@ msgstr "אפס"
 
 msgid "File Filters"
 msgstr "מסנני קבצים"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "בדיקה..."
@@ -4349,6 +4355,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

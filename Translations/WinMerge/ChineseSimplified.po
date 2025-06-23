@@ -1366,9 +1366,6 @@ msgstr "查找下一个(&F)"
 msgid "Find &Prev"
 msgstr "查找上一个(&P)"
 
-msgid "&Ok"
-msgstr "确定(&O)"
-
 msgid "Replace"
 msgstr "替换"
 
@@ -1407,6 +1404,9 @@ msgstr "新建"
 
 msgid "&Background color:"
 msgstr "背景颜色(&B)"
+
+msgid "&Ok"
+msgstr "确定(&O)"
 
 msgid "&Apply"
 msgstr "应用(&A)"
@@ -1817,6 +1817,12 @@ msgstr "重置"
 
 msgid "File Filters"
 msgstr "文件过滤器"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "测试..."
@@ -4541,6 +4547,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

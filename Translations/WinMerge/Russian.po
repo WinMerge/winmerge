@@ -1364,9 +1364,6 @@ msgstr "Следующее"
 msgid "Find &Prev"
 msgstr "Предыдущее"
 
-msgid "&Ok"
-msgstr "&Ok"
-
 msgid "Replace"
 msgstr "Заменить"
 
@@ -1405,6 +1402,9 @@ msgstr "Создать"
 
 msgid "&Background color:"
 msgstr "Цвет фона:"
+
+msgid "&Ok"
+msgstr "&Ok"
 
 msgid "&Apply"
 msgstr "&Применить"
@@ -1810,6 +1810,12 @@ msgstr "Сброс"
 
 msgid "File Filters"
 msgstr "Фильтры файлов"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Тест..."
@@ -4097,6 +4103,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

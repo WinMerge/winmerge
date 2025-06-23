@@ -1366,9 +1366,6 @@ msgstr "Circà &seguente"
 msgid "Find &Prev"
 msgstr "Circà &precedente"
 
-msgid "&Ok"
-msgstr "&Vai"
-
 msgid "Replace"
 msgstr "Rimpiazzà"
 
@@ -1407,6 +1404,9 @@ msgstr "Novu"
 
 msgid "&Background color:"
 msgstr "Culore di u &fondu :"
+
+msgid "&Ok"
+msgstr "&Vai"
 
 msgid "&Apply"
 msgstr "&Appiecà"
@@ -1822,6 +1822,12 @@ msgstr "Reinizià"
 
 msgid "File Filters"
 msgstr "Filtri di schedariu"
+
+msgid "Use &Mask / Filter Expression"
+msgstr ""
+
+msgid "Use Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Prova…"
@@ -4577,6 +4583,9 @@ msgid "Undefined identifier"
 msgstr ""
 
 msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"

@@ -278,14 +278,6 @@ void COpenView::OnInitialUpdate()
 
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 	String filterNameOrMask = pGlobalFileFilter->GetFilterNameOrMask();
-	bool bMask = pGlobalFileFilter->IsUsingMask();
-
-	if (!bMask)
-	{
-		String filterPrefix = _T("[F] ");
-		filterNameOrMask = filterPrefix + filterNameOrMask;
-	}
-
 	int ind = m_ctlExt.FindStringExact(0, filterNameOrMask.c_str());
 	if (ind != CB_ERR)
 		m_ctlExt.SetCurSel(ind);
@@ -714,21 +706,9 @@ void COpenView::OnCompare(UINT nID)
 	{
 		// Remove prefix + space
 		filter.erase(0, filterPrefix.length());
-		if (!pGlobalFileFilter->SetFilter(filter))
-		{
-			// If filtername is not found use default *.* mask
-			pGlobalFileFilter->SetFilter(_T("*.*"));
-			filter = _T("*.*");
-		}
-		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 	}
-	else
-	{
-		bool bFilterSet = pGlobalFileFilter->SetFilter(filter);
-		if (!bFilterSet)
-			m_strExt = pGlobalFileFilter->GetFilterNameOrMask();
-		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
-	}
+	pGlobalFileFilter->SetMask(filter);
+	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 
 	SaveComboboxStates();
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, m_bRecurse);
@@ -1504,25 +1484,15 @@ void COpenView::OnSelectFilter()
 	String curFilter;
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 
-	const bool bUseMask = pGlobalFileFilter->IsUsingMask();
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
 	curFilter = strutils::trim_ws(curFilter);
 
 	GetMainFrame()->SelectFilter();
 	
 	String filterNameOrMask = pGlobalFileFilter->GetFilterNameOrMask();
-	if (pGlobalFileFilter->IsUsingMask())
+	// If we had filter chosen and now has mask we can overwrite filter
+	if (curFilter[0] != '*')
 	{
-		// If we had filter chosen and now has mask we can overwrite filter
-		if (!bUseMask || curFilter[0] != '*')
-		{
-			SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
-		}
-	}
-	else
-	{
-		String filterPrefix = _T("[F] ");
-		filterNameOrMask = filterPrefix + filterNameOrMask;
 		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
 	}
 }
