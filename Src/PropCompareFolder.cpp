@@ -172,4 +172,6 @@ void PropCompareFolder::UpdateControls()
 	EnableDlgItem(IDC_COMPARE_WALKSUBDIRS, IsDlgButtonChecked(IDC_RECURS_CHECK) == 1);
 	EnableDlgItem(IDC_EXPAND_SUBDIRS, IsDlgButtonChecked(IDC_RECURS_CHECK) == 1);
 	EnableDlgItem(IDC_COMPARE_THREAD_COUNT, pCombo->GetCurSel() <= 1 ? true : false); // true: fullcontent, quickcontent
+	EnableDlgItem(IDC_COMPARE_QUICKC_LIMIT, pCombo->GetCurSel() == 0 ? true : false); // true: fullcontent
+	EnableDlgItem(IDC_COMPARE_BINARYC_LIMIT, pCombo->GetCurSel() <= 1 ? true : false); // true: fullcontent, quickcontent
 }
