@@ -2182,10 +2182,10 @@ msgstr "යලි පිහිටුවීමට"
 msgid "File Filters"
 msgstr ""
 
-msgid "Use &Mask / Filter Expression"
+msgid "&Mask / Filter Expression"
 msgstr ""
 
-msgid "Use Preset &Filters"
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."

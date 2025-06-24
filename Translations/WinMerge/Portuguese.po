@@ -1810,10 +1810,10 @@ msgstr "Repor"
 msgid "File Filters"
 msgstr "Filtros de ficheiro"
 
-msgid "Use &Mask / Filter Expression"
+msgid "&Mask / Filter Expression"
 msgstr ""
 
-msgid "Use Preset &Filters"
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."

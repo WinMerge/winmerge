@@ -61,6 +61,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
+	ON_EN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilterfileMask)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
 	ON_WM_MOUSEMOVE()
@@ -136,7 +137,7 @@ void FileFiltersDlg::SelectFilterByFilePath(const String& path)
 }
 
 /**
- * @brief 
+ * @brief Remove preset filters from filter expression and return the rest.
  */
 static String RemovePresetFilters(const String& filterExpression, std::vector<String>& presetFilters)
 {
@@ -144,11 +145,25 @@ static String RemovePresetFilters(const String& filterExpression, std::vector<St
 	std::vector<String> result;
 	for (const auto& part : parts)
 	{
-		const String partTrimmed = strutils::trim_ws(part.data());
+		const String partTrimmed = strutils::trim_ws(String(part.data(), part.length()));
 		if (partTrimmed.substr(0, 3) == _T("fp:"))
 			presetFilters.push_back(partTrimmed.substr(3));
+		else
+			result.push_back(partTrimmed);
 	}
 	return strutils::join(result.begin(), result.end(), _T(";"));
+}
+
+static void SetCheckedState(CListCtrl& list, std::vector<String>& presetFilters)
+{
+	const int count = list.GetItemCount();
+	for (int i = 0; i < count; i++)
+	{
+		String desc = list.GetItemText(i, 0);
+		const bool isChecked = std::find(presetFilters.begin(), presetFilters.end(), desc) != presetFilters.end();
+		if (isChecked)
+			list.SetCheck(i, true);
+	}
 }
 
 /**
@@ -165,17 +180,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 	String filterExpression = RemovePresetFilters(m_pFileFilterHelper->GetFilterNameOrMask(), presetFilters);
 	SetDlgItemText(IDC_FILTERFILE_MASK, filterExpression.c_str());
 
-	int count = m_listFilters.GetItemCount();
-	for (int i = 0; i < count; i++)
-	{
-		String desc = m_listFilters.GetItemText(i, 2);
-		for (auto& presetFilter: presetFilters)
-		{
-			String filepath = m_pFileFilterHelper->GetFileFilterPath(presetFilter);
-			if (strutils::compare_nocase(desc, filepath) == 0)
-				SelectFilterByIndex(i);
-		}
-	}
+	SetCheckedState(m_listFilters, presetFilters);
 
 	SetButtonState();
 
@@ -190,7 +195,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 void FileFiltersDlg::AddToGrid(int filterIndex)
 {
 	const FileFilterInfo & filterinfo = m_Filters.at(filterIndex);
-	const int item = filterIndex + 1;
+	const int item = filterIndex;
 
 	m_listFilters.InsertItem(item, filterinfo.name.c_str());
 	m_listFilters.SetItemText(item, 1, filterinfo.description.c_str());
@@ -203,18 +208,37 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
 void FileFiltersDlg::OnOK()
 {
 	String mask = m_sMask;
-	int sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
-	while (sel != -1);
+	const int count = m_listFilters.GetItemCount();
+	for (int i = 0; i < count; i++)
 	{
-		if (!mask.empty())
-			mask += _T(";");
-		mask += _T("fp:") + m_listFilters.GetItemText(sel, 2);
-		sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
+		const bool checked = m_listFilters.GetCheck(i);
+		if (checked)
+		{
+			if (!mask.empty())
+				mask += _T(";");
+			mask += _T("fp:") + m_listFilters.GetItemText(i, 0);
+		}
 	}
+
+	m_pFileFilterHelper->SetMask(mask);
+	m_pFileFilterHelperOrg->CloneFrom(m_pFileFilterHelper.get());
 
 	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
 
 	CDialog::OnOK();
+}
+
+void FileFiltersDlg::OnKillFocusFilterfileMask()
+{
+	String filterExpressionOld;
+	GetDlgItemText(IDC_FILTERFILE_MASK, filterExpressionOld);
+	std::vector<String> presetFilters;
+	String filterExpression = RemovePresetFilters(filterExpressionOld, presetFilters);
+	if (filterExpression != filterExpressionOld)
+	{
+		SetDlgItemText(IDC_FILTERFILE_MASK, filterExpression.c_str());
+		SetCheckedState(m_listFilters, presetFilters);
+	}
 }
 
 /**
@@ -231,16 +255,10 @@ void FileFiltersDlg::OnOK()
  */
 void FileFiltersDlg::OnFiltersEditbtn()
 {
-	int sel =- 1;
-
+	int sel = -1;
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
-
-	// Can't edit first "None"
-	if (sel > 0)
-	{
-		String path = m_listFilters.GetItemText(sel, 2);
-		EditFileFilter(path);
-	}
+	String path = m_listFilters.GetItemText(sel, 2);
+	EditFileFilter(path);
 }
 
 /**
@@ -268,7 +286,7 @@ void FileFiltersDlg::OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 /**
  * @brief Called when item state is changed.
  *
- * Disable the "Test", "Edit" and "Remove" buttons when no item is selected or "None" filter is selected.
+ * Disable the "Test", "Edit" and "Remove" buttons when no item is selected.
  * @param [in] pNMHDR Listview item data.
  * @param [out] pResult Result of the action is returned in here.
  */
@@ -454,38 +472,31 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
  */
 void FileFiltersDlg::OnBnClickedFilterfileDelete()
 {
-	String path;
-	int sel =- 1;
-
+	int sel = -1;
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
+	const String path = m_listFilters.GetItemText(sel, 2);
 
-	// Can't delete first "None"
-	if (sel > 0)
+	String sConfirm = strutils::format_string1(_("Are you sure you want to delete\n\n%1 ?"), path);
+	int res = AfxMessageBox(sConfirm.c_str(), MB_ICONWARNING | MB_YESNO);
+	if (res == IDYES)
 	{
-		path = m_listFilters.GetItemText(sel, 2);
-
-		String sConfirm = strutils::format_string1(_("Are you sure you want to delete\n\n%1 ?"), path);
-		int res = AfxMessageBox(sConfirm.c_str(), MB_ICONWARNING | MB_YESNO);
-		if (res == IDYES)
+		if (DeleteFile(path.c_str()))
 		{
-			if (DeleteFile(path.c_str()))
-			{
-				auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
-				FileFilterMgr *pMgr = pGlobalFileFilter->GetManager();
-				pMgr->RemoveFilter(path);
-				
-				// Remove all from filterslist and re-add so we can update UI
-				m_Filters = pGlobalFileFilter->GetFileFilters();
+			auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
+			FileFilterMgr *pMgr = pGlobalFileFilter->GetManager();
+			pMgr->RemoveFilter(path);
+			
+			// Remove all from filterslist and re-add so we can update UI
+			m_Filters = pGlobalFileFilter->GetFileFilters();
 
-				UpdateFiltersList();
-			}
-			else
-			{
-				String msg = strutils::format_string1(
-					_("Failed to delete filter:\n%1\n\nFile may be read-only."),
-					path);
-				AfxMessageBox(msg.c_str(), MB_ICONSTOP);
-			}
+			UpdateFiltersList();
+		}
+		else
+		{
+			String msg = strutils::format_string1(
+				_("Failed to delete filter:\n%1\n\nFile may be read-only."),
+				path);
+			AfxMessageBox(msg.c_str(), MB_ICONSTOP);
 		}
 	}
 	SetButtonState();
@@ -496,15 +507,9 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
  */
 void FileFiltersDlg::UpdateFiltersList()
 {
-	int count = (int) m_Filters.size();
-
 	m_listFilters.DeleteAllItems();
 
-	String title = _("<None>");
-	m_listFilters.InsertItem(1, title.c_str());
-	m_listFilters.SetItemText(0, 1, title.c_str());
-	m_listFilters.SetItemText(0, 2, title.c_str());
-
+	const int count = (int) m_Filters.size();
 	for (int i = 0; i < count; i++)
 	{
 		AddToGrid(i);
@@ -574,20 +579,13 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 }
 
 /**
- * @brief Disable the "Test", "Edit" and "Remove" buttons when no item is selected or "None" filter is selected.
+ * @brief Disable the "Test", "Edit" and "Remove" buttons when no item is selected.
  */
 void FileFiltersDlg::SetButtonState()
 {
-	bool isNone = true;
-
 	int sel = -1;
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
-	if (sel != -1)
-	{
-		String txtNone = _("<None>");
-		String txt = m_listFilters.GetItemText(sel, 0);
-		isNone = strutils::compare_nocase(txt, txtNone) == 0;
-	}
+	const bool isNone = (sel == -1);
 
 	EnableDlgItem(IDC_FILTERFILE_TEST_BTN, !isNone);
 	EnableDlgItem(IDC_FILTERFILE_EDITBTN, !isNone);

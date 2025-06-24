@@ -1812,10 +1812,10 @@ msgstr "Återställ"
 msgid "File Filters"
 msgstr "Filfilter"
 
-msgid "Use &Mask / Filter Expression"
+msgid "&Mask / Filter Expression"
 msgstr ""
 
-msgid "Use Preset &Filters"
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."

@@ -2183,10 +2183,10 @@ msgstr "Reinicialitza"
 msgid "File Filters"
 msgstr "Filtres de fitxer"
 
-msgid "Use &Mask / Filter Expression"
+msgid "&Mask / Filter Expression"
 msgstr ""
 
-msgid "Use Preset &Filters"
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."

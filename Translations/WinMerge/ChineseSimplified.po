@@ -1818,10 +1818,10 @@ msgstr "重置"
 msgid "File Filters"
 msgstr "文件过滤器"
 
-msgid "Use &Mask / Filter Expression"
+msgid "&Mask / Filter Expression"
 msgstr ""
 
-msgid "Use Preset &Filters"
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."

@@ -2184,10 +2184,10 @@ msgstr "V&rátit"
 msgid "File Filters"
 msgstr ""
 
-msgid "Use &Mask / Filter Expression"
+msgid "&Mask / Filter Expression"
 msgstr ""
 
-msgid "Use Preset &Filters"
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."

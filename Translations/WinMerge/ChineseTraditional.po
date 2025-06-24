@@ -2193,10 +2193,10 @@ msgstr "重設"
 msgid "File Filters"
 msgstr "檔案篩選器"
 
-msgid "Use &Mask / Filter Expression"
+msgid "&Mask / Filter Expression"
 msgstr ""
 
-msgid "Use Preset &Filters"
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."

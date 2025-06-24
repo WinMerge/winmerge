@@ -1491,7 +1491,7 @@ void COpenView::OnSelectFilter()
 	
 	String filterNameOrMask = pGlobalFileFilter->GetFilterNameOrMask();
 	// If we had filter chosen and now has mask we can overwrite filter
-	if (curFilter[0] != '*')
+	if (curFilter != filterNameOrMask)
 	{
 		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
 	}

@@ -1806,10 +1806,10 @@ msgstr "אפס"
 msgid "File Filters"
 msgstr "מסנני קבצים"
 
-msgid "Use &Mask / Filter Expression"
+msgid "&Mask / Filter Expression"
 msgstr ""
 
-msgid "Use Preset &Filters"
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."
