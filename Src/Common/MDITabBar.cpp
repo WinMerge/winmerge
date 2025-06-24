@@ -519,22 +519,13 @@ BOOL CMyTabCtrl::OnMouseWheel(UINT nFlags, short zDelta, CPoint point)
 
 	const int nLastTabIndex = GetItemCount() - 1;
 
-	// CTRL + SHIFT + MOUSEWHEEL (UP/DOWN): Switches to the first/last tab
-	if ((nFlags & MK_CONTROL) && (nFlags & MK_SHIFT))
-		SetCurSel(bIsScrollForward ? nLastTabIndex : 0);
-
-	// CTRL + MOUSEWHEEL (UP/DOWN): Switches to the previous/next tab WITH wraparound
 	// SHIFT + MOUSEWHEEL (UP/DOWN): Switches to the previous/next tab WITHOUT wraparound
-	else if (nFlags & (MK_CONTROL | MK_SHIFT))
+	if (nFlags & MK_SHIFT)
 	{
 		int nSwitchToTabIndex = GetCurSel() + (bIsScrollForward ? 1 : -1);
 		if (nSwitchToTabIndex < 0 || nSwitchToTabIndex > nLastTabIndex)
-		{
-			if (nFlags & MK_CONTROL)
-				nSwitchToTabIndex = bIsScrollForward ? 0 : nLastTabIndex; // Wrap around
-			else
-				return TRUE;
-		}
+			return TRUE;
+
 		SetCurSel(nSwitchToTabIndex);
 	}
 
