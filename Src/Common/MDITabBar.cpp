@@ -35,6 +35,7 @@ BEGIN_MESSAGE_MAP(CMyTabCtrl, CTabCtrl)
 	ON_WM_MOUSELEAVE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
+	ON_WM_MOUSEWHEEL()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -505,6 +506,75 @@ void CMyTabCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 		m_bCloseButtonDown = false;
 	}
 	CWnd::OnLButtonUp(nFlags, point);
+}
+
+BOOL CMyTabCtrl::OnMouseWheel(UINT nFlags, short zDelta, CPoint point)
+{
+	// Rotating the mouse wheel while dragging: No action performed
+	if (m_nDraggingTabItemIndex >= 0)
+		return TRUE;
+
+	// "Scroll forward" is wheel rotation towards the user
+	const bool bIsScrollForward = zDelta < 0;
+
+	const int nLastTabIndex = GetItemCount() - 1;
+
+	// CTRL + SHIFT + MOUSEWHEEL (UP/DOWN): Switches to the first/last tab
+	if ((nFlags & MK_CONTROL) && (nFlags & MK_SHIFT))
+		SetCurSel(bIsScrollForward ? nLastTabIndex : 0);
+
+	// CTRL + MOUSEWHEEL (UP/DOWN): Switches to the previous/next tab WITH wraparound
+	// SHIFT + MOUSEWHEEL (UP/DOWN): Switches to the previous/next tab WITHOUT wraparound
+	else if (nFlags & (MK_CONTROL | MK_SHIFT))
+	{
+		int nSwitchToTabIndex = GetCurSel() + (bIsScrollForward ? 1 : -1);
+		if (nSwitchToTabIndex < 0 || nSwitchToTabIndex > nLastTabIndex)
+		{
+			if (nFlags & MK_CONTROL)
+				nSwitchToTabIndex = bIsScrollForward ? 0 : nLastTabIndex; // Wrap around
+			else
+				return TRUE;
+		}
+		SetCurSel(nSwitchToTabIndex);
+	}
+
+	// Otherwise, scroll the tab bar
+	else
+	{
+		CRect rectTabCtrl, rectLastTab;
+		GetClientRect(&rectTabCtrl);
+		GetItemRect(nLastTabIndex, &rectLastTab);
+
+		// Get index of the first visible tab
+		CPoint pt(rectTabCtrl.left + 10, rectTabCtrl.Height() / 2);
+		int nFirstVisibleTabIndex = GetItemIndexFromPoint(pt);
+
+		if (nFirstVisibleTabIndex < 1 && rectLastTab.right < rectTabCtrl.right)  // No overflow
+			return TRUE;
+
+		// Get the width of the up/down control
+		// This area may hide parts of the last tab and needs to be excluded
+		CWnd* pUpDownCtrl = FindWindowEx(GetSafeHwnd(), nullptr, L"msctls_updown32", nullptr);
+		if (!pUpDownCtrl)	// No up/down control also means no overflow
+			return TRUE;
+
+		CRect rectUpDownCtrl;
+		pUpDownCtrl->GetWindowRect(&rectUpDownCtrl);
+
+		// Scroll forward as long as the last tab is hidden; scroll backward till the first tab
+		int nScrollTabIndex = nFirstVisibleTabIndex;
+		if ((rectTabCtrl.right - rectLastTab.right) < rectUpDownCtrl.Width() || !bIsScrollForward)
+		{
+			nScrollTabIndex += (bIsScrollForward ? 1 : -1);
+			if (nScrollTabIndex < 0 || nScrollTabIndex > nLastTabIndex)
+				return TRUE;
+
+			// Scroll tabs
+			SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, nScrollTabIndex), 0);
+		}
+	}
+
+	return TRUE;
 }
 
 CRect CMyTabCtrl::GetCloseButtonRect(int nItem)
