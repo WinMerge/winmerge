@@ -118,7 +118,12 @@ void FileFilterHelper::SetUserFilterPath(const String & filterPath)
  */
 void FileFilterHelper::SetMask(const String& strMask)
 {
-	m_sMask = strMask;
+	String flt = strutils::trim_ws(strMask);
+	String path = GetFileFilterPath(flt);
+	if (!path.empty())
+		flt = _T("fp:") + flt;
+
+	m_sMask = flt;
 	auto [regExpFile, regExpFileExclude, regExpDir, regExpDirExclude, pRegexOrExpressionFilter, pRegexOrExpressionFilterExclude]
 		= ParseExtensions(strMask);
 
