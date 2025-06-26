@@ -47,6 +47,7 @@ public:
 	void SetOnTitleBar(bool onTitleBar) { m_bOnTitleBar = onTitleBar; }
 	bool GetActive() const { return m_bActive; }
 	void SetActive(bool bActive);
+	void ActivateTab(int nTabIndex);
 	COLORREF GetBackColor() const;
 
 // Overrides

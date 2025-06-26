@@ -93,6 +93,25 @@ void CMyTabCtrl::SetActive(bool bActive)
 	m_bActive = bActive;
 }
 
+/**
+ * @brief Activate the specific tab by index.
+ * @param nTabIndex [in] Tab index to activate
+ */
+void CMyTabCtrl::ActivateTab(int nTabIndex)
+{
+	if (nTabIndex < 0 || nTabIndex >= GetItemCount())
+		return;
+
+	SetCurSel(nTabIndex);
+
+	// Notify tab selection changed
+	NMHDR nmhdr = {0};
+	nmhdr.hwndFrom = GetSafeHwnd();
+	nmhdr.idFrom = GetDlgCtrlID();
+	nmhdr.code = TCN_SELCHANGE;
+	GetParent()->SendMessage(WM_NOTIFY, nmhdr.idFrom, reinterpret_cast<LPARAM>(&nmhdr));
+}
+
 static inline COLORREF getTextColor()
 {
 	return GetSysColor(COLOR_WINDOWTEXT);
@@ -526,7 +545,7 @@ BOOL CMyTabCtrl::OnMouseWheel(UINT nFlags, short zDelta, CPoint point)
 		if (nSwitchToTabIndex < 0 || nSwitchToTabIndex > nLastTabIndex)
 			return TRUE;
 
-		SetCurSel(nSwitchToTabIndex);
+		ActivateTab(nSwitchToTabIndex);
 	}
 
 	// Otherwise, scroll the tab bar
