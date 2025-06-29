@@ -715,6 +715,7 @@ static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
 
 /**
  * @brief User right-clicked in listview rows
+@* @param [in] point Point where the mouse was right-clicked.
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
 {
@@ -733,11 +734,22 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		sel = GetFirstSelectedInd();
 	if (sel == -1)
 		return;
-	const DIFFITEM& di = GetDiffItem(sel);
-	if (GetDiffContext().m_bRecursive && di.diffcode.isDirectory())
+
+	bool bDirSelected = false;
+	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
+	{
+		const DIFFITEM& di = *it;
+		if (di.diffcode.isDirectory())
+		{
+			bDirSelected = true;
+			break;
+		}
+	}
+	if (GetDiffContext().m_bRecursive && bDirSelected)
 		pPopup->RemoveMenu(ID_MERGE_COMPARE, MF_BYCOMMAND);
-	if (!di.diffcode.isDirectory())
+	if (!bDirSelected)
 		pPopup->RemoveMenu(ID_MERGE_COMPARE_IN_NEW_WINDOW, MF_BYCOMMAND);
+
 	if (pDoc->m_nDirs < 3)
 	{
 		pPopup->RemoveMenu(ID_DIR_COPY_LEFT_TO_MIDDLE, MF_BYCOMMAND);
@@ -1518,15 +1530,16 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
  * folder are opened too.
  *
  * This handles the case that one item is selected
- * and the case that two items are selected (one on each side)
+ * and the case that two or three items are selected (one on each side)
+ *
+ * @param [in] pDoc Pointer to CDirDoc object.
+ * @param [in] selectionType Type of Item Selection.
+ * @param [in] infoUnpacker Unpacker plugin.
+ * @param [in] openableForDir Are items openable if the items are directories?
  */
 void CDirView::OpenSelection(CDirDoc *pDoc, SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= nullptr*/, bool openableForDir /*= true*/)
 {
-	Merge7zFormatMergePluginScope scope(infoUnpacker);
-	const CDiffContext& ctxt = GetDiffContext();
-
-	// First, figure out what was selected (store into pos1 & pos2)
-	DIFFITEM *pos1 = nullptr, *pos2 = nullptr, *pos3 = nullptr;
+	// First, figure out what was selected
 	int sel1 = -1, sel2 = -1, sel3 = -1;
 	if (!GetSelectedItems(&sel1, &sel2, &sel3))
 	{
@@ -1534,7 +1547,34 @@ void CDirView::OpenSelection(CDirDoc *pDoc, SELECTIONTYPE selectionType /*= SELE
 		// Not valid action
 		return;
 	}
+	OpenSelection(sel1, sel2, sel3, pDoc, selectionType, infoUnpacker, openableForDir);
+}
 
+/**
+ * @brief Open selected files or directories.
+ *
+ * Opens selected files to file compare. If comparing
+ * directories non-recursively, then subfolders and parent
+ * folder are opened too.
+ *
+ * This handles the case that one item is selected
+ * and the case that two or three items are selected (one on each side)
+ *
+ * @param [in] sel1 First item's selection index in listview.
+ * @param [in] sel2 Second item's selection index in listview.
+ * @param [in] sel3 sel3 Third item's selection index in listview.
+ * @param [in] pDoc Pointer to CDirDoc object.
+ * @param [in] selectionType Type of Item Selection.
+ * @param [in] infoUnpacker Unpacker plugin.
+ * @param [in] openableForDir Are items openable if the items are directories?
+ */
+void CDirView::OpenSelection(int sel1, int sel2, int sel3, CDirDoc *pDoc, SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMAL*/, PackingInfo * infoUnpacker /*= nullptr*/, bool openableForDir /*= true*/)
+{
+	Merge7zFormatMergePluginScope scope(infoUnpacker);
+	const CDiffContext& ctxt = GetDiffContext();
+
+	// First, figure out what was selected (store into pos1 & pos2 & pos3)
+	DIFFITEM *pos1 = nullptr, *pos2 = nullptr, *pos3 = nullptr;
 	pos1 = GetItemKey(sel1);
 	ASSERT(pos1 != nullptr);
 	if (sel2 != -1)
@@ -1597,13 +1637,17 @@ void CDirView::OpenSelection(SELECTIONTYPE selectionType /*= SELECTIONTYPE_NORMA
 	OpenSelection(GetDocument(), selectionType, infoUnpacker, openableForDir);
 }
 
+/**
+ * @brief Opens selected files to compare by specifying the comparison method.
+ *
+ * This handles the case that one item is selected
+ * and the case that two or three items are selected (one on each side)
+ *
+ * @param [in] id Menu ID of the selected item
+ */
 void CDirView::OpenSelectionAs(UINT id)
 {
-	CDirDoc * pDoc = GetDocument();
-	const CDiffContext& ctxt = GetDiffContext();
-
-	// First, figure out what was selected (store into pos1 & pos2 & pos3)
-	DIFFITEM *pos1 = nullptr, *pos2 = nullptr, *pos3 = nullptr;
+	// First, figure out what was selected
 	int sel1 = -1, sel2 = -1, sel3 = -1;
 	if (!GetSelectedItems(&sel1, &sel2, &sel3))
 	{
@@ -1611,7 +1655,27 @@ void CDirView::OpenSelectionAs(UINT id)
 		// Not valid action
 		return;
 	}
+	OpenSelectionAs(sel1, sel2, sel3, id);
+}
 
+/**
+ * @brief Opens selected files to compare by specifying the comparison method.
+ *
+ * This handles the case that one item is selected
+ * and the case that two or three items are selected (one on each side)
+ *
+ * @param [in] sel1 First item's selection index in listview.
+ * @param [in] sel2 Second item's selection index in listview.
+ * @param [in] sel3 Third item's selection index in listview.
+ * @param [in] id Menu ID of the selected item
+ */
+void CDirView::OpenSelectionAs(int sel1, int sel2, int sel3, UINT id)
+{
+	CDirDoc * pDoc = GetDocument();
+	const CDiffContext& ctxt = GetDiffContext();
+
+	// First, figure out what was selected (store into pos1 & pos2 & pos3)
+	DIFFITEM *pos1 = nullptr, *pos2 = nullptr, *pos3 = nullptr;
 	pos1 = GetItemKey(sel1);
 	ASSERT(pos1);
 	if (sel2 != -1)
@@ -2016,31 +2080,34 @@ void CDirView::OnUpdateCtxtDirOpenParentFolder(CCmdUI* pCmdUI)
 }
 
 // Used for Open
-void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool openableForDir /*= true*/)
+/**
+ * @brief Returns if the selected items are comparable.
+ *
+ * This handles the case that one item is selected
+ * and the case that two or three items are selected (one on each side).
+ *
+ * @param [in] selectionType Type of Item Selection.
+ * @param [in] openableForDir Are items openable if the items are directories?
+ * @return Are the selected items comparable?
+ */
+bool CDirView::AreItemsComparable(SELECTIONTYPE selectionType, bool openableForDir /*= true*/)
 {
 	int sel1 = -1, sel2 = -1, sel3 = -1;
 	if (!GetSelectedItems(&sel1, &sel2, &sel3))
 	{
-		// 0 items or more than 2 items seleted
-		pCmdUI->Enable(FALSE);
-		return;
+		// 0 items or more than 3 items seleted
+		return false;
 	}
 	if (sel2 == -1)
 	{
 		// One item selected
 		if (selectionType != SELECTIONTYPE_NORMAL)
-		{
-			pCmdUI->Enable(FALSE);
-			return;
-		}
+			return false;
 		if (!openableForDir)
 		{
 			const DIFFITEM& di1 = GetDiffItem(sel1);
 			if (di1.diffcode.isDirectory() || IsDiffItemSpecial(GetItemKey(sel1)))
-			{
-				pCmdUI->Enable(FALSE);
-				return;
-			}
+				return false;
 		}
 	}
 	else if (sel3 == -1)
@@ -2049,10 +2116,7 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool op
 		const DIFFITEM& di1 = GetDiffItem(sel1);
 		const DIFFITEM& di2 = GetDiffItem(sel2);
 		if (!AreItemsOpenable(GetDiffContext(), selectionType, di1, di2, openableForDir))
-		{
-			pCmdUI->Enable(FALSE);
-			return;
-		}
+			return false;
 	}
 	else
 	{
@@ -2061,12 +2125,48 @@ void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool op
 		const DIFFITEM& di2 = GetDiffItem(sel2);
 		const DIFFITEM& di3 = GetDiffItem(sel3);
 		if (selectionType != SELECTIONTYPE_NORMAL || !::AreItemsOpenable(GetDiffContext(), di1, di2, di3, openableForDir))
-		{
-			pCmdUI->Enable(FALSE);
-			return;
-		}
+			return false;
 	}
-	pCmdUI->Enable(TRUE);
+	return true;
+}
+
+/**
+ * @brief Returns if the selected items are comparable.
+ * This function checks whether the selected items are individually comparable.
+ *
+ * @param [in] nID Menu ID of the selected item
+ * @param [in] openableForDir Are items openable if the items are directories?
+ * @return Are the selected items comparable?
+ */
+bool CDirView::AreItemsComparableIndivisually(UINT nID, bool openableForDir)
+{
+	int selected = GetSelectedCount();
+	int count = 0;
+	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
+		if (openableForDir || !(*it).diffcode.isDirectory())
+			count++;
+	if (count <= 0 || selected != count)
+		return false;
+
+	// Disable "Compare" menu if multiple selected items contain directories when not in tree mode.
+	if (nID == ID_MERGE_COMPARE && selected > 1 && !GetDiffContext().m_bRecursive)
+		for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
+			if ((*it).diffcode.isDirectory())
+				return false;
+
+	return true;
+}
+
+/**
+ * @brief Enable/disable the specified menu choice on menu or context menu.
+ * @param [in] selectionType Type of Item Selection.
+ * @param [in] pCmdUI UI component to update.
+ * @param [in] openableForDir Are items openable if the items are directories?
+ */
+void CDirView::DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool openableForDir /*= true*/)
+{
+	bool bOn = AreItemsComparable(selectionType, openableForDir);
+	pCmdUI->Enable(static_cast<BOOL>(bOn));
 }
 
 /**
@@ -4055,9 +4155,33 @@ void CDirView::OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_dirfilter.show_missing_right_only);
 }
 
+/**
+ * @brief User chose the following menu on menu or context menu:
+ * - Compare
+ * - Compare in New Window
+ *
+ * @param [in] nID Menu ID of the selected item
+ */
 void CDirView::OnMergeCompare(UINT nID)
 {
-	OpenSelection(nID == ID_MERGE_COMPARE ? GetDocument() : nullptr);
+	bool openableForDir = !((nID >= ID_MERGE_COMPARE_TEXT && nID <= ID_MERGE_COMPARE_WEBPAGE) ||
+		(nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST));
+
+	if (AreItemsComparable(SELECTIONTYPE_NORMAL, openableForDir))
+	{
+		OpenSelection(nID == ID_MERGE_COMPARE ? GetDocument() : nullptr);
+	}
+	else if (AreItemsComparableIndivisually(nID, openableForDir))
+	{
+		int sel1 = -1;
+		while (true)
+		{
+			sel1 = m_pList->GetNextItem(sel1, LVNI_SELECTED);
+			if (sel1 == -1)
+				break;
+			OpenSelection(sel1, -1, -1, nID == ID_MERGE_COMPARE ? GetDocument() : nullptr);
+		}
+	}
 }
 
 void CDirView::OnMergeCompareNonHorizontally()
@@ -4094,17 +4218,63 @@ void CDirView::OnMergeCompareNonHorizontally()
 	}
 }
 
+/**
+ * @brief User chose the following menu on context menu:
+ * - Compare As > Text
+ * - Compare As > Table
+ * - Compare As > Binary
+ * - Compare As > Image
+ * - Compare As > Webpage
+ *
+ * @param [in] nID Menu ID of the selected item
+ */
 void CDirView::OnMergeCompareAs(UINT nID)
 {
-	OpenSelectionAs(nID);
+	if (nID >= ID_MERGE_COMPARE_TEXT && nID <= ID_MERGE_COMPARE_WEBPAGE)
+	{
+		if (AreItemsComparable(SELECTIONTYPE_NORMAL, false))
+		{
+			OpenSelectionAs(nID);
+		}
+		else if (AreItemsComparableIndivisually(nID, false))
+		{
+			int sel1 = -1;
+			while (true)
+			{
+				sel1 = m_pList->GetNextItem(sel1, LVNI_SELECTED);
+				if (sel1 == -1)
+					break;
+				OpenSelectionAs(sel1, -1, -1, nID);
+			}
+		}
+	}
+	else
+	{
+		OpenSelectionAs(nID);
+	}
 }
 
+/**
+ * @brief Enable/disable the following menu choice on menu or context menu:
+ * - Compare
+ * - Compare in New Window
+ * - Compare As > Text
+ * - Compare As > Table
+ * - Compare As > Binary
+ * - Compare As > Image
+ * - Compare As > Webpage
+ * 
+ * @param [in] pCmdUI UI component to update.
+ */
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
 {
 	bool openableForDir = !((pCmdUI->m_nID >= ID_MERGE_COMPARE_TEXT && pCmdUI->m_nID <= ID_MERGE_COMPARE_WEBPAGE) ||
 		(pCmdUI->m_nID >= ID_UNPACKERS_FIRST && pCmdUI->m_nID <= ID_UNPACKERS_LAST));
 
-	DoUpdateOpen(SELECTIONTYPE_NORMAL, pCmdUI, openableForDir);
+	bool bOn = AreItemsComparable(SELECTIONTYPE_NORMAL, openableForDir);
+	if (!bOn)
+		bOn = AreItemsComparableIndivisually(pCmdUI->m_nID, openableForDir);
+	pCmdUI->Enable(static_cast<BOOL>(bOn));
 }
 
 void CDirView::OnUpdateNoUnpacker(CCmdUI *pCmdUI)
