@@ -1362,9 +1362,6 @@ msgstr "&Najdi naslednje"
 msgid "Find &Prev"
 msgstr "Najdi pre&jšnje"
 
-msgid "&Ok"
-msgstr "&Vredu"
-
 msgid "Replace"
 msgstr "Zamenjaj"
 
@@ -1403,6 +1400,9 @@ msgstr "Nov"
 
 msgid "&Background color:"
 msgstr "Bar&va ozadja:"
+
+msgid "&Ok"
+msgstr "&Vredu"
 
 msgid "&Apply"
 msgstr "&Uporabi"
@@ -1808,6 +1808,12 @@ msgstr "Ponastavi"
 
 msgid "File Filters"
 msgstr "Filtri datotek"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Preizkusi..."
@@ -2544,9 +2550,6 @@ msgstr "Lokacija"
 
 msgid "Filters"
 msgstr "Filtri"
-
-msgid "[F] "
-msgstr "[F] "
 
 msgid "Description"
 msgstr "Opis"
@@ -4407,6 +4410,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

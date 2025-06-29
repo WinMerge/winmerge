@@ -1632,10 +1632,6 @@ msgid "Find &Prev"
 msgstr ""
 
 #, c-format
-msgid "&Ok"
-msgstr "&OK"
-
-#, c-format
 msgid "Replace"
 msgstr "Erstat"
 
@@ -1685,6 +1681,10 @@ msgstr "Ny"
 #, c-format
 msgid "&Background color:"
 msgstr ""
+
+#, c-format
+msgid "&Ok"
+msgstr "&OK"
 
 #, c-format
 msgid "&Apply"
@@ -2183,6 +2183,12 @@ msgid "Reset"
 msgstr "Nulstil"
 
 msgid "File Filters"
+msgstr ""
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."
@@ -3050,10 +3056,6 @@ msgstr "Sti"
 #, c-format
 msgid "Filters"
 msgstr "Filtre"
-
-#, c-format
-msgid "[F] "
-msgstr "[F]"
 
 #, c-format
 msgid "Description"
@@ -4997,6 +4999,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

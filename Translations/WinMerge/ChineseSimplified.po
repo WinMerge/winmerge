@@ -1366,9 +1366,6 @@ msgstr "查找下一个(&F)"
 msgid "Find &Prev"
 msgstr "查找上一个(&P)"
 
-msgid "&Ok"
-msgstr "确定(&O)"
-
 msgid "Replace"
 msgstr "替换"
 
@@ -1407,6 +1404,9 @@ msgstr "新建"
 
 msgid "&Background color:"
 msgstr "背景颜色(&B)"
+
+msgid "&Ok"
+msgstr "确定(&O)"
 
 msgid "&Apply"
 msgstr "应用(&A)"
@@ -1817,6 +1817,12 @@ msgstr "重置"
 
 msgid "File Filters"
 msgstr "文件过滤器"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "测试..."
@@ -2564,9 +2570,6 @@ msgstr "位置"
 
 msgid "Filters"
 msgstr "过滤器"
-
-msgid "[F] "
-msgstr "[F] "
 
 msgid "Description"
 msgstr "描述"
@@ -4518,6 +4521,39 @@ msgstr "文件操作已成功完成"
 
 msgid "File operation canceled"
 msgstr "文件操作已取消"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "格式美化"

@@ -1373,9 +1373,6 @@ msgstr "அடுத்து கண்டுபிடி"
 msgid "Find &Prev"
 msgstr "முந்தையதைக் கண்டுபிடி"
 
-msgid "&Ok"
-msgstr "சரி"
-
 msgid "Replace"
 msgstr "மாற்று"
 
@@ -1414,6 +1411,9 @@ msgstr "புதிய"
 
 msgid "&Background color:"
 msgstr "பின்னணி நிறம்:"
+
+msgid "&Ok"
+msgstr "சரி"
 
 msgid "&Apply"
 msgstr "இடு"
@@ -1828,6 +1828,12 @@ msgstr "மீட்டமை"
 
 msgid "File Filters"
 msgstr "கோப்பு வடிப்பான்கள்"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "சோதனை..."
@@ -2582,9 +2588,6 @@ msgstr "இடம்"
 
 msgid "Filters"
 msgstr "வடிப்பான்கள்"
-
-msgid "[F] "
-msgstr "[F] "
 
 msgid "Description"
 msgstr "விளக்கம்"
@@ -4562,6 +4565,39 @@ msgstr "கோப்பு செயல்பாடு வெற்றிகர�
 
 msgid "File operation canceled"
 msgstr "கோப்பு செயல்பாடு கைவிடப்பட்டது"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "அழகானமாக்கல்"

@@ -1365,9 +1365,6 @@ msgstr "Sök nästa"
 msgid "Find &Prev"
 msgstr "Sök föregående"
 
-msgid "&Ok"
-msgstr "OK"
-
 msgid "Replace"
 msgstr "Ersätt"
 
@@ -1406,6 +1403,9 @@ msgstr "Ny"
 
 msgid "&Background color:"
 msgstr "Bakgrundsfärg:"
+
+msgid "&Ok"
+msgstr "OK"
 
 msgid "&Apply"
 msgstr "Tillämpa"
@@ -1811,6 +1811,12 @@ msgstr "Återställ"
 
 msgid "File Filters"
 msgstr "Filfilter"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testa..."
@@ -2544,9 +2550,6 @@ msgstr "Sökväg"
 
 msgid "Filters"
 msgstr "Filter"
-
-msgid "[F] "
-msgstr "[F] "
 
 msgid "Description"
 msgstr "Beskrivning"
@@ -4500,6 +4503,39 @@ msgstr "Filoperation framgångsrikt gjord"
 
 msgid "File operation canceled"
 msgstr "Filoperation avbruten"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Finputsning"

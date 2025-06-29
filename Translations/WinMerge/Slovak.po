@@ -1362,9 +1362,6 @@ msgstr "Nájsť ďalší"
 msgid "Find &Prev"
 msgstr "Nájsť &predošlý"
 
-msgid "&Ok"
-msgstr "&OK"
-
 msgid "Replace"
 msgstr "Nahradiť"
 
@@ -1403,6 +1400,9 @@ msgstr "Nový"
 
 msgid "&Background color:"
 msgstr "Farba &pozadia:"
+
+msgid "&Ok"
+msgstr "&OK"
 
 msgid "&Apply"
 msgstr "&Použiť"
@@ -1808,6 +1808,12 @@ msgstr "Vynulovať"
 
 msgid "File Filters"
 msgstr "Filtre súborov"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testovať..."
@@ -2544,9 +2550,6 @@ msgstr "Umiestnenie"
 
 msgid "Filters"
 msgstr "Filtre"
-
-msgid "[F] "
-msgstr "[F] "
 
 msgid "Description"
 msgstr "Popis"
@@ -4384,6 +4387,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

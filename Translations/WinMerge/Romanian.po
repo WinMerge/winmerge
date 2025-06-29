@@ -1363,9 +1363,6 @@ msgstr "&Găsește următorul"
 msgid "Find &Prev"
 msgstr "Găsește precedentul"
 
-msgid "&Ok"
-msgstr "&Ok"
-
 msgid "Replace"
 msgstr "Înlocuiește"
 
@@ -1404,6 +1401,9 @@ msgstr "Nou"
 
 msgid "&Background color:"
 msgstr "Culoare fundal:"
+
+msgid "&Ok"
+msgstr "&Ok"
 
 msgid "&Apply"
 msgstr "&Aplică"
@@ -1817,6 +1817,12 @@ msgstr "Reinițializare"
 
 msgid "File Filters"
 msgstr "Filtre de fișiere"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testează..."
@@ -2566,9 +2572,6 @@ msgstr "Locație"
 
 msgid "Filters"
 msgstr "Filtre"
-
-msgid "[F] "
-msgstr "[F] "
 
 msgid "Description"
 msgstr "Descriere"
@@ -4457,6 +4460,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

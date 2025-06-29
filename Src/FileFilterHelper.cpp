@@ -7,25 +7,24 @@
 
 #include "pch.h"
 #include "FileFilterHelper.h"
+#include "FilterExpression.h"
 #include "UnicodeString.h"
 #include "FilterList.h"
-#include "DirItem.h"
+#include "DiffItem.h"
 #include "FileFilterMgr.h"
 #include "paths.h"
 #include "Environment.h"
 #include "unicoder.h"
-
-using std::vector;
 
 /** 
  * @brief Constructor, creates new filtermanager.
  */
 FileFilterHelper::FileFilterHelper()
 : m_pMaskFileFilter(nullptr)
+, m_pMaskFileFilterExclude(nullptr)
 , m_pMaskDirFilter(nullptr)
-, m_bUseMask(true)
+, m_pMaskDirFilterExclude(nullptr)
 , m_fileFilterMgr(new FileFilterMgr)
-, m_currentFilter(nullptr)
 {
 }
 
@@ -35,36 +34,11 @@ FileFilterHelper::FileFilterHelper()
 FileFilterHelper::~FileFilterHelper() = default;
 
 /**
- * @brief Store current filter path.
- *
- * Select filter based on filepath. If filter with that path
- * is found select it. Otherwise set path to empty (default).
- * @param [in] szFileFilterPath Full path to filter to select.
- */
-void FileFilterHelper::SetFileFilterPath(const String& szFileFilterPath)
-{
-	// Use none as default path
-	m_sFileFilterPath.clear();
-
-	if (m_fileFilterMgr == nullptr)
-		return;
-
-	// Don't bother to lookup empty path
-	if (!szFileFilterPath.empty())
-	{
-		m_currentFilter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
-		if (m_currentFilter != nullptr)
-			m_sFileFilterPath = szFileFilterPath;
-	}
-}
-
-/**
  * @brief Get list of filters currently available.
  *
- * @param [out] selected Filepath of currently selected filter.
  * @return Filter list to receive found filters.
  */
-std::vector<FileFilterInfo> FileFilterHelper::GetFileFilters(String & selected) const
+std::vector<FileFilterInfo> FileFilterHelper::GetFileFilters() const
 {
 	std::vector<FileFilterInfo> filters;
 	if (m_fileFilterMgr != nullptr)
@@ -80,7 +54,6 @@ std::vector<FileFilterInfo> FileFilterHelper::GetFileFilters(String & selected) 
 			filters.push_back(filter);
 		}
 	}
-	selected = m_sFileFilterPath;
 	return filters;
 }
 
@@ -92,10 +65,9 @@ std::vector<FileFilterInfo> FileFilterHelper::GetFileFilters(String & selected) 
  */
 String FileFilterHelper::GetFileFilterName(const String& filterPath) const
 {
-	String selected;
 	String name;
-	vector<FileFilterInfo> filters = GetFileFilters(selected);
-	vector<FileFilterInfo>::const_iterator iter = filters.begin();
+	std::vector<FileFilterInfo> filters = GetFileFilters();
+	std::vector<FileFilterInfo>::const_iterator iter = filters.begin();
 	while (iter != filters.end())
 	{
 		if ((*iter).fullpath == filterPath)
@@ -115,10 +87,9 @@ String FileFilterHelper::GetFileFilterName(const String& filterPath) const
  */
 String FileFilterHelper::GetFileFilterPath(const String& filterName) const
 {
-	String selected;
 	String path;
-	vector<FileFilterInfo> filters = GetFileFilters(selected);
-	vector<FileFilterInfo>::const_iterator iter = filters.begin();
+	std::vector<FileFilterInfo> filters = GetFileFilters();
+	std::vector<FileFilterInfo>::const_iterator iter = filters.begin();
 	while (iter != filters.end())
 	{
 		if ((*iter).name == filterName)
@@ -142,56 +113,67 @@ void FileFilterHelper::SetUserFilterPath(const String & filterPath)
 }
 
 /** 
- * @brief Select between mask and filterfile.
- * @param [in] bUseMask If true we use mask instead of filter files.
- */
-void FileFilterHelper::UseMask(bool bUseMask)
-{
-	m_bUseMask = bUseMask;
-	if (m_bUseMask)
-	{
-		if (m_pMaskFileFilter == nullptr)
-		{
-			m_pMaskFileFilter.reset(new FilterList);
-		}
-		if (m_pMaskDirFilter == nullptr)
-		{
-			m_pMaskDirFilter.reset(new FilterList);
-		}
-	}
-	else
-	{
-		m_pMaskFileFilter.reset();
-		m_pMaskDirFilter.reset();
-	}
-}
-
-/** 
  * @brief Set filemask for filtering.
  * @param [in] strMask Mask to set (e.g. *.cpp;*.h).
  */
 void FileFilterHelper::SetMask(const String& strMask)
 {
-	if (!m_bUseMask)
-	{
-		throw "Filter mask tried to set when masks disabled!";
-	}
-	m_sMask = strMask;
-	auto [regExpFile, regExpFileExclude, regExpDir, regExpDirExclude] = ParseExtensions(strMask);
+	String flt = strutils::trim_ws(strMask);
+	String path = GetFileFilterPath(flt);
+	if (!path.empty())
+		flt = _T("fp:") + flt;
+
+	m_sMask = flt;
+	auto [regExpFile, regExpFileExclude, regExpDir, regExpDirExclude, pRegexOrExpressionFilter, pRegexOrExpressionFilterExclude]
+		= ParseExtensions(strMask);
 
 	std::string regexp_str_file = ucr::toUTF8(regExpFile);
 	std::string regexp_str_file_excluded = ucr::toUTF8(regExpFileExclude);
 	std::string regexp_str_dir = ucr::toUTF8(regExpDir);
 	std::string regexp_str_dir_excluded = ucr::toUTF8(regExpDirExclude);
 
-	m_pMaskFileFilter->RemoveAllFilters();
-	m_pMaskFileFilter->AddRegExp(regexp_str_file, false);
+	if (m_pMaskFileFilter)
+		m_pMaskFileFilter->RemoveAllFilters();
+	if (m_pMaskDirFilter)
+		m_pMaskDirFilter->RemoveAllFilters();
+	if (m_pMaskFileFilterExclude)
+		m_pMaskFileFilterExclude->RemoveAllFilters();
+	if (m_pMaskDirFilterExclude)
+		m_pMaskDirFilterExclude->RemoveAllFilters();
+	if (!regexp_str_file.empty())
+	{
+		if (!m_pMaskFileFilter)
+			m_pMaskFileFilter = std::make_unique<FilterList>();
+		m_pMaskFileFilter->AddRegExp(regexp_str_file);
+	}
+	else
+		m_pMaskFileFilter.reset();
+	if (!regexp_str_dir.empty())
+	{
+		if (!m_pMaskDirFilter)
+			m_pMaskDirFilter = std::make_unique<FilterList>();
+		m_pMaskDirFilter->AddRegExp(regexp_str_dir);
+	}
+	else
+		m_pMaskDirFilter.reset();
 	if (!regexp_str_file_excluded.empty())
-		m_pMaskFileFilter->AddRegExp(regexp_str_file_excluded, true);
-	m_pMaskDirFilter->RemoveAllFilters();
-	m_pMaskDirFilter->AddRegExp(regexp_str_dir, false);
+	{
+		if (!m_pMaskFileFilterExclude)
+			m_pMaskFileFilterExclude = std::make_unique<FilterList>();
+		m_pMaskFileFilterExclude->AddRegExp(regexp_str_file_excluded);
+	}
+	else
+		m_pMaskFileFilterExclude.reset();
 	if (!regexp_str_dir_excluded.empty())
-		m_pMaskDirFilter->AddRegExp(regexp_str_dir_excluded, true);
+	{
+		if (!m_pMaskDirFilterExclude)
+			m_pMaskDirFilterExclude = std::make_unique<FilterList>();
+		m_pMaskDirFilterExclude->AddRegExp(regexp_str_dir_excluded);
+	}
+	else
+		m_pMaskDirFilterExclude.reset();
+	m_pRegexOrExpressionFilter = pRegexOrExpressionFilter;
+	m_pRegexOrExpressionFilterExclude = pRegexOrExpressionFilterExclude;
 }
 
 static String addPeriodIfNoExtension(const String& path)
@@ -225,6 +207,28 @@ static String addPeriodIfNoExtension(const String& path)
 	return ret;
 }
 
+void FileFilterHelper::SetDiffContext(const CDiffContext* pCtxt)
+{
+	if (m_pRegexOrExpressionFilter)
+		m_pRegexOrExpressionFilter->SetDiffContext(pCtxt);
+	if (m_pRegexOrExpressionFilterExclude)
+		m_pRegexOrExpressionFilterExclude->SetDiffContext(pCtxt);
+}
+
+std::vector<const FileFilterErrorInfo*> FileFilterHelper::GetErrorList() const
+{
+	std::vector<const FileFilterErrorInfo*> list;
+	for (const auto* pfilter : { m_pRegexOrExpressionFilter.get(), m_pRegexOrExpressionFilterExclude.get() })
+	{
+		if (pfilter)
+		{
+			for (const auto& error : pfilter->errors)
+				list.push_back(&error);
+		}
+	}
+	return list;
+}
+
 /**
  * @brief Check if any of filefilter rules match to filename.
  *
@@ -233,28 +237,74 @@ static String addPeriodIfNoExtension(const String& path)
  */
 bool FileFilterHelper::includeFile(const String& szFileName) const
 {
-	if (m_bUseMask)
-	{
-		if (m_pMaskFileFilter == nullptr)
-		{
-			throw "Use mask set, but no filter rules for mask!";
-		}
+	// preprend a backslash if there is none
+	String strFileName = strutils::makelower(szFileName);
+	if (strFileName.empty() || strFileName[0] != '\\')
+		strFileName = _T("\\") + strFileName;
+	// append a point if there is no extension
+	std::string strFileNameUtf8Period = ucr::toUTF8(addPeriodIfNoExtension(strFileName));
+	bool result = m_pMaskFileFilter && m_pMaskFileFilter->Match(strFileNameUtf8Period);
+	if (!result)
+		result = m_pRegexOrExpressionFilter && TestAgainstRegList(&m_pRegexOrExpressionFilter->filefilters, szFileName);
+	if (!result)
+		return false;
+	if (m_pMaskFileFilterExclude && m_pMaskFileFilterExclude->Match(strFileNameUtf8Period))
+		return false;
+	if (m_pRegexOrExpressionFilter && TestAgainstRegList(&m_pRegexOrExpressionFilter->filefiltersExclude, szFileName))
+		return false;
+	if (m_pRegexOrExpressionFilterExclude && !m_pRegexOrExpressionFilterExclude->TestFileNameAgainstFilter(szFileName))
+		return false;
+	return true;
+}
 
+bool FileFilterHelper::includeFile(const DIFFITEM& di) const
+{
+	const int nDirs = di.diffcode.isThreeway() ? 3 : 2;
+	int i = 0;
+	for (; i < nDirs; ++i)
+	{
+		if (!di.diffFileInfo[i].filename.get().empty())
+			break;
+	}
+	std::string strFileNameUtf8Period;
+	bool result = false;
+	if (i < nDirs)
+	{
+		String szFileName = paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
 		// preprend a backslash if there is none
 		String strFileName = strutils::makelower(szFileName);
 		if (strFileName.empty() || strFileName[0] != '\\')
 			strFileName = _T("\\") + strFileName;
 		// append a point if there is no extension
-		strFileName = addPeriodIfNoExtension(strFileName);
-
-		return m_pMaskFileFilter->Match(ucr::toUTF8(strFileName));
+		strFileNameUtf8Period = ucr::toUTF8(addPeriodIfNoExtension(strFileName));
+		result = m_pMaskFileFilter && m_pMaskFileFilter->Match(strFileNameUtf8Period);
 	}
-	else
+	if (!result)
 	{
-		if (m_fileFilterMgr == nullptr || m_currentFilter ==nullptr)
-			return true;
-		return m_fileFilterMgr->TestFileNameAgainstFilter(m_currentFilter, szFileName);
+		if (m_pRegexOrExpressionFilter)
+		{
+			result = FileFilter::TestAgainstRegList(&m_pRegexOrExpressionFilter->filefilters, di);
+			if (!result)
+				result = FileFilter::TestAgainstExpressionList(&m_pRegexOrExpressionFilter->fileExpressionFilters, di);
+		}
 	}
+	if (!result)
+		return false;
+	if (i < nDirs)
+	{
+		if (m_pMaskFileFilterExclude && m_pMaskFileFilterExclude->Match(strFileNameUtf8Period))
+			return false;
+	}
+	if (m_pRegexOrExpressionFilter)
+	{
+		if (FileFilter::TestAgainstRegList(&m_pRegexOrExpressionFilter->filefiltersExclude, di))
+			return false;
+		if (FileFilter::TestAgainstExpressionList(&m_pRegexOrExpressionFilter->fileExpressionFiltersExclude, di))
+			return false;
+	}
+	if (m_pRegexOrExpressionFilterExclude && !m_pRegexOrExpressionFilterExclude->TestFileDiffItemAgainstFilter(di))
+		return false;
+	return true;
 }
 
 /**
@@ -265,33 +315,78 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
  */
 bool FileFilterHelper::includeDir(const String& szDirName) const
 {
-	if (m_bUseMask)
+	// preprend a backslash if there is none
+	String strDirName = strutils::makelower(szDirName);
+	if (strDirName.empty() || strDirName[0] != '\\')
+		strDirName = _T("\\") + strDirName;
+	// append a point if there is no extension
+	std::string strDirNameUtf8Period = ucr::toUTF8(addPeriodIfNoExtension(strDirName));
+	bool result = m_pMaskDirFilter && m_pMaskDirFilter->Match(strDirNameUtf8Period);
+	if (!result)
 	{
-		if (m_pMaskDirFilter == nullptr)
-		{
-			throw "Use mask set, but no filter rules for mask!";
-		}
+		if (m_pRegexOrExpressionFilter)
+			result = TestAgainstRegList(&m_pRegexOrExpressionFilter->dirfilters, strDirName);
+	}
+	if (!result)
+		return false;
+	if (m_pMaskDirFilterExclude && m_pMaskDirFilterExclude->Match(strDirNameUtf8Period))
+		return false;
+	if (m_pRegexOrExpressionFilter && TestAgainstRegList(&m_pRegexOrExpressionFilter->dirfiltersExclude, strDirName))
+		return false;
+	if (m_pRegexOrExpressionFilterExclude && !m_pRegexOrExpressionFilterExclude->TestFileNameAgainstFilter(strDirName))
+		return false;
+	return true;
+}
 
+bool FileFilterHelper::includeDir(const DIFFITEM& di) const
+{
+	const int nDirs = di.diffcode.isThreeway() ? 3 : 2;
+	int i = 0;
+	for (; i < nDirs; ++i)
+	{
+		if (!di.diffFileInfo[i].filename.get().empty())
+			break;
+	}
+	std::string strDirNameUtf8Period;
+	bool result = false;
+	if (i < nDirs)
+	{
+		String szDirName = paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
 		// preprend a backslash if there is none
 		String strDirName = strutils::makelower(szDirName);
 		if (strDirName.empty() || strDirName[0] != '\\')
 			strDirName = _T("\\") + strDirName;
 		// append a point if there is no extension
-		strDirName = addPeriodIfNoExtension(strDirName);
-
-		return m_pMaskDirFilter->Match(ucr::toUTF8(strDirName));
+		strDirNameUtf8Period = ucr::toUTF8(addPeriodIfNoExtension(strDirName));
+		result = m_pMaskDirFilter && m_pMaskDirFilter->Match(strDirNameUtf8Period);
 	}
-	else
+	if (!result)
 	{
-		if (m_fileFilterMgr == nullptr || m_currentFilter == nullptr)
-			return true;
-
-		// Add a backslash
-		String strDirName(_T("\\"));
-		strDirName += szDirName;
-
-		return m_fileFilterMgr->TestDirNameAgainstFilter(m_currentFilter, strDirName);
+		if (m_pRegexOrExpressionFilter)
+		{
+			result = FileFilter::TestAgainstRegList(&m_pRegexOrExpressionFilter->dirfilters, di);
+			if (!result)
+				result = FileFilter::TestAgainstExpressionList(&m_pRegexOrExpressionFilter->dirExpressionFilters, di);
+		}
 	}
+	if (!result)
+		return false;
+	if (i < nDirs)
+	{
+		if (m_pMaskDirFilterExclude && m_pMaskDirFilterExclude->Match(strDirNameUtf8Period))
+			return false;
+	}
+	if (m_pRegexOrExpressionFilter)
+	{
+		
+		if (FileFilter::TestAgainstRegList(&m_pRegexOrExpressionFilter->dirfiltersExclude, di))
+			return false;
+		if (FileFilter::TestAgainstExpressionList(&m_pRegexOrExpressionFilter->dirExpressionFiltersExclude, di))
+			return false;
+	}
+	if (m_pRegexOrExpressionFilterExclude && !m_pRegexOrExpressionFilterExclude->TestDirDiffItemAgainstFilter(di))
+			return false;
+	return true;
 }
 
 /**
@@ -330,12 +425,59 @@ static String ConvertWildcardPatternToRegexp(const String& pattern)
 	return _T("(^|\\\\)") + strRegex;
 }
 
+static std::size_t findSeparator(const String& str, String& prefix, std::size_t startPos = 0)
+{
+	prefix.clear();
+	bool inQuotes = false;
+	bool allowOnlyBasicSeparators = false;
+	while (startPos < str.size() && str[startPos] == ' ')
+		++startPos;
+	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("fe!:"), _T("de!:"), _T("fp:") };
+	for (const auto& pf : prefixes)
+	{
+		if (str.compare(startPos, pf.size(), pf) == 0)
+		{
+			startPos += pf.size();
+			allowOnlyBasicSeparators = true;
+			prefix = pf;
+			break;
+		}
+	}
+	for (std::size_t i = startPos; i < str.size(); ++i)
+	{
+		const auto ch = str[i];
+		if (ch == '"')
+			inQuotes = !inQuotes;
+		else if (!inQuotes &&
+			(ch == ';' || (!allowOnlyBasicSeparators && (ch == ',' || ch == '|' || ch == ':' || ch == ' '))))
+			return i;
+	}
+	return String::npos;
+}
+
+/**
+ * @brief Merge filter into regex or expression filter.
+ */
+static void mergeFilter(FileFilter* dest, const FileFilter* src)
+{
+	dest->filefilters.insert(dest->filefilters.end(), src->filefilters.begin(), src->filefilters.end());
+	dest->filefiltersExclude.insert(dest->filefiltersExclude.end(), src->filefiltersExclude.begin(), src->filefiltersExclude.end());
+	dest->dirfilters.insert(dest->dirfilters.end(), src->dirfilters.begin(), src->dirfilters.end());
+	dest->dirfiltersExclude.insert(dest->dirfiltersExclude.end(), src->dirfiltersExclude.begin(), src->dirfiltersExclude.end());
+	dest->fileExpressionFilters.insert(dest->fileExpressionFilters.end(), src->fileExpressionFilters.begin(), src->fileExpressionFilters.end());
+	dest->fileExpressionFiltersExclude.insert(dest->fileExpressionFiltersExclude.end(), src->fileExpressionFiltersExclude.begin(), src->fileExpressionFiltersExclude.end());
+	dest->dirExpressionFilters.insert(dest->dirExpressionFilters.end(), src->dirExpressionFilters.begin(), src->dirExpressionFilters.end());
+	dest->dirExpressionFiltersExclude.insert(dest->dirExpressionFiltersExclude.end(), src->dirExpressionFiltersExclude.begin(), src->dirExpressionFiltersExclude.end());
+	dest->errors.insert(dest->errors.end(), src->errors.begin(), src->errors.end());
+}
+
 /** 
  * @brief Convert user-given extension list to valid regular expression.
  * @param [in] Extension list/mask to convert to regular expression.
  * @return Regular expression that matches extension list.
  */
-std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(const String &extensions) const
+std::tuple<String, String, String, String, std::shared_ptr<FileFilter>, std::shared_ptr<FileFilter>>
+FileFilterHelper::ParseExtensions(const String &extensions) const
 {
 	String strFileParsed;
 	String strDirParsed;
@@ -344,19 +486,17 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 	std::vector<String> dirPatterns;
 	std::vector<String> dirPatternsExclude;
 	String ext(extensions);
-	static const tchar_t pszSeps[] = _T(" ;|,:");
-
-	ext += _T(";"); // Add one separator char to end
-	size_t pos = ext.find_first_of(pszSeps);
-	
-	while (pos != String::npos)
+	String prefix;
+	std::shared_ptr<FileFilter> pRegexOrExpressionFilter;
+	std::shared_ptr<FileFilter> pRegexOrExpressionFilterExclude;
+	size_t pos = 0;
+	for (;;)
 	{
-		String token = ext.substr(0, pos); // Get first extension
-		ext = ext.substr(pos + 1); // Remove extension + separator
-		
-		// Only "*." or "*.something" allowed, other ignored
-		if (token.length() >= 1)
+		pos = findSeparator(ext, prefix);
+		String token = ext.substr(0, pos == String::npos ? ext.size() : pos);
+		if (token.length() >= 1 && prefix.empty())
 		{
+			// Only "*." or "*.something" allowed, other ignored
 			bool exclude = token[0] == '!';
 			if (exclude)
 				token = token.substr(1);
@@ -380,21 +520,83 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 					filePatterns.push_back(strRegex);
 			}
 		}
-
-		pos = ext.find_first_of(pszSeps); 
+		else if (!prefix.empty())
+		{
+			if (!pRegexOrExpressionFilter)
+			{
+				pRegexOrExpressionFilter = std::make_shared<FileFilter>();
+				pRegexOrExpressionFilter->default_include = false;
+				pRegexOrExpressionFilter->name = extensions;
+			}
+			token = strutils::trim_ws(token.substr(token.find(':') + 1));
+			if (prefix == _T("f:"))
+				pRegexOrExpressionFilter->AddFilterPattern(
+					&pRegexOrExpressionFilter->filefilters, token, true, 0);
+			else if (prefix == _T("f!:"))
+				pRegexOrExpressionFilter->AddFilterPattern(
+					&pRegexOrExpressionFilter->filefiltersExclude, token, true, 0);
+			else if (prefix == _T("d:"))
+				pRegexOrExpressionFilter->AddFilterPattern(
+					&pRegexOrExpressionFilter->dirfilters, token, false, 0);
+			else if (prefix == _T("d!:"))
+				pRegexOrExpressionFilter->AddFilterPattern(
+					&pRegexOrExpressionFilter->dirfiltersExclude, token, false, 0);
+			else if (prefix == _T("fe:"))
+				pRegexOrExpressionFilter->AddFilterExpression(
+					&pRegexOrExpressionFilter->fileExpressionFilters, token, 0);
+			else if (prefix == _T("fe!:"))
+				pRegexOrExpressionFilter->AddFilterExpression(
+					&pRegexOrExpressionFilter->fileExpressionFiltersExclude, token, 0);
+			else if (prefix == _T("de:"))
+				pRegexOrExpressionFilter->AddFilterExpression(
+					&pRegexOrExpressionFilter->dirExpressionFilters, token, 0);
+			else if (prefix == _T("de!:"))
+				pRegexOrExpressionFilter->AddFilterExpression(
+					&pRegexOrExpressionFilter->dirExpressionFiltersExclude, token, 0);
+			else if (prefix == _T("fp:"))
+			{
+				const String path = GetFileFilterPath(token);
+				if (!path.empty())
+				{
+					const FileFilter* filter = m_fileFilterMgr->GetFilterByPath(path);
+					if (filter)
+					{
+						if (!filter->default_include)
+							mergeFilter(pRegexOrExpressionFilter.get(), filter);
+						else
+						{
+							if (!pRegexOrExpressionFilterExclude)
+							{
+								pRegexOrExpressionFilterExclude = std::make_shared<FileFilter>();
+								pRegexOrExpressionFilterExclude->default_include = true;
+								pRegexOrExpressionFilterExclude->name = extensions;
+							}
+							mergeFilter(pRegexOrExpressionFilterExclude.get(), filter);
+						}
+					}
+				}
+				else
+				{
+					pRegexOrExpressionFilter->errors.emplace_back(FILTER_ERROR_FILTER_NAME_NOT_FOUND, -1, -1, token, "");
+				}
+			}
+		}
+		if (pos == String::npos)
+			break; // No more separators found
+		ext = ext.substr(pos + 1); // Remove extension + separator
 	}
 
-	if (filePatterns.empty())
+	if (filePatterns.empty() && (!pRegexOrExpressionFilter || (pRegexOrExpressionFilter->filefilters.empty() && pRegexOrExpressionFilter->fileExpressionFilters.empty())))
 		strFileParsed = _T(".*"); // Match everything
 	else
 		strFileParsed = strutils::join(filePatterns.begin(), filePatterns.end(), _T("|"));
-	if (dirPatterns.empty())
+	if (dirPatterns.empty() && (!pRegexOrExpressionFilter || (pRegexOrExpressionFilter->dirfilters.empty() && pRegexOrExpressionFilter->dirExpressionFilters.empty())))
 		strDirParsed = _T(".*"); // Match everything
 	else
 		strDirParsed = strutils::join(dirPatterns.begin(), dirPatterns.end(), _T("|"));
 	String strFileParsedExclude = strutils::join(filePatternsExclude.begin(), filePatternsExclude.end(), _T("|"));
 	String strDirParsedExclude = strutils::join(dirPatternsExclude.begin(), dirPatternsExclude.end(), _T("|"));
-	return { strFileParsed, strFileParsedExclude, strDirParsed, strDirParsedExclude };
+	return { strFileParsed, strFileParsedExclude, strDirParsed, strDirParsedExclude, pRegexOrExpressionFilter, pRegexOrExpressionFilterExclude };
 }
 
 /** 
@@ -403,55 +605,7 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
  */
 String FileFilterHelper::GetFilterNameOrMask() const
 {
-	String sFilter;
-
-	if (!IsUsingMask())
-		sFilter = GetFileFilterName(m_sFileFilterPath);
-	else
-		sFilter = m_sMask;
-
-	return sFilter;
-}
-
-/** 
- * @brief Set filter.
- *
- * Simple-to-use function to select filter. This function determines
- * filter type so caller doesn't need to care about it.
- *
- * @param [in] filter File mask or filter name.
- * @return true if given filter was set, false if default filter was set.
- * @note If function returns false, you should ask filter set with
- * GetFilterNameOrMask().
- */
-bool FileFilterHelper::SetFilter(const String &filter)
-{
-	// If filter is empty string set default filter
-	if (filter.empty())
-	{
-		UseMask(true);
-		SetMask(_T("*.*"));
-		SetFileFilterPath(_T(""));
-		return false;
-	}
-
-	// Remove leading and trailing whitespace characters from the string.
-	String flt = strutils::trim_ws(filter);
-
-	String path = GetFileFilterPath(flt);
-	if (!path.empty())
-	{
-		UseMask(false);
-		SetFileFilterPath(path);
-	}
-	else
-	{
-		UseMask(true);
-		SetMask(flt);
-		SetFileFilterPath(_T(""));
-		return false;
-	}
-	return true;
+	return m_sMask;
 }
 
 /** 
@@ -464,9 +618,8 @@ bool FileFilterHelper::SetFilter(const String &filter)
 void FileFilterHelper::ReloadUpdatedFilters()
 {
 	DirItem fileInfo;
-	String selected;
-	vector<FileFilterInfo> filters = GetFileFilters(selected);
-	vector<FileFilterInfo>::const_iterator iter = filters.begin();
+	std::vector<FileFilterInfo> filters = GetFileFilters();
+	std::vector<FileFilterInfo>::const_iterator iter = filters.begin();
 	while (iter != filters.end())
 	{
 		String path = (*iter).fullpath;
@@ -476,14 +629,7 @@ void FileFilterHelper::ReloadUpdatedFilters()
 			fileInfo.size != (*iter).fileinfo.size)
 		{
 			// Reload filter after changing it
-			int retval = m_fileFilterMgr->ReloadFilterFromDisk(path);
-			
-			if (retval == FILTER_OK)
-			{
-				// If it was active filter we have to re-set it
-				if (path == selected)
-					SetFileFilterPath(path);
-			}
+			m_fileFilterMgr->ReloadFilterFromDisk(path);
 		}
 		++iter;
 	}
@@ -542,11 +688,37 @@ void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
 		m_pMaskFileFilter->CloneFrom(pHelper->m_pMaskFileFilter.get());
 	}
 
+	if (pHelper->m_pMaskFileFilterExclude)
+	{
+		auto filterList = std::make_unique<FilterList>(FilterList());
+		m_pMaskFileFilterExclude = std::move(filterList);
+		m_pMaskFileFilterExclude->CloneFrom(pHelper->m_pMaskFileFilterExclude.get());
+	}
+
 	if (pHelper->m_pMaskDirFilter)
 	{
 		auto filterList = std::make_unique<FilterList>(FilterList());
 		m_pMaskDirFilter = std::move(filterList);
 		m_pMaskDirFilter->CloneFrom(pHelper->m_pMaskDirFilter.get());
+	}
+
+	if (pHelper->m_pMaskDirFilterExclude)
+	{
+		auto filterList = std::make_unique<FilterList>(FilterList());
+		m_pMaskDirFilterExclude = std::move(filterList);
+		m_pMaskDirFilterExclude->CloneFrom(pHelper->m_pMaskDirFilterExclude.get());
+	}
+
+	if (pHelper->m_pRegexOrExpressionFilter)
+	{
+		m_pRegexOrExpressionFilter.reset(new FileFilter());
+		m_pRegexOrExpressionFilter->CloneFrom(pHelper->m_pRegexOrExpressionFilter.get());
+	}
+
+	if (pHelper->m_pRegexOrExpressionFilterExclude)
+	{
+		m_pRegexOrExpressionFilterExclude.reset(new FileFilter());
+		m_pRegexOrExpressionFilterExclude->CloneFrom(pHelper->m_pRegexOrExpressionFilterExclude.get());
 	}
 
 	if (pHelper->m_fileFilterMgr)
@@ -556,21 +728,8 @@ void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
 		m_fileFilterMgr->CloneFrom(pHelper->m_fileFilterMgr.get());
 	}
 
-	m_currentFilter = nullptr;
-	if (pHelper->m_currentFilter && pHelper->m_fileFilterMgr)
-	{
-		int count = pHelper->m_fileFilterMgr->GetFilterCount();
-		for (int i = 0; i < count; i++)
-			if (pHelper->m_fileFilterMgr->GetFilterByIndex(i) == pHelper->m_currentFilter)
-			{
-				m_currentFilter = m_fileFilterMgr->GetFilterByIndex(i);
-				break;
-			}
-	}
-
 	m_sFileFilterPath = pHelper->m_sFileFilterPath;
 	m_sMask = pHelper->m_sMask;
-	m_bUseMask = pHelper->m_bUseMask;
 	m_sGlobalFilterPath = pHelper->m_sGlobalFilterPath;
 	m_sUserSelFilterPath = pHelper->m_sUserSelFilterPath;
 }
