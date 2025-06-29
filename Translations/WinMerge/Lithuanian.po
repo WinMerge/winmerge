@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-06-06 14:25+0200\n"
+"PO-Revision-Date: 2025-06-27 15:20+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.6.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1024,13 +1024,13 @@ msgid "Differences to... (%1 of %2)"
 msgstr "Skirtumus į... (%1 iš %2)"
 
 msgid "Left Shell Menu"
-msgstr "Kairysis sistemos meniu"
+msgstr "Sistemos meniu kairėje"
 
 msgid "Middle Shell Menu"
-msgstr "Vidurinis sistemos meniu"
+msgstr "Sistemos meniu viduryje"
 
 msgid "Right Shell Menu"
-msgstr "Dešinysis sistemos meniu"
+msgstr "Sistemos meniu dešinėje"
 
 msgid "Both Shell Menu"
 msgstr "Abu sistemos meniu"
@@ -3095,40 +3095,40 @@ msgstr "Praleistas katalogas"
 
 #, c-format
 msgid "Left only: %1"
-msgstr "Tik kairysis: %1"
+msgstr "Yra tik kairėje: %1"
 
 #, c-format
 msgid "Middle only: %1"
-msgstr "Tik vidurinis: %1"
+msgstr "Yra tik viduryje: %1"
 
 #, c-format
 msgid "Right only: %1"
-msgstr "Tik dešinysis: %1"
+msgstr "Yra tik dešinėje: %1"
 
 #, c-format
 msgid "Does not exist in %1"
 msgstr "Nėra %1"
 
 msgid "Binary files are identical"
-msgstr "Binariniai failai yra vienodi"
+msgstr "Binariniai failai vienodi"
 
 msgid "Binary files are different"
-msgstr "Binariniai failai yra skirtingi"
+msgstr "Binariniai failai skiriasi"
 
 msgid "Files are different"
-msgstr "Failai yra skirtingi"
+msgstr "Failai skiriasi"
 
 msgid "Folders are different"
-msgstr "Katalogai yra skirtingi"
+msgstr "Katalogai skiriasi"
 
 msgid "Left Only"
-msgstr "Tik kairysis"
+msgstr "Yra tik kairysis"
 
 msgid "Right Only"
-msgstr "Tik dešinysis"
+msgstr "Yra tik dešinysis"
 
 msgid "Middle Only"
-msgstr "Tik vidurinis"
+msgstr "Yra tik vidurinis"
 
 msgid "No item in left"
 msgstr "Nėra elemento kairėje"
@@ -3143,7 +3143,7 @@ msgid "Error"
 msgstr "Klaida"
 
 msgid "Text files are identical"
-msgstr "Tekstiniai failai yra vienodi"
+msgstr "Tekstiniai failai vienodi"
 
 msgid " (Middle and right are identical)"
 msgstr " (Vidurinis ir dešinysis yra vienodi)"
@@ -3155,10 +3155,10 @@ msgid " (Left and middle are identical)"
 msgstr " (Kairysis ir vidurinis yra vienodi)"
 
 msgid "Text files are different"
-msgstr "Tekstiniai failai yra skirtingi"
+msgstr "Tekstiniai failai skiriasi"
 
 msgid "Image files are identical"
-msgstr "Paveikslėliai yra vienodi"
+msgstr "Paveikslėliai vienodi"
 
 msgid "Image files are different"
 msgstr "Paveikslėliai skiriasi"
