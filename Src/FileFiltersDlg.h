@@ -9,6 +9,7 @@
 #include "TrDialogs.h"
 #include <vector>
 #include "FileFilterHelper.h"
+#include "SuperComboBox.h"
 
 /**
  * @brief Class for dialog allowing user to select
@@ -30,6 +31,7 @@ private:
 	std::unique_ptr<FileFilterHelper> m_pFileFilterHelper;
 	FileFilterHelper* m_pFileFilterHelperOrg;
 	std::vector<FileFilterInfo> m_Filters;
+	CSuperComboBox m_ctlMask;
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)

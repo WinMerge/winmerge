@@ -53,15 +53,16 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(FileFiltersDlg)
-	DDX_Text(pDX, IDC_FILTERFILE_MASK, m_sMask);
+	DDX_CBStringExact(pDX, IDC_FILTERFILE_MASK, m_sMask);
 	DDX_Control(pDX, IDC_FILTERFILE_LIST, m_listFilters);
+	DDX_Control(pDX, IDC_FILTERFILE_MASK, m_ctlMask);
 	//}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
-	ON_EN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilterfileMask)
+	ON_CBN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilterfileMask)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
 	ON_WM_MOUSEMOVE()
@@ -174,6 +175,9 @@ BOOL FileFiltersDlg::OnInitDialog()
 {
 	CTrPropertyPage::OnInitDialog();
 
+	m_ctlMask.SetFileControlStates(true);
+	m_ctlMask.LoadState(_T("Files\\Ext"));
+
 	InitList();
 
 	std::vector<String> presetFilters;
@@ -224,6 +228,9 @@ void FileFiltersDlg::OnOK()
 	m_pFileFilterHelperOrg->CloneFrom(m_pFileFilterHelper.get());
 
 	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
+
+	m_ctlMask.SetWindowTextW(mask.c_str());
+	m_ctlMask.SaveState(_T("Files\\Ext"));
 
 	CDialog::OnOK();
 }
