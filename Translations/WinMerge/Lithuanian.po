@@ -1071,6 +1071,9 @@ msgstr "Parengėjo nuostatos"
 msgid "G&o to Diff"
 msgstr "Pereiti prie skirtum&o"
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "&Neperkelti blokai"
 

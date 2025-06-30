@@ -1072,6 +1072,9 @@ msgstr "إعدادات الاختلافات المسبقة"
 msgid "G&o to Diff"
 msgstr "الذهاب إلى أداة مقارنة الملفات Diff"
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "لا يوجد تجميعات تم تغيير موقعها"
 

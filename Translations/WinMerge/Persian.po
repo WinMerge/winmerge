@@ -1281,6 +1281,9 @@ msgstr " تنظيمهاي پيش فرق گذار  "
 msgid "G&o to Diff"
 msgstr "&o برو به محل تفاوت "
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "&N هيچ قطعه جابجا شده "

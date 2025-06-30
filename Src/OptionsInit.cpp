@@ -237,6 +237,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_TABBAR_AUTO_MAXWIDTH, true);
 	pOptions->InitOption(OPT_ACTIVE_FRAME_MAX, true);
 	pOptions->InitOption(OPT_ACTIVE_PANE, 0, 0, 2);
+	pOptions->InitOption(OPT_LOCATION_PANEL_GOTO_CLICK, true);
 
 	pOptions->InitOption(OPT_MRU_MAX, 9, 0, 128);
 

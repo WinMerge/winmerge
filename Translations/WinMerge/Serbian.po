@@ -1277,6 +1277,9 @@ msgstr "Својства дефинисаног поређења"
 msgid "G&o to Diff"
 msgstr "Иди &на разлику"
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "&Не премештај групе"

@@ -75,6 +75,7 @@ CLocationView::CLocationView()
 	// There is no GUI to do this
 
 	SetConnectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
+	SetGotoLocationOnClick(GetOptionsMgr()->GetBool(OPT_LOCATION_PANEL_GOTO_CLICK));
 
 	std::fill_n(m_nSubLineCount, std::size(m_nSubLineCount), 0);
 }
@@ -556,10 +557,12 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, bool bSelect
 void CLocationView::OnLButtonDown(UINT nFlags, CPoint point) 
 {
 	SetCapture();
-
-	bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
-	if (!GotoLocation(point, false, !bShift))
-		CView::OnLButtonDown(nFlags, point);
+	if (m_bGoToLocationOnClick)
+	{
+		bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
+		if (!GotoLocation(point, false, !bShift))
+			CView::OnLButtonDown(nFlags, point);
+	}
 	OnMouseMove(nFlags, point);
 }
 
@@ -746,6 +749,9 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		case ID_DISPLAY_MOVED_ALL:
 			cmdUI.SetRadio(m_displayMovedBlocks);
 			break;
+		case ID_LOCBAR_GOTO_ONCLICK:
+			cmdUI.SetCheck(m_bGoToLocationOnClick);
+			break;
 		}
 	}
 
@@ -791,6 +797,10 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	case ID_DISPLAY_MOVED_ALL:
 		SetConnectMovedBlocks(true);
 		pDoc->SetDetectMovedBlocks(true);
+		break;
+	case ID_LOCBAR_GOTO_ONCLICK:
+		SetGotoLocationOnClick(!m_bGoToLocationOnClick);
+		GetOptionsMgr()->SaveOption(OPT_LOCATION_PANEL_GOTO_CLICK, m_bGoToLocationOnClick);
 		break;
 	}
 }

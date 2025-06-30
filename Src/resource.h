@@ -899,6 +899,7 @@
 #define ID_DISPLAY_MOVED_NONE           33111
 #define ID_DISPLAY_MOVED_ALL            33112
 #define ID_LOCBAR_GOTODIFF              33114
+#define ID_LOCBAR_GOTO_ONCLICK			33115
 #define ID_FILE_OPENPROJECT             33116
 #define ID_VIEW_SHOWHIDDENITEMS         33117
 #define ID_FILE_SAVEPROJECT             33119

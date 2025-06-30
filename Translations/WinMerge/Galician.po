@@ -1072,6 +1072,9 @@ msgstr "Config. precomparación"
 msgid "G&o to Diff"
 msgstr "Ir á &diferenza"
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "&Non hai bloques desprazados"
 

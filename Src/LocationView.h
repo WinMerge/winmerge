@@ -64,6 +64,7 @@ public:
 	void UpdateVisiblePos(int nTopLine = -1, int nBottomLine = -1);
 	void SetFrameHwnd(HWND hwndFrame);
 	void ForceRecalculate();
+	void SetGotoLocationOnClick(bool bVal) { m_bGoToLocationOnClick = bVal; };
 
 protected:
 
@@ -106,6 +107,7 @@ private:
 	std::vector<DiffBlock> m_diffBlocks; //*< List of pre-calculated diff blocks.
 	bool m_bRecalculateBlocks; //*< Recalculate diff blocks in next repaint.
 	CSize m_currentSize; //*< Current size of the panel.
+	bool m_bGoToLocationOnClick; //*< Setting for going to location when clicking */
 
 	// Generated message map functions
 protected:

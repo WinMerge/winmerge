@@ -1070,6 +1070,9 @@ msgstr "Prediffer-innstillinger"
 msgid "G&o to Diff"
 msgstr "G&å til forskjell"
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "&Ingen flyttede blokker"
 

@@ -1068,6 +1068,9 @@ msgstr "הגדרות השוואה מוקדמת"
 msgid "G&o to Diff"
 msgstr "עבור להבדל"
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "ללא בלוקים שהוזזו"
 

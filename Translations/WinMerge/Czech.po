@@ -1280,6 +1280,9 @@ msgstr ""
 msgid "G&o to Diff"
 msgstr "&Přejít na řádek"
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "&Nezobrazovat přesunuté bloky"

@@ -74,6 +74,7 @@ inline const String OPT_ADDITIONAL_PROPERTIES {_T("Settings/AdditionalProperties
 // Window/Pane
 inline const String OPT_ACTIVE_FRAME_MAX {_T("Settings/ActiveFrameMax"s)};
 inline const String OPT_ACTIVE_PANE {_T("Settings/ActivePane"s)};
+inline const String OPT_LOCATION_PANEL_GOTO_CLICK {_T("Settings/LocationPanelGotoClick"s)};
 
 // Folder Compare Report
 inline const String OPT_REPORTFILES_REPORTTYPE {_T("ReportFiles/ReportType"s)};

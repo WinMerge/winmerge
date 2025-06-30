@@ -1281,6 +1281,9 @@ msgstr "Prediffer indstillinger"
 msgid "G&o to Diff"
 msgstr "Gå til &forskel"
 
+msgid "Go to Line on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "&Ingen flyttede blokke"
