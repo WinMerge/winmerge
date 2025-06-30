@@ -20,6 +20,7 @@
 #include <Poco/DateTimeFormatter.h>
 #include <Poco/DateTimeParser.h>
 #include <Poco/String.h>
+#include <Poco/Glob.h>
 
 static std::optional<bool> evalAsBool(const ValueType& val)
 {
@@ -386,6 +387,11 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 						{
 							return false;
 						}
+					}
+					if (op == TK_LIKE)
+					{
+						Poco::Glob glob(*rvalString, Poco::Glob::GLOB_CASELESS);
+						return glob.match(*lvalString);
 					}
 					if (op == TK_MATCHES)
 					{

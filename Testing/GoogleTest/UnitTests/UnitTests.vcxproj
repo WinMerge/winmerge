@@ -881,6 +881,9 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\FileFilter\Filters\error_include.flt" />
+    <None Include="..\FileFilter\Filters\simple_include_dir.flt" />
+    <None Include="..\FileFilter\Filters\simple_include_file.flt" />
     <None Include="..\TestData\LeftAndRight.WinMerge" />
     <None Include="..\TestData\LeftAndRightNonRecursive.WinMerge" />
     <None Include="..\TestData\LeftAndRightRecursive.WinMerge" />

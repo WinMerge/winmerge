@@ -181,7 +181,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 	InitList();
 
 	std::vector<String> presetFilters;
-	String filterExpression = RemovePresetFilters(m_pFileFilterHelper->GetFilterNameOrMask(), presetFilters);
+	String filterExpression = RemovePresetFilters(m_pFileFilterHelper->GetMaskOrExpression(), presetFilters);
 	SetDlgItemText(IDC_FILTERFILE_MASK, filterExpression.c_str());
 
 	SetCheckedState(m_listFilters, presetFilters);
@@ -224,7 +224,7 @@ void FileFiltersDlg::OnOK()
 		}
 	}
 
-	m_pFileFilterHelper->SetMask(mask);
+	m_pFileFilterHelper->SetMaskOrExpression(mask);
 	m_pFileFilterHelperOrg->CloneFrom(m_pFileFilterHelper.get());
 
 	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());

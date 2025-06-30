@@ -121,17 +121,14 @@ public:
 	String GetFileFilterName(const String& filterPath) const;
 	String GetFileFilterPath(const String& filterName) const;
 	void SetUserFilterPath(const String& filterPath);
-	FileFilter* GetRegexOrExpressionFilter() const { return m_pRegexOrExpressionFilter.get(); }
-	FileFilter* GetRegexOrExpressionFilterExclude() const { return m_pRegexOrExpressionFilterExclude.get(); }
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
 
 	void LoadFileFilterDirPattern(const String& dir, const String& szPattern);
 
-	void SetMask(const String& strMask);
-
-	String GetFilterNameOrMask() const;
+	String GetMaskOrExpression() const { return m_sMask; }
+	void SetMaskOrExpression(const String& strMask);
 
 	void SetDiffContext(const CDiffContext* pCtxt) override;
 	std::vector<const FileFilterErrorInfo*> GetErrorList() const override;
@@ -155,7 +152,6 @@ private:
 	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilter;
 	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilterExclude;
 	std::unique_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
-	std::vector<String> m_sFileFilterPath;        /*< Path to current filter */
 	String m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
 	String m_sGlobalFilterPath;    /*< Path for shared filters */
 	String m_sUserSelFilterPath;     /*< Path for user's private filters */

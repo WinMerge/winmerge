@@ -20,11 +20,7 @@
  * @brief Constructor, creates new filtermanager.
  */
 FileFilterHelper::FileFilterHelper()
-: m_pMaskFileFilter(nullptr)
-, m_pMaskFileFilterExclude(nullptr)
-, m_pMaskDirFilter(nullptr)
-, m_pMaskDirFilterExclude(nullptr)
-, m_fileFilterMgr(new FileFilterMgr)
+: m_fileFilterMgr(new FileFilterMgr)
 {
 }
 
@@ -41,18 +37,17 @@ FileFilterHelper::~FileFilterHelper() = default;
 std::vector<FileFilterInfo> FileFilterHelper::GetFileFilters() const
 {
 	std::vector<FileFilterInfo> filters;
-	if (m_fileFilterMgr != nullptr)
+	if (!m_fileFilterMgr)
+		return filters;
+	const int count = m_fileFilterMgr->GetFilterCount();
+	filters.reserve(count);
+	for (int i = 0; i < count; ++i)
 	{
-		const int count = m_fileFilterMgr->GetFilterCount();
-		filters.reserve(count);
-		for (int i = 0; i < count; ++i)
-		{
-			FileFilterInfo filter;
-			filter.fullpath = m_fileFilterMgr->GetFilterPath(i);
-			filter.name = m_fileFilterMgr->GetFilterName(i);
-			filter.description = m_fileFilterMgr->GetFilterDesc(i);
-			filters.push_back(filter);
-		}
+		FileFilterInfo filter;
+		filter.fullpath = m_fileFilterMgr->GetFilterPath(i);
+		filter.name = m_fileFilterMgr->GetFilterName(i);
+		filter.description = m_fileFilterMgr->GetFilterDesc(i);
+		filters.push_back(filter);
 	}
 	return filters;
 }
@@ -65,19 +60,12 @@ std::vector<FileFilterInfo> FileFilterHelper::GetFileFilters() const
  */
 String FileFilterHelper::GetFileFilterName(const String& filterPath) const
 {
-	String name;
-	std::vector<FileFilterInfo> filters = GetFileFilters();
-	std::vector<FileFilterInfo>::const_iterator iter = filters.begin();
-	while (iter != filters.end())
+	for (const auto& filter : GetFileFilters())
 	{
-		if ((*iter).fullpath == filterPath)
-		{
-			name = (*iter).name;
-			break;
-		}
-		++iter;
+		if (filter.fullpath == filterPath)
+			return filter.name;
 	}
-	return name;
+	return String();
 }
 
 /** 
@@ -87,19 +75,12 @@ String FileFilterHelper::GetFileFilterName(const String& filterPath) const
  */
 String FileFilterHelper::GetFileFilterPath(const String& filterName) const
 {
-	String path;
-	std::vector<FileFilterInfo> filters = GetFileFilters();
-	std::vector<FileFilterInfo>::const_iterator iter = filters.begin();
-	while (iter != filters.end())
+	for (const auto& filter : GetFileFilters())
 	{
-		if ((*iter).name == filterName)
-		{
-			path = (*iter).fullpath;
-			break;
-		}
-		++iter;
+		if (filter.name == filterName)
+			return filter.fullpath;
 	}
-	return path;
+	return String();
 }
 
 /** 
@@ -116,7 +97,7 @@ void FileFilterHelper::SetUserFilterPath(const String & filterPath)
  * @brief Set filemask for filtering.
  * @param [in] strMask Mask to set (e.g. *.cpp;*.h).
  */
-void FileFilterHelper::SetMask(const String& strMask)
+void FileFilterHelper::SetMaskOrExpression(const String& strMask)
 {
 	String flt = strutils::trim_ws(strMask);
 	String path = GetFileFilterPath(flt);
@@ -125,7 +106,7 @@ void FileFilterHelper::SetMask(const String& strMask)
 
 	m_sMask = flt;
 	auto [regExpFile, regExpFileExclude, regExpDir, regExpDirExclude, pRegexOrExpressionFilter, pRegexOrExpressionFilterExclude]
-		= ParseExtensions(strMask);
+		= ParseExtensions(m_sMask);
 
 	std::string regexp_str_file = ucr::toUTF8(regExpFile);
 	std::string regexp_str_file_excluded = ucr::toUTF8(regExpFileExclude);
@@ -267,7 +248,7 @@ bool FileFilterHelper::includeFile(const DIFFITEM& di) const
 			break;
 	}
 	std::string strFileNameUtf8Period;
-	bool result = false;
+	bool result = true;
 	if (i < nDirs)
 	{
 		String szFileName = paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
@@ -333,7 +314,7 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 		return false;
 	if (m_pRegexOrExpressionFilter && TestAgainstRegList(&m_pRegexOrExpressionFilter->dirfiltersExclude, strDirName))
 		return false;
-	if (m_pRegexOrExpressionFilterExclude && !m_pRegexOrExpressionFilterExclude->TestFileNameAgainstFilter(strDirName))
+	if (m_pRegexOrExpressionFilterExclude && !m_pRegexOrExpressionFilterExclude->TestDirNameAgainstFilter(strDirName))
 		return false;
 	return true;
 }
@@ -348,7 +329,7 @@ bool FileFilterHelper::includeDir(const DIFFITEM& di) const
 			break;
 	}
 	std::string strDirNameUtf8Period;
-	bool result = false;
+	bool result = true;
 	if (i < nDirs)
 	{
 		String szDirName = paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
@@ -385,7 +366,7 @@ bool FileFilterHelper::includeDir(const DIFFITEM& di) const
 			return false;
 	}
 	if (m_pRegexOrExpressionFilterExclude && !m_pRegexOrExpressionFilterExclude->TestDirDiffItemAgainstFilter(di))
-			return false;
+		return false;
 	return true;
 }
 
@@ -400,6 +381,9 @@ void FileFilterHelper::LoadFileFilterDirPattern(const String& dir, const String&
 	m_fileFilterMgr->LoadFromDirectory(dir, szPattern, FileFilterExt);
 }
 
+/**
+ * @brief Convert wildcard pattern to regular expression.
+ */
 static String ConvertWildcardPatternToRegexp(const String& pattern)
 {
 	String strRegex;
@@ -425,6 +409,9 @@ static String ConvertWildcardPatternToRegexp(const String& pattern)
 	return _T("(^|\\\\)") + strRegex;
 }
 
+/**
+ * @brief Find separator in string and return position of it.
+ */
 static std::size_t findSeparator(const String& str, String& prefix, std::size_t startPos = 0)
 {
 	prefix.clear();
@@ -600,15 +587,6 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 }
 
 /** 
- * @brief Returns active filter (or mask string)
- * @return The active filter.
- */
-String FileFilterHelper::GetFilterNameOrMask() const
-{
-	return m_sMask;
-}
-
-/** 
  * @brief Reloads changed filter files
  *
  * Checks if filter file has been modified since it was last time
@@ -728,7 +706,6 @@ void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
 		m_fileFilterMgr->CloneFrom(pHelper->m_fileFilterMgr.get());
 	}
 
-	m_sFileFilterPath = pHelper->m_sFileFilterPath;
 	m_sMask = pHelper->m_sMask;
 	m_sGlobalFilterPath = pHelper->m_sGlobalFilterPath;
 	m_sUserSelFilterPath = pHelper->m_sUserSelFilterPath;

@@ -2164,21 +2164,21 @@ CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& pat
 	const String& csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
 	if (!csvFilePattern.empty())
 	{
-		filterCSV.SetMask(csvFilePattern);
+		filterCSV.SetMaskOrExpression(csvFilePattern);
 		if (filterCSV.includeFile(path))
 			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_CSV_DELIM_CHAR)), quote, allowNewlineIQuotes };
 	}
 	const String& tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
 	if (!tsvFilePattern.empty())
 	{
-		filterTSV.SetMask(tsvFilePattern);
+		filterTSV.SetMaskOrExpression(tsvFilePattern);
 		if (filterTSV.includeFile(path))
 			return { true, '\t', quote, allowNewlineIQuotes };
 	}
 	const String& dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
 	if (!dsvFilePattern.empty())
 	{
-		filterDSV.SetMask(dsvFilePattern);
+		filterDSV.SetMaskOrExpression(dsvFilePattern);
 		if (filterDSV.includeFile(path))
 			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR)), quote };
 	}

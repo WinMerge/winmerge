@@ -454,6 +454,8 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName matches \"a.*t\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightName like \"a?ice.*t\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("MiddleName != \"Alice.txt\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftExtension = \"txt\""));

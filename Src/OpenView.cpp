@@ -277,7 +277,7 @@ void COpenView::OnInitialUpdate()
 	UpdateData(bDoUpdateData);
 
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
-	String filterNameOrMask = pGlobalFileFilter->GetFilterNameOrMask();
+	String filterNameOrMask = pGlobalFileFilter->GetMaskOrExpression();
 	int ind = m_ctlExt.FindStringExact(0, filterNameOrMask.c_str());
 	if (ind != CB_ERR)
 		m_ctlExt.SetCurSel(ind);
@@ -707,7 +707,7 @@ void COpenView::OnCompare(UINT nID)
 		// Remove prefix + space
 		filter.erase(0, filterPrefix.length());
 	}
-	pGlobalFileFilter->SetMask(filter);
+	pGlobalFileFilter->SetMaskOrExpression(filter);
 	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 
 	SaveComboboxStates();
@@ -1489,7 +1489,7 @@ void COpenView::OnSelectFilter()
 
 	GetMainFrame()->SelectFilter();
 	
-	String filterNameOrMask = pGlobalFileFilter->GetFilterNameOrMask();
+	String filterNameOrMask = pGlobalFileFilter->GetMaskOrExpression();
 	// If we had filter chosen and now has mask we can overwrite filter
 	if (curFilter != filterNameOrMask)
 	{

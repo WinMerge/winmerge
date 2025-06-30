@@ -909,7 +909,7 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
 	{
-		GetGlobalFileFilter()->SetMask(cmdInfo.m_sFileFilter);
+		GetGlobalFileFilter()->SetMaskOrExpression(cmdInfo.m_sFileFilter);
 	}
 
 	// Set codepage.
@@ -1154,7 +1154,7 @@ FileFilterHelper* CMergeApp::GetGlobalFileFilter()
 		InitializeFileFilters();
 
 		// Read last used filter from registry
-		m_pGlobalFileFilter->SetMask(m_pOptions->GetString(OPT_FILEFILTER_CURRENT));
+		m_pGlobalFileFilter->SetMaskOrExpression(m_pOptions->GetString(OPT_FILEFILTER_CURRENT));
 	}
 
 	return m_pGlobalFileFilter.get();
@@ -1504,7 +1504,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		{
 			String filter = projItem.GetFilter();
 			filter = strutils::trim_ws(filter);
-			GetGlobalFileFilter()->SetMask(filter);
+			GetGlobalFileFilter()->SetMaskOrExpression(filter);
 		}
 		bool bRecursive = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 		if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::IncludeSubfolders) && projItem.HasSubfolders())

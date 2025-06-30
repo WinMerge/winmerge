@@ -53,7 +53,7 @@ BOOL CTestFilterDlg::OnInitDialog()
 
 	SetDlgItemFocus(IDC_TEST_TEXT);
 
-	String name = m_pFileFilterHelper->GetFilterNameOrMask();
+	String name = m_pFileFilterHelper->GetMaskOrExpression();
 	SetDlgItemText(IDC_HEADER_FILTER_NAME, name);
 	
 	return FALSE;  // return TRUE unless you set the focus to a control

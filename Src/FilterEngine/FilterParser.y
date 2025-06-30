@@ -3,11 +3,11 @@
  *
  * @brief Parser for filter expressions.
  */
-%token AND OR NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER EQ NE LT LE GT GE CONTAINS RECONTAINS MATCHES LPAREN RPAREN PLUS MINUS STAR SLASH MOD COMMA.
+%token AND OR NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER EQ NE LT LE GT GE CONTAINS RECONTAINS LIKE MATCHES LPAREN RPAREN PLUS MINUS STAR SLASH MOD COMMA.
 
 %left OR.
 %left AND.
-%left EQ NE LT LE GT GE CONTAINS MATCHES.
+%left EQ NE LT LE GT GE CONTAINS RECONTAINS LIKE MATCHES.
 %right NOT.
 %left PLUS MINUS.
 %left STAR SLASH MOD.
@@ -74,6 +74,7 @@ cmp_expr(A) ::= arithmetic(B) GT arithmetic(C).       { A = { new BinaryOpNode(B
 cmp_expr(A) ::= arithmetic(B) GE arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_GE, C.node) }; }
 cmp_expr(A) ::= arithmetic(B) CONTAINS arithmetic(C). { A = { new BinaryOpNode(B.node, TK_CONTAINS, C.node) }; }
 cmp_expr(A) ::= arithmetic(B) RECONTAINS arithmetic(C). { A = { new BinaryOpNode(B.node, TK_RECONTAINS, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) LIKE arithmetic(C).     { A = { new BinaryOpNode(B.node, TK_LIKE, C.node) }; }
 cmp_expr(A) ::= arithmetic(B) MATCHES  arithmetic(C). { A = { new BinaryOpNode(B.node, TK_MATCHES, C.node) }; }
 cmp_expr(A) ::= arithmetic(A).
 

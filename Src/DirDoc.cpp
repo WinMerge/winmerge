@@ -247,7 +247,7 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	if (m_pDirView)
 		pCtxt->m_pPropertySystem.reset(new PropertySystem(m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames()));
 
-	m_imgfileFilter.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	m_imgfileFilter.SetMaskOrExpression(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	pCtxt->m_pImgfileFilter = &m_imgfileFilter;
 
 	pCtxt->m_pCompareStats = m_pCompareStats.get();
@@ -345,7 +345,7 @@ void CDirDoc::Rescan()
 	m_pDirView->GetParentFrame()->SetStatus(_("Comparing items...").c_str());
 
 	// Show current compare method name and active filter name in statusbar
-	pf->SetFilterStatusDisplay(theApp.GetGlobalFileFilter()->GetFilterNameOrMask().c_str());
+	pf->SetFilterStatusDisplay(theApp.GetGlobalFileFilter()->GetMaskOrExpression().c_str());
 	pf->SetCompareMethodStatusDisplay(m_pCtxt->GetCompareMethod());
 
 	// Folder names to compare are in the compare context
