@@ -2570,6 +2570,9 @@ msgstr "Locatie"
 msgid "Filters"
 msgstr "Filters"
 
+msgid "[F] "
+msgstr "[F] "
+
 msgid "Description"
 msgstr "Beschrijving"
 

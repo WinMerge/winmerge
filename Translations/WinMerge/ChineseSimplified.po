@@ -2571,6 +2571,9 @@ msgstr "位置"
 msgid "Filters"
 msgstr "过滤器"
 
+msgid "[F] "
+msgstr "[F] "
+
 msgid "Description"
 msgstr "描述"
 

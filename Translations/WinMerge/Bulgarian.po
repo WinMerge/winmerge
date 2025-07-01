@@ -2545,6 +2545,9 @@ msgstr "Място"
 msgid "Filters"
 msgstr "Филтри"
 
+msgid "[F] "
+msgstr "[Ф] "
+
 msgid "Description"
 msgstr "Описание"
 

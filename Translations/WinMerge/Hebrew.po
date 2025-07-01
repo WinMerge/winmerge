@@ -2536,6 +2536,9 @@ msgstr "מיקום"
 msgid "Filters"
 msgstr "מסננים"
 
+msgid "[F] "
+msgstr "[F] "
+
 msgid "Description"
 msgstr "תיאור"
 

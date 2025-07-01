@@ -2573,6 +2573,9 @@ msgstr "Locație"
 msgid "Filters"
 msgstr "Filtre"
 
+msgid "[F] "
+msgstr "[F] "
+
 msgid "Description"
 msgstr "Descriere"
 

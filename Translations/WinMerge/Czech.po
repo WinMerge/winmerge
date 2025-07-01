@@ -3018,6 +3018,10 @@ msgid "Filters"
 msgstr "Filtry"
 
 #, c-format
+msgid "[F] "
+msgstr ""
+
+#, c-format
 msgid "Description"
 msgstr "Popis"
 

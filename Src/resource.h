@@ -593,8 +593,6 @@
 #define IDC_JUMP_LIST                   1429
 #define IDC_CLEAR_ALL_RECENT_ITEMS      1430
 #define IDC_ITEMS_PER_SEC               1431
-#define IDC_FILTERFILE_MASK_BTN         1432
-#define IDC_FILTERFILE_PRESET_BTN       1433
 #define IDC_FILTERFILE_MASK             1434
 #define IDC_EXPAND_SUBDIRS              1600
 #define IDC_FILEENCODING                1601
@@ -1282,6 +1280,7 @@
 #define IDS_FILTERFILE_NAMETITLE        40448
 #define IDS_FILTERFILE_PATHTITLE        40449
 #define IDS_FILTER_TITLE                40450
+#define IDS_FILTER_PREFIX               40451
 #define IDS_FILTERFILE_DESCTITLE        40452
 #define IDS_FILEFILTER_SAVENEW          40453
 #define IDS_FILEFILTER_FILEMASK         40454

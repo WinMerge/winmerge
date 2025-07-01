@@ -2551,6 +2551,9 @@ msgstr "Umiestnenie"
 msgid "Filters"
 msgstr "Filtre"
 
+msgid "[F] "
+msgstr "[F] "
+
 msgid "Description"
 msgstr "Popis"
 

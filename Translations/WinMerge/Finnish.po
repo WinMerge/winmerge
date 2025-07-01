@@ -2566,6 +2566,9 @@ msgstr "Sijainti"
 msgid "Filters"
 msgstr "Suotimet"
 
+msgid "[F] "
+msgstr "[F] "
+
 msgid "Description"
 msgstr "Kuvaus"
 

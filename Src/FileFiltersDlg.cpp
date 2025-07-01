@@ -62,7 +62,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
-	ON_CBN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilterfileMask)
+	ON_NOTIFY(CBEN_ENDEDIT, IDC_FILTERFILE_MASK, OnEndEditFilterfileMask)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
 	ON_WM_MOUSEMOVE()
@@ -206,24 +206,28 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
 	m_listFilters.SetItemText(item, 2, filterinfo.fullpath.c_str());
 }
 
+static String AddPresetFiltersToMaskOrExpression(const String& mask, const CListCtrl& list)
+{
+	String result = mask;
+	const int count = list.GetItemCount();
+	for (int i = 0; i < count; i++)
+	{
+		if (list.GetCheck(i))
+		{
+			if (!result.empty())
+				result += _T(";");
+			result += _T("fp:") + list.GetItemText(i, 0);
+		}
+	}
+	return result;
+}
+
 /**
  * @brief Called when dialog is closed with "OK" button.
  */
 void FileFiltersDlg::OnOK()
 {
-	String mask = m_sMask;
-	const int count = m_listFilters.GetItemCount();
-	for (int i = 0; i < count; i++)
-	{
-		const bool checked = m_listFilters.GetCheck(i);
-		if (checked)
-		{
-			if (!mask.empty())
-				mask += _T(";");
-			mask += _T("fp:") + m_listFilters.GetItemText(i, 0);
-		}
-	}
-
+	const String mask = AddPresetFiltersToMaskOrExpression(m_sMask, m_listFilters);
 	m_pFileFilterHelper->SetMaskOrExpression(mask);
 	m_pFileFilterHelperOrg->CloneFrom(m_pFileFilterHelper.get());
 
@@ -235,17 +239,13 @@ void FileFiltersDlg::OnOK()
 	CDialog::OnOK();
 }
 
-void FileFiltersDlg::OnKillFocusFilterfileMask()
+void FileFiltersDlg::OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult)
 {
-	String filterExpressionOld;
-	GetDlgItemText(IDC_FILTERFILE_MASK, filterExpressionOld);
+	UpdateData(TRUE);
 	std::vector<String> presetFilters;
-	String filterExpression = RemovePresetFilters(filterExpressionOld, presetFilters);
-	if (filterExpression != filterExpressionOld)
-	{
-		SetDlgItemText(IDC_FILTERFILE_MASK, filterExpression.c_str());
-		SetCheckedState(m_listFilters, presetFilters);
-	}
+	m_sMask = RemovePresetFilters(m_sMask, presetFilters);
+	UpdateData(FALSE);
+	SetCheckedState(m_listFilters, presetFilters);
 }
 
 /**
@@ -362,6 +362,9 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
 
 	// Ensure filter is up-to-date (user probably just edited it)
 	m_pFileFilterHelper->ReloadUpdatedFilters();
+
+	const String mask = AddPresetFiltersToMaskOrExpression(m_sMask, m_listFilters);
+	m_pFileFilterHelper->SetMaskOrExpression(mask);
 
 	CTestFilterDlg dlg(this, m_pFileFilterHelper.get());
 	dlg.DoModal();
@@ -594,7 +597,6 @@ void FileFiltersDlg::SetButtonState()
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
 	const bool isNone = (sel == -1);
 
-	EnableDlgItem(IDC_FILTERFILE_TEST_BTN, !isNone);
 	EnableDlgItem(IDC_FILTERFILE_EDITBTN, !isNone);
 	EnableDlgItem(IDC_FILTERFILE_DELETEBTN, !isNone);
 }

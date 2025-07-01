@@ -621,7 +621,7 @@ void COpenView::OnSwapButton()
 void COpenView::OnCompare(UINT nID)
 {
 	int pathsType; // enum from paths::PATH_EXISTENCE in paths.h
-	const String filterPrefix = _T("[F] ");
+	const String filterPrefix = _("[F] ");
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 
 	UpdateData(TRUE);

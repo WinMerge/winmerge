@@ -2578,6 +2578,9 @@ msgstr "Konum"
 msgid "Filters"
 msgstr "Süzgeçler"
 
+msgid "[F] "
+msgstr "[F] "
+
 msgid "Description"
 msgstr "Açıklama"
 

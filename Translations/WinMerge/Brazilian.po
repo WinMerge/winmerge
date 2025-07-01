@@ -2492,6 +2492,9 @@ msgstr "Local"
 msgid "Filters"
 msgstr "Filtros"
 
+msgid "[F] "
+msgstr "[F] "
+
 msgid "Description"
 msgstr "Descrição"
 

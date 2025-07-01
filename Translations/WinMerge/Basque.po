@@ -3048,6 +3048,10 @@ msgid "Filters"
 msgstr "Iragazkiak"
 
 #, c-format
+msgid "[F] "
+msgstr "[F] "
+
+#, c-format
 msgid "Description"
 msgstr "Azalpena"
 
