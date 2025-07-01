@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-04-17 09:05+0000\n"
+"POT-Creation-Date: 2025-07-01 10:56+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1063,6 +1063,9 @@ msgid "Prediffer Settings"
 msgstr ""
 
 msgid "G&o to Diff"
+msgstr ""
+
+msgid "Move Cursor on &Click"
 msgstr ""
 
 msgid "&No Moved Blocks"

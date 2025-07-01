@@ -1071,6 +1071,9 @@ msgstr "Configurações da Pré-Diferenciação"
 msgid "G&o to Diff"
 msgstr "I&r para Diferenciação"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "&Nenhum dos Blocos Movidos"
 

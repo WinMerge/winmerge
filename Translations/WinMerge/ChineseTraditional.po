@@ -1287,6 +1287,9 @@ msgstr "先行處理器設定"
 msgid "G&o to Diff"
 msgstr "至差異區塊 (&O)"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "不顯示移位區塊 (&N)"

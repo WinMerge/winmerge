@@ -1283,6 +1283,9 @@ msgstr "Aurrezberdintasun Ezarpenak"
 msgid "G&o to Diff"
 msgstr "Jo&an Ezberd"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "Mugitu &Gabeko Bloke Guztiak"

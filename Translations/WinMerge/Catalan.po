@@ -1281,6 +1281,9 @@ msgstr "Opcions de prediferenciació"
 msgid "G&o to Diff"
 msgstr "Ve&s a la diferència"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "Blocs &no moguts"

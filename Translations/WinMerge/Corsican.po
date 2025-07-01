@@ -1073,6 +1073,9 @@ msgstr "Parametri di u preparagone"
 msgid "G&o to Diff"
 msgstr "&Tuccà a sfarenza"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "&Nisunu bloccu dispiazzatu"
 

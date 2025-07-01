@@ -1071,6 +1071,9 @@ msgstr "Esivertailun asetukset"
 msgid "G&o to Diff"
 msgstr "Siirry eroon"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "Ei siirrettyjä lohkoja"
 

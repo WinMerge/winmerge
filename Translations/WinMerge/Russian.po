@@ -1073,6 +1073,9 @@ msgstr "Параметры предсравнения"
 msgid "G&o to Diff"
 msgstr "Перейти к &отличию"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "&Без перемещенных блоков"
 

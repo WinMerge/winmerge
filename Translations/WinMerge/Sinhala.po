@@ -1280,6 +1280,9 @@ msgstr "Prediffer Settings"
 msgid "G&o to Diff"
 msgstr "G&oto Diff"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "&No Moved Blocks"
 msgstr "&No Moved Blocks"
