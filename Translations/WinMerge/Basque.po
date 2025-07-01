@@ -1283,7 +1283,7 @@ msgstr "Aurrezberdintasun Ezarpenak"
 msgid "G&o to Diff"
 msgstr "Jo&an Ezberd"
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 #, c-format

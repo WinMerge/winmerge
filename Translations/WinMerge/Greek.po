@@ -1279,7 +1279,7 @@ msgstr "Ρυθμίσεις Προεπεξεργαστή Διαφορών"
 msgid "G&o to Diff"
 msgstr "Μετά&βαση σε Διαφορά"
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 #, c-format

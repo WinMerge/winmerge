@@ -1283,7 +1283,7 @@ msgstr "&Prediffer-Einstellungen"
 msgid "G&o to Diff"
 msgstr "Zum Unterschied g&ehen"
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 #, c-format

@@ -1289,7 +1289,7 @@ msgstr "사전 차이 설정"
 msgid "G&o to Diff"
 msgstr "차이점으로 이동(&O)"
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 #, c-format

@@ -1281,7 +1281,7 @@ msgstr " تنظيمهاي پيش فرق گذار  "
 msgid "G&o to Diff"
 msgstr "&o برو به محل تفاوت "
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 #, c-format

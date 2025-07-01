@@ -1078,7 +1078,7 @@ msgstr "முன்வேறுபாடு அமைப்புகள்"
 msgid "G&o to Diff"
 msgstr "வேற்றுமைக்கு செல்"
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 msgid "&No Moved Blocks"

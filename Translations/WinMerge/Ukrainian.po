@@ -1244,7 +1244,7 @@ msgstr "Параметри попереднього порівняння"
 msgid "G&o to Diff"
 msgstr "Перейти до &відмінності"
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 #, c-format

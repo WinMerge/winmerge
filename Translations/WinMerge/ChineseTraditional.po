@@ -1287,7 +1287,7 @@ msgstr "先行處理器設定"
 msgid "G&o to Diff"
 msgstr "至差異區塊 (&O)"
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 #, c-format

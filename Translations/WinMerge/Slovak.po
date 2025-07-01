@@ -1071,7 +1071,7 @@ msgstr "Nastavenia predbežného spracovateľa rozdielov"
 msgid "G&o to Diff"
 msgstr "Ch&oď na rozdiel"
 
-msgid "Go to Line on &Click"
+msgid "Move Cursor on &Click"
 msgstr ""
 
 msgid "&No Moved Blocks"

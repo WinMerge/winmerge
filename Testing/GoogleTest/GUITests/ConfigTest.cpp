@@ -153,7 +153,7 @@ namespace
 		// Window / Pane
 		{ OPT_ACTIVE_FRAME_MAX, varprop::VT_BOOL, {}, {} },
 		{ OPT_ACTIVE_PANE, varprop::VT_INT, {-1, 0, 1, 2}, {} },
-		{ OPT_LOCATION_PANEL_GOTO_CLICK, varprop::VT_BOOL, {}, {} },
+		{ OPT_LOCBAR_MOVECURSOR_ONCLICK, varprop::VT_BOOL, {}, {} },
 		// Folder Compare Report
 		{ OPT_REPORTFILES_REPORTTYPE, varprop::VT_INT, {0, 1, 2, 3}, {} },
 		{ OPT_REPORTFILES_COPYTOCLIPBOARD, varprop::VT_BOOL, {}, {} },
