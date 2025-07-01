@@ -1070,6 +1070,9 @@ msgstr "Setări prediferențiator"
 msgid "G&o to Diff"
 msgstr "Mergi la difere&nță"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "Fără blocuri &mutate"
 

@@ -1244,6 +1244,9 @@ msgstr "Параметри попереднього порівняння"
 msgid "G&o to Diff"
 msgstr "Перейти до &відмінності"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "&Без переміщених блоків"

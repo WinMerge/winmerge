@@ -1072,6 +1072,9 @@ msgstr "Ustawienia porównywania"
 msgid "G&o to Diff"
 msgstr "Idź d&o różnicy"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "Bez prze&niesionych bloków"
 

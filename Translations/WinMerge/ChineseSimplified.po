@@ -1075,6 +1075,9 @@ msgstr "设置预比较插件"
 msgid "G&o to Diff"
 msgstr "转到差异处(&O)"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "不显示移动的区块(&N)"
 

@@ -1279,6 +1279,9 @@ msgstr "Ρυθμίσεις Προεπεξεργαστή Διαφορών"
 msgid "G&o to Diff"
 msgstr "Μετά&βαση σε Διαφορά"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "Όχι μετακινηθέντα Τμήματα"

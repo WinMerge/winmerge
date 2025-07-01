@@ -1069,6 +1069,9 @@ msgstr "Instellingen voorvergelijking"
 msgid "G&o to Diff"
 msgstr "Ga naar verschil"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "Geen verplaatste blokken"
 
