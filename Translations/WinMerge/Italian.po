@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Italian) 17.04.2025\n"
+"Project-Id-Version: WinMerge (Italian) 02.07.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-04-17 15:47+0200\n"
+"PO-Revision-Date: 2025-07-02 21:30+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1073,7 +1073,7 @@ msgid "G&o to Diff"
 msgstr "Vai alla &differenza"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "Sposta cursore con &clic"
 
 msgid "&No Moved Blocks"
 msgstr "&Nessun blocco spostato"
@@ -4559,11 +4559,11 @@ msgstr "Confronto completato"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr "Impossibile confrontare %1 con %2:"
+msgstr "Impossibile confrontare %1 con %2: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr "Impossibile confrontare %1 con %2 e %3:"
+msgstr "Impossibile confrontare %1 con %2 e %3: "
 
 msgid "File saved"
 msgstr "File salvato"
@@ -4584,7 +4584,7 @@ msgid "Permanently deleted"
 msgstr "Permanentemente eliminati"
 
 msgid "File operation completed successfully"
-msgstr "Operazione file completata correttamente."
+msgstr "Operazione file completata correttamente"
 
 msgid "File operation canceled"
 msgstr "Operazione file annullata"

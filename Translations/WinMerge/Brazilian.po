@@ -8,11 +8,11 @@
 # * Marcello Oliveira <marcello.mco at gmail.com>
 #
 msgid ""
-msgstr ""
+
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2025-04-12 23:15-0300\n"
+"PO-Revision-Date: 2025-07-01 23:05-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1072,7 +1072,7 @@ msgid "G&o to Diff"
 msgstr "I&r para Diferenciação"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "Mover Cursor ao &Clicar"
 
 msgid "&No Moved Blocks"
 msgstr "&Nenhum dos Blocos Movidos"

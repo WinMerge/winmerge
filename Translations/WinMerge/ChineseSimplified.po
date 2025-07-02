@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -1076,7 +1076,7 @@ msgid "G&o to Diff"
 msgstr "转到差异处(&O)"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "在点击时移动光标(&C)"
 
 msgid "&No Moved Blocks"
 msgstr "不显示移动的区块(&N)"
