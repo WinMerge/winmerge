@@ -8,8 +8,29 @@
 
 #include "TrDialogs.h"
 #include <vector>
+#include "FileFilterHelper.h"
+#include "SuperComboBox.h"
 
-struct FileFilterInfo;
+class CMyEdit : public CEdit
+{
+public:
+	bool m_bError = true;
+	CBrush m_brushError;
+
+	CMyEdit() { m_brushError.CreateSolidBrush(RGB(255, 230, 230)); }
+
+	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor)
+	{
+		if (m_bError)
+		{
+			pDC->SetBkColor(RGB(255, 230, 230));
+			return (HBRUSH)m_brushError;
+		}
+		return nullptr;
+	}
+
+	DECLARE_MESSAGE_MAP()
+};
 
 /**
  * @brief Class for dialog allowing user to select
@@ -22,15 +43,17 @@ class FileFiltersDlg : public CTrPropertyPage
 // Construction
 public:
 	FileFiltersDlg();   // standard constructor
-	void SetFilterArray(const std::vector<FileFilterInfo>& fileFilters);
-	String GetSelected();
-	void SetSelected(const String & selected);
+	void SetFileFilterHelper(FileFilterHelper* pFileFilterHelper);
 
 // Implementation data
 private:
-	String m_sFileFilterPath;
 	CPoint m_ptLastMousePos;
+	String m_sMask;
+	std::unique_ptr<FileFilterHelper> m_pFileFilterHelper;
+	FileFilterHelper* m_pFileFilterHelperOrg;
 	std::vector<FileFilterInfo> m_Filters;
+	CSuperComboBox m_ctlMask;
+	CMyEdit m_ctlMaskEdit;
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)
@@ -44,7 +67,6 @@ protected:
 	void SelectFilterByIndex(int index);
 	void SelectFilterByFilePath(const String& path);
 	void AddToGrid(int filterIndex);
-	bool IsFilterItemNone(int item) const;
 	void UpdateFiltersList();
 	void EditFileFilter(const String& path);
 
@@ -59,6 +81,7 @@ protected:
 	//{{AFX_MSG(FileFiltersDlg)
 	virtual BOOL OnInitDialog() override;
 	virtual void OnOK();
+	afx_msg void OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnFiltersEditbtn();
 	afx_msg void OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pResult);

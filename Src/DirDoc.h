@@ -132,6 +132,7 @@ protected:
 	void InitDiffContext(CDiffContext *pCtxt);
 	void LoadLineFilterList(CDiffContext *pCtxt);
 	void LoadSubstitutionFiltersList(CDiffContext* pCtxt);
+	void CheckFilter();
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)

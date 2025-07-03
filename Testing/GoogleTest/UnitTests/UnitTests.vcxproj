@@ -115,29 +115,9 @@
     <Import Project="..\..\..\Src\diffutils\diffutils.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Externals\crystaledit\editlib\editlibparsers.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Src\CompareEngines\CompareEngines.vcxitems" Label="Shared" />
+    <Import Project="..\..\..\Src\FilterEngine\FilterEngine.vcxitems" Label="Shared" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -212,7 +192,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -242,7 +222,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;uafxcwd.lib;LIBCMTD.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -270,7 +250,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -298,7 +278,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -324,7 +304,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -353,7 +333,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -380,7 +360,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -407,7 +387,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)UnitTests.exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\..\Externals\poco\lib$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -436,6 +416,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\VersionInfo.cpp" />
     <ClCompile Include="..\..\..\Src\CompareOptions.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -446,6 +427,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\DiffContext.cpp" />
     <ClCompile Include="..\..\..\Src\DiffFileData.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -495,6 +477,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileFlags.cpp" />
     <ClCompile Include="..\..\..\Src\FileFilter.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -604,6 +587,7 @@
     <ClCompile Include="..\DirWatcher\DirWatcher_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp" />
     <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -846,8 +830,10 @@
     <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h" />
     <ClInclude Include="..\..\..\Src\charsets.h" />
     <ClInclude Include="..\..\..\Src\codepage_detect.h" />
+    <ClInclude Include="..\..\..\Src\Common\VersionInfo.h" />
     <ClInclude Include="..\..\..\Src\CompareOptions.h" />
     <ClInclude Include="..\..\..\Src\Common\coretools.h" />
+    <ClInclude Include="..\..\..\Src\DiffContext.h" />
     <ClInclude Include="..\..\..\Src\DiffFileData.h" />
     <ClInclude Include="..\..\..\Src\DiffItem.h" />
     <ClInclude Include="..\..\..\Src\DiffItemList.h" />
@@ -857,6 +843,7 @@
     <ClInclude Include="..\..\..\Src\DirWatcher.h" />
     <ClInclude Include="..\..\..\Src\Environment.h" />
     <ClInclude Include="..\..\..\Src\Common\ExConverter.h" />
+    <ClInclude Include="..\..\..\Src\FileFlags.h" />
     <ClInclude Include="..\..\..\Src\FileFilter.h" />
     <ClInclude Include="..\..\..\Src\FileFilterHelper.h" />
     <ClInclude Include="..\..\..\Src\FileFilterMgr.h" />
@@ -894,6 +881,9 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\FileFilter\Filters\error_include.flt" />
+    <None Include="..\FileFilter\Filters\simple_include_dir.flt" />
+    <None Include="..\FileFilter\Filters\simple_include_file.flt" />
     <None Include="..\TestData\LeftAndRight.WinMerge" />
     <None Include="..\TestData\LeftAndRightNonRecursive.WinMerge" />
     <None Include="..\TestData\LeftAndRightRecursive.WinMerge" />
@@ -905,6 +895,11 @@
     <Text Include="..\TestData\DirWatcher\Subdir1\test.txt" />
     <Text Include="..\TestData\DirWatcher\test.txt" />
     <Text Include="..\TestData\DirWatcher\test2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Update="E:\dev\winmerge\Src\FilterEngine\FilterParser.c">
+      <FileType>CppCode</FileType>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

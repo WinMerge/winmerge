@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-07-01 10:56+0000\n"
+"POT-Creation-Date: 2025-07-02 06:45+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1359,9 +1359,6 @@ msgstr ""
 msgid "Find &Prev"
 msgstr ""
 
-msgid "&Ok"
-msgstr ""
-
 msgid "Replace"
 msgstr ""
 
@@ -1399,6 +1396,9 @@ msgid "New"
 msgstr ""
 
 msgid "&Background color:"
+msgstr ""
+
+msgid "&Ok"
 msgstr ""
 
 msgid "&Apply"
@@ -1804,6 +1804,12 @@ msgid "Reset"
 msgstr ""
 
 msgid "File Filters"
+msgstr ""
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."
@@ -4069,6 +4075,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

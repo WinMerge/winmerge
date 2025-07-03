@@ -1366,9 +1366,6 @@ msgstr "Znajdź nast."
 msgid "Find &Prev"
 msgstr "Znajdź &poprz."
 
-msgid "&Ok"
-msgstr "&Ok"
-
 msgid "Replace"
 msgstr "Zastąp"
 
@@ -1407,6 +1404,9 @@ msgstr "Nowy"
 
 msgid "&Background color:"
 msgstr "Kolor tła:"
+
+msgid "&Ok"
+msgstr "&Ok"
 
 msgid "&Apply"
 msgstr "Z&astosuj"
@@ -1812,6 +1812,12 @@ msgstr "Resetuj"
 
 msgid "File Filters"
 msgstr "Filtry plików"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Testuj..."
@@ -4075,6 +4081,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

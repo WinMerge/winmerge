@@ -1367,9 +1367,6 @@ msgstr "S&onrakini bul"
 msgid "Find &Prev"
 msgstr "Ö&ncekini bul"
 
-msgid "&Ok"
-msgstr "&Tamam"
-
 msgid "Replace"
 msgstr "Değiştir"
 
@@ -1408,6 +1405,9 @@ msgstr "Yeni"
 
 msgid "&Background color:"
 msgstr "A&rka plan rengi:"
+
+msgid "&Ok"
+msgstr "&Tamam"
 
 msgid "&Apply"
 msgstr "&Uygula"
@@ -1823,6 +1823,12 @@ msgstr "Sıfırla"
 
 msgid "File Filters"
 msgstr "Dosya süzgeçleri"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Sına..."
@@ -4561,6 +4567,39 @@ msgstr "Dosya işlemi başarıyla tamamlandı"
 
 msgid "File operation canceled"
 msgstr "Dosya işlemi iptal edildi"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Sadeleştirme"
