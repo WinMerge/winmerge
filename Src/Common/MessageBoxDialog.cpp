@@ -42,6 +42,7 @@
 #include "StdAfx.h"
 
 #include "MessageBoxDialog.h"
+#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -511,10 +512,25 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	CreateMessageControl();
 	CreateCheckboxControl();
 	CreateButtonControls();
+#if defined(USE_DARKMODELIB)
+	if (m_hWnd != nullptr)
+	{
+		DarkMode::setDarkWndSafe(m_hWnd, false);
+		DarkMode::setWindowEraseBgSubclass(m_hWnd);
+		HWND hTip = m_tooltips.GetSafeHwnd();
+		if (hTip != nullptr)
+		{
+			DarkMode::setDarkTooltips(hTip);
+		}
+	}
 
-	const COLORREF clrWindow = GetSysColor(COLOR_WINDOW);
-	if ((clrWindow & 0xff) + ((clrWindow >> 8) & 0xff) + (clrWindow > 16) < 0x80 * 3)
-		::SetWindowTheme(::GetDlgItem(m_hWnd, IDCHECKBOX), _T(""), _T(""));
+	if (!DarkMode::isExperimentalActive())
+#endif
+	{
+		const COLORREF clrWindow = GetSysColor(COLOR_WINDOW);
+		if ((clrWindow & 0xff) + ((clrWindow >> 8) & 0xff) + (clrWindow > 16) < 0x80 * 3)
+			::SetWindowTheme(::GetDlgItem(m_hWnd, IDCHECKBOX), _T(""), _T(""));
+	}
 
 	// Define the layout of the dialog.
 	DefineLayout();
