@@ -30,6 +30,10 @@ using std::vector;
 /** @brief Template file used when creating new filefilter. */
 static const tchar_t FILE_FILTER_TEMPLATE[] = _T("FileFilter.tmpl");
 
+BEGIN_MESSAGE_MAP(CMyEdit, CEdit)
+	ON_WM_CTLCOLOR_REFLECT()
+END_MESSAGE_MAP()
+
 /////////////////////////////////////////////////////////////////////////////
 // CFiltersDlg dialog
 IMPLEMENT_DYNCREATE(FileFiltersDlg, CTrPropertyPage)
@@ -188,6 +192,9 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	SetButtonState();
 
+	HWND hEdit = (HWND)m_ctlMask.SendMessage(CBEM_GETEDITCONTROL);
+	m_ctlMaskEdit.SubclassWindow(hEdit);
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -244,6 +251,9 @@ void FileFiltersDlg::OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult)
 	UpdateData(TRUE);
 	std::vector<String> presetFilters;
 	m_sMask = RemovePresetFilters(m_sMask, presetFilters);
+	FileFilterHelper tmpHelper;
+	tmpHelper.SetMaskOrExpression(AddPresetFiltersToMaskOrExpression(m_sMask, m_listFilters));
+	m_ctlMaskEdit.m_bError = !tmpHelper.GetErrorList().empty();
 	UpdateData(FALSE);
 	SetCheckedState(m_listFilters, presetFilters);
 }

@@ -11,6 +11,27 @@
 #include "FileFilterHelper.h"
 #include "SuperComboBox.h"
 
+class CMyEdit : public CEdit
+{
+public:
+	bool m_bError = true;
+	CBrush m_brushError;
+
+	CMyEdit() { m_brushError.CreateSolidBrush(RGB(255, 230, 230)); }
+
+	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor)
+	{
+		if (m_bError)
+		{
+			pDC->SetBkColor(RGB(255, 230, 230));
+			return (HBRUSH)m_brushError;
+		}
+		return nullptr;
+	}
+
+	DECLARE_MESSAGE_MAP()
+};
+
 /**
  * @brief Class for dialog allowing user to select
  * and edit used file filters
@@ -32,6 +53,7 @@ private:
 	FileFilterHelper* m_pFileFilterHelperOrg;
 	std::vector<FileFilterInfo> m_Filters;
 	CSuperComboBox m_ctlMask;
+	CMyEdit m_ctlMaskEdit;
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)
