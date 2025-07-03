@@ -12,6 +12,7 @@
 #include "paths.h"
 #include "Environment.h"
 #include "resource.h" // IDD_ABOUTBOX
+#include "MergeDarkMode.h"
 
  // https://www.gnu.org/graphics/gnu-ascii.html
  // Copyright (c) 2001 Free Software Foundation, Inc.
@@ -120,7 +121,25 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 	SetDlgItemText(IDC_WWW, link);
 
 	UpdateData(FALSE);
-	
+#if defined(USE_DARKMODELIB)
+	if (DarkMode::isExperimentalActive())
+	{
+		WinMergeDarkMode::InvertLightness(m_image);
+	}
+
+	HWND hLink = GetDlgItem(IDC_WWW)->GetSafeHwnd();
+	if (hLink != nullptr)
+	{
+		DarkMode::enableSysLinkCtrlCtlColor(hLink);
+	}
+
+	HWND hSelf = m_hWnd;
+	if (hSelf != nullptr)
+	{
+		DarkMode::removeWindowEraseBgSubclass(hSelf);
+		WinMergeDarkMode::SetAsciiArtSubclass(hSelf);
+	}
+#endif
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -157,7 +176,11 @@ BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 	GetDlgItem(IDC_COMPANY)->GetWindowRect(&rcCompany);
 	ScreenToClient(&rcCompany);
 	rc.top = rcCompany.bottom;
+#if defined(USE_DARKMODELIB)
+	pDC->FillSolidRect(&rc, DarkMode::isEnabled() ? DarkMode::getDlgBackgroundColor() : GetSysColor(COLOR_BTNFACE));
+#else
 	pDC->FillSolidRect(&rc, GetSysColor(COLOR_BTNFACE));
+#endif
 	rc.bottom = rc.top;
 	rc.top = 0;
 	m_image.Draw(pDC->m_hDC, rc, Gdiplus::InterpolationModeBicubic);

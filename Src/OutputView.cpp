@@ -99,6 +99,13 @@ void COutputView::OnInitialUpdate()
 	AttachToBuffer();
 	SetColorContext(theApp.GetMainSyntaxColors());
 	SetMarkersContext(GetDocument()->m_pMarkers.get());
+#if defined(USE_DARKMODELIB)
+	HWND hSelf = GetSafeHwnd();
+	if (hSelf != nullptr)
+	{
+		DarkMode::setDarkScrollBar(hSelf);
+	}
+#endif
 }
 
 void COutputView::OnContextMenu(CWnd* pWnd, CPoint point)

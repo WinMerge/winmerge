@@ -1991,6 +1991,7 @@
 #define IDS_FILTER_OP_NOT_CONTAINS      44689
 #define IDS_FILTER_OP_RECONTAINS        44690
 #define IDS_FILTER_OP_NOT_RECONTAINS    44691
+#define IDD_DARK_FONT_DIALOG            44692
 
 // Next default values for new objects
 // 

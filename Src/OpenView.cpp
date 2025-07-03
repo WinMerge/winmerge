@@ -38,6 +38,7 @@
 #include "Win_VersionHelper.h"
 #include "OptionsProject.h"
 #include "Merge7zFormatMergePluginImpl.h"
+#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -211,7 +212,19 @@ void COpenView::OnInitialUpdate()
 		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
 		m_image.Create(1, 1, 24, 0);
 	}
+#if defined(USE_DARKMODELIB)
+	HWND hSelf = GetSafeHwnd();
+	if (hSelf != nullptr)
+	{
+		DarkMode::setWindowCtlColorSubclass(hSelf);
+		DarkMode::setChildCtrlsSubclassAndTheme(hSelf);
+	}
 
+	if (DarkMode::isExperimentalActive())
+	{
+		WinMergeDarkMode::InvertLightness(m_image);
+	}
+#endif
 	__super::OnInitialUpdate();
 
 	// set caption to "swap paths" button
@@ -387,7 +400,12 @@ void COpenView::OnPaint()
 	CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
 	m_image.Draw(dc.m_hDC, rcImage, Gdiplus::InterpolationModeBicubic);
 	// And extend it to the Right boundary
-	dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
+#if defined(USE_DARKMODELIB)
+	if (!DarkMode::isExperimentalActive())
+#endif
+	{
+		dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
+	}
 
 	// Draw the resize gripper in the Lower Right corner.
 	CRect rcGrip = rc;

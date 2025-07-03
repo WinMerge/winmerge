@@ -25,6 +25,7 @@
 
 #include "stdafx.h"        // Standard windows header file
 #include "BCMenu.h"        // BCMenu class declaration
+#include "MergeDarkMode.h" // Dark mode
 #include <afxpriv.h>       //SK: makes A2W and other spiffy AFX macros work
 #include <../src/mfc/afximpl.h>
 #include <cmath>
@@ -1866,7 +1867,11 @@ int BCMenu::GlobalImageListOffset(int nID)
 
 CBitmap* BCMenu::CreateRadioDotBitmap()
 {
+#if defined(USE_DARKMODELIB)
+	const COLORREF color = DarkMode::isEnabled() ? DarkMode::getDarkerTextColor() : GetSysColor(COLOR_MENUTEXT);
+#else
 	const COLORREF color = GetSysColor(COLOR_MENUTEXT);
+#endif
 	const DWORD dibcolor = (GetRValue(color) << 16) | (GetGValue(color) << 8) | GetBValue(color);
 	const int cxSMIcon = GetSystemMetrics(SM_CXSMICON);
 	const int cySMIcon = GetSystemMetrics(SM_CYSMICON);
