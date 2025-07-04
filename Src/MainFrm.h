@@ -25,6 +25,7 @@
 #include "FileOpenFlags.h"
 #include "Logger.h"
 #include <Poco/Channel.h>
+#include "MergeDarkMode.h"
 
 class BCMenu;
 class CDirView;
@@ -271,6 +272,19 @@ protected:
 		{
 			switch (message)
 			{
+#if defined(USE_DARKMODELIB)
+			case WM_ERASEBKGND:
+			{
+				if (DarkMode::isEnabled())
+				{
+					CRect rcClient;
+					GetClientRect(rcClient);
+					::FillRect(reinterpret_cast<HDC>(wParam), &rcClient, DarkMode::getDlgBackgroundBrush());
+					return TRUE;
+				}
+				break;
+			}
+#endif
 			case WM_MDICREATE:
 			case WM_MDIACTIVATE:
 			{
