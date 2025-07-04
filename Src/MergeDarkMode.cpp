@@ -14,6 +14,8 @@
 #include "StdAfx.h"
 #include "MergeDarkMode.h"
 
+#include <limits>
+
 #ifdef max
 #undef max
 #endif
@@ -31,11 +33,16 @@ namespace WinMergeDarkMode
 		const double gf = g / 255.0;
 		const double bf = b / 255.0;
 
-		const double max = std::max({ rf, gf, bf });
-		const double min = std::min({ rf, gf, bf });
+		const double max = std::max<double>({ rf, gf, bf });
+		const double min = std::min<double>({ rf, gf, bf });
 		l = (max + min) / 2.0;
 
-		if (max == min)
+		static constexpr auto isFloatEqual = [](double n, double m) -> bool
+		{
+			return std::fabs(n - m) < std::numeric_limits<double>::epsilon();
+		};
+
+		if (isFloatEqual(max, min))
 		{
 			h = s = 0.0;
 		}
@@ -44,9 +51,9 @@ namespace WinMergeDarkMode
 			const double delta = max - min;
 			s = (l > 0.5) ? delta / (2.0 - max - min) : delta / (max + min);
 
-			if (max == rf)
+			if (isFloatEqual(max, rf))
 				h = (gf - bf) / delta + (gf < bf ? 6.0 : 0.0);
-			else if (max == gf)
+			else if (isFloatEqual(max, gf))
 				h = (bf - rf) / delta + 2.0;
 			else
 				h = (rf - gf) / delta + 4.0;
@@ -57,14 +64,15 @@ namespace WinMergeDarkMode
 
 	static void HSLToRGB(double h, double s, double l, BYTE& r, BYTE& g, BYTE& b)
 	{
-		auto hueToRGB = [](double p, double q, double t) -> double{
+		auto hueToRGB = [](double p, double q, double t) -> double
+		{
 			if (t < 0.0) t += 1.0;
 			if (t > 1.0) t -= 1.0;
 			if (t < 1.0 / 6.0) return p + (q - p) * 6.0 * t;
 			if (t < 1.0 / 2.0) return q;
 			if (t < 2.0 / 3.0) return p + (q - p) * (2.0 / 3.0 - t) * 6.0;
 			return p;
-			};
+		};
 
 		if (s == 0.0)
 		{
@@ -105,10 +113,10 @@ namespace WinMergeDarkMode
 		const int width = image.GetWidth();
 		const int height = image.GetHeight();
 
-		const double minLightness = 0.125;
-		const double maxLightness = 1.0;
+		static constexpr double minLightness = 0.125;
+		static constexpr double maxLightness = 1.0;
 
-		const int threshold = 240;
+		static constexpr int threshold = 240;
 		const COLORREF darkBackgroundColor = DarkMode::getDlgBackgroundColor();
 
 		ConvertTo32Bit(image);
@@ -142,13 +150,17 @@ namespace WinMergeDarkMode
 				}
 				else
 				{
-					double h, s, l;
+					double h = 0;
+					double s = 0;
+					double l = 0;
 					RGBToHSL(pixel.rgbRed, pixel.rgbGreen, pixel.rgbBlue, h, s, l);
 
 					l = minLightness + (maxLightness - l);
 					l = std::max<double>(0.0, std::min<double>(1.0, l));
 
-					BYTE newR, newG, newB;
+					BYTE newR = 0;
+					BYTE newG = 0;
+					BYTE newB = 0;
 					HSLToRGB(h, s, l, newR, newG, newB);
 
 					pixel.rgbRed = newR;
@@ -159,7 +171,7 @@ namespace WinMergeDarkMode
 		}
 	}
 
-	constexpr UINT_PTR g_aboutAsciiSubclassID = 42;
+	static constexpr UINT_PTR g_aboutAsciiSubclassID = 42;
 
 	static LRESULT CALLBACK AsciiCtlColorSubclass(
 		HWND hWnd,
@@ -167,7 +179,7 @@ namespace WinMergeDarkMode
 		WPARAM wParam,
 		LPARAM lParam,
 		UINT_PTR uIdSubclass,
-		DWORD_PTR /*dwRefData*/
+		[[maybe_unused]] DWORD_PTR /*dwRefData*/
 	)
 	{
 		switch (uMsg)
@@ -182,25 +194,18 @@ namespace WinMergeDarkMode
 			{
 				if (DarkMode::isEnabled())
 				{
-					constexpr auto _IDC_GNU_ASCII = 1022; // same as in Resource.h
+					static constexpr auto _IDC_GNU_ASCII = 1022; // same as in Resource.h
 
 					auto hdc = reinterpret_cast<HDC>(wParam);
 
 					auto hChild = reinterpret_cast<HWND>(lParam);
 					const int id = ::GetDlgCtrlID(hChild);
-					switch (id)
-					{
-						case _IDC_GNU_ASCII:
-						{
-							::SetTextColor(hdc, DarkMode::getDarkerTextColor());
-							::SetBkMode(hdc, TRANSPARENT);
-							return reinterpret_cast<LRESULT>(static_cast<HBRUSH>(::GetStockObject(NULL_BRUSH)));
-						}
 
-						default:
-						{
-							break;
-						}
+					if (id == _IDC_GNU_ASCII)
+					{
+						::SetTextColor(hdc, DarkMode::getDarkerTextColor());
+						::SetBkMode(hdc, TRANSPARENT);
+						return reinterpret_cast<LRESULT>(static_cast<HBRUSH>(::GetStockObject(NULL_BRUSH)));
 					}
 				}
 				break;
