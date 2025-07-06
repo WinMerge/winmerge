@@ -3,12 +3,12 @@
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
- /* File created by MIDL compiler version 7.00.0555 */
-/* at Wed Jun 18 21:09:30 2025
+ /* File created by MIDL compiler version 8.01.0628 */
+/* at Tue Jan 19 12:14:07 2038
  */
 /* Compiler settings for MergeAppLib.idl:
-    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 7.00.0555 
-    protocol : dce , ms_ext, c_ext, robust
+    Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 8.01.0628 
+    protocol : all , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
          __declspec(uuid()), __declspec(selectany), __declspec(novtable)
@@ -16,12 +16,11 @@
 */
 /* @@MIDL_FILE_HEADING(  ) */
 
-#pragma warning( disable: 4049 )  /* more than 64k source lines */
 
 
 /* verify that the <rpcndr.h> version is high enough to compile this file*/
 #ifndef __REQUIRED_RPCNDR_H_VERSION__
-#define __REQUIRED_RPCNDR_H_VERSION__ 475
+#define __REQUIRED_RPCNDR_H_VERSION__ 500
 #endif
 
 #include "rpc.h"
@@ -29,7 +28,7 @@
 
 #ifndef __RPCNDR_H_VERSION__
 #error this stub requires an updated version of <rpcndr.h>
-#endif // __RPCNDR_H_VERSION__
+#endif /* __RPCNDR_H_VERSION__ */
 
 #ifndef COM_NO_WINDOWS_H
 #include "windows.h"
@@ -43,17 +42,27 @@
 #pragma once
 #endif
 
+#ifndef DECLSPEC_XFGVIRT
+#if defined(_CONTROL_FLOW_GUARD_XFG)
+#define DECLSPEC_XFGVIRT(base, func) __declspec(xfg_virtual(base, func))
+#else
+#define DECLSPEC_XFGVIRT(base, func)
+#endif
+#endif
+
 /* Forward Declarations */ 
 
 #ifndef __IMergeApp_FWD_DEFINED__
 #define __IMergeApp_FWD_DEFINED__
 typedef interface IMergeApp IMergeApp;
+
 #endif 	/* __IMergeApp_FWD_DEFINED__ */
 
 
 #ifndef __IMergeApp_FWD_DEFINED__
 #define __IMergeApp_FWD_DEFINED__
 typedef interface IMergeApp IMergeApp;
+
 #endif 	/* __IMergeApp_FWD_DEFINED__ */
 
 
@@ -111,34 +120,41 @@ EXTERN_C const IID IID_IMergeApp;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct IMergeAppVtbl
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IMergeApp * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IMergeApp * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IMergeApp * This);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfoCount)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
             IMergeApp * This,
             /* [out] */ UINT *pctinfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetTypeInfo)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
             IMergeApp * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo **ppTInfo);
         
+        DECLSPEC_XFGVIRT(IDispatch, GetIDsOfNames)
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
             IMergeApp * This,
             /* [in] */ REFIID riid,
@@ -147,33 +163,46 @@ EXTERN_C const IID IID_IMergeApp;
             /* [in] */ LCID lcid,
             /* [size_is][out] */ DISPID *rgDispId);
         
+        DECLSPEC_XFGVIRT(IDispatch, Invoke)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             IMergeApp * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
+        DECLSPEC_XFGVIRT(IMergeApp, Translate)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *Translate )( 
             IMergeApp * This,
             /* [in] */ BSTR text,
             /* [retval][out] */ BSTR *pRet);
         
+        DECLSPEC_XFGVIRT(IMergeApp, GetOption)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *GetOption )( 
             IMergeApp * This,
             /* [in] */ BSTR name,
             /* [in] */ VARIANT varDefault,
             /* [retval][out] */ VARIANT *pRet);
         
+        DECLSPEC_XFGVIRT(IMergeApp, SaveOption)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *SaveOption )( 
             IMergeApp * This,
             /* [in] */ BSTR name,
             /* [in] */ VARIANT varValue);
         
+        DECLSPEC_XFGVIRT(IMergeApp, MsgBox)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *MsgBox )( 
             IMergeApp * This,
             /* [in] */ BSTR prompt,
@@ -181,6 +210,7 @@ EXTERN_C const IID IID_IMergeApp;
             /* [optional][in] */ VARIANT varTitle,
             /* [retval][out] */ int *pRet);
         
+        DECLSPEC_XFGVIRT(IMergeApp, InputBox)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *InputBox )( 
             IMergeApp * This,
             /* [in] */ BSTR prompt,
@@ -188,6 +218,7 @@ EXTERN_C const IID IID_IMergeApp;
             /* [optional][in] */ VARIANT varDefault,
             /* [retval][out] */ BSTR *pRet);
         
+        DECLSPEC_XFGVIRT(IMergeApp, LogError)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *LogError )( 
             IMergeApp * This,
             /* [in] */ BSTR text);
@@ -280,6 +311,16 @@ unsigned long             __RPC_USER  VARIANT_UserSize(     unsigned long *, uns
 unsigned char * __RPC_USER  VARIANT_UserMarshal(  unsigned long *, unsigned char *, VARIANT * ); 
 unsigned char * __RPC_USER  VARIANT_UserUnmarshal(unsigned long *, unsigned char *, VARIANT * ); 
 void                      __RPC_USER  VARIANT_UserFree(     unsigned long *, VARIANT * ); 
+
+unsigned long             __RPC_USER  BSTR_UserSize64(     unsigned long *, unsigned long            , BSTR * ); 
+unsigned char * __RPC_USER  BSTR_UserMarshal64(  unsigned long *, unsigned char *, BSTR * ); 
+unsigned char * __RPC_USER  BSTR_UserUnmarshal64(unsigned long *, unsigned char *, BSTR * ); 
+void                      __RPC_USER  BSTR_UserFree64(     unsigned long *, BSTR * ); 
+
+unsigned long             __RPC_USER  VARIANT_UserSize64(     unsigned long *, unsigned long            , VARIANT * ); 
+unsigned char * __RPC_USER  VARIANT_UserMarshal64(  unsigned long *, unsigned char *, VARIANT * ); 
+unsigned char * __RPC_USER  VARIANT_UserUnmarshal64(unsigned long *, unsigned char *, VARIANT * ); 
+void                      __RPC_USER  VARIANT_UserFree64(     unsigned long *, VARIANT * ); 
 
 /* end of Additional Prototypes */
 

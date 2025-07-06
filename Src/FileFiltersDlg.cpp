@@ -54,7 +54,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(FileFiltersDlg)
-	DDX_CBStringExact(pDX, IDC_FILTERFILE_MASK, m_sMask);
+	DDX_CBString(pDX, IDC_FILTERFILE_MASK, m_sMask);
 	DDX_Control(pDX, IDC_FILTERFILE_LIST, m_listFilters);
 	DDX_Control(pDX, IDC_FILTERFILE_MASK, m_ctlMask);
 	//}}AFX_DATA_MAP
@@ -208,14 +208,13 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	HWND hEdit = (HWND)m_ctlMask.SendMessage(CBEM_GETEDITCONTROL);
 	m_ctlMaskEdit.SubclassWindow(hEdit);
-	m_ctlMaskEdit.m_validator = [](const CString& text, CString& error) -> bool
+	m_ctlMaskEdit.m_validator = [this](const CString& text, CString& error) -> bool
 		{
-			FileFilterHelper tmpHelper;
-			tmpHelper.SetMaskOrExpression((const tchar_t *)text);
-			const bool bError = !tmpHelper.GetErrorList().empty();
+			m_pFileFilterHelper->SetMaskOrExpression((const tchar_t *)text);
+			const bool bError = !m_pFileFilterHelper->GetErrorList().empty();
 			if (bError)
 			{
-				for (const auto* errorItem : tmpHelper.GetErrorList())
+				for (const auto* errorItem : m_pFileFilterHelper->GetErrorList())
 					error += FormatFilterErrorSummary(*errorItem).c_str();
 			}
 			return !bError;

@@ -10,11 +10,13 @@
 IMPLEMENT_DYNAMIC(CValidatingEdit, CEdit)
 
 #define ID_VALIDATE_TIMER 1001
-#define VALIDATE_DELAY_MS 1000
+#define VALIDATE_DELAY_MS 700
 
 CValidatingEdit::CValidatingEdit()
 	: m_hasError(false)
-	, m_errorBrush(RGB(255, 200, 200))
+	, m_errorColor(RGB(255, 200, 200))
+	, m_errorBrush(m_errorColor)
+	, m_toolItem{}
 {
 }
 
@@ -29,8 +31,17 @@ BEGIN_MESSAGE_MAP(CValidatingEdit, CEdit)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
+void CValidatingEdit::SetBackColor(COLORREF color)
+{
+	m_errorColor = color;
+	m_errorBrush.DeleteObject();
+	m_errorBrush.CreateSolidBrush(m_errorColor);
+}
+
 void CValidatingEdit::Validate()
 {
+	KillTimer(ID_VALIDATE_TIMER);
+
 	CString text;
 	GetWindowText(text);
 
@@ -41,22 +52,34 @@ void CValidatingEdit::Validate()
 	{
 		if (!m_toolTip.m_hWnd)
 		{
-			m_toolTip.Create(this, TTS_NOPREFIX);
-			m_toolTip.AddTool(this, _T(""));
+			m_toolItem.cbSize = sizeof(TOOLINFO);
+			m_toolItem.uFlags = TTF_TRACK | TTF_ABSOLUTE;
+			m_toolItem.hwnd = m_hWnd;
+			m_toolItem.uId = 1;
+			m_toolItem.lpszText = _T("");
+			m_toolTip.Create(this, TTS_NOPREFIX | TTS_BALLOON | TTS_ALWAYSTIP);
+			m_toolTip.SendMessage(TTM_ADDTOOL, 0, (LPARAM)&m_toolItem);
 		}
 		CString msg;
 		if (!m_validator(text, msg))
 		{
 			m_hasError = true;
 			m_errorMessage = msg;
-			MSG msg2{ m_toolTip.m_hWnd, WM_MOUSEMOVE, 0, 0 };
-			m_toolTip.UpdateTipText(m_errorMessage, this);
-			m_toolTip.RelayEvent((MSG*)&msg2);
+
+			m_toolItem.lpszText = (LPTSTR)(LPCTSTR)m_errorMessage;
+			m_toolTip.SetToolInfo(&m_toolItem);
+
+			RECT rc{};
+			GetWindowRect(&rc);
+			POINT pt{ rc.left, rc.bottom };
+			m_toolTip.SendMessage(TTM_TRACKPOSITION, 0, (LPARAM)MAKELONG(pt.x, pt.y));
+
+			m_toolTip.SendMessage(TTM_TRACKACTIVATE, TRUE, (LPARAM)&m_toolItem);
 		}
 		else
 		{
 			m_toolTip.UpdateTipText(_T(""), this);
-			m_toolTip.Pop();
+			m_toolTip.SendMessage(TTM_TRACKACTIVATE, FALSE, (LPARAM)&m_toolItem);
 		}
 	}
 
@@ -67,7 +90,7 @@ HBRUSH CValidatingEdit::CtlColor(CDC* pDC, UINT /*nCtlColor*/)
 {
 	if (m_hasError)
 	{
-		pDC->SetBkColor(RGB(255, 200, 200));
+		pDC->SetBkColor(m_errorColor);
 		return (HBRUSH)m_errorBrush.GetSafeHandle();
 	}
 	return nullptr;
@@ -75,7 +98,7 @@ HBRUSH CValidatingEdit::CtlColor(CDC* pDC, UINT /*nCtlColor*/)
 
 BOOL CValidatingEdit::PreTranslateMessage(MSG* pMsg)
 {
-	if (m_toolTip.m_hWnd && pMsg->message != WM_TIMER)
+	if (m_toolTip.m_hWnd)
 		m_toolTip.RelayEvent(pMsg);
 	return CEdit::PreTranslateMessage(pMsg);
 }
@@ -99,9 +122,7 @@ void CValidatingEdit::OnTimer(UINT_PTR nIDEvent)
 	if (nIDEvent == ID_VALIDATE_TIMER)
 	{
 		Validate();
+		return;
 	}
-	else
-	{
-		CEdit::OnTimer(nIDEvent);
-	}
+	CEdit::OnTimer(nIDEvent);
 }
