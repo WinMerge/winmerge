@@ -929,6 +929,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="Common\SysColorHook.cpp" />
+    <ClCompile Include="Common\ValidatingEdit.cpp" />
     <ClCompile Include="Concurrent.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -961,6 +962,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClInclude Include="Common\ValidatingEdit.h" />
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FrameWndHelper.h" />
     <ClInclude Include="Logger.h">

@@ -62,7 +62,7 @@ int main()
 	int dm = CMP_CONTENT; // Default compare method
 	PathContext paths(_T(""), _T("")); // Default empty paths
 	FileFilterHelper filter;
-	filter.SetMask(_T("*.*"));
+	filter.SetMaskOrExpression(_T("*.*"));
 
 	std::wcout << L"WinMerge folder comparison test tool\n";
 	std::wcout << L"Type 'h' for help.\n";
@@ -104,16 +104,16 @@ int main()
 		else if (cmd[0] == L'f') // Set file mask
 		{
 			std::wstring mask = cmd.substr(2);
-			filter.SetMask(mask.c_str());
-			if (filter.GetRegexOrExpressionFilter() && filter.GetRegexOrExpressionFilter()->errors.size() > 0)
+			filter.SetMaskOrExpression(mask.c_str());
+			if (filter.GetErrorList().size() > 0)
 			{
-				for (auto error : filter.GetRegexOrExpressionFilter()->errors)
-					std::wcout << FormatFilterErrorSummary(error) << "\n";
+				for (const auto*error : filter.GetErrorList())
+					std::wcout << FormatFilterErrorSummary(*error) << "\n";
 			}
-			if (filter.GetRegexOrExpressionFilterExclude() && filter.GetRegexOrExpressionFilterExclude()->errors.size() > 0)
+			if (filter.GetErrorList().size() > 0)
 			{
-				for (auto error : filter.GetRegexOrExpressionFilterExclude()->errors)
-					std::wcout << FormatFilterErrorSummary(error) << "\n";
+				for (const auto* error : filter.GetErrorList())
+					std::wcout << FormatFilterErrorSummary(*error) << "\n";
 			}
 		}
 		else if (cmd[0] == L'm') // Set method

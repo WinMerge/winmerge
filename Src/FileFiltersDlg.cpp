@@ -20,6 +20,7 @@
 #include "FileOrFolderSelect.h"
 #include "UniFile.h"
 #include "Constants.h"
+#include "FilterErrorMessages.h"
 
 using std::vector;
 
@@ -29,10 +30,6 @@ using std::vector;
 
 /** @brief Template file used when creating new filefilter. */
 static const tchar_t FILE_FILTER_TEMPLATE[] = _T("FileFilter.tmpl");
-
-BEGIN_MESSAGE_MAP(CMyEdit, CEdit)
-	ON_WM_CTLCOLOR_REFLECT()
-END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CFiltersDlg dialog
@@ -67,6 +64,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
 	ON_NOTIFY(CBEN_ENDEDIT, IDC_FILTERFILE_MASK, OnEndEditFilterfileMask)
+	ON_CBN_EDITCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
 	ON_WM_MOUSEMOVE()
@@ -171,6 +169,22 @@ static void SetCheckedState(CListCtrl& list, std::vector<String>& presetFilters)
 	}
 }
 
+static String AddPresetFiltersToMaskOrExpression(const String& mask, const CListCtrl& list)
+{
+	String result = mask;
+	const int count = list.GetItemCount();
+	for (int i = 0; i < count; i++)
+	{
+		if (list.GetCheck(i))
+		{
+			if (!result.empty())
+				result += _T(";");
+			result += _T("fp:") + list.GetItemText(i, 0);
+		}
+	}
+	return result;
+}
+
 /**
  * @brief Called before dialog is shown.
  * @return Always TRUE.
@@ -194,6 +208,19 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	HWND hEdit = (HWND)m_ctlMask.SendMessage(CBEM_GETEDITCONTROL);
 	m_ctlMaskEdit.SubclassWindow(hEdit);
+	m_ctlMaskEdit.m_validator = [](const CString& text, CString& error) -> bool
+		{
+			FileFilterHelper tmpHelper;
+			tmpHelper.SetMaskOrExpression((const tchar_t *)text);
+			const bool bError = !tmpHelper.GetErrorList().empty();
+			if (bError)
+			{
+				for (const auto* errorItem : tmpHelper.GetErrorList())
+					error += FormatFilterErrorSummary(*errorItem).c_str();
+			}
+			return !bError;
+		};
+	m_ctlMaskEdit.Validate();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -211,22 +238,6 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
 	m_listFilters.InsertItem(item, filterinfo.name.c_str());
 	m_listFilters.SetItemText(item, 1, filterinfo.description.c_str());
 	m_listFilters.SetItemText(item, 2, filterinfo.fullpath.c_str());
-}
-
-static String AddPresetFiltersToMaskOrExpression(const String& mask, const CListCtrl& list)
-{
-	String result = mask;
-	const int count = list.GetItemCount();
-	for (int i = 0; i < count; i++)
-	{
-		if (list.GetCheck(i))
-		{
-			if (!result.empty())
-				result += _T(";");
-			result += _T("fp:") + list.GetItemText(i, 0);
-		}
-	}
-	return result;
 }
 
 /**
@@ -251,11 +262,13 @@ void FileFiltersDlg::OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult)
 	UpdateData(TRUE);
 	std::vector<String> presetFilters;
 	m_sMask = RemovePresetFilters(m_sMask, presetFilters);
-	FileFilterHelper tmpHelper;
-	tmpHelper.SetMaskOrExpression(AddPresetFiltersToMaskOrExpression(m_sMask, m_listFilters));
-	m_ctlMaskEdit.m_bError = !tmpHelper.GetErrorList().empty();
 	UpdateData(FALSE);
 	SetCheckedState(m_listFilters, presetFilters);
+}
+
+void FileFiltersDlg::OnEditChangeFilterfileMask()
+{
+	m_ctlMaskEdit.OnEnChange();
 }
 
 /**
