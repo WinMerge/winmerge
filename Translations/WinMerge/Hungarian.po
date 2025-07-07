@@ -302,7 +302,7 @@ msgstr "&Engedélyezve"
 msgid "&Scroll"
 msgstr "&Görgetés"
 
-msgid "&Click"
+msgid "&"
 msgstr "&Kattintás"
 
 msgid "&Input"
@@ -1283,7 +1283,7 @@ msgid "G&o to Diff"
 msgstr "Ugrás &eltérésre"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "Kurzor mozgatása &Kattintásra"
 
 #, c-format
 msgid "&No Moved Blocks"
