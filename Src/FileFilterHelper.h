@@ -130,6 +130,9 @@ public:
 	String GetMaskOrExpression() const { return m_sMask; }
 	void SetMaskOrExpression(const String& strMask);
 
+	static std::vector<String> SplitFilterGroups(const String& filterGroups);
+	static String JoinFilterGroups(const std::vector<String>& filterGroups);
+
 	void SetDiffContext(const CDiffContext* pCtxt) override;
 	std::vector<const FileFilterErrorInfo*> GetErrorList() const override;
 	bool includeFile(const String& szFileName) const override;
@@ -141,16 +144,19 @@ public:
 
 
 protected:
-	std::tuple<String, String, String, String, std::shared_ptr<FileFilter>, std::shared_ptr<FileFilter>>
-		ParseExtensions(const String &extensions) const;
+	struct FilterGroup
+	{
+		std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
+		std::unique_ptr<FilterList> m_pMaskFileFilterExclude; /*< Filter for filemasks (*.cpp) */
+		std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
+		std::unique_ptr<FilterList> m_pMaskDirFilterExclude;  /*< Filter for dirmasks */
+		std::shared_ptr<FileFilter> m_pRegexOrExpressionFilter;
+		std::shared_ptr<FileFilter> m_pRegexOrExpressionFilterExclude;
+	};
+	std::vector<FilterGroup> ParseExtensions(const String& extensions) const;
 
 private:
-	std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
-	std::unique_ptr<FilterList> m_pMaskFileFilterExclude; /*< Filter for filemasks (*.cpp) */
-	std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
-	std::unique_ptr<FilterList> m_pMaskDirFilterExclude;  /*< Filter for dirmasks */
-	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilter;
-	std::shared_ptr<FileFilter> m_pRegexOrExpressionFilterExclude;
+	std::vector<FilterGroup> m_filterGroups; /*< List of filter groups, each with its own filters */
 	std::unique_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
 	String m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
 	String m_sGlobalFilterPath;    /*< Path for shared filters */

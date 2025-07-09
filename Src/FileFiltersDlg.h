@@ -62,6 +62,7 @@ protected:
 	virtual BOOL OnInitDialog() override;
 	virtual void OnOK();
 	afx_msg void OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnFilterfileMaskMenu();
 	afx_msg void OnEditChangeFilterfileMask();
 	afx_msg void OnFiltersEditbtn();
 	afx_msg void OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult);

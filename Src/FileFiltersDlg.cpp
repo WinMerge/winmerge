@@ -21,6 +21,7 @@
 #include "UniFile.h"
 #include "Constants.h"
 #include "FilterErrorMessages.h"
+#include "FileFilterMenu.h"
 
 using std::vector;
 
@@ -65,6 +66,7 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
 	ON_NOTIFY(CBEN_ENDEDIT, IDC_FILTERFILE_MASK, OnEndEditFilterfileMask)
 	ON_CBN_EDITCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
+	ON_BN_CLICKED(IDC_FILTERFILE_MASK_MENU, OnFilterfileMaskMenu)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
 	ON_WM_MOUSEMOVE()
@@ -140,38 +142,47 @@ void FileFiltersDlg::SelectFilterByFilePath(const String& path)
 }
 
 /**
- * @brief Remove preset filters from filter expression and return the rest.
+ * @brief Get preset filters from last group in filter expression.
  */
-static String RemovePresetFilters(const String& filterExpression, std::vector<String>& presetFilters)
+static std::vector<String> GetPresetFiltersFromLastGroup(const String& filterExpression)
 {
-	auto parts = strutils::split(filterExpression, ';');
+	std::vector<String> presetFilters;
+	std::vector<String> filterGroups = FileFilterHelper::SplitFilterGroups(filterExpression);
+	String filterGroup = filterGroups.back();
+	auto parts = strutils::split(filterGroup, ';');
 	std::vector<String> result;
 	for (const auto& part : parts)
 	{
 		const String partTrimmed = strutils::trim_ws(String(part.data(), part.length()));
 		if (partTrimmed.substr(0, 3) == _T("fp:"))
 			presetFilters.push_back(partTrimmed.substr(3));
-		else
+	}
+	return presetFilters;
+}
+
+/**
+ * @brief Remove preset filters from filter expression and return the rest.
+ */
+static String RemovePresetFiltersFromLastGroup(const String& filterExpression)
+{
+	std::vector<String> filterGroups = FileFilterHelper::SplitFilterGroups(filterExpression);
+	String filterGroup = filterGroups.back();
+	auto parts = strutils::split(filterGroup, ';');
+	std::vector<String> result;
+	for (const auto& part : parts)
+	{
+		const String partTrimmed = strutils::trim_ws(String(part.data(), part.length()));
+		if (partTrimmed.substr(0, 3) != _T("fp:"))
 			result.push_back(partTrimmed);
 	}
-	return strutils::join(result.begin(), result.end(), _T(";"));
+	filterGroups.back() = strutils::join(result.begin(), result.end(), _T(";"));
+	return FileFilterHelper::JoinFilterGroups(filterGroups);
 }
 
-static void SetCheckedState(CListCtrl& list, std::vector<String>& presetFilters)
+static String AddPresetFiltersToMaskOrExpressionToLastGroup(const String& mask, const CListCtrl& list)
 {
-	const int count = list.GetItemCount();
-	for (int i = 0; i < count; i++)
-	{
-		String desc = list.GetItemText(i, 0);
-		const bool isChecked = std::find(presetFilters.begin(), presetFilters.end(), desc) != presetFilters.end();
-		if (isChecked)
-			list.SetCheck(i, true);
-	}
-}
-
-static String AddPresetFiltersToMaskOrExpression(const String& mask, const CListCtrl& list)
-{
-	String result = mask;
+	std::vector<String> filterGroups = FileFilterHelper::SplitFilterGroups(mask);
+	String result = filterGroups.back();
 	const int count = list.GetItemCount();
 	for (int i = 0; i < count; i++)
 	{
@@ -182,7 +193,19 @@ static String AddPresetFiltersToMaskOrExpression(const String& mask, const CList
 			result += _T("fp:") + list.GetItemText(i, 0);
 		}
 	}
-	return result;
+	filterGroups.back() = result;
+	return FileFilterHelper::JoinFilterGroups(filterGroups);
+}
+
+static void SetCheckedState(CListCtrl& list, std::vector<String>& presetFilters)
+{
+	const int count = list.GetItemCount();
+	for (int i = 0; i < count; i++)
+	{
+		String desc = list.GetItemText(i, 0);
+		const bool isChecked = std::find(presetFilters.begin(), presetFilters.end(), desc) != presetFilters.end();
+		list.SetCheck(i, isChecked);
+	}
 }
 
 /**
@@ -198,10 +221,9 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	InitList();
 
-	std::vector<String> presetFilters;
-	String filterExpression = RemovePresetFilters(m_pFileFilterHelper->GetMaskOrExpression(), presetFilters);
-	SetDlgItemText(IDC_FILTERFILE_MASK, filterExpression.c_str());
+	SetDlgItemText(IDC_FILTERFILE_MASK, m_pFileFilterHelper->GetMaskOrExpression().c_str());
 
+	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_pFileFilterHelper->GetMaskOrExpression());
 	SetCheckedState(m_listFilters, presetFilters);
 
 	SetButtonState();
@@ -244,13 +266,12 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
  */
 void FileFiltersDlg::OnOK()
 {
-	const String mask = AddPresetFiltersToMaskOrExpression(m_sMask, m_listFilters);
-	m_pFileFilterHelper->SetMaskOrExpression(mask);
+	m_pFileFilterHelper->SetMaskOrExpression(m_sMask);
 	m_pFileFilterHelperOrg->CloneFrom(m_pFileFilterHelper.get());
 
 	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
 
-	m_ctlMask.SetWindowTextW(mask.c_str());
+	m_ctlMask.SetWindowTextW(m_sMask.c_str());
 	m_ctlMask.SaveState(_T("Files\\Ext"));
 
 	CDialog::OnOK();
@@ -259,15 +280,26 @@ void FileFiltersDlg::OnOK()
 void FileFiltersDlg::OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	UpdateData(TRUE);
-	std::vector<String> presetFilters;
-	m_sMask = RemovePresetFilters(m_sMask, presetFilters);
-	UpdateData(FALSE);
+	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_sMask);
 	SetCheckedState(m_listFilters, presetFilters);
 }
 
 void FileFiltersDlg::OnEditChangeFilterfileMask()
 {
 	m_ctlMaskEdit.OnEnChange();
+}
+
+void FileFiltersDlg::OnFilterfileMaskMenu()
+{
+	CRect rc;
+	GetDlgItem(IDC_FILTERFILE_MASK_MENU)->GetWindowRect(&rc);
+	const String filter = FileFilterMenu::ShowMenu(rc.left, rc.bottom, this);
+	if (!filter.empty())
+	{
+		m_sMask = m_sMask + filter;
+		UpdateData(FALSE);
+		m_ctlMaskEdit.OnEnChange();
+	}
 }
 
 /**
@@ -328,6 +360,13 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 	{
 		SetButtonState();
 	}
+	if ((pNMLV->uChanged & LVIF_STATE) &&
+		((pNMLV->uOldState & LVIS_STATEIMAGEMASK) != (pNMLV->uNewState & LVIS_STATEIMAGEMASK)))
+	{
+		m_sMask = RemovePresetFiltersFromLastGroup(m_sMask);
+		m_sMask = AddPresetFiltersToMaskOrExpressionToLastGroup(m_sMask, m_listFilters);
+		UpdateData(FALSE);
+	}
 	*pResult = 0;
 }
 
@@ -385,7 +424,7 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
 	// Ensure filter is up-to-date (user probably just edited it)
 	m_pFileFilterHelper->ReloadUpdatedFilters();
 
-	const String mask = AddPresetFiltersToMaskOrExpression(m_sMask, m_listFilters);
+	const String mask = AddPresetFiltersToMaskOrExpressionToLastGroup(m_sMask, m_listFilters);
 	m_pFileFilterHelper->SetMaskOrExpression(mask);
 
 	CTestFilterDlg dlg(this, m_pFileFilterHelper.get());
