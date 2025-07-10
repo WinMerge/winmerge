@@ -64,16 +64,16 @@ msgid "Copy Selected Lines from Left"
 msgstr "從左側複製所選行"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr ""
+msgstr "複製選取差異 (左側) 到剪貼簿\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "複製選取差異 (右側) 到剪貼簿\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "複製選取差異 (中間) 到剪貼簿\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr ""
+msgstr "複製選取差異 (右側) 到剪貼簿\tCtrl+&3"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -258,13 +258,13 @@ msgid "&Vector Image Scaling"
 msgstr "向量圖縮放 (&V)"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "動畫設定 (&A)"
 
 msgid "&Blink Interval"
-msgstr ""
+msgstr "閃爍間隔 (&B)"
 
 msgid "&Overlay Animation Interval"
-msgstr ""
+msgstr "覆蓋動畫間隔 (&O)"
 
 msgid "Compare Extracted &Text from Images"
 msgstr "比較從圖片中擷取的文字 (&T)"
@@ -294,22 +294,22 @@ msgid "Fit to Window"
 msgstr "自適應視窗(&F)"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "事件同步 (&E)"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "已啟用 (&E)"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "捲動 (&S)"
 
 msgid "&Click"
-msgstr ""
+msgstr "點擊 (&C)"
 
 msgid "&Input"
-msgstr ""
+msgstr "輸入 (&I)"
 
 msgid "&Go Back/Forward"
-msgstr ""
+msgstr "返回/前進 (&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "清除瀏覽資料(&B)"
@@ -405,10 +405,10 @@ msgid "Ta&b Bar"
 msgstr "頁籤列 (&B)"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "檢視頁籤列 (&V)"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "在標題列上 (&O)"
 
 #, c-format
 msgid "&Toolbar"
@@ -419,7 +419,7 @@ msgid "&Small"
 msgstr "小圖示 (&S)"
 
 msgid "&Medium"
-msgstr ""
+msgstr "中圖示 (&M)"
 
 #, c-format
 msgid "&Big"
@@ -430,10 +430,10 @@ msgid "&Huge"
 msgstr "超大圖示 (&H)"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "選單列 (&U)"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "輸出窗格 (&O)"
 
 #, c-format
 msgid "&Status Bar"
@@ -622,16 +622,16 @@ msgid "Tree &Mode"
 msgstr "樹狀模式 (&M)"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "展開子資料夾 (&X)"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "所有子資料夾 (&A)"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "不同子資料夾 (&D)"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "相同子資料夾 (&I)"
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -1067,10 +1067,10 @@ msgid "&Transform with Editor Script..."
 msgstr "使用編輯器指令腳本進行轉換(&T)..."
 
 msgid "Scripts for &Copying"
-msgstr ""
+msgstr "複製指令碼 (&C)"
 
 msgid "Select &Editor Script..."
-msgstr ""
+msgstr "選取編輯器指令碼 (&E)..."
 
 #, c-format
 msgid "Sp&lit"
@@ -1242,10 +1242,10 @@ msgid "Right Shell Menu"
 msgstr "右側介面選單"
 
 msgid "Both Shell Menu"
-msgstr ""
+msgstr "兩邊殼層選單"
 
 msgid "All Shell Menu"
-msgstr ""
+msgstr "所有殼層選單"
 
 #, c-format
 msgid "Copy"
@@ -1288,7 +1288,7 @@ msgid "G&o to Diff"
 msgstr "至差異區塊 (&O)"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "點擊時移動游標 (&C)"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1337,7 +1337,7 @@ msgid "Ignore C&omment Differences"
 msgstr "忽略註解差異 (&O)"
 
 msgid "Ignore &Missing Trailing EOL"
-msgstr ""
+msgstr "忽略缺少結尾換行符號 (&M)"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1376,82 +1376,82 @@ msgid "&Load Project..."
 msgstr "載入專案... (&L)"
 
 msgid "${*} - All Arguments"
-msgstr ""
+msgstr "${*} - 所有引數"
 
 msgid "${1} - First Argument"
-msgstr ""
+msgstr "${1} - 第一個引數"
 
 msgid "${2} - Second Argument"
-msgstr ""
+msgstr "${2} - 第二個引數"
 
 msgid "${3} - Third Argument"
-msgstr ""
+msgstr "${3} - 第三個引數"
 
 msgid "${4} - Fourth Argument"
-msgstr ""
+msgstr "${4} - 第四個引數"
 
 msgid "${5} - Fifth Argument"
-msgstr ""
+msgstr "${5} - 第五個引數"
 
 msgid "${6} - Sixth Argument"
-msgstr ""
+msgstr "${6} - 第六個引數"
 
 msgid "${7} - Seventh Argument"
-msgstr ""
+msgstr "${7} - 第七個引數"
 
 msgid "${8} - Eighth Argument"
-msgstr ""
+msgstr "${8} - 第八個引數"
 
 msgid "${9} - Ninth Argument"
-msgstr ""
+msgstr "${9} - 第九個引數"
 
 msgid "${SRC_FILE} - Source File"
-msgstr ""
+msgstr "${SRC_FILE} - 來源檔案"
 
 msgid "${SRC_FOLDER} - Source Folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - 來源資料夾"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - 來源網址"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - 來源網址協定"
 
 msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - 來源網址尾碼"
 
 msgid "${DST_FILE} - Destination File"
-msgstr ""
+msgstr "${DST_FILE} - 目的檔案"
 
 msgid "${DST_FOLDER} - Destination Folder"
-msgstr ""
+msgstr "${DST_FOLDER} - 目的資料夾"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - 目的網址"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - 目的網址協定"
 
 msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - 目的網址尾碼"
 
 msgid "${WINMERGE_HOME} - WinMerge Home Directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - WinMerge 主目錄"
 
 msgid "${SCRIPT_FILE} - Script File"
-msgstr ""
+msgstr "${SCRIPT_FILE} - 指令碼檔案"
 
 msgid "Add &Unpacker Plugin..."
-msgstr ""
+msgstr "新增解壓縮外掛 (&U)..."
 
 msgid "Add &Prediffer Plugin..."
-msgstr ""
+msgstr "新增先行處理外掛 (&P)..."
 
 msgid "&Duplicate Plugin..."
-msgstr ""
+msgstr "複製外掛 (&D)..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "全部清除 (&A)"
 
 #, c-format
 msgid "About WinMerge"
@@ -1572,8 +1572,7 @@ msgid "&Automatically verify paths in Open dialog"
 msgstr "於「開啟」對話方塊自動檢驗路徑 (&A)"
 
 msgid "Single instance mode:"
-msgstr ""
-"單一實例模式："
+msgstr "單一實例模式："
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1888,7 +1887,7 @@ msgid "Items filtered:"
 msgstr "篩選項目："
 
 msgid "&Use custom system colors"
-msgstr ""
+msgstr "使用自訂系統顏色 (&U)"
 
 #, c-format
 msgid "System"
@@ -1999,30 +1998,28 @@ msgid "Plugin &name:"
 msgstr "外掛程式名稱 (&N)："
 
 msgid "&Target files:"
-msgstr ""
+msgstr "目標檔案 (&T)："
 
-#, c-format
 msgid "Extensions list:"
 msgstr "副檔名清單："
 
-#, c-format
 msgid "Description:"
 msgstr "描述："
 
 msgid "Default arguments:"
-msgstr "預設參數："
+msgstr "預設引數："
 
 msgid "Display all plugins (Ignore extension)"
-msgstr "顯示所有外掛，不檢查副檔名"
+msgstr "顯示所有外掛 (忽略副檔名)"
 
 msgid "&Open files in same window type after unpacking"
-msgstr "解壓縮後以相同視窗類型開啟檔案(&O)"
+msgstr "解壓縮後以相同視窗類型開啟檔案 (&O)"
 
 msgid "&Plugin pipeline:"
-msgstr "外掛程式管線 (&P)："
+msgstr "外掛管線 (&P)："
 
 msgid "&Alias..."
-msgstr ""
+msgstr "別名 (&A)..."
 
 #, c-format
 msgid "Stop"
