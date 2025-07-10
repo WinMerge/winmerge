@@ -11,6 +11,7 @@
 #include "FileFilterHelper.h"
 #include "SuperComboBox.h"
 #include "ValidatingEdit.h"
+#include "FileFilterMenu.h"
 
 /**
  * @brief Class for dialog allowing user to select
@@ -34,6 +35,7 @@ private:
 	std::vector<FileFilterInfo> m_Filters;
 	CSuperComboBox m_ctlMask;
 	CValidatingEdit m_ctlMaskEdit;
+	CFileFilterMenu m_menu;
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)
@@ -74,6 +76,7 @@ protected:
 	afx_msg void OnBnClickedFilterfileDelete();
 	afx_msg void OnHelp();
 	afx_msg void OnBnClickedFilterfileInstall();
+	afx_msg void OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

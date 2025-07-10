@@ -77,6 +77,7 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
 	ON_NOTIFY(LVN_GETINFOTIP, IDC_FILTERFILE_LIST, OnInfoTip)
 	ON_BN_CLICKED(IDC_FILTERFILE_INSTALL, OnBnClickedFilterfileInstall)
+	ON_WM_INITMENUPOPUP()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -179,7 +180,10 @@ static String RemovePresetFiltersFromLastGroup(const String& filterExpression)
 	return FileFilterHelper::JoinFilterGroups(filterGroups);
 }
 
-static String AddPresetFiltersToMaskOrExpressionToLastGroup(const String& mask, const CListCtrl& list)
+/**
+ * @brief Add preset filters to last group in filter expression.
+ */
+static String AddPresetFiltersToLastGroup(const String& mask, const CListCtrl& list)
 {
 	std::vector<String> filterGroups = FileFilterHelper::SplitFilterGroups(mask);
 	String result = filterGroups.back();
@@ -293,7 +297,7 @@ void FileFiltersDlg::OnFilterfileMaskMenu()
 {
 	CRect rc;
 	GetDlgItem(IDC_FILTERFILE_MASK_MENU)->GetWindowRect(&rc);
-	const String filter = FileFilterMenu::ShowMenu(rc.left, rc.bottom, this);
+	const String filter = m_menu.ShowMenu(rc.left, rc.bottom, this);
 	if (!filter.empty())
 	{
 		m_sMask = m_sMask + filter;
@@ -364,7 +368,7 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 		((pNMLV->uOldState & LVIS_STATEIMAGEMASK) != (pNMLV->uNewState & LVIS_STATEIMAGEMASK)))
 	{
 		m_sMask = RemovePresetFiltersFromLastGroup(m_sMask);
-		m_sMask = AddPresetFiltersToMaskOrExpressionToLastGroup(m_sMask, m_listFilters);
+		m_sMask = AddPresetFiltersToLastGroup(m_sMask, m_listFilters);
 		UpdateData(FALSE);
 	}
 	*pResult = 0;
@@ -424,7 +428,7 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
 	// Ensure filter is up-to-date (user probably just edited it)
 	m_pFileFilterHelper->ReloadUpdatedFilters();
 
-	const String mask = AddPresetFiltersToMaskOrExpressionToLastGroup(m_sMask, m_listFilters);
+	const String mask = AddPresetFiltersToLastGroup(m_sMask, m_listFilters);
 	m_pFileFilterHelper->SetMaskOrExpression(mask);
 
 	CTestFilterDlg dlg(this, m_pFileFilterHelper.get());
@@ -660,4 +664,9 @@ void FileFiltersDlg::SetButtonState()
 
 	EnableDlgItem(IDC_FILTERFILE_EDITBTN, !isNone);
 	EnableDlgItem(IDC_FILTERFILE_DELETEBTN, !isNone);
+}
+
+void FileFiltersDlg::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
+{
+	m_menu.OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
 }

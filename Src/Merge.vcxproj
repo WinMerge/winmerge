@@ -945,6 +945,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="EditPluginDlg.cpp" />
+    <ClCompile Include="FileFilterMenu.cpp" />
     <ClCompile Include="FilterErrorMessages.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -963,6 +964,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClInclude Include="Common\ValidatingEdit.h" />
+    <ClInclude Include="FileFilterMenu.h" />
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FrameWndHelper.h" />
     <ClInclude Include="Logger.h">
