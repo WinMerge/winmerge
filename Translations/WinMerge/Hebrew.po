@@ -1362,9 +1362,6 @@ msgstr "חפש הבא"
 msgid "Find &Prev"
 msgstr "חפש קודם"
 
-msgid "&Ok"
-msgstr "אישור"
-
 msgid "Replace"
 msgstr "החלף"
 
@@ -1403,6 +1400,9 @@ msgstr "חדש"
 
 msgid "&Background color:"
 msgstr "צבע רקע:"
+
+msgid "&Ok"
+msgstr "אישור"
 
 msgid "&Apply"
 msgstr "החל"
@@ -1808,6 +1808,12 @@ msgstr "אפס"
 
 msgid "File Filters"
 msgstr "מסנני קבצים"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "בדיקה..."
@@ -4328,6 +4334,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

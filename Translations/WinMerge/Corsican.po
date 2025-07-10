@@ -1369,9 +1369,6 @@ msgstr "Circà &seguente"
 msgid "Find &Prev"
 msgstr "Circà &precedente"
 
-msgid "&Ok"
-msgstr "&Vai"
-
 msgid "Replace"
 msgstr "Rimpiazzà"
 
@@ -1410,6 +1407,9 @@ msgstr "Novu"
 
 msgid "&Background color:"
 msgstr "Culore di u &fondu :"
+
+msgid "&Ok"
+msgstr "&Vai"
 
 msgid "&Apply"
 msgstr "&Appiecà"
@@ -1825,6 +1825,12 @@ msgstr "Reinizià"
 
 msgid "File Filters"
 msgstr "Filtri di schedariu"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Prova…"
@@ -4557,6 +4563,39 @@ msgstr "Operazione di schedariu compia currettamente"
 
 msgid "File operation canceled"
 msgstr "Operazione di schedariu abbandunata"
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Imbellimentu"

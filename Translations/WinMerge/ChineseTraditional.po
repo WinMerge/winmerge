@@ -1643,10 +1643,6 @@ msgid "Find &Prev"
 msgstr "找上一個 (&P)"
 
 #, c-format
-msgid "&Ok"
-msgstr "確定 (&O)"
-
-#, c-format
 msgid "Replace"
 msgstr "取代"
 
@@ -1696,6 +1692,10 @@ msgstr "新增"
 #, c-format
 msgid "&Background color:"
 msgstr "背景顏色 (&B)"
+
+#, c-format
+msgid "&Ok"
+msgstr "確定 (&O)"
 
 #, c-format
 msgid "&Apply"
@@ -2192,6 +2192,12 @@ msgstr "重設"
 
 msgid "File Filters"
 msgstr "檔案篩選器"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "測試..."
@@ -5104,6 +5110,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

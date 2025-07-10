@@ -1362,9 +1362,6 @@ msgstr "&Търсене"
 msgid "Find &Prev"
 msgstr "Търсене &назад"
 
-msgid "&Ok"
-msgstr "&Добре"
-
 msgid "Replace"
 msgstr "Заменяне"
 
@@ -1403,6 +1400,9 @@ msgstr "&Нов"
 
 msgid "&Background color:"
 msgstr "Цвят на &фона:"
+
+msgid "&Ok"
+msgstr "&Добре"
 
 msgid "&Apply"
 msgstr "&Прилагане"
@@ -1808,6 +1808,12 @@ msgstr "Нулиране"
 
 msgid "File Filters"
 msgstr "Филтри за файлове"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Изпробване..."
@@ -4448,6 +4454,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"

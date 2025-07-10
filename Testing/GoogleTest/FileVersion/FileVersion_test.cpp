@@ -1,6 +1,5 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include <windows.h>
 #include "FileVersion.h"
 
 namespace
@@ -68,8 +67,8 @@ namespace
 	TEST_F(FileVersionTest, getfilever_real)
 	{
 		FileVersion version;
-		DWORD hi = (1 << 16) | 2;
-		DWORD lo = (3 << 16) | 4;
+		unsigned hi = (1 << 16) | 2;
+		unsigned lo = (3 << 16) | 4;
 		version.SetFileVersion(hi, lo);
 		EXPECT_EQ(_T("1.2.3.4"), version.GetFileVersionString());
 	}

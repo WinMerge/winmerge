@@ -4,6 +4,8 @@
 #include "DiffThread.h"
 #include "DiffWrapper.h"
 #include "FileFilterHelper.h"
+#include "FileFilter.h"
+#include "FilterErrorMessages.h"
 #include "FolderCmp.h"
 #include "DirScan.h"
 #include "paths.h"
@@ -60,8 +62,7 @@ int main()
 	int dm = CMP_CONTENT; // Default compare method
 	PathContext paths(_T(""), _T("")); // Default empty paths
 	FileFilterHelper filter;
-	filter.UseMask(true);
-	filter.SetMask(_T("*.*"));
+	filter.SetMaskOrExpression(_T("*.*"));
 
 	std::wcout << L"WinMerge folder comparison test tool\n";
 	std::wcout << L"Type 'h' for help.\n";
@@ -103,7 +104,17 @@ int main()
 		else if (cmd[0] == L'f') // Set file mask
 		{
 			std::wstring mask = cmd.substr(2);
-			filter.SetMask(mask.c_str());
+			filter.SetMaskOrExpression(mask.c_str());
+			if (filter.GetErrorList().size() > 0)
+			{
+				for (const auto*error : filter.GetErrorList())
+					std::wcout << FormatFilterErrorSummary(*error) << "\n";
+			}
+			if (filter.GetErrorList().size() > 0)
+			{
+				for (const auto* error : filter.GetErrorList())
+					std::wcout << FormatFilterErrorSummary(*error) << "\n";
+			}
 		}
 		else if (cmd[0] == L'm') // Set method
 		{
@@ -143,6 +154,7 @@ int main()
 			ctx.m_pCompareStats = &cmpstats;
 			ctx.m_bRecursive = true;
 			ctx.m_piFilterGlobal = &filter;
+			filter.SetDiffContext(&ctx);
 
 			CDiffThread diffThread;
 			diffThread.SetContext(&ctx);
@@ -170,14 +182,7 @@ int main()
 			while (pos)
 			{
 				DIFFITEM& di = ctx.GetNextDiffRefPosition(pos);
-				if ((paths.GetSize() == 2 && ctx.m_piFilterGlobal->includeFile(
-						paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename), 
-						paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename))
-					||
-					(paths.GetSize() == 3 && ctx.m_piFilterGlobal->includeFile(
-						paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename), 
-						paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
-						paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[2].filename)))))
+				if (ctx.m_piFilterGlobal->includeFile(di))
 				{
 					FolderCmp folderCmp(&ctx);
 					folderCmp.prepAndCompareFiles(di);

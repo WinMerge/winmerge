@@ -1368,9 +1368,6 @@ msgstr "البحث في ال&تالي"
 msgid "Find &Prev"
 msgstr "البحث في ال&سابق"
 
-msgid "&Ok"
-msgstr "&موافق"
-
 msgid "Replace"
 msgstr "استبدال"
 
@@ -1409,6 +1406,9 @@ msgstr "جديد"
 
 msgid "&Background color:"
 msgstr "&لون الخلفية:"
+
+msgid "&Ok"
+msgstr "&موافق"
 
 msgid "&Apply"
 msgstr "ت&طبيق"
@@ -1815,6 +1815,12 @@ msgid "Reset"
 msgstr "إعادة تعيين"
 
 msgid "File Filters"
+msgstr ""
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
 msgstr ""
 
 msgid "Test..."
@@ -4356,6 +4362,39 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Unknown error"
 msgstr ""
 
 msgid "Prettification"
