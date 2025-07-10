@@ -407,7 +407,7 @@ static std::size_t findSeparator(const String& str, String& prefix, std::size_t 
 		if (ch == '"')
 			inQuotes = !inQuotes;
 		else if (!inQuotes &&
-			(ch == ';' || (!allowOnlyBasicSeparators && (ch == ',' || ch == ':' || ch == ' '))))
+			(ch == ';' || ch == '|' || (!allowOnlyBasicSeparators && (ch == ',' || ch == ':' || ch == ' '))))
 			return i;
 	}
 	return String::npos;
