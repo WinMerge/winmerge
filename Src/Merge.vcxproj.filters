@@ -774,7 +774,7 @@
     <ClCompile Include="Common\ValidatingEdit.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileFilterMenu.cpp">
+    <ClCompile Include="FileFilterHelperMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1478,7 +1478,7 @@
     <ClInclude Include="Common\ValidatingEdit.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileFilterMenu.h">
+    <ClInclude Include="FileFilterHelperMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

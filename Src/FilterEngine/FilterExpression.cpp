@@ -65,8 +65,8 @@ void FilterExpression::UpdateTimestamp()
 {
 	now.reset(new Poco::Timestamp());
 	Poco::LocalDateTime ldt(*now);
-	Poco::LocalDateTime midnight(ldt.year(), ldt.month(), ldt.day(), 0, 0, 0);
-	today.reset(new Poco::Timestamp(midnight.timestamp()));
+	Poco::LocalDateTime midnight(ldt.year(), ldt.month(), ldt.day(), 0, 0, 0, 0, 0);
+	today.reset(new Poco::Timestamp(midnight.utc().timestamp()));
 }
 
 bool FilterExpression::Parse()
@@ -115,16 +115,33 @@ bool FilterExpression::Parse(const std::string& expressionStr)
 
 bool FilterExpression::Evaluate(const DIFFITEM& di)
 {
-	const auto result = rootNode->Evaluate(di);
-	if (const auto boolVal = std::get_if<bool>(&result))
-		return *boolVal;
-	if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&result))
+	try
 	{
-		const auto& vec = *arrayVal->get();
-		return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
-			const auto boolVal = std::get_if<bool>(&item.value);
-			return boolVal && *boolVal;
-			});
+		const auto result = rootNode->Evaluate(di);
+		if (const auto boolVal = std::get_if<bool>(&result))
+			return *boolVal;
+		if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&result))
+		{
+			const auto& vec = *arrayVal->get();
+			return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
+				const auto boolVal = std::get_if<bool>(&item.value);
+				return boolVal && *boolVal;
+				});
+		}
+		return false;
 	}
-	return false;
+	catch (const Poco::RegularExpressionException& e)
+	{
+		errorCode = FILTER_ERROR_INVALID_REGULAR_EXPRESSION;
+		errorPosition = -1;
+		errorMessage = e.message();
+		return false;
+	}
+	catch (const std::exception& e)
+	{
+		errorCode = FILTER_ERROR_EVALUATION_FAILED;
+		errorPosition = -1;
+		errorMessage = e.what();
+		return false;
+	}
 }

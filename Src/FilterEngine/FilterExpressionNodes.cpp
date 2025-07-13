@@ -851,6 +851,18 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(di);
+	if (auto arg1Array = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+	{
+		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		for (const auto& item : *arg1Array->get())
+		{
+			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
+				result->emplace_back(ValueType2{ static_cast<int64_t>(contentRef->get()->LineCount()) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
+		return result;
+	}
 	if (auto arg1ContentRef = std::get_if<std::shared_ptr<FileContentRef>>(&arg1))
 		return static_cast<int64_t>(arg1ContentRef->get()->LineCount());
 	return std::monostate{};
@@ -868,12 +880,26 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 		argLen = (*args)[2]->Evaluate(di);
 
 	const auto contentref = std::get_if<std::shared_ptr<FileContentRef>>(&argContentRef);
+	const auto contentrefArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&argContentRef);
 	const int64_t* start = std::get_if<int64_t>(&argStart);
 	const int64_t* len = argLen ? std::get_if<int64_t>(&*argLen) : nullptr;
 
-	if (!contentref || !start)
+	if ((!contentref && !contentrefArray) || !start)
 		return std::monostate{};
 
+	if (contentrefArray)
+	{
+		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		for (const auto& item : *contentrefArray->get())
+		{
+			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
+				result->emplace_back(ValueType2{ static_cast<std::string>(contentRef->get()->Sublines(*start, len ? *len : -1)) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
+		return result;
+
+	}
 	return contentref->get()->Sublines(*start, len ? *len : -1);
 }
 
@@ -904,6 +930,49 @@ static auto TodayFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vec
 static auto NowFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	return *ctxt->now;
+}
+
+static auto StartOfWeekFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto arg1 = (*args)[0]->Evaluate(di);
+	Poco::LocalDateTime ldt;
+	if (auto ts = std::get_if<Poco::Timestamp>(&arg1))
+		ldt = Poco::LocalDateTime(*ts);
+	else if (auto str = std::get_if<std::string>(&arg1))
+		ldt = Poco::LocalDateTime(DateTimeLiteral(*str).value);
+	else
+		return std::monostate{};
+	const Poco::LocalDateTime startOfDay(ldt.year(), ldt.month(), ldt.day(), 0, 0, 0, 0, 0);
+	const int dow = ldt.dayOfWeek();
+	Poco::Timespan offset(dow, 0, 0, 0, 0);
+	Poco::LocalDateTime weekStart = startOfDay - offset;
+	return weekStart.utc().timestamp();
+}
+
+static auto StartOfMonthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto arg1 = (*args)[0]->Evaluate(di);
+	Poco::LocalDateTime ldt;
+	if (auto ts = std::get_if<Poco::Timestamp>(&arg1))
+		ldt = Poco::LocalDateTime(*ts);
+	else if (auto str = std::get_if<std::string>(&arg1))
+		ldt = Poco::LocalDateTime(DateTimeLiteral(*str).value);
+	else
+		return std::monostate{};
+	return Poco::LocalDateTime(ldt.year(), ldt.month(), 1, 0, 0, 0, 0, 0).utc().timestamp();
+}
+
+static auto StartOfYearFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto arg = (*args)[0]->Evaluate(di);
+	Poco::LocalDateTime ldt;
+	if (auto ts = std::get_if<Poco::Timestamp>(&arg))
+		ldt = Poco::LocalDateTime(*ts);
+	else if (auto str = std::get_if<std::string>(&arg))
+		ldt = Poco::LocalDateTime(DateTimeLiteral(*str).value);
+	else
+		return std::monostate{};
+	return Poco::LocalDateTime(ldt.year(), 1, 1, 0, 0, 0, 0, 0).utc().timestamp();
 }
 
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
@@ -959,7 +1028,7 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	}
 	else if (functionName == "replace")
 	{
-		if (!args || (args->size() < 2 || args->size() > 3))
+		if (!args || args->size() != 3)
 			throw std::invalid_argument("replace function requires exactly 3 arguments: replace(string, from, to)");
 		func = ReplaceFunc;
 	}
@@ -974,6 +1043,24 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		if (args && args->size() != 0)
 			throw std::invalid_argument("now function requires 0 arguments");
 		func = NowFunc;
+	}
+	else if (functionName == "startofweek")
+	{
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("startofweek function requires 1 arguments");
+		func = StartOfWeekFunc;
+	}
+	else if (functionName == "startofmonth")
+	{
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("startofmonth function requires 1 arguments");
+		func = StartOfMonthFunc;
+	}
+	else if (functionName == "startofyear")
+	{
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("startofyear function requires 1 arguments");
+		func = StartOfYearFunc;
 	}
 	else
 	{
@@ -991,6 +1078,75 @@ FunctionNode::~FunctionNode()
 		}
 	}
 	delete args;
+}
+
+ExprNode* FunctionNode::Optimize()
+{
+	DIFFITEM di;
+	if (args)
+	{
+		for (auto& arg : *args)
+			arg = arg->Optimize();
+	}
+	if (functionName == "now")
+	{
+		auto* result = new DateTimeLiteral(*ctxt->now);
+		delete this;
+		return result;
+	}
+	else if (functionName == "today")
+	{
+		auto* result = new DateTimeLiteral(*ctxt->today);
+		delete this;
+		return result;
+	}
+	else if (functionName == "abs")
+	{
+		if (auto intLit = args ? dynamic_cast<IntLiteral*>((*args)[0]) : nullptr)
+		{
+			auto* result = new IntLiteral(std::get<int64_t>(func(nullptr, di, args)));
+			delete this;
+			return result;
+		}
+	}
+	else if (functionName == "length")
+	{
+		if (args && dynamic_cast<StringLiteral*>((*args)[0]))
+		{
+			auto* result = new IntLiteral(std::get<int64_t>(func(nullptr, di, args)));
+			delete this;
+			return result;
+		}
+	}
+	else if (functionName == "substr")
+	{
+		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<IntLiteral*>((*args)[1])
+			&& (args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])))
+		{
+			auto* result = new StringLiteral(std::get<std::string>(func(nullptr, di, args)));
+			delete this;
+			return result;
+		}
+	}
+	else if (functionName == "replace")
+	{
+		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<StringLiteral*>((*args)[2]) && dynamic_cast<StringLiteral*>((*args)[2]))
+		{
+			auto* result = new StringLiteral(std::get<std::string>(func(nullptr, di, args)));
+			delete this;
+			return result;
+		}
+	}
+	else if (functionName == "startofweek" || functionName == "startofmonth" || functionName == "startofyear")
+	{
+		if (auto dtLit = args ? dynamic_cast<DateTimeLiteral*>((*args)[0]) : nullptr)
+		{
+			auto* result = new DateTimeLiteral(std::get<Poco::Timestamp>(func(nullptr, di, args)));
+			delete this;
+			return result;
+		}
+	}
+	return this;
 }
 
 ValueType FunctionNode::Evaluate(const DIFFITEM& di) const

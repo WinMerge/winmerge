@@ -338,6 +338,19 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Parse("d\"2025-05-29 12:34:56\" == d\"2025-05-28 12:34:55\" + 1000millisecond"));
 	EXPECT_FALSE(fe.Evaluate(di));
 
+	EXPECT_TRUE(fe.Parse("startOfWeek(d\"2025-07-12 12:34:56\") == d\"2025-07-06 00:00:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("startOfWeek(\"2025-07-12 12:34:56\") == d\"2025-07-06 00:00:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("startOfMonth(d\"2025-07-12 12:34:56\") == d\"2025-07-01 00:00:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("startOfMonth(\"2025-07-12 12:34:56\") == d\"2025-07-01 00:00:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("startOfYear(d\"2025-07-12 12:34:56\") == d\"2025-01-01 00:00:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("startOfYear(\"2025-07-12 12:34:56\") == d\"2025-01-01 00:00:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
 	EXPECT_TRUE(fe.Parse("TRUE"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("FALSE"));

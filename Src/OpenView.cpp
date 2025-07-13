@@ -29,6 +29,8 @@
 #include "Bitmap.h"
 #include "DropHandler.h"
 #include "FileFilterHelper.h"
+#include "FileFilterHelperMenu.h"
+#include "FilterErrorMessages.h"
 #include "Plugins.h"
 #include "MergeAppCOMClass.h"
 #include "BCMenu.h"
@@ -70,7 +72,9 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_NOTIFY_RANGE(CBEN_BEGINEDIT, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnSetfocusPathCombo)
 	ON_NOTIFY_RANGE(CBEN_DRAGBEGIN, IDC_PATH0_COMBO, IDC_PATH2_COMBO, OnDragBeginPathCombo)
 	ON_WM_TIMER()
+	ON_CBN_EDITCHANGE(IDC_EXT_COMBO, OnExtEditChange)
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
+	ON_NOTIFY(BCN_DROPDOWN, IDC_SELECT_FILTER, OnSelectFilterDropDown)
 	ON_BN_CLICKED(IDC_OPTIONS, OnOptions)
 	ON_NOTIFY(BCN_DROPDOWN, IDC_OPTIONS, (OnDropDown<IDC_OPTIONS, IDR_POPUP_PROJECT_DIFF_OPTIONS>))
 	ON_COMMAND_RANGE(ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL, OnDiffWhitespace)
@@ -194,6 +198,7 @@ void COpenView::OnInitialUpdate()
 		SendDlgItemMessage(IDC_OPTIONS, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
 		SendDlgItemMessage(ID_SAVE_PROJECT, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
 		SendDlgItemMessage(IDOK, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
+		SendDlgItemMessage(IDC_SELECT_FILTER, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
 	}
 
 	m_sizeOrig = GetTotalSize();
@@ -214,8 +219,8 @@ void COpenView::OnInitialUpdate()
 	lf.lfCharSet = SYMBOL_CHARSET;
 	lstrcpy(lf.lfFaceName, _T("Wingdings"));
 	m_fontSwapButton.CreateFontIndirect(&lf);
-	const int ids[] = {IDC_SWAP01_BUTTON, IDC_SWAP12_BUTTON, IDC_SWAP02_BUTTON};
-	for (int i = 0; i < sizeof(ids)/sizeof(ids[0]); ++i)
+	const int ids[] = { IDC_SWAP01_BUTTON, IDC_SWAP12_BUTTON, IDC_SWAP02_BUTTON };
+	for (int i = 0; i < sizeof(ids) / sizeof(ids[0]); ++i)
 	{
 		GetDlgItem(ids[i])->SetFont(&m_fontSwapButton);
 		SetDlgItemText(ids[i], _T("\xf4"));
@@ -232,7 +237,7 @@ void COpenView::OnInitialUpdate()
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenView"), false); // persist size via registry
 	m_constraint.UpdateSizes();
 
-	COpenDoc *pDoc = GetDocument();
+	COpenDoc* pDoc = GetDocument();
 
 	CString strTitle;
 	GetWindowText(strTitle);
@@ -269,7 +274,7 @@ void COpenView::OnInitialUpdate()
 	m_ctlPredifferPipeline.SetWindowText(m_strPredifferPipeline.c_str());
 
 	bool bDoUpdateData = true;
-	for (auto& strPath: m_strPath)
+	for (auto& strPath : m_strPath)
 	{
 		if (!strPath.empty())
 			bDoUpdateData = false;
@@ -289,6 +294,24 @@ void COpenView::OnInitialUpdate()
 		else
 			RootLogger::Error(_T("Failed to add string to filters combo list!"));
 	}
+
+	COMBOBOXINFO cbi{sizeof(COMBOBOXINFO)};
+	GetComboBoxInfo(m_ctlExt.m_hWnd, &cbi);
+	m_ctlExtEdit.SubclassWindow(cbi.hwndItem);
+	m_ctlExtEdit.m_validator = [this](const CString& text, CString& error) -> bool
+		{
+			FileFilterHelper fileFilterHelper;
+			fileFilterHelper.CloneFrom(theApp.GetGlobalFileFilter());
+			fileFilterHelper.SetMaskOrExpression((const tchar_t *)text);
+			const bool bError = !fileFilterHelper.GetErrorList().empty();
+			if (bError)
+			{
+				for (const auto* errorItem : fileFilterHelper.GetErrorList())
+					error += FormatFilterErrorSummary(*errorItem).c_str();
+			}
+			return !bError;
+		};
+	m_ctlExtEdit.Validate();
 
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
@@ -1052,6 +1075,20 @@ void COpenView::OnDropDown(NMHDR *pNMHDR, LRESULT *pResult)
 	DropDown(pNMHDR, pResult, id, popupid);
 }
 
+void COpenView::OnSelectFilterDropDown(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	UpdateData(TRUE);
+	CRect rc;
+	GetDlgItem(IDC_SELECT_FILTER)->GetWindowRect(&rc);
+	const std::optional<String> filter = m_menu.ShowMenu(m_strExt, rc.left, rc.bottom, this);
+	if (filter.has_value())
+	{
+		m_strExt = *filter;
+		UpdateData(FALSE);
+		m_ctlExtEdit.OnEnChange();
+	}
+}
+
 /** 
  * @brief Allow user to select a file to open/save.
  */
@@ -1476,6 +1513,11 @@ void COpenView::SetStatus(UINT msgID)
 	SetDlgItemText(IDC_OPEN_STATUS, msg);
 }
 
+void COpenView::OnExtEditChange()
+{
+	m_ctlExtEdit.OnEnChange();
+}
+
 /** 
  * @brief Called when "Select..." button for filters is selected.
  */
@@ -1486,6 +1528,7 @@ void COpenView::OnSelectFilter()
 
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
 	curFilter = strutils::trim_ws(curFilter);
+
 
 	GetMainFrame()->SelectFilter();
 	

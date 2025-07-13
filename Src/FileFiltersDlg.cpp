@@ -21,7 +21,7 @@
 #include "UniFile.h"
 #include "Constants.h"
 #include "FilterErrorMessages.h"
-#include "FileFilterMenu.h"
+#include "FileFilterHelperMenu.h"
 
 using std::vector;
 
@@ -77,7 +77,6 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
 	ON_NOTIFY(LVN_GETINFOTIP, IDC_FILTERFILE_LIST, OnInfoTip)
 	ON_BN_CLICKED(IDC_FILTERFILE_INSTALL, OnBnClickedFilterfileInstall)
-	ON_WM_INITMENUPOPUP()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -297,10 +296,10 @@ void FileFiltersDlg::OnFilterfileMaskMenu()
 {
 	CRect rc;
 	GetDlgItem(IDC_FILTERFILE_MASK_MENU)->GetWindowRect(&rc);
-	const String filter = m_menu.ShowMenu(rc.left, rc.bottom, this);
-	if (!filter.empty())
+	const std::optional<String> filter = m_menu.ShowMenu(m_sMask, rc.left, rc.bottom, this);
+	if (filter.has_value())
 	{
-		m_sMask = m_sMask + filter;
+		m_sMask = *filter;
 		UpdateData(FALSE);
 		m_ctlMaskEdit.OnEnChange();
 	}
@@ -666,7 +665,3 @@ void FileFiltersDlg::SetButtonState()
 	EnableDlgItem(IDC_FILTERFILE_DELETEBTN, !isNone);
 }
 
-void FileFiltersDlg::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
-{
-	m_menu.OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
-}
