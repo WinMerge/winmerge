@@ -92,6 +92,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				result = masks.empty() ? masks : masks + _T("|");
 				*result += _T("fe:") + strutils::format_string1(SizeConditions[command - ID_FILTERMENU_SIZE_LT_1KB], identifier);
 			}
+			else if (command == ID_FILTERMENU_SIZE_RANGE)
+			{
+			}
 			else if (command >= ID_FILTERMENU_DATE_HOUR_BEFORE_1 && command <= ID_FILTERMENU_DATE_YEAR_SINCE_LAST)
 			{
 				static const String DateConditions[] = {

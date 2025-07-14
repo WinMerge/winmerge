@@ -62,6 +62,7 @@
 #define IDD_FILTERS_SUBSTITUTIONFILTERS 257
 #define IDD_FILTERS_FILEFILTERS_SHARED  258
 #define IDD_FILTERS_FILEFILTERS_TEST    259
+#define IDD_FILTERS_CONDITION           289
 #define IDD_PROPPAGE_ARCHIVE            260
 #define IDD_PROPPAGE_BACKUPS            261
 #define IDD_PROPPAGE_CODEPAGE           262
@@ -662,6 +663,10 @@
 #define IDC_PLUGIN_DESCRIPTION          1672
 #define IDC_PLUGIN_PROCESSTYPE          1673
 #define IDC_PLUGIN_ALIAS                1674
+#define IDC_CONDITION_FIELD             1675
+#define IDC_CONDITION_OPERATOR          1676
+#define IDC_CONDITION_VALUE1            1677
+#define IDC_CONDITION_VALUE2            1678
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
