@@ -23,6 +23,8 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			const int command = pPopup->TrackPopupMenu(
 				TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, x, y, pParentWnd);
 			const String Sides[] = { _T(""), _T("Left"), _T("Middle"), _T("Right") };
+			const String DiffSides1[] = { _T("Left"), _T("Left"), _T("Middle") };
+			const String DiffSides2[] = { _T("Right"), _T("Middle"), _T("Right") };
 			if (command == 0)
 			{
 				// User cancelled the menu
@@ -152,6 +154,45 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			{
 				m_targetSide = command - ID_FILTERMENU_CONDITION_ANY;
 				continue;
+			}
+			else if (command >= ID_FILTERMENU_DIFF_SIZE_EQUAL && command <= ID_FILTERMENU_DIFF_SIZE_GE_1KB)
+			{
+				static const String DiffSizeConditions[] = {
+					_T("%1 = %2"), _T("%1 != %2"),
+					_T("abs(%1 - %2) < 10"), _T("abs(%1 - %2) >= 10"),
+					_T("abs(%1 - %2) < 100"), _T("abs(%1 - %2) >= 100"),
+					_T("abs(%1 - %2) < 1KB"), _T("abs(%1 - %2) >= 1KB")
+				};
+				const String identifier1 = DiffSides1[m_targetDiffSide] + _T("Size");
+				const String identifier2 = DiffSides2[m_targetDiffSide] + _T("Size");
+				result = masks.empty() ? masks : masks + _T("|");
+				*result += _T("fe:") + strutils::format_string2(DiffSizeConditions[command - ID_FILTERMENU_DIFF_SIZE_EQUAL],
+					identifier1, identifier2);
+			}
+			else if (command >= ID_FILTERMENU_DIFF_DATE_EQUAL && command <= ID_FILTERMENU_DIFF_DATE_WEEK_WITHIN_1)
+			{
+				static const String DiffDateConditions[] = {
+					_T("%1 = %2"), _T("%1 != %2"),
+					_T("abs(%1 - %2) < 1hour"), _T("abs(%1 - %2) >= 1hour"),
+					_T("abs(%1 - %2) < 1day"), _T("abs(%1 - %2) >= 1day"),
+					_T("abs(%1 - %2) < 1week"), _T("abs(%1 - %2) >= 1week")
+				};
+				const String identifier1 = DiffSides1[m_targetDiffSide] + _T("Date");
+				const String identifier2 = DiffSides2[m_targetDiffSide] + _T("Date");
+				result = masks.empty() ? masks : masks + _T("|");
+				*result += _T("fe:") + strutils::format_string2(DiffDateConditions[command - ID_FILTERMENU_DIFF_DATE_EQUAL],
+					identifier1, identifier2);
+			}
+			else if (command >= ID_FILTERMENU_DIFF_ATTR_EQUAL && command <= ID_FILTERMENU_DIFF_ATTR_NOT_EQUAL)
+			{
+				static const String DiffAttrConditions[] = {
+					_T("%1 = %2"), _T("%1 != %2")
+				};
+				const String identifier1 = DiffSides1[m_targetDiffSide] + _T("AttrStr");
+				const String identifier2 = DiffSides2[m_targetDiffSide] + _T("AttrStr");
+				result = masks.empty() ? masks : masks + _T("|");
+				*result += _T("fe:") + strutils::format_string2(DiffAttrConditions[command - ID_FILTERMENU_DIFF_ATTR_EQUAL],
+					identifier1, identifier2);
 			}
 			else if (command >= ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT && command <= ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT)
 			{

@@ -1528,8 +1528,6 @@ BEGIN
                 MENUITEM "Within 1 day",                ID_FILTERMENU_DIFF_DATE_DAY_WITHIN_1
                 MENUITEM "More than 1 week ago",        ID_FILTERMENU_DIFF_DATE_WEEK_BEFORE_1
                 MENUITEM "Within 1 week",               ID_FILTERMENU_DIFF_DATE_WEEK_WITHIN_1
-                MENUITEM "More than 1 month ago",       ID_FILTERMENU_DIFF_DATE_MONTH_BEFORE_1
-                MENUITEM "Within 1 month",              ID_FILTERMENU_DIFF_DATE_MONTH_WITHIN_1
                 MENUITEM "Custom Range...",             ID_FILTERMENU_DIFF_DATE_RANGE
             END
             POPUP "&Attributes"

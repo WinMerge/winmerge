@@ -959,13 +959,14 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 		else if (ent2 != nullptr)
 			di->diffFileInfo[2].filename = ent2->filename;
 	}
+	di->diffcode.diffcode = nItems == 2 ? code : (code | DIFFCODE::THREEWAY);
 
 	CDiffContext *pCtxt = myStruct->context;
 
 	// Test against filter so we don't include contents of filtered out directories
 	// Also this is only place we can test for both-sides directories in recursive compare
-	if ((pCtxt->m_piFilterGlobal != nullptr && !pCtxt->m_piFilterGlobal->includeDir(*di)))
-		code |= DIFFCODE::SKIPPED;
+	if ((code & DIFFCODE::DIR) != 0 && (pCtxt->m_piFilterGlobal != nullptr && !pCtxt->m_piFilterGlobal->includeDir(*di)))
+		di->diffcode.diffcode |= DIFFCODE::SKIPPED;
 
 	if (nItems == 2)
 	{
@@ -973,8 +974,7 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 			(code & DIFFCODE::FIRST) && (di->diffFileInfo[0].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
 			(code & DIFFCODE::SECOND) && (di->diffFileInfo[1].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
 			)
-			code |= DIFFCODE::SKIPPED;
-		di->diffcode.diffcode = code;
+			di->diffcode.diffcode |= DIFFCODE::SKIPPED;
 	}
 	else
 	{
@@ -983,8 +983,7 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 			(code & DIFFCODE::SECOND) && (di->diffFileInfo[1].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
 			(code & DIFFCODE::THIRD) && (di->diffFileInfo[2].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
 			)
-			code |= DIFFCODE::SKIPPED;
-		di->diffcode.diffcode = code | DIFFCODE::THREEWAY;
+			di->diffcode.diffcode |= DIFFCODE::SKIPPED;
 	}
 
 	if (!myStruct->bMarkedRescan && myStruct->m_fncCollect)
