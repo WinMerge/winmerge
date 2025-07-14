@@ -1075,7 +1075,7 @@ msgid "G&o to Diff"
 msgstr "Gå till skillnad"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "Flytta kursor vid klickning"
 
 msgid "&No Moved Blocks"
 msgstr "Inga flyttade block"
