@@ -1337,11 +1337,8 @@ IDR_POPUP_FILTERMENU MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        POPUP "&File Mask"
-        BEGIN
-            MENUITEM "&Clear File Mask",            ID_FILTERMENU_MASK_CLEAR
-            MENUITEM "&All (*.*)",                  ID_FILTERMENU_MASK_ALL
-        END
+        MENUITEM "&Clear File Mask",            ID_FILTERMENU_MASK_CLEAR
+        MENUITEM "R&eset to Default (*.*)",     ID_FILTERMENU_MASK_ALL
         POPUP "Add E&xclude File"
         BEGIN
             MENUITEM "&System Files",               ID_FILTERMENU_FILE_SYS
@@ -1357,7 +1354,7 @@ BEGIN
             MENUITEM "&IDE",                        ID_FILTERMENU_FOLDER_IDE
         END
         MENUITEM SEPARATOR
-        POPUP "Add File &Condition"
+        POPUP "Add &File Condition"
         BEGIN
             POPUP "File &Size"
             BEGIN

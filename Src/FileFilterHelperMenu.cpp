@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "FileFilterHelperMenu.h"
+#include "FilterConditionDlg.h"
 #include "Merge.h"
 #include "resource.h"
 
@@ -50,7 +51,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			else if (command == ID_FILTERMENU_FILE_BIN)
 			{
 				result = masks.empty() ? masks : masks + _T(";");
-				*result += _T("!*.exe;!*.dll;!*.ocx;!*.sys;!*.drv;!*.cpl;!*.scr;!*.com;*.jar;*.war;*.obj;*.o;*.lib;*.so;*.a;*.class;*.pyc;*.pyo");
+				*result += _T("!*.exe;!*.dll;!*.ocx;!*.sys;!*.drv;!*.cpl;!*.scr;!*.com;!*.jar;!*.war;!*.obj;!*.o;!*.lib;!*.so;!*.a;!*.class;!*.pyc;!*.pyo");
 			}
 			else if (command == ID_FILTERMENU_FILE_LOG)
 			{
@@ -94,6 +95,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_SIZE_RANGE)
 			{
+				CFilterConditionDlg dlg(false, m_targetSide, _T("Size"), _T("between"), _T(""));
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
 			}
 			else if (command >= ID_FILTERMENU_DATE_HOUR_BEFORE_1 && command <= ID_FILTERMENU_DATE_YEAR_SINCE_LAST)
 			{
@@ -112,6 +116,12 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				result = masks.empty() ? masks : masks + _T("|");
 				*result += _T("fe:") + strutils::format_string1(DateConditions[command - ID_FILTERMENU_DATE_HOUR_BEFORE_1], identifier);
 			}
+			else if (command == ID_FILTERMENU_DATE_RANGE)
+			{
+				CFilterConditionDlg dlg(false, m_targetSide, _T("Date"), _T("between"), _T(""));
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
+			}
 			else if (command >= ID_FILTERMENU_ATTR_READONLY && command <= ID_FILTERMENU_ATTR_NOT_SYSTEM)
 			{
 				static const String AttrConditions[] = {
@@ -122,6 +132,28 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				const String identifier = Sides[m_targetSide] + _T("AttrStr");
 				result = masks.empty() ? masks : masks + _T("|");
 				*result += _T("fe:") + strutils::format_string1(AttrConditions[command - ID_FILTERMENU_ATTR_READONLY], identifier);
+			}
+			else if (command >= ID_FILTERMENU_CONTENT_CONTAINS && command <= ID_FILTERMENU_CONTENT_LAST_LINE_NOT_CONTAINS)
+			{
+				const String LHSs[] = {
+					_T(""), _T(""),
+					_T("sublines(%1, 0, 1)"),  _T("sublines(%1, 0, 1)"),
+					_T("sublines(%1, 0, 10)"), _T("sublines(%1, 0, 10)"),
+					_T("sublines(%1, -10)"),   _T("sublines(%1, -10)"),
+					_T("sublines(%1, -1)"),    _T("sublines(%1, -1)")
+				};
+				const String OPs[] = {
+					_T("contains"), _T("not contains"),
+					_T("contains"), _T("not contains"),
+					_T("contains"), _T("not contains"),
+					_T("contains"), _T("not contains"),
+					_T("contains"), _T("not contains")
+				};
+				CFilterConditionDlg dlg(false, m_targetSide,
+					_T("Content"), OPs[command - ID_FILTERMENU_CONTENT_CONTAINS],
+					LHSs[command - ID_FILTERMENU_CONTENT_CONTAINS]);
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
 			}
 			else if (command >= ID_FILTERMENU_LINES_LT_10 && command <= ID_FILTERMENU_LINES_GE_100000)
 			{
@@ -135,6 +167,12 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				const String identifier = Sides[m_targetSide] + _T("Content");
 				result = masks.empty() ? masks : masks + _T("|");
 				*result += _T("fe:") + strutils::format_string1(LineCountConditions[command - ID_FILTERMENU_LINES_LT_10], identifier);
+			}
+			else if (command == ID_FILTERMENU_LINES_RANGE)
+			{
+				CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _T("<"), _T("lineCount(%1)"));
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
 			}
 			else if (command >= ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1 && command <= ID_FILTERMENU_FOLDER_DATE_YEAR_SINCE_LAST)
 			{
@@ -152,6 +190,12 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				const String identifier = Sides[m_targetSide] + _T("Date");
 				result = masks.empty() ? masks : masks + _T("|");
 				*result += _T("de:") + strutils::format_string1(DateConditions[command - ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1], identifier);
+			}
+			else if (command == ID_FILTERMENU_FOLDER_DATE_RANGE)
+			{
+				CFilterConditionDlg dlg(false, m_targetSide, _T("Date"), _T("between"), _T(""));
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.GetExpression();
 			}
 			else if (command >= ID_FILTERMENU_CONDITION_ANY && command <= ID_FILTERMENU_CONDITION_RIGHT)
 			{
@@ -172,6 +216,12 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				*result += _T("fe:") + strutils::format_string2(DiffSizeConditions[command - ID_FILTERMENU_DIFF_SIZE_EQUAL],
 					identifier1, identifier2);
 			}
+			else if (command == ID_FILTERMENU_DIFF_SIZE_RANGE)
+			{
+				CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Size"), _T("between"), _T("abs(%1 - %2)"));
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
+			}
 			else if (command >= ID_FILTERMENU_DIFF_DATE_EQUAL && command <= ID_FILTERMENU_DIFF_DATE_WEEK_WITHIN_1)
 			{
 				static const String DiffDateConditions[] = {
@@ -185,6 +235,12 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				result = masks.empty() ? masks : masks + _T("|");
 				*result += _T("fe:") + strutils::format_string2(DiffDateConditions[command - ID_FILTERMENU_DIFF_DATE_EQUAL],
 					identifier1, identifier2);
+			}
+			else if (command == ID_FILTERMENU_DIFF_DATE_RANGE)
+			{
+				CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Date"), _T("between"), _T("abs(%1 - %2)"));
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
 			}
 			else if (command >= ID_FILTERMENU_DIFF_ATTR_EQUAL && command <= ID_FILTERMENU_DIFF_ATTR_NOT_EQUAL)
 			{

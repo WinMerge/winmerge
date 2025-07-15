@@ -715,7 +715,7 @@ static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
 
 /**
  * @brief User right-clicked in listview rows
-@* @param [in] point Point where the mouse was right-clicked.
+?* @param [in] point Point where the mouse was right-clicked.
  */
 void CDirView::ListContextMenu(CPoint point, int /*i*/)
 {
@@ -4604,6 +4604,11 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		break;
 	case 1:
 	{
+		GetMainFrame()->SelectFilter();
+		break;
+	}
+	case 2:
+	{
 		CPoint point;
 		::GetCursorPos(&point);
 		CMenu menu;
@@ -4618,11 +4623,6 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 			m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
 			GetDocument()->Rescan();
 		}
-		break;
-	}
-	case 2:
-	{
-		GetMainFrame()->SelectFilter();
 		break;
 	}
 	case 3:

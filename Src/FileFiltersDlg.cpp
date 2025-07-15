@@ -301,6 +301,8 @@ void FileFiltersDlg::OnFilterfileMaskMenu()
 	{
 		m_sMask = *filter;
 		UpdateData(FALSE);
+		std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_sMask);
+		SetCheckedState(m_listFilters, presetFilters);
 		m_ctlMaskEdit.OnEnChange();
 	}
 }

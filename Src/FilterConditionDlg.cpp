@@ -21,6 +21,16 @@
 CFilterConditionDlg::CFilterConditionDlg(CWnd* pParent /*= nullptr*/)
 : CTrDialog(CFilterConditionDlg::IDD, pParent)
 {
+}
+
+CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& field, const String& ope, const String& transform, CWnd* pParent /* = nullptr*/)
+: CTrDialog(CFilterConditionDlg::IDD, pParent)
+, m_bDiff(diff)
+, m_nSide(side)
+, m_sField(field)
+, m_sOperator(ope)
+, m_sTransform(transform)
+{
 	//{{AFX_DATA_INIT(CFilterConditionDlg)
 		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
@@ -38,6 +48,12 @@ BEGIN_MESSAGE_MAP(CFilterConditionDlg, CTrDialog)
 	ON_COMMAND_RANGE(IDC_COMPARETABLE_CSV, IDC_COMPARETABLE_DSV, OnClickFileType)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
+
+String CFilterConditionDlg::GetExpression() const
+{
+	return _T("");
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CFilterConditionDlg message handlers
