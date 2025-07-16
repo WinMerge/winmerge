@@ -73,9 +73,13 @@ cmp_expr(A) ::= arithmetic(B) LE arithmetic(C).       { A = { new BinaryOpNode(B
 cmp_expr(A) ::= arithmetic(B) GT arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_GT,  C.node) }; }
 cmp_expr(A) ::= arithmetic(B) GE arithmetic(C).       { A = { new BinaryOpNode(B.node, TK_GE, C.node) }; }
 cmp_expr(A) ::= arithmetic(B) CONTAINS arithmetic(C). { A = { new BinaryOpNode(B.node, TK_CONTAINS, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) NOT CONTAINS arithmetic(C). { A = { new NotNode(new BinaryOpNode(B.node, TK_CONTAINS, C.node)) }; }
 cmp_expr(A) ::= arithmetic(B) RECONTAINS arithmetic(C). { A = { new BinaryOpNode(B.node, TK_RECONTAINS, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) NOT RECONTAINS arithmetic(C). { A = { new NotNode(new BinaryOpNode(B.node, TK_RECONTAINS, C.node)) }; }
 cmp_expr(A) ::= arithmetic(B) LIKE arithmetic(C).     { A = { new BinaryOpNode(B.node, TK_LIKE, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) NOT LIKE arithmetic(C).     { A = { new NotNode(new BinaryOpNode(B.node, TK_LIKE, C.node)) }; }
 cmp_expr(A) ::= arithmetic(B) MATCHES  arithmetic(C). { A = { new BinaryOpNode(B.node, TK_MATCHES, C.node) }; }
+cmp_expr(A) ::= arithmetic(B) NOT MATCHES  arithmetic(C). { A = { new NotNode(new BinaryOpNode(B.node, TK_MATCHES, C.node)) }; }
 cmp_expr(A) ::= arithmetic(A).
 
 arithmetic(A) ::= arithmetic(B) PLUS arithmetic(C).   { A = { new BinaryOpNode(B.node, TK_PLUS, C.node) }; }

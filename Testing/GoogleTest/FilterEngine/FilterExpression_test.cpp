@@ -465,10 +465,16 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName contains \".txt\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightName not contains \".txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName matches \"a.*t\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_FALSE(fe.Parse("RightName not matches \"a.*t\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName like \"a?ice.*t\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightName not like \"a?ice.*t\""));
+	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("MiddleName != \"Alice.txt\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftExtension = \"txt\""));
@@ -549,6 +555,8 @@ TEST_P(FilterExpressionTest, Content1)
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent recontains \"xml.*UTF-8\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightContent not recontains \"xml.*UTF-8\""));
+	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftContent recontains \"xml.*UTF-8\""));
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("linecount(RightContent) = 7"));
