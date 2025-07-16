@@ -2397,13 +2397,18 @@ void CMainFrame::OnFileOpenProject()
  */
 LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 {
-	COPYDATASTRUCT *pCopyData = (COPYDATASTRUCT*)lParam;
+	COPYDATASTRUCT* pCopyData = (COPYDATASTRUCT*)lParam;
 	const tchar_t* pchData = (const tchar_t*)pCopyData->lpData;
 	// Bail out if data isn't zero-terminated
 	DWORD cchData = pCopyData->cbData / sizeof(tchar_t);
 	if (cchData == 0 || pchData[cchData - 1] != _T('\0'))
 		return FALSE;
 	ReplyMessage(TRUE);
+	if (lstrlen(pchData) + 1 < cchData)
+	{
+		// pchData + lstrlen(pchData) + 1 points to the current directory
+		SetCurrentDirectory(pchData + lstrlen(pchData) + 1);
+	}
 	MergeCmdLineInfo cmdInfo(pchData);
 	theApp.ApplyCommandLineConfigOptions(cmdInfo);
 	theApp.ParseArgsAndDoOpen(cmdInfo, this);
