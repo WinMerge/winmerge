@@ -667,6 +667,8 @@
 #define IDC_CONDITION_OPERATOR          1676
 #define IDC_CONDITION_VALUE1            1677
 #define IDC_CONDITION_VALUE2            1678
+#define IDC_CONDITION_VALUE1DTP1        1679
+#define IDC_CONDITION_VALUE1DTP2        1680
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

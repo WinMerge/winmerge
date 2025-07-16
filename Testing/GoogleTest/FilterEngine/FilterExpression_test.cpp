@@ -82,6 +82,10 @@ TEST_P(FilterExpressionTest, Literals)
 
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025-05-27\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025/05/27\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025.05.27\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025-05-28\""));
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" < d\"2025-05-28\""));
@@ -283,6 +287,18 @@ TEST_P(FilterExpressionTest, Literals)
 
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025-05-27 00:00:00\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025/05/27 00:00:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"27-may-2025\" == d\"2025.05.27 00:00:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"2025-05-27T00:00:00+00:00\" == d\"2025-05-27T00:00:00Z\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"2025-05-27T12:34:56+00:00\" == d\"2025-05-27T21:34:56+09:00\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"20250527T123456+0000\" == d\"20250527T213456+0900\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"2025-05-27T01:02:03+09:00\" != d\"2025-05-27T01:02:03z\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025-05-27 00:00:01\""));
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" < d\"2025-05-27 00:00:01\""));
@@ -469,8 +485,8 @@ TEST_P(FilterExpressionTest, FileAttributes)
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName matches \"a.*t\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_FALSE(fe.Parse("RightName not matches \"a.*t\""));
-	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightName not matches \"a.*t\""));
+	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName like \"a?ice.*t\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightName not like \"a?ice.*t\""));

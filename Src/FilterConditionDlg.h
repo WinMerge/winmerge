@@ -36,6 +36,7 @@ public:
 	//{{AFX_VIRTUAL(CFilterConditionDlg)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual BOOL OnInitDialog() override;
 	virtual void OnOK() override;
 	//}}AFX_VIRTUAL
 

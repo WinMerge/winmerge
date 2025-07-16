@@ -58,6 +58,20 @@ String CFilterConditionDlg::GetExpression() const
 /////////////////////////////////////////////////////////////////////////////
 // CFilterConditionDlg message handlers
 
+/**
+ * @brief Dialog initializer function.
+ */
+BOOL CFilterConditionDlg::OnInitDialog()
+{
+	CTrDialog::OnInitDialog();
+
+
+	UpdateData(FALSE);
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
 void CFilterConditionDlg::OnOK()
 {
 	CDialog::OnOK();

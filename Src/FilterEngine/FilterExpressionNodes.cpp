@@ -1185,27 +1185,20 @@ DateTimeLiteral::DateTimeLiteral(const std::string& v)
 	static const std::vector<std::string> formats = {
 		Poco::DateTimeFormat::ISO8601_FORMAT,
 		Poco::DateTimeFormat::ISO8601_FRAC_FORMAT,
-		"%Y-%m-%d %H:%M:%S",
-		"%Y-%m-%d",
 		"%Y/%m/%d %H:%M:%S",
-		"%Y/%m/%d",
 		"%Y.%m.%d %H:%M:%S",
-		"%Y.%m.%d",
 		"%d-%b-%Y %H:%M:%S",
-		"%d-%b-%Y",
 	};
 
 	Poco::DateTime dt;
-	int tz = 0;
 	bool parsed = false;
 	for (const auto& fmt : formats)
 	{
 		try
 		{
+			int tz = 0;
 			Poco::DateTimeParser::parse(fmt, v, dt, tz);
-			dt.makeUTC(
-				(fmt == Poco::DateTimeFormat::ISO8601_FORMAT || fmt == Poco::DateTimeFormat::ISO8601_FRAC_FORMAT)
-					? tz : Poco::Timezone::tzd());
+			dt.makeUTC((v.find_first_of("zZ+") != std::string::npos) ? tz : Poco::Timezone::tzd());
 			value = dt.timestamp();
 			parsed = true;
 			break;
