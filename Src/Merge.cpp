@@ -172,7 +172,10 @@ static HWND ActivatePreviousInstanceAndSendCommandline(tchar_t* cmdLine)
 	if (IsIconic(hWnd))
 		ShowWindow(hWnd, SW_RESTORE);
 	SetForegroundWindow(GetLastActivePopup(hWnd));
-	COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(tchar_t), cmdLine };
+	tchar_t szCurrentDirectory[MAX_PATH]{};
+	GetCurrentDirectory(sizeof(szCurrentDirectory) / sizeof(szCurrentDirectory[0]), szCurrentDirectory);
+	String cmdLineCurDir = cmdLine + String(1, '\0') + szCurrentDirectory;
+	COPYDATASTRUCT data = { 0, static_cast<DWORD>(cmdLineCurDir.length() + 1) * sizeof(tchar_t), (void*)cmdLineCurDir.c_str()};
 	if (!SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
 		return nullptr;
 	return hWnd;
