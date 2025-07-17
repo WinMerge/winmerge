@@ -1215,325 +1215,325 @@ msgid "&Duplicate Plugin..."
 msgstr "プラグインを複製(&D)..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "すべてクリア(&A)"
 
 msgid "&Clear File Mask"
-msgstr ""
+msgstr "ファイルマスクをクリア(&C)"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "デフォルト (*.*) にリセット(&E)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "除外ファイルを追加(&X)"
 
 msgid "&System Files"
-msgstr ""
+msgstr "システムファイル(&S)"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "エディタのバックアップファイル(&E)"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "コンパイル済みバイナリファイル(&C)"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "ログファイル(&L)"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "一時ファイル・キャッシュファイル(&T)"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "除外フォルダーを追加(&U)"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "バージョン管理(&V)"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "ビルド生成物(&B)"
 
 msgid "&IDE"
-msgstr ""
+msgstr "IDE関連(&I)"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "ファイル条件を追加(&F)"
 
 msgid "File &Size"
-msgstr ""
+msgstr "ファイルサイズ(&S)"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "1KB 未満"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1KB 以上"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "10KB 未満"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10KB 以上"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "100KB 未満"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100KB 以上"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "1MB 未満"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1MB 以上"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "10MB 未満"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10MB 以上"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "100MB 未満"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100MB 以上"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "1GB 未満"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1GB 以上"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "カスタム範囲..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "最終更新日(&L)"
 
 msgid "&Hour"
-msgstr ""
+msgstr "時間単位(&H)"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "1時間以上前"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "1時間以内"
 
 msgid "&Day"
-msgstr ""
+msgstr "日単位(&D)"
 
 msgid "Before today"
-msgstr ""
+msgstr "今日より前"
 
 msgid "Today"
-msgstr ""
+msgstr "今日"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "昨日より前"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "昨日"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "昨日以降"
 
 msgid "&Week"
-msgstr ""
+msgstr "週単位(&W)"
 
 msgid "Before this week"
-msgstr ""
+msgstr "今週より前"
 
 msgid "This week"
-msgstr ""
+msgstr "今週"
 
 msgid "Before last week"
-msgstr ""
+msgstr "先週より前"
 
 msgid "Last week"
-msgstr ""
+msgstr "先週"
 
 msgid "Since last week"
-msgstr ""
+msgstr "先週以降"
 
 msgid "&Month"
-msgstr ""
+msgstr "月単位(&M)"
 
 msgid "Before this month"
-msgstr ""
+msgstr "今月より前"
 
 msgid "This month"
-msgstr ""
+msgstr "今月"
 
 msgid "Before last month"
-msgstr ""
+msgstr "先月より前"
 
 msgid "Last month"
-msgstr ""
+msgstr "先月"
 
 msgid "Since last month"
-msgstr ""
+msgstr "先月以降"
 
 msgid "&Year"
-msgstr ""
+msgstr "年単位(&Y)"
 
 msgid "Before this year"
-msgstr ""
+msgstr "今年より前"
 
 msgid "This year"
-msgstr ""
+msgstr "今年"
 
 msgid "Before last year"
-msgstr ""
+msgstr "昨年より前"
 
 msgid "Last year"
-msgstr ""
+msgstr "昨年"
 
 msgid "Since last year"
-msgstr ""
+msgstr "昨年以降"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "カスタム範囲(&C)..."
 
 msgid "&Attributes"
-msgstr ""
+msgstr "属性(&A)"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "読み取り専用ファイル"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "読み取り専用ではないファイル"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "隠しファイル"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "隠しファイルではない"
 
 msgid "System files"
-msgstr ""
+msgstr "システムファイル"
 
 msgid "Not system files"
-msgstr ""
+msgstr "システムファイルではない"
 
 msgid "File &Content"
-msgstr ""
+msgstr "ファイル内容(&C)"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "指定文字列を含む..."
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "指定文字列を含まない..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "先頭行に文字列を含む..."
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "先頭行に文字列を含まない..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "先頭10行に文字列を含む..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "先頭10行に文字列を含まない..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "末尾10行に文字列を含む..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "末尾10行に文字列を含まない..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "末尾行に文字列を含む..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "末尾行に文字列を含まない..."
 
 msgid "&Line Count"
-msgstr ""
+msgstr "行数(&L)"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "10未満"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10以上"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "100未満"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100以上"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "1000未満"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1000以上"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "10000未満"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10000以上"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "100000未満"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100000以上"
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "フォルダー条件を追加(&O)"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "対象: いずれか (左/中央/右)(&A)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "対象: 左(&L)"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "対象: 中央(&M)"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "対象: 右(&R)"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "差異条件を追加(&D)"
 
 msgid "Equal"
-msgstr ""
+msgstr "一致"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "不一致"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "10B 未満"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10B 以上"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "100B 未満"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100B 以上"
 
 msgid "More than 1 day ago"
-msgstr ""
+msgstr "1日前より前"
 
 msgid "Within 1 day"
-msgstr ""
+msgstr "1日以内"
 
 msgid "More than 1 week ago"
-msgstr ""
+msgstr "1週間前より前"
 
 msgid "Within 1 week"
-msgstr ""
+msgstr "1週間以内"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "対象: 左と右(&L)"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "対象: 左と中央(&M)"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "対象: 中央と右(&R)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -4834,13 +4834,34 @@ msgid "Invalid number of arguments"
 msgstr "引数の数が正しくありません"
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "フィルター名が見つかりません"
 
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
 msgid "Equals"
-msgstr ""
+msgstr "等しい"
+
+msgid "Does not equal"
+msgstr "等しくない"
+
+msgid "Less than"
+msgstr "より小さい"
+
+msgid "Less than or equal to"
+msgstr "以下"
+
+msgid "Greater than or equal to"
+msgstr "以上"
+
+msgid "Greater than"
+msgstr "より大きい"
+
+msgid "Between"
+msgstr "範囲内"
+
+msgid "Not Between"
+msgstr "範囲外"
 
 msgid "Does not equal"
 msgstr ""
