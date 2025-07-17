@@ -4042,7 +4042,7 @@ msgstr "파일 이름"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "폴더"
 
 #, c-format
 msgid "Comparison Result"
@@ -4157,7 +4157,7 @@ msgstr "무시된 차이점"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "바이너리"
 
 #, c-format
 msgid "Unpacker"
@@ -4796,7 +4796,7 @@ msgstr "혼합됨"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "바이너리"
 
 #, c-format
 msgid "None"
@@ -5145,71 +5145,71 @@ msgstr "MDI 하위 창이 하나만 있는 경우 기본 창 닫기"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "차이"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "강조 표시"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "깜박임"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "블록 크기"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "블록 알파"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD 임계값"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "삽입/삭제 감지"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "없음"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "수직"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "수평"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "오버레이"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "알파"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "알파 혼합"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "알파 애니메이션"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "확대/축소"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "페이지:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -5258,19 +5258,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "대체 필터에 이 변경 사항을 추가하시겠습니까?"
 
 msgid "Text only"
-msgstr ""
+msgstr "텍스트만"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "줄별 위치 및 텍스트"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "단어별 위치 및 텍스트"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "AppData 폴더"
 
 msgid "Install folder"
-msgstr ""
+msgstr "설치 폴더"
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -5373,77 +5373,81 @@ msgid "2nd and 3rd"
 msgstr "두 번째 및 세번째"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "필터 적용됨"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "%s의 클립보드"
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"클립보드 히스토리를 사용할 수 없습니다.\r\n"
+"클립보드 히스토리를 활성화하려면 Windows 로고 키 + V를 누른 다음 켜기 버튼을 클릭하세요."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "이 시스템은 클립보드 히스토리를 지원하지 않습니다."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32비트 버전의 WinMerge는 클립보드 비교를 지원하지 않습니다"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "WebView2 런타임이 설치되지 않았습니다. 다운로드하시겠습니까?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "새 텍스트 비교"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "새 테이블 비교"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "새 바이너리 비교"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "새 이미지 비교"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "새 웹 페이지 비교"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "클립보드 비교"
 
 msgid "&Print..."
-msgstr ""
+msgstr "인쇄(&P)..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "이전 페이지(&V)"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "2 페이지(&T)"
 
 msgid "&One Page"
-msgstr ""
+msgstr "1 페이지(&O)"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "확대(&I)"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "축소(&O)"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "비교 중..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "확대/축소:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "차이 덩어리"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "인라인 차이"
 
 msgid "Line"
-msgstr ""
+msgstr "줄"
 
 msgid "Character"
-msgstr ""
+msgstr "문자"
 
 msgid ""
 "\n"
@@ -5517,25 +5521,25 @@ msgstr ""
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "%1과 %2 비교"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "%1과 %2 및 %3 비교"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "비교 완료"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "%1과 %2를 비교하지 못했습니다: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "%1과 %2 및 %3을 비교하지 못했습니다: "
 
 msgid "File saved"
-msgstr ""
+msgstr "파일이 저장되었습니다"
 
 msgid "Copying files..."
 msgstr "파일 복사 중..."

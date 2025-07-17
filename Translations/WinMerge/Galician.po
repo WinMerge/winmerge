@@ -3444,7 +3444,7 @@ msgstr "Nome do ficheiro"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Carpeta"
 
 msgid "Comparison Result"
 msgstr "Resultado da comparación"
@@ -3532,7 +3532,7 @@ msgstr "Difs. ignoradas"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binario"
 
 msgid "Unpacker"
 msgstr "Desempaquetador"
@@ -4073,7 +4073,7 @@ msgstr "Mesturado"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binario"
 
 msgid "None"
 msgstr "Ningún"
@@ -4389,71 +4389,71 @@ msgstr "Pechar a ventá principal se só hai unha ventá MDI secundaria"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Diferenza"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Resaltado"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Escintilar"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Tamaño do bloque"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Bloque Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Limiar de DC"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Detectar Ins/Borrar"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Ningún"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Superpoñer"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Mestura Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Animación Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Páxina:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4502,19 +4502,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Añadir este cambio aos Filtros de substitución?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Só texto"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Posición e texto liña por liña"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Posición e texto palabra por palabra"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Carpeta AppData"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Carpeta de instalación"
 
 msgid "Allow only one instance to run"
 msgstr "Permitir executar só unha instancia"
@@ -4616,59 +4616,63 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Filtro aplicado"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Portapapeis en %s"
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"O historial do portapapeis está desactivado.\r\n"
+"Para habilitar o historial do portapapeis, prema na tecla do logo de Windows + V e logo no botón Activar."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Este sistema non soporta o historial do portapapeis."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "A versión de 32 bit de WinMerge non soporta a comparación de portapapeis"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "O runtime WebView2 non está instalado. Quere descargalo?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Nova comparación de texto"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Nova comparación de táboa"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Nova comparación binaria"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Nova comparación de imaxe"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Nova comparación de páxina web"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Comparar de portapapeis"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Im&primir..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Páxina an&terior"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Dúas páxinas"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Un&ha páxina"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Aumentar &zoom"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Reducir z&oom"
 
 msgid "Comparing..."
 msgstr ""

@@ -3245,7 +3245,7 @@ msgstr "Имя файла"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Папка"
 
 msgid "Comparison Result"
 msgstr "Результат сравнения"
@@ -3333,7 +3333,7 @@ msgstr "Игнор. отличия"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Двоичный"
 
 msgid "Unpacker"
 msgstr "Распаковщик"
@@ -3835,7 +3835,7 @@ msgstr "Смешанный"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Двоичный"
 
 msgid "None"
 msgstr "Нет"
@@ -4057,71 +4057,71 @@ msgstr "Закрыть главное окно, если дочернее окн
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Отличия"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Подсветка"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Мигание"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Размер блока"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Прозрачность блока"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Порог цветоразличения"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Обнаружение Ins/Del"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Нет"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Вертикально"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Горизонтально"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Наложение"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Альфа"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Альфа-смешение"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Альфа-анимация"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Масштаб"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Страница:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4170,19 +4170,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Добавить это изменение в фильтры подмены?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Только текст"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Построчная позиция и текст"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Пословная позиция и текст"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Папка данных"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Папка установки"
 
 msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
@@ -4284,77 +4284,77 @@ msgid "2nd and 3rd"
 msgstr "2-й и 3-й"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Фильтр применен"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Буфер обмена в %s"
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
-msgstr ""
+msgstr "История буфера обмена отключена.\r\nЧтобы включить историю буфера обмена, нажмите Win+V, а затем кнопку 'включить'."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Эта система не поддерживает историю буфера обмена."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32-битная версия WinMerge не поддерживает Сравнение буфера обмена"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "Не установлена среда выполнения WebView2. Загрузить?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Создать сравнение текста"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Создать сравнение таблиц"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Создать двоичное сравнение"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Создать сравнение изображений"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Создать сравнение веб-страниц"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Сравнение буфера обмена"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Печать..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Предыдущая страница"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "Две страницы"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Одна страница"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Увеличить"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Уменьшить"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Сравнение..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Масштаб:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Отличающийся кусок"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Встроенное отличие"
 
 msgid "Line"
-msgstr ""
+msgstr "Строка"
 
 msgid "Character"
-msgstr ""
+msgstr "Символ"
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr "\nПредыдущее отличие (Alt+Up)\n(Правая кнопка+Колесо вверх)\n(Alt+Колесо вверх)"
@@ -4376,25 +4376,25 @@ msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)\n(
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Сравнение %1 с %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Сравнение %1 с %2 и %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Сравнение завершено"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Не удалось сравнить %1 с %2: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Не удалось сравнить %1 с %2 и %3: "
 
 msgid "File saved"
-msgstr ""
+msgstr "Файл сохранен"
 
 msgid "Copying files..."
 msgstr "Копирование файлов..."

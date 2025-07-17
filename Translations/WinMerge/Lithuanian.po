@@ -3243,7 +3243,7 @@ msgstr "Failas"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Katalogas"
 
 msgid "Comparison Result"
 msgstr "Lyginimo rezultatas"
@@ -3331,7 +3331,7 @@ msgstr "Ignoruoti skirtumai"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binarinis"
 
 msgid "Unpacker"
 msgstr "Išpakuotojas"
@@ -3833,7 +3833,7 @@ msgstr "Mišrus"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binarinių"
 
 msgid "None"
 msgstr "Nėra"
@@ -4055,71 +4055,71 @@ msgstr "Užverti pagrindinį langą, jei yra tik vienas MDI antrinis langas"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Skirtumai"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Paryškinti"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Mirksi"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Bloko dydis"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Bloko alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD slenkstis"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Skirtumų aptikimas"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Nėra"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikaliai"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontaliai"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Perdengimas"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alfa sl. suliejimas"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alfa sl. animacija"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Mastelis"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Psl.:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4168,19 +4168,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Įtraukti šį skirtumą į Keitinių filtrus?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Tik tekstas"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Paeilutinė pozicija ir tekstas"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Pažodinė pozicija ir tekstas"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "„AppData“ katalogas"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Diegimo katalogas"
 
 msgid "Allow only one instance to run"
 msgstr "Leisti vykdyti tik vieną egzempliorių"
@@ -4282,77 +4282,77 @@ msgid "2nd and 3rd"
 msgstr "2-ą ir 3-ą"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Pritaikytas filtras"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Mainų sritis %s"
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
-msgstr ""
+msgstr "Mainų srities istorijos funkcionalumas išjungtas.\r\nNorėdami įjungti, paspauskite Win+V klavišus ir tada „Įjungti“ mygtuką."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Ši sistema nepalaiko mainų srities istorijos."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "„WebView2“ vykdymo aplinka neįdiegta. Norite ją parsisiųsti?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Naujas teksto palyginimas"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Naujas lentelių palyginimas"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Naujas binarinių failų palyginimas"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Naujas vaizdų palyginimas"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Naujas tinklapių palyginimas"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Mainų srities palyginimas"
 
 msgid "&Print..."
-msgstr ""
+msgstr "S&pausdinti..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "P&raeitas psl."
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&2 psl."
 
 msgid "&One Page"
-msgstr ""
+msgstr "&1 psl."
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Did&inti"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Mažin&ti"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Lygina..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Mastelis:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Skirt. bloke"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Skirt. eilutėje"
 
 msgid "Line"
-msgstr ""
+msgstr "Eilutė"
 
 msgid "Character"
-msgstr ""
+msgstr "Simbolis"
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr "\nPraeitas skirtumas (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
@@ -4374,25 +4374,25 @@ msgstr "\nKopijuoti į kairę ir Daugiau (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Lyginama %1 su %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Lyginama %1 su %2 ir %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Palyginimas baigtas"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Nepavyko %1 ir %2 palyginimas: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Nepavyko %1, %2 ir %3 palyginimas: "
 
 msgid "File saved"
-msgstr ""
+msgstr "Failas išsaugotas"
 
 msgid "Copying files..."
 msgstr "Failų kopijavimas..."

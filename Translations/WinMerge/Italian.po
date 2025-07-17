@@ -3518,7 +3518,7 @@ msgstr "Nome file"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Cartella"
 
 msgid "Comparison Result"
 msgstr "Risultato confronto"
@@ -3606,7 +3606,7 @@ msgstr "Diff ignorate"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binario"
 
 msgid "Unpacker"
 msgstr "Decompressore"
@@ -4177,7 +4177,7 @@ msgstr "Mescolato"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binario"
 
 msgid "None"
 msgstr "Nessuno"
@@ -4501,71 +4501,71 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Differenze"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Evidenzia"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Lampeggia"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Dimensione blocco"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Blocca alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Soglia CD"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Rilevamento Ins/Canc"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Nessuno"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Verticale"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Orizzontale"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Sovrapposizione"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Miscela alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Animazione alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Pagina:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4614,19 +4614,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Vuoi aggiungere questa modifica ai filtri sostituzione?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Solo testo"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Posizione e testo riga per riga"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Posizione e testo parola per parola"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Cartella AppData"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Cartella installazione"
 
 msgid "Allow only one instance to run"
 msgstr "Permetti l'esecuzione di un'unica istanza del programma"
@@ -4729,77 +4729,85 @@ msgid "2nd and 3rd"
 msgstr "Secondo e terzo"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Filtro applicato"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Appunti in %s"
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"La cronologia degli appunti è disabilitata.\n"
+"Per abilitare la cronologia degli appunti, premi il tasto Logo Windows + V, "
+"quindi fai clic sul pulsante Attiva."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Questo sistema non supporta la cronologia degli appunti."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr ""
+"La versione di WinMerge a 32 bit non supporta il confronto degli appunti"
 
 msgid "WebView2 runtime not installed. Download it?"
 msgstr ""
+"Il runtime WebView2 non è installato. \n"
+"Vuoi scaricarlo?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Nuovo confronto testo"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Nuova confronto tabella"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Nuovo confronto binario"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Nuovo confronto immagine"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Nuovo confronto pagina web"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Confronto appunti"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Stam&pa...."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Pagina &prec"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Due pagine"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Una pagina"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Zoom +"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Zoom &-"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Confronto..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Zoom:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Segmento diff"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Diff. in linea"
 
 msgid "Line"
-msgstr ""
+msgstr "Linea"
 
 msgid "Character"
-msgstr ""
+msgstr "Carattere"
 
 msgid ""
 "\n"
@@ -4873,25 +4881,25 @@ msgstr ""
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Confronto %1 con %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Confronto %1 con %2 e %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Confronto completato"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Impossibile confrontare %1 con %2: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Impossibile confrontare %1 con %2 e %3: "
 
 msgid "File saved"
-msgstr ""
+msgstr "File salvato"
 
 msgid "Copying files..."
 msgstr "Copia file..."

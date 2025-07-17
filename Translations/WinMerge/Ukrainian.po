@@ -3924,7 +3924,7 @@ msgstr "Ім'я файлу"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Тека"
 
 #, c-format
 msgid "Comparison Result"
@@ -4039,7 +4039,7 @@ msgstr "Знех. відмінності"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Бінарний"
 
 #, c-format
 msgid "Unpacker"
@@ -4661,7 +4661,7 @@ msgstr "Мішаний"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Бінарний"
 
 #, c-format
 msgid "None"

@@ -3942,7 +3942,7 @@ msgstr "Όνομα Αρχείου"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Φάκελος"
 
 #, c-format
 msgid "Comparison Result"
@@ -4057,7 +4057,7 @@ msgstr "Αγνοηθείσα Διαφορά"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Δυαδικό"
 
 #, c-format
 msgid "Unpacker"
@@ -4678,7 +4678,7 @@ msgstr "Μικτό"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Δυαδικό"
 
 #, c-format
 msgid "None"

@@ -3983,7 +3983,7 @@ msgstr " نام پرونده "
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr " پوشه "
 
 #, c-format
 msgid "Comparison Result"
@@ -4098,7 +4098,7 @@ msgstr " تفاوت چشم پوشي شده "
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr " دودويي "
 
 #, c-format
 msgid "Unpacker"

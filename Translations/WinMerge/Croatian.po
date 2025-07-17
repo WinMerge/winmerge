@@ -3959,7 +3959,7 @@ msgstr "Naziv datoteke"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Mapa"
 
 #, c-format
 msgid "Comparison Result"
@@ -4074,7 +4074,7 @@ msgstr "Zanemari razlike"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binarno"
 
 #, c-format
 msgid "Unpacker"
@@ -4695,7 +4695,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binarno"
 
 #, c-format
 msgid "None"

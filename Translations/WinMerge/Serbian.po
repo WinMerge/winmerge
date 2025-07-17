@@ -3934,7 +3934,7 @@ msgstr "Име датотеке"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Фасцикла"
 
 #, c-format
 msgid "Comparison Result"
@@ -4049,7 +4049,7 @@ msgstr "Занемари разлике"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Бинарни"
 
 #, c-format
 msgid "Unpacker"
@@ -4667,7 +4667,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Бинарни"
 
 #, c-format
 msgid "None"

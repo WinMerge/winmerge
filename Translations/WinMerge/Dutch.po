@@ -3465,7 +3465,7 @@ msgstr "Bestandsnaam"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Map"
 
 msgid "Comparison Result"
 msgstr "Vergelijkingsresultaat"
@@ -3553,7 +3553,7 @@ msgstr "Genegeerde verschillen"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binair"
 
 msgid "Unpacker"
 msgstr "Uitpakker"
@@ -4106,7 +4106,7 @@ msgstr "Gemengd"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binair"
 
 msgid "None"
 msgstr "Geen"
@@ -4425,71 +4425,71 @@ msgstr "Hoofdvenster sluiten als er slechts één MDI-dochtervenster is"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Verschil"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Markeren"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Knipperen"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Blokgrootte"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Alpha van blok"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD-drempel"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Ins/Del-detectie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Geen"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Verticaal"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontaal"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Overlay"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alfa-blend"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alfa-animatie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoomen"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Pagina:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4538,19 +4538,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Deze wijziging aan vervangingsfilters toevoegen?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Alleen tekst"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Positie en tekst regel per regel"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Positie en tekst woord voor woord"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "AppData-map"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Installatiemap"
 
 msgid "Allow only one instance to run"
 msgstr "Slechts één draaiende instantie toestaan"
@@ -4654,77 +4654,81 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Filter toegepast"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Klembord op %s"
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"De klembordgeschiedenis is uitgeschakeld.\n"
+"Om de klembordgeschiedenis in te schakelen, drukt u op de Windows-logotoets + V en klikt u vervolgens op de knop Inschakelen."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Dit systeem ondersteunt geen klembordgeschiedenis."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "De 32-bit-versie van WinMerge ondersteunt geen klembordvergelijking"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "WebView2-runtime is niet geïnstalleerd. Wilt u het downloaden?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Nieuwe tekstvergelijking"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Nieuwe tabelvergelijking"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Nieuwe binaire vergelijking"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Nieuwe afbeeldingsvergelijking"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Nieuwe webpagina-vergelijking"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Klembordvergelijking"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Afdrukken..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Vorige pagina"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "Twee pagina's"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Eén pagina"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Inzoomen"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Uitzoomen"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Vergelijken..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Zoomen:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Verschil-hunk"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Inline-verschil"
 
 msgid "Line"
-msgstr ""
+msgstr "Regel"
 
 msgid "Character"
-msgstr ""
+msgstr "Teken"
 
 msgid ""
 "\n"

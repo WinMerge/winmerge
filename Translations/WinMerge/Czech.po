@@ -3914,7 +3914,7 @@ msgstr "Název souboru"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Složky"
 
 #, c-format
 msgid "Comparison Result"
@@ -4029,7 +4029,7 @@ msgstr "Ignor. rozdílů"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binární"
 
 #, c-format
 msgid "Unpacker"
@@ -4641,7 +4641,7 @@ msgstr "Různé"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binární"
 
 #, c-format
 msgid "None"

@@ -4010,7 +4010,7 @@ msgstr "Nom de fitxer"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Directori"
 
 #, c-format
 msgid "Comparison Result"
@@ -4125,7 +4125,7 @@ msgstr "Diferències ignorades"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binari"
 
 #, c-format
 msgid "Unpacker"
@@ -4753,7 +4753,7 @@ msgstr "Barrejat"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binari"
 
 #, c-format
 msgid "None"
@@ -5102,71 +5102,71 @@ msgstr "Tanca la finestra principal si només hi ha una única subfinestra filla
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Diferències"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Ressalta"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Parpelleja"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Mida del bloc"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Trans. del bloc"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Llindar Dif. Col."
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Detecció Ins/Elim"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Cap"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horitzontal"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Superposició"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Grau transp."
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Superp. transp."
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Superp. animada"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Zoom"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Pàgina:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -5215,19 +5215,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Voleu afegir aquest canvi als filtres de substitució?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Només text"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Posició Línia a línia i text"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Posició paraula a paraula i text"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Carpeta AppData"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Carpeta d'instal·lació"
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -5330,77 +5330,81 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Filtre aplicat"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Porta-retalls a %s"
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"L'historial del porta-retalls està desactivat.\r\n"
+"Per activar l'historial del porta-retalls, premeu la tecla del logotip de Windows + V i aleshores feu clic al botó Activa."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Aquest sistema no té suport per a l'historial del porta-retalls."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "La versió de 32 bits del WinMerge no suporta comparar via porta-retalls"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "L'entorn d'execució WebView2 no està instal·lat. El voleu descarregar?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Nova comparació de text"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Nova comparació de taules"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Nova comparació binària"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Nova comparació d'imatges"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Nova comparació de pàgines web"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Comparació del porta-retalls"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Imprimeix..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Pàgina &anterior"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Dues pàgines"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Una pàgina"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "A&propa"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "All&unya"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Comparant..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Zoom:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Tros de diferència"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Diferència en línia"
 
 msgid "Line"
-msgstr ""
+msgstr "Línia"
 
 msgid "Character"
-msgstr ""
+msgstr "Caràcter"
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr ""

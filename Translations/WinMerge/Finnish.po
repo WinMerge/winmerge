@@ -3457,7 +3457,7 @@ msgstr "Tiedostonimi"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Kansio"
 
 msgid "Comparison Result"
 msgstr "Vertailutulokset"
@@ -3545,7 +3545,7 @@ msgstr "Ohitetut erot"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binääri"
 
 msgid "Unpacker"
 msgstr "Purkaja"
@@ -4093,7 +4093,7 @@ msgstr "Sekoitettu"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binääri"
 
 msgid "None"
 msgstr "Ei mitään"
@@ -4387,71 +4387,71 @@ msgstr "Sulje pääikkuna, jos on vain yksi MDI ali-ikkuna"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Ero"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Korostus"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Vilkku"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Lohkon koko"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Lohko Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD kynnys"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Ins/Del-tunnistus"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Ei mikään"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Pystysuora"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Vaakasuora"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Peite (Overlay)"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alfasekoitus"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alfa-animaatio"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Suurennus"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Sivu:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4500,19 +4500,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr ""
 
 msgid "Text only"
-msgstr ""
+msgstr "Vain teksti"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Rivikohtainen sijainti ja teksti"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Sanakohtainen sijainti ja teksti"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "AppData-kansio"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Asennuskansio"
 
 msgid "Allow only one instance to run"
 msgstr ""
@@ -4617,23 +4617,23 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Sovellettu suodatin"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Leikepöytä %s"
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Tämä järjestelmä ei tue leikepöydän historiaa."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "WinMergen 32-bittinen versio ei tue leikepöytävertailua"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "WebView2-runtimea ei ole asennettu. Haluatko ladata sen?"
 
 msgid "New Text Compare"
 msgstr ""

@@ -3995,7 +3995,7 @@ msgstr "Fájlnév"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Mappa"
 
 #, c-format
 msgid "Comparison Result"
@@ -4110,7 +4110,7 @@ msgstr "Eltérések mellőzése"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Bináris"
 
 #, c-format
 msgid "Unpacker"
@@ -4738,7 +4738,7 @@ msgstr "Vegyes"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Bináris"
 
 #, c-format
 msgid "None"
@@ -5063,71 +5063,71 @@ msgstr "A főablak bezárása, ha csak 1 MDI gyermekablak van?"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Különbség"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Kiemelés"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Villogás"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Blokkméret"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Alfa blokk"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD küszöbérték"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Beszúrás/Törlés érzékelés"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Nincs"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Függőleges"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Vízszintes"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Átfedés"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Átlátszóság"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Átlátszóság animáció"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Nagyítás"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Oldal:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -5176,19 +5176,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Hozzáadod ezt a változást a helyettesítési szűrőkhöz?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Csak szöveg"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Pozíció és szöveg sorról sorra"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Pozíció és szöveg szóról szóra"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Programadat mappa"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Mappa telepítése"
 
 msgid "Allow only one instance to run"
 msgstr "Csak egy példány futhat egyszerre"
@@ -5290,77 +5290,77 @@ msgid "2nd and 3rd"
 msgstr "2. és 3."
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Szűrő alkalmazva"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Vágólap itt: %s"
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
-msgstr ""
+msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Új szöveg összehasonlítás"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Új táblázat összehasonlítás"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Új bináris összehasonlítás"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Új kép összehasonlítás"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Új weboldal összehasonlítás"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Vágólap összehasonlítás"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Nyomtatás..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Kö&vetkező oldal"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Két oldal"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Egy oldal"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "&Nagyítás"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "K&icsinyítés"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Összehasonlítás..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Nagyítás:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Különb.nagyság"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Soron belüli kül."
 
 msgid "Line"
-msgstr ""
+msgstr "Sor"
 
 msgid "Character"
-msgstr ""
+msgstr "Karakter"
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr "\nElőző különbség (Alt+fel)\n(Jobb gomb+görgő fel)\n(Alt+görgő fel)"
@@ -5382,25 +5382,25 @@ msgstr "\nMásolás balra és előre (Ctrl+Alt+balra)\n(Ctrl+Alt+görgő balra)\
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "%1 összehasonlítása ezzel: %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "%1 összehasonlítása ezekkel: %2 és %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Összehasonlítás kész"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Nem sikerült %1 összehasonlítása ezzel: %2"
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Nem sikerült %1 összehasonlítása ezekkel: %2 és %3"
 
 msgid "File saved"
-msgstr ""
+msgstr "Fájl mentve"
 
 msgid "Copying files..."
 msgstr "Fájlok másolása..."

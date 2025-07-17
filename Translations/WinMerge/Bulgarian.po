@@ -3452,7 +3452,7 @@ msgstr "Име"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Папка"
 
 msgid "Comparison Result"
 msgstr "Резултати при сравняване"
@@ -3540,7 +3540,7 @@ msgstr "Пренебрегнати различия"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Двоичен"
 
 msgid "Unpacker"
 msgstr "Разопаковчик"
@@ -4085,7 +4085,7 @@ msgstr "Смесен"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Двоичен"
 
 msgid "None"
 msgstr "Няма"
@@ -4449,7 +4449,7 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "ИЛИ"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
@@ -4461,11 +4461,11 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Мащаб"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Страница:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4514,13 +4514,13 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Нов заместващ филтър от тази промяна?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Само текст"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Позиция на редове и текст"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Позиция на думи и текст"
 
 msgid "AppData folder"
 msgstr ""
@@ -4634,7 +4634,9 @@ msgstr ""
 msgid "Clipboard at %s"
 msgstr ""
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
 
 msgid "This system does not support clipboard history."
@@ -4683,10 +4685,10 @@ msgid "Zoom &Out"
 msgstr ""
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Сравняване…"
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Мащаб:"
 
 msgid "Diff hunk"
 msgstr ""
@@ -4695,10 +4697,10 @@ msgid "Inline diff"
 msgstr ""
 
 msgid "Line"
-msgstr ""
+msgstr "Ред"
 
 msgid "Character"
-msgstr ""
+msgstr "Знак"
 
 msgid ""
 "\n"

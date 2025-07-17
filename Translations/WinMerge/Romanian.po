@@ -3475,7 +3475,7 @@ msgstr "Nume fișier"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Director"
 
 msgid "Comparison Result"
 msgstr "Rezultat comparare"
@@ -3563,7 +3563,7 @@ msgstr "Diferențe ignorate"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binar"
 
 msgid "Unpacker"
 msgstr "Dezarhivator"
@@ -4119,7 +4119,7 @@ msgstr "Amestecat"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binar"
 
 msgid "None"
 msgstr "Nici unul"
@@ -4437,71 +4437,71 @@ msgstr "Închide fereastra principală dacă există doar o fereastră copil MDI
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Diferență"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Evidențiere"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Clipire"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Mărime bloc"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Alpha bloc"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Prag CD"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Detectare taste Ins/Del"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Nimic"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertical"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontal"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Suprapunere"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Amestec Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Animație Alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Mărire"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Pagina:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4550,19 +4550,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Adaug această modificare la filtrele de substituție?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Doar text"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Poziție și text rând cu rând"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Poziție și text cuvânt cu cuvânt"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Directorul AppData"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Directorul de instalare"
 
 msgid "Allow only one instance to run"
 msgstr "Permite rularea unei singure instanțe"
@@ -4665,41 +4665,44 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Filtru aplicat"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Clipboard la %s"
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr ""
+"Istoricul clipboard-ului este deactivat.\r\n"
+"Pentru a activa istoricul clipboard-ului, apăsați tasta logo Windows + V, "
+"apoi apăsați butonul Porniți."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Acest sistem nu suportă istoricul clipboard-ului."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "Versiunea pe 32 biți WinMerge nu suportă Comparare clipboard"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "Runtime-ul WebView2 nu este instalat. Doriți să-l descărcați?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Comparare text nouă"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Comparare tabel nouă"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Comparare binară nouă"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Comparare imagine nouă"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Comparare pagină web nouă"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Comparare clipboard"
 
 msgid "&Print..."
 msgstr ""

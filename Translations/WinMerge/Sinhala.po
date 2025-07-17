@@ -3954,7 +3954,7 @@ msgstr "ලිපිගොනුවේ නම"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "ෆෝල්ඩර"
 
 #, c-format
 msgid "Comparison Result"
@@ -4069,7 +4069,7 @@ msgstr "වෙනස්කම් නොසලකා හැරියා"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "ද්වීමය "
 
 #, fuzzy, c-format
 msgid "Unpacker"

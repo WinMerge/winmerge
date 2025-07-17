@@ -3508,7 +3508,7 @@ msgstr "Dosya adı"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Klasör"
 
 msgid "Comparison Result"
 msgstr "Karşılaştırma sonucu"
@@ -3596,7 +3596,7 @@ msgstr "Yok sayılan farklılıklar"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binary"
 
 msgid "Unpacker"
 msgstr "Ayıklayıcı"
@@ -4163,7 +4163,7 @@ msgstr "Karma"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binary"
 
 msgid "None"
 msgstr "Yok"
@@ -4482,71 +4482,71 @@ msgstr "Yalnızca bir MDI alt penceresi varsa ana pencere kapatılsın"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Fark"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Vurgula"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Işıltı"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Blok boyutu"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Blok alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "CD eşiği"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Ekleme/Silme algılaması"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Yok"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Dikey"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Yatay"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Kaplama"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alfa karıştırma"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alfa canlandırma"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Yakınlaştırma"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Sayfa:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4595,19 +4595,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Bu değişiklik Değişiklik Süzgeçlerine eklensin mi?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Yalnızca metin"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Satır satır konum ve metin"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Sözcük sözcük konum ve metin"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "AppData klasörü"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Kurulum klasörü"
 
 msgid "Allow only one instance to run"
 msgstr "Yalnızca bir kopya çalışsın"
@@ -4711,77 +4711,82 @@ msgid "2nd and 3rd"
 msgstr "İkinci ve üçüncü"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Süzgeç uygulandı"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "%s zamanındaki pano"
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"Pano geçmişi devre dışı bırakılmış.\r\n"
+"Pano geçmişini etkinleştirmek için, Windows + V tuşlarına basıp açılan "
+"pencerede Aç üzerine tıklayın."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Bu sistemde pano geçmişi özelliği yok."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32-bit WinMerge sürümünde pano karşılaştırma özelliği yok"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "WebView2 çalıştırıcı bulunamadı. İndirmek ister misiniz?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Yeni metin karşılaştırması"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Yeni tablo karşılaştırması"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Yeni binary karşılaştırması"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Yeni görsel karşılaştırması"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Yeni site sayfası karşılaştırması"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Pano karşılaştırması"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Yazdır..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Ö&nceki sayfa"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "İ&ki sayfa"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Bir sayfa"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Y&akınlaştır"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "&Uzaklaştır"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Karşılaştırılıyor..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Yakınlaştıma:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Fark parçası"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Satır arası fark"
 
 msgid "Line"
-msgstr ""
+msgstr "Satır"
 
 msgid "Character"
-msgstr ""
+msgstr "Karakter"
 
 msgid ""
 "\n"
@@ -4855,25 +4860,25 @@ msgstr ""
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "%1 ile %2 karşılaştırılıyor"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "%1 ile %2 ve %3 ile karşılaştırılıyor"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Karşılaştırma tamamlandı"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "%1 ile %2 karşılaştırılamadı:"
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "%1 ile %2 ve %3 karşılaştırılamadı:"
 
 msgid "File saved"
-msgstr ""
+msgstr "Dosya kaydedildi"
 
 msgid "Copying files..."
 msgstr "Dosyalar kopyalanıyor..."

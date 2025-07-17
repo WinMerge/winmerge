@@ -3436,7 +3436,7 @@ msgstr "Filnavn"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Mappe"
 
 msgid "Comparison Result"
 msgstr "Resultat av sammenligningen"
@@ -3524,7 +3524,7 @@ msgstr "Ignorerte forskjeller"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binær"
 
 msgid "Unpacker"
 msgstr "Utpakker"
@@ -4073,7 +4073,7 @@ msgstr "Blandet"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binær"
 
 msgid "None"
 msgstr "Ingen"

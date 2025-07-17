@@ -3446,7 +3446,7 @@ msgstr "名前"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "フォルダー"
 
 msgid "Comparison Result"
 msgstr "比較結果"
@@ -3534,7 +3534,7 @@ msgstr "無視した差異数"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "バイナリ"
 
 msgid "Unpacker"
 msgstr "展開プラグイン"
@@ -4078,7 +4078,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "バイナリ"
 
 msgid "None"
 msgstr "なし"
@@ -4394,71 +4394,71 @@ msgstr "MDI 子ウィンドウが 1 つしかない場合、メインウィン�
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "差異"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "差異表示"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "点滅"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "ブロック サイズ"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "ブロック透明度"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "色距離閾値"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "挿入/削除検出"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "垂直方向"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "水平方向"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "重ね合わせ"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "透明度"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "アルファブレンド"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "アニメ表示"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "拡大"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "ページ:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4507,19 +4507,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "この差異を置換フィルターに追加しますか?"
 
 msgid "Text only"
-msgstr ""
+msgstr "テキストのみ"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "行毎の位置情報とテキスト"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "単語毎の位置情報とテキスト"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "AppData フォルダー"
 
 msgid "Install folder"
-msgstr ""
+msgstr "インストール フォルダー"
 
 msgid "Allow only one instance to run"
 msgstr "1 つのみインスタンスを起動する"
@@ -4621,77 +4621,81 @@ msgid "2nd and 3rd"
 msgstr "2番目と3番目"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "フィルター適用"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "クリップボード %s"
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"クリップボード履歴が無効になっています。\r\n"
+"クリップボード履歴を有効にするには、Windows キー + V を押下後、[有効にする] ボタンをクリックしてください。"
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "このシステムではクリップボード履歴はサポートされていません。"
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32bit版 WinMerge ではクリップボード比較はサポートされていません。"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "WebView2 ランタイムがインストールされていません。ダウンロードしますか?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "新規テキスト比較"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "新規テーブル比較"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "新規バイナリ比較"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "新規画像比較"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "新規Webページ比較"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "クリップボード比較"
 
 msgid "&Print..."
-msgstr ""
+msgstr "印刷(&P)..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "前ページ(&V)"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "2ページ(&T)"
 
 msgid "&One Page"
-msgstr ""
+msgstr "1ページ(&O)"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "拡大(&I)"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "縮小(&O)"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "比較しています..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "拡大率:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "差異ブロック"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "行内差異"
 
 msgid "Line"
-msgstr ""
+msgstr "行"
 
 msgid "Character"
-msgstr ""
+msgstr "文字"
 
 msgid ""
 "\n"
@@ -4765,25 +4769,25 @@ msgstr ""
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "%1 と %2 を比較しています"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "%1 と %2 と %3 を比較しています"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "比較が完了しました"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "%1 と %2 の比較に失敗しました: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "%1 と %2 と %3 の比較に失敗しました: "
 
 msgid "File saved"
-msgstr ""
+msgstr "ファイルが保存されました"
 
 msgid "Copying files..."
 msgstr "ファイルをコピーしています..."
@@ -4862,27 +4866,6 @@ msgstr "範囲内"
 
 msgid "Not Between"
 msgstr "範囲外"
-
-msgid "Does not equal"
-msgstr ""
-
-msgid "Less than"
-msgstr ""
-
-msgid "Less than or equal to"
-msgstr ""
-
-msgid "Greater than or equal to"
-msgstr ""
-
-msgid "Greater than"
-msgstr ""
-
-msgid "Between"
-msgstr ""
-
-msgid "Not Between"
-msgstr ""
 
 msgid "Prettification"
 msgstr "整形"

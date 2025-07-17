@@ -3435,7 +3435,7 @@ msgstr "Názov súboru"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr ""
+msgstr "Priečinok"
 
 msgid "Comparison Result"
 msgstr "Výsledok porovnania"
@@ -3523,7 +3523,7 @@ msgstr "Ignorovaný rozdiel"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr ""
+msgstr "Binárny"
 
 msgid "Unpacker"
 msgstr "Rozbaľovač"
@@ -4064,7 +4064,7 @@ msgstr "Zmiešaný"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr ""
+msgstr "Binárny"
 
 msgid "None"
 msgstr "Žiadny"
@@ -4364,71 +4364,71 @@ msgstr "Zatvorí hlavné okno, ak existuje len jedno okno potomka MDI"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Rozdiel"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Zvýrazniť"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Blikať"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Veľkosť bloku"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Blokovať alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Prahová hodnota CD"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Detekcia Insert/Delete"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Žiadny"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikálna"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontálna"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Prekrytie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Alfa"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Alfa zmiešavanie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Alfa animácia"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Priblíženie"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Stránka:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4477,13 +4477,13 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Pridať túto zmenu do položky Filtre nahradenia?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Len text"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Pozícia po riadkoch a text"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Pozícia a text po slovách"
 
 msgid "AppData folder"
 msgstr ""
@@ -4591,20 +4591,24 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Použitý filter"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Schránka na %s"
 
-msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"História schránky je vypnutá.\r\n"
+"Ak chcete zapnúť históriu schránky, stlačte kláves s logom Windows + V a potom kliknite na tlačidlo Zapnúť."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Tento systém nepodporuje históriu schránky."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32-bitová verzia WinMerge nepodporuje porovnávanie schránky"
 
 msgid "WebView2 runtime not installed. Download it?"
 msgstr ""
