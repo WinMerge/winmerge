@@ -2151,13 +2151,13 @@ msgstr "Изтриване…"
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3449,7 +3449,7 @@ msgstr "Име"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Папка"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "Резултати при сравняване"
@@ -3537,7 +3537,7 @@ msgstr "Пренебрегнати различия"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Двоичен"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "Разопаковчик"
@@ -4082,7 +4082,7 @@ msgstr "Смесен"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Двоичен"
+msgstr ""
 
 msgid "None"
 msgstr "Няма"
@@ -4446,7 +4446,7 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "ИЛИ"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
@@ -4458,11 +4458,11 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "Мащаб"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "Страница:"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4511,13 +4511,13 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Нов заместващ филтър от тази промяна?"
 
 msgid "Text only"
-msgstr "Само текст"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "Позиция на редове и текст"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "Позиция на думи и текст"
+msgstr ""
 
 msgid "AppData folder"
 msgstr ""
@@ -4631,9 +4631,7 @@ msgstr ""
 msgid "Clipboard at %s"
 msgstr ""
 
-msgid ""
-"Clipboard history disabled.\r\n"
-"Enable: Windows logo key + V, then Turn on."
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr ""
 
 msgid "This system does not support clipboard history."
@@ -4682,10 +4680,10 @@ msgid "Zoom &Out"
 msgstr ""
 
 msgid "Comparing..."
-msgstr "Сравняване…"
+msgstr ""
 
 msgid "Zoom:"
-msgstr "Мащаб:"
+msgstr ""
 
 msgid "Diff hunk"
 msgstr ""
@@ -4694,10 +4692,10 @@ msgid "Inline diff"
 msgstr ""
 
 msgid "Line"
-msgstr "Ред"
+msgstr ""
 
 msgid "Character"
-msgstr "Знак"
+msgstr ""
 
 msgid ""
 "\n"

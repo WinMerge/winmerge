@@ -2154,13 +2154,13 @@ msgstr "Izbriši..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3438,7 +3438,7 @@ msgstr "Ime datoteke"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Mapa"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "Rezultat primerjave"
@@ -3526,7 +3526,7 @@ msgstr "Prezrte razlike"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Dvojiško"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "Razpakovalec"
@@ -4068,7 +4068,7 @@ msgstr "Mešano"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Dvojiško"
+msgstr ""
 
 msgid "None"
 msgstr "Brez"
@@ -4384,71 +4384,71 @@ msgstr "Zapri glavno okno, če je samo eno podrejeno okno MDI"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "Razlika"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "Označi"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "Utripaj"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "Velikost bloka"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "Blok Alfa"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "Prag CD"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Zaznavanje Ins/Del"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "Brez"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Navpično"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Vodoravno"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "Prekrivanje"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "Alfa"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Alfa mešanje"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Alfa animacija"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "Povečava"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "Stran:"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4497,19 +4497,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Dodam to spremembo med Nadomestne filtre?"
 
 msgid "Text only"
-msgstr "Samo besedilo"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "Položaj vrstico po vrstico in besedilo"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "Položaj besedo po besedo in besedilo"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "Mapa aplikacijskih podatkov"
+msgstr ""
 
 msgid "Install folder"
-msgstr "Namestitvena mapa"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"
@@ -4611,69 +4611,65 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr "Filter je uporabljen"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "Odložišče na %s"
-
-msgid ""
-"Clipboard history disabled.\r\n"
-"Enable: Windows logo key + V, then Turn on."
 msgstr ""
-"Zgodovina odložišča je onemogočena.\r\n"
-"Za omogočanje zgodovine odložišča, pritisnite tipko z logotipom Windows + V in nato kliknite gumb Vklopi."
+
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr "Ta sistem ne podpira zgodovine odložišča."
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
+msgstr ""
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "Izvajalski čas WebView2 ni nameščen. Ali ga želite prenesti?"
+msgstr ""
 
 msgid "New Text Compare"
-msgstr "Primerjava novega besedila"
+msgstr ""
 
 msgid "New Table Compare"
-msgstr "Primerjava nove tabele"
+msgstr ""
 
 msgid "New Binary Compare"
-msgstr "Primerjava nove dvojiške"
+msgstr ""
 
 msgid "New Image Compare"
-msgstr "Primerjava nove slike"
+msgstr ""
 
 msgid "New Webpage Compare"
-msgstr "Primerjava nove spletne strani"
+msgstr ""
 
 msgid "Clipboard Compare"
-msgstr "Primerjava odložišča"
+msgstr ""
 
 msgid "&Print..."
-msgstr "Na&tisni..."
+msgstr ""
 
 msgid "Pre&v Page"
-msgstr "Pre&jšnja stran"
+msgstr ""
 
 msgid "&Two Page"
-msgstr "&Dve strani"
+msgstr ""
 
 msgid "&One Page"
-msgstr "&Ena stran"
+msgstr ""
 
 msgid "Zoom &In"
-msgstr "Po&večaj"
+msgstr ""
 
 msgid "Zoom &Out"
-msgstr "Pom&njšaj"
+msgstr ""
 
 msgid "Comparing..."
-msgstr "Primerjanje..."
+msgstr ""
 
 msgid "Zoom:"
-msgstr "Povečava:"
+msgstr ""
 
 msgid "Diff hunk"
 msgstr ""

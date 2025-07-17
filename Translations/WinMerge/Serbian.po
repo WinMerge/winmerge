@@ -2514,13 +2514,13 @@ msgstr "Избриши..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3931,7 +3931,7 @@ msgstr "Име датотеке"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Фасцикла"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4046,7 +4046,7 @@ msgstr "Занемари разлике"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Бинарни"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4664,7 +4664,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Бинарни"
+msgstr ""
 
 #, c-format
 msgid "None"

@@ -2159,13 +2159,13 @@ msgstr "Slett..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3433,7 +3433,7 @@ msgstr "Filnavn"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Mappe"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "Resultat av sammenligningen"
@@ -3521,7 +3521,7 @@ msgstr "Ignorerte forskjeller"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binær"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "Utpakker"
@@ -4070,7 +4070,7 @@ msgstr "Blandet"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binær"
+msgstr ""
 
 msgid "None"
 msgstr "Ingen"

@@ -2531,13 +2531,13 @@ msgstr "Brisanje..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3956,7 +3956,7 @@ msgstr "Naziv datoteke"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Mapa"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4071,7 +4071,7 @@ msgstr "Zanemari razlike"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binarno"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4692,7 +4692,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binarno"
+msgstr ""
 
 #, c-format
 msgid "None"

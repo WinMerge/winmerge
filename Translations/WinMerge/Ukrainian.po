@@ -2494,13 +2494,13 @@ msgstr "Вилучити..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3921,7 +3921,7 @@ msgstr "Ім'я файлу"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Тека"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4036,7 +4036,7 @@ msgstr "Знех. відмінності"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Бінарний"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4658,7 +4658,7 @@ msgstr "Мішаний"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Бінарний"
+msgstr ""
 
 #, c-format
 msgid "None"

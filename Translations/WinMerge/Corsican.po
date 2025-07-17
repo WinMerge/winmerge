@@ -2168,13 +2168,13 @@ msgstr "Squassà…"
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3500,7 +3500,7 @@ msgstr "Nome di schedariu"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Cartulare"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "Risultatu di u paragone"
@@ -3588,7 +3588,7 @@ msgstr "Sfarenze ignurate"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binariu"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "Spacchittadore"
@@ -4154,7 +4154,7 @@ msgstr "Mistu"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binariu"
+msgstr ""
 
 msgid "None"
 msgstr "Nisunu"
@@ -4474,71 +4474,71 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "Sfarenze"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "Sopralineamentu"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "Cinnulamentu"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "Dimensione di bloccu"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "Trasparenza di bloccu"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "Sogliu CD"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Avventata d’inserzione è di squassatura"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "Nisunu"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Verticale"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Orizuntale"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "Accavalcatura"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "Trasparenza alfa"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "O esclusivu (Xor)"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Simulazione di trasparenza"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Simulazione di trasparenza animata"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "Ingrandamentu"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "Pagina :"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4588,19 +4588,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Aghjunghje stu cambiamentu à i filtri di sustituzione ?"
 
 msgid "Text only"
-msgstr "Testu solu"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "Pusizione è testu linea à a linea"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "Pusizione è testu parolla à a parolla"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "Cartulare AppData"
+msgstr ""
 
 msgid "Install folder"
-msgstr "Cartulare d’installazione"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
@@ -4704,84 +4704,77 @@ msgid "2nd and 3rd"
 msgstr "2ᵘ è 3ᵘ"
 
 msgid "Filter applied"
-msgstr "Filtru appiecatu"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "Preme’papei di u %s"
-
-msgid ""
-"Clipboard history disabled.\r\n"
-"Enable: Windows logo key + V, then Turn on."
 msgstr ""
-"A cronolugia di u preme’papei hè disattivata.\r\n"
-"Per attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à "
-"« Attivà »."
+
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr ""
-"A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
 
 msgid "WebView2 runtime not installed. Download it?"
 msgstr ""
-"L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"
 
 msgid "New Text Compare"
-msgstr "Paragone novu di testu"
+msgstr ""
 
 msgid "New Table Compare"
-msgstr "Paragone novu di tavulone"
+msgstr ""
 
 msgid "New Binary Compare"
-msgstr "Paragone binariu novu"
+msgstr ""
 
 msgid "New Image Compare"
-msgstr "Paragone novu di fiura"
+msgstr ""
 
 msgid "New Webpage Compare"
-msgstr "Paragone novu di pagina web"
+msgstr ""
 
 msgid "Clipboard Compare"
-msgstr "Paragone di preme’papei"
+msgstr ""
 
 msgid "&Print..."
-msgstr "&Stampà…"
+msgstr ""
 
 msgid "Pre&v Page"
-msgstr "&Pagina precedente"
+msgstr ""
 
 msgid "&Two Page"
-msgstr "&Duie pagine"
+msgstr ""
 
 msgid "&One Page"
-msgstr "&Una pagina"
+msgstr ""
 
 msgid "Zoom &In"
-msgstr "Ingrandamentu più &forte"
+msgstr ""
 
 msgid "Zoom &Out"
-msgstr "Ingrandamentu &menu forte"
+msgstr ""
 
 msgid "Comparing..."
-msgstr "Paragone…"
+msgstr ""
 
 msgid "Zoom:"
-msgstr "Ingrandamentu :"
+msgstr ""
 
 msgid "Diff hunk"
-msgstr "Gruppu di sfarenze"
+msgstr ""
 
 msgid "Inline diff"
-msgstr "Sfarenza framessa"
+msgstr ""
 
 msgid "Line"
-msgstr "Linea"
+msgstr ""
 
 msgid "Character"
-msgstr "Caratteru"
+msgstr ""
 
 msgid ""
 "\n"
@@ -4853,25 +4846,25 @@ msgstr ""
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr "Paragone di %1 cù %2"
+msgstr ""
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr "Paragone di %1 cù %2 è %3"
+msgstr ""
 
 msgid "Comparison completed"
-msgstr "U paragone hè compiu"
+msgstr ""
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr "Fiascu per paragunà %1 cù %2 : "
+msgstr ""
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr "Fiascu per paragunà %1 cù %2 è %3 : "
+msgstr ""
 
 msgid "File saved"
-msgstr "U schedariu hè arregistratu"
+msgstr ""
 
 msgid "Copying files..."
 msgstr "Copia di i schedarii…"

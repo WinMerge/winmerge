@@ -2534,13 +2534,13 @@ msgstr "Slet..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3973,7 +3973,7 @@ msgstr "Filnavn"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Mappe"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4088,7 +4088,7 @@ msgstr "Ignoreret forskel"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binær"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4720,7 +4720,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binær"
+msgstr ""
 
 #, c-format
 msgid "None"

@@ -2152,13 +2152,13 @@ msgstr "நீக்கு..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -4067,7 +4067,7 @@ msgstr "கலவை"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "பைனரி"
+msgstr ""
 
 msgid "None"
 msgstr "இல்லை"
@@ -4383,71 +4383,71 @@ msgstr "ஒரே ஒரு MDI குழந்தை சாளரம் இர�
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "வேறுபாடு"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "உயர்படுத்தப்பட்டது"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "சிமிட்டல்"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "தடு அளவு"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "வெளிப்படைத்தன்மையைத் தடு"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "சிடி வரம்பு"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "சொருகு/நீக்கு கண்டறிதல்"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "இல்லை"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "செங்குத்து"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "நிலப்பரப்பு"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "மேற்பரப்பு"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "ஆல்பா"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "ஆல்ஃபா கலவை"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "ஆல்ஃபா அனிமேஷன்"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "பெரிதாக்கு"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "பக்கம்:"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4496,19 +4496,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "இந்த மாற்றத்தை மாற்று வடிப்பான்களில் சேர்க்கவா?"
 
 msgid "Text only"
-msgstr "உரை மட்டும்"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "வரிக்கு-வரி நிலை மற்றும் உரை"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "வார்த்தைக்கு வார்த்தை நிலை மற்றும் உரை"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "AppData கோப்புறை"
+msgstr ""
 
 msgid "Install folder"
-msgstr "நிறுவல் கோப்புறை"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "ஒரே ஒரு நிகழ்வை இயக்க அனுமதி"
@@ -4610,27 +4610,23 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr "வடிகட்டி பயன்படுத்தப்பட்டது"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "%s இல் இடைநிலைப்பலகை"
-
-msgid ""
-"Clipboard history disabled.\r\n"
-"Enable: Windows logo key + V, then Turn on."
 msgstr ""
-"இடைநிலைப்பலகை வரலாறு முடக்கப்பட்டுள்ளது.\r\n"
-"இடைநிலைப்பலகை வரலாற்றை இயக்க, சாளரங்கள் சின்னம் + V ஐ அழுத்தி, பின்னர் இயக்கு பொத்தானைக் சொடுக்கவும்."
+
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr "இந்த அமைப்பு இடைநிலைப்பலகை வரலாற்றை ஆதரிக்காது."
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "சாளரொன்றிணையின் 32-இரும பதிப்பு இடைநிலைப்பலகை ஒப்பீட்டை ஆதரிக்கவில்லை"
+msgstr ""
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "வலைக்காட்சி2 இயக்கநேரம் நிறுவப்படவில்லை. நீங்கள் அதைப் பதிவிறக்க விரும்புகிறீர்களா?"
+msgstr ""
 
 msgid "New Text Compare"
 msgstr ""

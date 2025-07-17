@@ -2163,13 +2163,13 @@ msgstr "Șterge..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3472,7 +3472,7 @@ msgstr "Nume fișier"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Director"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "Rezultat comparare"
@@ -3560,7 +3560,7 @@ msgstr "Diferențe ignorate"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binar"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "Dezarhivator"
@@ -4116,7 +4116,7 @@ msgstr "Amestecat"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binar"
+msgstr ""
 
 msgid "None"
 msgstr "Nici unul"
@@ -4434,71 +4434,71 @@ msgstr "Închide fereastra principală dacă există doar o fereastră copil MDI
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "Diferență"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "Evidențiere"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "Clipire"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "Mărime bloc"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "Alpha bloc"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "Prag CD"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Detectare taste Ins/Del"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "Nimic"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Vertical"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Horizontal"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "Suprapunere"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Amestec Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Animație Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "Mărire"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "Pagina:"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4547,19 +4547,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Adaug această modificare la filtrele de substituție?"
 
 msgid "Text only"
-msgstr "Doar text"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "Poziție și text rând cu rând"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "Poziție și text cuvânt cu cuvânt"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "Directorul AppData"
+msgstr ""
 
 msgid "Install folder"
-msgstr "Directorul de instalare"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Permite rularea unei singure instanțe"
@@ -4662,44 +4662,41 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr "Filtru aplicat"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "Clipboard la %s"
+msgstr ""
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
 msgstr ""
-"Istoricul clipboard-ului este deactivat.\r\n"
-"Pentru a activa istoricul clipboard-ului, apăsați tasta logo Windows + V, "
-"apoi apăsați butonul Porniți."
 
 msgid "This system does not support clipboard history."
-msgstr "Acest sistem nu suportă istoricul clipboard-ului."
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "Versiunea pe 32 biți WinMerge nu suportă Comparare clipboard"
+msgstr ""
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "Runtime-ul WebView2 nu este instalat. Doriți să-l descărcați?"
+msgstr ""
 
 msgid "New Text Compare"
-msgstr "Comparare text nouă"
+msgstr ""
 
 msgid "New Table Compare"
-msgstr "Comparare tabel nouă"
+msgstr ""
 
 msgid "New Binary Compare"
-msgstr "Comparare binară nouă"
+msgstr ""
 
 msgid "New Image Compare"
-msgstr "Comparare imagine nouă"
+msgstr ""
 
 msgid "New Webpage Compare"
-msgstr "Comparare pagină web nouă"
+msgstr ""
 
 msgid "Clipboard Compare"
-msgstr "Comparare clipboard"
+msgstr ""
 
 msgid "&Print..."
 msgstr ""

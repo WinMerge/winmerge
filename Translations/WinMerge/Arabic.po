@@ -2159,13 +2159,13 @@ msgstr "حذف..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3427,7 +3427,7 @@ msgstr "اسم الملف"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "مجلد"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "نتيجة المقارنة"
@@ -3515,7 +3515,7 @@ msgstr "الاختلافات التي تم تجاهلها."
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "ثنائي"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "فك الحزمة"
@@ -4057,7 +4057,7 @@ msgstr "مختلط"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "ثنائي"
+msgstr ""
 
 msgid "None"
 msgstr "لا يوجد"

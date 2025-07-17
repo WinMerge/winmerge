@@ -2535,13 +2535,13 @@ msgstr "Löschen..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3810,7 +3810,7 @@ msgstr "Dateiname"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Ordner"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -3925,7 +3925,7 @@ msgstr "Ignorierter Unterschied"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binär"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4514,7 +4514,7 @@ msgstr "Gemixt"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binär"
+msgstr ""
 
 #, c-format
 msgid "None"
@@ -4769,71 +4769,71 @@ msgstr "Hauptfenster schließen, wenn nur ein MDI-Unterfenster existiert"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "Unterschiede"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "Markieren"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "Blinken"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "Blockgröße"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "Block Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "CD Threshold"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Einfg/Entf-Erkennung"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "Keine"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Vertikal"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Horizontal"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "Überlagerung"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Alpha Blending"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Alpha Animation"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "Zoom"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "Seite:"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4882,19 +4882,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Diese Änderung zu den Ersetzungsfiltern hinzufügen?"
 
 msgid "Text only"
-msgstr "Nur Text"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "Position und Text zeilenweise"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "Position und Text wortweise"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "AppData-Ordner"
+msgstr ""
 
 msgid "Install folder"
-msgstr "Installationsordner"
+msgstr ""
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -4997,77 +4997,77 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr "Angewandter Filter"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "Zwischenablage am %s"
+msgstr ""
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
-msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, betätigen Sie 'Windows+V' und klicken dann auf die Schaltfläche 'Einschalten'."
+msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht"
+msgstr ""
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"
+msgstr ""
 
 msgid "New Text Compare"
-msgstr "Neuer Textvergleich"
+msgstr ""
 
 msgid "New Table Compare"
-msgstr "Neuer Tabellenvergleich"
+msgstr ""
 
 msgid "New Binary Compare"
-msgstr "Neuer Binärvergleich"
+msgstr ""
 
 msgid "New Image Compare"
-msgstr "Neuer Bildvergleich"
+msgstr ""
 
 msgid "New Webpage Compare"
-msgstr "Neuer Webseitenvergleich"
+msgstr ""
 
 msgid "Clipboard Compare"
-msgstr "Zwischenablage vergleichen"
+msgstr ""
 
 msgid "&Print..."
-msgstr "&Drucken"
+msgstr ""
 
 msgid "Pre&v Page"
-msgstr "&Vorige Seite"
+msgstr ""
 
 msgid "&Two Page"
-msgstr "&Zwei Seiten"
+msgstr ""
 
 msgid "&One Page"
-msgstr "&Eine Seite"
+msgstr ""
 
 msgid "Zoom &In"
-msgstr "Here&inzoomen"
+msgstr ""
 
 msgid "Zoom &Out"
-msgstr "Hera&uszoomen"
+msgstr ""
 
 msgid "Comparing..."
-msgstr "Vergleichen..."
+msgstr ""
 
 msgid "Zoom:"
-msgstr "Zoom:"
+msgstr ""
 
 msgid "Diff hunk"
 msgstr ""
 
 msgid "Inline diff"
-msgstr "Zeilenuntersciede"
+msgstr ""
 
 msgid "Line"
-msgstr "Zeile"
+msgstr ""
 
 msgid "Character"
-msgstr "Zeichen"
+msgstr ""
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr ""

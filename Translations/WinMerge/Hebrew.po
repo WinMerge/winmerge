@@ -2151,13 +2151,13 @@ msgstr "מחק..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3343,7 +3343,7 @@ msgstr "שם קובץ"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "תיקיה"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "תוצאת השוואה"
@@ -3431,7 +3431,7 @@ msgstr "הבדל שהתעלמו ממנו"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "בינארי"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "מחלץ"
@@ -3955,7 +3955,7 @@ msgstr "מעורב"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "בינארי"
+msgstr ""
 
 msgid "None"
 msgstr "ללא"
@@ -4250,71 +4250,71 @@ msgstr "סגור את החלון הראשי אם יש רק חלון בן MDI א�
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "הבדל"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "הדגשה"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "הבהוב"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "גודל בלוק"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "אלפא של בלוק"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "סף CD"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "זיהוי הוספה/מחיקה"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "ללא"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "אנכי"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "אופקי"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "חפיפה"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "אלפא"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "שילוב אלפא"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "אנימציית אלפא"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "התקרבות"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "עמוד:"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4363,19 +4363,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "להוסיף שינוי זה למסנני ההחלפה?"
 
 msgid "Text only"
-msgstr "טקסט בלבד"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "מיקום וטקסט שורה-אחר-שורה"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "מיקום וטקסט מילה-אחר-מילה"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "תיקיית AppData"
+msgstr ""
 
 msgid "Install folder"
-msgstr "תיקיית התקנה"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "אפשר להריץ מופע אחד בלבד"
@@ -4477,81 +4477,77 @@ msgid "2nd and 3rd"
 msgstr "שני ושלישי"
 
 msgid "Filter applied"
-msgstr "המסנן הופעל"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "לוח גזירים ב-%s"
-
-msgid ""
-"Clipboard history disabled.\r\n"
-"Enable: Windows logo key + V, then Turn on."
 msgstr ""
-"היסטוריית לוח גזירים מושבתת.\r\n"
-"כדי להפעיל אותה, לחץ על מקש Windows + V ולאחר מכן לחץ על כפתור 'הפעל'."
+
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr "מערכת זו אינה תומכת בהיסטוריית לוח גזירים."
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "גרסת 32 ביט של WinMerge אינה תומכת בהשוואת לוח גזירים"
+msgstr ""
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "WebView2 Runtime אינו מותקן. האם ברצונך להוריד אותו?"
+msgstr ""
 
 msgid "New Text Compare"
-msgstr "השוואת טקסט חדשה"
+msgstr ""
 
 msgid "New Table Compare"
-msgstr "השוואת טבלה חדשה"
+msgstr ""
 
 msgid "New Binary Compare"
-msgstr "השוואה בינארית חדשה"
+msgstr ""
 
 msgid "New Image Compare"
-msgstr "השוואת תמונה חדשה"
+msgstr ""
 
 msgid "New Webpage Compare"
-msgstr "השוואת דף אינטרנט חדשה"
+msgstr ""
 
 msgid "Clipboard Compare"
-msgstr "השוואת לוח גזירים"
+msgstr ""
 
 msgid "&Print..."
-msgstr "&הדפס..."
+msgstr ""
 
 msgid "Pre&v Page"
-msgstr "עמוד קו&דם"
+msgstr ""
 
 msgid "&Two Page"
-msgstr "&שני עמודים"
+msgstr ""
 
 msgid "&One Page"
-msgstr "&עמוד אחד"
+msgstr ""
 
 msgid "Zoom &In"
-msgstr "התקרבות &פנימה"
+msgstr ""
 
 msgid "Zoom &Out"
-msgstr "התרחקות &החוצה"
+msgstr ""
 
 msgid "Comparing..."
-msgstr "משווה..."
+msgstr ""
 
 msgid "Zoom:"
-msgstr "התקרבות:"
+msgstr ""
 
 msgid "Diff hunk"
-msgstr "גוש הבדלים"
+msgstr ""
 
 msgid "Inline diff"
-msgstr "הבדלים פנימיים"
+msgstr ""
 
 msgid "Line"
-msgstr "שורה"
+msgstr ""
 
 msgid "Character"
-msgstr "תו"
+msgstr ""
 
 msgid ""
 "\n"

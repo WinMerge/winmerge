@@ -2531,13 +2531,13 @@ msgstr "මකා දමන්න..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3951,7 +3951,7 @@ msgstr "ලිපිගොනුවේ නම"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "ෆෝල්ඩර"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4066,7 +4066,7 @@ msgstr "වෙනස්කම් නොසලකා හැරියා"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "ද්වීමය "
+msgstr ""
 
 #, fuzzy, c-format
 msgid "Unpacker"

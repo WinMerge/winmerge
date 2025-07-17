@@ -2155,13 +2155,13 @@ msgstr "Usuń..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3241,7 +3241,7 @@ msgstr "Nazwa pliku"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Folder"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "Wynik porównania"
@@ -3329,7 +3329,7 @@ msgstr "Zignorowana różnica"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binarny"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "Program rozpakowujący"
@@ -3831,7 +3831,7 @@ msgstr "Mieszany"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binarny"
+msgstr ""
 
 msgid "None"
 msgstr "Brak"
@@ -4053,71 +4053,71 @@ msgstr "Zamknij okno główne, jeśli istnieje tylko jedno okno podrzędne"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "Różnica"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "Podświetl"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "Mrugaj"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "Rozmiar bloku"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "Przezroczystość bloku"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "Próg CD"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Wykrywanie Ins/Del"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "Brak"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Pionowe"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Poziome"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "Nakładka"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "Przezroczystość"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Przenikanie"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Animacja"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "Powiększenie"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "Strona:"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4166,19 +4166,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "Dodać tę zmianę do filtrów zamiany?"
 
 msgid "Text only"
-msgstr "Tylko tekst"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "Pozycja i tekst wiersz-po-wierszu"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "Pozycja i tekst słowo-po-słowie"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "Folder AppData"
+msgstr ""
 
 msgid "Install folder"
-msgstr "Folder instalacji"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
@@ -4280,65 +4280,65 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr "Zastosowano filtr"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "Schowek w %s"
+msgstr ""
 
 msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
-msgstr "Historia schowka jest wyłączona.\r\nAby włączyć historię schowka, naciśnij klawisz logo Windows + V, a następnie kliknij przycisk Włącz."
+msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr "Ten system nie obsługuje historii schowka."
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania schowka"
+msgstr ""
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"
+msgstr ""
 
 msgid "New Text Compare"
-msgstr "Porównaj nowy tekst"
+msgstr ""
 
 msgid "New Table Compare"
-msgstr "Porównaj nową tabelę"
+msgstr ""
 
 msgid "New Binary Compare"
-msgstr "Porównaj nowe pliki binarne"
+msgstr ""
 
 msgid "New Image Compare"
-msgstr "Porównaj nowy obraz"
+msgstr ""
 
 msgid "New Webpage Compare"
-msgstr "Porównaj nową stronę internetową"
+msgstr ""
 
 msgid "Clipboard Compare"
-msgstr "Porównaj schowek"
+msgstr ""
 
 msgid "&Print..."
-msgstr "Drukuj..."
+msgstr ""
 
 msgid "Pre&v Page"
-msgstr "Poprzednia strona"
+msgstr ""
 
 msgid "&Two Page"
-msgstr "Dwie strony"
+msgstr ""
 
 msgid "&One Page"
-msgstr "Jedną stronę"
+msgstr ""
 
 msgid "Zoom &In"
-msgstr "Powiększ"
+msgstr ""
 
 msgid "Zoom &Out"
-msgstr "Pomniejsz"
+msgstr ""
 
 msgid "Comparing..."
-msgstr "Porównywanie..."
+msgstr ""
 
 msgid "Zoom:"
-msgstr "Powiększenie:"
+msgstr ""
 
 msgid "Diff hunk"
 msgstr ""
@@ -4347,10 +4347,10 @@ msgid "Inline diff"
 msgstr ""
 
 msgid "Line"
-msgstr "Wiersz"
+msgstr ""
 
 msgid "Character"
-msgstr "Znak"
+msgstr ""
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
 msgstr ""

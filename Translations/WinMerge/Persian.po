@@ -2536,13 +2536,13 @@ msgstr " حذف ... "
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3980,7 +3980,7 @@ msgstr " نام پرونده "
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr " پوشه "
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4095,7 +4095,7 @@ msgstr " تفاوت چشم پوشي شده "
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr " دودويي "
+msgstr ""
 
 #, c-format
 msgid "Unpacker"

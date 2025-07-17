@@ -293,14 +293,14 @@ BEGIN
             MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
             MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
             MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
-            MENUITEM "&Go Back/Forward",             ID_WEB_SYNC_GOBACKFORWARD
+            MENUITEM "&Go Back/Forward",            ID_WEB_SYNC_GOBACKFORWARD
         END
         POPUP "Clear &Browsing Data"
         BEGIN
             MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE
             MENUITEM "&Cookies",                    ID_WEB_CLEAR_COOKIES
             MENUITEM "&Browsing History",           ID_WEB_CLEAR_BROWSING_HISTORY
-            MENUITEM "&All Profiles",                ID_WEB_CLEAR_ALL_PROFILE
+            MENUITEM "&All Profiles",               ID_WEB_CLEAR_ALL_PROFILE
         END
     END
 END
@@ -1075,7 +1075,7 @@ BEGIN
         MENUITEM "G&o to Diff",                 ID_LOCBAR_GOTODIFF
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "Move Cursor on &Click"        ID_LOCBAR_MOVECURSOR_ONCLICK
+        MENUITEM "Move Cursor on &Click",       ID_LOCBAR_MOVECURSOR_ONCLICK
         MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
@@ -1378,42 +1378,42 @@ BEGIN
             BEGIN
                 POPUP "&Hour"
                 BEGIN
-                    MENUITEM "More than 1 hour ago",    ID_FILTERMENU_DATE_HOUR_BEFORE_1
-                    MENUITEM "Within 1 hour",           ID_FILTERMENU_DATE_HOUR_WITHIN_1
+                    MENUITEM "More than 1 hour ago",        ID_FILTERMENU_DATE_HOUR_BEFORE_1
+                    MENUITEM "Within 1 hour",               ID_FILTERMENU_DATE_HOUR_WITHIN_1
                 END
                 POPUP "&Day"
                 BEGIN
-                    MENUITEM "Before today",            ID_FILTERMENU_DATE_DAY_BEFORE_TODAY
-                    MENUITEM "Today",                   ID_FILTERMENU_DATE_DAY_TODAY
-                    MENUITEM "Before yesterday",        ID_FILTERMENU_DATE_DAY_BEFORE_YESTERDAY
-                    MENUITEM "Yesterday",               ID_FILTERMENU_DATE_DAY_YESTERDAY
-                    MENUITEM "Since yesterday",         ID_FILTERMENU_DATE_DAY_SINCE_YESTERDAY
+                    MENUITEM "Before today",                ID_FILTERMENU_DATE_DAY_BEFORE_TODAY
+                    MENUITEM "Today",                       ID_FILTERMENU_DATE_DAY_TODAY
+                    MENUITEM "Before yesterday",            ID_FILTERMENU_DATE_DAY_BEFORE_YESTERDAY
+                    MENUITEM "Yesterday",                   ID_FILTERMENU_DATE_DAY_YESTERDAY
+                    MENUITEM "Since yesterday",             ID_FILTERMENU_DATE_DAY_SINCE_YESTERDAY
                 END
                 POPUP "&Week"
                 BEGIN
-                    MENUITEM "Before this week",        ID_FILTERMENU_DATE_WEEK_BEFORE_THIS
-                    MENUITEM "This week",               ID_FILTERMENU_DATE_WEEK_THIS
-                    MENUITEM "Before last week",        ID_FILTERMENU_DATE_WEEK_BEFORE_LAST
-                    MENUITEM "Last week",               ID_FILTERMENU_DATE_WEEK_LAST
-                    MENUITEM "Since last week",         ID_FILTERMENU_DATE_WEEK_SINCE_LAST
+                    MENUITEM "Before this week",            ID_FILTERMENU_DATE_WEEK_BEFORE_THIS
+                    MENUITEM "This week",                   ID_FILTERMENU_DATE_WEEK_THIS
+                    MENUITEM "Before last week",            ID_FILTERMENU_DATE_WEEK_BEFORE_LAST
+                    MENUITEM "Last week",                   ID_FILTERMENU_DATE_WEEK_LAST
+                    MENUITEM "Since last week",             ID_FILTERMENU_DATE_WEEK_SINCE_LAST
                 END
                 POPUP "&Month"
                 BEGIN
-                    MENUITEM "Before this month",       ID_FILTERMENU_DATE_MONTH_BEFORE_THIS
-                    MENUITEM "This month",              ID_FILTERMENU_DATE_MONTH_THIS
-                    MENUITEM "Before last month",       ID_FILTERMENU_DATE_MONTH_BEFORE_LAST
-                    MENUITEM "Last month",              ID_FILTERMENU_DATE_MONTH_LAST
-                    MENUITEM "Since last month",        ID_FILTERMENU_DATE_MONTH_SINCE_LAST
+                    MENUITEM "Before this month",           ID_FILTERMENU_DATE_MONTH_BEFORE_THIS
+                    MENUITEM "This month",                  ID_FILTERMENU_DATE_MONTH_THIS
+                    MENUITEM "Before last month",           ID_FILTERMENU_DATE_MONTH_BEFORE_LAST
+                    MENUITEM "Last month",                  ID_FILTERMENU_DATE_MONTH_LAST
+                    MENUITEM "Since last month",            ID_FILTERMENU_DATE_MONTH_SINCE_LAST
                 END
                 POPUP "&Year"
                 BEGIN
-                    MENUITEM "Before this year",        ID_FILTERMENU_DATE_YEAR_BEFORE_THIS
-                    MENUITEM "This year",               ID_FILTERMENU_DATE_YEAR_THIS
-                    MENUITEM "Before last year",        ID_FILTERMENU_DATE_YEAR_BEFORE_LAST
-                    MENUITEM "Last year",               ID_FILTERMENU_DATE_YEAR_LAST
-                    MENUITEM "Since last year",         ID_FILTERMENU_DATE_YEAR_SINCE_LAST
+                    MENUITEM "Before this year",            ID_FILTERMENU_DATE_YEAR_BEFORE_THIS
+                    MENUITEM "This year",                   ID_FILTERMENU_DATE_YEAR_THIS
+                    MENUITEM "Before last year",            ID_FILTERMENU_DATE_YEAR_BEFORE_LAST
+                    MENUITEM "Last year",                   ID_FILTERMENU_DATE_YEAR_LAST
+                    MENUITEM "Since last year",             ID_FILTERMENU_DATE_YEAR_SINCE_LAST
                 END
-                MENUITEM "&Custom Range...",             ID_FILTERMENU_DATE_RANGE
+                MENUITEM "&Custom Range...",            ID_FILTERMENU_DATE_RANGE
             END
             POPUP "&Attributes"
             BEGIN
@@ -1458,48 +1458,48 @@ BEGIN
             BEGIN
                 POPUP "&Hour"
                 BEGIN
-                    MENUITEM "More than 1 hour ago",    ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1
-                    MENUITEM "Within 1 hour",           ID_FILTERMENU_FOLDER_DATE_HOUR_WITHIN_1
+                    MENUITEM "More than 1 hour ago",        ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1
+                    MENUITEM "Within 1 hour",               ID_FILTERMENU_FOLDER_DATE_HOUR_WITHIN_1
                 END
                 POPUP "&Day"
                 BEGIN
-                    MENUITEM "Before today",            ID_FILTERMENU_FOLDER_DATE_DAY_BEFORE_TODAY
-                    MENUITEM "Today",                   ID_FILTERMENU_FOLDER_DATE_DAY_TODAY
-                    MENUITEM "Before yesterday",        ID_FILTERMENU_FOLDER_DATE_DAY_BEFORE_YESTERDAY
-                    MENUITEM "Yesterday",               ID_FILTERMENU_FOLDER_DATE_DAY_YESTERDAY
-                    MENUITEM "Since yesterday",         ID_FILTERMENU_FOLDER_DATE_DAY_SINCE_YESTERDAY
+                    MENUITEM "Before today",                ID_FILTERMENU_FOLDER_DATE_DAY_BEFORE_TODAY
+                    MENUITEM "Today",                       ID_FILTERMENU_FOLDER_DATE_DAY_TODAY
+                    MENUITEM "Before yesterday",            ID_FILTERMENU_FOLDER_DATE_DAY_BEFORE_YESTERDAY
+                    MENUITEM "Yesterday",                   ID_FILTERMENU_FOLDER_DATE_DAY_YESTERDAY
+                    MENUITEM "Since yesterday",             ID_FILTERMENU_FOLDER_DATE_DAY_SINCE_YESTERDAY
                 END
                 POPUP "&Week"
                 BEGIN
-                    MENUITEM "Before this week",        ID_FILTERMENU_FOLDER_DATE_WEEK_BEFORE_THIS
-                    MENUITEM "This week",               ID_FILTERMENU_FOLDER_DATE_WEEK_THIS
-                    MENUITEM "Before last week",        ID_FILTERMENU_FOLDER_DATE_WEEK_BEFORE_LAST
-                    MENUITEM "Last week",               ID_FILTERMENU_FOLDER_DATE_WEEK_LAST
-                    MENUITEM "Since last week",         ID_FILTERMENU_FOLDER_DATE_WEEK_SINCE_LAST
+                    MENUITEM "Before this week",            ID_FILTERMENU_FOLDER_DATE_WEEK_BEFORE_THIS
+                    MENUITEM "This week",                   ID_FILTERMENU_FOLDER_DATE_WEEK_THIS
+                    MENUITEM "Before last week",            ID_FILTERMENU_FOLDER_DATE_WEEK_BEFORE_LAST
+                    MENUITEM "Last week",                   ID_FILTERMENU_FOLDER_DATE_WEEK_LAST
+                    MENUITEM "Since last week",             ID_FILTERMENU_FOLDER_DATE_WEEK_SINCE_LAST
                 END
                 POPUP "&Month"
                 BEGIN
-                    MENUITEM "Before this month",       ID_FILTERMENU_FOLDER_DATE_MONTH_BEFORE_THIS
-                    MENUITEM "This month",              ID_FILTERMENU_FOLDER_DATE_MONTH_THIS
-                    MENUITEM "Before last month",       ID_FILTERMENU_FOLDER_DATE_MONTH_BEFORE_LAST
-                    MENUITEM "Last month",              ID_FILTERMENU_FOLDER_DATE_MONTH_LAST
-                    MENUITEM "Since last month",        ID_FILTERMENU_FOLDER_DATE_MONTH_SINCE_LAST
+                    MENUITEM "Before this month",           ID_FILTERMENU_FOLDER_DATE_MONTH_BEFORE_THIS
+                    MENUITEM "This month",                  ID_FILTERMENU_FOLDER_DATE_MONTH_THIS
+                    MENUITEM "Before last month",           ID_FILTERMENU_FOLDER_DATE_MONTH_BEFORE_LAST
+                    MENUITEM "Last month",                  ID_FILTERMENU_FOLDER_DATE_MONTH_LAST
+                    MENUITEM "Since last month",            ID_FILTERMENU_FOLDER_DATE_MONTH_SINCE_LAST
                 END
                 POPUP "&Year"
                 BEGIN
-                    MENUITEM "Before this year",        ID_FILTERMENU_FOLDER_DATE_YEAR_BEFORE_THIS
-                    MENUITEM "This year",               ID_FILTERMENU_FOLDER_DATE_YEAR_THIS
-                    MENUITEM "Before last year",        ID_FILTERMENU_FOLDER_DATE_YEAR_BEFORE_LAST
-                    MENUITEM "Last year",               ID_FILTERMENU_FOLDER_DATE_YEAR_LAST
-                    MENUITEM "Since last year",         ID_FILTERMENU_FOLDER_DATE_YEAR_SINCE_LAST
+                    MENUITEM "Before this year",            ID_FILTERMENU_FOLDER_DATE_YEAR_BEFORE_THIS
+                    MENUITEM "This year",                   ID_FILTERMENU_FOLDER_DATE_YEAR_THIS
+                    MENUITEM "Before last year",            ID_FILTERMENU_FOLDER_DATE_YEAR_BEFORE_LAST
+                    MENUITEM "Last year",                   ID_FILTERMENU_FOLDER_DATE_YEAR_LAST
+                    MENUITEM "Since last year",             ID_FILTERMENU_FOLDER_DATE_YEAR_SINCE_LAST
                 END
                 MENUITEM "&Custom Range...",            ID_FILTERMENU_FOLDER_DATE_RANGE
             END
         END
-        MENUITEM "Target: &Any (Left/Middle/Right)",    ID_FILTERMENU_CONDITION_ANY
-        MENUITEM "Target: &Left",                       ID_FILTERMENU_CONDITION_LEFT
-        MENUITEM "Target: &Middle",                     ID_FILTERMENU_CONDITION_MIDDLE
-        MENUITEM "Target: &Right",                      ID_FILTERMENU_CONDITION_RIGHT
+        MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
+        MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT
+        MENUITEM "Target: &Middle",             ID_FILTERMENU_CONDITION_MIDDLE
+        MENUITEM "Target: &Right",              ID_FILTERMENU_CONDITION_RIGHT
         MENUITEM SEPARATOR
         POPUP "Add &Difference Condition"
         BEGIN
@@ -1533,11 +1533,12 @@ BEGIN
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_ATTR_NOT_EQUAL
             END
         END
-        MENUITEM "Target: &Left and Right",         ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT
-        MENUITEM "Target: Left and &Middle",        ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE
-        MENUITEM "Target: Middle and &Right",       ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT
+        MENUITEM "Target: &Left and Right",     ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT
+        MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE
+        MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT
     END
 END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2249,22 +2250,23 @@ BEGIN
     PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,473,156,50,14
 END
 
-IDD_FILTERS_CONDITION DIALOGEX 0, 0, 250, 140
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+IDD_FILTERS_CONDITION DIALOGEX 0, 0, 251, 101
+STYLE DS_SETFONT | WS_POPUP | WS_CAPTION
 CAPTION "Filter Condition"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
-    LTEXT           "Field:",IDC_STATIC,10,10,60,12
-    COMBOBOX        IDC_CONDITION_FIELD,70,10,80,100,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Operator:",IDC_STATIC,10,35,60,12
-    COMBOBOX        IDC_CONDITION_OPERATOR,70,35,80,100,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Value:",IDC_STATIC,10,60,60,12
-    COMBOBOX        IDC_CONDITION_VALUE1,70,60,80,14,CBS_DROPDOWN | WS_VSCROLL | WS_GROUP | WS_TABSTOP
-    COMBOBOX        IDC_CONDITION_VALUE2,160,60,80,14,CBS_DROPDOWN | WS_VSCROLL | WS_GROUP | WS_TABSTOP
-    CONTROL         "",IDC_CONDITION_VALUE1DTP1,"SysDateTimePick32", WS_TABSTOP | WS_VISIBLE | WS_CHILD | DTS_SHORTDATEFORMAT,70,60,80,14
-    CONTROL         "",IDC_CONDITION_VALUE1DTP2,"SysDateTimePick32", WS_TABSTOP | WS_VISIBLE | WS_CHILD | DTS_SHORTDATEFORMAT,160,60,80,14
-    DEFPUSHBUTTON   "OK",IDOK,60,110,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,120,110,50,14
+    LTEXT           "&Field:",IDC_STATIC,7,6,60,12
+    LTEXT           "",IDC_CONDITION_FIELD, 66, 6, 80, 100
+    LTEXT           "&Operator:",IDC_STATIC,6,23,60,12
+    COMBOBOX        IDC_CONDITION_OPERATOR,66,24,80,100,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Value:",IDC_STATIC,6,41,60,12
+    COMBOBOX        IDC_CONDITION_VALUE1,66,42,80,14,CBS_DROPDOWN | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    COMBOBOX        IDC_CONDITION_VALUE2,156,42,80,14,CBS_DROPDOWN | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "",IDC_CONDITION_VALUEDTP1,"SysDateTimePick32",WS_TABSTOP,66,42,80,14
+    CONTROL         "",IDC_CONDITION_VALUEDTP2,"SysDateTimePick32",WS_TABSTOP,156,42,80,14
+    LTEXT           "",IDC_CONDITION_EXPRESSION,6,62,237,12
+    DEFPUSHBUTTON   "OK",IDOK,135,81,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,195,81,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 217
@@ -2897,6 +2899,12 @@ BEGIN
 
     IDD_FILTERS_FILEFILTERS, DIALOG
     BEGIN
+    END
+
+    IDD_FILTERS_CONDITION, DIALOG
+    BEGIN
+        RIGHTMARGIN, 250
+        BOTTOMMARGIN, 95
     END
 
     IDD_SAVECLOSING, DIALOG
@@ -3621,6 +3629,11 @@ BEGIN
     0, 0, 100, 0,
     100, 0, 0, 0,
     100, 0, 0, 0
+END
+
+IDD_FILTERS_CONDITION AFX_DIALOG_LAYOUT
+BEGIN
+    0
 END
 
 

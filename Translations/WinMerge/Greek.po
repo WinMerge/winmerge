@@ -2530,13 +2530,13 @@ msgstr "Διαγραφή..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3939,7 +3939,7 @@ msgstr "Όνομα Αρχείου"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Φάκελος"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4054,7 +4054,7 @@ msgstr "Αγνοηθείσα Διαφορά"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Δυαδικό"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4675,7 +4675,7 @@ msgstr "Μικτό"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Δυαδικό"
+msgstr ""
 
 #, c-format
 msgid "None"

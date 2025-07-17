@@ -2157,13 +2157,13 @@ msgstr "Eliminar..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 msgid "Save Modified Files?"
@@ -3443,7 +3443,7 @@ msgstr "Nombre de archivo"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Carpeta"
+msgstr ""
 
 msgid "Comparison Result"
 msgstr "Resultado de la comparación"
@@ -3531,7 +3531,7 @@ msgstr "Difs. ignoradas"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binario"
+msgstr ""
 
 msgid "Unpacker"
 msgstr "Desempaquetador"
@@ -4072,7 +4072,7 @@ msgstr "Mezclado"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binario"
+msgstr ""
 
 msgid "None"
 msgstr "Ninguno"
@@ -4388,71 +4388,71 @@ msgstr "Cerrar ventana principal solo si hay una ventana MDI secundaria"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "Diferencias"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "Resaltado"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "Parpadeo"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "Tamaño del bloque"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "Bloque Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "Límite CD"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Detectar Ins/Borrar"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "Ninguno"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Vertical"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Horizontal"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "Superponer"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Mezcla Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Animación Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "Zoom"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "Página:"
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4501,19 +4501,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "¿Añadir este cambio a los Filtros de sustitución?"
 
 msgid "Text only"
-msgstr "Solo texto"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "Posición y texto línea por línea"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "Posición y texto palabra por palabra"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "Carpeta AppData"
+msgstr ""
 
 msgid "Install folder"
-msgstr "Carpeta de instalación"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Permitir solo una instancia en ejecución"
@@ -4615,63 +4615,59 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr "Filtro aplicado"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "Portapapeles en %s"
-
-msgid ""
-"Clipboard history disabled.\r\n"
-"Enable: Windows logo key + V, then Turn on."
 msgstr ""
-"El historial del portapapeles está deshabilitado.\r\n"
-"Para habilitarlo, presione la tecla Windows + V y luego presione el botón Activar."
+
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr "Este sistema no soporta historial del portapapeles."
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "La versión de 32 bits de WinMerge no soporta comparación de portapapeles"
+msgstr ""
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "WebView2 Runtime no está instalado. ¿Desea descargarlo?"
+msgstr ""
 
 msgid "New Text Compare"
-msgstr "Nueva comparación de texto"
+msgstr ""
 
 msgid "New Table Compare"
-msgstr "Nueva comparación de tabla"
+msgstr ""
 
 msgid "New Binary Compare"
-msgstr "Nueva comparación binaria"
+msgstr ""
 
 msgid "New Image Compare"
-msgstr "Nueva comparación de imágen"
+msgstr ""
 
 msgid "New Webpage Compare"
-msgstr "Nueva comparación de página web"
+msgstr ""
 
 msgid "Clipboard Compare"
-msgstr "Nueva comparación de portapapeles"
+msgstr ""
 
 msgid "&Print..."
-msgstr "Im&primir..."
+msgstr ""
 
 msgid "Pre&v Page"
-msgstr "Página an&terior"
+msgstr ""
 
 msgid "&Two Page"
-msgstr "&Dos páginas"
+msgstr ""
 
 msgid "&One Page"
-msgstr "Un&a página"
+msgstr ""
 
 msgid "Zoom &In"
-msgstr "Aumentar &zoom"
+msgstr ""
 
 msgid "Zoom &Out"
-msgstr "Reducir z&oom"
+msgstr ""
 
 msgid "Comparing..."
 msgstr ""

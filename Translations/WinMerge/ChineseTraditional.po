@@ -2539,13 +2539,13 @@ msgstr "刪除..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -4000,7 +4000,7 @@ msgstr "檔案名稱"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "資料夾"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4115,7 +4115,7 @@ msgstr "忽略的差異"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "二進制"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4747,7 +4747,7 @@ msgstr "混合"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "二進制"
+msgstr ""
 
 #, c-format
 msgid "None"
@@ -5077,71 +5077,71 @@ msgstr "如果只有一個 MDI 子視窗的話關閉主視窗"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "差異"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "醒目提示"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr "閃爍"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "區塊大小"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "區塊透明度"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "顏色差異閾值"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "插入/刪除偵測"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "無"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "垂直"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "水平"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "重疊"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "透明度"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "透明合成"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "透明動畫"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "縮放"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "頁面："
+msgstr ""
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -5190,19 +5190,19 @@ msgid "Add this change to Substitution Filters?"
 msgstr "要將將此變動加入替代篩選器嗎？"
 
 msgid "Text only"
-msgstr "僅文字"
+msgstr ""
 
 msgid "Line-by-line position and text"
-msgstr "逐行位置和文字"
+msgstr ""
 
 msgid "Word-by-word position and text"
-msgstr "逐字位置和文字"
+msgstr ""
 
 msgid "AppData folder"
-msgstr "AppData 資料夾"
+msgstr ""
 
 msgid "Install folder"
-msgstr "安裝資料夾"
+msgstr ""
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -5305,45 +5305,41 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
-msgstr "已套用篩選器"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "於 %s 的剪貼簿"
-
-msgid ""
-"Clipboard history disabled.\r\n"
-"Enable: Windows logo key + V, then Turn on."
 msgstr ""
-"剪貼簿歷史記錄已停用。\r\n"
-"要啟用剪貼簿歷史記錄，請按下 Windows 徽標鍵 + V，然後點選「開啟」按鈕。"
+
+msgid "Clipboard history disabled.\r\nEnable: Windows logo key + V, then Turn on."
+msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr "此系統不支援剪貼簿歷史紀錄。"
+msgstr ""
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"
+msgstr ""
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "尚未安裝 WebView2 執行階段。是否要下載安裝？"
+msgstr ""
 
 msgid "New Text Compare"
-msgstr "新文字比較"
+msgstr ""
 
 msgid "New Table Compare"
-msgstr "新表格比較"
+msgstr ""
 
 msgid "New Binary Compare"
-msgstr "新二進制比較"
+msgstr ""
 
 msgid "New Image Compare"
-msgstr "新圖片比較"
+msgstr ""
 
 msgid "New Webpage Compare"
-msgstr "新網頁比較"
+msgstr ""
 
 msgid "Clipboard Compare"
-msgstr "剪貼簿比較"
+msgstr ""
 
 msgid "&Print..."
 msgstr ""

@@ -2533,13 +2533,13 @@ msgstr "O&dstranit..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3911,7 +3911,7 @@ msgstr "Název souboru"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Složky"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4026,7 +4026,7 @@ msgstr "Ignor. rozdílů"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binární"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4638,7 +4638,7 @@ msgstr "Různé"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binární"
+msgstr ""
 
 #, c-format
 msgid "None"

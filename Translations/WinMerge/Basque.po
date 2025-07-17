@@ -2533,13 +2533,13 @@ msgstr "Ezabatu..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "Field:"
+msgid "&Field:"
 msgstr ""
 
-msgid "Operator:"
+msgid "&Operator:"
 msgstr ""
 
-msgid "Value:"
+msgid "&Value:"
 msgstr ""
 
 #, c-format
@@ -3958,7 +3958,7 @@ msgstr "Agirizena"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Agiritegia"
+msgstr ""
 
 #, c-format
 msgid "Comparison Result"
@@ -4073,7 +4073,7 @@ msgstr "Ezikusitako Ezberd"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Binarioa"
+msgstr ""
 
 #, c-format
 msgid "Unpacker"
@@ -4694,7 +4694,7 @@ msgstr "Mixed"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Binarioa"
+msgstr ""
 
 #, c-format
 msgid "None"

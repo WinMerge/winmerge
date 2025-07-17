@@ -95,9 +95,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_SIZE_RANGE)
 			{
-				CFilterConditionDlg dlg(false, m_targetSide, _T("Size"), _T("between"), _T(""));
+				CFilterConditionDlg dlg(false, m_targetSide, _T("Size"), _("%1 = %2"), _T("%1"));
 				if (dlg.DoModal() == IDOK)
-					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
 			else if (command >= ID_FILTERMENU_DATE_HOUR_BEFORE_1 && command <= ID_FILTERMENU_DATE_YEAR_SINCE_LAST)
 			{
@@ -118,9 +118,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_DATE_RANGE)
 			{
-				CFilterConditionDlg dlg(false, m_targetSide, _T("Date"), _T("between"), _T(""));
+				CFilterConditionDlg dlg(false, m_targetSide, _T("DateStr"), _("%1 = %2"), _T("%1"));
 				if (dlg.DoModal() == IDOK)
-					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
 			else if (command >= ID_FILTERMENU_ATTR_READONLY && command <= ID_FILTERMENU_ATTR_NOT_SYSTEM)
 			{
@@ -136,24 +136,24 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			else if (command >= ID_FILTERMENU_CONTENT_CONTAINS && command <= ID_FILTERMENU_CONTENT_LAST_LINE_NOT_CONTAINS)
 			{
 				const String LHSs[] = {
-					_T(""), _T(""),
+					_T("%1"), _T("%1"),
 					_T("sublines(%1, 0, 1)"),  _T("sublines(%1, 0, 1)"),
 					_T("sublines(%1, 0, 10)"), _T("sublines(%1, 0, 10)"),
 					_T("sublines(%1, -10)"),   _T("sublines(%1, -10)"),
 					_T("sublines(%1, -1)"),    _T("sublines(%1, -1)")
 				};
 				const String OPs[] = {
-					_T("contains"), _T("not contains"),
-					_T("contains"), _T("not contains"),
-					_T("contains"), _T("not contains"),
-					_T("contains"), _T("not contains"),
-					_T("contains"), _T("not contains")
+					_("%1 contains %2"), _("%1 not contains %2"),
+					_("%1 contains %2"), _("%1 not contains %2"),
+					_("%1 contains %2"), _("%1 not contains %2"),
+					_("%1 contains %2"), _("%1 not contains %2"),
+					_("%1 contains %2"), _("%1 not contains %2")
 				};
 				CFilterConditionDlg dlg(false, m_targetSide,
 					_T("Content"), OPs[command - ID_FILTERMENU_CONTENT_CONTAINS],
 					LHSs[command - ID_FILTERMENU_CONTENT_CONTAINS]);
 				if (dlg.DoModal() == IDOK)
-					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
 			else if (command >= ID_FILTERMENU_LINES_LT_10 && command <= ID_FILTERMENU_LINES_GE_100000)
 			{
@@ -170,9 +170,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_LINES_RANGE)
 			{
-				CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _T("<"), _T("lineCount(%1)"));
+				CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _("%1 = %2"), _T("lineCount(%1)"));
 				if (dlg.DoModal() == IDOK)
-					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
 			else if (command >= ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1 && command <= ID_FILTERMENU_FOLDER_DATE_YEAR_SINCE_LAST)
 			{
@@ -193,9 +193,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_FOLDER_DATE_RANGE)
 			{
-				CFilterConditionDlg dlg(false, m_targetSide, _T("Date"), _T("between"), _T(""));
+				CFilterConditionDlg dlg(false, m_targetSide, _T("DateStr"), _("%1 = %2"), _T("%1"));
 				if (dlg.DoModal() == IDOK)
-					result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.GetExpression();
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
 			}
 			else if (command >= ID_FILTERMENU_CONDITION_ANY && command <= ID_FILTERMENU_CONDITION_RIGHT)
 			{
@@ -218,9 +218,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_DIFF_SIZE_RANGE)
 			{
-				CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Size"), _T("between"), _T("abs(%1 - %2)"));
+				CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Size"), _("%1 = %2"), _T("abs(%1 - %2)"));
 				if (dlg.DoModal() == IDOK)
-					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
 			else if (command >= ID_FILTERMENU_DIFF_DATE_EQUAL && command <= ID_FILTERMENU_DIFF_DATE_WEEK_WITHIN_1)
 			{
@@ -238,9 +238,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_DIFF_DATE_RANGE)
 			{
-				CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Date"), _T("between"), _T("abs(%1 - %2)"));
+				CFilterConditionDlg dlg(true, m_targetDiffSide, _T("DateStr"), _("%1 = %2"), _T("abs(%1 - %2)"));
 				if (dlg.DoModal() == IDOK)
-					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.GetExpression();
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
 			else if (command >= ID_FILTERMENU_DIFF_ATTR_EQUAL && command <= ID_FILTERMENU_DIFF_ATTR_NOT_EQUAL)
 			{
