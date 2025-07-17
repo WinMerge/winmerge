@@ -47,6 +47,7 @@ public:
 // Implementation
 protected:
 	String GetExpression();
+	String GetLHS() const;
 
 	// Generated message map functions
 	//{{AFX_MSG(CFilterConditionDlg)

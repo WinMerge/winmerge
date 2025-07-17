@@ -29,7 +29,7 @@ begin:
 	"RECONTAINS"      { return TK_RECONTAINS; }
 	"LIKE"            { return TK_LIKE; }
 	"MATCHES"         { return TK_MATCHES; }
-	([0-9]+([.][0-9]+)?)("KB"|"MB"|"GB"|"TB") {
+	([0-9]+([.][0-9]+)?)("B"|"KB"|"MB"|"GB"|"TB") {
 		const char* p = yycursor;
 		while (*p == ' ' || *p == '\t' || *p == '\r' || *p == '\n')
 			p++;

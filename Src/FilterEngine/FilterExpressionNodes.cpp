@@ -1168,7 +1168,9 @@ SizeLiteral::SizeLiteral(const std::string& v)
 		number = std::stod(numberPart);
 	}
 	catch (...) { }
-	if (unitPart == "kb")
+	if (unitPart == "b")
+		value = static_cast<int64_t>(number * 1LL);
+	else if (unitPart == "kb")
 		value = static_cast<int64_t>(number * 1024LL);
 	else if (unitPart == "mb")
 		value = static_cast<int64_t>(number * 1024LL * 1024LL);

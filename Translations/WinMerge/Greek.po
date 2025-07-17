@@ -2530,13 +2530,16 @@ msgstr "Διαγραφή..."
 msgid "Filter Condition"
 msgstr ""
 
-msgid "&Field:"
+msgid "&Left-hand side:"
 msgstr ""
 
 msgid "&Operator:"
 msgstr ""
 
-msgid "&Value:"
+msgid "&Right-hand side:"
+msgstr ""
+
+msgid "Expression:"
 msgstr ""
 
 #, c-format
@@ -5322,6 +5325,30 @@ msgid "Filter name not found"
 msgstr ""
 
 msgid "Unknown error"
+msgstr ""
+
+msgid "Equals"
+msgstr ""
+
+msgid "Does not equal"
+msgstr ""
+
+msgid "Less than"
+msgstr ""
+
+msgid "Less than or equal to"
+msgstr ""
+
+msgid "Greater than or equal to"
+msgstr ""
+
+msgid "Greater than"
+msgstr ""
+
+msgid "Between"
+msgstr ""
+
+msgid "Not Between"
 msgstr ""
 
 msgid "Prettification"

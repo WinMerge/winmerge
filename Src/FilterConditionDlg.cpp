@@ -63,13 +63,8 @@ BEGIN_MESSAGE_MAP(CFilterConditionDlg, CTrDialog)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-
-String CFilterConditionDlg::GetExpression()
+String CFilterConditionDlg::GetLHS() const
 {
-	auto expressionptr = (intptr_t)GetDlgItemDataCurSel(IDC_CONDITION_OPERATOR);
-	if (expressionptr == -1)
-		return _T("");
-	String expression = (const wchar_t*)expressionptr;
 	String lhs;
 	if (!m_bDiff)
 	{
@@ -82,6 +77,16 @@ String CFilterConditionDlg::GetExpression()
 		const String DiffSides2[] = { _T("Right"), _T("Middle"), _T("Right") };
 		lhs = strutils::format_string2(m_sTransform, DiffSides1[m_nSide] + m_sField, DiffSides2[m_nSide] + m_sField);
 	}
+	return lhs;
+}
+
+String CFilterConditionDlg::GetExpression()
+{
+	auto expressionptr = (intptr_t)GetDlgItemDataCurSel(IDC_CONDITION_OPERATOR);
+	if (expressionptr == -1)
+		return _T("");
+	String expression = (const wchar_t*)expressionptr;
+	const String lhs = GetLHS();
 	String result;
 	if (m_sField == _T("Size"))
 	{
@@ -120,6 +125,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
+	SetDlgItemText(IDC_CONDITION_LHS, GetLHS());
+
 	if (m_sField == _T("Size") || m_sField == _T("DateStr"))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
@@ -144,10 +151,23 @@ BOOL CFilterConditionDlg::OnInitDialog()
 				{ _("Not Contains (regex)"), L"%1 not recontains %2" },
 			}, m_sOperator);
 	} 
+
 	if (m_sField == _T("Size"))
 	{
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("10"), _("100"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
-		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("10"), _("100"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0B"), _("1B"), _("10B"), _("100B"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0B"), _("1B"), _("10B"), _("100B"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
+		m_sValue1 = _T("0B");
+		m_sValue2 = _T("0B");
+	}
+	else if (m_sField == _T("DateStr"))
+	{
+		m_tmValue1 = CTime::GetCurrentTime();
+		m_tmValue2 = CTime::GetCurrentTime();
+	}
+	else if (m_sField == _T("Content"))
+	{
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("") });
 	}
 
 	OnCbnSelchangeOperator();
