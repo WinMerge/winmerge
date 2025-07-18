@@ -125,9 +125,9 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			else if (command >= ID_FILTERMENU_ATTR_READONLY && command <= ID_FILTERMENU_ATTR_NOT_SYSTEM)
 			{
 				static const String AttrConditions[] = {
-					_T("%1 contains \"R\""), _T("not (%1 contains \"R\")"),
-					_T("%1 contains \"H\""), _T("not (%1 contains \"H\")"),
-					_T("%1 contains \"S\""), _T("not (%1 contains \"S\")")
+					_T("%1 contains \"R\""), _T("%1 not contains \"R\""),
+					_T("%1 contains \"H\""), _T("%1 not contains \"H\""),
+					_T("%1 contains \"S\""), _T("%1 not contains \"S\"")
 				};
 				const String identifier = Sides[m_targetSide] + _T("AttrStr");
 				result = masks.empty() ? masks : masks + _T("|");
@@ -170,7 +170,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_LINES_RANGE)
 			{
-				CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _("%1 = %2"), _T("lineCount(%1)"));
+				CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _("%1 > %2"), _T("lineCount(%1)"));
 				if (dlg.DoModal() == IDOK)
 					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
@@ -222,10 +222,12 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				if (dlg.DoModal() == IDOK)
 					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
-			else if (command >= ID_FILTERMENU_DIFF_DATE_EQUAL && command <= ID_FILTERMENU_DIFF_DATE_WEEK_WITHIN_1)
+			else if (command >= ID_FILTERMENU_DIFF_DATE_EQUAL && command <= ID_FILTERMENU_DIFF_DATE_GE_1WEEK)
 			{
 				static const String DiffDateConditions[] = {
 					_T("%1 = %2"), _T("%1 != %2"),
+					_T("abs(%1 - %2) < 1second"), _T("abs(%1 - %2) >= 1second"),
+					_T("abs(%1 - %2) < 1minute"), _T("abs(%1 - %2) >= 1minute"),
 					_T("abs(%1 - %2) < 1hour"), _T("abs(%1 - %2) >= 1hour"),
 					_T("abs(%1 - %2) < 1day"), _T("abs(%1 - %2) >= 1day"),
 					_T("abs(%1 - %2) < 1week"), _T("abs(%1 - %2) >= 1week")
@@ -238,7 +240,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			}
 			else if (command == ID_FILTERMENU_DIFF_DATE_RANGE)
 			{
-				CFilterConditionDlg dlg(true, m_targetDiffSide, _T("DateStr"), _("%1 = %2"), _T("abs(%1 - %2)"));
+				CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Date"), _("%1 = %2"), _T("abs(%1 - %2)"));
 				if (dlg.DoModal() == IDOK)
 					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}

@@ -1519,12 +1519,16 @@ BEGIN
             BEGIN
                 MENUITEM "Equal",                       ID_FILTERMENU_DIFF_DATE_EQUAL
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_DATE_NOT_EQUAL
-                MENUITEM "More than 1 hour ago",        ID_FILTERMENU_DIFF_DATE_HOUR_BEFORE_1
-                MENUITEM "Within 1 hour",               ID_FILTERMENU_DIFF_DATE_HOUR_WITHIN_1
-                MENUITEM "More than 1 day ago",         ID_FILTERMENU_DIFF_DATE_DAY_BEFORE_1
-                MENUITEM "Within 1 day",                ID_FILTERMENU_DIFF_DATE_DAY_WITHIN_1
-                MENUITEM "More than 1 week ago",        ID_FILTERMENU_DIFF_DATE_WEEK_BEFORE_1
-                MENUITEM "Within 1 week",               ID_FILTERMENU_DIFF_DATE_WEEK_WITHIN_1
+                MENUITEM "Less than 1 second",          ID_FILTERMENU_DIFF_DATE_LT_1SECOND
+                MENUITEM "1 second or more",            ID_FILTERMENU_DIFF_DATE_GE_1SECOND
+                MENUITEM "Less than 1 minute",          ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
+                MENUITEM "1 minute or more",            ID_FILTERMENU_DIFF_DATE_GE_1MINUTE
+                MENUITEM "Less than 1 hour",            ID_FILTERMENU_DIFF_DATE_LT_1HOUR
+                MENUITEM "1 hour or more",              ID_FILTERMENU_DIFF_DATE_GE_1HOUR
+                MENUITEM "Less than 1 day",             ID_FILTERMENU_DIFF_DATE_LT_1DAY
+                MENUITEM "1 day or more",               ID_FILTERMENU_DIFF_DATE_GE_1DAY
+                MENUITEM "Less than 1 week",            ID_FILTERMENU_DIFF_DATE_LT_1WEEK
+                MENUITEM "1 week or more",              ID_FILTERMENU_DIFF_DATE_GE_1WEEK
                 MENUITEM "Custom Range...",             ID_FILTERMENU_DIFF_DATE_RANGE
             END
             POPUP "&Attributes"
@@ -2240,7 +2244,7 @@ FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
     LTEXT           "&Mask / Filter Expression",IDC_STATIC,6,6,260,10
     CONTROL         "",IDC_FILTERFILE_MASK,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,6,16,500,95
-    PUSHBUTTON      "&=",IDC_FILTERFILE_MASK_MENU,506,16,17,15
+    PUSHBUTTON      "&=",IDC_FILTERFILE_MASK_MENU,506,16,17,12
     LTEXT           "Preset &Filters",IDC_STATIC,6,34,260,10
     CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,6,44,516,110
     PUSHBUTTON      "Test...",IDC_FILTERFILE_TEST_BTN,6,156,50,14
@@ -2250,7 +2254,7 @@ BEGIN
     PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,473,156,50,14
 END
 
-IDD_FILTERS_CONDITION DIALOGEX 0, 0, 301, 101
+IDD_FILTERS_CONDITION DIALOGEX 0, 0, 311, 111
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Filter Condition"
 FONT 8, FONTNAME, 0, 0, 0x1
@@ -2265,9 +2269,9 @@ BEGIN
     CONTROL         "",IDC_CONDITION_VALUEDTP1,"SysDateTimePick32",WS_TABSTOP,86,42,100,14
     CONTROL         "",IDC_CONDITION_VALUEDTP2,"SysDateTimePick32",WS_TABSTOP,196,42,100,14
     LTEXT           "Expression:",IDC_STATIC,6,62,237,12
-    LTEXT           "",IDC_CONDITION_EXPRESSION,86,62,237,12
-    DEFPUSHBUTTON   "OK",IDOK,175,81,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,235,81,50,14
+    LTEXT           "",IDC_CONDITION_EXPRESSION,86,62,200,24
+    DEFPUSHBUTTON   "OK",IDOK,185,91,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,245,91,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 217

@@ -31,7 +31,7 @@ CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& fiel
 , m_nSide(side)
 , m_sField(field)
 , m_sOperator(ope)
-, m_sTransform(transform)
+, m_sLHS(transform)
 {
 	//{{AFX_DATA_INIT(CFilterConditionDlg)
 		// NOTE: the ClassWizard will add member initialization here
@@ -69,13 +69,13 @@ String CFilterConditionDlg::GetLHS() const
 	if (!m_bDiff)
 	{
 		const String Sides[] = { _T(""), _T("Left"), _T("Middle"), _T("Right")};
-		lhs = strutils::format_string1(m_sTransform, Sides[m_nSide] + m_sField);
+		lhs = strutils::format_string1(m_sLHS, Sides[m_nSide] + m_sField);
 	}
 	else
 	{
 		const String DiffSides1[] = { _T("Left"), _T("Left"), _T("Middle") };
 		const String DiffSides2[] = { _T("Right"), _T("Middle"), _T("Right") };
-		lhs = strutils::format_string2(m_sTransform, DiffSides1[m_nSide] + m_sField, DiffSides2[m_nSide] + m_sField);
+		lhs = strutils::format_string2(m_sLHS, DiffSides1[m_nSide] + m_sField, DiffSides2[m_nSide] + m_sField);
 	}
 	return lhs;
 }
@@ -88,7 +88,7 @@ String CFilterConditionDlg::GetExpression()
 	String expression = (const wchar_t*)expressionptr;
 	const String lhs = GetLHS();
 	String result;
-	if (m_sField == _T("Size"))
+	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sLHS == _T("lineCount(%1)"))
 	{
 		result = strutils::format_string3(expression, lhs, m_sValue1, m_sValue2);
 	}
@@ -127,7 +127,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 
 	SetDlgItemText(IDC_CONDITION_LHS, GetLHS());
 
-	if (m_sField == _T("Size") || m_sField == _T("DateStr"))
+	// Initialize the operator combo box
+	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sField == _T("DateStr") || m_sLHS == _T("lineCount(%1)"))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
 			{
@@ -152,12 +153,27 @@ BOOL CFilterConditionDlg::OnInitDialog()
 			}, m_sOperator);
 	} 
 
+	// Initialize the value combo boxes
 	if (m_sField == _T("Size"))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0B"), _("1B"), _("10B"), _("100B"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0B"), _("1B"), _("10B"), _("100B"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
 		m_sValue1 = _T("0B");
 		m_sValue2 = _T("0B");
+	}
+	else if (m_sLHS == _T("lineCount(%1)"))
+	{
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
+		m_sValue1 = _T("0");
+		m_sValue2 = _T("0");
+	}
+	else if (m_sField == _T("Date"))
+	{
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0second"), _("1second"), _("1minute"), _("1hour"), _("1day"), _("1week") });
+		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0second"), _("1second"), _("1minute"), _("1hour"), _("1day"), _("1week") });
+		m_sValue1 = _T("0second");
+		m_sValue2 = _T("0second");
 	}
 	else if (m_sField == _T("DateStr"))
 	{

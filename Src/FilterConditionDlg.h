@@ -24,7 +24,7 @@ public:
 	bool m_bDiff;
 	int m_nSide;
 	String m_sField;
-	String m_sTransform;
+	String m_sLHS;
 	String m_sOperator;
 	String m_sValue1;
 	String m_sValue2;

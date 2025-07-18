@@ -1707,16 +1707,34 @@ msgstr ""
 msgid "100B or more"
 msgstr ""
 
-msgid "More than 1 day ago"
+msgid "Less than 1 second"
 msgstr ""
 
-msgid "Within 1 day"
+msgid "1 second or more"
 msgstr ""
 
-msgid "More than 1 week ago"
+msgid "Less than 1 minute"
 msgstr ""
 
-msgid "Within 1 week"
+msgid "1 minute or more"
+msgstr ""
+
+msgid "Less than 1 hour"
+msgstr ""
+
+msgid "1 hour or more"
+msgstr ""
+
+msgid "Less than 1 day"
+msgstr ""
+
+msgid "1 day or more"
+msgstr ""
+
+msgid "Less than 1 week"
+msgstr ""
+
+msgid "1 week or more"
 msgstr ""
 
 msgid "Target: &Left and Right"
