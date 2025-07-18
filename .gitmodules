@@ -28,3 +28,6 @@
 [submodule "Externals/md4c"]
 	path = Externals/md4c
 	url = https://github.com/mity/md4c
+[submodule "Externals/darkmodelib"]
+	path = Externals/darkmodelib
+	url = https://github.com/ozone10/darkmodelib.git

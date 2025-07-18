@@ -5,8 +5,18 @@
  */
 // SPDX-License-Identifier: MIT
 #include "stdafx.h"
-#include "IatHook.h"
 #include "SysColorHook.h"
+#include "MergeDarkMode.h"
+
+#if defined(_DARKMODELIB_EXTERNAL_IATHOOK) || !defined(USE_DARKMODELIB)
+#include "IatHook.h"
+#else
+extern PIMAGE_THUNK_DATA FindAddressByName(void* moduleBase, PIMAGE_THUNK_DATA impName, PIMAGE_THUNK_DATA impAddr, const char* funcName);
+extern PIMAGE_THUNK_DATA FindAddressByOrdinal(void* moduleBase, PIMAGE_THUNK_DATA impName, PIMAGE_THUNK_DATA impAddr, uint16_t ordinal);
+extern PIMAGE_THUNK_DATA FindIatThunkInModule(void* moduleBase, const char* dllName, const char* funcName);
+extern PIMAGE_THUNK_DATA FindDelayLoadThunkInModule(void* moduleBase, const char* dllName, const char* funcName);
+extern PIMAGE_THUNK_DATA FindDelayLoadThunkInModule(void* moduleBase, const char* dllName, uint16_t ordinal);
+#endif
 
 using fnGetSysColor = DWORD(WINAPI*)(int nIndex);
 using fnGetSysColorBrush = HBRUSH(WINAPI*)(int nIndex);
