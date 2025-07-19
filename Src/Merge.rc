@@ -4914,6 +4914,10 @@ BEGIN
     IDS_FILTER_OP_GREATER_THAN       "Greater than"
     IDS_FILTER_OP_BETWEEN            "Between"
     IDS_FILTER_OP_NOT_BETWEEN        "Not Between"
+    IDS_FILTER_OP_CONTAINS           "Contains"
+    IDS_FILTER_OP_NOT_CONTAINS       "Not Contains"
+    IDS_FILTER_OP_RECONTAINS         "Contains (regex)"
+    IDS_FILTER_OP_NOT_RECONTAINS     "Not Contains (regex)"
 END
 
 #endif    // English (United States) resources

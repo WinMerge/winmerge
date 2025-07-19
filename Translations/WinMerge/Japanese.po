@@ -4888,6 +4888,18 @@ msgstr "範囲内"
 msgid "Not Between"
 msgstr "範囲外"
 
+msgid "Contains"
+msgstr "含む"
+
+msgid "Not Contains"
+msgstr "含まない"
+
+msgid "Contains (regex)"
+msgstr "含む(正規表現)"
+
+msgid "Not Contains (regex)"
+msgstr "含まない(正規表現)"
+
 msgid "Prettification"
 msgstr "整形"
 

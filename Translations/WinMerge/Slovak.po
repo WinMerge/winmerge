@@ -4806,6 +4806,18 @@ msgstr ""
 msgid "Not Between"
 msgstr ""
 
+msgid "Contains"
+msgstr ""
+
+msgid "Not Contains"
+msgstr ""
+
+msgid "Contains (regex)"
+msgstr ""
+
+msgid "Not Contains (regex)"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Prikrášlenie"
 

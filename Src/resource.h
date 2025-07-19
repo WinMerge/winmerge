@@ -1981,6 +1981,10 @@
 #define IDS_FILTER_OP_GREATER_THAN      44679
 #define IDS_FILTER_OP_BETWEEN           44680
 #define IDS_FILTER_OP_NOT_BETWEEN       44681
+#define IDS_FILTER_OP_CONTAINS          44682
+#define IDS_FILTER_OP_NOT_CONTAINS      44683
+#define IDS_FILTER_OP_RECONTAINS        44684
+#define IDS_FILTER_OP_NOT_RECONTAINS    44685
 
 // Next default values for new objects
 // 
