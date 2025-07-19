@@ -69,13 +69,14 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	ON_BN_CLICKED(IDC_FILTERFILE_MASK_MENU, OnFilterfileMaskMenu)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
+	ON_NOTIFY(NM_CUSTOMDRAW, IDC_FILTERFILE_LIST, OnCustomDrawFiltersList)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
+	ON_NOTIFY(LVN_GETINFOTIP, IDC_FILTERFILE_LIST, OnInfoTip)
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_FILTERFILE_TEST_BTN, OnBnClickedFilterfileTestButton)
 	ON_BN_CLICKED(IDC_FILTERFILE_NEWBTN, OnBnClickedFilterfileNewbutton)
 	ON_BN_CLICKED(IDC_FILTERFILE_DELETEBTN, OnBnClickedFilterfileDelete)
 	ON_COMMAND(ID_HELP, OnHelp)
-	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
-	ON_NOTIFY(LVN_GETINFOTIP, IDC_FILTERFILE_LIST, OnInfoTip)
 	ON_BN_CLICKED(IDC_FILTERFILE_INSTALL, OnBnClickedFilterfileInstall)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -240,7 +241,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 			if (bError)
 			{
 				for (const auto* errorItem : m_pFileFilterHelper->GetErrorList())
-					error += FormatFilterErrorSummary(*errorItem).c_str();
+					error += (FormatFilterErrorSummary(*errorItem) + _T("\r\n")).c_str();
 			}
 			return !bError;
 		};
@@ -349,6 +350,24 @@ void FileFiltersDlg::OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = 0;
 }
 
+void FileFiltersDlg::OnCustomDrawFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	NMLVCUSTOMDRAW* pLVCD = reinterpret_cast<NMLVCUSTOMDRAW*>(pNMHDR);
+	*pResult = CDRF_DODEFAULT;
+
+	if (pLVCD->nmcd.dwDrawStage == CDDS_PREPAINT)
+	{
+		*pResult = CDRF_NOTIFYITEMDRAW;
+	}
+	else if (pLVCD->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
+	{
+		int nItem = static_cast<int>(pLVCD->nmcd.dwItemSpec);
+		if (!m_pFileFilterHelper->GetManager()->GetFilterByIndex(nItem)->errors.empty())
+			pLVCD->clrTextBk = RGB(255, 200, 200);
+		*pResult = CDRF_DODEFAULT;
+	}
+}
+
 /**
  * @brief Called when item state is changed.
  *
@@ -371,6 +390,7 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 		m_sMask = RemovePresetFiltersFromLastGroup(m_sMask);
 		m_sMask = AddPresetFiltersToLastGroup(m_sMask, m_listFilters);
 		UpdateData(FALSE);
+		m_ctlMaskEdit.OnEnChange();
 	}
 	*pResult = 0;
 }
@@ -382,24 +402,18 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
  */
 void FileFiltersDlg::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 {
-	LVHITTESTINFO lvhti = {0};
 	NMLVGETINFOTIP * pInfoTip = reinterpret_cast<NMLVGETINFOTIP*>(pNMHDR);
 	ASSERT(pInfoTip != nullptr);
 
-	// Get subitem under mouse cursor
-	lvhti.pt = m_ptLastMousePos;
-	m_listFilters.SubItemHitTest(&lvhti);
-
-	if (lvhti.iSubItem > 1)
+	auto* pFilter = m_pFileFilterHelper->GetManager()->GetFilterByIndex(pInfoTip->iItem);
+	if (pFilter)
 	{
-		// Check that we are over icon or label
-		if ((lvhti.flags & LVHT_ONITEMICON) || (lvhti.flags & LVHT_ONITEMLABEL))
-		{
-			// Set item text to tooltip
-			String strText = m_listFilters.GetItemText(lvhti.iItem, lvhti.iSubItem);
-			_tcscpy_s(pInfoTip->pszText, pInfoTip->cchTextMax, strText.c_str());
-		}
+		String strText;
+		for (const auto& error : pFilter->errors)
+			strText += FormatFilterErrorSummary(error) + _T("\r\n");
+		_tcsncpy_s(pInfoTip->pszText, pInfoTip->cchTextMax, strText.c_str(), _TRUNCATE);
 	}
+	*pResult = 0;
 }
 
 /**

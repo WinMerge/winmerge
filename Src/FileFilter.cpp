@@ -50,7 +50,7 @@ void FileFilter::AddFilterPattern(vector<FileFilterElementPtr>* filterList, cons
 	}
 	catch (const Poco::RegularExpressionException& e)
 	{
-		errors.emplace_back(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, lineNumber, -1, str, e.message());
+		errors.emplace_back(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, lineNumber, -1, str, e.message(), name);
 	}
 }
 
@@ -67,7 +67,7 @@ void FileFilter::AddFilterExpression(vector<FilterExpressionPtr>* filterList, co
 	std::shared_ptr<FilterExpression> pExpression(new FilterExpression(ucr::toUTF8(str)));
 	if (pExpression->errorCode != 0)
 	{
-		errors.emplace_back(pExpression->errorCode, lineNumber, pExpression->errorPosition, str2, pExpression->errorMessage);
+		errors.emplace_back(pExpression->errorCode, lineNumber, pExpression->errorPosition, str2, pExpression->errorMessage, name);
 		return;
 	}
 	filterList->emplace_back(pExpression);

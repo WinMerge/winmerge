@@ -120,7 +120,7 @@ bool FileContentRef::REContains(const Poco::RegularExpression& regexp) const
 	return found;
 }
 
-std::string FileContentRef::Sublines(int start, int len) const
+std::string FileContentRef::Sublines(ptrdiff_t start, ptrdiff_t len) const
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(path))
@@ -155,15 +155,15 @@ std::string FileContentRef::Sublines(int start, int len) const
 	} while (linesToRead);
 	if (start < 0)
 	{
-		start = static_cast<int>(lines.size()) + start;
+		start = static_cast<ptrdiff_t>(lines.size()) + start;
 		if (start < 0)
 			start = 0;
 	}
-	if (start >= static_cast<int>(lines.size()))
+	if (start >= static_cast<ptrdiff_t>(lines.size()))
 		return "";
 	if (len < 0)
-		len = static_cast<int>(lines.size()) - start;
-	size_t end = std::min<int>(start + len, lines.size());
+		len = static_cast<ptrdiff_t>(lines.size()) - start;
+	size_t end = std::min<ptrdiff_t>(start + len, lines.size());
 	file.Close();
 	return ucr::toUTF8(strutils::join(lines.begin() + start, lines.begin() + end, _T("")));
 }

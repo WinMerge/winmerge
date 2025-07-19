@@ -50,27 +50,30 @@ void CValidatingEdit::Validate()
 
 	if (m_validator)
 	{
-		if (!m_toolTip.m_hWnd)
-		{
-			m_toolItem.cbSize = sizeof(TOOLINFO);
-			m_toolItem.uFlags = TTF_TRACK | TTF_ABSOLUTE;
-			m_toolItem.hwnd = m_hWnd;
-			m_toolItem.uId = 1;
-			m_toolItem.lpszText = _T("");
-			m_toolTip.Create(this, TTS_NOPREFIX | TTS_BALLOON | TTS_ALWAYSTIP);
-			m_toolTip.SendMessage(TTM_ADDTOOL, 0, (LPARAM)&m_toolItem);
-		}
 		CString msg;
 		if (!m_validator(text, msg))
 		{
 			m_hasError = true;
 			m_errorMessage = msg;
 
+			CRect rc;
+			GetWindowRect(&rc);
+
+			if (!m_toolTip.GetSafeHwnd())
+			{
+				m_toolTip.Create(this, TTS_NOPREFIX | TTS_BALLOON | TTS_ALWAYSTIP);
+				m_toolItem.cbSize = sizeof(TOOLINFO);
+				m_toolItem.uFlags = TTF_TRACK | TTF_ABSOLUTE;
+				m_toolItem.hwnd = m_hWnd;
+				m_toolItem.uId = 1;
+				m_toolItem.lpszText = _T("");
+				m_toolTip.SendMessage(TTM_ADDTOOL, 0, (LPARAM)&m_toolItem);
+				m_toolTip.SetMaxTipWidth(rc.Width());
+			}
+
 			m_toolItem.lpszText = (LPTSTR)(LPCTSTR)m_errorMessage;
 			m_toolTip.SetToolInfo(&m_toolItem);
 
-			RECT rc{};
-			GetWindowRect(&rc);
 			POINT pt{ rc.left, rc.bottom };
 			m_toolTip.SendMessage(TTM_TRACKPOSITION, 0, (LPARAM)MAKELONG(pt.x, pt.y));
 
@@ -78,8 +81,11 @@ void CValidatingEdit::Validate()
 		}
 		else
 		{
-			m_toolTip.UpdateTipText(_T(""), this);
-			m_toolTip.SendMessage(TTM_TRACKACTIVATE, FALSE, (LPARAM)&m_toolItem);
+			if (m_toolTip.GetSafeHwnd())
+			{
+				m_toolTip.UpdateTipText(_T(""), this);
+				m_toolTip.SendMessage(TTM_TRACKACTIVATE, FALSE, (LPARAM)&m_toolItem);
+			}
 		}
 	}
 

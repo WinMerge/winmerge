@@ -43,5 +43,7 @@ String FormatFilterErrorSummary(const FileFilterErrorInfo& fei)
 	if (fei.errorPosition >= 0)
 		msg += _T(" ") + _("at position") + _T(" ") + strutils::to_str(fei.errorPosition + 1);
 	msg += _T(": ") + ucr::toTString(fei.srcText);
+	if (!fei.context.empty())
+		msg += _T(" (") + fei.context + _T(")");
 	return msg;
 }

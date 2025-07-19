@@ -52,8 +52,9 @@ struct FileFilterErrorInfo
 	int errorPosition; /**< Position in line where error occurred, if applicable */
 	String srcText; /**< Source text of the line where error occurred, if applicable */
 	std::string errorText; /**< Text describing the error, if applicable */
-	FileFilterErrorInfo(FilterErrorCode code, int lineNumber, int position, const String& src, const std::string& msg) :
-		errorCode(code), line(lineNumber), errorPosition(position), srcText(src), errorText(msg)
+	String context; /**< Context of the error, if applicable */
+	FileFilterErrorInfo(FilterErrorCode code, int lineNumber, int position, const String& src, const std::string& msg, const String& context) :
+		errorCode(code), line(lineNumber), errorPosition(position), srcText(src), errorText(msg), context(context)
 	{
 	}
 };

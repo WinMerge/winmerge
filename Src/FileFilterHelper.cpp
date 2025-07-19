@@ -540,7 +540,7 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 				{
 					pRegexOrExpressionFilter = std::make_shared<FileFilter>();
 					pRegexOrExpressionFilter->default_include = false;
-					pRegexOrExpressionFilter->name = extensions;
+					pRegexOrExpressionFilter->name = _T("");
 				}
 				token = strutils::trim_ws(token.substr(token.find(':') + 1));
 				if (prefix == _T("f:"))
@@ -583,7 +583,7 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 								{
 									pRegexOrExpressionFilterExclude = std::make_shared<FileFilter>();
 									pRegexOrExpressionFilterExclude->default_include = true;
-									pRegexOrExpressionFilterExclude->name = extensions;
+									pRegexOrExpressionFilterExclude->name = _T("");
 								}
 								mergeFilter(pRegexOrExpressionFilterExclude.get(), filter);
 							}
@@ -591,7 +591,7 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 					}
 					else
 					{
-						pRegexOrExpressionFilter->errors.emplace_back(FILTER_ERROR_FILTER_NAME_NOT_FOUND, -1, -1, token, "");
+						pRegexOrExpressionFilter->errors.emplace_back(FILTER_ERROR_FILTER_NAME_NOT_FOUND, -1, -1, token, "", _T(""));
 					}
 				}
 			}

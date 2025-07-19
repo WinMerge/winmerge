@@ -307,7 +307,7 @@ void COpenView::OnInitialUpdate()
 			if (bError)
 			{
 				for (const auto* errorItem : fileFilterHelper.GetErrorList())
-					error += FormatFilterErrorSummary(*errorItem).c_str();
+					error += (FormatFilterErrorSummary(*errorItem) + _T("\r\n")).c_str();
 			}
 			return !bError;
 		};
@@ -730,9 +730,13 @@ void COpenView::OnCompare(UINT nID)
 		// Remove prefix + space
 		filter.erase(0, filterPrefix.length());
 	}
+	if (filter.empty())
+		filter = _T("*.*");
 	pGlobalFileFilter->SetMaskOrExpression(filter);
 	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 
+	m_strExt = filter;
+	SetDlgItemText(IDC_EXT_COMBO, m_strExt.c_str());
 	SaveComboboxStates();
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, m_bRecurse);
 	LoadComboboxStates();
@@ -1537,6 +1541,7 @@ void COpenView::OnSelectFilter()
 	if (curFilter != filterNameOrMask)
 	{
 		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
+		m_ctlExtEdit.OnEnChange();
 	}
 }
 
