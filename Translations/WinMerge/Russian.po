@@ -1220,7 +1220,10 @@ msgstr "Дублировать плагин..."
 msgid "Clear &All"
 msgstr "Очистить все"
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"

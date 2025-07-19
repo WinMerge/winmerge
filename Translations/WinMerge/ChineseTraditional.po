@@ -1453,7 +1453,10 @@ msgstr "複製外掛 (&D)..."
 msgid "Clear &All"
 msgstr "全部清除 (&A)"
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"

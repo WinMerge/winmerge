@@ -1219,7 +1219,10 @@ msgstr "Çif&t eklentisi..."
 msgid "Clear &All"
 msgstr "&Tümünü Temizle"
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"

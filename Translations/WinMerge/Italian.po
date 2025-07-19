@@ -1219,7 +1219,10 @@ msgstr "Plugin &duplicato..."
 msgid "Clear &All"
 msgstr "&Azzera tutto"
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"

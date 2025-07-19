@@ -1337,7 +1337,8 @@ IDR_POPUP_FILTERMENU MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Clear File Mask",            ID_FILTERMENU_MASK_CLEAR
+        MENUITEM "&Clear All",                  ID_FILTERMENU_MASK_CLEAR
+        MENUITEM "Remove Last Filter &Group",   ID_FILTERMENU_MASK_REMOVE_LAST
         MENUITEM "R&eset to Default (*.*)",     ID_FILTERMENU_MASK_ALL
         POPUP "Add E&xclude File"
         BEGIN

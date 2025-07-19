@@ -514,7 +514,7 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 				bool exclude = token[0] == '!';
 				if (exclude)
 					token = token.substr(1);
-				bool isdir = token.back() == '\\';
+				bool isdir = token.length() > 0 && token.back() == '\\';
 				if (isdir)
 					token = token.substr(0, token.size() - 1);
 				token = addPeriodIfNoExtension(token);

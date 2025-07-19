@@ -1446,7 +1446,10 @@ msgstr ""
 msgid "Clear &All"
 msgstr ""
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"

@@ -1221,7 +1221,10 @@ msgstr "Duplicera plugin"
 msgid "Clear &All"
 msgstr "Rensa allt"
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"

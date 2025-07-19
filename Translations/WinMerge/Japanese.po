@@ -1217,8 +1217,11 @@ msgstr "プラグインを複製(&D)..."
 msgid "Clear &All"
 msgstr "すべてクリア(&A)"
 
-msgid "&Clear File Mask"
-msgstr "ファイルマスクをクリア(&C)"
+msgid "&Clear All"
+msgstr "すべてクリア(&C)"
+
+msgid "Remove Last Filter &Group"
+msgstr "最後のフィルターグループを削除(&G)"
 
 msgid "R&eset to Default (*.*)"
 msgstr "デフォルト (*.*) にリセット(&E)"

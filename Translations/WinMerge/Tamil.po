@@ -1226,7 +1226,10 @@ msgstr "நகல் சொருகி..."
 msgid "Clear &All"
 msgstr "அனைத்தும் துடை"
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"

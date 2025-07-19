@@ -1218,7 +1218,10 @@ msgstr "&Dubliuoti papildinį..."
 msgid "Clear &All"
 msgstr "Išv&alyti viską"
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"

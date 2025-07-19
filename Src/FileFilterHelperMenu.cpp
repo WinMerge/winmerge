@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include "FileFilterHelper.h"
 #include "FileFilterHelperMenu.h"
 #include "FilterConditionDlg.h"
 #include "Merge.h"
@@ -33,6 +34,12 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			else if (command == ID_FILTERMENU_MASK_CLEAR)
 			{
 				result = _T("");
+			}
+			else if (command == ID_FILTERMENU_MASK_REMOVE_LAST)
+			{
+				std::vector<String> filterGroups = FileFilterHelper::SplitFilterGroups(masks);
+				filterGroups.pop_back();
+				result = FileFilterHelper::JoinFilterGroups(filterGroups);
 			}
 			else if (command == ID_FILTERMENU_MASK_ALL)
 			{

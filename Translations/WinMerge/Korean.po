@@ -1455,7 +1455,10 @@ msgstr "중복 플러그인(&D)..."
 msgid "Clear &All"
 msgstr "모두 지우기(&A)"
 
-msgid "&Clear File Mask"
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"
