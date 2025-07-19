@@ -8,7 +8,7 @@
 #include "TestFilterDlg.h"
 #include "resource.h"
 #include "UnicodeString.h"
-#include "FileFilterMgr.h"
+#include "FileFilterHelper.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -17,13 +17,11 @@
 /**
  * @brief Constructor.
  * @param [in] pParent Parent window.
- * @param [in] pFileFilter File filter to test.
- * @param [in] pFilterMgr File filter manager.
+ * @param [in] pFilterHelper File filter helper.
  */
-CTestFilterDlg::CTestFilterDlg(CWnd* pParent, FileFilter * pFileFilter, FileFilterMgr *pFilterMgr)
+CTestFilterDlg::CTestFilterDlg(CWnd* pParent, FileFilterHelper* pFileFilterHelper)
 : CTrDialog(CTestFilterDlg::IDD, pParent)
-, m_pFileFilter(pFileFilter)
-, m_pFileFilterMgr(pFilterMgr)
+, m_pFileFilterHelper(pFileFilterHelper)
 {
 }
 
@@ -55,7 +53,7 @@ BOOL CTestFilterDlg::OnInitDialog()
 
 	SetDlgItemFocus(IDC_TEST_TEXT);
 
-	String name = m_pFileFilterMgr->GetFilterName(m_pFileFilter);
+	String name = m_pFileFilterHelper->GetMaskOrExpression();
 	SetDlgItemText(IDC_HEADER_FILTER_NAME, name);
 	
 	return FALSE;  // return TRUE unless you set the focus to a control
@@ -88,11 +86,11 @@ bool CTestFilterDlg::CheckText(String text) const
 	{
 		// Convert any forward slashes to canonical Windows-style backslashes
 		strutils::replace(text, _T("/"), _T("\\"));
-		return m_pFileFilterMgr->TestDirNameAgainstFilter(m_pFileFilter, text);
+		return m_pFileFilterHelper->includeDir(text);
 	}
 	else
 	{
-		return m_pFileFilterMgr->TestFileNameAgainstFilter(m_pFileFilter, text);
+		return m_pFileFilterHelper->includeFile(text);
 	}
 }
 

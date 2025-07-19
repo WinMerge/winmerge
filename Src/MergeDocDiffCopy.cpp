@@ -110,10 +110,7 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView* pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView* pViewDst = m_pView[nGroup][dstPane];
-	CEPoint currentPosSrc = pViewSrc->GetCursorPos();
-	currentPosSrc.x = 0;
-	CEPoint currentPosDst = pViewDst->GetCursorPos();
-	currentPosDst.x = 0;
+	CEPoint currentPosDst{ 0, pViewDst->GetCursorPos().y };
 
 	CEPoint pt(0, 0);
 	pViewDst->SetCursorPos(pt);
@@ -198,10 +195,7 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView* pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView* pViewDst = m_pView[nGroup][dstPane];
-	CEPoint currentPosSrc = pViewSrc->GetCursorPos();
-	currentPosSrc.x = 0;
-	CEPoint currentPosDst = pViewDst->GetCursorPos();
-	currentPosDst.x = 0;
+	CEPoint currentPosDst{ 0, pViewDst->GetCursorPos().y };
 
 	CEPoint pt(0, 0);
 	pViewDst->SetCursorPos(pt);
@@ -238,7 +232,8 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 				}
 				else
 				{
-					if (!CharacterListCopy(srcPane, dstPane, activePane, firstDiff, ptStart, ptEnd, bGroupWithPrevious, false))
+					CEPoint ptEndAjusted = CEPoint(0, pdi->dend + 1);
+					if (!CharacterListCopy(srcPane, dstPane, activePane, firstDiff, ptStart, ptEndAjusted, bGroupWithPrevious, false))
 						break; // sync failure
 				}
 			}
@@ -862,7 +857,8 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 	std::vector<WordDiff> worddiffs = GetWordDiffArrayInDiffBlock(nDiff, true);
 
 	int firstWordDiff = -1;
-	if ((m_ptBuf[activePane]->GetLineFlags(ptStart.y) & LF_GHOST) == 0)
+	const int nBeginLineFlag = m_ptBuf[activePane]->GetLineFlags(ptEnd.y);
+	if ((nBeginLineFlag & LF_GHOST) == 0 && (nBeginLineFlag & LF_DIFF) != 0)
 	{
 		for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
 		{
@@ -872,7 +868,8 @@ std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int 
 		}
 	}
 	int lastWordDiff = -1;
-	if ((m_ptBuf[activePane]->GetLineFlags(ptEnd.y) & LF_GHOST) == 0)
+	const int nEndLineFlag = m_ptBuf[activePane]->GetLineFlags(ptEnd.y);
+	if ((nEndLineFlag & LF_GHOST) == 0 && (nEndLineFlag & LF_DIFF) != 0)
 	{
 		for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
 		{

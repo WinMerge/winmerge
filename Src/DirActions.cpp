@@ -1033,12 +1033,12 @@ int GetColImage(const DIFFITEM &di)
 	if (di.diffcode.isSideFirstOnly())
 		return (di.diffcode.isDirectory() ? DIFFIMG_LDIRUNIQUE : DIFFIMG_LUNIQUE);
 	if (di.diffcode.isSideSecondOnly())
-		return ((di.diffcode.diffcode & DIFFCODE::THREEWAY) == 0 ? 
+		return (!di.diffcode.isThreeway() ?
 			(di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE) :
 			(di.diffcode.isDirectory() ? DIFFIMG_MDIRUNIQUE : DIFFIMG_MUNIQUE));
 	if (di.diffcode.isSideThirdOnly())
 		return (di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
-	if ((di.diffcode.diffcode & DIFFCODE::THREEWAY) != 0)
+	if (di.diffcode.isThreeway())
 	{
 		if (!di.diffcode.exists(0))
 			return (di.diffcode.isDirectory() ? DIFFIMG_LDIRMISSING : DIFFIMG_LMISSING);
