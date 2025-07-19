@@ -69,6 +69,15 @@ void FilterExpression::UpdateTimestamp()
 	today.reset(new Poco::Timestamp(midnight.utc().timestamp()));
 }
 
+static int getErrorPosition(const FilterExpression* pCtx, const FilterLexer& lexer)
+{
+	if (pCtx->errorCode == FILTER_ERROR_UNDEFINED_IDENTIFIER)
+	{
+		return static_cast<int>(lexer.yycursor - strlen(lexer.yylval.string) - pCtx->expression.c_str());
+	}
+	return static_cast<int>(lexer.yycursor - pCtx->expression.c_str());
+}
+
 bool FilterExpression::Parse()
 {
 	Clear();
@@ -82,14 +91,14 @@ bool FilterExpression::Parse()
 		if (token < 0)
 		{
 			firstError = static_cast<FilterErrorCode>(-token);
-			errorPosition = static_cast<int>(lexer.yycursor  - expression.c_str());
+			errorPosition = getErrorPosition(this, lexer);
 			break;
 		}
 		::Parse(prs, token, lexer.yylval, this);
 		if (errorCode != 0)
 		{
 			firstError = errorCode;
-			errorPosition = static_cast<int>(lexer.yycursor - expression.c_str());
+			errorPosition = getErrorPosition(this, lexer);
 			break;
 		}
 		lexer.yycursor = lexer.YYCURSOR;
@@ -98,13 +107,12 @@ bool FilterExpression::Parse()
 	if (firstError == 0 && errorCode != 0)
 	{
 		firstError = errorCode;
-		errorPosition = static_cast<int>(lexer.yycursor - expression.c_str());
+		errorPosition = getErrorPosition(this, lexer);
 	}
 	::ParseFree(prs, free);
 	if (firstError != 0)
 		errorCode = firstError;
 	return (errorCode == 0 && rootNode != nullptr);
-
 }
 
 bool FilterExpression::Parse(const std::string& expressionStr)

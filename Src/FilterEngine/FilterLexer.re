@@ -46,16 +46,18 @@ begin:
 		return TK_DURATION_LITERAL;
 	}
 	"d\"" {
-		std::string str = UnescapeQuotes(YYCURSOR);
-		if (*(YYCURSOR - 1) != '"')
-			return LEXER_ERR_UNTERMINATED_STRING;
+		int errorCode = 0;
+		std::string str = UnescapeQuotes(YYCURSOR, errorCode);
+		if (errorCode != 0)
+			return errorCode;
 		yylval.string = DupString(str.c_str());
 		return TK_DATETIME_LITERAL;
 	}
 	"v\"" {
-		std::string str = UnescapeQuotes(YYCURSOR);
-		if (*(YYCURSOR - 1) != '"')
-			return LEXER_ERR_UNTERMINATED_STRING;
+		int errorCode = 0;
+		std::string str = UnescapeQuotes(YYCURSOR, errorCode);
+		if (errorCode != 0)
+			return errorCode;
 		yylval.string = DupString(str.c_str());
 		return TK_VERSION_LITERAL;
 	}
@@ -72,9 +74,10 @@ begin:
 		return TK_IDENTIFIER;
 	}
 	"\"" {
-		std::string str = UnescapeQuotes(YYCURSOR);
-		if (*(YYCURSOR - 1) != '"')
-			return LEXER_ERR_UNTERMINATED_STRING;
+		int errorCode = 0;
+		std::string str = UnescapeQuotes(YYCURSOR, errorCode);
+		if (errorCode != 0)
+			return errorCode;
 		yylval.string = DupString(str.c_str());
 		return TK_STRING_LITERAL;
 	}
@@ -98,8 +101,9 @@ begin:
 	*/
 }
 
-std::string FilterLexer::UnescapeQuotes(char*& str)
+std::string FilterLexer::UnescapeQuotes(char*& str, int& errorCode)
 {
+	errorCode = LEXER_ERR_UNTERMINATED_STRING;
 	std::string result;
 	while (*str != '\0')
 	{
@@ -113,6 +117,7 @@ std::string FilterLexer::UnescapeQuotes(char*& str)
 			else
 			{
 				str++;
+				errorCode = 0;
 				break;
 			}
 		}

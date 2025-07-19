@@ -22,6 +22,7 @@
 #include "Constants.h"
 #include "FilterErrorMessages.h"
 #include "FileFilterHelperMenu.h"
+#include "DirWatcher.h"
 
 using std::vector;
 
@@ -78,6 +79,7 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	ON_BN_CLICKED(IDC_FILTERFILE_DELETEBTN, OnBnClickedFilterfileDelete)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_BN_CLICKED(IDC_FILTERFILE_INSTALL, OnBnClickedFilterfileInstall)
+	ON_MESSAGE(WM_USER+1, OnFileFilterUpdated)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -326,6 +328,14 @@ void FileFiltersDlg::OnFiltersEditbtn()
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
 	String path = m_listFilters.GetItemText(sel, 2);
 	EditFileFilter(path);
+	if (!m_pDirWatcher)
+		m_pDirWatcher = std::make_unique<DirWatcher>();
+	m_pDirWatcher->Remove(sel);
+	m_pDirWatcher->Add(sel, false, path,
+		[this](const String& path, DirWatcher::ACTION action)
+		{
+			PostMessage(WM_USER + 1);
+		});
 }
 
 /**
@@ -679,5 +689,12 @@ void FileFiltersDlg::SetButtonState()
 
 	EnableDlgItem(IDC_FILTERFILE_EDITBTN, !isNone);
 	EnableDlgItem(IDC_FILTERFILE_DELETEBTN, !isNone);
+}
+
+LRESULT FileFiltersDlg::OnFileFilterUpdated(WPARAM wParam, LPARAM lParam)
+{
+	m_pFileFilterHelper->ReloadUpdatedFilters();
+	m_listFilters.Invalidate();
+	return 0;
 }
 

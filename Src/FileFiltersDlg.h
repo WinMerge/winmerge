@@ -7,11 +7,14 @@
 #pragma once
 
 #include "TrDialogs.h"
-#include <vector>
 #include "FileFilterHelper.h"
 #include "SuperComboBox.h"
 #include "ValidatingEdit.h"
 #include "FileFilterHelperMenu.h"
+#include <vector>
+#include <memory>
+
+class DirWatcher;
 
 /**
  * @brief Class for dialog allowing user to select
@@ -36,6 +39,7 @@ private:
 	CSuperComboBox m_ctlMask;
 	CValidatingEdit m_ctlMaskEdit;
 	CFileFilterHelperMenu m_menu;
+	std::unique_ptr<DirWatcher> m_pDirWatcher;
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)
@@ -77,6 +81,7 @@ protected:
 	afx_msg void OnBnClickedFilterfileDelete();
 	afx_msg void OnHelp();
 	afx_msg void OnBnClickedFilterfileInstall();
+	afx_msg LRESULT OnFileFilterUpdated(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

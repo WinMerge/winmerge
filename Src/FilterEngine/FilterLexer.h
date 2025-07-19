@@ -43,7 +43,7 @@ struct FilterLexer
 
 	int yylex();
 
-	std::string UnescapeQuotes(char*& str);
+	std::string UnescapeQuotes(char*& str, int& errorCode);
 	const char* DupString(const char* str);
 	void FreeStrings();
 
