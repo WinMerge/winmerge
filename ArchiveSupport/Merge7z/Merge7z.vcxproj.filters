@@ -249,6 +249,9 @@
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Explorer\MyMessages.h">
       <Filter>7zip Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Archive\Common\ItemNameUtils.h">
+      <Filter>7zip Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Merge7z.cpp">
@@ -468,6 +471,9 @@
       <Filter>7zip Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Explorer\MyMessages.cpp">
+      <Filter>7zip Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Archive\Common\ItemNameUtils.cpp">
       <Filter>7zip Common</Filter>
     </ClCompile>
   </ItemGroup>

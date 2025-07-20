@@ -547,6 +547,7 @@
     <None Include="revision.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Archive\Common\ItemNameUtils.h" />
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\CreateCoder.h" />
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.h" />
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.h" />
@@ -619,6 +620,7 @@
     <ClInclude Include="..\..\Externals\sevenzip\C\Threads.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Archive\Common\ItemNameUtils.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\CreateCoder.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.cpp" />

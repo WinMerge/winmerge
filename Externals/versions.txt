@@ -15,7 +15,7 @@ This file lists versions of the external components we are using.
   - rapidjson: 1.1.1
 - Google C++ Testing Framework: 1.14.0
 - GNU patch: 2.7.6-1
-- 7-zip: 24.09
+- 7-zip: 25.00
 - LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)
 - html-tidy5: 5.4.0
 - jq: 1.7.1
