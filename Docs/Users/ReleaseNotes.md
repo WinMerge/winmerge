@@ -1,145 +1,61 @@
-# WinMerge 2.16.48.2 Release Notes
+# WinMerge 2.16.49 Beta Release Notes
 
 - [About This Release](#about-this-release)
-- [What Is New in 2.16.48.2](#what-is-new-in-216482)
-- [What Is New in 2.16.48](#what-is-new-in-21648)
-- [What Is New in 2.16.47 beta?](#what-is-new-in-21647-beta)
+- [What Is New in 2.16.49 beta?](#what-is-new-in-21649-beta)
 - [Known issues](#known-issues)
 
-April 2025
+July 2025
 
 ## About This Release
 
-This is a WinMerge 2.16.48.2 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.48.2
+## What Is New in 2.16.49 Beta
 
-### Installer
+## General
 
-- BugFix: Installing as "NT Authority/SYSTEM" does not work on some langauges. (#2752, #2758)
+- [Enhancement] Tab Switching and Tab Bar Scrolling with Mouse Wheel (PR #2821)
 
-## What Is New in 2.16.48
+### Appearance
 
-### General
-
-- BugFix: Setting the toolbar icons to "Extra Large" cannot save the settings.
-    (#2748)
-- FR: Add `Ctrl+,` keyboard shortcut to open Options dialog box (#2705)
-- Update Merge.rc (PR #2711)
+- Use themed size grip, use toolbar's tooltips instead of controls bar's
+    (PR #2769)
 
 ### File compare
 
- - BugFix: [BUG} Phantom line added when identical blocks of text pasted
-     (#2702)
- - BugFix: Fixed crash when quitting WinMerge while the search dialog is open
- - Syntax/Pascal: Add initialization and finalization (PR #2719)
- - Syntax/Pascal: Support multiline strings (PR #2720)
+- [Enhancement] Enable/disable automatic navigation to a line when clicking on
+    the Location Panel (PR #2827)
 
 ### Folder compare
 
-- BugFix: Unable to compare files with zero mtime using
-    "Modified Date and Size" (#2714)
-- BugFix: Windows7 Winmerge v2.16.46.0 crash prone 
-    (#1 WinMerge crashes after successfully deleting files.) (#2746)
-
-### Webpage compare
-
- - BugFix: Fixed an issue where comparisons could fail when tab characters
-     were present.
- - BugFix: Fixed incorrect line wrapping in certain HTML elements.
- - BugFix: Fixed an issue where differences within \<pre\> elements could appear
-     concatenated instead of on separate lines.
-
-### Plugins
-
- - BugFix: ApacheTika and PlantUML plugins: Fixed issue where no error message
-     was displayed when execution failed (#715)
- - BugFix: ApacheTika plugin: Fixed failure to run when the filename contained 
-     non-alphanumeric characters (now uses the short filename instead) (#715)
- - AIConvertText plugin: Added models gpt-4.1, gpt-4.1-mini, and gpt-4.1-nano
-
-### Translations
-
-- Translation updates:
-  - Brazilian (PR #2706,#2715,#2726)
-  - Chinese Simplified (PR #2710,#2730)
-  - Corsican (PR #2722)
-  - French (PR #2716)
-  - Hungarian (PR #2703,#2713,#2724)
-  - Italian (PR #2704,#2723,#2737)
-  - Japanese
-  - Lithuanian (PR #2708)
-
-## What Is New in 2.16.47 Beta
-
-### General
-
-- BugFix: /inifile won't work with root directory (#2635)
-- BugFix: "Another application has updated" message when window is deactivated
-    (#2668)
-- Reduced flickering of title bar buttons and the status bar.
-- Rewrite English.pot, add JXL image extension (PR #2682)
-- Add Output Pane for Logs and Messages (PR #2663)
-
-### File compare
-
-- BugFix: Fixed an issue where $ in regular expressions in Substitution filters
-    didn't work correctly with "Ignore carriage return differences" enabled.
-    (#2640)
-- BugFix: Syntax highlighting of Python multiline strings failed on lines > 1
-    (#2643)
-- BugFix: Fixed an issue where "&" appeared as an underline in the status bar
-    when using both Unpacker and Prediffer plugins.
-- BugFix: Sync Codepage Settings on Options and Diff Window (#2678)
-- Update C syntax highlighting keyword list. (PR #2669)
-
-### Image compare
-
-- Rewrite English.pot, add JXL image extension (PR #2682)
+- Add the feature to compare multiple files in one action in the folder compare
+    window requested in #324. (PR #2825)
 
 ### Options dialog
 
-- BugFix: Fixed an issue where ShellExtensionU.dll was not properly
-    unregistered when clicking the Unregister shell extension button in the
-    Shell Integration options. (#2419)
-- Modify the "Options (Compare > Image)" dialog. (PR #2655)
-
-### Color schemes
-
-- Add Visual Studio Dark color scheme (PR #2634)
-- Twilight - new dark theme (PR #2694)
-
-### Installer
-
-- BugFix: Context menu not working if installed from non-elevated (non admin)
-    user on win 10 x64 (#2638) (PR #2639)
-
-### Manual
-
-- Help pages -> Appendix A. Shortcut keys (#2659)
+- BugFix: [Bug Fix] Enable/disable 'Switch to ...' options in Compare > Folder page
+    (PR #2819) 
 
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR #2675,#2688,#2697)
-  - Chinese Simplified (PR #2700) 
-  - Corsican (PR #2632,#2676)
-  - Hebrew (PR #2673)
-  - Italian (PR #2689,#2689)
+  - Brazilian (PR #2829)
+  - Bulgarian (PR #2763)
+  - Chinese Simplified (PR #2831,#2838)
+  - Corsican (PR #2844)
+  - French (PR #2754,#2761,#2762)
+  - Hungarian (PR #2836)
+  - Italian (PR #2832)
   - Japanese
-  - Polish (PR #2671)
-  - Portuguese (PR #2650,#2695)
-  - Swedish (PR #2679)
-  - Turkish (PR #2636)
-
-### Internals
-
-- BugFix: Fix build in VS2022 17.13.0 (PR #2645)
-- BugFix: Use zopflipng to reduce size of splash.png (PR #2646)
-- README major update, Twilight theme minor edit (PR #2696)
+  - Korean (PR #2766)
+  - Lithuanian (PR #2799,#2805,#2826,#2830)
+  - Portuguese (PR #2768)
+  - Russian (PR #2760,#2840)
+  - Tamil (PR #2812,#2813)
+  - Turkish (PR #2782)
 
 ## Known issues
 

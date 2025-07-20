@@ -1,4 +1,49 @@
 # Change log
+
+## WinMerge 2.16.49 - 2025-07-21
+
+## General
+
+- [Enhancement] Tab Switching and Tab Bar Scrolling with Mouse Wheel (PR #2821)
+
+### Appearance
+
+- Use themed size grip, use toolbar's tooltips instead of controls bar's
+    (PR #2769)
+
+### File compare
+
+- [Enhancement] Enable/disable automatic navigation to a line when clicking on
+    the Location Panel (PR #2827)
+
+### Folder compare
+
+- Add the feature to compare multiple files in one action in the folder compare
+    window requested in #324. (PR #2825)
+
+### Options dialog
+
+- BugFix: [Bug Fix] Enable/disable 'Switch to ...' options in Compare > Folder page
+    (PR #2819) 
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2829)
+  - Bulgarian (PR #2763)
+  - Chinese Simplified (PR #2831,#2838)
+  - Corsican (PR #2844)
+  - French (PR #2754,#2761,#2762)
+  - Hungarian (PR #2836)
+  - Italian (PR #2832)
+  - Japanese
+  - Korean (PR #2766)
+  - Lithuanian (PR #2799,#2805,#2826,#2830)
+  - Portuguese (PR #2768)
+  - Russian (PR #2760,#2840)
+  - Tamil (PR #2812,#2813)
+  - Turkish (PR #2782)
+
 ## WinMerge 2.16.48.2 - 2025-04-29
 
 ### Installer
