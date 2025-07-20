@@ -157,7 +157,7 @@ static std::vector<String> GetPresetFiltersFromLastGroup(const String& filterExp
 	for (const auto& part : parts)
 	{
 		const String partTrimmed = strutils::trim_ws(String(part.data(), part.length()));
-		if (partTrimmed.substr(0, 3) == _T("fp:"))
+		if (partTrimmed.substr(0, 3) == _T("pf:"))
 			presetFilters.push_back(partTrimmed.substr(3));
 	}
 	return presetFilters;
@@ -175,7 +175,7 @@ static String RemovePresetFiltersFromLastGroup(const String& filterExpression)
 	for (const auto& part : parts)
 	{
 		const String partTrimmed = strutils::trim_ws(String(part.data(), part.length()));
-		if (partTrimmed.substr(0, 3) != _T("fp:"))
+		if (partTrimmed.substr(0, 3) != _T("pf:"))
 			result.push_back(partTrimmed);
 	}
 	filterGroups.back() = strutils::join(result.begin(), result.end(), _T(";"));
@@ -196,7 +196,7 @@ static String AddPresetFiltersToLastGroup(const String& mask, const CListCtrl& l
 		{
 			if (!result.empty())
 				result += _T(";");
-			result += _T("fp:") + list.GetItemText(i, 0);
+			result += _T("pf:") + list.GetItemText(i, 0);
 		}
 	}
 	filterGroups.back() = result;

@@ -102,7 +102,7 @@ void FileFilterHelper::SetMaskOrExpression(const String& strMask)
 	String flt = strutils::trim_ws(strMask);
 	String path = GetFileFilterPath(flt);
 	if (!path.empty())
-		flt = _T("fp:") + flt;
+		flt = _T("pf:") + flt;
 
 	m_sMask = flt;
 	m_filterGroups = ParseExtensions(m_sMask);
@@ -390,7 +390,7 @@ static std::size_t findSeparator(const String& str, String& prefix, std::size_t 
 	bool allowOnlyBasicSeparators = false;
 	while (startPos < str.size() && str[startPos] == ' ')
 		++startPos;
-	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("fe!:"), _T("de!:"), _T("fp:") };
+	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("fe!:"), _T("de!:"), _T("pf:") };
 	for (const auto& pf : prefixes)
 	{
 		if (str.compare(startPos, pf.size(), pf) == 0)
@@ -567,7 +567,7 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 				else if (prefix == _T("de!:"))
 					pRegexOrExpressionFilter->AddFilterExpression(
 						&pRegexOrExpressionFilter->dirExpressionFiltersExclude, token, 0);
-				else if (prefix == _T("fp:"))
+				else if (prefix == _T("pf:"))
 				{
 					const String path = GetFileFilterPath(token);
 					if (!path.empty())

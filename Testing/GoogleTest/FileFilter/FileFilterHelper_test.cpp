@@ -169,7 +169,7 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
 
 
-		m_fileFilterHelper.SetMaskOrExpression(_T("fp:simple include dir"));
+		m_fileFilterHelper.SetMaskOrExpression(_T("pf:simple include dir"));
 
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
@@ -312,7 +312,7 @@ namespace
 
 	TEST_F(FileFilterHelperTest, Error)
 	{
-		m_fileFilterHelper.SetMaskOrExpression(_T("fp:error include"));
+		m_fileFilterHelper.SetMaskOrExpression(_T("pf:error include"));
 		EXPECT_EQ((size_t)8, m_fileFilterHelper.GetErrorList().size());
 	}
 
