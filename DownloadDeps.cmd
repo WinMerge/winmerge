@@ -12,10 +12,10 @@ set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
 https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.18.7.0/ShellExtension-1.18.7.0.zip!Build ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2409.0/Merge7z2409.0-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2409.0/Merge7z2409.0-x64.zip!Build\X64\Release ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2409.0/Merge7z2409.0-ARM.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2409.0/Merge7z2409.0-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-x64.zip!Build\X64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-ARM.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.16-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.16-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.16-ARM.zip!Build\ARM\Release ^

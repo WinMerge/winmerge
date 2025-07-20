@@ -303,7 +303,7 @@ msgid "&Scroll"
 msgstr "&Görgetés"
 
 msgid "&Click"
-msgstr ""
+msgstr "&Kattintás"
 
 msgid "&Input"
 msgstr "&Bevitel"
