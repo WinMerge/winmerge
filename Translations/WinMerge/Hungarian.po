@@ -302,7 +302,7 @@ msgstr "&Engedélyezve"
 msgid "&Scroll"
 msgstr "&Görgetés"
 
-msgid "&"
+msgid "&Click"
 msgstr "&Kattintás"
 
 msgid "&Input"
