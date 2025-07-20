@@ -53,6 +53,16 @@ TEST_P(FilterExpressionTest, Literals)
 	// Verify that the filter expression correctly parses and evaluates literals.
 	EXPECT_TRUE(fe.Parse("123 == 123"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("123 == 101 + 11 * 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("123 == 134 - 22 / 2"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("123 == 121 + 8 % 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("123 == 123"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("123 == 123"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("123 == 124"));
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("2 < 3"));
@@ -81,6 +91,8 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025-05-27\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" - d\"2025-05-25\" == 2days"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025/05/27\""));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -115,6 +127,8 @@ TEST_P(FilterExpressionTest, Literals)
 
 	EXPECT_TRUE(fe.Parse("\"abc\" == \"abc\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abcde\" == \"ab\" + \"cde\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("\"abc\" == \"abd\""));
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("\"abb\" < \"abc\""));
@@ -137,6 +151,8 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("\"abc\" >= \"abd\""));
 	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc\" = \"abd\""));
+	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0, 4) = \"abcd\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0, 5) = \"abcd\""));
@@ -152,6 +168,16 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -2, 2) = \"cd\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -5, 2) = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0, -3) = \"a\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 1, -2) = \"b\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -3, -2) = \"b\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -3, -3) = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(\"abcd\", -3, -4) = \"\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("substr(\"abcd\", 0) = \"abcd\""));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -187,9 +213,9 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Parse("v\"2.16.49\" >= v\"2.16.49\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
-	EXPECT_TRUE(fe.Parse("1weeks == 7days"));
+	EXPECT_TRUE(fe.Parse("1weeks == 10days - 3days"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("1week == 7day"));
+	EXPECT_TRUE(fe.Parse("1week == 6days + 1days"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1w == 7d"));
 	EXPECT_TRUE(fe.Evaluate(di));

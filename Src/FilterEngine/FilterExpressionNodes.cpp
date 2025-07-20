@@ -28,7 +28,7 @@ static std::optional<bool> evalAsBool(const ValueType& val)
 	if (boolVal) return *boolVal;
 
 	auto ary = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&val);
-	if (ary)
+	if (ary && *ary)
 	{
 		const auto& vec = *ary->get();
 		return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
@@ -272,13 +272,13 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 			return new BoolLiteral(result);
 		}
 
-		Poco::Timestamp result;
+		int64_t  result;
 		switch (op)
 		{
 		case TK_MINUS: result = lDateTime->value - rDateTime->value; break;
 		default: return nullptr;
 		}
-		return new DateTimeLiteral(result);
+		return new IntLiteral(result);
 	}
 	if (lDateTime && rInt)
 	{
@@ -361,7 +361,7 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 					if (op == TK_LE) return Poco::icompare(*lvalString, *rvalString) <= 0;
 					if (op == TK_GT) return Poco::icompare(*lvalString, *rvalString) > 0;
 					if (op == TK_GE) return Poco::icompare(*lvalString, *rvalString) >= 0;
-					if (op == TK_PLUS) return *rvalString + *lvalString;
+					if (op == TK_PLUS) return *lvalString + *rvalString;
 					if (op == TK_CONTAINS)
 					{
 						auto searcher = std::boyer_moore_horspool_searcher(
@@ -840,12 +840,15 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	int64_t s = *start;
 	if (s < 0)
 		s += static_cast<int64_t>(str->length());
-	if (s < 0 || s > str->length())
+	if (s < 0 || s >= str->length())
 		return std::string{};
 
 	if (!len)
 		return str->substr(s);
-	return str->substr(s, static_cast<size_t>(*len));
+	int64_t actualLen = (*len >= 0) ? *len : static_cast<int64_t>(str->length()) - s + *len;
+	if (actualLen < 0)
+		actualLen = 0;
+	return str->substr(s, static_cast<size_t>(actualLen));
 }
 
 static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -887,7 +890,7 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 	if ((!contentref && !contentrefArray) || !start)
 		return std::monostate{};
 
-	if (contentrefArray)
+	if (contentrefArray && *contentrefArray)
 	{
 		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
 		for (const auto& item : *contentrefArray->get())
@@ -900,7 +903,9 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 		return result;
 
 	}
-	return contentref->get()->Sublines(*start, len ? *len : -1);
+	if (contentref && *contentref)
+		return contentref->get()->Sublines(*start, len ? *len : -1);
+	return std::monostate{};
 }
 
 static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1104,7 +1109,7 @@ ExprNode* FunctionNode::Optimize()
 	{
 		if (auto intLit = args ? dynamic_cast<IntLiteral*>((*args)[0]) : nullptr)
 		{
-			auto* result = new IntLiteral(std::get<int64_t>(func(nullptr, di, args)));
+			auto* result = new IntLiteral(std::get<int64_t>(func(ctxt, di, args)));
 			delete this;
 			return result;
 		}
@@ -1113,7 +1118,7 @@ ExprNode* FunctionNode::Optimize()
 	{
 		if (args && dynamic_cast<StringLiteral*>((*args)[0]))
 		{
-			auto* result = new IntLiteral(std::get<int64_t>(func(nullptr, di, args)));
+			auto* result = new IntLiteral(std::get<int64_t>(func(ctxt, di, args)));
 			delete this;
 			return result;
 		}
@@ -1123,7 +1128,7 @@ ExprNode* FunctionNode::Optimize()
 		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<IntLiteral*>((*args)[1])
 			&& (args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])))
 		{
-			auto* result = new StringLiteral(std::get<std::string>(func(nullptr, di, args)));
+			auto* result = new StringLiteral(std::get<std::string>(func(ctxt, di, args)));
 			delete this;
 			return result;
 		}
@@ -1132,7 +1137,7 @@ ExprNode* FunctionNode::Optimize()
 	{
 		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<StringLiteral*>((*args)[2]) && dynamic_cast<StringLiteral*>((*args)[2]))
 		{
-			auto* result = new StringLiteral(std::get<std::string>(func(nullptr, di, args)));
+			auto* result = new StringLiteral(std::get<std::string>(func(ctxt, di, args)));
 			delete this;
 			return result;
 		}
@@ -1141,7 +1146,7 @@ ExprNode* FunctionNode::Optimize()
 	{
 		if (auto dtLit = args ? dynamic_cast<DateTimeLiteral*>((*args)[0]) : nullptr)
 		{
-			auto* result = new DateTimeLiteral(std::get<Poco::Timestamp>(func(nullptr, di, args)));
+			auto* result = new DateTimeLiteral(std::get<Poco::Timestamp>(func(ctxt, di, args)));
 			delete this;
 			return result;
 		}
