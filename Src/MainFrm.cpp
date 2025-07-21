@@ -812,11 +812,9 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 	}
 	FileFilterHelper filterImg, filterBin;
 	const String& imgPatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);
-	filterImg.UseMask(true);
-	filterImg.SetMask(imgPatterns);
+	filterImg.SetMaskOrExpression(imgPatterns);
 	const String& binPatterns = GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS);
-	filterBin.UseMask(true);
-	filterBin.SetMask(binPatterns);
+	filterBin.SetMaskOrExpression(binPatterns);
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
 		if (CWebPageDiffFrame::MatchURLPattern(ifileloc[pane].filepath))
@@ -1269,7 +1267,11 @@ static bool AddToRecentDocs(const PathContext& paths,
 	if (recurse.has_value())
 		params += *recurse ? _T("/r ") : _T("/r- ");
 	if (!filter.empty())
-		params += _T("/f \"") + filter + _T("\" ");
+	{
+		String filter2 = filter;
+		strutils::replace(filter2, _T("\""), _T("\"\""));
+		params += _T("/f \"") + filter2 + _T("\" ");
+	}
 	switch (nID)
 	{
 	case ID_MERGE_COMPARE_TEXT:  params += _T("/t text "); break;
@@ -1493,7 +1495,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	if (pFiles != nullptr && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
 	{
 		String filter = (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR) ?
-			theApp.GetGlobalFileFilter()->GetFilterNameOrMask() : _T("");
+			theApp.GetGlobalFileFilter()->GetMaskOrExpression() : _T("");
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, bRecurse, filter, infoUnpacker, infoPrediffer, nID, pOpenParams);
 	}
 
@@ -2098,9 +2100,8 @@ void CMainFrame::OnToolsFilters()
 	FileFiltersDlg fileFiltersDlg;
 	auto lineFilters = std::make_unique<LineFiltersList>(LineFiltersList());
 	auto SubstitutionFilters = std::make_unique<SubstitutionFiltersList>(SubstitutionFiltersList());
-	String selectedFilter;
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
-	const String origFilter = pGlobalFileFilter->GetFilterNameOrMask();
+	const String origFilter = pGlobalFileFilter->GetMaskOrExpression();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
 	sht.AddPage(&substitutionFiltersDlg);
@@ -2109,8 +2110,7 @@ void CMainFrame::OnToolsFilters()
 	// Make sure all filters are up-to-date
 	pGlobalFileFilter->ReloadUpdatedFilters();
 
-	fileFiltersDlg.SetFilterArray(pGlobalFileFilter->GetFileFilters(selectedFilter));
-	fileFiltersDlg.SetSelected(selectedFilter);
+	fileFiltersDlg.SetFileFilterHelper(pGlobalFileFilter);
 	const bool lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
@@ -2124,28 +2124,8 @@ void CMainFrame::OnToolsFilters()
 
 	if (sht.DoModal() == IDOK)
 	{
-		String strNone = _("<None>");
-		String path = fileFiltersDlg.GetSelected();
-		if (!path.empty())
-		{
-			if (path.find(strNone) != String::npos)
-			{
-				// Don't overwrite mask we already have
-				if (!pGlobalFileFilter->IsUsingMask())
-				{
-					String sFilter(_T("*.*"));
-					pGlobalFileFilter->SetFilter(sFilter);
-					GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
-				}
-			}
-			else
-			{
-				pGlobalFileFilter->SetFileFilterPath(path);
-				pGlobalFileFilter->UseMask(false);
-				String sFilter = pGlobalFileFilter->GetFilterNameOrMask();
-				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
-			}
-		}
+		String sFilter = pGlobalFileFilter->GetMaskOrExpression();
+		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
 
@@ -2168,7 +2148,7 @@ void CMainFrame::OnToolsFilters()
 		}
 		else if (frame == FRAME_FOLDER)
 		{
-			const String newFilter = pGlobalFileFilter->GetFilterNameOrMask();
+			const String newFilter = pGlobalFileFilter->GetMaskOrExpression();
 			if (lineFiltersEnabledOrig != linefiltersEnabled || 
 					!theApp.m_pLineFilters->Compare(lineFilters.get()) || origFilter != newFilter)
 			{
@@ -2553,7 +2533,7 @@ void CMainFrame::OnSaveProject()
 			}
 			pOpenDoc->m_files = paths;
 			pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-			pOpenDoc->m_strExt = theApp.GetGlobalFileFilter()->GetFilterNameOrMask();
+			pOpenDoc->m_strExt = theApp.GetGlobalFileFilter()->GetMaskOrExpression();
 			pOpenDoc->m_strUnpackerPipeline = pMergeDoc->GetUnpacker() ? pMergeDoc->GetUnpacker()->GetPluginPipeline() : _T("");
 			pOpenDoc->m_strPredifferPipeline = pMergeDoc->GetPrediffer() ? pMergeDoc->GetPrediffer()->GetPluginPipeline() : _T("");
 			switch (frame)
@@ -2601,7 +2581,7 @@ void CMainFrame::OnSaveProject()
 				pOpenDoc->m_strDesc[pane] = pDoc->GetDescription(pane);
 			}
 			pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
-			pOpenDoc->m_strExt = static_cast<FileFilterHelper*>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
+			pOpenDoc->m_strExt = static_cast<FileFilterHelper*>(ctxt.m_piFilterGlobal)->GetMaskOrExpression();
 			pOpenDoc->m_hiddenItems = ctxt.m_vCurrentlyHiddenItems;
 		}
 	}

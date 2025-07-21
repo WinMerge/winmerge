@@ -28,6 +28,9 @@
     <Filter Include="TestData\DirWatcher\Subdir1">
       <UniqueIdentifier>{3068dbe3-428a-4a24-aedf-8eed46f308c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Filters">
+      <UniqueIdentifier>{cb88fcf0-76e5-4193-8733-6bb0813ca17b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Src\charsets.c">
@@ -312,6 +315,18 @@
     <ClCompile Include="..\..\..\Src\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\DiffContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\VersionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\FileFlags.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\charsets.h">
@@ -467,6 +482,15 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Src\DiffContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\Common\VersionInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\FileFlags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\TestData\LeftAndRight.WinMerge">
@@ -486,6 +510,15 @@
     </None>
     <None Include="..\TestData\SimpleRight.WinMerge">
       <Filter>TestData</Filter>
+    </None>
+    <None Include="..\FileFilter\Filters\error_include.flt">
+      <Filter>Filters</Filter>
+    </None>
+    <None Include="..\FileFilter\Filters\simple_include_dir.flt">
+      <Filter>Filters</Filter>
+    </None>
+    <None Include="..\FileFilter\Filters\simple_include_file.flt">
+      <Filter>Filters</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

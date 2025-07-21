@@ -14,6 +14,9 @@
 class FileFilterMgr;
 class FilterList;
 struct FileFilter;
+class DIFFITEM;
+class CDiffContext;
+struct FileFilterErrorInfo;
 
 /**
  * @brief File extension of file filter files.
@@ -40,8 +43,12 @@ struct FileFilterInfo
 class IDiffFilter
 {
 public:
+	virtual void SetDiffContext(const CDiffContext* pCtxt) = 0;
+	virtual std::vector<const FileFilterErrorInfo*> GetErrorList() const = 0;
 	virtual bool includeFile(const String& szFileName) const = 0;
+	virtual bool includeFile(const DIFFITEM& di) const = 0;
 	virtual bool includeDir(const String& szDirName) const = 0;
+	virtual bool includeDir(const DIFFITEM& di) const = 0;
 	bool includeFile(const String& szFileName1, const String& szFileName2) const
 	{
 		if (!szFileName1.empty())
@@ -109,41 +116,49 @@ public:
 	String GetGlobalFilterPathWithCreate() const;
 	String GetUserFilterPathWithCreate() const;
 
-	FileFilterMgr * GetManager() const;
-	void SetFileFilterPath(const String& szFileFilterPath);
-	std::vector<FileFilterInfo> GetFileFilters(String & selected) const;
+	FileFilterMgr* GetManager() const;
+	std::vector<FileFilterInfo> GetFileFilters() const;
 	String GetFileFilterName(const String& filterPath) const;
 	String GetFileFilterPath(const String& filterName) const;
-	void SetUserFilterPath(const String & filterPath);
+	void SetUserFilterPath(const String& filterPath);
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
 
 	void LoadFileFilterDirPattern(const String& dir, const String& szPattern);
 
-	void UseMask(bool bUseMask);
-	void SetMask(const String& strMask);
+	String GetMaskOrExpression() const { return m_sMask; }
+	void SetMaskOrExpression(const String& strMask);
 
-	bool IsUsingMask() const;
-	String GetFilterNameOrMask() const;
-	bool SetFilter(const String &filter);
+	static std::vector<String> SplitFilterGroups(const String& filterGroups);
+	static String JoinFilterGroups(const std::vector<String>& filterGroups);
 
+	void SetDiffContext(const CDiffContext* pCtxt) override;
+	std::vector<const FileFilterErrorInfo*> GetErrorList() const override;
 	bool includeFile(const String& szFileName) const override;
+	bool includeFile(const DIFFITEM& di) const override;
 	bool includeDir(const String& szDirName) const override;
+	bool includeDir(const DIFFITEM& di) const override;
 
 	void CloneFrom(const FileFilterHelper* pHelper);
 
+
 protected:
-	std::tuple<String, String, String, String> ParseExtensions(const String &extensions) const;
+	struct FilterGroup
+	{
+		std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
+		std::unique_ptr<FilterList> m_pMaskFileFilterExclude; /*< Filter for filemasks (*.cpp) */
+		std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
+		std::unique_ptr<FilterList> m_pMaskDirFilterExclude;  /*< Filter for dirmasks */
+		std::shared_ptr<FileFilter> m_pRegexOrExpressionFilter;
+		std::shared_ptr<FileFilter> m_pRegexOrExpressionFilterExclude;
+	};
+	std::vector<FilterGroup> ParseExtensions(const String& extensions) const;
 
 private:
-	std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
-	std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
-	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
+	std::vector<FilterGroup> m_filterGroups; /*< List of filter groups, each with its own filters */
 	std::unique_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
-	String m_sFileFilterPath;        /*< Path to current filter */
 	String m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
-	bool m_bUseMask;   /*< If `true` file mask is used, filter otherwise */
 	String m_sGlobalFilterPath;    /*< Path for shared filters */
 	String m_sUserSelFilterPath;     /*< Path for user's private filters */
 };
@@ -155,12 +170,3 @@ inline FileFilterMgr * FileFilterHelper::GetManager() const
 {
 	return m_fileFilterMgr.get();
 }
-
-/**
- * @brief Returns true if active filter is a mask.
- */
-inline bool FileFilterHelper::IsUsingMask() const
-{
-	return m_bUseMask;
-}
-

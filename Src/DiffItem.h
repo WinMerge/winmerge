@@ -137,7 +137,11 @@ public:
 	}
 	bool existAll() const
 	{
-		return ((diffcode & DIFFCODE::THREEWAY) ? DIFFCODE::ALL : DIFFCODE::BOTH) == (diffcode & DIFFCODE::ALL);
+		return (isThreeway() ? DIFFCODE::ALL : DIFFCODE::BOTH) == (diffcode & DIFFCODE::ALL);
+	}
+	bool isThreeway() const
+	{
+		return (diffcode & DIFFCODE::THREEWAY) != 0;
 	}
 
 	// compare result

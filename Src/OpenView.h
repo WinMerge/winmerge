@@ -19,6 +19,8 @@
 #include "PathContext.h"
 #include "CMoveConstraint.h"
 #include "TrDialogs.h"
+#include "ValidatingEdit.h"
+#include "FileFilterHelperMenu.h"
 #include <array>
 
 class ProjectFile;
@@ -45,9 +47,11 @@ public:
 	//{{AFX_DATA(COpenView)
 	enum { IDD = IDD_OPEN };
 	CSuperComboBox	m_ctlExt;
+	CValidatingEdit	m_ctlExtEdit;
 	CSuperComboBox	m_ctlPath[3];
 	CSuperComboBox	m_ctlUnpackerPipeline;
 	CSuperComboBox	m_ctlPredifferPipeline;
+	CFileFilterHelperMenu m_menu;
 	String m_strPath[3];
 	bool m_bReadOnly[3];
 	PathContext m_files;
@@ -126,6 +130,8 @@ protected:
 	afx_msg void OnSaveProject();
 	template<UINT id, UINT popupid>
 	afx_msg void OnDropDown(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnExtEditChange();
+	afx_msg void OnSelectFilterDropDown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnSelchangePathCombo(UINT nID);
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);

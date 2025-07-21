@@ -181,6 +181,7 @@
     <Import Project="diffutils\diffutils.vcxitems" Label="Shared" />
     <Import Project="CompareEngines\CompareEngines.vcxitems" Label="Shared" />
     <Import Project="..\Externals\crystaledit\editlib\editlibparsers.vcxitems" Label="Shared" />
+    <Import Project="FilterEngine\FilterEngine.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -928,6 +929,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="Common\SysColorHook.cpp" />
+    <ClCompile Include="Common\ValidatingEdit.cpp" />
     <ClCompile Include="Concurrent.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -943,6 +945,12 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="EditPluginDlg.cpp" />
+    <ClCompile Include="FileFilterHelperMenu.cpp" />
+    <ClCompile Include="FilterConditionDlg.cpp" />
+    <ClCompile Include="FilterErrorMessages.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="FrameWndHelper.cpp" />
     <ClCompile Include="InternalPlugins.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -956,6 +964,10 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClInclude Include="Common\ValidatingEdit.h" />
+    <ClInclude Include="FileFilterHelperMenu.h" />
+    <ClInclude Include="FilterConditionDlg.h" />
+    <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FrameWndHelper.h" />
     <ClInclude Include="Logger.h">
       <FileType>CppCode</FileType>

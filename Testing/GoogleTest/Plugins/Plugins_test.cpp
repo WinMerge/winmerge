@@ -59,6 +59,7 @@ namespace
 		ppi->FetchPluginInfos(_T("../../Data/Office/excel.xls|../../Data/Office/excel.xls"), &iu, &ip);
 		String file = paths::ConcatPath(oldModulePath, _T("..\\..\\Data\\Office\\excel.xls"));
 		iu->Unpacking(0, &subcodes, file, _T(".*\\.xls"), { file });
+		env::SetProgPath(oldModulePath);
 	}
 
 	TEST_F(PluginsTest, ParsePluginPipeline)
