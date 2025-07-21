@@ -51,18 +51,41 @@ bar&#39;s (PR #2769)</li>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
+<li>BugFix: Fixed crash when copying multiple selected diff hunks</li>
+<li>Syntax parser for Pascal should be extended to support compiler
+directives (#2814)</li>
 <li>[Enhancement] Enable/disable automatic navigation to a line when
 clicking on the Location Panel (PR #2827)</li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
+<li>BugFix: WinMerge shows the timestamp of the non-existent file
+(#2764)</li>
+<li>BugFix: Manual Refresh of a single folder undoes the comparison for
+most other folders randomly (#2792)</li>
 <li>Add the feature to compare multiple files in one action in the
 folder compare window requested in #324. (PR #2825)</li>
+<li>Improve filter system: expression support and UI enhancements (PR
+#2802)</li>
 </ul>
 <h3 id="options-dialog">Options dialog</h3>
 <ul>
 <li>BugFix: [Bug Fix] Enable/disable &#39;Switch to ...&#39; options in Compare
 &gt; Folder page (PR #2819)</li>
+</ul>
+<h3 id="command-line">Command line</h3>
+<ul>
+<li>BugFix: Fixed failure to compare files with relative paths when /s
+option is used from a different current directory than the running
+WinMerge process</li>
+</ul>
+<h3 id="archive-support">Archive support</h3>
+<ul>
+<li>Update 7-Zip to 25.00</li>
+</ul>
+<h3 id="installer">Installer</h3>
+<ul>
+<li>Installer - Windows &quot;Programs and Features&quot; name (#2798)</li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
@@ -70,19 +93,25 @@ folder compare window requested in #324. (PR #2825)</li>
 <ul>
 <li>Brazilian (PR #2829)</li>
 <li>Bulgarian (PR #2763)</li>
-<li>Chinese Simplified (PR #2831,#2838)</li>
+<li>Chinese Simplified (PR #2831)</li>
+<li>Chinese Traditional (PR #2838)</li>
 <li>Corsican (PR #2844)</li>
 <li>French (PR #2754,#2761,#2762)</li>
 <li>Hungarian (PR #2836)</li>
 <li>Italian (PR #2832)</li>
 <li>Japanese</li>
-<li>Korean (PR #2766)</li>
+<li>Korean (PR #2766,#2845)</li>
 <li>Lithuanian (PR #2799,#2805,#2826,#2830)</li>
 <li>Portuguese (PR #2768)</li>
 <li>Russian (PR #2760,#2840)</li>
+<li>Swedish</li>
 <li>Tamil (PR #2812,#2813)</li>
 <li>Turkish (PR #2782)</li>
 </ul></li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>Fix syntax warning in GetTranslationsStatus.py (PR #2751)</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>
