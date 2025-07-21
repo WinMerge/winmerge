@@ -127,3 +127,7 @@ Src/MergeAppLib_i.c
 Src/MergeAppLib_p.c
 Src/dlldata.c
 /Testing/PluginTests/result
+.idea/
+*.testdurations
+*.lastcodeanalysissucceeded
+*.lib
