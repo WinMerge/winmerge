@@ -9,15 +9,13 @@
 # * sheppaul <sheppaul at gmail.com>
 # * teamzamong <teamzamong at gmail.com>
 # * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
-# * cynilyn <cynilyn at gmail.com>
-# * gro00 <gheong.ro at gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2025-05-01 17:18+0900\n"
+"PO-Revision-Date: 2025-07-21 17:18+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -1290,7 +1288,7 @@ msgid "G&o to Diff"
 msgstr "차이점으로 이동(&O)"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "클릭 시 커서 이동(&C)"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -2918,7 +2916,7 @@ msgstr "예"
 
 #, c-format
 msgid "No"
-msgstr "아니오"
+msgstr "아니요"
 
 #, c-format
 msgid "Plugins"
@@ -3253,11 +3251,11 @@ msgstr "모두 예(&A)"
 
 #, c-format
 msgid "&No"
-msgstr "아니오(&N)"
+msgstr "아니요(&N)"
 
 #, c-format
 msgid "No to a&ll"
-msgstr "모두 아니오(&L)"
+msgstr "모두 아니요(&L)"
 
 #, c-format
 msgid "&Continue"
@@ -3528,7 +3526,7 @@ msgid ""
 msgstr ""
 "필터가 업데이트되었습니다. 열려 있는 모든 폴더 비교를 새로 고치시겠습니까?\n"
 "\n"
-"모든 비교를 새로 고치지 않으려면 지금 '아니오'를 선택하고 나중에 비교를 새로 고치면 됩니다."
+"모든 비교를 새로 고치지 않으려면 지금 '아니요'를 선택하고 나중에 비교를 새로 고치면 됩니다."
 
 #, c-format
 msgid "Folder Comparison Results"
@@ -3728,7 +3726,7 @@ msgstr "변경 내용을 %1에 저장하시겠습니까?"
 
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
-msgstr "%1은(는) 읽기 전용입니다. 재정의하시겠습니까? 아니면 새 파일 이름으로 저장하려면 '아니오'를 선택하시겠습니까?"
+msgstr "%1은(는) 읽기 전용입니다. 재정의하시겠습니까? 아니면 새 파일 이름으로 저장하려면 '아니요'를 선택하시겠습니까?"
 
 #, c-format
 msgid "Error backing up file"
