@@ -11,6 +11,8 @@ String GetFilterErrorMessage(FilterErrorCode code)
 	{
 	case FILTER_ERROR_NO_ERROR:
 		return _("No error");
+	case FILTER_ERROR_EMPTY_EXPRESSION:
+		return _("Filter expression is empty");
 	case FILTER_ERROR_UNKNOWN_CHAR:
 		return _("Unknown character in filter expression");
 	case FILTER_ERROR_UNTERMINATED_STRING:
@@ -21,12 +23,12 @@ String GetFilterErrorMessage(FilterErrorCode code)
 		return _("Failed to parse filter expression");
 	case FILTER_ERROR_INVALID_LITERAL:
 		return _("Invalid literal value");
+	case FILTER_ERROR_INVALID_ARGUMENT_COUNT:
+		return _("Invalid number of arguments");
 	case FILTER_ERROR_INVALID_REGULAR_EXPRESSION:
 		return _("Invalid regular expression");
 	case FILTER_ERROR_UNDEFINED_IDENTIFIER:
 		return _("Undefined identifier");
-	case FILTER_ERROR_INVALID_ARGUMENT_COUNT:
-		return _("Invalid number of arguments");
 	case FILTER_ERROR_FILTER_NAME_NOT_FOUND:
 		return _("Filter name not found");
 	case FILTER_ERROR_DIVIDE_BY_ZERO:

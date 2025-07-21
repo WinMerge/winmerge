@@ -5584,6 +5584,9 @@ msgstr "파일 작업이 취소되었습니다"
 msgid "No error"
 msgstr ""
 
+msgid "Filter expression is empty"
+msgstr ""
+
 msgid "Unknown character in filter expression"
 msgstr ""
 

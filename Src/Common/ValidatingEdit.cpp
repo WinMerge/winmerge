@@ -45,7 +45,7 @@ void CValidatingEdit::Validate()
 	CString text;
 	GetWindowText(text);
 
-	const bool hasError = m_hasError;
+	const CString prevErrorMessage = m_errorMessage;
 	m_hasError = false;
 	m_errorMessage.Empty();
 
@@ -58,8 +58,11 @@ void CValidatingEdit::Validate()
 			m_errorMessage = msg;
 		}
 	}
-	if (hasError != m_hasError)
+	if (prevErrorMessage != m_errorMessage)
+	{
+		KillTimer(ID_UPDATE_TIMER);
 		SetTimer(ID_UPDATE_TIMER, UPDATE_DELAY_MS, nullptr);
+	}
 
 	Invalidate();
 }

@@ -4834,6 +4834,9 @@ msgstr "ファイル操作がキャンセルされました"
 msgid "No error"
 msgstr "エラーはありません"
 
+msgid "Filter expression is empty"
+msgstr "フィルター式が空です"
+
 msgid "Unknown character in filter expression"
 msgstr "フィルター式に不明な文字があります"
 

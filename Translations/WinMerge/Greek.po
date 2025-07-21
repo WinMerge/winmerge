@@ -5318,6 +5318,9 @@ msgstr ""
 msgid "No error"
 msgstr ""
 
+msgid "Filter expression is empty"
+msgstr ""
+
 msgid "Unknown character in filter expression"
 msgstr ""
 

@@ -82,6 +82,12 @@ bool FilterExpression::Parse()
 {
 	Clear();
 	UpdateTimestamp();
+	if (expression.empty())
+	{
+		errorCode = FILTER_ERROR_EMPTY_EXPRESSION;
+		errorPosition = 0;
+		return false;
+	}
 	FilterLexer lexer(expression);
 	void* prs = ParseAlloc(malloc);
 	int token;
