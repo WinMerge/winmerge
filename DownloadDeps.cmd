@@ -16,10 +16,10 @@ https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500
 https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-x64.zip!Build\X64\Release ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-ARM.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.16-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.16-x64.zip!Build\x64\Release ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.16-ARM.zip!Build\ARM\Release ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.16-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.17-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.17-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.17-ARM.zip!Build\ARM\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.17-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.45/winimerge-1.0.45.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.45/winimerge-1.0.45.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.45/winimerge-1.0.45.0-ARM.zip!Build\ARM\Release ^
