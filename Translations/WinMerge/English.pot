@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-07-19 19:58+0000\n"
+"POT-Creation-Date: 2025-07-21 14:17+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -4459,6 +4459,9 @@ msgid "Invalid number of arguments"
 msgstr ""
 
 msgid "Filter name not found"
+msgstr ""
+
+msgid "Division by zero in filter expression"
 msgstr ""
 
 msgid "Unknown error"

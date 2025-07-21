@@ -1112,6 +1112,12 @@ static YYACTIONTYPE yy_reduce(
 			pCtx->rootNode.reset(yymsp[0].minor.yy0.node);
 			pCtx->errorMessage = e.message();
 		}
+		catch (const std::invalid_argument& e)
+		{
+			pCtx->errorCode = FILTER_ERROR_DIVIDE_BY_ZERO;
+			pCtx->rootNode.reset(yymsp[0].minor.yy0.node);
+			pCtx->errorMessage = e.what();
+		}
 		catch (const std::exception&)
 		{
 			pCtx->rootNode.reset(yymsp[0].minor.yy0.node);
@@ -1122,174 +1128,174 @@ static YYACTIONTYPE yy_reduce(
 		pCtx->rootNode.reset(yymsp[0].minor.yy0.node);
 	}
 }
-#line 1125 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1131 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 1: /* or_expr ::= or_expr OR and_expr */
-#line 60 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 66 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new OrNode(yymsp[-2].minor.yy0.node, yymsp[0].minor.yy0.node) }; }
-#line 1130 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-  yymsp[-2].minor.yy0 = yylhsminor.yy0;
-        break;
-      case 2: /* and_expr ::= and_expr AND not_expr */
-#line 63 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new AndNode(yymsp[-2].minor.yy0.node, yymsp[0].minor.yy0.node) }; }
 #line 1136 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 3: /* not_expr ::= NOT not_expr */
-#line 66 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yymsp[-1].minor.yy0 = { new NotNode(yymsp[0].minor.yy0.node) }; }
-#line 1142 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-        break;
-      case 4: /* cmp_expr ::= arithmetic EQ arithmetic */
+      case 2: /* and_expr ::= and_expr AND not_expr */
 #line 69 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_EQ, yymsp[0].minor.yy0.node) }; }
-#line 1147 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+{ yylhsminor.yy0 = { new AndNode(yymsp[-2].minor.yy0.node, yymsp[0].minor.yy0.node) }; }
+#line 1142 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 5: /* cmp_expr ::= arithmetic NE arithmetic */
-#line 70 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_NE, yymsp[0].minor.yy0.node) }; }
+      case 3: /* not_expr ::= NOT not_expr */
+#line 72 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yymsp[-1].minor.yy0 = { new NotNode(yymsp[0].minor.yy0.node) }; }
+#line 1148 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+        break;
+      case 4: /* cmp_expr ::= arithmetic EQ arithmetic */
+#line 75 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_EQ, yymsp[0].minor.yy0.node) }; }
 #line 1153 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 6: /* cmp_expr ::= arithmetic LT arithmetic */
-#line 71 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_LT,  yymsp[0].minor.yy0.node) }; }
+      case 5: /* cmp_expr ::= arithmetic NE arithmetic */
+#line 76 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_NE, yymsp[0].minor.yy0.node) }; }
 #line 1159 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 7: /* cmp_expr ::= arithmetic LE arithmetic */
-#line 72 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_LE, yymsp[0].minor.yy0.node) }; }
+      case 6: /* cmp_expr ::= arithmetic LT arithmetic */
+#line 77 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_LT,  yymsp[0].minor.yy0.node) }; }
 #line 1165 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 8: /* cmp_expr ::= arithmetic GT arithmetic */
-#line 73 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_GT,  yymsp[0].minor.yy0.node) }; }
+      case 7: /* cmp_expr ::= arithmetic LE arithmetic */
+#line 78 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_LE, yymsp[0].minor.yy0.node) }; }
 #line 1171 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 9: /* cmp_expr ::= arithmetic GE arithmetic */
-#line 74 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_GE, yymsp[0].minor.yy0.node) }; }
+      case 8: /* cmp_expr ::= arithmetic GT arithmetic */
+#line 79 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_GT,  yymsp[0].minor.yy0.node) }; }
 #line 1177 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 10: /* cmp_expr ::= arithmetic CONTAINS arithmetic */
-#line 75 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_CONTAINS, yymsp[0].minor.yy0.node) }; }
+      case 9: /* cmp_expr ::= arithmetic GE arithmetic */
+#line 80 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_GE, yymsp[0].minor.yy0.node) }; }
 #line 1183 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 11: /* cmp_expr ::= arithmetic NOT CONTAINS arithmetic */
-#line 76 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new NotNode(new BinaryOpNode(yymsp[-3].minor.yy0.node, TK_CONTAINS, yymsp[0].minor.yy0.node)) }; }
+      case 10: /* cmp_expr ::= arithmetic CONTAINS arithmetic */
+#line 81 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_CONTAINS, yymsp[0].minor.yy0.node) }; }
 #line 1189 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+  yymsp[-2].minor.yy0 = yylhsminor.yy0;
+        break;
+      case 11: /* cmp_expr ::= arithmetic NOT CONTAINS arithmetic */
+#line 82 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new NotNode(new BinaryOpNode(yymsp[-3].minor.yy0.node, TK_CONTAINS, yymsp[0].minor.yy0.node)) }; }
+#line 1195 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-3].minor.yy0 = yylhsminor.yy0;
         break;
       case 12: /* cmp_expr ::= arithmetic RECONTAINS arithmetic */
-#line 77 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 83 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_RECONTAINS, yymsp[0].minor.yy0.node) }; }
-#line 1195 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1201 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 13: /* cmp_expr ::= arithmetic NOT RECONTAINS arithmetic */
-#line 78 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 84 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new NotNode(new BinaryOpNode(yymsp[-3].minor.yy0.node, TK_RECONTAINS, yymsp[0].minor.yy0.node)) }; }
-#line 1201 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1207 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-3].minor.yy0 = yylhsminor.yy0;
         break;
       case 14: /* cmp_expr ::= arithmetic LIKE arithmetic */
-#line 79 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 85 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_LIKE, yymsp[0].minor.yy0.node) }; }
-#line 1207 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1213 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 15: /* cmp_expr ::= arithmetic NOT LIKE arithmetic */
-#line 80 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 86 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new NotNode(new BinaryOpNode(yymsp[-3].minor.yy0.node, TK_LIKE, yymsp[0].minor.yy0.node)) }; }
-#line 1213 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1219 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-3].minor.yy0 = yylhsminor.yy0;
         break;
       case 16: /* cmp_expr ::= arithmetic MATCHES arithmetic */
-#line 81 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 87 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_MATCHES, yymsp[0].minor.yy0.node) }; }
-#line 1219 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1225 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 17: /* cmp_expr ::= arithmetic NOT MATCHES arithmetic */
-#line 82 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 88 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new NotNode(new BinaryOpNode(yymsp[-3].minor.yy0.node, TK_MATCHES, yymsp[0].minor.yy0.node)) }; }
-#line 1225 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1231 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-3].minor.yy0 = yylhsminor.yy0;
         break;
       case 18: /* arithmetic ::= arithmetic PLUS arithmetic */
-#line 85 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 91 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_PLUS, yymsp[0].minor.yy0.node) }; }
-#line 1231 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-  yymsp[-2].minor.yy0 = yylhsminor.yy0;
-        break;
-      case 19: /* arithmetic ::= arithmetic MINUS arithmetic */
-#line 86 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_MINUS, yymsp[0].minor.yy0.node) }; }
 #line 1237 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 20: /* arithmetic ::= arithmetic STAR arithmetic */
-#line 87 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_STAR, yymsp[0].minor.yy0.node) }; }
+      case 19: /* arithmetic ::= arithmetic MINUS arithmetic */
+#line 92 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_MINUS, yymsp[0].minor.yy0.node) }; }
 #line 1243 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 21: /* arithmetic ::= arithmetic SLASH arithmetic */
-#line 88 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_SLASH, yymsp[0].minor.yy0.node) }; }
+      case 20: /* arithmetic ::= arithmetic STAR arithmetic */
+#line 93 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_STAR, yymsp[0].minor.yy0.node) }; }
 #line 1249 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 22: /* arithmetic ::= arithmetic MOD arithmetic */
-#line 89 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_MOD, yymsp[0].minor.yy0.node) }; }
+      case 21: /* arithmetic ::= arithmetic SLASH arithmetic */
+#line 94 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_SLASH, yymsp[0].minor.yy0.node) }; }
 #line 1255 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
-      case 23: /* unary ::= MINUS unary */
-#line 94 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yymsp[-1].minor.yy0 = { new NegateNode(yymsp[0].minor.yy0.node) }; }
+      case 22: /* arithmetic ::= arithmetic MOD arithmetic */
+#line 95 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new BinaryOpNode(yymsp[-2].minor.yy0.node, TK_MOD, yymsp[0].minor.yy0.node) }; }
 #line 1261 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+  yymsp[-2].minor.yy0 = yylhsminor.yy0;
+        break;
+      case 23: /* unary ::= MINUS unary */
+#line 100 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yymsp[-1].minor.yy0 = { new NegateNode(yymsp[0].minor.yy0.node) }; }
+#line 1267 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 24: /* term ::= TRUE_LITERAL */
-#line 97 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 103 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yymsp[0].minor.yy0 = { new BoolLiteral(true) }; }
-#line 1266 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1272 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 25: /* term ::= FALSE_LITERAL */
-#line 98 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 104 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yymsp[0].minor.yy0 = { new BoolLiteral(false) }; }
-#line 1271 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1277 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 26: /* term ::= INTEGER_LITERAL */
-#line 99 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 105 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yylhsminor.yy0 = { new IntLiteral(yymsp[0].minor.yy0.integer) }; }
-#line 1276 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-  yymsp[0].minor.yy0 = yylhsminor.yy0;
-        break;
-      case 27: /* term ::= STRING_LITERAL */
-#line 100 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new StringLiteral(yymsp[0].minor.yy0.string) }; }
 #line 1282 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
-      case 28: /* term ::= SIZE_LITERAL */
-#line 101 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new SizeLiteral(yymsp[0].minor.yy0.string) }; }
+      case 27: /* term ::= STRING_LITERAL */
+#line 106 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new StringLiteral(yymsp[0].minor.yy0.string) }; }
 #line 1288 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
+      case 28: /* term ::= SIZE_LITERAL */
+#line 107 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new SizeLiteral(yymsp[0].minor.yy0.string) }; }
+#line 1294 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+  yymsp[0].minor.yy0 = yylhsminor.yy0;
+        break;
       case 29: /* term ::= DATETIME_LITERAL */
-#line 102 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 108 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   try
   {
@@ -1301,23 +1307,23 @@ static YYACTIONTYPE yy_reduce(
     pCtx->errorCode = FILTER_ERROR_INVALID_LITERAL;
   }
 }
-#line 1304 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
-  yymsp[0].minor.yy0 = yylhsminor.yy0;
-        break;
-      case 30: /* term ::= DURATION_LITERAL */
-#line 113 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new DurationLiteral(yymsp[0].minor.yy0.string) }; }
 #line 1310 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
-      case 31: /* term ::= VERSION_LITERAL */
-#line 114 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
-{ yylhsminor.yy0 = { new VersionLiteral(yymsp[0].minor.yy0.string) }; }
+      case 30: /* term ::= DURATION_LITERAL */
+#line 119 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new DurationLiteral(yymsp[0].minor.yy0.string) }; }
 #line 1316 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
+      case 31: /* term ::= VERSION_LITERAL */
+#line 120 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+{ yylhsminor.yy0 = { new VersionLiteral(yymsp[0].minor.yy0.string) }; }
+#line 1322 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+  yymsp[0].minor.yy0 = yylhsminor.yy0;
+        break;
       case 32: /* term ::= IDENTIFIER LPAREN RPAREN */
-#line 115 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 121 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   try
   {
@@ -1335,11 +1341,11 @@ static YYACTIONTYPE yy_reduce(
 	pCtx->errorMessage = e.what();
   }
 }
-#line 1338 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1344 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       case 33: /* term ::= IDENTIFIER LPAREN expr_list RPAREN */
-#line 132 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 138 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   try
   {
@@ -1359,11 +1365,11 @@ static YYACTIONTYPE yy_reduce(
     YYSTYPEDestructor(yymsp[-1].minor.yy0);
   }
 }
-#line 1362 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1368 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-3].minor.yy0 = yylhsminor.yy0;
         break;
       case 34: /* term ::= IDENTIFIER */
-#line 151 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 157 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   try
   {
@@ -1375,31 +1381,31 @@ static YYACTIONTYPE yy_reduce(
     pCtx->errorCode = FILTER_ERROR_UNDEFINED_IDENTIFIER;
   }
 }
-#line 1378 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1384 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
       case 35: /* term ::= LPAREN expr RPAREN */
-#line 162 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 168 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yymsp[-2].minor.yy0 = yymsp[-1].minor.yy0; }
-#line 1384 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1390 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 36: /* expr_list ::= expr */
-#line 164 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 170 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   yylhsminor.yy0 = {};
   yylhsminor.yy0.nodeList = new std::vector<ExprNode*>{ yymsp[0].minor.yy0.node };
 }
-#line 1392 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1398 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
       case 37: /* expr_list ::= expr_list COMMA expr */
-#line 168 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 174 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   yylhsminor.yy0 = {};
   yymsp[-2].minor.yy0.nodeList->push_back(yymsp[0].minor.yy0.node);
   yylhsminor.yy0.nodeList = yymsp[-2].minor.yy0.nodeList;
 }
-#line 1402 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1408 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       default:
@@ -1454,7 +1460,7 @@ static void yy_parse_failed(
 #line 29 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
 	pCtx->errorCode = FILTER_ERROR_PARSE_FAILURE;
-#line 1457 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1463 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 /************ End %parse_failure code *****************************************/
   ParseARG_STORE /* Suppress warning about unused %extra_argument variable */
   ParseCTX_STORE
@@ -1476,7 +1482,7 @@ static void yy_syntax_error(
 #line 26 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
 	pCtx->errorCode = FILTER_ERROR_SYNTAX_ERROR;
-#line 1479 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1485 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 /************ End %syntax_error code ******************************************/
   ParseARG_STORE /* Suppress warning about unused %extra_argument variable */
   ParseCTX_STORE

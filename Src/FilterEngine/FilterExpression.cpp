@@ -143,6 +143,8 @@ bool FilterExpression::Evaluate(const DIFFITEM& di)
 		errorCode = FILTER_ERROR_INVALID_REGULAR_EXPRESSION;
 		errorPosition = -1;
 		errorMessage = e.message();
+		if (logger)
+			logger("FilterExpression evaluation error: " + errorMessage);
 		return false;
 	}
 	catch (const std::exception& e)
@@ -150,6 +152,8 @@ bool FilterExpression::Evaluate(const DIFFITEM& di)
 		errorCode = FILTER_ERROR_EVALUATION_FAILED;
 		errorPosition = -1;
 		errorMessage = e.what();
+		if (logger)
+			logger("FilterExpression evaluation error: " + errorMessage);
 		return false;
 	}
 }

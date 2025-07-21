@@ -32,6 +32,7 @@
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
 #include "FileFilterHelper.h"
+#include "FilterExpression.h"
 #include "FilterErrorMessages.h"
 #include "DirActions.h"
 #include "DirScan.h"
@@ -263,6 +264,9 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 
 	CheckFilter();
+	FilterExpression::SetLogger([](const std::string& msg) {
+		RootLogger::Error(msg);
+		});
 }
 
 void CDirDoc::CheckFilter()

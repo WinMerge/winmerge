@@ -46,6 +46,12 @@ filter_expr ::= or_expr(A). {
 			pCtx->rootNode.reset(A.node);
 			pCtx->errorMessage = e.message();
 		}
+		catch (const std::invalid_argument& e)
+		{
+			pCtx->errorCode = FILTER_ERROR_DIVIDE_BY_ZERO;
+			pCtx->rootNode.reset(A.node);
+			pCtx->errorMessage = e.what();
+		}
 		catch (const std::exception&)
 		{
 			pCtx->rootNode.reset(A.node);

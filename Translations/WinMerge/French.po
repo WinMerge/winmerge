@@ -4887,6 +4887,9 @@ msgstr ""
 msgid "Filter name not found"
 msgstr ""
 
+msgid "Division by zero in filter expression"
+msgstr ""
+
 msgid "Unknown error"
 msgstr ""
 

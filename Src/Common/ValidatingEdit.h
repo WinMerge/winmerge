@@ -24,8 +24,8 @@ protected:
 
 	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	afx_msg BOOL PreTranslateMessage(MSG* pMsg);
-	void OnKillFocus(CWnd* pNewWnd);
-	void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnKillFocus(CWnd* pNewWnd);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 	CToolTipCtrl m_toolTip;
 	bool m_hasError;

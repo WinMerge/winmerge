@@ -27,6 +27,7 @@ struct FilterExpression
 	bool Evaluate(const DIFFITEM& di);
 	void UpdateTimestamp();
 	void Clear();
+	static void SetLogger(std::function<void(const std::string&)> func) { logger = func; };
 	bool optimize = true;
 	const CDiffContext* ctxt = nullptr;
 	std::unique_ptr<Poco::Timestamp> now;
@@ -36,4 +37,5 @@ struct FilterExpression
 	FilterErrorCode errorCode = FILTER_ERROR_NO_ERROR;
 	int errorPosition = -1;
 	std::string errorMessage;
+	inline static std::function<void(const std::string&)> logger;
 };

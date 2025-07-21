@@ -4861,6 +4861,9 @@ msgstr "引数の数が正しくありません"
 msgid "Filter name not found"
 msgstr "フィルター名が見つかりません"
 
+msgid "Division by zero in filter expression"
+msgstr "フィルター式で0による除算が行われました"
+
 msgid "Unknown error"
 msgstr "不明なエラーです"
 

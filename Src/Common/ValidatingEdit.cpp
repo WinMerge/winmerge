@@ -10,7 +10,9 @@
 IMPLEMENT_DYNAMIC(CValidatingEdit, CEdit)
 
 #define ID_VALIDATE_TIMER 1001
+#define ID_UPDATE_TIMER 1002
 #define VALIDATE_DELAY_MS 700
+#define UPDATE_DELAY_MS 200
 
 CValidatingEdit::CValidatingEdit()
 	: m_hasError(false)
@@ -40,11 +42,10 @@ void CValidatingEdit::SetBackColor(COLORREF color)
 
 void CValidatingEdit::Validate()
 {
-	KillTimer(ID_VALIDATE_TIMER);
-
 	CString text;
 	GetWindowText(text);
 
+	const bool hasError = m_hasError;
 	m_hasError = false;
 	m_errorMessage.Empty();
 
@@ -55,39 +56,10 @@ void CValidatingEdit::Validate()
 		{
 			m_hasError = true;
 			m_errorMessage = msg;
-
-			CRect rc;
-			GetWindowRect(&rc);
-
-			if (!m_toolTip.GetSafeHwnd())
-			{
-				m_toolTip.Create(this, TTS_NOPREFIX | TTS_BALLOON | TTS_ALWAYSTIP);
-				m_toolItem.cbSize = sizeof(TOOLINFO);
-				m_toolItem.uFlags = TTF_TRACK | TTF_ABSOLUTE;
-				m_toolItem.hwnd = m_hWnd;
-				m_toolItem.uId = 1;
-				m_toolItem.lpszText = _T("");
-				m_toolTip.SendMessage(TTM_ADDTOOL, 0, (LPARAM)&m_toolItem);
-				m_toolTip.SetMaxTipWidth(rc.Width());
-			}
-
-			m_toolItem.lpszText = (LPTSTR)(LPCTSTR)m_errorMessage;
-			m_toolTip.SetToolInfo(&m_toolItem);
-
-			POINT pt{ rc.left, rc.bottom };
-			m_toolTip.SendMessage(TTM_TRACKPOSITION, 0, (LPARAM)MAKELONG(pt.x, pt.y));
-
-			m_toolTip.SendMessage(TTM_TRACKACTIVATE, TRUE, (LPARAM)&m_toolItem);
-		}
-		else
-		{
-			if (m_toolTip.GetSafeHwnd())
-			{
-				m_toolTip.UpdateTipText(_T(""), this);
-				m_toolTip.SendMessage(TTM_TRACKACTIVATE, FALSE, (LPARAM)&m_toolItem);
-			}
 		}
 	}
+	if (hasError != m_hasError)
+		SetTimer(ID_UPDATE_TIMER, UPDATE_DELAY_MS, nullptr);
 
 	Invalidate();
 }
@@ -127,8 +99,49 @@ void CValidatingEdit::OnTimer(UINT_PTR nIDEvent)
 {
 	if (nIDEvent == ID_VALIDATE_TIMER)
 	{
+		KillTimer(ID_VALIDATE_TIMER);
 		Validate();
+		return;
+	}
+	if (nIDEvent == ID_UPDATE_TIMER)
+	{
+		KillTimer(ID_UPDATE_TIMER);
+
+		if (m_hasError)
+		{
+			CRect rc;
+			GetWindowRect(&rc);
+
+			if (!m_toolTip.GetSafeHwnd())
+			{
+				m_toolTip.Create(this, TTS_NOPREFIX | TTS_BALLOON | TTS_ALWAYSTIP);
+				m_toolItem.cbSize = sizeof(TOOLINFO);
+				m_toolItem.uFlags = TTF_TRACK | TTF_ABSOLUTE;
+				m_toolItem.hwnd = m_hWnd;
+				m_toolItem.uId = 1;
+				m_toolItem.lpszText = _T("");
+				m_toolTip.SendMessage(TTM_ADDTOOL, 0, (LPARAM)&m_toolItem);
+				m_toolTip.SetMaxTipWidth(rc.Width());
+			}
+
+			m_toolItem.lpszText = (LPTSTR)(LPCTSTR)m_errorMessage;
+			m_toolTip.SetToolInfo(&m_toolItem);
+
+			POINT pt{ rc.left, rc.bottom };
+			m_toolTip.SendMessage(TTM_TRACKPOSITION, 0, (LPARAM)MAKELONG(pt.x, pt.y));
+
+			m_toolTip.SendMessage(TTM_TRACKACTIVATE, TRUE, (LPARAM)&m_toolItem);
+		}
+		else
+		{
+			if (m_toolTip.GetSafeHwnd())
+			{
+				m_toolTip.UpdateTipText(_T(""), this);
+				m_toolTip.SendMessage(TTM_TRACKACTIVATE, FALSE, (LPARAM)&m_toolItem);
+			}
+		}
 		return;
 	}
 	CEdit::OnTimer(nIDEvent);
 }
+

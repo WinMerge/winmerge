@@ -183,13 +183,16 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 		case TK_PLUS:  result = *lInt + *rInt; break;
 		case TK_MINUS: result = *lInt - *rInt; break;
 		case TK_STAR:  result = *lInt * *rInt; break;
-		case TK_SLASH: 
-			// Avoid division by zero.
-			if (*rInt != 0) result = *lInt / *rInt; else return nullptr; 
+		case TK_SLASH:
+			if (*rInt == 0)
+				throw std::invalid_argument("Division by zero is not allowed.");
+			result = *lInt / *rInt;
 			break;
-		case TK_MOD:   
+		case TK_MOD:
 			// Avoid modulo by zero.
-			if (*rInt != 0) result = *lInt % *rInt; else return nullptr; 
+			if (*rInt == 0)
+				throw std::invalid_argument("Division by zero is not allowed.");
+			result = *lInt % *rInt;
 			break;
 		default: return nullptr; // Invalid operator.
 		}
@@ -329,8 +332,18 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 					if (op == TK_PLUS) return *lvalInt + *rvalInt;
 					if (op == TK_MINUS) return *lvalInt - *rvalInt;
 					if (op == TK_STAR) return *lvalInt * *rvalInt;
-					if (op == TK_SLASH) return *lvalInt / *rvalInt;
-					if (op == TK_MOD) return *lvalInt % *rvalInt;
+					if (op == TK_SLASH)
+					{
+						if (*rvalInt == 0)
+							throw std::invalid_argument("Division by zero in filter expression");
+						return *lvalInt / *rvalInt;
+					}
+					if (op == TK_MOD)
+					{
+						if (*rvalInt == 0)
+							throw std::invalid_argument("Division by zero in filter expression");
+						return *lvalInt % *rvalInt;
+					}
 				}
 			}
 			else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))

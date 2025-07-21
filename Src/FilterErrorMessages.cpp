@@ -29,6 +29,8 @@ String GetFilterErrorMessage(FilterErrorCode code)
 		return _("Invalid number of arguments");
 	case FILTER_ERROR_FILTER_NAME_NOT_FOUND:
 		return _("Filter name not found");
+	case FILTER_ERROR_DIVIDE_BY_ZERO:
+		return _("Division by zero in filter expression");
 	default:
 		return _("Unknown error");
 	}
