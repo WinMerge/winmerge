@@ -162,10 +162,11 @@ std::string FileContentRef::Sublines(ptrdiff_t start, ptrdiff_t len) const
 	if (start >= static_cast<ptrdiff_t>(lines.size()))
 		return "";
 	if (len < 0)
-		len = static_cast<ptrdiff_t>(lines.size()) - start;
-	size_t end = std::min<ptrdiff_t>(start + len, lines.size());
+		len = static_cast<ptrdiff_t>(lines.size()) - start + len + 1;
+	if (len < 0)
+		return "";
 	file.Close();
-	return ucr::toUTF8(strutils::join(lines.begin() + start, lines.begin() + end, _T("")));
+	return ucr::toUTF8(strutils::join(lines.begin() + start, lines.begin() + start + len, _T("")));
 }
 
 size_t FileContentRef::LineCount() const

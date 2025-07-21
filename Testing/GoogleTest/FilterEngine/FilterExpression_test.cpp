@@ -287,6 +287,8 @@ TEST_P(FilterExpressionTest, Literals)
 
 	EXPECT_TRUE(fe.Parse("1KB == 1024"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("1kb == 1024"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("0.5KB == 512"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1MB == 1024KB"));
@@ -611,6 +613,8 @@ TEST_P(FilterExpressionTest, Content1)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, -1) contains \"</project>\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("sublines(RightContent, -1, -2) contains \"</project>\""));
+	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, ContentEmpty)
@@ -672,6 +676,56 @@ TEST_P(FilterExpressionTest, ParseError)
 	EXPECT_FALSE(fe.Parse("abs()"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	EXPECT_FALSE(fe.Parse("abs(1, 2)"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("anyof()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("anyof(true, true)"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("allof()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("allof(true, true)"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("allequal()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("length()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("length(\"abc\", \"def\")"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("substr()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("substr(\"abc\")"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("substr(\"abc\", 0, 1, 2)"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("linecount()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("linecount(\"abc\", \"def\")"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("sublines()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("sublines(\"abc\")"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("sublines(\"abc\", 0, 1, 2)"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("replace()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("replace(\"abc\", \"def\", \"ghi\", 2)"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("today(1)"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("now(1)"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("startOfWeek()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("startOfWeek(now(), now())"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("startOfMonth()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("startOfMonth(now(), now())"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("startOfYear()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("startOfYear(now(), now())"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	if (fe.optimize) {
 		EXPECT_FALSE(fe.Parse("LeftName matches \"[[\""));

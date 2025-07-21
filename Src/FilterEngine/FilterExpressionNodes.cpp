@@ -413,7 +413,7 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 						try
 						{
 							Poco::RegularExpression::Match match;
-							return (rvalRegexp->get()->match(*lvalString, match) > 0);
+							return ((*rvalRegexp)->match(*lvalString, match) > 0);
 						}
 						catch (const Poco::RegularExpressionException&)
 						{
@@ -421,25 +421,25 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 						}
 					}
 					if (op == TK_MATCHES)
-						return rvalRegexp->get()->match(*lvalString);
+						return (*rvalRegexp)->match(*lvalString);
 				}
 			}
 			else if (auto lvalContent = std::get_if<std::shared_ptr<FileContentRef>>(&lval))
 			{
 				if (auto rvalContent = std::get_if<std::shared_ptr<FileContentRef>>(&rval))
 				{
-					if (op == TK_EQ) return lvalContent->get()->operator==(*rvalContent->get());
-					if (op == TK_NE) return !(lvalContent->get()->operator==(*rvalContent->get()));
+					if (op == TK_EQ) return (*lvalContent)->operator==(**rvalContent);
+					if (op == TK_NE) return !(*lvalContent)->operator==(**rvalContent);
 				}
 				if (auto rvalString = std::get_if<std::string>(&rval))
 				{
-					if (op == TK_CONTAINS) return lvalContent->get()->Contains(*rvalString);
+					if (op == TK_CONTAINS) return (*lvalContent)->Contains(*rvalString);
 					if (op == TK_RECONTAINS)
 					{
 						try
 						{
 							Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-							return lvalContent->get()->REContains(regex);
+							return (*lvalContent)->REContains(regex);
 						}
 						catch (const Poco::RegularExpressionException&)
 						{
@@ -449,7 +449,7 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 				}
 				if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
 				{
-					if (op == TK_RECONTAINS) return lvalContent->get()->REContains(*rvalRegexp->get());
+					if (op == TK_RECONTAINS) return (*lvalContent)->REContains(*rvalRegexp->get());
 				}
 			}
 			else if (auto lvalBool = std::get_if<bool>(&lval))
@@ -494,11 +494,11 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 	}
 	else
 	{
-		const size_t maxSize = (std::max)(lvalArray->get()->size(), rvalArray->get()->size());
-		const size_t minSize = (std::min)(lvalArray->get()->size(), rvalArray->get()->size());
+		const size_t maxSize = (std::max)((*lvalArray)->size(), (*rvalArray)->size());
+		const size_t minSize = (std::min)((*lvalArray)->size(), (*rvalArray)->size());
 		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
 		for (size_t i = 0; i < minSize; ++i)
-			result->emplace_back(ValueType2{ compute(op, lvalArray->get()->at(i).value, rvalArray->get()->at(i).value) });
+			result->emplace_back(ValueType2{ compute(op, (*lvalArray)->at(i).value, (*rvalArray)->at(i).value) });
 		for (size_t i = 0; i < maxSize - minSize; ++i)
 			result->emplace_back(ValueType2{ std::monostate{} });
 		return result;
@@ -860,14 +860,14 @@ static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std:
 		for (const auto& item : *arg1Array->get())
 		{
 			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
-				result->emplace_back(ValueType2{ static_cast<int64_t>(contentRef->get()->LineCount()) });
+				result->emplace_back(ValueType2{ static_cast<int64_t>((*contentRef)->LineCount()) });
 			else
 				result->emplace_back(ValueType2{ std::monostate{} });
 		}
 		return result;
 	}
 	if (auto arg1ContentRef = std::get_if<std::shared_ptr<FileContentRef>>(&arg1))
-		return static_cast<int64_t>(arg1ContentRef->get()->LineCount());
+		return static_cast<int64_t>((*arg1ContentRef)->LineCount());
 	return std::monostate{};
 }
 
@@ -896,7 +896,7 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 		for (const auto& item : *contentrefArray->get())
 		{
 			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
-				result->emplace_back(ValueType2{ static_cast<std::string>(contentRef->get()->Sublines(*start, len ? *len : -1)) });
+				result->emplace_back(ValueType2{ static_cast<std::string>((*contentRef)->Sublines(*start, len ? *len : -1)) });
 			else
 				result->emplace_back(ValueType2{ std::monostate{} });
 		}
@@ -904,7 +904,7 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 
 	}
 	if (contentref && *contentref)
-		return contentref->get()->Sublines(*start, len ? *len : -1);
+		return (*contentref)->Sublines(*start, len ? *len : -1);
 	return std::monostate{};
 }
 
@@ -1009,7 +1009,7 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	}
 	else if (functionName == "length")
 	{
-		if (!args || args->size() < 1)
+		if (!args || args->size() != 1)
 			throw std::invalid_argument("length function requires 1 arguments");
 		func = LengthFunc;
 	}
@@ -1021,13 +1021,13 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	}
 	else if (functionName == "linecount")
 	{
-		if (!args || args->size() < 1)
+		if (!args || args->size() != 1)
 			throw std::invalid_argument("linecount function requires 1 arguments");
 		func = LineCountFunc;
 	}
 	else if (functionName == "sublines")
 	{
-		if (!args || (args->size() < 2 || args->size() > 3))
+		if (!args || args->size() < 2 || args->size() > 3)
 			throw std::invalid_argument("sublines nesfunction requires 2 or 3 arguments: sublines(content, start [, length])");
 		func = SublinesFunc;
 	}
@@ -1091,7 +1091,10 @@ ExprNode* FunctionNode::Optimize()
 	if (args)
 	{
 		for (auto& arg : *args)
-			arg = arg->Optimize();
+		{
+			if (arg)
+				arg = arg->Optimize();
+		}
 	}
 	if (functionName == "now")
 	{
@@ -1166,7 +1169,8 @@ SizeLiteral::SizeLiteral(const std::string& v)
 		++pos;
 	std::string numberPart = v.substr(0, pos);
 	std::string unitPart = v.substr(pos);
-	std::transform(unitPart.begin(), unitPart.end(), unitPart.begin(), ::tolower);
+	std::transform(unitPart.begin(), unitPart.end(), unitPart.begin(),
+		[](unsigned char c) { return static_cast<unsigned char>(std::tolower(c)); });
 	double number = 0.0;
 	try
 	{
@@ -1228,7 +1232,8 @@ DurationLiteral::DurationLiteral(const std::string& v)
 		++pos;
 	std::string numberPart = v.substr(0, pos);
 	std::string unitPart = v.substr(pos);
-	std::transform(unitPart.begin(), unitPart.end(), unitPart.begin(), ::tolower);
+	std::transform(unitPart.begin(), unitPart.end(), unitPart.begin(),
+		[](unsigned char c) { return static_cast<unsigned char>(std::tolower(c)); });
 	double number = 0.0;
 	try
 	{

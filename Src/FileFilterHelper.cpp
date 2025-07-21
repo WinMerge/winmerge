@@ -725,28 +725,28 @@ void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
 
 		if (filterGroupSrc.m_pMaskFileFilter)
 		{
-			auto filterList = std::make_unique<FilterList>(FilterList());
+			auto filterList = std::make_unique<FilterList>();
 			filterGroup.m_pMaskFileFilter = std::move(filterList);
 			filterGroup.m_pMaskFileFilter->CloneFrom(filterGroupSrc.m_pMaskFileFilter.get());
 		}
 
 		if (filterGroupSrc.m_pMaskFileFilterExclude)
 		{
-			auto filterList = std::make_unique<FilterList>(FilterList());
+			auto filterList = std::make_unique<FilterList>();
 			filterGroup.m_pMaskFileFilterExclude = std::move(filterList);
 			filterGroup.m_pMaskFileFilterExclude->CloneFrom(filterGroupSrc.m_pMaskFileFilterExclude.get());
 		}
 
 		if (filterGroupSrc.m_pMaskDirFilter)
 		{
-			auto filterList = std::make_unique<FilterList>(FilterList());
+			auto filterList = std::make_unique<FilterList>();
 			filterGroup.m_pMaskDirFilter = std::move(filterList);
 			filterGroup.m_pMaskDirFilter->CloneFrom(filterGroupSrc.m_pMaskDirFilter.get());
 		}
 
 		if (filterGroupSrc.m_pMaskDirFilterExclude)
 		{
-			auto filterList = std::make_unique<FilterList>(FilterList());
+			auto filterList = std::make_unique<FilterList>();
 			filterGroup.m_pMaskDirFilterExclude = std::move(filterList);
 			filterGroup.m_pMaskDirFilterExclude->CloneFrom(filterGroupSrc.m_pMaskDirFilterExclude.get());
 		}
@@ -768,7 +768,7 @@ void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
 
 	if (pHelper->m_fileFilterMgr)
 	{
-		auto fileFilterMgr = std::make_unique<FileFilterMgr>(FileFilterMgr());
+		auto fileFilterMgr = std::make_unique<FileFilterMgr>();
 		m_fileFilterMgr = std::move(fileFilterMgr);
 		m_fileFilterMgr->CloneFrom(pHelper->m_fileFilterMgr.get());
 	}
