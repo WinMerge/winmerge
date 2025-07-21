@@ -266,6 +266,18 @@ namespace
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("Debug")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\Debug")));
 
+		m_fileFilterHelper.SetMaskOrExpression(_T("*.c;*.h|abc*.*"));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("abc.c")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("abc.h")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("abc.d")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("ab.c")));
+
+		m_fileFilterHelper.SetMaskOrExpression(_T("f:.*\\.(c||h)|abc*.*"));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("abc.c")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("abc.h")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("abc.d")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("ab.c")));
+
 		m_fileFilterHelper.SetMaskOrExpression(_T("abc.\\def.\\*.*"));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("abc\\def\\efg")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("abc.1\\def\\efg")));
