@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2025-07-13 00:00+0000\n"
+"PO-Revision-Date: 2025-07-22 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -289,7 +289,7 @@ msgid "Clear &Browsing Data"
 msgstr "Очистить &историю просмотров"
 
 msgid "&Disk Cache"
-msgstr "&Дисковый кеш"
+msgstr "&Дисковый кэш"
 
 msgid "&Cookies"
 msgstr "&Файлы куки"
@@ -1221,343 +1221,343 @@ msgid "Clear &All"
 msgstr "Очистить все"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "Очистить все"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "Удалить последнюю группу фильтров"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "Сбросить по умолчанию (*.*)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "Добавить исключаемый файл"
 
 msgid "&System Files"
-msgstr ""
+msgstr "Системные файлы"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "Файлы резервных копий редактора"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "Скомпилированные двоичные файлы"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "Файлы журналов"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "Временные или кэш файлы"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "Добавить исключаемую папку"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "Контроль версий"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "Артефакты сборки"
 
 msgid "&IDE"
-msgstr ""
+msgstr "&IDE"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "Добавить условие файла"
 
 msgid "File &Size"
-msgstr ""
+msgstr "Размер файла"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "Менее 1КБ"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1КБ или более"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "Менее 10КБ"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10КБ или более"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "Менее 100КБ"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100КБ или более"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "Менее 1МБ"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1МБ или более"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "Менее 10МБ"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10МБ или более"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "Менее 100МБ"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100МБ или более"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "Менее 1ГБ"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1ГБ или более"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "Настраиваемый диапазон..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "Последнее изменение"
 
 msgid "&Hour"
-msgstr ""
+msgstr "Час"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "Более 1 часа назад"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "В течение 1 часа"
 
 msgid "&Day"
-msgstr ""
+msgstr "День"
 
 msgid "Before today"
-msgstr ""
+msgstr "До сегодняшнего дня"
 
 msgid "Today"
-msgstr ""
+msgstr "Сегодня"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "До вчерашнего дня"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Вчера"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "Со вчерашнего дня"
 
 msgid "&Week"
-msgstr ""
+msgstr "Неделя"
 
 msgid "Before this week"
-msgstr ""
+msgstr "До этой недели"
 
 msgid "This week"
-msgstr ""
+msgstr "На этой неделе"
 
 msgid "Before last week"
-msgstr ""
+msgstr "До прошлой недели"
 
 msgid "Last week"
-msgstr ""
+msgstr "На прошлой неделе"
 
 msgid "Since last week"
-msgstr ""
+msgstr "С прошлой недели"
 
 msgid "&Month"
-msgstr ""
+msgstr "Месяц"
 
 msgid "Before this month"
-msgstr ""
+msgstr "До этого месяца"
 
 msgid "This month"
-msgstr ""
+msgstr "В этом месяце"
 
 msgid "Before last month"
-msgstr ""
+msgstr "До прошлого месяца"
 
 msgid "Last month"
-msgstr ""
+msgstr "В прошлом месяце"
 
 msgid "Since last month"
-msgstr ""
+msgstr "С прошлого месяца"
 
 msgid "&Year"
-msgstr ""
+msgstr "Год"
 
 msgid "Before this year"
-msgstr ""
+msgstr "До этого года"
 
 msgid "This year"
-msgstr ""
+msgstr "В этом году"
 
 msgid "Before last year"
-msgstr ""
+msgstr "До прошлого года"
 
 msgid "Last year"
-msgstr ""
+msgstr "В прошлом году"
 
 msgid "Since last year"
-msgstr ""
+msgstr "С прошлого года"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "Настраиваемый диапазон..."
 
 msgid "&Attributes"
-msgstr ""
+msgstr "Атрибуты"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "Только файлы для чтения"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "Не только файлы для чтения"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "Скрытые файлы"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "Не скрытые файлы"
 
 msgid "System files"
-msgstr ""
+msgstr "Системные файлы"
 
 msgid "Not system files"
-msgstr ""
+msgstr "Не системные файлы"
 
 msgid "File &Content"
-msgstr ""
+msgstr "Содержимое файла"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "Содержит..."
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "Не содержит..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "Первая строка содержит..."
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "Первая строка не содержит..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "Первые 10 строк содержат..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "Первые 10 строк не содержат..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "Последние 10 строк содержат..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "Последние 10 строк не содержат..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "Последняя строка содержит..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "Последняя строка не содержит..."
 
 msgid "&Line Count"
-msgstr ""
+msgstr "Количество строк"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "Менее 10"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10 или более"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "Менее 100"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100 или более"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "Менее 1000"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1000 или более"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "Менее 10000"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10000 или более"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "Менее 100000"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100000 или более"
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "Добавить условие папки"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "Назначение: Любое (Слева/В центре/Справа)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "Назначение: Слева"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "Назначение: В центре"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "Назначение: Справа"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "Добавить условие отличия"
 
 msgid "Equal"
-msgstr ""
+msgstr "Равно"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Не равно"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "Менее 10Б"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10Б или более"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "Менее 100Б"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100Б или более"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "Менее 1 секунды"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 секунда или более"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "Менее 1 минуты"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 минута или более"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "Менее 1 часа"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 час или более"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "Менее 1 дня"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 день или более"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "Менее 1 недели"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 неделя или более"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "Назначение: Слева и Справа"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "Назначение: Слева и В центре"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "Назначение: В центре и Справа"
 
 msgid "About WinMerge"
 msgstr "О программе WinMerge"
@@ -2154,10 +2154,10 @@ msgid "File Filters"
 msgstr "Фильтры файлов"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "Выражение маски / фильтра"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "Предустановленные фильтры"
 
 msgid "Test..."
 msgstr "Тест..."
@@ -2175,19 +2175,19 @@ msgid "Delete..."
 msgstr "Удалить..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "Условие фильтра"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "Слева:"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "Оператор:"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "Справа:"
 
 msgid "Expression:"
-msgstr ""
+msgstr "Выражение:"
 
 msgid "Save Modified Files?"
 msgstr "Сохранить измененные файлы?"
@@ -4439,79 +4439,79 @@ msgid "File operation canceled"
 msgstr "Файловая операция отменена"
 
 msgid "No error"
-msgstr ""
+msgstr "Ошибок нет"
 
 msgid "Filter expression is empty"
-msgstr ""
+msgstr "Пустое выражение фильтра"
 
 msgid "Unknown character in filter expression"
-msgstr ""
+msgstr "Неизвестный символ в выражении фильтра"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "Незаконченный литерал"
 
 msgid "Syntax error in filter expression"
-msgstr ""
+msgstr "Синтаксическая ошибка в выражении фильтра"
 
 msgid "Failed to parse filter expression"
-msgstr ""
+msgstr "Не удалось разобрать выражение фильтра"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "Неверное значение литерала"
 
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Неверное регулярное выражение"
 
 msgid "Undefined identifier"
-msgstr ""
+msgstr "Неопределенный идентификатор"
 
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "Неверное количество аргументов"
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "Не найдено имя фильтра "
 
 msgid "Division by zero in filter expression"
-msgstr ""
+msgstr "Деление на ноль в выражении фильтра"
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Неизвестная ошибка"
 
 msgid "Equals"
-msgstr ""
+msgstr "Равно"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "Не равно"
 
 msgid "Less than"
-msgstr ""
+msgstr "Не равно"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "Меньше или равно"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "Больше или равно"
 
 msgid "Greater than"
-msgstr ""
+msgstr "Больше чем"
 
 msgid "Between"
-msgstr ""
+msgstr "Между"
 
 msgid "Not Between"
-msgstr ""
+msgstr "Не между"
 
 msgid "Contains"
-msgstr ""
+msgstr "Содержит"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "Не содержит"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "Содержит (regex)"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "Не содержит (regex)"
 
 msgid "Prettification"
 msgstr "Приукрашивание"
