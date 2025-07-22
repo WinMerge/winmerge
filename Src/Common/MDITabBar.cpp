@@ -711,7 +711,6 @@ void CMyTabCtrl::UpdateToolTips(int nTabItemIndex)
 BOOL CMDITabBar::Update(bool bOnTitleBar, bool bMaximized)
 {
 	m_bOnTitleBar = bOnTitleBar;
-	m_bMaximized = bMaximized;
 	m_titleBar.SetMaximized(bMaximized);
 	m_tabCtrl.SetOnTitleBar(bOnTitleBar);
 	return true;
@@ -775,6 +774,43 @@ int CMDITabBar::GetItemIndexFromPoint(CPoint point, bool bRelatively) const
 	return m_tabCtrl.HitTest(&hit);
 }
 
+/**
+ * @brief Forward mouse events to the tab control if needed.
+ */
+bool CMDITabBar::ForwardMouseEventToTabCtrlIfNeeded(CPoint& point, UINT message)
+{
+	if (!(m_bOnTitleBar && m_titleBar.GetMaximized()))
+		return false;
+
+	int nItemHitTest = GetItemIndexFromPoint(point, true);
+	if (nItemHitTest == -1)
+		return false;
+
+	CRect rcHitItem;
+	m_tabCtrl.GetItemRect(nItemHitTest, &rcHitItem);
+	m_tabCtrl.ScreenToClient(&point);
+
+	if (point.y <= rcHitItem.top)
+		point.y = rcHitItem.top + 1;
+	else if (point.y >= rcHitItem.bottom)
+		point.y = rcHitItem.bottom - 1;
+
+	switch (message)
+	{
+	case WM_LBUTTONDOWN:
+	case WM_LBUTTONUP:
+		m_tabCtrl.SendMessage(message, MK_LBUTTON, MAKELPARAM(point.x, point.y));
+		break;
+	case WM_CONTEXTMENU:
+		m_tabCtrl.SendMessage(WM_CONTEXTMENU, (WPARAM)m_tabCtrl.m_hWnd, MAKELPARAM(point.x, point.y));
+		break;
+	default:
+		break;
+	}
+
+	return true;
+}
+
 /** 
  * @brief This method calculates the horizontal size of a control bar.
  */
@@ -822,49 +858,15 @@ void CMDITabBar::OnNcLButtonDblClk(UINT nHitTest, CPoint point)
 
 void CMDITabBar::OnNcLButtonDown(UINT nHitTest, CPoint point)
 {
-	if (m_bOnTitleBar && m_bMaximized)
-	{
-		int nItemHitTest = GetItemIndexFromPoint(point, true);
-		if (nItemHitTest != -1)
-		{
-			CRect rcHitItem;
-			m_tabCtrl.GetItemRect(nItemHitTest, &rcHitItem);
-			m_tabCtrl.ScreenToClient(&point);
-			if (point.y <= rcHitItem.top)
-				point.y = rcHitItem.top + 1;
-			else if (point.y >= rcHitItem.bottom)
-				point.y = rcHitItem.bottom - 1;
-
-			// since the tab control is currently handling WM_LBUTTONDOWN without modifiers, we won't need them here now
-			m_tabCtrl.SendMessage(WM_LBUTTONDOWN, MK_LBUTTON, MAKELPARAM(point.x, point.y));
-			return;
-		}
-	}
-
+	if (ForwardMouseEventToTabCtrlIfNeeded(point, WM_LBUTTONDOWN))
+		return;
 	m_titleBar.OnNcLButtonDown(nHitTest, point);
 }
 
 void CMDITabBar::OnNcLButtonUp(UINT nHitTest, CPoint point)
 {
-	if (m_bOnTitleBar && m_bMaximized)
-	{
-		int nItemHitTest = GetItemIndexFromPoint(point, true);
-		if (nItemHitTest != -1)
-		{
-			CRect rcHitItem;
-			m_tabCtrl.GetItemRect(nItemHitTest, &rcHitItem);
-			m_tabCtrl.ScreenToClient(&point);
-			if (point.y <= rcHitItem.top)
-				point.y = rcHitItem.top + 1;
-			else if (point.y >= rcHitItem.bottom)
-				point.y = rcHitItem.bottom - 1;
-
-			// since the tab control is currently handling WM_LBUTTONUP without modifiers, we won't need them here now
-			m_tabCtrl.SendMessage(WM_LBUTTONUP, MK_LBUTTON, MAKELPARAM(point.x, point.y));
-			return;
-		}
-	}
-
+	if (ForwardMouseEventToTabCtrlIfNeeded(point, WM_LBUTTONUP))
+		return;
 	m_titleBar.OnNcLButtonUp(nHitTest, point);
 }
 
@@ -875,24 +877,8 @@ void CMDITabBar::OnNcRButtonDown(UINT nHitTest, CPoint point)
 
 void CMDITabBar::OnNcRButtonUp(UINT nHitTest, CPoint point)
 {
-	if (m_bOnTitleBar && m_bMaximized)
-	{
-		int nItemHitTest = GetItemIndexFromPoint(point, true);
-		if (nItemHitTest != -1)
-		{
-			CRect rcHitItem;
-			m_tabCtrl.GetItemRect(nItemHitTest, &rcHitItem);
-			m_tabCtrl.ScreenToClient(&point);
-			if (point.y <= rcHitItem.top)
-				point.y = rcHitItem.top + 1;
-			else if (point.y >= rcHitItem.bottom)
-				point.y = rcHitItem.bottom - 1;
-
-			m_tabCtrl.SendMessage(WM_CONTEXTMENU, (WPARAM)m_tabCtrl.m_hWnd, MAKELPARAM(point.x, point.y));
-			return;
-		}
-	}
-
+	if (ForwardMouseEventToTabCtrlIfNeeded(point, WM_CONTEXTMENU))
+		return;
 	m_titleBar.OnNcRButtonUp(nHitTest, point);
 }
 

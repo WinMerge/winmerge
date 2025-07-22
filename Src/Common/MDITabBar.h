@@ -95,7 +95,6 @@ class CMDITabBar : public CControlBar
 private:
 
 	bool m_bOnTitleBar;
-	bool m_bMaximized;
 	CMyTabCtrl m_tabCtrl;
 	CFont m_font;
 	CTitleBarHelper m_titleBar;
@@ -103,7 +102,6 @@ private:
 public:
 	CMDITabBar()
 		: m_bOnTitleBar(true)
-		, m_bMaximized(false)
 	{}
 	virtual ~CMDITabBar() {}
 	BOOL Update(bool bOnTitleBar, bool bMaxmized);
@@ -114,6 +112,7 @@ public:
 	void SetAutoMaxWidth(bool bAutoMaxWidth) { m_tabCtrl.SetAutoMaxWidth(bAutoMaxWidth); }
 	int GetItemCount() const { return m_tabCtrl.GetItemCount(); }
 	int GetItemIndexFromPoint(CPoint point, bool bRelatively) const;
+	bool ForwardMouseEventToTabCtrlIfNeeded(CPoint& point, UINT message);
 
 	virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler) {}
 	virtual CSize CalcFixedLayout(BOOL bStretch, BOOL bHorz);
