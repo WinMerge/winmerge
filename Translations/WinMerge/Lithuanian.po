@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-07-01 10:56+0000\n"
-"PO-Revision-Date: 2025-07-02 07:02+0200\n"
+"POT-Creation-Date: 2025-07-21 16:19+0000\n"
+"PO-Revision-Date: 2025-07-24 15:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1219,343 +1219,343 @@ msgid "Clear &All"
 msgstr "Išv&alyti viską"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "&Išvalyti viską"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "Pašalinti paskutinę filtrų &grupę"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "A&tstatyti į numatytuosius (*.*)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "Pridėti n&eįtraukiamą failą"
 
 msgid "&System Files"
-msgstr ""
+msgstr "&Sisteminiai failai"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "R&edaktoriaus rezerviniai failai"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "&Kompiliuoti binariniai failai"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "Žurna&lų failai"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "Laikinieji ar &talpyklos failai"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "Pridėti neįtra&ukiamą katalogą"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "&Versijų kontrolė"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "Kurimo artefaktai"
 
 msgid "&IDE"
-msgstr ""
+msgstr "&IDE"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "Pridėti &failo sąlygą"
 
 msgid "File &Size"
-msgstr ""
+msgstr "Failo dydi&s"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "Mažiau nei 1KB"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1KB ar daugiau"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "Mažiau nei 10KB"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10KB ar daugiau"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "Mažiau nei 100KB"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100KB ar daugiau"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "Mažiau nei 1MB"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1MB ar daugiau"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "Mažiau nei 10MB"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10MB ar daugiau"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "Mažiau nei 100MB"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100MB ar daugiau"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "Mažiau nei 1GB"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1GB ar daugiau"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "Pasirinktinis diapazonas..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "Vė&liausiai modifikuota"
 
 msgid "&Hour"
-msgstr ""
+msgstr "Valanda"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "Daugiau nei prieš 1 val."
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "Per 1 valandą"
 
 msgid "&Day"
-msgstr ""
+msgstr "&Diena"
 
 msgid "Before today"
-msgstr ""
+msgstr "Iki šiandien"
 
 msgid "Today"
-msgstr ""
+msgstr "Šiandien"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "Iki vakar"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Vakar"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "Nuo vakar"
 
 msgid "&Week"
-msgstr ""
+msgstr "Savaitė"
 
 msgid "Before this week"
-msgstr ""
+msgstr "Iki šios savaitės"
 
 msgid "This week"
-msgstr ""
+msgstr "Šią savaitę"
 
 msgid "Before last week"
-msgstr ""
+msgstr "Iki praeitos savaitės"
 
 msgid "Last week"
-msgstr ""
+msgstr "Praeitą savaitę"
 
 msgid "Since last week"
-msgstr ""
+msgstr "Nuo praeitos savaitės"
 
 msgid "&Month"
-msgstr ""
+msgstr "&Mėnuo"
 
 msgid "Before this month"
-msgstr ""
+msgstr "Iki šio mėnesio"
 
 msgid "This month"
-msgstr ""
+msgstr "Šį mėnesį"
 
 msgid "Before last month"
-msgstr ""
+msgstr "Iki praeito mėnesio"
 
 msgid "Last month"
-msgstr ""
+msgstr "Praeitą mėnesį"
 
 msgid "Since last month"
-msgstr ""
+msgstr "Nuo praeito mėnesio"
 
 msgid "&Year"
-msgstr ""
+msgstr "Metai"
 
 msgid "Before this year"
-msgstr ""
+msgstr "Iki šių metų"
 
 msgid "This year"
-msgstr ""
+msgstr "Šiemet"
 
 msgid "Before last year"
-msgstr ""
+msgstr "Iki praeitų metų"
 
 msgid "Last year"
-msgstr ""
+msgstr "Praeitais metais"
 
 msgid "Since last year"
-msgstr ""
+msgstr "Nuo praeitų metų"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "Pasirinktinis diapazonas..."
 
 msgid "&Attributes"
-msgstr ""
+msgstr "&Atributai"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "Failai „Tik skaitymui“"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "Failai ne „Tik skaitymui“"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "Paslėpti failai"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "Ne paslėpti failai"
 
 msgid "System files"
-msgstr ""
+msgstr "Sisteminiai failai"
 
 msgid "Not system files"
-msgstr ""
+msgstr "Ne sisteminiai failai"
 
 msgid "File &Content"
-msgstr ""
+msgstr "Failo &turinys"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "Yra tekstas..."
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "Nėra teksto..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "Pirmoje eilutėje yra tekstas..."
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "Pirmoje eilutėje nėra teksto..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "Pirmose 10 eilučių yra tekstas..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "Pirmose 10 eilučių nėra teksto..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "Paskutinėse 10 eilučių yra tekstas..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "Paskutinėse 10 eilučių nėra teksto..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "Paskutinėje eilutėje yra tekstas..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "Paskutinėje eilutėje nėra teksto..."
 
 msgid "&Line Count"
-msgstr ""
+msgstr "Ei&lučių skaičius"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "Mažiau nei 10"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10 ar daugiau"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "Mažiau nei 100"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100 ar daugiau"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "Mažiau nei 1000"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1000 ar daugiau"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "Mažiau nei 10000"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10000 ar daugiau"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "Mažiau nei 100000"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100000 ar daugiau"
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "Pridėti katal&ogo sąlygą"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "Rezultatai: Bet kur (Kairėje/Viduryje/Dešinėje)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "Rezultatai: &Kairėje"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "Rezultatai: &Viduryje"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "Rezultatai: &Dešinėje"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "Pri&dėti skirtumo sąlygą"
 
 msgid "Equal"
-msgstr ""
+msgstr "Lygu"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Nelygu"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "Mažiau nei 10B"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10B ar daugiau"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "Mažiau nei 100B"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100B ar daugiau"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "Mažiau nei 1 sekundė"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 sekundė ar daugiau"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "Mažiau nei 1 minutė"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 minutė ar daugiau"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "Mažiau nei 1 valanda"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 valanda ar daugiau"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "Mažiau nei 1 diena"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 diena ar daugiau"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "Mažiau nei 1 savaitė"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 savaitė ar daugiau"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "Rezultatai: &Kairėje ir Dešinėje"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "Rezultatai: Kairėje ir &Viduryje"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "Rezultatai: Viduryje ir &Dešinėje"
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -2152,10 +2152,10 @@ msgid "File Filters"
 msgstr "Failo filtrai"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "&Šablono / filtro išraiška"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "Iš anksto nustatyti &filtrai"
 
 msgid "Test..."
 msgstr "Testas..."
@@ -2173,19 +2173,19 @@ msgid "Delete..."
 msgstr "Trinti..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "Filtro sąlyga"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "&Kairėje:"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "&Operatorius:"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "&Dešinėje:"
 
 msgid "Expression:"
-msgstr ""
+msgstr "Išraiška:"
 
 msgid "Save Modified Files?"
 msgstr "Išsaugoti pakeistus failus?"
@@ -4428,7 +4428,7 @@ msgid "Recycle Bin"
 msgstr "Šiukšliadėžė"
 
 msgid "Permanently deleted"
-msgstr "Visam laikui ištrinta"
+msgstr "Ištrinta visam laikui"
 
 msgid "File operation completed successfully"
 msgstr "Failo operacija baigta sėkmingai"
@@ -4437,79 +4437,79 @@ msgid "File operation canceled"
 msgstr "Failo operacija atšaukta"
 
 msgid "No error"
-msgstr ""
+msgstr "Klaidų nėra"
 
 msgid "Filter expression is empty"
-msgstr ""
+msgstr "Filtro išraiška tuščia"
 
 msgid "Unknown character in filter expression"
-msgstr ""
+msgstr "Nežinomas simbolis filtro išraiškoje"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "Neužbaigta eilutės tiesioginė išraiška"
 
 msgid "Syntax error in filter expression"
-msgstr ""
+msgstr "Sintaksės klaida filtro išraiškoje"
 
 msgid "Failed to parse filter expression"
-msgstr ""
+msgstr "Nepavyko išanalizuoti filtro išraiškos"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "Klaidinga tiesioginės išraiškos reikšmė"
 
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Klaidinga reguliarioji išraiška"
 
 msgid "Undefined identifier"
-msgstr ""
+msgstr "Neapibrėžtas identifikatorius"
 
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "Neteisingas argumentų skaičius"
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "Filtro pavadinimas nerastas"
 
 msgid "Division by zero in filter expression"
-msgstr ""
+msgstr "Dalyba iš nulio filtro išraiškoje"
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Nežinoma klaida"
 
 msgid "Equals"
-msgstr ""
+msgstr "Lygu"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "Nelygu"
 
 msgid "Less than"
-msgstr ""
+msgstr "Mažiau nei"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "Mažiau arba lygu"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "Daugiau arba lygu"
 
 msgid "Greater than"
-msgstr ""
+msgstr "Daugiau nei"
 
 msgid "Between"
-msgstr ""
+msgstr "Tarp"
 
 msgid "Not Between"
-msgstr ""
+msgstr "Ne tarp"
 
 msgid "Contains"
-msgstr ""
+msgstr "Turi"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "Neturi"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "Turi (regex)"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "Neturi (regex)"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
