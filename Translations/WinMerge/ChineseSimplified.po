@@ -1223,343 +1223,343 @@ msgid "Clear &All"
 msgstr "清除所有(&A)"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "清除所有(&C)"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "清除上一个过滤器分组(&G)"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "重置为缺省值 (*.*) (&E)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "排除文件(&X)"
 
 msgid "&System Files"
-msgstr ""
+msgstr "系统文件(&S)"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "编辑器备份文件(&E)"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "已编译的二进制文件(&C)"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "日志文件(&L)"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "临时或缓存文件(&T)"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "排除文件夹(&U)"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "版本控制(&V)"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "构建制品(&B)"
 
 msgid "&IDE"
-msgstr ""
+msgstr "集成开发环境(&I)"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "添加文件条件(&F)"
 
 msgid "File &Size"
-msgstr ""
+msgstr "文件大小(&S)"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "小于 1KB"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "至少 1KB"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "小于 10KB"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "至少 10KB"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "小于 100KB"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "至少 100KB"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "小于 1MB"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "至少 1MB"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "小于 10MB"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "至少 10MB"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "小于 100MB"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "至少 100MB"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "小于 1GB"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "至少 1GB"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "自定义范围..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "最近修改(&L)"
 
 msgid "&Hour"
-msgstr ""
+msgstr "小时(&H)"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "超过一小时"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "一小时内"
 
 msgid "&Day"
-msgstr ""
+msgstr "天(&D)"
 
 msgid "Before today"
-msgstr ""
+msgstr "今天之前"
 
 msgid "Today"
-msgstr ""
+msgstr "今天"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "昨天之前"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "昨天"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "近两天"
 
 msgid "&Week"
-msgstr ""
+msgstr "星期(&W)"
 
 msgid "Before this week"
-msgstr ""
+msgstr "本周之前"
 
 msgid "This week"
-msgstr ""
+msgstr "本周"
 
 msgid "Before last week"
-msgstr ""
+msgstr "上周之前"
 
 msgid "Last week"
-msgstr ""
+msgstr "上周"
 
 msgid "Since last week"
-msgstr ""
+msgstr "近两周"
 
 msgid "&Month"
-msgstr ""
+msgstr "月(&M)"
 
 msgid "Before this month"
-msgstr ""
+msgstr "本月之前"
 
 msgid "This month"
-msgstr ""
+msgstr "本月"
 
 msgid "Before last month"
-msgstr ""
+msgstr "上月之前"
 
 msgid "Last month"
-msgstr ""
+msgstr "上月"
 
 msgid "Since last month"
-msgstr ""
+msgstr "近两月"
 
 msgid "&Year"
-msgstr ""
+msgstr "年(&Y)"
 
 msgid "Before this year"
-msgstr ""
+msgstr "今年之前"
 
 msgid "This year"
-msgstr ""
+msgstr "今年"
 
 msgid "Before last year"
-msgstr ""
+msgstr "去年之前"
 
 msgid "Last year"
-msgstr ""
+msgstr "去年"
 
 msgid "Since last year"
-msgstr ""
+msgstr "近两年"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "自定义范围(&C)..."
 
 msgid "&Attributes"
-msgstr ""
+msgstr "属性(&A)"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "只读文件"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "非只读文件"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "隐藏文件"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "非隐藏文件"
 
 msgid "System files"
-msgstr ""
+msgstr "系统文件"
 
 msgid "Not system files"
-msgstr ""
+msgstr "非系统文件"
 
 msgid "File &Content"
-msgstr ""
+msgstr "文件内容(&C)"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "包括字符串..."
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "未包含字符串..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "首行包含字符串..."
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "首行未包含字符串..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "前十行包含字符串..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "前十行未包含字符串..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "后十行包含字符串..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "后十行未包含字符串..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "最后一行包含字符串..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "最后一行未包含字符串..."
 
 msgid "&Line Count"
-msgstr ""
+msgstr "行数(&L)"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "小于 10"
 
 msgid "10 or more"
-msgstr ""
+msgstr "至少 10"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "小于 100"
 
 msgid "100 or more"
-msgstr ""
+msgstr "至少 100"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "小于 1000"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "至少 1000"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "小于 10000"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "至少 10000"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "小于 100000"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "至少 100000"
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "添加文件夹条件(&O)"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "目标：任意（左/中/右）(&A)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "目标：左(&L)"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "目标：中(&M)"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "目标：右(&R)"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "添加差异条件(&D)"
 
 msgid "Equal"
-msgstr ""
+msgstr "相同"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "不相同"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "小于 10 字节"
 
 msgid "10B or more"
-msgstr ""
+msgstr "至少 10 字节"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "小于 100 字节"
 
 msgid "100B or more"
-msgstr ""
+msgstr "至少 100 字节"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "小于 1 秒"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "至少 1 秒"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "小于 1 分钟"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "至少 1 分钟"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "小于 1 小时"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "至少 1 小时"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "小于 1 天"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "至少 1 天"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "小于 1 星期"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "至少 1 星期"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "目标：左和右(&L)"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "目标：左和中(&M)"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "目标：中和右(&R)"
 
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
@@ -2161,10 +2161,10 @@ msgid "File Filters"
 msgstr "文件过滤器"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "掩码 / 过滤器表达式(&M)"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "预设的过滤器(&F)"
 
 msgid "Test..."
 msgstr "测试..."
@@ -2182,19 +2182,19 @@ msgid "Delete..."
 msgstr "删除..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "过滤器条件"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "左手边：(&L)"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "操作：(&O)"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "右手边：(&R)"
 
 msgid "Expression:"
-msgstr ""
+msgstr "表达式："
 
 msgid "Save Modified Files?"
 msgstr "保存修改的文件吗？"
@@ -4883,79 +4883,79 @@ msgid "File operation canceled"
 msgstr "文件操作已取消"
 
 msgid "No error"
-msgstr ""
+msgstr "无错误"
 
 msgid "Filter expression is empty"
-msgstr ""
+msgstr "过滤器表达式为空"
 
 msgid "Unknown character in filter expression"
-msgstr ""
+msgstr "过滤器表达式存在未知字符"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "未终止的字符串字面量"
 
 msgid "Syntax error in filter expression"
-msgstr ""
+msgstr "过滤器表达式语法错误"
 
 msgid "Failed to parse filter expression"
-msgstr ""
+msgstr "无法解析过滤器表达式"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "非法的字面量值"
 
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "非法的正则表达式"
 
 msgid "Undefined identifier"
-msgstr ""
+msgstr "未定义的标识符"
 
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "非法的参数数量"
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "过滤器名称不存在"
 
 msgid "Division by zero in filter expression"
-msgstr ""
+msgstr "过滤器表达式存在除零错误"
 
 msgid "Unknown error"
-msgstr ""
+msgstr "未知错误"
 
 msgid "Equals"
-msgstr ""
+msgstr "等于"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "不等于"
 
 msgid "Less than"
-msgstr ""
+msgstr "小于"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "小于等于"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "大于等于"
 
 msgid "Greater than"
-msgstr ""
+msgstr "大于"
 
 msgid "Between"
-msgstr ""
+msgstr "在"
 
 msgid "Not Between"
-msgstr ""
+msgstr "不在"
 
 msgid "Contains"
-msgstr ""
+msgstr "包含"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "未包含"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "包含（正则表达式）"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "未包含（正则表达式）"
 
 msgid "Prettification"
 msgstr "格式美化"
