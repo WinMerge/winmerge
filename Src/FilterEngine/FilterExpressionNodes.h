@@ -17,7 +17,7 @@ struct FilterExpression;
 struct FileContentRef;
 class DIFFITEM;
 struct ValueType2;
-using ValueType = std::variant<std::monostate, bool, int64_t, Poco::Timestamp, std::shared_ptr<Poco::RegularExpression>, std::string, std::shared_ptr<FileContentRef>, std::unique_ptr<std::vector<ValueType2>>>;
+using ValueType = std::variant<std::monostate, bool, int64_t, Poco::Timestamp, std::shared_ptr<Poco::RegularExpression>, std::string, std::shared_ptr<FileContentRef>, std::shared_ptr<std::vector<ValueType2>>>;
 struct ValueType2 { ValueType value; };
 
 struct ExprNode
@@ -172,3 +172,9 @@ struct RegularExpressionLiteral : public ExprNode
 	std::shared_ptr<Poco::RegularExpression> value;
 };
 
+struct ArrayLiteral : public ExprNode
+{
+	ArrayLiteral(std::shared_ptr<std::vector<ValueType2>> v) : value(v) {}
+	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
+	std::shared_ptr<std::vector<ValueType2>> value;
+};

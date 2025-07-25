@@ -27,7 +27,7 @@ static std::optional<bool> evalAsBool(const ValueType& val)
 	auto boolVal = std::get_if<bool>(&val);
 	if (boolVal) return *boolVal;
 
-	auto ary = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&val);
+	auto ary = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&val);
 	if (ary && *ary)
 	{
 		const auto& vec = *ary->get();
@@ -479,37 +479,62 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 					if (op == TK_MINUS) return static_cast<int64_t>(*rvalBool - *lvalBool);
 				}
 			}
+			else if (std::holds_alternative<std::monostate>(lval))
+			{
+				if (std::holds_alternative<std::monostate>(rval))
+				{
+					if (op == TK_EQ)
+						return true;
+					else if (op == TK_NE)
+						return false;
+				}
+			}
 			if (op == TK_EQ)
 				return false;
 			else if (op == TK_NE)
 				return true;
 			return std::monostate{};
 		};
-	auto lvalArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&lval);
-	auto rvalArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&rval);
+	auto lvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&lval);
+	auto rvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&rval);
 	if (!lvalArray && !rvalArray)
 	{
 		return compute(op, lval, rval);
 	}
 	else if (lvalArray && !rvalArray)
 	{
-		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (const auto& item : *(lvalArray->get()))
 			result->emplace_back(ValueType2{ compute(op, item.value, rval) });
 		return result;
 	}
 	else if (!lvalArray && rvalArray)
 	{
-		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (const auto& item : *(rvalArray->get()))
 			result->emplace_back(ValueType2{ compute(op, lval, item.value) });
 		return result;
 	}
 	else
 	{
+		if (op == TK_EQ || op == TK_NE)
+		{
+			if ((*lvalArray)->size() != (*rvalArray)->size())
+				return (op == TK_NE);
+
+			for (size_t i = 0; i < (*lvalArray)->size(); ++i)
+			{
+				ValueType lv = (*lvalArray)->at(i).value;
+				ValueType rv = (*rvalArray)->at(i).value;
+				ValueType eq = compute(TK_EQ, lv, rv);
+				if (!std::holds_alternative<bool>(eq) || !std::get<bool>(eq))
+					return (op == TK_NE);
+			}
+			return (op == TK_EQ);
+		}
 		const size_t maxSize = (std::max)((*lvalArray)->size(), (*rvalArray)->size());
 		const size_t minSize = (std::min)((*lvalArray)->size(), (*rvalArray)->size());
-		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (size_t i = 0; i < minSize; ++i)
 			result->emplace_back(ValueType2{ compute(op, (*lvalArray)->at(i).value, (*rvalArray)->at(i).value) });
 		for (size_t i = 0; i < maxSize - minSize; ++i)
@@ -744,7 +769,7 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	else
 		func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType {
 			const int dirs = ctxt->ctxt->GetCompareDirs();
-			std::unique_ptr<std::vector<ValueType2>> values = std::make_unique<std::vector<ValueType2>>();
+			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
 			for (int i = 0; i < dirs; ++i)
 				values->emplace_back(ValueType2{ functmp(i, ctxt, di) });
 			return values;
@@ -767,7 +792,7 @@ static auto AbsFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vecto
 static auto AnyOfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(di);
-	if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+	if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
 	{
 		const auto& vec = *arrayVal->get();
 		return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
@@ -783,7 +808,7 @@ static auto AnyOfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vec
 static auto AllOfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(di);
-	if (const auto arrayVal = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+	if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
 	{
 		const auto& vec = *arrayVal->get();
 		return std::all_of(vec.begin(), vec.end(), [](const ValueType2& item) {
@@ -799,7 +824,7 @@ static auto AllOfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vec
 static auto AllEqualFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType first = args->at(0)->Evaluate(di);
-	if (auto pArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&first); pArray && *pArray)
+	if (auto pArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&first); pArray && *pArray)
 	{
 		const auto& vec = **pArray;
 		if (vec.size() <= 1)
@@ -824,12 +849,26 @@ static auto AllEqualFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 	}
 }
 
-static auto LengthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+static auto ArrayFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto result = std::make_shared<std::vector<ValueType2>>();
+	if (args)
+	{
+		for (ExprNode* arg : *args)
+		{
+			ValueType val = arg->Evaluate(di);
+			result->emplace_back(ValueType2{ std::move(val) });
+		}
+	}
+	return result;
+}
+
+static auto StrlenFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(di);
-	if (auto arg1Array = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+	if (auto arg1Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
 	{
-		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (const auto& item : *arg1Array->get())
 		{
 			if (auto arg1ItemStr = std::get_if<std::string>(&item.value))
@@ -861,9 +900,9 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	if (!start)
 		return std::monostate{};
 
-	if (auto argStrArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&argStr))
+	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
 	{
-		auto result = std::make_unique<std::vector<ValueType2>>();
+		auto result = std::make_shared<std::vector<ValueType2>>();
 		for (const auto& item : *argStrArray->get())
 		{
 			const std::string* str = std::get_if<std::string>(&item.value);
@@ -918,9 +957,9 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(di);
-	if (auto arg1Array = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+	if (auto arg1Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
 	{
-		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (const auto& item : *arg1Array->get())
 		{
 			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
@@ -947,7 +986,7 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 		argLen = (*args)[2]->Evaluate(di);
 
 	const auto contentref = std::get_if<std::shared_ptr<FileContentRef>>(&argContentRef);
-	const auto contentrefArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&argContentRef);
+	const auto contentrefArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argContentRef);
 	const int64_t* start = std::get_if<int64_t>(&argStart);
 	const int64_t* len = argLen ? std::get_if<int64_t>(&*argLen) : nullptr;
 
@@ -956,7 +995,7 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 
 	if (contentrefArray && *contentrefArray)
 	{
-		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (const auto& item : *contentrefArray->get())
 		{
 			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
@@ -987,10 +1026,10 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	if (!from || !to || from->empty())
 		return std::monostate{};
 
-	if (auto argStrArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&argStr))
+	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
 	{
 		auto& vec = **argStrArray;
-		auto result = std::make_unique<std::vector<ValueType2>>();
+		auto result = std::make_shared<std::vector<ValueType2>>();
 		result->reserve(vec.size());
 
 		for (const auto& item : vec)
@@ -1095,11 +1134,15 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 			throw std::invalid_argument("allequal function requires at least 1 arguments");
 		func = AllEqualFunc;
 	}
-	else if (functionName == "length")
+	else if (functionName == "array")
+	{
+		func = ArrayFunc;
+	}
+	else if (functionName == "strlen")
 	{
 		if (!args || args->size() != 1)
-			throw std::invalid_argument("length function requires 1 arguments");
-		func = LengthFunc;
+			throw std::invalid_argument("strlen function requires 1 arguments");
+		func = StrlenFunc;
 	}
 	else if (functionName == "substr")
 	{
@@ -1205,7 +1248,44 @@ ExprNode* FunctionNode::Optimize()
 			return result;
 		}
 	}
-	else if (functionName == "length")
+	else if (functionName == "array")
+	{
+		if (args)
+		{
+			bool isArrayConst = true;
+			for (auto& arg : *args)
+			{
+				bool isConst = false;
+				auto intValue = getConstIntValue(arg);
+				if (intValue.has_value())
+					isConst = true;
+				else if (auto strLit = args ? dynamic_cast<StringLiteral*>(arg) : nullptr)
+					isConst = true;
+				if (!isConst)
+				{
+					isArrayConst = false;
+					break;
+				}
+			}
+			if (isArrayConst)
+			{
+				auto result = std::make_shared<std::vector<ValueType2>>();
+				for (auto& arg : *args)
+				{
+					auto intValue = getConstIntValue(arg);
+					if (intValue.has_value())
+						result->emplace_back(ValueType2{ *intValue });
+					else if (auto strLit = dynamic_cast<StringLiteral*>(arg))
+						result->emplace_back(ValueType2{ strLit->value });
+					else
+						result->emplace_back(ValueType2{ std::monostate{} });
+				}
+				delete this;
+				return new ArrayLiteral(result);
+			}
+		}
+	}
+	else if (functionName == "strlen")
 	{
 		if (args && dynamic_cast<StringLiteral*>((*args)[0]))
 		{
