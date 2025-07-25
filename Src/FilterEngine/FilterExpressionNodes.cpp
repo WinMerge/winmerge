@@ -827,6 +827,18 @@ static auto AllEqualFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 static auto LengthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(di);
+	if (auto arg1Array = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&arg1))
+	{
+		std::unique_ptr<std::vector<ValueType2>> result = std::make_unique<std::vector<ValueType2>>();
+		for (const auto& item : *arg1Array->get())
+		{
+			if (auto arg1ItemStr = std::get_if<std::string>(&item.value))
+				result->emplace_back(ValueType2{ static_cast<int64_t>(arg1ItemStr->length()) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
+		return result;
+	}
 	if (auto arg1String = std::get_if<std::string>(&arg1))
 		return static_cast<int64_t>(arg1String->length());
 	return std::monostate{};
@@ -843,11 +855,49 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	if (args->size() == 3)
 		argLen = (*args)[2]->Evaluate(di);
 
-	const std::string* str = std::get_if<std::string>(&argStr);
 	const int64_t* start = std::get_if<int64_t>(&argStart);
 	const int64_t* len = argLen ? std::get_if<int64_t>(&*argLen) : nullptr;
 
-	if (!str || !start)
+	if (!start)
+		return std::monostate{};
+
+	if (auto argStrArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&argStr))
+	{
+		auto result = std::make_unique<std::vector<ValueType2>>();
+		for (const auto& item : *argStrArray->get())
+		{
+			const std::string* str = std::get_if<std::string>(&item.value);
+			if (!str)
+			{
+				result->emplace_back(ValueType2{ std::monostate{} });
+				continue;
+			}
+
+			int64_t s = *start;
+			if (s < 0)
+				s += static_cast<int64_t>(str->length());
+			if (s < 0 || s >= str->length())
+			{
+				result->emplace_back(ValueType2{ std::string{} });
+				continue;
+			}
+
+			if (!len)
+			{
+				result->emplace_back(ValueType2{ str->substr(static_cast<size_t>(s)) });
+				continue;
+			}
+
+			int64_t actualLen = (*len >= 0) ? *len : static_cast<int64_t>(str->length()) - s + *len;
+			if (actualLen < 0)
+				actualLen = 0;
+			result->emplace_back(ValueType2{ str->substr(static_cast<size_t>(s), static_cast<size_t>(actualLen)) });
+		}
+		return result;
+	}
+
+	const std::string* str = std::get_if<std::string>(&argStr);
+	if (!str)
 		return std::monostate{};
 
 	int64_t s = *start;
@@ -857,11 +907,12 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 		return std::string{};
 
 	if (!len)
-		return str->substr(s);
+		return str->substr(static_cast<size_t>(s));
+
 	int64_t actualLen = (*len >= 0) ? *len : static_cast<int64_t>(str->length()) - s + *len;
 	if (actualLen < 0)
 		actualLen = 0;
-	return str->substr(s, static_cast<size_t>(actualLen));
+	return str->substr(static_cast<size_t>(s), static_cast<size_t>(actualLen));
 }
 
 static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -930,13 +981,37 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	auto argFrom = (*args)[1]->Evaluate(di);
 	auto argTo = (*args)[2]->Evaluate(di);
 
-	const std::string* str = std::get_if<std::string>(&argStr);
 	const std::string* from = std::get_if<std::string>(&argFrom);
 	const std::string* to = std::get_if<std::string>(&argTo);
 
-	if (!str || !from || !to || from->empty())
+	if (!from || !to || from->empty())
 		return std::monostate{};
 
+	if (auto argStrArray = std::get_if<std::unique_ptr<std::vector<ValueType2>>>(&argStr))
+	{
+		auto& vec = **argStrArray;
+		auto result = std::make_unique<std::vector<ValueType2>>();
+		result->reserve(vec.size());
+
+		for (const auto& item : vec)
+		{
+			const std::string* str = std::get_if<std::string>(&item.value);
+			if (!str)
+			{
+				result->emplace_back(ValueType2{ std::monostate{} });
+				continue;
+			}
+
+			const auto replaced = Poco::replace(*str, *from, *to);
+			result->emplace_back(ValueType2{ replaced });
+		}
+
+		return result;
+	}
+
+	const std::string* str = std::get_if<std::string>(&argStr);
+	if (!str)
+		return std::monostate{};
 	return Poco::replace(*str, *from, *to);
 }
 
