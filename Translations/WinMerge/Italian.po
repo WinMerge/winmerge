@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Italian) 23.07.2025\n"
+"Project-Id-Version: WinMerge - Italian - 25.07.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-07-23 17:46+0200\n"
+"PO-Revision-Date: 2025-07-26 09:50+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -4414,7 +4414,7 @@ msgstr "Vai alla riga spostata\tCtrl+Maiusc+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Disabilitato"
 
 msgid "From file system"
 msgstr "Dal file system"
@@ -4515,7 +4515,7 @@ msgstr "Naturale simmetrica DirectWrite"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Disabilitata"
 
 msgid "MDI child window or main window"
 msgstr "Finestra secondaria MDI o finestra principale"
@@ -4658,7 +4658,7 @@ msgstr "Cartella installazione"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Disabilitata"
 
 msgid "Allow only one instance to run"
 msgstr "Permetti l'esecuzione di un'unica istanza del programma"
@@ -4669,7 +4669,7 @@ msgstr ""
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Disabilitato"
 
 msgid "Only on window activated"
 msgstr "Solo nella finestra attivata"
