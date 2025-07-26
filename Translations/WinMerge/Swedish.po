@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-01-14 12:20+0000\n"
-"PO-Revision-Date: 2025-07-19 19:22+0200\n"
+"PO-Revision-Date: 2025-07-19 21:08+0200\n"
 "Last-Translator: Hans Eriksson <hanseriksson980@gmail.com>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sv\n"
@@ -4317,12 +4317,11 @@ msgid "Your software is up to date."
 msgstr "Din mjukvara är aktuell."
 
 #, c-format
-msgid ""
-"WinMerge update available.\n"
-"%1 available (you have %2). Download now?"
-msgstr ""
-"En ny version av WinMerge är tillgänglig.\n"
-"%1 är nu tillgänglig (du har %2). Vill du ladda ner den nu?"
+msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
+msgstr "En ny version av WinMerge är tillgänglig.\n%1 är nu tillgänglig (du har %2). Vill du ladda ner den nu?"
+
+msgid " - All rights reserved."
+msgstr " - Alla rättigheter reserverade."
 
 msgid "Failed to download latest version information"
 msgstr "Misslyckades att ladda ner info om senaste versionen"
@@ -4340,8 +4339,9 @@ msgstr "Gå till rad %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Gå till flyttad rad\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Inaktiverad"
+msgstr "Avstängd"
 
 msgid "From file system"
 msgstr "Från filsystem"
@@ -4382,6 +4382,7 @@ msgstr "Websida"
 msgid "W&rap Text"
 msgstr "Vänd på text"
 
+#, c-format
 msgid "%1 is not installed."
 msgstr "%1 är inte installerad."
 
@@ -4436,6 +4437,10 @@ msgstr "DirectWrite naturlig"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite naturlig symmetrisk"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr "Avstängd"
 
 msgid "MDI child window or main window"
 msgstr "MDI nedärvda fönster eller huvudfönster"
@@ -4575,11 +4580,20 @@ msgstr "AppData-katalog"
 msgid "Install folder"
 msgstr "Installationskatalog"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr "Avstängd"
+
 msgid "Allow only one instance to run"
 msgstr "Tillåt endast att en instans körs"
 
 msgid "Allow only one instance; wait for termination"
-msgstr "Tillåt endast att en instans körs och vänta på den att avsluta"
+msgstr "Tillåt bara att en instans körs; vänta på avslutning"
+
+
+msgmsgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr "Avstängd"
 
 msgid "Only on window activated"
 msgstr "Endast vid fönster aktvierat"
