@@ -4960,6 +4960,9 @@ msgstr ""
 "新版本的 WinMerge 已準備就緒。\n"
 "已可以更新到 %1 (現在是 %2)。您想要現在下載嗎？"
 
+msgid " - All rights reserved."
+msgstr ""
+
 #, c-format
 msgid "Failed to download latest version information"
 msgstr "下載最新版本資訊失敗"
@@ -4979,9 +4982,9 @@ msgstr "至第 %1 行 (&O)"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "前往已移動的行\tCtrl+Shift+G"
 
-#, c-format
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "關閉"
+msgstr ""
 
 #, c-format
 msgid "From file system"
@@ -5089,6 +5092,10 @@ msgstr "DirectWrite 自然"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite 自然對稱"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI 子視窗或主視窗"
@@ -5228,12 +5235,20 @@ msgstr "AppData 資料夾"
 msgid "Install folder"
 msgstr "安裝資料夾"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 #, c-format
 msgid "Allow only one instance to run"
 msgstr "不能同時執行一個以上本程式"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "僅允許運行一個實例並等待該實例結束"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "僅在視窗啟用時"

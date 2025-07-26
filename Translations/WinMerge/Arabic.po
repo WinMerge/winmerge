@@ -4234,6 +4234,9 @@ msgstr ""
 "يوجد نسخة جديدة من WinMerge متوفرة.\n"
 "%1 متوفرة الآن (النسخة الحالية %2). هل ترغب في تنزيلها الآن؟"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "فشل في تنزيل معلومات آخر إصدار"
 
@@ -4250,8 +4253,9 @@ msgstr "إ&ذهب إلى السطر %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "معطل"
+msgstr ""
 
 msgid "From file system"
 msgstr "من ملف النظام"
@@ -4345,6 +4349,10 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
 msgstr ""
 
 msgid "MDI child window or main window"
@@ -4485,10 +4493,18 @@ msgstr ""
 msgid "Install folder"
 msgstr ""
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "السماح بتشغيل عنصر واحد فقط"
 
 msgid "Allow only one instance; wait for termination"
+msgstr ""
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
 msgstr ""
 
 msgid "Only on window activated"

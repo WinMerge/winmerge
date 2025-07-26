@@ -4982,6 +4982,9 @@ msgstr ""
 "Una nova versió del WinMerge està disponible.\n"
 "%1 està disponible (teniu la versió %2). Voleu descarregar-la ara mateix?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 #, c-format
 msgid "Failed to download latest version information"
 msgstr "No s'ha pogut descarregar la informació de la versió més recent"
@@ -5001,9 +5004,9 @@ msgstr "Ves a la línia %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Ves a la línia desplaçada\tControl+Maj+G"
 
-#, c-format
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Inhabilitat"
+msgstr ""
 
 #, c-format
 msgid "From file system"
@@ -5111,6 +5114,10 @@ msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite natural simètric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "Subfinestra filla MDI o finestra principal"
@@ -5250,12 +5257,20 @@ msgstr "Carpeta AppData"
 msgid "Install folder"
 msgstr "Carpeta d'instal·lació"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 #, c-format
 msgid "Allow only one instance to run"
 msgstr "Permet d'executar només una instància"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Permet d'executar només una instància i espera que la instància acabi"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Només a la finestra activada"

@@ -4378,6 +4378,9 @@ msgstr ""
 "Yeni bir WinMerge sürümü yayınlanmış.\n"
 "%1 sürümünü indirmek ister misiniz (%2 sürümünü kullanıyorsunuz)?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Son sürüm bilgisi alınamadı"
 
@@ -4394,8 +4397,9 @@ msgstr "%1. &satıra git"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Taşınmış satıra git\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Etkisizleştirildi"
+msgstr ""
 
 msgid "From file system"
 msgstr "Dosya sisteminden"
@@ -4491,6 +4495,10 @@ msgstr "DirectWrite doğal"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite doğal simetrik"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI alt penceresini ya da ana pencereyi"
@@ -4630,11 +4638,19 @@ msgstr "AppData klasörü"
 msgid "Install folder"
 msgstr "Kurulum klasörü"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Yalnızca bir kopya çalışsın"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Yalnızca bir kopyanın çalışsın ve kopyanın sonlandırılması beklensin"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Yalnızca pencere etkinleştirildiğinde"

@@ -3960,6 +3960,9 @@ msgstr "Ваша программа актуальна."
 msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr "Доступна более новая версия WinMerge.\nДоступна версия %1 (установлена %2). Загрузить сейчас?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Не удалось загрузить сведения о последней версии"
 
@@ -3976,8 +3979,9 @@ msgstr "Перейти к строке %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Перейти к перемещенной строке\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Отключен"
+msgstr ""
 
 msgid "From file system"
 msgstr "Как в файловой системе"
@@ -4066,6 +4070,10 @@ msgstr "Прямая запись Natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "Прямая запись Natural Symmetric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI дочернее окно или главное окно"
@@ -4205,11 +4213,19 @@ msgstr "Папка данных"
 msgid "Install folder"
 msgstr "Папка установки"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Активно только в окне"

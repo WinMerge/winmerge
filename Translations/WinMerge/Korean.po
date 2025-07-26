@@ -5025,6 +5025,9 @@ msgstr ""
 "새 버전의 WinMerge를 사용할 수 있습니다.\n"
 "%1을(를) 사용할 수 있습니다 (%2를 가지고 있습니다). 지금 다운로드하시겠습니까?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 #, c-format
 msgid "Failed to download latest version information"
 msgstr "최신 버전 정보 다운로드 실패"
@@ -5044,9 +5047,9 @@ msgstr "%1줄로 이동(&O)"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "이동된 줄로 이동\tCtrl+Shift+G"
 
-#, c-format
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "사용 안 함"
+msgstr ""
 
 #, c-format
 msgid "From file system"
@@ -5154,6 +5157,10 @@ msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI 하위 창 또는 기본 창"
@@ -5293,12 +5300,20 @@ msgstr "AppData 폴더"
 msgid "Install folder"
 msgstr "설치 폴더"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 #, c-format
 msgid "Allow only one instance to run"
 msgstr "하나의 인스턴스만 실행 허용"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "하나의 인스턴스만 실행하고 인스턴스가 종료될 때까지 대기"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "창에서만 활성화됨"

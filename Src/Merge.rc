@@ -4540,6 +4540,7 @@ BEGIN
     IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date."
     IDS_CHECKFORUPDATES_NEWVERSION 
                             "WinMerge update available.\n%1 available (you have %2). Download now?"
+    IDS_ALLRIGHTS_RESERVED  " - All rights reserved."
 END
 
 STRINGTABLE
@@ -4572,7 +4573,7 @@ END
 // AUTOCOMPLETE COMBOBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_AUTOCOMPLETE_DISABLED "Disabled"
+    IDS_AUTOCOMPLETE_DISABLED NC_("Options dialog|General|Open dialog Auto completion","Disabled")
     IDS_AUTOCOMPLETE_FILE_SYS "From file system"
     IDS_AUTOCOMPLETE_MRU    "From Most Recently Used list"
 END
@@ -4697,6 +4698,7 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_CLOSE_WINDOWS_WITH_ESC_DISABLED NC_("Options dialog|General|Close windows with Esc","Disabled")
     IDS_CLOSE_WINDOWS_WITH_ESC_1 "MDI child window or main window"
     IDS_CLOSE_WINDOWS_WITH_ESC_2 "MDI child window only"
     IDS_CLOSE_WINDOWS_WITH_ESC_3 "Close main window if only one MDI child window"
@@ -4756,12 +4758,14 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_SINGLEINSTANCE_DISABLED NC_("Options dialog|General|Single instance mode","Disabled")
     IDS_SINGLEINSTANCE_STR1 "Allow only one instance to run"
     IDS_SINGLEINSTANCE_STR2 "Allow only one instance; wait for termination"
 END
 
 STRINGTABLE
 BEGIN
+    IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED NC_("Options dialog|General|Auto-reload modified files","Disabled")
     IDS_AUTO_RELOAD_MODIFIED_FILES_STR1 "Only on window activated"
     IDS_AUTO_RELOAD_MODIFIED_FILES_STR2 "Immediately"
 END

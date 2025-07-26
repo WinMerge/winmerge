@@ -4298,6 +4298,9 @@ msgstr ""
 "Налично е ново издание на WinMerge.\n"
 "Налично е %1 (инсталирано е %2). Желаете ли новото издание да бъде изтеглено?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Грешка при изтегляне на данните за ново издание"
 
@@ -4314,8 +4317,9 @@ msgstr "От&иване на ред %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Забранено"
+msgstr ""
 
 msgid "From file system"
 msgstr "От файловата система"
@@ -4410,6 +4414,10 @@ msgstr "Естествен DirectWrite"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "Естествен симтричен DirectWrite"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "Дъщерен или основен прозорец (MDI)"
@@ -4549,10 +4557,18 @@ msgstr ""
 msgid "Install folder"
 msgstr ""
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Позволи само едно стартирано копие"
 
 msgid "Allow only one instance; wait for termination"
+msgstr ""
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
 msgstr ""
 
 msgid "Only on window activated"

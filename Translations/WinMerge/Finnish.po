@@ -4284,6 +4284,9 @@ msgstr ""
 "WinMergen uusi versio on saatavilla.\n"
 "%1 on nyt saatavilla (sinulla on %2). Haluatko ladata sen nyt?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Uusimpien versiotietojen lataaminen epäonnistui"
 
@@ -4300,8 +4303,9 @@ msgstr "Siirry riville %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Siirry siirrettyyn riviin\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Ei käytössä"
+msgstr ""
 
 msgid "From file system"
 msgstr "Tiedostojärjestelmästä"
@@ -4396,6 +4400,10 @@ msgstr "DirectWrite luonnollinen"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural symmetrinen"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI ali-ikkuna tai pääikkuna"
@@ -4535,6 +4543,10 @@ msgstr "AppData-kansio"
 msgid "Install folder"
 msgstr "Asennuskansio"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr ""
 
@@ -4543,6 +4555,10 @@ msgid ""
 msgstr ""
 "Salli vain yhden instanssin suorittaminen ja odota, että instanssi "
 "lopetetaan"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr ""

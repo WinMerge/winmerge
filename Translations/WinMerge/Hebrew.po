@@ -4155,6 +4155,9 @@ msgstr ""
 "גרסה חדשה של WinMerge זמינה.\n"
 "%1 זמינה כעת (ברשותך %2). האם להוריד אותה כעת?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "הורדת מידע על הגרסה העדכנית נכשלה"
 
@@ -4171,8 +4174,9 @@ msgstr "עבור לשורה %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "עבור לשורה שהוזזה\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "מושבת"
+msgstr ""
 
 msgid "From file system"
 msgstr "ממערכת הקבצים"
@@ -4262,6 +4266,10 @@ msgstr "DirectWrite טבעי"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite טבעי סימטרי"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "חלון בן MDI או חלון ראשי"
@@ -4401,11 +4409,19 @@ msgstr "תיקיית AppData"
 msgid "Install folder"
 msgstr "תיקיית התקנה"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "אפשר להריץ מופע אחד בלבד"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "אפשר להריץ מופע אחד בלבד והמתן לסיומו"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "רק כאשר חלון מופעל"

@@ -3959,6 +3959,9 @@ msgstr "Twoje oprogramowanie jest aktualne."
 msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr "Dostępna jest nowa wersja WinMerge.\n%1 jest już dostępny (posiadasz %2). Czy chcesz ją teraz pobrać?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Nie udało się uzyskać informacji o dostępności nowszej wersji"
 
@@ -3975,8 +3978,9 @@ msgstr "Idź do wiersza %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Idź do przeniesionego wiersza\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Wyłączone"
+msgstr ""
 
 msgid "From file system"
 msgstr "Z systemu plików"
@@ -4065,6 +4069,10 @@ msgstr "DirectWrite Naturalny"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Naturalny Symetryczny"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "Okno podrzędne lub okno główne"
@@ -4204,11 +4212,19 @@ msgstr "Folder AppData"
 msgid "Install folder"
 msgstr "Folder instalacji"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Zezwól na uruchomienie tylko jednej instancji i poczekaj, aż zakończy pracę"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Tylko w aktywnym oknie"

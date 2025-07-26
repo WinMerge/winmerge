@@ -4334,6 +4334,9 @@ msgstr ""
 "Este disponibilă o nouă versiune WinMerge.\n"
 "%1 este acum disponibilă (dvs. aveți %2). Doriți să o descărcați acum?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Descărcarea informațiilor despre ultima versiune a eșuat"
 
@@ -4350,8 +4353,9 @@ msgstr "&Mergi la rândul %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Mergi la rândul mutat\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Inactiv"
+msgstr ""
 
 msgid "From file system"
 msgstr "Din sistemul de fișiere"
@@ -4446,6 +4450,10 @@ msgstr "DirectWrite natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite natural simetric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "Fereastră copil MDI sau fereastră principală"
@@ -4585,12 +4593,20 @@ msgstr "Directorul AppData"
 msgid "Install folder"
 msgstr "Directorul de instalare"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Permite rularea unei singure instanțe"
 
 msgid "Allow only one instance; wait for termination"
 msgstr ""
 "Permite rularea unei singure instanțe și așteaptă ca instanța să se termine"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Doar în fereastră activată"

@@ -4284,6 +4284,9 @@ msgstr ""
 "Na voljo je nova različica WinMerge.\n"
 "%1 je zdaj na voljo (vi imate %2). Ali jo želite zdaj prenesti?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Ni bilo mogoče prenesti podatkov o najnovejši različici"
 
@@ -4300,8 +4303,9 @@ msgstr "Pojdi &na vrstico %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Pojdi na premaknjeno vrstico\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Onemogočeno"
+msgstr ""
 
 msgid "From file system"
 msgstr "Iz datotečnega sistema"
@@ -4396,6 +4400,10 @@ msgstr "Naravni DirectWrite"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "Naravno simetričen DirectWrite"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "Podrejeno ali glavno okno MDI"
@@ -4535,11 +4543,19 @@ msgstr "Mapa aplikacijskih podatkov"
 msgid "Install folder"
 msgstr "Namestitvena mapa"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Dovoli zagon le enega primerka, in počakaj, da se primerek dokonča"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Aktivirano samo na oknu"

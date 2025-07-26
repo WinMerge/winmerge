@@ -4342,6 +4342,9 @@ msgstr ""
 "WinMerge 的新版本已经可用。\n"
 "当前最新版本为 %1，而您当前使用的是 %2。是否要立即下载？"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "下载最新版本信息失败"
 
@@ -4358,8 +4361,9 @@ msgstr "转到第 %1 行(&O)"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "转到被移动的行\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "禁用"
+msgstr ""
 
 msgid "From file system"
 msgstr "由文件系统提供"
@@ -4454,6 +4458,10 @@ msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI 子窗口或主窗口"
@@ -4593,11 +4601,19 @@ msgstr "AppData 文件夹"
 msgid "Install folder"
 msgstr "安装文件夹"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "只允许运行一个实例"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "只允许运行一个实例并等待该实例结束"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "仅在窗口激活时"

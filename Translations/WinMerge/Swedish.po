@@ -4324,6 +4324,9 @@ msgstr ""
 "En ny version av WinMerge är tillgänglig.\n"
 "%1 är nu tillgänglig (du har %2). Vill du ladda ner den nu?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Misslyckades att ladda ner info om senaste versionen"
 
@@ -4340,8 +4343,9 @@ msgstr "Gå till rad %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Gå till flyttad rad\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Inaktiverad"
+msgstr ""
 
 msgid "From file system"
 msgstr "Från filsystem"
@@ -4436,6 +4440,10 @@ msgstr "DirectWrite naturlig"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite naturlig symmetrisk"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI nedärvda fönster eller huvudfönster"
@@ -4575,11 +4583,19 @@ msgstr "AppData-katalog"
 msgid "Install folder"
 msgstr "Installationskatalog"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Tillåt endast att en instans körs"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Tillåt endast att en instans körs och vänta på den att avsluta"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Endast vid fönster aktvierat"

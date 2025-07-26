@@ -4392,6 +4392,9 @@ msgstr ""
 "Disponibile v. %1 (installata v. %2).\n"
 "Vuoi scaricarla adesso?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr ""
 "Non è stato possibile scaricare le informazioni sulla versione aggiornata"
@@ -4409,8 +4412,9 @@ msgstr "Vai alla &linea %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Vai alla riga spostata\tCtrl+Maiusc+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Disattivato"
+msgstr ""
 
 msgid "From file system"
 msgstr "Dal file system"
@@ -4508,6 +4512,10 @@ msgstr "Naturale DirectWrite"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "Naturale simmetrica DirectWrite"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "Finestra secondaria MDI o finestra principale"
@@ -4648,12 +4656,20 @@ msgstr "Cartella AppData"
 msgid "Install folder"
 msgstr "Cartella installazione"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Permetti l'esecuzione di un'unica istanza del programma"
 
 msgid "Allow only one instance; wait for termination"
 msgstr ""
 "Permetti l'esecuzione di un'unica istanza del programma e attendi che termini"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Solo nella finestra attivata"

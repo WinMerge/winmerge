@@ -4382,6 +4382,9 @@ msgstr ""
 "சாளரஒன்றிணை இன் புதிய பதிப்பு உள்ளது.\n"
 "% 1 இப்போது கிடைக்கிறது (உங்களிடம் %2 உள்ளது). இப்போது பதிவிறக்கம் செய்ய விரும்புகிறீர்களா?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "சமீபத்திய பதிப்பு தகவலை பதிவிறக்கம் செய்ய முடியவில்லை"
 
@@ -4398,8 +4401,9 @@ msgstr "வரி %1க்குச் செல்"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "நகர்த்தப்பட்ட வரிக்கு செல்க\tகட்டு+தூக்கு+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "முடக்கப்பட்டது"
+msgstr ""
 
 msgid "From file system"
 msgstr "கோப்பு அமைப்பிலிருந்து"
@@ -4494,6 +4498,10 @@ msgstr "நேரடிஎழுத்து இயற்கை"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "நேரடிஎழுத்து இயற்கை சமச்சீர்"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "எம்டிஐ குழந்தை சாளரம் அல்லது முக்கிய சாளரம்"
@@ -4633,6 +4641,10 @@ msgstr "பயன்தரவு கோப்புறை"
 msgid "Install folder"
 msgstr "நிறுவல் கோப்புறை"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "ஒரே ஒரு நிகழ்வை இயக்க அனுமதி"
 
@@ -4640,6 +4652,10 @@ msgid "Allow only one instance; wait for termination"
 msgstr ""
 "ஒரே ஒரு நிகழ்வை இயக்க அனுமதிக்கவும் மற்றும் நிகழ்வு முடிவடையும் வரை "
 "காத்திருக்கவும்"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "சாளரத்தில் மட்டுமே செயல்படுத்தப்பட்டது"

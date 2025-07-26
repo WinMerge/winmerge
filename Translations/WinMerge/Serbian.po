@@ -4808,6 +4808,9 @@ msgstr ""
 msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr ""
 
+msgid " - All rights reserved."
+msgstr ""
+
 #, c-format
 msgid "Failed to download latest version information"
 msgstr ""
@@ -4827,9 +4830,9 @@ msgstr "И&ди на ред %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
 
-#, c-format
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Онемогући"
+msgstr ""
 
 #, c-format
 msgid "From file system"
@@ -4930,6 +4933,10 @@ msgid "DirectWrite Natural"
 msgstr ""
 
 msgid "DirectWrite Natural Symmetric"
+msgstr ""
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
 msgstr ""
 
 msgid "MDI child window or main window"
@@ -5070,11 +5077,19 @@ msgstr ""
 msgid "Install folder"
 msgstr ""
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 #, c-format
 msgid "Allow only one instance to run"
 msgstr "Дозволи само једну покренуту надлежност"
 
 msgid "Allow only one instance; wait for termination"
+msgstr ""
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
 msgstr ""
 
 msgid "Only on window activated"

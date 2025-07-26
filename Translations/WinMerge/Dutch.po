@@ -4321,6 +4321,9 @@ msgstr ""
 "Er is een nieuwe versie van WinMerge beschikbaar.\n"
 "%1 is nu beschikbaar (u heeft %2). Wilt u het nu downloaden?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Downloaden van laatste versie-informatie mislukt"
 
@@ -4337,8 +4340,9 @@ msgstr "Naar regel %1 gaan"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Naar verplaatste regel gaan\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Uitgeschakeld"
+msgstr ""
 
 msgid "From file system"
 msgstr "Van bestandssysteem"
@@ -4434,6 +4438,10 @@ msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI-dochtervenster of hoofdvenster"
@@ -4573,6 +4581,10 @@ msgstr "AppData-map"
 msgid "Install folder"
 msgstr "Installatiemap"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Slechts één draaiende instantie toestaan"
 
@@ -4580,6 +4592,10 @@ msgid "Allow only one instance; wait for termination"
 msgstr ""
 "Slechts één draaiende instantie toestaan en wachten totdat de instantie "
 "beëindigd is"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Alleen wanneer venster geactiveerd wordt"

@@ -4373,6 +4373,9 @@ msgstr ""
 "Una versione nova di WinMerge hè dispunibule.\n"
 "%1 hè dispunibule (avete %2). Vulete scaricalla subitu ?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Fiascu per scaricà l’infurmazione di l’ultima versione"
 
@@ -4389,8 +4392,9 @@ msgstr "An&dà à a linea %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Andà à a linea dispiazzata\tCtrl+Maius+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Disattivatu"
+msgstr ""
 
 msgid "From file system"
 msgstr "Da u sistema di schedariu"
@@ -4486,6 +4490,10 @@ msgstr "DirectWrite naturale"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite naturale simetricu"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "Finestra zitella o finestra principale MDI"
@@ -4627,11 +4635,19 @@ msgstr "Cartulare AppData"
 msgid "Install folder"
 msgstr "Cartulare d’installazione"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Permette una instanza unica ; aspettà ch’ella si compii"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Solu quandu a finestra hè attivata"

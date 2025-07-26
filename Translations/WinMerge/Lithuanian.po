@@ -3958,6 +3958,9 @@ msgstr "Jūsų programinė įranga yra atnaujinta."
 msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr "Yra nauja „WinMerge“ versija.\n%1 dabar yra prieinama (jūs naudojate %2). Norite parsisiųsti dabar?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Nepavyko atsisiųsti naujausios versijos informacijos"
 
@@ -3974,8 +3977,9 @@ msgstr "E&iti į %1 eilutę"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Eiti į perkeltą eilutę\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Išjungta"
+msgstr ""
 
 msgid "From file system"
 msgstr "Iš sistemos"
@@ -4064,6 +4068,10 @@ msgstr "DirectWrite naturalus"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite naturalus simetrinis"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI antrinį arba pagrindinį langą"
@@ -4203,11 +4211,19 @@ msgstr "„AppData“ katalogas"
 msgid "Install folder"
 msgstr "Diegimo katalogas"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Leisti vykdyti tik vieną egzempliorių"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Leisti vykdyti tik vieną egzempliorių ir laukti kol jo vykdymas baigsis"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Tik suaktyvinus langą"
