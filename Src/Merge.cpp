@@ -358,6 +358,15 @@ BOOL CMergeApp::InitInstance()
 	// Initialize i18n (multiple language) support
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
+#if defined(USE_DARKMODELIB)
+	if (IsWin10_OrGreater())
+	{
+		DarkMode::initDarkMode();
+		DarkMode::setDarkModeConfig();
+		DarkMode::setDefaultColors(true);
+	}
+#endif
+
 	SysColorHook::Init();
 	charsets_init();
 	UpdateCodepageModule();

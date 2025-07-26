@@ -14,6 +14,7 @@
 #endif
 
 #include "WildcardDropList.h"
+#include "MergeDarkMode.h"
 
 /**
  * @brief DropList window procedure.
@@ -163,6 +164,9 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR fixedPatterns, 
 	::RegisterHotKey(info.hwndList, IDCANCEL, 0, VK_ESCAPE);
 	LONG_PTR pfnSuper = ::SetWindowLongPtr(info.hwndList, GWLP_WNDPROC, (LONG_PTR)LbWndProc);
 	::SetWindowLongPtr(info.hwndList, GWLP_USERDATA, pfnSuper);
+#if defined(USE_DARKMODELIB)
+	DarkMode::setTabCtrlSubclass(hTc);
+#endif
 }
 
 /**
