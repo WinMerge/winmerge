@@ -319,47 +319,85 @@
           </para>
         </section>
 
-        <section>
+        <section id="FilterExpression_ArrayEvaluation">
           <title>Array Evaluation</title>
 
           <para>
-            Attributes without a side prefix (e.g., <literal>Size</literal>) return an array of values from all available sides (Left, Middle, Right).
-            When applying an operator to such arrays, behavior differs depending on whether the comparison is with a scalar or another array.
+            Attributes without a side prefix (e.g., <literal>Size</literal>) return an array of values from all available sides
+            (Left, Middle, Right). When applying an operator to such arrays, behavior differs depending on whether the comparison is
+            with a scalar or another array.
           </para>
 
-          <section>
+          <section id="FilterExpression_ArrayVsScalar">
             <title>Array vs Scalar</title>
             <para>
               When comparing an array to a scalar, the operation is applied to each array element individually.
-              The result is <literal>true</literal> if <emphasis>any</emphasis> element comparison is <literal>true</literal>.
+              This results in a boolean array. If any element in this boolean array is <literal>true</literal>,
+              the overall expression evaluates to <literal>true</literal>. Otherwise, it evaluates to <literal>false</literal>.
             </para>
-            <para>Example:</para>
-            <programlisting>[3, 5, 8] &gt; 6 -&gt; true (because 8 &gt; 6)</programlisting>
+            <example>
+              <title>Example</title>
+              <programlisting>[3, 5, 8] &gt; 6 -> [false, false, true] -> true</programlisting>
+            </example>
           </section>
 
-          <section>
+          <section id="FilterExpression_ArrayVsArray">
             <title>Array vs Array</title>
             <para>
-              When comparing two arrays, they are compared element by element.
+              When comparing two arrays, the behavior depends on the operator:
             </para>
             <itemizedlist>
               <listitem>
                 <para>
                   For <literal>=</literal> and <literal>!=</literal>:
-                  the arrays must have the same length. <literal>=</literal> returns <literal>true</literal> only if all elements are equal.
+                  The arrays must have the same length.
+                  The result is a single boolean value, not an array.
+                  <literal>=</literal> returns <literal>true</literal> only if all elements are equal.
                   <literal>!=</literal> returns <literal>true</literal> if any element differs.
                 </para>
               </listitem>
               <listitem>
                 <para>
-                  For other operators (e.g., <literal>&gt;</literal>, <literal>&lt;</literal>), the result is <literal>true</literal> if <emphasis>any</emphasis> pairwise comparison is <literal>true</literal>.
+                  For all other operators (e.g., <literal>&gt;</literal>, <literal>&lt;</literal>):
+                  the operation is applied element-wise, producing a boolean array.
+                  The final result of the expression is <literal>true</literal> if any element in the boolean array is <literal>true</literal>,
+                  and <literal>false</literal> if all elements are <literal>false</literal>.
                 </para>
               </listitem>
             </itemizedlist>
-            <para>Examples:</para>
-            <programlisting>[2, 4] = [2, 4] -&gt; true</programlisting>
-            <programlisting>[2, 4] != [2, 5] -&gt; true (because 4 != 5)</programlisting>
-            <programlisting>[3, 5, 8] &gt; [6, 4, 2] -&gt; true (because 5 &gt; 4 or 8 &gt; 2)</programlisting>
+
+            <example>
+              <title>Examples</title>
+              <programlisting>[2, 4] = [2, 4] -> true</programlisting>
+              <programlisting>[2, 4] != [2, 5] -> true (because 4 != 5)</programlisting>
+              <programlisting>[3, 5, 8] &gt; [6, 4, 2]
+ -> [false, true, true]
+ -> true (because at least one comparison is true)
+              </programlisting>
+            </example>
+          </section>
+
+          <section id="FilterExpression_ArraySummary">
+            <title>Summary</title>
+            <itemizedlist>
+              <listitem>
+                <para>
+                  Array vs scalar comparisons produce a boolean array.
+                  The overall expression result is <literal>true</literal> if at least one element is <literal>true</literal>.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  Array vs array with <literal>=</literal> or <literal>!=</literal> returns a single boolean value.
+                </para>
+              </listitem>
+              <listitem>
+                <para>
+                  Array vs array with other operators produces a boolean array.
+                  The final result is <literal>true</literal> if any element is <literal>true</literal>.
+                </para>
+              </listitem>
+            </itemizedlist>
           </section>
         </section>
       </section>
@@ -436,10 +474,11 @@
             <listitem><para>Returns the number of lines in the file content or file content array as an <literal>Integer</literal>. If <replaceable>content</replaceable> is an array, the result is an integer array. Example: <literal>lineCount(Content)</literal></para></listitem>
           </varlistentry>
           <varlistentry>
-            <term>sublines(<replaceable>text</replaceable>, <replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+            <term>sublines(<replaceable>content</replaceable>, <replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
             <listitem>
               <para>
-                Extracts the specified number of lines starting from the given line index in the text content, and returns them as a single concatenated string.
+                Extracts the specified number of lines starting from the given line index in the file content or file content array, and returns them as a single concatenated string.
+                If <replaceable>content</replaceable> is an array, the result is an array of strings.
               </para>
             </listitem>
           </varlistentry>

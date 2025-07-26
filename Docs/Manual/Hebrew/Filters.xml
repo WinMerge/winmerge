@@ -43,9 +43,9 @@
         </indexterm></term>
 
       <listitem>
-        <para>אתה יכול לציין קבצים שיכללו בהשוואת תיקיות על ידי שימוש במסיכות קבצים
-פשוטות, או, לסינון מורכב יותר, על ידי החלת כללים מרובים שצוינו במסנן
-קבצים. אינך יכול להחיל גם מסיכת קבצים וגם מסנן קבצים באותה פעולה.</para>
+        <para>You can specify files to include in a folder comparison by using simple file
+masks, or, for more complex filtering, by applying multiple rules specified
+in a file filter.</para>
 
         <para>קבצים ותיקיות שמסוננים מוסתרים בתוצאה כברירת מחדל, וזה בדרך כלל מה שאתה
 רוצה. אתה יכול ללחוץ על <menuchoice> <guimenu>תצוגה</guimenu>
@@ -110,8 +110,6 @@
 לציין מסיכות קבצים (ראה את הדוגמה בסעיף הבא).</para>
         </listitem>
       </itemizedlist>
-
-      <para>זכור, אינך יכול לציין גם מסיכת קבצים וגם מסנן קבצים בשדה או בשורת הפקודה.</para>
     </section>
 
     <section id="Filters_MaskSyntax">
@@ -129,19 +127,46 @@
           <secondary>במסיכות קבצים</secondary>
         </indexterm></title>
 
-      <para>השתמש בתחביר זה עבור מסיכות קבצים:</para>
+      <para>You can specify file masks and extended filters using this format:</para>
 
-      <synopsis>[!](*.[<replaceable>סיומת</replaceable>]|<replaceable>מסיכת תיקייה</replaceable>\)[<replaceable>מפריד</replaceable>[!](*.<replaceable>סיומת</replaceable>|<replaceable>מסיכת תיקייה</replaceable>\) ...]</synopsis>
+      <synopsis>
+        <replaceable>Filter1 of Group1</replaceable>;<replaceable>Filter2</replaceable> ...|<replaceable>Filter1 of Group2</replaceable>;<replaceable>Filter2</replaceable> ...|...
+      </synopsis>
 
-      <para>מפרידים חוקיים הם רווחים, פסיקים, נקודתיים או נקודה-פסיק.</para>
-
-      <para>מסיכה ללא סיומת ( <filename>*.</filename> ) בוחרת קבצים ללא סיומת כלשהי,
-כגון <filename><filename>README</filename></filename>.</para>
-
-      <para>ב-2.16.19 ואילך, אם תשים סימן קריאה (<filename>!</filename>) לפני מסיכה,
-קבצים התואמים למסיכה זו לא ייכללו. כמו כן, קו נטוי הפוך
-(<filename>\</filename>) אחרי המסיכה יגרום למסיכה להתאים לתיקיות במקום
-לקבצים.</para>
+      <itemizedlist>
+        <listitem><para>The <filename>|</filename> character separates filter groups and acts as a
+logical AND.</para></listitem>
+        <listitem><para>Filters within the same group are separated by <filename>;</filename> and
+are interpreted with a logical OR.</para></listitem>
+        <listitem><para>A file is included only if it matches at least one filter in each group.</para></listitem>
+        <listitem>
+          <para>To include a literal <filename>|</filename> (pipe) character in a regular
+expression that is not enclosed in double quotes (such as in
+<filename>f:</filename> or <filename>f!:</filename> filters), use
+<filename>||</filename> instead.</para>
+          <para>Example: <userinput>f:(abc||def)\.txt$</userinput></para>
+        </listitem>
+        <listitem>
+          <para>Each filter (e.g., Filter1, Filter2) can be one of the following types:</para>
+          <variablelist>
+            <varlistentry><term><replaceable>*.ext</replaceable></term><listitem><para>File mask by extension (e.g., *.txt)</para></listitem></varlistentry>
+            <varlistentry><term><replaceable>*.</replaceable></term><listitem><para>Files with no extension (e.g., README)</para></listitem></varlistentry>
+            <varlistentry><term>!<replaceable>*.ext</replaceable></term><listitem><para>Exclude files matching the extension (Available since 2.16.19)</para></listitem></varlistentry>
+            <varlistentry><term><replaceable>folder</replaceable>\</term><listitem><para>Target folders (must end with \) (Available since 2.16.19)</para></listitem></varlistentry>
+            <varlistentry><term>!<replaceable>folder</replaceable>\</term><listitem><para>Exclude matching folders (Available since 2.16.19)</para></listitem></varlistentry>
+            <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Match file names using regular expressions (Available since 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Exclude files matching regex (Available since 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Match folder names using regex (Available since 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Exclude folders matching regex (Available since 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Filter expression for files (e.g. fe:Size &lt; 1KB) (Available since
+2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude files (Available since 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Filter expression for folders (Available since 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude folders (Available since 2.16.49)</para></listitem></varlistentry>
+            <varlistentry><term>pf: <replaceable>file filter name</replaceable></term><listitem><para>Apply a file filter by name (Available since 2.16.49)</para></listitem></varlistentry>
+          </variablelist>
+        </listitem>
+      </itemizedlist>
 
       <example>
         <title>מסיכת קבצים</title>
@@ -153,13 +178,410 @@
       </example>
 
       <example>
-        <title>החרגת תיקיות (ב-2.16.19 ואילך)</title>
+        <title>Excluding folders (since version 2.16.19)</title>
 
         <para>בדוגמה זו של שורת הפקודה, פעולת השוואת התיקיות אינה כוללת תיקיות
 <filename>.git</filename> ו-<filename>.vs</filename>:</para>
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f !.git\;!.vs\</userinput></para>
       </example>
+
+      <example>
+        <title>Filter expression (since version 2.16.49)</title>
+
+        <para>In this command-line example, the folder compare operation includes only
+files with <filename>cpp</filename> or <filename>h</filename> extensions and
+a file size less than 1KB:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f "*.cpp;*.h|fe:Size &lt;
+1KB"</userinput></para>
+      </example>
+    </section>
+
+    <section id="FilterExpression_Syntax">
+      <title>Filter Expression Syntax</title>
+
+      <para>
+WinMerge allows powerful filtering using expressions that operate on file
+metadata, contents, and comparison context. This section describes the
+supported attributes, operators, functions, data types, and evaluation
+rules.</para>
+
+      <section id="FilterExpression_Literals">
+        <title>Literals and Types</title>
+
+        <para>Supported literal types include:</para>
+        <itemizedlist>
+          <listitem><para><emphasis>Boolean</emphasis>: <literal>true</literal>,
+<literal>false</literal></para></listitem>
+          <listitem><para><emphasis>Integer</emphasis>: 64-bit signed integers (e.g.,
+<literal>1024</literal>, or with units like <literal>100KB</literal>,
+<literal>7days</literal>)</para></listitem>
+          <listitem><para><emphasis>String</emphasis>: Enclosed in double quotes (e.g.,
+<literal>"example"</literal>)</para></listitem>
+        </itemizedlist>
+
+        <para>
+Internally, values may be of the following types: Boolean, Integer,
+Timestamp, String, File Content, Array, or <literal>undefined</literal>.</para>
+      </section>
+
+      <section id="FilterExpression_Attributes">
+        <title>Attributes</title>
+
+        <para>
+Filter expressions support a variety of attributes referring to file
+metadata and content.  Attribute names are case-insensitive. You can
+optionally specify which side of the comparison (Left, Right, or Middle) an
+attribute applies to by using a prefix.</para>
+
+        <section>
+          <title>Core Attributes</title>
+          <variablelist>
+            <varlistentry>
+              <term>Exists</term>
+              <listitem><para>Returns <literal>true</literal> if the file exists, <literal>false</literal>
+otherwise</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Name</term>
+              <listitem><para>File name</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Extension</term>
+              <listitem><para>File extension</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>תיקייה</term>
+              <listitem><para>Returns the relative path excluding the file name and base folder</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>FullPath</term>
+              <listitem><para>Returns the full path of the file</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Size</term>
+              <listitem><para>File size</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Date</term>
+              <listitem><para>Last modified timestamp</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>DateStr</term>
+              <listitem><para>Last modified date string in <literal>yyyy-MM-dd</literal> format</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>CreationTime</term>
+              <listitem><para>Creation date timestamp</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Attribute</term>
+              <listitem><para>Returns the file attributes as an integer value</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>AttrStr</term>
+              <listitem>
+                <para>Returns file attribute string. Examples: <literal>"R"</literal> for
+Read-only, <literal>"H"</literal> for Hidden, <literal>"A"</literal> for
+Archive, <literal>"S"</literal> for System file.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Content</term>
+              <listitem><para>Content of the file. Returns a FileContent-type value. Only
+<literal>contains</literal> and <literal>recontains</literal> can be used
+with this type.</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>Side-Specific Prefixes</title>
+          <para>
+Prefixes may be added to specify the comparison side:</para>
+          <itemizedlist>
+            <listitem><para><emphasis>Left</emphasis>: Applies to the file on the left side (e.g.,
+<literal>LeftSize</literal>)</para></listitem>
+            <listitem><para><emphasis>Right</emphasis>: Applies to the file on the right side (e.g.,
+<literal>RightDate</literal>)</para></listitem>
+            <listitem><para><emphasis>Middle</emphasis>: Applies to the middle file in 3-way comparison
+(e.g., <literal>MiddleName</literal>)</para></listitem>
+          </itemizedlist>
+
+          <para>
+Attributes without a prefix (e.g., <literal>Size</literal>) return an array
+of values from all available sides (Left, Middle, Right).</para>
+        </section>
+
+        <section id="FilterExpression_ArrayEvaluation">
+          <title>Array Evaluation</title>
+
+          <para>
+Attributes without a side prefix (e.g., <literal>Size</literal>) return an
+array of values from all available sides (Left, Middle, Right). When
+applying an operator to such arrays, behavior differs depending on whether
+the comparison is with a scalar or another array.</para>
+
+          <section id="FilterExpression_ArrayVsScalar">
+            <title>Array vs Scalar</title>
+            <para>
+When comparing an array to a scalar, the operation is applied to each array
+element individually.  This results in a boolean array. If any element in
+this boolean array is <literal>true</literal>, the overall expression
+evaluates to <literal>true</literal>. Otherwise, it evaluates to
+<literal>false</literal>.</para>
+            <example>
+              <title>דוגמה</title>
+<programlisting>[3, 5, 8] &gt; 6 -> [false, false, true] -> true</programlisting></example>
+          </section>
+
+          <section id="FilterExpression_ArrayVsArray">
+            <title>Array vs Array</title>
+            <para>
+When comparing two arrays, the behavior depends on the operator:</para>
+            <itemizedlist>
+              <listitem>
+                <para>
+For <literal>=</literal> and <literal>!=</literal>: The arrays must have the
+same length.  The result is a single boolean value, not an array.
+<literal>=</literal> returns <literal>true</literal> only if all elements
+are equal.  <literal>!=</literal> returns <literal>true</literal> if any
+element differs.</para>
+              </listitem>
+              <listitem>
+                <para>
+For all other operators (e.g., <literal>&gt;</literal>,
+<literal>&lt;</literal>): the operation is applied element-wise, producing a
+boolean array.  The final result of the expression is
+<literal>true</literal> if any element in the boolean array is
+<literal>true</literal>, and <literal>false</literal> if all elements are
+<literal>false</literal>.</para>
+              </listitem>
+            </itemizedlist>
+
+            <example>
+              <title>Examples</title>
+<programlisting>[2, 4] = [2, 4] -> true</programlisting> <programlisting>[2, 4] != [2, 5] -> true (because 4 != 5)</programlisting> <programlisting>[3, 5, 8] &gt; [6, 4, 2]
+ -> [false, true, true]
+ -> true (because at least one comparison is true)
+              </programlisting></example>
+          </section>
+
+          <section id="FilterExpression_ArraySummary">
+            <title>Summary</title>
+            <itemizedlist>
+              <listitem>
+                <para>
+Array vs scalar comparisons produce a boolean array.  The overall expression
+result is <literal>true</literal> if at least one element is
+<literal>true</literal>.</para>
+              </listitem>
+              <listitem>
+                <para>
+Array vs array with <literal>=</literal> or <literal>!=</literal> returns a
+single boolean value.</para>
+              </listitem>
+              <listitem>
+                <para>
+Array vs array with other operators produces a boolean array.  The final
+result is <literal>true</literal> if any element is <literal>true</literal>.</para>
+              </listitem>
+            </itemizedlist>
+          </section>
+        </section>
+      </section>
+
+      <section id="FilterExpression_Operators">
+        <title>Operators</title>
+
+        <para>
+All string comparison operators (such as <literal>=</literal>,
+<literal>!=</literal>, <literal>like</literal>, <literal>matches</literal>,
+<literal>contains</literal>, and <literal>recontains</literal>) are
+currently case-insensitive.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term><literal>&lt;</literal>, <literal>&lt;=</literal>, <literal>&gt;</literal>,
+<literal>&gt;=</literal></term>
+            <listitem><para>Numeric, timestamp, or string comparison</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>=</literal></term>
+            <listitem><para>Equality comparison</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>!=</literal></term>
+            <listitem><para>Inequality comparison</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>+</literal>, <literal>-</literal>, <literal>*</literal>,
+<literal>/</literal>, <literal>%</literal></term>
+            <listitem>
+              <para>
+Arithmetic operators. <literal>+</literal> and <literal>-</literal> perform
+addition and subtraction. <literal>*</literal> and <literal>/</literal>
+perform multiplication and division. <literal>%</literal> is the modulo
+operator (remainder).</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>and</literal>, <literal>or</literal>, <literal>not</literal></term>
+            <listitem><para>Logical operators</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>like</literal></term>
+            <listitem>
+              <para>Wildcard string match</para>
+              <para>You can also use <literal>not like</literal> to perform the inverse match.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>matches</literal></term>
+            <listitem>
+              <para>Matches regular expressions</para>
+              <para>You can also use <literal>not matches</literal> to perform the inverse
+match.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>contains</literal></term>
+            <listitem>
+              <para>Checks if a string contains a substring</para>
+              <para>You can also use <literal>not contains</literal> to check for absence of the
+substring.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>recontains</literal></term>
+            <listitem>
+              <para>Checks if any substring matches a regular expression</para>
+              <para>You can also use <literal>not recontains</literal> to ensure no match
+exists.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="FilterExpression_Functions">
+        <title>Functions</title>
+
+        <variablelist>
+          <varlistentry>
+            <term>lineCount(<replaceable>content</replaceable>)</term>
+            <listitem><para>Returns the number of lines in the file content or file content array as an
+<literal>Integer</literal>. If <replaceable>content</replaceable> is an
+array, the result is an integer array. Example:
+<literal>lineCount(Content)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>sublines(<replaceable>content</replaceable>,
+<replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+            <listitem>
+              <para>
+Extracts the specified number of lines starting from the given line index in
+the file content or file content array, and returns them as a single
+concatenated string.  If <replaceable>content</replaceable> is an array, the
+result is an array of strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>strlen(<replaceable>source</replaceable>)</term>
+            <listitem><para>Returns the length of the string as an <literal>Integer</literal>. If
+<replaceable>source</replaceable> is a string array, the result is an
+integer array. Example: <literal>strlen(Name)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>substr(<replaceable>source</replaceable>, <replaceable>start</replaceable>,
+<replaceable>count</replaceable>)</term>
+            <listitem><para>Returns a specific range of text from the <emphasis>string or string
+array</emphasis> as a <literal>String</literal>. If
+<replaceable>source</replaceable> is a string array, the result is a string
+array. Example: <literal>substr(Name, 0, 3)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>now()</term>
+            <listitem><para>Returns the current date and time as a <literal>Timestamp</literal> value.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>today()</term>
+            <listitem><para>Returns today's date as a <literal>Timestamp</literal> value representing
+<literal>00:00:00.000</literal> at the start of the day.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>startOfWeek(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>Returns the first day of the week, which is always Sunday regardless of
+locale.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>startOfMonth(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>Returns the first day of the month.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>startOfYear(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>Returns the first day of the year.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>abs(<replaceable>value</replaceable>)</term>
+            <listitem><para>Returns the absolute value of the <emphasis>integer or integer
+array</emphasis>. If <replaceable>value</replaceable> is an integer array,
+the result is an integer array.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>allof(<replaceable>booleans</replaceable>)</term>
+            <listitem><para>Returns <literal>true</literal> if all elements in the <emphasis>boolean
+array</emphasis> satisfy the condition.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>allequal(<replaceable>array</replaceable>)</term>
+            <listitem><para>Returns <literal>true</literal> if all values in the array are equal.</para></listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="FilterExpression_Units">
+        <title>Units</title>
+        <para>File sizes support these suffixes:</para>
+        <simplelist type="inline">
+          <member>KB</member>
+          <member>MB</member>
+          <member>GB</member>
+          <member>TB</member>
+        </simplelist>
+        <para>Time durations support these suffixes:</para>
+        <simplelist type="inline">
+          <member>weeks</member><member>week</member><member>w</member>
+          <member>days</member><member>day</member><member>d</member>
+          <member>hours</member><member>hour</member><member>hr</member><member>h</member>
+          <member>minutes</member><member>minute</member><member>min</member><member>m</member>
+          <member>seconds</member><member>second</member><member>sec</member><member>s</member>
+          <member>milliseconds</member><member>millisecond</member><member>msec</member><member>ms</member>
+        </simplelist>
+      </section>
+
+      <section id="FilterExpression_Examples">
+        <title>Examples</title>
+        <itemizedlist>
+          <listitem><para><literal>Size &lt; 10KB</literal> - Any side's size is less than 10KB</para></listitem>
+          <listitem><para><literal>LeftSize &gt;= 10MB</literal> - Left side file is at least 10MB</para></listitem>
+          <listitem><para><literal>allof(Size &lt; 1MB)</literal> - All sides are under 1MB</para></listitem>
+          <listitem><para><literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - Size difference is
+small</para></listitem>
+          <listitem><para><literal>DateStr = "2025-07-20"</literal> - File was last modified on that
+date</para></listitem>
+          <listitem><para><literal>Date &gt;= today()</literal> - Modified today or later</para></listitem>
+          <listitem><para><literal>AttrStr contains "R"</literal> - File is read-only</para></listitem>
+          <listitem><para><literal>Name matches "file[0-9]\.txt"</literal> - Regex on filename</para></listitem>
+          <listitem><para><literal>Content contains "Test"</literal> - File content includes keyword</para></listitem>
+          <listitem><para><literal>sublines(Content, 0, 1) contains "XML"</literal> - First line
+contains "XML"</para></listitem>
+          <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() -
+7days)</literal> - Large log files or files older than a week</para></listitem>
+          <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> -
+Non-hidden temporary files</para></listitem>
+        </itemizedlist>
+      </section>
     </section>
   </section>
 
@@ -301,8 +723,6 @@ Files\WinMerge\Filters</filename>. אתה יכול ליצור או להעתיק 
 של WinMerge, השתמש בדגל <option>-f</option> כדי לציין מסנן קבצים.</para>
         </listitem>
       </itemizedlist>
-
-      <para>זכור, אינך יכול להחיל גם מסיכת קבצים וגם מסנן קבצים בשדה או בשורת הפקודה.</para>
     </section>
 
     <section id="Filters_FileFilterSyntax">
@@ -373,32 +793,23 @@ Files\WinMerge\Filters</filename>. אתה יכול ליצור או להעתיק 
         </varlistentry>
       </variablelist>
 
-      <para>לאחר מכן, הקובץ שלך צריך להכיל כלל סינון אחד או יותר. אתה יכול להוסיף כמה
-כללים שאתה רוצה. חייב להיות כלל אחד לשורה, וכל כלל חייב להיות בשורה אחת בלבד
-(אין לאפשר מעברי שורה בכלל). כל כלל מורכב ממייעד סוג <guilabel>f:</guilabel>
-או <guilabel>d:</guilabel>, ואחריו ביטוי רגולרי, כאשר:</para>
+      <para>Next, your file should contain one or more filter rules. You can add as many
+rules as you like. There must be one rule per line, and each rule must be
+entirely on one line (no line breaks are allowed in a rule).  A rule begins
+with a type designator, followed by either a regular expression or a filter
+expression.  The supported type designators are:</para>
 
       <variablelist>
-        <varlistentry>
-          <term>f: <replaceable>regexp</replaceable></term>
-
-          <listitem>
-            <para>התאמות לקבצים, או</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>d: <replaceable>regexp</replaceable></term>
-
-          <listitem>
-            <para>התאמות לתיקיות</para>
-          </listitem>
-        </varlistentry>
+        <varlistentry><term>f: <replaceable>regexp</replaceable></term><listitem><para>Match file names using regular expressions</para></listitem></varlistentry>
+        <varlistentry><term>f!: <replaceable>regexp</replaceable></term><listitem><para>Exclude files matching regex (Available since 2.16.19)</para></listitem></varlistentry>
+        <varlistentry><term>d: <replaceable>regexp</replaceable></term><listitem><para>Match folder names using regex</para></listitem></varlistentry>
+        <varlistentry><term>d!: <replaceable>regexp</replaceable></term><listitem><para>Exclude folders matching regex (Available since 2.16.19)</para></listitem></varlistentry>
+        <varlistentry><term>fe: <replaceable>expr</replaceable></term><listitem><para>Filter expression for files (e.g. fe:Size &lt; 1KB) (Available since
+2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude files (Available since 2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Filter expression for folders (Available since 2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude folders (Available since 2.16.49)</para></listitem></varlistentry>
       </variablelist>
-
-      <para>ב-2.16.19 ואילך, הוצגו מזהי הסוג <guilabel>f!:</guilabel>
-ו-<guilabel>d!:</guilabel> כדי לא לכלול חלק מהקבצים או התיקיות התואמים
-ל-<guilabel>f:</guilabel> ו-<guilabel>d:</guilabel>.</para>
 
       <para>בין רבים מתווים מיוחדים של regexp, הבאים חשובים במיוחד בכללי מסנן
 קבצים:<indexterm>

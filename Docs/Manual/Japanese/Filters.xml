@@ -42,7 +42,7 @@ PCRE (Perl Compatible Regular Expressions) 正規表現エンジンを使用し�
 
       <listitem>
         <para>単純なファイルマスク、または、より複雑なフィルターにより、 ファイルフィルター中で指定された複数の規則を適用することで、
-フォルダー比較中に含めるファイルを指定することができます。 ファイルマスクとファイルフィルターの両方を、同一の操作中で適用することができます。</para>
+フォルダー比較中に含めるファイルを指定することができます。 </para>
 
         <para>フィルターされるファイルやフォルダーは、デフォルトで隠されます。それは、典型的にあなたが望むものでしょう。フィルターされたアイテムを表示するには、<menuchoice><guimenu>表示</guimenu><guimenuitem>スキップされた項目の表示</guimenuitem></menuchoice>をクリックしてください。しかし、フォルダー比較ウィンドウは、それらについて最小限の情報しか表示しません。例えば、あなたは、スキップされたファイルがテキストファイルかバイナリファイルか判らないでしょう。</para>
       </listitem>
@@ -76,8 +76,7 @@ PCRE (Perl Compatible Regular Expressions) 正規表現エンジンを使用し�
         <secondary>in folder comparisons</secondary>
       </indexterm></title>
 
-    <para>フォルダー比較中に含める拡張子を指定する、1つか複数の <glossterm>ファイルマスク</glossterm>を使用することができます。
-その他すべてのファイルは、選択から省かれます。</para>
+    <para>フォルダー比較で含めるファイル拡張子を指定するために、1つ以上の<glossterm>ファイルマスク</glossterm>を使用できます。その他のファイルは選択対象から除外されます。</para>
 
     <section id="Filters_MaskApply">
       <title>ファイルマスクと定義と適用<indexterm>
@@ -100,8 +99,6 @@ PCRE (Perl Compatible Regular Expressions) 正規表現エンジンを使用し�
 <option>-f</option>フラグ(次のセクションの例を参照)を使用してください。</para>
         </listitem>
       </itemizedlist>
-
-      <para>フィールドやコマンドラインで、ファイルマスクとファイルフィルターの、 両方を指定することはできないことを憶えておいてください。</para>
     </section>
 
     <section id="Filters_MaskSyntax">
@@ -119,24 +116,48 @@ PCRE (Perl Compatible Regular Expressions) 正規表現エンジンを使用し�
           <secondary>in file masks</secondary>
         </indexterm></title>
 
-      <para>このシンタックスは、ファイルマスク用です:</para>
+      <para>ファイルマスクや拡張フィルターは以下の形式で指定できます:</para>
 
-      <synopsis>[!](*.[<replaceable>拡張子</replaceable>]|<replaceable>フォルダーマスク</replaceable>\)[<replaceable>区切り文字</replaceable>[!](*.<replaceable>拡張子</replaceable>|<replaceable>フォルダーマスク</replaceable>\) ...]</synopsis>
+      <synopsis>
+        <replaceable>グループ1のフィルター1</replaceable>;<replaceable>フィルター2</replaceable> ...|<replaceable>グループ2のフィルター1</replaceable>;<replaceable>フィルター2</replaceable> ...|...
+      </synopsis>
 
-      <para>有効な区切り文字はスペース、カンマ、コロン、セミコロンです。</para>
-
-      <para>拡張子なしのマスク(<filename>*.</filename>)は、 <filename> <filename>README</filename>
-</filename>の様な、拡張子なしのファイルを選択します。</para>
-
-      <para>2.16.19 以降、感嘆符(<filename>!</filename>)  をマスクの前に付加した場合、そのマスクに一致したファイルは除外されます。
-また、バックスラッシュ(<filename>\</filename>)をマスクの後に付加した場合、
-そのマスクはファイルではなくフォルダーが対象となります。</para>
+      <itemizedlist>
+        <listitem><para><filename>|</filename> 文字はフィルターグループを区切り、論理 AND として機能します。</para></listitem>
+        <listitem><para>同じグループ内のフィルターは <filename>;</filename> で区切られ、論理 OR として解釈されます。</para></listitem>
+        <listitem><para>ファイルは各グループ内の少なくとも1つのフィルターに一致する場合にのみ含まれます。</para></listitem>
+        <listitem>
+          <para><filename>f:</filename> や <filename>f!:</filename> など、ダブルクォートで囲まれていない正規表現内で
+<filename>|</filename>（パイプ）文字をリテラルとして使用したい場合は、代わりに <filename>||</filename>
+を使用してください。</para>
+          <para>例: <userinput>f:(abc||def)\.txt$</userinput></para>
+        </listitem>
+        <listitem>
+          <para>各フィルター（例: Filter1, Filter2）は、以下のいずれかのタイプにすることができます:</para>
+          <variablelist>
+            <varlistentry><term><replaceable>*.ext</replaceable></term><listitem><para>拡張子によるファイルマスク（例: *.txt）</para></listitem></varlistentry>
+            <varlistentry><term><replaceable>*.</replaceable></term><listitem><para>拡張子のないファイル（例: README）</para></listitem></varlistentry>
+            <varlistentry><term>!<replaceable>*.ext</replaceable></term><listitem><para>指定した拡張子に一致するファイルを除外（2.16.19 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term><replaceable>folder</replaceable>\</term><listitem><para>対象フォルダー（末尾は必ず \ にする）（2.16.19 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>!<replaceable>folder</replaceable>\</term><listitem><para>一致するフォルダーを除外（2.16.19 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>f: <replaceable>正規表現</replaceable></term><listitem><para>正規表現を使用してファイル名を一致（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>f!: <replaceable>正規表現</replaceable></term><listitem><para>正規表現に一致するファイルを除外（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>d: <replaceable>正規表現</replaceable></term><listitem><para>正規表現を使用してフォルダー名を一致（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>d!: <replaceable>正規表現</replaceable></term><listitem><para>正規表現に一致するフォルダーを除外（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>fe: <replaceable>式</replaceable></term><listitem><para>ファイルに対するフィルター式（例: fe:Size &lt; 1KB）（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>fe!: <replaceable>式</replaceable></term><listitem><para>ファイルを除外するためのフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>de: <replaceable>式</replaceable></term><listitem><para>フォルダーに対するフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>de!: <replaceable>式</replaceable></term><listitem><para>フォルダーを除外するためのフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+            <varlistentry><term>pf: <replaceable>ファイルフィルター名</replaceable></term><listitem><para>名前でファイルフィルターを適用（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+          </variablelist>
+        </listitem>
+      </itemizedlist>
 
       <example>
         <title>ファイルマスク</title>
 
-        <para>このコマンドラインの例では、フォルダー比較操作は、拡張子 <filename>xml</filename>か
-<filename>txt</filename>のファイルのみを含みます。 その他すべてのファイルは省かれます:</para>
+        <para>このコマンドラインの例では、フォルダー比較操作は拡張子 <filename>xml</filename> または
+<filename>txt</filename> のファイルのみを対象とし、それ以外のファイルは省略されます。</para>
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f *.xml;*.txt</userinput></para>
       </example>
@@ -149,6 +170,366 @@ PCRE (Perl Compatible Regular Expressions) 正規表現エンジンを使用し�
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f !.git\;!.vs\</userinput></para>
       </example>
+
+      <example>
+        <title>フィルター式（バージョン 2.16.49 以降）</title>
+
+        <para>このコマンドラインの例では、フォルダー比較操作は <filename>cpp</filename> または <filename>h</filename>
+の拡張子を持ち、かつサイズが 1KB 未満のファイルのみを対象とします:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f "*.cpp;*.h|fe:Size &lt;
+1KB"</userinput></para>
+      </example>
+    </section>
+
+    <section id="FilterExpression_Syntax">
+      <title>フィルタ式の構文</title>
+
+      <para>
+WinMerge
+では、ファイルのメタデータ、内容、比較コンテキストに対して動作する強力なフィルタ式を使用できます。本セクションでは、サポートされる属性、演算子、関数、データ型、および評価ルールについて説明します。</para>
+
+      <section id="FilterExpression_Literals">
+        <title>リテラルと型</title>
+
+        <para>サポートされるリテラルの型は以下の通りです:</para>
+        <itemizedlist>
+          <listitem><para><emphasis>Boolean</emphasis>: <literal>true</literal>,
+<literal>false</literal></para></listitem>
+          <listitem><para><emphasis>Integer</emphasis>: 64ビット符号付き整数 (例: <literal>1024</literal>,
+<literal>100KB</literal>, <literal>7days</literal> などの単位付きも可能)</para></listitem>
+          <listitem><para><emphasis>String</emphasis>: ダブルクォートで囲まれた文字列 (例:
+<literal>"example"</literal>)</para></listitem>
+        </itemizedlist>
+
+        <para>
+内部的に扱われる型は以下の通りです: Boolean, Integer, Timestamp, String, File Content, Array,
+or <literal>undefined</literal>.</para>
+      </section>
+
+      <section id="FilterExpression_Attributes">
+        <title>属性</title>
+
+        <para>
+フィルタ式では、ファイルのメタデータや内容を参照する多様な属性が利用できます。属性名の大文字・小文字は区別されません。必要に応じて、比較対象のどの側（Left,
+Right, Middle）かを接頭辞で指定できます。</para>
+
+        <section>
+          <title>コア属性</title>
+          <variablelist>
+            <varlistentry>
+              <term>Exists</term>
+              <listitem><para>ファイルが存在する場合は <literal>true</literal> を返し、存在しない場合は <literal>false</literal>
+を返します。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Name</term>
+              <listitem><para>ファイル名</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Extension</term>
+              <listitem><para>ファイル拡張子</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Folder</term>
+              <listitem><para>ファイル名およびベースフォルダーを除いた相対パスを返します。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>FullPath</term>
+              <listitem><para>ファイルのフルパスを返します。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Size</term>
+              <listitem><para>ファイルサイズ</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Date</term>
+              <listitem><para>最終更新のタイムスタンプ</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>DateStr</term>
+              <listitem><para><literal>yyyy-MM-dd</literal> 形式の最終更新日付の文字列を返します。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>CreationTime</term>
+              <listitem><para>作成日時のタイムスタンプを返します。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Attribute</term>
+              <listitem><para>ファイル属性を整数値で返します。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>AttrStr</term>
+              <listitem>
+                <para>ファイル属性の文字列を返します。例：<literal>"R"</literal> は読み取り専用、<literal>"H"</literal>
+は隠しファイル、<literal>"A"</literal> はアーカイブ、<literal>"S"</literal> はシステムファイルを示します。</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Content</term>
+              <listitem><para>ファイルの内容を表します。FileContent 型の値を返します。この型には <literal>contains</literal> および
+<literal>recontains</literal> のみ使用できます。</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>比較対象の側を指定する接頭辞</title>
+          <para>
+比較対象のファイルの側を指定するために、接頭辞を追加できます:</para>
+          <itemizedlist>
+            <listitem><para><emphasis>Left</emphasis>: 左側のファイルに適用されます（例: <literal>LeftSize</literal>）</para></listitem>
+            <listitem><para><emphasis>Right</emphasis>: 右側のファイルに適用されます（例: <literal>RightDate</literal>）</para></listitem>
+            <listitem><para><emphasis>Middle</emphasis>: 3方向比較における中央のファイルに適用されます（例:
+<literal>MiddleName</literal>）</para></listitem>
+          </itemizedlist>
+
+          <para>
+接頭辞のない属性（例: <literal>Size</literal>）は、左・中央・右のすべての側の値を含む配列を返します。</para>
+        </section>
+
+        <section id="FilterExpression_ArrayEvaluation">
+          <title>配列の評価</title>
+
+          <para>
+接頭辞のない属性（例:
+<literal>Size</literal>）は、左・中央・右のすべての側からの値を含む配列を返します。これらの配列に対して演算子を適用する場合、比較対象がスカラーか他の配列かによって動作が異なります。</para>
+
+          <section id="FilterExpression_ArrayVsScalar">
+            <title>配列とスカラーの比較</title>
+            <para>
+配列とスカラーを比較する場合、演算は各配列要素に対して個別に適用され、結果はブール値の配列になります。このブール配列に
+<literal>true</literal> が1つでも含まれていれば、全体の評価結果は <literal>true</literal>
+になります。すべてが <literal>false</literal> であれば <literal>false</literal> になります。</para>
+            <example>
+              <title>例</title>
+<programlisting>[3, 5, 8] &gt; 6 -> [false, false, true] -> true</programlisting></example>
+          </section>
+
+          <section id="FilterExpression_ArrayVsArray">
+            <title>配列と配列の比較</title>
+            <para>
+2つの配列を比較する場合、挙動は演算子によって異なります:</para>
+            <itemizedlist>
+              <listitem>
+                <para>
+<literal>=</literal> および <literal>!=</literal>
+の場合：配列の長さが同じである必要があります。結果は配列ではなく単一のブール値になります。<literal>=</literal>
+はすべての要素が一致する場合のみ <literal>true</literal> を返し、<literal>!=</literal>
+はいずれかの要素が異なる場合に <literal>true</literal> を返します。</para>
+              </listitem>
+              <listitem>
+                <para>
+他のすべての演算子（例: <literal>&gt;</literal>,
+<literal>&lt;</literal>）では、各要素ごとに演算が適用され、ブール値の配列が生成されます。この配列に
+<literal>true</literal> が1つでも含まれていれば、式全体の評価結果は <literal>true</literal>
+になります。すべてが <literal>false</literal> の場合は <literal>false</literal> になります。</para>
+              </listitem>
+            </itemizedlist>
+
+            <example>
+              <title>例</title>
+<programlisting>[2, 4] = [2, 4] -> true</programlisting> <programlisting>[2, 4] != [2, 5] -> true （4 != 5 だから）</programlisting> <programlisting>[3, 5, 8] &gt; [6, 4, 2]
+ -> [false, true, true]
+ -> true （少なくとも1つの比較が true だから）</programlisting></example>
+          </section>
+
+          <section id="FilterExpression_ArraySummary">
+            <title>要約</title>
+            <itemizedlist>
+              <listitem>
+                <para>
+配列とスカラーの比較では、ブール値の配列が生成されます。その配列に <literal>true</literal>
+が1つでも含まれていれば、式の評価結果は <literal>true</literal> になります。</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>=</literal> または <literal>!=</literal> を使った配列同士の比較では、単一のブール値が返されます。</para>
+              </listitem>
+              <listitem>
+                <para>
+その他の演算子による配列同士の比較では、ブール配列が生成され、その中に <literal>true</literal>
+が1つでも含まれていれば最終的な評価結果は <literal>true</literal> になります。</para>
+              </listitem>
+            </itemizedlist>
+          </section>
+        </section>
+      </section>
+
+      <section id="FilterExpression_Operators">
+        <title>演算子</title>
+
+        <para>
+<literal>=</literal>、<literal>!=</literal>、<literal>like</literal>、<literal>matches</literal>、<literal>contains</literal>、<literal>recontains</literal>
+などの文字列比較演算子は、現在すべて大文字小文字を区別しません。</para>
+
+        <variablelist>
+          <varlistentry>
+            <term><literal>&lt;</literal>, <literal>&lt;=</literal>, <literal>&gt;</literal>,
+<literal>&gt;=</literal></term>
+            <listitem><para>数値、タイムスタンプ、または文字列の比較</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>=</literal></term>
+            <listitem><para>等価比較</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>!=</literal></term>
+            <listitem><para>不等比較</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>+</literal>, <literal>-</literal>, <literal>*</literal>,
+<literal>/</literal>, <literal>%</literal></term>
+            <listitem>
+              <para>
+算術演算子。<literal>+</literal> と <literal>-</literal>
+は加算および減算、<literal>*</literal> と <literal>/</literal>
+は乗算および除算、<literal>%</literal> は剰余演算（余り）を行います。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>and</literal>, <literal>or</literal>, <literal>not</literal></term>
+            <listitem><para>論理演算子</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>like</literal></term>
+            <listitem>
+              <para>ワイルドカードによる文字列一致</para>
+              <para><literal>not like</literal> を使用して逆の一致条件を指定することもできます。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>matches</literal></term>
+            <listitem>
+              <para>正規表現による一致</para>
+              <para><literal>not matches</literal> を使用して一致しない条件を指定することもできます。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>contains</literal></term>
+            <listitem>
+              <para>文字列が部分文字列を含んでいるかを判定します</para>
+              <para><literal>not contains</literal> を使用して部分文字列が含まれていないことを確認できます。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term><literal>recontains</literal></term>
+            <listitem>
+              <para>いずれかの部分文字列が正規表現に一致するかを判定します</para>
+              <para><literal>not recontains</literal> を使用して一致しないことを確認できます。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="FilterExpression_Functions">
+        <title>関数</title>
+
+        <variablelist>
+          <varlistentry>
+            <term>lineCount(<replaceable>content</replaceable>)</term>
+            <listitem><para>ファイル内容またはファイル内容の配列の行数を <literal>Integer</literal>
+として返します。<replaceable>content</replaceable> が配列の場合、結果は整数の配列になります。例:
+<literal>lineCount(Content)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>sublines(<replaceable>content</replaceable>,
+<replaceable>start</replaceable>, <replaceable>count</replaceable>)</term>
+            <listitem>
+              <para>
+ファイル内容またはファイル内容の配列から、指定した開始行から指定行数の行を抽出し、連結した文字列として返します。<replaceable>content</replaceable>
+が配列の場合、結果は文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>strlen(<replaceable>source</replaceable>)</term>
+            <listitem><para>文字列の長さを <literal>Integer</literal> として返します。<replaceable>source</replaceable>
+が文字列の配列である場合、結果は整数の配列になります。例: <literal>strlen(Name)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>substr(<replaceable>source</replaceable>, <replaceable>start</replaceable>,
+<replaceable>count</replaceable>)</term>
+            <listitem><para><emphasis>文字列または文字列の配列</emphasis> から指定範囲の文字列を <literal>String</literal>
+型で返します。<replaceable>source</replaceable> が文字列配列の場合、結果は文字列配列になります。例:
+<literal>substr(Name, 0, 3)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>now()</term>
+            <listitem><para>現在の日時を <literal>Timestamp</literal> 型の値として返します。</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>today()</term>
+            <listitem><para>本日の日付を、日の始まりである <literal>00:00:00.000</literal> を表す
+<literal>Timestamp</literal> 型として返します。</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>startOfWeek(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>週の初日（日曜日）を返します。ロケールには依存しません。</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>startOfMonth(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>月の初日を返します。</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>startOfYear(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>年の初日を返します。</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>abs(<replaceable>value</replaceable>)</term>
+            <listitem><para><emphasis>整数または整数の配列</emphasis> の絶対値を返します。<replaceable>value</replaceable>
+が整数配列である場合、結果は整数配列になります。</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>allof(<replaceable>booleans</replaceable>)</term>
+            <listitem><para><emphasis>ブール値の配列</emphasis> のすべての要素が条件を満たす場合に <literal>true</literal>
+を返します。</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>allequal(<replaceable>array</replaceable>)</term>
+            <listitem><para>配列内のすべての値が等しい場合に <literal>true</literal> を返します。</para></listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="FilterExpression_Units">
+        <title>単位</title>
+        <para>ファイルサイズには以下の接尾辞を使用できます：</para>
+        <simplelist type="inline">
+          <member>KB</member>
+          <member>MB</member>
+          <member>GB</member>
+          <member>TB</member>
+        </simplelist>
+        <para>時間の長さには以下の接尾辞を使用できます：</para>
+        <simplelist type="inline">
+          <member>weeks</member><member>week</member><member>w</member>
+          <member>days</member><member>day</member><member>d</member>
+          <member>hours</member><member>hour</member><member>hr</member><member>h</member>
+          <member>minutes</member><member>minute</member><member>min</member><member>m</member>
+          <member>seconds</member><member>second</member><member>sec</member><member>s</member>
+          <member>milliseconds</member><member>millisecond</member><member>msec</member><member>ms</member>
+        </simplelist>
+      </section>
+
+      <section id="FilterExpression_Examples">
+        <title>例</title>
+        <itemizedlist>
+          <listitem><para><literal>Size &lt; 10KB</literal> - いずれかのファイルサイズが 10KB 未満</para></listitem>
+          <listitem><para><literal>LeftSize &gt;= 10MB</literal> - 左側のファイルサイズが 10MB 以上</para></listitem>
+          <listitem><para><literal>allof(Size &lt; 1MB)</literal> - すべてのファイルが 1MB 未満</para></listitem>
+          <listitem><para><literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - サイズ差が小さい</para></listitem>
+          <listitem><para><literal>DateStr = "2025-07-20"</literal> - その日に更新されたファイル</para></listitem>
+          <listitem><para><literal>Date &gt;= today()</literal> - 今日以降に更新されたファイル</para></listitem>
+          <listitem><para><literal>AttrStr contains "R"</literal> - 読み取り専用ファイル</para></listitem>
+          <listitem><para><literal>Name matches "file[0-9]\.txt"</literal> - ファイル名に正規表現を適用</para></listitem>
+          <listitem><para><literal>Content contains "Test"</literal> - 内容に "Test" を含む</para></listitem>
+          <listitem><para><literal>sublines(Content, 0, 1) contains "XML"</literal> - 1行目に "XML" を含む</para></listitem>
+          <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() -
+7days)</literal> - 大きなログファイルまたは1週間以上前のファイル</para></listitem>
+          <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> -
+非表示の一時ファイル</para></listitem>
+        </itemizedlist>
+      </section>
     </section>
   </section>
 
@@ -288,8 +669,6 @@ Files\WinMerge\Filters</filename>。 システム上のすべてのユーザー�
 フォルダー比較起動時にファイルフィルターを指定するには、 <option>-f</option>フラグを使用してください。</para>
         </listitem>
       </itemizedlist>
-
-      <para>フィールドやコマンドラインで、 ファイルマスクとファイルフィルターの両方を指定する ことはできないことを思い出してください。</para>
     </section>
 
     <section id="Filters_FileFilterSyntax">
@@ -356,32 +735,22 @@ WinMergeは、ルール中のほとんどの空白文字を無視します。
         </varlistentry>
       </variablelist>
 
-      <para>次に、フィルターファイルは、1つ以上のフィルタールールを含むべきです。 あなたは、たくさんのルールを好きなだけ追加できます。
-1行には1つのルールがあるべきで、それぞれのルールは、 それぞれ1行にあるべきです(ルール中での改行は許可されません)。 (訳注:
-回りくどいですが、「ルールは1行で記述してください」ということです。) それぞれのルールは、タイプデザイナー
-<guilabel>f:</guilabel>か<guilabel>d:</guilabel>を含み、その後に、正規表現が続きます:</para>
+      <para>Next, your file should contain one or more filter rules. You can add as many
+rules as you like. There must be one rule per line, and each rule must be
+entirely on one line (no line breaks are allowed in a rule).  A rule begins
+with a type designator, followed by either a regular expression or a filter
+expression.  The supported type designators are:</para>
 
       <variablelist>
-        <varlistentry>
-          <term>f: <replaceable>regexp</replaceable></term>
-
-          <listitem>
-            <para>ファイルにマッチ、または、</para>
-          </listitem>
-        </varlistentry>
-
-        <varlistentry>
-          <term>d: <replaceable>regexp</replaceable></term>
-
-          <listitem>
-            <para>フォルダーにマッチ</para>
-          </listitem>
-        </varlistentry>
+        <varlistentry><term>f: <replaceable>正規表現</replaceable></term><listitem><para>Match file names using regular expressions</para></listitem></varlistentry>
+        <varlistentry><term>f!: <replaceable>正規表現</replaceable></term><listitem><para>Exclude files matching regex (Available since 2.16.19)</para></listitem></varlistentry>
+        <varlistentry><term>d: <replaceable>正規表現</replaceable></term><listitem><para>Match folder names using regex</para></listitem></varlistentry>
+        <varlistentry><term>d!: <replaceable>正規表現</replaceable></term><listitem><para>Exclude folders matching regex (Available since 2.16.19)</para></listitem></varlistentry>
+        <varlistentry><term>fe: <replaceable>式</replaceable></term><listitem><para>ファイルに対するフィルター式（例: fe:Size &lt; 1KB）（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+        <varlistentry><term>fe!: <replaceable>式</replaceable></term><listitem><para>ファイルを除外するためのフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+        <varlistentry><term>de: <replaceable>式</replaceable></term><listitem><para>フォルダーに対するフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+        <varlistentry><term>de!: <replaceable>式</replaceable></term><listitem><para>フォルダーを除外するためのフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
       </variablelist>
-
-      <para>2.16.19 以降、 <guilabel>f:</guilabel> と <guilabel>d:</guilabel>
-でマッチしたファイルまたはフォルダーの一部を除外するためのタイプデザイナー <guilabel>f!:</guilabel> と
-<guilabel>d!:</guilabel> が使用できます。</para>
 
       <para>多くの正規表現の特殊文字の中で、次の文字は、ファイルフィルターでは特に重要です: <indexterm>
           <primary>regular expressions</primary>
