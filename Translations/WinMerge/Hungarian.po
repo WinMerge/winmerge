@@ -4944,7 +4944,7 @@ msgstr ""
 "Új: %1 (jelenlegi: %2). Letöltöd most?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr "- Minden jog fenntartva."
 
 #, c-format
 msgid "Failed to download latest version information"
@@ -4967,7 +4967,7 @@ msgstr "Ugrás az áthelyezett sorhoz\tCtrl+Shift+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Letiltva"
 
 #, c-format
 msgid "From file system"
@@ -5078,7 +5078,7 @@ msgstr "DirectWrite Natural Symmetric"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Letiltva"
 
 msgid "MDI child window or main window"
 msgstr "MDI gyermekablak vagy főablak"
@@ -5220,7 +5220,7 @@ msgstr "Mappa telepítése"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Letiltva"
 
 msgid "Allow only one instance to run"
 msgstr "Csak egy példány futhat egyszerre"
@@ -5230,7 +5230,7 @@ msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Letiltva"
 
 msgid "Only on window activated"
 msgstr "Csak ablakon aktivált"
