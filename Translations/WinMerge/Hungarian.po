@@ -1449,343 +1449,343 @@ msgid "Clear &All"
 msgstr "&Összes törlése"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "Összes &törlése"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "Utolsó szűrő &csoport eltávolítása"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "Alapértelmezettre &állítás (*.*)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "&Kizárandó fájl hozzáadása"
 
 msgid "&System Files"
-msgstr ""
+msgstr "&Rendszerfájlok"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "&Szerkesztő biztonsági mentési fájlok"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "&Fordított bináris fájlok"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "&Naplófájlok"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "&Ideiglenes vagy gyorsítótárfájlok"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "&Kizárandó mappa hozzáadása"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "&Verziókövetés"
 
 msgid "&Build Artifacts"
 msgstr ""
 
 msgid "&IDE"
-msgstr ""
+msgstr "&IDE"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "Fájl feltétel Fájl &hozzáadása"
 
 msgid "File &Size"
-msgstr ""
+msgstr "Fájl &mérete"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "Kevesebb, mint 1 KB"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1 KB vagy több"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "Kevesebb, mint 10 KB"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10 KB vagy több"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "Kevesebb, mint 100 KB"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100 KB vagy több"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "Kevesebb, mint 1 MB"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1 MB vagy több"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "Kevesebb, mint 10 MB"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10 MB vagy több"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "Kevesebb, mint 100 MB"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100 MB vagy több"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "Kevesebb, mint 1 GB"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1 GB vagy több"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "Egyéni tartomány..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "&Utolsó módosítás"
 
 msgid "&Hour"
-msgstr ""
+msgstr "&Óra"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "Több mint 1 órája"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "1 órán belül"
 
 msgid "&Day"
-msgstr ""
+msgstr "&Nap"
 
 msgid "Before today"
-msgstr ""
+msgstr "Mai nap előtt"
 
 msgid "Today"
-msgstr ""
+msgstr "Ma"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "Tegnapi nap előtt"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Tegnap"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "Tegnapig"
 
 msgid "&Week"
-msgstr ""
+msgstr "&Hét"
 
 msgid "Before this week"
-msgstr ""
+msgstr "Ezelőtt a hét előtt"
 
 msgid "This week"
-msgstr ""
+msgstr "Ezen a héten"
 
 msgid "Before last week"
-msgstr ""
+msgstr "Múlt hét előtt"
 
 msgid "Last week"
-msgstr ""
+msgstr "Múlt héten"
 
 msgid "Since last week"
-msgstr ""
+msgstr "Múlt hétig"
 
 msgid "&Month"
-msgstr ""
+msgstr "&Hónap"
 
 msgid "Before this month"
-msgstr ""
+msgstr "Mostani hónap előtt"
 
 msgid "This month"
-msgstr ""
+msgstr "Ebben a hónapban"
 
 msgid "Before last month"
-msgstr ""
+msgstr "A múlt hónap előtt"
 
 msgid "Last month"
-msgstr ""
+msgstr "Múlt hónap"
 
 msgid "Since last month"
-msgstr ""
+msgstr "A múlt hónap óta"
 
 msgid "&Year"
-msgstr ""
+msgstr "&Év"
 
 msgid "Before this year"
-msgstr ""
+msgstr "Idei év előtt"
 
 msgid "This year"
-msgstr ""
+msgstr "Idén"
 
 msgid "Before last year"
-msgstr ""
+msgstr "Tavalyi év előtt"
 
 msgid "Last year"
-msgstr ""
+msgstr "Tavaly"
 
 msgid "Since last year"
-msgstr ""
+msgstr "Tavalyi év óta"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "&Egyéni tartomány..."
 
 msgid "&Attributes"
-msgstr ""
+msgstr "&Attribútumok"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "Írásvédett fájlok"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "Nem írásvédett fájlok"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "Rejtett fájlok"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "Nem rejtett fájlok"
 
 msgid "System files"
-msgstr ""
+msgstr "Rendszerfájlok"
 
 msgid "Not system files"
-msgstr ""
+msgstr "Nem rendszerfájlok"
 
 msgid "File &Content"
-msgstr ""
+msgstr "Fájl &tartalma"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "Tartalmazza a sztringet..."
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "Nem tartalmazza a sztringet..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "Az első sor tartalmazza a sztringet..."
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "Az első sor nem tartalmazza a sztringet..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "Az első 10 sor tartalmazza a sztringet..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "Az első 10 sor nem tartalmazza a sztringet..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "Az utolsó 10 sor tartalmazza a sztringet..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "Az utolsó 10 sor nem tartalmazza a sztringet..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "Az utolsó sor tartalmazza a sztringet..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "Az utolsó sor nem tartalmazza a sztringet..."
 
 msgid "&Line Count"
-msgstr ""
+msgstr "&Sorok száma"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "Kevesebb, mint 10"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10 vagy több"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "Kevesebb, mint 100"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100 vagy több"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "Kevesebb, mint 1000"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1000 vagy több"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "Kevesebb, mint 10000"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10000 vagy több"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "Kevesebb, mint 100000"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100000 vagy több"
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "&Mappa feltétel hozzáadása"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "Cél: &Bármelyik (Bal/Középső/Jobb)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "Cél: &Bal"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "Cél: &Középső"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "Cél: &Jobb"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "&Különbségi feltétel hozzáadása"
 
 msgid "Equal"
-msgstr ""
+msgstr "Egyenlő"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Nem egyenlő"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "Kevesebb, mint 10 B"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10 B vagy több"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "Kevesebb, mint 100 B"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100 B vagy több"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "Kevesebb mint 1 mp"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 mp vagy több"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "Kevesebb mint 1 perc"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 perc vagy több"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "Kevesebb mint 1 óra"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 óra vagy több"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "Kevesebb mint 1 nap"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 nap vagy több"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "Kevesebb mint 1 hét"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 hét vagy több"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "Cél: &Bal és jobb"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "Cél: Bal és &középső"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "Cél: Középső és &jobb"
 
 #, c-format
 msgid "About WinMerge"
@@ -2027,7 +2027,7 @@ msgstr "Háttérszín:"
 
 #, c-format
 msgid "&Ok"
-msgstr "OK"
+msgstr "&OK"
 
 #, c-format
 msgid "&Apply"
@@ -2527,10 +2527,10 @@ msgid "File Filters"
 msgstr "Fájlszűrők"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "&Maszk / Szűrő kifejezés"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "Előre beállított &szűrők"
 
 msgid "Test..."
 msgstr "Teszt..."
@@ -2552,19 +2552,19 @@ msgid "Delete..."
 msgstr "Törlés..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "Szűrő állapota"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "&Balkezes oldal:"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "&Operátor:"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "&Jobbkezes oldal:"
 
 msgid "Expression:"
-msgstr ""
+msgstr "Kifejezés:"
 
 #, c-format
 msgid "Save Modified Files?"
@@ -5445,79 +5445,79 @@ msgid "File operation canceled"
 msgstr "A fájlművelet megszakítva"
 
 msgid "No error"
-msgstr ""
+msgstr "Nincs hiba"
 
 msgid "Filter expression is empty"
-msgstr ""
+msgstr "A szűrőkifejezés üres"
 
 msgid "Unknown character in filter expression"
-msgstr ""
+msgstr "Ismeretlen karakter a szűrőkifejezésben"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "Le nem zárt szting literális"
 
 msgid "Syntax error in filter expression"
-msgstr ""
+msgstr "Szintaxishiba a szűrőkifejezésben"
 
 msgid "Failed to parse filter expression"
-msgstr ""
+msgstr "Nem sikerült elemezni a szűrőkifejezést"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "Érvénytelen literális érték"
 
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Érvénytelen reguláris kifejezés"
 
 msgid "Undefined identifier"
-msgstr ""
+msgstr "Meghatározatlan azonosító"
 
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "Érvénytelen számú argumentum"
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "A szűrő neve nem található"
 
 msgid "Division by zero in filter expression"
-msgstr ""
+msgstr "Nullával való osztás a szűrőkifejezésben"
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Ismeretlen hiba"
 
 msgid "Equals"
-msgstr ""
+msgstr "Egyenlők"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "Nem egyenlő"
 
 msgid "Less than"
-msgstr ""
+msgstr "Kevesebb, mint"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "Kevesebb vagy egyenlő, mint"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "Nagyobb vagy egyenlő, mint"
 
 msgid "Greater than"
-msgstr ""
+msgstr "Nagyobb , mint"
 
 msgid "Between"
-msgstr ""
+msgstr "Ezek között"
 
 msgid "Not Between"
-msgstr ""
+msgstr "Nem ezek között"
 
 msgid "Contains"
-msgstr ""
+msgstr "Tartalmazza"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "Nem tartalmazza"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "Tartalmazza (regex)"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "Nem tartalmazza (regex)"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
