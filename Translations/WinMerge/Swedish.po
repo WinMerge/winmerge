@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-01-14 12:20+0000\n"
-"PO-Revision-Date: 2025-05-16 04:08+0200\n"
+"PO-Revision-Date: 2025-07-19 19:22+0200\n"
 "Last-Translator: Hans Eriksson <hanseriksson980@gmail.com>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sv\n"
@@ -899,10 +899,10 @@ msgid "Compare in New &Window"
 msgstr "Jämför i nytt fönster"
 
 msgid "Compare Non-hor&izontally..."
-msgstr "Jämför icke-Vågrätt..."
+msgstr "Jämför icke-horisontalt..."
 
 msgid "Compare Non-hor&izontally"
-msgstr "Jämför icke-Vågrätt"
+msgstr "Jämför icke-horisontalt"
 
 msgid "First &Left with Second Left"
 msgstr "Första vänstra med det andra vänstra objektet"
@@ -1222,343 +1222,343 @@ msgid "Clear &All"
 msgstr "Rensa allt"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "Rensa allt"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "Ta bort sista filtergruppen"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "Återställ till standard (*.*)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "Lägg till uteslutfil "
 
 msgid "&System Files"
-msgstr ""
+msgstr "Systemfiler"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "Editor för backupfiler"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "Kompilerade binära filer"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "Loggfiler"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "Temporära eller cachefiler"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "Lägg till uteslutkatalog"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "Versionskontroll"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "Byggartifakter"
 
 msgid "&IDE"
-msgstr ""
+msgstr "Gränssnitt"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "Lägg till filkondition"
 
 msgid "File &Size"
-msgstr ""
+msgstr "Filstorlek"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "Mindre än 1 KB"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1 KB eller mer"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "Mindre än 10 KB"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10 KB eller mer"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "Mindre än 100 KB"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100 KB eller mer"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "Mindre än 1 MB "
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1 MB eller mer"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "Mindre än 10 MB"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10 MB eller mer"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "Mindre än 100 MB"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100 MB eller mer"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "Mindre än 1 GB"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1 GB ellere mer"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "Anpassad gräns..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "Senast ändrad"
 
 msgid "&Hour"
-msgstr ""
+msgstr "Timme"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "Mer än 1 timme sedan"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "Inom en timme"
 
 msgid "&Day"
-msgstr ""
+msgstr "Dag"
 
 msgid "Before today"
-msgstr ""
+msgstr "Innan idag"
 
 msgid "Today"
-msgstr ""
+msgstr "Idag"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "Innan igår"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Igår"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "Sedan igår"
 
 msgid "&Week"
-msgstr ""
+msgstr "Vecka"
 
 msgid "Before this week"
-msgstr ""
+msgstr "Innan denna vecka"
 
 msgid "This week"
-msgstr ""
+msgstr "Denna vecka"
 
 msgid "Before last week"
-msgstr ""
+msgstr "Innan förra veckan"
 
 msgid "Last week"
-msgstr ""
+msgstr "Förra veckan"
 
 msgid "Since last week"
-msgstr ""
+msgstr "Sedan förra veckan"
 
 msgid "&Month"
-msgstr ""
+msgstr "Månad"
 
 msgid "Before this month"
-msgstr ""
+msgstr "Innan denna månad"
 
 msgid "This month"
-msgstr ""
+msgstr "Denna månad"
 
 msgid "Before last month"
-msgstr ""
+msgstr "Innan förra månaden"
 
 msgid "Last month"
-msgstr ""
+msgstr "Förra månaden"
 
 msgid "Since last month"
-msgstr ""
+msgstr "Sedan förra månaden"
 
 msgid "&Year"
-msgstr ""
+msgstr "År"
 
 msgid "Before this year"
-msgstr ""
+msgstr "Innan detta år"
 
 msgid "This year"
-msgstr ""
+msgstr "Detta år"
 
 msgid "Before last year"
-msgstr ""
+msgstr "Före förra året"
 
 msgid "Last year"
-msgstr ""
+msgstr "Förra året"
 
 msgid "Since last year"
-msgstr ""
+msgstr "Sedan förra året"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "Anpassad  längd"
 
 msgid "&Attributes"
-msgstr ""
+msgstr "Attribut"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "Bara läsbara filer"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "Inte bara läsbara filer"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "Dolda filer"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "Inte dolda filer"
 
 msgid "System files"
-msgstr ""
+msgstr "Systemfiler"
 
 msgid "Not system files"
-msgstr ""
+msgstr "Inte systemfiler"
 
 msgid "File &Content"
-msgstr ""
+msgstr "Filinnehåll"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "Innehåller text"
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "Innehåller inte text..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "Första raden ionnehåller texten"
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "Första raden innehåller inte texten..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "Första 10 raderna innehåller texten..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "Första 10 raderna innehåller inte texten..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "Sista 10 raderna innehåller texten..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "Sista 10 raderna innehåller inte texten..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "Sista raden innehåller texten..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "Sista raden innehåller inte texten..."
 
 msgid "&Line Count"
-msgstr ""
+msgstr "Radantal"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "Mindre än 10"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10 eller mer"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "Mindre än 100"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100 eller mer"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "Mindre än 1000"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1000 eller mer"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "Mindre än 10000"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10000 eller mer"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "Mindre än 100000"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100000 eller mer"
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "Lägg till katalogkondition"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "Mål: Alla (Vänster/Mitten/Höger)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "Mål: Vänster"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "Mål: Mitten"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "Mål: Höger"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "Lägg till skillnadskondition"
 
 msgid "Equal"
-msgstr ""
+msgstr "Lika"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Inte lika"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "Mindre än 10 B"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10 B eller mer"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "Mindre än 100 B"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100 B eller mer"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "Mindre än 1 sekund"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 sekund eller mer"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "Mindre än 1 minut"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 minut eller mer"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "Mindre än 1 timme"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 timme eller mer"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "Mindre än 1 dag"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 dag eller mer"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "Mindre än 1 vecka"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 vecka eller mer"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "Mål: Vänster och Höger"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "Mål: Vänster och Mitten"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "Må+l: Mitten och Höger"
 
 msgid "About WinMerge"
 msgstr "Om WinMerge"
@@ -1615,7 +1615,7 @@ msgid " Folder: Filter"
 msgstr " Mapp: Filter"
 
 msgid "&Include subfolders"
-msgstr "Inkludera undermappar"
+msgstr "Inkludera underkataloger"
 
 msgid " File: Prediffer Plugin"
 msgstr " Fil: Förjämförelse/Prediffer programtillägg"
@@ -1651,7 +1651,7 @@ msgid "Cl&ose windows with 'Esc':"
 msgstr "Stäng fönster med ''Esc'':"
 
 msgid "&Automatically verify paths in Open dialog"
-msgstr "Verifiera sökvägar i Öppna-dialogen automatikt"
+msgstr "Verifiera sökvägar i Öppna-dialogen automatiskt"
 
 msgid "Single instance mode:"
 msgstr "Eninstansmod:"
@@ -2155,10 +2155,10 @@ msgid "File Filters"
 msgstr "Filfilter"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "Maskera / filuttryck"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "Förinställ filter"
 
 msgid "Test..."
 msgstr "Testa..."
@@ -2176,19 +2176,19 @@ msgid "Delete..."
 msgstr "Radera..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "Filterkondition"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "Vänster sida"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "Operatör:"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "Höger sida:"
 
 msgid "Expression:"
-msgstr ""
+msgstr "Uttryck"
 
 msgid "Save Modified Files?"
 msgstr "Spara ändrade filer?"
@@ -4324,9 +4324,6 @@ msgstr ""
 "En ny version av WinMerge är tillgänglig.\n"
 "%1 är nu tillgänglig (du har %2). Vill du ladda ner den nu?"
 
-msgid " - All rights reserved."
-msgstr ""
-
 msgid "Failed to download latest version information"
 msgstr "Misslyckades att ladda ner info om senaste versionen"
 
@@ -4343,9 +4340,8 @@ msgstr "Gå till rad %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Gå till flyttad rad\tCtrl+Shift+G"
 
-msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverad"
 
 msgid "From file system"
 msgstr "Från filsystem"
@@ -4440,10 +4436,6 @@ msgstr "DirectWrite naturlig"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite naturlig symmetrisk"
-
-msgctxt "Options dialog|General|Close windows with Esc"
-msgid "Disabled"
-msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI nedärvda fönster eller huvudfönster"
@@ -4583,19 +4575,11 @@ msgstr "AppData-katalog"
 msgid "Install folder"
 msgstr "Installationskatalog"
 
-msgctxt "Options dialog|General|Single instance mode"
-msgid "Disabled"
-msgstr ""
-
 msgid "Allow only one instance to run"
 msgstr "Tillåt endast att en instans körs"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Tillåt endast att en instans körs och vänta på den att avsluta"
-
-msgctxt "Options dialog|General|Auto-reload modified files"
-msgid "Disabled"
-msgstr ""
 
 msgid "Only on window activated"
 msgstr "Endast vid fönster aktvierat"
@@ -4881,79 +4865,79 @@ msgid "File operation canceled"
 msgstr "Filoperation avbruten"
 
 msgid "No error"
-msgstr ""
+msgstr "Inget fel"
 
 msgid "Filter expression is empty"
-msgstr ""
+msgstr "Filteruttrycket är tomt"
 
 msgid "Unknown character in filter expression"
-msgstr ""
+msgstr "Okänt tecken i filteruttryck"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "Oavslutad litterär text"
 
 msgid "Syntax error in filter expression"
-msgstr ""
+msgstr "Syntaxfel i filteruttryck"
 
 msgid "Failed to parse filter expression"
-msgstr ""
+msgstr "Kunde inte tolka filteruttryck"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "Ogiltigt litterärt värde"
 
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Ogiltigt reguljärt uttryck"
 
 msgid "Undefined identifier"
-msgstr ""
+msgstr "Odefinierad identifierare"
 
 msgid "Invalid number of arguments"
 msgstr ""
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "Filternamn hittades inte"
 
 msgid "Division by zero in filter expression"
-msgstr ""
+msgstr "Division med noll i filteruttryck"
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Okänt fel"
 
 msgid "Equals"
-msgstr ""
+msgstr "Lika med"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "Inte lika med"
 
 msgid "Less than"
-msgstr ""
+msgstr "Mindre än"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "Mindre än eller lika med"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "Större än eller lika med"
 
 msgid "Greater than"
-msgstr ""
+msgstr "Större än"
 
 msgid "Between"
-msgstr ""
+msgstr "Mellan"
 
 msgid "Not Between"
-msgstr ""
+msgstr "Inte mellan"
 
 msgid "Contains"
-msgstr ""
+msgstr "Innehåller"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "Innehåller inte"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "Innehåller (RegExp)"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "Innehåller inte (RegExp)"
 
 msgid "Prettification"
 msgstr "Finputsning"
@@ -5490,7 +5474,7 @@ msgid ""
 "e.g.) 3,10-20,32-33\n"
 msgstr ""
 "Kolumnområden att ignorera:\n"
-"e.g.) 3,10-20,32-33\n"
+"t.ex.) 3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter filename for patch '%1'"
