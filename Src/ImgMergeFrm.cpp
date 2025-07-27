@@ -492,10 +492,6 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane),
 			new DropHandler(std::bind(&CImgMergeFrame::OnDropFiles, this, pane, std::placeholders::_1)));
-
-#if defined(USE_DARKMODELIB)
-		DarkMode::setDarkScrollBar(m_pImgMergeWindow->GetPaneHWND(pane));
-#endif
 	}
 
 	// Merge frame has also a dockable bar at the very left
@@ -519,15 +515,7 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	m_pImgToolWindow->Translate(TranslateLocationPane);
 
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
-#if defined(USE_DARKMODELIB)
-	HWND hPane = m_pImgToolWindow->GetHWND();
-	if (hPane != nullptr)
-	{
-		DarkMode::setWindowCtlColorSubclass(hPane);
-		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
-		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
-	}
-#endif
+
 	return TRUE;
 }
 
@@ -2139,13 +2127,6 @@ void CImgMergeFrame::OnImgUseBackColor()
 	{
 		RGBQUAD backColor = m_pImgMergeWindow->GetBackColor();
 		CColorDialog dialog(RGB(backColor.rgbRed, backColor.rgbGreen, backColor.rgbBlue));
-#if defined(USE_DARKMODELIB)
-		if (DarkMode::isEnabled())
-		{
-			dialog.m_cc.Flags |= CC_FLAGS_DARK;
-			dialog.m_cc.lpfnHook = static_cast<LPCCHOOKPROC>(DarkMode::HookDlgProc);
-		}
-#endif
 		static DWORD dwCustColors[16];
 		Options::CustomColors::Load(GetOptionsMgr(), dwCustColors);
 		dialog.m_cc.lpCustColors = dwCustColors;

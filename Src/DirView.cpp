@@ -478,15 +478,6 @@ void CDirView::OnInitialUpdate()
 	// Also enable infotips.
 	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP | LVS_EX_DOUBLEBUFFER;
 	m_pList->SetExtendedStyle(exstyle);
-#if defined(USE_DARKMODELIB)
-	HWND hList = GetSafeHwnd();
-	if (hList != nullptr)
-	{
-		DarkMode::setListViewCtrlSubclass(hList);
-		DarkMode::setDarkTooltips(hList, DarkMode::ToolTipsType::listview);
-		DarkMode::setDarkThemeExperimental(hList);
-	}
-#endif
 }
 
 BOOL CDirView::PreCreateWindow(CREATESTRUCT& cs)

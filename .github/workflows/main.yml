@@ -14,8 +14,6 @@ jobs:
 
     steps:  
     - uses: actions/checkout@v4
-      with:
-        submodules: 'recursive'
 
     - name: Cache
       uses: actions/cache@v4

@@ -77,13 +77,6 @@ void PropMarkerColors::BrowseColorAndSave(CColorButton & colorButton, int colorI
 {
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
 	CColorDialog dialog(currentColor);
-#if defined(USE_DARKMODELIB)
-	if (DarkMode::isEnabled())
-	{
-		dialog.m_cc.Flags |= CC_FLAGS_DARK;
-		dialog.m_cc.lpfnHook = static_cast<LPCCHOOKPROC>(DarkMode::HookDlgProc);
-	}
-#endif
 	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
 	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	

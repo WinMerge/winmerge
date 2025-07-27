@@ -47,7 +47,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '17'">v143</PlatformToolset>
-    <UseOfMfc>Static</UseOfMfc>
+    <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -56,7 +56,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '17'">v143</PlatformToolset>
-    <UseOfMfc>Static</UseOfMfc>
+    <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
@@ -65,7 +65,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '17'">v143</PlatformToolset>
-    <UseOfMfc>Static</UseOfMfc>
+    <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
@@ -74,7 +74,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '17'">v143</PlatformToolset>
-    <UseOfMfc>Static</UseOfMfc>
+    <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -83,7 +83,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '17'">v143</PlatformToolset>
-    <UseOfMfc>Static</UseOfMfc>
+    <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -92,7 +92,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '17'">v143</PlatformToolset>
-    <UseOfMfc>Static</UseOfMfc>
+    <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
@@ -101,7 +101,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '17'">v143</PlatformToolset>
-    <UseOfMfc>Static</UseOfMfc>
+    <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
@@ -110,7 +110,7 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '15'">v141</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '16'">v142</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '17'">v143</PlatformToolset>
-    <UseOfMfc>Static</UseOfMfc>
+    <UseOfMfc>Dynamic</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -206,9 +206,9 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\editlib;..\..\darkmodelib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
@@ -248,9 +248,9 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\editlib;..\..\darkmodelib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
@@ -266,9 +266,9 @@
       <AdditionalIncludeDirectories>..\crystaledit;..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>imm32.lib;shlwapi.lib;darkmode.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imm32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\output;..\..\darkmodelib\build\lib\$(Platform)-$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
@@ -290,9 +290,9 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\editlib;..\..\darkmodelib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level4</WarningLevel>
@@ -308,9 +308,9 @@
       <AdditionalIncludeDirectories>..\crystaledit;..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>imm32.lib;shlwapi.lib;darkmode.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imm32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\output;..\..\darkmodelib\build\lib\$(Platform)-$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
@@ -332,7 +332,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\editlib;..\..\darkmodelib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -375,10 +375,10 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;..\editlib;..\..\darkmodelib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -420,10 +420,10 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;..\editlib;..\..\darkmodelib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -439,9 +439,9 @@
       <AdditionalIncludeDirectories>..\crystaledit;..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>imm32.lib;shlwapi.lib;darkmode.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imm32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\output;..\..\darkmodelib\build\lib\$(Platform)-$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -465,10 +465,10 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;..\editlib;..\..\darkmodelib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
@@ -484,9 +484,9 @@
       <AdditionalIncludeDirectories>..\crystaledit;..;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>imm32.lib;shlwapi.lib;darkmode.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>imm32.lib;shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\output;..\..\darkmodelib\build\lib\$(Platform)-$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\output;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>wWinMainCRTStartup</EntryPointSymbol>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
@@ -510,7 +510,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>.;..\editlib;..\..\darkmodelib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\editlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_MBCS;EDITPADC_CLASS=;CRYSTALEDIT_ENABLELOADER;CRYSTALEDIT_ENABLESAVER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

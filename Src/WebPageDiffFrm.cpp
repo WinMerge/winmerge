@@ -29,7 +29,6 @@
 #include "Logger.h"
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
-#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -514,15 +513,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	m_pWebToolWindow->Translate(TranslateLocationPane);
 
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
-#if defined(USE_DARKMODELIB)
-	HWND hPane = m_pWebToolWindow->GetHWND();
-	if (hPane != nullptr)
-	{
-		DarkMode::setWindowCtlColorSubclass(hPane);
-		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
-		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
-	}
-#endif
+
 	return TRUE;
 }
 

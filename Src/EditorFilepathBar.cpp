@@ -14,7 +14,6 @@
 #include "EditorFilepathBar.h"
 #include "RoundedRectWithShadow.h"
 #include "cecolor.h"
-#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -217,7 +216,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 			// we must set TTM_SETMAXTIPWIDTH to use \n in tooltips
 			// just to do the first time, but how to access the tooltip during init ?
 			::SendMessage(pTTTStruct->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 5000);
-			SetToolTipsFirstTime(pTTTStruct->hwndFrom);
+
 			return TRUE;
 		}
 	}
@@ -308,15 +307,4 @@ void CEditorFilePathBar::SetActive(int pane, bool bActive)
 	if (bActive != m_Edit[pane].GetActive())
 		InvalidateRect(nullptr, false);
 	m_Edit[pane].SetActive(bActive);
-}
-
-void CEditorFilePathBar::SetToolTipsFirstTime(HWND hTip)
-{
-	if (m_Tips.find(hTip) == m_Tips.end())
-	{
-		m_Tips.insert(hTip);
-#if defined(USE_DARKMODELIB)
-		DarkMode::setDarkTooltips(hTip);
-#endif
-	}
 }

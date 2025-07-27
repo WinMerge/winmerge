@@ -14,8 +14,6 @@ jobs:
       - name: Checkout repository
         id: checkout_repo
         uses: actions/checkout@v4
-        with:
-          submodules: 'recursive'
 
       - name: Initialize CodeQL
         id: init_codeql

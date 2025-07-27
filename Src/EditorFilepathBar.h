@@ -77,15 +77,12 @@ protected:
 private:
 	// this dialog uses custom edit boxes
 	CFilepathEdit m_Edit[3]; /**< Edit controls. */
-	std::unordered_set<HWND> m_Tips;
 	CFont m_font; /**< Font for editcontrols */
 	int m_nPanes;
 	std::function<void(int)> m_setFocusCallbackfunc;
 	std::function<void(int, const String& sText)> m_captionChangedCallbackfunc;
 	std::function<void(int, const String& sFilepath)> m_fileSelectedCallbackfunc;
 	std::function<void(int, const String& sFolderpath)> m_folderSelectedCallbackfunc;
-
-	void SetToolTipsFirstTime(HWND hTip);
 };
 
 inline void CEditorFilePathBar::SetPaneCount(int nPanes)

@@ -5,7 +5,6 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "MergeFrameCommon.h"
-#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -50,11 +49,7 @@ BOOL COpenFrame::OnEraseBkgnd(CDC* pDC)
 {
 	CRect rect;
 	GetClientRect(&rect);
-#if defined(USE_DARKMODELIB)
-	pDC->FillSolidRect(&rect, DarkMode::isEnabled() ? DarkMode::getBackgroundColor() : ::GetSysColor(COLOR_APPWORKSPACE));
-#else
 	pDC->FillSolidRect(&rect, ::GetSysColor(COLOR_APPWORKSPACE));
-#endif
 	return TRUE;
 }
 

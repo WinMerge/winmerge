@@ -44,8 +44,6 @@ private:
 	std::vector<int> m_rowRatios;
 	std::vector<int> m_colRatios;
 
-	BOOL CreateScrollBarCtrl(DWORD dwStyle, UINT nID) override;
-
 protected:
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);

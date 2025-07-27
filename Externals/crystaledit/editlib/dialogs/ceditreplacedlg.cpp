@@ -37,8 +37,6 @@
 
 #include "DDXHelper.h"
 
-#include "editlibdarkmode.h"
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -195,9 +193,7 @@ OnInitDialog ()
 
   GetDlgItem (IDC_EDIT_SCOPE_SELECTION)->EnableWindow (m_bEnableScopeSelection);
   m_bFound = false;
-#if defined(USE_DARKMODELIB)
-  DarkMode::setDarkWndSafe(GetSafeHwnd(), true);
-#endif
+
   return true;
 }
 
