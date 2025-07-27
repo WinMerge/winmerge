@@ -17,7 +17,9 @@
 #include <winrt/windows.graphics.imaging.h>
 #include <winrt/windows.storage.streams.h>
 
-#pragma comment(lib, "windowsapp.lib")
+#if !__has_include(<winrt/windows.applicationmodel.holographic.h>)
+#pragma comment(lib, "windowsapp.lib") // < Windows SDK 10.0.22000.0
+#endif
 
 using namespace winrt::Windows::ApplicationModel::DataTransfer;
 using namespace winrt::Windows::Graphics::Imaging;
