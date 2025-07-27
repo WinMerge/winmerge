@@ -4590,8 +4590,7 @@ msgstr "Tillåt endast att en instans körs"
 msgid "Allow only one instance; wait for termination"
 msgstr "Tillåt bara att en instans körs; vänta på avslutning"
 
-
-msgmsgctxt "Options dialog|General|Auto-reload modified files"
+msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr "Avstängd"
 
