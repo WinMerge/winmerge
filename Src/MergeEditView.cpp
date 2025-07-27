@@ -4227,7 +4227,11 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 	for (int i = ID_COLORSCHEME_FIRST + 1, j = 0; i <= ID_COLORSCHEME_LAST; ++i, ++j)
 	{
 		name = theApp.LoadString(i);
+#if defined(USE_DARKMODELIB)
+		AppendMenu(hSubMenu, MF_STRING, i, name.c_str());
+#else
 		AppendMenu(hSubMenu, MF_STRING | (((j % 23) == 22) ? MF_MENUBREAK : 0), i, name.c_str());
+#endif
 	}
 
 	pCmdUI->Enable(true);

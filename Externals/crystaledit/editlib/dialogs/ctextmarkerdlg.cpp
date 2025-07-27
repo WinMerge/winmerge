@@ -10,6 +10,7 @@
 #include "ccrystaltextmarkers.h"
 #include "DDXHelper.h"
 #include "../ccrystaltextview.h"
+#include "editlibdarkmode.h"
 #include <algorithm>
 
 #ifdef _DEBUG
@@ -113,6 +114,9 @@ BOOL CTextMarkerDlg::OnInitDialog ()
 			LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED);
 
 	UpdateData(FALSE);
+#if defined(USE_DARKMODELIB)
+	DarkMode::setDarkWndSafe(GetSafeHwnd(), true);
+#endif
 	return true;
 }
 

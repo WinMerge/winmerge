@@ -434,7 +434,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
 	if (IsWin10_OrGreater())
+	{
 		m_bTabsOnTitleBar = GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
+#if defined(USE_DARKMODELIB)
+		HWND hSelf = GetSafeHwnd();
+		if (hSelf != nullptr)
+		{
+			DarkMode::setDarkWndNotifySafe(hSelf, true);
+		}
+#endif
+	}
 
 	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), false);
 
@@ -449,7 +458,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
-	
+
 	if (!m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
 	{
 		TRACE0("Failed to create tab bar\n");
@@ -1580,6 +1589,16 @@ void CMainFrame::OnViewSelectfont()
 	cf.lpLogFont = lf;
 	cf.hwndOwner = m_hWnd;
 
+#if defined(USE_DARKMODELIB)
+	if (DarkMode::isEnabled())
+	{
+		cf.Flags |= CF_ENABLEHOOK | CF_ENABLETEMPLATE;
+		cf.lpfnHook = static_cast<LPCFHOOKPROC>(DarkMode::HookDlgProc);
+		cf.hInstance = GetModuleHandle(nullptr);
+		cf.lpTemplateName = MAKEINTRESOURCE(IDD_DARK_FONT_DIALOG);
+	}
+#endif
+
 	if (ChooseFont(&cf))
 	{
 		Options::Font::Save(GetOptionsMgr(), frame == FRAME_FOLDER ? OPT_FONT_DIRCMP : OPT_FONT_FILECMP, lf, true);
@@ -2689,7 +2708,13 @@ BOOL CMainFrame::CreateToolbar()
 	}
 
 	m_wndReBar.LoadStateFromString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
-
+#if defined(USE_DARKMODELIB)
+	HWND hTip = m_wndToolBar.GetToolBarCtrl().GetToolTips()->GetSafeHwnd();
+	if (hTip != nullptr)
+	{
+		DarkMode::setDarkTooltips(hTip);
+	}
+#endif
 	return TRUE;
 }
 
