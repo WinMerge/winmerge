@@ -1,5 +1,24 @@
 # Change log
 
+## WinMerge 2.16.50 - 2025-07-27
+
+### General
+
+- Treat a mouse click on the very top edge of the title bar while maximized
+    as if it's within the tab button (PR #2828)
+
+### Translations
+
+- BugFix: WinMerge - Strings untranslated #2852
+- Translation updates:
+  - Brazilian (PR #2849)
+  - Chinese Simplified (PR #2856)
+  - Hungarian (PR #2857,#2859)
+  - Italian (PR #2850,#2851,#2858)
+  - Japanese
+  - Swedish
+  - Russian (PR #2847)
+
 ## WinMerge 2.16.49 - 2025-07-21
 
 ## General
