@@ -31,6 +31,8 @@ CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& fiel
 , m_nSide(side)
 , m_sField(field)
 , m_sOperator(ope)
+, m_tmValue1(CTime::GetCurrentTime())
+, m_tmValue2(CTime::GetCurrentTime())
 , m_sLHS(transform)
 {
 	//{{AFX_DATA_INIT(CFilterConditionDlg)
@@ -177,8 +179,6 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	}
 	else if (m_sField == _T("DateStr"))
 	{
-		m_tmValue1 = CTime::GetCurrentTime();
-		m_tmValue2 = CTime::GetCurrentTime();
 	}
 	else if (m_sField == _T("Content"))
 	{
