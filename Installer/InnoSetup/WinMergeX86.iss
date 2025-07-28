@@ -76,9 +76,6 @@ DirExistsWarning=no
 ;Tells the installer to only display a select language dialog if the an exact match wasn't found
 ShowLanguageDialog=auto
 
-WizardStyle=modern
-WizardResizable=yes
-
 DefaultDirName={pf}\WinMerge
 DefaultGroupName=WinMerge
 DisableStartupPrompt=true
