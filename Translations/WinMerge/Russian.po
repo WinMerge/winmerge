@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2025-07-22 00:00+0000\n"
+"PO-Revision-Date: 2025-07-28 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgid "Select Line &Difference\tF4"
 msgstr "Выбрать &отличие\tF4"
 
 msgid "Add to Substitution &Filters"
-msgstr "Добавить это изменение в &фильтры подмены"
+msgstr "Добавить в &фильтры подмены"
 
 msgid "Add to &Line Filters"
 msgstr "Добавить в строку &фильтров"
@@ -3961,7 +3961,7 @@ msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr "Доступна более новая версия WinMerge.\nДоступна версия %1 (установлена %2). Загрузить сейчас?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr " - Все права защищены."
 
 msgid "Failed to download latest version information"
 msgstr "Не удалось загрузить сведения о последней версии"
@@ -3981,7 +3981,7 @@ msgstr "Перейти к перемещенной строке\tCtrl+Shift+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 msgid "From file system"
 msgstr "Как в файловой системе"
@@ -4073,7 +4073,7 @@ msgstr "Прямая запись Natural Symmetric"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 msgid "MDI child window or main window"
 msgstr "MDI дочернее окно или главное окно"
@@ -4215,7 +4215,7 @@ msgstr "Папка установки"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
@@ -4225,7 +4225,7 @@ msgstr "Разрешить запуск только одной копии и д
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 msgid "Only on window activated"
 msgstr "Активно только в окне"
@@ -4268,7 +4268,7 @@ msgstr "'%1' не является плагином предсравнения"
 
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
-msgstr "Произошла ошибка предсравнения файла '%1' с плагином '%2'. Предсравнение больше не применяется."
+msgstr "Ошибка предсравнения '%1' с '%2'. Предсравнение отключено."
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
