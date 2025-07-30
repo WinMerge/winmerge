@@ -1593,8 +1593,8 @@ msgstr "지난주"
 msgid "Since last week"
 msgstr "지난주부터"
 
-msgid "월(&M)"
-msgstr ""
+msgid "&Month"
+msgstr "월(&M)"
 
 msgid "Before this month"
 msgstr "이번 달 전"
