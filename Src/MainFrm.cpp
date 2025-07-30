@@ -1593,7 +1593,11 @@ void CMainFrame::OnViewSelectfont()
 	if (DarkMode::isEnabled())
 	{
 		cf.Flags |= CF_ENABLEHOOK | CF_ENABLETEMPLATE;
-		cf.lpfnHook = static_cast<LPCFHOOKPROC>(DarkMode::HookDlgProc);
+		cf.lpfnHook = [](HWND hdlg, UINT msg, WPARAM wParam, LPARAM lParam) -> UINT_PTR {
+				if (msg == WM_INITDIALOG)
+					LangTranslateDialog(hdlg);
+				return DarkMode::HookDlgProc(hdlg, msg, wParam, lParam);
+			};
 		cf.hInstance = GetModuleHandle(nullptr);
 		cf.lpTemplateName = MAKEINTRESOURCE(IDD_DARK_FONT_DIALOG);
 	}

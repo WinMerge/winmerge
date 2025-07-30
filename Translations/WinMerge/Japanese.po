@@ -2632,6 +2632,42 @@ msgstr "スクリプトファイル拡張子(&S):"
 msgid "Script &body:"
 msgstr "スクリプト本体(&B):"
 
+msgid "Font"
+msgstr "フォント"
+
+msgid "&Font:"
+msgstr "フォント名(&F):"
+
+msgid "Font st&yle:"
+msgstr "スタイル(&Y):"
+
+msgid "&Size:"
+msgstr "サイズ(&S):"
+
+msgid "Effects"
+msgstr "効果"
+
+msgid "Stri&keout"
+msgstr "取り消し線(&K)"
+
+msgid "&Underline"
+msgstr "下線(&U)"
+
+msgid "&Color:"
+msgstr "色(&C):"
+
+msgid "Sample"
+msgstr "サンプル"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "文字セット(&R):"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>他のフォントを表示</A>"
+
 msgid "EXT"
 msgstr "EXT"
 
