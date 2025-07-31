@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-07-24 12:56+0200\n"
+"PO-Revision-Date: 2025-07-31 10:40+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -4317,7 +4317,7 @@ msgstr ""
 "%1 disponible (vous avez %2). Télécharger maintenant ?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr " - Tous droits réservés."
 
 msgid "Failed to download latest version information"
 msgstr "Échec du téléchargement des informations sur la plus récente version"
@@ -4337,7 +4337,7 @@ msgstr "Aller à la ligne déplacée\tCtrl+Maj+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivé"
 
 msgid "From file system"
 msgstr "A partir du système de fichier"
@@ -4436,7 +4436,7 @@ msgstr "DirectWrite symétrique naturel"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivé"
 
 msgid "MDI child window or main window"
 msgstr "Fenêtre enfant MDI ou fenêtre principale"
@@ -4578,7 +4578,7 @@ msgstr "Dossier d'installation"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivé"
 
 msgid "Allow only one instance to run"
 msgstr "Permettre une seule instance en exécution"
@@ -4588,7 +4588,7 @@ msgstr "Permettre une seule instance; attendre que l'instance se termine"
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivé"
 
 msgid "Only on window activated"
 msgstr "Seulement sur la fenêtre activée"
