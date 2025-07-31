@@ -10,6 +10,7 @@
 #include "OptionsSyntaxColors.h"
 #include "OptionsCustomColors.h"
 #include "OptionsPanel.h"
+#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
