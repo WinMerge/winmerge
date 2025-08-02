@@ -30,13 +30,16 @@ void PropColorSchemes::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropColorSchemes)
+	DDX_CBIndex(pDX, IDC_COLOR_MODE, m_nColorMode);
 	//}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(PropColorSchemes, OptionsPanel)
 	//{{AFX_MSG_MAP(PropColorSchemes)
-	ON_CBN_SELCHANGE(IDC_COLOR_SCHEMES, OnCbnSelchangeColorSchemes)
+	ON_CBN_SELCHANGE(IDC_COLOR_MODE, OnCbnSelchangeColorMode)
+	ON_CBN_SELCHANGE(IDC_COLOR_SCHEME_LIGHT, OnCbnSelchangeColorSchemeLight)
+	ON_CBN_SELCHANGE(IDC_COLOR_SCHEME_DARK, OnCbnSelchangeColorSchemeDark)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -45,7 +48,9 @@ END_MESSAGE_MAP()
  */
 void PropColorSchemes::ReadOptions()
 {
+	m_nColorMode = GetOptionsMgr()->GetInt(OPT_COLOR_MODE);
 	m_sColorScheme = GetOptionsMgr()->GetString(OPT_COLOR_SCHEME);
+	m_sColorSchemeDark = GetOptionsMgr()->GetString(OPT_COLOR_SCHEME_DARK);
 }
 
 /** 
@@ -53,7 +58,9 @@ void PropColorSchemes::ReadOptions()
  */
 void PropColorSchemes::WriteOptions()
 {
+	GetOptionsMgr()->SaveOption(OPT_COLOR_MODE, m_nColorMode);
 	GetOptionsMgr()->SaveOption(OPT_COLOR_SCHEME, m_sColorScheme);
+	GetOptionsMgr()->SaveOption(OPT_COLOR_SCHEME_DARK, m_sColorSchemeDark);
 }
 
 /** 
@@ -61,25 +68,45 @@ void PropColorSchemes::WriteOptions()
  */
 BOOL PropColorSchemes::OnInitDialog()
 {
-	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COLOR_SCHEMES);
+	SetDlgItemComboBoxList(IDC_COLOR_MODE, { _("Light"), _("Dark"), _("Follow system") });
 
-	for (auto& name : ColorSchemes::GetColorSchemeNames())
+	for (int id : { IDC_COLOR_SCHEME_LIGHT, IDC_COLOR_SCHEME_DARK })
 	{
-		combo->AddString(name.c_str());
-		if (strutils::compare_nocase(name, m_sColorScheme) == 0)
-			combo->SetCurSel(combo->GetCount() - 1);
+		CComboBox* combo = (CComboBox*)GetDlgItem(id);
+		String scheme = (id == IDC_COLOR_SCHEME_LIGHT) ? m_sColorScheme : m_sColorSchemeDark;
+
+		for (auto& name : ColorSchemes::GetColorSchemeNames())
+		{
+			combo->AddString(name.c_str());
+			if (strutils::compare_nocase(name, scheme) == 0)
+				combo->SetCurSel(combo->GetCount() - 1);
+		}
+		if (combo->GetCurSel() == -1 && combo->GetCount() > 0)
+			combo->SetCurSel(0);
 	}
-	if (combo->GetCurSel() == -1 && combo->GetCount() > 0)
-		combo->SetCurSel(0);
 
 	OptionsPanel::OnInitDialog();
 	return TRUE;  // return TRUE unless you set the focus to a control
 }
 
-void PropColorSchemes::OnCbnSelchangeColorSchemes()
+void PropColorSchemes::OnCbnSelchangeColorMode()
+{
+}
+
+void PropColorSchemes::OnCbnSelchangeColorSchemeLight()
+{
+	OnCbnSelchangeColorScheme(IDC_COLOR_SCHEME_LIGHT);
+}
+
+void PropColorSchemes::OnCbnSelchangeColorSchemeDark()
+{
+	OnCbnSelchangeColorScheme(IDC_COLOR_SCHEME_DARK);
+}
+
+void PropColorSchemes::OnCbnSelchangeColorScheme(int id)
 {
 	String sColorScheme;
-	GetDlgItemText(IDC_COLOR_SCHEMES, sColorScheme);
+	GetDlgItemText(id, sColorScheme);
 	m_sColorScheme = sColorScheme;
 	WriteOptions();
 	String path = ColorSchemes::GetColorSchemePath(sColorScheme);

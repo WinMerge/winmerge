@@ -241,7 +241,9 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_MRU_MAX, 9, 0, 128);
 
+	pOptions->InitOption(OPT_COLOR_MODE, 0, 0, 2);
 	pOptions->InitOption(OPT_COLOR_SCHEME, _T("Default"));
+	pOptions->InitOption(OPT_COLOR_SCHEME_DARK, _T("VS Dark"));
 
 	pOptions->InitOption(OPT_SYSCOLOR_HOOK_ENABLED, false);
 	pOptions->InitOption(OPT_SYSCOLOR_HOOK_COLORS, _T(""));

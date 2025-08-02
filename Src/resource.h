@@ -92,6 +92,7 @@
 #define IDD_EDIT_REPLACE                286
 #define IDD_INPUTBOX                    287
 #define IDD_PLUGINS_EDITPLUGIN          288
+#define IDD_DARK_FONT_DIALOG            289
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_MARGIN_ICONS_PNG            310
@@ -663,13 +664,16 @@
 #define IDC_PLUGIN_DESCRIPTION          1672
 #define IDC_PLUGIN_PROCESSTYPE          1673
 #define IDC_PLUGIN_ALIAS                1674
-#define IDC_CONDITION_LHS             1675
+#define IDC_CONDITION_LHS               1675
 #define IDC_CONDITION_OPERATOR          1676
 #define IDC_CONDITION_VALUE1            1677
 #define IDC_CONDITION_VALUE2            1678
 #define IDC_CONDITION_VALUEDTP1         1679
 #define IDC_CONDITION_VALUEDTP2         1680
 #define IDC_CONDITION_EXPRESSION        1681
+#define IDC_COLOR_MODE                  1690
+#define IDC_COLOR_SCHEME_LIGHT          1691
+#define IDC_COLOR_SCHEME_DARK           1692
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1991,7 +1995,9 @@
 #define IDS_FILTER_OP_NOT_CONTAINS      44689
 #define IDS_FILTER_OP_RECONTAINS        44690
 #define IDS_FILTER_OP_NOT_RECONTAINS    44691
-#define IDD_DARK_FONT_DIALOG            44692
+#define IDS_COLORMODE_LIGHT             44700
+#define IDS_COLORMODE_DARK              44701
+#define IDS_COLORMODE_FOLLOWSYSTEM      44702
 
 // Next default values for new objects
 // 

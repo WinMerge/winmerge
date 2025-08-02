@@ -27,7 +27,9 @@ public:
 private:
 	//{{AFX_DATA(PropColorSchemes)
 	enum { IDD = IDD_PROPPAGE_COLOR_SCHEMES };
+	int m_nColorMode;
 	String m_sColorScheme;
+	String m_sColorSchemeDark;
 	//}}AFX_DATA
 
 	// Overrides
@@ -43,7 +45,10 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropColorSchemes)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnCbnSelchangeColorSchemes();
+	afx_msg void OnCbnSelchangeColorMode();
+	afx_msg void OnCbnSelchangeColorScheme(int id);
+	afx_msg void OnCbnSelchangeColorSchemeLight();
+	afx_msg void OnCbnSelchangeColorSchemeDark();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
