@@ -786,6 +786,9 @@
     <ClCompile Include="MyColorDialog.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyFontDialog.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1497,6 +1500,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyColorDialog.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFontDialog.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

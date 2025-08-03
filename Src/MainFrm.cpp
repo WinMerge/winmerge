@@ -42,6 +42,7 @@
 #include "ConflictFileParser.h"
 #include "LineFiltersDlg.h"
 #include "SubstitutionFiltersDlg.h"
+#include "MyFontDialog.h"
 #include "paths.h"
 #include "Environment.h"
 #include "PatchTool.h"
@@ -1590,37 +1591,11 @@ void CMainFrame::UpdateFont(FRAMETYPE frame)
 void CMainFrame::OnViewSelectfont() 
 {
 	FRAMETYPE frame = GetFrameType(GetActiveFrame());
-	CHOOSEFONT cf = { sizeof CHOOSEFONT };
-	LOGFONT *lf = nullptr;
-	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS;
-	if (frame == FRAME_FILE)
-		cf.Flags |= CF_FIXEDPITCHONLY; // Only fixed-width fonts for merge view
-
-	// CF_FIXEDPITCHONLY = 0x00004000L
-	// in case you are a developer and want to disable it to test with, eg, a Chinese capable font
-	if (frame == FRAME_FOLDER)
-		lf = &theApp.m_lfDir;
-	else
-		lf = &theApp.m_lfDiff;
-
-	cf.lpLogFont = lf;
-	cf.hwndOwner = m_hWnd;
-
-#if defined(USE_DARKMODELIB)
-	if (DarkMode::isEnabled())
-	{
-		cf.Flags |= CF_ENABLEHOOK | CF_ENABLETEMPLATE;
-		cf.lpfnHook = [](HWND hdlg, UINT msg, WPARAM wParam, LPARAM lParam) -> UINT_PTR {
-				if (msg == WM_INITDIALOG)
-					LangTranslateDialog(hdlg);
-				return DarkMode::HookDlgProc(hdlg, msg, wParam, lParam);
-			};
-		cf.hInstance = GetModuleHandle(nullptr);
-		cf.lpTemplateName = MAKEINTRESOURCE(IDD_DARK_FONT_DIALOG);
-	}
-#endif
-
-	if (ChooseFont(&cf))
+	LOGFONT* lf = (frame == FRAME_FOLDER) ? &theApp.m_lfDir : &theApp.m_lfDiff;
+	const DWORD dwFlags = CF_INITTOLOGFONTSTRUCT | CF_FORCEFONTEXIST | CF_SCREENFONTS |
+		((frame == FRAME_FILE) ? CF_FIXEDPITCHONLY : 0);
+	CMyFontDialog dlg(lf, dwFlags, nullptr, this);
+	if (dlg.DoModal() == IDOK)
 	{
 		Options::Font::Save(GetOptionsMgr(), frame == FRAME_FOLDER ? OPT_FONT_DIRCMP : OPT_FONT_FILECMP, lf, true);
 		UpdateFont(frame);

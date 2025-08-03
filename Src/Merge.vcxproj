@@ -977,6 +977,7 @@
     <ClCompile Include="MergeDocDiffCopy.cpp" />
     <ClCompile Include="MouseHook.cpp" />
     <ClCompile Include="MyColorDialog.cpp" />
+    <ClCompile Include="MyFontDialog.cpp" />
     <ClCompile Include="MyReBar.cpp" />
     <ClCompile Include="OutputBar.cpp" />
     <ClCompile Include="OutputDoc.cpp" />
@@ -1499,6 +1500,7 @@
     <ClInclude Include="IDirDoc.h" />
     <ClInclude Include="InternalPlugins.h" />
     <ClInclude Include="MyColorDialog.h" />
+    <ClInclude Include="MyFontDialog.h" />
     <ClInclude Include="MyReBar.h" />
     <ClInclude Include="OutputBar.h" />
     <ClInclude Include="OutputDoc.h" />
