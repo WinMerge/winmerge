@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-07-21 16:19+0000\n"
-"PO-Revision-Date: 2025-07-24 15:00+0200\n"
+"POT-Creation-Date: 2025-07-26 14:35+0000\n"
+"PO-Revision-Date: 2025-07-28 07:28+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -4001,7 +4001,7 @@ msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr "Yra nauja „WinMerge“ versija.\n%1 dabar yra prieinama (jūs naudojate %2). Norite parsisiųsti dabar?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr " - Visos teisės saugomos."
 
 msgid "Failed to download latest version information"
 msgstr "Nepavyko atsisiųsti naujausios versijos informacijos"
@@ -4021,7 +4021,7 @@ msgstr "Eiti į perkeltą eilutę\tCtrl+Shift+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Išjungta"
 
 msgid "From file system"
 msgstr "Iš sistemos"
@@ -4113,7 +4113,7 @@ msgstr "DirectWrite naturalus simetrinis"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Išjungta"
 
 msgid "MDI child window or main window"
 msgstr "MDI antrinį arba pagrindinį langą"
@@ -4255,7 +4255,7 @@ msgstr "Diegimo katalogas"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Išjungta"
 
 msgid "Allow only one instance to run"
 msgstr "Leisti vykdyti tik vieną egzempliorių"
@@ -4265,7 +4265,7 @@ msgstr "Leisti vykdyti tik vieną egzempliorių ir laukti kol jo vykdymas baigsi
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Išjungta"
 
 msgid "Only on window activated"
 msgstr "Tik suaktyvinus langą"
