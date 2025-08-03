@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-04-12 14:14+0000\n"
-"PO-Revision-Date: 2025-04-14 14:14+0200\n"
+"POT-Creation-Date: 2025-07-26 14:35+0000\n"
+"PO-Revision-Date: 2025-07-28 07:28+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.5.2\n"
+"X-Generator: Poedit 3.6.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1024,13 +1024,13 @@ msgid "Differences to... (%1 of %2)"
 msgstr "Skirtumus į... (%1 iš %2)"
 
 msgid "Left Shell Menu"
-msgstr "Kairysis sistemos meniu"
+msgstr "Sistemos meniu kairėje"
 
 msgid "Middle Shell Menu"
-msgstr "Vidurinis sistemos meniu"
+msgstr "Sistemos meniu viduryje"
 
 msgid "Right Shell Menu"
-msgstr "Dešinysis sistemos meniu"
+msgstr "Sistemos meniu dešinėje"
 
 msgid "Both Shell Menu"
 msgstr "Abu sistemos meniu"
@@ -1070,6 +1070,9 @@ msgstr "Parengėjo nuostatos"
 
 msgid "G&o to Diff"
 msgstr "Pereiti prie skirtum&o"
+
+msgid "Move Cursor on &Click"
+msgstr "Perkelti žymeklį &spustelėjus"
 
 msgid "&No Moved Blocks"
 msgstr "&Neperkelti blokai"
@@ -1214,6 +1217,345 @@ msgstr "&Dubliuoti papildinį..."
 
 msgid "Clear &All"
 msgstr "Išv&alyti viską"
+
+msgid "&Clear All"
+msgstr "&Išvalyti viską"
+
+msgid "Remove Last Filter &Group"
+msgstr "Pašalinti paskutinę filtrų &grupę"
+
+msgid "R&eset to Default (*.*)"
+msgstr "A&tstatyti į numatytuosius (*.*)"
+
+msgid "Add E&xclude File"
+msgstr "Pridėti n&eįtraukiamą failą"
+
+msgid "&System Files"
+msgstr "&Sisteminiai failai"
+
+msgid "&Editor Backup Files"
+msgstr "R&edaktoriaus rezerviniai failai"
+
+msgid "&Compiled Binary Files"
+msgstr "&Kompiliuoti binariniai failai"
+
+msgid "&Log Files"
+msgstr "Žurna&lų failai"
+
+msgid "&Temporary or Cache Files"
+msgstr "Laikinieji ar &talpyklos failai"
+
+msgid "Add Excl&ude Folder"
+msgstr "Pridėti neįtra&ukiamą katalogą"
+
+msgid "&Version Control"
+msgstr "&Versijų kontrolė"
+
+msgid "&Build Artifacts"
+msgstr "Kurimo artefaktai"
+
+msgid "&IDE"
+msgstr "&IDE"
+
+msgid "Add &File Condition"
+msgstr "Pridėti &failo sąlygą"
+
+msgid "File &Size"
+msgstr "Failo dydi&s"
+
+msgid "Less than 1KB"
+msgstr "Mažiau nei 1KB"
+
+msgid "1KB or more"
+msgstr "1KB ar daugiau"
+
+msgid "Less than 10KB"
+msgstr "Mažiau nei 10KB"
+
+msgid "10KB or more"
+msgstr "10KB ar daugiau"
+
+msgid "Less than 100KB"
+msgstr "Mažiau nei 100KB"
+
+msgid "100KB or more"
+msgstr "100KB ar daugiau"
+
+msgid "Less than 1MB"
+msgstr "Mažiau nei 1MB"
+
+msgid "1MB or more"
+msgstr "1MB ar daugiau"
+
+msgid "Less than 10MB"
+msgstr "Mažiau nei 10MB"
+
+msgid "10MB or more"
+msgstr "10MB ar daugiau"
+
+msgid "Less than 100MB"
+msgstr "Mažiau nei 100MB"
+
+msgid "100MB or more"
+msgstr "100MB ar daugiau"
+
+msgid "Less than 1GB"
+msgstr "Mažiau nei 1GB"
+
+msgid "1GB or more"
+msgstr "1GB ar daugiau"
+
+msgid "Custom Range..."
+msgstr "Pasirinktinis diapazonas..."
+
+msgid "&Last Modified"
+msgstr "Vė&liausiai modifikuota"
+
+msgid "&Hour"
+msgstr "Valanda"
+
+msgid "More than 1 hour ago"
+msgstr "Daugiau nei prieš 1 val."
+
+msgid "Within 1 hour"
+msgstr "Per 1 valandą"
+
+msgid "&Day"
+msgstr "&Diena"
+
+msgid "Before today"
+msgstr "Iki šiandien"
+
+msgid "Today"
+msgstr "Šiandien"
+
+msgid "Before yesterday"
+msgstr "Iki vakar"
+
+msgid "Yesterday"
+msgstr "Vakar"
+
+msgid "Since yesterday"
+msgstr "Nuo vakar"
+
+msgid "&Week"
+msgstr "Savaitė"
+
+msgid "Before this week"
+msgstr "Iki šios savaitės"
+
+msgid "This week"
+msgstr "Šią savaitę"
+
+msgid "Before last week"
+msgstr "Iki praeitos savaitės"
+
+msgid "Last week"
+msgstr "Praeitą savaitę"
+
+msgid "Since last week"
+msgstr "Nuo praeitos savaitės"
+
+msgid "&Month"
+msgstr "&Mėnuo"
+
+msgid "Before this month"
+msgstr "Iki šio mėnesio"
+
+msgid "This month"
+msgstr "Šį mėnesį"
+
+msgid "Before last month"
+msgstr "Iki praeito mėnesio"
+
+msgid "Last month"
+msgstr "Praeitą mėnesį"
+
+msgid "Since last month"
+msgstr "Nuo praeito mėnesio"
+
+msgid "&Year"
+msgstr "Metai"
+
+msgid "Before this year"
+msgstr "Iki šių metų"
+
+msgid "This year"
+msgstr "Šiemet"
+
+msgid "Before last year"
+msgstr "Iki praeitų metų"
+
+msgid "Last year"
+msgstr "Praeitais metais"
+
+msgid "Since last year"
+msgstr "Nuo praeitų metų"
+
+msgid "&Custom Range..."
+msgstr "Pasirinktinis diapazonas..."
+
+msgid "&Attributes"
+msgstr "&Atributai"
+
+msgid "Read-only files"
+msgstr "Failai „Tik skaitymui“"
+
+msgid "Not read-only files"
+msgstr "Failai ne „Tik skaitymui“"
+
+msgid "Hidden files"
+msgstr "Paslėpti failai"
+
+msgid "Not hidden files"
+msgstr "Ne paslėpti failai"
+
+msgid "System files"
+msgstr "Sisteminiai failai"
+
+msgid "Not system files"
+msgstr "Ne sisteminiai failai"
+
+msgid "File &Content"
+msgstr "Failo &turinys"
+
+msgid "Contains string..."
+msgstr "Yra tekstas..."
+
+msgid "Does not contain string..."
+msgstr "Nėra teksto..."
+
+msgid "First line contains string..."
+msgstr "Pirmoje eilutėje yra tekstas..."
+
+msgid "First line does not contain string..."
+msgstr "Pirmoje eilutėje nėra teksto..."
+
+msgid "First 10 lines contain string..."
+msgstr "Pirmose 10 eilučių yra tekstas..."
+
+msgid "First 10 lines do not contain string..."
+msgstr "Pirmose 10 eilučių nėra teksto..."
+
+msgid "Last 10 lines contain string..."
+msgstr "Paskutinėse 10 eilučių yra tekstas..."
+
+msgid "Last 10 lines do not contain string..."
+msgstr "Paskutinėse 10 eilučių nėra teksto..."
+
+msgid "Last line contains string..."
+msgstr "Paskutinėje eilutėje yra tekstas..."
+
+msgid "Last line does not contain string..."
+msgstr "Paskutinėje eilutėje nėra teksto..."
+
+msgid "&Line Count"
+msgstr "Ei&lučių skaičius"
+
+msgid "Less than 10"
+msgstr "Mažiau nei 10"
+
+msgid "10 or more"
+msgstr "10 ar daugiau"
+
+msgid "Less than 100"
+msgstr "Mažiau nei 100"
+
+msgid "100 or more"
+msgstr "100 ar daugiau"
+
+msgid "Less than 1000"
+msgstr "Mažiau nei 1000"
+
+msgid "1000 or more"
+msgstr "1000 ar daugiau"
+
+msgid "Less than 10000"
+msgstr "Mažiau nei 10000"
+
+msgid "10000 or more"
+msgstr "10000 ar daugiau"
+
+msgid "Less than 100000"
+msgstr "Mažiau nei 100000"
+
+msgid "100000 or more"
+msgstr "100000 ar daugiau"
+
+msgid "Add F&older Condition"
+msgstr "Pridėti katal&ogo sąlygą"
+
+msgid "Target: &Any (Left/Middle/Right)"
+msgstr "Rezultatai: Bet kur (Kairėje/Viduryje/Dešinėje)"
+
+msgid "Target: &Left"
+msgstr "Rezultatai: &Kairėje"
+
+msgid "Target: &Middle"
+msgstr "Rezultatai: &Viduryje"
+
+msgid "Target: &Right"
+msgstr "Rezultatai: &Dešinėje"
+
+msgid "Add &Difference Condition"
+msgstr "Pri&dėti skirtumo sąlygą"
+
+msgid "Equal"
+msgstr "Lygu"
+
+msgid "Not Equal"
+msgstr "Nelygu"
+
+msgid "Less than 10B"
+msgstr "Mažiau nei 10B"
+
+msgid "10B or more"
+msgstr "10B ar daugiau"
+
+msgid "Less than 100B"
+msgstr "Mažiau nei 100B"
+
+msgid "100B or more"
+msgstr "100B ar daugiau"
+
+msgid "Less than 1 second"
+msgstr "Mažiau nei 1 sekundė"
+
+msgid "1 second or more"
+msgstr "1 sekundė ar daugiau"
+
+msgid "Less than 1 minute"
+msgstr "Mažiau nei 1 minutė"
+
+msgid "1 minute or more"
+msgstr "1 minutė ar daugiau"
+
+msgid "Less than 1 hour"
+msgstr "Mažiau nei 1 valanda"
+
+msgid "1 hour or more"
+msgstr "1 valanda ar daugiau"
+
+msgid "Less than 1 day"
+msgstr "Mažiau nei 1 diena"
+
+msgid "1 day or more"
+msgstr "1 diena ar daugiau"
+
+msgid "Less than 1 week"
+msgstr "Mažiau nei 1 savaitė"
+
+msgid "1 week or more"
+msgstr "1 savaitė ar daugiau"
+
+msgid "Target: &Left and Right"
+msgstr "Rezultatai: &Kairėje ir Dešinėje"
+
+msgid "Target: Left and &Middle"
+msgstr "Rezultatai: Kairėje ir &Viduryje"
+
+msgid "Target: Middle and &Right"
+msgstr "Rezultatai: Viduryje ir &Dešinėje"
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -1362,9 +1704,6 @@ msgstr "&Rasti kitą"
 msgid "Find &Prev"
 msgstr "Rasti &praeitą"
 
-msgid "&Ok"
-msgstr "&Gerai"
-
 msgid "Replace"
 msgstr "Pakeisti"
 
@@ -1403,6 +1742,9 @@ msgstr "Naujas"
 
 msgid "&Background color:"
 msgstr "&Fono spalva:"
+
+msgid "&Ok"
+msgstr "&Gerai"
 
 msgid "&Apply"
 msgstr "T&aikyti"
@@ -1809,6 +2151,12 @@ msgstr "Atkurti"
 msgid "File Filters"
 msgstr "Failo filtrai"
 
+msgid "&Mask / Filter Expression"
+msgstr "&Šablono / filtro išraiška"
+
+msgid "Preset &Filters"
+msgstr "Iš anksto nustatyti &filtrai"
+
 msgid "Test..."
 msgstr "Testas..."
 
@@ -1823,6 +2171,21 @@ msgstr "Redaguoti..."
 
 msgid "Delete..."
 msgstr "Trinti..."
+
+msgid "Filter Condition"
+msgstr "Filtro sąlyga"
+
+msgid "&Left-hand side:"
+msgstr "&Kairėje:"
+
+msgid "&Operator:"
+msgstr "&Operatorius:"
+
+msgid "&Right-hand side:"
+msgstr "&Dešinėje:"
+
+msgid "Expression:"
+msgstr "Išraiška:"
 
 msgid "Save Modified Files?"
 msgstr "Išsaugoti pakeistus failus?"
@@ -3019,67 +3382,67 @@ msgid "Middle Duplicate Count"
 msgstr "Dublikatų kiekis viduryje"
 
 msgid "Move"
-msgstr ""
+msgstr "Perkelti"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Kalendorius"
 
 msgid "Communication"
-msgstr ""
+msgstr "Komunikavimas"
 
 msgid "Contact"
-msgstr ""
+msgstr "Kontaktas"
 
 msgid "Devices"
-msgstr ""
+msgstr "Įrenginiai"
 
 msgid "Document"
-msgstr ""
+msgstr "Dokumentas"
 
 msgid "Home"
-msgstr ""
+msgstr "Namas"
 
 msgid "Journal"
-msgstr ""
+msgstr "Žurnalas"
 
 msgid "Link"
-msgstr ""
+msgstr "Nuoroda"
 
 msgid "Media"
-msgstr ""
+msgstr "Media"
 
 msgid "Music"
-msgstr ""
+msgstr "Muzika"
 
 msgid "Note"
-msgstr ""
+msgstr "Pastaba"
 
 msgid "Photo"
-msgstr ""
+msgstr "Fotografija"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "TV įrašas"
 
 msgid "Search"
-msgstr ""
+msgstr "Paieška"
 
 msgid "Security"
-msgstr ""
+msgstr "Saugumas"
 
 msgid "Software"
-msgstr ""
+msgstr "Programinė įranga"
 
 msgid "Task"
-msgstr ""
+msgstr "Užduotis"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Hash"
-msgstr ""
+msgstr "Maiša"
 
 msgid "Unable to compare files"
 msgstr "Neįmanoma palyginti failų"
@@ -3095,40 +3458,40 @@ msgstr "Praleistas katalogas"
 
 #, c-format
 msgid "Left only: %1"
-msgstr "Tik kairysis: %1"
+msgstr "Yra tik kairėje: %1"
 
 #, c-format
 msgid "Middle only: %1"
-msgstr "Tik vidurinis: %1"
+msgstr "Yra tik viduryje: %1"
 
 #, c-format
 msgid "Right only: %1"
-msgstr "Tik dešinysis: %1"
+msgstr "Yra tik dešinėje: %1"
 
 #, c-format
 msgid "Does not exist in %1"
 msgstr "Nėra %1"
 
 msgid "Binary files are identical"
-msgstr "Binariniai failai yra vienodi"
+msgstr "Binariniai failai vienodi"
 
 msgid "Binary files are different"
-msgstr "Binariniai failai yra skirtingi"
+msgstr "Binariniai failai skiriasi"
 
 msgid "Files are different"
-msgstr "Failai yra skirtingi"
+msgstr "Failai skiriasi"
 
 msgid "Folders are different"
-msgstr "Katalogai yra skirtingi"
+msgstr "Katalogai skiriasi"
 
 msgid "Left Only"
-msgstr "Tik kairysis"
+msgstr "Yra tik kairysis"
 
 msgid "Right Only"
-msgstr "Tik dešinysis"
+msgstr "Yra tik dešinysis"
 
 msgid "Middle Only"
-msgstr "Tik vidurinis"
+msgstr "Yra tik vidurinis"
 
 msgid "No item in left"
 msgstr "Nėra elemento kairėje"
@@ -3143,7 +3506,7 @@ msgid "Error"
 msgstr "Klaida"
 
 msgid "Text files are identical"
-msgstr "Tekstiniai failai yra vienodi"
+msgstr "Tekstiniai failai vienodi"
 
 msgid " (Middle and right are identical)"
 msgstr " (Vidurinis ir dešinysis yra vienodi)"
@@ -3155,10 +3518,10 @@ msgid " (Left and middle are identical)"
 msgstr " (Kairysis ir vidurinis yra vienodi)"
 
 msgid "Text files are different"
-msgstr "Tekstiniai failai yra skirtingi"
+msgstr "Tekstiniai failai skiriasi"
 
 msgid "Image files are identical"
-msgstr "Paveikslėliai yra vienodi"
+msgstr "Paveikslėliai vienodi"
 
 msgid "Image files are different"
 msgstr "Paveikslėliai skiriasi"
@@ -3595,6 +3958,9 @@ msgstr "Jūsų programinė įranga yra atnaujinta."
 msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr "Yra nauja „WinMerge“ versija.\n%1 dabar yra prieinama (jūs naudojate %2). Norite parsisiųsti dabar?"
 
+msgid " - All rights reserved."
+msgstr " - Visos teisės saugomos."
+
 msgid "Failed to download latest version information"
 msgstr "Nepavyko atsisiųsti naujausios versijos informacijos"
 
@@ -3611,6 +3977,7 @@ msgstr "E&iti į %1 eilutę"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Eiti į perkeltą eilutę\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
 msgstr "Išjungta"
 
@@ -3701,6 +4068,10 @@ msgstr "DirectWrite naturalus"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite naturalus simetrinis"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr "Išjungta"
 
 msgid "MDI child window or main window"
 msgstr "MDI antrinį arba pagrindinį langą"
@@ -3840,11 +4211,19 @@ msgstr "„AppData“ katalogas"
 msgid "Install folder"
 msgstr "Diegimo katalogas"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr "Išjungta"
+
 msgid "Allow only one instance to run"
 msgstr "Leisti vykdyti tik vieną egzempliorių"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Leisti vykdyti tik vieną egzempliorių ir laukti kol jo vykdymas baigsis"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr "Išjungta"
 
 msgid "Only on window activated"
 msgstr "Tik suaktyvinus langą"
@@ -4065,13 +4444,88 @@ msgid "Recycle Bin"
 msgstr "Šiukšliadėžė"
 
 msgid "Permanently deleted"
-msgstr "Visam laikui ištrinta"
+msgstr "Ištrinta visam laikui"
 
 msgid "File operation completed successfully"
 msgstr "Failo operacija baigta sėkmingai"
 
 msgid "File operation canceled"
 msgstr "Failo operacija atšaukta"
+
+msgid "No error"
+msgstr "Klaidų nėra"
+
+msgid "Filter expression is empty"
+msgstr "Filtro išraiška tuščia"
+
+msgid "Unknown character in filter expression"
+msgstr "Nežinomas simbolis filtro išraiškoje"
+
+msgid "Unterminated string literal"
+msgstr "Neužbaigta eilutės tiesioginė išraiška"
+
+msgid "Syntax error in filter expression"
+msgstr "Sintaksės klaida filtro išraiškoje"
+
+msgid "Failed to parse filter expression"
+msgstr "Nepavyko išanalizuoti filtro išraiškos"
+
+msgid "Invalid literal value"
+msgstr "Klaidinga tiesioginės išraiškos reikšmė"
+
+msgid "Invalid regular expression"
+msgstr "Klaidinga reguliarioji išraiška"
+
+msgid "Undefined identifier"
+msgstr "Neapibrėžtas identifikatorius"
+
+msgid "Invalid number of arguments"
+msgstr "Neteisingas argumentų skaičius"
+
+msgid "Filter name not found"
+msgstr "Filtro pavadinimas nerastas"
+
+msgid "Division by zero in filter expression"
+msgstr "Dalyba iš nulio filtro išraiškoje"
+
+msgid "Unknown error"
+msgstr "Nežinoma klaida"
+
+msgid "Equals"
+msgstr "Lygu"
+
+msgid "Does not equal"
+msgstr "Nelygu"
+
+msgid "Less than"
+msgstr "Mažiau nei"
+
+msgid "Less than or equal to"
+msgstr "Mažiau arba lygu"
+
+msgid "Greater than or equal to"
+msgstr "Daugiau arba lygu"
+
+msgid "Greater than"
+msgstr "Daugiau nei"
+
+msgid "Between"
+msgstr "Tarp"
+
+msgid "Not Between"
+msgstr "Ne tarp"
+
+msgid "Contains"
+msgstr "Turi"
+
+msgid "Not Contains"
+msgstr "Neturi"
+
+msgid "Contains (regex)"
+msgstr "Turi (regex)"
+
+msgid "Not Contains (regex)"
+msgstr "Neturi (regex)"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
@@ -4128,7 +4582,7 @@ msgid "Apply Filter Command..."
 msgstr "Pritaikyti filtro komandą..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Tokenizuoti..."
 
 msgid "Trim Spaces"
 msgstr "Šalinti tarpus"
@@ -4249,64 +4703,64 @@ msgid "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command 
 msgstr "Taikyti filtrą. \r\nNaudojimas: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
 
 msgid "Tokenize. \r\nUsage: Tokenize PATTERNS\r\n PATTERNS - regex (e.g. [^\\w]+)"
-msgstr ""
+msgstr "Tokenizuoti. \r\nNaudojimas: Tokenize PATTERNS\r\n PATTERNS - regex (e.g. [^\\w]+)"
 
 msgid "Trim spaces"
 msgstr "Apkirpti tarpus"
 
 msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
-msgstr ""
+msgstr "Pažymėti stulpelius.\r\nNaudojimas: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
 
 msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
-msgstr ""
+msgstr "Pažymėti eilutes.\r\nNaudojimas: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
 
 msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
-msgstr ""
+msgstr "HTML tvarkytojas (tidy-html5).\r\nArgumentai: tidy command line options."
 
 msgid "JSON Prettier (jq).\r\nArguments: jq filter/command line options."
-msgstr ""
+msgstr "JSON tvarkytojas (jq).\r\nArgumentai: jq filter/command line options."
 
 msgid "XML Prettier (tidy-html5).\r\nArguments: tidy command line options."
-msgstr ""
+msgstr "XML tvarkytojas (tidy-html5).\r\nArgumentai: tidy command line options."
 
 msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
-msgstr ""
+msgstr "YAML tvarkytojas (yq).\r\nArgumentai: yq filter/command line options."
 
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
-msgstr ""
+msgstr "Graphviz peržiūrėtojas.\r\nArgumentai: dot command line options."
 
 msgid "Markdown Previewer.\r\nArguments: md2html command line options."
-msgstr ""
+msgstr "Markdown peržiūrėtojas.\r\nArgumentai: md2html command line options."
 
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
-msgstr ""
+msgstr "PlantUML peržiūrėtojas.\r\nArgumentai: plantuml.jar command line options."
 
 msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
-msgstr ""
+msgstr "CSV užklausėjas (q).\r\nArgumentai: SQL statement/q comannd line options."
 
 msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
-msgstr ""
+msgstr "TSV užklausėjas (q).\r\nArgumentai: SQL statement/q comannd line options."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."
-msgstr ""
+msgstr "JSON užklausėjas (jq).\r\nArgumentai: jq filter/command line options."
 
 msgid "YAML Querier (yq).\r\nArguments: yq filter/command line options."
-msgstr ""
+msgstr "YAML užklausėjas (yq).\r\nArgumentai: yq filter/command line options."
 
 msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
-msgstr ""
+msgstr "HTML tikrintojas (tidy-html5).\r\nArgumentai: tidy command line options."
 
 msgid "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
-msgstr ""
+msgstr "JVM baitinio kodo dekompiliatorius (javap).\r\nArgumentai: javap command line options."
 
 msgid "IL disassembler (ildasm).\r\nArguments: ildasm command line options."
-msgstr ""
+msgstr "IL dekompiliatorius (ildasm).\r\nArgumentai: ildasm command line options."
 
 msgid "Native code disassembler (dumpbin).\r\nArguments: dumpbin command line options."
-msgstr ""
+msgstr "Savojo kodo dekompiliatorius (dumpbin).\r\nArgumentai: dumpbin command line options."
 
 msgid "Content extractor (Apache Tika).\r\nArguments: tika-app.jar command line options."
-msgstr ""
+msgstr "Turinio ištraukėjas (Apache Tika).\r\nArgumentai: tika-app.jar command line options."
 
 msgid "Apply patch (GNU patch)"
 msgstr "Taikyti pataisą („GNU patch“)"
@@ -4342,10 +4796,10 @@ msgid "Date and time insertion"
 msgstr "Datos ir laiko įterpimas"
 
 msgid "HTTP URL Scheme Handler (curl).\r\nArguments: curl command line options."
-msgstr ""
+msgstr "HTTP URL schemos apdorotojas (curl).\r\nArgumentai: curl command line options."
 
 msgid "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
-msgstr ""
+msgstr "Windows Registry URL schemos apdorotojas.\r\nArgumentai: reg.exe command line options."
 
 msgid "Basic text functions"
 msgstr "Pagrindinės tekstų funkcijos"

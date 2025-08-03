@@ -1,0 +1,11 @@
+name: error include
+desc: error file filter long description
+def: include
+f: [A-Z]*[$
+f!: a{2,1}$
+d: (abc$
+d!: \c
+fe: siz > 0
+fe!: abs(1, 2) < 1000
+de: Name matches "(abc"
+de!: Name $ "aaa"

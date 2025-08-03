@@ -64,16 +64,16 @@ msgid "Copy Selected Lines from Left"
 msgstr "從左側複製所選行"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr ""
+msgstr "複製選取差異 (左側) 到剪貼簿\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "複製選取差異 (右側) 到剪貼簿\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "複製選取差異 (中間) 到剪貼簿\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr ""
+msgstr "複製選取差異 (右側) 到剪貼簿\tCtrl+&3"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -258,13 +258,13 @@ msgid "&Vector Image Scaling"
 msgstr "向量圖縮放 (&V)"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "動畫設定 (&A)"
 
 msgid "&Blink Interval"
-msgstr ""
+msgstr "閃爍間隔 (&B)"
 
 msgid "&Overlay Animation Interval"
-msgstr ""
+msgstr "覆蓋動畫間隔 (&O)"
 
 msgid "Compare Extracted &Text from Images"
 msgstr "比較從圖片中擷取的文字 (&T)"
@@ -294,22 +294,22 @@ msgid "Fit to Window"
 msgstr "自適應視窗(&F)"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "事件同步 (&E)"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "已啟用 (&E)"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "捲動 (&S)"
 
 msgid "&Click"
-msgstr ""
+msgstr "點擊 (&C)"
 
 msgid "&Input"
-msgstr ""
+msgstr "輸入 (&I)"
 
 msgid "&Go Back/Forward"
-msgstr ""
+msgstr "返回/前進 (&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "清除瀏覽資料(&B)"
@@ -405,10 +405,10 @@ msgid "Ta&b Bar"
 msgstr "頁籤列 (&B)"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "檢視頁籤列 (&V)"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "在標題列上 (&O)"
 
 #, c-format
 msgid "&Toolbar"
@@ -419,7 +419,7 @@ msgid "&Small"
 msgstr "小圖示 (&S)"
 
 msgid "&Medium"
-msgstr ""
+msgstr "中圖示 (&M)"
 
 #, c-format
 msgid "&Big"
@@ -430,10 +430,10 @@ msgid "&Huge"
 msgstr "超大圖示 (&H)"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "選單列 (&U)"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "輸出窗格 (&O)"
 
 #, c-format
 msgid "&Status Bar"
@@ -622,16 +622,16 @@ msgid "Tree &Mode"
 msgstr "樹狀模式 (&M)"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "展開子資料夾 (&X)"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "所有子資料夾 (&A)"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "不同子資料夾 (&D)"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "相同子資料夾 (&I)"
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -1067,10 +1067,10 @@ msgid "&Transform with Editor Script..."
 msgstr "使用編輯器指令腳本進行轉換(&T)..."
 
 msgid "Scripts for &Copying"
-msgstr ""
+msgstr "複製指令碼 (&C)"
 
 msgid "Select &Editor Script..."
-msgstr ""
+msgstr "選取編輯器指令碼 (&E)..."
 
 #, c-format
 msgid "Sp&lit"
@@ -1242,10 +1242,10 @@ msgid "Right Shell Menu"
 msgstr "右側介面選單"
 
 msgid "Both Shell Menu"
-msgstr ""
+msgstr "兩邊殼層選單"
 
 msgid "All Shell Menu"
-msgstr ""
+msgstr "所有殼層選單"
 
 #, c-format
 msgid "Copy"
@@ -1286,6 +1286,9 @@ msgstr "先行處理器設定"
 
 msgid "G&o to Diff"
 msgstr "至差異區塊 (&O)"
+
+msgid "Move Cursor on &Click"
+msgstr "點擊時移動游標 (&C)"
 
 #, c-format
 msgid "&No Moved Blocks"
@@ -1334,7 +1337,7 @@ msgid "Ignore C&omment Differences"
 msgstr "忽略註解差異 (&O)"
 
 msgid "Ignore &Missing Trailing EOL"
-msgstr ""
+msgstr "忽略缺少結尾換行符號 (&M)"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1373,81 +1376,420 @@ msgid "&Load Project..."
 msgstr "載入專案... (&L)"
 
 msgid "${*} - All Arguments"
-msgstr ""
+msgstr "${*} - 所有引數"
 
 msgid "${1} - First Argument"
-msgstr ""
+msgstr "${1} - 第一個引數"
 
 msgid "${2} - Second Argument"
-msgstr ""
+msgstr "${2} - 第二個引數"
 
 msgid "${3} - Third Argument"
-msgstr ""
+msgstr "${3} - 第三個引數"
 
 msgid "${4} - Fourth Argument"
-msgstr ""
+msgstr "${4} - 第四個引數"
 
 msgid "${5} - Fifth Argument"
-msgstr ""
+msgstr "${5} - 第五個引數"
 
 msgid "${6} - Sixth Argument"
-msgstr ""
+msgstr "${6} - 第六個引數"
 
 msgid "${7} - Seventh Argument"
-msgstr ""
+msgstr "${7} - 第七個引數"
 
 msgid "${8} - Eighth Argument"
-msgstr ""
+msgstr "${8} - 第八個引數"
 
 msgid "${9} - Ninth Argument"
-msgstr ""
+msgstr "${9} - 第九個引數"
 
 msgid "${SRC_FILE} - Source File"
-msgstr ""
+msgstr "${SRC_FILE} - 來源檔案"
 
 msgid "${SRC_FOLDER} - Source Folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - 來源資料夾"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - 來源網址"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - 來源網址協定"
 
 msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - 來源網址尾碼"
 
 msgid "${DST_FILE} - Destination File"
-msgstr ""
+msgstr "${DST_FILE} - 目的檔案"
 
 msgid "${DST_FOLDER} - Destination Folder"
-msgstr ""
+msgstr "${DST_FOLDER} - 目的資料夾"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - 目的網址"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - 目的網址協定"
 
 msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - 目的網址尾碼"
 
 msgid "${WINMERGE_HOME} - WinMerge Home Directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - WinMerge 主目錄"
 
 msgid "${SCRIPT_FILE} - Script File"
-msgstr ""
+msgstr "${SCRIPT_FILE} - 指令碼檔案"
 
 msgid "Add &Unpacker Plugin..."
-msgstr ""
+msgstr "新增解壓縮外掛 (&U)..."
 
 msgid "Add &Prediffer Plugin..."
-msgstr ""
+msgstr "新增先行處理外掛 (&P)..."
 
 msgid "&Duplicate Plugin..."
-msgstr ""
+msgstr "複製外掛 (&D)..."
 
 msgid "Clear &All"
+msgstr "全部清除 (&A)"
+
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
+msgstr ""
+
+msgid "R&eset to Default (*.*)"
+msgstr ""
+
+msgid "Add E&xclude File"
+msgstr ""
+
+msgid "&System Files"
+msgstr ""
+
+msgid "&Editor Backup Files"
+msgstr ""
+
+msgid "&Compiled Binary Files"
+msgstr ""
+
+msgid "&Log Files"
+msgstr ""
+
+msgid "&Temporary or Cache Files"
+msgstr ""
+
+msgid "Add Excl&ude Folder"
+msgstr ""
+
+msgid "&Version Control"
+msgstr ""
+
+msgid "&Build Artifacts"
+msgstr ""
+
+msgid "&IDE"
+msgstr ""
+
+msgid "Add &File Condition"
+msgstr ""
+
+msgid "File &Size"
+msgstr ""
+
+msgid "Less than 1KB"
+msgstr ""
+
+msgid "1KB or more"
+msgstr ""
+
+msgid "Less than 10KB"
+msgstr ""
+
+msgid "10KB or more"
+msgstr ""
+
+msgid "Less than 100KB"
+msgstr ""
+
+msgid "100KB or more"
+msgstr ""
+
+msgid "Less than 1MB"
+msgstr ""
+
+msgid "1MB or more"
+msgstr ""
+
+msgid "Less than 10MB"
+msgstr ""
+
+msgid "10MB or more"
+msgstr ""
+
+msgid "Less than 100MB"
+msgstr ""
+
+msgid "100MB or more"
+msgstr ""
+
+msgid "Less than 1GB"
+msgstr ""
+
+msgid "1GB or more"
+msgstr ""
+
+msgid "Custom Range..."
+msgstr ""
+
+msgid "&Last Modified"
+msgstr ""
+
+msgid "&Hour"
+msgstr ""
+
+msgid "More than 1 hour ago"
+msgstr ""
+
+msgid "Within 1 hour"
+msgstr ""
+
+msgid "&Day"
+msgstr ""
+
+msgid "Before today"
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+msgid "Before yesterday"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "Since yesterday"
+msgstr ""
+
+msgid "&Week"
+msgstr ""
+
+msgid "Before this week"
+msgstr ""
+
+msgid "This week"
+msgstr ""
+
+msgid "Before last week"
+msgstr ""
+
+msgid "Last week"
+msgstr ""
+
+msgid "Since last week"
+msgstr ""
+
+msgid "&Month"
+msgstr ""
+
+msgid "Before this month"
+msgstr ""
+
+msgid "This month"
+msgstr ""
+
+msgid "Before last month"
+msgstr ""
+
+msgid "Last month"
+msgstr ""
+
+msgid "Since last month"
+msgstr ""
+
+msgid "&Year"
+msgstr ""
+
+msgid "Before this year"
+msgstr ""
+
+msgid "This year"
+msgstr ""
+
+msgid "Before last year"
+msgstr ""
+
+msgid "Last year"
+msgstr ""
+
+msgid "Since last year"
+msgstr ""
+
+msgid "&Custom Range..."
+msgstr ""
+
+msgid "&Attributes"
+msgstr ""
+
+msgid "Read-only files"
+msgstr ""
+
+msgid "Not read-only files"
+msgstr ""
+
+msgid "Hidden files"
+msgstr ""
+
+msgid "Not hidden files"
+msgstr ""
+
+msgid "System files"
+msgstr ""
+
+msgid "Not system files"
+msgstr ""
+
+msgid "File &Content"
+msgstr ""
+
+msgid "Contains string..."
+msgstr ""
+
+msgid "Does not contain string..."
+msgstr ""
+
+msgid "First line contains string..."
+msgstr ""
+
+msgid "First line does not contain string..."
+msgstr ""
+
+msgid "First 10 lines contain string..."
+msgstr ""
+
+msgid "First 10 lines do not contain string..."
+msgstr ""
+
+msgid "Last 10 lines contain string..."
+msgstr ""
+
+msgid "Last 10 lines do not contain string..."
+msgstr ""
+
+msgid "Last line contains string..."
+msgstr ""
+
+msgid "Last line does not contain string..."
+msgstr ""
+
+msgid "&Line Count"
+msgstr ""
+
+msgid "Less than 10"
+msgstr ""
+
+msgid "10 or more"
+msgstr ""
+
+msgid "Less than 100"
+msgstr ""
+
+msgid "100 or more"
+msgstr ""
+
+msgid "Less than 1000"
+msgstr ""
+
+msgid "1000 or more"
+msgstr ""
+
+msgid "Less than 10000"
+msgstr ""
+
+msgid "10000 or more"
+msgstr ""
+
+msgid "Less than 100000"
+msgstr ""
+
+msgid "100000 or more"
+msgstr ""
+
+msgid "Add F&older Condition"
+msgstr ""
+
+msgid "Target: &Any (Left/Middle/Right)"
+msgstr ""
+
+msgid "Target: &Left"
+msgstr ""
+
+msgid "Target: &Middle"
+msgstr ""
+
+msgid "Target: &Right"
+msgstr ""
+
+msgid "Add &Difference Condition"
+msgstr ""
+
+msgid "Equal"
+msgstr ""
+
+msgid "Not Equal"
+msgstr ""
+
+msgid "Less than 10B"
+msgstr ""
+
+msgid "10B or more"
+msgstr ""
+
+msgid "Less than 100B"
+msgstr ""
+
+msgid "100B or more"
+msgstr ""
+
+msgid "Less than 1 second"
+msgstr ""
+
+msgid "1 second or more"
+msgstr ""
+
+msgid "Less than 1 minute"
+msgstr ""
+
+msgid "1 minute or more"
+msgstr ""
+
+msgid "Less than 1 hour"
+msgstr ""
+
+msgid "1 hour or more"
+msgstr ""
+
+msgid "Less than 1 day"
+msgstr ""
+
+msgid "1 day or more"
+msgstr ""
+
+msgid "Less than 1 week"
+msgstr ""
+
+msgid "1 week or more"
+msgstr ""
+
+msgid "Target: &Left and Right"
+msgstr ""
+
+msgid "Target: Left and &Middle"
+msgstr ""
+
+msgid "Target: Middle and &Right"
 msgstr ""
 
 #, c-format
@@ -1569,8 +1911,7 @@ msgid "&Automatically verify paths in Open dialog"
 msgstr "於「開啟」對話方塊自動檢驗路徑 (&A)"
 
 msgid "Single instance mode:"
-msgstr ""
-"單一實例模式："
+msgstr "單一實例模式："
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1641,10 +1982,6 @@ msgid "Find &Prev"
 msgstr "找上一個 (&P)"
 
 #, c-format
-msgid "&Ok"
-msgstr "確定 (&O)"
-
-#, c-format
 msgid "Replace"
 msgstr "取代"
 
@@ -1694,6 +2031,10 @@ msgstr "新增"
 #, c-format
 msgid "&Background color:"
 msgstr "背景顏色 (&B)"
+
+#, c-format
+msgid "&Ok"
+msgstr "確定 (&O)"
 
 #, c-format
 msgid "&Apply"
@@ -1885,7 +2226,7 @@ msgid "Items filtered:"
 msgstr "篩選項目："
 
 msgid "&Use custom system colors"
-msgstr ""
+msgstr "使用自訂系統顏色 (&U)"
 
 #, c-format
 msgid "System"
@@ -1996,30 +2337,28 @@ msgid "Plugin &name:"
 msgstr "外掛程式名稱 (&N)："
 
 msgid "&Target files:"
-msgstr ""
+msgstr "目標檔案 (&T)："
 
-#, c-format
 msgid "Extensions list:"
 msgstr "副檔名清單："
 
-#, c-format
 msgid "Description:"
 msgstr "描述："
 
 msgid "Default arguments:"
-msgstr "預設參數："
+msgstr "預設引數："
 
 msgid "Display all plugins (Ignore extension)"
-msgstr "顯示所有外掛，不檢查副檔名"
+msgstr "顯示所有外掛 (忽略副檔名)"
 
 msgid "&Open files in same window type after unpacking"
-msgstr "解壓縮後以相同視窗類型開啟檔案(&O)"
+msgstr "解壓縮後以相同視窗類型開啟檔案 (&O)"
 
 msgid "&Plugin pipeline:"
-msgstr "外掛程式管線 (&P)："
+msgstr "外掛管線 (&P)："
 
 msgid "&Alias..."
-msgstr ""
+msgstr "別名 (&A)..."
 
 #, c-format
 msgid "Stop"
@@ -2193,6 +2532,12 @@ msgstr "重設"
 msgid "File Filters"
 msgstr "檔案篩選器"
 
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
+
 msgid "Test..."
 msgstr "測試..."
 
@@ -2211,6 +2556,21 @@ msgstr "編輯..."
 #, c-format
 msgid "Delete..."
 msgstr "刪除..."
+
+msgid "Filter Condition"
+msgstr ""
+
+msgid "&Left-hand side:"
+msgstr ""
+
+msgid "&Operator:"
+msgstr ""
+
+msgid "&Right-hand side:"
+msgstr ""
+
+msgid "Expression:"
+msgstr ""
 
 #, c-format
 msgid "Save Modified Files?"
@@ -4600,6 +4960,9 @@ msgstr ""
 "新版本的 WinMerge 已準備就緒。\n"
 "已可以更新到 %1 (現在是 %2)。您想要現在下載嗎？"
 
+msgid " - All rights reserved."
+msgstr ""
+
 #, c-format
 msgid "Failed to download latest version information"
 msgstr "下載最新版本資訊失敗"
@@ -4619,9 +4982,9 @@ msgstr "至第 %1 行 (&O)"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "前往已移動的行\tCtrl+Shift+G"
 
-#, c-format
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "關閉"
+msgstr ""
 
 #, c-format
 msgid "From file system"
@@ -4729,6 +5092,10 @@ msgstr "DirectWrite 自然"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite 自然對稱"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "MDI 子視窗或主視窗"
@@ -4868,12 +5235,20 @@ msgstr "AppData 資料夾"
 msgid "Install folder"
 msgstr "安裝資料夾"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 #, c-format
 msgid "Allow only one instance to run"
 msgstr "不能同時執行一個以上本程式"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "僅允許運行一個實例並等待該實例結束"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "僅在視窗啟用時"
@@ -5104,6 +5479,81 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Filter expression is empty"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Division by zero in filter expression"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
+msgid "Equals"
+msgstr ""
+
+msgid "Does not equal"
+msgstr ""
+
+msgid "Less than"
+msgstr ""
+
+msgid "Less than or equal to"
+msgstr ""
+
+msgid "Greater than or equal to"
+msgstr ""
+
+msgid "Greater than"
+msgstr ""
+
+msgid "Between"
+msgstr ""
+
+msgid "Not Between"
+msgstr ""
+
+msgid "Contains"
+msgstr ""
+
+msgid "Not Contains"
+msgstr ""
+
+msgid "Contains (regex)"
+msgstr ""
+
+msgid "Not Contains (regex)"
 msgstr ""
 
 msgid "Prettification"

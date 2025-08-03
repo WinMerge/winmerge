@@ -3,7 +3,7 @@
 #include <vector>
 #include "UnicodeString.h"
 #include "DirWatcher.h"
-#include <Windows.h>
+#include "TFile.h"
 
 using std::vector;
 
@@ -63,10 +63,12 @@ namespace
 		EXPECT_TRUE(watcher.Add(3, false, L"..\\TestData\\DirWatcher\\test.txt", func));
 		EXPECT_TRUE(watcher.Add(4, false, L"..\\TestData\\DirWatcher\\test2.txt", func));
 
-		SetFileAttributes(L"..\\TestData\\DirWatcher\\test2.txt", FILE_ATTRIBUTE_NORMAL | FILE_ATTRIBUTE_READONLY);
-		SetFileAttributes(L"..\\TestData\\DirWatcher\\test2.txt", FILE_ATTRIBUTE_NORMAL);
-		SetFileAttributes(L"..\\TestData\\DirWatcher\\Subdir1\\test.txt", FILE_ATTRIBUTE_NORMAL | FILE_ATTRIBUTE_READONLY);
-		SetFileAttributes(L"..\\TestData\\DirWatcher\\Subdir1\\test.txt", FILE_ATTRIBUTE_NORMAL);
+		TFile file1(L"..\\TestData\\DirWatcher\\test2.txt");
+		file1.setWriteable(false);
+		file1.setWriteable(true);
+		TFile file2(L"..\\TestData\\DirWatcher\\Subdir1\\test.txt");
+		file2.setWriteable(false);
+		file2.setWriteable(true);
 
 //		while (!completed)
 //			Sleep(1);

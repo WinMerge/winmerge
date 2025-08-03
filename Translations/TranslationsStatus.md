@@ -1,50 +1,50 @@
 # Translations Status
 
-Status from **2025-04-22**:
+Status from **2025-07-31**:
 
 ## WinMerge
 
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
-| Arabic               |  1448 |        900 |     0 |          548 |     62 % |  2019-12-30 |
-| Basque               |  1448 |        643 |     0 |          805 |     44 % |  2013-02-03 |
-| Brazilian            |  1448 |       1448 |     0 |            0 |    100 % |  2025-04-12 |
-| Bulgarian            |  1448 |       1086 |     0 |          362 |     75 % |  2023-11-14 |
-| Catalan              |  1448 |       1336 |     0 |          112 |     92 % |             |
-| ChineseSimplified    |  1448 |       1448 |     0 |            0 |    100 % |             |
-| ChineseTraditional   |  1448 |       1307 |     0 |          141 |     90 % |  2022-02-19 |
-| Corsican             |  1448 |       1448 |     0 |            0 |    100 % |  2025-04-12 |
-| Croatian             |  1448 |        634 |     1 |          813 |     43 % |  2009-02-13 |
-| Czech                |  1448 |        610 |     0 |          838 |     42 % |             |
-| Danish               |  1448 |        643 |     0 |          805 |     44 % |  2013-01-13 |
-| Dutch                |  1448 |       1411 |     0 |           37 |     97 % |  2018-09-06 |
-| English              |  1448 |       1448 |     0 |            0 |    100 % |  2025-04-17 |
-| Finnish              |  1448 |       1190 |     0 |          258 |     82 % |             |
-| French               |  1448 |       1439 |     0 |            9 |     99 % |  2025-04-04 |
-| Galician             |  1448 |       1325 |     0 |          123 |     91 % |  2023-11-24 |
-| German               |  1448 |       1350 |     0 |           98 |     93 % |  2023-08-08 |
-| Greek                |  1448 |        609 |     0 |          839 |     42 % |             |
-| Hebrew               |  1448 |       1322 |     0 |          126 |     91 % |             |
-| Hungarian            |  1448 |       1446 |     0 |            2 |     99 % |  2021-03-15 |
-| Italian              |  1448 |       1448 |     0 |            0 |    100 % |  2025-04-17 |
-| Japanese             |  1448 |       1447 |     0 |            1 |     99 % |  2025-01-21 |
-| Korean               |  1448 |       1429 |     0 |           19 |     98 % |  2025-01-25 |
-| Lithuanian           |  1448 |       1405 |     0 |           43 |     97 % |  2025-04-14 |
-| Norwegian            |  1448 |        735 |     0 |          713 |     50 % |             |
-| Persian              |  1448 |        646 |     0 |          802 |     44 % |  2013-08-15 |
-| Polish               |  1448 |       1363 |     0 |           85 |     94 % |  2023-11-28 |
-| Portuguese           |  1448 |       1430 |     0 |           18 |     98 % |  2025-03-25 |
-| Romanian             |  1448 |       1309 |     0 |          139 |     90 % |  2023-11-07 |
-| Russian              |  1448 |       1439 |     0 |            9 |     99 % |  2025-04-08 |
-| Serbian              |  1448 |        636 |     0 |          812 |     43 % |             |
-| Sinhala              |  1448 |        564 |    58 |          826 |     42 % |  2010-12-12 |
-| Slovak               |  1448 |       1192 |     0 |          256 |     82 % |  2022-02-17 |
-| Slovenian            |  1448 |       1327 |     0 |          121 |     91 % |  2024-01-28 |
-| Spanish              |  1448 |       1324 |     0 |          124 |     91 % |  2023-11-24 |
-| Swedish              |  1448 |       1423 |     2 |           23 |     98 % |  2023-02-08 |
-| Tamil                |  1448 |       1225 |     0 |          223 |     84 % |  2023-07-24 |
-| Turkish              |  1448 |       1428 |     0 |           20 |     98 % |  2023-10-28 |
-| Ukrainian            |  1448 |        710 |     0 |          738 |     49 % |  2009-06-13 |
+| Arabic               |  1598 |        899 |     0 |          699 |     56 % |  2019-12-30 |
+| Basque               |  1598 |        642 |     0 |          956 |     40 % |  2013-02-03 |
+| Brazilian            |  1598 |       1598 |     0 |            0 |    100 % |  2025-07-26 |
+| Bulgarian            |  1598 |       1103 |     0 |          495 |     69 % |  2025-04-29 |
+| Catalan              |  1598 |       1335 |     0 |          263 |     83 % |             |
+| ChineseSimplified    |  1598 |       1598 |     0 |            0 |    100 % |             |
+| ChineseTraditional   |  1598 |       1363 |     0 |          235 |     85 % |  2022-02-19 |
+| Corsican             |  1598 |       1448 |     0 |          150 |     90 % |  2025-07-19 |
+| Croatian             |  1598 |        633 |     1 |          964 |     39 % |  2009-02-13 |
+| Czech                |  1598 |        609 |     0 |          989 |     38 % |             |
+| Danish               |  1598 |        642 |     0 |          956 |     40 % |  2013-01-13 |
+| Dutch                |  1598 |       1410 |     0 |          188 |     88 % |  2018-09-06 |
+| English              |  1598 |       1598 |     0 |            0 |    100 % |  2025-07-26 |
+| Finnish              |  1598 |       1189 |     0 |          409 |     74 % |             |
+| French               |  1598 |       1593 |     0 |            5 |     99 % |  2025-07-24 |
+| Galician             |  1598 |       1324 |     0 |          274 |     82 % |  2023-11-24 |
+| German               |  1598 |       1349 |     0 |          249 |     84 % |  2023-08-08 |
+| Greek                |  1598 |        608 |     0 |          990 |     38 % |             |
+| Hebrew               |  1598 |       1321 |     0 |          277 |     82 % |             |
+| Hungarian            |  1598 |       1595 |     0 |            3 |     99 % |  2021-03-15 |
+| Italian              |  1598 |       1598 |     0 |            0 |    100 % |  2025-07-26 |
+| Japanese             |  1598 |       1598 |     0 |            0 |    100 % |  2025-07-26 |
+| Korean               |  1598 |       1591 |     0 |            7 |     99 % |  2025-07-21 |
+| Lithuanian           |  1598 |       1598 |     0 |            0 |    100 % |  2025-07-28 |
+| Norwegian            |  1598 |        734 |     0 |          864 |     45 % |             |
+| Persian              |  1598 |        645 |     0 |          953 |     40 % |  2013-08-15 |
+| Polish               |  1598 |       1362 |     0 |          236 |     85 % |  2023-11-28 |
+| Portuguese           |  1598 |       1447 |     0 |          151 |     90 % |  2025-05-01 |
+| Romanian             |  1598 |       1308 |     0 |          290 |     81 % |  2023-11-07 |
+| Russian              |  1598 |       1598 |     0 |            0 |    100 % |  2025-07-28 |
+| Serbian              |  1598 |        635 |     0 |          963 |     39 % |             |
+| Sinhala              |  1598 |        563 |    58 |          977 |     38 % |  2010-12-12 |
+| Slovak               |  1598 |       1191 |     0 |          407 |     74 % |  2022-02-17 |
+| Slovenian            |  1598 |       1326 |     0 |          272 |     82 % |  2024-01-28 |
+| Spanish              |  1598 |       1323 |     0 |          275 |     82 % |  2023-11-24 |
+| Swedish              |  1598 |       1597 |     0 |            1 |     99 % |  2025-07-19 |
+| Tamil                |  1598 |       1447 |     0 |          151 |     90 % |  2025-06-11 |
+| Turkish              |  1598 |       1447 |     0 |          151 |     90 % |  2025-05-18 |
+| Ukrainian            |  1598 |        709 |     0 |          889 |     44 % |  2009-06-13 |
 
 ## ShellExtension
 
@@ -64,7 +64,7 @@ Status from **2025-04-22**:
 | Dutch                |    10 |          9 |     0 |            1 |     90 % |  2021-01-28 |
 | English              |    10 |         10 |     0 |            0 |    100 % |  2025-03-23 |
 | Finnish              |    10 |          3 |     0 |            7 |     30 % |             |
-| French               |    10 |         10 |     0 |            0 |    100 % |  2024-03-30 |
+| French               |    10 |         10 |     0 |            0 |    100 % |  2025-04-30 |
 | Galician             |    10 |         10 |     0 |            0 |    100 % |  2023-11-03 |
 | German               |    10 |         10 |     0 |            0 |    100 % |  2023-02-20 |
 | Greek                |    10 |          3 |     0 |            7 |     30 % |             |
@@ -85,8 +85,8 @@ Status from **2025-04-22**:
 | Slovak               |    10 |          3 |     0 |            7 |     30 % |             |
 | Slovenian            |    10 |         10 |     0 |            0 |    100 % |  2023-07-27 |
 | Spanish              |    10 |         10 |     0 |            0 |    100 % |  2023-11-03 |
-| Swedish              |    10 |          9 |     0 |            1 |     90 % |             |
-| Tamil                |    10 |          9 |     0 |            1 |     90 % |             |
+| Swedish              |    10 |         10 |     0 |            0 |    100 % |             |
+| Tamil                |    10 |         10 |     0 |            0 |    100 % |             |
 | Turkish              |    10 |         10 |     0 |            0 |    100 % |  2023-07-06 |
 | Ukrainian            |    10 |          9 |     0 |            1 |     90 % |             |
 
@@ -245,6 +245,7 @@ Status from **2025-04-22**:
    - [Dominique Saussereau](mailto:redguff%20at%20users.sourceforge.net)
    - [Jean-F Jolin](mailto:jean-f-j%20at%20users.sourceforge.net)
    - [Need74](mailto:need74%20at%20free.fr)
+   - [t3chnob0y](mailto:t3chnob0y%20at%20outlook.com)
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com)
 
  * Galician
@@ -352,6 +353,7 @@ Status from **2025-04-22**:
    - [pgert](mailto:pgert%20at%20yahoo.se)
    - [Timmy Almroth](mailto:timmy.almroth%20at%20tim-international.net)
    - [Hans Eriksson](mailto:hanseriksson980@gmail.com)
+   - Sweden12
 
  * Tamil
    - [தமிழ்நேரம்](mailto:https://TamilNeram.github.io)
@@ -360,6 +362,7 @@ Status from **2025-04-22**:
    - [Afyonlu](mailto:afyonlu@users.sourceforge.net)
    - [Ozkan UNVER](mailto:turquaz37915%20at%20users.sourceforge.net)
    - [Kaya Zeren](mailto:translator%20at%20zeron.net)
+   - [Ahmet Murat Özhan](mailto:ozhanmurat@gmail.com)
 
  * Ukrainian
    - [Warrior](mailto:warr11r%20at%20rambler.ru)
@@ -376,6 +379,7 @@ Status from **2025-04-22**:
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com) *Maintainer*
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com)
    - [Need74](mailto:need74%20at%20free.fr)
+   - [t3chnob0y](mailto:t3chnob0y%20at%20outlook.com)
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*

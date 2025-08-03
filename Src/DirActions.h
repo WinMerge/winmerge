@@ -147,6 +147,7 @@ bool AreItemsOpenable(const CDiffContext& ctxt, SELECTIONTYPE selectionType, con
 bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM &di1, const DIFFITEM &di2, const DIFFITEM &di3, bool openableForDir = true);
 bool IsItemOpenableOn(const DIFFITEM &di, int index);
 bool IsItemOpenableOnWith(const DIFFITEM &di, int index);
+bool IsParentFolderOpenable(const DIFFITEM& di, int index);
 bool IsItemCopyableToOn(const DIFFITEM &di, int index);
 bool IsItemNavigableDiff(const CDiffContext& ctxt, const DIFFITEM &di);
 bool IsItemExistAll(const CDiffContext& ctxt, const DIFFITEM &di);
@@ -323,19 +324,19 @@ struct DirActions
 	template <SIDE_TYPE src>
 	bool IsItemOpenableOn(const DIFFITEM& di) const
 	{
-		return (di.diffcode.diffcode != 0 && ::IsItemOpenableOn(di, SideToIndex(m_ctxt, src)));
+		return ::IsItemOpenableOn(di, SideToIndex(m_ctxt, src));
 	}
 
 	template <SIDE_TYPE src>
 	bool IsItemOpenableOnWith(const DIFFITEM& di) const
 	{
-		return (di.diffcode.diffcode != 0 && ::IsItemOpenableOnWith(di, SideToIndex(m_ctxt, src)));
+		return ::IsItemOpenableOnWith(di, SideToIndex(m_ctxt, src));
 	}
 
 	template <SIDE_TYPE src>
 	bool IsParentFolderOpenable(const DIFFITEM& di) const
 	{
-		return (di.diffcode.diffcode != 0 && di.diffcode.exists(SideToIndex(m_ctxt, src)));
+		return ::IsParentFolderOpenable(di, SideToIndex(m_ctxt, src));
 	}
 
 	bool IsItemFile(const DIFFITEM& di) const

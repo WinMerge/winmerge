@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-04-04 08:10+0900\n"
+"POT-Creation-Date: 2025-07-26 16:27+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -334,8 +334,8 @@ msgstr ""
 msgid "Documentation conventions<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "ドキュメント表記規則<placeholder type=\"indexterm\" id=\"0\"/>"
 
-#. type: Content of: <article><section><informaltable><tgroup><thead><row><entry>
-#: English/About_Doc.xml:220
+#. type: Content of: <article><section><section><section><section><section><example><title>
+#: English/About_Doc.xml:220 English/Filters.xml:339
 msgid "Example"
 msgstr "例"
 
@@ -508,11 +508,11 @@ msgid "TwoWords"
 msgstr "TwoWords"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><para>
-#: English/About_Doc.xml:313 English/Filters.xml:510 English/Filters.xml:521
-#: English/Filters.xml:670 English/Filters.xml:676 English/Filters.xml:692
-#: English/Filters.xml:699 English/Filters.xml:718 English/Filters.xml:722
-#: English/Filters.xml:726 English/Filters.xml:732 English/Filters.xml:743
-#: English/Filters.xml:747 English/Filters.xml:755 English/Filters.xml:759
+#: English/About_Doc.xml:313 English/Filters.xml:877 English/Filters.xml:888
+#: English/Filters.xml:1037 English/Filters.xml:1043 English/Filters.xml:1059
+#: English/Filters.xml:1066 English/Filters.xml:1085 English/Filters.xml:1089
+#: English/Filters.xml:1093 English/Filters.xml:1099 English/Filters.xml:1110
+#: English/Filters.xml:1114 English/Filters.xml:1122 English/Filters.xml:1126
 #: English/Intro_diffs.xml:62 English/Intro_diffs.xml:71
 msgid "<placeholder type=\"screen\" id=\"0\"/>"
 msgstr "<placeholder type=\"screen\" id=\"0\"/>"
@@ -569,7 +569,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:4 English/Command_line.xml:8
-#: English/Filters.xml:103 English/Filters.xml:333 English/Open_paths.xml:369
+#: English/Filters.xml:102 English/Filters.xml:716 English/Open_paths.xml:369
 #: English/Quick_start.xml:205
 msgid "command line"
 msgstr "コマンドライン"
@@ -855,11 +855,11 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:226 English/Configuration.xml:820
-#: English/Configuration.xml:848 English/Filters.xml:4 English/Filters.xml:88
-#: English/Filters.xml:92 English/Filters.xml:137 English/Filters.xml:187
-#: English/Filters.xml:191 English/Filters.xml:532 English/Filters.xml:536
-#: English/Filters.xml:639 English/Filters.xml:766 English/Filters.xml:770
-#: English/Filters.xml:782 English/Open_paths.xml:91
+#: English/Configuration.xml:848 English/Filters.xml:4 English/Filters.xml:87
+#: English/Filters.xml:91 English/Filters.xml:133 English/Filters.xml:570
+#: English/Filters.xml:574 English/Filters.xml:899 English/Filters.xml:903
+#: English/Filters.xml:1006 English/Filters.xml:1133 English/Filters.xml:1137
+#: English/Filters.xml:1149 English/Open_paths.xml:91
 msgid "filters"
 msgstr "フィルター"
 
@@ -1350,8 +1350,8 @@ msgstr "<option>/noninteractive</option>"
 #: English/Compare_images.xml:117 English/Configuration.xml:2132
 #: English/Configuration.xml:2146 English/Configuration.xml:2228
 #: English/Configuration.xml:2347 English/Configuration.xml:2742
-#: English/Filters.xml:775 English/Filters.xml:1206 English/Filters.xml:1211
-#: English/Filters.xml:1222
+#: English/Filters.xml:1142 English/Filters.xml:1573 English/Filters.xml:1578
+#: English/Filters.xml:1589
 msgid "TBD"
 msgstr ""
 
@@ -1639,7 +1639,7 @@ msgstr "Hex形式比較"
 #: English/Compare_bin.xml:8 English/Compare_files.xml:6
 #: English/Compare_images.xml:8 English/Compare_table.xml:8
 #: English/Compare_webpages.xml:8 English/Configuration.xml:1037
-#: English/Configuration.xml:1151 English/Filters.xml:67
+#: English/Configuration.xml:1151 English/Filters.xml:66
 #: English/Intro_diffs.xml:12 English/Quick_start.xml:325
 msgid "comparing files"
 msgstr "ファイルの比較"
@@ -1938,8 +1938,8 @@ msgstr "フォルダー比較ウィンドウ"
 msgid "Compare window"
 msgstr ""
 
-#. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Compare_dirs.xml:153
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_dirs.xml:153 English/Filters.xml:261
 msgid "Folder"
 msgstr ""
 
@@ -10128,7 +10128,7 @@ msgstr ""
 "guimenuitem> </menuchoice>を選択してください。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2443 English/Filters.xml:215
+#: English/Configuration.xml:2443 English/Filters.xml:598
 msgid "Filters folders"
 msgstr ""
 
@@ -11261,25 +11261,25 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: English/Filters.xml:6 English/Filters.xml:189 English/Filters.xml:202
-#: English/Filters.xml:219 English/Filters.xml:263 English/Filters.xml:352
-#: English/Filters.xml:843 English/Filters.xml:1042
+#: English/Filters.xml:6 English/Filters.xml:572 English/Filters.xml:585
+#: English/Filters.xml:602 English/Filters.xml:646 English/Filters.xml:732
+#: English/Filters.xml:1210 English/Filters.xml:1409
 msgid "file filters"
 msgstr "ファイルフィルター"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:8 English/Filters.xml:86 English/Filters.xml:90
-#: English/Filters.xml:135 English/Filters.xml:139
+#: English/Filters.xml:8 English/Filters.xml:85 English/Filters.xml:89
+#: English/Filters.xml:131 English/Filters.xml:135
 msgid "file masks"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: English/Filters.xml:10 English/Filters.xml:1109 English/Filters.xml:1168
+#: English/Filters.xml:10 English/Filters.xml:1476 English/Filters.xml:1535
 msgid "line filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: English/Filters.xml:12 English/Filters.xml:1201 English/Filters.xml:1217
+#: English/Filters.xml:12 English/Filters.xml:1568 English/Filters.xml:1584
 msgid "substitution filters"
 msgstr ""
 
@@ -11289,9 +11289,9 @@ msgid "Using Filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "フィルターの使用<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Filters.xml:20 English/Filters.xml:28 English/Filters.xml:141
-#: English/Filters.xml:455 English/Filters.xml:459 English/Filters.xml:643
-#: English/Filters.xml:1229
+#: English/Filters.xml:20 English/Filters.xml:28 English/Filters.xml:137
+#: English/Filters.xml:822 English/Filters.xml:826 English/Filters.xml:1010
+#: English/Filters.xml:1596
 msgid "regular expressions"
 msgstr ""
 
@@ -11350,7 +11350,7 @@ msgid ""
 msgstr "フォルダー比較用とファイル比較用の異なるWinMergeフィルターがあります。"
 
 #. type: Content of: <article><variablelist><varlistentry><term><indexterm><secondary>
-#: English/Filters.xml:45 English/Filters.xml:69
+#: English/Filters.xml:45 English/Filters.xml:68
 msgid "filtering"
 msgstr ""
 
@@ -11368,16 +11368,14 @@ msgstr ""
 msgid ""
 "You can specify files to include in a folder comparison by using simple file "
 "masks, or, for more complex filtering, by applying multiple rules specified "
-"in a file filter. You cannot apply both a file mask and a file filter in the "
-"same operation."
+"in a file filter."
 msgstr ""
 "単純なファイルマスク、または、より複雑なフィルターにより、 ファイルフィルター"
 "中で指定された複数の規則を適用することで、 フォルダー比較中に含めるファイルを"
-"指定することができます。 ファイルマスクとファイルフィルターの両方を、同一の操"
-"作中で適用することができます。"
+"指定することができます。 "
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:54
+#: English/Filters.xml:53
 msgid ""
 "Files and folders that are filtered are hidden in the result by default, "
 "which is typically what you want. You can click <menuchoice> <guimenu>View</"
@@ -11394,7 +11392,7 @@ msgstr ""
 "プされたファイルがテキストファイルかバイナリファイルか判らないでしょう。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Filters.xml:66
+#: English/Filters.xml:65
 msgid ""
 "File comparisons: Line filters and substitution filters<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
@@ -11403,7 +11401,7 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:73
+#: English/Filters.xml:72
 msgid ""
 "Line filters are applied only to file compare operations. They let you "
 "ignore single line differences."
@@ -11412,7 +11410,7 @@ msgstr ""
 "を無視することができます。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:75
+#: English/Filters.xml:74
 msgid ""
 "Substitution filters are applied only to file compare operations.  They "
 "replace the strings in the diff block with the specified strings, compare "
@@ -11425,12 +11423,12 @@ msgstr ""
 "ます。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:94 English/Filters.xml:193
+#: English/Filters.xml:93 English/Filters.xml:576
 msgid "in folder comparisons"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:85
+#: English/Filters.xml:84
 msgid ""
 "Using file masks<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
@@ -11439,36 +11437,36 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:97
+#: English/Filters.xml:96
 msgid ""
 "You can use one or more <glossterm>file masks</glossterm> that specify file "
 "extensions to include in a folder comparison. All other files are omitted "
 "from your selection."
 msgstr ""
-"フォルダー比較中に含める拡張子を指定する、1つか複数の <glossterm>ファイルマス"
-"ク</glossterm>を使用することができます。 その他すべてのファイルは、選択から省"
-"かれます。"
+"フォルダー比較で含めるファイル拡張子を指定するために、1つ以上の<glossterm>"
+"ファイルマスク</glossterm>を使用できます。その他のファイルは選択対象から除外"
+"されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:105
+#: English/Filters.xml:104
 msgid "applying file masks"
 msgstr "ファイルマスクの適用"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:102
+#: English/Filters.xml:101
 msgid ""
 "Defining and applying file masks<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "ファイルマスクと定義と適用<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:108
+#: English/Filters.xml:107
 msgid ""
 "Define and apply a file mask at the time you launch your folder compare "
 "operation:"
 msgstr "フォルダー比較操作を実行時に、ファイルマスクを定義し適用する:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:113
+#: English/Filters.xml:112
 msgid ""
 "If you are using the Select Files or Folders dialog, after choosing the "
 "<guilabel>1st</guilabel> and <guilabel>2nd</guilabel> folders, enter one or "
@@ -11481,7 +11479,7 @@ msgstr ""
 "してください。 マスクは、フォルダー比較操作を開始した時に適用されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:121
+#: English/Filters.xml:120
 msgid ""
 "If you are using the WinMerge command line, use the <option>-f</option> flag "
 "to specify file masks (see the example in the next section)."
@@ -11489,27 +11487,18 @@ msgstr ""
 "WinMergeのコマンドラインを使用している場合は、ファイルマスクを指定する "
 "<option>-f</option>フラグ(次のセクションの例を参照)を使用してください。"
 
-#. type: Content of: <article><section><section><para>
-#: English/Filters.xml:127
-msgid ""
-"Remember, you cannot specify both a file mask and a file filter in the field "
-"or command line."
-msgstr ""
-"フィールドやコマンドラインで、ファイルマスクとファイルフィルターの、 両方を指"
-"定することはできないことを憶えておいてください。"
-
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Filters.xml:133 English/Filters.xml:348 English/Filters.xml:635
+#: English/Filters.xml:129 English/Filters.xml:728 English/Filters.xml:1002
 msgid "rules"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:143
+#: English/Filters.xml:139
 msgid "in file masks"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:132
+#: English/Filters.xml:128
 msgid ""
 "File mask syntax and example<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" "
@@ -11520,72 +11509,243 @@ msgstr ""
 "id=\"2\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:146
-msgid "Use this syntax for file masks:"
-msgstr "このシンタックスは、ファイルマスク用です:"
+#: English/Filters.xml:142
+msgid "You can specify file masks and extended filters using this format:"
+msgstr "ファイルマスクや拡張フィルターは以下の形式で指定できます:"
 
 #. type: Content of: <article><section><section><synopsis>
-#: English/Filters.xml:148
+#: English/Filters.xml:145
 #, no-wrap
-msgid "[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</replaceable>\\)[<replaceable>delimiter</replaceable>[!](*.<replaceable>extension</replaceable>|<replaceable>folder mask</replaceable>\\) ...]"
-msgstr "[!](*.[<replaceable>拡張子</replaceable>]|<replaceable>フォルダーマスク</replaceable>\\)[<replaceable>区切り文字</replaceable>[!](*.<replaceable>拡張子</replaceable>|<replaceable>フォルダーマスク</replaceable>\\) ...]"
+msgid ""
+"        <replaceable>Filter1 of Group1</replaceable>;<replaceable>Filter2</replaceable> ...|<replaceable>Filter1 of Group2</replaceable>;<replaceable>Filter2</replaceable> ...|...\n"
+"      "
+msgstr ""
+"        <replaceable>グループ1のフィルター1</replaceable>;<replaceable>フィルター2</replaceable> ...|<replaceable>グループ2のフィルター1</replaceable>;<replaceable>フィルター2</replaceable> ...|...\n"
+"      "
 
-#. type: Content of: <article><section><section><para>
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:149
+msgid ""
+"The <filename>|</filename> character separates filter groups and acts as a "
+"logical AND."
+msgstr ""
+"<filename>|</filename> 文字はフィルターグループを区切り、論理 AND として機能"
+"します。"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Filters.xml:150
-msgid "Valid delimiters are spaces, commas, colons or semicolons."
-msgstr "有効な区切り文字はスペース、カンマ、コロン、セミコロンです。"
-
-#. type: Content of: <article><section><section><para>
-#: English/Filters.xml:152
 msgid ""
-"A mask with no extension ( <filename>*.</filename> ) selects files without "
-"any extension, such as <filename><filename>README</filename></filename>."
+"Filters within the same group are separated by <filename>;</filename> and "
+"are interpreted with a logical OR."
 msgstr ""
-"拡張子なしのマスク(<filename>*.</filename>)は、 <filename> <filename>README</"
-"filename> </filename>の様な、拡張子なしのファイルを選択します。"
+"同じグループ内のフィルターは <filename>;</filename> で区切られ、論理 OR とし"
+"て解釈されます。"
 
-#. type: Content of: <article><section><section><para>
-#: English/Filters.xml:156
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:151
 msgid ""
-"In 2.16.19 and later, if you put an exclamation mark(<filename>!</"
-"filename>)  in front of a mask, files matching that mask will be excluded.  "
-"Also, a backslash(<filename>\\</filename>) after the mask will cause the "
-"mask to match folders instead of files."
+"A file is included only if it matches at least one filter in each group."
 msgstr ""
-"2.16.19 以降、感嘆符(<filename>!</filename>)  をマスクの前に付加した場合、そ"
-"のマスクに一致したファイルは除外されます。 また、バックスラッシュ"
-"(<filename>\\</filename>)をマスクの後に付加した場合、 そのマスクはファイルで"
-"はなくフォルダーが対象となります。"
+"ファイルは各グループ内の少なくとも1つのフィルターに一致する場合にのみ含まれま"
+"す。"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:153
+msgid ""
+"To include a literal <filename>|</filename> (pipe) character in a regular "
+"expression that is not enclosed in double quotes (such as in <filename>f:</"
+"filename> or <filename>f!:</filename> filters), use <filename>||</filename> "
+"instead."
+msgstr ""
+"<filename>f:</filename> や <filename>f!:</filename> など、ダブルクォートで囲"
+"まれていない正規表現内で <filename>|</filename>（パイプ）文字をリテラルとして"
+"使用したい場合は、代わりに <filename>||</filename> を使用してください。"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:154
+msgid "Example: <userinput>f:(abc||def)\\.txt$</userinput>"
+msgstr "例: <userinput>f:(abc||def)\\.txt$</userinput>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:157
+msgid "Each filter (e.g., Filter1, Filter2) can be one of the following types:"
+msgstr ""
+"各フィルター（例: Filter1, Filter2）は、以下のいずれかのタイプにすることがで"
+"きます:"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><term>
+#: English/Filters.xml:159
+msgid "<replaceable>*.ext</replaceable>"
+msgstr "<replaceable>*.ext</replaceable>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:159
+msgid "File mask by extension (e.g., *.txt)"
+msgstr "拡張子によるファイルマスク（例: *.txt）"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><term>
+#: English/Filters.xml:160
+msgid "<replaceable>*.</replaceable>"
+msgstr "<replaceable>*.</replaceable>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:160
+msgid "Files with no extension (e.g., README)"
+msgstr "拡張子のないファイル（例: README）"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><term>
+#: English/Filters.xml:161
+msgid "!<replaceable>*.ext</replaceable>"
+msgstr "!<replaceable>*.ext</replaceable>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:161
+msgid "Exclude files matching the extension (Available since 2.16.19)"
+msgstr "指定した拡張子に一致するファイルを除外（2.16.19 以降で使用可能）"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><term>
+#: English/Filters.xml:162
+msgid "<replaceable>folder</replaceable>\\"
+msgstr "<replaceable>folder</replaceable>\\"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:162
+msgid "Target folders (must end with \\) (Available since 2.16.19)"
+msgstr "対象フォルダー（末尾は必ず \\ にする）（2.16.19 以降で使用可能）"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><term>
+#: English/Filters.xml:163
+msgid "!<replaceable>folder</replaceable>\\"
+msgstr "!<replaceable>folder</replaceable>\\"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:163
+msgid "Exclude matching folders (Available since 2.16.19)"
+msgstr "一致するフォルダーを除外（2.16.19 以降で使用可能）"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:164 English/Filters.xml:810
+msgid "f: <replaceable>regexp</replaceable>"
+msgstr "f: <replaceable>正規表現</replaceable>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:164
+msgid "Match file names using regular expressions (Available since 2.16.49)"
+msgstr "正規表現を使用してファイル名を一致（2.16.49 以降で使用可能）"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:165 English/Filters.xml:811
+msgid "f!: <replaceable>regexp</replaceable>"
+msgstr "f!: <replaceable>正規表現</replaceable>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:165
+msgid "Exclude files matching regex (Available since 2.16.49)"
+msgstr "正規表現に一致するファイルを除外（2.16.49 以降で使用可能）"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:166 English/Filters.xml:812
+msgid "d: <replaceable>regexp</replaceable>"
+msgstr "d: <replaceable>正規表現</replaceable>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:166
+msgid "Match folder names using regex (Available since 2.16.49)"
+msgstr "正規表現を使用してフォルダー名を一致（2.16.49 以降で使用可能）"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:167 English/Filters.xml:813
+msgid "d!: <replaceable>regexp</replaceable>"
+msgstr "d!: <replaceable>正規表現</replaceable>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:167
+msgid "Exclude folders matching regex (Available since 2.16.49)"
+msgstr "正規表現に一致するフォルダーを除外（2.16.49 以降で使用可能）"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:168 English/Filters.xml:814
+msgid "fe: <replaceable>expr</replaceable>"
+msgstr "fe: <replaceable>式</replaceable>"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:168 English/Filters.xml:814
+msgid ""
+"Filter expression for files (e.g. fe:Size &lt; 1KB) (Available since 2.16.49)"
+msgstr ""
+"ファイルに対するフィルター式（例: fe:Size &lt; 1KB）（2.16.49 以降で使用可"
+"能）"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:169 English/Filters.xml:815
+msgid "fe!: <replaceable>expr</replaceable>"
+msgstr "fe!: <replaceable>式</replaceable>"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:169 English/Filters.xml:815
+msgid "Filter expression to exclude files (Available since 2.16.49)"
+msgstr "ファイルを除外するためのフィルター式（2.16.49 以降で使用可能）"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:170 English/Filters.xml:816
+msgid "de: <replaceable>expr</replaceable>"
+msgstr "de: <replaceable>式</replaceable>"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:170 English/Filters.xml:816
+msgid "Filter expression for folders (Available since 2.16.49)"
+msgstr "フォルダーに対するフィルター式（2.16.49 以降で使用可能）"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:171 English/Filters.xml:817
+msgid "de!: <replaceable>expr</replaceable>"
+msgstr "de!: <replaceable>式</replaceable>"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:171 English/Filters.xml:817
+msgid "Filter expression to exclude folders (Available since 2.16.49)"
+msgstr "フォルダーを除外するためのフィルター式（2.16.49 以降で使用可能）"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><term>
+#: English/Filters.xml:172
+msgid "pf: <replaceable>file filter name</replaceable>"
+msgstr "pf: <replaceable>ファイルフィルター名</replaceable>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:172
+msgid "Apply a file filter by name (Available since 2.16.49)"
+msgstr "名前でファイルフィルターを適用（2.16.49 以降で使用可能）"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:162
+#: English/Filters.xml:178
 msgid "File mask"
 msgstr "ファイルマスク"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:164
+#: English/Filters.xml:180
 msgid ""
 "In this command-line example, the folder compare operation includes only "
 "files with <filename>xml</filename> or <filename>txt</filename> extensions. "
 "All other files are omitted:"
 msgstr ""
-"このコマンドラインの例では、フォルダー比較操作は、拡張子 <filename>xml</"
-"filename>か <filename>txt</filename>のファイルのみを含みます。 その他すべての"
-"ファイルは省かれます:"
+"このコマンドラインの例では、フォルダー比較操作は拡張子 <filename>xml</"
+"filename> または <filename>txt</filename> のファイルのみを対象とし、それ以外"
+"のファイルは省略されます。"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:168
+#: English/Filters.xml:184
 msgid ""
 "<userinput>WinMergeU c:\\project\\docs c:\\temp /f *.xml;*.txt</userinput>"
 msgstr ""
+"<userinput>WinMergeU c:\\project\\docs c:\\temp /f *.xml;*.txt</userinput>"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:173
-msgid "Excluding folders (In 2.16.19 or later)"
+#: English/Filters.xml:189
+msgid "Excluding folders (since version 2.16.19)"
 msgstr "フォルダーの除外(2.16.19以降)"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:175
+#: English/Filters.xml:191
 msgid ""
 "In this command-line example, the folder compare operation excludes "
 "<filename>.git</filename> and <filename>.vs</filename> folders:"
@@ -11594,13 +11754,1024 @@ msgstr ""
 "と <filename>.vs</filename>フォルダーを除外します:"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:179
+#: English/Filters.xml:195
 msgid ""
 "<userinput>WinMergeU c:\\project\\docs c:\\temp /f !.git\\;!.vs\\</userinput>"
 msgstr ""
+"<userinput>WinMergeU c:\\project\\docs c:\\temp /f !.git\\;!.vs\\</userinput>"
+
+#. type: Content of: <article><section><section><example><title>
+#: English/Filters.xml:200
+msgid "Filter expression (since version 2.16.49)"
+msgstr "フィルター式（バージョン 2.16.49 以降）"
+
+#. type: Content of: <article><section><section><example><para>
+#: English/Filters.xml:202
+msgid ""
+"In this command-line example, the folder compare operation includes only "
+"files with <filename>cpp</filename> or <filename>h</filename> extensions and "
+"a file size less than 1KB:"
+msgstr ""
+"このコマンドラインの例では、フォルダー比較操作は <filename>cpp</filename> ま"
+"たは <filename>h</filename> の拡張子を持ち、かつサイズが 1KB 未満のファイルの"
+"みを対象とします:"
+
+#. type: Content of: <article><section><section><example><para>
+#: English/Filters.xml:206
+msgid ""
+"<userinput>WinMergeU c:\\project\\docs c:\\temp /f \"*.cpp;*.h|fe:Size &lt; "
+"1KB\"</userinput>"
+msgstr ""
+"<userinput>WinMergeU c:\\project\\docs c:\\temp /f \"*.cpp;*.h|fe:Size &lt; "
+"1KB\"</userinput>"
+
+#. type: Content of: <article><section><section><title>
+#: English/Filters.xml:212
+msgid "Filter Expression Syntax"
+msgstr "フィルタ式の構文"
+
+#. type: Content of: <article><section><section><para>
+#: English/Filters.xml:215
+msgid ""
+"WinMerge allows powerful filtering using expressions that operate on file "
+"metadata, contents, and comparison context. This section describes the "
+"supported attributes, operators, functions, data types, and evaluation rules."
+msgstr ""
+"WinMerge では、ファイルのメタデータ、内容、比較コンテキストに対して動作する強"
+"力なフィルタ式を使用できます。本セクションでは、サポートされる属性、演算子、"
+"関数、データ型、および評価ルールについて説明します。"
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Filters.xml:221
+msgid "Literals and Types"
+msgstr "リテラルと型"
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Filters.xml:223
+msgid "Supported literal types include:"
+msgstr "サポートされるリテラルの型は以下の通りです:"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:225
+msgid ""
+"<emphasis>Boolean</emphasis>: <literal>true</literal>, <literal>false</"
+"literal>"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:226
+msgid ""
+"<emphasis>Integer</emphasis>: 64-bit signed integers (e.g., <literal>1024</"
+"literal>, or with units like <literal>100KB</literal>, <literal>7days</"
+"literal>)"
+msgstr ""
+"<emphasis>Integer</emphasis>: 64ビット符号付き整数 (例: <literal>1024</"
+"literal>, <literal>100KB</literal>, <literal>7days</literal> などの単位付きも"
+"可能)"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:227
+msgid ""
+"<emphasis>String</emphasis>: Enclosed in double quotes (e.g., "
+"<literal>\"example\"</literal>)"
+msgstr ""
+"<emphasis>String</emphasis>: ダブルクォートで囲まれた文字列 (例: "
+"<literal>\"example\"</literal>)"
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Filters.xml:231
+msgid ""
+"Internally, values may be of the following types: Boolean, Integer, "
+"Timestamp, String, File Content, Array, or <literal>undefined</literal>."
+msgstr ""
+"内部的に扱われる型は以下の通りです: Boolean, Integer, Timestamp, String, "
+"File Content, Array, or <literal>undefined</literal>."
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Filters.xml:237
+msgid "Attributes"
+msgstr "属性"
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Filters.xml:240
+msgid ""
+"Filter expressions support a variety of attributes referring to file "
+"metadata and content.  Attribute names are case-insensitive. You can "
+"optionally specify which side of the comparison (Left, Right, or Middle) an "
+"attribute applies to by using a prefix."
+msgstr ""
+"フィルタ式では、ファイルのメタデータや内容を参照する多様な属性が利用できま"
+"す。属性名の大文字・小文字は区別されません。必要に応じて、比較対象のどの側"
+"（Left, Right, Middle）かを接頭辞で指定できます。"
+
+#. type: Content of: <article><section><section><section><section><title>
+#: English/Filters.xml:246
+msgid "Core Attributes"
+msgstr "コア属性"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:249
+msgid "Exists"
+msgstr "Exists"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:250
+msgid ""
+"Returns <literal>true</literal> if the file exists, <literal>false</literal> "
+"otherwise"
+msgstr ""
+"ファイルが存在する場合は <literal>true</literal> を返し、存在しない場合は "
+"<literal>false</literal> を返します。"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:253
+msgid "Name"
+msgstr "Name"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:254
+msgid "File name"
+msgstr "ファイル名"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:257
+msgid "Extension"
+msgstr "Extension"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:258
+msgid "File extension"
+msgstr "ファイル拡張子"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:262
+msgid "Returns the relative path excluding the file name and base folder"
+msgstr "ファイル名およびベースフォルダーを除いた相対パスを返します。"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:265
+msgid "FullPath"
+msgstr "FullPath"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:266
+msgid "Returns the full path of the file"
+msgstr "ファイルのフルパスを返します。"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:269
+msgid "Size"
+msgstr "Size"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:270
+msgid "File size"
+msgstr "ファイルサイズ"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:273
+msgid "Date"
+msgstr "Date"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:274
+msgid "Last modified timestamp"
+msgstr "最終更新のタイムスタンプ"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:277
+msgid "DateStr"
+msgstr "DateStr"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:278
+msgid "Last modified date string in <literal>yyyy-MM-dd</literal> format"
+msgstr "<literal>yyyy-MM-dd</literal> 形式の最終更新日付の文字列を返します。"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:281
+msgid "CreationTime"
+msgstr "CreationTime"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:282
+msgid "Creation date timestamp"
+msgstr "作成日時のタイムスタンプを返します。"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:285
+msgid "Attribute"
+msgstr "Attribute"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:286
+msgid "Returns the file attributes as an integer value"
+msgstr "ファイル属性を整数値で返します。"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:289
+msgid "AttrStr"
+msgstr "AttrStr"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:291
+msgid ""
+"Returns file attribute string. Examples: <literal>\"R\"</literal> for Read-"
+"only, <literal>\"H\"</literal> for Hidden, <literal>\"A\"</literal> for "
+"Archive, <literal>\"S\"</literal> for System file."
+msgstr ""
+"ファイル属性の文字列を返します。例：<literal>\"R\"</literal> は読み取り専用、"
+"<literal>\"H\"</literal> は隠しファイル、<literal>\"A\"</literal> はアーカイ"
+"ブ、<literal>\"S\"</literal> はシステムファイルを示します。"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:300
+msgid "Content"
+msgstr "Content"
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:301
+msgid ""
+"Content of the file. Returns a FileContent-type value. Only "
+"<literal>contains</literal> and <literal>recontains</literal> can be used "
+"with this type."
+msgstr ""
+"ファイルの内容を表します。FileContent 型の値を返します。この型には "
+"<literal>contains</literal> および <literal>recontains</literal> のみ使用でき"
+"ます。"
+
+#. type: Content of: <article><section><section><section><section><title>
+#: English/Filters.xml:307
+msgid "Side-Specific Prefixes"
+msgstr "比較対象の側を指定する接頭辞"
+
+#. type: Content of: <article><section><section><section><section><para>
+#: English/Filters.xml:309
+msgid "Prefixes may be added to specify the comparison side:"
+msgstr "比較対象のファイルの側を指定するために、接頭辞を追加できます:"
+
+#. type: Content of: <article><section><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:312
+msgid ""
+"<emphasis>Left</emphasis>: Applies to the file on the left side (e.g., "
+"<literal>LeftSize</literal>)"
+msgstr ""
+"<emphasis>Left</emphasis>: 左側のファイルに適用されます（例: "
+"<literal>LeftSize</literal>）"
+
+#. type: Content of: <article><section><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:313
+msgid ""
+"<emphasis>Right</emphasis>: Applies to the file on the right side (e.g., "
+"<literal>RightDate</literal>)"
+msgstr ""
+"<emphasis>Right</emphasis>: 右側のファイルに適用されます（例: "
+"<literal>RightDate</literal>）"
+
+#. type: Content of: <article><section><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:314
+msgid ""
+"<emphasis>Middle</emphasis>: Applies to the middle file in 3-way comparison "
+"(e.g., <literal>MiddleName</literal>)"
+msgstr ""
+"<emphasis>Middle</emphasis>: 3方向比較における中央のファイルに適用されます"
+"（例: <literal>MiddleName</literal>）"
+
+#. type: Content of: <article><section><section><section><section><para>
+#: English/Filters.xml:318
+msgid ""
+"Attributes without a prefix (e.g., <literal>Size</literal>) return an array "
+"of values from all available sides (Left, Middle, Right)."
+msgstr ""
+"接頭辞のない属性（例: <literal>Size</literal>）は、左・中央・右のすべての側の"
+"値を含む配列を返します。"
+
+#. type: Content of: <article><section><section><section><section><title>
+#: English/Filters.xml:323
+msgid "Array Evaluation"
+msgstr "配列の評価"
+
+#. type: Content of: <article><section><section><section><section><para>
+#: English/Filters.xml:326
+msgid ""
+"Attributes without a side prefix (e.g., <literal>Size</literal>) return an "
+"array of values from all available sides (Left, Middle, Right). When "
+"applying an operator to such arrays, behavior differs depending on whether "
+"the comparison is with a scalar or another array."
+msgstr ""
+"接頭辞のない属性（例: <literal>Size</literal>）は、左・中央・右のすべての側か"
+"らの値を含む配列を返します。これらの配列に対して演算子を適用する場合、比較対"
+"象がスカラーか他の配列かによって動作が異なります。"
+
+#. type: Content of: <article><section><section><section><section><section><title>
+#: English/Filters.xml:332
+msgid "Array vs Scalar"
+msgstr "配列とスカラーの比較"
+
+#. type: Content of: <article><section><section><section><section><section><para>
+#: English/Filters.xml:334
+msgid ""
+"When comparing an array to a scalar, the operation is applied to each array "
+"element individually.  This results in a boolean array. If any element in "
+"this boolean array is <literal>true</literal>, the overall expression "
+"evaluates to <literal>true</literal>. Otherwise, it evaluates to "
+"<literal>false</literal>."
+msgstr ""
+"配列とスカラーを比較する場合、演算は各配列要素に対して個別に適用され、結果は"
+"ブール値の配列になります。このブール配列に <literal>true</literal> が1つでも"
+"含まれていれば、全体の評価結果は <literal>true</literal> になります。すべて"
+"が <literal>false</literal> であれば <literal>false</literal> になります。"
+
+#. type: Content of: <article><section><section><section><section><section><example><programlisting>
+#: English/Filters.xml:340
+#, no-wrap
+msgid "[3, 5, 8] &gt; 6 -> [false, false, true] -> true"
+msgstr "[3, 5, 8] &gt; 6 -> [false, false, true] -> true"
+
+#. type: Content of: <article><section><section><section><section><section><example>
+#: English/Filters.xml:340
+msgid "<placeholder type=\"programlisting\" id=\"0\"/>"
+msgstr "<placeholder type=\"programlisting\" id=\"0\"/>"
+
+#. type: Content of: <article><section><section><section><section><section><title>
+#: English/Filters.xml:345
+msgid "Array vs Array"
+msgstr "配列と配列の比較"
+
+#. type: Content of: <article><section><section><section><section><section><para>
+#: English/Filters.xml:347
+msgid "When comparing two arrays, the behavior depends on the operator:"
+msgstr "2つの配列を比較する場合、挙動は演算子によって異なります:"
+
+#. type: Content of: <article><section><section><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:352
+msgid ""
+"For <literal>=</literal> and <literal>!=</literal>: The arrays must have the "
+"same length.  The result is a single boolean value, not an array.  "
+"<literal>=</literal> returns <literal>true</literal> only if all elements "
+"are equal.  <literal>!=</literal> returns <literal>true</literal> if any "
+"element differs."
+msgstr ""
+"<literal>=</literal> および <literal>!=</literal> の場合：配列の長さが同じで"
+"ある必要があります。結果は配列ではなく単一のブール値になります。<literal>=</"
+"literal> はすべての要素が一致する場合のみ <literal>true</literal> を返し、"
+"<literal>!=</literal> はいずれかの要素が異なる場合に <literal>true</literal> "
+"を返します。"
+
+#. type: Content of: <article><section><section><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:361
+msgid ""
+"For all other operators (e.g., <literal>&gt;</literal>, <literal>&lt;</"
+"literal>): the operation is applied element-wise, producing a boolean "
+"array.  The final result of the expression is <literal>true</literal> if any "
+"element in the boolean array is <literal>true</literal>, and <literal>false</"
+"literal> if all elements are <literal>false</literal>."
+msgstr ""
+"他のすべての演算子（例: <literal>&gt;</literal>, <literal>&lt;</literal>）で"
+"は、各要素ごとに演算が適用され、ブール値の配列が生成されます。この配列に "
+"<literal>true</literal> が1つでも含まれていれば、式全体の評価結果は "
+"<literal>true</literal> になります。すべてが <literal>false</literal> の場合"
+"は <literal>false</literal> になります。"
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Filters.xml:370 English/Filters.xml:549
+msgid "Examples"
+msgstr "例"
+
+#. type: Content of: <article><section><section><section><section><section><example><programlisting>
+#: English/Filters.xml:371
+#, no-wrap
+msgid "[2, 4] = [2, 4] -> true"
+msgstr "[2, 4] = [2, 4] -> true"
+
+#. type: Content of: <article><section><section><section><section><section><example><programlisting>
+#: English/Filters.xml:372
+#, no-wrap
+msgid "[2, 4] != [2, 5] -> true (because 4 != 5)"
+msgstr "[2, 4] != [2, 5] -> true （4 != 5 だから）"
+
+#. type: Content of: <article><section><section><section><section><section><example><programlisting>
+#: English/Filters.xml:373
+#, no-wrap
+msgid ""
+"[3, 5, 8] &gt; [6, 4, 2]\n"
+" -> [false, true, true]\n"
+" -> true (because at least one comparison is true)\n"
+"              "
+msgstr ""
+"[3, 5, 8] &gt; [6, 4, 2]\n"
+" -> [false, true, true]\n"
+" -> true （少なくとも1つの比較が true だから）"
+
+#. type: Content of: <article><section><section><section><section><section><example>
+#: English/Filters.xml:371
+msgid ""
+"<placeholder type=\"programlisting\" id=\"0\"/> <placeholder "
+"type=\"programlisting\" id=\"1\"/> <placeholder type=\"programlisting\" "
+"id=\"2\"/>"
+msgstr ""
+"<placeholder type=\"programlisting\" id=\"0\"/> <placeholder "
+"type=\"programlisting\" id=\"1\"/> <placeholder type=\"programlisting\" "
+"id=\"2\"/>"
+
+#. type: Content of: <article><section><section><section><section><section><title>
+#: English/Filters.xml:381
+msgid "Summary"
+msgstr "要約"
+
+#. type: Content of: <article><section><section><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:385
+msgid ""
+"Array vs scalar comparisons produce a boolean array.  The overall expression "
+"result is <literal>true</literal> if at least one element is <literal>true</"
+"literal>."
+msgstr ""
+"配列とスカラーの比較では、ブール値の配列が生成されます。その配列に "
+"<literal>true</literal> が1つでも含まれていれば、式の評価結果は "
+"<literal>true</literal> になります。"
+
+#. type: Content of: <article><section><section><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:391
+msgid ""
+"Array vs array with <literal>=</literal> or <literal>!=</literal> returns a "
+"single boolean value."
+msgstr ""
+"<literal>=</literal> または <literal>!=</literal> を使った配列同士の比較で"
+"は、単一のブール値が返されます。"
+
+#. type: Content of: <article><section><section><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:396
+msgid ""
+"Array vs array with other operators produces a boolean array.  The final "
+"result is <literal>true</literal> if any element is <literal>true</literal>."
+msgstr ""
+"その他の演算子による配列同士の比較では、ブール配列が生成され、その中に "
+"<literal>true</literal> が1つでも含まれていれば最終的な評価結果は "
+"<literal>true</literal> になります。"
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Filters.xml:406
+msgid "Operators"
+msgstr "演算子"
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Filters.xml:409
+msgid ""
+"All string comparison operators (such as <literal>=</literal>, <literal>!=</"
+"literal>, <literal>like</literal>, <literal>matches</literal>, "
+"<literal>contains</literal>, and <literal>recontains</literal>) are "
+"currently case-insensitive."
+msgstr ""
+"<literal>=</literal>、<literal>!=</literal>、<literal>like</literal>、"
+"<literal>matches</literal>、<literal>contains</literal>、"
+"<literal>recontains</literal> などの文字列比較演算子は、現在すべて大文字小文"
+"字を区別しません。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:414
+msgid ""
+"<literal>&lt;</literal>, <literal>&lt;=</literal>, <literal>&gt;</literal>, "
+"<literal>&gt;=</literal>"
+msgstr ""
+"<literal>&lt;</literal>, <literal>&lt;=</literal>, <literal>&gt;</literal>, "
+"<literal>&gt;=</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:415
+msgid "Numeric, timestamp, or string comparison"
+msgstr "数値、タイムスタンプ、または文字列の比較"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:418
+msgid "<literal>=</literal>"
+msgstr "<literal>=</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:419
+msgid "Equality comparison"
+msgstr "等価比較"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:422
+msgid "<literal>!=</literal>"
+msgstr "<literal>!=</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:423
+msgid "Inequality comparison"
+msgstr "不等比較"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:426
+msgid ""
+"<literal>+</literal>, <literal>-</literal>, <literal>*</literal>, <literal>/"
+"</literal>, <literal>%</literal>"
+msgstr ""
+"<literal>+</literal>, <literal>-</literal>, <literal>*</literal>, <literal>/"
+"</literal>, <literal>%</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:429
+msgid ""
+"Arithmetic operators. <literal>+</literal> and <literal>-</literal> perform "
+"addition and subtraction. <literal>*</literal> and <literal>/</literal> "
+"perform multiplication and division. <literal>%</literal> is the modulo "
+"operator (remainder)."
+msgstr ""
+"算術演算子。<literal>+</literal> と <literal>-</literal> は加算および減算、"
+"<literal>*</literal> と <literal>/</literal> は乗算および除算、<literal>%</"
+"literal> は剰余演算（余り）を行います。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:434
+msgid "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
+msgstr "<literal>and</literal>, <literal>or</literal>, <literal>not</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:435
+msgid "Logical operators"
+msgstr "論理演算子"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:438
+msgid "<literal>like</literal>"
+msgstr "<literal>like</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:440
+msgid "Wildcard string match"
+msgstr "ワイルドカードによる文字列一致"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:441
+msgid ""
+"You can also use <literal>not like</literal> to perform the inverse match."
+msgstr ""
+"<literal>not like</literal> を使用して逆の一致条件を指定することもできます。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:445
+msgid "<literal>matches</literal>"
+msgstr "<literal>matches</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:447
+msgid "Matches regular expressions"
+msgstr "正規表現による一致"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:448
+msgid ""
+"You can also use <literal>not matches</literal> to perform the inverse match."
+msgstr ""
+"<literal>not matches</literal> を使用して一致しない条件を指定することもできま"
+"す。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:452
+msgid "<literal>contains</literal>"
+msgstr "<literal>contains</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:454
+msgid "Checks if a string contains a substring"
+msgstr "文字列が部分文字列を含んでいるかを判定します"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:455
+msgid ""
+"You can also use <literal>not contains</literal> to check for absence of the "
+"substring."
+msgstr ""
+"<literal>not contains</literal> を使用して部分文字列が含まれていないことを確"
+"認できます。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:459
+msgid "<literal>recontains</literal>"
+msgstr "<literal>recontains</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:461
+msgid "Checks if any substring matches a regular expression"
+msgstr "いずれかの部分文字列が正規表現に一致するかを判定します"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:462
+msgid ""
+"You can also use <literal>not recontains</literal> to ensure no match exists."
+msgstr ""
+"<literal>not recontains</literal> を使用して一致しないことを確認できます。"
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Filters.xml:469
+msgid "Functions"
+msgstr "関数"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:473
+msgid "lineCount(<replaceable>content</replaceable>)"
+msgstr "lineCount(<replaceable>content</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:474
+msgid ""
+"Returns the number of lines in the file content or file content array as an "
+"<literal>Integer</literal>. If <replaceable>content</replaceable> is an "
+"array, the result is an integer array. Example: <literal>lineCount(Content)</"
+"literal>"
+msgstr ""
+"ファイル内容またはファイル内容の配列の行数を <literal>Integer</literal> とし"
+"て返します。<replaceable>content</replaceable> が配列の場合、結果は整数の配列"
+"になります。例: <literal>lineCount(Content)</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:477
+msgid ""
+"sublines(<replaceable>content</replaceable>, <replaceable>start</"
+"replaceable>, <replaceable>count</replaceable>)"
+msgstr ""
+"sublines(<replaceable>content</replaceable>, <replaceable>start</"
+"replaceable>, <replaceable>count</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:480
+msgid ""
+"Extracts the specified number of lines starting from the given line index in "
+"the file content or file content array, and returns them as a single "
+"concatenated string.  If <replaceable>content</replaceable> is an array, the "
+"result is an array of strings."
+msgstr ""
+"ファイル内容またはファイル内容の配列から、指定した開始行から指定行数の行を抽"
+"出し、連結した文字列として返します。<replaceable>content</replaceable> が配列"
+"の場合、結果は文字列の配列になります。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:486
+msgid "strlen(<replaceable>source</replaceable>)"
+msgstr "strlen(<replaceable>source</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:487
+msgid ""
+"Returns the length of the string as an <literal>Integer</literal>. If "
+"<replaceable>source</replaceable> is a string array, the result is an "
+"integer array. Example: <literal>strlen(Name)</literal>"
+msgstr ""
+"文字列の長さを <literal>Integer</literal> として返します。"
+"<replaceable>source</replaceable> が文字列の配列である場合、結果は整数の配列"
+"になります。例: <literal>strlen(Name)</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:490
+msgid ""
+"substr(<replaceable>source</replaceable>, <replaceable>start</replaceable>, "
+"<replaceable>count</replaceable>)"
+msgstr ""
+"substr(<replaceable>source</replaceable>, <replaceable>start</replaceable>, "
+"<replaceable>count</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:491
+msgid ""
+"Returns a specific range of text from the <emphasis>string or string array</"
+"emphasis> as a <literal>String</literal>. If <replaceable>source</"
+"replaceable> is a string array, the result is a string array. Example: "
+"<literal>substr(Name, 0, 3)</literal>"
+msgstr ""
+"<emphasis>文字列または文字列の配列</emphasis> から指定範囲の文字列を "
+"<literal>String</literal> 型で返します。<replaceable>source</replaceable> が"
+"文字列配列の場合、結果は文字列配列になります。例: <literal>substr(Name, 0, "
+"3)</literal>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:494
+msgid "now()"
+msgstr "now()"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:495
+msgid ""
+"Returns the current date and time as a <literal>Timestamp</literal> value."
+msgstr "現在の日時を <literal>Timestamp</literal> 型の値として返します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:498
+msgid "today()"
+msgstr "today()"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:499
+msgid ""
+"Returns today's date as a <literal>Timestamp</literal> value representing "
+"<literal>00:00:00.000</literal> at the start of the day."
+msgstr ""
+"本日の日付を、日の始まりである <literal>00:00:00.000</literal> を表す "
+"<literal>Timestamp</literal> 型として返します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:502
+msgid "startOfWeek(<replaceable>timestamp</replaceable>)"
+msgstr "startOfWeek(<replaceable>timestamp</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:503
+msgid ""
+"Returns the first day of the week, which is always Sunday regardless of "
+"locale."
+msgstr "週の初日（日曜日）を返します。ロケールには依存しません。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:506
+msgid "startOfMonth(<replaceable>timestamp</replaceable>)"
+msgstr "startOfMonth(<replaceable>timestamp</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:507
+msgid "Returns the first day of the month."
+msgstr "月の初日を返します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:510
+msgid "startOfYear(<replaceable>timestamp</replaceable>)"
+msgstr "startOfYear(<replaceable>timestamp</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:511
+msgid "Returns the first day of the year."
+msgstr "年の初日を返します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:514
+msgid "abs(<replaceable>value</replaceable>)"
+msgstr "abs(<replaceable>value</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:515
+msgid ""
+"Returns the absolute value of the <emphasis>integer or integer array</"
+"emphasis>. If <replaceable>value</replaceable> is an integer array, the "
+"result is an integer array."
+msgstr ""
+"<emphasis>整数または整数の配列</emphasis> の絶対値を返します。"
+"<replaceable>value</replaceable> が整数配列である場合、結果は整数配列になりま"
+"す。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:518
+msgid "allof(<replaceable>booleans</replaceable>)"
+msgstr "allof(<replaceable>booleans</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:519
+msgid ""
+"Returns <literal>true</literal> if all elements in the <emphasis>boolean "
+"array</emphasis> satisfy the condition."
+msgstr ""
+"<emphasis>ブール値の配列</emphasis> のすべての要素が条件を満たす場合に "
+"<literal>true</literal> を返します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:522
+msgid "allequal(<replaceable>array</replaceable>)"
+msgstr "allequal(<replaceable>array</replaceable>)"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:523
+msgid "Returns <literal>true</literal> if all values in the array are equal."
+msgstr "配列内のすべての値が等しい場合に <literal>true</literal> を返します。"
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Filters.xml:529
+msgid "Units"
+msgstr "単位"
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Filters.xml:530
+msgid "File sizes support these suffixes:"
+msgstr "ファイルサイズには以下の接尾辞を使用できます："
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:532
+msgid "KB"
+msgstr "KB"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:533
+msgid "MB"
+msgstr "MB"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:534
+msgid "GB"
+msgstr "GB"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:535
+msgid "TB"
+msgstr "TB"
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Filters.xml:537
+msgid "Time durations support these suffixes:"
+msgstr "時間の長さには以下の接尾辞を使用できます："
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:539
+msgid "weeks"
+msgstr "weeks"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:539
+msgid "week"
+msgstr "week"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:539
+msgid "w"
+msgstr "w"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:540
+msgid "days"
+msgstr "days"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:540
+msgid "day"
+msgstr "day"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:540
+msgid "d"
+msgstr "d"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:541
+msgid "hours"
+msgstr "hours"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:541
+msgid "hour"
+msgstr "hour"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:541
+msgid "hr"
+msgstr "hr"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:541
+msgid "h"
+msgstr "h"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:542
+msgid "minutes"
+msgstr "minutes"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:542
+msgid "minute"
+msgstr "minute"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:542
+msgid "min"
+msgstr "min"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:542
+msgid "m"
+msgstr "m"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:543
+msgid "seconds"
+msgstr "seconds"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:543
+msgid "second"
+msgstr "second"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:543
+msgid "sec"
+msgstr "sec"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:543
+msgid "s"
+msgstr "s"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:544
+msgid "milliseconds"
+msgstr "milliseconds"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:544
+msgid "millisecond"
+msgstr "millisecond"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:544
+msgid "msec"
+msgstr "msec"
+
+#. type: Content of: <article><section><section><section><simplelist><member>
+#: English/Filters.xml:544
+msgid "ms"
+msgstr "ms"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:551
+msgid "<literal>Size &lt; 10KB</literal> - Any side's size is less than 10KB"
+msgstr ""
+"<literal>Size &lt; 10KB</literal> - いずれかのファイルサイズが 10KB 未満"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:552
+msgid ""
+"<literal>LeftSize &gt;= 10MB</literal> - Left side file is at least 10MB"
+msgstr ""
+"<literal>LeftSize &gt;= 10MB</literal> - 左側のファイルサイズが 10MB 以上"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:553
+msgid "<literal>allof(Size &lt; 1MB)</literal> - All sides are under 1MB"
+msgstr "<literal>allof(Size &lt; 1MB)</literal> - すべてのファイルが 1MB 未満"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:554
+msgid ""
+"<literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - Size difference is "
+"small"
+msgstr ""
+"<literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - サイズ差が小さい"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:555
+msgid ""
+"<literal>DateStr = \"2025-07-20\"</literal> - File was last modified on that "
+"date"
+msgstr ""
+"<literal>DateStr = \"2025-07-20\"</literal> - その日に更新されたファイル"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:556
+msgid "<literal>Date &gt;= today()</literal> - Modified today or later"
+msgstr "<literal>Date &gt;= today()</literal> - 今日以降に更新されたファイル"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:557
+msgid "<literal>AttrStr contains \"R\"</literal> - File is read-only"
+msgstr "<literal>AttrStr contains \"R\"</literal> - 読み取り専用ファイル"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:558
+msgid "<literal>Name matches \"file[0-9]\\.txt\"</literal> - Regex on filename"
+msgstr ""
+"<literal>Name matches \"file[0-9]\\.txt\"</literal> - ファイル名に正規表現を"
+"適用"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:559
+msgid ""
+"<literal>Content contains \"Test\"</literal> - File content includes keyword"
+msgstr "<literal>Content contains \"Test\"</literal> - 内容に \"Test\" を含む"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:560
+msgid ""
+"<literal>sublines(Content, 0, 1) contains \"XML\"</literal> - First line "
+"contains \"XML\""
+msgstr ""
+"<literal>sublines(Content, 0, 1) contains \"XML\"</literal> - 1行目に "
+"\"XML\" を含む"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:561
+msgid ""
+"<literal>(Extension = \"log\" and Size > 10MB) or (Date &lt; today() - "
+"7days)</literal> - Large log files or files older than a week"
+msgstr ""
+"<literal>(Extension = \"log\" and Size > 10MB) or (Date &lt; today() - "
+"7days)</literal> - 大きなログファイルまたは1週間以上前のファイル"
+
+#. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
+#: English/Filters.xml:562
+msgid ""
+"<literal>AttrStr not contains \"H\" and Name like \"*.tmp\"</literal> - Non-"
+"hidden temporary files"
+msgstr ""
+"<literal>AttrStr not contains \"H\" and Name like \"*.tmp\"</literal> - 非表"
+"示の一時ファイル"
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:186
+#: English/Filters.xml:569
 msgid ""
 "Using file filters<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -11609,7 +12780,7 @@ msgstr ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:196
+#: English/Filters.xml:579
 msgid ""
 "<glossterm>File filters</glossterm> are text files with an extension of "
 "<filename>flt</filename>. They enable you to apply multiple filtering rules "
@@ -11622,12 +12793,12 @@ msgstr ""
 "むか除外、どちらかにマッチすることができます。"
 
 #. type: Content of: <article><section><para><indexterm><secondary>
-#: English/Filters.xml:204
+#: English/Filters.xml:587
 msgid "template"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:201
+#: English/Filters.xml:584
 msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/>WinMerge installs a number of "
 "predefined file filters. If these file filters do not provide the filtering "
@@ -11647,12 +12818,12 @@ msgstr ""
 "します。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:217 English/Filters.xml:221
+#: English/Filters.xml:600 English/Filters.xml:604
 msgid "locations"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:214
+#: English/Filters.xml:597
 msgid ""
 "File filter locations<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -11661,17 +12832,17 @@ msgstr ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:224
+#: English/Filters.xml:607
 msgid "WinMerge automatically detects file filters in these locations:"
 msgstr "WinMergeは、次の場所のファイルフィルターを自動的に検出します:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:229
+#: English/Filters.xml:612
 msgid "Filters subfolder in the WinMerge installation folder"
 msgstr "WinMerge インストールフォルダーのFilters フォルダー"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:232
+#: English/Filters.xml:615
 msgid ""
 "This is where the predefined file filters are installed. For example, "
 "<filename>C:\\Program Files\\WinMerge\\Filters</filename>. You can create or "
@@ -11684,7 +12855,7 @@ msgstr ""
 "ピーすることができます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:237
+#: English/Filters.xml:620
 msgid ""
 "Before creating a new file filter, see if the predefined ones already "
 "contain what you need. If not, you might find useful rule examples in the "
@@ -11695,12 +12866,12 @@ msgstr ""
 "が見つかるかもしれません。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:244
+#: English/Filters.xml:627
 msgid "Default private filter folder"
 msgstr "デフォルトプライベートフィルターフォルダー"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:247
+#: English/Filters.xml:630
 msgid ""
 "The location of this folder is defined in the System page of WinMerge "
 "options. By default, it is specified as a subfolder in your user profile "
@@ -11717,7 +12888,7 @@ msgstr ""
 "ことができます。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:257
+#: English/Filters.xml:640
 msgid ""
 "Before you can apply file filters that exist in any other folder, you must "
 "first install them."
@@ -11726,29 +12897,29 @@ msgstr ""
 "ルしなければなりません。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:265
+#: English/Filters.xml:648
 msgid "applying"
 msgstr "適用"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:262
+#: English/Filters.xml:645
 msgid "Applying file filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "ファイルフィルターの適用<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:268
+#: English/Filters.xml:651
 msgid "You can apply a file filter using any of these methods:"
 msgstr "次のいくつかの方法で、ファイルフィルターを適用することができます:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:272
+#: English/Filters.xml:655
 msgid ""
 "When you launch a folder compare from the Select Files or Folders dialog:"
 msgstr ""
 "ファイルまたはフォルダーの選択ダイアログから、フォルダー比較を起動した時:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:277
+#: English/Filters.xml:660
 msgid ""
 "After choosing the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel> "
 "folders, click <guibutton>Select</guibutton> next to the <guilabel>Filter</"
@@ -11759,7 +12930,7 @@ msgstr ""
 "guibutton>ボタンをクリックしてください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:284
+#: English/Filters.xml:667
 msgid ""
 "In the Filters dialog, use the File Filters tab to choose a file filter and "
 "load it in the <guilabel>Filter</guilabel> field."
@@ -11768,7 +12939,7 @@ msgstr ""
 "guilabel>フィールドへロードするには、ファイルフィルタータブを使用します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><note><para>
-#: English/Filters.xml:289
+#: English/Filters.xml:672
 msgid ""
 "If a file filter is currently enabled, the selected file filter is already "
 "loaded in the <guilabel>Filter</guilabel> field."
@@ -11778,7 +12949,7 @@ msgstr ""
 "guilabel>フィールドへ既にロードされています。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:297
+#: English/Filters.xml:680
 msgid ""
 "Proceed with the compare operation. The file in the <guilabel>Filter</"
 "guilabel> field is applied when you start the operation."
@@ -11787,7 +12958,7 @@ msgstr ""
 "フィールドのファイルが適用されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:305
+#: English/Filters.xml:688
 msgid ""
 "To change file filtering after you have already launched a folder compare "
 "operation (for example, applying a different filter or disabling filtering):"
@@ -11796,7 +12967,7 @@ msgstr ""
 "にしてしまった時など)にファイルフィルターを変更するには:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:311 English/Filters.xml:593
+#: English/Filters.xml:694 English/Filters.xml:960
 msgid ""
 "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</"
 "guimenuitem> </menuchoice>."
@@ -11805,7 +12976,7 @@ msgstr ""
 "</menuchoice>をクリックしてください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:319
+#: English/Filters.xml:702
 msgid ""
 "In the Filters dialog, configure your new file filter setting, and click "
 "<guibutton>OK</guibutton>."
@@ -11814,7 +12985,7 @@ msgstr ""
 "をクリックしてください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:324
+#: English/Filters.xml:707
 msgid ""
 "The new filtering is not automatically applied when you close the Filters "
 "dialog: press <keycap>F5</keycap> to see the new results in the Folder "
@@ -11825,12 +12996,12 @@ msgstr ""
 "してください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para><indexterm><secondary>
-#: English/Filters.xml:335
+#: English/Filters.xml:718
 msgid "applying file filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:332
+#: English/Filters.xml:715
 msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/>When you launch a folder compare "
 "from the WinMerge command line, use the <option>-f</option> flag to specify "
@@ -11840,27 +13011,18 @@ msgstr ""
 "ルダー比較起動時にファイルフィルターを指定するには、 <option>-f</option>フラ"
 "グを使用してください。"
 
-#. type: Content of: <article><section><section><para>
-#: English/Filters.xml:342
-msgid ""
-"Remember, you cannot apply both a file mask and a file filter in the field "
-"or command line."
-msgstr ""
-"フィールドやコマンドラインで、 ファイルマスクとファイルフィルターの両方を指定"
-"する ことはできないことを思い出してください。"
-
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:350
+#: English/Filters.xml:730
 msgid "file filter"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:354
+#: English/Filters.xml:734
 msgid "syntax"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:347
+#: English/Filters.xml:727
 msgid ""
 "File filter syntax<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -11869,7 +13031,7 @@ msgstr ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:357
+#: English/Filters.xml:737
 msgid ""
 "This section describes the syntax of WinMerge file filters and provides "
 "guidelines for writing them."
@@ -11878,7 +13040,7 @@ msgstr ""
 "ンの提供について説明します。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:360
+#: English/Filters.xml:740
 msgid ""
 "The comment delimiter is <code>##</code>. After a comment delimiter, all "
 "characters in a line are ignored. WinMerge ignores most whitespace "
@@ -11893,52 +13055,52 @@ msgstr ""
 "空白文字を取り除いてください。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:366
+#: English/Filters.xml:746
 msgid "The first two required lines of a file filter are:"
 msgstr "ファイルフィルターで、まずはじめに必要な2行は:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:370
+#: English/Filters.xml:750
 msgid "name"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:373
+#: English/Filters.xml:753
 msgid "The filter name that is listed in the Files dialog"
 msgstr "ファイルダイアログに表示されるフィルター名です"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:378
+#: English/Filters.xml:758
 msgid "def"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:381
+#: English/Filters.xml:761
 msgid "The type of filtering to be applied. Specify one of these values:"
 msgstr "適用されるフィルタータイプです。次の値のうち、1つを指定してください:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
-#: English/Filters.xml:386
+#: English/Filters.xml:766
 msgid "include"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:389
+#: English/Filters.xml:769
 msgid "Includes everything except items matching the specified rule."
 msgstr "指定されたルールにマッチしたアイテム以外はすべて含めます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
-#: English/Filters.xml:395
+#: English/Filters.xml:775
 msgid "exclude"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:398
+#: English/Filters.xml:778
 msgid "Excludes everything except items matching the specified rule."
 msgstr "指定されたルールにマッチしたアイテム以外はすべて除外します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:401
+#: English/Filters.xml:781
 msgid ""
 "When you choose the exclude method, you must also add a <guilabel>d</"
 "guilabel> (directory) rule that specifies the subfolders. It's usually a "
@@ -11949,13 +13111,13 @@ msgstr ""
 "サブフォルダーを指定するのは、通常良いアイデアです:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><screen>
-#: English/Filters.xml:406
+#: English/Filters.xml:786
 #, no-wrap
 msgid "d: \\\\*$ ## Subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><tip><para>
-#: English/Filters.xml:412
+#: English/Filters.xml:792
 msgid ""
 "Don't confuse these terms. Remember, in file filters, an <guilabel>include</"
 "guilabel> rule does not specify what to include, it specifies what "
@@ -11969,64 +13131,47 @@ msgstr ""
 "しないか」を指定します。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:422
+#: English/Filters.xml:802
 msgid ""
 "Next, your file should contain one or more filter rules. You can add as many "
 "rules as you like. There must be one rule per line, and each rule must be "
-"entirely on one line (no line breaks are allowed in a rule). Each rule "
-"consists of either an <guilabel>f:</guilabel> or a <guilabel>d:</guilabel> "
-"type designator, followed by a reqular expression, where:"
-msgstr ""
-"次に、フィルターファイルは、1つ以上のフィルタールールを含むべきです。 あなた"
-"は、たくさんのルールを好きなだけ追加できます。 1行には1つのルールがあるべき"
-"で、それぞれのルールは、 それぞれ1行にあるべきです(ルール中での改行は許可され"
-"ません)。 (訳注: 回りくどいですが、「ルールは1行で記述してください」というこ"
-"とです。) それぞれのルールは、タイプデザイナー <guilabel>f:</guilabel>か"
-"<guilabel>d:</guilabel>を含み、その後に、正規表現が続きます:"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:431
-msgid "f: <replaceable>regexp</replaceable>"
+"entirely on one line (no line breaks are allowed in a rule).  A rule begins "
+"with a type designator, followed by either a regular expression or a filter "
+"expression.  The supported type designators are:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:434
-msgid "matches for files, or"
-msgstr "ファイルにマッチ、または、"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:439
-msgid "d: <replaceable>regexp</replaceable>"
+#: English/Filters.xml:810
+msgid "Match file names using regular expressions"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:442
-msgid "matches for folders"
-msgstr "フォルダーにマッチ"
-
-#. type: Content of: <article><section><section><para>
-#: English/Filters.xml:447
-msgid ""
-"In 2.16.19 and later, the type designators <guilabel>f!:</guilabel> and "
-"<guilabel>d!:</guilabel> has been introduced to exclude some of the files or "
-"folders matched by <guilabel>f:</guilabel> and <guilabel>d:</guilabel>."
+#: English/Filters.xml:811
+msgid "Exclude files matching regex (Available since 2.16.19)"
 msgstr ""
-"2.16.19 以降、 <guilabel>f:</guilabel> と <guilabel>d:</guilabel> でマッチし"
-"たファイルまたはフォルダーの一部を除外するためのタイプデザイナー "
-"<guilabel>f!:</guilabel> と <guilabel>d!:</guilabel> が使用できます。"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:812
+msgid "Match folder names using regex"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:813
+msgid "Exclude folders matching regex (Available since 2.16.19)"
+msgstr ""
 
 #. type: Content of: <article><section><section><para><indexterm><secondary>
-#: English/Filters.xml:457
+#: English/Filters.xml:824
 msgid "special characters in filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><indexterm><secondary>
-#: English/Filters.xml:461
+#: English/Filters.xml:828
 msgid "in file filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:453
+#: English/Filters.xml:820
 msgid ""
 "Among the many regexp special characters, the following are particularly "
 "important in file filter rules:<placeholder type=\"indexterm\" id=\"0\"/"
@@ -12037,27 +13182,27 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:466
+#: English/Filters.xml:833
 msgid "^ (beginning of line)"
 msgstr "^ (行頭)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:469
+#: English/Filters.xml:836
 msgid "Frequently required for rules to work correctly."
 msgstr "ルールが正しく動作するために頻繁に必要になります。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:474
+#: English/Filters.xml:841
 msgid "$ (end of line)"
 msgstr "$ (行末)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:477
+#: English/Filters.xml:844
 msgid "Frequently required for rules to work correctly. For example:"
 msgstr "ルールが正しく動作するために頻繁に必要になります。例えば:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
-#: English/Filters.xml:480
+#: English/Filters.xml:847
 #, no-wrap
 msgid ""
 "\\.c$ ## matches only file names with the extension, <filename>c</filename>.\n"
@@ -12070,12 +13215,12 @@ msgstr ""
 "              <filename>c</filename>で始まるファイルにマッチします。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:486
+#: English/Filters.xml:853
 msgid "\\ (escape)"
 msgstr "\\ (エスケープ)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:489
+#: English/Filters.xml:856
 msgid ""
 "Forces special characters to match normal characters. For example, to match "
 "a folder name, precede the folder backslash delimiter with a backslash "
@@ -12088,7 +13233,7 @@ msgstr ""
 "に、 バックスラッシュを指定し、その後にドットを置きます(<code>\\.</code>)。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:498
+#: English/Filters.xml:865
 msgid ""
 "No special characters or wildcards are used to match file names. To match "
 "all filenames of a certain type, simply omit the filename."
@@ -12098,7 +13243,7 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:501
+#: English/Filters.xml:868
 msgid ""
 "Rules are case-insensitive. For example, <code>f: \\.bat$</code> matches "
 "<filename>winmerge.bat</filename> and <filename>compare.BAT</filename>."
@@ -12108,17 +13253,17 @@ msgstr ""
 "します。"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:506
+#: English/Filters.xml:873
 msgid "File filter rule examples"
 msgstr "ファイルフィルタールールの例"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:508
+#: English/Filters.xml:875
 msgid "Some simple file filter rules:"
 msgstr "シンプルなファイルフィルタールール:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:510
+#: English/Filters.xml:877
 #, no-wrap
 msgid ""
 "f: \\.cpp$ ## Match <filename>*.cpp</filename> files\n"
@@ -12140,12 +13285,12 @@ msgstr ""
 "          d: Src ## <filename>*Src*</filename>フォルダーにマッチ"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:519
+#: English/Filters.xml:886
 msgid "Some rules with more complex regular expressions:"
 msgstr "いくつかのルールは、もっと複雑な正規表現です:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:521
+#: English/Filters.xml:888
 #, no-wrap
 msgid ""
 "f: ^\\.#.*$ ## <filename>.#filename.version</filename> files\n"
@@ -12161,17 +13306,17 @@ msgstr ""
 "          f: ^[h,k,m] ## <filename>h*.*</filename>d、<filename>k*.*</filename>、<filename>m*.*</filename>ファイル"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:534 English/Filters.xml:641
+#: English/Filters.xml:901 English/Filters.xml:1008
 msgid "line"
 msgstr "行"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:538 English/Filters.xml:772
+#: English/Filters.xml:905 English/Filters.xml:1139
 msgid "in file comparisons"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:531
+#: English/Filters.xml:898
 msgid ""
 "Using line filters<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -12180,7 +13325,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:541
+#: English/Filters.xml:908
 msgid ""
 "In a file comparison, you can use line filters to ignore single lines.  For "
 "example, you might use line filters to ignore comments or certain type of "
@@ -12194,7 +13339,7 @@ msgstr ""
 "を使用することができます。"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:547
+#: English/Filters.xml:914
 msgid ""
 "To learn how to add, edit, and manage filters, see <xref "
 "linkend=\"Filters_dlg\" />."
@@ -12203,23 +13348,23 @@ msgstr ""
 "照してください。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:551
+#: English/Filters.xml:918
 msgid "Applying line filters"
 msgstr "行フィルターの適用"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:553
+#: English/Filters.xml:920
 msgid "You can apply line filters using any of these methods:"
 msgstr "次の方法で、行フィルターを適用することができます:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:557
+#: English/Filters.xml:924
 msgid "When you launch a file compare from the Select Files or Folders dialog"
 msgstr ""
 "ファイルまたはフォルダーの選択ダイアログから、 ファイル比較を起動する場合"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:562
+#: English/Filters.xml:929
 msgid ""
 "After choosing the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel> "
 "files, click <guibutton>Select</guibutton> next to the <guilabel>Filter</"
@@ -12230,7 +13375,7 @@ msgstr ""
 "クリックしてください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:569
+#: English/Filters.xml:936
 msgid ""
 "In the Filters dialog, use the Line Filters tab to enable the line filters "
 "you want to use (if any), or to see what line filters are currently enabled."
@@ -12239,7 +13384,7 @@ msgstr ""
 "の行フィルターが有効かを確認するには、行フィルタータブを使います。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><note><para>
-#: English/Filters.xml:574
+#: English/Filters.xml:941
 msgid ""
 "The <guilabel>Filter</guilabel> field does not indicate what line filters "
 "are enabled."
@@ -12248,7 +13393,7 @@ msgstr ""
 "いるかを表示しません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:581
+#: English/Filters.xml:948
 msgid ""
 "Proceed with the file compare operation. The enabled line filters are "
 "applied when you start the operation."
@@ -12257,7 +13402,7 @@ msgstr ""
 "ターが適用されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:588
+#: English/Filters.xml:955
 msgid ""
 "After you have already launched a file compare operation (for example, to "
 "apply different filters or disabling filtering)"
@@ -12266,12 +13411,12 @@ msgstr ""
 "を無効にしてしまった時など)は、"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:601
+#: English/Filters.xml:968
 msgid "Open the File Filters tab."
 msgstr "ファイルフィルタータブを開いてください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:605
+#: English/Filters.xml:972
 msgid ""
 "Check the individual line filters you want to apply, and uncheck filters "
 "that you don't want to apply."
@@ -12280,7 +13425,7 @@ msgstr ""
 "いフィルターは、チェックを外してください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:608
+#: English/Filters.xml:975
 msgid ""
 "You can also add, edit, and remove filters from the list by using the "
 "<guibutton>New</guibutton>, <guibutton>Edit</guibutton>, and "
@@ -12290,7 +13435,7 @@ msgstr ""
 "guibutton>ボタンを使用して、 フィルターを追加、編集、削除することもできます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:614
+#: English/Filters.xml:981
 msgid ""
 "To turn on line filtering, check the <guilabel>Enable Line Filters</"
 "guilabel>. To turn line filtering off, uncheck the option."
@@ -12300,14 +13445,14 @@ msgstr ""
 "を外してください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:620
+#: English/Filters.xml:987
 msgid "Click <guibutton>OK</guibutton> to dismiss the File Filters dialog."
 msgstr ""
 "<guibutton>OK</guibutton>をクリックして、 ファイルフィルターダイアログを閉じ"
 "てください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:625
+#: English/Filters.xml:992
 msgid ""
 "Click <keycap>F5</keycap> to apply your changes and refresh the File Compare "
 "window."
@@ -12316,17 +13461,17 @@ msgstr ""
 "シュしてください。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:637
+#: English/Filters.xml:1004
 msgid "line filter"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:645
+#: English/Filters.xml:1012
 msgid "in line filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:634
+#: English/Filters.xml:1001
 msgid ""
 "Line filter syntax<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
@@ -12335,7 +13480,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:648
+#: English/Filters.xml:1015
 msgid ""
 "A line filter is a rule that is evaluated against each single-line "
 "difference in your compared files, if line filter rules are enabled. When a "
@@ -12346,7 +13491,7 @@ msgstr ""
 "差異は無視されます。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:652
+#: English/Filters.xml:1019
 msgid ""
 "Ignored differences are marked in the File Compare window with the "
 "<guilabel>Ignored Difference</guilabel> color (as defined in the Colors page "
@@ -12359,12 +13504,12 @@ msgstr ""
 "し、無視された差異は、選択やマージすることができません。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:658
+#: English/Filters.xml:1025
 msgid "Line filter matching can be described in terms of two ideas:"
 msgstr "行フィルターマッチは、2つの考えに基づいて記述されるかもしれません:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:662
+#: English/Filters.xml:1029
 msgid ""
 "When a rule matches any part of the line, the entire difference is ignored. "
 "Therefore, you cannot filter just part of a line. For example, suppose two "
@@ -12375,29 +13520,29 @@ msgstr ""
 "の差異があると仮定した場合:"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><title>
-#: English/Filters.xml:668 English/Filters.xml:690 English/Intro_diffs.xml:60
+#: English/Filters.xml:1035 English/Filters.xml:1057 English/Intro_diffs.xml:60
 msgid "File1:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: English/Filters.xml:670
+#: English/Filters.xml:1037
 #, no-wrap
 msgid "# Jean Sibelius"
 msgstr ""
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><title>
-#: English/Filters.xml:674 English/Filters.xml:697 English/Intro_diffs.xml:69
+#: English/Filters.xml:1041 English/Filters.xml:1064 English/Intro_diffs.xml:69
 msgid "File2:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: English/Filters.xml:676
+#: English/Filters.xml:1043
 #, no-wrap
 msgid "# Janne Sibelius"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:679
+#: English/Filters.xml:1046
 msgid ""
 "With no filtering, the line is detected as a difference. But if we apply a "
 "line filter rule with the expression, <code>^#</code>, the lines are "
@@ -12410,7 +13555,7 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:686
+#: English/Filters.xml:1053
 msgid ""
 "A rule is applied to a multi-line difference only if all the lines match. "
 "For example, consider this two-line difference:"
@@ -12419,7 +13564,7 @@ msgstr ""
 "の2行の差異を考えてみてください:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: English/Filters.xml:692
+#: English/Filters.xml:1059
 #, no-wrap
 msgid ""
 "# Jean Sibelius\n"
@@ -12427,7 +13572,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: English/Filters.xml:699
+#: English/Filters.xml:1066
 #, no-wrap
 msgid ""
 "# Janne Sibelius\n"
@@ -12435,7 +13580,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:703
+#: English/Filters.xml:1070
 msgid ""
 "The same <code>^#</code> rule matches the first line, but not the second "
 "line. Therefore, the difference is not ignored."
@@ -12444,7 +13589,7 @@ msgstr ""
 "ん。 したがって、差異は無視されません。"
 
 #. type: Content of: <article><section><section><tip><para>
-#: English/Filters.xml:709
+#: English/Filters.xml:1076
 msgid ""
 "It's usually good practice to use the beginning of line ( <code>^</code> ) "
 "and end of line ( <code>$</code> ) markers to control your patterns "
@@ -12456,40 +13601,40 @@ msgstr ""
 "分にマッチした場合に、 ルールが適用されるからです。"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:716
+#: English/Filters.xml:1083
 msgid "Sample line filters"
 msgstr "行フィルターサンプル"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:718
+#: English/Filters.xml:1085
 #, no-wrap
 msgid "^MYTAG$"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:720
+#: English/Filters.xml:1087
 msgid "Filters lines that exactly match <literal>MYTAG</literal>"
 msgstr "厳密に、 <literal>MYTAG</literal>にマッチする行をフィルターします"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:722
+#: English/Filters.xml:1089
 #, no-wrap
 msgid "^::"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:724
+#: English/Filters.xml:1091
 msgid "Filters lines beginning with <literal>::</literal>"
 msgstr "<literal>::</literal>で始まる行をフィルターします"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:726
+#: English/Filters.xml:1093
 #, no-wrap
 msgid "^/\\*.*\\*/$"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:728
+#: English/Filters.xml:1095
 msgid ""
 "Filters lines beginning with <literal><constant>/*</constant></literal> and "
 "ending with <literal>*/</literal>"
@@ -12498,89 +13643,89 @@ msgstr ""
 "わる行をフィルターします"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:732
+#: English/Filters.xml:1099
 #, no-wrap
 msgid "^[1-5]00"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:734
+#: English/Filters.xml:1101
 msgid "Filters lines beginning with numbers 100, 200, 300, 400, and 500"
 msgstr "数字の、100、200、300、400、500 で始まる行をフィルターします"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:739
+#: English/Filters.xml:1106
 msgid "Line filter rule matching CVS Id lines"
 msgstr "CVS の Id 行にマッチする行フィルタールール"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:741
+#: English/Filters.xml:1108
 msgid "CVS Id lines look like this:"
 msgstr "CVS の Id 行は、次の様なものです:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:743
+#: English/Filters.xml:1110
 #, no-wrap
 msgid "// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:745 English/Filters.xml:757
+#: English/Filters.xml:1112 English/Filters.xml:1124
 msgid "... and can be filtered with this rule:"
 msgstr "そしてこれは、次のルールでフィルターできます:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:747
+#: English/Filters.xml:1114
 #, no-wrap
 msgid "^// \\WId: .*\\$"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:751
+#: English/Filters.xml:1118
 msgid "Filter line number comments in po files"
 msgstr "poファイルの行コメントフィルター"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:753
+#: English/Filters.xml:1120
 msgid "po line number comments look like this:"
 msgstr "poファイルの行コメントは、次の様なものです:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:755
+#: English/Filters.xml:1122
 #, no-wrap
 msgid "#: src/filename.c:766"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:759
+#: English/Filters.xml:1126
 #, no-wrap
 msgid "^#"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:768
+#: English/Filters.xml:1135
 msgid "substitution"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:765
+#: English/Filters.xml:1132
 msgid ""
 "Using substitution filters<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Filters.xml:780
+#: English/Filters.xml:1147
 msgid "Filters dialog"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:784
+#: English/Filters.xml:1151
 msgid "managing and enabling"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:779
+#: English/Filters.xml:1146
 msgid ""
 "Using the Filters dialog<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -12589,7 +13734,7 @@ msgstr ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:787
+#: English/Filters.xml:1154
 msgid ""
 "This section describes the Filters dialog, which provides functions to "
 "create and manage file filters and line filters."
@@ -12598,12 +13743,12 @@ msgstr ""
 "る、 フィルターダイアログの説明をします。"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:790
+#: English/Filters.xml:1157
 msgid "To open the Filters dialog, use either of these methods:"
 msgstr "フィルターダイアログを開くには、次の何れかの方法を使用してください:"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Filters.xml:794
+#: English/Filters.xml:1161
 msgid ""
 "In the Select Files or Folders dialog, click <guibutton>Select</guibutton> "
 "to the right of the <guilabel>Filter</guilabel> field. You use this method "
@@ -12615,7 +13760,7 @@ msgstr ""
 "してください。"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Filters.xml:801
+#: English/Filters.xml:1168
 msgid ""
 "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</"
 "guimenuitem> </menuchoice>. This method can be used at any time except when "
@@ -12626,18 +13771,18 @@ msgstr ""
 "選択ダイアログを開いている時以外に使用可能です。"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:810
+#: English/Filters.xml:1177
 msgid "The Filters dialog has a tab for each type of WinMerge filter:"
 msgstr ""
 "フィルターダイアログには、それぞれの WinMergeフィルター用のタブがあります:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:814
+#: English/Filters.xml:1181
 msgid "File Filters"
 msgstr "ファイルフィルター"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:817
+#: English/Filters.xml:1184
 msgid ""
 "Choose this tab to work with file filters for folder compare operations."
 msgstr ""
@@ -12645,40 +13790,40 @@ msgstr ""
 "い。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:823
+#: English/Filters.xml:1190
 msgid "Line Filters"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:826
+#: English/Filters.xml:1193
 msgid "Choose this tab to work with line filters for file compare operations."
 msgstr ""
 "ファイル比較用の行フィルターを設定するには、こちらのタブを使用してください。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:832
+#: English/Filters.xml:1199
 msgid "Substitution Filters"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:835
+#: English/Filters.xml:1202
 msgid ""
 "Choose this tab to work with substitution filters for file compare "
 "operations."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:845 English/Filters.xml:1111 English/Filters.xml:1203
+#: English/Filters.xml:1212 English/Filters.xml:1478 English/Filters.xml:1570
 msgid "enabling"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:842
+#: English/Filters.xml:1209
 msgid "Using the File Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "ファイルフィルタータブの使用<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:848
+#: English/Filters.xml:1215
 msgid ""
 "The main part of this tab is a list of file filters that are available for "
 "folder compare operations. The list includes shared, private, and installed "
@@ -12691,12 +13836,12 @@ msgstr ""
 "ストール済みのファイルフィルターを含んでいます。"
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:854
+#: English/Filters.xml:1221
 msgid "Enabling and disabling file filters"
 msgstr "ファイルフィルターの有効化と無効化"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:856
+#: English/Filters.xml:1223
 msgid ""
 "You must enable a file filter to make it available in a folder comparison "
 "operation, or to disable a current filter to stop it from being used:"
@@ -12706,12 +13851,12 @@ msgstr ""
 "能にしなければなりません:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:862
+#: English/Filters.xml:1229
 msgid "Open the Filters dialog, if it is not already open."
 msgstr "まだ、フィルターダイアログを開いていない場合は、開いてください"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:866
+#: English/Filters.xml:1233
 msgid ""
 "Select a file filter or <guimenuitem>&lt;None&gt;</guimenuitem> from the "
 "list."
@@ -12720,14 +13865,14 @@ msgstr ""
 "guimenuitem>を選択しくてださい。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:871
+#: English/Filters.xml:1238
 msgid "Click <guibutton>OK</guibutton> to dismiss the Filters dialog."
 msgstr ""
 "<guibutton> OK</guibutton>をクリックして、 フィルターダイアログを閉じてくださ"
 "い。"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:876
+#: English/Filters.xml:1243
 msgid ""
 "There are several ways to apply file filters after enabling them.  For "
 "details, see <xref linkend=\"Filters_FileFilterApply\" />."
@@ -12736,12 +13881,12 @@ msgstr ""
 "詳細は、 <xref linkend=\"Filters_FileFilterApply\" />を参照してください。"
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:881
+#: English/Filters.xml:1248
 msgid "Configuring file filters"
 msgstr "ファイルフィルターの設定"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:883
+#: English/Filters.xml:1250
 msgid ""
 "Use these buttons to manage your <guilabel>File Filters</guilabel> list and "
 "create new file filters:"
@@ -12750,12 +13895,12 @@ msgstr ""
 "は、これらのボタンを使用してください:"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:888
+#: English/Filters.xml:1255
 msgid "Test"
 msgstr "テスト"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:891
+#: English/Filters.xml:1258
 msgid ""
 "Select a file filter in the list and click <guibutton>Test</guibutton> to "
 "quickly see how the filter works.  See <xref linkend=\"Filters_TestingDlg\" /"
@@ -12766,12 +13911,12 @@ msgstr ""
 "は、 <xref linkend=\"Filters_TestingDlg\" />を参照してください。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:898
+#: English/Filters.xml:1265
 msgid "Install"
 msgstr "インストール"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:901
+#: English/Filters.xml:1268
 msgid ""
 "Enables you to locate a file filter and adds it to the Filters list. File "
 "filters that are not in either the shared or default private folder are not "
@@ -12782,12 +13927,12 @@ msgstr ""
 "プライベートフォルダーのどちらでも検出されません。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:909
+#: English/Filters.xml:1276
 msgid "New"
 msgstr "新規"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:912
+#: English/Filters.xml:1279
 msgid ""
 "Creates a new copy of a file template in either the shared or private filter "
 "folders, and opens it in your default editor.  Edit the template and add "
@@ -12798,12 +13943,12 @@ msgstr ""
 "で説明されているように、 テンプレートを編集、ルールの追加を行ってください。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:920
+#: English/Filters.xml:1287
 msgid "Edit"
 msgstr "編集"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:923
+#: English/Filters.xml:1290
 msgid ""
 "Select a file filter in the list and click <guibutton>Edit</guibutton> to "
 "open the file in your default editor."
@@ -12812,12 +13957,12 @@ msgstr ""
 "し、 <guibutton>編集</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:930
+#: English/Filters.xml:1297
 msgid "Delete"
 msgstr "削除"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:933
+#: English/Filters.xml:1300
 msgid ""
 "Select a file filter in the list and click <guibutton>Delete</guibutton> to "
 "delete the file and remove it from the list. Yes, the file is really deleted!"
@@ -12827,7 +13972,7 @@ msgstr ""
 "ルは削除されました。"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:940
+#: English/Filters.xml:1307
 msgid ""
 "Your changes are saved when you click <guibutton>OK</guibutton> to dismiss "
 "the Filters dialog. Line filters are stored in the Windows registry."
@@ -12836,12 +13981,12 @@ msgstr ""
 "更は保存されます。 行フィルターは、Windowsのレジストリに保存されます。"
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:946
+#: English/Filters.xml:1313
 msgid "Creating a file filter"
 msgstr "ファイルフィルターの作成"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:948
+#: English/Filters.xml:1315
 msgid ""
 "If the file filters that are installed with WinMerge do not provide the "
 "filtering you need, you can create your own:"
@@ -12850,7 +13995,7 @@ msgstr ""
 "いないなら、あなた自身で作成することができます:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:953
+#: English/Filters.xml:1320
 msgid ""
 "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</"
 "guimenuitem> </menuchoice>. Or, from the Select Files or Folders dialog, "
@@ -12863,7 +14008,7 @@ msgstr ""
 "<guilabel>選択</guilabel>ボタンをクリックしてください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:963
+#: English/Filters.xml:1330
 msgid ""
 "In the Filters dialog File Filters tab, click <guibutton>New</guibutton>."
 msgstr ""
@@ -12871,7 +14016,7 @@ msgstr ""
 "タンをクリックしてください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:968
+#: English/Filters.xml:1335
 msgid ""
 "In the Shared or Private Filter dialog, choose <guilabel>Shared Filter</"
 "guilabel> or <guilabel>Private Filter</guilabel> (see <xref "
@@ -12884,7 +14029,7 @@ msgstr ""
 "を選択し、 <keycap>OK</keycap>をクリックしてください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:973
+#: English/Filters.xml:1340
 msgid ""
 "The Select Filename for New Filter dialog opens in the shared or private "
 "files folder on your system (if the private folder does not exist, WinMerge "
@@ -12895,7 +14040,7 @@ msgstr ""
 "が存在しない場合は、WinMergeが作成します)。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:979
+#: English/Filters.xml:1346
 msgid ""
 "In the Select Filename for New Filter dialog, enter a new file name and "
 "click <guibutton>Save</guibutton>."
@@ -12904,7 +14049,7 @@ msgstr ""
 "入力し <guibutton>保存</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><note><para>
-#: English/Filters.xml:983
+#: English/Filters.xml:1350
 msgid ""
 "Don't choose an existing file name: to edit an existing file, go back to "
 "Step <xref linkend=\"Filters_New_step\" /> and click Edit instead of New."
@@ -12914,7 +14059,7 @@ msgstr ""
 "リックしてください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:988
+#: English/Filters.xml:1355
 msgid ""
 "WinMerge initializes the new file with the contents of the "
 "<filename>FileFilter.tmpl</filename> template, and opens it in your default "
@@ -12924,7 +14069,7 @@ msgstr ""
 "filename>を用いて作成し、 デフォルトのテキストエディターでそれを開きます。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:994
+#: English/Filters.xml:1361
 msgid ""
 "Follow the template instructions to edit the template, updating the "
 "placeholder name and description and adding filter rules as described in "
@@ -12937,7 +14082,7 @@ msgstr ""
 "さい。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><tip><para>
-#: English/Filters.xml:1000
+#: English/Filters.xml:1367
 msgid ""
 "If you want to quickly test a rule that you are defining, try clicking Test "
 "in the Filters dialog. See <xref linkend=\"Filters_TestingDlg\" /> for "
@@ -12948,7 +14093,7 @@ msgstr ""
 "linkend=\"Filters_TestingDlg\" />を参照してください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1008
+#: English/Filters.xml:1375
 msgid ""
 "If you created your file filter in one of the standard <filename>Filters</"
 "filename> folders, and the Filters dialog does not list your new file "
@@ -12966,7 +14111,7 @@ msgstr ""
 "んでいるでしょう。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1019
+#: English/Filters.xml:1386
 msgid ""
 "If you saved the file in an alternate location on your file system), "
 "WinMerge cannot detect it unless you install it. To make a file filter "
@@ -12977,14 +14122,14 @@ msgstr ""
 "あるファイルフィルターを検出させるには:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1025
+#: English/Filters.xml:1392
 msgid "Click <guibutton>Install</guibutton> in the Filters dialog."
 msgstr ""
 "フィルターダイアログの <guibutton>インストール</guibutton>をクリックしてくだ"
 "さい。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1030
+#: English/Filters.xml:1397
 msgid ""
 "In the Locate Filter File to Install dialog, navigate to the <filename>flt</"
 "filename> file on your system, and click <guibutton>Open</guibutton>. The "
@@ -12996,17 +14141,17 @@ msgstr ""
 "フィルターを含んでいるでしょう。"
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
-#: English/Filters.xml:1044
+#: English/Filters.xml:1411
 msgid "testing"
 msgstr "testing"
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: English/Filters.xml:1046
+#: English/Filters.xml:1413
 msgid "testing file filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1041
+#: English/Filters.xml:1408
 msgid ""
 "Testing file filter rules<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -13015,7 +14160,7 @@ msgstr ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1049
+#: English/Filters.xml:1416
 msgid ""
 "Use the Test Filter dialog to quickly test a file filter against sample "
 "data, to help you develop new rules or to understand how existing rules "
@@ -13026,18 +14171,18 @@ msgstr ""
 "ださい。 それは、フルで比較操作を走らせるより簡単です。"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1054
+#: English/Filters.xml:1421
 msgid "Starting from the Filters dialog:"
 msgstr "フィルターダイアログから始めます:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1058
+#: English/Filters.xml:1425
 msgid "In the File Filters tab, choose the file filter you want to test."
 msgstr ""
 "ファイルフィルタータブで、テストしたいファイルフィルターを選択してください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1063
+#: English/Filters.xml:1430
 msgid ""
 "If you want to see the rules you will be testing, click <guibutton>Edit</"
 "guibutton> now to open the file so that you can view it during the next "
@@ -13047,18 +14192,18 @@ msgstr ""
 "てください。 ファイルが開き、次のステップの間、内容を確認することができます。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1069
+#: English/Filters.xml:1436
 msgid "Click <guibutton>Test</guibutton>."
 msgstr "<guibutton>テスト</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1073
+#: English/Filters.xml:1440
 msgid "In the Test Filter dialog, choose the type of rule to test:"
 msgstr ""
 "フィルターのテストダイアログで、テストするルールの型を選択してください:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Filters.xml:1078
+#: English/Filters.xml:1445
 msgid ""
 "To test an <guilabel>f:</guilabel> file rule in your file filter, uncheck "
 "the <guilabel>Folder Name</guilabel> option."
@@ -13067,7 +14212,7 @@ msgstr ""
 "は、 <guilabel>フォルダー名</guilabel>オプションのチェックを外してください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Filters.xml:1084
+#: English/Filters.xml:1451
 msgid ""
 "To test a <guilabel>d:</guilabel> folder rule, check the <guilabel>Folder "
 "Name</guilabel> option."
@@ -13076,12 +14221,12 @@ msgstr ""
 "ダー名</guilabel>オプションにチェックを入れてください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1091
+#: English/Filters.xml:1458
 msgid "Enter the text to test."
 msgstr "テスト用のテキストを入力してください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1093
+#: English/Filters.xml:1460
 msgid ""
 "The text should be appropriate for the type of rule you are testing. For "
 "example, if you have checked the <guilabel>Folder Name</guilabel> option, "
@@ -13092,7 +14237,7 @@ msgstr ""
 "「\\temp」の様なフォルダー名を入力したいでしょう。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1098
+#: English/Filters.xml:1465
 msgid ""
 "The <guilabel>Result</guilabel> box displays your entry, followed by its "
 "status: either <computeroutput>passed</computeroutput> or "
@@ -13103,12 +14248,12 @@ msgstr ""
 "<computeroutput>failed</computeroutput>。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:1108
+#: English/Filters.xml:1475
 msgid "Using the Line Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "行フィルタータブの使用<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1114
+#: English/Filters.xml:1481
 msgid ""
 "Use this tab to configure and enable line filters for file compare "
 "operations. The tab features a list of rules. Each rule contains a single "
@@ -13121,12 +14266,12 @@ msgstr ""
 "ます。"
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1120
+#: English/Filters.xml:1487
 msgid "Configuring line filters"
 msgstr "行フィルターの設定"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1122
+#: English/Filters.xml:1489
 msgid ""
 "Below the <guilabel>Regular Expressions</guilabel> list is an edit box and "
 "buttons that you can use to maintain the list at any time by adding, "
@@ -13136,12 +14281,12 @@ msgstr ""
 "除に使うことのできる、編集欄とボタンがあります。"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1126
+#: English/Filters.xml:1493
 msgid "To add a new rule:"
 msgstr "新しいルールを追加するには:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1130
+#: English/Filters.xml:1497
 msgid ""
 "Click <guibutton>New</guibutton>. Your edit cursor is automatically enabled "
 "in the edit box."
@@ -13150,7 +14295,7 @@ msgstr ""
 "編集欄へ移動します。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1135
+#: English/Filters.xml:1502
 msgid ""
 "Enter an expression in the edit box below the <guilabel>Regular Expressions</"
 "guilabel> list."
@@ -13158,7 +14303,7 @@ msgstr ""
 "<guilabel>正規表現</guilabel>リストの下にある、編集欄に式を入力してください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1140
+#: English/Filters.xml:1507
 msgid ""
 "Click <guibutton>Save</guibutton> to load the expression in a new line in "
 "the list."
@@ -13166,22 +14311,22 @@ msgstr ""
 "<guibutton>保存</guibutton>をクリックし、リストへ式を読み込んでください。"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1145
+#: English/Filters.xml:1512
 msgid "To edit an existing rule:"
 msgstr "既存のルールを編集するには:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1149
+#: English/Filters.xml:1516
 msgid "Select the line and click <guibutton>Edit</guibutton>."
 msgstr "行を選択し、 <guibutton>編集</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1153
+#: English/Filters.xml:1520
 msgid "Edit the expression in the edit box."
 msgstr "編集欄の式を編集してください。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1157
+#: English/Filters.xml:1524
 msgid ""
 "Click <guibutton>Save</guibutton><guibutton> </guibutton>when you're done."
 msgstr ""
@@ -13189,7 +14334,7 @@ msgstr ""
 "<guibutton></guibutton>"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1162
+#: English/Filters.xml:1529
 msgid ""
 "To delete an existing rule, select (check) the rule and click "
 "<guibutton>Remove</guibutton>."
@@ -13198,18 +14343,18 @@ msgstr ""
 "ボタンをクリックしてください。"
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
-#: English/Filters.xml:1170 English/Filters.xml:1219
+#: English/Filters.xml:1537 English/Filters.xml:1586
 msgid "list of available"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1167
+#: English/Filters.xml:1534
 msgid ""
 "Enabling and disabling line filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "行フィルターの有効化と無効化<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1175
+#: English/Filters.xml:1542
 msgid ""
 "In the <guilabel>Regular Expressions</guilabel> list, check just the filters "
 "that you want to apply, and uncheck any filters you do not want to apply."
@@ -13218,7 +14363,7 @@ msgstr ""
 "れ、適用したくないフィルターはチェックを外すだけです。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1181
+#: English/Filters.xml:1548
 msgid ""
 "Check or uncheck the <guilabel>Enable Line Filters</guilabel> option. If you "
 "turn filtering on, all the rules that are currently checked in the "
@@ -13232,7 +14377,7 @@ msgstr ""
 "されません。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1189
+#: English/Filters.xml:1556
 msgid ""
 "Click <guibutton>OK</guibutton> to dismiss the Filters dialog and save your "
 "settings."
@@ -13241,7 +14386,7 @@ msgstr ""
 "存してください。"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1194
+#: English/Filters.xml:1561
 msgid ""
 "There are several ways to apply file filters after enabling them.  For "
 "details, see <xref linkend=\"Filters_LineFilterApply\" />."
@@ -13251,37 +14396,37 @@ msgstr ""
 "い。"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:1200
+#: English/Filters.xml:1567
 msgid ""
 "Using the Substitution Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1209
+#: English/Filters.xml:1576
 msgid "Configuring substitution filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1216
+#: English/Filters.xml:1583
 msgid ""
 "Enabling and disabling substitution filters<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:1231
+#: English/Filters.xml:1598
 msgid "getting help"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:1228
+#: English/Filters.xml:1595
 msgid ""
 "Getting help with regular expressions<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr "正規表現のヘルプ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1234
+#: English/Filters.xml:1601
 msgid ""
 "Regular expressions can be very complex. Fortunately, most file filters in "
 "WinMerge involve simple extension expressions, as shown in the examples in "
@@ -13294,7 +14439,7 @@ msgstr ""
 "でいます。"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1239
+#: English/Filters.xml:1606
 msgid ""
 "Finally, there are lots of resources on the Web for help with regexps, "
 "including these sites:"
@@ -13303,36 +14448,36 @@ msgstr ""
 "があります:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1244
+#: English/Filters.xml:1611
 msgid "Good site devoted to regexps:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: English/Filters.xml:1247
+#: English/Filters.xml:1614
 msgid ""
 "<ulink url=\"https://www.regular-expressions.info/\">https://www.regular-"
 "expressions.info/</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1253
+#: English/Filters.xml:1620
 msgid "Tutorial:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: English/Filters.xml:1256
+#: English/Filters.xml:1623
 msgid ""
 "<ulink url=\"http://www.zvon.org/comp/r/tut-Regexp.html\">http://www.zvon."
 "org/comp/r/tut-Regexp.html</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1262
+#: English/Filters.xml:1629
 msgid "PDF quick reference:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: English/Filters.xml:1265
+#: English/Filters.xml:1632
 msgid ""
 "<ulink url=\"https://github.com/GordonMcKinney/gist-assets/raw/master/regex."
 "pdf\"> https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf</"
@@ -20497,204 +21642,3 @@ msgid "Click <guibutton>OK</guibutton> to close the Select Unpacker dialog."
 msgstr ""
 "<guibutton>OK</guibutton>をクリックして、展開プラグインの選択ダイアログを閉じ"
 "てください。"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>0</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>0</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 0"
-#~ msgstr "ブックマーク0へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>0</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>0</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 0"
-#~ msgstr "ブックマーク0の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>1</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>1</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 1"
-#~ msgstr "ブックマーク1 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>1</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>1</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 1"
-#~ msgstr "ブックマーク1の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>2</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>2</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 2"
-#~ msgstr "ブックマーク2 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>2</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>2</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 2"
-#~ msgstr "ブックマーク2の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>3</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>3</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 3"
-#~ msgstr "ブックマーク3 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>3</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>3</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 3"
-#~ msgstr "ブックマーク3の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>4</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>4</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 4"
-#~ msgstr "ブックマーク4 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>4</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>4</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 4"
-#~ msgstr "ブックマーク4の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>5</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>5</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 5"
-#~ msgstr "ブックマーク5 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>5</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>5</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 5"
-#~ msgstr "ブックマーク5の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>6</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>6</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 6"
-#~ msgstr "ブックマーク6 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>6</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>6</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 6"
-#~ msgstr "ブックマーク6の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>7</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>7</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 7"
-#~ msgstr "ブックマーク7 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>7</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>7</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 7"
-#~ msgstr "ブックマーク7の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>8</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>8</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 8"
-#~ msgstr "ブックマーク8 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>8</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>8</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 8"
-#~ msgstr "ブックマーク8の作成・削除"
-
-#~ msgid "<keycombo> <keycap>Alt</keycap> <keycap>9</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Alt</keycap> <keycap>9</keycap> </keycombo>"
-
-#~ msgid "Go to Bookmark 9"
-#~ msgstr "ブックマーク9 へ移動"
-
-#~ msgid "<keycombo> <keycap>Ctrl</keycap> <keycap>9</keycap> </keycombo>"
-#~ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>9</keycap> </keycombo>"
-
-#~ msgid "Toggle Bookmark 9"
-#~ msgstr "ブックマーク9の作成・削除"
-
-#~ msgid "Do not expand"
-#~ msgstr "展開しない"
-
-#~ msgid ""
-#~ "(default): WinMerge will not automatically expand subfolders after "
-#~ "comparing folders."
-#~ msgstr "(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。"
-
-#~ msgid "Expand all subfolders"
-#~ msgstr "すべてのサブフォルダーを展開"
-
-#~ msgid ""
-#~ "WinMerge will automatically expand all subfolders after comparing folders."
-#~ msgstr "フォルダ比較後、自動的にすべてのサブフォルダを展開します。"
-
-#~ msgid "Expand different subfolders"
-#~ msgstr "差異のあるサブフォルダーを展開"
-
-#~ msgid ""
-#~ "WinMerge will automatically expand different subfolders after comparing "
-#~ "folders."
-#~ msgstr "フォルダ比較後、自動的に差異のあるサブフォルダを展開します。"
-
-#~ msgid "Expand identical subfolders"
-#~ msgstr "同一のサブフォルダーを展開"
-
-#~ msgid ""
-#~ "WinMerge will automatically expand identical subfolders after comparing "
-#~ "folders."
-#~ msgstr "フォルダ比較後、自動的に同一のサブフォルダを展開します。"
-
-#~ msgid ""
-#~ "<application>Visual Basic</application> runtime library<placeholder "
-#~ "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/"
-#~ "><placeholder type=\"indexterm\" id=\"2\"/><placeholder "
-#~ "type=\"indexterm\" id=\"3\"/>"
-#~ msgstr ""
-#~ "<application>Visual Basic</application> ランタイムライブラリ<placeholder "
-#~ "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/"
-#~ "><placeholder type=\"indexterm\" id=\"2\"/><placeholder "
-#~ "type=\"indexterm\"  id=\"3\"/>"
-
-#~ msgid ""
-#~ "Some plugins require <application>the Visual Basic</application> runtime "
-#~ "library to work."
-#~ msgstr ""
-#~ "一部のプラグインでは、動作するために<application>Visual Basic</"
-#~ "application> ランタイムライブラリが必要です。"
-
-#~ msgid ""
-#~ "You can use the <ulink url=\"https://www.microsoft.com/en-us/download/"
-#~ "details.aspx?id=24417\">Run-Time Redistribution Pack</ulink> from "
-#~ "<trademark class=\"registered\">Microsoft</trademark>. If you don't need "
-#~ "the plugin, you can safely remove it."
-#~ msgstr ""
-#~ "<trademark class=\"registered\">Microsoft</trademark>の<ulink "
-#~ "url=\"https://www.microsoft.com/en-us/download/details.aspx?"
-#~ "id=24417\">Run-Time Redistribution Pack</ulink>が使用できます。 プラグイン"
-#~ "が不要な場合は、安全に削除できます。"
-
-#~ msgid "Syntax Colors page<placeholder type=\"indexterm\" id=\"0\"/>"
-#~ msgstr "色/シンタックス ページ<placeholder type=\"indexterm\" id=\"0\"/>"
-
-#~ msgid "Text Colors page<placeholder type=\"indexterm\" id=\"0\"/>"
-#~ msgstr "色/テキスト ページ<placeholder type=\"indexterm\" id=\"0\"/>"
-
-#~ msgid "Marker Colors page<placeholder type=\"indexterm\" id=\"0\"/>"
-#~ msgstr "色/マーカー ページ<placeholder type=\"indexterm\" id=\"0\"/>"
-
-#~ msgid ""
-#~ "Allow only one instance to run<placeholder type=\"indexterm\" id=\"0\"/>"
-#~ msgstr ""
-#~ "複数のインスタンスを起動しない<placeholder type=\"indexterm\" id=\"0\"/>"
-
-#~ msgid ""
-#~ "Diff algorithm (Experimental)<placeholder type=\"indexterm\" id=\"0\"/>"
-#~ msgstr "Diff アルゴリズム<placeholder type=\"indexterm\" id=\"0\"/>"
-
-#~ msgid "Webpage Compare Window"
-#~ msgstr "Webページ比較ウィンドウ"

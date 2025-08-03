@@ -176,6 +176,10 @@ CrystalLineParser::ParseLinePascal (unsigned dwCookie, const tchar_t *pszChars, 
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
+          else if (dwCookie & (COOKIE_PREPROCESSOR))
+            {
+              DEFINE_BLOCK (nPos, COLORINDEX_PREPROCESSOR);
+            }
           else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING | COOKIE_RAWSTRING))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_STRING);
@@ -326,6 +330,22 @@ out:
           continue;
         }
 
+      //  Compiler directives {$....} or (*$...*)
+      if (dwCookie & COOKIE_PREPROCESSOR)
+        {
+          if (pszChars[I] == '}')
+            {
+              dwCookie &= ~COOKIE_PREPROCESSOR;
+              bRedefineBlock = true;
+            }
+          else if ((I > 1 && pszChars[I] == ')' && pszChars[nPrevI] == '*' && *tc::tcharprev(pszChars, pszChars + nPrevI) != '(') || (I == 1 && pszChars[I] == ')' && pszChars[nPrevI] == '*'))
+            {
+              dwCookie &= ~COOKIE_PREPROCESSOR;
+              bRedefineBlock = true;
+            }
+          continue;
+        }
+
       if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/')
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
@@ -352,13 +372,27 @@ out:
         }
       if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '(') // (*
         {
+          if (I + 1 < nLength && pszChars[I + 1] == '$') // (*$
+            {
+              //  Compiler directives (*$....*)
+              DEFINE_BLOCK (I, COLORINDEX_PREPROCESSOR);
+              dwCookie |= COOKIE_PREPROCESSOR;
+              continue;
+            }
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT;
           continue;
         }
 
-      if (pszChars[I] == '{')
+      if (pszChars[I] == '{') // {
         {
+          if (I + 1 < nLength && pszChars[I + 1] == '$') // {$
+            {
+              //  Compiler directives {$....}
+              DEFINE_BLOCK (I, COLORINDEX_PREPROCESSOR);
+              dwCookie |= COOKIE_PREPROCESSOR;
+              continue;
+            }
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_EXT_COMMENT2;
           continue;

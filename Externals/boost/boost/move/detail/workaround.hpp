@@ -147,5 +147,10 @@ template<unsigned> struct static_assert_test {};
 #define BOOST_MOVE_INTRINSIC_CAST BOOST_MOVE_FORCEINLINE
 #endif
 
-#endif   //#ifndef BOOST_MOVE_DETAIL_WORKAROUND_HPP
+#if defined(__has_builtin)
+#if __has_builtin(__builtin_launder)
+   #define BOOST_MOVE_HAS_BUILTIN_LAUNDER
+#endif
+#endif
 
+#endif   //#ifndef BOOST_MOVE_DETAIL_WORKAROUND_HPP

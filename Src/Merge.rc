@@ -293,14 +293,14 @@ BEGIN
             MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
             MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
             MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
-            MENUITEM "&Go Back/Forward",             ID_WEB_SYNC_GOBACKFORWARD
+            MENUITEM "&Go Back/Forward",            ID_WEB_SYNC_GOBACKFORWARD
         END
         POPUP "Clear &Browsing Data"
         BEGIN
             MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE
             MENUITEM "&Cookies",                    ID_WEB_CLEAR_COOKIES
             MENUITEM "&Browsing History",           ID_WEB_CLEAR_BROWSING_HISTORY
-            MENUITEM "&All Profiles",                ID_WEB_CLEAR_ALL_PROFILE
+            MENUITEM "&All Profiles",               ID_WEB_CLEAR_ALL_PROFILE
         END
     END
 END
@@ -1075,6 +1075,8 @@ BEGIN
         MENUITEM "G&o to Diff",                 ID_LOCBAR_GOTODIFF
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
+        MENUITEM "Move Cursor on &Click",       ID_LOCBAR_MOVECURSOR_ONCLICK
+        MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
     END
@@ -1248,7 +1250,7 @@ BEGIN
         MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
         MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
         MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
-        MENUITEM "&Go Back/Forward",             ID_WEB_SYNC_GOBACKFORWARD
+        MENUITEM "&Go Back/Forward",            ID_WEB_SYNC_GOBACKFORWARD
     END
 END
 
@@ -1257,15 +1259,15 @@ BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "${*} - All Arguments",        ID_PLUGIN_PIPELINE_ARGALL
-        MENUITEM "${1} - First Argument",   ID_PLUGIN_PIPELINE_ARG1
-        MENUITEM "${2} - Second Argument",  ID_PLUGIN_PIPELINE_ARG2
-        MENUITEM "${3} - Third Argument",   ID_PLUGIN_PIPELINE_ARG3
-        MENUITEM "${4} - Fourth Argument",  ID_PLUGIN_PIPELINE_ARG4
-        MENUITEM "${5} - Fifth Argument",   ID_PLUGIN_PIPELINE_ARG5
-        MENUITEM "${6} - Sixth Argument",   ID_PLUGIN_PIPELINE_ARG6
-        MENUITEM "${7} - Seventh Argument", ID_PLUGIN_PIPELINE_ARG7
-        MENUITEM "${8} - Eighth Argument",  ID_PLUGIN_PIPELINE_ARG8
-        MENUITEM "${9} - Ninth Argument",   ID_PLUGIN_PIPELINE_ARG9
+        MENUITEM "${1} - First Argument",       ID_PLUGIN_PIPELINE_ARG1
+        MENUITEM "${2} - Second Argument",      ID_PLUGIN_PIPELINE_ARG2
+        MENUITEM "${3} - Third Argument",       ID_PLUGIN_PIPELINE_ARG3
+        MENUITEM "${4} - Fourth Argument",      ID_PLUGIN_PIPELINE_ARG4
+        MENUITEM "${5} - Fifth Argument",       ID_PLUGIN_PIPELINE_ARG5
+        MENUITEM "${6} - Sixth Argument",       ID_PLUGIN_PIPELINE_ARG6
+        MENUITEM "${7} - Seventh Argument",     ID_PLUGIN_PIPELINE_ARG7
+        MENUITEM "${8} - Eighth Argument",      ID_PLUGIN_PIPELINE_ARG8
+        MENUITEM "${9} - Ninth Argument",       ID_PLUGIN_PIPELINE_ARG9
     END
 END
 
@@ -1286,15 +1288,15 @@ BEGIN
         MENUITEM "${WINMERGE_HOME} - WinMerge Home Directory", ID_PLUGIN_COMMAND_LINE_WINMERGE_HOME
         MENUITEM "${SCRIPT_FILE} - Script File", ID_PLUGIN_COMMAND_LINE_SCRIPT_FILE
         MENUITEM "${*} - All Arguments",        ID_PLUGIN_COMMAND_LINE_ARGALL
-        MENUITEM "${1} - First Argument",   ID_PLUGIN_COMMAND_LINE_ARG1
-        MENUITEM "${2} - Second Argument",  ID_PLUGIN_COMMAND_LINE_ARG2
-        MENUITEM "${3} - Third Argument",   ID_PLUGIN_COMMAND_LINE_ARG3
-        MENUITEM "${4} - Fourth Argument",  ID_PLUGIN_COMMAND_LINE_ARG4
-        MENUITEM "${5} - Fifth Argument",   ID_PLUGIN_COMMAND_LINE_ARG5
-        MENUITEM "${6} - Sixth Argument",   ID_PLUGIN_COMMAND_LINE_ARG6
-        MENUITEM "${7} - Seventh Argument", ID_PLUGIN_COMMAND_LINE_ARG7
-        MENUITEM "${8} - Eighth Argument",  ID_PLUGIN_COMMAND_LINE_ARG8
-        MENUITEM "${9} - Ninth Argument",   ID_PLUGIN_COMMAND_LINE_ARG9
+        MENUITEM "${1} - First Argument",       ID_PLUGIN_COMMAND_LINE_ARG1
+        MENUITEM "${2} - Second Argument",      ID_PLUGIN_COMMAND_LINE_ARG2
+        MENUITEM "${3} - Third Argument",       ID_PLUGIN_COMMAND_LINE_ARG3
+        MENUITEM "${4} - Fourth Argument",      ID_PLUGIN_COMMAND_LINE_ARG4
+        MENUITEM "${5} - Fifth Argument",       ID_PLUGIN_COMMAND_LINE_ARG5
+        MENUITEM "${6} - Sixth Argument",       ID_PLUGIN_COMMAND_LINE_ARG6
+        MENUITEM "${7} - Seventh Argument",     ID_PLUGIN_COMMAND_LINE_ARG7
+        MENUITEM "${8} - Eighth Argument",      ID_PLUGIN_COMMAND_LINE_ARG8
+        MENUITEM "${9} - Ninth Argument",       ID_PLUGIN_COMMAND_LINE_ARG9
     END
 END
 
@@ -1330,6 +1332,218 @@ BEGIN
         MENUITEM "Clear &All",                  ID_EDIT_CLEAR_ALL
     END
 END
+
+IDR_POPUP_FILTERMENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Clear All",                  ID_FILTERMENU_MASK_CLEAR
+        MENUITEM "Remove Last Filter &Group",   ID_FILTERMENU_MASK_REMOVE_LAST
+        MENUITEM "R&eset to Default (*.*)",     ID_FILTERMENU_MASK_ALL
+        POPUP "Add E&xclude File"
+        BEGIN
+            MENUITEM "&System Files",               ID_FILTERMENU_FILE_SYS
+            MENUITEM "&Editor Backup Files",        ID_FILTERMENU_FILE_BACKUP
+            MENUITEM "&Compiled Binary Files",      ID_FILTERMENU_FILE_BIN
+            MENUITEM "&Log Files",                  ID_FILTERMENU_FILE_LOG
+            MENUITEM "&Temporary or Cache Files",   ID_FILTERMENU_FILE_TEMP
+        END
+        POPUP "Add Excl&ude Folder"
+        BEGIN
+            MENUITEM "&Version Control",            ID_FILTERMENU_FOLDER_VCS
+            MENUITEM "&Build Artifacts",            ID_FILTERMENU_FOLDER_BUILD
+            MENUITEM "&IDE",                        ID_FILTERMENU_FOLDER_IDE
+        END
+        MENUITEM SEPARATOR
+        POPUP "Add &File Condition"
+        BEGIN
+            POPUP "File &Size"
+            BEGIN
+                MENUITEM "Less than 1KB",               ID_FILTERMENU_SIZE_LT_1KB
+                MENUITEM "1KB or more",                 ID_FILTERMENU_SIZE_GE_1KB
+                MENUITEM "Less than 10KB",              ID_FILTERMENU_SIZE_LT_10KB
+                MENUITEM "10KB or more",                ID_FILTERMENU_SIZE_GE_10KB
+                MENUITEM "Less than 100KB",             ID_FILTERMENU_SIZE_LT_100KB
+                MENUITEM "100KB or more",               ID_FILTERMENU_SIZE_GE_100KB
+                MENUITEM "Less than 1MB",               ID_FILTERMENU_SIZE_LT_1MB
+                MENUITEM "1MB or more",                 ID_FILTERMENU_SIZE_GE_1MB
+                MENUITEM "Less than 10MB",              ID_FILTERMENU_SIZE_LT_10MB
+                MENUITEM "10MB or more",                ID_FILTERMENU_SIZE_GE_10MB
+                MENUITEM "Less than 100MB",             ID_FILTERMENU_SIZE_LT_100MB
+                MENUITEM "100MB or more",               ID_FILTERMENU_SIZE_GE_100MB
+                MENUITEM "Less than 1GB",               ID_FILTERMENU_SIZE_LT_1GB
+                MENUITEM "1GB or more",                 ID_FILTERMENU_SIZE_GE_1GB
+                MENUITEM "Custom Range...",             ID_FILTERMENU_SIZE_RANGE
+            END
+            POPUP "&Last Modified"
+            BEGIN
+                POPUP "&Hour"
+                BEGIN
+                    MENUITEM "More than 1 hour ago",        ID_FILTERMENU_DATE_HOUR_BEFORE_1
+                    MENUITEM "Within 1 hour",               ID_FILTERMENU_DATE_HOUR_WITHIN_1
+                END
+                POPUP "&Day"
+                BEGIN
+                    MENUITEM "Before today",                ID_FILTERMENU_DATE_DAY_BEFORE_TODAY
+                    MENUITEM "Today",                       ID_FILTERMENU_DATE_DAY_TODAY
+                    MENUITEM "Before yesterday",            ID_FILTERMENU_DATE_DAY_BEFORE_YESTERDAY
+                    MENUITEM "Yesterday",                   ID_FILTERMENU_DATE_DAY_YESTERDAY
+                    MENUITEM "Since yesterday",             ID_FILTERMENU_DATE_DAY_SINCE_YESTERDAY
+                END
+                POPUP "&Week"
+                BEGIN
+                    MENUITEM "Before this week",            ID_FILTERMENU_DATE_WEEK_BEFORE_THIS
+                    MENUITEM "This week",                   ID_FILTERMENU_DATE_WEEK_THIS
+                    MENUITEM "Before last week",            ID_FILTERMENU_DATE_WEEK_BEFORE_LAST
+                    MENUITEM "Last week",                   ID_FILTERMENU_DATE_WEEK_LAST
+                    MENUITEM "Since last week",             ID_FILTERMENU_DATE_WEEK_SINCE_LAST
+                END
+                POPUP "&Month"
+                BEGIN
+                    MENUITEM "Before this month",           ID_FILTERMENU_DATE_MONTH_BEFORE_THIS
+                    MENUITEM "This month",                  ID_FILTERMENU_DATE_MONTH_THIS
+                    MENUITEM "Before last month",           ID_FILTERMENU_DATE_MONTH_BEFORE_LAST
+                    MENUITEM "Last month",                  ID_FILTERMENU_DATE_MONTH_LAST
+                    MENUITEM "Since last month",            ID_FILTERMENU_DATE_MONTH_SINCE_LAST
+                END
+                POPUP "&Year"
+                BEGIN
+                    MENUITEM "Before this year",            ID_FILTERMENU_DATE_YEAR_BEFORE_THIS
+                    MENUITEM "This year",                   ID_FILTERMENU_DATE_YEAR_THIS
+                    MENUITEM "Before last year",            ID_FILTERMENU_DATE_YEAR_BEFORE_LAST
+                    MENUITEM "Last year",                   ID_FILTERMENU_DATE_YEAR_LAST
+                    MENUITEM "Since last year",             ID_FILTERMENU_DATE_YEAR_SINCE_LAST
+                END
+                MENUITEM "&Custom Range...",            ID_FILTERMENU_DATE_RANGE
+            END
+            POPUP "&Attributes"
+            BEGIN
+                MENUITEM "Read-only files",             ID_FILTERMENU_ATTR_READONLY
+                MENUITEM "Not read-only files",         ID_FILTERMENU_ATTR_NOT_READONLY
+                MENUITEM "Hidden files",                ID_FILTERMENU_ATTR_HIDDEN
+                MENUITEM "Not hidden files",            ID_FILTERMENU_ATTR_NOT_HIDDEN
+                MENUITEM "System files",                ID_FILTERMENU_ATTR_SYSTEM
+                MENUITEM "Not system files",            ID_FILTERMENU_ATTR_NOT_SYSTEM
+            END
+            POPUP "File &Content"
+            BEGIN
+                MENUITEM "Contains string...",          ID_FILTERMENU_CONTENT_CONTAINS
+                MENUITEM "Does not contain string...",  ID_FILTERMENU_CONTENT_NOT_CONTAINS
+                MENUITEM "First line contains string...", ID_FILTERMENU_CONTENT_FIRST_LINE_CONTAINS
+                MENUITEM "First line does not contain string...", ID_FILTERMENU_CONTENT_FIRST_LINE_NOT_CONTAINS
+                MENUITEM "First 10 lines contain string...", ID_FILTERMENU_CONTENT_FIRST_10_CONTAINS
+                MENUITEM "First 10 lines do not contain string...", ID_FILTERMENU_CONTENT_FIRST_10_NOT_CONTAINS
+                MENUITEM "Last 10 lines contain string...", ID_FILTERMENU_CONTENT_LAST_10_CONTAINS
+                MENUITEM "Last 10 lines do not contain string...", ID_FILTERMENU_CONTENT_LAST_10_NOT_CONTAINS
+                MENUITEM "Last line contains string...", ID_FILTERMENU_CONTENT_LAST_LINE_CONTAINS
+                MENUITEM "Last line does not contain string...", ID_FILTERMENU_CONTENT_LAST_LINE_NOT_CONTAINS
+            END
+            POPUP "&Line Count"
+            BEGIN
+                MENUITEM "Less than 10",                ID_FILTERMENU_LINES_LT_10
+                MENUITEM "10 or more",                  ID_FILTERMENU_LINES_GE_10
+                MENUITEM "Less than 100",               ID_FILTERMENU_LINES_LT_100
+                MENUITEM "100 or more",                 ID_FILTERMENU_LINES_GE_100
+                MENUITEM "Less than 1000",              ID_FILTERMENU_LINES_LT_1000
+                MENUITEM "1000 or more",                ID_FILTERMENU_LINES_GE_1000
+                MENUITEM "Less than 10000",             ID_FILTERMENU_LINES_LT_10000
+                MENUITEM "10000 or more",               ID_FILTERMENU_LINES_GE_10000
+                MENUITEM "Less than 100000",            ID_FILTERMENU_LINES_LT_100000
+                MENUITEM "100000 or more",              ID_FILTERMENU_LINES_GE_100000
+                MENUITEM "Custom Range...",             ID_FILTERMENU_LINES_RANGE
+            END
+        END
+        POPUP "Add F&older Condition"
+        BEGIN
+            POPUP "&Last Modified"
+            BEGIN
+                POPUP "&Hour"
+                BEGIN
+                    MENUITEM "More than 1 hour ago",        ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1
+                    MENUITEM "Within 1 hour",               ID_FILTERMENU_FOLDER_DATE_HOUR_WITHIN_1
+                END
+                POPUP "&Day"
+                BEGIN
+                    MENUITEM "Before today",                ID_FILTERMENU_FOLDER_DATE_DAY_BEFORE_TODAY
+                    MENUITEM "Today",                       ID_FILTERMENU_FOLDER_DATE_DAY_TODAY
+                    MENUITEM "Before yesterday",            ID_FILTERMENU_FOLDER_DATE_DAY_BEFORE_YESTERDAY
+                    MENUITEM "Yesterday",                   ID_FILTERMENU_FOLDER_DATE_DAY_YESTERDAY
+                    MENUITEM "Since yesterday",             ID_FILTERMENU_FOLDER_DATE_DAY_SINCE_YESTERDAY
+                END
+                POPUP "&Week"
+                BEGIN
+                    MENUITEM "Before this week",            ID_FILTERMENU_FOLDER_DATE_WEEK_BEFORE_THIS
+                    MENUITEM "This week",                   ID_FILTERMENU_FOLDER_DATE_WEEK_THIS
+                    MENUITEM "Before last week",            ID_FILTERMENU_FOLDER_DATE_WEEK_BEFORE_LAST
+                    MENUITEM "Last week",                   ID_FILTERMENU_FOLDER_DATE_WEEK_LAST
+                    MENUITEM "Since last week",             ID_FILTERMENU_FOLDER_DATE_WEEK_SINCE_LAST
+                END
+                POPUP "&Month"
+                BEGIN
+                    MENUITEM "Before this month",           ID_FILTERMENU_FOLDER_DATE_MONTH_BEFORE_THIS
+                    MENUITEM "This month",                  ID_FILTERMENU_FOLDER_DATE_MONTH_THIS
+                    MENUITEM "Before last month",           ID_FILTERMENU_FOLDER_DATE_MONTH_BEFORE_LAST
+                    MENUITEM "Last month",                  ID_FILTERMENU_FOLDER_DATE_MONTH_LAST
+                    MENUITEM "Since last month",            ID_FILTERMENU_FOLDER_DATE_MONTH_SINCE_LAST
+                END
+                POPUP "&Year"
+                BEGIN
+                    MENUITEM "Before this year",            ID_FILTERMENU_FOLDER_DATE_YEAR_BEFORE_THIS
+                    MENUITEM "This year",                   ID_FILTERMENU_FOLDER_DATE_YEAR_THIS
+                    MENUITEM "Before last year",            ID_FILTERMENU_FOLDER_DATE_YEAR_BEFORE_LAST
+                    MENUITEM "Last year",                   ID_FILTERMENU_FOLDER_DATE_YEAR_LAST
+                    MENUITEM "Since last year",             ID_FILTERMENU_FOLDER_DATE_YEAR_SINCE_LAST
+                END
+                MENUITEM "&Custom Range...",            ID_FILTERMENU_FOLDER_DATE_RANGE
+            END
+        END
+        MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
+        MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT
+        MENUITEM "Target: &Middle",             ID_FILTERMENU_CONDITION_MIDDLE
+        MENUITEM "Target: &Right",              ID_FILTERMENU_CONDITION_RIGHT
+        MENUITEM SEPARATOR
+        POPUP "Add &Difference Condition"
+        BEGIN
+            POPUP "File &Size"
+            BEGIN
+                MENUITEM "Equal",                       ID_FILTERMENU_DIFF_SIZE_EQUAL
+                MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_SIZE_NOT_EQUAL
+                MENUITEM "Less than 10B",               ID_FILTERMENU_DIFF_SIZE_LT_10B
+                MENUITEM "10B or more",                 ID_FILTERMENU_DIFF_SIZE_GE_10B
+                MENUITEM "Less than 100B",              ID_FILTERMENU_DIFF_SIZE_LT_100B
+                MENUITEM "100B or more",                ID_FILTERMENU_DIFF_SIZE_GE_100B
+                MENUITEM "Less than 1KB",               ID_FILTERMENU_DIFF_SIZE_LT_1KB
+                MENUITEM "1KB or more",                 ID_FILTERMENU_DIFF_SIZE_GE_1KB
+                MENUITEM "Custom Range...",             ID_FILTERMENU_DIFF_SIZE_RANGE
+            END
+            POPUP "&Last Modified"
+            BEGIN
+                MENUITEM "Equal",                       ID_FILTERMENU_DIFF_DATE_EQUAL
+                MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_DATE_NOT_EQUAL
+                MENUITEM "Less than 1 second",          ID_FILTERMENU_DIFF_DATE_LT_1SECOND
+                MENUITEM "1 second or more",            ID_FILTERMENU_DIFF_DATE_GE_1SECOND
+                MENUITEM "Less than 1 minute",          ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
+                MENUITEM "1 minute or more",            ID_FILTERMENU_DIFF_DATE_GE_1MINUTE
+                MENUITEM "Less than 1 hour",            ID_FILTERMENU_DIFF_DATE_LT_1HOUR
+                MENUITEM "1 hour or more",              ID_FILTERMENU_DIFF_DATE_GE_1HOUR
+                MENUITEM "Less than 1 day",             ID_FILTERMENU_DIFF_DATE_LT_1DAY
+                MENUITEM "1 day or more",               ID_FILTERMENU_DIFF_DATE_GE_1DAY
+                MENUITEM "Less than 1 week",            ID_FILTERMENU_DIFF_DATE_LT_1WEEK
+                MENUITEM "1 week or more",              ID_FILTERMENU_DIFF_DATE_GE_1WEEK
+                MENUITEM "Custom Range...",             ID_FILTERMENU_DIFF_DATE_RANGE
+            END
+            POPUP "&Attributes"
+            BEGIN
+                MENUITEM "Equal",                       ID_FILTERMENU_DIFF_ATTR_EQUAL
+                MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_ATTR_NOT_EQUAL
+            END
+        END
+        MENUITEM "Target: &Left and Right",     ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT
+        MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE
+        MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1474,7 +1688,7 @@ BEGIN
     GROUPBOX        "",IDC_FILES_DIRS_GROUP3X,6,197,224,42
     LTEXT           " Folder: Filter",IDC_FILES_DIRS_GROUP3,10,198,86,11
     COMBOBOX        IDC_EXT_COMBO,10,209,140,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&Select...",IDC_SELECT_FILTER,153,209,73,14
+    CONTROL         "&Select...",IDC_SELECT_FILTER,"Button",BS_SPLITBUTTON | WS_TABSTOP,153,209,73,14
     CONTROL         "&Include subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
     LTEXT           " File: Prediffer Plugin",IDC_FILES_DIRS_GROUP5,10,198,120,11,NOT WS_VISIBLE
     CONTROL         "",IDC_PREDIFFER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP,10,209,140,95
@@ -1539,20 +1753,6 @@ BEGIN
     DEFPUSHBUTTON   "&Find Next",IDOK,247,7,70,14,WS_GROUP
     PUSHBUTTON      "Find &Prev",IDC_EDIT_FINDPREV,247,24,70,14,WS_GROUP
     PUSHBUTTON      "Cancel",IDCANCEL,247,41,70,14
-END
-
-IDD_DIR_FILTER DIALOGEX 30, 73, 293, 74
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Find"
-FONT 8, FONTNAME, 0, 0, 0x1
-BEGIN
-    LTEXT           "Fi&nd what:",IDC_STATIC,7,9,50,10
-    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,140,10
-    CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,140,10
-    CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,140,10
-    DEFPUSHBUTTON   "&Ok",IDOK,226,7,60,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,226,24,60,14
 END
 
 IDD_EDIT_REPLACE DIALOGEX 36, 44, 324, 96
@@ -2043,12 +2243,36 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "File Filters"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,6,6,516,144
+    LTEXT           "&Mask / Filter Expression",IDC_STATIC,6,6,260,10
+    CONTROL         "",IDC_FILTERFILE_MASK,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,6,16,500,95
+    PUSHBUTTON      "&=",IDC_FILTERFILE_MASK_MENU,506,16,17,12
+    LTEXT           "Preset &Filters",IDC_STATIC,6,34,260,10
+    CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,6,44,516,110
     PUSHBUTTON      "Test...",IDC_FILTERFILE_TEST_BTN,6,156,50,14
-    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,305,156,50,14
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,360,156,50,14
-    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,414,156,50,14
+    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,308,156,50,14
+    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,363,156,50,14
+    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,418,156,50,14
     PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,473,156,50,14
+END
+
+IDD_FILTERS_CONDITION DIALOGEX 0, 0, 311, 111
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Filter Condition"
+FONT 8, FONTNAME, 0, 0, 0x1
+BEGIN
+    LTEXT           "&Left-hand side:",IDC_STATIC,7,6,60,12
+    LTEXT           "",IDC_CONDITION_LHS, 86, 6, 180, 100
+    LTEXT           "&Operator:",IDC_STATIC,6,23,60,12
+    COMBOBOX        IDC_CONDITION_OPERATOR,86,24,100,100,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Right-hand side:",IDC_STATIC,6,41,60,12
+    COMBOBOX        IDC_CONDITION_VALUE1,86,42,100,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    COMBOBOX        IDC_CONDITION_VALUE2,196,42,100,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "",IDC_CONDITION_VALUEDTP1,"SysDateTimePick32",WS_TABSTOP,86,42,100,14
+    CONTROL         "",IDC_CONDITION_VALUEDTP2,"SysDateTimePick32",WS_TABSTOP,196,42,100,14
+    LTEXT           "Expression:",IDC_STATIC,6,62,237,12
+    LTEXT           "",IDC_CONDITION_EXPRESSION,86,62,200,24
+    DEFPUSHBUTTON   "OK",IDOK,185,91,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,245,91,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 217
@@ -2572,7 +2796,7 @@ BEGIN
     COMBOBOX        IDC_PLUGIN_WINDOWTYPE,108,140,220,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "&Plugin pipeline:",IDC_PLUGIN_PIPELINE_STATIC,8,140,98,10
     EDITTEXT        IDC_PLUGIN_PIPELINE,108,140,208,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "=",IDC_PLUGIN_PIPELINE_MENU,316,140,12,12
+    PUSHBUTTON      "&=",IDC_PLUGIN_PIPELINE_MENU,316,140,12,12
     LTEXT           "&Unpacked file extension:",IDC_PLUGIN_UNPACKEDFILEEXTENSION_STATIC,8,156,98,10
     EDITTEXT        IDC_PLUGIN_UNPACKEDFILEEXTENSION,108,156,220,12,ES_AUTOHSCROLL
     CONTROL         "Enable &automatic unpacking/prediffing",IDC_PLUGIN_AUTOMATIC,
@@ -2583,7 +2807,7 @@ BEGIN
     CONTROL         "",IDC_PLUGIN_TAB,"SysTabControl32",WS_TABSTOP,4,206,328,76
     LTEXT           "Command &line:",IDC_PLUGIN_COMMAND_LINE_STATIC,8,226,98,10
     EDITTEXT        IDC_PLUGIN_COMMAND_LINE,108,226,208,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "=",IDC_PLUGIN_COMMAND_LINE_MENU,316,226,12,12
+    PUSHBUTTON      "&=",IDC_PLUGIN_COMMAND_LINE_MENU,316,226,12,12
     LTEXT           "&Script file extension:",IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC,8,242,98,10
     EDITTEXT        IDC_PLUGIN_SCRIPT_FILEEXTENSION,108,242,220,12,ES_AUTOHSCROLL
     LTEXT           "Script &body:",IDC_PLUGIN_SCRIPT_BODY_STATIC,8,258,98,10
@@ -2681,6 +2905,12 @@ BEGIN
 
     IDD_FILTERS_FILEFILTERS, DIALOG
     BEGIN
+    END
+
+    IDD_FILTERS_CONDITION, DIALOG
+    BEGIN
+        RIGHTMARGIN, 250
+        BOTTOMMARGIN, 95
     END
 
     IDD_SAVECLOSING, DIALOG
@@ -3405,6 +3635,11 @@ BEGIN
     0, 0, 100, 0,
     100, 0, 0, 0,
     100, 0, 0, 0
+END
+
+IDD_FILTERS_CONDITION AFX_DIALOG_LAYOUT
+BEGIN
+    0
 END
 
 
@@ -4305,6 +4540,7 @@ BEGIN
     IDS_CHECKFORUPDATES_UPTODATE "Your software is up to date."
     IDS_CHECKFORUPDATES_NEWVERSION 
                             "WinMerge update available.\n%1 available (you have %2). Download now?"
+    IDS_ALLRIGHTS_RESERVED  " - All rights reserved."
 END
 
 STRINGTABLE
@@ -4337,7 +4573,7 @@ END
 // AUTOCOMPLETE COMBOBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_AUTOCOMPLETE_DISABLED "Disabled"
+    IDS_AUTOCOMPLETE_DISABLED NC_("Options dialog|General|Open dialog Auto completion","Disabled")
     IDS_AUTOCOMPLETE_FILE_SYS "From file system"
     IDS_AUTOCOMPLETE_MRU    "From Most Recently Used list"
 END
@@ -4462,6 +4698,7 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_CLOSE_WINDOWS_WITH_ESC_DISABLED NC_("Options dialog|General|Close windows with Esc","Disabled")
     IDS_CLOSE_WINDOWS_WITH_ESC_1 "MDI child window or main window"
     IDS_CLOSE_WINDOWS_WITH_ESC_2 "MDI child window only"
     IDS_CLOSE_WINDOWS_WITH_ESC_3 "Close main window if only one MDI child window"
@@ -4521,12 +4758,14 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_SINGLEINSTANCE_DISABLED NC_("Options dialog|General|Single instance mode","Disabled")
     IDS_SINGLEINSTANCE_STR1 "Allow only one instance to run"
     IDS_SINGLEINSTANCE_STR2 "Allow only one instance; wait for termination"
 END
 
 STRINGTABLE
 BEGIN
+    IDS_AUTO_RELOAD_MODIFIED_FILES_DISABLED NC_("Options dialog|General|Auto-reload modified files","Disabled")
     IDS_AUTO_RELOAD_MODIFIED_FILES_STR1 "Only on window activated"
     IDS_AUTO_RELOAD_MODIFIED_FILES_STR2 "Immediately"
 END
@@ -4535,7 +4774,7 @@ STRINGTABLE
 BEGIN
     IDS_PLUGIN_ALL          "Al&l"
     IDS_PLUGIN_OTHERS       "&Others"
-    IDS_PLUGIN_MISSING_PLUGIN_NAME 
+    IDS_PLUGIN_MISSING_PLUGIN_NAME
                             "Missing plugin name in pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK 
                             "Missing quote in plugin pipeline: %1"
@@ -4652,6 +4891,39 @@ BEGIN
     IDS_LOG_PERMANENTLY_DELETED "Permanently deleted"
     IDS_LOG_FILEOPERATION_COMPLETED  "File operation completed successfully"
     IDS_LOG_FILEOPERATION_CANCELED "File operation canceled"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILTER_ERROR_NO_ERROR "No error"
+    IDS_FILTER_ERROR_EMPTY_EXPRESSION "Filter expression is empty"
+    IDS_FILTER_ERROR_UNKNOWN_CHAR "Unknown character in filter expression"
+    IDS_FILTER_ERROR_UNTERMINATED_STRING "Unterminated string literal"
+    IDS_FILTER_ERROR_SYNTAX_ERROR "Syntax error in filter expression"
+    IDS_FILTER_ERROR_PARSE_FAILURE "Failed to parse filter expression"
+    IDS_FILTER_ERROR_INVALID_LITERAL "Invalid literal value"
+    IDS_FILTER_ERROR_INVALID_REGULAR_EXPRESSION "Invalid regular expression"
+    IDS_FILTER_ERROR_UNDEFINED_IDENTIFIER "Undefined identifier"
+    IDS_FILTER_ERROR_INVALID_ARGUMENT_COUNT "Invalid number of arguments"
+    IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND "Filter name not found"
+    IDS_FILTER_ERROR_DIVIDE_BY_ZERO "Division by zero in filter expression"
+    IDS_FILTER_ERROR_UNKNOWN_ERROR "Unknown error"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILTER_OP_EQUALS             "Equals"
+    IDS_FILTER_OP_NOT_EQUALS         "Does not equal"
+    IDS_FILTER_OP_LESS_THAN          "Less than"
+    IDS_FILTER_OP_LESS_EQUAL         "Less than or equal to"
+    IDS_FILTER_OP_GREATER_EQUAL      "Greater than or equal to"
+    IDS_FILTER_OP_GREATER_THAN       "Greater than"
+    IDS_FILTER_OP_BETWEEN            "Between"
+    IDS_FILTER_OP_NOT_BETWEEN        "Not Between"
+    IDS_FILTER_OP_CONTAINS           "Contains"
+    IDS_FILTER_OP_NOT_CONTAINS       "Not Contains"
+    IDS_FILTER_OP_RECONTAINS         "Contains (regex)"
+    IDS_FILTER_OP_NOT_RECONTAINS     "Not Contains (regex)"
 END
 
 #endif    // English (United States) resources

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2019-10-14 13:09+0000\n"
-"PO-Revision-Date: 2023-11-14 10:00+0200\n"
+"PO-Revision-Date: 2025-04-29 10:00+0300\n"
 "Last-Translator: Стоян <stoyanster от гмаил>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: bg\n"
@@ -227,16 +227,16 @@ msgid "&Vector Image Scaling"
 msgstr "Мащабиране на &векторно изображение"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "Настройки на &анимациите"
 
 msgid "&Blink Interval"
-msgstr ""
+msgstr "Интервал на пре&мигване"
 
 msgid "&Overlay Animation Interval"
-msgstr ""
+msgstr "Интервал на анимацията на &слоя"
 
 msgid "Compare Extracted &Text from Images"
-msgstr ""
+msgstr "Сравняване на &текста от изображението"
 
 msgid "Co&mpare"
 msgstr "&Сравняване"
@@ -974,7 +974,7 @@ msgid "O&pen Right"
 msgstr "Отваряне на &десния"
 
 msgid "Cop&y Paths"
-msgstr "Копиране на &пътя"
+msgstr "Копиране на &пътищата"
 
 #, c-format
 msgid "Left (%1 of %2)"
@@ -1067,6 +1067,9 @@ msgstr ""
 
 msgid "G&o to Diff"
 msgstr "&Отиване към различие"
+
+msgid "Move Cursor on &Click"
+msgstr ""
 
 msgid "&No Moved Blocks"
 msgstr "&Без преместени блокове"
@@ -1210,6 +1213,345 @@ msgid "&Duplicate Plugin..."
 msgstr ""
 
 msgid "Clear &All"
+msgstr "Изчистване &всички"
+
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
+msgstr ""
+
+msgid "R&eset to Default (*.*)"
+msgstr ""
+
+msgid "Add E&xclude File"
+msgstr ""
+
+msgid "&System Files"
+msgstr ""
+
+msgid "&Editor Backup Files"
+msgstr ""
+
+msgid "&Compiled Binary Files"
+msgstr ""
+
+msgid "&Log Files"
+msgstr ""
+
+msgid "&Temporary or Cache Files"
+msgstr ""
+
+msgid "Add Excl&ude Folder"
+msgstr ""
+
+msgid "&Version Control"
+msgstr ""
+
+msgid "&Build Artifacts"
+msgstr ""
+
+msgid "&IDE"
+msgstr ""
+
+msgid "Add &File Condition"
+msgstr ""
+
+msgid "File &Size"
+msgstr ""
+
+msgid "Less than 1KB"
+msgstr ""
+
+msgid "1KB or more"
+msgstr ""
+
+msgid "Less than 10KB"
+msgstr ""
+
+msgid "10KB or more"
+msgstr ""
+
+msgid "Less than 100KB"
+msgstr ""
+
+msgid "100KB or more"
+msgstr ""
+
+msgid "Less than 1MB"
+msgstr ""
+
+msgid "1MB or more"
+msgstr ""
+
+msgid "Less than 10MB"
+msgstr ""
+
+msgid "10MB or more"
+msgstr ""
+
+msgid "Less than 100MB"
+msgstr ""
+
+msgid "100MB or more"
+msgstr ""
+
+msgid "Less than 1GB"
+msgstr ""
+
+msgid "1GB or more"
+msgstr ""
+
+msgid "Custom Range..."
+msgstr ""
+
+msgid "&Last Modified"
+msgstr ""
+
+msgid "&Hour"
+msgstr ""
+
+msgid "More than 1 hour ago"
+msgstr ""
+
+msgid "Within 1 hour"
+msgstr ""
+
+msgid "&Day"
+msgstr ""
+
+msgid "Before today"
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+msgid "Before yesterday"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "Since yesterday"
+msgstr ""
+
+msgid "&Week"
+msgstr ""
+
+msgid "Before this week"
+msgstr ""
+
+msgid "This week"
+msgstr ""
+
+msgid "Before last week"
+msgstr ""
+
+msgid "Last week"
+msgstr ""
+
+msgid "Since last week"
+msgstr ""
+
+msgid "&Month"
+msgstr ""
+
+msgid "Before this month"
+msgstr ""
+
+msgid "This month"
+msgstr ""
+
+msgid "Before last month"
+msgstr ""
+
+msgid "Last month"
+msgstr ""
+
+msgid "Since last month"
+msgstr ""
+
+msgid "&Year"
+msgstr ""
+
+msgid "Before this year"
+msgstr ""
+
+msgid "This year"
+msgstr ""
+
+msgid "Before last year"
+msgstr ""
+
+msgid "Last year"
+msgstr ""
+
+msgid "Since last year"
+msgstr ""
+
+msgid "&Custom Range..."
+msgstr ""
+
+msgid "&Attributes"
+msgstr ""
+
+msgid "Read-only files"
+msgstr ""
+
+msgid "Not read-only files"
+msgstr ""
+
+msgid "Hidden files"
+msgstr ""
+
+msgid "Not hidden files"
+msgstr ""
+
+msgid "System files"
+msgstr ""
+
+msgid "Not system files"
+msgstr ""
+
+msgid "File &Content"
+msgstr ""
+
+msgid "Contains string..."
+msgstr ""
+
+msgid "Does not contain string..."
+msgstr ""
+
+msgid "First line contains string..."
+msgstr ""
+
+msgid "First line does not contain string..."
+msgstr ""
+
+msgid "First 10 lines contain string..."
+msgstr ""
+
+msgid "First 10 lines do not contain string..."
+msgstr ""
+
+msgid "Last 10 lines contain string..."
+msgstr ""
+
+msgid "Last 10 lines do not contain string..."
+msgstr ""
+
+msgid "Last line contains string..."
+msgstr ""
+
+msgid "Last line does not contain string..."
+msgstr ""
+
+msgid "&Line Count"
+msgstr ""
+
+msgid "Less than 10"
+msgstr ""
+
+msgid "10 or more"
+msgstr ""
+
+msgid "Less than 100"
+msgstr ""
+
+msgid "100 or more"
+msgstr ""
+
+msgid "Less than 1000"
+msgstr ""
+
+msgid "1000 or more"
+msgstr ""
+
+msgid "Less than 10000"
+msgstr ""
+
+msgid "10000 or more"
+msgstr ""
+
+msgid "Less than 100000"
+msgstr ""
+
+msgid "100000 or more"
+msgstr ""
+
+msgid "Add F&older Condition"
+msgstr ""
+
+msgid "Target: &Any (Left/Middle/Right)"
+msgstr ""
+
+msgid "Target: &Left"
+msgstr ""
+
+msgid "Target: &Middle"
+msgstr ""
+
+msgid "Target: &Right"
+msgstr ""
+
+msgid "Add &Difference Condition"
+msgstr ""
+
+msgid "Equal"
+msgstr ""
+
+msgid "Not Equal"
+msgstr ""
+
+msgid "Less than 10B"
+msgstr ""
+
+msgid "10B or more"
+msgstr ""
+
+msgid "Less than 100B"
+msgstr ""
+
+msgid "100B or more"
+msgstr ""
+
+msgid "Less than 1 second"
+msgstr ""
+
+msgid "1 second or more"
+msgstr ""
+
+msgid "Less than 1 minute"
+msgstr ""
+
+msgid "1 minute or more"
+msgstr ""
+
+msgid "Less than 1 hour"
+msgstr ""
+
+msgid "1 hour or more"
+msgstr ""
+
+msgid "Less than 1 day"
+msgstr ""
+
+msgid "1 day or more"
+msgstr ""
+
+msgid "Less than 1 week"
+msgstr ""
+
+msgid "1 week or more"
+msgstr ""
+
+msgid "Target: &Left and Right"
+msgstr ""
+
+msgid "Target: Left and &Middle"
+msgstr ""
+
+msgid "Target: Middle and &Right"
 msgstr ""
 
 msgid "About WinMerge"
@@ -1237,7 +1579,7 @@ msgid "Swap 1st | 2nd"
 msgstr "Разменяне на №1 с №2"
 
 msgid "&Browse..."
-msgstr "&Разглеждане…"
+msgstr "Изби&ране…"
 
 msgid "&2nd File or Folder"
 msgstr "Файл или папка №&2"
@@ -1249,7 +1591,7 @@ msgid "Swap 2nd | 3rd"
 msgstr "Разменяне на №2 с №3"
 
 msgid "B&rowse..."
-msgstr "Ра&зглеждане…"
+msgstr "И&збиране…"
 
 msgid "&3rd File or Folder (Optional)"
 msgstr "Файл или папка №&3 (по избор)"
@@ -1261,7 +1603,7 @@ msgid "Swap 1st | 3rd"
 msgstr "Разменяне на №1 с №3"
 
 msgid "Browse..."
-msgstr "Разглеждане…"
+msgstr "Избиране…"
 
 msgid " Folder: Filter"
 msgstr " Папка: Филтър"
@@ -1279,7 +1621,7 @@ msgid "Se&lect..."
 msgstr "Изби&ране…"
 
 msgid "Cancel"
-msgstr "Отменяне"
+msgstr "Отказ"
 
 msgid "Status:"
 msgstr "Състояние:"
@@ -1359,9 +1701,6 @@ msgstr "&Търсене"
 msgid "Find &Prev"
 msgstr "Търсене &назад"
 
-msgid "&Ok"
-msgstr "&Добре"
-
 msgid "Replace"
 msgstr "Заменяне"
 
@@ -1400,6 +1739,9 @@ msgstr "&Нов"
 
 msgid "&Background color:"
 msgstr "Цвят на &фона:"
+
+msgid "&Ok"
+msgstr "&Добре"
 
 msgid "&Apply"
 msgstr "&Прилагане"
@@ -1558,7 +1900,7 @@ msgid "System"
 msgstr "Системни"
 
 msgid "&Use Recycle Bin"
-msgstr "&Изпращане на изтритите файлове в Кошчето"
+msgstr "&Използване на Кошчето"
 
 msgid "&External editor:"
 msgstr "&Външен редактор:"
@@ -1576,7 +1918,7 @@ msgid "C&ustom folder:"
 msgstr "Друга &папка:"
 
 msgid "Br&owse..."
-msgstr "&Разглеждане…"
+msgstr "Изби&ране…"
 
 msgid "Patch Generator"
 msgstr "Създаване на кръпки"
@@ -1600,7 +1942,7 @@ msgid "&Result:"
 msgstr "&Резултат:"
 
 msgid "Bro&wse..."
-msgstr "&Разглеждане…"
+msgstr "Изби&ране…"
 
 msgid "&Format"
 msgstr "&Формат"
@@ -1639,7 +1981,7 @@ msgid "Plugin &name:"
 msgstr "Д&обавка:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "&Целеви файлове:"
 
 msgid "Extensions list:"
 msgstr "Разширения:"
@@ -1660,7 +2002,7 @@ msgid "&Plugin pipeline:"
 msgstr "Кон&вейер:"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "&Псевдоним…"
 
 msgid "Stop"
 msgstr "Спиране"
@@ -1798,13 +2140,19 @@ msgid "W&ord break characters:"
 msgstr "Символ за пренасяне на &дума:"
 
 msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge позволява някои съобщения да бъдат скрити. За да бъдат показани повторно, натиснете бутона Отменяне."
+msgstr "Потребителят може да скрие някои съобщения. За да бъдат показани повторно, натиснете бутона Нулиране."
 
 msgid "Reset"
-msgstr "Отменяне"
+msgstr "Нулиране"
 
 msgid "File Filters"
 msgstr "Филтри за файлове"
+
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Изпробване..."
@@ -1820,6 +2168,21 @@ msgstr "Променяне…"
 
 msgid "Delete..."
 msgstr "Изтриване…"
+
+msgid "Filter Condition"
+msgstr ""
+
+msgid "&Left-hand side:"
+msgstr ""
+
+msgid "&Operator:"
+msgstr ""
+
+msgid "&Right-hand side:"
+msgstr ""
+
+msgid "Expression:"
+msgstr ""
 
 msgid "Save Modified Files?"
 msgstr "Запазване на променени файлове?"
@@ -1911,7 +2274,7 @@ msgid "Shared or Private Filter"
 msgstr "Споделен или личен филтър"
 
 msgid "What type of filter do you want?"
-msgstr "Какъв вид филтър искате да създадете?"
+msgstr "Какъв вид филтър желаете?"
 
 msgid "Shared Filter (for all users)"
 msgstr "Споделен филтър (за всички потребители на този компютър)"
@@ -1995,7 +2358,7 @@ msgid "&Use same codepage for both"
 msgstr "&Използване на еднаква кодова страница и за двете действия"
 
 msgid "&Cancel"
-msgstr "&Отменяне"
+msgstr "&Отказ"
 
 msgid "Test Filter"
 msgstr "Изпробване на филтър"
@@ -2043,10 +2406,10 @@ msgid "&Quote character:"
 msgstr "&Знак за кавички:"
 
 msgid "Backup Files"
-msgstr "Резервни файлове"
+msgstr "Резервни копия"
 
 msgid "Create backup files for:"
-msgstr "Създаване на резервни копия при:"
+msgstr "Създаване на резервни копия на:"
 
 msgid "&Folder compare"
 msgstr "Сравняване на &папки"
@@ -2164,7 +2527,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Пропускане на &различия във времето по-малки от 3 секунди"
 
 msgid "Expand subfolders &after comparison:"
-msgstr "&Автоматично разтваряне на подпапките след сравняване:"
+msgstr "Р&азтваряне на подпапките след сравняване:"
 
 msgid "Include &unique subfolders contents"
 msgstr "Включване на &уникално съдържание от подпапки"
@@ -2173,10 +2536,10 @@ msgid "Ignore &reparse points"
 msgstr ""
 
 msgid "Switch to &quick compare when size exceeds (MB):"
-msgstr "Ограничение за превключване към &бързо сравняване (МБ):"
+msgstr "Използване на &бързо сравняване при размер над (МБ):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
-msgstr "Ограничение за превключване към &двоично сравняване (МБ):"
+msgstr "Използване на &двоично сравняване при размер над (МБ):"
 
 msgid "File patterns:"
 msgstr "Шаблони за име на файл:"
@@ -2309,10 +2672,10 @@ msgid "Unknown error saving project file."
 msgstr "Неочаквана грешка при записване на файл с проект."
 
 msgid "Project file loaded."
-msgstr "Проектът е зареден успешно."
+msgstr "Проектът е зареден."
 
 msgid "Project file saved."
-msgstr "Проектът е запазен успешно."
+msgstr "Проектът е запазен."
 
 msgid ""
 "\n"
@@ -2363,7 +2726,7 @@ msgstr ""
 "Сравняване на папки с WinMerge"
 
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
-msgstr "WinMerge идва БЕЗ НИКАКВА ГАРАНЦИЯ. Това е свободен софтуер и може да го разпространявате под общите условия; за детайли вижте Публичен лиценз на GNU в менюто Помощ."
+msgstr "WinMerge идва БЕЗ НИКАКВА ГАРАНЦИЯ. Приложението е свободен софтуер и сте свободни да го разпространявате при определени условия; за подробности вижте Публичния лиценз на GNU в менюто Помощ."
 
 msgid "&Abort"
 msgstr "&Прекъсване"
@@ -2405,7 +2768,7 @@ msgid "To make this message box visible, press Reset on the Message Boxes page i
 msgstr ""
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Сравняване/сливане"
 
 msgid "Syntax"
 msgstr "Синтаксис"
@@ -2462,10 +2825,7 @@ msgstr "Всички съобщения ще се показват отново.
 
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
-msgstr ""
-"Стойността на табулацията не е в границите, които WinMerge приема.\n"
-"\n"
-"Моля, използвайте стойност от 1 - %1."
+msgstr "Размерът на табулацията е извън границите. Използвайте стойност между 1 и %1."
 
 msgid "Open"
 msgstr "Отваряне"
@@ -2576,7 +2936,7 @@ msgstr ""
 "Шаблонът за филтри не може да бъде копиран:\n"
 "%1\n"
 "\n"
-"Моля, уверете се че папката съществува и в нея може да се запазва."
+"Уверете се че папката съществува и в нея може да се запазва."
 
 msgid ""
 "User's filter folder is not defined!\n"
@@ -2585,7 +2945,7 @@ msgid ""
 msgstr ""
 "Не е зададена папка за потребителските шаблони!\n"
 "\n"
-"Моля, изберете папка за филтри в Настройки/Системни."
+"Изберете папка за филтри в Настройки/Системни."
 
 #, c-format
 msgid ""
@@ -2607,12 +2967,12 @@ msgid ""
 "\n"
 "Could not copy new filter to folder."
 msgstr ""
-"Грешка при инсталирането на филтъра.\n"
+"Грешка при инсталиране на филтъра.\n"
 "\n"
-"Новият файл не може да бъде копиран в папката с филтри."
+"Не може да бъде копиран в папката с филтри."
 
 msgid "Filter file exists. Overwrite?"
-msgstr "Файлът с филтри вече съществува. Да бъде ли презаписан същиствуващият файл?"
+msgstr "Файлът с филтри съществува. Да бъде ли презаписан?"
 
 msgid "Regular expression"
 msgstr "Регулярни изрази"
@@ -2624,7 +2984,7 @@ msgid ""
 msgstr ""
 "Филтрите са обновени. Бихте ли желали текущите сравнявания на папки да бъдат презаредени?\n"
 "\n"
-"Ако не желаете изберете „Не“ и ги презаредете по-късно."
+"Изберете „Не“ за презареждане по-късно."
 
 msgid "Folder Comparison Results"
 msgstr "Резултати от сравняване на папки"
@@ -2667,7 +3027,7 @@ msgstr "Ред: %s  колона: %d/%d  знак: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Избр: %d | %d"
 
 msgid "Merge"
 msgstr "Сливане"
@@ -2685,10 +3045,10 @@ msgstr "1 различие"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "%1 грешки"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "1 грешка"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -2710,13 +3070,13 @@ msgid "%.1f[items/sec]"
 msgstr "%.1f[елемента/сек]"
 
 msgid "Select two existing folders/files to compare."
-msgstr "Изберете две съществуващи папки или файла за сравняване."
+msgstr "Изберете два съществуващи файла/папки, които да бъдат сравнени."
 
 msgid "Folder Selection"
 msgstr "Избор на папка"
 
 msgid "Select two (or three) folders/files to compare."
-msgstr "Изберете две или три съществуващи папки или два, или три файла които да бъдат сравнени."
+msgstr "Изберете два (или три) съществуващи файла/папки, които да бъдат сравнени."
 
 msgid "Left (1st) path is invalid!"
 msgstr "Левият (№1) път е недействителен!"
@@ -2775,18 +3135,21 @@ msgid "Failed to parse conflict file."
 msgstr "Грешка при разбора на файла с конфликти."
 
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
 "Файлът\n"
 "%1\n"
 "не съдържа конфликти."
 
-msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
+msgid ""
+"Comparing large files requires significant memory.\n"
+"Show only comparison results (not file contents)?"
 msgstr ""
-"Предстои сравняване на много големи файлове.\n"
-"За да бъде показано съдържанието им се изисква огромно количество памет.\n"
-"Желаете ли вместо съдържанието да получите само резултата от сравнението?\n"
-"\n"
+"Сравняването на големи файлове изисква огромно количество памет.\n"
+"Показване само на резултата от сравнението (без съдържанието)?"
 
 msgid "Save As"
 msgstr "Запазване като"
@@ -2797,7 +3160,7 @@ msgstr "Запазване на промените на %1?"
 
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
-msgstr "%1 е само за четене. Да бъде ли запазен файла? (Не, ще бъде запазен под ново име.)"
+msgstr "Файлът %1 е само за четене. Презаписване? При „Не“, ще бъде запазен под ново име."
 
 msgid "Error backing up file"
 msgstr "Грешка при създаване на резервно копие"
@@ -2809,47 +3172,54 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Не може да се направи резервно копие на оригиналния файл:\n"
+"Не може да бъде направено резервно копие на изходния файл:\n"
 "%1\n"
 "\n"
-"Да продължа ли?"
+"Продължаване?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
-msgstr ""
-"Грешка при записването на файла.\n"
+msgid ""
+"Saving file failed.\n"
 "%1\n"
 "%2\n"
-"Искате ли да:\n"
-"\t- използвате различно име (изберете Добре)\n"
-"\t- отмените текущата операция (изберете Отменяне)?"
+"\t- Use different filename (OK)\n"
+"\t- Abort (Cancel)?"
+msgstr ""
+"Грешка при запазване на файла.\n"
+"%1\n"
+"%2\n"
+"\t- използване на различно име (изберете Добре)\n"
+"\t- отменяне текущото действие (изберете Отказ)?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to left file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "Добавката „%2“ не може да пакетира промените от левия файл обратно в „%1“.\n"
 "\n"
-"Оригиналният файл няма да бъде променян.\n"
-"\n"
-"Искате ли непакетираната версия да бъде запазена в друг файл?"
+"Изходният файл няма да бъде променян. Запазване на непакетираната версия?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to middle file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "Добавката „%2“ не може да пакетира промените от средния файл обратно в „%1“.\n"
 "\n"
-"Оригиналният файл няма да бъде променян.\n"
-"\n"
-"Искате ли непакетираната версия да бъде запазена в друг файл?"
+"Изходният файл няма да бъде променян. Запазване на непакетираната версия?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to right file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "Добавката „%2“ не може да пакетира промените от десния файл обратно в „%1“.\n"
 "\n"
-"Оригиналният файл няма да бъде променян.\n"
-"\n"
-"Искате ли непакетираната версия да бъде запазена в друг файл?"
+"Изходният файл няма да бъде променян. Запазване на непакетираната версия?"
 
 #, c-format
 msgid ""
@@ -2861,7 +3231,7 @@ msgid ""
 msgstr ""
 "Друго приложение е променило файла\n"
 "%1\n"
-"след като WinMerge го е проверил за последно.\n"
+"след като е бил отворен от WinMerge.\n"
 "\n"
 "Желаете ли файлът да бъде презаписан?"
 
@@ -2871,16 +3241,21 @@ msgid ""
 "is read-only. Override?"
 msgstr ""
 "%1\n"
-"е само з четене. Желаете ли файл, който е само за четене да бъде презаписан?"
+"е само за четене. Презаписване?"
 
 #, c-format
-msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
+msgid ""
+"Another application updated\n"
+"%1\n"
+"since last scan.\n"
+"\n"
+"Reload?"
 msgstr ""
 "Друго приложение е променило файла\n"
 "%1\n"
 "след като WinMerge го е проверил за последно.\n"
 "\n"
-"Желаете ли файлът да бъте презареден?"
+"Презареждане?"
 
 msgid "Save Left File As"
 msgstr "Запазване на левия файл като"
@@ -2899,7 +3274,7 @@ msgid ""
 msgstr ""
 "Файлът\n"
 "%1\n"
-"го няма. Моля, запазете копие от него и продължете."
+"не е намерен. Запазете негово копие и продължете."
 
 msgid ""
 "Cannot merge unsynched documents.\n"
@@ -2985,7 +3360,9 @@ msgstr "Всички към… (%1)"
 msgid "Differences to... (%1)"
 msgstr "Различия към… (%1)"
 
-msgid "Some selected items are identical or skipped.\nCopy only items with differences?"
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Copy only items with differences?"
 msgstr ""
 
 #, c-format
@@ -3054,11 +3431,11 @@ msgid ""
 msgstr ""
 "Действието е отменено!\n"
 "\n"
-"Съдържанието на папката е променено, път\n"
+"Съдържанието на папката е променено, пътят\n"
 "%1\n"
 "не е намерен.\n"
 "\n"
-"Моля, презаредете панелите."
+"Презаредете, за да бъде извършено сравняване."
 
 msgid "Are you sure you want to move?"
 msgstr "Наистина ли искате да преместите?"
@@ -3071,10 +3448,10 @@ msgid "Confirm Move"
 msgstr "Потвърдете преместването"
 
 msgid "Close the folder comparison window?"
-msgstr "На път сте да затворите прозореца, в който се сравняват папки. Наистина ли искате да затворите този прозорец?"
+msgstr "Затваряне на прозореца за сравняване на папки?"
 
 msgid "Close the folder comparison window, which took a long time?"
-msgstr ""
+msgstr "Затваряне на прозореца за сравняване на папки, което е отнело много време?"
 
 msgid "The file or folder name is invalid."
 msgstr "Името на файла или папката е недействително."
@@ -3527,13 +3904,13 @@ msgstr "Възникна грешка при сравнение на файло�
 msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "Не могат да бъдат създададени временни файлове. Проверете настройките за временната папка."
 
-msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
+msgid ""
+"Files use different EOL.\n"
+"\n"
+"Treat all EOL as equivalent?\n"
+"\n"
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
-"Тези файлове връщат различни типове като резултат.\n"
-"\n"
-"Желаете ли да се считат за еднакви всички връщани типове за това сравняване?\n"
-"\n"
-"Бележка: Ако искате да считате всички връщани типове като еднакви, задайте опцията 'Игнорирай различните връщани типове (Windows/Unix/Mac)' в раздела Сравняване от прозореца с настройките (намира се от Редактиране/Настройки)."
 
 msgid "Selected folder is invalid."
 msgstr "Избраната папка е недействителна."
@@ -3542,11 +3919,12 @@ msgid "Cannot open a binary file in Editor."
 msgstr "Не може да бъде отворен двоичен файл с редактор."
 
 #, c-format
-msgid "Create matching folder:\n%1\non the other side and open?"
+msgid ""
+"Create matching folder:\n"
+"%1\n"
+"on the other side and open?"
 msgstr ""
-"Папката съществува само от другата страна и не може да бъде отворена.\n"
-"\n"
-"Желаете ли съответната папка:\n"
+"Желаете ли съответстващата от другата страна папка:\n"
 "%1\n"
 "да бъде създадена и да бъде отворена?"
 
@@ -3572,7 +3950,10 @@ msgid "Move to last file?"
 msgstr "Желаете ли да бъде отворен последния файл?"
 
 #, c-format
-msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
+msgid ""
+"Different codepages: left (cp%d), right (cp%d).\n"
+"Display in codepage (better display) or default Windows codepage (safer merging)?\n"
+"(Recommended: default Windows codepage)"
 msgstr ""
 "Намерена е различна кодова страница в левия (cp%d) и десния (cp%d) файл.\n"
 "Показването на всеки файл с неговата кодова страница ще даде по-добра видимост, но сливането или копирането ще е рисковано.\n"
@@ -3917,6 +4298,9 @@ msgstr ""
 "Налично е ново издание на WinMerge.\n"
 "Налично е %1 (инсталирано е %2). Желаете ли новото издание да бъде изтеглено?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Грешка при изтегляне на данните за ново издание"
 
@@ -3933,8 +4317,9 @@ msgstr "От&иване на ред %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr ""
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Забранено"
+msgstr ""
 
 msgid "From file system"
 msgstr "От файловата система"
@@ -4030,6 +4415,10 @@ msgstr "Естествен DirectWrite"
 msgid "DirectWrite Natural Symmetric"
 msgstr "Естествен симтричен DirectWrite"
 
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
+
 msgid "MDI child window or main window"
 msgstr "Дъщерен или основен прозорец (MDI)"
 
@@ -4089,7 +4478,7 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "ИЛИ"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
@@ -4101,11 +4490,11 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Мащаб"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Страница:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -4168,10 +4557,18 @@ msgstr ""
 msgid "Install folder"
 msgstr ""
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Позволи само едно стартирано копие"
 
 msgid "Allow only one instance; wait for termination"
+msgstr ""
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
 msgstr ""
 
 msgid "Only on window activated"
@@ -4325,10 +4722,10 @@ msgid "Zoom &Out"
 msgstr ""
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Сравняване…"
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Мащаб:"
 
 msgid "Diff hunk"
 msgstr ""
@@ -4337,27 +4734,53 @@ msgid "Inline diff"
 msgstr ""
 
 msgid "Line"
-msgstr ""
+msgstr "Ред"
 
 msgid "Character"
+msgstr "Знак"
+
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)\n"
+"(Right Button+Wheel Up)\n"
+"(Alt+Wheel Up)"
 msgstr ""
 
-msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgid ""
+"\n"
+"Next Difference (Alt+Down)\n"
+"(Right Button+Wheel Down)\n"
+"(Alt+Wheel Down)"
 msgstr ""
 
-msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)\n"
+"(Right Button+Wheel Right)\n"
+"(Alt+Wheel Right)\n"
+"(Alt+Shift+Wheel Down)"
 msgstr ""
 
-msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)\n"
+"(Right Button+Wheel Left)\n"
+"(Alt+Wheel Left)\n"
+"(Alt+Shift+Wheel Up)"
 msgstr ""
 
-msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)\n"
+"(Ctrl+Alt+Wheel Right)\n"
+"(Ctrl+Alt+Shift+Wheel Down)"
 msgstr ""
 
-msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
-msgstr ""
-
-msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)\n"
+"(Ctrl+Alt+Wheel Left)\n"
+"(Ctrl+Alt+Shift+Wheel Up)"
 msgstr ""
 
 #, c-format
@@ -4401,6 +4824,81 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Filter expression is empty"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Division by zero in filter expression"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
+msgid "Equals"
+msgstr ""
+
+msgid "Does not equal"
+msgstr ""
+
+msgid "Less than"
+msgstr ""
+
+msgid "Less than or equal to"
+msgstr ""
+
+msgid "Greater than or equal to"
+msgstr ""
+
+msgid "Greater than"
+msgstr ""
+
+msgid "Between"
+msgstr ""
+
+msgid "Not Between"
+msgstr ""
+
+msgid "Contains"
+msgstr ""
+
+msgid "Not Contains"
+msgstr ""
+
+msgid "Contains (regex)"
+msgstr ""
+
+msgid "Not Contains (regex)"
 msgstr ""
 
 msgid "Prettification"
@@ -4571,7 +5069,15 @@ msgstr ""
 msgid "Reverse lines"
 msgstr ""
 
-msgid "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
+msgid ""
+"Replace text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+" or: Replace -s\r\n"
+" FIND - text to find\r\n"
+" REPLACE - text to replace\r\n"
+" -i - ignore case (only for -e)\r\n"
+" -e - regex\r\n"
+" -s - use Substitution Filters"
 msgstr ""
 
 #, c-format
@@ -4742,7 +5248,9 @@ msgstr ""
 msgid "AI-assisted text conversion"
 msgstr ""
 
-msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter (OpenAI API).\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
@@ -4787,7 +5295,6 @@ msgstr ""
 msgid ""
 "Cannot get Macros.\r\n"
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
-""
 msgstr ""
 
 msgid "Compare VBA macros"
@@ -4889,7 +5396,10 @@ msgid "Enter prompt"
 msgstr ""
 
 #, c-format
-msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
+msgid ""
+"Enter OpenAI API key.\r\n"
+"- Requires OpenAI registration (fees may apply).\r\n"
+"- Key stored in env var %1."
 msgstr ""
 
 msgid "Environment variable name for OpenAI API key"

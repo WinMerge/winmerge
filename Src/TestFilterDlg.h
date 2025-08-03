@@ -8,8 +8,7 @@
 
 #include "TrDialogs.h"
 
-struct FileFilter;
-class FileFilterMgr;
+class FileFilterHelper;
 
 /**
  * @brief Dialog allowing user to test out file filter strings.
@@ -19,12 +18,11 @@ class CTestFilterDlg : public CTrDialog
 {
 // Construction
 public:
-	CTestFilterDlg(CWnd* pParent, FileFilter * pFileFilter, FileFilterMgr *pFilterMgr);
+	CTestFilterDlg(CWnd* pParent, FileFilterHelper* pFileFilterHelper);
 
 // Implementation data
 private:
-	FileFilter * m_pFileFilter; /**< Selected file filter. */
-	FileFilterMgr * m_pFileFilterMgr; /**< File filter manager. */
+	FileFilterHelper * m_pFileFilterHelper; /**< File filter helper. */
 
 // Implementation methods
 private:

@@ -17,6 +17,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #include "StdAfx.h"
 #include "CMoveConstraint.h"
+#include "Win_VersionHelper.h"
 #include <afxtempl.h>       // MFC template collection classes
 #include <afxext.h> // needed for CFormView
 
@@ -74,7 +75,8 @@ CMoveConstraint::Constraint::Init()
 }
 
 CMoveConstraint::CMoveConstraint()
-: m_bSubclassed(false)
+: m_hTheme(nullptr)
+, m_bSubclassed(false)
 , m_oldWndProc(nullptr)
 , m_sRegistryValueName(_T("UnnamedWindow"))
 , m_sRegistrySubkey(_T("LastWindowPos"))
@@ -648,11 +650,30 @@ CMoveConstraint::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam, L
 	} else if (WM_PAINT == msg && PaintGrip()) {
 		CPaintDC dc(CWnd::FromHandle(hWnd));
 		RECT rc = getGripRect(hWnd);
-		dc.DrawFrameControl(&rc, DFC_SCROLL, DFCS_SCROLLSIZEGRIP);
+		if (IsVista_OrGreater() && m_hTheme == nullptr && IsThemeActive()) {
+			m_hTheme = OpenThemeData(hWnd, WC_SCROLLBAR);
+		}
+		if (m_hTheme != nullptr) {
+			DrawThemeBackground(m_hTheme, dc.GetSafeHdc(), SBP_SIZEBOX, 0, &rc, nullptr);
+		} else {
+			dc.DrawFrameControl(&rc, DFC_SCROLL, DFCS_SCROLLSIZEGRIP);
+		}
+	} else if (WM_THEMECHANGED == msg) {
+		if (m_hTheme != nullptr) {
+			CloseThemeData(m_hTheme);
+			m_hTheme = nullptr;
+		}
+		if (m_hTheme == nullptr && IsThemeActive()) {
+			m_hTheme = OpenThemeData(hWnd, WC_SCROLLBAR);
+		}
 	} else if (WM_NCHITTEST == msg && !IsIconic(hWnd) && !IsZoomed(hWnd)) {
 		if (OnNcHitTest(msg, wParam, lParam, plresult))
 			return true;
 	} else if (WM_DESTROY == msg) {
+		if (m_hTheme != nullptr) {
+			CloseThemeData(m_hTheme);
+			m_hTheme = nullptr;
+		}
 		OnDestroy();
 	} else if (msg==WM_NOTIFY && TTN_NEEDTEXT==((NMHDR*)lParam)->code) {
 		if (OnTtnNeedText((TOOLTIPTEXT*)lParam, plresult))

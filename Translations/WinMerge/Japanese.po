@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2025-01-21 07:48+0900\n"
+"PO-Revision-Date: 2025-07-26 12:01+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1070,6 +1070,9 @@ msgstr "比較前処理プラグイン設定"
 msgid "G&o to Diff"
 msgstr "差異へ移動(&O)"
 
+msgid "Move Cursor on &Click"
+msgstr "クリックでカーソルを移動(&C)"
+
 msgid "&No Moved Blocks"
 msgstr "移動ブロック表示なし(&N)"
 
@@ -1212,7 +1215,346 @@ msgid "&Duplicate Plugin..."
 msgstr "プラグインを複製(&D)..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "すべてクリア(&A)"
+
+msgid "&Clear All"
+msgstr "すべてクリア(&C)"
+
+msgid "Remove Last Filter &Group"
+msgstr "最後のフィルターグループを削除(&G)"
+
+msgid "R&eset to Default (*.*)"
+msgstr "デフォルト (*.*) にリセット(&E)"
+
+msgid "Add E&xclude File"
+msgstr "除外ファイルを追加(&X)"
+
+msgid "&System Files"
+msgstr "システムファイル(&S)"
+
+msgid "&Editor Backup Files"
+msgstr "エディタのバックアップファイル(&E)"
+
+msgid "&Compiled Binary Files"
+msgstr "コンパイル済みバイナリファイル(&C)"
+
+msgid "&Log Files"
+msgstr "ログファイル(&L)"
+
+msgid "&Temporary or Cache Files"
+msgstr "一時ファイル・キャッシュファイル(&T)"
+
+msgid "Add Excl&ude Folder"
+msgstr "除外フォルダーを追加(&U)"
+
+msgid "&Version Control"
+msgstr "バージョン管理(&V)"
+
+msgid "&Build Artifacts"
+msgstr "ビルド生成物(&B)"
+
+msgid "&IDE"
+msgstr "IDE関連(&I)"
+
+msgid "Add &File Condition"
+msgstr "ファイル条件を追加(&F)"
+
+msgid "File &Size"
+msgstr "ファイルサイズ(&S)"
+
+msgid "Less than 1KB"
+msgstr "1KB 未満"
+
+msgid "1KB or more"
+msgstr "1KB 以上"
+
+msgid "Less than 10KB"
+msgstr "10KB 未満"
+
+msgid "10KB or more"
+msgstr "10KB 以上"
+
+msgid "Less than 100KB"
+msgstr "100KB 未満"
+
+msgid "100KB or more"
+msgstr "100KB 以上"
+
+msgid "Less than 1MB"
+msgstr "1MB 未満"
+
+msgid "1MB or more"
+msgstr "1MB 以上"
+
+msgid "Less than 10MB"
+msgstr "10MB 未満"
+
+msgid "10MB or more"
+msgstr "10MB 以上"
+
+msgid "Less than 100MB"
+msgstr "100MB 未満"
+
+msgid "100MB or more"
+msgstr "100MB 以上"
+
+msgid "Less than 1GB"
+msgstr "1GB 未満"
+
+msgid "1GB or more"
+msgstr "1GB 以上"
+
+msgid "Custom Range..."
+msgstr "カスタム範囲..."
+
+msgid "&Last Modified"
+msgstr "最終更新日(&L)"
+
+msgid "&Hour"
+msgstr "時間単位(&H)"
+
+msgid "More than 1 hour ago"
+msgstr "1時間以上前"
+
+msgid "Within 1 hour"
+msgstr "1時間以内"
+
+msgid "&Day"
+msgstr "日単位(&D)"
+
+msgid "Before today"
+msgstr "今日より前"
+
+msgid "Today"
+msgstr "今日"
+
+msgid "Before yesterday"
+msgstr "昨日より前"
+
+msgid "Yesterday"
+msgstr "昨日"
+
+msgid "Since yesterday"
+msgstr "昨日以降"
+
+msgid "&Week"
+msgstr "週単位(&W)"
+
+msgid "Before this week"
+msgstr "今週より前"
+
+msgid "This week"
+msgstr "今週"
+
+msgid "Before last week"
+msgstr "先週より前"
+
+msgid "Last week"
+msgstr "先週"
+
+msgid "Since last week"
+msgstr "先週以降"
+
+msgid "&Month"
+msgstr "月単位(&M)"
+
+msgid "Before this month"
+msgstr "今月より前"
+
+msgid "This month"
+msgstr "今月"
+
+msgid "Before last month"
+msgstr "先月より前"
+
+msgid "Last month"
+msgstr "先月"
+
+msgid "Since last month"
+msgstr "先月以降"
+
+msgid "&Year"
+msgstr "年単位(&Y)"
+
+msgid "Before this year"
+msgstr "今年より前"
+
+msgid "This year"
+msgstr "今年"
+
+msgid "Before last year"
+msgstr "昨年より前"
+
+msgid "Last year"
+msgstr "昨年"
+
+msgid "Since last year"
+msgstr "昨年以降"
+
+msgid "&Custom Range..."
+msgstr "カスタム範囲(&C)..."
+
+msgid "&Attributes"
+msgstr "属性(&A)"
+
+msgid "Read-only files"
+msgstr "読み取り専用ファイル"
+
+msgid "Not read-only files"
+msgstr "読み取り専用ではないファイル"
+
+msgid "Hidden files"
+msgstr "隠しファイル"
+
+msgid "Not hidden files"
+msgstr "隠しファイルではない"
+
+msgid "System files"
+msgstr "システムファイル"
+
+msgid "Not system files"
+msgstr "システムファイルではない"
+
+msgid "File &Content"
+msgstr "ファイル内容(&C)"
+
+msgid "Contains string..."
+msgstr "指定文字列を含む..."
+
+msgid "Does not contain string..."
+msgstr "指定文字列を含まない..."
+
+msgid "First line contains string..."
+msgstr "先頭行に文字列を含む..."
+
+msgid "First line does not contain string..."
+msgstr "先頭行に文字列を含まない..."
+
+msgid "First 10 lines contain string..."
+msgstr "先頭10行に文字列を含む..."
+
+msgid "First 10 lines do not contain string..."
+msgstr "先頭10行に文字列を含まない..."
+
+msgid "Last 10 lines contain string..."
+msgstr "末尾10行に文字列を含む..."
+
+msgid "Last 10 lines do not contain string..."
+msgstr "末尾10行に文字列を含まない..."
+
+msgid "Last line contains string..."
+msgstr "末尾行に文字列を含む..."
+
+msgid "Last line does not contain string..."
+msgstr "末尾行に文字列を含まない..."
+
+msgid "&Line Count"
+msgstr "行数(&L)"
+
+msgid "Less than 10"
+msgstr "10未満"
+
+msgid "10 or more"
+msgstr "10以上"
+
+msgid "Less than 100"
+msgstr "100未満"
+
+msgid "100 or more"
+msgstr "100以上"
+
+msgid "Less than 1000"
+msgstr "1000未満"
+
+msgid "1000 or more"
+msgstr "1000以上"
+
+msgid "Less than 10000"
+msgstr "10000未満"
+
+msgid "10000 or more"
+msgstr "10000以上"
+
+msgid "Less than 100000"
+msgstr "100000未満"
+
+msgid "100000 or more"
+msgstr "100000以上"
+
+msgid "Add F&older Condition"
+msgstr "フォルダー条件を追加(&O)"
+
+msgid "Target: &Any (Left/Middle/Right)"
+msgstr "対象: いずれか (左/中央/右)(&A)"
+
+msgid "Target: &Left"
+msgstr "対象: 左(&L)"
+
+msgid "Target: &Middle"
+msgstr "対象: 中央(&M)"
+
+msgid "Target: &Right"
+msgstr "対象: 右(&R)"
+
+msgid "Add &Difference Condition"
+msgstr "差異条件を追加(&D)"
+
+msgid "Equal"
+msgstr "一致"
+
+msgid "Not Equal"
+msgstr "不一致"
+
+msgid "Less than 10B"
+msgstr "10B 未満"
+
+msgid "10B or more"
+msgstr "10B 以上"
+
+msgid "Less than 100B"
+msgstr "100B 未満"
+
+msgid "100B or more"
+msgstr "100B 以上"
+
+msgid "Less than 1 second"
+msgstr "一秒未満"
+
+msgid "1 second or more"
+msgstr "一秒以上"
+
+msgid "Less than 1 minute"
+msgstr "一分未満"
+
+msgid "1 minute or more"
+msgstr "一分以上"
+
+msgid "Less than 1 hour"
+msgstr "一時間未満"
+
+msgid "1 hour or more"
+msgstr "一時間以上"
+
+msgid "Less than 1 day"
+msgstr "一日未満"
+
+msgid "1 day or more"
+msgstr "一日以上"
+
+msgid "Less than 1 week"
+msgstr "一週間未満"
+
+msgid "1 week or more"
+msgstr "一週間以上"
+
+msgid "Target: &Left and Right"
+msgstr "対象: 左と右(&L)"
+
+msgid "Target: Left and &Middle"
+msgstr "対象: 左と中央(&M)"
+
+msgid "Target: Middle and &Right"
+msgstr "対象: 中央と右(&R)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -1361,9 +1703,6 @@ msgstr "次を検索(&F)"
 msgid "Find &Prev"
 msgstr "前を検索(&P)"
 
-msgid "&Ok"
-msgstr "&OK"
-
 msgid "Replace"
 msgstr "置換"
 
@@ -1402,6 +1741,9 @@ msgstr "新規"
 
 msgid "&Background color:"
 msgstr "背景色(&B)"
+
+msgid "&Ok"
+msgstr "&OK"
 
 msgid "&Apply"
 msgstr "適用(&A)"
@@ -1812,6 +2154,12 @@ msgstr "リセット"
 msgid "File Filters"
 msgstr "ファイル フィルター"
 
+msgid "&Mask / Filter Expression"
+msgstr "マスク / フィルター式(&M)"
+
+msgid "Preset &Filters"
+msgstr "フィルターのプリセット(&F)"
+
 msgid "Test..."
 msgstr "テスト..."
 
@@ -1826,6 +2174,21 @@ msgstr "編集..."
 
 msgid "Delete..."
 msgstr "削除..."
+
+msgid "Filter Condition"
+msgstr "フィルター条件"
+
+msgid "&Left-hand side:"
+msgstr "左辺(&L):"
+
+msgid "&Operator:"
+msgstr "演算子(&O):"
+
+msgid "&Right-hand side:"
+msgstr "右辺(&R):"
+
+msgid "Expression:"
+msgstr "式:"
 
 msgid "Save Modified Files?"
 msgstr "変更されたファイルを保存しますか?"
@@ -2779,13 +3142,18 @@ msgid "Failed to parse conflict file."
 msgstr "コンフリクト ファイルの解析に失敗しました。"
 
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
 "ファイル\n"
 "%1\n"
 "はコンフリクト ファイルではありません。"
 
-msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
+msgid ""
+"Comparing large files requires significant memory.\n"
+"Show only comparison results (not file contents)?"
 msgstr ""
 "非常に大きなファイルを比較しようとしています。\n"
 "内容を表示するには大量のメモリが必要です。\n"
@@ -2821,7 +3189,12 @@ msgstr ""
 "無視して続けますか?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"\t- Use different filename (OK)\n"
+"\t- Abort (Cancel)?"
 msgstr ""
 "ファイルの保存に失敗しました。\n"
 "%1\n"
@@ -2830,7 +3203,10 @@ msgstr ""
 "- 中止する場合は [キャンセル] を押してください。"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to left file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "プラグイン '%2' は、修正内容を左側のファイル '%1' に書き戻すことができません。\n"
 "\n"
@@ -2839,7 +3215,10 @@ msgstr ""
 "展開されたものを別ファイルに保存しますか?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to middle file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "プラグイン '%2' は、修正内容を中央のファイル '%1' に書き戻すことができません。\n"
 "\n"
@@ -2848,7 +3227,10 @@ msgstr ""
 "展開されたものを別ファイルに保存しますか?"
 
 #, c-format
-msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
+msgid ""
+"Plugin '%2' cannot pack changes to right file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
 msgstr ""
 "プラグイン '%2' は、修正内容を右側のファイル '%1' に書き戻すことができません。\n"
 "\n"
@@ -2876,7 +3258,12 @@ msgstr ""
 "は、読み取り専用です。読み取り専用の項目を上書きしますか?"
 
 #, c-format
-msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
+msgid ""
+"Another application updated\n"
+"%1\n"
+"since last scan.\n"
+"\n"
+"Reload?"
 msgstr ""
 "他のアプリケーションがファイル\n"
 "%1\n"
@@ -3535,7 +3922,12 @@ msgstr "ファイルの比較時にエラーが発生しました。"
 msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "テンポラリ ファイルが作成できません。テンポラリ パス設定を確認してください。"
 
-msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
+msgid ""
+"Files use different EOL.\n"
+"\n"
+"Treat all EOL as equivalent?\n"
+"\n"
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "ファイル内に異なる改行文字が存在しています。\n"
 "\n"
@@ -3552,7 +3944,10 @@ msgid "Cannot open a binary file in Editor."
 msgstr "バイナリ ファイルをエディターで開くことはできません。"
 
 #, c-format
-msgid "Create matching folder:\n%1\non the other side and open?"
+msgid ""
+"Create matching folder:\n"
+"%1\n"
+"on the other side and open?"
 msgstr ""
 "フォルダーは片方にのみにしか存在せず、開くことができません。\n"
 "\n"
@@ -3581,7 +3976,10 @@ msgid "Move to last file?"
 msgstr "最後のファイルに移動しますか?"
 
 #, c-format
-msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
+msgid ""
+"Different codepages: left (cp%d), right (cp%d).\n"
+"Display in codepage (better display) or default Windows codepage (safer merging)?\n"
+"(Recommended: default Windows codepage)"
 msgstr ""
 "開いたファイルで異なったコードページが検出されました。左(cp%d)、右(cp%d)\n"
 "各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\n"
@@ -3928,6 +4326,9 @@ msgstr ""
 "新しいバージョンの WinMerge が利用可能です。\n"
 "%1 をダウンロードしますか? (現在 %2 を使用中)"
 
+msgid " - All rights reserved."
+msgstr " - All rights reserved."
+
 msgid "Failed to download latest version information"
 msgstr "最新版情報のダウンロードに失敗しました"
 
@@ -3944,6 +4345,7 @@ msgstr "行 %1 に移動(&O)"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "移動行に移動\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
 msgstr "無効"
 
@@ -4040,6 +4442,10 @@ msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr "無効"
 
 msgid "MDI child window or main window"
 msgstr "MDI 子ウインドウまたはメインウインドウ"
@@ -4179,11 +4585,19 @@ msgstr "AppData フォルダー"
 msgid "Install folder"
 msgstr "インストール フォルダー"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr "無効"
+
 msgid "Allow only one instance to run"
 msgstr "1 つのみインスタンスを起動する"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "1 つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr "無効"
 
 msgid "Only on window activated"
 msgstr "ウインドウがアクティブになった時のみ"
@@ -4467,6 +4881,81 @@ msgstr "ファイル操作が正常に完了しました"
 
 msgid "File operation canceled"
 msgstr "ファイル操作がキャンセルされました"
+
+msgid "No error"
+msgstr "エラーはありません"
+
+msgid "Filter expression is empty"
+msgstr "フィルター式が空です"
+
+msgid "Unknown character in filter expression"
+msgstr "フィルター式に不明な文字があります"
+
+msgid "Unterminated string literal"
+msgstr "文字列リテラルが閉じられていません"
+
+msgid "Syntax error in filter expression"
+msgstr "フィルター式の構文エラーです"
+
+msgid "Failed to parse filter expression"
+msgstr "フィルター式の解析に失敗しました"
+
+msgid "Invalid literal value"
+msgstr "無効なリテラル値です"
+
+msgid "Invalid regular expression"
+msgstr "無効な正規表現です"
+
+msgid "Undefined identifier"
+msgstr "未定義の識別子です"
+
+msgid "Invalid number of arguments"
+msgstr "引数の数が正しくありません"
+
+msgid "Filter name not found"
+msgstr "フィルター名が見つかりません"
+
+msgid "Division by zero in filter expression"
+msgstr "フィルター式で0による除算が行われました"
+
+msgid "Unknown error"
+msgstr "不明なエラーです"
+
+msgid "Equals"
+msgstr "等しい"
+
+msgid "Does not equal"
+msgstr "等しくない"
+
+msgid "Less than"
+msgstr "より小さい"
+
+msgid "Less than or equal to"
+msgstr "以下"
+
+msgid "Greater than or equal to"
+msgstr "以上"
+
+msgid "Greater than"
+msgstr "より大きい"
+
+msgid "Between"
+msgstr "範囲内"
+
+msgid "Not Between"
+msgstr "範囲外"
+
+msgid "Contains"
+msgstr "含む"
+
+msgid "Not Contains"
+msgstr "含まない"
+
+msgid "Contains (regex)"
+msgstr "含む(正規表現)"
+
+msgid "Not Contains (regex)"
+msgstr "含まない(正規表現)"
 
 msgid "Prettification"
 msgstr "整形"
@@ -4931,7 +5420,6 @@ msgstr "ヘッダーとフッターを比較する"
 msgid ""
 "Cannot get Macros.\r\n"
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
-""
 msgstr ""
 "マクロを取得できません。\r\n"
 "WinMergeでマクロを比較するには、MS Officeを使用して、現在のアプリケーションのマクロセキュリティの設定を変更してください。\r\n"
@@ -5031,7 +5519,8 @@ msgid "Folder '%1' does not exist"
 msgstr "フォルダー'%1' は存在しません"
 
 msgid "Do not use '-p0' for patch files with absolute paths"
-msgstr "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
+msgstr ""
+"絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
 
 msgid "AI.sct WinMerge Plugin Options"
 msgstr "AI.sct WinMerge プラグイン オプション"

@@ -89,6 +89,7 @@ Localization:
   gandf
   Lolo S. <slolo2000 at hotmail.com>
   Need74
+  t3chnob0y
 
 * Galician:
   Medulio
@@ -208,6 +209,7 @@ Localization:
   Göran Håkansson <goran.x.hakansson@telia.com>
   pgert <pgert at yahoo.se>
   Timmy Almroth <timmy.almroth at tim-international.net>
+  Sweden12
 
 * Tamil:
   தமிழ்நேரம் <https://TamilNeram.github.io>
@@ -302,6 +304,8 @@ Other Contributors (code, ideas, testing..):
 * libraplanet
 * Steve Lambillion
 * Rob Kodey (VS Dark color scheme)
+* ozone10
+* Anthony Lee Stark
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)

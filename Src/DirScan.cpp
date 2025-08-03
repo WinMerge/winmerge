@@ -33,8 +33,6 @@
 #include "Plugins.h"
 #include "MergeAppCOMClass.h"
 #include "MergeApp.h"
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
 #include "PathContext.h"
 #include "DebugNew.h"
 
@@ -244,16 +242,6 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		{
 			leftnewsub  = (nDiffCode & DIFFCODE::FIRST)  ? subprefix[0] + dirs[0][i].filename.get() : subprefix[0] + dirs[1][j].filename.get();
 			rightnewsub = (nDiffCode & DIFFCODE::SECOND) ? subprefix[1] + dirs[1][j].filename.get() : subprefix[1] + dirs[0][i].filename.get();
-
-			// Test against filter so we don't include contents of filtered out directories
-			// Also this is only place we can test for both-sides directories in recursive compare
-			if ((pCtxt->m_piFilterGlobal!=nullptr && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub)) ||
-				(pCtxt->m_bIgnoreReparsePoints && (
-				(nDiffCode & DIFFCODE::FIRST) && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
-					(nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
-					)
-				)
-				nDiffCode |= DIFFCODE::SKIPPED;
 		}
 		else
 		{
@@ -269,17 +257,6 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 			if (nDiffCode & DIFFCODE::THIRD)       rightnewsub += dirs[2][k].filename;
 			else if (nDiffCode & DIFFCODE::FIRST)  rightnewsub += dirs[0][i].filename;
 			else if (nDiffCode & DIFFCODE::SECOND) rightnewsub += dirs[1][j].filename;
-
-			// Test against filter so we don't include contents of filtered out directories
-			// Also this is only place we can test for both-sides directories in recursive compare
-			if ((pCtxt->m_piFilterGlobal!=nullptr && !pCtxt->m_piFilterGlobal->includeDir(leftnewsub, middlenewsub, rightnewsub)) ||
-				(pCtxt->m_bIgnoreReparsePoints && (
-				  (nDiffCode & DIFFCODE::FIRST)  && (dirs[0][i].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
-				  (nDiffCode & DIFFCODE::SECOND) && (dirs[1][j].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
-				  (nDiffCode & DIFFCODE::THIRD)  && (dirs[2][k].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
-				)
-			   )
-				nDiffCode |= DIFFCODE::SKIPPED;
 		}
 
 		// add to list
@@ -307,7 +284,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 					(nDiffCode & DIFFCODE::FIRST ) ? &dirs[0][i] : nullptr, 
 					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : nullptr,
 					nDiffCode, myStruct, parent);
-				if ((nDiffCode & DIFFCODE::SKIPPED) == 0 && ((nDiffCode & DIFFCODE::SIDEFLAGS) == DIFFCODE::BOTH || bUniques))
+				if ((me->diffcode.diffcode & DIFFCODE::SKIPPED) == 0 && ((nDiffCode & DIFFCODE::SIDEFLAGS) == DIFFCODE::BOTH || bUniques))
 				{
 					// Scan recursively all subdirectories too, we are not adding folders
 					String newsubdir[3] = {leftnewsub, rightnewsub};
@@ -324,7 +301,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 					(nDiffCode & DIFFCODE::SECOND) ? &dirs[1][j] : nullptr,
 					(nDiffCode & DIFFCODE::THIRD ) ? &dirs[2][k] : nullptr,
 					nDiffCode, myStruct, parent);
-				if ((nDiffCode & DIFFCODE::SKIPPED) == 0 && ((nDiffCode & DIFFCODE::SIDEFLAGS) == DIFFCODE::ALL || bUniques))
+				if ((me->diffcode.diffcode & DIFFCODE::SKIPPED) == 0 && ((nDiffCode & DIFFCODE::SIDEFLAGS) == DIFFCODE::ALL || bUniques))
 				{
 					// Scan recursively all subdirectories too, we are not adding folders
 					String newsubdir[3] = {leftnewsub, middlenewsub, rightnewsub};
@@ -488,7 +465,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 
 	if (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT)
 	{
-		nworkers = GetOptionsMgr()->GetInt(OPT_CMP_COMPARE_THREADS);
+		nworkers = myStruct->nThreadCount;
 		if (nworkers <= 0)
 			nworkers += Environment::processorCount();
 		nworkers = std::clamp(nworkers, 1, static_cast<int>(Environment::processorCount()));
@@ -710,7 +687,8 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 			{
 				if (di.diffcode.isResultError())
 					bCompareFailure = true;
-				else if (di.diffcode.isResultNone() || di.diffcode.isResultAbort())
+				else if ((di.diffcode.isResultNone() && !di.diffcode.isResultFiltered()) ||
+						di.diffcode.isResultAbort())
 					bCompareIndeterminate = true;
 			}
 		}
@@ -874,16 +852,7 @@ static void CompareDiffItem(FolderCmp &fc, DIFFITEM &di)
 	else
 	{
 		// 1. Test against filters
-		if (pCtxt->m_piFilterGlobal==nullptr ||
-			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeFile(
-				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename), 
-				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename)
-			)) ||
-			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeFile(
-				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
-				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
-				paths::ConcatPath(di.diffFileInfo[2].path, di.diffFileInfo[2].filename)
-			)))
+		if (pCtxt->m_piFilterGlobal==nullptr || pCtxt->m_piFilterGlobal->includeFile(di))
 		{
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 			di.diffcode.diffcode |= fc.prepAndCompareFiles(di);
@@ -990,11 +959,32 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 		else if (ent2 != nullptr)
 			di->diffFileInfo[2].filename = ent2->filename;
 	}
+	di->diffcode.diffcode = nItems == 2 ? code : (code | DIFFCODE::THREEWAY);
+
+	CDiffContext *pCtxt = myStruct->context;
+
+	// Test against filter so we don't include contents of filtered out directories
+	// Also this is only place we can test for both-sides directories in recursive compare
+	if ((code & DIFFCODE::DIR) != 0 && (pCtxt->m_piFilterGlobal != nullptr && !pCtxt->m_piFilterGlobal->includeDir(*di)))
+		di->diffcode.diffcode |= DIFFCODE::SKIPPED;
 
 	if (nItems == 2)
-		di->diffcode.diffcode = code;
+	{
+		if (pCtxt->m_bIgnoreReparsePoints && (
+			(code & DIFFCODE::FIRST) && (di->diffFileInfo[0].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+			(code & DIFFCODE::SECOND) && (di->diffFileInfo[1].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
+			)
+			di->diffcode.diffcode |= DIFFCODE::SKIPPED;
+	}
 	else
-		di->diffcode.diffcode = code | DIFFCODE::THREEWAY;
+	{
+		if (pCtxt->m_bIgnoreReparsePoints && (
+			(code & DIFFCODE::FIRST) && (di->diffFileInfo[0].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+			(code & DIFFCODE::SECOND) && (di->diffFileInfo[1].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT) ||
+			(code & DIFFCODE::THIRD) && (di->diffFileInfo[2].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
+			)
+			di->diffcode.diffcode |= DIFFCODE::SKIPPED;
+	}
 
 	if (!myStruct->bMarkedRescan && myStruct->m_fncCollect)
 	{

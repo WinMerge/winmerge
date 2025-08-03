@@ -1074,6 +1074,9 @@ msgstr "Config. precomparación"
 msgid "G&o to Diff"
 msgstr "Ir a la &diferencia"
 
+msgid "Move Cursor on &Click"
+msgstr ""
+
 msgid "&No Moved Blocks"
 msgstr "&No mostrar bloques desplazados"
 
@@ -1216,6 +1219,345 @@ msgid "&Duplicate Plugin..."
 msgstr ""
 
 msgid "Clear &All"
+msgstr ""
+
+msgid "&Clear All"
+msgstr ""
+
+msgid "Remove Last Filter &Group"
+msgstr ""
+
+msgid "R&eset to Default (*.*)"
+msgstr ""
+
+msgid "Add E&xclude File"
+msgstr ""
+
+msgid "&System Files"
+msgstr ""
+
+msgid "&Editor Backup Files"
+msgstr ""
+
+msgid "&Compiled Binary Files"
+msgstr ""
+
+msgid "&Log Files"
+msgstr ""
+
+msgid "&Temporary or Cache Files"
+msgstr ""
+
+msgid "Add Excl&ude Folder"
+msgstr ""
+
+msgid "&Version Control"
+msgstr ""
+
+msgid "&Build Artifacts"
+msgstr ""
+
+msgid "&IDE"
+msgstr ""
+
+msgid "Add &File Condition"
+msgstr ""
+
+msgid "File &Size"
+msgstr ""
+
+msgid "Less than 1KB"
+msgstr ""
+
+msgid "1KB or more"
+msgstr ""
+
+msgid "Less than 10KB"
+msgstr ""
+
+msgid "10KB or more"
+msgstr ""
+
+msgid "Less than 100KB"
+msgstr ""
+
+msgid "100KB or more"
+msgstr ""
+
+msgid "Less than 1MB"
+msgstr ""
+
+msgid "1MB or more"
+msgstr ""
+
+msgid "Less than 10MB"
+msgstr ""
+
+msgid "10MB or more"
+msgstr ""
+
+msgid "Less than 100MB"
+msgstr ""
+
+msgid "100MB or more"
+msgstr ""
+
+msgid "Less than 1GB"
+msgstr ""
+
+msgid "1GB or more"
+msgstr ""
+
+msgid "Custom Range..."
+msgstr ""
+
+msgid "&Last Modified"
+msgstr ""
+
+msgid "&Hour"
+msgstr ""
+
+msgid "More than 1 hour ago"
+msgstr ""
+
+msgid "Within 1 hour"
+msgstr ""
+
+msgid "&Day"
+msgstr ""
+
+msgid "Before today"
+msgstr ""
+
+msgid "Today"
+msgstr ""
+
+msgid "Before yesterday"
+msgstr ""
+
+msgid "Yesterday"
+msgstr ""
+
+msgid "Since yesterday"
+msgstr ""
+
+msgid "&Week"
+msgstr ""
+
+msgid "Before this week"
+msgstr ""
+
+msgid "This week"
+msgstr ""
+
+msgid "Before last week"
+msgstr ""
+
+msgid "Last week"
+msgstr ""
+
+msgid "Since last week"
+msgstr ""
+
+msgid "&Month"
+msgstr ""
+
+msgid "Before this month"
+msgstr ""
+
+msgid "This month"
+msgstr ""
+
+msgid "Before last month"
+msgstr ""
+
+msgid "Last month"
+msgstr ""
+
+msgid "Since last month"
+msgstr ""
+
+msgid "&Year"
+msgstr ""
+
+msgid "Before this year"
+msgstr ""
+
+msgid "This year"
+msgstr ""
+
+msgid "Before last year"
+msgstr ""
+
+msgid "Last year"
+msgstr ""
+
+msgid "Since last year"
+msgstr ""
+
+msgid "&Custom Range..."
+msgstr ""
+
+msgid "&Attributes"
+msgstr ""
+
+msgid "Read-only files"
+msgstr ""
+
+msgid "Not read-only files"
+msgstr ""
+
+msgid "Hidden files"
+msgstr ""
+
+msgid "Not hidden files"
+msgstr ""
+
+msgid "System files"
+msgstr ""
+
+msgid "Not system files"
+msgstr ""
+
+msgid "File &Content"
+msgstr ""
+
+msgid "Contains string..."
+msgstr ""
+
+msgid "Does not contain string..."
+msgstr ""
+
+msgid "First line contains string..."
+msgstr ""
+
+msgid "First line does not contain string..."
+msgstr ""
+
+msgid "First 10 lines contain string..."
+msgstr ""
+
+msgid "First 10 lines do not contain string..."
+msgstr ""
+
+msgid "Last 10 lines contain string..."
+msgstr ""
+
+msgid "Last 10 lines do not contain string..."
+msgstr ""
+
+msgid "Last line contains string..."
+msgstr ""
+
+msgid "Last line does not contain string..."
+msgstr ""
+
+msgid "&Line Count"
+msgstr ""
+
+msgid "Less than 10"
+msgstr ""
+
+msgid "10 or more"
+msgstr ""
+
+msgid "Less than 100"
+msgstr ""
+
+msgid "100 or more"
+msgstr ""
+
+msgid "Less than 1000"
+msgstr ""
+
+msgid "1000 or more"
+msgstr ""
+
+msgid "Less than 10000"
+msgstr ""
+
+msgid "10000 or more"
+msgstr ""
+
+msgid "Less than 100000"
+msgstr ""
+
+msgid "100000 or more"
+msgstr ""
+
+msgid "Add F&older Condition"
+msgstr ""
+
+msgid "Target: &Any (Left/Middle/Right)"
+msgstr ""
+
+msgid "Target: &Left"
+msgstr ""
+
+msgid "Target: &Middle"
+msgstr ""
+
+msgid "Target: &Right"
+msgstr ""
+
+msgid "Add &Difference Condition"
+msgstr ""
+
+msgid "Equal"
+msgstr ""
+
+msgid "Not Equal"
+msgstr ""
+
+msgid "Less than 10B"
+msgstr ""
+
+msgid "10B or more"
+msgstr ""
+
+msgid "Less than 100B"
+msgstr ""
+
+msgid "100B or more"
+msgstr ""
+
+msgid "Less than 1 second"
+msgstr ""
+
+msgid "1 second or more"
+msgstr ""
+
+msgid "Less than 1 minute"
+msgstr ""
+
+msgid "1 minute or more"
+msgstr ""
+
+msgid "Less than 1 hour"
+msgstr ""
+
+msgid "1 hour or more"
+msgstr ""
+
+msgid "Less than 1 day"
+msgstr ""
+
+msgid "1 day or more"
+msgstr ""
+
+msgid "Less than 1 week"
+msgstr ""
+
+msgid "1 week or more"
+msgstr ""
+
+msgid "Target: &Left and Right"
+msgstr ""
+
+msgid "Target: Left and &Middle"
+msgstr ""
+
+msgid "Target: Middle and &Right"
 msgstr ""
 
 msgid "About WinMerge"
@@ -1365,9 +1707,6 @@ msgstr "&Siguiente"
 msgid "Find &Prev"
 msgstr "&Anterior"
 
-msgid "&Ok"
-msgstr "Ace&ptar"
-
 msgid "Replace"
 msgstr "Reemplazar"
 
@@ -1406,6 +1745,9 @@ msgstr "Nuevo"
 
 msgid "&Background color:"
 msgstr "Color de fondo:"
+
+msgid "&Ok"
+msgstr "Ace&ptar"
 
 msgid "&Apply"
 msgstr "&Aplicar"
@@ -1812,6 +2154,12 @@ msgstr "Restablecer"
 msgid "File Filters"
 msgstr "Filtros de archivo"
 
+msgid "&Mask / Filter Expression"
+msgstr ""
+
+msgid "Preset &Filters"
+msgstr ""
+
 msgid "Test..."
 msgstr "Probar..."
 
@@ -1826,6 +2174,21 @@ msgstr "Editar..."
 
 msgid "Delete..."
 msgstr "Eliminar..."
+
+msgid "Filter Condition"
+msgstr ""
+
+msgid "&Left-hand side:"
+msgstr ""
+
+msgid "&Operator:"
+msgstr ""
+
+msgid "&Right-hand side:"
+msgstr ""
+
+msgid "Expression:"
+msgstr ""
 
 msgid "Save Modified Files?"
 msgstr "¿Guardar archivos modificados?"
@@ -3925,6 +4288,9 @@ msgstr ""
 "Hay una nueva versión de WinMerge.\n"
 "Está disponible %1 (tiene %2). ¿Desea descargarla ahora?"
 
+msgid " - All rights reserved."
+msgstr ""
+
 msgid "Failed to download latest version information"
 msgstr "Error al descargar la información de la última versión"
 
@@ -3941,8 +4307,9 @@ msgstr "Ir a &línea %1"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Ir a la línea desplazada\tCtrl+Mayús+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "Deshabilitado"
+msgstr ""
 
 msgid "From file system"
 msgstr "Del sistema de archivos"
@@ -4037,6 +4404,10 @@ msgstr "DirectWrite natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite natural simétrico"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr ""
 
 msgid "MDI child window or main window"
 msgstr "Ventana secundaria MDI o ventana principal"
@@ -4176,11 +4547,19 @@ msgstr "Carpeta AppData"
 msgid "Install folder"
 msgstr "Carpeta de instalación"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Permitir solo una instancia en ejecución"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Permitir únicamente una instancia en ejecución y esperar hasta que termine"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr ""
 
 msgid "Only on window activated"
 msgstr "Solo con la ventana activada"
@@ -4411,6 +4790,81 @@ msgid "File operation completed successfully"
 msgstr ""
 
 msgid "File operation canceled"
+msgstr ""
+
+msgid "No error"
+msgstr ""
+
+msgid "Filter expression is empty"
+msgstr ""
+
+msgid "Unknown character in filter expression"
+msgstr ""
+
+msgid "Unterminated string literal"
+msgstr ""
+
+msgid "Syntax error in filter expression"
+msgstr ""
+
+msgid "Failed to parse filter expression"
+msgstr ""
+
+msgid "Invalid literal value"
+msgstr ""
+
+msgid "Invalid regular expression"
+msgstr ""
+
+msgid "Undefined identifier"
+msgstr ""
+
+msgid "Invalid number of arguments"
+msgstr ""
+
+msgid "Filter name not found"
+msgstr ""
+
+msgid "Division by zero in filter expression"
+msgstr ""
+
+msgid "Unknown error"
+msgstr ""
+
+msgid "Equals"
+msgstr ""
+
+msgid "Does not equal"
+msgstr ""
+
+msgid "Less than"
+msgstr ""
+
+msgid "Less than or equal to"
+msgstr ""
+
+msgid "Greater than or equal to"
+msgstr ""
+
+msgid "Greater than"
+msgstr ""
+
+msgid "Between"
+msgstr ""
+
+msgid "Not Between"
+msgstr ""
+
+msgid "Contains"
+msgstr ""
+
+msgid "Not Contains"
+msgstr ""
+
+msgid "Contains (regex)"
+msgstr ""
+
+msgid "Not Contains (regex)"
 msgstr ""
 
 msgid "Prettification"

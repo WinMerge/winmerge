@@ -22,6 +22,7 @@
 #include <boost/type_traits/is_const.hpp>
 #include <boost/type_traits/remove_const.hpp>
 #include <boost/mpl/eval_if.hpp>
+#include <boost/mpl/if.hpp>
 
 namespace boost
 {

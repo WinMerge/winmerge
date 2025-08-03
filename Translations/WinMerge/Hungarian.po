@@ -1282,6 +1282,9 @@ msgstr "Elővizsgáló beállítások"
 msgid "G&o to Diff"
 msgstr "Ugrás &eltérésre"
 
+msgid "Move Cursor on &Click"
+msgstr "Kurzor mozgatása &Kattintásra"
+
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "&Nem mozgatott blokkok"
@@ -1444,6 +1447,345 @@ msgstr "Bővítmény &duplikálása..."
 
 msgid "Clear &All"
 msgstr "&Összes törlése"
+
+msgid "&Clear All"
+msgstr "Összes &törlése"
+
+msgid "Remove Last Filter &Group"
+msgstr "Utolsó szűrő &csoport eltávolítása"
+
+msgid "R&eset to Default (*.*)"
+msgstr "Alapértelmezettre &állítás (*.*)"
+
+msgid "Add E&xclude File"
+msgstr "&Kizárandó fájl hozzáadása"
+
+msgid "&System Files"
+msgstr "&Rendszerfájlok"
+
+msgid "&Editor Backup Files"
+msgstr "&Szerkesztő biztonsági mentési fájlok"
+
+msgid "&Compiled Binary Files"
+msgstr "&Fordított bináris fájlok"
+
+msgid "&Log Files"
+msgstr "&Naplófájlok"
+
+msgid "&Temporary or Cache Files"
+msgstr "&Ideiglenes vagy gyorsítótárfájlok"
+
+msgid "Add Excl&ude Folder"
+msgstr "&Kizárandó mappa hozzáadása"
+
+msgid "&Version Control"
+msgstr "&Verziókövetés"
+
+msgid "&Build Artifacts"
+msgstr ""
+
+msgid "&IDE"
+msgstr "&IDE"
+
+msgid "Add &File Condition"
+msgstr "Fájl feltétel Fájl &hozzáadása"
+
+msgid "File &Size"
+msgstr "Fájl &mérete"
+
+msgid "Less than 1KB"
+msgstr "Kevesebb, mint 1 KB"
+
+msgid "1KB or more"
+msgstr "1 KB vagy több"
+
+msgid "Less than 10KB"
+msgstr "Kevesebb, mint 10 KB"
+
+msgid "10KB or more"
+msgstr "10 KB vagy több"
+
+msgid "Less than 100KB"
+msgstr "Kevesebb, mint 100 KB"
+
+msgid "100KB or more"
+msgstr "100 KB vagy több"
+
+msgid "Less than 1MB"
+msgstr "Kevesebb, mint 1 MB"
+
+msgid "1MB or more"
+msgstr "1 MB vagy több"
+
+msgid "Less than 10MB"
+msgstr "Kevesebb, mint 10 MB"
+
+msgid "10MB or more"
+msgstr "10 MB vagy több"
+
+msgid "Less than 100MB"
+msgstr "Kevesebb, mint 100 MB"
+
+msgid "100MB or more"
+msgstr "100 MB vagy több"
+
+msgid "Less than 1GB"
+msgstr "Kevesebb, mint 1 GB"
+
+msgid "1GB or more"
+msgstr "1 GB vagy több"
+
+msgid "Custom Range..."
+msgstr "Egyéni tartomány..."
+
+msgid "&Last Modified"
+msgstr "&Utolsó módosítás"
+
+msgid "&Hour"
+msgstr "&Óra"
+
+msgid "More than 1 hour ago"
+msgstr "Több mint 1 órája"
+
+msgid "Within 1 hour"
+msgstr "1 órán belül"
+
+msgid "&Day"
+msgstr "&Nap"
+
+msgid "Before today"
+msgstr "Mai nap előtt"
+
+msgid "Today"
+msgstr "Ma"
+
+msgid "Before yesterday"
+msgstr "Tegnapi nap előtt"
+
+msgid "Yesterday"
+msgstr "Tegnap"
+
+msgid "Since yesterday"
+msgstr "Tegnapig"
+
+msgid "&Week"
+msgstr "&Hét"
+
+msgid "Before this week"
+msgstr "Ezelőtt a hét előtt"
+
+msgid "This week"
+msgstr "Ezen a héten"
+
+msgid "Before last week"
+msgstr "Múlt hét előtt"
+
+msgid "Last week"
+msgstr "Múlt héten"
+
+msgid "Since last week"
+msgstr "Múlt hétig"
+
+msgid "&Month"
+msgstr "&Hónap"
+
+msgid "Before this month"
+msgstr "Mostani hónap előtt"
+
+msgid "This month"
+msgstr "Ebben a hónapban"
+
+msgid "Before last month"
+msgstr "A múlt hónap előtt"
+
+msgid "Last month"
+msgstr "Múlt hónap"
+
+msgid "Since last month"
+msgstr "A múlt hónap óta"
+
+msgid "&Year"
+msgstr "&Év"
+
+msgid "Before this year"
+msgstr "Idei év előtt"
+
+msgid "This year"
+msgstr "Idén"
+
+msgid "Before last year"
+msgstr "Tavalyi év előtt"
+
+msgid "Last year"
+msgstr "Tavaly"
+
+msgid "Since last year"
+msgstr "Tavalyi év óta"
+
+msgid "&Custom Range..."
+msgstr "&Egyéni tartomány..."
+
+msgid "&Attributes"
+msgstr "&Attribútumok"
+
+msgid "Read-only files"
+msgstr "Írásvédett fájlok"
+
+msgid "Not read-only files"
+msgstr "Nem írásvédett fájlok"
+
+msgid "Hidden files"
+msgstr "Rejtett fájlok"
+
+msgid "Not hidden files"
+msgstr "Nem rejtett fájlok"
+
+msgid "System files"
+msgstr "Rendszerfájlok"
+
+msgid "Not system files"
+msgstr "Nem rendszerfájlok"
+
+msgid "File &Content"
+msgstr "Fájl &tartalma"
+
+msgid "Contains string..."
+msgstr "Tartalmazza a sztringet..."
+
+msgid "Does not contain string..."
+msgstr "Nem tartalmazza a sztringet..."
+
+msgid "First line contains string..."
+msgstr "Az első sor tartalmazza a sztringet..."
+
+msgid "First line does not contain string..."
+msgstr "Az első sor nem tartalmazza a sztringet..."
+
+msgid "First 10 lines contain string..."
+msgstr "Az első 10 sor tartalmazza a sztringet..."
+
+msgid "First 10 lines do not contain string..."
+msgstr "Az első 10 sor nem tartalmazza a sztringet..."
+
+msgid "Last 10 lines contain string..."
+msgstr "Az utolsó 10 sor tartalmazza a sztringet..."
+
+msgid "Last 10 lines do not contain string..."
+msgstr "Az utolsó 10 sor nem tartalmazza a sztringet..."
+
+msgid "Last line contains string..."
+msgstr "Az utolsó sor tartalmazza a sztringet..."
+
+msgid "Last line does not contain string..."
+msgstr "Az utolsó sor nem tartalmazza a sztringet..."
+
+msgid "&Line Count"
+msgstr "&Sorok száma"
+
+msgid "Less than 10"
+msgstr "Kevesebb, mint 10"
+
+msgid "10 or more"
+msgstr "10 vagy több"
+
+msgid "Less than 100"
+msgstr "Kevesebb, mint 100"
+
+msgid "100 or more"
+msgstr "100 vagy több"
+
+msgid "Less than 1000"
+msgstr "Kevesebb, mint 1000"
+
+msgid "1000 or more"
+msgstr "1000 vagy több"
+
+msgid "Less than 10000"
+msgstr "Kevesebb, mint 10000"
+
+msgid "10000 or more"
+msgstr "10000 vagy több"
+
+msgid "Less than 100000"
+msgstr "Kevesebb, mint 100000"
+
+msgid "100000 or more"
+msgstr "100000 vagy több"
+
+msgid "Add F&older Condition"
+msgstr "&Mappa feltétel hozzáadása"
+
+msgid "Target: &Any (Left/Middle/Right)"
+msgstr "Cél: &Bármelyik (Bal/Középső/Jobb)"
+
+msgid "Target: &Left"
+msgstr "Cél: &Bal"
+
+msgid "Target: &Middle"
+msgstr "Cél: &Középső"
+
+msgid "Target: &Right"
+msgstr "Cél: &Jobb"
+
+msgid "Add &Difference Condition"
+msgstr "&Különbségi feltétel hozzáadása"
+
+msgid "Equal"
+msgstr "Egyenlő"
+
+msgid "Not Equal"
+msgstr "Nem egyenlő"
+
+msgid "Less than 10B"
+msgstr "Kevesebb, mint 10 B"
+
+msgid "10B or more"
+msgstr "10 B vagy több"
+
+msgid "Less than 100B"
+msgstr "Kevesebb, mint 100 B"
+
+msgid "100B or more"
+msgstr "100 B vagy több"
+
+msgid "Less than 1 second"
+msgstr "Kevesebb mint 1 mp"
+
+msgid "1 second or more"
+msgstr "1 mp vagy több"
+
+msgid "Less than 1 minute"
+msgstr "Kevesebb mint 1 perc"
+
+msgid "1 minute or more"
+msgstr "1 perc vagy több"
+
+msgid "Less than 1 hour"
+msgstr "Kevesebb mint 1 óra"
+
+msgid "1 hour or more"
+msgstr "1 óra vagy több"
+
+msgid "Less than 1 day"
+msgstr "Kevesebb mint 1 nap"
+
+msgid "1 day or more"
+msgstr "1 nap vagy több"
+
+msgid "Less than 1 week"
+msgstr "Kevesebb mint 1 hét"
+
+msgid "1 week or more"
+msgstr "1 hét vagy több"
+
+msgid "Target: &Left and Right"
+msgstr "Cél: &Bal és jobb"
+
+msgid "Target: Left and &Middle"
+msgstr "Cél: Bal és &középső"
+
+msgid "Target: Middle and &Right"
+msgstr "Cél: Középső és &jobb"
 
 #, c-format
 msgid "About WinMerge"
@@ -1633,10 +1975,6 @@ msgid "Find &Prev"
 msgstr "Következő"
 
 #, c-format
-msgid "&Ok"
-msgstr "OK"
-
-#, c-format
 msgid "Replace"
 msgstr "Csere"
 
@@ -1686,6 +2024,10 @@ msgstr "Új"
 #, c-format
 msgid "&Background color:"
 msgstr "Háttérszín:"
+
+#, c-format
+msgid "&Ok"
+msgstr "&OK"
 
 #, c-format
 msgid "&Apply"
@@ -2184,6 +2526,12 @@ msgstr "Visszaállítás"
 msgid "File Filters"
 msgstr "Fájlszűrők"
 
+msgid "&Mask / Filter Expression"
+msgstr "&Maszk / Szűrő kifejezés"
+
+msgid "Preset &Filters"
+msgstr "Előre beállított &szűrők"
+
 msgid "Test..."
 msgstr "Teszt..."
 
@@ -2202,6 +2550,21 @@ msgstr "Szerkesztés..."
 #, c-format
 msgid "Delete..."
 msgstr "Törlés..."
+
+msgid "Filter Condition"
+msgstr "Szűrő állapota"
+
+msgid "&Left-hand side:"
+msgstr "&Balkezes oldal:"
+
+msgid "&Operator:"
+msgstr "&Operátor:"
+
+msgid "&Right-hand side:"
+msgstr "&Jobbkezes oldal:"
+
+msgid "Expression:"
+msgstr "Kifejezés:"
 
 #, c-format
 msgid "Save Modified Files?"
@@ -4580,6 +4943,9 @@ msgstr ""
 "Új WinMerge verzió érhető el.\n"
 "Új: %1 (jelenlegi: %2). Letöltöd most?"
 
+msgid " - All rights reserved."
+msgstr "- Minden jog fenntartva."
+
 #, c-format
 msgid "Failed to download latest version information"
 msgstr "Nem sikerült ellenőrizni a verzióinformációkat"
@@ -4599,7 +4965,7 @@ msgstr "&Ugrás a(z) %1. sorra"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "Ugrás az áthelyezett sorhoz\tCtrl+Shift+G"
 
-#, c-format
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
 msgstr "Letiltva"
 
@@ -4709,6 +5075,10 @@ msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr "Letiltva"
 
 msgid "MDI child window or main window"
 msgstr "MDI gyermekablak vagy főablak"
@@ -4848,11 +5218,19 @@ msgstr "Programadat mappa"
 msgid "Install folder"
 msgstr "Mappa telepítése"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr "Letiltva"
+
 msgid "Allow only one instance to run"
 msgstr "Csak egy példány futhat egyszerre"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr "Letiltva"
 
 msgid "Only on window activated"
 msgstr "Csak ablakon aktivált"
@@ -5080,6 +5458,81 @@ msgstr "A fájlművelet sikeresen befejeződött"
 
 msgid "File operation canceled"
 msgstr "A fájlművelet megszakítva"
+
+msgid "No error"
+msgstr "Nincs hiba"
+
+msgid "Filter expression is empty"
+msgstr "A szűrőkifejezés üres"
+
+msgid "Unknown character in filter expression"
+msgstr "Ismeretlen karakter a szűrőkifejezésben"
+
+msgid "Unterminated string literal"
+msgstr "Le nem zárt szting literális"
+
+msgid "Syntax error in filter expression"
+msgstr "Szintaxishiba a szűrőkifejezésben"
+
+msgid "Failed to parse filter expression"
+msgstr "Nem sikerült elemezni a szűrőkifejezést"
+
+msgid "Invalid literal value"
+msgstr "Érvénytelen literális érték"
+
+msgid "Invalid regular expression"
+msgstr "Érvénytelen reguláris kifejezés"
+
+msgid "Undefined identifier"
+msgstr "Meghatározatlan azonosító"
+
+msgid "Invalid number of arguments"
+msgstr "Érvénytelen számú argumentum"
+
+msgid "Filter name not found"
+msgstr "A szűrő neve nem található"
+
+msgid "Division by zero in filter expression"
+msgstr "Nullával való osztás a szűrőkifejezésben"
+
+msgid "Unknown error"
+msgstr "Ismeretlen hiba"
+
+msgid "Equals"
+msgstr "Egyenlők"
+
+msgid "Does not equal"
+msgstr "Nem egyenlő"
+
+msgid "Less than"
+msgstr "Kevesebb, mint"
+
+msgid "Less than or equal to"
+msgstr "Kevesebb vagy egyenlő, mint"
+
+msgid "Greater than or equal to"
+msgstr "Nagyobb vagy egyenlő, mint"
+
+msgid "Greater than"
+msgstr "Nagyobb , mint"
+
+msgid "Between"
+msgstr "Ezek között"
+
+msgid "Not Between"
+msgstr "Nem ezek között"
+
+msgid "Contains"
+msgstr "Tartalmazza"
+
+msgid "Not Contains"
+msgstr "Nem tartalmazza"
+
+msgid "Contains (regex)"
+msgstr "Tartalmazza (regex)"
+
+msgid "Not Contains (regex)"
+msgstr "Nem tartalmazza (regex)"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

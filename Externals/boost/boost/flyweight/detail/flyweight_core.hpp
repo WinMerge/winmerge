@@ -1,4 +1,4 @@
-/* Copyright 2006-2020 Joaquin M Lopez Munoz.
+/* Copyright 2006-2024 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -15,9 +15,11 @@
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <boost/core/no_exceptions_support.hpp>
-#include <boost/detail/workaround.hpp>
+#include <boost/config/workaround.hpp>
 #include <boost/flyweight/detail/perfect_fwd.hpp>
 #include <boost/mpl/apply.hpp>
+#include <boost/type_traits/declval.hpp>
+#include <utility>
 
 #if BOOST_WORKAROUND(BOOST_MSVC,BOOST_TESTED_AT(1400))
 #pragma warning(push)
@@ -71,6 +73,49 @@ public:
     if(chk(h))core::factory().erase(h);
   }
 };
+
+/* ADL-based customization point for factories providing the undocumented
+ * insert_and_visit facility rather than regular insert. Default behavior is
+ * to erase the entry if visitation throws.
+ */
+
+template<typename Factory,typename Entry,typename F>
+typename Factory::handle_type
+insert_and_visit(Factory& fac,const Entry& x,F f)
+{
+  typedef typename Factory::handle_type handle_type;
+
+  handle_type h(fac.insert(x));
+  BOOST_TRY{
+    f(fac.entry(h));
+  }
+  BOOST_CATCH(...){
+    fac().erase(h);
+    BOOST_RETHROW;
+  }
+  BOOST_CATCH_END
+  return h;
+}
+
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+template<typename Factory,typename Entry,typename F>
+typename Factory::handle_type
+insert_and_visit(Factory& fac,Entry&& x,F f)
+{
+  typedef typename Factory::handle_type handle_type;
+
+  handle_type h(fac.insert(std::forward<Entry>(x)));
+  BOOST_TRY{
+    f(fac.entry(h));
+  }
+  BOOST_CATCH(...){
+    fac.erase(h);
+    BOOST_RETHROW;
+  }
+  BOOST_CATCH_END
+  return h;
+}
+#endif
 
 template<
   typename ValuePolicy,typename Tag,typename TrackingPolicy,
@@ -149,6 +194,8 @@ public:
   }
 
   static const key_type& key(const handle_type& h)
+  BOOST_NOEXCEPT_IF(noexcept(
+    static_cast<const rep_type&>(boost::declval<const entry_type&>())))
   {
     return static_cast<const rep_type&>(entry(h));
   }
@@ -174,27 +221,56 @@ private:
     holder_arg
   >::type                             holder_type;
 
+  /* [key|copy|move]_construct_value: poor-man's pre-C++11 lambdas */
+
+  struct key_construct_value
+  {
+    void operator()(const entry_type& e)const
+    {
+      ValuePolicy::key_construct_value(static_cast<const rep_type&>(e));
+    }
+  };
+
+  struct copy_construct_value
+  {
+    copy_construct_value(const value_type& x_):x(x_){}
+
+    void operator()(const entry_type& e)const
+    {
+      ValuePolicy::copy_construct_value(static_cast<const rep_type&>(e),x);
+    }
+
+    const value_type& x;
+  };
+
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+  struct move_construct_value
+  {
+    move_construct_value(value_type&& x_):x(x_){}
+
+    void operator()(const entry_type& e)const
+    {
+      ValuePolicy::move_construct_value(
+        static_cast<const rep_type&>(e),std::move(x));
+    }
+
+    value_type& x;
+  };
+#endif
+
   static handle_type insert_rep(const rep_type& x)
   {
     init();
     entry_type       e(x);
     lock_type        lock(mutex());(void)lock;
-#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
-    base_handle_type h(factory().insert(std::move(e)));
-#else
-    base_handle_type h(factory().insert(e));
-#endif
 
-    BOOST_TRY{
-      ValuePolicy::construct_value(
-        static_cast<const rep_type&>(entry(h)));
-    }
-    BOOST_CATCH(...){
-      factory().erase(h);
-      BOOST_RETHROW;
-    }
-    BOOST_CATCH_END
-    return static_cast<handle_type>(h);
+#if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
+    return static_cast<handle_type>(
+      insert_and_visit(factory(),std::move(e),key_construct_value()));
+#else
+    return static_cast<handle_type>(
+      insert_and_visit(factory(),e,key_construct_value()));
+#endif
   }
 
   static handle_type insert_value(const value_type& x)
@@ -204,21 +280,12 @@ private:
     lock_type        lock(mutex());(void)lock;
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
-    base_handle_type h(factory().insert(std::move(e)));
+    return static_cast<handle_type>(
+      insert_and_visit(factory(),std::move(e),copy_construct_value(x)));
 #else
-    base_handle_type h(factory().insert(e));
+    return static_cast<handle_type>(
+      insert_and_visit(factory(),e,copy_construct_value(x)));
 #endif
-
-    BOOST_TRY{
-      ValuePolicy::copy_value(
-        static_cast<const rep_type&>(entry(h)));
-    }
-    BOOST_CATCH(...){
-      factory().erase(h);
-      BOOST_RETHROW;
-    }
-    BOOST_CATCH_END
-    return static_cast<handle_type>(h);
   }
 
 #if !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
@@ -227,18 +294,9 @@ private:
     init();
     entry_type       e(std::move(x));
     lock_type        lock(mutex());(void)lock;
-    base_handle_type h(factory().insert(std::move(e)));
 
-    BOOST_TRY{
-      ValuePolicy::construct_value(
-        static_cast<const rep_type&>(entry(h)));
-    }
-    BOOST_CATCH(...){
-      factory().erase(h);
-      BOOST_RETHROW;
-    }
-    BOOST_CATCH_END
-    return static_cast<handle_type>(h);
+    return static_cast<handle_type>(
+      insert_and_visit(factory(),std::move(e),key_construct_value()));
   }
 
   static handle_type insert_value(value_type&& x)
@@ -246,17 +304,10 @@ private:
     init();
     entry_type       e(rep_type(std::move(x)));
     lock_type        lock(mutex());(void)lock;
-    base_handle_type h(factory().insert(std::move(e)));
-    BOOST_TRY{
-      ValuePolicy::move_value(
-        static_cast<const rep_type&>(entry(h)));
-    }
-    BOOST_CATCH(...){
-      factory().erase(h);
-      BOOST_RETHROW;
-    }
-    BOOST_CATCH_END
-    return static_cast<handle_type>(h);
+
+    return static_cast<handle_type>(
+      insert_and_visit(
+        factory(),std::move(e),move_construct_value(std::move(x))));
   }
 #endif
 

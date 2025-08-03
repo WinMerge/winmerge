@@ -17,10 +17,9 @@
 #if defined(BOOST_HAS_PRAGMA_ONCE)
 #  pragma once
 #endif
-#include <boost/move/detail/config_begin.hpp>
+
 #include <boost/move/detail/workaround.hpp>  //forceinline
 #include <boost/move/detail/meta_utils_core.hpp>
-#include <cstddef>   //for std::size_t
 #include <boost/move/detail/addressof.hpp>
 
 //Small meta-typetraits to support move
@@ -200,22 +199,6 @@ struct add_const_lvalue_reference
    typedef typename add_lvalue_reference
       <t_unreferenced_const>::type                    type;
 };
-
-//////////////////////////////////////
-//             is_lvalue_reference
-//////////////////////////////////////
-template<class T>
-struct is_lvalue_reference
-{
-    static const bool value = false;
-};
-
-template<class T>
-struct is_lvalue_reference<T&>
-{
-    static const bool value = true;
-};
-
 
 //////////////////////////////////////
 //             identity
@@ -557,7 +540,5 @@ template< class T > struct remove_rvalue_reference { typedef T type; };
 
 }  //namespace move_detail {
 }  //namespace boost {
-
-#include <boost/move/detail/config_end.hpp>
 
 #endif //#ifndef BOOST_MOVE_DETAIL_META_UTILS_HPP

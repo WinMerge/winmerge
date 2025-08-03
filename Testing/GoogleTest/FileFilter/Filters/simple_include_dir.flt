@@ -2,4 +2,7 @@ name: simple include dir
 desc: simple directory filter long description
 def: include
 d: \\svn$
+de: Name = "a?c"
 d!: \\ex\\svn$
+de!: Name = "aac"
+

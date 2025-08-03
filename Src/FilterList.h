@@ -39,7 +39,7 @@ public:
 	FilterList();
 	~FilterList();
 	
-	void AddRegExp(const std::string& regularExpression, bool exclude = false, bool throwIfInvalid = false);
+	void AddRegExp(const std::string& regularExpression, bool throwIfInvalid = false);
 	void RemoveAllFilters();
 	bool HasRegExps() const;
 	bool Match(const std::string& string, int codepage = ucr::CP_UTF_8);
@@ -47,8 +47,6 @@ public:
 
 private:
 	std::vector <filter_item_ptr> m_list;
-	std::vector <filter_item_ptr> m_listExclude;
-
 };
 
 /** 
@@ -57,7 +55,6 @@ private:
 inline void FilterList::RemoveAllFilters()
 {
 	m_list.clear();
-	m_listExclude.clear();
 }
 
 /** 
@@ -66,5 +63,5 @@ inline void FilterList::RemoveAllFilters()
  */
 inline bool FilterList::HasRegExps() const
 {
-	return !m_list.empty() || !m_listExclude.empty();
+	return !m_list.empty();
 }

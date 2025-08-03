@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -1075,6 +1075,9 @@ msgstr "设置预比较插件"
 msgid "G&o to Diff"
 msgstr "转到差异处(&O)"
 
+msgid "Move Cursor on &Click"
+msgstr "在点击时移动光标(&C)"
+
 msgid "&No Moved Blocks"
 msgstr "不显示移动的区块(&N)"
 
@@ -1218,6 +1221,345 @@ msgstr "复制插件(&D)..."
 
 msgid "Clear &All"
 msgstr "清除所有(&A)"
+
+msgid "&Clear All"
+msgstr "清除所有(&C)"
+
+msgid "Remove Last Filter &Group"
+msgstr "清除上一个过滤器分组(&G)"
+
+msgid "R&eset to Default (*.*)"
+msgstr "重置为缺省值 (*.*) (&E)"
+
+msgid "Add E&xclude File"
+msgstr "排除文件(&X)"
+
+msgid "&System Files"
+msgstr "系统文件(&S)"
+
+msgid "&Editor Backup Files"
+msgstr "编辑器备份文件(&E)"
+
+msgid "&Compiled Binary Files"
+msgstr "已编译的二进制文件(&C)"
+
+msgid "&Log Files"
+msgstr "日志文件(&L)"
+
+msgid "&Temporary or Cache Files"
+msgstr "临时或缓存文件(&T)"
+
+msgid "Add Excl&ude Folder"
+msgstr "排除文件夹(&U)"
+
+msgid "&Version Control"
+msgstr "版本控制(&V)"
+
+msgid "&Build Artifacts"
+msgstr "构建制品(&B)"
+
+msgid "&IDE"
+msgstr "集成开发环境(&I)"
+
+msgid "Add &File Condition"
+msgstr "添加文件条件(&F)"
+
+msgid "File &Size"
+msgstr "文件大小(&S)"
+
+msgid "Less than 1KB"
+msgstr "小于 1KB"
+
+msgid "1KB or more"
+msgstr "至少 1KB"
+
+msgid "Less than 10KB"
+msgstr "小于 10KB"
+
+msgid "10KB or more"
+msgstr "至少 10KB"
+
+msgid "Less than 100KB"
+msgstr "小于 100KB"
+
+msgid "100KB or more"
+msgstr "至少 100KB"
+
+msgid "Less than 1MB"
+msgstr "小于 1MB"
+
+msgid "1MB or more"
+msgstr "至少 1MB"
+
+msgid "Less than 10MB"
+msgstr "小于 10MB"
+
+msgid "10MB or more"
+msgstr "至少 10MB"
+
+msgid "Less than 100MB"
+msgstr "小于 100MB"
+
+msgid "100MB or more"
+msgstr "至少 100MB"
+
+msgid "Less than 1GB"
+msgstr "小于 1GB"
+
+msgid "1GB or more"
+msgstr "至少 1GB"
+
+msgid "Custom Range..."
+msgstr "自定义范围..."
+
+msgid "&Last Modified"
+msgstr "最近修改(&L)"
+
+msgid "&Hour"
+msgstr "小时(&H)"
+
+msgid "More than 1 hour ago"
+msgstr "超过一小时"
+
+msgid "Within 1 hour"
+msgstr "一小时内"
+
+msgid "&Day"
+msgstr "天(&D)"
+
+msgid "Before today"
+msgstr "今天之前"
+
+msgid "Today"
+msgstr "今天"
+
+msgid "Before yesterday"
+msgstr "昨天之前"
+
+msgid "Yesterday"
+msgstr "昨天"
+
+msgid "Since yesterday"
+msgstr "近两天"
+
+msgid "&Week"
+msgstr "星期(&W)"
+
+msgid "Before this week"
+msgstr "本周之前"
+
+msgid "This week"
+msgstr "本周"
+
+msgid "Before last week"
+msgstr "上周之前"
+
+msgid "Last week"
+msgstr "上周"
+
+msgid "Since last week"
+msgstr "近两周"
+
+msgid "&Month"
+msgstr "月(&M)"
+
+msgid "Before this month"
+msgstr "本月之前"
+
+msgid "This month"
+msgstr "本月"
+
+msgid "Before last month"
+msgstr "上月之前"
+
+msgid "Last month"
+msgstr "上月"
+
+msgid "Since last month"
+msgstr "近两月"
+
+msgid "&Year"
+msgstr "年(&Y)"
+
+msgid "Before this year"
+msgstr "今年之前"
+
+msgid "This year"
+msgstr "今年"
+
+msgid "Before last year"
+msgstr "去年之前"
+
+msgid "Last year"
+msgstr "去年"
+
+msgid "Since last year"
+msgstr "近两年"
+
+msgid "&Custom Range..."
+msgstr "自定义范围(&C)..."
+
+msgid "&Attributes"
+msgstr "属性(&A)"
+
+msgid "Read-only files"
+msgstr "只读文件"
+
+msgid "Not read-only files"
+msgstr "非只读文件"
+
+msgid "Hidden files"
+msgstr "隐藏文件"
+
+msgid "Not hidden files"
+msgstr "非隐藏文件"
+
+msgid "System files"
+msgstr "系统文件"
+
+msgid "Not system files"
+msgstr "非系统文件"
+
+msgid "File &Content"
+msgstr "文件内容(&C)"
+
+msgid "Contains string..."
+msgstr "包括字符串..."
+
+msgid "Does not contain string..."
+msgstr "未包含字符串..."
+
+msgid "First line contains string..."
+msgstr "首行包含字符串..."
+
+msgid "First line does not contain string..."
+msgstr "首行未包含字符串..."
+
+msgid "First 10 lines contain string..."
+msgstr "前十行包含字符串..."
+
+msgid "First 10 lines do not contain string..."
+msgstr "前十行未包含字符串..."
+
+msgid "Last 10 lines contain string..."
+msgstr "后十行包含字符串..."
+
+msgid "Last 10 lines do not contain string..."
+msgstr "后十行未包含字符串..."
+
+msgid "Last line contains string..."
+msgstr "最后一行包含字符串..."
+
+msgid "Last line does not contain string..."
+msgstr "最后一行未包含字符串..."
+
+msgid "&Line Count"
+msgstr "行数(&L)"
+
+msgid "Less than 10"
+msgstr "小于 10"
+
+msgid "10 or more"
+msgstr "至少 10"
+
+msgid "Less than 100"
+msgstr "小于 100"
+
+msgid "100 or more"
+msgstr "至少 100"
+
+msgid "Less than 1000"
+msgstr "小于 1000"
+
+msgid "1000 or more"
+msgstr "至少 1000"
+
+msgid "Less than 10000"
+msgstr "小于 10000"
+
+msgid "10000 or more"
+msgstr "至少 10000"
+
+msgid "Less than 100000"
+msgstr "小于 100000"
+
+msgid "100000 or more"
+msgstr "至少 100000"
+
+msgid "Add F&older Condition"
+msgstr "添加文件夹条件(&O)"
+
+msgid "Target: &Any (Left/Middle/Right)"
+msgstr "目标：任意（左/中/右）(&A)"
+
+msgid "Target: &Left"
+msgstr "目标：左(&L)"
+
+msgid "Target: &Middle"
+msgstr "目标：中(&M)"
+
+msgid "Target: &Right"
+msgstr "目标：右(&R)"
+
+msgid "Add &Difference Condition"
+msgstr "添加差异条件(&D)"
+
+msgid "Equal"
+msgstr "相同"
+
+msgid "Not Equal"
+msgstr "不相同"
+
+msgid "Less than 10B"
+msgstr "小于 10 字节"
+
+msgid "10B or more"
+msgstr "至少 10 字节"
+
+msgid "Less than 100B"
+msgstr "小于 100 字节"
+
+msgid "100B or more"
+msgstr "至少 100 字节"
+
+msgid "Less than 1 second"
+msgstr "小于 1 秒"
+
+msgid "1 second or more"
+msgstr "至少 1 秒"
+
+msgid "Less than 1 minute"
+msgstr "小于 1 分钟"
+
+msgid "1 minute or more"
+msgstr "至少 1 分钟"
+
+msgid "Less than 1 hour"
+msgstr "小于 1 小时"
+
+msgid "1 hour or more"
+msgstr "至少 1 小时"
+
+msgid "Less than 1 day"
+msgstr "小于 1 天"
+
+msgid "1 day or more"
+msgstr "至少 1 天"
+
+msgid "Less than 1 week"
+msgstr "小于 1 星期"
+
+msgid "1 week or more"
+msgstr "至少 1 星期"
+
+msgid "Target: &Left and Right"
+msgstr "目标：左和右(&L)"
+
+msgid "Target: Left and &Middle"
+msgstr "目标：左和中(&M)"
+
+msgid "Target: Middle and &Right"
+msgstr "目标：中和右(&R)"
 
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
@@ -1366,9 +1708,6 @@ msgstr "查找下一个(&F)"
 msgid "Find &Prev"
 msgstr "查找上一个(&P)"
 
-msgid "&Ok"
-msgstr "确定(&O)"
-
 msgid "Replace"
 msgstr "替换"
 
@@ -1407,6 +1746,9 @@ msgstr "新建"
 
 msgid "&Background color:"
 msgstr "背景颜色(&B)"
+
+msgid "&Ok"
+msgstr "确定(&O)"
 
 msgid "&Apply"
 msgstr "应用(&A)"
@@ -1818,6 +2160,12 @@ msgstr "重置"
 msgid "File Filters"
 msgstr "文件过滤器"
 
+msgid "&Mask / Filter Expression"
+msgstr "掩码 / 过滤器表达式(&M)"
+
+msgid "Preset &Filters"
+msgstr "预设的过滤器(&F)"
+
 msgid "Test..."
 msgstr "测试..."
 
@@ -1832,6 +2180,21 @@ msgstr "编辑..."
 
 msgid "Delete..."
 msgstr "删除..."
+
+msgid "Filter Condition"
+msgstr "过滤器条件"
+
+msgid "&Left-hand side:"
+msgstr "左手边：(&L)"
+
+msgid "&Operator:"
+msgstr "操作：(&O)"
+
+msgid "&Right-hand side:"
+msgstr "右手边：(&R)"
+
+msgid "Expression:"
+msgstr "表达式："
 
 msgid "Save Modified Files?"
 msgstr "保存修改的文件吗？"
@@ -3979,6 +4342,9 @@ msgstr ""
 "WinMerge 的新版本已经可用。\n"
 "当前最新版本为 %1，而您当前使用的是 %2。是否要立即下载？"
 
+msgid " - All rights reserved."
+msgstr " - 保留所有权利。"
+
 msgid "Failed to download latest version information"
 msgstr "下载最新版本信息失败"
 
@@ -3995,8 +4361,9 @@ msgstr "转到第 %1 行(&O)"
 msgid "Go to Moved Line\tCtrl+Shift+G"
 msgstr "转到被移动的行\tCtrl+Shift+G"
 
+msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr "禁用"
+msgstr "已禁用"
 
 msgid "From file system"
 msgstr "由文件系统提供"
@@ -4091,6 +4458,10 @@ msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr "已禁用"
 
 msgid "MDI child window or main window"
 msgstr "MDI 子窗口或主窗口"
@@ -4230,11 +4601,19 @@ msgstr "AppData 文件夹"
 msgid "Install folder"
 msgstr "安装文件夹"
 
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr "已禁用"
+
 msgid "Allow only one instance to run"
 msgstr "只允许运行一个实例"
 
 msgid "Allow only one instance; wait for termination"
 msgstr "只允许运行一个实例并等待该实例结束"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr "已禁用"
 
 msgid "Only on window activated"
 msgstr "仅在窗口激活时"
@@ -4518,6 +4897,81 @@ msgstr "文件操作已成功完成"
 
 msgid "File operation canceled"
 msgstr "文件操作已取消"
+
+msgid "No error"
+msgstr "无错误"
+
+msgid "Filter expression is empty"
+msgstr "过滤器表达式为空"
+
+msgid "Unknown character in filter expression"
+msgstr "过滤器表达式存在未知字符"
+
+msgid "Unterminated string literal"
+msgstr "未终止的字符串字面量"
+
+msgid "Syntax error in filter expression"
+msgstr "过滤器表达式语法错误"
+
+msgid "Failed to parse filter expression"
+msgstr "无法解析过滤器表达式"
+
+msgid "Invalid literal value"
+msgstr "非法的字面量值"
+
+msgid "Invalid regular expression"
+msgstr "非法的正则表达式"
+
+msgid "Undefined identifier"
+msgstr "未定义的标识符"
+
+msgid "Invalid number of arguments"
+msgstr "非法的参数数量"
+
+msgid "Filter name not found"
+msgstr "过滤器名称不存在"
+
+msgid "Division by zero in filter expression"
+msgstr "过滤器表达式存在除零错误"
+
+msgid "Unknown error"
+msgstr "未知错误"
+
+msgid "Equals"
+msgstr "等于"
+
+msgid "Does not equal"
+msgstr "不等于"
+
+msgid "Less than"
+msgstr "小于"
+
+msgid "Less than or equal to"
+msgstr "小于等于"
+
+msgid "Greater than or equal to"
+msgstr "大于等于"
+
+msgid "Greater than"
+msgstr "大于"
+
+msgid "Between"
+msgstr "在"
+
+msgid "Not Between"
+msgstr "不在"
+
+msgid "Contains"
+msgstr "包含"
+
+msgid "Not Contains"
+msgstr "未包含"
+
+msgid "Contains (regex)"
+msgstr "包含（正则表达式）"
+
+msgid "Not Contains (regex)"
+msgstr "未包含（正则表达式）"
 
 msgid "Prettification"
 msgstr "格式美化"

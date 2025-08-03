@@ -47,6 +47,7 @@ public:
 	void SetOnTitleBar(bool onTitleBar) { m_bOnTitleBar = onTitleBar; }
 	bool GetActive() const { return m_bActive; }
 	void SetActive(bool bActive);
+	void ActivateTab(int nTabIndex);
 	COLORREF GetBackColor() const;
 
 // Overrides
@@ -72,6 +73,7 @@ protected:
 	afx_msg void OnMouseLeave();
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint point);
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()
@@ -109,6 +111,8 @@ public:
 	bool GetAutoMaxWidth() const { return m_tabCtrl.GetAutoMaxWidth(); }
 	void SetAutoMaxWidth(bool bAutoMaxWidth) { m_tabCtrl.SetAutoMaxWidth(bAutoMaxWidth); }
 	int GetItemCount() const { return m_tabCtrl.GetItemCount(); }
+	int GetItemIndexFromPoint(CPoint point, bool bRelatively) const;
+	bool ForwardMouseEventToTabCtrlIfNeeded(CPoint& point, UINT message);
 
 	virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler) {}
 	virtual CSize CalcFixedLayout(BOOL bStretch, BOOL bHorz);

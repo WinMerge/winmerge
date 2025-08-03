@@ -20,6 +20,8 @@
 #endif
 
 #if BOOST_WORKAROUND(BOOST_MSVC, <= 1600)
+#include <boost/mpl/bool.hpp>
+
 namespace boost
 {
 namespace cb_details

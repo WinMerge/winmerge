@@ -1,4 +1,4 @@
-/* Copyright 2006-2023 Joaquin M Lopez Munoz.
+/* Copyright 2006-2024 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -60,7 +60,7 @@ private:
 
 } /* namespace boost */
 #elif defined(BOOST_HAS_PTHREADS)
-/* code shamelessly ripped from <boost/detail/lwm_pthreads.hpp> */
+/* code shamelessly ripped from <boost/smart_ptr/detail/lwm_pthreads.hpp> */
 
 #include <boost/assert.hpp>
 #include <boost/noncopyable.hpp>

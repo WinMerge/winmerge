@@ -262,12 +262,12 @@
 
    #define BOOST_COPYABLE_AND_MOVABLE(TYPE)\
       public:\
-      inline TYPE& operator=(TYPE &t)\
+      BOOST_MOVE_FORCEINLINE TYPE& operator=(TYPE &t)\
       {  this->operator=(const_cast<const TYPE&>(t)); return *this;}\
       public:\
-      inline operator ::boost::rv<TYPE>&() \
+      BOOST_MOVE_FORCEINLINE operator ::boost::rv<TYPE>&() \
       {  return *BOOST_MOVE_TO_RV_CAST(::boost::rv<TYPE>*, this);  }\
-      inline operator const ::boost::rv<TYPE>&() const \
+      BOOST_MOVE_FORCEINLINE operator const ::boost::rv<TYPE>&() const \
       {  return *BOOST_MOVE_TO_RV_CAST(const ::boost::rv<TYPE>*, this);  }\
       private:\
    //
@@ -447,7 +447,7 @@
 
    #else //!defined(BOOST_MOVE_MSVC_AUTO_MOVE_RETURN_BUG) || defined(BOOST_MOVE_DOXYGEN_INVOKED)
 
-      #include <boost/move/detail/meta_utils.hpp>
+      #include <boost/move/detail/meta_utils_core.hpp>
 
       namespace boost {
       namespace move_detail {

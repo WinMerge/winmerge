@@ -20,7 +20,7 @@
 #include <boost/range/concepts.hpp>
 #include <boost/range/has_range_iterator.hpp>
 
-#include <boost/utility/enable_if.hpp>
+#include <boost/core/enable_if.hpp>
 #include <boost/type_traits/make_unsigned.hpp>
 #include <boost/type_traits/remove_const.hpp>
 #include <cstddef>

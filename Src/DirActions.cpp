@@ -502,6 +502,8 @@ bool AreItemsOpenable(const CDiffContext& ctxt, const DIFFITEM &di1, const DIFFI
 /// is it possible to open item ?
 bool IsItemOpenableOn(const DIFFITEM &di, int index)
 {
+	if (di.diffcode.diffcode == 0) return false;
+
 	// impossible if not existing
 	if (!di.diffcode.exists(index)) return false;
 
@@ -512,8 +514,20 @@ bool IsItemOpenableOn(const DIFFITEM &di, int index)
 /// is it possible to open left ... item ?
 bool IsItemOpenableOnWith(const DIFFITEM &di, int index)
 {
-	return (!di.diffcode.isDirectory() && IsItemOpenableOn(di, index));
+	return (di.diffcode.diffcode != 0 && !di.diffcode.isDirectory() && IsItemOpenableOn(di, index));
 }
+
+/**
+ * @brief Is it possible to open the parent folder?
+ * @param [in] di Diff item to check
+ * @param [in] index Index of the item whose parent folder to be opened.
+ * @return True if it is possible to open the parent folder.
+ */
+bool IsParentFolderOpenable(const DIFFITEM& di, int index)
+{
+	return (di.diffcode.diffcode != 0 && di.diffcode.exists(index));
+}
+
 /// is it possible to copy to... left item?
 bool IsItemCopyableToOn(const DIFFITEM &di, int index)
 {
@@ -1019,12 +1033,12 @@ int GetColImage(const DIFFITEM &di)
 	if (di.diffcode.isSideFirstOnly())
 		return (di.diffcode.isDirectory() ? DIFFIMG_LDIRUNIQUE : DIFFIMG_LUNIQUE);
 	if (di.diffcode.isSideSecondOnly())
-		return ((di.diffcode.diffcode & DIFFCODE::THREEWAY) == 0 ? 
+		return (!di.diffcode.isThreeway() ?
 			(di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE) :
 			(di.diffcode.isDirectory() ? DIFFIMG_MDIRUNIQUE : DIFFIMG_MUNIQUE));
 	if (di.diffcode.isSideThirdOnly())
 		return (di.diffcode.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
-	if ((di.diffcode.diffcode & DIFFCODE::THREEWAY) != 0)
+	if (di.diffcode.isThreeway())
 	{
 		if (!di.diffcode.exists(0))
 			return (di.diffcode.isDirectory() ? DIFFIMG_LDIRMISSING : DIFFIMG_LMISSING);

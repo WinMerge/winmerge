@@ -15,11 +15,10 @@
 #include <boost/core/no_exceptions_support.hpp>
 #include <boost/mem_fn.hpp>
 #include <boost/throw_exception.hpp>
-#include <boost/type_traits/is_integral.hpp>
-#include <boost/type_traits/is_void.hpp>
 #include <boost/config.hpp>
 #include <algorithm>
 #include <cassert>
+#include <type_traits>
 
 #if defined(BOOST_MSVC)
 #   pragma warning( push )
@@ -180,7 +179,7 @@ namespace boost {
       >
       struct get_function_invoker
       {
-        typedef typename conditional<(is_void<R>::value),
+        typedef typename std::conditional<std::is_void<R>::value,
                             void_function_invoker<
                             FunctionPtr,
                             R,
@@ -201,7 +200,7 @@ namespace boost {
        >
       struct get_function_obj_invoker
       {
-        typedef typename conditional<(is_void<R>::value),
+        typedef typename std::conditional<std::is_void<R>::value,
                             void_function_obj_invoker<
                             FunctionObj,
                             R,
@@ -222,7 +221,7 @@ namespace boost {
        >
       struct get_function_ref_invoker
       {
-        typedef typename conditional<(is_void<R>::value),
+        typedef typename std::conditional<std::is_void<R>::value,
                             void_function_ref_invoker<
                             FunctionObj,
                             R,
@@ -244,7 +243,7 @@ namespace boost {
        >
       struct get_member_invoker
       {
-        typedef typename conditional<(is_void<R>::value),
+        typedef typename std::conditional<std::is_void<R>::value,
                             void_member_invoker<
                             MemberPtr,
                             R,
@@ -262,9 +261,9 @@ namespace boost {
          actual invoker that will be used for the given function
          object.
 
-         Each specialization contains an "apply" nested class template
+         Each specialization contains an "apply_" nested class template
          that accepts the function object, return type, function
-         argument types, and allocator. The resulting "apply" class
+         argument types, and allocator. The resulting "apply_" class
          contains two typedefs, "invoker_type" and "manager_type",
          which correspond to the invoker and manager types. */
       template<typename Tag>
@@ -276,7 +275,7 @@ namespace boost {
       {
         template<typename FunctionPtr,
                  typename R, typename... T>
-        struct apply
+        struct apply_
         {
           typedef typename get_function_invoker<
                              FunctionPtr,
@@ -309,7 +308,7 @@ namespace boost {
       {
         template<typename MemberPtr,
                  typename R, typename... T>
-        struct apply
+        struct apply_
         {
           typedef typename get_member_invoker<
                              MemberPtr,
@@ -342,7 +341,7 @@ namespace boost {
       {
         template<typename FunctionObj,
                  typename R, typename... T>
-        struct apply
+        struct apply_
         {
           typedef typename get_function_obj_invoker<
                              FunctionObj,
@@ -375,7 +374,7 @@ namespace boost {
       {
         template<typename RefWrapper,
                  typename R, typename... T>
-        struct apply
+        struct apply_
         {
           typedef typename get_function_ref_invoker<
                              typename RefWrapper::type,
@@ -499,27 +498,27 @@ namespace boost {
         // Assign to a function object using the small object optimization
         template<typename FunctionObj>
         void
-        assign_functor(FunctionObj f, function_buffer& functor, true_type) const
+        assign_functor(FunctionObj f, function_buffer& functor, std::true_type) const
         {
           new (reinterpret_cast<void*>(functor.data)) FunctionObj(std::move(f));
         }
         template<typename FunctionObj,typename Allocator>
         void
-        assign_functor_a(FunctionObj f, function_buffer& functor, Allocator, true_type) const
+        assign_functor_a(FunctionObj f, function_buffer& functor, Allocator, std::true_type) const
         {
-          assign_functor(std::move(f),functor,true_type());
+          assign_functor(std::move(f),functor,std::true_type());
         }
 
         // Assign to a function object allocated on the heap.
         template<typename FunctionObj>
         void
-        assign_functor(FunctionObj f, function_buffer& functor, false_type) const
+        assign_functor(FunctionObj f, function_buffer& functor, std::false_type) const
         {
           functor.members.obj_ptr = new FunctionObj(std::move(f));
         }
         template<typename FunctionObj,typename Allocator>
         void
-        assign_functor_a(FunctionObj f, function_buffer& functor, Allocator a, false_type) const
+        assign_functor_a(FunctionObj f, function_buffer& functor, Allocator a, std::false_type) const
         {
           typedef functor_wrapper<FunctionObj,Allocator> functor_wrapper_type;
 
@@ -540,7 +539,7 @@ namespace boost {
         {
           if (!boost::detail::function::has_empty_target(boost::addressof(f))) {
             assign_functor(std::move(f), functor,
-                           integral_constant<bool, (function_allows_small_object_optimization<FunctionObj>::value)>());
+                           std::integral_constant<bool, (function_allows_small_object_optimization<FunctionObj>::value)>());
             return true;
           } else {
             return false;
@@ -552,7 +551,7 @@ namespace boost {
         {
           if (!boost::detail::function::has_empty_target(boost::addressof(f))) {
             assign_functor_a(std::move(f), functor, a,
-                           integral_constant<bool, (function_allows_small_object_optimization<FunctionObj>::value)>());
+                           std::integral_constant<bool, (function_allows_small_object_optimization<FunctionObj>::value)>());
             return true;
           } else {
             return false;
@@ -566,8 +565,8 @@ namespace boost {
                   function_buffer& functor, function_obj_ref_tag) const
         {
           functor.members.obj_ref.obj_ptr = (void *)(f.get_pointer());
-          functor.members.obj_ref.is_const_qualified = is_const<FunctionObj>::value;
-          functor.members.obj_ref.is_volatile_qualified = is_volatile<FunctionObj>::value;
+          functor.members.obj_ref.is_const_qualified = std::is_const<FunctionObj>::value;
+          functor.members.obj_ref.is_volatile_qualified = std::is_volatile<FunctionObj>::value;
           return true;
         }
         template<typename FunctionObj,typename Allocator>
@@ -587,18 +586,124 @@ namespace boost {
       struct variadic_function_base
       {};
 
-      template <typename T>
-      struct variadic_function_base<T>
+      template <typename T1>
+      struct variadic_function_base<T1>
       {
-        typedef T argument_type;
+        typedef T1 argument_type;
+        typedef T1 arg1_type;
       };
 
-      template <typename T0, typename T1>
-      struct variadic_function_base<T0, T1>
+      template <typename T1, typename T2>
+      struct variadic_function_base<T1, T2>
       {
-        typedef T0 first_argument_type;
-        typedef T1 second_argument_type;
+        typedef T1 first_argument_type;
+        typedef T2 second_argument_type;
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
       };
+
+      template <typename T1, typename T2, typename T3>
+      struct variadic_function_base<T1, T2, T3>
+      {
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
+        typedef T3 arg3_type;
+      };
+
+      template <typename T1, typename T2, typename T3, typename T4>
+      struct variadic_function_base<T1, T2, T3, T4>
+      {
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
+        typedef T3 arg3_type;
+        typedef T4 arg4_type;
+      };
+
+      template <typename T1, typename T2, typename T3, typename T4, typename T5>
+      struct variadic_function_base<T1, T2, T3, T4, T5>
+      {
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
+        typedef T3 arg3_type;
+        typedef T4 arg4_type;
+        typedef T5 arg5_type;
+      };
+
+      template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6>
+      struct variadic_function_base<T1, T2, T3, T4, T5, T6>
+      {
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
+        typedef T3 arg3_type;
+        typedef T4 arg4_type;
+        typedef T5 arg5_type;
+        typedef T6 arg6_type;
+      };
+
+      template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7>
+      struct variadic_function_base<T1, T2, T3, T4, T5, T6, T7>
+      {
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
+        typedef T3 arg3_type;
+        typedef T4 arg4_type;
+        typedef T5 arg5_type;
+        typedef T6 arg6_type;
+        typedef T7 arg7_type;
+      };
+
+      template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8>
+      struct variadic_function_base<T1, T2, T3, T4, T5, T6, T7, T8>
+      {
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
+        typedef T3 arg3_type;
+        typedef T4 arg4_type;
+        typedef T5 arg5_type;
+        typedef T6 arg6_type;
+        typedef T7 arg7_type;
+        typedef T8 arg8_type;
+      };
+
+      template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9>
+      struct variadic_function_base<T1, T2, T3, T4, T5, T6, T7, T8, T9>
+      {
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
+        typedef T3 arg3_type;
+        typedef T4 arg4_type;
+        typedef T5 arg5_type;
+        typedef T6 arg6_type;
+        typedef T7 arg7_type;
+        typedef T8 arg8_type;
+        typedef T9 arg9_type;
+      };
+
+      template <typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename T7, typename T8, typename T9, typename T10>
+      struct variadic_function_base<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
+      {
+        typedef T1 arg1_type;
+        typedef T2 arg2_type;
+        typedef T3 arg3_type;
+        typedef T4 arg4_type;
+        typedef T5 arg5_type;
+        typedef T6 arg6_type;
+        typedef T7 arg7_type;
+        typedef T8 arg8_type;
+        typedef T9 arg9_type;
+        typedef T10 arg10_type;
+      };
+
+#if defined( BOOST_LIBSTDCXX_VERSION ) && BOOST_LIBSTDCXX_VERSION < 50000
+
+      template<class T> struct is_trivially_copyable: std::integral_constant<bool,
+        __has_trivial_copy(T) && __has_trivial_assign(T) && __has_trivial_destructor(T)> {};
+
+#else
+
+      using std::is_trivially_copyable;
+
+#endif
 
     } // end namespace function
   } // end namespace detail
@@ -643,8 +748,8 @@ namespace boost {
     // one with a default parameter.
     template<typename Functor>
     function_n(Functor f
-                            ,typename boost::enable_if_<
-                             !(is_integral<Functor>::value),
+                            ,typename std::enable_if<
+                             !std::is_integral<Functor>::value,
                                         int>::type = 0
                             ) :
       function_base()
@@ -653,8 +758,8 @@ namespace boost {
     }
     template<typename Functor,typename Allocator>
     function_n(Functor f, Allocator a
-                            ,typename boost::enable_if_<
-                              !(is_integral<Functor>::value),
+                            ,typename std::enable_if<
+                              !std::is_integral<Functor>::value,
                                         int>::type = 0
                             ) :
       function_base()
@@ -691,8 +796,8 @@ namespace boost {
     // handle function_n as the type of the temporary to
     // construct.
     template<typename Functor>
-    typename boost::enable_if_<
-                  !(is_integral<Functor>::value),
+    typename std::enable_if<
+                  !std::is_integral<Functor>::value,
                function_n&>::type
     operator=(Functor f)
     {
@@ -818,7 +923,7 @@ namespace boost {
       typedef typename boost::detail::function::get_function_tag<Functor>::type tag;
       typedef boost::detail::function::get_invoker<tag> get_invoker;
       typedef typename get_invoker::
-                         template apply<Functor, R,
+                         template apply_<Functor, R,
                         T...>
         handler_type;
 
@@ -835,8 +940,7 @@ namespace boost {
       if (stored_vtable.assign_to(std::move(f), functor)) {
         std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
         // coverity[pointless_expression]: suppress coverity warnings on apparant if(const).
-        if (boost::has_trivial_copy_constructor<Functor>::value &&
-            boost::has_trivial_destructor<Functor>::value &&
+        if (boost::detail::function::is_trivially_copyable<Functor>::value &&
             boost::detail::function::function_allows_small_object_optimization<Functor>::value)
           value |= static_cast<std::size_t>(0x01);
         vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
@@ -869,8 +973,7 @@ namespace boost {
       if (stored_vtable.assign_to_a(std::move(f), functor, a)) {
         std::size_t value = reinterpret_cast<std::size_t>(&stored_vtable.base);
         // coverity[pointless_expression]: suppress coverity warnings on apparant if(const).
-        if (boost::has_trivial_copy_constructor<Functor>::value &&
-            boost::has_trivial_destructor<Functor>::value &&
+        if (boost::detail::function::is_trivially_copyable<Functor>::value &&
             boost::detail::function::function_allows_small_object_optimization<Functor>::value)
           value |= static_cast<std::size_t>(0x01);
         vtable = reinterpret_cast<boost::detail::function::vtable_base *>(value);
@@ -974,8 +1077,8 @@ public:
 
   template<typename Functor>
   function(Functor f
-           ,typename boost::enable_if_<
-                          !(is_integral<Functor>::value),
+           ,typename std::enable_if<
+                          !std::is_integral<Functor>::value,
                        int>::type = 0
            ) :
     base_type(std::move(f))
@@ -983,8 +1086,8 @@ public:
   }
   template<typename Functor,typename Allocator>
   function(Functor f, Allocator a
-           ,typename boost::enable_if_<
-                           !(is_integral<Functor>::value),
+           ,typename std::enable_if<
+                           !std::is_integral<Functor>::value,
                        int>::type = 0
            ) :
     base_type(std::move(f),a)
@@ -1014,8 +1117,8 @@ public:
   }
 
   template<typename Functor>
-  typename boost::enable_if_<
-                         !(is_integral<Functor>::value),
+  typename std::enable_if<
+                         !std::is_integral<Functor>::value,
                       self_type&>::type
   operator=(Functor f)
   {

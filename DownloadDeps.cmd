@@ -12,14 +12,14 @@ set downloadsdir=%~dp0\build\WinMergeDownloadDeps
 set urls_destdirs=^
 https://github.com/WinMerge/winmerge/releases/download/winmerge_manual_another_build_tools_v2/winmerge_manual_another_build_tools_v2.zip!Docs\Manual\Tools ^
 https://github.com/WinMerge/winmerge/releases/download/ShellExtension-1.18.7.0/ShellExtension-1.18.7.0.zip!Build ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2409.0/Merge7z2409.0-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2409.0/Merge7z2409.0-x64.zip!Build\X64\Release ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2409.0/Merge7z2409.0-ARM.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/winmerge/releases/download/Merge7z2409.0/Merge7z2409.0-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.15-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.15-x64.zip!Build\x64\Release ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.15-ARM.zip!Build\ARM\Release ^
-https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.15-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-x64.zip!Build\X64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-ARM.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winmerge/releases/download/Merge7z2500.0/Merge7z2500.0-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.17-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.17-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.17-ARM.zip!Build\ARM\Release ^
+https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.17-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.45/winimerge-1.0.45.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.45/winimerge-1.0.45.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.45/winimerge-1.0.45.0-ARM.zip!Build\ARM\Release ^
@@ -36,6 +36,9 @@ https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.5.2-1-any.pkg.tar.z
 https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
 https://mirror.msys2.org/msys/i686/msys2-runtime-3.2.0-14-i686.pkg.tar.zst!Build\msys2_tmp ^
 https://mirror.msys2.org/msys/i686/patch-2.7.6-1-i686.pkg.tar.xz!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/lemon-3.46.1-1-i686.pkg.tar.zst!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/re2c-3.1-2-i686.pkg.tar.zst!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/gcc-libs-13.3.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
 pushd "%~dp0"
@@ -71,6 +74,10 @@ mkdir Build\msys2\usr\share 2> NUL
 copy Build\msys2_tmp\usr\bin\patch.exe Build\msys2\usr\bin\
 copy Build\msys2_tmp\usr\bin\msys-2.0.dll Build\msys2\usr\bin\
 copy Build\msys2_tmp\usr\bin\msys-gcc_s-1.dll Build\msys2\usr\bin\
+copy Build\msys2_tmp\usr\bin\msys-gcc_s-seh-1.dll Build\msys2\usr\bin\
+copy "Build\msys2_tmp\usr\bin\msys-stdc++-6.dll" Build\msys2\usr\bin\
+copy Build\msys2_tmp\usr\bin\lemon.exe Build\msys2\usr\bin\
+copy Build\msys2_tmp\usr\bin\re2c.exe Build\msys2\usr\bin\
 xcopy /s /y Build\msys2_tmp\usr\share\*.* Build\msys2\usr\share\
 rmdir /q /s Build\msys2_tmp\ > NUL 2> NUL
 

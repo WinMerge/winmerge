@@ -90,7 +90,7 @@ class CTypedPtrMap;
 #include <boost/iterator/transform_iterator.hpp>
 #include <boost/type_traits/is_const.hpp>
 #include <boost/type_traits/remove_pointer.hpp>
-#include <boost/utility/addressof.hpp>
+#include <boost/core/addressof.hpp>
 #include <afx.h> // legacy CString
 #include <afxcoll.h> // CXXXArray, CXXXList, CMapXXXToXXX
 #include <tchar.h>
