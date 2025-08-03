@@ -271,6 +271,8 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 
 void CDirDoc::CheckFilter()
 {
+	if (!m_pCtxt || !m_pCtxt->m_piFilterGlobal)
+		return;
 	for (const auto* error: m_pCtxt->m_piFilterGlobal->GetErrorList())
 	{
 		String msg = FormatFilterErrorSummary(*error);
