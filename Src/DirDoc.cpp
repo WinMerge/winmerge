@@ -1011,7 +1011,10 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 	else if (ans == IDNO)
 		return false;
 
+	int oldCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
+	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, CMP_QUICK_CONTENT); // Use quick content compare for large files
 	InitDiffContext(&ctxt);
+	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, oldCompareMethod); // Restore previous compare method
 	FolderCmp cmp(&ctxt);
 	CWaitCursor waitstatus;
 	di.diffcode.diffcode |= cmp.prepAndCompareFiles(di);
