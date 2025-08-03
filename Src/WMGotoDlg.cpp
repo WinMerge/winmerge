@@ -77,8 +77,7 @@ WMGotoDlg::Impl::Impl(WMGotoDlg *p, CWnd* pParent /*= nullptr*/)
  */
 BOOL WMGotoDlg::Impl::OnInitDialog()
 {
-	LangTranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	__super::OnInitDialog();
 
 	if (m_p->m_nFiles < 3)
 		EnableDlgItem(IDC_WMGOTO_FILEMIDDLE, false);
@@ -88,9 +87,6 @@ BOOL WMGotoDlg::Impl::OnInitDialog()
 	UpdateRange();
 	UpdateGoToButton();
 	UpdateData(FALSE);
-#if defined(USE_DARKMODELIB)
-	DarkMode::setDarkWndSafe(GetSafeHwnd(), true);
-#endif
 	return TRUE;
 }
 

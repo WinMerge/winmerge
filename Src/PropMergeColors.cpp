@@ -10,7 +10,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
-#include "MergeDarkMode.h"
+#include "MyColorDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -126,14 +126,7 @@ void PropMergeColors::WriteOptions()
  */
 void PropMergeColors::BrowseColor(CColorButton & colorButton)
 {
-	CColorDialog dialog(colorButton.GetColor());
-#if defined(USE_DARKMODELIB)
-	if (DarkMode::isEnabled())
-	{
-		dialog.m_cc.Flags |= CC_FLAGS_DARK;
-		dialog.m_cc.lpfnHook = static_cast<LPCCHOOKPROC>(DarkMode::HookDlgProc);
-	}
-#endif
+	CMyColorDialog dialog(colorButton.GetColor());
 	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
 	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	

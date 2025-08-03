@@ -33,6 +33,7 @@
 #include "Constants.h"
 #include "DropHandler.h"
 #include "Environment.h"
+#include "MyColorDialog.h"
 #include <cmath>
 
 #ifdef _DEBUG
@@ -2138,14 +2139,7 @@ void CImgMergeFrame::OnImgUseBackColor()
 	if (bUseBackColor)
 	{
 		RGBQUAD backColor = m_pImgMergeWindow->GetBackColor();
-		CColorDialog dialog(RGB(backColor.rgbRed, backColor.rgbGreen, backColor.rgbBlue));
-#if defined(USE_DARKMODELIB)
-		if (DarkMode::isEnabled())
-		{
-			dialog.m_cc.Flags |= CC_FLAGS_DARK;
-			dialog.m_cc.lpfnHook = static_cast<LPCCHOOKPROC>(DarkMode::HookDlgProc);
-		}
-#endif
+		CMyColorDialog dialog(RGB(backColor.rgbRed, backColor.rgbGreen, backColor.rgbBlue));
 		static DWORD dwCustColors[16];
 		Options::CustomColors::Load(GetOptionsMgr(), dwCustColors);
 		dialog.m_cc.lpCustColors = dwCustColors;

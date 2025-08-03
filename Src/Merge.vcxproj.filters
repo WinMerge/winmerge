@@ -783,6 +783,9 @@
     <ClCompile Include="MergeDarkMode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyColorDialog.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1492,6 +1495,9 @@
     </ClInclude>
     <ClInclude Include="MergeDarkMode.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyColorDialog.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

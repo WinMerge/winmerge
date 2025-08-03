@@ -11,7 +11,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
-#include "MergeDarkMode.h"
+#include "MyColorDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -94,14 +94,7 @@ void PropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorInd
 		return;
 
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
-	CColorDialog dialog(currentColor);
-#if defined(USE_DARKMODELIB)
-	if (DarkMode::isEnabled())
-	{
-		dialog.m_cc.Flags |= CC_FLAGS_DARK;
-		dialog.m_cc.lpfnHook = static_cast<LPCCHOOKPROC>(DarkMode::HookDlgProc);
-	}
-#endif
+	CMyColorDialog dialog(currentColor);
 	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
 	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	
