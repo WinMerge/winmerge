@@ -70,6 +70,7 @@
 #include "MouseHook.h"
 #include "SysColorHook.h"
 #include "Logger.h"
+#include "ColorSchemes.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
@@ -359,10 +360,21 @@ BOOL CMergeApp::InitInstance()
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
 #if defined(USE_DARKMODELIB)
-	if (IsWin10_OrGreater())
+	if (WinMergeDarkMode::IsDarkModeAvailable())
 	{
+		const DarkMode::DarkModeType dmTypeOld =
+			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE_EFFECTIVE));
+		const DarkMode::DarkModeType dmType =
+			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE));
+		if (dmTypeOld != dmType)
+		{
+			String path = ColorSchemes::GetColorSchemePath(dmType == DarkMode::DarkModeType::dark ? 
+				GetOptionsMgr()->GetString(OPT_COLOR_SCHEME_DARK) : GetOptionsMgr()->GetString(OPT_COLOR_SCHEME));
+			GetOptionsMgr()->ImportOptions(path);
+			GetOptionsMgr()->SaveOption(OPT_COLOR_MODE_EFFECTIVE, dmType == DarkMode::DarkModeType::dark ? 1 : 0);
+		}
 		DarkMode::initDarkMode();
-		DarkMode::setDarkModeConfig();
+		DarkMode::setDarkModeConfig(static_cast<unsigned>(dmType));
 		DarkMode::setDefaultColors(true);
 	}
 #endif

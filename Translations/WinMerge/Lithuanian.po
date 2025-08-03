@@ -1782,8 +1782,14 @@ msgstr "Išvalyti"
 msgid "Colors"
 msgstr "Spalvų"
 
-msgid "Color Scheme:"
-msgstr "Spalvų schema:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Fono"
@@ -4562,6 +4568,15 @@ msgstr "Turi (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Neturi (regex)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Sutvarkymas"

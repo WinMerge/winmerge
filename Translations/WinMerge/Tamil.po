@@ -1798,8 +1798,14 @@ msgstr "அழி"
 msgid "Colors"
 msgstr "நிறங்கள்"
 
-msgid "Color Scheme:"
-msgstr "வண்ணத் திட்டம்:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "பின்னணி"
@@ -5051,6 +5057,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

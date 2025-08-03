@@ -1788,8 +1788,14 @@ msgstr "清除"
 msgid "Colors"
 msgstr "颜色"
 
-msgid "Color Scheme:"
-msgstr "配色方案："
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "背景"
@@ -5008,6 +5014,15 @@ msgstr "包含（正则表达式）"
 
 msgid "Not Contains (regex)"
 msgstr "未包含（正则表达式）"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "格式美化"

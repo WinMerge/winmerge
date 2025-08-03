@@ -1783,8 +1783,14 @@ msgstr "Borrar"
 msgid "Colors"
 msgstr "Cores"
 
-msgid "Color Scheme:"
-msgstr "Esquema de cores:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Fondo"
@@ -4899,6 +4905,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

@@ -1783,8 +1783,14 @@ msgstr "Wyczyść"
 msgid "Colors"
 msgstr "Kolory"
 
-msgid "Color Scheme:"
-msgstr "Schemat kolorów:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Tło"
@@ -4562,6 +4568,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

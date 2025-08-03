@@ -1790,8 +1790,14 @@ msgstr "Azzera"
 msgid "Colors"
 msgstr "Colori"
 
-msgid "Color Scheme:"
-msgstr "Schema colore:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Sfondo"
@@ -5068,6 +5074,15 @@ msgstr "Contiene (regx)"
 
 msgid "Not Contains (regex)"
 msgstr "Non contiene (regex)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Abbellimento"

@@ -1785,8 +1785,14 @@ msgstr "Rensa"
 msgid "Colors"
 msgstr "Färger"
 
-msgid "Color Scheme:"
-msgstr "Färgschema:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Bakgrund"
@@ -4987,6 +4993,15 @@ msgstr "Innehåller (RegExp)"
 
 msgid "Not Contains (regex)"
 msgstr "Innehåller inte (RegExp)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Finputsning"

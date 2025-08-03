@@ -2071,8 +2071,14 @@ msgstr "Törlés"
 msgid "Colors"
 msgstr "Színek"
 
-msgid "Color Scheme:"
-msgstr "Szín séma:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 #, c-format
 msgid "Background"
@@ -5569,6 +5575,15 @@ msgstr "Tartalmazza (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Nem tartalmazza (regex)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

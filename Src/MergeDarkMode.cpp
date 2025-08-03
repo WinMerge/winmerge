@@ -13,6 +13,7 @@
 
 #include "StdAfx.h"
 #include "MergeDarkMode.h"
+#include "Win_VersionHelper.h"
 #include "Resource.h"
 
 #include <limits>
@@ -238,5 +239,26 @@ namespace WinMergeDarkMode
 			::SetWindowSubclass(hWnd, AsciiCtlColorSubclass, g_aboutAsciiSubclassID, 0);
 		}
 	}
+
+	/**
+	 * @brief Get dark mode type based on color mode.
+	 */
+	DarkMode::DarkModeType GetDarkModeType(int colorMode)
+	{
+		if (colorMode == 1)
+			return DarkMode::DarkModeType::dark;
+		if (colorMode == 2 && DarkMode::isDarkModeReg())
+			return DarkMode::DarkModeType::dark;
+		return DarkMode::DarkModeType::classic;
+	}
+
+	/**
+	 * @brief Check if dark mode is available.
+	 */
+	bool IsDarkModeAvailable()
+	{
+		return IsWin10_OrGreater();
+	}
+
 } // namespace WinMergeDarkMode
 #endif // USE_DARKMODELIB

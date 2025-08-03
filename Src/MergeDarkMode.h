@@ -19,6 +19,9 @@
 	&& (defined(__x86_64__) || defined(_M_X64) \
 	|| defined(__arm64__) || defined(__arm64) || defined(_M_ARM64))
 #define USE_DARKMODELIB
+namespace WinMergeDarkMode { inline constexpr bool UseDarkModeLib = true; };
+#else
+namespace WinMergeDarkMode { inline constexpr bool UseDarkModeLib = false; };
 #endif
 
 #if defined(USE_DARKMODELIB)
@@ -45,5 +48,21 @@ namespace WinMergeDarkMode
 	 * @param [in] hWnd About dialog handle.
 	 */
 	void SetAsciiArtSubclass(HWND hWnd);
+
+	/**
+	 * @brief Get dark mode type based on color mode.
+	 * @param [in] colorMode Color mode from options.
+	 */
+	DarkMode::DarkModeType GetDarkModeType(int colorMode);
+
+	/**
+	 * @brief Check if dark mode is available.
+	 */
+	bool IsDarkModeAvailable();
 }
+
+#else
+
+namespace WinMergeDarkMode { bool IsDarkModeAvailable() { return false; } }
+
 #endif // USE_DARKMODELIB

@@ -1782,8 +1782,14 @@ msgstr "Vyčistiť"
 msgid "Colors"
 msgstr "Farby"
 
-msgid "Color Scheme:"
-msgstr "Farebná schéma:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Pozadie"
@@ -4874,6 +4880,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"
