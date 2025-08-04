@@ -1,9 +1,4 @@
 # Change log
-## WinMerge 2.16.48.2 - 2025-04-29
-
-### Installer
-
-- BugFix: Installing as "NT Authority/SYSTEM" does not work on some langauges. (#2752, #2758)
 
 ## WinMerge 2.16.50 - 2025-07-27
 
