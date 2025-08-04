@@ -59,6 +59,11 @@ namespace WinMergeDarkMode
 	 * @brief Check if dark mode is available.
 	 */
 	bool IsDarkModeAvailable();
+
+	/**
+	 * @brief Check if the section name is "ImmersiveColorSet".
+	 */
+	bool IsImmersiveColorSet(LPCTSTR lpszSection);
 }
 
 #else

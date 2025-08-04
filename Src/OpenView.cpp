@@ -118,6 +118,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_THEMECHANGED()
+	ON_WM_SETTINGCHANGE()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
 	ON_WM_WINDOWPOSCHANGING()
@@ -450,6 +451,34 @@ LRESULT COpenView::OnThemeChanged()
 		m_hTheme = OpenThemeData(m_hWnd, WC_SCROLLBAR);
 	}
 	return 0;
+}
+
+void COpenView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+#if defined(USE_DARKMODELIB)
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+	{
+		m_image.Destroy();
+		if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_LOGO), _T("IMAGE")))
+		{
+			// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
+			m_image.Create(1, 1, 24, 0);
+		}
+
+		HWND hSelf = GetSafeHwnd();
+		if (hSelf != nullptr)
+		{
+			DarkMode::setWindowCtlColorSubclass(hSelf);
+			DarkMode::setChildCtrlsSubclassAndTheme(hSelf);
+		}
+
+		if (DarkMode::isExperimentalActive())
+		{
+			WinMergeDarkMode::InvertLightness(m_image);
+		}
+	}
+#endif
+	__super::OnSettingChange(uFlags, lpszSection);
 }
 
 void COpenView::OnLButtonUp(UINT nFlags, CPoint point)

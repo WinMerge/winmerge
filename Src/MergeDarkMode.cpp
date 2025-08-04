@@ -260,5 +260,13 @@ namespace WinMergeDarkMode
 		return IsWin10_OrGreater();
 	}
 
+	/**
+	 * @brief Check if the section name is "ImmersiveColorSet".
+	 */
+	bool IsImmersiveColorSet(LPCTSTR lpszSection)
+	{
+		return lstrcmp(lpszSection, _T("ImmersiveColorSet")) == 0;
+	}
+
 } // namespace WinMergeDarkMode
 #endif // USE_DARKMODELIB

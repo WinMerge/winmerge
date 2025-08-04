@@ -23,6 +23,7 @@ BEGIN_MESSAGE_MAP(CSplitterWndEx, CSplitterWnd)
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_WM_SIZE()
+	ON_WM_SETTINGCHANGE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -395,7 +396,15 @@ void CSplitterWndEx::OnSize(UINT nType, int cx, int cy)
 			EqualizeRows();
 		}
 	}
+}
 
+void CSplitterWndEx::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+#if defined(USE_DARKMODELIB)
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+		DarkMode::setChildCtrlsTheme(GetSafeHwnd());
+#endif
+	__super::OnSettingChange(uFlags, lpszSection);
 }
 
 void CSplitterWndEx::FlipSplit()

@@ -76,6 +76,9 @@
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
 #include "FrameWndHelper.h"
+#include "ColorSchemes.h"
+#include "OptionsSyntaxColors.h"
+#include "SysColorHook.h"
 #include <Poco/Logger.h>
 #include <Poco/AsyncChannel.h>
 #include <Poco/SimpleFileChannel.h>
@@ -237,6 +240,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
 	ON_WM_SYSCOMMAND()
+	ON_WM_SETTINGCHANGE()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -1241,21 +1245,22 @@ void CMainFrame::OnOptions()
 #if defined(USE_DARKMODELIB)
 		const DarkMode::DarkModeType dmTypeNew =
 			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE));
+		const bool colorModeChanged = dmType != dmTypeNew;
+#else
+		const bool colorModeChanged = false;
 #endif
 		if (sysColorHookEnabled != GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED) ||
 		    sysColorsSerialized != GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS) ||
-#if defined(USE_DARKMODELIB)
-		    dmType != dmTypeNew)
-#else
-		    true)
-#endif
+			colorModeChanged)
 		{
 			theApp.ReloadCustomSysColors();
 #if defined(USE_DARKMODELIB)
 			DarkMode::setDarkModeConfig(static_cast<UINT>(dmTypeNew));
 			DarkMode::setDefaultColors(true);
+			DarkMode::setDarkTitleBarEx(m_hWnd, true);
 #endif
 			AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
+			AfxGetMainWnd()->SendMessage(WM_SETTINGCHANGE, 0, reinterpret_cast<LPARAM>(_T("ImmersiveColorSet")));
 			RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
 		}
 	}
@@ -3933,4 +3938,53 @@ void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
 		return;
 	}
 	__super::OnSysCommand(nID, lParam);
+}
+
+/**
+ * @brief Called when the system settings change.
+ */
+void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+#if defined(USE_DARKMODELIB)
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+	{
+		const DarkMode::DarkModeType dmTypeNew =
+			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE));
+		const DarkMode::DarkModeType dmTypeOld =
+			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE_EFFECTIVE));
+		if (dmTypeNew != dmTypeOld)
+		{
+			const String path = ColorSchemes::GetColorSchemePath(dmTypeNew == DarkMode::DarkModeType::dark ?
+				GetOptionsMgr()->GetString(OPT_COLOR_SCHEME_DARK) : GetOptionsMgr()->GetString(OPT_COLOR_SCHEME));
+			SysColorHook::Unhook(AfxGetInstanceHandle());
+			GetOptionsMgr()->ImportOptions(path);
+			GetOptionsMgr()->SaveOption(OPT_COLOR_MODE_EFFECTIVE, dmTypeNew == DarkMode::DarkModeType::dark ? 1 : 0);
+
+			Options::SyntaxColors::Load(GetOptionsMgr(), theApp.GetMainSyntaxColors());
+
+			theApp.ReloadCustomSysColors();
+			DarkMode::setDarkModeConfig(static_cast<UINT>(dmTypeNew));
+			DarkMode::setDefaultColors(true);
+			DarkMode::setDarkTitleBarEx(m_hWnd, true);
+
+			// Update all dirdoc settings
+			for (auto pMergeDoc : GetAllMergeDocs())
+				pMergeDoc->RefreshOptions();
+			for (auto pDirDoc : GetAllDirDocs())
+				pDirDoc->RefreshOptions();
+			for (auto pHexMergeDoc : GetAllHexMergeDocs())
+				pHexMergeDoc->RefreshOptions();
+			for (auto pImgMergeFrame : GetAllImgMergeFrames())
+				pImgMergeFrame->RefreshOptions();
+			for (auto pWebPageDiffFrame : GetAllWebPageDiffFrames())
+				pWebPageDiffFrame->RefreshOptions();
+			for (auto pOpenDoc : GetAllOpenDocs())
+				pOpenDoc->RefreshOptions();
+
+			AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
+			RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
+		}
+	}
+#endif
+	__super::OnSettingChange(uFlags, lpszSection);
 }

@@ -54,7 +54,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
-	ON_WM_SETFOCUS ()	
+	ON_WM_SETFOCUS()
+	ON_WM_SETTINGCHANGE()
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
 	// [File] menu
@@ -2385,3 +2386,24 @@ void CImgMergeFrame::OnHelp()
 {
 	theApp.ShowHelp(ImgMergeFrameHelpLocation);
 }
+
+/**
+ * @brief Called when the system settings change.
+ */
+void CImgMergeFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+#if defined(USE_DARKMODELIB)
+	if (m_pImgToolWindow && WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+	{
+		HWND hPane = m_pImgToolWindow->GetHWND();
+		if (hPane != nullptr)
+		{
+			DarkMode::setWindowCtlColorSubclass(hPane);
+			DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
+			DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+		}
+	}
+#endif
+	__super::OnSettingChange(uFlags, lpszSection);
+}
+

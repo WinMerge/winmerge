@@ -128,6 +128,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_WM_CHAR()
 	ON_WM_KEYDOWN()
 	ON_WM_TIMER()
+	ON_WM_SETTINGCHANGE()
 	ON_MESSAGE(MSG_UI_UPDATE, OnUpdateUIMessage)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
@@ -2889,6 +2890,26 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 	}
 	
 	__super::OnTimer(nIDEvent);
+}
+
+/**
+ * @brief Called when the user changes the system settings.
+ */
+void CDirView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+#if defined(USE_DARKMODELIB)
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+	{
+		HWND hList = GetSafeHwnd();
+		if (hList != nullptr)
+		{
+			DarkMode::setListViewCtrlSubclass(hList);
+			DarkMode::setDarkTooltips(hList, DarkMode::ToolTipsType::listview);
+			DarkMode::setDarkThemeExperimental(hList);
+		}
+	}
+#endif
+	__super::OnSettingChange(uFlags, lpszSection);
 }
 
 /**

@@ -368,8 +368,8 @@ BOOL CMergeApp::InitInstance()
 			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE));
 		if (dmTypeOld != dmType)
 		{
-			String path = ColorSchemes::GetColorSchemePath(dmType == DarkMode::DarkModeType::dark ? 
-				GetOptionsMgr()->GetString(OPT_COLOR_SCHEME_DARK) : GetOptionsMgr()->GetString(OPT_COLOR_SCHEME));
+			const String path = ColorSchemes::GetColorSchemePath( 
+				GetOptionsMgr()->GetString(dmType == DarkMode::DarkModeType::dark ? OPT_COLOR_SCHEME_DARK : OPT_COLOR_SCHEME));
 			GetOptionsMgr()->ImportOptions(path);
 			GetOptionsMgr()->SaveOption(OPT_COLOR_MODE_EFFECTIVE, dmType == DarkMode::DarkModeType::dark ? 1 : 0);
 		}

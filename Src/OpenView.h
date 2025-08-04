@@ -170,6 +170,7 @@ protected:
 	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg LRESULT OnThemeChanged();
+    afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg LRESULT OnNcHitTest(CPoint point);

@@ -464,6 +464,7 @@ protected:
 	afx_msg void OnViewOutputBar();
 	afx_msg void OnUpdateViewOutputBar(CCmdUI* pCmdUI);
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+    afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
