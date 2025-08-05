@@ -63,10 +63,8 @@ void PropColorSchemes::ReadOptions()
 void PropColorSchemes::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_COLOR_MODE, m_nColorMode);
-	GetOptionsMgr()->SaveOption(OPT_COLOR_MODE_EFFECTIVE, 
-		(WinMergeDarkMode::IsDarkModeAvailable() &&
-		 (m_nColorMode == 1 || (m_nColorMode == 2 && DarkMode::isDarkModeReg()))) ?
-		1 : 0);
+	GetOptionsMgr()->SaveOption(OPT_COLOR_MODE_EFFECTIVE,
+		WinMergeDarkMode::GetEffectiveColorMode(m_nColorMode));
 	GetOptionsMgr()->SaveOption(OPT_COLOR_SCHEME, m_sColorScheme);
 	GetOptionsMgr()->SaveOption(OPT_COLOR_SCHEME_DARK, m_sColorSchemeDark);
 }

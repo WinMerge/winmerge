@@ -476,6 +476,8 @@ void COpenView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 		{
 			WinMergeDarkMode::InvertLightness(m_image);
 		}
+
+		RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
 	}
 #endif
 	__super::OnSettingChange(uFlags, lpszSection);

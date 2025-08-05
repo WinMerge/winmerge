@@ -56,6 +56,11 @@ namespace WinMergeDarkMode
 	DarkMode::DarkModeType GetDarkModeType(int colorMode);
 
 	/**
+	 * @brief Get effective color mode based on color mode.
+	 */
+	int GetEffectiveColorMode(int colorMode);
+	
+	/**
 	 * @brief Check if dark mode is available.
 	 */
 	bool IsDarkModeAvailable();
@@ -68,6 +73,10 @@ namespace WinMergeDarkMode
 
 #else
 
-namespace WinMergeDarkMode { bool IsDarkModeAvailable() { return false; } }
+namespace WinMergeDarkMode
+{
+	inline bool IsDarkModeAvailable() { return false; }
+	inline int GetEffectiveColorMode(int colorMode) { return 0; }
+}
 
 #endif // USE_DARKMODELIB

@@ -253,6 +253,18 @@ namespace WinMergeDarkMode
 	}
 
 	/**
+	 * @brief Get effective color mode based on color mode.
+	 */
+	int GetEffectiveColorMode(int colorMode)
+	{
+		if (colorMode == 1)
+			return 1;
+		if (colorMode == 2 && DarkMode::isDarkModeReg())
+			return 1;
+		return 0;
+	}
+
+	/**
 	 * @brief Check if dark mode is available.
 	 */
 	bool IsDarkModeAvailable()
