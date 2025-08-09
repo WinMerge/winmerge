@@ -228,7 +228,7 @@ bool FileFilter::TestAgainstRegList(const vector<FileFilterElementPtr>* filterLi
 	int i = 0;
 	for (; i < nDirs; ++i)
 	{
-		if (!di.diffFileInfo[i].filename.get().empty())
+		if (di.diffcode.exists(i))
 			break;
 	}
 	if (i >= nDirs)

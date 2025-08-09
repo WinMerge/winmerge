@@ -204,7 +204,7 @@ bool FileFilterHelper::includeFile(const DIFFITEM& di) const
 	int i = 0;
 	for (; i < nDirs; ++i)
 	{
-		if (!di.diffFileInfo[i].filename.get().empty())
+		if (di.diffcode.exists(i))
 			break;
 	}
 	std::string strFileNameUtf8Period;
@@ -292,7 +292,7 @@ bool FileFilterHelper::includeDir(const DIFFITEM& di) const
 	int i = 0;
 	for (; i < nDirs; ++i)
 	{
-		if (!di.diffFileInfo[i].filename.get().empty())
+		if (di.diffcode.exists(i))
 			break;
 	}
 	std::string strDirNameUtf8Period;
