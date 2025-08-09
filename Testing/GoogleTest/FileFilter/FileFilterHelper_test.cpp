@@ -25,6 +25,36 @@ namespace
 		di.diffFileInfo[1].flags.attributes = isfile ? 0 : FILE_ATTRIBUTE_DIRECTORY;
 	}
 
+	void SetDiffItemLeftOnly(const String& path, const String& left, bool isfile, DIFFITEM& di)
+	{
+		di.diffcode.setSideNone();
+		di.diffcode.setSideFlag(0);
+		di.diffcode.diffcode |= isfile ? DIFFCODE::FILE : DIFFCODE::DIR;
+		di.diffFileInfo[0].path = path;
+		di.diffFileInfo[0].filename = left;
+		di.diffFileInfo[0].mtime = Poco::Timestamp();
+		di.diffFileInfo[0].flags.attributes = isfile ? 0 : FILE_ATTRIBUTE_DIRECTORY;
+		di.diffFileInfo[1].path = path;
+		di.diffFileInfo[1].filename = left;
+		di.diffFileInfo[1].mtime = Poco::Timestamp::TIMEVAL_MIN;
+		di.diffFileInfo[1].flags.attributes = 0;
+	}
+
+	void SetDiffItemRightOnly(const String& path, const String& right, bool isfile, DIFFITEM& di)
+	{
+		di.diffcode.setSideNone();
+		di.diffcode.setSideFlag(1);
+		di.diffcode.diffcode |= isfile ? DIFFCODE::FILE : DIFFCODE::DIR;
+		di.diffFileInfo[0].path = path;
+		di.diffFileInfo[0].filename = right;
+		di.diffFileInfo[0].mtime = Poco::Timestamp::TIMEVAL_MIN;
+		di.diffFileInfo[0].flags.attributes = 0;
+		di.diffFileInfo[1].path = path;
+		di.diffFileInfo[1].filename = right;
+		di.diffFileInfo[1].mtime = Poco::Timestamp();
+		di.diffFileInfo[1].flags.attributes = isfile ? 0 : FILE_ATTRIBUTE_DIRECTORY;
+	}
+
 	// The fixture for testing string differencing functions.
 	class FileFilterHelperTest : public testing::Test
 	{
@@ -188,11 +218,27 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(di));
 		SetDiffItem(_T(""), _T("a.ext"), _T("a.ext"), true, di);
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(di));
+		SetDiffItemLeftOnly(_T(""), _T("a.ext"), true, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(di));
+		SetDiffItemRightOnly(_T(""), _T("a.ext"), true, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(di));
 		SetDiffItem(_T(""), _T("svn"), _T("svn"), false, di);
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(di));
+		SetDiffItemLeftOnly(_T(""), _T("svn"), false, di);
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(di));
+		SetDiffItemRightOnly(_T(""), _T("svn"), false, di);
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(di));
 		SetDiffItem(_T("ex"), _T("svn"), _T("svn"), false, di);
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
+		SetDiffItemLeftOnly(_T("ex"), _T("svn"), false, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
+		SetDiffItemRightOnly(_T("ex"), _T("svn"), false, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
 		SetDiffItem(_T("abc"), _T("a.b.c"), _T("a.b.c"), false, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
+		SetDiffItemLeftOnly(_T("abc"), _T("a.b.c"), false, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
+		SetDiffItemRightOnly(_T("abc"), _T("a.b.c"), false, di);
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
 	}
 
