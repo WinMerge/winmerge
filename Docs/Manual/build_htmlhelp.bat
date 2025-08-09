@@ -1,7 +1,7 @@
 @echo off
 
 setlocal enabledelayedexpansion
-pushd %~dp0
+pushd "%~dp0"
 call configuration.bat
 
 if "%1"=="" (
