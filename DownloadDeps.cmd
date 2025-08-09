@@ -42,24 +42,24 @@ https://mirror.msys2.org/msys/i686/gcc-libs-13.3.0-1-i686.pkg.tar.zst!Build\msys
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
 pushd "%~dp0"
-mkdir %downloadsdir% 2> NUL
+mkdir "%downloadsdir%" 2> NUL
 
 for %%p in (%urls_destdirs%) do (
   for /F "tokens=1,2 delims=!" %%u in ("%%p") do (
-    if not exist %downloadsdir%\%%~nxu (
-      powershell -command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest %%u -Outfile %downloadsdir%\%%~nxu"
+    if not exist "%downloadsdir%\%%~nxu" (
+      powershell -command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest %%u -Outfile '%downloadsdir%\%%~nxu'"
     )
     if "%%~xu" == ".zip" (
-      7z x %downloadsdir%\%%~nxu -aoa -o%%v
+      7z x "%downloadsdir%\%%~nxu" -aoa -o%%v
     ) else (
       if "%%~xu" == ".xz" (
-        7z x %downloadsdir%\%%~nxu -so | 7z x -aoa -si -ttar -o%%v
+        7z x "%downloadsdir%\%%~nxu" -so | 7z x -aoa -si -ttar -o%%v
       ) else (
         mkdir %%v > NUL
         if "%%~xu" == ".zst" (
-          Build\zstd\zstd-v1.5.2-win64\zstd.exe -dc %downloadsdir%\%%~nxu | tar xf - -C %%v
+          Build\zstd\zstd-v1.5.2-win64\zstd.exe -dc "%downloadsdir%\%%~nxu" | tar xf - -C %%v
         ) else (
-          copy %downloadsdir%\%%~nxu %%v
+          copy "%downloadsdir%\%%~nxu" %%v
         )
       )
     )

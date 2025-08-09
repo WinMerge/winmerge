@@ -43,7 +43,7 @@
       <ExcludedFromBuild>
       </ExcludedFromBuild>
       <FileType>Document</FileType>
-      <Command>$(SolutionDir)\Build\msys2\usr\bin\re2c.exe %(FullPath) -o %(RelativeDir)\FilterLexer.cpp</Command>
+      <Command>"$(SolutionDir)\Build\msys2\usr\bin\re2c.exe" "%(FullPath)" -o "%(RelativeDir)\FilterLexer.cpp"</Command>
       <Outputs>%(RelativeDir)\FilterLexer.cpp</Outputs>
     </CustomBuild>
   </ItemGroup>
@@ -51,7 +51,7 @@
     <CustomBuild Include="$(MSBuildThisFileDirectory)FilterParser.y">
       <ExcludedFromBuild>false</ExcludedFromBuild>
       <FileType>Document</FileType>
-      <Command>$(SolutionDir)\Build\msys2\usr\bin\lemon %(FullPath) -T$(SolutionDir)\Build\msys2\usr\share\lemon\lempar.c</Command>
+      <Command>"$(SolutionDir)\Build\msys2\usr\bin\lemon" "%(FullPath)" "-T$(SolutionDir)\Build\msys2\usr\share\lemon\lempar.c"</Command>
       <Outputs>%(RelativeDir)\FilterParser.c</Outputs>
     </CustomBuild>
   </ItemGroup>
