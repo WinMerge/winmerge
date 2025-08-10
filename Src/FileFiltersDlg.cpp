@@ -372,8 +372,11 @@ void FileFiltersDlg::OnCustomDrawFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 	else if (pLVCD->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
 	{
 		int nItem = static_cast<int>(pLVCD->nmcd.dwItemSpec);
-		if (!m_pFileFilterHelper->GetManager()->GetFilterByIndex(nItem)->errors.empty())
-			pLVCD->clrTextBk = RGB(255, 200, 200);
+		if (auto pFilter = m_pFileFilterHelper->GetManager()->GetFilterByIndex(nItem))
+		{
+			if (!pFilter->errors.empty())
+				pLVCD->clrTextBk = RGB(255, 200, 200);
+		}
 		*pResult = CDRF_DODEFAULT;
 	}
 }
