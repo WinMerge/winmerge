@@ -970,6 +970,7 @@
 #define IDS_COLORSCHEME_JSON            33172
 #define IDS_COLORSCHEME_LISP            33173
 #define IDS_COLORSCHEME_LUA             33174
+#define ID_COLORSCHEME_SECOND           33175
 #define IDS_COLORSCHEME_MATLAB          33175
 #define IDS_COLORSCHEME_NSIS            33176
 #define IDS_COLORSCHEME_PASCAL          33177
