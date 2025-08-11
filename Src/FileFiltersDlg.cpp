@@ -56,7 +56,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(FileFiltersDlg)
-	DDX_CBString(pDX, IDC_FILTERFILE_MASK, m_sMask);
+	DDX_CBStringExact(pDX, IDC_FILTERFILE_MASK, m_sMask);
 	DDX_Control(pDX, IDC_FILTERFILE_LIST, m_listFilters);
 	DDX_Control(pDX, IDC_FILTERFILE_MASK, m_ctlMask);
 	//}}AFX_DATA_MAP
@@ -65,8 +65,9 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
-	ON_NOTIFY(CBEN_ENDEDIT, IDC_FILTERFILE_MASK, OnEndEditFilterfileMask)
+	ON_CBN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilterfileMask)
 	ON_CBN_EDITCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
+	ON_CBN_SELCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
 	ON_BN_CLICKED(IDC_FILTERFILE_MASK_MENU, OnFilterfileMaskMenu)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
@@ -286,7 +287,7 @@ void FileFiltersDlg::OnOK()
 	CDialog::OnOK();
 }
 
-void FileFiltersDlg::OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult)
+void FileFiltersDlg::OnKillFocusFilterfileMask()
 {
 	UpdateData(TRUE);
 	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_sMask);
@@ -300,6 +301,7 @@ void FileFiltersDlg::OnEditChangeFilterfileMask()
 
 void FileFiltersDlg::OnFilterfileMaskMenu()
 {
+	UpdateData(TRUE);
 	CRect rc;
 	GetDlgItem(IDC_FILTERFILE_MASK_MENU)->GetWindowRect(&rc);
 	const std::optional<String> filter = m_menu.ShowMenu(m_sMask, rc.left, rc.bottom, this);
