@@ -222,7 +222,6 @@ BOOL FileFiltersDlg::OnInitDialog()
 {
 	CTrPropertyPage::OnInitDialog();
 
-	m_ctlMask.SetFileControlStates(true);
 	m_ctlMask.LoadState(_T("Files\\Ext"));
 
 	InitList();
@@ -234,8 +233,10 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	SetButtonState();
 
+	COMBOBOXINFO cbi{sizeof(COMBOBOXINFO)};
+	GetComboBoxInfo(m_ctlMask.m_hWnd, &cbi);
 	HWND hEdit = (HWND)m_ctlMask.SendMessage(CBEM_GETEDITCONTROL);
-	m_ctlMaskEdit.SubclassWindow(hEdit);
+	m_ctlMaskEdit.SubclassWindow(cbi.hwndItem);
 	m_ctlMaskEdit.m_validator = [this](const CString& text, CString& error) -> bool
 		{
 			m_pFileFilterHelper->SetMaskOrExpression((const tchar_t *)text);
@@ -272,6 +273,8 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
  */
 void FileFiltersDlg::OnOK()
 {
+	if (strutils::trim_ws(m_sMask).empty())
+		m_sMask = _T("*.*");
 	m_pFileFilterHelper->SetMaskOrExpression(m_sMask);
 	m_pFileFilterHelperOrg->CloneFrom(m_pFileFilterHelper.get());
 
@@ -375,7 +378,12 @@ void FileFiltersDlg::OnCustomDrawFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 		if (auto pFilter = m_pFileFilterHelper->GetManager()->GetFilterByIndex(nItem))
 		{
 			if (!pFilter->errors.empty())
-				pLVCD->clrTextBk = RGB(255, 200, 200);
+			{
+				const COLORREF sysBk = GetSysColor(COLOR_WINDOW);
+				const COLORREF bk = ((GetRValue(sysBk) + GetGValue(sysBk) + GetBValue(sysBk)) / 3 < 128) ? 
+					RGB(80, 40, 40) : RGB(255, 200, 200);
+				pLVCD->clrTextBk = bk;
+			}
 		}
 		*pResult = CDRF_DODEFAULT;
 	}
