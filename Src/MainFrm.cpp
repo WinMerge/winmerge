@@ -1253,12 +1253,12 @@ void CMainFrame::OnOptions()
 		    sysColorsSerialized != GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS) ||
 			colorModeChanged)
 		{
-			theApp.ReloadCustomSysColors();
 #if defined(USE_DARKMODELIB)
 			DarkMode::setDarkModeConfig(static_cast<UINT>(dmTypeNew));
 			DarkMode::setDefaultColors(true);
 			DarkMode::setDarkTitleBarEx(m_hWnd, true);
 #endif
+			theApp.ReloadCustomSysColors();
 			AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
 			AfxGetMainWnd()->SendMessage(WM_SETTINGCHANGE, 0, reinterpret_cast<LPARAM>(_T("ImmersiveColorSet")));
 			RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
@@ -3962,10 +3962,10 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 
 			Options::SyntaxColors::Load(GetOptionsMgr(), theApp.GetMainSyntaxColors());
 
-			theApp.ReloadCustomSysColors();
 			DarkMode::setDarkModeConfig(static_cast<UINT>(dmTypeNew));
 			DarkMode::setDefaultColors(true);
 			DarkMode::setDarkTitleBarEx(m_hWnd, true);
+			theApp.ReloadCustomSysColors();
 
 			// Update all dirdoc settings
 			for (auto pMergeDoc : GetAllMergeDocs())

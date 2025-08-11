@@ -1841,5 +1841,6 @@ void CMergeApp::ReloadCustomSysColors()
 	if (GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
 		SysColorHook::Hook(AfxGetInstanceHandle());
 	afxData.UpdateSysColors();
+	BCMenu::RecreateRadioDotBitmap();
 }
 

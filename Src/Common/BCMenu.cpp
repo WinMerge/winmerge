@@ -53,6 +53,7 @@ int BCMenu::m_textBorder = 0;
 int BCMenu::m_checkBgWidth = 0;
 int BCMenu::m_gutterWidth = 0;
 int BCMenu::m_arrowWidth = 0;
+COLORREF BCMenu::m_menuBgColor = GetSysColor(COLOR_MENU);
 HTHEME BCMenu::m_hTheme = nullptr;
 bool BCMenu::m_bEnableOwnerDraw = true;
 
@@ -192,6 +193,7 @@ BCMenu::BCMenu()
 			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECKBACKGROUND, 0, TMT_CONTENTMARGINS, nullptr, &marginCheckBg);
 			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPSUBMENU, 0, TMT_CONTENTMARGINS, nullptr, &marginArrow);
 			GetThemeInt(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_BORDERSIZE, &m_textBorder);
+			GetThemeColor(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_FILLCOLOR, &m_menuBgColor);
 			for (auto* pmargins : { &m_marginCheck, &m_marginSeparator, &marginCheckBg, &marginArrow })
 				resizeMargins(*pmargins);
 			m_textBorder = MulDiv(m_textBorder, dpi, 96);
@@ -231,7 +233,14 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 void BCMenu::DisableOwnerDraw()
 {
 	m_bEnableOwnerDraw = false;
+	RecreateRadioDotBitmap();
+}
+
+void BCMenu::RecreateRadioDotBitmap()
+{
 	CBitmap* pBitmap = CreateRadioDotBitmap();
+	if (afxData.hbmMenuDot)
+		DeleteObject(afxData.hbmMenuDot);
 	afxData.hbmMenuDot = reinterpret_cast<HBITMAP>(pBitmap->Detach());
 	delete pBitmap;
 }
@@ -1868,11 +1877,19 @@ int BCMenu::GlobalImageListOffset(int nID)
 CBitmap* BCMenu::CreateRadioDotBitmap()
 {
 #if defined(USE_DARKMODELIB)
-	const COLORREF color = DarkMode::isEnabled() ? DarkMode::getDarkerTextColor() : GetSysColor(COLOR_MENUTEXT);
+	const COLORREF textColor = DarkMode::isEnabled() ? DarkMode::getDarkerTextColor() : GetSysColor(COLOR_MENUTEXT);
+	const COLORREF bkColor = DarkMode::isEnabled() ? DarkMode::getCtrlBackgroundColor() : m_menuBgColor;
 #else
-	const COLORREF color = GetSysColor(COLOR_MENUTEXT);
+	const COLORREF textColor = GetSysColor(COLOR_MENUTEXT);
+	const COLORREF bkColor = m_menuBgColor;
 #endif
-	const DWORD dibcolor = (GetRValue(color) << 16) | (GetGValue(color) << 8) | GetBValue(color);
+	const DWORD dibText = (GetRValue(textColor) << 16) | (GetGValue(textColor) << 8) | GetBValue(textColor);
+	const BYTE textR = GetRValue(textColor);
+	const BYTE textG = GetGValue(textColor);
+	const BYTE textB = GetBValue(textColor);
+	const BYTE bkR = GetRValue(bkColor);
+	const BYTE bkG = GetGValue(bkColor);
+	const BYTE bkB = GetBValue(bkColor);
 	const int cxSMIcon = GetSystemMetrics(SM_CXSMICON);
 	const int cySMIcon = GetSystemMetrics(SM_CYSMICON);
 	BYTE* pBits;
@@ -1894,8 +1911,17 @@ CBitmap* BCMenu::CreateRadioDotBitmap()
 		{
 			const double d = std::sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
 			if (d <= r)
-				p[x + y * cxSMIcon] = dibcolor | ((r - d >= 1.0) ? 0xff000000 : (static_cast<BYTE>(255.0 * (r - d)) << 24));
-
+			{
+				const BYTE alpha =(r - d >= 1.0) ? 255 : static_cast<BYTE>(255.0 * (r - d));
+				const BYTE outR = static_cast<BYTE>((textR * alpha + bkR * (255 - alpha)) / 255);
+				const BYTE outG = static_cast<BYTE>((textG * alpha + bkG * (255 - alpha)) / 255);
+				const BYTE outB = static_cast<BYTE>((textB * alpha + bkB * (255 - alpha)) / 255);
+				p[x + y * cxSMIcon] = (0xFF << 24) | (outR << 16) | (outG << 8) | outB;
+			}
+			else
+			{
+				p[x + y * cxSMIcon] = (0xFF << 24) | (bkR << 16) | (bkG << 8) | bkB;
+			}
 		}
 	}
 	dcMem.SelectObject(pOldBitmap);
