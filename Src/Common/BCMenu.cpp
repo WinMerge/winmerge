@@ -53,6 +53,7 @@ int BCMenu::m_textBorder = 0;
 int BCMenu::m_checkBgWidth = 0;
 int BCMenu::m_gutterWidth = 0;
 int BCMenu::m_arrowWidth = 0;
+COLORREF BCMenu::m_menuTextColor = GetSysColor(COLOR_MENUTEXT);
 COLORREF BCMenu::m_menuBgColor = GetSysColor(COLOR_MENU);
 HTHEME BCMenu::m_hTheme = nullptr;
 bool BCMenu::m_bEnableOwnerDraw = true;
@@ -193,6 +194,7 @@ BCMenu::BCMenu()
 			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECKBACKGROUND, 0, TMT_CONTENTMARGINS, nullptr, &marginCheckBg);
 			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPSUBMENU, 0, TMT_CONTENTMARGINS, nullptr, &marginArrow);
 			GetThemeInt(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_BORDERSIZE, &m_textBorder);
+			GetThemeColor(m_hTheme, MENU_POPUPITEM, MPI_NORMAL, TMT_TEXTCOLOR, &m_menuTextColor);
 			GetThemeColor(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_FILLCOLOR, &m_menuBgColor);
 			for (auto* pmargins : { &m_marginCheck, &m_marginSeparator, &marginCheckBg, &marginArrow })
 				resizeMargins(*pmargins);
@@ -1876,12 +1878,19 @@ int BCMenu::GlobalImageListOffset(int nID)
 
 CBitmap* BCMenu::CreateRadioDotBitmap()
 {
+	COLORREF textColor = m_menuTextColor;
+	COLORREF bkColor = m_menuBgColor;
 #if defined(USE_DARKMODELIB)
-	const COLORREF textColor = DarkMode::isEnabled() ? DarkMode::getDarkerTextColor() : GetSysColor(COLOR_MENUTEXT);
-	const COLORREF bkColor = DarkMode::isEnabled() ? DarkMode::getCtrlBackgroundColor() : m_menuBgColor;
-#else
-	const COLORREF textColor = GetSysColor(COLOR_MENUTEXT);
-	const COLORREF bkColor = m_menuBgColor;
+	if (DarkMode::isEnabled())
+	{
+		HTHEME hTheme = OpenThemeData(nullptr, _T("DarkMode_ImmersiveStart::Menu"));
+		if (hTheme)
+		{
+			GetThemeColor(hTheme, MENU_POPUPITEM, MPI_NORMAL, TMT_TEXTCOLOR, &textColor);
+			GetThemeColor(hTheme, MENU_POPUPBACKGROUND, 0, TMT_FILLCOLOR, &bkColor);
+			CloseThemeData(hTheme);
+		}
+	}
 #endif
 	const DWORD dibText = (GetRValue(textColor) << 16) | (GetGValue(textColor) << 8) | GetBValue(textColor);
 	const BYTE textR = GetRValue(textColor);

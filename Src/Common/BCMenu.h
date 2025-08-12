@@ -204,6 +204,7 @@ protected:
 	static int m_checkBgWidth;
 	static int m_gutterWidth;
 	static int m_arrowWidth;
+	static COLORREF m_menuTextColor;
 	static COLORREF m_menuBgColor;
 	static HTHEME m_hTheme;
 	static bool m_bEnableOwnerDraw;
