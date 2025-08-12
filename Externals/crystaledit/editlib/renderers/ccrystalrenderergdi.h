@@ -33,6 +33,7 @@ public:
 	virtual void SwitchFont(bool italic, bool bold) override;
 	virtual CSize GetCharWidthHeight() override;
 	virtual bool GetCharWidth(unsigned start, unsigned end, int *nWidthArray) override;
+	virtual void SetLineColor(CEColor clr) override;
 	virtual void SetTextColor(CEColor clr) override;
 	virtual void SetBkColor(CEColor clr) override;
 	virtual void DrawText(int x, int y, const CRect &rc, const tchar_t* text, size_t len, const int nWidths[]) override;
@@ -51,7 +52,7 @@ public:
 private:
 	CDC *m_pDC;
 	LOGFONT m_lfBaseFont;
-	CPen m_gridPen;
+	CPen m_linePen;
 	std::array<std::unique_ptr<CFont>, 4> m_apFonts;
 	static std::map<int, std::unique_ptr<CImageList>> s_mapIcons;
 };

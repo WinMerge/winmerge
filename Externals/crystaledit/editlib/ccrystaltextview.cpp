@@ -2739,6 +2739,7 @@ OnDraw (CDC * pdc)
 
   m_pCrystalRenderer->BindDC(cacheDC, rcClient);
   m_pCrystalRenderer->BeginDraw();
+  m_pCrystalRenderer->SetLineColor(GetColor(COLORINDEX_NORMALTEXT));
 
   int nLastLineBottom = 0;
   int nCurrentLine = m_nTopLine;

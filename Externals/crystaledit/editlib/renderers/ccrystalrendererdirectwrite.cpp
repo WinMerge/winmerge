@@ -242,6 +242,7 @@ CCrystalRendererDirectWrite::CCrystalRendererDirectWrite(int nRenderingMode)
 	: m_pCurrentTextFormat{ nullptr }, m_charSize{}, m_lfBaseFont{}
 	, m_pTextBrush(new CD2DSolidColorBrush(&m_renderTarget, D2D1::ColorF(D2D1::ColorF::Black)))
 	, m_pTempBrush(new CD2DSolidColorBrush(&m_renderTarget, D2D1::ColorF(D2D1::ColorF::Black)))
+	, m_pLineBrush(new CD2DSolidColorBrush(&m_renderTarget, D2D1::ColorF(D2D1::ColorF::Black)))
 	, m_pBackgroundBrush(new CD2DSolidColorBrush(&m_renderTarget, D2D1::ColorF(D2D1::ColorF::White)))
 	, m_pTextRenderer(new CCustomTextRenderer())
 {
@@ -409,6 +410,11 @@ bool CCrystalRendererDirectWrite::GetCharWidth(unsigned start, unsigned end, int
 	return succeeded;
 }
 
+void CCrystalRendererDirectWrite::SetLineColor(CEColor clr)
+{
+	m_pLineBrush->SetColor(ColorRefToColorF(clr));
+}
+
 void CCrystalRendererDirectWrite::SetTextColor(CEColor clr)
 {
 	m_pTextBrush->SetColor(ColorRefToColorF(clr));
@@ -474,23 +480,21 @@ void CCrystalRendererDirectWrite::DrawMarginLineNumber(int x, int y, int number)
 
 void CCrystalRendererDirectWrite::DrawBoundaryLine(int left, int right, int y)
 {
-	m_pTempBrush->SetColor(ColorRefToColorF(0));
 	m_renderTarget.DrawLine(
 		{ static_cast<float>(left), static_cast<float>(y) },
-		{ static_cast<float>(right), static_cast<float>(y) }, m_pTempBrush.get());
+		{ static_cast<float>(right), static_cast<float>(y) }, m_pLineBrush.get());
 }
 
 void  CCrystalRendererDirectWrite::DrawGridLine(int x1, int y1, int x2, int y2, int sourceConstantAlpha)
 {
-	m_pTempBrush->SetColor(ColorRefToColorF(0));
 	m_renderTarget.DrawLine(
 		{ static_cast<float>(x1), static_cast<float>(y1) },
-		{ static_cast<float>(x2), static_cast<float>(y2) }, m_pTempBrush.get(), sourceConstantAlpha / 255.f);
+		{ static_cast<float>(x2), static_cast<float>(y2) }, m_pLineBrush.get(), sourceConstantAlpha / 255.f);
 }
 
 void CCrystalRendererDirectWrite::DrawLineCursor(int left, int right, int y, int height)
 {
-	m_pTempBrush->SetColor(ColorRefToColorF(0));
+	m_pTempBrush->SetColor(m_pLineBrush->GetColor());
 	m_pTempBrush->SetOpacity(0.1f);
 	m_renderTarget.DrawLine(
 		{ static_cast<float>(left), static_cast<float>(y) },
@@ -674,7 +678,6 @@ STDMETHODIMP CCrystalRendererDirectWrite::DrawGlyphRun(void* pClientDrawingConte
 
 void CCrystalRendererDirectWrite::DrawRuler(int left, int top, int width, int height, int interval, int offset)
 {
-	m_pTempBrush->SetColor(ColorRefToColorF(0));
 	float bottom = static_cast<float>(top + height) - 0.5f;
 	int prev10 = (offset / 10) * 10;
 	tchar_t szNumbers[32];
