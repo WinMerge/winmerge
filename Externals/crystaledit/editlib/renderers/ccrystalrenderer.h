@@ -32,6 +32,7 @@ struct CCrystalRenderer
 	virtual void SwitchFont(bool italic, bool bold) = 0;
 	virtual CSize GetCharWidthHeight() = 0;
 	virtual bool GetCharWidth(unsigned start, unsigned end, int *nWidthArray) = 0;
+	virtual void SetLineColor(CEColor clr) = 0;
 	virtual void SetTextColor(CEColor clr) = 0;
 	virtual void SetBkColor(CEColor clr) = 0;
 	virtual void DrawText(int x, int y, const CRect &rc, const tchar_t *text, size_t len, const int nWidths[]) = 0;

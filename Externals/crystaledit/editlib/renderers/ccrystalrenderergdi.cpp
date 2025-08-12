@@ -17,7 +17,7 @@ std::map<int, std::unique_ptr<CImageList>> CCrystalRendererGDI::s_mapIcons;
 CCrystalRendererGDI::CCrystalRendererGDI() :
   m_pDC(nullptr)
 , m_lfBaseFont{}
-, m_gridPen(PS_SOLID, 0, RGB(0xC0, 0xC0, 0xC0))
+, m_linePen(PS_SOLID, 0, RGB(0, 0, 0))
 {
 }
 
@@ -109,6 +109,12 @@ bool CCrystalRendererGDI::GetCharWidth(unsigned start, unsigned end, int * nWidt
 	return succeeded;
 }
 
+void CCrystalRendererGDI::SetLineColor(CEColor clr)
+{
+	m_linePen.DeleteObject();
+	m_linePen.CreatePen(PS_SOLID, 1, clr);
+}
+
 void CCrystalRendererGDI::SetTextColor(CEColor clr)
 {
 	m_pDC->SetTextColor(clr);
@@ -188,7 +194,7 @@ void CCrystalRendererGDI::DrawMarginLineNumber(int x, int y, int number)
 
 void CCrystalRendererGDI::DrawBoundaryLine(int left, int right, int y)
 {
-	CPen *pOldPen = (CPen *)m_pDC->SelectStockObject(BLACK_PEN);
+	CPen *pOldPen = (CPen *)m_pDC->SelectObject(&m_linePen);
 	m_pDC->MoveTo(left, y);
 	m_pDC->LineTo(right, y);
 	m_pDC->SelectObject(pOldPen);
@@ -196,48 +202,23 @@ void CCrystalRendererGDI::DrawBoundaryLine(int left, int right, int y)
 
 void CCrystalRendererGDI::DrawGridLine(int x1, int y1, int x2, int y2, int sourceConstantAlpha)
 {
-	if (x1 == x2 || y1 == y2)
-	{
-		CDC  dcMem;
-		dcMem.CreateCompatibleDC(m_pDC);
-		CBitmap bitmap;
-		if (x1 == x2)
-			bitmap.CreateCompatibleBitmap(m_pDC, 1, y2 - y1);
-		else
-			bitmap.CreateCompatibleBitmap(m_pDC, x2 - x1, 1);
-		CBitmap *pOldBitmap = dcMem.SelectObject(&bitmap);
-		dcMem.SetBkColor(RGB(0, 255, 0));
-		BLENDFUNCTION blend = { 0 };
-		blend.BlendOp = AC_SRC_OVER;
-		blend.SourceConstantAlpha = static_cast<BYTE>(sourceConstantAlpha);
-		if (x1 == x2)
-			m_pDC->AlphaBlend(x1, y1, 1, y2 - y1, &dcMem, 0, 0, 1, y2 - y1, blend);
-		else
-			m_pDC->AlphaBlend(x1, y1, x2 - x1, 1, &dcMem, 0, 0, x2 - x1, 1, blend);
-		dcMem.SelectObject(pOldBitmap);
-	}
-	else
-	{
-		CPen* pOldPen = (CPen*)m_pDC->SelectObject(&m_gridPen);
-		m_pDC->MoveTo(x1, y1);
-		m_pDC->LineTo(x2, y2);
-		m_pDC->SelectObject(pOldPen);
-	}
+	Gdiplus::Graphics graphics(m_pDC->GetSafeHdc());
+
+	LOGPEN logPen;
+	m_linePen.GetLogPen(&logPen);
+	Gdiplus::Color color(logPen.lopnColor);
+
+	const BYTE alpha = static_cast<BYTE>(sourceConstantAlpha);
+	Gdiplus::Color transparentColor(alpha, color.GetR(), color.GetG(), color.GetB());
+
+	Gdiplus::Pen pen(transparentColor);
+
+	graphics.DrawLine(&pen, x1, y1, x2, y2);
 }
 
 void CCrystalRendererGDI::DrawLineCursor(int left, int right, int y, int height)
 {
-	CDC  dcMem;
-	dcMem.CreateCompatibleDC(m_pDC);
-	CBitmap bitmap;
-	bitmap.CreateCompatibleBitmap(m_pDC, right - left, height);
-	CBitmap *pOldBitmap = dcMem.SelectObject(&bitmap);
-	dcMem.SetBkColor(RGB(0, 255, 0));
-	BLENDFUNCTION blend = { 0 };
-	blend.BlendOp = AC_SRC_OVER;
-	blend.SourceConstantAlpha = 24;
-	m_pDC->AlphaBlend(left, y, right - left, height, &dcMem, 0, 0, right - left, height, blend);
-	dcMem.SelectObject(pOldBitmap);
+	DrawGridLine(left, y, right, y, 32);
 }
 
 void CCrystalRendererGDI::DrawText(int x, int y, const CRect &rc, const tchar_t* text, size_t len, const int nWidths[])
@@ -249,7 +230,6 @@ void CCrystalRendererGDI::DrawRuler(int left, int top, int width, int height, in
 {
 	CFont *pOldFont = m_pDC->SelectObject(m_apFonts[0].get());
 	UINT uiOldAlign = m_pDC->SetTextAlign(TA_LEFT);
-	CPen *pOldPen = (CPen *)m_pDC->SelectStockObject(BLACK_PEN);
 	int bottom = top + height - 1;
 	int prev10 = (offset / 10) * 10;
 	tchar_t szNumbers[32];
@@ -275,7 +255,6 @@ void CCrystalRendererGDI::DrawRuler(int left, int top, int width, int height, in
 		DrawGridLine(x, bottom - static_cast<int>(height * tickscale), x, bottom, 70);
 	}
 	DrawGridLine(left, bottom, left + width, bottom, 70);
-	m_pDC->SelectObject(pOldPen);
 	m_pDC->SetTextAlign(uiOldAlign);
 	m_pDC->SelectObject(pOldFont);
 }
