@@ -655,20 +655,19 @@ static void Customize(IHexEditorWindow::Settings *settings)
 static void Customize(IHexEditorWindow::Colors *colors)
 {
 	COptionsMgr *pOptionsMgr = GetOptionsMgr();
-	colors->iSelBkColorValue = RGB(224, 224, 224);
-	colors->iDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF);
-	colors->iSelDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
-	colors->iDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
-	if (colors->iDiffTextColorValue == 0xFFFFFFFF)
-		colors->iDiffTextColorValue = 0;
-	colors->iSelDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	if (colors->iSelDiffTextColorValue == 0xFFFFFFFF)
-		colors->iSelDiffTextColorValue = 0;
 	SyntaxColors *pSyntaxColors = theApp.GetMainSyntaxColors();
 	colors->iTextColorValue = pSyntaxColors->GetColor(COLORINDEX_NORMALTEXT);
 	colors->iBkColorValue = pSyntaxColors->GetColor(COLORINDEX_BKGND);
 	colors->iSelTextColorValue = pSyntaxColors->GetColor(COLORINDEX_SELTEXT);
 	colors->iSelBkColorValue = pSyntaxColors->GetColor(COLORINDEX_SELBKGND);
+	colors->iDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF);
+	colors->iSelDiffBkColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
+	colors->iDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
+	if (colors->iDiffTextColorValue == 0xFFFFFFFF)
+		colors->iDiffTextColorValue = colors->iTextColorValue;
+	colors->iSelDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	if (colors->iSelDiffTextColorValue == 0xFFFFFFFF)
+		colors->iSelDiffTextColorValue = colors->iSelTextColorValue;
 }
 
 /**
