@@ -1,7 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2022
 install:
-- ps: git submodule update --init --recursive --depth 1 Externals/darkmodelib
+- cmd: git submodule update --init --recursive --depth 1 Externals/darkmodelib
 cache: build/WinMergeDownloadDeps
 build_script:
 - cmd: >-
