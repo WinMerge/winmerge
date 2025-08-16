@@ -451,19 +451,6 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 			return S_OK;
 		})
 	);
-#if defined(USE_DARKMODELIB)
-	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
-	{
-		HWND hWnd = m_pWebDiffWindow->GetPaneHWND(pane);
-		if (hWnd != nullptr)
-		{
-			DarkMode::setWindowCtlColorSubclass(hWnd);
-			DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
-			DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
-		}
-	}
-	m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
-#endif
 
 	LoadOptions();
 
@@ -529,13 +516,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
 #if defined(USE_DARKMODELIB)
-	HWND hPane = m_pWebToolWindow->GetHWND();
-	if (hPane != nullptr)
-	{
-		DarkMode::setWindowCtlColorSubclass(hPane);
-		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
-		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
-	}
+	m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
 	{
 		HWND hWnd = m_pWebDiffWindow->GetPaneHWND(pane);
@@ -544,9 +525,18 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 			DarkMode::setWindowCtlColorSubclass(hWnd);
 			DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
 			DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+			CWnd* pToolbar = FindWindowEx(hWnd, nullptr, TOOLBARCLASSNAME, nullptr);
+			if (pToolbar)
+				DarkMode::setWindowCtlColorSubclass(pToolbar->GetSafeHwnd());
 		}
 	}
-	m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
+	HWND hPane = m_pWebToolWindow->GetHWND();
+	if (hPane != nullptr)
+	{
+		DarkMode::setWindowCtlColorSubclass(hPane);
+		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
+		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+	}
 #endif
 	return TRUE;
 }
@@ -1725,6 +1715,9 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 				DarkMode::setWindowCtlColorSubclass(hWnd);
 				DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
 				DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+				CWnd* pToolbar = FindWindowEx(hWnd, nullptr, TOOLBARCLASSNAME, nullptr);
+				if (pToolbar)
+					DarkMode::setWindowCtlColorSubclass(pToolbar->GetSafeHwnd());
 			}
 		}
 		m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
