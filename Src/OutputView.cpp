@@ -24,6 +24,7 @@ IMPLEMENT_DYNCREATE(COutputView, CCrystalTextView)
 BEGIN_MESSAGE_MAP(COutputView, CCrystalTextView)
 	//{{AFX_MSG_MAP(COutputView)
 	ON_WM_CONTEXTMENU()
+	ON_WM_SETTINGCHANGE()
 	ON_COMMAND(ID_EDIT_CLEAR_ALL, OnClearAll)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
@@ -99,6 +100,13 @@ void COutputView::OnInitialUpdate()
 	AttachToBuffer();
 	SetColorContext(theApp.GetMainSyntaxColors());
 	SetMarkersContext(GetDocument()->m_pMarkers.get());
+#if defined(USE_DARKMODELIB)
+	HWND hSelf = GetSafeHwnd();
+	if (hSelf != nullptr)
+	{
+		DarkMode::setDarkScrollBar(hSelf);
+	}
+#endif
 }
 
 void COutputView::OnContextMenu(CWnd* pWnd, CPoint point)
@@ -113,7 +121,17 @@ void COutputView::OnContextMenu(CWnd* pWnd, CPoint point)
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);
 }
 
+void COutputView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+#if defined(USE_DARKMODELIB)
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+		DarkMode::setDarkScrollBar(GetSafeHwnd());
+#endif
+	__super::OnSettingChange(uFlags, lpszSection);
+}
+
 void COutputView::OnClearAll()
 {
 	GetDocument()->ClearAll();
 }
+

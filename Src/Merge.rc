@@ -1831,8 +1831,12 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
-    LTEXT           "Color Scheme:",IDC_STATIC,7,10,266,10
-    COMBOBOX        IDC_COLOR_SCHEMES,7,22,266,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Color &mode:",IDC_STATIC,7,10,266,10
+    COMBOBOX        IDC_COLOR_MODE,7,22,266,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Light mode scheme:",IDC_STATIC,7,38,266,10
+    COMBOBOX        IDC_COLOR_SCHEME_LIGHT,7,50,266,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Dark mode scheme:",IDC_STATIC,7,66,266,10
+    COMBOBOX        IDC_COLOR_SCHEME_DARK,7,78,266,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 285, 242
@@ -2244,7 +2248,7 @@ CAPTION "File Filters"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
     LTEXT           "&Mask / Filter Expression",IDC_STATIC,6,6,260,10
-    CONTROL         "",IDC_FILTERFILE_MASK,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,6,16,500,95
+    COMBOBOX        IDC_FILTERFILE_MASK,6,16,500,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&=",IDC_FILTERFILE_MASK_MENU,506,16,17,12
     LTEXT           "Preset &Filters",IDC_STATIC,6,34,260,10
     CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,6,44,516,110
@@ -2816,6 +2820,59 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,274,284,48,14
 END
 
+IDD_DARK_FONT_DIALOG DIALOG 13, 54, 243, 234
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU |
+      DS_3DLOOK
+CAPTION "Font"
+FONT 9, "Segoe UI"
+BEGIN
+    LTEXT           "&Font:", stc1, 7, 7, 98, 9
+    COMBOBOX        cmb1, 7, 16, 98, 76,
+                    CBS_SIMPLE | CBS_AUTOHSCROLL | CBS_DISABLENOSCROLL |
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP | CBS_HASSTRINGS |
+                    CBS_OWNERDRAWFIXED
+
+    LTEXT           "Font st&yle:", stc2, 114, 7, 74, 9
+    COMBOBOX        cmb2, 114, 16, 74, 76,
+                    CBS_SIMPLE | CBS_AUTOHSCROLL | CBS_DISABLENOSCROLL |
+                    WS_VSCROLL | WS_TABSTOP | CBS_HASSTRINGS |
+                    CBS_OWNERDRAWFIXED
+
+    LTEXT           "&Size:", stc3, 198, 7, 36, 9
+    COMBOBOX        cmb3, 198, 16, 36, 76,
+                    CBS_SIMPLE | CBS_AUTOHSCROLL | CBS_DISABLENOSCROLL |
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP | CBS_HASSTRINGS/* |
+                    CBS_OWNERDRAWFIXED*/
+
+    GROUPBOX        "Effects", grp1, 7, 97, 98, 76, WS_GROUP
+    AUTOCHECKBOX    "Stri&keout", chx1, 13, 111, 90, 10, WS_TABSTOP
+    AUTOCHECKBOX    "&Underline", chx2, 13, 127, 90, 10
+
+    LTEXT           "&Color:", stc4, 13, 144, 89, 9
+    COMBOBOX        cmb4, 13, 155, 85, 100,
+                    CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_AUTOHSCROLL |
+                    CBS_HASSTRINGS | WS_BORDER | WS_VSCROLL | WS_TABSTOP
+
+    GROUPBOX        "Sample", grp2, 114, 97, 120, 43, WS_GROUP
+    CTEXT           "AaBbYyZz", stc5, 116, 106, 117, 33,
+                    SS_NOPREFIX | NOT WS_VISIBLE
+    LTEXT           "", stc6, 7, 178, 227, 20, SS_NOPREFIX | NOT WS_GROUP
+
+    LTEXT           "Sc&ript:", stc7, 114, 145, 118, 9
+    COMBOBOX        cmb5, 114, 155, 120, 30, CBS_DROPDOWNLIST |
+                    /*CBS_OWNERDRAWFIXED | */CBS_AUTOHSCROLL | CBS_HASSTRINGS |
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP
+    
+    CONTROL         "<A>Show more fonts</A>", IDC_MANAGE_LINK, "SysLink", 
+                    WS_TABSTOP, 7, 199, 227, 9 
+
+    DEFPUSHBUTTON   "OK", IDOK, 141, 215, 45, 14, WS_GROUP
+    PUSHBUTTON      "Cancel", IDCANCEL, 190, 215, 45, 14, WS_GROUP
+    PUSHBUTTON      "&Apply", psh3, 92, 215, 45, 14, WS_GROUP
+    PUSHBUTTON      "&Help", pshHelp, 43, 215, 45, 14, WS_GROUP
+
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -3183,6 +3240,10 @@ END
 IDD_PROPPAGE_COLOR_SCHEMES AFX_DIALOG_LAYOUT
 BEGIN
     0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+    0, 0, 100, 0,
+    0, 0, 100, 0
     0, 0, 100, 0,
     0, 0, 100, 0
 END
@@ -4924,6 +4985,13 @@ BEGIN
     IDS_FILTER_OP_NOT_CONTAINS       "Not Contains"
     IDS_FILTER_OP_RECONTAINS         "Contains (regex)"
     IDS_FILTER_OP_NOT_RECONTAINS     "Not Contains (regex)"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_COLORMODE_LIGHT              "Light"
+    IDS_COLORMODE_DARK               "Dark"
+    IDS_COLORMODE_FOLLOWSYSTEM       "Follow system"
 END
 
 #endif    // English (United States) resources

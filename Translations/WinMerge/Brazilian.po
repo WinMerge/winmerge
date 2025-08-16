@@ -1782,8 +1782,14 @@ msgstr "Limpar"
 msgid "Colors"
 msgstr "Cores"
 
-msgid "Color Scheme:"
-msgstr "Esquema das Cores:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "2º Plano"
@@ -2620,6 +2626,42 @@ msgstr "Exten&são de arquivo de script:"
 
 msgid "Script &body:"
 msgstr "Cor&po do script:"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 msgid "EXT"
 msgstr "EXT"
@@ -4526,6 +4568,15 @@ msgstr "Contém (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Não Contém (regex)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

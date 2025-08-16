@@ -11,6 +11,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "MyColorDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -76,7 +77,7 @@ void PropMarkerColors::WriteOptions()
 void PropMarkerColors::BrowseColorAndSave(CColorButton & colorButton, int colorIndex)
 {
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
-	CColorDialog dialog(currentColor);
+	CMyColorDialog dialog(currentColor);
 	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
 	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	

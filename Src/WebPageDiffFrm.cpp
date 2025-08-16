@@ -29,6 +29,7 @@
 #include "Logger.h"
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
+#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -69,7 +70,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
-	ON_WM_SETFOCUS ()	
+	ON_WM_SETFOCUS()
+	ON_WM_SETTINGCHANGE()
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
 	// [File] menu
@@ -449,6 +451,19 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 			return S_OK;
 		})
 	);
+#if defined(USE_DARKMODELIB)
+	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+	{
+		HWND hWnd = m_pWebDiffWindow->GetPaneHWND(pane);
+		if (hWnd != nullptr)
+		{
+			DarkMode::setWindowCtlColorSubclass(hWnd);
+			DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
+			DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+		}
+	}
+	m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
+#endif
 
 	LoadOptions();
 
@@ -513,7 +528,26 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	m_pWebToolWindow->Translate(TranslateLocationPane);
 
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
-
+#if defined(USE_DARKMODELIB)
+	HWND hPane = m_pWebToolWindow->GetHWND();
+	if (hPane != nullptr)
+	{
+		DarkMode::setWindowCtlColorSubclass(hPane);
+		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
+		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+	}
+	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+	{
+		HWND hWnd = m_pWebDiffWindow->GetPaneHWND(pane);
+		if (hWnd != nullptr)
+		{
+			DarkMode::setWindowCtlColorSubclass(hWnd);
+			DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
+			DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+		}
+	}
+	m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
+#endif
 	return TRUE;
 }
 
@@ -1674,3 +1708,35 @@ void CWebPageDiffFrame::OnHelp()
 {
 	theApp.ShowHelp(WebPageDiffFrameHelpLocation);
 }
+
+/**
+ * @brief Called when the system settings change.
+ */
+void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+#if defined(USE_DARKMODELIB)
+	if (m_pWebToolWindow && WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+	{
+		for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+		{
+			HWND hWnd = m_pWebDiffWindow->GetPaneHWND(pane);
+			if (hWnd != nullptr)
+			{
+				DarkMode::setWindowCtlColorSubclass(hWnd);
+				DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
+				DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+			}
+		}
+		m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
+		HWND hPane = m_pWebToolWindow->GetHWND();
+		if (hPane != nullptr)
+		{
+			DarkMode::setWindowCtlColorSubclass(hPane);
+			DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
+			DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+		}
+	}
+#endif
+	__super::OnSettingChange(uFlags, lpszSection);
+}
+

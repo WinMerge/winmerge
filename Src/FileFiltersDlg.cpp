@@ -56,7 +56,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(FileFiltersDlg)
-	DDX_CBString(pDX, IDC_FILTERFILE_MASK, m_sMask);
+	DDX_CBStringExact(pDX, IDC_FILTERFILE_MASK, m_sMask);
 	DDX_Control(pDX, IDC_FILTERFILE_LIST, m_listFilters);
 	DDX_Control(pDX, IDC_FILTERFILE_MASK, m_ctlMask);
 	//}}AFX_DATA_MAP
@@ -65,8 +65,9 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
-	ON_NOTIFY(CBEN_ENDEDIT, IDC_FILTERFILE_MASK, OnEndEditFilterfileMask)
+	ON_CBN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilterfileMask)
 	ON_CBN_EDITCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
+	ON_CBN_SELCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
 	ON_BN_CLICKED(IDC_FILTERFILE_MASK_MENU, OnFilterfileMaskMenu)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
@@ -222,7 +223,6 @@ BOOL FileFiltersDlg::OnInitDialog()
 {
 	CTrPropertyPage::OnInitDialog();
 
-	m_ctlMask.SetFileControlStates(true);
 	m_ctlMask.LoadState(_T("Files\\Ext"));
 
 	InitList();
@@ -234,8 +234,10 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	SetButtonState();
 
+	COMBOBOXINFO cbi{sizeof(COMBOBOXINFO)};
+	GetComboBoxInfo(m_ctlMask.m_hWnd, &cbi);
 	HWND hEdit = (HWND)m_ctlMask.SendMessage(CBEM_GETEDITCONTROL);
-	m_ctlMaskEdit.SubclassWindow(hEdit);
+	m_ctlMaskEdit.SubclassWindow(cbi.hwndItem);
 	m_ctlMaskEdit.m_validator = [this](const CString& text, CString& error) -> bool
 		{
 			m_pFileFilterHelper->SetMaskOrExpression((const tchar_t *)text);
@@ -272,6 +274,8 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
  */
 void FileFiltersDlg::OnOK()
 {
+	if (strutils::trim_ws(m_sMask).empty())
+		m_sMask = _T("*.*");
 	m_pFileFilterHelper->SetMaskOrExpression(m_sMask);
 	m_pFileFilterHelperOrg->CloneFrom(m_pFileFilterHelper.get());
 
@@ -283,7 +287,7 @@ void FileFiltersDlg::OnOK()
 	CDialog::OnOK();
 }
 
-void FileFiltersDlg::OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult)
+void FileFiltersDlg::OnKillFocusFilterfileMask()
 {
 	UpdateData(TRUE);
 	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_sMask);
@@ -297,6 +301,7 @@ void FileFiltersDlg::OnEditChangeFilterfileMask()
 
 void FileFiltersDlg::OnFilterfileMaskMenu()
 {
+	UpdateData(TRUE);
 	CRect rc;
 	GetDlgItem(IDC_FILTERFILE_MASK_MENU)->GetWindowRect(&rc);
 	const std::optional<String> filter = m_menu.ShowMenu(m_sMask, rc.left, rc.bottom, this);
@@ -375,7 +380,12 @@ void FileFiltersDlg::OnCustomDrawFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 		if (auto pFilter = m_pFileFilterHelper->GetManager()->GetFilterByIndex(nItem))
 		{
 			if (!pFilter->errors.empty())
-				pLVCD->clrTextBk = RGB(255, 200, 200);
+			{
+				const COLORREF sysBk = GetSysColor(COLOR_WINDOW);
+				const COLORREF bk = ((GetRValue(sysBk) + GetGValue(sysBk) + GetBValue(sysBk)) / 3 < 128) ? 
+					RGB(80, 40, 40) : RGB(255, 200, 200);
+				pLVCD->clrTextBk = bk;
+			}
 		}
 		*pResult = CDRF_DODEFAULT;
 	}

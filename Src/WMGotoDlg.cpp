@@ -8,6 +8,7 @@
 #include "stdafx.h"
 #include "WMGotoDlg.h"
 #include "TrDialogs.h"
+#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -76,8 +77,7 @@ WMGotoDlg::Impl::Impl(WMGotoDlg *p, CWnd* pParent /*= nullptr*/)
  */
 BOOL WMGotoDlg::Impl::OnInitDialog()
 {
-	LangTranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	__super::OnInitDialog();
 
 	if (m_p->m_nFiles < 3)
 		EnableDlgItem(IDC_WMGOTO_FILEMIDDLE, false);
@@ -87,7 +87,6 @@ BOOL WMGotoDlg::Impl::OnInitDialog()
 	UpdateRange();
 	UpdateGoToButton();
 	UpdateData(FALSE);
-
 	return TRUE;
 }
 

@@ -1785,8 +1785,14 @@ msgstr "Rensa"
 msgid "Colors"
 msgstr "Färger"
 
-msgid "Color Scheme:"
-msgstr "Färgschema:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Bakgrund"
@@ -2631,6 +2637,42 @@ msgstr "Skripts filändelse"
 
 msgid "Script &body:"
 msgstr "Skriptkropp:"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 msgid "EXT"
 msgstr "EXT"
@@ -4951,6 +4993,15 @@ msgstr "Innehåller (RegExp)"
 
 msgid "Not Contains (regex)"
 msgstr "Innehåller inte (RegExp)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Finputsning"

@@ -33,6 +33,7 @@
 #include "Constants.h"
 #include "DropHandler.h"
 #include "Environment.h"
+#include "MyColorDialog.h"
 #include <cmath>
 
 #ifdef _DEBUG
@@ -53,7 +54,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
 	ON_WM_SIZE()
-	ON_WM_SETFOCUS ()	
+	ON_WM_SETFOCUS()
+	ON_WM_SETTINGCHANGE()
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
 	// [File] menu
@@ -473,6 +475,9 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	}
 
 	m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, this);
+#ifdef USE_DARKMODELIB
+	m_pImgMergeWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
+#endif
 	LoadOptions();
 
 	bool bResult;
@@ -492,6 +497,10 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane),
 			new DropHandler(std::bind(&CImgMergeFrame::OnDropFiles, this, pane, std::placeholders::_1)));
+
+#if defined(USE_DARKMODELIB)
+		DarkMode::setDarkScrollBar(m_pImgMergeWindow->GetPaneHWND(pane));
+#endif
 	}
 
 	// Merge frame has also a dockable bar at the very left
@@ -515,7 +524,15 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	m_pImgToolWindow->Translate(TranslateLocationPane);
 
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
-
+#if defined(USE_DARKMODELIB)
+	HWND hPane = m_pImgToolWindow->GetHWND();
+	if (hPane != nullptr)
+	{
+		DarkMode::setWindowCtlColorSubclass(hPane);
+		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
+		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+	}
+#endif
 	return TRUE;
 }
 
@@ -2126,7 +2143,7 @@ void CImgMergeFrame::OnImgUseBackColor()
 	if (bUseBackColor)
 	{
 		RGBQUAD backColor = m_pImgMergeWindow->GetBackColor();
-		CColorDialog dialog(RGB(backColor.rgbRed, backColor.rgbGreen, backColor.rgbBlue));
+		CMyColorDialog dialog(RGB(backColor.rgbRed, backColor.rgbGreen, backColor.rgbBlue));
 		static DWORD dwCustColors[16];
 		Options::CustomColors::Load(GetOptionsMgr(), dwCustColors);
 		dialog.m_cc.lpCustColors = dwCustColors;
@@ -2372,3 +2389,27 @@ void CImgMergeFrame::OnHelp()
 {
 	theApp.ShowHelp(ImgMergeFrameHelpLocation);
 }
+
+/**
+ * @brief Called when the system settings change.
+ */
+void CImgMergeFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+#if defined(USE_DARKMODELIB)
+	if (m_pImgToolWindow && WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+	{
+		HWND hPane = m_pImgToolWindow->GetHWND();
+		if (hPane != nullptr)
+		{
+			DarkMode::setWindowCtlColorSubclass(hPane);
+			DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
+			DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+		}
+		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+			DarkMode::setDarkScrollBar(m_pImgMergeWindow->GetPaneHWND(pane));
+		m_pImgMergeWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
+	}
+#endif
+	__super::OnSettingChange(uFlags, lpszSection);
+}
+

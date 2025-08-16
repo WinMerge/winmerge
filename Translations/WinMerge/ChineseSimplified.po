@@ -1788,8 +1788,14 @@ msgstr "清除"
 msgid "Colors"
 msgstr "颜色"
 
-msgid "Color Scheme:"
-msgstr "配色方案："
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "背景"
@@ -2637,6 +2643,42 @@ msgstr "脚本文件扩展名(&S)："
 
 msgid "Script &body:"
 msgstr "脚本体(&B)："
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 msgid "EXT"
 msgstr "EXT"
@@ -4972,6 +5014,15 @@ msgstr "包含（正则表达式）"
 
 msgid "Not Contains (regex)"
 msgstr "未包含（正则表达式）"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "格式美化"

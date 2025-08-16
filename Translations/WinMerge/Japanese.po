@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2025-07-26 12:01+0900\n"
+"PO-Revision-Date: 2025-08-16 13:44+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -1781,8 +1781,14 @@ msgstr "クリア"
 msgid "Colors"
 msgstr "色"
 
-msgid "Color Scheme:"
-msgstr "配色:"
+msgid "Color &mode:"
+msgstr "色モード(&M):"
+
+msgid "&Light mode scheme:"
+msgstr "ライトモードスキーム(&L):"
+
+msgid "&Dark mode scheme:"
+msgstr "ダークモードスキーム(&D):"
 
 msgid "Background"
 msgstr "背景"
@@ -2632,6 +2638,42 @@ msgstr "スクリプトファイル拡張子(&S):"
 msgid "Script &body:"
 msgstr "スクリプト本体(&B):"
 
+msgid "Font"
+msgstr "フォント"
+
+msgid "&Font:"
+msgstr "フォント名(&F):"
+
+msgid "Font st&yle:"
+msgstr "スタイル(&Y):"
+
+msgid "&Size:"
+msgstr "サイズ(&S):"
+
+msgid "Effects"
+msgstr "効果"
+
+msgid "Stri&keout"
+msgstr "取り消し線(&K)"
+
+msgid "&Underline"
+msgstr "下線(&U)"
+
+msgid "&Color:"
+msgstr "色(&C):"
+
+msgid "Sample"
+msgstr "サンプル"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "文字セット(&R):"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>他のフォントを表示</A>"
+
 msgid "EXT"
 msgstr "EXT"
 
@@ -3157,8 +3199,7 @@ msgid ""
 msgstr ""
 "非常に大きなファイルを比較しようとしています。\n"
 "内容を表示するには大量のメモリが必要です。\n"
-"内容の表示はせずに、比較結果のみ表示しますか?\n"
-"\n"
+"内容の表示はせずに、比較結果のみ表示しますか?"
 
 msgid "Save As"
 msgstr "名前を付けて保存"
@@ -4957,6 +4998,15 @@ msgstr "含む(正規表現)"
 msgid "Not Contains (regex)"
 msgstr "含まない(正規表現)"
 
+msgid "Light"
+msgstr "ライト"
+
+msgid "Dark"
+msgstr "ダーク"
+
+msgid "Follow system"
+msgstr "システムに従う"
+
 msgid "Prettification"
 msgstr "整形"
 
@@ -5423,7 +5473,7 @@ msgid ""
 msgstr ""
 "マクロを取得できません。\r\n"
 "WinMergeでマクロを比較するには、MS Officeを使用して、現在のアプリケーションのマクロセキュリティの設定を変更してください。\r\n"
-"WinMergeでこの機能を使用するには、「VBA プロジェクトへのアクセスを信頼する」をオンにする必要があります。\r\n"
+"WinMergeでこの機能を使用するには、「VBA プロジェクトへのアクセスを信頼する」をオンにする必要があります。"
 
 msgid "Compare VBA macros"
 msgstr "VBA マクロを比較する"
@@ -5519,8 +5569,7 @@ msgid "Folder '%1' does not exist"
 msgstr "フォルダー'%1' は存在しません"
 
 msgid "Do not use '-p0' for patch files with absolute paths"
-msgstr ""
-"絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
+msgstr "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
 
 msgid "AI.sct WinMerge Plugin Options"
 msgstr "AI.sct WinMerge プラグイン オプション"

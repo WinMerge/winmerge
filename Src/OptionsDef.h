@@ -207,7 +207,10 @@ inline const String OPT_DIRCLR_MARGIN {_T("Settings/DirMarginColor"s)};
 // Use dir compare coloring?
 inline const String OPT_DIRCLR_USE_COLORS {_T("Settings/UseDirCompareColors"s)};
 
+inline const String OPT_COLOR_MODE {_T("Settings/ColorMode"s)};
+inline const String OPT_COLOR_MODE_EFFECTIVE {_T("Settings/ColorModeEffective"s)};
 inline const String OPT_COLOR_SCHEME {_T("Settings/ColorScheme"s)};
+inline const String OPT_COLOR_SCHEME_DARK {_T("Settings/ColorSchemeDark"s)};
 
 // Compare options
 inline const String OPT_CMP_IGNORE_WHITESPACE {_T("Settings/IgnoreSpace"s)};

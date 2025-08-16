@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-07-26 14:35+0000\n"
+"POT-Creation-Date: 2025-08-02 20:44+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1776,7 +1776,13 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
-msgid "Color Scheme:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
 msgstr ""
 
 msgid "Background"
@@ -2613,6 +2619,42 @@ msgid "&Script file extension:"
 msgstr ""
 
 msgid "Script &body:"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
 msgstr ""
 
 msgid "EXT"
@@ -4520,6 +4562,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

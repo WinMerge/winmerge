@@ -10,6 +10,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "MyColorDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -125,7 +126,7 @@ void PropMergeColors::WriteOptions()
  */
 void PropMergeColors::BrowseColor(CColorButton & colorButton)
 {
-	CColorDialog dialog(colorButton.GetColor());
+	CMyColorDialog dialog(colorButton.GetColor());
 	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
 	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	

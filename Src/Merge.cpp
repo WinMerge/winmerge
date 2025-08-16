@@ -70,6 +70,7 @@
 #include "MouseHook.h"
 #include "SysColorHook.h"
 #include "Logger.h"
+#include "ColorSchemes.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
@@ -357,6 +358,26 @@ BOOL CMergeApp::InitInstance()
 
 	// Initialize i18n (multiple language) support
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
+
+#if defined(USE_DARKMODELIB)
+	if (WinMergeDarkMode::IsDarkModeAvailable())
+	{
+		const DarkMode::DarkModeType dmTypeOld =
+			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE_EFFECTIVE));
+		const DarkMode::DarkModeType dmType =
+			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE));
+		if (dmTypeOld != dmType)
+		{
+			const String path = ColorSchemes::GetColorSchemePath( 
+				GetOptionsMgr()->GetString(dmType == DarkMode::DarkModeType::dark ? OPT_COLOR_SCHEME_DARK : OPT_COLOR_SCHEME));
+			GetOptionsMgr()->ImportOptions(path);
+			GetOptionsMgr()->SaveOption(OPT_COLOR_MODE_EFFECTIVE, dmType == DarkMode::DarkModeType::dark ? 1 : 0);
+		}
+		DarkMode::initDarkMode();
+		DarkMode::setDarkModeConfig(static_cast<unsigned>(dmType));
+		DarkMode::setDefaultColors(true);
+	}
+#endif
 
 	SysColorHook::Init();
 	charsets_init();
@@ -1820,5 +1841,6 @@ void CMergeApp::ReloadCustomSysColors()
 	if (GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
 		SysColorHook::Hook(AfxGetInstanceHandle());
 	afxData.UpdateSysColors();
+	BCMenu::RecreateRadioDotBitmap();
 }
 

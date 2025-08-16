@@ -20,6 +20,7 @@
 #include "LocationView.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -397,6 +398,13 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 			pPreviewBar->Invalidate();
 			theApp.TranslateDialog(pPreviewBar->GetSafeHwnd());
 			m_wndPreviewNumPage.SubclassWindow(pPreviewBar->GetDlgItem(AFX_ID_PREVIEW_NUMPAGE)->GetSafeHwnd());
+#if defined(USE_DARKMODELIB)
+			HWND hPreviewBar = pPreviewBar->GetSafeHwnd();
+			if (hPreviewBar != nullptr)
+			{
+				DarkMode::setChildCtrlsSubclassAndTheme(hPreviewBar);
+			}
+#endif
 		}
 	}
 	else

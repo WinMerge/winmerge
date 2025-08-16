@@ -2078,8 +2078,14 @@ msgstr "지우기"
 msgid "Colors"
 msgstr "색상"
 
-msgid "Color Scheme:"
-msgstr "색 구성표:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 #, c-format
 msgid "Background"
@@ -3108,6 +3114,42 @@ msgstr "스크립트 파일 확장자(&S):"
 
 msgid "Script &body:"
 msgstr "스크립트 본문(&B:"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 #, c-format
 msgid "EXT"
@@ -5672,6 +5714,15 @@ msgstr "포함 (정규식)"
 
 msgid "Not Contains (regex)"
 msgstr "포함하지 않음 (정규식)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "꾸미기"

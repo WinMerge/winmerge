@@ -1791,8 +1791,14 @@ msgstr "Squassà"
 msgid "Colors"
 msgstr "Culori"
 
-msgid "Color Scheme:"
-msgstr "Ghjocu di culori :"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Sfondu"
@@ -2646,6 +2652,42 @@ msgstr "Estensione di u schedariu di &scenariu :"
 
 msgid "Script &body:"
 msgstr "&Testu di u scenariu :"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 msgid "EXT"
 msgstr "EST"
@@ -5008,6 +5050,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

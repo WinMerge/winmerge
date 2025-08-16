@@ -198,6 +198,8 @@ struct IWebDiffWindow
 	virtual void RaiseEvent(const WebDiffEvent& e) = 0;
 	virtual LogCallback GetLogCallback() const = 0;
 	virtual void SetLogCallback(LogCallback logCallback) = 0;
+	virtual bool IsDarkBackgroundEnabled() const = 0;
+	virtual void SetDarkBackgroundEnabled(bool enabled) = 0;
 };
 
 struct IWebToolWindow

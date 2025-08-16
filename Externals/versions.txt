@@ -5,11 +5,11 @@ This file lists versions of the external components we are using.
 
 - POCO: 1.14.0
 - boost: 1.88.0
-- frhed: 0.10904.2017.17
-- WinIMerge: 1.0.45.0
+- frhed: 0.10904.2017.18
+- WinIMerge: 1.0.46.0
   - freeimage: 3.18.0
   - LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)
-- WinWebDiff: 1.0.18.0
+- WinWebDiff: 1.0.19.0
   - WebView2: 1.0.1518.46
   - wil: 1.0.191107.2
   - rapidjson: 1.1.1
@@ -21,3 +21,4 @@ This file lists versions of the external components we are using.
 - jq: 1.7.1
 - wil: 209ff9c7e30e71bf6d1405557bf78544920f8157 on Sep 9, 2021
 - md4c: 0.5.2
+- darkmodelib: 9f273dad8f268d38e2ced5c8db06ff9676aa6a41 on Jul 4, 2025

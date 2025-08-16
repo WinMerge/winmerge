@@ -1798,8 +1798,14 @@ msgstr "அழி"
 msgid "Colors"
 msgstr "நிறங்கள்"
 
-msgid "Color Scheme:"
-msgstr "வண்ணத் திட்டம்:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "பின்னணி"
@@ -2652,6 +2658,42 @@ msgstr "கைஉரை கோப்பு நீட்டிப்பு:"
 
 msgid "Script &body:"
 msgstr "கைஉரை உடல்:"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 msgid "EXT"
 msgstr "EXT"
@@ -5015,6 +5057,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

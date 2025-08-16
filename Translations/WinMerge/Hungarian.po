@@ -2071,8 +2071,14 @@ msgstr "Törlés"
 msgid "Colors"
 msgstr "Színek"
 
-msgid "Color Scheme:"
-msgstr "Szín séma:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 #, c-format
 msgid "Background"
@@ -3101,6 +3107,42 @@ msgstr "&Szkriptfájl kiterjesztése:"
 
 msgid "Script &body:"
 msgstr "Szkript &törzs:"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 #, c-format
 msgid "EXT"
@@ -5533,6 +5575,15 @@ msgstr "Tartalmazza (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Nem tartalmazza (regex)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

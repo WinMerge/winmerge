@@ -14,11 +14,14 @@ jobs:
       - name: Checkout repository
         id: checkout_repo
         uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
 
       - name: Initialize CodeQL
         id: init_codeql
         uses: github/codeql-action/init@v3
         with:
+          languages: cpp
           queries: security-and-quality
 
       - name: Build project

@@ -14,6 +14,7 @@
 #include "ColorSchemes.h"
 #include "IniOptionsMgr.h"
 #include "Merge.h"
+#include "MyColorDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -81,8 +82,7 @@ void PropSysColors::WriteOptions()
  */
 void PropSysColors::BrowseColor(CColorButton & colorButton)
 {
-	CColorDialog dialog(colorButton.GetColor());
-	
+	CMyColorDialog dialog(colorButton.GetColor());
 	if (dialog.DoModal() == IDOK)
 	{
 		colorButton.SetColor(dialog.GetColor());

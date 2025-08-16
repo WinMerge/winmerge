@@ -667,7 +667,7 @@ static void Customize(IHexEditorWindow::Colors *colors)
 		colors->iDiffTextColorValue = colors->iTextColorValue;
 	colors->iSelDiffTextColorValue = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 	if (colors->iSelDiffTextColorValue == 0xFFFFFFFF)
-		colors->iSelDiffTextColorValue = colors->iSelTextColorValue;
+		colors->iSelDiffTextColorValue = colors->iTextColorValue;
 }
 
 /**

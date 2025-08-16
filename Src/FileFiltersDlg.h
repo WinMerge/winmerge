@@ -67,7 +67,7 @@ protected:
 	//{{AFX_MSG(FileFiltersDlg)
 	virtual BOOL OnInitDialog() override;
 	virtual void OnOK();
-	afx_msg void OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnKillFocusFilterfileMask();
 	afx_msg void OnFilterfileMaskMenu();
 	afx_msg void OnEditChangeFilterfileMask();
 	afx_msg void OnFiltersEditbtn();

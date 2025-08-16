@@ -2070,7 +2070,13 @@ msgstr ""
 msgid "Colors"
 msgstr "Farver"
 
-msgid "Color Scheme:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
 msgstr ""
 
 #, c-format
@@ -3097,6 +3103,42 @@ msgid "&Script file extension:"
 msgstr ""
 
 msgid "Script &body:"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
 msgstr ""
 
 #, c-format
@@ -5450,6 +5492,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

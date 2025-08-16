@@ -1784,8 +1784,14 @@ msgstr "Очистить"
 msgid "Colors"
 msgstr "Цвета"
 
-msgid "Color Scheme:"
-msgstr "Цветовая схема:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
 
 msgid "Background"
 msgstr "Фон"
@@ -2622,6 +2628,42 @@ msgstr "Расширение файла скрипта:"
 
 msgid "Script &body:"
 msgstr "Тело скрипта:"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 msgid "EXT"
 msgstr "EXT"
@@ -4528,6 +4570,15 @@ msgstr "Содержит (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Не содержит (regex)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Приукрашивание"

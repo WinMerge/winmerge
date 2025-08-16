@@ -291,6 +291,7 @@ protected:
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateRefresh(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+    afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 	afx_msg void OnEditColumns();
 	template<SIDE_TYPE stype>
 	afx_msg void OnReadOnly();

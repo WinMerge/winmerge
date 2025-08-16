@@ -4221,14 +4221,24 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	const HMENU hSubMenu = pCmdUI->m_pSubMenu->m_hMenu;
 
-	String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
-	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
+	const HMENU hSubMenuA_L = CreatePopupMenu();
+	const HMENU hSubMenuM_Z = CreatePopupMenu();
 
-	for (int i = ID_COLORSCHEME_FIRST + 1, j = 0; i <= ID_COLORSCHEME_LAST; ++i, ++j)
+	for (int i = ID_COLORSCHEME_FIRST + 1; i < ID_COLORSCHEME_SECOND; ++i)
 	{
-		name = theApp.LoadString(i);
-		AppendMenu(hSubMenu, MF_STRING | (((j % 23) == 22) ? MF_MENUBREAK : 0), i, name.c_str());
+		const String name = theApp.LoadString(i);
+		AppendMenu(hSubMenuA_L, MF_STRING, i, name.c_str());
 	}
+	for (int i = ID_COLORSCHEME_SECOND; i <= ID_COLORSCHEME_LAST; ++i)
+	{
+		const String name = theApp.LoadString(i);
+		AppendMenu(hSubMenuM_Z, MF_STRING, i, name.c_str());
+	}
+
+	const String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
+	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
+	AppendMenu(hSubMenu, MF_POPUP | MF_STRING, (UINT_PTR)hSubMenuA_L, _T("A-L"));
+	AppendMenu(hSubMenu, MF_POPUP | MF_STRING, (UINT_PTR)hSubMenuM_Z, _T("M-Z"));
 
 	pCmdUI->Enable(true);
 }

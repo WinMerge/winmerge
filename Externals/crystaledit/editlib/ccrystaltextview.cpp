@@ -108,6 +108,7 @@
 #include <numeric>
 #include <malloc.h>
 #include <imm.h> /* IME */
+#include "editlibdarkmode.h"
 
 using std::vector;
 using CrystalLineParser::TEXTBLOCK;
@@ -6025,6 +6026,10 @@ OnFilePageSetup ()
   dlg.m_psd.hDevMode = pd.hDevMode;
   dlg.m_psd.hDevNames = pd.hDevNames;
   dlg.m_psd.Flags |= PSD_INHUNDREDTHSOFMILLIMETERS|PSD_MARGINS;
+#if defined(USE_DARKMODELIB)
+  dlg.m_psd.Flags |= PSD_ENABLEPAGESETUPHOOK;
+  dlg.m_psd.lpfnPageSetupHook = static_cast<LPPAGESETUPHOOK>(DarkMode::HookDlgProc);
+#endif
   dlg.m_psd.ptPaperSize.x   = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageWidth"),  dlg.m_psd.ptPaperSize.x);
   dlg.m_psd.ptPaperSize.y   = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageHeight"), dlg.m_psd.ptPaperSize.y);
   dlg.m_psd.rtMargin.left   = pApp->GetProfileInt(EDITPAD_SECTION, _T("PageLeft"),   DEFAULT_PRINT_MARGIN);
