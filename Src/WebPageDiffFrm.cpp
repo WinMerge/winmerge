@@ -451,6 +451,19 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 			return S_OK;
 		})
 	);
+#if defined(USE_DARKMODELIB)
+	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+	{
+		HWND hWnd = m_pWebDiffWindow->GetPaneHWND(pane);
+		if (hWnd != nullptr)
+		{
+			DarkMode::setWindowCtlColorSubclass(hWnd);
+			DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
+			DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+		}
+	}
+	m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
+#endif
 
 	LoadOptions();
 
@@ -523,6 +536,17 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
 		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
 	}
+	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+	{
+		HWND hWnd = m_pWebDiffWindow->GetPaneHWND(pane);
+		if (hWnd != nullptr)
+		{
+			DarkMode::setWindowCtlColorSubclass(hWnd);
+			DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
+			DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+		}
+	}
+	m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
 #endif
 	return TRUE;
 }
@@ -1693,6 +1717,17 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 #if defined(USE_DARKMODELIB)
 	if (m_pWebToolWindow && WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
 	{
+		for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+		{
+			HWND hWnd = m_pWebDiffWindow->GetPaneHWND(pane);
+			if (hWnd != nullptr)
+			{
+				DarkMode::setWindowCtlColorSubclass(hWnd);
+				DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
+				DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+			}
+		}
+		m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
 		HWND hPane = m_pWebToolWindow->GetHWND();
 		if (hPane != nullptr)
 		{

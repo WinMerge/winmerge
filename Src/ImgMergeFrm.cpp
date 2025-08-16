@@ -475,6 +475,9 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	}
 
 	m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, this);
+#ifdef USE_DARKMODELIB
+	m_pImgMergeWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
+#endif
 	LoadOptions();
 
 	bool bResult;
@@ -2402,6 +2405,9 @@ void CImgMergeFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
 			DarkMode::setChildCtrlsSubclassAndTheme(hPane);
 		}
+		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
+			DarkMode::setDarkScrollBar(m_pImgMergeWindow->GetPaneHWND(pane));
+		m_pImgMergeWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
 	}
 #endif
 	__super::OnSettingChange(uFlags, lpszSection);

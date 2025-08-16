@@ -28,7 +28,7 @@ Last change: 2017-06-18 by Jochen Neubeck
 #define _HEKSEDIT_H_
 
 #ifndef HEKSEDIT_INTERFACE_VERSION
-#define HEKSEDIT_INTERFACE_VERSION 2
+#define HEKSEDIT_INTERFACE_VERSION 3
 #define const(x) x
 #endif
 
@@ -133,6 +133,11 @@ private:
 	virtual void STDMETHODCALLTYPE CMD_character_set() = 0;
 	virtual void STDMETHODCALLTYPE read_ini_data(TCHAR *key = 0) = 0;
 	virtual void STDMETHODCALLTYPE CMD_goto() = 0;
+#if HEKSEDIT_INTERFACE_VERSION >= 3
+	enum WINDOW_TYPE { WINDOW_DIALOG = 0, };
+	typedef void (*ApplyThemeCallback)(HWND hwnd, WINDOW_TYPE windowType);
+	virtual void STDMETHODCALLTYPE set_theme_callback(ApplyThemeCallback callback) = 0;
+#endif
 };
 
 #undef const

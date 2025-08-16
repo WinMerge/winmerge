@@ -16,7 +16,7 @@
 #include "BasicFlatStatusBar.h"
 #include "MergeFrameCommon.h"
 
-#define HEKSEDIT_INTERFACE_VERSION 2
+#define HEKSEDIT_INTERFACE_VERSION 3
 #include "heksedit.h"
 
 class CHexMergeDoc;
