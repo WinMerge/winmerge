@@ -21,6 +21,7 @@ jobs:
         id: init_codeql
         uses: github/codeql-action/init@v3
         with:
+          languages: cpp
           queries: security-and-quality
 
       - name: Build project
