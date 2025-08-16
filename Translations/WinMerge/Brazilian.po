@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2025-08-12 08:40-0300\n"
+"PO-Revision-Date: 2025-08-16 16:15-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1783,13 +1783,13 @@ msgid "Colors"
 msgstr "Cores"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "Esque&ma de Cores:"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "Modo c&laro:"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "Mo&do escuro:"
 
 msgid "Background"
 msgstr "2º Plano"
@@ -2628,40 +2628,40 @@ msgid "Script &body:"
 msgstr "Cor&po do script:"
 
 msgid "Font"
-msgstr ""
+msgstr "Fonte"
 
 msgid "&Font:"
-msgstr ""
+msgstr "&Fonte:"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "Est&ilo de fonte:"
 
 msgid "&Size:"
-msgstr ""
+msgstr "Tamanho:"
 
 msgid "Effects"
-msgstr ""
+msgstr "Efeitos"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "Tachado"
 
 msgid "&Underline"
-msgstr ""
+msgstr "S&ublinhado"
 
 msgid "&Color:"
-msgstr ""
+msgstr "&Cor:"
 
 msgid "Sample"
-msgstr ""
+msgstr "Amostra"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "Sc&ript:"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>Mostrar mais fontes</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -4570,13 +4570,13 @@ msgid "Not Contains (regex)"
 msgstr "Não Contém (regex)"
 
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 msgid "Dark"
-msgstr ""
+msgstr "Escuro"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Seguir sistema"
 
 msgid "Prettification"
 msgstr "Embelezamento"
