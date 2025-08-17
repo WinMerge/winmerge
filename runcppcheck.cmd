@@ -1,0 +1,1 @@
+"c:\Program Files\Cppcheck\cppcheck.exe" --enable=all -D__cppcheck__ -D_M_X64 -D_MT --project=WinMerge.vs2022.sln "--project-configuration=Release|x64" --std=c++17 --library=mfc --library=windows --library=microsoft_atl %*

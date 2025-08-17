@@ -15,9 +15,11 @@
 #include <cassert>
 #include <ctime>
 #include <cctype>
-#include <boost/flyweight.hpp>
-#include <gtest/gtest.h>
-#include <gtest/gtest-param-test.h>
+#if !defined(__cppcheck__)
+#include "boost/flyweight.hpp"
+#endif
+#include "gtest/gtest.h"
+#include "gtest/gtest-param-test.h"
 #include <Windows.h>
 #include <shlobj.h>
 #include <shlwapi.h>

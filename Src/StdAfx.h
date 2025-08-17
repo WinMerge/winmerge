@@ -48,7 +48,9 @@
 #include <cassert>
 #include <ctime>
 #include <chrono>
+#if !defined(__cppcheck__)
 #include <boost/flyweight.hpp>
+#endif
 
 /**
  * @name User-defined Windows-messages

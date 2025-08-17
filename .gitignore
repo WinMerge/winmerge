@@ -131,3 +131,4 @@ Src/dlldata.c
 *.testdurations
 *.lastcodeanalysissucceeded
 *.lib
+unittest-cppcheck-build-dir/

@@ -17,4 +17,6 @@
 #include <cctype>
 #include <array>
 #include <chrono>
+#if !defined(__cppcheck__)
 #include <boost/flyweight.hpp>
+#endif
