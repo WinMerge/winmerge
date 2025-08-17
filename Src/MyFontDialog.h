@@ -1,3 +1,8 @@
+/**
+ * @file MyFontDialog.h
+ *
+ * @brief Declaration of a custom font dialog that supports dark mode.
+ */
 #pragma once
 
 #include <afxwin.h>

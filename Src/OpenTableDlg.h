@@ -1,7 +1,7 @@
 /** 
  * @file  OpenTableDlg.h
  *
- * @brief Declaration of the dialog used to select codepages
+ * @brief Declaration of the dialog used to select table properties
  */
 #pragma once
 

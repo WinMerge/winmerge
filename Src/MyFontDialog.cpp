@@ -1,3 +1,8 @@
+/**
+ * @file MyFontDialog.cpp
+ *
+ * @brief Implementation of a custom font dialog that supports dark mode.
+ */
 #include "StdAfx.h"
 #include "MyFontDialog.h"
 #include "MergeDarkMode.h"

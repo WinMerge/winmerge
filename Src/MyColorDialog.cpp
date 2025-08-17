@@ -1,3 +1,8 @@
+/**
+ * @file MyColorDialog.cpp
+ *
+ * @brief Implementation of a custom color dialog that supports dark mode.
+ */
 #include "StdAfx.h"
 #include "MyColorDialog.h"
 #include "MergeDarkMode.h"
