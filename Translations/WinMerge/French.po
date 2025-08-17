@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-07-31 10:40+0200\n"
+"PO-Revision-Date: 2025-08-17 08:28+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -1790,13 +1790,13 @@ msgid "Colors"
 msgstr "Couleurs"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "Mode de &couleur :"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "&Schéma du mode clair :"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "&Schéma du mode sombre :"
 
 msgid "Background"
 msgstr "Arrière-plan"
@@ -2645,40 +2645,40 @@ msgid "Script &body:"
 msgstr "&Corps du script :"
 
 msgid "Font"
-msgstr ""
+msgstr "Police"
 
 msgid "&Font:"
-msgstr ""
+msgstr "&Police :"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "St&yle de police :"
 
 msgid "&Size:"
-msgstr ""
+msgstr "&Taille :"
 
 msgid "Effects"
-msgstr ""
+msgstr "Effets"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "Ba&rré"
 
 msgid "&Underline"
-msgstr ""
+msgstr "&Souligner"
 
 msgid "&Color:"
-msgstr ""
+msgstr "&Couleur :"
 
 msgid "Sample"
-msgstr ""
+msgstr "Exemple"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "Sc&ript :"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>Afficher plus de polices</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -4991,13 +4991,13 @@ msgid "Not Contains (regex)"
 msgstr "Ne contient pas (regex)"
 
 msgid "Light"
-msgstr ""
+msgstr "Clair"
 
 msgid "Dark"
-msgstr ""
+msgstr "Sombre"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Suivre le système"
 
 msgid "Prettification"
 msgstr "Embellissement"
