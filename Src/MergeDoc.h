@@ -351,7 +351,7 @@ public:
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	// to customize the mergeview menu
 	HMENU createPrediffersSubmenu(HMENU hMenu);
-	String GetSaveAsPath() const { return m_strSaveAsPath; }
+	const String& GetSaveAsPath() const { return m_strSaveAsPath; }
 	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
 
 // implementation methods

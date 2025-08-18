@@ -3530,7 +3530,7 @@ void CMergeDoc::AddSyncPoint()
 bool CMergeDoc::DeleteSyncPoint(int pane, int nLine, bool bRescan)
 {
 	const auto syncpoints = GetSyncPointList();	
-	for (auto syncpnt : syncpoints)
+	for (const auto& syncpnt : syncpoints)
 	{
 		if (syncpnt[pane] == nLine)
 		{

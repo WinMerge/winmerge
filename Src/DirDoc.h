@@ -77,7 +77,7 @@ public:
 	bool GetReadOnly(int nIndex) const;
 	const bool *GetReadOnly(void) const;
 	void SetReadOnly(int nIndex, bool bReadOnly);
-	String GetReportFile() const { return m_sReportFile; }
+	const String& GetReportFile() const { return m_sReportFile; }
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
 	const std::vector<String>& GetHiddenItems() const { return m_pCtxt->m_vCurrentlyHiddenItems; }
 	void SetHiddenItems(const std::vector<String>& hiddenItems) { m_pCtxt->m_vCurrentlyHiddenItems = hiddenItems; }

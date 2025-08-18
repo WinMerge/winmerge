@@ -127,7 +127,7 @@ public:
 
 	void LoadFileFilterDirPattern(const String& dir, const String& szPattern);
 
-	String GetMaskOrExpression() const { return m_sMask; }
+	const String& GetMaskOrExpression() const { return m_sMask; }
 	void SetMaskOrExpression(const String& strMask);
 
 	static std::vector<String> SplitFilterGroups(const String& filterGroups);

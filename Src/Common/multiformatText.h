@@ -71,7 +71,7 @@ public:
 	/// Initial load
 	void SetDataFileAnsi(const String& filename, bool bOverwrite = false);
 	/// Initial load
-	void SetDataFileEncoding(const String& filename, FileTextEncoding encoding, bool bOverwrite = false);
+	void SetDataFileEncoding(const String& filename, const FileTextEncoding& encoding, bool bOverwrite = false);
 	/// Final save, same format as the original file
 	bool SaveAsFile(String & filename)
 	{

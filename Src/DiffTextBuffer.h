@@ -43,7 +43,7 @@ public :
 	CDiffTextBuffer(CMergeDoc * pDoc, int pane);
 
 	void SetTempPath(const String &path);
-	String GetTempFileName() const { return m_strTempFileName; }
+	const String& GetTempFileName() const { return m_strTempFileName; }
 	virtual void AddUndoRecord (bool bInsert, const CEPoint & ptStartPos,
 		const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,
