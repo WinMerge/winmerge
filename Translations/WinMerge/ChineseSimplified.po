@@ -1789,13 +1789,13 @@ msgid "Colors"
 msgstr "颜色"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "色彩模式(&M)："
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "浅色模式方案(&L)："
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "深色模式方案(&D)："
 
 msgid "Background"
 msgstr "背景"
@@ -2191,13 +2191,13 @@ msgid "Filter Condition"
 msgstr "过滤器条件"
 
 msgid "&Left-hand side:"
-msgstr "左手边：(&L)"
+msgstr "左手边(&L)："
 
 msgid "&Operator:"
-msgstr "操作：(&O)"
+msgstr "操作(&O)："
 
 msgid "&Right-hand side:"
-msgstr "右手边：(&R)"
+msgstr "右手边(&R)："
 
 msgid "Expression:"
 msgstr "表达式："
@@ -2645,40 +2645,40 @@ msgid "Script &body:"
 msgstr "脚本体(&B)："
 
 msgid "Font"
-msgstr ""
+msgstr "字体"
 
 msgid "&Font:"
-msgstr ""
+msgstr "字体(&F)："
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "字体样式(&Y)："
 
 msgid "&Size:"
-msgstr ""
+msgstr "字号(&S)："
 
 msgid "Effects"
-msgstr ""
+msgstr "效果"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "删除线(&K)"
 
 msgid "&Underline"
-msgstr ""
+msgstr "上划线(&)"
 
 msgid "&Color:"
-msgstr ""
+msgstr "色彩(&C)："
 
 msgid "Sample"
-msgstr ""
+msgstr "示例"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "脚本(&R)："
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>显示更多字体</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -5016,13 +5016,13 @@ msgid "Not Contains (regex)"
 msgstr "未包含（正则表达式）"
 
 msgid "Light"
-msgstr ""
+msgstr "浅色"
 
 msgid "Dark"
-msgstr ""
+msgstr "深色"
 
 msgid "Follow system"
-msgstr ""
+msgstr "跟随系统"
 
 msgid "Prettification"
 msgstr "格式美化"
