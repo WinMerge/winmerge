@@ -174,7 +174,6 @@ LRESULT CTitleBarHelper::OnNcHitTest(CPoint pt)
 	if (!m_pWnd)
 		return HTNOWHERE;
 	const int leftMargin = PointToPixel(m_leftMargin);
-	const int rightMargin = PointToPixel(m_rightMargin);
 	const int borderWidth = PointToPixel(6);
 	CRect rc;
 	AfxGetMainWnd()->GetWindowRect(&rc);

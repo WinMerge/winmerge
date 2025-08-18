@@ -236,7 +236,6 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	COMBOBOXINFO cbi{sizeof(COMBOBOXINFO)};
 	GetComboBoxInfo(m_ctlMask.m_hWnd, &cbi);
-	HWND hEdit = (HWND)m_ctlMask.SendMessage(CBEM_GETEDITCONTROL);
 	m_ctlMaskEdit.SubclassWindow(cbi.hwndItem);
 	m_ctlMaskEdit.m_validator = [this](const CString& text, CString& error) -> bool
 		{

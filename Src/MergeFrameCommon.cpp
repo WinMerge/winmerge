@@ -241,7 +241,6 @@ String CMergeFrameCommon::GetTooltipString(const IMergeDoc& mergeDoc)
 String CMergeFrameCommon::GetTooltipString(const PathContext& paths, const String desc[],
 	const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs)
 {
-	const int nBuffers = paths.GetSize();
 	String sTitle;
 	for (int nBuffer = 0; nBuffer < paths.GetSize(); nBuffer++)
 	{

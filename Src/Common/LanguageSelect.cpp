@@ -770,7 +770,7 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 		style = 0;
 	}
 	if (hf != nullptr)
-		hf = dc.SelectObject(hf);
+		dc.SelectObject(hf);
 	// Send WM_SIZE to get pane rectangles right
 	RECT rect;
 	sb.GetClientRect(&rect);

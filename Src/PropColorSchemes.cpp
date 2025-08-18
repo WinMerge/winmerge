@@ -79,7 +79,6 @@ BOOL PropColorSchemes::OnInitDialog()
 	for (int id : { IDC_COLOR_SCHEME_LIGHT, IDC_COLOR_SCHEME_DARK })
 	{
 		CComboBox* combo = (CComboBox*)GetDlgItem(id);
-		String scheme = (id == IDC_COLOR_SCHEME_LIGHT) ? m_sColorScheme : m_sColorSchemeDark;
 
 		for (auto& name : ColorSchemes::GetColorSchemeNames())
 			combo->AddString(name.c_str());

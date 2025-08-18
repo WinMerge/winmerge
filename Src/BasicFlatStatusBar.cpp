@@ -39,7 +39,6 @@ int CBasicFlatStatusBar::GetIndexFromPoint(const CPoint& pt) const
 	const int nParts = ctrl.GetParts(32, parts);
 	for (int i = 0; i < nParts; i++)
 	{
-		const unsigned style = GetPaneStyle(i);
 		CRect rcPart;
 		ctrl.GetRect(i, &rcPart);
 		if (PtInRect(rcPart, pt))

@@ -4906,7 +4906,6 @@ void CDirView::OnEditColumns()
 			m_pColItems->SaveColumnOrders();
 			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(m_pColItems->GetAdditionalPropertyNames()));
 			GetDiffContext().ClearAllAdditionalProperties();
-			auto* pDoc = GetDocument();
 			ReloadColumns();
 		}
 	} 

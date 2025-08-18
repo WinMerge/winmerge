@@ -1892,7 +1892,6 @@ CBitmap* BCMenu::CreateRadioDotBitmap()
 		}
 	}
 #endif
-	const DWORD dibText = (GetRValue(textColor) << 16) | (GetGValue(textColor) << 8) | GetBValue(textColor);
 	const BYTE textR = GetRValue(textColor);
 	const BYTE textG = GetGValue(textColor);
 	const BYTE textB = GetBValue(textColor);

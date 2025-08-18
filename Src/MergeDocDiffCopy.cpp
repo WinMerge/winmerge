@@ -108,7 +108,6 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	SetEditedAfterRescan(dstPane);
 
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
-	CMergeEditView* pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView* pViewDst = m_pView[nGroup][dstPane];
 	CEPoint currentPosDst{ 0, pViewDst->GetCursorPos().y };
 
@@ -193,7 +192,6 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 	SetEditedAfterRescan(dstPane);
 
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
-	CMergeEditView* pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView* pViewDst = m_pView[nGroup][dstPane];
 	CEPoint currentPosDst{ 0, pViewDst->GetCursorPos().y };
 
@@ -700,7 +698,6 @@ bool CMergeDoc::InlineDiffListCopy(int srcPane, int dstPane, int nDiff, int firs
 	bool bSrcWasMod = sbuf.IsModified();
 	const int cd_dbegin = cd.dbegin;
 	const int cd_dend = cd.dend;
-	const int cd_blank = cd.blank[srcPane];
 	bool bInSync = SanityCheckDiff(cd);
 
 	if (!bInSync)
