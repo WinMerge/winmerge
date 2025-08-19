@@ -14,7 +14,9 @@
 #include "MainFrm.h"
 #include <vector>
 #include <afxinet.h>
+#if !defined(__cppcheck__)
 #include <boost/range/mfc.hpp>
+#endif
 #include "Constants.h"
 #include "Merge.h"
 #include "FileFilterHelper.h"

@@ -13,7 +13,9 @@
 
 #include "StdAfx.h"
 #include "DirDoc.h"
+#if !defined(__cppcheck__)
 #include <boost/range/mfc.hpp>
+#endif
 #include "Merge.h"
 #include "IMergeDoc.h"
 #include "CompareOptions.h"
