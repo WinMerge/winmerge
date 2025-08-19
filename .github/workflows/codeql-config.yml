@@ -1,7 +1,0 @@
-paths-ignore:
-- 'Externals/boost/**'
-- 'Externals/darkmodelib/**'
-- 'Externals/googletest/**'
-- 'Externals/poco/**'
-- 'Externals/xdiff/**'
-

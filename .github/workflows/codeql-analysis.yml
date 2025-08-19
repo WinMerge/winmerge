@@ -23,7 +23,7 @@ jobs:
         with:
           languages: cpp
           queries: security-and-quality
-          config-file: ./.github/workflows/codeql-config.yml
+          config-file: ./.github/codeql/codeql-config.yml
 
       - name: Build project
         id: build_project
