@@ -227,10 +227,10 @@ bool DirCmpReport::GenerateReport(String &errStr)
 				errStr = _("Folder does not exist.");
 				return false;
 			}
-			CFile file(m_sReportFile.c_str(),
+			m_pFile = new CFile(m_sReportFile.c_str(),
 				CFile::modeWrite|CFile::modeCreate|CFile::shareDenyWrite);
-			m_pFile = &file;
 			GenerateReport(m_nReportType);
+			delete m_pFile;
 			m_pFile = nullptr;
 		}
 		bRet = true;
