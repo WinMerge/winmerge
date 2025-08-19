@@ -41,7 +41,7 @@ static int Try(HRESULT hr, UINT type = MB_OKCANCEL|MB_ICONSTOP);
  */
 static int Try(HRESULT hr, UINT type)
 {
-	return hr ? CInternetException(hr).ReportError(type) : 0;
+	return FAILED(hr) ? CInternetException(hr).ReportError(type) : 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
