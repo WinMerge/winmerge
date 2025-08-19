@@ -23,12 +23,7 @@ jobs:
         with:
           languages: cpp
           queries: security-and-quality
-          exclude: |
-            Externals/boost/**
-            Externals/darkmodelib/**
-            Externals/googletest/**
-            Externals/poco/**
-            Externals/xdiff/**
+          config-file: ./.github/workflows/codeql-config.yml
 
       - name: Build project
         id: build_project
