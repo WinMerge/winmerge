@@ -356,6 +356,12 @@ void COption::Reset()
 	case varprop::VT_TIME:
 		m_value.SetTime(m_valueDef.GetTime());
 		break;
+	case varprop::VT_NULL:
+		// Do nothing for VT_NULL
+		break;
+	default:
+		// Do nothing for unknown types
+		break;
 	}
 }
 
