@@ -23,6 +23,12 @@ jobs:
         with:
           languages: cpp
           queries: security-and-quality
+          exclude: |
+            Externals/boost/**
+            Externals/darkmodelib/**
+            Externals/googletest/**
+            Externals/poco/**
+            Externals/xdiff/**
 
       - name: Build project
         id: build_project
