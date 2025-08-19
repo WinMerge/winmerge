@@ -106,7 +106,8 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	if (!m_image.Load(paths::ConcatPath(env::GetProgPath(), _T("Resources\\splash.png")).c_str()))
+	HRESULT hr = m_image.Load(paths::ConcatPath(env::GetProgPath(), _T("Resources\\splash.png")).c_str());
+	if (FAILED(hr))
 	{
 		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
 	}
