@@ -184,14 +184,14 @@ void CTextMarkerDlg::OnBnclickedEditRegExp()
 void CTextMarkerDlg::OnBnClickedEditMarkerNew()
 {
 	CString name = m_tempMarkers.MakeNewId();
-	CString sFindWhat = LoadResString(IDS_MARKER_NEW_PATTERN).c_str();
-	m_tempMarkers.SetMarker(name, sFindWhat, GetLastSearchFlags(), 
+	String sFindWhat = LoadResString(IDS_MARKER_NEW_PATTERN);
+	m_tempMarkers.SetMarker(name, sFindWhat.c_str(), GetLastSearchFlags(),
 		static_cast<COLORINDEX>(static_cast<int>(COLORINDEX_MARKERBKGND1) + (m_tempMarkers.GetMarkers().size() % 3)));
 	int i = GetSelectedItemIndex();
 	if (i >= 0)
 		m_listMarkers.SetItemState(i, 0, LVIS_SELECTED);
 	m_listMarkers.InsertItem(LVIF_TEXT | LVIF_STATE | LVIF_PARAM,
-		m_listMarkers.GetItemCount(), sFindWhat, LVIS_SELECTED, LVIS_SELECTED, 0,
+		m_listMarkers.GetItemCount(), sFindWhat.c_str(), LVIS_SELECTED, LVIS_SELECTED, 0,
 		reinterpret_cast<LPARAM>((const tchar_t *)(m_tempMarkers.GetMarkers().find(name)->first)));
 	m_listMarkers.SetCheck(m_listMarkers.GetItemCount() - 1, 1);
 }
