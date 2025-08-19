@@ -229,7 +229,7 @@ public:
 		}
 		else
 		{
-			list.reserve(m_nGroups * m_nBuffers);
+			list.reserve(static_cast<std::vector<CMergeEditView *>::size_type>(m_nGroups) * m_nBuffers);
 			for (int nGroup3 = 0; nGroup3 < m_nGroups; nGroup3++)
 				for (int nBuffer3 = 0; nBuffer3 < m_nBuffers; ++nBuffer3)
 					list.push_back(m_pView[nGroup3][nBuffer3]);
