@@ -701,20 +701,8 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 }
 
 /**
- * @brief Format context menu string and disable item if it cannot be applied.
+ * @brief Toggle context menu item
  */
-static void NTAPI FormatContextMenu(BCMenu *pPopup, UINT uIDItem, int n1, int n2 = 0, int n3 = 0)
-{
-	CString s1, s2;
-	pPopup->GetMenuText(uIDItem, s1, MF_BYCOMMAND);
-	s2.FormatMessage(s1, NumToStr(n1).c_str(), NumToStr(n2).c_str(), NumToStr(n3).c_str());
-	pPopup->SetMenuText(uIDItem, s2, MF_BYCOMMAND);
-	if (n1 == 0)
-	{
-		pPopup->EnableMenuItem(uIDItem, MF_GRAYED);
-	}
-}
-
 /**
  * @brief Toggle context menu item
  */
