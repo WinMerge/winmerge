@@ -304,7 +304,7 @@ Other Contributors (code, ideas, testing..):
 * libraplanet
 * Steve Lambillion
 * Rob Kodey (VS Dark color scheme)
-* ozone10
+* ozone10 (darkmodelib)
 * Anthony Lee Stark
 
 WinMerge includes code from:
@@ -335,6 +335,7 @@ External components used by WinMerge
   * wil (MIT) (https://github.com/microsoft/wil)
   * rapidjson (MIT) (https://rapidjson.org/)
   * LibXDiff (LGPL-2.1) (https://github.com/git/git/tree/master/xdiff)
+* darkmodelib (MPL-2.0) (https://github.com/ozone10/darkmodelib)
 * Google C++ Testing Framework (BSD-3-Clause) (http://google.github.io/googletest/)
 * GNU patch (msys2 package) (GPL-3.0) (https://savannah.gnu.org/projects/patch/, https://github.com/msys2/MSYS2-packages/tree/master/patch)
 * 7-zip (LGPL) (https://www.7-zip.org/)
