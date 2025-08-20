@@ -41,11 +41,7 @@ static HRESULT NTAPI SE(BOOL f)
 	return hr;
 }
 
-static UINT64 NTAPI GetLastWriteTime(HANDLE h)
-{
-	UINT64 ft;
-	return ::GetFileTime(h, 0, 0, reinterpret_cast<FILETIME *>(&ft)) ? ft : 0;
-}
+
 
 static void NTAPI SetLastWriteTime(HANDLE h, UINT64 ft)
 {
