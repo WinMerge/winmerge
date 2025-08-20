@@ -703,9 +703,6 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 /**
  * @brief Toggle context menu item
  */
-/**
- * @brief Toggle context menu item
- */
 static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
 {
 	pPopup->CheckMenuItem(uIDItem, bCheck ? MF_CHECKED : MF_UNCHECKED);
