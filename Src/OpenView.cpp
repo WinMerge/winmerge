@@ -148,6 +148,7 @@ COpenView::COpenView()
 	, m_bIgnoreNumbers(false)
 	, m_bIgnoreCodepage(false)
 	, m_bFilterCommentsLines(false)
+	, m_bIgnoreMissingTrailingEol(false)
 	, m_nCompareMethod(0)
 	, m_hTheme(nullptr)
 {

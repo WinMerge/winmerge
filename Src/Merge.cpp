@@ -125,6 +125,8 @@ CMergeApp::CMergeApp() :
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
 , m_bEnableExitCode(false)
+, m_lfDiff{}
+, m_lfDir{}
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance

@@ -24,6 +24,7 @@
  */
 PropColorSchemes::PropColorSchemes(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropColorSchemes::IDD)
+ , m_nColorMode(0)
 {
 }
 
