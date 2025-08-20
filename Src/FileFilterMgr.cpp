@@ -127,7 +127,7 @@ static bool RemoveComment(String& str)
 
 	// Remove comment and whitespaces before it
 	if (pos != std::string::npos)
-		str = str.substr(0, pos);
+		str.resize(pos);
 	str = strutils::trim_ws_end(str);
 	return (str.empty());
 }
