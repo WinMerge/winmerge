@@ -43,11 +43,11 @@ namespace
 
 	TEST_F(CharsetsTest, name_to_codepage)
 	{
-		EXPECT_EQ(65001, GetEncodingCodePageFromId(GetEncodingIdFromName("UTF-8")));
-		EXPECT_EQ(65001, GetEncodingCodePageFromName("utf-8"));
-		EXPECT_EQ(0, GetEncodingIdFromName("abc"));
-		EXPECT_EQ(0, GetEncodingCodePageFromId(GetEncodingIdFromName("abc")));
-		EXPECT_EQ(0, GetEncodingCodePageFromName("abc"));
+		EXPECT_EQ(65001u, GetEncodingCodePageFromId(GetEncodingIdFromName("UTF-8")));
+		EXPECT_EQ(65001u, GetEncodingCodePageFromName("utf-8"));
+		EXPECT_EQ(0u, GetEncodingIdFromName("abc"));
+		EXPECT_EQ(0u, GetEncodingCodePageFromId(GetEncodingIdFromName("abc")));
+		EXPECT_EQ(0u, GetEncodingCodePageFromName("abc"));
 	}
 
 	TEST_F(CharsetsTest, codepage_to_name)

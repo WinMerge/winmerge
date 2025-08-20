@@ -117,7 +117,7 @@ namespace
 		FilePair pair(filename_left, filename_right);
 
 		bc.SetCompareOptions(option);
-		EXPECT_EQ(DIFFCODE::BIN|DIFFCODE::BINSIDE1|DIFFCODE::BINSIDE2|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+		EXPECT_EQ(int(DIFFCODE::BIN|DIFFCODE::BINSIDE1|DIFFCODE::BINSIDE2|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		FileTextStats stats[2];
 		stats[0] = pair.diffData.m_textStats[0];
 		stats[1] = pair.diffData.m_textStats[1];
@@ -172,7 +172,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff
@@ -183,7 +183,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// all space
@@ -195,7 +195,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// empty right
@@ -206,7 +206,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// empty left
@@ -217,7 +217,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -229,7 +229,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -241,7 +241,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 	}
@@ -289,7 +289,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff
@@ -301,7 +301,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// same2
@@ -324,7 +324,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// same3
@@ -347,7 +347,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 	}
@@ -375,7 +375,7 @@ namespace
 			}		
 
 			FilePair pair(filename_crlf, filename_lf);
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		// diff
@@ -392,7 +392,7 @@ namespace
 			}
 
 			FilePair pair(filename_crlf, filename_lf);
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 		remove(filename_crlf.c_str());
@@ -418,7 +418,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: LF
@@ -437,7 +437,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 		for (int i = 0; i < 3; i++)
@@ -461,7 +461,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CRLF
@@ -483,7 +483,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 	}
@@ -515,7 +515,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff
@@ -527,7 +527,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 	}
@@ -555,7 +555,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff 
@@ -568,7 +568,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 	}
 
@@ -596,7 +596,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff 
@@ -609,7 +609,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 	}
 
@@ -633,7 +633,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -642,7 +642,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -651,7 +651,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -660,7 +660,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -669,7 +669,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -678,7 +678,7 @@ namespace
 
 			FilePair pair(filename_left, filename_right);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+			EXPECT_EQ(int(DIFFCODE::TEXT|DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 		}
 
 	}
@@ -709,7 +709,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// same left: no EOL - right: LF
@@ -726,7 +726,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -747,7 +747,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// same left: no EOL - right: CRLF
@@ -765,7 +765,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -786,7 +786,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CR+A
@@ -804,7 +804,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -825,7 +825,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: LF+LF
@@ -843,7 +843,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 		
@@ -864,7 +864,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CR+CR
@@ -882,7 +882,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -905,7 +905,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CRLF+CRLF
@@ -925,7 +925,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 	}
@@ -961,7 +961,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// same left: no EOL - right: LF
@@ -982,7 +982,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -1011,7 +1011,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// same left: no EOL - right: CRLF
@@ -1037,7 +1037,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -1066,7 +1066,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CR+A
@@ -1092,7 +1092,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -1121,7 +1121,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: LF+LF
@@ -1147,7 +1147,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 		
@@ -1176,7 +1176,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CR+CR
@@ -1202,7 +1202,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -1237,7 +1237,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CRLF+CRLF
@@ -1269,7 +1269,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 	}
@@ -1305,7 +1305,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// same left: no EOL - right: LF
@@ -1326,7 +1326,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -1355,7 +1355,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// same left: no EOL - right: CRLF
@@ -1381,7 +1381,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::SAME), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -1410,7 +1410,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CR+A
@@ -1436,7 +1436,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -1465,7 +1465,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: LF+LF
@@ -1491,7 +1491,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 		
@@ -1520,7 +1520,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CR+CR
@@ -1546,7 +1546,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 
@@ -1581,7 +1581,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 
 			{// diff left: no EOL - right: CRLF+CRLF
@@ -1613,7 +1613,7 @@ namespace
 
 				FilePair pair(filename_left, filename_right);
 
-				EXPECT_EQ(DIFFCODE::TEXT | DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
+				EXPECT_EQ(int(DIFFCODE::TEXT | DIFFCODE::DIFF), bc.CompareFiles(&pair.diffData));
 			}
 		}
 	}

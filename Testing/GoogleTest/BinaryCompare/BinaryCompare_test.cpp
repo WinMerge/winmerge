@@ -68,7 +68,7 @@ namespace
 			files.SetRight(_T("B"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
-			EXPECT_EQ(DIFFCODE::SAME, bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::SAME), bc.CompareFiles(files, di));
 		}
 		
 		{
@@ -78,7 +78,7 @@ namespace
 			files.SetRight(_T("B"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
-			EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
 		}
 
 		{
@@ -91,7 +91,7 @@ namespace
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(DIFFCODE::SAME, bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::SAME), bc.CompareFiles(files, di));
 		}
 		
 		{
@@ -104,7 +104,7 @@ namespace
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc.CompareFiles(files, di));
 		}
 
 		{
@@ -117,7 +117,7 @@ namespace
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc.CompareFiles(files, di));
 		}
 
 		{
@@ -130,7 +130,7 @@ namespace
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc.CompareFiles(files, di));
 		}
 
 		{
@@ -143,7 +143,7 @@ namespace
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
 		}
 	}
 
@@ -164,31 +164,31 @@ namespace
 		files.SetRight(_T("B"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetRight(_T("B"));
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 1;
-		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("Ae"));
 		files.SetRight(_T("NUL"));
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("NUL"));
 		files.SetRight(_T("Be"));
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 0;
-		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetRight(_T("B"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 2;
-		EXPECT_EQ(DIFFCODE::DIFF, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetMiddle(_T("B"));
@@ -196,7 +196,7 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 2;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetMiddle(_T("B"));
@@ -204,7 +204,7 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 2;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetMiddle(_T("B"));
@@ -212,7 +212,7 @@ namespace
 		di.diffFileInfo[0].size = 2;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("NUL"));
 		files.SetMiddle(_T("Be"));
@@ -220,7 +220,7 @@ namespace
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 0;
 		di.diffFileInfo[2].size = 0;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("Ae"));
 		files.SetMiddle(_T("NUL"));
@@ -228,7 +228,7 @@ namespace
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = 0;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("Ae"));
 		files.SetMiddle(_T("Be"));
@@ -236,7 +236,7 @@ namespace
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = 0;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("Ae"));
 		files.SetMiddle(_T("NUL"));
@@ -244,7 +244,7 @@ namespace
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("NUL"));
 		files.SetMiddle(_T("Be"));
@@ -252,7 +252,7 @@ namespace
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 0;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("NUL"));
 		files.SetMiddle(_T("NUL"));
@@ -260,7 +260,7 @@ namespace
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = 0;
-		EXPECT_EQ(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc.CompareFiles(files, di));
 
 	}
 
@@ -277,13 +277,13 @@ namespace
 		files.SetRight(_T("B"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
-		EXPECT_EQ(DIFFCODE::CMPERR, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::CMPERR), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetRight(_T("/2>"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
-		EXPECT_EQ(DIFFCODE::CMPERR, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::CMPERR), bc.CompareFiles(files, di));
 
 		files.SetLeft(_T("A"));
 		files.SetMiddle(_T("B"));
@@ -291,7 +291,7 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(DIFFCODE::CMPERR, bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::CMPERR), bc.CompareFiles(files, di));
 	}
 
 }  // namespace
