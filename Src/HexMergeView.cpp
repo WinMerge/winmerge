@@ -47,10 +47,6 @@ static UINT64 NTAPI GetLastWriteTime(HANDLE h)
 	return ::GetFileTime(h, 0, 0, reinterpret_cast<FILETIME *>(&ft)) ? ft : 0;
 }
 
-static void NTAPI SetLastWriteTime(HANDLE h, UINT64 ft)
-{
-	::SetFileTime(h, 0, 0, reinterpret_cast<FILETIME *>(&ft));
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // CHexMergeView
