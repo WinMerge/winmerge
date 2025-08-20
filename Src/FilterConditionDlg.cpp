@@ -179,6 +179,7 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	}
 	else if (m_sField == _T("DateStr"))
 	{
+		// No initialization required for "DateStr" field
 	}
 	else if (m_sField == _T("Content"))
 	{
