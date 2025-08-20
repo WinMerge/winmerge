@@ -114,6 +114,12 @@ public:
 	{
 	}
 
+	// Copy constructor to match copy assignment operator
+	PathContextIterator(const PathContextIterator& it)
+		: m_pPathContext(it.m_pPathContext), m_sel(it.m_sel)
+	{
+	}
+
 	~PathContextIterator() = default;
 
 	PathContextIterator& operator=(const PathContextIterator& it)
