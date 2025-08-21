@@ -56,14 +56,12 @@ int CSplitterWndEx::HitTest(CPoint pt) const
 BOOL CSplitterWndEx::CreateScrollBarCtrl(DWORD dwStyle, UINT nID)
 {
 	BOOL bResult = CSplitterWnd::CreateScrollBarCtrl(dwStyle, nID);
-#if defined(USE_DARKMODELIB)
 	auto pBar = static_cast<CScrollBar*>(GetDlgItem(nID));
 	if (pBar != nullptr && pBar->GetSafeHwnd())
 	{
 		DarkMode::setDarkScrollBar(pBar->GetSafeHwnd());
 		pBar->Invalidate();
 	}
-#endif
 	return bResult;
 }
 
@@ -400,10 +398,8 @@ void CSplitterWndEx::OnSize(UINT nType, int cx, int cy)
 
 void CSplitterWndEx::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
-#if defined(USE_DARKMODELIB)
 	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
 		DarkMode::setChildCtrlsTheme(GetSafeHwnd());
-#endif
 	__super::OnSettingChange(uFlags, lpszSection);
 }
 

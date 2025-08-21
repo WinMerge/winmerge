@@ -398,13 +398,9 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 			pPreviewBar->Invalidate();
 			theApp.TranslateDialog(pPreviewBar->GetSafeHwnd());
 			m_wndPreviewNumPage.SubclassWindow(pPreviewBar->GetDlgItem(AFX_ID_PREVIEW_NUMPAGE)->GetSafeHwnd());
-#if defined(USE_DARKMODELIB)
 			HWND hPreviewBar = pPreviewBar->GetSafeHwnd();
 			if (hPreviewBar != nullptr)
-			{
 				DarkMode::setChildCtrlsSubclassAndTheme(hPreviewBar);
-			}
-#endif
 		}
 	}
 	else

@@ -1880,7 +1880,6 @@ CBitmap* BCMenu::CreateRadioDotBitmap()
 {
 	COLORREF textColor = m_menuTextColor;
 	COLORREF bkColor = m_menuBgColor;
-#if defined(USE_DARKMODELIB)
 	if (DarkMode::isEnabled())
 	{
 		HTHEME hTheme = OpenThemeData(nullptr, _T("DarkMode_ImmersiveStart::Menu"));
@@ -1891,7 +1890,6 @@ CBitmap* BCMenu::CreateRadioDotBitmap()
 			CloseThemeData(hTheme);
 		}
 	}
-#endif
 	const BYTE textR = GetRValue(textColor);
 	const BYTE textG = GetGValue(textColor);
 	const BYTE textB = GetBValue(textColor);

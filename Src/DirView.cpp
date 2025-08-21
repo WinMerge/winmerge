@@ -479,7 +479,6 @@ void CDirView::OnInitialUpdate()
 	// Also enable infotips.
 	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP | LVS_EX_DOUBLEBUFFER;
 	m_pList->SetExtendedStyle(exstyle);
-#if defined(USE_DARKMODELIB)
 	HWND hList = GetSafeHwnd();
 	if (hList != nullptr)
 	{
@@ -487,7 +486,6 @@ void CDirView::OnInitialUpdate()
 		DarkMode::setDarkTooltips(hList, DarkMode::ToolTipsType::listview);
 		DarkMode::setDarkThemeExperimental(hList);
 	}
-#endif
 }
 
 BOOL CDirView::PreCreateWindow(CREATESTRUCT& cs)
@@ -2882,7 +2880,6 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
  */
 void CDirView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
-#if defined(USE_DARKMODELIB)
 	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
 	{
 		HWND hList = GetSafeHwnd();
@@ -2893,7 +2890,6 @@ void CDirView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			DarkMode::setDarkThemeExperimental(hList);
 		}
 	}
-#endif
 	__super::OnSettingChange(uFlags, lpszSection);
 }
 

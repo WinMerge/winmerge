@@ -139,10 +139,8 @@ int CHexMergeView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (m_pif == nullptr || m_pif->get_interface_version() < HEKSEDIT_INTERFACE_VERSION)
 		return -1;
 	m_pif->set_theme_callback([](HWND hwnd, IHexEditorWindow::WINDOW_TYPE windowType) {
-#if defined(USE_DARKMODELIB)
 			if (windowType == IHexEditorWindow::WINDOW_DIALOG)
 				DarkMode::setDarkWndSafe(hwnd, true);
-#endif
 		});
 	return 0;
 }

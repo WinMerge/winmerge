@@ -475,9 +475,7 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	}
 
 	m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, this);
-#ifdef USE_DARKMODELIB
 	m_pImgMergeWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
-#endif
 	LoadOptions();
 
 	bool bResult;
@@ -498,9 +496,7 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		RegisterDragDrop(m_pImgMergeWindow->GetPaneHWND(pane),
 			new DropHandler(std::bind(&CImgMergeFrame::OnDropFiles, this, pane, std::placeholders::_1)));
 
-#if defined(USE_DARKMODELIB)
 		DarkMode::setDarkScrollBar(m_pImgMergeWindow->GetPaneHWND(pane));
-#endif
 	}
 
 	// Merge frame has also a dockable bar at the very left
@@ -524,7 +520,6 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	m_pImgToolWindow->Translate(TranslateLocationPane);
 
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
-#if defined(USE_DARKMODELIB)
 	HWND hPane = m_pImgToolWindow->GetHWND();
 	if (hPane != nullptr)
 	{
@@ -532,7 +527,6 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
 		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
 	}
-#endif
 	return TRUE;
 }
 
@@ -2395,7 +2389,6 @@ void CImgMergeFrame::OnHelp()
  */
 void CImgMergeFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
-#if defined(USE_DARKMODELIB)
 	if (m_pImgToolWindow && WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
 	{
 		HWND hPane = m_pImgToolWindow->GetHWND();
@@ -2409,7 +2402,6 @@ void CImgMergeFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			DarkMode::setDarkScrollBar(m_pImgMergeWindow->GetPaneHWND(pane));
 		m_pImgMergeWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
 	}
-#endif
 	__super::OnSettingChange(uFlags, lpszSection);
 }
 

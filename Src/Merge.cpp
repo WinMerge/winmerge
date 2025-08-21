@@ -361,7 +361,6 @@ BOOL CMergeApp::InitInstance()
 	// Initialize i18n (multiple language) support
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
-#if defined(USE_DARKMODELIB)
 	if (WinMergeDarkMode::IsDarkModeAvailable())
 	{
 		const DarkMode::DarkModeType dmTypeOld =
@@ -379,7 +378,6 @@ BOOL CMergeApp::InitInstance()
 		DarkMode::setDarkModeConfig(static_cast<unsigned>(dmType));
 		DarkMode::setDefaultColors(true);
 	}
-#endif
 
 	SysColorHook::Init();
 	charsets_init();

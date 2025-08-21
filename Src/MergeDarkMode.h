@@ -24,13 +24,48 @@ namespace WinMergeDarkMode { inline constexpr bool UseDarkModeLib = true; };
 namespace WinMergeDarkMode { inline constexpr bool UseDarkModeLib = false; };
 #endif
 
-#if defined(USE_DARKMODELIB)
 inline constexpr DWORD CC_FLAGS_DARK = CC_RGBINIT | CC_FULLOPEN | CC_ENABLEHOOK;
 
 namespace ATL
 {
 	class CImage; // from atlimage.h
 };
+
+#if (NTDDI_VERSION < NTDDI_VISTA)
+namespace DarkMode
+{
+	enum class ToolTipsType : unsigned char { tooltip, toolbar, listview, treeview, tabbar, trackbar, rebar };
+	enum class DarkModeType : unsigned char { light = 0, dark = 1, classic = 3 };
+
+	inline void initDarkMode() {}
+	inline void setDarkWndSafe(HWND hWnd, bool useWin11Features = true) {}
+	inline void setDarkWndNotifySafe(HWND hWnd, bool useWin11Features = true) {}
+	inline void setWindowEraseBgSubclass(HWND hWnd) {}
+	inline void setDarkScrollBar(HWND hWnd) {}
+	inline void setDarkTooltips(HWND hWnd, ToolTipsType type = ToolTipsType::tooltip) {}
+	inline void setDarkListViewCheckboxes(HWND hWnd) {}
+	inline void setChildCtrlsTheme(HWND hParent) {}
+	inline void setWindowCtlColorSubclass(HWND hWnd) {}
+	inline void setChildCtrlsSubclassAndTheme(HWND hParent, bool subclass = true, bool theme = true) {}
+	inline void setTabCtrlUpDownSubclass(HWND hWnd) {}
+	inline void setDarkModeConfig(UINT dmType) {}
+	inline void setDefaultColors(bool updateBrushesAndOther) {}
+	inline void setDarkTitleBarEx(HWND hWnd, bool useWin11Features) {}
+	inline void setListViewCtrlSubclass(HWND hWnd) {}
+	inline void setDarkThemeExperimental(HWND hWnd, const wchar_t* themeClassName = L"Explorer") {}
+	inline void setWindowNotifyCustomDrawSubclass(HWND hWnd) {}
+	inline void setTabCtrlSubclass(HWND hWnd) {}
+	inline void enableSysLinkCtrlCtlColor(HWND hWnd) {}
+	inline void removeWindowEraseBgSubclass(HWND hWnd) {}
+	[[nodiscard]] inline bool isEnabled() { return false; }
+	[[nodiscard]] inline bool isExperimentalActive() { return false; }
+	[[nodiscard]] inline bool isDarkModeReg() { return false; }
+	[[nodiscard]] inline COLORREF getDarkerTextColor() { return 0; }
+	[[nodiscard]] inline COLORREF getDlgBackgroundColor() { return 0; }
+	[[nodiscard]] inline COLORREF getBackgroundColor() { return 0; }
+	[[nodiscard]] inline HBRUSH getDlgBackgroundBrush() { return nullptr; }
+	[[nodiscard]] inline UINT_PTR CALLBACK HookDlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) { return FALSE; }
+}
 
 /**
  * @brief Helper class for dark mode for WinMerge
@@ -71,12 +106,5 @@ namespace WinMergeDarkMode
 	bool IsImmersiveColorSet(LPCTSTR lpszSection);
 }
 
-#else
+#endif
 
-namespace WinMergeDarkMode
-{
-	inline bool IsDarkModeAvailable() { return false; }
-	inline int GetEffectiveColorMode(int colorMode) { return 0; }
-}
-
-#endif // USE_DARKMODELIB

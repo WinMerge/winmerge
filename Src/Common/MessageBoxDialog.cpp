@@ -512,7 +512,6 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	CreateMessageControl();
 	CreateCheckboxControl();
 	CreateButtonControls();
-#if defined(USE_DARKMODELIB)
 	if (m_hWnd != nullptr)
 	{
 		DarkMode::setDarkWndSafe(m_hWnd, false);
@@ -525,7 +524,6 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	}
 
 	if (!DarkMode::isExperimentalActive())
-#endif
 	{
 		const COLORREF clrWindow = GetSysColor(COLOR_WINDOW);
 		if ((clrWindow & 0xff) + ((clrWindow >> 8) & 0xff) + (clrWindow > 16) < 0x80 * 3)

@@ -172,9 +172,7 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 		else
 			SendMessage(hwnd, BFFM_SETSELECTION, TRUE, (LPARAM)LastSelectedFolder.c_str());
 
-#if defined(USE_DARKMODELIB)
 		DarkMode::setDarkWndSafe(hwnd, false);
-#endif
 	}
 	else if (uMsg == BFFM_VALIDATEFAILED)
 	{

@@ -272,7 +272,6 @@ protected:
 		{
 			switch (message)
 			{
-#if defined(USE_DARKMODELIB)
 			case WM_ERASEBKGND:
 			{
 				if (DarkMode::isEnabled())
@@ -284,7 +283,6 @@ protected:
 				}
 				break;
 			}
-#endif
 			case WM_MDICREATE:
 			case WM_MDIACTIVATE:
 			{

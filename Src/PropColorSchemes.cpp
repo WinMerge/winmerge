@@ -102,12 +102,8 @@ void PropColorSchemes::UpdateControls()
 
 void PropColorSchemes::UpdateColorScheme()
 {
-#if defined(USE_DARKMODELIB)
 	DarkMode::DarkModeType dmType = WinMergeDarkMode::GetDarkModeType(m_nColorMode);
 	String path = ColorSchemes::GetColorSchemePath(dmType == DarkMode::DarkModeType::dark ? m_sColorSchemeDark : m_sColorScheme);
-#else
-	String path = ColorSchemes::GetColorSchemePath(m_sColorScheme);
-#endif
 	WriteOptions();
 	SysColorHook::Unhook(AfxGetInstanceHandle());
 	auto result = GetOptionsMgr()->ImportOptions(path);

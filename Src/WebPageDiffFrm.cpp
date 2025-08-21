@@ -515,7 +515,6 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	m_pWebToolWindow->Translate(TranslateLocationPane);
 
 	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
-#if defined(USE_DARKMODELIB)
 	m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
 	{
@@ -537,7 +536,6 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
 		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
 	}
-#endif
 	return TRUE;
 }
 
@@ -1704,7 +1702,6 @@ void CWebPageDiffFrame::OnHelp()
  */
 void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
-#if defined(USE_DARKMODELIB)
 	if (m_pWebToolWindow && WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
 	{
 		for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
@@ -1729,7 +1726,6 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			DarkMode::setChildCtrlsSubclassAndTheme(hPane);
 		}
 	}
-#endif
 	__super::OnSettingChange(uFlags, lpszSection);
 }
 

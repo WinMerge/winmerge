@@ -34,10 +34,8 @@ public:
 		get_interface()->read_ini_data();
 		get_interface()->get_settings()->bSaveIni = true;
 		get_interface()->set_theme_callback([](HWND hwnd, IHexEditorWindow::WINDOW_TYPE windowType) {
-#if defined(USE_DARKMODELIB)
 			if (windowType == IHexEditorWindow::WINDOW_DIALOG)
 				DarkMode::setDarkWndSafe(hwnd, true);
-#endif
 		});
 	}
 

@@ -26,7 +26,6 @@
 #undef min
 #endif
 
-#if defined(USE_DARKMODELIB)
 namespace WinMergeDarkMode
 {
 	/**
@@ -281,4 +280,3 @@ namespace WinMergeDarkMode
 	}
 
 } // namespace WinMergeDarkMode
-#endif // USE_DARKMODELIB

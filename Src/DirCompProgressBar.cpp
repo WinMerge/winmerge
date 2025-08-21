@@ -84,14 +84,12 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 		m_pTaskbarList->SetProgressState(AfxGetMainWnd()->m_hWnd, TBPF_INDETERMINATE);
 #endif
 
-#if defined(USE_DARKMODELIB)
 	HWND hSelf = GetSafeHwnd();
 	if (hSelf != nullptr)
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
 		DarkMode::setChildCtrlsSubclassAndTheme(hSelf);
 	}
-#endif
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
