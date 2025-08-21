@@ -1,20 +1,52 @@
-# WinMerge 2.16.50 Release Notes
+# WinMerge 2.16.50.2 Release Notes
 
 * [About This Release](#about-this-release)
+* [What Is New in 2.16.50.2](#what-is-new-in-216502)
 * [What Is New in 2.16.50](#what-is-new-in-21650)
 * [What Is New in 2.16.49 beta?](#what-is-new-in-21649-beta)
 * [Known issues](#known-issues)
 
-July 2025
+August 2025
 
 ## About This Release
 
-This is a WinMerge 2.16.50 stable release.
+This is a WinMerge 2.16.50.2 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
 
-## WinMerge 2.16.50 - 2025-07-27
+## What Is New in 2.16.50.2
+
+### File compare
+
+- BugFix: WinMerge 2.16.50 regression: Crashes when doing "Show only comparison
+    results (not file contents)" for large binaries. (#2874)
+
+### Folder compare
+
+- BugFix: After Install of v2.16.50 Folder: Filter is now only being applied to
+    1st folder path and not the 2nd and 3th folder paths (#2875)
+
+### Filters dialog
+
+- BugFix: Fixed a crash in the Filters dialogÅfs File Filters tab after installing or creating a new filter.
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2883)
+  - Chinese Simplified (PR #2865)
+  - French (PR #2873)
+  - Italian (PR #2869)
+  - Korean (PR #2870)
+  - Lithuanian (PR #2864)
+  - Portuguese (PR #2882)
+  - Russian (PR #2867)
+  - Swedish
+  - Tamil ()
+  - Turkish ()
+ 
+## What Is New in 2.16.50
 
 ### General
 

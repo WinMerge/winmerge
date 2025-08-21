@@ -1,5 +1,36 @@
 # Change log
 
+## WinMerge 2.16.50.2 - 2025-08-27
+
+### File compare
+
+- BugFix: WinMerge 2.16.50 regression: Crashes when doing "Show only comparison
+    results (not file contents)" for large binaries. (#2874)
+
+### Folder compare
+
+- BugFix: After Install of v2.16.50 Folder: Filter is now only being applied to
+    1st folder path and not the 2nd and 3th folder paths (#2875)
+
+### Filters dialog
+
+- BugFix: Fixed a crash in the Filters dialog’s File Filters tab after installing or creating a new filter.
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2883)
+  - Chinese Simplified (PR #2865)
+  - French (PR #2873)
+  - Italian (PR #2869)
+  - Korean (PR #2870)
+  - Lithuanian (PR #2864)
+  - Portuguese (PR #2882)
+  - Russian (PR #2867)
+  - Swedish
+  - Tamil ()
+  - Turkish ()
+ 
 ## WinMerge 2.16.50 - 2025-07-27
 
 ### General
