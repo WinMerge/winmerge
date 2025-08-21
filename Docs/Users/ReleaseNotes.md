@@ -42,9 +42,6 @@ Please submit bug reports to our bug-tracker.
   - Lithuanian (PR #2864)
   - Portuguese (PR #2882)
   - Russian (PR #2867)
-  - Swedish
-  - Tamil ()
-  - Turkish ()
  
 ## What Is New in 2.16.50
 

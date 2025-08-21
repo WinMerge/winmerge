@@ -27,9 +27,6 @@
   - Lithuanian (PR #2864)
   - Portuguese (PR #2882)
   - Russian (PR #2867)
-  - Swedish
-  - Tamil ()
-  - Turkish ()
  
 ## WinMerge 2.16.50 - 2025-07-27
 
