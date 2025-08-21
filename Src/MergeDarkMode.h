@@ -66,6 +66,7 @@ namespace DarkMode
 	[[nodiscard]] inline HBRUSH getDlgBackgroundBrush() { return nullptr; }
 	[[nodiscard]] inline UINT_PTR CALLBACK HookDlgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) { return FALSE; }
 }
+#endif
 
 /**
  * @brief Helper class for dark mode for WinMerge
@@ -105,6 +106,4 @@ namespace WinMergeDarkMode
 	 */
 	bool IsImmersiveColorSet(LPCTSTR lpszSection);
 }
-
-#endif
 
