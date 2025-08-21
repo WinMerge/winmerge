@@ -1,5 +1,5 @@
 #include "pch.h"
-#include <Windows.h>
+#include <windows.h>
 #include "MergeAppCOMClass.h"
 #include "OptionsMgr.h"
 #include "MergeApp.h"

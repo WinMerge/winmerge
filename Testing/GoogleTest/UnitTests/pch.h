@@ -20,6 +20,6 @@
 #endif
 #include <gtest/gtest.h>
 #include <gtest/gtest-param-test.h>
-#include <Windows.h>
+#include <windows.h>
 #include <shlobj.h>
 #include <shlwapi.h>

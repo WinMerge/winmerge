@@ -7,7 +7,7 @@
 #include "OptionsDirColors.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include <Windows.h>
+#include <windows.h>
 
 
 namespace Options { namespace DirColors {

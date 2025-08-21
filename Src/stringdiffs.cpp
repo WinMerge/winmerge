@@ -8,7 +8,7 @@
 #include "pch.h"
 #include "stringdiffs.h"
 #define NOMINMAX
-#include <Windows.h>
+#include <windows.h>
 #include <cassert>
 #include <chrono>
 #include "CompareOptions.h"

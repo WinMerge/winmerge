@@ -6,7 +6,7 @@
  */
 #pragma once
 
-#include <Windows.h>
+#include <windows.h>
 
 #define DllBuild_Merge7z 10 // Minimum DllBuild of Merge7z plugin required
 

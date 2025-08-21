@@ -3,7 +3,7 @@
 #include <sys/stat.h>
 #include <io.h>
 #include <cerrno>
-#include <Windows.h>
+#include <windows.h>
 
 inline time_t filetime_to_time_t(const FILETIME& ft)
 {

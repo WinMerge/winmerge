@@ -6,7 +6,7 @@
 
 #include "pch.h"
 #include "SyntaxColors.h"
-#include <Windows.h>
+#include <windows.h>
 
 /**
  * @brief Constructor, initialise with default colors.
