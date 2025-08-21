@@ -268,7 +268,11 @@ namespace WinMergeDarkMode
 	 */
 	bool IsDarkModeAvailable()
 	{
+#ifdef USE_DARKMODELIB
 		return IsWin10_OrGreater();
+#else
+		return false;
+#endif
 	}
 
 	/**
