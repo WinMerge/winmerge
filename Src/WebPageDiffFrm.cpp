@@ -1715,6 +1715,7 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 				CWnd* pToolbar = FindWindowEx(hWnd, nullptr, TOOLBARCLASSNAME, nullptr);
 				if (pToolbar)
 					DarkMode::setWindowCtlColorSubclass(pToolbar->GetSafeHwnd());
+				::InvalidateRect(hWnd, nullptr, TRUE);
 			}
 		}
 		m_pWebDiffWindow->SetDarkBackgroundEnabled(DarkMode::isEnabled());
@@ -1724,6 +1725,7 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			DarkMode::setWindowCtlColorSubclass(hPane);
 			DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
 			DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+			::InvalidateRect(hPane, nullptr, TRUE);
 		}
 	}
 	__super::OnSettingChange(uFlags, lpszSection);

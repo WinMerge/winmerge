@@ -2397,6 +2397,7 @@ void CImgMergeFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			DarkMode::setWindowCtlColorSubclass(hPane);
 			DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
 			DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+			::InvalidateRect(hPane, nullptr, TRUE);
 		}
 		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 			DarkMode::setDarkScrollBar(m_pImgMergeWindow->GetPaneHWND(pane));
