@@ -219,6 +219,7 @@ Localization:
   Ozkan UNVER <turquaz37915@users.sourceforge.net>
   Kaya Zeren <kaya.zeren at zeron.net>
   iLyax
+  bilimiyorum
 
 * Ukranian
   Vitaliy Stopchans'kyy <stopcha@gmail.com>
