@@ -115,6 +115,206 @@ TEST(SyntaxHighlight, Verilog)
 	dlg.SetFormerResult(nPrevFormerResult);
 }
 
+TEST(CommandLineTest, Desc)
+{
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
+	String projectRoot = getProjectRoot();
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL /dr TestR " + 
+		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h") + L" " + 
+		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h")).c_str()
+	);
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
+	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(CommandLineTest, Desc2)
+{
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
+	String projectRoot = getProjectRoot();
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL /dr TestR " + 
+		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
+	);
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
+	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(CommandLineTest, Desc3)
+{
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
+	String projectRoot = getProjectRoot();
+	MergeCmdLineInfo cmdInfo((progpath + L" /dr TestR " + 
+		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
+	);
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	EXPECT_EQ(L"Theirs File", pDoc->GetDescription(0));
+	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(CommandLineTest, Desc4)
+{
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
+	String projectRoot = getProjectRoot();
+	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL " + 
+		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
+	);
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
+	ASSERT_NE(nullptr, pDoc);
+	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
+	EXPECT_EQ(L"Mine File", pDoc->GetDescription(1));
+	pDoc->m_ptBuf[1]->SetModified(false);
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(CommandLineTest, WindowType)
+{
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
+	String projectRoot = getProjectRoot();
+	String paths =
+		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h") + L" " +
+		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h");
+	String pathsTable =
+		paths::ConcatPath(projectRoot, L"Externals/crystaledit/test/test.csv") + L" " +
+		paths::ConcatPath(projectRoot, L"Externals/crystaledit/test/test2.csv");
+	String pathsImage =
+		paths::ConcatPath(projectRoot, L"Src/res/aborted.ico") + L" " +
+		paths::ConcatPath(projectRoot, L"Src/res/binarydiff.ico");
+	String pathsWebpage =
+		paths::ConcatPath(projectRoot, L"Docs/Users/ReleaseNotes.html") + L" " +
+		paths::ConcatPath(projectRoot, L"Docs/Users/ChangeLog.html");
+
+	MergeCmdLineInfo cmdInfo((progpath + L" /t text " + pathsTable).c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	auto* pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_FALSE(pDoc->GetEnableTableEditing().value_or(true));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo2((progpath + L" /t Table " + pathsTable).c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo2, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->GetEnableTableEditing().value_or(false));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo3((progpath + L" /t BINARY " + paths).c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo3, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo4((progpath + L" /t image " + pathsImage).c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo4, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo5((progpath + L" /t webpage " + pathsWebpage).c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo5, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo6((progpath + L" /t automatic " + pathsImage).c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo6, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+}
+
+TEST(CommandLineTest, New)
+{
+	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
+	String projectRoot = getProjectRoot();
+
+	MergeCmdLineInfo cmdInfo((progpath + L" /t text /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
+	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	auto* pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_FALSE(pDoc->GetEnableTableEditing().value_or(true));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo2((progpath + L" /t Table /FileExt csv /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo2, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
+	EXPECT_EQ(',', pDoc->m_ptBuf[0]->GetFieldDelimiter());
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo3((progpath + L" /t Table /Table-Delimiter , /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo3, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
+	EXPECT_EQ(',', pDoc->m_ptBuf[0]->GetFieldDelimiter());
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo4((progpath + L" /t Table /FileExt tsv /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo4, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
+	EXPECT_EQ('\t', pDoc->m_ptBuf[0]->GetFieldDelimiter());
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo5((progpath + L" /t Table /table-delimiter tab /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo5, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
+	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
+	EXPECT_EQ('\t', pDoc->m_ptBuf[0]->GetFieldDelimiter());
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo6((progpath + L" /t BINARY /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo6, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo7((progpath + L" /t image /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo7, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo8((progpath + L" /t webpage /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo8, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo9((progpath + L" /t automatic /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo9, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+}
+
 TEST(FileCompare, FindText)
 {
 	String projectRoot = getProjectRoot();
@@ -550,206 +750,6 @@ TEST(FolderCompare, IgnoreEOL)
 
 		pFrame->PostMessage(WM_CLOSE);
 	}
-}
-
-TEST(CommandLineTest, Desc)
-{
-	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
-	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL /dr TestR " + 
-		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h") + L" " + 
-		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h")).c_str()
-	);
-	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
-	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
-	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
-	ASSERT_NE(nullptr, pDoc);
-	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
-	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
-	pFrame->PostMessage(WM_CLOSE);
-}
-
-TEST(CommandLineTest, Desc2)
-{
-	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
-	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL /dr TestR " + 
-		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
-	);
-	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
-	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
-	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
-	ASSERT_NE(nullptr, pDoc);
-	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
-	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
-	pDoc->m_ptBuf[1]->SetModified(false);
-	pFrame->PostMessage(WM_CLOSE);
-}
-
-TEST(CommandLineTest, Desc3)
-{
-	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
-	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((progpath + L" /dr TestR " + 
-		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
-	);
-	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
-	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
-	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
-	ASSERT_NE(nullptr, pDoc);
-	EXPECT_EQ(L"Theirs File", pDoc->GetDescription(0));
-	EXPECT_EQ(L"TestR", pDoc->GetDescription(1));
-	pDoc->m_ptBuf[1]->SetModified(false);
-	pFrame->PostMessage(WM_CLOSE);
-}
-
-TEST(CommandLineTest, Desc4)
-{
-	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
-	String projectRoot = getProjectRoot();
-	MergeCmdLineInfo cmdInfo((progpath + L" /dl TestL " + 
-		paths::ConcatPath(projectRoot, L"Testing/Data/big_file.conflict")).c_str()
-	);
-	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
-	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
-	CMergeDoc *pDoc = dynamic_cast<CMergeDoc *>(pFrame->GetActiveDocument());
-	ASSERT_NE(nullptr, pDoc);
-	EXPECT_EQ(L"TestL", pDoc->GetDescription(0));
-	EXPECT_EQ(L"Mine File", pDoc->GetDescription(1));
-	pDoc->m_ptBuf[1]->SetModified(false);
-	pFrame->PostMessage(WM_CLOSE);
-}
-
-TEST(CommandLineTest, WindowType)
-{
-	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
-	String projectRoot = getProjectRoot();
-	String paths =
-		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2BE/DiffItem.h") + L" " +
-		paths::ConcatPath(projectRoot, L"Testing/Data/Unicode/UCS-2LE/DiffItem.h");
-	String pathsTable =
-		paths::ConcatPath(projectRoot, L"Externals/crystaledit/test/test.csv") + L" " +
-		paths::ConcatPath(projectRoot, L"Externals/crystaledit/test/test2.csv");
-	String pathsImage =
-		paths::ConcatPath(projectRoot, L"Src/res/aborted.ico") + L" " +
-		paths::ConcatPath(projectRoot, L"Src/res/binarydiff.ico");
-	String pathsWebpage =
-		paths::ConcatPath(projectRoot, L"Docs/Users/ReleaseNotes.html") + L" " +
-		paths::ConcatPath(projectRoot, L"Docs/Users/ChangeLog.html");
-
-	MergeCmdLineInfo cmdInfo((progpath + L" /t text " + pathsTable).c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
-	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
-	auto* pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
-	EXPECT_FALSE(pDoc->GetEnableTableEditing().value_or(true));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo2((progpath + L" /t Table " + pathsTable).c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo2, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
-	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
-	EXPECT_TRUE(pDoc->GetEnableTableEditing().value_or(false));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo3((progpath + L" /t BINARY " + paths).c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo3, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo4((progpath + L" /t image " + pathsImage).c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo4, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo5((progpath + L" /t webpage " + pathsWebpage).c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo5, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo6((progpath + L" /t automatic " + pathsImage).c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo6, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
-	pFrame->PostMessage(WM_CLOSE);
-}
-
-TEST(CommandLineTest, New)
-{
-	String progpath = paths::ConcatPath(env::GetProgPath(), _T("WinMergeU.exe"));
-	String projectRoot = getProjectRoot();
-
-	MergeCmdLineInfo cmdInfo((progpath + L" /t text /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
-	CFrameWnd *pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
-	auto* pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
-	EXPECT_FALSE(pDoc->GetEnableTableEditing().value_or(true));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo2((progpath + L" /t Table /FileExt csv /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo2, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
-	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
-	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
-	EXPECT_EQ(',', pDoc->m_ptBuf[0]->GetFieldDelimiter());
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo3((progpath + L" /t Table /Table-Delimiter , /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo3, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
-	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
-	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
-	EXPECT_EQ(',', pDoc->m_ptBuf[0]->GetFieldDelimiter());
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo4((progpath + L" /t Table /FileExt tsv /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo4, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
-	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
-	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
-	EXPECT_EQ('\t', pDoc->m_ptBuf[0]->GetFieldDelimiter());
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo5((progpath + L" /t Table /table-delimiter tab /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo5, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
-	pDoc = static_cast<CMergeDoc*>(pFrame->GetActiveDocument());
-	EXPECT_TRUE(pDoc->m_ptBuf[0]->GetTableEditing());
-	EXPECT_EQ('\t', pDoc->m_ptBuf[0]->GetFieldDelimiter());
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo6((progpath + L" /t BINARY /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo6, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame)));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo7((progpath + L" /t image /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo7, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo8((progpath + L" /t webpage /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo8, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)));
-	pFrame->PostMessage(WM_CLOSE);
-
-	MergeCmdLineInfo cmdInfo9((progpath + L" /t automatic /new").c_str());
-	theApp.ParseArgsAndDoOpen(cmdInfo9, GetMainFrame());
-	pFrame = GetMainFrame()->GetActiveFrame();
-	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
-	pFrame->PostMessage(WM_CLOSE);
 }
 
 TEST(ImageCompareTest, Open)
