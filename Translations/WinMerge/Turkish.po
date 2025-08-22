@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-05-18 17:26+0300\n"
+"POT-Creation-Date: 2025-08-02 20:44+0000\n"
+"PO-Revision-Date: 2025-08-22 19:09+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1073,10 +1073,10 @@ msgid "G&o to Diff"
 msgstr "Fa&rka git"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "&Tıklandığında İmle&ci Taşı"
 
 msgid "&No Moved Blocks"
-msgstr "&Taşınmış blok yok"
+msgstr "Taşı&nmış blok yok"
 
 msgid "&All Moved Blocks"
 msgstr "T&aşınmış blokların tümü"
@@ -1220,343 +1220,343 @@ msgid "Clear &All"
 msgstr "&Tümünü Temizle"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "Tümünü &Temizle"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "Son Filtre &Grubunu Kaldır"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "V&arsayılanlara Sıfırla (*.*)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "Hariç T&utma Dosyası Ekle"
 
 msgid "&System Files"
-msgstr ""
+msgstr "&Sistem Dosyaları"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "&Editör Yedekleme Dosyaları"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "&Derlenmiş İkili Dosyalar"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "Gün&lük Dosyaları"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "&Geçici veya Önbellek Dosyaları"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "Hariç T&utma Klasörü Ekle"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "&Versiyon Kontrolü"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "&Yapı Ögeleri"
 
 msgid "&IDE"
-msgstr ""
+msgstr "&IDE"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "&Dosya Koşulu Ekle"
 
 msgid "File &Size"
-msgstr ""
+msgstr "Do&sya Boyutu"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "1 KB'den az"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1 KB veya daha fazla"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "10 KB'den az"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10 KB veya daha fazla"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "100 KB'den az"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100 KB veya daha fazla"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "1 MB'den az"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1 MB veya daha fazla"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "10 MB'den az"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10 MB veya daha fazla"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "100 MB'den az"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100 MB veya daha fazla"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "1 GB'den az"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1 GB veya daha fazla"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "Özel Aralık..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "Son Değişik&lik"
 
 msgid "&Hour"
-msgstr ""
+msgstr "&Saat"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "1 saatten fazla önce"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "1 saat içinde"
 
 msgid "&Day"
-msgstr ""
+msgstr "&Gün"
 
 msgid "Before today"
-msgstr ""
+msgstr "Bugünden önce"
 
 msgid "Today"
-msgstr ""
+msgstr "Bugün"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "Dünden önce"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Dün"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "Dünden beri"
 
 msgid "&Week"
-msgstr ""
+msgstr "&Hafta"
 
 msgid "Before this week"
-msgstr ""
+msgstr "Bu haftadan önce"
 
 msgid "This week"
-msgstr ""
+msgstr "Bu hafta"
 
 msgid "Before last week"
-msgstr ""
+msgstr "Geçen haftadan önce"
 
 msgid "Last week"
-msgstr ""
+msgstr "Geçen hafta"
 
 msgid "Since last week"
-msgstr ""
+msgstr "Geçen haftadan beri"
 
 msgid "&Month"
-msgstr ""
+msgstr "&Ay"
 
 msgid "Before this month"
-msgstr ""
+msgstr "Bu aydan önce"
 
 msgid "This month"
-msgstr ""
+msgstr "Bu ay"
 
 msgid "Before last month"
-msgstr ""
+msgstr "Bu aydan önce"
 
 msgid "Last month"
-msgstr ""
+msgstr "Geçen ay"
 
 msgid "Since last month"
-msgstr ""
+msgstr "Geçen aydan beri"
 
 msgid "&Year"
-msgstr ""
+msgstr "&Yıl"
 
 msgid "Before this year"
-msgstr ""
+msgstr "Bu yıldan önce"
 
 msgid "This year"
-msgstr ""
+msgstr "Bu yıl"
 
 msgid "Before last year"
-msgstr ""
+msgstr "Geçen yıldan önce"
 
 msgid "Last year"
-msgstr ""
+msgstr "Geçen yıl"
 
 msgid "Since last year"
-msgstr ""
+msgstr "Geçen yıldan beri"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "&Özel Aralık..."
 
 msgid "&Attributes"
-msgstr ""
+msgstr "&Öznitelikler"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "Salt okunur dosyalar"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "Salt okunur dosyalar değil"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "Gizli dosyalar"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "Gizli dosyalar değil"
 
 msgid "System files"
-msgstr ""
+msgstr "Sistem dosyaları"
 
 msgid "Not system files"
-msgstr ""
+msgstr "Sistem dosyaları değil"
 
 msgid "File &Content"
-msgstr ""
+msgstr "Dosya &İçeriği"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "Dize içerir..."
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "Dize içermez..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "İlk satır dize içerir..."
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "İlk satır dize içermez..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "İlk 10 satır dize içerir..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "İlk 10 satır dize içermez..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "Son 10 satır dize içerir..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "Son 10 satır dize içermez..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "Son satır dize içerir..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "Son satır dize içermez..."
 
 msgid "&Line Count"
-msgstr ""
+msgstr "&Satır Sayısı"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "10'dan az"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10 veya daha fazla"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "100'den az"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100 veya daha fazla"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "1.000'den az"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1.000 veya daha fazla"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "10.000'den az"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10.000 veya daha fazla"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "100.000'den az"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100.000 veya daha fazla"
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "Klasör K&oşulu Ekle"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "Hedef: &Herhangi biri (Sol/Orta/Sağ)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "Hedef: &Sol"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "Hedef: &Orta"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "Hedef: &Sağ"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "&Fark Koşulu Ekle"
 
 msgid "Equal"
-msgstr ""
+msgstr "Eşit"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Eşit Değil"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "10 milyardan az"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10 milyar veya daha fazla"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "100 milyardan az"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100 milyar veya daha fazla"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "1 saniyeden az"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 saniye veya daha fazla"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "1 dakikadan az"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 dakika veya daha fazla"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "1 saatten az"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 saat veya daha fazla"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "1 günden az"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 gün veya daha fazla"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "1 haftadan az"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 hafta veya daha fazla"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "Hedef: &Sol ve Sağ"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "Hedef: Sol ve &Orta"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "Hedef: Orta ve &Sağ"
 
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
@@ -1789,13 +1789,13 @@ msgid "Colors"
 msgstr "Renkler"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "Renk &modu:"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "&Aydınlık mod şeması:"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "&Karanlık mod şeması:"
 
 msgid "Background"
 msgstr "Arka plan"
@@ -2170,10 +2170,10 @@ msgid "File Filters"
 msgstr "Dosya süzgeçleri"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "&Maske / Filtre İfadesi"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "Ön Ayarlı &Filtreler"
 
 msgid "Test..."
 msgstr "Sına..."
@@ -2191,19 +2191,19 @@ msgid "Delete..."
 msgstr "Sil..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "Filtre Koşulu"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "&Sol taraf:"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "&Operatör:"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "&Sağ taraf:"
 
 msgid "Expression:"
-msgstr ""
+msgstr "İfade:"
 
 msgid "Save Modified Files?"
 msgstr "Dosya değişiklikleri kaydedilsin mi?"
@@ -2648,40 +2648,40 @@ msgid "Script &body:"
 msgstr "Betik &içeriği:"
 
 msgid "Font"
-msgstr ""
+msgstr "Yazı tipi"
 
 msgid "&Font:"
-msgstr ""
+msgstr "&Yazı tipi:"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "Yazı tipi st&ili:"
 
 msgid "&Size:"
-msgstr ""
+msgstr "&Boyut:"
 
 msgid "Effects"
-msgstr ""
+msgstr "Etkiler"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "Üstü &çizili"
 
 msgid "&Underline"
-msgstr ""
+msgstr "&Altı çizili"
 
 msgid "&Color:"
-msgstr ""
+msgstr "&Renk:"
 
 msgid "Sample"
-msgstr ""
+msgstr "Örnek"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "&Betik:"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>Daha fazla yazı tipi göster</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -3029,10 +3029,10 @@ msgid ""
 "\n"
 "File may be read-only."
 msgstr ""
-"Süzgeç dosyası silinemedi:\n"
+"Filtre silinemedi:\n"
 "%1\n"
 "\n"
-"Dosya salt okunur olabilir mi?"
+"Dosya salt okunur olabilir."
 
 msgid "Locate Filter File to Install"
 msgstr "Kurulacak süzgeç dosyasını seçin"
@@ -4421,7 +4421,7 @@ msgstr ""
 "%1 sürümünü indirmek ister misiniz (%2 sürümünü kullanıyorsunuz)?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr " - Her hakkı saklıdır."
 
 msgid "Failed to download latest version information"
 msgstr "Son sürüm bilgisi alınamadı"
@@ -4441,7 +4441,7 @@ msgstr "Taşınmış satıra git\tCtrl+Shift+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Engelli"
 
 msgid "From file system"
 msgstr "Dosya sisteminden"
@@ -4503,19 +4503,19 @@ msgstr ""
 "$linenum: Geçerli imleç konumunun satır numarası"
 
 msgid "default"
-msgstr "Varsayılan"
+msgstr "varsayılan"
 
 msgid "minimal"
-msgstr "En az"
+msgstr "en az"
 
 msgid "patience"
-msgstr "Sabırlı"
+msgstr "tahammül"
 
 msgid "histogram"
-msgstr "Histogram"
+msgstr "çubuk grafik"
 
 msgid "none"
-msgstr "Yok"
+msgstr "yok"
 
 msgid "GDI"
 msgstr "GDI"
@@ -4540,7 +4540,7 @@ msgstr "DirectWrite doğal simetrik"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Engelli"
 
 msgid "MDI child window or main window"
 msgstr "MDI alt penceresini ya da ana pencereyi"
@@ -4682,7 +4682,7 @@ msgstr "Kurulum klasörü"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Engelli"
 
 msgid "Allow only one instance to run"
 msgstr "Yalnızca bir kopya çalışsın"
@@ -4692,7 +4692,7 @@ msgstr "Yalnızca bir kopyanın çalışsın ve kopyanın sonlandırılması bek
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Engelli"
 
 msgid "Only on window activated"
 msgstr "Yalnızca pencere etkinleştirildiğinde"
@@ -4950,11 +4950,11 @@ msgstr "Karşılaştırma tamamlandı"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr "%1 ile %2 karşılaştırılamadı:"
+msgstr "%1 ile %2 karşılaştırılamadı: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr "%1 ile %2 ve %3 karşılaştırılamadı:"
+msgstr "%1 ile %2 ve %3 karşılaştırılamadı: "
 
 msgid "File saved"
 msgstr "Dosya kaydedildi"
@@ -4981,88 +4981,88 @@ msgid "File operation canceled"
 msgstr "Dosya işlemi iptal edildi"
 
 msgid "No error"
-msgstr ""
+msgstr "Hata yok"
 
 msgid "Filter expression is empty"
-msgstr ""
+msgstr "Filtre ifadesi boş"
 
 msgid "Unknown character in filter expression"
-msgstr ""
+msgstr "Filtre ifadesinde bilinmeyen karakter"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "Sonlandırılmamış dize sabiti"
 
 msgid "Syntax error in filter expression"
-msgstr ""
+msgstr "Filtre ifadesinde söz dizimi hatası"
 
 msgid "Failed to parse filter expression"
-msgstr ""
+msgstr "Filtre ifadesi ayrıştırılamadı"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "Geçersiz sabit değer"
 
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Geçersiz düzenli ifade"
 
 msgid "Undefined identifier"
-msgstr ""
+msgstr "Tanımsız tanımlayıcı"
 
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "Geçersiz argüman sayısı"
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "Filtre adı bulunamadı"
 
 msgid "Division by zero in filter expression"
-msgstr ""
+msgstr "Filtre ifadesinde sıfıra bölme işlemi"
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Bilinmeyen hata"
 
 msgid "Equals"
-msgstr ""
+msgstr "Eşittir"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "Eşit değil"
 
 msgid "Less than"
-msgstr ""
+msgstr "Daha az"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "Küçük veya eşit"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "Büyük veya eşit"
 
 msgid "Greater than"
-msgstr ""
+msgstr "Daha büyük"
 
 msgid "Between"
-msgstr ""
+msgstr "Arasında"
 
 msgid "Not Between"
-msgstr ""
+msgstr "Arasında Değil"
 
 msgid "Contains"
-msgstr ""
+msgstr "İçerir"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "İçermez"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "İçerir (regex)"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "İçermez (regex)"
 
 msgid "Light"
-msgstr ""
+msgstr "Aydınlık"
 
 msgid "Dark"
-msgstr ""
+msgstr "Karanlık"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Sistem ayarını seç"
 
 msgid "Prettification"
 msgstr "Sadeleştirme"
