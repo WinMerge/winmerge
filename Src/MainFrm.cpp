@@ -52,6 +52,7 @@
 #include "ConfigLog.h"
 #include "7zCommon.h"
 #include "Merge7zFormatMergePluginImpl.h"
+#include "FiltersPropertySheet.h"
 #include "FileFiltersDlg.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
@@ -2104,7 +2105,7 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes,
 void CMainFrame::OnToolsFilters()
 {
 	String title = _("Filters");
-	CPropertySheet sht(title.c_str());
+	CFiltersPropertySheet sht(title.c_str());
 	LineFiltersDlg lineFiltersDlg;
 	SubstitutionFiltersDlg substitutionFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
