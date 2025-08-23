@@ -951,6 +951,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="FiltersPropertySheet.cpp" />
     <ClCompile Include="FrameWndHelper.cpp" />
     <ClCompile Include="InternalPlugins.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -968,6 +969,7 @@
     <ClInclude Include="FileFilterHelperMenu.h" />
     <ClInclude Include="FilterConditionDlg.h" />
     <ClInclude Include="FilterErrorMessages.h" />
+    <ClInclude Include="FiltersPropertySheet.h" />
     <ClInclude Include="FrameWndHelper.h" />
     <ClInclude Include="Logger.h">
       <FileType>CppCode</FileType>
