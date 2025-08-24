@@ -1796,6 +1796,15 @@ msgstr ""
 msgid "&Dark mode scheme:"
 msgstr ""
 
+msgid "Your custom schemes"
+msgstr ""
+
+msgid "&Save current scheme..."
+msgstr ""
+
+msgid "Delete &current scheme..."
+msgstr ""
+
 msgid "Background"
 msgstr "Fundal"
 

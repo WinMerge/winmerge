@@ -545,7 +545,7 @@ String GetParentPath(const String& path)
 	size_t len = parentPath.length();
 
 	// Remove last '\' from paths
-	if (parentPath[len - 1] == '\\')
+	if (len > 0 && parentPath[len - 1] == '\\')
 	{
 		parentPath.resize(len - 1);
 		--len;

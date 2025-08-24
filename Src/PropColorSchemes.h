@@ -35,7 +35,9 @@ private:
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(PropColorSchemes)
-	protected:
+protected:
+	String GetCurrentColorSchemePath() const;
+	void ReloadColorSchemes();
 	void UpdateControls();
 	void UpdateColorScheme();
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support

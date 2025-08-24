@@ -1790,6 +1790,15 @@ msgstr "ライトモードスキーム(&L):"
 msgid "&Dark mode scheme:"
 msgstr "ダークモードスキーム(&D):"
 
+msgid "Your custom schemes"
+msgstr "カスタムスキーム"
+
+msgid "&Save current scheme..."
+msgstr "現在のスキームを保存(&S)..."
+
+msgid "Delete &current scheme..."
+msgstr "現在のスキームを削除(&C)..."
+
 msgid "Background"
 msgstr "背景"
 

@@ -5,6 +5,7 @@
 #include "DirTravel.h"
 #include "paths.h"
 #include "Environment.h"
+#include <set>
 
 namespace ColorSchemes
 {
@@ -26,14 +27,14 @@ String GetColorSchemePath(const String& name)
 		return path;
 	const String pathPrivate = paths::ConcatPath(GetPrivateColorSchemesFolder(), name + _T(".ini"));
 	if (paths::DoesPathExist(pathPrivate))
-		return path;
+		return pathPrivate;
 	return _T("");
 }
 
 std::vector<String> GetColorSchemeNames()
 {
 	DirItemArray dirs, files, filesPrivate;
-	std::vector<String> names;
+	std::set<String> names;
 
 	LoadAndSortFiles(GetColorSchemesFolder(), &dirs, &files, false);
 	LoadAndSortFiles(GetPrivateColorSchemesFolder(), &dirs, &filesPrivate, false);
@@ -45,10 +46,10 @@ std::vector<String> GetColorSchemeNames()
 		String ext;
 		paths::SplitFilename(item.filename, nullptr, &filename, &ext);
 		if (strutils::compare_nocase(ext, _T("ini")) == 0)
-			names.push_back(filename);
+			names.insert(filename);
 	}
 
-	return names;
+	return std::vector<String>(names.begin(), names.end());
 }
 
 }
