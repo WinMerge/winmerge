@@ -1727,98 +1727,79 @@ TBD</para>
 
   <section id="Configuration_colors_colorschemes">
     <title>
-色 → ページ<indexterm>
-        <primary>color schemes</primary>
+色 → 配色ページ<indexterm>
+        <primary>配色</primary>
 
         <secondary>オプション</secondary>
       </indexterm></title>
 
     <para>
-The Color Schemes page allows you to customize the overall color appearance
-of WinMerge, including support for light and dark modes. You can select and
-manage color schemes for each mode, and save or delete your own custom
-schemes.</para>
+「配色」ページでは、WinMerge全体の配色をカスタマイズできます。ライトモードとダークモードの両方に対応しており、各モードごとに配色を選択・管理したり、独自のカスタム配色を保存・削除できます。</para>
 
     <variablelist>
       <varlistentry>
-        <term>Color mode</term>
+        <term>色モード</term>
         <listitem>
           <para>
-Selects the color mode for the application. Choose from:</para>
+アプリケーションの色モードを選択します。次の中から選べます:</para>
           <itemizedlist>
             <listitem>
               <para>
-<option>Light</option> (default): Uses the color scheme specified for light
-mode. When selected, the appearance of dialog windows, menus, and other UI
-elements will be shown in a light style.</para>
+<option>ライト</option>（デフォルト）：ライトモード用に指定された配色を使用します。選択すると、ダイアログウィンドウやメニューなどの外観がライト系のデザインになります。</para>
             </listitem>
             <listitem>
               <para>
-<option>Dark</option>: Uses the color scheme specified for dark mode. When
-selected, the appearance of dialog windows, menus, and other UI elements
-will be shown in a dark style.</para>
+<option>ダーク</option>：ダークモード用に指定された配色を使用します。選択すると、ダイアログウィンドウやメニューなどの外観がダーク系のデザインになります。</para>
             </listitem>
             <listitem>
               <para>
-<option>Follow system</option>: Automatically switches between light and
-dark mode based on your operating system's setting.</para>
+<option>システムに従う</option>：OSの設定に応じて自動的にライトモードとダークモードを切り替えます。</para>
             </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Light mode scheme</term>
+        <term>ライトモード用配色</term>
         <listitem>
           <para>
-Selects the color scheme to use when <guilabel>Color mode</guilabel> is set
-to Light. Available schemes include <option>Default</option> (default),
-<option>Modern</option>, and any user-defined schemes you have saved.</para>
+<guilabel>色モード</guilabel>がライトの場合に使用する配色を選択します。<option>Default</option>（デフォルト）、<option>Modern</option>、および保存したユーザー定義配色が利用できます。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Dark mode scheme</term>
+        <term>ダークモード用配色</term>
         <listitem>
           <para>
-Selects the color scheme to use when <guilabel>Color mode</guilabel> is set
-to Dark. Available schemes include <option>VS Dark</option> (default),
-<option>Solarized Dark</option>, and any user-defined schemes you have
-saved.</para>
+<guilabel>色モード</guilabel>がダークの場合に使用する配色を選択します。<option>VS
+Dark</option>（デフォルト）、<option>Solarized Dark</option>、および保存したユーザー定義配色が利用できます。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Save current scheme</term>
+        <term>現在の配色を保存</term>
         <listitem>
           <para>
-Saves the current color settings as a new scheme. The scheme is saved as an
-INI file. <emphasis> Only schemes saved in the
-<filename>Documents/WinMerge/ColorSchemes</filename> folder will appear in
-the <guilabel>Light mode scheme</guilabel> and <guilabel>Dark mode
-scheme</guilabel> lists.  </emphasis></para>
+現在の色設定を新しい配色として保存します。配色はINIファイルとして保存されます。<emphasis><filename>Documents/WinMerge/ColorSchemes</filename>フォルダーに保存された配色のみが、<guilabel>ライトモード用配色</guilabel>および<guilabel>ダークモード用配色</guilabel>の一覧に表示されます。</emphasis></para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Delete current scheme</term>
+        <term>現在の配色を削除</term>
         <listitem>
           <para>
-Deletes the currently selected color scheme. This button is only enabled for
-user-defined schemes (not for built-in schemes like Default or VS Dark).</para>
+現在選択中の配色を削除します。このボタンはユーザー定義配色の場合のみ有効で、DefaultやVS Darkなどの組み込み配色では使用できません。</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
     <para>
-Use these options to tailor the WinMerge interface to your preferences or to
-match your system theme. Custom color schemes make it easy to share or reuse
-your preferred color settings.</para>
+これらのオプションを使って、WinMergeのインターフェースを好みやシステムテーマに合わせて調整できます。カスタム配色を使えば、お気に入りの配色設定を簡単に共有・再利用できます。</para>
   </section>
 
   <section id="Configuration_colors_differences">
     <title>
-色 → ページ<indexterm>
+色 → 差異ページ<indexterm>
         <primary>difference colors</primary>
 
         <secondary>オプション</secondary>

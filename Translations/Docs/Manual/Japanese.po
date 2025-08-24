@@ -9792,13 +9792,13 @@ msgstr "エディター → 一般 ページ<placeholder type=\"indexterm\" id=\
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:2139
 msgid "color schemes"
-msgstr ""
+msgstr "配色"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2138
 msgid ""
 "Colors &gt; Color Schemes page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "色 → ページ<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "色 → 配色ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2146
@@ -9808,16 +9808,19 @@ msgid ""
 "manage color schemes for each mode, and save or delete your own custom "
 "schemes."
 msgstr ""
+"「配色」ページでは、WinMerge全体の配色をカスタマイズできます。ライトモードと"
+"ダークモードの両方に対応しており、各モードごとに配色を選択・管理したり、独自"
+"のカスタム配色を保存・削除できます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:2151
 msgid "Color mode"
-msgstr ""
+msgstr "色モード"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:2154
 msgid "Selects the color mode for the application. Choose from:"
-msgstr ""
+msgstr "アプリケーションの色モードを選択します。次の中から選べます:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Configuration.xml:2159
@@ -9826,6 +9829,9 @@ msgid ""
 "mode. When selected, the appearance of dialog windows, menus, and other UI "
 "elements will be shown in a light style."
 msgstr ""
+"<option>ライト</option>（デフォルト）：ライトモード用に指定された配色を使用し"
+"ます。選択すると、ダイアログウィンドウやメニューなどの外観がライト系のデザイ"
+"ンになります。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Configuration.xml:2164
@@ -9834,6 +9840,8 @@ msgid ""
 "selected, the appearance of dialog windows, menus, and other UI elements "
 "will be shown in a dark style."
 msgstr ""
+"<option>ダーク</option>：ダークモード用に指定された配色を使用します。選択する"
+"と、ダイアログウィンドウやメニューなどの外観がダーク系のデザインになります。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Configuration.xml:2169
@@ -9841,11 +9849,13 @@ msgid ""
 "<option>Follow system</option>: Automatically switches between light and "
 "dark mode based on your operating system's setting."
 msgstr ""
+"<option>システムに従う</option>：OSの設定に応じて自動的にライトモードとダーク"
+"モードを切り替えます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:2177
 msgid "Light mode scheme"
-msgstr ""
+msgstr "ライトモード用配色"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:2180
@@ -9854,11 +9864,14 @@ msgid ""
 "to Light. Available schemes include <option>Default</option> (default), "
 "<option>Modern</option>, and any user-defined schemes you have saved."
 msgstr ""
+"<guilabel>色モード</guilabel>がライトの場合に使用する配色を選択します。"
+"<option>Default</option>（デフォルト）、<option>Modern</option>、および保存し"
+"たユーザー定義配色が利用できます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:2186
 msgid "Dark mode scheme"
-msgstr ""
+msgstr "ダークモード用配色"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:2189
@@ -9867,11 +9880,14 @@ msgid ""
 "to Dark. Available schemes include <option>VS Dark</option> (default), "
 "<option>Solarized Dark</option>, and any user-defined schemes you have saved."
 msgstr ""
+"<guilabel>色モード</guilabel>がダークの場合に使用する配色を選択します。"
+"<option>VS Dark</option>（デフォルト）、<option>Solarized Dark</option>、およ"
+"び保存したユーザー定義配色が利用できます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:2195
 msgid "Save current scheme"
-msgstr ""
+msgstr "現在の配色を保存"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:2198
@@ -9882,11 +9898,15 @@ msgid ""
 "scheme</guilabel> and <guilabel>Dark mode scheme</guilabel> lists.  </"
 "emphasis>"
 msgstr ""
+"現在の色設定を新しい配色として保存します。配色はINIファイルとして保存されま"
+"す。<emphasis><filename>Documents/WinMerge/ColorSchemes</filename>フォルダー"
+"に保存された配色のみが、<guilabel>ライトモード用配色</guilabel>および"
+"<guilabel>ダークモード用配色</guilabel>の一覧に表示されます。</emphasis>"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:2206
 msgid "Delete current scheme"
-msgstr ""
+msgstr "現在の配色を削除"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:2209
@@ -9894,6 +9914,8 @@ msgid ""
 "Deletes the currently selected color scheme. This button is only enabled for "
 "user-defined schemes (not for built-in schemes like Default or VS Dark)."
 msgstr ""
+"現在選択中の配色を削除します。このボタンはユーザー定義配色の場合のみ有効で、"
+"DefaultやVS Darkなどの組み込み配色では使用できません。"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2216
@@ -9902,11 +9924,14 @@ msgid ""
 "match your system theme. Custom color schemes make it easy to share or reuse "
 "your preferred color settings."
 msgstr ""
+"これらのオプションを使って、WinMergeのインターフェースを好みやシステムテーマ"
+"に合わせて調整できます。カスタム配色を使えば、お気に入りの配色設定を簡単に共"
+"有・再利用できます。"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2222
 msgid "Colors &gt; Differences page<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "色 → ページ<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "色 → 差異ページ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Configuration.xml:2230

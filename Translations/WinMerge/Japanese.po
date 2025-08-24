@@ -1785,19 +1785,19 @@ msgid "Color &mode:"
 msgstr "色モード(&M):"
 
 msgid "&Light mode scheme:"
-msgstr "ライトモードスキーム(&L):"
+msgstr "ライトモード用配色(&L):"
 
 msgid "&Dark mode scheme:"
-msgstr "ダークモードスキーム(&D):"
+msgstr "ダークモード用配色(&D):"
 
 msgid "Your custom schemes"
-msgstr "カスタムスキーム"
+msgstr "ユーザ定義配色"
 
 msgid "&Save current scheme..."
-msgstr "現在のスキームを保存(&S)..."
+msgstr "現在の配色を保存(&S)..."
 
 msgid "Delete &current scheme..."
-msgstr "現在のスキームを削除(&C)..."
+msgstr "現在の配色を削除(&C)..."
 
 msgid "Background"
 msgstr "背景"
