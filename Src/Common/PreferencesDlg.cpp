@@ -420,6 +420,7 @@ LRESULT CPreferencesDlg::OnColorSchemeChanged(WPARAM wParams, LPARAM lParam)
 {
 	Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors.get());
 	ReadOptions(true);
+	EnableDlgItem(IDCANCEL, false);
 	return 0;
 }
 

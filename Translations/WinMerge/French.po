@@ -1798,6 +1798,15 @@ msgstr "&Schéma du mode clair :"
 msgid "&Dark mode scheme:"
 msgstr "&Schéma du mode sombre :"
 
+msgid "Your custom schemes"
+msgstr ""
+
+msgid "&Save current scheme..."
+msgstr ""
+
+msgid "Delete &current scheme..."
+msgstr ""
+
 msgid "Background"
 msgstr "Arrière-plan"
 

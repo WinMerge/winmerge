@@ -1799,6 +1799,15 @@ msgstr "Modo schema c&hiaro:"
 msgid "&Dark mode scheme:"
 msgstr "Mo&do schema scuro:"
 
+msgid "Your custom schemes"
+msgstr ""
+
+msgid "&Save current scheme..."
+msgstr ""
+
+msgid "Delete &current scheme..."
+msgstr ""
+
 msgid "Background"
 msgstr "Sfondo"
 

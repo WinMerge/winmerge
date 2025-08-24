@@ -35,7 +35,9 @@ private:
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(PropColorSchemes)
-	protected:
+protected:
+	String GetCurrentColorSchemePath() const;
+	void ReloadColorSchemes();
 	void UpdateControls();
 	void UpdateColorScheme();
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -49,6 +51,8 @@ protected:
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnCbnSelchangeColorMode();
 	afx_msg void OnCbnSelchangeColorScheme();
+	afx_msg void OnSaveCurrentScheme();
+	afx_msg void OnDeleteCurrentScheme();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
