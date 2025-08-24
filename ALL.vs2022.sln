@@ -464,6 +464,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DarkMode", "DarkMode", "{02
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "darkmodelib", "Externals\darkmodelib\vs.proj\darkmodelib.vcxproj", "{C08C7F8C-C0BF-4AF8-A333-9948017B462B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translations", "{97364844-A7DA-4D33-A49A-A9B81C70BD59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{7DF65017-6089-4B89-B0E8-81B207B74869}"
+	ProjectSection(SolutionItems) = preProject
+		Translations\Docs\Manual\English.pot = Translations\Docs\Manual\English.pot
+		Translations\Docs\Manual\Hebrew.po = Translations\Docs\Manual\Hebrew.po
+		Translations\Docs\Manual\Japanese.po = Translations\Docs\Manual\Japanese.po
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -1471,6 +1480,8 @@ Global
 		{4170552A-09E2-4FAC-B71D-0E2F5EB3C869} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{C08C7F8C-C0BF-4AF8-A333-9948017B462B} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{97364844-A7DA-4D33-A49A-A9B81C70BD59} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
+		{7DF65017-6089-4B89-B0E8-81B207B74869} = {97364844-A7DA-4D33-A49A-A9B81C70BD59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}

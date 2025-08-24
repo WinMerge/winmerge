@@ -445,7 +445,51 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "editlibparsers", "Externals
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FilterEngine", "Src\FilterEngine\FilterEngine.vcxitems", "{9C37E5D8-1DC0-4EAC-AADB-5FC8BE4FB1BC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translations", "{F2BDF018-3CF3-4579-A7EA-1B739675DDC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{7DF65017-6089-4B89-B0E8-81B207B74869}"
+	ProjectSection(SolutionItems) = preProject
+		Translations\Docs\Manual\English.pot = Translations\Docs\Manual\English.pot
+		Translations\Docs\Manual\Hebrew.po = Translations\Docs\Manual\Hebrew.po
+		Translations\Docs\Manual\Japanese.po = Translations\Docs\Manual\Japanese.po
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Plugins\src_VCPP\Common\Common.vcxitems*{098b241d-63af-4683-baf8-6da57fd8fe75}*SharedItemsImports = 4
+		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
+		Plugins\src_VCPP\Common\Common.vcxitems*{0ee652ff-27b0-4f91-bad6-2931bc072762}*SharedItemsImports = 4
+		Src\CompareEngines\CompareEngines.vcxitems*{0f686afa-d587-43c0-bada-2beddc3fa758}*SharedItemsImports = 9
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{4170552a-09e2-4fac-b71d-0e2f5eb3c869}*SharedItemsImports = 9
+		Externals\xdiff\xdiff.vcxitems*{68f1d3a1-9dca-4b3d-b245-f4aca5f16563}*SharedItemsImports = 9
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\xdiff\xdiff.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Src\CompareEngines\CompareEngines.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Src\diffutils\diffutils.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Src\FilterEngine\FilterEngine.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Plugins\src_VCPP\Common\Common.vcxitems*{7354ba4f-8dab-46ee-a5a2-a148d6ef2443}*SharedItemsImports = 9
+		Externals\crystaledit\editlib\editlib.vcxitems*{7515ac3c-389a-44cd-b940-a59dde5b8ae3}*SharedItemsImports = 9
+		Src\FilterEngine\FilterEngine.vcxitems*{9c37e5d8-1dc0-4eac-aadb-5fc8be4fb1bc}*SharedItemsImports = 9
+		Externals\googletest\googletest\googletest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
+		Externals\crystaledit\editlib\editlib.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Src\FilterEngine\FilterEngine.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Plugins\src_VCPP\Common\Common.vcxitems*{a644fba4-d76e-4500-b4b7-04d7a245359a}*SharedItemsImports = 4
+		Plugins\src_VCPP\Common\Common.vcxitems*{aa88b46e-b2e2-4b03-8cd5-1e9d60db6ab2}*SharedItemsImports = 4
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Externals\xdiff\xdiff.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Src\CompareEngines\CompareEngines.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Src\diffutils\diffutils.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Src\FilterEngine\FilterEngine.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Plugins\src_VCPP\Common\Common.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
+		Externals\crystaledit\editlib\editlib.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
+		Src\diffutils\diffutils.vcxitems*{fc3b9df3-2854-4264-ab4b-ee8c43982513}*SharedItemsImports = 9
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
 		Debug|ARM64 = Debug|ARM64
@@ -1374,43 +1418,10 @@ Global
 		{460A3D0C-F937-4E82-9F70-C79E158809B4} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{7354BA4F-8DAB-46EE-A5A2-A148D6EF2443} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{4170552A-09E2-4FAC-B71D-0E2F5EB3C869} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
+		{7DF65017-6089-4B89-B0E8-81B207B74869} = {F2BDF018-3CF3-4579-A7EA-1B739675DDC2}
+		{F2BDF018-3CF3-4579-A7EA-1B739675DDC2} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Plugins\src_VCPP\Common\Common.vcxitems*{098b241d-63af-4683-baf8-6da57fd8fe75}*SharedItemsImports = 4
-		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
-		Plugins\src_VCPP\Common\Common.vcxitems*{0ee652ff-27b0-4f91-bad6-2931bc072762}*SharedItemsImports = 4
-		Src\CompareEngines\CompareEngines.vcxitems*{0f686afa-d587-43c0-bada-2beddc3fa758}*SharedItemsImports = 9
-		Externals\crystaledit\editlib\editlibparsers.vcxitems*{4170552a-09e2-4fac-b71d-0e2f5eb3c869}*SharedItemsImports = 9
-		Externals\xdiff\xdiff.vcxitems*{68f1d3a1-9dca-4b3d-b245-f4aca5f16563}*SharedItemsImports = 9
-		Externals\crystaledit\editlib\editlibparsers.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
-		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
-		Externals\xdiff\xdiff.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
-		Src\CompareEngines\CompareEngines.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
-		Src\diffutils\diffutils.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
-		Src\FilterEngine\FilterEngine.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
-		Plugins\src_VCPP\Common\Common.vcxitems*{7354ba4f-8dab-46ee-a5a2-a148d6ef2443}*SharedItemsImports = 9
-		Externals\crystaledit\editlib\editlib.vcxitems*{7515ac3c-389a-44cd-b940-a59dde5b8ae3}*SharedItemsImports = 9
-		Src\FilterEngine\FilterEngine.vcxitems*{9c37e5d8-1dc0-4eac-aadb-5fc8be4fb1bc}*SharedItemsImports = 9
-		Externals\googletest\googletest\googletest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
-		Externals\crystaledit\editlib\editlib.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
-		Externals\crystaledit\editlib\editlibparsers.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
-		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
-		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
-		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
-		Src\FilterEngine\FilterEngine.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
-		Plugins\src_VCPP\Common\Common.vcxitems*{a644fba4-d76e-4500-b4b7-04d7a245359a}*SharedItemsImports = 4
-		Plugins\src_VCPP\Common\Common.vcxitems*{aa88b46e-b2e2-4b03-8cd5-1e9d60db6ab2}*SharedItemsImports = 4
-		Externals\crystaledit\editlib\editlibparsers.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
-		Externals\xdiff\xdiff.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
-		Src\CompareEngines\CompareEngines.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
-		Src\diffutils\diffutils.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
-		Src\FilterEngine\FilterEngine.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
-		Plugins\src_VCPP\Common\Common.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
-		Externals\crystaledit\editlib\editlib.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
-		Externals\crystaledit\editlib\editlibparsers.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
-		Src\diffutils\diffutils.vcxitems*{fc3b9df3-2854-4264-ab4b-ee8c43982513}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

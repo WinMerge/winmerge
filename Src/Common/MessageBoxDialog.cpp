@@ -516,11 +516,8 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	{
 		DarkMode::setDarkWndSafe(m_hWnd, false);
 		DarkMode::setWindowEraseBgSubclass(m_hWnd);
-		HWND hTip = m_tooltips.GetSafeHwnd();
-		if (hTip != nullptr)
-		{
+		if (HWND hTip = m_tooltips.GetSafeHwnd())
 			DarkMode::setDarkTooltips(hTip);
-		}
 	}
 
 	if (!DarkMode::isExperimentalActive())

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28407.52
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge", "Src\Merge.vcxproj", "{9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -455,6 +455,15 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "editlibparsers", "Externals\crystaledit\editlib\editlibparsers.vcxitems", "{4170552A-09E2-4FAC-B71D-0E2F5EB3C869}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FilterEngine", "Src\FilterEngine\FilterEngine.vcxitems", "{9C37E5D8-1DC0-4EAC-AADB-5FC8BE4FB1BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translations", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{7DF65017-6089-4B89-B0E8-81B207B74869}"
+	ProjectSection(SolutionItems) = preProject
+		Translations\Docs\Manual\English.pot = Translations\Docs\Manual\English.pot
+		Translations\Docs\Manual\Hebrew.po = Translations\Docs\Manual\Hebrew.po
+		Translations\Docs\Manual\Japanese.po = Translations\Docs\Manual\Japanese.po
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1443,6 +1452,8 @@ Global
 		{460A3D0C-F937-4E82-9F70-C79E158809B4} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{7354BA4F-8DAB-46EE-A5A2-A148D6EF2443} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{4170552A-09E2-4FAC-B71D-0E2F5EB3C869} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
+		{7DF65017-6089-4B89-B0E8-81B207B74869} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
