@@ -184,7 +184,7 @@ void CTextMarkerDlg::OnBnclickedEditRegExp()
 void CTextMarkerDlg::OnBnClickedEditMarkerNew()
 {
 	CString name = m_tempMarkers.MakeNewId();
-	String sFindWhat = LoadResString(IDS_MARKER_NEW_PATTERN);
+	std::basic_string<tchar_t> sFindWhat = LoadResString(IDS_MARKER_NEW_PATTERN);
 	m_tempMarkers.SetMarker(name, sFindWhat.c_str(), GetLastSearchFlags(),
 		static_cast<COLORINDEX>(static_cast<int>(COLORINDEX_MARKERBKGND1) + (m_tempMarkers.GetMarkers().size() % 3)));
 	int i = GetSelectedItemIndex();
