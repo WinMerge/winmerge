@@ -674,6 +674,8 @@
 #define IDC_COLOR_MODE                  1690
 #define IDC_COLOR_SCHEME_LIGHT          1691
 #define IDC_COLOR_SCHEME_DARK           1692
+#define IDC_COLOR_SCHEME_SAVE           1693
+#define IDC_COLOR_SCHEME_DELETE         1694
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

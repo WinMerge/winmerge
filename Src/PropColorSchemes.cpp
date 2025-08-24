@@ -9,11 +9,19 @@
 #include "OptionsDef.h"
 #include "OptionsInit.h"
 #include "OptionsMgr.h"
+#include "IniOptionsMgr.h"
 #include "RegOptionsMgr.h"
 #include "OptionsPanel.h"
 #include "SysColorHook.h"
 #include "ColorSchemes.h"
 #include "MergeDarkMode.h"
+#include "FileOrFolderSelect.h"
+#include "OptionsDiffColors.h"
+#include "OptionsDirColors.h"
+#include "OptionsSyntaxColors.h"
+#include "OptionsCustomColors.h"
+#include "paths.h"
+#include "SyntaxColors.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -44,6 +52,8 @@ BEGIN_MESSAGE_MAP(PropColorSchemes, OptionsPanel)
 	ON_CBN_SELCHANGE(IDC_COLOR_MODE, OnCbnSelchangeColorMode)
 	ON_CBN_SELCHANGE(IDC_COLOR_SCHEME_LIGHT, OnCbnSelchangeColorScheme)
 	ON_CBN_SELCHANGE(IDC_COLOR_SCHEME_DARK, OnCbnSelchangeColorScheme)
+	ON_BN_CLICKED(IDC_COLOR_SCHEME_SAVE, OnSaveCurrentScheme)
+	ON_BN_CLICKED(IDC_COLOR_SCHEME_DELETE, OnDeleteCurrentScheme)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -130,3 +140,34 @@ void PropColorSchemes::OnCbnSelchangeColorScheme()
 	UpdateColorScheme();
 }
 
+void PropColorSchemes::OnSaveCurrentScheme()
+{
+	String dir = ColorSchemes::GetPrivateColorSchemesFolder();
+	paths::CreateIfNeeded(dir);
+	String path;
+	if (!SelectFile(GetSafeHwnd(), path, false, 
+		dir.c_str(), _("Select file for export"),
+		_("Options files (*.ini)|*.ini|All Files (*.*)|*.*||")))
+		return;
+	CIniOptionsMgr optionsMgr(path);
+	COLORSETTINGS diffColors;
+	DIRCOLORSETTINGS dirColors;
+	COLORREF customColors[16];
+	SyntaxColors syntaxColors;
+	Options::Init(&optionsMgr);
+	Options::CustomColors::Load(GetOptionsMgr(), customColors);
+	Options::CustomColors::Save(&optionsMgr, customColors);
+	Options::SyntaxColors::Load(GetOptionsMgr(), &syntaxColors);
+	Options::SyntaxColors::Save(&optionsMgr, &syntaxColors);
+	Options::DiffColors::Load(GetOptionsMgr(), diffColors);
+	Options::DiffColors::Save(&optionsMgr, diffColors);
+	Options::DirColors::Load(GetOptionsMgr(), dirColors);
+	Options::DirColors::Save(&optionsMgr, dirColors);
+	String newColors = SysColorHook::Serialize();
+	optionsMgr.SaveOption(OPT_SYSCOLOR_HOOK_ENABLED, GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED));
+	optionsMgr.SaveOption(OPT_SYSCOLOR_HOOK_COLORS, newColors);
+}
+
+void PropColorSchemes::OnDeleteCurrentScheme()
+{
+}

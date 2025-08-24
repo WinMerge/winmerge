@@ -49,6 +49,8 @@ protected:
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnCbnSelchangeColorMode();
 	afx_msg void OnCbnSelchangeColorScheme();
+	afx_msg void OnSaveCurrentScheme();
+	afx_msg void OnDeleteCurrentScheme();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
