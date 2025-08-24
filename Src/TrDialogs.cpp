@@ -52,8 +52,7 @@ BOOL CTrPropertyPage::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	__super::OnInitDialog();
-	HWND hSelf = GetSafeHwnd();
-	if (hSelf != nullptr)
+	if (HWND hSelf = GetSafeHwnd())
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
 		DarkMode::setChildCtrlsSubclassAndTheme(hSelf);

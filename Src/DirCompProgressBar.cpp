@@ -84,8 +84,7 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 		m_pTaskbarList->SetProgressState(AfxGetMainWnd()->m_hWnd, TBPF_INDETERMINATE);
 #endif
 
-	HWND hSelf = GetSafeHwnd();
-	if (hSelf != nullptr)
+	if (HWND hSelf = GetSafeHwnd())
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
 		DarkMode::setChildCtrlsSubclassAndTheme(hSelf);

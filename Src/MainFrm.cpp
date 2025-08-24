@@ -444,8 +444,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (IsWin10_OrGreater())
 	{
 		m_bTabsOnTitleBar = GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
-		HWND hSelf = GetSafeHwnd();
-		if (hSelf != nullptr)
+		if (HWND hSelf = GetSafeHwnd())
 			DarkMode::setDarkWndNotifySafe(hSelf, true);
 	}
 
@@ -2700,8 +2699,7 @@ BOOL CMainFrame::CreateToolbar()
 	}
 
 	m_wndReBar.LoadStateFromString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
-	HWND hTip = m_wndToolBar.GetToolBarCtrl().GetToolTips()->GetSafeHwnd();
-	if (hTip != nullptr)
+	if (HWND hTip = m_wndToolBar.GetToolBarCtrl().GetToolTips()->GetSafeHwnd())
 		DarkMode::setDarkTooltips(hTip);
 	return TRUE;
 }

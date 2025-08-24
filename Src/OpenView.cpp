@@ -214,8 +214,7 @@ void COpenView::OnInitialUpdate()
 		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
 		m_image.Create(1, 1, 24, 0);
 	}
-	HWND hSelf = GetSafeHwnd();
-	if (hSelf != nullptr)
+	if (HWND hSelf = GetSafeHwnd())
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
 		DarkMode::setChildCtrlsSubclassAndTheme(hSelf);
@@ -458,8 +457,7 @@ void COpenView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			m_image.Create(1, 1, 24, 0);
 		}
 
-		HWND hSelf = GetSafeHwnd();
-		if (hSelf != nullptr)
+		if (HWND hSelf = GetSafeHwnd())
 		{
 			DarkMode::setWindowCtlColorSubclass(hSelf);
 			DarkMode::setChildCtrlsSubclassAndTheme(hSelf);

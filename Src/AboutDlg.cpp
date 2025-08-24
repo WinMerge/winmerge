@@ -126,12 +126,10 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 	if (DarkMode::isExperimentalActive())
 		WinMergeDarkMode::InvertLightness(m_image);
 
-	HWND hLink = GetDlgItem(IDC_WWW)->GetSafeHwnd();
-	if (hLink != nullptr)
+	if (HWND hLink = GetDlgItem(IDC_WWW)->GetSafeHwnd())
 		DarkMode::enableSysLinkCtrlCtlColor(hLink);
 
-	HWND hSelf = m_hWnd;
-	if (hSelf != nullptr)
+	if (HWND hSelf = m_hWnd)
 	{
 		DarkMode::removeWindowEraseBgSubclass(hSelf);
 		WinMergeDarkMode::SetAsciiArtSubclass(hSelf);

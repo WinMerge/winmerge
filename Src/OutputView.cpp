@@ -100,8 +100,7 @@ void COutputView::OnInitialUpdate()
 	AttachToBuffer();
 	SetColorContext(theApp.GetMainSyntaxColors());
 	SetMarkersContext(GetDocument()->m_pMarkers.get());
-	HWND hSelf = GetSafeHwnd();
-	if (hSelf != nullptr)
+	if (HWND hSelf = GetSafeHwnd())
 		DarkMode::setDarkScrollBar(hSelf);
 }
 
