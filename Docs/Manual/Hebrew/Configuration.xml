@@ -1814,7 +1814,86 @@ TBD</para>
       </indexterm></title>
 
     <para>
-TBD</para>
+The Color Schemes page allows you to customize the overall color appearance
+of WinMerge, including support for light and dark modes. You can select and
+manage color schemes for each mode, and save or delete your own custom
+schemes.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Color mode</term>
+        <listitem>
+          <para>
+Selects the color mode for the application. Choose from:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+<option>Light</option> (default): Uses the color scheme specified for light
+mode. When selected, the appearance of dialog windows, menus, and other UI
+elements will be shown in a light style.</para>
+            </listitem>
+            <listitem>
+              <para>
+<option>Dark</option>: Uses the color scheme specified for dark mode. When
+selected, the appearance of dialog windows, menus, and other UI elements
+will be shown in a dark style.</para>
+            </listitem>
+            <listitem>
+              <para>
+<option>Follow system</option>: Automatically switches between light and
+dark mode based on your operating system's setting.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Light mode scheme</term>
+        <listitem>
+          <para>
+Selects the color scheme to use when <guilabel>Color mode</guilabel> is set
+to Light. Available schemes include <option>Default</option> (default),
+<option>Modern</option>, and any user-defined schemes you have saved.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Dark mode scheme</term>
+        <listitem>
+          <para>
+Selects the color scheme to use when <guilabel>Color mode</guilabel> is set
+to Dark. Available schemes include <option>VS Dark</option> (default),
+<option>Solarized Dark</option>, and any user-defined schemes you have
+saved.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Save current scheme</term>
+        <listitem>
+          <para>
+Saves the current color settings as a new scheme. The scheme is saved as an
+INI file. <emphasis> Only schemes saved in the
+<filename>Documents/WinMerge/ColorSchemes</filename> folder will appear in
+the <guilabel>Light mode scheme</guilabel> and <guilabel>Dark mode
+scheme</guilabel> lists.  </emphasis></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Delete current scheme</term>
+        <listitem>
+          <para>
+Deletes the currently selected color scheme. This button is only enabled for
+user-defined schemes (not for built-in schemes like Default or VS Dark).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+Use these options to tailor the WinMerge interface to your preferences or to
+match your system theme. Custom color schemes make it easy to share or reuse
+your preferred color settings.</para>
   </section>
 
   <section id="Configuration_colors_differences">
