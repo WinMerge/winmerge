@@ -1482,7 +1482,7 @@ msgid "&Version Control"
 msgstr "&Verziókövetés"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "&Build összetevők"
 
 msgid "&IDE"
 msgstr "&IDE"
@@ -2072,22 +2072,22 @@ msgid "Colors"
 msgstr "Színek"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "Szín&mód"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "&Világos mód sémája:"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "@Sötét mód sémája"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "Saját egyéni séma"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "Jelenlegi séma &mentése..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "&Jelenlegi séma törlése..."
 
 #, c-format
 msgid "Background"
@@ -2443,7 +2443,7 @@ msgid "Ignore &case"
 msgstr "&Kis-nagybetű különbségek mellőzése"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Sorvégzáró különbségek &figyelmen kívül hagyása (Windows/Unix/Mac)"
 
 msgid "Ignore num&bers"
 msgstr "Számok mellőzése"
@@ -3118,40 +3118,40 @@ msgid "Script &body:"
 msgstr "Szkript &törzs:"
 
 msgid "Font"
-msgstr ""
+msgstr "Betűtípus"
 
 msgid "&Font:"
-msgstr ""
+msgstr "&Betűtípus"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "Betűtípus &stílusa:"
 
 msgid "&Size:"
-msgstr ""
+msgstr "&Méret:"
 
 msgid "Effects"
-msgstr ""
+msgstr "Effektek"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "&Áthúzás"
 
 msgid "&Underline"
-msgstr ""
+msgstr "&Aláhúzás"
 
 msgid "&Color:"
-msgstr ""
+msgstr "&Szín"
 
 msgid "Sample"
-msgstr ""
+msgstr "Minta"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "&Szkript:"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>További betűtípusok mutatása</A>"
 
 #, c-format
 msgid "EXT"
@@ -3701,7 +3701,7 @@ msgstr "A középső(2.) és a jobb(3.) elérési út érvénytelen!"
 
 #, c-format
 msgid "All paths are invalid!"
-msgstr "Mindigyik elérési út érvénytelen!"
+msgstr "Mindegyik elérési út érvénytelen!"
 
 msgid "Only enabled for file comparisons"
 msgstr "Csak fájlok összahasonlításánál elérhető"
@@ -3736,10 +3736,7 @@ msgstr "Hiba a konfliktusfájl elemzésekor."
 
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
-msgstr ""
-"A fájl\n"
-"%1\n"
-"nem egy konfliktus fájl."
+msgstr "A fájl\n%1\nnem egy konfliktus fájl."
 
 msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr ""
@@ -3864,7 +3861,7 @@ msgid ""
 msgstr ""
 "A(z) %1l\n"
 "fájl\n"
-"eltűnt. A folytatáshoz mentse el a fájlt."
+"eltűnt. A folytatáshoz mentsd el a fájlt."
 
 #, c-format
 msgid ""
@@ -5586,13 +5583,13 @@ msgid "Not Contains (regex)"
 msgstr "Nem tartalmazza (regex)"
 
 msgid "Light"
-msgstr ""
+msgstr "Világos"
 
 msgid "Dark"
-msgstr ""
+msgstr "Sötét"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Rendszert követi"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
@@ -5878,7 +5875,7 @@ msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
 msgstr "Szövegkonvertáló OpenAI API-val.\r\nUsage: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Az escape-elt Java tulajdonságfájlok feloldása és megjelenítése."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge beépülő opciói"
@@ -6011,7 +6008,7 @@ msgid "AI.sct WinMerge Plugin Options"
 msgstr "AI.sct szerkesztő WinMerge bővítmény opciók"
 
 msgid "Enter prompt"
-msgstr "Írja be a promptot"
+msgstr "Írd be a promptot"
 
 #, c-format
 msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
@@ -6033,4 +6030,4 @@ msgid "Model"
 msgstr "Modell"
 
 msgid "OpenAI API key changed. Restart to apply."
-msgstr "Az OpenAI API kulcs megváltozott. Kérjük, indítsa újra a WinMerge-t a változások alkalmazásához."
+msgstr "Az OpenAI API kulcs megváltozott. Kérjük, indítsd újra a WinMerge-t a változások alkalmazásához."
