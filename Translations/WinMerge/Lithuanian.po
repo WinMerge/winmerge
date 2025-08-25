@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-07-26 14:35+0000\n"
-"PO-Revision-Date: 2025-07-28 07:28+0200\n"
+"POT-Creation-Date: 2025-08-24 14:39+0000\n"
+"PO-Revision-Date: 2025-08-25 11:00+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1783,22 +1783,22 @@ msgid "Colors"
 msgstr "Spalvų"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "Spalvinė &būsena:"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "&Šviesi schema:"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "&Tamsi schema:"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "Pasirinktinės schemos"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "Iš&saugoti dabartinę schemą..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "Pašalinti dabartinę s&chemą..."
 
 msgid "Background"
 msgstr "Fono"
@@ -2637,40 +2637,40 @@ msgid "Script &body:"
 msgstr "Skripto &tekstas:"
 
 msgid "Font"
-msgstr ""
+msgstr "Šriftas"
 
 msgid "&Font:"
-msgstr ""
+msgstr "&Šriftas:"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "Šrifto st&ilius:"
 
 msgid "&Size:"
-msgstr ""
+msgstr "&Dydis:"
 
 msgid "Effects"
-msgstr ""
+msgstr "Efektai"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "Perbrau&ktas"
 
 msgid "&Underline"
-msgstr ""
+msgstr "Pabra&uktas"
 
 msgid "&Color:"
-msgstr ""
+msgstr "&Spalva:"
 
 msgid "Sample"
-msgstr ""
+msgstr "Pavyzdys"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "Sk&riptas:"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>Parodyti daugiau šriftų</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -4579,13 +4579,13 @@ msgid "Not Contains (regex)"
 msgstr "Neturi (regex)"
 
 msgid "Light"
-msgstr ""
+msgstr "Šviesi"
 
 msgid "Dark"
-msgstr ""
+msgstr "Tamsi"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Kaip sistemos"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
