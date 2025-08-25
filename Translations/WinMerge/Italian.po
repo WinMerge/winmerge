@@ -10,17 +10,17 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 18.08.2025\n"
+"Project-Id-Version: WinMerge - Italian - 25.08.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-08-18 15:07+0200\n"
-"Last-Translator: bovirus <bovirus@gmail.comn>\n"
+"PO-Revision-Date: 2025-08-25 09:18+0200\n"
+"Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -1800,13 +1800,13 @@ msgid "&Dark mode scheme:"
 msgstr "Mo&do schema scuro:"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "Schemi personalizzati"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "&Salva schema attuale..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "Elimina s&chema attuale..."
 
 msgid "Background"
 msgstr "Sfondo"
