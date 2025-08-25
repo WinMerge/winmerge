@@ -965,7 +965,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 		paths.SetPath(i, ifileloc[i].filepath.empty() ? paths::NATIVE_NULL_DEVICE_NAME : paths::GetParentPath(ifileloc[i].filepath));
 	CDiffContext ctxt(paths, CMP_QUICK_CONTENT);
 	DirViewColItems ci(nFiles, std::vector<String>{});
-	String msg = LoadResString(IDS_COMPARE_LARGE_FILES);
+	String msg = LoadResString(IDS_COMPARE_LARGE_FILES) + _T("\n");
 	if (nFiles < 3)
 	{
 		String sidestr[] = { _("Left:"), _("Right:") };
