@@ -9,15 +9,13 @@
 # * sheppaul <sheppaul at gmail.com>
 # * teamzamong <teamzamong at gmail.com>
 # * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
-# * cynilyn <cynilyn at gmail.com>
-# * gro00 <gheong.ro at gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2025-07-21 17:18+0900\n"
+"PO-Revision-Date: 2025-08-25 20:34+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -26,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -2079,22 +2077,22 @@ msgid "Colors"
 msgstr "색상"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "색상 모드(&M):"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "밝은 모드 구성표(&L):"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "어두운 모드 구성표(&D):"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "사용자 지정 구성표"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "현재 구성표 저장(&S)..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "현재 구성표 삭제(&C)..."
 
 #, c-format
 msgid "Background"
@@ -2549,10 +2547,10 @@ msgid "File Filters"
 msgstr "파일 필터"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "마스크 / 필터 표현식(&M)"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "사전 설정 필터(&F)"
 
 msgid "Test..."
 msgstr "테스트..."
@@ -2574,19 +2572,19 @@ msgid "Delete..."
 msgstr "삭제..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "필터 조건"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "왼쪽(&L)"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "연산자(&O):"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "오른쪽(&R)"
 
 msgid "Expression:"
-msgstr ""
+msgstr "표현식:"
 
 #, c-format
 msgid "Save Modified Files?"
@@ -3125,40 +3123,40 @@ msgid "Script &body:"
 msgstr "스크립트 본문(&B:"
 
 msgid "Font"
-msgstr ""
+msgstr "글꼴"
 
 msgid "&Font:"
-msgstr ""
+msgstr "글꼴(&F):"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "글꼴 스타일(&Y)"
 
 msgid "&Size:"
-msgstr ""
+msgstr "크기(&S):"
 
 msgid "Effects"
-msgstr ""
+msgstr "효과"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "취소선(&K)"
 
 msgid "&Underline"
-msgstr ""
+msgstr "밑줄(&U)"
 
 msgid "&Color:"
-msgstr ""
+msgstr "색상(&C)"
 
 msgid "Sample"
-msgstr ""
+msgstr "예시"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "스크립트(&R)"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>더 많은 글꼴 표시</A>"
 
 #, c-format
 msgid "EXT"
@@ -5077,7 +5075,7 @@ msgstr ""
 "%1을(를) 사용할 수 있습니다 (%2를 가지고 있습니다). 지금 다운로드하시겠습니까?"
 
 msgid " - All rights reserved."
-msgstr "모든 권리 보유."
+msgstr " - 모든 권리 보유."
 
 #, c-format
 msgid "Failed to download latest version information"
@@ -5725,13 +5723,13 @@ msgid "Not Contains (regex)"
 msgstr "포함하지 않음 (정규식)"
 
 msgid "Light"
-msgstr ""
+msgstr "밝은"
 
 msgid "Dark"
-msgstr ""
+msgstr "어두운"
 
 msgid "Follow system"
-msgstr ""
+msgstr "시스템을 따름"
 
 msgid "Prettification"
 msgstr "꾸미기"
