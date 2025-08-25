@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-08-02 20:44+0000\n"
-"PO-Revision-Date: 2025-08-22 19:09+0300\n"
+"POT-Creation-Date: 2025-08-24 14:39+0000\n"
+"PO-Revision-Date: 2025-08-25 16:49+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -79,7 +79,7 @@ msgid "Select Line &Difference\tF4"
 msgstr "Satır &farkını seç\tF4"
 
 msgid "Add to Substitution &Filters"
-msgstr "&Bu değişikliği değişiklik süzgeçlerine ekle"
+msgstr "Değiştirme &süzgeçlerine ekle"
 
 msgid "Add to &Line Filters"
 msgstr "Satır süz&geçlerine ekle"
@@ -387,7 +387,7 @@ msgid "Men&u Bar"
 msgstr "Me&nü çubuğu"
 
 msgid "&Output Pane"
-msgstr "&Çıktı Bölmesi"
+msgstr "&Çıktı bölmesi"
 
 msgid "&Status Bar"
 msgstr "&Durum çubuğu"
@@ -768,7 +768,7 @@ msgid "Lo&cation Pane"
 msgstr "&Konum panosu"
 
 msgid "Output Pane"
-msgstr "Çıktı Bölmesi"
+msgstr "Çıktı panosu"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "S&onraki çelişki\tAlt+Shift+Aşağı"
@@ -1217,52 +1217,52 @@ msgid "&Duplicate Plugin..."
 msgstr "Çif&t eklentisi..."
 
 msgid "Clear &All"
-msgstr "&Tümünü Temizle"
+msgstr "&Tümünü temizle"
 
 msgid "&Clear All"
-msgstr "Tümünü &Temizle"
+msgstr "Tümünü &temizle"
 
 msgid "Remove Last Filter &Group"
-msgstr "Son Filtre &Grubunu Kaldır"
+msgstr "Son filtre &grubunu kaldır"
 
 msgid "R&eset to Default (*.*)"
-msgstr "V&arsayılanlara Sıfırla (*.*)"
+msgstr "V&arsayılanlara sıfırla (*.*)"
 
 msgid "Add E&xclude File"
-msgstr "Hariç T&utma Dosyası Ekle"
+msgstr "Hariç t&utma dosyası ekle"
 
 msgid "&System Files"
-msgstr "&Sistem Dosyaları"
+msgstr "&Sistem dosyaları"
 
 msgid "&Editor Backup Files"
-msgstr "&Editör Yedekleme Dosyaları"
+msgstr "&Editör yedekleme dosyaları"
 
 msgid "&Compiled Binary Files"
-msgstr "&Derlenmiş İkili Dosyalar"
+msgstr "&Derlenmiş ikili dosyalar"
 
 msgid "&Log Files"
-msgstr "Gün&lük Dosyaları"
+msgstr "Gün&lük dosyaları"
 
 msgid "&Temporary or Cache Files"
-msgstr "&Geçici veya Önbellek Dosyaları"
+msgstr "&Geçici veya önbellek dosyaları"
 
 msgid "Add Excl&ude Folder"
-msgstr "Hariç T&utma Klasörü Ekle"
+msgstr "Hariç t&utma klasörü ekle"
 
 msgid "&Version Control"
-msgstr "&Versiyon Kontrolü"
+msgstr "&Versiyon kontrolü"
 
 msgid "&Build Artifacts"
-msgstr "&Yapı Ögeleri"
+msgstr "&Yapı ögeleri"
 
 msgid "&IDE"
 msgstr "&IDE"
 
 msgid "Add &File Condition"
-msgstr "&Dosya Koşulu Ekle"
+msgstr "&Dosya koşulu ekle"
 
 msgid "File &Size"
-msgstr "Do&sya Boyutu"
+msgstr "Do&sya boyutu"
 
 msgid "Less than 1KB"
 msgstr "1 KB'den az"
@@ -1307,10 +1307,10 @@ msgid "1GB or more"
 msgstr "1 GB veya daha fazla"
 
 msgid "Custom Range..."
-msgstr "Özel Aralık..."
+msgstr "Özel aralık..."
 
 msgid "&Last Modified"
-msgstr "Son Değişik&lik"
+msgstr "Son değişik&lik"
 
 msgid "&Hour"
 msgstr "&Saat"
@@ -1661,11 +1661,10 @@ msgid "&Preserve file time in file compare"
 msgstr "Karşılaştırmada &dosya zamanı korunsun"
 
 msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "\"Dosya ya da klasör seçin\" penceresi açılışta görüntülensin"
+msgstr "\"Dosya veya klasör seç\" penceresini açılışta göster"
 
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-"\"Dosya ya da klasör seçin\" penceresi Karşılaştır düğmesi ile kapatılsın"
+msgstr "\"Dosya veya klasör seç\" penceresini Karşılaştır düğmesi ile kapat"
 
 msgid "Op&en dialog Auto completion:"
 msgstr "Aç &penceresi otomatik olarak doldurulsun:"
@@ -1798,13 +1797,13 @@ msgid "&Dark mode scheme:"
 msgstr "&Karanlık mod şeması:"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "Özel şemalarınız"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "Mevcut şemayı &kaydet..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "&Mevcut şemayı sil..."
 
 msgid "Background"
 msgstr "Arka plan"
@@ -5050,7 +5049,7 @@ msgid "Between"
 msgstr "Arasında"
 
 msgid "Not Between"
-msgstr "Arasında Değil"
+msgstr "Arasında değil"
 
 msgid "Contains"
 msgstr "İçerir"
