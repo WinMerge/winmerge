@@ -1798,13 +1798,13 @@ msgid "&Dark mode scheme:"
 msgstr "深色模式方案(&D)："
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "你的定制方案"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "保存当前方案(&S)..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "删除当前方案(&C)..."
 
 msgid "Background"
 msgstr "背景"
