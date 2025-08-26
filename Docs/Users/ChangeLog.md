@@ -14,7 +14,7 @@
 
 ### Filters dialog
 
-- BugFix: Fixed a crash in the Filters dialog’s File Filters tab after installing or creating a new filter.
+- BugFix: Fixed a crash in the Filters dialog's File Filters tab after installing or creating a new filter.
 
 ### Translations
 
