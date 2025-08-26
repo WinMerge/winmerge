@@ -29,7 +29,7 @@ Please submit bug reports to our bug-tracker.
 
 ### Filters dialog
 
-- BugFix: Fixed a crash in the Filters dialogfs File Filters tab after installing or creating a new filter.
+- BugFix: Fixed a crash in the Filters dialog's File Filters tab after installing or creating a new filter.
 
 ### Translations
 
