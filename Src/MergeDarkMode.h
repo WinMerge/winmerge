@@ -12,12 +12,11 @@
 
 #pragma once
 
-#include "DarkModeSubclass.h"
-
 // allow only x64 and arm64 for compatibility for older OS
 #if !defined(_DARKMODELIB_NOT_USED) \
 	&& (defined(__x86_64__) || defined(_M_X64) \
 	|| defined(__arm64__) || defined(__arm64) || defined(_M_ARM64))
+#include "DarkModeSubclass.h"
 #define USE_DARKMODELIB
 namespace WinMergeDarkMode { inline constexpr bool UseDarkModeLib = true; };
 #else
@@ -31,7 +30,7 @@ namespace ATL
 	class CImage; // from atlimage.h
 };
 
-#if (NTDDI_VERSION < NTDDI_VISTA)
+#ifndef USE_DARKMODELIB
 namespace DarkMode
 {
 	enum class ToolTipsType : unsigned char { tooltip, toolbar, listview, treeview, tabbar, trackbar, rebar };
