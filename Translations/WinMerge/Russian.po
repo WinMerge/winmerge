@@ -1797,10 +1797,10 @@ msgid "Your custom schemes"
 msgstr "Собственные схемы"
 
 msgid "&Save current scheme..."
-msgstr "Сохранить текущую схему"
+msgstr "Сохранить текущую схему..."
 
 msgid "Delete &current scheme..."
-msgstr "Удалить текущую схему"
+msgstr "Удалить текущую схему..."
 
 msgid "Background"
 msgstr "Фон"
