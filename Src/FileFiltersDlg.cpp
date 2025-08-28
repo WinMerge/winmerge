@@ -227,9 +227,10 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	InitList();
 
-	SetDlgItemText(IDC_FILTERFILE_MASK, m_pFileFilterHelper->GetMaskOrExpression().c_str());
+	m_sMask = m_pFileFilterHelper->GetMaskOrExpression();
+	SetDlgItemText(IDC_FILTERFILE_MASK, m_sMask.c_str());
 
-	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_pFileFilterHelper->GetMaskOrExpression());
+	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_sMask);
 	SetCheckedState(m_listFilters, presetFilters);
 
 	SetButtonState();
