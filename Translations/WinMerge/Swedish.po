@@ -1786,22 +1786,22 @@ msgid "Colors"
 msgstr "Färger"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "Färgmod:"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "Ljus mods schema:"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "Mörk mods schema"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "Dina anpassade scheman"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "Spara aktuellt schema..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "Ta bort aktuellt schema..."
 
 msgid "Background"
 msgstr "Bakgrund"
@@ -2648,40 +2648,40 @@ msgid "Script &body:"
 msgstr "Skriptkropp:"
 
 msgid "Font"
-msgstr ""
+msgstr "Typsnitt"
 
 msgid "&Font:"
-msgstr ""
+msgstr "Typsnitt:"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "Typsnittsstil:"
 
 msgid "&Size:"
-msgstr ""
+msgstr "Storlek:"
 
 msgid "Effects"
-msgstr ""
+msgstr "Effekter"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "Överstruken"
 
 msgid "&Underline"
-msgstr ""
+msgstr "Understruken"
 
 msgid "&Color:"
-msgstr ""
+msgstr "Färg:"
 
 msgid "Sample"
-msgstr ""
+msgstr "Exempel"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "Script:"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>Visa mer typsnitt"
 
 msgid "EXT"
 msgstr "EXT"
@@ -5004,13 +5004,13 @@ msgid "Not Contains (regex)"
 msgstr "Innehåller inte (RegExp)"
 
 msgid "Light"
-msgstr ""
+msgstr "Ljus"
 
 msgid "Dark"
-msgstr ""
+msgstr "Mörk"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Följ system"
 
 msgid "Prettification"
 msgstr "Finputsning"
