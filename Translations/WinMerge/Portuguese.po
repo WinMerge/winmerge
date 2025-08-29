@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2025-08-12 11:36+0100\n"
+"PO-Revision-Date: 2025-08-29 14:25+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -1784,22 +1784,22 @@ msgid "Colors"
 msgstr "Cores"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "&Modo de cor:"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "Esquema de modo &claro:"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "Esquema de modo &escuro:"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "Os seus esquemas personalizados"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "&Guardar esquema atual..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "Guardar esquema &atual..."
 
 msgid "Background"
 msgstr "Fundo"
@@ -2646,40 +2646,40 @@ msgid "Script &body:"
 msgstr "&Corpo do script:"
 
 msgid "Font"
-msgstr ""
+msgstr "Tipo de letra"
 
 msgid "&Font:"
-msgstr ""
+msgstr "&Tipo de letra:"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "Estilo de t&ipo de letra:"
 
 msgid "&Size:"
-msgstr ""
+msgstr "Tama&nho:"
 
 msgid "Effects"
-msgstr ""
+msgstr "Efeitos"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "Ris&cado"
 
 msgid "&Underline"
-msgstr ""
+msgstr "S&ublinhado"
 
 msgid "&Color:"
-msgstr ""
+msgstr "&Cor:"
 
 msgid "Sample"
-msgstr ""
+msgstr "Exemplo"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "Sc&ript:"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>Mostrar mais tipos de letra</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -5009,13 +5009,13 @@ msgid "Not Contains (regex)"
 msgstr "Não contém (regex)"
 
 msgid "Light"
-msgstr ""
+msgstr "Claro"
 
 msgid "Dark"
-msgstr ""
+msgstr "Escuro"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Seguir o sistema"
 
 msgid "Prettification"
 msgstr "Embelezamento"
