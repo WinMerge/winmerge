@@ -64,16 +64,16 @@ msgid "Copy Selected Lines from Left"
 msgstr "Kopiuj zaznaczone wiersze z lewej"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr ""
+msgstr "Kopiuj zaznaczone różnice (po lewej) do schowka\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "Kopiuj zaznaczone różnice (po prawej) do schowka\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "Kopiuj zaznaczone różnice (na środku) do schowka\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr ""
+msgstr "Kopiuj zaznaczone różnice (po prawej) do schowka\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Zaznacz różniące się wiersze\tF4"
@@ -231,10 +231,10 @@ msgid "&Vector Image Scaling"
 msgstr "Skalowanie obrazu wektorowego"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "Ustawienia animacji"
 
 msgid "&Blink Interval"
-msgstr ""
+msgstr "Interwał mrugania"
 
 msgid "&Overlay Animation Interval"
 msgstr ""
@@ -363,10 +363,10 @@ msgid "Ta&b Bar"
 msgstr "Pasek kart"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "Wyświetl pasek kart"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "Na pasku tytułu"
 
 msgid "&Toolbar"
 msgstr "Pasek narzędzi"
@@ -375,7 +375,7 @@ msgid "&Small"
 msgstr "Mały"
 
 msgid "&Medium"
-msgstr ""
+msgstr "Średni"
 
 msgid "&Big"
 msgstr "Duży"
@@ -384,10 +384,10 @@ msgid "&Huge"
 msgstr "Ogromny"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "Pasek menu"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "Panel wyników"
 
 msgid "&Status Bar"
 msgstr "Pasek stanu"
@@ -768,7 +768,7 @@ msgid "Lo&cation Pane"
 msgstr "Panel lokaliza&cji"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Panel wyników"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "Następny konflikt\tAlt+Shift+Down"
@@ -1073,7 +1073,7 @@ msgid "G&o to Diff"
 msgstr "Idź d&o różnicy"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "Przesuń kursor po kliknięciu"
 
 msgid "&No Moved Blocks"
 msgstr "Bez prze&niesionych bloków"
@@ -1112,7 +1112,7 @@ msgid "Ignore C&omment Differences"
 msgstr "Ignoruj różnice w komentarzach"
 
 msgid "Ignore &Missing Trailing EOL"
-msgstr ""
+msgstr "Ignoruj brakujące znaki końca linii"
 
 msgid "&Include Subfolders"
 msgstr "Uwzględn&ij podfoldery"
@@ -1196,10 +1196,10 @@ msgid "${DST_URL} - Destination URL"
 msgstr "${DST_URL} - URL docelowy"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - Protokół docelowego adresu URL"
 
 msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - Przyrostek docelowego adresu URL"
 
 msgid "${WINMERGE_HOME} - WinMerge Home Directory"
 msgstr "${WINMERGE_HOME} - Katalog domowy WinMerge"
@@ -1214,37 +1214,37 @@ msgid "Add &Prediffer Plugin..."
 msgstr "Dodaj wtyczkę porównującą..."
 
 msgid "&Duplicate Plugin..."
-msgstr ""
+msgstr "Duplikuj wtyczkę..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "Wyczyść wszystko"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "Wyczyść wszystko"
 
 msgid "Remove Last Filter &Group"
 msgstr ""
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "Przywróć ustawienia domyślne (*.*)"
 
 msgid "Add E&xclude File"
 msgstr ""
 
 msgid "&System Files"
-msgstr ""
+msgstr "Pliki systemowe"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "Pliki kopii zapasowej edytora"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "Skompilowane pliki binarne"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "Pliki dziennika"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "Pliki tymczasowe lub pliki pamięci podręcznej"
 
 msgid "Add Excl&ude Folder"
 msgstr ""
@@ -1256,166 +1256,166 @@ msgid "&Build Artifacts"
 msgstr ""
 
 msgid "&IDE"
-msgstr ""
+msgstr "IDE"
 
 msgid "Add &File Condition"
 msgstr ""
 
 msgid "File &Size"
-msgstr ""
+msgstr "Rozmiar pliku"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "Mniej niż 1 KB"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1 KB lub więcej"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "Mniej niż 10 KB"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10 KB lub więcej"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "Mniej niż 100 KB"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100 KB lub więcej"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "Mniej niż 1 MB"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1 MB lub więcej"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "Mniej niż 10 MB"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10 MB lub więcej"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "Mniej niż 100 MB"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100 MB lub więcej"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "Mniej niż 1 GB"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1 GB lub więcej"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "Własny zakres..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "Ostatnia modyfikacja"
 
 msgid "&Hour"
-msgstr ""
+msgstr "Godzina"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "Ponad godzinę temu"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "W ciągu ostatniej godziny"
 
 msgid "&Day"
-msgstr ""
+msgstr "Dzień"
 
 msgid "Before today"
-msgstr ""
+msgstr "Do dziś"
 
 msgid "Today"
-msgstr ""
+msgstr "Dzisiaj"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "Przedwczoraj"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Wczoraj"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "Od wczoraj"
 
 msgid "&Week"
-msgstr ""
+msgstr "Tydzień"
 
 msgid "Before this week"
-msgstr ""
+msgstr "Przed tym tygodniem"
 
 msgid "This week"
-msgstr ""
+msgstr "W tym tygodniu"
 
 msgid "Before last week"
-msgstr ""
+msgstr "Przed zeszłym tygodniem"
 
 msgid "Last week"
-msgstr ""
+msgstr "W zeszłym tygodniu"
 
 msgid "Since last week"
-msgstr ""
+msgstr "Od zeszłego tygodnia"
 
 msgid "&Month"
-msgstr ""
+msgstr "Miesiąc"
 
 msgid "Before this month"
-msgstr ""
+msgstr "Przed miesiącem"
 
 msgid "This month"
-msgstr ""
+msgstr "W tym miesiącu"
 
 msgid "Before last month"
-msgstr ""
+msgstr "Przed zeszłym miesiącem"
 
 msgid "Last month"
-msgstr ""
+msgstr "W zeszłym miesiącu"
 
 msgid "Since last month"
-msgstr ""
+msgstr "Od zeszłego miesiąca"
 
 msgid "&Year"
-msgstr ""
+msgstr "Rok"
 
 msgid "Before this year"
-msgstr ""
+msgstr "Przed rokiem"
 
 msgid "This year"
-msgstr ""
+msgstr "W tym roku"
 
 msgid "Before last year"
-msgstr ""
+msgstr "Przed zeszłym rokiem"
 
 msgid "Last year"
-msgstr ""
+msgstr "W ubiegłym roku"
 
 msgid "Since last year"
-msgstr ""
+msgstr "Od zeszłego roku"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "Własny zakres..."
 
 msgid "&Attributes"
-msgstr ""
+msgstr "Atrybuty"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "Pliki tylko do odczytu"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "Pliki nie tylko do odczytu"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "Ukryte pliki"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "Nie ukryte pliki"
 
 msgid "System files"
-msgstr ""
+msgstr "Pliki systemowe"
 
 msgid "Not system files"
-msgstr ""
+msgstr "Nie pliki systemowe"
 
 msgid "File &Content"
 msgstr ""
@@ -1451,37 +1451,37 @@ msgid "Last line does not contain string..."
 msgstr ""
 
 msgid "&Line Count"
-msgstr ""
+msgstr "Liczba wierszy"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "Mniej niż 10"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10 lub więcej"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "Mniej niż 100"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100 lub więcej"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "Mniej niż 1000"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1000 lub więcej"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "Mniej niż 10000"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10000 lub więcej"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "Mniej niż 100000"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100000 lub więcej"
 
 msgid "Add F&older Condition"
 msgstr ""
@@ -1508,46 +1508,46 @@ msgid "Not Equal"
 msgstr ""
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "Mniej niż 10 B"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10 B lub więcej"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "Mniej niż 100 B"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100 B lub więcej"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "Mniej niż 1 sekunda"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 sekunda lub więcej"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "Mniej niż 1 minuta"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 minuta lub więcej"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "Mniej niż 1 godzina"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 godzina lub więcej"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "Mniej niż 1 dzień"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 dzień lub dłużej"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "Mniej niż 1 tydzień"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 tydzień lub dłużej"
 
 msgid "Target: &Left and Right"
 msgstr ""
@@ -2608,7 +2608,7 @@ msgid "&Hex View"
 msgstr "Widok szesnastkowy"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Edytuj wtyczkę"
 
 msgid "&Category:"
 msgstr "Kategoria:"
@@ -2620,13 +2620,13 @@ msgid "&Window type:"
 msgstr "Typ okna:"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "Rozszerzenie rozpakowanego pliku:"
 
 msgid "&Require arguments"
 msgstr "Wymagane argumenty"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "Wygeneruj skrypt edytora"
 
 msgid "Command &line:"
 msgstr "Wiersz poleceń:"
@@ -2638,40 +2638,40 @@ msgid "Script &body:"
 msgstr ""
 
 msgid "Font"
-msgstr ""
+msgstr "Czcionka"
 
 msgid "&Font:"
-msgstr ""
+msgstr "Czcionka:"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "Styl czcionki:"
 
 msgid "&Size:"
-msgstr ""
+msgstr "Rozmiar:"
 
 msgid "Effects"
-msgstr ""
+msgstr "Efekty"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "Przekreślenie"
 
 msgid "&Underline"
-msgstr ""
+msgstr "Podkreślenie"
 
 msgid "&Color:"
-msgstr ""
+msgstr "Kolor:"
 
 msgid "Sample"
-msgstr ""
+msgstr "Przykład"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "AaBbYyZz"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "Skrypt:"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>Pokaż więcej czcionek</A>"
 
 msgid "EXT"
 msgstr "EXT"
