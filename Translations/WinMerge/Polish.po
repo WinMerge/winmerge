@@ -480,7 +480,7 @@ msgid "&File Encoding..."
 msgstr "Kodowanie pliku..."
 
 msgid "Select &All\tCtrl+A"
-msgstr "Zaznacz wszystkie\tCtrl+A"
+msgstr "Zaznacz wszystko\tCtrl+A"
 
 msgid "Show &Identical Items"
 msgstr "Pokaż identyczne elementy"
@@ -1487,16 +1487,16 @@ msgid "Add F&older Condition"
 msgstr ""
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "Miejsce docelowe: dowolne (lewe/środek/prawe)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "Miejsce docelowe: lewe"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "Miejsce docelowe: środek"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "Miejsce docelowe: prawe"
 
 msgid "Add &Difference Condition"
 msgstr ""
@@ -2168,10 +2168,10 @@ msgid "File Filters"
 msgstr "Filtry plików"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "Maska / wyrażenie filtra"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "Predefiniowane filtry"
 
 msgid "Test..."
 msgstr "Testuj..."
@@ -4064,7 +4064,7 @@ msgid "Close &Other Tabs"
 msgstr "Zamknij inne karty"
 
 msgid "Enable &Auto Max Width"
-msgstr "Włącz automatycznie maksymalną szerokość"
+msgstr "Włącz automatyczną szerokość kart"
 
 msgid "We&bpage"
 msgstr "Strona internetowa"
@@ -4444,22 +4444,22 @@ msgid "Character"
 msgstr "Znak"
 
 msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
-msgstr ""
+msgstr "\nPoprzednia różnica (Alt+Klawisz w górę)\n(Prawy przycisk+Kółko w górę)\n(Alt+Kółko w górę)"
 
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
-msgstr ""
+msgstr "\nNastępna różnica (Alt+Klawisz w dół)\n(Prawy przycisk+Kółko w dół)\n(Alt+Kółko w dół"
 
 msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
-msgstr ""
+msgstr "\nKopiuj do prawej (Alt+Prawo)\n(Prawy przycisk+Kółko w prawo)\n(Alt+Kółko w prawo)\n(Alt+Shift+Kółko w dół)"
 
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
-msgstr ""
+msgstr "\nKopiuj do lewej (Alt+Lewo)\n(Prawy przycisk+Kółko w lewo)\n(Alt+Kółko w lewo)\n(Alt+Shift+Kółko w górę)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
-msgstr ""
+msgstr "\nKopiuj do prawej i przejdź dalej (Ctrl+Alt+Prawo)\n(Ctrl+Alt+Kółko w prawo)\n(Ctrl+Alt+Shift+Kółko w dół)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
-msgstr ""
+msgstr "\nKopiuj do lewej i przejdź dalej (Ctrl+Alt+Lewo)\n(Ctrl+Alt+Kółko w lewo)\n(Ctrl+Alt+Shift+Kółko w górę)"
 
 #, c-format
 msgid "Comparing %1 with %2"
