@@ -10,7 +10,6 @@
 #include "FrameWndHelper.h"
 #include "Merge.h"
 #include "MainFrm.h"
-#include "BCMenu.h"
 #include "IDirDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"

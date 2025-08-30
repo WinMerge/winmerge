@@ -4,7 +4,6 @@
 #include "stdafx.h"
 #include "OutputDoc.h"
 #include "OutputView.h"
-#include "utils/filesup.h"
 #include "ccrystaltextmarkers.h"
 
 #ifdef _DEBUG

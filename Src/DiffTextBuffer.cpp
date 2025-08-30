@@ -11,7 +11,6 @@
 #include "UniFile.h"
 #include "FileLoadResult.h"
 #include "Logger.h"
-#include "locality.h"
 #include "paths.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"

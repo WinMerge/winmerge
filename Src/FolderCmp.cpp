@@ -10,7 +10,6 @@
 #include "Wrap_DiffUtils.h"
 #include "ByteCompare.h"
 #include "paths.h"
-#include "FilterList.h"
 #include "DiffContext.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"

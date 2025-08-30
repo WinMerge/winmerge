@@ -19,20 +19,17 @@
 #include <Poco/Mutex.h>
 #include <Poco/AutoPtr.h>
 #include <Poco/Stopwatch.h>
-#include <Poco/Format.h>
 #include "DiffThread.h"
 #include "UnicodeString.h"
 #include "DiffWrapper.h"
 #include "CompareStats.h"
 #include "FolderCmp.h"
 #include "FileFilterHelper.h"
-#include "IAbortable.h"
 #include "DirItem.h"
 #include "DirTravel.h"
 #include "paths.h"
 #include "Plugins.h"
 #include "MergeAppCOMClass.h"
-#include "MergeApp.h"
 #include "PathContext.h"
 #include "DebugNew.h"
 

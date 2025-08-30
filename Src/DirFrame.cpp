@@ -13,8 +13,6 @@
 
 #include "stdafx.h"
 #include "DirFrame.h"
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

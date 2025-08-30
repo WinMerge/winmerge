@@ -8,9 +8,6 @@
 #include "stdafx.h"
 #include "EditPluginDlg.h"
 #include "Plugins.h"
-#include "FileTransform.h"
-#include "OptionsMgr.h"
-#include "OptionsDef.h"
 #include "unicoder.h"
 #include "Merge.h"
 

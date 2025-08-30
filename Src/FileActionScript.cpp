@@ -10,8 +10,6 @@
 #include <vector>
 #include "UnicodeString.h"
 #include "Merge.h"
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
 #include "ShellFileOperations.h"
 #include "paths.h"
 

@@ -8,7 +8,6 @@
 #include "PropMarkerColors.h"
 #include "SyntaxColors.h"
 #include "OptionsCustomColors.h"
-#include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "MyColorDialog.h"

@@ -9,7 +9,6 @@
 #include "pch.h"
 #include "DiffFileData.h"
 #include "cio.h"
-#include "DiffItem.h"
 #include "diff.h"
 #include "FileTransform.h"
 #include "unicoder.h"

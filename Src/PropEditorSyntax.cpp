@@ -6,7 +6,6 @@
 
 #include "stdafx.h"
 #include "PropEditorSyntax.h"
-#include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "OptionsEditorSyntax.h"

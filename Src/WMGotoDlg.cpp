@@ -8,7 +8,6 @@
 #include "stdafx.h"
 #include "WMGotoDlg.h"
 #include "TrDialogs.h"
-#include "MergeDarkMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

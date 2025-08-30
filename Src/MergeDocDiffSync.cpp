@@ -9,7 +9,6 @@
 #include <vector>
 #include "MergeDoc.h"
 
-#include "Merge.h"
 #include "DiffList.h"
 #include "stringdiffs.h"
 

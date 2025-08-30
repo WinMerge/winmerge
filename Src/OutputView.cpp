@@ -4,9 +4,6 @@
 #include "stdafx.h"
 #include "OutputView.h"
 #include "OutputDoc.h"
-#include "editcmd.h"
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
 #include "MainFrm.h"
 #include "Merge.h"
 

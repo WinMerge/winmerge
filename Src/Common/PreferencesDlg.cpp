@@ -12,7 +12,6 @@
 #include "PreferencesDlg.h"
 #include "resource.h"
 #include "UnicodeString.h"
-#include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "SyntaxColors.h"
 #include "Merge.h"

@@ -8,7 +8,6 @@
 #include "DirCompProgressBar.h"
 #include "CompareStats.h"
 #include "DiffContext.h"
-#include "paths.h"
 #include "MergeDarkMode.h"
 
 #ifdef _DEBUG

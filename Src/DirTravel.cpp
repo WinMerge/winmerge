@@ -14,7 +14,6 @@
 #include "TFile.h"
 #include "UnicodeString.h"
 #include "DirItem.h"
-#include "unicoder.h"
 #include "paths.h"
 #include "Win_VersionHelper.h"
 #include "DebugNew.h"

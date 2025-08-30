@@ -6,8 +6,6 @@
 
 #include "stdafx.h"
 #include "FilterConditionDlg.h"
-#include "OptionsMgr.h"
-#include "OptionsDef.h"
 #include "resource.h"
 
 #ifdef _DEBUG

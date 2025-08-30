@@ -3,7 +3,6 @@
 #include "Merge.h"
 #include "VersionInfo.h"
 #include "Constants.h"
-#include "unicoder.h"
 #include "Logger.h"
 
 // Get user language description of error, if available
