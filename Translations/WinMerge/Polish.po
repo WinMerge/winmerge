@@ -4011,7 +4011,7 @@ msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
 msgstr "Dostępna jest nowa wersja WinMerge.\n%1 jest już dostępny (posiadasz %2). Czy chcesz ją teraz pobrać?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr " - wszelkie prawa zastrzeżone."
 
 msgid "Failed to download latest version information"
 msgstr "Nie udało się uzyskać informacji o dostępności nowszej wersji"
@@ -4031,7 +4031,7 @@ msgstr "Idź do przeniesionego wiersza\tCtrl+Shift+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Wyłączony"
 
 msgid "From file system"
 msgstr "Z systemu plików"
@@ -4123,7 +4123,7 @@ msgstr "DirectWrite Naturalny Symetryczny"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Wyłączony"
 
 msgid "MDI child window or main window"
 msgstr "Okno podrzędne lub okno główne"
@@ -4347,28 +4347,28 @@ msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Opis nowej wtyczki"
 
 msgid "All"
-msgstr ""
+msgstr "Wszystko"
 
 msgid "1st"
-msgstr ""
+msgstr "1"
 
 msgid "2nd"
-msgstr ""
+msgstr "2"
 
 msgid "3rd"
-msgstr ""
+msgstr "3"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1 i 2"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1 i 3"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2 i 3"
 
 msgid "Filter applied"
 msgstr "Zastosowano filtr"
@@ -4470,42 +4470,42 @@ msgid "Comparing %1 with %2 and %3"
 msgstr ""
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Porównywanie zakończone"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Nie udało się porównać %1 z %2: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Nie udało się porównać %1 z %2 i %3: "
 
 msgid "File saved"
-msgstr ""
+msgstr "Plik został zapisany"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Kopiowanie plików..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Przenoszenie plików..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Usuwanie plików..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Kosz"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Trwale usunięty"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "Operacja na pliku zakończona pomyślnie"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "Operacja na pliku została anulowana"
 
 msgid "No error"
-msgstr ""
+msgstr "Brak błędu"
 
 msgid "Filter expression is empty"
 msgstr ""
@@ -4541,7 +4541,7 @@ msgid "Division by zero in filter expression"
 msgstr ""
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Nieznany błąd"
 
 msgid "Equals"
 msgstr ""
@@ -4580,13 +4580,13 @@ msgid "Not Contains (regex)"
 msgstr ""
 
 msgid "Light"
-msgstr ""
+msgstr "Jasny"
 
 msgid "Dark"
-msgstr ""
+msgstr "Ciemny"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Systemowy"
 
 msgid "Prettification"
 msgstr "Upiększanie"
