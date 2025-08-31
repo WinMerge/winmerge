@@ -666,7 +666,7 @@ static String makeLogString(const tchar_t* lpszPrompt, int result)
 	return msg;
 }
 
-int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt)
+int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt, const tchar_t* lpszRegistryKey)
 {
 	// This is a convenient point for breakpointing !!!
 
@@ -697,7 +697,7 @@ int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPromp
 
 	// Create the message box dialog.
 	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType | MB_RIGHT_ALIGN,
-		nIDPrompt);
+		nIDPrompt, lpszRegistryKey);
 
 	if (m_pMainWnd->IsIconic())
 		m_pMainWnd->ShowWindow(SW_RESTORE);
@@ -710,6 +710,11 @@ int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPromp
 	else
 		RootLogger::Info(msg);
 	return result;
+}
+
+int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt)
+{
+	return DoMessageBox(lpszPrompt, nType, nIDPrompt, nullptr);
 }
 
 bool CMergeApp::IsReallyIdle() const
