@@ -226,6 +226,7 @@ Localization:
   Warrior <warr11r@rambler.ru>
   Vlad
   Serhii Romashko
+  Serhii Horichenko
 
 Other Contributors (code, ideas, testing..):
 * James Abbatiello <abbeyj@users.sourceforge.net>
