@@ -92,10 +92,12 @@ public:
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 	int GetLastCompareResult() const { return m_nLastCompareResult; }
+	bool GetNonInteractive() const { return m_bNonInteractive; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper* GetGlobalFileFilter();
 	void ShowHelp(const tchar_t* helpLocation = nullptr);
+	static void OutputConsole(const String& message);
 	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static bool CreateBackup(bool bFolder, const String& pszPath);
 	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);

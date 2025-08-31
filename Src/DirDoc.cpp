@@ -965,7 +965,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 		paths.SetPath(i, ifileloc[i].filepath.empty() ? paths::NATIVE_NULL_DEVICE_NAME : paths::GetParentPath(ifileloc[i].filepath));
 	CDiffContext ctxt(paths, CMP_QUICK_CONTENT);
 	DirViewColItems ci(nFiles, std::vector<String>{});
-	String msg = LoadResString(IDS_COMPARE_LARGE_FILES) + _T("\n");
+	String msg = LoadResString(IDS_COMPARE_LARGE_FILES) + _T("\n\n");
 	if (nFiles < 3)
 	{
 		String sidestr[] = { _("Left:"), _("Right:") };
@@ -1007,11 +1007,15 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 		msg.c_str(), _T(""),
 		MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 0U,
 		_T("CompareLargeFiles"));
-	INT_PTR ans = dlg.DoModal();
-	if (ans == IDCANCEL)
-		return true;
-	else if (ans == IDNO)
-		return false;
+	INT_PTR ans = dlg.GetFormerResult();
+	if (ans != -1 || !theApp.GetNonInteractive())
+	{
+		ans = dlg.DoModal();
+		if (ans == IDCANCEL)
+			return true;
+		else if (ans == IDNO)
+			return false;
+	}
 
 	int oldCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, CMP_QUICK_CONTENT); // Use quick content compare for large files
