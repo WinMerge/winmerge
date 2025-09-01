@@ -407,9 +407,8 @@ WorkingCopy</userinput>. スペースを含む説明はダブルクォーテー�
       <term><option>/noninteractive</option></term>
       <listitem>
         <para>
-Runs WinMerge without displaying message boxes during comparison or report
-generation.  The process terminates automatically when the operation is
-complete, making it suitable for batch or scripted execution.</para>
+比較やレポート生成の際にメッセージボックスを表示せずに WinMerge
+を実行します。処理が完了すると自動的に終了するため、バッチ処理やスクリプトでの実行に適しています。</para>
       </listitem>
     </varlistentry>
 
@@ -417,8 +416,7 @@ complete, making it suitable for batch or scripted execution.</para>
       <term><option>/noprefs</option></term>
       <listitem>
         <para>
-Runs WinMerge without loading or saving settings from the registry.  All
-comparisons use default preferences only.</para>
+レジストリから設定を読み込まず、また保存もせずに WinMerge を実行します。すべての比較はデフォルトの設定のみを使用します。</para>
       </listitem>
     </varlistentry>
 
@@ -432,133 +430,123 @@ comparisons use default preferences only.</para>
     <varlistentry>
       <term><option>/ignorews</option></term>
       <listitem>
-        <para>Specifies how whitespace differences are handled:</para>
+        <para>「空白」オプションを永続的に制御します:</para>
         <itemizedlist>
-          <listitem><para><option>/ignorews:0</option> - do not ignore whitespace differences.</para></listitem>
-          <listitem><para><option>/ignorews</option> or <option>/ignorews:1</option> - ignore
-differences in the amount of whitespace.</para></listitem>
-          <listitem><para><option>/ignorews:2</option> - ignore all whitespace characters.</para></listitem>
+          <listitem><para><option>/ignorews:0</option> - 空白の違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignorews</option> または <option>/ignorews:1</option> - 空白の量の違いを無視します。</para></listitem>
+          <listitem><para><option>/ignorews:2</option> - すべての空白文字を無視します。</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignoreblanklines</option></term>
       <listitem>
-        <para>Controls the "Ignore blank lines" option persistently:</para>
+        <para>「空行を無視する」オプションを永続的に制御します:</para>
         <itemizedlist>
-          <listitem><para><option>/ignoreblanklines:0</option> - disables ignoring blank lines.</para></listitem>
-          <listitem><para><option>/ignoreblanklines</option> or <option>/ignoreblanklines:1</option> -
-enables ignoring blank lines.</para></listitem>
+          <listitem><para><option>/ignoreblanklines:0</option> - 空行を無視しないようにします。</para></listitem>
+          <listitem><para><option>/ignoreblanklines</option> または <option>/ignoreblanklines:1</option>
+- 空行を無視するようにします。</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignorecase</option></term>
       <listitem>
-        <para>Controls the "Ignore case" option persistently:</para>
+        <para>「大文字小文字を区別しない」オプションを永続的に制御します:</para>
         <itemizedlist>
-          <listitem><para><option>/ignorecase:0</option> - disables ignoring case differences.</para></listitem>
-          <listitem><para><option>/ignorecase</option> or <option>/ignorecase:1</option> - enables
-ignoring case differences.</para></listitem>
+          <listitem><para><option>/ignorecase:0</option> - 大文字小文字の違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignorecase</option> または <option>/ignorecase:1</option> -
+大文字小文字の違いを無視します。</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignoreeol</option></term>
       <listitem>
-        <para>Controls the "Ignore EOL differences" option persistently:</para>
+        <para>「改行文字の違いを無視する」オプションを永続的に制御します:</para>
         <itemizedlist>
-          <listitem><para><option>/ignoreeol:0</option> - disables ignoring EOL differences.</para></listitem>
-          <listitem><para><option>/ignoreeol</option> or <option>/ignoreeol:1</option> - enables
-ignoring EOL differences.</para></listitem>
+          <listitem><para><option>/ignoreeol:0</option> - 改行コードの違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignoreeol</option> または <option>/ignoreeol:1</option> -
+改行コードの違いを無視します。</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignorecodepage</option></term>
       <listitem>
-        <para>Controls the "Ignore codepage differences" option persistently:</para>
+        <para>「コードページの違いを無視する」オプションを永続的に制御します:</para>
         <itemizedlist>
-          <listitem><para><option>/ignorecodepage:0</option> - disables ignoring codepage differences.</para></listitem>
-          <listitem><para><option>/ignorecodepage</option> or <option>/ignorecodepage:1</option> -
-enables ignoring codepage differences.</para></listitem>
+          <listitem><para><option>/ignorecodepage:0</option> - コードページの違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignorecodepage</option> または <option>/ignorecodepage:1</option> -
+コードページの違いを無視します。</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignorecomments</option></term>
       <listitem>
-        <para>Controls the "Ignore comment differences" option persistently:</para>
+        <para>「コメントの違いを無視する」オプションを永続的に制御します:</para>
         <itemizedlist>
-          <listitem><para><option>/ignorecomments:0</option> - disables ignoring comments.</para></listitem>
-          <listitem><para><option>/ignorecomments</option> or <option>/ignorecomments:1</option> -
-enables ignoring comments.</para></listitem>
+          <listitem><para><option>/ignorecomments:0</option> - コメントの違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignorecomments</option> または <option>/ignorecomments:1</option> -
+コメントの違いを無視します。</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/unpacker <replaceable>plugin pipeline</replaceable></option></term>
+      <term><option>/unpacker <replaceable>プラグインパイプライン</replaceable></option></term>
       <listitem>
         <para>
-Specifies the plugin pipeline for the Unpacker plugin.  Example:
-<option>/unpacker "SortAscending|SelectLines 1-10"</option></para>
+Unpacker プラグインのプラグインパイプラインを指定します。例: <option>/unpacker
+"SortAscending|SelectLines 1-10"</option></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/prediffer <replaceable>plugin pipeline</replaceable></option></term>
+      <term><option>/prediffer <replaceable>プラグインパイプライン</replaceable></option></term>
       <listitem>
         <para>
-Specifies the plugin pipeline for the Prediffer plugin.  Example:
-<option>/prediffer "IgnoreColumns 1-10"</option></para>
+Prediffer プラグインのプラグインパイプラインを指定します。例: <option>/prediffer "IgnoreColumns
+1-10"</option></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/cp <replaceable>codepage</replaceable></option></term>
+      <term><option>/cp <replaceable>コードページ</replaceable></option></term>
       <listitem>
         <para>
-Specifies the codepage to use for file comparison.  Example: <option>/cp
-65001</option></para>
+ファイル比較に使用するコードページを指定します。例: <option>/cp 65001</option></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/fileext <replaceable>file-extension</replaceable></option></term>
+      <term><option>/fileext <replaceable>ファイル拡張子</replaceable></option></term>
       <listitem>
         <para>シンタックスハイライトの種類を決定するため、ファイル拡張子を指定します。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/cfg <replaceable>name=value</replaceable></option></term>
+      <term><option>/cfg <replaceable>名前=値</replaceable></option></term>
       <listitem>
         <para>
-Sets a configuration value in the WinMerge registry or INI file.</para>
+WinMerge のレジストリまたは INI ファイルに設定値を設定します。</para>
         <para>
-Example: <option>/cfg Settings/DiffAlgorithm=3</option></para>
+例: <option>/cfg Settings/DiffAlgorithm=3</option></para>
         <para>
-If the section name is unambiguous and does not conflict with other setting
-names, it can be omitted:</para>
+セクション名が曖昧でなく、他の設定名と衝突しない場合、省略できます:</para>
         <para>
 <option>/cfg DiffAlgo=3</option></para>
         <para>
-Note: This entry does not explain which configuration names are available.
-For a list of settings, refer to
-<filename>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge</filename> in
-regedit.</para>
+注意: この項目では利用可能な設定名について説明していません。設定の一覧は regedit の
+<filename>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge</filename>
+を参照してください。</para>
       </listitem>
     </varlistentry>
 
@@ -622,35 +610,28 @@ class="directory">C:\Folder2</filename>がファイル名<filename>File.txt</fil
       <term><option>/or <replaceable>outputpath</replaceable></option></term>
       <listitem>
         <para>
-Outputs a comparison report for files or folders.  Example:
-<option>WinMergeU path1 path2 /or c:\tmp\report.html</option></para>
-        <para>It is often useful to combine this option with:</para>
+ファイルまたはフォルダの比較レポートを出力します。例: <option>WinMergeU path1 path2 /or
+c:\tmp\report.html</option></para>
+        <para>このオプションは以下と組み合わせて使用すると便利です:</para>
         <itemizedlist>
-          <listitem><para><option>/noninteractive</option> - exits WinMerge after producing the
-report.</para></listitem>
-          <listitem><para><option>/minimize</option> - starts WinMerge in minimized state.</para></listitem>
-          <listitem><para><option>/noprefs</option> - ignores the current preferences and uses default
-settings.</para></listitem>
+          <listitem><para><option>/noninteractive</option> - レポート出力後に WinMerge を終了します。</para></listitem>
+          <listitem><para><option>/minimize</option> - WinMerge を最小化状態で開始します。</para></listitem>
+          <listitem><para><option>/noprefs</option> - 現在の設定を無視し、デフォルトの設定を使用します。<option>/cfg</option>
+による変更は一時的なものとなり保存されません。</para></listitem>
         </itemizedlist>
-        <para>Any changes made with <option>/cfg</option> will then be temporary and not
-saved.</para>
         <para>
-The following <option>/cfg</option> settings can also be useful (parameter
-names may change in the future):</para>
-        <para>For file comparisons:</para>
+以下の <option>/cfg</option> 設定も便利に使えます（将来パラメータ名が変更される可能性があります）:</para>
+        <para>ファイル比較の場合:</para>
         <itemizedlist>
-          <listitem><para><option>/cfg Settings/DiffContextV2=0</option> - hides matching lines in the
-report (equivalent to View -> Diff Context -> 0 Lines).</para></listitem>
-          <listitem><para><option>/cfg Settings/ViewLineNumbers=1</option> - outputs line numbers (set
-to 0 to disable).</para></listitem>
+          <listitem><para><option>/cfg Settings/DiffContextV2=0</option> - レポートで一致している行を非表示にします (「表示 →
+Diff コンテキスト → 0 行」と同等)。</para></listitem>
+          <listitem><para><option>/cfg Settings/ViewLineNumbers=1</option> - 行番号を出力します（0 にすると非表示）。</para></listitem>
         </itemizedlist>
-        <para>For folder comparisons:</para>
+        <para>フォルダ比較の場合:</para>
         <itemizedlist>
-          <listitem><para><option>/cfg Settings/DirViewExpandSubdirs=1</option> - automatically expand
-all subfolders.</para></listitem>
-          <listitem><para><option>/cfg ReportFiles/ReportType=2</option> - report style: Simple HTML.</para></listitem>
-          <listitem><para><option>/cfg ReportFiles/IncludeFileCmpReport=1</option> - include file
-comparison reports.</para></listitem>
+          <listitem><para><option>/cfg Settings/DirViewExpandSubdirs=1</option> - サブフォルダを自動的に展開します。</para></listitem>
+          <listitem><para><option>/cfg ReportFiles/ReportType=2</option> - レポート形式: Simple HTML。</para></listitem>
+          <listitem><para><option>/cfg ReportFiles/IncludeFileCmpReport=1</option> - ファイル比較レポートを含めます。</para></listitem>
         </itemizedlist>
       </listitem>
     </varlistentry>
