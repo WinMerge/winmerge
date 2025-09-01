@@ -1,7 +1,7 @@
 ﻿[Messages]
 
-WizardInfoBefore=License Agreement
-InfoBeforeLabel=GNU General Public License
+WizardInfoBefore=Лицензионное соглашение
+InfoBeforeLabel=Стандартная Общественная Лицензия GNU
 
 [CustomMessages]
 
@@ -39,7 +39,7 @@ FrenchLanguage=Французский
 GalicianLanguage=Галисийский
 GermanLanguage=Немецкий
 GreekLanguage=Греческий
-HebrewLanguage=Hebrew menus and dialogs
+HebrewLanguage=Иврит
 HungarianLanguage=Венгерский
 ItalianLanguage=Итальянский
 JapaneseLanguage=Японский
@@ -70,13 +70,13 @@ IntegrateTortoiseSVN=Интеграция с T&ortoiseSVN
 AddToPath=Добавить папку WinMerge в системный путь
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-Way Merge
-ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
-MergeAtRightPane=Merge at right pane
-MergeAtCenterPane=Merge at center pane
-MergeAtLeftPane=Merge at left pane
-AutoMergeAtStartup=Auto-merge at startup time
+ThreeWayMergeWizardPageCaption=Тройное объединение
+ThreeWayMergeWizardPageDescription=Используете ли вы WinMerge как инструмент тройного объединения в TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Зарегистрировать WinMerge как инструмент тройного объединения
+MergeAtRightPane=Объединение в правой панели
+MergeAtCenterPane=Объединение в центральной панели
+MergeAtLeftPane=Объединение в левой панели
+AutoMergeAtStartup=Автоматическое объединение при запуске
 
 ;Icon Labels
 ReadMe=Прочти меня
@@ -89,3 +89,4 @@ ExplorerNeedsRestart=Для обновления расширения оболо
 
 ; Project file description
 ProjectFileDesc=Файл проекта WinMerge
+
