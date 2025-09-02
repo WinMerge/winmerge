@@ -85,7 +85,7 @@ ViewStartMenuFolder=&Rodyti „WinMerge“ paleidimo meniu
 
 ;Code Dialogs
 DeletePreviousStartMenu=Diegimo programa nustatė, kad pakeitėte paleidimo meniu vietą iš „%s“ į „%s“. Gal norite pašalinti ankstesnį paleidimo meniu?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=„WinMerge ShellExtension“ atnaujinimui reikia iš naujo paleisti „Explorer“. Ar norėtumėte iš naujo paleisti „Explorer“?
 
 ; Project file description
 ProjectFileDesc=„WinMerge“ projekto failas
