@@ -863,6 +863,25 @@ static auto ArrayFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vec
 	return result;
 }
 
+static auto AtFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg1 = args->at(0)->Evaluate(di);
+	if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
+	{
+		ValueType arg2 = args->at(1)->Evaluate(di);
+		if (auto arg2Int = std::get_if<int64_t>(&arg2))
+		{
+			int64_t idx = *arg2Int;
+			if (idx < 0)
+				idx += static_cast<int64_t>((*arrayVal)->size());
+			if (idx < 0 || idx >= static_cast<int64_t>((*arrayVal)->size()))
+				return std::monostate{};
+			return (*arrayVal)->at(idx).value;
+		}
+	}
+	return std::monostate{};
+}
+
 static auto StrlenFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	auto arg1 = (*args)[0]->Evaluate(di);
@@ -1138,6 +1157,12 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	{
 		func = ArrayFunc;
 	}
+	else if (functionName == "at")
+	{
+		if (!args || args->size() != 2)
+			throw std::invalid_argument("at function requires 2 arguments");
+		func = AtFunc;
+	}
 	else if (functionName == "strlen")
 	{
 		if (!args || args->size() != 1)
@@ -1261,6 +1286,10 @@ ExprNode* FunctionNode::Optimize()
 					isConst = true;
 				else if (auto strLit = args ? dynamic_cast<StringLiteral*>(arg) : nullptr)
 					isConst = true;
+				else if (auto dateLit = args ? dynamic_cast<DateTimeLiteral*>(arg) : nullptr)
+					isConst = true;
+				else if (auto boolLit = args ? dynamic_cast<BoolLiteral*>(arg) : nullptr)
+					isConst = true;
 				if (!isConst)
 				{
 					isArrayConst = false;
@@ -1277,11 +1306,54 @@ ExprNode* FunctionNode::Optimize()
 						result->emplace_back(ValueType2{ *intValue });
 					else if (auto strLit = dynamic_cast<StringLiteral*>(arg))
 						result->emplace_back(ValueType2{ strLit->value });
+					else if (auto dateLit = dynamic_cast<DateTimeLiteral*>(arg))
+						result->emplace_back(ValueType2{ dateLit->value });
+					else if (auto boolLit = dynamic_cast<BoolLiteral*>(arg))
+						result->emplace_back(ValueType2{ boolLit->value });
 					else
 						result->emplace_back(ValueType2{ std::monostate{} });
 				}
 				delete this;
 				return new ArrayLiteral(result);
+			}
+		}
+	}
+	else if (functionName == "at")
+	{
+		if (args)
+		{
+			if (auto arrayLit = dynamic_cast<ArrayLiteral*>((*args)[0]))
+			{
+				if (auto intLit = dynamic_cast<IntLiteral*>((*args)[1]))
+				{
+					int64_t index = intLit->value;
+					if (index < 0)
+						index += static_cast<int64_t>(arrayLit->value->size());
+					if (index >= 0 && index < static_cast<int64_t>(arrayLit->value->size()))
+					{
+						auto val = (*arrayLit->value)[static_cast<size_t>(index)].value;
+						if (auto strVal = std::get_if<std::string>(&val))
+						{
+							delete this;
+							return new StringLiteral(*strVal);
+						}
+						else if (auto intVal = std::get_if<int64_t>(&val))
+						{
+							delete this;
+							return new IntLiteral(*intVal);
+						}
+						else if (auto boolVal = std::get_if<bool>(&val))
+						{
+							delete this;
+							return new BoolLiteral(*boolVal);
+						}
+						else if (auto dtVal = std::get_if<Poco::Timestamp>(&val))
+						{
+							delete this;
+							return new DateTimeLiteral(*dtVal);
+						}
+					}
+				}
 			}
 		}
 	}
