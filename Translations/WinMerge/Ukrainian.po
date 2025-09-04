@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-08-31 17:10+0200\n"
+"PO-Revision-Date: 2025-09-04 14:13+0200\n"
 "Last-Translator: Serhii Horichenko <mail@sgg.im>\n"
 "Language-Team: Ukrainian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: uk_UA\n"
@@ -31,56 +31,56 @@ msgid "Copy to Middle"
 msgstr "Копіювати в центр"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr "Скопіювати на &праву панель\tAlt+Right"
+msgstr "Скопіювати &направо\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "Копіювати з центру"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr "Копіювати п&раворуч\tAlt+Shift+Left"
+msgstr "Копіювати з п&равої панелі\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr "Копіювати на &ліву панель\tAlt+Left"
+msgstr "Копіювати &наліво\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr "Копіювати з&ліва\tAlt+Shift+Right"
+msgstr "Копіювати з &лівої панелі\tAlt+Shift+Right"
 
 msgid "Copy Selected Lines to Middle"
 msgstr "Копіювати виділені рядки в центр"
 
 msgid "Copy Selected Lines to Right"
-msgstr "Копіювати обрані рядки праворуч"
+msgstr "Копіювати обрані рядки направо"
 
 msgid "Copy Selected Lines from Middle"
-msgstr "Копіювати обрані рядки з цетру"
+msgstr "Копіювати обрані рядки з середини"
 
 msgid "Copy Selected Lines from Right"
-msgstr "Копіювати обрані рядки справа"
+msgstr "Копіювати обрані рядки з правої панелі"
 
 msgid "Copy Selected Lines to Left"
-msgstr "Копіювати обрані рядки ліворуч"
+msgstr "Копіювати обрані рядки наліво"
 
 msgid "Copy Selected Lines from Left"
-msgstr "Копіювати обрані рядки зліва"
+msgstr "Копіювати обрані рядки з лівої панелі"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr ""
+msgstr "Скопіювати обрані відмінності (з лівої панелі) до буферу\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "Скопіювати обрані відмінності (з правої панелі) до буферу\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr ""
+msgstr "Скопіювати обрані відмінності (з середини) до буферу\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr ""
+msgstr "Скопіювати обрані відмінності (з правої панелі) до буферу\tCtrl+&3"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Вибрати від&мінність\tF4"
+msgstr "Позначити від&мінності\tF4"
 
 msgid "Add to Substitution &Filters"
-msgstr "Додати цю зміну до ф&ільтрів підміни"
+msgstr "Додати до ф&ільтрів заміни"
 
 msgid "Add to &Line Filters"
 msgstr "Додати до рядка &фільтрів"
@@ -101,35 +101,35 @@ msgid "&Paste"
 msgstr "&Вставити"
 
 msgid "&Scripts"
-msgstr "С&ценарії"
+msgstr "С&крипти"
 
 #, c-format
 msgid "< Empty >"
-msgstr "< Нема >"
+msgstr "< Порожньо >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Перейти до рядка...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr "...переміщеного між ліворуч/центр\tCtrl+Shift+G"
+msgstr "Перейти до переміщеного рядка між лівою та середньою панеллю\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr "...переміщеного між праворуч/центр\tCtrl+Alt+G"
+msgstr "Перейти до переміщеного рядка між середньою та правою панеллю\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "&Відкрити"
 
 msgid "With &Registered Application"
-msgstr "За&реєстрованим застосунком"
+msgstr "У за&реєстрованій програмі"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "З&овнішнім редактором\tCtrl+Alt+E"
+msgstr "У з&овнішньому редакторі\tCtrl+Alt+E"
 
 msgid "&With..."
-msgstr "&За допомогою..."
+msgstr "&У..."
 
 msgid "Open &Parent Folder..."
-msgstr "Відкрити &батьківську теку"
+msgstr "Відкрити &батьківську теку..."
 
 msgid "S&hell Menu"
 msgstr "Меню о&болонки"
@@ -144,16 +144,16 @@ msgid "View &Differences"
 msgstr "Показувати &відмінності"
 
 msgid "Diff &Block Size"
-msgstr "Відмінності розміру &блоку"
+msgstr "Розмір &блоку з відмінностями"
 
 msgid "&Ignore Color Difference"
-msgstr "&Ігнорувати різницю кольорів (поріг)"
+msgstr "&Ігнорувати різницю кольорів"
 
 msgid "Ins&ertion/Deletion Detection"
 msgstr "Вия&влення вставки/видалення"
 
 msgid "&None"
-msgstr "Вим&кнути"
+msgstr "&Нічого"
 
 msgid "&Vertical"
 msgstr "&Вертикально"
@@ -171,16 +171,16 @@ msgid "&Active Pane"
 msgstr "&Активна панель"
 
 msgid "Rotate &Right 90deg"
-msgstr "Повернути &праворуч на 90°"
+msgstr "Розвернути &праворуч на 90°"
 
 msgid "Rotate &Left 90deg"
-msgstr "Повернути &ліворуч на 90°"
+msgstr "Розвернути &ліворуч на 90°"
 
 msgid "Flip V&ertically"
-msgstr "Відобразити в&ертикально"
+msgstr "Віддзеркалити в&ертикально"
 
 msgid "Flip H&orizontally"
-msgstr "Відобразити г&оризонтально"
+msgstr "Віддзеркалити г&оризонтально"
 
 msgid "&Zoom"
 msgstr "Ма&сштаб"
@@ -189,10 +189,10 @@ msgid "25%"
 msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
-msgstr "На&близити\tCtrl++"
+msgstr "З&більшити\tCtrl++"
 
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Від&далити\tCtrl+-"
+msgstr "З&меншити\tCtrl+-"
 
 #. Zoom to normal
 #, c-format
@@ -209,7 +209,7 @@ msgstr "&Альфа-змішування"
 
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr "Ступінь &прозорості"
+msgstr "Анімація альфа-&змішування"
 
 #, c-format
 msgid "Dragging &Mode"
@@ -234,22 +234,22 @@ msgstr "Прямокутний &вибір"
 
 #, c-format
 msgid "&Set Background Color"
-msgstr "&Колір фону"
+msgstr "Оберіть &колір фону"
 
 msgid "&Vector Image Scaling"
-msgstr "&Масштаб зображень"
+msgstr "&Масштаб векторних зображень"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "Налаштування &анімації"
 
 msgid "&Blink Interval"
-msgstr ""
+msgstr "Інтервал &блимання"
 
 msgid "&Overlay Animation Interval"
-msgstr ""
+msgstr "Інтервал &оверлейної анімації"
 
 msgid "Compare Extracted &Text from Images"
-msgstr "Порівняти витягнутий з зображення &текст"
+msgstr "Порівняти отриманий із зображення &текст"
 
 msgid "Co&mpare"
 msgstr "По&рівняти"
@@ -261,7 +261,7 @@ msgid "&Full Size Screenshots"
 msgstr "&Повнорозмірні скріншоти"
 
 msgid "&HTMLs"
-msgstr "&Afqkkb HTML"
+msgstr "&Файли HTML"
 
 msgid "&Texts"
 msgstr "&Тексти"
@@ -276,22 +276,22 @@ msgid "Fit to Window"
 msgstr "Припасувати до вікна"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "Синхронізація &подій"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "&Увімкнено"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "&Прокрутка"
 
 msgid "&Click"
-msgstr ""
+msgstr "&Клік"
 
 msgid "&Input"
-msgstr ""
+msgstr "&Введення"
 
 msgid "&Go Back/Forward"
-msgstr ""
+msgstr "&Перейти назад/вперед"
 
 msgid "Clear &Browsing Data"
 msgstr "Очистити історію &переглядів"
@@ -332,7 +332,7 @@ msgid "&Image"
 msgstr "&Зображення"
 
 msgid "&Webpage"
-msgstr "&Веб-сторінка"
+msgstr "&Вебсторінка"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -350,15 +350,15 @@ msgstr "Відкрити буфер &обміну"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "Відкрити &проект...\tCtrl+J"
+msgstr "Відкрити &проєкт...\tCtrl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "З&берегти проект..."
+msgstr "З&берегти проєкт..."
 
 #, c-format
 msgid "Recent Projects"
-msgstr "Нещодавні проекти"
+msgstr "Нещодавні проєкти"
 
 #, c-format
 msgid "Recent F&iles or Folders"
@@ -369,7 +369,7 @@ msgstr "В&ихід\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
-msgstr "&Редакція"
+msgstr "&Редагування"
 
 #, c-format
 msgid "&Paste\tCtrl+V"
@@ -388,10 +388,10 @@ msgid "Ta&b Bar"
 msgstr "Панель &закладок"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "&Вигляд панелі закладок"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "&На панелі з назвою"
 
 #, c-format
 msgid "&Toolbar"
@@ -399,24 +399,24 @@ msgstr "Пан&ель інструментів"
 
 #, c-format
 msgid "&Small"
-msgstr "&Маленькі піктограми"
+msgstr "&Маленькі"
 
 msgid "&Medium"
-msgstr ""
+msgstr "&Середні"
 
 #, c-format
 msgid "&Big"
-msgstr "&Великі піктограми"
+msgstr "&Великі"
 
 #, c-format
 msgid "&Huge"
-msgstr "&Величезні піктограми"
+msgstr "&Величезні"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "Панель мен&ю"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "Панель &виводу"
 
 #, c-format
 msgid "&Status Bar"
@@ -424,7 +424,7 @@ msgstr "Ря&док стану"
 
 #, c-format
 msgid "&Tools"
-msgstr "&Сервіс"
+msgstr "&Інструменти"
 
 #, c-format
 msgid "&Filters..."
@@ -444,11 +444,11 @@ msgstr "Налаштування &плагінів..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
-msgstr "Ручний шаблон розбіжностей"
+msgstr "Ручний шаблон відмінностей"
 
 #, c-format
 msgid "A&utomatic Prediffer"
-msgstr "Автоматичний шаблон розбіжностей"
+msgstr "Автоматичний шаблон відмінностей"
 
 #, c-format
 msgid "&Manual Unpacking"
@@ -456,11 +456,11 @@ msgstr "Розпакування &вручну"
 
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "&Автоматичне розпакування"
+msgstr "Розпакування &автоматичне"
 
 #, c-format
 msgid "&Reload Plugins"
-msgstr "Перезавантажити всі &доповнення"
+msgstr "Перезавантажити &плагіни"
 
 #, c-format
 msgid "&Window"
@@ -475,7 +475,7 @@ msgstr "За&крити все"
 
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "Перемкнути в&ікно\tF6"
+msgstr "Змінити &панель\tF6"
 
 #, c-format
 msgid "Tile &Horizontally"
@@ -507,30 +507,30 @@ msgstr "&Переклади"
 
 #, c-format
 msgid "C&onfiguration"
-msgstr "&Налаштування"
+msgstr "&Конфігурація"
 
 #, c-format
 msgid "&GNU General Public License"
-msgstr "&GNU General Public License"
+msgstr "&Загальна ліцензія GNU"
 
 #, c-format
 msgid "&About WinMerge..."
 msgstr "Про про&граму WinMerge..."
 
 msgid "&Read-Only"
-msgstr ""
+msgstr "Лише для &читання"
 
 #, c-format
 msgid "L&eft Read-Only"
-msgstr "&Файл зліва лише для читання"
+msgstr "З&ліва лише для читання"
 
 #, c-format
 msgid "M&iddle Read-Only"
-msgstr "&Тільки для читання"
+msgstr "В&середині лише для читання"
 
 #, c-format
 msgid "Ri&ght Read-Only"
-msgstr "Ф&айл справа лише для читання"
+msgstr "&Праворуч лише для читання"
 
 #, c-format
 msgid "&File Encoding..."
@@ -542,76 +542,76 @@ msgstr "В&ибрати все\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
-msgstr "&Однакові"
+msgstr "Показати &однакові"
 
 #, c-format
 msgid "Show &Different Items"
-msgstr "&Різні"
+msgstr "Показати &відмінні"
 
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "Унікальні &ліворуч"
+msgstr "Показати &ліві унікальні"
 
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr "Унікальні у &центрі"
+msgstr "Показати &середні унікальні"
 
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Унікальні &праворуч"
+msgstr "Показати &праві унікальні"
 
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "Пропу&щені"
+msgstr "Показати про&пущені"
 
 #, c-format
 msgid "S&how Binary Files"
-msgstr "&Бінарні файли"
+msgstr "Показати &двійкові файли"
 
 #, c-format
 msgid "&3-way Compare"
-msgstr "&3-way порівняння"
+msgstr "&3-панельне порівняння"
 
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr ""
+msgstr "Показати тільки &ліві відмінні"
 
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr ""
+msgstr "Показати тільки &середні відмінні"
 
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr ""
+msgstr "Показати тільки &праві відмінні"
 
 msgid "Show L&eft Only Missing Items"
-msgstr ""
+msgstr "Показати тільки &ліві пропущені"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr ""
+msgstr "Показати тільки &середні пропущені"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr ""
+msgstr "Показати тільки &праві пропущені"
 
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "С&ховані"
+msgstr "Показати при&ховані"
 
 #, c-format
 msgid "Tree &Mode"
 msgstr "Режим &дерева"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "Ро&зкрити підтеки"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "&Усі підтеки"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "&Відмінні підтеки"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "&Однакові підтеки"
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -630,29 +630,29 @@ msgid "Sw&ap Panes"
 msgstr "Пом&іняти панелі місцями"
 
 msgid "Swap &1st | 2nd"
-msgstr ""
+msgstr "Поміняти місцями &1- шу|2-гу"
 
 msgid "Swap &2nd | 3rd"
-msgstr ""
+msgstr "Поміняти місцями &2-гу|3-тю"
 
 msgid "Swap 1st | &3rd"
-msgstr ""
+msgstr "Поміняти місцями 1-шу|&3-тю"
 
 #, c-format
 msgid "Com&pare Statistics..."
-msgstr "Порівняти статистики..."
+msgstr "Порівняти статистику..."
 
 #, c-format
 msgid "Refresh\tF5"
-msgstr "&Поновити\tF5"
+msgstr "&Оновити\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Поновити &вибрані\tCtrl+F5"
+msgstr "Оновити &вибрані\tCtrl+F5"
 
 #, c-format
 msgid "&Merge"
-msgstr "&Об'єднання"
+msgstr "&Злиття"
 
 #, c-format
 msgid "Co&mpare\tEnter"
@@ -688,7 +688,7 @@ msgstr "Скопіювати на &ліву панель\tAlt+Left"
 
 #, c-format
 msgid "&Delete\tDel"
-msgstr "&Вилучити\tDel"
+msgstr "&Видалити\tDel"
 
 #, c-format
 msgid "&Customize Columns..."
@@ -698,9 +698,9 @@ msgstr "&Налаштувати стовпчики..."
 msgid "Generate &Report..."
 msgstr "Створити &звіт..."
 
-#, c-format
+#, fuzzy, c-format
 msgid "&Edit with Unpacker..."
-msgstr ""
+msgstr "&Редагувати з Розпакувальником..."
 
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -708,35 +708,35 @@ msgstr "&Зберегти\tCtrl+S"
 
 #, c-format
 msgid "Sav&e"
-msgstr ""
+msgstr "З&берегти"
 
 #, c-format
 msgid "Save &Left"
-msgstr "Зб&ерегти файл зліва"
+msgstr "Зберегти &лівий файл"
 
 #, c-format
 msgid "Save &Middle"
-msgstr ""
+msgstr "Зберегти &середній файл"
 
 #, c-format
 msgid "Save &Right"
-msgstr "Збе&регти файл справа"
+msgstr "Зберегти &правий файл"
 
 #, c-format
 msgid "Save &As"
-msgstr ""
+msgstr "Зберегти &як"
 
 #, c-format
 msgid "Save &Left As..."
-msgstr ""
+msgstr "Зберегти &лівий файл як..."
 
 #, c-format
 msgid "Save &Middle As..."
-msgstr ""
+msgstr "Зберегти &середній файл як..."
 
 #, c-format
 msgid "Save &Right As..."
-msgstr ""
+msgstr "Зберегти &правий файл як..."
 
 msgid "&Print...\tCtrl+P"
 msgstr "&Друк...\tCtrl+P"
@@ -745,22 +745,22 @@ msgid "Page Set&up..."
 msgstr "Пара&метри сторінки..."
 
 msgid "Print Previe&w..."
-msgstr "&Попередній перегляд..."
+msgstr "&Перегляд до друку..."
 
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "Замінити перенесення &рядків на"
+msgstr "Конвертувати закінчення &рядків у"
 
 #, c-format
 msgid "Mer&ge Mode\tF9"
 msgstr "Режим &злиття\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr ""
+msgstr "&Перевідкрити\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
+msgstr "Порівняти &знову як"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
@@ -788,7 +788,7 @@ msgstr "&Замінити...\tCtrl+H"
 
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr ""
+msgstr "&Маркер...\tCtrl+Shift+M"
 
 #, c-format
 msgid "Advanced"
@@ -816,7 +816,7 @@ msgstr "&Попередня закладка\tShift+F2"
 
 #, c-format
 msgid "&Clear All Bookmarks"
-msgstr "&Вилучити всі закладки"
+msgstr "&Очистити всі закладки"
 
 #, c-format
 msgid "Syntax Highlight"
@@ -824,35 +824,35 @@ msgstr "Підсвічування синтаксису"
 
 #, c-format
 msgid "&Diff Context"
-msgstr ""
+msgstr "&Контекст відмінностей"
 
 #, c-format
 msgid "&All Lines"
-msgstr ""
+msgstr "&Усі рядки"
 
 #, c-format
 msgid "&0 Lines"
-msgstr ""
+msgstr "&0 рядків"
 
 #, c-format
 msgid "&1 Line"
-msgstr ""
+msgstr "&1 рядок"
 
 #, c-format
 msgid "&3 Lines"
-msgstr ""
+msgstr "&3 рядки"
 
 #, c-format
 msgid "&5 Lines"
-msgstr ""
+msgstr "&5 рядків"
 
 #, c-format
 msgid "&7 Lines"
-msgstr ""
+msgstr "&7 рядків"
 
 #, c-format
 msgid "&9 Lines"
-msgstr ""
+msgstr "&9 рядків"
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
@@ -3155,18 +3155,18 @@ msgid ""
 msgstr ""
 
 msgid "Unknown error opening project file."
-msgstr "Невідома помилка при відкритті файлу проекту."
+msgstr "Невідома помилка при відкритті файлу проєкту."
 
 msgid "Unknown error saving project file."
-msgstr "Невідома помилка при збереженні файлу проекту."
+msgstr "Невідома помилка при збереженні файлу проєкту."
 
 #, c-format
 msgid "Project file loaded."
-msgstr "Файл проекту успішно завантажений."
+msgstr "Файл проєкту успішно завантажений."
 
 #, c-format
 msgid "Project file saved."
-msgstr "Файл проекту успішно збережений."
+msgstr "Файл проєкту успішно збережений."
 
 #, c-format
 msgid ""
@@ -3357,7 +3357,7 @@ msgstr "Всі файли (*.*)|*.*||"
 
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
-msgstr "Файли проектів WinMerge (*.WinMerge)|*.WinMerge||"
+msgstr "Файли проєктів WinMerge (*.WinMerge)|*.WinMerge||"
 
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
@@ -4160,7 +4160,7 @@ msgstr "Знех. відмінності"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
-msgstr "Бінарний"
+msgstr "Двійковий"
 
 #, c-format
 msgid "Unpacker"
@@ -4798,7 +4798,7 @@ msgstr "Мішаний"
 
 msgctxt "EOL Type"
 msgid "Binary"
-msgstr "Бінарний"
+msgstr "Двійковий"
 
 #, c-format
 msgid "None"
@@ -4990,7 +4990,7 @@ msgstr ""
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Вимкнено"
 
 #, c-format
 msgid "From file system"
@@ -5098,7 +5098,7 @@ msgstr ""
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Вимкнено"
 
 msgid "MDI child window or main window"
 msgstr ""
@@ -5111,71 +5111,71 @@ msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr ""
+msgstr "Відмінність"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr ""
+msgstr "Підсвітити"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
-msgstr ""
+msgstr "Блимати"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr ""
+msgstr "Розмір блоку"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr ""
+msgstr "Альфа-блок"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr ""
+msgstr "Межа CD"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr ""
+msgstr "Відстеження Ins/Del"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr ""
+msgstr "Нічого"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr ""
+msgstr "Вертикально"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr ""
+msgstr "Горизонтально"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr ""
+msgstr "Оверлей"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr ""
+msgstr "Альфа"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr ""
+msgstr "Альфа-змішування"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr ""
+msgstr "Альфа-анімація"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr ""
+msgstr "Масштаб"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr ""
+msgstr "Сторінка:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
@@ -5240,7 +5240,7 @@ msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Вимкнено"
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -5251,7 +5251,7 @@ msgstr ""
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Вимкнено"
 
 msgid "Only on window activated"
 msgstr ""
