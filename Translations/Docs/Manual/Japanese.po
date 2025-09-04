@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-09-01 08:05+0900\n"
+"POT-Creation-Date: 2025-09-02 07:33+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -1346,6 +1346,9 @@ msgid ""
 "generation.  The process terminates automatically when the operation is "
 "complete, making it suitable for batch or scripted execution."
 msgstr ""
+"比較やレポート生成の際にメッセージボックスを表示せずに WinMerge を実行しま"
+"す。処理が完了すると自動的に終了するため、バッチ処理やスクリプトでの実行に適"
+"しています。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:538
@@ -1358,6 +1361,8 @@ msgid ""
 "Runs WinMerge without loading or saving settings from the registry.  All "
 "comparisons use default preferences only."
 msgstr ""
+"レジストリから設定を読み込まず、また保存もせずに WinMerge を実行します。すべ"
+"ての比較はデフォルトの設定のみを使用します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:548
@@ -1379,13 +1384,15 @@ msgstr "<option>/ignorews</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:557
-msgid "Specifies how whitespace differences are handled:"
-msgstr ""
+msgid ""
+"Controls the \"Whitespaces\" option (whitespace comparison settings) "
+"persistently:"
+msgstr "「空白」オプションを永続的に制御します:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Command_line.xml:559
 msgid "<option>/ignorews:0</option> - do not ignore whitespace differences."
-msgstr ""
+msgstr "<option>/ignorews:0</option> - 空白の違いを無視しません。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Command_line.xml:560
@@ -1393,271 +1400,262 @@ msgid ""
 "<option>/ignorews</option> or <option>/ignorews:1</option> - ignore "
 "differences in the amount of whitespace."
 msgstr ""
+"<option>/ignorews</option> または <option>/ignorews:1</option> - 空白の量の違"
+"いを無視します。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Command_line.xml:561
 msgid "<option>/ignorews:2</option> - ignore all whitespace characters."
-msgstr ""
-
-#. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:563 English/Command_line.xml:575
-#: English/Command_line.xml:587 English/Command_line.xml:599
-#: English/Command_line.xml:611 English/Command_line.xml:623
-msgid ""
-"Note: This changes the global setting persistently, not just temporarily."
-msgstr ""
+msgstr "<option>/ignorews:2</option> - すべての空白文字を無視します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:568
+#: English/Command_line.xml:567
 msgid "<option>/ignoreblanklines</option>"
 msgstr "<option>/ignoreblanklines</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:570
+#: English/Command_line.xml:569
 msgid "Controls the \"Ignore blank lines\" option persistently:"
-msgstr ""
+msgstr "「空行を無視する」オプションを永続的に制御します:"
+
+#. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Command_line.xml:571
+msgid "<option>/ignoreblanklines:0</option> - disables ignoring blank lines."
+msgstr "<option>/ignoreblanklines:0</option> - 空行を無視しないようにします。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Command_line.xml:572
-#, fuzzy
-#| msgid "<option>/ignoreblanklines</option>"
-msgid "<option>/ignoreblanklines:0</option> - disables ignoring blank lines."
-msgstr "<option>/ignoreblanklines</option>"
-
-#. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:573
 msgid ""
 "<option>/ignoreblanklines</option> or <option>/ignoreblanklines:1</option> - "
 "enables ignoring blank lines."
 msgstr ""
+"<option>/ignoreblanklines</option> または <option>/ignoreblanklines:1</"
+"option> - 空行を無視するようにします。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:580
+#: English/Command_line.xml:578
 msgid "<option>/ignorecase</option>"
 msgstr "<option>/ignorecase</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:582
+#: English/Command_line.xml:580
 msgid "Controls the \"Ignore case\" option persistently:"
-msgstr ""
+msgstr "「大文字小文字を区別しない」オプションを永続的に制御します:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:584
-#, fuzzy
-#| msgid "<option>Enabled</option>: File encoding differences are ignored."
+#: English/Command_line.xml:582
 msgid "<option>/ignorecase:0</option> - disables ignoring case differences."
-msgstr ""
-"<option>Enabled</option>:ファイルエンコーディングの違いは無視されます。"
+msgstr "<option>/ignorecase:0</option> - 大文字小文字の違いを無視しません。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:585
+#: English/Command_line.xml:583
 msgid ""
 "<option>/ignorecase</option> or <option>/ignorecase:1</option> - enables "
 "ignoring case differences."
 msgstr ""
+"<option>/ignorecase</option> または <option>/ignorecase:1</option> - 大文字小"
+"文字の違いを無視します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:592
+#: English/Command_line.xml:589
 msgid "<option>/ignoreeol</option>"
 msgstr "<option>/ignoreeol</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:594
+#: English/Command_line.xml:591
 msgid "Controls the \"Ignore EOL differences\" option persistently:"
-msgstr ""
+msgstr "「改行文字の違いを無視する」オプションを永続的に制御します:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:596
-#, fuzzy
-#| msgid "<option>Enabled</option>: File encoding differences are ignored."
+#: English/Command_line.xml:593
 msgid "<option>/ignoreeol:0</option> - disables ignoring EOL differences."
-msgstr ""
-"<option>Enabled</option>:ファイルエンコーディングの違いは無視されます。"
+msgstr "<option>/ignoreeol:0</option> - 改行コードの違いを無視しません。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:597
+#: English/Command_line.xml:594
 msgid ""
 "<option>/ignoreeol</option> or <option>/ignoreeol:1</option> - enables "
 "ignoring EOL differences."
 msgstr ""
+"<option>/ignoreeol</option> または <option>/ignoreeol:1</option> - 改行コード"
+"の違いを無視します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:604
+#: English/Command_line.xml:600
 msgid "<option>/ignorecodepage</option>"
 msgstr "<option>/ignorecodepage</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:606
+#: English/Command_line.xml:602
 msgid "Controls the \"Ignore codepage differences\" option persistently:"
-msgstr ""
+msgstr "「コードページの違いを無視する」オプションを永続的に制御します:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:608
-#, fuzzy
-#| msgid "<option>Enabled</option>: File encoding differences are ignored."
+#: English/Command_line.xml:604
 msgid ""
 "<option>/ignorecodepage:0</option> - disables ignoring codepage differences."
 msgstr ""
-"<option>Enabled</option>:ファイルエンコーディングの違いは無視されます。"
+"<option>/ignorecodepage:0</option> - コードページの違いを無視しません。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:609
+#: English/Command_line.xml:605
 msgid ""
 "<option>/ignorecodepage</option> or <option>/ignorecodepage:1</option> - "
 "enables ignoring codepage differences."
 msgstr ""
+"<option>/ignorecodepage</option> または <option>/ignorecodepage:1</option> - "
+"コードページの違いを無視します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:616
+#: English/Command_line.xml:611
 msgid "<option>/ignorecomments</option>"
 msgstr "<option>/ignorecomments</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:618
+#: English/Command_line.xml:613
 msgid "Controls the \"Ignore comment differences\" option persistently:"
-msgstr ""
+msgstr "「コメントの違いを無視する」オプションを永続的に制御します:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:620
-#, fuzzy
-#| msgid "<option>/ignorecomments</option>"
+#: English/Command_line.xml:615
 msgid "<option>/ignorecomments:0</option> - disables ignoring comments."
-msgstr "<option>/ignorecomments</option>"
+msgstr "<option>/ignorecomments:0</option> - コメントの違いを無視しません。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:621
-#, fuzzy
-#| msgid "<option>/ignorecomments</option>"
+#: English/Command_line.xml:616
 msgid ""
 "<option>/ignorecomments</option> or <option>/ignorecomments:1</option> - "
 "enables ignoring comments."
-msgstr "<option>/ignorecomments</option>"
+msgstr ""
+"<option>/ignorecomments</option> または <option>/ignorecomments:1</option> - "
+"コメントの違いを無視します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:628
-#, fuzzy
-#| msgid "<option>/l <replaceable>linenumber</replaceable></option>"
+#: English/Command_line.xml:622
 msgid "<option>/unpacker <replaceable>plugin pipeline</replaceable></option>"
-msgstr "<option>/l <replaceable>linenumber</replaceable></option>"
+msgstr ""
+"<option>/unpacker <replaceable>プラグインパイプライン</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:631
+#: English/Command_line.xml:625
 msgid ""
 "Specifies the plugin pipeline for the Unpacker plugin.  Example: <option>/"
 "unpacker \"SortAscending|SelectLines 1-10\"</option>"
 msgstr ""
+"Unpacker プラグインのプラグインパイプラインを指定します。例: <option>/"
+"unpacker \"SortAscending|SelectLines 1-10\"</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:638
-#, fuzzy
-#| msgid "<option>/inifile <replaceable>inifile</replaceable></option>"
+#: English/Command_line.xml:632
 msgid "<option>/prediffer <replaceable>plugin pipeline</replaceable></option>"
-msgstr "<option>/inifile <replaceable>inifile</replaceable></option>"
+msgstr ""
+"<option>/prediffer <replaceable>プラグインパイプライン</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:641
+#: English/Command_line.xml:635
 msgid ""
 "Specifies the plugin pipeline for the Prediffer plugin.  Example: <option>/"
 "prediffer \"IgnoreColumns 1-10\"</option>"
 msgstr ""
+"Prediffer プラグインのプラグインパイプラインを指定します。例: <option>/"
+"prediffer \"IgnoreColumns 1-10\"</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:648
-#, fuzzy
-#| msgid "<option>/c <replaceable>charpos</replaceable></option>"
+#: English/Command_line.xml:642
 msgid "<option>/cp <replaceable>codepage</replaceable></option>"
-msgstr "<option>/c <replaceable>charpos</replaceable></option>"
+msgstr "<option>/cp <replaceable>コードページ</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:651
+#: English/Command_line.xml:645
 msgid ""
 "Specifies the codepage to use for file comparison.  Example: <option>/cp "
 "65001</option>"
 msgstr ""
+"ファイル比較に使用するコードページを指定します。例: <option>/cp 65001</"
+"option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:658
+#: English/Command_line.xml:652
 msgid "<option>/fileext <replaceable>file-extension</replaceable></option>"
-msgstr "<option>/fileext <replaceable>file-extension</replaceable></option>"
+msgstr "<option>/fileext <replaceable>ファイル拡張子</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:660
+#: English/Command_line.xml:654
 msgid "Specifies a file extension for determining syntax hightliting."
 msgstr ""
 "シンタックスハイライトの種類を決定するため、ファイル拡張子を指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:665
-#, fuzzy
-#| msgid "<option>/l <replaceable>linenumber</replaceable></option>"
+#: English/Command_line.xml:659
 msgid "<option>/cfg <replaceable>name=value</replaceable></option>"
-msgstr "<option>/l <replaceable>linenumber</replaceable></option>"
+msgstr "<option>/cfg <replaceable>名前=値</replaceable></option>"
+
+#. type: Content of: <article><variablelist><varlistentry><listitem><para>
+#: English/Command_line.xml:662
+msgid "Sets a configuration value in the WinMerge registry or INI file."
+msgstr "WinMerge のレジストリまたは INI ファイルに設定値を設定します。"
+
+#. type: Content of: <article><variablelist><varlistentry><listitem><para>
+#: English/Command_line.xml:665
+msgid "Example: <option>/cfg Settings/DiffAlgorithm=3</option>"
+msgstr "例: <option>/cfg Settings/DiffAlgorithm=3</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:668
-msgid "Sets a configuration value in the WinMerge registry or INI file."
-msgstr ""
-
-#. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:671
-msgid "Example: <option>/cfg Settings/DiffAlgorithm=3</option>"
-msgstr ""
-
-#. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:674
 msgid ""
 "If the section name is unambiguous and does not conflict with other setting "
 "names, it can be omitted:"
-msgstr ""
+msgstr "セクション名が曖昧でなく、他の設定名と衝突しない場合、省略できます:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:677
-#, fuzzy
-#| msgid "<option>/cfg</option>"
+#: English/Command_line.xml:671
 msgid "<option>/cfg DiffAlgo=3</option>"
-msgstr "<option>/cfg</option>"
+msgstr "<option>/cfg DiffAlgo=3</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:680
+#: English/Command_line.xml:674
 msgid ""
 "Note: This entry does not explain which configuration names are available.  "
 "For a list of settings, refer to "
 "<filename>HKEY_CURRENT_USER\\Software\\Thingamahoochie\\WinMerge</filename> "
 "in regedit."
 msgstr ""
+"注意: この項目では利用可能な設定名について説明していません。設定の一覧は "
+"regedit の <filename>HKEY_CURRENT_USER\\Software\\Thingamahoochie\\WinMerge</"
+"filename> を参照してください。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:687
+#: English/Command_line.xml:681
 msgid "<option><replaceable>leftpath</replaceable></option>"
 msgstr "<option><replaceable>leftpath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:689
+#: English/Command_line.xml:683
 msgid "Specifies the folder, file or project file to open on the left side."
 msgstr "左側で開くフォルダーやファイルを指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:694
+#: English/Command_line.xml:688
 msgid "<option><replaceable>middlepath</replaceable></option>"
 msgstr "<option><replaceable>middlepath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:696
+#: English/Command_line.xml:690
 msgid "Specifies the folder, file or project file to open on the middle side."
 msgstr "中央で開くフォルダーやファイルを指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:701
+#: English/Command_line.xml:695
 msgid "<option><replaceable>rightpath</replaceable></option>"
 msgstr "<option><replaceable>rightpath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:703
+#: English/Command_line.xml:697
 msgid "Specifies the folder, file or project file to open on the right side."
 msgstr "右側で開くフォルダーやファイルを指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:705
+#: English/Command_line.xml:699
 msgid ""
 "WinMerge cannot compare files to folders, so the path parameters "
 "(<option><replaceable>leftpath</replaceable></option>, "
@@ -1677,7 +1675,7 @@ msgstr ""
 "選択できます。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
-#: English/Command_line.xml:714
+#: English/Command_line.xml:708
 msgid ""
 "In file comparisons, you can specify a folder name in one of the path "
 "parameters, as long as the folder contains a file with the same name as the "
@@ -1687,12 +1685,12 @@ msgstr ""
 "だし、フォルダーは他方のファイル名と同じファイルを含んでいる必要があります。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
-#: English/Command_line.xml:718
+#: English/Command_line.xml:712
 msgid "For example, consider this command:"
 msgstr "例えば、以下のコマンドを考えます:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
-#: English/Command_line.xml:720
+#: English/Command_line.xml:714
 msgid ""
 "<userinput>WinMergeU <filename>C:\\Folder\\File.txt</filename> <filename "
 "class=\"directory\">C:\\Folder2</filename> </userinput>"
@@ -1701,7 +1699,7 @@ msgstr ""
 "class=\"directory\">C:\\Folder2</filename> </userinput>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
-#: English/Command_line.xml:723
+#: English/Command_line.xml:717
 msgid ""
 "If <filename class=\"directory\">C:\\Folder2</filename> contains a file "
 "named <filename>File.txt</filename>: WinMerge implicitly resolves the second "
@@ -1717,23 +1715,23 @@ msgstr ""
 "ば、コマンドは不正とみなされます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:736 English/Compare_files.xml:1481
+#: English/Command_line.xml:730 English/Compare_files.xml:1481
 #: English/Intro_diffs.xml:253 English/Intro_diffs.xml:407
 msgid "merging differences"
 msgstr "差異をマージする"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Command_line.xml:737 English/Intro_diffs.xml:409
+#: English/Command_line.xml:731 English/Intro_diffs.xml:409
 msgid "result file"
 msgstr "結果ファイル"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:740
+#: English/Command_line.xml:734
 msgid "<option>/o <replaceable>outputpath</replaceable></option>"
 msgstr "<option>/o <replaceable>outputpath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:742
+#: English/Command_line.xml:736
 msgid ""
 "Specifies an optional output file path where you want merged result files to "
 "be saved."
@@ -1741,7 +1739,7 @@ msgstr ""
 "マージした結果のファイルを保存するオプションの出力ファイルパスを指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:745
+#: English/Command_line.xml:739
 msgid ""
 "The output path is rarely needed when you start WinMerge from the command "
 "line. It is meant to be used with version control tools, where you might "
@@ -1757,7 +1755,7 @@ msgstr ""
 "ファイルは前の状態のままになります。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:753
+#: English/Command_line.xml:747
 msgid ""
 "Version control systems typically refer to the source and result files using "
 "terms like <glossterm>theirs</glossterm>, <glossterm>mine</glossterm>, and "
@@ -1772,121 +1770,125 @@ msgstr ""
 "ステムと連携するならば、この順番でファイルを並べるべきです。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:763
-#, fuzzy
-#| msgid "<option>/o <replaceable>outputpath</replaceable></option>"
+#: English/Command_line.xml:757
 msgid "<option>/or <replaceable>outputpath</replaceable></option>"
-msgstr "<option>/o <replaceable>outputpath</replaceable></option>"
+msgstr "<option>/or <replaceable>outputpath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:766
+#: English/Command_line.xml:760
 msgid ""
 "Outputs a comparison report for files or folders.  Example: "
 "<option>WinMergeU path1 path2 /or c:\\tmp\\report.html</option>"
 msgstr ""
+"ファイルまたはフォルダの比較レポートを出力します。例: <option>WinMergeU "
+"path1 path2 /or c:\\tmp\\report.html</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:769
+#: English/Command_line.xml:763
 msgid "It is often useful to combine this option with:"
-msgstr ""
+msgstr "このオプションは以下と組み合わせて使用すると便利です:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:771
+#: English/Command_line.xml:765
 msgid ""
 "<option>/noninteractive</option> - exits WinMerge after producing the report."
 msgstr ""
+"<option>/noninteractive</option> - レポート出力後に WinMerge を終了します。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:772
+#: English/Command_line.xml:766
 msgid "<option>/minimize</option> - starts WinMerge in minimized state."
-msgstr ""
+msgstr "<option>/minimize</option> - WinMerge を最小化状態で開始します。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:773
+#: English/Command_line.xml:767
 msgid ""
 "<option>/noprefs</option> - ignores the current preferences and uses default "
-"settings."
+"settings.  Any changes made with <option>/cfg</option> will then be "
+"temporary and not saved."
 msgstr ""
+"<option>/noprefs</option> - 現在の設定を無視し、デフォルトの設定を使用しま"
+"す。<option>/cfg</option> による変更は一時的なものとなり保存されません。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:775
-msgid ""
-"Any changes made with <option>/cfg</option> will then be temporary and not "
-"saved."
-msgstr ""
-
-#. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:777
+#: English/Command_line.xml:771
 msgid ""
 "The following <option>/cfg</option> settings can also be useful (parameter "
 "names may change in the future):"
 msgstr ""
+"以下の <option>/cfg</option> 設定も便利に使えます（将来パラメータ名が変更され"
+"る可能性があります）:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:779
-#, fuzzy
-#| msgid "File comparing"
+#: English/Command_line.xml:773
 msgid "For file comparisons:"
-msgstr "ファイル比較"
+msgstr "ファイル比較の場合:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:781
+#: English/Command_line.xml:775
 msgid ""
 "<option>/cfg Settings/DiffContextV2=0</option> - hides matching lines in the "
 "report (equivalent to View -> Diff Context -> 0 Lines)."
 msgstr ""
+"<option>/cfg Settings/DiffContextV2=0</option> - レポートで一致している行を非"
+"表示にします (「表示 → Diff コンテキスト → 0 行」と同等)。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:782
+#: English/Command_line.xml:776
 msgid ""
 "<option>/cfg Settings/ViewLineNumbers=1</option> - outputs line numbers (set "
 "to 0 to disable)."
 msgstr ""
+"<option>/cfg Settings/ViewLineNumbers=1</option> - 行番号を出力します（0 にす"
+"ると非表示）。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:784
-#, fuzzy
-#| msgid "Folder compare"
+#: English/Command_line.xml:778
 msgid "For folder comparisons:"
-msgstr "フォルダー比較"
+msgstr "フォルダ比較の場合:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:786
+#: English/Command_line.xml:780
 msgid ""
 "<option>/cfg Settings/DirViewExpandSubdirs=1</option> - automatically expand "
 "all subfolders."
 msgstr ""
+"<option>/cfg Settings/DirViewExpandSubdirs=1</option> - サブフォルダを自動的"
+"に展開します。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:787
+#: English/Command_line.xml:781
 msgid ""
 "<option>/cfg ReportFiles/ReportType=2</option> - report style: Simple HTML."
 msgstr ""
+"<option>/cfg ReportFiles/ReportType=2</option> - レポート形式: Simple HTML。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Command_line.xml:788
+#: English/Command_line.xml:782
 msgid ""
 "<option>/cfg ReportFiles/IncludeFileCmpReport=1</option> - include file "
 "comparison reports."
 msgstr ""
+"<option>/cfg ReportFiles/IncludeFileCmpReport=1</option> - ファイル比較レポー"
+"トを含めます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Command_line.xml:795 English/Compare_files.xml:1805
+#: English/Command_line.xml:789 English/Compare_files.xml:1805
 msgid "conflict files"
 msgstr "コンフリクトファイル"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
-#: English/Command_line.xml:796 English/Command_line.xml:812
+#: English/Command_line.xml:790 English/Command_line.xml:806
 msgid "specifying on command line"
 msgstr "コマンドラインでの指定"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:799
+#: English/Command_line.xml:793
 msgid "<option><replaceable>conflictfile</replaceable></option>"
 msgstr "<option><replaceable>conflictfile</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:801
+#: English/Command_line.xml:795
 msgid ""
 "Specifies a conflict file, typically generated by a Version control system. "
 "The conflict file opens in the File Compare window, where you can merge and "
@@ -1900,17 +1902,17 @@ msgstr ""
 "は使用できないことに注意してください。"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
-#: English/Command_line.xml:811
+#: English/Command_line.xml:805
 msgid "ini file"
 msgstr "ini ファイル"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
-#: English/Command_line.xml:815
+#: English/Command_line.xml:809
 msgid "<option>/inifile <replaceable>inifile</replaceable></option>"
 msgstr "<option>/inifile <replaceable>inifile</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
-#: English/Command_line.xml:817
+#: English/Command_line.xml:811
 msgid ""
 "specifies an INI file used to load and save settings instead of the registry."
 msgstr ""
@@ -22066,14 +22068,16 @@ msgstr ""
 "<guibutton>OK</guibutton>をクリックして、展開プラグインの選択ダイアログを閉じ"
 "てください。"
 
-#~ msgid "<option>/unpacker</option>"
-#~ msgstr "<option>/unpacker</option>"
+#~ msgid ""
+#~ "Any changes made with <option>/cfg</option> will then be temporary and "
+#~ "not saved."
+#~ msgstr ""
+#~ "<option>/cfg</option> による変更は一時的なものとなり保存されません。"
 
-#~ msgid "<option>/prediffer</option>"
-#~ msgstr "<option>/prediffer</option>"
+#~ msgid "Specifies how whitespace differences are handled:"
+#~ msgstr "空白の違いをどのように扱うかを指定します:"
 
-#~ msgid "<option>/cp</option>"
-#~ msgstr "<option>/cp</option>"
-
-#~ msgid "<option>/or</option>"
-#~ msgstr "<option>/or</option>"
+#~ msgid ""
+#~ "Note: This changes the global setting persistently, not just temporarily."
+#~ msgstr ""
+#~ "注意: これは一時的な変更ではなく、グローバル設定を永続的に変更します。"

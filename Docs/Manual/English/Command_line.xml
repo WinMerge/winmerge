@@ -554,13 +554,12 @@
     <varlistentry>
       <term><option>/ignorews</option></term>
       <listitem>
-        <para>Specifies how whitespace differences are handled:</para>
+        <para>Controls the "Whitespaces" option (whitespace comparison settings) persistently:</para>
         <itemizedlist>
           <listitem><para><option>/ignorews:0</option> - do not ignore whitespace differences.</para></listitem>
           <listitem><para><option>/ignorews</option> or <option>/ignorews:1</option> - ignore differences in the amount of whitespace.</para></listitem>
           <listitem><para><option>/ignorews:2</option> - ignore all whitespace characters.</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
@@ -572,7 +571,6 @@
           <listitem><para><option>/ignoreblanklines:0</option> - disables ignoring blank lines.</para></listitem>
           <listitem><para><option>/ignoreblanklines</option> or <option>/ignoreblanklines:1</option> - enables ignoring blank lines.</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
@@ -584,7 +582,6 @@
           <listitem><para><option>/ignorecase:0</option> - disables ignoring case differences.</para></listitem>
           <listitem><para><option>/ignorecase</option> or <option>/ignorecase:1</option> - enables ignoring case differences.</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
@@ -596,7 +593,6 @@
           <listitem><para><option>/ignoreeol:0</option> - disables ignoring EOL differences.</para></listitem>
           <listitem><para><option>/ignoreeol</option> or <option>/ignoreeol:1</option> - enables ignoring EOL differences.</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
@@ -608,7 +604,6 @@
           <listitem><para><option>/ignorecodepage:0</option> - disables ignoring codepage differences.</para></listitem>
           <listitem><para><option>/ignorecodepage</option> or <option>/ignorecodepage:1</option> - enables ignoring codepage differences.</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
@@ -620,7 +615,6 @@
           <listitem><para><option>/ignorecomments:0</option> - disables ignoring comments.</para></listitem>
           <listitem><para><option>/ignorecomments</option> or <option>/ignorecomments:1</option> - enables ignoring comments.</para></listitem>
         </itemizedlist>
-        <para>Note: This changes the global setting persistently, not just temporarily.</para>
       </listitem>
     </varlistentry>
 
@@ -770,9 +764,9 @@
         <itemizedlist>
           <listitem><para><option>/noninteractive</option> - exits WinMerge after producing the report.</para></listitem>
           <listitem><para><option>/minimize</option> - starts WinMerge in minimized state.</para></listitem>
-          <listitem><para><option>/noprefs</option> - ignores the current preferences and uses default settings.</para></listitem>
+          <listitem><para><option>/noprefs</option> - ignores the current preferences and uses default settings.
+            Any changes made with <option>/cfg</option> will then be temporary and not saved.</para></listitem>
         </itemizedlist>
-        <para>Any changes made with <option>/cfg</option> will then be temporary and not saved.</para>
         <para>
           The following <option>/cfg</option> settings can also be useful (parameter names may change in the future):  
         </para>

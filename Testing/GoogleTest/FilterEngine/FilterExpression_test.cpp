@@ -71,6 +71,10 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("array(125, 126) == array(126, 125)"));
 	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(125, 126), 0) == 125"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(125, 126), 1) == 126"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("2 < 3"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("3 < 3"));
@@ -158,6 +162,10 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" != d\"2025-05-27\""));
 	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(d\"2025-05-27\", d\"2025-05-28\"), 0) == d\"2025-05-27\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(d\"2025-05-27\", d\"2025-05-28\"), 1) == d\"2025-05-28\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("\"abc\" == \"abc\""));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -265,6 +273,10 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("replace(array(\"abcd\"), \"cd\", \"\") = array(\"ab\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(\"ab\", \"cd\"), 0) == \"ab\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(\"ab\", \"cd\"), 1) == \"cd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("v\"2.16.48.2\" == v\"002.016.048.002\""));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -279,6 +291,10 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Parse("v\"2.16.49\" >= v\"2.16.48.2\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("v\"2.16.49\" >= v\"2.16.49\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(v\"2.16.49\", v\"2.16.50\"), 0) == v\"2.16.49\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(v\"2.16.49\", v\"2.16.50\"), 1) == v\"2.16.50\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("1weeks == 10days - 3days"));
@@ -479,6 +495,10 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("false = true"));
 	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(false, true), 0) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(false, true), 1) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("not TRUE"));
 	EXPECT_FALSE(fe.Evaluate(di));
@@ -521,6 +541,14 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("1 = array(1)"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(array(1)), 0) = array(1)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(array(1)), -1) = array(1)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(array(1)), -2) = array(1)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("at(array(array(1)), 1) = array(1)"));
+	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, FileAttributes)
@@ -772,6 +800,12 @@ TEST_P(FilterExpressionTest, ParseError)
 	EXPECT_FALSE(fe.Parse("allof(true, true)"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	EXPECT_FALSE(fe.Parse("allequal()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("at()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("at(array(1,2))"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("at(array(1,2),0,1)"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	EXPECT_FALSE(fe.Parse("strlen()"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);

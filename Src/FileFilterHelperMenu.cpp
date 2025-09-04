@@ -53,7 +53,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			else if (command == ID_FILTERMENU_FILE_BACKUP)
 			{
 				result = masks.empty() ? masks : masks + _T(";");
-				*result += _T("!*.bak;!*.old;!*.orig;!*.swp;!*.swo;!*.tmp;!*.temp;!*.save;*.backup;!*.*~");
+				*result += _T("!*.bak;!*.old;!*.orig;!*.swp;!*.swo;!*.tmp;!*.temp;!*.save;!*.backup;!*.*~");
 			}
 			else if (command == ID_FILTERMENU_FILE_BIN)
 			{
