@@ -431,7 +431,7 @@ BOOL CMergeApp::InitInstance()
 	strdiff::Init(); // String diff init
 	strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
-	if (IsWin11_OrGreater())
+	if (IsWin10_OrGreater())
 		BCMenu::DisableOwnerDraw();
 
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
