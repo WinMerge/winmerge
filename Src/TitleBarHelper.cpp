@@ -109,7 +109,18 @@ void CTitleBarHelper::DrawButtons(CDC& dc, COLORREF textColor, COLORREF backColo
 		COLORREF colorref;
 		Gdiplus::Color color;
 		if (m_nTrackingButton == i)
-			colorref = (i == 2) ? RGB(0xE9, 0x48, 0x56) : GetIntermediateColor(backColor, GetSysColor(COLOR_WINDOW), 0.66f);
+		{
+			int brightness = (GetRValue(backColor) + GetGValue(backColor) + GetBValue(backColor)) / 3;
+			const int delta = 0x10;
+			auto adjustColor = [&](COLORREF c, int d) -> COLORREF {
+				int r = std::clamp(GetRValue(c) + d, 0, 255);
+				int g = std::clamp(GetGValue(c) + d, 0, 255);
+				int b = std::clamp(GetBValue(c) + d, 0, 255);
+				return RGB(r, g, b);
+				};
+			COLORREF buttonColor = (brightness < 128) ? adjustColor(backColor, +delta) : adjustColor(backColor, -delta);
+			colorref = (i == 2) ? RGB(0xE9, 0x48, 0x56) : buttonColor;
+		}
 		else
 			colorref = backColor;
 		color.SetFromCOLORREF(colorref);
