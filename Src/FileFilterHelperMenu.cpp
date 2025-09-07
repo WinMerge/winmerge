@@ -2,7 +2,6 @@
 #include "FileFilterHelper.h"
 #include "FileFilterHelperMenu.h"
 #include "FilterConditionDlg.h"
-#include "Merge.h"
 #include "resource.h"
 
 std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x, int y, CWnd* pParentWnd)

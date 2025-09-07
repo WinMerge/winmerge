@@ -13,7 +13,6 @@
 #include "OptionsPanel.h"
 #include "ColorSchemes.h"
 #include "IniOptionsMgr.h"
-#include "Merge.h"
 #include "MyColorDialog.h"
 
 #ifdef _DEBUG

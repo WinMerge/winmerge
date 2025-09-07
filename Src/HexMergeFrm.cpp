@@ -13,7 +13,6 @@
 
 #include "stdafx.h"
 #include "HexMergeFrm.h"
-#include "Merge.h"
 #include "HexMergeDoc.h"
 #include "HexMergeView.h"
 #include "OptionsDef.h"

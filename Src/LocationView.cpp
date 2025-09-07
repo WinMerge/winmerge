@@ -15,7 +15,6 @@
 #include "StdAfx.h"
 #include "LocationView.h"
 #include <vector>
-#include "Merge.h"
 #include "OptionsMgr.h"
 #include "MergeEditView.h"
 #include "MergeDoc.h"
