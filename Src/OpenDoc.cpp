@@ -6,7 +6,6 @@
 #include "OpenView.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "MergeApp.h"
 
 // COpenDoc
 

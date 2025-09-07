@@ -5,7 +5,6 @@
 #include "EncodingErrorBar.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
-#include "MergeApp.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
