@@ -992,7 +992,7 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 	auto tr2 = [](const String& text)
 	{
 		const bool containsNonAsciiChars = std::any_of(text.begin(), text.end(), [](auto c) { return (c >= 0x80); });
-		return containsNonAsciiChars ? text : tr(ucr::toUTF8(strutils::to_str(text)));
+		return containsNonAsciiChars ? text : I18n::tr(ucr::toUTF8(strutils::to_str(text)));
 	};
 	if (autoPlugin.m_name.empty())
 		autoPlugin.m_name = _T("<Automatic>");

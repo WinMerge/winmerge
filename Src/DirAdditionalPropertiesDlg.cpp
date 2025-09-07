@@ -68,7 +68,7 @@ Node& CDirAdditionalPropertiesDlg::MakeNode(Node& parentNode, const std::vector<
 	++it;
 	if (it != path.end())
 	{
-		node.hItem = m_treeProps.InsertItem(tr(ucr::toUTF8(node.name)).c_str(), parentNode.hItem);
+		node.hItem = m_treeProps.InsertItem(I18n::tr(ucr::toUTF8(node.name)).c_str(), parentNode.hItem);
 		return MakeNode(node, path, it);
 	}
 	node.canonicalName = strutils::join(path.begin(), path.end(), _T("."));

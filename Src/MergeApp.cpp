@@ -53,40 +53,6 @@ void LogErrorStringUTF8(const std::string& sz)
 	RootLogger::Error(sz);
 }
 
-/**
- * @brief Load string resource and return as CString.
- * @param [in] id Resource string ID.
- * @return Resource string as CString.
- */
-String LoadResString(unsigned id)
-{
-	return theApp.LoadString(id);
-}
-
-String tr(const std::string &str)
-{
-	String translated_str;
-	theApp.TranslateString(str, translated_str);
-	return translated_str;
-}
-
-String tr(const std::wstring &str)
-{
-	String translated_str;
-	theApp.TranslateString(str, translated_str);
-	return translated_str;
-}
-
-String tr(const char *msgctxt, const std::string &str)
-{
-	String translated_str;
-	if (msgctxt)
-		theApp.TranslateString("\x01\"" + std::string(msgctxt) + "\"" + str, translated_str);
-	else
-		theApp.TranslateString(str, translated_str);
-	return translated_str;
-}
-
 void AppErrorMessageBox(const String& msg)
 {
 	AppMsgBox::error(msg);

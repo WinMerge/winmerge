@@ -12,7 +12,7 @@
 
 #include "pch.h"
 #include "DirActions.h"
-#include "MergeApp.h"
+#include "I18n.h"
 #include "UnicodeString.h"
 #include "Logger.h"
 #include "7zCommon.h"

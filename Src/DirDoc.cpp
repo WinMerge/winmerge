@@ -385,7 +385,7 @@ void CDirDoc::Rescan()
 				if (errStr.empty())
 				{
 					if (GetReportFile().empty())
-						LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+						I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 				}
 				else
 				{
@@ -662,7 +662,7 @@ BOOL CDirDoc::SaveModified()
 	// Do not allow closing if there is a thread running
 	if (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
 	{
-		int ans = LangMessageBox(IDS_CONFIRM_CLOSE_WINDOW_COMPARING, MB_YESNO | MB_ICONWARNING);
+		int ans = I18n::MessageBox(IDS_CONFIRM_CLOSE_WINDOW_COMPARING, MB_YESNO | MB_ICONWARNING);
 		if (ans == IDNO)
 			return FALSE;
 		m_diffThread.Abort();
@@ -673,7 +673,7 @@ BOOL CDirDoc::SaveModified()
 
 	if (m_elapsed >= COMPARISON_TIME_THRESHOLD_SECONDS * 1000)
 	{
-		int ans = LangMessageBox(IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+		int ans = I18n::MessageBox(IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
 		if (ans == IDNO)
 			return FALSE;
 	}
@@ -965,7 +965,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 		paths.SetPath(i, ifileloc[i].filepath.empty() ? paths::NATIVE_NULL_DEVICE_NAME : paths::GetParentPath(ifileloc[i].filepath));
 	CDiffContext ctxt(paths, CMP_QUICK_CONTENT);
 	DirViewColItems ci(nFiles, std::vector<String>{});
-	String msg = LoadResString(IDS_COMPARE_LARGE_FILES) + _T("\n");
+	String msg = I18n::LoadString(IDS_COMPARE_LARGE_FILES) + _T("\n");
 	if (nFiles < 3)
 	{
 		String sidestr[] = { _("Left:"), _("Right:") };

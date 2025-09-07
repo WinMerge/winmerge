@@ -105,7 +105,7 @@ void COutputView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
 	CMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_OUTPUTVIEW));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 
 	CMenu* pPopup = menu.GetSubMenu(0);
 	ASSERT(pPopup != nullptr);

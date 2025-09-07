@@ -2,7 +2,7 @@
 #include "FilterEngine/FilterError.h"
 #include "FileFilter.h"
 #include "UnicodeString.h"
-#include "MergeApp.h"
+#include "I18n.h"
 #include "unicoder.h"
 
 String GetFilterErrorMessage(FilterErrorCode code)

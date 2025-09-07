@@ -181,7 +181,7 @@ String CMergeFrameCommon::GetDiffStatusString(int curDiffIndex, int diffCount)
 
 	tchar_t sCnt[32] {};
 	tchar_t sIdx[32] {};
-	String s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
+	String s = I18n::LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
 	const int signInd = curDiffIndex;
 	_itot_s(signInd + 1, sIdx, 10);
 	strutils::replace(s, _T("%1"), sIdx);

@@ -104,7 +104,7 @@ BOOL DirCmpReportDlg::OnInitDialog()
 	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)
 	{
 		const ReportTypeInfo & info = f_types[i];
-		int ind = m_ctlStyle.InsertString(i, tr(info.idDisplay).c_str());
+		int ind = m_ctlStyle.InsertString(i, I18n::tr(info.idDisplay).c_str());
 		m_ctlStyle.SetItemData(ind, info.reportType);
 		if (info.reportType == m_nReportType)
 			m_ctlStyle.SetCurSel(m_nReportType);
@@ -134,7 +134,7 @@ void DirCmpReportDlg::OnBtnClickReportBrowse()
 	UpdateData(TRUE);
 
 	String folder = m_sReportFile;
-	String filter = tr(f_types[m_ctlStyle.GetCurSel()].browseFilter);
+	String filter = I18n::tr(f_types[m_ctlStyle.GetCurSel()].browseFilter);
 
 	String chosenFilepath;
 	if (SelectFile(GetSafeHwnd(), chosenFilepath, false, folder.c_str(), _T(""), filter))
@@ -170,7 +170,7 @@ void DirCmpReportDlg::OnOK()
 
 	if (m_sReportFile.empty() && !m_bCopyToClipboard)
 	{
-		LangMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
+		I18n::MessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
 		m_ctlReportFile.SetFocus();
 		return;
 	}
@@ -179,7 +179,7 @@ void DirCmpReportDlg::OnOK()
 	{
 		if (paths::DoesPathExist(m_sReportFile) == paths::IS_EXISTING_FILE)
 		{
-			int overWrite = LangMessageBox(IDS_REPORT_FILEOVERWRITE,
+			int overWrite = I18n::MessageBox(IDS_REPORT_FILEOVERWRITE,
 					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
 					IDS_REPORT_FILEOVERWRITE);
 			if (overWrite == IDNO)

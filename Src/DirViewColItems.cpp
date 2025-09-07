@@ -15,7 +15,7 @@
 #include "DiffContext.h"
 #include "locality.h"
 #include "paths.h"
-#include "MergeApp.h"
+#include "I18n.h"
 #include "FileTransform.h"
 #include "PropertySystem.h"
 #include "DebugNew.h"
@@ -664,7 +664,7 @@ static String ColStatusAbbrGet(const CDiffContext *pCtxt, const void *p, int opt
 		id = N_("Different");
 	}
 
-	return id ? tr(id) : _T("");
+	return id ? I18n::tr(id) : _T("");
 }
 
 /**
@@ -722,7 +722,7 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 	}
 	if (di.diffcode.isBin())
 	{
-		return tr("EOL Type", "Binary");
+		return I18n::tr("EOL Type", "Binary");
 	}
 
 	char *id = 0;
@@ -745,7 +745,7 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 			stats.ncrlfs, stats.ncrs, stats.nlfs);
 	}
 	
-	return tr(id);
+	return I18n::tr(id);
 }
 
 /**
@@ -1507,7 +1507,7 @@ static DirColInfo f_cols3[] =
 String DirColInfo::GetDisplayName() const
 {
 	if (idName)
-		return tr(idNameContext, idName);
+		return I18n::tr(idNameContext, idName);
 	PropertySystem ps({ regName + 1 });
 	std::vector<String> names;
 	ps.GetDisplayNames(names);
@@ -1532,7 +1532,7 @@ String DirColInfo::GetDisplayName() const
 String DirColInfo::GetDescription() const
 {
 	if (idDesc)
-		return tr(idDesc);
+		return I18n::tr(idDesc);
 	return GetDisplayName();
 }
 

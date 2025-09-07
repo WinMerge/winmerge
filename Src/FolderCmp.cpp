@@ -21,7 +21,7 @@
 #include "FileFilterHelper.h"
 #include "PropertySystem.h"
 #include "Logger.h"
-#include "MergeApp.h"
+#include "I18n.h"
 #include "DebugNew.h"
 
 using CompareEngines::ByteCompare;

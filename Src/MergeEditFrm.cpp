@@ -14,7 +14,6 @@
 #include "stdafx.h"
 #include "MergeEditFrm.h"
 #include "FrameWndHelper.h"
-#include "Merge.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "LocationView.h"
@@ -367,7 +366,7 @@ LRESULT CMergeEditFrame::CPreviewNumPageButton::WindowProc(UINT message, WPARAM 
 	{
 		// Translate the One Page Button and Two Page Button on the Print Preivew toolbar.
 		String text = reinterpret_cast<TCHAR*>(lParam);
-		String translated = tr(text);
+		String translated = I18n::tr(text);
 		if (translated != text)
 		{
 			SetWindowText(translated.c_str());
@@ -396,7 +395,7 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 		if (pPreviewBar)
 		{
 			pPreviewBar->Invalidate();
-			theApp.TranslateDialog(pPreviewBar->GetSafeHwnd());
+			I18n::TranslateDialog(pPreviewBar->GetSafeHwnd());
 			m_wndPreviewNumPage.SubclassWindow(pPreviewBar->GetDlgItem(AFX_ID_PREVIEW_NUMPAGE)->GetSafeHwnd());
 			HWND hPreviewBar = pPreviewBar->GetSafeHwnd();
 			if (hPreviewBar != nullptr)

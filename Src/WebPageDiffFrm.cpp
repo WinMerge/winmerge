@@ -496,7 +496,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
+	String sCaption = I18n::LoadString(IDS_LOCBAR_CAPTION);
 	if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
 	{
 		TRACE0("Failed to create LocationBar\n");
@@ -540,7 +540,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 void CWebPageDiffFrame::TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst)
 {
-	swprintf_s(dst, dstbufsize, L"%s", tr(ucr::toUTF8(org)).c_str());
+	swprintf_s(dst, dstbufsize, L"%s", I18n::tr(ucr::toUTF8(org)).c_str());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1068,7 +1068,7 @@ void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	}
 	else if (compareState == IWebDiffWindow::COMPARING)
 	{
-		s = theApp.LoadString(IDS_WEBPAGE_COMPARING);
+		s = I18n::LoadString(IDS_WEBPAGE_COMPARING);
 	}
 	else
 	{
@@ -1659,7 +1659,7 @@ void CWebPageDiffFrame::OnToolsGenerateReport()
 
 	CWaitCursor waitstatus;
 	if (GenerateReport(s))
-		LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION | MB_MODELESS);
+		I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION | MB_MODELESS);
 }
 
 void CWebPageDiffFrame::OnRefresh()
@@ -1693,7 +1693,7 @@ void CWebPageDiffFrame::OnSetFocus(CWnd* pNewWnd)
  */
 void CWebPageDiffFrame::OnHelp()
 {
-	theApp.ShowHelp(WebPageDiffFrameHelpLocation);
+	CMergeApp::ShowHelp(WebPageDiffFrameHelpLocation);
 }
 
 /**

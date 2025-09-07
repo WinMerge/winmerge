@@ -77,7 +77,7 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 		// persist size via registry
 		m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("FolderCopyConfirmDlg"), false);
 
-		String strDontAskAgain = LoadResString(IDS_MESSAGEBOX_DONT_ASK_AGAIN);
+		String strDontAskAgain = I18n::LoadString(IDS_MESSAGEBOX_DONT_ASK_AGAIN);
 		SetDlgItemText(IDC_FLDCONFIRM_DONTASKAGAIN, strDontAskAgain);
 	}
 

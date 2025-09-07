@@ -813,7 +813,7 @@ bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 {
 	CMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_COMPARE));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (!pPopup)
 		return false;
@@ -1085,7 +1085,7 @@ void CMergeApp::UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage)
 			break;
 		case 1:
 			tchar_t buff[32];
-			wLangId = GetLangId();
+			wLangId = I18n::GetLangId();
 			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
 				ucr::setDefaultCodepage(tc::ttol(buff));
 			else
@@ -1195,7 +1195,7 @@ FileFilterHelper* CMergeApp::GetGlobalFileFilter()
  */
 void CMergeApp::ShowHelp(const tchar_t* helpLocation /*= nullptr*/)
 {
-	String sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, GetLangName()));
+	String sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, I18n::GetLangName()));
 	if (paths::DoesPathExist(sPath) != paths::IS_EXISTING_FILE)
 		sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, _T("")));
 	if (helpLocation == nullptr)
@@ -1443,7 +1443,7 @@ String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& 
  * @param [in] filepath Full path to file to check.
  * @return true if file is a projectfile.
  */
-bool CMergeApp::IsProjectFile(const String& filepath) const
+bool CMergeApp::IsProjectFile(const String& filepath)
 {
 	String ext;
 	paths::SplitFilename(filepath, nullptr, nullptr, &ext);
@@ -1627,75 +1627,6 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 }
 
 /**
- * @brief Return windows language ID of current WinMerge GUI language
- */
-WORD CMergeApp::GetLangId() const
-{
-	return m_pLangDlg->GetLangId();
-}
-
-String CMergeApp::GetLangName() const
-{
-	String name, ext;
-	paths::SplitFilename(theApp.m_pLangDlg->GetFileName(theApp.GetLangId()), nullptr, &name, &ext);
-	return name;
-}
-
-/**
- * @brief Lang aware version of CStatusBar::SetIndicators()
- */
-void CMergeApp::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) const
-{
-	m_pLangDlg->SetIndicators(sb, rgid, n);
-}
-
-/**
- * @brief Translate menu to current WinMerge GUI language
- */
-void CMergeApp::TranslateMenu(HMENU h) const
-{
-	m_pLangDlg->TranslateMenu(h);
-}
-
-/**
- * @brief Translate dialog to current WinMerge GUI language
- */
-void CMergeApp::TranslateDialog(HWND h) const
-{
-	CWnd *pWnd = CWnd::FromHandle(h);
-	pWnd->SetFont(const_cast<CFont *>(&m_fontGUI));
-	pWnd->SendMessageToDescendants(WM_SETFONT, (WPARAM)m_fontGUI.m_hObject, MAKELPARAM(FALSE, 0), TRUE);
-
-	m_pLangDlg->TranslateDialog(h);
-}
-
-/**
- * @brief Load string and translate to current WinMerge GUI language
- */
-String CMergeApp::LoadString(UINT id) const
-{
-	return m_pLangDlg->LoadString(id);
-}
-
-bool CMergeApp::TranslateString(const std::string& str, String& translated_str) const
-{
-	return m_pLangDlg->TranslateString(str, translated_str);
-}
-
-bool CMergeApp::TranslateString(const std::wstring& str, String& translated_str) const
-{
-	return m_pLangDlg->TranslateString(str, translated_str);
-}
-
-/**
- * @brief Load dialog caption and translate to current WinMerge GUI language
- */
-std::wstring CMergeApp::LoadDialogCaption(const tchar_t* lpDialogTemplateID) const
-{
-	return m_pLangDlg->LoadDialogCaption(lpDialogTemplateID);
-}
-
-/**
  * @brief Adds specified file to the recent projects list.
  * @param [in] sPathName Path to project file
  */
@@ -1753,7 +1684,7 @@ void CMergeApp::OnMergingMode()
 	bool bMergingMode = GetMergingMode();
 
 	if (!bMergingMode)
-		LangMessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_MODE);
+		I18n::MessageBox(IDS_MERGE_MODE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_MERGE_MODE);
 	SetMergingMode(!bMergingMode);
 }
 
@@ -1771,7 +1702,7 @@ void CMergeApp::OnUpdateMergingMode(CCmdUI* pCmdUI)
  */
 void CMergeApp::OnUpdateMergingStatus(CCmdUI *pCmdUI)
 {
-	String text = theApp.LoadString(IDS_MERGEMODE_MERGING);
+	String text = I18n::LoadString(IDS_MERGEMODE_MERGING);
 	pCmdUI->SetText(text.c_str());
 	pCmdUI->Enable(GetMergingMode());
 }

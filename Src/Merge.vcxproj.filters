@@ -795,6 +795,9 @@
     <ClCompile Include="WindowsManager.cpp">
       <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="I18nGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1516,6 +1519,12 @@
     </ClInclude>
     <ClInclude Include="WindowsManager.h">
       <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I18n.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="I18nGUI.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

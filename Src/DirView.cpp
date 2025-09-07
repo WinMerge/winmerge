@@ -715,7 +715,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
 	BCMenu *pPopup = static_cast<BCMenu*>(menu.GetSubMenu(0));
@@ -788,7 +788,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 
 	CMenu menuPluginsHolder;
 	menuPluginsHolder.LoadMenu(IDR_POPUP_PLUGINS_SETTINGS);
-	theApp.TranslateMenu(menuPluginsHolder.m_hMenu);
+	I18n::TranslateMenu(menuPluginsHolder.m_hMenu);
 	String s = _("Plugin Settings");
 	pPopup->AppendMenu(MF_SEPARATOR);
 	pPopup->AppendMenu(MF_POPUP, static_cast<int>(reinterpret_cast<uintptr_t>(menuPluginsHolder.m_hMenu)), s.c_str());
@@ -812,7 +812,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(1));
 	ASSERT(pPopup != nullptr);
@@ -1379,7 +1379,7 @@ void CDirView::OpenParentDirectory(CDirDoc *pDocOpen)
 	case AllowUpwardDirectory::No:
 		break;
 	default:
-		LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+		I18n::MessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 		break;
 	}
 }
@@ -3137,7 +3137,7 @@ void CDirView::OnToolsGeneratePatch()
 		const DIFFITEM &item = *it;
 		if (item.diffcode.isBin())
 		{
-			LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
+			I18n::MessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
 				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
 			bValidFiles = false;
 		}
@@ -3209,7 +3209,7 @@ void CDirView::OnCtxtDirZip(int flag)
 {
 	if (!HasZipSupport())
 	{
-		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		I18n::MessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
 		return;
 	}
 
@@ -3771,7 +3771,7 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		}
 		else
 		{
-			LangMessageBox(IDS_ERROR_INVALID_DIR_FILE_NAME, MB_ICONWARNING);
+			I18n::MessageBox(IDS_ERROR_INVALID_DIR_FILE_NAME, MB_ICONWARNING);
 		}
 	}
 }
@@ -4377,7 +4377,7 @@ void CDirView::OnFileEncoding()
 /** @brief Open help from mainframe when user presses F1*/
 void CDirView::OnHelp()
 {
-	theApp.ShowHelp(DirViewHelpLocation);
+	CMergeApp::ShowHelp(DirViewHelpLocation);
 }
 
 /**
@@ -4623,7 +4623,7 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		::GetCursorPos(&point);
 		CMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW_COMPAREMETHOD));
-		theApp.TranslateMenu(menu.m_hMenu);
+		I18n::TranslateMenu(menu.m_hMenu);
 		menu.GetSubMenu(0)->CheckMenuRadioItem(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_SIZE, 
 			ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS + GetOptionsMgr()->GetInt(OPT_CMP_METHOD), MF_BYCOMMAND);
 		int nID = menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, this);

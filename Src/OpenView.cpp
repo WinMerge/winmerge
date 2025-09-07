@@ -207,7 +207,7 @@ void COpenView::OnInitialUpdate()
 
 	m_sizeOrig = GetTotalSize();
 
-	theApp.TranslateDialog(m_hWnd);
+	I18n::TranslateDialog(m_hWnd);
 
 	if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_LOGO), _T("IMAGE")))
 	{
@@ -735,7 +735,7 @@ void COpenView::OnCompare(UINT nID)
 			!std::any_of(m_files.begin(), m_files.end(), 
 				[](const auto& path) { return paths::IsURL(path) || paths::IsNullDeviceName(path); }))
 		{
-			LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
+			I18n::MessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 			return;
 		}
 	}
@@ -898,7 +898,7 @@ void COpenView::OnLoadProject()
 		return;
 
 	ProjectFile project;
-	if (!theApp.LoadProjectFile(fileName, project))
+	if (!CMergeApp::LoadProjectFile(fileName, project))
 		return;
 	if (project.Items().size() == 0)
 		return;
@@ -973,7 +973,7 @@ void COpenView::OnLoadProject()
 	}
 	UpdateData(FALSE);
 	UpdateButtonStates();
-	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
+	I18n::MessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
 }
 
 /** 
@@ -1082,10 +1082,10 @@ void COpenView::OnSaveProject()
 
 	project.Items().push_back(projItem);
 
-	if (!theApp.SaveProjectFile(fileName, project))
+	if (!CMergeApp::SaveProjectFile(fileName, project))
 		return;
 
-	LangMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
+	I18n::MessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
 }
 
 void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupID)
@@ -1094,7 +1094,7 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 	GetDlgItem(nID)->GetWindowRect(&rcButton);
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(nPopupID));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
 	{
@@ -1553,7 +1553,7 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
  */
 void COpenView::SetStatus(UINT msgID)
 {
-	String msg = theApp.LoadString(msgID);
+	String msg = I18n::LoadString(msgID);
 	SetDlgItemText(IDC_OPEN_STATUS, msg);
 }
 
@@ -1787,7 +1787,7 @@ void COpenView::OnEditAction(int msg, WPARAM wParam, LPARAM lParam)
  */
 void COpenView::OnHelp()
 {
-	theApp.ShowHelp(OpenDlgHelpLocation);
+	CMergeApp::ShowHelp(OpenDlgHelpLocation);
 }
 
 /////////////////////////////////////////////////////////////////////////////

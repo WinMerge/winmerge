@@ -131,7 +131,7 @@ void PropColorSchemes::UpdateColorScheme()
 		SysColorHook::Hook(AfxGetInstanceHandle());
 	if (result != COption::OPT_OK)
 	{
-		LangMessageBox(IDS_OPT_IMPORT_ERR, MB_ICONWARNING);
+		I18n::MessageBox(IDS_OPT_IMPORT_ERR, MB_ICONWARNING);
 		return;
 	}
 	GetParent()->GetParent()->PostMessage(WM_APP + IDC_COLOR_SCHEMES);

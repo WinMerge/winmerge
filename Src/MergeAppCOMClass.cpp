@@ -17,7 +17,7 @@ MergeAppCOMClass::~MergeAppCOMClass()
 
 HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text, BSTR* pRet)
 {
-	*pRet = SysAllocString(tr(text).c_str());
+	*pRet = SysAllocString(I18n::tr(text).c_str());
 	return S_OK;
 }
 

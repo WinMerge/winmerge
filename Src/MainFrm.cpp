@@ -470,7 +470,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
-	theApp.SetIndicators(m_wndStatusBar, StatusbarIndicators,
+	I18n::SetIndicators(m_wndStatusBar, StatusbarIndicators,
 			static_cast<int>(std::size(StatusbarIndicators)));
 
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
@@ -578,14 +578,14 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	{
 		m_pImageMenu.reset(new BCMenu);
 		m_pImageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
-		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_IMAGE_MENU).c_str())); 
 	}
 
 	if (view == MENU_WEBPAGEDIFFVIEW)
 	{
 		m_pWebPageMenu.reset(new BCMenu);
 		m_pWebPageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_WEBPAGEDIFFVIEW));
-		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pWebPageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(LoadResString(IDS_WEBPAGE_MENU).c_str())); 
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pWebPageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(I18n::LoadString(IDS_WEBPAGE_MENU).c_str())); 
 	}
 
 	// Load bitmaps to menuitems
@@ -597,7 +597,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 
 	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME, &m_wndToolBar);
 
-	theApp.TranslateMenu(m_pMenus[view]->m_hMenu);
+	I18n::TranslateMenu(m_pMenus[view]->m_hMenu);
 
 	return (m_pMenus[view]->Detach());
 
@@ -1194,7 +1194,7 @@ void CMainFrame::OnOptions()
 			theApp.m_pLangDlg->SetLanguage(lang, true);
 	
 			// Update status bar inicator texts
-			theApp.SetIndicators(m_wndStatusBar, 0, 0);
+			I18n::SetIndicators(m_wndStatusBar, 0, 0);
 	
 			// Update the current menu
 			ReloadMenu();
@@ -1240,7 +1240,7 @@ void CMainFrame::OnOptions()
 			DarkMode::setDarkModeConfig(static_cast<UINT>(dmTypeNew));
 			DarkMode::setDefaultColors(true);
 			DarkMode::setDarkTitleBarEx(m_hWnd, true);
-			theApp.ReloadCustomSysColors();
+			CMergeApp::ReloadCustomSysColors();
 			AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
 			AfxGetMainWnd()->SendMessage(WM_SETTINGCHANGE, 0, reinterpret_cast<LPARAM>(_T("ImmersiveColorSet")));
 			RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
@@ -1631,7 +1631,7 @@ void CMainFrame::UpdateTitleBarAndTabBar()
  */
 void CMainFrame::UpdateResources()
 {
-	m_wndStatusBar.SetPaneText(0, theApp.LoadString(AFX_IDS_IDLEMESSAGE).c_str());
+	m_wndStatusBar.SetPaneText(0, I18n::LoadString(AFX_IDS_IDLEMESSAGE).c_str());
 
 	for (auto pDoc : GetAllDirDocs())
 		pDoc->UpdateResources();
@@ -1652,7 +1652,7 @@ void CMainFrame::UpdateResources()
  */
 void CMainFrame::OnHelpContents()
 {
-	theApp.ShowHelp();
+	CMergeApp::ShowHelp();
 }
 
 /**
@@ -1661,7 +1661,7 @@ void CMainFrame::OnHelpContents()
 void CMainFrame::GetMessageString(UINT nID, CString& rMessage) const
 {
 	// load appropriate string
-	const String s = theApp.LoadString(nID);
+	const String s = I18n::LoadString(nID);
 	if (s.length() > 0)
 		AfxExtractSubString(rMessage, s.c_str(), 0);
 }
@@ -1897,7 +1897,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 	fileopenflags_t dwFlags[3] = {FFILEOPEN_NONE, FFILEOPEN_NONE, FFILEOPEN_NONE};
 	if (fileCount == 1)
 	{
-		if (theApp.IsProjectFile(tFiles[0]))
+		if (CMergeApp::IsProjectFile(tFiles[0]))
 		{
 			theApp.LoadAndOpenProjectFile(tFiles[0]);
 			return;
@@ -2154,7 +2154,7 @@ void CMainFrame::OnToolsFilters()
 			if (lineFiltersEnabledOrig != linefiltersEnabled || 
 					!theApp.m_pLineFilters->Compare(lineFilters.get()) || origFilter != newFilter)
 			{
-				int res = LangMessageBox(IDS_FILTERCHANGED, MB_ICONWARNING | MB_YESNO);
+				int res = I18n::MessageBox(IDS_FILTERCHANGED, MB_ICONWARNING | MB_YESNO);
 				if (res == IDYES)
 					bFolderCompareRescan = true;
 			}
@@ -2838,7 +2838,7 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 			}
 		}
 
-		strFullText = theApp.LoadString(static_cast<UINT>(nID));
+		strFullText = I18n::LoadString(static_cast<UINT>(nID));
 		// don't handle the message if no string resource found
 		if (strFullText.empty())
 			return FALSE;
@@ -2894,7 +2894,7 @@ bool CMainFrame::AskCloseConfirmation()
 			if (!pDoc->HasDiffs())
 				return true;
 		}
-		ret = LangMessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);
+		ret = I18n::MessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);
 	}
 	return (ret == IDYES);
 }
@@ -2905,7 +2905,7 @@ bool CMainFrame::AskCloseConfirmation()
  */
 void CMainFrame::OnHelpReleasenotes()
 {
-	String sPath = paths::ConcatPath(env::GetProgPath(),strutils::format(RelNotes, theApp.GetLangName()));
+	String sPath = paths::ConcatPath(env::GetProgPath(),strutils::format(RelNotes, I18n::GetLangName()));
 	if (paths::DoesPathExist(sPath) != paths::IS_EXISTING_FILE)
 		sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(RelNotes, _T("")));
 	shell::Open(sPath.c_str());
@@ -3054,7 +3054,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	}
 	else
 	{
-		LangMessageBox(IDS_ERROR_CONF_RESOLVE, MB_ICONSTOP);
+		I18n::MessageBox(IDS_ERROR_CONF_RESOLVE, MB_ICONSTOP);
 	}
 	return conflictCompared;
 }
@@ -3165,7 +3165,7 @@ void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 		break;
 	}
 	VERIFY(menu.LoadMenu(id));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
 	{
@@ -3329,7 +3329,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 	if (mrus.size() == 0)
 	{
 		// no script : create a <empty> entry
-		::AppendMenu(hMenu, MF_STRING, ID_NO_MRU, theApp.LoadString(IDS_NO_EDIT_SCRIPTS).c_str());
+		::AppendMenu(hMenu, MF_STRING, ID_NO_MRU, I18n::LoadString(IDS_NO_EDIT_SCRIPTS).c_str());
 	}
 	else
 	{
@@ -3787,7 +3787,7 @@ void CMainFrame::ShowOutputPane(bool bShow)
 
 		FrameWndHelper::RemoveBarBorder(this);
 
-		String sCaption = theApp.LoadString(IDS_OUTPUTBAR_CAPTION);
+		String sCaption = I18n::LoadString(IDS_OUTPUTBAR_CAPTION);
 		if (!m_wndOutputBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_OUTPUT_BAR))
 		{
 			TRACE0("Failed to create tab bar\n");
@@ -3877,7 +3877,7 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			DarkMode::setDarkModeConfig(static_cast<UINT>(dmTypeNew));
 			DarkMode::setDefaultColors(true);
 			DarkMode::setDarkTitleBarEx(m_hWnd, true);
-			theApp.ReloadCustomSysColors();
+			CMergeApp::ReloadCustomSysColors();
 
 			// Update all dirdoc settings
 			for (auto pMergeDoc : GetAllMergeDocs())

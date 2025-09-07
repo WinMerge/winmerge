@@ -18,7 +18,7 @@
 #include <shlobj.h>
 #pragma warning (pop)
 #include "paths.h"
-#include "MergeApp.h"
+#include "I18n.h"
 #include "MergeDarkMode.h"
 
 static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,

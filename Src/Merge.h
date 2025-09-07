@@ -69,16 +69,7 @@ public:
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
-
-	WORD GetLangId() const;
-	String GetLangName() const;
-	void SetIndicators(CStatusBar&, const UINT*, int) const;
-	void TranslateMenu(HMENU) const;
-	void TranslateDialog(HWND) const;
-	String LoadString(UINT) const;
-	bool TranslateString(const std::string&, String&) const;
-	bool TranslateString(const std::wstring&, String&) const;
-	std::wstring LoadDialogCaption(const tchar_t*) const;
+	CFont m_fontGUI;
 
 	CMergeApp();
 	~CMergeApp();
@@ -92,7 +83,7 @@ public:
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper* GetGlobalFileFilter();
-	void ShowHelp(const tchar_t* helpLocation = nullptr);
+	static void ShowHelp(const tchar_t* helpLocation = nullptr);
 	static void OutputConsole(const String& message);
 	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static bool CreateBackup(bool bFolder, const String& pszPath);
@@ -137,14 +128,14 @@ protected:
 	void ApplyCommandLineConfigOptions(MergeCmdLineInfo & cmdInfo);
 	bool ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo);
 	void ShowDialog(MergeCmdLineInfo::DialogType type);
-	void ReloadCustomSysColors();
+	static void ReloadCustomSysColors();
 
 	// End MergeArgs.cpp
 
-	bool LoadProjectFile(const String& sProject, ProjectFile &project);
-	bool SaveProjectFile(const String& sProject, const ProjectFile &project);
+	static bool IsProjectFile(const String& filepath);
+	static bool LoadProjectFile(const String& sProject, ProjectFile &project);
+	static bool SaveProjectFile(const String& sProject, const ProjectFile &project);
 	bool LoadAndOpenProjectFile(const String& sFilepath, const String& sReportFile = _T(""));
-	bool IsProjectFile(const String& filepath) const;
 
 	//@{
 	/**
@@ -192,7 +183,6 @@ private:
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	bool m_bEnableExitCode;
-	CFont m_fontGUI;
 	ATL::CImage m_imageForInitializingGdiplus;
 	std::list<std::function<void()>> m_idleFuncs;
 	std::list<CWinThread*> m_threads;

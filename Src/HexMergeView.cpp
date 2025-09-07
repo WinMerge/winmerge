@@ -582,7 +582,7 @@ void CHexMergeView::OnPrevdiff()
 /** @brief Open help from mainframe when user presses F1*/
 void CHexMergeView::OnHelp()
 {
-	theApp.ShowHelp(HexMergeViewHelpLocation);
+	CMergeApp::ShowHelp(HexMergeViewHelpLocation);
 }
 
 void CHexMergeView::ZoomText(int amount)

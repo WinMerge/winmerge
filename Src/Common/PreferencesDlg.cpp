@@ -169,20 +169,20 @@ void CPreferencesDlg::OnSize(UINT nType, int cx, int cy)
 	
 void CPreferencesDlg::OnHelpButton() 
 {
-	theApp.ShowHelp(OptionsHelpLocation);
+	CMergeApp::ShowHelp(OptionsHelpLocation);
 }
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nResourceID)
 {
-	String sPath = theApp.LoadString(nResourceID);
+	String sPath = I18n::LoadString(nResourceID);
 	AddPage(pPage, sPath.c_str());
 }
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nTopHeading, UINT nSubHeading)
 {
-	String sPath = theApp.LoadString(nTopHeading);
+	String sPath = I18n::LoadString(nTopHeading);
 	sPath += _T(">");
-	sPath += theApp.LoadString(nSubHeading);
+	sPath += I18n::LoadString(nSubHeading);
 	AddPage(pPage, sPath.c_str());
 }
 
@@ -383,10 +383,10 @@ void CPreferencesDlg::OnImportButton()
 			theApp.m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
 
 			ReadOptions(true);
-			LangMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
+			I18n::MessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
 		}
 		else
-			LangMessageBox(IDS_OPT_IMPORT_ERR, MB_ICONWARNING);
+			I18n::MessageBox(IDS_OPT_IMPORT_ERR, MB_ICONWARNING);
 	}
 }
 
@@ -409,9 +409,9 @@ void CPreferencesDlg::OnExportButton()
 		SaveOptions();
 
 		if (m_pOptionsMgr->ExportOptions(settingsFile, true) == COption::OPT_OK)
-			LangMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
+			I18n::MessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
 		else
-			LangMessageBox(IDS_OPT_EXPORT_ERR, MB_ICONWARNING);
+			I18n::MessageBox(IDS_OPT_EXPORT_ERR, MB_ICONWARNING);
 	}
 }
 

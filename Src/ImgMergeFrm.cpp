@@ -430,7 +430,7 @@ void CImgMergeFrame::OnChildPaneEvent(const IImgMergeWindow::Event& evt)
 	{
 		BCMenu menuPopup;
 		menuPopup.LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMG_CTXT));
-		theApp.TranslateMenu(menuPopup.m_hMenu);
+		I18n::TranslateMenu(menuPopup.m_hMenu);
 		BCMenu* pPopup = (BCMenu *)menuPopup.GetSubMenu(0);
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 			evt.x, evt.y, AfxGetMainWnd());
@@ -502,7 +502,7 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
+	String sCaption = I18n::LoadString(IDS_LOCBAR_CAPTION);
 	if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
 	{
 		TRACE0("Failed to create LocationBar\n");
@@ -532,7 +532,7 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 void CImgMergeFrame::TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst)
 {
-	swprintf_s(dst, dstbufsize, L"%s", tr("ImgMergeFrame|LocationPane", ucr::toUTF8(org)).c_str());
+	swprintf_s(dst, dstbufsize, L"%s", I18n::tr("ImgMergeFrame|LocationPane", ucr::toUTF8(org)).c_str());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2346,7 +2346,7 @@ void CImgMergeFrame::OnToolsGenerateReport()
 
 	CWaitCursor waitstatus;
 	if (GenerateReport(s, allPages))
-		LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+		I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }
 
 void CImgMergeFrame::OnRefresh()
@@ -2381,7 +2381,7 @@ void CImgMergeFrame::OnSetFocus(CWnd* pNewWnd)
  */
 void CImgMergeFrame::OnHelp()
 {
-	theApp.ShowHelp(ImgMergeFrameHelpLocation);
+	CMergeApp::ShowHelp(ImgMergeFrameHelpLocation);
 }
 
 /**

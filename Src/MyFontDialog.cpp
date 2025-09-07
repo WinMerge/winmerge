@@ -13,7 +13,7 @@ static void init(CFontDialog& dlg)
 	{
 		dlg.m_cf.Flags |= CF_ENABLEHOOK | CF_ENABLETEMPLATE;
 		dlg.m_cf.lpfnHook = [](HWND hdlg, UINT msg, WPARAM wParam, LPARAM lParam) -> UINT_PTR {
-			if (msg == WM_INITDIALOG) LangTranslateDialog(hdlg);
+			if (msg == WM_INITDIALOG) I18n::TranslateDialog(hdlg);
 			return DarkMode::HookDlgProc(hdlg, msg, wParam, lParam);
 		};
 		dlg.m_cf.hInstance = GetModuleHandle(nullptr);

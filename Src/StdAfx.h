@@ -69,12 +69,26 @@ static const UINT SmallTimeDiff = 2;
 
 #include "UnicodeString.h"
 #include "MergeApp.h"
+#include "I18n.h"
+#include "I18nGUI.h"
 
-	/** @brief Wrapper around CMergeApp::TranslateDialog() */
-void NTAPI LangTranslateDialog(HWND);
+/**
+ * @brief Load string resource and return as CString.
+ * @param [in] id Resource string ID.
+ * @return Resource string as CString.
+ */
+inline String LoadResString(unsigned id)
+{
+	return I18n::LoadString(id);
+}
 
-	/** @brief Lang aware version of AfxMessageBox() */
-int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
+/**
+ * @brief Wrapper around CMergeApp::TranslateDialog()
+ */
+inline void NTAPI LangTranslateDialog(HWND h)
+{
+	I18n::TranslateDialog(h);
+}
 
 	/** @brief include for the custom dialog boxes, with do not ask/display again */
 #include "MessageBoxDialog.h"

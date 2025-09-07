@@ -49,13 +49,13 @@ PropGeneral::~PropGeneral()
 BOOL PropGeneral::OnInitDialog()
 {
 	SetDlgItemComboBoxList(IDC_AUTO_COMPLETE_SOURCE,
-		{ tr("Options dialog|General|Open dialog Auto completion","Disabled"), _("From file system"), _("From Most Recently Used list") });
+		{ I18n::tr("Options dialog|General|Open dialog Auto completion","Disabled"), _("From file system"), _("From Most Recently Used list") });
 	SetDlgItemComboBoxList(IDC_ESC_CLOSES_WINDOW,
-		{ tr("Options dialog|General|Close windows with Esc","Disabled"), _("MDI child window or main window"), _("MDI child window only"), _("Close main window if only one MDI child window") });
+		{ I18n::tr("Options dialog|General|Close windows with Esc","Disabled"), _("MDI child window or main window"), _("MDI child window only"), _("Close main window if only one MDI child window") });
 	SetDlgItemComboBoxList(IDC_SINGLE_INSTANCE,
-		{ tr("Options dialog|General|Single instance mode","Disabled"), _("Allow only one instance to run"), _("Allow only one instance; wait for termination") });
+		{ I18n::tr("Options dialog|General|Single instance mode","Disabled"), _("Allow only one instance to run"), _("Allow only one instance; wait for termination") });
 	SetDlgItemComboBoxList(IDC_AUTO_RELOAD_MODIFIED_FILES,
-		{ tr("Options dialog|General|Auto-reload modified files","Disabled"), _("Only on window activated"), _("Immediately") });
+		{ I18n::tr("Options dialog|General|Auto-reload modified files","Disabled"), _("Only on window activated"), _("Immediately") });
 
 	OptionsPanel::OnInitDialog();
 

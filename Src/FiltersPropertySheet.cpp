@@ -4,7 +4,6 @@
  */
 #include <stdafx.h>
 #include "FiltersPropertySheet.h"
-#include "Merge.h"
 
 constexpr UINT_PTR IDT_LOADPOSITION = 1;
 
@@ -37,7 +36,7 @@ END_MESSAGE_MAP()
 BOOL CFiltersPropertySheet::OnInitDialog()
 {
 	BOOL bResult = CPropertySheet::OnInitDialog();
-	theApp.TranslateDialog(m_hWnd);
+	I18n::TranslateDialog(m_hWnd);
 
 	m_constraint.InitializeCurrentSize(this);
 	m_constraint.SubclassWnd(); // install subclassing

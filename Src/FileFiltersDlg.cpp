@@ -45,7 +45,7 @@ FileFiltersDlg::FileFiltersDlg()
 	, m_pFileFilterHelper(new FileFilterHelper())
 	, m_pFileFilterHelperOrg(nullptr)
 {
-	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
+	m_strCaption = I18n::LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
 	m_psp.dwFlags |= PSP_USETITLE;
 	m_psp.hIcon = AfxGetApp()->LoadIcon(IDI_FILEFILTER);
@@ -634,7 +634,7 @@ void FileFiltersDlg::UpdateFiltersList()
  */
 void FileFiltersDlg::OnHelp()
 {
-	theApp.ShowHelp(FilterHelpLocation);
+	CMergeApp::ShowHelp(FilterHelpLocation);
 }
 
 /**
@@ -662,19 +662,19 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 			// If user wants to, overwrite existing filter
 			if (paths::DoesPathExist(userPath) == paths::IS_EXISTING_FILE)
 			{
-				int res = LangMessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
+				int res = I18n::MessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
 					MB_ICONWARNING);
 				if (res == IDYES)
 				{
 					if (!CopyFile(s.c_str(), userPath.c_str(), FALSE))
 					{
-						LangMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
+						I18n::MessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
 					}
 				}
 			}
 			else
 			{
-				LangMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
+				I18n::MessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
 			}
 		}
 		else

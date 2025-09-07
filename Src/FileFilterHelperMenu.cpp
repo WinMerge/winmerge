@@ -9,7 +9,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 {
 	std::optional<String> result;
 	VERIFY(LoadMenu(IDR_POPUP_FILTERMENU));
-	theApp.TranslateMenu(m_hMenu);
+	I18n::TranslateMenu(m_hMenu);
 	for (;;)
 	{
 		CMenu* pPopup = GetSubMenu(0);

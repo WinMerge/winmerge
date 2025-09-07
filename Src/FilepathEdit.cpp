@@ -13,7 +13,6 @@
 #include "stdafx.h"
 #include <Shlwapi.h>
 #include "FilepathEdit.h"
-#include "Merge.h"
 #include "ClipBoard.h"
 #include "FileOrFolderSelect.h"
 #include "Win_VersionHelper.h"
@@ -246,7 +245,7 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 
 		CMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_EDITOR_HEADERBAR));
-		theApp.TranslateMenu(menu.m_hMenu);
+		I18n::TranslateMenu(menu.m_hMenu);
 
 		CMenu* pPopup = menu.GetSubMenu(0);
 		ASSERT(pPopup != nullptr);

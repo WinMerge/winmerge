@@ -1,5 +1,4 @@
 #include <StdAfx.h>
-#include "Merge.h"
 #include "TrDialogs.h"
 #include "Logger.h"
 #include "MergeDarkMode.h"
@@ -30,7 +29,7 @@ void StaticDlgUtils::WildcardRemoveDuplicatePatterns(String& patterns)
 
 BOOL CTrDialog::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
+	I18n::TranslateDialog(m_hWnd);
 	__super::OnInitDialog();
 	DarkMode::setDarkWndSafe(GetSafeHwnd(), true);
 	return TRUE;
@@ -50,7 +49,7 @@ void CTrDialog::OnCancel()
 
 BOOL CTrPropertyPage::OnInitDialog()
 {
-	theApp.TranslateDialog(m_hWnd);
+	I18n::TranslateDialog(m_hWnd);
 	__super::OnInitDialog();
 	if (HWND hSelf = GetSafeHwnd())
 	{
@@ -79,7 +78,7 @@ BOOL CTrDialogBar::Create(CWnd* pParentWnd, LPCTSTR lpszTemplateName,
 {
 	BOOL bSucceeded = __super::Create(pParentWnd, lpszTemplateName, nStyle, nID);
 	if (bSucceeded)
-		theApp.TranslateDialog(m_hWnd);
+		I18n::TranslateDialog(m_hWnd);
 	return bSucceeded;
 }
 
@@ -88,6 +87,6 @@ BOOL CTrDialogBar::Create(CWnd* pParentWnd, UINT nIDTemplate,
 {
 	BOOL bSucceeded = __super::Create(pParentWnd, nIDTemplate, nStyle, nID);
 	if (bSucceeded)
-		theApp.TranslateDialog(m_hWnd);
+		I18n::TranslateDialog(m_hWnd);
 	return bSucceeded;
 }
