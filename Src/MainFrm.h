@@ -26,6 +26,7 @@
 #include "Logger.h"
 #include <Poco/Channel.h>
 #include "MergeDarkMode.h"
+#include "WindowsManager.h"
 
 class BCMenu;
 class CDirView;
@@ -222,7 +223,7 @@ public:
 		const std::vector<std::wstring>& events, bool addAllMenu, unsigned baseId);
 	static String GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring>& events, unsigned baseId);
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
-	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>& GetChildArray() const { return m_arrChild; }
+	CWindowsManager& GetWindowsManager() { return m_wndManager; }
 	IMergeDoc* GetActiveIMergeDoc();
 	DirWatcher* GetDirWatcher() { return m_pDirWatcher.get(); }
 	void WatchDocuments(IMergeDoc* pMergeDoc);
@@ -260,7 +261,7 @@ protected:
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
 	COutputBar m_wndOutputBar;
-	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
+	CWindowsManager m_wndManager;
 	Poco::Channel::Ptr m_pLogChannel;
 	int m_logging;
 
@@ -294,6 +295,20 @@ protected:
 				{
 					SetRedraw(FALSE);
 				}
+				LRESULT result = CWnd::WindowProc(message, wParam, lParam);
+				if (CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd())
+				{
+					if (message == WM_MDICREATE)
+						pMainFrame->GetWindowsManager().AddChildFrame((CMDIChildWnd*)CWnd::FromHandle(reinterpret_cast<HWND>(result)));
+					else
+						pMainFrame->GetWindowsManager().ChildFrameActivated((CMDIChildWnd*)CWnd::FromHandle(reinterpret_cast<HWND>(wParam)));
+				}
+				return result;
+			}
+			case WM_MDIDESTROY:
+			{
+				CMDIChildWnd* pChild = (CMDIChildWnd*)CWnd::FromHandle(reinterpret_cast<HWND>(wParam));
+				((CMainFrame*)AfxGetMainWnd())->GetWindowsManager().RemoveChildFrame(pChild);
 				break;
 			}
 			case WM_MDISETMENU:

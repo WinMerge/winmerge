@@ -73,7 +73,6 @@
 #include "UniFile.h"
 #include "TFile.h"
 #include "Shell.h"
-#include "WindowsManagerDialog.h"
 #include "ClipboardHistory.h"
 #include "locality.h"
 #include "DirWatcher.h"
@@ -344,11 +343,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	// Status bar
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
-	// Window manager
-	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
-	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
-	ON_MESSAGE(WMU_CHILDFRAMEACTIVATE, &CMainFrame::OnChildFrameActivate)
-	ON_MESSAGE(WMU_CHILDFRAMEACTIVATED, &CMainFrame::OnChildFrameActivated)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -402,8 +396,6 @@ CMainFrame::~CMainFrame()
 {
 	GetOptionsMgr()->SaveOption(OPT_TABBAR_AUTO_MAXWIDTH, m_wndTabBar.GetAutoMaxWidth());
 	strdiff::Close();
-
-	m_arrChild.RemoveAll();
 }
 
 const tchar_t CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
@@ -2224,11 +2216,9 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 
-	if (WM_KEYDOWN == pMsg->message && VK_TAB == pMsg->wParam && GetAsyncKeyState(VK_CONTROL) < 0 && m_arrChild.GetSize() > 1)
+	if (WM_KEYDOWN == pMsg->message && VK_TAB == pMsg->wParam && GetAsyncKeyState(VK_CONTROL) < 0 && m_wndManager.GetChildCount() > 1)
 	{
-		CWindowsManagerDialog* pDlg = new CWindowsManagerDialog;
-		pDlg->Create(CWindowsManagerDialog::IDD, this);
-		pDlg->ShowWindow(SW_SHOW);
+		m_wndManager.ShowDialog(this);
 		return TRUE;
 	}
 
@@ -3768,68 +3758,6 @@ void CMainFrame::OnAccelQuit()
 	// TODO: Add your command handler code here
 
 	SendMessage(WM_CLOSE);
-}
-
-LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)
-{
-	for (int i = 0; i < m_arrChild.GetSize(); ++i)
-	{
-		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
-		{
-			return 0;
-		}
-	}
-
-	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
-
-	return 1;
-}
-
-LRESULT CMainFrame::OnChildFrameRemoved(WPARAM wParam, LPARAM lParam)
-{
-	for (int i = 0; i < m_arrChild.GetSize(); ++i)
-	{
-		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
-		{
-			m_arrChild.RemoveAt(i);
-			break;
-		}
-	}
-
-	return 1;
-}
-
-LRESULT CMainFrame::OnChildFrameActivate(WPARAM wParam, LPARAM lParam)
-{
-	for (int i = 0; i < m_arrChild.GetSize(); ++i)
-	{
-		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
-		{
-			CMDIChildWnd* pMDIChild = m_arrChild.GetAt(i);
-			if (pMDIChild->IsIconic())
-				pMDIChild->ShowWindow(SW_RESTORE);
-			MDIActivate(pMDIChild);
-			break;
-		}
-	}
-
-	return 1;
-}
-// put lParam as index 0 in m_arrChild
-LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
-{
-	for (int i = 0; i < m_arrChild.GetSize(); ++i)
-	{
-		if (reinterpret_cast<CMDIChildWnd*>(lParam) == m_arrChild.GetAt(i))
-		{
-			m_arrChild.RemoveAt(i);
-			break;
-		}
-	}
-
-	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
-
-	return 1;
 }
 
 void CMainFrame::UpdateSystemMenu()

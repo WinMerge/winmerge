@@ -792,6 +792,9 @@
     <ClCompile Include="FiltersPropertySheet.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WindowsManager.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1510,6 +1513,9 @@
     </ClInclude>
     <ClInclude Include="FiltersPropertySheet.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsManager.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

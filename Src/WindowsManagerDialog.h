@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "MainFrm.h"
+class CWindowsManager;
 
 #define WMD_LISTCOLOR_BKG					RGB(255, 255, 213)
 #define WMD_LISTCOLOR_BKGSEL				RGB(255, 165, 0)
@@ -20,11 +20,11 @@ class CWindowsManagerDialog : public CDialog
 {
 // Construction
 public:
-	CWindowsManagerDialog(CWnd* pParent = NULL);   // standard constructor
+	CWindowsManagerDialog(CWindowsManager& manager, CWnd* pParent = NULL);   // standard constructor
 	BOOL Create(UINT nID, CWnd* pWnd = NULL, BOOL bAutoCleanup = TRUE)
 	{
 		m_bAutoCleanup = bAutoCleanup;
-		m_pFrame = DYNAMIC_DOWNCAST(CMainFrame, pWnd);
+		m_pFrame = DYNAMIC_DOWNCAST(CMDIFrameWnd, pWnd);
 
 		return CDialog::Create(nID, pWnd);
 	}
@@ -46,7 +46,8 @@ protected:
 	CListCtrl m_List;
 	CImageList* m_pIL;
 	BOOL m_bAutoCleanup;
-	CMainFrame* m_pFrame;
+	CMDIFrameWnd* m_pFrame;
+	CWindowsManager& m_manager;
 
 protected:
 	void AdjustSize();

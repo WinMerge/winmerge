@@ -35,12 +35,10 @@ CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 	, m_bActivated(false)
 	, m_nLastSplitPos{0}
 {
-	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEADDED, 0, reinterpret_cast<LPARAM>(this));
 }
 
 CMergeFrameCommon::~CMergeFrameCommon()
 {
-	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEREMOVED, 0, reinterpret_cast<LPARAM>(this));
 }
 
 void CMergeFrameCommon::ActivateFrame(int nCmdShow)
@@ -535,7 +533,4 @@ void CMergeFrameCommon::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* 
 	// call the base class to let standard processing switch to
 	// the top-level menu associated with this window
 	__super::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
-
-	if (bActivate)
-		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATED, 0, reinterpret_cast<LPARAM>(this));
 }

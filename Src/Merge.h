@@ -11,10 +11,6 @@
  */
 #pragma once
 
-#define WMU_CHILDFRAMEADDED						(WM_APP + 10)
-#define WMU_CHILDFRAMEREMOVED					(WM_APP + 11)
-#define WMU_CHILDFRAMEACTIVATE					(WM_APP + 12)
-#define WMU_CHILDFRAMEACTIVATED					(WM_APP + 13)
 constexpr UINT_PTR IDT_UPDATEMAINMENU = 1;
 constexpr UINT_PTR IDT_FLUSHLOG = 2;
 
