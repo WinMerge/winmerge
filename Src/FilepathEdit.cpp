@@ -286,20 +286,30 @@ void CFilepathEdit::OnNcPaint()
 	dc.FillSolidRect(CRect(rect.left + margin, rect.bottom - margin, rect.right, rect.bottom), m_crBackGnd);
 }
 
+static float PointToPixel(CDC& dc, float pt)
+{
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	return pt * lpx / 72.0f;
+}
+
 void CFilepathEdit::OnPaint()
 {
 	__super::OnPaint();
 	if (!m_bInEditing)
 	{
 		CClientDC dc(this);
-		CFont *pFontOld = dc.SelectObject(GetFont());	
-		int oldTextColor = dc.SetTextColor(m_crText);
-		int oldBkMode = dc.SetBkMode(TRANSPARENT);
+		Gdiplus::Graphics graphics(dc);
+		graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
 		CRect rc = GetMenuCharRect(&dc);
-		dc.TextOutW(rc.left, 0, IsWin7_OrGreater() ? _T("\u2261") : _T("="));
-		dc.SetBkMode(oldBkMode);
-		dc.SetTextColor(oldTextColor);
-		dc.SelectObject(pFontOld);
+		Gdiplus::Pen pen(Gdiplus::Color(255, GetRValue(m_crText), GetGValue(m_crText), GetBValue(m_crText)), PointToPixel(dc, 0.75f));
+		const int lineCount = 3;
+		const float spacing = PointToPixel(dc, 2.25f);
+		const int padding = static_cast<int>(PointToPixel(dc, 0.75f));
+		for (int i = 0; i < lineCount; ++i)
+		{
+			float y = rc.top + (rc.Height() - (lineCount - 1) * spacing) / 2 + i * spacing;
+			graphics.DrawLine(&pen, static_cast<float>(rc.left + padding), y, static_cast<float>(rc.right - padding), y);
+		}
 	}
 }
 
@@ -321,8 +331,7 @@ CRect CFilepathEdit::GetMenuCharRect(CDC* pDC)
 {
 	CRect rc;
 	GetClientRect(rc);
-	int charWidth;
-	pDC->GetCharWidth('=', '=', &charWidth);
+	int charWidth = static_cast<int>(PointToPixel(*pDC, 6.0f));
 	rc.left = rc.right - charWidth;
 	return rc;
 }
