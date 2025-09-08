@@ -51,7 +51,7 @@ private:
 	bool m_bMouseTracking;
 	int m_nTrackingButton;
 	int m_dpi;
-	unsigned m_nHitTest;
+	int m_nPressedButton;
 	float m_leftMargin;
 	float m_rightMargin;
 	HICON m_icon;

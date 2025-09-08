@@ -22,7 +22,7 @@ CTitleBarHelper::CTitleBarHelper()
 	, m_rightMargin(35.f * 3)
 	, m_bMouseTracking(false)
 	, m_nTrackingButton(-1)
-	, m_nHitTest(HTNOWHERE)
+	, m_nPressedButton(-1)
 	, m_icon(nullptr)
 	, m_icon_gray(nullptr)
 {
@@ -120,6 +120,8 @@ void CTitleBarHelper::DrawButtons(CDC& dc, COLORREF textColor, COLORREF backColo
 				};
 			COLORREF buttonColor = (brightness < 128) ? adjustColor(backColor, +delta) : adjustColor(backColor, -delta);
 			colorref = (i == 2) ? RGB(0xE9, 0x48, 0x56) : buttonColor;
+			if (m_nPressedButton != -1)
+				colorref = adjustColor(colorref, (brightness < 128) ? +delta : -delta);
 		}
 		else
 			colorref = backColor;
@@ -257,6 +259,7 @@ void CTitleBarHelper::OnNcMouseLeave()
 		m_pWnd->InvalidateRect(&rcPart, false);
 	}
 	m_nTrackingButton = -1;
+	m_nPressedButton = -1;
 }
 
 void CTitleBarHelper::OnNcLButtonDblClk(UINT nHitTest, CPoint point)
@@ -267,6 +270,17 @@ void CTitleBarHelper::OnNcLButtonDblClk(UINT nHitTest, CPoint point)
 		AfxGetMainWnd()->PostMessage(WM_CLOSE);
 }
 
+static int HitTestToButtonIndex(UINT nHitTest)
+{
+	if (nHitTest == HTMINBUTTON)
+		return 0;
+	else if (nHitTest == HTMAXBUTTON)
+		return 1;
+	else if (nHitTest == HTCLOSE)
+		return 2;
+	return -1;
+}
+
 void CTitleBarHelper::OnNcLButtonDown(UINT nHitTest, CPoint point)
 {
 	if (nHitTest != HTMINBUTTON && nHitTest != HTMAXBUTTON && nHitTest != HTCLOSE && nHitTest != HTSYSMENU)
@@ -274,14 +288,18 @@ void CTitleBarHelper::OnNcLButtonDown(UINT nHitTest, CPoint point)
 	else if (nHitTest == HTSYSMENU)
 		ShowSysMenu(CPoint{ point.x + 1, point.y });
 	else if (nHitTest == HTMINBUTTON || nHitTest == HTMAXBUTTON || nHitTest == HTCLOSE)
-		m_nHitTest = nHitTest;
+	{
+		m_nPressedButton = HitTestToButtonIndex(nHitTest);
+		CRect rcPart = GetButtonRect(m_nPressedButton);
+		m_pWnd->InvalidateRect(&rcPart, false);
+	}
 }
 
 void CTitleBarHelper::OnNcLButtonUp(UINT nHitTest, CPoint point)
 {
 	if (nHitTest != HTMINBUTTON && nHitTest != HTMAXBUTTON && nHitTest != HTCLOSE && nHitTest != HTSYSMENU)
 		AfxGetMainWnd()->SendMessage(WM_NCLBUTTONUP, nHitTest, MAKELPARAM(point.x, point.y));
-	else if (m_nHitTest != HTNOWHERE && m_nHitTest == nHitTest)
+	else if (m_nPressedButton != -1 && m_nPressedButton == HitTestToButtonIndex(nHitTest))
 	{
 		if (nHitTest == HTMINBUTTON)
 			AfxGetMainWnd()->SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
@@ -290,7 +308,7 @@ void CTitleBarHelper::OnNcLButtonUp(UINT nHitTest, CPoint point)
 		else if (nHitTest == HTCLOSE)
 			AfxGetMainWnd()->SendMessage(WM_SYSCOMMAND, SC_CLOSE, 0);
 	}
-	m_nHitTest = HTNOWHERE;
+	m_nPressedButton = -1;
 }
 
 void CTitleBarHelper::OnNcRButtonDown(UINT nHitTest, CPoint point)
