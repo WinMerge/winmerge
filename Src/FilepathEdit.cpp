@@ -360,7 +360,7 @@ BOOL CFilepathEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 	CRect rc = GetMenuCharRect(&dc);
 	if (PtInRect(&rc, pt))
 	{
-		SetCursor(LoadCursor(nullptr, IDC_ARROW));
+		SetCursor(LoadCursor(nullptr, IDC_HAND));
 		return TRUE;
 	}
 	return __super::OnSetCursor(pWnd, nHitTest, message);
