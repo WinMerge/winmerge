@@ -1,3 +1,8 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define XML_STATIC
+#define XML_NS
+#define XML_DTD
+#define XML_GE 1
 // SAX
 #include "Attributes.cpp"
 #include "AttributesImpl.cpp"
@@ -26,3 +31,5 @@
 #include "ParserEngine.cpp"
 #include "XMLException.cpp"
 #include "XMLWriter.cpp"
+// Expat
+#include "xmlparse.cpp"

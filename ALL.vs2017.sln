@@ -3,22 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge", "Src\Merge.vcxproj", "{9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8164D41D-B053-405B-826C-CF37AC0EF176} = {8164D41D-B053-405B-826C-CF37AC0EF176}
-		{9E211743-85FE-4977-82F3-4F04B40C912D} = {9E211743-85FE-4977-82F3-4F04B40C912D}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MergeLang", "Src\MergeLang.vcxproj", "{4B011DDA-2279-437D-903C-8028913AF31B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "Externals\poco\Foundation\Foundation.vcxproj", "{8164D41D-B053-405B-826C-CF37AC0EF176}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\XML.vcxproj", "{9E211743-85FE-4977-82F3-4F04B40C912D}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "Testing\GoogleTest\UnitTests\UnitTests.vcxproj", "{733E7C0B-AC3D-47AC-A8DA-E13644D6294D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8164D41D-B053-405B-826C-CF37AC0EF176} = {8164D41D-B053-405B-826C-CF37AC0EF176}
-		{9E211743-85FE-4977-82F3-4F04B40C912D} = {9E211743-85FE-4977-82F3-4F04B40C912D}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Poco", "Poco", "{220B870C-D051-463E-997B-8C392081EE15}"
 EndProject
@@ -65,10 +53,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayBinaryFiles", "Plugins\src_VCPP\DisplayBinaryFiles\DisplayBinaryFiles.vcxproj", "{6877DE2D-4ABA-49B0-858D-7D9A9F92945C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayXMLFiles", "Plugins\src_VCPP\DisplayXMLFiles\DisplayXMLFiles.vcxproj", "{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8164D41D-B053-405B-826C-CF37AC0EF176} = {8164D41D-B053-405B-826C-CF37AC0EF176}
-		{9E211743-85FE-4977-82F3-4F04B40C912D} = {9E211743-85FE-4977-82F3-4F04B40C912D}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EditBinaryFiles", "Plugins\src_VCPP\EditBinaryFiles\EditBinaryFiles.vcxproj", "{0EE652FF-27B0-4F91-BAD6-2931BC072762}"
 EndProject
@@ -190,8 +174,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge7z", "ArchiveSupport\M
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderCompare", "Testing\FolderCompare\FolderCompare.vcxproj", "{AB827C6B-5116-408F-B453-E2075E9B73B4}"
 	ProjectSection(ProjectDependencies) = postProject
-		{8164D41D-B053-405B-826C-CF37AC0EF176} = {8164D41D-B053-405B-826C-CF37AC0EF176}
-		{9E211743-85FE-4977-82F3-4F04B40C912D} = {9E211743-85FE-4977-82F3-4F04B40C912D}
 		{9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE} = {9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE}
 	EndProjectSection
 EndProject
@@ -237,13 +219,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{2313487A-3891-4F6E-A4F4-13E8DE53D7AC}"
 	ProjectSection(SolutionItems) = preProject
 		Docs\Manual\build_html.bat = Docs\Manual\build_html.bat
+		Docs\Manual\build_html_en.bat = Docs\Manual\build_html_en.bat
+		Docs\Manual\build_html_he.bat = Docs\Manual\build_html_he.bat
+		Docs\Manual\build_html_jp.bat = Docs\Manual\build_html_jp.bat
 		Docs\Manual\build_htmlhelp.bat = Docs\Manual\build_htmlhelp.bat
 		Docs\Manual\build_htmlhelp_en.bat = Docs\Manual\build_htmlhelp_en.bat
 		Docs\Manual\build_htmlhelp_he.bat = Docs\Manual\build_htmlhelp_he.bat
 		Docs\Manual\build_htmlhelp_jp.bat = Docs\Manual\build_htmlhelp_jp.bat
-		Docs\Manual\build_html_en.bat = Docs\Manual\build_html_en.bat
-		Docs\Manual\build_html_he.bat = Docs\Manual\build_html_he.bat
-		Docs\Manual\build_html_jp.bat = Docs\Manual\build_html_jp.bat
 		Docs\Manual\configuration.bat = Docs\Manual\configuration.bat
 		Docs\Manual\Manual.cfg = Docs\Manual\Manual.cfg
 		Docs\Manual\README.md = Docs\Manual\README.md
@@ -445,7 +427,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "editlibparsers", "Externals
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FilterEngine", "Src\FilterEngine\FilterEngine.vcxitems", "{9C37E5D8-1DC0-4EAC-AADB-5FC8BE4FB1BC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translations", "{F2BDF018-3CF3-4579-A7EA-1B739675DDC2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translations", "{97364844-A7DA-4D33-A49A-A9B81C70BD59}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{7DF65017-6089-4B89-B0E8-81B207B74869}"
 	ProjectSection(SolutionItems) = preProject
@@ -453,6 +435,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{7DF650
 		Translations\Docs\Manual\Hebrew.po = Translations\Docs\Manual\Hebrew.po
 		Translations\Docs\Manual\Japanese.po = Translations\Docs\Manual\Japanese.po
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "Externals\poco\Foundation\Foundation.vcxitems", "{B30837C4-F99F-46F9-ADFB-5FAEFB1D2FBB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\XML.vcxitems", "{DAFD8D9E-6509-4482-A533-44C843C3BCC7}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -474,6 +460,8 @@ Global
 		Externals\googletest\googletest\googletest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\poco\Foundation\Foundation.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\poco\XML\XML.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
@@ -485,9 +473,11 @@ Global
 		Src\CompareEngines\CompareEngines.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\FilterEngine\FilterEngine.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Externals\poco\Foundation\Foundation.vcxitems*{b30837c4-f99f-46f9-adfb-5faefb1d2fbb}*SharedItemsImports = 9
 		Plugins\src_VCPP\Common\Common.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
+		Externals\poco\XML\XML.vcxitems*{dafd8d9e-6509-4482-a533-44c843c3bcc7}*SharedItemsImports = 9
 		Src\diffutils\diffutils.vcxitems*{fc3b9df3-2854-4264-ab4b-ee8c43982513}*SharedItemsImports = 9
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -553,52 +543,6 @@ Global
 		{4B011DDA-2279-437D-903C-8028913AF31B}.Test|x64.Build.0 = Debug|x64
 		{4B011DDA-2279-437D-903C-8028913AF31B}.Test|x86.ActiveCfg = Debug|Win32
 		{4B011DDA-2279-437D-903C-8028913AF31B}.Test|x86.Build.0 = Debug|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|ARM.ActiveCfg = Debug|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|ARM.Build.0 = Debug|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|ARM64.Build.0 = Debug|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x64.ActiveCfg = Debug|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x64.Build.0 = Debug|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x86.ActiveCfg = Debug|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x86.Build.0 = Debug|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|ARM.ActiveCfg = Release|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|ARM.Build.0 = Release|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|ARM64.ActiveCfg = Release|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|ARM64.Build.0 = Release|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x64.ActiveCfg = Release|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x64.Build.0 = Release|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x86.ActiveCfg = Release|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x86.Build.0 = Release|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|ARM.ActiveCfg = Debug|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|ARM.Build.0 = Debug|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|ARM64.ActiveCfg = Debug|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|ARM64.Build.0 = Debug|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|x64.ActiveCfg = Debug|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|x64.Build.0 = Debug|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|x86.ActiveCfg = Debug|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|x86.Build.0 = Debug|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Test|x86.Deploy.0 = Debug|Win32
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Debug|ARM.ActiveCfg = Debug|ARM
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Debug|ARM.Build.0 = Debug|ARM
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Debug|ARM64.Build.0 = Debug|ARM64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Debug|x64.ActiveCfg = Debug|x64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Debug|x64.Build.0 = Debug|x64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Debug|x86.ActiveCfg = Debug|Win32
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Debug|x86.Build.0 = Debug|Win32
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|ARM.ActiveCfg = Release|ARM
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|ARM.Build.0 = Release|ARM
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|ARM64.ActiveCfg = Release|ARM64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|ARM64.Build.0 = Release|ARM64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|x64.ActiveCfg = Release|x64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|x64.Build.0 = Release|x64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|x86.ActiveCfg = Release|Win32
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Release|x86.Build.0 = Release|Win32
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Test|ARM.ActiveCfg = Debug|ARM
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Test|ARM64.ActiveCfg = Debug|ARM64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Test|x64.ActiveCfg = Debug|x64
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Test|x86.ActiveCfg = Debug|Win32
-		{9E211743-85FE-4977-82F3-4F04B40C912D}.Test|x86.Deploy.0 = Debug|Win32
 		{733E7C0B-AC3D-47AC-A8DA-E13644D6294D}.Debug|ARM.ActiveCfg = Debug|ARM
 		{733E7C0B-AC3D-47AC-A8DA-E13644D6294D}.Debug|ARM.Build.0 = Debug|ARM
 		{733E7C0B-AC3D-47AC-A8DA-E13644D6294D}.Debug|ARM64.ActiveCfg = Debug|ARM64
@@ -1345,8 +1289,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8164D41D-B053-405B-826C-CF37AC0EF176} = {220B870C-D051-463E-997B-8C392081EE15}
-		{9E211743-85FE-4977-82F3-4F04B40C912D} = {220B870C-D051-463E-997B-8C392081EE15}
 		{733E7C0B-AC3D-47AC-A8DA-E13644D6294D} = {14FC5F77-041C-49BF-B28F-F976EC6F253C}
 		{220B870C-D051-463E-997B-8C392081EE15} = {CE514278-A13F-4F6A-93EB-5653410AC214}
 		{0A3727B1-51E7-4702-AD0C-8AEE317EA510} = {14FC5F77-041C-49BF-B28F-F976EC6F253C}
@@ -1418,8 +1360,10 @@ Global
 		{460A3D0C-F937-4E82-9F70-C79E158809B4} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 		{7354BA4F-8DAB-46EE-A5A2-A148D6EF2443} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{4170552A-09E2-4FAC-B71D-0E2F5EB3C869} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
-		{7DF65017-6089-4B89-B0E8-81B207B74869} = {F2BDF018-3CF3-4579-A7EA-1B739675DDC2}
-		{F2BDF018-3CF3-4579-A7EA-1B739675DDC2} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
+		{97364844-A7DA-4D33-A49A-A9B81C70BD59} = {2313487A-3891-4F6E-A4F4-13E8DE53D7AC}
+		{7DF65017-6089-4B89-B0E8-81B207B74869} = {97364844-A7DA-4D33-A49A-A9B81C70BD59}
+		{B30837C4-F99F-46F9-ADFB-5FAEFB1D2FBB} = {220B870C-D051-463E-997B-8C392081EE15}
+		{DAFD8D9E-6509-4482-A533-44C843C3BCC7} = {220B870C-D051-463E-997B-8C392081EE15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
