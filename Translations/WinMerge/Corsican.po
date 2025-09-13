@@ -185,10 +185,6 @@ msgstr "Rivultà o&rizuntalmente"
 msgid "&Zoom"
 msgstr "&Ingrandamentu"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Ingrandamentu &più forte\tCtrl++"
 

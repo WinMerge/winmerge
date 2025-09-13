@@ -199,10 +199,6 @@ msgid "&Zoom"
 msgstr "විශාල කරන්න"
 
 #, c-format
-msgid "25%"
-msgstr ""
-
-#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "විශාලනය වැඩි කරන්න  \tCtrl++"
 

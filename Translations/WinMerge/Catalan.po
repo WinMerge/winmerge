@@ -200,10 +200,6 @@ msgid "&Zoom"
 msgstr "&Zoom"
 
 #, c-format
-msgid "25%"
-msgstr "25%"
-
-#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "A&propa\tControl++"
 

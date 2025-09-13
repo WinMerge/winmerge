@@ -179,10 +179,6 @@ msgstr "Завъртане по &вертикалната ос"
 msgid "&Zoom"
 msgstr "Маща&биране"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "&Увеличаване\tCtrl++"
 

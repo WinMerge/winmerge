@@ -180,10 +180,6 @@ msgstr "Horizontaal omdraaien"
 msgid "&Zoom"
 msgstr "Zoomen"
 
-#, c-format
-msgid "25%"
-msgstr "25 %"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Inzoomen\tCtrl++"
 

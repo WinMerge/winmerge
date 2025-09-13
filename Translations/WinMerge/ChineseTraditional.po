@@ -201,10 +201,6 @@ msgid "&Zoom"
 msgstr "縮放 (&Z)"
 
 #, c-format
-msgid "25%"
-msgstr "25%"
-
-#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "放大 (&I)\tCtrl++"
 

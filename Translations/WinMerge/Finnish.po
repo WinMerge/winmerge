@@ -182,10 +182,6 @@ msgstr "Käännä &vaakatasossa"
 msgid "&Zoom"
 msgstr "Zoomaa"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Suurenna\tCtrl++"
 

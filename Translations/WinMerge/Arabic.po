@@ -183,10 +183,6 @@ msgstr ""
 msgid "&Zoom"
 msgstr "&تغيير الحجم"
 
-#, c-format
-msgid "25%"
-msgstr ""
-
 msgid "Zoom &In\tCtrl++"
 msgstr "ت&كبير\tCtrl++"
 

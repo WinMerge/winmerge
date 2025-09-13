@@ -180,9 +180,6 @@ msgstr "הפוך אופקית"
 msgid "&Zoom"
 msgstr "התקרב/התרחק"
 
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "התקרב\tCtrl++"
 

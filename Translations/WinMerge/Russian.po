@@ -184,10 +184,6 @@ msgstr "Отразить горизонтально"
 msgid "&Zoom"
 msgstr "&Масштаб"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Увеличить\tCtrl++"
 

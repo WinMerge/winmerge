@@ -189,10 +189,6 @@ msgstr "கிடைமட்டமாக புரட்டு"
 msgid "&Zoom"
 msgstr "பெரிதாக்கு"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "உள் பெரிதாக்க\tகட்டு++"
 

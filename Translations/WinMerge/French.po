@@ -189,10 +189,6 @@ msgstr "Retournement h&orizontal"
 msgid "&Zoom"
 msgstr "&Zoom"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Zoom a&vant\tCtrl++"
 

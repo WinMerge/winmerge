@@ -182,10 +182,6 @@ msgstr "Inverter &Horizontalmente"
 msgid "&Zoom"
 msgstr "&Zoom"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Mais &Zoom\tCtrl++"
 

@@ -183,10 +183,6 @@ msgstr "&Yatay çevir"
 msgid "&Zoom"
 msgstr "&Yakınlaştır"
 
-#, c-format
-msgid "25%"
-msgstr "%25"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "&Yakınlaştır\tCtrl++"
 

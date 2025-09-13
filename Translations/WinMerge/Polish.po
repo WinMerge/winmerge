@@ -183,10 +183,6 @@ msgstr "Odbij w poziomie"
 msgid "&Zoom"
 msgstr "Powiększenie"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Powiększ\tCtrl++"
 

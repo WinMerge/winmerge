@@ -181,10 +181,6 @@ msgstr "左右反転(&O)"
 msgid "&Zoom"
 msgstr "拡大/縮小(&Z)"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "拡大(&I)\tCtrl++"
 

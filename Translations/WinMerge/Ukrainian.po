@@ -185,9 +185,6 @@ msgstr "Віддзеркалити г&оризонтально"
 msgid "&Zoom"
 msgstr "Ма&сштаб"
 
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "З&більшити\tCtrl++"
 

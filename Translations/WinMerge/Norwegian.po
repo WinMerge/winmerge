@@ -181,10 +181,6 @@ msgstr "Speilvend h&orisontalt"
 msgid "&Zoom"
 msgstr "&Zoom"
 
-#, c-format
-msgid "25%"
-msgstr ""
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Zoom &inn\tCtrl++"
 
