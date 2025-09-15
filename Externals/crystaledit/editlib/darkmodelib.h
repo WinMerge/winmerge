@@ -45,7 +45,7 @@ namespace DarkMode
 	inline COLORREF DummyGetDlgBackgroundColor() { return RGB(255,255,255); }
 	inline COLORREF DummyGetBackgroundColor() { return RGB(255,255,255); }
 	inline HBRUSH DummyGetDlgBackgroundBrush() { return nullptr; }
-	inline UINT_PTR DummyHookDlgProc(HWND, UINT, WPARAM, LPARAM) { return 0; }
+	inline UINT_PTR CALLBACK DummyHookDlgProc(HWND, UINT, WPARAM, LPARAM) { return 0; }
 
 	inline void (*initDarkMode)() = DummyInitDarkMode;
 	inline void (*setDarkWndSafe)(HWND, bool) = DummySetDarkWndSafe;
@@ -75,7 +75,7 @@ namespace DarkMode
 	inline COLORREF (*getDlgBackgroundColor)() = DummyGetDlgBackgroundColor;
 	inline COLORREF (*getBackgroundColor)() = DummyGetBackgroundColor;
 	inline HBRUSH (*getDlgBackgroundBrush)() = DummyGetDlgBackgroundBrush;
-	inline UINT_PTR (*HookDlgProc)(HWND, UINT, WPARAM, LPARAM) = DummyHookDlgProc;
+	inline LPCCHOOKPROC HookDlgProc = DummyHookDlgProc;
 
 	inline bool LoadDarkModeDll(const wchar_t* dllName = L"darkmodelib\\darkmode.dll")
 	{
