@@ -28,7 +28,7 @@
 #include "Logger.h"
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -522,7 +522,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		{
 			DarkMode::setWindowCtlColorSubclass(hWnd);
 			DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
-			DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+			DarkMode::setChildCtrlsSubclassAndTheme(hWnd, true, true);
 			CWnd* pToolbar = FindWindowEx(hWnd, nullptr, TOOLBARCLASSNAME, nullptr);
 			if (pToolbar)
 				DarkMode::setWindowCtlColorSubclass(pToolbar->GetSafeHwnd());
@@ -533,7 +533,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	{
 		DarkMode::setWindowCtlColorSubclass(hPane);
 		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
-		DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+		DarkMode::setChildCtrlsSubclassAndTheme(hPane, true, true);
 	}
 	return TRUE;
 }
@@ -1710,7 +1710,7 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			{
 				DarkMode::setWindowCtlColorSubclass(hWnd);
 				DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
-				DarkMode::setChildCtrlsSubclassAndTheme(hWnd);
+				DarkMode::setChildCtrlsSubclassAndTheme(hWnd, true, true);
 				CWnd* pToolbar = FindWindowEx(hWnd, nullptr, TOOLBARCLASSNAME, nullptr);
 				if (pToolbar)
 					DarkMode::setWindowCtlColorSubclass(pToolbar->GetSafeHwnd());
@@ -1723,7 +1723,7 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 		{
 			DarkMode::setWindowCtlColorSubclass(hPane);
 			DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
-			DarkMode::setChildCtrlsSubclassAndTheme(hPane);
+			DarkMode::setChildCtrlsSubclassAndTheme(hPane, true, true);
 			::InvalidateRect(hPane, nullptr, TRUE);
 		}
 	}

@@ -12,7 +12,7 @@
 #include "paths.h"
 #include "Environment.h"
 #include "resource.h" // IDD_ABOUTBOX
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
  // https://www.gnu.org/graphics/gnu-ascii.html
  // Copyright (c) 2001 Free Software Foundation, Inc.

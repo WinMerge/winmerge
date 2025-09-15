@@ -19,7 +19,7 @@
 #pragma warning (pop)
 #include "paths.h"
 #include "I18n.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 		LPARAM lpData);

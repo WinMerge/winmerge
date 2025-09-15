@@ -42,7 +42,7 @@
 #include "StdAfx.h"
 
 #include "MessageBoxDialog.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -517,7 +517,7 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 		DarkMode::setDarkWndSafe(m_hWnd, false);
 		DarkMode::setWindowEraseBgSubclass(m_hWnd);
 		if (HWND hTip = m_tooltips.GetSafeHwnd())
-			DarkMode::setDarkTooltips(hTip);
+			DarkMode::setDarkTooltips(hTip, DarkMode::ToolTipsType::tooltip);
 	}
 
 	if (!DarkMode::isExperimentalActive())

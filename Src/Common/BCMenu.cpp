@@ -25,7 +25,7 @@
 
 #include "stdafx.h"        // Standard windows header file
 #include "BCMenu.h"        // BCMenu class declaration
-#include "MergeDarkMode.h" // Dark mode
+#include "DarkModeLib.h"   // Dark mode
 #include <afxpriv.h>       //SK: makes A2W and other spiffy AFX macros work
 #include <../src/mfc/afximpl.h>
 #include <cmath>

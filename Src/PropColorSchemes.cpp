@@ -12,7 +12,7 @@
 #include "OptionsPanel.h"
 #include "SysColorHook.h"
 #include "ColorSchemes.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 #include "FileOrFolderSelect.h"
 #include "OptionsDiffColors.h"
 #include "OptionsDirColors.h"
@@ -60,7 +60,7 @@ END_MESSAGE_MAP()
  */
 void PropColorSchemes::ReadOptions()
 {
-	m_nColorMode = WinMergeDarkMode::IsDarkModeAvailable() ?
+	m_nColorMode = DarkMode::isExperimentalSupported() ?
 		GetOptionsMgr()->GetInt(OPT_COLOR_MODE) : 0;
 	m_sColorScheme = GetOptionsMgr()->GetString(OPT_COLOR_SCHEME);
 	m_sColorSchemeDark = GetOptionsMgr()->GetString(OPT_COLOR_SCHEME_DARK);
@@ -114,8 +114,8 @@ void PropColorSchemes::UpdateControls()
 {
 	EnableDlgItem(IDC_COLOR_SCHEME_LIGHT, m_nColorMode == 0 || m_nColorMode == 2);
 	EnableDlgItem(IDC_COLOR_SCHEME_DARK, 
-		WinMergeDarkMode::IsDarkModeAvailable() && (m_nColorMode == 1 || m_nColorMode == 2));
-	EnableDlgItem(IDC_COLOR_MODE, WinMergeDarkMode::IsDarkModeAvailable());
+		DarkMode::isExperimentalSupported() && (m_nColorMode == 1 || m_nColorMode == 2));
+	EnableDlgItem(IDC_COLOR_MODE, DarkMode::isExperimentalSupported());
 	const bool canDelete = (strutils::compare_nocase(ColorSchemes::GetPrivateColorSchemesFolder(), paths::GetParentPath(GetCurrentColorSchemePath())) == 0);
 	EnableDlgItem(IDC_COLOR_SCHEME_DELETE, canDelete);
 }

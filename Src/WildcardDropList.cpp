@@ -14,7 +14,7 @@
 #endif
 
 #include "WildcardDropList.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 /**
  * @brief DropList window procedure.

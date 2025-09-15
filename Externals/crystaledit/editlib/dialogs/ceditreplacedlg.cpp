@@ -37,7 +37,7 @@
 
 #include "DDXHelper.h"
 
-#include "editlibdarkmode.h"
+#include "darkmodelib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

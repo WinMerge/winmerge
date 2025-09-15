@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 #include "stdafx.h"
 #include "SysColorHook.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #if defined(_DARKMODELIB_EXTERNAL_IATHOOK) || !defined(USE_DARKMODELIB)
 #include "IatHook.h"

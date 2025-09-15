@@ -12,7 +12,7 @@
 #include <vector>
 #include "SplitterWndEx.h"
 #include "cecolor.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

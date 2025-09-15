@@ -5,7 +5,7 @@
  */
 #include "StdAfx.h"
 #include "MyColorDialog.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 CMyColorDialog::CMyColorDialog(COLORREF clrInit, DWORD dwFlags, CWnd* pParentWnd) : 
 	CColorDialog(clrInit, dwFlags, pParentWnd)

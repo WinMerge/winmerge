@@ -38,7 +38,7 @@
 #include "Win_VersionHelper.h"
 #include "OptionsProject.h"
 #include "Merge7zFormatMergePluginImpl.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -217,7 +217,7 @@ void COpenView::OnInitialUpdate()
 	if (HWND hSelf = GetSafeHwnd())
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
-		DarkMode::setChildCtrlsSubclassAndTheme(hSelf);
+		DarkMode::setChildCtrlsSubclassAndTheme(hSelf, true, true);
 	}
 
 	if (DarkMode::isExperimentalActive())
@@ -460,7 +460,7 @@ void COpenView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 		if (HWND hSelf = GetSafeHwnd())
 		{
 			DarkMode::setWindowCtlColorSubclass(hSelf);
-			DarkMode::setChildCtrlsSubclassAndTheme(hSelf);
+			DarkMode::setChildCtrlsSubclassAndTheme(hSelf, true, true);
 		}
 
 		if (DarkMode::isExperimentalActive())

@@ -10,7 +10,7 @@
 #include "ccrystaltextmarkers.h"
 #include "DDXHelper.h"
 #include "../ccrystaltextview.h"
-#include "editlibdarkmode.h"
+#include "darkmodelib.h"
 #include <algorithm>
 
 #ifdef _DEBUG

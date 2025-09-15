@@ -25,7 +25,7 @@
 #include "FileOpenFlags.h"
 #include "Logger.h"
 #include <Poco/Channel.h>
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 #include "WindowsManager.h"
 
 class BCMenu;

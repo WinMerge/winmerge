@@ -2690,7 +2690,7 @@ BOOL CMainFrame::CreateToolbar()
 
 	m_wndReBar.LoadStateFromString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
 	if (HWND hTip = m_wndToolBar.GetToolBarCtrl().GetToolTips()->GetSafeHwnd())
-		DarkMode::setDarkTooltips(hTip);
+		DarkMode::setDarkTooltips(hTip, DarkMode::ToolTipsType::tooltip);
 	return TRUE;
 }
 

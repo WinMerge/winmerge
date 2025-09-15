@@ -21,4 +21,4 @@ This file lists versions of the external components we are using.
 - jq: 1.7.1
 - wil: 209ff9c7e30e71bf6d1405557bf78544920f8157 on Sep 9, 2021
 - md4c: 0.5.2
-- darkmodelib: 9f273dad8f268d38e2ced5c8db06ff9676aa6a41 on Jul 4, 2025
+- darkmodelib: 0.17.1.0

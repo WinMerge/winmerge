@@ -5,7 +5,7 @@
  */
 #include "StdAfx.h"
 #include "MyFontDialog.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 static void init(CFontDialog& dlg)
 {

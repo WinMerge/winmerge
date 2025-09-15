@@ -14,7 +14,7 @@
 #include "EditorFilepathBar.h"
 #include "RoundedRectWithShadow.h"
 #include "cecolor.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -315,6 +315,6 @@ void CEditorFilePathBar::SetToolTipsFirstTime(HWND hTip)
 	if (m_Tips.find(hTip) == m_Tips.end())
 	{
 		m_Tips.insert(hTip);
-		DarkMode::setDarkTooltips(hTip);
+		DarkMode::setDarkTooltips(hTip, DarkMode::ToolTipsType::tooltip);
 	}
 }

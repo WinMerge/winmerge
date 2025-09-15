@@ -11,7 +11,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "heksedit.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

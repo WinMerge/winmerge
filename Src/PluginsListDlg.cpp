@@ -17,7 +17,7 @@
 #include "Merge.h"
 #include "Constants.h"
 #include "Win_VersionHelper.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #ifndef BCN_DROPDOWN
 #define BCN_DROPDOWN            (BCN_FIRST + 0x0002)

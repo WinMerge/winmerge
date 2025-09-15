@@ -72,6 +72,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)crystaleditviewex.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crystalparser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crystaltextblock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)darkmodelib.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\ceditreplacedlg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\cfindtextdlg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\chcondlg.h" />
@@ -82,7 +83,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)editreg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)edtlib.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FindTextHelper.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)editlibdarkmode.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LineInfo.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)cepoint.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderer.h" />

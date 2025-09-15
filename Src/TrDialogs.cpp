@@ -1,7 +1,7 @@
 #include <StdAfx.h>
 #include "TrDialogs.h"
 #include "Logger.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 IMPLEMENT_DYNAMIC(CTrDialog, CDialog)
 IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
@@ -54,7 +54,7 @@ BOOL CTrPropertyPage::OnInitDialog()
 	if (HWND hSelf = GetSafeHwnd())
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
-		DarkMode::setChildCtrlsSubclassAndTheme(hSelf);
+		DarkMode::setChildCtrlsSubclassAndTheme(hSelf, true, true);
 	}
 
 	DarkMode::setDarkWndSafe(*GetParent(), true);

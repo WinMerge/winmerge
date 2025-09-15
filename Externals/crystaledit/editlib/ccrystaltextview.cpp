@@ -108,7 +108,7 @@
 #include <numeric>
 #include <malloc.h>
 #include <imm.h> /* IME */
-#include "editlibdarkmode.h"
+#include "darkmodelib.h"
 
 using std::vector;
 using CrystalLineParser::TEXTBLOCK;

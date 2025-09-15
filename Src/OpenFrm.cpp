@@ -5,7 +5,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "MergeFrameCommon.h"
-#include "MergeDarkMode.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
