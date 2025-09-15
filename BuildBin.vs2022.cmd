@@ -23,7 +23,7 @@ if "%1" == "" (
 goto :eof
 
 :BuildBin
-MSBuild WinMerge.vs2022.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || goto :eof
+MSBuild WinMerge.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || goto :eof
 endlocal
 
 if exist "%SIGNBAT_PATH%" (
