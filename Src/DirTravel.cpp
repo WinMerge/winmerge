@@ -21,13 +21,15 @@
 using Poco::DirectoryIterator;
 using Poco::Timestamp;
 
-static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files);
 static void Sort(DirItemArray * dirs, bool casesensitive);
+
+namespace DirTravel
+{
 
 /**
  * @brief Load arrays with all directories & files in specified dir
  */
-void LoadAndSortFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files, bool casesensitive)
+void LoadAndSortFiles(const String& sDir, DirItemArray* dirs, DirItemArray* files, bool casesensitive)
 {
 	LoadFiles(sDir, dirs, files);
 	Sort(dirs, casesensitive);
@@ -45,36 +47,12 @@ void LoadAndSortFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
  * @param [in] sDir Base folder for files and subfolders.
  * @param [in, out] dirs Array where subfolder names are stored.
  * @param [in, out] files Array where file names are stored.
+ * @param [in] pattern Pattern for files to load, default is "*.*".
  */
-static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * files)
+void LoadFiles(const String& sDir, DirItemArray* dirs, DirItemArray* files, const String& pattern)
 {
 	boost::flyweight<String> dir(sDir);
-#if 0
-	DirectoryIterator it(ucr::toUTF8(sDir));
-	DirectoryIterator end;
-
-	for (; it != end; ++it)
-	{
-		bool bIsDirectory = it->isDirectory();
-		if (bIsDirectory)
-			continue;
-
-		DirItem ent;
-		ent.ctime = it->created();
-		if (ent.ctime < 0)
-			ent.ctime = 0;
-		ent.mtime = it->getLastModified();
-		if (ent.mtime < 0)
-			ent.mtime = 0;
-		ent.size = it->getSize();
-		ent.path = dir;
-		ent.filename = ucr::toTString(it.name());
-		ent.flags.attributes = GetFileAttributes(ucr::toTString(it.name()).c_str());		
-		(bIsDirectory ? dirs : files)->push_back(ent);
-	}
-
-#else
-	String sPattern = paths::ConcatPath(sDir, _T("*.*"));
+	String sPattern = paths::ConcatPath(sDir, pattern);
 
 	WIN32_FIND_DATA ff;
 	HANDLE h;
@@ -109,13 +87,12 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 			ent.path = dir;
 			ent.filename = ff.cFileName;
 			ent.flags.attributes = ff.dwFileAttributes;
-			
+
 			(bIsDirectory ? dirs : files)->push_back(ent);
 		} while (FindNextFile(h, &ff));
 		FindClose(h);
 	}
-
-#endif
+}
 }
 
 static inline int collate(const String &str1, const String &str2)

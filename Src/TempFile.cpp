@@ -10,6 +10,8 @@
 #include <windows.h>
 #include "paths.h"
 #include "TFile.h"
+#include "DirTravel.h"
+#include "DirItem.h"
 #include "Environment.h"
 #include "Constants.h"
 #include "unicoder.h"
@@ -117,50 +119,25 @@ bool TempFolder::Delete()
  */
 void CleanupWMtemp()
 {
-	String foldername;
-	String tempfolderPID;
-	String filepattern(TempFolderPrefix);
-	filepattern += _T("*.*");
-	String pattern = paths::GetParentPath(env::GetTemporaryPath());
-	pattern = paths::ConcatPath(pattern, filepattern);
-	WIN32_FIND_DATA ff;
-	HANDLE h;
-	bool res = true;
-	bool bok = true;
-	
-	h = FindFirstFile (TFile(pattern).wpath().c_str(), &ff);
-	if (h == INVALID_HANDLE_VALUE)
-		bok = false;
+	DirItemArray dirs, files;
+	DirTravel::LoadFiles(paths::GetParentPath(env::GetTemporaryPath()), &dirs, &files, String(TempFolderPrefix) + _T("*"));
 
-	while (bok & res)
+	for (auto& dir : dirs)
 	{
-		foldername = ff.cFileName;
-		if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		const String foldername = dir.filename;
+		// Remove leading "WM_" from filename to get the ProcessID
+		const String tempfolderPID = foldername.substr(tc::tcslen(TempFolderPrefix));
+		// Check if this instance of WM is still running
+		try
 		{
-			// Remove leading "WM_" from filename to get the ProcessID
-			tempfolderPID = foldername.substr(tc::tcslen(TempFolderPrefix));
-
-			// Check if this instance of WM is still running
-			try
-			{
-				int pid = atoi(ucr::toUTF8(tempfolderPID).c_str());
-				if (!WMrunning(pid))
-				{
-					tempfolderPID = paths::ConcatPath(paths::GetParentPath(pattern), ff.cFileName); 
-					res = ClearTempfolder(tempfolderPID);
-					if (res)
-						bok = !!FindNextFile(h, &ff) ;
-					continue;
-				}
-			}
-			catch (...)
-			{
-			}
+			int pid = atoi(ucr::toUTF8(tempfolderPID).c_str());
+			if (!WMrunning(pid))
+				ClearTempfolder(dir.path);
 		}
-		bok = !!FindNextFile(h, &ff) ;
+		catch (...)
+		{
+		}
 	}
-	if (h != INVALID_HANDLE_VALUE)
-		FindClose(h);
 }
 
 /**

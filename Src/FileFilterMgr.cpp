@@ -54,7 +54,7 @@ void FileFilterMgr::LoadFromDirectory(const String& dir, const String& szPattern
 	try
 	{
 		DirItemArray dirs, files;
-		LoadAndSortFiles(dir, &dirs, &files, false);
+		DirTravel::LoadAndSortFiles(dir, &dirs, &files, false);
 		Glob glb(ucr::toUTF8(szPattern));
 	
 		for (DirItem& item: files)

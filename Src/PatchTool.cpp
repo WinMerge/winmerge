@@ -330,7 +330,7 @@ int CPatchTool::GetItemsForPatchList(const PathContext& paths, const String subd
 
 	DirItemArray dirs[2], aFiles[2];
 	for (int nIndex = 0; nIndex < nDirs; nIndex++)
-		LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &aFiles[nIndex], false);
+		DirTravel::LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &aFiles[nIndex], false);
 
 	{
 		int nIndex;

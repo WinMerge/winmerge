@@ -36,8 +36,8 @@ std::vector<String> GetColorSchemeNames()
 	DirItemArray dirs, files, filesPrivate;
 	std::set<String> names;
 
-	LoadAndSortFiles(GetColorSchemesFolder(), &dirs, &files, false);
-	LoadAndSortFiles(GetPrivateColorSchemesFolder(), &dirs, &filesPrivate, false);
+	DirTravel::LoadAndSortFiles(GetColorSchemesFolder(), &dirs, &files, false);
+	DirTravel::LoadAndSortFiles(GetPrivateColorSchemesFolder(), &dirs, &filesPrivate, false);
 	files.insert(files.end(), filesPrivate.begin(), filesPrivate.end());
 
 	for (DirItem& item : files)

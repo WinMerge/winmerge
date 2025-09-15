@@ -161,7 +161,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 
 	DirItemArray dirs[3], aFiles[3];
 	for (int nIndex = 0; nIndex < nDirs; nIndex++)
-		LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &aFiles[nIndex], casesensitive);
+		DirTravel::LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &aFiles[nIndex], casesensitive);
 
 	// Allow user to abort scanning
 	if (pCtxt->ShouldAbort())
