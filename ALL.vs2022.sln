@@ -1437,6 +1437,8 @@ Global
 		Externals\xdiff\xdiff.vcxitems*{68f1d3a1-9dca-4b3d-b245-f4aca5f16563}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\poco\Foundation\Foundation.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Externals\poco\XML\XML.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
@@ -1456,11 +1458,15 @@ Global
 		Plugins\src_VCPP\Common\Common.vcxitems*{a644fba4-d76e-4500-b4b7-04d7a245359a}*SharedItemsImports = 4
 		Plugins\src_VCPP\Common\Common.vcxitems*{aa88b46e-b2e2-4b03-8cd5-1e9d60db6ab2}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Externals\poco\Foundation\Foundation.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Externals\poco\XML\XML.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\FilterEngine\FilterEngine.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Externals\poco\Foundation\Foundation.vcxitems*{b30837c4-f99f-46f9-adfb-5faefb1d2fbb}*SharedItemsImports = 9
+		Externals\poco\Foundation\Foundation.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
+		Externals\poco\XML\XML.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
 		Plugins\src_VCPP\Common\Common.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4

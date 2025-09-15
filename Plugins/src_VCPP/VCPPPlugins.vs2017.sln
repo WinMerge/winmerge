@@ -11,9 +11,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IgnoreFieldsTab", "IgnoreFieldsTab\IgnoreFieldsTab.vcxproj", "{AA88B46E-B2E2-4B03-8CD5-1E9D60DB6AB2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayXMLFiles", "DisplayXMLFiles\DisplayXMLFiles.vcxproj", "{BD0C5FE1-8457-49C2-8801-0C99A6E6CC03}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8164D41D-B053-405B-826C-CF37AC0EF176} = {8164D41D-B053-405B-826C-CF37AC0EF176}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HideFirstLetter", "HideFirstLetter\HideFirstLetter.vcxproj", "{78ABD31C-70A2-4608-8A3D-506E1E2C0AFE}"
 EndProject
@@ -27,15 +24,24 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WatchEndOfLog", "WatchEndOf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Poco", "Poco", "{EB5E4310-FBCE-40D4-9BB7-85A82DA6CD3B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "..\..\Externals\poco\Foundation\Foundation.vcxproj", "{8164D41D-B053-405B-826C-CF37AC0EF176}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Common\Common.vcxitems", "{7354BA4F-8DAB-46EE-A5A2-A148D6EF2443}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "..\..\Externals\poco\Foundation\Foundation.vcxitems", "{B30837C4-F99F-46F9-ADFB-5FAEFB1D2FBB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "..\..\Externals\poco\XML\XML.vcxitems", "{DAFD8D9E-6509-4482-A533-44C843C3BCC7}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Common.vcxitems*{098b241d-63af-4683-baf8-6da57fd8fe75}*SharedItemsImports = 4
+		Common\Common.vcxitems*{0ee652ff-27b0-4f91-bad6-2931bc072762}*SharedItemsImports = 4
+		Common\Common.vcxitems*{7354ba4f-8dab-46ee-a5a2-a148d6ef2443}*SharedItemsImports = 9
 		Common\Common.vcxitems*{a644fba4-d76e-4500-b4b7-04d7a245359a}*SharedItemsImports = 4
 		Common\Common.vcxitems*{aa88b46e-b2e2-4b03-8cd5-1e9d60db6ab2}*SharedItemsImports = 4
+		..\..\Externals\poco\Foundation\Foundation.vcxitems*{b30837c4-f99f-46f9-adfb-5faefb1d2fbb}*SharedItemsImports = 9
+		..\..\Externals\poco\Foundation\Foundation.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
+		..\..\Externals\poco\XML\XML.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
+		Common\Common.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
+		..\..\Externals\poco\XML\XML.vcxitems*{dafd8d9e-6509-4482-a533-44c843c3bcc7}*SharedItemsImports = 9
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -208,28 +214,13 @@ Global
 		{4A3F0C35-6B6D-44B3-84FD-7E2168398361}.Release|x64.Build.0 = Release|x64
 		{4A3F0C35-6B6D-44B3-84FD-7E2168398361}.Release|x86.ActiveCfg = Release|Win32
 		{4A3F0C35-6B6D-44B3-84FD-7E2168398361}.Release|x86.Build.0 = Release|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|ARM.ActiveCfg = Debug|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|ARM.Build.0 = Debug|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|ARM64.Build.0 = Debug|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x64.ActiveCfg = Debug|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x64.Build.0 = Debug|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x86.ActiveCfg = Debug|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Debug|x86.Build.0 = Debug|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|ARM.ActiveCfg = Release|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|ARM.Build.0 = Release|ARM
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|ARM64.ActiveCfg = Release|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|ARM64.Build.0 = Release|ARM64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x64.ActiveCfg = Release|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x64.Build.0 = Release|x64
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x86.ActiveCfg = Release|Win32
-		{8164D41D-B053-405B-826C-CF37AC0EF176}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8164D41D-B053-405B-826C-CF37AC0EF176} = {EB5E4310-FBCE-40D4-9BB7-85A82DA6CD3B}
+		{B30837C4-F99F-46F9-ADFB-5FAEFB1D2FBB} = {EB5E4310-FBCE-40D4-9BB7-85A82DA6CD3B}
+		{DAFD8D9E-6509-4482-A533-44C843C3BCC7} = {EB5E4310-FBCE-40D4-9BB7-85A82DA6CD3B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7DDDBFB7-ED36-4224-B514-5B84249DC736}
