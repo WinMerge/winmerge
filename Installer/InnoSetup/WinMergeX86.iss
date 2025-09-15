@@ -640,6 +640,10 @@ Source: ..\..\Build\{#ARCH}\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Comp
 Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\LICENSE*.txt; DestDir: {app}\WinWebDiff; Components: Core
 Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\WinWebDiffLib.dll; DestDir: {app}\WinWebDiff; Flags: ignoreversion replacesameversion; Components: Core
 
+;darkmodelib
+Source: ..\..\Build\{#ARCH}\Release\darkmodelib\LICENSE.md; DestDir: {app}\darkmodelib; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\darkmodelib\darkmode.dll; DestDir: {app}\darkmodelib; Flags: ignoreversion replacesameversion; Components: Core
+
 ;GNU patch
 Source: ..\..\Build\msys2\*.*; DestDir: {app}\Commands\msys2; Flags: recursesubdirs; Components: Plugins
 ; HTML Tidy
