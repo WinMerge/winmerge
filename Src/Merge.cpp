@@ -1778,7 +1778,13 @@ void CMergeApp::ReloadCustomSysColors()
 	SysColorHook::Deserialize(GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS));
 	if (GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
 		SysColorHook::Hook(AfxGetInstanceHandle());
-	afxData.UpdateSysColors();
+	afxData.clrBtnFace = ::GetSysColor(COLOR_BTNFACE);
+	afxData.clrBtnShadow = ::GetSysColor(COLOR_BTNSHADOW);
+	afxData.clrBtnHilite = ::GetSysColor(COLOR_BTNHIGHLIGHT);
+	afxData.clrBtnText = ::GetSysColor(COLOR_BTNTEXT);
+	afxData.clrWindowFrame = ::GetSysColor(COLOR_WINDOWFRAME);
+	afxData.hbrBtnFace = ::GetSysColorBrush(COLOR_BTNFACE);
+	afxData.hbrWindowFrame = ::GetSysColorBrush(COLOR_WINDOWFRAME);
 	BCMenu::RecreateRadioDotBitmap();
 }
 
