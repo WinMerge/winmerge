@@ -106,9 +106,9 @@ term(A) ::= INTEGER_LITERAL(B).    { A = { new IntLiteral(B.integer) }; }
 term(A) ::= STRING_LITERAL(B).     { A = { new StringLiteral(B.string) }; }
 term(A) ::= SIZE_LITERAL(B).       { A = { new SizeLiteral(B.string) }; }
 term(A) ::= DATETIME_LITERAL(B).{
+  A = {};
   try
   {
-    A = {};
     A.node = new DateTimeLiteral(B.string);
   }
   catch (const std::exception&)
@@ -119,9 +119,9 @@ term(A) ::= DATETIME_LITERAL(B).{
 term(A) ::= DURATION_LITERAL(B).   { A = { new DurationLiteral(B.string) }; }
 term(A) ::= VERSION_LITERAL(B).    { A = { new VersionLiteral(B.string) }; }
 term(A) ::= IDENTIFIER(B) LPAREN RPAREN. {
+  A = {};
   try
   {
-    A = {};
     A.node = new FunctionNode(pCtx, B.string, {});
   }
   catch (const std::invalid_argument& e)
@@ -136,9 +136,9 @@ term(A) ::= IDENTIFIER(B) LPAREN RPAREN. {
   }
 }
 term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. {
+  A = {};
   try
   {
-    A = {};
     A.node = new FunctionNode(pCtx, B.string, C.nodeList);
   }
   catch (const std::invalid_argument& e)
@@ -155,9 +155,9 @@ term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. {
   }
 }
 term(A) ::= IDENTIFIER(B). {
+  A = {};
   try
   {
-    A = {};
     A.node = new FieldNode(pCtx, B.string);
   }
   catch (const std::exception&)

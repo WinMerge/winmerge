@@ -1297,9 +1297,9 @@ static YYACTIONTYPE yy_reduce(
       case 29: /* term ::= DATETIME_LITERAL */
 #line 108 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
+  yylhsminor.yy0 = {};
   try
   {
-    yylhsminor.yy0 = {};
     yylhsminor.yy0.node = new DateTimeLiteral(yymsp[0].minor.yy0.string);
   }
   catch (const std::exception&)
@@ -1325,9 +1325,9 @@ static YYACTIONTYPE yy_reduce(
       case 32: /* term ::= IDENTIFIER LPAREN RPAREN */
 #line 121 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
+  yylhsminor.yy0 = {};
   try
   {
-    yylhsminor.yy0 = {};
     yylhsminor.yy0.node = new FunctionNode(pCtx, yymsp[-2].minor.yy0.string, {});
   }
   catch (const std::invalid_argument& e)
@@ -1347,9 +1347,9 @@ static YYACTIONTYPE yy_reduce(
       case 33: /* term ::= IDENTIFIER LPAREN expr_list RPAREN */
 #line 138 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
+  yylhsminor.yy0 = {};
   try
   {
-    yylhsminor.yy0 = {};
     yylhsminor.yy0.node = new FunctionNode(pCtx, yymsp[-3].minor.yy0.string, yymsp[-1].minor.yy0.nodeList);
   }
   catch (const std::invalid_argument& e)
@@ -1371,9 +1371,9 @@ static YYACTIONTYPE yy_reduce(
       case 34: /* term ::= IDENTIFIER */
 #line 157 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
+  yylhsminor.yy0 = {};
   try
   {
-    yylhsminor.yy0 = {};
     yylhsminor.yy0.node = new FieldNode(pCtx, yymsp[0].minor.yy0.string);
   }
   catch (const std::exception&)
