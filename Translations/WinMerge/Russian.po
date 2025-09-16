@@ -1910,7 +1910,7 @@ msgid "Items filtered:"
 msgstr "Элементы отфильтрованы:"
 
 msgid "&Use custom system colors"
-msgstr "Использовать настраиваемые системные цвета (некоторые элементы пользовательского интерфейса могут не примениться)"
+msgstr "Использовать настраиваемые системные цвета"
 
 msgid "System"
 msgstr "Система"
@@ -2504,16 +2504,16 @@ msgid "&Unregister Shell Extension"
 msgstr "Удаление расширений оболочки"
 
 msgid "Register Shell Extension for Current User &Only"
-msgstr "Регистрация расширений оболочки только для текущего пользователя"
+msgstr "Регистрация расширений оболочки для текущего пользователя"
 
 msgid "Unregister Shell Extension for Current User On&ly"
-msgstr "Удаление расширений оболочки только для текущего пользователя"
+msgstr "Удаление расширений оболочки для текущего пользователя"
 
 msgid "Register Shell Extension for &Windows 11"
-msgstr "Регистрация расширений оболочки для &Windows 11 или более поздней версии"
+msgstr "Регистрация расширений оболочки для &Windows 11 или новее"
 
 msgid "Unregister Shell Extension for W&indows 11"
-msgstr "Удаление расширений оболочки для W&indows 11 или более поздней версии"
+msgstr "Удаление расширений оболочки для W&indows 11 или новее"
 
 msgid "Jump List"
 msgstr "Список переходов"
