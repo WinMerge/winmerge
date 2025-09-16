@@ -91,6 +91,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     mkdir Build\%%i\%%j\WinIMerge 2> NUL
     mkdir Build\%%i\%%j\WinWebDiff 2> NUL
     mkdir Build\%%i\%%j\Frhed 2> NUL
+    mkdir Build\%%i\%%j\darkmodelib 2> NUL
     mkdir Build\%%i\%%j\Filters 2> NUL
     mkdir Build\%%i\%%j\ColorSchemes 2> NUL
     mkdir Build\%%i\%%j\MergePlugins 2> NUL

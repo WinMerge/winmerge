@@ -353,10 +353,10 @@ BOOL CMergeApp::InitInstance()
 	// Initialize i18n (multiple language) support
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
-	DarkMode::LoadDarkModeDll();
-
 	if (IsWin10_OrGreater())
 	{
+		DarkMode::LoadDarkModeDll();
+
 		const DarkMode::DarkModeType dmTypeOld =
 			WinMergeDarkMode::GetDarkModeType(GetOptionsMgr()->GetInt(OPT_COLOR_MODE_EFFECTIVE));
 		const DarkMode::DarkModeType dmType =
