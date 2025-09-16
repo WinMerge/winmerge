@@ -487,6 +487,10 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		thisob->trivial = 1;
 		return 0;
 	}
+	if (m_options.m_bIgnoreLineBreaks)
+	{
+		return 0; // cannot split lines if line breaks are ignored
+	}
 
 	auto SplitLines = [](const std::string& lines, int nlines) -> std::vector<std::string_view>
 		{
@@ -1263,6 +1267,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
 		m_options.m_bIgnoreMissingTrailingEol ||
+		m_options.m_bIgnoreLineBreaks ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
