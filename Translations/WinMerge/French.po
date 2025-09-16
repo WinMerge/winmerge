@@ -1116,6 +1116,9 @@ msgstr "Ignorer les différences de c&ommentaire"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignorer les EOL de fin &manquants"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Inclure les sous-dossiers"
 
@@ -2101,6 +2104,9 @@ msgstr "Ignorer les différences de c&ommentaire"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Ignorer les EOL de fin &manquants"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Activer la détectio&n des blocs déplacés"

@@ -1108,6 +1108,9 @@ msgstr "コメントの違いを無視する(&O)"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr "改行を無視(空白として扱う)(&B)"
+
 msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
@@ -2095,6 +2098,9 @@ msgstr "コメントの違いを無視する(&O)"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "改行を無視(空白として扱う)(&B)"
 
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"

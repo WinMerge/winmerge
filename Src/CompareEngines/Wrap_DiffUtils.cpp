@@ -112,8 +112,10 @@ int DiffUtils::CompareFiles(DiffFileData* diffData)
 
 	if (script != nullptr)
 	{
-		const bool usefilters = m_pDiffWrapper->GetOptions().m_filterCommentsLines ||
-			m_pDiffWrapper->GetOptions().m_bIgnoreMissingTrailingEol ||
+		const auto& options = m_pDiffWrapper->GetOptions();
+		const bool usefilters = options.m_filterCommentsLines ||
+			options.m_bIgnoreMissingTrailingEol ||
+			options.m_bIgnoreLineBreaks ||
 			(m_pDiffWrapper->GetFilterList() && m_pDiffWrapper->GetFilterList()->HasRegExps()) ||
 			(m_pDiffWrapper->GetSubstitutionList() && m_pDiffWrapper->GetSubstitutionList()->HasRegExps());
 	

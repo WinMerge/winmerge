@@ -431,6 +431,13 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		lineDataRight = m_pSubstitutionList->Subst(lineDataRight, m_codepage);
 	}
 
+	if (m_options.m_bIgnoreLineBreaks)
+	{
+		Replace(lineDataLeft, "\r\n", " ");
+		ReplaceChars(lineDataLeft, "\r\n", " ");
+		Replace(lineDataRight, "\r\n", " ");
+		ReplaceChars(lineDataRight, "\r\n", " ");
+	}
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 	{
 		//Ignore character case
@@ -1435,6 +1442,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
 		m_options.m_bIgnoreMissingTrailingEol ||
+		m_options.m_bIgnoreLineBreaks ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
