@@ -140,7 +140,7 @@ int CHexMergeView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 	m_pif->set_theme_callback([](HWND hwnd, IHexEditorWindow::WINDOW_TYPE windowType) {
 			if (windowType == IHexEditorWindow::WINDOW_DIALOG)
-				DarkMode::setDarkWndSafe(hwnd, true);
+				DarkMode::setDarkWndSafeEx(hwnd, true);
 		});
 	return 0;
 }

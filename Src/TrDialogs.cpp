@@ -31,7 +31,7 @@ BOOL CTrDialog::OnInitDialog()
 {
 	I18n::TranslateDialog(m_hWnd);
 	__super::OnInitDialog();
-	DarkMode::setDarkWndSafe(GetSafeHwnd(), true);
+	DarkMode::setDarkWndSafeEx(GetSafeHwnd(), true);
 	return TRUE;
 }
 
@@ -54,10 +54,10 @@ BOOL CTrPropertyPage::OnInitDialog()
 	if (HWND hSelf = GetSafeHwnd())
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
-		DarkMode::setChildCtrlsSubclassAndTheme(hSelf, true, true);
+		DarkMode::setChildCtrlsSubclassAndThemeEx(hSelf, true, true);
 	}
 
-	DarkMode::setDarkWndSafe(*GetParent(), true);
+	DarkMode::setDarkWndSafeEx(*GetParent(), true);
 	return TRUE;
 }
 
