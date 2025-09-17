@@ -86,7 +86,7 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 	if (HWND hSelf = GetSafeHwnd())
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
-		DarkMode::setChildCtrlsSubclassAndTheme(hSelf, true, true);
+		DarkMode::setChildCtrlsSubclassAndThemeEx(hSelf, true, true);
 	}
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

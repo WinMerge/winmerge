@@ -482,8 +482,8 @@ void CDirView::OnInitialUpdate()
 	if (hList != nullptr)
 	{
 		DarkMode::setListViewCtrlSubclass(hList);
-		DarkMode::setDarkTooltips(hList, DarkMode::ToolTipsType::listview);
-		DarkMode::setDarkThemeExperimental(hList, L"Explorer");
+		DarkMode::setDarkTooltips(hList, static_cast<int>(DarkMode::ToolTipsType::listview));
+		DarkMode::setDarkThemeExperimentalEx(hList, L"Explorer");
 	}
 }
 
@@ -2885,8 +2885,8 @@ void CDirView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 		if (hList != nullptr)
 		{
 			DarkMode::setListViewCtrlSubclass(hList);
-			DarkMode::setDarkTooltips(hList, DarkMode::ToolTipsType::listview);
-			DarkMode::setDarkThemeExperimental(hList, L"Explorer");
+			DarkMode::setDarkTooltips(hList, static_cast<int>(DarkMode::ToolTipsType::listview));
+			DarkMode::setDarkThemeExperimentalEx(hList, L"Explorer");
 		}
 	}
 	__super::OnSettingChange(uFlags, lpszSection);

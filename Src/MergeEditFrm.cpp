@@ -399,7 +399,7 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 			m_wndPreviewNumPage.SubclassWindow(pPreviewBar->GetDlgItem(AFX_ID_PREVIEW_NUMPAGE)->GetSafeHwnd());
 			HWND hPreviewBar = pPreviewBar->GetSafeHwnd();
 			if (hPreviewBar != nullptr)
-				DarkMode::setChildCtrlsSubclassAndTheme(hPreviewBar, true, true);
+				DarkMode::setChildCtrlsSubclassAndThemeEx(hPreviewBar, true, true);
 		}
 	}
 	else

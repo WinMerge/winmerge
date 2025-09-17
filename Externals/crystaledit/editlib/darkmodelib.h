@@ -18,21 +18,21 @@ namespace DarkMode
 	enum class DarkModeType : unsigned char { light = 0, dark = 1, classic = 3 };
 
 	inline void DummyInitDarkMode() {}
-	inline void DummySetDarkWndSafe(HWND, bool) {}
-	inline void DummySetDarkWndNotifySafe(HWND, bool) {}
+	inline void DummySetDarkWndSafeEx(HWND, bool) {}
+	inline void DummySetDarkWndNotifySafeEx(HWND, bool, bool) {}
 	inline void DummySetWindowEraseBgSubclass(HWND) {}
 	inline void DummySetDarkScrollBar(HWND) {}
-	inline void DummySetDarkTooltips(HWND, ToolTipsType) {}
+	inline void DummySetDarkTooltips(HWND, int) {}
 	inline void DummySetDarkListViewCheckboxes(HWND) {}
 	inline void DummySetChildCtrlsTheme(HWND) {}
 	inline void DummySetWindowCtlColorSubclass(HWND) {}
-	inline void DummySetChildCtrlsSubclassAndTheme(HWND, bool, bool) {}
+	inline void DummySetChildCtrlsSubclassAndThemeEx(HWND, bool, bool) {}
 	inline void DummySetTabCtrlUpDownSubclass(HWND) {}
-	inline void DummySetDarkModeConfig(UINT) {}
+	inline void DummySetDarkModeConfigEx(UINT) {}
 	inline void DummySetDefaultColors(bool) {}
 	inline void DummySetDarkTitleBarEx(HWND, bool) {}
 	inline void DummySetListViewCtrlSubclass(HWND) {}
-	inline void DummySetDarkThemeExperimental(HWND, const wchar_t*) {}
+	inline void DummySetDarkThemeExperimentalEx(HWND, const wchar_t*) {}
 	inline void DummySetWindowNotifyCustomDrawSubclass(HWND) {}
 	inline void DummySetTabCtrlSubclass(HWND) {}
 	inline void DummyEnableSysLinkCtrlCtlColor(HWND) {}
@@ -48,21 +48,21 @@ namespace DarkMode
 	inline UINT_PTR CALLBACK DummyHookDlgProc(HWND, UINT, WPARAM, LPARAM) { return 0; }
 
 	inline void (*initDarkMode)() = DummyInitDarkMode;
-	inline void (*setDarkWndSafe)(HWND, bool) = DummySetDarkWndSafe;
-	inline void (*setDarkWndNotifySafe)(HWND, bool) = DummySetDarkWndNotifySafe;
+	inline void (*setDarkWndSafeEx)(HWND, bool) = DummySetDarkWndSafeEx;
+	inline void (*setDarkWndNotifySafeEx)(HWND, bool, bool) = DummySetDarkWndNotifySafeEx;
 	inline void (*setWindowEraseBgSubclass)(HWND) = DummySetWindowEraseBgSubclass;
 	inline void (*setDarkScrollBar)(HWND) = DummySetDarkScrollBar;
-	inline void (*setDarkTooltips)(HWND, ToolTipsType) = DummySetDarkTooltips;
+	inline void (*setDarkTooltips)(HWND, int) = DummySetDarkTooltips;
 	inline void (*setDarkListViewCheckboxes)(HWND) = DummySetDarkListViewCheckboxes;
 	inline void (*setChildCtrlsTheme)(HWND) = DummySetChildCtrlsTheme;
 	inline void (*setWindowCtlColorSubclass)(HWND) = DummySetWindowCtlColorSubclass;
-	inline void (*setChildCtrlsSubclassAndTheme)(HWND, bool, bool) = DummySetChildCtrlsSubclassAndTheme;
+	inline void (*setChildCtrlsSubclassAndThemeEx)(HWND, bool, bool) = DummySetChildCtrlsSubclassAndThemeEx;
 	inline void (*setTabCtrlUpDownSubclass)(HWND) = DummySetTabCtrlUpDownSubclass;
-	inline void (*setDarkModeConfig)(UINT) = DummySetDarkModeConfig;
+	inline void (*setDarkModeConfigEx)(UINT) = DummySetDarkModeConfigEx;
 	inline void (*setDefaultColors)(bool) = DummySetDefaultColors;
 	inline void (*setDarkTitleBarEx)(HWND, bool) = DummySetDarkTitleBarEx;
 	inline void (*setListViewCtrlSubclass)(HWND) = DummySetListViewCtrlSubclass;
-	inline void (*setDarkThemeExperimental)(HWND, const wchar_t*) = DummySetDarkThemeExperimental;
+	inline void (*setDarkThemeExperimentalEx)(HWND, const wchar_t*) = DummySetDarkThemeExperimentalEx;
 	inline void (*setWindowNotifyCustomDrawSubclass)(HWND) = DummySetWindowNotifyCustomDrawSubclass;
 	inline void (*setTabCtrlSubclass)(HWND) = DummySetTabCtrlSubclass;
 	inline void (*enableSysLinkCtrlCtlColor)(HWND) = DummyEnableSysLinkCtrlCtlColor;
@@ -82,24 +82,24 @@ namespace DarkMode
 		HMODULE hDll = LoadLibraryW(dllName);
 		if (!hDll) return false;
 
-#define LOAD_FN(fn) fn = (decltype(fn))GetProcAddress(hDll, "DarkMode_"#fn)
+#define LOAD_FN(fn) fn = (decltype(fn))GetProcAddress(hDll, #fn)
 
 		LOAD_FN(initDarkMode);
-		LOAD_FN(setDarkWndSafe);
-		LOAD_FN(setDarkWndNotifySafe);
+		LOAD_FN(setDarkWndSafeEx);
+		LOAD_FN(setDarkWndNotifySafeEx);
 		LOAD_FN(setWindowEraseBgSubclass);
 		LOAD_FN(setDarkScrollBar);
 		LOAD_FN(setDarkTooltips);
 		LOAD_FN(setDarkListViewCheckboxes);
 		LOAD_FN(setChildCtrlsTheme);
 		LOAD_FN(setWindowCtlColorSubclass);
-		LOAD_FN(setChildCtrlsSubclassAndTheme);
+		LOAD_FN(setChildCtrlsSubclassAndThemeEx);
 		LOAD_FN(setTabCtrlUpDownSubclass);
-		LOAD_FN(setDarkModeConfig);
+		LOAD_FN(setDarkModeConfigEx);
 		LOAD_FN(setDefaultColors);
 		LOAD_FN(setDarkTitleBarEx);
 		LOAD_FN(setListViewCtrlSubclass);
-		LOAD_FN(setDarkThemeExperimental);
+		LOAD_FN(setDarkThemeExperimentalEx);
 		LOAD_FN(setWindowNotifyCustomDrawSubclass);
 		LOAD_FN(setTabCtrlSubclass);
 		LOAD_FN(enableSysLinkCtrlCtlColor);
@@ -130,8 +130,8 @@ namespace WinMergeDarkMode
 
 	inline void LoadFunc(HMODULE hDll)
 	{
-		InvertLightness = (decltype(InvertLightness))GetProcAddress(hDll, "WinMergeDarkMode_InvertLightness");
-		SetAsciiArtSubclass = (decltype(SetAsciiArtSubclass))GetProcAddress(hDll, "WinMergeDarkMode_SetAsciiArtSubclass");
+		InvertLightness = (decltype(InvertLightness))GetProcAddress(hDll, "InvertLightness");
+		SetAsciiArtSubclass = (decltype(SetAsciiArtSubclass))GetProcAddress(hDll, "SetAsciiArtSubclass");
 	}
 
 	/**

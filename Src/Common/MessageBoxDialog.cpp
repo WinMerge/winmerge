@@ -514,10 +514,10 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	CreateButtonControls();
 	if (m_hWnd != nullptr)
 	{
-		DarkMode::setDarkWndSafe(m_hWnd, false);
+		DarkMode::setDarkWndSafeEx(m_hWnd, false);
 		DarkMode::setWindowEraseBgSubclass(m_hWnd);
 		if (HWND hTip = m_tooltips.GetSafeHwnd())
-			DarkMode::setDarkTooltips(hTip, DarkMode::ToolTipsType::tooltip);
+			DarkMode::setDarkTooltips(hTip, static_cast<int>(DarkMode::ToolTipsType::tooltip));
 	}
 
 	if (!DarkMode::isExperimentalActive())

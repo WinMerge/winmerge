@@ -522,7 +522,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		{
 			DarkMode::setWindowCtlColorSubclass(hWnd);
 			DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
-			DarkMode::setChildCtrlsSubclassAndTheme(hWnd, true, true);
+			DarkMode::setChildCtrlsSubclassAndThemeEx(hWnd, true, true);
 			CWnd* pToolbar = FindWindowEx(hWnd, nullptr, TOOLBARCLASSNAME, nullptr);
 			if (pToolbar)
 				DarkMode::setWindowCtlColorSubclass(pToolbar->GetSafeHwnd());
@@ -533,7 +533,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	{
 		DarkMode::setWindowCtlColorSubclass(hPane);
 		DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
-		DarkMode::setChildCtrlsSubclassAndTheme(hPane, true, true);
+		DarkMode::setChildCtrlsSubclassAndThemeEx(hPane, true, true);
 	}
 	return TRUE;
 }
@@ -1710,7 +1710,7 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 			{
 				DarkMode::setWindowCtlColorSubclass(hWnd);
 				DarkMode::setWindowNotifyCustomDrawSubclass(hWnd);
-				DarkMode::setChildCtrlsSubclassAndTheme(hWnd, true, true);
+				DarkMode::setChildCtrlsSubclassAndThemeEx(hWnd, true, true);
 				CWnd* pToolbar = FindWindowEx(hWnd, nullptr, TOOLBARCLASSNAME, nullptr);
 				if (pToolbar)
 					DarkMode::setWindowCtlColorSubclass(pToolbar->GetSafeHwnd());
@@ -1723,7 +1723,7 @@ void CWebPageDiffFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 		{
 			DarkMode::setWindowCtlColorSubclass(hPane);
 			DarkMode::setWindowNotifyCustomDrawSubclass(hPane);
-			DarkMode::setChildCtrlsSubclassAndTheme(hPane, true, true);
+			DarkMode::setChildCtrlsSubclassAndThemeEx(hPane, true, true);
 			::InvalidateRect(hPane, nullptr, TRUE);
 		}
 	}

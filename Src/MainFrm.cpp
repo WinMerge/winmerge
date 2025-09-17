@@ -439,7 +439,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	{
 		m_bTabsOnTitleBar = GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
 		if (HWND hSelf = GetSafeHwnd())
-			DarkMode::setDarkWndNotifySafe(hSelf, true);
+			DarkMode::setDarkWndNotifySafeEx(hSelf, false, true);
 	}
 
 	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), false);
@@ -1239,7 +1239,7 @@ void CMainFrame::OnOptions()
 		    sysColorsSerialized != GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS) ||
 			colorModeChanged)
 		{
-			DarkMode::setDarkModeConfig(static_cast<UINT>(dmTypeNew));
+			DarkMode::setDarkModeConfigEx(static_cast<UINT>(dmTypeNew));
 			DarkMode::setDefaultColors(true);
 			DarkMode::setDarkTitleBarEx(m_hWnd, true);
 			CMergeApp::ReloadCustomSysColors();
@@ -2692,7 +2692,7 @@ BOOL CMainFrame::CreateToolbar()
 
 	m_wndReBar.LoadStateFromString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
 	if (HWND hTip = m_wndToolBar.GetToolBarCtrl().GetToolTips()->GetSafeHwnd())
-		DarkMode::setDarkTooltips(hTip, DarkMode::ToolTipsType::tooltip);
+		DarkMode::setDarkTooltips(hTip, static_cast<int>(DarkMode::ToolTipsType::tooltip));
 	return TRUE;
 }
 
@@ -3888,7 +3888,7 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 
 			Options::SyntaxColors::Load(GetOptionsMgr(), theApp.GetMainSyntaxColors());
 
-			DarkMode::setDarkModeConfig(static_cast<UINT>(dmTypeNew));
+			DarkMode::setDarkModeConfigEx(static_cast<UINT>(dmTypeNew));
 			DarkMode::setDefaultColors(true);
 			DarkMode::setDarkTitleBarEx(m_hWnd, true);
 			CMergeApp::ReloadCustomSysColors();

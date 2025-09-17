@@ -369,7 +369,7 @@ BOOL CMergeApp::InitInstance()
 			GetOptionsMgr()->SaveOption(OPT_COLOR_MODE_EFFECTIVE, dmType == DarkMode::DarkModeType::dark ? 1 : 0);
 		}
 		DarkMode::initDarkMode();
-		DarkMode::setDarkModeConfig(static_cast<unsigned>(dmType));
+		DarkMode::setDarkModeConfigEx(static_cast<unsigned>(dmType));
 		DarkMode::setDefaultColors(true);
 	}
 

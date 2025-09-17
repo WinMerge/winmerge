@@ -315,6 +315,6 @@ void CEditorFilePathBar::SetToolTipsFirstTime(HWND hTip)
 	if (m_Tips.find(hTip) == m_Tips.end())
 	{
 		m_Tips.insert(hTip);
-		DarkMode::setDarkTooltips(hTip, DarkMode::ToolTipsType::tooltip);
+		DarkMode::setDarkTooltips(hTip, static_cast<int>(DarkMode::ToolTipsType::tooltip));
 	}
 }

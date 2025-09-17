@@ -220,7 +220,7 @@ void COpenView::OnInitialUpdate()
 	if (HWND hSelf = GetSafeHwnd())
 	{
 		DarkMode::setWindowCtlColorSubclass(hSelf);
-		DarkMode::setChildCtrlsSubclassAndTheme(hSelf, true, true);
+		DarkMode::setChildCtrlsSubclassAndThemeEx(hSelf, true, true);
 	}
 
 	if (DarkMode::isExperimentalActive())
@@ -467,7 +467,7 @@ void COpenView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 		if (HWND hSelf = GetSafeHwnd())
 		{
 			DarkMode::setWindowCtlColorSubclass(hSelf);
-			DarkMode::setChildCtrlsSubclassAndTheme(hSelf, true, true);
+			DarkMode::setChildCtrlsSubclassAndThemeEx(hSelf, true, true);
 		}
 
 		if (DarkMode::isExperimentalActive())
