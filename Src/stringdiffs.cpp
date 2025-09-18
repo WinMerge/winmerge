@@ -201,6 +201,16 @@ int Compare(const String& str1, const String& str2,
 		s1 = strutils::makelower(s1);
 		s2 = strutils::makelower(s2);
 	}
+	if (eol_mode == EOL_IGNORE)
+	{
+		strutils::replace_chars(s1, _T("\r\n"), _T("\n"));
+		strutils::replace_chars(s2, _T("\r\n"), _T("\n"));
+	}
+	else if (eol_mode == EOL_AS_SPACE)
+	{
+		strutils::replace_chars(s1, _T("\r\n"), _T(" "));
+		strutils::replace_chars(s2, _T("\r\n"), _T(" "));
+	}
 	if (whitespace == WHITESPACE_IGNORE_CHANGE)
 	{
 		strutils::replace_chars(s1, _T(" \t"), _T(" "));
@@ -210,11 +220,6 @@ int Compare(const String& str1, const String& str2,
 	{
 		strutils::replace_chars(s1, _T(" \t"), _T(""));
 		strutils::replace_chars(s2, _T(" \t"), _T(""));
-	}
-	if (eol_mode == EOL_IGNORE)
-	{
-		strutils::replace_chars(s1, _T("\r\n"), _T("\n"));
-		strutils::replace_chars(s2, _T("\r\n"), _T("\n"));
 	}
 	if (ignore_numbers)
 	{
