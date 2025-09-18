@@ -1111,6 +1111,9 @@ msgstr "Игнорировать отличия в комментариях"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Игнорировать отсутствующий конечный EOL"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Включая подпапки"
 
@@ -2094,6 +2097,9 @@ msgstr "Игнорировать отличия в комментариях"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Игнорировать отсутствующий конечный EOL"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Обнаружение переме&щенных блоков"

@@ -366,6 +366,8 @@ CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3], bool ig
 
 	// Options that affect comparison
 	bool casitive = ignoreDiffOptions ? false : !diffOptions.bIgnoreCase;
+	strdiff::EolCompareMode eolMode = diffOptions.bIgnoreLineBreaks ? strdiff::EOL_AS_SPACE :
+		diffOptions.bIgnoreEol ? strdiff::EOL_IGNORE : strdiff::EOL_STRICT;
 	bool eolSensitive = ignoreDiffOptions ? true : !diffOptions.bIgnoreEol;
 	int xwhite = ignoreDiffOptions ? 0 : diffOptions.nIgnoreWhitespace;
 	int breakType = GetBreakType(); // whitespace only or include punctuation
@@ -373,7 +375,7 @@ CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3], bool ig
 
 	// Make the call to stringdiffs, which does all the hard & tedious computations
 	std::vector<strdiff::wdiff> wdiffs =
-		strdiff::ComputeWordDiffs(static_cast<int>(panes.size()), str, casitive, eolSensitive, xwhite, diffOptions.bIgnoreNumbers, breakType, byteColoring);
+		strdiff::ComputeWordDiffs(static_cast<int>(panes.size()), str, casitive, eolMode, xwhite, diffOptions.bIgnoreNumbers, breakType, byteColoring);
 
 	std::vector<strdiff::wdiff>::iterator it;
 	for (it = wdiffs.begin(); it != wdiffs.end(); ++it)

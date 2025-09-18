@@ -1112,6 +1112,9 @@ msgstr "Ignorera kommentarskillnader"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignorera saknat avslutande radslut"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "Inkludera underkataloger"
 
@@ -2095,6 +2098,9 @@ msgstr "Ignorera kommentarskillnader"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Ignorera saknat avslutande radslut"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Aktivera detektering av flyttade block"

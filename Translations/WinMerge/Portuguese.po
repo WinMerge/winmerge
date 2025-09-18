@@ -1110,6 +1110,9 @@ msgstr "Ignorar diferenças nos c&omentários"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignorar presença ou ausência de um carácter de nova linha no fim do ficheiro"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Incluir subpastas"
 
@@ -2093,6 +2096,9 @@ msgstr "Ignorar diferenças nos c&omentários"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Ignorar presença ou ausência de um carácter de nova linha no fim do ficheiro"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Ativar deteção de bloco movido"

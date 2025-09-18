@@ -472,13 +472,43 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		else if (!file_data_ary[0].missing_newline && file_data_ary[1].missing_newline)
 			lineDataRight += GetEOL(lineDataLeft);
 	}
-
-	// If both match after filtering, mark this diff hunk as trivial and return.
-	if (lineDataLeft == lineDataRight)
+	if (m_options.m_bIgnoreLineBreaks)
 	{
-		//only difference is trivial
-		thisob->trivial = 1;
-		return 0;
+		std::string lineDataLeftOneLine = lineDataLeft;
+		std::string lineDataRightOneLine = lineDataRight;
+		Replace(lineDataLeftOneLine, "\r\n", " ");
+		ReplaceChars(lineDataLeftOneLine, "\r\n", " ");
+		Replace(lineDataRightOneLine, "\r\n", " ");
+		ReplaceChars(lineDataRightOneLine, "\r\n", " ");
+		if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
+		{
+			//Ignore character case
+			ReplaceChars(lineDataLeftOneLine, " \t", "");
+			ReplaceChars(lineDataRightOneLine, " \t", "");
+		}
+		else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
+		{
+			//Ignore change in whitespace char count
+			ReplaceChars(lineDataLeftOneLine, " \t", " ");
+			ReplaceChars(lineDataRightOneLine, " \t", " ");
+		}
+		// If both match after filtering, mark this diff hunk as trivial and return.
+		if (lineDataLeftOneLine == lineDataRightOneLine)
+		{
+			//only difference is trivial
+			thisob->trivial = 1;
+			return 0;
+		}
+	}
+	else
+	{
+		// If both match after filtering, mark this diff hunk as trivial and return.
+		if (lineDataLeft == lineDataRight)
+		{
+			//only difference is trivial
+			thisob->trivial = 1;
+			return 0;
+		}
 	}
 
 	auto SplitLines = [](const std::string& lines, int nlines) -> std::vector<std::string_view>
@@ -1256,6 +1286,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
 		m_options.m_bIgnoreMissingTrailingEol ||
+		m_options.m_bIgnoreLineBreaks ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
@@ -1435,6 +1466,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 
 	const bool usefilters = m_options.m_filterCommentsLines ||
 		m_options.m_bIgnoreMissingTrailingEol ||
+		m_options.m_bIgnoreLineBreaks ||
 		(m_pFilterList && m_pFilterList->HasRegExps()) ||
 		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	

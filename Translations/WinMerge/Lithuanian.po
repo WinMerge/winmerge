@@ -1109,6 +1109,9 @@ msgstr "Nepaisyti skirtumų k&omentaruose"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Nepaisyti trūksta&mų galinių EOL"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
 
@@ -2092,6 +2095,9 @@ msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Nepaisyti trūksta&mų galinių EOL"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"

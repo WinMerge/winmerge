@@ -1293,6 +1293,9 @@ msgstr ""
 msgid "Ignore &Missing Trailing EOL"
 msgstr ""
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "&Враховуючи підтеки"
@@ -2414,6 +2417,9 @@ msgid "Ignore c&omment differences"
 msgstr ""
 
 msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
 msgstr ""
 
 #, c-format

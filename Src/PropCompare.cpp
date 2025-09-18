@@ -26,6 +26,7 @@ PropCompare::PropCompare(COptionsMgr *optionsMgr)
  , m_bIgnoreEol(true)
  , m_bIgnoreCodepage(true)
  , m_bIgnoreMissingTrailingEol(true)
+ , m_bIgnoreLineBreaks(true)
  , m_nIgnoreWhite(-1)
  , m_bMovedBlocks(false)
  , m_bAlignSimilarLines(false)
@@ -49,6 +50,7 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bIgnoreEol);
 	DDX_Check(pDX, IDC_IGNORE_NUMBERS, m_bIgnoreNumbers);
 	DDX_Check(pDX, IDC_IGNEOFEOL_CHECK, m_bIgnoreMissingTrailingEol);
+	DDX_Check(pDX, IDC_IGNLBRKS_CHECK, m_bIgnoreLineBreaks);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_ALIGN_SIMILAR_LINES, m_bAlignSimilarLines);
@@ -80,6 +82,7 @@ void PropCompare::ReadOptions()
 	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bIgnoreMissingTrailingEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
+	m_bIgnoreLineBreaks = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_LINE_BREAKS);
 	m_bMovedBlocks = GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS);
 	m_bAlignSimilarLines = GetOptionsMgr()->GetBool(OPT_CMP_ALIGN_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM);
@@ -102,6 +105,7 @@ void PropCompare::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_NUMBERS, m_bIgnoreNumbers);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_MISSING_TRAILING_EOL, m_bIgnoreMissingTrailingEol);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_LINE_BREAKS, m_bIgnoreLineBreaks);
 	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
 	GetOptionsMgr()->SaveOption(OPT_CMP_ALIGN_SIMILAR_LINES, m_bAlignSimilarLines);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DIFF_ALGORITHM, m_nDiffAlgorithm);
@@ -134,6 +138,7 @@ void PropCompare::OnDefaults()
 	m_bIgnoreCase = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_CASE);
 	m_bIgnoreNumbers = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreMissingTrailingEol = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
+	m_bIgnoreLineBreaks = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_LINE_BREAKS);
 	m_bMovedBlocks = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MOVED_BLOCKS);
 	m_bAlignSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_ALIGN_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_DIFF_ALGORITHM);

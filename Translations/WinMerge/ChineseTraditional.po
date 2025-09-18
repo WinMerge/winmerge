@@ -1335,6 +1335,9 @@ msgstr "忽略註解差異 (&O)"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "忽略缺少結尾換行符號 (&M)"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "包括子資料夾 (&I)"
@@ -2457,6 +2460,9 @@ msgid "Ignore c&omment differences"
 msgstr "忽略註解差異 (&O)"
 
 msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
 msgstr ""
 
 #, c-format

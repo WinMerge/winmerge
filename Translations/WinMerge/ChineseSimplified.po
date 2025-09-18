@@ -1113,6 +1113,9 @@ msgstr "忽略注释行差异(&O)"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "忽略缺失的尾部换行符(&M)"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "包含子目录(&I)"
 
@@ -2098,6 +2101,9 @@ msgstr "忽略注释行差异(&O)"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "忽略缺失的尾部换行符(&M)"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "启用块移动检测(&N)"

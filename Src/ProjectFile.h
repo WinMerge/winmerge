@@ -37,6 +37,7 @@ public:
 	bool HasIgnoreNumbers() const;
 	bool HasIgnoreCodepage() const;
 	bool HasIgnoreMissingTrailingEol() const;
+	bool HasIgnoreLineBreaks() const;
 	bool HasFilterCommentsLines() const;
 	bool HasCompareMethod() const;
 	bool HasHiddenItems() const;
@@ -65,6 +66,7 @@ public:
 	bool GetIgnoreNumbers() const;
 	bool GetIgnoreCodepage() const;
 	bool GetIgnoreMissingTrailingEol() const;
+	bool GetIgnoreLineBreaks() const;
 	bool GetFilterCommentsLines() const;
 	int GetCompareMethod() const;
 	const std::vector<String>& GetHiddenItems() const;
@@ -90,6 +92,7 @@ public:
 	void SetIgnoreNumbers(bool bIgnoreNumbers);
 	void SetIgnoreCodepage(bool bIgnoreCodepage);
 	void SetIgnoreMissingTrailingEol(bool bIgnoreMissingTrailingEol);
+	void SetIgnoreLineBreaks(bool bIgnoreLineBreaks);
 	void SetFilterCommentsLines(bool bFilterCommentsLines);
 	void SetCompareMethod(int nCompareMethod);
 	void SetHiddenItems(const std::vector<String>& hiddenItems);
@@ -138,6 +141,7 @@ private:
 	std::optional<bool> m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
 	std::optional<bool> m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
 	std::optional<bool> m_bIgnoreMissingTrailingEol; /**< The value of the "Ignore missing trailing EOL" setting */
+	std::optional<bool> m_bIgnoreLineBreaks; /**< The value of the "Ignore line breaks (treat as spaces)" setting */
 	std::optional<bool> m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	std::optional<int> m_nCompareMethod; /**< The value of the "Compare method" setting */
 	std::vector<String> m_vSavedHiddenItems; /**< The list of hidden items saved */
@@ -415,6 +419,15 @@ inline bool ProjectFileItem::HasIgnoreCodepage() const
 inline bool ProjectFileItem::HasIgnoreMissingTrailingEol() const
 {
 	return m_bIgnoreMissingTrailingEol.has_value();
+}
+
+/** 
+ * @brief Returns if "Ignore line breaks (treat as spaces)" setting is defined in projectfile.
+ * @return true if project file has "Ignore line breaks (treat as spaces)" setting definition.
+ */
+inline bool ProjectFileItem::HasIgnoreLineBreaks() const
+{
+	return m_bIgnoreLineBreaks.has_value();
 }
 
 /** 
@@ -738,6 +751,24 @@ inline bool ProjectFileItem::GetIgnoreMissingTrailingEol() const
 inline void ProjectFileItem::SetIgnoreMissingTrailingEol(bool bIgnoreMissingTrailingEol)
 {
 	m_bIgnoreMissingTrailingEol = bIgnoreMissingTrailingEol;
+}
+
+/** 
+ * @brief Returns the value of the "Ignore line breaks (treat as spaces)" setting.
+ * @return The value of the "Ignore line breaks (treat as spaces)" setting
+ */
+inline bool ProjectFileItem::GetIgnoreLineBreaks() const
+{
+	return m_bIgnoreLineBreaks.value_or(false);
+}
+
+/** 
+ * @brief Set the value of the "Ignore line breaks (treat as spaces)" setting.
+ * @param [in] bIgnoreLineBreaks New value of the "Ignore line breaks (treat as spaces)" setting to set.
+ */
+inline void ProjectFileItem::SetIgnoreLineBreaks(bool bIgnoreLineBreaks)
+{
+	m_bIgnoreLineBreaks = bIgnoreLineBreaks;
 }
 
 /** 

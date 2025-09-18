@@ -21,6 +21,7 @@ CompareOptions::CompareOptions()
 , m_bIgnoreEOLDifference(false)
 , m_bIgnoreNumbers(false)
 , m_bIgnoreMissingTrailingEol(false)
+, m_bIgnoreLineBreaks(false)
 {
 }
 
@@ -50,6 +51,7 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	m_bIgnoreEOLDifference = options.bIgnoreEol;
 	m_bIgnoreNumbers = options.bIgnoreNumbers;
 	m_bIgnoreMissingTrailingEol = options.bIgnoreMissingTrailingEol;
+	m_bIgnoreLineBreaks = options.bIgnoreLineBreaks;
 }
 
 /**
@@ -190,6 +192,7 @@ void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 	options.bIgnoreNumbers = m_bIgnoreNumbers;
 	options.nDiffAlgorithm = m_diffAlgorithm;
 	options.bIgnoreMissingTrailingEol = m_bIgnoreMissingTrailingEol;
+	options.bIgnoreLineBreaks = m_bIgnoreLineBreaks;
 
 	switch (m_ignoreWhitespace)
 	{
