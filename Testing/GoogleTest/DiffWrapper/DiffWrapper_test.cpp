@@ -223,14 +223,16 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 	for (auto algo : { DIFF_ALGORITHM_DEFAULT, DIFF_ALGORITHM_MINIMAL, DIFF_ALGORITHM_PATIENCE, DIFF_ALGORITHM_HISTOGRAM, DIFF_ALGORITHM_NONE })
 	{
 		options.nDiffAlgorithm = algo;
+		options.bFilterCommentsLines = false;
 
 		options.nIgnoreWhitespace = WHITESPACE_COMPARE_ALL;
 		{
 			DiffList diffList;
-			TempFile left = WriteToTempFile(_T("0\na\nb\nc\n"));
+			TempFile left = WriteToTempFile(_T("0\na\r\nb\rc\n"));
 			TempFile right = WriteToTempFile(_T("0\na b c\n"));
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.SetOptions(&options);
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
@@ -245,10 +247,11 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 		options.nIgnoreWhitespace = WHITESPACE_IGNORE_CHANGE;
 		{
 			DiffList diffList;
-			TempFile left = WriteToTempFile(_T("0\na\n b\n  c\n"));
+			TempFile left = WriteToTempFile(_T("0\na\r\n b\r  c\n"));
 			TempFile right = WriteToTempFile(_T("0\na b c\n"));
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.SetOptions(&options);
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
@@ -263,10 +266,31 @@ TEST(DiffWrapper, RunFileDiff_IgnoreLineBreaks)
 		options.nIgnoreWhitespace = WHITESPACE_IGNORE_ALL;
 		{
 			DiffList diffList;
-			TempFile left = WriteToTempFile(_T("0\na\nb\nc\n"));
+			TempFile left = WriteToTempFile(_T("0\na\r\nb\rc\n"));
 			TempFile right = WriteToTempFile(_T("0\nabc\n"));
 			dw.SetCreateDiffList(&diffList);
 			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
+			dw.SetOptions(&options);
+			dw.RunFileDiff();
+			EXPECT_EQ(1, diffList.GetSize());
+			diffList.GetDiff(0, dr);
+			EXPECT_EQ(1, dr.begin[0]);
+			EXPECT_EQ(1, dr.begin[1]);
+			EXPECT_EQ(3, dr.end[0]);
+			EXPECT_EQ(1, dr.end[1]);
+			EXPECT_EQ(OP_TRIVIAL, dr.op);
+		}
+
+		options.nIgnoreWhitespace = WHITESPACE_COMPARE_ALL;
+		options.bFilterCommentsLines = true;
+		{
+			DiffList diffList;
+			TempFile left = WriteToTempFile(_T("0\na\r\n/*b*/\rc\n"));
+			TempFile right = WriteToTempFile(_T("0\na /*bb*/ c\n"));
+			dw.SetCreateDiffList(&diffList);
+			dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+			dw.SetFilterCommentsSourceDef(_T("cpp"));
 			dw.SetOptions(&options);
 			dw.RunFileDiff();
 			EXPECT_EQ(1, diffList.GetSize());
