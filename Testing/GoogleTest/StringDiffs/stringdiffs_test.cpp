@@ -56,91 +56,91 @@ namespace
 	// Both strings empty
 	TEST_F(StringDiffsTest, EmptyBoth)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(""), _T(""), false, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(""), _T(""), false, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// First string empty
 	TEST_F(StringDiffsTest, EmptyFirst)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(""), _T("abcde"), false, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(""), _T("abcde"), false, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Second string empty
 	TEST_F(StringDiffsTest, EmptySecond)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T(""), false, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T(""), false, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, Default1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T("abcde"), false, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T("abcde"), false, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, DefaultDiffererentLen)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcdef"), _T("abcde"), false, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcdef"), _T("abcde"), false, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, DefaultWhitespaceEnd)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde "), _T("abcde"), false, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde "), _T("abcde"), false, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, Caseignore1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T("abcde"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T("abcde"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, CaseignoreCase1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abcde"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abcde"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreWhitespace1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde "), _T("abcde"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde "), _T("abcde"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreWhitespace2)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T(" abcde"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T(" abcde"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
 	TEST_F(StringDiffsTest, IgnoreWhitespace3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde abcde"), _T("abcde abcde"), false, true, 1, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde abcde"), _T("abcde abcde"), false, strdiff::EOL_STRICT, 1, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
 	TEST_F(StringDiffsTest, IgnoreWhitespace4)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde abcde"), _T("  abcde abcde"), false, true, 1, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde abcde"), _T("  abcde abcde"), false, strdiff::EOL_STRICT, 1, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
 	TEST_F(StringDiffsTest, IgnoreWhitespace5)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde abcde"), _T("	abcde abcde"), false, true, 1, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde abcde"), _T("	abcde abcde"), false, strdiff::EOL_STRICT, 1, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
@@ -148,49 +148,49 @@ namespace
 	// Whitespace at begin of first string is a difference
 	TEST_F(StringDiffsTest, IgnoreWhitespace6)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde abcde"), _T("abcde	abcde"), false, true, 1, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde abcde"), _T("abcde	abcde"), false, strdiff::EOL_STRICT, 1, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore whitespace change, words, word-level
 	TEST_F(StringDiffsTest, IgnoreWhitespace7)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde abcde"), _T("abcde	abcde"), false, true, 1, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde abcde"), _T("abcde	abcde"), false, strdiff::EOL_STRICT, 1, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T("abcde"), true, true, 2, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T("abcde"), true, strdiff::EOL_STRICT, 2, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace2)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde"), _T("abcde"), true, true, 2, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde"), _T("abcde"), true, strdiff::EOL_STRICT, 2, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("	abcde"), _T("abcde"), true, true, 2, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("	abcde"), _T("abcde"), true, strdiff::EOL_STRICT, 2, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace4)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde"), _T("  abcde"), true, true, 2, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T(" abcde"), _T("  abcde"), true, strdiff::EOL_STRICT, 2, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace5)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde abcde"), _T("abcdeabcde"), true, true, 2, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde abcde"), _T("abcdeabcde"), true, strdiff::EOL_STRICT, 2, false, 0, false);
 /// FIXME:
 // 		EXPECT_EQ(0, diffs.size());
 	}
@@ -198,21 +198,21 @@ namespace
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace6)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde abcde"), _T("abcde	abcde"), true, true, 2, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde abcde"), _T("abcde	abcde"), true, strdiff::EOL_STRICT, 2, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, no case sensitivity, ignore all whitespace, words, word-level
 	TEST_F(StringDiffsTest, IgnoreAllWhitespace7)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde\tabcde"), _T("abcde	abcde"), true, true, 2, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde\tabcde"), _T("abcde	abcde"), true, strdiff::EOL_STRICT, 2, false, 0, false);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, word-level
 	TEST_F(StringDiffsTest, WordBreak2Words1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde fghij"), _T("abcde fghij"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde fghij"), _T("abcde fghij"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -228,7 +228,7 @@ namespace
 	// Last word is different
 	TEST_F(StringDiffsTest, WordBreak2Words2)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij"), _T("abcde fGhij"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij"), _T("abcde fGhij"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -244,7 +244,7 @@ namespace
 	// Both words are different
 	TEST_F(StringDiffsTest, WordBreak2Words3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij"), _T("ABcde fGhij"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij"), _T("ABcde fGhij"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(2, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		EXPECT_EQ(0, pDiff->begin[0]);
@@ -262,7 +262,7 @@ namespace
 	// Middle word is different
 	TEST_F(StringDiffsTest, WordBreak3Words1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fgHIj klmno"), _T("abcde fghij klmno"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fgHIj klmno"), _T("abcde fghij klmno"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -278,7 +278,7 @@ namespace
 	// Middle word is different
 	TEST_F(StringDiffsTest, WordBreak3Words2)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij klmno"), _T("abcde fGHij klmno"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij klmno"), _T("abcde fGHij klmno"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -294,7 +294,7 @@ namespace
 	// First two words are different
 	TEST_F(StringDiffsTest, WordBreak3Words3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcDE fGHij klmno"), _T("abcde fghij klmno"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcDE fGHij klmno"), _T("abcde fghij klmno"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(2, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		EXPECT_EQ(0, pDiff->begin[0]);
@@ -312,7 +312,7 @@ namespace
 	// First two words are different
 	TEST_F(StringDiffsTest, WordBreak3Words4)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij klmno"), _T("abcDE fGHij klmno"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij klmno"), _T("abcDE fGHij klmno"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(2, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		EXPECT_EQ(0, pDiff->begin[0]);
@@ -330,7 +330,7 @@ namespace
 	// First and last words are different generating two diffs
 	TEST_F(StringDiffsTest, WordBreak3Words5)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij KLmno"), _T("abcDE fghij klmno"), true, true, 0, false, 0, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde fghij KLmno"), _T("abcDE fghij klmno"), true, strdiff::EOL_STRICT, 0, false, 0, false);
 		EXPECT_EQ(2, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 2)
@@ -351,7 +351,7 @@ namespace
 	// First word is different
 	TEST_F(StringDiffsTest, PunctBreak2Words1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde,fghij"), _T("ABcde,fghij"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde,fghij"), _T("ABcde,fghij"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -367,7 +367,7 @@ namespace
 	// First word is different
 	TEST_F(StringDiffsTest, PunctBreak2Words2)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij"), _T("abcde,fghij"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij"), _T("abcde,fghij"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -383,7 +383,7 @@ namespace
 	// Both words are different
 	TEST_F(StringDiffsTest, PunctBreak2Words3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij"), _T("abcde,fGHij"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij"), _T("abcde,fGHij"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(2, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 2)
@@ -404,7 +404,7 @@ namespace
 	// First word is different
 	TEST_F(StringDiffsTest, PunctBreak3Words1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij,klmno"), _T("abcde,fghij,klmno"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij,klmno"), _T("abcde,fghij,klmno"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -420,7 +420,7 @@ namespace
 	// First word is different
 	TEST_F(StringDiffsTest, PunctBreak3Words2)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij,klmno"), _T("abcde,fGHij,klmno"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij,klmno"), _T("abcde,fGHij,klmno"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(2, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		EXPECT_EQ(0, pDiff->begin[0]);
@@ -438,7 +438,7 @@ namespace
 	// All three words are different
 	TEST_F(StringDiffsTest, PunctBreak3Words3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij,klmno"), _T("abcde,fGHij,klmNO"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij,klmno"), _T("abcde,fGHij,klmNO"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(3, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		EXPECT_EQ(0, pDiff->begin[0]);
@@ -461,7 +461,7 @@ namespace
 	// First word is different
 	TEST_F(StringDiffsTest, PunctBreak3Words4)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij,klmno"), _T("abcde,fghij,klmNO"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij,klmno"), _T("abcde,fghij,klmNO"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(2, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		EXPECT_EQ(0, pDiff->begin[0]);
@@ -480,7 +480,7 @@ namespace
 	TEST_F(StringDiffsTest, CustomPunct1)
 	{
 		strdiff::SetBreakChars(_T(""));
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde:fghij"), _T("abcde:fghij"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde:fghij"), _T("abcde:fghij"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -497,7 +497,7 @@ namespace
 	TEST_F(StringDiffsTest, CustomPunct2)
 	{
  		strdiff::SetBreakChars(_T(""));
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij"), _T("abcde,fghij"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij"), _T("abcde,fghij"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		if (diffs.size() > 0)
 		{
@@ -514,7 +514,7 @@ namespace
 	TEST_F(StringDiffsTest, CustomPunctBreak1)
 	{
  		strdiff::SetBreakChars(_T(":"));
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde:fghij"), _T("abcde:fghij"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde:fghij"), _T("abcde:fghij"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -531,7 +531,7 @@ namespace
 	TEST_F(StringDiffsTest, CustomPunctBreak2)
 	{
  		strdiff::SetBreakChars(_T(";"));
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij"), _T("abcde,fghij"), true, true, 0, false, 1, false);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("Abcde,fghij"), _T("abcde,fghij"), true, strdiff::EOL_STRICT, 0, false, 1, false);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -546,14 +546,14 @@ namespace
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
 	TEST_F(StringDiffsTest, ByteLevel1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T("abcde"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abcde"), _T("abcde"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_TRUE(diffs.size() == 0);
 	}
 
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
 	TEST_F(StringDiffsTest, ByteLevel2)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abcde"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abcde"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -568,7 +568,7 @@ namespace
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
 	TEST_F(StringDiffsTest, ByteLevel3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBCde"), _T("abcde"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBCde"), _T("abcde"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -583,7 +583,7 @@ namespace
 	// Identical strings, case sensitivity, no whitespace, words, byte-level
 	TEST_F(StringDiffsTest, ByteLevel4)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abCde"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abCde"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -599,7 +599,7 @@ namespace
 	// NOTE NOTE: This is questionable?
 	TEST_F(StringDiffsTest, ByteLevel5)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcDe"), _T("abcde"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcDe"), _T("abcde"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -615,7 +615,7 @@ namespace
 	// NOTE NOTE: This is questionable?
 	TEST_F(StringDiffsTest, ByteLevel6)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abcDe"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abcDe"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -631,7 +631,7 @@ namespace
 	// NOTE NOTE: This is questionable?
 	TEST_F(StringDiffsTest, ByteLevel7)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcdE"), _T("abcde"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcdE"), _T("abcde"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff;
 		if (diffs.size() == 1 )
@@ -648,7 +648,7 @@ namespace
 	// NOTE NOTE: This is questionable?
 	TEST_F(StringDiffsTest, ByteLevel8)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abcdE"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("aBcde"), _T("abcdE"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff *pDiff;
 		if (diffs.size() == 1)
@@ -663,41 +663,41 @@ namespace
 
 	TEST_F(StringDiffsTest, IgnoreEOL1)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\n"), _T("abc\n"), true, false, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\n"), _T("abc\n"), true, strdiff::EOL_IGNORE, 0, false, 0, true);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	TEST_F(StringDiffsTest, IgnoreEOL2)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\n"), _T("abc\r"), true, false, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\n"), _T("abc\r"), true, strdiff::EOL_IGNORE, 0, false, 0, true);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	TEST_F(StringDiffsTest, IgnoreEOL3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\n\r\n"), _T("abc\n\n"), true, false, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\n\r\n"), _T("abc\n\n"), true, strdiff::EOL_IGNORE, 0, false, 0, true);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	TEST_F(StringDiffsTest, IgnoreEOL4)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\r"), _T("abc\n\n"), true, false, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\r"), _T("abc\n\n"), true, strdiff::EOL_IGNORE, 0, false, 0, true);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	TEST_F(StringDiffsTest, IgnoreEOL5)
 	{
 		// GitHub issue #1838 End of line diff is a bit wanky
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\ndef\r\n"), _T("abc\ndef\n"), true, false, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\ndef\r\n"), _T("abc\ndef\n"), true, strdiff::EOL_IGNORE, 0, false, 0, true);
 		EXPECT_EQ(0, diffs.size());
-		diffs = strdiff::ComputeWordDiffs(_T("  abc  \r\ndef\r\n  "), _T("  abc  \ndef\n  "), true, false, 0, false, 0, true);
+		diffs = strdiff::ComputeWordDiffs(_T("  abc  \r\ndef\r\n  "), _T("  abc  \ndef\n  "), true, strdiff::EOL_IGNORE, 0, false, 0, true);
 		EXPECT_EQ(0, diffs.size());
 	}
 
 	// Identical strings with numbers
 	TEST_F(StringDiffsTest, IgnoreNumbers)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("ab 1"), _T("ab 2"), true, true, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("ab 1"), _T("ab 2"), true, strdiff::EOL_STRICT, 0, false, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		strdiff::wdiff* pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -708,13 +708,13 @@ namespace
 			EXPECT_EQ(3, pDiff->end[1]);
 		}
 
-		diffs = strdiff::ComputeWordDiffs(_T("ab 1"), _T("ab 2"), true, true, 0, true, 0, true);
+		diffs = strdiff::ComputeWordDiffs(_T("ab 1"), _T("ab 2"), true, strdiff::EOL_STRICT, 0, true, 0, true);
 		EXPECT_EQ(0, diffs.size());
 
-		diffs = strdiff::ComputeWordDiffs(_T("ab 1234"), _T("ab 2"), true, true, 0, true, 0, true);
+		diffs = strdiff::ComputeWordDiffs(_T("ab 1234"), _T("ab 2"), true, strdiff::EOL_STRICT, 0, true, 0, true);
 		EXPECT_EQ(0, diffs.size());
 
-		diffs = strdiff::ComputeWordDiffs(_T("ab 12 34"), _T("ab 2"), true, true, 0, true, 0, true);
+		diffs = strdiff::ComputeWordDiffs(_T("ab 12 34"), _T("ab 2"), true, strdiff::EOL_STRICT, 0, true, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -725,7 +725,7 @@ namespace
 			EXPECT_EQ(3, pDiff->end[1]); // at line end the end is always (begin - 1)
 		}
 
-		diffs = strdiff::ComputeWordDiffs(_T("ab 12 34"), _T("ab 2 c"), true, true, 0, true, 0, true);
+		diffs = strdiff::ComputeWordDiffs(_T("ab 12 34"), _T("ab 2 c"), true, strdiff::EOL_STRICT, 0, true, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -736,7 +736,7 @@ namespace
 			EXPECT_EQ(5, pDiff->end[1]);
 		}
 
-		diffs = strdiff::ComputeWordDiffs(_T("ab  12 34"), _T("aB 2 c"), false, true, 1, true, 0, true);
+		diffs = strdiff::ComputeWordDiffs(_T("ab  12 34"), _T("aB 2 c"), false, strdiff::EOL_STRICT, 1, true, 0, true);
 		EXPECT_EQ(1, diffs.size());
 		pDiff = &diffs[0];
 		if (diffs.size() == 1)
@@ -752,109 +752,109 @@ namespace
 	TEST_F(StringDiffsTest, CompareCase)
 	{
 		int result;
-		result = strdiff::Compare(_T("abc"), _T("abc"), false, true, 0, false);
+		result = strdiff::Compare(_T("abc"), _T("abc"), false, strdiff::EOL_STRICT, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("ABC"), _T("abc"), false, true, 0, false);
+		result = strdiff::Compare(_T("ABC"), _T("abc"), false, strdiff::EOL_STRICT, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc"), _T("ABC"), false, true, 0, false);
+		result = strdiff::Compare(_T("abc"), _T("ABC"), false, strdiff::EOL_STRICT, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("aBC"), _T("Bcd"), false, true, 0, false);
+		result = strdiff::Compare(_T("aBC"), _T("Bcd"), false, strdiff::EOL_STRICT, 0, false);
 		EXPECT_EQ(1, result);
-		result = strdiff::Compare(_T("Bcd"), _T("aBC"), false, true, 0, false);
+		result = strdiff::Compare(_T("Bcd"), _T("aBC"), false, strdiff::EOL_STRICT, 0, false);
 		EXPECT_EQ(-1, result);
 	}
 
 	TEST_F(StringDiffsTest, CompareWhiltespaces1)
 	{
 		int result;
-		result = strdiff::Compare(_T("abc def"), _T("abc def"), true, true, 1, false);
+		result = strdiff::Compare(_T("abc def"), _T("abc def"), true, strdiff::EOL_STRICT, 1, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc  def"), _T("abc def"), true, true, 1, false);
+		result = strdiff::Compare(_T("abc  def"), _T("abc def"), true, strdiff::EOL_STRICT, 1, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc def"), _T("abc  def"), true, true, 1, false);
+		result = strdiff::Compare(_T("abc def"), _T("abc  def"), true, strdiff::EOL_STRICT, 1, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc \tdef"), _T("abc def"), true, true, 1, false);
+		result = strdiff::Compare(_T("abc \tdef"), _T("abc def"), true, strdiff::EOL_STRICT, 1, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc def"), _T("abc \tdef"), true, true, 1, false);
+		result = strdiff::Compare(_T("abc def"), _T("abc \tdef"), true, strdiff::EOL_STRICT, 1, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc def"), _T("abcdef"), true, true, 1, false);
+		result = strdiff::Compare(_T("abc def"), _T("abcdef"), true, strdiff::EOL_STRICT, 1, false);
 		EXPECT_EQ(1, result);
-		result = strdiff::Compare(_T("abcdef"), _T("abc def"), true, true, 1, false);
+		result = strdiff::Compare(_T("abcdef"), _T("abc def"), true, strdiff::EOL_STRICT, 1, false);
 		EXPECT_EQ(-1, result);
 	}
 
 	TEST_F(StringDiffsTest, CompareWhiltespaces2)
 	{
 		int result;
-		result = strdiff::Compare(_T("abc def"), _T("abc def"), true, true, 2, false);
+		result = strdiff::Compare(_T("abc def"), _T("abc def"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc  def"), _T("abc def"), true, true, 2, false);
+		result = strdiff::Compare(_T("abc  def"), _T("abc def"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc def"), _T("abc  def"), true, true, 2, false);
+		result = strdiff::Compare(_T("abc def"), _T("abc  def"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc \tdef"), _T("abc def"), true, true, 2, false);
+		result = strdiff::Compare(_T("abc \tdef"), _T("abc def"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc def"), _T("abc \tdef"), true, true, 2, false);
+		result = strdiff::Compare(_T("abc def"), _T("abc \tdef"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc def"), _T("abcdef"), true, true, 2, false);
+		result = strdiff::Compare(_T("abc def"), _T("abcdef"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abcdef"), _T("abc def"), true, true, 2, false);
+		result = strdiff::Compare(_T("abcdef"), _T("abc def"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc\tdef"), _T("abcdef"), true, true, 2, false);
+		result = strdiff::Compare(_T("abc\tdef"), _T("abcdef"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abcdef"), _T("abc\tdef"), true, true, 2, false);
+		result = strdiff::Compare(_T("abcdef"), _T("abc\tdef"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abcde"), _T("abcdef"), true, true, 2, false);
+		result = strdiff::Compare(_T("abcde"), _T("abcdef"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(1, result);
-		result = strdiff::Compare(_T("abcdef"), _T("abcde"), true, true, 2, false);
+		result = strdiff::Compare(_T("abcdef"), _T("abcde"), true, strdiff::EOL_STRICT, 2, false);
 		EXPECT_EQ(-1, result);
 	}
 
 	TEST_F(StringDiffsTest, CompareEOL)
 	{
 		int result;
-		result = strdiff::Compare(_T("abc\r\n"), _T("abc\r\n"), true, false, 0, false);
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\r\n") , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc\r\n"), _T("abc\r"), true, false, 0, false);
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\r") , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc\r"), _T("abc\r\n"), true, false, 0, false);
+		result = strdiff::Compare(_T("abc\r"), _T("abc\r\n") , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc\r\n"), _T("abc\n"), true, false, 0, false);
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\n") , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc\n"), _T("abc\r\n"), true, false, 0, false);
+		result = strdiff::Compare(_T("abc\n"), _T("abc\r\n") , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc\n"), _T("abc\r"), true, false, 0, false);
+		result = strdiff::Compare(_T("abc\n"), _T("abc\r") , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("abc\r"), _T("abc\n"), true, false, 0, false);
+		result = strdiff::Compare(_T("abc\r"), _T("abc\n") , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(String(_T("abc\r\0"), 5), _T("abc\r\n"), true, false, 0, false);
+		result = strdiff::Compare(String(_T("abc\r\0"), 5), _T("abc\r\n") , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(-1, result);
-		result = strdiff::Compare(_T("abc\r\n"), String(_T("abc\r\0"), 5), true, false, 0, false);
+		result = strdiff::Compare(_T("abc\r\n"), String(_T("abc\r\0"), 5) , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(1, result);
 	}
 
 	TEST_F(StringDiffsTest, CompareNumbers)
 	{
 		int result;
-		result = strdiff::Compare(_T("1a"), _T("2a"), true, true, 0, true);
+		result = strdiff::Compare(_T("1a"), _T("2a") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("a123"), _T("a234"), true, true, 0, true);
+		result = strdiff::Compare(_T("a123"), _T("a234") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("a"), _T("123a"), true, true, 0, true);
+		result = strdiff::Compare(_T("a"), _T("123a") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("123a"), _T("a"), true, true, 0, true);
+		result = strdiff::Compare(_T("123a"), _T("a") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("123"), _T(""), true, true, 0, true);
+		result = strdiff::Compare(_T("123"), _T("") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T(""), _T("123"), true, true, 0, true);
+		result = strdiff::Compare(_T(""), _T("123") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(0, result);
-		result = strdiff::Compare(_T("123a"), _T("123b"), true, true, 0, true);
+		result = strdiff::Compare(_T("123a"), _T("123b") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(1, result);
-		result = strdiff::Compare(_T("123b"), _T("123a"), true, true, 0, true);
+		result = strdiff::Compare(_T("123b"), _T("123a") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(-1, result);
-		result = strdiff::Compare(_T("a123"), _T("b123"), true, true, 0, true);
+		result = strdiff::Compare(_T("a123"), _T("b123") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(1, result);
-		result = strdiff::Compare(_T("b123"), _T("a123"), true, true, 0, true);
+		result = strdiff::Compare(_T("b123"), _T("a123") , true, strdiff::EOL_STRICT, 0, true);
 		EXPECT_EQ(-1, result);
 	}
 

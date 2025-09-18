@@ -12,6 +12,8 @@
 namespace strdiff
 {
 
+enum EolCompareMode { EOL_STRICT = 0, EOL_IGNORE = 1, EOL_AS_SPACE = 2 };
+
 /** @brief One difference between two strings */
 struct wdiff {
 	std::array<int, 3> begin; // 0-based, eg, begin[0] is from str1
@@ -36,10 +38,10 @@ void Close();
 void SetBreakChars(const tchar_t *breakChars);
 
 std::vector<wdiff> ComputeWordDiffs(const String& str1, const String& str2,
-	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType, bool byte_level);
+	bool case_sensitive, EolCompareMode eol_mode, int whitespace, bool ignore_numbers, int breakType, bool byte_level);
 std::vector<wdiff> ComputeWordDiffs(int nStrings, const String *str, 
-                   bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType, bool byte_level);
+                   bool case_sensitive, EolCompareMode eol_mode, int whitespace, bool ignore_numbers, int breakType, bool byte_level);
 int Compare(const String& str1, const String& str2,
-	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers);
+	bool case_sensitive, EolCompareMode eol_mode, int whitespace, bool ignore_numbers);
 
 }
