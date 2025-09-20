@@ -14,6 +14,5 @@ private:
 	inline static void EndRightWheelScrolling() { if (!m_bIgnoreRBUp) return; m_endTimeRightWheelScrolling = std::chrono::system_clock::now(); m_bIgnoreRBUp = false; }
 	inline static HHOOK m_hMouseHook;
 	inline static bool m_bIgnoreRBUp;
-	inline static bool m_bRButtonDown;
 	inline static std::chrono::system_clock::time_point m_endTimeRightWheelScrolling;
 };
