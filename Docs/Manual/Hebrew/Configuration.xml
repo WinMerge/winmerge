@@ -735,6 +735,36 @@ CRLF) והשני לא, אך תוכן השורה תואם, הבדלים אלה מ
 
     <section>
       <title>
+Ignore line breaks (treat as spaces)<indexterm>
+          <primary>מסננים</primary>
+          <secondary>line breaks</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (default): Line breaks (EOL characters) are not
+treated as spaces.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Enabled</option>: Within a diff hunk, line breaks are treated as
+spaces. For example, the following difference is ignored: <screen>Left:
+abc def
+
+Right:
+abc
+def
+</screen> <note> Useful when combined with whitespace options
+such as <option>Whitespaces → Ignore change</option> or <option>Whitespaces
+→ Ignore all</option>.  </note></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
 הפעל זיהוי בלוקים שהועברו<indexterm>
           <primary>הבדלים שהועברו</primary>
         </indexterm></title>

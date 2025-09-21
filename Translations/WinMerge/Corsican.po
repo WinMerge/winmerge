@@ -1112,6 +1112,9 @@ msgstr "Ignurà e sfarenze di c&ummentu"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignurà e fini di &linea assente"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Include i sottucartulari"
 
@@ -2103,6 +2106,9 @@ msgstr "Ignurà e sfarenze di c&ummentu"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Ignurà e fini di &linea assente"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Attivà l’avventata di i blocchi &dispiazzati"

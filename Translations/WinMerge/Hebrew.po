@@ -1107,6 +1107,9 @@ msgstr "התעלם מהבדלי הערות"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "התעלם מהיעדר סיום שורה"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "כלול תיקיות משנה"
 
@@ -2090,6 +2093,9 @@ msgstr "התעלם מהבדלי הערות"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "התעלם מהיעדר סיום שורה"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "הפעל זיהוי בלוקים שהוזזו"

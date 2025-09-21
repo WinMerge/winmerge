@@ -36,6 +36,7 @@ public:
 	bool    m_bIgnoreNumbers;
 	bool    m_bIgnoreBlankLines;
 	int     m_bIgnoreMissingTrailingEol;
+	int     m_bIgnoreLineBreaks;
 	int     m_nIgnoreWhite;
 	bool    m_bMovedBlocks;
 	bool    m_bAlignSimilarLines;

@@ -1109,6 +1109,9 @@ msgstr "Ignorar as D&iferenças dos Comentários"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignorar Falta do Caracter EOL no Final"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Incluir as Sub-Pastas"
 
@@ -2092,6 +2095,9 @@ msgstr "Ignorar as d&iferenças dos comentários"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Ignorar a falta do caractere EOL no final"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "A&tivar a detecção dos blocos movidos"

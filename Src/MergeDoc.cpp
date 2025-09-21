@@ -624,17 +624,20 @@ void CMergeDoc::FlagTrivialLines(void)
 				DIFFOPTIONS diffOptions = {0};
 				m_diffWrapper.GetOptions(&diffOptions);
 
+				strdiff::EolCompareMode eolMode = diffOptions.bIgnoreLineBreaks ? strdiff::EOL_AS_SPACE :
+					diffOptions.bIgnoreEol ? strdiff::EOL_IGNORE : strdiff::EOL_STRICT;
+
 				// Make the call to stringdiffs, which does all the hard & tedious computations
 				int result = strdiff::Compare(str[0], str[1],
 					!diffOptions.bIgnoreCase,
-					!diffOptions.bIgnoreEol,
+					eolMode,
 					diffOptions.nIgnoreWhitespace,
 					diffOptions.bIgnoreNumbers);
 				if (m_nBuffers >= 2 && result == 0)
 				{
 					result = strdiff::Compare(str[1], str[2],
 						!diffOptions.bIgnoreCase,
-						!diffOptions.bIgnoreEol,
+						eolMode,
 						diffOptions.nIgnoreWhitespace,
 						diffOptions.bIgnoreNumbers);
 				}

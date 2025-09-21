@@ -1337,6 +1337,9 @@ msgstr "주석 차이 무시(&O)"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "누락된 후행 EOL 무시(&M)"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "하위 폴더 포함(&I)"
@@ -2459,6 +2462,9 @@ msgstr "주석 차이 무시(&O)"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "누락된 후행 EOL 무시(&M)"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 #, c-format
 msgid "E&nable moved block detection"

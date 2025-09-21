@@ -95,6 +95,8 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS, OnUpdateDiffIgnoreComments)
 	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnDiffIgnoreMissingTrailingEol)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnUpdateDiffIgnoreMissingTrailingEol)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_LINE_BREAKS, OnDiffIgnoreLineBreaks)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_LINE_BREAKS, OnUpdateDiffIgnoreLineBreaks)
 	ON_COMMAND_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE, OnCompareMethod)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE, OnUpdateCompareMethod)
 	ON_WM_ACTIVATE()
@@ -149,6 +151,7 @@ COpenView::COpenView()
 	, m_bIgnoreCodepage(false)
 	, m_bFilterCommentsLines(false)
 	, m_bIgnoreMissingTrailingEol(false)
+	, m_bIgnoreLineBreaks(false)
 	, m_nCompareMethod(0)
 	, m_hTheme(nullptr)
 {
@@ -349,6 +352,8 @@ void COpenView::OnInitialUpdate()
 	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
+	m_bIgnoreMissingTrailingEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
+	m_bIgnoreLineBreaks = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_LINE_BREAKS);
 	m_nCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
 
 	UpdateData(FALSE);
@@ -369,6 +374,8 @@ void COpenView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
+	m_bIgnoreMissingTrailingEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
+	m_bIgnoreLineBreaks = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_LINE_BREAKS);
 	m_nCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
 
 	UpdateData(FALSE);
@@ -961,6 +968,8 @@ void COpenView::OnLoadProject()
 			m_bIgnoreCodepage = projItem.GetIgnoreCodepage();
 		if (projItem.HasIgnoreMissingTrailingEol())
 			m_bIgnoreMissingTrailingEol = projItem.GetIgnoreMissingTrailingEol();
+		if (projItem.HasIgnoreLineBreaks())
+			m_bIgnoreLineBreaks = projItem.GetIgnoreLineBreaks();
 		if (projItem.HasFilterCommentsLines())
 			m_bFilterCommentsLines = projItem.GetFilterCommentsLines();
 		if (projItem.HasCompareMethod())
@@ -1007,6 +1016,7 @@ void COpenView::OnSaveProject()
 	projItem.SetSaveIgnoreNumbers(bSaveCompareOptions);
 	projItem.SetSaveIgnoreCodepage(bSaveCompareOptions);
 	projItem.SetSaveIgnoreMissingTrailingEol(bSaveCompareOptions);
+	projItem.SetSaveIgnoreBreakLines(bSaveCompareOptions);
 	projItem.SetSaveFilterCommentsLines(bSaveCompareOptions);
 	projItem.SetSaveCompareMethod(bSaveCompareOptions);
 	projItem.SetSaveHiddenItems(bSaveHiddenItems);
@@ -1073,6 +1083,7 @@ void COpenView::OnSaveProject()
 		projItem.SetIgnoreNumbers(m_bIgnoreNumbers);
 		projItem.SetIgnoreCodepage(m_bIgnoreCodepage);
 		projItem.SetIgnoreMissingTrailingEol(m_bIgnoreMissingTrailingEol);
+		projItem.SetIgnoreLineBreaks(m_bIgnoreLineBreaks);
 		projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
 		projItem.SetCompareMethod(m_nCompareMethod);
 	}
@@ -1727,6 +1738,23 @@ void COpenView::OnDiffIgnoreMissingTrailingEol()
 void COpenView::OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck(m_bIgnoreMissingTrailingEol);
+}
+
+/**
+ * @brief Toggle "Ignore line breaks (treat as spaces)" setting.
+ */
+void COpenView::OnDiffIgnoreLineBreaks()
+{
+	m_bIgnoreLineBreaks = !m_bIgnoreLineBreaks;
+}
+
+/**
+ * @brief Update "Ignore line breaks (treat as spaces)" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreLineBreaks(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bIgnoreLineBreaks);
 }
 
 /**
