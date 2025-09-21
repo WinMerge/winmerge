@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2025-08-26 00:00+0000\n"
+"PO-Revision-Date: 2025-09-21 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -738,7 +738,7 @@ msgid "&View Whitespace"
 msgstr "Показы&вать пробельные символы"
 
 msgid "View E&OL"
-msgstr "Показывать EOL"
+msgstr "Показывать конец строки (EOL)"
 
 msgid "Vie&w Line Differences"
 msgstr "Показывать отличия строк"
@@ -1109,10 +1109,10 @@ msgid "Ignore C&omment Differences"
 msgstr "Игнорировать отличия в комментариях"
 
 msgid "Ignore &Missing Trailing EOL"
-msgstr "Игнорировать отсутствующий конечный EOL"
+msgstr "Игнорировать пропущенный завершающий EOL"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "Игнорировать разрывы строк (считать их пробелами)"
 
 msgid "&Include Subfolders"
 msgstr "&Включая подпапки"
@@ -2084,7 +2084,7 @@ msgid "Ignore &case"
 msgstr "Игнорировать р&егистр"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "Игнорировать отличия EOL (Windows/Unix/Mac)"
+msgstr "Игнорировать концы строк (Windows/Unix/Mac)"
 
 msgid "Ignore num&bers"
 msgstr "Игнорировать числа"
@@ -2096,13 +2096,13 @@ msgid "Ignore c&omment differences"
 msgstr "Игнорировать отличия в комментариях"
 
 msgid "Ignore &missing trailing EOL"
-msgstr "Игнорировать отсутствующий конечный EOL"
+msgstr "Игнорировать пропущенный завершающий EOL"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "Игнорировать разрывы строк (считать их пробелами)"
 
 msgid "E&nable moved block detection"
-msgstr "Обнаружение переме&щенных блоков"
+msgstr "Включить обнаружение переме&щенных блоков"
 
 msgid "Align &similar lines"
 msgstr "Выровнять по&хожие строки"
@@ -3747,7 +3747,7 @@ msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "Временные файлы не могут быть созданы. Проверьте настройки путей временных файлов."
 
 msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
-msgstr "В файлах используются различные типы конца строки.\n\nИгнорировать в этом сравнении (считать равнозначными) ?\n\nВнимание: Если Вас не интересуют отличия EOL, установите параметр 'Игнорировать концы строк (Win/Unix/Mac)' на вкладке Сравнение в Настройках."
+msgstr "В файлах используются различные типы конца строки.\n\nСчитать все концы строк в этом сравнении равнозначными?\n\nЕсли Вас не интересуют отличия EOL, установите параметр 'Игнорировать концы строк (Win/Unix/Mac)' на вкладке Сравнение в Настройках."
 
 msgid "Selected folder is invalid."
 msgstr "Выбранная папка указана неверно."
