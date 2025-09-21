@@ -694,6 +694,20 @@ namespace
 		EXPECT_EQ(0, diffs.size());
 	}
 
+	TEST_F(StringDiffsTest, IgnoreLineBreaks)
+	{
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\ndef\r\n"), _T("abc\ndef\n"), true, strdiff::EOL_AS_SPACE, 0, false, 0, true);
+		EXPECT_EQ(0, diffs.size());
+		diffs = strdiff::ComputeWordDiffs(_T("  abc  \r\ndef\r\n  "), _T("  abc  \ndef\n  "), true, strdiff::EOL_AS_SPACE, 0, false, 0, true);
+		EXPECT_EQ(0, diffs.size());
+		diffs = strdiff::ComputeWordDiffs(_T("  abc  \r\ndef\r\n  "), _T("  abc   def   "), true, strdiff::EOL_AS_SPACE, 0, false, 0, true);
+		EXPECT_EQ(0, diffs.size());
+		diffs = strdiff::ComputeWordDiffs(_T("  abc   def   "), _T("  abc  \ndef\n  "), true, strdiff::EOL_AS_SPACE, 0, false, 0, true);
+		EXPECT_EQ(0, diffs.size());
+		diffs = strdiff::ComputeWordDiffs(_T("  abc   def   "), _T("  abc\ndef\n  "), true, strdiff::EOL_AS_SPACE, 1, false, 0, true);
+		EXPECT_EQ(0, diffs.size());
+	}
+
 	// Identical strings with numbers
 	TEST_F(StringDiffsTest, IgnoreNumbers)
 	{
@@ -831,6 +845,42 @@ namespace
 		EXPECT_EQ(-1, result);
 		result = strdiff::Compare(_T("abc\r\n"), String(_T("abc\r\0"), 5) , true, strdiff::EOL_IGNORE, 0, false);
 		EXPECT_EQ(1, result);
+	}
+
+	TEST_F(StringDiffsTest, CompareEOLAsSpace)
+	{
+		int result;
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\r\n") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\r") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r"), _T("abc\r\n") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc\n") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\n"), _T("abc\r\n") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\n"), _T("abc\r") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r"), _T("abc\n") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(String(_T("abc\r\0"), 5), _T("abc\r\n") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(-1, result);
+		result = strdiff::Compare(_T("abc\r\n"), String(_T("abc\r\0"), 5) , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(1, result);
+
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc ") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc "), _T("abc\r") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc "), _T("abc ") , true, strdiff::EOL_AS_SPACE, 0, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc\r\n"), _T("abc  ") , true, strdiff::EOL_AS_SPACE, 1, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc  "), _T("abc\r\n") , true, strdiff::EOL_AS_SPACE, 1, false);
+		EXPECT_EQ(0, result);
+		result = strdiff::Compare(_T("abc"), _T("abc\r\n") , true, strdiff::EOL_AS_SPACE, 2, false);
+		EXPECT_EQ(0, result);
 	}
 
 	TEST_F(StringDiffsTest, CompareNumbers)

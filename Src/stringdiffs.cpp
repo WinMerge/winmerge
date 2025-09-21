@@ -208,7 +208,9 @@ int Compare(const String& str1, const String& str2,
 	}
 	else if (eol_mode == EOL_AS_SPACE)
 	{
+		strutils::replace(s1, _T("\r\n"), _T(" "));
 		strutils::replace_chars(s1, _T("\r\n"), _T(" "));
+		strutils::replace(s2, _T("\r\n"), _T(" "));
 		strutils::replace_chars(s2, _T("\r\n"), _T(" "));
 	}
 	if (whitespace == WHITESPACE_IGNORE_CHANGE)
@@ -437,7 +439,10 @@ stringdiffs::BuildWordsArray(const String & str) const
 		tchar_t ch = str[i];
 		if (ch == '\r' || ch == '\n')
 		{
-			break_type = dleol;
+			if (m_eol_mode == EOL_AS_SPACE)
+				break_type = dlspace;
+			else
+				break_type = dleol;
 		}
 		else if (isSafeWhitespace(ch))
 		{
@@ -456,7 +461,20 @@ stringdiffs::BuildWordsArray(const String & str) const
 			words.push_back(word(begin, i - 1, prev_break_type, Hash(str, begin, i - 1, 0)));
 			begin = i;
 		}
-		i = pIterChar->next();
+		if (m_eol_mode == EOL_AS_SPACE && break_type == dlspace)
+		{
+			for (; i < iLen; i++)
+			{
+				tchar_t ch2 = str[i];
+				if (ch2 != '\r' && ch2 != '\n' && !isSafeWhitespace(ch2))
+					break;
+			}
+			pIterChar->preceding(i);
+		}
+		else
+		{
+			i = pIterChar->next();
+		}
 		prev_break_type = break_type;
 	}
 	words.push_back(word(begin, i - 1, break_type, Hash(str, begin, i - 1, 0)));
@@ -536,7 +554,7 @@ stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
 bool
 stringdiffs::AreWordsSame(const word& word1, const word& word2) const
 {
-	if (this->m_whitespace != WHITESPACE_COMPARE_ALL)
+	if (m_whitespace != WHITESPACE_COMPARE_ALL)
 	{
 		if (IsSpace(word1) && IsSpace(word2))
 			return true;
@@ -546,10 +564,23 @@ stringdiffs::AreWordsSame(const word& word1, const word& word2) const
 		if (tc::istdigit(m_str1[word1.start]) && tc::istdigit(m_str2[word2.start]))
 			return true;
 	}
-	if (this->m_eol_mode == EOL_IGNORE)
+	if (m_eol_mode == EOL_IGNORE)
 	{
 		if (IsEOL(word1) && IsEOL(word2))
 			return true;
+	}
+	else if (m_eol_mode == EOL_AS_SPACE)
+	{
+		if (IsSpace(word1) && IsSpace(word2))
+		{
+			String wordstr1 = m_str1.substr(word1.start, word1.length());
+			String wordstr2 = m_str2.substr(word2.start, word2.length());
+			strutils::replace(wordstr1, _T("\r\n"), _T(" "));
+			strutils::replace_chars(wordstr1, _T("\r\n"), _T(" "));
+			strutils::replace(wordstr2, _T("\r\n"), _T(" "));
+			strutils::replace_chars(wordstr2, _T("\r\n"), _T(" "));
+			return (wordstr1 == wordstr2);
+		}
 	}
 
 	if (word1.hash != word2.hash)
