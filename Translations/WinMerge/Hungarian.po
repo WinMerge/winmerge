@@ -1331,7 +1331,7 @@ msgid "Ignore &Missing Trailing EOL"
 msgstr "&Hiányzó sorvégzáró figyelmen kívül hagyása"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "&Sortörések figyelmen kívül hagyása (szóközként kezelése)"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1339,7 +1339,7 @@ msgstr "&Alkönyvtárakkal együtt"
 
 #, c-format
 msgid "&Compare Method"
-msgstr "Összehasonlító módszer:"
+msgstr "&Összehasonlító módszer:"
 
 #, c-format
 msgid "Full Contents"
@@ -2457,7 +2457,7 @@ msgid "Ignore &missing trailing EOL"
 msgstr "&Hiányzó sorvégzáró figyelmen kívül hagyása"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "&Sortörések figyelmen kívül hagyása (szóközként kezelés)"
 
 #, c-format
 msgid "E&nable moved block detection"
