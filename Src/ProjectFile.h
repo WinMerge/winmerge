@@ -157,7 +157,7 @@ private:
 	bool m_bSaveIgnoreNumbers; /**< Save "Ignore numbers" setting? */
 	bool m_bSaveIgnoreCodepage; /**< Save "Ignore codepage differences" setting? */
 	bool m_bSaveIgnoreMissingTrailingEol; /**< Save "Ignore missing trailing EOL" setting? */
-	bool m_bSaveIgnoreBreakLines; /**< Save "Ignore line breaks" setting? */
+	bool m_bSaveIgnoreBreakLines; /**< Save "Ignore line breaks (treat as spaces)" setting? */
 	bool m_bSaveFilterCommentsLines; /**< Save "Ignore comment differences" setting? */
 	bool m_bSaveCompareMethod; /**< Save "Compare method" setting? */
 	bool m_bSaveHiddenItems;/* Save "Hidden item" settings?*/
