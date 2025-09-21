@@ -681,6 +681,34 @@ BOMの有無の違いも検出します。</para>
 
     <section>
       <title>
+改行を無視(空白として扱う)<indexterm>
+          <primary>フィルター</primary>
+          <secondary>改行</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>無効</option>（既定）: 改行（EOL文字）は空白として扱われません。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>有効</option>: diff hunk 内では改行が空白として扱われます。例えば、以下の差異は無視されます:
+<screen>左側:
+abc def
+
+右側:
+abc
+def
+</screen> <note> 空白関連のオプション（<option>空白 →
+変更を無視</option> や <option>空白 → すべて無視</option>）と組み合わせると便利です。 </note></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
 移動ブロックの検出を有効にする<indexterm>
           <primary>moved differences</primary>
         </indexterm></title>
