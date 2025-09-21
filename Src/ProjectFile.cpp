@@ -443,6 +443,8 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Ignore_codepage_diff_element_name, item.GetIgnoreCodepage() ? "1" : "0");
 				if (item.m_bSaveIgnoreMissingTrailingEol)
 					writeElement(writer, Ignore_missing_trailing_eol_element_name, item.GetIgnoreMissingTrailingEol() ? "1" : "0");
+				if (item.m_bSaveIgnoreBreakLines)
+					writeElement(writer, Ignore_line_breaks_element_name, item.GetIgnoreLineBreaks() ? "1" : "0");
 				if (item.m_bSaveFilterCommentsLines)
 					writeElement(writer, Ignore_comment_diff_element_name, item.GetFilterCommentsLines()  ? "1" : "0");
 				if (item.m_bSaveCompareMethod)

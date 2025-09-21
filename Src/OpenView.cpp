@@ -1016,6 +1016,7 @@ void COpenView::OnSaveProject()
 	projItem.SetSaveIgnoreNumbers(bSaveCompareOptions);
 	projItem.SetSaveIgnoreCodepage(bSaveCompareOptions);
 	projItem.SetSaveIgnoreMissingTrailingEol(bSaveCompareOptions);
+	projItem.SetSaveIgnoreBreakLines(bSaveCompareOptions);
 	projItem.SetSaveFilterCommentsLines(bSaveCompareOptions);
 	projItem.SetSaveCompareMethod(bSaveCompareOptions);
 	projItem.SetSaveHiddenItems(bSaveHiddenItems);
