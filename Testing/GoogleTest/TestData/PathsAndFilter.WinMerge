@@ -20,6 +20,7 @@
 		<ignore-codepage-diff>1</ignore-codepage-diff>
 		<ignore-comment-diff>1</ignore-comment-diff>
 		<ignore-missing-trailing-eol>1</ignore-missing-trailing-eol>
+		<ignore-line-breaks>1</ignore-line-breaks>
 		<compare-method>1</compare-method>
 		<hidden-list>
 			<hidden-item>file1.txt</hidden-item>
