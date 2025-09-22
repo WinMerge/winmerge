@@ -1099,7 +1099,7 @@ msgid "Ignore &Case"
 msgstr "忽略大小写(&C)"
 
 msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
-msgstr "忽略换行符差异 (Windows/Unix/Mac)(&R)"
+msgstr "忽略换行符差异（Windows/Unix/Mac）(&R)"
 
 msgid "Ignore Codepage &Differences"
 msgstr "忽略代码页差异(&D)"
@@ -1114,7 +1114,7 @@ msgid "Ignore &Missing Trailing EOL"
 msgstr "忽略缺失的尾部换行符(&M)"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "忽略换行符（视为空格）(&B)"
 
 msgid "&Include Subfolders"
 msgstr "包含子目录(&I)"
@@ -2103,7 +2103,7 @@ msgid "Ignore &missing trailing EOL"
 msgstr "忽略缺失的尾部换行符(&M)"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "忽略换行符（视为空格）(&B)"
 
 msgid "E&nable moved block detection"
 msgstr "启用块移动检测(&N)"
