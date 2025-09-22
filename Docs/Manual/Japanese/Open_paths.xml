@@ -650,6 +650,26 @@ one of each of these elements:</para>
         </varlistentry>
 
         <varlistentry>
+          <term><sgmltag>ignore-missing-trailing-eol</sgmltag></term>
+
+          <listitem>
+            <para>0 = Do not ignore missing trailing eol</para>
+
+            <para>1 = Ignore missing trailing eol</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-line-breaks</sgmltag></term>
+
+          <listitem>
+            <para>0 = Do not ignore line breaks (treat as spaces)</para>
+
+            <para>1 = Ignore line breaks (treat as spaces)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term><sgmltag>compare-method</sgmltag></term>
 
           <listitem>

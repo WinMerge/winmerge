@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-09-21 13:28+0900\n"
+"POT-Creation-Date: 2025-09-23 08:06+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12173,41 +12173,71 @@ msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: ./English/Open_paths.xml:680
-msgid "<sgmltag>compare-method</sgmltag>"
+msgid "<sgmltag>ignore-missing-trailing-eol</sgmltag>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: ./English/Open_paths.xml:683
-msgid "0 = Full Contents"
+msgid "0 = Do not ignore missing trailing eol"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: ./English/Open_paths.xml:685
-msgid "1 = Quick Contents"
+msgid "1 = Ignore missing trailing eol"
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Open_paths.xml:687
-msgid "2 = Binary Contents"
-msgstr ""
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Open_paths.xml:689
-msgid "3 = Modified Date"
-msgstr ""
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Open_paths.xml:691
-msgid "4 = Modified Date and Size"
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: ./English/Open_paths.xml:690
+msgid "<sgmltag>ignore-line-breaks</sgmltag>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: ./English/Open_paths.xml:693
+msgid "0 = Do not ignore line breaks (treat as spaces)"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Open_paths.xml:695
+msgid "1 = Ignore line breaks (treat as spaces)"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: ./English/Open_paths.xml:700
+msgid "<sgmltag>compare-method</sgmltag>"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Open_paths.xml:703
+msgid "0 = Full Contents"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Open_paths.xml:705
+msgid "1 = Quick Contents"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Open_paths.xml:707
+msgid "2 = Binary Contents"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Open_paths.xml:709
+msgid "3 = Modified Date"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Open_paths.xml:711
+msgid "4 = Modified Date and Size"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Open_paths.xml:713
 msgid "5 = Size"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Open_paths.xml:698
+#: ./English/Open_paths.xml:718
 msgid "None of the fields is required, and they can be empty (<literal>for example, &lt;left&gt;&lt;/left&gt; or &lt;left/&gt;</literal>)."
 msgstr ""
 
