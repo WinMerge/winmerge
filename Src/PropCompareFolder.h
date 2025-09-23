@@ -61,7 +61,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPropCompare)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnDefaults();
+	afx_msg void OnDefaults() override;
 	afx_msg void OnCbnSelchangeComparemethodcombo();
 	afx_msg void OnBnClickedRecursCheck();
 	//}}AFX_MSG

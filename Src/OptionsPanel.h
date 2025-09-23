@@ -41,7 +41,7 @@ public:
 	/**
 	 * @brief Sets options to defaults
 	 */
-	void OnDefaults()
+	virtual void OnDefaults()
 	{
 		ResetOptionBindings();
 		UpdateData(FALSE);
@@ -66,6 +66,7 @@ protected:
 	};
 
 	std::vector<OptionBinding> m_bindings;
+	template <class... T> struct always_false : std::false_type {};
 
 	/**
 	 * @brief Bind option with control + DDX function
@@ -83,12 +84,14 @@ protected:
 		b.readFunc = [this, pVar, optID]() {
 			if constexpr (std::is_same_v<T, int>)
 				*pVar = GetOptionsMgr()->GetInt(optID);
+			else if constexpr (std::is_same_v<T, unsigned>)
+				*pVar = static_cast<unsigned>(GetOptionsMgr()->GetInt(optID));
 			else if constexpr (std::is_same_v<T, bool>)
 				*pVar = GetOptionsMgr()->GetBool(optID);
 			else if constexpr (std::is_same_v<T, String>)
 				*pVar = GetOptionsMgr()->GetString(optID);
 			else
-				static_assert(always_false<T>, "Unsupported option type");
+				static_assert(always_false<T>::value, "Unsupported option type");
 		};
 		b.writeFunc = [this, pVar, optID]() { GetOptionsMgr()->SaveOption(optID, *pVar); };
 		b.resetFunc = [this, pVar, optID]() { *pVar = GetOptionsMgr()->GetDefault<T>(optID); };

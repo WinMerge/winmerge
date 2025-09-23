@@ -29,6 +29,11 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 , m_bAllowMixedEol(false)
 , m_nRenderingMode(0)
 {
+	BindOption(OPT_TAB_SIZE, m_nTabSize, IDC_TAB_EDIT, DDX_Text);
+	BindOption(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio);
+	BindOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax, IDC_HILITE_CHECK, DDX_Check);
+	BindOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol, IDC_MIXED_EOL, DDX_Check);
+	BindOption(OPT_RENDERING_MODE, m_nRenderingMode, IDC_RENDERING_MODE, DDX_CBIndex);
 }
 
 /** 
@@ -38,15 +43,11 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropEditor)
-	DDX_Check(pDX, IDC_HILITE_CHECK, m_bHiliteSyntax);
-	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
-	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
 	DDV_MaxChars(pDX, std::to_string(m_nTabSize).c_str(), 2);
-	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	// m_bCopyFullLine currently is only a hidden option
 	//  > it is used here in PropEditor.cpp, because otherwise it doesn't get saved to the registry
-	DDX_CBIndex(pDX, IDC_RENDERING_MODE, m_nRenderingMode);
 	//}}AFX_DATA_MAP
+	DoDataExchangeBindOptions(pDX);
 }
 
 
@@ -62,11 +63,8 @@ END_MESSAGE_MAP()
  */
 void PropEditor::ReadOptions()
 {
-	m_nTabSize = GetOptionsMgr()->GetInt(OPT_TAB_SIZE);
-	m_nTabType = GetOptionsMgr()->GetInt(OPT_TAB_TYPE);
-	m_bHiliteSyntax = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-	m_bAllowMixedEol = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL);
-	m_nRenderingMode = GetOptionsMgr()->GetInt(OPT_RENDERING_MODE) + 1;
+	ReadOptionBindings();
+	m_nRenderingMode++;
 }
 
 /** 
@@ -79,11 +77,9 @@ void PropEditor::WriteOptions()
 		m_nTabSize = 1;
 	if (m_nTabSize > MAX_TABSIZE)
 		m_nTabSize = MAX_TABSIZE;
-	GetOptionsMgr()->SaveOption(OPT_TAB_SIZE, (int)m_nTabSize);
-	GetOptionsMgr()->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
-	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol);
-	GetOptionsMgr()->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax);
-	GetOptionsMgr()->SaveOption(OPT_RENDERING_MODE, m_nRenderingMode - 1);
+	m_nRenderingMode--;
+	WriteOptionBindings();
+	m_nRenderingMode++;
 }
 
 /** 
@@ -117,11 +113,8 @@ void PropEditor::LoadComboBoxStrings()
  */
 void PropEditor::OnDefaults()
 {
-	m_nTabSize = GetOptionsMgr()->GetDefault<unsigned>(OPT_TAB_SIZE);
-	m_nTabType = GetOptionsMgr()->GetDefault<unsigned>(OPT_TAB_TYPE);
-	m_bHiliteSyntax = GetOptionsMgr()->GetDefault<bool>(OPT_SYNTAX_HIGHLIGHT);
-	m_bAllowMixedEol = GetOptionsMgr()->GetDefault<bool>(OPT_ALLOW_MIXED_EOL);
-	m_nRenderingMode = GetOptionsMgr()->GetDefault<unsigned>(OPT_RENDERING_MODE) + 1;
+	ResetOptionBindings();
+	m_nRenderingMode++;
 	UpdateData(FALSE);
 }
 
