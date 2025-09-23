@@ -20,7 +20,6 @@ public:
 	explicit PropCompareBinary(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
-	virtual void ReadOptions() override;
 	virtual void WriteOptions() override;
 
 // Dialog Data
@@ -45,7 +44,6 @@ protected:
 	afx_msg void OnViewSettings();
 	afx_msg void OnBinaryMode();
 	afx_msg void OnCharacterSet();
-	afx_msg void OnDefaults();
 	afx_msg void OnDropDownPatterns();
 	afx_msg void OnCloseUpPatterns();
 	//}}AFX_MSG

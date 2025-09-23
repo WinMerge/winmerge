@@ -44,7 +44,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints, IDC_IGNORE_REPARSEPOINTS, DDX_Check);
 	BindOption(OPT_CMP_QUICK_LIMIT, m_nQuickCompareLimit, IDC_COMPARE_QUICKC_LIMIT, DDX_Text);
 	BindOption(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit, IDC_COMPARE_BINARYC_LIMIT, DDX_Text);
-	BindOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreadsPrev, IDC_COMPARE_THREAD_COUNT, DDX_Text);
+	BindOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads, IDC_COMPARE_THREAD_COUNT, DDX_Text);
 }
 
 void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
