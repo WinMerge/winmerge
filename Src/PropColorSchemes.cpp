@@ -32,16 +32,17 @@ PropColorSchemes::PropColorSchemes(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropColorSchemes::IDD)
  , m_nColorMode(0)
 {
+	BindOption(OPT_COLOR_MODE, m_nColorMode, IDC_COLOR_MODE, DDX_CBIndex);
+	BindOption(OPT_COLOR_SCHEME, m_sColorScheme, IDC_COLOR_SCHEME_LIGHT, DDX_CBString);
+	BindOption(OPT_COLOR_SCHEME_DARK, m_sColorSchemeDark, IDC_COLOR_SCHEME_LIGHT, DDX_CBString);
 }
 
 void PropColorSchemes::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropColorSchemes)
-	DDX_CBIndex(pDX, IDC_COLOR_MODE, m_nColorMode);
-	DDX_CBString(pDX, IDC_COLOR_SCHEME_LIGHT, m_sColorScheme);
-	DDX_CBString(pDX, IDC_COLOR_SCHEME_DARK, m_sColorSchemeDark);
 	//}}AFX_DATA_MAP
+	DoDataExchangeBindOptions(pDX);
 }
 
 
@@ -60,10 +61,9 @@ END_MESSAGE_MAP()
  */
 void PropColorSchemes::ReadOptions()
 {
-	m_nColorMode = DarkMode::isExperimentalSupported() ?
-		GetOptionsMgr()->GetInt(OPT_COLOR_MODE) : 0;
-	m_sColorScheme = GetOptionsMgr()->GetString(OPT_COLOR_SCHEME);
-	m_sColorSchemeDark = GetOptionsMgr()->GetString(OPT_COLOR_SCHEME_DARK);
+	ReadOptionBindings();
+	if (!DarkMode::isExperimentalSupported())
+		m_nColorMode = 0;
 }
 
 /** 
@@ -71,11 +71,9 @@ void PropColorSchemes::ReadOptions()
  */
 void PropColorSchemes::WriteOptions()
 {
-	GetOptionsMgr()->SaveOption(OPT_COLOR_MODE, m_nColorMode);
+	WriteOptionBindings();
 	GetOptionsMgr()->SaveOption(OPT_COLOR_MODE_EFFECTIVE,
 		WinMergeDarkMode::GetEffectiveColorMode(m_nColorMode));
-	GetOptionsMgr()->SaveOption(OPT_COLOR_SCHEME, m_sColorScheme);
-	GetOptionsMgr()->SaveOption(OPT_COLOR_SCHEME_DARK, m_sColorSchemeDark);
 }
 
 /** 

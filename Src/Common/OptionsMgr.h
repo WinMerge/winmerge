@@ -117,6 +117,7 @@ public:
 	int Set(const String& name, int value);
 	int Reset(const String& name);
 	int GetDefault(const String& name, String & value) const;
+	int GetDefault(const String& name, int & value) const;
 	int GetDefault(const String& name, unsigned & value) const;
 	int GetDefault(const String& name, bool & value) const;
 	template <typename T> T GetDefault(const String& name) const { T v; GetDefault(name, v); return v; }
