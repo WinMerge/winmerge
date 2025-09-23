@@ -508,6 +508,7 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
  */
 void CFilepathEdit::SetActive(bool bActive)
 {
+	const bool bOldActive = m_bActive;
 	m_bActive = bActive;
 
 	if (m_hWnd == nullptr)
@@ -516,16 +517,12 @@ void CFilepathEdit::SetActive(bool bActive)
 	CRect rcWnd;
 	GetWindowRect(&rcWnd);
 
-	if (bActive)
-	{
-		SetTextColor(::GetSysColor(m_bInEditing ? COLOR_WINDOWTEXT : COLOR_CAPTIONTEXT));
-	}
-	else
-	{
-		SetTextColor(::GetSysColor(m_bInEditing ? COLOR_WINDOWTEXT : COLOR_INACTIVECAPTIONTEXT));
-	}
+	SetTextColor(::GetSysColor(
+	    m_bInEditing ? COLOR_WINDOWTEXT :
+	    bActive      ? COLOR_CAPTIONTEXT : COLOR_INACTIVECAPTIONTEXT));
 	SetBackColor(MakeBackColor(bActive, m_bInEditing));
-	RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
+	if (bOldActive != bActive)
+		RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 }
 
 /**
@@ -558,6 +555,9 @@ HBRUSH CFilepathEdit::CtlColor(CDC* pDC, UINT nCtlColor)
  */
 void CFilepathEdit::SetBackColor(COLORREF rgb)
 {
+	if (m_crBackGnd == rgb)
+		return;
+
 	//set background color ref (used for text's background)
 	m_crBackGnd = rgb;
 	
@@ -577,6 +577,9 @@ void CFilepathEdit::SetBackColor(COLORREF rgb)
  */
 void CFilepathEdit::SetTextColor(COLORREF rgb)
 {
+	if (m_crText == rgb)
+		return;
+
 	//set text color ref
 	m_crText = rgb;
 
