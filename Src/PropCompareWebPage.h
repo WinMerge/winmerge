@@ -19,10 +19,6 @@ class PropCompareWebPage : public OptionsPanel
 public:
 	explicit PropCompareWebPage(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void ReadOptions() override;
-	virtual void WriteOptions() override;
-
 // Dialog Data
 	//{{AFX_DATA(PropCompareWebPage)
 	enum { IDD = IDD_PROPPAGE_COMPARE_WEBPAGE };
@@ -45,7 +41,6 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompareWebPage)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
