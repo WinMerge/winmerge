@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 25.08.2025\n"
+"Project-Id-Version: WinMerge - Italian - 24.09.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-08-25 09:18+0200\n"
+"PO-Revision-Date: 2025-09-24 08:43+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1111,7 +1111,7 @@ msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignora EOL finale &mancante"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "Ignora interru&zioni linea (trattale come spazi)"
 
 msgid "&Include Subfolders"
 msgstr "&Includi sotto cartelle"
@@ -2105,7 +2105,7 @@ msgid "Ignore &missing trailing EOL"
 msgstr "Ignora EOL finale &mancante"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "Ignora interru&zioni linea (trattale come spazi)"
 
 msgid "E&nable moved block detection"
 msgstr "Attiva rilevamento blocc&hi spostati"
