@@ -19,10 +19,6 @@ class PropCompareTable : public OptionsPanel
 public:
 	explicit PropCompareTable(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void ReadOptions() override;
-	virtual void WriteOptions() override;
-
 // Dialog Data
 	//{{AFX_DATA(PropCompareTable)
 	enum { IDD = IDD_PROPPAGE_COMPARE_TABLE };
@@ -50,7 +46,6 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompareTable)
-	afx_msg void OnDefaults();
 	afx_msg void OnDropDownCSVPatterns();
 	afx_msg void OnCloseUpCSVPatterns();
 	afx_msg void OnDropDownTSVPatterns();

@@ -125,6 +125,13 @@ protected:
 		}
 	}
 
+	/** @brief Sets update handlers for dialog controls.*/
+	void DoDataExchange(CDataExchange* pDX) override
+	{
+		CPropertyPage::DoDataExchange(pDX);
+		DoDataExchangeBindOptions(pDX);
+	}
+
 private:
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };

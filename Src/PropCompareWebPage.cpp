@@ -29,15 +29,6 @@ PropCompareWebPage::PropCompareWebPage(COptionsMgr *optionsMgr)
 	BindOption(OPT_CMP_WEB_USERDATAFOLDER_PERPANE, m_bUserDataFolderPerPane, IDC_COMPAREWEBPAGE_USERDATAFOLDER_PERPANE, DDX_Check);
 }
 
-void PropCompareWebPage::DoDataExchange(CDataExchange* pDX)
-{
-	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(PropCompareWebPage)
-	//}}AFX_DATA_MAP
-	DoDataExchangeBindOptions(pDX);
-}
-
-
 BEGIN_MESSAGE_MAP(PropCompareWebPage, OptionsPanel)
 	//{{AFX_MSG_MAP(PropCompareWebPage)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)

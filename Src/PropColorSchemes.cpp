@@ -37,15 +37,6 @@ PropColorSchemes::PropColorSchemes(COptionsMgr *optionsMgr)
 	BindOption(OPT_COLOR_SCHEME_DARK, m_sColorSchemeDark, IDC_COLOR_SCHEME_LIGHT, DDX_CBString);
 }
 
-void PropColorSchemes::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(PropColorSchemes)
-	//}}AFX_DATA_MAP
-	DoDataExchangeBindOptions(pDX);
-}
-
-
 BEGIN_MESSAGE_MAP(PropColorSchemes, OptionsPanel)
 	//{{AFX_MSG_MAP(PropColorSchemes)
 	ON_CBN_SELCHANGE(IDC_COLOR_MODE, OnCbnSelchangeColorMode)

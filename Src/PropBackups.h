@@ -40,7 +40,6 @@ public:
 	int m_nBackupFolder;
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	afx_msg void OnBnClickedBackupBrowse();
 
 	DECLARE_MESSAGE_MAP()

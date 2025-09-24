@@ -40,7 +40,6 @@ protected:
 	void ReloadColorSchemes();
 	void UpdateControls();
 	void UpdateColorScheme();
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
 // Implementation

@@ -36,13 +36,6 @@ PropBackups::PropBackups(COptionsMgr *optionsMgr)
 	BindOption(OPT_BACKUP_LOCATION, m_nBackupFolder, IDC_BACKUP_ORIGFOLD, DDX_Radio);
 }
 
-void PropBackups::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	DoDataExchangeBindOptions(pDX);
-}
-
-
 BEGIN_MESSAGE_MAP(PropBackups, OptionsPanel)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_BN_CLICKED(IDC_BACKUP_BROWSE, OnBnClickedBackupBrowse)

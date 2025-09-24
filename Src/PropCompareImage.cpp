@@ -25,8 +25,7 @@ PropCompareImage::PropCompareImage(COptionsMgr *optionsMgr)
  , m_nOcrResultType(0)
 {
 	auto converter = [](String v, bool write) {
-		if (!write)
-			return v;
+		if (!write) return v;
 		WildcardRemoveDuplicatePatterns(v);
 		return v;
 	};

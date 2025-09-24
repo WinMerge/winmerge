@@ -34,18 +34,6 @@ PropEditorCompareMerge::PropEditorCompareMerge(COptionsMgr *optionsMgr)
 	BindOption(OPT_BREAK_SEPARATORS, m_breakChars, IDC_BREAK_CHARS, DDX_Text);
 }
 
-/** 
- * @brief Function handling dialog data exchange between GUI and variables.
- */
-void PropEditorCompareMerge::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(PropEditorCompareMerge)
-	//}}AFX_DATA_MAP
-	DoDataExchangeBindOptions(pDX);
-}
-
-
 BEGIN_MESSAGE_MAP(PropEditorCompareMerge, OptionsPanel)
 	//{{AFX_MSG_MAP(PropEditorCompareMerge)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
