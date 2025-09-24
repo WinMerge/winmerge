@@ -24,3 +24,5 @@ public:
 	COLORREF GetColor() const { return m_clrFill; };
 	virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 };
+
+void __stdcall DDX_ColorButton(CDataExchange* pDX, int nIDC, unsigned& value);
