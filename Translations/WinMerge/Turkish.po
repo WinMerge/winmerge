@@ -1111,7 +1111,7 @@ msgid "Ignore &Missing Trailing EOL"
 msgstr "&Sondaki eksik satır sonu yok sayılsın"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "Satır &Sonlarını Yok Say (Boşluk Olarak Ele Al)"
 
 msgid "&Include Subfolders"
 msgstr "A&lt klasörler katılsın"
@@ -2104,7 +2104,7 @@ msgid "Ignore &missing trailing EOL"
 msgstr "&Sondaki eksik satır sonu yok sayılsın"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "Satır &sonlarını yok say (boşluk olarak ele al)"
 
 msgid "E&nable moved block detection"
 msgstr "Taşı&nmış blok algılaması kullanılsın"
