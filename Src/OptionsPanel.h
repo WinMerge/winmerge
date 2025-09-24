@@ -66,52 +66,22 @@ protected:
 	};
 
 	std::vector<OptionBinding> m_bindings;
-	template <class... T> struct always_false : std::false_type {};
 
 	/**
 	 * @brief Bind option with control + DDX function
 	 */
-	template<typename T>
-	void BindOption(const String& optionID, T& var, UINT nCtrlID, void(*ddx)(CDataExchange*, int, T&))
+	template<typename T, typename Converter = std::function<T(T, bool)>>
+	void BindOption(const String& optionID, T& var, UINT nCtrlID, void(__stdcall *ddx)(CDataExchange*, int, T&),
+		Converter converter = [](T v, bool) { return v; })
 	{
 		OptionBinding b{};
 		b.nCtrlID = nCtrlID;
 		b.optionID = optionID;
 		b.pVar = &var;
-		T* pVar = &var;
-		String optID = optionID;
-		b.ddfunc = [ddx, pVar, nCtrlID](CDataExchange* pDX) { ddx(pDX, nCtrlID, *pVar); };
-		b.readFunc = [this, pVar, optID]() {
-			if constexpr (std::is_same_v<T, int>)
-				*pVar = GetOptionsMgr()->GetInt(optID);
-			else if constexpr (std::is_same_v<T, unsigned>)
-				*pVar = static_cast<unsigned>(GetOptionsMgr()->GetInt(optID));
-			else if constexpr (std::is_same_v<T, bool>)
-				*pVar = GetOptionsMgr()->GetBool(optID);
-			else if constexpr (std::is_same_v<T, String>)
-				*pVar = GetOptionsMgr()->GetString(optID);
-			else
-				static_assert(always_false<T>::value, "Unsupported option type");
-		};
-		b.writeFunc = [this, pVar, optID]() { GetOptionsMgr()->SaveOption(optID, *pVar); };
-		b.resetFunc = [this, pVar, optID]() { *pVar = GetOptionsMgr()->GetDefault<T>(optID); };
-		m_bindings.push_back(std::move(b));
-	}
-
-	/**
-	 * @brief Bind option without control
-	 */
-	template<typename T>
-	void BindOption(const String& optionID, T& var)
-	{
-		OptionBinding b{};
-		b.nCtrlID = 0;
-		b.optionID = optionID;
-		b.pVar = &var;
-		T* pVar = &var;
-		String optID = optionID;
-		b.readFunc = [this, pVar, optID]() { *pVar = GetOptionsMgr()->Get<T>(optID); };
-		b.writeFunc = [this, pVar, optID]() { GetOptionsMgr()->SaveOption(optID, *pVar); };
+		b.ddfunc = [ddx, &var, nCtrlID](CDataExchange* pDX) { ddx(pDX, nCtrlID, var); };
+		b.readFunc = [this, &var, optionID, converter]() { var = converter(GetOptionsMgr()->GetT<T>(optionID), false); };
+		b.writeFunc = [this, &var, optionID, converter]() { GetOptionsMgr()->SaveOption(optionID, converter(var, true)); };
+		b.resetFunc = [this, &var, optionID, converter]() { var = converter(GetOptionsMgr()->GetDefault<T>(optionID), false); };
 		m_bindings.push_back(std::move(b));
 	}
 

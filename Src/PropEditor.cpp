@@ -15,7 +15,7 @@
 #endif
 
 /** @brief Maximum size for tabs in spaces. */
-static const int MAX_TABSIZE = 64;
+static const unsigned MAX_TABSIZE = 64;
 
 /** 
  * @brief Constructor.
@@ -30,10 +30,12 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 , m_nRenderingMode(0)
 {
 	BindOption(OPT_TAB_SIZE, m_nTabSize, IDC_TAB_EDIT, DDX_Text);
-	BindOption(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio);
+	BindOption(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio,
+		[](unsigned v, bool write) { return (write) ? std::clamp(v, 1u, MAX_TABSIZE) : v; });
 	BindOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax, IDC_HILITE_CHECK, DDX_Check);
 	BindOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol, IDC_MIXED_EOL, DDX_Check);
-	BindOption(OPT_RENDERING_MODE, m_nRenderingMode, IDC_RENDERING_MODE, DDX_CBIndex);
+	BindOption(OPT_RENDERING_MODE, m_nRenderingMode, IDC_RENDERING_MODE, DDX_CBIndex,
+		[](int v, bool write) { return (write) ? (v - 1) : (v + 1); });
 }
 
 /** 
@@ -59,30 +61,6 @@ BEGIN_MESSAGE_MAP(PropEditor, OptionsPanel)
 END_MESSAGE_MAP()
 
 /** 
- * @brief Reads options values from storage to UI.
- */
-void PropEditor::ReadOptions()
-{
-	ReadOptionBindings();
-	m_nRenderingMode++;
-}
-
-/** 
- * @brief Writes options values from UI to storage.
- */
-void PropEditor::WriteOptions()
-{
-	// Sanity check tabsize
-	if (m_nTabSize < 1)
-		m_nTabSize = 1;
-	if (m_nTabSize > MAX_TABSIZE)
-		m_nTabSize = MAX_TABSIZE;
-	m_nRenderingMode--;
-	WriteOptionBindings();
-	m_nRenderingMode++;
-}
-
-/** 
  * @brief Called before propertysheet is drawn.
  */
 BOOL PropEditor::OnInitDialog() 
@@ -106,16 +84,6 @@ void PropEditor::LoadComboBoxStrings()
 {
 	SetDlgItemComboBoxList(IDC_RENDERING_MODE,
 		{ _("GDI"), _("DirectWrite Default"), _("DirectWrite Aliased"), _("DirectWrite GDI Classic"), _("DirectWrite GDI Natural"), _("DirectWrite Natural"), _("DirectWrite Natural Symmetric") });
-}
-
-/**
- * @brief Sets options to defaults
- */
-void PropEditor::OnDefaults()
-{
-	ResetOptionBindings();
-	m_nRenderingMode++;
-	UpdateData(FALSE);
 }
 
 /** 

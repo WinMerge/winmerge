@@ -42,8 +42,9 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOption(OPT_CMP_INCLUDE_SUBDIRS, m_bIncludeSubdirs, IDC_RECURS_CHECK, DDX_Check);
 	BindOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_nExpandSubdirs, IDC_EXPAND_SUBDIRS, DDX_CBIndex);
 	BindOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints, IDC_IGNORE_REPARSEPOINTS, DDX_Check);
-	BindOption(OPT_CMP_QUICK_LIMIT, m_nQuickCompareLimit, IDC_COMPARE_QUICKC_LIMIT, DDX_Text);
-	BindOption(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit, IDC_COMPARE_BINARYC_LIMIT, DDX_Text);
+	auto converter = [](unsigned v, bool write) { return (write) ? (v * Mega) : (v / Mega); };
+	BindOption(OPT_CMP_QUICK_LIMIT, m_nQuickCompareLimit, IDC_COMPARE_QUICKC_LIMIT, DDX_Text, converter);
+	BindOption(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit, IDC_COMPARE_BINARYC_LIMIT, DDX_Text, converter);
 	BindOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads, IDC_COMPARE_THREAD_COUNT, DDX_Text);
 }
 
@@ -73,8 +74,6 @@ END_MESSAGE_MAP()
 void PropCompareFolder::ReadOptions()
 {
 	ReadOptionBindings();
-	m_nQuickCompareLimit /= Mega;
-	m_nBinaryCompareLimit /= Mega;
 	m_nCompareThreadsPrev = m_nCompareThreads;
 	if (m_nCompareThreads <= 0)
 		m_nCompareThreads = Poco::Environment::processorCount() + m_nCompareThreads;
@@ -88,13 +87,9 @@ void PropCompareFolder::ReadOptions()
  */
 void PropCompareFolder::WriteOptions()
 {
+	m_nQuickCompareLimit = std::clamp(m_nQuickCompareLimit, 1u, 2000u);
+	m_nBinaryCompareLimit = std::clamp(m_nBinaryCompareLimit, 1u, 2000u);
 	WriteOptionBindings();
-	if (m_nQuickCompareLimit > 2000)
-		m_nQuickCompareLimit = 2000;
-	GetOptionsMgr()->SaveOption(OPT_CMP_QUICK_LIMIT, m_nQuickCompareLimit * Mega);
-	if (m_nBinaryCompareLimit > 2000)
-		m_nBinaryCompareLimit = 2000;
-	GetOptionsMgr()->SaveOption(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit * Mega);
 	if ((m_nCompareThreadsPrev >  0 && m_nCompareThreads != m_nCompareThreadsPrev) ||
 	    (m_nCompareThreadsPrev <= 0 && m_nCompareThreads != static_cast<int>(Poco::Environment::processorCount() + m_nCompareThreadsPrev)))
 		GetOptionsMgr()->SaveOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads);
@@ -124,8 +119,6 @@ BOOL PropCompareFolder::OnInitDialog()
 void PropCompareFolder::OnDefaults()
 {
 	ResetOptionBindings();
-	m_nQuickCompareLimit /= Mega;
-	m_nBinaryCompareLimit /= Mega;
 	if (m_nCompareThreads <= 0)
 		m_nCompareThreads = Poco::Environment::processorCount() + m_nCompareThreads;
 	UpdateData(FALSE);
