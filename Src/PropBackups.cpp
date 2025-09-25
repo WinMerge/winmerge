@@ -28,9 +28,16 @@ PropBackups::PropBackups(COptionsMgr *optionsMgr)
 	, m_bAppendTime(false)
 	, m_nBackupFolder(0)
 {
+	auto writeconv = [](String v) {
+		v = strutils::trim_ws(v);
+		if (v.length() > 3)
+			return paths::AddTrailingSlash(v);
+		return v;
+	};
 	BindOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp, IDC_BACKUP_FOLDERCMP, DDX_Check);
 	BindOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp, IDC_BACKUP_FILECMP, DDX_Check);
-	BindOption(OPT_BACKUP_GLOBALFOLDER, m_sGlobalFolder, IDC_BACKUP_FOLDER, DDX_Text);
+	BindOptionCustom(OPT_BACKUP_GLOBALFOLDER, m_sGlobalFolder, IDC_BACKUP_FOLDER, DDX_Text,
+		[](const String& v) { return v; }, writeconv);
 	BindOption(OPT_BACKUP_ADD_BAK, m_bAppendBak, IDC_BACKUP_APPEND_BAK, DDX_Check);
 	BindOption(OPT_BACKUP_ADD_TIME, m_bAppendTime, IDC_BACKUP_APPEND_TIME, DDX_Check);
 	BindOption(OPT_BACKUP_LOCATION, m_nBackupFolder, IDC_BACKUP_ORIGFOLD, DDX_Radio);
@@ -40,18 +47,6 @@ BEGIN_MESSAGE_MAP(PropBackups, OptionsPanel)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_BN_CLICKED(IDC_BACKUP_BROWSE, OnBnClickedBackupBrowse)
 END_MESSAGE_MAP()
-
-
-/** 
- * @brief Writes options values from UI to storage.
- */
-void PropBackups::WriteOptions()
-{
-	m_sGlobalFolder = strutils::trim_ws(m_sGlobalFolder);
-	if (m_sGlobalFolder.length() > 3)
-		m_sGlobalFolder = paths::AddTrailingSlash(m_sGlobalFolder);
-	WriteOptionBindings();
-}
 
 /** 
  * @brief Called when user selects Browse-button.

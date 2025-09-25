@@ -56,11 +56,11 @@ protected:
 
 	struct OptionBinding
 	{
-		UINT nCtrlID; // 0 if no control
+		UINT nCtrlID;
 		String optionID;
 		void* pVar;
 		std::function<void(CDataExchange*)> ddfunc; // DDX function
-		std::function<void()> readFunc;  // optional custom read/write
+		std::function<void()> readFunc;
 		std::function<void()> writeFunc;
 		std::function<void()> resetFunc;
 	};
@@ -103,40 +103,28 @@ protected:
 	void DoDataExchangeBindOptions(CDataExchange* pDX)
 	{
 		for (auto& b : m_bindings)
-		{
-			if (b.ddfunc && b.nCtrlID != 0)
-				b.ddfunc(pDX);
-		}
+			b.ddfunc(pDX);
 	}
 
 	/** @brief Read values from OptionsMgr to variables */
 	void ReadOptionBindings()
 	{
 		for (auto& b : m_bindings)
-		{
-			if (b.readFunc)
-				b.readFunc();
-		}
+			b.readFunc();
 	}
 
 	/** @brief Write values from variables to OptionsMgr */
 	void WriteOptionBindings()
 	{
 		for (auto& b : m_bindings)
-		{
-			if (b.writeFunc)
-				b.writeFunc();
-		}
+			b.writeFunc();
 	}
 
 	/** @brief Reset options to default values */
 	void ResetOptionBindings()
 	{
 		for (auto& b : m_bindings)
-		{
-			if (b.resetFunc)
-				b.resetFunc();
-		}
+			b.resetFunc();
 	}
 
 	/** @brief Sets update handlers for dialog controls.*/

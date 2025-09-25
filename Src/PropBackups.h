@@ -19,9 +19,6 @@ class PropBackups : public OptionsPanel
 public:
 	explicit PropBackups(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void WriteOptions() override;
-
 // Dialog Data
 	enum { IDD = IDD_PROPPAGE_BACKUPS };
 
