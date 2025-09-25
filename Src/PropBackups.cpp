@@ -28,7 +28,7 @@ PropBackups::PropBackups(COptionsMgr *optionsMgr)
 	, m_bAppendTime(false)
 	, m_nBackupFolder(0)
 {
-	auto writeconv = [](String v) {
+	auto writeconv = +[](String v) {
 		v = strutils::trim_ws(v);
 		if (v.length() > 3)
 			return paths::AddTrailingSlash(v);
@@ -37,7 +37,7 @@ PropBackups::PropBackups(COptionsMgr *optionsMgr)
 	BindOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp, IDC_BACKUP_FOLDERCMP, DDX_Check);
 	BindOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp, IDC_BACKUP_FILECMP, DDX_Check);
 	BindOptionCustom(OPT_BACKUP_GLOBALFOLDER, m_sGlobalFolder, IDC_BACKUP_FOLDER, DDX_Text,
-		[](const String& v) { return v; }, writeconv);
+		+[](String v) { return v; }, writeconv);
 	BindOption(OPT_BACKUP_ADD_BAK, m_bAppendBak, IDC_BACKUP_APPEND_BAK, DDX_Check);
 	BindOption(OPT_BACKUP_ADD_TIME, m_bAppendTime, IDC_BACKUP_APPEND_TIME, DDX_Check);
 	BindOption(OPT_BACKUP_LOCATION, m_nBackupFolder, IDC_BACKUP_ORIGFOLD, DDX_Radio);

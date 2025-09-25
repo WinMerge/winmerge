@@ -24,8 +24,8 @@ PropCompareImage::PropCompareImage(COptionsMgr *optionsMgr)
  , m_bEnableImageCompare(false)
  , m_nOcrResultType(0)
 {
-	auto readconv = [](const String& v) { return v; };
-	auto writeconv = [](String v) { WildcardRemoveDuplicatePatterns(v); return v; };
+	auto readconv = +[](String v) { return v; };
+	auto writeconv = +[](String v) { WildcardRemoveDuplicatePatterns(v); return v; };
 	BindOptionCustom(OPT_CMP_IMG_FILEPATTERNS, m_sFilePatterns, IDC_COMPAREIMAGE_PATTERNS, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare, IDC_ENABLE_IMGCMP_IN_DIRCMP, DDX_Check);
 	BindOption(OPT_CMP_IMG_OCR_RESULT_TYPE, m_nOcrResultType, IDC_COMPAREIMAGE_OCR_RESULT_TYPE, DDX_CBIndex);

@@ -9,7 +9,6 @@
 #include "IOptionsPanel.h"
 #include "TrDialogs.h"
 #include <vector>
-#include <functional>
 #include <afxwin.h>
 
 class COptionsMgr;
@@ -54,49 +53,63 @@ protected:
 	// Option binding support
 	// -------------------------------
 
-	struct OptionBinding
+	struct IOptionBinding
 	{
-		UINT nCtrlID;
-		String optionID;
-		void* pVar;
-		void (__stdcall * pDDX)(CDataExchange*, int, void*);
-		void (*ddxFunc)(CDataExchange*, OptionBinding&);
-		void (*readFunc)(OptionBinding&, COptionsMgr*);
-		void (*writeFunc)(OptionBinding&, COptionsMgr*);
-		void (*resetFunc)(OptionBinding&, COptionsMgr*);
-		std::unique_ptr<void, void(*)(void*)> readConv{ nullptr, +[](void* p) {} };
-		std::unique_ptr<void, void(*)(void*)> writeConv{ nullptr, +[](void* p) {} };
+		virtual ~IOptionBinding() {}
+		virtual void DDX(CDataExchange*) = 0;
+		virtual void Read(COptionsMgr*) = 0;
+		virtual void Write(COptionsMgr*) = 0;
+		virtual void Reset(COptionsMgr*) = 0;
 	};
 
-	std::vector<OptionBinding> m_bindings;
+	template <typename TVar>
+	class OptionBinding : public IOptionBinding
+	{
+	public:
+		OptionBinding(const String & optionID, TVar* pVar,
+			UINT nCtrlID, void(__stdcall *ddxFunc)(CDataExchange*, int, TVar&))
+			: nCtrlID(nCtrlID), optionID(optionID), pVar(pVar), pDDX(ddxFunc) {
+		}
+		~OptionBinding() override {}
+		void (__stdcall * pDDX)(CDataExchange*, int, TVar&);
+		void DDX(CDataExchange* pDX) override { pDDX(pDX, nCtrlID, *pVar); }
+		void Read(COptionsMgr* mgr) override { *pVar = mgr->GetT<TVar>(optionID); }
+		void Write(COptionsMgr* mgr) override { mgr->SaveOption(optionID, *pVar); }
+		void Reset(COptionsMgr* mgr) override { *pVar = mgr->GetDefault<TVar>(optionID); }
+	private:
+		UINT nCtrlID;
+		String optionID;
+		TVar* pVar;
+	};
 
-	template<typename T>
-	static void DDX_Helper(CDataExchange* pDX, OptionBinding& b)
-	{ reinterpret_cast<void(__stdcall *)(CDataExchange*, int, T&)>(b.pDDX)(pDX, b.nCtrlID, *reinterpret_cast<T*>(b.pVar)); }
-	template<typename T>
-	static void Read_Helper(OptionBinding& b, COptionsMgr* mgr) { *reinterpret_cast<T*>(b.pVar) = mgr->GetT<T>(b.optionID); }
-	template<typename T>
-	static void Write_Helper(OptionBinding& b, COptionsMgr* mgr) { mgr->SaveOption(b.optionID, *reinterpret_cast<T*>(b.pVar)); }
-	template<typename T>
-	static void Reset_Helper(OptionBinding& b, COptionsMgr* mgr) { *reinterpret_cast<T*>(b.pVar) = mgr->GetDefault<T>(b.optionID); }
-	template<typename TVar, typename TOpt = TVar, typename ReadConv>
-	static void ReadConv_Helper(OptionBinding& b, COptionsMgr* mgr)
+	template<typename TVar, typename TOpt>
+	class OptionBindingCustom : public IOptionBinding
 	{
-		auto conv = reinterpret_cast<ReadConv*>(b.readConv.get());
-		*reinterpret_cast<TVar*>(b.pVar) = (*conv)(mgr->GetT<TOpt>(b.optionID));
-	}
-	template<typename TVar, typename TOpt = TVar, typename WriteConv>
-	static void WriteConv_Helper(OptionBinding& b, COptionsMgr* mgr)
-	{
-		auto conv = reinterpret_cast<WriteConv*>(b.writeConv.get());
-		mgr->SaveOption(b.optionID, (*conv)(*reinterpret_cast<TVar*>(b.pVar)));
-	}
-	template<typename TVar, typename TOpt = TVar, typename ReadConv>
-	static void ResetConv_Helper(OptionBinding& b, COptionsMgr* mgr)
-	{
-		auto conv = reinterpret_cast<ReadConv*>(b.readConv.get());
-		*reinterpret_cast<TVar*>(b.pVar) = (*conv)(mgr->GetDefault<TOpt>(b.optionID));
-	}
+	public:
+		using ReadConvFn = TVar(*)(TOpt);
+		using WriteConvFn = TOpt(*)(TVar);
+
+		OptionBindingCustom(const String & optionID, TVar* pVar,
+			UINT nCtrlID, void(__stdcall *ddxFunc)(CDataExchange*, int, TVar&),
+			ReadConvFn Readconv, WriteConvFn Writeconv)
+			: nCtrlID(nCtrlID), optionID(optionID), pVar(pVar), pDDX(ddxFunc),
+			ReadConv(Readconv), WriteConv(Writeconv) {
+		}
+		~OptionBindingCustom() override {}
+		void (__stdcall * pDDX)(CDataExchange*, int, TVar&);
+		void DDX(CDataExchange* pDX) override { pDDX(pDX, nCtrlID, *pVar); }
+		void Read(COptionsMgr* mgr) override { *pVar = ReadConv(mgr->GetT<TOpt>(optionID)); }
+		void Write(COptionsMgr* mgr) override { mgr->SaveOption(optionID, WriteConv(*pVar)); }
+		void Reset(COptionsMgr* mgr) override { *pVar = ReadConv(mgr->GetDefault<TOpt>(optionID)); }
+	private:
+		UINT nCtrlID;
+		String optionID;
+		TVar* pVar;
+		ReadConvFn  ReadConv;
+		WriteConvFn WriteConv;
+	};
+
+	std::vector<std::unique_ptr<IOptionBinding>> m_bindings;
 
 	/**
 	 * @brief Bind option with control + DDX function
@@ -104,33 +117,15 @@ protected:
 	template<typename TVar>
 	void BindOption(const String& optionID, TVar& var, UINT nCtrlID, void(__stdcall *ddxFunc)(CDataExchange*, int, TVar&))
 	{
-		OptionBinding b{};
-		b.nCtrlID = nCtrlID;
-		b.optionID = optionID;
-		b.pVar = &var;
-		b.pDDX = reinterpret_cast<void(__stdcall*)(CDataExchange*, int, void*)>(ddxFunc);
-		b.ddxFunc = &DDX_Helper<TVar>;
-		b.readFunc = &Read_Helper<TVar>;
-		b.writeFunc = &Write_Helper<TVar>;
-		b.resetFunc = &Reset_Helper<TVar>;
+		std::unique_ptr<OptionBinding<TVar>> b(new OptionBinding<TVar>(optionID, &var, nCtrlID, ddxFunc));
 		m_bindings.push_back(std::move(b));
 	}
 
-	template<typename TVar, typename TOpt = TVar, typename ReadConv, typename WriteConv>
+	template<typename TVar, typename TOpt = TVar>
 	void BindOptionCustom(const String& optionID, TVar& var, UINT nCtrlID, void(__stdcall *ddxFunc)(CDataExchange*, int, TVar&),
-		ReadConv readconv, WriteConv writeconv)
+		TVar(*readConv)(TOpt), TOpt(*writeConv)(TVar))
 	{
-		OptionBinding b{};
-		b.nCtrlID = nCtrlID;
-		b.optionID = optionID;
-		b.pVar = &var;
-		b.pDDX = reinterpret_cast<void(__stdcall*)(CDataExchange*, int, void*)>(ddxFunc);
-		b.ddxFunc = &DDX_Helper<TVar>;
-		b.readFunc = &ReadConv_Helper<TVar, TOpt, ReadConv>;
-		b.writeFunc = &WriteConv_Helper<TVar, TOpt, WriteConv>;
-		b.resetFunc = &ResetConv_Helper<TVar, TOpt, ReadConv>;
-		b.readConv = { new ReadConv(std::move(readconv)), [](void* p) { delete static_cast<ReadConv*>(p); } };
-		b.writeConv = { new WriteConv(std::move(writeconv)), [](void* p) { delete static_cast<WriteConv*>(p); } };
+		std::unique_ptr<OptionBindingCustom<TVar, TOpt>> b(new OptionBindingCustom<TVar, TOpt>(optionID, &var, nCtrlID, ddxFunc, readConv, writeConv));
 		m_bindings.push_back(std::move(b));
 	}
 
@@ -138,28 +133,28 @@ protected:
 	void DoDataExchangeBindOptions(CDataExchange* pDX)
 	{
 		for (auto& b : m_bindings)
-			b.ddxFunc(pDX, b);
+			b->DDX(pDX);
 	}
 
 	/** @brief Read values from OptionsMgr to variables */
 	void ReadOptionBindings()
 	{
 		for (auto& b : m_bindings)
-			b.readFunc(b, m_pOptionsMgr);
+			b->Read(m_pOptionsMgr);
 	}
 
 	/** @brief Write values from variables to OptionsMgr */
 	void WriteOptionBindings()
 	{
 		for (auto& b : m_bindings)
-			b.writeFunc(b, m_pOptionsMgr);
+			b->Write(m_pOptionsMgr);
 	}
 
 	/** @brief Reset options to default values */
 	void ResetOptionBindings()
 	{
 		for (auto& b : m_bindings)
-			b.resetFunc(b, m_pOptionsMgr);
+			b->Reset(m_pOptionsMgr);
 	}
 
 	/** @brief Sets update handlers for dialog controls.*/

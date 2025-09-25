@@ -24,6 +24,9 @@ class PropRegistry : public OptionsPanel
 public:
 	explicit PropRegistry(COptionsMgr *optionsMgr);
 
+// Implement IOptionsPanel
+	virtual void WriteOptions() override;
+
 // Dialog Data
 	//{{AFX_DATA(PropRegistry)
 	enum { IDD = IDD_PROPPAGE_SYSTEM };

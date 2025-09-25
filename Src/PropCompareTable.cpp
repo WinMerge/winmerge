@@ -26,8 +26,8 @@ PropCompareTable::PropCompareTable(COptionsMgr *optionsMgr)
 , m_sDSVDelimiterChar(_T(";"))
 , m_sQuoteChar(_T("\""))
 {
-	auto readconv = [](const String& v) { return v; };
-	auto writeconv = [](String v) { WildcardRemoveDuplicatePatterns(v); return v; };
+	auto readconv = +[](String v) { return v; };
+	auto writeconv = +[](String v) { WildcardRemoveDuplicatePatterns(v); return v; };
 	BindOptionCustom(OPT_CMP_CSV_FILEPATTERNS, m_sCSVFilePatterns, IDC_COMPARETABLE_CSV_PATTERNS, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_CSV_DELIM_CHAR, m_sCSVDelimiterChar, IDC_COMPARETABLE_CSV_DELIM_CHAR, DDX_Text);
 	BindOptionCustom(OPT_CMP_TSV_FILEPATTERNS, m_sTSVFilePatterns, IDC_COMPARETABLE_TSV_PATTERNS, DDX_Text, readconv, writeconv);

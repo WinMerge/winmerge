@@ -24,20 +24,14 @@ PropRegistry::PropRegistry(COptionsMgr *optionsMgr)
 , m_bUseRecycleBin(true)
 , m_tempFolderType(0)
 {
-	auto readconv = [](const String& v) { return v; };
-	auto writeconv1 = [this](String v) {
-		v = strutils::trim_ws(v);
-		if (v.empty())
-			v = GetOptionsMgr()->GetDefault<String>(OPT_EXT_EDITOR_CMD);
-		return v;
-	};
-	auto writeconv2 = [](const String& v) { return strutils::trim_ws(v); };
-	BindOptionCustom(OPT_EXT_EDITOR_CMD, m_strEditorPath, IDC_EXT_EDITOR_PATH, DDX_Text, readconv, writeconv1);
+	auto readconv = +[](String v) { return v; };
+	auto writeconv = +[](String v) { return strutils::trim_ws(v); };
+	BindOptionCustom(OPT_EXT_EDITOR_CMD, m_strEditorPath, IDC_EXT_EDITOR_PATH, DDX_Text, readconv, writeconv);
 	BindOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin, IDC_USE_RECYCLE_BIN, DDX_Check);
-	BindOptionCustom(OPT_FILTER_USERPATH, m_strUserFilterPath, IDC_FILTER_USER_PATH, DDX_Text, readconv, writeconv2);
-	BindOptionCustom(OPT_CUSTOM_TEMP_PATH, m_tempFolder, IDC_TMPFOLDER_NAME, DDX_Text, readconv, writeconv2);
+	BindOptionCustom(OPT_FILTER_USERPATH, m_strUserFilterPath, IDC_FILTER_USER_PATH, DDX_Text, readconv, writeconv);
+	BindOptionCustom(OPT_CUSTOM_TEMP_PATH, m_tempFolder, IDC_TMPFOLDER_NAME, DDX_Text, readconv, writeconv);
 	BindOptionCustom<int, bool>(OPT_USE_SYSTEM_TEMP_PATH, m_tempFolderType, IDC_TMPFOLDER_SYSTEM, DDX_Radio,
-		[](bool v) { return v ? 0 : 1; }, [](int v) { return v == 0; });
+		+[](bool v) { return v ? 0 : 1; }, +[](int v) { return v == 0; });
 }
 
 BEGIN_MESSAGE_MAP(PropRegistry, OptionsPanel)
@@ -48,6 +42,17 @@ BEGIN_MESSAGE_MAP(PropRegistry, OptionsPanel)
 	ON_BN_CLICKED(IDC_TMPFOLDER_BROWSE, OnBrowseTmpFolder)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void PropRegistry::WriteOptions()
+{
+	m_strEditorPath = strutils::trim_ws(m_strEditorPath);
+	if (m_strEditorPath.empty())
+		m_strEditorPath = GetOptionsMgr()->GetDefault<String>(OPT_EXT_EDITOR_CMD);
+	WriteOptionBindings();
+}
 
 BOOL PropRegistry::OnInitDialog()
 {
