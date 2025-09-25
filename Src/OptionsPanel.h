@@ -117,16 +117,14 @@ protected:
 	template<typename TVar>
 	void BindOption(const String& optionID, TVar& var, UINT nCtrlID, void(__stdcall *ddxFunc)(CDataExchange*, int, TVar&))
 	{
-		std::unique_ptr<OptionBinding<TVar>> b(new OptionBinding<TVar>(optionID, &var, nCtrlID, ddxFunc));
-		m_bindings.push_back(std::move(b));
+		m_bindings.emplace_back(new OptionBinding<TVar>(optionID, &var, nCtrlID, ddxFunc));
 	}
 
 	template<typename TVar, typename TOpt = TVar>
 	void BindOptionCustom(const String& optionID, TVar& var, UINT nCtrlID, void(__stdcall *ddxFunc)(CDataExchange*, int, TVar&),
 		TVar(*readConv)(TOpt), TOpt(*writeConv)(TVar))
 	{
-		std::unique_ptr<OptionBindingCustom<TVar, TOpt>> b(new OptionBindingCustom<TVar, TOpt>(optionID, &var, nCtrlID, ddxFunc, readConv, writeConv));
-		m_bindings.push_back(std::move(b));
+		m_bindings.emplace_back(new OptionBindingCustom<TVar, TOpt>(optionID, &var, nCtrlID, ddxFunc, readConv, writeConv));
 	}
 
 	/** @brief Call in DoDataExchange */
