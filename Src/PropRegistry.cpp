@@ -24,28 +24,20 @@ PropRegistry::PropRegistry(COptionsMgr *optionsMgr)
 , m_bUseRecycleBin(true)
 , m_tempFolderType(0)
 {
-	auto conv1 = [this](String v, bool write) {
-		if (!write)
-			return v;
+	auto readconv = [](const String& v) { return v; };
+	auto writeconv1 = [this](String v) {
 		v = strutils::trim_ws(v);
 		if (v.empty())
 			v = GetOptionsMgr()->GetDefault<String>(OPT_EXT_EDITOR_CMD);
 		return v;
 	};
-	auto conv2 = [](String v, bool write) { return (write) ? strutils::trim_ws(v) : v; };
-	BindOption(OPT_EXT_EDITOR_CMD, m_strEditorPath, IDC_EXT_EDITOR_PATH, DDX_Text, conv1);
+	auto writeconv2 = [](const String& v) { return strutils::trim_ws(v); };
+	BindOptionCustom(OPT_EXT_EDITOR_CMD, m_strEditorPath, IDC_EXT_EDITOR_PATH, DDX_Text, readconv, writeconv1);
 	BindOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin, IDC_USE_RECYCLE_BIN, DDX_Check);
-	BindOption(OPT_FILTER_USERPATH, m_strUserFilterPath, IDC_FILTER_USER_PATH, DDX_Text, conv2);
-	BindOption(OPT_CUSTOM_TEMP_PATH, m_tempFolder, IDC_TMPFOLDER_NAME, DDX_Text, conv2);
-}
-
-void PropRegistry::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(PropRegistry)
-	DDX_Radio(pDX, IDC_TMPFOLDER_SYSTEM, m_tempFolderType);
-	//}}AFX_DATA_MAP
-	DoDataExchangeBindOptions(pDX);
+	BindOptionCustom(OPT_FILTER_USERPATH, m_strUserFilterPath, IDC_FILTER_USER_PATH, DDX_Text, readconv, writeconv2);
+	BindOptionCustom(OPT_CUSTOM_TEMP_PATH, m_tempFolder, IDC_TMPFOLDER_NAME, DDX_Text, readconv, writeconv2);
+	BindOptionCustom<int, bool>(OPT_USE_SYSTEM_TEMP_PATH, m_tempFolderType, IDC_TMPFOLDER_SYSTEM, DDX_Radio,
+		[](bool v) { return v ? 0 : 1; }, [](int v) { return v == 0; });
 }
 
 BEGIN_MESSAGE_MAP(PropRegistry, OptionsPanel)
@@ -56,25 +48,6 @@ BEGIN_MESSAGE_MAP(PropRegistry, OptionsPanel)
 	ON_BN_CLICKED(IDC_TMPFOLDER_BROWSE, OnBrowseTmpFolder)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/** 
- * @brief Reads options values from storage to UI.
- */
-void PropRegistry::ReadOptions()
-{
-	ReadOptionBindings();
-	m_tempFolderType = GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH) ? 0 : 1;
-}
-
-/** 
- * @brief Writes options values from UI to storage.
- */
-void PropRegistry::WriteOptions()
-{
-	WriteOptionBindings();
-	bool useSysTemp = m_tempFolderType == 0;
-	GetOptionsMgr()->SaveOption(OPT_USE_SYSTEM_TEMP_PATH, useSysTemp);
-}
 
 BOOL PropRegistry::OnInitDialog()
 {
@@ -98,7 +71,6 @@ void PropRegistry::OnDefaults()
 	ResetOptionBindings();
 	if (m_strUserFilterPath.empty())
 		m_strUserFilterPath = paths::ConcatPath(env::GetMyDocuments(), DefaultRelativeFilterPath);
-	m_tempFolderType = GetOptionsMgr()->GetDefault<bool>(OPT_USE_SYSTEM_TEMP_PATH) ? 0 : 1;
 	UpdateData(FALSE);
 }
 

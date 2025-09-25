@@ -70,18 +70,32 @@ protected:
 	/**
 	 * @brief Bind option with control + DDX function
 	 */
-	template<typename T, typename Converter = std::function<T(T, bool)>>
-	void BindOption(const String& optionID, T& var, UINT nCtrlID, void(__stdcall *ddx)(CDataExchange*, int, T&),
-		Converter converter = [](T v, bool) { return v; })
+	template<typename T>
+	void BindOption(const String& optionID, T& var, UINT nCtrlID, void(__stdcall *ddx)(CDataExchange*, int, T&))
 	{
 		OptionBinding b{};
 		b.nCtrlID = nCtrlID;
 		b.optionID = optionID;
 		b.pVar = &var;
 		b.ddfunc = [ddx, &var, nCtrlID](CDataExchange* pDX) { ddx(pDX, nCtrlID, var); };
-		b.readFunc = [this, &var, optionID, converter]() { var = converter(GetOptionsMgr()->GetT<T>(optionID), false); };
-		b.writeFunc = [this, &var, optionID, converter]() { GetOptionsMgr()->SaveOption(optionID, converter(var, true)); };
-		b.resetFunc = [this, &var, optionID, converter]() { var = converter(GetOptionsMgr()->GetDefault<T>(optionID), false); };
+		b.readFunc = [this, &var, optionID]() { var = GetOptionsMgr()->GetT<T>(optionID); };
+		b.writeFunc = [this, &var, optionID]() { GetOptionsMgr()->SaveOption(optionID, var); };
+		b.resetFunc = [this, &var, optionID]() { var = GetOptionsMgr()->GetDefault<T>(optionID); };
+		m_bindings.push_back(std::move(b));
+	}
+
+	template<typename TVar, typename TOpt = TVar, typename ReadConv, typename WriteConv>
+	void BindOptionCustom(const String& optionID, TVar& var, UINT nCtrlID, void(__stdcall *ddx)(CDataExchange*, int, TVar&),
+		ReadConv readconv, WriteConv writeconv)
+	{
+		OptionBinding b{};
+		b.nCtrlID = nCtrlID;
+		b.optionID = optionID;
+		b.pVar = &var;
+		b.ddfunc = [ddx, &var, nCtrlID](CDataExchange* pDX) { ddx(pDX, nCtrlID, var); };
+		b.readFunc = [this, &var, optionID, readconv]() { var = readconv(GetOptionsMgr()->GetT<TOpt>(optionID)); };
+		b.writeFunc = [this, &var, optionID, writeconv]() { GetOptionsMgr()->SaveOption(optionID, writeconv(var)); };
+		b.resetFunc = [this, &var, optionID, readconv]() { var = readconv(GetOptionsMgr()->GetDefault<TOpt>(optionID)); };
 		m_bindings.push_back(std::move(b));
 	}
 

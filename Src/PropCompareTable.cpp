@@ -26,15 +26,12 @@ PropCompareTable::PropCompareTable(COptionsMgr *optionsMgr)
 , m_sDSVDelimiterChar(_T(";"))
 , m_sQuoteChar(_T("\""))
 {
-	auto converter = [](String v, bool write) {
-		if (!write) return v;
-		WildcardRemoveDuplicatePatterns(v);
-		return v;
-	};
-	BindOption(OPT_CMP_CSV_FILEPATTERNS, m_sCSVFilePatterns, IDC_COMPARETABLE_CSV_PATTERNS, DDX_Text, converter);
+	auto readconv = [](const String& v) { return v; };
+	auto writeconv = [](String v) { WildcardRemoveDuplicatePatterns(v); return v; };
+	BindOptionCustom(OPT_CMP_CSV_FILEPATTERNS, m_sCSVFilePatterns, IDC_COMPARETABLE_CSV_PATTERNS, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_CSV_DELIM_CHAR, m_sCSVDelimiterChar, IDC_COMPARETABLE_CSV_DELIM_CHAR, DDX_Text);
-	BindOption(OPT_CMP_TSV_FILEPATTERNS, m_sTSVFilePatterns, IDC_COMPARETABLE_TSV_PATTERNS, DDX_Text, converter);
-	BindOption(OPT_CMP_DSV_FILEPATTERNS, m_sDSVFilePatterns, IDC_COMPARETABLE_DSV_PATTERNS, DDX_Text, converter);
+	BindOptionCustom(OPT_CMP_TSV_FILEPATTERNS, m_sTSVFilePatterns, IDC_COMPARETABLE_TSV_PATTERNS, DDX_Text, readconv, writeconv);
+	BindOptionCustom(OPT_CMP_DSV_FILEPATTERNS, m_sDSVFilePatterns, IDC_COMPARETABLE_DSV_PATTERNS, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_DSV_DELIM_CHAR, m_sDSVDelimiterChar, IDC_COMPARETABLE_DSV_DELIM_CHAR, DDX_Text);
 	BindOption(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES, m_bAllowNewlinesInQuotes, IDC_COMPARETABLE_ALLOWNEWLINE, DDX_Check);
 	BindOption(OPT_CMP_TBL_QUOTE_CHAR, m_sQuoteChar, IDC_COMPARETABLE_QUOTE_CHAR, DDX_Text);

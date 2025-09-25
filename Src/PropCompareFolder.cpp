@@ -42,9 +42,10 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOption(OPT_CMP_INCLUDE_SUBDIRS, m_bIncludeSubdirs, IDC_RECURS_CHECK, DDX_Check);
 	BindOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_nExpandSubdirs, IDC_EXPAND_SUBDIRS, DDX_CBIndex);
 	BindOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints, IDC_IGNORE_REPARSEPOINTS, DDX_Check);
-	auto converter = [](unsigned v, bool write) { return (write) ? (v * Mega) : (v / Mega); };
-	BindOption(OPT_CMP_QUICK_LIMIT, m_nQuickCompareLimit, IDC_COMPARE_QUICKC_LIMIT, DDX_Text, converter);
-	BindOption(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit, IDC_COMPARE_BINARYC_LIMIT, DDX_Text, converter);
+	auto readconv = [](int v) { return v / Mega; };
+	auto writeconv = [](unsigned v) { return v * Mega; };
+	BindOptionCustom<unsigned, int>(OPT_CMP_QUICK_LIMIT, m_nQuickCompareLimit, IDC_COMPARE_QUICKC_LIMIT, DDX_Text, readconv, writeconv);
+	BindOptionCustom<unsigned, int>(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit, IDC_COMPARE_BINARYC_LIMIT, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads, IDC_COMPARE_THREAD_COUNT, DDX_Text);
 }
 

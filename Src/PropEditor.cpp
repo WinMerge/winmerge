@@ -30,12 +30,12 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 , m_nRenderingMode(0)
 {
 	BindOption(OPT_TAB_SIZE, m_nTabSize, IDC_TAB_EDIT, DDX_Text);
-	BindOption(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio,
-		[](unsigned v, bool write) { return (write) ? std::clamp(v, 1u, MAX_TABSIZE) : v; });
+	BindOptionCustom(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio,
+		[](int v) { return v; }, [](unsigned v) { return std::clamp(v, 1u, MAX_TABSIZE); });
 	BindOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax, IDC_HILITE_CHECK, DDX_Check);
 	BindOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol, IDC_MIXED_EOL, DDX_Check);
-	BindOption(OPT_RENDERING_MODE, m_nRenderingMode, IDC_RENDERING_MODE, DDX_CBIndex,
-		[](int v, bool write) { return (write) ? (v - 1) : (v + 1); });
+	BindOptionCustom(OPT_RENDERING_MODE, m_nRenderingMode, IDC_RENDERING_MODE, DDX_CBIndex,
+		[](int v) { return v + 1; }, [](int v) { return (v - 1); });
 }
 
 /** 
