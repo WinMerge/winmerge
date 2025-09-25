@@ -59,7 +59,7 @@ protected:
 		UINT nCtrlID;
 		String optionID;
 		void* pVar;
-		void* pDDX;
+		void (__stdcall * pDDX)(CDataExchange*, int, void*);
 		void (*ddxFunc)(CDataExchange*, OptionBinding&);
 		void (*readFunc)(OptionBinding&, COptionsMgr*);
 		void (*writeFunc)(OptionBinding&, COptionsMgr*);
@@ -108,7 +108,7 @@ protected:
 		b.nCtrlID = nCtrlID;
 		b.optionID = optionID;
 		b.pVar = &var;
-		b.pDDX = reinterpret_cast<void*>(ddxFunc);
+		b.pDDX = reinterpret_cast<void(__stdcall*)(CDataExchange*, int, void*)>(ddxFunc);
 		b.ddxFunc = &DDX_Helper<TVar>;
 		b.readFunc = &Read_Helper<TVar>;
 		b.writeFunc = &Write_Helper<TVar>;
@@ -124,7 +124,7 @@ protected:
 		b.nCtrlID = nCtrlID;
 		b.optionID = optionID;
 		b.pVar = &var;
-		b.pDDX = reinterpret_cast<void*>(ddxFunc);
+		b.pDDX = reinterpret_cast<void(__stdcall*)(CDataExchange*, int, void*)>(ddxFunc);
 		b.ddxFunc = &DDX_Helper<TVar>;
 		b.readFunc = &ReadConv_Helper<TVar, TOpt, ReadConv>;
 		b.writeFunc = &WriteConv_Helper<TVar, TOpt, WriteConv>;
