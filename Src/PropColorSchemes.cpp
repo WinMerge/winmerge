@@ -34,7 +34,7 @@ PropColorSchemes::PropColorSchemes(COptionsMgr *optionsMgr)
 {
 	BindOption(OPT_COLOR_MODE, m_nColorMode, IDC_COLOR_MODE, DDX_CBIndex);
 	BindOption(OPT_COLOR_SCHEME, m_sColorScheme, IDC_COLOR_SCHEME_LIGHT, DDX_CBString);
-	BindOption(OPT_COLOR_SCHEME_DARK, m_sColorSchemeDark, IDC_COLOR_SCHEME_LIGHT, DDX_CBString);
+	BindOption(OPT_COLOR_SCHEME_DARK, m_sColorSchemeDark, IDC_COLOR_SCHEME_DARK, DDX_CBString);
 }
 
 BEGIN_MESSAGE_MAP(PropColorSchemes, OptionsPanel)

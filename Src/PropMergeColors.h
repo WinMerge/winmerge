@@ -21,10 +21,6 @@ class PropMergeColors : public OptionsPanel
 public:
 	explicit PropMergeColors(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void ReadOptions() override;
-	virtual void WriteOptions() override;
-	
 // Dialog Data
 private:
 	//{{AFX_DATA(PropMergeColors)
@@ -56,6 +52,33 @@ private:
 	CColorButton	m_cSelWordDiff;
 	CColorButton	m_cSelWordDiffDeleted;
 	CColorButton	m_cSelWordDiffText;
+	unsigned	m_clrTrivialDeleted;
+	unsigned	m_clrTrivial;
+	unsigned	m_clrSelDiffText;
+	unsigned	m_clrDiffText;
+	unsigned	m_clrSelDiffDeleted;
+	unsigned	m_clrDiffDeleted;
+	unsigned	m_clrSelDiff;
+	unsigned	m_clrDiff;
+	unsigned	m_clrTrivialText;
+	unsigned	m_clrMoved;
+	unsigned	m_clrMovedDeleted;
+	unsigned	m_clrMovedText;
+	unsigned	m_clrSelMoved;
+	unsigned	m_clrSelMovedDeleted;
+	unsigned	m_clrSelMovedText;
+	unsigned	m_clrSNP;
+	unsigned	m_clrSNPDeleted;
+	unsigned	m_clrSNPText;
+	unsigned	m_clrSelSNP;
+	unsigned	m_clrSelSNPDeleted;
+	unsigned	m_clrSelSNPText;
+	unsigned	m_clrWordDiff;
+	unsigned	m_clrWordDiffDeleted;
+	unsigned	m_clrWordDiffText;
+	unsigned	m_clrSelWordDiff;
+	unsigned	m_clrSelWordDiffDeleted;
+	unsigned	m_clrSelWordDiffText;
 	//}}AFX_DATA
 
 	// Overrides
@@ -69,11 +92,8 @@ private:
 protected:
 
 	static const COLORREF COLOR_NONE = 0xffffffff;
-	typedef enum { SET_DEFAULTS, WRITE_OPTIONS, READ_OPTIONS } OPERATION;
 
-	void BrowseColor(CColorButton & colorButton);
-	void SerializeColors(OPERATION op);
-	void SerializeColor(OPERATION op, CColorButton & btn, const String& optionName);
+	void BrowseColor(unsigned id);
 	void UpdateTextColorButtonState(int checkboxId, CColorButton &btn);
 	void UpdateTextColorButtonsState();
 
@@ -81,33 +101,6 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(PropMergeColors)
-	afx_msg void OnDifferenceColor();
-	afx_msg void OnDifferenceDeletedColor();
-	afx_msg void OnSelDifferenceDeletedColor();
-	afx_msg void OnSelDifferenceColor();
-	afx_msg void OnDifferenceTextColor();
-	afx_msg void OnSelDifferenceTextColor();
-	afx_msg void OnTrivialDiffColor();
-	afx_msg void OnTrivialDiffDeletedColor();
-	afx_msg void OnTrivialDiffTextColor();
-	afx_msg void OnMovedColor();
-	afx_msg void OnMovedDeletedColor();
-	afx_msg void OnMovedTextColor();
-	afx_msg void OnSelMovedColor();
-	afx_msg void OnSelMovedDeletedColor();
-	afx_msg void OnSelMovedTextColor();
-	afx_msg void OnSNPColor();
-	afx_msg void OnSNPDeletedColor();
-	afx_msg void OnSNPTextColor();
-	afx_msg void OnSelSNPColor();
-	afx_msg void OnSelSNPDeletedColor();
-	afx_msg void OnSelSNPTextColor();
-	afx_msg void OnWordDiffColor();
-	afx_msg void OnWordDiffDeletedColor();
-	afx_msg void OnWordDiffTextColor();
-	afx_msg void OnSelWordDiffColor();
-	afx_msg void OnSelWordDiffDeletedColor();
-	afx_msg void OnSelWordDiffTextColor();
 	afx_msg void OnUseTextColor(int checkbox_id, int colorbutton_id);
 	template<int checkbox_id, int colorbutton_id>
 	afx_msg void OnUseTextColor() { OnUseTextColor(checkbox_id, colorbutton_id); }
