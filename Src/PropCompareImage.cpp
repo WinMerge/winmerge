@@ -24,6 +24,11 @@ PropCompareImage::PropCompareImage(COptionsMgr *optionsMgr)
  , m_bEnableImageCompare(false)
  , m_nOcrResultType(0)
 {
+	auto readconv = +[](String v) { return v; };
+	auto writeconv = +[](String v) { WildcardRemoveDuplicatePatterns(v); return v; };
+	BindOptionCustom(OPT_CMP_IMG_FILEPATTERNS, m_sFilePatterns, IDC_COMPAREIMAGE_PATTERNS, DDX_Text, readconv, writeconv);
+	BindOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare, IDC_ENABLE_IMGCMP_IN_DIRCMP, DDX_Check);
+	BindOption(OPT_CMP_IMG_OCR_RESULT_TYPE, m_nOcrResultType, IDC_COMPAREIMAGE_OCR_RESULT_TYPE, DDX_CBIndex);
 }
 
 void PropCompareImage::DoDataExchange(CDataExchange* pDX)
@@ -31,10 +36,8 @@ void PropCompareImage::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareImage)
 	DDX_Control(pDX, IDC_COMPAREIMAGE_PATTERNS, m_comboPatterns);
-	DDX_Text(pDX, IDC_COMPAREIMAGE_PATTERNS, m_sFilePatterns);
-	DDX_Check(pDX, IDC_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
-	DDX_CBIndex(pDX, IDC_COMPAREIMAGE_OCR_RESULT_TYPE, m_nOcrResultType);
 	//}}AFX_DATA_MAP
+	DoDataExchangeBindOptions(pDX);
 }
 
 
@@ -47,31 +50,6 @@ BEGIN_MESSAGE_MAP(PropCompareImage, OptionsPanel)
 END_MESSAGE_MAP()
 
 /** 
- * @brief Reads options values from storage to UI.
- * Property sheet calls this before displaying GUI to load values
- * into members.
- */
-void PropCompareImage::ReadOptions()
-{
-	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);
-	m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
-	m_nOcrResultType = GetOptionsMgr()->GetInt(OPT_CMP_IMG_OCR_RESULT_TYPE);
-}
-
-/** 
- * @brief Writes options values from UI to storage.
- * Property sheet calls this after dialog is closed with OK button to
- * store values in member variables.
- */
-void PropCompareImage::WriteOptions()
-{
-	WildcardRemoveDuplicatePatterns(m_sFilePatterns);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_FILEPATTERNS, m_sFilePatterns);
-	GetOptionsMgr()->SaveOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OCR_RESULT_TYPE, m_nOcrResultType);
-}
-
-/** 
  * @brief Called before propertysheet is drawn.
  */
 BOOL PropCompareImage::OnInitDialog()
@@ -81,17 +59,6 @@ BOOL PropCompareImage::OnInitDialog()
 
 	OptionsPanel::OnInitDialog();
 	return TRUE;  // return TRUE unless you set the focus to a control
-}
-
-/** 
- * @brief Sets options to defaults
- */
-void PropCompareImage::OnDefaults()
-{
-	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_IMG_FILEPATTERNS);
-	m_bEnableImageCompare = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
-	m_nOcrResultType = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_IMG_OCR_RESULT_TYPE);
-	UpdateData(FALSE);
 }
 
 /**

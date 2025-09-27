@@ -23,10 +23,6 @@ class PropEditor : public OptionsPanel
 public:
 	explicit PropEditor(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void ReadOptions() override;
-	virtual void WriteOptions() override;
-
 // Dialog Data
 	//{{AFX_DATA(PropEditor)
 	enum { IDD = IDD_PROPPAGE_EDITOR };
@@ -56,7 +52,6 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropEditor)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnDefaults();
 	afx_msg void OnEnKillfocusTabEdit();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

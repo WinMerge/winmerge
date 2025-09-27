@@ -21,7 +21,6 @@ public:
 	~PropGeneral();
 
 // Implement IOptionsPanel
-	virtual void ReadOptions() override;
 	virtual void WriteOptions() override;
 
 // Dialog Data
@@ -59,7 +58,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(PropGeneral)
-	afx_msg void OnDefaults();
+	afx_msg void OnDefaults() override;
 	afx_msg LRESULT OnLoadLanguages(WPARAM, LPARAM);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

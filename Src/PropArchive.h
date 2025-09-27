@@ -18,10 +18,6 @@ class PropArchive : public OptionsPanel
 public:
 	explicit PropArchive(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void ReadOptions() override;
-	virtual void WriteOptions() override;
-
 // Dialog Data
 	enum { IDD = IDD_PROPPAGE_ARCHIVE };
 
@@ -29,7 +25,6 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	void UpdateControls();
 
-	afx_msg void OnDefaults();
 	afx_msg void OnEnableClicked();
 
 	DECLARE_MESSAGE_MAP()

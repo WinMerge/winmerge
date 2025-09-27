@@ -48,3 +48,14 @@ void CColorButton::SetColor(COLORREF clrFill, bool bInvalidate /* = true*/)
 	if (bInvalidate && m_hWnd != nullptr)
 		Invalidate();
 }
+
+void __stdcall DDX_ColorButton(CDataExchange* pDX, int nIDC, unsigned& value)
+{
+	HWND hWndCtrl = pDX->PrepareCtrl(nIDC);
+	CColorButton* pWnd = (CColorButton*)CWnd::FromHandle(hWndCtrl);
+	if (pDX->m_bSaveAndValidate)
+		value = pWnd->GetColor();
+	else
+		pWnd->SetColor(value);
+}
+
