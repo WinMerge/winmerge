@@ -1,138 +1,71 @@
-# WinMerge 2.16.50.2 Release Notes
+# WinMerge 2.16.51 Beta Release Notes
 
 * [About This Release](#about-this-release)
-* [What Is New in 2.16.50.2](#what-is-new-in-216502)
-* [What Is New in 2.16.50](#what-is-new-in-21650)
-* [What Is New in 2.16.49 beta?](#what-is-new-in-21649-beta)
+* [What Is New in 2.16.51 beta?](#what-is-new-in-21651-beta)
 * [Known issues](#known-issues)
 
-August 2025
+October 2025
 
 ## About This Release
 
-This is a WinMerge 2.16.50.2 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.50.2
-
-### File compare
-
-- BugFix: WinMerge 2.16.50 regression: Crashes when doing "Show only comparison
-    results (not file contents)" for large binaries. (#2874)
-
-### Folder compare
-
-- BugFix: After Install of v2.16.50 Folder: Filter is now only being applied to
-    1st folder path and not the 2nd and 3th folder paths (#2875)
-
-### Filters dialog
-
-- BugFix: Fixed a crash in the Filters dialog's File Filters tab after installing or creating a new filter.
-
-### Translations
-
-- Translation updates:
-  - Brazilian (PR #2883)
-  - Chinese Simplified (PR #2865)
-  - French (PR #2873)
-  - Italian (PR #2869)
-  - Korean (PR #2870)
-  - Lithuanian (PR #2864)
-  - Portuguese (PR #2882)
-  - Russian (PR #2867)
- 
-## What Is New in 2.16.50
+## What Is New in 2.16.51 Beta
 
 ### General
 
-* Treat a mouse click on the very top edge of the title bar while maximized
-  as if it's within the tab button (PR #2828)
-
-### Translations
-
-* BugFix: WinMerge - Strings untranslated #2852
-* Translation updates:
-
-  * Brazilian (PR #2849)
-  * Chinese Simplified (PR #2856)
-  * Hungarian (PR #2857,#2859)
-  * Italian (PR #2850,#2851,#2858)
-  * Japanese
-  * Swedish
-  * Russian (PR #2847)
-
-## What Is New in 2.16.49 Beta
-
-## General
-
-* \[Enhancement] Tab Switching and Tab Bar Scrolling with Mouse Wheel (PR #2821)
+* BugFix: The document does not scroll with the mouse if the documents are identical.
+  Or the text input cursor jumps to unequal lines. (#2939)
 
 ### Appearance
 
-* Use themed size grip, use toolbar's tooltips instead of controls bar's
-  (PR #2769)
+* Initial dark mode support via darkmodelib (PR #2834,#2885)
+* Improved header bar to reduce flicker
 
 ### File compare
 
-* BugFix: Fixed crash when copying multiple selected diff hunks
-* Syntax parser for Pascal should be extended to support compiler directives
-  (#2814)
-* \[Enhancement] Enable/disable automatic navigation to a line when clicking on
-  the Location Panel (PR #2827)
+* Add option to ignore line breaks (treat as spaces) (refs #373) (PR #2945)
 
 ### Folder compare
 
-* BugFix: WinMerge shows the timestamp of the non-existent file (#2764)
-* BugFix: Manual Refresh of a single folder undoes the comparison for most
-  other folders randomly (#2792)
-* Add the feature to compare multiple files in one action in the folder compare
-  window requested in #324. (PR #2825)
-* Improve filter system: expression support and UI enhancements (PR #2802)
+* Fixed an issue where adding exclusions via \[Add Exclude File] ->
+  \[Editor Backup Files] incorrectly excluded most files.
+
+### Filters dialog
+
+* Allow resizing of filters window using MFC Dynamic Layout (#509) (PR #2907)
 
 ### Options dialog
 
-* BugFix: \[Bug Fix] Enable/disable 'Switch to ...' options in Compare > Folder
-  page (PR #2819)
-
-### Command line
-
-* BugFix: Fixed failure to compare files with relative paths when /s option
-  is used from a different current directory than the running WinMerge process
-
-### Archive support
-
-* Update 7-Zip to 25.00
-
-### Installer
-
-* Installer - Windows "Programs and Features" name (#2798)
+* Allow saving modified colors as new scheme (#1180) (PR #2908)
 
 ### Translations
 
 * Translation updates:
 
-  * Brazilian (PR #2829)
-  * Bulgarian (PR #2763)
-  * Chinese Simplified (PR #2831)
-  * Chinese Traditional (PR #2838)
-  * Corsican (PR #2844)
-  * French (PR #2754,#2761,#2762)
-  * Hungarian (PR #2836)
-  * Italian (PR #2832)
+  * Brazilian (#2886,#2910,#2951)
+  * Chinese Simplified (PR #2889,#2916,#2952)
+  * Corsican (PR #2915)
+  * French (PR #2887,#2938)
+  * Hungarian (PR #2909,#2948)
+  * Italian (PR #2892,#2911,#2956)
   * Japanese
-  * Korean (PR #2766,#2845)
-  * Lithuanian (PR #2799,#2805,#2826,#2830)
-  * Portuguese (PR #2768)
-  * Russian (PR #2760,#2840)
+  * Korean (PR #2913,#2934,#2950)
+  * Lithuanian (PR #2912,#2936,#2953)
+  * Portuguese (PR #2928)
+  * Polish (PR #2929,#2930,#2931)
+  * Russian (PR #2890,#2919,#2920,#2933,#2944,#2949)
+  * Spanish (PR #2961)
   * Swedish
-  * Tamil (PR #2812,#2813)
-  * Turkish (PR #2782)
+  * Turkish (PR #2906,#2914,#2957)
+  * Ukrainian (PR #2932,#2937,#2954)
 
 ### Internals
 
-* Fix syntax warning in GetTranslationsStatus.py (PR #2751)
+* Refactor/use bindoption (PR #2955)
 
 ## Known issues
 
