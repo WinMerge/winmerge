@@ -2575,6 +2575,9 @@ msgstr "Soglia per passare al confronto &rapido (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Soglia per passare al confronto &binario (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Pattern file:"
 

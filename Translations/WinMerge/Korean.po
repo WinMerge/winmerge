@@ -3034,6 +3034,9 @@ msgstr "빠른 비교로 전환하기 위한 임계값 (MB)(&Q):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "바이너리 비교로 전환하기 위한 임계값 (MB)(&B):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "파일 패턴:"
 

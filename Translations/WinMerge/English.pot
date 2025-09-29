@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-09-17 08:05+0000\n"
+"POT-Creation-Date: 2025-09-30 08:23+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2545,6 +2545,9 @@ msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr ""
 
 msgid "Switch to &binary compare when size exceeds (MB):"
+msgstr ""
+
+msgid "Additional comparison condi&tion:"
 msgstr ""
 
 msgid "File patterns:"

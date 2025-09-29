@@ -2570,6 +2570,9 @@ msgstr "Passer à la comparaison ra&pide quand la taille dépasse (Mo) :"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Passer à la comparaison &binaire quand la taille dépasse (Mo) :"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Modèles de fichiers :"
 

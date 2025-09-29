@@ -2561,6 +2561,9 @@ msgstr "Prag za preklop na &hitro primerjavo (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Vzorci datotek:"
 

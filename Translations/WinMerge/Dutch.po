@@ -2571,6 +2571,9 @@ msgstr "Drempel voor overschakelen naar snel vergelijken (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Drempel voor overschakelen naar binair vergelijken (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Bestandspatronen:"
 

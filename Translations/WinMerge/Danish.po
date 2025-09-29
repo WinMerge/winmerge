@@ -3024,6 +3024,9 @@ msgstr ""
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr ""
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr ""
 

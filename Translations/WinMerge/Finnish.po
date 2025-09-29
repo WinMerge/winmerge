@@ -2568,6 +2568,9 @@ msgstr "Kynnysarvo, jossa siirrytään &nopeaan vertailuun (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Kynnysarvo, jossa siirrytään &binaariseen vertailuun (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Tiedostomallit:"
 

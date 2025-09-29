@@ -2579,6 +2579,9 @@ msgstr "Passà à u paragone &rapidu quandu a dimensione (in Mo) eccede :"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Passà à u paragone &binariu quandu a dimensione (in Mo) eccede :"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
 

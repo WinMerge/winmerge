@@ -2564,6 +2564,9 @@ msgstr "Tröskelvärde för växling till snabbjämförelse (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Tröskelvärde för växling till binär jämförelse (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Filnamnsmönster:"
 

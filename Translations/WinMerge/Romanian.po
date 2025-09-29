@@ -2573,6 +2573,9 @@ msgstr "Prag pentru trecerea la compararea rapidă (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Prag pentru trecerea la compararea binară (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Modele de fișiere:"
 

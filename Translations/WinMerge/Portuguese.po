@@ -2562,6 +2562,9 @@ msgstr "Limite para trocar para comparação &rápida (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Limite para trocar para comparação &binária (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Padrões de ficheiros:"
 

@@ -3026,6 +3026,9 @@ msgstr "Llindar per realitzar una comparació ràpida (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Llindar per realitzar una comparació binària (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Patrons de fitxer:"
 

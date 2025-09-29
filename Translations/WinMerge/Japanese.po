@@ -2564,6 +2564,9 @@ msgstr "クイック比較切替閾値 (MB)(&Q):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "ファイル パターン:"
 

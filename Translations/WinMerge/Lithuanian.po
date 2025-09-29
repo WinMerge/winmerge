@@ -2553,6 +2553,9 @@ msgstr "Persijungti į &spartųjį palyginimą kai dydis virš (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Persijungti į &binarinį palyginimą kai dydis virš (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Failų šablonai:"
 

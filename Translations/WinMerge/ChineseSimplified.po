@@ -2570,6 +2570,9 @@ msgstr "切换到快速比较的最小值(&Q) (MB)："
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "切换到二进制比较的最小值(&B) (MB)："
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "文件模式："
 

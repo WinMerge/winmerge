@@ -2555,6 +2555,9 @@ msgstr "Порог для перехода к быстрому сравнени�
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Порог для перехода к двоичному сравнению (MB)"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
 

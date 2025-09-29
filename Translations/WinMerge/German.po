@@ -3021,6 +3021,9 @@ msgstr "Schwellenwert für den Wechsel zum &Schnellvergleich (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "&Dateimuster:"
 

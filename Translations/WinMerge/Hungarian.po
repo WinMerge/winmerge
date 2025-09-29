@@ -3027,6 +3027,9 @@ msgstr "A gyors összehasonlítás méretkorlátja (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Fájlfajták:"
 

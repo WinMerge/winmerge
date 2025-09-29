@@ -3033,6 +3033,9 @@ msgstr "切換至快速比較的閾值 (MB)(&Q)："
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "切換至二進制比較的閾值 (MB)(&B)："
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "檔案模式："
 

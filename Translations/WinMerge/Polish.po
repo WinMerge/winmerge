@@ -2554,6 +2554,9 @@ msgstr "Próg przejścia na szybkie porównywanie (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Próg przejścia na binarne porównywanie (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Szablony pliku:"
 

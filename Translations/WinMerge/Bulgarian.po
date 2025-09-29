@@ -2558,6 +2558,9 @@ msgstr "Използване на &бързо сравняване при раз
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Използване на &двоично сравняване при размер над (МБ):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Шаблони за име на файл:"
 

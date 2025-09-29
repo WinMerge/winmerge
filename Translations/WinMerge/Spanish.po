@@ -185,10 +185,6 @@ msgstr "Voltear h&orizontalmente"
 msgid "&Zoom"
 msgstr "&Zoom"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "&Aumentar\tCtrl++"
 
@@ -1116,6 +1112,9 @@ msgstr "Ignorar diferencias en c&omentarios"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "I&gnorar el final de línea faltante"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Incluir subcarpetas"
 
@@ -1785,8 +1784,23 @@ msgstr "Borrar"
 msgid "Colors"
 msgstr "Colores"
 
-msgid "Color Scheme:"
-msgstr "Esquema de colores:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
+
+msgid "Your custom schemes"
+msgstr ""
+
+msgid "&Save current scheme..."
+msgstr ""
+
+msgid "Delete &current scheme..."
+msgstr ""
 
 msgid "Background"
 msgstr "Fondo"
@@ -2084,6 +2098,9 @@ msgstr "Ignorar diferencias en c&omentarios"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "I&gnorar el final de línea faltante"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Habilitar detecció&n de bloques desplazados"
@@ -2547,6 +2564,9 @@ msgstr "Lí&mite para cambiar a comparación rápida (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Límite para cambiar a comparación &binaria (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Patrones de archivo:"
 
@@ -2631,6 +2651,42 @@ msgstr "Exten&sión de archivo de instrucciones:"
 
 msgid "Script &body:"
 msgstr "Cuer&po del script:"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 msgid "EXT"
 msgstr "EXT"
@@ -4956,6 +5012,15 @@ msgstr "Contiene (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "No contiene (regex)"
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Mejoras"

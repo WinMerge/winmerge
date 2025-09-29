@@ -2585,6 +2585,9 @@ msgstr "&விரைவு ஒப்பீடு (MB) க்கு மாறு
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "&இருமம் ஒப்பீடு (MB) க்கு மாறுவதற்கான நுழைவாயில்:"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "கோப்பு வடிவங்கள்:"
 

@@ -2572,6 +2572,9 @@ msgstr "&Hızlı karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Dosya modelleri:"
 

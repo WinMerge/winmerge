@@ -2559,6 +2559,9 @@ msgstr "סף למעבר להשוואה מהירה (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "סף למעבר להשוואה בינארית (MB):"
 
+msgid "Additional comparison condi&tion:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "תבניות קבצים:"
 
