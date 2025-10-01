@@ -265,6 +265,7 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 
+	pCtxt->m_pAdditionalCompareExpression.reset();
 	const String additionalCompareCondition = GetOptionsMgr()->GetString(OPT_CMP_ADDITIONAL_CONDITION);
 	if (!additionalCompareCondition.empty())
 	{

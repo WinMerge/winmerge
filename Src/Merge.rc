@@ -2652,11 +2652,11 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,98,279,10
     CONTROL         "Ignore &reparse points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,110,279,10
     LTEXT           "Switch to &quick compare when size exceeds (MB):",IDC_STATIC,6,122,279,10
-    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,134,30,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,134,30,13,ES_AUTOHSCROLL
     LTEXT           "Switch to &binary compare when size exceeds (MB):",IDC_STATIC,6,148,279,10
-    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,160,30,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,160,30,13,ES_AUTOHSCROLL
     LTEXT           "C&PU cores to use:",IDC_STATIC,6,174,239,10
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,186,30,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,186,30,13,ES_AUTOHSCROLL
     LTEXT           "Additional comparison condi&tion:",IDC_STATIC,6,200,239,10
     COMBOBOX        IDC_ADDTIONAL_COMPARE_CONDITION,6,212,262,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&=",IDC_ADDTIONAL_COMPARE_CONDITION_MENU,268,212,14,14
@@ -4361,6 +4361,7 @@ BEGIN
     IDS_TEXT_FILES_DIFF     "Text files are different"
     IDS_IMAGE_FILES_SAME    "Image files are identical"
     IDS_IMAGE_FILES_DIFF    "Image files are different"
+    IDS_EXPR_DIFF           "Files are different (expr: %1)"
     IDS_HASH_GROUP          "Group%d"
 END
 

@@ -3805,6 +3805,10 @@ msgid "Image files are different"
 msgstr "Afbeeldingsbestanden zijn verschillend"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Groep%d"
 

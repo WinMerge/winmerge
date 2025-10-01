@@ -4428,6 +4428,10 @@ msgid "Image files are different"
 msgstr "이미지 파일이 다릅니다"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "그룹%d"
 

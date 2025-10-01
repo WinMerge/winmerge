@@ -19,6 +19,15 @@
 
 static const int Mega = 1024 * 1024;
 
+class CPropCompareFolderMenu : public CMenu
+{
+public:
+	std::optional<String> ShowMenu(const String& expr, int x, int y, CWnd* pParentWnd)
+	{
+		return _T("");
+	}
+};
+
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to COptionsMgr.
@@ -70,6 +79,7 @@ BEGIN_MESSAGE_MAP(PropCompareFolder, OptionsPanel)
 	//}}AFX_MSG_MAP
 	ON_CBN_SELCHANGE(IDC_COMPAREMETHODCOMBO, OnCbnSelchangeComparemethodcombo)
 	ON_BN_CLICKED(IDC_RECURS_CHECK, OnBnClickedRecursCheck)
+	ON_BN_CLICKED(IDC_ADDTIONAL_COMPARE_CONDITION_MENU, OnBnClickedAdditionalCompareConditionMenu)
 END_MESSAGE_MAP()
 
 /** 
@@ -162,6 +172,21 @@ void PropCompareFolder::OnCbnSelchangeComparemethodcombo()
 void PropCompareFolder::OnBnClickedRecursCheck()
 {
 	UpdateControls();
+}
+
+void PropCompareFolder::OnBnClickedAdditionalCompareConditionMenu()
+{
+	UpdateData(TRUE);
+	CPropCompareFolderMenu menu;
+	CRect rc;
+	GetDlgItem(IDC_ADDTIONAL_COMPARE_CONDITION_MENU)->GetWindowRect(&rc);
+	const std::optional<String> expr = menu.ShowMenu(m_sAdditionalCompareCondition, rc.left, rc.bottom, this);
+	if (expr.has_value())
+	{
+		m_sAdditionalCompareCondition = *expr;
+		UpdateData(FALSE);
+		m_ctlAdditionalCompareConditionEdit.OnEnChange();
+	}
 }
 
 void PropCompareFolder::UpdateControls()

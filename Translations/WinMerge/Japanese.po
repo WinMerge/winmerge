@@ -2565,7 +2565,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
 msgid "Additional comparison condi&tion:"
-msgstr ""
+msgstr "追加比較条件(&T):"
 
 msgid "File patterns:"
 msgstr "ファイル パターン:"
@@ -3807,6 +3807,10 @@ msgstr "画像ファイルは同一です"
 
 msgid "Image files are different"
 msgstr "画像ファイルは異なります"
+
+#, c-format
+msgid "Files are different (expr: %1)"
+msgstr "ファイルは異なります (式: %1)"
 
 #, c-format
 msgid "Group%d"

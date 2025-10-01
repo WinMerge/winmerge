@@ -488,12 +488,21 @@ exitPrepAndCompare:
 		}
 	}
 
-	if ((code & DIFFCODE::SAME) != 0 && m_pCtxt->m_pAdditionalCompareExpression)
+	if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME && m_pCtxt->m_pAdditionalCompareExpression)
 	{
+		m_pCtxt->m_pAdditionalCompareExpression->errorCode = FilterErrorCode::FILTER_ERROR_NO_ERROR;
 		if (!m_pCtxt->m_pAdditionalCompareExpression->Evaluate(di))
 		{
-			code &= ~DIFFCODE::COMPAREFLAGS;
-			code |= DIFFCODE::DIFF;
+			if (m_pCtxt->m_pAdditionalCompareExpression->errorCode != FilterErrorCode::FILTER_ERROR_NO_ERROR)
+			{
+				code &= ~DIFFCODE::COMPAREFLAGS;
+				code |= DIFFCODE::CMPERR;
+			}
+			else
+			{
+				code &= ~(DIFFCODE::COMPAREFLAGS | DIFFCODE::EXPRFLAGS);
+				code |= DIFFCODE::DIFF | DIFFCODE::EXPRDIFF;
+			}
 		}
 	}
 

@@ -1638,6 +1638,7 @@
 #define IDS_RIGHTONLY_DIFF              41864
 #define IDS_IMAGE_FILES_SAME            41865
 #define IDS_IMAGE_FILES_DIFF            41866
+#define IDS_EXPR_DIFF                   41867
 #define IDS_ELAPSED_TIME                41881
 #define IDS_STATUS_SELITEM1             41882
 #define IDS_STATUS_SELITEMS             41883

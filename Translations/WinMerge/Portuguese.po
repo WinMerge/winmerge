@@ -3812,6 +3812,10 @@ msgid "Image files are different"
 msgstr "Os ficheiros de imagem são diferentes"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Grupo%d"
 
