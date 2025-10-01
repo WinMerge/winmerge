@@ -265,6 +265,13 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 
+	const String additionalCompareCondition = GetOptionsMgr()->GetString(OPT_CMP_ADDITIONAL_CONDITION);
+	if (!additionalCompareCondition.empty())
+	{
+		pCtxt->m_pAdditionalCompareExpression = std::make_unique<FilterExpression>(ucr::toUTF8(additionalCompareCondition));
+		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
+	}
+
 	CheckFilter();
 	FilterExpression::SetLogger([](const std::string& msg) {
 		RootLogger::Error(msg);
@@ -277,8 +284,14 @@ void CDirDoc::CheckFilter()
 		return;
 	for (const auto* error: m_pCtxt->m_piFilterGlobal->GetErrorList())
 	{
-		String msg = FormatFilterErrorSummary(*error);
+		const String msg = FormatFilterErrorSummary(*error);
 		RootLogger::Error(msg);
+	}
+	if (m_pCtxt->m_pAdditionalCompareExpression && m_pCtxt->m_pAdditionalCompareExpression->errorCode != 0)
+	{
+		const String msg = FormatFilterErrorSummary(*m_pCtxt->m_pAdditionalCompareExpression);
+		RootLogger::Error(msg);
+		m_pCtxt->m_pAdditionalCompareExpression.reset();
 	}
 }
 
