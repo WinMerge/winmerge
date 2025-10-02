@@ -1546,6 +1546,18 @@ BEGIN
     END
 END
 
+IDR_POPUP_ADDCMPMENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Clear conditions",           ID_ADDCMPMENU_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "Compare &Size",               ID_ADDCMPMENU_CMP_SIZE
+        MENUITEM "Compare &Date",               ID_ADDCMPMENU_CMP_DATE
+        MENUITEM "Compare &Attributes",         ID_ADDCMPMENU_CMP_ATTR
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2657,7 +2669,7 @@ BEGIN
     EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,160,30,13,ES_AUTOHSCROLL
     LTEXT           "C&PU cores to use:",IDC_STATIC,6,174,239,10
     EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,186,30,13,ES_AUTOHSCROLL
-    LTEXT           "Additional comparison condi&tion:",IDC_STATIC,6,200,239,10
+    LTEXT           "Additional comparison condi&tions:",IDC_STATIC,6,200,239,10
     COMBOBOX        IDC_ADDTIONAL_COMPARE_CONDITION,6,212,262,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&=",IDC_ADDTIONAL_COMPARE_CONDITION_MENU,268,212,14,14
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,240,88,14

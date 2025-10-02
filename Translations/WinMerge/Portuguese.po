@@ -1557,6 +1557,18 @@ msgstr "Alvo: Esquerda e Meio"
 msgid "Target: Middle and &Right"
 msgstr "Alvo: Meio e Direita"
 
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
 
@@ -2562,7 +2574,7 @@ msgstr "Limite para trocar para comparação &rápida (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Limite para trocar para comparação &binária (MB):"
 
-msgid "Additional comparison condi&tion:"
+msgid "Additional comparison condi&tions:"
 msgstr ""
 
 msgid "File patterns:"

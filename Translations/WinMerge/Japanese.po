@@ -1555,6 +1555,18 @@ msgstr "対象: 左と中央(&M)"
 msgid "Target: Middle and &Right"
 msgstr "対象: 中央と右(&R)"
 
+msgid "&Clear conditions"
+msgstr "条件をクリア(&C)"
+
+msgid "Compare &Size"
+msgstr "サイズを比較(&C)"
+
+msgid "Compare &Date"
+msgstr "更新日時を比較(&C)"
+
+msgid "Compare &Attributes"
+msgstr "属性を比較(&A)"
+
 msgid "About WinMerge"
 msgstr "WinMerge について"
 
@@ -2564,7 +2576,7 @@ msgstr "クイック比較切替閾値 (MB)(&Q):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
-msgid "Additional comparison condi&tion:"
+msgid "Additional comparison condi&tions:"
 msgstr "追加比較条件(&T):"
 
 msgid "File patterns:"

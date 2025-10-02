@@ -1553,6 +1553,18 @@ msgstr ""
 msgid "Target: Middle and &Right"
 msgstr ""
 
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Относно WinMerge"
 
@@ -2558,7 +2570,7 @@ msgstr "Използване на &бързо сравняване при раз
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Използване на &двоично сравняване при размер над (МБ):"
 
-msgid "Additional comparison condi&tion:"
+msgid "Additional comparison condi&tions:"
 msgstr ""
 
 msgid "File patterns:"

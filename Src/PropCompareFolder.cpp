@@ -24,7 +24,36 @@ class CPropCompareFolderMenu : public CMenu
 public:
 	std::optional<String> ShowMenu(const String& expr, int x, int y, CWnd* pParentWnd)
 	{
-		return _T("");
+		std::optional<String> result;
+		VERIFY(LoadMenu(IDR_POPUP_ADDCMPMENU));
+		I18n::TranslateMenu(m_hMenu);
+		CMenu* pPopup = GetSubMenu(0);
+		if (pPopup)
+		{
+			const int command = pPopup->TrackPopupMenu(
+				TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, x, y, pParentWnd);
+			if (command == 0)
+			{
+				// User cancelled the menu
+			}
+			else if (command == ID_ADDCMPMENU_CLEAR)
+			{
+				result = _T("");
+			}
+			else if (command >= ID_ADDCMPMENU_CMP_FIRST && command <= ID_ADDCMPMENU_CMP_LAST)
+			{
+				static const String Exprs[] = {
+					_T("allequal(Size)"),
+					_T("allequal(Date)"),
+					_T("allequal(Attributes)"),
+				};
+				result = expr.empty() ? expr : expr + _T(" and ");
+				*result += Exprs[command - ID_ADDCMPMENU_CMP_FIRST];
+			}
+		}
+		DestroyMenu();
+
+		return result;
 	}
 };
 

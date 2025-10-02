@@ -1554,6 +1554,18 @@ msgstr ""
 msgid "Target: Middle and &Right"
 msgstr ""
 
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "אודות WinMerge"
 
@@ -2559,7 +2571,7 @@ msgstr "סף למעבר להשוואה מהירה (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "סף למעבר להשוואה בינארית (MB):"
 
-msgid "Additional comparison condi&tion:"
+msgid "Additional comparison condi&tions:"
 msgstr ""
 
 msgid "File patterns:"
