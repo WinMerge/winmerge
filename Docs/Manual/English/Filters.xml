@@ -282,7 +282,7 @@
               <listitem><para>Creation date timestamp</para></listitem>
             </varlistentry>
             <varlistentry>
-              <term>Attribute</term>
+              <term>Attributes</term>
               <listitem><para>Returns the file attributes as an integer value</para></listitem>
             </varlistentry>
             <varlistentry>

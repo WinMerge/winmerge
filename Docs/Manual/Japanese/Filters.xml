@@ -208,7 +208,7 @@ or <literal>undefined</literal>.</para>
       </section>
 
       <section id="FilterExpression_Attributes">
-        <title>属性</title>
+        <title>Attributes</title>
 
         <para>
 フィルタ式では、ファイルのメタデータや内容を参照する多様な属性が利用できます。属性名の大文字・小文字は区別されません。必要に応じて、比較対象のどの側（Left,
@@ -255,7 +255,7 @@ Right, Middle）かを接頭辞で指定できます。</para>
               <listitem><para>作成日時のタイムスタンプを返します。</para></listitem>
             </varlistentry>
             <varlistentry>
-              <term>Attribute</term>
+              <term>Attributes</term>
               <listitem><para>ファイル属性を整数値で返します。</para></listitem>
             </varlistentry>
             <varlistentry>
@@ -527,7 +527,7 @@ Right, Middle）かを接頭辞で指定できます。</para>
           <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() -
 7days)</literal> - 大きなログファイルまたは1週間以上前のファイル</para></listitem>
           <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> -
-非表示の一時ファイル</para></listitem>
+非表示でない一時ファイル</para></listitem>
         </itemizedlist>
       </section>
     </section>

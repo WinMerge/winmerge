@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-09-23 08:06+0900\n"
+"POT-Creation-Date: 2025-10-03 20:29+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -12325,10 +12325,10 @@ msgstr ""
 "内部的に扱われる型は以下の通りです: Boolean, Integer, Timestamp, String, "
 "File Content, Array, or <literal>undefined</literal>."
 
-#. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:237
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:237 English/Filters.xml:285
 msgid "Attributes"
-msgstr "属性"
+msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Filters.xml:240
@@ -12435,11 +12435,6 @@ msgstr "CreationTime"
 #: English/Filters.xml:282
 msgid "Creation date timestamp"
 msgstr "作成日時のタイムスタンプを返します。"
-
-#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:285
-msgid "Attribute"
-msgstr "Attribute"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:286
@@ -13246,7 +13241,7 @@ msgid ""
 "hidden temporary files"
 msgstr ""
 "<literal>AttrStr not contains \"H\" and Name like \"*.tmp\"</literal> - 非表"
-"示の一時ファイル"
+"示でない一時ファイル"
 
 #. type: Content of: <article><section><title>
 #: English/Filters.xml:569
@@ -22150,6 +22145,9 @@ msgid "Click <guibutton>OK</guibutton> to close the Select Unpacker dialog."
 msgstr ""
 "<guibutton>OK</guibutton>をクリックして、展開プラグインの選択ダイアログを閉じ"
 "てください。"
+
+#~ msgid "Attribute"
+#~ msgstr "Attribute"
 
 #~ msgid ""
 #~ "Any changes made with <option>/cfg</option> will then be temporary and "
