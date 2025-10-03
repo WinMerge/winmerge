@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-09-23 08:06+0900\n"
+"POT-Creation-Date: 2025-10-03 20:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8301,8 +8301,8 @@ msgstr ""
 msgid "Internally, values may be of the following types: Boolean, Integer, Timestamp, String, File Content, Array, or <literal>undefined</literal>."
 msgstr ""
 
-#. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:237
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: ./English/Filters.xml:237 ./English/Filters.xml:285
 msgid "Attributes"
 msgstr ""
 
@@ -8399,11 +8399,6 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: ./English/Filters.xml:282
 msgid "Creation date timestamp"
-msgstr ""
-
-#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:285
-msgid "Attribute"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
