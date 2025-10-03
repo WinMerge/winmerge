@@ -20,6 +20,7 @@
 #include "TFile.h"
 #include "FileFilterHelper.h"
 #include "PropertySystem.h"
+#include "FilterEngine/FilterExpression.h"
 #include "Logger.h"
 #include "I18n.h"
 #include "DebugNew.h"
@@ -483,6 +484,24 @@ exitPrepAndCompare:
 			{
 				properties.reset(new PropertyValues());
 				properties->Resize(numprops);
+			}
+		}
+	}
+
+	if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME && m_pCtxt->m_pAdditionalCompareExpression)
+	{
+		m_pCtxt->m_pAdditionalCompareExpression->errorCode = FilterErrorCode::FILTER_ERROR_NO_ERROR;
+		if (!m_pCtxt->m_pAdditionalCompareExpression->Evaluate(di))
+		{
+			if (m_pCtxt->m_pAdditionalCompareExpression->errorCode != FilterErrorCode::FILTER_ERROR_NO_ERROR)
+			{
+				code &= ~DIFFCODE::COMPAREFLAGS;
+				code |= DIFFCODE::CMPERR;
+			}
+			else
+			{
+				code &= ~(DIFFCODE::COMPAREFLAGS | DIFFCODE::EXPRFLAGS);
+				code |= DIFFCODE::DIFF | DIFFCODE::EXPRDIFF;
 			}
 		}
 	}

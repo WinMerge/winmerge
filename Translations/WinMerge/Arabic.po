@@ -1559,6 +1559,18 @@ msgstr ""
 msgid "Target: Middle and &Right"
 msgstr ""
 
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "حول WinMerge"
 
@@ -2560,6 +2572,9 @@ msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr ""
 
 msgid "Switch to &binary compare when size exceeds (MB):"
+msgstr ""
+
+msgid "Additional comparison condi&tions:"
 msgstr ""
 
 msgid "File patterns:"
@@ -3764,6 +3779,10 @@ msgid "Image files are identical"
 msgstr ""
 
 msgid "Image files are different"
+msgstr ""
+
+#, c-format
+msgid "Files are different (expr: %1)"
 msgstr ""
 
 #, c-format

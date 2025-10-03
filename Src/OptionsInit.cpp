@@ -147,6 +147,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, false);
 	pOptions->InitOption(OPT_CMP_INCLUDE_SUBDIRS, true);
 	pOptions->InitOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, false);
+	pOptions->InitOption(OPT_CMP_ADDITIONAL_CONDITION, _T(""));
 
 	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
 

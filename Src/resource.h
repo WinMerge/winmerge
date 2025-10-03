@@ -34,6 +34,7 @@
 #define IDR_POPUP_FILTERMENU            130
 #define IDR_POPUP_FILTERMENU_FILTER     131
 #define IDR_POPUP_FILTERMENU_FILE       132
+#define IDR_POPUP_ADDCMPMENU            133
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_SAVECLOSING                 203
@@ -565,6 +566,8 @@
 #define IDC_ITEMS_PER_SEC               1431
 #define IDC_FILTERFILE_MASK             1434
 #define IDC_FILTERFILE_MASK_MENU        1435
+#define IDC_ADDTIONAL_COMPARE_CONDITION      1436
+#define IDC_ADDTIONAL_COMPARE_CONDITION_MENU 1437
 #define IDC_DIFFERENCE_COLOR            1500
 #define IDC_DIFFERENCE_DELETED_COLOR    1501
 #define IDC_DIFFERENCE_TEXT_COLOR       1502
@@ -1367,6 +1370,12 @@
 #define ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT 36007
 #define ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE 36008
 #define ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT 36009
+#define ID_ADDCMPMENU_CLEAR             36100
+#define ID_ADDCMPMENU_CMP_FIRST         36101
+#define ID_ADDCMPMENU_CMP_SIZE          36101
+#define ID_ADDCMPMENU_CMP_DATE          36102
+#define ID_ADDCMPMENU_CMP_ATTR          36103
+#define ID_ADDCMPMENU_CMP_LAST          36104
 #define IDS_SPLASH_GPLTEXT              38977
 #define IDS_MESSAGEBOX_OK               39001
 #define IDS_MESSAGEBOX_CANCEL           39002
@@ -1636,6 +1645,7 @@
 #define IDS_RIGHTONLY_DIFF              41864
 #define IDS_IMAGE_FILES_SAME            41865
 #define IDS_IMAGE_FILES_DIFF            41866
+#define IDS_EXPR_DIFF                   41867
 #define IDS_ELAPSED_TIME                41881
 #define IDS_STATUS_SELITEM1             41882
 #define IDS_STATUS_SELITEMS             41883
@@ -2013,6 +2023,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        290
 #define _APS_NEXT_COMMAND_VALUE         34194
 #define _APS_NEXT_CONTROL_VALUE         1682
-#define _APS_NEXT_SYMED_VALUE           118
+#define _APS_NEXT_SYMED_VALUE           134
 #endif
 #endif
