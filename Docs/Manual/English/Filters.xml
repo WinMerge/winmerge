@@ -224,12 +224,13 @@
         <itemizedlist>
           <listitem><para><emphasis>Boolean</emphasis>: <literal>true</literal>, <literal>false</literal></para></listitem>
           <listitem><para><emphasis>Integer</emphasis>: 64-bit signed integers (e.g., <literal>1024</literal>, or with units like <literal>100KB</literal>, <literal>7days</literal>)</para></listitem>
+          <listitem><para><emphasis>Real (Double)</emphasis>: Floating-point numbers with optional decimal or exponent (e.g., <literal>3.14</literal>, <literal>.5</literal>, <literal>1e6</literal>)</para></listitem>
           <listitem><para><emphasis>String</emphasis>: Enclosed in double quotes (e.g., <literal>"example"</literal>)</para></listitem>
         </itemizedlist>
 
         <para>
           Internally, values may be of the following types:
-          Boolean, Integer, Timestamp, String, File Content, Array, or <literal>undefined</literal>.
+          Boolean, Integer, Real, Timestamp, String, File Content, Array, or <literal>undefined</literal>.
         </para>
       </section>
 
