@@ -103,10 +103,10 @@ ValueType AndNode::Evaluate(const DIFFITEM& di) const
 
 ExprNode* NotNode::Optimize()
 {
-	if (!expr)
+	if (!right)
 		return this;
-	expr = expr->Optimize();
-	auto boolVal = dynamic_cast<BoolLiteral*>(expr);
+	right = right->Optimize();
+	auto boolVal = dynamic_cast<BoolLiteral*>(right);
 	if (boolVal)
 	{
 		const bool result = !boolVal->value;
@@ -118,7 +118,7 @@ ExprNode* NotNode::Optimize()
 
 ValueType NotNode::Evaluate(const DIFFITEM& di) const
 {
-	auto val = expr->Evaluate(di);
+	auto val = right->Evaluate(di);
 	auto boolVal = evalAsBool(val);
 	if (!boolVal) return std::monostate{};
 	return !*boolVal;
@@ -1219,6 +1219,64 @@ static auto StartOfYearFunc(const FilterExpression* ctxt, const DIFFITEM& di, st
 	return Poco::LocalDateTime(ldt.year(), 1, 1, 0, 0, 0, 0, 0).utc().timestamp();
 }
 
+ValueType ConvertPROPVARIANTToValueType(const PROPVARIANT& propvalue)
+{
+	switch (propvalue.vt)
+	{
+	case VT_EMPTY:
+		return std::monostate{};
+	case VT_I4:
+		return static_cast<int64_t>(propvalue.lVal);
+	case VT_I8:
+		return static_cast<int64_t>(propvalue.hVal.QuadPart);
+	case VT_R8:
+		return static_cast<double>(propvalue.dblVal);
+	case VT_LPWSTR:
+		return ucr::toUTF8(propvalue.pwszVal);
+	case VT_BOOL:
+		return propvalue.boolVal != VARIANT_FALSE;
+	default:
+		return std::monostate{};
+	}
+}
+
+static auto prop(int index, const String& name, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.exists(index))
+	{
+		auto& properties = const_cast<DIFFITEM&>(di).diffFileInfo[index].m_pAdditionalProperties;
+		if (!di.diffFileInfo[index].m_pAdditionalProperties)
+		{
+			properties.reset(new PropertyValues());
+			if (di.diffcode.exists(index))
+			{
+				const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
+				const String path = paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath);
+				ctxt->ctxt->m_pPropertySystem->GetPropertyValues(path, *properties);
+			}
+			else
+			{
+				size_t numprops = ctxt->ctxt->m_pPropertySystem->GetCanonicalNames().size();
+				properties->Resize(numprops);
+			}
+		}
+		const int propindex = ctxt->ctxt->m_pPropertySystem->GetPropertyIndex(name);
+		if (propindex < 0)
+			return std::monostate{};
+		return ConvertPROPVARIANTToValueType((*properties)[propindex]);
+	}
+	return std::monostate{};
+}
+
+static auto propary(const String& name, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	const int dirs = ctxt->ctxt->GetCompareDirs();
+	std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+	for (int i = 0; i < dirs; ++i)
+		values->emplace_back(ValueType2{ prop(i, name, ctxt, di) });
+	return values;
+}
+
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
@@ -1315,6 +1373,43 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		if (!args || args->size() != 1)
 			throw std::invalid_argument("startofyear function requires 1 arguments");
 		func = StartOfYearFunc;
+	}
+	else if (functionName == "prop")
+	{
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("prop function requires 1 arguments");
+		auto strLit = dynamic_cast<StringLiteral*>((*args)[0]);
+		if (!strLit)
+			throw std::invalid_argument("prop function requires a string literal as argument");
+		String propName = ucr::toTString(strLit->value);
+		PropertySystem propSys({propName});
+		const int propindex = propSys.GetPropertyIndex(propName);
+		if (propindex < 0)
+			throw std::invalid_argument("prop function: unknown property name: " + strLit->value);
+		func = [propName](const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+			{ return propary(propName, ctxt, di); };
+	}
+	else if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
+	{
+		if (!args || args->size() != 1)
+			throw std::invalid_argument(functionName + " function requires 1 arguments");
+		auto strLit = dynamic_cast<StringLiteral*>((*args)[0]);
+		if (!strLit)
+			throw std::invalid_argument(functionName + " function requires a string literal as argument");
+		String propName = ucr::toTString(strLit->value);
+		PropertySystem propSys({propName});
+		const int propindex = propSys.GetPropertyIndex(propName);
+		if (propindex < 0)
+			throw std::invalid_argument(functionName + " function: unknown property name: " + strLit->value);
+		int side = 0;
+		if (functionName == "leftprop")
+			side = 0;
+		else if (functionName == "middleprop")
+			side = 1;
+		else if (functionName == "rightprop")
+			side = -1;
+		func = [propName, side](const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+			{ return prop((side < 0) ? (ctxt->ctxt->GetCompareDirs() - 1) : side, propName, ctxt, di); };
 	}
 	else
 	{

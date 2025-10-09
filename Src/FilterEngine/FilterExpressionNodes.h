@@ -27,6 +27,18 @@ struct ExprNode
 	virtual ValueType Evaluate(const DIFFITEM& di) const = 0;
 };
 
+struct NotNode : public ExprNode
+{
+	NotNode(ExprNode* e) : right(e) { }
+	virtual ~NotNode()
+	{
+		delete right;
+	}
+	ExprNode* Optimize() override;
+	ValueType Evaluate(const DIFFITEM& di) const override;
+	ExprNode* right;
+};
+
 struct OrNode : public ExprNode
 {
 	OrNode(ExprNode* l, ExprNode* r) : left(l), right(r) { }
@@ -53,18 +65,6 @@ struct AndNode : public ExprNode
 	ValueType Evaluate(const DIFFITEM& di) const override;
 	ExprNode* left;
 	ExprNode* right;
-};
-
-struct NotNode : public ExprNode
-{
-	NotNode(ExprNode* e) : expr(e) { }
-	virtual ~NotNode()
-	{
-		delete expr;
-	}
-	ExprNode* Optimize() override;
-	ValueType Evaluate(const DIFFITEM& di) const override;
-	ExprNode* expr;
 };
 
 struct BinaryOpNode : public ExprNode

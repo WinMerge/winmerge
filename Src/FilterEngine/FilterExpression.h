@@ -27,6 +27,7 @@ struct FilterExpression
 	bool Evaluate(const DIFFITEM& di);
 	void UpdateTimestamp();
 	void Clear();
+	std::vector<std::string> GetPropertyNames() const;
 	static void SetLogger(std::function<void(const std::string&)> func) { logger = func; };
 	bool optimize = true;
 	const CDiffContext* ctxt = nullptr;
