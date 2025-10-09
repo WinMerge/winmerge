@@ -5048,6 +5048,9 @@ msgstr "Filtre ifadesinde sıfıra bölme işlemi"
 msgid "Unknown error"
 msgstr "Bilinmeyen hata"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Eşittir"
 

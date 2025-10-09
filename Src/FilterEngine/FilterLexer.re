@@ -61,6 +61,10 @@ begin:
 		yylval.string = DupString(str.c_str());
 		return TK_VERSION_LITERAL;
 	}
+	([0-9]+"."[0-9]*|"."[0-9]+|[0-9]+([.][0-9]+)?[eE][-+]?[0-9]+) {
+		yylval.real = std::stod(std::string((const char*)yycursor, YYCURSOR - yycursor));
+		return TK_DOUBLE_LITERAL;
+	}
 	[0-9]+ {
 		yylval.integer = std::stoi(std::string((const char*)yycursor, YYCURSOR - yycursor));
 		return TK_INTEGER_LITERAL;

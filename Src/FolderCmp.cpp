@@ -475,16 +475,13 @@ exitPrepAndCompare:
 		for (int i = 0; i < nDirs; ++i)
 		{
 			auto& properties = di.diffFileInfo[i].m_pAdditionalProperties;
+			if (properties)
+				continue; // already have properties
+			properties.reset(new PropertyValues());
 			if (di.diffcode.exists(i))
-			{
-				properties.reset(new PropertyValues());
 				m_pCtxt->m_pPropertySystem->GetPropertyValues(tFiles[i], *properties);
-			}
 			else
-			{
-				properties.reset(new PropertyValues());
 				properties->Resize(numprops);
-			}
 		}
 	}
 

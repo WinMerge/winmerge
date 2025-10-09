@@ -4990,6 +4990,9 @@ msgstr "Division med noll i filteruttryck"
 msgid "Unknown error"
 msgstr "Okänt fel"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Lika med"
 

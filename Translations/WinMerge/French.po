@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-09-05 11:58+0200\n"
+"PO-Revision-Date: 2025-10-05 05:49+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -1117,7 +1117,7 @@ msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignorer les EOL de fin &manquants"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "Ignorer les sauts de ligne (traiter comme des espaces)"
 
 msgid "&Include Subfolders"
 msgstr "&Inclure les sous-dossiers"
@@ -2118,7 +2118,7 @@ msgid "Ignore &missing trailing EOL"
 msgstr "Ignorer les EOL de fin &manquants"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "Ignorer les sauts de ligne (traiter comme des espaces)"
 
 msgid "E&nable moved block detection"
 msgstr "Activer la détectio&n des blocs déplacés"
@@ -4983,6 +4983,9 @@ msgstr "Division par zéro dans l'expression du filtre"
 
 msgid "Unknown error"
 msgstr "Erreur inconnue"
+
+msgid "Invalid property name"
+msgstr ""
 
 msgid "Equals"
 msgstr "Égal"

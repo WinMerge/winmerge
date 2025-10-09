@@ -4993,6 +4993,9 @@ msgstr "División por cero en la expresión del filtro"
 msgid "Unknown error"
 msgstr "Error desconocido"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Iguales"
 

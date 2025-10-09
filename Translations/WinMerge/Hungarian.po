@@ -5567,6 +5567,9 @@ msgstr "Nullával való osztás a szűrőkifejezésben"
 msgid "Unknown error"
 msgstr "Ismeretlen hiba"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Egyenlők"
 

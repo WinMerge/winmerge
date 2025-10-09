@@ -5024,6 +5024,7 @@ BEGIN
     IDS_FILTER_ERROR_FILTER_NAME_NOT_FOUND "Filter name not found"
     IDS_FILTER_ERROR_DIVIDE_BY_ZERO "Division by zero in filter expression"
     IDS_FILTER_ERROR_UNKNOWN_ERROR "Unknown error"
+    IDS_FILTER_ERROR_INVALID_PROPERTY_NAME "Invalid property name"
 END
 
 STRINGTABLE

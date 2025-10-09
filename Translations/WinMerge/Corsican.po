@@ -5046,6 +5046,9 @@ msgstr "Divisione da zeru in l’espressione di filtru"
 msgid "Unknown error"
 msgstr "Sbagliu scunnisciutu"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Hè uguale à"
 

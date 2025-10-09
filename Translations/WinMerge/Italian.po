@@ -5069,6 +5069,9 @@ msgstr "Divisione per zero nell'espressione filtro"
 msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Uguale"
 

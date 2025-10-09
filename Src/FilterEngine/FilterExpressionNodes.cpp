@@ -103,10 +103,10 @@ ValueType AndNode::Evaluate(const DIFFITEM& di) const
 
 ExprNode* NotNode::Optimize()
 {
-	if (!expr)
+	if (!right)
 		return this;
-	expr = expr->Optimize();
-	auto boolVal = dynamic_cast<BoolLiteral*>(expr);
+	right = right->Optimize();
+	auto boolVal = dynamic_cast<BoolLiteral*>(right);
 	if (boolVal)
 	{
 		const bool result = !boolVal->value;
@@ -118,7 +118,7 @@ ExprNode* NotNode::Optimize()
 
 ValueType NotNode::Evaluate(const DIFFITEM& di) const
 {
-	auto val = expr->Evaluate(di);
+	auto val = right->Evaluate(di);
 	auto boolVal = evalAsBool(val);
 	if (!boolVal) return std::monostate{};
 	return !*boolVal;
@@ -151,11 +151,49 @@ static std::optional<int64_t> getConstIntValue(const ExprNode* node)
  */
 static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 {
+	// If both nodes are constants, attempt to fold them.
+	auto lDouble = dynamic_cast<DoubleLiteral*>(left);
+	auto rDouble = dynamic_cast<DoubleLiteral*>(right);
+	if (lDouble && rDouble)
+	{
+		// Handle comparison operators (e.g., ==, !=, <, <=, >, >=).
+		if (op >= TK_EQ && op <= TK_GE)
+		{
+			bool result;
+			switch (op)
+			{
+			case TK_EQ: result = lDouble->value == rDouble->value; break;
+			case TK_NE: result = lDouble->value != rDouble->value; break;
+			case TK_LT: result = lDouble->value < rDouble->value; break;
+			case TK_LE: result = lDouble->value <= rDouble->value; break;
+			case TK_GT: result = lDouble->value > rDouble->value; break;
+			case TK_GE: result = lDouble->value >= rDouble->value; break;
+			default: return nullptr; // Invalid operator.
+			}
+			// Return a boolean literal representing the comparison result.
+			return new BoolLiteral(result);
+		}
+
+		// Handle arithmetic operators (e.g., +, -, *, /, %).
+		double result = 0.0;
+		switch (op)
+		{
+		case TK_PLUS:  result = lDouble->value + rDouble->value; break;
+		case TK_MINUS: result = lDouble->value - rDouble->value; break;
+		case TK_STAR:  result = lDouble->value * rDouble->value; break;
+		case TK_SLASH:
+			if (rDouble->value == 0)
+				throw std::invalid_argument("Division by zero is not allowed.");
+			result = lDouble->value / rDouble->value;
+			break;
+		default: return nullptr; // Invalid operator.
+		}
+		// Return an double literal representing the arithmetic result.
+		return new DoubleLiteral(result);
+	}
 	// Extract constant integer values from the left and right nodes.
 	auto lInt = getConstIntValue(left);
 	auto rInt = getConstIntValue(right);
-
-	// If both nodes are constants, attempt to fold them.
 	if (lInt && rInt)
 	{
 		// Handle comparison operators (e.g., ==, !=, <, <=, >, >=).
@@ -319,9 +357,53 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 	auto rval = right->Evaluate(di);
 	auto compute = [](int op, const ValueType& lval, const ValueType& rval) -> ValueType
 		{
-			if (auto lvalInt = std::get_if<int64_t>(&lval))
+			if (auto lvalDouble = std::get_if<double>(&lval))
 			{
-				if (auto rvalInt = std::get_if<int64_t>(&rval))
+				double r;
+				if (auto rvalDouble = std::get_if<double>(&rval))
+					r = *rvalDouble;
+				else if (auto rvalInt = std::get_if<int64_t>(&rval))
+					r = static_cast<double>(*rvalInt);
+				else
+					return std::monostate{};
+				if (op == TK_EQ) return *lvalDouble == r;
+				if (op == TK_NE) return *lvalDouble != r;
+				if (op == TK_LT) return *lvalDouble < r;
+				if (op == TK_LE) return *lvalDouble <= r;
+				if (op == TK_GT) return *lvalDouble > r;
+				if (op == TK_GE) return *lvalDouble >= r;
+				if (op == TK_PLUS)  return *lvalDouble + r;
+				if (op == TK_MINUS) return *lvalDouble - r;
+				if (op == TK_STAR)  return *lvalDouble * r;
+				if (op == TK_SLASH)
+				{
+					if (r == 0.0)
+						throw std::invalid_argument("Division by zero in filter expression");
+					return *lvalDouble / r;
+				}
+			}
+			else if (auto lvalInt = std::get_if<int64_t>(&lval))
+			{
+				if (auto rvalDouble = std::get_if<double>(&rval))
+				{
+					double l = static_cast<double>(*lvalInt);
+					if (op == TK_EQ) return l == *rvalDouble;
+					if (op == TK_NE) return l != *rvalDouble;
+					if (op == TK_LT) return l < *rvalDouble;
+					if (op == TK_LE) return l <= *rvalDouble;
+					if (op == TK_GT) return l > *rvalDouble;
+					if (op == TK_GE) return l >= *rvalDouble;
+					if (op == TK_PLUS)  return l + *rvalDouble;
+					if (op == TK_MINUS) return l - *rvalDouble;
+					if (op == TK_STAR)  return l * *rvalDouble;
+					if (op == TK_SLASH)
+					{
+						if (*rvalDouble == 0.0)
+							throw std::invalid_argument("Division by zero in filter expression");
+						return l / *rvalDouble;
+					}
+				}
+				else if (auto rvalInt = std::get_if<int64_t>(&rval))
 				{
 					if (op == TK_EQ) return *lvalInt == *rvalInt;
 					if (op == TK_NE) return *lvalInt != *rvalInt;
@@ -554,6 +636,13 @@ ExprNode* NegateNode::Optimize()
 		delete this;
 		return new IntLiteral(-*rInt);
 	}
+	auto rDouble = dynamic_cast<DoubleLiteral*>(right);
+	if (rDouble)
+	{
+		const double doubleVal = -rDouble->value;
+		delete this;
+		return new DoubleLiteral(doubleVal);
+	}
 	return this;
 }
 
@@ -562,6 +651,8 @@ ValueType NegateNode::Evaluate(const DIFFITEM& di) const
 	auto rval = right->Evaluate(di);
 	if (auto rvalInt = std::get_if<int64_t>(&rval))
 		return -*rvalInt;
+	if (auto rvalDouble = std::get_if<double>(&rval))
+		return -*rvalDouble;
 	return std::monostate{};
 }
 
@@ -786,6 +877,8 @@ static auto AbsFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vecto
 	auto arg1 = (*args)[0]->Evaluate(di);
 	if (auto arg1Int = std::get_if<int64_t>(&arg1))
 		return abs(*arg1Int);
+	if (auto arg1Double = std::get_if<double>(&arg1))
+		return abs(*arg1Double);
 	return std::monostate{};
 }
 
@@ -1223,6 +1316,14 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 			throw std::invalid_argument("startofyear function requires 1 arguments");
 		func = StartOfYearFunc;
 	}
+	else if (functionName == "prop")
+	{
+		SetPropFunc();
+	}
+	else if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
+	{
+		SetLeftMiddleRightPropFunc();
+	}
 	else
 	{
 		throw std::runtime_error("Unknown function: " + std::string(functionName.begin(), functionName.end()));
@@ -1272,6 +1373,12 @@ ExprNode* FunctionNode::Optimize()
 			delete this;
 			return result;
 		}
+		if (auto doubleLit = args ? dynamic_cast<DoubleLiteral*>((*args)[0]) : nullptr)
+		{
+			auto* result = new DoubleLiteral(std::get<double>(func(ctxt, di, args)));
+			delete this;
+			return result;
+		}
 	}
 	else if (functionName == "array")
 	{
@@ -1283,6 +1390,8 @@ ExprNode* FunctionNode::Optimize()
 				bool isConst = false;
 				auto intValue = getConstIntValue(arg);
 				if (intValue.has_value())
+					isConst = true;
+				else if (auto doubleLit = args ? dynamic_cast<DoubleLiteral*>(arg) : nullptr)
 					isConst = true;
 				else if (auto strLit = args ? dynamic_cast<StringLiteral*>(arg) : nullptr)
 					isConst = true;
@@ -1304,6 +1413,8 @@ ExprNode* FunctionNode::Optimize()
 					auto intValue = getConstIntValue(arg);
 					if (intValue.has_value())
 						result->emplace_back(ValueType2{ *intValue });
+					else if (auto doubleLit = dynamic_cast<DoubleLiteral*>(arg))
+						result->emplace_back(ValueType2{ doubleLit->value });
 					else if (auto strLit = dynamic_cast<StringLiteral*>(arg))
 						result->emplace_back(ValueType2{ strLit->value });
 					else if (auto dateLit = dynamic_cast<DateTimeLiteral*>(arg))
@@ -1336,6 +1447,11 @@ ExprNode* FunctionNode::Optimize()
 						{
 							delete this;
 							return new StringLiteral(*strVal);
+						}
+						else if (auto doubleVal = std::get_if<double>(&val))
+						{
+							delete this;
+							return new DoubleLiteral(*doubleVal);
 						}
 						else if (auto intVal = std::get_if<int64_t>(&val))
 						{

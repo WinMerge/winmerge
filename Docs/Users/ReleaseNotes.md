@@ -49,7 +49,7 @@ Please submit bug reports to our bug-tracker.
   * Brazilian (#2886,#2910,#2951)
   * Chinese Simplified (PR #2889,#2916,#2952)
   * Corsican (PR #2915)
-  * French (PR #2887,#2938)
+  * French (PR #2887,#2938,#2969)
   * Hungarian (PR #2909,#2948)
   * Italian (PR #2892,#2911,#2956)
   * Japanese

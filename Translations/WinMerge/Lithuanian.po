@@ -4563,6 +4563,9 @@ msgstr "Dalyba iš nulio filtro išraiškoje"
 msgid "Unknown error"
 msgstr "Nežinoma klaida"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Lygu"
 

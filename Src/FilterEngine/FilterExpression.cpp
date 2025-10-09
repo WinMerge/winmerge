@@ -61,6 +61,58 @@ void FilterExpression::Clear()
 	errorPosition = -1;
 }
 
+static void collectPropertyNames(const ExprNode* node, std::vector<std::string>& names)
+{
+	if (!node) return;
+	if (const auto node2 = dynamic_cast<const NotNode*>(node))
+	{
+		collectPropertyNames(node2->right, names);
+	}
+	else if (const auto node3 = dynamic_cast<const NegateNode*>(node))
+	{
+		collectPropertyNames(node3->right, names);
+	}
+	else if (const auto node4 = dynamic_cast<const OrNode*>(node))
+	{
+		collectPropertyNames(node4->left, names);
+		collectPropertyNames(node4->right, names);
+	}
+	else if (const auto node5 = dynamic_cast<const AndNode*>(node))
+	{
+		collectPropertyNames(node5->left, names);
+		collectPropertyNames(node5->right, names);
+	}
+	else if (const auto node6 = dynamic_cast<const BinaryOpNode*>(node))
+	{
+		collectPropertyNames(node6->left, names);
+		collectPropertyNames(node6->right, names);
+	}
+	else if (const auto funcNode = dynamic_cast<const FunctionNode*>(node))
+	{
+		for (const auto& arg : *funcNode->args)
+			collectPropertyNames(arg, names);
+		if (funcNode->functionName == "prop" || funcNode->functionName == "leftprop" || funcNode->functionName == "middleprop" || funcNode->functionName == "rightprop")
+		{
+			if (funcNode->args->size() == 1)
+			{
+				if (const auto strLit = dynamic_cast<const StringLiteral*>((*funcNode->args)[0]))
+				{
+					if (std::find(names.begin(), names.end(), strLit->value) == names.end())
+						names.push_back(strLit->value);
+				}
+			}
+		}
+	}
+}
+
+std::vector<std::string> FilterExpression::GetPropertyNames() const
+{
+	std::vector<std::string> names;
+	if (rootNode)
+		collectPropertyNames(rootNode.get(), names);
+	return names;
+}
+
 void FilterExpression::UpdateTimestamp()
 {
 	now.reset(new Poco::Timestamp());

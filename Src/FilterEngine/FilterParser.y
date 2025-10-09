@@ -3,7 +3,7 @@
  *
  * @brief Parser for filter expressions.
  */
-%token AND OR NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER EQ NE LT LE GT GE CONTAINS RECONTAINS LIKE MATCHES LPAREN RPAREN PLUS MINUS STAR SLASH MOD COMMA.
+%token AND OR NOT TRUE_LITERAL FALSE_LITERAL INTEGER_LITERAL DOUBLE_LITERAL STRING_LITERAL SIZE_LITERAL DATETIME_LITERAL DURATION_LITERAL VERSION_LITERAL IDENTIFIER EQ NE LT LE GT GE CONTAINS RECONTAINS LIKE MATCHES LPAREN RPAREN PLUS MINUS STAR SLASH MOD COMMA.
 
 %left OR.
 %left AND.
@@ -102,6 +102,7 @@ unary(A) ::= term(A).
 
 term(A) ::= TRUE_LITERAL.          { A = { new BoolLiteral(true) }; }
 term(A) ::= FALSE_LITERAL.         { A = { new BoolLiteral(false) }; }
+term(A) ::= DOUBLE_LITERAL(B).      { A = { new DoubleLiteral(B.real) }; }
 term(A) ::= INTEGER_LITERAL(B).    { A = { new IntLiteral(B.integer) }; }
 term(A) ::= STRING_LITERAL(B).     { A = { new StringLiteral(B.string) }; }
 term(A) ::= SIZE_LITERAL(B).       { A = { new SizeLiteral(B.string) }; }
@@ -141,16 +142,22 @@ term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. {
   {
     A.node = new FunctionNode(pCtx, B.string, C.nodeList);
   }
+  catch (const InvalidPropertyNameError& e)
+  {
+    pCtx->errorCode = FILTER_ERROR_INVALID_PROPERTY_NAME;
+    pCtx->errorMessage = e.what();
+    YYSTYPEDestructor(C);
+  }
   catch (const std::invalid_argument& e)
   {
     pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT_COUNT;
-	pCtx->errorMessage = e.what();
+    pCtx->errorMessage = e.what();
     YYSTYPEDestructor(C);
   }
   catch (const std::runtime_error& e)
   {
     pCtx->errorCode = FILTER_ERROR_UNDEFINED_IDENTIFIER;
-	pCtx->errorMessage = e.what();
+    pCtx->errorMessage = e.what();
     YYSTYPEDestructor(C);
   }
 }

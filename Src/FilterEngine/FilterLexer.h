@@ -17,6 +17,7 @@ struct YYSTYPE
 	std::vector<ExprNode*> *nodeList;
 	const char* string;
 	int64_t integer;
+	double real;
 	bool boolean;
 };
 

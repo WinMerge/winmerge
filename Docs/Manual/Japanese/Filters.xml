@@ -198,13 +198,15 @@ WinMerge
 <literal>false</literal></para></listitem>
           <listitem><para><emphasis>Integer</emphasis>: 64ビット符号付き整数 (例: <literal>1024</literal>,
 <literal>100KB</literal>, <literal>7days</literal> などの単位付きも可能)</para></listitem>
+          <listitem><para><emphasis>Real (Double)</emphasis>: 小数点または指数部を任意に含む浮動小数点数 (例:
+<literal>3.14</literal>, <literal>.5</literal>, <literal>1e6</literal>)</para></listitem>
           <listitem><para><emphasis>String</emphasis>: ダブルクォートで囲まれた文字列 (例:
 <literal>"example"</literal>)</para></listitem>
         </itemizedlist>
 
         <para>
-内部的に扱われる型は以下の通りです: Boolean, Integer, Timestamp, String, File Content, Array,
-or <literal>undefined</literal>.</para>
+内部的に扱われる型は以下の通りです: Boolean, Integer, Real, Timestamp, String, File Content,
+Array, or <literal>undefined</literal>.</para>
       </section>
 
       <section id="FilterExpression_Attributes">
