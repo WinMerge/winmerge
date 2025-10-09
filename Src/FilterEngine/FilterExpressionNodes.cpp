@@ -1235,6 +1235,11 @@ ValueType ConvertPROPVARIANTToValueType(const PROPVARIANT& propvalue)
 		return ucr::toUTF8(propvalue.pwszVal);
 	case VT_BOOL:
 		return propvalue.boolVal != VARIANT_FALSE;
+	case VT_VECTOR|VT_UI1:
+	{
+		const CAUB& buf = propvalue.caub;
+		return std::string(reinterpret_cast<const char*>(buf.pElems), buf.cElems);
+	}
 	default:
 		return std::monostate{};
 	}
@@ -1385,7 +1390,7 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		PropertySystem propSys({propName});
 		const int propindex = propSys.GetPropertyIndex(propName);
 		if (propindex < 0)
-			throw std::invalid_argument("prop function: unknown property name: " + strLit->value);
+			throw InvalidPropertyNameError(strLit->value);
 		func = [propName](const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 			{ return propary(propName, ctxt, di); };
 	}
@@ -1400,7 +1405,7 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		PropertySystem propSys({propName});
 		const int propindex = propSys.GetPropertyIndex(propName);
 		if (propindex < 0)
-			throw std::invalid_argument(functionName + " function: unknown property name: " + strLit->value);
+			throw InvalidPropertyNameError(strLit->value);
 		int side = 0;
 		if (functionName == "leftprop")
 			side = 0;

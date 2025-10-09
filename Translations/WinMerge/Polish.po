@@ -4545,6 +4545,9 @@ msgstr "Dzielenie przez zero w wyrażeniu filtrującym"
 msgid "Unknown error"
 msgstr "Nieznany błąd"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Równe"
 

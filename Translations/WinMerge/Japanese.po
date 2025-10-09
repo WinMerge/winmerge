@@ -4973,6 +4973,9 @@ msgstr "フィルター式で0による除算が行われました"
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "等しい"
 

@@ -33,6 +33,8 @@ String GetFilterErrorMessage(FilterErrorCode code)
 		return _("Filter name not found");
 	case FILTER_ERROR_DIVIDE_BY_ZERO:
 		return _("Division by zero in filter expression");
+	case FILTER_ERROR_INVALID_PROPERTY_NAME:
+		return _("Invalid property name");
 	default:
 		return _("Unknown error");
 	}
