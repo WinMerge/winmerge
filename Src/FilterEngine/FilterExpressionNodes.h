@@ -117,6 +117,8 @@ struct FunctionNode : public ExprNode
 	virtual ~FunctionNode();
 	ExprNode* Optimize() override;
 	ValueType Evaluate(const DIFFITEM& di) const override;
+	void SetPropFunc();
+	void SetLeftMiddleRightPropFunc();
 	const FilterExpression* ctxt;
 	std::string functionName;
 	std::vector<ExprNode*>* args;
