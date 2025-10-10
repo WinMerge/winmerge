@@ -61,48 +61,63 @@ void FilterExpression::Clear()
 	errorPosition = -1;
 }
 
-static void collectPropertyNames(const ExprNode* node, std::vector<std::string>& names)
+template <typename Func>
+void traverseExprTree(const ExprNode* node, Func&& func)
 {
 	if (!node) return;
+
+	func(node);
+
 	if (const auto node2 = dynamic_cast<const NotNode*>(node))
 	{
-		collectPropertyNames(node2->right, names);
+		traverseExprTree(node2->right, func);
 	}
 	else if (const auto node3 = dynamic_cast<const NegateNode*>(node))
 	{
-		collectPropertyNames(node3->right, names);
+		traverseExprTree(node3->right, func);
 	}
 	else if (const auto node4 = dynamic_cast<const OrNode*>(node))
 	{
-		collectPropertyNames(node4->left, names);
-		collectPropertyNames(node4->right, names);
+		traverseExprTree(node4->left, func);
+		traverseExprTree(node4->right, func);
 	}
 	else if (const auto node5 = dynamic_cast<const AndNode*>(node))
 	{
-		collectPropertyNames(node5->left, names);
-		collectPropertyNames(node5->right, names);
+		traverseExprTree(node5->left, func);
+		traverseExprTree(node5->right, func);
 	}
 	else if (const auto node6 = dynamic_cast<const BinaryOpNode*>(node))
 	{
-		collectPropertyNames(node6->left, names);
-		collectPropertyNames(node6->right, names);
+		traverseExprTree(node6->left, func);
+		traverseExprTree(node6->right, func);
 	}
 	else if (const auto funcNode = dynamic_cast<const FunctionNode*>(node))
 	{
 		for (const auto& arg : *funcNode->args)
-			collectPropertyNames(arg, names);
-		if (funcNode->functionName == "prop" || funcNode->functionName == "leftprop" || funcNode->functionName == "middleprop" || funcNode->functionName == "rightprop")
+			traverseExprTree(arg, func);
+	}
+}
+
+static void collectPropertyNames(const ExprNode* root, std::vector<std::string>& names)
+{
+	traverseExprTree(root, [&](const ExprNode* node)
 		{
-			if (funcNode->args->size() == 1)
+			const auto funcNode = dynamic_cast<const FunctionNode*>(node);
+			if (!funcNode) return;
+
+			const auto& fn = funcNode->functionName;
+			if (fn == "prop" || fn == "leftprop" || fn == "middleprop" || fn == "rightprop")
 			{
-				if (const auto strLit = dynamic_cast<const StringLiteral*>((*funcNode->args)[0]))
+				if (funcNode->args && funcNode->args->size() == 1)
 				{
-					if (std::find(names.begin(), names.end(), strLit->value) == names.end())
-						names.push_back(strLit->value);
+					if (const auto strLit = dynamic_cast<const StringLiteral*>((*funcNode->args)[0]))
+					{
+						if (std::find(names.begin(), names.end(), strLit->value) == names.end())
+							names.push_back(strLit->value);
+					}
 				}
 			}
-		}
-	}
+		});
 }
 
 std::vector<std::string> FilterExpression::GetPropertyNames() const
