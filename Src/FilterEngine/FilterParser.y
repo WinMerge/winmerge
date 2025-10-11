@@ -142,16 +142,22 @@ term(A) ::= IDENTIFIER(B) LPAREN expr_list(C) RPAREN. {
   {
     A.node = new FunctionNode(pCtx, B.string, C.nodeList);
   }
+  catch (const InvalidPropertyNameError& e)
+  {
+    pCtx->errorCode = FILTER_ERROR_INVALID_PROPERTY_NAME;
+    pCtx->errorMessage = e.what();
+    YYSTYPEDestructor(C);
+  }
   catch (const std::invalid_argument& e)
   {
     pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT_COUNT;
-	pCtx->errorMessage = e.what();
+    pCtx->errorMessage = e.what();
     YYSTYPEDestructor(C);
   }
   catch (const std::runtime_error& e)
   {
     pCtx->errorCode = FILTER_ERROR_UNDEFINED_IDENTIFIER;
-	pCtx->errorMessage = e.what();
+    pCtx->errorMessage = e.what();
     YYSTYPEDestructor(C);
   }
 }

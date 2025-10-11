@@ -20,11 +20,31 @@ struct ValueType2;
 using ValueType = std::variant<std::monostate, bool, double, int64_t, Poco::Timestamp, std::shared_ptr<Poco::RegularExpression>, std::string, std::shared_ptr<FileContentRef>, std::shared_ptr<std::vector<ValueType2>>>;
 struct ValueType2 { ValueType value; };
 
+class InvalidPropertyNameError : public std::invalid_argument
+{
+public:
+	explicit InvalidPropertyNameError(const std::string& name)
+		: std::invalid_argument("unknown property name: " + name), propertyName(name) {}
+	std::string propertyName;
+};
+
 struct ExprNode
 {
 	virtual ~ExprNode() { }
 	virtual ExprNode* Optimize() { return this; }
 	virtual ValueType Evaluate(const DIFFITEM& di) const = 0;
+};
+
+struct NotNode : public ExprNode
+{
+	NotNode(ExprNode* e) : right(e) { }
+	virtual ~NotNode()
+	{
+		delete right;
+	}
+	ExprNode* Optimize() override;
+	ValueType Evaluate(const DIFFITEM& di) const override;
+	ExprNode* right;
 };
 
 struct OrNode : public ExprNode
@@ -53,18 +73,6 @@ struct AndNode : public ExprNode
 	ValueType Evaluate(const DIFFITEM& di) const override;
 	ExprNode* left;
 	ExprNode* right;
-};
-
-struct NotNode : public ExprNode
-{
-	NotNode(ExprNode* e) : expr(e) { }
-	virtual ~NotNode()
-	{
-		delete expr;
-	}
-	ExprNode* Optimize() override;
-	ValueType Evaluate(const DIFFITEM& di) const override;
-	ExprNode* expr;
 };
 
 struct BinaryOpNode : public ExprNode
@@ -109,6 +117,8 @@ struct FunctionNode : public ExprNode
 	virtual ~FunctionNode();
 	ExprNode* Optimize() override;
 	ValueType Evaluate(const DIFFITEM& di) const override;
+	void SetPropFunc();
+	void SetLeftMiddleRightPropFunc();
 	const FilterExpression* ctxt;
 	std::string functionName;
 	std::vector<ExprNode*>* args;

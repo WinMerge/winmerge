@@ -103,10 +103,10 @@ ValueType AndNode::Evaluate(const DIFFITEM& di) const
 
 ExprNode* NotNode::Optimize()
 {
-	if (!expr)
+	if (!right)
 		return this;
-	expr = expr->Optimize();
-	auto boolVal = dynamic_cast<BoolLiteral*>(expr);
+	right = right->Optimize();
+	auto boolVal = dynamic_cast<BoolLiteral*>(right);
 	if (boolVal)
 	{
 		const bool result = !boolVal->value;
@@ -118,7 +118,7 @@ ExprNode* NotNode::Optimize()
 
 ValueType NotNode::Evaluate(const DIFFITEM& di) const
 {
-	auto val = expr->Evaluate(di);
+	auto val = right->Evaluate(di);
 	auto boolVal = evalAsBool(val);
 	if (!boolVal) return std::monostate{};
 	return !*boolVal;
@@ -1315,6 +1315,14 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		if (!args || args->size() != 1)
 			throw std::invalid_argument("startofyear function requires 1 arguments");
 		func = StartOfYearFunc;
+	}
+	else if (functionName == "prop")
+	{
+		SetPropFunc();
+	}
+	else if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
+	{
+		SetLeftMiddleRightPropFunc();
 	}
 	else
 	{

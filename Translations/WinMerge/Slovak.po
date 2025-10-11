@@ -1556,6 +1556,18 @@ msgstr ""
 msgid "Target: Middle and &Right"
 msgstr ""
 
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "O aplikácii WinMerge"
 
@@ -2560,6 +2572,9 @@ msgstr "Prahová hodnota pre prepnutie pre &rýchle porovnanie (MB):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Prahová hodnota pre prepnutie na &binárne porovnanie (MB):"
+
+msgid "Additional comparison condi&tions:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Vzory súborov:"
@@ -3772,6 +3787,10 @@ msgid "Image files are different"
 msgstr "Súbory obrázkov sú rozdielne"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Skupina%d"
 
@@ -4855,6 +4874,9 @@ msgid "Division by zero in filter expression"
 msgstr ""
 
 msgid "Unknown error"
+msgstr ""
+
+msgid "Invalid property name"
 msgstr ""
 
 msgid "Equals"

@@ -1791,6 +1791,18 @@ msgstr ""
 msgid "Target: Middle and &Right"
 msgstr ""
 
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "關於 WinMerge"
@@ -3032,6 +3044,9 @@ msgstr "切換至快速比較的閾值 (MB)(&Q)："
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "切換至二進制比較的閾值 (MB)(&B)："
+
+msgid "Additional comparison condi&tions:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "檔案模式："
@@ -4386,6 +4401,10 @@ msgid "Image files are different"
 msgstr "圖片檔不同"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "群組%d"
 
@@ -5571,6 +5590,9 @@ msgid "Division by zero in filter expression"
 msgstr ""
 
 msgid "Unknown error"
+msgstr ""
+
+msgid "Invalid property name"
 msgstr ""
 
 msgid "Equals"

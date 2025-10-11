@@ -1362,24 +1362,30 @@ static YYACTIONTYPE yy_reduce(
   {
     yylhsminor.yy0.node = new FunctionNode(pCtx, yymsp[-3].minor.yy0.string, yymsp[-1].minor.yy0.nodeList);
   }
+  catch (const InvalidPropertyNameError& e)
+  {
+    pCtx->errorCode = FILTER_ERROR_INVALID_PROPERTY_NAME;
+    pCtx->errorMessage = e.what();
+    YYSTYPEDestructor(yymsp[-1].minor.yy0);
+  }
   catch (const std::invalid_argument& e)
   {
     pCtx->errorCode = FILTER_ERROR_INVALID_ARGUMENT_COUNT;
-	pCtx->errorMessage = e.what();
+    pCtx->errorMessage = e.what();
     YYSTYPEDestructor(yymsp[-1].minor.yy0);
   }
   catch (const std::runtime_error& e)
   {
     pCtx->errorCode = FILTER_ERROR_UNDEFINED_IDENTIFIER;
-	pCtx->errorMessage = e.what();
+    pCtx->errorMessage = e.what();
     YYSTYPEDestructor(yymsp[-1].minor.yy0);
   }
 }
-#line 1378 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1384 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-3].minor.yy0 = yylhsminor.yy0;
         break;
       case 35: /* term ::= IDENTIFIER */
-#line 158 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 164 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   yylhsminor.yy0 = {};
   try
@@ -1391,31 +1397,31 @@ static YYACTIONTYPE yy_reduce(
     pCtx->errorCode = FILTER_ERROR_UNDEFINED_IDENTIFIER;
   }
 }
-#line 1394 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1400 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
       case 36: /* term ::= LPAREN expr RPAREN */
-#line 169 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 175 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 { yymsp[-2].minor.yy0 = yymsp[-1].minor.yy0; }
-#line 1400 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1406 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
         break;
       case 37: /* expr_list ::= expr */
-#line 171 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 177 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   yylhsminor.yy0 = {};
   yylhsminor.yy0.nodeList = new std::vector<ExprNode*>{ yymsp[0].minor.yy0.node };
 }
-#line 1408 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1414 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[0].minor.yy0 = yylhsminor.yy0;
         break;
       case 38: /* expr_list ::= expr_list COMMA expr */
-#line 175 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
+#line 181 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 {
   yylhsminor.yy0 = {};
   yymsp[-2].minor.yy0.nodeList->push_back(yymsp[0].minor.yy0.node);
   yylhsminor.yy0.nodeList = yymsp[-2].minor.yy0.nodeList;
 }
-#line 1418 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1424 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
   yymsp[-2].minor.yy0 = yylhsminor.yy0;
         break;
       default:
@@ -1470,7 +1476,7 @@ static void yy_parse_failed(
 #line 29 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
 	pCtx->errorCode = FILTER_ERROR_PARSE_FAILURE;
-#line 1473 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1479 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 /************ End %parse_failure code *****************************************/
   ParseARG_STORE /* Suppress warning about unused %extra_argument variable */
   ParseCTX_STORE
@@ -1492,7 +1498,7 @@ static void yy_syntax_error(
 #line 26 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.y"
 
 	pCtx->errorCode = FILTER_ERROR_SYNTAX_ERROR;
-#line 1495 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
+#line 1501 "E:\\dev\\winmerge\\Src\\FilterEngine\\FilterParser.c"
 /************ End %syntax_error code ******************************************/
   ParseARG_STORE /* Suppress warning about unused %extra_argument variable */
   ParseCTX_STORE

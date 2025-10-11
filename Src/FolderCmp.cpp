@@ -20,6 +20,7 @@
 #include "TFile.h"
 #include "FileFilterHelper.h"
 #include "PropertySystem.h"
+#include "FilterEngine/FilterExpression.h"
 #include "Logger.h"
 #include "I18n.h"
 #include "DebugNew.h"
@@ -474,15 +475,30 @@ exitPrepAndCompare:
 		for (int i = 0; i < nDirs; ++i)
 		{
 			auto& properties = di.diffFileInfo[i].m_pAdditionalProperties;
+			if (properties)
+				continue; // already have properties
+			properties.reset(new PropertyValues());
 			if (di.diffcode.exists(i))
-			{
-				properties.reset(new PropertyValues());
 				m_pCtxt->m_pPropertySystem->GetPropertyValues(tFiles[i], *properties);
+			else
+				properties->Resize(numprops);
+		}
+	}
+
+	if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME && m_pCtxt->m_pAdditionalCompareExpression)
+	{
+		m_pCtxt->m_pAdditionalCompareExpression->errorCode = FilterErrorCode::FILTER_ERROR_NO_ERROR;
+		if (!m_pCtxt->m_pAdditionalCompareExpression->Evaluate(di))
+		{
+			if (m_pCtxt->m_pAdditionalCompareExpression->errorCode != FilterErrorCode::FILTER_ERROR_NO_ERROR)
+			{
+				code &= ~DIFFCODE::COMPAREFLAGS;
+				code |= DIFFCODE::CMPERR;
 			}
 			else
 			{
-				properties.reset(new PropertyValues());
-				properties->Resize(numprops);
+				code &= ~(DIFFCODE::COMPAREFLAGS | DIFFCODE::EXPRFLAGS);
+				code |= DIFFCODE::DIFF | DIFFCODE::EXPRDIFF;
 			}
 		}
 	}

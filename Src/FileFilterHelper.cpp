@@ -777,3 +777,25 @@ void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
 	m_sGlobalFilterPath = pHelper->m_sGlobalFilterPath;
 	m_sUserSelFilterPath = pHelper->m_sUserSelFilterPath;
 }
+
+/**
+ * @brief Get list of property names used in the current filter.
+ */
+std::vector<String> FileFilterHelper::GetPropertyNames() const
+{
+	std::unordered_set<String> names;
+	for (const auto& filterGroup : m_filterGroups)
+	{
+		for (const auto& filter : { filterGroup.m_pRegexOrExpressionFilter.get(), filterGroup.m_pRegexOrExpressionFilterExclude.get() })
+		{
+			if (filter)
+			{
+				for (const auto& exprs : { filter->fileExpressionFilters, filter->fileExpressionFiltersExclude, filter->dirExpressionFilters, filter->dirExpressionFiltersExclude })
+					for (const auto& expr : exprs)
+						for (const auto& name : expr->GetPropertyNames())
+							names.insert(ucr::toTString(name));
+			}
+		}
+	}
+	return std::vector<String>(names.begin(), names.end());
+}
