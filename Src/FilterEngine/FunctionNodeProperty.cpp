@@ -24,6 +24,8 @@ static ValueType ConvertPROPVARIANTToValueType(const PROPVARIANT& propvalue)
 		return ucr::toUTF8(propvalue.pwszVal);
 	case VT_BOOL:
 		return propvalue.boolVal != VARIANT_FALSE;
+	case VT_FILETIME:
+		return Poco::Timestamp::fromFileTimeNP(propvalue.filetime.dwLowDateTime, propvalue.filetime.dwHighDateTime);
 	case VT_VECTOR|VT_UI1:
 	{
 		const CAUB& buf = propvalue.caub;
