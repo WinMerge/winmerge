@@ -1341,24 +1341,15 @@ static int ColAllPropertySort(const CDiffContext *pCtxt, const void *p, const vo
 	const DIFFITEM &s = *static_cast<const DIFFITEM *>(q);
 	for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
 	{
-		if (r.diffcode.exists(i))
-		{
-			for (int j = 0; j < pCtxt->GetCompareDirs(); ++j)
-			{
-				if (s.diffcode.exists(j))
-				{
-					if (!r.diffFileInfo[i].m_pAdditionalProperties && s.diffFileInfo[j].m_pAdditionalProperties)
-						return -1;
-					if (r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[j].m_pAdditionalProperties)
-						return 1;
-					if (!r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[j].m_pAdditionalProperties)
-						return 0;
-					int result = PropertyValues::CompareValues(*r.diffFileInfo[i].m_pAdditionalProperties, *s.diffFileInfo[j].m_pAdditionalProperties, opt);
-					if (result != 0)
-						return result;
-				}
-			}
-		}
+		if (!r.diffFileInfo[i].m_pAdditionalProperties && s.diffFileInfo[i].m_pAdditionalProperties)
+			return -1;
+		if (r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[i].m_pAdditionalProperties)
+			return 1;
+		if (!r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[i].m_pAdditionalProperties)
+			return 0;
+		int result = PropertyValues::CompareValues(*r.diffFileInfo[i].m_pAdditionalProperties, *s.diffFileInfo[i].m_pAdditionalProperties, opt);
+		if (result != 0)
+			return result;
 	}
 	return 0;
 }
