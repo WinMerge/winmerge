@@ -668,6 +668,28 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("at(array(array(1)), 1) = array(1)"));
 	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array())"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(123))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(123, 123, 123))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(123, 123, 124))"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(\"abc\", \"abc\", \"abc\"))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(\"abc\", \"abc\", \"abcd\"))"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(d\"2025-05-27\", d\"2025-05-27\", d\"2025-05-27\"))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(d\"2025-05-27\", d\"2025-05-27\", d\"2025-05-28\"))"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(array(1)), array(array(1)))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(array(1, 2), array(1, 2)))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(array(1, 2), array(1, 3)))"));
+	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, FileAttributes)
@@ -826,8 +848,12 @@ TEST_P(FilterExpressionTest, Content1)
 
 	EXPECT_TRUE(fe.Parse("RightContent = RightContent"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(RightContent, RightContent))"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent != LeftContent"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(Content)"));
+	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent contains \"UTF-8\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("LeftContent contains \"UTF-8\""));
@@ -870,8 +896,12 @@ TEST_P(FilterExpressionTest, ContentEmpty)
 
 	EXPECT_TRUE(fe.Parse("RightContent = RightContent"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(array(RightContent, RightContent))"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent != LeftContent"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allequal(Content)"));
+	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent contains \"UTF-8\""));
 	EXPECT_FALSE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("RightContent recontains \"xml.*UTF-8\""));

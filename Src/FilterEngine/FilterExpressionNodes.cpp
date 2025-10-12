@@ -914,6 +914,31 @@ static auto AllOfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vec
 	return std::monostate{};
 }
 
+static bool valueEquals(const ValueType& a, const ValueType& b)
+{
+	if (a.index() != b.index())
+		return false;
+	else if (std::holds_alternative<std::shared_ptr<FileContentRef>>(a))
+	{
+		return *std::get<std::shared_ptr<FileContentRef>>(a) == *std::get<std::shared_ptr<FileContentRef>>(b);
+	}
+	else if (std::holds_alternative<std::shared_ptr<std::vector<ValueType2>>>(a))
+	{
+		const auto& veca = *std::get<std::shared_ptr<std::vector<ValueType2>>>(a);
+		const auto& vecb = *std::get<std::shared_ptr<std::vector<ValueType2>>>(b);
+		if (veca.size() != vecb.size())
+			return false;
+		for (size_t i = 0; i < veca.size(); ++i)
+		{
+			if (!valueEquals(veca[i].value, vecb[i].value))
+				return false;
+		}
+		return true;
+	}
+	else
+		return a == b;
+};
+
 static auto AllEqualFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType first = args->at(0)->Evaluate(di);
@@ -925,7 +950,7 @@ static auto AllEqualFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 		const ValueType& base = vec[0].value;
 		for (size_t i = 1; i < vec.size(); ++i)
 		{
-			if (!(vec[i].value == base))
+			if (!valueEquals(base, vec[i].value))
 				return false;
 		}
 		return true;
@@ -935,7 +960,7 @@ static auto AllEqualFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 		for (size_t i = 1; i < args->size(); ++i)
 		{
 			ValueType val = args->at(i)->Evaluate(di);
-			if (!(val == first))
+			if (!valueEquals(val, val))
 				return false;
 		}
 		return true;

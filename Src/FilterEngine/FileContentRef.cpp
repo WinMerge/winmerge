@@ -48,8 +48,10 @@ bool FileContentRef::operator==(const FileContentRef& other) const
 			std::streamsize count1 = fs1.gcount();
 			std::streamsize count2 = fs2.gcount();
 
-			if (count1 != count2) return false;
-			if (count1 == 0) return true; // end of both
+			if (count1 != count2)
+				return false;
+			if (count1 == 0)
+				return true; // end of both
 
 			if (std::memcmp(buffer1, buffer2, static_cast<size_t>(count1)) != 0)
 				return false;
