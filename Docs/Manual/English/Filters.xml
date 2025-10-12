@@ -512,6 +512,10 @@
             <listitem><para>Returns the first day of the year.</para></listitem>
           </varlistentry>
           <varlistentry>
+            <term>toDateStr(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>Converts the given timestamp to a date string in <literal>yyyy-MM-dd</literal> format. If <replaceable>timestamp</replaceable> is a timestamp array, the result is a string array.</para></listitem>
+          </varlistentry>
+          <varlistentry>
             <term>abs(<replaceable>value</replaceable>)</term>
             <listitem><para>Returns the absolute value of the <emphasis>integer or integer array</emphasis>. If <replaceable>value</replaceable> is an integer array, the result is an integer array.</para></listitem>
           </varlistentry>

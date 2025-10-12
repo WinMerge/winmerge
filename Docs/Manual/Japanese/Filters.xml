@@ -477,6 +477,11 @@ Right, Middle）かを接頭辞で指定できます。</para>
             <listitem><para>年の初日を返します。</para></listitem>
           </varlistentry>
           <varlistentry>
+            <term>toDateStr(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>指定されたタイムスタンプを<literal>yyyy-MM-dd</literal>
+形式の文字列に変換して返します。<replaceable>timestamp</replaceable>がタイムスタンプ配列の場合、結果は文字列配列になります。</para></listitem>
+          </varlistentry>
+          <varlistentry>
             <term>abs(<replaceable>value</replaceable>)</term>
             <listitem><para><emphasis>整数または整数の配列</emphasis> の絶対値を返します。<replaceable>value</replaceable>
 が整数配列である場合、結果は整数配列になります。</para></listitem>
