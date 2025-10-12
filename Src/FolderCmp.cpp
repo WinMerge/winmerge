@@ -19,7 +19,6 @@
 #include "TimeSizeCompare.h"
 #include "TFile.h"
 #include "FileFilterHelper.h"
-#include "PropertySystem.h"
 #include "Logger.h"
 #include "I18n.h"
 #include "DebugNew.h"
@@ -464,24 +463,6 @@ exitPrepAndCompare:
 	{
 		// Print error since we should have handled by date compare earlier
 		throw "Invalid compare type, DiffFileData can't handle it";
-	}
-
-	if (m_pCtxt->m_pPropertySystem)
-	{
-		size_t numprops = m_pCtxt->m_pPropertySystem->GetCanonicalNames().size();
-		PathContext tFiles;
-		m_pCtxt->GetComparePaths(di, tFiles);
-		for (int i = 0; i < nDirs; ++i)
-		{
-			auto& properties = di.diffFileInfo[i].m_pAdditionalProperties;
-			if (properties)
-				continue; // already have properties
-			properties.reset(new PropertyValues());
-			if (di.diffcode.exists(i))
-				m_pCtxt->m_pPropertySystem->GetPropertyValues(tFiles[i], *properties);
-			else
-				properties->Resize(numprops);
-		}
 	}
 
 	return code;

@@ -849,9 +849,8 @@ static void CompareDiffItem(FolderCmp &fc, DIFFITEM &di)
 	else
 	{
 		// 1. Test against filters
-		if (pCtxt->m_piFilterGlobal==nullptr || pCtxt->m_piFilterGlobal->includeFile(di))
+		if (!di.diffcode.isResultFiltered())
 		{
-			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 			di.diffcode.diffcode |= fc.prepAndCompareFiles(di);
 			di.nsdiffs = fc.m_ndiffs;
 			di.nidiffs = fc.m_ntrivialdiffs;
@@ -865,10 +864,6 @@ static void CompareDiffItem(FolderCmp &fc, DIFFITEM &di)
 					di.diffFileInfo[i].encoding = fc.m_diffFileData.m_FileLocation[i].encoding;
 				}
 			}
-		}
-		else
-		{
-			di.diffcode.diffcode |= DIFFCODE::SKIPPED;
 		}
 	}
 	pCtxt->m_pCompareStats->AddItem(di.diffcode.diffcode);
@@ -893,14 +888,14 @@ static DIFFITEM *AddToList(const String& sLeftDir, const String& sRightDir,
 /**
  * @brief Add one compare item to list.
  */
-static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const String& sDir3,
-	const DirItem *ent1, const DirItem *ent2, const DirItem *ent3,
-	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent, int nItems /*= 3*/)
+static DIFFITEM* AddToList(const String& sDir1, const String& sDir2, const String& sDir3,
+	const DirItem* ent1, const DirItem* ent2, const DirItem* ent3,
+	unsigned code, DiffFuncStruct* myStruct, DIFFITEM* parent, int nItems /*= 3*/)
 {
 	// We must store both paths - we cannot get paths later
 	// and we need unique item paths for example when items
 	// change to identical
-	DIFFITEM *di = myStruct->context->AddNewDiff(parent);
+	DIFFITEM* di = myStruct->context->AddNewDiff(parent);
 
 	di->diffFileInfo[0].path = sDir1;
 	di->diffFileInfo[1].path = sDir2;
@@ -958,7 +953,7 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 	}
 	di->diffcode.diffcode = nItems == 2 ? code : (code | DIFFCODE::THREEWAY);
 
-	CDiffContext *pCtxt = myStruct->context;
+	CDiffContext* pCtxt = myStruct->context;
 
 	// Test against filter so we don't include contents of filtered out directories
 	// Also this is only place we can test for both-sides directories in recursive compare
@@ -981,6 +976,37 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 			(code & DIFFCODE::THIRD) && (di->diffFileInfo[2].flags.attributes & FILE_ATTRIBUTE_REPARSE_POINT))
 			)
 			di->diffcode.diffcode |= DIFFCODE::SKIPPED;
+	}
+
+	if (!di->diffcode.isDirectory())
+	{
+		if (pCtxt->m_piFilterGlobal && !pCtxt->m_piFilterGlobal->includeFile(*di))
+			di->diffcode.diffcode |= DIFFCODE::SKIPPED;
+		if (!di->diffcode.isResultFiltered() && pCtxt->m_pPropertySystem)
+		{
+			const size_t numprops = pCtxt->m_pPropertySystem->GetCanonicalNames().size();
+			if (numprops > 0)
+			{
+				PathContext tFiles;
+				pCtxt->GetComparePaths(*di, tFiles);
+				for (int i = 0; i < nItems; ++i)
+				{
+					auto& properties = di->diffFileInfo[i].m_pAdditionalProperties;
+        			if (properties)
+        				continue; // already have properties
+					if (di->diffcode.exists(i))
+					{
+						properties.reset(new PropertyValues());
+						pCtxt->m_pPropertySystem->GetPropertyValues(tFiles[i], *properties);
+					}
+					else
+					{
+						properties.reset(new PropertyValues());
+						properties->Resize(numprops);
+					}
+				}
+			}
+		}
 	}
 
 	if (!myStruct->bMarkedRescan && myStruct->m_fncCollect)

@@ -4719,6 +4719,9 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 	// compare 'left' and 'right' parameters as appropriate
 	int retVal = pThis->pColItems->ColSort(pThis->pCtxt, pThis->sortCol, ldi, rdi, pThis->bTreeMode);
 	// return compare result, considering sort direction
+	String rs = ldi.diffFileInfo[0].filename;
+	String ss = rdi.diffFileInfo[0].filename;
+	OutputDebugString(strutils::format(_T("Comparing all properties for '%s' and '%s' ret=%d\n"), rs.c_str(), ss.c_str(), retVal).c_str());
 	return pThis->bSortAscending ? retVal : -retVal;
 }
 
