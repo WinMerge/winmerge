@@ -5690,6 +5690,9 @@ msgstr "필터 표현식에서 0으로 나눕니다"
 msgid "Unknown error"
 msgstr "알 수 없는 오류"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "같음"
 

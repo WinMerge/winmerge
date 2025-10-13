@@ -61,6 +61,73 @@ void FilterExpression::Clear()
 	errorPosition = -1;
 }
 
+template <typename Func>
+void traverseExprTree(const ExprNode* node, Func&& func)
+{
+	if (!node) return;
+
+	func(node);
+
+	if (const auto node2 = dynamic_cast<const NotNode*>(node))
+	{
+		traverseExprTree(node2->right, func);
+	}
+	else if (const auto node3 = dynamic_cast<const NegateNode*>(node))
+	{
+		traverseExprTree(node3->right, func);
+	}
+	else if (const auto node4 = dynamic_cast<const OrNode*>(node))
+	{
+		traverseExprTree(node4->left, func);
+		traverseExprTree(node4->right, func);
+	}
+	else if (const auto node5 = dynamic_cast<const AndNode*>(node))
+	{
+		traverseExprTree(node5->left, func);
+		traverseExprTree(node5->right, func);
+	}
+	else if (const auto node6 = dynamic_cast<const BinaryOpNode*>(node))
+	{
+		traverseExprTree(node6->left, func);
+		traverseExprTree(node6->right, func);
+	}
+	else if (const auto funcNode = dynamic_cast<const FunctionNode*>(node))
+	{
+		for (const auto& arg : *funcNode->args)
+			traverseExprTree(arg, func);
+	}
+}
+
+static void collectPropertyNames(const ExprNode* root, std::vector<std::string>& names)
+{
+	traverseExprTree(root, [&](const ExprNode* node)
+		{
+			const auto funcNode = dynamic_cast<const FunctionNode*>(node);
+			if (!funcNode) return;
+
+			const auto& fn = funcNode->functionName;
+			if (fn == "prop" || fn == "leftprop" || fn == "middleprop" || fn == "rightprop")
+			{
+				if (funcNode->args && funcNode->args->size() == 1)
+				{
+					if (const auto strLit = dynamic_cast<const StringLiteral*>((*funcNode->args)[0]))
+					{
+						if (std::find(names.begin(), names.end(), strLit->value) == names.end())
+							names.push_back(strLit->value);
+					}
+				}
+			}
+		});
+}
+
+std::vector<std::string> FilterExpression::GetPropertyNames() const
+{
+	std::vector<std::string> names;
+	if (rootNode)
+		collectPropertyNames(rootNode.get(), names);
+	return names;
+}
+
 void FilterExpression::UpdateTimestamp()
 {
 	now.reset(new Poco::Timestamp());

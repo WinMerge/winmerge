@@ -4990,6 +4990,9 @@ msgstr "过滤器表达式存在除零错误"
 msgid "Unknown error"
 msgstr "未知错误"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "等于"
 

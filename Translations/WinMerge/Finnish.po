@@ -4879,6 +4879,9 @@ msgstr ""
 msgid "Unknown error"
 msgstr ""
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr ""
 

@@ -142,6 +142,7 @@ public:
 
 	void CloneFrom(const FileFilterHelper* pHelper);
 
+	std::vector<String> GetPropertyNames() const;
 
 protected:
 	struct FilterGroup

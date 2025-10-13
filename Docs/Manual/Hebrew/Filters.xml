@@ -317,6 +317,49 @@ Attributes without a prefix (e.g., <literal>Size</literal>) return an array
 of values from all available sides (Left, Middle, Right).</para>
         </section>
 
+        <section>
+          <title>Windows Property Attributes</title>
+          <para>
+These attributes provide access to Windows Property System values, such as
+metadata defined by the Windows Property System schema (e.g.,
+<literal>System.Title</literal>, <literal>System.FileOwner</literal>,
+<literal>System.Image.HorizontalResolution</literal>).</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Prop</term>
+              <listitem>
+                <para>
+Returns an array of property values (Left, Middle, Right) for the specified
+canonical property name.  Example: <literal>prop("System.Title")</literal></para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>LeftProp</term>
+              <listitem>
+                <para>
+Property value of the left-side file. Example:
+<literal>leftprop("System.FileOwner")</literal></para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>MiddleProp</term>
+              <listitem>
+                <para>Property value of the middle file (in 3-way comparison).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>RightProp</term>
+              <listitem>
+                <para>Property value of the right-side file.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
         <section id="FilterExpression_ArrayEvaluation">
           <title>Array Evaluation</title>
 

@@ -247,8 +247,6 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
 	pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
-	if (m_pDirView)
-		pCtxt->m_pPropertySystem.reset(new PropertySystem(m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames()));
 
 	m_imgfileFilter.SetMaskOrExpression(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	pCtxt->m_pImgfileFilter = &m_imgfileFilter;
@@ -262,6 +260,17 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_piFilterGlobal = &m_fileHelper;
 	pCtxt->m_piFilterGlobal->SetDiffContext(pCtxt);
 	
+	std::vector<String> names;
+	if (m_pDirView)
+		names = m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames();
+	std::vector<String> names2 = pGlobalFileFilter->GetPropertyNames();
+	for (const auto& name : names2)
+	{
+		if (std::find(std::begin(names), std::end(names), name) == std::end(names))
+			names.push_back(name);
+	}
+	pCtxt->m_pPropertySystem.reset(new PropertySystem(names));
+
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 
