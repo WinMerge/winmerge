@@ -291,20 +291,19 @@ Right, Middle）かを接頭辞で指定できます。</para>
         </section>
 
         <section>
-          <title>Windows Property Attributes</title>
+          <title>Windows プロパティ属性</title>
           <para>
-These attributes provide access to Windows Property System values, such as
-metadata defined by the Windows Property System schema (e.g.,
-<literal>System.Title</literal>, <literal>System.FileOwner</literal>,
-<literal>System.Image.HorizontalResolution</literal>).</para>
+これらの属性は、Windows プロパティ システムで定義されたメタデータ （例:
+<literal>System.Title</literal>、<literal>System.FileOwner</literal>、<literal>System.Image.HorizontalResolution</literal>
+など）にアクセスするためのものです。</para>
 
           <variablelist>
             <varlistentry>
               <term>Prop</term>
               <listitem>
                 <para>
-Returns an array of property values (Left, Middle, Right) for the specified
-canonical property name.  Example: <literal>prop("System.Title")</literal></para>
+指定した正規プロパティ名に対応するプロパティ値の配列（Left、Middle、Right）を返します。例:
+<literal>prop("System.Title")</literal></para>
               </listitem>
             </varlistentry>
 
@@ -312,22 +311,21 @@ canonical property name.  Example: <literal>prop("System.Title")</literal></para
               <term>LeftProp</term>
               <listitem>
                 <para>
-Property value of the left-side file. Example:
-<literal>leftprop("System.FileOwner")</literal></para>
+左側のファイルのプロパティ値を返します。例: <literal>leftprop("System.FileOwner")</literal></para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
               <term>MiddleProp</term>
               <listitem>
-                <para>Property value of the middle file (in 3-way comparison).</para>
+                <para>中央のファイル（3-way 比較時）のプロパティ値を返します。</para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
               <term>RightProp</term>
               <listitem>
-                <para>Property value of the right-side file.</para>
+                <para>右側のファイルのプロパティ値を返します。</para>
               </listitem>
             </varlistentry>
           </variablelist>

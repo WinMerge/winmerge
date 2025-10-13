@@ -12532,10 +12532,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:324
-#, fuzzy
-#| msgid "Core Attributes"
 msgid "Windows Property Attributes"
-msgstr "コア属性"
+msgstr "Windows プロパティ属性"
 
 #. type: Content of: <article><section><section><section><section><para>
 #: English/Filters.xml:326
@@ -12545,11 +12543,15 @@ msgid ""
 "<literal>System.Title</literal>, <literal>System.FileOwner</literal>, "
 "<literal>System.Image.HorizontalResolution</literal>)."
 msgstr ""
+"これらの属性は、Windows プロパティ システムで定義されたメタデータ （例: "
+"<literal>System.Title</literal>、<literal>System.FileOwner</literal>、"
+"<literal>System.Image.HorizontalResolution</literal> など）にアクセスするため"
+"のものです。"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:334
 msgid "Prop"
-msgstr ""
+msgstr "Prop"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:337
@@ -12557,13 +12559,13 @@ msgid ""
 "Returns an array of property values (Left, Middle, Right) for the specified "
 "canonical property name.  Example: <literal>prop(\"System.Title\")</literal>"
 msgstr ""
+"指定した正規プロパティ名に対応するプロパティ値の配列（Left、Middle、Right）を"
+"返します。例: <literal>prop(\"System.Title\")</literal>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:344
-#, fuzzy
-#| msgid "Left"
 msgid "LeftProp"
-msgstr "左側"
+msgstr "LeftProp"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:347
@@ -12571,30 +12573,28 @@ msgid ""
 "Property value of the left-side file. Example: <literal>leftprop(\"System."
 "FileOwner\")</literal>"
 msgstr ""
+"左側のファイルのプロパティ値を返します。例: <literal>leftprop(\"System."
+"FileOwner\")</literal>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:353
-#, fuzzy
-#| msgid "Middle"
 msgid "MiddleProp"
-msgstr "中央"
+msgstr "MiddleProp"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:355
 msgid "Property value of the middle file (in 3-way comparison)."
-msgstr ""
+msgstr "中央のファイル（3-way 比較時）のプロパティ値を返します。"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:360
-#, fuzzy
-#| msgid "Right"
 msgid "RightProp"
-msgstr "右側"
+msgstr "RightProp"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:362
 msgid "Property value of the right-side file."
-msgstr ""
+msgstr "右側のファイルのプロパティ値を返します。"
 
 #. type: Content of: <article><section><section><section><section><title>
 #: English/Filters.xml:369
