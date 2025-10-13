@@ -872,14 +872,40 @@ ValueType FieldNode::Evaluate(const DIFFITEM& di) const
 	return func(ctxt, di);
 }
 
+inline static std::optional<Poco::LocalDateTime> toLocalDateTime(const ValueType& val)
+{
+	if (auto ts = std::get_if<Poco::Timestamp>(&val))
+		return Poco::LocalDateTime(*ts);
+	if (auto str = std::get_if<std::string>(&val))
+		return Poco::LocalDateTime(DateTimeLiteral(*str).value);
+	return std::nullopt;
+}
+
+template <typename Func>
+inline static ValueType applyToScalarOrArray(const ValueType& arg, Func func)
+{
+	if (auto argArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg))
+	{
+		auto result = std::make_shared<std::vector<ValueType2>>();
+		for (const auto& item : *(*argArray))
+			result->emplace_back(ValueType2{ func(item.value) });
+		return result;
+	}
+	return func(arg);
+}
+
 static auto AbsFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
-{ 
-	auto arg1 = (*args)[0]->Evaluate(di);
-	if (auto arg1Int = std::get_if<int64_t>(&arg1))
-		return abs(*arg1Int);
-	if (auto arg1Double = std::get_if<double>(&arg1))
-		return abs(*arg1Double);
-	return std::monostate{};
+{
+	auto absFn = [](const ValueType& val)->ValueType
+		{
+			if (auto arg1Int = std::get_if<int64_t>(&val))
+				return abs(*arg1Int);
+			if (auto arg1Double = std::get_if<double>(&val))
+				return abs(*arg1Double);
+			return std::monostate{};
+		};
+	auto arg = (*args)[0]->Evaluate(di);
+	return applyToScalarOrArray(arg, absFn);
 }
 
 static auto AnyOfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -918,26 +944,24 @@ static bool valueEquals(const ValueType& a, const ValueType& b)
 {
 	if (a.index() != b.index())
 		return false;
-	else if (std::holds_alternative<std::shared_ptr<FileContentRef>>(a))
+
+	if (auto arrA = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&a))
 	{
-		return *std::get<std::shared_ptr<FileContentRef>>(a) == *std::get<std::shared_ptr<FileContentRef>>(b);
-	}
-	else if (std::holds_alternative<std::shared_ptr<std::vector<ValueType2>>>(a))
-	{
-		const auto& veca = *std::get<std::shared_ptr<std::vector<ValueType2>>>(a);
-		const auto& vecb = *std::get<std::shared_ptr<std::vector<ValueType2>>>(b);
-		if (veca.size() != vecb.size())
+		auto arrB = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&b);
+		if (!arrB || (*arrA)->size() != (*arrB)->size())
 			return false;
-		for (size_t i = 0; i < veca.size(); ++i)
-		{
-			if (!valueEquals(veca[i].value, vecb[i].value))
+		for (size_t i = 0; i < (*arrA)->size(); ++i)
+			if (!valueEquals((*arrA)->at(i).value, (*arrB)->at(i).value))
 				return false;
-		}
 		return true;
 	}
-	else
-		return a == b;
-};
+	if (auto fcA = std::get_if<std::shared_ptr<FileContentRef>>(&a))
+	{
+		auto fcB = std::get_if<std::shared_ptr<FileContentRef>>(&b);
+		return fcB && **fcA == **fcB;
+	}
+	return a == b;
+}
 
 static auto AllEqualFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
@@ -1002,22 +1026,14 @@ static auto AtFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector
 
 static auto StrlenFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
-	auto arg1 = (*args)[0]->Evaluate(di);
-	if (auto arg1Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
-	{
-		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
-		for (const auto& item : *arg1Array->get())
+	auto strlenFn = [](const ValueType& val)->ValueType
 		{
-			if (auto arg1ItemStr = std::get_if<std::string>(&item.value))
-				result->emplace_back(ValueType2{ static_cast<int64_t>(arg1ItemStr->length()) });
-			else
-				result->emplace_back(ValueType2{ std::monostate{} });
-		}
-		return result;
-	}
-	if (auto arg1String = std::get_if<std::string>(&arg1))
-		return static_cast<int64_t>(arg1String->length());
-	return std::monostate{};
+			if (auto arg1Str = std::get_if<std::string>(&val))
+				return static_cast<int64_t>(arg1Str->length());
+			return std::monostate{};
+		};
+	auto arg = (*args)[0]->Evaluate(di);
+	return applyToScalarOrArray(arg, strlenFn);
 }
 
 static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1093,22 +1109,14 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 
 static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
-	auto arg1 = (*args)[0]->Evaluate(di);
-	if (auto arg1Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1))
-	{
-		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
-		for (const auto& item : *arg1Array->get())
+	auto lineCountFn = [](const ValueType& val) -> ValueType
 		{
-			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
-				result->emplace_back(ValueType2{ static_cast<int64_t>((*contentRef)->LineCount()) });
-			else
-				result->emplace_back(ValueType2{ std::monostate{} });
-		}
-		return result;
-	}
-	if (auto arg1ContentRef = std::get_if<std::shared_ptr<FileContentRef>>(&arg1))
-		return static_cast<int64_t>((*arg1ContentRef)->LineCount());
-	return std::monostate{};
+			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&val))
+				return static_cast<int64_t>((*contentRef)->LineCount());
+			return std::monostate{};
+		};
+	auto arg = (*args)[0]->Evaluate(di);
+	return applyToScalarOrArray(arg, lineCountFn);
 }
 
 static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1203,45 +1211,56 @@ static auto NowFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vecto
 
 static auto StartOfWeekFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
-	auto arg1 = (*args)[0]->Evaluate(di);
-	Poco::LocalDateTime ldt;
-	if (auto ts = std::get_if<Poco::Timestamp>(&arg1))
-		ldt = Poco::LocalDateTime(*ts);
-	else if (auto str = std::get_if<std::string>(&arg1))
-		ldt = Poco::LocalDateTime(DateTimeLiteral(*str).value);
-	else
-		return std::monostate{};
-	const Poco::LocalDateTime startOfDay(ldt.year(), ldt.month(), ldt.day(), 0, 0, 0, 0, 0);
-	const int dow = ldt.dayOfWeek();
-	Poco::Timespan offset(dow, 0, 0, 0, 0);
-	Poco::LocalDateTime weekStart = startOfDay - offset;
-	return weekStart.utc().timestamp();
+	auto startOfWeek = [](const ValueType& val) -> ValueType
+		{
+			auto ldtOpt = toLocalDateTime(val);
+			if (!ldtOpt) return std::monostate{};
+			auto& ldt = *ldtOpt;
+			Poco::LocalDateTime startOfDay(ldt.year(), ldt.month(), ldt.day(), 0, 0, 0, 0, 0);
+			int dow = ldt.dayOfWeek();
+			Poco::Timespan offset(dow, 0, 0, 0, 0);
+			return (startOfDay - offset).utc().timestamp();
+		};
+	auto arg = (*args)[0]->Evaluate(di);
+	return applyToScalarOrArray(arg, startOfWeek);
 }
 
 static auto StartOfMonthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
-	auto arg1 = (*args)[0]->Evaluate(di);
-	Poco::LocalDateTime ldt;
-	if (auto ts = std::get_if<Poco::Timestamp>(&arg1))
-		ldt = Poco::LocalDateTime(*ts);
-	else if (auto str = std::get_if<std::string>(&arg1))
-		ldt = Poco::LocalDateTime(DateTimeLiteral(*str).value);
-	else
-		return std::monostate{};
-	return Poco::LocalDateTime(ldt.year(), ldt.month(), 1, 0, 0, 0, 0, 0).utc().timestamp();
+	auto startOfMonth = [](const ValueType& val) -> ValueType
+		{
+			auto ldtOpt = toLocalDateTime(val);
+			if (!ldtOpt) return std::monostate{};
+			auto& ldt = *ldtOpt;
+			return Poco::LocalDateTime(ldt.year(), ldt.month(), 1, 0, 0, 0, 0, 0).utc().timestamp();
+		};
+	auto arg = (*args)[0]->Evaluate(di);
+	return applyToScalarOrArray(arg, startOfMonth);
 }
 
 static auto StartOfYearFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
+	auto startOfYear = [](const ValueType& val) -> ValueType
+		{
+			auto ldtOpt = toLocalDateTime(val);
+			if (!ldtOpt) return std::monostate{};
+			auto& ldt = *ldtOpt;
+			return Poco::LocalDateTime(ldt.year(), 1, 1, 0, 0, 0, 0, 0).utc().timestamp();
+		};
 	auto arg = (*args)[0]->Evaluate(di);
-	Poco::LocalDateTime ldt;
-	if (auto ts = std::get_if<Poco::Timestamp>(&arg))
-		ldt = Poco::LocalDateTime(*ts);
-	else if (auto str = std::get_if<std::string>(&arg))
-		ldt = Poco::LocalDateTime(DateTimeLiteral(*str).value);
-	else
-		return std::monostate{};
-	return Poco::LocalDateTime(ldt.year(), 1, 1, 0, 0, 0, 0, 0).utc().timestamp();
+	return applyToScalarOrArray(arg, startOfYear);
+}
+
+static auto ToDateStrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	auto toDateStr = [](const ValueType& val) -> ValueType
+		{
+			auto ldtOpt = toLocalDateTime(val);
+			if (!ldtOpt) return std::monostate{};
+			return Poco::DateTimeFormatter::format(*ldtOpt, "%Y-%m-%d");
+		};
+	auto arg = (*args)[0]->Evaluate(di);
+	return applyToScalarOrArray(arg, toDateStr);
 }
 
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
@@ -1340,6 +1359,12 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		if (!args || args->size() != 1)
 			throw std::invalid_argument("startofyear function requires 1 arguments");
 		func = StartOfYearFunc;
+	}
+	else if (functionName == "todatestr")
+	{
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("todatestr function requires 1 arguments");
+		func = ToDateStrFunc;
 	}
 	else if (functionName == "prop")
 	{
