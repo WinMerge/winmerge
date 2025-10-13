@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 24.09.2025\n"
+"Project-Id-Version: WinMerge - Italian - 13.10.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-09-24 08:43+0200\n"
+"PO-Revision-Date: 2025-10-13 09:40+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -5051,7 +5051,7 @@ msgid "Unknown error"
 msgstr "Errore sconosciuto"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "Nome proprietà non valido"
 
 msgid "Equals"
 msgstr "Uguale"
