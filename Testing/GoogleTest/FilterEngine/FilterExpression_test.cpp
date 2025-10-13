@@ -597,6 +597,14 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("startOfYear(\"2025-07-12 12:34:56\") == d\"2025-01-01 00:00:00\""));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toDateStr(d\"2025-07-12 12:34:56\") == \"2025-07-12\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toDateStr(array(d\"2025-07-12 12:34:56\", d\"2025-12-31 23:59:59\")) == array(\"2025-07-12\", \"2025-12-31\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toDateStr(\"2025-07-12 12:34:56\") == \"2025-07-12\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toDateStr(array(\"2025-07-12 12:34:56\", \"2025-12-31 23:59:59\")) == array(\"2025-07-12\", \"2025-12-31\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("TRUE"));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -997,6 +1005,10 @@ TEST_P(FilterExpressionTest, ParseError)
 	EXPECT_FALSE(fe.Parse("startOfYear()"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	EXPECT_FALSE(fe.Parse("startOfYear(now(), now())"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("toDateStr()"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("toDateStr(now(), now())"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	if (fe.optimize) {
 		EXPECT_FALSE(fe.Parse("LeftName matches \"[[\""));

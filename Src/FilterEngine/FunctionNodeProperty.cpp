@@ -16,8 +16,12 @@ static ValueType ConvertPROPVARIANTToValueType(const PROPVARIANT& propvalue)
 		return std::monostate{};
 	case VT_I4:
 		return static_cast<int64_t>(propvalue.lVal);
+	case VT_UI4:
+		return static_cast<int64_t>(propvalue.ulVal);
 	case VT_I8:
 		return static_cast<int64_t>(propvalue.hVal.QuadPart);
+	case VT_UI8:
+		return static_cast<int64_t>(propvalue.uhVal.QuadPart);
 	case VT_R8:
 		return static_cast<double>(propvalue.dblVal);
 	case VT_LPWSTR:
