@@ -795,6 +795,9 @@
     <ClCompile Include="I18nGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PropertySystemMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1518,6 +1521,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="I18nGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertySystemMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

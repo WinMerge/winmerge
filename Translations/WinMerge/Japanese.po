@@ -1559,13 +1559,19 @@ msgid "&Clear conditions"
 msgstr "条件をクリア(&C)"
 
 msgid "Compare &Size"
-msgstr "サイズを比較(&C)"
+msgstr "サイズを比較(&S)"
 
 msgid "Compare &Date"
-msgstr "更新日時を比較(&C)"
+msgstr "更新日時を比較(&D)"
 
 msgid "Compare &Attributes"
 msgstr "属性を比較(&A)"
+
+msgid "Compare C&ontents"
+msgstr "内容を比較(&O)"
+
+msgid "Additional &Properties..."
+msgstr "追加プロパティ(&P)..."
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -4765,6 +4771,10 @@ msgstr "2番目と3番目"
 
 msgid "Filter applied"
 msgstr "フィルター適用"
+
+#, c-format
+msgid "Compare %1"
+msgstr "%1 を比較"
 
 #, c-format
 msgid "Clipboard at %s"

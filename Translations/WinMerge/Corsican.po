@@ -1571,6 +1571,12 @@ msgstr ""
 msgid "Compare &Attributes"
 msgstr ""
 
+msgid "Compare C&ontents"
+msgstr ""
+
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
 
@@ -4818,6 +4824,10 @@ msgstr "2ᵘ è 3ᵘ"
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"

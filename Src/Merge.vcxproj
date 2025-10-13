@@ -952,6 +952,7 @@
     <ClCompile Include="charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PropertySystemMenu.cpp" />
     <ClCompile Include="DirAdditionalPropertiesDlg.cpp" />
     <ClCompile Include="DirSelectFilesDlg.cpp" />
     <ClCompile Include="DirWatcher.cpp">
@@ -1526,6 +1527,7 @@
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />
+    <ClInclude Include="PropertySystemMenu.h" />
     <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="PropSysColors.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />

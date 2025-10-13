@@ -1798,6 +1798,12 @@ msgstr ""
 msgid "Compare &Attributes"
 msgstr ""
 
+msgid "Compare C&ontents"
+msgstr ""
+
+msgid "Additional &Properties..."
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "A WinMerge névjegye"
@@ -5396,6 +5402,10 @@ msgstr "2. és 3."
 
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"

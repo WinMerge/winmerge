@@ -10,6 +10,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "FilterErrorMessages.h"
+#include "PropertySystemMenu.h"
 #include "unicoder.h"
 #include <Poco/Environment.h>
 
@@ -46,9 +47,20 @@ public:
 					_T("allequal(Size)"),
 					_T("allequal(Date)"),
 					_T("allequal(Attributes)"),
+					_T("allequal(Content)"),
 				};
 				result = expr.empty() ? expr : expr + _T(" and ");
 				*result += Exprs[command - ID_ADDCMPMENU_CMP_FIRST];
+			}
+			else if (command == ID_ADDCMPMENU_PROPS)
+			{
+				CPropertySystemMenu menuProps;
+				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_ADDCMPMENU_PROPS_FIRST, _("Compare %1"));
+				if (resultProp.has_value())
+				{
+					result = expr.empty() ? expr : expr + _T(" and ");
+					*result += _T("allequal(prop(\"") + *resultProp + _T("\"))");
+				}
 			}
 		}
 		DestroyMenu();

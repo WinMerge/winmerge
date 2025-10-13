@@ -1805,6 +1805,12 @@ msgstr ""
 msgid "Compare &Attributes"
 msgstr ""
 
+msgid "Compare C&ontents"
+msgstr ""
+
+msgid "Additional &Properties..."
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "WinMerge 정보"
@@ -5482,6 +5488,10 @@ msgstr "두 번째 및 세번째"
 
 msgid "Filter applied"
 msgstr "필터 적용됨"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"

@@ -1555,6 +1555,8 @@ BEGIN
         MENUITEM "Compare &Size",               ID_ADDCMPMENU_CMP_SIZE
         MENUITEM "Compare &Date",               ID_ADDCMPMENU_CMP_DATE
         MENUITEM "Compare &Attributes",         ID_ADDCMPMENU_CMP_ATTR
+        MENUITEM "Compare C&ontents",           ID_ADDCMPMENU_CMP_CONTENTS
+        MENUITEM "Additional &Properties...",   ID_ADDCMPMENU_PROPS
     END
 END
 
@@ -4924,6 +4926,11 @@ END
 STRINGTABLE
 BEGIN
     IDS_FILTER_APPLIED      "Filter applied"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILTERMENU_COMPARE  "Compare %1"
 END
 
 STRINGTABLE

@@ -1576,6 +1576,12 @@ msgstr ""
 msgid "Compare &Attributes"
 msgstr ""
 
+msgid "Compare C&ontents"
+msgstr ""
+
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "சாளரஒன்றிணை பற்றி"
 
@@ -4824,6 +4830,10 @@ msgstr "2 மற்றும் 3 வது"
 
 msgid "Filter applied"
 msgstr "வடிகட்டி பயன்படுத்தப்பட்டது"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
