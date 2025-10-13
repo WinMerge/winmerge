@@ -770,7 +770,7 @@ namespace
 		di.diffFileInfo[2].size = 1;
 		di.diffFileInfo[0].mtime = 1 * 1000 * 1000;
 		di.diffFileInfo[1].mtime = 0;
-		di.diffFileInfo[2].mtime = 1;
+		di.diffFileInfo[2].mtime = 1 * 1000 * 1000;
 		tsc.SetAdditionalOptions(false);
 		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), tsc.CompareFiles(CMP_DATE_SIZE, 3, di));
 
