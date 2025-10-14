@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2023-05-01 23:13+0000\n"
-"PO-Revision-Date: 2023-11-28 00:00+0000\n"
+"POT-Creation-Date: 2025-10-09 20:15+0000\n"
+"PO-Revision-Date: 2025-10-14 20:50+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1417,37 +1417,37 @@ msgid "Not system files"
 msgstr "Nie pliki systemowe"
 
 msgid "File &Content"
-msgstr ""
+msgstr "Zawartość pliku"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "Zawiera ciągu znaków..."
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "Nie zawiera ciągu znaków..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "Pierwszy wiersz zawiera ciągu znaków..."
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "Pierwszy wiersz nie zawiera ciągu znaków..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "Pierwsze 10 wierszy zawiera ciąg znaków..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "Pierwsze 10 wierszy nie zawiera ciągu znaków..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "Ostatnie 10 wierszy zawiera ciąg znaków..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "Ostatnie 10 wierszy nie zawiera ciągu znaków..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "Ostatni wiersz zawiera ciąg znaków..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "Ostatni wiersz nie zawiera ciągu znaków..."
 
 msgid "&Line Count"
 msgstr "Liczba wierszy"
@@ -1486,37 +1486,37 @@ msgid "Add F&older Condition"
 msgstr ""
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr "Miejsce docelowe: dowolne (lewe/środek/prawe)"
+msgstr "Miejsce docelowe: dowolne (lewy/środkowy/prawy)"
 
 msgid "Target: &Left"
-msgstr "Miejsce docelowe: lewe"
+msgstr "Miejsce docelowe: lewy"
 
 msgid "Target: &Middle"
-msgstr "Miejsce docelowe: środek"
+msgstr "Miejsce docelowe: środkowy"
 
 msgid "Target: &Right"
-msgstr "Miejsce docelowe: prawe"
+msgstr "Miejsce docelowe: prawy"
 
 msgid "Add &Difference Condition"
 msgstr ""
 
 msgid "Equal"
-msgstr ""
+msgstr "Równy"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Nierówny"
 
 msgid "Less than 10B"
 msgstr "Mniej niż 10 B"
 
 msgid "10B or more"
-msgstr "10 B lub więcej"
+msgstr "10B lub więcej"
 
 msgid "Less than 100B"
-msgstr "Mniej niż 100 B"
+msgstr "Mniej niż 100B"
 
 msgid "100B or more"
-msgstr "100 B lub więcej"
+msgstr "100B lub więcej"
 
 msgid "Less than 1 second"
 msgstr "Mniej niż 1 sekunda"
@@ -1549,13 +1549,13 @@ msgid "1 week or more"
 msgstr "1 tydzień lub dłużej"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "Miejsce docelowe: lewy i prawy"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "Miejsce docelowe: lewy i środkowy"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "Miejsce docelowe: środkowy i prawy"
 
 msgid "About WinMerge"
 msgstr "O programie WinMerge"
@@ -4829,7 +4829,7 @@ msgid "Content extractor (Apache Tika).\r\nArguments: tika-app.jar command line 
 msgstr "Ogólny ekstraktor zawartości z Apache Tika. \r\nArgumenty: Opcje wiersza poleceń przekazywane do tika-app.jar."
 
 msgid "Apply patch (GNU patch)"
-msgstr ""
+msgstr "Zastosuj łatkę (łatka GNU)"
 
 msgid "Display MS Excel text content"
 msgstr "Wyświetl zawartość tekstową plików MS Excel"
@@ -4916,7 +4916,7 @@ msgid "Compare headers and footers"
 msgstr "Porównaj nagłówki i stopki"
 
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
-msgstr ""
+msgstr "Nie można pobrać makr.\r\nWłącz 'Ufaj dostępowi do projektu Visual Basic' w zabezpieczeniach makr pakietu MS Office."
 
 msgid "Compare VBA macros"
 msgstr "Porównaj makra VBA"
@@ -4993,7 +4993,7 @@ msgid "File '%1' does not exist"
 msgstr "Plik '%1' nie istnieje"
 
 msgid "Enter command line arguments for patch"
-msgstr "Wprowadź argumenty wiersza poleceń dla polecenia patch"
+msgstr "Wprowadź argumenty wiersza poleceń dla łatki"
 
 #, c-format
 msgid "Enter folder name for patch '%1'"
