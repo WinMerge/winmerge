@@ -135,7 +135,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_PRESERVE_FILETIMES, false);
 	pOptions->InitOption(OPT_TREE_MODE, true);
 
-	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT, 0, CMP_SIZE);
+	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT, 0, CMP_EXISTENCE);
 	pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
 	pOptions->InitOption(OPT_CMP_ALIGN_SIMILAR_LINES, false);
 	pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);

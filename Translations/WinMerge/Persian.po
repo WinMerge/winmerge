@@ -1364,6 +1364,9 @@ msgstr " تاريخ و اندازه اصلاح شده "
 msgid "Size"
 msgstr " اندازه "
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr ""

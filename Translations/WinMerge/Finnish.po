@@ -1136,6 +1136,9 @@ msgstr "Muutospäivä ja koko"
 msgid "Size"
 msgstr "Koko"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "&Lataa projekti..."
 

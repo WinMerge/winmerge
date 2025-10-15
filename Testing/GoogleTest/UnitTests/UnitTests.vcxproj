@@ -597,6 +597,7 @@
     <ClCompile Include="..\DirWatcher\DirWatcher_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\ExistenceCompare\ExistenceCompare_test.cpp" />
     <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp" />
     <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>

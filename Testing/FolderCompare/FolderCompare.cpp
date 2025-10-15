@@ -125,6 +125,7 @@ int main()
 			else if (method == L"Date") dm = CMP_DATE;
 			else if (method == L"DateSize") dm = CMP_DATE_SIZE;
 			else if (method == L"Size") dm = CMP_SIZE;
+			else if (method == L"Existence") dm = CMP_EXISTENCE;
 			else {
 				std::wcout << L"Unknown compare method\n";
 				continue;

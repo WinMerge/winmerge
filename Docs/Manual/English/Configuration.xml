@@ -1177,6 +1177,18 @@ def
             </para>
           </listitem>
         </varlistentry>
+
+        <varlistentry>
+          <term>Existence</term>
+
+          <listitem>
+            <para>
+              Compares only whether files exist on both sides. If a file exists
+              on both the left and right, they are considered identical, without
+              checking contents, size, or timestamps.
+            </para>
+          </listitem>
+        </varlistentry>
       </variablelist>
     </section>
 

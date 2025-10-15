@@ -102,7 +102,7 @@ void PropCompareFolder::WriteOptions()
 BOOL PropCompareFolder::OnInitDialog() 
 {
 	SetDlgItemComboBoxList(IDC_COMPAREMETHODCOMBO,
-		{ _("Full Contents"), _("Quick Contents"), _("Binary Contents"), _("Modified Date"), _("Modified Date and Size"), _("Size") });
+		{ _("Full Contents"), _("Quick Contents"), _("Binary Contents"), _("Modified Date"), _("Modified Date and Size"), _("Size"), _("Existence")});
 	SetDlgItemComboBoxList(IDC_EXPAND_SUBDIRS,
 		{ _("Do not expand"), _("Expand all subfolders"), _("Expand different subfolders"), _("Expand identical subfolders") });
 

@@ -1360,6 +1360,9 @@ msgstr "Измењен датум и величина"
 msgid "Size"
 msgstr "Величина"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr ""
 

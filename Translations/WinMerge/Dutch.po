@@ -1134,6 +1134,9 @@ msgstr "Datum en grootte gewijzigd"
 msgid "Size"
 msgstr "Grootte"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "Project laden..."
 

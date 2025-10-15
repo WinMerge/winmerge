@@ -1110,6 +1110,7 @@ BEGIN
             MENUITEM "Modified Date",               ID_DIFF_OPTIONS_COMPMETHOD_MODDATE
             MENUITEM "Modified Date and Size",      ID_DIFF_OPTIONS_COMPMETHOD_DATESIZE
             MENUITEM "Size",                        ID_DIFF_OPTIONS_COMPMETHOD_SIZE
+            MENUITEM "Existence",                   ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE
         END
     END
 END
@@ -1141,6 +1142,7 @@ BEGIN
             MENUITEM "Modified Date",               ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_MODDATE
             MENUITEM "Modified Date and Size",      ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_DATESIZE
             MENUITEM "Size",                        ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE
+            MENUITEM "Existence",                   ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_EXISTENCE
         END
     END
 END
@@ -1322,6 +1324,7 @@ BEGIN
         MENUITEM "Modified Date",               ID_DIFF_OPTIONS_COMPMETHOD_MODDATE
         MENUITEM "Modified Date and Size",      ID_DIFF_OPTIONS_COMPMETHOD_DATESIZE
         MENUITEM "Size",                        ID_DIFF_OPTIONS_COMPMETHOD_SIZE
+        MENUITEM "Existence",                   ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE
     END
 END
 
@@ -3925,6 +3928,7 @@ BEGIN
     IDS_COMPMETHOD_MODDATE  "Modified Date"
     IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
     IDS_COMPMETHOD_SIZE     "Size"
+    IDS_COMPMETHOD_EXISTENCE "Existence"
 END
 
 // EXPAND SUBFOLDERS OPTIONS
