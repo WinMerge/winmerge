@@ -1366,6 +1366,9 @@ msgstr "Eguna eta Neurria Aldatuta"
 msgid "Size"
 msgstr "Neurria"
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr ""

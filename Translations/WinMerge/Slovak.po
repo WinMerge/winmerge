@@ -1136,6 +1136,9 @@ msgstr "Dátum zmeny a veľkosť"
 msgid "Size"
 msgstr "Veľkosť"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "&Načítať projekt..."
 

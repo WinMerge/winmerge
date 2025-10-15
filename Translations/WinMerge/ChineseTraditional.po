@@ -1370,6 +1370,9 @@ msgstr "修改日期與大小"
 msgid "Size"
 msgstr "大小"
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr "載入專案... (&L)"

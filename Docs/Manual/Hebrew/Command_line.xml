@@ -166,10 +166,11 @@ rep="norepeat"><replaceable>conflictfile</replaceable></arg></cmdsynopsis>
 
       <term><option>/m <replaceable>compare-method</replaceable></option></term>
       <listitem>
-        <para>מגדיר את שיטת ההשוואה לשימוש בהשוואה. זה יכול להיות אחד ממילות המפתח
-<userinput>Full</userinput>, <userinput>Quick</userinput>,
+        <para>Sets the compare method to use for the comparison.  This can be one of the
+keywords <userinput>Full</userinput>, <userinput>Quick</userinput>,
 <userinput>Binary</userinput>, <userinput>Date</userinput>,
-<userinput>SizeDate</userinput> או <userinput>Size</userinput>.</para>
+<userinput>SizeDate</userinput>, <userinput>Size</userinput> or
+<userinput>Existence</userinput>.</para>
       </listitem>
     </varlistentry>
 

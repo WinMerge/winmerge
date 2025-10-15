@@ -1362,6 +1362,9 @@ msgstr "Ημερομηνία Τροποποιήσεως και Μέγεθος"
 msgid "Size"
 msgstr "Μέγεθος"
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr ""

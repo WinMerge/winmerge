@@ -923,6 +923,15 @@ lines.</para>
 ファイルサイズのみを比較するため高速ですが、 内容を比較する方法よりも不正確です。</para>
           </listitem>
         </varlistentry>
+
+        <varlistentry>
+          <term>存在のみ</term>
+
+          <listitem>
+            <para>
+両側にファイルが存在するかどうかのみを比較します。ファイルが左側と右側の両方に存在する場合、内容、サイズ、タイムスタンプはチェックされず、同一とみなされます。</para>
+          </listitem>
+        </varlistentry>
       </variablelist>
     </section>
 

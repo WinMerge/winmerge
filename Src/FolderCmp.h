@@ -11,6 +11,7 @@
 #include "ByteCompare.h"
 #include "BinaryCompare.h"
 #include "TimeSizeCompare.h"
+#include "ExistenceCompare.h"
 #include "ImageCompare.h"
 #include "PathContext.h"
 
@@ -57,5 +58,6 @@ private:
 	std::unique_ptr<CompareEngines::ByteCompare> m_pByteCompare;
 	std::unique_ptr<CompareEngines::BinaryCompare> m_pBinaryCompare;
 	std::unique_ptr<CompareEngines::TimeSizeCompare> m_pTimeSizeCompare;
+	std::unique_ptr<CompareEngines::ExistenceCompare> m_pExistenceCompare;
 	std::unique_ptr<CompareEngines::ImageCompare> m_pImageCompare;
 };

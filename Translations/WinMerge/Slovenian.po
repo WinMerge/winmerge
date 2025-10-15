@@ -1136,6 +1136,9 @@ msgstr "Spremenjen datum in velikost"
 msgid "Size"
 msgstr "Velikost"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "Na&loži projekt..."
 

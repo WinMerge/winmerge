@@ -1139,6 +1139,9 @@ msgstr "تاريخ وحجم آخر تعديل"
 msgid "Size"
 msgstr "الحجم"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "&تحميل مشروع..."
 

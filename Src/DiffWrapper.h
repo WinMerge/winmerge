@@ -83,6 +83,12 @@ namespace CrystalLineParser { struct TextDefinition; };
  * size always means files are different. E.g. automatically created logs - when
  * more data is added size increases.
  */
+
+ /** @var CMP_EXISTENCE
+  * @brief Compare only by file existence.
+  * This compare type considers files identical if both left and right
+  * files exist, without checking their contents, size, or timestamps.
+  */
 enum COMPARE_TYPE
 {
 	CMP_CONTENT = 0,
@@ -91,6 +97,7 @@ enum COMPARE_TYPE
 	CMP_DATE,
 	CMP_DATE_SIZE,
 	CMP_SIZE,
+	CMP_EXISTENCE,
 	CMP_IMAGE_CONTENT,
 };
 

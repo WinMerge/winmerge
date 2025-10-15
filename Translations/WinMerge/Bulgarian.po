@@ -1133,6 +1133,9 @@ msgstr "Промени в датата и размера"
 msgid "Size"
 msgstr "Размер"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "&Отваряне на проект…"
 

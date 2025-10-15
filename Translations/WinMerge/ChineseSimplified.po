@@ -1140,6 +1140,9 @@ msgstr "修改日期和文件大小"
 msgid "Size"
 msgstr "文件大小"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "加载工程(&L)..."
 
