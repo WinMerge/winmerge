@@ -1134,6 +1134,9 @@ msgstr "תאריך שינוי וגודל"
 msgid "Size"
 msgstr "גודל"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "טען פרויקט..."
 

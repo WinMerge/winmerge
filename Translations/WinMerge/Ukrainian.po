@@ -1139,6 +1139,9 @@ msgstr "За датою зміни і розміру"
 msgid "Size"
 msgstr "За розміром"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr ""
 

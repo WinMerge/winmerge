@@ -1135,6 +1135,9 @@ msgstr "更新日時とサイズ"
 msgid "Size"
 msgstr "サイズのみ"
 
+msgid "Existence"
+msgstr "存在のみ"
+
 msgid "&Load Project..."
 msgstr "プロジェクトを読み込み(&L)..."
 

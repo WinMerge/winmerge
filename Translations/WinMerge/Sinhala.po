@@ -1363,6 +1363,9 @@ msgstr "වෙනස්කල දිනය සහ ප්‍රමාණය"
 msgid "Size"
 msgstr "ප්‍රමාණය"
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr ""

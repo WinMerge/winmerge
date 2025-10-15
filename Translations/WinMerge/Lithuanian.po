@@ -1136,6 +1136,9 @@ msgstr "Pakeista data ir dydis"
 msgid "Size"
 msgstr "Dydis"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "Įke&lti projektą..."
 

@@ -1365,6 +1365,9 @@ msgstr "Módosítási dátum és méret"
 msgid "Size"
 msgstr "Méret"
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr "Projekt betöltése..."

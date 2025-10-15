@@ -17,6 +17,7 @@
 #include "codepage_detect.h"
 #include "BinaryCompare.h"
 #include "TimeSizeCompare.h"
+#include "ExistenceCompare.h"
 #include "TFile.h"
 #include "FileFilterHelper.h"
 #include "PropertySystem.h"
@@ -28,6 +29,7 @@
 using CompareEngines::ByteCompare;
 using CompareEngines::BinaryCompare;
 using CompareEngines::TimeSizeCompare;
+using CompareEngines::ExistenceCompare;
 using CompareEngines::ImageCompare;
 
 FolderCmp::FolderCmp(CDiffContext *pCtxt)
@@ -444,6 +446,15 @@ exitPrepAndCompare:
 
 		m_pTimeSizeCompare->SetAdditionalOptions(m_pCtxt->m_bIgnoreSmallTimeDiff);
 		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, m_pCtxt->GetCompareDirs(), di);
+		if (DIFFCODE::isResultError(code))
+			LogError(di);
+	}
+	else if (nCompMethod == CMP_EXISTENCE)
+	{
+		if (m_pExistenceCompare == nullptr)
+			m_pExistenceCompare.reset(new ExistenceCompare());
+
+		code = m_pExistenceCompare->CompareFiles(nCompMethod, m_pCtxt->GetCompareDirs(), di);
 		if (DIFFCODE::isResultError(code))
 			LogError(di);
 	}

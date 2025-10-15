@@ -1139,6 +1139,9 @@ msgstr "Data di mudificazione è dimensione"
 msgid "Size"
 msgstr "Dimensione"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "&Caricà u prughjettu…"
 

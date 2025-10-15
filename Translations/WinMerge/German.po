@@ -1367,6 +1367,9 @@ msgstr "Änderungsdatum und Größe"
 msgid "Size"
 msgstr "Größe"
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr "Projekt &laden..."

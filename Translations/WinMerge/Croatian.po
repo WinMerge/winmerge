@@ -1363,6 +1363,9 @@ msgstr "Datum promjene i veličina"
 msgid "Size"
 msgstr "Veličina"
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr ""

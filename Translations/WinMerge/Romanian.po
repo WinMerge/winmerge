@@ -1135,6 +1135,9 @@ msgstr "Dată modificare și mărime"
 msgid "Size"
 msgstr "Mărime"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "Încarcă proiect..."
 

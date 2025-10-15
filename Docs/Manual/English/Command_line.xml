@@ -248,8 +248,8 @@
         <para>Sets the compare method to use for the comparison.
         This can be one of the keywords <userinput>Full</userinput>,
         <userinput>Quick</userinput>, <userinput>Binary</userinput>,
-        <userinput>Date</userinput>, <userinput>SizeDate</userinput> or 
-        <userinput>Size</userinput>.</para>
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput>,
+        <userinput>Size</userinput> or <userinput>Existence</userinput>.</para>
       </listitem>
     </varlistentry>
 

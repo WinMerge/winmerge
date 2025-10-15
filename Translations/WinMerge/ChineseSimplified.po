@@ -1140,6 +1140,9 @@ msgstr "修改日期和文件大小"
 msgid "Size"
 msgstr "文件大小"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "加载工程(&L)..."
 
@@ -3562,7 +3565,7 @@ msgid "Close the folder comparison window, which took a long time?"
 msgstr "关闭文件夹比较窗口，这需要很长时间？"
 
 msgid "The file or folder name is invalid."
-msgstr "文件或文件夹的名称不合法。"
+msgstr "文件或文件夹的名称无效。"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -4722,7 +4725,7 @@ msgstr "指定插件参数"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr "插件不存在或非法：%1"
+msgstr "插件不存在或无效：%1"
 
 #, c-format
 msgid "'%1' is not an unpacker plugin"
@@ -4999,16 +5002,16 @@ msgid "Failed to parse filter expression"
 msgstr "无法解析过滤器表达式"
 
 msgid "Invalid literal value"
-msgstr "非法的字面量值"
+msgstr "无效的字面量值"
 
 msgid "Invalid regular expression"
-msgstr "非法的正则表达式"
+msgstr "无效的正则表达式"
 
 msgid "Undefined identifier"
 msgstr "未定义的标识符"
 
 msgid "Invalid number of arguments"
-msgstr "非法的参数数量"
+msgstr "无效的参数数量"
 
 msgid "Filter name not found"
 msgstr "过滤器名称不存在"
@@ -5020,7 +5023,7 @@ msgid "Unknown error"
 msgstr "未知错误"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "无效的属性名称"
 
 msgid "Equals"
 msgstr "等于"

@@ -1137,6 +1137,9 @@ msgstr "Data de modificação e tamanho"
 msgid "Size"
 msgstr "Tamanho"
 
+msgid "Existence"
+msgstr ""
+
 msgid "&Load Project..."
 msgstr "&Carregar projeto..."
 

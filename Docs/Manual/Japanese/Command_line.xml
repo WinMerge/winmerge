@@ -159,7 +159,7 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
         <para>フォルダー比較方法を指定します。次のキーワードが指定できます。<userinput>Full</userinput>,
 <userinput>Quick</userinput>, <userinput>Binary</userinput>,
 <userinput>Date</userinput>, <userinput>SizeDate</userinput>,
-<userinput>Size</userinput></para>
+<userinput>Size</userinput>, <userinput>Existence</userinput></para>
       </listitem>
     </varlistentry>
 

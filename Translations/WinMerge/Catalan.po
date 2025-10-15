@@ -1364,6 +1364,9 @@ msgstr "Data de modificació i mida"
 msgid "Size"
 msgstr "Mida"
 
+msgid "Existence"
+msgstr ""
+
 #, c-format
 msgid "&Load Project..."
 msgstr "Carrega un pr&ojecte..."
