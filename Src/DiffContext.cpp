@@ -18,6 +18,7 @@
 #include "codepage_detect.h"
 #include "IAbortable.h"
 #include "DiffWrapper.h"
+#include "FilterEngine/FilterExpression.h"
 #include "DebugNew.h"
 
 using Poco::FastMutex;

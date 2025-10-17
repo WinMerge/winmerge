@@ -1485,6 +1485,9 @@ msgstr "100.000'den az"
 msgid "100000 or more"
 msgstr "100.000 veya daha fazla"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Klasör K&oşulu Ekle"
 
@@ -1559,6 +1562,21 @@ msgstr "Hedef: Sol ve &Orta"
 
 msgid "Target: Middle and &Right"
 msgstr "Hedef: Orta ve &Sağ"
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
@@ -2574,6 +2592,9 @@ msgstr "&Hızlı karşılaştırmaya geçilecek eşik değeri (MB):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
+
+msgid "Additional comparison condi&tions:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Dosya modelleri:"
@@ -3847,6 +3868,10 @@ msgid "Image files are different"
 msgstr "Görsel dosyaları farklı"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Grup%d"
 
@@ -4804,6 +4829,10 @@ msgstr "İkinci ve üçüncü"
 
 msgid "Filter applied"
 msgstr "Süzgeç uygulandı"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"

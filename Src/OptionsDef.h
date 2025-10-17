@@ -235,6 +235,7 @@ inline const String OPT_CMP_INCLUDE_SUBDIRS {_T("Settings/Recurse"s)};
 inline const String OPT_CMP_DIFF_ALGORITHM {_T("Settings/DiffAlgorithm"s)};
 inline const String OPT_CMP_INDENT_HEURISTIC {_T("Settings/IndentHeuristic"s)};
 inline const String OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES {_T("Settings/CompletelyBlankOutIgnoredChanges"s)};
+inline const String OPT_CMP_ADDITIONAL_CONDITION {_T("Settings/AdditionalCompareCondition"s)};
 
 // Image Compare options
 inline const String OPT_CMP_IMG_FILEPATTERNS {_T("Settings/ImageFilePatterns"s)};

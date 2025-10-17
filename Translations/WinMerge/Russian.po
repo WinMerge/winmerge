@@ -1486,6 +1486,9 @@ msgstr "Менее 100000"
 msgid "100000 or more"
 msgstr "100000 или более"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Добавить условие папки"
 
@@ -1560,6 +1563,21 @@ msgstr "Назначение: Слева и В центре"
 
 msgid "Target: Middle and &Right"
 msgstr "Назначение: В центре и Справа"
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "О программе WinMerge"
@@ -2557,6 +2575,9 @@ msgstr "Порог для перехода к быстрому сравнени�
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Порог для перехода к двоичному сравнению (MB)"
+
+msgid "Additional comparison condi&tions:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
@@ -3585,6 +3606,10 @@ msgid "Image files are different"
 msgstr "Файлы изображений разные"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Группа%d"
 
@@ -4378,6 +4403,10 @@ msgstr "2-й и 3-й"
 
 msgid "Filter applied"
 msgstr "Фильтр применен"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"

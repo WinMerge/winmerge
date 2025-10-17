@@ -1484,6 +1484,9 @@ msgstr ""
 msgid "100000 or more"
 msgstr ""
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr ""
 
@@ -1557,6 +1560,21 @@ msgid "Target: Left and &Middle"
 msgstr ""
 
 msgid "Target: Middle and &Right"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
 msgstr ""
 
 msgid "About WinMerge"
@@ -2563,6 +2581,9 @@ msgstr "Prahová hodnota pre prepnutie pre &rýchle porovnanie (MB):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Prahová hodnota pre prepnutie na &binárne porovnanie (MB):"
+
+msgid "Additional comparison condi&tions:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Vzory súborov:"
@@ -3775,6 +3796,10 @@ msgid "Image files are different"
 msgstr "Súbory obrázkov sú rozdielne"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Skupina%d"
 
@@ -4685,6 +4710,10 @@ msgstr ""
 
 msgid "Filter applied"
 msgstr "Použitý filter"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
