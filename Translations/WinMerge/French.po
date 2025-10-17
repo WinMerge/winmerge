@@ -1491,6 +1491,9 @@ msgstr "Moins de 100 000"
 msgid "100000 or more"
 msgstr "100 000 ou plus"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Ajouter une condition de d&ossier"
 
@@ -1579,9 +1582,6 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
-msgstr ""
-
-msgid "Additional &Properties..."
 msgstr ""
 
 msgid "About WinMerge"

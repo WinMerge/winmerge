@@ -254,6 +254,21 @@ int PropertySystem::GetPropertyIndex(const String& canonicalName)
 	return -1;
 }
 
+bool PropertySystem::GetPropertyType(unsigned index, VARTYPE& vt) const
+{
+	if (index >= m_keys.size())
+		return false;
+	bool result = false;
+	IPropertyDescription* ppd = nullptr;
+	if (SUCCEEDED(PSGetPropertyDescription(m_keys[index], IID_PPV_ARGS(&ppd))))
+	{
+		if (SUCCEEDED(ppd->GetPropertyType(&vt)))
+			result = true;
+		ppd->Release();
+	}
+	return result;
+}
+
 String PropertySystem::FormatPropertyValue(const PropertyValues& values, unsigned index)
 {
 	if (index >= values.m_values.size())
@@ -377,6 +392,11 @@ bool PropertySystem::GetPropertyValues(const String& path, PropertyValues& value
 int PropertySystem::GetPropertyIndex(const String& canonicalName)
 {
 	return -1;
+}
+
+bool PropertySystem::GetPropertyType(unsigned index, VARTYPE& vt) const
+{
+	return false;
 }
 
 String PropertySystem::FormatPropertyValue(const PropertyValues& values, unsigned index)

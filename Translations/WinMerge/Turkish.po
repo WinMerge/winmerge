@@ -1485,6 +1485,9 @@ msgstr "100.000'den az"
 msgid "100000 or more"
 msgstr "100.000 veya daha fazla"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Klasör K&oşulu Ekle"
 
@@ -1573,9 +1576,6 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
-msgstr ""
-
-msgid "Additional &Properties..."
 msgstr ""
 
 msgid "About WinMerge"

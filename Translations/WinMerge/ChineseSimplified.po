@@ -1488,6 +1488,9 @@ msgstr "小于 100000"
 msgid "100000 or more"
 msgstr "至少 100000"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "添加文件夹条件(&O)"
 
@@ -1576,9 +1579,6 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
-msgstr ""
-
-msgid "Additional &Properties..."
 msgstr ""
 
 msgid "About WinMerge"

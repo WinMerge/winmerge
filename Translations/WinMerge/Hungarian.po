@@ -1714,6 +1714,9 @@ msgstr "Kevesebb, mint 100000"
 msgid "100000 or more"
 msgstr "100000 vagy több"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "&Mappa feltétel hozzáadása"
 
@@ -1802,9 +1805,6 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
-msgstr ""
-
-msgid "Additional &Properties..."
 msgstr ""
 
 #, c-format

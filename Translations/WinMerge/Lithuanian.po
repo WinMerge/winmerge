@@ -1484,6 +1484,9 @@ msgstr "Mažiau nei 100000"
 msgid "100000 or more"
 msgstr "100000 ar daugiau"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Pridėti katal&ogo sąlygą"
 
@@ -1572,9 +1575,6 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
-msgstr ""
-
-msgid "Additional &Properties..."
 msgstr ""
 
 msgid "About WinMerge"

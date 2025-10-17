@@ -1487,6 +1487,9 @@ msgstr "Menos de 100000"
 msgid "100000 or more"
 msgstr "100000 o más"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Añadir c&ondición de carpeta"
 
@@ -1575,9 +1578,6 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
-msgstr ""
-
-msgid "Additional &Properties..."
 msgstr ""
 
 msgid "About WinMerge"

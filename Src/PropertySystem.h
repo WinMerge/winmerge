@@ -50,6 +50,7 @@ public:
 	explicit PropertySystem(const std::vector<String>& canonicalNames);
 	bool GetPropertyValues(const String& path, PropertyValues& values);
 	int GetPropertyIndex(const String& canonicalName);
+	bool GetPropertyType(unsigned index, VARTYPE& vt) const;
 	String FormatPropertyValue(const PropertyValues& values, unsigned index);
 	bool GetDisplayNames(std::vector<String>& names);
 	bool HasHashProperties() const;

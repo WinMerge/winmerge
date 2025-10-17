@@ -1487,6 +1487,9 @@ msgstr "Mindre än 100000"
 msgid "100000 or more"
 msgstr "100000 eller mer"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Lägg till katalogkondition"
 
@@ -1575,9 +1578,6 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
-msgstr ""
-
-msgid "Additional &Properties..."
 msgstr ""
 
 msgid "About WinMerge"

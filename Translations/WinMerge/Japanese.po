@@ -1483,6 +1483,9 @@ msgstr "100000未満"
 msgid "100000 or more"
 msgstr "100000以上"
 
+msgid "Additional &Properties..."
+msgstr "追加プロパティ(&P)..."
+
 msgid "Add F&older Condition"
 msgstr "フォルダー条件を追加(&O)"
 
@@ -1572,9 +1575,6 @@ msgstr "属性を比較(&A)"
 
 msgid "Compare C&ontents"
 msgstr "内容を比較(&O)"
-
-msgid "Additional &Properties..."
-msgstr "追加プロパティ(&P)..."
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
