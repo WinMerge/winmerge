@@ -16,14 +16,16 @@ class CFilterConditionDlg : public CTrDialog
 public:
 // Construction
 	explicit CFilterConditionDlg(CWnd* pParent = nullptr);   // standard constructor
-	CFilterConditionDlg(bool diff, int side, const String& field, const String& ope, const String& transform, CWnd* pParent = nullptr);
+	CFilterConditionDlg(bool diff, int side, const String& field, const String& propName, const String& ope, const String& transform, CWnd* pParent = nullptr);
 
 // Dialog Data
 	//{{AFX_DATA(CFilterConditionDlg)
 	enum { IDD = IDD_FILTERS_CONDITION };
 	bool m_bDiff;
 	int m_nSide;
+	VARTYPE m_vt;
 	String m_sField;
+	String m_sPropName;
 	String m_sLHS;
 	String m_sOperator;
 	String m_sValue1;

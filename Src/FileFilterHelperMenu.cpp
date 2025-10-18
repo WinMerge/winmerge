@@ -51,7 +51,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 	return result;
 }
 
-std::optional<String> CFileFilterHelperMenu::ShowPropMenu(const String& masks, CWnd *pParentWnd)
+std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const String& masks, CWnd *pParentWnd)
 {
 	std::optional<String> result;
 	CMenu menu;
@@ -59,14 +59,36 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(const String& masks, C
 	VARTYPE vt;
 	int id = 0;
 	ps.GetPropertyType(0, vt);
-	if (vt == VT_FILETIME)
-		id = IDR_POPUP_FILTERMENU_DATE;
-	else if (vt == VT_UI8 && m_propName.rfind(_T("Size")) == m_propName.length() - 4)
-		id = IDR_POPUP_FILTERMENU_SIZE;
-	else if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8)
-		id = IDR_POPUP_FILTERMENU_NUMBER;
-	else if (vt == VT_LPWSTR)
-		id = IDR_POPUP_FILTERMENU_STRING;
+	if (command == ID_FILTERMENU_ADDITIONAL_PROPS)
+	{
+		if (vt == VT_FILETIME)
+			id = IDR_POPUP_FILTERMENU_DATE;
+		else if (vt == VT_UI8 && m_propName.rfind(_T("Size")) == m_propName.length() - 4)
+			id = IDR_POPUP_FILTERMENU_SIZE;
+	}
+	else
+	{
+		if (vt == VT_FILETIME)
+			id = IDR_POPUP_FILTERMENU_DIFF_DATE;
+		else if (vt == VT_UI8 && m_propName.rfind(_T("Size")) == m_propName.length() - 4)
+			id = IDR_POPUP_FILTERMENU_DIFF_SIZE;
+	}
+	if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
+		vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR)
+	{
+		if (command == ID_FILTERMENU_ADDITIONAL_PROPS)
+		{
+			CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
+			if (dlg.DoModal() == IDOK)
+				result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+		}
+		else
+		{
+			CFilterConditionDlg dlg(true, m_targetDiffSide, _T(""), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
+			if (dlg.DoModal() == IDOK)
+				result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+		}
+	}
 	if (id != 0)
 	{
 		menu.LoadMenu(id);
@@ -179,7 +201,7 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command == ID_FILTERMENU_SIZE_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, defaultProp(_T("Size")), _("%1 = %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Size"), m_propName, _("%1 = %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -202,8 +224,7 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command == ID_FILTERMENU_DATE_RANGE)
 	{
-		const String identifier = (m_propName.empty() ? _T("DateStr") : _T("toDateStr(prop(\"") + m_propName + _T("\"))"));
-		CFilterConditionDlg dlg(false, m_targetSide, identifier, _("%1 = %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("DateStr"), m_propName, _("%1 = %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -235,7 +256,7 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 			_("%1 contains %2"), _("%1 not contains %2")
 		};
 		CFilterConditionDlg dlg(false, m_targetSide,
-			_T("Content"), OPs[command - ID_FILTERMENU_CONTENT_CONTAINS],
+			_T("Content"), m_propName, OPs[command - ID_FILTERMENU_CONTENT_CONTAINS],
 			LHSs[command - ID_FILTERMENU_CONTENT_CONTAINS]);
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
@@ -255,21 +276,9 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command == ID_FILTERMENU_LINES_RANGE)
 	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _("%1 > %2"), _T("lineCount(%1)"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Content"), _T(""), _("%1 > %2"), _T("lineCount(%1)"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
-	}
-	else if (command == ID_FILTERMENU_ADDITIONAL_PROPS)
-	{
-		CPropertySystemMenu propMenu;
-		auto propName = propMenu.ShowMenu(pParentWnd, ID_ADDCMPMENU_PROPS_FIRST, _T("%1"));
-		if (propName)
-		{
-			m_propName = *propName;
-			auto result2 = ShowPropMenu(masks, pParentWnd);
-			if (result2)
-				result = *result2;
-		}
 	}
 	else if (command >= ID_FILTERMENU_FOLDER_DATE_HOUR_BEFORE_1 && command <= ID_FILTERMENU_FOLDER_DATE_YEAR_SINCE_LAST)
 	{
@@ -290,8 +299,7 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command == ID_FILTERMENU_FOLDER_DATE_RANGE)
 	{
-		const String identifier = (m_propName.empty() ? _T("DateStr") : _T("toDateStr(") + defaultProp(_T("")) + _T("\"))"));
-		CFilterConditionDlg dlg(false, m_targetSide, identifier, _("%1 = %2"), _T("%1"));
+		CFilterConditionDlg dlg(false, m_targetSide, _T("DateStr"), _T(""), _("%1 = %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
 	}
@@ -311,7 +319,7 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command == ID_FILTERMENU_DIFF_SIZE_RANGE)
 	{
-		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Size"), _("%1 = %2"), _T("abs(%1 - %2)"));
+		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Size"), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -333,7 +341,7 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command == ID_FILTERMENU_DIFF_DATE_RANGE)
 	{
-		CFilterConditionDlg dlg(true, m_targetDiffSide, defaultProp(_T("Date")), _("%1 = %2"), _T("abs(%1 - %2)"));
+		CFilterConditionDlg dlg(true, m_targetDiffSide, _T("Date"), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
@@ -348,10 +356,17 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 		result += _T("fe:") + strutils::format_string2(DiffAttrConditions[command - ID_FILTERMENU_DIFF_ATTR_EQUAL],
 			identifier1, identifier2);
 	}
-	else if (command == ID_FILTERMENU_DIFF_ADDITIONAL_PROPS)
+	else if (command == ID_FILTERMENU_ADDITIONAL_PROPS || command == ID_FILTERMENU_DIFF_ADDITIONAL_PROPS)
 	{
 		CPropertySystemMenu propMenu;
 		auto propName = propMenu.ShowMenu(pParentWnd, ID_ADDCMPMENU_PROPS_FIRST, _T("%1"));
+		if (propName)
+		{
+			m_propName = *propName;
+			auto result2 = ShowPropMenu(command, masks, pParentWnd);
+			if (result2)
+				result = *result2;
+		}
 	}
 	return result;
 }

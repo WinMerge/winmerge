@@ -12,7 +12,7 @@ class CFileFilterHelperMenu : public CMenu
 public:
 	std::optional<String> ShowMenu(const String& masks, int x, int y, CWnd* pParentWnd);
 private:
-	std::optional<String> ShowPropMenu(const String& masks, CWnd* pParentWnd);
+	std::optional<String> ShowPropMenu(int command, const String& masks, CWnd* pParentWnd);
 	String defaultProp(const String& name) const;
 	String defaultDiffProp(const String& name, int i) const;
 	String OnCommand(const String& masks, int command, CWnd* pParentWnd);
