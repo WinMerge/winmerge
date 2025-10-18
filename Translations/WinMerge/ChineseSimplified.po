@@ -1141,7 +1141,7 @@ msgid "Size"
 msgstr "文件大小"
 
 msgid "Existence"
-msgstr ""
+msgstr "存在性"
 
 msgid "&Load Project..."
 msgstr "加载工程(&L)..."
