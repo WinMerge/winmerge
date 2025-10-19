@@ -11,6 +11,7 @@ static void CreatePropertyMenu(HMENU hMenu, const std::vector<String>& canonical
 	if (!hMenu) return;
 
 	std::map<String, HMENU> menuMap;
+	std::map<String, HMENU> groupMenus;
 	menuMap[L""] = hMenu;
 	UINT id = idFirst;
 
@@ -57,19 +58,31 @@ static void CreatePropertyMenu(HMENU hMenu, const std::vector<String>& canonical
 
 				if (i < parts.size() - 1)
 				{
+					String str(parts[i].data(), parts[i].length());
 					HMENU hSubMenu = CreatePopupMenu();
-					AppendMenu(hParent, MF_POPUP, (UINT_PTR)hSubMenu,
-						I18n::tr(String(parts[i].data(), parts[i].length())).c_str());
 					menuMap[path] = hSubMenu;
+					if (parts[i] == L"S-Z" || parts[i] == L"M-R" || parts[i] == L"G-L" || parts[i] == L"A-F")
+						groupMenus[str] = hSubMenu;
+					else
+						AppendMenu(hParent, MF_POPUP, (UINT_PTR)hSubMenu, I18n::tr(str).c_str());
 				}
 				else
 				{
+					String str = displayNames[0] + _T(" (") + canonical + _T(")");
 					AppendMenu(hParent, MF_STRING, id,
-						strutils::format_string1(format, displayNames[0]).c_str());
+						strutils::format_string1(format, str).c_str());
 				}
 			}
 		}
 		id++;
+	}
+	HMENU hParent = menuMap[_T("System")];
+	for (auto it = groupMenus.rbegin(); it != groupMenus.rend(); ++it)
+	{
+		MENUITEMINFO mii = { sizeof(mii), MIIM_SUBMENU | MIIM_STRING };
+		mii.hSubMenu = it->second;
+		mii.dwTypeData = (LPWSTR)it->first.c_str();
+		InsertMenuItem(hParent, 0, TRUE, &mii);
 	}
 }
 

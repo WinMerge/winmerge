@@ -51,7 +51,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 	return result;
 }
 
-std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const String& masks, CWnd *pParentWnd)
+std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const String& masks, CWnd* pParentWnd)
 {
 	std::optional<String> result;
 	CMenu menu;
@@ -73,22 +73,6 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 		else if (vt == VT_UI8 && m_propName.rfind(_T("Size")) == m_propName.length() - 4)
 			id = IDR_POPUP_FILTERMENU_DIFF_SIZE;
 	}
-	if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
-		vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR)
-	{
-		if (command == ID_FILTERMENU_ADDITIONAL_PROPS)
-		{
-			CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
-			if (dlg.DoModal() == IDOK)
-				result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
-		}
-		else
-		{
-			CFilterConditionDlg dlg(true, m_targetDiffSide, _T(""), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
-			if (dlg.DoModal() == IDOK)
-				result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
-		}
-	}
 	if (id != 0)
 	{
 		menu.LoadMenu(id);
@@ -98,11 +82,34 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 		{
 			CPoint pt;
 			GetCursorPos(&pt);
-			const int command = pPopup->TrackPopupMenu(
+			const int command2 = pPopup->TrackPopupMenu(
 				TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, pt.x, pt.y, pParentWnd);
-			if (command != 0)
+			if (command2 != 0)
 			{
-				result = OnCommand(masks, command, pParentWnd);
+				result = OnCommand(masks, command2, pParentWnd);
+			}
+		}
+	}
+	else
+	{
+		if (command == ID_FILTERMENU_ADDITIONAL_PROPS)
+		{
+			if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
+				vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR)
+			{
+				CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _("%1 = %2"), _T("%1"));
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+			}
+		}
+		else
+		{
+			if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
+				vt == VT_R4 || vt == VT_R8)
+			{
+				CFilterConditionDlg dlg(true, m_targetDiffSide, _T(""), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
+				if (dlg.DoModal() == IDOK)
+					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 			}
 		}
 	}
