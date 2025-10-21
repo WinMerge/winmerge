@@ -1740,6 +1740,18 @@ msgstr ""
 msgid "Not Equal"
 msgstr ""
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr ""
 
@@ -1789,6 +1801,9 @@ msgid "Target: Left and &Middle"
 msgstr ""
 
 msgid "Target: Middle and &Right"
+msgstr ""
+
+msgid "Target: &All"
 msgstr ""
 
 msgid "&Clear conditions"

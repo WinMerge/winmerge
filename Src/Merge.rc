@@ -1514,6 +1514,11 @@ BEGIN
             BEGIN
                 MENUITEM "Equal",                       ID_FILTERMENU_DIFF_SIZE_EQUAL
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_SIZE_NOT_EQUAL
+                MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_SIZE_LESS
+                MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_SIZE_LESS_EQUAL
+                MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_SIZE_GREATER
+                MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_SIZE_GREATER_EQUAL
+                MENUITEM SEPARATOR
                 MENUITEM "Less than 10B",               ID_FILTERMENU_DIFF_SIZE_LT_10B
                 MENUITEM "10B or more",                 ID_FILTERMENU_DIFF_SIZE_GE_10B
                 MENUITEM "Less than 100B",              ID_FILTERMENU_DIFF_SIZE_LT_100B
@@ -1526,6 +1531,11 @@ BEGIN
             BEGIN
                 MENUITEM "Equal",                       ID_FILTERMENU_DIFF_DATE_EQUAL
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_DATE_NOT_EQUAL
+                MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_DATE_LESS
+                MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_DATE_LESS_EQUAL
+                MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_DATE_GREATER
+                MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_DATE_GREATER_EQUAL
+                MENUITEM SEPARATOR
                 MENUITEM "Less than 1 second",          ID_FILTERMENU_DIFF_DATE_LT_1SECOND
                 MENUITEM "1 second or more",            ID_FILTERMENU_DIFF_DATE_GE_1SECOND
                 MENUITEM "Less than 1 minute",          ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
@@ -1548,6 +1558,7 @@ BEGIN
         MENUITEM "Target: &Left and Right",     ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT
         MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE
         MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT
+        MENUITEM "Target: &All",                ID_FILTERMENU_FILE_CONDITION_DIFF_ALL
     END
 END
 
@@ -1624,6 +1635,11 @@ BEGIN
     BEGIN
         MENUITEM "Equal",                       ID_FILTERMENU_DIFF_SIZE_EQUAL
         MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_SIZE_NOT_EQUAL
+        MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_SIZE_LESS
+        MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_SIZE_LESS_EQUAL
+        MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_SIZE_GREATER
+        MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_SIZE_GREATER_EQUAL
+        MENUITEM SEPARATOR
         MENUITEM "Less than 10B",               ID_FILTERMENU_DIFF_SIZE_LT_10B
         MENUITEM "10B or more",                 ID_FILTERMENU_DIFF_SIZE_GE_10B
         MENUITEM "Less than 100B",              ID_FILTERMENU_DIFF_SIZE_LT_100B
@@ -1640,6 +1656,11 @@ BEGIN
     BEGIN
         MENUITEM "Equal",                       ID_FILTERMENU_DIFF_DATE_EQUAL
         MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_DATE_NOT_EQUAL
+        MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_DATE_LESS
+        MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_DATE_LESS_EQUAL
+        MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_DATE_GREATER
+        MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_DATE_GREATER_EQUAL
+        MENUITEM SEPARATOR
         MENUITEM "Less than 1 second",          ID_FILTERMENU_DIFF_DATE_LT_1SECOND
         MENUITEM "1 second or more",            ID_FILTERMENU_DIFF_DATE_GE_1SECOND
         MENUITEM "Less than 1 minute",          ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
@@ -1651,6 +1672,19 @@ BEGIN
         MENUITEM "Less than 1 week",            ID_FILTERMENU_DIFF_DATE_LT_1WEEK
         MENUITEM "1 week or more",              ID_FILTERMENU_DIFF_DATE_GE_1WEEK
         MENUITEM "Custom Range...",             ID_FILTERMENU_DIFF_DATE_RANGE
+    END
+END
+
+IDR_POPUP_FILTERMENU_DIFF_PROP MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Equal",                       ID_FILTERMENU_DIFF_PROP_EQUAL
+        MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_PROP_NOT_EQUAL
+        MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_PROP_LESS
+        MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_PROP_LESS_EQUAL
+        MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_PROP_GREATER
+        MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_PROP_GREATER_EQUAL
     END
 END
 

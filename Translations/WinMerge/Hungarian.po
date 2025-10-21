@@ -1741,6 +1741,18 @@ msgstr "Egyenlő"
 msgid "Not Equal"
 msgstr "Nem egyenlő"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "Kevesebb, mint 10 B"
 
@@ -1791,6 +1803,9 @@ msgstr "Cél: Bal és &középső"
 
 msgid "Target: Middle and &Right"
 msgstr "Cél: Középső és &jobb"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

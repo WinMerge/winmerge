@@ -19,7 +19,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			for (int i = ID_FILTERMENU_CONDITION_ANY; i <= ID_FILTERMENU_CONDITION_RIGHT; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_ANY + m_targetSide) == i ? MF_CHECKED : 0));
-			for (int i = ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT; i++)
+			for (int i = ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_FILE_CONDITION_DIFF_ALL; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT + m_targetDiffSide) == i ? MF_CHECKED : 0));
 
@@ -34,7 +34,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				m_targetSide = command - ID_FILTERMENU_CONDITION_ANY;
 				continue;
 			}
-			else if (command >= ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT && command <= ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT)
+			else if (command >= ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT && command <= ID_FILTERMENU_FILE_CONDITION_DIFF_ALL)
 			{
 				m_targetDiffSide = command - ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT;
 				continue;
@@ -72,6 +72,8 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 			id = IDR_POPUP_FILTERMENU_DIFF_DATE;
 		else if (vt == VT_UI8 && m_propName.rfind(_T("Size")) == m_propName.length() - 4)
 			id = IDR_POPUP_FILTERMENU_DIFF_SIZE;
+		else
+			id = IDR_POPUP_FILTERMENU_DIFF_PROP;
 	}
 	if (id != 0)
 	{
@@ -128,7 +130,12 @@ String CFileFilterHelperMenu::defaultDiffProp(const String& name, int i) const
 	const String DiffSides1[] = { _T("Left"), _T("Left"), _T("Middle") };
 	const String DiffSides2[] = { _T("Right"), _T("Middle"), _T("Right") };
 	const String prop = ((i == 0) ? DiffSides1[m_targetDiffSide] : DiffSides2[m_targetDiffSide]);
-	return prop + (m_propName.empty() ? name : prop + _T("Prop(\"") + m_propName + _T("\")"));
+	return m_propName.empty() ? (prop + name) : (prop + _T("Prop(\"") + m_propName + _T("\")"));
+}
+
+String CFileFilterHelperMenu::defaultAllProp(const String& name, bool not) const
+{
+	return (not ? _T("not allequal(") : _T("allequal(")) + (m_propName.empty() ? name : _T("Prop(\"") + m_propName + _T("\")")) + _T(")");
 }
 
 String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* pParentWnd)
@@ -312,17 +319,27 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command >= ID_FILTERMENU_DIFF_SIZE_EQUAL && command <= ID_FILTERMENU_DIFF_SIZE_GE_1KB)
 	{
-		static const String DiffSizeConditions[] = {
-			_T("%1 = %2"), _T("%1 != %2"),
-			_T("abs(%1 - %2) < 10"), _T("abs(%1 - %2) >= 10"),
-			_T("abs(%1 - %2) < 100"), _T("abs(%1 - %2) >= 100"),
-			_T("abs(%1 - %2) < 1KB"), _T("abs(%1 - %2) >= 1KB")
-		};
-		const String identifier1 = defaultDiffProp(_T("Size"), 0);
-		const String identifier2 = defaultDiffProp(_T("Size"), 1);
-		result = masks.empty() ? masks : masks + _T("|");
-		result += _T("fe:") + strutils::format_string2(DiffSizeConditions[command - ID_FILTERMENU_DIFF_SIZE_EQUAL],
-			identifier1, identifier2);
+		if (m_targetDiffSide == 3)
+		{
+			result = masks.empty() ? masks : masks + _T("|");
+			result += _T("fe:") + defaultAllProp(_T("Size"), command == ID_FILTERMENU_DIFF_SIZE_NOT_EQUAL);
+		}
+		else
+		{
+			static const String DiffSizeConditions[] = {
+				_T("%1 = %2"), _T("%1 != %2"),
+				_T("%1 < %2"), _T("%1 <= %2"),
+				_T("%1 > %2"), _T("%1 >= %2"),
+				_T("abs(%1 - %2) < 10"), _T("abs(%1 - %2) >= 10"),
+				_T("abs(%1 - %2) < 100"), _T("abs(%1 - %2) >= 100"),
+				_T("abs(%1 - %2) < 1KB"), _T("abs(%1 - %2) >= 1KB")
+			};
+			const String identifier1 = defaultDiffProp(_T("Size"), 0);
+			const String identifier2 = defaultDiffProp(_T("Size"), 1);
+			result = masks.empty() ? masks : masks + _T("|");
+			result += _T("fe:") + strutils::format_string2(DiffSizeConditions[command - ID_FILTERMENU_DIFF_SIZE_EQUAL],
+				identifier1, identifier2);
+		}
 	}
 	else if (command == ID_FILTERMENU_DIFF_SIZE_RANGE)
 	{
@@ -332,19 +349,29 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command >= ID_FILTERMENU_DIFF_DATE_EQUAL && command <= ID_FILTERMENU_DIFF_DATE_GE_1WEEK)
 	{
-		static const String DiffDateConditions[] = {
-			_T("%1 = %2"), _T("%1 != %2"),
-			_T("abs(%1 - %2) < 1second"), _T("abs(%1 - %2) >= 1second"),
-			_T("abs(%1 - %2) < 1minute"), _T("abs(%1 - %2) >= 1minute"),
-			_T("abs(%1 - %2) < 1hour"), _T("abs(%1 - %2) >= 1hour"),
-			_T("abs(%1 - %2) < 1day"), _T("abs(%1 - %2) >= 1day"),
-			_T("abs(%1 - %2) < 1week"), _T("abs(%1 - %2) >= 1week")
-		};
-		const String identifier1 = defaultDiffProp(_T("Date"), 0);
-		const String identifier2 = defaultDiffProp(_T("Date"), 1);
-		result = masks.empty() ? masks : masks + _T("|");
-		result += _T("fe:") + strutils::format_string2(DiffDateConditions[command - ID_FILTERMENU_DIFF_DATE_EQUAL],
-			identifier1, identifier2);
+		if (m_targetDiffSide == 3)
+		{
+			result = masks.empty() ? masks : masks + _T("|");
+			result += _T("fe:") + defaultAllProp(_T("Date"), command == ID_FILTERMENU_DIFF_DATE_NOT_EQUAL);
+		}
+		else
+		{
+			static const String DiffDateConditions[] = {
+				_T("%1 = %2"), _T("%1 != %2"),
+				_T("%1 < %2"), _T("%1 <= %2"),
+				_T("%1 > %2"), _T("%1 >= %2"),
+				_T("abs(%1 - %2) < 1second"), _T("abs(%1 - %2) >= 1second"),
+				_T("abs(%1 - %2) < 1minute"), _T("abs(%1 - %2) >= 1minute"),
+				_T("abs(%1 - %2) < 1hour"), _T("abs(%1 - %2) >= 1hour"),
+				_T("abs(%1 - %2) < 1day"), _T("abs(%1 - %2) >= 1day"),
+				_T("abs(%1 - %2) < 1week"), _T("abs(%1 - %2) >= 1week")
+			};
+			const String identifier1 = defaultDiffProp(_T("Date"), 0);
+			const String identifier2 = defaultDiffProp(_T("Date"), 1);
+			result = masks.empty() ? masks : masks + _T("|");
+			result += _T("fe:") + strutils::format_string2(DiffDateConditions[command - ID_FILTERMENU_DIFF_DATE_EQUAL],
+				identifier1, identifier2);
+		}
 	}
 	else if (command == ID_FILTERMENU_DIFF_DATE_RANGE)
 	{
@@ -354,14 +381,43 @@ String CFileFilterHelperMenu::OnCommand(const String& masks, int command, CWnd* 
 	}
 	else if (command >= ID_FILTERMENU_DIFF_ATTR_EQUAL && command <= ID_FILTERMENU_DIFF_ATTR_NOT_EQUAL)
 	{
-		static const String DiffAttrConditions[] = {
-			_T("%1 = %2"), _T("%1 != %2")
-		};
-		const String identifier1 = DiffSides1[m_targetDiffSide] + _T("AttrStr");
-		const String identifier2 = DiffSides2[m_targetDiffSide] + _T("AttrStr");
-		result = masks.empty() ? masks : masks + _T("|");
-		result += _T("fe:") + strutils::format_string2(DiffAttrConditions[command - ID_FILTERMENU_DIFF_ATTR_EQUAL],
-			identifier1, identifier2);
+		if (m_targetDiffSide == 3)
+		{
+			result = masks.empty() ? masks : masks + _T("|");
+			result += _T("fe:") + defaultAllProp(_T("AttrStr"), command == ID_FILTERMENU_DIFF_ATTR_NOT_EQUAL);
+		}
+		else
+		{
+			static const String DiffAttrConditions[] = {
+				_T("%1 = %2"), _T("%1 != %2")
+			};
+			const String identifier1 = DiffSides1[m_targetDiffSide] + _T("AttrStr");
+			const String identifier2 = DiffSides2[m_targetDiffSide] + _T("AttrStr");
+			result = masks.empty() ? masks : masks + _T("|");
+			result += _T("fe:") + strutils::format_string2(DiffAttrConditions[command - ID_FILTERMENU_DIFF_ATTR_EQUAL],
+				identifier1, identifier2);
+		}
+	}
+	else if (command >= ID_FILTERMENU_DIFF_PROP_EQUAL && command <= ID_FILTERMENU_DIFF_PROP_GREATER_EQUAL)
+	{
+		if (m_targetDiffSide == 3)
+		{
+			result = masks.empty() ? masks : masks + _T("|");
+			result += _T("fe:") + defaultAllProp(_T(""), command == ID_FILTERMENU_DIFF_PROP_NOT_EQUAL);
+		}
+		else
+		{
+			static const String DiffPropConditions[] = {
+				_T("%1 = %2"), _T("%1 != %2"),
+				_T("%1 < %2"), _T("%1 <= %2"),
+				_T("%1 > %2"), _T("%1 >= %2"),
+			};
+			const String identifier1 = defaultDiffProp(_T(""), 0);
+			const String identifier2 = defaultDiffProp(_T(""), 1);
+			result = masks.empty() ? masks : masks + _T("|");
+			result += _T("fe:") + strutils::format_string2(DiffPropConditions[command - ID_FILTERMENU_DIFF_PROP_EQUAL],
+				identifier1, identifier2);
+		}
 	}
 	else if (command == ID_FILTERMENU_ADDITIONAL_PROPS || command == ID_FILTERMENU_DIFF_ADDITIONAL_PROPS)
 	{

@@ -1512,6 +1512,18 @@ msgstr "Eşit"
 msgid "Not Equal"
 msgstr "Eşit Değil"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "10 milyardan az"
 
@@ -1562,6 +1574,9 @@ msgstr "Hedef: Sol ve &Orta"
 
 msgid "Target: Middle and &Right"
 msgstr "Hedef: Orta ve &Sağ"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

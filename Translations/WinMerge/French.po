@@ -1518,6 +1518,18 @@ msgstr "Égal"
 msgid "Not Equal"
 msgstr "Différent"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "Moins de 10 octets"
 
@@ -1568,6 +1580,9 @@ msgstr "Cible : Gauche et &Milieu"
 
 msgid "Target: Middle and &Right"
 msgstr "Cible : Milieu et &Droite"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

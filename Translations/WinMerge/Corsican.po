@@ -1514,6 +1514,18 @@ msgstr "Uguale"
 msgid "Not Equal"
 msgstr "Micca uguale"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "Inferiore à 10 o"
 
@@ -1564,6 +1576,9 @@ msgstr "Destinazione : Manca è &Centru"
 
 msgid "Target: Middle and &Right"
 msgstr "Destinazione : Centru è &Diritta"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

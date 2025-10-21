@@ -1514,6 +1514,18 @@ msgstr "Lika"
 msgid "Not Equal"
 msgstr "Inte lika"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "Mindre än 10 B"
 
@@ -1564,6 +1576,9 @@ msgstr "Mål: Vänster och Mitten"
 
 msgid "Target: Middle and &Right"
 msgstr "Må+l: Mitten och Höger"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

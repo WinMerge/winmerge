@@ -1513,6 +1513,18 @@ msgstr "Равно"
 msgid "Not Equal"
 msgstr "Не равно"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "Менее 10Б"
 
@@ -1563,6 +1575,9 @@ msgstr "Назначение: Слева и В центре"
 
 msgid "Target: Middle and &Right"
 msgstr "Назначение: В центре и Справа"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

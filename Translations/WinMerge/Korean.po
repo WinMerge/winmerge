@@ -1748,6 +1748,18 @@ msgstr "같음"
 msgid "Not Equal"
 msgstr "같지 않음"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "10B 미만"
 
@@ -1798,6 +1810,9 @@ msgstr "대상: 왼쪽 및 가운데(&M)"
 
 msgid "Target: Middle and &Right"
 msgstr "대상: 가운데 및 오른쪽(&R)"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

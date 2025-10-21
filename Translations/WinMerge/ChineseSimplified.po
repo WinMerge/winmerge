@@ -1515,6 +1515,18 @@ msgstr "相同"
 msgid "Not Equal"
 msgstr "不相同"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "小于 10 字节"
 
@@ -1565,6 +1577,9 @@ msgstr "目标：左和中(&M)"
 
 msgid "Target: Middle and &Right"
 msgstr "目标：中和右(&R)"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

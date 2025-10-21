@@ -1511,6 +1511,18 @@ msgstr "Lygu"
 msgid "Not Equal"
 msgstr "Nelygu"
 
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
+
 msgid "Less than 10B"
 msgstr "Mažiau nei 10B"
 
@@ -1561,6 +1573,9 @@ msgstr "Rezultatai: Kairėje ir &Viduryje"
 
 msgid "Target: Middle and &Right"
 msgstr "Rezultatai: Viduryje ir &Dešinėje"
+
+msgid "Target: &All"
+msgstr ""
 
 msgid "&Clear conditions"
 msgstr ""

@@ -109,7 +109,8 @@ String CFilterConditionDlg::GetExpression()
 	String expression = (const wchar_t*)expressionptr;
 	const String lhs = GetLHS();
 	String result;
-	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sLHS == _T("lineCount(%1)"))
+	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sLHS == _T("lineCount(%1)") ||
+	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I4 || m_vt == VT_UI8 || m_vt == VT_I8)
 	{
 		result = strutils::format_string3(expression, lhs, m_sValue1, m_sValue2);
 	}

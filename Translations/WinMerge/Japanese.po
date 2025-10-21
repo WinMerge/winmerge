@@ -1510,6 +1510,18 @@ msgstr "一致"
 msgid "Not Equal"
 msgstr "不一致"
 
+msgid "Less Than"
+msgstr "<"
+
+msgid "Less Than or Equal to"
+msgstr "<="
+
+msgid "Greater Than"
+msgstr ">"
+
+msgid "Greater Than or Equal to"
+msgstr ">="
+
 msgid "Less than 10B"
 msgstr "10B 未満"
 
@@ -1560,6 +1572,9 @@ msgstr "対象: 左と中央(&M)"
 
 msgid "Target: Middle and &Right"
 msgstr "対象: 中央と右(&R)"
+
+msgid "Target: &All"
+msgstr "対象: すべて(&A)"
 
 msgid "&Clear conditions"
 msgstr "条件をクリア(&C)"
