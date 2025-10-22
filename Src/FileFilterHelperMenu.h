@@ -16,7 +16,7 @@ private:
 	String defaultProp(const String& name) const;
 	String defaultDiffProp(const String& name, int i) const;
 	String defaultAllProp(const String& name, bool not) const;
-	String OnCommand(const String& masks, int command, CWnd* pParentWnd);
+	std::optional<String> OnCommand(const String& masks, int command, CWnd* pParentWnd);
 	int m_targetSide = 0; // 0 = any, 1 = left, 2 = middle, 3 = right
 	int m_targetDiffSide = 0; // 0 = left&right 1 = left&middle, 2 = middle&right, 3 = all
 	String m_propName;
