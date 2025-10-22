@@ -72,6 +72,7 @@ protected:
 	afx_msg void OnDefaults() override;
 	afx_msg void OnCbnSelchangeComparemethodcombo();
 	afx_msg void OnBnClickedRecursCheck();
+	afx_msg void OnEditChangeAdditionalCompareCondition();
 	afx_msg void OnBnClickedAdditionalCompareConditionMenu();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

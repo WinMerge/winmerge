@@ -31,6 +31,9 @@ public:
 		CMenu* pPopup = GetSubMenu(0);
 		if (pPopup)
 		{
+#ifndef _WIN64
+			pPopup->EnableMenuItem(ID_ADDCMPMENU_PROPS, MF_GRAYED);
+#endif
 			const int command = pPopup->TrackPopupMenu(
 				TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, x, y, pParentWnd);
 			if (command == 0)
@@ -120,6 +123,8 @@ BEGIN_MESSAGE_MAP(PropCompareFolder, OptionsPanel)
 	//}}AFX_MSG_MAP
 	ON_CBN_SELCHANGE(IDC_COMPAREMETHODCOMBO, OnCbnSelchangeComparemethodcombo)
 	ON_BN_CLICKED(IDC_RECURS_CHECK, OnBnClickedRecursCheck)
+	ON_CBN_EDITCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
+	ON_CBN_SELCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
 	ON_BN_CLICKED(IDC_ADDTIONAL_COMPARE_CONDITION_MENU, OnBnClickedAdditionalCompareConditionMenu)
 END_MESSAGE_MAP()
 
@@ -213,6 +218,11 @@ void PropCompareFolder::OnCbnSelchangeComparemethodcombo()
 void PropCompareFolder::OnBnClickedRecursCheck()
 {
 	UpdateControls();
+}
+
+void PropCompareFolder::OnEditChangeAdditionalCompareCondition()
+{
+	m_ctlAdditionalCompareConditionEdit.OnEnChange();
 }
 
 void PropCompareFolder::OnBnClickedAdditionalCompareConditionMenu()

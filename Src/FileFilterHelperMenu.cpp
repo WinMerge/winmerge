@@ -6,7 +6,8 @@
 #include "PropertySystemMenu.h"
 #include "resource.h"
 
-static void RemoveMenuItemsInRangeRecursive(CMenu* pMenu, UINT idStart, UINT idEnd)
+template <typename Func>
+static void TraverseMenuRecursive(CMenu* pMenu, Func func)
 {
 	if (!pMenu)
 		return;
@@ -18,13 +19,28 @@ static void RemoveMenuItemsInRangeRecursive(CMenu* pMenu, UINT idStart, UINT idE
 		{
 			CMenu* pSubMenu = pMenu->GetSubMenu(i);
 			if (pSubMenu)
-				RemoveMenuItemsInRangeRecursive(pSubMenu, idStart, idEnd);
+				TraverseMenuRecursive(pSubMenu, func);
 		}
-		else if (id >= idStart && id <= idEnd)
-		{
-			pMenu->RemoveMenu(i, MF_BYPOSITION);
-		}
+		func(pMenu, i, id);
 	}
+}
+
+static void DisableMenuItemRecursive(CMenu* pMenu, UINT idDisabled)
+{
+	TraverseMenuRecursive(pMenu, [idDisabled](CMenu* pMenu, int index, UINT id)
+		{
+			if (id == idDisabled)
+				pMenu->EnableMenuItem(index, MF_DISABLED | MF_BYPOSITION);
+		});
+}
+
+static void RemoveMenuItemsInRangeRecursive(CMenu* pMenu, UINT idStart, UINT idEnd)
+{
+	TraverseMenuRecursive(pMenu, [idStart, idEnd](CMenu* pMenu, int index, UINT id)
+		{
+			if (id >= idStart && id <= idEnd)
+				pMenu->RemoveMenu(index, MF_BYPOSITION);
+		});
 }
 
 static void RemoveTrailingSeparator(CMenu* pMenu)
@@ -32,21 +48,21 @@ static void RemoveTrailingSeparator(CMenu* pMenu)
 	if (!pMenu)
 		return;
 	int count = pMenu->GetMenuItemCount();
-	if (count == 0)
-		return;
-	UINT state = pMenu->GetMenuState(count - 1, MF_BYPOSITION);
-	if (state & MF_SEPARATOR)
-		pMenu->RemoveMenu(count - 1, MF_BYPOSITION);
-	for (int i = 0; i < count; ++i)
+	if (count > 0)
 	{
-		UINT id = pMenu->GetMenuItemID(i);
-		if (id == (UINT)-1)
-		{
-			CMenu* pSubMenu = pMenu->GetSubMenu(i);
-			if (pSubMenu)
-				RemoveTrailingSeparator(pSubMenu);
-		}
+		UINT state = pMenu->GetMenuState(count - 1, MF_BYPOSITION);
+		if (state & MF_SEPARATOR)
+			pMenu->RemoveMenu(count - 1, MF_BYPOSITION);
 	}
+	TraverseMenuRecursive(pMenu, [](CMenu* pMenu, int index, UINT id)
+		{
+			if (id == (UINT)-1)
+			{
+				CMenu* pSubMenu = pMenu->GetSubMenu(index);
+				if (pSubMenu)
+					RemoveTrailingSeparator(pSubMenu);
+			}
+		});
 }
 
 std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x, int y, CWnd* pParentWnd)
@@ -59,6 +75,10 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 		CMenu* pPopup = GetSubMenu(0);
 		if (pPopup)
 		{
+#ifndef _WIN64
+			DisableMenuItemRecursive(pPopup, ID_FILTERMENU_ADDITIONAL_PROPS);
+			DisableMenuItemRecursive(pPopup, ID_FILTERMENU_DIFF_ADDITIONAL_PROPS);
+#endif
 			for (int i = ID_FILTERMENU_CONDITION_ANY; i <= ID_FILTERMENU_CONDITION_RIGHT; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_CONDITION_ANY + m_targetSide) == i ? MF_CHECKED : 0));
