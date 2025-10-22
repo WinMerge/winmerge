@@ -225,6 +225,11 @@ BOOL CFilterConditionDlg::OnInitDialog()
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("") });
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("") });
 	}
+	else if (m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8 || m_vt == VT_R8)
+	{
+		m_sValue1 = _T("0");
+		m_sValue2 = _T("0");
+	}
 
 	OnCbnSelchangeOperator();
 
