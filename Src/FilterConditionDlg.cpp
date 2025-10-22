@@ -181,7 +181,7 @@ BOOL CFilterConditionDlg::OnInitDialog()
 				{ _("Not Contains (regex)"), L"%1 not recontains %2" },
 			}, m_sOperator);
 	} 
-	else if (m_vt == VT_LPWSTR)
+	else if (m_vt == VT_LPWSTR || m_vt == (VT_VECTOR|VT_LPWSTR))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
 			{

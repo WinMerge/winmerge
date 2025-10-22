@@ -6,6 +6,49 @@
 #include "PropertySystemMenu.h"
 #include "resource.h"
 
+static void RemoveMenuItemsInRangeRecursive(CMenu* pMenu, UINT idStart, UINT idEnd)
+{
+	if (!pMenu)
+		return;
+	int itemCount = pMenu->GetMenuItemCount();
+	for (int i = itemCount - 1; i >= 0; --i)
+	{
+		UINT id = pMenu->GetMenuItemID(i);
+		if (id == (UINT)-1)
+		{
+			CMenu* pSubMenu = pMenu->GetSubMenu(i);
+			if (pSubMenu)
+				RemoveMenuItemsInRangeRecursive(pSubMenu, idStart, idEnd);
+		}
+		else if (id >= idStart && id <= idEnd)
+		{
+			pMenu->RemoveMenu(i, MF_BYPOSITION);
+		}
+	}
+}
+
+static void RemoveTrailingSeparator(CMenu* pMenu)
+{
+	if (!pMenu)
+		return;
+	int count = pMenu->GetMenuItemCount();
+	if (count == 0)
+		return;
+	UINT state = pMenu->GetMenuState(count - 1, MF_BYPOSITION);
+	if (state & MF_SEPARATOR)
+		pMenu->RemoveMenu(count - 1, MF_BYPOSITION);
+	for (int i = 0; i < count; ++i)
+	{
+		UINT id = pMenu->GetMenuItemID(i);
+		if (id == (UINT)-1)
+		{
+			CMenu* pSubMenu = pMenu->GetSubMenu(i);
+			if (pSubMenu)
+				RemoveTrailingSeparator(pSubMenu);
+		}
+	}
+}
+
 std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x, int y, CWnd* pParentWnd)
 {
 	std::optional<String> result;
@@ -22,6 +65,13 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			for (int i = ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_FILE_CONDITION_DIFF_ALL; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT + m_targetDiffSide) == i ? MF_CHECKED : 0));
+
+			if (m_targetDiffSide == 3)
+			{
+				RemoveMenuItemsInRangeRecursive(pPopup, ID_FILTERMENU_DIFF_SIZE_LESS, ID_FILTERMENU_DIFF_SIZE_RANGE);
+				RemoveMenuItemsInRangeRecursive(pPopup, ID_FILTERMENU_DIFF_DATE_LESS, ID_FILTERMENU_DIFF_DATE_RANGE);
+				RemoveTrailingSeparator(pPopup);
+			}
 
 			const int command = pPopup->TrackPopupMenu(
 				TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, x, y, pParentWnd);
@@ -82,6 +132,13 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 		CMenu* pPopup = menu.GetSubMenu(0);
 		if (pPopup)
 		{
+			if (m_targetDiffSide == 3)
+			{
+				RemoveMenuItemsInRangeRecursive(pPopup, ID_FILTERMENU_DIFF_SIZE_LESS, ID_FILTERMENU_DIFF_SIZE_RANGE);
+				RemoveMenuItemsInRangeRecursive(pPopup, ID_FILTERMENU_DIFF_DATE_LESS, ID_FILTERMENU_DIFF_DATE_RANGE);
+				RemoveMenuItemsInRangeRecursive(pPopup, ID_FILTERMENU_DIFF_PROP_LESS, ID_FILTERMENU_DIFF_PROP_GREATER_EQUAL);
+			}
+
 			CPoint pt;
 			GetCursorPos(&pt);
 			const int command2 = pPopup->TrackPopupMenu(
@@ -97,11 +154,15 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 		if (command == ID_FILTERMENU_ADDITIONAL_PROPS)
 		{
 			if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
-				vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR)
+				vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR || vt == (VT_VECTOR|VT_LPWSTR))
 			{
 				CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _("%1 = %2"), _T("%1"));
 				if (dlg.DoModal() == IDOK)
 					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+			}
+			else
+			{
+				int a = 0;
 			}
 		}
 		else
@@ -112,6 +173,10 @@ std::optional<String> CFileFilterHelperMenu::ShowPropMenu(int command, const Str
 				CFilterConditionDlg dlg(true, m_targetDiffSide, _T(""), m_propName, _("%1 = %2"), _T("abs(%1 - %2)"));
 				if (dlg.DoModal() == IDOK)
 					result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+			}
+			else
+			{
+				int a = 0;
 			}
 		}
 	}
