@@ -1471,6 +1471,23 @@ def
       </para>
     </section>
 
+    <section>
+      <title>
+        Additional comparison conditions<indexterm>
+          <primary>filter expression</primary>
+        </indexterm>
+      </title>
+
+      <para>
+        Allows specifying additional comparison conditions using filter expressions when comparing folders.
+        For example, even if files are considered identical by the selected comparison method (such as Full Contents),
+        you can add conditions like <screen>allequal(Date)</screen> or <screen>LeftDate = RightDate</screen>
+        to require that file modification dates also match.
+        When you click the <guilabel>=</guilabel> button to the right of the input field,
+        a menu appears with items such as <guilabel>Compare Size</guilabel> and <guilabel>Compare Date</guilabel>.
+        Selecting <guilabel>Compare Date</guilabel> automatically inserts <literal>allequal(Date)</literal> into the field.
+      </para>
+    </section>
   </section>
 
   <section id="Configuration_compare_table">
