@@ -1483,6 +1483,9 @@ msgstr "100000未満"
 msgid "100000 or more"
 msgstr "100000以上"
 
+msgid "Additional &Properties..."
+msgstr "追加プロパティ(&P)..."
+
 msgid "Add F&older Condition"
 msgstr "フォルダー条件を追加(&O)"
 
@@ -1506,6 +1509,18 @@ msgstr "一致"
 
 msgid "Not Equal"
 msgstr "不一致"
+
+msgid "Less Than"
+msgstr "<"
+
+msgid "Less Than or Equal to"
+msgstr "<="
+
+msgid "Greater Than"
+msgstr ">"
+
+msgid "Greater Than or Equal to"
+msgstr ">="
 
 msgid "Less than 10B"
 msgstr "10B 未満"
@@ -1557,6 +1572,24 @@ msgstr "対象: 左と中央(&M)"
 
 msgid "Target: Middle and &Right"
 msgstr "対象: 中央と右(&R)"
+
+msgid "Target: &All"
+msgstr "対象: すべて(&A)"
+
+msgid "&Clear conditions"
+msgstr "条件をクリア(&C)"
+
+msgid "Compare &Size"
+msgstr "サイズを比較(&S)"
+
+msgid "Compare &Date"
+msgstr "更新日時を比較(&D)"
+
+msgid "Compare &Attributes"
+msgstr "属性を比較(&A)"
+
+msgid "Compare C&ontents"
+msgstr "内容を比較(&O)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -2566,6 +2599,9 @@ msgstr "クイック比較切替閾値 (MB)(&Q):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
+
+msgid "Additional comparison condi&tions:"
+msgstr "追加比較条件(&T):"
 
 msgid "File patterns:"
 msgstr "ファイル パターン:"
@@ -3809,6 +3845,10 @@ msgid "Image files are different"
 msgstr "画像ファイルは異なります"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr "ファイルは異なります (式: %1)"
+
+#, c-format
 msgid "Group%d"
 msgstr "グループ%d"
 
@@ -4749,6 +4789,10 @@ msgstr "2番目と3番目"
 
 msgid "Filter applied"
 msgstr "フィルター適用"
+
+#, c-format
+msgid "Compare %1"
+msgstr "%1 を比較"
 
 #, c-format
 msgid "Clipboard at %s"

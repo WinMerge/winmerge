@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "FilterConditionDlg.h"
+#include "PropertySystem.h"
 #include "resource.h"
 
 #ifdef _DEBUG
@@ -23,11 +24,12 @@ CFilterConditionDlg::CFilterConditionDlg(CWnd* pParent /*= nullptr*/)
 {
 }
 
-CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& field, const String& ope, const String& transform, CWnd* pParent /* = nullptr*/)
+CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& field, const String& propName, const String& ope, const String& transform, CWnd* pParent /* = nullptr*/)
 : CTrDialog(CFilterConditionDlg::IDD, pParent)
 , m_bDiff(diff)
 , m_nSide(side)
 , m_sField(field)
+, m_sPropName(propName)
 , m_sOperator(ope)
 , m_tmValue1(CTime::GetCurrentTime())
 , m_tmValue2(CTime::GetCurrentTime())
@@ -69,13 +71,32 @@ String CFilterConditionDlg::GetLHS() const
 	if (!m_bDiff)
 	{
 		const String Sides[] = { _T(""), _T("Left"), _T("Middle"), _T("Right")};
-		lhs = strutils::format_string1(m_sLHS, Sides[m_nSide] + m_sField);
+		if (!m_sPropName.empty())
+		{
+			String str = Sides[m_nSide] + _T("Prop(\"") + m_sPropName + _T("\")");
+			if (m_vt == VT_FILETIME)
+				str = _T("toDateStr(") + str + _T(")");
+			lhs = strutils::format_string1(m_sLHS, str);
+		}
+		else
+		{
+			lhs = strutils::format_string1(m_sLHS, Sides[m_nSide] + m_sField);
+		}
 	}
 	else
 	{
 		const String DiffSides1[] = { _T("Left"), _T("Left"), _T("Middle") };
 		const String DiffSides2[] = { _T("Right"), _T("Middle"), _T("Right") };
-		lhs = strutils::format_string2(m_sLHS, DiffSides1[m_nSide] + m_sField, DiffSides2[m_nSide] + m_sField);
+		if (!m_sPropName.empty())
+		{
+			const String str1 = DiffSides1[m_nSide] + _T("Prop(\"") + m_sPropName + _T("\")");
+			const String str2 = DiffSides2[m_nSide] + _T("Prop(\"") + m_sPropName + _T("\")");
+			lhs = strutils::format_string2(m_sLHS, str1, str2);
+		}
+		else
+		{
+			lhs = strutils::format_string2(m_sLHS, DiffSides1[m_nSide] + m_sField, DiffSides2[m_nSide] + m_sField);
+		}
 	}
 	return lhs;
 }
@@ -88,7 +109,8 @@ String CFilterConditionDlg::GetExpression()
 	String expression = (const wchar_t*)expressionptr;
 	const String lhs = GetLHS();
 	String result;
-	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sLHS == _T("lineCount(%1)"))
+	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sLHS == _T("lineCount(%1)") ||
+	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I4 || m_vt == VT_UI8 || m_vt == VT_I8)
 	{
 		result = strutils::format_string3(expression, lhs, m_sValue1, m_sValue2);
 	}
@@ -127,8 +149,15 @@ BOOL CFilterConditionDlg::OnInitDialog()
 
 	SetDlgItemText(IDC_CONDITION_LHS, GetLHS());
 
+	if (!m_sPropName.empty())
+	{
+		PropertySystem ps({ m_sPropName });
+		ps.GetPropertyType(0, m_vt);
+	}
+
 	// Initialize the operator combo box
-	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sField == _T("DateStr") || m_sLHS == _T("lineCount(%1)"))
+	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sField == _T("DateStr") ||
+	    m_sLHS == _T("lineCount(%1)") || m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8)
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
 			{
@@ -146,6 +175,18 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
 			{
+				{ _("Contains"), L"%1 contains %2" },
+				{ _("Not Contains"), L"%1 not contains %2" },
+				{ _("Contains (regex)"), L"%1 recontains %2" },
+				{ _("Not Contains (regex)"), L"%1 not recontains %2" },
+			}, m_sOperator);
+	} 
+	else if (m_vt == VT_LPWSTR || m_vt == (VT_VECTOR|VT_LPWSTR))
+	{
+		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
+			{
+				{ _("Equals"), L"%1 = %2" },
+				{ _("Does not equal"), L"%1 != %2" },
 				{ _("Contains"), L"%1 contains %2" },
 				{ _("Not Contains"), L"%1 not contains %2" },
 				{ _("Contains (regex)"), L"%1 recontains %2" },
@@ -183,6 +224,11 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("") });
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("") });
+	}
+	else if (m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8 || m_vt == VT_R8)
+	{
+		m_sValue1 = _T("0");
+		m_sValue2 = _T("0");
 	}
 
 	OnCbnSelchangeOperator();

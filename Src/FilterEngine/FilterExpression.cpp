@@ -194,22 +194,28 @@ bool FilterExpression::Parse(const std::string& expressionStr)
 	return Parse();
 }
 
+static bool ContainsTrue(const ValueType& value)
+{
+	if (const auto boolVal = std::get_if<bool>(&value))
+		return *boolVal;
+
+	if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&value))
+	{
+		for (const auto& item : *arrayVal->get())
+		{
+			if (ContainsTrue(item.value))
+				return true;
+		}
+	}
+	return false;
+}
+
 bool FilterExpression::Evaluate(const DIFFITEM& di)
 {
 	try
 	{
 		const auto result = rootNode->Evaluate(di);
-		if (const auto boolVal = std::get_if<bool>(&result))
-			return *boolVal;
-		if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&result))
-		{
-			const auto& vec = *arrayVal->get();
-			return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
-				const auto boolVal = std::get_if<bool>(&item.value);
-				return boolVal && *boolVal;
-				});
-		}
-		return false;
+		return ContainsTrue(result);
 	}
 	catch (const Poco::RegularExpressionException& e)
 	{

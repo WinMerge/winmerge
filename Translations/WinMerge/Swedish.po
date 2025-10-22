@@ -1487,6 +1487,9 @@ msgstr "Mindre än 100000"
 msgid "100000 or more"
 msgstr "100000 eller mer"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Lägg till katalogkondition"
 
@@ -1510,6 +1513,18 @@ msgstr "Lika"
 
 msgid "Not Equal"
 msgstr "Inte lika"
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
 
 msgid "Less than 10B"
 msgstr "Mindre än 10 B"
@@ -1561,6 +1576,24 @@ msgstr "Mål: Vänster och Mitten"
 
 msgid "Target: Middle and &Right"
 msgstr "Må+l: Mitten och Höger"
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "Om WinMerge"
@@ -2566,6 +2599,9 @@ msgstr "Tröskelvärde för växling till snabbjämförelse (MB):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Tröskelvärde för växling till binär jämförelse (MB):"
+
+msgid "Additional comparison condi&tions:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Filnamnsmönster:"
@@ -3809,6 +3845,10 @@ msgid "Image files are different"
 msgstr "Bilderna är olika"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Grupp%d"
 
@@ -4747,6 +4787,10 @@ msgstr "Andra och Tredje"
 
 msgid "Filter applied"
 msgstr "Filter verkställt"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"

@@ -260,6 +260,14 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_piFilterGlobal = &m_fileHelper;
 	pCtxt->m_piFilterGlobal->SetDiffContext(pCtxt);
 	
+	pCtxt->m_pAdditionalCompareExpression.reset();
+	const String additionalCompareCondition = GetOptionsMgr()->GetString(OPT_CMP_ADDITIONAL_CONDITION);
+	if (!additionalCompareCondition.empty())
+	{
+		pCtxt->m_pAdditionalCompareExpression = std::make_unique<FilterExpression>(ucr::toUTF8(additionalCompareCondition));
+		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
+	}
+
 	std::vector<String> names;
 	if (m_pDirView)
 		names = m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames();
@@ -268,6 +276,16 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	{
 		if (std::find(std::begin(names), std::end(names), name) == std::end(names))
 			names.push_back(name);
+	}
+	if (pCtxt->m_pAdditionalCompareExpression)
+	{
+		const auto names3 = pCtxt->m_pAdditionalCompareExpression->GetPropertyNames();
+		for (const auto& name : names3)
+		{
+			String tname = ucr::toTString(name);
+			if (std::find(std::begin(names), std::end(names), tname) == std::end(names))
+				names.push_back(tname);
+		}
 	}
 	pCtxt->m_pPropertySystem.reset(new PropertySystem(names));
 
@@ -286,8 +304,14 @@ void CDirDoc::CheckFilter()
 		return;
 	for (const auto* error: m_pCtxt->m_piFilterGlobal->GetErrorList())
 	{
-		String msg = FormatFilterErrorSummary(*error);
+		const String msg = FormatFilterErrorSummary(*error);
 		RootLogger::Error(msg);
+	}
+	if (m_pCtxt->m_pAdditionalCompareExpression && m_pCtxt->m_pAdditionalCompareExpression->errorCode != 0)
+	{
+		const String msg = FormatFilterErrorSummary(*m_pCtxt->m_pAdditionalCompareExpression);
+		RootLogger::Error(msg);
+		m_pCtxt->m_pAdditionalCompareExpression.reset();
 	}
 }
 

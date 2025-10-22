@@ -1715,6 +1715,9 @@ msgstr ""
 msgid "100000 or more"
 msgstr ""
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr ""
 
@@ -1737,6 +1740,18 @@ msgid "Equal"
 msgstr ""
 
 msgid "Not Equal"
+msgstr ""
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
 msgstr ""
 
 msgid "Less than 10B"
@@ -1788,6 +1803,24 @@ msgid "Target: Left and &Middle"
 msgstr ""
 
 msgid "Target: Middle and &Right"
+msgstr ""
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
 msgstr ""
 
 #, c-format
@@ -3022,6 +3055,9 @@ msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr ""
 
 msgid "Switch to &binary compare when size exceeds (MB):"
+msgstr ""
+
+msgid "Additional comparison condi&tions:"
 msgstr ""
 
 msgid "File patterns:"
@@ -4347,6 +4383,10 @@ msgid "Image files are different"
 msgstr ""
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr ""
 
@@ -5271,6 +5311,10 @@ msgid "2nd and 3rd"
 msgstr ""
 
 msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Compare %1"
 msgstr ""
 
 #, c-format

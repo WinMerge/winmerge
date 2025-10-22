@@ -1457,6 +1457,7 @@ BEGIN
                 MENUITEM "100000 or more",              ID_FILTERMENU_LINES_GE_100000
                 MENUITEM "Custom Range...",             ID_FILTERMENU_LINES_RANGE
             END
+            MENUITEM "Additional &Properties...",       ID_FILTERMENU_ADDITIONAL_PROPS
         END
         POPUP "Add F&older Condition"
         BEGIN
@@ -1513,6 +1514,11 @@ BEGIN
             BEGIN
                 MENUITEM "Equal",                       ID_FILTERMENU_DIFF_SIZE_EQUAL
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_SIZE_NOT_EQUAL
+                MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_SIZE_LESS
+                MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_SIZE_LESS_EQUAL
+                MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_SIZE_GREATER
+                MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_SIZE_GREATER_EQUAL
+                MENUITEM SEPARATOR
                 MENUITEM "Less than 10B",               ID_FILTERMENU_DIFF_SIZE_LT_10B
                 MENUITEM "10B or more",                 ID_FILTERMENU_DIFF_SIZE_GE_10B
                 MENUITEM "Less than 100B",              ID_FILTERMENU_DIFF_SIZE_LT_100B
@@ -1525,6 +1531,11 @@ BEGIN
             BEGIN
                 MENUITEM "Equal",                       ID_FILTERMENU_DIFF_DATE_EQUAL
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_DATE_NOT_EQUAL
+                MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_DATE_LESS
+                MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_DATE_LESS_EQUAL
+                MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_DATE_GREATER
+                MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_DATE_GREATER_EQUAL
+                MENUITEM SEPARATOR
                 MENUITEM "Less than 1 second",          ID_FILTERMENU_DIFF_DATE_LT_1SECOND
                 MENUITEM "1 second or more",            ID_FILTERMENU_DIFF_DATE_GE_1SECOND
                 MENUITEM "Less than 1 minute",          ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
@@ -1542,10 +1553,152 @@ BEGIN
                 MENUITEM "Equal",                       ID_FILTERMENU_DIFF_ATTR_EQUAL
                 MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_ATTR_NOT_EQUAL
             END
+            MENUITEM "Additional &Properties...",       ID_FILTERMENU_DIFF_ADDITIONAL_PROPS
         END
         MENUITEM "Target: &Left and Right",     ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT
         MENUITEM "Target: Left and &Middle",    ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_MIDDLE
         MENUITEM "Target: Middle and &Right",   ID_FILTERMENU_FILE_CONDITION_DIFF_MIDDLE_RIGHT
+        MENUITEM "Target: &All",                ID_FILTERMENU_FILE_CONDITION_DIFF_ALL
+    END
+END
+
+IDR_POPUP_FILTERMENU_SIZE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Less than 1KB",               ID_FILTERMENU_SIZE_LT_1KB
+        MENUITEM "1KB or more",                 ID_FILTERMENU_SIZE_GE_1KB
+        MENUITEM "Less than 10KB",              ID_FILTERMENU_SIZE_LT_10KB
+        MENUITEM "10KB or more",                ID_FILTERMENU_SIZE_GE_10KB
+        MENUITEM "Less than 100KB",             ID_FILTERMENU_SIZE_LT_100KB
+        MENUITEM "100KB or more",               ID_FILTERMENU_SIZE_GE_100KB
+        MENUITEM "Less than 1MB",               ID_FILTERMENU_SIZE_LT_1MB
+        MENUITEM "1MB or more",                 ID_FILTERMENU_SIZE_GE_1MB
+        MENUITEM "Less than 10MB",              ID_FILTERMENU_SIZE_LT_10MB
+        MENUITEM "10MB or more",                ID_FILTERMENU_SIZE_GE_10MB
+        MENUITEM "Less than 100MB",             ID_FILTERMENU_SIZE_LT_100MB
+        MENUITEM "100MB or more",               ID_FILTERMENU_SIZE_GE_100MB
+        MENUITEM "Less than 1GB",               ID_FILTERMENU_SIZE_LT_1GB
+        MENUITEM "1GB or more",                 ID_FILTERMENU_SIZE_GE_1GB
+        MENUITEM "Custom Range...",             ID_FILTERMENU_SIZE_RANGE
+    END
+END
+
+IDR_POPUP_FILTERMENU_DATE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "&Hour"
+        BEGIN
+            MENUITEM "More than 1 hour ago",        ID_FILTERMENU_DATE_HOUR_BEFORE_1
+            MENUITEM "Within 1 hour",               ID_FILTERMENU_DATE_HOUR_WITHIN_1
+        END
+        POPUP "&Day"
+        BEGIN
+            MENUITEM "Before today",                ID_FILTERMENU_DATE_DAY_BEFORE_TODAY
+            MENUITEM "Today",                       ID_FILTERMENU_DATE_DAY_TODAY
+            MENUITEM "Before yesterday",            ID_FILTERMENU_DATE_DAY_BEFORE_YESTERDAY
+            MENUITEM "Yesterday",                   ID_FILTERMENU_DATE_DAY_YESTERDAY
+            MENUITEM "Since yesterday",             ID_FILTERMENU_DATE_DAY_SINCE_YESTERDAY
+        END
+        POPUP "&Week"
+        BEGIN
+            MENUITEM "Before this week",            ID_FILTERMENU_DATE_WEEK_BEFORE_THIS
+            MENUITEM "This week",                   ID_FILTERMENU_DATE_WEEK_THIS
+            MENUITEM "Before last week",            ID_FILTERMENU_DATE_WEEK_BEFORE_LAST
+            MENUITEM "Last week",                   ID_FILTERMENU_DATE_WEEK_LAST
+            MENUITEM "Since last week",             ID_FILTERMENU_DATE_WEEK_SINCE_LAST
+        END
+        POPUP "&Month"
+        BEGIN
+            MENUITEM "Before this month",           ID_FILTERMENU_DATE_MONTH_BEFORE_THIS
+            MENUITEM "This month",                  ID_FILTERMENU_DATE_MONTH_THIS
+            MENUITEM "Before last month",           ID_FILTERMENU_DATE_MONTH_BEFORE_LAST
+            MENUITEM "Last month",                  ID_FILTERMENU_DATE_MONTH_LAST
+            MENUITEM "Since last month",            ID_FILTERMENU_DATE_MONTH_SINCE_LAST
+        END
+        POPUP "&Year"
+        BEGIN
+            MENUITEM "Before this year",            ID_FILTERMENU_DATE_YEAR_BEFORE_THIS
+            MENUITEM "This year",                   ID_FILTERMENU_DATE_YEAR_THIS
+            MENUITEM "Before last year",            ID_FILTERMENU_DATE_YEAR_BEFORE_LAST
+            MENUITEM "Last year",                   ID_FILTERMENU_DATE_YEAR_LAST
+            MENUITEM "Since last year",             ID_FILTERMENU_DATE_YEAR_SINCE_LAST
+        END
+        MENUITEM "&Custom Range...",            ID_FILTERMENU_DATE_RANGE
+    END
+END
+
+IDR_POPUP_FILTERMENU_DIFF_SIZE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Equal",                       ID_FILTERMENU_DIFF_SIZE_EQUAL
+        MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_SIZE_NOT_EQUAL
+        MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_SIZE_LESS
+        MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_SIZE_LESS_EQUAL
+        MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_SIZE_GREATER
+        MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_SIZE_GREATER_EQUAL
+        MENUITEM SEPARATOR
+        MENUITEM "Less than 10B",               ID_FILTERMENU_DIFF_SIZE_LT_10B
+        MENUITEM "10B or more",                 ID_FILTERMENU_DIFF_SIZE_GE_10B
+        MENUITEM "Less than 100B",              ID_FILTERMENU_DIFF_SIZE_LT_100B
+        MENUITEM "100B or more",                ID_FILTERMENU_DIFF_SIZE_GE_100B
+        MENUITEM "Less than 1KB",               ID_FILTERMENU_DIFF_SIZE_LT_1KB
+        MENUITEM "1KB or more",                 ID_FILTERMENU_DIFF_SIZE_GE_1KB
+        MENUITEM "Custom Range...",             ID_FILTERMENU_DIFF_SIZE_RANGE
+    END
+END
+
+IDR_POPUP_FILTERMENU_DIFF_DATE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Equal",                       ID_FILTERMENU_DIFF_DATE_EQUAL
+        MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_DATE_NOT_EQUAL
+        MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_DATE_LESS
+        MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_DATE_LESS_EQUAL
+        MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_DATE_GREATER
+        MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_DATE_GREATER_EQUAL
+        MENUITEM SEPARATOR
+        MENUITEM "Less than 1 second",          ID_FILTERMENU_DIFF_DATE_LT_1SECOND
+        MENUITEM "1 second or more",            ID_FILTERMENU_DIFF_DATE_GE_1SECOND
+        MENUITEM "Less than 1 minute",          ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
+        MENUITEM "1 minute or more",            ID_FILTERMENU_DIFF_DATE_GE_1MINUTE
+        MENUITEM "Less than 1 hour",            ID_FILTERMENU_DIFF_DATE_LT_1HOUR
+        MENUITEM "1 hour or more",              ID_FILTERMENU_DIFF_DATE_GE_1HOUR
+        MENUITEM "Less than 1 day",             ID_FILTERMENU_DIFF_DATE_LT_1DAY
+        MENUITEM "1 day or more",               ID_FILTERMENU_DIFF_DATE_GE_1DAY
+        MENUITEM "Less than 1 week",            ID_FILTERMENU_DIFF_DATE_LT_1WEEK
+        MENUITEM "1 week or more",              ID_FILTERMENU_DIFF_DATE_GE_1WEEK
+        MENUITEM "Custom Range...",             ID_FILTERMENU_DIFF_DATE_RANGE
+    END
+END
+
+IDR_POPUP_FILTERMENU_DIFF_PROP MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Equal",                       ID_FILTERMENU_DIFF_PROP_EQUAL
+        MENUITEM "Not Equal",                   ID_FILTERMENU_DIFF_PROP_NOT_EQUAL
+        MENUITEM "Less Than",                   ID_FILTERMENU_DIFF_PROP_LESS
+        MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_PROP_LESS_EQUAL
+        MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_PROP_GREATER
+        MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_PROP_GREATER_EQUAL
+    END
+END
+
+IDR_POPUP_ADDCMPMENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Clear conditions",           ID_ADDCMPMENU_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "Compare &Size",               ID_ADDCMPMENU_CMP_SIZE
+        MENUITEM "Compare &Date",               ID_ADDCMPMENU_CMP_DATE
+        MENUITEM "Compare &Attributes",         ID_ADDCMPMENU_CMP_ATTR
+        MENUITEM "Compare C&ontents",           ID_ADDCMPMENU_CMP_CONTENTS
+        MENUITEM "Additional &Properties...",   ID_ADDCMPMENU_PROPS
     END
 END
 
@@ -2655,11 +2808,14 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,98,279,10
     CONTROL         "Ignore &reparse points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,110,279,10
     LTEXT           "Switch to &quick compare when size exceeds (MB):",IDC_STATIC,6,122,279,10
-    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,134,30,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,134,30,13,ES_AUTOHSCROLL
     LTEXT           "Switch to &binary compare when size exceeds (MB):",IDC_STATIC,6,148,279,10
-    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,160,30,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,160,30,13,ES_AUTOHSCROLL
     LTEXT           "C&PU cores to use:",IDC_STATIC,6,174,239,10
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,186,30,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,186,30,13,ES_AUTOHSCROLL
+    LTEXT           "Additional comparison condi&tions:",IDC_STATIC,6,200,239,10
+    COMBOBOX        IDC_ADDTIONAL_COMPARE_CONDITION,6,212,262,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&=",IDC_ADDTIONAL_COMPARE_CONDITION_MENU,268,212,14,14
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,240,88,14
 END
 
@@ -3452,6 +3608,9 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 100, 0,
     0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
     100, 0, 0, 0
 END
 
@@ -4359,6 +4518,7 @@ BEGIN
     IDS_TEXT_FILES_DIFF     "Text files are different"
     IDS_IMAGE_FILES_SAME    "Image files are identical"
     IDS_IMAGE_FILES_DIFF    "Image files are different"
+    IDS_EXPR_DIFF           "Files are different (expr: %1)"
     IDS_HASH_GROUP          "Group%d"
 END
 
@@ -4909,6 +5069,11 @@ END
 STRINGTABLE
 BEGIN
     IDS_FILTER_APPLIED      "Filter applied"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILTERMENU_COMPARE  "Compare %1"
 END
 
 STRINGTABLE

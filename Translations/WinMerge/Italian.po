@@ -1485,6 +1485,9 @@ msgstr "Inferiori a 100.000"
 msgid "100000 or more"
 msgstr "100.000 o maggiore"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Aggiungi c&ondizione cartella"
 
@@ -1508,6 +1511,18 @@ msgstr "Uguale"
 
 msgid "Not Equal"
 msgstr "Non uguale"
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
 
 msgid "Less than 10B"
 msgstr "Inferiore a 10B"
@@ -1559,6 +1574,24 @@ msgstr "Obiettivo: sinistra e &centrale"
 
 msgid "Target: Middle and &Right"
 msgstr "Obiettivo: centrale e &destra"
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "Info su WinMerge"
@@ -2577,6 +2610,9 @@ msgstr "Soglia per passare al confronto &rapido (MB):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Soglia per passare al confronto &binario (MB):"
+
+msgid "Additional comparison condi&tions:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Pattern file:"
@@ -3857,6 +3893,10 @@ msgid "Image files are different"
 msgstr "Le immagini sono diverse"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Gurppo%d"
 
@@ -4822,6 +4862,10 @@ msgstr "Secondo e terzo"
 
 msgid "Filter applied"
 msgstr "Filtro applicato"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"

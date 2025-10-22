@@ -1487,6 +1487,9 @@ msgstr "Inferiore à 100000"
 msgid "100000 or more"
 msgstr "100000 è più"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Aghjunghje una cundizione di &cartulare"
 
@@ -1510,6 +1513,18 @@ msgstr "Uguale"
 
 msgid "Not Equal"
 msgstr "Micca uguale"
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
 
 msgid "Less than 10B"
 msgstr "Inferiore à 10 o"
@@ -1561,6 +1576,24 @@ msgstr "Destinazione : Manca è &Centru"
 
 msgid "Target: Middle and &Right"
 msgstr "Destinazione : Centru è &Diritta"
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
@@ -2581,6 +2614,9 @@ msgstr "Passà à u paragone &rapidu quandu a dimensione (in Mo) eccede :"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Passà à u paragone &binariu quandu a dimensione (in Mo) eccede :"
+
+msgid "Additional comparison condi&tions:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
@@ -3844,6 +3880,10 @@ msgid "Image files are different"
 msgstr "I schedarii di fiura sò sfarenti"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Gruppu %d"
 
@@ -4802,6 +4842,10 @@ msgstr "2ᵘ è 3ᵘ"
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
+
+#, c-format
+msgid "Compare %1"
+msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"

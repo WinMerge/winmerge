@@ -6,6 +6,9 @@
 #pragma once
 
 #include "OptionsPanel.h"
+#include "SuperComboBox.h"
+#include "ValidatingEdit.h"
+#include "FilterEngine/FilterExpression.h"
 
 class COptionsMgr;
 
@@ -32,6 +35,10 @@ public:
 	virtual void ReadOptions() override;
 	virtual void WriteOptions() override;
 
+	CSuperComboBox m_ctlAdditionalCompareCondition;
+	CValidatingEdit m_ctlAdditionalCompareConditionEdit;
+	std::unique_ptr<FilterExpression> m_pAdditionalCompareCondition;
+
 // Dialog Data
 	//{{AFX_DATA(PropCompareFolder)
 	enum { IDD = IDD_PROPPAGE_COMPARE_FOLDER };
@@ -46,6 +53,7 @@ public:
 	int     m_nExpandSubdirs;
 	int     m_nCompareThreads;
 	int     m_nCompareThreadsPrev;
+	String  m_sAdditionalCompareCondition;
 	//}}AFX_DATA
 
 
@@ -64,6 +72,8 @@ protected:
 	afx_msg void OnDefaults() override;
 	afx_msg void OnCbnSelchangeComparemethodcombo();
 	afx_msg void OnBnClickedRecursCheck();
+	afx_msg void OnEditChangeAdditionalCompareCondition();
+	afx_msg void OnBnClickedAdditionalCompareConditionMenu();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	void UpdateControls();

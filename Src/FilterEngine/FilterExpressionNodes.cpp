@@ -351,237 +351,231 @@ ExprNode* BinaryOpNode::Optimize()
 	return this;
 }
 
-ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
+static auto compute(int op, const ValueType& lval, const ValueType& rval) -> ValueType
 {
-	auto lval = left->Evaluate(di);
-	auto rval = right->Evaluate(di);
-	auto compute = [](int op, const ValueType& lval, const ValueType& rval) -> ValueType
-		{
-			if (auto lvalDouble = std::get_if<double>(&lval))
-			{
-				double r;
-				if (auto rvalDouble = std::get_if<double>(&rval))
-					r = *rvalDouble;
-				else if (auto rvalInt = std::get_if<int64_t>(&rval))
-					r = static_cast<double>(*rvalInt);
-				else
-					return std::monostate{};
-				if (op == TK_EQ) return *lvalDouble == r;
-				if (op == TK_NE) return *lvalDouble != r;
-				if (op == TK_LT) return *lvalDouble < r;
-				if (op == TK_LE) return *lvalDouble <= r;
-				if (op == TK_GT) return *lvalDouble > r;
-				if (op == TK_GE) return *lvalDouble >= r;
-				if (op == TK_PLUS)  return *lvalDouble + r;
-				if (op == TK_MINUS) return *lvalDouble - r;
-				if (op == TK_STAR)  return *lvalDouble * r;
-				if (op == TK_SLASH)
-				{
-					if (r == 0.0)
-						throw std::invalid_argument("Division by zero in filter expression");
-					return *lvalDouble / r;
-				}
-			}
-			else if (auto lvalInt = std::get_if<int64_t>(&lval))
-			{
-				if (auto rvalDouble = std::get_if<double>(&rval))
-				{
-					double l = static_cast<double>(*lvalInt);
-					if (op == TK_EQ) return l == *rvalDouble;
-					if (op == TK_NE) return l != *rvalDouble;
-					if (op == TK_LT) return l < *rvalDouble;
-					if (op == TK_LE) return l <= *rvalDouble;
-					if (op == TK_GT) return l > *rvalDouble;
-					if (op == TK_GE) return l >= *rvalDouble;
-					if (op == TK_PLUS)  return l + *rvalDouble;
-					if (op == TK_MINUS) return l - *rvalDouble;
-					if (op == TK_STAR)  return l * *rvalDouble;
-					if (op == TK_SLASH)
-					{
-						if (*rvalDouble == 0.0)
-							throw std::invalid_argument("Division by zero in filter expression");
-						return l / *rvalDouble;
-					}
-				}
-				else if (auto rvalInt = std::get_if<int64_t>(&rval))
-				{
-					if (op == TK_EQ) return *lvalInt == *rvalInt;
-					if (op == TK_NE) return *lvalInt != *rvalInt;
-					if (op == TK_LT) return *lvalInt < *rvalInt;
-					if (op == TK_LE) return *lvalInt <= *rvalInt;
-					if (op == TK_GT) return *lvalInt > *rvalInt;
-					if (op == TK_GE) return *lvalInt >= *rvalInt;
-					if (op == TK_PLUS) return *lvalInt + *rvalInt;
-					if (op == TK_MINUS) return *lvalInt - *rvalInt;
-					if (op == TK_STAR) return *lvalInt * *rvalInt;
-					if (op == TK_SLASH)
-					{
-						if (*rvalInt == 0)
-							throw std::invalid_argument("Division by zero in filter expression");
-						return *lvalInt / *rvalInt;
-					}
-					if (op == TK_MOD)
-					{
-						if (*rvalInt == 0)
-							throw std::invalid_argument("Division by zero in filter expression");
-						return *lvalInt % *rvalInt;
-					}
-				}
-			}
-			else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
-			{
-				if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
-				{
-					if (op == TK_EQ) return *lvalTimestamp == *rvalTimestamp;
-					if (op == TK_NE) return *lvalTimestamp != *rvalTimestamp;
-					if (op == TK_LT) return *lvalTimestamp < *rvalTimestamp;
-					if (op == TK_LE) return *lvalTimestamp <= *rvalTimestamp;
-					if (op == TK_GT) return *lvalTimestamp > *rvalTimestamp;
-					if (op == TK_GE) return *lvalTimestamp >= *rvalTimestamp;
-					if (op == TK_MINUS) return *lvalTimestamp - *rvalTimestamp;
-				}
-				else if (auto rvalInt = std::get_if<int64_t>(&rval))
-				{
-					if (op == TK_PLUS) return *lvalTimestamp + *rvalInt;
-					if (op == TK_MINUS) return *lvalTimestamp - *rvalInt;
-				}
-			}
-			else if (auto lvalString = std::get_if<std::string>(&lval))
-			{
-				if (auto rvalString = std::get_if<std::string>(&rval))
-				{
-					if (op == TK_EQ) return Poco::icompare(*lvalString, *rvalString) == 0;
-					if (op == TK_NE) return Poco::icompare(*lvalString, *rvalString) != 0;
-					if (op == TK_LT) return Poco::icompare(*lvalString, *rvalString) < 0;
-					if (op == TK_LE) return Poco::icompare(*lvalString, *rvalString) <= 0;
-					if (op == TK_GT) return Poco::icompare(*lvalString, *rvalString) > 0;
-					if (op == TK_GE) return Poco::icompare(*lvalString, *rvalString) >= 0;
-					if (op == TK_PLUS) return *lvalString + *rvalString;
-					if (op == TK_CONTAINS)
-					{
-						auto searcher = std::boyer_moore_horspool_searcher(
-							rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
-							[](char a, char b) {
-								return std::tolower(static_cast<unsigned char>(a)) ==
-									std::tolower(static_cast<unsigned char>(b));
-							}
-						);
-						using iterator = std::string::const_iterator;
-						std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
-						return (result.first != result.second);
-					}
-					if (op == TK_RECONTAINS)
-					{
-						try
-						{
-							Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-							Poco::RegularExpression::Match match;
-							return (regex.match(*lvalString, match) > 0);
-						}
-						catch (const Poco::RegularExpressionException&)
-						{
-							return false;
-						}
-					}
-					if (op == TK_LIKE)
-					{
-						Poco::Glob glob(*rvalString, Poco::Glob::GLOB_CASELESS);
-						return glob.match(*lvalString);
-					}
-					if (op == TK_MATCHES)
-					{
-						try
-						{
-							Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-							return regex.match(*lvalString);
-						}
-						catch (const Poco::RegularExpressionException&)
-						{
-							return false;
-						}
-					}
-				}
-				if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
-				{
-					if (op == TK_RECONTAINS)
-					{
-						try
-						{
-							Poco::RegularExpression::Match match;
-							return ((*rvalRegexp)->match(*lvalString, match) > 0);
-						}
-						catch (const Poco::RegularExpressionException&)
-						{
-							return false;
-						}
-					}
-					if (op == TK_MATCHES)
-						return (*rvalRegexp)->match(*lvalString);
-				}
-			}
-			else if (auto lvalContent = std::get_if<std::shared_ptr<FileContentRef>>(&lval))
-			{
-				if (auto rvalContent = std::get_if<std::shared_ptr<FileContentRef>>(&rval))
-				{
-					if (op == TK_EQ) return (*lvalContent)->operator==(**rvalContent);
-					if (op == TK_NE) return !(*lvalContent)->operator==(**rvalContent);
-				}
-				if (auto rvalString = std::get_if<std::string>(&rval))
-				{
-					if (op == TK_CONTAINS) return (*lvalContent)->Contains(*rvalString);
-					if (op == TK_RECONTAINS)
-					{
-						try
-						{
-							Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-							return (*lvalContent)->REContains(regex);
-						}
-						catch (const Poco::RegularExpressionException&)
-						{
-							return false;
-						}
-					}
-				}
-				if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
-				{
-					if (op == TK_RECONTAINS) return (*lvalContent)->REContains(*rvalRegexp->get());
-				}
-			}
-			else if (auto lvalBool = std::get_if<bool>(&lval))
-			{
-				if (auto rvalBool = std::get_if<bool>(&rval))
-				{
-					if (op == TK_EQ) return *lvalBool == *rvalBool;
-					if (op == TK_NE) return *lvalBool != *rvalBool;
-					if (op == TK_LT) return *lvalBool < *rvalBool;
-					if (op == TK_LE) return *lvalBool <= *rvalBool;
-					if (op == TK_GT) return *lvalBool > *rvalBool;
-					if (op == TK_GE) return *lvalBool >= *rvalBool;
-					if (op == TK_PLUS) return static_cast<int64_t>(*rvalBool + *lvalBool);
-					if (op == TK_MINUS) return static_cast<int64_t>(*rvalBool - *lvalBool);
-				}
-			}
-			else if (std::holds_alternative<std::monostate>(lval))
-			{
-				if (std::holds_alternative<std::monostate>(rval))
-				{
-					if (op == TK_EQ)
-						return true;
-					else if (op == TK_NE)
-						return false;
-				}
-			}
-			if (op == TK_EQ)
-				return false;
-			else if (op == TK_NE)
-				return true;
-			return std::monostate{};
-		};
 	auto lvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&lval);
 	auto rvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&rval);
 	if (!lvalArray && !rvalArray)
 	{
-		return compute(op, lval, rval);
+		if (auto lvalDouble = std::get_if<double>(&lval))
+		{
+			double r;
+			if (auto rvalDouble = std::get_if<double>(&rval))
+				r = *rvalDouble;
+			else if (auto rvalInt = std::get_if<int64_t>(&rval))
+				r = static_cast<double>(*rvalInt);
+			else
+				return std::monostate{};
+			if (op == TK_EQ) return *lvalDouble == r;
+			if (op == TK_NE) return *lvalDouble != r;
+			if (op == TK_LT) return *lvalDouble < r;
+			if (op == TK_LE) return *lvalDouble <= r;
+			if (op == TK_GT) return *lvalDouble > r;
+			if (op == TK_GE) return *lvalDouble >= r;
+			if (op == TK_PLUS)  return *lvalDouble + r;
+			if (op == TK_MINUS) return *lvalDouble - r;
+			if (op == TK_STAR)  return *lvalDouble * r;
+			if (op == TK_SLASH)
+			{
+				if (r == 0.0)
+					throw std::invalid_argument("Division by zero in filter expression");
+				return *lvalDouble / r;
+			}
+		}
+		else if (auto lvalInt = std::get_if<int64_t>(&lval))
+		{
+			if (auto rvalDouble = std::get_if<double>(&rval))
+			{
+				double l = static_cast<double>(*lvalInt);
+				if (op == TK_EQ) return l == *rvalDouble;
+				if (op == TK_NE) return l != *rvalDouble;
+				if (op == TK_LT) return l < *rvalDouble;
+				if (op == TK_LE) return l <= *rvalDouble;
+				if (op == TK_GT) return l > *rvalDouble;
+				if (op == TK_GE) return l >= *rvalDouble;
+				if (op == TK_PLUS)  return l + *rvalDouble;
+				if (op == TK_MINUS) return l - *rvalDouble;
+				if (op == TK_STAR)  return l * *rvalDouble;
+				if (op == TK_SLASH)
+				{
+					if (*rvalDouble == 0.0)
+						throw std::invalid_argument("Division by zero in filter expression");
+					return l / *rvalDouble;
+				}
+			}
+			else if (auto rvalInt = std::get_if<int64_t>(&rval))
+			{
+				if (op == TK_EQ) return *lvalInt == *rvalInt;
+				if (op == TK_NE) return *lvalInt != *rvalInt;
+				if (op == TK_LT) return *lvalInt < *rvalInt;
+				if (op == TK_LE) return *lvalInt <= *rvalInt;
+				if (op == TK_GT) return *lvalInt > *rvalInt;
+				if (op == TK_GE) return *lvalInt >= *rvalInt;
+				if (op == TK_PLUS) return *lvalInt + *rvalInt;
+				if (op == TK_MINUS) return *lvalInt - *rvalInt;
+				if (op == TK_STAR) return *lvalInt * *rvalInt;
+				if (op == TK_SLASH)
+				{
+					if (*rvalInt == 0)
+						throw std::invalid_argument("Division by zero in filter expression");
+					return *lvalInt / *rvalInt;
+				}
+				if (op == TK_MOD)
+				{
+					if (*rvalInt == 0)
+						throw std::invalid_argument("Division by zero in filter expression");
+					return *lvalInt % *rvalInt;
+				}
+			}
+		}
+		else if (auto lvalTimestamp = std::get_if<Poco::Timestamp>(&lval))
+		{
+			if (auto rvalTimestamp = std::get_if<Poco::Timestamp>(&rval))
+			{
+				if (op == TK_EQ) return *lvalTimestamp == *rvalTimestamp;
+				if (op == TK_NE) return *lvalTimestamp != *rvalTimestamp;
+				if (op == TK_LT) return *lvalTimestamp < *rvalTimestamp;
+				if (op == TK_LE) return *lvalTimestamp <= *rvalTimestamp;
+				if (op == TK_GT) return *lvalTimestamp > *rvalTimestamp;
+				if (op == TK_GE) return *lvalTimestamp >= *rvalTimestamp;
+				if (op == TK_MINUS) return *lvalTimestamp - *rvalTimestamp;
+			}
+			else if (auto rvalInt = std::get_if<int64_t>(&rval))
+			{
+				if (op == TK_PLUS) return *lvalTimestamp + *rvalInt;
+				if (op == TK_MINUS) return *lvalTimestamp - *rvalInt;
+			}
+		}
+		else if (auto lvalString = std::get_if<std::string>(&lval))
+		{
+			if (auto rvalString = std::get_if<std::string>(&rval))
+			{
+				if (op == TK_EQ) return Poco::icompare(*lvalString, *rvalString) == 0;
+				if (op == TK_NE) return Poco::icompare(*lvalString, *rvalString) != 0;
+				if (op == TK_LT) return Poco::icompare(*lvalString, *rvalString) < 0;
+				if (op == TK_LE) return Poco::icompare(*lvalString, *rvalString) <= 0;
+				if (op == TK_GT) return Poco::icompare(*lvalString, *rvalString) > 0;
+				if (op == TK_GE) return Poco::icompare(*lvalString, *rvalString) >= 0;
+				if (op == TK_PLUS) return *lvalString + *rvalString;
+				if (op == TK_CONTAINS)
+				{
+					auto searcher = std::boyer_moore_horspool_searcher(
+						rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
+						[](char a, char b) {
+							return std::tolower(static_cast<unsigned char>(a)) ==
+								std::tolower(static_cast<unsigned char>(b));
+						}
+					);
+					using iterator = std::string::const_iterator;
+					std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
+					return (result.first != result.second);
+				}
+				if (op == TK_RECONTAINS)
+				{
+					try
+					{
+						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						Poco::RegularExpression::Match match;
+						return (regex.match(*lvalString, match) > 0);
+					}
+					catch (const Poco::RegularExpressionException&)
+					{
+						return false;
+					}
+				}
+				if (op == TK_LIKE)
+				{
+					Poco::Glob glob(*rvalString, Poco::Glob::GLOB_CASELESS);
+					return glob.match(*lvalString);
+				}
+				if (op == TK_MATCHES)
+				{
+					try
+					{
+						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						return regex.match(*lvalString);
+					}
+					catch (const Poco::RegularExpressionException&)
+					{
+						return false;
+					}
+				}
+			}
+			if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
+			{
+				if (op == TK_RECONTAINS)
+				{
+					try
+					{
+						Poco::RegularExpression::Match match;
+						return ((*rvalRegexp)->match(*lvalString, match) > 0);
+					}
+					catch (const Poco::RegularExpressionException&)
+					{
+						return false;
+					}
+				}
+				if (op == TK_MATCHES)
+					return (*rvalRegexp)->match(*lvalString);
+			}
+		}
+		else if (auto lvalContent = std::get_if<std::shared_ptr<FileContentRef>>(&lval))
+		{
+			if (auto rvalContent = std::get_if<std::shared_ptr<FileContentRef>>(&rval))
+			{
+				if (op == TK_EQ) return (*lvalContent)->operator==(**rvalContent);
+				if (op == TK_NE) return !(*lvalContent)->operator==(**rvalContent);
+			}
+			if (auto rvalString = std::get_if<std::string>(&rval))
+			{
+				if (op == TK_CONTAINS) return (*lvalContent)->Contains(*rvalString);
+				if (op == TK_RECONTAINS)
+				{
+					try
+					{
+						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						return (*lvalContent)->REContains(regex);
+					}
+					catch (const Poco::RegularExpressionException&)
+					{
+						return false;
+					}
+				}
+			}
+			if (auto rvalRegexp = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&rval))
+			{
+				if (op == TK_RECONTAINS) return (*lvalContent)->REContains(*rvalRegexp->get());
+			}
+		}
+		else if (auto lvalBool = std::get_if<bool>(&lval))
+		{
+			if (auto rvalBool = std::get_if<bool>(&rval))
+			{
+				if (op == TK_EQ) return *lvalBool == *rvalBool;
+				if (op == TK_NE) return *lvalBool != *rvalBool;
+				if (op == TK_LT) return *lvalBool < *rvalBool;
+				if (op == TK_LE) return *lvalBool <= *rvalBool;
+				if (op == TK_GT) return *lvalBool > *rvalBool;
+				if (op == TK_GE) return *lvalBool >= *rvalBool;
+				if (op == TK_PLUS) return static_cast<int64_t>(*rvalBool + *lvalBool);
+				if (op == TK_MINUS) return static_cast<int64_t>(*rvalBool - *lvalBool);
+			}
+		}
+		else if (std::holds_alternative<std::monostate>(lval))
+		{
+			if (std::holds_alternative<std::monostate>(rval))
+			{
+				if (op == TK_EQ)
+					return true;
+				else if (op == TK_NE)
+					return false;
+			}
+		}
+		if (op == TK_EQ)
+			return false;
+		else if (op == TK_NE)
+			return true;
+		return std::monostate{};
 	}
 	else if (lvalArray && !rvalArray)
 	{
@@ -623,6 +617,13 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 			result->emplace_back(ValueType2{ std::monostate{} });
 		return result;
 	}
+}
+
+ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
+{
+	auto lval = left->Evaluate(di);
+	auto rval = right->Evaluate(di);
+	return compute(op, lval, rval);
 }
 
 ExprNode* NegateNode::Optimize()

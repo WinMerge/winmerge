@@ -18,6 +18,7 @@
 #include "I18n.h"
 #include "FileTransform.h"
 #include "PropertySystem.h"
+#include "FilterEngine/FilterExpression.h"
 #include "DebugNew.h"
 
 using Poco::Timestamp;
@@ -406,7 +407,9 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 	}
 	else if (di.diffcode.isResultDiff()) // diff
 	{
-		if (di.diffcode.isText())
+		if (di.diffcode.isExprDiff())
+			s = strutils::format_string1(_("Files are different (expr: %1)"), ucr::toTString(pCtxt->m_pAdditionalCompareExpression->expression));
+		else if (di.diffcode.isText())
 			s = _("Text files are different");
 		else if (di.diffcode.isBin())
 			s = _("Binary files are different");

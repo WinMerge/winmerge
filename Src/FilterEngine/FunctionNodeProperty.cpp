@@ -30,6 +30,17 @@ static ValueType ConvertPROPVARIANTToValueType(const PROPVARIANT& propvalue)
 		return propvalue.boolVal != VARIANT_FALSE;
 	case VT_FILETIME:
 		return Poco::Timestamp::fromFileTimeNP(propvalue.filetime.dwLowDateTime, propvalue.filetime.dwHighDateTime);
+	case VT_VECTOR|VT_LPWSTR:
+	{
+		auto result = std::make_shared<std::vector<ValueType2>>();
+		const CALPWSTR& buf = propvalue.calpwstr;
+		for (unsigned i = 0; i < buf.cElems; ++i)
+		{
+			LPWSTR pwsz = buf.pElems[i];
+			result->emplace_back(ValueType2{ ucr::toUTF8(pwsz) });
+		}
+		return result;
+	}
 	case VT_VECTOR|VT_UI1:
 	{
 		const CAUB& buf = propvalue.caub;
