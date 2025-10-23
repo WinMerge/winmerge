@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2025-10-15 22:35-0300\n"
+"PO-Revision-Date: 2025-10-22 22:35-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1485,7 +1485,7 @@ msgid "100000 or more"
 msgstr "100000 ou mais"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "&Propriedades adicionais..."
 
 msgid "Add F&older Condition"
 msgstr "Adicionar C&ondição de Pasta"
@@ -1512,16 +1512,16 @@ msgid "Not Equal"
 msgstr "Não Igual"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Menor que"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Menor ou Igual a"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Maior que"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Maior ou Igual a"
 
 msgid "Less than 10B"
 msgstr "Menos de 10B"
@@ -1575,22 +1575,22 @@ msgid "Target: Middle and &Right"
 msgstr "Alvo: Meio e Direita"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "&Alvo: Todos"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "Limpar &Condições"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "Comparar Tamanho"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Comparar &Data"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Comparar &Atributos"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "Comparar C&onteúdo"
 
 msgid "About WinMerge"
 msgstr "Sobre o WinMerge"
@@ -2590,7 +2590,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Alternar para comparação binária quando tamanho exceder (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "Condições de comparação adicionais:"
 
 msgid "File patterns:"
 msgstr "Modelos de Arquivos:"
@@ -3620,7 +3620,7 @@ msgstr "Os arquivos de imagem são diferentes"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "Os arquivos são diferentes (expr: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4419,7 +4419,7 @@ msgstr "Filtro aplicado"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Comparar %1"
 
 #, c-format
 msgid "Clipboard at %s"
