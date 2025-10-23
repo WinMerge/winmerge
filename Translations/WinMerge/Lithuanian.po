@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-10-15 20:41+0000\n"
-"PO-Revision-Date: 2025-10-17 12:15+0200\n"
+"POT-Creation-Date: 2025-10-21 19:25+0000\n"
+"PO-Revision-Date: 2025-10-23 09:09+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1485,7 +1485,7 @@ msgid "100000 or more"
 msgstr "100000 ar daugiau"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "&Papildomos savybės..."
 
 msgid "Add F&older Condition"
 msgstr "Pridėti katal&ogo sąlygą"
@@ -1512,16 +1512,16 @@ msgid "Not Equal"
 msgstr "Nelygu"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Mažiau nei"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Mažiau nei arba lygu"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Daugiau nei"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Daugiau nei arba lygu"
 
 msgid "Less than 10B"
 msgstr "Mažiau nei 10B"
@@ -1575,22 +1575,22 @@ msgid "Target: Middle and &Right"
 msgstr "Rezultatai: Viduryje ir &Dešinėje"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Rezultatai: &Visi"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "&Išvalyti sąlygas"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "Lyginti &dydį"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Lyginti &datą"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Lyginti &atributus"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "Lyginti t&urinį"
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -2590,7 +2590,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Persijungti į &binarinį palyginimą kai dydis virš (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "Papildomos palyginimo sąlygos:"
 
 msgid "File patterns:"
 msgstr "Failų šablonai:"
@@ -3620,7 +3620,7 @@ msgstr "Paveikslėliai skiriasi"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "Failai skiriasi (išraiška: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4419,7 +4419,7 @@ msgstr "Pritaikytas filtras"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Palyginti %1"
 
 #, c-format
 msgid "Clipboard at %s"
