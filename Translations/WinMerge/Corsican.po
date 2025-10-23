@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2025-08-26 00:16+0200\n"
+"POT-Creation-Date: 2025-10-21 19:25+0000\n"
+"PO-Revision-Date: 2025-10-24 00:25+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/"
 "Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
@@ -1113,7 +1113,7 @@ msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignurà e fini di &linea assente"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "Ignurà i s&alti di linea (cunsideralli cum’è spazii)"
 
 msgid "&Include Subfolders"
 msgstr "&Include i sottucartulari"
@@ -1140,7 +1140,7 @@ msgid "Size"
 msgstr "Dimensione"
 
 msgid "Existence"
-msgstr ""
+msgstr "Esistenza"
 
 msgid "&Load Project..."
 msgstr "&Caricà u prughjettu…"
@@ -1488,7 +1488,7 @@ msgid "100000 or more"
 msgstr "100000 è più"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "&Pruprietà addiziunale…"
 
 msgid "Add F&older Condition"
 msgstr "Aghjunghje una cundizione di &cartulare"
@@ -1515,16 +1515,16 @@ msgid "Not Equal"
 msgstr "Micca uguale"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Hè inferiore à"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Hè inferiore o uguale à"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Hè superiore à"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Hè superiore o uguale à"
 
 msgid "Less than 10B"
 msgstr "Inferiore à 10 o"
@@ -1578,22 +1578,22 @@ msgid "Target: Middle and &Right"
 msgstr "Destinazione : Centru è &Diritta"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Destinazione : &Tutte"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "&Squassà e cundizioni"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "Paragunà a d&imensione"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Paragunà a &data"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Paragunà l’&attributi"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "Paragunà u &cuntenutu"
 
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
@@ -2144,7 +2144,7 @@ msgid "Ignore &missing trailing EOL"
 msgstr "Ignurà e fini di &linea assente"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "Ignurà i s&alti di linea (cunsideralli cum’è spazii)"
 
 msgid "E&nable moved block detection"
 msgstr "Attivà l’avventata di i blocchi &dispiazzati"
@@ -2616,7 +2616,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Passà à u paragone &binariu quandu a dimensione (in Mo) eccede :"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "Cundizioni addiziunale di parag&one :"
 
 msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
@@ -3881,7 +3881,7 @@ msgstr "I schedarii di fiura sò sfarenti"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "I schedarii sò sfarenti (espr : %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4845,7 +4845,7 @@ msgstr "Filtru appiecatu"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Paragunà %1"
 
 #, c-format
 msgid "Clipboard at %s"
@@ -5075,7 +5075,7 @@ msgid "Unknown error"
 msgstr "Sbagliu scunnisciutu"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "Nome di pruprietà inaccettevule"
 
 msgid "Equals"
 msgstr "Hè uguale à"
