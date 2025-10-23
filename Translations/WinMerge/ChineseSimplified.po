@@ -1489,7 +1489,7 @@ msgid "100000 or more"
 msgstr "至少 100000"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "附加属性(&)..."
 
 msgid "Add F&older Condition"
 msgstr "添加文件夹条件(&O)"
@@ -1516,16 +1516,16 @@ msgid "Not Equal"
 msgstr "不相同"
 
 msgid "Less Than"
-msgstr ""
+msgstr "小于"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "小于等于"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "大于"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "大于等于"
 
 msgid "Less than 10B"
 msgstr "小于 10 字节"
@@ -1579,22 +1579,22 @@ msgid "Target: Middle and &Right"
 msgstr "目标：中和右(&R)"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "目标：全部(&A)"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "清除条件(&C)"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "比较大小(&S)"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "比较日期(&D)"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "比较属性(&A)"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "比较内容(&O)"
 
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
@@ -2607,7 +2607,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "切换到二进制比较的最小值(&B) (MB)："
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "附加的比较条件(&T)："
 
 msgid "File patterns:"
 msgstr "文件模式："
@@ -3865,7 +3865,7 @@ msgstr "图像文件有差异"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "文件不同（表达式：%1）"
 
 #, c-format
 msgid "Group%d"
@@ -4809,7 +4809,7 @@ msgstr "过滤器已应用"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "比较 %1"
 
 #, c-format
 msgid "Clipboard at %s"
