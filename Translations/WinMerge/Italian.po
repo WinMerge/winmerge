@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 16.10.2025\n"
+"Project-Id-Version: WinMerge - Italian - 23.10.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-10-16 12:21+0200\n"
+"PO-Revision-Date: 2025-10-23 12:32+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1486,7 +1486,7 @@ msgid "100000 or more"
 msgstr "100.000 o maggiore"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "&Proprietà aggiuntive..."
 
 msgid "Add F&older Condition"
 msgstr "Aggiungi c&ondizione cartella"
@@ -1513,16 +1513,16 @@ msgid "Not Equal"
 msgstr "Non uguale"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Inferiore a"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Uguale o inferiore a"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Maggiore di"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Uguale o maggiore di"
 
 msgid "Less than 10B"
 msgstr "Inferiore a 10B"
@@ -1576,22 +1576,22 @@ msgid "Target: Middle and &Right"
 msgstr "Obiettivo: centrale e &destra"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Obiettivo: &tutti"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "Azzera &condizioni"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "Confronta dimen&sione"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Confronta &data"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Confronta &attributi"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "Confronta c&ontenuto"
 
 msgid "About WinMerge"
 msgstr "Info su WinMerge"
@@ -2612,7 +2612,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Soglia per passare al confronto &binario (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "U&lteriori condizioni dii confronto:"
 
 msgid "File patterns:"
 msgstr "Pattern file:"
@@ -3894,7 +3894,7 @@ msgstr "Le immagini sono diverse"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "I file sono differenti (espr: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4865,7 +4865,7 @@ msgstr "Filtro applicato"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Confronta %1"
 
 #, c-format
 msgid "Clipboard at %s"
