@@ -544,6 +544,11 @@ BOOL CHexMergeView::PreTranslateMessage(MSG* pMsg)
 			return false;
 		}
 	}
+
+	if (GetAsyncKeyState(VK_CONTROL) < 0 && (pMsg->wParam == VK_PRIOR || pMsg->wParam == VK_NEXT))
+	{
+		return false;
+	}
 	return m_pif->translate_accelerator(pMsg);
 }
 

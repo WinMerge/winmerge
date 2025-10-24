@@ -71,6 +71,12 @@ BOOL CWindowsManagerDialog::PreTranslateMessage(MSG* pMsg)
 		PostMessage(WMU_SELECTNEXT, (GetAsyncKeyState(VK_SHIFT) < 0) ? 1 : 0, 0);
 	}
 
+	if (WM_KEYDOWN == pMsg->message && (VK_PRIOR == pMsg->wParam || VK_NEXT == pMsg->wParam))
+	{
+		PostMessage(WMU_SELECTNEXT, (VK_PRIOR == pMsg->wParam) ? 1 : 0, 0);
+		return TRUE;
+	}
+
 	return CDialog::PreTranslateMessage(pMsg);
 }
 

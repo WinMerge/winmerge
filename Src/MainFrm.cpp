@@ -2224,6 +2224,13 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		return TRUE;
 	}
 
+	// Ctrl+PageUp/PageDown as alternatives to Ctrl+Tab/Ctrl+Shift+Tab
+	if (WM_KEYDOWN == pMsg->message && (VK_PRIOR == pMsg->wParam || VK_NEXT == pMsg->wParam) && GetAsyncKeyState(VK_CONTROL) < 0 && m_wndManager.GetChildCount() > 1)
+	{
+		m_wndManager.ShowDialog(this);
+		return TRUE;
+	}
+
 	return __super::PreTranslateMessage(pMsg);
 }
 
