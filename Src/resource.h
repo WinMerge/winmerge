@@ -869,6 +869,8 @@
 #define ID_TRANSFORM_WITH_SCRIPT        32889
 #define ID_SELECT_EDITOR_SCRIPT_FOR_COPYING 32890
 #define ID_WINDOW_CLOSEALL              32897
+#define ID_WINDOW_NEXT                  32898
+#define ID_WINDOW_PREV                  32899
 #define ID_HELP_CONTENTS                32912
 #define ID_HELP_GETCONFIG               32913
 #define ID_HELP_GNULICENSE              32914
