@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-10-09 20:15+0000\n"
-"PO-Revision-Date: 2025-10-14 20:50+0000\n"
+"PO-Revision-Date: 2025-10-25 12:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -64,16 +64,16 @@ msgid "Copy Selected Lines from Left"
 msgstr "Kopiuj zaznaczone wiersze z lewej"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr "Kopiuj zaznaczone różnice (po lewej) do schowka\tCtrl+&1"
+msgstr "Kopiuj zaznaczone różnice (lewy) do schowka\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr "Kopiuj zaznaczone różnice (po prawej) do schowka\tCtrl+&2"
+msgstr "Kopiuj zaznaczone różnice (prawy) do schowka\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr "Kopiuj zaznaczone różnice (na środku) do schowka\tCtrl+&2"
+msgstr "Kopiuj zaznaczone różnice (środkowy) do schowka\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr "Kopiuj zaznaczone różnice (po prawej) do schowka\tCtrl+&3"
+msgstr "Kopiuj zaznaczone różnice (prawy) do schowka\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Zaznacz różniące się wiersze\tF4"
@@ -776,22 +776,22 @@ msgid "A&dvanced"
 msgstr "Zaawansowane"
 
 msgid "Next Difference (Left/Middle)\tAlt+1"
-msgstr "Następna różnica między lewym a środkiem\tAlt+1"
+msgstr "Następna różnica (lewy/środkowy)\tAlt+1"
 
 msgid "Previous Difference (Left/Middle)\tAlt+Shift+1"
-msgstr "Poprzednia różnica między lewym a środkiem\tAlt+Shift+1"
+msgstr "Poprzednia różnica (lewy/środkowy)\tAlt+Shift+1"
 
 msgid "Next Difference (Left/Right)\tAlt+2"
-msgstr "Następna różnica między lewym a prawym\tAlt+2"
+msgstr "Następna różnica (lewy/prawy)\tAlt+2"
 
 msgid "Previous Difference (Left/Right)\tAlt+Shift+2"
-msgstr "Poprzednia różnica między lewym a prawym\tAlt+Shift+2"
+msgstr "Poprzednia różnica (lewy/prawy)\tAlt+Shift+2"
 
 msgid "Next Difference (Middle/Right)\tAlt+3"
-msgstr "Następna różnica między środkiem a prawym\tAlt+3"
+msgstr "Następna różnica (środkowy/prawy)\tAlt+3"
 
 msgid "Previous Difference (Middle/Right)\tAlt+Shift+3"
-msgstr "Poprzednia różnica między środkiem a prawym\tAlt+Shift+3"
+msgstr "Poprzednia różnica (środkowy/prawy)\tAlt+Shift+3"
 
 msgid "Next Left-Only Difference\tAlt+7"
 msgstr "Następna różnica tylko w lewym\tAlt+7"
@@ -800,16 +800,16 @@ msgid "Previous Left-Only Difference\tAlt+Shift+7"
 msgstr "Poprzednia różnica tylko w lewym\tAlt+Shift+7"
 
 msgid "Next Middle-Only Difference\tAlt+8"
-msgstr "Następna różnica tylko w środku\tAlt+8"
+msgstr "Następna różnica tylko w środkowym\tAlt+8"
 
 msgid "Previous Middle-Only Difference\tAlt+Shift+8"
-msgstr "Poprzednia różnica tylko w środku\tAlt+Shift+8"
+msgstr "Poprzednia różnica tylko w środkowym\tAlt+Shift+8"
 
 msgid "Next Right-Only Difference\tAlt+9"
-msgstr "Następna różnica tylko w prawej\tAlt+9"
+msgstr "Następna różnica tylko w prawym\tAlt+9"
 
 msgid "Previous Right-Only Difference\tAlt+Shift+9"
-msgstr "Poprzednia różnica tylko w prawej\tAlt+Shift+9"
+msgstr "Poprzednia różnica tylko w prawym\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
 msgstr "Kopiuj z lewej do"
@@ -881,7 +881,7 @@ msgid "Scripts for &Copying"
 msgstr "Skrypty do kopiowania"
 
 msgid "Select &Editor Script..."
-msgstr ""
+msgstr "Wybierz edytor skryptu"
 
 msgid "Sp&lit"
 msgstr "Podzie&lone"
@@ -1030,7 +1030,7 @@ msgid "Right Shell Menu"
 msgstr "Prawe menu powłoki"
 
 msgid "Both Shell Menu"
-msgstr ""
+msgstr "Oba menu powłoki"
 
 msgid "All Shell Menu"
 msgstr "Wszystkie menu powłoki"
@@ -1096,7 +1096,7 @@ msgid "Ignore &Case"
 msgstr "Ignoruj wielkości liter"
 
 msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
-msgstr "Igno&ruj znaki końca linii (Windows/Unix/Mac)"
+msgstr "Igno&ruj różnice znaku końca linii (Windows/Unix/Mac)"
 
 msgid "Ignore Codepage &Differences"
 msgstr "Ignoruj różnice strony ko&dowej"
@@ -1225,13 +1225,13 @@ msgid "&Clear All"
 msgstr "Wyczyść wszystko"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "Usuń ostatnio dodaną grupę filtrów"
 
 msgid "R&eset to Default (*.*)"
 msgstr "Przywróć ustawienia domyślne (*.*)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "Dodaj wykluczenie pliku"
 
 msgid "&System Files"
 msgstr "Pliki systemowe"
@@ -1249,19 +1249,19 @@ msgid "&Temporary or Cache Files"
 msgstr "Pliki tymczasowe lub pliki pamięci podręcznej"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "Dodaj wykluczony folder"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "Kontrola wersji"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "Artefakty kompilacji"
 
 msgid "&IDE"
 msgstr "IDE"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "Dodaj warunek pliku"
 
 msgid "File &Size"
 msgstr "Rozmiar pliku"
@@ -1486,10 +1486,10 @@ msgid "100000 or more"
 msgstr "100000 lub więcej"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "Dodatkowe właściwości..."
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "Dodaj warunek folderu"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Miejsce docelowe: dowolne (lewy/środkowy/prawy)"
@@ -1504,7 +1504,7 @@ msgid "Target: &Right"
 msgstr "Miejsce docelowe: prawy"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "Dodaj warunek różnicy"
 
 msgid "Equal"
 msgstr "Równy"
@@ -1513,19 +1513,19 @@ msgid "Not Equal"
 msgstr "Nierówny"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Mniej niż"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Mniejsze lub równe"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Większe niż"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Większe lub równe"
 
 msgid "Less than 10B"
-msgstr "Mniej niż 10 B"
+msgstr "Mniej niż 10B"
 
 msgid "10B or more"
 msgstr "10B lub więcej"
@@ -1576,22 +1576,22 @@ msgid "Target: Middle and &Right"
 msgstr "Miejsce docelowe: środkowy i prawy"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Miejsce docelowe: wszystkie"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "Wyczyść warunki"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "Porównaj rozmiar"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Porównaj datę"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Porównaj atrybuty"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "Porównaj zawartość"
 
 msgid "About WinMerge"
 msgstr "O programie WinMerge"
@@ -2047,7 +2047,7 @@ msgid "Default arguments:"
 msgstr "Domyślne argumenty:"
 
 msgid "Display all plugins (Ignore extension)"
-msgstr "Wyświetl wszystkie wtyczki (nie sprawdzaj po rozszerzeniu)"
+msgstr "Wyświetl wszystkie wtyczki (ignoruj rozszerzenia)"
 
 msgid "&Open files in same window type after unpacking"
 msgstr "Po rozpakowaniu otwórz pliki w tym samym typie okna"
@@ -2056,7 +2056,7 @@ msgid "&Plugin pipeline:"
 msgstr "Wtyczka pipeline:"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "Alias..."
 
 msgid "Stop"
 msgstr "Zatrzymaj"
@@ -2227,7 +2227,7 @@ msgid "Delete..."
 msgstr "Usuń..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "Warunek filtrowania"
 
 msgid "&Left-hand side:"
 msgstr "Lewa strona:"
@@ -2655,7 +2655,7 @@ msgid "&Category:"
 msgstr "Kategoria:"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "Menu podpis:"
 
 msgid "&Window type:"
 msgstr "Typ okna:"
@@ -2667,7 +2667,7 @@ msgid "&Require arguments"
 msgstr "Wymagane argumenty"
 
 msgid "&Generate editor script"
-msgstr "Wygeneruj skrypt edytora"
+msgstr "Wygeneruj edytor skryptu"
 
 msgid "Command &line:"
 msgstr "Wiersz poleceń:"
@@ -3621,7 +3621,7 @@ msgstr "Pliki obrazów są różne"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "Pliki są różne (wyrażenie: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4379,17 +4379,17 @@ msgid "File or Folder Unpacker"
 msgstr "Program do rozpakowywania plików lub folderów"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Alias dla programu rozpakowującego"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Alias dla porównywania"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Alias dla edytora skryptu"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Alias dla wtyczki pipeline '%1'"
 
 msgid "New plugin description"
 msgstr "Opis nowej wtyczki"
@@ -4420,7 +4420,7 @@ msgstr "Zastosowano filtr"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Porównaj %1"
 
 #, c-format
 msgid "Clipboard at %s"
@@ -4593,7 +4593,7 @@ msgid "Unknown error"
 msgstr "Nieznany błąd"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "Nieprawidłowa nazwa właściwości"
 
 msgid "Equals"
 msgstr "Równe"
@@ -4813,7 +4813,7 @@ msgstr "Zastąp tekst innym tekstem.\r\nUżycie: Replace [-i] [-e] ZNAJDŹ ZAST�
 
 #, c-format
 msgid "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
-msgstr ""
+msgstr "Zastosuj filtrowanie. \r\nUżycie: ExecFilterCommand POLECENIE\r\n POLECENIE - polecenie do wykonania. %1 = nazwa pliku."
 
 msgid "Tokenize. \r\nUsage: Tokenize PATTERNS\r\n PATTERNS - regex (e.g. [^\\w]+)"
 msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie: Tokenize SZABLONY\r\n  SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
@@ -5061,7 +5061,7 @@ msgstr ""
 
 #, c-format
 msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
-msgstr ""
+msgstr "Wprowadź klucz OpenAI API.\r\n- Wymagana rejestracja w OpenAI (mogą obowiązywać opłaty).\r\n- Klucz przechowywany w zmiennej środowiskowej %1."
 
 msgid "Environment variable name for OpenAI API key"
 msgstr "Nazwa zmiennej środowiskowej dla klucza API OpenAI"
