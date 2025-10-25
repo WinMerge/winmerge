@@ -544,7 +544,15 @@ BOOL CHexMergeView::PreTranslateMessage(MSG* pMsg)
 			return false;
 		}
 	}
-	return m_pif->translate_accelerator(pMsg);
+	if (pMsg->message >= WM_KEYFIRST && pMsg->message <= WM_KEYLAST)
+	{
+		HACCEL hAccel = ((CMDIFrameWnd*)AfxGetMainWnd())->m_hAccelTable;
+		if (hAccel != nullptr && ::TranslateAccelerator(AfxGetMainWnd()->m_hWnd, hAccel, pMsg))
+			return TRUE;
+		if (m_pif->translate_accelerator(pMsg))
+			return TRUE;
+	}
+	return __super::PreTranslateMessage(pMsg);
 }
 
 /**
