@@ -1,5 +1,40 @@
 # Change log
 
+## WinMerge 2.16.52 - 2025-10-27
+
+### General
+
+* [Feature request] Alternate hotkeys for tab navigation (#2942)
+
+### Binary compare
+
+* BugFix: Ctrl-W in Hex View : Close window? (#2294)
+
+### Folder compare
+
+* BugFix: Round timestamps before comparing to ensure consistent 1-second precision (#2973)
+* Add toDateStr filter function.
+* Add option for specifying additional comparison conditions (PR #2963)
+* Add support for prop, leftprop, middleprop, and rightprop functions in
+  filter expressions (PR #2974)
+* Add "Existence" folder comparison method (PR #2980)
+
+
+### Translations
+
+* Translation updates:
+  * Brazilian (PR #2981,#2977,#2995)
+  * Chinese Simplified (PR #2978,#2991,#2996)
+  * Corsican (PR #2999)
+  * Italian (PR #2976,#2982,#2998)
+  * Japanese
+  * Korean (PR #2993)
+  * Lithuanian (PR #2975,#2986,#2997)
+  * Portuguese (PR #2971)
+  * Polish (PR #2972,#2979,#3003)
+  * Turkish (PR #2992)
+  * Russian (PR #2983)
+
 ## WinMerge 2.16.51 - 2025-10-05
 
 ### General
