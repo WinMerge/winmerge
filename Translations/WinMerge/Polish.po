@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-10-09 20:15+0000\n"
-"PO-Revision-Date: 2025-10-25 12:00+0000\n"
+"PO-Revision-Date: 2025-10-25 23:15+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
 msgstr "Kopiuj zaznaczone różnice (prawy) do schowka\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
-msgstr "Zaznacz różniące się wiersze\tF4"
+msgstr "Zaznacz różniący się wiersz\tF4"
 
 msgid "Add to Substitution &Filters"
 msgstr "Dodaj tę zmianę do filtrów zamiany"
@@ -233,7 +233,7 @@ msgid "&Blink Interval"
 msgstr "Interwał mrugania"
 
 msgid "&Overlay Animation Interval"
-msgstr ""
+msgstr "Interwał animacji nakładki"
 
 msgid "Compare Extracted &Text from Images"
 msgstr "Porównaj wyodrębniony tekst z obrazu"
@@ -263,7 +263,7 @@ msgid "Fit to Window"
 msgstr "Dopasuj do okna"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "Synchronizacja zdarzeń"
 
 msgid "&Enabled"
 msgstr "Włączona"
@@ -878,7 +878,7 @@ msgid "&Transform with Editor Script..."
 msgstr "Przekształć za pomocą edytora skryptu..."
 
 msgid "Scripts for &Copying"
-msgstr "Skrypty do kopiowania"
+msgstr "Skrypty dla kopiowanych"
 
 msgid "Select &Editor Script..."
 msgstr "Wybierz edytor skryptu"
@@ -1231,7 +1231,7 @@ msgid "R&eset to Default (*.*)"
 msgstr "Przywróć ustawienia domyślne (*.*)"
 
 msgid "Add E&xclude File"
-msgstr "Dodaj wykluczenie pliku"
+msgstr "Dodaj wykluczony plik"
 
 msgid "&System Files"
 msgstr "Pliki systemowe"
@@ -3853,7 +3853,7 @@ msgid "Cannot find string \"%s\"."
 msgstr "Nie można znaleźć sekwencji znaków \"%s\"."
 
 msgid "Entering Merge Mode. Press F9 to turn off."
-msgstr "Przechodzisz do trybu scalania. Jeśli chcesz wyłączyć tryb scalania, naciśnij klawisz F9."
+msgstr "Przechodzisz do trybu scalania. Naciśnij F9, aby go wyłączyć."
 
 #, c-format
 msgid "Automatic merges: %1\nUnresolved conflicts: %2"
@@ -3958,7 +3958,7 @@ msgstr "Brak"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr "Kolor znacznika %d"
+msgstr "Kolor markera %d"
 
 msgid "New Pattern"
 msgstr "Nowy szablon"
@@ -4363,14 +4363,14 @@ msgstr "'%1' nie jest wtyczką porównującą"
 
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
-msgstr ""
+msgstr "Błąd porównywania '%1' z '%2'. Porównywanie wyłączone."
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Odwołanie cykliczne we wtyczce pipeline: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "Obsługa adresu URL"
 
 msgid "File Unpacker"
 msgstr "Program do rozpakowywania plików"
@@ -4809,7 +4809,7 @@ msgid "Reverse lines"
 msgstr "Odwróć wiersze"
 
 msgid "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
-msgstr "Zastąp tekst innym tekstem.\r\nUżycie: Replace [-i] [-e] ZNAJDŹ ZASTĄP\r\n  or: Replace -s\r\n  ZNAJDŹ    - tekst do znalezienia\r\n  ZASTĄP - tekst do zastąpienia\r\n  -i - ignoruj wielkość liter (tylko dla -e)\r\n  -e - traktuj określony tekst jako wyrażenie regularne\r\n -s - use Substitution Filters"
+msgstr "Zastąp tekst innym tekstem.\r\nUżycie: Replace [-i] [-e] ZNAJDŹ ZASTĄP\r\n  lub: Replace -s\r\n  ZNAJDŹ    - tekst do znalezienia\r\n  ZASTĄP - tekst do zastąpienia\r\n  -i - ignoruj wielkość liter (tylko dla -e)\r\n  -e - traktuj określony tekst jako wyrażenie regularne\r\n -s - użyj filtrów zamiany"
 
 #, c-format
 msgid "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
@@ -4900,7 +4900,7 @@ msgid "Ignore fields - list from plugin name/argument"
 msgstr "Ignoruj niektóre pola - lista ignorowanych pól z nazwy wtyczki lub argumentu wtyczki"
 
 msgid "Ignore leading line numbers (e.g., NC, BASIC)."
-msgstr "Ta wtyczka ignoruje wiodące numery linii w plikach tekstowych (np. plikach NC i BASIC)."
+msgstr "Ignoruj wiodące numery linii w plikach tekstowych (np. plikach NC i BASIC)."
 
 msgid "Prediff Line Filter"
 msgstr "Filtr porównywania wiersza"
