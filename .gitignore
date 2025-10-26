@@ -132,3 +132,5 @@ Src/dlldata.c
 *.lastcodeanalysissucceeded
 *.lib
 unittest-cppcheck-build-dir/
+Src/FilterEngine/FilterLexer.cpp
+Src/FilterEngine/FilterParser.c
