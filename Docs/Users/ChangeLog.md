@@ -4,6 +4,8 @@
 
 ### General
 
+* BugFix: Fixed an issue where leftover WinMerge temporary folders were not 
+    properly deleted on the next application exit.
 * [Feature request] Alternate hotkeys for tab navigation (#2942)
 * Disabled darkmodelib in the ARM64 build due to an unresolved crash issue.
 
@@ -32,7 +34,7 @@
   * Korean (PR #2993)
   * Lithuanian (PR #2975,#2986,#2997)
   * Portuguese (PR #2971)
-  * Polish (PR #2972,#2979,#3003)
+  * Polish (PR #2972,#2979,#3003,#3005)
   * Turkish (PR #2992)
   * Russian (PR #2983)
 
