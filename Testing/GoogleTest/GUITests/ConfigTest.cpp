@@ -206,6 +206,7 @@ namespace
 		//
 		{ OPT_DIRCLR_USE_COLORS, varprop::VT_BOOL, {}, {}},
 		{ OPT_COLOR_SCHEME, varprop::VT_STRING, {}, {L"", L"Default", L"Modern", L"Solarized Dark", L"Solarized Light"}},
+		{ OPT_COLOR_SCHEME_DARK, varprop::VT_STRING, {}, {L"", L"Default", L"Modern", L"Solarized Dark", L"Solarized Light"}},
 		// Compare options
 		{ OPT_CMP_IGNORE_WHITESPACE, varprop::VT_INT, {0, 1, 2}, {}},
 		{ OPT_CMP_IGNORE_BLANKLINES, varprop::VT_BOOL, {}, {}},
@@ -213,7 +214,8 @@ namespace
 		{ OPT_CMP_IGNORE_CASE, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_IGNORE_EOL, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_IGNORE_CODEPAGE, varprop::VT_BOOL, {}, {}},
-		{ OPT_CMP_METHOD, varprop::VT_INT, {0, 1, 2, 3, 4, 5}, {}},
+		{ OPT_CMP_IGNORE_MISSING_TRAILING_EOL, varprop::VT_BOOL, {}, {}},
+		{ OPT_CMP_METHOD, varprop::VT_INT, {0, 1, 2, 3, 4, 5, 6}, {}},
 		{ OPT_CMP_MOVED_BLOCKS, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_ALIGN_SIMILAR_LINES, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_STOP_AFTER_FIRST, varprop::VT_BOOL, {}, {}},
@@ -225,6 +227,7 @@ namespace
 		{ OPT_CMP_DIFF_ALGORITHM, varprop::VT_INT, {0, 1, 2, 3, 4}, {}},
 		{ OPT_CMP_INDENT_HEURISTIC, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, varprop::VT_BOOL, {}, {}},
+		{ OPT_CMP_ADDITIONAL_CONDITION, varprop::VT_STRING, {}, {L"", L"allequal(Size)"}},
 		// Image Compare options
 		{ OPT_CMP_IMG_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.bmp;*.cut;*.dds;*.dng;*.exr;*.g3;*.gif;*.heic;*.hdr;*.ico;*.iff;*.lbm;*.j2k;*.j2c;*.jng;*.jp2;*.jpg;*.jif;*.jpeg;*.jpe;*.jxl;*.jxr;*.wdp;*.hdp;*.koa;*.mng;*.pcd;*.pcx;*.pfm;*.pct;*.pict;*.pic;*.png;*.pbm;*.pgm;*.ppm;*.psd;*.ras;*.sgi;*.rgb;*.rgba;*.bw;*.tga;*.targa;*.tif;*.tiff;*.wap;*.wbmp;*.wbm;*.webp;*.xbm;*.xpm"}},
 		{ OPT_CMP_IMG_SHOWDIFFERENCES, varprop::VT_BOOL, {}, {}},
