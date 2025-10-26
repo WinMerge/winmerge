@@ -132,7 +132,7 @@ void CleanupWMtemp()
 		{
 			int pid = atoi(ucr::toUTF8(tempfolderPID).c_str());
 			if (!WMrunning(pid))
-				ClearTempfolder(dir.path);
+				ClearTempfolder(paths::ConcatPath(dir.path, foldername));
 		}
 		catch (...)
 		{
