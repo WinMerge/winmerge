@@ -353,6 +353,7 @@ BOOL CMergeApp::InitInstance()
 	// Initialize i18n (multiple language) support
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
+#if !defined(_M_ARM64) && !defined(_M_ARM)
 	if (IsWin10_OrGreater())
 	{
 		DarkMode::LoadDarkModeDll();
@@ -372,6 +373,7 @@ BOOL CMergeApp::InitInstance()
 		DarkMode::setDarkModeConfigEx(static_cast<unsigned>(dmType));
 		DarkMode::setDefaultColors(true);
 	}
+#endif
 
 	SysColorHook::Init();
 	charsets_init();

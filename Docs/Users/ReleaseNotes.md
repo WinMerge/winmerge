@@ -19,6 +19,7 @@ Please submit bug reports to our bug-tracker.
 ### General
 
 * [Feature request] Alternate hotkeys for tab navigation (#2942)
+* Disabled darkmodelib in the ARM64 build due to an unresolved crash issue.
 
 ### Binary compare
 
