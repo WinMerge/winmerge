@@ -19,7 +19,7 @@ Please submit bug reports to our bug-tracker.
 ### General
 
 * BugFix: Fixed an issue where leftover WinMerge temporary folders were not 
-    properly deleted on the next application exit.
+    properly deleted on the next application exit (since version 2.16.51).
 * [Feature request] Alternate hotkeys for tab navigation (#2942)
 * Disabled darkmodelib in the ARM64 build due to an unresolved crash issue.
 
