@@ -243,10 +243,12 @@ void PropCompareFolder::OnBnClickedAdditionalCompareConditionMenu()
 void PropCompareFolder::UpdateControls()
 {
 	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_COMPAREMETHODCOMBO);
-	EnableDlgItem(IDC_COMPARE_STOPFIRST, pCombo->GetCurSel() == 1);
+	const int sel = pCombo->GetCurSel();
+	EnableDlgItem(IDC_COMPARE_STOPFIRST, sel == 1);
+	EnableDlgItem(IDC_IGNORE_SMALLTIMEDIFF, sel == 3 || sel == 4);
 	EnableDlgItem(IDC_COMPARE_WALKSUBDIRS, IsDlgButtonChecked(IDC_RECURS_CHECK) == 1);
 	EnableDlgItem(IDC_EXPAND_SUBDIRS, IsDlgButtonChecked(IDC_RECURS_CHECK) == 1);
-	EnableDlgItem(IDC_COMPARE_THREAD_COUNT, pCombo->GetCurSel() <= 1 ? true : false); // true: fullcontent, quickcontent
-	EnableDlgItem(IDC_COMPARE_QUICKC_LIMIT, pCombo->GetCurSel() == 0 ? true : false); // true: fullcontent
-	EnableDlgItem(IDC_COMPARE_BINARYC_LIMIT, pCombo->GetCurSel() <= 1 ? true : false); // true: fullcontent, quickcontent
+	EnableDlgItem(IDC_COMPARE_THREAD_COUNT, sel <= 1 ? true : false); // true: fullcontent, quickcontent
+	EnableDlgItem(IDC_COMPARE_QUICKC_LIMIT, sel == 0 ? true : false); // true: fullcontent
+	EnableDlgItem(IDC_COMPARE_BINARYC_LIMIT, sel <= 1 ? true : false); // true: fullcontent, quickcontent
 }
