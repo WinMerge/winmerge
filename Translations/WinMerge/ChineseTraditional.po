@@ -1336,7 +1336,7 @@ msgid "Ignore &Missing Trailing EOL"
 msgstr "忽略缺少結尾換行符號 (&M)"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "忽略換行符號（視為空格）(&b)"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -2496,10 +2496,10 @@ msgid "Ignore c&omment differences"
 msgstr "忽略註解差異 (&O)"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "忽略缺少結尾行尾換行符號(&M)"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "忽略換行符號（視為空格）(&b)"
 
 #, c-format
 msgid "E&nable moved block detection"
