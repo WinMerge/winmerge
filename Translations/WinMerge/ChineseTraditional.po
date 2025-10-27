@@ -924,7 +924,7 @@ msgid "Lo&cation Pane"
 msgstr "位置窗格 (&P)"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "輸出窗格 (&O)"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
