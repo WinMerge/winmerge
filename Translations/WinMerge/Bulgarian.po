@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2019-10-14 13:09+0000\n"
-"PO-Revision-Date: 2025-04-29 10:00+0300\n"
+"PO-Revision-Date: 2025-10-27 10:00+0200\n"
 "Last-Translator: Стоян <stoyanster от гмаил>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: bg\n"
@@ -78,7 +78,7 @@ msgid "Add to Substitution &Filters"
 msgstr "Нов заместващ &филтър от тази промяна"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "Добавяне към филтрите за &редове"
 
 msgid "&Undo"
 msgstr "О&тменяне"
@@ -376,10 +376,10 @@ msgid "&Huge"
 msgstr "&Огромен"
 
 msgid "Men&u Bar"
-msgstr ""
+msgstr "&Лента с менюто"
 
 msgid "&Output Pane"
-msgstr ""
+msgstr "Панел за &извеждане на съдържание"
 
 msgid "&Status Bar"
 msgstr "&Лента за състоянието"
@@ -760,7 +760,7 @@ msgid "Lo&cation Pane"
 msgstr "Миниатюрна &карта"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Панел за извеждане на съдържание"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
 msgstr "С&ледващ конфликт\tAlt+Shift+Down"
@@ -1065,7 +1065,7 @@ msgid "G&o to Diff"
 msgstr "&Отиване към различие"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "Преместване на &показалеца при щракване"
 
 msgid "&No Moved Blocks"
 msgstr "&Без преместени блокове"
@@ -1134,7 +1134,7 @@ msgid "Size"
 msgstr "Размер"
 
 msgid "Existence"
-msgstr ""
+msgstr "Съществуване"
 
 msgid "&Load Project..."
 msgstr "&Отваряне на проект…"
@@ -1482,7 +1482,7 @@ msgid "100000 or more"
 msgstr ""
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "Допълнителни &атрибути…"
 
 msgid "Add F&older Condition"
 msgstr ""
@@ -1503,64 +1503,64 @@ msgid "Add &Difference Condition"
 msgstr ""
 
 msgid "Equal"
-msgstr ""
+msgstr "Равно"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Не равно"
 
 msgid "Less Than"
-msgstr ""
+msgstr "По-малко"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "По-малко или равно"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "По-голямо"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "По-голямо или равно"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "По-малко от 10 б"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10 б и повече"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "По-малко от 100 б"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100 б и повече"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "По-малко от 1 секунда"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 секунда и повече"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "По-малко от 1 минута"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 минута и повече"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "По-малко от 1 час"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 час и повече"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "По-малко от 1 ден"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 ден и повече"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "По-малко от 1 седмица"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 седмица и повеЧе"
 
 msgid "Target: &Left and Right"
 msgstr ""
@@ -1815,22 +1815,22 @@ msgid "Colors"
 msgstr "Цветове"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "Цветови &режим&"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "Тема на &светлия режим:"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "Тема на &тъмния режим:"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "Потребителски теми"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "&Запазване на текущата тема…"
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "&Премахване на текущата тема…"
 
 msgid "Background"
 msgstr "Фон"
@@ -1938,7 +1938,7 @@ msgid "Items different:"
 msgstr "Различни елементи:"
 
 msgid "Items missing:"
-msgstr "Несъществуващи елементи:"
+msgstr "Липсващи елементи:"
 
 msgid "Items filtered:"
 msgstr "Филтрирани елементи:"
@@ -2115,7 +2115,7 @@ msgid "Ignore &case"
 msgstr "Пренебре&гване на регистъра"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Пренебрегване на &знаци за нов ред (Windows/Unix/Mac)"
 
 msgid "Ignore num&bers"
 msgstr "Пренебрегване на &числа"
@@ -2127,10 +2127,10 @@ msgid "Ignore c&omment differences"
 msgstr "Пренебрегване на различията в &коментари"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "Пренебрегване липсващи &висящи знаци за нов ред"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "Пренебрегване на знаците за нов ред (смятат се за интервали)"
 
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
@@ -2586,7 +2586,7 @@ msgid "Include &unique subfolders contents"
 msgstr "Включване на &уникално съдържание от подпапки"
 
 msgid "Ignore &reparse points"
-msgstr ""
+msgstr "Пренебрегване на точките за &повторен разбор"
 
 msgid "Switch to &quick compare when size exceeds (MB):"
 msgstr "Използване на &бързо сравняване при размер над (МБ):"
@@ -2595,7 +2595,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Използване на &двоично сравняване при размер над (МБ):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "Допълнителни &условия за сравняване:"
 
 msgid "File patterns:"
 msgstr "Шаблони за име на файл:"
@@ -2944,16 +2944,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML файлове (*.xml)|*.xml|Всички файлове (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Без разгъване"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Разгъване на всички подпапки"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Разгъване на различните подпапки"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Разгъване на еднаквите подпапки"
 
 msgid "File Type"
 msgstr "Вид на файла"
@@ -3829,7 +3829,7 @@ msgstr "Файловете с изображения са различни"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "Файловете са различни (израз: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4395,7 +4395,7 @@ msgstr ""
 "Налично е %1 (инсталирано е %2). Желаете ли новото издание да бъде изтеглено?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr " - Всички права запазени."
 
 msgid "Failed to download latest version information"
 msgstr "Грешка при изтегляне на данните за ново издание"
@@ -4415,7 +4415,7 @@ msgstr ""
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Изключено"
 
 msgid "From file system"
 msgstr "От файловата система"
@@ -4513,7 +4513,7 @@ msgstr "Естествен симтричен DirectWrite"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Изключено"
 
 msgid "MDI child window or main window"
 msgstr "Дъщерен или основен прозорец (MDI)"
@@ -4655,7 +4655,7 @@ msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Изключено"
 
 msgid "Allow only one instance to run"
 msgstr "Позволи само едно стартирано копие"
@@ -4665,10 +4665,10 @@ msgstr ""
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Изключено"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Само при фокусиране на прозореца"
 
 msgid "Immediately"
 msgstr "Незабавно"
@@ -4765,7 +4765,7 @@ msgstr ""
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Сравняване на %1"
 
 #, c-format
 msgid "Clipboard at %s"
@@ -4963,58 +4963,58 @@ msgid "Division by zero in filter expression"
 msgstr ""
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Неочаквана грешка"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "Неприемливо име на свойство"
 
 msgid "Equals"
-msgstr ""
+msgstr "Е равно на"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "Не е равно на"
 
 msgid "Less than"
-msgstr ""
+msgstr "По-малко от"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "По-малко или равно на"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "По-голямо или равно на"
 
 msgid "Greater than"
-msgstr ""
+msgstr "По-голямо на"
 
 msgid "Between"
-msgstr ""
+msgstr "Между"
 
 msgid "Not Between"
-msgstr ""
+msgstr "Не меЖду"
 
 msgid "Contains"
-msgstr ""
+msgstr "Съдържа"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "Не съдържа"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "Съдържа (регулярен израз)"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "Не съдържа (регулярен израз)"
 
 msgid "Light"
-msgstr ""
+msgstr "Светла"
 
 msgid "Dark"
-msgstr ""
+msgstr "Тъмна"
 
 msgid "Follow system"
-msgstr ""
+msgstr "Според системата"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Подреждане на кода"
 
 msgid "Content Extraction"
 msgstr "Извличане на съдържание"
@@ -5023,31 +5023,31 @@ msgid "Preview"
 msgstr "Преглед"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Заявка за данни"
 
 msgid "Validation"
-msgstr ""
+msgstr "Проверяване"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Разкомпилиране"
 
 msgid "URL Handling"
-msgstr ""
+msgstr "Управление на адреси"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "Декодиране / кодиране"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Към главни букви"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Към малки букви"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Премахване дублираните редове"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Преброяване дублираните редове"
 
 msgid "Sort Lines Ascending"
 msgstr ""
