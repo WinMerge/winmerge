@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2025-10-19 22:31+0900\n"
+"PO-Revision-Date: 2025-10-27 21:57+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -1722,7 +1722,7 @@ msgid "100000 or more"
 msgstr "100000 이상"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "추가 속성(&P)..."
 
 msgid "Add F&older Condition"
 msgstr "폴더 조건 추가(&O)"
@@ -1749,16 +1749,16 @@ msgid "Not Equal"
 msgstr "같지 않음"
 
 msgid "Less Than"
-msgstr ""
+msgstr "보다 작음"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "보다 작거나 같음"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "보다 큼"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "보다 크거나 같음"
 
 msgid "Less than 10B"
 msgstr "10B 미만"
@@ -1812,22 +1812,22 @@ msgid "Target: Middle and &Right"
 msgstr "대상: 가운데 및 오른쪽(&R)"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "대상: 모두(&A)"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "조건 지우기(&C)"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "크기 비교(&S)"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "날짜 비교(&D)"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "속성 비교(&A)"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "내용 비교(&O)"
 
 #, c-format
 msgid "About WinMerge"
@@ -3071,7 +3071,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "바이너리 비교로 전환하기 위한 임계값 (MB)(&B):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "추가 비교 조건(&T):"
 
 msgid "File patterns:"
 msgstr "파일 패턴:"
@@ -4465,7 +4465,7 @@ msgstr "이미지 파일이 다릅니다"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "추가 비교 조건: 파일이 다릅니다 (식: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -5509,7 +5509,7 @@ msgstr "필터 적용됨"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "비교 %1"
 
 #, c-format
 msgid "Clipboard at %s"
