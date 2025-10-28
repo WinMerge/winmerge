@@ -605,6 +605,7 @@ Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\ru.po; DestDir: {app}\Frhed\
 Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\sk.po; DestDir: {app}\Frhed\Languages; Components: Languages\Slovak
 Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Languages\Slovenian
 Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\ta.po; DestDir: {app}\Frhed\Languages; Components: Languages\Tamil
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\zh-TW.po; DestDir: {app}\Frhed\Languages; Components: Languages\ChineseTraditional
 Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Core
 
 ;WinIMerge
