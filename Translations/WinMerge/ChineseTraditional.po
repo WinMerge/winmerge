@@ -926,39 +926,39 @@ msgstr "比較為 (&M)"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
-msgstr "左側到中間 (%2 之 %1)"
+msgstr "左側到中間 (%1／%2)"
 
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "左側到右側 (%2 之 %1)"
+msgstr "左側到右側 (%1／%2)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "左側到... (%2 之 %1)"
+msgstr "左側到... (%1／%2)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr "中間到左側 (%2 之 %1)"
+msgstr "中間到左側 (%1／%2)"
 
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr "中間到右側 (%2 之 %1)"
+msgstr "中間到右側 (%1／%2)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr "中間到... (%2 之 %1)"
+msgstr "中間到... (%1／%2)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr "右側到中間 (%2 之 %1)"
+msgstr "右側到中間 (%1／%2)"
 
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "右側到左側 (%2 之 %1)"
+msgstr "右側到左側 (%1／%2)"
 
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "右側到... (%2 之 %1)"
+msgstr "右側到... (%1／%2)"
 
 msgid "&Delete"
 msgstr "刪除 (&D)"
@@ -989,23 +989,23 @@ msgstr "複製徑名 (&Y)"
 
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "左側 (%2 之 %1)"
+msgstr "左側 (%1／%2)"
 
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr "中間 (%2 之 %1)"
+msgstr "中間 (%1／%2)"
 
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "右側 (%2 之 %1)"
+msgstr "右側 (%1／%2)"
 
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "兩邊 (%2 之 %1)"
+msgstr "兩邊 (%1／%2)"
 
 #, c-format
 msgid "All (%1 of %2)"
-msgstr "全部 (%2 之 %1)"
+msgstr "全部 (%1／%2)"
 
 msgid "Copy &Filenames"
 msgstr "複製檔名 (&F)"
@@ -1021,15 +1021,15 @@ msgstr "Zip (&Z)"
 
 #, c-format
 msgid "Both to... (%1 of %2)"
-msgstr "兩邊到... (%2 之 %1)"
+msgstr "兩邊到... (%1／%2)"
 
 #, c-format
 msgid "All to... (%1 of %2)"
-msgstr "全部到... (%2 之 %1)"
+msgstr "全部到... (%1／%2)"
 
 #, c-format
 msgid "Differences to... (%1 of %2)"
-msgstr "差異到... (%2 之 %1)"
+msgstr "差異到... (%1／%2)"
 
 msgid "Left Shell Menu"
 msgstr "左側介面選單"
@@ -1739,7 +1739,7 @@ msgid "Match &case"
 msgstr "區分大小寫 (&C)"
 
 msgid "Regular &expression"
-msgstr "用類型表式 (&E)"
+msgstr "正規表達式 (&E)"
 
 msgid "D&on't wrap end of file"
 msgstr "至檔尾不折返 (&O)"
@@ -1805,7 +1805,7 @@ msgid "Enable Line Filters"
 msgstr "啟用行篩選器"
 
 msgid "Regular Expressions (one per line):"
-msgstr "類型表式 (每行一式)："
+msgstr "正規表達式 (每行一式)："
 
 msgid "Edit"
 msgstr "編輯"
@@ -1837,19 +1837,19 @@ msgid "Color &mode:"
 msgstr "色彩配置(&m)："
 
 msgid "&Light mode scheme:"
-msgstr "淺色模式配置(&L):"
+msgstr "亮色模式主題(&L):"
 
 msgid "&Dark mode scheme:"
-msgstr "暗黑模式方案(&D):"
+msgstr "暗色模式主題(&D):"
 
 msgid "Your custom schemes"
-msgstr "您的自訂配置"
+msgstr "您的自訂主題"
 
 msgid "&Save current scheme..."
-msgstr "儲存目前的配置(&S)..."
+msgstr "儲存目前主題(&S)..."
 
 msgid "Delete &current scheme..."
-msgstr "刪除目前方案(&C)..."
+msgstr "刪除目前主題(&C)..."
 
 msgid "Background"
 msgstr "背景"
@@ -1925,10 +1925,10 @@ msgid "&Use customized text colors"
 msgstr "使用自訂文字色彩 (&U)"
 
 msgid "Whitespace:"
-msgstr "空白："
+msgstr "空白字元："
 
 msgid "Regular text:"
-msgstr "類型表式文："
+msgstr "一般文本："
 
 msgid "Selection:"
 msgstr "選取："
@@ -2117,19 +2117,19 @@ msgid "Compare"
 msgstr "比較"
 
 msgid "Whitespaces"
-msgstr "空白處"
+msgstr "空白字元"
 
 msgid "&Compare"
-msgstr "比對空白處 (&W)"
+msgstr "比較(&C)"
 
 msgid "&Ignore change"
-msgstr "忽略空白數量之變動而造成的差異 (&H)"
+msgstr "忽略更改(&I)"
 
 msgid "I&gnore all"
-msgstr "忽略空白處之任何差異 (&A)"
+msgstr "全部忽略(&G)"
 
 msgid "Ignore blan&k lines"
-msgstr "忽略空白行(&K)"
+msgstr "忽略空行(&K)""
 
 msgid "Ignore &case"
 msgstr "忽略大小寫(&C)"
@@ -2186,7 +2186,7 @@ msgid "&Insert tabs"
 msgstr "插入製表符（Tab）(&I)"
 
 msgid "Insert &spaces"
-msgstr "插入空白 (&S)"
+msgstr "插入空格 (&S)"
 
 msgid "&Rendering mode:"
 msgstr "渲染模式 (&R)："
@@ -3420,10 +3420,10 @@ msgid ""
 msgstr "如未重整檔案，WinMerge 不能併入異動。"
 
 msgid "Break at whitespace"
-msgstr "空白處中斷"
+msgstr "空白字元處中斷"
 
 msgid "Break at whitespace or punctuation"
-msgstr "空白處或標點處中斷"
+msgstr "空白字元處或標點處中斷"
 
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "複製到中間 (&M)\tAlt+Right"
@@ -5092,10 +5092,10 @@ msgid "Not Contains (regex)"
 msgstr "不包含（正規表示法）"
 
 msgid "Light"
-msgstr "右側"
+msgstr "亮色"
 
 msgid "Dark"
-msgstr "暗"
+msgstr "暗色"
 
 msgid "Follow system"
 msgstr "遵循系統"
@@ -5158,7 +5158,7 @@ msgid "Tokenize..."
 msgstr "標記化..."
 
 msgid "Trim Spaces"
-msgstr "刪減空白"
+msgstr "修剪空格"
 
 msgid "Select Columns..."
 msgstr "選取欄..."
@@ -5307,7 +5307,7 @@ msgstr ""
 " PATTERNS - 用於分詞的正則表示式。（例如：[^\\w]+）"
 
 msgid "Trim spaces"
-msgstr "刪減空白"
+msgstr "修剪空格"
 
 msgid ""
 "Select columns.\r\n"
