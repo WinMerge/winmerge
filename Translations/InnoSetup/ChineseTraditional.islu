@@ -39,7 +39,7 @@ FrenchLanguage=法語
 GalicianLanguage=加里西亞語
 GermanLanguage=德語
 GreekLanguage=希臘語
-HebrewLanguage=Hebrew menus and dialogs
+HebrewLanguage=希伯來語選單和對話框
 HungarianLanguage=匈牙利語
 ItalianLanguage=義大利語
 JapaneseLanguage=日語
@@ -58,7 +58,7 @@ SlovakLanguage=斯洛伐克語
 SlovenianLanguage=斯洛維尼亞語
 SpanishLanguage=西班牙語
 SwedishLanguage=瑞典語
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=坦米爾選單和對話框
 TurkishLanguage=土耳其語
 UkrainianLanguage=烏克蘭語
 
@@ -85,7 +85,8 @@ ViewStartMenuFolder=檢視 WinMerge 開始選單資料夾 (&V)
 
 ;Code Dialogs
 DeletePreviousStartMenu=安裝程式偵測到您將開始選單的位置從 "%s" 改為 "%s"。您要刪除舊的開始選單資料夾嗎？
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=WinMerge ShellExtension 需要重新啟動檔案總管才能更新。是否要重新啟動檔案總管？
 
 ; Project file description
 ProjectFileDesc=WinMerge 專案檔
+
