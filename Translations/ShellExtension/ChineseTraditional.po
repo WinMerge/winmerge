@@ -43,7 +43,7 @@ msgstr "Win&Merge"
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "比較為(&A)"
 
 #: ShellExtension.rc:114
 #, c-format
