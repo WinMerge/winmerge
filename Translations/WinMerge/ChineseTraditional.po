@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-10-21 19:25+0000\n"
 "PO-Revision-Date: 2025-10-28 10:43+0800\n"
-"Last-Translator: 笙歌\n"
+"Last-Translator: 昇\n"
 "Language-Team: ChineseTraditional <winmerge-"
 "translate@lists.sourceforge.net>\n"
 "Language: zh_TW\n"
@@ -24,6 +24,7 @@ msgstr ""
 "X-Generator: Poedit 3.7\n"
 
 #. LANGUAGE, SUBLANGUAGE
+#, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL"
 
@@ -64,17 +65,18 @@ msgid "Copy Selected Lines from Left"
 msgstr "從左側複製所選行"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr "將左側選定的差異複製到剪貼簿\tCtrl+&1"
+msgstr "複製選取差異 (左側) 到剪貼簿\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr "將右側選定的差異複製到剪貼簿\tCtrl+&2"
+msgstr "複製選取差異 (右側) 到剪貼簿\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr "將中間選定的差異複製到剪貼簿\tCtrl+&2"
+msgstr "複製選取差異 (中間) 到剪貼簿\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr "將右側選定的差異複製到剪貼簿\tCtrl+&3"
+msgstr "複製選取差異 (右側) 到剪貼簿\tCtrl+&3"
 
+#, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "選取行內差異 (&D)\tF4"
 
@@ -84,12 +86,15 @@ msgstr "將此變動加入替代篩選器 (&F)"
 msgid "Add to &Line Filters"
 msgstr "新增至行篩選器(&L)"
 
+#, c-format
 msgid "&Undo"
 msgstr "復原 (&U)"
 
+#, c-format
 msgid "&Redo"
 msgstr "取消復原 (&R)"
 
+#, c-format
 msgid "Cu&t"
 msgstr "剪下 (&T)"
 
@@ -2839,8 +2844,9 @@ msgid ""
 "redistributed under the conditions of the GNU General Public License - see "
 "the Help menu for details."
 msgstr ""
-"絕不保證自由軟體 WinMerge 無瑕疵。歡迎在某些條件下再散發它；細節見說明選單中"
-"的 GNU 公共授權證。"
+"WinMerge 不附帶任何保證。"
+"這是一款自由軟體，可依照 GNU 通用公共授權條款（GPL）的條件進行再散佈。"
+"詳情請參閱「說明」選單。"
 
 msgid "&Abort"
 msgstr "放棄 (&A)"
@@ -4473,7 +4479,7 @@ msgid "From file system"
 msgstr "從檔案系統"
 
 msgid "From Most Recently Used list"
-msgstr "從 MRU 表"
+msgstr "從最近使用清單"
 
 msgid "No Highlighting"
 msgstr "無高亮度顯示"
@@ -5272,14 +5278,14 @@ msgid ""
 " -e - regex\r\n"
 " -s - use Substitution Filters"
 msgstr ""
-"替換文本為另一個文本。\r\n"
+"取代文字。\r\n"
 "用法：Replace [-i] [-e] FIND REPLACE\r\n"
-" or: Replace -s\r\n"
-"FIND - 要尋找的文本\r\n"
-"REPLACE - 要替換的文本\r\n"
+"或：Replace -s\r\n"
+"FIND - 要尋找的文字\r\n"
+"REPLACE - 要取代的文字\r\n"
 "-i - 忽略大小寫（僅適用於 -e）\r\n"
-"-e - 將指定的文本視為正則表示式\r\n"
-"-s - replace using Substitution Filters patterns"
+"-e - 正規表示式\r\n"
+"-s - 使用取代篩選器"
 
 #, c-format
 msgid ""
