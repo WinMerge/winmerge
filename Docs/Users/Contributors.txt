@@ -57,6 +57,7 @@ Localization:
   Calvin Lin <ylin77 at gmail.com>
   SiderealArt <admin at siderealart.me>
   abc0922001
+  love80312
 
 * Corsican:
   Patriccollu di Santa Maria è Sichè
