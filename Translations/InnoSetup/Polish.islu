@@ -1,7 +1,7 @@
 ﻿[Messages]
 
-WizardInfoBefore=License Agreement
-InfoBeforeLabel=GNU General Public License
+WizardInfoBefore=Umowa licencyjna
+InfoBeforeLabel=Powszechna Licencja Publiczna GNU
 
 [CustomMessages]
 
@@ -13,7 +13,7 @@ CompanyName=Thingamahoochie Software
 TypicalInstallation=Typowa instalacja
 FullInstallation=Pełna instalacja
 CompactInstallation=Ograniczona instalacja
-CustomInstallation=Instalacja użytkownika
+CustomInstallation=Instalacja niestandardowa
 
 ;Components
 AppCoreFiles=Podstawowe pliki WinMerge
@@ -29,7 +29,7 @@ BulgarianLanguage=Bułgarski
 CatalanLanguage=Kataloński
 ChineseSimplifiedLanguage=Chiński (uproszczony)
 ChineseTraditionalLanguage=Chiński (tradycyjny)
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=Korsykański
 CroatianLanguage=Chorwacki
 CzechLanguage=Czeski
 DanishLanguage=Duński
@@ -39,7 +39,7 @@ FrenchLanguage=Francuski
 GalicianLanguage=Galisyjski
 GermanLanguage=Niemiecki
 GreekLanguage=Grecki
-HebrewLanguage=Hebrew menus and dialogs
+HebrewLanguage=Hebrajski
 HungarianLanguage=Węgierski
 ItalianLanguage=Włoski
 JapaneseLanguage=Japoński
@@ -58,7 +58,7 @@ SlovakLanguage=Słowacki
 SlovenianLanguage=Słoweński
 SpanishLanguage=Hiszpański
 SwedishLanguage=Szwedzki
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=Tamilski
 TurkishLanguage=Turecki
 UkrainianLanguage=Ukraiński
 
@@ -85,7 +85,8 @@ ViewStartMenuFolder=&Wyświetl folder menu Start WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instalator wykrył, że zmieniłeś lokalizację menu startowego z "%s" na "%s". Czy usunąć poprzedni folder menu startowego?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=Aby dokonać aktualizacji rozszerzenia powłoki WinMerge wymagane jest ponownego uruchomienia Eksploratora. Czy uruchomić ponownie Eksploratora?
 
 ; Project file description
 ProjectFileDesc=Plik projektu WinMerge
+
