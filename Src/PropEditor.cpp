@@ -15,7 +15,7 @@
 #endif
 
 /** @brief Maximum size for tabs in spaces. */
-static const int MAX_TABSIZE = 64;
+static const unsigned MAX_TABSIZE = 64u;
 
 /** 
  * @brief Constructor.
@@ -29,9 +29,9 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 , m_bAllowMixedEol(false)
 , m_nRenderingMode(0)
 {
-	BindOption(OPT_TAB_SIZE, m_nTabSize, IDC_TAB_EDIT, DDX_Text);
-	BindOptionCustom(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio,
-		+[](int v) { return v; }, +[](int v) { return std::clamp(v, 1, MAX_TABSIZE); });
+	BindOptionCustom(OPT_TAB_SIZE, m_nTabSize, IDC_TAB_EDIT, DDX_Text,
+		+[](unsigned v) { return v; }, +[](unsigned v) { return std::clamp(v, 1u, MAX_TABSIZE); });
+	BindOption(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio);
 	BindOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax, IDC_HILITE_CHECK, DDX_Check);
 	BindOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol, IDC_MIXED_EOL, DDX_Check);
 	BindOptionCustom(OPT_RENDERING_MODE, m_nRenderingMode, IDC_RENDERING_MODE, DDX_CBIndex,
