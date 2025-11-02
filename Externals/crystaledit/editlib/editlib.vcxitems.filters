@@ -202,5 +202,8 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)FindTextHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)darkmodelib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

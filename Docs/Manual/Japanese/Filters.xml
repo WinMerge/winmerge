@@ -198,17 +198,19 @@ WinMerge
 <literal>false</literal></para></listitem>
           <listitem><para><emphasis>Integer</emphasis>: 64ビット符号付き整数 (例: <literal>1024</literal>,
 <literal>100KB</literal>, <literal>7days</literal> などの単位付きも可能)</para></listitem>
+          <listitem><para><emphasis>Real (Double)</emphasis>: 小数点または指数部を任意に含む浮動小数点数 (例:
+<literal>3.14</literal>, <literal>.5</literal>, <literal>1e6</literal>)</para></listitem>
           <listitem><para><emphasis>String</emphasis>: ダブルクォートで囲まれた文字列 (例:
 <literal>"example"</literal>)</para></listitem>
         </itemizedlist>
 
         <para>
-内部的に扱われる型は以下の通りです: Boolean, Integer, Timestamp, String, File Content, Array,
-or <literal>undefined</literal>.</para>
+内部的に扱われる型は以下の通りです: Boolean, Integer, Real, Timestamp, String, File Content,
+Array, or <literal>undefined</literal>.</para>
       </section>
 
       <section id="FilterExpression_Attributes">
-        <title>属性</title>
+        <title>Attributes</title>
 
         <para>
 フィルタ式では、ファイルのメタデータや内容を参照する多様な属性が利用できます。属性名の大文字・小文字は区別されません。必要に応じて、比較対象のどの側（Left,
@@ -255,7 +257,7 @@ Right, Middle）かを接頭辞で指定できます。</para>
               <listitem><para>作成日時のタイムスタンプを返します。</para></listitem>
             </varlistentry>
             <varlistentry>
-              <term>Attribute</term>
+              <term>Attributes</term>
               <listitem><para>ファイル属性を整数値で返します。</para></listitem>
             </varlistentry>
             <varlistentry>
@@ -286,6 +288,47 @@ Right, Middle）かを接頭辞で指定できます。</para>
 
           <para>
 接頭辞のない属性（例: <literal>Size</literal>）は、左・中央・右のすべての側の値を含む配列を返します。</para>
+        </section>
+
+        <section>
+          <title>Windows プロパティ属性</title>
+          <para>
+これらの属性は、Windows プロパティ システムで定義されたメタデータ （例:
+<literal>System.Title</literal>、<literal>System.FileOwner</literal>、<literal>System.Image.HorizontalResolution</literal>
+など）にアクセスするためのものです。</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Prop</term>
+              <listitem>
+                <para>
+指定した正規プロパティ名に対応するプロパティ値の配列（Left、Middle、Right）を返します。例:
+<literal>prop("System.Title")</literal></para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>LeftProp</term>
+              <listitem>
+                <para>
+左側のファイルのプロパティ値を返します。例: <literal>leftprop("System.FileOwner")</literal></para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>MiddleProp</term>
+              <listitem>
+                <para>中央のファイル（3-way 比較時）のプロパティ値を返します。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>RightProp</term>
+              <listitem>
+                <para>右側のファイルのプロパティ値を返します。</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
         </section>
 
         <section id="FilterExpression_ArrayEvaluation">
@@ -475,6 +518,11 @@ Right, Middle）かを接頭辞で指定できます。</para>
             <listitem><para>年の初日を返します。</para></listitem>
           </varlistentry>
           <varlistentry>
+            <term>toDateStr(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>指定されたタイムスタンプを<literal>yyyy-MM-dd</literal>
+形式の文字列に変換して返します。<replaceable>timestamp</replaceable>がタイムスタンプ配列の場合、結果は文字列配列になります。</para></listitem>
+          </varlistentry>
+          <varlistentry>
             <term>abs(<replaceable>value</replaceable>)</term>
             <listitem><para><emphasis>整数または整数の配列</emphasis> の絶対値を返します。<replaceable>value</replaceable>
 が整数配列である場合、結果は整数配列になります。</para></listitem>
@@ -527,7 +575,7 @@ Right, Middle）かを接頭辞で指定できます。</para>
           <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() -
 7days)</literal> - 大きなログファイルまたは1週間以上前のファイル</para></listitem>
           <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> -
-非表示の一時ファイル</para></listitem>
+非表示でない一時ファイル</para></listitem>
         </itemizedlist>
       </section>
     </section>

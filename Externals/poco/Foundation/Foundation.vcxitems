@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{B30837C4-F99F-46F9-ADFB-5FAEFB1D2FBB}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\AbstractObserver.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ActiveDispatcher.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Ascii.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ASCIIEncoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\AsyncChannel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\AtomicCounter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Base64Decoder.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Base64Encoder.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\BinaryReader.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\BinaryWriter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Bugcheck.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Channel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Clock.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Condition.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DateTime.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DateTimeFormat.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DateTimeFormatter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DateTimeParser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Debugger.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DirectoryIterator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DirectoryIterator_UNIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DirectoryIterator_WIN32U.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Environment.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Environment_UNIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Environment_WIN32U.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Error.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ErrorHandler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Event.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Event_POSIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Event_WIN32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Exception.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\File.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\FileStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\FileStreamFactory.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\FileStream_POSIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\FileStream_WIN32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\File_UNIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\File_WIN32U.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Format.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\PocoFoundation.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Glob.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Hash.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Latin1Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Latin2Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Latin9Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\LocalDateTime.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\LogFile.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\MemoryStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Mutex.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Mutex_POSIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Mutex_WIN32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NamedEvent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NamedEvent_UNIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NamedEvent_WIN32U.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Notification.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NotificationCenter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NotificationQueue.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NullStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NumberFormatter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NumberParser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NumericString.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Path.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Path_UNIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Path_WIN32U.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_auto_possess.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_chartables.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_chkdint.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_compile.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_config.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_context.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_convert.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_dfa_match.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_error.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_extuni.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_find_bracket.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_compile.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_match.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_misc.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_maketables.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_match.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_match_data.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_newline.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ord2utf.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_pattern_info.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_script_run.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_serialize.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_string_utils.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_study.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_substitute.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_substring.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_tables.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ucd.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ucptables.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_valid_utf.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_xclass.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Pipe.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\PipeImpl.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\PipeImpl_DUMMY.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\PipeImpl_POSIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\PipeImpl_WIN32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Process.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Process_UNIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Process_WIN32U.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\RandomStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\RefCountedObject.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\RegularExpression.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Runnable.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\RWLock.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\RWLock_POSIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\RWLock_WIN32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Semaphore.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Semaphore_POSIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Semaphore_WIN32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SharedMemory.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SharedMemory_DUMMY.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SharedMemory_POSIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SharedMemory_WIN32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SimpleFileChannel.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Stopwatch.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\StreamConverter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\StreamCopier.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\StringTokenizer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SynchronizedObject.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\TemporaryFile.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\TextBufferIterator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\TextConverter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\TextEncoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\TextIterator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Thread.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ThreadLocal.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ThreadPool.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ThreadTarget.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Thread_POSIX.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Thread_WIN32.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Timer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Timespan.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Timestamp.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Timezone.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Unicode.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\UnicodeConverter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\URI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\URIStreamFactory.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\URIStreamOpener.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\UTF16Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\UTF32Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\UTF8Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\UTF8String.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Void.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Windows1250Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Windows1251Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Windows1252Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\AbstractObserver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ActiveDispatcher.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ActiveMethod.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ActiveResult.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ActiveRunnable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ActiveStarter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Activity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Any.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Ascii.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ASCIIEncoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\AtomicCounter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\AutoPtr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\AutoReleasePool.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Base64Decoder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Base64Encoder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\BinaryReader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\BinaryWriter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Buffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\BufferAllocator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\BufferedBidirectionalStreamBuf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\BufferedStreamBuf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Bugcheck.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ByteOrder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Clock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Condition.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Config.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\DateTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\DateTimeFormat.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\DateTimeFormatter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Debugger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\DirectoryIterator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\DirectoryIterator_UNIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\DirectoryIterator_WIN32U.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\DynamicFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Environment.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Environment_UNIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Environment_WIN32U.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Error.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ErrorHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Event.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Event_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Event_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Exception.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\File.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\FileStream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\FileStreamFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\FileStream_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\FileStream_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\File_UNIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\File_WIN32U.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Format.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Foundation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Glob.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Hash.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\HashFunction.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\HashMap.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\HashSet.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\HashTable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Instantiator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Latin1Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Latin2Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Latin9Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\LinearHashTable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\LocalDateTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\LogFile.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Logger.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\LoggingRegistry.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\MemoryStream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\MetaProgramming.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Mutex.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Mutex_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Mutex_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NamedEvent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NamedEvent_UNIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NamedEvent_WIN32U.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NamedTuple.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NObserver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Notification.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NotificationCenter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NotificationQueue.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Nullable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NullStream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NumberFormatter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NumberParser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\NumericString.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Observer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Path.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Path_UNIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Path_WIN32U.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Pipe.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\PipeImpl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\PipeImpl_DUMMY.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\PipeImpl_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\PipeImpl_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Platform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Platform_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Platform_VMS.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Platform_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Poco.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Process.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Process_UNIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Process_WIN32U.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RandomStream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RefCountedObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RegularExpression.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Runnable.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RunnableAdapter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RWLock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RWLock_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RWLock_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ScopedLock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ScopedUnlock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Semaphore.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Semaphore_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Semaphore_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SharedMemory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SharedMemory_DUMMY.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SharedMemory_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SharedMemory_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SharedPtr.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SignalHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SingletonHolder.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Stopwatch.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\StreamConverter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\StreamCopier.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\StreamUtil.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\String.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\StringTokenizer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SynchronizedObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\TemporaryFile.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\TextBufferIterator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\TextConverter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\TextEncoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\TextIterator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Thread.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ThreadLocal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ThreadPool.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\ThreadTarget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Thread_POSIX.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Thread_WIN32.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Timer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Timespan.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Timestamp.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Timezone.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Tuple.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\TypeList.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Types.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\UnbufferedStreamBuf.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Unicode.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\UnicodeConverter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\UnWindows.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\URI.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\URIStreamFactory.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\URIStreamOpener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\UTF16Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\UTF32Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\UTF8Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\UTF8String.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Version.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Void.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Windows1250Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Windows1251Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Windows1252Encoding.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_config.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_internal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_intmodedep.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_ucp.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\ucp.h" />
+  </ItemGroup>
+</Project>

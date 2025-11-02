@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2025-08-12 11:36+0100\n"
+"PO-Revision-Date: 2025-10-06 17:28+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -182,10 +182,6 @@ msgstr "Rodar h&orizontalmente"
 
 msgid "&Zoom"
 msgstr "&Zoom"
-
-#, c-format
-msgid "25%"
-msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "&Ampliar\tCtrl++"
@@ -1114,6 +1110,9 @@ msgstr "Ignorar diferenças nos c&omentários"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignorar presença ou ausência de um carácter de nova linha no fim do ficheiro"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr "Ignorar &quebras de linha (tratar como espaços)"
+
 msgid "&Include Subfolders"
 msgstr "&Incluir subpastas"
 
@@ -1137,6 +1136,9 @@ msgstr "Data de modificação e tamanho"
 
 msgid "Size"
 msgstr "Tamanho"
+
+msgid "Existence"
+msgstr ""
 
 msgid "&Load Project..."
 msgstr "&Carregar projeto..."
@@ -1483,6 +1485,9 @@ msgstr "Menos de 100000"
 msgid "100000 or more"
 msgstr "100000 ou mais"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Adicionar c&ondição de pasta"
 
@@ -1506,6 +1511,18 @@ msgstr "Igual"
 
 msgid "Not Equal"
 msgstr "Não igual"
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
 
 msgid "Less than 10B"
 msgstr "Menos de 10B"
@@ -1557,6 +1574,24 @@ msgstr "Alvo: Esquerda e Meio"
 
 msgid "Target: Middle and &Right"
 msgstr "Alvo: Meio e Direita"
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
@@ -1783,8 +1818,23 @@ msgstr "Limpar"
 msgid "Colors"
 msgstr "Cores"
 
-msgid "Color Scheme:"
-msgstr "Esquema de cores:"
+msgid "Color &mode:"
+msgstr "&Modo de cor:"
+
+msgid "&Light mode scheme:"
+msgstr "Esquema de modo &claro:"
+
+msgid "&Dark mode scheme:"
+msgstr "Esquema de modo &escuro:"
+
+msgid "Your custom schemes"
+msgstr "Os seus esquemas personalizados"
+
+msgid "&Save current scheme..."
+msgstr "&Guardar esquema atual..."
+
+msgid "Delete &current scheme..."
+msgstr "Guardar esquema &atual..."
 
 msgid "Background"
 msgstr "Fundo"
@@ -2082,6 +2132,9 @@ msgstr "Ignorar diferenças nos c&omentários"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Ignorar presença ou ausência de um carácter de nova linha no fim do ficheiro"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Ignorar &quebras de linha (tratar como espaços)"
 
 msgid "E&nable moved block detection"
 msgstr "Ativar deteção de bloco movido"
@@ -2545,6 +2598,9 @@ msgstr "Limite para trocar para comparação &rápida (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Limite para trocar para comparação &binária (MB):"
 
+msgid "Additional comparison condi&tions:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Padrões de ficheiros:"
 
@@ -2629,6 +2685,42 @@ msgstr "Extensão de ficheiro &script:"
 
 msgid "Script &body:"
 msgstr "&Corpo do script:"
+
+msgid "Font"
+msgstr "Tipo de letra"
+
+msgid "&Font:"
+msgstr "&Tipo de letra:"
+
+msgid "Font st&yle:"
+msgstr "Estilo de t&ipo de letra:"
+
+msgid "&Size:"
+msgstr "Tama&nho:"
+
+msgid "Effects"
+msgstr "Efeitos"
+
+msgid "Stri&keout"
+msgstr "Ris&cado"
+
+msgid "&Underline"
+msgstr "S&ublinhado"
+
+msgid "&Color:"
+msgstr "&Cor:"
+
+msgid "Sample"
+msgstr "Exemplo"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "Sc&ript:"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>Mostrar mais tipos de letra</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -3756,6 +3848,10 @@ msgid "Image files are different"
 msgstr "Os ficheiros de imagem são diferentes"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Grupo%d"
 
@@ -4696,6 +4792,10 @@ msgid "Filter applied"
 msgstr "Filtro aplicado"
 
 #, c-format
+msgid "Compare %1"
+msgstr ""
+
+#, c-format
 msgid "Clipboard at %s"
 msgstr "Área de transferência em %s"
 
@@ -4921,6 +5021,9 @@ msgstr "Divisão por zero em expressão de filtro"
 msgid "Unknown error"
 msgstr "Erro desconhecido"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Igual a"
 
@@ -4956,6 +5059,15 @@ msgstr "Contém (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Não contém (regex)"
+
+msgid "Light"
+msgstr "Claro"
+
+msgid "Dark"
+msgstr "Escuro"
+
+msgid "Follow system"
+msgstr "Seguir o sistema"
 
 msgid "Prettification"
 msgstr "Embelezamento"

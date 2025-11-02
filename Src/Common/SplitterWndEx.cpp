@@ -12,6 +12,7 @@
 #include <vector>
 #include "SplitterWndEx.h"
 #include "cecolor.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,6 +23,7 @@ BEGIN_MESSAGE_MAP(CSplitterWndEx, CSplitterWnd)
 	ON_WM_HSCROLL()
 	ON_WM_VSCROLL()
 	ON_WM_SIZE()
+	ON_WM_SETTINGCHANGE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -49,6 +51,18 @@ int CSplitterWndEx::HitTest(CPoint pt) const
 	if (m_bBarLocked)
 		return 0;
 	return CSplitterWnd::HitTest(pt);
+}
+
+BOOL CSplitterWndEx::CreateScrollBarCtrl(DWORD dwStyle, UINT nID)
+{
+	BOOL bResult = CSplitterWnd::CreateScrollBarCtrl(dwStyle, nID);
+	auto pBar = static_cast<CScrollBar*>(GetDlgItem(nID));
+	if (pBar != nullptr && pBar->GetSafeHwnd())
+	{
+		DarkMode::setDarkScrollBar(pBar->GetSafeHwnd());
+		pBar->Invalidate();
+	}
+	return bResult;
 }
 
 CScrollBar* CSplitterWndEx::GetScrollBarCtrl(CWnd* pWnd, int nBar) const
@@ -380,7 +394,13 @@ void CSplitterWndEx::OnSize(UINT nType, int cx, int cy)
 			EqualizeRows();
 		}
 	}
+}
 
+void CSplitterWndEx::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+		DarkMode::setChildCtrlsTheme(GetSafeHwnd());
+	__super::OnSettingChange(uFlags, lpszSection);
 }
 
 void CSplitterWndEx::FlipSplit()

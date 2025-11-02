@@ -13,7 +13,6 @@
 
 #include "stdafx.h"
 #include "HexMergeFrm.h"
-#include "Merge.h"
 #include "HexMergeDoc.h"
 #include "HexMergeView.h"
 #include "OptionsDef.h"
@@ -220,7 +219,7 @@ void CHexMergeFrame::SavePosition()
 
 void CHexMergeFrame::SaveActivePane()
 {
-	if (CWnd* pLeft = m_wndSplitter.GetPane(0, 0))
+	if (m_wndSplitter.GetPane(0, 0))
 	{
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, GetActivePane());
 	}

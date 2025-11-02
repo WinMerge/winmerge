@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2025-07-26 12:01+0900\n"
+"PO-Revision-Date: 2025-08-16 13:44+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -180,10 +180,6 @@ msgstr "左右反転(&O)"
 
 msgid "&Zoom"
 msgstr "拡大/縮小(&Z)"
-
-#, c-format
-msgid "25%"
-msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "拡大(&I)\tCtrl++"
@@ -1112,6 +1108,9 @@ msgstr "コメントの違いを無視する(&O)"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr "改行を無視(空白として扱う)(&B)"
+
 msgid "&Include Subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
@@ -1135,6 +1134,9 @@ msgstr "更新日時とサイズ"
 
 msgid "Size"
 msgstr "サイズのみ"
+
+msgid "Existence"
+msgstr "存在のみ"
 
 msgid "&Load Project..."
 msgstr "プロジェクトを読み込み(&L)..."
@@ -1481,6 +1483,9 @@ msgstr "100000未満"
 msgid "100000 or more"
 msgstr "100000以上"
 
+msgid "Additional &Properties..."
+msgstr "追加プロパティ(&P)..."
+
 msgid "Add F&older Condition"
 msgstr "フォルダー条件を追加(&O)"
 
@@ -1504,6 +1509,18 @@ msgstr "一致"
 
 msgid "Not Equal"
 msgstr "不一致"
+
+msgid "Less Than"
+msgstr "<"
+
+msgid "Less Than or Equal to"
+msgstr "<="
+
+msgid "Greater Than"
+msgstr ">"
+
+msgid "Greater Than or Equal to"
+msgstr ">="
 
 msgid "Less than 10B"
 msgstr "10B 未満"
@@ -1555,6 +1572,24 @@ msgstr "対象: 左と中央(&M)"
 
 msgid "Target: Middle and &Right"
 msgstr "対象: 中央と右(&R)"
+
+msgid "Target: &All"
+msgstr "対象: すべて(&A)"
+
+msgid "&Clear conditions"
+msgstr "条件をクリア(&C)"
+
+msgid "Compare &Size"
+msgstr "サイズを比較(&S)"
+
+msgid "Compare &Date"
+msgstr "更新日時を比較(&D)"
+
+msgid "Compare &Attributes"
+msgstr "属性を比較(&A)"
+
+msgid "Compare C&ontents"
+msgstr "内容を比較(&O)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -1781,8 +1816,23 @@ msgstr "クリア"
 msgid "Colors"
 msgstr "色"
 
-msgid "Color Scheme:"
-msgstr "配色:"
+msgid "Color &mode:"
+msgstr "色モード(&M):"
+
+msgid "&Light mode scheme:"
+msgstr "ライトモード用配色(&L):"
+
+msgid "&Dark mode scheme:"
+msgstr "ダークモード用配色(&D):"
+
+msgid "Your custom schemes"
+msgstr "ユーザ定義配色"
+
+msgid "&Save current scheme..."
+msgstr "現在の配色を保存(&S)..."
+
+msgid "Delete &current scheme..."
+msgstr "現在の配色を削除(&C)..."
 
 msgid "Background"
 msgstr "背景"
@@ -2084,6 +2134,9 @@ msgstr "コメントの違いを無視する(&O)"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "改行を無視(空白として扱う)(&B)"
 
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
@@ -2547,6 +2600,9 @@ msgstr "クイック比較切替閾値 (MB)(&Q):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
+msgid "Additional comparison condi&tions:"
+msgstr "追加比較条件(&T):"
+
 msgid "File patterns:"
 msgstr "ファイル パターン:"
 
@@ -2631,6 +2687,42 @@ msgstr "スクリプトファイル拡張子(&S):"
 
 msgid "Script &body:"
 msgstr "スクリプト本体(&B):"
+
+msgid "Font"
+msgstr "フォント"
+
+msgid "&Font:"
+msgstr "フォント名(&F):"
+
+msgid "Font st&yle:"
+msgstr "スタイル(&Y):"
+
+msgid "&Size:"
+msgstr "サイズ(&S):"
+
+msgid "Effects"
+msgstr "効果"
+
+msgid "Stri&keout"
+msgstr "取り消し線(&K)"
+
+msgid "&Underline"
+msgstr "下線(&U)"
+
+msgid "&Color:"
+msgstr "色(&C):"
+
+msgid "Sample"
+msgstr "サンプル"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "文字セット(&R):"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>他のフォントを表示</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -3157,8 +3249,7 @@ msgid ""
 msgstr ""
 "非常に大きなファイルを比較しようとしています。\n"
 "内容を表示するには大量のメモリが必要です。\n"
-"内容の表示はせずに、比較結果のみ表示しますか?\n"
-"\n"
+"内容の表示はせずに、比較結果のみ表示しますか?"
 
 msgid "Save As"
 msgstr "名前を付けて保存"
@@ -3752,6 +3843,10 @@ msgstr "画像ファイルは同一です"
 
 msgid "Image files are different"
 msgstr "画像ファイルは異なります"
+
+#, c-format
+msgid "Files are different (expr: %1)"
+msgstr "ファイルは異なります (式: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4696,6 +4791,10 @@ msgid "Filter applied"
 msgstr "フィルター適用"
 
 #, c-format
+msgid "Compare %1"
+msgstr "%1 を比較"
+
+#, c-format
 msgid "Clipboard at %s"
 msgstr "クリップボード %s"
 
@@ -4921,6 +5020,9 @@ msgstr "フィルター式で0による除算が行われました"
 msgid "Unknown error"
 msgstr "不明なエラーです"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "等しい"
 
@@ -4956,6 +5058,15 @@ msgstr "含む(正規表現)"
 
 msgid "Not Contains (regex)"
 msgstr "含まない(正規表現)"
+
+msgid "Light"
+msgstr "ライト"
+
+msgid "Dark"
+msgstr "ダーク"
+
+msgid "Follow system"
+msgstr "システムに従う"
 
 msgid "Prettification"
 msgstr "整形"
@@ -5423,7 +5534,7 @@ msgid ""
 msgstr ""
 "マクロを取得できません。\r\n"
 "WinMergeでマクロを比較するには、MS Officeを使用して、現在のアプリケーションのマクロセキュリティの設定を変更してください。\r\n"
-"WinMergeでこの機能を使用するには、「VBA プロジェクトへのアクセスを信頼する」をオンにする必要があります。\r\n"
+"WinMergeでこの機能を使用するには、「VBA プロジェクトへのアクセスを信頼する」をオンにする必要があります。"
 
 msgid "Compare VBA macros"
 msgstr "VBA マクロを比較する"
@@ -5519,8 +5630,7 @@ msgid "Folder '%1' does not exist"
 msgstr "フォルダー'%1' は存在しません"
 
 msgid "Do not use '-p0' for patch files with absolute paths"
-msgstr ""
-"絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
+msgstr "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
 
 msgid "AI.sct WinMerge Plugin Options"
 msgstr "AI.sct WinMerge プラグイン オプション"

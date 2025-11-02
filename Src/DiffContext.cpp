@@ -18,6 +18,7 @@
 #include "codepage_detect.h"
 #include "IAbortable.h"
 #include "DiffWrapper.h"
+#include "FilterEngine/FilterExpression.h"
 #include "DebugNew.h"
 
 using Poco::FastMutex;
@@ -172,7 +173,7 @@ bool CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 		// For Date and Date+Size compare `nullptr` is ok since they don't have actual
 		// compare options.
 		if (m_nCompMethod == CMP_DATE || m_nCompMethod == CMP_DATE_SIZE ||
-			m_nCompMethod == CMP_SIZE)
+			m_nCompMethod == CMP_SIZE || m_nCompMethod == CMP_EXISTENCE)
 		{
 			return true;
 		}

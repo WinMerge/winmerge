@@ -1,6 +1,6 @@
 /* Later delete this file and use Parallel Patterns Library instead */
 #include "pch.h"
-#include <Windows.h>
+#include <windows.h>
 #include "Concurrent.h"
 
 namespace Concurrent

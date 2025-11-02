@@ -7,7 +7,7 @@
 
 #include "pch.h"
 #include "IniOptionsMgr.h"
-#include <Windows.h>
+#include <windows.h>
 #include <process.h>
 #include "OptionsMgr.h"
 

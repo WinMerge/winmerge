@@ -184,28 +184,34 @@ PropertySystem::PropertySystem(const std::vector<String>& canonicalNames)
 	AddProperties(canonicalNames);
 }
 
+bool PropertySystem::AddProperty(const String& name)
+{
+	PROPERTYKEY key{};
+	if (FAILED(PSGetPropertyKeyFromName(name.c_str(), &key)))
+	{
+		const PROPERTYKEY *pKey = GetPropertyKeyFromName(name);
+		if (pKey)
+		{
+			key = *pKey;
+			m_keys.push_back(key);
+			m_canonicalNames.push_back(name);
+			return true;
+		}
+	}
+	else
+	{
+		m_keys.push_back(key);
+		m_canonicalNames.push_back(name);
+		m_onlyHashProperties = false;
+		return true;
+	}
+	return false;
+}
+
 void PropertySystem::AddProperties(const std::vector<String>& canonicalNames)
 {
 	for (const auto& name : canonicalNames)
-	{
-		PROPERTYKEY key{};
-		if (FAILED(PSGetPropertyKeyFromName(name.c_str(), &key)))
-		{
-			const PROPERTYKEY *pKey = GetPropertyKeyFromName(name);
-			if (pKey)
-			{
-				key = *pKey;
-				m_keys.push_back(key);
-				m_canonicalNames.push_back(name);
-			}
-		}
-		else
-		{
-			m_keys.push_back(key);
-			m_canonicalNames.push_back(name);
-			m_onlyHashProperties = false;
-		}
-	}
+		AddProperty(name);
 }
 
 bool PropertySystem::GetPropertyValues(const String& path, PropertyValues& values)
@@ -233,18 +239,34 @@ bool PropertySystem::GetPropertyValues(const String& path, PropertyValues& value
 		{
 			PROPVARIANT value2{};
 			if (GetPropertyIndexFromKey(key) >= 0)
-			{
 				CalculateHashValue(path, key, value2);
-			}
-			else
-			{
-				PROPVARIANT value{};
-				InitPropVariantFromString(_T("Error"), &value);
-			}
 			values.m_values.push_back(value2);
 		}
 	}
 	return false;
+}
+
+int PropertySystem::GetPropertyIndex(const String& canonicalName)
+{
+	auto it = std::find(m_canonicalNames.begin(), m_canonicalNames.end(), canonicalName);
+	if (it != m_canonicalNames.end())
+		return static_cast<int>(std::distance(m_canonicalNames.begin(), it));
+	return -1;
+}
+
+bool PropertySystem::GetPropertyType(unsigned index, VARTYPE& vt) const
+{
+	if (index >= m_keys.size())
+		return false;
+	bool result = false;
+	IPropertyDescription* ppd = nullptr;
+	if (SUCCEEDED(PSGetPropertyDescription(m_keys[index], IID_PPV_ARGS(&ppd))))
+	{
+		if (SUCCEEDED(ppd->GetPropertyType(&vt)))
+			result = true;
+		ppd->Release();
+	}
+	return result;
 }
 
 String PropertySystem::FormatPropertyValue(const PropertyValues& values, unsigned index)
@@ -363,6 +385,16 @@ PropertySystem::PropertySystem(const std::vector<String>& canonicalNames)
 }
 
 bool PropertySystem::GetPropertyValues(const String& path, PropertyValues& values)
+{
+	return false;
+}
+
+int PropertySystem::GetPropertyIndex(const String& canonicalName)
+{
+	return -1;
+}
+
+bool PropertySystem::GetPropertyType(unsigned index, VARTYPE& vt) const
 {
 	return false;
 }

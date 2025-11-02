@@ -17,6 +17,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BinaryCompare.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ByteComparator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ByteCompare.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ExistenceCompare.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ImageCompare.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeSizeCompare.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Wrap_DiffUtils.h" />
@@ -34,6 +35,10 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ByteCompare.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ExistenceCompare.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>

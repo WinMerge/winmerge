@@ -35,12 +35,10 @@ CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 	, m_bActivated(false)
 	, m_nLastSplitPos{0}
 {
-	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEADDED, 0, reinterpret_cast<LPARAM>(this));
 }
 
 CMergeFrameCommon::~CMergeFrameCommon()
 {
-	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEREMOVED, 0, reinterpret_cast<LPARAM>(this));
 }
 
 void CMergeFrameCommon::ActivateFrame(int nCmdShow)
@@ -183,7 +181,7 @@ String CMergeFrameCommon::GetDiffStatusString(int curDiffIndex, int diffCount)
 
 	tchar_t sCnt[32] {};
 	tchar_t sIdx[32] {};
-	String s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
+	String s = I18n::LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
 	const int signInd = curDiffIndex;
 	_itot_s(signInd + 1, sIdx, 10);
 	strutils::replace(s, _T("%1"), sIdx);
@@ -241,7 +239,6 @@ String CMergeFrameCommon::GetTooltipString(const IMergeDoc& mergeDoc)
 String CMergeFrameCommon::GetTooltipString(const PathContext& paths, const String desc[],
 	const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs)
 {
-	const int nBuffers = paths.GetSize();
 	String sTitle;
 	for (int nBuffer = 0; nBuffer < paths.GetSize(); nBuffer++)
 	{
@@ -536,7 +533,4 @@ void CMergeFrameCommon::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* 
 	// call the base class to let standard processing switch to
 	// the top-level menu associated with this window
 	__super::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
-
-	if (bActivate)
-		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATED, 0, reinterpret_cast<LPARAM>(this));
 }

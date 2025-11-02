@@ -79,8 +79,7 @@ END_MESSAGE_MAP()
 BOOL DirSelectFilesDlg::Impl::OnInitDialog()
 {
 	CenterWindow();
-	LangTranslateDialog(m_hWnd);
-	CDialog::OnInitDialog();
+	CTrDialog::OnInitDialog();
 	for (int i = 0; i < 3; ++i)
 	{
 		if (m_p->m_pdi[i])

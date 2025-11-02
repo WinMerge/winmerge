@@ -603,7 +603,7 @@ void DirItemEnumerator::CompressArchive(const tchar_t* path)
 	}
 	if (path && !MultiStepCompressArchive(path))
 	{
-		LangMessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
+		I18n::MessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
 	}
 }
 

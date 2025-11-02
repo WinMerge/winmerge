@@ -45,7 +45,7 @@ FileFiltersDlg::FileFiltersDlg()
 	, m_pFileFilterHelper(new FileFilterHelper())
 	, m_pFileFilterHelperOrg(nullptr)
 {
-	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
+	m_strCaption = I18n::LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
 	m_psp.dwFlags |= PSP_USETITLE;
 	m_psp.hIcon = AfxGetApp()->LoadIcon(IDI_FILEFILTER);
@@ -56,7 +56,7 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(FileFiltersDlg)
-	DDX_CBString(pDX, IDC_FILTERFILE_MASK, m_sMask);
+	DDX_CBStringExact(pDX, IDC_FILTERFILE_MASK, m_sMask);
 	DDX_Control(pDX, IDC_FILTERFILE_LIST, m_listFilters);
 	DDX_Control(pDX, IDC_FILTERFILE_MASK, m_ctlMask);
 	//}}AFX_DATA_MAP
@@ -65,8 +65,9 @@ void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(FileFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(FileFiltersDlg)
-	ON_NOTIFY(CBEN_ENDEDIT, IDC_FILTERFILE_MASK, OnEndEditFilterfileMask)
+	ON_CBN_KILLFOCUS(IDC_FILTERFILE_MASK, OnKillFocusFilterfileMask)
 	ON_CBN_EDITCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
+	ON_CBN_SELCHANGE(IDC_FILTERFILE_MASK, OnEditChangeFilterfileMask)
 	ON_BN_CLICKED(IDC_FILTERFILE_MASK_MENU, OnFilterfileMaskMenu)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
@@ -222,20 +223,21 @@ BOOL FileFiltersDlg::OnInitDialog()
 {
 	CTrPropertyPage::OnInitDialog();
 
-	m_ctlMask.SetFileControlStates(true);
 	m_ctlMask.LoadState(_T("Files\\Ext"));
 
 	InitList();
 
-	SetDlgItemText(IDC_FILTERFILE_MASK, m_pFileFilterHelper->GetMaskOrExpression().c_str());
+	m_sMask = m_pFileFilterHelper->GetMaskOrExpression();
+	SetDlgItemText(IDC_FILTERFILE_MASK, m_sMask.c_str());
 
-	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_pFileFilterHelper->GetMaskOrExpression());
+	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_sMask);
 	SetCheckedState(m_listFilters, presetFilters);
 
 	SetButtonState();
 
-	HWND hEdit = (HWND)m_ctlMask.SendMessage(CBEM_GETEDITCONTROL);
-	m_ctlMaskEdit.SubclassWindow(hEdit);
+	COMBOBOXINFO cbi{sizeof(COMBOBOXINFO)};
+	GetComboBoxInfo(m_ctlMask.m_hWnd, &cbi);
+	m_ctlMaskEdit.SubclassWindow(cbi.hwndItem);
 	m_ctlMaskEdit.m_validator = [this](const CString& text, CString& error) -> bool
 		{
 			m_pFileFilterHelper->SetMaskOrExpression((const tchar_t *)text);
@@ -272,6 +274,8 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
  */
 void FileFiltersDlg::OnOK()
 {
+	if (strutils::trim_ws(m_sMask).empty())
+		m_sMask = _T("*.*");
 	m_pFileFilterHelper->SetMaskOrExpression(m_sMask);
 	m_pFileFilterHelperOrg->CloneFrom(m_pFileFilterHelper.get());
 
@@ -283,7 +287,7 @@ void FileFiltersDlg::OnOK()
 	CDialog::OnOK();
 }
 
-void FileFiltersDlg::OnEndEditFilterfileMask(NMHDR* pNMHDR, LRESULT* pResult)
+void FileFiltersDlg::OnKillFocusFilterfileMask()
 {
 	UpdateData(TRUE);
 	std::vector<String> presetFilters = GetPresetFiltersFromLastGroup(m_sMask);
@@ -297,6 +301,7 @@ void FileFiltersDlg::OnEditChangeFilterfileMask()
 
 void FileFiltersDlg::OnFilterfileMaskMenu()
 {
+	UpdateData(TRUE);
 	CRect rc;
 	GetDlgItem(IDC_FILTERFILE_MASK_MENU)->GetWindowRect(&rc);
 	const std::optional<String> filter = m_menu.ShowMenu(m_sMask, rc.left, rc.bottom, this);
@@ -375,7 +380,12 @@ void FileFiltersDlg::OnCustomDrawFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 		if (auto pFilter = m_pFileFilterHelper->GetManager()->GetFilterByIndex(nItem))
 		{
 			if (!pFilter->errors.empty())
-				pLVCD->clrTextBk = RGB(255, 200, 200);
+			{
+				const COLORREF sysBk = GetSysColor(COLOR_WINDOW);
+				const COLORREF bk = ((GetRValue(sysBk) + GetGValue(sysBk) + GetBValue(sysBk)) / 3 < 128) ? 
+					RGB(80, 40, 40) : RGB(255, 200, 200);
+				pLVCD->clrTextBk = bk;
+			}
 		}
 		*pResult = CDRF_DODEFAULT;
 	}
@@ -624,7 +634,7 @@ void FileFiltersDlg::UpdateFiltersList()
  */
 void FileFiltersDlg::OnHelp()
 {
-	theApp.ShowHelp(FilterHelpLocation);
+	CMergeApp::ShowHelp(FilterHelpLocation);
 }
 
 /**
@@ -652,19 +662,19 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 			// If user wants to, overwrite existing filter
 			if (paths::DoesPathExist(userPath) == paths::IS_EXISTING_FILE)
 			{
-				int res = LangMessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
+				int res = I18n::MessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
 					MB_ICONWARNING);
 				if (res == IDYES)
 				{
 					if (!CopyFile(s.c_str(), userPath.c_str(), FALSE))
 					{
-						LangMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
+						I18n::MessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
 					}
 				}
 			}
 			else
 			{
-				LangMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
+				I18n::MessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
 			}
 		}
 		else

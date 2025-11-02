@@ -9,7 +9,7 @@
 #include "DiffItem.h"
 #include "PathContext.h"
 #include "WinIMergeLib.h"
-#include <Windows.h>
+#include <windows.h>
 
 namespace CompareEngines
 {

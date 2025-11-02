@@ -43,7 +43,7 @@ public:
 	void SetReportType(REPORT_TYPE nReportType) { m_nReportType = nReportType;  }
 	REPORT_TYPE GetReportType() const { return m_nReportType;  }
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
-	String GetReportFile() const { return m_sReportFile; }
+	const String& GetReportFile() const { return m_sReportFile; }
 	void SetColumns(int columns);
 	void SetFileCmpReport(IFileCmpReport *pFileCmpReport);
 	void SetCopyToClipboard(bool bCopyToClipbard) { m_bCopyToClipboard = bCopyToClipbard;  }

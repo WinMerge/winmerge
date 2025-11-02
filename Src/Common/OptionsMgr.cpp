@@ -31,7 +31,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "UniFile.h"
 #include <algorithm>
 #include <cassert>
-#include <Windows.h>
+#include <windows.h>
 
 constexpr int MAX_PATH_FULL = 32767;
 
@@ -356,6 +356,12 @@ void COption::Reset()
 	case varprop::VT_TIME:
 		m_value.SetTime(m_valueDef.GetTime());
 		break;
+	case varprop::VT_NULL:
+		// Do nothing for VT_NULL
+		break;
+	default:
+		// Do nothing for unknown types
+		break;
 	}
 }
 
@@ -583,7 +589,7 @@ int COptionsMgr::GetDefault(const String& name, String & value) const
  * @param [in] name Option's name.
  * @param [out] value Option's default value.
  */
-int COptionsMgr::GetDefault(const String& name, unsigned & value) const
+int COptionsMgr::GetDefault(const String& name, int & value) const
 {
 	int retVal = COption::OPT_OK;
 
@@ -601,6 +607,16 @@ int COptionsMgr::GetDefault(const String& name, unsigned & value) const
 		retVal = COption::OPT_NOTFOUND;
 	}
 	return retVal;
+}
+
+/**
+ * @brief Return default number value
+ * @param [in] name Option's name.
+ * @param [out] value Option's default value.
+ */
+int COptionsMgr::GetDefault(const String& name, unsigned & value) const
+{
+	return GetDefault(name, reinterpret_cast<int&>(value));
 }
 
 /**

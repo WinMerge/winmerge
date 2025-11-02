@@ -30,19 +30,15 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 	{
 		EndRightWheelScrolling();
 	}
-	else if (wParam == WM_RBUTTONDOWN)
-	{
-		m_bRButtonDown = true;
-	}
 	else if (wParam == WM_RBUTTONUP)
 	{
-		m_bRButtonDown = false;
 		EndRightWheelScrolling();
 	}
 	else if (wParam == WM_MOUSEWHEEL)
 	{
 		MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
 		short zDelta = HIWORD(pMouseStruct->mouseData);
+		const auto bRButtonDown = GetAsyncKeyState(VK_RBUTTON) & 0x8000;
 
 		if (GetAsyncKeyState(VK_MENU) & 0x8000)
 		{
@@ -65,7 +61,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 					PostCommandMessage(ID_R2L);
 					return 1;
 				}
-				else if (!m_bRButtonDown)
+				else if (!bRButtonDown)
 				{
 					// Alt+ScrollUp as Alt+Up
 					PostCommandMessage(ID_PREVDIFF);
@@ -87,7 +83,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 					PostCommandMessage(ID_L2R);
 					return 1;
 				}
-				else if (!m_bRButtonDown)
+				else if (!bRButtonDown)
 				{
 					// Alt+ScrollDown as Alt+Down
 					PostCommandMessage(ID_NEXTDIFF);
@@ -97,7 +93,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 		}
 
 		// Hold mice right button for One-handed operation
-		if (m_bRButtonDown)
+		if (bRButtonDown)
 		{
 			if (zDelta > 0)
 			{
@@ -119,6 +115,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 	{
 		MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
 		short zDelta = HIWORD(pMouseStruct->mouseData);
+		const auto bRButtonDown = GetAsyncKeyState(VK_RBUTTON) & 0x8000;
 
 		if (GetAsyncKeyState(VK_MENU) & 0x8000)
 		{
@@ -132,7 +129,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 					PostCommandMessage(ID_L2RNEXT);
 					return 1;
 				}
-				else if (!m_bRButtonDown)
+				else if (!bRButtonDown)
 				{
 					// Alt+HScrollRight as Alt+Right
 					PostCommandMessage(ID_L2R);
@@ -147,7 +144,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 					PostCommandMessage(ID_R2LNEXT);
 					return 1;
 				}
-				else if (!m_bRButtonDown)
+				else if (!bRButtonDown)
 				{
 					// Alt+HScrollLeft as Alt+Left
 					PostCommandMessage(ID_R2L);
@@ -157,7 +154,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 		}
 
 		// Hold mice right button for One-handed operation
-		if (m_bRButtonDown)
+		if (bRButtonDown)
 		{
 			if (zDelta > 0)
 			{

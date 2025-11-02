@@ -9,7 +9,6 @@
 #include "ExConverter.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include <cassert>
 
 namespace Options { namespace Font {
 

@@ -9,7 +9,7 @@
 #include "paths.h"
 #include <vector>
 #include <process.h>
-#include <Windows.h>
+#include <windows.h>
 
 struct DirEventListener
 {

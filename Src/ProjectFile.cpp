@@ -57,6 +57,7 @@ const char Ignore_numbers_element_name[] = "ignore-numbers";
 const char Ignore_codepage_diff_element_name[] = "ignore-codepage-diff";
 const char Ignore_comment_diff_element_name[] = "ignore-comment-diff";
 const char Ignore_missing_trailing_eol_element_name[] = "ignore-missing-trailing-eol";
+const char Ignore_line_breaks_element_name[] = "ignore-line-breaks";
 const char Compare_method_element_name[] = "compare-method";
 const char Hidden_list_element_name[] = "hidden-list";
 const char Hidden_items_element_name[] = "hidden-item";
@@ -214,6 +215,10 @@ public:
 		else if (nodename == Ignore_missing_trailing_eol_element_name)
 		{
 			currentItem.m_bIgnoreMissingTrailingEol = atoi(token.c_str()) != 0;
+		}
+		else if (nodename == Ignore_line_breaks_element_name)
+		{
+			currentItem.m_bIgnoreLineBreaks = atoi(token.c_str()) != 0;
 		}
 		else if (nodename == Ignore_comment_diff_element_name)
 		{
@@ -438,6 +443,8 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Ignore_codepage_diff_element_name, item.GetIgnoreCodepage() ? "1" : "0");
 				if (item.m_bSaveIgnoreMissingTrailingEol)
 					writeElement(writer, Ignore_missing_trailing_eol_element_name, item.GetIgnoreMissingTrailingEol() ? "1" : "0");
+				if (item.m_bSaveIgnoreBreakLines)
+					writeElement(writer, Ignore_line_breaks_element_name, item.GetIgnoreLineBreaks() ? "1" : "0");
 				if (item.m_bSaveFilterCommentsLines)
 					writeElement(writer, Ignore_comment_diff_element_name, item.GetFilterCommentsLines()  ? "1" : "0");
 				if (item.m_bSaveCompareMethod)

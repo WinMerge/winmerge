@@ -109,10 +109,10 @@ void CPatchDlg::OnOK()
 		if (!file1Ok || !file2Ok)
 		{
 			if (!file1Ok)
-				LangMessageBox(IDS_DIFF_ITEM1NOTFOUND, MB_ICONSTOP);
+				I18n::MessageBox(IDS_DIFF_ITEM1NOTFOUND, MB_ICONSTOP);
 
 			if (!file2Ok)
-				LangMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
+				I18n::MessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
 			return;
 		}
 
@@ -152,7 +152,7 @@ void CPatchDlg::OnOK()
 	// Result file already exists and append not selected
 	if (fileExists && !m_appendFile)
 	{
-		if (LangMessageBox(IDS_DIFF_FILEOVERWRITE,
+		if (I18n::MessageBox(IDS_DIFF_FILEOVERWRITE,
 				MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
 				IDS_DIFF_FILEOVERWRITE) != IDYES)
 		{

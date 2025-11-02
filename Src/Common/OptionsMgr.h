@@ -103,10 +103,24 @@ typedef std::map<String, COption> OptionsMap;
  */
 class COptionsMgr
 {
+	template <class... T> struct always_false : std::false_type {};
 public:
 	virtual ~COptionsMgr() {}
 	int AddOption(const String& name, const varprop::VariantValue& defaultValue);
 	const varprop::VariantValue& Get(const String& name) const;
+	template <typename T> T GetT(const String& name) const
+	{
+		if constexpr (std::is_same_v<T, int>)
+			return GetOptionsMgr()->GetInt(name);
+		else if constexpr (std::is_same_v<T, unsigned>)
+			return static_cast<unsigned>(GetOptionsMgr()->GetInt(name));
+		else if constexpr (std::is_same_v<T, bool>)
+			return GetOptionsMgr()->GetBool(name);
+		else if constexpr (std::is_same_v<T, String>)
+			return GetOptionsMgr()->GetString(name);
+		else
+			static_assert(always_false<T>::value, "Unsupported option type");
+	}
 	const String& GetString(const String& name) const;
 	int GetInt(const String& name) const;
 	bool GetBool(const String& name) const;
@@ -117,6 +131,7 @@ public:
 	int Set(const String& name, int value);
 	int Reset(const String& name);
 	int GetDefault(const String& name, String & value) const;
+	int GetDefault(const String& name, int & value) const;
 	int GetDefault(const String& name, unsigned & value) const;
 	int GetDefault(const String& name, bool & value) const;
 	template <typename T> T GetDefault(const String& name) const { T v; GetDefault(name, v); return v; }

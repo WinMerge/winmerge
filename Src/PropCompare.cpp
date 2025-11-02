@@ -26,6 +26,7 @@ PropCompare::PropCompare(COptionsMgr *optionsMgr)
  , m_bIgnoreEol(true)
  , m_bIgnoreCodepage(true)
  , m_bIgnoreMissingTrailingEol(true)
+ , m_bIgnoreLineBreaks(true)
  , m_nIgnoreWhite(-1)
  , m_bMovedBlocks(false)
  , m_bAlignSimilarLines(false)
@@ -34,26 +35,28 @@ PropCompare::PropCompare(COptionsMgr *optionsMgr)
  , m_bIndentHeuristic(true)
  , m_bCompleteBlankOutIgnoredChanges(false)
 {
+	BindOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite, IDC_WHITESPACE, DDX_Radio);
+	BindOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines, IDC_IGNBLANKS_CHECK, DDX_Check);
+	BindOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines, IDC_FILTERCOMMENTS_CHECK, DDX_Check);
+	BindOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase, IDC_IGNCASE_CHECK, DDX_Check);
+	BindOption(OPT_CMP_IGNORE_NUMBERS, m_bIgnoreNumbers, IDC_IGNORE_NUMBERS, DDX_Check);
+	BindOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol, IDC_EOL_SENSITIVE, DDX_Check);
+	BindOption(OPT_CMP_IGNORE_CODEPAGE, m_bIgnoreCodepage, IDC_CP_SENSITIVE, DDX_Check);
+	BindOption(OPT_CMP_IGNORE_MISSING_TRAILING_EOL, m_bIgnoreMissingTrailingEol, IDC_IGNEOFEOL_CHECK, DDX_Check);
+	BindOption(OPT_CMP_IGNORE_LINE_BREAKS, m_bIgnoreLineBreaks, IDC_IGNLBRKS_CHECK, DDX_Check);
+	BindOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks, IDC_MOVED_BLOCKS, DDX_Check);
+	BindOption(OPT_CMP_ALIGN_SIMILAR_LINES, m_bAlignSimilarLines, IDC_ALIGN_SIMILAR_LINES, DDX_Check);
+	BindOption(OPT_CMP_DIFF_ALGORITHM, m_nDiffAlgorithm, IDC_DIFF_ALGORITHM, DDX_CBIndex);
+	BindOption(OPT_CMP_INDENT_HEURISTIC, m_bIndentHeuristic, IDC_INDENT_HEURISTIC, DDX_Check);
+	BindOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, m_bCompleteBlankOutIgnoredChanges, IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES, DDX_Check);
 }
 
 void PropCompare::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompare)
-	DDX_CBIndex(pDX, IDC_DIFF_ALGORITHM, m_nDiffAlgorithm);
-	DDX_Check(pDX, IDC_INDENT_HEURISTIC, m_bIndentHeuristic);
-	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
-	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
-	DDX_Check(pDX, IDC_FILTERCOMMENTS_CHECK, m_bFilterCommentsLines);
-	DDX_Check(pDX, IDC_CP_SENSITIVE, m_bIgnoreCodepage);
-	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bIgnoreEol);
-	DDX_Check(pDX, IDC_IGNORE_NUMBERS, m_bIgnoreNumbers);
-	DDX_Check(pDX, IDC_IGNEOFEOL_CHECK, m_bIgnoreMissingTrailingEol);
-	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
-	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
-	DDX_Check(pDX, IDC_ALIGN_SIMILAR_LINES, m_bAlignSimilarLines);
-	DDX_Check(pDX, IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES, m_bCompleteBlankOutIgnoredChanges);
 	//}}AFX_DATA_MAP
+	DoDataExchangeBindOptions(pDX);
 	UpdateControls();
 }
 
@@ -66,50 +69,6 @@ BEGIN_MESSAGE_MAP(PropCompare, OptionsPanel)
 END_MESSAGE_MAP()
 
 /** 
- * @brief Reads options values from storage to UI.
- * Property sheet calls this before displaying GUI to load values
- * into members.
- */
-void PropCompare::ReadOptions()
-{
-	m_nIgnoreWhite = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
-	m_bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
-	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
-	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
-	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
-	m_bIgnoreMissingTrailingEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
-	m_bMovedBlocks = GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS);
-	m_bAlignSimilarLines = GetOptionsMgr()->GetBool(OPT_CMP_ALIGN_SIMILAR_LINES);
-	m_nDiffAlgorithm = GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM);
-	m_bIndentHeuristic = GetOptionsMgr()->GetBool(OPT_CMP_INDENT_HEURISTIC);
-	m_bCompleteBlankOutIgnoredChanges = GetOptionsMgr()->GetBool(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
-}
-
-/** 
- * @brief Writes options values from UI to storage.
- * Property sheet calls this after dialog is closed with OK button to
- * store values in member variables.
- */
-void PropCompare::WriteOptions()
-{
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines);
-	GetOptionsMgr()->SaveOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CODEPAGE, m_bIgnoreCodepage);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_NUMBERS, m_bIgnoreNumbers);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_MISSING_TRAILING_EOL, m_bIgnoreMissingTrailingEol);
-	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
-	GetOptionsMgr()->SaveOption(OPT_CMP_ALIGN_SIMILAR_LINES, m_bAlignSimilarLines);
-	GetOptionsMgr()->SaveOption(OPT_CMP_DIFF_ALGORITHM, m_nDiffAlgorithm);
-	GetOptionsMgr()->SaveOption(OPT_CMP_INDENT_HEURISTIC, m_bIndentHeuristic);
-	GetOptionsMgr()->SaveOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, m_bCompleteBlankOutIgnoredChanges);
-}
-
-/** 
  * @brief Called before propertysheet is drawn.
  */
 BOOL PropCompare::OnInitDialog()
@@ -119,27 +78,6 @@ BOOL PropCompare::OnInitDialog()
 
 	OptionsPanel::OnInitDialog();
 	return TRUE;  // return TRUE unless you set the focus to a control
-}
-
-/** 
- * @brief Sets options to defaults
- */
-void PropCompare::OnDefaults()
-{
-	m_nIgnoreWhite = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_IGNORE_WHITESPACE);
-	m_bIgnoreEol = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_EOL);
-	m_bIgnoreCodepage = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_CODEPAGE);
-	m_bIgnoreBlankLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_BLANKLINES);
-	m_bFilterCommentsLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_FILTER_COMMENTLINES);
-	m_bIgnoreCase = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_CASE);
-	m_bIgnoreNumbers = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_NUMBERS);
-	m_bIgnoreMissingTrailingEol = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
-	m_bMovedBlocks = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MOVED_BLOCKS);
-	m_bAlignSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_ALIGN_SIMILAR_LINES);
-	m_nDiffAlgorithm = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_DIFF_ALGORITHM);
-	m_bIndentHeuristic = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_INDENT_HEURISTIC);
-	m_bCompleteBlankOutIgnoredChanges = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
-	UpdateData(FALSE);
 }
 
 void PropCompare::OnCbnSelchangeDiffAlgorithm()

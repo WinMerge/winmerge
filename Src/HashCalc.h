@@ -5,7 +5,7 @@
  */
 #pragma once
 
-#include <Windows.h>
+#include <windows.h>
 #include <vector>
 
 NTSTATUS CalculateHashValue(HANDLE hFile, const wchar_t* pAlgoId, std::vector<uint8_t>& hash);

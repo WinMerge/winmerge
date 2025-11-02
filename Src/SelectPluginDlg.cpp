@@ -401,10 +401,10 @@ void CSelectPluginDlg::OnSelchangePluginName()
 	if (pPlugin)
 	{
 		const bool containsNonAsciiChars = std::any_of(pPlugin->m_description.begin(), pPlugin->m_description.end(), [](auto c) { return (c >= 0x80); });
-		m_strDescription = containsNonAsciiChars ? pPlugin->m_description : tr(ucr::toUTF8(pPlugin->m_description));
+		m_strDescription = containsNonAsciiChars ? pPlugin->m_description : I18n::tr(ucr::toUTF8(pPlugin->m_description));
 		auto funcDescription = pPlugin->GetExtendedPropertyValue(pluginName + _T(".Description"));
 		if (funcDescription.has_value())
-			m_strDescription = tr(ucr::toUTF8(strutils::to_str(*funcDescription)));
+			m_strDescription = I18n::tr(ucr::toUTF8(strutils::to_str(*funcDescription)));
 		m_strExtensions = pPlugin->m_filtersText;
 		m_strArguments = pPlugin->m_arguments;
 		auto funcArguments = pPlugin->GetExtendedPropertyValue(pluginName + _T(".Arguments"));

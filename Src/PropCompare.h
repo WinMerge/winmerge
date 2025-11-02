@@ -23,10 +23,6 @@ class PropCompare : public OptionsPanel
 public:
 	explicit PropCompare(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void ReadOptions() override;
-	virtual void WriteOptions() override;
-
 // Dialog Data
 	//{{AFX_DATA(PropCompare)
 	enum { IDD = IDD_PROPPAGE_COMPARE };
@@ -35,7 +31,8 @@ public:
 	bool    m_bIgnoreCase;
 	bool    m_bIgnoreNumbers;
 	bool    m_bIgnoreBlankLines;
-	int     m_bIgnoreMissingTrailingEol;
+	bool    m_bIgnoreMissingTrailingEol;
+	bool    m_bIgnoreLineBreaks;
 	int     m_nIgnoreWhite;
 	bool    m_bMovedBlocks;
 	bool    m_bAlignSimilarLines;
@@ -58,7 +55,6 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompare)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnDefaults();
 	afx_msg void OnCbnSelchangeDiffAlgorithm();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

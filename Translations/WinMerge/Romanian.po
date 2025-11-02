@@ -181,10 +181,6 @@ msgstr "Reflectă orizontal"
 msgid "&Zoom"
 msgstr "Mărime te&xt"
 
-#, c-format
-msgid "25%"
-msgstr "25%"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "&Mărește\tCtrl++"
 
@@ -1112,6 +1108,9 @@ msgstr "Ignoră diferențele de c&omentarii"
 msgid "Ignore &Missing Trailing EOL"
 msgstr ""
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "&Include subdirectoare"
 
@@ -1135,6 +1134,9 @@ msgstr "Dată modificare și mărime"
 
 msgid "Size"
 msgstr "Mărime"
+
+msgid "Existence"
+msgstr ""
 
 msgid "&Load Project..."
 msgstr "Încarcă proiect..."
@@ -1481,6 +1483,9 @@ msgstr ""
 msgid "100000 or more"
 msgstr ""
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr ""
 
@@ -1503,6 +1508,18 @@ msgid "Equal"
 msgstr ""
 
 msgid "Not Equal"
+msgstr ""
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
 msgstr ""
 
 msgid "Less than 10B"
@@ -1554,6 +1571,24 @@ msgid "Target: Left and &Middle"
 msgstr ""
 
 msgid "Target: Middle and &Right"
+msgstr ""
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
 msgstr ""
 
 msgid "About WinMerge"
@@ -1787,8 +1822,23 @@ msgstr "Șterge"
 msgid "Colors"
 msgstr "Culori"
 
-msgid "Color Scheme:"
-msgstr "Schemă culori:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
+
+msgid "Your custom schemes"
+msgstr ""
+
+msgid "&Save current scheme..."
+msgstr ""
+
+msgid "Delete &current scheme..."
+msgstr ""
 
 msgid "Background"
 msgstr "Fundal"
@@ -2085,6 +2135,9 @@ msgid "Ignore c&omment differences"
 msgstr "Ignoră diferențele de c&omentarii"
 
 msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
 msgstr ""
 
 msgid "E&nable moved block detection"
@@ -2556,6 +2609,9 @@ msgstr "Prag pentru trecerea la compararea rapidă (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Prag pentru trecerea la compararea binară (MB):"
 
+msgid "Additional comparison condi&tions:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Modele de fișiere:"
 
@@ -2639,6 +2695,42 @@ msgid "&Script file extension:"
 msgstr ""
 
 msgid "Script &body:"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
 msgstr ""
 
 msgid "EXT"
@@ -3759,6 +3851,10 @@ msgid "Image files are different"
 msgstr "Fișierele imagine sunt diferite"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Grup%d"
 
@@ -4705,6 +4801,10 @@ msgid "Filter applied"
 msgstr "Filtru aplicat"
 
 #, c-format
+msgid "Compare %1"
+msgstr ""
+
+#, c-format
 msgid "Clipboard at %s"
 msgstr "Clipboard la %s"
 
@@ -4877,6 +4977,9 @@ msgstr ""
 msgid "Unknown error"
 msgstr ""
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr ""
 
@@ -4911,6 +5014,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

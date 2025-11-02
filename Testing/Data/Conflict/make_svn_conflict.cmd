@@ -10,14 +10,14 @@ svn mkdir trunk
 svn mkdir branches
 svn mkdir tags
 svn commit -m "commit0"
-echo aaaa > trunk/test.txt
-svn add trunk/test.txt
+echo //aaaa > trunk/test.cpp
+svn add trunk/test.cpp
 svn commit -m "commit1" 
 svn copy trunk branches/testbranch
 svn commit -m "commit2"
-echo bbbb >> branches/testbranch/test.txt
+echo //bbbb >> branches/testbranch/test.cpp
 svn commit -m "commit3" 
-echo cccc >> trunk/test.txt
+echo //cccc >> trunk/test.cpp
 svn commit -m "commit4"
 svn update 
 pushd trunk

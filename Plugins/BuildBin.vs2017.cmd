@@ -28,7 +28,7 @@ goto :eof
 :BuildBin
 
 pushd src_VCPP
-MSBuild VCPPPlugins.vs2022.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || goto :eof
+MSBuild VCPPPlugins.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || goto :eof
 popd
 
 mkdir dlls\%1 2> NUL

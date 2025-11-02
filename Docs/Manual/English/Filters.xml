@@ -224,12 +224,13 @@
         <itemizedlist>
           <listitem><para><emphasis>Boolean</emphasis>: <literal>true</literal>, <literal>false</literal></para></listitem>
           <listitem><para><emphasis>Integer</emphasis>: 64-bit signed integers (e.g., <literal>1024</literal>, or with units like <literal>100KB</literal>, <literal>7days</literal>)</para></listitem>
+          <listitem><para><emphasis>Real (Double)</emphasis>: Floating-point numbers with optional decimal or exponent (e.g., <literal>3.14</literal>, <literal>.5</literal>, <literal>1e6</literal>)</para></listitem>
           <listitem><para><emphasis>String</emphasis>: Enclosed in double quotes (e.g., <literal>"example"</literal>)</para></listitem>
         </itemizedlist>
 
         <para>
           Internally, values may be of the following types:
-          Boolean, Integer, Timestamp, String, File Content, Array, or <literal>undefined</literal>.
+          Boolean, Integer, Real, Timestamp, String, File Content, Array, or <literal>undefined</literal>.
         </para>
       </section>
 
@@ -282,7 +283,7 @@
               <listitem><para>Creation date timestamp</para></listitem>
             </varlistentry>
             <varlistentry>
-              <term>Attribute</term>
+              <term>Attributes</term>
               <listitem><para>Returns the file attributes as an integer value</para></listitem>
             </varlistentry>
             <varlistentry>
@@ -317,6 +318,51 @@
           <para>
             Attributes without a prefix (e.g., <literal>Size</literal>) return an array of values from all available sides (Left, Middle, Right).
           </para>
+        </section>
+
+        <section>
+          <title>Windows Property Attributes</title>
+          <para>
+            These attributes provide access to Windows Property System values,
+            such as metadata defined by the Windows Property System schema
+            (e.g., <literal>System.Title</literal>,
+            <literal>System.FileOwner</literal>, <literal>System.Image.HorizontalResolution</literal>).
+          </para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Prop</term>
+              <listitem>
+                <para>
+                  Returns an array of property values (Left, Middle, Right) for the specified canonical property name.
+                  Example: <literal>prop("System.Title")</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>LeftProp</term>
+              <listitem>
+                <para>
+                  Property value of the left-side file. Example: <literal>leftprop("System.FileOwner")</literal>
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>MiddleProp</term>
+              <listitem>
+                <para>Property value of the middle file (in 3-way comparison).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>RightProp</term>
+              <listitem>
+                <para>Property value of the right-side file.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
         </section>
 
         <section id="FilterExpression_ArrayEvaluation">
@@ -509,6 +555,10 @@
           <varlistentry>
             <term>startOfYear(<replaceable>timestamp</replaceable>)</term>
             <listitem><para>Returns the first day of the year.</para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>toDateStr(<replaceable>timestamp</replaceable>)</term>
+            <listitem><para>Converts the given timestamp to a date string in <literal>yyyy-MM-dd</literal> format. If <replaceable>timestamp</replaceable> is a timestamp array, the result is a string array.</para></listitem>
           </varlistentry>
           <varlistentry>
             <term>abs(<replaceable>value</replaceable>)</term>

@@ -19,10 +19,6 @@ class PropCompareImage : public OptionsPanel
 public:
 	explicit PropCompareImage(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void ReadOptions() override;
-	virtual void WriteOptions() override;
-
 // Dialog Data
 	//{{AFX_DATA(PropCompareImage)
 	enum { IDD = IDD_PROPPAGE_COMPARE_IMAGE };
@@ -45,7 +41,6 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropCompareImage)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnDefaults();
 	afx_msg void OnDropDownPatterns();
 	afx_msg void OnCloseUpPatterns();
 	//}}AFX_MSG

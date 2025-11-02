@@ -98,7 +98,7 @@ public:
 		}
 	}
 	void SaveAs(int nBuffer, bool packing = true) { DoFileSaveAs(nBuffer, packing); }
-	String GetSaveAsPath() const { return m_strSaveAsPath; }
+	const String& GetSaveAsPath() const { return m_strSaveAsPath; }
 	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
 	bool IsModified() const;
 

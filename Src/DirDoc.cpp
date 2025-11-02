@@ -13,7 +13,9 @@
 
 #include "StdAfx.h"
 #include "DirDoc.h"
+#if !defined(__cppcheck__)
 #include <boost/range/mfc.hpp>
+#endif
 #include "Merge.h"
 #include "IMergeDoc.h"
 #include "CompareOptions.h"
@@ -245,8 +247,6 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
 	pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
-	if (m_pDirView)
-		pCtxt->m_pPropertySystem.reset(new PropertySystem(m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames()));
 
 	m_imgfileFilter.SetMaskOrExpression(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	pCtxt->m_pImgfileFilter = &m_imgfileFilter;
@@ -260,6 +260,35 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_piFilterGlobal = &m_fileHelper;
 	pCtxt->m_piFilterGlobal->SetDiffContext(pCtxt);
 	
+	pCtxt->m_pAdditionalCompareExpression.reset();
+	const String additionalCompareCondition = GetOptionsMgr()->GetString(OPT_CMP_ADDITIONAL_CONDITION);
+	if (!additionalCompareCondition.empty())
+	{
+		pCtxt->m_pAdditionalCompareExpression = std::make_unique<FilterExpression>(ucr::toUTF8(additionalCompareCondition));
+		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
+	}
+
+	std::vector<String> names;
+	if (m_pDirView)
+		names = m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames();
+	std::vector<String> names2 = pGlobalFileFilter->GetPropertyNames();
+	for (const auto& name : names2)
+	{
+		if (std::find(std::begin(names), std::end(names), name) == std::end(names))
+			names.push_back(name);
+	}
+	if (pCtxt->m_pAdditionalCompareExpression)
+	{
+		const auto names3 = pCtxt->m_pAdditionalCompareExpression->GetPropertyNames();
+		for (const auto& name : names3)
+		{
+			String tname = ucr::toTString(name);
+			if (std::find(std::begin(names), std::end(names), tname) == std::end(names))
+				names.push_back(tname);
+		}
+	}
+	pCtxt->m_pPropertySystem.reset(new PropertySystem(names));
+
 	// All plugin management is done by our plugin manager
 	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 
@@ -275,8 +304,14 @@ void CDirDoc::CheckFilter()
 		return;
 	for (const auto* error: m_pCtxt->m_piFilterGlobal->GetErrorList())
 	{
-		String msg = FormatFilterErrorSummary(*error);
+		const String msg = FormatFilterErrorSummary(*error);
 		RootLogger::Error(msg);
+	}
+	if (m_pCtxt->m_pAdditionalCompareExpression && m_pCtxt->m_pAdditionalCompareExpression->errorCode != 0)
+	{
+		const String msg = FormatFilterErrorSummary(*m_pCtxt->m_pAdditionalCompareExpression);
+		RootLogger::Error(msg);
+		m_pCtxt->m_pAdditionalCompareExpression.reset();
 	}
 }
 
@@ -383,7 +418,7 @@ void CDirDoc::Rescan()
 				if (errStr.empty())
 				{
 					if (GetReportFile().empty())
-						LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+						I18n::MessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 				}
 				else
 				{
@@ -660,7 +695,7 @@ BOOL CDirDoc::SaveModified()
 	// Do not allow closing if there is a thread running
 	if (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
 	{
-		int ans = LangMessageBox(IDS_CONFIRM_CLOSE_WINDOW_COMPARING, MB_YESNO | MB_ICONWARNING);
+		int ans = I18n::MessageBox(IDS_CONFIRM_CLOSE_WINDOW_COMPARING, MB_YESNO | MB_ICONWARNING);
 		if (ans == IDNO)
 			return FALSE;
 		m_diffThread.Abort();
@@ -671,7 +706,7 @@ BOOL CDirDoc::SaveModified()
 
 	if (m_elapsed >= COMPARISON_TIME_THRESHOLD_SECONDS * 1000)
 	{
-		int ans = LangMessageBox(IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+		int ans = I18n::MessageBox(IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
 		if (ans == IDNO)
 			return FALSE;
 	}
@@ -963,7 +998,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 		paths.SetPath(i, ifileloc[i].filepath.empty() ? paths::NATIVE_NULL_DEVICE_NAME : paths::GetParentPath(ifileloc[i].filepath));
 	CDiffContext ctxt(paths, CMP_QUICK_CONTENT);
 	DirViewColItems ci(nFiles, std::vector<String>{});
-	String msg = LoadResString(IDS_COMPARE_LARGE_FILES) + _T("\n");
+	String msg = I18n::LoadString(IDS_COMPARE_LARGE_FILES) + _T("\n");
 	if (nFiles < 3)
 	{
 		String sidestr[] = { _("Left:"), _("Right:") };
@@ -1003,13 +1038,17 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 	CMessageBoxDialog dlg(
 		m_pDirView ? m_pDirView->GetParentFrame() : nullptr,
 		msg.c_str(), _T(""),
-		MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 0U,
-		_T("CompareLargeFiles"));
-	INT_PTR ans = dlg.DoModal();
-	if (ans == IDCANCEL)
-		return true;
-	else if (ans == IDNO)
-		return false;
+		MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 0U, _T("CompareLargeFiles"));
+	INT_PTR ans = dlg.GetFormerResult();
+	if (ans != -1 || !theApp.GetNonInteractive())
+	{
+		ans = theApp.DoMessageBox(msg.c_str(),
+			MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 0U, _T("CompareLargeFiles"));
+		if (ans == IDCANCEL)
+			return true;
+		else if (ans == IDNO)
+			return false;
+	}
 
 	int oldCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, CMP_QUICK_CONTENT); // Use quick content compare for large files

@@ -41,16 +41,8 @@ static HRESULT NTAPI SE(BOOL f)
 	return hr;
 }
 
-static UINT64 NTAPI GetLastWriteTime(HANDLE h)
-{
-	UINT64 ft;
-	return ::GetFileTime(h, 0, 0, reinterpret_cast<FILETIME *>(&ft)) ? ft : 0;
-}
 
-static void NTAPI SetLastWriteTime(HANDLE h, UINT64 ft)
-{
-	::SetFileTime(h, 0, 0, reinterpret_cast<FILETIME *>(&ft));
-}
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CHexMergeView
@@ -146,6 +138,10 @@ int CHexMergeView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_pif = reinterpret_cast<IHexEditorWindow *>(::GetWindowLongPtr(m_hWnd, GWLP_USERDATA));
 	if (m_pif == nullptr || m_pif->get_interface_version() < HEKSEDIT_INTERFACE_VERSION)
 		return -1;
+	m_pif->set_theme_callback([](HWND hwnd, IHexEditorWindow::WINDOW_TYPE windowType) {
+			if (windowType == IHexEditorWindow::WINDOW_DIALOG)
+				DarkMode::setDarkWndSafeEx(hwnd, true);
+		});
 	return 0;
 }
 
@@ -548,7 +544,15 @@ BOOL CHexMergeView::PreTranslateMessage(MSG* pMsg)
 			return false;
 		}
 	}
-	return m_pif->translate_accelerator(pMsg);
+	if (pMsg->message >= WM_KEYFIRST && pMsg->message <= WM_KEYLAST)
+	{
+		HACCEL hAccel = ((CMDIFrameWnd*)AfxGetMainWnd())->m_hAccelTable;
+		if (hAccel != nullptr && ::TranslateAccelerator(AfxGetMainWnd()->m_hWnd, hAccel, pMsg))
+			return TRUE;
+		if (m_pif->translate_accelerator(pMsg))
+			return TRUE;
+	}
+	return __super::PreTranslateMessage(pMsg);
 }
 
 /**
@@ -586,7 +590,7 @@ void CHexMergeView::OnPrevdiff()
 /** @brief Open help from mainframe when user presses F1*/
 void CHexMergeView::OnHelp()
 {
-	theApp.ShowHelp(HexMergeViewHelpLocation);
+	CMergeApp::ShowHelp(HexMergeViewHelpLocation);
 }
 
 void CHexMergeView::ZoomText(int amount)

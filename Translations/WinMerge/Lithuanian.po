@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-07-26 14:35+0000\n"
-"PO-Revision-Date: 2025-07-28 07:28+0200\n"
+"POT-Creation-Date: 2025-10-21 19:25+0000\n"
+"PO-Revision-Date: 2025-10-23 09:09+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.6.3\n"
+"X-Generator: Poedit 3.8\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -181,10 +181,6 @@ msgstr "Apversti h&orizontaliai"
 
 msgid "&Zoom"
 msgstr "&Keisti mastelį"
-
-#, c-format
-msgid "25%"
-msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Did&inti\tCtrl++"
@@ -1113,6 +1109,9 @@ msgstr "Nepaisyti skirtumų k&omentaruose"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Nepaisyti trūksta&mų galinių EOL"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr "Nepaisyti eilutės &lūžių (laikyti tarpais)"
+
 msgid "&Include Subfolders"
 msgstr "Įtraukt&i pakatalogius"
 
@@ -1136,6 +1135,9 @@ msgstr "Pakeista data ir dydis"
 
 msgid "Size"
 msgstr "Dydis"
+
+msgid "Existence"
+msgstr "Egzistavimas"
 
 msgid "&Load Project..."
 msgstr "Įke&lti projektą..."
@@ -1482,6 +1484,9 @@ msgstr "Mažiau nei 100000"
 msgid "100000 or more"
 msgstr "100000 ar daugiau"
 
+msgid "Additional &Properties..."
+msgstr "&Papildomos savybės..."
+
 msgid "Add F&older Condition"
 msgstr "Pridėti katal&ogo sąlygą"
 
@@ -1505,6 +1510,18 @@ msgstr "Lygu"
 
 msgid "Not Equal"
 msgstr "Nelygu"
+
+msgid "Less Than"
+msgstr "Mažiau nei"
+
+msgid "Less Than or Equal to"
+msgstr "Mažiau nei arba lygu"
+
+msgid "Greater Than"
+msgstr "Daugiau nei"
+
+msgid "Greater Than or Equal to"
+msgstr "Daugiau nei arba lygu"
 
 msgid "Less than 10B"
 msgstr "Mažiau nei 10B"
@@ -1556,6 +1573,24 @@ msgstr "Rezultatai: Kairėje ir &Viduryje"
 
 msgid "Target: Middle and &Right"
 msgstr "Rezultatai: Viduryje ir &Dešinėje"
+
+msgid "Target: &All"
+msgstr "Rezultatai: &Visi"
+
+msgid "&Clear conditions"
+msgstr "&Išvalyti sąlygas"
+
+msgid "Compare &Size"
+msgstr "Lyginti &dydį"
+
+msgid "Compare &Date"
+msgstr "Lyginti &datą"
+
+msgid "Compare &Attributes"
+msgstr "Lyginti &atributus"
+
+msgid "Compare C&ontents"
+msgstr "Lyginti t&urinį"
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -1782,8 +1817,23 @@ msgstr "Išvalyti"
 msgid "Colors"
 msgstr "Spalvų"
 
-msgid "Color Scheme:"
-msgstr "Spalvų schema:"
+msgid "Color &mode:"
+msgstr "Spalvinė &būsena:"
+
+msgid "&Light mode scheme:"
+msgstr "&Šviesi schema:"
+
+msgid "&Dark mode scheme:"
+msgstr "&Tamsi schema:"
+
+msgid "Your custom schemes"
+msgstr "Pasirinktinės schemos"
+
+msgid "&Save current scheme..."
+msgstr "Iš&saugoti dabartinę schemą..."
+
+msgid "Delete &current scheme..."
+msgstr "Pašalinti dabartinę s&chemą..."
 
 msgid "Background"
 msgstr "Fono"
@@ -2081,6 +2131,9 @@ msgstr "Nepaisyti skirtumų k&omentaruose"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Nepaisyti trūksta&mų galinių EOL"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Nepaisyti eilutės &lūžių (laikyti tarpais)"
 
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
@@ -2536,6 +2589,9 @@ msgstr "Persijungti į &spartųjį palyginimą kai dydis virš (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Persijungti į &binarinį palyginimą kai dydis virš (MB):"
 
+msgid "Additional comparison condi&tions:"
+msgstr "Papildomos palyginimo sąlygos:"
+
 msgid "File patterns:"
 msgstr "Failų šablonai:"
 
@@ -2620,6 +2676,42 @@ msgstr "&Skripto failo plėtinys:"
 
 msgid "Script &body:"
 msgstr "Skripto &tekstas:"
+
+msgid "Font"
+msgstr "Šriftas"
+
+msgid "&Font:"
+msgstr "&Šriftas:"
+
+msgid "Font st&yle:"
+msgstr "Šrifto st&ilius:"
+
+msgid "&Size:"
+msgstr "&Dydis:"
+
+msgid "Effects"
+msgstr "Efektai"
+
+msgid "Stri&keout"
+msgstr "Perbrau&ktas"
+
+msgid "&Underline"
+msgstr "Pabra&uktas"
+
+msgid "&Color:"
+msgstr "&Spalva:"
+
+msgid "Sample"
+msgstr "Pavyzdys"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "Sk&riptas:"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>Parodyti daugiau šriftų</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -3527,6 +3619,10 @@ msgid "Image files are different"
 msgstr "Paveikslėliai skiriasi"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr "Failai skiriasi (išraiška: %1)"
+
+#, c-format
 msgid "Group%d"
 msgstr "Grupė%d"
 
@@ -4322,6 +4418,10 @@ msgid "Filter applied"
 msgstr "Pritaikytas filtras"
 
 #, c-format
+msgid "Compare %1"
+msgstr "Palyginti %1"
+
+#, c-format
 msgid "Clipboard at %s"
 msgstr "Mainų sritis %s"
 
@@ -4491,6 +4591,9 @@ msgstr "Dalyba iš nulio filtro išraiškoje"
 msgid "Unknown error"
 msgstr "Nežinoma klaida"
 
+msgid "Invalid property name"
+msgstr "Netinkamas ypatybės pavadinimas"
+
 msgid "Equals"
 msgstr "Lygu"
 
@@ -4526,6 +4629,15 @@ msgstr "Turi (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Neturi (regex)"
+
+msgid "Light"
+msgstr "Šviesi schema"
+
+msgid "Dark"
+msgstr "Tamsi schema"
+
+msgid "Follow system"
+msgstr "Kaip sistemos"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"

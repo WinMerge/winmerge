@@ -38,7 +38,6 @@
 #include "DirColsDlg.h"
 #include "DirAdditionalPropertiesDlg.h"
 #include "DirSelectFilesDlg.h"
-#include "UniFile.h"
 #include "ShellContextMenu.h"
 #include "DiffItem.h"
 #include "IListCtrlImpl.h"
@@ -128,6 +127,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_WM_CHAR()
 	ON_WM_KEYDOWN()
 	ON_WM_TIMER()
+	ON_WM_SETTINGCHANGE()
 	ON_MESSAGE(MSG_UI_UPDATE, OnUpdateUIMessage)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
@@ -478,6 +478,13 @@ void CDirView::OnInitialUpdate()
 	// Also enable infotips.
 	DWORD exstyle = LVS_EX_FULLROWSELECT | LVS_EX_HEADERDRAGDROP | LVS_EX_INFOTIP | LVS_EX_DOUBLEBUFFER;
 	m_pList->SetExtendedStyle(exstyle);
+	HWND hList = GetSafeHwnd();
+	if (hList != nullptr)
+	{
+		DarkMode::setListViewCtrlSubclass(hList);
+		DarkMode::setDarkTooltips(hList, static_cast<int>(DarkMode::ToolTipsType::listview));
+		DarkMode::setDarkThemeExperimentalEx(hList, L"Explorer");
+	}
 }
 
 BOOL CDirView::PreCreateWindow(CREATESTRUCT& cs)
@@ -691,21 +698,6 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 }
 
 /**
- * @brief Format context menu string and disable item if it cannot be applied.
- */
-static void NTAPI FormatContextMenu(BCMenu *pPopup, UINT uIDItem, int n1, int n2 = 0, int n3 = 0)
-{
-	CString s1, s2;
-	pPopup->GetMenuText(uIDItem, s1, MF_BYCOMMAND);
-	s2.FormatMessage(s1, NumToStr(n1).c_str(), NumToStr(n2).c_str(), NumToStr(n3).c_str());
-	pPopup->SetMenuText(uIDItem, s2, MF_BYCOMMAND);
-	if (n1 == 0)
-	{
-		pPopup->EnableMenuItem(uIDItem, MF_GRAYED);
-	}
-}
-
-/**
  * @brief Toggle context menu item
  */
 static void NTAPI CheckContextMenu(BCMenu *pPopup, UINT uIDItem, BOOL bCheck)
@@ -723,7 +715,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
 	BCMenu *pPopup = static_cast<BCMenu*>(menu.GetSubMenu(0));
@@ -796,7 +788,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 
 	CMenu menuPluginsHolder;
 	menuPluginsHolder.LoadMenu(IDR_POPUP_PLUGINS_SETTINGS);
-	theApp.TranslateMenu(menuPluginsHolder.m_hMenu);
+	I18n::TranslateMenu(menuPluginsHolder.m_hMenu);
 	String s = _("Plugin Settings");
 	pPopup->AppendMenu(MF_SEPARATOR);
 	pPopup->AppendMenu(MF_POPUP, static_cast<int>(reinterpret_cast<uintptr_t>(menuPluginsHolder.m_hMenu)), s.c_str());
@@ -820,7 +812,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(1));
 	ASSERT(pPopup != nullptr);
@@ -1387,7 +1379,7 @@ void CDirView::OpenParentDirectory(CDirDoc *pDocOpen)
 	case AllowUpwardDirectory::No:
 		break;
 	default:
-		LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+		I18n::MessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 		break;
 	}
 }
@@ -2883,6 +2875,24 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 }
 
 /**
+ * @brief Called when the user changes the system settings.
+ */
+void CDirView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+	{
+		HWND hList = GetSafeHwnd();
+		if (hList != nullptr)
+		{
+			DarkMode::setListViewCtrlSubclass(hList);
+			DarkMode::setDarkTooltips(hList, static_cast<int>(DarkMode::ToolTipsType::listview));
+			DarkMode::setDarkThemeExperimentalEx(hList, L"Explorer");
+		}
+	}
+	__super::OnSettingChange(uFlags, lpszSection);
+}
+
+/**
  * @brief Change left-side readonly-status
  */
 template<SIDE_TYPE stype>
@@ -3127,7 +3137,7 @@ void CDirView::OnToolsGeneratePatch()
 		const DIFFITEM &item = *it;
 		if (item.diffcode.isBin())
 		{
-			LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
+			I18n::MessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
 				MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
 			bValidFiles = false;
 		}
@@ -3199,7 +3209,7 @@ void CDirView::OnCtxtDirZip(int flag)
 {
 	if (!HasZipSupport())
 	{
-		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		I18n::MessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
 		return;
 	}
 
@@ -3761,7 +3771,7 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		}
 		else
 		{
-			LangMessageBox(IDS_ERROR_INVALID_DIR_FILE_NAME, MB_ICONWARNING);
+			I18n::MessageBox(IDS_ERROR_INVALID_DIR_FILE_NAME, MB_ICONWARNING);
 		}
 	}
 }
@@ -4367,7 +4377,7 @@ void CDirView::OnFileEncoding()
 /** @brief Open help from mainframe when user presses F1*/
 void CDirView::OnHelp()
 {
-	theApp.ShowHelp(DirViewHelpLocation);
+	CMergeApp::ShowHelp(DirViewHelpLocation);
 }
 
 /**
@@ -4613,8 +4623,8 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		::GetCursorPos(&point);
 		CMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW_COMPAREMETHOD));
-		theApp.TranslateMenu(menu.m_hMenu);
-		menu.GetSubMenu(0)->CheckMenuRadioItem(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_SIZE, 
+		I18n::TranslateMenu(menu.m_hMenu);
+		menu.GetSubMenu(0)->CheckMenuRadioItem(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, 
 			ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS + GetOptionsMgr()->GetInt(OPT_CMP_METHOD), MF_BYCOMMAND);
 		int nID = menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, this);
 		if (nID != 0)
@@ -4709,6 +4719,9 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 	// compare 'left' and 'right' parameters as appropriate
 	int retVal = pThis->pColItems->ColSort(pThis->pCtxt, pThis->sortCol, ldi, rdi, pThis->bTreeMode);
 	// return compare result, considering sort direction
+	String rs = ldi.diffFileInfo[0].filename;
+	String ss = rdi.diffFileInfo[0].filename;
+	OutputDebugString(strutils::format(_T("Comparing all properties for '%s' and '%s' ret=%d\n"), rs.c_str(), ss.c_str(), retVal).c_str());
 	return pThis->bSortAscending ? retVal : -retVal;
 }
 
@@ -4876,7 +4889,6 @@ void CDirView::OnEditColumns()
 			m_pColItems->SaveColumnOrders();
 			GetDiffContext().m_pPropertySystem.reset(new PropertySystem(m_pColItems->GetAdditionalPropertyNames()));
 			GetDiffContext().ClearAllAdditionalProperties();
-			auto* pDoc = GetDocument();
 			ReloadColumns();
 		}
 	} 

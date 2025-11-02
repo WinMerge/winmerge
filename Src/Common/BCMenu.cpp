@@ -25,6 +25,7 @@
 
 #include "stdafx.h"        // Standard windows header file
 #include "BCMenu.h"        // BCMenu class declaration
+#include "DarkModeLib.h"   // Dark mode
 #include <afxpriv.h>       //SK: makes A2W and other spiffy AFX macros work
 #include <../src/mfc/afximpl.h>
 #include <cmath>
@@ -52,6 +53,8 @@ int BCMenu::m_textBorder = 0;
 int BCMenu::m_checkBgWidth = 0;
 int BCMenu::m_gutterWidth = 0;
 int BCMenu::m_arrowWidth = 0;
+COLORREF BCMenu::m_menuTextColor = GetSysColor(COLOR_MENUTEXT);
+COLORREF BCMenu::m_menuBgColor = GetSysColor(COLOR_MENU);
 HTHEME BCMenu::m_hTheme = nullptr;
 bool BCMenu::m_bEnableOwnerDraw = true;
 
@@ -191,6 +194,8 @@ BCMenu::BCMenu()
 			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECKBACKGROUND, 0, TMT_CONTENTMARGINS, nullptr, &marginCheckBg);
 			GetThemeMargins(m_hTheme, nullptr, MENU_POPUPSUBMENU, 0, TMT_CONTENTMARGINS, nullptr, &marginArrow);
 			GetThemeInt(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_BORDERSIZE, &m_textBorder);
+			GetThemeColor(m_hTheme, MENU_POPUPITEM, MPI_NORMAL, TMT_TEXTCOLOR, &m_menuTextColor);
+			GetThemeColor(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_FILLCOLOR, &m_menuBgColor);
 			for (auto* pmargins : { &m_marginCheck, &m_marginSeparator, &marginCheckBg, &marginArrow })
 				resizeMargins(*pmargins);
 			m_textBorder = MulDiv(m_textBorder, dpi, 96);
@@ -230,7 +235,14 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 void BCMenu::DisableOwnerDraw()
 {
 	m_bEnableOwnerDraw = false;
+	RecreateRadioDotBitmap();
+}
+
+void BCMenu::RecreateRadioDotBitmap()
+{
 	CBitmap* pBitmap = CreateRadioDotBitmap();
+	if (afxData.hbmMenuDot)
+		DeleteObject(afxData.hbmMenuDot);
 	afxData.hbmMenuDot = reinterpret_cast<HBITMAP>(pBitmap->Detach());
 	delete pBitmap;
 }
@@ -1866,8 +1878,24 @@ int BCMenu::GlobalImageListOffset(int nID)
 
 CBitmap* BCMenu::CreateRadioDotBitmap()
 {
-	const COLORREF color = GetSysColor(COLOR_MENUTEXT);
-	const DWORD dibcolor = (GetRValue(color) << 16) | (GetGValue(color) << 8) | GetBValue(color);
+	COLORREF textColor = m_menuTextColor;
+	COLORREF bkColor = m_menuBgColor;
+	if (DarkMode::isEnabled())
+	{
+		HTHEME hTheme = OpenThemeData(nullptr, _T("DarkMode_ImmersiveStart::Menu"));
+		if (hTheme)
+		{
+			GetThemeColor(hTheme, MENU_POPUPITEM, MPI_NORMAL, TMT_TEXTCOLOR, &textColor);
+			GetThemeColor(hTheme, MENU_POPUPBACKGROUND, 0, TMT_FILLCOLOR, &bkColor);
+			CloseThemeData(hTheme);
+		}
+	}
+	const BYTE textR = GetRValue(textColor);
+	const BYTE textG = GetGValue(textColor);
+	const BYTE textB = GetBValue(textColor);
+	const BYTE bkR = GetRValue(bkColor);
+	const BYTE bkG = GetGValue(bkColor);
+	const BYTE bkB = GetBValue(bkColor);
 	const int cxSMIcon = GetSystemMetrics(SM_CXSMICON);
 	const int cySMIcon = GetSystemMetrics(SM_CYSMICON);
 	BYTE* pBits;
@@ -1889,8 +1917,17 @@ CBitmap* BCMenu::CreateRadioDotBitmap()
 		{
 			const double d = std::sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
 			if (d <= r)
-				p[x + y * cxSMIcon] = dibcolor | ((r - d >= 1.0) ? 0xff000000 : (static_cast<BYTE>(255.0 * (r - d)) << 24));
-
+			{
+				const BYTE alpha =(r - d >= 1.0) ? 255 : static_cast<BYTE>(255.0 * (r - d));
+				const BYTE outR = static_cast<BYTE>((textR * alpha + bkR * (255 - alpha)) / 255);
+				const BYTE outG = static_cast<BYTE>((textG * alpha + bkG * (255 - alpha)) / 255);
+				const BYTE outB = static_cast<BYTE>((textB * alpha + bkB * (255 - alpha)) / 255);
+				p[x + y * cxSMIcon] = (0xFF << 24) | (outR << 16) | (outG << 8) | outB;
+			}
+			else
+			{
+				p[x + y * cxSMIcon] = (0xFF << 24) | (bkR << 16) | (bkG << 8) | bkB;
+			}
 		}
 	}
 	dcMem.SelectObject(pOldBitmap);

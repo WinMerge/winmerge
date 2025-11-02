@@ -30,7 +30,7 @@ LineFiltersDlg::LineFiltersDlg()
 	//{{AFX_DATA_INIT(LineFiltersDlg)
 	m_bIgnoreRegExp = false;
 	//}}AFX_DATA_INIT
-	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
+	m_strCaption = I18n::LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
 	m_psp.dwFlags |= PSP_USETITLE;
 	m_psp.hIcon = AfxGetApp()->LoadIcon(IDI_LINEFILTER);
@@ -109,7 +109,7 @@ void LineFiltersDlg::InitList()
  */
 void LineFiltersDlg::OnHelp()
 {
-	theApp.ShowHelp(FilterHelpLocation);
+	CMergeApp::ShowHelp(FilterHelpLocation);
 }
 
 /**

@@ -44,10 +44,13 @@ private:
 	std::vector<int> m_rowRatios;
 	std::vector<int> m_colRatios;
 
+	BOOL CreateScrollBarCtrl(DWORD dwStyle, UINT nID) override;
+
 protected:
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+    afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 	virtual void OnDrawSplitter(CDC* pDC, ESplitType nType, const CRect& rect);
 	DECLARE_MESSAGE_MAP()
 };

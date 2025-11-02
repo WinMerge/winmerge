@@ -28,7 +28,7 @@ if "%1" == "x86" (
   set PLATFORM_VS=%1
   set DLLFILENAME=ShellExtension%1.dll
 )
-MSBuild ShellExtension.vs2022.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || pause
+MSBuild ShellExtension.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%PLATFORM_VS%" || pause
 endlocal
 
 if exist "%SIGNBAT_PATH%" (

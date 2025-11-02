@@ -310,7 +310,7 @@ public :
     void JoinLinesForTableEditingMode ();
     void SplitLinesForTableEditingMode ();
     void InvalidateColumns ();
-    std::vector<CCrystalTextBuffer*> GetTextBufferList () const { return m_pSharedTableProps->m_textBufferList; }
+    const std::vector<CCrystalTextBuffer*>& GetTextBufferList () const { return m_pSharedTableProps->m_textBufferList; }
 
     // More bookmarks
     int FindNextBookmarkLine (int nCurrentLine = 0) const;

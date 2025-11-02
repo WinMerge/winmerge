@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "FilterEngine/FilterError.h"
+#include "FilterEngine/FilterExpression.h"
 #include "FileFilter.h"
 #include "UnicodeString.h"
-#include "MergeApp.h"
+#include "I18n.h"
 #include "unicoder.h"
 
 String GetFilterErrorMessage(FilterErrorCode code)
@@ -33,6 +34,8 @@ String GetFilterErrorMessage(FilterErrorCode code)
 		return _("Filter name not found");
 	case FILTER_ERROR_DIVIDE_BY_ZERO:
 		return _("Division by zero in filter expression");
+	case FILTER_ERROR_INVALID_PROPERTY_NAME:
+		return _("Invalid property name");
 	default:
 		return _("Unknown error");
 	}
@@ -49,5 +52,17 @@ String FormatFilterErrorSummary(const FileFilterErrorInfo& fei)
 	msg += _T(": ") + ucr::toTString(fei.srcText);
 	if (!fei.context.empty())
 		msg += _T(" (") + fei.context + _T(")");
+	return msg;
+}
+
+String FormatFilterErrorSummary(const FilterExpression& fe)
+{
+	if (fe.errorCode == FILTER_ERROR_NO_ERROR)
+		return _T("");
+	String msg;
+	msg = GetFilterErrorMessage(fe.errorCode);
+	if (fe.errorPosition >= 0)
+		msg += _T(" ") + _("at position") + _T(" ") + strutils::to_str(fe.errorPosition + 1);
+	msg += _T(": ") + ucr::toTString(fe.expression);
 	return msg;
 }

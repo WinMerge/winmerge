@@ -180,10 +180,6 @@ msgstr "Horizontaal omdraaien"
 msgid "&Zoom"
 msgstr "Zoomen"
 
-#, c-format
-msgid "25%"
-msgstr "25 %"
-
 msgid "Zoom &In\tCtrl++"
 msgstr "Inzoomen\tCtrl++"
 
@@ -1111,6 +1107,9 @@ msgstr "Opmerkingsverschillen negeren"
 msgid "Ignore &Missing Trailing EOL"
 msgstr ""
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "Submappen bijvoegen"
 
@@ -1134,6 +1133,9 @@ msgstr "Datum en grootte gewijzigd"
 
 msgid "Size"
 msgstr "Grootte"
+
+msgid "Existence"
+msgstr ""
 
 msgid "&Load Project..."
 msgstr "Project laden..."
@@ -1480,6 +1482,9 @@ msgstr ""
 msgid "100000 or more"
 msgstr ""
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr ""
 
@@ -1502,6 +1507,18 @@ msgid "Equal"
 msgstr ""
 
 msgid "Not Equal"
+msgstr ""
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
 msgstr ""
 
 msgid "Less than 10B"
@@ -1553,6 +1570,24 @@ msgid "Target: Left and &Middle"
 msgstr ""
 
 msgid "Target: Middle and &Right"
+msgstr ""
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
 msgstr ""
 
 msgid "About WinMerge"
@@ -1785,8 +1820,23 @@ msgstr "Wissen"
 msgid "Colors"
 msgstr "Kleuren"
 
-msgid "Color Scheme:"
-msgstr "Kleurenschema:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
+
+msgid "Your custom schemes"
+msgstr ""
+
+msgid "&Save current scheme..."
+msgstr ""
+
+msgid "Delete &current scheme..."
+msgstr ""
 
 msgid "Background"
 msgstr "Achtergrond"
@@ -2083,6 +2133,9 @@ msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"
 
 msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
 msgstr ""
 
 msgid "E&nable moved block detection"
@@ -2554,6 +2607,9 @@ msgstr "Drempel voor overschakelen naar snel vergelijken (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Drempel voor overschakelen naar binair vergelijken (MB):"
 
+msgid "Additional comparison condi&tions:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Bestandspatronen:"
 
@@ -2638,6 +2694,42 @@ msgstr "Script-bestandsextensie:"
 
 msgid "Script &body:"
 msgstr "Script-inhoud:"
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
+msgstr ""
 
 msgid "EXT"
 msgstr "UIT"
@@ -3749,6 +3841,10 @@ msgid "Image files are different"
 msgstr "Afbeeldingsbestanden zijn verschillend"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Groep%d"
 
@@ -4694,6 +4790,10 @@ msgid "Filter applied"
 msgstr "Filter toegepast"
 
 #, c-format
+msgid "Compare %1"
+msgstr ""
+
+#, c-format
 msgid "Clipboard at %s"
 msgstr "Klembord op %s"
 
@@ -4919,6 +5019,9 @@ msgstr ""
 msgid "Unknown error"
 msgstr ""
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr ""
 
@@ -4953,6 +5056,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

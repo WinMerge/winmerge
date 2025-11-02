@@ -49,6 +49,11 @@ public:
 
 	~DirItemWithIndexIterator() = default;
 
+	DirItemWithIndexIterator(const DirItemWithIndexIterator& it)
+		: m_pList(it.m_pList), m_sel(it.m_sel), m_selected(it.m_selected), m_reverse(it.m_reverse)
+	{
+	}
+
 	DirItemWithIndexIterator& operator=(const DirItemWithIndexIterator& it)
 	{
 		m_sel = it.m_sel;

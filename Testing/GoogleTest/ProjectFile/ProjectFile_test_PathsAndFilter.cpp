@@ -228,6 +228,7 @@ TEST_F(PathAndFilterTest, GetTableProperties)
  */
 TEST_F(PathAndFilterTest, GetDiffOptions)
 {
+	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreLineBreaks());
 	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreMissingTrailingEol());
 	ASSERT_EQ(true, m_pProjectFileItem->HasFilterCommentsLines());
 	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreCodepage());
@@ -235,6 +236,7 @@ TEST_F(PathAndFilterTest, GetDiffOptions)
 	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreEol());
 	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreCase());
 	ASSERT_EQ(true, m_pProjectFileItem->HasIgnoreBlankLines());
+	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreLineBreaks());
 	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreMissingTrailingEol());
 	ASSERT_EQ(true, m_pProjectFileItem->GetFilterCommentsLines());
 	ASSERT_EQ(true, m_pProjectFileItem->GetIgnoreCodepage());

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-07-01 10:56+0000\n"
-"PO-Revision-Date: 2025-07-19 14:44+0200\n"
+"POT-Creation-Date: 2025-10-21 19:25+0000\n"
+"PO-Revision-Date: 2025-10-24 00:25+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/"
 "Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Poedit-Language: Corsican\n"
-"X-Generator: Poedit 3.6.3\n"
+"X-Generator: Poedit 3.7\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -184,10 +184,6 @@ msgstr "Rivultà o&rizuntalmente"
 
 msgid "&Zoom"
 msgstr "&Ingrandamentu"
-
-#, c-format
-msgid "25%"
-msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Ingrandamentu &più forte\tCtrl++"
@@ -1116,6 +1112,9 @@ msgstr "Ignurà e sfarenze di c&ummentu"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignurà e fini di &linea assente"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr "Ignurà i s&alti di linea (cunsideralli cum’è spazii)"
+
 msgid "&Include Subfolders"
 msgstr "&Include i sottucartulari"
 
@@ -1139,6 +1138,9 @@ msgstr "Data di mudificazione è dimensione"
 
 msgid "Size"
 msgstr "Dimensione"
+
+msgid "Existence"
+msgstr "Esistenza"
 
 msgid "&Load Project..."
 msgstr "&Caricà u prughjettu…"
@@ -1222,343 +1224,376 @@ msgid "Clear &All"
 msgstr "Tuttu squass&à"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "&Tuttu squassà"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "Caccià l’ultimu &gruppu di filtri"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "Reinizià à i &valori predefiniti (*.*)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "Aghjunghje un schedariu d’&esclusione"
 
 msgid "&System Files"
-msgstr ""
+msgstr "Schedarii di u &sistema"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "Schedarii di salvaguardia di l’&editore"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "Schedarii &binarii cumpilati"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "Schedarii di &ghjurnale"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "Schedarii &timpurarii o d’impiatta"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "Aghjunghje un cartulare d’e&sclusione"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "Cuntrollu di &versione"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "Custruzzione d’&artefatti"
 
 msgid "&IDE"
-msgstr ""
+msgstr "&IDE"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "Aghjunghje una cundizione di &schedariu"
 
 msgid "File &Size"
-msgstr ""
+msgstr "&Dimensione di schedariu"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "Inferiore à 1 Ko"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1 Ko è più"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "Inferiore à 10 Ko"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10 Ko è più"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "Inferiore à 100 Ko"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100 Ko è più"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "Inferiore à 1 Mo"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1 Mo è più"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "Inferiore à 10 Mo"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10 Mo è più"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "Inferiore à 100 Mo"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100 Mo è più"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "Inferiore à 1 Go"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1 Go è più"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "Intervallu persunalizatu…"
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "&Ultima mudificazione"
 
 msgid "&Hour"
-msgstr ""
+msgstr "&Ora"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "Più di un’ora fà"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "In l’ora"
 
 msgid "&Day"
-msgstr ""
+msgstr "&Ghjornu"
 
 msgid "Before today"
-msgstr ""
+msgstr "Nanzu oghje"
 
 msgid "Today"
-msgstr ""
+msgstr "Oghje"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "Nanzu à eri"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Eri"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "Dapoi eri"
 
 msgid "&Week"
-msgstr ""
+msgstr "&Settimana"
 
 msgid "Before this week"
-msgstr ""
+msgstr "Nanzu à quista settimana"
 
 msgid "This week"
-msgstr ""
+msgstr "Sta settimana"
 
 msgid "Before last week"
-msgstr ""
+msgstr "Nanzu à a settimana scorsa"
 
 msgid "Last week"
-msgstr ""
+msgstr "A settimana scorsa"
 
 msgid "Since last week"
-msgstr ""
+msgstr "Dapoi a settimana scorsa"
 
 msgid "&Month"
-msgstr ""
+msgstr "&Mese"
 
 msgid "Before this month"
-msgstr ""
+msgstr "Nanzu à quistu mese"
 
 msgid "This month"
-msgstr ""
+msgstr "Stu mese"
 
 msgid "Before last month"
-msgstr ""
+msgstr "Nanzu à u mese scorsu"
 
 msgid "Last month"
-msgstr ""
+msgstr "U mese scorsu"
 
 msgid "Since last month"
-msgstr ""
+msgstr "Dapoi u mese scorsu"
 
 msgid "&Year"
-msgstr ""
+msgstr "&Annu"
 
 msgid "Before this year"
-msgstr ""
+msgstr "Nanzu à quist’annu"
 
 msgid "This year"
-msgstr ""
+msgstr "Quist’annu"
 
 msgid "Before last year"
-msgstr ""
+msgstr "Nanzu à l’annu scorsu"
 
 msgid "Last year"
-msgstr ""
+msgstr "L’annu scorsu"
 
 msgid "Since last year"
-msgstr ""
+msgstr "Dapoi l’annu scorsu"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "Intervallu persunalizatu…"
 
 msgid "&Attributes"
-msgstr ""
+msgstr "&Attributi"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "Schedarii in lettura sola"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "Schedarii micca in lettura sola"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "Schedarii piattati"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "Schedarii micca piattati"
 
 msgid "System files"
-msgstr ""
+msgstr "Schedarii di u sistema"
 
 msgid "Not system files"
-msgstr ""
+msgstr "Schedarii micca di u sistema"
 
 msgid "File &Content"
-msgstr ""
+msgstr "&Cuntenutu di u schedariu"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "Cuntene a catena…"
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "Ùn cuntene micca a catena…"
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "A prima linea cuntene a catena…"
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "A prima linea ùn cuntene micca a catena…"
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "E 10 prime linee cuntenenu a catena…"
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "E 10 prime linee ùn cuntenenu micca a catena…"
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "E 10 ultime linee cuntenenu a catena…"
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "E 10 ultime linee ùn cuntenenu micca a catena…"
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "L’ultima linea cuntene a catena…"
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "L’ultima linea ùn cuntene micca a catena…"
 
 msgid "&Line Count"
-msgstr ""
+msgstr "&Numeru di linee"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "Inferiore à 10"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10 è più"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "Inferiore à 100"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100 è più"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "Inferiore à 1000"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1000 è più"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "Inferiore à 10000"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10000 è più"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "Inferiore à 100000"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100000 è più"
+
+msgid "Additional &Properties..."
+msgstr "&Pruprietà addiziunale…"
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "Aghjunghje una cundizione di &cartulare"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "Destinazione : &Tuttu (Manca/Centru/Diritta"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "Destinazione : &Manca"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "Destinazione : &Centru"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "Destinazione : &Diritta"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "Aghjunghje una cundizione di s&farenza"
 
 msgid "Equal"
-msgstr ""
+msgstr "Uguale"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Micca uguale"
+
+msgid "Less Than"
+msgstr "Hè inferiore à"
+
+msgid "Less Than or Equal to"
+msgstr "Hè inferiore o uguale à"
+
+msgid "Greater Than"
+msgstr "Hè superiore à"
+
+msgid "Greater Than or Equal to"
+msgstr "Hè superiore o uguale à"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "Inferiore à 10 o"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10 o è più"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "Inferiore à 100 o"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100 o è più"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "Menu d’1 seconda"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 seconda è più"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "Menu d’1 minutu"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 minutu è più"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "Menu d’1 ora"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 ora è più"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "Menu d’1 ghjornu"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 ghjornu è più"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "Menu d’1 settimana"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 settimana è più"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "Destinazione : &Manca è Diritta"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "Destinazione : Manca è &Centru"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "Destinazione : Centru è &Diritta"
+
+msgid "Target: &All"
+msgstr "Destinazione : &Tutte"
+
+msgid "&Clear conditions"
+msgstr "&Squassà e cundizioni"
+
+msgid "Compare &Size"
+msgstr "Paragunà a d&imensione"
+
+msgid "Compare &Date"
+msgstr "Paragunà a &data"
+
+msgid "Compare &Attributes"
+msgstr "Paragunà l’&attributi"
+
+msgid "Compare C&ontents"
+msgstr "Paragunà u &cuntenutu"
 
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
@@ -1791,8 +1826,23 @@ msgstr "Squassà"
 msgid "Colors"
 msgstr "Culori"
 
-msgid "Color Scheme:"
-msgstr "Ghjocu di culori :"
+msgid "Color &mode:"
+msgstr "&Modu di culore :"
+
+msgid "&Light mode scheme:"
+msgstr "Ghjocu di culori &chjari :"
+
+msgid "&Dark mode scheme:"
+msgstr "Ghjocu di culori &scuri :"
+
+msgid "Your custom schemes"
+msgstr "I vostri ghjochi persunalizati"
+
+msgid "&Save current scheme..."
+msgstr "&Arregistrà u ghjocu attuale…"
+
+msgid "Delete &current scheme..."
+msgstr "Sq&uassà u ghjocu attuale…"
 
 msgid "Background"
 msgstr "Sfondu"
@@ -2093,6 +2143,9 @@ msgstr "Ignurà e sfarenze di c&ummentu"
 msgid "Ignore &missing trailing EOL"
 msgstr "Ignurà e fini di &linea assente"
 
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Ignurà i s&alti di linea (cunsideralli cum’è spazii)"
+
 msgid "E&nable moved block detection"
 msgstr "Attivà l’avventata di i blocchi &dispiazzati"
 
@@ -2167,10 +2220,10 @@ msgid "File Filters"
 msgstr "Filtri di schedariu"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "Espressione di &maschera o di filtru"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "&Filtri predefiniti"
 
 msgid "Test..."
 msgstr "Prova…"
@@ -2188,19 +2241,19 @@ msgid "Delete..."
 msgstr "Squassà…"
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "Cundizione di u filtru"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "A manu &manca :"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "&Operatore :"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "A manu &diritta :"
 
 msgid "Expression:"
-msgstr ""
+msgstr "Spressione :"
 
 msgid "Save Modified Files?"
 msgstr "Arregistrà i schedarii mudificati ?"
@@ -2562,6 +2615,9 @@ msgstr "Passà à u paragone &rapidu quandu a dimensione (in Mo) eccede :"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Passà à u paragone &binariu quandu a dimensione (in Mo) eccede :"
 
+msgid "Additional comparison condi&tions:"
+msgstr "Cundizioni addiziunale di parag&one :"
+
 msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
 
@@ -2646,6 +2702,42 @@ msgstr "Estensione di u schedariu di &scenariu :"
 
 msgid "Script &body:"
 msgstr "&Testu di u scenariu :"
+
+msgid "Font"
+msgstr "Grafia"
+
+msgid "&Font:"
+msgstr "&Grafia :"
+
+msgid "Font st&yle:"
+msgstr "St&ilu di a grafia :"
+
+msgid "&Size:"
+msgstr "&Dimensione :"
+
+msgid "Effects"
+msgstr "Effetti"
+
+msgid "Stri&keout"
+msgstr "&Rigatu"
+
+msgid "&Underline"
+msgstr "&Sottulineatu"
+
+msgid "&Color:"
+msgstr "&Culore :"
+
+msgid "Sample"
+msgstr "Esempiu"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "Sc&enariu :"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>Affissà d’altre grafie</A>"
 
 msgid "EXT"
 msgstr "EST"
@@ -3788,6 +3880,10 @@ msgid "Image files are different"
 msgstr "I schedarii di fiura sò sfarenti"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr "I schedarii sò sfarenti (espr : %1)"
+
+#, c-format
 msgid "Group%d"
 msgstr "Gruppu %d"
 
@@ -4374,7 +4470,7 @@ msgstr ""
 "%1 hè dispunibule (avete %2). Vulete scaricalla subitu ?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr " - Tutti i diritti riservati."
 
 msgid "Failed to download latest version information"
 msgstr "Fiascu per scaricà l’infurmazione di l’ultima versione"
@@ -4394,7 +4490,7 @@ msgstr "Andà à a linea dispiazzata\tCtrl+Maius+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
-msgstr ""
+msgstr "Disattivata"
 
 msgid "From file system"
 msgstr "Da u sistema di schedariu"
@@ -4493,7 +4589,7 @@ msgstr "DirectWrite naturale simetricu"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
-msgstr ""
+msgstr "Disattivata"
 
 msgid "MDI child window or main window"
 msgstr "Finestra zitella o finestra principale MDI"
@@ -4637,7 +4733,7 @@ msgstr "Cartulare d’installazione"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
-msgstr ""
+msgstr "Disattivata"
 
 msgid "Allow only one instance to run"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
@@ -4647,7 +4743,7 @@ msgstr "Permette una instanza unica ; aspettà ch’ella si compii"
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
-msgstr ""
+msgstr "Disattivatu"
 
 msgid "Only on window activated"
 msgstr "Solu quandu a finestra hè attivata"
@@ -4746,6 +4842,10 @@ msgstr "2ᵘ è 3ᵘ"
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
+
+#, c-format
+msgid "Compare %1"
+msgstr "Paragunà %1"
 
 #, c-format
 msgid "Clipboard at %s"
@@ -4936,79 +5036,91 @@ msgid "File operation canceled"
 msgstr "Operazione di schedariu abbandunata"
 
 msgid "No error"
-msgstr ""
+msgstr "Nisunu sbagliu"
 
 msgid "Filter expression is empty"
-msgstr ""
+msgstr "L’espressione di filtru hè viota"
 
 msgid "Unknown character in filter expression"
-msgstr ""
+msgstr "Caratteru scunnisciutu in l’espressione di filtru"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "Litterale di catena micca compia"
 
 msgid "Syntax error in filter expression"
-msgstr ""
+msgstr "Sbagliu di sintassa in l’espressione di filtru"
 
 msgid "Failed to parse filter expression"
-msgstr ""
+msgstr "Fiascu per analizà l’espressione di filtru"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "Valore litterale inaccettevule"
 
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Espressione regulare inaccettevule"
 
 msgid "Undefined identifier"
-msgstr ""
+msgstr "Identificatore indefinitu"
 
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "Numeru inaccettevule di parametri"
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "Nome di filtru intruvevule"
 
 msgid "Division by zero in filter expression"
-msgstr ""
+msgstr "Divisione da zeru in l’espressione di filtru"
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Sbagliu scunnisciutu"
+
+msgid "Invalid property name"
+msgstr "Nome di pruprietà inaccettevule"
 
 msgid "Equals"
-msgstr ""
+msgstr "Hè uguale à"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "Ùn hè micca uguale à"
 
 msgid "Less than"
-msgstr ""
+msgstr "Hè inferiore à"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "Hè inferiore o uguale à"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "Hè superiore o uguale à"
 
 msgid "Greater than"
-msgstr ""
+msgstr "Hè superiore à"
 
 msgid "Between"
-msgstr ""
+msgstr "Trà"
 
 msgid "Not Between"
-msgstr ""
+msgstr "Micca trà"
 
 msgid "Contains"
-msgstr ""
+msgstr "Cuntene"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "Ùn cuntene micca"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "Cuntene (regex)"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "Ùn cuntene micca (regex)"
+
+msgid "Light"
+msgstr "Chjaru"
+
+msgid "Dark"
+msgstr "Scuru"
+
+msgid "Follow system"
+msgstr "Seguità u sistema"
 
 msgid "Prettification"
 msgstr "Imbellimentu"

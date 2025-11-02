@@ -29,6 +29,13 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 , m_bAllowMixedEol(false)
 , m_nRenderingMode(0)
 {
+	BindOption(OPT_TAB_SIZE, m_nTabSize, IDC_TAB_EDIT, DDX_Text);
+	BindOptionCustom(OPT_TAB_TYPE, m_nTabType, IDC_PROP_INSERT_TABS, DDX_Radio,
+		+[](int v) { return v; }, +[](int v) { return std::clamp(v, 1, MAX_TABSIZE); });
+	BindOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax, IDC_HILITE_CHECK, DDX_Check);
+	BindOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol, IDC_MIXED_EOL, DDX_Check);
+	BindOptionCustom(OPT_RENDERING_MODE, m_nRenderingMode, IDC_RENDERING_MODE, DDX_CBIndex,
+		+[](int v) { return v + 1; }, +[](int v) { return (v - 1); });
 }
 
 /** 
@@ -38,15 +45,11 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropEditor)
-	DDX_Check(pDX, IDC_HILITE_CHECK, m_bHiliteSyntax);
-	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
-	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
 	DDV_MaxChars(pDX, std::to_string(m_nTabSize).c_str(), 2);
-	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	// m_bCopyFullLine currently is only a hidden option
 	//  > it is used here in PropEditor.cpp, because otherwise it doesn't get saved to the registry
-	DDX_CBIndex(pDX, IDC_RENDERING_MODE, m_nRenderingMode);
 	//}}AFX_DATA_MAP
+	DoDataExchangeBindOptions(pDX);
 }
 
 
@@ -56,35 +59,6 @@ BEGIN_MESSAGE_MAP(PropEditor, OptionsPanel)
 	ON_EN_KILLFOCUS(IDC_TAB_EDIT, OnEnKillfocusTabEdit)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
-
-/** 
- * @brief Reads options values from storage to UI.
- */
-void PropEditor::ReadOptions()
-{
-	m_nTabSize = GetOptionsMgr()->GetInt(OPT_TAB_SIZE);
-	m_nTabType = GetOptionsMgr()->GetInt(OPT_TAB_TYPE);
-	m_bHiliteSyntax = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-	m_bAllowMixedEol = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL);
-	m_nRenderingMode = GetOptionsMgr()->GetInt(OPT_RENDERING_MODE) + 1;
-}
-
-/** 
- * @brief Writes options values from UI to storage.
- */
-void PropEditor::WriteOptions()
-{
-	// Sanity check tabsize
-	if (m_nTabSize < 1)
-		m_nTabSize = 1;
-	if (m_nTabSize > MAX_TABSIZE)
-		m_nTabSize = MAX_TABSIZE;
-	GetOptionsMgr()->SaveOption(OPT_TAB_SIZE, (int)m_nTabSize);
-	GetOptionsMgr()->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
-	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol);
-	GetOptionsMgr()->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax);
-	GetOptionsMgr()->SaveOption(OPT_RENDERING_MODE, m_nRenderingMode - 1);
-}
 
 /** 
  * @brief Called before propertysheet is drawn.
@@ -110,19 +84,6 @@ void PropEditor::LoadComboBoxStrings()
 {
 	SetDlgItemComboBoxList(IDC_RENDERING_MODE,
 		{ _("GDI"), _("DirectWrite Default"), _("DirectWrite Aliased"), _("DirectWrite GDI Classic"), _("DirectWrite GDI Natural"), _("DirectWrite Natural"), _("DirectWrite Natural Symmetric") });
-}
-
-/**
- * @brief Sets options to defaults
- */
-void PropEditor::OnDefaults()
-{
-	m_nTabSize = GetOptionsMgr()->GetDefault<unsigned>(OPT_TAB_SIZE);
-	m_nTabType = GetOptionsMgr()->GetDefault<unsigned>(OPT_TAB_TYPE);
-	m_bHiliteSyntax = GetOptionsMgr()->GetDefault<bool>(OPT_SYNTAX_HIGHLIGHT);
-	m_bAllowMixedEol = GetOptionsMgr()->GetDefault<bool>(OPT_ALLOW_MIXED_EOL);
-	m_nRenderingMode = GetOptionsMgr()->GetDefault<unsigned>(OPT_RENDERING_MODE) + 1;
-	UpdateData(FALSE);
 }
 
 /** 

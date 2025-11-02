@@ -6,7 +6,6 @@
 
 #include "pch.h"
 #include "FilterList.h"
-#include "FileFilter.h"
 #include <vector>
 #include <Poco/RegularExpression.h>
 #include <Poco/Exception.h>

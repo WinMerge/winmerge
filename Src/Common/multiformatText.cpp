@@ -67,7 +67,7 @@ void storageForPlugins::SetDataFileAnsi(const String& filename, bool bOverwrite 
 	encoding.SetCodepage(ucr::getDefaultCodepage());
 	SetDataFileEncoding(filename, encoding, bOverwrite); 
 }
-void storageForPlugins::SetDataFileEncoding(const String& filename, FileTextEncoding encoding, bool bOverwrite /*= false*/)
+void storageForPlugins::SetDataFileEncoding(const String& filename, const FileTextEncoding& encoding, bool bOverwrite /*= false*/)
 {
 	m_filename = filename;
 	m_nChangedValid = 0;

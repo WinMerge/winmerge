@@ -30,6 +30,8 @@
 #include "DDXHelper.h"
 #include "../ccrystaltextview.h"
 
+#include "darkmodelib.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -180,7 +182,9 @@ OnInitDialog ()
       m_font.CreateFontIndirect (&lf);
       m_ctlFindText.SetFont (&m_font);
     }
-
+#if defined(USE_DARKMODELIB)
+  DarkMode::setDarkWndSafe(GetSafeHwnd(), true);
+#endif
   return true;
 }
 

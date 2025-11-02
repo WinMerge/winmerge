@@ -59,6 +59,7 @@ public:
 	virtual ~BCMenu();
 
 	static void DisableOwnerDraw();
+	static void RecreateRadioDotBitmap();
 
 	// Functions for loading and applying bitmaps to menus (see example application)
 	virtual BOOL LoadMenu(LPCTSTR lpszResourceName);
@@ -203,6 +204,8 @@ protected:
 	static int m_checkBgWidth;
 	static int m_gutterWidth;
 	static int m_arrowWidth;
+	static COLORREF m_menuTextColor;
+	static COLORREF m_menuBgColor;
 	static HTHEME m_hTheme;
 	static bool m_bEnableOwnerDraw;
 }; 

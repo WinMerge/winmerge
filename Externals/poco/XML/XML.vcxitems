@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{DAFD8D9E-6509-4482-A533-44C843C3BCC7}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\Attributes.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\AttributesImpl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\ContentHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\DeclHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\DefaultHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\DTDHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\EntityResolver.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Sax\EntityResolverImpl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\ErrorHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\InputSource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\LexicalHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\Locator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Sax\LocatorImpl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\NamespaceSupport.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\SAXException.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Sax\SAXParser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Sax\WhitespaceFilter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Sax\XMLFilter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Sax\XMLFilterImpl.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\XMLReader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\XML\Name.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\NamePool.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\NamespaceStrategy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\ParserEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\XML.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\XMLException.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\XMLStream.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\XMLString.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\XMLWriter.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\ascii.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\asciitab.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat_config.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat_external.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\iasciitab.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\internal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\latin1tab.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\nametab.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\utf8tab.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmlrole.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmltok.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmltok_impl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Attributes.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\AttributesImpl.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ContentHandler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DeclHandler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DefaultHandler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\DTDHandler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\EntityResolver.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\EntityResolverImpl.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ErrorHandler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\expat.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\InputSource.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\LexicalHandler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Locator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\LocatorImpl.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\Name.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NamePool.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NamespaceStrategy.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\NamespaceSupport.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\ParserEngine.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SAXException.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\SAXParser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\WhitespaceFilter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\PocoXML.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\XMLException.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\XMLFilter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\XMLFilterImpl.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmlparse.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>WINVER=0x0601;_DEBUG;WIN64;_WINDOWS;POCO_NO_AUTOMATIC_LIBS;POCO_STATIC;XML_NS;XML_DTD;XML_GE;HAVE_EXPAT_CONFIG_H;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;EDITPADC_CLASS=;UNICODE;_AFX_NO_MFC_CONTROLS_IN_DIALOGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\XMLReader.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmlrole.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmltok.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmltok_impl.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmltok_ns.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\XMLWriter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+</Project>

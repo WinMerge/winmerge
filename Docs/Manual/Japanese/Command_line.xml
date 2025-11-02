@@ -159,7 +159,7 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
         <para>フォルダー比較方法を指定します。次のキーワードが指定できます。<userinput>Full</userinput>,
 <userinput>Quick</userinput>, <userinput>Binary</userinput>,
 <userinput>Date</userinput>, <userinput>SizeDate</userinput>,
-<userinput>Size</userinput></para>
+<userinput>Size</userinput>, <userinput>Existence</userinput></para>
       </listitem>
     </varlistentry>
 
@@ -406,14 +406,17 @@ WorkingCopy</userinput>. スペースを含む説明はダブルクォーテー�
     <varlistentry>
       <term><option>/noninteractive</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>
+比較やレポート生成の際にメッセージボックスを表示せずに WinMerge
+を実行します。処理が完了すると自動的に終了するため、バッチ処理やスクリプトでの実行に適しています。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/noprefs</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>
+レジストリから設定を読み込まず、また保存もせずに WinMerge を実行します。すべての比較はデフォルトの設定のみを使用します。</para>
       </listitem>
     </varlistentry>
 
@@ -427,77 +430,123 @@ WorkingCopy</userinput>. スペースを含む説明はダブルクォーテー�
     <varlistentry>
       <term><option>/ignorews</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>「空白」オプションを永続的に制御します:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignorews:0</option> - 空白の違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignorews</option> または <option>/ignorews:1</option> - 空白の量の違いを無視します。</para></listitem>
+          <listitem><para><option>/ignorews:2</option> - すべての空白文字を無視します。</para></listitem>
+        </itemizedlist>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignoreblanklines</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>「空行を無視する」オプションを永続的に制御します:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignoreblanklines:0</option> - 空行を無視しないようにします。</para></listitem>
+          <listitem><para><option>/ignoreblanklines</option> または <option>/ignoreblanklines:1</option>
+- 空行を無視するようにします。</para></listitem>
+        </itemizedlist>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignorecase</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>「大文字小文字を区別しない」オプションを永続的に制御します:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignorecase:0</option> - 大文字小文字の違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignorecase</option> または <option>/ignorecase:1</option> -
+大文字小文字の違いを無視します。</para></listitem>
+        </itemizedlist>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignoreeol</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>「改行文字の違いを無視する」オプションを永続的に制御します:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignoreeol:0</option> - 改行コードの違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignoreeol</option> または <option>/ignoreeol:1</option> -
+改行コードの違いを無視します。</para></listitem>
+        </itemizedlist>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignorecodepage</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>「コードページの違いを無視する」オプションを永続的に制御します:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignorecodepage:0</option> - コードページの違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignorecodepage</option> または <option>/ignorecodepage:1</option> -
+コードページの違いを無視します。</para></listitem>
+        </itemizedlist>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/ignorecomments</option></term>
       <listitem>
-        <para>TBD</para>
+        <para>「コメントの違いを無視する」オプションを永続的に制御します:</para>
+        <itemizedlist>
+          <listitem><para><option>/ignorecomments:0</option> - コメントの違いを無視しません。</para></listitem>
+          <listitem><para><option>/ignorecomments</option> または <option>/ignorecomments:1</option> -
+コメントの違いを無視します。</para></listitem>
+        </itemizedlist>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/unpacker</option></term>
+      <term><option>/unpacker <replaceable>プラグインパイプライン</replaceable></option></term>
       <listitem>
-        <para>TBD</para>
+        <para>
+Unpacker プラグインのプラグインパイプラインを指定します。例: <option>/unpacker
+"SortAscending|SelectLines 1-10"</option></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/prediffer</option></term>
+      <term><option>/prediffer <replaceable>プラグインパイプライン</replaceable></option></term>
       <listitem>
-        <para>TBD</para>
+        <para>
+Prediffer プラグインのプラグインパイプラインを指定します。例: <option>/prediffer "IgnoreColumns
+1-10"</option></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/cp</option></term>
+      <term><option>/cp <replaceable>コードページ</replaceable></option></term>
       <listitem>
-        <para>TBD</para>
+        <para>
+ファイル比較に使用するコードページを指定します。例: <option>/cp 65001</option></para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/fileext <replaceable>file-extension</replaceable></option></term>
+      <term><option>/fileext <replaceable>ファイル拡張子</replaceable></option></term>
       <listitem>
         <para>シンタックスハイライトの種類を決定するため、ファイル拡張子を指定します。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term><option>/cfg</option></term>
+      <term><option>/cfg <replaceable>名前=値</replaceable></option></term>
       <listitem>
-        <para>TBD</para>
+        <para>
+WinMerge のレジストリまたは INI ファイルに設定値を設定します。</para>
+        <para>
+例: <option>/cfg Settings/DiffAlgorithm=3</option></para>
+        <para>
+セクション名が曖昧でなく、他の設定名と衝突しない場合、省略できます:</para>
+        <para>
+<option>/cfg DiffAlgo=3</option></para>
+        <para>
+注意: この項目では利用可能な設定名について説明していません。設定の一覧は regedit の
+<filename>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge</filename>
+を参照してください。</para>
       </listitem>
     </varlistentry>
 
@@ -558,9 +607,32 @@ class="directory">C:\Folder2</filename>がファイル名<filename>File.txt</fil
     </varlistentry>
 
     <varlistentry>
-      <term><option>/or</option></term>
+      <term><option>/or <replaceable>outputpath</replaceable></option></term>
       <listitem>
-        <para>TBD</para>
+        <para>
+ファイルまたはフォルダの比較レポートを出力します。例: <option>WinMergeU path1 path2 /or
+c:\tmp\report.html</option></para>
+        <para>このオプションは以下と組み合わせて使用すると便利です:</para>
+        <itemizedlist>
+          <listitem><para><option>/noninteractive</option> - レポート出力後に WinMerge を終了します。</para></listitem>
+          <listitem><para><option>/minimize</option> - WinMerge を最小化状態で開始します。</para></listitem>
+          <listitem><para><option>/noprefs</option> - 現在の設定を無視し、デフォルトの設定を使用します。<option>/cfg</option>
+による変更は一時的なものとなり保存されません。</para></listitem>
+        </itemizedlist>
+        <para>
+以下の <option>/cfg</option> 設定も便利に使えます（将来パラメータ名が変更される可能性があります）:</para>
+        <para>ファイル比較の場合:</para>
+        <itemizedlist>
+          <listitem><para><option>/cfg Settings/DiffContextV2=0</option> - レポートで一致している行を非表示にします (「表示 →
+Diff コンテキスト → 0 行」と同等)。</para></listitem>
+          <listitem><para><option>/cfg Settings/ViewLineNumbers=1</option> - 行番号を出力します（0 にすると非表示）。</para></listitem>
+        </itemizedlist>
+        <para>フォルダ比較の場合:</para>
+        <itemizedlist>
+          <listitem><para><option>/cfg Settings/DirViewExpandSubdirs=1</option> - サブフォルダを自動的に展開します。</para></listitem>
+          <listitem><para><option>/cfg ReportFiles/ReportType=2</option> - レポート形式: Simple HTML。</para></listitem>
+          <listitem><para><option>/cfg ReportFiles/IncludeFileCmpReport=1</option> - ファイル比較レポートを含めます。</para></listitem>
+        </itemizedlist>
       </listitem>
     </varlistentry>
 

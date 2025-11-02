@@ -2,8 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "WindowsManagerDialog.h"
+#include "WindowsManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -14,8 +14,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CWindowsManagerDialog dialog
 
-CWindowsManagerDialog::CWindowsManagerDialog(CWnd* pParent/* = NULL*/)
+CWindowsManagerDialog::CWindowsManagerDialog(CWindowsManager& manager, CWnd* pParent/* = NULL*/)
 	: CDialog(CWindowsManagerDialog::IDD, pParent)
+	,m_manager(manager)
 	,m_bAutoCleanup(FALSE)
 	,m_pFrame(NULL)
 	,m_pIL(NULL)
@@ -112,7 +113,7 @@ void CWindowsManagerDialog::PopulateList()
 	m_List.DeleteAllItems();
 
 	CString sText;
-	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>& arrChild = m_pFrame->GetChildArray();
+	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>& arrChild = m_manager.GetChildArray();
 	for (int i = 0; i < arrChild.GetSize(); ++i)
 	{
 		sText.Empty();
@@ -173,7 +174,7 @@ void CWindowsManagerDialog::AdjustSize()
 void CWindowsManagerDialog::SetParentWnd(CWnd* pWnd)
 {
 	ASSERT(NULL != pWnd);
-	m_pFrame = DYNAMIC_DOWNCAST(CMainFrame, pWnd);
+	m_pFrame = DYNAMIC_DOWNCAST(CMDIFrameWnd, pWnd);
 }
 
 void CWindowsManagerDialog::OnSize(UINT nType, int cx, int cy)
@@ -230,7 +231,7 @@ void CWindowsManagerDialog::OnDestroy()
 
 	const int nIndex = m_List.GetNextItem(-1, LVNI_SELECTED);
 	if (nIndex >= 0 && nIndex < m_List.GetItemCount())
-		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATE, 0, static_cast<LPARAM>(m_List.GetItemData(nIndex)));
+		m_manager.ActivateChildFrame(reinterpret_cast<CMDIChildWnd*>(m_List.GetItemData(nIndex)));
 }
 
 LRESULT CWindowsManagerDialog::OnIsOpen(WPARAM wParam, LPARAM lParam)

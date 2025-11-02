@@ -324,6 +324,8 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 				m_nCompMethod = CompareMethodType::DATE_SIZE;
 			else if (param == _T("size"))
 				m_nCompMethod = CompareMethodType::SIZE;
+			else if (param == _T("existence"))
+				m_nCompMethod = CompareMethodType::EXISTENCE;
 			else
 				m_sErrorMessages.emplace_back(_T("Unknown compare method '") + param + _T("' specified"));
 		}

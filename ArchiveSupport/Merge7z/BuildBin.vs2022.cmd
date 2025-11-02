@@ -20,7 +20,7 @@ if "%1" == "" (
 goto :eof
 
 :BuildBin
-MSBuild Merge7z.vs2022.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || pause
+MSBuild Merge7z.sln /t:Rebuild /p:Configuration="Release" /p:Platform="%1" || pause
 endlocal
 
 if exist "%SIGNBAT_PATH%" (

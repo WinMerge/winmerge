@@ -17,6 +17,7 @@
 #include "Merge.h"
 #include "Constants.h"
 #include "Win_VersionHelper.h"
+#include "DarkModeLib.h"
 
 #ifndef BCN_DROPDOWN
 #define BCN_DROPDOWN            (BCN_FIRST + 0x0002)
@@ -105,6 +106,10 @@ void PluginsListDlg::InitList()
 	// Also enable infotips.
 	m_list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
+	HWND hList = m_list.GetSafeHwnd();
+	if (hList != nullptr)
+		DarkMode::setDarkListViewCheckboxes(hList);
+
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
@@ -155,10 +160,10 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent)
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
 		auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
 		String processType2 = processType.has_value() ? strutils::to_str(*processType) : _T("&Others");
-		processType2 = strutils::strip_hot_key(tr(ucr::toUTF8(processType2)));
+		processType2 = strutils::strip_hot_key(I18n::tr(ucr::toUTF8(processType2)));
 		int ind = m_list.InsertItem(m_list.GetItemCount(), plugin->m_name.c_str());
 		const bool containsNonAsciiChars  = std::any_of(plugin->m_description.begin(), plugin->m_description.end(), [](auto c) { return (c >= 0x80); });
-		String desc = containsNonAsciiChars  ? plugin->m_description : tr(ucr::toUTF8(plugin->m_description));
+		String desc = containsNonAsciiChars  ? plugin->m_description : I18n::tr(ucr::toUTF8(plugin->m_description));
 		strutils::replace(desc, _T("\r"), _T(""));
 		strutils::replace(desc, _T("\n"), _T(" "));
 		m_list.SetItemText(ind, 1, processType2.c_str());
@@ -331,7 +336,7 @@ void PluginsListDlg::OnDropDownAdd(NMHDR *pNMHDR, LRESULT *pResult)
 	GetDlgItem(IDC_PLUGIN_ADD)->GetWindowRect(&rcButton);
 	CMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_PLUGIN_ADD_MENU));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	auto* info = GetSelectedInternalPluginInfo();
 	if (!info)
@@ -461,6 +466,6 @@ void PluginsListDlg::OnCloseUpPatterns()
  */
 void PluginsListDlg::OnHelp()
 {
-	theApp.ShowHelp(PluginsHelpLocation);
+	CMergeApp::ShowHelp(PluginsHelpLocation);
 }
 

@@ -1,5 +1,5 @@
 #include "pch.h"
-#include <Windows.h>
+#include <windows.h>
 #include "MergeAppCOMClass.h"
 #include "OptionsMgr.h"
 #include "MergeApp.h"
@@ -17,7 +17,7 @@ MergeAppCOMClass::~MergeAppCOMClass()
 
 HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text, BSTR* pRet)
 {
-	*pRet = SysAllocString(tr(text).c_str());
+	*pRet = SysAllocString(I18n::tr(text).c_str());
 	return S_OK;
 }
 

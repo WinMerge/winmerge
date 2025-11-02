@@ -568,12 +568,12 @@ Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesb
 Source: ..\..\ColorSchemes\*.ini; DestDir: {app}\ColorSchemes; Flags: sortfilesbyextension comparetimestamp ignoreversion
 
 ;Documentation
-Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Docs\Users\ReleaseNotes.html; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Docs\Users\ChangeLog.html; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: overwritereadonly uninsremovereadonly; Components: Core
+Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: overwritereadonly uninsremovereadonly; Components: Core
+Source: ..\..\Docs\Users\ReleaseNotes.html; DestDir: {app}\Docs; Flags: overwritereadonly uninsremovereadonly; Components: Core
+Source: ..\..\Docs\Users\ChangeLog.html; DestDir: {app}\Docs; Flags: overwritereadonly uninsremovereadonly; Components: Core
 Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: Core
-Source: ..\..\Docs\users\GPL.rtf; DestDir: {app}\Docs\; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Docs\users\GPL.rtf; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: Core
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
@@ -625,6 +625,10 @@ Source: ..\..\Build\{#ARCH}\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Comp
 ;WinWebDiff
 Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\LICENSE*.txt; DestDir: {app}\WinWebDiff; Components: Core
 Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\WinWebDiffLib.dll; DestDir: {app}\WinWebDiff; Flags: ignoreversion replacesameversion; Components: Core
+
+;darkmodelib
+Source: ..\..\Build\{#ARCH}\Release\darkmodelib\LICENSE.md; DestDir: {app}\darkmodelib; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\darkmodelib\darkmode.dll; DestDir: {app}\darkmodelib; Flags: ignoreversion replacesameversion; Components: Core
 
 ;GNU patch
 Source: ..\..\Build\msys2\*.*; DestDir: {app}\Commands\msys2; Flags: recursesubdirs; Components: Plugins

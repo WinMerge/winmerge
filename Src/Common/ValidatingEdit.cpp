@@ -14,9 +14,18 @@ IMPLEMENT_DYNAMIC(CValidatingEdit, CEdit)
 #define VALIDATE_DELAY_MS 700
 #define UPDATE_DELAY_MS 200
 
+
+static COLORREF getDefaultErrorColor()
+{
+	const COLORREF sysBk = GetSysColor(COLOR_WINDOW);
+	if ((GetRValue(sysBk) + GetGValue(sysBk) + GetBValue(sysBk)) / 3 < 128)
+		return RGB(80, 40, 40);
+	return RGB(255, 200, 200);
+}
+
 CValidatingEdit::CValidatingEdit()
 	: m_hasError(false)
-	, m_errorColor(RGB(255, 200, 200))
+	, m_errorColor(getDefaultErrorColor())
 	, m_errorBrush(m_errorColor)
 	, m_toolItem{}
 {
@@ -71,6 +80,7 @@ HBRUSH CValidatingEdit::CtlColor(CDC* pDC, UINT /*nCtlColor*/)
 {
 	if (m_hasError)
 	{
+		pDC->SetTextColor(GetSysColor(COLOR_WINDOWTEXT));
 		pDC->SetBkColor(m_errorColor);
 		return (HBRUSH)m_errorBrush.GetSafeHandle();
 	}

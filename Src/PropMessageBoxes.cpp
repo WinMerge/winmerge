@@ -192,7 +192,7 @@ BOOL PropMessageBoxes::OnInitDialog()
 
 	for (unsigned i = 0; i < static_cast<unsigned>(std::size(MessageBoxes)); i++)
 	{
-		String str = LoadResString(MessageBoxes[i].nID);
+		String str = I18n::LoadString(MessageBoxes[i].nID);
 		strutils::replace(str, _T("\n"), _T(" "));
 		m_list.InsertItem(i, str.c_str());
 		unsigned type = MessageBoxes[i].type & 0xf;

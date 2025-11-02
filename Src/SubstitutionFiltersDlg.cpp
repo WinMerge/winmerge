@@ -29,7 +29,7 @@ SubstitutionFiltersDlg::SubstitutionFiltersDlg()
 	//{{AFX_DATA_INIT(SubstitutionFiltersFiltersDlg)
 	m_bEnabled = false;
 	//}}AFX_DATA_INIT
-	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
+	m_strCaption = I18n::LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
 	m_psp.dwFlags |= PSP_USETITLE;
 	m_psp.hIcon = AfxGetApp()->LoadIcon(IDI_SUBSTITUTIONFILTER);
@@ -119,7 +119,7 @@ void SubstitutionFiltersDlg::InitList()
  */
 void SubstitutionFiltersDlg::OnHelp()
 {
-	theApp.ShowHelp(FilterHelpLocation);
+	CMergeApp::ShowHelp(FilterHelpLocation);
 }
 
 /**

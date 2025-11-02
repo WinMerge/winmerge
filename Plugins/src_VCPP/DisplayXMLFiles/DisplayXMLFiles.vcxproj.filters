@@ -13,9 +13,6 @@
       <UniqueIdentifier>{e1cbef81-ee2c-47e2-b4d0-ad370b5a3aff}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
-    <Filter Include="expat">
-      <UniqueIdentifier>{0c4ccc5a-4e92-4af5-a4d7-989eb5ccdb89}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DisplayXMLFiles.cpp">
@@ -26,21 +23,6 @@
     </ClCompile>
     <ClCompile Include="WinMergeScript.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Externals\poco\XML\src\xmlparse.cpp">
-      <Filter>expat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Externals\poco\XML\src\xmlrole.c">
-      <Filter>expat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Externals\poco\XML\src\xmltok.c">
-      <Filter>expat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Externals\poco\XML\src\xmltok_impl.c">
-      <Filter>expat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Externals\poco\XML\src\xmltok_ns.c">
-      <Filter>expat</Filter>
     </ClCompile>
     <ClCompile Include="ExpatMapLib\expat_maps.cpp">
       <Filter>Source Files</Filter>

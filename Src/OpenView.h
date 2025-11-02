@@ -95,6 +95,7 @@ private:
 	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	bool m_bIgnoreMissingTrailingEol; /**< The value of the "Ignore missing trailing EOL" setting */
+	bool m_bIgnoreLineBreaks; /**< The value of the "Ignore line breaks (treat as spaces)" setting */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
 	HTHEME m_hTheme; /**< Theme used for size grip on Vista and greater */
 // Overrides
@@ -159,6 +160,8 @@ protected:
 	afx_msg void OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreMissingTrailingEol();
 	afx_msg void OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreLineBreaks();
+	afx_msg void OnUpdateDiffIgnoreLineBreaks(CCmdUI* pCmdUI);
 	afx_msg void OnCompareMethod(UINT nID);
 	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
@@ -170,6 +173,7 @@ protected:
 	afx_msg LRESULT OnUpdateStatus(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg LRESULT OnThemeChanged();
+	afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg LRESULT OnNcHitTest(CPoint point);

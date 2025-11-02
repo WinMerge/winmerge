@@ -10,6 +10,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include "MyColorDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,7 +22,69 @@
 PropMergeColors::PropMergeColors(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropMergeColors::IDD)
  , m_cCustColors()
+ , m_clrTrivialDeleted()
+ , m_clrTrivial()
+ , m_clrSelDiffText()
+ , m_clrDiffText()
+ , m_clrSelDiffDeleted()
+ , m_clrDiffDeleted()
+ , m_clrSelDiff()
+ , m_clrDiff()
+ , m_clrTrivialText()
+ , m_clrMoved()
+ , m_clrMovedDeleted()
+ , m_clrMovedText()
+ , m_clrSelMoved()
+ , m_clrSelMovedDeleted()
+ , m_clrSelMovedText()
+ , m_clrSNP()
+ , m_clrSNPDeleted()
+ , m_clrSNPText()
+ , m_clrSelSNP()
+ , m_clrSelSNPDeleted()
+ , m_clrSelSNPText()
+ , m_clrWordDiff()
+ , m_clrWordDiffDeleted()
+ , m_clrWordDiffText()
+ , m_clrSelWordDiff()
+ , m_clrSelWordDiffDeleted()
+ , m_clrSelWordDiffText()
 {
+	BindOption(OPT_CLR_DIFF, m_clrDiff, IDC_DIFFERENCE_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_DIFF_DELETED, m_clrDiffDeleted, IDC_DIFFERENCE_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_DIFF, m_clrSelDiff, IDC_SEL_DIFFERENCE_COLOR, DDX_ColorButton);
+
+	BindOption(OPT_CLR_DIFF_TEXT, m_clrDiffText, IDC_DIFFERENCE_TEXT_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_DIFF_DELETED, m_clrSelDiffDeleted, IDC_SEL_DIFFERENCE_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_DIFF_TEXT, m_clrSelDiffText, IDC_SEL_DIFFERENCE_TEXT_COLOR, DDX_ColorButton);
+
+	BindOption(OPT_CLR_TRIVIAL_DIFF, m_clrTrivial, IDC_TRIVIAL_DIFF_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_TRIVIAL_DIFF_DELETED, m_clrTrivialDeleted, IDC_TRIVIAL_DIFF_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_TRIVIAL_DIFF_TEXT, m_clrTrivialText, IDC_TRIVIAL_DIFF_TEXT_COLOR, DDX_ColorButton);
+	
+	BindOption(OPT_CLR_MOVEDBLOCK, m_clrMoved, IDC_MOVEDBLOCK_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_MOVEDBLOCK_DELETED, m_clrMovedDeleted, IDC_MOVEDBLOCK_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_MOVEDBLOCK_TEXT, m_clrMovedText, IDC_MOVEDBLOCK_TEXT_COLOR, DDX_ColorButton);
+	
+	BindOption(OPT_CLR_SNP, m_clrSNP, IDC_SNP_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SNP_DELETED, m_clrSNPDeleted, IDC_SNP_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SNP_TEXT, m_clrSNPText, IDC_SNP_TEXT_COLOR, DDX_ColorButton);
+
+	BindOption(OPT_CLR_SELECTED_MOVEDBLOCK, m_clrSelMoved, IDC_SEL_MOVEDBLOCK_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, m_clrSelMovedDeleted, IDC_SEL_MOVEDBLOCK_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_clrSelMovedText, IDC_SEL_MOVEDBLOCK_TEXT_COLOR, DDX_ColorButton);
+	
+	BindOption(OPT_CLR_SELECTED_SNP, m_clrSelSNP, IDC_SEL_SNP_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_SNP_DELETED, m_clrSelSNPDeleted, IDC_SEL_SNP_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_SNP_TEXT, m_clrSelSNPText, IDC_SEL_SNP_TEXT_COLOR, DDX_ColorButton);
+
+	BindOption(OPT_CLR_WORDDIFF, m_clrWordDiff, IDC_WORDDIFF_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_WORDDIFF_DELETED, m_clrWordDiffDeleted, IDC_WORDDIFF_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_WORDDIFF_TEXT, m_clrWordDiffText, IDC_WORDDIFF_TEXT_COLOR, DDX_ColorButton);
+
+	BindOption(OPT_CLR_SELECTED_WORDDIFF, m_clrSelWordDiff, IDC_SEL_WORDDIFF_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_WORDDIFF_DELETED, m_clrSelWordDiffDeleted, IDC_SEL_WORDDIFF_DELETED_COLOR, DDX_ColorButton);
+	BindOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, m_clrSelWordDiffText, IDC_SEL_WORDDIFF_TEXT_COLOR, DDX_ColorButton);
 }
 
 void PropMergeColors::DoDataExchange(CDataExchange* pDX)
@@ -55,77 +118,34 @@ void PropMergeColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_SEL_WORDDIFF_COLOR, m_cSelWordDiff);
 	DDX_Control(pDX, IDC_SEL_WORDDIFF_DELETED_COLOR, m_cSelWordDiffDeleted);
 	DDX_Control(pDX, IDC_SEL_WORDDIFF_TEXT_COLOR, m_cSelWordDiffText);
-
-	UpdateTextColorButtonsState();
 	//}}AFX_DATA_MAP
+	DoDataExchangeBindOptions(pDX);
+	UpdateTextColorButtonsState();
 }
 
 
 BEGIN_MESSAGE_MAP(PropMergeColors, OptionsPanel)
 	//{{AFX_MSG_MAP(PropMergeColors)
-	ON_BN_CLICKED(IDC_DIFFERENCE_COLOR, OnDifferenceColor)
-	ON_BN_CLICKED(IDC_DIFFERENCE_DELETED_COLOR, OnDifferenceDeletedColor)
-	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_DELETED_COLOR, OnSelDifferenceDeletedColor)
-	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_COLOR, OnSelDifferenceColor)
+	ON_CONTROL_RANGE(BN_CLICKED, IDC_DIFFERENCE_COLOR, IDC_SEL_WORDDIFF_TEXT_COLOR, BrowseColor)
 	ON_BN_CLICKED(IDC_DIFFERENCE_USE_TEXT_COLOR, (OnUseTextColor<IDC_DIFFERENCE_USE_TEXT_COLOR, IDC_DIFFERENCE_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_DIFFERENCE_TEXT_COLOR, OnDifferenceTextColor)
 	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_USE_TEXT_COLOR, (OnUseTextColor<IDC_SEL_DIFFERENCE_USE_TEXT_COLOR, IDC_SEL_DIFFERENCE_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_TEXT_COLOR, OnSelDifferenceTextColor)
-	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_COLOR, OnTrivialDiffColor)
-	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_DELETED_COLOR, OnTrivialDiffDeletedColor)
 	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_USE_TEXT_COLOR, (OnUseTextColor<IDC_TRIVIAL_DIFF_USE_TEXT_COLOR, IDC_TRIVIAL_DIFF_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_TRIVIAL_DIFF_TEXT_COLOR, OnTrivialDiffTextColor)
-	ON_BN_CLICKED(IDC_MOVEDBLOCK_COLOR, OnMovedColor)
-	ON_BN_CLICKED(IDC_MOVEDBLOCK_DELETED_COLOR, OnMovedDeletedColor)
 	ON_BN_CLICKED(IDC_MOVEDBLOCK_USE_TEXT_COLOR, (OnUseTextColor<IDC_MOVEDBLOCK_USE_TEXT_COLOR, IDC_MOVEDBLOCK_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_MOVEDBLOCK_TEXT_COLOR, OnMovedTextColor)
-	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_COLOR, OnSelMovedColor)
-	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_DELETED_COLOR, OnSelMovedDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_USE_TEXT_COLOR, (OnUseTextColor<IDC_SEL_MOVEDBLOCK_USE_TEXT_COLOR, IDC_SEL_MOVEDBLOCK_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_SEL_MOVEDBLOCK_TEXT_COLOR, OnSelMovedTextColor)
-	ON_BN_CLICKED(IDC_SNP_COLOR, OnSNPColor)
-	ON_BN_CLICKED(IDC_SNP_DELETED_COLOR, OnSNPDeletedColor)
 	ON_BN_CLICKED(IDC_SNP_USE_TEXT_COLOR, (OnUseTextColor<IDC_SNP_USE_TEXT_COLOR, IDC_SNP_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_SNP_TEXT_COLOR, OnSNPTextColor)
-	ON_BN_CLICKED(IDC_SEL_SNP_COLOR, OnSelSNPColor)
-	ON_BN_CLICKED(IDC_SEL_SNP_DELETED_COLOR, OnSelSNPDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_SNP_USE_TEXT_COLOR, (OnUseTextColor<IDC_SEL_SNP_USE_TEXT_COLOR, IDC_SEL_SNP_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_SEL_SNP_TEXT_COLOR, OnSelSNPTextColor)
-	ON_BN_CLICKED(IDC_WORDDIFF_COLOR, OnWordDiffColor)
-	ON_BN_CLICKED(IDC_WORDDIFF_DELETED_COLOR, OnWordDiffDeletedColor)
 	ON_BN_CLICKED(IDC_WORDDIFF_USE_TEXT_COLOR, (OnUseTextColor<IDC_WORDDIFF_USE_TEXT_COLOR, IDC_WORDDIFF_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_WORDDIFF_TEXT_COLOR, OnWordDiffTextColor)
-	ON_BN_CLICKED(IDC_SEL_WORDDIFF_COLOR, OnSelWordDiffColor)
-	ON_BN_CLICKED(IDC_SEL_WORDDIFF_DELETED_COLOR, OnSelWordDiffDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_WORDDIFF_USE_TEXT_COLOR, (OnUseTextColor<IDC_SEL_WORDDIFF_USE_TEXT_COLOR, IDC_SEL_WORDDIFF_TEXT_COLOR>))
-	ON_BN_CLICKED(IDC_SEL_WORDDIFF_TEXT_COLOR, OnSelWordDiffTextColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /** 
- * @brief Reads options values from storage to UI.
- * (Property sheet calls this before displaying all property pages)
- */
-void PropMergeColors::ReadOptions()
-{
-	SerializeColors(READ_OPTIONS);
-}
-
-/** 
- * @brief Writes options values from UI to storage.
- * (Property sheet calls this after displaying all property pages)
- */
-void PropMergeColors::WriteOptions()
-{
-	SerializeColors(WRITE_OPTIONS);
-}
-
-/** 
  * @brief Let user browse common color dialog, and select a color
  */
-void PropMergeColors::BrowseColor(CColorButton & colorButton)
+void PropMergeColors::BrowseColor(unsigned id)
 {
-	CColorDialog dialog(colorButton.GetColor());
+	CColorButton& colorButton = *dynamic_cast<CColorButton*>(GetDlgItem(id));
+	CMyColorDialog dialog(colorButton.GetColor());
 	Options::CustomColors::Load(GetOptionsMgr(), m_cCustColors.data());
 	dialog.m_cc.lpCustColors = m_cCustColors.data();
 	
@@ -153,182 +173,6 @@ void PropMergeColors::UpdateTextColorButtonsState()
 	UpdateTextColorButtonState(IDC_SEL_WORDDIFF_USE_TEXT_COLOR, m_cSelWordDiffText);
 }
 
-/** 
- * @brief User wants to change difference color
- */
-void PropMergeColors::OnDifferenceColor() 
-{
-	BrowseColor(m_cDiff);
-}
-
-/** 
- * @brief User wants to change selected difference color
- */
-void PropMergeColors::OnSelDifferenceColor() 
-{
-	BrowseColor(m_cSelDiff);
-}
-
-/** 
- * @brief User wants to change deleted difference color
- */
-void PropMergeColors::OnDifferenceDeletedColor() 
-{
-	BrowseColor(m_cDiffDeleted);
-}
-
-/** 
- * @brief User wants to change selected & deleted difference color
- */
-void PropMergeColors::OnSelDifferenceDeletedColor() 
-{
-	BrowseColor(m_cSelDiffDeleted);
-}
-
-/** 
- * @brief User wants to change difference text color
- */
-void PropMergeColors::OnDifferenceTextColor() 
-{
-	BrowseColor(m_cDiffText);
-}
-
-/** 
- * @brief User wants to change selected difference text color
- */
-void PropMergeColors::OnSelDifferenceTextColor() 
-{
-	BrowseColor(m_cSelDiffText);
-}
-
-/** 
- * @brief User wants to change trivial difference color
- */
-void PropMergeColors::OnTrivialDiffColor() 
-{
-	BrowseColor(m_cTrivial);
-}
-
-/** 
- * @brief User wants to change deleted trivial difference color
- */
-void PropMergeColors::OnTrivialDiffDeletedColor() 
-{
-	BrowseColor(m_cTrivialDeleted);
-}
-
-void PropMergeColors::OnTrivialDiffTextColor()
-{
-	BrowseColor(m_cTrivialText);
-}
-
-void PropMergeColors::OnMovedColor()
-{
-	BrowseColor(m_cMoved);
-}
-
-void PropMergeColors::OnMovedDeletedColor()
-{
-	BrowseColor(m_cMovedDeleted);
-}
-
-void PropMergeColors::OnMovedTextColor()
-{
-	BrowseColor(m_cMovedText);
-}
-
-void PropMergeColors::OnSelMovedColor()
-{
-	BrowseColor(m_cSelMoved);
-}
-
-void PropMergeColors::OnSelMovedDeletedColor()
-{
-	BrowseColor(m_cSelMovedDeleted);
-}
-
-void PropMergeColors::OnSelMovedTextColor()
-{
-	BrowseColor(m_cSelMovedText);
-}
-
-void PropMergeColors::OnSNPColor()
-{
-	BrowseColor(m_cSNP);
-}
-
-void PropMergeColors::OnSNPDeletedColor()
-{
-	BrowseColor(m_cSNPDeleted);
-}
-
-void PropMergeColors::OnSNPTextColor()
-{
-	BrowseColor(m_cSNPText);
-}
-
-void PropMergeColors::OnSelSNPColor()
-{
-	BrowseColor(m_cSelSNP);
-}
-
-void PropMergeColors::OnSelSNPDeletedColor()
-{
-	BrowseColor(m_cSelSNPDeleted);
-}
-
-void PropMergeColors::OnSelSNPTextColor()
-{
-	BrowseColor(m_cSelSNPText);
-}
-
-/** 
- * @brief User wants to change word difference color
- */
-void PropMergeColors::OnWordDiffColor() 
-{
-	BrowseColor(m_cWordDiff);
-}
-/** 
- * @brief User wants to change word difference deleted color
- */
-void PropMergeColors::OnWordDiffDeletedColor() 
-{
-	BrowseColor(m_cWordDiffDeleted);
-}
-
-/** 
- * @brief User wants to change selected word difference color
- */
-void PropMergeColors::OnSelWordDiffColor() 
-{
-	BrowseColor(m_cSelWordDiff);
-}
-
-/** 
- * @brief User wants to change word difference deleted color
- */
-void PropMergeColors::OnSelWordDiffDeletedColor()
-{
-	BrowseColor(m_cSelWordDiffDeleted);
-}
-
-/** 
- * @brief User wants to change word difference text color
- */
-void PropMergeColors::OnWordDiffTextColor() 
-{
-	BrowseColor(m_cWordDiffText);
-}
-
-/** 
- * @brief User wants to change selected word difference text color
- */
-void PropMergeColors::OnSelWordDiffTextColor() 
-{
-	BrowseColor(m_cSelWordDiffText);
-}
-
 void PropMergeColors::OnUseTextColor(int checkbox_id, int colorbutton_id)
 {
 	CColorButton *cButton = dynamic_cast<CColorButton *>(GetDlgItem(colorbutton_id));
@@ -341,64 +185,6 @@ void PropMergeColors::OnUseTextColor(int checkbox_id, int colorbutton_id)
 	{
 		cButton->ShowWindow(SW_HIDE);
 		cButton->SetColor(COLOR_NONE);
-	}
-}
-
-void PropMergeColors::SerializeColors(OPERATION op)
-{
-	SerializeColor(op, m_cDiff, OPT_CLR_DIFF);
-	SerializeColor(op, m_cDiffDeleted, OPT_CLR_DIFF_DELETED);
-	SerializeColor(op, m_cSelDiff, OPT_CLR_SELECTED_DIFF);
-
-	SerializeColor(op, m_cDiffText, OPT_CLR_DIFF_TEXT);
-	SerializeColor(op, m_cSelDiffDeleted, OPT_CLR_SELECTED_DIFF_DELETED);
-	SerializeColor(op, m_cSelDiffText, OPT_CLR_SELECTED_DIFF_TEXT);
-
-	SerializeColor(op, m_cTrivial, OPT_CLR_TRIVIAL_DIFF);
-	SerializeColor(op, m_cTrivialDeleted, OPT_CLR_TRIVIAL_DIFF_DELETED);
-	SerializeColor(op, m_cTrivialText, OPT_CLR_TRIVIAL_DIFF_TEXT);
-	
-	SerializeColor(op, m_cMoved, OPT_CLR_MOVEDBLOCK);
-	SerializeColor(op, m_cMovedDeleted, OPT_CLR_MOVEDBLOCK_DELETED);
-	SerializeColor(op, m_cMovedText, OPT_CLR_MOVEDBLOCK_TEXT);
-	
-	SerializeColor(op, m_cSNP, OPT_CLR_SNP);
-	SerializeColor(op, m_cSNPDeleted, OPT_CLR_SNP_DELETED);
-	SerializeColor(op, m_cSNPText, OPT_CLR_SNP_TEXT);
-
-	SerializeColor(op, m_cSelMoved, OPT_CLR_SELECTED_MOVEDBLOCK);
-	SerializeColor(op, m_cSelMovedDeleted, OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	SerializeColor(op, m_cSelMovedText, OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
-	
-	SerializeColor(op, m_cSelSNP, OPT_CLR_SELECTED_SNP);
-	SerializeColor(op, m_cSelSNPDeleted, OPT_CLR_SELECTED_SNP_DELETED);
-	SerializeColor(op, m_cSelSNPText, OPT_CLR_SELECTED_SNP_TEXT);
-
-	SerializeColor(op, m_cWordDiff, OPT_CLR_WORDDIFF);
-	SerializeColor(op, m_cWordDiffDeleted, OPT_CLR_WORDDIFF_DELETED);
-	SerializeColor(op, m_cWordDiffText, OPT_CLR_WORDDIFF_TEXT);
-
-	SerializeColor(op, m_cSelWordDiff, OPT_CLR_SELECTED_WORDDIFF);
-	SerializeColor(op, m_cSelWordDiffDeleted, OPT_CLR_SELECTED_WORDDIFF_DELETED);
-	SerializeColor(op, m_cSelWordDiffText, OPT_CLR_SELECTED_WORDDIFF_TEXT);
-}
-
-void PropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, const String& optionName)
-{
-	switch (op)
-	{
-	case SET_DEFAULTS:
-		btn.SetColor(GetOptionsMgr()->GetDefault<unsigned>(optionName));
-		return;
-
-	case WRITE_OPTIONS:
-		GetOptionsMgr()->SaveOption(optionName, (unsigned)btn.GetColor());
-		return;
-
-	case READ_OPTIONS:
-		// Set colors for buttons, do NOT invalidate
-		btn.SetColor(GetOptionsMgr()->GetInt(optionName), false);
-		return;
 	}
 }
 

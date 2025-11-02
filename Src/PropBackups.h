@@ -19,10 +19,6 @@ class PropBackups : public OptionsPanel
 public:
 	explicit PropBackups(COptionsMgr *optionsMgr);
 
-// Implement IOptionsPanel
-	virtual void ReadOptions() override;
-	virtual void WriteOptions() override;
-
 // Dialog Data
 	enum { IDD = IDD_PROPPAGE_BACKUPS };
 
@@ -41,8 +37,6 @@ public:
 	int m_nBackupFolder;
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	afx_msg void OnDefaults();
 	afx_msg void OnBnClickedBackupBrowse();
 
 	DECLARE_MESSAGE_MAP()

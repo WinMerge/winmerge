@@ -100,7 +100,7 @@ int CPatchTool::CreatePatch()
 
 		if (!paths::CreateIfNeeded(paths::GetPathOnly(dlgPatch.m_fileResult)))
 		{
-			LangMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
+			I18n::MessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
 			return 0;
 		}
 
@@ -155,7 +155,7 @@ int CPatchTool::CreatePatch()
 
 			if (!bDiffSuccess)
 			{
-				LangMessageBox(IDS_FILEERROR, MB_ICONSTOP);
+				I18n::MessageBox(IDS_FILEERROR, MB_ICONSTOP);
 				bResult = false;
 				break;
 			}
@@ -163,7 +163,7 @@ int CPatchTool::CreatePatch()
 			{
 				if (!bShowedBinaryMessage)
 				{
-					LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING);
+					I18n::MessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING);
 					bShowedBinaryMessage = true;
 				}
 			}
@@ -330,7 +330,7 @@ int CPatchTool::GetItemsForPatchList(const PathContext& paths, const String subd
 
 	DirItemArray dirs[2], aFiles[2];
 	for (int nIndex = 0; nIndex < nDirs; nIndex++)
-		LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &aFiles[nIndex], false);
+		DirTravel::LoadAndSortFiles(sDir[nIndex], &dirs[nIndex], &aFiles[nIndex], false);
 
 	{
 		int nIndex;

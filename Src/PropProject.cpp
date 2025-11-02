@@ -141,7 +141,7 @@ void PropProject::InitList()
 
 	for (int i = 0; i < Options::Project::ItemCount; i++)
 	{
-		String str = LoadResString(nID[i]);
+		String str = I18n::LoadString(nID[i]);
 		m_list.InsertItem(i, str.c_str());
 	}
 }

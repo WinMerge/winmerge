@@ -9,7 +9,9 @@
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/File.h>
 #include <Poco/Timestamp.h>
+#if !defined(__cppcheck__)
 #include <boost/flyweight.hpp>
+#endif
 #include "FileFlags.h"
 #include "UnicodeString.h"
 

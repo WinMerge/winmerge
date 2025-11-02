@@ -65,7 +65,7 @@ class SourceDefs
 public:
 	~SourceDefs()
 	{
-		for (auto def : m_SourceDefs)
+		for (const auto& def : m_SourceDefs)
 		{
 			if (def.extsIsDynamic)
 				delete[] def.exts;

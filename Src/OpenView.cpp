@@ -38,6 +38,7 @@
 #include "Win_VersionHelper.h"
 #include "OptionsProject.h"
 #include "Merge7zFormatMergePluginImpl.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -94,8 +95,10 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS, OnUpdateDiffIgnoreComments)
 	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnDiffIgnoreMissingTrailingEol)
 	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL, OnUpdateDiffIgnoreMissingTrailingEol)
-	ON_COMMAND_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE, OnCompareMethod)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE, OnUpdateCompareMethod)
+	ON_COMMAND(ID_PROJECT_DIFF_OPTIONS_IGNORE_LINE_BREAKS, OnDiffIgnoreLineBreaks)
+	ON_UPDATE_COMMAND_UI(ID_PROJECT_DIFF_OPTIONS_IGNORE_LINE_BREAKS, OnUpdateDiffIgnoreLineBreaks)
+	ON_COMMAND_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnCompareMethod)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_EXISTENCE, OnUpdateCompareMethod)
 	ON_WM_ACTIVATE()
 	ON_COMMAND(ID_LOAD_PROJECT, OnLoadProject)
 	ON_COMMAND(ID_SAVE_PROJECT, OnSaveProject)
@@ -117,6 +120,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
 	ON_WM_PAINT()
 	ON_WM_THEMECHANGED()
+	ON_WM_SETTINGCHANGE()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
 	ON_WM_WINDOWPOSCHANGING()
@@ -146,6 +150,8 @@ COpenView::COpenView()
 	, m_bIgnoreNumbers(false)
 	, m_bIgnoreCodepage(false)
 	, m_bFilterCommentsLines(false)
+	, m_bIgnoreMissingTrailingEol(false)
+	, m_bIgnoreLineBreaks(false)
 	, m_nCompareMethod(0)
 	, m_hTheme(nullptr)
 {
@@ -204,13 +210,21 @@ void COpenView::OnInitialUpdate()
 
 	m_sizeOrig = GetTotalSize();
 
-	theApp.TranslateDialog(m_hWnd);
+	I18n::TranslateDialog(m_hWnd);
 
 	if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_LOGO), _T("IMAGE")))
 	{
 		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
 		m_image.Create(1, 1, 24, 0);
 	}
+	if (HWND hSelf = GetSafeHwnd())
+	{
+		DarkMode::setWindowCtlColorSubclass(hSelf);
+		DarkMode::setChildCtrlsSubclassAndThemeEx(hSelf, true, true);
+	}
+
+	if (DarkMode::isExperimentalActive())
+		WinMergeDarkMode::InvertLightness(m_image);
 
 	__super::OnInitialUpdate();
 
@@ -338,6 +352,8 @@ void COpenView::OnInitialUpdate()
 	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
+	m_bIgnoreMissingTrailingEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
+	m_bIgnoreLineBreaks = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_LINE_BREAKS);
 	m_nCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
 
 	UpdateData(FALSE);
@@ -358,6 +374,8 @@ void COpenView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint)
 	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
+	m_bIgnoreMissingTrailingEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_MISSING_TRAILING_EOL);
+	m_bIgnoreLineBreaks = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_LINE_BREAKS);
 	m_nCompareMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
 
 	UpdateData(FALSE);
@@ -387,7 +405,8 @@ void COpenView::OnPaint()
 	CRect rcImage(0, 0, size.cx * GetSystemMetrics(SM_CXSMICON) / 16, size.cy * GetSystemMetrics(SM_CYSMICON) / 16);
 	m_image.Draw(dc.m_hDC, rcImage, Gdiplus::InterpolationModeBicubic);
 	// And extend it to the Right boundary
-	dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
+	if (!DarkMode::isExperimentalActive())
+		dc.PatBlt(rcImage.Width(), 0, rc.Width() - rcImage.Width(), rcImage.Height(), PATCOPY);
 
 	// Draw the resize gripper in the Lower Right corner.
 	CRect rcGrip = rc;
@@ -432,6 +451,33 @@ LRESULT COpenView::OnThemeChanged()
 		m_hTheme = OpenThemeData(m_hWnd, WC_SCROLLBAR);
 	}
 	return 0;
+}
+
+void COpenView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+	{
+		m_image.Destroy();
+		if (!LoadImageFromResource(m_image, MAKEINTRESOURCE(IDR_LOGO), _T("IMAGE")))
+		{
+			// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
+			m_image.Create(1, 1, 24, 0);
+		}
+
+		if (HWND hSelf = GetSafeHwnd())
+		{
+			DarkMode::setWindowCtlColorSubclass(hSelf);
+			DarkMode::setChildCtrlsSubclassAndThemeEx(hSelf, true, true);
+		}
+
+		if (DarkMode::isExperimentalActive())
+		{
+			WinMergeDarkMode::InvertLightness(m_image);
+		}
+
+		RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
+	}
+	__super::OnSettingChange(uFlags, lpszSection);
 }
 
 void COpenView::OnLButtonUp(UINT nFlags, CPoint point)
@@ -696,7 +742,7 @@ void COpenView::OnCompare(UINT nID)
 			!std::any_of(m_files.begin(), m_files.end(), 
 				[](const auto& path) { return paths::IsURL(path) || paths::IsNullDeviceName(path); }))
 		{
-			LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
+			I18n::MessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 			return;
 		}
 	}
@@ -859,7 +905,7 @@ void COpenView::OnLoadProject()
 		return;
 
 	ProjectFile project;
-	if (!theApp.LoadProjectFile(fileName, project))
+	if (!CMergeApp::LoadProjectFile(fileName, project))
 		return;
 	if (project.Items().size() == 0)
 		return;
@@ -922,6 +968,8 @@ void COpenView::OnLoadProject()
 			m_bIgnoreCodepage = projItem.GetIgnoreCodepage();
 		if (projItem.HasIgnoreMissingTrailingEol())
 			m_bIgnoreMissingTrailingEol = projItem.GetIgnoreMissingTrailingEol();
+		if (projItem.HasIgnoreLineBreaks())
+			m_bIgnoreLineBreaks = projItem.GetIgnoreLineBreaks();
 		if (projItem.HasFilterCommentsLines())
 			m_bFilterCommentsLines = projItem.GetFilterCommentsLines();
 		if (projItem.HasCompareMethod())
@@ -934,7 +982,7 @@ void COpenView::OnLoadProject()
 	}
 	UpdateData(FALSE);
 	UpdateButtonStates();
-	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
+	I18n::MessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
 }
 
 /** 
@@ -968,6 +1016,7 @@ void COpenView::OnSaveProject()
 	projItem.SetSaveIgnoreNumbers(bSaveCompareOptions);
 	projItem.SetSaveIgnoreCodepage(bSaveCompareOptions);
 	projItem.SetSaveIgnoreMissingTrailingEol(bSaveCompareOptions);
+	projItem.SetSaveIgnoreBreakLines(bSaveCompareOptions);
 	projItem.SetSaveFilterCommentsLines(bSaveCompareOptions);
 	projItem.SetSaveCompareMethod(bSaveCompareOptions);
 	projItem.SetSaveHiddenItems(bSaveHiddenItems);
@@ -1034,6 +1083,7 @@ void COpenView::OnSaveProject()
 		projItem.SetIgnoreNumbers(m_bIgnoreNumbers);
 		projItem.SetIgnoreCodepage(m_bIgnoreCodepage);
 		projItem.SetIgnoreMissingTrailingEol(m_bIgnoreMissingTrailingEol);
+		projItem.SetIgnoreLineBreaks(m_bIgnoreLineBreaks);
 		projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
 		projItem.SetCompareMethod(m_nCompareMethod);
 	}
@@ -1043,10 +1093,10 @@ void COpenView::OnSaveProject()
 
 	project.Items().push_back(projItem);
 
-	if (!theApp.SaveProjectFile(fileName, project))
+	if (!CMergeApp::SaveProjectFile(fileName, project))
 		return;
 
-	LangMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
+	I18n::MessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
 }
 
 void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupID)
@@ -1055,7 +1105,7 @@ void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupI
 	GetDlgItem(nID)->GetWindowRect(&rcButton);
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(nPopupID));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
 	{
@@ -1514,7 +1564,7 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
  */
 void COpenView::SetStatus(UINT msgID)
 {
-	String msg = theApp.LoadString(msgID);
+	String msg = I18n::LoadString(msgID);
 	SetDlgItemText(IDC_OPEN_STATUS, msg);
 }
 
@@ -1691,12 +1741,29 @@ void COpenView::OnUpdateDiffIgnoreMissingTrailingEol(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Toggle "Ignore line breaks (treat as spaces)" setting.
+ */
+void COpenView::OnDiffIgnoreLineBreaks()
+{
+	m_bIgnoreLineBreaks = !m_bIgnoreLineBreaks;
+}
+
+/**
+ * @brief Update "Ignore line breaks (treat as spaces)" state.
+ * @param [in] pCmdUI UI component to update.
+ */
+void COpenView::OnUpdateDiffIgnoreLineBreaks(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bIgnoreLineBreaks);
+}
+
+/**
  * @brief Set "Compare method" setting.
  * @param [in] nID Menu ID of the selected item
  */
 void COpenView::OnCompareMethod(UINT nID)
 {
-	assert(nID >= ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS && nID <= ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE);
+	assert(nID >= ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS && nID <= ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_EXISTENCE);
 
 	m_nCompareMethod = nID - ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS;
 }
@@ -1748,7 +1815,7 @@ void COpenView::OnEditAction(int msg, WPARAM wParam, LPARAM lParam)
  */
 void COpenView::OnHelp()
 {
-	theApp.ShowHelp(OpenDlgHelpLocation);
+	CMergeApp::ShowHelp(OpenDlgHelpLocation);
 }
 
 /////////////////////////////////////////////////////////////////////////////

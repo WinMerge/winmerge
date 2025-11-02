@@ -4,9 +4,6 @@
 #include "stdafx.h"
 #include "OutputView.h"
 #include "OutputDoc.h"
-#include "editcmd.h"
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
 #include "MainFrm.h"
 #include "Merge.h"
 
@@ -24,6 +21,7 @@ IMPLEMENT_DYNCREATE(COutputView, CCrystalTextView)
 BEGIN_MESSAGE_MAP(COutputView, CCrystalTextView)
 	//{{AFX_MSG_MAP(COutputView)
 	ON_WM_CONTEXTMENU()
+	ON_WM_SETTINGCHANGE()
 	ON_COMMAND(ID_EDIT_CLEAR_ALL, OnClearAll)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
@@ -99,13 +97,15 @@ void COutputView::OnInitialUpdate()
 	AttachToBuffer();
 	SetColorContext(theApp.GetMainSyntaxColors());
 	SetMarkersContext(GetDocument()->m_pMarkers.get());
+	if (HWND hSelf = GetSafeHwnd())
+		DarkMode::setDarkScrollBar(hSelf);
 }
 
 void COutputView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
 	CMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_OUTPUTVIEW));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 
 	CMenu* pPopup = menu.GetSubMenu(0);
 	ASSERT(pPopup != nullptr);
@@ -113,7 +113,15 @@ void COutputView::OnContextMenu(CWnd* pWnd, CPoint point)
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);
 }
 
+void COutputView::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
+{
+	if (WinMergeDarkMode::IsImmersiveColorSet(lpszSection))
+		DarkMode::setDarkScrollBar(GetSafeHwnd());
+	__super::OnSettingChange(uFlags, lpszSection);
+}
+
 void COutputView::OnClearAll()
 {
 	GetDocument()->ClearAll();
 }
+

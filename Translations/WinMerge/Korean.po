@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2025-07-21 17:18+0900\n"
-"Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
+"PO-Revision-Date: 2025-10-19 22:31+0900\n"
+"Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -206,10 +206,6 @@ msgstr "수평으로 뒤집기(&O)"
 #, c-format
 msgid "&Zoom"
 msgstr "확대/축소(&Z)"
-
-#, c-format
-msgid "25%"
-msgstr "25%"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
@@ -1341,6 +1337,9 @@ msgstr "주석 차이 무시(&O)"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "누락된 후행 EOL 무시(&M)"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr "줄 바꿈 무시 (공백으로 처리)(&B)"
+
 #, c-format
 msgid "&Include Subfolders"
 msgstr "하위 폴더 포함(&I)"
@@ -1372,6 +1371,9 @@ msgstr "변경된 날짜 및 크기"
 #, c-format
 msgid "Size"
 msgstr "크기"
+
+msgid "Existence"
+msgstr "존재"
 
 #, c-format
 msgid "&Load Project..."
@@ -1719,6 +1721,9 @@ msgstr "100000 미만"
 msgid "100000 or more"
 msgstr "100000 이상"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "폴더 조건 추가(&O)"
 
@@ -1742,6 +1747,18 @@ msgstr "같음"
 
 msgid "Not Equal"
 msgstr "같지 않음"
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
 
 msgid "Less than 10B"
 msgstr "10B 미만"
@@ -1793,6 +1810,24 @@ msgstr "대상: 왼쪽 및 가운데(&M)"
 
 msgid "Target: Middle and &Right"
 msgstr "대상: 가운데 및 오른쪽(&R)"
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
+msgstr ""
 
 #, c-format
 msgid "About WinMerge"
@@ -2078,8 +2113,23 @@ msgstr "지우기"
 msgid "Colors"
 msgstr "색상"
 
-msgid "Color Scheme:"
-msgstr "색 구성표:"
+msgid "Color &mode:"
+msgstr "색상 모드(&M):"
+
+msgid "&Light mode scheme:"
+msgstr "밝은 모드 구성표(&L):"
+
+msgid "&Dark mode scheme:"
+msgstr "어두운 모드 구성표(&D):"
+
+msgid "Your custom schemes"
+msgstr "사용자 지정 구성표"
+
+msgid "&Save current scheme..."
+msgstr "현재 구성표 저장(&S)..."
+
+msgid "Delete &current scheme..."
+msgstr "현재 구성표 삭제(&C)..."
 
 #, c-format
 msgid "Background"
@@ -2449,6 +2499,9 @@ msgstr "주석 차이 무시(&O)"
 msgid "Ignore &missing trailing EOL"
 msgstr "누락된 후행 EOL 무시(&M)"
 
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "줄 바꿈 무시 (공백으로 처리)(&B)"
+
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "이동된 블럭 감지 사용함(&N)"
@@ -2534,10 +2587,10 @@ msgid "File Filters"
 msgstr "파일 필터"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "마스크 / 필터 표현식(&M)"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "사전 설정 필터(&F)"
 
 msgid "Test..."
 msgstr "테스트..."
@@ -2559,19 +2612,19 @@ msgid "Delete..."
 msgstr "삭제..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "필터 조건"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "왼쪽(&L)"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "연산자(&O):"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "오른쪽(&R)"
 
 msgid "Expression:"
-msgstr ""
+msgstr "표현식:"
 
 #, c-format
 msgid "Save Modified Files?"
@@ -3017,6 +3070,9 @@ msgstr "빠른 비교로 전환하기 위한 임계값 (MB)(&Q):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "바이너리 비교로 전환하기 위한 임계값 (MB)(&B):"
 
+msgid "Additional comparison condi&tions:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "파일 패턴:"
 
@@ -3108,6 +3164,42 @@ msgstr "스크립트 파일 확장자(&S):"
 
 msgid "Script &body:"
 msgstr "스크립트 본문(&B:"
+
+msgid "Font"
+msgstr "글꼴"
+
+msgid "&Font:"
+msgstr "글꼴(&F):"
+
+msgid "Font st&yle:"
+msgstr "글꼴 스타일(&Y)"
+
+msgid "&Size:"
+msgstr "크기(&S):"
+
+msgid "Effects"
+msgstr "효과"
+
+msgid "Stri&keout"
+msgstr "취소선(&K)"
+
+msgid "&Underline"
+msgstr "밑줄(&U)"
+
+msgid "&Color:"
+msgstr "색상(&C)"
+
+msgid "Sample"
+msgstr "예시"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "스크립트(&R)"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>더 많은 글꼴 표시</A>"
 
 #, c-format
 msgid "EXT"
@@ -4372,6 +4464,10 @@ msgid "Image files are different"
 msgstr "이미지 파일이 다릅니다"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "그룹%d"
 
@@ -5026,7 +5122,7 @@ msgstr ""
 "%1을(를) 사용할 수 있습니다 (%2를 가지고 있습니다). 지금 다운로드하시겠습니까?"
 
 msgid " - All rights reserved."
-msgstr "모든 권리 보유."
+msgstr " - 모든 권리 보유."
 
 #, c-format
 msgid "Failed to download latest version information"
@@ -5412,6 +5508,10 @@ msgid "Filter applied"
 msgstr "필터 적용됨"
 
 #, c-format
+msgid "Compare %1"
+msgstr ""
+
+#, c-format
 msgid "Clipboard at %s"
 msgstr "%s의 클립보드"
 
@@ -5637,6 +5737,9 @@ msgstr "필터 표현식에서 0으로 나눕니다"
 msgid "Unknown error"
 msgstr "알 수 없는 오류"
 
+msgid "Invalid property name"
+msgstr "잘못된 속성 이름"
+
 msgid "Equals"
 msgstr "같음"
 
@@ -5672,6 +5775,15 @@ msgstr "포함 (정규식)"
 
 msgid "Not Contains (regex)"
 msgstr "포함하지 않음 (정규식)"
+
+msgid "Light"
+msgstr "밝은"
+
+msgid "Dark"
+msgstr "어두운"
+
+msgid "Follow system"
+msgstr "시스템을 따름"
 
 msgid "Prettification"
 msgstr "꾸미기"

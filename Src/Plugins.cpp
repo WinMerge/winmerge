@@ -255,7 +255,7 @@ void PluginInfo::LoadFilterString()
 		sPiece = sLine.substr(pos+1);
 		if (pos == String::npos)
 			pos = 0;
-		sLine = sLine.substr(0, pos);
+		sLine.resize(pos);
 		if (sPiece.empty())
 			break;
 
@@ -290,7 +290,7 @@ bool PluginInfo::TestAgainstRegList(const String& szTest) const
 		sPiece = sLine.substr(pos+1);
 		if (pos == String::npos)
 			pos = 0;
-		sLine = sLine.substr(0, pos);
+		sLine.resize(pos);
 		sPiece = strutils::makeupper(strutils::trim_ws_begin(sPiece));
 
 		if (::TestAgainstRegList(&m_filters, sPiece))

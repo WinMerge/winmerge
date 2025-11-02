@@ -11,6 +11,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "heksedit.h"
+#include "DarkModeLib.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,6 +33,10 @@ public:
 		wnd.Create(_T("heksedit"), nullptr, 0, CRect(), pwndParent, 1);
 		get_interface()->read_ini_data();
 		get_interface()->get_settings()->bSaveIni = true;
+		get_interface()->set_theme_callback([](HWND hwnd, IHexEditorWindow::WINDOW_TYPE windowType) {
+			if (windowType == IHexEditorWindow::WINDOW_DIALOG)
+				DarkMode::setDarkWndSafeEx(hwnd, true);
+		});
 	}
 
 	~Heksedit()
@@ -57,6 +62,7 @@ private:
 PropCompareBinary::PropCompareBinary(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompareBinary::IDD)
 {
+	BindOption(OPT_CMP_BIN_FILEPATTERNS, m_sFilePatterns, IDC_COMPAREBINARY_PATTERNS, DDX_Text);
 }
 
 void PropCompareBinary::DoDataExchange(CDataExchange* pDX)
@@ -64,8 +70,8 @@ void PropCompareBinary::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareBinary)
 	DDX_Control(pDX, IDC_COMPAREBINARY_PATTERNS, m_comboPatterns);
-	DDX_Text(pDX, IDC_COMPAREBINARY_PATTERNS, m_sFilePatterns);
 	//}}AFX_DATA_MAP
+	DoDataExchangeBindOptions(pDX);
 }
 
 
@@ -81,16 +87,6 @@ BEGIN_MESSAGE_MAP(PropCompareBinary, OptionsPanel)
 END_MESSAGE_MAP()
 
 /** 
- * @brief Reads options values from storage to UI.
- * Property sheet calls this before displaying GUI to load values
- * into members.
- */
-void PropCompareBinary::ReadOptions()
-{
-	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS);
-}
-
-/** 
  * @brief Writes options values from UI to storage.
  * Property sheet calls this after dialog is closed with OK button to
  * store values in member variables.
@@ -98,7 +94,7 @@ void PropCompareBinary::ReadOptions()
 void PropCompareBinary::WriteOptions()
 {
 	WildcardRemoveDuplicatePatterns(m_sFilePatterns);
-	GetOptionsMgr()->SaveOption(OPT_CMP_BIN_FILEPATTERNS, m_sFilePatterns);
+	WriteOptionBindings();
 }
 
 /** 
@@ -129,15 +125,6 @@ void PropCompareBinary::OnCharacterSet()
 	Heksedit heksedit(this);
 	if (heksedit.get_interface())
 		heksedit.get_interface()->CMD_character_set();
-}
-
-/** 
- * @brief Sets options to defaults
- */
-void PropCompareBinary::OnDefaults()
-{
-	m_sFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_BIN_FILEPATTERNS);
-	UpdateData(FALSE);
 }
 
 /**

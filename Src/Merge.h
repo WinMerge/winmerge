@@ -11,10 +11,6 @@
  */
 #pragma once
 
-#define WMU_CHILDFRAMEADDED						(WM_APP + 10)
-#define WMU_CHILDFRAMEREMOVED					(WM_APP + 11)
-#define WMU_CHILDFRAMEACTIVATE					(WM_APP + 12)
-#define WMU_CHILDFRAMEACTIVATED					(WM_APP + 13)
 constexpr UINT_PTR IDT_UPDATEMAINMENU = 1;
 constexpr UINT_PTR IDT_FLUSHLOG = 2;
 
@@ -73,16 +69,7 @@ public:
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
-
-	WORD GetLangId() const;
-	String GetLangName() const;
-	void SetIndicators(CStatusBar&, const UINT*, int) const;
-	void TranslateMenu(HMENU) const;
-	void TranslateDialog(HWND) const;
-	String LoadString(UINT) const;
-	bool TranslateString(const std::string&, String&) const;
-	bool TranslateString(const std::wstring&, String&) const;
-	std::wstring LoadDialogCaption(const tchar_t*) const;
+	CFont m_fontGUI;
 
 	CMergeApp();
 	~CMergeApp();
@@ -92,10 +79,12 @@ public:
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 	int GetLastCompareResult() const { return m_nLastCompareResult; }
+	bool GetNonInteractive() const { return m_bNonInteractive; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper* GetGlobalFileFilter();
-	void ShowHelp(const tchar_t* helpLocation = nullptr);
+	static void ShowHelp(const tchar_t* helpLocation = nullptr);
+	static void OutputConsole(const String& message);
 	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static bool CreateBackup(bool bFolder, const String& pszPath);
 	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
@@ -117,6 +106,7 @@ public:
 	virtual CString GetProfileString(const tchar_t* lpszSection, const tchar_t* lpszEntry, const tchar_t* lpszDefault = NULL) override;
 	virtual BOOL WriteProfileString(const tchar_t* lpszSection, const tchar_t* lpszEntry, const tchar_t* lpszValue) override;
 	virtual HINSTANCE LoadAppLangResourceDLL() override { return nullptr; }; // Disable loading lang resource dll
+	int DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt, const tchar_t* lpszRegistryKey = nullptr);
 
 // Implementation
 protected:
@@ -138,14 +128,14 @@ protected:
 	void ApplyCommandLineConfigOptions(MergeCmdLineInfo & cmdInfo);
 	bool ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo);
 	void ShowDialog(MergeCmdLineInfo::DialogType type);
-	void ReloadCustomSysColors();
+	static void ReloadCustomSysColors();
 
 	// End MergeArgs.cpp
 
-	bool LoadProjectFile(const String& sProject, ProjectFile &project);
-	bool SaveProjectFile(const String& sProject, const ProjectFile &project);
+	static bool IsProjectFile(const String& filepath);
+	static bool LoadProjectFile(const String& sProject, ProjectFile &project);
+	static bool SaveProjectFile(const String& sProject, const ProjectFile &project);
 	bool LoadAndOpenProjectFile(const String& sFilepath, const String& sReportFile = _T(""));
-	bool IsProjectFile(const String& filepath) const;
 
 	//@{
 	/**
@@ -193,7 +183,6 @@ private:
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	bool m_bEnableExitCode;
-	CFont m_fontGUI;
 	ATL::CImage m_imageForInitializingGdiplus;
 	std::list<std::function<void()>> m_idleFuncs;
 	std::list<CWinThread*> m_threads;

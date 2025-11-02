@@ -38,24 +38,9 @@ String GetSysError(int nerr /* =-1 */)
 	return str;
 }
 
-String LoadResString(unsigned id)
-{
-	return _T("Nothing");
-}
-
 void AppErrorMessageBox(const String& msg)
 {
 	MessageBox(NULL, msg.c_str(), NULL, MB_ICONSTOP);
-}
-
-String tr(const std::string& str)
-{
-	return ucr::toTString(str);
-}
-
-String tr(const std::wstring& str)
-{
-	return ucr::toTString(str);
 }
 
 void NTAPI LangTranslateDialog(HWND h)
@@ -65,5 +50,18 @@ void NTAPI LangTranslateDialog(HWND h)
 void* AppGetMainHWND()
 {
 	return nullptr;
+}
+
+namespace I18n
+{
+	String tr(const std::string& str)
+	{
+		return ucr::toTString(str);
+	}
+	
+	String tr(const std::wstring& str)
+	{
+		return ucr::toTString(str);
+	}
 }
 

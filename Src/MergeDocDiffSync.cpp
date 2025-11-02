@@ -9,7 +9,6 @@
 #include <vector>
 #include "MergeDoc.h"
 
-#include "Merge.h"
 #include "DiffList.h"
 #include "stringdiffs.h"
 
@@ -268,6 +267,9 @@ OP_TYPE CMergeDoc::ComputeOpType3way(
 	int line1 = diffrange.begin[1] + vlines[index][1];
 	int line2 = diffrange.begin[2] + vlines[index][2];
 
+	strdiff::EolCompareMode eolMode = diffOptions.bIgnoreLineBreaks ? strdiff::EOL_AS_SPACE :
+		diffOptions.bIgnoreEol ? strdiff::EOL_IGNORE : strdiff::EOL_STRICT;
+
 	if (vlines[index][0] != DiffMap::GHOST_MAP_ENTRY &&
 	    vlines[index][1] != DiffMap::GHOST_MAP_ENTRY &&
 	    vlines[index][2] == DiffMap::GHOST_MAP_ENTRY)
@@ -275,7 +277,7 @@ OP_TYPE CMergeDoc::ComputeOpType3way(
 		String strLine0(m_ptBuf[0]->GetLineChars(line0), m_ptBuf[0]->GetFullLineLength(line0));
 		String strLine1(m_ptBuf[1]->GetLineChars(line1), m_ptBuf[1]->GetFullLineLength(line1));
 		if (strdiff::Compare(strLine0, strLine1,
-			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
+			!diffOptions.bIgnoreCase, eolMode,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_3RDONLY;
 		return OP_DIFF;
@@ -287,7 +289,7 @@ OP_TYPE CMergeDoc::ComputeOpType3way(
 		String strLine0(m_ptBuf[0]->GetLineChars(line0), m_ptBuf[0]->GetFullLineLength(line0));
 		String strLine2(m_ptBuf[2]->GetLineChars(line2), m_ptBuf[2]->GetFullLineLength(line2));
 		if (strdiff::Compare(strLine0, strLine2,
-			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
+			!diffOptions.bIgnoreCase, eolMode,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_2NDONLY;
 		return OP_DIFF;
@@ -299,7 +301,7 @@ OP_TYPE CMergeDoc::ComputeOpType3way(
 		String strLine1(m_ptBuf[1]->GetLineChars(line1), m_ptBuf[1]->GetFullLineLength(line1));
 		String strLine2(m_ptBuf[2]->GetLineChars(line2), m_ptBuf[2]->GetFullLineLength(line2));
 		if (strdiff::Compare(strLine1, strLine2,
-			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
+			!diffOptions.bIgnoreCase, eolMode,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_1STONLY;
 		return OP_DIFF;
@@ -310,15 +312,15 @@ OP_TYPE CMergeDoc::ComputeOpType3way(
 		String strLine1(m_ptBuf[1]->GetLineChars(line1), m_ptBuf[1]->GetFullLineLength(line1));
 		String strLine2(m_ptBuf[2]->GetLineChars(line2), m_ptBuf[2]->GetFullLineLength(line2));
 		if (strdiff::Compare(strLine0, strLine1,
-			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
+			!diffOptions.bIgnoreCase, eolMode,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_3RDONLY;
 		if (strdiff::Compare(strLine0, strLine2,
-			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
+			!diffOptions.bIgnoreCase, eolMode,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_2NDONLY;
 		if (strdiff::Compare(strLine1, strLine2,
-			!diffOptions.bIgnoreCase, !diffOptions.bIgnoreEol,
+			!diffOptions.bIgnoreCase, eolMode,
 			diffOptions.nIgnoreWhitespace, diffOptions.bIgnoreNumbers) == 0)
 			return OP_1STONLY;
 		return OP_DIFF;

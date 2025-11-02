@@ -51,6 +51,7 @@ public:
 		DATE,
 		DATE_SIZE,
 		SIZE,
+		EXISTENCE,
 	};
 
 	enum WindowType

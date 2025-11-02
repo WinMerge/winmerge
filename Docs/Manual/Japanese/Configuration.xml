@@ -681,6 +681,34 @@ BOMの有無の違いも検出します。</para>
 
     <section>
       <title>
+改行を無視(空白として扱う)<indexterm>
+          <primary>フィルター</primary>
+          <secondary>改行</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>無効</option>（既定）: 改行（EOL文字）は空白として扱われません。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>有効</option>: diff hunk 内では改行が空白として扱われます。例えば、以下の差異は無視されます:
+<screen>左側:
+abc def
+
+右側:
+abc
+def
+</screen> <note> 空白関連のオプション（<option>空白 →
+変更を無視</option> や <option>空白 → すべて無視</option>）と組み合わせると便利です。 </note></para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
 移動ブロックの検出を有効にする<indexterm>
           <primary>moved differences</primary>
         </indexterm></title>
@@ -893,6 +921,15 @@ lines.</para>
           <listitem>
             <para>
 ファイルサイズのみを比較するため高速ですが、 内容を比較する方法よりも不正確です。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>存在のみ</term>
+
+          <listitem>
+            <para>
+両側にファイルが存在するかどうかのみを比較します。ファイルが左側と右側の両方に存在する場合、内容、サイズ、タイムスタンプはチェックされず、同一とみなされます。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1135,6 +1172,20 @@ Number of threads which use to comparing. With a negative value WinMerge
 will use addition of the number of available CPU cores.</para>
     </section>
 
+    <section>
+      <title>
+追加比較条件<indexterm>
+          <primary>フィルタ式</primary>
+        </indexterm></title>
+
+      <para>
+フォルダ比較時に、フィルタ式と同様の構文で追加の比較条件を指定できます。たとえば、比較方法に「Full
+Contents」を選択している場合でも、<screen>allequal(Date)</screen> や <screen>LeftDate = RightDate</screen>
+を指定すると、ファイル内容が一致していても更新日時が異なるファイルは差異ありとみなされます。また、入力欄の右側にある
+<guilabel>=</guilabel> ボタンをクリックすると、<guilabel>サイズを比較</guilabel> や
+<guilabel>更新日時を比較</guilabel> などのメニューが表示されます。ここで <guilabel>更新日時を比較</guilabel>
+を選択すると、入力欄に <literal>allequal(Date)</literal> が自動的に挿入されます。</para>
+    </section>
   </section>
 
   <section id="Configuration_compare_table">
@@ -1727,19 +1778,79 @@ TBD</para>
 
   <section id="Configuration_colors_colorschemes">
     <title>
-色 → ページ<indexterm>
-        <primary>color schemes</primary>
+色 → 配色ページ<indexterm>
+        <primary>配色</primary>
 
         <secondary>オプション</secondary>
       </indexterm></title>
 
     <para>
-TBD</para>
+「配色」ページでは、WinMerge全体の配色をカスタマイズできます。ライトモードとダークモードの両方に対応しており、各モードごとに配色を選択・管理したり、独自のカスタム配色を保存・削除できます。</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>色モード</term>
+        <listitem>
+          <para>
+アプリケーションの色モードを選択します。次の中から選べます:</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+<option>ライト</option>（デフォルト）：ライトモード用に指定された配色を使用します。選択すると、ダイアログウィンドウやメニューなどの外観がライト系のデザインになります。</para>
+            </listitem>
+            <listitem>
+              <para>
+<option>ダーク</option>：ダークモード用に指定された配色を使用します。選択すると、ダイアログウィンドウやメニューなどの外観がダーク系のデザインになります。</para>
+            </listitem>
+            <listitem>
+              <para>
+<option>システムに従う</option>：OSの設定に応じて自動的にライトモードとダークモードを切り替えます。</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ライトモード用配色</term>
+        <listitem>
+          <para>
+<guilabel>色モード</guilabel>がライトの場合に使用する配色を選択します。<option>Default</option>（デフォルト）、<option>Modern</option>、および保存したユーザー定義配色が利用できます。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ダークモード用配色</term>
+        <listitem>
+          <para>
+<guilabel>色モード</guilabel>がダークの場合に使用する配色を選択します。<option>VS
+Dark</option>（デフォルト）、<option>Solarized Dark</option>、および保存したユーザー定義配色が利用できます。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>現在の配色を保存</term>
+        <listitem>
+          <para>
+現在の色設定を新しい配色として保存します。配色はINIファイルとして保存されます。<emphasis><filename>Documents/WinMerge/ColorSchemes</filename>フォルダーに保存された配色のみが、<guilabel>ライトモード用配色</guilabel>および<guilabel>ダークモード用配色</guilabel>の一覧に表示されます。</emphasis></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>現在の配色を削除</term>
+        <listitem>
+          <para>
+現在選択中の配色を削除します。このボタンはユーザー定義配色の場合のみ有効で、DefaultやVS Darkなどの組み込み配色では使用できません。</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+これらのオプションを使って、WinMergeのインターフェースを好みやシステムテーマに合わせて調整できます。カスタム配色を使えば、お気に入りの配色設定を簡単に共有・再利用できます。</para>
   </section>
 
   <section id="Configuration_colors_differences">
     <title>
-色 → ページ<indexterm>
+色 → 差異ページ<indexterm>
         <primary>difference colors</primary>
 
         <secondary>オプション</secondary>

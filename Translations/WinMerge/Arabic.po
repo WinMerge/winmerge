@@ -183,10 +183,6 @@ msgstr ""
 msgid "&Zoom"
 msgstr "&تغيير الحجم"
 
-#, c-format
-msgid "25%"
-msgstr ""
-
 msgid "Zoom &In\tCtrl++"
 msgstr "ت&كبير\tCtrl++"
 
@@ -1116,6 +1112,9 @@ msgstr ""
 msgid "Ignore &Missing Trailing EOL"
 msgstr ""
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "تضمين المجلدات الفرعية"
 
@@ -1139,6 +1138,9 @@ msgstr "تاريخ وحجم آخر تعديل"
 
 msgid "Size"
 msgstr "الحجم"
+
+msgid "Existence"
+msgstr ""
 
 msgid "&Load Project..."
 msgstr "&تحميل مشروع..."
@@ -1485,6 +1487,9 @@ msgstr ""
 msgid "100000 or more"
 msgstr ""
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr ""
 
@@ -1507,6 +1512,18 @@ msgid "Equal"
 msgstr ""
 
 msgid "Not Equal"
+msgstr ""
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
 msgstr ""
 
 msgid "Less than 10B"
@@ -1558,6 +1575,24 @@ msgid "Target: Left and &Middle"
 msgstr ""
 
 msgid "Target: Middle and &Right"
+msgstr ""
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
 msgstr ""
 
 msgid "About WinMerge"
@@ -1785,7 +1820,22 @@ msgstr ""
 msgid "Colors"
 msgstr "ألوان"
 
-msgid "Color Scheme:"
+msgid "Color &mode:"
+msgstr ""
+
+msgid "&Light mode scheme:"
+msgstr ""
+
+msgid "&Dark mode scheme:"
+msgstr ""
+
+msgid "Your custom schemes"
+msgstr ""
+
+msgid "&Save current scheme..."
+msgstr ""
+
+msgid "Delete &current scheme..."
 msgstr ""
 
 msgid "Background"
@@ -2083,6 +2133,9 @@ msgid "Ignore c&omment differences"
 msgstr ""
 
 msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
 msgstr ""
 
 msgid "E&nable moved block detection"
@@ -2545,6 +2598,9 @@ msgstr ""
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr ""
 
+msgid "Additional comparison condi&tions:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr ""
 
@@ -2628,6 +2684,42 @@ msgid "&Script file extension:"
 msgstr ""
 
 msgid "Script &body:"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "&Font:"
+msgstr ""
+
+msgid "Font st&yle:"
+msgstr ""
+
+msgid "&Size:"
+msgstr ""
+
+msgid "Effects"
+msgstr ""
+
+msgid "Stri&keout"
+msgstr ""
+
+msgid "&Underline"
+msgstr ""
+
+msgid "&Color:"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "AaBbYyZz"
+msgstr ""
+
+msgid "Sc&ript:"
+msgstr ""
+
+msgid "<A>Show more fonts</A>"
 msgstr ""
 
 msgid "EXT"
@@ -3714,6 +3806,10 @@ msgid "Image files are different"
 msgstr ""
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr ""
 
@@ -4604,6 +4700,10 @@ msgid "Filter applied"
 msgstr ""
 
 #, c-format
+msgid "Compare %1"
+msgstr ""
+
+#, c-format
 msgid "Clipboard at %s"
 msgstr ""
 
@@ -4773,6 +4873,9 @@ msgstr ""
 msgid "Unknown error"
 msgstr ""
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr ""
 
@@ -4807,6 +4910,15 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Light"
+msgstr ""
+
+msgid "Dark"
+msgstr ""
+
+msgid "Follow system"
 msgstr ""
 
 msgid "Prettification"

@@ -27,14 +27,19 @@ public:
 private:
 	//{{AFX_DATA(PropColorSchemes)
 	enum { IDD = IDD_PROPPAGE_COLOR_SCHEMES };
+	int m_nColorMode;
 	String m_sColorScheme;
+	String m_sColorSchemeDark;
 	//}}AFX_DATA
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(PropColorSchemes)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+protected:
+	String GetCurrentColorSchemePath() const;
+	void ReloadColorSchemes();
+	void UpdateControls();
+	void UpdateColorScheme();
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -43,7 +48,10 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropColorSchemes)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnCbnSelchangeColorSchemes();
+	afx_msg void OnCbnSelchangeColorMode();
+	afx_msg void OnCbnSelchangeColorScheme();
+	afx_msg void OnSaveCurrentScheme();
+	afx_msg void OnDeleteCurrentScheme();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -21,7 +21,7 @@ public:
 	CConfigLog();
 	~CConfigLog();
 
-	String GetFileName() const;
+	const String& GetFileName() const;
 	bool WriteLogFile(String &sError);
 
 	// Implementation methods
@@ -51,7 +51,7 @@ private:
 /**
  * @brief Return logfile name and path
  */
-inline String CConfigLog::GetFileName() const
+inline const String& CConfigLog::GetFileName() const
 {
 	return m_sFileName;
 }

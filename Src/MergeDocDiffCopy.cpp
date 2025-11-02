@@ -13,7 +13,6 @@
 #include "DiffList.h"
 #include "MergeLineFlags.h"
 #include "MergeFrameCommon.h"
-#include "Logger.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -108,7 +107,6 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	SetEditedAfterRescan(dstPane);
 
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
-	CMergeEditView* pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView* pViewDst = m_pView[nGroup][dstPane];
 	CEPoint currentPosDst{ 0, pViewDst->GetCursorPos().y };
 
@@ -193,7 +191,6 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 	SetEditedAfterRescan(dstPane);
 
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
-	CMergeEditView* pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView* pViewDst = m_pView[nGroup][dstPane];
 	CEPoint currentPosDst{ 0, pViewDst->GetCursorPos().y };
 
@@ -515,7 +512,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 
 		if (!bInSync)
 		{
-			LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+			I18n::MessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
 			return false; // abort copying
 		}
 
@@ -611,7 +608,7 @@ bool CMergeDoc::LineListCopy(int srcPane, int dstPane, int nDiff, int firstLine,
 
 	if (!bInSync)
 	{
-		LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+		I18n::MessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
 		return false; // abort copying
 	}
 
@@ -700,12 +697,11 @@ bool CMergeDoc::InlineDiffListCopy(int srcPane, int dstPane, int nDiff, int firs
 	bool bSrcWasMod = sbuf.IsModified();
 	const int cd_dbegin = cd.dbegin;
 	const int cd_dend = cd.dend;
-	const int cd_blank = cd.blank[srcPane];
 	bool bInSync = SanityCheckDiff(cd);
 
 	if (!bInSync)
 	{
-		LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+		I18n::MessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
 		return false; // abort copying
 	}
 
@@ -1019,7 +1015,7 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 
 	if (!bInSync)
 	{
-		LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+		I18n::MessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
 		return false; // abort copying
 	}
 

@@ -15,9 +15,10 @@
 #include "DiffContext.h"
 #include "locality.h"
 #include "paths.h"
-#include "MergeApp.h"
+#include "I18n.h"
 #include "FileTransform.h"
 #include "PropertySystem.h"
+#include "FilterEngine/FilterExpression.h"
 #include "DebugNew.h"
 
 using Poco::Timestamp;
@@ -406,7 +407,9 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 	}
 	else if (di.diffcode.isResultDiff()) // diff
 	{
-		if (di.diffcode.isText())
+		if (di.diffcode.isExprDiff())
+			s = strutils::format_string1(_("Files are different (expr: %1)"), ucr::toTString(pCtxt->m_pAdditionalCompareExpression->expression));
+		else if (di.diffcode.isText())
 			s = _("Text files are different");
 		else if (di.diffcode.isBin())
 			s = _("Binary files are different");
@@ -664,7 +667,7 @@ static String ColStatusAbbrGet(const CDiffContext *pCtxt, const void *p, int opt
 		id = N_("Different");
 	}
 
-	return id ? tr(id) : _T("");
+	return id ? I18n::tr(id) : _T("");
 }
 
 /**
@@ -722,7 +725,7 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 	}
 	if (di.diffcode.isBin())
 	{
-		return tr("EOL Type", "Binary");
+		return I18n::tr("EOL Type", "Binary");
 	}
 
 	char *id = 0;
@@ -745,7 +748,7 @@ static String GetEOLType(const CDiffContext *, const void *p, int index)
 			stats.ncrlfs, stats.ncrs, stats.nlfs);
 	}
 	
-	return tr(id);
+	return I18n::tr(id);
 }
 
 /**
@@ -1338,24 +1341,15 @@ static int ColAllPropertySort(const CDiffContext *pCtxt, const void *p, const vo
 	const DIFFITEM &s = *static_cast<const DIFFITEM *>(q);
 	for (int i = 0; i < pCtxt->GetCompareDirs(); ++i)
 	{
-		if (r.diffcode.exists(i))
-		{
-			for (int j = 0; j < pCtxt->GetCompareDirs(); ++j)
-			{
-				if (s.diffcode.exists(j))
-				{
-					if (!r.diffFileInfo[i].m_pAdditionalProperties && s.diffFileInfo[j].m_pAdditionalProperties)
-						return -1;
-					if (r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[j].m_pAdditionalProperties)
-						return 1;
-					if (!r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[j].m_pAdditionalProperties)
-						return 0;
-					int result = PropertyValues::CompareValues(*r.diffFileInfo[i].m_pAdditionalProperties, *s.diffFileInfo[j].m_pAdditionalProperties, opt);
-					if (result != 0)
-						return result;
-				}
-			}
-		}
+		if (!r.diffFileInfo[i].m_pAdditionalProperties && s.diffFileInfo[i].m_pAdditionalProperties)
+			return -1;
+		if (r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[i].m_pAdditionalProperties)
+			return 1;
+		if (!r.diffFileInfo[i].m_pAdditionalProperties && !s.diffFileInfo[i].m_pAdditionalProperties)
+			return 0;
+		int result = PropertyValues::CompareValues(*r.diffFileInfo[i].m_pAdditionalProperties, *s.diffFileInfo[i].m_pAdditionalProperties, opt);
+		if (result != 0)
+			return result;
 	}
 	return 0;
 }
@@ -1507,7 +1501,7 @@ static DirColInfo f_cols3[] =
 String DirColInfo::GetDisplayName() const
 {
 	if (idName)
-		return tr(idNameContext, idName);
+		return I18n::tr(idNameContext, idName);
 	PropertySystem ps({ regName + 1 });
 	std::vector<String> names;
 	ps.GetDisplayNames(names);
@@ -1532,7 +1526,7 @@ String DirColInfo::GetDisplayName() const
 String DirColInfo::GetDescription() const
 {
 	if (idDesc)
-		return tr(idDesc);
+		return I18n::tr(idDesc);
 	return GetDisplayName();
 }
 

@@ -46,8 +46,10 @@ struct wdiff;
 class stringdiffs
 {
 public:
+	enum EolCompareMode { EOL_STRICT = 0, EOL_IGNORE = 1, EOL_AS_SPACE = 2 };
+
 	stringdiffs(const String & str1, const String & str2,
-		bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType,
+		bool case_sensitive, EolCompareMode eol_mode, int whitespace, bool ignore_numbers, int breakType,
 		std::vector<wdiff> * pDiffs);
 
 	~stringdiffs();
@@ -113,7 +115,7 @@ private:
 	int m_whitespace;
 	int m_breakType;
 	bool m_case_sensitive;
-	bool m_eol_sensitive;
+	EolCompareMode m_eol_mode;
 	bool m_ignore_numbers = false;
 	bool m_matchblock;
 	std::vector<wdiff> * m_pDiffs;

@@ -7,7 +7,7 @@
 #pragma once
 
 #include <vector>
-#include <Windows.h>
+#include <windows.h>
 #include <ShellAPI.h>
 #include "UnicodeString.h"
 

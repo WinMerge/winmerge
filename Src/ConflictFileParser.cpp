@@ -177,7 +177,7 @@ bool ParseConflictFile(const String& conflictFileName,
 				pos = line.find(BaseBegin);
 				if (pos != std::string::npos)
 				{
-					line = line.substr(0, pos);
+					line.resize(pos);
 					if (!line.empty())
 					{
 						baseRevision.WriteString(line);
@@ -193,7 +193,7 @@ bool ParseConflictFile(const String& conflictFileName,
 					pos = line.find(Separator);
 					if ((pos != std::string::npos) && (pos == (line.length() - 7)))
 					{
-						line = line.substr(0, pos);
+						line.resize(pos);
 						if (!line.empty())
 						{
 							workingCopy.WriteString(line);
@@ -229,7 +229,7 @@ bool ParseConflictFile(const String& conflictFileName,
 				if (pos != std::string::npos)
 				{
 					revision = line.substr(pos + 8);
-					line = line.substr(0, pos);
+					line.resize(pos);
 					if (!line.empty())
 					{
 						newRevision.WriteString(line);
@@ -308,7 +308,7 @@ bool ParseConflictFile(const String& conflictFileName,
 			pos = line.find(Separator);
 			if ((pos != std::string::npos) && (pos == (line.length() - 7)))
 			{
-				line = line.substr(0, pos);
+				line.resize(pos);
 				if (!line.empty())
 				{
 					baseRevision.WriteString(line);

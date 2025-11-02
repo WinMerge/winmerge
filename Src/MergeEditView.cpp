@@ -2890,7 +2890,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		{
 			BCMenu menu;
 			VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEWHEADER));
-			theApp.TranslateMenu(menu.m_hMenu);
+			I18n::TranslateMenu(menu.m_hMenu);
 			BCMenu* pSub = static_cast<BCMenu*>(menu.GetSubMenu(0));
 			pSub->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 				point.x, point.y, AfxGetMainWnd());
@@ -2901,7 +2901,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// Create the menu and populate it with the available functions
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
-	theApp.TranslateMenu(menu.m_hMenu);
+	I18n::TranslateMenu(menu.m_hMenu);
 
 	auto RemoveMenuAccelerator = [](BCMenu& menu, unsigned id)
 	{
@@ -4064,7 +4064,7 @@ bool CMergeEditView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0*/
 /** @brief Open help from mainframe when user presses F1*/
 void CMergeEditView::OnHelp()
 {
-	theApp.ShowHelp(MergeViewHelpLocation);
+	CMergeApp::ShowHelp(MergeViewHelpLocation);
 }
 
 /**
@@ -4221,14 +4221,24 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	const HMENU hSubMenu = pCmdUI->m_pSubMenu->m_hMenu;
 
-	String name = theApp.LoadString(ID_COLORSCHEME_FIRST);
-	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
+	const HMENU hSubMenuA_L = CreatePopupMenu();
+	const HMENU hSubMenuM_Z = CreatePopupMenu();
 
-	for (int i = ID_COLORSCHEME_FIRST + 1, j = 0; i <= ID_COLORSCHEME_LAST; ++i, ++j)
+	for (int i = ID_COLORSCHEME_FIRST + 1; i < ID_COLORSCHEME_SECOND; ++i)
 	{
-		name = theApp.LoadString(i);
-		AppendMenu(hSubMenu, MF_STRING | (((j % 23) == 22) ? MF_MENUBREAK : 0), i, name.c_str());
+		const String name = I18n::LoadString(i);
+		AppendMenu(hSubMenuA_L, MF_STRING, i, name.c_str());
 	}
+	for (int i = ID_COLORSCHEME_SECOND; i <= ID_COLORSCHEME_LAST; ++i)
+	{
+		const String name = I18n::LoadString(i);
+		AppendMenu(hSubMenuM_Z, MF_STRING, i, name.c_str());
+	}
+
+	const String name = I18n::LoadString(ID_COLORSCHEME_FIRST);
+	AppendMenu(hSubMenu, MF_STRING, ID_COLORSCHEME_FIRST, name.c_str());
+	AppendMenu(hSubMenu, MF_POPUP | MF_STRING, (UINT_PTR)hSubMenuA_L, _T("A-L"));
+	AppendMenu(hSubMenu, MF_POPUP | MF_STRING, (UINT_PTR)hSubMenuM_Z, _T("M-Z"));
 
 	pCmdUI->Enable(true);
 }
@@ -4573,7 +4583,7 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 
 		CMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL));
-		theApp.TranslateMenu(menu.m_hMenu);
+		I18n::TranslateMenu(menu.m_hMenu);
 		menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, GetDocument()->GetView(0, pane));
 		break;
 	}

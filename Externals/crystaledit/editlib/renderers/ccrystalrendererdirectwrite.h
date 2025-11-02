@@ -31,6 +31,7 @@ public:
 	virtual void SwitchFont(bool italic, bool bold) override;
 	virtual CSize GetCharWidthHeight() override;
 	virtual bool GetCharWidth(unsigned start, unsigned end, int *nWidthArray) override;
+	virtual void SetLineColor(CEColor clr) override;
 	virtual void SetTextColor(CEColor clr) override;
 	virtual void SetBkColor(CEColor clr) override;
 	virtual void DrawText(int x, int y, const CRect &rc, const tchar_t* text, size_t len, const int nWidths[]) override;
@@ -62,6 +63,7 @@ private:
 	CD2DTextFormat *m_pCurrentTextFormat;
 	std::unique_ptr<CD2DSolidColorBrush> m_pTextBrush;
 	std::unique_ptr<CD2DSolidColorBrush> m_pTempBrush;
+	std::unique_ptr<CD2DSolidColorBrush> m_pLineBrush;
 	std::unique_ptr<CD2DSolidColorBrush> m_pBackgroundBrush;
 	std::unique_ptr<CCustomTextRenderer> m_pTextRenderer;
 	std::unique_ptr<CD2DBitmap> m_pIconBitmap;

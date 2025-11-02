@@ -13,8 +13,6 @@
 
 #include "stdafx.h"
 #include "DirFrame.h"
-#include "OptionsDef.h"
-#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -145,7 +143,7 @@ void CDirFrame::SetStatus(const tchar_t* szStatus)
  */
 void CDirFrame::SetCompareMethodStatusDisplay(int nCompMethod)
 {
-	m_wndStatusBar.SetPaneText(PANE_COMPMETHOD, LoadResString(IDS_COMPMETHOD_FULL_CONTENTS + nCompMethod).c_str());
+	m_wndStatusBar.SetPaneText(PANE_COMPMETHOD, I18n::LoadString(IDS_COMPMETHOD_FULL_CONTENTS + nCompMethod).c_str());
 }
 
 /**

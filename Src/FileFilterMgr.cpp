@@ -7,11 +7,9 @@
 
 #include "pch.h"
 #include "FileFilterMgr.h"
-#include "FilterEngine/FilterExpression.h"
 #include <vector>
 #include <Poco/Glob.h>
 #include <Poco/RegularExpression.h>
-#include <Poco/Exception.h>
 #include "DirTravel.h"
 #include "DiffItem.h"
 #include "UnicodeString.h"
@@ -56,7 +54,7 @@ void FileFilterMgr::LoadFromDirectory(const String& dir, const String& szPattern
 	try
 	{
 		DirItemArray dirs, files;
-		LoadAndSortFiles(dir, &dirs, &files, false);
+		DirTravel::LoadAndSortFiles(dir, &dirs, &files, false);
 		Glob glb(ucr::toUTF8(szPattern));
 	
 		for (DirItem& item: files)
@@ -127,7 +125,7 @@ static bool RemoveComment(String& str)
 
 	// Remove comment and whitespaces before it
 	if (pos != std::string::npos)
-		str = str.substr(0, pos);
+		str.resize(pos);
 	str = strutils::trim_ws_end(str);
 	return (str.empty());
 }

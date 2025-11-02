@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-01-14 12:20+0000\n"
-"PO-Revision-Date: 2025-07-19 21:08+0200\n"
+"PO-Revision-Date: 2025-09-27 12:37+0200\n"
 "Last-Translator: Hans Eriksson <hanseriksson980@gmail.com>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sv\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.7\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -184,10 +184,6 @@ msgstr "Spegla horisontellt"
 
 msgid "&Zoom"
 msgstr "Zoom"
-
-#, c-format
-msgid "25%"
-msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Zooma in\tCtrl++"
@@ -887,7 +883,7 @@ msgid "Scripts for &Copying"
 msgstr "Skript för kopiereing"
 
 msgid "Select &Editor Script..."
-msgstr "Välj editorskript"
+msgstr "Välj editorskript..."
 
 msgid "Sp&lit"
 msgstr "Dela"
@@ -1116,6 +1112,9 @@ msgstr "Ignorera kommentarskillnader"
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignorera saknat avslutande radslut"
 
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr ""
+
 msgid "&Include Subfolders"
 msgstr "Inkludera underkataloger"
 
@@ -1139,6 +1138,9 @@ msgstr "Ändringsdatum och storlek"
 
 msgid "Size"
 msgstr "Storlek"
+
+msgid "Existence"
+msgstr ""
 
 msgid "&Load Project..."
 msgstr "Ladda projekt..."
@@ -1168,7 +1170,7 @@ msgid "${7} - Seventh Argument"
 msgstr "${7} - Det sjunde argumentet"
 
 msgid "${8} - Eighth Argument"
-msgstr "${9} - Det åttonde argumentet"
+msgstr "${8} - Åttonde argumentet"
 
 msgid "${9} - Ninth Argument"
 msgstr "${9} - Det nionde argumentet"
@@ -1210,13 +1212,13 @@ msgid "${SCRIPT_FILE} - Script File"
 msgstr "${SCRIPT_FILE} - Skriptfil"
 
 msgid "Add &Unpacker Plugin..."
-msgstr "Lägg till uppackningsplugin"
+msgstr "Lägg till uppackningsplugin..."
 
 msgid "Add &Prediffer Plugin..."
-msgstr "Lägg till predifferplugin"
+msgstr "Lägg till predifferplugin..."
 
 msgid "&Duplicate Plugin..."
-msgstr "Duplicera plugin"
+msgstr "Duplicera plugin..."
 
 msgid "Clear &All"
 msgstr "Rensa allt"
@@ -1231,7 +1233,7 @@ msgid "R&eset to Default (*.*)"
 msgstr "Återställ till standard (*.*)"
 
 msgid "Add E&xclude File"
-msgstr "Lägg till uteslutfil "
+msgstr "Lägg till uteslutfil"
 
 msgid "&System Files"
 msgstr "Systemfiler"
@@ -1285,7 +1287,7 @@ msgid "100KB or more"
 msgstr "100 KB eller mer"
 
 msgid "Less than 1MB"
-msgstr "Mindre än 1 MB "
+msgstr "Mindre än 1 MB"
 
 msgid "1MB or more"
 msgstr "1 MB eller mer"
@@ -1396,7 +1398,7 @@ msgid "Since last year"
 msgstr "Sedan förra året"
 
 msgid "&Custom Range..."
-msgstr "Anpassad  längd"
+msgstr "Anpassad  längd..."
 
 msgid "&Attributes"
 msgstr "Attribut"
@@ -1423,13 +1425,13 @@ msgid "File &Content"
 msgstr "Filinnehåll"
 
 msgid "Contains string..."
-msgstr "Innehåller text"
+msgstr "Innehåller text..."
 
 msgid "Does not contain string..."
 msgstr "Innehåller inte text..."
 
 msgid "First line contains string..."
-msgstr "Första raden ionnehåller texten"
+msgstr "Första raden ionnehåller texten..."
 
 msgid "First line does not contain string..."
 msgstr "Första raden innehåller inte texten..."
@@ -1485,6 +1487,9 @@ msgstr "Mindre än 100000"
 msgid "100000 or more"
 msgstr "100000 eller mer"
 
+msgid "Additional &Properties..."
+msgstr ""
+
 msgid "Add F&older Condition"
 msgstr "Lägg till katalogkondition"
 
@@ -1508,6 +1513,18 @@ msgstr "Lika"
 
 msgid "Not Equal"
 msgstr "Inte lika"
+
+msgid "Less Than"
+msgstr ""
+
+msgid "Less Than or Equal to"
+msgstr ""
+
+msgid "Greater Than"
+msgstr ""
+
+msgid "Greater Than or Equal to"
+msgstr ""
 
 msgid "Less than 10B"
 msgstr "Mindre än 10 B"
@@ -1559,6 +1576,24 @@ msgstr "Mål: Vänster och Mitten"
 
 msgid "Target: Middle and &Right"
 msgstr "Må+l: Mitten och Höger"
+
+msgid "Target: &All"
+msgstr ""
+
+msgid "&Clear conditions"
+msgstr ""
+
+msgid "Compare &Size"
+msgstr ""
+
+msgid "Compare &Date"
+msgstr ""
+
+msgid "Compare &Attributes"
+msgstr ""
+
+msgid "Compare C&ontents"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "Om WinMerge"
@@ -1785,8 +1820,23 @@ msgstr "Rensa"
 msgid "Colors"
 msgstr "Färger"
 
-msgid "Color Scheme:"
-msgstr "Färgschema:"
+msgid "Color &mode:"
+msgstr "Färgmod:"
+
+msgid "&Light mode scheme:"
+msgstr "Ljus mods schema:"
+
+msgid "&Dark mode scheme:"
+msgstr "Mörk mods schema:"
+
+msgid "Your custom schemes"
+msgstr "Dina anpassade scheman"
+
+msgid "&Save current scheme..."
+msgstr "Spara aktuellt schema..."
+
+msgid "Delete &current scheme..."
+msgstr "Ta bort aktuellt schema..."
 
 msgid "Background"
 msgstr "Bakgrund"
@@ -1987,7 +2037,7 @@ msgid "Plugin &name:"
 msgstr "Programtilläggets namn:"
 
 msgid "&Target files:"
-msgstr "Målfiler"
+msgstr "Målfiler:"
 
 msgid "Extensions list:"
 msgstr "Filändelser:"
@@ -2008,7 +2058,7 @@ msgid "&Plugin pipeline:"
 msgstr "&Programtillägg kommandoslinga:"
 
 msgid "&Alias..."
-msgstr "Alias"
+msgstr "Alias..."
 
 msgid "Stop"
 msgstr "Stopp"
@@ -2084,6 +2134,9 @@ msgstr "Ignorera kommentarskillnader"
 
 msgid "Ignore &missing trailing EOL"
 msgstr "Ignorera saknat avslutande radslut"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
 
 msgid "E&nable moved block detection"
 msgstr "Aktivera detektering av flyttade block"
@@ -2179,7 +2232,7 @@ msgid "Filter Condition"
 msgstr "Filterkondition"
 
 msgid "&Left-hand side:"
-msgstr "Vänster sida"
+msgstr "Vänster sida:"
 
 msgid "&Operator:"
 msgstr "Operatör:"
@@ -2188,7 +2241,7 @@ msgid "&Right-hand side:"
 msgstr "Höger sida:"
 
 msgid "Expression:"
-msgstr "Uttryck"
+msgstr "Uttryck:"
 
 msgid "Save Modified Files?"
 msgstr "Spara ändrade filer?"
@@ -2547,6 +2600,9 @@ msgstr "Tröskelvärde för växling till snabbjämförelse (MB):"
 msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Tröskelvärde för växling till binär jämförelse (MB):"
 
+msgid "Additional comparison condi&tions:"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Filnamnsmönster:"
 
@@ -2606,7 +2662,7 @@ msgid "Edit Plugin"
 msgstr "Editera-plugin"
 
 msgid "&Category:"
-msgstr "Kategori"
+msgstr "Kategori:"
 
 msgid "&Menu caption:"
 msgstr "Menytext:"
@@ -2624,13 +2680,49 @@ msgid "&Generate editor script"
 msgstr "Generera editorskript"
 
 msgid "Command &line:"
-msgstr "Komandorad"
+msgstr "Komandorad:"
 
 msgid "&Script file extension:"
-msgstr "Skripts filändelse"
+msgstr "Skripts filändelse:"
 
 msgid "Script &body:"
 msgstr "Skriptkropp:"
+
+msgid "Font"
+msgstr "Typsnitt"
+
+msgid "&Font:"
+msgstr "Typsnitt:"
+
+msgid "Font st&yle:"
+msgstr "Typsnittsstil:"
+
+msgid "&Size:"
+msgstr "Storlek:"
+
+msgid "Effects"
+msgstr "Effekter"
+
+msgid "Stri&keout"
+msgstr "Överstruken"
+
+msgid "&Underline"
+msgstr "Understruken"
+
+msgid "&Color:"
+msgstr "Färg:"
+
+msgid "Sample"
+msgstr "Exempel"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "Script:"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>Visa mer typsnitt"
 
 msgid "EXT"
 msgstr "EXT"
@@ -2960,10 +3052,10 @@ msgid ""
 "\n"
 "File may be read-only."
 msgstr ""
-"Filterfilen kunde inte tas bort:\n"
+"Kunde inte tas bort:\n"
 "%1\n"
 "\n"
-"Kanske är den filen skrivskyddad?"
+"Filen kan vara skrivskyddad."
 
 msgid "Locate Filter File to Install"
 msgstr "Ange sökväg för filterfil att installera"
@@ -3154,10 +3246,8 @@ msgid ""
 "Comparing large files requires significant memory.\n"
 "Show only comparison results (not file contents)?"
 msgstr ""
-"Du är på väg att jämföra mycket stora filer.\n"
-"Att visa filinnehållet kräver en mycket stor mängd minne.\n"
-"Vill du bara se resultat för filjämförelse, och inte innehållet i filerna?\n"
-"\n"
+"Jämföra stgra filer kräver mycket minne.\n"
+"Visa bara jämförresultat (inte filinnehåll)?"
 
 msgid "Save As"
 msgstr "Spara som"
@@ -3755,6 +3845,10 @@ msgid "Image files are different"
 msgstr "Bilderna är olika"
 
 #, c-format
+msgid "Files are different (expr: %1)"
+msgstr ""
+
+#, c-format
 msgid "Group%d"
 msgstr "Grupp%d"
 
@@ -3872,7 +3966,7 @@ msgid "Unpacker plugin name or pipeline."
 msgstr "Namn på uppackare eller kommandoslinga."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Namn på Prediffer eller kommandoslinga"
+msgstr "Prediffer pluginnamn eller process."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -4317,8 +4411,12 @@ msgid "Your software is up to date."
 msgstr "Din mjukvara är aktuell."
 
 #, c-format
-msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
-msgstr "En ny version av WinMerge är tillgänglig.\n%1 är nu tillgänglig (du har %2). Vill du ladda ner den nu?"
+msgid ""
+"WinMerge update available.\n"
+"%1 available (you have %2). Download now?"
+msgstr ""
+"En ny version av WinMerge är tillgänglig.\n"
+"%1 är nu tillgänglig (du har %2). Vill du ladda ner den nu?"
 
 msgid " - All rights reserved."
 msgstr " - Alla rättigheter reserverade."
@@ -4616,14 +4714,14 @@ msgstr "Saknar citationstecken i programtilläggets kommandoslinga: %1"
 
 #, c-format
 msgid "Plugin name '%1' already exists."
-msgstr "Pluginnamnet '%1' finns redan"
+msgstr "Pluginnamnet '%1' finns redan."
 
 msgid "Specify plugin arguments"
 msgstr "Ange programtilläggets kommandoalternativ"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr "Plugin hittades inte eller är ogiltigt: %1 "
+msgstr "Plugin hittades inte eller ogiltigt: %1"
 
 #, c-format
 msgid "'%1' is not an unpacker plugin"
@@ -4691,6 +4789,10 @@ msgid "Filter applied"
 msgstr "Filter verkställt"
 
 #, c-format
+msgid "Compare %1"
+msgstr ""
+
+#, c-format
 msgid "Clipboard at %s"
 msgstr "Klippbordet vid %s"
 
@@ -4729,7 +4831,7 @@ msgid "Clipboard Compare"
 msgstr "Klippbordsjämförelse"
 
 msgid "&Print..."
-msgstr "Skriv ut"
+msgstr "Skriv ut..."
 
 msgid "Pre&v Page"
 msgstr "Förra sidan"
@@ -4847,11 +4949,11 @@ msgstr "Jämförelse färdig"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr "Kunde inte jämföra %1 med %2:"
+msgstr "Kunde inte jämföra %1 med %2: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr "Kunde inte jämföra %1 med %2 och %3:"
+msgstr "Kunde inte jämföra %1 med %2 och %3: "
 
 msgid "File saved"
 msgstr "Fil sparad"
@@ -4916,6 +5018,9 @@ msgstr "Division med noll i filteruttryck"
 msgid "Unknown error"
 msgstr "Okänt fel"
 
+msgid "Invalid property name"
+msgstr ""
+
 msgid "Equals"
 msgstr "Lika med"
 
@@ -4951,6 +5056,15 @@ msgstr "Innehåller (RegExp)"
 
 msgid "Not Contains (regex)"
 msgstr "Innehåller inte (RegExp)"
+
+msgid "Light"
+msgstr "Ljus"
+
+msgid "Dark"
+msgstr "Mörk"
+
+msgid "Follow system"
+msgstr "Följ system"
 
 msgid "Prettification"
 msgstr "Finputsning"
@@ -5338,7 +5452,7 @@ msgid "Ignore fields - list from plugin name/argument"
 msgstr "Ignorera vissa fält - lista med ignorerade fält från programtilläggets namn eller kommandoalternativ"
 
 msgid "Ignore leading line numbers (e.g., NC, BASIC)."
-msgstr "Detta plugin ignorerar de inledande radnumren i textfiler (t ex) NS och BASIC-filer"
+msgstr "Ignorera inledande radnummer (t. ex. NS och BASIC)."
 
 msgid "Prediff Line Filter"
 msgstr "PreDiff radfilter"
@@ -5398,7 +5512,7 @@ msgid "Compare worksheets as image (very slow)"
 msgstr "Jämför arbetssidor som bild (väldigt långsamt)"
 
 msgid " - Image split size: "
-msgstr "- Bilddelningsstorlek: "
+msgstr " - Bilddelningsstorlek: "
 
 msgid "Compare worksheets as HTML"
 msgstr "Jämför arbetsblad som HTML"
@@ -5491,7 +5605,7 @@ msgstr ""
 
 #, c-format
 msgid "Enter filename for patch '%1'"
-msgstr "Ange namnet på filen patchen '%1'används på "
+msgstr "Ange filnamn på patchen '%1'"
 
 #, c-format
 msgid "File '%1' does not exist"
@@ -5502,7 +5616,7 @@ msgstr "Ange kommandoradsparametrar för patchkommandot"
 
 #, c-format
 msgid "Enter folder name for patch '%1'"
-msgstr "Ange namnet på katalogen som patchen '%1* används på "
+msgstr "Ange katalognamn för patchen '%1*"
 
 #, c-format
 msgid "Folder '%1' does not exist"
@@ -5543,4 +5657,4 @@ msgid "Model"
 msgstr "Modell"
 
 msgid "OpenAI API key changed. Restart to apply."
-msgstr "OpenAI API-nyckel har ändrats. Var god starta om WinMerge för att göra ändringarna"
+msgstr "OpenAI API-nyckel ändrad. Starta om för att ändra."

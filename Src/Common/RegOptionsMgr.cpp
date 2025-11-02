@@ -7,7 +7,7 @@
 
 #include "pch.h"
 #include "RegOptionsMgr.h"
-#include <Windows.h>
+#include <windows.h>
 #include <process.h>
 #include <Shlwapi.h>
 #include "OptionsMgr.h"

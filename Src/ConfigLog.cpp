@@ -510,8 +510,8 @@ String CConfigLog::GetProcessorInfo()
 		// This is the full identifier of the processor
 		//	(e.g. "Intel64 Family 6 Model 158 Stepping 9")
 		//	but we'll only keep the first word (e.g. "Intel64")
-		int x = (int)sProductName.find_first_of(_T(' '));
-		sProductName = sProductName.substr(0, x);
+		const size_t x = sProductName.find_first_of(_T(' '));
+		sProductName.resize(x);
 	}
 
 

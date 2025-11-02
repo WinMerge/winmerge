@@ -12,6 +12,7 @@
 #include "paths.h"
 #include "Environment.h"
 #include "resource.h" // IDD_ABOUTBOX
+#include "DarkModeLib.h"
 
  // https://www.gnu.org/graphics/gnu-ascii.html
  // Copyright (c) 2001 Free Software Foundation, Inc.
@@ -105,7 +106,8 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	if (!m_image.Load(paths::ConcatPath(env::GetProgPath(), _T("Resources\\splash.png")).c_str()))
+	HRESULT hr = m_image.Load(paths::ConcatPath(env::GetProgPath(), _T("Resources\\splash.png")).c_str());
+	if (FAILED(hr))
 	{
 		// FIXME: LoadImageFromResource() seems to fail when running on Wine 5.0.
 	}
@@ -120,7 +122,18 @@ BOOL CAboutDlg::Impl::OnInitDialog()
 	SetDlgItemText(IDC_WWW, link);
 
 	UpdateData(FALSE);
-	
+
+	if (DarkMode::isExperimentalActive())
+		WinMergeDarkMode::InvertLightness(m_image);
+
+	if (HWND hLink = GetDlgItem(IDC_WWW)->GetSafeHwnd())
+		DarkMode::enableSysLinkCtrlCtlColor(hLink);
+
+	if (HWND hSelf = m_hWnd)
+	{
+		DarkMode::removeWindowEraseBgSubclass(hSelf);
+		WinMergeDarkMode::SetAsciiArtSubclass(hSelf);
+	}
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -157,7 +170,7 @@ BOOL CAboutDlg::Impl::OnEraseBkgnd(CDC* pDC)
 	GetDlgItem(IDC_COMPANY)->GetWindowRect(&rcCompany);
 	ScreenToClient(&rcCompany);
 	rc.top = rcCompany.bottom;
-	pDC->FillSolidRect(&rc, GetSysColor(COLOR_BTNFACE));
+	pDC->FillSolidRect(&rc, DarkMode::isEnabled() ? DarkMode::getDlgBackgroundColor() : GetSysColor(COLOR_BTNFACE));
 	rc.bottom = rc.top;
 	rc.top = 0;
 	m_image.Draw(pDC->m_hDC, rc, Gdiplus::InterpolationModeBicubic);

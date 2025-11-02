@@ -135,7 +135,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_PRESERVE_FILETIMES, false);
 	pOptions->InitOption(OPT_TREE_MODE, true);
 
-	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT, 0, CMP_SIZE);
+	pOptions->InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT, 0, CMP_EXISTENCE);
 	pOptions->InitOption(OPT_CMP_MOVED_BLOCKS, false);
 	pOptions->InitOption(OPT_CMP_ALIGN_SIMILAR_LINES, false);
 	pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
@@ -147,6 +147,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, false);
 	pOptions->InitOption(OPT_CMP_INCLUDE_SUBDIRS, true);
 	pOptions->InitOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, false);
+	pOptions->InitOption(OPT_CMP_ADDITIONAL_CONDITION, _T(""));
 
 	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
 
@@ -241,7 +242,10 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_MRU_MAX, 9, 0, 128);
 
+	pOptions->InitOption(OPT_COLOR_MODE, 0, 0, 2);
+	pOptions->InitOption(OPT_COLOR_MODE_EFFECTIVE, 0, 0, 1);
 	pOptions->InitOption(OPT_COLOR_SCHEME, _T("Default"));
+	pOptions->InitOption(OPT_COLOR_SCHEME_DARK, _T("VS Dark"));
 
 	pOptions->InitOption(OPT_SYSCOLOR_HOOK_ENABLED, false);
 	pOptions->InitOption(OPT_SYSCOLOR_HOOK_COLORS, _T(""));

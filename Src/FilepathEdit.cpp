@@ -13,7 +13,6 @@
 #include "stdafx.h"
 #include <Shlwapi.h>
 #include "FilepathEdit.h"
-#include "Merge.h"
 #include "ClipBoard.h"
 #include "FileOrFolderSelect.h"
 #include "Win_VersionHelper.h"
@@ -246,7 +245,7 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 
 		CMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_EDITOR_HEADERBAR));
-		theApp.TranslateMenu(menu.m_hMenu);
+		I18n::TranslateMenu(menu.m_hMenu);
 
 		CMenu* pPopup = menu.GetSubMenu(0);
 		ASSERT(pPopup != nullptr);
@@ -287,20 +286,30 @@ void CFilepathEdit::OnNcPaint()
 	dc.FillSolidRect(CRect(rect.left + margin, rect.bottom - margin, rect.right, rect.bottom), m_crBackGnd);
 }
 
+static float PointToPixel(CDC& dc, float pt)
+{
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	return pt * lpx / 72.0f;
+}
+
 void CFilepathEdit::OnPaint()
 {
 	__super::OnPaint();
 	if (!m_bInEditing)
 	{
 		CClientDC dc(this);
-		CFont *pFontOld = dc.SelectObject(GetFont());	
-		int oldTextColor = dc.SetTextColor(m_crText);
-		int oldBkMode = dc.SetBkMode(TRANSPARENT);
+		Gdiplus::Graphics graphics(dc);
+		graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
 		CRect rc = GetMenuCharRect(&dc);
-		dc.TextOutW(rc.left, 0, IsWin7_OrGreater() ? _T("\u2261") : _T("="));
-		dc.SetBkMode(oldBkMode);
-		dc.SetTextColor(oldTextColor);
-		dc.SelectObject(pFontOld);
+		Gdiplus::Pen pen(Gdiplus::Color(255, GetRValue(m_crText), GetGValue(m_crText), GetBValue(m_crText)), PointToPixel(dc, 0.75f));
+		const int lineCount = 3;
+		const float spacing = PointToPixel(dc, 2.25f);
+		const int padding = static_cast<int>(PointToPixel(dc, 0.75f));
+		for (int i = 0; i < lineCount; ++i)
+		{
+			float y = rc.top + (rc.Height() - (lineCount - 1) * spacing) / 2 + i * spacing;
+			graphics.DrawLine(&pen, static_cast<float>(rc.left + padding), y, static_cast<float>(rc.right - padding), y);
+		}
 	}
 }
 
@@ -322,8 +331,7 @@ CRect CFilepathEdit::GetMenuCharRect(CDC* pDC)
 {
 	CRect rc;
 	GetClientRect(rc);
-	int charWidth;
-	pDC->GetCharWidth('=', '=', &charWidth);
+	int charWidth = static_cast<int>(PointToPixel(*pDC, 6.0f));
 	rc.left = rc.right - charWidth;
 	return rc;
 }
@@ -352,7 +360,7 @@ BOOL CFilepathEdit::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 	CRect rc = GetMenuCharRect(&dc);
 	if (PtInRect(&rc, pt))
 	{
-		SetCursor(LoadCursor(nullptr, IDC_ARROW));
+		SetCursor(LoadCursor(nullptr, IDC_HAND));
 		return TRUE;
 	}
 	return __super::OnSetCursor(pWnd, nHitTest, message);
@@ -500,6 +508,7 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
  */
 void CFilepathEdit::SetActive(bool bActive)
 {
+	const bool bOldActive = m_bActive;
 	m_bActive = bActive;
 
 	if (m_hWnd == nullptr)
@@ -508,16 +517,12 @@ void CFilepathEdit::SetActive(bool bActive)
 	CRect rcWnd;
 	GetWindowRect(&rcWnd);
 
-	if (bActive)
-	{
-		SetTextColor(::GetSysColor(m_bInEditing ? COLOR_WINDOWTEXT : COLOR_CAPTIONTEXT));
-	}
-	else
-	{
-		SetTextColor(::GetSysColor(m_bInEditing ? COLOR_WINDOWTEXT : COLOR_INACTIVECAPTIONTEXT));
-	}
+	SetTextColor(::GetSysColor(
+	    m_bInEditing ? COLOR_WINDOWTEXT :
+	    bActive      ? COLOR_CAPTIONTEXT : COLOR_INACTIVECAPTIONTEXT));
 	SetBackColor(MakeBackColor(bActive, m_bInEditing));
-	RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
+	if (bOldActive != bActive)
+		RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 }
 
 /**
@@ -550,6 +555,9 @@ HBRUSH CFilepathEdit::CtlColor(CDC* pDC, UINT nCtlColor)
  */
 void CFilepathEdit::SetBackColor(COLORREF rgb)
 {
+	if (m_crBackGnd == rgb)
+		return;
+
 	//set background color ref (used for text's background)
 	m_crBackGnd = rgb;
 	
@@ -569,6 +577,9 @@ void CFilepathEdit::SetBackColor(COLORREF rgb)
  */
 void CFilepathEdit::SetTextColor(COLORREF rgb)
 {
+	if (m_crText == rgb)
+		return;
+
 	//set text color ref
 	m_crText = rgb;
 
