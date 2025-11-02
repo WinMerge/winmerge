@@ -30,7 +30,7 @@ Localization:
   Downzen team <https://downzen.com>
 
 * Basque:
-  Xabier Aramendi <Azpidatziak@gmail.com>  
+  Xabier Aramendi <Azpidatziak@gmail.com>
 
 * Bulgarian:
   Sld <sld|mail.bg>
@@ -41,7 +41,7 @@ Localization:
 * Catalan:
   Jordi Vilar <jvilar@users.sourceforge.net>
   Domènec <domenec72 at gmail.com>
-  Josep Maria Antolín Segura 
+  Josep Maria Antolín Segura
   Pere Orga <pere at orga.cat>
 
 * Simplified Chinese:
@@ -99,6 +99,7 @@ Localization:
 
 * German:
   Tim Gerundt <tim@gerundt.de>
+  René Nicolaus <translation@havoc.de>
   Winfried Peter <winfried.peter@omicron.at>
   Joerg Schneider <tonda@users.sourceforge.net>
   Mr-Update
@@ -293,7 +294,7 @@ Other Contributors (code, ideas, testing..):
 * HaroldPetersInskipp (Midnight color scheme)
 * srgank
 * baka0815
-* Yurii Hordiienko 
+* Yurii Hordiienko
 * wiera987
 * wilfzim
 * Mavaddat Javid
@@ -313,7 +314,7 @@ Other Contributors (code, ideas, testing..):
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)
 * Brent Corkum (BCMenu)
-* Paul DiLascia (CStaticLink) 
+* Paul DiLascia (CStaticLink)
 * Michael Dunn (CShellFileOp)
 * Francis Irving (original conflict file parser)
 * Michael P. Mehl (CMessageBoxDialog)
