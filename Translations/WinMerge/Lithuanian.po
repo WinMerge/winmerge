@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-10-21 19:25+0000\n"
-"PO-Revision-Date: 2025-10-23 09:09+0200\n"
+"POT-Creation-Date: 2025-11-03 09:05+0000\n"
+"PO-Revision-Date: 2025-11-03 07:40+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -999,7 +999,7 @@ msgid "Copy &Filenames"
 msgstr "Kopijuoti &failų vardus"
 
 msgid "Copy Items to Clip&board"
-msgstr "Kopijuoti elementus į iš&karpinę"
+msgstr "Kopijuoti elementus į mainų &sritį"
 
 msgid "Copy All Di&splayed Columns"
 msgstr "Kopijuoti visus rodomu&s stulpelius"
@@ -1815,7 +1815,7 @@ msgid "Op&en dialog Auto completion:"
 msgstr "Lango „Atv&erti“ automatinis užpildymas:"
 
 msgid "Auto-&reload modified files:"
-msgstr "Automatiškais &įkelti iš naujo pakeistus failus:"
+msgstr "Automatiškai iš naujo &įkelti pakeistus failus:"
 
 msgid "Language:"
 msgstr "Kalba:"
@@ -3035,14 +3035,14 @@ msgstr "Skirtumas %1 iš %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "Rasta %1 skirtumų"
+msgstr "Rasti (-a) %1 skirtumai (-ų)"
 
 msgid "1 Difference Found"
 msgstr "Rastas 1 skirtumas"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr "Rasta %1 klaidų"
+msgstr "Rastos (-a) %1 klaidos (-ų)"
 
 msgid "1 Error Found"
 msgstr "Rasta 1 klaida"
@@ -4808,7 +4808,7 @@ msgid "Reverse lines"
 msgstr "Sukeisti eilutes"
 
 msgid "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
-msgstr "Pakeisti tekstą.\r\nNaudojimas: Replace [-i] [-e] FIND REPLACE\r\n  or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
+msgstr "Pakeisti tekstą.\r\nNaudojimas: Replace [-i] [-e] FIND REPLACE\r\n arba: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
 
 #, c-format
 msgid "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
@@ -4821,10 +4821,10 @@ msgid "Trim spaces"
 msgstr "Apkirpti tarpus"
 
 msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
-msgstr "Pažymėti stulpelius.\r\nNaudojimas: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
+msgstr "Pažymėti stulpelius.\r\nNaudojimas: SelectColumns RANGES\r\n arba: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
 
 msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
-msgstr "Pažymėti eilutes.\r\nNaudojimas: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
+msgstr "Pažymėti eilutes.\r\nNaudojimas: SelectLines RANGES\r\n arba: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
 
 msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "HTML tvarkytojas (tidy-html5).\r\nArgumentai: tidy command line options."
