@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2025-10-17 18:54+0300\n"
+"PO-Revision-Date: 2025-11-03 13:10+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -1486,7 +1486,7 @@ msgid "100000 or more"
 msgstr "100.000 veya daha fazla"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "Ek &Özellikler..."
 
 msgid "Add F&older Condition"
 msgstr "Klasör K&oşulu Ekle"
@@ -1513,16 +1513,16 @@ msgid "Not Equal"
 msgstr "Eşit Değil"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Daha küçük"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Küçük veya eşit"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Daha büyük"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Daha büyük veya eşit"
 
 msgid "Less than 10B"
 msgstr "10 milyardan az"
@@ -1576,22 +1576,22 @@ msgid "Target: Middle and &Right"
 msgstr "Hedef: Orta ve &Sağ"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Hedef: &Tümü"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "Koşulları &temizle"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "&Boyutu karşılaştır"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Tarihi &karşılaştır"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Öznitelikleri k&arşılaştır"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "&İçerikleri karşılaştır"
 
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
@@ -2609,7 +2609,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "Ek karşılaştırma k&oşulları:"
 
 msgid "File patterns:"
 msgstr "Dosya modelleri:"
@@ -3884,7 +3884,7 @@ msgstr "Görsel dosyaları farklı"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "Dosyalar farklı (ifade: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4847,7 +4847,7 @@ msgstr "Süzgeç uygulandı"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "%1’i karşılaştır"
 
 #, c-format
 msgid "Clipboard at %s"
