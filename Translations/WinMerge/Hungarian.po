@@ -2057,11 +2057,11 @@ msgstr "Opciók"
 
 #, c-format
 msgid "Import..."
-msgstr "Importálás"
+msgstr "Importálás..."
 
 #, c-format
 msgid "Export..."
-msgstr "Exportálás"
+msgstr "Exportálás..."
 
 #, c-format
 msgid "General"
