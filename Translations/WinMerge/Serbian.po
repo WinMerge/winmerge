@@ -1908,57 +1908,6 @@ msgid "&Options..."
 msgstr "Изб&ор..."
 
 #, c-format
-msgid "General"
-msgstr "Општи избор"
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "Увек крени од &прве разлике"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr ""
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Затвори пр&озор са 'Esc':"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Проверите путање у изборном дијалогу "
-
-msgid "Single instance mode:"
-msgstr ""
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "Упитај &кад затвараш више прозора"
-
-#, c-format
-msgid "&Preserve file time in file compare"
-msgstr "&Задржи ознаке времена и датума у поређењу "
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Прикажи \"Одабране датотеке или фасцикле\" дијалог при покретању."
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "Отвори дијалог самодовршења:"
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-#, c-format
-msgid "Language:"
-msgstr ""
-
-#, c-format
-msgid "Defaults"
-msgstr "Подразумевано"
-
-#, c-format
 msgid "Find"
 msgstr "Нађи"
 
@@ -2086,6 +2035,69 @@ msgstr ""
 
 msgid "Clear"
 msgstr ""
+
+#, c-format
+msgid "Options"
+msgstr "Поставке"
+
+#, c-format
+msgid "Import..."
+msgstr "Увези..."
+
+#, c-format
+msgid "Export..."
+msgstr "Извези..."
+
+#, c-format
+msgid "General"
+msgstr "Општи избор"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "Увек крени од &прве разлике"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Затвори пр&озор са 'Esc':"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Проверите путање у изборном дијалогу "
+
+msgid "Single instance mode:"
+msgstr ""
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "Упитај &кад затвараш више прозора"
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "&Задржи ознаке времена и датума у поређењу "
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Прикажи \"Одабране датотеке или фасцикле\" дијалог при покретању."
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "Отвори дијалог самодовршења:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+#, c-format
+msgid "Language:"
+msgstr ""
+
+#, c-format
+msgid "Defaults"
+msgstr "Подразумевано"
 
 #, c-format
 msgid "Colors"
@@ -2286,6 +2298,131 @@ msgid "Br&owse..."
 msgstr "Пр&егледај..."
 
 #, c-format
+msgid "Compare"
+msgstr "Упоређивање"
+
+#, c-format
+msgid "Whitespaces"
+msgstr "Размак"
+
+#, c-format
+msgid "&Compare"
+msgstr "&Упореди"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "Занемар&и промене"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "Зане&мари све"
+
+msgid "Ignore blan&k lines"
+msgstr "Занемари пра&зне редове"
+
+msgid "Ignore &case"
+msgstr "Занемари под&ударност"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "Омогући откривање премештених група"
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+#, c-format
+msgid "Editor"
+msgstr "Уређивач"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "Нагласи склоп речи"
+
+#, c-format
+msgid "&Preserve original EOL"
+msgstr "Задр&жи изворно означавање краја реда"
+
+#, c-format
+msgid "Tabs"
+msgstr "Језичци"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "Величина &језичака:"
+
+#, c-format
+msgid "&Insert tabs"
+msgstr "Уметни језичке"
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "Уметни размак"
+
+msgid "&Rendering mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&Аутоматски поново претражи"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Обоји различите редове"
+
+#, c-format
+msgid "View line differences"
+msgstr "Приказ различитих редова"
+
+#, c-format
+msgid "&Character-level"
+msgstr "Ранг &знака"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "Ранг ре&чи:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr ""
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge омогућава скривање неких уобичајених порука. Притисните 'Почетни' да поруке опет буду видљиве."
+
+#, c-format
+msgid "Reset"
+msgstr "Почетни"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Створене разлике"
 
@@ -2432,131 +2569,6 @@ msgstr "Раз&лика"
 msgid "&Go to"
 msgstr "&Иди на"
 
-#, c-format
-msgid "Compare"
-msgstr "Упоређивање"
-
-#, c-format
-msgid "Whitespaces"
-msgstr "Размак"
-
-#, c-format
-msgid "&Compare"
-msgstr "&Упореди"
-
-#, c-format
-msgid "&Ignore change"
-msgstr "Занемар&и промене"
-
-#, c-format
-msgid "I&gnore all"
-msgstr "Зане&мари све"
-
-msgid "Ignore blan&k lines"
-msgstr "Занемари пра&зне редове"
-
-msgid "Ignore &case"
-msgstr "Занемари под&ударност"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr ""
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr ""
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-#, c-format
-msgid "E&nable moved block detection"
-msgstr "Омогући откривање премештених група"
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr ""
-
-msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-#, c-format
-msgid "Editor"
-msgstr "Уређивач"
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "Нагласи склоп речи"
-
-#, c-format
-msgid "&Preserve original EOL"
-msgstr "Задр&жи изворно означавање краја реда"
-
-#, c-format
-msgid "Tabs"
-msgstr "Језичци"
-
-#, c-format
-msgid "&Tab size:"
-msgstr "Величина &језичака:"
-
-#, c-format
-msgid "&Insert tabs"
-msgstr "Уметни језичке"
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "Уметни размак"
-
-msgid "&Rendering mode:"
-msgstr ""
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "&Аутоматски поново претражи"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr "Обоји различите редове"
-
-#, c-format
-msgid "View line differences"
-msgstr "Приказ различитих редова"
-
-#, c-format
-msgid "&Character-level"
-msgstr "Ранг &знака"
-
-#, c-format
-msgid "&Word-level:"
-msgstr "Ранг ре&чи:"
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr ""
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge омогућава скривање неких уобичајених порука. Притисните 'Почетни' да поруке опет буду видљиве."
-
-#, c-format
-msgid "Reset"
-msgstr "Почетни"
-
 msgid "File Filters"
 msgstr ""
 
@@ -2598,6 +2610,53 @@ msgid "&Right-hand side:"
 msgstr ""
 
 msgid "Expression:"
+msgstr ""
+
+#, c-format
+msgid "Codepage"
+msgstr "Кодна страница"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Подразумевана кодна страница"
+
+#, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Одабери подразумевану кодну страницу кад учитана Уникод датотека није прихваћена:"
+
+#, c-format
+msgid "System codepage"
+msgstr "Кодна страница система"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "Према корисничком сучељу WinMerge-а"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Подешена кодна страница:"
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr ""
+"Дај обавештења кодне стране за ове датотеке:.html, .rc, .xml\n"
+" Није потребно поново покретање сесије."
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr ""
+
+#, c-format
+msgid "Archive Support"
+msgstr "Рад са архивама"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&Омогући подршку архиви"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "Откриј врсту архиве из заглавља датотеке"
+
+msgid "Items saved to or restored from the project file:"
 msgstr ""
 
 #, c-format
@@ -2645,50 +2704,6 @@ msgid "Disca&rd All"
 msgstr ""
 
 #, c-format
-msgid "Codepage"
-msgstr "Кодна страница"
-
-#, c-format
-msgid "Default Codepage"
-msgstr "Подразумевана кодна страница"
-
-#, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Одабери подразумевану кодну страницу кад учитана Уникод датотека није прихваћена:"
-
-#, c-format
-msgid "System codepage"
-msgstr "Кодна страница система"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "Према корисничком сучељу WinMerge-а"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Подешена кодна страница:"
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr ""
-"Дај обавештења кодне стране за ове датотеке:.html, .rc, .xml\n"
-" Није потребно поново покретање сесије."
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
-
-#, c-format
-msgid "Options"
-msgstr "Поставке"
-
-#, c-format
-msgid "Import..."
-msgstr "Увези..."
-
-#, c-format
-msgid "Export..."
-msgstr "Извези..."
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Извештај упоређених фасцикли"
 
@@ -2719,21 +2734,6 @@ msgstr "Заједнички филтер (за све кориснике рач
 #, c-format
 msgid "Private Filter (current user only)"
 msgstr "Лични филтер (само за тренутног корисника)"
-
-#, c-format
-msgid "Archive Support"
-msgstr "Рад са архивама"
-
-#, c-format
-msgid "&Enable archive file support"
-msgstr "&Омогући подршку архиви"
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "Откриј врсту архиве из заглавља датотеке"
-
-msgid "Items saved to or restored from the project file:"
-msgstr ""
 
 #, c-format
 msgid "Compare Statistics"

@@ -1667,48 +1667,6 @@ msgstr "Помощ"
 msgid "&Options..."
 msgstr "&Настройки…"
 
-msgid "General"
-msgstr "Основни"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Автоматично плъзване към първото &различие"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Автоматично п&лъзване към първото различие на реда"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Затваряне &прозорците при „Esc“:"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Автоматична проверка на пътищата в диалога за отваряне"
-
-msgid "Single instance mode:"
-msgstr "Режим на единствен екземпляр:"
-
-msgid "As&k when closing multiple windows"
-msgstr "Потвърждение при &затваряне на няколко прозореца"
-
-msgid "&Preserve file time in file compare"
-msgstr "Запазване &времето на файла при сравняване"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Показване „Избиране на файлове или папки“ при стартиране"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Затваряне „Избиране на файлове или папки“ при натискане на Сравняване"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Автоматично &довършване в „Избиране на файлове или папки“:"
-
-msgid "Auto-&reload modified files:"
-msgstr "Автоматично &презареждане на променени файлове:"
-
-msgid "Language:"
-msgstr "Език:"
-
-msgid "Defaults"
-msgstr "По подразбиране"
-
 msgid "Find"
 msgstr "Търсене"
 
@@ -1810,6 +1768,57 @@ msgstr "Добавяне"
 
 msgid "Clear"
 msgstr "Изчистване"
+
+msgid "Options"
+msgstr "Настройки"
+
+msgid "Import..."
+msgstr "Внасяне…"
+
+msgid "Export..."
+msgstr "Изнасяне…"
+
+msgid "General"
+msgstr "Основни"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Автоматично плъзване към първото &различие"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Автоматично п&лъзване към първото различие на реда"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Затваряне &прозорците при „Esc“:"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Автоматична проверка на пътищата в диалога за отваряне"
+
+msgid "Single instance mode:"
+msgstr "Режим на единствен екземпляр:"
+
+msgid "As&k when closing multiple windows"
+msgstr "Потвърждение при &затваряне на няколко прозореца"
+
+msgid "&Preserve file time in file compare"
+msgstr "Запазване &времето на файла при сравняване"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Показване „Избиране на файлове или папки“ при стартиране"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Затваряне „Избиране на файлове или папки“ при натискане на Сравняване"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Автоматично &довършване в „Избиране на файлове или папки“:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Автоматично &презареждане на променени файлове:"
+
+msgid "Language:"
+msgstr "Език:"
+
+msgid "Defaults"
+msgstr "По подразбиране"
 
 msgid "Colors"
 msgstr "Цветове"
@@ -1970,6 +1979,111 @@ msgstr "Друга &папка:"
 msgid "Br&owse..."
 msgstr "Изби&ране…"
 
+msgid "Compare"
+msgstr "Сравняване"
+
+msgid "Whitespaces"
+msgstr "Интервали"
+
+msgid "&Compare"
+msgstr "&Сравняване"
+
+msgid "&Ignore change"
+msgstr "&Пренебрегване на променените"
+
+msgid "I&gnore all"
+msgstr "Пренебре&гване на всички"
+
+msgid "Ignore blan&k lines"
+msgstr "Пренебрегване на пра&зни редове"
+
+msgid "Ignore &case"
+msgstr "Пренебре&гване на регистъра"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "Пренебрегване на &знаци за нов ред (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "Пренебрегване на &числа"
+
+msgid "Ignore codepage &differences"
+msgstr "Пропускане на &различия в кодова страница"
+
+msgid "Ignore c&omment differences"
+msgstr "Пренебрегване на различията в &коментари"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "Пренебрегване липсващи &висящи знаци за нов ред"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Пренебрегване на знаците за нов ред (смятат се за интервали)"
+
+msgid "E&nable moved block detection"
+msgstr "Разпознаване на преместени па&раграфи"
+
+msgid "Align &similar lines"
+msgstr "Подра&вняване на подобни редове"
+
+msgid "Diff &algorithm:"
+msgstr "&Алгоритъм за различия:"
+
+msgid "Enable indent &heuristic"
+msgstr "П&редполагане на отстъпа"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Без синтактично оцветяване на пренебрегнати различия"
+
+msgid "Editor"
+msgstr "Редактор"
+
+msgid "&Highlight syntax"
+msgstr "С&интактично оцветяване"
+
+msgid "&Preserve original EOL"
+msgstr "&Запазване на изходните знаци за нов ред"
+
+msgid "Tabs"
+msgstr "Табулатор"
+
+msgid "&Tab size:"
+msgstr "&Дължина на табулатор:"
+
+msgid "&Insert tabs"
+msgstr "&Вмъкване на табулатор"
+
+msgid "Insert &spaces"
+msgstr "Вмъкване на &интервал"
+
+msgid "&Rendering mode:"
+msgstr "&Режим на изчертаване:"
+
+msgid "&Automatic rescan"
+msgstr "&Автоматично сканиране"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+msgid "Line Difference Coloring"
+msgstr "Оцветяване на редове с различия"
+
+msgid "View line differences"
+msgstr "Показване на различия на реда"
+
+msgid "&Character-level"
+msgstr "На ниво &символ"
+
+msgid "&Word-level:"
+msgstr "На ниво &дума:"
+
+msgid "W&ord break characters:"
+msgstr "Символ за пренасяне на &дума:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "Потребителят може да скрие някои съобщения. За да бъдат показани повторно, натиснете бутона Нулиране."
+
+msgid "Reset"
+msgstr "Нулиране"
+
 msgid "Patch Generator"
 msgstr "Създаване на кръпки"
 
@@ -2093,111 +2207,6 @@ msgstr "&Различие"
 msgid "&Go to"
 msgstr "&Отиване"
 
-msgid "Compare"
-msgstr "Сравняване"
-
-msgid "Whitespaces"
-msgstr "Интервали"
-
-msgid "&Compare"
-msgstr "&Сравняване"
-
-msgid "&Ignore change"
-msgstr "&Пренебрегване на променените"
-
-msgid "I&gnore all"
-msgstr "Пренебре&гване на всички"
-
-msgid "Ignore blan&k lines"
-msgstr "Пренебрегване на пра&зни редове"
-
-msgid "Ignore &case"
-msgstr "Пренебре&гване на регистъра"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "Пренебрегване на &знаци за нов ред (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "Пренебрегване на &числа"
-
-msgid "Ignore codepage &differences"
-msgstr "Пропускане на &различия в кодова страница"
-
-msgid "Ignore c&omment differences"
-msgstr "Пренебрегване на различията в &коментари"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "Пренебрегване липсващи &висящи знаци за нов ред"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "Пренебрегване на знаците за нов ред (смятат се за интервали)"
-
-msgid "E&nable moved block detection"
-msgstr "Разпознаване на преместени па&раграфи"
-
-msgid "Align &similar lines"
-msgstr "Подра&вняване на подобни редове"
-
-msgid "Diff &algorithm:"
-msgstr "&Алгоритъм за различия:"
-
-msgid "Enable indent &heuristic"
-msgstr "П&редполагане на отстъпа"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Без синтактично оцветяване на пренебрегнати различия"
-
-msgid "Editor"
-msgstr "Редактор"
-
-msgid "&Highlight syntax"
-msgstr "С&интактично оцветяване"
-
-msgid "&Preserve original EOL"
-msgstr "&Запазване на изходните знаци за нов ред"
-
-msgid "Tabs"
-msgstr "Табулатор"
-
-msgid "&Tab size:"
-msgstr "&Дължина на табулатор:"
-
-msgid "&Insert tabs"
-msgstr "&Вмъкване на табулатор"
-
-msgid "Insert &spaces"
-msgstr "Вмъкване на &интервал"
-
-msgid "&Rendering mode:"
-msgstr "&Режим на изчертаване:"
-
-msgid "&Automatic rescan"
-msgstr "&Автоматично сканиране"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-msgid "Line Difference Coloring"
-msgstr "Оцветяване на редове с различия"
-
-msgid "View line differences"
-msgstr "Показване на различия на реда"
-
-msgid "&Character-level"
-msgstr "На ниво &символ"
-
-msgid "&Word-level:"
-msgstr "На ниво &дума:"
-
-msgid "W&ord break characters:"
-msgstr "Символ за пренасяне на &дума:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "Потребителят може да скрие някои съобщения. За да бъдат показани повторно, натиснете бутона Нулиране."
-
-msgid "Reset"
-msgstr "Нулиране"
-
 msgid "File Filters"
 msgstr "Филтри за файлове"
 
@@ -2237,6 +2246,50 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Codepage"
+msgstr "Кодова страница"
+
+msgid "Default Codepage"
+msgstr "Стандартна кодова страница"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Изберете стандартната кодова страница за не-Unicode файлове:"
+
+msgid "System codepage"
+msgstr "Кодова страница на системата"
+
+msgid "According to WinMerge User Interface"
+msgstr "Според интерфейса на WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Потребителска кодова страница:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Разпознаване на кодовата страница за файлове от вида на: .html, .rc, .xml\n"
+"Изисква рестартиране."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Разпознаване на кодовата страница на текстовите файлове, чрез mlang.dll\n"
+"изисква рестартиране."
+
+msgid "Archive Support"
+msgstr "Поддръжка на архиви"
+
+msgid "&Enable archive file support"
+msgstr "Включване на &поддръжката на архиви"
+
+msgid "&Detect archive type from file signature"
+msgstr "Откриване на вида на &архива от подписа на файла"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Елементи, които да бъдат запазвани и възстановявани от файла на проекта:"
+
 msgid "Save Modified Files?"
 msgstr "Запазване на променени файлове?"
 
@@ -2270,47 +2323,6 @@ msgstr "Отказване от пром&ените"
 msgid "Disca&rd All"
 msgstr "Отказ от &всички"
 
-msgid "Codepage"
-msgstr "Кодова страница"
-
-msgid "Default Codepage"
-msgstr "Стандартна кодова страница"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Изберете стандартната кодова страница за не-Unicode файлове:"
-
-msgid "System codepage"
-msgstr "Кодова страница на системата"
-
-msgid "According to WinMerge User Interface"
-msgstr "Според интерфейса на WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Потребителска кодова страница:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Разпознаване на кодовата страница за файлове от вида на: .html, .rc, .xml\n"
-"Изисква рестартиране."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Разпознаване на кодовата страница на текстовите файлове, чрез mlang.dll\n"
-"изисква рестартиране."
-
-msgid "Options"
-msgstr "Настройки"
-
-msgid "Import..."
-msgstr "Внасяне…"
-
-msgid "Export..."
-msgstr "Изнасяне…"
-
 msgid "Folder Compare Report"
 msgstr "Отчет за сравняване на папки"
 
@@ -2334,18 +2346,6 @@ msgstr "Споделен филтър (за всички потребители 
 
 msgid "Private Filter (current user only)"
 msgstr "Личен филтър (само за текущия потребител)"
-
-msgid "Archive Support"
-msgstr "Поддръжка на архиви"
-
-msgid "&Enable archive file support"
-msgstr "Включване на &поддръжката на архиви"
-
-msgid "&Detect archive type from file signature"
-msgstr "Откриване на вида на &архива от подписа на файла"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Елементи, които да бъдат запазвани и възстановявани от файла на проекта:"
 
 msgid "Compare Statistics"
 msgstr "Статистика на сравнението"

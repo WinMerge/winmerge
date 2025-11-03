@@ -1922,57 +1922,6 @@ msgid "&Options..."
 msgstr "I&ndstillinger..."
 
 #, c-format
-msgid "General"
-msgstr "Generelt"
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "Scroll &automatisk til første forskel"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr ""
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "L&uk vinduer med 'Esc' tasten:"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Verificer automatisk stinavnene i åben dialogen"
-
-msgid "Single instance mode:"
-msgstr ""
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "Sp&ørg ved lukning af flere vinduer "
-
-#, c-format
-msgid "&Preserve file time in file compare"
-msgstr "Bevar filtid i filsammenligning"
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Vis dialogen \"Vælg filer eller mapper...\" ved hver start"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "Å&ben-dialog Auto-fuldførelse:"
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-#, c-format
-msgid "Language:"
-msgstr ""
-
-#, c-format
-msgid "Defaults"
-msgstr "Standard"
-
-#, c-format
 msgid "Find"
 msgstr "Søg"
 
@@ -2100,6 +2049,69 @@ msgstr ""
 
 msgid "Clear"
 msgstr ""
+
+#, c-format
+msgid "Options"
+msgstr "Valg"
+
+#, c-format
+msgid "Import..."
+msgstr "Importer..."
+
+#, c-format
+msgid "Export..."
+msgstr "Eksporter..."
+
+#, c-format
+msgid "General"
+msgstr "Generelt"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "Scroll &automatisk til første forskel"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "L&uk vinduer med 'Esc' tasten:"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Verificer automatisk stinavnene i åben dialogen"
+
+msgid "Single instance mode:"
+msgstr ""
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "Sp&ørg ved lukning af flere vinduer "
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "Bevar filtid i filsammenligning"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Vis dialogen \"Vælg filer eller mapper...\" ved hver start"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "Å&ben-dialog Auto-fuldførelse:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+#, c-format
+msgid "Language:"
+msgstr ""
+
+#, c-format
+msgid "Defaults"
+msgstr "Standard"
 
 #, c-format
 msgid "Colors"
@@ -2302,6 +2314,133 @@ msgid "Br&owse..."
 msgstr "G&ennemse..."
 
 #, c-format
+msgid "Compare"
+msgstr "Sammenlign"
+
+#, c-format
+msgid "Whitespaces"
+msgstr "Mellemrum"
+
+#, c-format
+msgid "&Compare"
+msgstr "&Sammenlign"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "&Ignorer ændringer"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "I&gnorer alle"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignorer blan&ke linjer"
+
+msgid "Ignore &case"
+msgstr "Ignorer store/små &bogstaver"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "&Aktiver detektion af flyttede blokke"
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+#, c-format
+msgid "Editor"
+msgstr "Redigering"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "&Fremhæv syntaksen"
+
+#, c-format
+msgid "&Preserve original EOL"
+msgstr "&Bevar originale EOL tegn"
+
+#, c-format
+msgid "Tabs"
+msgstr "Tabulator"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "&Tabulator størrelse:"
+
+#, c-format
+msgid "&Insert tabs"
+msgstr "&Indsæt tabulatorer"
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "Indsæt &mellemrum"
+
+msgid "&Rendering mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "Automatisk &opdatering"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Farver for linjeforskelle"
+
+#, c-format
+msgid "View line differences"
+msgstr "Vis linjeforskelle"
+
+#, c-format
+msgid "&Character-level"
+msgstr "&Karakter niveau"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "&Ord niveau:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr ""
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr ""
+"WinMerge kan gemme almene beskedvinduer. Brug Reset knappen for at vise "
+"disse vinduer igen."
+
+#, c-format
+msgid "Reset"
+msgstr "Nulstil"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Patch Generator"
 
@@ -2450,133 +2589,6 @@ msgstr "&Forskel"
 msgid "&Go to"
 msgstr "&Gå til"
 
-#, c-format
-msgid "Compare"
-msgstr "Sammenlign"
-
-#, c-format
-msgid "Whitespaces"
-msgstr "Mellemrum"
-
-#, c-format
-msgid "&Compare"
-msgstr "&Sammenlign"
-
-#, c-format
-msgid "&Ignore change"
-msgstr "&Ignorer ændringer"
-
-#, c-format
-msgid "I&gnore all"
-msgstr "I&gnorer alle"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorer blan&ke linjer"
-
-msgid "Ignore &case"
-msgstr "Ignorer store/små &bogstaver"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr ""
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr ""
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-#, c-format
-msgid "E&nable moved block detection"
-msgstr "&Aktiver detektion af flyttede blokke"
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr ""
-
-msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-#, c-format
-msgid "Editor"
-msgstr "Redigering"
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "&Fremhæv syntaksen"
-
-#, c-format
-msgid "&Preserve original EOL"
-msgstr "&Bevar originale EOL tegn"
-
-#, c-format
-msgid "Tabs"
-msgstr "Tabulator"
-
-#, c-format
-msgid "&Tab size:"
-msgstr "&Tabulator størrelse:"
-
-#, c-format
-msgid "&Insert tabs"
-msgstr "&Indsæt tabulatorer"
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "Indsæt &mellemrum"
-
-msgid "&Rendering mode:"
-msgstr ""
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "Automatisk &opdatering"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr "Farver for linjeforskelle"
-
-#, c-format
-msgid "View line differences"
-msgstr "Vis linjeforskelle"
-
-#, c-format
-msgid "&Character-level"
-msgstr "&Karakter niveau"
-
-#, c-format
-msgid "&Word-level:"
-msgstr "&Ord niveau:"
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr ""
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr ""
-"WinMerge kan gemme almene beskedvinduer. Brug Reset knappen for at vise "
-"disse vinduer igen."
-
-#, c-format
-msgid "Reset"
-msgstr "Nulstil"
-
 msgid "File Filters"
 msgstr ""
 
@@ -2618,6 +2630,55 @@ msgid "&Right-hand side:"
 msgstr ""
 
 msgid "Expression:"
+msgstr ""
+
+#, c-format
+msgid "Codepage"
+msgstr "Codepage"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Standard codepage"
+
+#, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr ""
+"Vælg den standard codepage der antages når der indlæses filer der ikke er "
+"unicode:"
+
+#, c-format
+msgid "System codepage"
+msgstr "System codepage"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "Samme som WinMerge brugerflade"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Udvalgt codepage:"
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr ""
+"Find codepage automatisk for disse filer: .html, .rc, .xml\n"
+"WinMerge skal genstartes før dette tager effekt."
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr ""
+
+#, c-format
+msgid "Archive Support"
+msgstr "Arkiv Support"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&Aktiver arkiv fil support"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "Bestem arkivtype udfra fil signatur"
+
+msgid "Items saved to or restored from the project file:"
 msgstr ""
 
 #, c-format
@@ -2665,52 +2726,6 @@ msgid "Disca&rd All"
 msgstr ""
 
 #, c-format
-msgid "Codepage"
-msgstr "Codepage"
-
-#, c-format
-msgid "Default Codepage"
-msgstr "Standard codepage"
-
-#, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr ""
-"Vælg den standard codepage der antages når der indlæses filer der ikke er "
-"unicode:"
-
-#, c-format
-msgid "System codepage"
-msgstr "System codepage"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "Samme som WinMerge brugerflade"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Udvalgt codepage:"
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr ""
-"Find codepage automatisk for disse filer: .html, .rc, .xml\n"
-"WinMerge skal genstartes før dette tager effekt."
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
-
-#, c-format
-msgid "Options"
-msgstr "Valg"
-
-#, c-format
-msgid "Import..."
-msgstr "Importer..."
-
-#, c-format
-msgid "Export..."
-msgstr "Eksporter..."
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Directory Compare Report"
 
@@ -2741,21 +2756,6 @@ msgstr "Delt Filter (for alle brugere)"
 #, c-format
 msgid "Private Filter (current user only)"
 msgstr "Privat Filter (kun aktuel bruger)"
-
-#, c-format
-msgid "Archive Support"
-msgstr "Arkiv Support"
-
-#, c-format
-msgid "&Enable archive file support"
-msgstr "&Aktiver arkiv fil support"
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "Bestem arkivtype udfra fil signatur"
-
-msgid "Items saved to or restored from the project file:"
-msgstr ""
 
 #, c-format
 msgid "Compare Statistics"

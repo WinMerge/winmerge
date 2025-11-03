@@ -183,7 +183,7 @@ BOOL PropMessageBoxes::OnInitDialog()
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
 	String title = _("Message");
-	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(220));
+	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(250));
 	title = _("Answer");
 	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(70));
 

@@ -1669,48 +1669,6 @@ msgstr "Hjelp"
 msgid "&Options..."
 msgstr "&Innstillinger..."
 
-msgid "General"
-msgstr "Generelt"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Automatisk &rulling til første forskjell"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr ""
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "L&ukk vinduer med 'Esc':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Verifiser baner automatisk i Åpne-dialog"
-
-msgid "Single instance mode:"
-msgstr ""
-
-msgid "As&k when closing multiple windows"
-msgstr "Sp&ør ved lukking av flere vinduer"
-
-msgid "&Preserve file time in file compare"
-msgstr "&Bevar fil-tid i filsammenligning"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Vis \"Velg filer eller mapper\" dialog ved oppstart"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Auto-fullførelse for Å&pne-dialog:"
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-msgid "Language:"
-msgstr ""
-
-msgid "Defaults"
-msgstr "Standardverdier"
-
 msgid "Find"
 msgstr "Søk"
 
@@ -1814,6 +1772,57 @@ msgstr ""
 
 msgid "Clear"
 msgstr ""
+
+msgid "Options"
+msgstr "Innstillinger"
+
+msgid "Import..."
+msgstr "Importer..."
+
+msgid "Export..."
+msgstr "Eksporter..."
+
+msgid "General"
+msgstr "Generelt"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Automatisk &rulling til første forskjell"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "L&ukk vinduer med 'Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Verifiser baner automatisk i Åpne-dialog"
+
+msgid "Single instance mode:"
+msgstr ""
+
+msgid "As&k when closing multiple windows"
+msgstr "Sp&ør ved lukking av flere vinduer"
+
+msgid "&Preserve file time in file compare"
+msgstr "&Bevar fil-tid i filsammenligning"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Vis \"Velg filer eller mapper\" dialog ved oppstart"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Auto-fullførelse for Å&pne-dialog:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+msgid "Language:"
+msgstr ""
+
+msgid "Defaults"
+msgstr "Standardverdier"
 
 msgid "Colors"
 msgstr "Farger"
@@ -1974,6 +1983,115 @@ msgstr "E&gen mappe:"
 msgid "Br&owse..."
 msgstr "B&la gjennom.."
 
+msgid "Compare"
+msgstr "Sammenlign"
+
+msgid "Whitespaces"
+msgstr "Blanktegn"
+
+msgid "&Compare"
+msgstr "S&ammenlign"
+
+msgid "&Ignore change"
+msgstr "Ignorer e&ndringer"
+
+msgid "I&gnore all"
+msgstr "Ignorer &alle"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignorer blan&ke linjer"
+
+msgid "Ignore &case"
+msgstr "Ignorer store/små &bokstaver"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "&Aktiver flyttet blokk-oppdagelse"
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+msgid "Editor"
+msgstr "Redigering"
+
+msgid "&Highlight syntax"
+msgstr "&Marker syntaksen"
+
+msgid "&Preserve original EOL"
+msgstr "&Bevar originale EOL-tegn"
+
+msgid "Tabs"
+msgstr "Tabulator"
+
+msgid "&Tab size:"
+msgstr "&Tabulatorstørrelse:"
+
+msgid "&Insert tabs"
+msgstr "Sett inn tabulatorer"
+
+msgid "Insert &spaces"
+msgstr "Sett inn mellomrom"
+
+msgid "&Rendering mode:"
+msgstr ""
+
+msgid "&Automatic rescan"
+msgstr "Automatisk &oppdatering"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+msgid "Line Difference Coloring"
+msgstr "Linjeforskjells-farger"
+
+msgid "View line differences"
+msgstr "Vis linjeforskjeller"
+
+msgid "&Character-level"
+msgstr "&Tegnnivå"
+
+msgid "&Word-level:"
+msgstr "&Ord-nivå:"
+
+msgid "W&ord break characters:"
+msgstr ""
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to "
+"make all messages visible again."
+msgstr ""
+"WinMerge tillater å skjule noen vanlige meldingsbokser. Trykk tilbakestill-"
+"knappen for å gjøre alle meldingsboksene synlige igjen."
+
+msgid "Reset"
+msgstr "Tilbakestill"
+
 msgid "Patch Generator"
 msgstr "Rettelsegenerator"
 
@@ -2097,115 +2215,6 @@ msgstr "&Forskjell"
 msgid "&Go to"
 msgstr "&Gå til"
 
-msgid "Compare"
-msgstr "Sammenlign"
-
-msgid "Whitespaces"
-msgstr "Blanktegn"
-
-msgid "&Compare"
-msgstr "S&ammenlign"
-
-msgid "&Ignore change"
-msgstr "Ignorer e&ndringer"
-
-msgid "I&gnore all"
-msgstr "Ignorer &alle"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorer blan&ke linjer"
-
-msgid "Ignore &case"
-msgstr "Ignorer store/små &bokstaver"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr ""
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr ""
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "&Aktiver flyttet blokk-oppdagelse"
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr ""
-
-msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-msgid "Editor"
-msgstr "Redigering"
-
-msgid "&Highlight syntax"
-msgstr "&Marker syntaksen"
-
-msgid "&Preserve original EOL"
-msgstr "&Bevar originale EOL-tegn"
-
-msgid "Tabs"
-msgstr "Tabulator"
-
-msgid "&Tab size:"
-msgstr "&Tabulatorstørrelse:"
-
-msgid "&Insert tabs"
-msgstr "Sett inn tabulatorer"
-
-msgid "Insert &spaces"
-msgstr "Sett inn mellomrom"
-
-msgid "&Rendering mode:"
-msgstr ""
-
-msgid "&Automatic rescan"
-msgstr "Automatisk &oppdatering"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-msgid "Line Difference Coloring"
-msgstr "Linjeforskjells-farger"
-
-msgid "View line differences"
-msgstr "Vis linjeforskjeller"
-
-msgid "&Character-level"
-msgstr "&Tegnnivå"
-
-msgid "&Word-level:"
-msgstr "&Ord-nivå:"
-
-msgid "W&ord break characters:"
-msgstr ""
-
-msgid ""
-"Some messages can be hidden by the user. Press Reset to "
-"make all messages visible again."
-msgstr ""
-"WinMerge tillater å skjule noen vanlige meldingsbokser. Trykk tilbakestill-"
-"knappen for å gjøre alle meldingsboksene synlige igjen."
-
-msgid "Reset"
-msgstr "Tilbakestill"
-
 msgid "File Filters"
 msgstr ""
 
@@ -2245,6 +2254,49 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Codepage"
+msgstr "Tegnsett"
+
+msgid "Default Codepage"
+msgstr "Standard tegnsett"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr ""
+"Velg standard tegnsett som blir antatt når det lastes ikke-Unicode filer:"
+
+msgid "System codepage"
+msgstr "System-tegnsett"
+
+msgid "According to WinMerge User Interface"
+msgstr "I følge WinMerge brukergrensesnitt"
+
+msgid "Custom codepage:"
+msgstr "Egendefinert tegnsett:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Oppdag tegnsett-info for disse filer: .html, .rc, .xml\n"
+"Nødvendig å starte programmet på nytt."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+
+msgid "Archive Support"
+msgstr "Arkiv-støtte"
+
+msgid "&Enable archive file support"
+msgstr "&Aktiver arkivfil-støtte"
+
+msgid "&Detect archive type from file signature"
+msgstr "&Detekter arkivtype fra filsignatur"
+
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Save Modified Files?"
 msgstr "Lagre endrede filer?"
 
@@ -2278,46 +2330,6 @@ msgstr "Fork&ast endringer"
 msgid "Disca&rd All"
 msgstr ""
 
-msgid "Codepage"
-msgstr "Tegnsett"
-
-msgid "Default Codepage"
-msgstr "Standard tegnsett"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr ""
-"Velg standard tegnsett som blir antatt når det lastes ikke-Unicode filer:"
-
-msgid "System codepage"
-msgstr "System-tegnsett"
-
-msgid "According to WinMerge User Interface"
-msgstr "I følge WinMerge brukergrensesnitt"
-
-msgid "Custom codepage:"
-msgstr "Egendefinert tegnsett:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Oppdag tegnsett-info for disse filer: .html, .rc, .xml\n"
-"Nødvendig å starte programmet på nytt."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-
-msgid "Options"
-msgstr "Innstillinger"
-
-msgid "Import..."
-msgstr "Importer..."
-
-msgid "Export..."
-msgstr "Eksporter..."
-
 msgid "Folder Compare Report"
 msgstr "Mappesammenlignings-rapport"
 
@@ -2341,18 +2353,6 @@ msgstr "Delt filter (for alle brukere på denne maskin)"
 
 msgid "Private Filter (current user only)"
 msgstr "Privat filter (bare for aktuelle bruker)"
-
-msgid "Archive Support"
-msgstr "Arkiv-støtte"
-
-msgid "&Enable archive file support"
-msgstr "&Aktiver arkivfil-støtte"
-
-msgid "&Detect archive type from file signature"
-msgstr "&Detekter arkivtype fra filsignatur"
-
-msgid "Items saved to or restored from the project file:"
-msgstr ""
 
 msgid "Compare Statistics"
 msgstr "Sammenlignings-statistikk"

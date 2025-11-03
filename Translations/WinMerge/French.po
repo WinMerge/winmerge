@@ -1677,48 +1677,6 @@ msgstr "Aide"
 msgid "&Options..."
 msgstr "&Options..."
 
-msgid "General"
-msgstr "Général"
-
-msgid "Automatically &scroll to first difference"
-msgstr "&Atteindre automatiquement la première différence"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "&Atteindre automatiquement la première différence en ligne"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Fermeture des fenêtres avec la t&ouche 'Échap' :"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Vérifier &automatiquement les chemins de la boîte de dialogue Ouvrir"
-
-msgid "Single instance mode:"
-msgstr "Mode d'instance unique :"
-
-msgid "As&k when closing multiple windows"
-msgstr "&Confirmer la fermeture de plusieurs fenêtres"
-
-msgid "&Preserve file time in file compare"
-msgstr "&Préserver l'horodatage dans la comparaison de fichier"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Afficher \"Sélectionner les fichiers ou dossiers\" au démarrage"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Fermer \"Sélectionner les fichiers ou dossiers\" en cliquant sur Comparer"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "R&emplissage automatique de la boîte de dialogue Ouvrir :"
-
-msgid "Auto-&reload modified files:"
-msgstr "&Rechargement automatique des fichiers modifiés :"
-
-msgid "Language:"
-msgstr "Langue :"
-
-msgid "Defaults"
-msgstr "Par défaut"
-
 msgid "Find"
 msgstr "Rechercher"
 
@@ -1820,6 +1778,57 @@ msgstr "Ajouter"
 
 msgid "Clear"
 msgstr "Effacer"
+
+msgid "Options"
+msgstr "Préférences"
+
+msgid "Import..."
+msgstr "Importer..."
+
+msgid "Export..."
+msgstr "Exporter..."
+
+msgid "General"
+msgstr "Général"
+
+msgid "Automatically &scroll to first difference"
+msgstr "&Atteindre automatiquement la première différence"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "&Atteindre automatiquement la première différence en ligne"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Fermeture des fenêtres avec la t&ouche 'Échap' :"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Vérifier &automatiquement les chemins de la boîte de dialogue Ouvrir"
+
+msgid "Single instance mode:"
+msgstr "Mode d'instance unique :"
+
+msgid "As&k when closing multiple windows"
+msgstr "&Confirmer la fermeture de plusieurs fenêtres"
+
+msgid "&Preserve file time in file compare"
+msgstr "&Préserver l'horodatage dans la comparaison de fichier"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Afficher \"Sélectionner les fichiers ou dossiers\" au démarrage"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Fermer \"Sélectionner les fichiers ou dossiers\" en cliquant sur Comparer"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "R&emplissage automatique de la boîte de dialogue Ouvrir :"
+
+msgid "Auto-&reload modified files:"
+msgstr "&Rechargement automatique des fichiers modifiés :"
+
+msgid "Language:"
+msgstr "Langue :"
+
+msgid "Defaults"
+msgstr "Par défaut"
 
 msgid "Colors"
 msgstr "Couleurs"
@@ -1982,6 +1991,111 @@ msgstr "Dossier &personnalisé :"
 msgid "Br&owse..."
 msgstr "Parc&ourir..."
 
+msgid "Compare"
+msgstr "Comparer"
+
+msgid "Whitespaces"
+msgstr "Caractères d'espacement"
+
+msgid "&Compare"
+msgstr "&Comparer"
+
+msgid "&Ignore change"
+msgstr "&Ignorer le changement"
+
+msgid "I&gnore all"
+msgstr "Ignorer &tout"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignorer les lignes &vides"
+
+msgid "Ignore &case"
+msgstr "Ignorer la &casse"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "Igno&rer les différences d'EOL (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "Ignorer les nom&bres"
+
+msgid "Ignore codepage &differences"
+msgstr "Ignorer les &différences de page de code"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignorer les différences de c&ommentaire"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "Ignorer les EOL de fin &manquants"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Ignorer les sauts de ligne (traiter comme des espaces)"
+
+msgid "E&nable moved block detection"
+msgstr "Activer la détectio&n des blocs déplacés"
+
+msgid "Align &similar lines"
+msgstr "Aligner les lignes &similaires"
+
+msgid "Diff &algorithm:"
+msgstr "&Algorithme différentiel :"
+
+msgid "Enable indent &heuristic"
+msgstr "Activer l'indentation &heuristique"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Ne pas mettre en surbrillance les différences ignorées"
+
+msgid "Editor"
+msgstr "Éditeur"
+
+msgid "&Highlight syntax"
+msgstr "Mettre en &surbrillance la syntaxe"
+
+msgid "&Preserve original EOL"
+msgstr "&Préserver les EOL d'origine"
+
+msgid "Tabs"
+msgstr "Tabulations"
+
+msgid "&Tab size:"
+msgstr "&Taille des tabulations :"
+
+msgid "&Insert tabs"
+msgstr "&Insérer des tabulations"
+
+msgid "Insert &spaces"
+msgstr "Insérer des e&spaces"
+
+msgid "&Rendering mode:"
+msgstr "Mode de &rendu :"
+
+msgid "&Automatic rescan"
+msgstr "&Actualiser automatiquement"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Copie la granularité pour les différences sélectionnées :"
+
+msgid "Line Difference Coloring"
+msgstr "Coloration de la différence de ligne"
+
+msgid "View line differences"
+msgstr "Afficher les différences de ligne"
+
+msgid "&Character-level"
+msgstr "Précision au &caractère"
+
+msgid "&Word-level:"
+msgstr "Précision au &mot :"
+
+msgid "W&ord break characters:"
+msgstr "Caractères de coupure de m&ot :"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "Certains messages peuvent être masqués par l'utilisateur. Appuyez sur Réinitialiser pour rendre à nouveau tous les messages visibles."
+
+msgid "Reset"
+msgstr "Réinitialiser"
+
 msgid "Patch Generator"
 msgstr "Générateur de retouche"
 
@@ -2105,111 +2219,6 @@ msgstr "&Différence"
 msgid "&Go to"
 msgstr "&Atteindre"
 
-msgid "Compare"
-msgstr "Comparer"
-
-msgid "Whitespaces"
-msgstr "Caractères d'espacement"
-
-msgid "&Compare"
-msgstr "&Comparer"
-
-msgid "&Ignore change"
-msgstr "&Ignorer le changement"
-
-msgid "I&gnore all"
-msgstr "Ignorer &tout"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorer les lignes &vides"
-
-msgid "Ignore &case"
-msgstr "Ignorer la &casse"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "Igno&rer les différences d'EOL (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "Ignorer les nom&bres"
-
-msgid "Ignore codepage &differences"
-msgstr "Ignorer les &différences de page de code"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignorer les différences de c&ommentaire"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "Ignorer les EOL de fin &manquants"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "Ignorer les sauts de ligne (traiter comme des espaces)"
-
-msgid "E&nable moved block detection"
-msgstr "Activer la détectio&n des blocs déplacés"
-
-msgid "Align &similar lines"
-msgstr "Aligner les lignes &similaires"
-
-msgid "Diff &algorithm:"
-msgstr "&Algorithme différentiel :"
-
-msgid "Enable indent &heuristic"
-msgstr "Activer l'indentation &heuristique"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Ne pas mettre en surbrillance les différences ignorées"
-
-msgid "Editor"
-msgstr "Éditeur"
-
-msgid "&Highlight syntax"
-msgstr "Mettre en &surbrillance la syntaxe"
-
-msgid "&Preserve original EOL"
-msgstr "&Préserver les EOL d'origine"
-
-msgid "Tabs"
-msgstr "Tabulations"
-
-msgid "&Tab size:"
-msgstr "&Taille des tabulations :"
-
-msgid "&Insert tabs"
-msgstr "&Insérer des tabulations"
-
-msgid "Insert &spaces"
-msgstr "Insérer des e&spaces"
-
-msgid "&Rendering mode:"
-msgstr "Mode de &rendu :"
-
-msgid "&Automatic rescan"
-msgstr "&Actualiser automatiquement"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "Copie la granularité pour les différences sélectionnées :"
-
-msgid "Line Difference Coloring"
-msgstr "Coloration de la différence de ligne"
-
-msgid "View line differences"
-msgstr "Afficher les différences de ligne"
-
-msgid "&Character-level"
-msgstr "Précision au &caractère"
-
-msgid "&Word-level:"
-msgstr "Précision au &mot :"
-
-msgid "W&ord break characters:"
-msgstr "Caractères de coupure de m&ot :"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "Certains messages peuvent être masqués par l'utilisateur. Appuyez sur Réinitialiser pour rendre à nouveau tous les messages visibles."
-
-msgid "Reset"
-msgstr "Réinitialiser"
-
 msgid "File Filters"
 msgstr "Filtres de fichier"
 
@@ -2249,6 +2258,50 @@ msgstr "Côté &droit :"
 msgid "Expression:"
 msgstr "Expression:"
 
+msgid "Codepage"
+msgstr "Page de code"
+
+msgid "Default Codepage"
+msgstr "Page de code par défaut"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Sélectionnez la page de codes par défaut pour les fichiers non Unicode :"
+
+msgid "System codepage"
+msgstr "Page de code du système"
+
+msgid "According to WinMerge User Interface"
+msgstr "Conformément à l'interface utilisateur de WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Page de code personnalisée :"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Détecter la page de code pour les fichiers .html, .rc et .xml\n"
+"Redémarrage requis."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Détecter la page de code pour les fichiers avec mlang.dll\n"
+"Redémarrage requis."
+
+msgid "Archive Support"
+msgstr "Support d'archives"
+
+msgid "&Enable archive file support"
+msgstr "Activ&er le support d'archives"
+
+msgid "&Detect archive type from file signature"
+msgstr "&Détecter le type d'archives avec un fichier de signature"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Éléments enregistrés ou restaurés à partir du fichier de projet :"
+
 msgid "Save Modified Files?"
 msgstr "Enregistrer les fichiers modifiés ?"
 
@@ -2282,47 +2335,6 @@ msgstr "Annuler les &modifications"
 msgid "Disca&rd All"
 msgstr "Annuler &tout"
 
-msgid "Codepage"
-msgstr "Page de code"
-
-msgid "Default Codepage"
-msgstr "Page de code par défaut"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Sélectionnez la page de codes par défaut pour les fichiers non Unicode :"
-
-msgid "System codepage"
-msgstr "Page de code du système"
-
-msgid "According to WinMerge User Interface"
-msgstr "Conformément à l'interface utilisateur de WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Page de code personnalisée :"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Détecter la page de code pour les fichiers .html, .rc et .xml\n"
-"Redémarrage requis."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Détecter la page de code pour les fichiers avec mlang.dll\n"
-"Redémarrage requis."
-
-msgid "Options"
-msgstr "Préférences"
-
-msgid "Import..."
-msgstr "Importer..."
-
-msgid "Export..."
-msgstr "Exporter..."
-
 msgid "Folder Compare Report"
 msgstr "Dossier du rapport de comparaison"
 
@@ -2346,18 +2358,6 @@ msgstr "Filtre partagé (pour tous les utilisateurs)"
 
 msgid "Private Filter (current user only)"
 msgstr "Filtre privé (utilisateur actuel seulement)"
-
-msgid "Archive Support"
-msgstr "Support d'archives"
-
-msgid "&Enable archive file support"
-msgstr "Activ&er le support d'archives"
-
-msgid "&Detect archive type from file signature"
-msgstr "&Détecter le type d'archives avec un fichier de signature"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Éléments enregistrés ou restaurés à partir du fichier de projet :"
 
 msgid "Compare Statistics"
 msgstr "Statistiques des comparaisons"

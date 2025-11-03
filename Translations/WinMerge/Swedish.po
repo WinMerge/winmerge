@@ -1673,48 +1673,6 @@ msgstr "Hjälp"
 msgid "&Options..."
 msgstr "Alternativ..."
 
-msgid "General"
-msgstr "Allmänt"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Skrolla automatiskt till första skillnaden"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Skrolla automatiskt till första skillnaden på raden"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Stäng fönster med ''Esc'':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Verifiera sökvägar i Öppna-dialogen automatiskt"
-
-msgid "Single instance mode:"
-msgstr "Eninstansmod:"
-
-msgid "As&k when closing multiple windows"
-msgstr "Fråga när flera fönster stängs"
-
-msgid "&Preserve file time in file compare"
-msgstr "Bevara ändringsdatum i filjämförelse"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Visa \"Välj filer eller kataloger\" dialogen vid uppstart"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Stäng  \"Välj filer eller kataloger\"-dialogen när 'Jämför'-knappen klickas"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Automatisk komplettering för Öppna-dialog:"
-
-msgid "Auto-&reload modified files:"
-msgstr "Läs in ändrade filer på nytt automatiskt:"
-
-msgid "Language:"
-msgstr "Språk:"
-
-msgid "Defaults"
-msgstr "Förval"
-
 msgid "Find"
 msgstr "Sök"
 
@@ -1816,6 +1774,57 @@ msgstr "Lägg till"
 
 msgid "Clear"
 msgstr "Rensa"
+
+msgid "Options"
+msgstr "Alternativ"
+
+msgid "Import..."
+msgstr "Importera..."
+
+msgid "Export..."
+msgstr "Exportera..."
+
+msgid "General"
+msgstr "Allmänt"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Skrolla automatiskt till första skillnaden"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Skrolla automatiskt till första skillnaden på raden"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Stäng fönster med ''Esc'':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Verifiera sökvägar i Öppna-dialogen automatiskt"
+
+msgid "Single instance mode:"
+msgstr "Eninstansmod:"
+
+msgid "As&k when closing multiple windows"
+msgstr "Fråga när flera fönster stängs"
+
+msgid "&Preserve file time in file compare"
+msgstr "Bevara ändringsdatum i filjämförelse"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Visa \"Välj filer eller kataloger\" dialogen vid uppstart"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Stäng  \"Välj filer eller kataloger\"-dialogen när 'Jämför'-knappen klickas"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Automatisk komplettering för Öppna-dialog:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Läs in ändrade filer på nytt automatiskt:"
+
+msgid "Language:"
+msgstr "Språk:"
+
+msgid "Defaults"
+msgstr "Förval"
 
 msgid "Colors"
 msgstr "Färger"
@@ -1976,6 +1985,111 @@ msgstr "Egen katalog:"
 msgid "Br&owse..."
 msgstr "Bläddra..."
 
+msgid "Compare"
+msgstr "Jämför"
+
+msgid "Whitespaces"
+msgstr "Blankutrymme"
+
+msgid "&Compare"
+msgstr "Jämför"
+
+msgid "&Ignore change"
+msgstr "Ignorera skillnader"
+
+msgid "I&gnore all"
+msgstr "Ignorera samtliga"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignorera tomma rader"
+
+msgid "Ignore &case"
+msgstr "Ignorera skillnader i VERSALER och gemener"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "Ignorera radslutsskillnader (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "Ignorera nummer"
+
+msgid "Ignore codepage &differences"
+msgstr "Ignorera kodnings-skillnader"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignorera kommentarskillnader"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "Ignorera saknat avslutande radslut"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "Aktivera detektering av flyttade block"
+
+msgid "Align &similar lines"
+msgstr "Injustera likartade rader"
+
+msgid "Diff &algorithm:"
+msgstr "Jämförelsealgoritm:"
+
+msgid "Enable indent &heuristic"
+msgstr "Aktivera indragsstöd"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Framhäv inte ignorerade skillnader"
+
+msgid "Editor"
+msgstr "Redigerare"
+
+msgid "&Highlight syntax"
+msgstr "Framhäv syntax"
+
+msgid "&Preserve original EOL"
+msgstr "Bevara ursprungliga tecken för radslut (EOL)"
+
+msgid "Tabs"
+msgstr "Flikar"
+
+msgid "&Tab size:"
+msgstr "Tabbstorlek:"
+
+msgid "&Insert tabs"
+msgstr "Infoga tabbar"
+
+msgid "Insert &spaces"
+msgstr "Infoga mellanslag"
+
+msgid "&Rendering mode:"
+msgstr "Renderingsmod:"
+
+msgid "&Automatic rescan"
+msgstr "Automatisk omskanning"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Kopieringsnoggrannhet för valda skillnader:"
+
+msgid "Line Difference Coloring"
+msgstr "Radskillnadsfärger"
+
+msgid "View line differences"
+msgstr "Visa radskillnader"
+
+msgid "&Character-level"
+msgstr "Teckennivå"
+
+msgid "&Word-level:"
+msgstr "Ordnivå:"
+
+msgid "W&ord break characters:"
+msgstr "Ordbrytningstecken:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge tillåter att vissa dialogrutor döljs. Klicka på knappen Återställ för att göra samtliga dialoger synliga igen."
+
+msgid "Reset"
+msgstr "Återställ"
+
 msgid "Patch Generator"
 msgstr "Patchgenerator"
 
@@ -2099,111 +2213,6 @@ msgstr "Skillnad"
 msgid "&Go to"
 msgstr "Gå till"
 
-msgid "Compare"
-msgstr "Jämför"
-
-msgid "Whitespaces"
-msgstr "Blankutrymme"
-
-msgid "&Compare"
-msgstr "Jämför"
-
-msgid "&Ignore change"
-msgstr "Ignorera skillnader"
-
-msgid "I&gnore all"
-msgstr "Ignorera samtliga"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorera tomma rader"
-
-msgid "Ignore &case"
-msgstr "Ignorera skillnader i VERSALER och gemener"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "Ignorera radslutsskillnader (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "Ignorera nummer"
-
-msgid "Ignore codepage &differences"
-msgstr "Ignorera kodnings-skillnader"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignorera kommentarskillnader"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "Ignorera saknat avslutande radslut"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "Aktivera detektering av flyttade block"
-
-msgid "Align &similar lines"
-msgstr "Injustera likartade rader"
-
-msgid "Diff &algorithm:"
-msgstr "Jämförelsealgoritm:"
-
-msgid "Enable indent &heuristic"
-msgstr "Aktivera indragsstöd"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Framhäv inte ignorerade skillnader"
-
-msgid "Editor"
-msgstr "Redigerare"
-
-msgid "&Highlight syntax"
-msgstr "Framhäv syntax"
-
-msgid "&Preserve original EOL"
-msgstr "Bevara ursprungliga tecken för radslut (EOL)"
-
-msgid "Tabs"
-msgstr "Flikar"
-
-msgid "&Tab size:"
-msgstr "Tabbstorlek:"
-
-msgid "&Insert tabs"
-msgstr "Infoga tabbar"
-
-msgid "Insert &spaces"
-msgstr "Infoga mellanslag"
-
-msgid "&Rendering mode:"
-msgstr "Renderingsmod:"
-
-msgid "&Automatic rescan"
-msgstr "Automatisk omskanning"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "Kopieringsnoggrannhet för valda skillnader:"
-
-msgid "Line Difference Coloring"
-msgstr "Radskillnadsfärger"
-
-msgid "View line differences"
-msgstr "Visa radskillnader"
-
-msgid "&Character-level"
-msgstr "Teckennivå"
-
-msgid "&Word-level:"
-msgstr "Ordnivå:"
-
-msgid "W&ord break characters:"
-msgstr "Ordbrytningstecken:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge tillåter att vissa dialogrutor döljs. Klicka på knappen Återställ för att göra samtliga dialoger synliga igen."
-
-msgid "Reset"
-msgstr "Återställ"
-
 msgid "File Filters"
 msgstr "Filfilter"
 
@@ -2243,6 +2252,50 @@ msgstr "Höger sida:"
 msgid "Expression:"
 msgstr "Uttryck:"
 
+msgid "Codepage"
+msgstr "Teckenkodning"
+
+msgid "Default Codepage"
+msgstr "Förvald teckenkodning"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Ange förvald teckenkodning att använda när icke-Unicode filer öppnas:"
+
+msgid "System codepage"
+msgstr "Systemets teckenkodning"
+
+msgid "According to WinMerge User Interface"
+msgstr "Enligt WinMerges användargränssnitt"
+
+msgid "Custom codepage:"
+msgstr "Anpassad teckenkodning:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Detektera teckenkodning för: .html, .rc, .xml\n"
+"(Omstart av WinMerge krävs)"
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Detektera teckenkodning för textfiler med mlang.dll\n"
+"(Omstart av WinMerge krävs)"
+
+msgid "Archive Support"
+msgstr "Stöf för arkiv"
+
+msgid "&Enable archive file support"
+msgstr "Aktivera stöd för arkiv"
+
+msgid "&Detect archive type from file signature"
+msgstr "Detektera filtyp från filsignatur"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Objekt sparade till eller återskapade från projektfilen:"
+
 msgid "Save Modified Files?"
 msgstr "Spara ändrade filer?"
 
@@ -2276,47 +2329,6 @@ msgstr "Ignorera ändringar"
 msgid "Disca&rd All"
 msgstr "Ignorera allt"
 
-msgid "Codepage"
-msgstr "Teckenkodning"
-
-msgid "Default Codepage"
-msgstr "Förvald teckenkodning"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Ange förvald teckenkodning att använda när icke-Unicode filer öppnas:"
-
-msgid "System codepage"
-msgstr "Systemets teckenkodning"
-
-msgid "According to WinMerge User Interface"
-msgstr "Enligt WinMerges användargränssnitt"
-
-msgid "Custom codepage:"
-msgstr "Anpassad teckenkodning:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Detektera teckenkodning för: .html, .rc, .xml\n"
-"(Omstart av WinMerge krävs)"
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Detektera teckenkodning för textfiler med mlang.dll\n"
-"(Omstart av WinMerge krävs)"
-
-msgid "Options"
-msgstr "Alternativ"
-
-msgid "Import..."
-msgstr "Importera..."
-
-msgid "Export..."
-msgstr "Exportera..."
-
 msgid "Folder Compare Report"
 msgstr "Rapport för katalogjämförelse"
 
@@ -2340,18 +2352,6 @@ msgstr "Delat filter (för alla användare på denna dator)"
 
 msgid "Private Filter (current user only)"
 msgstr "Privat filter (bara för den aktuella användaren)"
-
-msgid "Archive Support"
-msgstr "Stöf för arkiv"
-
-msgid "&Enable archive file support"
-msgstr "Aktivera stöd för arkiv"
-
-msgid "&Detect archive type from file signature"
-msgstr "Detektera filtyp från filsignatur"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Objekt sparade till eller återskapade från projektfilen:"
 
 msgid "Compare Statistics"
 msgstr "Jämför statistik"

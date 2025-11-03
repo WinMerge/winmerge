@@ -1671,48 +1671,6 @@ msgstr "Yardım"
 msgid "&Options..."
 msgstr "&Ayarlar..."
 
-msgid "General"
-msgstr "Genel"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Otomatik olarak ilk &farka gidilsin"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Otomatik olarak ilk satır arası &farka gidilsin"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "'ESC' tuşu pencereleri &kapatsın:"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "'&Aç' penceresindeki yollar doğrulansın"
-
-msgid "Single instance mode:"
-msgstr "Tek kopya kipi:"
-
-msgid "As&k when closing multiple windows"
-msgstr "&Birden fazla pencere kapatılıyorsa onay istensin"
-
-msgid "&Preserve file time in file compare"
-msgstr "Karşılaştırmada &dosya zamanı korunsun"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "\"Dosya veya klasör seç\" penceresini açılışta göster"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "\"Dosya veya klasör seç\" penceresini Karşılaştır düğmesi ile kapat"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Aç &penceresi otomatik olarak doldurulsun:"
-
-msgid "Auto-&reload modified files:"
-msgstr "Değiştirilen dosyalar &otomatik yenilensin:"
-
-msgid "Language:"
-msgstr "Dil:"
-
-msgid "Defaults"
-msgstr "Varsayılanlar"
-
 msgid "Find"
 msgstr "Bul"
 
@@ -1818,6 +1776,57 @@ msgstr "Ekle"
 
 msgid "Clear"
 msgstr "Temizle"
+
+msgid "Options"
+msgstr "Ayarlar"
+
+msgid "Import..."
+msgstr "İçe aktar..."
+
+msgid "Export..."
+msgstr "Dışa aktar..."
+
+msgid "General"
+msgstr "Genel"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Otomatik olarak ilk &farka gidilsin"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Otomatik olarak ilk satır arası &farka gidilsin"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "'ESC' tuşu pencereleri &kapatsın:"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "'&Aç' penceresindeki yollar doğrulansın"
+
+msgid "Single instance mode:"
+msgstr "Tek kopya kipi:"
+
+msgid "As&k when closing multiple windows"
+msgstr "&Birden fazla pencere kapatılıyorsa onay istensin"
+
+msgid "&Preserve file time in file compare"
+msgstr "Karşılaştırmada &dosya zamanı korunsun"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "\"Dosya veya klasör seç\" penceresini açılışta göster"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "\"Dosya veya klasör seç\" penceresini Karşılaştır düğmesi ile kapat"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Aç &penceresi otomatik olarak doldurulsun:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Değiştirilen dosyalar &otomatik yenilensin:"
+
+msgid "Language:"
+msgstr "Dil:"
+
+msgid "Defaults"
+msgstr "Varsayılanlar"
 
 msgid "Colors"
 msgstr "Renkler"
@@ -1980,6 +1989,115 @@ msgstr "Ö&zel klasör:"
 msgid "Br&owse..."
 msgstr "Göz a&t..."
 
+msgid "Compare"
+msgstr "Karşılaştırma"
+
+msgid "Whitespaces"
+msgstr "Beyaz boşluklar"
+
+msgid "&Compare"
+msgstr "&Karşılaştırılsın"
+
+msgid "&Ignore change"
+msgstr "&Değişiklik yok sayılsın"
+
+msgid "I&gnore all"
+msgstr "Tümü &yok sayılsın"
+
+msgid "Ignore blan&k lines"
+msgstr "Boş satırlar yo&k sayılsın"
+
+msgid "Ignore &case"
+msgstr "BÜYÜK/küçük &harf ayrımı yapılmasın"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "EOL farklılıklarını göz a&rdı et (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "&Sayıları yok say"
+
+msgid "Ignore codepage &differences"
+msgstr "Kod sayfası &farklılıklarını göz ardı et"
+
+msgid "Ignore c&omment differences"
+msgstr "Yo&rum farklılıkları yok sayılsın"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "&Sondaki eksik satır sonu yok sayılsın"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Satır &sonlarını yok say (boşluk olarak ele al)"
+
+msgid "E&nable moved block detection"
+msgstr "Taşı&nmış blok algılaması kullanılsın"
+
+msgid "Align &similar lines"
+msgstr "&Benzer satırlar hizalansın"
+
+msgid "Diff &algorithm:"
+msgstr "&Fark algortiması:"
+
+msgid "Enable indent &heuristic"
+msgstr "&Sezgisel girinti kullanılsın"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Yok sayılan farkların vurguları tamamen kaldırılsın"
+
+msgid "Editor"
+msgstr "Düzenleyici"
+
+msgid "&Highlight syntax"
+msgstr "Söz dizimi &vurgulansın"
+
+msgid "&Preserve original EOL"
+msgstr "Ö&zgün satır sonu karakterleri korunsun"
+
+msgid "Tabs"
+msgstr "Sekmeler"
+
+msgid "&Tab size:"
+msgstr "&Sekme aralığı:"
+
+msgid "&Insert tabs"
+msgstr "Sekme &olarak"
+
+msgid "Insert &spaces"
+msgstr "&Boşluk olarak"
+
+msgid "&Rendering mode:"
+msgstr "Gö&rüntüleme Kipi:"
+
+msgid "&Automatic rescan"
+msgstr "Otomatik olarak yeniden t&aransın"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Seçilmiş &farkların kopyalama düzeyi:"
+
+msgid "Line Difference Coloring"
+msgstr "Satır farklılıkları renklendirilsin"
+
+msgid "View line differences"
+msgstr "Satır farklılıkları görüntüleme düzeyi"
+
+msgid "&Character-level"
+msgstr "&Karakter düzeyinde"
+
+msgid "&Word-level:"
+msgstr "&Sözcük düzeyinde:"
+
+msgid "W&ord break characters:"
+msgstr "&Sözcük kesme karakterleri:"
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to make all messages "
+"visible again."
+msgstr ""
+"WinMerge sık karşılaşılan iletilerin gizlenmesine izin verir. Tüm iletileri "
+"yeniden görünür yapmak için Sıfırla düğmesine tıklayın."
+
+msgid "Reset"
+msgstr "Sıfırla"
+
 msgid "Patch Generator"
 msgstr "Yama oluşturucu"
 
@@ -2103,115 +2221,6 @@ msgstr "&Farklılık"
 msgid "&Go to"
 msgstr "&Git"
 
-msgid "Compare"
-msgstr "Karşılaştırma"
-
-msgid "Whitespaces"
-msgstr "Beyaz boşluklar"
-
-msgid "&Compare"
-msgstr "&Karşılaştırılsın"
-
-msgid "&Ignore change"
-msgstr "&Değişiklik yok sayılsın"
-
-msgid "I&gnore all"
-msgstr "Tümü &yok sayılsın"
-
-msgid "Ignore blan&k lines"
-msgstr "Boş satırlar yo&k sayılsın"
-
-msgid "Ignore &case"
-msgstr "BÜYÜK/küçük &harf ayrımı yapılmasın"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "EOL farklılıklarını göz a&rdı et (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "&Sayıları yok say"
-
-msgid "Ignore codepage &differences"
-msgstr "Kod sayfası &farklılıklarını göz ardı et"
-
-msgid "Ignore c&omment differences"
-msgstr "Yo&rum farklılıkları yok sayılsın"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "&Sondaki eksik satır sonu yok sayılsın"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "Satır &sonlarını yok say (boşluk olarak ele al)"
-
-msgid "E&nable moved block detection"
-msgstr "Taşı&nmış blok algılaması kullanılsın"
-
-msgid "Align &similar lines"
-msgstr "&Benzer satırlar hizalansın"
-
-msgid "Diff &algorithm:"
-msgstr "&Fark algortiması:"
-
-msgid "Enable indent &heuristic"
-msgstr "&Sezgisel girinti kullanılsın"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Yok sayılan farkların vurguları tamamen kaldırılsın"
-
-msgid "Editor"
-msgstr "Düzenleyici"
-
-msgid "&Highlight syntax"
-msgstr "Söz dizimi &vurgulansın"
-
-msgid "&Preserve original EOL"
-msgstr "Ö&zgün satır sonu karakterleri korunsun"
-
-msgid "Tabs"
-msgstr "Sekmeler"
-
-msgid "&Tab size:"
-msgstr "&Sekme aralığı:"
-
-msgid "&Insert tabs"
-msgstr "Sekme &olarak"
-
-msgid "Insert &spaces"
-msgstr "&Boşluk olarak"
-
-msgid "&Rendering mode:"
-msgstr "Gö&rüntüleme Kipi:"
-
-msgid "&Automatic rescan"
-msgstr "Otomatik olarak yeniden t&aransın"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "Seçilmiş &farkların kopyalama düzeyi:"
-
-msgid "Line Difference Coloring"
-msgstr "Satır farklılıkları renklendirilsin"
-
-msgid "View line differences"
-msgstr "Satır farklılıkları görüntüleme düzeyi"
-
-msgid "&Character-level"
-msgstr "&Karakter düzeyinde"
-
-msgid "&Word-level:"
-msgstr "&Sözcük düzeyinde:"
-
-msgid "W&ord break characters:"
-msgstr "&Sözcük kesme karakterleri:"
-
-msgid ""
-"Some messages can be hidden by the user. Press Reset to make all messages "
-"visible again."
-msgstr ""
-"WinMerge sık karşılaşılan iletilerin gizlenmesine izin verir. Tüm iletileri "
-"yeniden görünür yapmak için Sıfırla düğmesine tıklayın."
-
-msgid "Reset"
-msgstr "Sıfırla"
-
 msgid "File Filters"
 msgstr "Dosya süzgeçleri"
 
@@ -2251,6 +2260,50 @@ msgstr "&Sağ taraf:"
 msgid "Expression:"
 msgstr "İfade:"
 
+msgid "Codepage"
+msgstr "Kod sayfası"
+
+msgid "Default Codepage"
+msgstr "Varsayılan kod sayfası"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Unikod olmayan dosyalar için kullanılacak kod sayfası:"
+
+msgid "System codepage"
+msgstr "Sistem kod sayfası"
+
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge kullanıcı arayüzü kod sayfası"
+
+msgid "Custom codepage:"
+msgstr "Özel kod sayfası:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+".html, .rc, .xml dosyalarının kod sayfası bilgisi algılansın \n"
+"Uygulamanın yeniden başlatılması gerekir."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Metin dosyalarının kod sayfası mlang.dll ile algılansın\n"
+"Uygulamanın yeniden başlatılması gerekir."
+
+msgid "Archive Support"
+msgstr "Sıkıştırma desteği"
+
+msgid "&Enable archive file support"
+msgstr "&Sıkıştırılmış dosya desteği kullanılsın"
+
+msgid "&Detect archive type from file signature"
+msgstr "&Arşiv türü dosya imzasından belirlensin"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Bir proje dosyasındaki ögeler kaydedildi ya da geri yüklendi:"
+
 msgid "Save Modified Files?"
 msgstr "Dosya değişiklikleri kaydedilsin mi?"
 
@@ -2284,47 +2337,6 @@ msgstr "Değişiklikleri &yok say"
 msgid "Disca&rd All"
 msgstr "&Tümünü yok say"
 
-msgid "Codepage"
-msgstr "Kod sayfası"
-
-msgid "Default Codepage"
-msgstr "Varsayılan kod sayfası"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Unikod olmayan dosyalar için kullanılacak kod sayfası:"
-
-msgid "System codepage"
-msgstr "Sistem kod sayfası"
-
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge kullanıcı arayüzü kod sayfası"
-
-msgid "Custom codepage:"
-msgstr "Özel kod sayfası:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-".html, .rc, .xml dosyalarının kod sayfası bilgisi algılansın \n"
-"Uygulamanın yeniden başlatılması gerekir."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Metin dosyalarının kod sayfası mlang.dll ile algılansın\n"
-"Uygulamanın yeniden başlatılması gerekir."
-
-msgid "Options"
-msgstr "Ayarlar"
-
-msgid "Import..."
-msgstr "İçe aktar..."
-
-msgid "Export..."
-msgstr "Dışa aktar..."
-
 msgid "Folder Compare Report"
 msgstr "Klasör Karşılaştırma Raporu"
 
@@ -2348,18 +2360,6 @@ msgstr "Ortak süzgeç (bilgisayardaki tüm kullanıcılar için)"
 
 msgid "Private Filter (current user only)"
 msgstr "Özel süzgeç (yalnızca geçerli kullanıcı için)"
-
-msgid "Archive Support"
-msgstr "Sıkıştırma desteği"
-
-msgid "&Enable archive file support"
-msgstr "&Sıkıştırılmış dosya desteği kullanılsın"
-
-msgid "&Detect archive type from file signature"
-msgstr "&Arşiv türü dosya imzasından belirlensin"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Bir proje dosyasındaki ögeler kaydedildi ya da geri yüklendi:"
 
 msgid "Compare Statistics"
 msgstr "Karşılaştırma istatistikleri"

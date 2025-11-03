@@ -1923,57 +1923,6 @@ msgid "&Options..."
 msgstr "&Beállítások..."
 
 #, c-format
-msgid "General"
-msgstr "Általános"
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "Automatikus ugrás az első eltérésre"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Automatikus ugrás az első soron belüli különbséghez"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Ablakok bezárása az '&Esc' billentyűvel:"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Automatikus elérési út ellenőrzés a Megnyitás ablakban"
-
-msgid "Single instance mode:"
-msgstr "Egypéldányos mód:"
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "Rá&kérdezés több ablak bezárásakor"
-
-#, c-format
-msgid "&Preserve file time in file compare"
-msgstr "Fájl idők megőrzése összehasonlításkor"
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "\"Fájlok vagy könyvtárak választása\" ablak induláskor"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "\"Fájlok vagy könyvtárak választása\" ablak bezárása az Összehasonlít gombbal"
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "Automatikus kiegészítés fájl megnyitásánál:"
-
-msgid "Auto-&reload modified files:"
-msgstr "Módosított fájlok automatikus újratöltése:"
-
-#, c-format
-msgid "Language:"
-msgstr "Nyelv:"
-
-#, c-format
-msgid "Defaults"
-msgstr "Alaphelyzetbe"
-
-#, c-format
 msgid "Find"
 msgstr "Keresés"
 
@@ -2101,6 +2050,69 @@ msgstr "Hozzáadás"
 
 msgid "Clear"
 msgstr "Törlés"
+
+#, c-format
+msgid "Options"
+msgstr "Opciók"
+
+#, c-format
+msgid "Import..."
+msgstr "Importálás"
+
+#, c-format
+msgid "Export..."
+msgstr "Exportálás"
+
+#, c-format
+msgid "General"
+msgstr "Általános"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "Automatikus ugrás az első eltérésre"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Automatikus ugrás az első soron belüli különbséghez"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Ablakok bezárása az '&Esc' billentyűvel:"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Automatikus elérési út ellenőrzés a Megnyitás ablakban"
+
+msgid "Single instance mode:"
+msgstr "Egypéldányos mód:"
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "Rá&kérdezés több ablak bezárásakor"
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "Fájl idők megőrzése összehasonlításkor"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "\"Fájlok vagy könyvtárak választása\" ablak induláskor"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "\"Fájlok vagy könyvtárak választása\" ablak bezárása az Összehasonlít gombbal"
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "Automatikus kiegészítés fájl megnyitásánál:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Módosított fájlok automatikus újratöltése:"
+
+#, c-format
+msgid "Language:"
+msgstr "Nyelv:"
+
+#, c-format
+msgid "Defaults"
+msgstr "Alaphelyzetbe"
 
 #, c-format
 msgid "Colors"
@@ -2303,6 +2315,131 @@ msgid "Br&owse..."
 msgstr "T&allózás..."
 
 #, c-format
+msgid "Compare"
+msgstr "Összehasonlít"
+
+#, c-format
+msgid "Whitespaces"
+msgstr "Szóközök"
+
+#, c-format
+msgid "&Compare"
+msgstr "&Összehasonlít"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "&Változtatás mellőzése"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "Összes mellőzése"
+
+msgid "Ignore blan&k lines"
+msgstr "Üres sorok mellőzése"
+
+msgid "Ignore &case"
+msgstr "&Kis-nagybetű különbségek mellőzése"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "Sorvégzáró különbségek &figyelmen kívül hagyása (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "Számok mellőzése"
+
+msgid "Ignore codepage &differences"
+msgstr "Kódtábla különbségek mellőzése"
+
+msgid "Ignore c&omment differences"
+msgstr "Megjegyzés különbségek mellőzése"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "&Hiányzó sorvégzáró figyelmen kívül hagyása"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "&Sortörések figyelmen kívül hagyása (szóközként kezelés)"
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "Mozgatott &blokk észlelés bekapcsolása"
+
+msgid "Align &similar lines"
+msgstr "Hasonló sorok igazítása"
+
+msgid "Diff &algorithm:"
+msgstr "Különbségkereső algoritmus:"
+
+msgid "Enable indent &heuristic"
+msgstr "Heurisztika engedélyezése"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Ne emelje ki a figyelmen kívül hagyott különbségeket"
+
+#, c-format
+msgid "Editor"
+msgstr "Szerkesztő"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "&Szintaxis kiemelés"
+
+#, c-format
+msgid "&Preserve original EOL"
+msgstr "&Eredeti sorvég karakterek megőrzése"
+
+#, c-format
+msgid "Tabs"
+msgstr "Tabulátorok"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "Tabulátor mérete:"
+
+#, c-format
+msgid "&Insert tabs"
+msgstr "&Tabulátorok használata"
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "&Szóközök használata"
+
+msgid "&Rendering mode:"
+msgstr "Renderelési mód:"
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&Automatikus újraolvasás"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Kiválasztott eltérések &részletességének másolása:"
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Eltérő sorok színezése"
+
+#, c-format
+msgid "View line differences"
+msgstr "Sorok eltérésének mutatása"
+
+#, c-format
+msgid "&Character-level"
+msgstr "Karakter szintű"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "Szóköz, írásjel szintű:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr "Szótörés karakterek:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
+
+#, c-format
+msgid "Reset"
+msgstr "Visszaállítás"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Patch Generátor"
 
@@ -2451,131 +2588,6 @@ msgstr "&Eltérésre"
 msgid "&Go to"
 msgstr "&Ugrás"
 
-#, c-format
-msgid "Compare"
-msgstr "Összehasonlít"
-
-#, c-format
-msgid "Whitespaces"
-msgstr "Szóközök"
-
-#, c-format
-msgid "&Compare"
-msgstr "&Összehasonlít"
-
-#, c-format
-msgid "&Ignore change"
-msgstr "&Változtatás mellőzése"
-
-#, c-format
-msgid "I&gnore all"
-msgstr "Összes mellőzése"
-
-msgid "Ignore blan&k lines"
-msgstr "Üres sorok mellőzése"
-
-msgid "Ignore &case"
-msgstr "&Kis-nagybetű különbségek mellőzése"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "Sorvégzáró különbségek &figyelmen kívül hagyása (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "Számok mellőzése"
-
-msgid "Ignore codepage &differences"
-msgstr "Kódtábla különbségek mellőzése"
-
-msgid "Ignore c&omment differences"
-msgstr "Megjegyzés különbségek mellőzése"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "&Hiányzó sorvégzáró figyelmen kívül hagyása"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "&Sortörések figyelmen kívül hagyása (szóközként kezelés)"
-
-#, c-format
-msgid "E&nable moved block detection"
-msgstr "Mozgatott &blokk észlelés bekapcsolása"
-
-msgid "Align &similar lines"
-msgstr "Hasonló sorok igazítása"
-
-msgid "Diff &algorithm:"
-msgstr "Különbségkereső algoritmus:"
-
-msgid "Enable indent &heuristic"
-msgstr "Heurisztika engedélyezése"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Ne emelje ki a figyelmen kívül hagyott különbségeket"
-
-#, c-format
-msgid "Editor"
-msgstr "Szerkesztő"
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "&Szintaxis kiemelés"
-
-#, c-format
-msgid "&Preserve original EOL"
-msgstr "&Eredeti sorvég karakterek megőrzése"
-
-#, c-format
-msgid "Tabs"
-msgstr "Tabulátorok"
-
-#, c-format
-msgid "&Tab size:"
-msgstr "Tabulátor mérete:"
-
-#, c-format
-msgid "&Insert tabs"
-msgstr "&Tabulátorok használata"
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "&Szóközök használata"
-
-msgid "&Rendering mode:"
-msgstr "Renderelési mód:"
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "&Automatikus újraolvasás"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "Kiválasztott eltérések &részletességének másolása:"
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr "Eltérő sorok színezése"
-
-#, c-format
-msgid "View line differences"
-msgstr "Sorok eltérésének mutatása"
-
-#, c-format
-msgid "&Character-level"
-msgstr "Karakter szintű"
-
-#, c-format
-msgid "&Word-level:"
-msgstr "Szóköz, írásjel szintű:"
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr "Szótörés karakterek:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
-
-#, c-format
-msgid "Reset"
-msgstr "Visszaállítás"
-
 msgid "File Filters"
 msgstr "Fájlszűrők"
 
@@ -2618,6 +2630,59 @@ msgstr "&Jobbkezes oldal:"
 
 msgid "Expression:"
 msgstr "Kifejezés:"
+
+#, c-format
+msgid "Codepage"
+msgstr "Kódlap"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Alapértelmezett kódlap"
+
+#, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Válaszd ki az alapértelmezett kódlapot a nem-Unicode fájlokhoz:"
+
+#, c-format
+msgid "System codepage"
+msgstr "Rendszer kódlap"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "A Winmerge felhasználói felületéhez igazodva"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Egyéni kódlap:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml\n"
+"A program újraindítása szükséges."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Kódlap detektálása mlang.dll-t használó szövegfájlnál\n"
+"A program újraindítása szükséges."
+
+#, c-format
+msgid "Archive Support"
+msgstr "Archívum támogatás"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "Archív fájlok támogatásának &engedélyezése"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "Archív fájl típusának megállapítása a fájl &szignatúrája alapján"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "A projektfájlba mentett vagy onnan visszaállított elemek:"
 
 #, c-format
 msgid "Save Modified Files?"
@@ -2664,56 +2729,6 @@ msgid "Disca&rd All"
 msgstr "Összes elvetése"
 
 #, c-format
-msgid "Codepage"
-msgstr "Kódlap"
-
-#, c-format
-msgid "Default Codepage"
-msgstr "Alapértelmezett kódlap"
-
-#, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Válaszd ki az alapértelmezett kódlapot a nem-Unicode fájlokhoz:"
-
-#, c-format
-msgid "System codepage"
-msgstr "Rendszer kódlap"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "A Winmerge felhasználói felületéhez igazodva"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Egyéni kódlap:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Kódlap információ detektálása ezen fájloknál: .html, .rc, .xml\n"
-"A program újraindítása szükséges."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Kódlap detektálása mlang.dll-t használó szövegfájlnál\n"
-"A program újraindítása szükséges."
-
-#, c-format
-msgid "Options"
-msgstr "Opciók"
-
-#, c-format
-msgid "Import..."
-msgstr "Importálás"
-
-#, c-format
-msgid "Export..."
-msgstr "Exportálás"
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Könyvtár összehasonítási jelentés"
 
@@ -2744,21 +2759,6 @@ msgstr "Megosztott szűrő (a gép minden felhasználójának)"
 #, c-format
 msgid "Private Filter (current user only)"
 msgstr "Saját szűrő (csak a jelenlegi felhasználónak)"
-
-#, c-format
-msgid "Archive Support"
-msgstr "Archívum támogatás"
-
-#, c-format
-msgid "&Enable archive file support"
-msgstr "Archív fájlok támogatásának &engedélyezése"
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "Archív fájl típusának megállapítása a fájl &szignatúrája alapján"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "A projektfájlba mentett vagy onnan visszaállított elemek:"
 
 #, c-format
 msgid "Compare Statistics"

@@ -1924,57 +1924,6 @@ msgid "&Options..."
 msgstr "&Aukerak..."
 
 #, c-format
-msgid "General"
-msgstr "Orokorra"
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "Berezgaitasunez &irristatu lehen ezberdintasunera"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr ""
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Itxi leihoak 'Es&c'-rekin:"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Berezgaitasunez egiaztatu helburuak Ireki-elkarrizketan"
-
-msgid "Single instance mode:"
-msgstr ""
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "Gal&detu leiho anitz isterakoan"
-
-#, c-format
-msgid "&Preserve file time in file compare"
-msgstr "&Heutsi agiri denborari agiri alderaketan"
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Erakutsi \"Hau&tatu agiriak edo Agiritegiak\" Elkarrizk. Hasterakoan"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "Ireki-elkarrizketa Berez-&Osaketa:"
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-#, c-format
-msgid "Language:"
-msgstr ""
-
-#, c-format
-msgid "Defaults"
-msgstr "Berezkoak"
-
-#, c-format
 msgid "Find"
 msgstr "Bilatu"
 
@@ -2102,6 +2051,69 @@ msgstr ""
 
 msgid "Clear"
 msgstr ""
+
+#, c-format
+msgid "Options"
+msgstr "Aukerak"
+
+#, c-format
+msgid "Import..."
+msgstr "Inportatu"
+
+#, c-format
+msgid "Export..."
+msgstr "Esportatu..."
+
+#, c-format
+msgid "General"
+msgstr "Orokorra"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "Berezgaitasunez &irristatu lehen ezberdintasunera"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Itxi leihoak 'Es&c'-rekin:"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Berezgaitasunez egiaztatu helburuak Ireki-elkarrizketan"
+
+msgid "Single instance mode:"
+msgstr ""
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "Gal&detu leiho anitz isterakoan"
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "&Heutsi agiri denborari agiri alderaketan"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Erakutsi \"Hau&tatu agiriak edo Agiritegiak\" Elkarrizk. Hasterakoan"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "Ireki-elkarrizketa Berez-&Osaketa:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+#, c-format
+msgid "Language:"
+msgstr ""
+
+#, c-format
+msgid "Defaults"
+msgstr "Berezkoak"
 
 #, c-format
 msgid "Colors"
@@ -2304,6 +2316,130 @@ msgid "Br&owse..."
 msgstr "Bilat&u"
 
 #, c-format
+msgid "Compare"
+msgstr "Alderatu"
+
+msgid "Whitespaces"
+msgstr "&Zurigunea"
+
+#, c-format
+msgid "&Compare"
+msgstr "Al&deratu"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "&Ezikusi aldaketa"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "E&zikusi denak"
+
+msgid "Ignore blan&k lines"
+msgstr "Ezikusi &lerro zuriak"
+
+msgid "Ignore &case"
+msgstr "Ezikusi &kasua"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "Gaitu bloke &mugitu atzematea"
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+#, c-format
+msgid "Editor"
+msgstr "Editatzailea"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "&Nabarmendu joskera"
+
+#, c-format
+msgid "&Preserve original EOL"
+msgstr "&Heutsi jatorrizko EOL hizkiei"
+
+#, c-format
+msgid "Tabs"
+msgstr "Fitxak"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "Fit&xa neurria:"
+
+#, c-format
+msgid "&Insert tabs"
+msgstr "Sartu &Fitxak"
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "Sartu &Tarteak"
+
+msgid "&Rendering mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&Berezgaitasunezko birmihaketa"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Lerro Ezberdintasuna Margotzen"
+
+#, c-format
+msgid "View line differences"
+msgstr "&Ikusi lerro ezberdintasunak"
+
+#, c-format
+msgid "&Character-level"
+msgstr "Hiz&ki maila"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "Hit&z maila:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr ""
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMergek mezu-kutxatila arrunt batzuk ezkutatzea ahalbidetzen du. Sakatu Birrezarri botoia mezu-kutxatila guztiak berriro ere ikusgarri egiteko."
+
+#, c-format
+msgid "Reset"
+msgstr "Birrezarri"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Eranskin Sortzailea"
 
@@ -2452,130 +2588,6 @@ msgstr "&Ezberdintasuna"
 msgid "&Go to"
 msgstr "&Joan Hona"
 
-#, c-format
-msgid "Compare"
-msgstr "Alderatu"
-
-msgid "Whitespaces"
-msgstr "&Zurigunea"
-
-#, c-format
-msgid "&Compare"
-msgstr "Al&deratu"
-
-#, c-format
-msgid "&Ignore change"
-msgstr "&Ezikusi aldaketa"
-
-#, c-format
-msgid "I&gnore all"
-msgstr "E&zikusi denak"
-
-msgid "Ignore blan&k lines"
-msgstr "Ezikusi &lerro zuriak"
-
-msgid "Ignore &case"
-msgstr "Ezikusi &kasua"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr ""
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr ""
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-#, c-format
-msgid "E&nable moved block detection"
-msgstr "Gaitu bloke &mugitu atzematea"
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr ""
-
-msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-#, c-format
-msgid "Editor"
-msgstr "Editatzailea"
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "&Nabarmendu joskera"
-
-#, c-format
-msgid "&Preserve original EOL"
-msgstr "&Heutsi jatorrizko EOL hizkiei"
-
-#, c-format
-msgid "Tabs"
-msgstr "Fitxak"
-
-#, c-format
-msgid "&Tab size:"
-msgstr "Fit&xa neurria:"
-
-#, c-format
-msgid "&Insert tabs"
-msgstr "Sartu &Fitxak"
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "Sartu &Tarteak"
-
-msgid "&Rendering mode:"
-msgstr ""
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "&Berezgaitasunezko birmihaketa"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr "Lerro Ezberdintasuna Margotzen"
-
-#, c-format
-msgid "View line differences"
-msgstr "&Ikusi lerro ezberdintasunak"
-
-#, c-format
-msgid "&Character-level"
-msgstr "Hiz&ki maila"
-
-#, c-format
-msgid "&Word-level:"
-msgstr "Hit&z maila:"
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr ""
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMergek mezu-kutxatila arrunt batzuk ezkutatzea ahalbidetzen du. Sakatu Birrezarri botoia mezu-kutxatila guztiak berriro ere ikusgarri egiteko."
-
-#, c-format
-msgid "Reset"
-msgstr "Birrezarri"
-
 msgid "File Filters"
 msgstr ""
 
@@ -2617,6 +2629,53 @@ msgid "&Right-hand side:"
 msgstr ""
 
 msgid "Expression:"
+msgstr ""
+
+#, c-format
+msgid "Codepage"
+msgstr "Kode-orrialdea"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Berezko Kode-orrialdea"
+
+#, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Hautatu berezko kode-orrialdea ez-Unicode agiriak gertatzerakoan:"
+
+#, c-format
+msgid "System codepage"
+msgstr "&Sistema kode-orrialdea"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "&WinMerge Erabiltzaile Interfazearen arabera"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "&Egile kode-orrialdea:"
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr ""
+"&Atzeman kode-orrialde argibideak agiri hauentzat:\n"
+" .html, .rc, .xml. Saioa birrabiaraztea beharrezkoa da."
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr ""
+
+#, c-format
+msgid "Archive Support"
+msgstr "Agiri Sostengua"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&Gaitu agirien agiri sostengua"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "&Atzeman agiri mota agiriaren sinaduratik"
+
+msgid "Items saved to or restored from the project file:"
 msgstr ""
 
 #, c-format
@@ -2664,50 +2723,6 @@ msgid "Disca&rd All"
 msgstr ""
 
 #, c-format
-msgid "Codepage"
-msgstr "Kode-orrialdea"
-
-#, c-format
-msgid "Default Codepage"
-msgstr "Berezko Kode-orrialdea"
-
-#, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Hautatu berezko kode-orrialdea ez-Unicode agiriak gertatzerakoan:"
-
-#, c-format
-msgid "System codepage"
-msgstr "&Sistema kode-orrialdea"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "&WinMerge Erabiltzaile Interfazearen arabera"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "&Egile kode-orrialdea:"
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr ""
-"&Atzeman kode-orrialde argibideak agiri hauentzat:\n"
-" .html, .rc, .xml. Saioa birrabiaraztea beharrezkoa da."
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
-
-#, c-format
-msgid "Options"
-msgstr "Aukerak"
-
-#, c-format
-msgid "Import..."
-msgstr "Inportatu"
-
-#, c-format
-msgid "Export..."
-msgstr "Esportatu..."
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Agiritegi Alderaketa Jakinarazpena"
 
@@ -2738,21 +2753,6 @@ msgstr "Partekatutako Iragazkia (erabiltzaile guztientzat ordenagailu honetan)"
 #, c-format
 msgid "Private Filter (current user only)"
 msgstr "Iragazki Pribatua (uneko erabiltzailearentzat bakarrik)"
-
-#, c-format
-msgid "Archive Support"
-msgstr "Agiri Sostengua"
-
-#, c-format
-msgid "&Enable archive file support"
-msgstr "&Gaitu agirien agiri sostengua"
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "&Atzeman agiri mota agiriaren sinaduratik"
-
-msgid "Items saved to or restored from the project file:"
-msgstr ""
 
 #, c-format
 msgid "Compare Statistics"

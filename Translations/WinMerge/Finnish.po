@@ -1670,48 +1670,6 @@ msgstr "Ohje"
 msgid "&Options..."
 msgstr "Asetukset..."
 
-msgid "General"
-msgstr "Yleinen"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Siirry automaattisesti ensimmäiseen eroavuuteen"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Rullaa automaattisesti en&simmäiseen rivin sisäiseen eroon"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Sulje ikkuna 'Esc':llä:"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Tarkista polut automaattisesti Avaa-valintaikkunassa"
-
-msgid "Single instance mode:"
-msgstr "Yhden instanssin tila:"
-
-msgid "As&k when closing multiple windows"
-msgstr "Kysy monikerta-ikkunoita suljettaessa"
-
-msgid "&Preserve file time in file compare"
-msgstr "Säilytä tiedostoaika tiedostovertailussa"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Näytä \"Valitse tiedostot tai kansiot\"-valintaikkuna käynnistyksessä"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-msgid "Op&en dialog Auto completion:"
-msgstr ""
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-msgid "Language:"
-msgstr "Kieli:"
-
-msgid "Defaults"
-msgstr "Oletukset"
-
 msgid "Find"
 msgstr "Etsi"
 
@@ -1817,6 +1775,57 @@ msgstr "Lisää"
 
 msgid "Clear"
 msgstr "Tyhjennä"
+
+msgid "Options"
+msgstr "Asetukset"
+
+msgid "Import..."
+msgstr "Tuo..."
+
+msgid "Export..."
+msgstr "Vie..."
+
+msgid "General"
+msgstr "Yleinen"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Siirry automaattisesti ensimmäiseen eroavuuteen"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Rullaa automaattisesti en&simmäiseen rivin sisäiseen eroon"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Sulje ikkuna 'Esc':llä:"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Tarkista polut automaattisesti Avaa-valintaikkunassa"
+
+msgid "Single instance mode:"
+msgstr "Yhden instanssin tila:"
+
+msgid "As&k when closing multiple windows"
+msgstr "Kysy monikerta-ikkunoita suljettaessa"
+
+msgid "&Preserve file time in file compare"
+msgstr "Säilytä tiedostoaika tiedostovertailussa"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Näytä \"Valitse tiedostot tai kansiot\"-valintaikkuna käynnistyksessä"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+msgid "Op&en dialog Auto completion:"
+msgstr ""
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+msgid "Language:"
+msgstr "Kieli:"
+
+msgid "Defaults"
+msgstr "Oletukset"
 
 msgid "Colors"
 msgstr "Värit"
@@ -1977,6 +1986,115 @@ msgstr "Mukautettu kansio:"
 msgid "Br&owse..."
 msgstr "Selaa..."
 
+msgid "Compare"
+msgstr "Vertaa"
+
+msgid "Whitespaces"
+msgstr "Välilyönti"
+
+msgid "&Compare"
+msgstr "Vertaa"
+
+msgid "&Ignore change"
+msgstr "Hylkää muutos"
+
+msgid "I&gnore all"
+msgstr "Hylkää kaikki"
+
+msgid "Ignore blan&k lines"
+msgstr "Ohita tyhjät rivit"
+
+msgid "Ignore &case"
+msgstr "Ohita kirjainkoko"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr "Jätä nume&rot huomiotta"
+
+msgid "Ignore codepage &differences"
+msgstr "Ohita koodisivuerot"
+
+msgid "Ignore c&omment differences"
+msgstr "Jätä k&ommenttien erot huomiotta"
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "Ota siirretyn lohkon tunnistus käyttöön"
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr "Ero&algoritmi:"
+
+msgid "Enable indent &heuristic"
+msgstr "Ota käyttöön &heuristinen sisennys"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+msgid "Editor"
+msgstr "Muokkain"
+
+msgid "&Highlight syntax"
+msgstr "Korosta syntaksi"
+
+msgid "&Preserve original EOL"
+msgstr "Säilytä alkuperäiset EOL merkit"
+
+msgid "Tabs"
+msgstr "Välilehdet"
+
+msgid "&Tab size:"
+msgstr "Välilehden koko:"
+
+msgid "&Insert tabs"
+msgstr "Lisää välilehtiä"
+
+msgid "Insert &spaces"
+msgstr "Lisää välilyöntejä"
+
+msgid "&Rendering mode:"
+msgstr "&Hahmonnustila:"
+
+msgid "&Automatic rescan"
+msgstr "Automaattinen uusi haku"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+msgid "Line Difference Coloring"
+msgstr "Rivierojen väritys"
+
+msgid "View line differences"
+msgstr "Näytä rivin erot"
+
+msgid "&Character-level"
+msgstr "Merkkitaso"
+
+msgid "&Word-level:"
+msgstr "&Sanataso:"
+
+msgid "W&ord break characters:"
+msgstr "Sanakatk&on merkit:"
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to "
+"make all messages visible again."
+msgstr ""
+"WinMerge sallii joidenkin yleisten viestiruutujen kätkemisen. Paina Palauta "
+"tehdäksesi kaikki viestiruudut uudelleen näkyviksi."
+
+msgid "Reset"
+msgstr "Palauta"
+
 msgid "Patch Generator"
 msgstr "Korjausgeneraattori"
 
@@ -2101,115 +2219,6 @@ msgstr "Erilaisuus"
 msgid "&Go to"
 msgstr "Siirry kohteeseen"
 
-msgid "Compare"
-msgstr "Vertaa"
-
-msgid "Whitespaces"
-msgstr "Välilyönti"
-
-msgid "&Compare"
-msgstr "Vertaa"
-
-msgid "&Ignore change"
-msgstr "Hylkää muutos"
-
-msgid "I&gnore all"
-msgstr "Hylkää kaikki"
-
-msgid "Ignore blan&k lines"
-msgstr "Ohita tyhjät rivit"
-
-msgid "Ignore &case"
-msgstr "Ohita kirjainkoko"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr "Jätä nume&rot huomiotta"
-
-msgid "Ignore codepage &differences"
-msgstr "Ohita koodisivuerot"
-
-msgid "Ignore c&omment differences"
-msgstr "Jätä k&ommenttien erot huomiotta"
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "Ota siirretyn lohkon tunnistus käyttöön"
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr "Ero&algoritmi:"
-
-msgid "Enable indent &heuristic"
-msgstr "Ota käyttöön &heuristinen sisennys"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-msgid "Editor"
-msgstr "Muokkain"
-
-msgid "&Highlight syntax"
-msgstr "Korosta syntaksi"
-
-msgid "&Preserve original EOL"
-msgstr "Säilytä alkuperäiset EOL merkit"
-
-msgid "Tabs"
-msgstr "Välilehdet"
-
-msgid "&Tab size:"
-msgstr "Välilehden koko:"
-
-msgid "&Insert tabs"
-msgstr "Lisää välilehtiä"
-
-msgid "Insert &spaces"
-msgstr "Lisää välilyöntejä"
-
-msgid "&Rendering mode:"
-msgstr "&Hahmonnustila:"
-
-msgid "&Automatic rescan"
-msgstr "Automaattinen uusi haku"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-msgid "Line Difference Coloring"
-msgstr "Rivierojen väritys"
-
-msgid "View line differences"
-msgstr "Näytä rivin erot"
-
-msgid "&Character-level"
-msgstr "Merkkitaso"
-
-msgid "&Word-level:"
-msgstr "&Sanataso:"
-
-msgid "W&ord break characters:"
-msgstr "Sanakatk&on merkit:"
-
-msgid ""
-"Some messages can be hidden by the user. Press Reset to "
-"make all messages visible again."
-msgstr ""
-"WinMerge sallii joidenkin yleisten viestiruutujen kätkemisen. Paina Palauta "
-"tehdäksesi kaikki viestiruudut uudelleen näkyviksi."
-
-msgid "Reset"
-msgstr "Palauta"
-
 msgid "File Filters"
 msgstr "Tiedostosuodattimet"
 
@@ -2249,6 +2258,42 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Codepage"
+msgstr "Koodisivu"
+
+msgid "Default Codepage"
+msgstr "Koodisivu (oletus)"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Valitse oletuskoodisivu ladattaessa muita kuin Unicode-tiedostoja:"
+
+msgid "System codepage"
+msgstr "Järjestelmän koodisivu"
+
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge-käyttöliittymän mukaan"
+
+msgid "Custom codepage:"
+msgstr "Mukautettu koodisivu:"
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr ""
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr ""
+
+msgid "Archive Support"
+msgstr "Arkistotuki"
+
+msgid "&Enable archive file support"
+msgstr "Käytä arkistotiedostojen tukea"
+
+msgid "&Detect archive type from file signature"
+msgstr "Tunnista arkistotyyppi tiedoston allekirjoituksesta"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Projektitiedostoon tallennetut tai siitä palautetut kohteet:"
+
 msgid "Save Modified Files?"
 msgstr "Tallennetaanko muokatut tiedostot?"
 
@@ -2282,39 +2327,6 @@ msgstr "Hylkää muutokset"
 msgid "Disca&rd All"
 msgstr "Hylkää &kaikki"
 
-msgid "Codepage"
-msgstr "Koodisivu"
-
-msgid "Default Codepage"
-msgstr "Koodisivu (oletus)"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Valitse oletuskoodisivu ladattaessa muita kuin Unicode-tiedostoja:"
-
-msgid "System codepage"
-msgstr "Järjestelmän koodisivu"
-
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge-käyttöliittymän mukaan"
-
-msgid "Custom codepage:"
-msgstr "Mukautettu koodisivu:"
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr ""
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
-
-msgid "Options"
-msgstr "Asetukset"
-
-msgid "Import..."
-msgstr "Tuo..."
-
-msgid "Export..."
-msgstr "Vie..."
-
 msgid "Folder Compare Report"
 msgstr "Kansiovertailun raportti"
 
@@ -2338,18 +2350,6 @@ msgstr "Yhteinen suodatin (kaikille tämän koneen käyttäjille)"
 
 msgid "Private Filter (current user only)"
 msgstr "Yksityinen suodatin (vain nykyiselle käyttäjälle)"
-
-msgid "Archive Support"
-msgstr "Arkistotuki"
-
-msgid "&Enable archive file support"
-msgstr "Käytä arkistotiedostojen tukea"
-
-msgid "&Detect archive type from file signature"
-msgstr "Tunnista arkistotyyppi tiedoston allekirjoituksesta"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Projektitiedostoon tallennetut tai siitä palautetut kohteet:"
 
 msgid "Compare Statistics"
 msgstr "Vertaa tilastoja"

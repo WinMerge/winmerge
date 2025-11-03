@@ -1668,48 +1668,6 @@ msgstr "עזרה"
 msgid "&Options..."
 msgstr "אפשרויות..."
 
-msgid "General"
-msgstr "כללי"
-
-msgid "Automatically &scroll to first difference"
-msgstr "גלול אוטומטית להבדל הראשון"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "גלול אוטומטית להבדל בשורה הראשונה"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "סגור חלונות עם 'Esc':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "בדוק אוטומטית נתיבים בדיאלוג פתיחה"
-
-msgid "Single instance mode:"
-msgstr "מצב מופע יחיד:"
-
-msgid "As&k when closing multiple windows"
-msgstr "שאל בעת סגירת מספר חלונות"
-
-msgid "&Preserve file time in file compare"
-msgstr "שמור זמן קובץ בהשוואת קבצים"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "הצג חלון 'בחר קבצים או תיקיות' בעת ההפעלה"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "סגור את חלון 'בחר קבצים או תיקיות' בלחיצה על כפתור השוואה"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "השלמה אוטומטית בחלון פתיחה:"
-
-msgid "Auto-&reload modified files:"
-msgstr "טען מחדש קבצים ששונו אוטומטית:"
-
-msgid "Language:"
-msgstr "שפה:"
-
-msgid "Defaults"
-msgstr "ברירות מחדל"
-
 msgid "Find"
 msgstr "חפש"
 
@@ -1811,6 +1769,57 @@ msgstr "הוסף"
 
 msgid "Clear"
 msgstr "נקה"
+
+msgid "Options"
+msgstr "אפשרויות"
+
+msgid "Import..."
+msgstr "ייבוא..."
+
+msgid "Export..."
+msgstr "ייצוא..."
+
+msgid "General"
+msgstr "כללי"
+
+msgid "Automatically &scroll to first difference"
+msgstr "גלול אוטומטית להבדל הראשון"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "גלול אוטומטית להבדל בשורה הראשונה"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "סגור חלונות עם 'Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "בדוק אוטומטית נתיבים בדיאלוג פתיחה"
+
+msgid "Single instance mode:"
+msgstr "מצב מופע יחיד:"
+
+msgid "As&k when closing multiple windows"
+msgstr "שאל בעת סגירת מספר חלונות"
+
+msgid "&Preserve file time in file compare"
+msgstr "שמור זמן קובץ בהשוואת קבצים"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "הצג חלון 'בחר קבצים או תיקיות' בעת ההפעלה"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "סגור את חלון 'בחר קבצים או תיקיות' בלחיצה על כפתור השוואה"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "השלמה אוטומטית בחלון פתיחה:"
+
+msgid "Auto-&reload modified files:"
+msgstr "טען מחדש קבצים ששונו אוטומטית:"
+
+msgid "Language:"
+msgstr "שפה:"
+
+msgid "Defaults"
+msgstr "ברירות מחדל"
 
 msgid "Colors"
 msgstr "צבעים"
@@ -1971,6 +1980,111 @@ msgstr "תיקיה מותאמת אישית:"
 msgid "Br&owse..."
 msgstr "עיון..."
 
+msgid "Compare"
+msgstr "השווה"
+
+msgid "Whitespaces"
+msgstr "רווחים"
+
+msgid "&Compare"
+msgstr "השווה"
+
+msgid "&Ignore change"
+msgstr "התעלם משינוי"
+
+msgid "I&gnore all"
+msgstr "התעלם מהכל"
+
+msgid "Ignore blan&k lines"
+msgstr "התעלם משורות ריקות"
+
+msgid "Ignore &case"
+msgstr "התעלם מרישיות"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr "התעלם ממספרים"
+
+msgid "Ignore codepage &differences"
+msgstr "התעלם מהבדלי קידוד תווים"
+
+msgid "Ignore c&omment differences"
+msgstr "התעלם מהבדלי הערות"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "התעלם מהיעדר סיום שורה"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "הפעל זיהוי בלוקים שהוזזו"
+
+msgid "Align &similar lines"
+msgstr "יישר שורות דומות"
+
+msgid "Diff &algorithm:"
+msgstr "אלגוריתם השוואה:"
+
+msgid "Enable indent &heuristic"
+msgstr "הפעל היגיון הזחה"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "בטל הדגשה לחלוטין עבור הבדלים שהתעלמו מהם"
+
+msgid "Editor"
+msgstr "עורך"
+
+msgid "&Highlight syntax"
+msgstr "הדגש תחביר"
+
+msgid "&Preserve original EOL"
+msgstr "שמור על תווי סיום שורה מקוריים"
+
+msgid "Tabs"
+msgstr "טאבים"
+
+msgid "&Tab size:"
+msgstr "גודל טאבים:"
+
+msgid "&Insert tabs"
+msgstr "הוסף טאבים"
+
+msgid "Insert &spaces"
+msgstr "הוסף רווחים"
+
+msgid "&Rendering mode:"
+msgstr "מצב עיבוד:"
+
+msgid "&Automatic rescan"
+msgstr "סריקה מחדש אוטומטית"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "רמת פירוט העתקה עבור הבדלים נבחרים:"
+
+msgid "Line Difference Coloring"
+msgstr "צביעת הבדלים בשורות"
+
+msgid "View line differences"
+msgstr "הצג הבדלים בשורות"
+
+msgid "&Character-level"
+msgstr "רמת תו"
+
+msgid "&Word-level:"
+msgstr "רמת מילה:"
+
+msgid "W&ord break characters:"
+msgstr "תווים לפיצול מילים:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge מאפשר הסתרת חלונות הודעה נפוצים. לחץ על כפתור איפוס כדי להחזיר את כל ההודעות."
+
+msgid "Reset"
+msgstr "אפס"
+
 msgid "Patch Generator"
 msgstr "יוצר טלאים"
 
@@ -2094,111 +2208,6 @@ msgstr "הבדל"
 msgid "&Go to"
 msgstr "עבור אל"
 
-msgid "Compare"
-msgstr "השווה"
-
-msgid "Whitespaces"
-msgstr "רווחים"
-
-msgid "&Compare"
-msgstr "השווה"
-
-msgid "&Ignore change"
-msgstr "התעלם משינוי"
-
-msgid "I&gnore all"
-msgstr "התעלם מהכל"
-
-msgid "Ignore blan&k lines"
-msgstr "התעלם משורות ריקות"
-
-msgid "Ignore &case"
-msgstr "התעלם מרישיות"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr "התעלם ממספרים"
-
-msgid "Ignore codepage &differences"
-msgstr "התעלם מהבדלי קידוד תווים"
-
-msgid "Ignore c&omment differences"
-msgstr "התעלם מהבדלי הערות"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "התעלם מהיעדר סיום שורה"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "הפעל זיהוי בלוקים שהוזזו"
-
-msgid "Align &similar lines"
-msgstr "יישר שורות דומות"
-
-msgid "Diff &algorithm:"
-msgstr "אלגוריתם השוואה:"
-
-msgid "Enable indent &heuristic"
-msgstr "הפעל היגיון הזחה"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "בטל הדגשה לחלוטין עבור הבדלים שהתעלמו מהם"
-
-msgid "Editor"
-msgstr "עורך"
-
-msgid "&Highlight syntax"
-msgstr "הדגש תחביר"
-
-msgid "&Preserve original EOL"
-msgstr "שמור על תווי סיום שורה מקוריים"
-
-msgid "Tabs"
-msgstr "טאבים"
-
-msgid "&Tab size:"
-msgstr "גודל טאבים:"
-
-msgid "&Insert tabs"
-msgstr "הוסף טאבים"
-
-msgid "Insert &spaces"
-msgstr "הוסף רווחים"
-
-msgid "&Rendering mode:"
-msgstr "מצב עיבוד:"
-
-msgid "&Automatic rescan"
-msgstr "סריקה מחדש אוטומטית"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "רמת פירוט העתקה עבור הבדלים נבחרים:"
-
-msgid "Line Difference Coloring"
-msgstr "צביעת הבדלים בשורות"
-
-msgid "View line differences"
-msgstr "הצג הבדלים בשורות"
-
-msgid "&Character-level"
-msgstr "רמת תו"
-
-msgid "&Word-level:"
-msgstr "רמת מילה:"
-
-msgid "W&ord break characters:"
-msgstr "תווים לפיצול מילים:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge מאפשר הסתרת חלונות הודעה נפוצים. לחץ על כפתור איפוס כדי להחזיר את כל ההודעות."
-
-msgid "Reset"
-msgstr "אפס"
-
 msgid "File Filters"
 msgstr "מסנני קבצים"
 
@@ -2238,6 +2247,50 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Codepage"
+msgstr "קידוד תווים"
+
+msgid "Default Codepage"
+msgstr "קידוד ברירת מחדל"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "בחר קידוד ברירת מחדל בעת טעינת קבצים שאינם Unicode:"
+
+msgid "System codepage"
+msgstr "קידוד מערכת"
+
+msgid "According to WinMerge User Interface"
+msgstr "בהתאם לממשק המשתמש של WinMerge"
+
+msgid "Custom codepage:"
+msgstr "קידוד מותאם אישית:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"זהה קידוד עבור סוגי קבצים אלו: .html, .rc, .xml\n"
+"נדרש להפעיל מחדש את ההפעלה."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"זהה קידוד עבור קבצי טקסט עם mlang.dll\n"
+"נדרש להפעיל מחדש את ההפעלה."
+
+msgid "Archive Support"
+msgstr "תמיכה בארכיון"
+
+msgid "&Enable archive file support"
+msgstr "הפעל תמיכה בקבצי ארכיון"
+
+msgid "&Detect archive type from file signature"
+msgstr "זהה סוג ארכיון מחתימת הקובץ"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "פריטים שנשמרו או שוחזרו מקובץ הפרויקט:"
+
 msgid "Save Modified Files?"
 msgstr "לשמור קבצים ששונו?"
 
@@ -2271,47 +2324,6 @@ msgstr "בטל שינויים"
 msgid "Disca&rd All"
 msgstr "בטל הכל"
 
-msgid "Codepage"
-msgstr "קידוד תווים"
-
-msgid "Default Codepage"
-msgstr "קידוד ברירת מחדל"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "בחר קידוד ברירת מחדל בעת טעינת קבצים שאינם Unicode:"
-
-msgid "System codepage"
-msgstr "קידוד מערכת"
-
-msgid "According to WinMerge User Interface"
-msgstr "בהתאם לממשק המשתמש של WinMerge"
-
-msgid "Custom codepage:"
-msgstr "קידוד מותאם אישית:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"זהה קידוד עבור סוגי קבצים אלו: .html, .rc, .xml\n"
-"נדרש להפעיל מחדש את ההפעלה."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"זהה קידוד עבור קבצי טקסט עם mlang.dll\n"
-"נדרש להפעיל מחדש את ההפעלה."
-
-msgid "Options"
-msgstr "אפשרויות"
-
-msgid "Import..."
-msgstr "ייבוא..."
-
-msgid "Export..."
-msgstr "ייצוא..."
-
 msgid "Folder Compare Report"
 msgstr "דוח השוואת תיקיות"
 
@@ -2335,18 +2347,6 @@ msgstr "מסנן משותף (לכל המשתמשים במחשב זה)"
 
 msgid "Private Filter (current user only)"
 msgstr "מסנן פרטי (רק עבור המשתמש הנוכחי)"
-
-msgid "Archive Support"
-msgstr "תמיכה בארכיון"
-
-msgid "&Enable archive file support"
-msgstr "הפעל תמיכה בקבצי ארכיון"
-
-msgid "&Detect archive type from file signature"
-msgstr "זהה סוג ארכיון מחתימת הקובץ"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "פריטים שנשמרו או שוחזרו מקובץ הפרויקט:"
 
 msgid "Compare Statistics"
 msgstr "סטטיסטיקות השוואה"
