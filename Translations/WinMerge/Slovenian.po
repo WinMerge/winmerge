@@ -1670,48 +1670,6 @@ msgstr "Pomoč"
 msgid "&Options..."
 msgstr "&Možnosti..."
 
-msgid "General"
-msgstr "Splošno"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Samodejno &pojdi na prvo razliko"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Samodejno se pomakni na prvo razliko v vrstici"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Zapri okna s tipko '&Esc':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Samodejno preverjaj pot v pogovornem oknu Odpri"
-
-msgid "Single instance mode:"
-msgstr "Način za en primerek:"
-
-msgid "As&k when closing multiple windows"
-msgstr "&Vprašaj pred zapiranjem več oken"
-
-msgid "&Preserve file time in file compare"
-msgstr "O&hrani čas datoteke v primerjavi datoteke"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Ob zagonu prikaži okno 'Izberi datoteke ali mape'"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Primerjaj'"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
-
-msgid "Auto-&reload modified files:"
-msgstr "Samodejno &znova naloži spremenjene datoteke:"
-
-msgid "Language:"
-msgstr "Jezik:"
-
-msgid "Defaults"
-msgstr "Privzeto"
-
 msgid "Find"
 msgstr "Najdi"
 
@@ -1813,6 +1771,57 @@ msgstr "Dodaj"
 
 msgid "Clear"
 msgstr "Počisti"
+
+msgid "Options"
+msgstr "Možnosti"
+
+msgid "Import..."
+msgstr "Uvozi..."
+
+msgid "Export..."
+msgstr "Izvozi..."
+
+msgid "General"
+msgstr "Splošno"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Samodejno &pojdi na prvo razliko"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Samodejno se pomakni na prvo razliko v vrstici"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Zapri okna s tipko '&Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Samodejno preverjaj pot v pogovornem oknu Odpri"
+
+msgid "Single instance mode:"
+msgstr "Način za en primerek:"
+
+msgid "As&k when closing multiple windows"
+msgstr "&Vprašaj pred zapiranjem več oken"
+
+msgid "&Preserve file time in file compare"
+msgstr "O&hrani čas datoteke v primerjavi datoteke"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Ob zagonu prikaži okno 'Izberi datoteke ali mape'"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Primerjaj'"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Samodejno &znova naloži spremenjene datoteke:"
+
+msgid "Language:"
+msgstr "Jezik:"
+
+msgid "Defaults"
+msgstr "Privzeto"
 
 msgid "Colors"
 msgstr "Barve"
@@ -1973,6 +1982,111 @@ msgstr "&Mapa po meri:"
 msgid "Br&owse..."
 msgstr "Prebr&skaj..."
 
+msgid "Compare"
+msgstr "Primerjaj"
+
+msgid "Whitespaces"
+msgstr "Prazen znak"
+
+msgid "&Compare"
+msgstr "Primer&jaj"
+
+msgid "&Ignore change"
+msgstr "&Prezri spremembe"
+
+msgid "I&gnore all"
+msgstr "P&rezri vse"
+
+msgid "Ignore blan&k lines"
+msgstr "Prezri prazne &vrstice"
+
+msgid "Ignore &case"
+msgstr "Prezri &velikost znakov"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr "Prezri š&tevilke"
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr "Prezri razlike v k&omentarjih"
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "Omogoči zazna&vanje premaknjenih blokov"
+
+msgid "Align &similar lines"
+msgstr "Poravnaj po&dobne črte"
+
+msgid "Diff &algorithm:"
+msgstr "Al&goritem razlik:"
+
+msgid "Enable indent &heuristic"
+msgstr "Omogoči &hevristični zamik"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Popolnoma odstrani poudarek prezrtih razlik"
+
+msgid "Editor"
+msgstr "Urejevalnik"
+
+msgid "&Highlight syntax"
+msgstr "Ozn&ači sintakso"
+
+msgid "&Preserve original EOL"
+msgstr "Ohrani izvorne znake za konec vrstice (EOL)"
+
+msgid "Tabs"
+msgstr "Tabulatorji"
+
+msgid "&Tab size:"
+msgstr "&Velikost tabulatorja:"
+
+msgid "&Insert tabs"
+msgstr "&Vstavi tabulatorje"
+
+msgid "Insert &spaces"
+msgstr "&Vstavi presledke"
+
+msgid "&Rendering mode:"
+msgstr "Način upodab&ljanja:"
+
+msgid "&Automatic rescan"
+msgstr "&Samodejni ponovni pregled"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+msgid "Line Difference Coloring"
+msgstr "Barvanje razlike v vrstici"
+
+msgid "View line differences"
+msgstr "Prikaz razlik vrstic na"
+
+msgid "&Character-level"
+msgstr "Z&nakovna raven"
+
+msgid "&Word-level:"
+msgstr "&Besedilna raven:"
+
+msgid "W&ord break characters:"
+msgstr "&Znaki za prelom besed:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
+
+msgid "Reset"
+msgstr "Ponastavi"
+
 msgid "Patch Generator"
 msgstr "Ustvarjalec popravkov"
 
@@ -2096,111 +2210,6 @@ msgstr "&Razlika"
 msgid "&Go to"
 msgstr "Pojdi &na"
 
-msgid "Compare"
-msgstr "Primerjaj"
-
-msgid "Whitespaces"
-msgstr "Prazen znak"
-
-msgid "&Compare"
-msgstr "Primer&jaj"
-
-msgid "&Ignore change"
-msgstr "&Prezri spremembe"
-
-msgid "I&gnore all"
-msgstr "P&rezri vse"
-
-msgid "Ignore blan&k lines"
-msgstr "Prezri prazne &vrstice"
-
-msgid "Ignore &case"
-msgstr "Prezri &velikost znakov"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr "Prezri š&tevilke"
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr "Prezri razlike v k&omentarjih"
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "Omogoči zazna&vanje premaknjenih blokov"
-
-msgid "Align &similar lines"
-msgstr "Poravnaj po&dobne črte"
-
-msgid "Diff &algorithm:"
-msgstr "Al&goritem razlik:"
-
-msgid "Enable indent &heuristic"
-msgstr "Omogoči &hevristični zamik"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Popolnoma odstrani poudarek prezrtih razlik"
-
-msgid "Editor"
-msgstr "Urejevalnik"
-
-msgid "&Highlight syntax"
-msgstr "Ozn&ači sintakso"
-
-msgid "&Preserve original EOL"
-msgstr "Ohrani izvorne znake za konec vrstice (EOL)"
-
-msgid "Tabs"
-msgstr "Tabulatorji"
-
-msgid "&Tab size:"
-msgstr "&Velikost tabulatorja:"
-
-msgid "&Insert tabs"
-msgstr "&Vstavi tabulatorje"
-
-msgid "Insert &spaces"
-msgstr "&Vstavi presledke"
-
-msgid "&Rendering mode:"
-msgstr "Način upodab&ljanja:"
-
-msgid "&Automatic rescan"
-msgstr "&Samodejni ponovni pregled"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-msgid "Line Difference Coloring"
-msgstr "Barvanje razlike v vrstici"
-
-msgid "View line differences"
-msgstr "Prikaz razlik vrstic na"
-
-msgid "&Character-level"
-msgstr "Z&nakovna raven"
-
-msgid "&Word-level:"
-msgstr "&Besedilna raven:"
-
-msgid "W&ord break characters:"
-msgstr "&Znaki za prelom besed:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
-
-msgid "Reset"
-msgstr "Ponastavi"
-
 msgid "File Filters"
 msgstr "Filtri datotek"
 
@@ -2240,6 +2249,50 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Codepage"
+msgstr "Kodna stran"
+
+msgid "Default Codepage"
+msgstr "Privzeta kodna stran"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Izberite privzeto dodeljeno kodno stran pri nalaganju ne-Unicode datotek:"
+
+msgid "System codepage"
+msgstr "Sistemska kodna stran"
+
+msgid "According to WinMerge User Interface"
+msgstr "Glede na uporabniški vmesnik WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Poljubna kodna stran:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Zaznaj kodno stran v teh datotekah: .html, .rc, .xml\n"
+"Zahtevan je ponovni zagon seje."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Zaznaj kodne strani besedilnih datotek z mlang.dll\n"
+"Zahtevan je ponovni zagon seje."
+
+msgid "Archive Support"
+msgstr "Podpora arhivov"
+
+msgid "&Enable archive file support"
+msgstr "Omogoči podporo &arhivskih datotek"
+
+msgid "&Detect archive type from file signature"
+msgstr "Zaznaj vrs&to arhiva iz podpisa datoteke"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Vnosi, shranjeni v datoteko projekta ali obnovljeni iz nje:"
+
 msgid "Save Modified Files?"
 msgstr "Shranim spremenjene datoteke?"
 
@@ -2273,47 +2326,6 @@ msgstr "Z&avrzi spremembe"
 msgid "Disca&rd All"
 msgstr "Zav&rzi vse"
 
-msgid "Codepage"
-msgstr "Kodna stran"
-
-msgid "Default Codepage"
-msgstr "Privzeta kodna stran"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Izberite privzeto dodeljeno kodno stran pri nalaganju ne-Unicode datotek:"
-
-msgid "System codepage"
-msgstr "Sistemska kodna stran"
-
-msgid "According to WinMerge User Interface"
-msgstr "Glede na uporabniški vmesnik WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Poljubna kodna stran:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Zaznaj kodno stran v teh datotekah: .html, .rc, .xml\n"
-"Zahtevan je ponovni zagon seje."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Zaznaj kodne strani besedilnih datotek z mlang.dll\n"
-"Zahtevan je ponovni zagon seje."
-
-msgid "Options"
-msgstr "Možnosti"
-
-msgid "Import..."
-msgstr "Uvozi..."
-
-msgid "Export..."
-msgstr "Izvozi..."
-
 msgid "Folder Compare Report"
 msgstr "Poročilo primerjanja datotek"
 
@@ -2337,18 +2349,6 @@ msgstr "Deljen filter (za vse uporabnike na tem računalniku)"
 
 msgid "Private Filter (current user only)"
 msgstr "Zasebni filter (le za trenutnega uporabnika)"
-
-msgid "Archive Support"
-msgstr "Podpora arhivov"
-
-msgid "&Enable archive file support"
-msgstr "Omogoči podporo &arhivskih datotek"
-
-msgid "&Detect archive type from file signature"
-msgstr "Zaznaj vrs&to arhiva iz podpisa datoteke"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Vnosi, shranjeni v datoteko projekta ali obnovljeni iz nje:"
 
 msgid "Compare Statistics"
 msgstr "Statistika primerjave"

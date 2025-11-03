@@ -1669,50 +1669,6 @@ msgstr "Ajutor"
 msgid "&Options..."
 msgstr "&Opțiuni..."
 
-msgid "General"
-msgstr "General"
-
-msgid "Automatically &scroll to first difference"
-msgstr "De&sfășoară automat la prima diferență"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Desfășoară automat la prima diferență în cadrul rândului"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Închide ferestrele cu tasta 'Esc':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Verifică automat căile în dialogul de deschidere"
-
-msgid "Single instance mode:"
-msgstr "Mod instanță unică:"
-
-msgid "As&k when closing multiple windows"
-msgstr "Întreabă înainte de a închide fereste multiple"
-
-msgid "&Preserve file time in file compare"
-msgstr "Păstrează data și ora fișierului pentru compararea fișierelor"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Afișează la start dialogul \"Selectează fișiere sau directoare\""
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-"Închide dialogul \"Selectează fișiere sau directoare\" la apăsarea butonului "
-"Compară"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Auto-completare în dialogul de deschidere:"
-
-msgid "Auto-&reload modified files:"
-msgstr "&Reîncarcă automat fișierele modificate:"
-
-msgid "Language:"
-msgstr "Limba:"
-
-msgid "Defaults"
-msgstr "Implicite"
-
 msgid "Find"
 msgstr "Găsește"
 
@@ -1818,6 +1774,59 @@ msgstr "Adaugă"
 
 msgid "Clear"
 msgstr "Șterge"
+
+msgid "Options"
+msgstr "Opțiuni"
+
+msgid "Import..."
+msgstr "Importă..."
+
+msgid "Export..."
+msgstr "Exportă..."
+
+msgid "General"
+msgstr "General"
+
+msgid "Automatically &scroll to first difference"
+msgstr "De&sfășoară automat la prima diferență"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Desfășoară automat la prima diferență în cadrul rândului"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Închide ferestrele cu tasta 'Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Verifică automat căile în dialogul de deschidere"
+
+msgid "Single instance mode:"
+msgstr "Mod instanță unică:"
+
+msgid "As&k when closing multiple windows"
+msgstr "Întreabă înainte de a închide fereste multiple"
+
+msgid "&Preserve file time in file compare"
+msgstr "Păstrează data și ora fișierului pentru compararea fișierelor"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Afișează la start dialogul \"Selectează fișiere sau directoare\""
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+"Închide dialogul \"Selectează fișiere sau directoare\" la apăsarea butonului "
+"Compară"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Auto-completare în dialogul de deschidere:"
+
+msgid "Auto-&reload modified files:"
+msgstr "&Reîncarcă automat fișierele modificate:"
+
+msgid "Language:"
+msgstr "Limba:"
+
+msgid "Defaults"
+msgstr "Implicite"
 
 msgid "Colors"
 msgstr "Culori"
@@ -1978,6 +1987,115 @@ msgstr "Director personali&zat:"
 msgid "Br&owse..."
 msgstr "Ră&sfoiește..."
 
+msgid "Compare"
+msgstr "Comparare"
+
+msgid "Whitespaces"
+msgstr "Blanc"
+
+msgid "&Compare"
+msgstr "&Compară"
+
+msgid "&Ignore change"
+msgstr "&Ignoră schimbare"
+
+msgid "I&gnore all"
+msgstr "I&gnoră tot"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignoră rânduri goale"
+
+msgid "Ignore &case"
+msgstr "Ignoră minus&cule/majuscule"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr "Ignoră numerele"
+
+msgid "Ignore codepage &differences"
+msgstr "Ignoră &diferențele de pagină de codare"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignoră diferențele de c&omentarii"
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "Activea&ză detecție blocuri mutate"
+
+msgid "Align &similar lines"
+msgstr "Aliniază rândurile &similare"
+
+msgid "Diff &algorithm:"
+msgstr "&Algoritm de diferențiere:"
+
+msgid "Enable indent &heuristic"
+msgstr "Activează euristica de indentare"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Demarchează complet diferențele ignorate"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "&Highlight syntax"
+msgstr "E&vidențiere sintaxă"
+
+msgid "&Preserve original EOL"
+msgstr "&Păstrează caracterele EOL originale"
+
+msgid "Tabs"
+msgstr "File"
+
+msgid "&Tab size:"
+msgstr "Mărime &filă:"
+
+msgid "&Insert tabs"
+msgstr "&Inserează file"
+
+msgid "Insert &spaces"
+msgstr "In&serează blancuri"
+
+msgid "&Rendering mode:"
+msgstr "Mod de &randare:"
+
+msgid "&Automatic rescan"
+msgstr "Rescanare &automată"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+msgid "Line Difference Coloring"
+msgstr "Colorarea diferențelor din rând"
+
+msgid "View line differences"
+msgstr "Arată diferențele din rând"
+
+msgid "&Character-level"
+msgstr "La nivel de &caracter"
+
+msgid "&Word-level:"
+msgstr "La nivel de cu&vânt:"
+
+msgid "W&ord break characters:"
+msgstr "Caractere de despărțire cuvinte:"
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to "
+"make all messages visible again."
+msgstr ""
+"WinMerge permite ascunderea unor casete de mesaj. Apasă butonul "
+"Reinițializare pentru a afișa din nou toate căsuțele de mesaj."
+
+msgid "Reset"
+msgstr "Reinițializare"
+
 msgid "Patch Generator"
 msgstr "Generator petice"
 
@@ -2101,115 +2219,6 @@ msgstr "&Diferență"
 msgid "&Go to"
 msgstr "&Mergi la"
 
-msgid "Compare"
-msgstr "Comparare"
-
-msgid "Whitespaces"
-msgstr "Blanc"
-
-msgid "&Compare"
-msgstr "&Compară"
-
-msgid "&Ignore change"
-msgstr "&Ignoră schimbare"
-
-msgid "I&gnore all"
-msgstr "I&gnoră tot"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignoră rânduri goale"
-
-msgid "Ignore &case"
-msgstr "Ignoră minus&cule/majuscule"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr "Ignoră numerele"
-
-msgid "Ignore codepage &differences"
-msgstr "Ignoră &diferențele de pagină de codare"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignoră diferențele de c&omentarii"
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "Activea&ză detecție blocuri mutate"
-
-msgid "Align &similar lines"
-msgstr "Aliniază rândurile &similare"
-
-msgid "Diff &algorithm:"
-msgstr "&Algoritm de diferențiere:"
-
-msgid "Enable indent &heuristic"
-msgstr "Activează euristica de indentare"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Demarchează complet diferențele ignorate"
-
-msgid "Editor"
-msgstr "Editor"
-
-msgid "&Highlight syntax"
-msgstr "E&vidențiere sintaxă"
-
-msgid "&Preserve original EOL"
-msgstr "&Păstrează caracterele EOL originale"
-
-msgid "Tabs"
-msgstr "File"
-
-msgid "&Tab size:"
-msgstr "Mărime &filă:"
-
-msgid "&Insert tabs"
-msgstr "&Inserează file"
-
-msgid "Insert &spaces"
-msgstr "In&serează blancuri"
-
-msgid "&Rendering mode:"
-msgstr "Mod de &randare:"
-
-msgid "&Automatic rescan"
-msgstr "Rescanare &automată"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-msgid "Line Difference Coloring"
-msgstr "Colorarea diferențelor din rând"
-
-msgid "View line differences"
-msgstr "Arată diferențele din rând"
-
-msgid "&Character-level"
-msgstr "La nivel de &caracter"
-
-msgid "&Word-level:"
-msgstr "La nivel de cu&vânt:"
-
-msgid "W&ord break characters:"
-msgstr "Caractere de despărțire cuvinte:"
-
-msgid ""
-"Some messages can be hidden by the user. Press Reset to "
-"make all messages visible again."
-msgstr ""
-"WinMerge permite ascunderea unor casete de mesaj. Apasă butonul "
-"Reinițializare pentru a afișa din nou toate căsuțele de mesaj."
-
-msgid "Reset"
-msgstr "Reinițializare"
-
 msgid "File Filters"
 msgstr "Filtre de fișiere"
 
@@ -2249,39 +2258,6 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
-msgid "Save Modified Files?"
-msgstr "Salvare fișiere modificate?"
-
-msgid "Left side file"
-msgstr "Fișier stânga"
-
-msgid "&Save changes"
-msgstr "&Salvează modificările"
-
-msgid "&Discard changes"
-msgstr "Renunță la mo&dificări"
-
-msgid "Middle side file"
-msgstr "Fișierul din partea de mijloc"
-
-msgid "Sa&ve changes"
-msgstr "Sal&vează modificările"
-
-msgid "Discard c&hanges"
-msgstr "Renunță la modificări"
-
-msgid "Right side file"
-msgstr "Fișier dreapta"
-
-msgid "S&ave changes"
-msgstr "S&alvează modificările"
-
-msgid "Dis&card changes"
-msgstr "Renunță la s&chimbări"
-
-msgid "Disca&rd All"
-msgstr "&Renunță la toate"
-
 msgid "Codepage"
 msgstr "Codare caractere"
 
@@ -2317,14 +2293,50 @@ msgstr ""
 "Detectează pagina de codare pentru fișiere text cu mlang.dll\n"
 "Sesiunea trebuie restartată."
 
-msgid "Options"
-msgstr "Opțiuni"
+msgid "Archive Support"
+msgstr "Suport arhivare"
 
-msgid "Import..."
-msgstr "Importă..."
+msgid "&Enable archive file support"
+msgstr "Activ&ează suportul pentru fișierele arhivă"
 
-msgid "Export..."
-msgstr "Exportă..."
+msgid "&Detect archive type from file signature"
+msgstr "&Detectează tipul arhivei după semnătura fișierului"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Elemente salvate sau restaurate din fișierul proiect:"
+
+msgid "Save Modified Files?"
+msgstr "Salvare fișiere modificate?"
+
+msgid "Left side file"
+msgstr "Fișier stânga"
+
+msgid "&Save changes"
+msgstr "&Salvează modificările"
+
+msgid "&Discard changes"
+msgstr "Renunță la mo&dificări"
+
+msgid "Middle side file"
+msgstr "Fișierul din partea de mijloc"
+
+msgid "Sa&ve changes"
+msgstr "Sal&vează modificările"
+
+msgid "Discard c&hanges"
+msgstr "Renunță la modificări"
+
+msgid "Right side file"
+msgstr "Fișier dreapta"
+
+msgid "S&ave changes"
+msgstr "S&alvează modificările"
+
+msgid "Dis&card changes"
+msgstr "Renunță la s&chimbări"
+
+msgid "Disca&rd All"
+msgstr "&Renunță la toate"
 
 msgid "Folder Compare Report"
 msgstr "Raport comparare directoare"
@@ -2349,18 +2361,6 @@ msgstr "Filtru public (pentru toți utilizatorii de pe mașina curentă)"
 
 msgid "Private Filter (current user only)"
 msgstr "Filtru privat (doar pentru utilizatorul curent)"
-
-msgid "Archive Support"
-msgstr "Suport arhivare"
-
-msgid "&Enable archive file support"
-msgstr "Activ&ează suportul pentru fișierele arhivă"
-
-msgid "&Detect archive type from file signature"
-msgstr "&Detectează tipul arhivei după semnătura fișierului"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Elemente salvate sau restaurate din fișierul proiect:"
 
 msgid "Compare Statistics"
 msgstr "Statistici ale comparării"

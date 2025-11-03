@@ -1671,48 +1671,6 @@ msgstr "Axuda"
 msgid "&Options..."
 msgstr "&C&onfiguración..."
 
-msgid "General"
-msgstr "Xeral"
-
-msgid "Automatically &scroll to first difference"
-msgstr "De&sprazarse automaticamente á primeira diferenza"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Desprazarse automati&camente á primeira diferenza de liña"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Pechar ventás c&on 'Esc':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Comprobar &automaticamente as rutas no diálogo Abrir"
-
-msgid "Single instance mode:"
-msgstr "Modo de instancia única:"
-
-msgid "As&k when closing multiple windows"
-msgstr "Pre&guntar antes de pechar varias ventás"
-
-msgid "&Preserve file time in file compare"
-msgstr "Manter a hora do ficheiro na com&paración de ficheiros"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Mostrar \"Seleccione ficheiros ou carpetas' ao inicio"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Pechar 'Seleccione ficheiros ou carpetas' ao premer o botón Comparar"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Autocompl&etar no diálogo Abrir:"
-
-msgid "Auto-&reload modified files:"
-msgstr "Autorecarga de arquivos modificados:"
-
-msgid "Language:"
-msgstr "Idioma:"
-
-msgid "Defaults"
-msgstr "Predeterminados"
-
 msgid "Find"
 msgstr "Buscar"
 
@@ -1814,6 +1772,57 @@ msgstr "Añadir"
 
 msgid "Clear"
 msgstr "Borrar"
+
+msgid "Options"
+msgstr "Configuración"
+
+msgid "Import..."
+msgstr "Importar..."
+
+msgid "Export..."
+msgstr "Exportar..."
+
+msgid "General"
+msgstr "Xeral"
+
+msgid "Automatically &scroll to first difference"
+msgstr "De&sprazarse automaticamente á primeira diferenza"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Desprazarse automati&camente á primeira diferenza de liña"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Pechar ventás c&on 'Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Comprobar &automaticamente as rutas no diálogo Abrir"
+
+msgid "Single instance mode:"
+msgstr "Modo de instancia única:"
+
+msgid "As&k when closing multiple windows"
+msgstr "Pre&guntar antes de pechar varias ventás"
+
+msgid "&Preserve file time in file compare"
+msgstr "Manter a hora do ficheiro na com&paración de ficheiros"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Mostrar \"Seleccione ficheiros ou carpetas' ao inicio"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Pechar 'Seleccione ficheiros ou carpetas' ao premer o botón Comparar"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Autocompl&etar no diálogo Abrir:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Autorecarga de arquivos modificados:"
+
+msgid "Language:"
+msgstr "Idioma:"
+
+msgid "Defaults"
+msgstr "Predeterminados"
 
 msgid "Colors"
 msgstr "Cores"
@@ -1974,6 +1983,111 @@ msgstr "Carpeta &personalizada:"
 msgid "Br&owse..."
 msgstr "&Examinar..."
 
+msgid "Compare"
+msgstr "Comparar"
+
+msgid "Whitespaces"
+msgstr "Espazos en branco"
+
+msgid "&Compare"
+msgstr "&Comparar"
+
+msgid "&Ignore change"
+msgstr "&Ignorar cambios"
+
+msgid "I&gnore all"
+msgstr "I&gnorar todo"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignorar &liñas en branco"
+
+msgid "Ignore &case"
+msgstr "Ignorar MAIÚSCULAS e minús&culas"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr "Ignorar nú&meros"
+
+msgid "Ignore codepage &differences"
+msgstr "Ignorar &diferenzas de codificación"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignorar diferenzas nos c&omentarios"
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "Habilitar detecció&n de bloques desprazados"
+
+msgid "Align &similar lines"
+msgstr "Aliñar liñas &similares"
+
+msgid "Diff &algorithm:"
+msgstr "&Algoritmo de comparación:"
+
+msgid "Enable indent &heuristic"
+msgstr "Habilitar a &heurística do sangrado"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Desmarcar por completo as diferenzas ignoradas"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "&Highlight syntax"
+msgstr "Resaltar a sinta&xe"
+
+msgid "&Preserve original EOL"
+msgstr "&Conservar os caracteres EOL orixinais"
+
+msgid "Tabs"
+msgstr "Tabulacións"
+
+msgid "&Tab size:"
+msgstr "&Tamaño do tabulador:"
+
+msgid "&Insert tabs"
+msgstr "&Inserir tabulacións"
+
+msgid "Insert &spaces"
+msgstr "Inserir &espazos"
+
+msgid "&Rendering mode:"
+msgstr "Modo de &renderizado:"
+
+msgid "&Automatic rescan"
+msgstr "Reescaneo &automático"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+msgid "Line Difference Coloring"
+msgstr "Colorear a diferenza de liñas"
+
+msgid "View line differences"
+msgstr "Ver diferenzas de liña"
+
+msgid "&Character-level"
+msgstr "A nivel do &carácter"
+
+msgid "&Word-level:"
+msgstr "A nivel da pa&labra:"
+
+msgid "W&ord break characters:"
+msgstr "Caracteres de salt&o de palabra:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge permite ocultar algunhas mensaxes de uso frecuente. Prema o botón 'Restablecer' para facelas visibles de novo."
+
+msgid "Reset"
+msgstr "Restablecer"
+
 msgid "Patch Generator"
 msgstr "Xerar parche"
 
@@ -2097,111 +2211,6 @@ msgstr "&Diferenza"
 msgid "&Go to"
 msgstr "&Ir a"
 
-msgid "Compare"
-msgstr "Comparar"
-
-msgid "Whitespaces"
-msgstr "Espazos en branco"
-
-msgid "&Compare"
-msgstr "&Comparar"
-
-msgid "&Ignore change"
-msgstr "&Ignorar cambios"
-
-msgid "I&gnore all"
-msgstr "I&gnorar todo"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorar &liñas en branco"
-
-msgid "Ignore &case"
-msgstr "Ignorar MAIÚSCULAS e minús&culas"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr "Ignorar nú&meros"
-
-msgid "Ignore codepage &differences"
-msgstr "Ignorar &diferenzas de codificación"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignorar diferenzas nos c&omentarios"
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "Habilitar detecció&n de bloques desprazados"
-
-msgid "Align &similar lines"
-msgstr "Aliñar liñas &similares"
-
-msgid "Diff &algorithm:"
-msgstr "&Algoritmo de comparación:"
-
-msgid "Enable indent &heuristic"
-msgstr "Habilitar a &heurística do sangrado"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Desmarcar por completo as diferenzas ignoradas"
-
-msgid "Editor"
-msgstr "Editor"
-
-msgid "&Highlight syntax"
-msgstr "Resaltar a sinta&xe"
-
-msgid "&Preserve original EOL"
-msgstr "&Conservar os caracteres EOL orixinais"
-
-msgid "Tabs"
-msgstr "Tabulacións"
-
-msgid "&Tab size:"
-msgstr "&Tamaño do tabulador:"
-
-msgid "&Insert tabs"
-msgstr "&Inserir tabulacións"
-
-msgid "Insert &spaces"
-msgstr "Inserir &espazos"
-
-msgid "&Rendering mode:"
-msgstr "Modo de &renderizado:"
-
-msgid "&Automatic rescan"
-msgstr "Reescaneo &automático"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-msgid "Line Difference Coloring"
-msgstr "Colorear a diferenza de liñas"
-
-msgid "View line differences"
-msgstr "Ver diferenzas de liña"
-
-msgid "&Character-level"
-msgstr "A nivel do &carácter"
-
-msgid "&Word-level:"
-msgstr "A nivel da pa&labra:"
-
-msgid "W&ord break characters:"
-msgstr "Caracteres de salt&o de palabra:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge permite ocultar algunhas mensaxes de uso frecuente. Prema o botón 'Restablecer' para facelas visibles de novo."
-
-msgid "Reset"
-msgstr "Restablecer"
-
 msgid "File Filters"
 msgstr "Filtros de ficheiro"
 
@@ -2241,6 +2250,50 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Codepage"
+msgstr "Codificación"
+
+msgid "Default Codepage"
+msgstr "Codificación predeterminada"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Seleccione a codificación predeterminada a usar cando se carguen ficheiros non Unicode:"
+
+msgid "System codepage"
+msgstr "Codificación do sistema"
+
+msgid "According to WinMerge User Interface"
+msgstr "Segundo á interface de usuario de WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Codificación personalizada:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Detectar a codificación para estes tipos de ficheiro: .html, .rc, .xml\n"
+"Precísase reiniciar a sesión."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Detectar a codificación dos ficheiros de texto usando mlang.dll\n"
+"Precísase reiniciar a sesión."
+
+msgid "Archive Support"
+msgstr "Soporte de arquivos"
+
+msgid "&Enable archive file support"
+msgstr "Habilitar o soport&e de arquivos"
+
+msgid "&Detect archive type from file signature"
+msgstr "&Detectar o tipo de arquivo pola sinatura"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Elementos gardados ou restaurados do ficheiro de proxecto:"
+
 msgid "Save Modified Files?"
 msgstr "Gardar os ficheiros modificados?"
 
@@ -2274,47 +2327,6 @@ msgstr "Desbo&tar cambios"
 msgid "Disca&rd All"
 msgstr "Desbota&r todo"
 
-msgid "Codepage"
-msgstr "Codificación"
-
-msgid "Default Codepage"
-msgstr "Codificación predeterminada"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Seleccione a codificación predeterminada a usar cando se carguen ficheiros non Unicode:"
-
-msgid "System codepage"
-msgstr "Codificación do sistema"
-
-msgid "According to WinMerge User Interface"
-msgstr "Segundo á interface de usuario de WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Codificación personalizada:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Detectar a codificación para estes tipos de ficheiro: .html, .rc, .xml\n"
-"Precísase reiniciar a sesión."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Detectar a codificación dos ficheiros de texto usando mlang.dll\n"
-"Precísase reiniciar a sesión."
-
-msgid "Options"
-msgstr "Configuración"
-
-msgid "Import..."
-msgstr "Importar..."
-
-msgid "Export..."
-msgstr "Exportar..."
-
 msgid "Folder Compare Report"
 msgstr "Informe da comparación de carpetas"
 
@@ -2338,18 +2350,6 @@ msgstr "Filtro compartido (para todos os usuarios deste ordenador)"
 
 msgid "Private Filter (current user only)"
 msgstr "Filtro privado (só para o usuario actual)"
-
-msgid "Archive Support"
-msgstr "Soporte de arquivos"
-
-msgid "&Enable archive file support"
-msgstr "Habilitar o soport&e de arquivos"
-
-msgid "&Detect archive type from file signature"
-msgstr "&Detectar o tipo de arquivo pola sinatura"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Elementos gardados ou restaurados do ficheiro de proxecto:"
 
 msgid "Compare Statistics"
 msgstr "Estatísticas da comparación"

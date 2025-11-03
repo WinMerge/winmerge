@@ -1669,48 +1669,6 @@ msgstr "ヘルプ"
 msgid "&Options..."
 msgstr "設定(&O)..."
 
-msgid "General"
-msgstr "一般"
-
-msgid "Automatically &scroll to first difference"
-msgstr "自動的に最初の差異にスクロールする(&S)"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "自動的に最初の行内差異にスクロールする(&C)"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "'Esc' キーでウィンドウを閉じる(&O):"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "[開く] ダイアログで自動的にパスを検査する(&A)"
-
-msgid "Single instance mode:"
-msgstr "単一インスタンスモード:"
-
-msgid "As&k when closing multiple windows"
-msgstr "複数のウィンドウを閉じるときに尋ねる(&K)"
-
-msgid "&Preserve file time in file compare"
-msgstr "ファイル比較時のファイル時刻を保つ(&P)"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "起動時に [ファイルまたはフォルダーの選択] ダイアログを表示する"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "[比較] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "[開く] ダイアログのオートコンプリート(&E):"
-
-msgid "Auto-&reload modified files:"
-msgstr "変更されたファイルの自動再読み込み(&R):"
-
-msgid "Language:"
-msgstr "言語:"
-
-msgid "Defaults"
-msgstr "デフォルト"
-
 msgid "Find"
 msgstr "検索"
 
@@ -1812,6 +1770,57 @@ msgstr "追加"
 
 msgid "Clear"
 msgstr "クリア"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Import..."
+msgstr "インポート..."
+
+msgid "Export..."
+msgstr "エクスポート..."
+
+msgid "General"
+msgstr "一般"
+
+msgid "Automatically &scroll to first difference"
+msgstr "自動的に最初の差異にスクロールする(&S)"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "自動的に最初の行内差異にスクロールする(&C)"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "'Esc' キーでウィンドウを閉じる(&O):"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "[開く] ダイアログで自動的にパスを検査する(&A)"
+
+msgid "Single instance mode:"
+msgstr "単一インスタンスモード:"
+
+msgid "As&k when closing multiple windows"
+msgstr "複数のウィンドウを閉じるときに尋ねる(&K)"
+
+msgid "&Preserve file time in file compare"
+msgstr "ファイル比較時のファイル時刻を保つ(&P)"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "起動時に [ファイルまたはフォルダーの選択] ダイアログを表示する"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "[比較] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "[開く] ダイアログのオートコンプリート(&E):"
+
+msgid "Auto-&reload modified files:"
+msgstr "変更されたファイルの自動再読み込み(&R):"
+
+msgid "Language:"
+msgstr "言語:"
+
+msgid "Defaults"
+msgstr "デフォルト"
 
 msgid "Colors"
 msgstr "色"
@@ -1976,6 +1985,111 @@ msgstr "指定したフォルダー(&U):"
 msgid "Br&owse..."
 msgstr "参照(&O)..."
 
+msgid "Compare"
+msgstr "比較"
+
+msgid "Whitespaces"
+msgstr "空白"
+
+msgid "&Compare"
+msgstr "比較する(&C)"
+
+msgid "&Ignore change"
+msgstr "変更を無視(&I)"
+
+msgid "I&gnore all"
+msgstr "すべて無視(&G)"
+
+msgid "Ignore blan&k lines"
+msgstr "空行を無視する(&K)"
+
+msgid "Ignore &case"
+msgstr "大文字と小文字を区別しない(&C)"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "数字を無視する(&B)"
+
+msgid "Ignore codepage &differences"
+msgstr "コードページの違いを無視する(&D)"
+
+msgid "Ignore c&omment differences"
+msgstr "コメントの違いを無視する(&O)"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "改行を無視(空白として扱う)(&B)"
+
+msgid "E&nable moved block detection"
+msgstr "移動ブロック検出を有効にする(&N)"
+
+msgid "Align &similar lines"
+msgstr "類似行をマッチさせる(&S)"
+
+msgid "Diff &algorithm:"
+msgstr "Diff アルゴリズム(&A):"
+
+msgid "Enable indent &heuristic"
+msgstr "Indent heuristic を有効にする(&H)"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "無視された差異の行を同一行の色と同じにする"
+
+msgid "Editor"
+msgstr "エディター"
+
+msgid "&Highlight syntax"
+msgstr "シンタックス ハイライトを有効にする(&H)"
+
+msgid "&Preserve original EOL"
+msgstr "元の EOL 文字を保存する(&P)"
+
+msgid "Tabs"
+msgstr "タブ"
+
+msgid "&Tab size:"
+msgstr "タブ幅(&T):"
+
+msgid "&Insert tabs"
+msgstr "タブを挿入(&I)"
+
+msgid "Insert &spaces"
+msgstr "スペースを挿入(&S)"
+
+msgid "&Rendering mode:"
+msgstr "レンダリングモード(&R):"
+
+msgid "&Automatic rescan"
+msgstr "自動的に再スキャンする(&A)"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "選択された差異のコピー粒度(&G)"
+
+msgid "Line Difference Coloring"
+msgstr "行内差異の色付け"
+
+msgid "View line differences"
+msgstr "行内差異を表示する"
+
+msgid "&Character-level"
+msgstr "文字単位(&C)"
+
+msgid "&Word-level:"
+msgstr "単語単位(&W):"
+
+msgid "W&ord break characters:"
+msgstr "単語区切り文字(&O)"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
+
+msgid "Reset"
+msgstr "リセット"
+
 msgid "Patch Generator"
 msgstr "パッチ生成"
 
@@ -2099,111 +2213,6 @@ msgstr "差異(&D)"
 msgid "&Go to"
 msgstr "移動(&G)"
 
-msgid "Compare"
-msgstr "比較"
-
-msgid "Whitespaces"
-msgstr "空白"
-
-msgid "&Compare"
-msgstr "比較する(&C)"
-
-msgid "&Ignore change"
-msgstr "変更を無視(&I)"
-
-msgid "I&gnore all"
-msgstr "すべて無視(&G)"
-
-msgid "Ignore blan&k lines"
-msgstr "空行を無視する(&K)"
-
-msgid "Ignore &case"
-msgstr "大文字と小文字を区別しない(&C)"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "数字を無視する(&B)"
-
-msgid "Ignore codepage &differences"
-msgstr "コードページの違いを無視する(&D)"
-
-msgid "Ignore c&omment differences"
-msgstr "コメントの違いを無視する(&O)"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "ファイル末尾の改行文字の有無を無視する(&E)"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "改行を無視(空白として扱う)(&B)"
-
-msgid "E&nable moved block detection"
-msgstr "移動ブロック検出を有効にする(&N)"
-
-msgid "Align &similar lines"
-msgstr "類似行をマッチさせる(&S)"
-
-msgid "Diff &algorithm:"
-msgstr "Diff アルゴリズム(&A):"
-
-msgid "Enable indent &heuristic"
-msgstr "Indent heuristic を有効にする(&H)"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "無視された差異の行を同一行の色と同じにする"
-
-msgid "Editor"
-msgstr "エディター"
-
-msgid "&Highlight syntax"
-msgstr "シンタックス ハイライトを有効にする(&H)"
-
-msgid "&Preserve original EOL"
-msgstr "元の EOL 文字を保存する(&P)"
-
-msgid "Tabs"
-msgstr "タブ"
-
-msgid "&Tab size:"
-msgstr "タブ幅(&T):"
-
-msgid "&Insert tabs"
-msgstr "タブを挿入(&I)"
-
-msgid "Insert &spaces"
-msgstr "スペースを挿入(&S)"
-
-msgid "&Rendering mode:"
-msgstr "レンダリングモード(&R):"
-
-msgid "&Automatic rescan"
-msgstr "自動的に再スキャンする(&A)"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "選択された差異のコピー粒度(&G)"
-
-msgid "Line Difference Coloring"
-msgstr "行内差異の色付け"
-
-msgid "View line differences"
-msgstr "行内差異を表示する"
-
-msgid "&Character-level"
-msgstr "文字単位(&C)"
-
-msgid "&Word-level:"
-msgstr "単語単位(&W):"
-
-msgid "W&ord break characters:"
-msgstr "単語区切り文字(&O)"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
-
-msgid "Reset"
-msgstr "リセット"
-
 msgid "File Filters"
 msgstr "ファイル フィルター"
 
@@ -2243,6 +2252,50 @@ msgstr "右辺(&R):"
 msgid "Expression:"
 msgstr "式:"
 
+msgid "Codepage"
+msgstr "コードページ"
+
+msgid "Default Codepage"
+msgstr "デフォルト コードページ"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
+
+msgid "System codepage"
+msgstr "システム コードページ"
+
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge ユーザー インターフェイス言語"
+
+msgid "Custom codepage:"
+msgstr "指定したコードページ:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+".html, .rc, .xml ファイルのコードページ情報を検出する\n"
+"セッションの再起動が必要です。"
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"'mlang.dll' を使用してファイルのコードページを検出する\n"
+"この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッションの再起動が必要です。"
+
+msgid "Archive Support"
+msgstr "アーカイブ サポート"
+
+msgid "&Enable archive file support"
+msgstr "アーカイブ ファイル サポートを有効にする(&E)"
+
+msgid "&Detect archive type from file signature"
+msgstr "ファイルのシグネチャからアーカイブ形式を検出する(&D)"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "プロジェクト ファイルに保存またはプロジェクト ファイルから復元する項目:"
+
 msgid "Save Modified Files?"
 msgstr "変更されたファイルを保存しますか?"
 
@@ -2276,47 +2329,6 @@ msgstr "変更を破棄する(&C)"
 msgid "Disca&rd All"
 msgstr "すべて破棄する(&R)"
 
-msgid "Codepage"
-msgstr "コードページ"
-
-msgid "Default Codepage"
-msgstr "デフォルト コードページ"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
-
-msgid "System codepage"
-msgstr "システム コードページ"
-
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge ユーザー インターフェイス言語"
-
-msgid "Custom codepage:"
-msgstr "指定したコードページ:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-".html, .rc, .xml ファイルのコードページ情報を検出する\n"
-"セッションの再起動が必要です。"
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"'mlang.dll' を使用してファイルのコードページを検出する\n"
-"この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッションの再起動が必要です。"
-
-msgid "Options"
-msgstr "オプション"
-
-msgid "Import..."
-msgstr "インポート..."
-
-msgid "Export..."
-msgstr "エクスポート..."
-
 msgid "Folder Compare Report"
 msgstr "フォルダー比較レポート"
 
@@ -2340,18 +2352,6 @@ msgstr "共有フィルター (このマシン上のすべてのユーザーに�
 
 msgid "Private Filter (current user only)"
 msgstr "プライベート フィルター (現在のユーザーのみ)"
-
-msgid "Archive Support"
-msgstr "アーカイブ サポート"
-
-msgid "&Enable archive file support"
-msgstr "アーカイブ ファイル サポートを有効にする(&E)"
-
-msgid "&Detect archive type from file signature"
-msgstr "ファイルのシグネチャからアーカイブ形式を検出する(&D)"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "プロジェクト ファイルに保存またはプロジェクト ファイルから復元する項目:"
 
 msgid "Compare Statistics"
 msgstr "比較統計"

@@ -1668,48 +1668,6 @@ msgstr "Help"
 msgid "&Options..."
 msgstr "Opties..."
 
-msgid "General"
-msgstr "Algemeen"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Automatisch naar eerste verschil gaan"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Automatisch naar eerste verschil binnen de regel scrollen"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Vensters sluiten met 'Esc':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Paden automatisch verifiëren in openen-venster"
-
-msgid "Single instance mode:"
-msgstr "Modus enkele instantie:"
-
-msgid "As&k when closing multiple windows"
-msgstr "Vragen bij sluiten van meerdere vensters"
-
-msgid "&Preserve file time in file compare"
-msgstr "Bestandstijd behouden bij bestandsvergelijking"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op vergelijken"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Auto-aanvullen openen-venster:"
-
-msgid "Auto-&reload modified files:"
-msgstr "Gewijzigde bestanden automatisch opnieuw laden:"
-
-msgid "Language:"
-msgstr "Language:"
-
-msgid "Defaults"
-msgstr "Standaardwaarden"
-
 msgid "Find"
 msgstr "Zoeken"
 
@@ -1816,6 +1774,57 @@ msgstr "Toevoegen"
 
 msgid "Clear"
 msgstr "Wissen"
+
+msgid "Options"
+msgstr "Opties"
+
+msgid "Import..."
+msgstr "Importeren..."
+
+msgid "Export..."
+msgstr "Exporteren..."
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Automatisch naar eerste verschil gaan"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Automatisch naar eerste verschil binnen de regel scrollen"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Vensters sluiten met 'Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Paden automatisch verifiëren in openen-venster"
+
+msgid "Single instance mode:"
+msgstr "Modus enkele instantie:"
+
+msgid "As&k when closing multiple windows"
+msgstr "Vragen bij sluiten van meerdere vensters"
+
+msgid "&Preserve file time in file compare"
+msgstr "Bestandstijd behouden bij bestandsvergelijking"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op vergelijken"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Auto-aanvullen openen-venster:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Gewijzigde bestanden automatisch opnieuw laden:"
+
+msgid "Language:"
+msgstr "Language:"
+
+msgid "Defaults"
+msgstr "Standaardwaarden"
 
 msgid "Colors"
 msgstr "Kleuren"
@@ -1976,6 +1985,116 @@ msgstr "Aangepaste map:"
 msgid "Br&owse..."
 msgstr "Bladeren..."
 
+msgid "Compare"
+msgstr "Vergelijken"
+
+msgid "Whitespaces"
+msgstr "Witruimtes"
+
+msgid "&Compare"
+msgstr "Vergelijken"
+
+msgid "&Ignore change"
+msgstr "Wijziging negeren"
+
+msgid "I&gnore all"
+msgstr "Alles negeren"
+
+msgid "Ignore blan&k lines"
+msgstr "Lege regels negeren"
+
+msgid "Ignore &case"
+msgstr "Niet hoofdlettergevoelig"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr "Nummers negeren"
+
+msgid "Ignore codepage &differences"
+msgstr "Tekenset-verschillen negeren"
+
+msgid "Ignore c&omment differences"
+msgstr "Opmerkingsverschillen negeren"
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "Detectie verplaatste blokken inschakelen"
+
+msgid "Align &similar lines"
+msgstr "Gelijkaardige regels uitlijnen"
+
+msgid "Diff &algorithm:"
+msgstr "Verschil-algoritme"
+
+msgid "Enable indent &heuristic"
+msgstr "Inspringing-heuristiek inschakelen"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Markering van genegeerde verschillen volledig verwijderen"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "&Highlight syntax"
+msgstr "Syntax markeren"
+
+msgid "&Preserve original EOL"
+msgstr "Originele regeleinde-tekens bewaren"
+
+msgid "Tabs"
+msgstr "Tabs"
+
+msgid "&Tab size:"
+msgstr "Tabgrootte:"
+
+msgid "&Insert tabs"
+msgstr "Tabs invoegen"
+
+msgid "Insert &spaces"
+msgstr "Spaties invoegen"
+
+msgid "&Rendering mode:"
+msgstr "Rendermodus:"
+
+msgid "&Automatic rescan"
+msgstr "Automatisch opnieuw scannen"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Fijnheid voor kopiëren van geselecteerde verschillen:"
+
+msgid "Line Difference Coloring"
+msgstr "Kleur van regelverschillen"
+
+msgid "View line differences"
+msgstr "Regelverschillen weergeven"
+
+msgid "&Character-level"
+msgstr "Tekenniveau"
+
+msgid "&Word-level:"
+msgstr "Woordniveau:"
+
+msgid "W&ord break characters:"
+msgstr "Woordsplitsingstekens:"
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to "
+"make all messages visible again."
+msgstr ""
+"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
+" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
+"maken."
+
+msgid "Reset"
+msgstr "Herstellen"
+
 msgid "Patch Generator"
 msgstr "Patch-generator"
 
@@ -2099,116 +2218,6 @@ msgstr "Verschil"
 msgid "&Go to"
 msgstr "Gaan naar"
 
-msgid "Compare"
-msgstr "Vergelijken"
-
-msgid "Whitespaces"
-msgstr "Witruimtes"
-
-msgid "&Compare"
-msgstr "Vergelijken"
-
-msgid "&Ignore change"
-msgstr "Wijziging negeren"
-
-msgid "I&gnore all"
-msgstr "Alles negeren"
-
-msgid "Ignore blan&k lines"
-msgstr "Lege regels negeren"
-
-msgid "Ignore &case"
-msgstr "Niet hoofdlettergevoelig"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr "Nummers negeren"
-
-msgid "Ignore codepage &differences"
-msgstr "Tekenset-verschillen negeren"
-
-msgid "Ignore c&omment differences"
-msgstr "Opmerkingsverschillen negeren"
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "Detectie verplaatste blokken inschakelen"
-
-msgid "Align &similar lines"
-msgstr "Gelijkaardige regels uitlijnen"
-
-msgid "Diff &algorithm:"
-msgstr "Verschil-algoritme"
-
-msgid "Enable indent &heuristic"
-msgstr "Inspringing-heuristiek inschakelen"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Markering van genegeerde verschillen volledig verwijderen"
-
-msgid "Editor"
-msgstr "Editor"
-
-msgid "&Highlight syntax"
-msgstr "Syntax markeren"
-
-msgid "&Preserve original EOL"
-msgstr "Originele regeleinde-tekens bewaren"
-
-msgid "Tabs"
-msgstr "Tabs"
-
-msgid "&Tab size:"
-msgstr "Tabgrootte:"
-
-msgid "&Insert tabs"
-msgstr "Tabs invoegen"
-
-msgid "Insert &spaces"
-msgstr "Spaties invoegen"
-
-msgid "&Rendering mode:"
-msgstr "Rendermodus:"
-
-msgid "&Automatic rescan"
-msgstr "Automatisch opnieuw scannen"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "Fijnheid voor kopiëren van geselecteerde verschillen:"
-
-msgid "Line Difference Coloring"
-msgstr "Kleur van regelverschillen"
-
-msgid "View line differences"
-msgstr "Regelverschillen weergeven"
-
-msgid "&Character-level"
-msgstr "Tekenniveau"
-
-msgid "&Word-level:"
-msgstr "Woordniveau:"
-
-msgid "W&ord break characters:"
-msgstr "Woordsplitsingstekens:"
-
-msgid ""
-"Some messages can be hidden by the user. Press Reset to "
-"make all messages visible again."
-msgstr ""
-"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
-" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
-"maken."
-
-msgid "Reset"
-msgstr "Herstellen"
-
 msgid "File Filters"
 msgstr "Bestandsfilters"
 
@@ -2248,39 +2257,6 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
-msgid "Save Modified Files?"
-msgstr "Gewijzigde bestanden opslaan?"
-
-msgid "Left side file"
-msgstr "Linker bestand"
-
-msgid "&Save changes"
-msgstr "Wijzigingen opslaan"
-
-msgid "&Discard changes"
-msgstr "Wijzigingen verwerpen"
-
-msgid "Middle side file"
-msgstr "Middelste bestand"
-
-msgid "Sa&ve changes"
-msgstr "Wijzigingen opslaan"
-
-msgid "Discard c&hanges"
-msgstr "Wijzigingen verwerpen"
-
-msgid "Right side file"
-msgstr "Rechter bestand"
-
-msgid "S&ave changes"
-msgstr "Wijzigingen opslaan"
-
-msgid "Dis&card changes"
-msgstr "Wijzigingen verwerpen"
-
-msgid "Disca&rd All"
-msgstr "Alles verwerpen"
-
 msgid "Codepage"
 msgstr "Tekenset"
 
@@ -2315,14 +2291,50 @@ msgstr ""
 "Tekenset detecteren voor tekstbestanden via mlang.dll\n"
 "Herstarten sessie noodzakelijk."
 
-msgid "Options"
-msgstr "Opties"
+msgid "Archive Support"
+msgstr "Archiefondersteuning"
 
-msgid "Import..."
-msgstr "Importeren..."
+msgid "&Enable archive file support"
+msgstr "Archiefbestand-ondersteuning inschakelen"
 
-msgid "Export..."
-msgstr "Exporteren..."
+msgid "&Detect archive type from file signature"
+msgstr "Archieftype detecteren via bestandssignatuur"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Items opgeslagen naar of hersteld uit het projectbestand:"
+
+msgid "Save Modified Files?"
+msgstr "Gewijzigde bestanden opslaan?"
+
+msgid "Left side file"
+msgstr "Linker bestand"
+
+msgid "&Save changes"
+msgstr "Wijzigingen opslaan"
+
+msgid "&Discard changes"
+msgstr "Wijzigingen verwerpen"
+
+msgid "Middle side file"
+msgstr "Middelste bestand"
+
+msgid "Sa&ve changes"
+msgstr "Wijzigingen opslaan"
+
+msgid "Discard c&hanges"
+msgstr "Wijzigingen verwerpen"
+
+msgid "Right side file"
+msgstr "Rechter bestand"
+
+msgid "S&ave changes"
+msgstr "Wijzigingen opslaan"
+
+msgid "Dis&card changes"
+msgstr "Wijzigingen verwerpen"
+
+msgid "Disca&rd All"
+msgstr "Alles verwerpen"
 
 msgid "Folder Compare Report"
 msgstr "Mapvergelijkingsrapport"
@@ -2347,18 +2359,6 @@ msgstr "Gedeelde filter (voor alle gebruikers op deze pc)"
 
 msgid "Private Filter (current user only)"
 msgstr "Persoonlijke filter (alleen voor huidige gebruiker)"
-
-msgid "Archive Support"
-msgstr "Archiefondersteuning"
-
-msgid "&Enable archive file support"
-msgstr "Archiefbestand-ondersteuning inschakelen"
-
-msgid "&Detect archive type from file signature"
-msgstr "Archieftype detecteren via bestandssignatuur"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Items opgeslagen naar of hersteld uit het projectbestand:"
 
 msgid "Compare Statistics"
 msgstr "Vergelijkingsstatistieken"

@@ -1682,50 +1682,6 @@ msgstr "說明"
 msgid "&Options..."
 msgstr "選項 (&O)..."
 
-msgid "General"
-msgstr "一般"
-
-msgid "Automatically &scroll to first difference"
-msgstr "自動捲至首個差異 (&S)"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "自動捲至首個行內差異 (&C)"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "按 'Esc' 關閉視窗 (&O):"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "於「開啟」對話方塊自動檢驗路徑 (&A)"
-
-msgid "Single instance mode:"
-msgstr "單一實例模式："
-
-msgid "As&k when closing multiple windows"
-msgstr "關閉多重視窗時先詢問 (&K)"
-
-# "比較時計入檔案時間 (&P)"
-# Do you want with it to say "Include file time difference in comparing" or "Do not change file time in comparing"?
-msgid "&Preserve file time in file compare"
-msgstr "比較檔案時保留檔案時間 (&P)"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "啟動時顯示「選擇檔案或資料夾」對話方塊"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "點擊比較按鈕後關閉「選擇檔案或資料夾」對話框"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "「開啟」對話方塊之自動完成 (&E)："
-
-msgid "Auto-&reload modified files:"
-msgstr "自動重新載入修改的檔案(&R)："
-
-msgid "Language:"
-msgstr "語言："
-
-msgid "Defaults"
-msgstr "預設值"
-
 msgid "Find"
 msgstr "尋找"
 
@@ -1829,6 +1785,59 @@ msgstr "新增"
 
 msgid "Clear"
 msgstr "清除"
+
+msgid "Options"
+msgstr "選項"
+
+msgid "Import..."
+msgstr "匯入..."
+
+msgid "Export..."
+msgstr "匯出..."
+
+msgid "General"
+msgstr "一般"
+
+msgid "Automatically &scroll to first difference"
+msgstr "自動捲至首個差異 (&S)"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "自動捲至首個行內差異 (&C)"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "按 'Esc' 關閉視窗 (&O):"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "於「開啟」對話方塊自動檢驗路徑 (&A)"
+
+msgid "Single instance mode:"
+msgstr "單一實例模式："
+
+msgid "As&k when closing multiple windows"
+msgstr "關閉多重視窗時先詢問 (&K)"
+
+# "比較時計入檔案時間 (&P)"
+# Do you want with it to say "Include file time difference in comparing" or "Do not change file time in comparing"?
+msgid "&Preserve file time in file compare"
+msgstr "比較檔案時保留檔案時間 (&P)"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "啟動時顯示「選擇檔案或資料夾」對話方塊"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "點擊比較按鈕後關閉「選擇檔案或資料夾」對話框"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "「開啟」對話方塊之自動完成 (&E)："
+
+msgid "Auto-&reload modified files:"
+msgstr "自動重新載入修改的檔案(&R)："
+
+msgid "Language:"
+msgstr "語言："
+
+msgid "Defaults"
+msgstr "預設值"
 
 msgid "Colors"
 msgstr "色彩"
@@ -1990,6 +1999,113 @@ msgstr "自訂資料夾 (&U)："
 msgid "Br&owse..."
 msgstr "瀏覽 (&O)..."
 
+msgid "Compare"
+msgstr "比較"
+
+msgid "Whitespaces"
+msgstr "空白字元"
+
+msgid "&Compare"
+msgstr "比較(&C)"
+
+msgid "&Ignore change"
+msgstr "忽略更改(&I)"
+
+msgid "I&gnore all"
+msgstr "全部忽略(&G)"
+
+msgid "Ignore blan&k lines"
+msgstr "忽略空行(&K)""
+
+msgid "Ignore &case"
+msgstr "忽略大小寫(&C)"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "忽略行尾差異（Windows/Unix/Mac）(&R)"
+
+msgid "Ignore num&bers"
+msgstr "忽略數字(&B)"
+
+msgid "Ignore codepage &differences"
+msgstr "忽略字碼頁差異(&D)"
+
+msgid "Ignore c&omment differences"
+msgstr "忽略註解差異(&O)"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "忽略缺少結尾行尾換行符號(&M)"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "忽略換行符號（視為空格）(&b)"
+
+msgid "E&nable moved block detection"
+msgstr "偵測移位的區塊 (&N)"
+
+msgid "Align &similar lines"
+msgstr "相似行對齊 (&S)"
+
+msgid "Diff &algorithm:"
+msgstr "差異比對演算法(&A)："
+
+msgid "Enable indent &heuristic"
+msgstr "啟用縮排啟發式演算法 (&H)"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "完全取消對忽略的差異的突顯顯示"
+
+msgid "Editor"
+msgstr "編輯器"
+
+msgid "&Highlight syntax"
+msgstr "高亮度語法 (&H)"
+
+msgid "&Preserve original EOL"
+msgstr "保留原始行尾(&P)"
+
+msgid "Tabs"
+msgstr "製表符（Tab）"
+
+msgid "&Tab size:"
+msgstr "製表符（Tab）大小 (&T)："
+
+msgid "&Insert tabs"
+msgstr "插入製表符（Tab）(&I)"
+
+msgid "Insert &spaces"
+msgstr "插入空格 (&S)"
+
+msgid "&Rendering mode:"
+msgstr "渲染模式 (&R)："
+
+msgid "&Automatic rescan"
+msgstr "自動重新掃描 (&A)"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "複製所選差異的精細度(&G):"
+
+msgid "Line Difference Coloring"
+msgstr "行內差異著色"
+
+msgid "View line differences"
+msgstr "檢視行內差異"
+
+msgid "&Character-level"
+msgstr "字元階層 (&C)"
+
+msgid "&Word-level:"
+msgstr "字階層 (&W)："
+
+msgid "W&ord break characters:"
+msgstr "斷句字元 (&O)："
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to make all messages "
+"visible again."
+msgstr "WinMerge 允許隱藏某些共同訊息盒。按重設鍵以再次顯示所有訊息盒。"
+
+msgid "Reset"
+msgstr "重設"
+
 msgid "Patch Generator"
 msgstr "補綴產生器"
 
@@ -2113,113 +2229,6 @@ msgstr "差異區塊 (&D)"
 msgid "&Go to"
 msgstr "移至 (&G)"
 
-msgid "Compare"
-msgstr "比較"
-
-msgid "Whitespaces"
-msgstr "空白字元"
-
-msgid "&Compare"
-msgstr "比較(&C)"
-
-msgid "&Ignore change"
-msgstr "忽略更改(&I)"
-
-msgid "I&gnore all"
-msgstr "全部忽略(&G)"
-
-msgid "Ignore blan&k lines"
-msgstr "忽略空行(&K)""
-
-msgid "Ignore &case"
-msgstr "忽略大小寫(&C)"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "忽略行尾差異（Windows/Unix/Mac）(&R)"
-
-msgid "Ignore num&bers"
-msgstr "忽略數字(&B)"
-
-msgid "Ignore codepage &differences"
-msgstr "忽略字碼頁差異(&D)"
-
-msgid "Ignore c&omment differences"
-msgstr "忽略註解差異(&O)"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "忽略缺少結尾行尾換行符號(&M)"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "忽略換行符號（視為空格）(&b)"
-
-msgid "E&nable moved block detection"
-msgstr "偵測移位的區塊 (&N)"
-
-msgid "Align &similar lines"
-msgstr "相似行對齊 (&S)"
-
-msgid "Diff &algorithm:"
-msgstr "差異比對演算法(&A)："
-
-msgid "Enable indent &heuristic"
-msgstr "啟用縮排啟發式演算法 (&H)"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "完全取消對忽略的差異的突顯顯示"
-
-msgid "Editor"
-msgstr "編輯器"
-
-msgid "&Highlight syntax"
-msgstr "高亮度語法 (&H)"
-
-msgid "&Preserve original EOL"
-msgstr "保留原始行尾(&P)"
-
-msgid "Tabs"
-msgstr "製表符（Tab）"
-
-msgid "&Tab size:"
-msgstr "製表符（Tab）大小 (&T)："
-
-msgid "&Insert tabs"
-msgstr "插入製表符（Tab）(&I)"
-
-msgid "Insert &spaces"
-msgstr "插入空格 (&S)"
-
-msgid "&Rendering mode:"
-msgstr "渲染模式 (&R)："
-
-msgid "&Automatic rescan"
-msgstr "自動重新掃描 (&A)"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "複製所選差異的精細度(&G):"
-
-msgid "Line Difference Coloring"
-msgstr "行內差異著色"
-
-msgid "View line differences"
-msgstr "檢視行內差異"
-
-msgid "&Character-level"
-msgstr "字元階層 (&C)"
-
-msgid "&Word-level:"
-msgstr "字階層 (&W)："
-
-msgid "W&ord break characters:"
-msgstr "斷句字元 (&O)："
-
-msgid ""
-"Some messages can be hidden by the user. Press Reset to make all messages "
-"visible again."
-msgstr "WinMerge 允許隱藏某些共同訊息盒。按重設鍵以再次顯示所有訊息盒。"
-
-msgid "Reset"
-msgstr "重設"
-
 msgid "File Filters"
 msgstr "檔案篩選器"
 
@@ -2259,6 +2268,50 @@ msgstr "右側(&R)："
 msgid "Expression:"
 msgstr "表達式:"
 
+msgid "Codepage"
+msgstr "字碼頁"
+
+msgid "Default Codepage"
+msgstr "預設字碼頁"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "選取非 Unicode 檔案的預設字碼頁："
+
+msgid "System codepage"
+msgstr "系統用的字碼頁"
+
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge 使用者介面用的字碼頁"
+
+msgid "Custom codepage:"
+msgstr "自訂字碼頁："
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"偵測以下檔案的字碼頁：.html, .rc, .xml\n"
+"需要重新啟動程式。"
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"使用 mlang.dll 偵測檔案的字碼頁\n"
+"需要重新啟動程式。"
+
+msgid "Archive Support"
+msgstr "支援壓縮"
+
+msgid "&Enable archive file support"
+msgstr "壓縮檔支援 (&E)"
+
+msgid "&Detect archive type from file signature"
+msgstr "偵測檔首資訊以決定壓縮檔類型 (&D)"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "已儲存至或從專案檔案還原的項目："
+
 msgid "Save Modified Files?"
 msgstr "儲存修改的檔案？"
 
@@ -2292,47 +2345,6 @@ msgstr "放棄變更 (&C)"
 msgid "Disca&rd All"
 msgstr "放棄全部 (&R)"
 
-msgid "Codepage"
-msgstr "字碼頁"
-
-msgid "Default Codepage"
-msgstr "預設字碼頁"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "選取非 Unicode 檔案的預設字碼頁："
-
-msgid "System codepage"
-msgstr "系統用的字碼頁"
-
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge 使用者介面用的字碼頁"
-
-msgid "Custom codepage:"
-msgstr "自訂字碼頁："
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"偵測以下檔案的字碼頁：.html, .rc, .xml\n"
-"需要重新啟動程式。"
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"使用 mlang.dll 偵測檔案的字碼頁\n"
-"需要重新啟動程式。"
-
-msgid "Options"
-msgstr "選項"
-
-msgid "Import..."
-msgstr "匯入..."
-
-msgid "Export..."
-msgstr "匯出..."
-
 msgid "Folder Compare Report"
 msgstr "比較目錄後的報告"
 
@@ -2356,18 +2368,6 @@ msgstr "共用篩選器 (適用所有使用者)"
 
 msgid "Private Filter (current user only)"
 msgstr "個人篩選器(僅適用現在使用者)"
-
-msgid "Archive Support"
-msgstr "支援壓縮"
-
-msgid "&Enable archive file support"
-msgstr "壓縮檔支援 (&E)"
-
-msgid "&Detect archive type from file signature"
-msgstr "偵測檔首資訊以決定壓縮檔類型 (&D)"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "已儲存至或從專案檔案還原的項目："
 
 msgid "Compare Statistics"
 msgstr "比較後的統計"

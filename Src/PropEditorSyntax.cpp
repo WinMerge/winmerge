@@ -95,7 +95,7 @@ void PropEditorSyntax::InitList()
 	String title = _("File Type");
 	m_listSyntax.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(60));
 	title = _("Extension");
-	m_listSyntax.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(196));
+	m_listSyntax.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(256));
 
 	m_listSyntax.SetReadOnlyColumn(0);
 	m_listSyntax.SetEditStyle(1, CSubeditList::EditStyle::WILDCARD_DROP_LIST);

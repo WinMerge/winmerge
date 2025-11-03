@@ -1928,57 +1928,6 @@ msgid "&Options..."
 msgstr "Einstellunge&n..."
 
 #, c-format
-msgid "General"
-msgstr "Allgemein"
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "&Automatisch zum ersten Unterschied scrollen"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Automatisch zum ersten Inline-&Unterschied scrollen"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "&Fenster mit 'Esc' schließen:"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Pfade im Öffnen-Dialog automatisch überprüfen"
-
-msgid "Single instance mode:"
-msgstr "&Einzelinstanzmodus:"
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "&Nachfragen, wenn mehrere Fenster geschlossen werden"
-
-#, c-format
-msgid "&Preserve file time in file compare"
-msgstr "Datei&zeit beim Dateivergleich bewahren"
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "&Dialog \"Dateien oder Ordner auswählen\" beim Programmstart anzeigen"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Dialog \"Dateien oder Ordner auswählen\" mit 'Vergleichen' schließen"
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "Öffnen-Dialog Auto&vervollständigung:"
-
-msgid "Auto-&reload modified files:"
-msgstr "&Geänderte Dateien automatisch neu laden:"
-
-#, c-format
-msgid "Language:"
-msgstr "&Sprache:"
-
-#, c-format
-msgid "Defaults"
-msgstr "Vorgaben"
-
-#, c-format
 msgid "Find"
 msgstr "Suchen"
 
@@ -2108,6 +2057,69 @@ msgstr "Hinzufügen"
 
 msgid "Clear"
 msgstr "Leeren"
+
+#, c-format
+msgid "Options"
+msgstr "Einstellungen"
+
+#, c-format
+msgid "Import..."
+msgstr "Importieren..."
+
+#, c-format
+msgid "Export..."
+msgstr "Exportieren..."
+
+#, c-format
+msgid "General"
+msgstr "Allgemein"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "&Automatisch zum ersten Unterschied scrollen"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Automatisch zum ersten Inline-&Unterschied scrollen"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "&Fenster mit 'Esc' schließen:"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Pfade im Öffnen-Dialog automatisch überprüfen"
+
+msgid "Single instance mode:"
+msgstr "&Einzelinstanzmodus:"
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "&Nachfragen, wenn mehrere Fenster geschlossen werden"
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "Datei&zeit beim Dateivergleich bewahren"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "&Dialog \"Dateien oder Ordner auswählen\" beim Programmstart anzeigen"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Dialog \"Dateien oder Ordner auswählen\" mit 'Vergleichen' schließen"
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "Öffnen-Dialog Auto&vervollständigung:"
+
+msgid "Auto-&reload modified files:"
+msgstr "&Geänderte Dateien automatisch neu laden:"
+
+#, c-format
+msgid "Language:"
+msgstr "&Sprache:"
+
+#, c-format
+msgid "Defaults"
+msgstr "Vorgaben"
 
 #, c-format
 msgid "Colors"
@@ -2312,6 +2324,133 @@ msgid "Br&owse..."
 msgstr "Su&chen..."
 
 #, c-format
+msgid "Compare"
+msgstr "Vergleichen"
+
+#, c-format
+msgid "Whitespaces"
+msgstr "Leerzeichen"
+
+#, c-format
+msgid "&Compare"
+msgstr "&Vergleichen"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "Änderung &ignorieren"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "&Alle ignorieren"
+
+msgid "Ignore blan&k lines"
+msgstr "Leerzeilen &ignorieren"
+
+msgid "Ignore &case"
+msgstr "&Groß-/Kleinschreibung ignorieren"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "EOL-Unterschiede igno&rieren (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "&Nummern ignorieren"
+
+msgid "Ignore codepage &differences"
+msgstr "&Codeseiten-Unterschiede ignorieren"
+
+msgid "Ignore c&omment differences"
+msgstr "&Kommentarunterschiede ignorieren"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "&Fehlende abschließende EOL ignorieren"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "&Zeilenumbrüche ignorieren (als Leerzeichen behandeln)"
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "Verschobene &Blöcke erkennen"
+
+msgid "Align &similar lines"
+msgstr "&Ähnliche Zeilen ausrichten"
+
+msgid "Diff &algorithm:"
+msgstr "&Diff-Algorithmus:"
+
+msgid "Enable indent &heuristic"
+msgstr "&Heuristischen Einzug aktivieren"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Ignorierte &Unterschiede komplett nicht markieren"
+
+#, c-format
+msgid "Editor"
+msgstr "Editor"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "&Syntax hervorheben"
+
+#, c-format
+msgid "&Preserve original EOL"
+msgstr "&Ursprüngliche Zeilenende-Zeichen bewahren"
+
+#, c-format
+msgid "Tabs"
+msgstr "Tabulatoren"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "&Tabulator-Größe:"
+
+#, c-format
+msgid "&Insert tabs"
+msgstr "Tabulatoren &einfügen"
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "&Leerzeichen einfügen"
+
+msgid "&Rendering mode:"
+msgstr "&Darstellungsmodus:"
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&Automatisch aktualisieren"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "&Kopiergranularität für ausgewählte Unterschiede:"
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Zeilenunterschied-Färbung"
+
+#, c-format
+msgid "View line differences"
+msgstr "Ze&ilenunterschied anzeigen"
+
+#, c-format
+msgid "&Character-level"
+msgstr "&Zeichen-Ebene"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "&Wort-Ebene:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr "W&ortumbruchzeichen:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr ""
+"WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\n"
+"Drücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu schalten."
+
+#, c-format
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Patch-Generator"
 
@@ -2460,133 +2599,6 @@ msgstr "&Unterschied"
 msgid "&Go to"
 msgstr "&OK"
 
-#, c-format
-msgid "Compare"
-msgstr "Vergleichen"
-
-#, c-format
-msgid "Whitespaces"
-msgstr "Leerzeichen"
-
-#, c-format
-msgid "&Compare"
-msgstr "&Vergleichen"
-
-#, c-format
-msgid "&Ignore change"
-msgstr "Änderung &ignorieren"
-
-#, c-format
-msgid "I&gnore all"
-msgstr "&Alle ignorieren"
-
-msgid "Ignore blan&k lines"
-msgstr "Leerzeilen &ignorieren"
-
-msgid "Ignore &case"
-msgstr "&Groß-/Kleinschreibung ignorieren"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "EOL-Unterschiede igno&rieren (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "&Nummern ignorieren"
-
-msgid "Ignore codepage &differences"
-msgstr "&Codeseiten-Unterschiede ignorieren"
-
-msgid "Ignore c&omment differences"
-msgstr "&Kommentarunterschiede ignorieren"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "&Fehlende abschließende EOL ignorieren"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "&Zeilenumbrüche ignorieren (als Leerzeichen behandeln)"
-
-#, c-format
-msgid "E&nable moved block detection"
-msgstr "Verschobene &Blöcke erkennen"
-
-msgid "Align &similar lines"
-msgstr "&Ähnliche Zeilen ausrichten"
-
-msgid "Diff &algorithm:"
-msgstr "&Diff-Algorithmus:"
-
-msgid "Enable indent &heuristic"
-msgstr "&Heuristischen Einzug aktivieren"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Ignorierte &Unterschiede komplett nicht markieren"
-
-#, c-format
-msgid "Editor"
-msgstr "Editor"
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "&Syntax hervorheben"
-
-#, c-format
-msgid "&Preserve original EOL"
-msgstr "&Ursprüngliche Zeilenende-Zeichen bewahren"
-
-#, c-format
-msgid "Tabs"
-msgstr "Tabulatoren"
-
-#, c-format
-msgid "&Tab size:"
-msgstr "&Tabulator-Größe:"
-
-#, c-format
-msgid "&Insert tabs"
-msgstr "Tabulatoren &einfügen"
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "&Leerzeichen einfügen"
-
-msgid "&Rendering mode:"
-msgstr "&Darstellungsmodus:"
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "&Automatisch aktualisieren"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "&Kopiergranularität für ausgewählte Unterschiede:"
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr "Zeilenunterschied-Färbung"
-
-#, c-format
-msgid "View line differences"
-msgstr "Ze&ilenunterschied anzeigen"
-
-#, c-format
-msgid "&Character-level"
-msgstr "&Zeichen-Ebene"
-
-#, c-format
-msgid "&Word-level:"
-msgstr "&Wort-Ebene:"
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr "W&ortumbruchzeichen:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr ""
-"WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\n"
-"Drücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu schalten."
-
-#, c-format
-msgid "Reset"
-msgstr "Zurücksetzen"
-
 msgid "File Filters"
 msgstr "Dateifilter"
 
@@ -2629,6 +2641,59 @@ msgstr "&Rechte Seite:"
 
 msgid "Expression:"
 msgstr "Ausdruck:"
+
+#, c-format
+msgid "Codepage"
+msgstr "Codeseite"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Standard-Codeseite"
+
+#, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Standard-Codeseite auswählen, die beim Laden von Nicht-Unicode-Dateien verwendet wird:"
+
+#, c-format
+msgid "System codepage"
+msgstr "System-Codeseite"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "Entsprechend der WinMerge-Benutzeroberfläche"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Benutzerdefiniert:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Codeseite für folgende Dateien ermitteln: .html, .rc, .xml\n"
+"Benötigt einen Neustart des Programmes."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Codeseite für Textdateien mit Hilfe von mlang.dll ermitteln\n"
+"Benötigt einen Neustart des Programmes."
+
+#, c-format
+msgid "Archive Support"
+msgstr "Archivunterstützung"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&Archivunterstützung aktivieren"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "Archiv&typ aus der Dateisignatur ermitteln"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "In der Projektdatei gespeicherte oder aus ihr wiederhergestellte Elemente:"
 
 #, c-format
 msgid "Save Modified Files?"
@@ -2675,56 +2740,6 @@ msgid "Disca&rd All"
 msgstr "&Alle verwerfen"
 
 #, c-format
-msgid "Codepage"
-msgstr "Codeseite"
-
-#, c-format
-msgid "Default Codepage"
-msgstr "Standard-Codeseite"
-
-#, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Standard-Codeseite auswählen, die beim Laden von Nicht-Unicode-Dateien verwendet wird:"
-
-#, c-format
-msgid "System codepage"
-msgstr "System-Codeseite"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "Entsprechend der WinMerge-Benutzeroberfläche"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Benutzerdefiniert:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Codeseite für folgende Dateien ermitteln: .html, .rc, .xml\n"
-"Benötigt einen Neustart des Programmes."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Codeseite für Textdateien mit Hilfe von mlang.dll ermitteln\n"
-"Benötigt einen Neustart des Programmes."
-
-#, c-format
-msgid "Options"
-msgstr "Einstellungen"
-
-#, c-format
-msgid "Import..."
-msgstr "Importieren..."
-
-#, c-format
-msgid "Export..."
-msgstr "Exportieren..."
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Ordnervergleichsbericht"
 
@@ -2755,21 +2770,6 @@ msgstr "Gemeinsamer Filter (für alle Benutzer auf diesem Computer)"
 #, c-format
 msgid "Private Filter (current user only)"
 msgstr "Privater Filter (nur für den aktuellen Benutzer)"
-
-#, c-format
-msgid "Archive Support"
-msgstr "Archivunterstützung"
-
-#, c-format
-msgid "&Enable archive file support"
-msgstr "&Archivunterstützung aktivieren"
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "Archiv&typ aus der Dateisignatur ermitteln"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "In der Projektdatei gespeicherte oder aus ihr wiederhergestellte Elemente:"
 
 #, c-format
 msgid "Compare Statistics"

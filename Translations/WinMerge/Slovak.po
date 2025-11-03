@@ -1670,48 +1670,6 @@ msgstr "Pomoc"
 msgid "&Options..."
 msgstr "&Nastavenia..."
 
-msgid "General"
-msgstr "Všeobecné"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Automaticky &rolovať na prvý rozdiel"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "&Automatické rolovať na prvý rozdiel v riadku"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Zat&várať okná klávesou 'Esc':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Automaticky overovať cestu v dialógu Otvoriť"
-
-msgid "Single instance mode:"
-msgstr "Režim jednej inštancie:"
-
-msgid "As&k when closing multiple windows"
-msgstr "&Pýtať sa pred zatvorením viacerých okien"
-
-msgid "&Preserve file time in file compare"
-msgstr "&Zachovávať čas súboru pri porovnaní"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Zobraziť pri spustení dialóg „Vybrať súbory alebo priečinky“"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Kliknutím na tlačidlo Porovnať zatvoriť dialógové okno „Vybrať súbory alebo priečinky“"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Automatické dopĺňanie v dialógu &Otvoriť:"
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-msgid "Language:"
-msgstr "Jazyk:"
-
-msgid "Defaults"
-msgstr "Predvolené"
-
 msgid "Find"
 msgstr "Hľadať"
 
@@ -1813,6 +1771,57 @@ msgstr "Sčítanie"
 
 msgid "Clear"
 msgstr "Vyčistiť"
+
+msgid "Options"
+msgstr "Možnosti"
+
+msgid "Import..."
+msgstr "Importovať..."
+
+msgid "Export..."
+msgstr "Exportovať..."
+
+msgid "General"
+msgstr "Všeobecné"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Automaticky &rolovať na prvý rozdiel"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "&Automatické rolovať na prvý rozdiel v riadku"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Zat&várať okná klávesou 'Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Automaticky overovať cestu v dialógu Otvoriť"
+
+msgid "Single instance mode:"
+msgstr "Režim jednej inštancie:"
+
+msgid "As&k when closing multiple windows"
+msgstr "&Pýtať sa pred zatvorením viacerých okien"
+
+msgid "&Preserve file time in file compare"
+msgstr "&Zachovávať čas súboru pri porovnaní"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Zobraziť pri spustení dialóg „Vybrať súbory alebo priečinky“"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Kliknutím na tlačidlo Porovnať zatvoriť dialógové okno „Vybrať súbory alebo priečinky“"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Automatické dopĺňanie v dialógu &Otvoriť:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+msgid "Language:"
+msgstr "Jazyk:"
+
+msgid "Defaults"
+msgstr "Predvolené"
 
 msgid "Colors"
 msgstr "Farby"
@@ -1973,6 +1982,111 @@ msgstr "&Vlastný priečinok:"
 msgid "Br&owse..."
 msgstr "Pre&hľadávať..."
 
+msgid "Compare"
+msgstr "Porovnať"
+
+msgid "Whitespaces"
+msgstr "Netlačiteľné znaky"
+
+msgid "&Compare"
+msgstr "Porovnávať &netlačiteľné znaky"
+
+msgid "&Ignore change"
+msgstr "&Ignorovať zmeny"
+
+msgid "I&gnore all"
+msgstr "I&gnorovať všetko"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignorovať prázdne riad&ky"
+
+msgid "Ignore &case"
+msgstr "Ignorovať m&alé/VEĽKÉ"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr "Ignorovať čí&sla"
+
+msgid "Ignore codepage &differences"
+msgstr "Ignorovať rozdiely kódových stránok"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignorovať rozdielne &komentáre"
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr "Povoliť &zisťovanie presunu bloku"
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr "&Algoritmus rozdielov:"
+
+msgid "Enable indent &heuristic"
+msgstr "Povoliť &heuristické odsadenie"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Úplne odlíšiť ignorované rozdiely"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "&Highlight syntax"
+msgstr "Zvýrazňovanie syntaxe"
+
+msgid "&Preserve original EOL"
+msgstr "&Zachovávať pôvodné znaky zakončenia riadkov"
+
+msgid "Tabs"
+msgstr "Tabelátory"
+
+msgid "&Tab size:"
+msgstr "&Nastavenie tabelátorov:"
+
+msgid "&Insert tabs"
+msgstr "Vkladať &tabelátory"
+
+msgid "Insert &spaces"
+msgstr "Vkladať &medzery"
+
+msgid "&Rendering mode:"
+msgstr "&Režim vytvárania prevodu:"
+
+msgid "&Automatic rescan"
+msgstr "Automatické p&reskenovanie"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+msgid "Line Difference Coloring"
+msgstr "Farebné odlíšenie riadkových rozdielov"
+
+msgid "View line differences"
+msgstr "Zobrazovať rozdiely riadkov"
+
+msgid "&Character-level"
+msgstr "Úroveň &znaku"
+
+msgid "&Word-level:"
+msgstr "Úroveň &slova:"
+
+msgid "W&ord break characters:"
+msgstr "Zalam&ovať slová:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge umožňuje skryť niektoré bežné okienka so správami. Stlačením tlačidla Obnoviť znova zviditeľníte všetky okienka správ."
+
+msgid "Reset"
+msgstr "Vynulovať"
+
 msgid "Patch Generator"
 msgstr "Generátor opravných záplat"
 
@@ -2096,111 +2210,6 @@ msgstr "&Rozdiel"
 msgid "&Go to"
 msgstr "&Prejsť na"
 
-msgid "Compare"
-msgstr "Porovnať"
-
-msgid "Whitespaces"
-msgstr "Netlačiteľné znaky"
-
-msgid "&Compare"
-msgstr "Porovnávať &netlačiteľné znaky"
-
-msgid "&Ignore change"
-msgstr "&Ignorovať zmeny"
-
-msgid "I&gnore all"
-msgstr "I&gnorovať všetko"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorovať prázdne riad&ky"
-
-msgid "Ignore &case"
-msgstr "Ignorovať m&alé/VEĽKÉ"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr "Ignorovať čí&sla"
-
-msgid "Ignore codepage &differences"
-msgstr "Ignorovať rozdiely kódových stránok"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignorovať rozdielne &komentáre"
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr "Povoliť &zisťovanie presunu bloku"
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr "&Algoritmus rozdielov:"
-
-msgid "Enable indent &heuristic"
-msgstr "Povoliť &heuristické odsadenie"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Úplne odlíšiť ignorované rozdiely"
-
-msgid "Editor"
-msgstr "Editor"
-
-msgid "&Highlight syntax"
-msgstr "Zvýrazňovanie syntaxe"
-
-msgid "&Preserve original EOL"
-msgstr "&Zachovávať pôvodné znaky zakončenia riadkov"
-
-msgid "Tabs"
-msgstr "Tabelátory"
-
-msgid "&Tab size:"
-msgstr "&Nastavenie tabelátorov:"
-
-msgid "&Insert tabs"
-msgstr "Vkladať &tabelátory"
-
-msgid "Insert &spaces"
-msgstr "Vkladať &medzery"
-
-msgid "&Rendering mode:"
-msgstr "&Režim vytvárania prevodu:"
-
-msgid "&Automatic rescan"
-msgstr "Automatické p&reskenovanie"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-msgid "Line Difference Coloring"
-msgstr "Farebné odlíšenie riadkových rozdielov"
-
-msgid "View line differences"
-msgstr "Zobrazovať rozdiely riadkov"
-
-msgid "&Character-level"
-msgstr "Úroveň &znaku"
-
-msgid "&Word-level:"
-msgstr "Úroveň &slova:"
-
-msgid "W&ord break characters:"
-msgstr "Zalam&ovať slová:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge umožňuje skryť niektoré bežné okienka so správami. Stlačením tlačidla Obnoviť znova zviditeľníte všetky okienka správ."
-
-msgid "Reset"
-msgstr "Vynulovať"
-
 msgid "File Filters"
 msgstr "Filtre súborov"
 
@@ -2240,6 +2249,50 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Codepage"
+msgstr "Kódová stránka"
+
+msgid "Default Codepage"
+msgstr "Predvolená kódová stránka"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Zvoľte predvolenú kódovú stránku, ktorá sa použije pri načítaní ne-Unicode súborov:"
+
+msgid "System codepage"
+msgstr "Systémová kódová stránka"
+
+msgid "According to WinMerge User Interface"
+msgstr "Podľa užívateľského rozhrania WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Vlastná kódová stránka:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Zisťovať informácie o kódovej stránke pre tieto súbory: .html, .rc, .xml\n"
+"Potrebný reštart relácie."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Zisťovať kódovú stránku pre textové súbory pomocou súboru mlang.dll\n"
+"Potrebný reštart relácie."
+
+msgid "Archive Support"
+msgstr "Podpora archívov"
+
+msgid "&Enable archive file support"
+msgstr "&Zapnúť podporu archívov"
+
+msgid "&Detect archive type from file signature"
+msgstr "&Detekovať typ archívu z hlavičky súboru"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Položky uložené do súboru projektu alebo obnovené zo súboru projektu:"
+
 msgid "Save Modified Files?"
 msgstr "Uložiť zmenené súbory?"
 
@@ -2273,47 +2326,6 @@ msgstr "Z&ahodiť zmeny"
 msgid "Disca&rd All"
 msgstr "Zahodiť &všetky"
 
-msgid "Codepage"
-msgstr "Kódová stránka"
-
-msgid "Default Codepage"
-msgstr "Predvolená kódová stránka"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Zvoľte predvolenú kódovú stránku, ktorá sa použije pri načítaní ne-Unicode súborov:"
-
-msgid "System codepage"
-msgstr "Systémová kódová stránka"
-
-msgid "According to WinMerge User Interface"
-msgstr "Podľa užívateľského rozhrania WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Vlastná kódová stránka:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Zisťovať informácie o kódovej stránke pre tieto súbory: .html, .rc, .xml\n"
-"Potrebný reštart relácie."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Zisťovať kódovú stránku pre textové súbory pomocou súboru mlang.dll\n"
-"Potrebný reštart relácie."
-
-msgid "Options"
-msgstr "Možnosti"
-
-msgid "Import..."
-msgstr "Importovať..."
-
-msgid "Export..."
-msgstr "Exportovať..."
-
 msgid "Folder Compare Report"
 msgstr "Správa o porovnaní priečinkov"
 
@@ -2337,18 +2349,6 @@ msgstr "Zdieľaný filter (pre všetkých užívateľov tohto počítača)"
 
 msgid "Private Filter (current user only)"
 msgstr "Súkromný filter (len pre aktuálneho užívateľa)"
-
-msgid "Archive Support"
-msgstr "Podpora archívov"
-
-msgid "&Enable archive file support"
-msgstr "&Zapnúť podporu archívov"
-
-msgid "&Detect archive type from file signature"
-msgstr "&Detekovať typ archívu z hlavičky súboru"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Položky uložené do súboru projektu alebo obnovené zo súboru projektu:"
 
 msgid "Compare Statistics"
 msgstr "Štatistika porovnania"

@@ -1921,57 +1921,6 @@ msgid "&Options..."
 msgstr "&විකල්පයන්..."
 
 #, c-format
-msgid "General"
-msgstr "සාමාන්‍ය "
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "ස්වයංක්‍රීයව පළමුවන වෙනස්කම සඳහා අනුචලනය"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr ""
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "කවුළු වැසීම 'Esc':"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Automatically verify paths in Open dialog"
-
-msgid "Single instance mode:"
-msgstr ""
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "කවුළු කිපයක් වැසීමේදී අසන්න"
-
-#, fuzzy, c-format
-msgid "&Preserve file time in file compare"
-msgstr "&Preserve file time in file compare"
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Afficher la boîte de dialogue d'ouverture au démarrage"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "Op&en dialog Auto completion:"
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-#, c-format
-msgid "Language:"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Defaults"
-msgstr "Defaults"
-
-#, c-format
 msgid "Find"
 msgstr "සොයන්න"
 
@@ -2099,6 +2048,69 @@ msgstr ""
 
 msgid "Clear"
 msgstr ""
+
+#, c-format
+msgid "Options"
+msgstr "විකල්ප"
+
+#, c-format
+msgid "Import..."
+msgstr "ආනයනය..."
+
+#, c-format
+msgid "Export..."
+msgstr "අපනයනය..."
+
+#, c-format
+msgid "General"
+msgstr "සාමාන්‍ය "
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "ස්වයංක්‍රීයව පළමුවන වෙනස්කම සඳහා අනුචලනය"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "කවුළු වැසීම 'Esc':"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Automatically verify paths in Open dialog"
+
+msgid "Single instance mode:"
+msgstr ""
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "කවුළු කිපයක් වැසීමේදී අසන්න"
+
+#, fuzzy, c-format
+msgid "&Preserve file time in file compare"
+msgstr "&Preserve file time in file compare"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Afficher la boîte de dialogue d'ouverture au démarrage"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "Op&en dialog Auto completion:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+#, c-format
+msgid "Language:"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Defaults"
+msgstr "Defaults"
 
 #, c-format
 msgid "Colors"
@@ -2300,6 +2312,131 @@ msgstr "C&ustom folder:"
 msgid "Br&owse..."
 msgstr "සැරි සරන්න..."
 
+#, c-format
+msgid "Compare"
+msgstr "සසඳන්න"
+
+#, c-format
+msgid "Whitespaces"
+msgstr "හිස්තැන"
+
+#, c-format
+msgid "&Compare"
+msgstr "සසඳන්න"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "වෙනස නොසලකා හරින්න "
+
+#, c-format
+msgid "I&gnore all"
+msgstr "සියල්ල නොසලකා හරින්න"
+
+msgid "Ignore blan&k lines"
+msgstr "හිස් පේළි නොසලකා හරින්න"
+
+msgid "Ignore &case"
+msgstr ""
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "E&nable moved block detection"
+msgstr "E&nable moved block detection"
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+#, c-format
+msgid "Editor"
+msgstr "සම්පාදක"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "&වාක්‍ය වින්‍යාසය විශේෂිතව දක්වන්න"
+
+#, fuzzy, c-format
+msgid "&Preserve original EOL"
+msgstr "&Preserve original EOL"
+
+#, fuzzy, c-format
+msgid "Tabs"
+msgstr "Tabs"
+
+#, fuzzy, c-format
+msgid "&Tab size:"
+msgstr "&Tab size:"
+
+#, fuzzy, c-format
+msgid "&Insert tabs"
+msgstr "&Insert tabs"
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "ඇතුලත් කිරීම සහ හිස්තැන්"
+
+msgid "&Rendering mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&ස්වයංක්‍රීය නැවත පිරික්සුම"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "පේළි අතර වෙනස වර්ණ ගැන්වුම"
+
+#, c-format
+msgid "View line differences"
+msgstr "පේළි අතර වෙනස පෙන්වන්න"
+
+#, c-format
+msgid "&Character-level"
+msgstr "& සංකේතයේ පිහිටුම"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "& වචනයෙහි පිහිටුම"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr ""
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr ""
+
+#, c-format
+msgid "Reset"
+msgstr "යලි පිහිටුවීමට"
+
 #, fuzzy, c-format
 msgid "Patch Generator"
 msgstr "Patch Generator"
@@ -2449,131 +2586,6 @@ msgstr "වෙනස"
 msgid "&Go to"
 msgstr "වෙත යන්න"
 
-#, c-format
-msgid "Compare"
-msgstr "සසඳන්න"
-
-#, c-format
-msgid "Whitespaces"
-msgstr "හිස්තැන"
-
-#, c-format
-msgid "&Compare"
-msgstr "සසඳන්න"
-
-#, c-format
-msgid "&Ignore change"
-msgstr "වෙනස නොසලකා හරින්න "
-
-#, c-format
-msgid "I&gnore all"
-msgstr "සියල්ල නොසලකා හරින්න"
-
-msgid "Ignore blan&k lines"
-msgstr "හිස් පේළි නොසලකා හරින්න"
-
-msgid "Ignore &case"
-msgstr ""
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr ""
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr ""
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "E&nable moved block detection"
-msgstr "E&nable moved block detection"
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr ""
-
-msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-#, c-format
-msgid "Editor"
-msgstr "සම්පාදක"
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "&වාක්‍ය වින්‍යාසය විශේෂිතව දක්වන්න"
-
-#, fuzzy, c-format
-msgid "&Preserve original EOL"
-msgstr "&Preserve original EOL"
-
-#, fuzzy, c-format
-msgid "Tabs"
-msgstr "Tabs"
-
-#, fuzzy, c-format
-msgid "&Tab size:"
-msgstr "&Tab size:"
-
-#, fuzzy, c-format
-msgid "&Insert tabs"
-msgstr "&Insert tabs"
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "ඇතුලත් කිරීම සහ හිස්තැන්"
-
-msgid "&Rendering mode:"
-msgstr ""
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "&ස්වයංක්‍රීය නැවත පිරික්සුම"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr "පේළි අතර වෙනස වර්ණ ගැන්වුම"
-
-#, c-format
-msgid "View line differences"
-msgstr "පේළි අතර වෙනස පෙන්වන්න"
-
-#, c-format
-msgid "&Character-level"
-msgstr "& සංකේතයේ පිහිටුම"
-
-#, c-format
-msgid "&Word-level:"
-msgstr "& වචනයෙහි පිහිටුම"
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr ""
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr ""
-
-#, c-format
-msgid "Reset"
-msgstr "යලි පිහිටුවීමට"
-
 msgid "File Filters"
 msgstr ""
 
@@ -2615,6 +2627,51 @@ msgid "&Right-hand side:"
 msgstr ""
 
 msgid "Expression:"
+msgstr ""
+
+#, c-format
+msgid "Codepage"
+msgstr "ගුප්ත සංඥා "
+
+#, fuzzy, c-format
+msgid "Default Codepage"
+msgstr "Default Codepage"
+
+#, fuzzy, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Select the default codepage for non-Unicode files:"
+
+#, c-format
+msgid "System codepage"
+msgstr "පද්ධති ගුප්ත සංඥා "
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge හි පරිශීලික අතුරුමුහුණතට අනුව"
+
+#, fuzzy, c-format
+msgid "Custom codepage:"
+msgstr "Custom codepage:"
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr "මෙම ගොනු සඳහා ගුප්ත සංඥා  විස්තර  අණාවරනය කරන්න: .html, .rc, .xml\n"
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Archive Support"
+msgstr "Archive Support"
+
+#, fuzzy, c-format
+msgid "&Enable archive file support"
+msgstr "&Enable archive file support"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "ගොනුවේ ලාංජනය අනුව ලේබණයේ වර්ගය හදුනාගන්න"
+
+msgid "Items saved to or restored from the project file:"
 msgstr ""
 
 #, c-format
@@ -2662,48 +2719,6 @@ msgid "Disca&rd All"
 msgstr ""
 
 #, c-format
-msgid "Codepage"
-msgstr "ගුප්ත සංඥා "
-
-#, fuzzy, c-format
-msgid "Default Codepage"
-msgstr "Default Codepage"
-
-#, fuzzy, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Select the default codepage for non-Unicode files:"
-
-#, c-format
-msgid "System codepage"
-msgstr "පද්ධති ගුප්ත සංඥා "
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge හි පරිශීලික අතුරුමුහුණතට අනුව"
-
-#, fuzzy, c-format
-msgid "Custom codepage:"
-msgstr "Custom codepage:"
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr "මෙම ගොනු සඳහා ගුප්ත සංඥා  විස්තර  අණාවරනය කරන්න: .html, .rc, .xml\n"
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
-
-#, c-format
-msgid "Options"
-msgstr "විකල්ප"
-
-#, c-format
-msgid "Import..."
-msgstr "ආනයනය..."
-
-#, c-format
-msgid "Export..."
-msgstr "අපනයනය..."
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "පත්‍රිකා සැසඳීමේ වාර්තාව"
 
@@ -2734,21 +2749,6 @@ msgstr "Shared Filter (for all users)"
 #, fuzzy, c-format
 msgid "Private Filter (current user only)"
 msgstr "Private Filter (current user only)"
-
-#, fuzzy, c-format
-msgid "Archive Support"
-msgstr "Archive Support"
-
-#, fuzzy, c-format
-msgid "&Enable archive file support"
-msgstr "&Enable archive file support"
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "ගොනුවේ ලාංජනය අනුව ලේබණයේ වර්ගය හදුනාගන්න"
-
-msgid "Items saved to or restored from the project file:"
-msgstr ""
 
 #, c-format
 msgid "Compare Statistics"

@@ -1922,57 +1922,6 @@ msgid "&Options..."
 msgstr "O&pcions..."
 
 #, c-format
-msgid "General"
-msgstr "General"
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "&Desplaça automàticament fins a la primera diferència"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "&Desplaça automàticament fins a la primera diferència de la línia"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "T&anca les finestres amb 'Esc':"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Verifica els camins automàticament al diàleg d'obrir fitxers"
-
-msgid "Single instance mode:"
-msgstr "Mode de només una instància:"
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "Pregunta abans de tancar múltiples finestres"
-
-#, c-format
-msgid "&Preserve file time in file compare"
-msgstr "Preserva la data en les comparacions de fitxers"
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Mostra el diàlec \"Selecciona fitxers o directoris\" a l'iniciar"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Tanca el diàleg \"Selecciona fitxers o directoris\" al fer clic en comparar"
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "Autocompletar al diàleg d'obrir:"
-
-msgid "Auto-&reload modified files:"
-msgstr "&Recarrega automàticament els fitxers modificats:"
-
-#, c-format
-msgid "Language:"
-msgstr "Idioma:"
-
-#, c-format
-msgid "Defaults"
-msgstr "Predeterminats"
-
-#, c-format
 msgid "Find"
 msgstr "Cerca"
 
@@ -2100,6 +2049,69 @@ msgstr "Afegeix"
 
 msgid "Clear"
 msgstr "Esborra"
+
+#, c-format
+msgid "Options"
+msgstr "Opcions"
+
+#, c-format
+msgid "Import..."
+msgstr "Importa..."
+
+#, c-format
+msgid "Export..."
+msgstr "Exporta..."
+
+#, c-format
+msgid "General"
+msgstr "General"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "&Desplaça automàticament fins a la primera diferència"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "&Desplaça automàticament fins a la primera diferència de la línia"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "T&anca les finestres amb 'Esc':"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Verifica els camins automàticament al diàleg d'obrir fitxers"
+
+msgid "Single instance mode:"
+msgstr "Mode de només una instància:"
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "Pregunta abans de tancar múltiples finestres"
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "Preserva la data en les comparacions de fitxers"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Mostra el diàlec \"Selecciona fitxers o directoris\" a l'iniciar"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Tanca el diàleg \"Selecciona fitxers o directoris\" al fer clic en comparar"
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "Autocompletar al diàleg d'obrir:"
+
+msgid "Auto-&reload modified files:"
+msgstr "&Recarrega automàticament els fitxers modificats:"
+
+#, c-format
+msgid "Language:"
+msgstr "Idioma:"
+
+#, c-format
+msgid "Defaults"
+msgstr "Predeterminats"
 
 #, c-format
 msgid "Colors"
@@ -2302,6 +2314,131 @@ msgid "Br&owse..."
 msgstr "N&avega..."
 
 #, c-format
+msgid "Compare"
+msgstr "Comparació"
+
+#, c-format
+msgid "Whitespaces"
+msgstr "Espais en blanc"
+
+#, c-format
+msgid "&Compare"
+msgstr "Compara els &espais"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "Ignora els &canvis en els espais"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "Ignora t&ots els espais"
+
+msgid "Ignore blan&k lines"
+msgstr "&Ignora les línies en blanc"
+
+msgid "Ignore &case"
+msgstr "Ignora &majúscules/minúscules"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr "Ignora els nombres"
+
+msgid "Ignore codepage &differences"
+msgstr "Ignora les diferències de codificació de caràcters"
+
+msgid "Ignore c&omment differences"
+msgstr "Ingora les diferències en els comentaris"
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "&Habilita detecció de blocs desplaçats"
+
+msgid "Align &similar lines"
+msgstr "Em&parella les línies similars"
+
+msgid "Diff &algorithm:"
+msgstr "Algoritme de diferenciació:"
+
+msgid "Enable indent &heuristic"
+msgstr "Habilita la heurística de sagnat"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "No ressaltis les diferències ignorades"
+
+#, c-format
+msgid "Editor"
+msgstr "Editor"
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "&Ressalta la sintaxi"
+
+#, c-format
+msgid "&Preserve original EOL"
+msgstr "&Preserva els caràcters de salt de línia originals"
+
+#, c-format
+msgid "Tabs"
+msgstr "Tabulacions"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "&Mida de les tabulacions:"
+
+#, c-format
+msgid "&Insert tabs"
+msgstr "&Insereix tabulacions"
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "In&sereix espais"
+
+msgid "&Rendering mode:"
+msgstr "&Mode de renderització:"
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "Reexploració &automàtica"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Copia la &granularitat per a les diferències seleccionades:"
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Acoloriment de diferència de línia"
+
+#, c-format
+msgid "View line differences"
+msgstr "&Veure les diferències de la línia"
+
+#, c-format
+msgid "&Character-level"
+msgstr "Nivell de &caràcter"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "Nivell de &paraula:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr "Caràcters de separació de paraules:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "El WinMerge permet ocultar alguns quadres de missatges comuns. Premeu el botó Reinicialitza per fer visibles tots els quadres de missatges altre cop."
+
+#, c-format
+msgid "Reset"
+msgstr "Reinicialitza"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Generador de pedaços"
 
@@ -2450,131 +2587,6 @@ msgstr "&Diferència"
 msgid "&Go to"
 msgstr "&Ves a"
 
-#, c-format
-msgid "Compare"
-msgstr "Comparació"
-
-#, c-format
-msgid "Whitespaces"
-msgstr "Espais en blanc"
-
-#, c-format
-msgid "&Compare"
-msgstr "Compara els &espais"
-
-#, c-format
-msgid "&Ignore change"
-msgstr "Ignora els &canvis en els espais"
-
-#, c-format
-msgid "I&gnore all"
-msgstr "Ignora t&ots els espais"
-
-msgid "Ignore blan&k lines"
-msgstr "&Ignora les línies en blanc"
-
-msgid "Ignore &case"
-msgstr "Ignora &majúscules/minúscules"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr "Ignora els nombres"
-
-msgid "Ignore codepage &differences"
-msgstr "Ignora les diferències de codificació de caràcters"
-
-msgid "Ignore c&omment differences"
-msgstr "Ingora les diferències en els comentaris"
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-#, c-format
-msgid "E&nable moved block detection"
-msgstr "&Habilita detecció de blocs desplaçats"
-
-msgid "Align &similar lines"
-msgstr "Em&parella les línies similars"
-
-msgid "Diff &algorithm:"
-msgstr "Algoritme de diferenciació:"
-
-msgid "Enable indent &heuristic"
-msgstr "Habilita la heurística de sagnat"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "No ressaltis les diferències ignorades"
-
-#, c-format
-msgid "Editor"
-msgstr "Editor"
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "&Ressalta la sintaxi"
-
-#, c-format
-msgid "&Preserve original EOL"
-msgstr "&Preserva els caràcters de salt de línia originals"
-
-#, c-format
-msgid "Tabs"
-msgstr "Tabulacions"
-
-#, c-format
-msgid "&Tab size:"
-msgstr "&Mida de les tabulacions:"
-
-#, c-format
-msgid "&Insert tabs"
-msgstr "&Insereix tabulacions"
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "In&sereix espais"
-
-msgid "&Rendering mode:"
-msgstr "&Mode de renderització:"
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "Reexploració &automàtica"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "Copia la &granularitat per a les diferències seleccionades:"
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr "Acoloriment de diferència de línia"
-
-#, c-format
-msgid "View line differences"
-msgstr "&Veure les diferències de la línia"
-
-#, c-format
-msgid "&Character-level"
-msgstr "Nivell de &caràcter"
-
-#, c-format
-msgid "&Word-level:"
-msgstr "Nivell de &paraula:"
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr "Caràcters de separació de paraules:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "El WinMerge permet ocultar alguns quadres de missatges comuns. Premeu el botó Reinicialitza per fer visibles tots els quadres de missatges altre cop."
-
-#, c-format
-msgid "Reset"
-msgstr "Reinicialitza"
-
 msgid "File Filters"
 msgstr "Filtres de fitxer"
 
@@ -2617,6 +2629,59 @@ msgstr ""
 
 msgid "Expression:"
 msgstr ""
+
+#, c-format
+msgid "Codepage"
+msgstr "Codificació de caràcters"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Codificació de caràcters predeterminada"
+
+#, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Selecciona la codificació de caràcters predeterminada que s'utilitzarà en carregar fitxers no-Unicode:"
+
+#, c-format
+msgid "System codepage"
+msgstr "Codificació de caràcters del sistema"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "En funció de l'idioma de l'interfície d'usuari del WinMerge"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Codificació de caràcters personalitzada:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Detecta la codificació de caràcters en aquest tipus de fitxers: .html, .rc, .xml\n"
+"Cal reiniciar l'aplicació."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Detecta la codificació de caràcters en fitxers de text amb mlang.dll\n"
+"Cal reiniciar l'aplicació."
+
+#, c-format
+msgid "Archive Support"
+msgstr "Suport d'arxivament"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&Habilita el suport de fitxers d'arxivament"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "&Detecta el tipus d'arxiu a partir de la signatura del fitxer"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Elements desats a o restaurats del fitxer de projecte:"
 
 #, c-format
 msgid "Save Modified Files?"
@@ -2663,56 +2728,6 @@ msgid "Disca&rd All"
 msgstr "Descarta-ho tot"
 
 #, c-format
-msgid "Codepage"
-msgstr "Codificació de caràcters"
-
-#, c-format
-msgid "Default Codepage"
-msgstr "Codificació de caràcters predeterminada"
-
-#, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Selecciona la codificació de caràcters predeterminada que s'utilitzarà en carregar fitxers no-Unicode:"
-
-#, c-format
-msgid "System codepage"
-msgstr "Codificació de caràcters del sistema"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "En funció de l'idioma de l'interfície d'usuari del WinMerge"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Codificació de caràcters personalitzada:"
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"Detecta la codificació de caràcters en aquest tipus de fitxers: .html, .rc, .xml\n"
-"Cal reiniciar l'aplicació."
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"Detecta la codificació de caràcters en fitxers de text amb mlang.dll\n"
-"Cal reiniciar l'aplicació."
-
-#, c-format
-msgid "Options"
-msgstr "Opcions"
-
-#, c-format
-msgid "Import..."
-msgstr "Importa..."
-
-#, c-format
-msgid "Export..."
-msgstr "Exporta..."
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Informe de comparació de directoris"
 
@@ -2743,21 +2758,6 @@ msgstr "Filtre compartit (per a tots els usuaris d'aquesta màquina)"
 #, c-format
 msgid "Private Filter (current user only)"
 msgstr "Filtre privat (només per a l'usuari actual)"
-
-#, c-format
-msgid "Archive Support"
-msgstr "Suport d'arxivament"
-
-#, c-format
-msgid "&Enable archive file support"
-msgstr "&Habilita el suport de fitxers d'arxivament"
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "&Detecta el tipus d'arxiu a partir de la signatura del fitxer"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Elements desats a o restaurats del fitxer de projecte:"
 
 #, c-format
 msgid "Compare Statistics"

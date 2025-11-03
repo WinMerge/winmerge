@@ -1673,50 +1673,6 @@ msgstr "Aiutu"
 msgid "&Options..."
 msgstr "&Ozzioni…"
 
-msgid "General"
-msgstr "Generale"
-
-msgid "Automatically &scroll to first difference"
-msgstr "&Sfilà autumaticamente sin’à a prima sfarenza"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Sfilà autumaticamente sin’à a prima sfarenza &in linea"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Chj&ode e finestre cù u tastu « Scap. » :"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&Verificà autumaticamente i chjassi in a finestra d’apertura"
-
-msgid "Single instance mode:"
-msgstr "Modu d’istanza unica :"
-
-msgid "As&k when closing multiple windows"
-msgstr "Cun&firmà a chjusura di parechje finestre"
-
-msgid "&Preserve file time in file compare"
-msgstr "Cunservà &data è ora durante u paragone di schedariu"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Affissà a finestra « Selezziunà schedarii o cartulari » à l’avviu"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-"Chjode a finestra « Selezziunà schedarii o cartulari » cù u buttone "
-"« Paragunà »"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "&Empiimentu autumaticu di a finestra d’apertura :"
-
-msgid "Auto-&reload modified files:"
-msgstr "&Ricaricà autumaticamente i schedarii mudificati :"
-
-msgid "Language:"
-msgstr "Lingua :"
-
-msgid "Defaults"
-msgstr "Predefinizioni"
-
 msgid "Find"
 msgstr "Circà"
 
@@ -1822,6 +1778,59 @@ msgstr "Aghjunghje"
 
 msgid "Clear"
 msgstr "Squassà"
+
+msgid "Options"
+msgstr "Ozzioni"
+
+msgid "Import..."
+msgstr "Impurtà…"
+
+msgid "Export..."
+msgstr "Espurtà…"
+
+msgid "General"
+msgstr "Generale"
+
+msgid "Automatically &scroll to first difference"
+msgstr "&Sfilà autumaticamente sin’à a prima sfarenza"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Sfilà autumaticamente sin’à a prima sfarenza &in linea"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Chj&ode e finestre cù u tastu « Scap. » :"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&Verificà autumaticamente i chjassi in a finestra d’apertura"
+
+msgid "Single instance mode:"
+msgstr "Modu d’istanza unica :"
+
+msgid "As&k when closing multiple windows"
+msgstr "Cun&firmà a chjusura di parechje finestre"
+
+msgid "&Preserve file time in file compare"
+msgstr "Cunservà &data è ora durante u paragone di schedariu"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Affissà a finestra « Selezziunà schedarii o cartulari » à l’avviu"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+"Chjode a finestra « Selezziunà schedarii o cartulari » cù u buttone "
+"« Paragunà »"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "&Empiimentu autumaticu di a finestra d’apertura :"
+
+msgid "Auto-&reload modified files:"
+msgstr "&Ricaricà autumaticamente i schedarii mudificati :"
+
+msgid "Language:"
+msgstr "Lingua :"
+
+msgid "Defaults"
+msgstr "Predefinizioni"
 
 msgid "Colors"
 msgstr "Culori"
@@ -1984,6 +1993,115 @@ msgstr "Cartulare &persunalizatu :"
 msgid "Br&owse..."
 msgstr "Na&vigà…"
 
+msgid "Compare"
+msgstr "Paragunà"
+
+msgid "Whitespaces"
+msgstr "Spazii bianchi"
+
+msgid "&Compare"
+msgstr "&Paragunà"
+
+msgid "&Ignore change"
+msgstr "&Ignurà i cambiamenti"
+
+msgid "I&gnore all"
+msgstr "&Tuttu ignurà"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignurà e linee &bianche"
+
+msgid "Ignore &case"
+msgstr "Ignurà a &cassa"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "Ignurà e sfarenze di &fine di linea (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "Ignurà i &numeri"
+
+msgid "Ignore codepage &differences"
+msgstr "Ignurà e &sfarenze di pagina di codice"
+
+msgid "Ignore c&omment differences"
+msgstr "Ignurà e sfarenze di c&ummentu"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "Ignurà e fini di &linea assente"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Ignurà i s&alti di linea (cunsideralli cum’è spazii)"
+
+msgid "E&nable moved block detection"
+msgstr "Attivà l’avventata di i blocchi &dispiazzati"
+
+msgid "Align &similar lines"
+msgstr "&Alineà e linee simile"
+
+msgid "Diff &algorithm:"
+msgstr "Cudificazione di sfarenza :"
+
+msgid "Enable indent &heuristic"
+msgstr "Attivà l’indentazione &euristica"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Caccià a messa in evidenza di e sfarenze ignurate"
+
+msgid "Editor"
+msgstr "Editore"
+
+msgid "&Highlight syntax"
+msgstr "&Sopralineà a sintassa"
+
+msgid "&Preserve original EOL"
+msgstr "&Cunservà e fine di linea d’originea"
+
+msgid "Tabs"
+msgstr "Tabulazioni"
+
+msgid "&Tab size:"
+msgstr "Dimensione di a tabulazione :"
+
+msgid "&Insert tabs"
+msgstr "&Framette tabulazioni"
+
+msgid "Insert &spaces"
+msgstr "Framette &spazii"
+
+msgid "&Rendering mode:"
+msgstr "&Modu di trasfurmazione :"
+
+msgid "&Automatic rescan"
+msgstr "&Rianalisa autumatica"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Cupià a &granularità per e sfarenze selezziunate :"
+
+msgid "Line Difference Coloring"
+msgstr "Culurazione di sfarenza di linea"
+
+msgid "View line differences"
+msgstr "Affissà e sfarenze di linea"
+
+msgid "&Character-level"
+msgstr "À u livellu di u &caratteru"
+
+msgid "&Word-level:"
+msgstr "À u livellu di a &parolla :"
+
+msgid "W&ord break characters:"
+msgstr "Caratteri di &distinzione di parolla :"
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to make all messages "
+"visible again."
+msgstr ""
+"Certi messaghji ponu esse piattati da l’utilizatore. Appughjate nant’à u "
+"buttone « Reinizià » per rendeli tutti torna videvule."
+
+msgid "Reset"
+msgstr "Reinizià"
+
 msgid "Patch Generator"
 msgstr "Generatore di currezzioni"
 
@@ -2107,115 +2225,6 @@ msgstr "A &sfarenza"
 msgid "&Go to"
 msgstr "&Andà à"
 
-msgid "Compare"
-msgstr "Paragunà"
-
-msgid "Whitespaces"
-msgstr "Spazii bianchi"
-
-msgid "&Compare"
-msgstr "&Paragunà"
-
-msgid "&Ignore change"
-msgstr "&Ignurà i cambiamenti"
-
-msgid "I&gnore all"
-msgstr "&Tuttu ignurà"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignurà e linee &bianche"
-
-msgid "Ignore &case"
-msgstr "Ignurà a &cassa"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "Ignurà e sfarenze di &fine di linea (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "Ignurà i &numeri"
-
-msgid "Ignore codepage &differences"
-msgstr "Ignurà e &sfarenze di pagina di codice"
-
-msgid "Ignore c&omment differences"
-msgstr "Ignurà e sfarenze di c&ummentu"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "Ignurà e fini di &linea assente"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "Ignurà i s&alti di linea (cunsideralli cum’è spazii)"
-
-msgid "E&nable moved block detection"
-msgstr "Attivà l’avventata di i blocchi &dispiazzati"
-
-msgid "Align &similar lines"
-msgstr "&Alineà e linee simile"
-
-msgid "Diff &algorithm:"
-msgstr "Cudificazione di sfarenza :"
-
-msgid "Enable indent &heuristic"
-msgstr "Attivà l’indentazione &euristica"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Caccià a messa in evidenza di e sfarenze ignurate"
-
-msgid "Editor"
-msgstr "Editore"
-
-msgid "&Highlight syntax"
-msgstr "&Sopralineà a sintassa"
-
-msgid "&Preserve original EOL"
-msgstr "&Cunservà e fine di linea d’originea"
-
-msgid "Tabs"
-msgstr "Tabulazioni"
-
-msgid "&Tab size:"
-msgstr "Dimensione di a tabulazione :"
-
-msgid "&Insert tabs"
-msgstr "&Framette tabulazioni"
-
-msgid "Insert &spaces"
-msgstr "Framette &spazii"
-
-msgid "&Rendering mode:"
-msgstr "&Modu di trasfurmazione :"
-
-msgid "&Automatic rescan"
-msgstr "&Rianalisa autumatica"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "Cupià a &granularità per e sfarenze selezziunate :"
-
-msgid "Line Difference Coloring"
-msgstr "Culurazione di sfarenza di linea"
-
-msgid "View line differences"
-msgstr "Affissà e sfarenze di linea"
-
-msgid "&Character-level"
-msgstr "À u livellu di u &caratteru"
-
-msgid "&Word-level:"
-msgstr "À u livellu di a &parolla :"
-
-msgid "W&ord break characters:"
-msgstr "Caratteri di &distinzione di parolla :"
-
-msgid ""
-"Some messages can be hidden by the user. Press Reset to make all messages "
-"visible again."
-msgstr ""
-"Certi messaghji ponu esse piattati da l’utilizatore. Appughjate nant’à u "
-"buttone « Reinizià » per rendeli tutti torna videvule."
-
-msgid "Reset"
-msgstr "Reinizià"
-
 msgid "File Filters"
 msgstr "Filtri di schedariu"
 
@@ -2255,39 +2264,6 @@ msgstr "A manu &diritta :"
 msgid "Expression:"
 msgstr "Spressione :"
 
-msgid "Save Modified Files?"
-msgstr "Arregistrà i schedarii mudificati ?"
-
-msgid "Left side file"
-msgstr "Schedariu à manca"
-
-msgid "&Save changes"
-msgstr "&Arregistrà i cambiamenti"
-
-msgid "&Discard changes"
-msgstr "&Scartà i cambiamenti"
-
-msgid "Middle side file"
-msgstr "Schedariu à u centru"
-
-msgid "Sa&ve changes"
-msgstr "A&rregistrà i cambiamenti"
-
-msgid "Discard c&hanges"
-msgstr "S&cartà i cambiamenti"
-
-msgid "Right side file"
-msgstr "Schedariu à diritta"
-
-msgid "S&ave changes"
-msgstr "Arr&egistrà i cambiamenti"
-
-msgid "Dis&card changes"
-msgstr "Scar&tà i cambiamenti"
-
-msgid "Disca&rd All"
-msgstr "T&uttu scartà"
-
 msgid "Codepage"
 msgstr "Pagina di codice"
 
@@ -2321,14 +2297,50 @@ msgstr ""
 "Scopre a pagina di codice per i schedarii cù mlang.dll\n"
 "Rilanciu richiestu."
 
-msgid "Options"
-msgstr "Ozzioni"
+msgid "Archive Support"
+msgstr "Permette l’archiviera"
 
-msgid "Import..."
-msgstr "Impurtà…"
+msgid "&Enable archive file support"
+msgstr "&Permette l’impiegu di schedariu d’archiviu"
 
-msgid "Export..."
-msgstr "Espurtà…"
+msgid "&Detect archive type from file signature"
+msgstr "&Avventà u tipu d’archiviu via a segnatura di u schedariu"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Elementi arregistrati o risturati di u schedariu di prughjettu :"
+
+msgid "Save Modified Files?"
+msgstr "Arregistrà i schedarii mudificati ?"
+
+msgid "Left side file"
+msgstr "Schedariu à manca"
+
+msgid "&Save changes"
+msgstr "&Arregistrà i cambiamenti"
+
+msgid "&Discard changes"
+msgstr "&Scartà i cambiamenti"
+
+msgid "Middle side file"
+msgstr "Schedariu à u centru"
+
+msgid "Sa&ve changes"
+msgstr "A&rregistrà i cambiamenti"
+
+msgid "Discard c&hanges"
+msgstr "S&cartà i cambiamenti"
+
+msgid "Right side file"
+msgstr "Schedariu à diritta"
+
+msgid "S&ave changes"
+msgstr "Arr&egistrà i cambiamenti"
+
+msgid "Dis&card changes"
+msgstr "Scar&tà i cambiamenti"
+
+msgid "Disca&rd All"
+msgstr "T&uttu scartà"
 
 msgid "Folder Compare Report"
 msgstr "Raportu di paragone di cartulare"
@@ -2353,18 +2365,6 @@ msgstr "Filtru spartutu (per tutti l’utilizatori)"
 
 msgid "Private Filter (current user only)"
 msgstr "Filtru privatu (solu per l’utilizatore attuale)"
-
-msgid "Archive Support"
-msgstr "Permette l’archiviera"
-
-msgid "&Enable archive file support"
-msgstr "&Permette l’impiegu di schedariu d’archiviu"
-
-msgid "&Detect archive type from file signature"
-msgstr "&Avventà u tipu d’archiviu via a segnatura di u schedariu"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Elementi arregistrati o risturati di u schedariu di prughjettu :"
 
 msgid "Compare Statistics"
 msgstr "Statistiche di paragone"

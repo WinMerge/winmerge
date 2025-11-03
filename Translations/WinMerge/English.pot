@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-10-21 19:25+0000\n"
+"POT-Creation-Date: 2025-11-03 09:05+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1664,48 +1664,6 @@ msgstr ""
 msgid "&Options..."
 msgstr ""
 
-msgid "General"
-msgstr ""
-
-msgid "Automatically &scroll to first difference"
-msgstr ""
-
-msgid "Automatically s&croll to first inline difference"
-msgstr ""
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr ""
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr ""
-
-msgid "Single instance mode:"
-msgstr ""
-
-msgid "As&k when closing multiple windows"
-msgstr ""
-
-msgid "&Preserve file time in file compare"
-msgstr ""
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr ""
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-msgid "Op&en dialog Auto completion:"
-msgstr ""
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-msgid "Language:"
-msgstr ""
-
-msgid "Defaults"
-msgstr ""
-
 msgid "Find"
 msgstr ""
 
@@ -1806,6 +1764,57 @@ msgid "Add"
 msgstr ""
 
 msgid "Clear"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Import..."
+msgstr ""
+
+msgid "Export..."
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Automatically &scroll to first difference"
+msgstr ""
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr ""
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr ""
+
+msgid "Single instance mode:"
+msgstr ""
+
+msgid "As&k when closing multiple windows"
+msgstr ""
+
+msgid "&Preserve file time in file compare"
+msgstr ""
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr ""
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+msgid "Op&en dialog Auto completion:"
+msgstr ""
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+msgid "Language:"
+msgstr ""
+
+msgid "Defaults"
 msgstr ""
 
 msgid "Colors"
@@ -1967,6 +1976,111 @@ msgstr ""
 msgid "Br&owse..."
 msgstr ""
 
+msgid "Compare"
+msgstr ""
+
+msgid "Whitespaces"
+msgstr ""
+
+msgid "&Compare"
+msgstr ""
+
+msgid "&Ignore change"
+msgstr ""
+
+msgid "I&gnore all"
+msgstr ""
+
+msgid "Ignore blan&k lines"
+msgstr ""
+
+msgid "Ignore &case"
+msgstr ""
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+msgid "E&nable moved block detection"
+msgstr ""
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+msgid "Editor"
+msgstr ""
+
+msgid "&Highlight syntax"
+msgstr ""
+
+msgid "&Preserve original EOL"
+msgstr ""
+
+msgid "Tabs"
+msgstr ""
+
+msgid "&Tab size:"
+msgstr ""
+
+msgid "&Insert tabs"
+msgstr ""
+
+msgid "Insert &spaces"
+msgstr ""
+
+msgid "&Rendering mode:"
+msgstr ""
+
+msgid "&Automatic rescan"
+msgstr ""
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+msgid "Line Difference Coloring"
+msgstr ""
+
+msgid "View line differences"
+msgstr ""
+
+msgid "&Character-level"
+msgstr ""
+
+msgid "&Word-level:"
+msgstr ""
+
+msgid "W&ord break characters:"
+msgstr ""
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
 msgid "Patch Generator"
 msgstr ""
 
@@ -2090,111 +2204,6 @@ msgstr ""
 msgid "&Go to"
 msgstr ""
 
-msgid "Compare"
-msgstr ""
-
-msgid "Whitespaces"
-msgstr ""
-
-msgid "&Compare"
-msgstr ""
-
-msgid "&Ignore change"
-msgstr ""
-
-msgid "I&gnore all"
-msgstr ""
-
-msgid "Ignore blan&k lines"
-msgstr ""
-
-msgid "Ignore &case"
-msgstr ""
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr ""
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr ""
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-msgid "E&nable moved block detection"
-msgstr ""
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr ""
-
-msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-msgid "Editor"
-msgstr ""
-
-msgid "&Highlight syntax"
-msgstr ""
-
-msgid "&Preserve original EOL"
-msgstr ""
-
-msgid "Tabs"
-msgstr ""
-
-msgid "&Tab size:"
-msgstr ""
-
-msgid "&Insert tabs"
-msgstr ""
-
-msgid "Insert &spaces"
-msgstr ""
-
-msgid "&Rendering mode:"
-msgstr ""
-
-msgid "&Automatic rescan"
-msgstr ""
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-msgid "Line Difference Coloring"
-msgstr ""
-
-msgid "View line differences"
-msgstr ""
-
-msgid "&Character-level"
-msgstr ""
-
-msgid "&Word-level:"
-msgstr ""
-
-msgid "W&ord break characters:"
-msgstr ""
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr ""
-
-msgid "Reset"
-msgstr ""
-
 msgid "File Filters"
 msgstr ""
 
@@ -2234,6 +2243,42 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Codepage"
+msgstr ""
+
+msgid "Default Codepage"
+msgstr ""
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr ""
+
+msgid "System codepage"
+msgstr ""
+
+msgid "According to WinMerge User Interface"
+msgstr ""
+
+msgid "Custom codepage:"
+msgstr ""
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr ""
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr ""
+
+msgid "Archive Support"
+msgstr ""
+
+msgid "&Enable archive file support"
+msgstr ""
+
+msgid "&Detect archive type from file signature"
+msgstr ""
+
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Save Modified Files?"
 msgstr ""
 
@@ -2267,39 +2312,6 @@ msgstr ""
 msgid "Disca&rd All"
 msgstr ""
 
-msgid "Codepage"
-msgstr ""
-
-msgid "Default Codepage"
-msgstr ""
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr ""
-
-msgid "System codepage"
-msgstr ""
-
-msgid "According to WinMerge User Interface"
-msgstr ""
-
-msgid "Custom codepage:"
-msgstr ""
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr ""
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
-
-msgid "Options"
-msgstr ""
-
-msgid "Import..."
-msgstr ""
-
-msgid "Export..."
-msgstr ""
-
 msgid "Folder Compare Report"
 msgstr ""
 
@@ -2322,18 +2334,6 @@ msgid "Shared Filter (for all users)"
 msgstr ""
 
 msgid "Private Filter (current user only)"
-msgstr ""
-
-msgid "Archive Support"
-msgstr ""
-
-msgid "&Enable archive file support"
-msgstr ""
-
-msgid "&Detect archive type from file signature"
-msgstr ""
-
-msgid "Items saved to or restored from the project file:"
 msgstr ""
 
 msgid "Compare Statistics"

@@ -1922,59 +1922,6 @@ msgid "&Options..."
 msgstr "&O خيارات ... "
 
 #, c-format
-msgid "General"
-msgstr " عمومي "
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "&s بطور خودکار به نخستين تفاوت منتقل شود "
-
-msgid "Automatically s&croll to first inline difference"
-msgstr ""
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "&o   'Esc' بستن پنجره ها با کليد :"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "&A بطور خودکار مسيرها در پنجره محاوره - باز کردن - وارسي شود "
-
-msgid "Single instance mode:"
-msgstr ""
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "&k بپرس، وقتي که داري چند تا پنجره را مي بندي "
-
-#, c-format
-msgid "&Preserve file time in file compare"
-msgstr "&P  در مقايسه پرونده ها زمان پرونده را حفظ کن "
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr ""
-" پنجره محاوره \"انتخاب پرونده ها يا پوشه ها\" به هنگام شروع کار نرم افزار "
-"نمايش داده شود "
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "&p بازکردن پنجره محاوره اتمام خودکار "
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-#, c-format
-msgid "Language:"
-msgstr ""
-
-#, c-format
-msgid "Defaults"
-msgstr " پيش فرضها "
-
-#, c-format
 msgid "Find"
 msgstr " يافتن "
 
@@ -2102,6 +2049,71 @@ msgstr ""
 
 msgid "Clear"
 msgstr ""
+
+#, c-format
+msgid "Options"
+msgstr " خيارات  "
+
+#, c-format
+msgid "Import..."
+msgstr " ورود ... "
+
+#, c-format
+msgid "Export..."
+msgstr " صدور ... "
+
+#, c-format
+msgid "General"
+msgstr " عمومي "
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "&s بطور خودکار به نخستين تفاوت منتقل شود "
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "&o   'Esc' بستن پنجره ها با کليد :"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "&A بطور خودکار مسيرها در پنجره محاوره - باز کردن - وارسي شود "
+
+msgid "Single instance mode:"
+msgstr ""
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "&k بپرس، وقتي که داري چند تا پنجره را مي بندي "
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "&P  در مقايسه پرونده ها زمان پرونده را حفظ کن "
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr ""
+" پنجره محاوره \"انتخاب پرونده ها يا پوشه ها\" به هنگام شروع کار نرم افزار "
+"نمايش داده شود "
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "&p بازکردن پنجره محاوره اتمام خودکار "
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+#, c-format
+msgid "Language:"
+msgstr ""
+
+#, c-format
+msgid "Defaults"
+msgstr " پيش فرضها "
 
 #, c-format
 msgid "Colors"
@@ -2304,6 +2316,133 @@ msgid "Br&owse..."
 msgstr "&o مرور ... "
 
 #, c-format
+msgid "Compare"
+msgstr " مقايسه کردن "
+
+#, c-format
+msgid "Whitespaces"
+msgstr " فاصله سفيد "
+
+#, c-format
+msgid "&Compare"
+msgstr "&C همسنجي / مقايسه کردن "
+
+#, c-format
+msgid "&Ignore change"
+msgstr "&I چشم پوشي از تغيير "
+
+#, c-format
+msgid "I&gnore all"
+msgstr "&g چشم پوشي از همگي "
+
+msgid "Ignore blan&k lines"
+msgstr "&k چشم پوشي از خطوط خالي "
+
+msgid "Ignore &case"
+msgstr "&c چشم پوشي از اندازه حروف "
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "&n فعال کردن تشخيص قطعه جابجا شده "
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+#, c-format
+msgid "Editor"
+msgstr "  ويراستار  "
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "&H برجسته نمايي ترکيب "
+
+#, c-format
+msgid "&Preserve original EOL"
+msgstr "&P اصلي  EOL نگاهداشت حروف "
+
+#, c-format
+msgid "Tabs"
+msgstr " جهشها / تب ها "
+
+#, c-format
+msgid "&Tab size:"
+msgstr "&T اندازه کليد جهش / تب : "
+
+#, c-format
+msgid "&Insert tabs"
+msgstr "&I درج جهشها / تب ها  "
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "&S درج فاصله "
+
+msgid "&Rendering mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&A پويش مجدد خودکار"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr " رنگ آميزي خطوط متفاوت "
+
+#, c-format
+msgid "View line differences"
+msgstr " نمايش تفاوتهاي خط "
+
+#, c-format
+msgid "&Character-level"
+msgstr "&C  در سطح دخشه / کارکتر / حرف "
+
+#, c-format
+msgid "&Word-level:"
+msgstr "&W در سطح کلمه : "
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr ""
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr ""
+" وينمرج به شما اجازه مي دهد تا بعضي از جعبه پيام معمولي را پنهان نماييد. "
+"کليد بازنشاني / ريست را بفشاريد تا تمام جعبه پيام دوباره آشکار شوند "
+
+#, c-format
+msgid "Reset"
+msgstr " بازنشاني "
+
+#, c-format
 msgid "Patch Generator"
 msgstr " توليد کننده  وصله  "
 
@@ -2452,133 +2591,6 @@ msgstr "&D تفاوت "
 msgid "&Go to"
 msgstr "&G برو به "
 
-#, c-format
-msgid "Compare"
-msgstr " مقايسه کردن "
-
-#, c-format
-msgid "Whitespaces"
-msgstr " فاصله سفيد "
-
-#, c-format
-msgid "&Compare"
-msgstr "&C همسنجي / مقايسه کردن "
-
-#, c-format
-msgid "&Ignore change"
-msgstr "&I چشم پوشي از تغيير "
-
-#, c-format
-msgid "I&gnore all"
-msgstr "&g چشم پوشي از همگي "
-
-msgid "Ignore blan&k lines"
-msgstr "&k چشم پوشي از خطوط خالي "
-
-msgid "Ignore &case"
-msgstr "&c چشم پوشي از اندازه حروف "
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr ""
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr ""
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-#, c-format
-msgid "E&nable moved block detection"
-msgstr "&n فعال کردن تشخيص قطعه جابجا شده "
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr ""
-
-msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-#, c-format
-msgid "Editor"
-msgstr "  ويراستار  "
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "&H برجسته نمايي ترکيب "
-
-#, c-format
-msgid "&Preserve original EOL"
-msgstr "&P اصلي  EOL نگاهداشت حروف "
-
-#, c-format
-msgid "Tabs"
-msgstr " جهشها / تب ها "
-
-#, c-format
-msgid "&Tab size:"
-msgstr "&T اندازه کليد جهش / تب : "
-
-#, c-format
-msgid "&Insert tabs"
-msgstr "&I درج جهشها / تب ها  "
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "&S درج فاصله "
-
-msgid "&Rendering mode:"
-msgstr ""
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "&A پويش مجدد خودکار"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr " رنگ آميزي خطوط متفاوت "
-
-#, c-format
-msgid "View line differences"
-msgstr " نمايش تفاوتهاي خط "
-
-#, c-format
-msgid "&Character-level"
-msgstr "&C  در سطح دخشه / کارکتر / حرف "
-
-#, c-format
-msgid "&Word-level:"
-msgstr "&W در سطح کلمه : "
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr ""
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr ""
-" وينمرج به شما اجازه مي دهد تا بعضي از جعبه پيام معمولي را پنهان نماييد. "
-"کليد بازنشاني / ريست را بفشاريد تا تمام جعبه پيام دوباره آشکار شوند "
-
-#, c-format
-msgid "Reset"
-msgstr " بازنشاني "
-
 msgid "File Filters"
 msgstr ""
 
@@ -2620,6 +2632,55 @@ msgid "&Right-hand side:"
 msgstr ""
 
 msgid "Expression:"
+msgstr ""
+
+#, c-format
+msgid "Codepage"
+msgstr " صفحه کد "
+
+#, c-format
+msgid "Default Codepage"
+msgstr " صفحه کد پيش فرض "
+
+#, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr ""
+" موقعي که پرونده هاي غير يوني کد بارگيري مي شوند، انتخاب صفحه کد پيش فرض در "
+"نظر گرفته مي شود : "
+
+#, c-format
+msgid "System codepage"
+msgstr " صفحه کد سيستم "
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr " مطابق با رابط کاربر وينمرج "
+
+#, c-format
+msgid "Custom codepage:"
+msgstr " صفحه کد سفارشي : "
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr ""
+" تشخيص اطلاعات صفحه کد براي اين پرونده ها : .html, .rc, .xml\n"
+" نيازمند جلسه شروع دوباره /  بازآغازي "
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr ""
+
+#, c-format
+msgid "Archive Support"
+msgstr " پشتيباني از بايگاني "
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&E فعال نمودن پشتيباني از پرونده بايگاني شده "
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "&D شناسايي نوع بايگاني از روي امضاء پرونده  "
+
+msgid "Items saved to or restored from the project file:"
 msgstr ""
 
 #, c-format
@@ -2667,52 +2728,6 @@ msgid "Disca&rd All"
 msgstr ""
 
 #, c-format
-msgid "Codepage"
-msgstr " صفحه کد "
-
-#, c-format
-msgid "Default Codepage"
-msgstr " صفحه کد پيش فرض "
-
-#, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr ""
-" موقعي که پرونده هاي غير يوني کد بارگيري مي شوند، انتخاب صفحه کد پيش فرض در "
-"نظر گرفته مي شود : "
-
-#, c-format
-msgid "System codepage"
-msgstr " صفحه کد سيستم "
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr " مطابق با رابط کاربر وينمرج "
-
-#, c-format
-msgid "Custom codepage:"
-msgstr " صفحه کد سفارشي : "
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr ""
-" تشخيص اطلاعات صفحه کد براي اين پرونده ها : .html, .rc, .xml\n"
-" نيازمند جلسه شروع دوباره /  بازآغازي "
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
-
-#, c-format
-msgid "Options"
-msgstr " خيارات  "
-
-#, c-format
-msgid "Import..."
-msgstr " ورود ... "
-
-#, c-format
-msgid "Export..."
-msgstr " صدور ... "
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr " گزارش همسنجي پوشه "
 
@@ -2743,21 +2758,6 @@ msgstr " صافي اشتراکي - براي تمام کاربران روي اي�
 #, c-format
 msgid "Private Filter (current user only)"
 msgstr "  صافي شخصي - فقط براي کاربر فعلي "
-
-#, c-format
-msgid "Archive Support"
-msgstr " پشتيباني از بايگاني "
-
-#, c-format
-msgid "&Enable archive file support"
-msgstr "&E فعال نمودن پشتيباني از پرونده بايگاني شده "
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "&D شناسايي نوع بايگاني از روي امضاء پرونده  "
-
-msgid "Items saved to or restored from the project file:"
-msgstr ""
 
 #, c-format
 msgid "Compare Statistics"

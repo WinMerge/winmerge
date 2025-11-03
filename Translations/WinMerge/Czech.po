@@ -1921,57 +1921,6 @@ msgid "&Options..."
 msgstr "Možnost&i..."
 
 #, c-format
-msgid "General"
-msgstr "Obecné"
-
-#, c-format
-msgid "Automatically &scroll to first difference"
-msgstr "Automaticky posunout na pr&vní rozdíl"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr ""
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "Zavírat okna klávesou '&Esc':"
-
-#, c-format
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Automaticky &ověřovat cesty v dialogu Otevřít"
-
-msgid "Single instance mode:"
-msgstr ""
-
-#, c-format
-msgid "As&k when closing multiple windows"
-msgstr "Dotázat se na &zavření více oken"
-
-#, c-format
-msgid "&Preserve file time in file compare"
-msgstr "Z&achovávat původní čas souboru"
-
-#, c-format
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "&Po spuštění vybrat soubory nebo složky"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
-
-#, c-format
-msgid "Op&en dialog Auto completion:"
-msgstr "Automatické &dokončování:"
-
-msgid "Auto-&reload modified files:"
-msgstr ""
-
-#, c-format
-msgid "Language:"
-msgstr ""
-
-#, c-format
-msgid "Defaults"
-msgstr "&Původní"
-
-#, c-format
 msgid "Find"
 msgstr "Najít"
 
@@ -2099,6 +2048,69 @@ msgstr ""
 
 msgid "Clear"
 msgstr ""
+
+#, c-format
+msgid "Options"
+msgstr "Možnosti"
+
+#, c-format
+msgid "Import..."
+msgstr "&Načíst..."
+
+#, c-format
+msgid "Export..."
+msgstr "&Uložit..."
+
+#, c-format
+msgid "General"
+msgstr "Obecné"
+
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "Automaticky posunout na pr&vní rozdíl"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Zavírat okna klávesou '&Esc':"
+
+#, c-format
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Automaticky &ověřovat cesty v dialogu Otevřít"
+
+msgid "Single instance mode:"
+msgstr ""
+
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr "Dotázat se na &zavření více oken"
+
+#, c-format
+msgid "&Preserve file time in file compare"
+msgstr "Z&achovávat původní čas souboru"
+
+#, c-format
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "&Po spuštění vybrat soubory nebo složky"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr ""
+
+#, c-format
+msgid "Op&en dialog Auto completion:"
+msgstr "Automatické &dokončování:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
+
+#, c-format
+msgid "Language:"
+msgstr ""
+
+#, c-format
+msgid "Defaults"
+msgstr "&Původní"
 
 #, c-format
 msgid "Colors"
@@ -2301,6 +2313,133 @@ msgid "Br&owse..."
 msgstr "Procházet..."
 
 #, c-format
+msgid "Compare"
+msgstr "Porovnávání"
+
+#, c-format
+msgid "Whitespaces"
+msgstr "Prázdná místa"
+
+#, c-format
+msgid "&Compare"
+msgstr "P&orovnávat"
+
+#, c-format
+msgid "&Ignore change"
+msgstr "Ignorovat &změny"
+
+#, c-format
+msgid "I&gnore all"
+msgstr "Ignorovat &všechny"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignorovat prázdné řá&dky"
+
+msgid "Ignore &case"
+msgstr "Ignorovat &malá a velká písmena"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "Ignore &missing trailing EOL"
+msgstr ""
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr ""
+
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "Povolit zjišťování přesunutých &bloků"
+
+msgid "Align &similar lines"
+msgstr ""
+
+msgid "Diff &algorithm:"
+msgstr ""
+
+msgid "Enable indent &heuristic"
+msgstr ""
+
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
+
+#, c-format
+msgid "Editor"
+msgstr ""
+
+#, c-format
+msgid "&Highlight syntax"
+msgstr "Zvýraznit sy&ntaxi"
+
+#, c-format
+msgid "&Preserve original EOL"
+msgstr "Zachovat původní znaky na &koncích řádků"
+
+#, c-format
+msgid "Tabs"
+msgstr "Tabelátory"
+
+#, c-format
+msgid "&Tab size:"
+msgstr "&Velikost:"
+
+#, c-format
+msgid "&Insert tabs"
+msgstr "Vkládat &tabelátory"
+
+#, c-format
+msgid "Insert &spaces"
+msgstr "Vkládat &mezery"
+
+msgid "&Rendering mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "Automaticky &opětovně porovnávat"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Obarvit rozdíly v řádku"
+
+#, c-format
+msgid "View line differences"
+msgstr "Zobrazit rozdíly v řá&dku"
+
+#, c-format
+msgid "&Character-level"
+msgstr "Na úrovni &znaků"
+
+#, c-format
+msgid "&Word-level:"
+msgstr "Na úrovni &slov:"
+
+#, c-format
+msgid "W&ord break characters:"
+msgstr "Zn&aky oddělující slova:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr ""
+"Některá obecná okna se zprávami je možno skrýt.\n"
+"Po stisknutí tlačítka Vrátit se všechna tato okna opět budou objevovat."
+
+#, c-format
+msgid "Reset"
+msgstr "V&rátit"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Vytvoření opravného souboru"
 
@@ -2449,133 +2588,6 @@ msgstr "Ro&zdíl"
 msgid "&Go to"
 msgstr "&Přejít"
 
-#, c-format
-msgid "Compare"
-msgstr "Porovnávání"
-
-#, c-format
-msgid "Whitespaces"
-msgstr "Prázdná místa"
-
-#, c-format
-msgid "&Compare"
-msgstr "P&orovnávat"
-
-#, c-format
-msgid "&Ignore change"
-msgstr "Ignorovat &změny"
-
-#, c-format
-msgid "I&gnore all"
-msgstr "Ignorovat &všechny"
-
-msgid "Ignore blan&k lines"
-msgstr "Ignorovat prázdné řá&dky"
-
-msgid "Ignore &case"
-msgstr "Ignorovat &malá a velká písmena"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
-
-msgid "Ignore num&bers"
-msgstr ""
-
-msgid "Ignore codepage &differences"
-msgstr ""
-
-msgid "Ignore c&omment differences"
-msgstr ""
-
-msgid "Ignore &missing trailing EOL"
-msgstr ""
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
-
-#, c-format
-msgid "E&nable moved block detection"
-msgstr "Povolit zjišťování přesunutých &bloků"
-
-msgid "Align &similar lines"
-msgstr ""
-
-msgid "Diff &algorithm:"
-msgstr ""
-
-msgid "Enable indent &heuristic"
-msgstr ""
-
-msgid "Completely unhighlight the ignored differences"
-msgstr ""
-
-#, c-format
-msgid "Editor"
-msgstr ""
-
-#, c-format
-msgid "&Highlight syntax"
-msgstr "Zvýraznit sy&ntaxi"
-
-#, c-format
-msgid "&Preserve original EOL"
-msgstr "Zachovat původní znaky na &koncích řádků"
-
-#, c-format
-msgid "Tabs"
-msgstr "Tabelátory"
-
-#, c-format
-msgid "&Tab size:"
-msgstr "&Velikost:"
-
-#, c-format
-msgid "&Insert tabs"
-msgstr "Vkládat &tabelátory"
-
-#, c-format
-msgid "Insert &spaces"
-msgstr "Vkládat &mezery"
-
-msgid "&Rendering mode:"
-msgstr ""
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "Automaticky &opětovně porovnávat"
-
-msgid "Copy &granularity for selected differences:"
-msgstr ""
-
-#, c-format
-msgid "Line Difference Coloring"
-msgstr "Obarvit rozdíly v řádku"
-
-#, c-format
-msgid "View line differences"
-msgstr "Zobrazit rozdíly v řá&dku"
-
-#, c-format
-msgid "&Character-level"
-msgstr "Na úrovni &znaků"
-
-#, c-format
-msgid "&Word-level:"
-msgstr "Na úrovni &slov:"
-
-#, c-format
-msgid "W&ord break characters:"
-msgstr "Zn&aky oddělující slova:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr ""
-"Některá obecná okna se zprávami je možno skrýt.\n"
-"Po stisknutí tlačítka Vrátit se všechna tato okna opět budou objevovat."
-
-#, c-format
-msgid "Reset"
-msgstr "V&rátit"
-
 msgid "File Filters"
 msgstr ""
 
@@ -2617,6 +2629,51 @@ msgid "&Right-hand side:"
 msgstr ""
 
 msgid "Expression:"
+msgstr ""
+
+#, c-format
+msgid "Codepage"
+msgstr "Kódování"
+
+#, c-format
+msgid "Default Codepage"
+msgstr "Výchozí kódování"
+
+#, c-format
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Zvolte výchozí znakovou stránku, která se použije v případě načtení souborů, které nejsou v kódování Unicode:"
+
+#, c-format
+msgid "System codepage"
+msgstr "&Systémové kódování"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "&Podle uživatelského prostředí WinMerge"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "&Vlastní znaková stránka:"
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr "&Zjistit informaci o kódování u těchto souborů: .html, .rc, .xml\n(vyžaduje opětovné spuštění programu)."
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr ""
+
+#, c-format
+msgid "Archive Support"
+msgstr "Podpora archivace"
+
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&Zapnout podporu archivních souborů"
+
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "Zjistit &automaticky typ archivu"
+
+msgid "Items saved to or restored from the project file:"
 msgstr ""
 
 #, c-format
@@ -2664,48 +2721,6 @@ msgid "Disca&rd All"
 msgstr "Zrušit &vše"
 
 #, c-format
-msgid "Codepage"
-msgstr "Kódování"
-
-#, c-format
-msgid "Default Codepage"
-msgstr "Výchozí kódování"
-
-#, c-format
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Zvolte výchozí znakovou stránku, která se použije v případě načtení souborů, které nejsou v kódování Unicode:"
-
-#, c-format
-msgid "System codepage"
-msgstr "&Systémové kódování"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "&Podle uživatelského prostředí WinMerge"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "&Vlastní znaková stránka:"
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr "&Zjistit informaci o kódování u těchto souborů: .html, .rc, .xml\n(vyžaduje opětovné spuštění programu)."
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr ""
-
-#, c-format
-msgid "Options"
-msgstr "Možnosti"
-
-#, c-format
-msgid "Import..."
-msgstr "&Načíst..."
-
-#, c-format
-msgid "Export..."
-msgstr "&Uložit..."
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Protokol o porovnání složek"
 
@@ -2736,21 +2751,6 @@ msgstr "Společný filtr (pro všechny uživatele tohoto počítače)"
 #, c-format
 msgid "Private Filter (current user only)"
 msgstr "Vlastní filtr (pouze pro současného uživatele)"
-
-#, c-format
-msgid "Archive Support"
-msgstr "Podpora archivace"
-
-#, c-format
-msgid "&Enable archive file support"
-msgstr "&Zapnout podporu archivních souborů"
-
-#, c-format
-msgid "&Detect archive type from file signature"
-msgstr "Zjistit &automaticky typ archivu"
-
-msgid "Items saved to or restored from the project file:"
-msgstr ""
 
 #, c-format
 msgid "Compare Statistics"

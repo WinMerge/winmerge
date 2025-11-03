@@ -1674,48 +1674,6 @@ msgstr "帮助"
 msgid "&Options..."
 msgstr "选项(&O)..."
 
-msgid "General"
-msgstr "常规"
-
-msgid "Automatically &scroll to first difference"
-msgstr "自动滚动到第一处差异(&S)"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "自动滚动到第一处行内差异(&C)"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "按 'Esc' 关闭窗口(&O)："
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "“打开”对话框中自动验证路径(&A)"
-
-msgid "Single instance mode:"
-msgstr "单一实例模式："
-
-msgid "As&k when closing multiple windows"
-msgstr "关闭多个窗口时询问我(&K)"
-
-msgid "&Preserve file time in file compare"
-msgstr "比较时保持文件时间不变(&P)"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "启动时显示“选择文件或文件夹”对话框"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "在点击比较按钮时关闭“选择文件或文件夹”对话框"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "“打开”对话框的自动完成(&E)："
-
-msgid "Auto-&reload modified files:"
-msgstr "自动重新加载修改过的文件(&R)："
-
-msgid "Language:"
-msgstr "语言："
-
-msgid "Defaults"
-msgstr "默认"
-
 msgid "Find"
 msgstr "查找"
 
@@ -1819,6 +1777,57 @@ msgstr "添加"
 
 msgid "Clear"
 msgstr "清除"
+
+msgid "Options"
+msgstr "选项"
+
+msgid "Import..."
+msgstr "导入..."
+
+msgid "Export..."
+msgstr "导出..."
+
+msgid "General"
+msgstr "常规"
+
+msgid "Automatically &scroll to first difference"
+msgstr "自动滚动到第一处差异(&S)"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "自动滚动到第一处行内差异(&C)"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "按 'Esc' 关闭窗口(&O)："
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "“打开”对话框中自动验证路径(&A)"
+
+msgid "Single instance mode:"
+msgstr "单一实例模式："
+
+msgid "As&k when closing multiple windows"
+msgstr "关闭多个窗口时询问我(&K)"
+
+msgid "&Preserve file time in file compare"
+msgstr "比较时保持文件时间不变(&P)"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "启动时显示“选择文件或文件夹”对话框"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "在点击比较按钮时关闭“选择文件或文件夹”对话框"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "“打开”对话框的自动完成(&E)："
+
+msgid "Auto-&reload modified files:"
+msgstr "自动重新加载修改过的文件(&R)："
+
+msgid "Language:"
+msgstr "语言："
+
+msgid "Defaults"
+msgstr "默认"
 
 msgid "Colors"
 msgstr "颜色"
@@ -1979,6 +1988,114 @@ msgstr "自定义文件夹(&U)："
 msgid "Br&owse..."
 msgstr "浏览(&O)..."
 
+msgid "Compare"
+msgstr "比较"
+
+msgid "Whitespaces"
+msgstr "空白"
+
+msgid "&Compare"
+msgstr "比较空白字符(&C)"
+
+msgid "&Ignore change"
+msgstr "忽略空白字符的变化(&I)"
+
+msgid "I&gnore all"
+msgstr "忽略所有空白字符(&G)"
+
+msgid "Ignore blan&k lines"
+msgstr "忽略空行(&K)"
+
+msgid "Ignore &case"
+msgstr "忽略大小写(&C)"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "忽略换行符差异（Windows/Unix/Mac）(&R)"
+
+msgid "Ignore num&bers"
+msgstr "忽略数字(&B)"
+
+msgid "Ignore codepage &differences"
+msgstr "忽略代码页差异(&D)"
+
+msgid "Ignore c&omment differences"
+msgstr "忽略注释行差异(&O)"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "忽略缺失的尾部换行符(&M)"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "忽略换行符（视为空格）(&B)"
+
+msgid "E&nable moved block detection"
+msgstr "启用块移动检测(&N)"
+
+msgid "Align &similar lines"
+msgstr "对齐相似的行(&S)"
+
+msgid "Diff &algorithm:"
+msgstr "比较算法(&A)："
+
+msgid "Enable indent &heuristic"
+msgstr "启用启发式缩进(&H)"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "完全取消高亮忽略的差异"
+
+msgid "Editor"
+msgstr "编辑器"
+
+msgid "&Highlight syntax"
+msgstr "语法高亮(&H)"
+
+msgid "&Preserve original EOL"
+msgstr "保持换行符不变(&P)"
+
+msgid "Tabs"
+msgstr "制表符"
+
+msgid "&Tab size:"
+msgstr "制表符宽度(&T)"
+
+msgid "&Insert tabs"
+msgstr "插入制表符(&I)"
+
+msgid "Insert &spaces"
+msgstr "插入空格(&S)"
+
+msgid "&Rendering mode:"
+msgstr "渲染模式(&R)"
+
+msgid "&Automatic rescan"
+msgstr "自动重新扫描(&A)"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "选中差异的复制粒度(&G)："
+
+msgid "Line Difference Coloring"
+msgstr "行内差异着色"
+
+msgid "View line differences"
+msgstr "显示行内差异"
+
+msgid "&Character-level"
+msgstr "字符级别(&C)"
+
+msgid "&Word-level:"
+msgstr "单词级别(&W)："
+
+msgid "W&ord break characters:"
+msgstr "单词分隔字符："
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to make all messages "
+"visible again."
+msgstr ""
+"WinMerge 允许隐藏一些常见的提示框。点“重置”按钮可以恢复显示隐藏的消息框。"
+
+msgid "Reset"
+msgstr "重置"
+
 msgid "Patch Generator"
 msgstr "补丁生成器"
 
@@ -2102,114 +2219,6 @@ msgstr "差异(&D)"
 msgid "&Go to"
 msgstr "转到(&G)"
 
-msgid "Compare"
-msgstr "比较"
-
-msgid "Whitespaces"
-msgstr "空白"
-
-msgid "&Compare"
-msgstr "比较空白字符(&C)"
-
-msgid "&Ignore change"
-msgstr "忽略空白字符的变化(&I)"
-
-msgid "I&gnore all"
-msgstr "忽略所有空白字符(&G)"
-
-msgid "Ignore blan&k lines"
-msgstr "忽略空行(&K)"
-
-msgid "Ignore &case"
-msgstr "忽略大小写(&C)"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "忽略换行符差异（Windows/Unix/Mac）(&R)"
-
-msgid "Ignore num&bers"
-msgstr "忽略数字(&B)"
-
-msgid "Ignore codepage &differences"
-msgstr "忽略代码页差异(&D)"
-
-msgid "Ignore c&omment differences"
-msgstr "忽略注释行差异(&O)"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "忽略缺失的尾部换行符(&M)"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "忽略换行符（视为空格）(&B)"
-
-msgid "E&nable moved block detection"
-msgstr "启用块移动检测(&N)"
-
-msgid "Align &similar lines"
-msgstr "对齐相似的行(&S)"
-
-msgid "Diff &algorithm:"
-msgstr "比较算法(&A)："
-
-msgid "Enable indent &heuristic"
-msgstr "启用启发式缩进(&H)"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "完全取消高亮忽略的差异"
-
-msgid "Editor"
-msgstr "编辑器"
-
-msgid "&Highlight syntax"
-msgstr "语法高亮(&H)"
-
-msgid "&Preserve original EOL"
-msgstr "保持换行符不变(&P)"
-
-msgid "Tabs"
-msgstr "制表符"
-
-msgid "&Tab size:"
-msgstr "制表符宽度(&T)"
-
-msgid "&Insert tabs"
-msgstr "插入制表符(&I)"
-
-msgid "Insert &spaces"
-msgstr "插入空格(&S)"
-
-msgid "&Rendering mode:"
-msgstr "渲染模式(&R)"
-
-msgid "&Automatic rescan"
-msgstr "自动重新扫描(&A)"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "选中差异的复制粒度(&G)："
-
-msgid "Line Difference Coloring"
-msgstr "行内差异着色"
-
-msgid "View line differences"
-msgstr "显示行内差异"
-
-msgid "&Character-level"
-msgstr "字符级别(&C)"
-
-msgid "&Word-level:"
-msgstr "单词级别(&W)："
-
-msgid "W&ord break characters:"
-msgstr "单词分隔字符："
-
-msgid ""
-"Some messages can be hidden by the user. Press Reset to make all messages "
-"visible again."
-msgstr ""
-"WinMerge 允许隐藏一些常见的提示框。点“重置”按钮可以恢复显示隐藏的消息框。"
-
-msgid "Reset"
-msgstr "重置"
-
 msgid "File Filters"
 msgstr "文件过滤器"
 
@@ -2249,6 +2258,50 @@ msgstr "右手边(&R)："
 msgid "Expression:"
 msgstr "表达式："
 
+msgid "Codepage"
+msgstr "代码页"
+
+msgid "Default Codepage"
+msgstr "默认代码页"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "请选择当加载“非 Unicode 文件”时默认假定的代码页："
+
+msgid "System codepage"
+msgstr "系统代码页"
+
+msgid "According to WinMerge User Interface"
+msgstr "根据 WinMerge 用户界面"
+
+msgid "Custom codepage:"
+msgstr "自定义代码页："
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"检测下列文件的代码页：.html, .rc, .xml \n"
+"需要重启会话。"
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"使用 mlang.dll 检查文本文件的代码页\n"
+"需要重启会话。"
+
+msgid "Archive Support"
+msgstr "压缩文件支持"
+
+msgid "&Enable archive file support"
+msgstr "启用压缩文件支持(&E)"
+
+msgid "&Detect archive type from file signature"
+msgstr "根据文件头检测压缩文件类型(&D)"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "保存到项目文件或从项目文件还原的条目："
+
 msgid "Save Modified Files?"
 msgstr "保存修改的文件吗？"
 
@@ -2282,47 +2335,6 @@ msgstr "放弃修改(&C)"
 msgid "Disca&rd All"
 msgstr "全部放弃(&R)"
 
-msgid "Codepage"
-msgstr "代码页"
-
-msgid "Default Codepage"
-msgstr "默认代码页"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "请选择当加载“非 Unicode 文件”时默认假定的代码页："
-
-msgid "System codepage"
-msgstr "系统代码页"
-
-msgid "According to WinMerge User Interface"
-msgstr "根据 WinMerge 用户界面"
-
-msgid "Custom codepage:"
-msgstr "自定义代码页："
-
-msgid ""
-"Detect codepage for: .html, .rc, .xml\n"
-"Restart required."
-msgstr ""
-"检测下列文件的代码页：.html, .rc, .xml \n"
-"需要重启会话。"
-
-msgid ""
-"Detect codepage for files with mlang.dll\n"
-"Restart required."
-msgstr ""
-"使用 mlang.dll 检查文本文件的代码页\n"
-"需要重启会话。"
-
-msgid "Options"
-msgstr "选项"
-
-msgid "Import..."
-msgstr "导入..."
-
-msgid "Export..."
-msgstr "导出..."
-
 msgid "Folder Compare Report"
 msgstr "文件夹比较报告"
 
@@ -2346,18 +2358,6 @@ msgstr "共享过滤器 (适用于本机所有用户)"
 
 msgid "Private Filter (current user only)"
 msgstr "私有过滤器 (仅限当前用户)"
-
-msgid "Archive Support"
-msgstr "压缩文件支持"
-
-msgid "&Enable archive file support"
-msgstr "启用压缩文件支持(&E)"
-
-msgid "&Detect archive type from file signature"
-msgstr "根据文件头检测压缩文件类型(&D)"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "保存到项目文件或从项目文件还原的条目："
 
 msgid "Compare Statistics"
 msgstr "比较结果统计"

@@ -1672,48 +1672,6 @@ msgstr "Помощь"
 msgid "&Options..."
 msgstr "&Настройки..."
 
-msgid "General"
-msgstr "Основные"
-
-msgid "Automatically &scroll to first difference"
-msgstr "Автопрокрутка на первое отличие"
-
-msgid "Automatically s&croll to first inline difference"
-msgstr "Автопрокрутка на первое отличие в строке"
-
-msgid "Cl&ose windows with 'Esc':"
-msgstr "За&крывать окна клавишей 'Esc':"
-
-msgid "&Automatically verify paths in Open dialog"
-msgstr "Автопроверка пути в диалоге открытия файлов"
-
-msgid "Single instance mode:"
-msgstr "Режим одной копии:"
-
-msgid "As&k when closing multiple windows"
-msgstr "Подтверждать закрытие окон"
-
-msgid "&Preserve file time in file compare"
-msgstr "Сохранять время файла при сравнении"
-
-msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
-
-msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Закрывать диалог \"Выбрать файлы или папки\" по кнопке Сравнить"
-
-msgid "Op&en dialog Auto completion:"
-msgstr "Автозавершение в диалоге открытия:"
-
-msgid "Auto-&reload modified files:"
-msgstr "Авто&перезагрузка измененных файлов:"
-
-msgid "Language:"
-msgstr "Язык:"
-
-msgid "Defaults"
-msgstr "По умолчанию"
-
 msgid "Find"
 msgstr "Найти"
 
@@ -1815,6 +1773,57 @@ msgstr "Добавить"
 
 msgid "Clear"
 msgstr "Очистить"
+
+msgid "Options"
+msgstr "Настройки"
+
+msgid "Import..."
+msgstr "Импорт..."
+
+msgid "Export..."
+msgstr "Экспорт..."
+
+msgid "General"
+msgstr "Основные"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Автопрокрутка на первое отличие"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Автопрокрутка на первое отличие в строке"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "За&крывать окна клавишей 'Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Автопроверка пути в диалоге открытия файлов"
+
+msgid "Single instance mode:"
+msgstr "Режим одной копии:"
+
+msgid "As&k when closing multiple windows"
+msgstr "Подтверждать закрытие окон"
+
+msgid "&Preserve file time in file compare"
+msgstr "Сохранять время файла при сравнении"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Закрывать диалог \"Выбрать файлы или папки\" по кнопке Сравнить"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Автозавершение в диалоге открытия:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Авто&перезагрузка измененных файлов:"
+
+msgid "Language:"
+msgstr "Язык:"
+
+msgid "Defaults"
+msgstr "По умолчанию"
 
 msgid "Colors"
 msgstr "Цвета"
@@ -1975,6 +1984,111 @@ msgstr "Указанная папка:"
 msgid "Br&owse..."
 msgstr "Обзор..."
 
+msgid "Compare"
+msgstr "Сравнение"
+
+msgid "Whitespaces"
+msgstr "Пробельные символы"
+
+msgid "&Compare"
+msgstr "Сравнение"
+
+msgid "&Ignore change"
+msgstr "Игнорировать изменения"
+
+msgid "I&gnore all"
+msgstr "Игнорировать &все"
+
+msgid "Ignore blan&k lines"
+msgstr "Игнорировать пуст&ые строки"
+
+msgid "Ignore &case"
+msgstr "Игнорировать р&егистр"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "Игнорировать концы строк (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "Игнорировать числа"
+
+msgid "Ignore codepage &differences"
+msgstr "Игнорировать отличия кодовых страниц"
+
+msgid "Ignore c&omment differences"
+msgstr "Игнорировать отличия в комментариях"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "Игнорировать пропущенный завершающий EOL"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Игнорировать разрывы строк (считать их пробелами)"
+
+msgid "E&nable moved block detection"
+msgstr "Включить обнаружение переме&щенных блоков"
+
+msgid "Align &similar lines"
+msgstr "Выровнять по&хожие строки"
+
+msgid "Diff &algorithm:"
+msgstr "Алгоритм сравнения:"
+
+msgid "Enable indent &heuristic"
+msgstr "Включать эвристику отступов"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Совсем не подсвечивать игнорируемые отличия"
+
+msgid "Editor"
+msgstr "Редактор"
+
+msgid "&Highlight syntax"
+msgstr "Подсвечивать синтаксис"
+
+msgid "&Preserve original EOL"
+msgstr "Сохранить исходные символы EOL"
+
+msgid "Tabs"
+msgstr "Отступы"
+
+msgid "&Tab size:"
+msgstr "Размер &отступа:"
+
+msgid "&Insert tabs"
+msgstr "&Табуляции"
+
+msgid "Insert &spaces"
+msgstr "&Пробелы"
+
+msgid "&Rendering mode:"
+msgstr "Режим отрисовки:"
+
+msgid "&Automatic rescan"
+msgstr "Автоматическое повторное сканирование"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Степень детализации копирования для выбранных отличий:"
+
+msgid "Line Difference Coloring"
+msgstr "Подсветка отличий в строке"
+
+msgid "View line differences"
+msgstr "Показывать отличия строк"
+
+msgid "&Character-level"
+msgstr "Посимвольно"
+
+msgid "&Word-level:"
+msgstr "По словам:"
+
+msgid "W&ord break characters:"
+msgstr "Символы разрыва слов:"
+
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
+
+msgid "Reset"
+msgstr "Сброс"
+
 msgid "Patch Generator"
 msgstr "Генератор патчей"
 
@@ -2098,111 +2212,6 @@ msgstr "&Отличию"
 msgid "&Go to"
 msgstr "Перейт&и"
 
-msgid "Compare"
-msgstr "Сравнение"
-
-msgid "Whitespaces"
-msgstr "Пробельные символы"
-
-msgid "&Compare"
-msgstr "Сравнение"
-
-msgid "&Ignore change"
-msgstr "Игнорировать изменения"
-
-msgid "I&gnore all"
-msgstr "Игнорировать &все"
-
-msgid "Ignore blan&k lines"
-msgstr "Игнорировать пуст&ые строки"
-
-msgid "Ignore &case"
-msgstr "Игнорировать р&егистр"
-
-msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr "Игнорировать концы строк (Windows/Unix/Mac)"
-
-msgid "Ignore num&bers"
-msgstr "Игнорировать числа"
-
-msgid "Ignore codepage &differences"
-msgstr "Игнорировать отличия кодовых страниц"
-
-msgid "Ignore c&omment differences"
-msgstr "Игнорировать отличия в комментариях"
-
-msgid "Ignore &missing trailing EOL"
-msgstr "Игнорировать пропущенный завершающий EOL"
-
-msgid "Ignore line &breaks (treat as spaces)"
-msgstr "Игнорировать разрывы строк (считать их пробелами)"
-
-msgid "E&nable moved block detection"
-msgstr "Включить обнаружение переме&щенных блоков"
-
-msgid "Align &similar lines"
-msgstr "Выровнять по&хожие строки"
-
-msgid "Diff &algorithm:"
-msgstr "Алгоритм сравнения:"
-
-msgid "Enable indent &heuristic"
-msgstr "Включать эвристику отступов"
-
-msgid "Completely unhighlight the ignored differences"
-msgstr "Совсем не подсвечивать игнорируемые отличия"
-
-msgid "Editor"
-msgstr "Редактор"
-
-msgid "&Highlight syntax"
-msgstr "Подсвечивать синтаксис"
-
-msgid "&Preserve original EOL"
-msgstr "Сохранить исходные символы EOL"
-
-msgid "Tabs"
-msgstr "Отступы"
-
-msgid "&Tab size:"
-msgstr "Размер &отступа:"
-
-msgid "&Insert tabs"
-msgstr "&Табуляции"
-
-msgid "Insert &spaces"
-msgstr "&Пробелы"
-
-msgid "&Rendering mode:"
-msgstr "Режим отрисовки:"
-
-msgid "&Automatic rescan"
-msgstr "Автоматическое повторное сканирование"
-
-msgid "Copy &granularity for selected differences:"
-msgstr "Степень детализации копирования для выбранных отличий:"
-
-msgid "Line Difference Coloring"
-msgstr "Подсветка отличий в строке"
-
-msgid "View line differences"
-msgstr "Показывать отличия строк"
-
-msgid "&Character-level"
-msgstr "Посимвольно"
-
-msgid "&Word-level:"
-msgstr "По словам:"
-
-msgid "W&ord break characters:"
-msgstr "Символы разрыва слов:"
-
-msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
-
-msgid "Reset"
-msgstr "Сброс"
-
 msgid "File Filters"
 msgstr "Фильтры файлов"
 
@@ -2242,6 +2251,42 @@ msgstr "Справа:"
 msgid "Expression:"
 msgstr "Выражение:"
 
+msgid "Codepage"
+msgstr "Кодовая страница"
+
+msgid "Default Codepage"
+msgstr "Кодовая страница по умолчанию"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Выберите кодовую страницу по умолчанию, для не Юникод-файлов:"
+
+msgid "System codepage"
+msgstr "Системная кодовая страница"
+
+msgid "According to WinMerge User Interface"
+msgstr "В зависимости от интерфейса WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Настраиваемая кодовая страница:"
+
+msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
+msgstr "Определять кодировку для типов файлов: .html, .rc, .xml \nНеобходим перезапуск сессии."
+
+msgid "Detect codepage for files with mlang.dll\nRestart required."
+msgstr "Определять кодировку для текстовых файлов с помощью mlang.dll\nНеобходим перезапуск сессии."
+
+msgid "Archive Support"
+msgstr "Поддержка архивов"
+
+msgid "&Enable archive file support"
+msgstr "&Включить поддержку архивов"
+
+msgid "&Detect archive type from file signature"
+msgstr "&Определять тип архива по сигнатуре/заголовку файла"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Элементы, сохраненные или восстановленные из файла проекта:"
+
 msgid "Save Modified Files?"
 msgstr "Сохранить измененные файлы?"
 
@@ -2275,39 +2320,6 @@ msgstr "О&тменить изменения"
 msgid "Disca&rd All"
 msgstr "Отменить все"
 
-msgid "Codepage"
-msgstr "Кодовая страница"
-
-msgid "Default Codepage"
-msgstr "Кодовая страница по умолчанию"
-
-msgid "Select the default codepage for non-Unicode files:"
-msgstr "Выберите кодовую страницу по умолчанию, для не Юникод-файлов:"
-
-msgid "System codepage"
-msgstr "Системная кодовая страница"
-
-msgid "According to WinMerge User Interface"
-msgstr "В зависимости от интерфейса WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Настраиваемая кодовая страница:"
-
-msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr "Определять кодировку для типов файлов: .html, .rc, .xml \nНеобходим перезапуск сессии."
-
-msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr "Определять кодировку для текстовых файлов с помощью mlang.dll\nНеобходим перезапуск сессии."
-
-msgid "Options"
-msgstr "Настройки"
-
-msgid "Import..."
-msgstr "Импорт..."
-
-msgid "Export..."
-msgstr "Экспорт..."
-
 msgid "Folder Compare Report"
 msgstr "Отчет сравнения папок"
 
@@ -2331,18 +2343,6 @@ msgstr "Общий фильтр (для всех пользователей)"
 
 msgid "Private Filter (current user only)"
 msgstr "Личный фильтр (только для текущего пользователя)"
-
-msgid "Archive Support"
-msgstr "Поддержка архивов"
-
-msgid "&Enable archive file support"
-msgstr "&Включить поддержку архивов"
-
-msgid "&Detect archive type from file signature"
-msgstr "&Определять тип архива по сигнатуре/заголовку файла"
-
-msgid "Items saved to or restored from the project file:"
-msgstr "Элементы, сохраненные или восстановленные из файла проекта:"
 
 msgid "Compare Statistics"
 msgstr "Статистика сравнения"
