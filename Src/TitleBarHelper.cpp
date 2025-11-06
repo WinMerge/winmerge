@@ -368,16 +368,15 @@ COLORREF CTitleBarHelper::GetTextColor(bool bActive)
 		return RGB(64, 64, 64);
 	}
 	const COLORREF czclr = CAccentColor::Get().GetAccentColor();
-	if (czclr != CLR_NONE)
-	{
-		const BYTE r = static_cast<BYTE>(czclr >> 16);
-		const BYTE g = static_cast<BYTE>(czclr >> 8);
-		const BYTE b = static_cast<BYTE>(czclr);
-		if (r < 128 && g < 128 && b < 128)
-			return RGB(255, 255, 255);
-		return RGB(0, 0, 0);
-	}
-	return GetSysColor(COLOR_BTNTEXT);
+	if (czclr == CLR_NONE)
+		return GetSysColor(COLOR_BTNTEXT);
+	const BYTE r = static_cast<BYTE>(czclr >> 16);
+	const BYTE g = static_cast<BYTE>(czclr >> 8);
+	const BYTE b = static_cast<BYTE>(czclr);
+	const double luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+	if (luminance < 190)
+		return RGB(255, 255, 255);
+	return RGB(0, 0, 0);
 }
 
 void CTitleBarHelper::ReloadAccentColor()
