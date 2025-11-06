@@ -126,14 +126,12 @@ static inline COLORREF getTextColor()
 
 COLORREF CMyTabCtrl::GetBackColor() const
 {
-	const COLORREF clr = GetSysColor(COLOR_3DFACE);
 	if (!m_bOnTitleBar)
-		return clr;
+		return GetSysColor(COLOR_3DFACE);
 	return CTitleBarHelper::GetBackColor(m_bActive);
 }
 
 static inline bool IsHighContrastEnabled()
-
 {
 	HIGHCONTRAST hc = { sizeof(HIGHCONTRAST) };
 	SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(hc), &hc, 0);
