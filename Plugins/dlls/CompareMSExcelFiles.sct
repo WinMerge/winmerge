@@ -171,7 +171,9 @@ function writeFormulas(fo, sht) {
   try {
     var varCells = sht.UsedRange.Formula;
     if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
-      fo.WriteLine(getAddr(1 + rowOffset - 1, 1 + colOffset - 1) + ": " + varCells);
+      // Replace line breaks with space
+      var cleanFormula = String(varCells).replace(/[\r\n]+/g, " ");
+      fo.WriteLine(getAddr(1 + rowOffset - 1, 1 + colOffset - 1) + ": " + cleanFormula);
     } else {
       try {
         for (var row = 1; row <= varCells.ubound(1); row++) {
@@ -179,7 +181,9 @@ function writeFormulas(fo, sht) {
             try {
               var formula = varCells.getItem(row, col);
               if (typeof(formula) === "string" && formula.charAt(0) === "=") { 
-                fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
+                // Replace line breaks with space
+                var cleanFormula = formula.replace(/[\r\n]+/g, " ");
+                fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + cleanFormula);
               }
             } catch (e) {
               fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + "Error" + e.number);
