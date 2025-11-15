@@ -168,17 +168,25 @@ function writeFormulas(fo, sht) {
   var row, col, formula;
   var rowOffset = sht.UsedRange.Row;
   var colOffset = sht.UsedRange.Column;
+  var keepLineBreaks = regRead(REGKEY_PATH + "CompareFormulasKeepLineBreaks", false);
   try {
     var varCells = sht.UsedRange.Formula;
     if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
-      fo.WriteLine(getAddr(1 + rowOffset - 1, 1 + colOffset - 1) + ": " + varCells);
+      var outFormula = String(varCells);
+      if (!keepLineBreaks) {
+        outFormula = outFormula.replace(/[\r\n]+/g, " ");
+      }
+      fo.WriteLine(getAddr(1 + rowOffset - 1, 1 + colOffset - 1) + ": " + outFormula);
     } else {
       try {
         for (var row = 1; row <= varCells.ubound(1); row++) {
           for (var col = 1; col <= varCells.ubound(2); col++) {
             try {
               var formula = varCells.getItem(row, col);
-              if (typeof(formula) === "string" && formula.charAt(0) === "=") { 
+              if (typeof(formula) === "string" && formula.charAt(0) === "=") {
+                if (!keepLineBreaks) {
+                  formula = formula.replace(/[\r\n]+/g, " ");
+                }
                 fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
               }
             } catch (e) {
@@ -726,6 +734,7 @@ function exportSettingsToXMLFile(filepath) {
     "ImageWidth" : 1000,
     "ImageHeight" : 3000,
     "CompareFormulas" : false,
+	"CompareFormulasKeepLineBreaks" : false, 
     "CompareTextsInShapes" : true,
     "CompareHeadersAndFooters" : true,
     "CompareVBAMacros" : true
@@ -852,6 +861,7 @@ function importSettingsFromXMLFile(filepath) {
         txtImageWidth.value = regRead(REGKEY_PATH + "ImageWidth", 1000);
         txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
         chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
+        chkCompareFormulasBrks.checked = regRead(REGKEY_PATH + "CompareFormulasKeepLineBreaks", false);
         chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
         chkCompareHeadersAndFooters.checked = regRead(REGKEY_PATH + "CompareHeadersAndFooters", true);
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
@@ -886,7 +896,7 @@ function importSettingsFromXMLFile(filepath) {
         if (chkCompareWorksheetsAsHTML.checked)
           chkUnpackToFolder.checked = true;
       }
-
+	  
       function btnOk_onclick() {
         regWrite(REGKEY_PATH + "UnpackToFolder", chkUnpackToFolder.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "UpdateLinks", chkUpdateLinks.checked ? 3 : 0, "REG_DWORD");
@@ -898,6 +908,7 @@ function importSettingsFromXMLFile(filepath) {
         regWrite(REGKEY_PATH + "ImageWidth", Number(txtImageWidth.value), "REG_DWORD");
         regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareFormulasKeepLineBreaks", chkCompareFormulasBrks.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareHeadersAndFooters", chkCompareHeadersAndFooters.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD");
@@ -992,6 +1003,12 @@ function importSettingsFromXMLFile(filepath) {
         <li>
           <input id="chkCompareFormulas" type="checkbox" />
           <label for="chkCompareFormulas">${Compare formulas}</label>
+          <ul>
+            <li>
+              <input id="chkCompareFormulasBrks" type="checkbox" />
+              <label for="chkCompareFormulasBrks">${Keep line breaks in formulas}</label>
+            </li>
+          </ul>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
