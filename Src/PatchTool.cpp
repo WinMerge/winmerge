@@ -48,8 +48,20 @@ void CPatchTool::AddFiles(const String &file1, const String &file2)
 	tFiles.lfile = file1;
 	tFiles.rfile = file2;
 
-	// TODO: Read and add file's timestamps
-	m_fileList.push_back(tFiles);
+#ifdef _WIN32
+    struct _stat64 statLeft, statRight;
+    if (_wstat64(file1.c_str(), &statLeft) == 0)
+        tFiles.ltime = statLeft.st_mtime;
+    if (_wstat64(file2.c_str(), &statRight) == 0)
+        tFiles.rtime = statRight.st_mtime;
+#else
+    struct stat statLeft, statRight;
+    if (stat(file1.c_str(), &statLeft) == 0)
+        tFiles.ltime = statLeft.st_mtime;
+    if (stat(file2.c_str(), &statRight) == 0)
+        tFiles.rtime = statRight.st_mtime;
+#endif
+	m_fileList.push_back(tFiles);	
 }
 
 /**
@@ -72,7 +84,19 @@ void CPatchTool::AddFiles(const String &file1, const String &altPath1,
 	tFiles.pathLeft = altPath1;
 	tFiles.pathRight = altPath2;
 
-	// TODO: Read and add file's timestamps
+#ifdef _WIN32
+    struct _stat64 statLeft, statRight;
+    if (_wstat64(file1.c_str(), &statLeft) == 0)
+        tFiles.ltime = statLeft.st_mtime;
+    if (_wstat64(file2.c_str(), &statRight) == 0)
+        tFiles.rtime = statRight.st_mtime;
+#else
+    struct stat statLeft, statRight;
+    if (stat(file1.c_str(), &statLeft) == 0)
+        tFiles.ltime = statLeft.st_mtime;
+    if (stat(file2.c_str(), &statRight) == 0)
+        tFiles.rtime = statRight.st_mtime;
+#endif
 	m_fileList.push_back(tFiles);
 }
 

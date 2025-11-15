@@ -786,8 +786,6 @@ bool PrediffingInfo::Prediffing(int target, String & filepath, const String& fil
 		storageForPlugins bufferData;
 		// detect Ansi or Unicode file
 		bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
-		// TODO : set the codepage
-		// bufferData.SetCodepage();
 
 		LPDISPATCH piScript = plugin->m_lpDispatch;
 		Poco::FastMutex::ScopedLock lock(g_mutex);
