@@ -12,15 +12,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Poco", "Poco", "{220B870C-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{DC3B258E-444F-460D-8FD9-09A8165212FA}"
 	ProjectSection(SolutionItems) = preProject
+		BuildAll.cmd = BuildAll.cmd
 		BuildAll.vs2017.cmd = BuildAll.vs2017.cmd
-		BuildAll.vs2019.cmd = BuildAll.vs2019.cmd
+		BuildAll.vs2017_32bit_latest_64bit.cmd = BuildAll.vs2017_32bit_latest_64bit.cmd
 		BuildAll.vs2022.cmd = BuildAll.vs2022.cmd
 		BuildArc.cmd = BuildArc.cmd
+		BuildBin.cmd = BuildBin.cmd
 		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
-		BuildBin.vs2019.cmd = BuildBin.vs2019.cmd
 		BuildBin.vs2022.cmd = BuildBin.vs2022.cmd
 		BuildInstaller.cmd = BuildInstaller.cmd
 		BuildManual.cmd = BuildManual.cmd
+		CreateRelease.cmd = CreateRelease.cmd
+		DownloadDeps.cmd = DownloadDeps.cmd
 		SetVersion.cmd = SetVersion.cmd
 		UploadToVirusTotal.cmd = UploadToVirusTotal.cmd
 	EndProjectSection

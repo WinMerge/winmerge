@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31903.59
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11205.157 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge", "Src\Merge.vcxproj", "{9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE}"
 EndProject
@@ -13,13 +13,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{DC3B258E-444F-460D-8FD9-09A8165212FA}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
+		BuildAll.cmd = BuildAll.cmd
 		BuildAll.vs2017.cmd = BuildAll.vs2017.cmd
-		BuildAll.vs2019.cmd = BuildAll.vs2019.cmd
+		BuildAll.vs2017_32bit_latest_64bit.cmd = BuildAll.vs2017_32bit_latest_64bit.cmd
 		BuildAll.vs2022.cmd = BuildAll.vs2022.cmd
-		BuildAll.vs2022x64_vs2017Win32.cmd = BuildAll.vs2022x64_vs2017Win32.cmd
 		BuildArc.cmd = BuildArc.cmd
+		BuildBin.cmd = BuildBin.cmd
 		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
-		BuildBin.vs2019.cmd = BuildBin.vs2019.cmd
 		BuildBin.vs2022.cmd = BuildBin.vs2022.cmd
 		BuildInstaller.cmd = BuildInstaller.cmd
 		BuildManual.cmd = BuildManual.cmd
@@ -40,9 +40,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUITests", "Testing\GoogleT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}"
 	ProjectSection(SolutionItems) = preProject
+		Plugins\BuildBin.cmd = Plugins\BuildBin.cmd
 		Plugins\BuildBin.vs2017.cmd = Plugins\BuildBin.vs2017.cmd
-		Plugins\BuildBin.vs2019.cmd = Plugins\BuildBin.vs2019.cmd
-		Plugins\BuildBin.vs2022.cmd = Plugins\BuildBin.vs2022.cmd
 		Plugins\CopyDlls.bat = Plugins\CopyDlls.bat
 		Plugins\Plugins.xml = Plugins\Plugins.xml
 		Plugins\README.md = Plugins\README.md
