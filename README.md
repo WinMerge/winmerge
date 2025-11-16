@@ -91,9 +91,9 @@ Another way to Debug, run the exe from previous step, then from VS attach to the
 ### Visual Studio 2022 or 2026
 
 - *Community*, *Professional* or *Enterprise* Edition
-- MSVC v143 Buildtools (x64/x86, ARM64)
-- C++ MFC for latest v143 build tools (x64/x86, ARM64)
-- C++ ATL for latest v143 build tools (x64/x86, ARM64)
+- MSVC v143 or v145 Buildtools (x64/x86, ARM64)
+- C++ MFC for latest v143 or v145 build tools (x64/x86, ARM64)
+- C++ ATL for latest v143 or v145 build tools (x64/x86, ARM64)
 - Windows 10 SDK
 
 ### Other utilities/programs
