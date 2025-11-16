@@ -88,20 +88,12 @@ Another way to Debug, run the exe from previous step, then from VS attach to the
 - Visual C++ ATL for (x86 and x64, ARM, ARM64)
 - Windows 10 SDK
 
-### Visual Studio 2019
+### Visual Studio 2022 or 2026
 
 - *Community*, *Professional* or *Enterprise* Edition
-- MSVC v142 - VS 2019 C++ (x64/x86, ARM, ARM64) build tools (Latest)
-- C++ MFC for latest v142 build tools (x86 & x64, ARM, ARM64)
-- C++ ATL for latest v142 build tools (x86 & x64, ARM, ARM64)
-- Windows 10 SDK
-
-### Visual Studio 2022
-
-- *Community*, *Professional* or *Enterprise* Edition
-- MSVC v143 Buildtools (x64/x86, ARM, ARM64)
-- C++ MFC for latest v143 build tools (x64/x86, ARM, ARM64)
-- C++ ATL for latest v143 build tools (x64/x86, ARM, ARM64)
+- MSVC v143 Buildtools (x64/x86, ARM64)
+- C++ MFC for latest v143 build tools (x64/x86, ARM64)
+- C++ ATL for latest v143 build tools (x64/x86, ARM64)
 - Windows 10 SDK
 
 ### Other utilities/programs
