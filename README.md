@@ -119,5 +119,5 @@ Another way to Debug, run the exe from previous step, then from VS attach to the
 git clone --recurse-submodules https://github.com/WinMerge/winmerge
 cd winmerge
 DownloadDeps.cmd
-BuildAll.vs2022.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2019.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
+BuildAll.cmd [x86|x64|ARM64] or BuildAll.vs2022.cmd [x86|x64|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
 ```
