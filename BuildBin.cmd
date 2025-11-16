@@ -4,7 +4,7 @@ call SetVersion.cmd
 cscript /nologo ExpandEnvironmenStrings.js Version.in > Version.h
 
 setlocal
-for /f "usebackq tokens=*" %%i in (`"%programfiles(x86)%\microsoft visual studio\installer\vswhere.exe" -version [18.0^,19.0^) -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
+for /f "usebackq tokens=*" %%i in (`"%programfiles(x86)%\microsoft visual studio\installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
   set InstallDir=%%i
 )
 if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
