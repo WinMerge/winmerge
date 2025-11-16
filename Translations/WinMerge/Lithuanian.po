@@ -4964,6 +4964,9 @@ msgstr "Lyginti puslapių antraštes ir poraštes"
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr "Nepavyksta gauti makrokomandų.\r\nĮjunkite „Pasitikėti prieiga prie Visual Basic Project“ MS Office makrokomandų saugumo skiltyje."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Lyginti VBA makrokomandas"
 

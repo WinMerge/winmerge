@@ -5606,6 +5606,9 @@ msgstr ""
 "MS Office Makro Güvenliği'nde 'Visual Basic Projesine erişime güven' "
 "seçeneğini etkinleştirin."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "VBA makroları karşılaştırılsın"
 

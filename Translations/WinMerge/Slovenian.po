@@ -5432,6 +5432,9 @@ msgstr ""
 "    Za omogočanje omogočite primerjavo makrov v WinMerge , uporabite MS Office, da spremenite nastavitve v 'Varnosti makrov' za trenutno aplikacijo.\n"
 "    Za uporabo te funkcije v programu WinMerge mora biti vklopljena funkcija zaupanja vrednega dostopa do projekta Visual Basic.\n"
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Primerjaj makre VBA"
 

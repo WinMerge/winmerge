@@ -5595,6 +5595,9 @@ msgstr ""
 "Attivà « Permette l’accessu à u prughjettu Visual Basic »in l’ozzioni "
 "« Sicurità di e Macro » di MS Office."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Paragunà e prucedure VBA"
 

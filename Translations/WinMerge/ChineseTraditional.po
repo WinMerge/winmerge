@@ -5569,6 +5569,9 @@ msgstr ""
 "在 MS Office 巨集安全性中啟用\n"
 "「信任對 Visual Basic 專案的存取」。"
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "比較 VBA 巨集"
 

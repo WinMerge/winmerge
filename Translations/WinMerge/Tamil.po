@@ -5602,6 +5602,9 @@ msgstr ""
 "பெருக்களைப் பெற முடியாது. \r\n"
 "நுமெ அலுவலக பெருக்கள் பாதுகாப்பில் 'காட்சி அடிப்படை திட்டத்திற்கான நம்பிக்கை அணுகலை' இயக்கு."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "காஅத பெருக்களை ஒப்பிடுக"
 

@@ -4964,6 +4964,9 @@ msgstr "Comparar cabeçalhos e rodapés"
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr "Não é possível acessar Macros.\r\nHabilitar 'Acesso de confiança do projeto do Visual Basic' em Segurança de Macro do MS Office."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Comparar macros VBA"
 

@@ -5554,6 +5554,9 @@ msgstr ""
 "无法获取宏。\r\n"
 "在 MS Office Macro Security 中启用 \"信任对 Visual Basic 项目的访问\"。"
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "比较 VBA 宏"
 

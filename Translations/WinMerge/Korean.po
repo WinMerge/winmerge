@@ -6252,6 +6252,9 @@ msgstr ""
 "매크로를 가져올 수 없습니다.\n"
 "MS Office 매크로 보안에서 '시각적 기본 프로젝트에 대한 신뢰 액세스'를 활성화합니다."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "VBA 매크로 비교"
 

@@ -5335,6 +5335,9 @@ msgstr ""
 "   כדי לאפשר ל-WinMerge להשוות מאקרואים, השתמש ב-MS Office לשינוי ההגדרות ב'אבטחת מאקרו' עבור היישום הנוכחי.\r\n"
 "   יש להפעיל את האפשרות 'אמון בגישה לפרויקט Visual Basic' כדי להשתמש בפונקציה זו ב-WinMerge.\r\n"
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "השווה מאקרואים VBA"
 

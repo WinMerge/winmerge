@@ -4966,6 +4966,9 @@ msgstr "Сравнить верхние и нижние колонтитулы"
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr "Не удается получить макрос.\r\n   Чтобы разрешить WinMerge сравнивать макросы, используйте MS Office для изменения настроек в Macro Security для текущего приложения.\r\n   Для использования этой функции в WinMerge необходимо включить функцию Trust access в Visual Basic Project.\r\n"
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Сравнить макросы VBA"
 

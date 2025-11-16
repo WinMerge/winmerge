@@ -5536,6 +5536,9 @@ msgstr ""
 "Não foi possível obter Macros.\n"
 "Ativar 'Confiar no acesso ao Projeto Visual Basic' na Segurança de Macros do MS Office."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Comparar macros VBA"
 

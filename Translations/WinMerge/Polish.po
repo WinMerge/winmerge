@@ -4965,6 +4965,9 @@ msgstr "Porównaj nagłówki i stopki"
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr "Nie można pobrać makr.\r\nWłącz 'Ufaj dostępowi do projektu Visual Basic' w zabezpieczeniach makr pakietu MS Office."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Porównaj makra VBA"
 

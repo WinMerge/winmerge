@@ -5623,6 +5623,9 @@ msgstr ""
 "Abilita nella 'Sicurezza macro MS Office' l'opzione 'Concedi accesso a "
 "progetto Visual Basic'."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Confronta macro VBA"
 

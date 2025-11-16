@@ -32,7 +32,7 @@
 /*
     This is a plugin for WinMerge.
     It will display the text content of MS Excel files.
-    Copyright (C) 2005-2024 Takashi Sawanaka
+    Copyright (C) 2005-2025 Takashi Sawanaka
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -168,12 +168,12 @@ function writeFormulas(fo, sht) {
   var row, col, formula;
   var rowOffset = sht.UsedRange.Row;
   var colOffset = sht.UsedRange.Column;
-  var keepLineBreaks = regRead(REGKEY_PATH + "CompareFormulasKeepLineBreaks", false);
+  var replaceLineBreaks = regRead(REGKEY_PATH + "CompareFormulasReplaceLineBreaks", false);
   try {
     var varCells = sht.UsedRange.Formula;
     if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
       var outFormula = String(varCells);
-      if (!keepLineBreaks) {
+      if (replaceLineBreaks) {
         outFormula = outFormula.replace(/[\r\n]+/g, " ");
       }
       fo.WriteLine(getAddr(1 + rowOffset - 1, 1 + colOffset - 1) + ": " + outFormula);
@@ -184,7 +184,7 @@ function writeFormulas(fo, sht) {
             try {
               var formula = varCells.getItem(row, col);
               if (typeof(formula) === "string" && formula.charAt(0) === "=") {
-                if (!keepLineBreaks) {
+                if (replaceLineBreaks) {
                   formula = formula.replace(/[\r\n]+/g, " ");
                 }
                 fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
@@ -734,7 +734,7 @@ function exportSettingsToXMLFile(filepath) {
     "ImageWidth" : 1000,
     "ImageHeight" : 3000,
     "CompareFormulas" : false,
-	"CompareFormulasKeepLineBreaks" : false, 
+	"CompareFormulasReplaceLineBreaks" : false, 
     "CompareTextsInShapes" : true,
     "CompareHeadersAndFooters" : true,
     "CompareVBAMacros" : true
@@ -847,7 +847,7 @@ function importSettingsFromXMLFile(filepath) {
         settings = loadSettingsFromXMLFile(xmlFilePath);
 
         var dpi = window.screen.deviceXDPI;
-        var w = 600 * dpi / 96, h = 500 * dpi / 96;
+        var w = 600 * dpi / 96, h = 540 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
@@ -861,7 +861,7 @@ function importSettingsFromXMLFile(filepath) {
         txtImageWidth.value = regRead(REGKEY_PATH + "ImageWidth", 1000);
         txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
         chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
-        chkCompareFormulasBrks.checked = regRead(REGKEY_PATH + "CompareFormulasKeepLineBreaks", false);
+        chkCompareFormulasBrks.checked = regRead(REGKEY_PATH + "CompareFormulasReplaceLineBreaks", false);
         chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
         chkCompareHeadersAndFooters.checked = regRead(REGKEY_PATH + "CompareHeadersAndFooters", true);
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
@@ -908,7 +908,7 @@ function importSettingsFromXMLFile(filepath) {
         regWrite(REGKEY_PATH + "ImageWidth", Number(txtImageWidth.value), "REG_DWORD");
         regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareFormulasKeepLineBreaks", chkCompareFormulasBrks.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareFormulasReplaceLineBreaks", chkCompareFormulasBrks.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareHeadersAndFooters", chkCompareHeadersAndFooters.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD");
@@ -1006,7 +1006,7 @@ function importSettingsFromXMLFile(filepath) {
           <ul>
             <li>
               <input id="chkCompareFormulasBrks" type="checkbox" />
-              <label for="chkCompareFormulasBrks">${Keep line breaks in formulas}</label>
+              <label for="chkCompareFormulasBrks">${Replace line breaks in formulas with spaces}</label>
             </li>
           </ul>
         </li>

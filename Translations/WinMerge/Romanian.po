@@ -5484,6 +5484,9 @@ msgstr "Compară antetele și subsolurile"
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr ""
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Compară macrourile VBA"
 

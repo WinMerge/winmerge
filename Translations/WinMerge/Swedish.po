@@ -5533,6 +5533,9 @@ msgstr ""
 "Kan inte hämta Makron.\r\n"
 "För att tillåta WinMerge att jämföra makron Tillåt tillgång till Visual Basic Project' i MS Office Macro Security."
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Jämför VBA-makron"
 

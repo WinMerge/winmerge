@@ -5542,6 +5542,9 @@ msgstr ""
 "   Om WinMerge toe te laten om macro's te vergelijken, gebruikt u MS Office om de instellingen in de macrobeveiliging voor de huidige toepassing te wijzigen.\r\n"
 "   De functie 'toegang vertrouwen tot Visual Basic project' moet worden ingeschakeld om deze functie in WinMerge te kunnen gebruiken.\r\n"
 
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "VBA-macro's vergelijken"
 
