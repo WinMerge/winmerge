@@ -4,7 +4,7 @@ set workdir=BuildTmp\Src
 if "%1" == "vs2017" (
   set vsversion=vs2017
 ) else (
-  set vsversion=vs2022x64_vs2017Win32
+  set vsversion=vs2026x64_vs2017Win32
 )
 
 pushd "%~dp0"
