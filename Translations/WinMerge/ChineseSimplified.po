@@ -5555,7 +5555,7 @@ msgstr ""
 "在 MS Office Macro Security 中启用 \"信任对 Visual Basic 项目的访问\"。"
 
 msgid "Replace line breaks in formulas with spaces"
-msgstr ""
+msgstr "将公式中的换行符替换为空格"
 
 msgid "Compare VBA macros"
 msgstr "比较 VBA 宏"
