@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 23.10.2025\n"
+"Project-Id-Version: WinMerge - Italian - 17.11.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-10-23 12:32+0200\n"
+"PO-Revision-Date: 2025-11-17 09:46+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -5624,7 +5624,7 @@ msgstr ""
 "progetto Visual Basic'."
 
 msgid "Replace line breaks in formulas with spaces"
-msgstr ""
+msgstr "Sostituisci nelle formule interruzioni di riga con spazi"
 
 msgid "Compare VBA macros"
 msgstr "Confronta macro VBA"
