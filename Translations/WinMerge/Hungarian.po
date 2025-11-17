@@ -5969,7 +5969,7 @@ msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS
 msgstr "Nem lehet makrókat elérni.\r\n    Ahhoz, hogy a WinMerge összehasonlíthassa a makrókat, az MS Office segítségével módosítsd a Macro biztonsági beállításait az aktuális alkalmazáshoz.\r\n   A Visual Basic Project megbízható hozzáférése funkciót be kell kapcsolni ehhez a WinMerge funkcióhoz.\r\n"
 
 msgid "Replace line breaks in formulas with spaces"
-msgstr ""
+msgstr "Sortörések cseréje szóközökre a képletekben"
 
 msgid "Compare VBA macros"
 msgstr "VBA makrók összehasonlítása"
