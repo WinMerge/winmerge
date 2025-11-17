@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2025-10-22 22:35-0300\n"
+"PO-Revision-Date: 2025-11-17 08:40-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -4965,7 +4965,7 @@ msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS
 msgstr "Não é possível acessar Macros.\r\nHabilitar 'Acesso de confiança do projeto do Visual Basic' em Segurança de Macro do MS Office."
 
 msgid "Replace line breaks in formulas with spaces"
-msgstr ""
+msgstr "Substituir quebras de linha em fórmulas com espaços"
 
 msgid "Compare VBA macros"
 msgstr "Comparar macros VBA"
