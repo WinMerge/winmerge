@@ -71,6 +71,7 @@ static const tchar_t * s_apszMatlabKeywordList[] =
     _T("properties"),
     _T("return"),
     _T("single"),
+    _T("spmd"),
     _T("string"),
     _T("struct"),
     _T("switch"),
