@@ -566,13 +566,13 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		fileOut.Close();
 
 		EditFileFilter(s);
-		FileFilterMgr *pMgr = pGlobalFileFilter->GetManager();
-		int retval = pMgr->AddFilter(s);
+		int retval = m_pFileFilterHelper->GetManager()->AddFilter(s);
 		if (retval == FILTER_OK)
 		{
 			// Remove all from filterslist and re-add so we can update UI
 			pGlobalFileFilter->LoadAllFileFilters();
-			m_Filters = pGlobalFileFilter->GetFileFilters();
+			m_pFileFilterHelper->LoadAllFileFilters();
+			m_Filters = m_pFileFilterHelper->GetFileFilters();
 
 			UpdateFiltersList();
 			SelectFilterByFilePath(s);
@@ -596,11 +596,11 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 		if (DeleteFile(path.c_str()))
 		{
 			auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
-			FileFilterMgr *pMgr = pGlobalFileFilter->GetManager();
-			pMgr->RemoveFilter(path);
+			pGlobalFileFilter->GetManager()->RemoveFilter(path);
+			m_pFileFilterHelper->GetManager()->RemoveFilter(path);
 			
 			// Remove all from filterslist and re-add so we can update UI
-			m_Filters = pGlobalFileFilter->GetFileFilters();
+			m_Filters = m_pFileFilterHelper->GetFileFilters();
 
 			UpdateFiltersList();
 		}
@@ -679,11 +679,11 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 		}
 		else
 		{
-			FileFilterMgr *pMgr = pGlobalFileFilter->GetManager();
-			pMgr->AddFilter(userPath);
+			pGlobalFileFilter->GetManager()->AddFilter(userPath);
+			m_pFileFilterHelper->GetManager()->AddFilter(userPath);
 
 			// Remove all from filterslist and re-add so we can update UI
-			m_Filters = pGlobalFileFilter->GetFileFilters();
+			m_Filters = m_pFileFilterHelper->GetFileFilters();
 
 			UpdateFiltersList();
 			SelectFilterByFilePath(userPath);
