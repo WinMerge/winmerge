@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2025-10-06 17:28+0100\n"
+"PO-Revision-Date: 2025-11-24 15:26+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1138,7 +1138,7 @@ msgid "Size"
 msgstr "Tamanho"
 
 msgid "Existence"
-msgstr ""
+msgstr "Existência"
 
 msgid "&Load Project..."
 msgstr "&Carregar projeto..."
@@ -1486,7 +1486,7 @@ msgid "100000 or more"
 msgstr "100000 ou mais"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "&Propriedades adicionais..."
 
 msgid "Add F&older Condition"
 msgstr "Adicionar c&ondição de pasta"
@@ -1513,25 +1513,25 @@ msgid "Not Equal"
 msgstr "Não igual"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Menor que"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Menor ou igual a"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Maior que"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Maior ou igual a"
 
 msgid "Less than 10B"
-msgstr "Menos de 10B"
+msgstr "Menor que 10B"
 
 msgid "10B or more"
 msgstr "10B ou mais"
 
 msgid "Less than 100B"
-msgstr "Menos de 100B"
+msgstr "Menor que 100B"
 
 msgid "100B or more"
 msgstr "100B ou mais"
@@ -1576,22 +1576,22 @@ msgid "Target: Middle and &Right"
 msgstr "Alvo: Meio e Direita"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Alvo: &Tudo"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "&Limpar condições"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "Comparar &tamanho"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Comparar &data"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Comparar &atributos"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "Comparar c&onteúdo"
 
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
@@ -2599,7 +2599,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Limite para trocar para comparação &binária (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "Com&dições adicionais de comparação:"
 
 msgid "File patterns:"
 msgstr "Padrões de ficheiros:"
@@ -3849,7 +3849,7 @@ msgstr "Os ficheiros de imagem são diferentes"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "Os ficheiros são diferentes (expr: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4793,7 +4793,7 @@ msgstr "Filtro aplicado"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Comparar %1"
 
 #, c-format
 msgid "Clipboard at %s"
@@ -5022,7 +5022,7 @@ msgid "Unknown error"
 msgstr "Erro desconhecido"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "Nome de propriedade inválido"
 
 msgid "Equals"
 msgstr "Igual a"
