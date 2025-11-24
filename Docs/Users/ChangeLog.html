@@ -31,8 +31,11 @@ vertical-align: middle;
 <ul>
 <li>BugFix: [Bug] The configuration of tabulations is not working
 correctly (#3015)</li>
-<li>Added missing <code>spmd</code> keyword to the MATLAB keyword list.
-(#3040)</li>
+<li>Update request: List of MATLAB specific keywords (#3040)</li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>Set the default thread count for folder comparison to 4.</li>
 </ul>
 <h3 id="filters-dialog">Filters dialog</h3>
 <ul>
@@ -63,7 +66,9 @@ missing after selection.</li>
 <li>Korean (PR #3007)</li>
 <li>Lithuanian (PR #3019)</li>
 <li>Polish (PR #3014)</li>
+<li>Portuguese (PR #3046)</li>
 <li>Turkish (PR #3020)</li>
+<li>Russian (PR #3045)</li>
 </ul></li>
 </ul>
 <h2 id="winmerge-21652---2025-10-27">WinMerge 2.16.52 - 2025-10-27</h2>
@@ -80,7 +85,7 @@ issue.</li>
 <ul>
 <li>BugFix: Ctrl-W in Hex View : Close window? (#2294)</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Round timestamps before comparing to ensure consistent
 1-second precision (#2973)</li>
@@ -125,7 +130,7 @@ are identical. Or the text input cursor jumps to unequal lines.
 <li>Add option to ignore line breaks (treat as spaces) (refs #373) (PR
 #2945)</li>
 </ul>
-<h3 id="folder-compare-1">Folder compare</h3>
+<h3 id="folder-compare-2">Folder compare</h3>
 <ul>
 <li>Fixed an issue where adding exclusions via [Add Exclude File] -&gt;
 [Editor Backup Files] incorrectly excluded most files.</li>
@@ -172,7 +177,7 @@ are identical. Or the text input cursor jumps to unequal lines.
 <li>BugFix: WinMerge 2.16.50 regression: Crashes when doing &quot;Show only
 comparison results (not file contents)&quot; for large binaries. (#2874)</li>
 </ul>
-<h3 id="folder-compare-2">Folder compare</h3>
+<h3 id="folder-compare-3">Folder compare</h3>
 <ul>
 <li>BugFix: After Install of v2.16.50 Folder: Filter is now only being
 applied to 1st folder path and not the 2nd and 3th folder paths
@@ -236,7 +241,7 @@ directives (#2814)</li>
 <li>[Enhancement] Enable/disable automatic navigation to a line when
 clicking on the Location Panel (PR #2827)</li>
 </ul>
-<h3 id="folder-compare-3">Folder compare</h3>
+<h3 id="folder-compare-4">Folder compare</h3>
 <ul>
 <li>BugFix: WinMerge shows the timestamp of the non-existent file
 (#2764)</li>
@@ -317,7 +322,7 @@ is open</li>
 <li>Syntax/Pascal: Add initialization and finalization (PR #2719)</li>
 <li>Syntax/Pascal: Support multiline strings (PR #2720)</li>
 </ul>
-<h3 id="folder-compare-4">Folder compare</h3>
+<h3 id="folder-compare-5">Folder compare</h3>
 <ul>
 <li>BugFix: Unable to compare files with zero mtime using &quot;Modified Date
 and Size&quot; (#2714)</li>
@@ -435,7 +440,7 @@ admin) user on win 10 x64 (#2638) (PR #2639)</li>
 launching WinMerge with Windows animation effects enabled and the window
 maximized.</p></li>
 </ul>
-<h3 id="folder-compare-5">Folder compare</h3>
+<h3 id="folder-compare-6">Folder compare</h3>
 <ul>
 <li><p>BugFix: Compare - Text files different and case also
 different</p>
@@ -488,7 +493,7 @@ that caused error 0x80048010 when comparing PowerPoint files</p></li>
 <li>BugFix: The height of the lines connecting moving blocks in the
 location pane may be incorrect (#2543)</li>
 </ul>
-<h3 id="folder-compare-6">Folder compare</h3>
+<h3 id="folder-compare-7">Folder compare</h3>
 <ul>
 <li>BugFix: Looks like the View Tab Bar &quot;folder icon&quot; is getting a green
 check-mark before the folder compare has even completed. (#2562)</li>
@@ -560,7 +565,7 @@ open (PR #2532)</li>
 <li>Feature Request: Fixed-Width Font in &quot;Find what&quot; and &quot;Replace with&quot;
 Fields (#2539)</li>
 </ul>
-<h3 id="folder-compare-7">Folder compare</h3>
+<h3 id="folder-compare-8">Folder compare</h3>
 <ul>
 <li>BugFix: Crash on typing while search is in progress (#1814), (PR
 #2557)</li>
@@ -650,7 +655,7 @@ identical&quot; (#2408)</li>
 <li>Anti-aliasing has been applied to the lines that connect moved
 blocks in the location pane.</li>
 </ul>
-<h3 id="folder-compare-8">Folder compare</h3>
+<h3 id="folder-compare-9">Folder compare</h3>
 <ul>
 <li>BugFix: ExitCode always 2 with /enableexitcode with no apparent
 issues (#2450)</li>
@@ -723,7 +728,7 @@ again</li>
 #2364)</li>
 <li>Introduce a flat status bar without separator lines. (PR #2377)</li>
 </ul>
-<h3 id="folder-compare-9">Folder compare</h3>
+<h3 id="folder-compare-10">Folder compare</h3>
 <ul>
 <li>BugFix: Folder comparison status not accurately reflected in toolbar
 (#2374)</li>
@@ -778,7 +783,7 @@ settings window</li>
 <li>Typescript files to use JavaScript highlighting as default (PR
 #2312)</li>
 </ul>
-<h3 id="folder-compare-10">Folder compare</h3>
+<h3 id="folder-compare-11">Folder compare</h3>
 <ul>
 <li>BugFix: Refresh selected shows wrong file names being compared
 (#2338)</li>
@@ -981,7 +986,7 @@ the Codepage dialog was not reflected.</li>
 <li>During comparison, the status bar now displays &quot;Comparing...&quot;.</li>
 <li>Add Location Pane (PR #2160)</li>
 </ul>
-<h3 id="folder-compare-11">Folder compare</h3>
+<h3 id="folder-compare-12">Folder compare</h3>
 <ul>
 <li>Modify the &quot;Display Columns&quot; dialog. (PR #2154)</li>
 </ul>
@@ -1017,7 +1022,7 @@ Location View may not be as expected when Wrap Lines is enabled.</li>
 search</li>
 <li>Added new C# keywords (PR #2136)</li>
 </ul>
-<h3 id="folder-compare-12">Folder compare</h3>
+<h3 id="folder-compare-13">Folder compare</h3>
 <ul>
 <li>BugFix: Empty files are not copied (#2146)</li>
 </ul>
@@ -1101,7 +1106,7 @@ window (#2084)</li>
 window (#2084)</li>
 <li>Webpage Compare: synchronize events (#2111,#2064)</li>
 </ul>
-<h3 id="folder-compare-13">Folder compare</h3>
+<h3 id="folder-compare-14">Folder compare</h3>
 <ul>
 <li>BugFix: Ignoring carriage return differences doesn&#39;t work anymore
 (#2080,#2099)</li>
@@ -1153,7 +1158,7 @@ and the other file has an EOL of the last line.</li>
 <li>BugFix: Fixed the issue where .png is added when saving even if the
 file format does not use a converter such as jpg or png file.</li>
 </ul>
-<h3 id="folder-compare-14">Folder compare</h3>
+<h3 id="folder-compare-15">Folder compare</h3>
 <ul>
 <li>BugFix: Folder compare omits unique folders from results if they
 contain any files and/or subfolders folder compare/merge (#2046)</li>
@@ -1204,7 +1209,7 @@ hidden.</li>
 <li>Generate reports in tabular format for table comparisons. (PR
 #1983)</li>
 </ul>
-<h3 id="folder-compare-15">Folder compare</h3>
+<h3 id="folder-compare-16">Folder compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where Differences, Left/Right EOL columns,
 etc. were displayed as undefined values when the file comparison method
@@ -1285,7 +1290,7 @@ characters (#1923)</li>
 (#1902)</li>
 <li>Update Python syntax highlighting keyword list. (PR #1938)</li>
 </ul>
-<h3 id="folder-compare-16">Folder compare</h3>
+<h3 id="folder-compare-17">Folder compare</h3>
 <ul>
 <li>BugFix: Treeview scrolls to the wrong position. (#1915)</li>
 <li>Allow changing the number of CPU cores to use while doing folder
@@ -1336,7 +1341,7 @@ the Options dialog even if the /r command line option is not specified.
 <li>Confirm copy all in file merge (PR #1827)</li>
 <li>Modify the &quot;Go to&quot; dialog. (PR #1896)</li>
 </ul>
-<h3 id="folder-compare-17">Folder compare</h3>
+<h3 id="folder-compare-18">Folder compare</h3>
 <ul>
 <li>BugFix: Display problem with Item totals : (#1840)</li>
 <li>BugFix: Bug in ignore whitespace ? (#1882)</li>
@@ -1492,7 +1497,7 @@ network share</li>
 <ul>
 <li>BugFix: Fixed issue with missing file path in header bar</li>
 </ul>
-<h3 id="folder-compare-18">Folder compare</h3>
+<h3 id="folder-compare-19">Folder compare</h3>
 <ul>
 <li>BugFix: After I collapse a folder, the arrow next to it stays turned
 down (#1747)</li>
@@ -1558,7 +1563,7 @@ ShellExtension*.dll.</li>
 </ul></li>
 </ul>
 <h2 id="winmerge-21628---2023-02-15">WinMerge 2.16.28 - 2023-02-15</h2>
-<h3 id="folder-compare-19">Folder compare</h3>
+<h3 id="folder-compare-20">Folder compare</h3>
 <ul>
 <li>BugFix: Fixed an issue where files with no extension were not
 compared if they were in a folder with a &#39;.&#39; in the folder name.</li>
@@ -1574,7 +1579,7 @@ were set in the file path bar.</li>
 <li>Feature request: Allow pasting when editing caption of pages (PR
 #1651)</li>
 </ul>
-<h3 id="folder-compare-20">Folder compare</h3>
+<h3 id="folder-compare-21">Folder compare</h3>
 <ul>
 <li>BugFix: Filters aren&#39;t saved anywhere (#1638)</li>
 <li>BugFix: Fixed issue where the Open menu item in file path bar of
@@ -1651,7 +1656,7 @@ calculation (PR #1574, #1573)</li>
 <li>Binary compare: Allow 64bit versions to open files larger than 2GB
 (PR #1549)</li>
 </ul>
-<h3 id="folder-compare-21">Folder compare</h3>
+<h3 id="folder-compare-22">Folder compare</h3>
 <ul>
 <li>BugFix: Fix the problem that WinMerge crashes when pressing the &quot;OK&quot;
 button in the &quot;Display Columns&quot; dialog in the debug version. (PR
@@ -1723,7 +1728,7 @@ status bar from double-click to single-click.</li>
 enabled, clicking on a character would not move the caret to that
 character&#39;s position</li>
 </ul>
-<h3 id="folder-compare-22">Folder compare</h3>
+<h3 id="folder-compare-23">Folder compare</h3>
 <ul>
 <li>Fixed memory leak in folder comparison when PDF files were targeted
 for image comparison.</li>
@@ -1816,7 +1821,7 @@ narrow column width.</li>
 <li>[EXPERIMENTAL] Webpage Compare: Highlight differences (PR
 #1357)</li>
 </ul>
-<h3 id="folder-compare-23">Folder compare</h3>
+<h3 id="folder-compare-24">Folder compare</h3>
 <ul>
 <li>BugFix: Disable rename operations when in read-only mode in the
 folder compare window. (PR #1434)</li>
@@ -1866,7 +1871,7 @@ the new string contains the old string. (#1376)</li>
 if multiple matches on the same line (#1387, PR #1388)</li>
 <li>Optimize snake function (PR #1411)</li>
 </ul>
-<h3 id="folder-compare-24">Folder compare</h3>
+<h3 id="folder-compare-25">Folder compare</h3>
 <ul>
 <li>BugFix: Fix an issue where paths with different case are not
 displayed correctly in the folder column of the folder compare window
@@ -1958,7 +1963,7 @@ item was unchecked.</li>
 resource files</li>
 <li>Added Ctrl+L keyboard shortcut</li>
 </ul>
-<h3 id="folder-compare-25">Folder compare</h3>
+<h3 id="folder-compare-26">Folder compare</h3>
 <ul>
 <li>BugFix: Alt/Shift key highlighting issue not resetting start point
 from move. (#1335)</li>
@@ -2066,7 +2071,7 @@ displayed web pages
 </ul></li>
 </ul></li>
 </ul>
-<h3 id="folder-compare-26">Folder compare</h3>
+<h3 id="folder-compare-27">Folder compare</h3>
 <ul>
 <li>BugFix: Fix an issue where items with different case are not
 displayed correctly in the folder compare window when comparing three
@@ -2161,7 +2166,7 @@ margin)</li>
 context menu.</li>
 </ul></li>
 </ul>
-<h3 id="folder-compare-27">Folder compare</h3>
+<h3 id="folder-compare-28">Folder compare</h3>
 <ul>
 <li>BugFix: Fix the problem that the status bar displays &quot;0 items
 selected&quot; even though multiple items are selected.</li>
@@ -2274,7 +2279,7 @@ not visible.</li>
 WinMerge 64-bit version.</li>
 </ul></li>
 </ul>
-<h3 id="folder-compare-28">Folder compare</h3>
+<h3 id="folder-compare-29">Folder compare</h3>
 <ul>
 <li>BugFix: Sorting on Comparison Result being done incorrectly
 (#483)</li>
@@ -2364,7 +2369,7 @@ a regression (#1036)</li>
 <li>Added support for creating multi-page image compare report (osdn.net
 #43374)</li>
 </ul>
-<h3 id="folder-compare-29">Folder compare</h3>
+<h3 id="folder-compare-30">Folder compare</h3>
 <ul>
 <li>BugFix: Fixed a problem where Duplicate Group Numbers were not
 assigned to files with the same content but different file names.</li>
@@ -2444,7 +2449,7 @@ preserve column widths (#951)</li>
 <li>BugFix: Fix an issue where drag-and-drop of file would only work
 once.</li>
 </ul>
-<h3 id="folder-compare-30">Folder compare</h3>
+<h3 id="folder-compare-31">Folder compare</h3>
 <ul>
 <li>BugFix: Sync (Super Slow) (#771)</li>
 <li>BugFix: Fix an issue where filters are not applied correctly when
@@ -2614,7 +2619,7 @@ though the WinMerge window was closed.</li>
 <li>BugFix: Fixed an infinite loop when &quot;find what&quot; in the substitution
 filters is empty.</li>
 </ul>
-<h3 id="folder-compare-31">Folder compare</h3>
+<h3 id="folder-compare-32">Folder compare</h3>
 <ul>
 <li>BugFix: Fix an issue where a file is deselected when returning to
 the folder compare window after opening the file compare window by
@@ -2746,7 +2751,7 @@ ignored differences&#39; option.)</li>
 <li>Add Smarty syntax highlighting. (PR #821)</li>
 <li>Thicken the caret in overwrite mode (osdn.net #42179)</li>
 </ul>
-<h3 id="folder-compare-32">Folder compare</h3>
+<h3 id="folder-compare-33">Folder compare</h3>
 <ul>
 <li>BugFix: Different Files are Identical? (#768) (When comparing files
 with only BOM and no contents, the comparison result became unstable
@@ -2865,7 +2870,7 @@ than other characters when the &quot;View Whitespace&quot; menu item is
 enabled</li>
 <li>Added &quot;Open Parent Folder&quot; menu item to the context menu</li>
 </ul>
-<h3 id="folder-compare-33">Folder compare</h3>
+<h3 id="folder-compare-34">Folder compare</h3>
 <ul>
 <li>BugFix: Copy confirmation dialog has overlapped Yes/No Button
 (#739)</li>
@@ -2948,7 +2953,7 @@ characters.</li>
 they contain only white space (osdn.net #41355)</li>
 <li>Added BOM checkbox to the Codepage dialog.</li>
 </ul>
-<h3 id="folder-compare-34">Folder compare</h3>
+<h3 id="folder-compare-35">Folder compare</h3>
 <ul>
 <li>BugFix: Program crash if you close a tab with the folder from where
 you opened current file (#645)</li>
@@ -3065,7 +3070,7 @@ by default (GitHub #498)</li>
 <li>A new feature &quot;Ignored Substutions&quot; (GitHub PR #544,#549,#560)
 (&quot;Ignored Substitutions&quot; was renamed to &quot;Substitution Filters&quot;)</li>
 </ul>
-<h3 id="folder-compare-35">Folder compare</h3>
+<h3 id="folder-compare-36">Folder compare</h3>
 <ul>
 <li>BugFix: Winmerge crashes consistently when deleting files (GitHub
 #491)</li>
@@ -3177,7 +3182,7 @@ CopyFullLine (GitHub PR #459)</li>
 <li>how to show white space with linebreak hidden? (GitHub #265) (Added
 View-&gt;View EOL menu item)</li>
 </ul>
-<h3 id="folder-compare-36">Folder compare</h3>
+<h3 id="folder-compare-37">Folder compare</h3>
 <ul>
 <li>BugFix: Pausing comparing doesn&#39;t pause immediately (GitHub
 #342)</li>
@@ -3254,7 +3259,7 @@ algorithm did not work on Windows XP)</li>
 <li>Don&#39;t treat UTF-8 and UTF-8 with BOM the same when the &quot;Ignore
 codepage differences&quot; option is disabled</li>
 </ul>
-<h3 id="folder-compare-37">Folder compare</h3>
+<h3 id="folder-compare-38">Folder compare</h3>
 <ul>
 <li>BugFix: Appropriate error messages were not displayed when the file
 to be deleted no longer existed</li>
@@ -3352,7 +3357,7 @@ current difference appear in the difference pane. (osdn.net 40407)</li>
 <li>Made it possible to display the contents of CSV and TSV files like
 spreadsheet software.</li>
 </ul>
-<h3 id="folder-compare-38">Folder compare</h3>
+<h3 id="folder-compare-39">Folder compare</h3>
 <ul>
 <li>BugFix: DST causes incorrect dates shown in Date column (GitHub
 #299)</li>
@@ -3536,7 +3541,7 @@ enable color emoji support, select DirectWrite* in Rendering mode
 combobox on Editor page in the Options dialog)<br />
 Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4</a></li>
 </ul>
-<h3 id="folder-compare-39">Folder compare</h3>
+<h3 id="folder-compare-40">Folder compare</h3>
 <ul>
 <li>BugFix: Crash when clicking Next Difference button after unchecking
 Show Different Items menu item</li>
@@ -3596,7 +3601,7 @@ mouse (GitHub #159)</li>
 equals &quot;NUL&quot; (GitHub #162)</li>
 <li>BugFix: Auto-indent did not work if the EOL-style was not CRLF</li>
 </ul>
-<h3 id="folder-compare-40">Folder compare</h3>
+<h3 id="folder-compare-41">Folder compare</h3>
 <ul>
 <li>BugFix: Generating HTML Folder Compare report including File Compare
 report did not complete (Bitbucket #15)</li>
@@ -3645,7 +3650,7 @@ default(Myers), minimal, patience, histogram</li>
 <li>Add support for merging word level diffs in selection<br />
 Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif</a></li>
 </ul>
-<h3 id="folder-compare-41">Folder compare</h3>
+<h3 id="folder-compare-42">Folder compare</h3>
 <ul>
 <li>BugFix: WinMerge 3-Way Compare Bugs: Always Shows Unique Items.
 (GitHub #154)</li>
@@ -3701,7 +3706,7 @@ behavior</li>
 <li>BugFix: Crash when failed to load file</li>
 <li>Add syntax highlight for Lua (Bitbucket #114)</li>
 </ul>
-<h3 id="folder-compare-42">Folder compare</h3>
+<h3 id="folder-compare-43">Folder compare</h3>
 <ul>
 <li>BugFix: Compare results refresh incorrectly after deletions (sf.net
 #2217)</li>
@@ -3777,7 +3782,7 @@ Visual C++ Runtime Library Asset in DiffWraper.CPP line 984 (sf.net
 <li>Add support for merging word level diffs in selection<br />
 Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif</a></li>
 </ul>
-<h3 id="folder-compare-43">Folder compare</h3>
+<h3 id="folder-compare-44">Folder compare</h3>
 <ul>
 <li>BugFix: Unique files are not shown (Bitbucket #138)</li>
 <li>BugFix: Improve Hard-IO error handling, other bug fixes, cleanup,
@@ -3920,7 +3925,7 @@ line</li>
 (sf.net#1727)</li>
 <li>Remove 2GB file size limit for 64-bit build (GitHub #81, #82)</li>
 </ul>
-<h3 id="folder-compare-44">Folder compare</h3>
+<h3 id="folder-compare-45">Folder compare</h3>
 <ul>
 <li>Add Pause button to Folder Compare Progress dialog
 (sf.net#828,#1222,#1237)</li>
@@ -3968,7 +3973,7 @@ included ghost lines</li>
 <li>Fix to show text that contains &amp; on message box, correctly
 (sf.net#2067)</li>
 </ul>
-<h3 id="folder-compare-45">Folder compare</h3>
+<h3 id="folder-compare-46">Folder compare</h3>
 <ul>
 <li>Fix a problem that unique files are invisible when comparing files
 using &#39;Date&#39; compare method</li>
@@ -4086,7 +4091,7 @@ window)</li>
 <li>Add &quot;Register shell extension&quot; button to &quot;Shell Integration&quot;
 page</li>
 </ul>
-<h3 id="folder-compare-46">Folder Compare</h3>
+<h3 id="folder-compare-47">Folder Compare</h3>
 <ul>
 <li>Add Multi-thread compare support for Full Contents or Quick Contents
 method</li>

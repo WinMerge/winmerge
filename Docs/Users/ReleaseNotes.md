@@ -21,7 +21,11 @@ Please submit bug reports to our bug-tracker.
 
 * BugFix: [Bug] The configuration of tabulations is not working correctly
     (#3015)
-* Added missing `spmd` keyword to the MATLAB keyword list. (#3040)
+* Update request: List of MATLAB specific keywords (#3040)
+
+### Folder compare
+
+* Set the default thread count for folder comparison to 4.
 
 ### Filters dialog
 
@@ -50,7 +54,9 @@ Please submit bug reports to our bug-tracker.
   * Korean (PR #3007)
   * Lithuanian (PR #3019)
   * Polish (PR #3014)
+  * Portuguese (PR #3046)
   * Turkish (PR #3020)
+  * Russian (PR #3045)
 
 ## What Is New in 2.16.52
 
