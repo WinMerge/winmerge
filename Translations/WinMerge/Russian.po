@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2025-10-16 00:00+0000\n"
+"PO-Revision-Date: 2025-11-24 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1487,7 +1487,7 @@ msgid "100000 or more"
 msgstr "100000 или более"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "Дополнительные свойства..."
 
 msgid "Add F&older Condition"
 msgstr "Добавить условие папки"
@@ -1514,16 +1514,16 @@ msgid "Not Equal"
 msgstr "Не равно"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Меньше чем"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Меньше или равно"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Больше чем"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Больше или равно"
 
 msgid "Less than 10B"
 msgstr "Менее 10Б"
@@ -1577,22 +1577,22 @@ msgid "Target: Middle and &Right"
 msgstr "Назначение: В центре и Справа"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Назначение: Все"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "Очистить условия"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "Сравнить размер"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Сравнить дату"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Сравнить атрибуты"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "Сравнить содержимое"
 
 msgid "About WinMerge"
 msgstr "О программе WinMerge"
@@ -2592,7 +2592,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Порог для перехода к двоичному сравнению (MB)"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "Дополнительные условия сравнения:"
 
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
@@ -3335,10 +3335,10 @@ msgid "Confirm Move"
 msgstr "Подтвердите перемещение"
 
 msgid "Close the folder comparison window?"
-msgstr "Вы собираетесь закрыть окно сравнения папок. Действительно закрыть окно?"
+msgstr "Закрыть окно сравнения папок?"
 
 msgid "Close the folder comparison window, which took a long time?"
-msgstr "Вы собираетесь закрыть окно сравнения папок, занявшее много времени на выполнение. Уверены, что хотите закрыть окно?"
+msgstr "Закрыть окно сравнения папок, занявшее много времени на выполнение?"
 
 msgid "The file or folder name is invalid."
 msgstr "Неверное имя файла или папки."
@@ -3618,11 +3618,11 @@ msgid "Image files are identical"
 msgstr "Файлы изображений идентичны"
 
 msgid "Image files are different"
-msgstr "Файлы изображений разные"
+msgstr "Файлы изображений отличаются"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "Файлы отличаются (выражение: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4421,7 +4421,7 @@ msgstr "Фильтр применен"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Сравнить %1"
 
 #, c-format
 msgid "Clipboard at %s"
@@ -4603,7 +4603,7 @@ msgid "Does not equal"
 msgstr "Не равно"
 
 msgid "Less than"
-msgstr "Не равно"
+msgstr "Меньше чем"
 
 msgid "Less than or equal to"
 msgstr "Меньше или равно"
