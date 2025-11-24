@@ -19,6 +19,7 @@
 #include "paths.h"
 #include "Environment.h"
 #include "Constants.h"
+#include <Poco/Environment.h>
 
 // Functions to copy values set by installer from HKLM to HKCU.
 static bool OpenHKLM(HKEY *key, const tchar_t* relpath = nullptr);
@@ -141,7 +142,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	pOptions->InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
 	pOptions->InitOption(OPT_CMP_BINARY_LIMIT, 64 * 1024 * 1024); // 64 Megs
-	pOptions->InitOption(OPT_CMP_COMPARE_THREADS, -1, -128, 128);
+	const int defaultCompareThreads = Poco::Environment::processorCount() < 5 ? -1 : 4;
+	pOptions->InitOption(OPT_CMP_COMPARE_THREADS, defaultCompareThreads, -128, 128);
 	pOptions->InitOption(OPT_CMP_WALK_UNIQUE_DIRS, true);
 	pOptions->InitOption(OPT_CMP_IGNORE_REPARSE_POINTS, false);
 	pOptions->InitOption(OPT_CMP_IGNORE_CODEPAGE, false);
