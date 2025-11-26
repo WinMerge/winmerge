@@ -847,7 +847,7 @@ ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActua
     {
       tchar_t c = pszChars[i];
       if (c == _T('\t'))
-        nCount += nTabSize - 1;
+        nCount += (std::max)(nTabSize - 1, 1);
       else if (c >= _T('\x00') && c <= _T('\x1F') && c != _T('\r') && c != _T('\n'))
         nCount += 2;
     }
