@@ -21,6 +21,8 @@ Please submit bug reports to our bug-tracker.
 
 * BugFix: [Bug] The configuration of tabulations is not working correctly
     (#3015)
+* BugFix: Tab size set to '1' and 'insert spaces' causes redraw failures in
+    'File Compare' window. (#3047)
 * Update request: List of MATLAB specific keywords (#3040)
 
 ### Folder compare
