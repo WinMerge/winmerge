@@ -2,6 +2,10 @@
 
 ## WinMerge 2.16.52.2 - 2025-11-27
 
+### Appearance
+
+* Match title bar text color to Windows using a 190 luminance threshold.
+
 ### File compare
 
 * BugFix: [Bug] The configuration of tabulations is not working correctly
