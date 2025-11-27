@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-10-21 19:25+0000\n"
-"PO-Revision-Date: 2025-10-28 10:43+0800\n"
+"PO-Revision-Date: 2025-11-27 20:12+0800\n"
 "Last-Translator: 昇\n"
 "Language-Team: ChineseTraditional <winmerge-"
 "translate@lists.sourceforge.net>\n"
@@ -53,28 +53,28 @@ msgid "Copy Selected Lines to Right"
 msgstr "將所選行複製到右側"
 
 msgid "Copy Selected Lines from Middle"
-msgstr "從中間複製所選行"
+msgstr "複製（中間）已選取行"
 
 msgid "Copy Selected Lines from Right"
-msgstr "將右側複製所選行"
+msgstr "複製（右側）已選取行"
 
 msgid "Copy Selected Lines to Left"
 msgstr "將所選行複製到左側"
 
 msgid "Copy Selected Lines from Left"
-msgstr "從左側複製所選行"
+msgstr "複製（左側）已選取行"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr "複製選取差異 (左側) 到剪貼簿\tCtrl+&1"
+msgstr "複製（左側）已選取差異 到剪貼簿\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr "複製選取差異 (右側) 到剪貼簿\tCtrl+&2"
+msgstr "複製（右側）已選取差異 到剪貼簿\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr "複製選取差異 (中間) 到剪貼簿\tCtrl+&2"
+msgstr "複製（中間）已選取差異 到剪貼簿\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr "複製選取差異 (右側) 到剪貼簿\tCtrl+&3"
+msgstr "複製（右側）已選取差異 到剪貼簿\tCtrl+&3"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -331,7 +331,7 @@ msgid "Open Conflic&t File..."
 msgstr "開啟衝突檔 (&T)..."
 
 msgid "Open C&lipboard"
-msgstr "開啟剪貼簿 (%L)"
+msgstr "開啟剪貼簿 (&L)"
 
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "開啟專案 (&J)...\tCtrl+J"
@@ -409,10 +409,10 @@ msgid "P&lugin Settings..."
 msgstr "外掛設定 (&L)..."
 
 msgid "Ma&nual Prediffer"
-msgstr "手動先行處理器 (&N)"
+msgstr "手動預差異化 (&N)"
 
 msgid "A&utomatic Prediffer"
-msgstr "自動先行處理器 (&U)"
+msgstr "自動預差異化 (&U)"
 
 # "手動解壓縮 (&M)"
 msgid "&Manual Unpacking"
@@ -453,7 +453,7 @@ msgid "&WinMerge Help\tF1"
 msgstr "WinMerge 說明 (&W)\tF1"
 
 msgid "R&elease Notes"
-msgstr "發行說明 (&E)"
+msgstr "版本資訊 (&E)"
 
 msgid "&Translations"
 msgstr "翻譯 (&T)"
@@ -573,7 +573,7 @@ msgid "Refresh\tF5"
 msgstr "重整\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "重整標示區 (&R)\tCtrl+F5"
+msgstr "重整已選取項 (&R)\tCtrl+F5"
 
 msgid "&Merge"
 msgstr "合併 (&M)"
@@ -705,7 +705,7 @@ msgid "&Clear All Bookmarks"
 msgstr "清除全部書籤 (&C)"
 
 msgid "Syntax Highlight"
-msgstr "語法高亮度顯示"
+msgstr "語法高亮顯著色"
 
 msgid "&Diff Context"
 msgstr "差異上下文 (&D)"
@@ -880,7 +880,7 @@ msgid "Unpac&ker"
 msgstr "解壓縮程式(&K)"
 
 msgid "&Prediffer"
-msgstr "先行處理器 (&P)"
+msgstr "預差異化 (&P)"
 
 msgid "Apply Pre&differ..."
 msgstr "套用預先差異(&d)..."
@@ -1074,7 +1074,7 @@ msgid "&Select..."
 msgstr "選取 (&S)..."
 
 msgid "Prediffer Settings"
-msgstr "先行處理器設定"
+msgstr "預差異化設定"
 
 msgid "G&o to Diff"
 msgstr "至差異區塊 (&O)"
@@ -1224,7 +1224,7 @@ msgid "Add &Unpacker Plugin..."
 msgstr "新增解壓縮外掛 (&U)..."
 
 msgid "Add &Prediffer Plugin..."
-msgstr "新增先行處理外掛 (&P)..."
+msgstr "新增預差異化外掛 (&P)..."
 
 msgid "&Duplicate Plugin..."
 msgstr "複製外掛 (&D)..."
@@ -1251,7 +1251,7 @@ msgid "&Editor Backup Files"
 msgstr "編輯器備份檔案(&E)"
 
 msgid "&Compiled Binary Files"
-msgstr "編譯的二進位(&C)"
+msgstr "編譯後的二進制執行檔(&C)"
 
 msgid "&Log Files"
 msgstr "日誌檔(&L)"
@@ -1662,7 +1662,7 @@ msgid "&Include subfolders"
 msgstr "包括子資料夾 (&I)"
 
 msgid " File: Prediffer Plugin"
-msgstr "檔案: 預先差異外掛"
+msgstr "檔案: 預差異化外掛"
 
 msgid " File: Unpacker Plugin"
 msgstr "檔案: 解壓縮外掛"
@@ -1689,7 +1689,7 @@ msgid "Fi&nd what:"
 msgstr "尋找 (&N)："
 
 msgid "Match &whole word only"
-msgstr "獨立完整字 (&W)"
+msgstr "只匹配完整單詞 (&W)"
 
 msgid "Match &case"
 msgstr "區分大小寫 (&C)"
@@ -1701,7 +1701,7 @@ msgid "D&on't wrap end of file"
 msgstr "至檔尾不折返 (&O)"
 
 msgid "&Don't close this dialog"
-msgstr "不要關閉此對話盒 (&D)"
+msgstr "不要關閉此對話框 (&D)"
 
 msgid "&Find Next"
 msgstr "找下一個 (&F)"
@@ -1846,10 +1846,10 @@ msgid "Color &mode:"
 msgstr "色彩配置(&m)："
 
 msgid "&Light mode scheme:"
-msgstr "亮色模式主題(&L):"
+msgstr "亮色模式主題(&L)："
 
 msgid "&Dark mode scheme:"
-msgstr "暗色模式主題(&D):"
+msgstr "暗色模式主題(&D)："
 
 msgid "Your custom schemes"
 msgstr "您的自訂主題"
@@ -1919,7 +1919,7 @@ msgstr "字串："
 
 # What is preprocessor? Is it prediffer? The term "preprocessor" cannot be found elsewhere.
 msgid "Preprocessor:"
-msgstr "前處理器："
+msgstr "預先處理器："
 
 msgid "User 1:"
 msgstr "使用者 1："
@@ -1967,7 +1967,7 @@ msgid "Items different:"
 msgstr "相異項目："
 
 msgid "Items missing:"
-msgstr "所有項目不存在："
+msgstr "遺失的項目："
 
 msgid "Items filtered:"
 msgstr "篩選項目："
@@ -1979,7 +1979,7 @@ msgid "System"
 msgstr "系統"
 
 msgid "&Use Recycle Bin"
-msgstr "刪除檔送到資源回收筒 (&S)"
+msgstr "使用資源回收筒 (&U)"
 
 msgid "&External editor:"
 msgstr "外部編輯器 (&E)："
@@ -2033,7 +2033,7 @@ msgid "Ignore c&omment differences"
 msgstr "忽略註解差異(&O)"
 
 msgid "Ignore &missing trailing EOL"
-msgstr "忽略缺少結尾行尾換行符號(&M)"
+msgstr "忽略缺失的行尾換行符號(&M)"
 
 msgid "Ignore line &breaks (treat as spaces)"
 msgstr "忽略換行符號（視為空格）(&b)"
@@ -2185,7 +2185,7 @@ msgid "&Open files in same window type after unpacking"
 msgstr "解壓縮後以相同視窗類型開啟檔案 (&O)"
 
 msgid "&Plugin pipeline:"
-msgstr "外掛管線 (&P)："
+msgstr "外掛處理序 (&P)："
 
 msgid "&Alias..."
 msgstr "別名 (&A)..."
@@ -2611,10 +2611,10 @@ msgid "Ignore &reparse points"
 msgstr "忽略重新分析點 (&R)"
 
 msgid "Switch to &quick compare when size exceeds (MB):"
-msgstr "切換至快速比較的閾值 (MB)(&Q)："
+msgstr "當大小超過以下ＭＢ限制時，切換為快速比較(&Q)："
 
 msgid "Switch to &binary compare when size exceeds (MB):"
-msgstr "切換至二進制比較的閾值 (MB)(&B)："
+msgstr "當大小超過以下ＭＢ限制時，切換為二進制比較(&B)："
 
 msgid "Additional comparison condi&tions:"
 msgstr "額外的比較條件(&t)："
@@ -2675,7 +2675,7 @@ msgid "&Hex View"
 msgstr "二進制顯示 (&H)"
 
 msgid "Edit Plugin"
-msgstr "編輯插件"
+msgstr "編輯外掛"
 
 msgid "&Category:"
 msgstr "類別(&C)："
@@ -2897,7 +2897,7 @@ msgid "Syntax"
 msgstr "語法"
 
 msgid "Color Schemes"
-msgstr "色彩配置"
+msgstr "色彩主題"
 
 msgid "Folder Compare"
 msgstr "資料夾比較"
@@ -2944,7 +2944,7 @@ msgid "Options (%1)"
 msgstr "選項 (%1)"
 
 msgid "All message boxes are now displayed again."
-msgstr "所有訊息對話盒會重新再顯示。"
+msgstr "所有訊息對話框會重新再顯示。"
 
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
@@ -2971,17 +2971,17 @@ msgid ""
 "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
 "*.*||"
 msgstr ""
-"Text 檔 (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
+"Text檔 (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|所有檔案 (*.*)|"
 "*.*||"
 
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-msgstr "HTML 檔 (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+msgstr "HTML檔 (*.htm,*.html)|*.htm;*.html|所有檔案 (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
-msgstr "XML 檔 (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr "XML檔 (*.xml)|*.xml|所有檔案 (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr "不擴大"
+msgstr "不要展開"
 
 msgid "Expand all subfolders"
 msgstr "展開所有子資料夾"
@@ -3112,9 +3112,9 @@ msgid ""
 "\n"
 "Select 'No' to refresh later."
 msgstr ""
-"篩選器更新過。想重整所有進行中的資料夾比較嗎？\n"
+"篩選器已更新。想重整所有進行中的資料夾比較嗎？\n"
 "\n"
-"如果不想現在重整，請選「否」。"
+"選擇『否』可稍後再重整。"
 
 msgid "Folder Comparison Results"
 msgstr "資料夾比對結果"
@@ -3366,9 +3366,9 @@ msgid ""
 "\n"
 "Overwrite?"
 msgstr ""
-"WinMerge 載入檔案後，另一應用\n"
+"WinMerge 載入檔案後，\n"
 "%1\n"
-"程式已更新過它。\n"
+"又被另一程式更新過。\n"
 "\n"
 "要覆寫更新過的檔案嗎？"
 
@@ -3390,9 +3390,9 @@ msgid ""
 msgstr ""
 "WinMerge上次掃描過檔案\n"
 "%1\n"
-"後，其他應用程式又再更新它。\n"
+"後，另一程式又再更新它。\n"
 "\n"
-"要重新載入它嗎？"
+"要重新載入嗎？"
 
 msgid "Save Left File As"
 msgstr "儲存左側檔案為"
@@ -3417,13 +3417,13 @@ msgid ""
 "Cannot merge unsynched documents.\n"
 "\n"
 "Refresh before continuing."
-msgstr "如未重整檔案，WinMerge 不能併入異動。"
+msgstr "無法合併未同步的文件，請在繼續前先重整。"
 
 msgid "Break at whitespace"
-msgstr "空白字元處中斷"
+msgstr "空白字元處斷行"
 
 msgid "Break at whitespace or punctuation"
-msgstr "空白字元處或標點處中斷"
+msgstr "在空白字元或標點符號處斷行"
 
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "複製到中間 (&M)\tAlt+Right"
@@ -3563,13 +3563,12 @@ msgid ""
 "\n"
 "Refresh the compare."
 msgstr ""
-"中斷操作！\n"
+"操作已中止！\n"
 "\n"
-"磁碟中的資料夾變動過，\n"
+"資料夾內容已變更，找不到路徑：\n"
 "%1\n"
-"找不到路徑。\n"
 "\n"
-"請重整比較。"
+"請重整再比較。"
 
 msgid "Are you sure you want to move?"
 msgstr "確定要移除？"
@@ -3703,7 +3702,7 @@ msgid "Unpacker"
 msgstr "解壓縮程式"
 
 msgid "Prediffer"
-msgstr "先行處理器"
+msgstr "預差異化"
 
 msgid "Left"
 msgstr "左側"
@@ -3990,10 +3989,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "是二進制檔，就顯示星號 (*)"
 
 msgid "Unpacker plugin name or pipeline."
-msgstr "解壓縮外掛名稱或流程。"
+msgstr "解包器外掛程式名稱或處理序。"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "預先差異外掛名稱或流程。"
+msgstr "預差異化外掛名稱或處理序。"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -4426,10 +4425,10 @@ msgstr ""
 "上個檔案 (Ctrl+F7)"
 
 msgid "Adapted unpacker applied to both files (one needs extension)."
-msgstr "以選用的解壓縮程式用到兩個檔 (至少一個檔案需副檔名)。"
+msgstr "以選用的解壓縮程式至兩個檔案 (其中一個需要副檔名)。"
 
 msgid "No Prediffer (Normal)"
-msgstr "不要先行處理器 (常態)"
+msgstr "不要預差異化 (常態)"
 
 msgid "Suggested Plugins"
 msgstr "建議的外掛程式"
@@ -4482,7 +4481,7 @@ msgid "From Most Recently Used list"
 msgstr "從最近使用清單"
 
 msgid "No Highlighting"
-msgstr "無高亮度顯示"
+msgstr "無高亮顯著色"
 
 msgid "Batch"
 msgstr "批次"
@@ -4538,7 +4537,7 @@ msgid "default"
 msgstr "預設"
 
 msgid "minimal"
-msgstr "最小"
+msgstr "極簡"
 
 msgid "patience"
 msgstr "耐心"
@@ -4553,7 +4552,7 @@ msgid "GDI"
 msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr "DirectWrite 預設"
+msgstr "DirectWrite 預設值"
 
 msgid "DirectWrite Aliased"
 msgstr "DirectWrite 鋸齒"
@@ -4581,7 +4580,7 @@ msgid "MDI child window only"
 msgstr "僅 MDI 子視窗"
 
 msgid "Close main window if only one MDI child window"
-msgstr "如果只有一個 MDI 子視窗的話關閉主視窗"
+msgstr "如果只剩下一個 MDI 子視窗，則關閉主視窗"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -4717,10 +4716,10 @@ msgid "Disabled"
 msgstr "已停用"
 
 msgid "Allow only one instance to run"
-msgstr "不能同時執行一個以上本程式"
+msgstr "只允許執行唯一程式"
 
 msgid "Allow only one instance; wait for termination"
-msgstr "僅允許運行一個實例並等待該實例結束"
+msgstr "只允許執行唯一程式；並等待終止"
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
@@ -4740,11 +4739,11 @@ msgstr "其他 (&O)"
 
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
-msgstr "外掛程式管線缺少外掛程式名稱：%1"
+msgstr "處理序缺少外掛程式名稱：%1"
 
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
-msgstr "外掛程式管線缺少引號：%1"
+msgstr "外掛處理序中缺少引號：%1"
 
 #, c-format
 msgid "Plugin name '%1' already exists."
@@ -4763,7 +4762,7 @@ msgstr "'%1' 不是解壓縮外掛"
 
 #, c-format
 msgid "'%1' is not a prediffer plugin"
-msgstr "'%1' 不是預先差異外掛"
+msgstr "'%1' 不是預差異化外掛"
 
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
@@ -4771,7 +4770,7 @@ msgstr "使用外掛 '%2' 預先差異檔案 '%1' 時發生錯誤。預先差異
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr "外掛流程中有循環參照：%1"
+msgstr "外掛處理序中出現循環參照：%1"
 
 msgid "URL Handler"
 msgstr "URL 處理程序"
@@ -4786,17 +4785,17 @@ msgid "Alias for Unpacker"
 msgstr "解包器的別名"
 
 msgid "Alias for Prediffer"
-msgstr "Prediffer 的別名"
+msgstr "預差異化的別名"
 
 msgid "Alias for Editor script"
 msgstr "編輯器腳本的別名"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr "外掛流程 '%1' 的別名"
+msgstr "外掛處理序 '%1' 的別名"
 
 msgid "New plugin description"
-msgstr "新插件描述"
+msgstr "新外掛描述"
 
 msgid "All"
 msgstr "全"
@@ -5101,7 +5100,7 @@ msgid "Follow system"
 msgstr "遵循系統"
 
 msgid "Prettification"
-msgstr "美化"
+msgstr "排版美化"
 
 msgid "Content Extraction"
 msgstr "擷取內容"
@@ -5570,7 +5569,7 @@ msgstr ""
 "「信任對 Visual Basic 專案的存取」。"
 
 msgid "Replace line breaks in formulas with spaces"
-msgstr ""
+msgstr "將公式中的換行符號替換成空格"
 
 msgid "Compare VBA macros"
 msgstr "比較 VBA 巨集"
