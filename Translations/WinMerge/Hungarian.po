@@ -4617,16 +4617,16 @@ msgid "Selected files are identical."
 msgstr "A kijelölt fájlok egyformák."
 
 msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
-msgstr ""
+msgstr "A kijelölt fájlok egyformák (a jelenlegi beállításokkal).\r\nBináris azonosság ellenőrzése..."
 
 msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
-msgstr ""
+msgstr "A kijelölt fájlok egyformák (a jelenlegi beállításokkal).\r\nDe a bináris összehasonlítás sikertelen."
 
 msgid "Selected files are identical (binary match)."
-msgstr ""
+msgstr "A kijelölt fájlok egyformák (bináris egyezés)."
 
 msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
-msgstr ""
+msgstr "A kijelölt fájlok egyformák (a jelenlegi beállításokkal).\r\nDe bináris szinten különböznek."
 
 #, c-format
 msgid "An error occurred while comparing files."
