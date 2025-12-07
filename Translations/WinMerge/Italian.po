@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 17.11.2025\n"
+"Project-Id-Version: WinMerge - Italian - 07.12.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-11-17 09:46+0100\n"
+"PO-Revision-Date: 2025-12-07 16:56+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -4066,16 +4066,16 @@ msgid "Selected files are identical."
 msgstr "I file selezionati sono identici."
 
 msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
-msgstr ""
+msgstr "I file selezionati sono identici (con le impostazioni attuali).\r\nVerifica identità binaria..."
 
 msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
-msgstr ""
+msgstr "I file selezionati sono identici (con le impostazioni attuali).\r\nMa il confronto binario non è riuscito."
 
 msgid "Selected files are identical (binary match)."
-msgstr ""
+msgstr "I file selezionati sono identici (corrispondenza binaria)."
 
 msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
-msgstr ""
+msgstr "I file selezionati sono identici (con le impostazioni attuali).\r\nMa differiscono a livello binario."
 
 msgid "An error occurred while comparing files."
 msgstr "Si è verificato un errore durante il confronto dei file."
