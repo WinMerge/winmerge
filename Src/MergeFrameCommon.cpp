@@ -16,6 +16,11 @@
 #include "CompareStats.h"
 #include "IMergeDoc.h"
 #include "cepoint.h"
+#include "DiffItem.h"
+#include "CompareEngines/BinaryCompare.h"
+#include "MessageBoxDialog.h"
+#include "IAbortable.h"
+#include "IAsyncTask.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -27,6 +32,55 @@ BEGIN_MESSAGE_MAP(CMergeFrameCommon, CMDIChildWnd)
 	ON_WM_MDIACTIVATE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
+/**
+ * @class AsyncCompareTask
+ * @brief An asynchronous task to perform exact binary comparison.
+ */
+class AsyncCompareTask : public IAsyncTask, public IAbortable
+{
+public:
+	AsyncCompareTask(const PathContext& paths) : m_paths(paths), m_pCancelFlag(nullptr)
+	{
+	}
+
+	/**
+	 * @brief Check whether the task should be aborted.
+	 */
+	bool ShouldAbort() const override
+	{
+		return *m_pCancelFlag;
+	};
+
+	/**
+	 * @brief Run the binary comparison and get the result message.
+	 */
+	String RunAndGetMessage(std::atomic_bool& cancelFlag) override
+	{
+		m_pCancelFlag = &cancelFlag;
+		DIFFITEM di;
+		for (int i = 0; i < m_paths.GetSize(); ++i)
+		{
+			di.diffFileInfo[i].SetFile(m_paths[i]);
+			if (di.diffFileInfo[i].Update(m_paths[i]))
+				di.diffcode.setSideFlag(i);
+		}
+		if (m_paths.GetSize() == 3)
+			di.diffcode.diffcode |= DIFFCODE::THREEWAY;
+		CompareEngines::BinaryCompare binaryCompare;
+		binaryCompare.SetAbortable(this);
+		di.diffcode.diffcode |= binaryCompare.CompareFiles(m_paths, di);
+		if (di.diffcode.isResultError())
+			return _("Selected files are identical (with current settings).\r\nBut binary comparison failed.");
+		return di.diffcode.isResultSame()
+			? _("Selected files are identical (binary match).")
+			: _("Selected files are identical (with current settings).\r\nBut differ at the binary level.");
+	}
+
+private:
+	std::atomic_bool* m_pCancelFlag;
+	PathContext m_paths;
+};
 
 CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 	: m_hIdentical(nIdenticalIcon < 0 ? nullptr : AfxGetApp()->LoadIcon(nIdenticalIcon))
@@ -94,7 +148,7 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 	theApp.SetLastCompareResult(nResult);
 }
 
-void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int(const tchar_t*, unsigned, unsigned)> fnMessageBox)
+void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, bool bExactCompareAsync)
 {
 	String s;
 	if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)
@@ -117,12 +171,27 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 		{
 			// compare file to itself, a custom message so user may hide the message in this case only
 			s = _("Same file is opened in both panes.");
-			fnMessageBox(s.c_str(), nFlags, IDS_FILE_TO_ITSELF);
+			AfxMessageBox(s.c_str(), nFlags, IDS_FILE_TO_ITSELF);
 		}
 		else if (bIdenticalAll)
 		{
 			s = _("Selected files are identical.");
-			fnMessageBox(s.c_str(), nFlags, IDS_FILESSAME);
+			if (bExactCompareAsync)
+			{
+				if (theApp.GetNonInteractive())
+				{
+					theApp.OutputConsole(s + _T(": Cancel"));
+					return;
+				}
+				s = _("Selected files are identical (with current settings).\r\nChecking binary identity...");
+				CMessageBoxDialog dlgMessageBox(nullptr, s.c_str(), _T(""), nFlags, IDS_FILESSAME);
+				dlgMessageBox.SetAsyncTask(std::make_shared<AsyncCompareTask>(paths));
+				dlgMessageBox.DoModal();
+			}
+			else
+			{
+				AfxMessageBox(s.c_str(), nFlags, IDS_FILESSAME);
+			}
 		}
 	}
 
@@ -518,8 +587,8 @@ void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 	__super::OnGetMinMaxInfo(lpMMI);
 	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
 	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
-	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
-	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
+	lpMMI->ptMaxTrackSize.x = (std::max)(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
+	lpMMI->ptMaxTrackSize.y = (std::max)(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
 }
 
 void CMergeFrameCommon::OnDestroy()

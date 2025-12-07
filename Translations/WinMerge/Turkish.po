@@ -4051,6 +4051,18 @@ msgstr "İki panoda da de aynı dosya açıldı."
 msgid "Selected files are identical."
 msgstr "Seçilmiş dosyalar aynı."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 msgid "An error occurred while comparing files."
 msgstr "Dosyalar karşılaştırılırken bir sorun çıktı."
 

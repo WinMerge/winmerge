@@ -4602,6 +4602,18 @@ msgstr "Den samme fil er åbnet på begge sider."
 msgid "Selected files are identical."
 msgstr "De valgte filer er identiske."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 #, c-format
 msgid "An error occurred while comparing files."
 msgstr "Der skete en fejl under sammenligning af filerne."

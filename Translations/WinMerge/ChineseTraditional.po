@@ -4037,6 +4037,18 @@ msgstr "相同檔案開啟到兩邊。"
 msgid "Selected files are identical."
 msgstr "所選檔案完全相同。"
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 msgid "An error occurred while comparing files."
 msgstr "比對檔案時發生錯誤。"
 
