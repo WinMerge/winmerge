@@ -33,6 +33,8 @@
 #include "resource.h"
 #include "UnicodeString.h"
 #include <vector>
+#include <memory>
+#include <atomic>
 
 //////////////////////////////////////////////////////////////////////////////
 // Message box style definitions (mostly taken from WinUser.h).
@@ -84,6 +86,8 @@
 
 //////////////////////////////////////////////////////////////////////////////
 // Class definition.
+
+struct IAsyncTask;
 
 class CMessageBoxDialog : public CDialog
 {
@@ -154,6 +158,9 @@ public:
 	// Method for storing the former result of the message box to the registry.
 	int SetFormerResult(int nResult);
 
+	// Method for setting an asynchronous task to be run while the message box is displayed.
+	void SetAsyncTask(const std::shared_ptr<IAsyncTask>& pTask) { std::atomic_store(&m_pAsyncTask, pTask); }
+
 public:
 
 	//////////////////////////////////////////////////////////////////////////
@@ -219,9 +226,13 @@ private:
 	CString		m_strRegistryKey;	// Entry for storing the result in the
 									// registry, if the MB_DONT_DISPLAY_AGAIN
 									// or MB_DONT_ASK_AGAIN flag is given.
-	CFont       m_font;
-	CFont       m_fontMainInstruction;
-	COLORREF    m_clrMainInstructionFont;
+	CFont		m_font;
+	CFont		m_fontMainInstruction;
+	COLORREF	m_clrMainInstructionFont;
+
+	std::shared_ptr<IAsyncTask> m_pAsyncTask; // Asynchronous task to be run while the message box is displayed. Access via atomic_load/store.
+	std::atomic_bool	m_bAsyncTaskCancelFlag;	// Cancellation flag for the asynchronous task.
+	CWinThread*	m_pAsyncTaskThread;	// Thread for running the asynchronous task.
 
 private:
 
@@ -234,7 +245,7 @@ private:
 		UINT	nTitle;				// ID of the title string resource.
 	} MSGBOXBTN;
 
-    std::vector<MSGBOXBTN> m_aButtons;
+	std::vector<MSGBOXBTN> m_aButtons;
 									// List of all buttons in the dialog.
 
 	int			m_nDefaultButton;	// ID of the default button.
@@ -259,6 +270,9 @@ private:
 
 	//////////////////////////////////////////////////////////////////////////
 	// Helper methods.
+
+	static UINT AsyncTaskThread(LPVOID lpParam);
+	static UINT ModelessMesssageBoxThread(LPVOID lpParam);
 	
 	// Method for generating the registry key.
 	CString	GenerateRegistryKey ( );
@@ -273,6 +287,8 @@ private:
 
 	// Method for parsing the given style.
 	void ParseStyle ( );
+
+	CSize CalcMessageControlSize(const String& strMessage);
 
 	// Method for creating the icon control.
 	void CreateIconControl ( );

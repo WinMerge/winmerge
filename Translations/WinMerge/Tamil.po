@@ -4065,6 +4065,18 @@ msgstr "இரண்டு பேனல்களிலும் ஒரே கோ
 msgid "Selected files are identical."
 msgstr "தேர்ந்தெடுக்கப்பட்ட கோப்புகள் ஒரே மாதிரியானவை."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 msgid "An error occurred while comparing files."
 msgstr "கோப்புகளை ஒப்பிடும் போது பிழை ஏற்பட்டது."
 

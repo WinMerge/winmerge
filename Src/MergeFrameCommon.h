@@ -24,7 +24,7 @@ public:
 	bool IsActivated() const { return m_bActivated; }
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
-	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (const tchar_t*, UINT, UINT)> funcMessageBox);
+	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, bool bExactCompareAsync = false);
 	static String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
 	static String GetDiffStatusString(int curDiff, int diffCount);
 	static String GetTitleString(const IMergeDoc& mergeDoc);

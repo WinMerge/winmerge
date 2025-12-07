@@ -3783,6 +3783,18 @@ msgstr "На обеих панелях открыт один и тот же фа
 msgid "Selected files are identical."
 msgstr "Выбранные файлы идентичны."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 msgid "An error occurred while comparing files."
 msgstr "При сравнении файлов произошла ошибка."
 

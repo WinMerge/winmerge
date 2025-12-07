@@ -4011,6 +4011,18 @@ msgstr "Samma fil är öppnad i båda rutorna."
 msgid "Selected files are identical."
 msgstr "De valda filerna är identiska."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 msgid "An error occurred while comparing files."
 msgstr "Ett fel inträffade under jämförelsen av filerna."
 

@@ -4666,6 +4666,18 @@ msgstr "같은 파일을 양쪽 창에 열었습니다."
 msgid "Selected files are identical."
 msgstr "선택한 파일들은 동일합니다."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 #, c-format
 msgid "An error occurred while comparing files."
 msgstr "파일 비교 중 오류가 발생했습니다."

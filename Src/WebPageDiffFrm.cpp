@@ -1674,8 +1674,7 @@ void CWebPageDiffFrame::OnRefresh()
 				if (UpdateLastCompareResult() == 0 &&
 				    std::count(m_filePaths.begin(), m_filePaths.end(), L"about:blank") != m_filePaths.GetSize())
 				{
-					CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-						[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+					CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true);
 				}
 				return S_OK;
 			})

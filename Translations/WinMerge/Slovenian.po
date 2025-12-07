@@ -3983,6 +3983,18 @@ msgstr "Ista datoteka je odprta v obeh podoknih."
 msgid "Selected files are identical."
 msgstr "Izbrani datoteki sta enaki."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 msgid "An error occurred while comparing files."
 msgstr "Prišlo je do napake med primerjavo datotek."
 

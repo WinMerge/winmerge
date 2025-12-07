@@ -4585,6 +4585,18 @@ msgstr "Agiri berdina dago irekita bi paneletan."
 msgid "Selected files are identical."
 msgstr "Hautatutako agiriak berdinak dira."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 #, c-format
 msgid "An error occurred while comparing files."
 msgstr "Akats bat gertatu da agiriak alderatzerakoan."
