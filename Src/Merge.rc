@@ -4627,6 +4627,10 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Same file is opened in both panes."
     IDS_FILESSAME           "Selected files are identical."
+    IDS_FILESSAME_CURCFG    "Selected files are identical (with current settings).\r\nChecking binary identity..."
+    IDS_FILESSAME_BINERROR  "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+    IDS_FILESSAME_BINSAME   "Selected files are identical (binary match)."
+    IDS_FILESSAME_BINDIFF   "Selected files are identical (with current settings).\r\nBut differ at the binary level."
     IDS_FILEERROR           "An error occurred while comparing files."
     IDS_TEMP_FILEERROR      "Could not create temporary files. Check your temporary path settings."
     IDS_SUGGEST_IGNOREEOL   "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."

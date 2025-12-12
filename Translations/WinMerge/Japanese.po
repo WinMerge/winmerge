@@ -4011,6 +4011,18 @@ msgstr "同じファイルが両側のパネルで開かれています。"
 msgid "Selected files are identical."
 msgstr "選択されたファイルは同一です。"
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr "選択されたファイルは(現在の比較設定で)一致しています。\r\nバイナリ一致を確認しています..."
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr "選択されたファイルは(現在の比較設定で)一致しています。\r\nしかし、バイナリ比較でエラーが発生しました。"
+
+msgid "Selected files are identical (binary match)."
+msgstr "選択されたファイルは一致しています(バイナリ一致)。"
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr "選択されたファイルは(現在の比較設定で)一致しています。\r\nしかし、バイナリレベルでは異なります。"
+
 msgid "An error occurred while comparing files."
 msgstr "ファイルの比較時にエラーが発生しました。"
 

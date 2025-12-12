@@ -4634,6 +4634,18 @@ msgstr "El mateix fitxer és obert a ambdues subfinestres."
 msgid "Selected files are identical."
 msgstr "Els fitxers seleccionats són idèntics."
 
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
+
 #, c-format
 msgid "An error occurred while comparing files."
 msgstr "S'ha produït un error en comparar els fitxers."
