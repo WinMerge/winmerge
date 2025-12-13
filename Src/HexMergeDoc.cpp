@@ -553,16 +553,16 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 
 		for (nBuffer = 0; nBuffer < nFiles; nBuffer++)
 			UpdateHeaderPath(nBuffer);
+
+		GetMainFrame()->WatchDocuments(this);
+
+		CMergeFrameCommon::LogComparisonCompleted(*this);
 	}
 	else
 	{
 		// Use verify macro to trap possible error in debug.
 		VERIFY(pf->DestroyWindow());
 	}
-
-	GetMainFrame()->WatchDocuments(this);
-
-	CMergeFrameCommon::LogComparisonCompleted(*this);
 
 	return bSucceeded;
 }
