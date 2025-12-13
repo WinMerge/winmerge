@@ -2363,7 +2363,7 @@ void CImgMergeFrame::OnRefresh()
 {
 	if (UpdateLastCompareResult() == 0)
 		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-			std::none_of(m_filePaths.begin(), m_filePaths.end(), [](const std::string& s) { return s.empty(); })
+			std::none_of(m_filePaths.begin(), m_filePaths.end(), [](const String& s) { return s.empty(); })
 			&& !IsModified());
 }
 

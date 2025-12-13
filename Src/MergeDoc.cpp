@@ -804,7 +804,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 			GetParentFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, static_cast<WPARAM>(true), 0, true, true);
 		}
 		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, identical == IDENTLEVEL::ALL,
-			std::none_of(m_filePaths.begin(), m_filePaths.end(), [](const std::string& s) { return s.empty(); })
+			std::none_of(m_filePaths.begin(), m_filePaths.end(), [](const String& s) { return s.empty(); })
 			&& !IsModified());
 	}
 }
