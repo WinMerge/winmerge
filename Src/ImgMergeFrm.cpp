@@ -489,6 +489,9 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		bResult = OpenImages();
 	}
 
+	if (!bResult)
+		return FALSE;
+
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		m_fileInfo[pane].Update(m_filePaths[pane]);
@@ -1173,6 +1176,13 @@ bool CImgMergeFrame::OpenImages()
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
 	else
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
+	if (!bResult)
+	{
+		std::error_code ec(m_pImgMergeWindow->GetLastErrorCode(), std::generic_category());
+		String sSysError = ucr::toTString(ec.message());
+		String sError = strutils::format_string2(_("Cannot open file(s)\n%1\n\n%2"), filteredFilenames, sSysError);
+		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
+	}
 
 	return bResult;
 }
