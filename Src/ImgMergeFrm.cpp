@@ -2362,7 +2362,9 @@ void CImgMergeFrame::OnToolsGenerateReport()
 void CImgMergeFrame::OnRefresh()
 {
 	if (UpdateLastCompareResult() == 0)
-		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true, !IsModified());
+		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
+			std::none_of(m_filePaths.begin(), m_filePaths.end(), [](const std::string& s) { return s.empty(); })
+			&& !IsModified());
 }
 
 void CImgMergeFrame::OnDropFiles(int pane, const std::vector<String>& files)
