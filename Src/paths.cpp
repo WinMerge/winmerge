@@ -766,7 +766,8 @@ String FromURL(const String& url)
 	std::vector<tchar_t> path((std::max)(size_t(MAX_PATH), url.length() + 1));
 	DWORD size = static_cast<DWORD>(path.size());
 	PathCreateFromUrl(url.c_str(), path.data(), &size, 0);
-	return path.data();
+	String result(path.data());
+	return ucr::toTString(std::string(result.begin(), result.end()));
 }
 
 String urlEncodeFileName(const String& filename)
