@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2025-12-07 20:34+0300\n"
+"PO-Revision-Date: 2025-12-21 17:39+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -1973,7 +1973,7 @@ msgid "&External editor:"
 msgstr "Dış düz&enleyici:"
 
 msgid "&Store user data in:"
-msgstr ""
+msgstr "Kullanıcı verilerini şurada &depola:"
 
 msgid "&Filter folder:"
 msgstr "Süzgeç &klasörü:"
@@ -4729,13 +4729,13 @@ msgid "Word-by-word position and text"
 msgstr "Sözcük sözcük konum ve metin"
 
 msgid "AppData (Roaming) folder"
-msgstr ""
+msgstr "AppData (Roaming) klasörü"
 
 msgid "Install folder"
 msgstr "Kurulum klasörü"
 
 msgid "Documents folder"
-msgstr ""
+msgstr "Belgeler klasörü"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
