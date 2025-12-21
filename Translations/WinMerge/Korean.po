@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2025-12-08 15:50+0900\n"
+"PO-Revision-Date: 2025-12-21 23:35+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -2302,7 +2302,7 @@ msgid "&External editor:"
 msgstr "외부 편집기(&E):"
 
 msgid "&Store user data in:"
-msgstr ""
+msgstr "사용자 데이터 저장 위치(&S):"
 
 #, c-format
 msgid "&Filter folder:"
@@ -5418,13 +5418,13 @@ msgid "Word-by-word position and text"
 msgstr "단어별 위치 및 텍스트"
 
 msgid "AppData (Roaming) folder"
-msgstr ""
+msgstr "AppData (Roaming) 폴더"
 
 msgid "Install folder"
 msgstr "설치 폴더"
 
 msgid "Documents folder"
-msgstr ""
+msgstr "문서 폴더"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
