@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 07.12.2025\n"
+"Project-Id-Version: WinMerge - Italian - 21.12.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-12-07 16:56+0100\n"
+"PO-Revision-Date: 2025-12-21 10:15+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1976,7 +1976,7 @@ msgid "&External editor:"
 msgstr "&Editor esterno:"
 
 msgid "&Store user data in:"
-msgstr ""
+msgstr "Memorizza dati utente in:"
 
 msgid "&Filter folder:"
 msgstr "Cartella &filtri:"
@@ -4762,13 +4762,13 @@ msgid "Word-by-word position and text"
 msgstr "Posizione e testo parola per parola"
 
 msgid "AppData (Roaming) folder"
-msgstr ""
+msgstr "Cartella Appdata (Roaming)"
 
 msgid "Install folder"
 msgstr "Cartella installazione"
 
 msgid "Documents folder"
-msgstr ""
+msgstr "Cartella Documenti"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
