@@ -1968,6 +1968,9 @@ msgstr "&Usar a Lixeira"
 msgid "&External editor:"
 msgstr "&Editor externo:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Pasta de &filtros:"
 
@@ -4672,11 +4675,14 @@ msgstr "Posição e texto linha por linha"
 msgid "Word-by-word position and text"
 msgstr "Posição e texto palavra por palavra"
 
-msgid "AppData folder"
-msgstr "Pasta AppData"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Pasta de instalação"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

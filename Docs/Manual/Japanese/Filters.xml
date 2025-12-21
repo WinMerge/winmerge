@@ -610,7 +610,7 @@ linkend="Filters_dlg" />では、フィルターの追加、編集、管理方�
 
     <section id="Filters_FileFilterLoc">
       <title>ファイルフィルターの場所<indexterm>
-          <primary>Filters folders</primary>
+          <primary>フィルターフォルダー</primary>
 
           <secondary>locations</secondary>
         </indexterm><indexterm>

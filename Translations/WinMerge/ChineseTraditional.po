@@ -1984,6 +1984,9 @@ msgstr "使用資源回收筒 (&U)"
 msgid "&External editor:"
 msgstr "外部編輯器 (&E)："
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "資料夾篩選器 (&F)："
 
@@ -4717,11 +4720,14 @@ msgstr "逐行位置和文字"
 msgid "Word-by-word position and text"
 msgstr "逐字位置和文字"
 
-msgid "AppData folder"
-msgstr "AppData 資料夾"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "安裝資料夾"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

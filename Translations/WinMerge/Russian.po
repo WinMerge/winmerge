@@ -1969,6 +1969,9 @@ msgstr "Помещать удаленные файлы в корзину"
 msgid "&External editor:"
 msgstr "Внешний редактор:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Папка фильтров:"
 
@@ -4315,11 +4318,14 @@ msgstr "Построчная позиция и текст"
 msgid "Word-by-word position and text"
 msgstr "Пословная позиция и текст"
 
-msgid "AppData folder"
-msgstr "Папка данных"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Папка установки"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

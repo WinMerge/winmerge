@@ -2573,6 +2573,40 @@ def
 
     <section>
       <title>
+        Store user data in<indexterm>
+          <primary>user data</primary>
+          <secondary>storage location</secondary>
+        </indexterm>
+      </title>
+    
+      <para>
+        Specifies where WinMerge stores user data such as filters, plugins,
+        color schemes, and configuration logs.
+      </para>
+    
+      <itemizedlist>
+        <listitem>
+          <para>
+            <guilabel>AppData (Roaming) folder</guilabel> (default): Stores user data
+            in the roaming application data folder of your user profile.
+          </para>
+        </listitem>
+    
+        <listitem>
+          <para>
+            <guilabel>Documents folder</guilabel>: Stores user data in the
+            <filename>WinMerge</filename> subfolder of your Documents directory.
+          </para>
+        </listitem>
+      </itemizedlist>
+    
+      <para>
+        This setting affects newly created user data only.
+      </para>
+    </section>
+
+    <section>
+      <title>
         Filter folder<indexterm>
           <primary>Filters folders</primary>
 

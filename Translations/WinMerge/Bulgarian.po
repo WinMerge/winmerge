@@ -1964,6 +1964,9 @@ msgstr "&Използване на Кошчето"
 msgid "&External editor:"
 msgstr "&Външен редактор:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "&Папка за филтри:"
 
@@ -4659,10 +4662,13 @@ msgstr "Позиция на редове и текст"
 msgid "Word-by-word position and text"
 msgstr "Позиция на думи и текст"
 
-msgid "AppData folder"
+msgid "AppData (Roaming) folder"
 msgstr ""
 
 msgid "Install folder"
+msgstr ""
+
+msgid "Documents folder"
 msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"

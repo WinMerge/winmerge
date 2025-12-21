@@ -201,9 +201,9 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
 	pOptions->InitOption(OPT_FILTER_USERPATH, _T(""));
-	if (pOptions->GetString(OPT_FILTER_USERPATH).empty())
-		pOptions->SaveOption(OPT_FILTER_USERPATH, paths::ConcatPath(env::GetMyDocuments(), DefaultRelativeFilterPath));
 	pOptions->InitOption(OPT_FILEFILTER_SHARED, false);
+
+	pOptions->InitOption(OPT_USERDATA_LOCATION, 0);
 
 	pOptions->InitOption(OPT_CP_DEFAULT_MODE, (int)0);
 	pOptions->InitOption(OPT_CP_DEFAULT_CUSTOM, (int)GetACP());

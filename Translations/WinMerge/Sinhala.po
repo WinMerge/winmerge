@@ -2292,6 +2292,9 @@ msgstr "&Use Recycle Bin"
 msgid "&External editor:"
 msgstr " බාහිර සංස්කාරකය:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "ෆෝල්ඩරය පෙරහන් කරන්න:"
@@ -5208,10 +5211,13 @@ msgstr ""
 msgid "Word-by-word position and text"
 msgstr ""
 
-msgid "AppData folder"
+msgid "AppData (Roaming) folder"
 msgstr ""
 
 msgid "Install folder"
+msgstr ""
+
+msgid "Documents folder"
 msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"

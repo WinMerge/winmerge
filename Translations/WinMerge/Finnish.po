@@ -1971,6 +1971,9 @@ msgstr "Siirrä poistetut tiedostot roskakoriin"
 msgid "&External editor:"
 msgstr "Ulkoinen editori:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Suodatinkansio:"
 
@@ -4645,11 +4648,14 @@ msgstr "Rivikohtainen sijainti ja teksti"
 msgid "Word-by-word position and text"
 msgstr "Sanakohtainen sijainti ja teksti"
 
-msgid "AppData folder"
-msgstr "AppData-kansio"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Asennuskansio"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

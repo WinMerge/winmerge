@@ -1970,6 +1970,9 @@ msgstr "削除されたファイルをごみ箱に移動する(&S)"
 msgid "&External editor:"
 msgstr "外部エディター(&E): (使用可能な置換文字列: $file, $linenum)"
 
+msgid "&Store user data in:"
+msgstr "ユーザーデータの保存先(&S):"
+
 msgid "&Filter folder:"
 msgstr "フィルター用フォルダー(&F):"
 
@@ -4686,11 +4689,14 @@ msgstr "行毎の位置情報とテキスト"
 msgid "Word-by-word position and text"
 msgstr "単語毎の位置情報とテキスト"
 
-msgid "AppData folder"
-msgstr "AppData フォルダー"
+msgid "AppData (Roaming) folder"
+msgstr "AppData (Roaming) フォルダー"
 
 msgid "Install folder"
 msgstr "インストール フォルダー"
+
+msgid "Documents folder"
+msgstr "ドキュメントフォルダー"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

@@ -114,7 +114,6 @@ public:
 	~FileFilterHelper();
 
 	String GetGlobalFilterPathWithCreate() const;
-	String GetUserFilterPathWithCreate() const;
 
 	FileFilterMgr* GetManager() const;
 	std::vector<FileFilterInfo> GetFileFilters() const;

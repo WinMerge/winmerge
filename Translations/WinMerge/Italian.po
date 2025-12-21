@@ -1975,6 +1975,9 @@ msgstr "Sposta i file eliminati nel &Cestino"
 msgid "&External editor:"
 msgstr "&Editor esterno:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Cartella &filtri:"
 
@@ -4758,11 +4761,14 @@ msgstr "Posizione e testo riga per riga"
 msgid "Word-by-word position and text"
 msgstr "Posizione e testo parola per parola"
 
-msgid "AppData folder"
-msgstr "Cartella AppData"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Cartella installazione"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

@@ -1972,6 +1972,9 @@ msgstr "&Silinen dosyalar geri dönüşüm kutusuna atılsın"
 msgid "&External editor:"
 msgstr "Dış düz&enleyici:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Süzgeç &klasörü:"
 
@@ -4725,11 +4728,14 @@ msgstr "Satır satır konum ve metin"
 msgid "Word-by-word position and text"
 msgstr "Sözcük sözcük konum ve metin"
 
-msgid "AppData folder"
-msgstr "AppData klasörü"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Kurulum klasörü"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

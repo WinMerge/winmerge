@@ -1978,6 +1978,9 @@ msgstr "&Impiegà a curbella"
 msgid "&External editor:"
 msgstr "&Editore esternu :"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Cartulare di &filtri :"
 
@@ -4737,11 +4740,14 @@ msgstr "Pusizione è testu linea à a linea"
 msgid "Word-by-word position and text"
 msgstr "Pusizione è testu parolla à a parolla"
 
-msgid "AppData folder"
-msgstr "Cartulare AppData"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Cartulare d’installazione"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

@@ -9,6 +9,7 @@
 #include "ConfigLog.h"
 #include <cassert>
 #include <windows.h>
+#include "OptionsDef.h"
 #include "Constants.h"
 #include "VersionInfo.h"
 #include "UniFile.h"
@@ -317,7 +318,7 @@ bool CConfigLog::DoFile(String &sError)
 	CVersionInfo version;
 	String text;
 
-	String sFileName = paths::ConcatPath(env::GetMyDocuments(), WinMergeDocumentsFolder);
+	String sFileName = paths::ConcatPath(GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? env::GetAppDataPath() : env::GetMyDocuments(), WinMergeUserDataFolder);
 	paths::CreateIfNeeded(sFileName);
 	m_sFileName = paths::ConcatPath(sFileName, _T("WinMerge.txt"));
 
