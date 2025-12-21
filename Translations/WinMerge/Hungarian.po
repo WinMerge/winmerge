@@ -2295,7 +2295,7 @@ msgid "&External editor:"
 msgstr "Külső szerkesztő:"
 
 msgid "&Store user data in:"
-msgstr ""
+msgstr "&Felhasználói adatok tárolása itt:"
 
 #, c-format
 msgid "&Filter folder:"
@@ -5321,13 +5321,13 @@ msgid "Word-by-word position and text"
 msgstr "Pozíció és szöveg szóról szóra"
 
 msgid "AppData (Roaming) folder"
-msgstr ""
+msgstr "AppData (Roaming) mappa"
 
 msgid "Install folder"
-msgstr "Mappa telepítése"
+msgstr "Telepítési mappa"
 
 msgid "Documents folder"
-msgstr ""
+msgstr "Dokumentumok mappa"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
