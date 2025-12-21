@@ -2295,6 +2295,9 @@ msgstr "&S ارسال پرونده هاي حذف شده به سطل بازياف
 msgid "&External editor:"
 msgstr "&E ويراستار خارجي : "
 
+msgid "&Store user data in:"
+msgstr ""
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "&F پوشه صافي : "
@@ -5247,10 +5250,13 @@ msgstr ""
 msgid "Word-by-word position and text"
 msgstr ""
 
-msgid "AppData folder"
+msgid "AppData (Roaming) folder"
 msgstr ""
 
 msgid "Install folder"
+msgstr ""
+
+msgid "Documents folder"
 msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"

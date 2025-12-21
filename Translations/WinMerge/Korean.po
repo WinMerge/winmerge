@@ -2301,6 +2301,9 @@ msgstr "삭제한 파일은 휴지통으로 보내기(&S)"
 msgid "&External editor:"
 msgstr "외부 편집기(&E):"
 
+msgid "&Store user data in:"
+msgstr ""
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "필터 폴더(&F):"
@@ -5414,11 +5417,14 @@ msgstr "줄별 위치 및 텍스트"
 msgid "Word-by-word position and text"
 msgstr "단어별 위치 및 텍스트"
 
-msgid "AppData folder"
-msgstr "AppData 폴더"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "설치 폴더"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

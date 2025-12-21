@@ -1968,6 +1968,9 @@ msgstr "Przenieś u&sunięte pliki do kosza"
 msgid "&External editor:"
 msgstr "Z&ewnętrzny edytor:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Folder &filtrów:"
 
@@ -4314,11 +4317,14 @@ msgstr "Pozycja i tekst wiersz-po-wierszu"
 msgid "Word-by-word position and text"
 msgstr "Pozycja i tekst słowo-po-słowie"
 
-msgid "AppData folder"
-msgstr "Folder AppData"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Folder instalacji"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

@@ -1972,6 +1972,9 @@ msgstr "Переміщувати вилучені файли до кошика"
 msgid "&External editor:"
 msgstr "Зовнішній редактор:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "&Фільтри:"
 
@@ -4653,10 +4656,13 @@ msgstr ""
 msgid "Word-by-word position and text"
 msgstr ""
 
-msgid "AppData folder"
+msgid "AppData (Roaming) folder"
 msgstr ""
 
 msgid "Install folder"
+msgstr ""
+
+msgid "Documents folder"
 msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"

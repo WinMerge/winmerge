@@ -2074,10 +2074,38 @@ WinMergeのファイル比較ウィンドウは、一般的な編集機能を提
 
     <section>
       <title>
-フィルターフォルダー<indexterm>
-          <primary>Filters folders</primary>
+ユーザーデータの保存先<indexterm>
+          <primary>ユーザーデータ</primary>
+          <secondary>保存場所</secondary>
+        </indexterm></title>
+    
+      <para>
+WinMerge がフィルター、プラグイン、カラースキーマ、設定ログなどのユーザーデータを保存する場所を指定します。</para>
+    
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>AppData (Roaming) フォルダー</guilabel> (既定): ユーザープロファイルのアプリケーションデータ
+(Roaming) フォルダーにユーザーデータを保存します。</para>
+        </listitem>
+    
+        <listitem>
+          <para>
+<guilabel>ドキュメント フォルダー</guilabel>: ドキュメント フォルダー内の
+<filename>WinMerge</filename> サブフォルダーにユーザーデータを保存します。</para>
+        </listitem>
+      </itemizedlist>
+    
+      <para>
+この設定は、新しく作成されるユーザーデータにのみ適用されます。</para>
+    </section>
 
-          <secondary>specifying default private folder</secondary>
+    <section>
+      <title>
+フィルターフォルダー<indexterm>
+          <primary>フィルターフォルダー</primary>
+
+          <secondary>既定のプライベートフォルダーの指定</secondary>
         </indexterm></title>
 
       <para>

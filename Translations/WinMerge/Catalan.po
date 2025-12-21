@@ -2293,6 +2293,9 @@ msgstr "&Desa els fitxers suprimits a la Paperera de reciclatge"
 msgid "&External editor:"
 msgstr "&Editor extern:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Carpeta de filtres:"
@@ -5359,11 +5362,14 @@ msgstr "Posició Línia a línia i text"
 msgid "Word-by-word position and text"
 msgstr "Posició paraula a paraula i text"
 
-msgid "AppData folder"
-msgstr "Carpeta AppData"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Carpeta d'instal·lació"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

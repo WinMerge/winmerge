@@ -2294,6 +2294,9 @@ msgstr "A törölt fájlok a &Lomtárba kerüljenek"
 msgid "&External editor:"
 msgstr "Külső szerkesztő:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "Szűrők mappája:"
@@ -5317,11 +5320,14 @@ msgstr "Pozíció és szöveg sorról sorra"
 msgid "Word-by-word position and text"
 msgstr "Pozíció és szöveg szóról szóra"
 
-msgid "AppData folder"
-msgstr "Programadat mappa"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Mappa telepítése"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

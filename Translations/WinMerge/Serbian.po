@@ -2277,6 +2277,9 @@ msgstr "Пошаљи избри&сано у корпу"
 msgid "&External editor:"
 msgstr "Спољњи ур&еђивач:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "Фасцикла филтера:"
@@ -5179,10 +5182,13 @@ msgstr ""
 msgid "Word-by-word position and text"
 msgstr ""
 
-msgid "AppData folder"
+msgid "AppData (Roaming) folder"
 msgstr ""
 
 msgid "Install folder"
+msgstr ""
+
+msgid "Documents folder"
 msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"

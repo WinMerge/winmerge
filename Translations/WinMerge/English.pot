@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-12-07 12:16+0000\n"
+"POT-Creation-Date: 2025-12-21 12:35+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1959,6 +1959,9 @@ msgid "&Use Recycle Bin"
 msgstr ""
 
 msgid "&External editor:"
+msgstr ""
+
+msgid "&Store user data in:"
 msgstr ""
 
 msgid "&Filter folder:"
@@ -4308,10 +4311,13 @@ msgstr ""
 msgid "Word-by-word position and text"
 msgstr ""
 
-msgid "AppData folder"
+msgid "AppData (Roaming) folder"
 msgstr ""
 
 msgid "Install folder"
+msgstr ""
+
+msgid "Documents folder"
 msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"

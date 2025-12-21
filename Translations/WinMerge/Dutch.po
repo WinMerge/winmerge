@@ -1970,6 +1970,9 @@ msgstr "Verwijderde bestanden naar prullenbak verplaatsen"
 msgid "&External editor:"
 msgstr "Externe editor:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Map filteren:"
 
@@ -4683,11 +4686,14 @@ msgstr "Positie en tekst regel per regel"
 msgid "Word-by-word position and text"
 msgstr "Positie en tekst woord voor woord"
 
-msgid "AppData folder"
-msgstr "AppData-map"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Installatiemap"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

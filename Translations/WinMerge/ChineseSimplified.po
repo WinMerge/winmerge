@@ -1973,6 +1973,9 @@ msgstr "将删除的文件放入回收站(&S)"
 msgid "&External editor:"
 msgstr "外部编辑器(&E)："
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "过滤器路径(&F)："
 
@@ -4703,11 +4706,14 @@ msgstr "逐行定位输入"
 msgid "Word-by-word position and text"
 msgstr "逐字定位输入"
 
-msgid "AppData folder"
-msgstr "AppData 文件夹"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "安装文件夹"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"

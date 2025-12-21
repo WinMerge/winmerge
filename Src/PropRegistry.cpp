@@ -22,12 +22,14 @@
 PropRegistry::PropRegistry(COptionsMgr *optionsMgr)
 : OptionsPanel(optionsMgr, PropRegistry::IDD)
 , m_bUseRecycleBin(true)
+, m_nUserDataLocation(0)
 , m_tempFolderType(0)
 {
 	auto readconv = +[](String v) { return v; };
 	auto writeconv = +[](String v) { return strutils::trim_ws(v); };
 	BindOptionCustom(OPT_EXT_EDITOR_CMD, m_strEditorPath, IDC_EXT_EDITOR_PATH, DDX_Text, readconv, writeconv);
 	BindOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin, IDC_USE_RECYCLE_BIN, DDX_Check);
+	BindOption(OPT_USERDATA_LOCATION, m_nUserDataLocation, IDC_USERDATA_LOCATION, DDX_CBIndex);
 	BindOptionCustom(OPT_FILTER_USERPATH, m_strUserFilterPath, IDC_FILTER_USER_PATH, DDX_Text, readconv, writeconv);
 	BindOptionCustom(OPT_CUSTOM_TEMP_PATH, m_tempFolder, IDC_TMPFOLDER_NAME, DDX_Text, readconv, writeconv);
 	BindOptionCustom<int, bool>(OPT_USE_SYSTEM_TEMP_PATH, m_tempFolderType, IDC_TMPFOLDER_SYSTEM, DDX_Radio,
@@ -56,6 +58,7 @@ void PropRegistry::WriteOptions()
 
 BOOL PropRegistry::OnInitDialog()
 {
+	SetDlgItemComboBoxList(IDC_USERDATA_LOCATION, { _("AppData (Roaming) folder"), _("Documents folder") });
 	OptionsPanel::OnInitDialog();
 	m_tooltips.Create(this);
 	m_tooltips.SetMaxTipWidth(600);
@@ -74,8 +77,6 @@ BOOL PropRegistry::OnInitDialog()
 void PropRegistry::OnDefaults()
 {
 	ResetOptionBindings();
-	if (m_strUserFilterPath.empty())
-		m_strUserFilterPath = paths::ConcatPath(env::GetMyDocuments(), DefaultRelativeFilterPath);
 	UpdateData(FALSE);
 }
 

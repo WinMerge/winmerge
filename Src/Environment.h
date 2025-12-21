@@ -20,6 +20,7 @@ String GetProgPath();
 
 String GetWindowsDirectory();
 String GetMyDocuments();
+String GetAppDataPath();
 String GetSystemTempPath();
 
 String GetPerInstanceString(const String& name);

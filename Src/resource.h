@@ -685,6 +685,7 @@
 #define IDC_COLOR_SCHEME_DARK           1692
 #define IDC_COLOR_SCHEME_SAVE           1693
 #define IDC_COLOR_SCHEME_DELETE         1694
+#define IDC_USERDATA_LOCATION           1695
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1928,6 +1929,7 @@
 #define IDS_OCRRESULT_POS_WORD          44168
 #define IDS_USERDATAFOLDER_APPDATA      44169
 #define IDS_USERDATAFOLDER_INSTALL      44170
+#define IDS_USERDATAFOLDER_DOCUMENTS    44171
 #define IDS_IGNSUB_STR1                 44174
 #define IDS_IGNSUB_STR2                 44175
 #define IDS_IGNSUB_STR3                 44176

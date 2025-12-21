@@ -107,9 +107,9 @@ WinMerge יכול לפתור קבצי התנגשות (ראה <xref linkend="Reso
         </question>
 
         <answer>
-          <para>MRU הוא קיצור של <quote>Most Recently Used</quote> (האחרונים שבשימוש),
-ומתייחס לרשימות ההיסטוריה בתיבת הדו-שיח בחר קבצים או תיקיות. הרשימה מכילה את
-עשרים הנתיבים האחרונים שבהם השתמשת בכל צד.</para>
+          <para>MRU is an abbreviation for <quote>Most Recently Used</quote>, and refers to
+the history lists in the Select Files or Folders dialog.  The list contains
+the last twenty paths used on each side.</para>
         </answer>
       </qandaentry>
 

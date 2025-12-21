@@ -32,6 +32,7 @@ public:
 	enum { IDD = IDD_PROPPAGE_SYSTEM };
 	String  m_strEditorPath;
 	bool    m_bUseRecycleBin;
+	int     m_nUserDataLocation;
 	String  m_strUserFilterPath;
 	int     m_tempFolderType;
 	String  m_tempFolder;
