@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-12-08 22:34+0100\n"
+"PO-Revision-Date: 2025-12-21 15:25+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -2304,7 +2304,7 @@ msgid "&External editor:"
 msgstr "&Externer Editor:"
 
 msgid "&Store user data in:"
-msgstr ""
+msgstr "Benutzerdaten &speichern in:"
 
 #, c-format
 msgid "&Filter folder:"
@@ -5428,13 +5428,13 @@ msgid "Word-by-word position and text"
 msgstr "Position und Text wortweise"
 
 msgid "AppData (Roaming) folder"
-msgstr ""
+msgstr "AppData-Ordner (Roaming)"
 
 msgid "Install folder"
 msgstr "Installationsordner"
 
 msgid "Documents folder"
-msgstr ""
+msgstr "Dokumente-Ordner"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
