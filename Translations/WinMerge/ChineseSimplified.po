@@ -1974,7 +1974,7 @@ msgid "&External editor:"
 msgstr "外部编辑器(&E)："
 
 msgid "&Store user data in:"
-msgstr ""
+msgstr "用户数据存储(&S)："
 
 msgid "&Filter folder:"
 msgstr "过滤器路径(&F)："
@@ -4707,13 +4707,13 @@ msgid "Word-by-word position and text"
 msgstr "逐字定位输入"
 
 msgid "AppData (Roaming) folder"
-msgstr ""
+msgstr "AppData（Roaming）文件夹"
 
 msgid "Install folder"
 msgstr "安装文件夹"
 
 msgid "Documents folder"
-msgstr ""
+msgstr "文档文件夹"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
