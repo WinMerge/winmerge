@@ -1065,7 +1065,7 @@ void CDirView::PerformActionList(FileActionScript& actionScript)
 			else
 			{
 				if (item.UIResult != FileActionItem::UI_DONT_CARE)
-					dst = ctxt.GetPath(item.UIDestination);
+					dst = (item.UIDestination == -1) ? actionScript.m_destBase : ctxt.GetPath(item.UIDestination);
 				else
 					dst = (!actionScript.m_destBase.empty()) ? actionScript.m_destBase : item.dest;
 			}
