@@ -45,7 +45,7 @@ msgstr ""
 
 #: ShellExtension.rc:114
 #, c-format
-msgid "&Compare"
+msgid "&Compare (rightclick item you want in left side)"
 msgstr ""
 
 #: ShellExtension.rc:115
