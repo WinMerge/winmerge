@@ -29,6 +29,8 @@ public :
 	void RefreshDisplayText();
 	const String& GetUpdatedTipText(CDC * pDC, int maxWidth);
 	const String& GetSelectedPath() const { return m_sFilepath; };
+	String GetPath() const;
+	void SetPath(const String& rString);
 
 	bool GetActive() const { return m_bActive; }
 	void SetActive(bool bActive);
@@ -71,6 +73,7 @@ private:
 	COLORREF m_crBackGnd; /**< Control's background color. */
 	CBrush m_brBackGnd; /**< Background brush for the control. */
 	bool m_bInEditing;
+	bool m_bPathEditing;
 	bool m_bEnabledFileSelection;
 	bool m_bEnabledFolderSelection;
 };

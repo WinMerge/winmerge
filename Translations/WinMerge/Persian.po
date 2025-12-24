@@ -1252,6 +1252,9 @@ msgstr "&F رونوشت برداري نام پرونده"
 msgid "&Edit Caption"
 msgstr ""
 
+msgid "&Edit Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr ""
 

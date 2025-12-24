@@ -1046,6 +1046,9 @@ msgstr "Kopioi tiedostonimi"
 msgid "&Edit Caption"
 msgstr "Muokkaa &otsikkoa"
 
+msgid "&Edit Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr ""
 

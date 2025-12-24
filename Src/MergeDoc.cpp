@@ -2650,7 +2650,8 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 
 	m_sCurrentHeaderTitle[pane] = sText;
 
-	pf->GetHeaderInterface()->SetText(pane, sText);
+	pf->GetHeaderInterface()->SetCaption(pane, sText);
+	pf->GetHeaderInterface()->SetPath(pane, m_filePaths[pane]);
 
 	SetTitle(nullptr);
 }

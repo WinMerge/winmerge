@@ -763,7 +763,8 @@
 #define ID_EDITOR_COPY_FILENAME         18183
 #define ID_EDITOR_COPY                  18184
 #define ID_EDITOR_EDIT_CAPTION          18185
-#define ID_EDITOR_SELECT_FILE           18186
+#define ID_EDITOR_EDIT_PATH             18186
+#define ID_EDITOR_SELECT_FILE           18187
 #define ID_FILE_NEW3                    32767
 #define ID_FILE_SAVE_LEFT               32768
 #define ID_FILE_SAVE_MIDDLE             32769

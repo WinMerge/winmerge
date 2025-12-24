@@ -1045,6 +1045,9 @@ msgstr "Copiază numele de &fișier"
 msgid "&Edit Caption"
 msgstr "Editează descrierea"
 
+msgid "&Edit Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr "&Deschide..."
 

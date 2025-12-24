@@ -1047,6 +1047,9 @@ msgstr "Copiar nome do &ficheiro"
 msgid "&Edit Caption"
 msgstr "&Editar título"
 
+msgid "&Edit Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr "&Abrir..."
 

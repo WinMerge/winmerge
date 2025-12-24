@@ -21,6 +21,7 @@
 #include "MessageBoxDialog.h"
 #include "IAbortable.h"
 #include "IAsyncTask.h"
+#include "EditorFilePathBar.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -30,6 +31,7 @@ BEGIN_MESSAGE_MAP(CMergeFrameCommon, CMDIChildWnd)
 	ON_WM_GETMINMAXINFO()
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
+	ON_COMMAND(ID_EDITOR_EDIT_PATH, OnEditorEditPath)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -602,4 +604,10 @@ void CMergeFrameCommon::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* 
 	// call the base class to let standard processing switch to
 	// the top-level menu associated with this window
 	__super::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
+}
+
+void CMergeFrameCommon::OnEditorEditPath()
+{
+	if (GetHeaderInterface())
+		GetHeaderInterface()->OnEditorEditPath();
 }

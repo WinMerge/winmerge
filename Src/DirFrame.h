@@ -38,7 +38,7 @@ public:
 	void SetCompareMethodStatusDisplay(int nCompMethod);
 	void SetFilterStatusDisplay(const tchar_t* szFilter);
 	CBasicFlatStatusBar m_wndStatusBar;
-	IHeaderBar * GetHeaderInterface();
+	IHeaderBar * GetHeaderInterface() override;
 	void UpdateResources();
 
 // Overrides

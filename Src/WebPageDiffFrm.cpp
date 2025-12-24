@@ -820,7 +820,8 @@ void CWebPageDiffFrame::UpdateHeaderPath(int pane)
 			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 	}
 
-	m_wndFilePathBar.SetText(pane, sText.c_str());
+	m_wndFilePathBar.SetCaption(pane, sText);
+	m_wndFilePathBar.SetPath(pane, m_filePaths.GetPath(pane));
 
 	SetTitle(nullptr);
 }

@@ -684,7 +684,8 @@ void CDirDoc::UpdateHeaderPath(int nIndex)
 		ApplyDisplayRoot(nIndex, sText);
 	}
 
-	pf->GetHeaderInterface()->SetText(nIndex, sText);
+	pf->GetHeaderInterface()->SetCaption(nIndex, sText);
+	pf->GetHeaderInterface()->SetPath(nIndex, m_pCtxt->GetPath(nIndex));
 }
 
 /**

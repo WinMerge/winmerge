@@ -111,6 +111,7 @@ CFilepathEdit::CFilepathEdit()
  , m_crText(RGB(0,0,0))
  , m_bActive(false)
  , m_bInEditing(false)
+ , m_bPathEditing(false)
  , m_bEnabledFileSelection(false)
  , m_bEnabledFolderSelection(false)
 {
@@ -141,6 +142,19 @@ void CFilepathEdit::SetOriginalText(const String& sString)
 	m_sOriginalText = sString;
 
 	RefreshDisplayText();
+}
+
+String CFilepathEdit::GetPath() const
+{
+	return m_sFilepath;
+}
+
+void CFilepathEdit::SetPath(const String& sString)
+{
+	if (m_sFilepath.compare(sString) == 0)
+		return;
+
+	m_sFilepath = sString;
 }
 
 /**
@@ -425,15 +439,30 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 			iBegin = 0;
 		break;
 	case ID_EDITOR_EDIT_CAPTION:
+	case ID_EDITOR_EDIT_PATH:
+	{
 		m_bInEditing = true;
 		SetReadOnly(false);
 		SetTextColor(::GetSysColor(COLOR_WINDOWTEXT));
 		SetBackColor(::GetSysColor(COLOR_WINDOW));
 		RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
-		SetWindowText(((!m_sOriginalText.empty() && m_sOriginalText.at(0) == '*') ? m_sOriginalText.substr(2) : m_sOriginalText).c_str());
+		String text;
+		if (nID == ID_EDITOR_EDIT_CAPTION)
+		{
+			m_bPathEditing = false;
+			text = (!m_sOriginalText.empty() && m_sOriginalText.at(0) == '*') ? m_sOriginalText.substr(2) : m_sOriginalText;
+		}
+		else
+		{
+			m_bPathEditing = true;
+			text = m_sFilepath;
+			SHAutoComplete(m_hWnd, SHACF_FILESYSTEM | (m_bEnabledFolderSelection ? SHACF_FILESYS_DIRS : SHACF_FILESYS_ONLY));
+		}
+		SetWindowText(text.c_str());
 		SetSel(0, -1);
 		SetFocus();
 		return;
+	}
 	case ID_EDITOR_SELECT_FILE:
 	{
 		CString text;
@@ -475,13 +504,40 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 			SetReadOnly();
 			CString text;
 			GetWindowText(text);
-			String orgtext = m_sOriginalText;
-			if (!orgtext.empty() && orgtext[0] == '*')
-				orgtext = orgtext.substr(2);
-			if (text == orgtext.c_str())
-				SetWindowText(m_sOriginalText.c_str());
+			if (m_bPathEditing)
+			{
+				m_bPathEditing = false;
+				SHAutoComplete(m_hWnd, 0);
+				String orgtext = m_sFilepath;
+				if (text == orgtext.c_str() || text.IsEmpty())
+					SetWindowText(m_sOriginalText.c_str());
+				else
+				{
+					bool existing = paths::DoesPathExist((const tchar_t *)text);
+					if (existing)
+					{
+						if (m_bEnabledFileSelection && !paths::IsDirectory((const tchar_t *)text) ||
+							m_bEnabledFolderSelection && paths::IsDirectory((const tchar_t *)text))
+							m_sFilepath = static_cast<const tchar_t*>(text);
+						else
+							existing = false;
+					}
+					if (existing)
+						GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
+					else
+						SetWindowText(m_sOriginalText.c_str());
+				}
+			}
 			else
-				GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_CAPTION_CHANGED), (LPARAM)m_hWnd);
+			{
+				String orgtext = m_sOriginalText;
+				if (!orgtext.empty() && orgtext[0] == '*')
+					orgtext = orgtext.substr(2);
+				if (text == orgtext.c_str())
+					SetWindowText(m_sOriginalText.c_str());
+				else
+					GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_CAPTION_CHANGED), (LPARAM)m_hWnd);
+			}
 			::SetFocus(nullptr);
 			return TRUE;
 		}

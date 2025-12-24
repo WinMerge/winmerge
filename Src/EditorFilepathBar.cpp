@@ -261,7 +261,7 @@ void CEditorFilePathBar::OnSelectEdit(UINT id)
  *
  * @param [in] pane Index (0-based) of pane to update.
  */
-String CEditorFilePathBar::GetText(int pane) const
+String CEditorFilePathBar::GetCaption(int pane) const
 {
 	ASSERT (pane >= 0 && pane < static_cast<int>(std::size(m_Edit)));
 
@@ -280,7 +280,7 @@ String CEditorFilePathBar::GetText(int pane) const
  * @param [in] pane Index (0-based) of pane to update.
  * @param [in] lpszString New text for pane.
  */
-void CEditorFilePathBar::SetText(int pane, const String& sString)
+void CEditorFilePathBar::SetCaption(int pane, const String& sString)
 {
 	ASSERT (pane >= 0 && pane < static_cast<int>(std::size(m_Edit)));
 
@@ -289,6 +289,28 @@ void CEditorFilePathBar::SetText(int pane, const String& sString)
 		return;
 
 	m_Edit[pane].SetOriginalText(sString);
+}
+
+String CEditorFilePathBar::GetPath(int pane) const
+{
+	ASSERT (pane >= 0 && pane < static_cast<int>(std::size(m_Edit)));
+
+	// Check for `nullptr` since window may be closing..
+	if (m_hWnd == nullptr)
+		return _T("");
+
+	return m_Edit[pane].GetPath();
+}
+
+void CEditorFilePathBar::SetPath(int pane, const String& sString)
+{
+	ASSERT (pane >= 0 && pane < static_cast<int>(std::size(m_Edit)));
+
+	// Check for `nullptr` since window may be closing..
+	if (m_hWnd == nullptr)
+		return;
+
+	m_Edit[pane].SetPath(sString);
 }
 
 /** 
@@ -316,5 +338,17 @@ void CEditorFilePathBar::SetToolTipsFirstTime(HWND hTip)
 	{
 		m_Tips.insert(hTip);
 		DarkMode::setDarkTooltips(hTip, static_cast<int>(DarkMode::ToolTipsType::tooltip));
+	}
+}
+
+void CEditorFilePathBar::OnEditorEditPath()
+{
+	for (int pane = 0; pane < m_nPanes; pane++)
+	{
+		if (m_Edit[pane].GetActive())
+		{
+			m_Edit[pane].PostMessage(WM_COMMAND, ID_EDITOR_EDIT_PATH, 0);
+			break;
+		}
 	}
 }

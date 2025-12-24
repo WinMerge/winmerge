@@ -1049,6 +1049,9 @@ msgstr "Cupià u nome di &schedariu"
 msgid "&Edit Caption"
 msgstr "&Mudificà a legenda"
 
+msgid "&Edit Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr "A&pre…"
 

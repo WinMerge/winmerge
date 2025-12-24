@@ -1053,6 +1053,9 @@ msgstr "கோப்பின் பெயரை நகலெடு"
 msgid "&Edit Caption"
 msgstr "தலைப்பை திருத்து"
 
+msgid "&Edit Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr "திற..."
 

@@ -1075,7 +1075,8 @@ void CImgMergeFrame::UpdateHeaderPath(int pane)
 	if (m_pImgMergeWindow->IsModified(pane))
 		sText.insert(0, _T("* "));
 
-	m_wndFilePathBar.SetText(pane, sText.c_str());
+	m_wndFilePathBar.SetCaption(pane, sText);
+	m_wndFilePathBar.SetPath(pane, m_filePaths.GetPath(pane));
 
 	SetTitle(nullptr);
 }
@@ -1427,7 +1428,7 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		{
 			// Update mod indicators
-			String ind = m_wndFilePathBar.GetText(pane);
+			String ind = m_wndFilePathBar.GetCaption(pane);
 			if (m_pImgMergeWindow->IsModified(pane) ? ind[0] != _T('*') : ind[0] == _T('*'))
 				UpdateHeaderPath(pane);
 
