@@ -1046,7 +1046,7 @@ msgid "&Edit Caption"
 msgstr "キャプションの編集(&E)"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr ""
+msgstr "パスの編集(&P)\tCtrl+L"
 
 msgid "&Open..."
 msgstr "開く(&O)..."
