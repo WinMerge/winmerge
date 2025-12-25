@@ -1250,6 +1250,9 @@ msgstr "Αντιγραφή Ο&νόματος"
 msgid "&Edit Caption"
 msgstr ""
 
+msgid "Edit &Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr ""
 

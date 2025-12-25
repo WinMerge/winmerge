@@ -1047,6 +1047,9 @@ msgstr "&Dosya adını kopyala"
 msgid "&Edit Caption"
 msgstr "&Başlığı düzenle"
 
+msgid "Edit &Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr "&Aç..."
 

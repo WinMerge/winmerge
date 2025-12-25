@@ -366,11 +366,13 @@ void CDirDoc::Rescan()
 	pHeaderBar->SetOnCaptionChangedCallback([&](int pane, const String& sText) {
 		m_strDesc[pane] = sText;
 		UpdateHeaderPath(pane);
+		m_pDirView->SetFocus();
 	});
 	pHeaderBar->SetOnFolderSelectedCallback([&](int pane, const String& sFolderpath) {
 		PathContext paths = m_pCtxt->GetNormalizedPaths();
 		paths.SetPath(pane, sFolderpath);
 		m_strDesc[pane].clear();
+		m_pDirView->SetFocus();
 		InitCompare(paths, m_pCtxt->m_bRecursive, nullptr);
 		Rescan();
 	});
@@ -684,7 +686,8 @@ void CDirDoc::UpdateHeaderPath(int nIndex)
 		ApplyDisplayRoot(nIndex, sText);
 	}
 
-	pf->GetHeaderInterface()->SetText(nIndex, sText);
+	pf->GetHeaderInterface()->SetCaption(nIndex, sText);
+	pf->GetHeaderInterface()->SetPath(nIndex, m_pCtxt->GetPath(nIndex));
 }
 
 /**

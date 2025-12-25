@@ -29,6 +29,8 @@ public :
 	void RefreshDisplayText();
 	const String& GetUpdatedTipText(CDC * pDC, int maxWidth);
 	const String& GetSelectedPath() const { return m_sFilepath; };
+	String GetPath() const;
+	void SetPath(const String& rString);
 
 	bool GetActive() const { return m_bActive; }
 	void SetActive(bool bActive);
@@ -62,6 +64,7 @@ protected:
 private:
 	void CustomCopy(size_t iBegin, size_t iEnd = String::npos);
 	CRect GetMenuCharRect(CDC* pDC);
+	void RecreateEdit();
 
 	String m_sToolTipString; /**< buffer for return data from GetUpdatedTipText */
 	String m_sOriginalText; /**< Full path that was given to control */
@@ -71,6 +74,7 @@ private:
 	COLORREF m_crBackGnd; /**< Control's background color. */
 	CBrush m_brBackGnd; /**< Background brush for the control. */
 	bool m_bInEditing;
+	bool m_bPathEditing;
 	bool m_bEnabledFileSelection;
 	bool m_bEnabledFolderSelection;
 };

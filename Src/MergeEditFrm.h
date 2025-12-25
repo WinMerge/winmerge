@@ -33,7 +33,7 @@ public:
 // Operations
 public:
 	void UpdateResources();
-	IHeaderBar * GetHeaderInterface();
+	IHeaderBar * GetHeaderInterface() override;
 	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 
 	void UpdateAutoPaneResize();

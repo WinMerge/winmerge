@@ -1044,6 +1044,9 @@ msgstr "העתק שם קובץ"
 msgid "&Edit Caption"
 msgstr "ערוך כותרת"
 
+msgid "Edit &Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr "פתח..."
 

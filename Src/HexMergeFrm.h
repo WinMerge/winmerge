@@ -33,13 +33,14 @@ public:
 // Operations
 public:
 	void UpdateResources();
-	IHeaderBar * GetHeaderInterface();
+	IHeaderBar * GetHeaderInterface() override;
 	CHexMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	int GetActivePane();
 	void SetActivePane(int nPane);
+	CWnd* GetView(int nPane);
 
 // Attributes
 protected:

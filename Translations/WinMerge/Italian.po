@@ -1047,6 +1047,9 @@ msgstr "Copia nome &file"
 msgid "&Edit Caption"
 msgstr "Mo&difica didascalia"
 
+msgid "Edit &Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr "&Apri..."
 

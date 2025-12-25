@@ -1043,6 +1043,9 @@ msgstr "Копиране на &името"
 msgid "&Edit Caption"
 msgstr "Промяна на &заглавието"
 
+msgid "Edit &Path\tCtrl+L"
+msgstr ""
+
 msgid "&Open..."
 msgstr "&Отваряне…"
 

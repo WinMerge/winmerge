@@ -205,7 +205,8 @@ void CMenuBar::Show(bool visible)
 void CMenuBar::OnSetFocus(CWnd* pOldWnd)
 {
 	m_bActive = true;
-	m_hwndOldFocus = pOldWnd->m_hWnd;
+	if (pOldWnd)
+		m_hwndOldFocus = pOldWnd->m_hWnd;
 	if (!m_bAlwaysVisible)
 	{
 		KillTimer(MENUBAR_TIMER_ID);

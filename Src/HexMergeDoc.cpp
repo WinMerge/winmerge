@@ -590,6 +590,7 @@ void CHexMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	m_strDesc[nBuffer].clear();
 	m_pView[nBuffer]->ClearUndoRecords();
 	LoadOneFile(nBuffer, path.c_str(), m_pView[nBuffer]->GetReadOnly(), _T(""));
+	UpdateHeaderPath(nBuffer);
 }
 
 void CHexMergeDoc::CheckFileChanged(void)
@@ -631,7 +632,8 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 	}
 	if (m_pView[pane]->GetModified())
 		sText.insert(0, _T("* "));
-	pf->GetHeaderInterface()->SetText(pane, sText);
+	pf->GetHeaderInterface()->SetCaption(pane, sText);
+	pf->GetHeaderInterface()->SetPath(pane, m_filePaths.GetPath(pane));
 
 	SetTitle(nullptr);
 }

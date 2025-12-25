@@ -20,8 +20,11 @@
 class IHeaderBar
 {
 public:
-	virtual String GetText(int pane) const = 0;
-	virtual void SetText(int pane, const String& sString) = 0;
+	virtual String GetCaption(int pane) const = 0;
+	virtual void SetCaption(int pane, const String& sCaption) = 0;
+	virtual String GetPath(int pane) const = 0;
+	virtual void SetPath(int pane, const String& sPath) = 0;
+	virtual int GetActive() const = 0;
 	virtual void SetActive(int pane, bool bActive) = 0;
 	virtual void SetPaneCount(int nPanes) = 0;
 	virtual void Resize() = 0;
@@ -29,6 +32,7 @@ public:
 	virtual void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) = 0;
 	virtual void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) = 0;
 	virtual void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) = 0;
+	virtual void EditActivePanePath() = 0;
 };
 
 
@@ -51,18 +55,22 @@ public :
 // Dialog Data
 	enum { IDD = IDD_EDITOR_HEADERBAR };
 	
-	void Resize() override;
 	void Resize(int widths[]);
+
+	// Implement IFilepathHeaders
+	void SetCaption(int pane, const String& sString) override;
+	String GetCaption(int pane) const override;
+	void SetPath(int pane, const String& sString) override;
+	String GetPath(int pane) const override;
+	int GetActive() const override;
+	void SetActive(int pane, bool bActive) override;
+	void SetPaneCount(int nPanes) override;
+	void Resize() override;
 	void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc) override;
 	void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) override;
 	void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) override;
 	void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) override;
-
-	// Implement IFilepathHeaders
-	void SetText(int pane, const String& sString) override;
-	String GetText(int pane) const override;
-	void SetActive(int pane, bool bActive) override;
-	void SetPaneCount(int nPanes) override;
+	void EditActivePanePath() override;
 
 protected:
 	//{{AFX_MSG(CEditorFilePathBar)
