@@ -122,9 +122,11 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_wndFilePathBar.SetOnCaptionChangedCallback([&](int pane, const String& sText) {
 		m_pMergeDoc->SetDescription(pane, sText);
 		m_pMergeDoc->UpdateHeaderPath(pane);
+		m_pMergeDoc->GetView(0, pane)->SetFocus();
 	});
 	m_wndFilePathBar.SetOnFileSelectedCallback([&](int pane, const String& sFilepath) {
 		m_pMergeDoc->ChangeFile(pane, sFilepath);
+		m_pMergeDoc->GetView(0, pane)->SetFocus();
 	});
 	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	

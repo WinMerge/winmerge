@@ -271,7 +271,10 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
 		if (!m_bEnabledFileSelection && !m_bEnabledFolderSelection)
+		{
 			pPopup->EnableMenuItem(ID_EDITOR_SELECT_FILE, MF_GRAYED);
+			pPopup->EnableMenuItem(ID_EDITOR_EDIT_PATH, MF_GRAYED);
+		}
 
 		// invoke context menu
 		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);
@@ -456,7 +459,7 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		{
 			m_bPathEditing = true;
 			text = m_sFilepath;
-			SHAutoComplete(m_hWnd, SHACF_FILESYSTEM | (m_bEnabledFolderSelection ? SHACF_FILESYS_DIRS : SHACF_FILESYS_ONLY));
+			SHAutoComplete(m_hWnd, SHACF_FILESYSTEM | SHACF_FILESYS_ONLY | (m_bEnabledFolderSelection ? SHACF_FILESYS_DIRS : 0));
 		}
 		SetWindowText(text.c_str());
 		SetSel(0, -1);
@@ -497,6 +500,7 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 	{
 		if (pMsg->wParam == VK_RETURN)
 		{
+			RecreateEdit(); // to disable AutoComplete
 			m_bInEditing = false;
 			SetTextColor(::GetSysColor(COLOR_CAPTIONTEXT));
 			SetBackColor(MakeBackColor(true, false));
@@ -507,11 +511,8 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 			if (m_bPathEditing)
 			{
 				m_bPathEditing = false;
-				SHAutoComplete(m_hWnd, 0);
 				String orgtext = m_sFilepath;
-				if (text == orgtext.c_str() || text.IsEmpty())
-					SetWindowText(m_sOriginalText.c_str());
-				else
+				if (!(text == orgtext.c_str() || text.IsEmpty()))
 				{
 					bool existing = paths::DoesPathExist((const tchar_t *)text);
 					if (existing)
@@ -524,9 +525,8 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 					}
 					if (existing)
 						GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
-					else
-						SetWindowText(m_sOriginalText.c_str());
 				}
+				SetWindowText(m_sOriginalText.c_str());
 			}
 			else
 			{
@@ -641,6 +641,29 @@ void CFilepathEdit::SetTextColor(COLORREF rgb)
 
 	//redraw
 	Invalidate(TRUE);
+}
+
+/**
+ * @brief Recreate the edit control.
+ */
+void CFilepathEdit::RecreateEdit()
+{
+	CWnd* parent = GetParent();
+	UINT id = GetDlgCtrlID();
+	DWORD style = GetStyle();
+	DWORD exStyle = GetExStyle();
+	CFont* font = GetFont();
+	CRect rc;
+	GetWindowRect(&rc);
+	parent->ScreenToClient(&rc);
+	CString text;
+	GetWindowText(text);
+
+	DestroyWindow();
+
+	CreateEx(exStyle, _T("EDIT"), text, style, rc, parent, id);
+	if (font)
+		SetFont(font);
 }
 
 void CFilepathEdit::OnSysColorChange()

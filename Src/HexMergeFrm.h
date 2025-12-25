@@ -40,6 +40,7 @@ public:
 	void UpdateSplitter();
 	int GetActivePane();
 	void SetActivePane(int nPane);
+	CWnd* GetView(int nPane);
 
 // Attributes
 protected:

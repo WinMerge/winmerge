@@ -64,6 +64,7 @@ protected:
 private:
 	void CustomCopy(size_t iBegin, size_t iEnd = String::npos);
 	CRect GetMenuCharRect(CDC* pDC);
+	void RecreateEdit();
 
 	String m_sToolTipString; /**< buffer for return data from GetUpdatedTipText */
 	String m_sOriginalText; /**< Full path that was given to control */

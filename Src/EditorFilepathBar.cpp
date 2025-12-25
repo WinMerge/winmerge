@@ -226,9 +226,12 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 
 void CEditorFilePathBar::OnSetFocusEdit(UINT id)
 {
+	const int pane = id - IDC_STATIC_TITLE_PANE0;
+	if (pane < 0 || pane >= m_nPanes)
+		return;
 	InvalidateRect(nullptr, false);
 	if (m_setFocusCallbackfunc)
-		m_setFocusCallbackfunc(id - IDC_STATIC_TITLE_PANE0);
+		m_setFocusCallbackfunc(pane);
 }
 
 void CEditorFilePathBar::OnKillFocusEdit(UINT id)
@@ -238,8 +241,10 @@ void CEditorFilePathBar::OnKillFocusEdit(UINT id)
 
 void CEditorFilePathBar::OnChangeEdit(UINT id)
 {
-	InvalidateRect(nullptr, false);
 	const int pane = id - IDC_STATIC_TITLE_PANE0;
+	if (pane < 0 || pane >= m_nPanes)
+		return;
+	InvalidateRect(nullptr, false);
 	if (m_captionChangedCallbackfunc)
 	{
 		CString text;
@@ -250,8 +255,10 @@ void CEditorFilePathBar::OnChangeEdit(UINT id)
 
 void CEditorFilePathBar::OnSelectEdit(UINT id)
 {
-	InvalidateRect(nullptr, false);
 	const int pane = id - IDC_STATIC_TITLE_PANE0;
+	if (pane < 0 || pane >= m_nPanes)
+		return;
+	InvalidateRect(nullptr, false);
 	(m_fileSelectedCallbackfunc ? m_fileSelectedCallbackfunc : m_folderSelectedCallbackfunc)
 		(pane, m_Edit[pane].GetSelectedPath());
 }
