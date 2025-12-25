@@ -6,7 +6,7 @@ This file lists versions of the external components we are using.
 - POCO: 1.14.0
 - boost: 1.88.0
 - frhed: 0.10904.2017.21
-- WinIMerge: 1.0.48.0
+- WinIMerge: 1.0.49.0
   - freeimage: 3.18.0
   - LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)
 - WinWebDiff: 1.0.20.0
