@@ -320,6 +320,16 @@ void CEditorFilePathBar::SetPath(int pane, const String& sString)
 	m_Edit[pane].SetPath(sString);
 }
 
+int CEditorFilePathBar::GetActive() const
+{
+	for (int pane = 0; pane < m_nPanes; pane++)
+	{
+		if (m_Edit[pane].GetActive())
+			return pane;
+	}
+	return -1;
+}
+
 /** 
  * @brief Set the active status for one status (change the appearance)
  *
@@ -348,14 +358,9 @@ void CEditorFilePathBar::SetToolTipsFirstTime(HWND hTip)
 	}
 }
 
-void CEditorFilePathBar::OnEditorEditPath()
+void CEditorFilePathBar::EditActivePanePath()
 {
-	for (int pane = 0; pane < m_nPanes; pane++)
-	{
-		if (m_Edit[pane].GetActive())
-		{
-			m_Edit[pane].PostMessage(WM_COMMAND, ID_EDITOR_EDIT_PATH, 0);
-			break;
-		}
-	}
+	const int pane = GetActive();
+	if (pane >= 0)
+		m_Edit[pane].PostMessage(WM_COMMAND, ID_EDITOR_EDIT_PATH, 0);
 }

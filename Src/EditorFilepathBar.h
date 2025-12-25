@@ -24,6 +24,7 @@ public:
 	virtual void SetCaption(int pane, const String& sCaption) = 0;
 	virtual String GetPath(int pane) const = 0;
 	virtual void SetPath(int pane, const String& sPath) = 0;
+	virtual int GetActive() const = 0;
 	virtual void SetActive(int pane, bool bActive) = 0;
 	virtual void SetPaneCount(int nPanes) = 0;
 	virtual void Resize() = 0;
@@ -31,7 +32,7 @@ public:
 	virtual void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) = 0;
 	virtual void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) = 0;
 	virtual void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) = 0;
-	virtual void OnEditorEditPath() = 0;
+	virtual void EditActivePanePath() = 0;
 };
 
 
@@ -61,6 +62,7 @@ public :
 	String GetCaption(int pane) const override;
 	void SetPath(int pane, const String& sString) override;
 	String GetPath(int pane) const override;
+	int GetActive() const override;
 	void SetActive(int pane, bool bActive) override;
 	void SetPaneCount(int nPanes) override;
 	void Resize() override;
@@ -68,7 +70,7 @@ public :
 	void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) override;
 	void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) override;
 	void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) override;
-	void OnEditorEditPath() override;
+	void EditActivePanePath() override;
 
 protected:
 	//{{AFX_MSG(CEditorFilePathBar)

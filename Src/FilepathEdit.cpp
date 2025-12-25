@@ -337,7 +337,7 @@ void CFilepathEdit::OnKillFocus(CWnd* pNewWnd)
 	{
 		m_bInEditing = false;
 		SetTextColor(::GetSysColor(COLOR_WINDOWTEXT));
-		SetBackColor(MakeBackColor(false, false));
+		SetBackColor(MakeBackColor(m_bActive, false));
 		RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 		SetReadOnly(true);
 		SetWindowText(m_sOriginalText.c_str());
@@ -503,7 +503,7 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 			RecreateEdit(); // to disable AutoComplete
 			m_bInEditing = false;
 			SetTextColor(::GetSysColor(COLOR_CAPTIONTEXT));
-			SetBackColor(MakeBackColor(true, false));
+			SetBackColor(MakeBackColor(m_bActive, false));
 			RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 			SetReadOnly();
 			CString text;
@@ -648,6 +648,7 @@ void CFilepathEdit::SetTextColor(COLORREF rgb)
  */
 void CFilepathEdit::RecreateEdit()
 {
+	BOOL hadFocus = (GetFocus() == this);
 	CWnd* parent = GetParent();
 	UINT id = GetDlgCtrlID();
 	DWORD style = GetStyle();
@@ -664,6 +665,8 @@ void CFilepathEdit::RecreateEdit()
 	CreateEx(exStyle, _T("EDIT"), text, style, rc, parent, id);
 	if (font)
 		SetFont(font);
+	if (hadFocus)
+		SetFocus();
 }
 
 void CFilepathEdit::OnSysColorChange()

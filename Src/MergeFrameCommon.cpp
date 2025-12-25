@@ -609,5 +609,5 @@ void CMergeFrameCommon::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* 
 void CMergeFrameCommon::OnEditorEditPath()
 {
 	if (GetHeaderInterface())
-		GetHeaderInterface()->OnEditorEditPath();
+		GetHeaderInterface()->EditActivePanePath();
 }
