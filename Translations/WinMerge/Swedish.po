@@ -1049,7 +1049,7 @@ msgstr "Kopiera filnamn"
 msgid "&Edit Caption"
 msgstr "Redigera rubrik"
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

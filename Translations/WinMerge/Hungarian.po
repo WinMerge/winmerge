@@ -1253,7 +1253,7 @@ msgstr "&Fájlnév másolása"
 msgid "&Edit Caption"
 msgstr "Felirat szerkesztése"
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

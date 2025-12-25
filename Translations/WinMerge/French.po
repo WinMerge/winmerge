@@ -1053,7 +1053,7 @@ msgstr "Copier le nom de &fichier"
 msgid "&Edit Caption"
 msgstr "Modifi&er la légende"
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

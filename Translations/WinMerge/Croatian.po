@@ -1251,7 +1251,7 @@ msgstr "Kopiraj &naziv datoteke"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

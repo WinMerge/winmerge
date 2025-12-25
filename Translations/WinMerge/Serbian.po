@@ -1248,7 +1248,7 @@ msgstr "Умножи на&зив датотеке"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

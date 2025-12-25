@@ -1047,7 +1047,7 @@ msgstr "Co&piar nome de ficheiro"
 msgid "&Edit Caption"
 msgstr "&Editar legenda"
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

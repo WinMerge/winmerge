@@ -1047,8 +1047,8 @@ BEGIN
         MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
         MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
         MENUITEM "&Edit Caption",               ID_EDITOR_EDIT_CAPTION
-        MENUITEM "&Edit Path\tCtrl+L",          ID_EDITOR_EDIT_PATH
         MENUITEM SEPARATOR
+        MENUITEM "Edit &Path\tCtrl+L",          ID_EDITOR_EDIT_PATH
         MENUITEM "&Open...",                    ID_EDITOR_SELECT_FILE
     END
 END

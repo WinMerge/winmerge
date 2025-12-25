@@ -1049,7 +1049,7 @@ msgstr "Copiar &nombre de archivo"
 msgid "&Edit Caption"
 msgstr "&Editar título"
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

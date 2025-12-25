@@ -1045,7 +1045,7 @@ msgstr "ファイル名をコピー(&F)"
 msgid "&Edit Caption"
 msgstr "キャプションの編集(&E)"
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

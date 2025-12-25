@@ -1058,7 +1058,7 @@ msgstr "複製檔名 (&F)"
 msgid "&Edit Caption"
 msgstr "編輯標題(&E)"
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."

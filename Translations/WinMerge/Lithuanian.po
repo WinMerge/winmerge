@@ -1046,7 +1046,7 @@ msgstr "Kopijuoti &failo vardą"
 msgid "&Edit Caption"
 msgstr "R&edaguoti antraštę"
 
-msgid "&Edit Path\tCtrl+L"
+msgid "Edit &Path\tCtrl+L"
 msgstr ""
 
 msgid "&Open..."
