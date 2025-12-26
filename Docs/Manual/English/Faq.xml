@@ -165,6 +165,20 @@
         </answer>
       </qandaentry>
 
+      <qandaentry>
+        <question>
+          <para>When comparing multiple files from Windows Explorer, how can I control which file appears on the left side?<indexterm>
+              <primary>Windows Explorer</primary>
+              <secondary>file selection order</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>When multiple files are selected in Windows Explorer, the file you right-click becomes the first (primary) item. The remaining items follow in the order they were selected. Therefore, to make a file appear on the left side in WinMerge, select multiple files and right-click the one you want to compare on the left.</para>
+          <para>For more information about this Windows shell behavior, see: <ulink url="https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406">The Old New Thing: How does Explorer determine which program to use to open a file if an explicit command is not provided?</ulink>.</para>
+        </answer>
+      </qandaentry>
+
     </qandaset>
   </section>
 

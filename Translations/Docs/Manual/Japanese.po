@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-12-21 14:48+0900\n"
+"POT-Creation-Date: 2025-12-26 20:47+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -11237,7 +11237,7 @@ msgid "WinMerge support"
 msgstr "WinMergeのサポート"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Faq.xml:20 English/Faq.xml:391
+#: English/Faq.xml:20 English/Faq.xml:405
 msgid "ANSI"
 msgstr ""
 
@@ -11444,13 +11444,61 @@ msgstr ""
 "よいか学ぶために<xref linkend=\"Compare_dirs_starting\" />での、この方法の説"
 "明を見てください。"
 
-#. type: Content of: <article><section><title>
+#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
+#: English/Faq.xml:171
+msgid "Windows Explorer"
+msgstr "Windows エクスプローラー"
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><secondary>
 #: English/Faq.xml:172
+msgid "file selection order"
+msgstr "ファイルの選択順"
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para>
+#: English/Faq.xml:170
+msgid ""
+"When comparing multiple files from Windows Explorer, how can I control which "
+"file appears on the left side?<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Windows エクスプローラーからいくつかのファイルを比較するとき、どのファイルが"
+"左側に出るかは、どうやって決まるの？<placeholder type=\"indexterm\" id=\"0\"/"
+">"
+
+#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
+#: English/Faq.xml:177
+msgid ""
+"When multiple files are selected in Windows Explorer, the file you right-"
+"click becomes the first (primary) item. The remaining items follow in the "
+"order they were selected. Therefore, to make a file appear on the left side "
+"in WinMerge, select multiple files and right-click the one you want to "
+"compare on the left."
+msgstr ""
+"Windows エクスプローラーで複数のファイルを選択すると、右クリックしたファイル"
+"が最初の（主となる）項目になります。残りの項目は、選択された順に続きます。そ"
+"のため、WinMerge で左側に表示したいファイルがある場合は、複数のファイルを選択"
+"したうえで、左側に表示したいファイルを右クリックしてください。"
+
+#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
+#: English/Faq.xml:178
+msgid ""
+"For more information about this Windows shell behavior, see: <ulink "
+"url=\"https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406\">The "
+"Old New Thing: How does Explorer determine which program to use to open a "
+"file if an explicit command is not provided?</ulink>."
+msgstr ""
+"この Windows シェルの挙動についての詳細は、次の記事を参照してください: "
+"<ulink url=\"https://devblogs.microsoft.com/oldnewthing/20190409-00/?"
+"p=102406\">The Old New Thing: 明示的なコマンドが指定されていない場合、エクス"
+"プローラーはどのプログラムを使用してファイルを開くかをどのように決定するのか"
+"</ulink>。"
+
+#. type: Content of: <article><section><title>
+#: English/Faq.xml:186
 msgid "File comparing"
 msgstr "ファイル比較"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:177
+#: English/Faq.xml:191
 msgid ""
 "Why do my files have all lines marked as different (colored), even though I "
 "know all the lines are not different?"
@@ -11458,7 +11506,7 @@ msgstr ""
 "なんで僕のファイルは全行に差異があると色づけされるの? 全行同じはずだよ。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:182
+#: English/Faq.xml:196
 msgid ""
 "Maybe your files have different line ending styles (for example, Windows and "
 "Unix). By default, WinMerge compares line ending styles.  To disable it, "
@@ -11473,22 +11521,22 @@ msgstr ""
 "の違いを無視する(R) (Windows/Unix/Mac)</guilabel>にチェックしてください。"
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:196
+#: English/Faq.xml:210
 msgid "Questions about editor"
 msgstr "エディターについての質問"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:201
+#: English/Faq.xml:215
 msgid "I see question marks instead of letters in files."
 msgstr "ファイル内の文字がクエスチョンマークになってみえるよ?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:205
+#: English/Faq.xml:219
 msgid "This is what we call a <glossterm>lossy conversion</glossterm>."
 msgstr "私たちは、これを、<glossterm>非可逆式変換</glossterm>と呼んでいます。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:209
+#: English/Faq.xml:223
 msgid ""
 "For ANSI files, this is probably due to code-page problems. To troubleshoot, "
 "click <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Options</"
@@ -11504,24 +11552,24 @@ msgstr ""
 "をクリックし、問題が解決するかを確認してください。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:223
+#: English/Faq.xml:237
 msgid "I cannot select proportional fonts for editor."
 msgstr "エディターでプロポーショナルフォントは選択できないの?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:227
+#: English/Faq.xml:241
 msgid "Unfortunately, WinMerge supports only non-proportional fonts."
 msgstr "残念ながら、WinMergeは等幅フォントしかサポートしていません。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:234
+#: English/Faq.xml:248
 msgid ""
 "What is <glossterm>delay of automatic rescan</glossterm>? Why it is needed?"
 msgstr ""
 "(自動)<glossterm>再スキャンの遅延</glossterm>てなに?なぜそれが必要なの?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:239
+#: English/Faq.xml:253
 msgid ""
 "When <guilabel>Automatic Rescan</guilabel> is enabled (in the Editor page of "
 "Options), WinMerge delays rescanning while you edit files. That is, no "
@@ -11538,12 +11586,12 @@ msgstr ""
 "改善します。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:251
+#: English/Faq.xml:265
 msgid "Can I print files from the File panes in the Compare Files window?"
 msgstr "ファイル比較ウィンドウのファイルペインからファイルを印刷できる?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:256
+#: English/Faq.xml:270
 msgid ""
 "Yes, there is basic printing support: click <menuchoice> <guimenu>File</"
 "guimenu> <guimenuitem>Print</guimenuitem> </menuchoice>."
@@ -11553,7 +11601,7 @@ msgstr ""
 "ください。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:266
+#: English/Faq.xml:280
 msgid ""
 "Can I hide similar lines in a file comparison, so that only different lines "
 "are visible?"
@@ -11562,7 +11610,7 @@ msgstr ""
 "では実装)"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:271
+#: English/Faq.xml:285
 msgid ""
 "Yes, you can show only different lines by clicking <menuchoice> "
 "<guimenu>View</guimenu><guimenuitem>Diff Context</guimenuitem> "
@@ -11573,12 +11621,12 @@ msgstr ""
 "思っていません。"
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:281
+#: English/Faq.xml:295
 msgid "WinMerge as external compare or diff-tool"
 msgstr "外部比較ツールとしてのWinMerge"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:286
+#: English/Faq.xml:300
 msgid ""
 "I want WinMerge to close with a single <keycap>Esc</keycap> press after I'm "
 "done?"
@@ -11586,7 +11634,7 @@ msgstr ""
 "<keycap>Esc</keycap>キーを一回押したらWinMergeが終了するようにしたいな。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:291
+#: English/Faq.xml:305
 msgid ""
 "Open WinMerge from the command line, and include the <option>-e</option> "
 "switch."
@@ -11595,7 +11643,7 @@ msgstr ""
 "い。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:298
+#: English/Faq.xml:312
 msgid ""
 "I don't want to see the <guilabel>Files Are Identical</guilabel> message "
 "when I compare identical files, I just want WinMerge to quit."
@@ -11604,12 +11652,12 @@ msgstr ""
 "表示せずに、WinMergeを終了したい。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:304
+#: English/Faq.xml:318
 msgid "Use the <option>-x</option> command line switch."
 msgstr "コマンドラインスイッチ「-x」を使用してください。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:310
+#: English/Faq.xml:324
 msgid ""
 "How can I avoid filling the Select Files or Folders dialog history lists "
 "with temporary paths?"
@@ -11617,7 +11665,7 @@ msgstr ""
 "「開く」ダイアログの履歴がテンポラリファイルで埋まらないようにできないかな?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:315
+#: English/Faq.xml:329
 msgid ""
 "Have your external program invoke WinMerge with the <option>/ub</option> "
 "option, which tells WinMerge to not add the files to the MRU."
@@ -11627,45 +11675,45 @@ msgstr ""
 "伝えます。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:323
+#: English/Faq.xml:337
 msgid "But the program I'm using doesn't allow command line parameters!"
 msgstr "でも、使っているプログラムがコマンドライン引数をサポートしてないよう！"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:328
+#: English/Faq.xml:342
 msgid "Create a batch file that contains one of these lines (but not both):"
 msgstr "これらのうち、どれか一つを含むバッチファイルを作成してください。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><screen>
-#: English/Faq.xml:333
+#: English/Faq.xml:347
 #, no-wrap
 msgid "CALL \"<replaceable>&lt;winmerge path&gt;\\WinMerge</replaceable>\" /e /u %1 %2 %3"
 msgstr "CALL \"<replaceable>&lt;winmerge path&gt;\\WinMerge</replaceable>\" /e /u %1 %2 %3"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><screen>
-#: English/Faq.xml:337
+#: English/Faq.xml:351
 #, no-wrap
 msgid "start \"WinMerge\" \"<replaceable>&lt;winmerge path&gt;</replaceable>\" /e /u %1 %2 %3"
 msgstr "start \"WinMerge\" \"<replaceable>&lt;winmerge path&gt;</replaceable>\" /e /u %1 %2 %3"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:341
+#: English/Faq.xml:355
 msgid "Call this batch file from your program."
 msgstr ""
 "あなたが使っているプログラムから、このバッチファイルを呼び出してください。"
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:348
+#: English/Faq.xml:362
 msgid "Archive support"
 msgstr "アーカイブサポート"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
-#: English/Faq.xml:355
+#: English/Faq.xml:369
 msgid "patch files, Perry-style"
 msgstr "ペリースタイルなパッチ"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:353
+#: English/Faq.xml:367
 msgid ""
 "How can I open the Perry-style patch files that WinMerge developers use when "
 "submitting patches?<placeholder type=\"indexterm\" id=\"0\"/>"
@@ -11674,7 +11722,7 @@ msgstr ""
 "をどうやって開けばいいの? <placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:360
+#: English/Faq.xml:374
 msgid ""
 "Perry-style patches are zip files containing original and changed files in "
 "different directories. WinMerge has internal support (surprise!) for "
@@ -11690,7 +11738,7 @@ msgstr ""
 "に展開し、 元ファイルと変更後ファイルを比較します。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:371
+#: English/Faq.xml:385
 msgid ""
 "Can WinMerge open archive files with non-standard file-extensions? (For "
 "example .jar files as zip-files)"
@@ -11699,7 +11747,7 @@ msgstr ""
 "式はzipな.jar ファイルとか)"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:376
+#: English/Faq.xml:390
 msgid ""
 "Yes: click the <guibutton>Options</guibutton> button (or click <menuchoice> "
 "<guimenu>Edit</guimenu> <guimenuitem>Options</guimenuitem> </menuchoice>). "
@@ -11713,24 +11761,24 @@ msgstr ""
 "プションを有効にしてください。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Faq.xml:393
+#: English/Faq.xml:407
 msgid "detecting in files using Notepad"
 msgstr "メモ帳を使用して検出する"
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:390
+#: English/Faq.xml:404
 msgid "Text encoding (codepages)<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "テキストエンコーディング (コードページ)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:399
+#: English/Faq.xml:413
 msgid "How do I tell if my file is coded in the local Windows (ANSI) codepage?"
 msgstr "どうしたら僕のファイルのコードページがわかるの?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:404
+#: English/Faq.xml:418
 msgid ""
 "Open the file in Windows Notepad (for example, click <menuchoice> "
 "<guimenu>Start</guimenu> <guisubmenu>(All) Programs</guisubmenu> "
@@ -11749,7 +11797,7 @@ msgstr ""
 "い。 そこに、有効な値が含まれています。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
-#: English/Faq.xml:422
+#: English/Faq.xml:436
 msgid ""
 "<guilabel>ANSI</guilabel>: The file is apparently in the local Windows "
 "codepage. If the file is entirely in English and normal punctuation, then "
@@ -11760,7 +11808,7 @@ msgstr ""
 "ASCIIでしょう。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
-#: English/Faq.xml:428
+#: English/Faq.xml:442
 msgid ""
 "<guilabel>Unicode</guilabel>: The file is probably in the default Windows "
 "Unicode encoding, UCS-2LE."
@@ -11769,7 +11817,7 @@ msgstr ""
 "Unicodeエンコーティングである、UCS-2LEです。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
-#: English/Faq.xml:433
+#: English/Faq.xml:447
 msgid ""
 "<guilabel>UTF-8</guilabel>: The file is in the cross-platform Unicode "
 "encoding, UTF-8."
@@ -11778,7 +11826,7 @@ msgstr ""
 "ンコーディングである、UTF-8です。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
-#: English/Faq.xml:438
+#: English/Faq.xml:452
 msgid ""
 "<guilabel>Unicode big endian</guilabel>: The file is in a different Unicode "
 "encoding that is little used or supported in Windows, probably UCS-2BE."
@@ -11788,27 +11836,27 @@ msgstr ""
 "恐らく、UCS-2BEです。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Faq.xml:450
+#: English/Faq.xml:464
 msgid "patch files"
 msgstr "パッチファイル"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Faq.xml:452
+#: English/Faq.xml:466
 msgid "creating with diffutils"
 msgstr "diffutilsを使う"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Faq.xml:454
+#: English/Faq.xml:468
 msgid "diffutils"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Faq.xml:456
+#: English/Faq.xml:470
 msgid "WinMerge patches compatible with"
 msgstr "WinMerge のパッチは互換性がある"
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:449
+#: English/Faq.xml:463
 msgid ""
 "Patch files<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -11817,12 +11865,12 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:462
+#: English/Faq.xml:476
 msgid "Is there way to create patch files from the command line?"
 msgstr "コマンドラインからパッチファイルを作る方法はないの?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:466
+#: English/Faq.xml:480
 msgid ""
 "No. It might be added in later versions. Until then, you can use the Win32 "
 "port of <filename>diffutils</filename>. The latest version of "
@@ -11839,12 +11887,12 @@ msgstr ""
 "らダウンロードできます。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:477
+#: English/Faq.xml:491
 msgid "Can patches be applied using WinMerge?"
 msgstr "WinMergeでパッチをあてられる?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:481
+#: English/Faq.xml:495
 msgid ""
 "You can apply patches using the experimental plugin ApplyPatch.sct.  The "
 "extensions of patches supported by the plugin are .diff or .patch."
