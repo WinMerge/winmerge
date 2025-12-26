@@ -1254,7 +1254,7 @@ msgid "&Edit Caption"
 msgstr "Felirat szerkesztése"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr ""
+msgstr "&Elérési út szerkesztése\tCtrl+L"
 
 msgid "&Open..."
 msgstr "Megnyitás..."
