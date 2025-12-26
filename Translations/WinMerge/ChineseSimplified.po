@@ -1051,7 +1051,7 @@ msgid "&Edit Caption"
 msgstr "编辑标题(&E)"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr ""
+msgstr "编辑路径(&P)\tCtrl+L"
 
 msgid "&Open..."
 msgstr "打开(&O)..."

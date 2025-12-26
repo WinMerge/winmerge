@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-12-26 20:47+0900\n"
+"POT-Creation-Date: 2025-12-21 14:48+0900\n"
 "PO-Revision-Date: 2025-03-13 09:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11640,7 +11640,7 @@ msgid "WinMerge support"
 msgstr "תמיכת WinMerge"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Faq.xml:20 English/Faq.xml:405
+#: English/Faq.xml:20 English/Faq.xml:391
 msgid "ANSI"
 msgstr "ANSI"
 
@@ -11888,58 +11888,13 @@ msgstr ""
 "<guilabel>תוכן מהיר</guilabel> לקבצים גדולים. ראה את הדיון בשיטה זו ב<xref "
 "linkend=\"Compare_dirs_starting\" /> כדי ללמוד כיצד."
 
-#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
-#: English/Faq.xml:171
-msgid "Windows Explorer"
-msgstr ""
-
-#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><secondary>
-#: English/Faq.xml:172
-#, fuzzy
-#| msgid "Open selected file or folder"
-msgid "file selection order"
-msgstr "פתח קובץ או תיקייה נבחרים"
-
-#. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:170
-#, fuzzy
-#| msgid ""
-#| "Including subfolders when using the Windows Explorer "
-#| "integration<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
-#| "type=\"indexterm\" id=\"1\"/>"
-msgid ""
-"When comparing multiple files from Windows Explorer, how can I control which "
-"file appears on the left side?<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-"צירוף תיקיות משנה בעת שימוש בשילוב סייר Windows<placeholder "
-"type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
-
-#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:177
-msgid ""
-"When multiple files are selected in Windows Explorer, the file you right-"
-"click becomes the first (primary) item. The remaining items follow in the "
-"order they were selected. Therefore, to make a file appear on the left side "
-"in WinMerge, select multiple files and right-click the one you want to "
-"compare on the left."
-msgstr ""
-
-#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:178
-msgid ""
-"For more information about this Windows shell behavior, see: <ulink "
-"url=\"https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406\">The "
-"Old New Thing: How does Explorer determine which program to use to open a "
-"file if an explicit command is not provided?</ulink>."
-msgstr ""
-
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:186
+#: English/Faq.xml:172
 msgid "File comparing"
 msgstr "השוואת קבצים"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:191
+#: English/Faq.xml:177
 msgid ""
 "Why do my files have all lines marked as different (colored), even though I "
 "know all the lines are not different?"
@@ -11948,7 +11903,7 @@ msgstr ""
 "השורות שונות?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:196
+#: English/Faq.xml:182
 msgid ""
 "Maybe your files have different line ending styles (for example, Windows and "
 "Unix). By default, WinMerge compares line ending styles.  To disable it, "
@@ -11963,22 +11918,22 @@ msgstr ""
 "guilabel>."
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:210
+#: English/Faq.xml:196
 msgid "Questions about editor"
 msgstr "שאלות על העורך"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:215
+#: English/Faq.xml:201
 msgid "I see question marks instead of letters in files."
 msgstr "אני רואה סימני שאלה במקום אותיות בקבצים."
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:219
+#: English/Faq.xml:205
 msgid "This is what we call a <glossterm>lossy conversion</glossterm>."
 msgstr "זה מה שאנחנו מכנים <glossterm>המרת אובדן</glossterm>."
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:223
+#: English/Faq.xml:209
 msgid ""
 "For ANSI files, this is probably due to code-page problems. To troubleshoot, "
 "click <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Options</"
@@ -11993,23 +11948,23 @@ msgstr ""
 "<guibutton>אישור</guibutton>, ובדוק אם זה עוזר."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:237
+#: English/Faq.xml:223
 msgid "I cannot select proportional fonts for editor."
 msgstr "אני לא יכול לבחור גופנים פרופורציונליים עבור העורך."
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:241
+#: English/Faq.xml:227
 msgid "Unfortunately, WinMerge supports only non-proportional fonts."
 msgstr "למרבה הצער, WinMerge תומך רק בגופנים לא פרופורציונליים."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:248
+#: English/Faq.xml:234
 msgid ""
 "What is <glossterm>delay of automatic rescan</glossterm>? Why it is needed?"
 msgstr "מהו <glossterm>עיכוב של סריקה מחדש אוטומטית</glossterm>? מדוע זה נחוץ?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:253
+#: English/Faq.xml:239
 msgid ""
 "When <guilabel>Automatic Rescan</guilabel> is enabled (in the Editor page of "
 "Options), WinMerge delays rescanning while you edit files. That is, no "
@@ -12025,12 +11980,12 @@ msgstr ""
 "קבצים גדולים יותר, שיכולים לקחת כמה שניות לסרוק מחדש."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:265
+#: English/Faq.xml:251
 msgid "Can I print files from the File panes in the Compare Files window?"
 msgstr "האם אוכל להדפיס קבצים מחלוניות הקבצים בחלון השוואת קבצים?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:270
+#: English/Faq.xml:256
 msgid ""
 "Yes, there is basic printing support: click <menuchoice> <guimenu>File</"
 "guimenu> <guimenuitem>Print</guimenuitem> </menuchoice>."
@@ -12039,7 +11994,7 @@ msgstr ""
 "<guimenuitem>הדפס</guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:280
+#: English/Faq.xml:266
 msgid ""
 "Can I hide similar lines in a file comparison, so that only different lines "
 "are visible?"
@@ -12047,7 +12002,7 @@ msgstr ""
 "האם אוכל להסתיר שורות דומות בהשוואת קבצים, כך שרק שורות שונות יהיו גלויות?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:285
+#: English/Faq.xml:271
 msgid ""
 "Yes, you can show only different lines by clicking <menuchoice> "
 "<guimenu>View</guimenu><guimenuitem>Diff Context</guimenuitem> "
@@ -12058,12 +12013,12 @@ msgstr ""
 "שורות</guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:295
+#: English/Faq.xml:281
 msgid "WinMerge as external compare or diff-tool"
 msgstr "WinMerge ככלי השוואה או Diff חיצוני"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:300
+#: English/Faq.xml:286
 msgid ""
 "I want WinMerge to close with a single <keycap>Esc</keycap> press after I'm "
 "done?"
@@ -12071,14 +12026,14 @@ msgstr ""
 "אני רוצה ש-WinMerge ייסגר בלחיצה אחת על <keycap>Esc</keycap> לאחר שסיימתי?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:305
+#: English/Faq.xml:291
 msgid ""
 "Open WinMerge from the command line, and include the <option>-e</option> "
 "switch."
 msgstr "פתח את WinMerge משורת הפקודה, וכלול את המתג <option>-e</option>."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:312
+#: English/Faq.xml:298
 msgid ""
 "I don't want to see the <guilabel>Files Are Identical</guilabel> message "
 "when I compare identical files, I just want WinMerge to quit."
@@ -12087,12 +12042,12 @@ msgstr ""
 "קבצים זהים, אני רק רוצה ש-WinMerge ייסגר."
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:318
+#: English/Faq.xml:304
 msgid "Use the <option>-x</option> command line switch."
 msgstr "השתמש במתג שורת הפקודה <option>-x</option>."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:324
+#: English/Faq.xml:310
 msgid ""
 "How can I avoid filling the Select Files or Folders dialog history lists "
 "with temporary paths?"
@@ -12101,7 +12056,7 @@ msgstr ""
 "בנתיבים זמניים?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:329
+#: English/Faq.xml:315
 msgid ""
 "Have your external program invoke WinMerge with the <option>/ub</option> "
 "option, which tells WinMerge to not add the files to the MRU."
@@ -12110,44 +12065,44 @@ msgstr ""
 "option>, שאומרת ל-WinMerge לא להוסיף את הקבצים ל-MRU."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:337
+#: English/Faq.xml:323
 msgid "But the program I'm using doesn't allow command line parameters!"
 msgstr "אבל התוכנית שבה אני משתמש לא מאפשרת פרמטרים של שורת פקודה!"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:342
+#: English/Faq.xml:328
 msgid "Create a batch file that contains one of these lines (but not both):"
 msgstr "צור קובץ אצווה המכיל אחת מהשורות האלה (אך לא את שתיהן):"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><screen>
-#: English/Faq.xml:347
+#: English/Faq.xml:333
 #, no-wrap
 msgid "CALL \"<replaceable>&lt;winmerge path&gt;\\WinMerge</replaceable>\" /e /u %1 %2 %3"
 msgstr "CALL \"<replaceable>&lt;winmerge path&gt;\\WinMerge</replaceable>\" /e /u %1 %2 %3"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><screen>
-#: English/Faq.xml:351
+#: English/Faq.xml:337
 #, no-wrap
 msgid "start \"WinMerge\" \"<replaceable>&lt;winmerge path&gt;</replaceable>\" /e /u %1 %2 %3"
 msgstr "start \"WinMerge\" \"<replaceable>&lt;winmerge path&gt;</replaceable>\" /e /u %1 %2 %3"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:355
+#: English/Faq.xml:341
 msgid "Call this batch file from your program."
 msgstr "הפעל קובץ אצווה זה מהתוכנית שלך."
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:362
+#: English/Faq.xml:348
 msgid "Archive support"
 msgstr "תמיכה בארכיון"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
-#: English/Faq.xml:369
+#: English/Faq.xml:355
 msgid "patch files, Perry-style"
 msgstr "קבצי תיקון, בסגנון פרי"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:367
+#: English/Faq.xml:353
 msgid ""
 "How can I open the Perry-style patch files that WinMerge developers use when "
 "submitting patches?<placeholder type=\"indexterm\" id=\"0\"/>"
@@ -12156,7 +12111,7 @@ msgstr ""
 "שליחת תיקונים?<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:374
+#: English/Faq.xml:360
 msgid ""
 "Perry-style patches are zip files containing original and changed files in "
 "different directories. WinMerge has internal support (surprise!) for "
@@ -12171,7 +12126,7 @@ msgstr ""
 "קובץ ה-zip בחלון השוואת תיקיות, ומשווה את הקבצים המקוריים והשתנו."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:385
+#: English/Faq.xml:371
 msgid ""
 "Can WinMerge open archive files with non-standard file-extensions? (For "
 "example .jar files as zip-files)"
@@ -12180,7 +12135,7 @@ msgstr ""
 "קבצי .jar כקבצי zip)"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:390
+#: English/Faq.xml:376
 msgid ""
 "Yes: click the <guibutton>Options</guibutton> button (or click <menuchoice> "
 "<guimenu>Edit</guimenu> <guimenuitem>Options</guimenuitem> </menuchoice>). "
@@ -12193,22 +12148,22 @@ msgstr ""
 "guilabel>."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Faq.xml:407
+#: English/Faq.xml:393
 msgid "detecting in files using Notepad"
 msgstr "איתור בקבצים באמצעות פנקס רשימות"
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:404
+#: English/Faq.xml:390
 msgid "Text encoding (codepages)<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "קידוד טקסט (דפי קוד)<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:413
+#: English/Faq.xml:399
 msgid "How do I tell if my file is coded in the local Windows (ANSI) codepage?"
 msgstr "כיצד אוכל לדעת אם הקובץ שלי מקודד בדף הקוד המקומי של Windows (ANSI)?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:418
+#: English/Faq.xml:404
 msgid ""
 "Open the file in Windows Notepad (for example, click <menuchoice> "
 "<guimenu>Start</guimenu> <guisubmenu>(All) Programs</guisubmenu> "
@@ -12226,7 +12181,7 @@ msgstr ""
 "<guilabel>קידוד</guilabel> ברשימה הנפתחת. הערכים האפשריים כוללים:"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
-#: English/Faq.xml:436
+#: English/Faq.xml:422
 msgid ""
 "<guilabel>ANSI</guilabel>: The file is apparently in the local Windows "
 "codepage. If the file is entirely in English and normal punctuation, then "
@@ -12236,7 +12191,7 @@ msgstr ""
 "כולו באנגלית ופיסוק רגיל, אז הקובץ הוא גם ב-ASCII."
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
-#: English/Faq.xml:442
+#: English/Faq.xml:428
 msgid ""
 "<guilabel>Unicode</guilabel>: The file is probably in the default Windows "
 "Unicode encoding, UCS-2LE."
@@ -12245,7 +12200,7 @@ msgstr ""
 "Unicode, UCS-2LE."
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
-#: English/Faq.xml:447
+#: English/Faq.xml:433
 msgid ""
 "<guilabel>UTF-8</guilabel>: The file is in the cross-platform Unicode "
 "encoding, UTF-8."
@@ -12253,7 +12208,7 @@ msgstr ""
 "<guilabel>UTF-8</guilabel>: הקובץ בקידוד Unicode חוצה פלטפורמות, UTF-8."
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
-#: English/Faq.xml:452
+#: English/Faq.xml:438
 msgid ""
 "<guilabel>Unicode big endian</guilabel>: The file is in a different Unicode "
 "encoding that is little used or supported in Windows, probably UCS-2BE."
@@ -12262,27 +12217,27 @@ msgstr ""
 "בו שימוש או נתמך ב-Windows, כנראה UCS-2BE."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Faq.xml:464
+#: English/Faq.xml:450
 msgid "patch files"
 msgstr "קבצי תיקון"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Faq.xml:466
+#: English/Faq.xml:452
 msgid "creating with diffutils"
 msgstr "יצירה עם diffutils"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Faq.xml:468
+#: English/Faq.xml:454
 msgid "diffutils"
 msgstr "diffutils"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Faq.xml:470
+#: English/Faq.xml:456
 msgid "WinMerge patches compatible with"
 msgstr "טלאי WinMerge תואמים ל-"
 
 #. type: Content of: <article><section><title>
-#: English/Faq.xml:463
+#: English/Faq.xml:449
 msgid ""
 "Patch files<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -12291,12 +12246,12 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:476
+#: English/Faq.xml:462
 msgid "Is there way to create patch files from the command line?"
 msgstr "האם יש דרך ליצור קבצי תיקון משורת הפקודה?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:480
+#: English/Faq.xml:466
 msgid ""
 "No. It might be added in later versions. Until then, you can use the Win32 "
 "port of <filename>diffutils</filename>. The latest version of "
@@ -12312,12 +12267,12 @@ msgstr ""
 "gnuwin32/\"> https://sourceforge.net/projects/gnuwin32</ulink>."
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
-#: English/Faq.xml:491
+#: English/Faq.xml:477
 msgid "Can patches be applied using WinMerge?"
 msgstr "האם ניתן להחיל תיקונים באמצעות WinMerge?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
-#: English/Faq.xml:495
+#: English/Faq.xml:481
 msgid ""
 "You can apply patches using the experimental plugin ApplyPatch.sct.  The "
 "extensions of patches supported by the plugin are .diff or .patch."

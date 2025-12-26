@@ -151,25 +151,6 @@ archive type from file signature</guilabel> option</para>
         </answer>
       </qandaentry>
 
-      <qandaentry>
-        <question>
-          <para>Windows エクスプローラーからいくつかのファイルを比較するとき、どのファイルが左側に出るかは、どうやって決まるの？<indexterm>
-              <primary>Windows エクスプローラー</primary>
-              <secondary>ファイルの選択順</secondary>
-            </indexterm></para>
-        </question>
-
-        <answer>
-          <para>Windows
-エクスプローラーで複数のファイルを選択すると、右クリックしたファイルが最初の（主となる）項目になります。残りの項目は、選択された順に続きます。そのため、WinMerge
-で左側に表示したいファイルがある場合は、複数のファイルを選択したうえで、左側に表示したいファイルを右クリックしてください。</para>
-          <para>この Windows シェルの挙動についての詳細は、次の記事を参照してください: <ulink
-url="https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406">The
-Old New Thing:
-明示的なコマンドが指定されていない場合、エクスプローラーはどのプログラムを使用してファイルを開くかをどのように決定するのか</ulink>。</para>
-        </answer>
-      </qandaentry>
-
     </qandaset>
   </section>
 
