@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-12-21 14:48+0900\n"
+"POT-Creation-Date: 2025-12-26 20:47+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7692,6 +7692,31 @@ msgstr ""
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: ./English/Faq.xml:158
 msgid "This is because WinMerge always uses the <guilabel>Quick Contents</guilabel> file compare method for large files. This method enables WinMerge to compare large files more efficiently. To test if this is causing the behavior you're seeing, you can try raising the <guilabel>Quick Contents</guilabel> threshold for large files. See the discussion of this method in <xref linkend=\"Compare_dirs_starting\" /> to learn how."
+msgstr ""
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
+#: ./English/Faq.xml:171
+msgid "Windows Explorer"
+msgstr ""
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><secondary>
+#: ./English/Faq.xml:172
+msgid "file selection order"
+msgstr ""
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para>
+#: ./English/Faq.xml:170
+msgid "When comparing multiple files from Windows Explorer, how can I control which file appears on the left side?<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+
+#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
+#: ./English/Faq.xml:177
+msgid "When multiple files are selected in Windows Explorer, the file you right-click becomes the first (primary) item. The remaining items follow in the order they were selected. Therefore, to make a file appear on the left side in WinMerge, select multiple files and right-click the one you want to compare on the left."
+msgstr ""
+
+#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
+#: ./English/Faq.xml:178
+msgid "For more information about this Windows shell behavior, see: <ulink url=\"https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406\">The Old New Thing: How does Explorer determine which program to use to open a file if an explicit command is not provided?</ulink>."
 msgstr ""
 
 #. type: Content of: <article><section><title>

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-12-21 14:48+0900\n"
+"POT-Creation-Date: 2025-12-26 20:47+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -11443,6 +11443,54 @@ msgstr ""
 "の大きなファイルとみなすしきい値を上げてみることができます。 どのようにすれば"
 "よいか学ぶために<xref linkend=\"Compare_dirs_starting\" />での、この方法の説"
 "明を見てください。"
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
+#: English/Faq.xml:171
+msgid "Windows Explorer"
+msgstr "Windows エクスプローラー"
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><secondary>
+#: English/Faq.xml:172
+msgid "file selection order"
+msgstr "ファイルの選択順"
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para>
+#: English/Faq.xml:170
+msgid ""
+"When comparing multiple files from Windows Explorer, how can I control which "
+"file appears on the left side?<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"Windows エクスプローラーからいくつかのファイルを比較するとき、どのファイルが"
+"左側に出るかは、どうやって決まるの？<placeholder type=\"indexterm\" id=\"0\"/"
+">"
+
+#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
+#: English/Faq.xml:177
+msgid ""
+"When multiple files are selected in Windows Explorer, the file you right-"
+"click becomes the first (primary) item. The remaining items follow in the "
+"order they were selected. Therefore, to make a file appear on the left side "
+"in WinMerge, select multiple files and right-click the one you want to "
+"compare on the left."
+msgstr ""
+"Windows エクスプローラーで複数のファイルを選択すると、右クリックしたファイル"
+"が最初の（主となる）項目になります。残りの項目は、選択された順に続きます。そ"
+"のため、WinMerge で左側に表示したいファイルがある場合は、複数のファイルを選択"
+"したうえで、左側に表示したいファイルを右クリックしてください。"
+
+#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
+#: English/Faq.xml:178
+msgid ""
+"For more information about this Windows shell behavior, see: <ulink "
+"url=\"https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406\">The "
+"Old New Thing: How does Explorer determine which program to use to open a "
+"file if an explicit command is not provided?</ulink>."
+msgstr ""
+"この Windows シェルの挙動についての詳細は、次の記事を参照してください: "
+"<ulink url=\"https://devblogs.microsoft.com/oldnewthing/20190409-00/?"
+"p=102406\">The Old New Thing: 明示的なコマンドが指定されていない場合、エクス"
+"プローラーはどのプログラムを使用してファイルを開くかをどのように決定するのか"
+"</ulink>。"
 
 #. type: Content of: <article><section><title>
 #: English/Faq.xml:172

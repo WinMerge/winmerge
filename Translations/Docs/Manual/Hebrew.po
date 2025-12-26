@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2025-12-21 14:48+0900\n"
+"POT-Creation-Date: 2025-12-26 20:47+0900\n"
 "PO-Revision-Date: 2025-03-13 09:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11887,6 +11887,51 @@ msgstr ""
 "יותר. כדי לבדוק אם זה גורם להתנהגות שאתה רואה, אתה יכול לנסות להעלות את סף "
 "<guilabel>תוכן מהיר</guilabel> לקבצים גדולים. ראה את הדיון בשיטה זו ב<xref "
 "linkend=\"Compare_dirs_starting\" /> כדי ללמוד כיצד."
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
+#: English/Faq.xml:171
+msgid "Windows Explorer"
+msgstr ""
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><secondary>
+#: English/Faq.xml:172
+#, fuzzy
+#| msgid "Open selected file or folder"
+msgid "file selection order"
+msgstr "פתח קובץ או תיקייה נבחרים"
+
+#. type: Content of: <article><section><qandaset><qandaentry><question><para>
+#: English/Faq.xml:170
+#, fuzzy
+#| msgid ""
+#| "Including subfolders when using the Windows Explorer "
+#| "integration<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
+#| "type=\"indexterm\" id=\"1\"/>"
+msgid ""
+"When comparing multiple files from Windows Explorer, how can I control which "
+"file appears on the left side?<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+"צירוף תיקיות משנה בעת שימוש בשילוב סייר Windows<placeholder "
+"type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
+
+#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
+#: English/Faq.xml:177
+msgid ""
+"When multiple files are selected in Windows Explorer, the file you right-"
+"click becomes the first (primary) item. The remaining items follow in the "
+"order they were selected. Therefore, to make a file appear on the left side "
+"in WinMerge, select multiple files and right-click the one you want to "
+"compare on the left."
+msgstr ""
+
+#. type: Content of: <article><section><qandaset><qandaentry><answer><para>
+#: English/Faq.xml:178
+msgid ""
+"For more information about this Windows shell behavior, see: <ulink "
+"url=\"https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406\">The "
+"Old New Thing: How does Explorer determine which program to use to open a "
+"file if an explicit command is not provided?</ulink>."
+msgstr ""
 
 #. type: Content of: <article><section><title>
 #: English/Faq.xml:172
