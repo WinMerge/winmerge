@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 21.12.2025\n"
+"Project-Id-Version: WinMerge - Italian - 26.12.2025\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-12-21 10:15+0100\n"
+"PO-Revision-Date: 2025-12-26 09:52+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1048,7 +1048,7 @@ msgid "&Edit Caption"
 msgstr "Mo&difica didascalia"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr ""
+msgstr "Modifica &percorso\Ctrl+L"
 
 msgid "&Open..."
 msgstr "&Apri..."
