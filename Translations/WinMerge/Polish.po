@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-12-21 12:35+0000\n"
-"PO-Revision-Date: 2025-12-23 13:30+0000\n"
+"POT-Creation-Date: 2025-12-25 22:13+0000\n"
+"PO-Revision-Date: 2025-12-27 00:30+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1048,7 +1048,7 @@ msgid "&Edit Caption"
 msgstr "Edytuj podpis"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr ""
+msgstr "Edytuj ścieżkę\tCtrl+L"
 
 msgid "&Open..."
 msgstr "Otwórz..."
@@ -2679,10 +2679,10 @@ msgid "Command &line:"
 msgstr "Wiersz poleceń:"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "Rozszerzenie pliku skryptu:"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "Treść skryptu:"
 
 msgid "Font"
 msgstr "Czcionka"
@@ -4942,7 +4942,7 @@ msgid "AI-assisted text conversion"
 msgstr "Funkcje konwersji tekstu wspomagane AI"
 
 msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
-msgstr "Konwerter tekstu wykorzystujący API OpenAI.\r\nUżycie: AIConvertText PROMPT"
+msgstr "Konwerter tekstu wykorzystujący OpenAI API.\r\nUżycie: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
 msgstr ""
@@ -4969,7 +4969,7 @@ msgid "Compare worksheets as image (very slow)"
 msgstr "Porównaj arkusze jako obraz (bardzo wolno)"
 
 msgid " - Image split size: "
-msgstr ""
+msgstr " - rozmiar podzielonego obrazu: "
 
 msgid "Compare worksheets as HTML"
 msgstr "Porównaj arkusze jako HTML"
@@ -5053,7 +5053,7 @@ msgid "Settings"
 msgstr "Ustawienia"
 
 msgid "Column Ranges to Ignore:\ne.g.) 3,10-20,32-33\n"
-msgstr "Zakresy kolumn do zignorowania:\nnp.)  3,10-20,32-33\n"
+msgstr "Zakresy kolumn do zignorowania:\nnp. 3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter filename for patch '%1'"
@@ -5081,17 +5081,17 @@ msgid "AI.sct WinMerge Plugin Options"
 msgstr "Opcje wtyczki WinMerge AI.sct"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Wpisz prompt"
 
 #, c-format
 msgid "Enter OpenAI API key.\r\n- Requires OpenAI registration (fees may apply).\r\n- Key stored in env var %1."
 msgstr "Wprowadź klucz OpenAI API.\r\n- Wymagana rejestracja w OpenAI (mogą obowiązywać opłaty).\r\n- Klucz przechowywany w zmiennej środowiskowej %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr "Nazwa zmiennej środowiskowej dla klucza API OpenAI"
+msgstr "Nazwa zmiennej środowiskowej dla klucza OpenAI API"
 
 msgid "OpenAI API key"
-msgstr "Klucz API OpenAI"
+msgstr "Klucz OpenAI API"
 
 msgid "Temperature"
 msgstr "Temperatura"
@@ -5103,4 +5103,4 @@ msgid "Model"
 msgstr "Model"
 
 msgid "OpenAI API key changed. Restart to apply."
-msgstr "Klucz API OpenAI został zmieniony. Uruchom ponownie WinMerge, aby zastosować zmiany."
+msgstr "Klucz OpenAI API został zmieniony. Uruchom ponownie WinMerge, aby zastosować zmiany."
