@@ -112,7 +112,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     )
     echo ** jq
     copy Build\jq\jq-windows-i386.exe Build\%%i\%%j\Commands\jq\jq.exe
-    copy Build\jq\jq-jq-1.7.1\COPYING Build\%%i\%%j\Commands\jq\
+    copy Build\jq\jq-jq-1.8.1\COPYING Build\%%i\%%j\Commands\jq\
     echo ** tidy-html5
     copy Build\tidy-html5\bin\tidy.* Build\%%i\%%j\Commands\tidy-html5\
     copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md Build\%%i\%%j\Commands\tidy-html5\
