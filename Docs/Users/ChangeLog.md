@@ -1,5 +1,68 @@
 # Change log
 
+## WinMerge 2.16.53 - 2025-11-27
+
+### General
+
+* Allow comparing files by editing header path (Ctrl+L / Alt+D) (PR #3093)
+
+### File compare
+
+* Async binary comparison for “Selected files are identical” dialog
+    (PR #3060)
+
+### Binary compare
+
+* Fixed crash when an error occurs while opening files in the binary
+    comparison window.
+
+### Image compare
+
+* [ImageCompare] Problems with unsupported formats (#3044)
+* Update freeimage to 3.19.10
+
+### Webpage compare
+
+* Fixed garbled filenames displayed in Web comparison tabs and header bar
+
+### Folder compare
+
+* BugFix: This line cannot be displayed correctly after translation.
+    msgid "Failed to extract archive.\nCompare as text file?" (#3073)
+
+* Unexpected file closure when moving files from a comparison (#3088)
+
+### Options dialog
+
+* Add option to select user data location (AppData or Documents) (PR #3078)
+
+### Plugins
+
+* CompareMSExcelFiles: Replace line breaks with space in MSExcel formulas
+    (PR #3028)
+
+### Translations
+
+* Translation updates:
+
+  * Brazilian (PR #3034,#3064,#3085,#3101)
+  * Chinese Simplified (PR #3035,#3077,#3086,#3097)
+  * Chinese Traditional (PR #3052,#3073,WinMerge/frhed#26)
+  * French (PR #3072)
+  * German (PR #3037,#3068,#3081,#3098)
+  * Hungarian (PR #3036,#3061,#3080,#3100)
+  * Italian (PR #3033,#3062,#3099)
+  * Japanese
+  * Korean (PR #3062,#3082)
+  * Lithuanian (PR #3032,#3065,#3087)
+  * Portuguese (PR #)
+  * Polish (PR #3050,#3089,#3103)
+  * Turkish (PR #3043,#3063,#3083,#3102)
+
+### Manual
+
+* Added FAQ about file selection order in Windows Explorer. (#3090,#3094)
+
 ## WinMerge 2.16.52.2 - 2025-11-27
 
 ### Appearance
