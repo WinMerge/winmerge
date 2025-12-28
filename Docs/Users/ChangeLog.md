@@ -41,6 +41,8 @@
 * CompareMSExcelFiles: Replace line breaks with space in MSExcel formulas
     (PR #3028)
 
+* Updated jq to 1.8.1
+
 ### Translations
 
 * Translation updates:
