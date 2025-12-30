@@ -867,9 +867,10 @@ void CDirView::OnDirCopy(UINT id)
 	}
 }
 
-/// User chose (context men) Copy from right to left
-template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
-void CDirView::OnCtxtDirCopy()
+/**
+ * @brief Prompt user whether to copy only different items
+ */
+std::optional<bool> CDirView::PromptCopyOnlyDiffItems()
 {
 	bool copyOnlyDiffItems = true;
 	Counts counts = Count(&DirActions::IsItemIdenticalOrSkipped);
@@ -878,13 +879,23 @@ void CDirView::OnCtxtDirCopy()
 		int ans = AfxMessageBox(_("Some selected items are identical or skipped.\nCopy only items with differences?").c_str(),
 			MB_YESNOCANCEL | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_COPY_ONLYDIFFITEMS);
 		if (ans == IDCANCEL)
-			return;
+			return std::nullopt;
 		copyOnlyDiffItems = (ans == IDYES);
 	}
-	if (copyOnlyDiffItems)
-		DoDirAction(&DirActions::CopyDiffItems<srctype, dsttype>, _("Copying files..."));
-	else
-		DoDirAction(&DirActions::Copy<srctype, dsttype>, _("Copying files..."));
+	return copyOnlyDiffItems;
+}
+
+/// User chose (context men) Copy from right to left
+template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+void CDirView::OnCtxtDirCopy()
+{
+	auto copyOnlyDiffItems = PromptCopyOnlyDiffItems();
+	if (!copyOnlyDiffItems.has_value())
+		return;
+	DoDirAction(*copyOnlyDiffItems
+		? &DirActions::CopyDiffItems<srctype, dsttype>
+		: &DirActions::Copy<srctype, dsttype>,
+		_("Copying files..."));
 }
 
 /// User chose (context menu) Copy left to...
