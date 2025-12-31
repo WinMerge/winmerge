@@ -97,6 +97,8 @@ void CDirFilterBar::OnEditChangeFilterfileMask()
 void CDirFilterBar::SaveFilterText()
 {
 	UpdateData(TRUE);
+	if (m_sMask.empty())
+		return;
 	m_ctlMask.SaveState(_T("Files\\DisplayExt"));
 	m_ctlMask.LoadState(_T("Files\\DisplayExt"));
 }
