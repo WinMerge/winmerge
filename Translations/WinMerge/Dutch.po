@@ -556,6 +556,9 @@ msgstr "2de en 3de wisselen"
 msgid "Swap 1st | &3rd"
 msgstr "1ste en 3de wisselen"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Vergelijkingsstatistieken..."
 
@@ -2203,6 +2206,9 @@ msgstr "Totaal aantal items:"
 msgid "Items compared:"
 msgstr "Items vergeleken:"
 
+msgid "&Close"
+msgstr "Sluiten"
+
 msgid "Go to"
 msgstr "Gaan naar"
 
@@ -2449,9 +2455,6 @@ msgstr "Resultaat:"
 
 msgid "&Test"
 msgstr "Testen"
-
-msgid "&Close"
-msgstr "Sluiten"
 
 msgid "Table"
 msgstr "Tabel"

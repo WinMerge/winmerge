@@ -660,6 +660,9 @@ msgstr "두 번째와 세 번째 맞바꾸기(&2)"
 msgid "Swap 1st | &3rd"
 msgstr "첫 번째와 세 번째 맞바꾸기(&3)"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "통계 비교(&P)..."
@@ -2577,6 +2580,10 @@ msgstr "전체 항목:"
 msgid "Items compared:"
 msgstr "비교된 항목:"
 
+#, c-format
+msgid "&Close"
+msgstr "닫기(&C)"
+
 msgid "Go to"
 msgstr "이동"
 
@@ -2883,10 +2890,6 @@ msgstr "결과:"
 #, c-format
 msgid "&Test"
 msgstr "테스트(&T)"
-
-#, c-format
-msgid "&Close"
-msgstr "닫기(&C)"
 
 msgid "Table"
 msgstr "테이블"

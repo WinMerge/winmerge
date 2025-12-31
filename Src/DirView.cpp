@@ -381,6 +381,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MIDDLEDIR_RO, OnUpdateStatusMiddleRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTDIR_RO, OnUpdateStatusLeftRO)
+	// Display filter bar
+	ON_COMMAND(ID_VIEW_FILTER_BAR, OnViewFilterBar)
+	ON_COMMAND(ID_APPLY_NOW, OnBnClickedApplyNow)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -4657,6 +4660,21 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	default:
 		break;
 	}
+}
+
+void CDirView::OnBnClickedApplyNow()
+{
+	m_dirfilter.displayFilterHelper.SetMaskOrExpression(GetParentFrame()->GetFilterBar()->SaveAndGetFilterText());
+	m_dirfilter.displayFilterHelper.SetDiffContext(&GetDiffContext());
+	Redisplay();
+}
+
+void CDirView::OnViewFilterBar()
+{
+	CDirFrame* pFrame = GetParentFrame();
+	pFrame->ShowFilterBar();
+	pFrame->GetFilterBar()->SetDlgItemText(IDC_FILTERFILE_MASK, m_dirfilter.displayFilterHelper.GetMaskOrExpression());
+	pFrame->GetFilterBar()->GetDlgItem(IDC_FILTERFILE_MASK)->SetFocus();
 }
 
 /// Assign column name, using string resource & current column ordering

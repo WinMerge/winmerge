@@ -801,6 +801,9 @@
     <ClCompile Include="WinRtLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DirFilterBar.cpp">
+      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1528,6 +1531,9 @@
     </ClInclude>
     <ClInclude Include="PropertySystemMenu.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirFilterBar.h">
+      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

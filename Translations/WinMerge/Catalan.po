@@ -652,6 +652,9 @@ msgstr "Intercanvia &2n | 3r"
 msgid "Swap 1st | &3rd"
 msgstr "Intercanvia 1er | &3r"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Estadístiques de &comparació..."
@@ -2569,6 +2572,10 @@ msgstr "Elements totals:"
 msgid "Items compared:"
 msgstr "Elements comparats:"
 
+#, c-format
+msgid "&Close"
+msgstr "&Tanca"
+
 msgid "Go to"
 msgstr "Ves a"
 
@@ -2875,10 +2882,6 @@ msgstr "Resultat:"
 #, c-format
 msgid "&Test"
 msgstr "&Prova"
-
-#, c-format
-msgid "&Close"
-msgstr "&Tanca"
 
 msgid "Table"
 msgstr "Taula"

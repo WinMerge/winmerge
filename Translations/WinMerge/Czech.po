@@ -651,6 +651,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "St&atistika porovnání..."
@@ -2570,6 +2573,10 @@ msgstr "Celkem:"
 msgid "Items compared:"
 msgstr "Porovnáno:"
 
+#, c-format
+msgid "&Close"
+msgstr "&Zavřít"
+
 msgid "Go to"
 msgstr "Přejít"
 
@@ -2868,10 +2875,6 @@ msgstr "Výsledek:"
 #, c-format
 msgid "&Test"
 msgstr "Z&kusit"
-
-#, c-format
-msgid "&Close"
-msgstr "&Zavřít"
 
 msgid "Table"
 msgstr ""

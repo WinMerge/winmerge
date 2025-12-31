@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-12-25 22:13+0000\n"
+"POT-Creation-Date: 2025-12-31 13:52+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -550,6 +550,9 @@ msgid "Swap &2nd | 3rd"
 msgstr ""
 
 msgid "Swap 1st | &3rd"
+msgstr ""
+
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
 msgstr ""
 
 msgid "Com&pare Statistics..."
@@ -2189,6 +2192,9 @@ msgstr ""
 msgid "Items compared:"
 msgstr ""
 
+msgid "&Close"
+msgstr ""
+
 msgid "Go to"
 msgstr ""
 
@@ -2424,9 +2430,6 @@ msgid "Result:"
 msgstr ""
 
 msgid "&Test"
-msgstr ""
-
-msgid "&Close"
 msgstr ""
 
 msgid "Table"

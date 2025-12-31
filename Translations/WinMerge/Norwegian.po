@@ -557,6 +557,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Sammen&lign statistikker..."
 
@@ -2200,6 +2203,9 @@ msgstr "Objekter totalt:"
 msgid "Items compared:"
 msgstr "Objekter sammenlignet:"
 
+msgid "&Close"
+msgstr "&Lukk"
+
 msgid "Go to"
 msgstr "Gå til"
 
@@ -2443,9 +2449,6 @@ msgstr "Resultat:"
 
 msgid "&Test"
 msgstr "&Test"
-
-msgid "&Close"
-msgstr "&Lukk"
 
 msgid "Table"
 msgstr "Tabell"

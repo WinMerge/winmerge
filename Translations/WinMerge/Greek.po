@@ -650,6 +650,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Στατιστικά Συγκρίσεως..."
@@ -2567,6 +2570,10 @@ msgstr "Σύνολο αντικειμένων:"
 msgid "Items compared:"
 msgstr "Συγκριθέντα αντικείμενα:"
 
+#, c-format
+msgid "&Close"
+msgstr "Κ&λείσιμο"
+
 msgid "Go to"
 msgstr "Μετάβαση"
 
@@ -2865,10 +2872,6 @@ msgstr "Αποτέλεσμα:"
 #, c-format
 msgid "&Test"
 msgstr "&Δοκιμή"
-
-#, c-format
-msgid "&Close"
-msgstr "Κ&λείσιμο"
 
 msgid "Table"
 msgstr ""

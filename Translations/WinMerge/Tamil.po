@@ -565,6 +565,9 @@ msgstr "2வது | 3வது இடமாற்று"
 msgid "Swap 1st | &3rd"
 msgstr "1வது | &3வது இடமாற்று"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "புள்ளிவிவரங்களை ஒப்பிடு..."
 
@@ -2215,6 +2218,9 @@ msgstr "உருப்படிகள் மொத்தம்:"
 msgid "Items compared:"
 msgstr "ஒப்பிடப்பட்ட உருப்படிகள்:"
 
+msgid "&Close"
+msgstr "மூடு"
+
 msgid "Go to"
 msgstr "செல்"
 
@@ -2461,9 +2467,6 @@ msgstr "முடிவு:"
 
 msgid "&Test"
 msgstr "சோதனை"
-
-msgid "&Close"
-msgstr "மூடு"
 
 msgid "Table"
 msgstr "அட்டவணை"

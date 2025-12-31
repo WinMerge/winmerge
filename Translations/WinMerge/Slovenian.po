@@ -558,6 +558,9 @@ msgstr "Zamenjaj &2-go | 3-tjo"
 msgid "Swap 1st | &3rd"
 msgstr "Zamenjaj 1-vo | &3-tjo"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "&Statistika primerjave..."
 
@@ -2195,6 +2198,9 @@ msgstr "Skupaj vnosov:"
 msgid "Items compared:"
 msgstr "Primerjanih vnosov:"
 
+msgid "&Close"
+msgstr "&Zapri"
+
 msgid "Go to"
 msgstr "Pojdi na"
 
@@ -2439,9 +2445,6 @@ msgstr "Rezultat:"
 
 msgid "&Test"
 msgstr "P&reizkusi"
-
-msgid "&Close"
-msgstr "&Zapri"
 
 msgid "Table"
 msgstr "Tabela"

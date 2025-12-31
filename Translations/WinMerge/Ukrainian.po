@@ -560,6 +560,9 @@ msgstr "Поміняти місцями &2-гу|3-тю"
 msgid "Swap 1st | &3rd"
 msgstr "Поміняти місцями 1-шу|&3-тю"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Порівняти статистику..."
 
@@ -2204,6 +2207,9 @@ msgstr "Всього:"
 msgid "Items compared:"
 msgstr "Опрацьованих:"
 
+msgid "&Close"
+msgstr "&Закрити"
+
 msgid "Go to"
 msgstr "Перейти"
 
@@ -2447,9 +2453,6 @@ msgstr "Результат:"
 
 msgid "&Test"
 msgstr "&Випробувати"
-
-msgid "&Close"
-msgstr "&Закрити"
 
 msgid "Table"
 msgstr ""

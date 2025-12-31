@@ -76,6 +76,10 @@ BEGIN_MESSAGE_MAP(CDirFrame, CMergeFrameCommon)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
+	ON_COMMAND(ID_VIEW_FILTER_BAR_MENU, OnViewFilterBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_FILTER_BAR_MENU, OnUpdateViewFilterBar)
+	ON_COMMAND(IDCANCEL, OnFilterBarClose)
+	ON_COMMAND(IDC_FILTERFILE_MASK_MENU, OnFilterBarMaskMenu)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -180,6 +184,8 @@ void CDirFrame::OnClose()
  */
 BOOL CDirFrame::DestroyWindow() 
 {
+	HideProgressBar();
+	HideFilterBar();
 	// save docking positions and sizes
 	CDockState dockState;
 	GetDockState(dockState);
@@ -194,3 +200,73 @@ void CDirFrame::OnSize(UINT nType, int cx, int cy)
 	
 	m_wndFilePathBar.Resize();
 }
+
+void CDirFrame::ShowProgressBar()
+{
+	if (m_pCmpProgressBar == nullptr)
+		m_pCmpProgressBar.reset(new DirCompProgressBar());
+
+	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
+		m_pCmpProgressBar->Create(this);
+
+	ShowControlBar(m_pCmpProgressBar.get(), TRUE, FALSE);
+}
+
+void CDirFrame::HideProgressBar()
+{
+	if (m_pCmpProgressBar != nullptr && ::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
+	{
+		ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
+		m_pCmpProgressBar->DestroyWindow();
+	}
+	m_pCmpProgressBar.reset();
+}
+
+void CDirFrame::OnViewFilterBar()
+{
+	if (!m_pDirFilterBar)
+		ShowFilterBar();
+	else
+		HideFilterBar();
+}
+
+void CDirFrame::OnUpdateViewFilterBar(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(m_pDirFilterBar != nullptr);
+}
+
+void CDirFrame::OnFilterBarClose()
+{
+	HideFilterBar();
+	GetActiveView()->SetFocus();
+}
+
+void CDirFrame::OnFilterBarMaskMenu()
+{
+	m_pDirFilterBar->ShowFilterMaskMenu();
+}
+
+void CDirFrame::ShowFilterBar()
+{
+	if (!m_pDirFilterBar)
+		m_pDirFilterBar.reset(new CDirFilterBar());
+	if (!::IsWindow(m_pDirFilterBar->GetSafeHwnd()) && !m_pDirFilterBar->Create(this))
+	{
+		TRACE0("Failed to create filter bar\n");
+		m_pDirFilterBar.reset();
+		return;
+	}
+	ShowControlBar(m_pDirFilterBar.get(), TRUE, FALSE);
+}
+
+void CDirFrame::HideFilterBar()
+{
+	if (m_pDirFilterBar != nullptr && ::IsWindow(m_pDirFilterBar->GetSafeHwnd()))
+	{
+		ShowControlBar(m_pDirFilterBar.get(), FALSE, FALSE);
+		m_pDirFilterBar->DestroyWindow();
+	}
+	m_pDirFilterBar.reset();
+}
+

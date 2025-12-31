@@ -652,6 +652,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "&r مقايسه آمارها ... "
@@ -2573,6 +2576,10 @@ msgstr " کل موارد : "
 msgid "Items compared:"
 msgstr " موارد مقايسه شده : "
 
+#, c-format
+msgid "&Close"
+msgstr "&C بستن "
+
 msgid "Go to"
 msgstr " برو به "
 
@@ -2875,10 +2882,6 @@ msgstr " نتيجه : "
 #, c-format
 msgid "&Test"
 msgstr "&T آزمايش "
-
-#, c-format
-msgid "&Close"
-msgstr "&C بستن "
 
 msgid "Table"
 msgstr ""

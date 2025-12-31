@@ -559,6 +559,9 @@ msgstr "Intercambiar &2º | 3º"
 msgid "Swap 1st | &3rd"
 msgstr "Intercambiar 1º | &3º"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Estatísticas da com&paración..."
 
@@ -2196,6 +2199,9 @@ msgstr "Total:"
 msgid "Items compared:"
 msgstr "Elementos comparados:"
 
+msgid "&Close"
+msgstr "Pe&char"
+
 msgid "Go to"
 msgstr "Ir a"
 
@@ -2440,9 +2446,6 @@ msgstr "Resultado:"
 
 msgid "&Test"
 msgstr "&Probar"
-
-msgid "&Close"
-msgstr "Pe&char"
 
 msgid "Table"
 msgstr "Táboa"

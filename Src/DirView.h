@@ -407,6 +407,8 @@ protected:
 	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnBnClickedApplyNow();
+	afx_msg void OnViewFilterBar();
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

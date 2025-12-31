@@ -652,6 +652,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Sammen&ligningsstatistikker..."
@@ -2571,6 +2574,10 @@ msgstr "Emner ialt:"
 msgid "Items compared:"
 msgstr "Emner sammenlignet:"
 
+#, c-format
+msgid "&Close"
+msgstr "&Luk"
+
 msgid "Go to"
 msgstr "Gå til"
 
@@ -2873,10 +2880,6 @@ msgstr "Resultater:"
 #, c-format
 msgid "&Test"
 msgstr "&Test"
-
-#, c-format
-msgid "&Close"
-msgstr "&Luk"
 
 msgid "Table"
 msgstr ""

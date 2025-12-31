@@ -558,6 +558,9 @@ msgstr "Prehodiť &2. | 3."
 msgid "Swap 1st | &3rd"
 msgstr "Prehodiť 1. | &3."
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Štatistika po&rovnania..."
 
@@ -2195,6 +2198,9 @@ msgstr "Položky celkom:"
 msgid "Items compared:"
 msgstr "Porovnané položky:"
 
+msgid "&Close"
+msgstr "&Zatvoriť"
+
 msgid "Go to"
 msgstr "Prejsť na"
 
@@ -2439,9 +2445,6 @@ msgstr "Výsledok:"
 
 msgid "&Test"
 msgstr "&Testovať"
-
-msgid "&Close"
-msgstr "&Zatvoriť"
 
 msgid "Table"
 msgstr "Karta"

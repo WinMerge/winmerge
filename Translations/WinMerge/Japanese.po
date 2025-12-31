@@ -557,6 +557,9 @@ msgstr "&2 番目と 3 番目を交換"
 msgid "Swap 1st | &3rd"
 msgstr "1 番目と &3 番目を交換"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "比較統計(&P)..."
 
@@ -2198,6 +2201,9 @@ msgstr "全項目数:"
 msgid "Items compared:"
 msgstr "比較した項目:"
 
+msgid "&Close"
+msgstr "閉じる(&C)"
+
 msgid "Go to"
 msgstr "移動"
 
@@ -2442,9 +2448,6 @@ msgstr "結果:"
 
 msgid "&Test"
 msgstr "テスト(&T)"
-
-msgid "&Close"
-msgstr "閉じる(&C)"
 
 msgid "Table"
 msgstr "テーブル"

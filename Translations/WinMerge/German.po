@@ -657,6 +657,9 @@ msgstr "&2. | 3. vertauschen"
 msgid "Swap 1st | &3rd"
 msgstr "1. | &3. vertauschen"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "&Vergleichsstatistik..."
@@ -2581,6 +2584,10 @@ msgstr "Objekte gesamt:"
 msgid "Items compared:"
 msgstr "Objekte verglichen:"
 
+#, c-format
+msgid "&Close"
+msgstr "&Schließen"
+
 msgid "Go to"
 msgstr "Gehe zu"
 
@@ -2887,10 +2894,6 @@ msgstr "Ergebnis:"
 #, c-format
 msgid "&Test"
 msgstr "&Testen"
-
-#, c-format
-msgid "&Close"
-msgstr "&Schließen"
 
 msgid "Table"
 msgstr "Tabelle"
