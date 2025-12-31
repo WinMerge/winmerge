@@ -69,10 +69,10 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg void OnViewFilterBar();
-	afx_msg void OnUpdateViewFilterBar(CCmdUI* pCmdUI);
-	afx_msg void OnFilterBarClose();
-	afx_msg void OnFilterBarMaskMenu();
+	afx_msg void OnViewDisplayFilterBar();
+	afx_msg void OnUpdateDisplayViewFilterBar(CCmdUI* pCmdUI);
+	afx_msg void OnDisplayFilterBarClose();
+	afx_msg void OnDisplayFilterBarMaskMenu();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

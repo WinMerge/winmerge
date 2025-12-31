@@ -76,10 +76,10 @@ BEGIN_MESSAGE_MAP(CDirFrame, CMergeFrameCommon)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
-	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR_MENU, OnViewFilterBar)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_DISPLAY_FILTER_BAR_MENU, OnUpdateViewFilterBar)
-	ON_COMMAND(IDCANCEL, OnFilterBarClose)
-	ON_COMMAND(IDC_FILTERFILE_MASK_MENU, OnFilterBarMaskMenu)
+	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR_MENU, OnViewDisplayFilterBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_DISPLAY_FILTER_BAR_MENU, OnUpdateDisplayViewFilterBar)
+	ON_COMMAND(IDCANCEL, OnDisplayFilterBarClose)
+	ON_COMMAND(IDC_FILTERFILE_MASK_MENU, OnDisplayFilterBarMaskMenu)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -222,7 +222,7 @@ void CDirFrame::HideProgressBar()
 	m_pCmpProgressBar.reset();
 }
 
-void CDirFrame::OnViewFilterBar()
+void CDirFrame::OnViewDisplayFilterBar()
 {
 	if (!m_pDirFilterBar)
 		ShowFilterBar();
@@ -230,19 +230,19 @@ void CDirFrame::OnViewFilterBar()
 		HideFilterBar();
 }
 
-void CDirFrame::OnUpdateViewFilterBar(CCmdUI* pCmdUI) 
+void CDirFrame::OnUpdateDisplayViewFilterBar(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
 	pCmdUI->SetCheck(m_pDirFilterBar != nullptr);
 }
 
-void CDirFrame::OnFilterBarClose()
+void CDirFrame::OnDisplayFilterBarClose()
 {
 	HideFilterBar();
 	GetActiveView()->SetFocus();
 }
 
-void CDirFrame::OnFilterBarMaskMenu()
+void CDirFrame::OnDisplayFilterBarMaskMenu()
 {
 	m_pDirFilterBar->ShowFilterMaskMenu();
 }
