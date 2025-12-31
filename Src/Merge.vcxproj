@@ -952,6 +952,7 @@
     <ClCompile Include="charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="DirFilterBar.cpp" />
     <ClCompile Include="PropertySystemMenu.cpp" />
     <ClCompile Include="DirAdditionalPropertiesDlg.cpp" />
     <ClCompile Include="DirSelectFilesDlg.cpp" />
@@ -983,6 +984,7 @@
     </ClCompile>
     <ClInclude Include="Common\ValidatingEdit.h" />
     <ClInclude Include="FileFilterHelperMenu.h" />
+    <ClInclude Include="DirFilterBar.h" />
     <ClInclude Include="FilterConditionDlg.h" />
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FiltersPropertySheet.h" />

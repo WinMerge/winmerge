@@ -559,6 +559,9 @@ msgstr "2. ile 3. ögeyi değiştir"
 msgid "Swap 1st | &3rd"
 msgstr "1. ile 3. ögeyi değiştir"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Karşılaştırma istatistikleri..."
 
@@ -2202,6 +2205,9 @@ msgstr "Toplam öge:"
 msgid "Items compared:"
 msgstr "Karşılaştırılan öge:"
 
+msgid "&Close"
+msgstr "&Kapat"
+
 msgid "Go to"
 msgstr "Git"
 
@@ -2446,9 +2452,6 @@ msgstr "Sonuç:"
 
 msgid "&Test"
 msgstr "&Sına"
-
-msgid "&Close"
-msgstr "&Kapat"
 
 msgid "Table"
 msgstr "Tablo"

@@ -335,16 +335,13 @@ void CDirDoc::Rescan()
 
 	m_compareStart = clock();
 
-	if (m_pCmpProgressBar == nullptr)
-		m_pCmpProgressBar.reset(new DirCompProgressBar());
-
-	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
-		m_pCmpProgressBar->Create(m_pDirView->GetParentFrame());
-
-	m_pCmpProgressBar->SetCompareStat(m_pCompareStats.get());
-	m_pCmpProgressBar->StartUpdating();
-
-	m_pDirView->GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), TRUE, FALSE);
+	pf->ShowProgressBar();
+	auto* pCmpProgressBar = GetCompProgressBar();
+	if (pCmpProgressBar)
+	{
+		pCmpProgressBar->SetCompareStat(m_pCompareStats.get());
+		pCmpProgressBar->StartUpdating();
+	}
 
 	if (!m_bGeneratingReport)
 		m_pDirView->DeleteAllDisplayItems();
@@ -648,9 +645,7 @@ void CDirDoc::UpdateChangedItem(const PathContext &paths,
 void CDirDoc::CompareReady()
 {
 	// Close and destroy the dialog after compare
-	if (m_pCmpProgressBar != nullptr)
-		m_pDirView->GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
-	m_pCmpProgressBar.reset();
+	m_pDirView->GetParentFrame()->HideProgressBar();
 }
 
 /**
@@ -1073,32 +1068,45 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 	return true;
 }
 
+DirCompProgressBar* CDirDoc::GetCompProgressBar()
+{
+	CDirFrame *pf = m_pDirView->GetParentFrame();
+	if (pf == nullptr)
+		return nullptr;
+	return pf->GetCompProgressBar();
+}
+
 void CDirDoc::OnBnClickedComparisonStop()
 {
-	if (m_pCmpProgressBar != nullptr)
-		m_pCmpProgressBar->EndUpdating();
+	auto* pCmpProgressBar = GetCompProgressBar();
+	if (pCmpProgressBar != nullptr)
+		pCmpProgressBar->EndUpdating();
 	AbortCurrentScan();
 }
 
 void CDirDoc::OnBnClickedComparisonPause()
 {
-	if (m_pCmpProgressBar != nullptr)
-		m_pCmpProgressBar->SetPaused(true);
+	auto* pCmpProgressBar = GetCompProgressBar();
+	if (pCmpProgressBar != nullptr)
+		pCmpProgressBar->SetPaused(true);
 	PauseCurrentScan();
 }
 
 void CDirDoc::OnBnClickedComparisonContinue()
 {
-	if (m_pCmpProgressBar != nullptr)
-		m_pCmpProgressBar->SetPaused(false);
+	auto* pCmpProgressBar = GetCompProgressBar();
+	if (pCmpProgressBar != nullptr)
+		pCmpProgressBar->SetPaused(false);
 	ContinueCurrentScan();
 }
 
 void CDirDoc::OnCbnSelChangeCPUCores()
 {
-	if (!m_pCmpProgressBar)
+	auto* pCmpProgressBar = GetCompProgressBar();
+	if (pCmpProgressBar == nullptr)
 		return;
 	m_pCtxt->m_pCompareStats->SetIdleCompareThreadCount(
-		m_pCtxt->m_pCompareStats->GetCompareThreadCount() - m_pCmpProgressBar->GetNumberOfCPUCoresToUse()
+		m_pCtxt->m_pCompareStats->GetCompareThreadCount() - pCmpProgressBar->GetNumberOfCPUCoresToUse()
 	);
 }
+

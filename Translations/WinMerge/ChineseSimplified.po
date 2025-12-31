@@ -562,6 +562,9 @@ msgstr "交换组&2与组3"
 msgid "Swap 1st | &3rd"
 msgstr "交换组1与组&3"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "比较结果统计(&P)..."
 
@@ -2201,6 +2204,9 @@ msgstr "条目总计："
 msgid "Items compared:"
 msgstr "已比较条目："
 
+msgid "&Close"
+msgstr "关闭(&C)"
+
 msgid "Go to"
 msgstr "转到"
 
@@ -2445,9 +2451,6 @@ msgstr "结果："
 
 msgid "&Test"
 msgstr "测试(&T)"
-
-msgid "&Close"
-msgstr "关闭(&C)"
 
 msgid "Table"
 msgstr "表格"

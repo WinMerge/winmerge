@@ -555,6 +555,9 @@ msgstr "Разменяне на №&2 с №3"
 msgid "Swap 1st | &3rd"
 msgstr "Разменяне на №1 с №&3"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Статистика на &сравнение…"
 
@@ -2192,6 +2195,9 @@ msgstr "Всичко:"
 msgid "Items compared:"
 msgstr "Сравнени:"
 
+msgid "&Close"
+msgstr "&Затваряне"
+
 msgid "Go to"
 msgstr "Отиване към"
 
@@ -2436,9 +2442,6 @@ msgstr "Резултат:"
 
 msgid "&Test"
 msgstr "&Изпробване"
-
-msgid "&Close"
-msgstr "&Затваряне"
 
 msgid "Table"
 msgstr "Таблици"

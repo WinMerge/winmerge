@@ -7,6 +7,7 @@
 #include "IntToIntMap.h"
 #include <algorithm>
 #include "FileTransform.h"
+#include "FileFilterHelper.h"
 
 class CDiffContext;
 class PathContext;
@@ -120,6 +121,7 @@ struct DirViewFilterSettings
 	bool show_missing_middle_only;
 	bool show_missing_right_only;
 	bool tree_mode;
+	FileFilterHelper displayFilterHelper; /**< File filter helper */
 };
 
 typedef std::map<String, bool> DirViewTreeState;

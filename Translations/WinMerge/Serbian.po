@@ -649,6 +649,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Упореди статистику..."
@@ -2551,6 +2554,10 @@ msgstr "Укупно ставки:"
 msgid "Items compared:"
 msgstr "Поређење ставки:"
 
+#, c-format
+msgid "&Close"
+msgstr "&Затвори"
+
 msgid "Go to"
 msgstr "Иди на"
 
@@ -2851,10 +2858,6 @@ msgstr "Исход:"
 #, c-format
 msgid "&Test"
 msgstr "&Провера"
-
-#, c-format
-msgid "&Close"
-msgstr "&Затвори"
 
 msgid "Table"
 msgstr ""

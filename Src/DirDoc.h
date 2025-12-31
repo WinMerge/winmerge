@@ -16,7 +16,6 @@
 #include "PluginManager.h"
 #include "FileFilterHelper.h"
 #include "DirCmpReport.h"
-#include "DirCompProgressBar.h"
 #include "IMDITab.h"
 #include "IDirDoc.h"
 
@@ -28,6 +27,7 @@ class DirDocFilterByExtension;
 class CTempPathContext;
 struct FileActionItem;
 struct FileLocation;
+class DirCompProgressBar;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
@@ -133,6 +133,7 @@ protected:
 	void LoadLineFilterList(CDiffContext *pCtxt);
 	void LoadSubstitutionFiltersList(CDiffContext* pCtxt);
 	void CheckFilter();
+	DirCompProgressBar* GetCompProgressBar();
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)
@@ -159,7 +160,6 @@ private:
 	bool m_bGeneratingReport;
 	std::unique_ptr<DirCmpReport> m_pReport;
 	FileFilterHelper m_fileHelper; /**< File filter helper */
-	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	clock_t m_elapsed; /**< Elapsed time of the compare */
 };

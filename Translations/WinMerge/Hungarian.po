@@ -653,6 +653,9 @@ msgstr "Csere 2-3"
 msgid "Swap 1st | &3rd"
 msgstr "Csere 1-3"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Összehasonlítási statisztika..."
@@ -2570,6 +2573,10 @@ msgstr "Összes elem:"
 msgid "Items compared:"
 msgstr "Összehasonlított elemek:"
 
+#, c-format
+msgid "&Close"
+msgstr "Bezárás"
+
 msgid "Go to"
 msgstr "Ugrás"
 
@@ -2876,10 +2883,6 @@ msgstr "Kimenet:"
 #, c-format
 msgid "&Test"
 msgstr "Tesztelés"
-
-#, c-format
-msgid "&Close"
-msgstr "Bezárás"
 
 msgid "Table"
 msgstr "Táblázat"

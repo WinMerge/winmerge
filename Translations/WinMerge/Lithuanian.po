@@ -558,6 +558,9 @@ msgstr "Sukeisti &2-ą | 3-ią"
 msgid "Swap 1st | &3rd"
 msgstr "Sukeisti 1-ą | &3-ią"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Ly&ginimo statistika..."
 
@@ -2195,6 +2198,9 @@ msgstr "Iš viso elementų:"
 msgid "Items compared:"
 msgstr "Elementų palyginta:"
 
+msgid "&Close"
+msgstr "&Užverti"
+
 msgid "Go to"
 msgstr "Pereiti į"
 
@@ -2431,9 +2437,6 @@ msgstr "Rezultatas:"
 
 msgid "&Test"
 msgstr "&Testuoti"
-
-msgid "&Close"
-msgstr "&Užverti"
 
 msgid "Table"
 msgstr "Lentelių"

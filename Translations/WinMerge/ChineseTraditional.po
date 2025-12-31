@@ -566,6 +566,9 @@ msgstr "將第 &2 和第 3 對調"
 msgid "Swap 1st | &3rd"
 msgstr "將第 1 和第 &3 對調"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "統計比較結果 (&P)"
 
@@ -2214,6 +2217,9 @@ msgstr "項目總數："
 msgid "Items compared:"
 msgstr "比較過的項目："
 
+msgid "&Close"
+msgstr "關閉 (&C)"
+
 msgid "Go to"
 msgstr "移至"
 
@@ -2458,9 +2464,6 @@ msgstr "結果："
 
 msgid "&Test"
 msgstr "測試 (&T)"
-
-msgid "&Close"
-msgstr "關閉 (&C)"
 
 msgid "Table"
 msgstr "表格"

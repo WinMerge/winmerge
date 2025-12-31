@@ -651,6 +651,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Usporedbena &statistika..."
@@ -2568,6 +2571,10 @@ msgstr "Stavki ukupno:"
 msgid "Items compared:"
 msgstr "Stavki uspoređeno:"
 
+#, c-format
+msgid "&Close"
+msgstr "&Zatvori"
+
 msgid "Go to"
 msgstr "Idi na"
 
@@ -2868,10 +2875,6 @@ msgstr "Rezultat:"
 #, c-format
 msgid "&Test"
 msgstr "&Test"
-
-#, c-format
-msgid "&Close"
-msgstr "&Zatvori"
 
 msgid "Table"
 msgstr ""

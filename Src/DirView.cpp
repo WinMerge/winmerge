@@ -381,6 +381,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MIDDLEDIR_RO, OnUpdateStatusMiddleRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTDIR_RO, OnUpdateStatusLeftRO)
+	// Display filter bar
+	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR, OnViewDisplayFilterBar)
+	ON_COMMAND(ID_APPLY_NOW, OnViewDisplayFilterBarApply)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -4657,6 +4660,27 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	default:
 		break;
 	}
+}
+
+void CDirView::OnViewDisplayFilterBarApply()
+{
+	CWaitCursor waitstatus;
+	auto* pFilterBar = GetParentFrame()->GetFilterBar();
+	pFilterBar->SaveFilterText();
+	m_dirfilter.displayFilterHelper.SetMaskOrExpression(pFilterBar->GetFilterText());
+	m_dirfilter.displayFilterHelper.SetDiffContext(&GetDiffContext());
+	Redisplay();
+	SetFocus();
+}
+
+void CDirView::OnViewDisplayFilterBar()
+{
+	CDirFrame* pFrame = GetParentFrame();
+	pFrame->ShowFilterBar();
+	auto* pFilterBar = pFrame->GetFilterBar();
+	if (!m_dirfilter.displayFilterHelper.IsEmpty())
+		pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_dirfilter.displayFilterHelper.GetMaskOrExpression());
+	pFilterBar->GetDlgItem(IDC_FILTERFILE_MASK)->SetFocus();
 }
 
 /// Assign column name, using string resource & current column ordering

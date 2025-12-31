@@ -557,6 +557,9 @@ msgstr "Interschimbă &2 | 3"
 msgid "Swap 1st | &3rd"
 msgstr "Interschimbă &1 | 3"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Statistici de compa&rare..."
 
@@ -2204,6 +2207,9 @@ msgstr "Elemente total:"
 msgid "Items compared:"
 msgstr "Elemente comparate:"
 
+msgid "&Close"
+msgstr "În&chide"
+
 msgid "Go to"
 msgstr "Mergi la"
 
@@ -2451,9 +2457,6 @@ msgstr "Rezultat:"
 
 msgid "&Test"
 msgstr "&Testează"
-
-msgid "&Close"
-msgstr "În&chide"
 
 msgid "Table"
 msgstr "Tabel"

@@ -559,6 +559,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "إحصائيات المقارنة..."
 
@@ -2200,6 +2203,9 @@ msgstr "كل العناصر:"
 msgid "Items compared:"
 msgstr "العناصر التي تمت مقارنتها:"
 
+msgid "&Close"
+msgstr "إ&غلاق"
+
 msgid "Go to"
 msgstr "الذهاب إلى"
 
@@ -2440,9 +2446,6 @@ msgstr "النتيجة:"
 
 msgid "&Test"
 msgstr "الا&ختبار"
-
-msgid "&Close"
-msgstr "إ&غلاق"
 
 msgid "Table"
 msgstr ""

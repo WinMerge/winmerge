@@ -654,6 +654,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Alderatu Esta&tistikak..."
@@ -2570,6 +2573,10 @@ msgstr "Gaiak guztira:"
 msgid "Items compared:"
 msgstr "Alderatutako gaiak:"
 
+#, c-format
+msgid "&Close"
+msgstr "&Itxi"
+
 msgid "Go to"
 msgstr "Joan Hona"
 
@@ -2870,10 +2877,6 @@ msgstr "Emaitza:"
 #, c-format
 msgid "&Test"
 msgstr "&Azterketa"
-
-#, c-format
-msgid "&Close"
-msgstr "&Itxi"
 
 msgid "Table"
 msgstr ""

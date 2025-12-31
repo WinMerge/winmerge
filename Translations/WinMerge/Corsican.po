@@ -561,6 +561,9 @@ msgstr "Scambià &2ᵘ | 3ᵘ"
 msgid "Swap 1st | &3rd"
 msgstr "Scambià 1ᵘ | &3ᵘ"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Statistiche di &paragone…"
 
@@ -2210,6 +2213,9 @@ msgstr "Tutale di l’elementi :"
 msgid "Items compared:"
 msgstr "Elementi paragunati :"
 
+msgid "&Close"
+msgstr "&Chjode"
+
 msgid "Go to"
 msgstr "Andà à"
 
@@ -2456,9 +2462,6 @@ msgstr "Risultatu :"
 
 msgid "&Test"
 msgstr "&Pruvà"
-
-msgid "&Close"
-msgstr "&Chjode"
 
 msgid "Table"
 msgstr "Tavulone"

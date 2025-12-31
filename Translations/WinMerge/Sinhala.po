@@ -651,6 +651,9 @@ msgstr ""
 msgid "Swap 1st | &3rd"
 msgstr ""
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "සංඛ්‍යාන විස්තර සසඳන්න..."
@@ -2568,6 +2571,10 @@ msgstr "අයිතම එකතුව:"
 msgid "Items compared:"
 msgstr "සැසඳූ අයිතම:"
 
+#, c-format
+msgid "&Close"
+msgstr "වසන්න"
+
 msgid "Go to"
 msgstr "වෙත යන්න"
 
@@ -2866,10 +2873,6 @@ msgstr "ප්‍රතිඵලය:"
 #, c-format
 msgid "&Test"
 msgstr "&අත්හදා බලන්න"
-
-#, c-format
-msgid "&Close"
-msgstr "වසන්න"
 
 msgid "Table"
 msgstr ""

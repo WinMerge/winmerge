@@ -558,6 +558,9 @@ msgstr "Vaihda &2. | kolmas"
 msgid "Swap 1st | &3rd"
 msgstr "Vaihda 1. | &kolmas"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Vertaa tilastoja..."
 
@@ -2204,6 +2207,9 @@ msgstr "Kohteita yhteensä:"
 msgid "Items compared:"
 msgstr "Verratut kohteet:"
 
+msgid "&Close"
+msgstr "Sulje"
+
 msgid "Go to"
 msgstr "Siirry >"
 
@@ -2440,9 +2446,6 @@ msgstr "Tulos:"
 
 msgid "&Test"
 msgstr "Testi"
-
-msgid "&Close"
-msgstr "Sulje"
 
 msgid "Table"
 msgstr "Taulukko"
