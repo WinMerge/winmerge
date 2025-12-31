@@ -692,7 +692,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 				}
 			}
 		}
-		if (!filter.displayFilterHelper.GetMaskOrExpression().empty() && !filter.displayFilterHelper.includeDir(di))
+		if (!filter.displayFilterHelper.IsEmpty() && !filter.displayFilterHelper.includeDir(di))
 			return false;
 	}
 	else
@@ -753,7 +753,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 			else if (di.diffcode.isResultDiff() && !filter.show_different)
 				return false;
 		}
-		if (!filter.displayFilterHelper.GetMaskOrExpression().empty() && !filter.displayFilterHelper.includeFile(di))
+		if (!filter.displayFilterHelper.IsEmpty() && !filter.displayFilterHelper.includeFile(di))
 			return false;
 	}
 	return true;

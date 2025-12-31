@@ -94,12 +94,11 @@ void CDirFilterBar::OnEditChangeFilterfileMask()
 	m_ctlMaskEdit.OnEnChange();
 }
 
-String CDirFilterBar::SaveAndGetFilterText()
+void CDirFilterBar::SaveFilterText()
 {
 	UpdateData(TRUE);
 	m_ctlMask.SaveState(_T("Files\\DisplayExt"));
 	m_ctlMask.LoadState(_T("Files\\DisplayExt"));
-	return m_sMask;
 }
 
 void CDirFilterBar::ShowFilterMaskMenu()

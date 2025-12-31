@@ -510,7 +510,7 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "Men&u Bar",                   ID_VIEW_MENU_BAR
-        MENUITEM "Displa&y Filter Bar\tCtrl+Shift+F", ID_VIEW_FILTER_BAR_MENU
+        MENUITEM "Displa&y Filter Bar\tCtrl+Shift+F", ID_VIEW_DISPLAY_FILTER_BAR_MENU
         MENUITEM "&Output Pane",                ID_VIEW_OUTPUT_BAR
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
@@ -1736,7 +1736,7 @@ BEGIN
     "E",            ID_FILE_OPEN_WITHEDITOR, VIRTKEY, CONTROL, ALT, NOINVERT
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
-    "F",            ID_VIEW_FILTER_BAR,     VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "F",            ID_VIEW_DISPLAY_FILTER_BAR, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "G",            ID_GOTO_MOVED_LINE_LM,  VIRTKEY, SHIFT, CONTROL, NOINVERT
     "G",            ID_GOTO_MOVED_LINE_MR,  VIRTKEY, CONTROL, ALT, NOINVERT

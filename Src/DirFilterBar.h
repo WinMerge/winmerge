@@ -20,7 +20,8 @@ public:
 	CDirFilterBar();   // standard constructor
 	~CDirFilterBar();
 	BOOL Create(CWnd* pParentWnd);
-	String SaveAndGetFilterText();
+	String GetFilterText() { return m_sMask; }
+	void SaveFilterText();
 	void ShowFilterMaskMenu();
 
 // Dialog Data

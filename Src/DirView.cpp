@@ -382,7 +382,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MIDDLEDIR_RO, OnUpdateStatusMiddleRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTDIR_RO, OnUpdateStatusLeftRO)
 	// Display filter bar
-	ON_COMMAND(ID_VIEW_FILTER_BAR, OnViewFilterBar)
+	ON_COMMAND(ID_VIEW_DISPLAY_FILTER_BAR, OnViewDisplayFilterBar)
 	ON_COMMAND(ID_APPLY_NOW, OnBnClickedApplyNow)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -4664,12 +4664,14 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CDirView::OnBnClickedApplyNow()
 {
-	m_dirfilter.displayFilterHelper.SetMaskOrExpression(GetParentFrame()->GetFilterBar()->SaveAndGetFilterText());
+	auto* pFilterBar = GetParentFrame()->GetFilterBar();
+	pFilterBar->SaveFilterText();
+	m_dirfilter.displayFilterHelper.SetMaskOrExpression(pFilterBar->GetFilterText());
 	m_dirfilter.displayFilterHelper.SetDiffContext(&GetDiffContext());
 	Redisplay();
 }
 
-void CDirView::OnViewFilterBar()
+void CDirView::OnViewDisplayFilterBar()
 {
 	CDirFrame* pFrame = GetParentFrame();
 	pFrame->ShowFilterBar();
