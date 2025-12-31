@@ -566,7 +566,7 @@ msgstr "將第 &2 和第 3 對調"
 msgid "Swap 1st | &3rd"
 msgstr "將第 1 和第 &3 對調"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

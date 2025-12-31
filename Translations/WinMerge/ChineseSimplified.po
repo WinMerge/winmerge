@@ -562,7 +562,7 @@ msgstr "交换组&2与组3"
 msgid "Swap 1st | &3rd"
 msgstr "交换组1与组&3"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

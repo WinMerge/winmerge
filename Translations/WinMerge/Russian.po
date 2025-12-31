@@ -560,7 +560,7 @@ msgstr "Поменять &2-й | 3-й"
 msgid "Swap 1st | &3rd"
 msgstr "Поменять 1-й | &3-й"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

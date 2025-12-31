@@ -660,7 +660,7 @@ msgstr "두 번째와 세 번째 맞바꾸기(&2)"
 msgid "Swap 1st | &3rd"
 msgstr "첫 번째와 세 번째 맞바꾸기(&3)"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 #, c-format

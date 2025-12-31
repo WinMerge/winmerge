@@ -565,7 +565,7 @@ msgstr "2வது | 3வது இடமாற்று"
 msgid "Swap 1st | &3rd"
 msgstr "1வது | &3வது இடமாற்று"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

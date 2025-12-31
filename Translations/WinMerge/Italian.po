@@ -559,7 +559,7 @@ msgstr "Scambia &2° | 3°"
 msgid "Swap 1st | &3rd"
 msgstr "Scambia 1° | &3°"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

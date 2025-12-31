@@ -558,7 +558,7 @@ msgstr "Sukeisti &2-ą | 3-ią"
 msgid "Swap 1st | &3rd"
 msgstr "Sukeisti 1-ą | &3-ią"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

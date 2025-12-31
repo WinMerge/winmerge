@@ -557,8 +557,8 @@ msgstr "&2 番目と 3 番目を交換"
 msgid "Swap 1st | &3rd"
 msgstr "1 番目と &3 番目を交換"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
-msgstr "表示フィルター(&Y)\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "表示フィルター(&Y)\tCtrl+Shift+L"
 
 msgid "Com&pare Statistics..."
 msgstr "比較統計(&P)..."

@@ -561,7 +561,7 @@ msgstr "Scambià &2ᵘ | 3ᵘ"
 msgid "Swap 1st | &3rd"
 msgstr "Scambià 1ᵘ | &3ᵘ"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

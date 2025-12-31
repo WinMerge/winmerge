@@ -560,7 +560,7 @@ msgstr "Поміняти місцями &2-гу|3-тю"
 msgid "Swap 1st | &3rd"
 msgstr "Поміняти місцями 1-шу|&3-тю"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

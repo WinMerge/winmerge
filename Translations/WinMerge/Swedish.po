@@ -561,7 +561,7 @@ msgstr "Växla andra och tredje"
 msgid "Swap 1st | &3rd"
 msgstr "Växla första och tredje"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 msgid "Com&pare Statistics..."

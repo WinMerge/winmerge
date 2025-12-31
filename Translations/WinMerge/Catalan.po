@@ -652,7 +652,7 @@ msgstr "Intercanvia &2n | 3r"
 msgid "Swap 1st | &3rd"
 msgstr "Intercanvia 1er | &3r"
 
-msgid "Displa&y Filter Bar\tCtrl+Shift+F"
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr ""
 
 #, c-format
