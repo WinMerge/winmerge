@@ -4664,6 +4664,7 @@ void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 
 void CDirView::OnViewDisplayFilterBarApply()
 {
+	CWaitCursor waitstatus;
 	auto* pFilterBar = GetParentFrame()->GetFilterBar();
 	pFilterBar->SaveFilterText();
 	m_dirfilter.displayFilterHelper.SetMaskOrExpression(pFilterBar->GetFilterText());
@@ -4676,8 +4677,9 @@ void CDirView::OnViewDisplayFilterBar()
 {
 	CDirFrame* pFrame = GetParentFrame();
 	pFrame->ShowFilterBar();
-	pFrame->GetFilterBar()->SetDlgItemText(IDC_FILTERFILE_MASK, m_dirfilter.displayFilterHelper.GetMaskOrExpression());
-	pFrame->GetFilterBar()->GetDlgItem(IDC_FILTERFILE_MASK)->SetFocus();
+	auto* pFilterBar = pFrame->GetFilterBar();
+	pFilterBar->SetDlgItemText(IDC_FILTERFILE_MASK, m_dirfilter.displayFilterHelper.GetMaskOrExpression());
+	pFilterBar->GetDlgItem(IDC_FILTERFILE_MASK)->SetFocus();
 }
 
 /// Assign column name, using string resource & current column ordering
