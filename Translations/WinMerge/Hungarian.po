@@ -654,7 +654,7 @@ msgid "Swap 1st | &3rd"
 msgstr "Csere 1-3"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "Szűrősáv &megjelenítése\tCtrl+Shift+L"
 
 #, c-format
 msgid "Com&pare Statistics..."
@@ -2575,7 +2575,7 @@ msgstr "Összehasonlított elemek:"
 
 #, c-format
 msgid "&Close"
-msgstr "Bezárás"
+msgstr "&Bezárás"
 
 msgid "Go to"
 msgstr "Ugrás"
