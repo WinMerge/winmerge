@@ -678,21 +678,21 @@ static auto FolderStatField(int index, const FilterExpression* ctxt, const DIFFI
 
 static auto FilesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.fileCount; }, false);
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.fileCount); }, false);
 }
 
 static auto RecursiveFilesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.fileCount; }, true);
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.fileCount); }, true);
 }
 
 static auto ItemsField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType {
-	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.itemCount; }, false);
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.itemCount); }, false);
 }
 
 static auto RecursiveItemsField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
-	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.itemCount; }, true);
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.itemCount); }, true);
 }
 
 static auto TotalSizeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
