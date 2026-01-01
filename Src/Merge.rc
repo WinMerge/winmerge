@@ -1504,6 +1504,39 @@ BEGIN
                 END
                 MENUITEM "&Custom Range...",            ID_FILTERMENU_FOLDER_DATE_RANGE
             END
+            POPUP "&Folder Stats"
+            BEGIN
+                POPUP "&Files"
+                BEGIN
+                    MENUITEM "0 files",                     ID_FILTERMENU_FOLDER_FILES_EQ_0
+                    MENUITEM "1 file or more",              ID_FILTERMENU_FOLDER_FILES_GE_1
+                    MENUITEM "Custom Range...",             ID_FILTERMENU_FOLDER_FILES_RANGE
+                END
+                POPUP "&Items"
+                BEGIN
+                    MENUITEM "0 items",                     ID_FILTERMENU_FOLDER_ITEMS_EQ_0
+                    MENUITEM "1 item or more",              ID_FILTERMENU_FOLDER_ITEMS_GE_1
+                    MENUITEM "Custom Range...",             ID_FILTERMENU_FOLDER_ITEMS_RANGE
+                END
+                POPUP "&Total Size"
+                BEGIN
+                    MENUITEM "Less than 1KB",               ID_FILTERMENU_FOLDER_TOTALSIZE_LT_1KB
+                    MENUITEM "1KB or more",                 ID_FILTERMENU_FOLDER_TOTALSIZE_GE_1KB
+                    MENUITEM "Less than 10KB",              ID_FILTERMENU_FOLDER_TOTALSIZE_LT_10KB
+                    MENUITEM "10KB or more",                ID_FILTERMENU_FOLDER_TOTALSIZE_GE_10KB
+                    MENUITEM "Less than 100KB",             ID_FILTERMENU_FOLDER_TOTALSIZE_LT_100KB
+                    MENUITEM "100KB or more",               ID_FILTERMENU_FOLDER_TOTALSIZE_GE_100KB
+                    MENUITEM "Less than 1MB",               ID_FILTERMENU_FOLDER_TOTALSIZE_LT_1MB
+                    MENUITEM "1MB or more",                 ID_FILTERMENU_FOLDER_TOTALSIZE_GE_1MB
+                    MENUITEM "Less than 10MB",              ID_FILTERMENU_FOLDER_TOTALSIZE_LT_10MB
+                    MENUITEM "10MB or more",                ID_FILTERMENU_FOLDER_TOTALSIZE_GE_10MB
+                    MENUITEM "Less than 100MB",             ID_FILTERMENU_FOLDER_TOTALSIZE_LT_100MB
+                    MENUITEM "100MB or more",               ID_FILTERMENU_FOLDER_TOTALSIZE_GE_100MB
+                    MENUITEM "Less than 1GB",               ID_FILTERMENU_FOLDER_TOTALSIZE_LT_1GB
+                    MENUITEM "Custom Range...",             ID_FILTERMENU_FOLDER_TOTALSIZE_RANGE
+                END
+                MENUITEM "&Recursive",                  ID_FILTERMENU_FOLDER_STATS_RECURSIVE
+            END
         END
         MENUITEM "Target: &Any (Left/Middle/Right)", ID_FILTERMENU_CONDITION_ANY
         MENUITEM "Target: &Left",               ID_FILTERMENU_CONDITION_LEFT

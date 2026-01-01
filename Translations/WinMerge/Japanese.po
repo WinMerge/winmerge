@@ -1495,6 +1495,33 @@ msgstr "追加プロパティ(&P)..."
 msgid "Add F&older Condition"
 msgstr "フォルダー条件を追加(&O)"
 
+msgid "&Folder Stats"
+msgstr "フォルダー統計(&F)"
+
+msgid "&Files"
+msgstr "ファイル(&F)"
+
+msgid "0 files"
+msgstr "0 ファイル"
+
+msgid "1 file or more"
+msgstr "1 ファイル以上"
+
+msgid "&Items"
+msgstr "項目(&I)"
+
+msgid "0 items"
+msgstr "0 項目"
+
+msgid "1 item or more"
+msgstr "1 項目以上"
+
+msgid "&Total Size"
+msgstr "合計サイズ(&T)"
+
+msgid "&Recursive"
+msgstr "再帰的(&R)"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "対象: いずれか (左/中央/右)(&A)"
 

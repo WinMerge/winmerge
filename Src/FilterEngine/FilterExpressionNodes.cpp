@@ -7,6 +7,7 @@
 #include "FilterExpressionNodes.h"
 #include "FilterExpression.h"
 #include "FileContentRef.h"
+#include "FolderStats.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "paths.h"
@@ -662,6 +663,48 @@ static auto ExistsField(int index, const FilterExpression* ctxt, const DIFFITEM&
 	return di.diffcode.exists(index);
 }
 
+template<typename Func>
+static auto FolderStatField(int index, const FilterExpression* ctxt, const DIFFITEM& di, Func func, bool recursive) -> ValueType
+{
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+
+	const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
+	const String fullPath = paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath);
+
+	FolderStats::FolderStatsResult stats = FolderStats::ScanFolder(fullPath, recursive);
+	return func(stats);
+}
+
+static auto FilesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.fileCount; }, false);
+}
+
+static auto RecursiveFilesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.fileCount; }, true);
+}
+
+static auto ItemsField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType {
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.itemCount; }, false);
+}
+
+static auto RecursiveItemsField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.itemCount; }, true);
+}
+
+static auto TotalSizeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.totalSize; }, false);
+}
+
+static auto RecursiveTotalSizeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.totalSize; }, true);
+}
+
 static auto NameField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
 {
 	if (!di.diffcode.exists(index))
@@ -811,6 +854,18 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	const char* p = vl.c_str() + prefixlen;
 	if (strcmp(p, "exists") == 0)
 		functmp = ExistsField;
+	else if (strcmp(p, "files") == 0)
+		functmp = FilesField;
+	else if (strcmp(p, "items") == 0)
+		functmp = ItemsField;
+	else if (strcmp(p, "totalsize") == 0)
+		functmp = TotalSizeField;
+	else if (strcmp(p, "recursivefiles") == 0)
+		functmp = RecursiveFilesField;
+	else if (strcmp(p, "recursiveitems") == 0)
+		functmp = RecursiveItemsField;
+	else if (strcmp(p, "recursivetotalsize") == 0)
+		functmp = RecursiveTotalSizeField;
 	else if (strcmp(p, "name") == 0)
 		functmp = NameField;
 	else if (strcmp(p, "extension") == 0)

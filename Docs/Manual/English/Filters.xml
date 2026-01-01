@@ -297,9 +297,55 @@
                 </para>
               </listitem>
             </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>File-only Attributes</title>
+          <para>
+            The following attributes are available only for file comparison items.
+            When used with folder items, the behavior is undefined.
+          </para>
+
+          <variablelist>
             <varlistentry>
               <term>Content</term>
               <listitem><para>Content of the file. Returns a FileContent-type value. Only <literal>contains</literal> and <literal>recontains</literal> can be used with this type.</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>Folder-only Attributes</title>
+          <para>
+            The following attributes are available only for folder comparison items.
+            When used with file items, the behavior is undefined.
+          </para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Files</term>
+              <listitem><para>Number of files directly contained in the folder.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveFiles</term>
+              <listitem><para>Number of files contained in the folder, including all subfolders.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Items</term>
+              <listitem><para>Number of items (files and subfolders) directly contained in the folder.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveItems</term>
+              <listitem><para>Number of items (files and subfolders) contained in the folder, including all subfolders.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>TotalSize</term>
+              <listitem><para>Total size of all files directly contained in the folder, in bytes.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveTotalSize</term>
+              <listitem><para>Total size of all files contained in the folder, including all subfolders, in bytes.</para></listitem>
             </varlistentry>
           </variablelist>
         </section>

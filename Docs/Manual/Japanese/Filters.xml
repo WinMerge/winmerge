@@ -267,10 +267,52 @@ Right, Middle）かを接頭辞で指定できます。</para>
 は隠しファイル、<literal>"A"</literal> はアーカイブ、<literal>"S"</literal> はシステムファイルを示します。</para>
               </listitem>
             </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>ファイルのみ属性</title>
+          <para>
+以下の属性は、ファイル比較項目にのみ使用できます。フォルダー項目に使用した場合の動作は未定義です。</para>
+
+          <variablelist>
             <varlistentry>
               <term>Content</term>
               <listitem><para>ファイルの内容を表します。FileContent 型の値を返します。この型には <literal>contains</literal> および
 <literal>recontains</literal> のみ使用できます。</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>フォルダーのみ属性</title>
+          <para>
+以下の属性は、フォルダー比較項目にのみ使用できます。ファイル項目に使用した場合の動作は未定義です。</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Files</term>
+              <listitem><para>フォルダーに直接含まれるファイル数。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveFiles</term>
+              <listitem><para>すべてのサブフォルダーを含めた、フォルダー内のファイル総数。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Items</term>
+              <listitem><para>フォルダーに直接含まれる項目（ファイルおよびサブフォルダー）の数。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveItems</term>
+              <listitem><para>すべてのサブフォルダーを含めた、フォルダー内の項目（ファイルおよびサブフォルダー）の総数。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>TotalSize</term>
+              <listitem><para>フォルダーに直接含まれるすべてのファイルの合計サイズ（バイト単位）。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveTotalSize</term>
+              <listitem><para>すべてのサブフォルダーを含めた、フォルダー内のすべてのファイルの合計サイズ（バイト単位）。</para></listitem>
             </varlistentry>
           </variablelist>
         </section>
