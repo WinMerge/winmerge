@@ -1047,8 +1047,8 @@ msgstr "Kopiuj pełną ś&cieżkę"
 msgid "Copy &Filename"
 msgstr "Kopiuj nazwę pliku"
 
-msgid "&Edit Caption"
-msgstr "Edytuj podpis"
+msgid "&Edit Caption\tF2"
+msgstr "Edytuj podpis\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "Edytuj ścieżkę\tCtrl+L"

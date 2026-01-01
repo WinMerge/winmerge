@@ -1251,7 +1251,7 @@ msgstr "Kopírovat celé &umístění"
 msgid "Copy &Filename"
 msgstr "Kopírovat &název souboru"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

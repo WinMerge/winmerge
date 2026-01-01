@@ -1053,8 +1053,8 @@ msgstr "முழு பாதையை நகலெடு"
 msgid "Copy &Filename"
 msgstr "கோப்பின் பெயரை நகலெடு"
 
-msgid "&Edit Caption"
-msgstr "தலைப்பை திருத்து"
+msgid "&Edit Caption\tF2"
+msgstr "தலைப்பை திருத்து\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

@@ -1046,7 +1046,7 @@ msgstr "&Kopírovať plnú cestu"
 msgid "Copy &Filename"
 msgstr "Kopírovať názov &súboru"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

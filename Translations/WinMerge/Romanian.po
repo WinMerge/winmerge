@@ -1045,8 +1045,8 @@ msgstr "&Copiază calea întreagă"
 msgid "Copy &Filename"
 msgstr "Copiază numele de &fișier"
 
-msgid "&Edit Caption"
-msgstr "Editează descrierea"
+msgid "&Edit Caption\tF2"
+msgstr "Editează descrierea\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

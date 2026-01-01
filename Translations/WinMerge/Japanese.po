@@ -1045,8 +1045,8 @@ msgstr "フルパスをコピー(&C)"
 msgid "Copy &Filename"
 msgstr "ファイル名をコピー(&F)"
 
-msgid "&Edit Caption"
-msgstr "キャプションの編集(&E)"
+msgid "&Edit Caption\tF2"
+msgstr "キャプションの編集(&E)\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "パスの編集(&P)\tCtrl+L"

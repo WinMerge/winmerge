@@ -1251,7 +1251,7 @@ msgstr "&Copy Full Path"
 msgid "Copy &Filename"
 msgstr "ගොනුවෙ නම  පිටපත් කිරීම"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

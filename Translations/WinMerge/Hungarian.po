@@ -1253,8 +1253,8 @@ msgstr "&Teljes útvonal másolása"
 msgid "Copy &Filename"
 msgstr "&Fájlnév másolása"
 
-msgid "&Edit Caption"
-msgstr "Felirat szerkesztése"
+msgid "&Edit Caption\tF2"
+msgstr "Felirat szerkesztése\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "&Elérési út szerkesztése\tCtrl+L"

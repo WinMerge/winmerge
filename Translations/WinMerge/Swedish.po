@@ -1049,8 +1049,8 @@ msgstr "Kopiera hela sökvägen"
 msgid "Copy &Filename"
 msgstr "Kopiera filnamn"
 
-msgid "&Edit Caption"
-msgstr "Redigera rubrik"
+msgid "&Edit Caption\tF2"
+msgstr "Redigera rubrik\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

@@ -1248,7 +1248,7 @@ msgstr "&Умножи путању"
 msgid "Copy &Filename"
 msgstr "Умножи на&зив датотеке"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

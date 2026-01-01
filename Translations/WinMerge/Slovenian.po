@@ -1046,8 +1046,8 @@ msgstr "&Kopiraj celotno pot"
 msgid "Copy &Filename"
 msgstr "Kopiraj &ime datoteke"
 
-msgid "&Edit Caption"
-msgstr "&Uredi napis"
+msgid "&Edit Caption\tF2"
+msgstr "&Uredi napis\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

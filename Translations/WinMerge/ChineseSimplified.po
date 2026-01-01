@@ -1050,8 +1050,8 @@ msgstr "复制完整路径(&C)"
 msgid "Copy &Filename"
 msgstr "复制文件名(&F)"
 
-msgid "&Edit Caption"
-msgstr "编辑标题(&E)"
+msgid "&Edit Caption\tF2"
+msgstr "编辑标题(&E)\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "编辑路径(&P)\tCtrl+L"

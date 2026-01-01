@@ -1049,8 +1049,8 @@ msgstr "&Cupià u chjassu sanu"
 msgid "Copy &Filename"
 msgstr "Cupià u nome di &schedariu"
 
-msgid "&Edit Caption"
-msgstr "&Mudificà a legenda"
+msgid "&Edit Caption\tF2"
+msgstr "&Mudificà a legenda\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

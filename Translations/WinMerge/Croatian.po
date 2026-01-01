@@ -1251,7 +1251,7 @@ msgstr "&Kopiraj stazu"
 msgid "Copy &Filename"
 msgstr "Kopiraj &naziv datoteke"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

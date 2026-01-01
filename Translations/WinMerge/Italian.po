@@ -1047,8 +1047,8 @@ msgstr "Copia &percorso completo"
 msgid "Copy &Filename"
 msgstr "Copia nome &file"
 
-msgid "&Edit Caption"
-msgstr "Mo&difica didascalia"
+msgid "&Edit Caption\tF2"
+msgstr "Mo&difica didascalia\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "Modifica &percorso\Ctrl+L"

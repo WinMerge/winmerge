@@ -1047,7 +1047,7 @@ msgstr "&نسخ المسار الكامل"
 msgid "Copy &Filename"
 msgstr "نسخ اسم الملف"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

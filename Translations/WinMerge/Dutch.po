@@ -1044,8 +1044,8 @@ msgstr "Volledig pad kopiëren"
 msgid "Copy &Filename"
 msgstr "Bestandsnaam kopiëren"
 
-msgid "&Edit Caption"
-msgstr "Ondertitel bewerken"
+msgid "&Edit Caption\tF2"
+msgstr "Ondertitel bewerken\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

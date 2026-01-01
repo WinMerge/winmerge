@@ -1058,8 +1058,8 @@ msgstr "複製完整路徑 (&C)"
 msgid "Copy &Filename"
 msgstr "複製檔名 (&F)"
 
-msgid "&Edit Caption"
-msgstr "編輯標題(&E)"
+msgid "&Edit Caption\tF2"
+msgstr "編輯標題(&E)\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

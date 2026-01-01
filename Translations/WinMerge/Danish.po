@@ -1252,7 +1252,7 @@ msgstr "&Kopier det fulde stinavn"
 msgid "Copy &Filename"
 msgstr "Kopier &filnavn"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

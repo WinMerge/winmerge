@@ -1044,8 +1044,8 @@ msgstr "העתק נתיב מלא"
 msgid "Copy &Filename"
 msgstr "העתק שם קובץ"
 
-msgid "&Edit Caption"
-msgstr "ערוך כותרת"
+msgid "&Edit Caption\tF2"
+msgstr "ערוך כותרת\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

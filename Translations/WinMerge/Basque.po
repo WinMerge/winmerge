@@ -1254,7 +1254,7 @@ msgstr "Kopiatu Helburu O&soa"
 msgid "Copy &Filename"
 msgstr "Kopiatu &Agirizena"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

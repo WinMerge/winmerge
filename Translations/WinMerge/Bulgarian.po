@@ -1043,8 +1043,8 @@ msgstr "&Копиране на пълния път"
 msgid "Copy &Filename"
 msgstr "Копиране на &името"
 
-msgid "&Edit Caption"
-msgstr "Промяна на &заглавието"
+msgid "&Edit Caption\tF2"
+msgstr "Промяна на &заглавието\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

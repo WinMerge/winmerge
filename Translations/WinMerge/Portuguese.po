@@ -1047,8 +1047,8 @@ msgstr "Copiar localização completa"
 msgid "Copy &Filename"
 msgstr "Co&piar nome de ficheiro"
 
-msgid "&Edit Caption"
-msgstr "&Editar legenda"
+msgid "&Edit Caption\tF2"
+msgstr "&Editar legenda\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

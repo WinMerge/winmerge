@@ -1046,8 +1046,8 @@ msgstr "Kopijuoti pilną &kelią"
 msgid "Copy &Filename"
 msgstr "Kopijuoti &failo vardą"
 
-msgid "&Edit Caption"
-msgstr "R&edaguoti antraštę"
+msgid "&Edit Caption\tF2"
+msgstr "R&edaguoti antraštę\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "&Redaguoti kelią\tCtrl+L"

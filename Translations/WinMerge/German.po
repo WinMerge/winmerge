@@ -1257,8 +1257,8 @@ msgstr "Vollständigen Pfad kopieren"
 msgid "Copy &Filename"
 msgstr "Dateinamen kopieren"
 
-msgid "&Edit Caption"
-msgstr "Titelzeile bearbeiten"
+msgid "&Edit Caption\tF2"
+msgstr "Titelzeile bearbeiten\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "&Pfad bearbeiten\tStrg+L"

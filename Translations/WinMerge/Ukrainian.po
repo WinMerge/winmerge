@@ -1049,7 +1049,7 @@ msgstr "&Скопіювати повний шлях"
 msgid "Copy &Filename"
 msgstr "Скопіювати &ім'я файлу"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

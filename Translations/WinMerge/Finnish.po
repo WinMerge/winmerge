@@ -1046,8 +1046,8 @@ msgstr "Kopioi täysi polku"
 msgid "Copy &Filename"
 msgstr "Kopioi tiedostonimi"
 
-msgid "&Edit Caption"
-msgstr "Muokkaa &otsikkoa"
+msgid "&Edit Caption\tF2"
+msgstr "Muokkaa &otsikkoa\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

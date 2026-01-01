@@ -1049,8 +1049,8 @@ msgstr "&Copiar ruta completa"
 msgid "Copy &Filename"
 msgstr "Copiar &nombre de archivo"
 
-msgid "&Edit Caption"
-msgstr "&Editar título"
+msgid "&Edit Caption\tF2"
+msgstr "&Editar título\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

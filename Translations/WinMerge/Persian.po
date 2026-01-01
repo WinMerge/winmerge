@@ -1252,7 +1252,7 @@ msgstr "&C رونوشت برداري کل مسير "
 msgid "Copy &Filename"
 msgstr "&F رونوشت برداري نام پرونده"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

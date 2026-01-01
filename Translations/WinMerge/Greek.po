@@ -1250,7 +1250,7 @@ msgstr "Αντιγραφή πλήρους Δια&δρομής"
 msgid "Copy &Filename"
 msgstr "Αντιγραφή Ο&νόματος"
 
-msgid "&Edit Caption"
+msgid "&Edit Caption\tF2"
 msgstr ""
 
 msgid "Edit &Path\tCtrl+L"

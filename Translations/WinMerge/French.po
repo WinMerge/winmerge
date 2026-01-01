@@ -1053,8 +1053,8 @@ msgstr "&Copier le chemin complet"
 msgid "Copy &Filename"
 msgstr "Copier le nom de &fichier"
 
-msgid "&Edit Caption"
-msgstr "Modifi&er la légende"
+msgid "&Edit Caption\tF2"
+msgstr "Modifi&er la légende\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "Modifier le &chemin\tCtrl+L"

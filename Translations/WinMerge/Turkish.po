@@ -1047,8 +1047,8 @@ msgstr "Tam yolu &kopyala"
 msgid "Copy &Filename"
 msgstr "&Dosya adını kopyala"
 
-msgid "&Edit Caption"
-msgstr "&Başlığı düzenle"
+msgid "&Edit Caption\tF2"
+msgstr "&Başlığı düzenle\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr "&Yolu Düzenle\tCtrl+L"

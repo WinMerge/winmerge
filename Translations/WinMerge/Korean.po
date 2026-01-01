@@ -1260,8 +1260,8 @@ msgstr "전체 경로 복사(&C)"
 msgid "Copy &Filename"
 msgstr "파일 이름 복사(&F)"
 
-msgid "&Edit Caption"
-msgstr "캡션 편집(&E)"
+msgid "&Edit Caption\tF2"
+msgstr "캡션 편집(&E)\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

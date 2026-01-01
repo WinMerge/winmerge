@@ -1252,8 +1252,8 @@ msgstr "&Copia el camí sencer del fitxer"
 msgid "Copy &Filename"
 msgstr "Copia el nom del &fitxer"
 
-msgid "&Edit Caption"
-msgstr "&Edita la llegenda"
+msgid "&Edit Caption\tF2"
+msgstr "&Edita la llegenda\tF2"
 
 msgid "Edit &Path\tCtrl+L"
 msgstr ""

@@ -39,6 +39,7 @@ BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
+	ON_COMMAND_RANGE(ID_DIR_ITEM_RENAME, ID_DIR_ITEM_RENAME, OnContextMenuSelected)
 	ON_COMMAND_RANGE(ID_EDITOR_COPY_PATH, ID_EDITOR_SELECT_FILE, OnContextMenuSelected)
 END_MESSAGE_MAP()
 
@@ -441,6 +442,7 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		else
 			iBegin = 0;
 		break;
+	case ID_DIR_ITEM_RENAME:
 	case ID_EDITOR_EDIT_CAPTION:
 	case ID_EDITOR_EDIT_PATH:
 	{
@@ -450,7 +452,7 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		SetBackColor(::GetSysColor(COLOR_WINDOW));
 		RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 		String text;
-		if (nID == ID_EDITOR_EDIT_CAPTION)
+		if (nID == ID_EDITOR_EDIT_CAPTION || nID == ID_DIR_ITEM_RENAME)
 		{
 			m_bPathEditing = false;
 			text = (!m_sOriginalText.empty() && m_sOriginalText.at(0) == '*') ? m_sOriginalText.substr(2) : m_sOriginalText;
