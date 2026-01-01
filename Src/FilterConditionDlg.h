@@ -16,7 +16,7 @@ class CFilterConditionDlg : public CTrDialog
 public:
 // Construction
 	explicit CFilterConditionDlg(CWnd* pParent = nullptr);   // standard constructor
-	CFilterConditionDlg(bool diff, int side, const String& field, const String& propName, const String& ope, const String& transform, CWnd* pParent = nullptr);
+	CFilterConditionDlg(bool diff, int side, const String& field, const String& propName, const String& ope, const String& transform, bool recursive = false, CWnd* pParent = nullptr);
 
 // Dialog Data
 	//{{AFX_DATA(CFilterConditionDlg)
@@ -31,6 +31,7 @@ public:
 	String m_sValue1;
 	String m_sValue2;
 	String m_sExpression;
+	bool m_bRecursive;
 	CComboBox m_ctlValue1;
 	CComboBox m_ctlValue2;
 	CTime m_tmValue1;

@@ -24,7 +24,7 @@ CFilterConditionDlg::CFilterConditionDlg(CWnd* pParent /*= nullptr*/)
 {
 }
 
-CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& field, const String& propName, const String& ope, const String& transform, CWnd* pParent /* = nullptr*/)
+CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& field, const String& propName, const String& ope, const String& transform, bool recursive, CWnd* pParent /* = nullptr*/)
 : CTrDialog(CFilterConditionDlg::IDD, pParent)
 , m_bDiff(diff)
 , m_nSide(side)
@@ -34,6 +34,7 @@ CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& fiel
 , m_tmValue1(CTime::GetCurrentTime())
 , m_tmValue2(CTime::GetCurrentTime())
 , m_sLHS(transform)
+, m_bRecursive(recursive)
 {
 	//{{AFX_DATA_INIT(CFilterConditionDlg)
 		// NOTE: the ClassWizard will add member initialization here
@@ -80,7 +81,7 @@ String CFilterConditionDlg::GetLHS() const
 		}
 		else
 		{
-			lhs = strutils::format_string1(m_sLHS, Sides[m_nSide] + m_sField);
+			lhs = strutils::format_string1(m_sLHS, Sides[m_nSide] + (m_bRecursive ? _T("Recursive") : _T("")) + m_sField);
 		}
 	}
 	else
@@ -109,7 +110,9 @@ String CFilterConditionDlg::GetExpression()
 	String expression = (const wchar_t*)expressionptr;
 	const String lhs = GetLHS();
 	String result;
-	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sLHS == _T("lineCount(%1)") ||
+	if (m_sField == _T("Size") || m_sField == _T("TotalSize") ||
+	    m_sField == _T("Files") || m_sField == _T("Items") ||
+	    m_sField == _T("Date") || m_sLHS == _T("lineCount(%1)") ||
 	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I4 || m_vt == VT_UI8 || m_vt == VT_I8)
 	{
 		result = strutils::format_string3(expression, lhs, m_sValue1, m_sValue2);
@@ -156,7 +159,9 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	}
 
 	// Initialize the operator combo box
-	if (m_sField == _T("Size") || m_sField == _T("Date") || m_sField == _T("DateStr") ||
+	if (m_sField == _T("Size") || m_sField == _T("TotalSize") ||
+	    m_sField == _T("Files") || m_sField == _T("Items") ||
+	    m_sField == _T("Date") || m_sField == _T("DateStr") ||
 	    m_sLHS == _T("lineCount(%1)") || m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8)
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
@@ -195,14 +200,14 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	} 
 
 	// Initialize the value combo boxes
-	if (m_sField == _T("Size"))
+	if (m_sField == _T("Size") || m_sField == _T("TotalSize"))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0B"), _("1B"), _("10B"), _("100B"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0B"), _("1B"), _("10B"), _("100B"), _("1KB"), _("10KB"), _("100KB"), _("1MB"), _("10MB"), _("100MB"), _("1GB") });
 		m_sValue1 = _T("0B");
 		m_sValue2 = _T("0B");
 	}
-	else if (m_sLHS == _T("lineCount(%1)"))
+	else if (m_sLHS == _T("lineCount(%1)") || m_sField == _T("Files") || m_sField == _T("Items"))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });

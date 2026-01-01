@@ -635,6 +635,7 @@ void CDirView::Redisplay()
 		cnt += AddSpecialItems();
 	}
 
+	m_dirfilter.displayFilterHelper.SetDiffContext(&ctxt);
 	int alldiffs = 0;
 	DIFFITEM *diffpos = ctxt.GetFirstDiffPosition();
 	const int result = RedisplayChildren(diffpos, 0, cnt, alldiffs);
@@ -4668,7 +4669,6 @@ void CDirView::OnViewDisplayFilterBarApply()
 	auto* pFilterBar = GetParentFrame()->GetFilterBar();
 	pFilterBar->SaveFilterText();
 	m_dirfilter.displayFilterHelper.SetMaskOrExpression(pFilterBar->GetFilterText());
-	m_dirfilter.displayFilterHelper.SetDiffContext(&GetDiffContext());
 	Redisplay();
 	SetFocus();
 }

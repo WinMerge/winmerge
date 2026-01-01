@@ -1497,6 +1497,30 @@ msgstr "&Propriedades Adicionais..."
 msgid "Add F&older Condition"
 msgstr "Adicionar C&ondição de Pasta"
 
+msgid "&Files"
+msgstr ""
+
+msgid "0 files"
+msgstr ""
+
+msgid "1 file or more"
+msgstr ""
+
+msgid "&Items"
+msgstr ""
+
+msgid "0 items"
+msgstr ""
+
+msgid "1 item or more"
+msgstr ""
+
+msgid "&Total Size"
+msgstr ""
+
+msgid "&Recursive"
+msgstr ""
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "&Alvo: Qualquer (Esquerda/Meio/Direita)"
 

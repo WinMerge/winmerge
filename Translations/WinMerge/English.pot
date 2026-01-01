@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-12-31 22:15+0000\n"
+"POT-Creation-Date: 2026-01-02 07:06+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1488,6 +1488,30 @@ msgid "Additional &Properties..."
 msgstr ""
 
 msgid "Add F&older Condition"
+msgstr ""
+
+msgid "&Files"
+msgstr ""
+
+msgid "0 files"
+msgstr ""
+
+msgid "1 file or more"
+msgstr ""
+
+msgid "&Items"
+msgstr ""
+
+msgid "0 items"
+msgstr ""
+
+msgid "1 item or more"
+msgstr ""
+
+msgid "&Total Size"
+msgstr ""
+
+msgid "&Recursive"
 msgstr ""
 
 msgid "Target: &Any (Left/Middle/Right)"

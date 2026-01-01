@@ -34,6 +34,15 @@ static void DisableMenuItemRecursive(CMenu* pMenu, UINT idDisabled)
 		});
 }
 
+static void CheckMenuItemRecursive(CMenu* pMenu, UINT idChecked, bool checked)
+{
+	TraverseMenuRecursive(pMenu, [idChecked, checked](CMenu* pMenu, int index, UINT id)
+		{
+			if (id == idChecked)
+				pMenu->CheckMenuItem(index, (checked ? MF_CHECKED : 0) | MF_BYPOSITION);
+		});
+}
+
 static void RemoveMenuItemsInRangeRecursive(CMenu* pMenu, UINT idStart, UINT idEnd)
 {
 	TraverseMenuRecursive(pMenu, [idStart, idEnd](CMenu* pMenu, int index, UINT id)
@@ -85,6 +94,7 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			for (int i = ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT; i <= ID_FILTERMENU_FILE_CONDITION_DIFF_ALL; i++)
 				pPopup->CheckMenuItem(i,
 					MF_BYCOMMAND | ((ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT + m_targetDiffSide) == i ? MF_CHECKED : 0));
+			CheckMenuItemRecursive(pPopup, ID_FILTERMENU_FOLDER_STATS_RECURSIVE, m_recursive);
 
 			if (m_targetDiffSide == 3)
 			{
@@ -108,6 +118,15 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 			{
 				m_targetDiffSide = command - ID_FILTERMENU_FILE_CONDITION_DIFF_LEFT_RIGHT;
 				continue;
+			}
+			else if (command == ID_FILTERMENU_FOLDER_STATS_RECURSIVE)
+			{
+				m_recursive = !m_recursive;
+				continue;
+			}
+			else if (command == ID_FILTERMENU_ADDITIONAL_PROPS || command == ID_FILTERMENU_DIFF_ADDITIONAL_PROPS)
+			{
+				result = ShowPropMenu(command, masks, pParentWnd);
 			}
 			else
 			{
@@ -200,6 +219,11 @@ String CFileFilterHelperMenu::defaultProp(const String& name) const
 {
 	const String Sides[] = { _T(""), _T("Left"), _T("Middle"), _T("Right") };
 	return Sides[m_targetSide] + (m_propName.empty() ? name : _T("Prop(\"") + m_propName + _T("\")"));
+}
+
+String CFileFilterHelperMenu::folderPropName(const String& name) const
+{
+	return m_recursive ? (_T("Recursive") + name) : name;
 }
 
 String CFileFilterHelperMenu::defaultDiffProp(const String& name, int i) const
@@ -391,6 +415,57 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	else if (command == ID_FILTERMENU_FOLDER_DATE_RANGE)
 	{
 		CFilterConditionDlg dlg(false, m_targetSide, _T("DateStr"), _T(""), _("%1 = %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
+	}
+	else if (command >= ID_FILTERMENU_FOLDER_FILES_EQ_0 && command <= ID_FILTERMENU_FOLDER_FILES_GE_1)
+	{
+		static const String FilesConditions[] = {
+			_T("%1 == 0"), _T("%1 >= 1")
+		};
+		const String identifier = defaultProp(folderPropName(_T("Files")));
+		result = masks.empty() ? masks : masks + _T("|");
+		*result += _T("de:") + strutils::format_string1(FilesConditions[command - ID_FILTERMENU_FOLDER_FILES_EQ_0], identifier);
+	}
+	else if (command == ID_FILTERMENU_FOLDER_FILES_RANGE)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Files"), m_propName, _("%1 = %2"), _T("%1"), m_recursive);
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
+	}
+	else if (command >= ID_FILTERMENU_FOLDER_ITEMS_EQ_0 && command <= ID_FILTERMENU_FOLDER_ITEMS_GE_1)
+	{
+		static const String ItemsConditions[] = {
+			_T("%1 == 0"), _T("%1 >= 1")
+		};
+		const String identifier = defaultProp(folderPropName(_T("Items")));
+		result = masks.empty() ? masks : masks + _T("|");
+		*result += _T("de:") + strutils::format_string1(ItemsConditions[command - ID_FILTERMENU_FOLDER_ITEMS_EQ_0], identifier);
+	}
+	else if (command == ID_FILTERMENU_FOLDER_ITEMS_RANGE)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Items"), _T(""), _("%1 = %2"), _T("%1"), m_recursive);
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
+	}
+	else if (command >= ID_FILTERMENU_FOLDER_TOTALSIZE_LT_1KB && command <= ID_FILTERMENU_FOLDER_TOTALSIZE_GE_1GB)
+	{
+		static const String SizeConditions[] = {
+			_T("%1 < 1KB"), _T("%1 >= 1KB"),
+			_T("%1 < 10KB"), _T("%1 >= 10KB"),
+			_T("%1 < 100KB"), _T("%1 >= 100KB"),
+			_T("%1 < 1MB"), _T("%1 >= 1MB"),
+			_T("%1 < 10MB"), _T("%1 >= 10MB"),
+			_T("%1 < 100MB"), _T("%1 >= 100MB"),
+			_T("%1 < 1GB"), _T("%1 >= 1GB")
+		};
+		const String identifier = defaultProp(folderPropName(_T("TotalSize")));
+		result = masks.empty() ? masks : masks + _T("|");
+		*result += _T("de:") + strutils::format_string1(SizeConditions[command - ID_FILTERMENU_FOLDER_TOTALSIZE_LT_1KB], identifier);
+	}
+	else if (command == ID_FILTERMENU_FOLDER_TOTALSIZE_RANGE)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("TotalSize"), _T(""), _("%1 = %2"), _T("%1"), m_recursive);
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
 	}
