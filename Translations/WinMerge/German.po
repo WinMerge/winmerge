@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-12-26 09:22+0100\n"
+"PO-Revision-Date: 2026-01-01 11:40+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -658,7 +658,7 @@ msgid "Swap 1st | &3rd"
 msgstr "1. | &3. vertauschen"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "Filterleiste a&nzeigen\tStrg+Umschalt+L"
 
 #, c-format
 msgid "Com&pare Statistics..."
