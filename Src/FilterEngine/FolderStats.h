@@ -2,6 +2,8 @@
  * @file FolderStats.h
  * @brief Declaration file for FolderStats functions
  */
+#pragma once
+
 #include "UnicodeString.h"
 
 namespace FolderStats
