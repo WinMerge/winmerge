@@ -1497,9 +1497,6 @@ msgstr "Dodatkowe właściwości..."
 msgid "Add F&older Condition"
 msgstr "Dodaj warunek folderu"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

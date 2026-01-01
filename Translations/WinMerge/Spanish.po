@@ -1499,9 +1499,6 @@ msgstr ""
 msgid "Add F&older Condition"
 msgstr "Añadir c&ondición de carpeta"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

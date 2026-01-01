@@ -1508,9 +1508,6 @@ msgstr "額外屬性(&P)..."
 msgid "Add F&older Condition"
 msgstr "新增資料夾條件(&O)"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

@@ -1503,9 +1503,6 @@ msgstr "&Propriétés supplémentaires..."
 msgid "Add F&older Condition"
 msgstr "Ajouter une condition de d&ossier"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

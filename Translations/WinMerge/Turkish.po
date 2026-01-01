@@ -1497,9 +1497,6 @@ msgstr "Ek &Özellikler..."
 msgid "Add F&older Condition"
 msgstr "Klasör K&oşulu Ekle"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

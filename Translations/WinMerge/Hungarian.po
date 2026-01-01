@@ -1726,9 +1726,6 @@ msgstr ""
 msgid "Add F&older Condition"
 msgstr "&Mappa feltétel hozzáadása"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

@@ -1496,9 +1496,6 @@ msgstr "&Papildomos savybės..."
 msgid "Add F&older Condition"
 msgstr "Pridėti katal&ogo sąlygą"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

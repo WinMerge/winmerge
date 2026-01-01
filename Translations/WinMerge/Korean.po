@@ -1733,9 +1733,6 @@ msgstr "추가 속성(&P)..."
 msgid "Add F&older Condition"
 msgstr "폴더 조건 추가(&O)"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

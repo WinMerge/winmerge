@@ -1499,9 +1499,6 @@ msgstr "&Pruprietà addiziunale…"
 msgid "Add F&older Condition"
 msgstr "Aghjunghje una cundizione di &cartulare"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

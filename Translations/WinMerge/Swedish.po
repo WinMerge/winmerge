@@ -1499,9 +1499,6 @@ msgstr ""
 msgid "Add F&older Condition"
 msgstr "Lägg till katalogkondition"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

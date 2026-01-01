@@ -1725,9 +1725,6 @@ msgstr ""
 msgid "Add F&older Condition"
 msgstr ""
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

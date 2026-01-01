@@ -1498,9 +1498,6 @@ msgstr "Дополнительные свойства..."
 msgid "Add F&older Condition"
 msgstr "Добавить условие папки"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

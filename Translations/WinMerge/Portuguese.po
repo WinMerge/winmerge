@@ -1497,9 +1497,6 @@ msgstr "&Propriedades adicionais..."
 msgid "Add F&older Condition"
 msgstr "Adicionar c&ondição de pasta"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

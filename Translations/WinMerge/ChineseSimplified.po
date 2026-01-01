@@ -1500,9 +1500,6 @@ msgstr "附加属性(&)..."
 msgid "Add F&older Condition"
 msgstr "添加文件夹条件(&O)"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 

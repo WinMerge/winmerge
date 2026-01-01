@@ -1731,9 +1731,6 @@ msgstr "Zusätzliche &Eigenschaften..."
 msgid "Add F&older Condition"
 msgstr "&Ordner-Bedingung hinzufügen"
 
-msgid "&Folder Stats"
-msgstr ""
-
 msgid "&Files"
 msgstr ""
 
