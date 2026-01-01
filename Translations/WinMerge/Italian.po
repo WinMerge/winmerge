@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 26.12.2025\n"
+"Project-Id-Version: WinMerge - Italian - 01.01.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-12-26 09:52+0100\n"
+"PO-Revision-Date: 2026-01-01 20:42+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -560,7 +560,7 @@ msgid "Swap 1st | &3rd"
 msgstr "Scambia 1° | &3°"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "Visualizza barra filtro\tCtrl+Maiusc+L"
 
 msgid "Com&pare Statistics..."
 msgstr "Statistic&he confronto..."
