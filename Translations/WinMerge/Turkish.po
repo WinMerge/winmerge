@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-01-01 11:54+0300\n"
+"PO-Revision-Date: 2026-01-02 14:04+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -1498,28 +1498,28 @@ msgid "Add F&older Condition"
 msgstr "Klasör K&oşulu Ekle"
 
 msgid "&Files"
-msgstr ""
+msgstr "&Dosyalar"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 dosya"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 dosya veya daha fazla"
 
 msgid "&Items"
-msgstr ""
+msgstr "&Ögeler"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 öge"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 öge veya daha fazla"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "&Toplam Boyut"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "&Özyinelemeli"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Hedef: &Herhangi biri (Sol/Orta/Sağ)"
