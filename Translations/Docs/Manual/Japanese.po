@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-01-01 20:56+0900\n"
+"POT-Creation-Date: 2026-01-02 14:41+0900\n"
 "PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -11117,15 +11117,15 @@ msgid "Shell Integration page"
 msgstr "シェル統合ページ"
 
 #. type: Content of: <article><title><indexterm><primary>
-#: English/Configuration.xml:2921 English/Faq.xml:95 English/Install.xml:175
-#: English/Install.xml:190 English/Install.xml:353
+#: English/Configuration.xml:2921 English/Faq.xml:95 English/Install.xml:178
+#: English/Install.xml:193 English/Install.xml:356
 #: English/Version_control.xml:4
 msgid "integration"
 msgstr "統合"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2923 English/Install.xml:192
-#: English/Install.xml:355
+#: English/Configuration.xml:2923 English/Install.xml:195
+#: English/Install.xml:358
 msgid "with Windows shell"
 msgstr ""
 
@@ -11333,7 +11333,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Faq.xml:91 English/Install.xml:181 English/Version_control.xml:53
+#: English/Faq.xml:91 English/Install.xml:184 English/Version_control.xml:53
 msgid "version control systems"
 msgstr "バージョン管理システム"
 
@@ -15466,37 +15466,41 @@ msgstr "互換性"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
 #: English/Install.xml:27
-msgid ""
-"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.8/"
-"\">WinMerge 2.16.8 (64 bit)</ulink> supports Windows 7 and later. It runs on "
-"64 bit Windows."
+msgid "WinMerge 2.16.53 and later (64 bit) require Windows 10 or later."
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:31
+#: English/Install.xml:30
 msgid ""
-"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.8/"
-"\">WinMerge 2.16.8 (32 bit)</ulink> supports Windows XP SP3 and later. It "
-"runs on both 32 bit and 64 bit Windows."
+"WinMerge (32 bit) supports Windows XP SP3 and later, including the latest "
+"versions.  It runs on both 32 bit and 64 bit Windows."
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:35
+#: English/Install.xml:34
 msgid ""
-"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.0/"
-"\">WinMerge 2.16.0</ulink> supports Windows XP SP3 and later. It runs on "
-"both 32 bit and 64 bit Windows."
+"<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+"stable/2.16.52.2/\">WinMerge 2.16.52.2 (64 bit)</ulink> was the last 64-bit "
+"version to support Windows 7 64 bit."
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:39
+#: English/Install.xml:38
+msgid ""
+"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.6/"
+"\">WinMerge 2.16.6 (64 bit)</ulink> was the last 64-bit version to support "
+"Windows XP 64 bit."
+msgstr ""
+
+#. type: Content of: <article><section><itemizedlist><listitem><para>
+#: English/Install.xml:42
 msgid ""
 "<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.14.0/"
 "\">WinMerge 2.14.0</ulink> was the last version to support Windows 2000."
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:43
+#: English/Install.xml:46
 msgid ""
 "<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.12.4/"
 "\">WinMerge 2.12.4</ulink> was the last version to support Windows 95, 98, "
@@ -15504,17 +15508,17 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:47
+#: English/Install.xml:50
 msgid "WinMerge is not supported on Windows RT."
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Install.xml:53
+#: English/Install.xml:56
 msgid "Using the installer (recommended)"
 msgstr "インストーラーを使用する (推奨)"
 
 #. type: Content of: <article><section><note><para>
-#: English/Install.xml:56
+#: English/Install.xml:59
 msgid ""
 "The installer requires Administrator user privileges. If you don't have "
 "admin user privileges, you can install WinMerge by unzipping from an archive "
@@ -15527,7 +15531,7 @@ msgstr ""
 "ルできます(<xref linkend=\"InstallFromArchive\" />を参照してください)."
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:61
+#: English/Install.xml:64
 msgid ""
 "Using the installer is recommended for most users. The installer prompts for "
 "the location where WinMerge is installed. It then installs the files, "
@@ -15540,7 +15544,7 @@ msgstr ""
 "WinMergeのインストール:"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:68
+#: English/Install.xml:71
 msgid ""
 "Start the installer executable (usually named <filename>WinMerge-"
 "<replaceable>version</replaceable>-setup.exe</filename>)."
@@ -15549,13 +15553,13 @@ msgstr ""
 "replaceable>-setup.exe</filename>のような名前)。"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:73
+#: English/Install.xml:76
 msgid "Click <guibutton>Next</guibutton> in the License Agreement screen."
 msgstr ""
 "ライセンス認証画面の<guibutton>次へ</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:78
+#: English/Install.xml:81
 msgid ""
 "In the Select Destination Location page, accept the location for WinMerge "
 "or, if you choose another location, we recommend that you install WinMerge "
@@ -15566,7 +15570,7 @@ msgstr ""
 "in its own folder.  <guibutton>次へ</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:85
+#: English/Install.xml:88
 msgid ""
 "In the Select Components page, choose one of the preconfigured installations "
 "in the top control. We recommend the <guilabel>Typical</guilabel> "
@@ -15585,57 +15589,57 @@ msgstr ""
 "ポーネントを選択してください。"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:96
+#: English/Install.xml:99
 msgid "WinMerge executables"
 msgstr "WinMerge 実行ファイル"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:95
+#: English/Install.xml:98
 msgid "WinMerge core files<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "WinMergeコアファイル<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:100
+#: English/Install.xml:103
 msgid "WinMerge executable, Help, and other needed files. Cannot be unchecked."
 msgstr ""
 "WinMerge実行ファイル、ヘルプ、その他必要なファイル。 チェックを外すことはでき"
 "ません。"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:107
+#: English/Install.xml:110
 msgid "Shellextension"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:106
+#: English/Install.xml:109
 msgid ""
 "32-bit WinMerge ShellExtension<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:111
+#: English/Install.xml:114
 msgid ""
 "The option enables you to launch WinMerge directly from Windows Explorer, "
 "comparing items that you have selected there."
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:116
+#: English/Install.xml:119
 msgid "Filters"
 msgstr "フィルター"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:119
+#: English/Install.xml:122
 msgid "File filter files enable you to narrow the scope of comparisons."
 msgstr "ファイル・フィルターファイルは、比較範囲を限定することができます。"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:125
+#: English/Install.xml:128
 msgid "Plugins"
 msgstr "プラグイン"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:128
+#: English/Install.xml:131
 msgid ""
 "WinMerge plugins are custom dlls or scriptlets, written in the COM API, that "
 "you can use to preprocess data before a comparison."
@@ -15644,12 +15648,12 @@ msgstr ""
 "で、 比較前にデータを前処理するために使用することができます。"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:135
+#: English/Install.xml:138
 msgid "Languages"
 msgstr "言語"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:138
+#: English/Install.xml:141
 msgid ""
 "WinMerge translation files. If you want to configure WinMerge to use a "
 "different language than English, expand this item and choose one or more "
@@ -15667,20 +15671,20 @@ msgstr ""
 "照してください。"
 
 #. type: Content of: <article><section><orderedlist><listitem><para>
-#: English/Install.xml:150 English/Install.xml:169 English/Install.xml:254
-#: English/Install.xml:308
+#: English/Install.xml:153 English/Install.xml:172 English/Install.xml:257
+#: English/Install.xml:311
 msgid "Click <guibutton>Next</guibutton>."
 msgstr "<guibutton>次へ</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:154
+#: English/Install.xml:157
 msgid "In the Select Start Menu Folder page, configure WinMerge shortcuts."
 msgstr ""
 "プログラムグループの指定ページでは、WinMergeのショートカットを設定することが"
 "できます。"
 
 #. type: Content of: <article><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Install.xml:159
+#: English/Install.xml:162
 msgid ""
 "Accept the default setting to create a program shortcut, or specify a "
 "different folder."
@@ -15689,7 +15693,7 @@ msgstr ""
 "指定してください。"
 
 #. type: Content of: <article><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Install.xml:164
+#: English/Install.xml:167
 msgid ""
 "Optionally, check the option <guilabel>Don't create a Start Menu folder</"
 "guilabel>."
@@ -15698,17 +15702,17 @@ msgstr ""
 "ください。"
 
 #. type: Content of: <article><section><orderedlist><listitem><para><indexterm><secondary>
-#: English/Install.xml:177
+#: English/Install.xml:180
 msgid "with version control system"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><para><indexterm><primary>
-#: English/Install.xml:179
+#: English/Install.xml:182
 msgid "VCS"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><para>
-#: English/Install.xml:173
+#: English/Install.xml:176
 msgid ""
 "In the Select Additional Tasks page, specify any additional tasks:"
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
@@ -15719,17 +15723,17 @@ msgstr ""
 "id=\"1\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:186
+#: English/Install.xml:189
 msgid "Enable Explorer context menu integration"
 msgstr "エクスプローラーのコンテキストメニューに追加(E)"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Install.xml:196 English/Install.xml:357 English/Open_paths.xml:150
+#: English/Install.xml:199 English/Install.xml:360 English/Open_paths.xml:150
 msgid "Windows shell integration"
 msgstr "Windowsシェル統合"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:199
+#: English/Install.xml:202
 msgid ""
 "Enables you to <link linkend=\"OpenPaths_shell-integ\">launch WinMerge "
 "compare operations from Windows Explorer</link> (this integration can be "
@@ -15740,141 +15744,141 @@ msgstr ""
 "中で、有効、または、無効にすることができます)。"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:207
+#: English/Install.xml:210
 msgid "Add WinMerge folder to your system path"
 msgstr "システム環境変数PATHへWinMergeのフォルダーを追加する(A)"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:210
+#: English/Install.xml:213
 msgid ""
 "Adds the WinMerge installation folder to your system's Path environment "
 "variable."
 msgstr "WinMergeのインストールフォルダーを、システム環境変数へ追加します。"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:217
+#: English/Install.xml:220
 msgid "TortoiseCVS integration"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:216
+#: English/Install.xml:219
 msgid "Integrate with TortoiseCVS<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:221
+#: English/Install.xml:224
 msgid "Sets WinMerge to be the TortoiseCVS diff application."
 msgstr "WinMergeを、TortoiseCVSの差分比較ツールに設定します。"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Install.xml:227 English/Version_control.xml:65
+#: English/Install.xml:230 English/Version_control.xml:65
 #: English/Version_control.xml:74
 msgid "TortoiseSVN integration"
 msgstr "TortoiseSVNとの統合"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:226
+#: English/Install.xml:229
 msgid "Integrate with TortoiseSVN<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:231
+#: English/Install.xml:234
 msgid "Sets WinMerge to be the TortoiseSVN diff application."
 msgstr "WinMergeを、TortoiseSVNの差分比較ツールに設定します。"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:237
+#: English/Install.xml:240
 msgid "TortoiseGit integration"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:236
+#: English/Install.xml:239
 msgid "Integrate with TortoiseGit<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:241
+#: English/Install.xml:244
 msgid "Sets WinMerge to be the TortoiseGit diff application."
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:246
+#: English/Install.xml:249
 msgid "Create a desktop shortcut"
 msgstr "デスクトップ上へアイコンを作成"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:249
+#: English/Install.xml:252
 msgid "Adds the WinMerge shortcut to your Windows Desktop."
 msgstr "デスクトップへ、WinMergeのショートカットを追加します。"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:258
+#: English/Install.xml:261
 msgid ""
 "In the 3-way merge wizard page, register WinMerge as 3-way merge tool for "
 "TortoiseSVN/Git."
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:264
+#: English/Install.xml:267
 msgid "3-way merge tool"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:263
+#: English/Install.xml:266
 msgid ""
 "Register WinMerge as a 3-way merge tool<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:268
+#: English/Install.xml:271
 msgid "Register WinMerge as 3-way merge tool for TortoiseSVN/Git."
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:274
+#: English/Install.xml:277
 msgid "Merge at right pane"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:277
+#: English/Install.xml:280
 msgid "Merge at right pane."
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:283
+#: English/Install.xml:286
 msgid "Merge at center pane"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:286
+#: English/Install.xml:289
 msgid "Merge at center pane."
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:291
+#: English/Install.xml:294
 msgid "Merge at left pane"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:294
+#: English/Install.xml:297
 msgid "Merge at left pane."
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:299
+#: English/Install.xml:302
 msgid "Auto-merge at startup time"
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:302
+#: English/Install.xml:305
 msgid ""
 "Optionally, disable the option <guilabel>Auto-merge at startup time</"
 "guilabel>."
 msgstr ""
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:312
+#: English/Install.xml:315
 msgid ""
 "In the Ready to Install page, verify your install selections.  If necessary, "
 "click <guibutton>Back</guibutton> to change anything in a previous page. "
@@ -15887,7 +15891,7 @@ msgstr ""
 "ンストール(I)</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:320
+#: English/Install.xml:323
 msgid ""
 "After the installer has copied files, the final screen appears.  Using the "
 "two check boxes, confirm whether the created WinMerge Start menu folder "
@@ -15898,18 +15902,18 @@ msgstr ""
 "ダーが開けるかどうか、 WinMergeが起動可能かどうかを確認することができます。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Install.xml:330
+#: English/Install.xml:333
 msgid "archive, installing WinMerge from"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Install.xml:329
+#: English/Install.xml:332
 msgid "Installing from an archive<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "圧縮ファイルからのインストール<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:333
+#: English/Install.xml:336
 msgid ""
 "WinMerge is pretty much independent of other system components. It is not "
 "tightly integrated with Windows, and does not use many DLLs."
@@ -15918,7 +15922,7 @@ msgstr ""
 "しっかりとWindowsに統合されず、多くのDLLを使用しません。"
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:336
+#: English/Install.xml:339
 msgid ""
 "Archive files have the correct folder structure. WinMerge should be unzipped "
 "preserving this folder structure in the destination folder. For example, the "
@@ -15938,7 +15942,7 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:345
+#: English/Install.xml:348
 msgid ""
 "After the files are unzipped, WinMerge is ready to run! Shell integration "
 "and archive integration may need additional steps, as described in the next "
@@ -15948,7 +15952,7 @@ msgstr ""
 "ブ統合は、次のセクションで説明される、追加のステップが必要です。"
 
 #. type: Content of: <article><section><title>
-#: English/Install.xml:351
+#: English/Install.xml:354
 msgid ""
 "Enabling Windows Explorer shell integration without the installer "
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
@@ -15959,7 +15963,7 @@ msgstr ""
 "id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:360
+#: English/Install.xml:363
 msgid ""
 "If you do not use the install program and you want to enable Windows "
 "Explorer shell integration, you must register the shell integration DLL "
@@ -15970,12 +15974,12 @@ msgstr ""
 "せん。"
 
 #. type: Content of: <article><section><note><para>
-#: English/Install.xml:365
+#: English/Install.xml:368
 msgid "Installing shell integration requires Administrator user privileges."
 msgstr "シェル統合のインストールは、Administrator権限を必要とします。"
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:369
+#: English/Install.xml:372
 msgid ""
 "Open WinMerge and using the <xref linkend=\"Configuration_shell-integ\" /> "
 "in the Options window. In the Options window use the <guibutton>Register "

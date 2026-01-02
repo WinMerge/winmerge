@@ -21,37 +21,39 @@ url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
 	<title>תאימות</title>
 	
 	<itemizedlist>
-	  <listitem>
-	    <para><ulink
-url="https://sourceforge.net/projects/winmerge/files/stable/2.16.8/">WinMerge
-2.16.8 (64 bit)</ulink> תומך ב-Windows 7 ואילך. הוא פועל על Windows 64 ביט.</para>
-	  </listitem>
-	  <listitem>
-	    <para><ulink
-url="https://sourceforge.net/projects/winmerge/files/stable/2.16.8/">WinMerge
-2.16.8 (32 bit)</ulink> תומך ב-Windows XP SP3 ואילך. הוא פועל הן על Windows
-32 ביט והן על Windows 64 ביט.</para>
-	  </listitem>
-	  <listitem>
-	    <para><ulink
-url="https://sourceforge.net/projects/winmerge/files/stable/2.16.0/">WinMerge
-2.16.0</ulink> תומך ב-Windows XP SP3 ואילך. הוא פועל הן על Windows 32 ביט
-והן על Windows 64 ביט.</para>
-	  </listitem>
-	  <listitem>
-	    <para><ulink
+    <listitem>
+      <para>WinMerge 2.16.53 and later (64 bit) require Windows 10 or later.</para>
+    </listitem>
+    <listitem>
+      <para>WinMerge (32 bit) supports Windows XP SP3 and later, including the latest
+versions.  It runs on both 32 bit and 64 bit Windows.</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.16.52.2/">WinMerge
+2.16.52.2 (64 bit)</ulink> was the last 64-bit version to support Windows 7
+64 bit.</para>
+    </listitem>
+    <listitem>
+      <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.16.6/">WinMerge
+2.16.6 (64 bit)</ulink> was the last 64-bit version to support Windows XP 64
+bit.</para>
+    </listitem>
+    <listitem>
+      <para><ulink
 url="https://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge
 2.14.0</ulink> הייתה הגרסה האחרונה שתמכה ב-Windows 2000.</para>
-	  </listitem>
-	  <listitem>
-	    <para><ulink
+    </listitem>
+    <listitem>
+      <para><ulink
 url="https://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge
 2.12.4</ulink> הייתה הגרסה האחרונה שתמכה ב-Windows 95, 98, ME ו-NT.</para>
-	  </listitem>
-	  <listitem>
-	    <para>WinMerge אינו נתמך ב-Windows RT.</para>
-	  </listitem>
-	</itemizedlist>
+    </listitem>
+    <listitem>
+      <para>WinMerge אינו נתמך ב-Windows RT.</para>
+    </listitem>
+  </itemizedlist>
   </section>
   
   <section id="Installing_usinginstaller">

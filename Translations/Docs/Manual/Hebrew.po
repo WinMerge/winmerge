@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-01-01 20:56+0900\n"
+"POT-Creation-Date: 2026-01-02 14:41+0900\n"
 "PO-Revision-Date: 2025-03-13 09:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11522,15 +11522,15 @@ msgid "Shell Integration page"
 msgstr "דף שילוב מעטפת"
 
 #. type: Content of: <article><title><indexterm><primary>
-#: English/Configuration.xml:2921 English/Faq.xml:95 English/Install.xml:175
-#: English/Install.xml:190 English/Install.xml:353
+#: English/Configuration.xml:2921 English/Faq.xml:95 English/Install.xml:178
+#: English/Install.xml:193 English/Install.xml:356
 #: English/Version_control.xml:4
 msgid "integration"
 msgstr "שילוב"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2923 English/Install.xml:192
-#: English/Install.xml:355
+#: English/Configuration.xml:2923 English/Install.xml:195
+#: English/Install.xml:358
 msgid "with Windows shell"
 msgstr "עם מעטפת Windows"
 
@@ -11769,7 +11769,7 @@ msgstr ""
 "2011</ulink> מאת Jochen Neubeck. גרסה זו אמורה לעבוד עם Wine גם תחת Linux."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Faq.xml:91 English/Install.xml:181 English/Version_control.xml:53
+#: English/Faq.xml:91 English/Install.xml:184 English/Version_control.xml:53
 msgid "version control systems"
 msgstr "מערכות בקרת גרסאות"
 
@@ -15810,39 +15810,56 @@ msgstr "תאימות"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
 #: English/Install.xml:27
-msgid ""
-"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.8/"
-"\">WinMerge 2.16.8 (64 bit)</ulink> supports Windows 7 and later. It runs on "
-"64 bit Windows."
+msgid "WinMerge 2.16.53 and later (64 bit) require Windows 10 or later."
 msgstr ""
-"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.8/"
-"\">WinMerge 2.16.8 (64 bit)</ulink> תומך ב-Windows 7 ואילך. הוא פועל על "
-"Windows 64 ביט."
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:31
+#: English/Install.xml:30
+#, fuzzy
+#| msgid ""
+#| "<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+#| "stable/2.16.8/\">WinMerge 2.16.8 (32 bit)</ulink> supports Windows XP SP3 "
+#| "and later. It runs on both 32 bit and 64 bit Windows."
 msgid ""
-"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.8/"
-"\">WinMerge 2.16.8 (32 bit)</ulink> supports Windows XP SP3 and later. It "
-"runs on both 32 bit and 64 bit Windows."
+"WinMerge (32 bit) supports Windows XP SP3 and later, including the latest "
+"versions.  It runs on both 32 bit and 64 bit Windows."
 msgstr ""
 "<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.8/"
 "\">WinMerge 2.16.8 (32 bit)</ulink> תומך ב-Windows XP SP3 ואילך. הוא פועל הן "
 "על Windows 32 ביט והן על Windows 64 ביט."
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:35
+#: English/Install.xml:34
+#, fuzzy
+#| msgid ""
+#| "<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+#| "stable/2.14.0/\">WinMerge 2.14.0</ulink> was the last version to support "
+#| "Windows 2000."
 msgid ""
-"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.0/"
-"\">WinMerge 2.16.0</ulink> supports Windows XP SP3 and later. It runs on "
-"both 32 bit and 64 bit Windows."
+"<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+"stable/2.16.52.2/\">WinMerge 2.16.52.2 (64 bit)</ulink> was the last 64-bit "
+"version to support Windows 7 64 bit."
 msgstr ""
-"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.0/"
-"\">WinMerge 2.16.0</ulink> תומך ב-Windows XP SP3 ואילך. הוא פועל הן על "
-"Windows 32 ביט והן על Windows 64 ביט."
+"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.14.0/"
+"\">WinMerge 2.14.0</ulink> הייתה הגרסה האחרונה שתמכה ב-Windows 2000."
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:39
+#: English/Install.xml:38
+#, fuzzy
+#| msgid ""
+#| "<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+#| "stable/2.14.0/\">WinMerge 2.14.0</ulink> was the last version to support "
+#| "Windows 2000."
+msgid ""
+"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.16.6/"
+"\">WinMerge 2.16.6 (64 bit)</ulink> was the last 64-bit version to support "
+"Windows XP 64 bit."
+msgstr ""
+"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.14.0/"
+"\">WinMerge 2.14.0</ulink> הייתה הגרסה האחרונה שתמכה ב-Windows 2000."
+
+#. type: Content of: <article><section><itemizedlist><listitem><para>
+#: English/Install.xml:42
 msgid ""
 "<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.14.0/"
 "\">WinMerge 2.14.0</ulink> was the last version to support Windows 2000."
@@ -15851,7 +15868,7 @@ msgstr ""
 "\">WinMerge 2.14.0</ulink> הייתה הגרסה האחרונה שתמכה ב-Windows 2000."
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:43
+#: English/Install.xml:46
 msgid ""
 "<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/2.12.4/"
 "\">WinMerge 2.12.4</ulink> was the last version to support Windows 95, 98, "
@@ -15862,17 +15879,17 @@ msgstr ""
 "ו-NT."
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Install.xml:47
+#: English/Install.xml:50
 msgid "WinMerge is not supported on Windows RT."
 msgstr "WinMerge אינו נתמך ב-Windows RT."
 
 #. type: Content of: <article><section><title>
-#: English/Install.xml:53
+#: English/Install.xml:56
 msgid "Using the installer (recommended)"
 msgstr "שימוש במתקין (מומלץ)"
 
 #. type: Content of: <article><section><note><para>
-#: English/Install.xml:56
+#: English/Install.xml:59
 msgid ""
 "The installer requires Administrator user privileges. If you don't have "
 "admin user privileges, you can install WinMerge by unzipping from an archive "
@@ -15885,7 +15902,7 @@ msgstr ""
 "(WinMerge-x.x.x-x64-PerUser-Setup.exe)."
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:61
+#: English/Install.xml:64
 msgid ""
 "Using the installer is recommended for most users. The installer prompts for "
 "the location where WinMerge is installed. It then installs the files, "
@@ -15897,7 +15914,7 @@ msgstr ""
 "לתפריט התחל. כדי להתקין את WinMerge:"
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:68
+#: English/Install.xml:71
 msgid ""
 "Start the installer executable (usually named <filename>WinMerge-"
 "<replaceable>version</replaceable>-setup.exe</filename>)."
@@ -15906,12 +15923,12 @@ msgstr ""
 "<replaceable>גרסה</replaceable>-setup.exe</filename>)."
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:73
+#: English/Install.xml:76
 msgid "Click <guibutton>Next</guibutton> in the License Agreement screen."
 msgstr "לחץ על <guibutton>הבא</guibutton> במסך הסכם הרישיון."
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:78
+#: English/Install.xml:81
 msgid ""
 "In the Select Destination Location page, accept the location for WinMerge "
 "or, if you choose another location, we recommend that you install WinMerge "
@@ -15921,7 +15938,7 @@ msgstr ""
 "ממליצים שתתקין את WinMerge בתיקייה משלו. לחץ על <guibutton>הבא</guibutton>."
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:85
+#: English/Install.xml:88
 msgid ""
 "In the Select Components page, choose one of the preconfigured installations "
 "in the top control. We recommend the <guilabel>Typical</guilabel> "
@@ -15938,34 +15955,34 @@ msgstr ""
 "עבור שפה שונה מאנגלית, בחר את רכיב <guilabel>שפות</guilabel>."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:96
+#: English/Install.xml:99
 msgid "WinMerge executables"
 msgstr "קבצי הפעלה של WinMerge"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:95
+#: English/Install.xml:98
 msgid "WinMerge core files<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "קבצי ליבה של WinMerge<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:100
+#: English/Install.xml:103
 msgid "WinMerge executable, Help, and other needed files. Cannot be unchecked."
 msgstr ""
 "קובץ ההפעלה של WinMerge, עזרה וקבצים נחוצים אחרים. לא ניתן לבטל את הסימון."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:107
+#: English/Install.xml:110
 msgid "Shellextension"
 msgstr "הרחבת מעטפת"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:106
+#: English/Install.xml:109
 msgid ""
 "32-bit WinMerge ShellExtension<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "הרחבת מעטפת WinMerge 32 ביט<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:111
+#: English/Install.xml:114
 msgid ""
 "The option enables you to launch WinMerge directly from Windows Explorer, "
 "comparing items that you have selected there."
@@ -15974,22 +15991,22 @@ msgstr ""
 "שבחרת שם."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:116
+#: English/Install.xml:119
 msgid "Filters"
 msgstr "מסננים"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:119
+#: English/Install.xml:122
 msgid "File filter files enable you to narrow the scope of comparisons."
 msgstr "קבצי מסנן קבצים מאפשרים לך לצמצם את היקף ההשוואות."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:125
+#: English/Install.xml:128
 msgid "Plugins"
 msgstr "תוספים"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:128
+#: English/Install.xml:131
 msgid ""
 "WinMerge plugins are custom dlls or scriptlets, written in the COM API, that "
 "you can use to preprocess data before a comparison."
@@ -15998,12 +16015,12 @@ msgstr ""
 "אתה יכול להשתמש כדי לעבד נתונים מראש לפני השוואה."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:135
+#: English/Install.xml:138
 msgid "Languages"
 msgstr "שפות"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:138
+#: English/Install.xml:141
 msgid ""
 "WinMerge translation files. If you want to configure WinMerge to use a "
 "different language than English, expand this item and choose one or more "
@@ -16020,18 +16037,18 @@ msgstr ""
 "התרגום. ראה <xref linkend=\"Locales\" /> לפרטים."
 
 #. type: Content of: <article><section><orderedlist><listitem><para>
-#: English/Install.xml:150 English/Install.xml:169 English/Install.xml:254
-#: English/Install.xml:308
+#: English/Install.xml:153 English/Install.xml:172 English/Install.xml:257
+#: English/Install.xml:311
 msgid "Click <guibutton>Next</guibutton>."
 msgstr "לחץ על <guibutton>הבא</guibutton>."
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:154
+#: English/Install.xml:157
 msgid "In the Select Start Menu Folder page, configure WinMerge shortcuts."
 msgstr "בדף בחר תיקיית תפריט התחלה, הגדר קיצורי דרך של WinMerge."
 
 #. type: Content of: <article><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Install.xml:159
+#: English/Install.xml:162
 msgid ""
 "Accept the default setting to create a program shortcut, or specify a "
 "different folder."
@@ -16039,7 +16056,7 @@ msgstr ""
 "קבל את הגדרת ברירת המחדל כדי ליצור קיצור דרך לתוכנית, או ציין תיקייה אחרת."
 
 #. type: Content of: <article><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Install.xml:164
+#: English/Install.xml:167
 msgid ""
 "Optionally, check the option <guilabel>Don't create a Start Menu folder</"
 "guilabel>."
@@ -16047,17 +16064,17 @@ msgstr ""
 "לחלופין, סמן את האפשרות <guilabel>אל תיצור תיקיית תפריט התחלה</guilabel>."
 
 #. type: Content of: <article><section><orderedlist><listitem><para><indexterm><secondary>
-#: English/Install.xml:177
+#: English/Install.xml:180
 msgid "with version control system"
 msgstr "עם מערכת בקרת גרסאות"
 
 #. type: Content of: <article><section><orderedlist><listitem><para><indexterm><primary>
-#: English/Install.xml:179
+#: English/Install.xml:182
 msgid "VCS"
 msgstr "VCS"
 
 #. type: Content of: <article><section><orderedlist><listitem><para>
-#: English/Install.xml:173
+#: English/Install.xml:176
 msgid ""
 "In the Select Additional Tasks page, specify any additional tasks:"
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
@@ -16067,17 +16084,17 @@ msgstr ""
 "id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:186
+#: English/Install.xml:189
 msgid "Enable Explorer context menu integration"
 msgstr "אפשר שילוב של תפריט הקשר של סייר"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Install.xml:196 English/Install.xml:357 English/Open_paths.xml:150
+#: English/Install.xml:199 English/Install.xml:360 English/Open_paths.xml:150
 msgid "Windows shell integration"
 msgstr "שילוב מעטפת Windows"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:199
+#: English/Install.xml:202
 msgid ""
 "Enables you to <link linkend=\"OpenPaths_shell-integ\">launch WinMerge "
 "compare operations from Windows Explorer</link> (this integration can be "
@@ -16088,75 +16105,75 @@ msgstr ""
 "באפשרויות WinMerge)."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:207
+#: English/Install.xml:210
 msgid "Add WinMerge folder to your system path"
 msgstr "הוסף את תיקיית WinMerge לנתיב המערכת שלך"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:210
+#: English/Install.xml:213
 msgid ""
 "Adds the WinMerge installation folder to your system's Path environment "
 "variable."
 msgstr "מוסיף את תיקיית ההתקנה של WinMerge למשתנה סביבת הנתיב של המערכת שלך."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:217
+#: English/Install.xml:220
 msgid "TortoiseCVS integration"
 msgstr "שילוב של TortoiseCVS"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:216
+#: English/Install.xml:219
 msgid "Integrate with TortoiseCVS<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "שלב עם TortoiseCVS<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:221
+#: English/Install.xml:224
 msgid "Sets WinMerge to be the TortoiseCVS diff application."
 msgstr "מגדיר את WinMerge להיות יישום ההבדל של TortoiseCVS."
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Install.xml:227 English/Version_control.xml:65
+#: English/Install.xml:230 English/Version_control.xml:65
 #: English/Version_control.xml:74
 msgid "TortoiseSVN integration"
 msgstr "שילוב של TortoiseSVN"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:226
+#: English/Install.xml:229
 msgid "Integrate with TortoiseSVN<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "שלב עם TortoiseSVN<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:231
+#: English/Install.xml:234
 msgid "Sets WinMerge to be the TortoiseSVN diff application."
 msgstr "מגדיר את WinMerge להיות יישום ההבדל של TortoiseSVN."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:237
+#: English/Install.xml:240
 msgid "TortoiseGit integration"
 msgstr "שילוב של TortoiseGit"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:236
+#: English/Install.xml:239
 msgid "Integrate with TortoiseGit<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "שלב עם TortoiseGit<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:241
+#: English/Install.xml:244
 msgid "Sets WinMerge to be the TortoiseGit diff application."
 msgstr "מגדיר את WinMerge להיות יישום ההבדל של TortoiseGit."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:246
+#: English/Install.xml:249
 msgid "Create a desktop shortcut"
 msgstr "צור קיצור דרך בשולחן העבודה"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:249
+#: English/Install.xml:252
 msgid "Adds the WinMerge shortcut to your Windows Desktop."
 msgstr "מוסיף את קיצור הדרך של WinMerge לשולחן העבודה של Windows."
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:258
+#: English/Install.xml:261
 msgid ""
 "In the 3-way merge wizard page, register WinMerge as 3-way merge tool for "
 "TortoiseSVN/Git."
@@ -16165,12 +16182,12 @@ msgstr ""
 "TortoiseSVN/Git."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
-#: English/Install.xml:264
+#: English/Install.xml:267
 msgid "3-way merge tool"
 msgstr "כלי מיזוג תלת-כיווני"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:263
+#: English/Install.xml:266
 msgid ""
 "Register WinMerge as a 3-way merge tool<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -16179,47 +16196,47 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:268
+#: English/Install.xml:271
 msgid "Register WinMerge as 3-way merge tool for TortoiseSVN/Git."
 msgstr "רשום את WinMerge ככלי מיזוג תלת-כיווני עבור TortoiseSVN/Git."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:274
+#: English/Install.xml:277
 msgid "Merge at right pane"
 msgstr "מזג בלוח הימני"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:277
+#: English/Install.xml:280
 msgid "Merge at right pane."
 msgstr "מזג בלוח הימני."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:283
+#: English/Install.xml:286
 msgid "Merge at center pane"
 msgstr "מזג בלוח המרכזי"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:286
+#: English/Install.xml:289
 msgid "Merge at center pane."
 msgstr "מזג בלוח המרכזי."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:291
+#: English/Install.xml:294
 msgid "Merge at left pane"
 msgstr "מזג בלוח השמאלי"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:294
+#: English/Install.xml:297
 msgid "Merge at left pane."
 msgstr "מזג בלוח השמאלי."
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
-#: English/Install.xml:299
+#: English/Install.xml:302
 msgid "Auto-merge at startup time"
 msgstr "מיזוג אוטומטי בעת ההפעלה"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
-#: English/Install.xml:302
+#: English/Install.xml:305
 msgid ""
 "Optionally, disable the option <guilabel>Auto-merge at startup time</"
 "guilabel>."
@@ -16227,7 +16244,7 @@ msgstr ""
 "לחלופין, השבת את האפשרות <guilabel>מיזוג אוטומטי בעת ההפעלה</guilabel>."
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:312
+#: English/Install.xml:315
 msgid ""
 "In the Ready to Install page, verify your install selections.  If necessary, "
 "click <guibutton>Back</guibutton> to change anything in a previous page. "
@@ -16239,7 +16256,7 @@ msgstr ""
 "להמשיך, לחץ על <guibutton>התקן</guibutton>."
 
 #. type: Content of: <article><section><orderedlist><listitem><simpara>
-#: English/Install.xml:320
+#: English/Install.xml:323
 msgid ""
 "After the installer has copied files, the final screen appears.  Using the "
 "two check boxes, confirm whether the created WinMerge Start menu folder "
@@ -16250,17 +16267,17 @@ msgstr ""
 "WinMerge."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Install.xml:330
+#: English/Install.xml:333
 msgid "archive, installing WinMerge from"
 msgstr "ארכיון, התקנת WinMerge ממנו"
 
 #. type: Content of: <article><section><title>
-#: English/Install.xml:329
+#: English/Install.xml:332
 msgid "Installing from an archive<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "התקנה מארכיון<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:333
+#: English/Install.xml:336
 msgid ""
 "WinMerge is pretty much independent of other system components. It is not "
 "tightly integrated with Windows, and does not use many DLLs."
@@ -16269,7 +16286,7 @@ msgstr ""
 "ואינו משתמש במספר רב של DLLs."
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:336
+#: English/Install.xml:339
 msgid ""
 "Archive files have the correct folder structure. WinMerge should be unzipped "
 "preserving this folder structure in the destination folder. For example, the "
@@ -16288,7 +16305,7 @@ msgstr ""
 "מבנה התיקיות!)."
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:345
+#: English/Install.xml:348
 msgid ""
 "After the files are unzipped, WinMerge is ready to run! Shell integration "
 "and archive integration may need additional steps, as described in the next "
@@ -16298,7 +16315,7 @@ msgstr ""
 "לדרוש שלבים נוספים, כמתואר בסעיף הבא."
 
 #. type: Content of: <article><section><title>
-#: English/Install.xml:351
+#: English/Install.xml:354
 msgid ""
 "Enabling Windows Explorer shell integration without the installer "
 "<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
@@ -16308,7 +16325,7 @@ msgstr ""
 "id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:360
+#: English/Install.xml:363
 msgid ""
 "If you do not use the install program and you want to enable Windows "
 "Explorer shell integration, you must register the shell integration DLL "
@@ -16319,12 +16336,12 @@ msgstr ""
 "filename>) בנפרד."
 
 #. type: Content of: <article><section><note><para>
-#: English/Install.xml:365
+#: English/Install.xml:368
 msgid "Installing shell integration requires Administrator user privileges."
 msgstr "התקנת שילוב מעטפת דורשת הרשאות משתמש מנהל."
 
 #. type: Content of: <article><section><para>
-#: English/Install.xml:369
+#: English/Install.xml:372
 msgid ""
 "Open WinMerge and using the <xref linkend=\"Configuration_shell-integ\" /> "
 "in the Options window. In the Options window use the <guibutton>Register "
@@ -23068,6 +23085,24 @@ msgstr ""
 msgid "Click <guibutton>OK</guibutton> to close the Select Unpacker dialog."
 msgstr ""
 "לחץ על <guibutton>אישור</guibutton> כדי לסגור את תיבת הדו-שיח בחר Unpacker."
+
+#~ msgid ""
+#~ "<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+#~ "stable/2.16.8/\">WinMerge 2.16.8 (64 bit)</ulink> supports Windows 7 and "
+#~ "later. It runs on 64 bit Windows."
+#~ msgstr ""
+#~ "<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+#~ "stable/2.16.8/\">WinMerge 2.16.8 (64 bit)</ulink> תומך ב-Windows 7 ואילך. "
+#~ "הוא פועל על Windows 64 ביט."
+
+#~ msgid ""
+#~ "<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+#~ "stable/2.16.0/\">WinMerge 2.16.0</ulink> supports Windows XP SP3 and "
+#~ "later. It runs on both 32 bit and 64 bit Windows."
+#~ msgstr ""
+#~ "<ulink url=\"https://sourceforge.net/projects/winmerge/files/"
+#~ "stable/2.16.0/\">WinMerge 2.16.0</ulink> תומך ב-Windows XP SP3 ואילך. הוא "
+#~ "פועל הן על Windows 32 ביט והן על Windows 64 ביט."
 
 #~ msgid "<option>/unpacker</option>"
 #~ msgstr "<option>/unpacker</option>"
