@@ -1496,7 +1496,7 @@ msgid "Add F&older Condition"
 msgstr "フォルダー条件を追加(&O)"
 
 msgid "&Files"
-msgstr "ファイル(&F)"
+msgstr "ファイル数(&F)"
 
 msgid "0 files"
 msgstr "0 ファイル"
@@ -1505,7 +1505,7 @@ msgid "1 file or more"
 msgstr "1 ファイル以上"
 
 msgid "&Items"
-msgstr "項目(&I)"
+msgstr "項目数(&I)"
 
 msgid "0 items"
 msgstr "0 項目"
