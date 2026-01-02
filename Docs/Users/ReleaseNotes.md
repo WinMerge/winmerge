@@ -71,14 +71,14 @@ Please submit bug reports to our bug-tracker.
   * Chinese Traditional (PR #3052,#3073,WinMerge/frhed#26)
   * French (PR #3072,#3105,#3106)
   * German (PR #3037,#3068,#3081,#3098,#3108,#3115)
-  * Hungarian (PR #3036,#3061,#3080,#3100)
-  * Italian (PR #3033,#3062,#3099,#3113)
+  * Hungarian (PR #3036,#3061,#3080,#3100,#3116)
+  * Italian (PR #3033,#3062,#3099,#3113,#3118)
   * Japanese
   * Korean (PR #3062,#3082)
   * Lithuanian (PR #3032,#3065,#3087,#3104,#3114)
   * Portuguese (PR #)
   * Polish (PR #3050,#3089,#3103,#3112)
-  * Turkish (PR #3043,#3063,#3083,#3102,#3111)
+  * Turkish (PR #3043,#3063,#3083,#3102,#3111,#3117)
 
 ### Manual
 
