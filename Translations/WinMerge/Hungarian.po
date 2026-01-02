@@ -1721,34 +1721,34 @@ msgid "100000 or more"
 msgstr "100000 vagy több"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "További &tulajdonságok..."
 
 msgid "Add F&older Condition"
 msgstr "&Mappa feltétel hozzáadása"
 
 msgid "&Files"
-msgstr ""
+msgstr "&Fájlok"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 fájl"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 vagy több fájl"
 
 msgid "&Items"
-msgstr ""
+msgstr "&Elemek"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 elem"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 vagy több elem"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "&Teljes méret"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "&Ismétlődő"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Cél: &Bármelyik (Bal/Középső/Jobb)"
