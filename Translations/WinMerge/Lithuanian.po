@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-12-25 22:13+0000\n"
-"PO-Revision-Date: 2025-12-29 05:35+0200\n"
+"POT-Creation-Date: 2026-01-02 07:06+0000\n"
+"PO-Revision-Date: 2026-01-02 07:07+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -559,7 +559,7 @@ msgid "Swap 1st | &3rd"
 msgstr "Sukeisti 1-ą | &3-ią"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "Rod&yti filtrų juostą\tCtrl+Shift+L"
 
 msgid "Com&pare Statistics..."
 msgstr "Ly&ginimo statistika..."
@@ -1497,28 +1497,28 @@ msgid "Add F&older Condition"
 msgstr "Pridėti katal&ogo sąlygą"
 
 msgid "&Files"
-msgstr ""
+msgstr "&Failai"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 failų"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 ar daugiau failas (-ų)"
 
 msgid "&Items"
-msgstr ""
+msgstr "Elementa&i"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 elementų"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 ar daugiau elementas (-ų)"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "&Dydis iš viso"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "&Rekursinis"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Rezultatai: Bet kur (Kairėje/Viduryje/Dešinėje)"
