@@ -2,6 +2,13 @@
 
 ## WinMerge 2.16.53 - 2025-11-27
 
+### System Requirements
+
+* Starting with this release, the 64-bit version of WinMerge requires Windows 10 or later.
+  Windows versions earlier than Windows 10 are not supported.
+
+* The 32-bit version of WinMerge supports Windows XP SP3 and later.
+
 ### General
 
 * Allow comparing files by editing header path (Ctrl+L / Alt+D) (PR #3093)
@@ -36,6 +43,8 @@
 
 * Add Display Filter to Folder Compare (PR #3106)
 
+* Add folder statistics filter attributes and helper menu (PR #3111)
+
 ### Options dialog
 
 * Add option to select user data location (AppData or Documents) (PR #3078)
@@ -51,19 +60,19 @@
 
 * Translation updates:
 
-  * Brazilian (PR #3034,#3064,#3085,#3101)
+  * Brazilian (PR #3034,#3064,#3085,#3101,#3107)
   * Chinese Simplified (PR #3035,#3077,#3086,#3097)
   * Chinese Traditional (PR #3052,#3073,WinMerge/frhed#26)
-  * French (PR #3072,#3105)
-  * German (PR #3037,#3068,#3081,#3098)
+  * French (PR #3072,#3105,#3106)
+  * German (PR #3037,#3068,#3081,#3098,#3108)
   * Hungarian (PR #3036,#3061,#3080,#3100)
-  * Italian (PR #3033,#3062,#3099)
+  * Italian (PR #3033,#3062,#3099,#3113)
   * Japanese
   * Korean (PR #3062,#3082)
   * Lithuanian (PR #3032,#3065,#3087,#3104)
   * Portuguese (PR #)
-  * Polish (PR #3050,#3089,#3103)
-  * Turkish (PR #3043,#3063,#3083,#3102)
+  * Polish (PR #3050,#3089,#3103,#3112)
+  * Turkish (PR #3043,#3063,#3083,#3102,#3111)
 
 ### Manual
 
