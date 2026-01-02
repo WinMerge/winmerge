@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 01.01.2026\n"
+"Project-Id-Version: WinMerge - Italian - 02.01.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-01-01 20:42+0100\n"
+"PO-Revision-Date: 2026-01-02 12:21+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1051,7 +1051,7 @@ msgid "&Edit Caption\tF2"
 msgstr "Mo&difica didascalia\tF2"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr "Modifica &percorso\Ctrl+L"
+msgstr "Modifica &percorso\tCtrl+L"
 
 msgid "&Open..."
 msgstr "&Apri..."
@@ -1498,28 +1498,28 @@ msgid "Add F&older Condition"
 msgstr "Aggiungi c&ondizione cartella"
 
 msgid "&Files"
-msgstr ""
+msgstr "&File"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 file"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 file o più"
 
 msgid "&Items"
-msgstr ""
+msgstr "Element&i"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 elementi"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 elemento o più"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "Dimensione &totale"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "&Ricorsivo"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Obiettivo: &qualsiasi (sinistra/centrale/destra)"
