@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-01-01 11:40+0100\n"
+"PO-Revision-Date: 2026-01-02 10:42+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -1468,7 +1468,7 @@ msgid "Remove Last Filter &Group"
 msgstr "Letzte Filter&gruppe entfernen"
 
 msgid "R&eset to Default (*.*)"
-msgstr "Auf Standard zurücksetzen (*.*)"
+msgstr "Auf Standard zurücks&etzen (*.*)"
 
 msgid "Add E&xclude File"
 msgstr "A&usschlussdatei hinzufügen"
@@ -1501,7 +1501,7 @@ msgid "&IDE"
 msgstr "&IDE"
 
 msgid "Add &File Condition"
-msgstr "Hinzufügen von &Datei-Bedingung"
+msgstr "&Dateibedingung hinzufügen"
 
 msgid "File &Size"
 msgstr "Datei&größe"
@@ -1729,31 +1729,31 @@ msgid "Additional &Properties..."
 msgstr "Zusätzliche &Eigenschaften..."
 
 msgid "Add F&older Condition"
-msgstr "&Ordner-Bedingung hinzufügen"
+msgstr "&Ordnerbedingung hinzufügen"
 
 msgid "&Files"
-msgstr ""
+msgstr "&Dateien"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 Dateien"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 Datei oder mehr"
 
 msgid "&Items"
-msgstr ""
+msgstr "&Elemente"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 Elemente"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 Element oder mehr"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "&Gesamtgröße"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "&Rekursiv"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Ziel: &Beliebig (Links/Mitte/Rechts)"
@@ -1768,7 +1768,7 @@ msgid "Target: &Right"
 msgstr "Ziel: &Rechts"
 
 msgid "Add &Difference Condition"
-msgstr "Hinzufügen &Differenzbedingung"
+msgstr "&Differenzbedingung hinzufügen"
 
 msgid "Equal"
 msgstr "Gleich"
