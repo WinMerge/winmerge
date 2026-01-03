@@ -77,8 +77,7 @@ Please submit bug reports to our bug-tracker.
   * Japanese
   * Korean (PR #3062,#3082)
   * Lithuanian (PR #3032,#3065,#3087,#3104,#3114)
-  * Portuguese (PR #)
-  * Polish (PR #3050,#3089,#3103,#3112)
+  * Polish (PR #3050,#3089,#3103,#3112,#3122)
   * Turkish (PR #3043,#3063,#3083,#3102,#3111,#3117)
 
 ### Manual
