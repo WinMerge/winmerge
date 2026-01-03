@@ -53,9 +53,10 @@
 
 * Translation updates:
 
-  * Brazilian (PR #3034,#3064,#3085,#3101,#3107)
+  * Brazilian (PR #3034,#3064,#3085,#3101,#3107,#3121)
   * Chinese Simplified (PR #3035,#3077,#3086,#3097)
   * Chinese Traditional (PR #3052,#3073,WinMerge/frhed#26)
+  * Corsican (PR #3119)
   * French (PR #3072,#3105,#3106)
   * German (PR #3037,#3068,#3081,#3098,#3108,#3115)
   * Hungarian (PR #3036,#3061,#3080,#3100,#3116)
