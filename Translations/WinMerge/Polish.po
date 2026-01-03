@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-12-31 22:15+0000\n"
-"PO-Revision-Date: 2026-01-01 00:30+0000\n"
+"POT-Creation-Date: 2026-01-02 07:06+0000\n"
+"PO-Revision-Date: 2026-01-03 18:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1498,28 +1498,28 @@ msgid "Add F&older Condition"
 msgstr "Dodaj warunek folderu"
 
 msgid "&Files"
-msgstr ""
+msgstr "Pliki"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 plików"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 plik lub więcej"
 
 msgid "&Items"
-msgstr ""
+msgstr "Elementy"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 elementów"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 element lub więcej"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "Całkowity rozmiar"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "Rekurencyjny"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Miejsce docelowe: dowolne (lewy/środkowy/prawy)"
@@ -4529,10 +4529,10 @@ msgid "Zoom:"
 msgstr "Powiększenie:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Fragment różnicy"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Różnica w linii"
 
 msgid "Line"
 msgstr "Wiersz"
