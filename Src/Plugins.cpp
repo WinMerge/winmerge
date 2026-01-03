@@ -304,14 +304,15 @@ std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& ext
 {
 	for (auto& item : strutils::split(extendedProperties, ';'))
 	{
-		auto keyvalue = strutils::split(item, '=');
-		if (keyvalue[0] == name)
+		auto pos = item.find('=');
+		if (pos == String::npos)
 		{
-			if (keyvalue.size() > 1)
-				return keyvalue[1];
-			else
-				return _("");
+			if (item == name)
+				return _T("");
+			continue;
 		}
+		if (item.substr(0, pos) == name)
+			return item.substr(pos + 1);
 	}
 	return {};
 }
