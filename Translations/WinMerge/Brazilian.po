@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2025-12-31 18:50-0300\n"
+"PO-Revision-Date: 2026-01-02 21:45-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1498,28 +1498,28 @@ msgid "Add F&older Condition"
 msgstr "Adicionar C&ondição de Pasta"
 
 msgid "&Files"
-msgstr ""
+msgstr "Arquivos"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 arquivos"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 arquivo ou mais"
 
 msgid "&Items"
-msgstr ""
+msgstr "&Itens"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 itens"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 item ou mais"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "&Tamanho Total"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "&Recursivo"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "&Alvo: Qualquer (Esquerda/Meio/Direita)"
