@@ -10,6 +10,7 @@
 # * teamzamong <teamzamong at gmail.com>
 # * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
 # * cynilyn <cynilyn at gmail.com>
+# * gro00 <gheong.ro at gmail.com>
 #
 msgid ""
 msgstr ""
