@@ -2,77 +2,128 @@
 
 [![logo](Docs/Logos/WinMerge_logo_24bit.png)](https://github.com/WinMerge/winmerge)
 
-[WinMerge](https://winmerge.org/) is an open source differencing and merging tool for Windows. It can compare files and folders, presenting differences in a visual format that is easy to understand and manipulate. It has been in active development since 2000.
+[WinMerge](https://winmerge.org/) is an open-source differencing and merging tool for Windows.  
+It compares files and folders and presents differences in a clear, visual format that is easy to understand and work with.  
+WinMerge has been actively developed since 2000.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/h3v3ap1kswi1tyyt?svg=true)](https://ci.appveyor.com/project/sdottaka/winmerge/build/artifacts)
 [![CI](https://github.com/WinMerge/winmerge/workflows/CI/badge.svg)](https://github.com/WinMerge/winmerge/actions)
 [![sourceforge.net downloads](https://img.shields.io/sourceforge/dt/winmerge)](https://sourceforge.net/projects/winmerge/files/)
-[![Github Releases All](https://img.shields.io/github/downloads/winmerge/winmerge/total.svg)](https://github.com/WinMerge/winmerge/releases/latest)
+[![GitHub Releases](https://img.shields.io/github/downloads/winmerge/winmerge/total.svg)](https://github.com/WinMerge/winmerge/releases/latest)
 [![Translation status](https://img.shields.io/badge/translations-38-green)](https://github.com/WinMerge/winmerge/blob/master/Translations/TranslationsStatus.md)
 
 ---
 
 ## What Can WinMerge Do?
 
-WinMerge's features include:
+WinMerge provides a rich set of features for comparing and merging files and folders:
 
-- **File Comparison**: visually compare the content of two or three text files side by side, highlighting the differences between them line by line. It can also highlight differences within a line.
-- **Folder Comparison**: compare the contents of two folders, showing which files are different, missing, or only present in one of the folders.
-- **Merging**: merge changes between files or folders. You can choose which differences to incorporate from one to the other.
-- **Syntax Highlighting**: syntax highlighting for various programming languages and file formats, making it easier to identify changes in code or structured text.
-- **Patch File Creation**: generate patch files (in normal, context, and unified formats) that describe the differences between files.
-- **Ignore Options**: configure it to ignore whitespace differences, case changes, or specific lines based on regular expressions.
-- **Shell Integration**: integrates with Windows Explorer, allowing you to right-click on files or folders and compare them directly with WinMerge.
-- **Archive Support**: using 7-Zip, compare files within archive formats.
+- **File Comparison**  
+  Compare two or three text files side by side, with differences highlighted line by line.  
+  Inline differences within a line can also be shown.
 
-In essence, this is a tool for anyone who needs to track changes in files, compare different versions of documents or code, or merge modifications made by different people.
+- **Folder Comparison**  
+  Compare the contents of two folders to see which files differ, are missing, or exist only on one side.  
+  Folder comparisons support **advanced filter expressions**, allowing you to include or exclude files and folders based on names, paths, sizes, timestamps, and other attributes.
+
+- **Merging**  
+  Merge changes between files or folders by selectively applying differences from one side to the other.
+
+- **Syntax Highlighting**  
+  Syntax highlighting for many programming languages and file formats helps make code and structured text easier to read and compare.
+
+- **Patch File Creation**  
+  Generate patch files in normal, context, or unified diff formats.
+
+- **Flexible Ignore Options**  
+  Ignore differences such as whitespace changes, case differences, or lines matching regular expressions.
+
+- **Shell Integration**  
+  Integrates with Windows Explorer, enabling direct comparison via the right-click context menu.
+
+- **Archive Support**  
+  Using 7-Zip, WinMerge can compare files inside many archive formats as if they were normal folders.
+
+In short, WinMerge is useful for anyone who needs to track changes, compare versions of files or directories, or merge modifications efficiently.
 
 ---
 
 ## How to Contribute
 
-If you think you've found a bug or would like to request a feature, [submit an issue](https://github.com/WinMerge/winmerge/issues).
+If you find a bug or would like to request a feature, please [submit an issue](https://github.com/WinMerge/winmerge/issues).
 
-To contribute code, [fork the main WinMerge repository](https://github.com/WinMerge/winmerge/fork) and create a branch on that fork.
+To contribute code:
 
-Format your code using [Eric Allman indentation](https://en.wikipedia.org/wiki/Indentation_style#Allman_style).
-
-When your code is ready for review/merge, create a [Pull Request](https://github.com/WinMerge/winmerge/pulls), explaining the changes made.
+1. [Fork the WinMerge repository](https://github.com/WinMerge/winmerge/fork)
+2. Create a feature branch on your fork
+3. Follow the existing coding style (use [Allman indentation](https://en.wikipedia.org/wiki/Indentation_style#Allman_style))
+4. Submit a [Pull Request](https://github.com/WinMerge/winmerge/pulls) describing your changes
 
 ---
 
 ## Folder Structure
 
-Source code for WinMerge, its plugins, filters, setup program, and various utilities are all kept in the subfolders:
+The WinMerge repository is organized as follows:
 
-- `ArchiveSupport/Merge7z` - Contains Merge7z dlls, which connect WinMerge with 7-Zip, required to compile `WinMergeU.exe`.  There is also a standalone installer for Merge7z dlls.
-- `Build` - Created by the compiler when WinMerge is compiled. It contains compiled executables, libraries, the user manual, etc.
-- `BuildTmp` - Created by the compiler when WinMerge is compiled. It contains temporary files created during the compilation and can be safely deleted.
-- `ColorSchemes` - Color schemes / themes.
-- `Docs` - Both user and developer documentation, in different subfolders. Can be browsed by opening `index.html` in the `Docs` folder.
-- `Externals` - Contains several libraries from outside the WinMerge project. Required for building and possibly customized for WinMerge. Libraries include an XML parser and a regular expression parser.
-- `Filters` - WinMerge file filters.
-- `Installer` - Installer for WinMerge.
-- `Plugins` - Source code and binaries for WinMerge runtime plugin dlls & scripts.
-- `ShellExtension` - Windows Shell (Explorer) integration.  Adds menu items to Explorer context menu.
-- `Src` - Source code for the WinMerge program.
-- `Testing` - A suite of test diff files and a script to run them and report the results. This folder also has a `Google Test` subfolder containing unit tests made with [Google Test Framework](https://github.com/google/googletest).
-- `Tools/Scripts` - Various utilities used by WinMerge developers - see readme files in each.
-- `Translation` - Language files for translation.
+- `ArchiveSupport/Merge7z`  
+  Merge7z DLLs that connect WinMerge with 7-Zip. Required to build `WinMergeU.exe`.  
+  A standalone installer for these DLLs is also included.
 
-The changelog is in [Docs/Users/ChangeLog.md](https://github.com/WinMerge/winmerge/blob/master/Docs/Users/ChangeLog.md).
+- `Build`  
+  Output directory created during compilation. Contains executables, libraries, manuals, etc.
+
+- `BuildTmp`  
+  Temporary files created during compilation. Safe to delete.
+
+- `ColorSchemes`  
+  Color schemes and themes.
+
+- `Docs`  
+  User and developer documentation. Open `Docs/index.html` to browse locally.
+
+- `Externals`  
+  Third-party libraries used by WinMerge (some customized).
+
+- `Filters`  
+  File and folder filter definitions.
+
+- `Installer`  
+  WinMerge installer sources.
+
+- `Plugins`  
+  Runtime plugin DLLs and scripts.
+
+- `ShellExtension`  
+  Windows Explorer shell extension that adds context menu entries.
+
+- `Src`  
+  Main WinMerge source code.
+
+- `Testing`  
+  Test files and scripts, including unit tests based on the  
+  [Google Test Framework](https://github.com/google/googletest).
+
+- `Tools/Scripts`  
+  Various development utilities.
+
+- `Translation`  
+  Language and translation files.
+
+The changelog is available at:  
+[Docs/Users/ChangeLog.md](https://github.com/WinMerge/winmerge/blob/master/Docs/Users/ChangeLog.md)
 
 ---
 
-## How to RUN and DEBUG
+## How to Run and Debug
 
-The WinMerge folder has different Visual Studio solution files (.sln) that you can use to build, debug and run while you test your changes.
+WinMerge provides multiple Visual Studio solution files (`.sln`) for building and debugging.
 
-If you have run any of the BuildAll scripts you can run WinMerge from path `\Build\X64\Release\WinMergeU.exe`
+After running one of the `BuildAll` scripts, you can launch WinMerge from:
 
-If your architecture is not `X64` look for any of the other folders generated after the build has finished.
+Build\X64\Release\WinMergeU.exe
 
-Another way to Debug, run the exe from previous step, then from VS attach to the running process.
+If you built for a different architecture, check the corresponding output folder.
+To debug, you can also start WinMerge normally and attach Visual Studio to the running process.
 
 ---
 
@@ -80,36 +131,37 @@ Another way to Debug, run the exe from previous step, then from VS attach to the
 
 ### Visual Studio 2017
 
-- *Community*, *Professional* or *Enterprise* Edition
-- VC++ 2017 latest v141 tools
-- Visual C++ compilers and libraries for (ARM, ARM64)
-- Windows XP support for C++
-- Visual C++ MFC for (x86 and x64, ARM, ARM64)
-- Visual C++ ATL for (x86 and x64, ARM, ARM64)
+- Community / Professional / Enterprise
+- VC++ 2017 (v141) toolset
+- Visual C++ MFC and ATL
+- Windows 10 SDK
+- Optional: Windows XP support for C++
+
+### Visual Studio 2022 or later
+
+- Community / Professional / Enterprise
+- MSVC v143 or newer
+- Visual C++ MFC and ATL
 - Windows 10 SDK
 
-### Visual Studio 2022 or 2026
-
-- *Community*, *Professional* or *Enterprise* Edition
-- MSVC v143 or v145 Buildtools (x64/x86, ARM64)
-- C++ MFC for latest v143 or v145 build tools (x64/x86, ARM64)
-- C++ ATL for latest v143 or v145 build tools (x64/x86, ARM64)
-- Windows 10 SDK
-
-### Other utilities/programs
+### Additional Tools
 
 - git
 - Inno Setup 5.x and 6.x
 - 7-Zip
 - Python
 - Pandoc
-- MSYS2 and MSYS2 packages (po4a and diffutils)
+- MSYS2 (including `po4a` and `diffutils`)
 
 ## How to Build
 
-```git
+```bash
 git clone --recurse-submodules https://github.com/WinMerge/winmerge
 cd winmerge
 DownloadDeps.cmd
-BuildAll.cmd [x86|x64|ARM64] or BuildAll.vs2022.cmd [x86|x64|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
+BuildAll.cmd [x86|x64|ARM64]
+# or
+BuildAll.vs2022.cmd [x86|x64|ARM64]
+# or
+BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
 ```
