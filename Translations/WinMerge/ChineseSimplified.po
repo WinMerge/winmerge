@@ -563,7 +563,7 @@ msgid "Swap 1st | &3rd"
 msgstr "交换组1与组&3"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "显示过滤器栏(&Y)\tCtrl+Shift+L"
 
 msgid "Com&pare Statistics..."
 msgstr "比较结果统计(&P)..."
@@ -968,7 +968,7 @@ msgid "Re&name"
 msgstr "改名(&N)"
 
 msgid "&Hide Items"
-msgstr "隐藏(&H)"
+msgstr "隐藏条目(&H)"
 
 msgid "&Open Left"
 msgstr "打开左侧(&O)"
@@ -1006,7 +1006,7 @@ msgid "Copy &Filenames"
 msgstr "复制文件名(&F)"
 
 msgid "Copy Items to Clip&board"
-msgstr "复制项目到剪贴板(&B)"
+msgstr "复制条目到剪贴板(&B)"
 
 msgid "Copy All Di&splayed Columns"
 msgstr "复制所有显示的列(&S)"
@@ -1501,28 +1501,28 @@ msgid "Add F&older Condition"
 msgstr "添加文件夹条件(&O)"
 
 msgid "&Files"
-msgstr ""
+msgstr "文件(&F)"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 个文件"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 个或更多文件"
 
 msgid "&Items"
-msgstr ""
+msgstr "条目(&T)"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 个条目"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 个或更多条目"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "总大小(&T)"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "递归(&R)"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "目标：任意（左/中/右）(&A)"
@@ -1980,16 +1980,16 @@ msgid "&Use folder compare colors"
 msgstr "使用文件夹比较颜色(&U)"
 
 msgid "Items equal:"
-msgstr "相同的项目："
+msgstr "相同的条目："
 
 msgid "Items different:"
-msgstr "不同的项目："
+msgstr "不同的条目："
 
 msgid "Items missing:"
-msgstr "并非都存在的项目："
+msgstr "不存在的条目："
 
 msgid "Items filtered:"
-msgstr "过滤的项目："
+msgstr "过滤的条目："
 
 msgid "&Use custom system colors"
 msgstr "使用自定义系统颜色（某些用户界面元素可能不适用）(&U)"
@@ -2534,7 +2534,7 @@ msgid "Confirm Copy"
 msgstr "确认复制"
 
 msgid "Are you sure you want to copy XXX items?"
-msgstr "您确定要复制 XXX 个项目吗？"
+msgstr "您确定要复制 XXX 条目吗？"
 
 msgid "From left"
 msgstr "从左侧"
@@ -2606,7 +2606,7 @@ msgid "Jump List"
 msgstr "跳转列表"
 
 msgid "Clear all recent items"
-msgstr "清除所有最近的项目"
+msgstr "清除所有最近的条目"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -3032,7 +3032,7 @@ msgid "Compare Options"
 msgstr "比较选项"
 
 msgid "Hidden Items"
-msgstr "隐藏项目"
+msgstr "隐藏条目"
 
 msgid "Name"
 msgstr "名称"
@@ -3200,7 +3200,7 @@ msgstr "第 %1 项，共 %2 项"
 
 #, c-format
 msgid "Items: %1"
-msgstr "项目：%1"
+msgstr "条目：%1"
 
 msgid "Comparing items..."
 msgstr "正在比较条目..."
@@ -3510,8 +3510,8 @@ msgid ""
 "Some selected items are identical or skipped.\n"
 "Copy only items with differences?"
 msgstr ""
-"某些选中的项目是相同的或被跳过了。\n"
-"您是否只想复制有差异的项目？"
+"某些选中的条目是相同的或被跳过了。\n"
+"您是否只想复制有差异的条目？"
 
 #, c-format
 msgid "Left (%1)"
@@ -3566,7 +3566,7 @@ msgstr "您确定要复制？"
 
 #, c-format
 msgid "Are you sure you want to copy %d items?"
-msgstr "您确定要复制 %d 个项目？"
+msgstr "您确定要复制 %d 个条目？"
 
 #, c-format
 msgid ""
@@ -3591,7 +3591,7 @@ msgstr "您确定要移动？"
 
 #, c-format
 msgid "Are you sure you want to move %d items?"
-msgstr "您确定要移动 %d 个项目？"
+msgstr "您确定要移动 %d 个条目？"
 
 msgid "Confirm Move"
 msgstr "确认移动"
@@ -3808,7 +3808,7 @@ msgid "Unable to compare files"
 msgstr "无法比较文件"
 
 msgid "Item aborted"
-msgstr "项目取消"
+msgstr "条目已取消"
 
 msgid "File skipped"
 msgstr "文件已跳过"
@@ -3854,13 +3854,13 @@ msgid "Middle Only"
 msgstr "只存在中间"
 
 msgid "No item in left"
-msgstr "左侧无项目"
+msgstr "左侧无条目"
 
 msgid "No item in right"
-msgstr "右侧无项目"
+msgstr "右侧无条目"
 
 msgid "No item in middle"
-msgstr "中间无项目"
+msgstr "中间无条目"
 
 msgid "Error"
 msgstr "错误"
@@ -3899,11 +3899,11 @@ msgid "Elapsed time: %ld ms"
 msgstr "执行时间：%ld 毫秒"
 
 msgid "1 item selected"
-msgstr "选中了 1 个项目"
+msgstr "选中了 1 个条目"
 
 #, c-format
 msgid "%1 items selected"
-msgstr "选中了 %1 个项目"
+msgstr "选中了 %1 个条目"
 
 msgid "Filename or folder name."
 msgstr "文件名或文件夹名。"
@@ -4204,10 +4204,10 @@ msgid "Patch file written."
 msgstr "补丁文件写入成功。"
 
 msgid "First item not found!"
-msgstr "1. 找不到项目！"
+msgstr "找不到第一个条目！"
 
 msgid "Second item not found!"
-msgstr "2. 找不到项目！"
+msgstr "找不到第二个条目！"
 
 msgid "Patch file already exists. Overwrite?"
 msgstr "补丁文件已经存在。是否覆盖？"
