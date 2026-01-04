@@ -172,8 +172,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 				{ _("Less than or equal to"), L"%1 <= %2" },
 				{ _("Greater than or equal to"), L"%1 >= %2" },
 				{ _("Greater than"), L"%1 > %2" },
-				{ _("Between"), L"(%1 >= %2 and %1 <= %3)" },
-				{ _("Not Between"), L"not (%1 >= %2 and %1 <= %3)" },
+				{ _("Between"), L"isWithin(%1, %2, %3)" },
+				{ _("Not Between"), L"not isWithin(%1, %2, %3)" },
 			}, m_sOperator);
 	}
 	else if (m_sField == _T("Content"))

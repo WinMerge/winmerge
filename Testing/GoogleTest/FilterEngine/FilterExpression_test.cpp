@@ -1010,6 +1010,10 @@ TEST_P(FilterExpressionTest, ParseError)
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	EXPECT_FALSE(fe.Parse("toDateStr(now(), now())"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("isWithin(now(), now())"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("inRange(now(), now())"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	if (fe.optimize) {
 		EXPECT_FALSE(fe.Parse("LeftName matches \"[[\""));
 		EXPECT_EQ(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, fe.errorCode);
@@ -1018,6 +1022,168 @@ TEST_P(FilterExpressionTest, ParseError)
 	EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
 	EXPECT_FALSE(fe.Parse(")LeftSize == 1"));
 	EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
+}
+
+TEST_P(FilterExpressionTest, IsWithinAndInRange)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Integer tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(1, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(10, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(0, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(11, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Integer tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(1, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(10, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(0, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(11, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Double tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(5.5, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(1.0, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(10.0, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(0.9, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(10.1, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Double tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(5.5, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(1.0, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(10.0, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(0.9, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(10.1, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Mixed int/double tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(5, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(5.5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Mixed int/double tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(5, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(5.5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// String tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(\"bbb\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"aaa\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"ccc\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"ddd\", \"aaa\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"aaa\", \"bbb\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// String tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(\"bbb\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"aaa\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"ccc\", \"aaa\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"ddd\", \"aaa\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"aaa\", \"bbb\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// DateTime tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-15\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-10\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-20\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-09\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-21\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// DateTime tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-15\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-10\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-20\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-09\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-21\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Array tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(array(3, 5, 7), 1, 10) == array(true, true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(array(0, 5, 11), 1, 10) == array(false, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(array(1, 10), 1, 10) == array(true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(array(3, 5, 7), 1, 10) == array(true, true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(0, 5, 11), 1, 10) == array(false, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(1, 10), 1, 10) == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array tests with strings
+	EXPECT_TRUE(fe.Parse("isWithin(array(\"aaa\", \"bbb\", \"ddd\"), \"aaa\", \"ccc\") == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(\"aaa\", \"bbb\", \"ccc\"), \"aaa\", \"ccc\") == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array tests with doubles
+	EXPECT_TRUE(fe.Parse("isWithin(array(1.5, 5.5, 10.5), 1.0, 10.0) == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(1.0, 5.5, 10.0), 1.0, 10.0) == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Tests with anyof
+	EXPECT_TRUE(fe.Parse("anyof(isWithin(array(0, 5, 11), 1, 10))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("anyof(inRange(array(0, 5, 11), 1, 10))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Tests with allof
+	EXPECT_TRUE(fe.Parse("allof(isWithin(array(3, 5, 7), 1, 10))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(isWithin(array(0, 5, 11), 1, 10))"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(inRange(array(3, 5, 7), 1, 10))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(inRange(array(0, 5, 11), 1, 10))"));
+	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, Test1)

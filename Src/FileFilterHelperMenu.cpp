@@ -325,13 +325,13 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		static const String DateConditions[] = {
 			_T("%1 < now() - 1hour"), _T("%1 >= now() - 1hour"),
 			_T("%1 < today()"), _T("%1 >= today()"),
-			_T("%1 < today() - 1day"), _T("(%1 >= today() - 1day and %1 < today())"), _T("%1 >= today() - 1day"),
+			_T("%1 < today() - 1day"), _T("inRange(%1, today() - 1day, today())"), _T("%1 >= today() - 1day"),
 			_T("%1 < startOfWeek(now())"), _T("%1 >= startOfWeek(now())"),
-			_T("%1 < startOfWeek(now()) - 7days"), _T("(%1 >= startOfWeek(now()) - 7days and %1 < startOfWeek(now()))"), _T("%1 >= startOfWeek(now()) - 7days"),
+			_T("%1 < startOfWeek(now()) - 7days"), _T("inRange(%1, startOfWeek(now()) - 7days, startOfWeek(now()))"), _T("%1 >= startOfWeek(now()) - 7days"),
 			_T("%1 < startOfMonth(now())"), _T("%1 >= startOfMonth(now())"),
-			_T("%1 < startOfMonth(startOfMonth(now()) - 1day)"), _T("(%1 >= startOfMonth(startOfMonth(now()) - 1day) and %1 < startOfMonth(now()))"), _T("%1 >= startOfMonth(startOfMonth(now()) - 1day)"),
+			_T("%1 < startOfMonth(startOfMonth(now()) - 1day)"), _T("inRange(%1, startOfMonth(startOfMonth(now()) - 1day), startOfMonth(now()))"), _T("%1 >= startOfMonth(startOfMonth(now()) - 1day)"),
 			_T("%1 < startOfYear(now())"), _T("%1 >= startOfYear(now())"),
-			_T("%1 < startOfYear(startOfYear(now()) - 1day)"), _T("(%1 >= startOfYear(startOfYear(now()) - 1day) and %1 < startOfYear(now()))"), _T("%1 >= startOfYear(startOfYear(now()) - 1day)")
+			_T("%1 < startOfYear(startOfYear(now()) - 1day)"), _T("inRange(%1, startOfYear(startOfYear(now()) - 1day), startOfYear(now()))"), _T("%1 >= startOfYear(startOfYear(now()) - 1day)")
 		};
 		const String identifier = defaultProp(_T("Date"));
 		result = masks.empty() ? masks : masks + _T("|");
@@ -400,13 +400,13 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		static const String DateConditions[] = {
 			_T("%1 < now() - 1hour"), _T("%1 >= now() - 1hour"),
 			_T("%1 < today()"), _T("%1 >= today()"),
-			_T("%1 < today() - 1day"), _T("(%1 >= today() - 1day and %1 < today())"), _T("%1 >= today() - 1day"),
+			_T("%1 < today() - 1day"), _T("inRange(%1, today() - 1day, today())"), _T("%1 >= today() - 1day"),
 			_T("%1 < startOfWeek(now())"), _T("%1 >= startOfWeek(now())"),
-			_T("%1 < startOfWeek(now()) - 7days"), _T("(%1 >= startOfWeek(now()) - 7days and %1 < startOfWeek(now()))"), _T("%1 >= startOfWeek(now()) - 7days"),
+			_T("%1 < startOfWeek(now()) - 7days"), _T("inRange(%1, startOfWeek(now()) - 7days, startOfWeek(now()))"), _T("%1 >= startOfWeek(now()) - 7days"),
 			_T("%1 < startOfMonth(now())"), _T("%1 >= startOfMonth(now())"),
-			_T("%1 < startOfMonth(startOfMonth(now()) - 1day)"), _T("(%1 >= startOfMonth(startOfMonth(now()) - 1day) and %1 < startOfMonth(now()))"), _T("%1 >= startOfMonth(startOfMonth(now()) - 1day)"),
+			_T("%1 < startOfMonth(startOfMonth(now()) - 1day)"), _T("inRange(%1, startOfMonth(startOfMonth(now()) - 1day), startOfMonth(now()))"), _T("%1 >= startOfMonth(startOfMonth(now()) - 1day)"),
 			_T("%1 < startOfYear(now())"), _T("%1 >= startOfYear(now())"),
-			_T("%1 < startOfYear(startOfYear(now()) - 1day)"), _T("(%1 >= startOfYear(startOfYear(now()) - 1day) and %1 < startOfYear(now()))"), _T("%1 >= startOfYear(startOfYear(now()) - 1day)")
+			_T("%1 < startOfYear(startOfYear(now()) - 1day)"), _T("inRange(%1, startOfYear(startOfYear(now()) - 1day), startOfYear(now()))"), _T("%1 >= startOfYear(startOfYear(now()) - 1day)")
 		};
 		const String identifier = defaultProp(_T("Date"));
 		result = masks.empty() ? masks : masks + _T("|");
