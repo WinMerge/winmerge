@@ -1321,22 +1321,26 @@ static auto ToDateStrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std:
 
 static auto IsWithinFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	ValueType arg3 = args->at(2)->Evaluate(di);
+
 	auto isWithinFn = [&](const ValueType& val) -> ValueType
 		{
-			ValueType arg2 = args->at(1)->Evaluate(di);
-			ValueType arg3 = args->at(2)->Evaluate(di);
-
 			if (auto valInt = std::get_if<int64_t>(&val))
 			{
 				if (auto minInt = std::get_if<int64_t>(&arg2))
 				{
 					if (auto maxInt = std::get_if<int64_t>(&arg3))
 						return (*valInt >= *minInt && *valInt <= *maxInt);
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (*valInt >= *minInt && static_cast<double>(*valInt) <= *maxDouble);
 				}
 				if (auto minDouble = std::get_if<double>(&arg2))
 				{
 					if (auto maxDouble = std::get_if<double>(&arg3))
 						return (static_cast<double>(*valInt) >= *minDouble && static_cast<double>(*valInt) <= *maxDouble);
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && *valInt <= *maxInt);
 				}
 			}
 			else if (auto valDouble = std::get_if<double>(&val))
@@ -1387,22 +1391,26 @@ static auto IsWithinFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 
 static auto InRangeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	ValueType arg3 = args->at(2)->Evaluate(di);
+
 	auto inRangeFn = [&](const ValueType& val) -> ValueType
 		{
-			ValueType arg2 = args->at(1)->Evaluate(di);
-			ValueType arg3 = args->at(2)->Evaluate(di);
-
 			if (auto valInt = std::get_if<int64_t>(&val))
 			{
 				if (auto minInt = std::get_if<int64_t>(&arg2))
 				{
 					if (auto maxInt = std::get_if<int64_t>(&arg3))
 						return (*valInt >= *minInt && *valInt < *maxInt);
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (*valInt >= *minInt && static_cast<double>(*valInt) < *maxDouble);
 				}
 				if (auto minDouble = std::get_if<double>(&arg2))
 				{
 					if (auto maxDouble = std::get_if<double>(&arg3))
 						return (static_cast<double>(*valInt) >= *minDouble && static_cast<double>(*valInt) < *maxDouble);
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && *valInt < *maxInt);
 				}
 			}
 			else if (auto valDouble = std::get_if<double>(&val))

@@ -1086,11 +1086,19 @@ TEST_P(FilterExpressionTest, IsWithinAndInRange)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("isWithin(5.5, 1, 10)"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(5, 1, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(5.5, 1.0, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Mixed int/double tests for inRange
 	EXPECT_TRUE(fe.Parse("inRange(5, 1.0, 10.0)"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("inRange(5.5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(5, 1, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(5.5, 1, 10.0)"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// String tests for isWithin
