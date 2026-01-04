@@ -578,6 +578,47 @@ Right, Middle）かを接頭辞で指定できます。</para>
             <term>allequal(<replaceable>array</replaceable>)</term>
             <listitem><para>配列内のすべての値が等しい場合に <literal>true</literal> を返します。</para></listitem>
           </varlistentry>
+          <varlistentry>
+            <term>isWithin(<replaceable>value</replaceable>, <replaceable>min</replaceable>,
+<replaceable>max</replaceable>)</term>
+            <listitem>
+              <para>
+Returns <literal>true</literal> if <replaceable>value</replaceable> is
+within the range <literal>[min, max]</literal> (inclusive on both ends).
+Supports integers, floating-point numbers, timestamps, and strings
+(case-insensitive comparison).  If <replaceable>value</replaceable> is an
+array, the result is a boolean array with each element checked individually.</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>isWithin(5, 1, 10)</literal> は <literal>true</literal> を返します</para></listitem>
+                <listitem><para><literal>isWithin(Size, 1KB, 10MB)</literal> - いずれかのファイルサイズが 1KB から 10MB
+の範囲内かを確認します</para></listitem>
+                <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> - ファイルが過去 1
+週間以内に更新されたかを確認します</para></listitem>
+                <listitem><para><literal>allof(isWithin(Size, 1KB, 10MB))</literal> - すべてのファイルサイズが 1KB から
+10MB の範囲内かを確認します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>inRange(<replaceable>value</replaceable>, <replaceable>min</replaceable>,
+<replaceable>max</replaceable>)</term>
+            <listitem>
+              <para>
+<replaceable>value</replaceable> が範囲 <literal>[min,
+max)</literal>（下限を含み、上限を含まない）内にある場合に <literal>true</literal>
+を返します。整数、浮動小数点数、タイムスタンプ、文字列（大文字小文字を区別しない比較）に対応しています。<replaceable>value</replaceable>
+が配列の場合は、各要素を個別に評価した真偽値の配列を返します。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>inRange(5, 1, 10)</literal> は <literal>true</literal> を返します</para></listitem>
+                <listitem><para><literal>inRange(10, 1, 10)</literal> は <literal>false</literal> を返します</para></listitem>
+                <listitem><para><literal>inRange(Size, 0, 1MB)</literal> - いずれかのファイルサイズが 1MB 未満かを確認します</para></listitem>
+                <listitem><para><literal>anyof(inRange(Date, startOfMonth(today()), today()))</literal> -
+いずれかのファイルが今月（今日を除く）に更新されたかを確認します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
         </variablelist>
       </section>
 
@@ -610,6 +651,11 @@ Right, Middle）かを接頭辞で指定できます。</para>
           <listitem><para><literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - サイズ差が小さい</para></listitem>
           <listitem><para><literal>DateStr = "2025-07-20"</literal> - その日に更新されたファイル</para></listitem>
           <listitem><para><literal>Date &gt;= today()</literal> - 今日以降に更新されたファイル</para></listitem>
+          <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> -
+過去1週間以内に更新されたファイル</para></listitem>
+          <listitem><para><literal>inRange(Size, 1KB, 10MB)</literal> - ファイルサイズが1KB以上10MB未満</para></listitem>
+          <listitem><para><literal>allof(isWithin(Size, 100KB, 1MB))</literal> -
+すべてのファイルサイズが100KBから1MBの範囲内</para></listitem>
           <listitem><para><literal>AttrStr contains "R"</literal> - 読み取り専用ファイル</para></listitem>
           <listitem><para><literal>Name matches "file[0-9]\.txt"</literal> - ファイル名に正規表現を適用</para></listitem>
           <listitem><para><literal>Content contains "Test"</literal> - 内容に "Test" を含む</para></listitem>
@@ -617,7 +663,9 @@ Right, Middle）かを接頭辞で指定できます。</para>
           <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() -
 7days)</literal> - 大きなログファイルまたは1週間以上前のファイル</para></listitem>
           <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> -
-非表示でない一時ファイル</para></listitem>
+Non-hidden temporary files</para></listitem>
+          <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> -
+拡張子が「a」から「m」の範囲で、サイズが1MB未満のファイル</para></listitem>
         </itemizedlist>
       </section>
     </section>

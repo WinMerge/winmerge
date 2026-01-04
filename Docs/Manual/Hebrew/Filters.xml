@@ -636,6 +636,50 @@ array</emphasis> satisfy the condition.</para></listitem>
             <term>allequal(<replaceable>array</replaceable>)</term>
             <listitem><para>Returns <literal>true</literal> if all values in the array are equal.</para></listitem>
           </varlistentry>
+          <varlistentry>
+            <term>isWithin(<replaceable>value</replaceable>, <replaceable>min</replaceable>,
+<replaceable>max</replaceable>)</term>
+            <listitem>
+              <para>
+Returns <literal>true</literal> if <replaceable>value</replaceable> is
+within the range <literal>[min, max]</literal> (inclusive on both ends).
+Supports integers, floating-point numbers, timestamps, and strings
+(case-insensitive comparison).  If <replaceable>value</replaceable> is an
+array, the result is a boolean array with each element checked individually.</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>isWithin(5, 1, 10)</literal> returns <literal>true</literal></para></listitem>
+                <listitem><para><literal>isWithin(Size, 1KB, 10MB)</literal> checks if any file size is
+between 1KB and 10MB</para></listitem>
+                <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> checks if file
+was modified within the last week</para></listitem>
+                <listitem><para><literal>allof(isWithin(Size, 1KB, 10MB))</literal> checks if all file sizes
+are between 1KB and 10MB</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>inRange(<replaceable>value</replaceable>, <replaceable>min</replaceable>,
+<replaceable>max</replaceable>)</term>
+            <listitem>
+              <para>
+Returns <literal>true</literal> if <replaceable>value</replaceable> is
+within the range <literal>[min, max)</literal> (inclusive on the lower
+bound, exclusive on the upper bound).  Supports integers, floating-point
+numbers, timestamps, and strings (case-insensitive comparison).  If
+<replaceable>value</replaceable> is an array, the result is a boolean array
+with each element checked individually.</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>inRange(5, 1, 10)</literal> returns <literal>true</literal></para></listitem>
+                <listitem><para><literal>inRange(10, 1, 10)</literal> returns <literal>false</literal></para></listitem>
+                <listitem><para><literal>inRange(Size, 0, 1MB)</literal> checks if any file size is less
+than 1MB</para></listitem>
+                <listitem><para><literal>anyof(inRange(Date, startOfMonth(today()), today()))</literal>
+checks if any file was modified this month (excluding today)</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
         </variablelist>
       </section>
 
@@ -670,6 +714,12 @@ small</para></listitem>
           <listitem><para><literal>DateStr = "2025-07-20"</literal> - File was last modified on that
 date</para></listitem>
           <listitem><para><literal>Date &gt;= today()</literal> - Modified today or later</para></listitem>
+          <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> - File modified
+within the last week</para></listitem>
+          <listitem><para><literal>inRange(Size, 1KB, 10MB)</literal> - File size is between 1KB
+(inclusive) and 10MB (exclusive)</para></listitem>
+          <listitem><para><literal>allof(isWithin(Size, 100KB, 1MB))</literal> - All file sizes are
+between 100KB and 1MB</para></listitem>
           <listitem><para><literal>AttrStr contains "R"</literal> - File is read-only</para></listitem>
           <listitem><para><literal>Name matches "file[0-9]\.txt"</literal> - Regex on filename</para></listitem>
           <listitem><para><literal>Content contains "Test"</literal> - File content includes keyword</para></listitem>
@@ -679,6 +729,8 @@ contains "XML"</para></listitem>
 7days)</literal> - Large log files or files older than a week</para></listitem>
           <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> -
 Non-hidden temporary files</para></listitem>
+          <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> -
+Files with extensions from 'a' to 'm' and size less than 1MB</para></listitem>
         </itemizedlist>
       </section>
     </section>
