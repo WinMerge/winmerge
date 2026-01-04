@@ -10,14 +10,13 @@
 # * teamzamong <teamzamong at gmail.com>
 # * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
 # * cynilyn <cynilyn at gmail.com>
-# * gro00 <gheong.ro at gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2025-12-21 23:35+0900\n"
+"PO-Revision-Date: 2026-01-04 18:59+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -661,7 +660,7 @@ msgid "Swap 1st | &3rd"
 msgstr "첫 번째와 세 번째 맞바꾸기(&3)"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "표시 필터 막대(&Y)\tCtrl+Shift+L"
 
 #, c-format
 msgid "Com&pare Statistics..."
@@ -1264,7 +1263,7 @@ msgid "&Edit Caption\tF2"
 msgstr "캡션 편집(&E)\tF2"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr ""
+msgstr "편집 경로(&P)\tCtrl+L"
 
 msgid "&Open..."
 msgstr "열기(&O)..."
@@ -1734,28 +1733,28 @@ msgid "Add F&older Condition"
 msgstr "폴더 조건 추가(&O)"
 
 msgid "&Files"
-msgstr ""
+msgstr "파일(&F)"
 
 msgid "0 files"
-msgstr ""
+msgstr "0개 파일"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1개 이상의 파일"
 
 msgid "&Items"
-msgstr ""
+msgstr "항목(&I)"
 
 msgid "0 items"
-msgstr ""
+msgstr "0개 항목"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1개 이상의 항목"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "전체 항목(&T)"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "재귀적(&R)"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "대상: 모두 (왼쪽/가운데/오른쪽)(&A)"
