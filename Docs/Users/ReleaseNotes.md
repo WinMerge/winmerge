@@ -51,6 +51,9 @@ Please submit bug reports to our bug-tracker.
 
 * Add folder statistics filter attributes and helper menu (PR #3111)
 
+* Introduce isWithin() and inRange() for explicit inclusive/exclusive range
+    checks (PR #3124)
+
 ### Options dialog
 
 * Add option to select user data location (AppData or Documents) (PR #3078)
@@ -67,7 +70,7 @@ Please submit bug reports to our bug-tracker.
 * Translation updates:
 
   * Brazilian (PR #3034,#3064,#3085,#3101,#3107,#3121)
-  * Chinese Simplified (PR #3035,#3077,#3086,#3097)
+  * Chinese Simplified (PR #3035,#3077,#3086,#3097,#3123)
   * Chinese Traditional (PR #3052,#3073,WinMerge/frhed#26)
   * Corsican (PR #3119)
   * French (PR #3072,#3105,#3106)
