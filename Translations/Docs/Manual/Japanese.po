@@ -13380,6 +13380,11 @@ msgid ""
 "insensitive comparison).  If <replaceable>value</replaceable> is an array, "
 "the result is a boolean array with each element checked individually."
 msgstr ""
+"<replaceable>value</replaceable> が範囲 <literal>[min, max]</literal>（両端を"
+"含む）内にある場合に <literal>true</literal> を返します。整数、浮動小数点数、"
+"タイムスタンプ、文字列（大文字小文字を区別しない比較）に対応しています。"
+"<replaceable>value</replaceable> が配列の場合は、各要素を個別に評価した真偽値"
+"の配列を返します。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:629 English/Filters.xml:646
