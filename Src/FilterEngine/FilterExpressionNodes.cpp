@@ -1319,6 +1319,146 @@ static auto ToDateStrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std:
 	return applyToScalarOrArray(arg, toDateStr);
 }
 
+static auto IsWithinFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	ValueType arg3 = args->at(2)->Evaluate(di);
+
+	auto isWithinFn = [&](const ValueType& val) -> ValueType
+		{
+			if (auto valInt = std::get_if<int64_t>(&val))
+			{
+				if (auto minInt = std::get_if<int64_t>(&arg2))
+				{
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (*valInt >= *minInt && *valInt <= *maxInt);
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (*valInt >= *minInt && static_cast<double>(*valInt) <= *maxDouble);
+				}
+				if (auto minDouble = std::get_if<double>(&arg2))
+				{
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && static_cast<double>(*valInt) <= *maxDouble);
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && *valInt <= *maxInt);
+				}
+			}
+			else if (auto valDouble = std::get_if<double>(&val))
+			{
+				double minVal = 0.0, maxVal = 0.0;
+				if (auto minDouble = std::get_if<double>(&arg2))
+					minVal = *minDouble;
+				else if (auto minInt = std::get_if<int64_t>(&arg2))
+					minVal = static_cast<double>(*minInt);
+				else
+					return std::monostate{};
+
+				if (auto maxDouble = std::get_if<double>(&arg3))
+					maxVal = *maxDouble;
+				else if (auto maxInt = std::get_if<int64_t>(&arg3))
+					maxVal = static_cast<double>(*maxInt);
+				else
+					return std::monostate{};
+
+				return (*valDouble >= minVal && *valDouble <= maxVal);
+			}
+			else if (auto valTimestamp = std::get_if<Poco::Timestamp>(&val))
+			{
+				if (auto minTimestamp = std::get_if<Poco::Timestamp>(&arg2))
+				{
+					if (auto maxTimestamp = std::get_if<Poco::Timestamp>(&arg3))
+						return (*valTimestamp >= *minTimestamp && *valTimestamp <= *maxTimestamp);
+				}
+			}
+			else if (auto valString = std::get_if<std::string>(&val))
+			{
+				if (auto minString = std::get_if<std::string>(&arg2))
+				{
+					if (auto maxString = std::get_if<std::string>(&arg3))
+					{
+						int cmpMin = Poco::icompare(*valString, *minString);
+						int cmpMax = Poco::icompare(*valString, *maxString);
+						return (cmpMin >= 0 && cmpMax <= 0);
+					}
+				}
+			}
+			return std::monostate{};
+		};
+
+	auto arg1 = args->at(0)->Evaluate(di);
+	return applyToScalarOrArray(arg1, isWithinFn);
+}
+
+static auto InRangeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	ValueType arg3 = args->at(2)->Evaluate(di);
+
+	auto inRangeFn = [&](const ValueType& val) -> ValueType
+		{
+			if (auto valInt = std::get_if<int64_t>(&val))
+			{
+				if (auto minInt = std::get_if<int64_t>(&arg2))
+				{
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (*valInt >= *minInt && *valInt < *maxInt);
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (*valInt >= *minInt && static_cast<double>(*valInt) < *maxDouble);
+				}
+				if (auto minDouble = std::get_if<double>(&arg2))
+				{
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && static_cast<double>(*valInt) < *maxDouble);
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && *valInt < *maxInt);
+				}
+			}
+			else if (auto valDouble = std::get_if<double>(&val))
+			{
+				double minVal = 0.0, maxVal = 0.0;
+				if (auto minDouble = std::get_if<double>(&arg2))
+					minVal = *minDouble;
+				else if (auto minInt = std::get_if<int64_t>(&arg2))
+					minVal = static_cast<double>(*minInt);
+				else
+					return std::monostate{};
+
+				if (auto maxDouble = std::get_if<double>(&arg3))
+					maxVal = *maxDouble;
+				else if (auto maxInt = std::get_if<int64_t>(&arg3))
+					maxVal = static_cast<double>(*maxInt);
+				else
+					return std::monostate{};
+
+				return (*valDouble >= minVal && *valDouble < maxVal);
+			}
+			else if (auto valTimestamp = std::get_if<Poco::Timestamp>(&val))
+			{
+				if (auto minTimestamp = std::get_if<Poco::Timestamp>(&arg2))
+				{
+					if (auto maxTimestamp = std::get_if<Poco::Timestamp>(&arg3))
+						return (*valTimestamp >= *minTimestamp && *valTimestamp < *maxTimestamp);
+				}
+			}
+			else if (auto valString = std::get_if<std::string>(&val))
+			{
+				if (auto minString = std::get_if<std::string>(&arg2))
+				{
+					if (auto maxString = std::get_if<std::string>(&arg3))
+					{
+						int cmpMin = Poco::icompare(*valString, *minString);
+						int cmpMax = Poco::icompare(*valString, *maxString);
+						return (cmpMin >= 0 && cmpMax < 0);
+					}
+				}
+			}
+			return std::monostate{};
+		};
+
+	auto arg1 = args->at(0)->Evaluate(di);
+	return applyToScalarOrArray(arg1, inRangeFn);
+}
+
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
@@ -1429,6 +1569,18 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	else if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
 	{
 		SetLeftMiddleRightPropFunc();
+	}
+	else if (functionName == "iswithin")
+	{
+		if (!args || args->size() != 3)
+			throw std::invalid_argument("iswithin function requires 3 arguments");
+		func = IsWithinFunc;
+	}
+	else if (functionName == "inrange")
+	{
+		if (!args || args->size() != 3)
+			throw std::invalid_argument("inrange function requires 3 arguments");
+		func = InRangeFunc;
 	}
 	else
 	{
