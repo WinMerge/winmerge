@@ -2652,6 +2652,12 @@ msgstr "當大小超過以下ＭＢ限制時，切換為二進制比較(&B)："
 msgid "Additional comparison condi&tions:"
 msgstr "額外的比較條件(&t)："
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "檔案模式："
 

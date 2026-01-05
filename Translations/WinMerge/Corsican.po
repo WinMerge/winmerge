@@ -2644,6 +2644,12 @@ msgstr "Passà à u paragone &binariu quandu a dimensione (in Mo) eccede :"
 msgid "Additional comparison condi&tions:"
 msgstr "Cundizioni addiziunale di parag&one :"
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
 

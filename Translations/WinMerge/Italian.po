@@ -2647,6 +2647,12 @@ msgstr "Soglia per passare al confronto &binario (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "U&lteriori condizioni dii confronto:"
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Pattern file:"
 

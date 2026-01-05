@@ -2634,6 +2634,12 @@ msgstr "Limiar para cambiar a comparación &binaria (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Padróns de ficheiro:"
 

@@ -3110,6 +3110,12 @@ msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "Zusätzliche Vergleichsbedingungen:"
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "&Dateimuster:"
 

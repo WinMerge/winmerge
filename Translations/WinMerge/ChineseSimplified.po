@@ -2639,6 +2639,12 @@ msgstr "切换到二进制比较的最小值(&B) (MB)："
 msgid "Additional comparison condi&tions:"
 msgstr "附加的比较条件(&T)："
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "文件模式："
 

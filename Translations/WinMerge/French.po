@@ -2642,6 +2642,12 @@ msgstr "Passer à la comparaison &binaire quand la taille dépasse (Mo) :"
 msgid "Additional comparison condi&tions:"
 msgstr "Conditions de comparaison supplémen&taires :"
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Modèles de fichiers :"
 

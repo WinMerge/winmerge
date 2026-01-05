@@ -2626,6 +2626,12 @@ msgstr "Próg przejścia na binarne porównywanie (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Szablony pliku:"
 

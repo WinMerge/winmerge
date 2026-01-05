@@ -2634,6 +2634,12 @@ msgstr "Limite para trocar para comparação &binária (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "Com&dições adicionais de comparação:"
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Padrões de ficheiros:"
 

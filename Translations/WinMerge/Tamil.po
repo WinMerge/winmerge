@@ -2657,6 +2657,12 @@ msgstr "&இருமம் ஒப்பீடு (MB) க்கு மாறு
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "கோப்பு வடிவங்கள்:"
 

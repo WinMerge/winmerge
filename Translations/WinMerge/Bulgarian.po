@@ -2630,6 +2630,12 @@ msgstr "Използване на &двоично сравняване при р
 msgid "Additional comparison condi&tions:"
 msgstr "Допълнителни &условия за сравняване:"
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Шаблони за име на файл:"
 

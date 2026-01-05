@@ -2640,6 +2640,12 @@ msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "Ek karşılaştırma k&oşulları:"
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Dosya modelleri:"
 

@@ -2627,6 +2627,12 @@ msgstr "Порог для перехода к двоичному сравнен�
 msgid "Additional comparison condi&tions:"
 msgstr "Дополнительные условия сравнения:"
 
+msgid "&Move detection:"
+msgstr ""
+
+msgid "Pair renames in same &folder"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
 
