@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-01-04 18:59+0900\n"
+"PO-Revision-Date: 2026-01-06 15:03+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -725,7 +725,7 @@ msgstr "보고서 생성(&R)..."
 
 #, c-format
 msgid "&Edit with Unpacker..."
-msgstr "압축을 풀어 편집(&E)..."
+msgstr "Unpacker로 편집(&E)..."
 
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -781,7 +781,7 @@ msgid "Mer&ge Mode\tF9"
 msgstr "병합 모드(&G)\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr "다시불러오기(&D)\tCtrl+F5"
+msgstr "다시 불러오기(&D)\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -3116,7 +3116,7 @@ msgid "File patterns:"
 msgstr "파일 패턴:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr "사용자 설정 구분 기호"
+msgstr "사용자 지정 구분 기호로 구분된 값"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -3407,7 +3407,7 @@ msgid "Don't display this &message again."
 msgstr "이 메시지를 다시 표시하지 않음(&M)"
 
 msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
-msgstr "이 메시지 상자를 다시 표시하려면 옵션 대화 상자의 메시지 상자 페이지에서 재설정 버튼을 누르십시오."
+msgstr "이 메시지 상자를 다시 표시하려면 옵션 대화 상자의 메시지 상자 페이지에서 재설정 버튼을 누르세요."
 
 msgid "Compare/Merge"
 msgstr "비교/병합"
@@ -3593,7 +3593,7 @@ msgid ""
 msgstr ""
 "필터 템플릿 파일을 찾을 수 없습니다!\n"
 "\n"
-"%1 파일을 다음 WinMerge/Filters 폴더에 복사하십시오:\n"
+"%1 파일을 다음 WinMerge/Filters 폴더에 복사하세요:\n"
 "%2."
 
 #, c-format
@@ -3606,7 +3606,7 @@ msgstr ""
 "필터 템플릿 파일을 필터 폴더에 복사할 수 없습니다:\n"
 "%1\n"
 "\n"
-"폴더가 존재하고 쓰기 가능한지 확인하십시오."
+"폴더가 존재하고 쓰기 가능한지 확인하세요."
 
 #, c-format
 msgid ""
@@ -3616,7 +3616,7 @@ msgid ""
 msgstr ""
 "사용자의 필터 파일 폴더가 정의되지 않았습니다!\n"
 "\n"
-"옵션/시스템에서 필터 폴더를 선택하십시오."
+"옵션/시스템에서 필터 폴더를 선택하세요."
 
 #, c-format
 msgid ""
@@ -3721,18 +3721,18 @@ msgstr "차이 %1 / %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "%1개 차이 찾음"
+msgstr "%1개 차이 발견"
 
 #, c-format
 msgid "1 Difference Found"
-msgstr "1개 차이 찾음"
+msgstr "1개 차이 발견"
 
 #, c-format
 msgid "%1 Errors Found"
 msgstr "%1개의 오류 발견"
 
 msgid "1 Error Found"
-msgstr "1개의 오류 찾음"
+msgstr "1개의 오류 발견"
 
 #. Abbreviation from "Read Only"
 #, c-format
@@ -4919,7 +4919,7 @@ msgid ""
 "\n"
 "Creating a patch requires no unsaved changes."
 msgstr ""
-"먼저 모든 파일을 저장하십시오.\n"
+"먼저 모든 파일을 저장하세요.\n"
 "\n"
 "패치를 만들려면 파일에 저장되지 않은 변경 사항이 없어야 합니다."
 
