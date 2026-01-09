@@ -29,6 +29,8 @@ static void MoveDiffItemPartially(DIFFITEM& dst, int dstindex, DIFFITEM& src, in
 static bool EvaluatePair(DIFFITEM* pdi0, int i0, DIFFITEM* pdi1, int i1, CDiffContext& ctxt)
 {
 	DIFFITEM di;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
 	CopyDiffItemPartially(di, 0, *pdi0, i0);
 	MoveDiffItemPartially(di, 0, *pdi0, i0);
 	CopyDiffItemPartially(di, 1, *pdi1, i1);
@@ -61,11 +63,12 @@ void Detect(CDiffContext& ctxt)
 	{
 		if (pdi0->diffcode.exists(0) && !pdi0->diffcode.exists(1))
 		{
+			const bool isfolder = pdi0->diffcode.isDirectory();
 			for (DIFFITEM* pdi1 : unmatchedItems)
 			{
 				if (ctxt.ShouldAbort())
 					return;
-				if (pdi0 != pdi1 && pdi1->diffcode.exists(1))
+				if (pdi0 != pdi1 && !pdi1->diffcode.exists(0) && pdi1->diffcode.exists(1) && isfolder == pdi1->diffcode.isDirectory())
 				{
 					if (EvaluatePair(pdi0, 0, pdi1, 1, ctxt))
 					{
@@ -95,11 +98,12 @@ void Detect(CDiffContext& ctxt)
 		{
 			if (pdi1->diffcode.exists(1) && !pdi1->diffcode.exists(2))
 			{
+				const bool isfolder = pdi1->diffcode.isDirectory();
 				for (DIFFITEM* pdi2 : unmatchedItems)
 				{
 					if (ctxt.ShouldAbort())
 						return;
-					if (pdi1 != pdi2 && pdi2->diffcode.exists(2))
+					if (pdi1 != pdi2 && !pdi2->diffcode.exists(1) && pdi2->diffcode.exists(2) && isfolder == pdi2->diffcode.isDirectory())
 					{
 						if (EvaluatePair(pdi1, 1, pdi2, 2, ctxt))
 						{

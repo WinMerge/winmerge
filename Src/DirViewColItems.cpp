@@ -355,8 +355,18 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 	}
 	else if (di.diffcode.isSideFirstOnly())
 	{
-		s = strutils::format_string1(_("Left only: %1"),
-				di.getFilepath(0, pCtxt->GetNormalizedLeft()));
+		if (di.movedGroupId == -1)
+		{
+			s = strutils::format_string1(_("Left only: %1"),
+					di.getFilepath(0, pCtxt->GetNormalizedLeft()));
+		}
+		else
+		{
+			auto* pdi1 = pCtxt->m_movedItems[di.movedGroupId].find(1)->second[0];
+			s = strutils::format_string3(_("Moved (set %1): %2 -> %3"),
+					strutils::to_str(di.movedGroupId + 1),
+					di.diffFileInfo[0].path, pdi1->diffFileInfo[1].path);
+		}
 	}
 	else if (di.diffcode.isSideSecondOnly())
 	{
