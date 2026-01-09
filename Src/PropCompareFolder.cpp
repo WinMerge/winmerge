@@ -23,10 +23,10 @@ static const int Mega = 1024 * 1024;
 class CPropCompareFolderMenu : public CMenu
 {
 public:
-	std::optional<String> ShowMenu(const String& expr, int x, int y, CWnd* pParentWnd)
+	std::optional<String> ShowMenu(int menuid, const String& expr, int x, int y, CWnd* pParentWnd)
 	{
 		std::optional<String> result;
-		VERIFY(LoadMenu(IDR_POPUP_ADDCMPMENU));
+		VERIFY(LoadMenu(menuid));
 		I18n::TranslateMenu(m_hMenu);
 		CMenu* pPopup = GetSubMenu(0);
 		if (pPopup)
@@ -40,7 +40,7 @@ public:
 			{
 				// User cancelled the menu
 			}
-			else if (command == ID_ADDCMPMENU_CLEAR)
+			else if (command == ID_ADDCMPMENU_CLEAR || command == ID_MOVEDETECTIONMENU_CLEAR)
 			{
 				result = _T("");
 			}
@@ -59,6 +59,27 @@ public:
 			{
 				CPropertySystemMenu menuProps;
 				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_ADDCMPMENU_PROPS_FIRST, _("Compare %1"));
+				if (resultProp.has_value())
+				{
+					result = expr.empty() ? expr : expr + _T(" and ");
+					*result += _T("allequal(prop(\"") + *resultProp + _T("\"))");
+				}
+			}
+			else if (command >= ID_MOVEDETECTIONMENU_FIRST && command <= ID_MOVEDETECTIONMENU_LAST)
+			{
+				static const String Exprs[] = {
+					_T("allequal(Name)"),
+					_T("allequal(Size)"),
+					_T("allequal(Date)"),
+					_T("allequal(Content)"),
+				};
+				result = expr.empty() ? expr : expr + _T(" and ");
+				*result += Exprs[command - ID_MOVEDETECTIONMENU_FIRST];
+			}
+			else if (command == ID_MOVEDETECTIONMENU_PROPS)
+			{
+				CPropertySystemMenu menuProps;
+				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_MOVEDETECTIONMENU_PROPS_FIRST, _("Match %1"));
 				if (resultProp.has_value())
 				{
 					result = expr.empty() ? expr : expr + _T(" and ");
@@ -90,6 +111,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_nCompareThreads(-1)
  , m_nCompareThreadsPrev(-1)
  , m_pAdditionalCompareCondition(new FilterExpression())
+ , m_pMoveDetectionCondition(new FilterExpression())
 {
 	BindOption(OPT_CMP_METHOD, m_compareMethod, IDC_COMPAREMETHODCOMBO, DDX_CBIndex);
 	BindOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst, IDC_COMPARE_STOPFIRST, DDX_Check);
@@ -104,6 +126,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOptionCustom<unsigned, int>(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit, IDC_COMPARE_BINARYC_LIMIT, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads, IDC_COMPARE_THREAD_COUNT, DDX_Text);
 	BindOption(OPT_CMP_ADDITIONAL_CONDITION, m_sAdditionalCompareCondition, IDC_ADDTIONAL_COMPARE_CONDITION, DDX_CBStringExact);
+	BindOption(OPT_CMP_MOVE_DETECTION_CONDITION, m_sMoveDetectionCondition, IDC_MOVE_DETECTION_CONDITION, DDX_CBStringExact);
 }
 
 void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
@@ -111,6 +134,7 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareFolder)
 	DDX_Control(pDX, IDC_ADDTIONAL_COMPARE_CONDITION, m_ctlAdditionalCompareCondition);
+	DDX_Control(pDX, IDC_MOVE_DETECTION_CONDITION, m_ctlMoveDetectionCondition);
 	//}}AFX_DATA_MAP
 	DoDataExchangeBindOptions(pDX);
 	UpdateControls();
@@ -126,6 +150,9 @@ BEGIN_MESSAGE_MAP(PropCompareFolder, OptionsPanel)
 	ON_CBN_EDITCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
 	ON_CBN_SELCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
 	ON_BN_CLICKED(IDC_ADDTIONAL_COMPARE_CONDITION_MENU, OnBnClickedAdditionalCompareConditionMenu)
+	ON_CBN_EDITCHANGE(IDC_MOVE_DETECTION_CONDITION, OnEditChangeMoveDetectionCondition)
+	ON_CBN_SELCHANGE(IDC_MOVE_DETECTION_CONDITION, OnEditChangeMoveDetectionCondition)
+	ON_BN_CLICKED(IDC_MOVE_DETECTION_CONDITION_MENU, OnBnClickedMoveDetectionConditionMenu)
 END_MESSAGE_MAP()
 
 /** 
@@ -157,6 +184,8 @@ void PropCompareFolder::WriteOptions()
 		GetOptionsMgr()->SaveOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads);
 	if (m_ctlAdditionalCompareCondition.GetSafeHwnd())
 		m_ctlAdditionalCompareCondition.SaveState(_T("Files\\AdditionalCompareCondition"));
+	if (m_ctlMoveDetectionCondition.GetSafeHwnd())
+		m_ctlMoveDetectionCondition.SaveState(_T("Files\\MoveDetectionCondition"));
 }
 
 /** 
@@ -187,6 +216,19 @@ BOOL PropCompareFolder::OnInitDialog()
 			return !bError;
 		};
 	m_ctlAdditionalCompareConditionEdit.Validate();
+
+	GetComboBoxInfo(m_ctlMoveDetectionCondition.m_hWnd, &cbi);
+	m_ctlMoveDetectionConditionEdit.SubclassWindow(cbi.hwndItem);
+	m_ctlMoveDetectionConditionEdit.m_validator = [this](const CString& text, CString& error) -> bool
+		{
+			if (text.IsEmpty())
+				return true;
+			bool bError = !m_pMoveDetectionCondition->Parse(ucr::toUTF8((const tchar_t*)text));
+			if (bError)
+				error = FormatFilterErrorSummary(*m_pMoveDetectionCondition).c_str();
+			return !bError;
+		};
+	m_ctlMoveDetectionConditionEdit.Validate();
 
 	UpdateControls();
 
@@ -231,12 +273,32 @@ void PropCompareFolder::OnBnClickedAdditionalCompareConditionMenu()
 	CPropCompareFolderMenu menu;
 	CRect rc;
 	GetDlgItem(IDC_ADDTIONAL_COMPARE_CONDITION_MENU)->GetWindowRect(&rc);
-	const std::optional<String> expr = menu.ShowMenu(m_sAdditionalCompareCondition, rc.left, rc.bottom, this);
+	const std::optional<String> expr = menu.ShowMenu(IDR_POPUP_ADDCMPMENU, m_sAdditionalCompareCondition, rc.left, rc.bottom, this);
 	if (expr.has_value())
 	{
 		m_sAdditionalCompareCondition = *expr;
 		UpdateData(FALSE);
 		m_ctlAdditionalCompareConditionEdit.OnEnChange();
+	}
+}
+
+void PropCompareFolder::OnEditChangeMoveDetectionCondition()
+{
+	m_ctlMoveDetectionConditionEdit.OnEnChange();
+}
+
+void PropCompareFolder::OnBnClickedMoveDetectionConditionMenu()
+{
+	UpdateData(TRUE);
+	CPropCompareFolderMenu menu;
+	CRect rc;
+	GetDlgItem(IDC_MOVE_DETECTION_CONDITION_MENU)->GetWindowRect(&rc);
+	const std::optional<String> expr = menu.ShowMenu(IDR_POPUP_MOVEDETECTIONMENU, m_sMoveDetectionCondition, rc.left, rc.bottom, this);
+	if (expr.has_value())
+	{
+		m_sMoveDetectionCondition = *expr;
+		UpdateData(FALSE);
+		m_ctlMoveDetectionConditionEdit.OnEnChange();
 	}
 }
 

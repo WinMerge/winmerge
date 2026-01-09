@@ -1621,6 +1621,18 @@ msgstr "属性を比較(&A)"
 msgid "Compare C&ontents"
 msgstr "内容を比較(&O)"
 
+msgid "Match &Name"
+msgstr ""
+
+msgid "Match &Size"
+msgstr ""
+
+msgid "Match &Date"
+msgstr ""
+
+msgid "Match &Contents"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "WinMerge について"
 
@@ -2636,10 +2648,7 @@ msgstr "バイナリ比較切替閾値 (MB)(&B):"
 msgid "Additional comparison condi&tions:"
 msgstr "追加比較条件(&T):"
 
-msgid "&Move detection:"
-msgstr ""
-
-msgid "Pair renames in same &folder"
+msgid "&Detect moved/renamed items after comparison:"
 msgstr ""
 
 msgid "File patterns:"

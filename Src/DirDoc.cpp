@@ -43,6 +43,7 @@
 #include "DiffWrapper.h"
 #include "FolderCmp.h"
 #include "DirViewColItems.h"
+#include "MoveDetection.h"
 #include <Poco/Semaphore.h>
 
 #ifdef _DEBUG
@@ -268,6 +269,15 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
 	}
 
+	pCtxt->m_pMoveDetectionExpression.reset();
+	const String moveDetectionExpression = GetOptionsMgr()->GetString(OPT_CMP_MOVE_DETECTION_CONDITION);
+	if (!moveDetectionExpression.empty())
+	{
+		pCtxt->m_pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
+		pCtxt->m_pMoveDetectionExpression->SetDiffContext(pCtxt);
+	}
+	pCtxt->m_movedItems.clear();
+
 	std::vector<String> names;
 	if (m_pDirView)
 		names = m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames();
@@ -312,6 +322,12 @@ void CDirDoc::CheckFilter()
 		const String msg = FormatFilterErrorSummary(*m_pCtxt->m_pAdditionalCompareExpression);
 		RootLogger::Error(msg);
 		m_pCtxt->m_pAdditionalCompareExpression.reset();
+	}
+	if (m_pCtxt->m_pMoveDetectionExpression && m_pCtxt->m_pMoveDetectionExpression->errorCode != 0)
+	{
+		const String msg = FormatFilterErrorSummary(*m_pCtxt->m_pMoveDetectionExpression);
+		RootLogger::Error(msg);
+		m_pCtxt->m_pMoveDetectionExpression.reset();
 	}
 }
 
@@ -456,6 +472,7 @@ void CDirDoc::Rescan()
 		});
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			DirScan_CompareItems(myStruct, nullptr);
+			MoveDetection::Detect(*myStruct->context);
 		});
 		m_diffThread.SetMarkedRescan(false);
 	}

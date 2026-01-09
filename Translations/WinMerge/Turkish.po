@@ -1623,6 +1623,18 @@ msgstr "Öznitelikleri k&arşılaştır"
 msgid "Compare C&ontents"
 msgstr "&İçerikleri karşılaştır"
 
+msgid "Match &Name"
+msgstr ""
+
+msgid "Match &Size"
+msgstr ""
+
+msgid "Match &Date"
+msgstr ""
+
+msgid "Match &Contents"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
 
@@ -2640,10 +2652,7 @@ msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "Ek karşılaştırma k&oşulları:"
 
-msgid "&Move detection:"
-msgstr ""
-
-msgid "Pair renames in same &folder"
+msgid "&Detect moved/renamed items after comparison:"
 msgstr ""
 
 msgid "File patterns:"

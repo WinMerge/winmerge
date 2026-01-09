@@ -1625,6 +1625,18 @@ msgstr ""
 msgid "Compare C&ontents"
 msgstr ""
 
+msgid "Match &Name"
+msgstr ""
+
+msgid "Match &Size"
+msgstr ""
+
+msgid "Match &Date"
+msgstr ""
+
+msgid "Match &Contents"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Про програму WinMerge"
 
@@ -2641,10 +2653,7 @@ msgstr ""
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
-msgid "&Move detection:"
-msgstr ""
-
-msgid "Pair renames in same &folder"
+msgid "&Detect moved/renamed items after comparison:"
 msgstr ""
 
 msgid "File patterns:"

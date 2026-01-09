@@ -1859,6 +1859,18 @@ msgstr "속성 비교(&A)"
 msgid "Compare C&ontents"
 msgstr "내용 비교(&O)"
 
+msgid "Match &Name"
+msgstr ""
+
+msgid "Match &Size"
+msgstr ""
+
+msgid "Match &Date"
+msgstr ""
+
+msgid "Match &Contents"
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "WinMerge 정보"
@@ -3106,10 +3118,7 @@ msgstr "바이너리 비교로 전환하기 위한 임계값 (MB)(&B):"
 msgid "Additional comparison condi&tions:"
 msgstr "추가 비교 조건(&T):"
 
-msgid "&Move detection:"
-msgstr ""
-
-msgid "Pair renames in same &folder"
+msgid "&Detect moved/renamed items after comparison:"
 msgstr ""
 
 msgid "File patterns:"

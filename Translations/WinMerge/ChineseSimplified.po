@@ -1626,6 +1626,18 @@ msgstr "比较属性(&A)"
 msgid "Compare C&ontents"
 msgstr "比较内容(&O)"
 
+msgid "Match &Name"
+msgstr ""
+
+msgid "Match &Size"
+msgstr ""
+
+msgid "Match &Date"
+msgstr ""
+
+msgid "Match &Contents"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
 
@@ -2639,10 +2651,7 @@ msgstr "切换到二进制比较的最小值(&B) (MB)："
 msgid "Additional comparison condi&tions:"
 msgstr "附加的比较条件(&T)："
 
-msgid "&Move detection:"
-msgstr ""
-
-msgid "Pair renames in same &folder"
+msgid "&Detect moved/renamed items after comparison:"
 msgstr ""
 
 msgid "File patterns:"

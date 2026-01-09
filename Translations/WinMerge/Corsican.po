@@ -1625,6 +1625,18 @@ msgstr "Paragunà l’&attributi"
 msgid "Compare C&ontents"
 msgstr "Paragunà u &cuntenutu"
 
+msgid "Match &Name"
+msgstr ""
+
+msgid "Match &Size"
+msgstr ""
+
+msgid "Match &Date"
+msgstr ""
+
+msgid "Match &Contents"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
 
@@ -2644,10 +2656,7 @@ msgstr "Passà à u paragone &binariu quandu a dimensione (in Mo) eccede :"
 msgid "Additional comparison condi&tions:"
 msgstr "Cundizioni addiziunale di parag&one :"
 
-msgid "&Move detection:"
-msgstr ""
-
-msgid "Pair renames in same &folder"
+msgid "&Detect moved/renamed items after comparison:"
 msgstr ""
 
 msgid "File patterns:"

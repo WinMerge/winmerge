@@ -151,8 +151,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, false);
 	pOptions->InitOption(OPT_CMP_ADDITIONAL_CONDITION, _T(""));
 	pOptions->InitOption(OPT_CMP_DETECT_MOVED_ITEMS, false);
-	pOptions->InitOption(OPT_CMP_MOVE_DETECTION_RULE, _T(""));
-	pOptions->InitOption(OPT_CMP_PAIR_RENAMES_IN_SAME_FOLDER, false);
+	pOptions->InitOption(OPT_CMP_MOVE_DETECTION_CONDITION, _T(""));
 
 	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
 

@@ -1634,6 +1634,18 @@ msgstr "比較屬性(&A)"
 msgid "Compare C&ontents"
 msgstr "比較內容(&O)"
 
+msgid "Match &Name"
+msgstr ""
+
+msgid "Match &Size"
+msgstr ""
+
+msgid "Match &Date"
+msgstr ""
+
+msgid "Match &Contents"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "關於 WinMerge"
 
@@ -2652,10 +2664,7 @@ msgstr "當大小超過以下ＭＢ限制時，切換為二進制比較(&B)："
 msgid "Additional comparison condi&tions:"
 msgstr "額外的比較條件(&t)："
 
-msgid "&Move detection:"
-msgstr ""
-
-msgid "Pair renames in same &folder"
+msgid "&Detect moved/renamed items after comparison:"
 msgstr ""
 
 msgid "File patterns:"
