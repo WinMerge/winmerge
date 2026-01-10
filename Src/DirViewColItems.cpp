@@ -323,6 +323,39 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 	}
 }
 
+static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
+{
+	if (pCtxt->GetCompareDirs() < 3)
+	{
+		auto* pdi0 = pCtxt->m_movedItems[di.movedGroupId].find(0)->second[0];
+		auto* pdi1 = pCtxt->m_movedItems[di.movedGroupId].find(1)->second[0];
+		if (pdi0->diffFileInfo[0].path == pdi1->diffFileInfo[1].path && pdi0->diffFileInfo[0].filename != pdi1->diffFileInfo[1].filename)
+		{
+			String sMoved = strutils::format_string1(_("Renamed (set %1): "), strutils::to_str(di.movedGroupId + 1));
+			if (pdi0 == &di)
+				return sMoved + strutils::format_string1(_("-> %2"), pdi1->diffFileInfo[1].filename);
+			else
+				return sMoved + strutils::format_string1(_("%2 <-"), pdi1->diffFileInfo[0].filename);
+		}
+		else if (pdi0->diffFileInfo[0].path != pdi1->diffFileInfo[1].path && pdi0->diffFileInfo[0].filename == pdi1->diffFileInfo[1].filename)
+		{
+			String sMoved = strutils::format_string1(_("Moved (set %1): "), strutils::to_str(di.movedGroupId + 1));
+			if (pdi0 == &di)
+				return sMoved + strutils::format_string2(_("%1 -> %2"), di.diffFileInfo[0].path, pdi1->diffFileInfo[1].path);
+			else
+				return sMoved + strutils::format_string2(_("%1 <- %2"), pdi0->diffFileInfo[0].path, di.diffFileInfo[1].path);
+		}
+		else
+		{
+			String sMoved = strutils::format_string1(_("Moved/Renamed (set %1): "), strutils::to_str(di.movedGroupId + 1));
+			if (pdi0 == &di)
+				return sMoved + strutils::format_string2(_("%1 -> %2"), di.diffFileInfo[0].path, pdi1->diffFileInfo[1].GetFile());
+			else
+				return sMoved + strutils::format_string2(_("%1 <- %2"), pdi0->diffFileInfo[0].GetFile(), di.diffFileInfo[1].path);
+		}
+	}
+}
+
 /**
  * @brief Format Result column data.
  * @param [in] pCtxt Pointer to compare context.
@@ -353,20 +386,14 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 		else
 			s = _("File skipped");
 	}
+	else if (di.movedGroupId != -1)
+	{
+		s = ColStatusGetMoved(pCtxt, di);
+	}
 	else if (di.diffcode.isSideFirstOnly())
 	{
-		if (di.movedGroupId == -1)
-		{
-			s = strutils::format_string1(_("Left only: %1"),
-					di.getFilepath(0, pCtxt->GetNormalizedLeft()));
-		}
-		else
-		{
-			auto* pdi1 = pCtxt->m_movedItems[di.movedGroupId].find(1)->second[0];
-			s = strutils::format_string3(_("Moved (set %1): %2 -> %3"),
-					strutils::to_str(di.movedGroupId + 1),
-					di.diffFileInfo[0].path, pdi1->diffFileInfo[1].path);
-		}
+		s = strutils::format_string1(_("Left only: %1"),
+				di.getFilepath(0, pCtxt->GetNormalizedLeft()));
 	}
 	else if (di.diffcode.isSideSecondOnly())
 	{
