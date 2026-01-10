@@ -28,16 +28,44 @@ static std::optional<bool> evalAsBool(const ValueType& val)
 	auto boolVal = std::get_if<bool>(&val);
 	if (boolVal) return *boolVal;
 
-	auto ary = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&val);
-	if (ary && *ary)
-	{
-		const auto& vec = *ary->get();
-		return std::any_of(vec.begin(), vec.end(), [](const ValueType2& item) {
-			const auto boolVal = std::get_if<bool>(&item.value);
-			return boolVal && *boolVal;
-			});
-	}
 	return std::nullopt;
+}
+
+template<typename Func>
+static ValueType applyLogicalOp(const ValueType& lval, const ValueType& rval, Func op)
+{
+	auto lvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&lval);
+	auto rvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&rval);
+	
+	if (!lvalArray && !rvalArray)
+	{
+		return op(lval, rval);
+	}
+	else if (lvalArray && !rvalArray)
+	{
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
+		for (const auto& item : *(lvalArray->get()))
+			result->emplace_back(ValueType2{ op(item.value, rval) });
+		return result;
+	}
+	else if (!lvalArray && rvalArray)
+	{
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
+		for (const auto& item : *(rvalArray->get()))
+			result->emplace_back(ValueType2{ op(lval, item.value) });
+		return result;
+	}
+	else
+	{
+		const size_t maxSize = (std::max)((*lvalArray)->size(), (*rvalArray)->size());
+		const size_t minSize = (std::min)((*lvalArray)->size(), (*rvalArray)->size());
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
+		for (size_t i = 0; i < minSize; ++i)
+			result->emplace_back(ValueType2{ op((*lvalArray)->at(i).value, (*rvalArray)->at(i).value) });
+		for (size_t i = 0; i < maxSize - minSize; ++i)
+			result->emplace_back(ValueType2{ std::monostate{} });
+		return result;
+	}
 }
 
 ExprNode* OrNode::Optimize()
@@ -60,15 +88,17 @@ ExprNode* OrNode::Optimize()
 ValueType OrNode::Evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->Evaluate(di);
-	auto lbool = evalAsBool(lval);
-	if (lbool && *lbool) return true;
-
 	auto rval = right->Evaluate(di);
-	auto rbool = evalAsBool(rval);
-	if (rbool && *rbool) return true;
-
-	if (lbool || rbool) return false;
-	return std::monostate{};
+	
+	return applyLogicalOp(lval, rval, [](const ValueType& l, const ValueType& r) -> ValueType {
+		auto lbool = evalAsBool(l);
+		auto rbool = evalAsBool(r);
+		
+		if (lbool && *lbool) return true;
+		if (rbool && *rbool) return true;
+		if (lbool || rbool) return false;
+		return std::monostate{};
+	});
 }
 
 ExprNode* AndNode::Optimize()
@@ -91,15 +121,18 @@ ExprNode* AndNode::Optimize()
 ValueType AndNode::Evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->Evaluate(di);
-	auto lbool = evalAsBool(lval);
-	if (!lbool) return std::monostate{};
-	if (!*lbool) return false;
-
 	auto rval = right->Evaluate(di);
-	auto rbool = evalAsBool(rval);
-	if (!rbool) return std::monostate{};
-	if (!*rbool) return false;
-	return true;
+	
+	return applyLogicalOp(lval, rval, [](const ValueType& l, const ValueType& r) -> ValueType {
+		auto lbool = evalAsBool(l);
+		if (!lbool) return std::monostate{};
+		if (!*lbool) return false;
+
+		auto rbool = evalAsBool(r);
+		if (!rbool) return std::monostate{};
+		if (!*rbool) return false;
+		return true;
+	});
 }
 
 ExprNode* NotNode::Optimize()
@@ -120,6 +153,21 @@ ExprNode* NotNode::Optimize()
 ValueType NotNode::Evaluate(const DIFFITEM& di) const
 {
 	auto val = right->Evaluate(di);
+	
+	if (auto valArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&val))
+	{
+		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
+		for (const auto& item : *(valArray->get()))
+		{
+			auto boolVal = evalAsBool(item.value);
+			if (!boolVal)
+				result->emplace_back(ValueType2{ std::monostate{} });
+			else
+				result->emplace_back(ValueType2{ !*boolVal });
+		}
+		return result;
+	}
+	
 	auto boolVal = evalAsBool(val);
 	if (!boolVal) return std::monostate{};
 	return !*boolVal;
@@ -1679,8 +1727,6 @@ ExprNode* FunctionNode::Optimize()
 						result->emplace_back(ValueType2{ dateLit->value });
 					else if (auto boolLit = dynamic_cast<BoolLiteral*>(arg))
 						result->emplace_back(ValueType2{ boolLit->value });
-					else
-						result->emplace_back(ValueType2{ std::monostate{} });
 				}
 				delete this;
 				return new ArrayLiteral(result);

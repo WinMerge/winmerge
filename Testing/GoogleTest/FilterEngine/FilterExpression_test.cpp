@@ -1243,6 +1243,90 @@ TEST_P(FilterExpressionTest, Test1)
 	EXPECT_FALSE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, LogicalOperatorsWithArrays)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// OR operator with arrays
+	EXPECT_TRUE(fe.Parse("(array(true, false, true) or true) == array(true, true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(array(true, false, true) or false) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(true or array(true, false, true)) == array(true, true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(false or array(true, false, true)) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(array(true, false) or array(false, true)) == array(true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	//EXPECT_TRUE(fe.Parse("(array(true, false, true) or array(false, true)) == array(true, true, undefined)"));
+	//EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(array(false, false) or array(false, false)) == array(false, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// AND operator with arrays
+	EXPECT_TRUE(fe.Parse("(array(true, false, true) and true) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(array(true, false, true) and false) == array(false, false, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(true and array(true, false, true)) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(false and array(true, false, true)) == array(false, false, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(array(true, false) and array(false, true)) == array(false, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	//EXPECT_TRUE(fe.Parse("(array(true, true, true) and array(true, false)) == array(true, false, undefined)"));
+	//EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(array(true, true) and array(true, true)) == array(true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// NOT operator with arrays
+	EXPECT_TRUE(fe.Parse("(not array(true, false, true)) == array(false, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(not array(false, false, false)) == array(true, true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(not array(true, true, true)) == array(false, false, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Complex expressions with arrays
+	EXPECT_TRUE(fe.Parse("((array(true, false) and array(true, true)) or array(false, true)) == array(true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(not (array(true, false) and array(true, true))) == array(false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("((array(true, false) or array(false, true)) and array(true, true)) == array(true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Test with anyof and allof
+	EXPECT_TRUE(fe.Parse("anyof(array(true, false, true) and false)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("anyof(array(true, false, true) or false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(array(true, true, true) and true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(array(true, false, true) and true)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(array(false, false, false) or true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(array(true, false, true) or false)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Test with comparison results
+	EXPECT_TRUE(fe.Parse("(array(1, 2, 3) > 2) == array(false, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("((array(1, 2, 3) > 2) and (array(1, 2, 3) < 4)) == array(false, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("((array(1, 2, 3) > 2) or (array(1, 2, 3) < 2)) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("(not (array(1, 2, 3) > 2)) == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
 INSTANTIATE_TEST_SUITE_P(
 	OptimizationCases,
 	FilterExpressionTest,
