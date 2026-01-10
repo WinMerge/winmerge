@@ -1535,9 +1535,9 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		String strDesc[3];
 		fileopenflags_t dwFlags[3] = {
-			static_cast<fileopenflags_t>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-			static_cast<fileopenflags_t>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-			static_cast<fileopenflags_t>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
+			static_cast<fileopenflags_t>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU)),
+			static_cast<fileopenflags_t>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU)),
+			static_cast<fileopenflags_t>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU))
 		};
 		if (bLeftReadOnly)
 			dwFlags[0] |= FFILEOPEN_READONLY;
