@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-01-11 08:41+0900\n"
+"POT-Creation-Date: 2026-01-11 15:44+0900\n"
 "PO-Revision-Date: 2025-03-13 09:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -489,11 +489,11 @@ msgid "TwoWords"
 msgstr "שתי מילים"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><para>
-#: English/About_Doc.xml:313 English/Filters.xml:1027 English/Filters.xml:1038
-#: English/Filters.xml:1187 English/Filters.xml:1193 English/Filters.xml:1209
-#: English/Filters.xml:1216 English/Filters.xml:1235 English/Filters.xml:1239
-#: English/Filters.xml:1243 English/Filters.xml:1249 English/Filters.xml:1260
-#: English/Filters.xml:1264 English/Filters.xml:1272 English/Filters.xml:1276
+#: English/About_Doc.xml:313 English/Filters.xml:1118 English/Filters.xml:1129
+#: English/Filters.xml:1278 English/Filters.xml:1284 English/Filters.xml:1300
+#: English/Filters.xml:1307 English/Filters.xml:1326 English/Filters.xml:1330
+#: English/Filters.xml:1334 English/Filters.xml:1340 English/Filters.xml:1351
+#: English/Filters.xml:1355 English/Filters.xml:1363 English/Filters.xml:1367
 #: English/Intro_diffs.xml:62 English/Intro_diffs.xml:71
 msgid "<placeholder type=\"screen\" id=\"0\"/>"
 msgstr "<placeholder type=\"screen\" id=\"0\"/>"
@@ -549,7 +549,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:4 English/Command_line.xml:8
-#: English/Filters.xml:102 English/Filters.xml:866 English/Open_paths.xml:369
+#: English/Filters.xml:102 English/Filters.xml:957 English/Open_paths.xml:369
 #: English/Quick_start.xml:205
 msgid "command line"
 msgstr "שורת פקודה"
@@ -828,9 +828,9 @@ msgstr ""
 #: English/Command_line.xml:226 English/Configuration.xml:820
 #: English/Configuration.xml:848 English/Configuration.xml:871
 #: English/Filters.xml:4 English/Filters.xml:87 English/Filters.xml:91
-#: English/Filters.xml:133 English/Filters.xml:720 English/Filters.xml:724
-#: English/Filters.xml:1049 English/Filters.xml:1053 English/Filters.xml:1156
-#: English/Filters.xml:1283 English/Filters.xml:1287 English/Filters.xml:1299
+#: English/Filters.xml:133 English/Filters.xml:811 English/Filters.xml:815
+#: English/Filters.xml:1140 English/Filters.xml:1144 English/Filters.xml:1247
+#: English/Filters.xml:1374 English/Filters.xml:1378 English/Filters.xml:1390
 #: English/Open_paths.xml:91
 msgid "filters"
 msgstr "מסננים"
@@ -6447,8 +6447,8 @@ msgstr ""
 #: English/Compare_files.xml:1476 English/Compare_images.xml:117
 #: English/Configuration.xml:2196 English/Configuration.xml:2362
 #: English/Configuration.xml:2481 English/Configuration.xml:2910
-#: English/Filters.xml:1292 English/Filters.xml:1723 English/Filters.xml:1728
-#: English/Filters.xml:1739
+#: English/Filters.xml:1383 English/Filters.xml:1814 English/Filters.xml:1819
+#: English/Filters.xml:1830
 msgid "TBD"
 msgstr "TBD"
 
@@ -11132,7 +11132,7 @@ msgid "This setting affects newly created user data only."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2611 English/Filters.xml:748
+#: English/Configuration.xml:2611 English/Filters.xml:839
 msgid "Filters folders"
 msgstr "תיקיות סינון"
 
@@ -12326,9 +12326,9 @@ msgstr ""
 "התיקונים הנתמכות על ידי התוסף הן .diff או .patch."
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: English/Filters.xml:6 English/Filters.xml:722 English/Filters.xml:735
-#: English/Filters.xml:752 English/Filters.xml:796 English/Filters.xml:882
-#: English/Filters.xml:1360 English/Filters.xml:1559
+#: English/Filters.xml:6 English/Filters.xml:813 English/Filters.xml:826
+#: English/Filters.xml:843 English/Filters.xml:887 English/Filters.xml:973
+#: English/Filters.xml:1451 English/Filters.xml:1650
 msgid "file filters"
 msgstr "מסנני קבצים"
 
@@ -12339,12 +12339,12 @@ msgid "file masks"
 msgstr "מסיכות קבצים"
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: English/Filters.xml:10 English/Filters.xml:1626 English/Filters.xml:1685
+#: English/Filters.xml:10 English/Filters.xml:1717 English/Filters.xml:1776
 msgid "line filters"
 msgstr "מסנני שורות"
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: English/Filters.xml:12 English/Filters.xml:1718 English/Filters.xml:1734
+#: English/Filters.xml:12 English/Filters.xml:1809 English/Filters.xml:1825
 msgid "substitution filters"
 msgstr "מסנני החלפה"
 
@@ -12355,8 +12355,8 @@ msgstr "שימוש במסננים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Filters.xml:20 English/Filters.xml:28 English/Filters.xml:137
-#: English/Filters.xml:972 English/Filters.xml:976 English/Filters.xml:1160
-#: English/Filters.xml:1746
+#: English/Filters.xml:1063 English/Filters.xml:1067 English/Filters.xml:1251
+#: English/Filters.xml:1837
 msgid "regular expressions"
 msgstr "ביטויים רגולריים"
 
@@ -12491,7 +12491,7 @@ msgstr ""
 "תואמות. הם שימושיים להתעלמות ממספר רב של שינויים לא מעניינים."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:93 English/Filters.xml:726
+#: English/Filters.xml:93 English/Filters.xml:817
 msgid "in folder comparisons"
 msgstr "בהשוואות תיקיות"
 
@@ -12555,7 +12555,7 @@ msgstr ""
 "לציין מסיכות קבצים (ראה את הדוגמה בסעיף הבא)."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Filters.xml:129 English/Filters.xml:878 English/Filters.xml:1152
+#: English/Filters.xml:129 English/Filters.xml:969 English/Filters.xml:1243
 msgid "rules"
 msgstr "כללים"
 
@@ -12696,7 +12696,7 @@ msgid "Exclude matching folders (Available since 2.16.19)"
 msgstr "החרגת תיקיות (ב-2.16.19 ואילך)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:164 English/Filters.xml:960
+#: English/Filters.xml:164 English/Filters.xml:1051
 msgid "f: <replaceable>regexp</replaceable>"
 msgstr "f: <replaceable>regexp</replaceable>"
 
@@ -12706,7 +12706,7 @@ msgid "Match file names using regular expressions (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:165 English/Filters.xml:961
+#: English/Filters.xml:165 English/Filters.xml:1052
 #, fuzzy
 #| msgid "f: <replaceable>regexp</replaceable>"
 msgid "f!: <replaceable>regexp</replaceable>"
@@ -12718,7 +12718,7 @@ msgid "Exclude files matching regex (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:166 English/Filters.xml:962
+#: English/Filters.xml:166 English/Filters.xml:1053
 msgid "d: <replaceable>regexp</replaceable>"
 msgstr "d: <replaceable>regexp</replaceable>"
 
@@ -12728,7 +12728,7 @@ msgid "Match folder names using regex (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:167 English/Filters.xml:963
+#: English/Filters.xml:167 English/Filters.xml:1054
 #, fuzzy
 #| msgid "d: <replaceable>regexp</replaceable>"
 msgid "d!: <replaceable>regexp</replaceable>"
@@ -12740,51 +12740,51 @@ msgid "Exclude folders matching regex (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:168 English/Filters.xml:964
+#: English/Filters.xml:168 English/Filters.xml:1055
 #, fuzzy
 #| msgid "f: <replaceable>regexp</replaceable>"
 msgid "fe: <replaceable>expr</replaceable>"
 msgstr "f: <replaceable>regexp</replaceable>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:168 English/Filters.xml:964
+#: English/Filters.xml:168 English/Filters.xml:1055
 msgid ""
 "Filter expression for files (e.g. fe:Size &lt; 1KB) (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:169 English/Filters.xml:965
+#: English/Filters.xml:169 English/Filters.xml:1056
 #, fuzzy
 #| msgid "f: <replaceable>regexp</replaceable>"
 msgid "fe!: <replaceable>expr</replaceable>"
 msgstr "f: <replaceable>regexp</replaceable>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:169 English/Filters.xml:965
+#: English/Filters.xml:169 English/Filters.xml:1056
 msgid "Filter expression to exclude files (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:170 English/Filters.xml:966
+#: English/Filters.xml:170 English/Filters.xml:1057
 #, fuzzy
 #| msgid "d: <replaceable>regexp</replaceable>"
 msgid "de: <replaceable>expr</replaceable>"
 msgstr "d: <replaceable>regexp</replaceable>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:170 English/Filters.xml:966
+#: English/Filters.xml:170 English/Filters.xml:1057
 msgid "Filter expression for folders (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:171 English/Filters.xml:967
+#: English/Filters.xml:171 English/Filters.xml:1058
 #, fuzzy
 #| msgid "d: <replaceable>regexp</replaceable>"
 msgid "de!: <replaceable>expr</replaceable>"
 msgstr "d: <replaceable>regexp</replaceable>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:171 English/Filters.xml:967
+#: English/Filters.xml:171 English/Filters.xml:1058
 msgid "Filter expression to exclude folders (Available since 2.16.49)"
 msgstr ""
 
@@ -13355,7 +13355,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:462 English/Filters.xml:695
+#: English/Filters.xml:462 English/Filters.xml:786
 #, fuzzy
 #| msgid "Example"
 msgid "Examples"
@@ -13785,7 +13785,9 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:629 English/Filters.xml:646
+#: English/Filters.xml:629 English/Filters.xml:646 English/Filters.xml:678
+#: English/Filters.xml:696 English/Filters.xml:712 English/Filters.xml:728
+#: English/Filters.xml:752
 #, fuzzy
 #| msgid "Example"
 msgid "Examples:"
@@ -13921,257 +13923,535 @@ msgid ""
 "literal> - logs only when size condition is true, then checks name"
 msgstr ""
 
-#. type: Content of: <article><section><section><section><title>
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:672
+#, fuzzy
+#| msgid ""
+#| "[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</"
+#| "replaceable>\\)[<replaceable>delimiter</replaceable>[!](*."
+#| "<replaceable>extension</replaceable>|<replaceable>folder mask</"
+#| "replaceable>\\) ...]"
+msgid ""
+"if(<replaceable>condition</replaceable>, <replaceable>trueValue</"
+"replaceable>, <replaceable>falseValue</replaceable>)"
+msgstr ""
+"[!](*.[<replaceable>סיומת</replaceable>]|<replaceable>מסיכת תיקייה</"
+"replaceable>\\)[<replaceable>מפריד</replaceable>[!](*.<replaceable>סיומת</"
+"replaceable>|<replaceable>מסיכת תיקייה</replaceable>\\) ...]"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:675
+msgid ""
+"Returns <replaceable>trueValue</replaceable> if <replaceable>condition</"
+"replaceable> evaluates to true, otherwise returns <replaceable>falseValue</"
+"replaceable>.  This function performs short-circuit evaluation (it only "
+"evaluates the branch that will be returned)."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:680
+msgid ""
+"<literal>if(Size > 1MB, \"large\", \"small\")</literal> - returns \"large\" "
+"or \"small\" based on file size"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:681
+msgid ""
+"<literal>if(Extension = \"txt\", \"text file\", \"other file\")</literal> - "
+"classifies files by extension"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:682
+msgid ""
+"<literal>if(Exists, Size, 0)</literal> - returns file size or 0 if file "
+"doesn't exist"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:687
+#, fuzzy
+#| msgid ""
+#| "[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</"
+#| "replaceable>\\)[<replaceable>delimiter</replaceable>[!](*."
+#| "<replaceable>extension</replaceable>|<replaceable>folder mask</"
+#| "replaceable>\\) ...]"
+msgid ""
+"ifEach(<replaceable>conditionArray</replaceable>, <replaceable>trueValue</"
+"replaceable>, <replaceable>falseValue</replaceable>)"
+msgstr ""
+"[!](*.[<replaceable>סיומת</replaceable>]|<replaceable>מסיכת תיקייה</"
+"replaceable>\\)[<replaceable>מפריד</replaceable>[!](*.<replaceable>סיומת</"
+"replaceable>|<replaceable>מסיכת תיקייה</replaceable>\\) ...]"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:690
+msgid ""
+"Element-wise conditional selection. For each element in "
+"<replaceable>conditionArray</replaceable>, returns the corresponding element "
+"from <replaceable>trueValue</replaceable> if the condition is true, "
+"otherwise returns the corresponding element from <replaceable>falseValue</"
+"replaceable>.  If <replaceable>trueValue</replaceable> or "
+"<replaceable>falseValue</replaceable> is a scalar, it is broadcast to all "
+"elements."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:698
+msgid ""
+"<literal>ifEach(Size &gt; 1MB, \"large\", \"small\")</literal> - returns "
+"array of \"large\"/\"small\" labels for each file"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:699
+msgid ""
+"<literal>ifEach(array(true, false, true), array(\"a\", \"b\", \"c\"), "
+"array(\"x\", \"y\", \"z\"))</literal> - returns <literal>array(\"a\", \"y\", "
+"\"c\")</literal>"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:700
+msgid ""
+"<literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> - "
+"checks if any file is between 100KB and 10MB"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:705
+#, fuzzy
+#| msgid ""
+#| "[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</"
+#| "replaceable>\\)[<replaceable>delimiter</replaceable>[!](*."
+#| "<replaceable>extension</replaceable>|<replaceable>folder mask</"
+#| "replaceable>\\) ...]"
+msgid ""
+"choose(<replaceable>index</replaceable>, <replaceable>value0</replaceable>, "
+"<replaceable>value1</replaceable>, ...)"
+msgstr ""
+"[!](*.[<replaceable>סיומת</replaceable>]|<replaceable>מסיכת תיקייה</"
+"replaceable>\\)[<replaceable>מפריד</replaceable>[!](*.<replaceable>סיומת</"
+"replaceable>|<replaceable>מסיכת תיקייה</replaceable>\\) ...]"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:708
+#, fuzzy
+#| msgid ""
+#| "[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</"
+#| "replaceable>\\)[<replaceable>delimiter</replaceable>[!](*."
+#| "<replaceable>extension</replaceable>|<replaceable>folder mask</"
+#| "replaceable>\\) ...]"
+msgid ""
+"Selects a value from the arguments based on <replaceable>index</"
+"replaceable>.  If <replaceable>index</replaceable> is 0, returns "
+"<replaceable>value0</replaceable>; if 1, returns <replaceable>value1</"
+"replaceable>, etc.  Negative indices are clamped to 0. Indices beyond the "
+"last value return the last value."
+msgstr ""
+"[!](*.[<replaceable>סיומת</replaceable>]|<replaceable>מסיכת תיקייה</"
+"replaceable>\\)[<replaceable>מפריד</replaceable>[!](*.<replaceable>סיומת</"
+"replaceable>|<replaceable>מסיכת תיקייה</replaceable>\\) ...]"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:714
+msgid ""
+"<literal>choose(0, \"first\", \"second\", \"third\")</literal> - returns "
+"\"first\""
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:715
+msgid ""
+"<literal>choose(DiffCode % 3, \"equal\", \"different\", \"unique\")</"
+"literal> - maps diff codes to labels"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:716
+msgid ""
+"<literal>choose(5, \"a\", \"b\", \"c\")</literal> - returns \"c\" (out of "
+"bounds, returns last value)"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:721
+#, fuzzy
+#| msgid ""
+#| "[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</"
+#| "replaceable>\\)[<replaceable>delimiter</replaceable>[!](*."
+#| "<replaceable>extension</replaceable>|<replaceable>folder mask</"
+#| "replaceable>\\) ...]"
+msgid ""
+"chooseEach(<replaceable>indexArray</replaceable>, <replaceable>value0</"
+"replaceable>, <replaceable>value1</replaceable>, ...)"
+msgstr ""
+"[!](*.[<replaceable>סיומת</replaceable>]|<replaceable>מסיכת תיקייה</"
+"replaceable>\\)[<replaceable>מפריד</replaceable>[!](*.<replaceable>סיומת</"
+"replaceable>|<replaceable>מסיכת תיקייה</replaceable>\\) ...]"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:724
+msgid ""
+"Element-wise value selection. For each index in <replaceable>indexArray</"
+"replaceable>, selects the corresponding value from the remaining arguments.  "
+"If <replaceable>indexArray</replaceable> is a scalar, behaves like "
+"<literal>choose</literal>."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:730
+msgid ""
+"<literal>chooseEach(array(0, 1, 2), \"a\", \"b\", \"c\")</literal> - returns "
+"<literal>array(\"a\", \"b\", \"c\")</literal>"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:731
+msgid ""
+"<literal>chooseEach(array(0, 0, 1), \"x\", \"y\")</literal> - returns "
+"<literal>array(\"x\", \"x\", \"y\")</literal>"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:732
+msgid ""
+"<literal>chooseEach(array(2, 0, 1), \"first\", \"second\", \"third\")</"
+"literal> - returns <literal>array(\"third\", \"first\", \"second\")</literal>"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:737
+#, fuzzy
+#| msgid ""
+#| "[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</"
+#| "replaceable>\\)[<replaceable>delimiter</replaceable>[!](*."
+#| "<replaceable>extension</replaceable>|<replaceable>folder mask</"
+#| "replaceable>\\) ...]"
+msgid ""
+"andEach(<replaceable>value1</replaceable>, <replaceable>value2</"
+"replaceable>), orEach(<replaceable>value1</replaceable>, "
+"<replaceable>value2</replaceable>), notEach(<replaceable>value</replaceable>)"
+msgstr ""
+"[!](*.[<replaceable>סיומת</replaceable>]|<replaceable>מסיכת תיקייה</"
+"replaceable>\\)[<replaceable>מפריד</replaceable>[!](*.<replaceable>סיומת</"
+"replaceable>|<replaceable>מסיכת תיקייה</replaceable>\\) ...]"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:740
+msgid ""
+"Element-wise logical operations. These functions operate on booleans, "
+"boolean arrays, or a combination of both:"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:743
+msgid "<literal>andEach</literal> - Logical AND operation"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:744
+msgid "<literal>orEach</literal> - Logical OR operation"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:745
+msgid "<literal>notEach</literal> - Logical NOT operation (single argument)"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Filters.xml:748
+msgid ""
+"When arguments are scalars, returns a scalar boolean result.  When one "
+"argument is an array and the other is a scalar, the scalar is broadcast to "
+"all elements.  When both arguments are arrays, performs element-wise "
+"operation."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:754
+msgid ""
+"<literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - files between 1KB "
+"and 1MB"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:755
+msgid ""
+"<literal>orEach(Extension = \"txt\", Extension = \"log\")</literal> - txt or "
+"log files"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:756
+msgid "<literal>notEach(Exists)</literal> - files that don't exist"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:757
+msgid ""
+"<literal>allof(andEach(Exists, Size &gt; 0))</literal> - all files exist "
+"with non-zero size"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: English/Filters.xml:758
+msgid ""
+"<literal>anyof(notEach(Size &gt; 1MB))</literal> - any file 1MB or smaller"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Filters.xml:766
 msgid "Units"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:676
+#: English/Filters.xml:767
 msgid "File sizes support these suffixes:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:678
+#: English/Filters.xml:769
 msgid "KB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:679
+#: English/Filters.xml:770
 msgid "MB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:680
+#: English/Filters.xml:771
 msgid "GB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:681
+#: English/Filters.xml:772
 #, fuzzy
 #| msgid "TBD"
 msgid "TB"
 msgstr "TBD"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:683
+#: English/Filters.xml:774
 msgid "Time durations support these suffixes:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:685
+#: English/Filters.xml:776
 msgid "weeks"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:685
+#: English/Filters.xml:776
 msgid "week"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:685
+#: English/Filters.xml:776
 msgid "w"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:686
+#: English/Filters.xml:777
 msgid "days"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:686
+#: English/Filters.xml:777
 msgid "day"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:686
+#: English/Filters.xml:777
 msgid "d"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:687
+#: English/Filters.xml:778
 msgid "hours"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:687
+#: English/Filters.xml:778
 msgid "hour"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:687
+#: English/Filters.xml:778
 msgid "hr"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:687
+#: English/Filters.xml:778
 msgid "h"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:688
+#: English/Filters.xml:779
 msgid "minutes"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:688
+#: English/Filters.xml:779
 msgid "minute"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:688
+#: English/Filters.xml:779
 #, fuzzy
 #| msgid "margins"
 msgid "min"
 msgstr "שוליים"
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:688
+#: English/Filters.xml:779
 msgid "m"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:689
+#: English/Filters.xml:780
 msgid "seconds"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:689
+#: English/Filters.xml:780
 msgid "second"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:689
+#: English/Filters.xml:780
 msgid "sec"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:689
+#: English/Filters.xml:780
 msgid "s"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:690
+#: English/Filters.xml:781
 msgid "milliseconds"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:690
+#: English/Filters.xml:781
 msgid "millisecond"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:690
+#: English/Filters.xml:781
 msgid "msec"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: English/Filters.xml:690
+#: English/Filters.xml:781
 msgid "ms"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:697
+#: English/Filters.xml:788
 msgid "<literal>Size &lt; 10KB</literal> - Any side's size is less than 10KB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:698
+#: English/Filters.xml:789
 msgid ""
 "<literal>LeftSize &gt;= 10MB</literal> - Left side file is at least 10MB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:699
+#: English/Filters.xml:790
 msgid "<literal>allof(Size &lt; 1MB)</literal> - All sides are under 1MB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:700
+#: English/Filters.xml:791
 msgid ""
 "<literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - Size difference is "
 "small"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:701
+#: English/Filters.xml:792
 msgid ""
 "<literal>DateStr = \"2025-07-20\"</literal> - File was last modified on that "
 "date"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:702
+#: English/Filters.xml:793
 msgid "<literal>Date &gt;= today()</literal> - Modified today or later"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:703
+#: English/Filters.xml:794
 msgid ""
 "<literal>isWithin(Date, today() - 7days, today())</literal> - File modified "
 "within the last week"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:704
+#: English/Filters.xml:795
 msgid ""
 "<literal>inRange(Size, 1KB, 10MB)</literal> - File size is between 1KB "
 "(inclusive) and 10MB (exclusive)"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:705
+#: English/Filters.xml:796
 msgid ""
 "<literal>allof(isWithin(Size, 100KB, 1MB))</literal> - All file sizes are "
 "between 100KB and 1MB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:706
+#: English/Filters.xml:797
 msgid "<literal>AttrStr contains \"R\"</literal> - File is read-only"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:707
+#: English/Filters.xml:798
 msgid "<literal>Name matches \"file[0-9]\\.txt\"</literal> - Regex on filename"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:708
+#: English/Filters.xml:799
 msgid ""
 "<literal>Content contains \"Test\"</literal> - File content includes keyword"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:709
+#: English/Filters.xml:800
 msgid ""
 "<literal>sublines(Content, 0, 1) contains \"XML\"</literal> - First line "
 "contains \"XML\""
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:710
+#: English/Filters.xml:801
 msgid ""
 "<literal>(Extension = \"log\" and Size > 10MB) or (Date &lt; today() - "
 "7days)</literal> - Large log files or files older than a week"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:711
+#: English/Filters.xml:802
 msgid ""
 "<literal>AttrStr not contains \"H\" and Name like \"*.tmp\"</literal> - Non-"
 "hidden temporary files"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:712
+#: English/Filters.xml:803
 msgid ""
 "<literal>isWithin(Extension, \"a\", \"m\") and inRange(Size, 0, 1MB)</"
 "literal> - Files with extensions from 'a' to 'm' and size less than 1MB"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:719
+#: English/Filters.xml:810
 msgid ""
 "Using file filters<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -14180,7 +14460,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:729
+#: English/Filters.xml:820
 msgid ""
 "<glossterm>File filters</glossterm> are text files with an extension of "
 "<filename>flt</filename>. They enable you to apply multiple filtering rules "
@@ -14192,12 +14472,12 @@ msgstr ""
 "למסיכות קבצים, מסנני קבצים יכולים לכלול או לא לכלול התאמות."
 
 #. type: Content of: <article><section><para><indexterm><secondary>
-#: English/Filters.xml:737
+#: English/Filters.xml:828
 msgid "template"
 msgstr "תבנית"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:734
+#: English/Filters.xml:825
 msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/>WinMerge installs a number of "
 "predefined file filters. If these file filters do not provide the filtering "
@@ -14215,12 +14495,12 @@ msgstr ""
 "כיצד להוסיף, לערוך ולנהל מסננים."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:750 English/Filters.xml:754
+#: English/Filters.xml:841 English/Filters.xml:845
 msgid "locations"
 msgstr "מיקומים"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:747
+#: English/Filters.xml:838
 msgid ""
 "File filter locations<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -14229,17 +14509,17 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:757
+#: English/Filters.xml:848
 msgid "WinMerge automatically detects file filters in these locations:"
 msgstr "WinMerge מזהה אוטומטית מסנני קבצים במיקומים אלה:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:762
+#: English/Filters.xml:853
 msgid "Filters subfolder in the WinMerge installation folder"
 msgstr "תיקיית המשנה מסננים בתיקיית ההתקנה של WinMerge"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:765
+#: English/Filters.xml:856
 msgid ""
 "This is where the predefined file filters are installed. For example, "
 "<filename>C:\\Program Files\\WinMerge\\Filters</filename>. You can create or "
@@ -14251,7 +14531,7 @@ msgstr ""
 "במיקום זה כדי להפוך אותם לזמינים לכל המשתמשים במערכת שלך."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:770
+#: English/Filters.xml:861
 msgid ""
 "Before creating a new file filter, see if the predefined ones already "
 "contain what you need. If not, you might find useful rule examples in the "
@@ -14261,12 +14541,12 @@ msgstr ""
 "שאתה צריך. אם לא, ייתכן שתמצא דוגמאות שימושיות לכללים בקבצים הקיימים."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:777
+#: English/Filters.xml:868
 msgid "Default private filter folder"
 msgstr "תיקיית מסננים פרטית ברירת מחדל"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:780
+#: English/Filters.xml:871
 msgid ""
 "The location of this folder is defined in the System page of WinMerge "
 "options. By default, it is specified as a subfolder in your user profile "
@@ -14281,7 +14561,7 @@ msgstr ""
 "פרטיים."
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:790
+#: English/Filters.xml:881
 msgid ""
 "Before you can apply file filters that exist in any other folder, you must "
 "first install them."
@@ -14289,28 +14569,28 @@ msgstr ""
 "לפני שתוכל להחיל מסנני קבצים הקיימים בכל תיקייה אחרת, עליך להתקין אותם תחילה."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:798
+#: English/Filters.xml:889
 msgid "applying"
 msgstr "החלה"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:795
+#: English/Filters.xml:886
 msgid "Applying file filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "החלת מסנני קבצים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:801
+#: English/Filters.xml:892
 msgid "You can apply a file filter using any of these methods:"
 msgstr "אתה יכול להחיל מסנן קבצים באמצעות אחת מהשיטות הבאות:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:805
+#: English/Filters.xml:896
 msgid ""
 "When you launch a folder compare from the Select Files or Folders dialog:"
 msgstr "כשאתה מפעיל השוואת תיקיות מתיבת הדו-שיח בחר קבצים או תיקיות:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:810
+#: English/Filters.xml:901
 msgid ""
 "After choosing the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel> "
 "folders, click <guibutton>Select</guibutton> next to the <guilabel>Filter</"
@@ -14320,7 +14600,7 @@ msgstr ""
 "<guibutton>בחר</guibutton> ליד השדה <guilabel>מסנן</guilabel>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:817
+#: English/Filters.xml:908
 msgid ""
 "In the Filters dialog, use the File Filters tab to choose a file filter and "
 "load it in the <guilabel>Filter</guilabel> field."
@@ -14329,7 +14609,7 @@ msgstr ""
 "ולטעון אותו בשדה <guilabel>מסנן</guilabel>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><note><para>
-#: English/Filters.xml:822
+#: English/Filters.xml:913
 msgid ""
 "If a file filter is currently enabled, the selected file filter is already "
 "loaded in the <guilabel>Filter</guilabel> field."
@@ -14338,7 +14618,7 @@ msgstr ""
 "guilabel>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:830
+#: English/Filters.xml:921
 msgid ""
 "Proceed with the compare operation. The file in the <guilabel>Filter</"
 "guilabel> field is applied when you start the operation."
@@ -14347,7 +14627,7 @@ msgstr ""
 "את הפעולה."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:838
+#: English/Filters.xml:929
 msgid ""
 "To change file filtering after you have already launched a folder compare "
 "operation (for example, applying a different filter or disabling filtering):"
@@ -14356,7 +14636,7 @@ msgstr ""
 "מסנן אחר או השבתת סינון):"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:844 English/Filters.xml:1110
+#: English/Filters.xml:935 English/Filters.xml:1201
 msgid ""
 "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</"
 "guimenuitem> </menuchoice>."
@@ -14365,7 +14645,7 @@ msgstr ""
 "guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:852
+#: English/Filters.xml:943
 msgid ""
 "In the Filters dialog, configure your new file filter setting, and click "
 "<guibutton>OK</guibutton>."
@@ -14374,7 +14654,7 @@ msgstr ""
 "<guibutton>אישור</guibutton>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:857
+#: English/Filters.xml:948
 msgid ""
 "The new filtering is not automatically applied when you close the Filters "
 "dialog: press <keycap>F5</keycap> to see the new results in the Folder "
@@ -14384,12 +14664,12 @@ msgstr ""
 "<keycap>F5</keycap> כדי לראות את התוצאות החדשות בחלון השוואת התיקיות."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para><indexterm><secondary>
-#: English/Filters.xml:868
+#: English/Filters.xml:959
 msgid "applying file filters"
 msgstr "החלת מסנני קבצים"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:865
+#: English/Filters.xml:956
 msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/>When you launch a folder compare "
 "from the WinMerge command line, use the <option>-f</option> flag to specify "
@@ -14399,17 +14679,17 @@ msgstr ""
 "הפקודה של WinMerge, השתמש בדגל <option>-f</option> כדי לציין מסנן קבצים."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:880
+#: English/Filters.xml:971
 msgid "file filter"
 msgstr "מסנן קבצים"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:884
+#: English/Filters.xml:975
 msgid "syntax"
 msgstr "תחביר"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:877
+#: English/Filters.xml:968
 msgid ""
 "File filter syntax<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -14418,7 +14698,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:887
+#: English/Filters.xml:978
 msgid ""
 "This section describes the syntax of WinMerge file filters and provides "
 "guidelines for writing them."
@@ -14426,7 +14706,7 @@ msgstr ""
 "סעיף זה מתאר את התחביר של מסנני קבצים של WinMerge ומספק הנחיות לכתיבתם."
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:890
+#: English/Filters.xml:981
 msgid ""
 "The comment delimiter is <code>##</code>. After a comment delimiter, all "
 "characters in a line are ignored. WinMerge ignores most whitespace "
@@ -14440,52 +14720,52 @@ msgstr ""
 "ב-<code>##</code> כתווים בכלל, השמט את קידומת הרווח הלבן."
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:896
+#: English/Filters.xml:987
 msgid "The first two required lines of a file filter are:"
 msgstr "שתי השורות הנדרשות הראשונות של מסנן קבצים הן:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:900
+#: English/Filters.xml:991
 msgid "name"
 msgstr "שם"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:903
+#: English/Filters.xml:994
 msgid "The filter name that is listed in the Files dialog"
 msgstr "שם המסנן המופיע בתיבת הדו-שיח קבצים"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:908
+#: English/Filters.xml:999
 msgid "def"
 msgstr "def"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:911
+#: English/Filters.xml:1002
 msgid "The type of filtering to be applied. Specify one of these values:"
 msgstr "סוג הסינון שיש להחיל. ציין אחד מהערכים הבאים:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
-#: English/Filters.xml:916
+#: English/Filters.xml:1007
 msgid "include"
 msgstr "כלול"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:919
+#: English/Filters.xml:1010
 msgid "Includes everything except items matching the specified rule."
 msgstr "כולל הכל מלבד פריטים התואמים לכלל שצוין."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
-#: English/Filters.xml:925
+#: English/Filters.xml:1016
 msgid "exclude"
 msgstr "אל תכלול"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:928
+#: English/Filters.xml:1019
 msgid "Excludes everything except items matching the specified rule."
 msgstr "לא כולל הכל מלבד פריטים התואמים לכלל שצוין."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:931
+#: English/Filters.xml:1022
 msgid ""
 "When you choose the exclude method, you must also add a <guilabel>d</"
 "guilabel> (directory) rule that specifies the subfolders. It's usually a "
@@ -14495,13 +14775,13 @@ msgstr ""
 "שמציין את תיקיות המשנה. בדרך כלל כדאי לציין את כל תיקיות המשנה, כך:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><screen>
-#: English/Filters.xml:936
+#: English/Filters.xml:1027
 #, no-wrap
 msgid "d: \\\\*$ ## Subfolders"
 msgstr "d: \\\\*$ ## תיקיות משנה"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><tip><para>
-#: English/Filters.xml:942
+#: English/Filters.xml:1033
 msgid ""
 "Don't confuse these terms. Remember, in file filters, an <guilabel>include</"
 "guilabel> rule does not specify what to include, it specifies what "
@@ -14513,7 +14793,7 @@ msgstr ""
 "<guilabel>אל תכלול</guilabel> לא מציין מה לא לכלול, הוא מציין מה לא לא לכלול."
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:952
+#: English/Filters.xml:1043
 #, fuzzy
 #| msgid ""
 #| "Next, your file should contain one or more filter rules. You can add as "
@@ -14534,39 +14814,39 @@ msgstr ""
 "או <guilabel>d:</guilabel>, ואחריו ביטוי רגולרי, כאשר:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:960
+#: English/Filters.xml:1051
 #, fuzzy
 #| msgid "treat the specified text as a regular expression"
 msgid "Match file names using regular expressions"
 msgstr "התייחס לטקסט שצוין כביטוי רגולרי"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:961
+#: English/Filters.xml:1052
 msgid "Exclude files matching regex (Available since 2.16.19)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:962
+#: English/Filters.xml:1053
 msgid "Match folder names using regex"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:963
+#: English/Filters.xml:1054
 msgid "Exclude folders matching regex (Available since 2.16.19)"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><indexterm><secondary>
-#: English/Filters.xml:974
+#: English/Filters.xml:1065
 msgid "special characters in filters"
 msgstr "תווים מיוחדים במסננים"
 
 #. type: Content of: <article><section><section><para><indexterm><secondary>
-#: English/Filters.xml:978
+#: English/Filters.xml:1069
 msgid "in file filters"
 msgstr "במסנני קבצים"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:970
+#: English/Filters.xml:1061
 msgid ""
 "Among the many regexp special characters, the following are particularly "
 "important in file filter rules:<placeholder type=\"indexterm\" id=\"0\"/"
@@ -14577,27 +14857,27 @@ msgstr ""
 "id=\"1\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:983
+#: English/Filters.xml:1074
 msgid "^ (beginning of line)"
 msgstr "^ (תחילת שורה)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:986
+#: English/Filters.xml:1077
 msgid "Frequently required for rules to work correctly."
 msgstr "נדרש לעתים קרובות כדי שהכללים יעבדו כראוי."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:991
+#: English/Filters.xml:1082
 msgid "$ (end of line)"
 msgstr "$ (סוף שורה)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:994
+#: English/Filters.xml:1085
 msgid "Frequently required for rules to work correctly. For example:"
 msgstr "נדרש לעתים קרובות כדי שהכללים יעבדו כראוי. לדוגמה:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
-#: English/Filters.xml:997
+#: English/Filters.xml:1088
 #, no-wrap
 msgid ""
 "\\.c$ ## matches only file names with the extension, <filename>c</filename>.\n"
@@ -14607,12 +14887,12 @@ msgstr ""
 "\\.c ## תואם לכל סיומת שמתחילה ב-<filename>c</filename>, כמו <filename>cpp</filename> ו-<filename>com</filename>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1003
+#: English/Filters.xml:1094
 msgid "\\ (escape)"
 msgstr "\\ (בריחה)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1006
+#: English/Filters.xml:1097
 msgid ""
 "Forces special characters to match normal characters. For example, to match "
 "a folder name, precede the folder backslash delimiter with a backslash "
@@ -14625,7 +14905,7 @@ msgstr ""
 "code>)."
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1015
+#: English/Filters.xml:1106
 msgid ""
 "No special characters or wildcards are used to match file names. To match "
 "all filenames of a certain type, simply omit the filename."
@@ -14634,7 +14914,7 @@ msgstr ""
 "להתאים את כל שמות הקבצים מסוג מסוים, פשוט השמט את שם הקובץ."
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1018
+#: English/Filters.xml:1109
 msgid ""
 "Rules are case-insensitive. For example, <code>f: \\.bat$</code> matches "
 "<filename>winmerge.bat</filename> and <filename>compare.BAT</filename>."
@@ -14643,17 +14923,17 @@ msgstr ""
 "ל-<filename>winmerge.bat</filename> ו-<filename>compare.BAT</filename>."
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:1023
+#: English/Filters.xml:1114
 msgid "File filter rule examples"
 msgstr "דוגמאות לכללי סינון קבצים"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1025
+#: English/Filters.xml:1116
 msgid "Some simple file filter rules:"
 msgstr "כמה כללי סינון קבצים פשוטים:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1027
+#: English/Filters.xml:1118
 #, no-wrap
 msgid ""
 "f: \\.cpp$ ## Match <filename>*.cpp</filename> files\n"
@@ -14675,12 +14955,12 @@ msgstr ""
 "d: Src ## התאם לתיקיות <filename>*Src*</filename>"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1036
+#: English/Filters.xml:1127
 msgid "Some rules with more complex regular expressions:"
 msgstr "כמה כללים עם ביטויים רגולריים מורכבים יותר:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1038
+#: English/Filters.xml:1129
 #, no-wrap
 msgid ""
 "f: ^\\.#.*$ ## <filename>.#filename.version</filename> files\n"
@@ -14696,17 +14976,17 @@ msgstr ""
 "f: ^[h,k,m] ## קבצי <filename>h*.*</filename>, <filename>k*.*</filename> ו-<filename>m*.*</filename>"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:1051 English/Filters.xml:1158
+#: English/Filters.xml:1142 English/Filters.xml:1249
 msgid "line"
 msgstr "שורה"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:1055 English/Filters.xml:1289
+#: English/Filters.xml:1146 English/Filters.xml:1380
 msgid "in file comparisons"
 msgstr "בהשוואות קבצים"
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:1048
+#: English/Filters.xml:1139
 msgid ""
 "Using line filters<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -14715,7 +14995,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1058
+#: English/Filters.xml:1149
 msgid ""
 "In a file comparison, you can use line filters to ignore single lines.  For "
 "example, you might use line filters to ignore comments or certain type of "
@@ -14728,7 +15008,7 @@ msgstr ""
 "להחיל כל מספר של מסנני שורות על השוואת קבצים."
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1064
+#: English/Filters.xml:1155
 msgid ""
 "To learn how to add, edit, and manage filters, see <xref "
 "linkend=\"Filters_dlg\" />."
@@ -14737,22 +15017,22 @@ msgstr ""
 "linkend=\"Filters_dlg\" />."
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:1068
+#: English/Filters.xml:1159
 msgid "Applying line filters"
 msgstr "החלת מסנני שורות"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1070
+#: English/Filters.xml:1161
 msgid "You can apply line filters using any of these methods:"
 msgstr "אתה יכול להחיל מסנני שורות באמצעות אחת מהשיטות הבאות:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:1074
+#: English/Filters.xml:1165
 msgid "When you launch a file compare from the Select Files or Folders dialog"
 msgstr "כשאתה מפעיל השוואת קבצים מתיבת הדו-שיח בחר קבצים או תיקיות"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1079
+#: English/Filters.xml:1170
 msgid ""
 "After choosing the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel> "
 "files, click <guibutton>Select</guibutton> next to the <guilabel>Filter</"
@@ -14762,7 +15042,7 @@ msgstr ""
 "<guibutton>בחר</guibutton> ליד השדה <guilabel>מסנן</guilabel>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1086
+#: English/Filters.xml:1177
 msgid ""
 "In the Filters dialog, use the Line Filters tab to enable the line filters "
 "you want to use (if any), or to see what line filters are currently enabled."
@@ -14771,14 +15051,14 @@ msgstr ""
 "שבהם ברצונך להשתמש (אם יש), או כדי לראות אילו מסנני שורות מופעלים כעת."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><note><para>
-#: English/Filters.xml:1091
+#: English/Filters.xml:1182
 msgid ""
 "The <guilabel>Filter</guilabel> field does not indicate what line filters "
 "are enabled."
 msgstr "השדה <guilabel>מסנן</guilabel> לא מציין אילו מסנני שורות מופעלים."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1098
+#: English/Filters.xml:1189
 msgid ""
 "Proceed with the file compare operation. The enabled line filters are "
 "applied when you start the operation."
@@ -14787,7 +15067,7 @@ msgstr ""
 "הפעולה."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:1105
+#: English/Filters.xml:1196
 msgid ""
 "After you have already launched a file compare operation (for example, to "
 "apply different filters or disabling filtering)"
@@ -14796,12 +15076,12 @@ msgstr ""
 "סינון)"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1118
+#: English/Filters.xml:1209
 msgid "Open the File Filters tab."
 msgstr "פתח את הכרטיסייה מסנני קבצים."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1122
+#: English/Filters.xml:1213
 msgid ""
 "Check the individual line filters you want to apply, and uncheck filters "
 "that you don't want to apply."
@@ -14810,7 +15090,7 @@ msgstr ""
 "רוצה להחיל."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1125
+#: English/Filters.xml:1216
 msgid ""
 "You can also add, edit, and remove filters from the list by using the "
 "<guibutton>New</guibutton>, <guibutton>Edit</guibutton>, and "
@@ -14821,7 +15101,7 @@ msgstr ""
 "guibutton>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1131
+#: English/Filters.xml:1222
 msgid ""
 "To turn on line filtering, check the <guilabel>Enable Line Filters</"
 "guilabel>. To turn line filtering off, uncheck the option."
@@ -14830,13 +15110,13 @@ msgstr ""
 "לכבות סינון שורות, בטל את הסימון של האפשרות."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1137
+#: English/Filters.xml:1228
 msgid "Click <guibutton>OK</guibutton> to dismiss the File Filters dialog."
 msgstr ""
 "לחץ על <guibutton>אישור</guibutton> כדי לסגור את תיבת הדו-שיח מסנני קבצים."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1142
+#: English/Filters.xml:1233
 msgid ""
 "Click <keycap>F5</keycap> to apply your changes and refresh the File Compare "
 "window."
@@ -14845,17 +15125,17 @@ msgstr ""
 "הקבצים."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:1154
+#: English/Filters.xml:1245
 msgid "line filter"
 msgstr "מסנן שורות"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:1162
+#: English/Filters.xml:1253
 msgid "in line filters"
 msgstr "במסנני שורות"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:1151
+#: English/Filters.xml:1242
 msgid ""
 "Line filter syntax<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
@@ -14864,7 +15144,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1165
+#: English/Filters.xml:1256
 msgid ""
 "A line filter is a rule that is evaluated against each single-line "
 "difference in your compared files, if line filter rules are enabled. When a "
@@ -14874,7 +15154,7 @@ msgstr ""
 "כללי מסנן שורות מופעלים. כאשר כלל תואם להבדל בשורה בודדת, ההבדל מתעלם ממנו."
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1169
+#: English/Filters.xml:1260
 msgid ""
 "Ignored differences are marked in the File Compare window with the "
 "<guilabel>Ignored Difference</guilabel> color (as defined in the Colors page "
@@ -14887,12 +15167,12 @@ msgstr ""
 "הבדל שמתעלמים ממנו."
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1175
+#: English/Filters.xml:1266
 msgid "Line filter matching can be described in terms of two ideas:"
 msgstr "התאמת מסנן שורות ניתנת לתיאור במונחים של שני רעיונות:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:1179
+#: English/Filters.xml:1270
 msgid ""
 "When a rule matches any part of the line, the entire difference is ignored. "
 "Therefore, you cannot filter just part of a line. For example, suppose two "
@@ -14902,29 +15182,29 @@ msgstr ""
 "רק חלק משורה. לדוגמה, נניח שלשני קבצים יש את ההבדל הבא בשורה בודדת:"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><title>
-#: English/Filters.xml:1185 English/Filters.xml:1207 English/Intro_diffs.xml:60
+#: English/Filters.xml:1276 English/Filters.xml:1298 English/Intro_diffs.xml:60
 msgid "File1:"
 msgstr "קובץ 1:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: English/Filters.xml:1187
+#: English/Filters.xml:1278
 #, no-wrap
 msgid "# Jean Sibelius"
 msgstr "# Jean Sibelius"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><title>
-#: English/Filters.xml:1191 English/Filters.xml:1214 English/Intro_diffs.xml:69
+#: English/Filters.xml:1282 English/Filters.xml:1305 English/Intro_diffs.xml:69
 msgid "File2:"
 msgstr "קובץ 2:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: English/Filters.xml:1193
+#: English/Filters.xml:1284
 #, no-wrap
 msgid "# Janne Sibelius"
 msgstr "# Janne Sibelius"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:1196
+#: English/Filters.xml:1287
 msgid ""
 "With no filtering, the line is detected as a difference. But if we apply a "
 "line filter rule with the expression, <code>^#</code>, the lines are "
@@ -14936,7 +15216,7 @@ msgstr ""
 "הראשון, התואם בשני הקבצים."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:1203
+#: English/Filters.xml:1294
 msgid ""
 "A rule is applied to a multi-line difference only if all the lines match. "
 "For example, consider this two-line difference:"
@@ -14945,7 +15225,7 @@ msgstr ""
 "הזה בשתי שורות:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: English/Filters.xml:1209
+#: English/Filters.xml:1300
 #, no-wrap
 msgid ""
 "# Jean Sibelius\n"
@@ -14955,7 +15235,7 @@ msgstr ""
 "# Pekka Himanen"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: English/Filters.xml:1216
+#: English/Filters.xml:1307
 #, no-wrap
 msgid ""
 "# Janne Sibelius\n"
@@ -14965,7 +15245,7 @@ msgstr ""
 "Pekka Himanen"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Filters.xml:1220
+#: English/Filters.xml:1311
 msgid ""
 "The same <code>^#</code> rule matches the first line, but not the second "
 "line. Therefore, the difference is not ignored."
@@ -14974,7 +15254,7 @@ msgstr ""
 "מתעלמים מההבדל."
 
 #. type: Content of: <article><section><section><tip><para>
-#: English/Filters.xml:1226
+#: English/Filters.xml:1317
 msgid ""
 "It's usually good practice to use the beginning of line ( <code>^</code> ) "
 "and end of line ( <code>$</code> ) markers to control your patterns "
@@ -14986,40 +15266,40 @@ msgstr ""
 "משורה תואם לביטוי."
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:1233
+#: English/Filters.xml:1324
 msgid "Sample line filters"
 msgstr "מסנני שורות לדוגמה"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1235
+#: English/Filters.xml:1326
 #, no-wrap
 msgid "^MYTAG$"
 msgstr "^MYTAG$"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1237
+#: English/Filters.xml:1328
 msgid "Filters lines that exactly match <literal>MYTAG</literal>"
 msgstr "מסנן שורות שתואמות בדיוק ל-<literal>MYTAG</literal>"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1239
+#: English/Filters.xml:1330
 #, no-wrap
 msgid "^::"
 msgstr "^::"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1241
+#: English/Filters.xml:1332
 msgid "Filters lines beginning with <literal>::</literal>"
 msgstr "מסנן שורות שמתחילות ב-<literal>::</literal>"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1243
+#: English/Filters.xml:1334
 #, no-wrap
 msgid "^/\\*.*\\*/$"
 msgstr "^/\\*.*\\*/$"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1245
+#: English/Filters.xml:1336
 msgid ""
 "Filters lines beginning with <literal><constant>/*</constant></literal> and "
 "ending with <literal>*/</literal>"
@@ -15028,72 +15308,72 @@ msgstr ""
 "ב-<literal>*/</literal>"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1249
+#: English/Filters.xml:1340
 #, no-wrap
 msgid "^[1-5]00"
 msgstr "^[1-5]00"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1251
+#: English/Filters.xml:1342
 msgid "Filters lines beginning with numbers 100, 200, 300, 400, and 500"
 msgstr "מסנן שורות שמתחילות במספרים 100, 200, 300, 400 ו-500"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:1256
+#: English/Filters.xml:1347
 msgid "Line filter rule matching CVS Id lines"
 msgstr "כלל מסנן שורות התואם לשורות CVS Id"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1258
+#: English/Filters.xml:1349
 msgid "CVS Id lines look like this:"
 msgstr "שורות CVS Id נראות כך:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1260
+#: English/Filters.xml:1351
 #, no-wrap
 msgid "// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $"
 msgstr "// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1262 English/Filters.xml:1274
+#: English/Filters.xml:1353 English/Filters.xml:1365
 msgid "... and can be filtered with this rule:"
 msgstr "... וניתן לסנן עם כלל זה:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1264
+#: English/Filters.xml:1355
 #, no-wrap
 msgid "^// \\WId: .*\\$"
 msgstr "^// \\WId: .*\\$"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Filters.xml:1268
+#: English/Filters.xml:1359
 msgid "Filter line number comments in po files"
 msgstr "סנן הערות מספרי שורות בקבצי po"
 
 #. type: Content of: <article><section><section><example><para>
-#: English/Filters.xml:1270
+#: English/Filters.xml:1361
 msgid "po line number comments look like this:"
 msgstr "הערות מספרי שורות של po נראות כך:"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1272
+#: English/Filters.xml:1363
 #, no-wrap
 msgid "#: src/filename.c:766"
 msgstr "#: src/filename.c:766"
 
 #. type: Content of: <article><section><section><example><screen>
-#: English/Filters.xml:1276
+#: English/Filters.xml:1367
 #, no-wrap
 msgid "^#"
 msgstr "^#"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:1285
+#: English/Filters.xml:1376
 msgid "substitution"
 msgstr "החלפה"
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:1282
+#: English/Filters.xml:1373
 msgid ""
 "Using substitution filters<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -15102,17 +15382,17 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Filters.xml:1297
+#: English/Filters.xml:1388
 msgid "Filters dialog"
 msgstr "תיבת דו-שיח מסננים"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:1301
+#: English/Filters.xml:1392
 msgid "managing and enabling"
 msgstr "ניהול והפעלה"
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:1296
+#: English/Filters.xml:1387
 msgid ""
 "Using the Filters dialog<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -15121,7 +15401,7 @@ msgstr ""
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1304
+#: English/Filters.xml:1395
 msgid ""
 "This section describes the Filters dialog, which provides functions to "
 "create and manage file filters and line filters."
@@ -15130,12 +15410,12 @@ msgstr ""
 "קבצים ומסנני שורות."
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1307
+#: English/Filters.xml:1398
 msgid "To open the Filters dialog, use either of these methods:"
 msgstr "כדי לפתוח את תיבת הדו-שיח מסננים, השתמש באחת מהשיטות הבאות:"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Filters.xml:1311
+#: English/Filters.xml:1402
 msgid ""
 "In the Select Files or Folders dialog, click <guibutton>Select</guibutton> "
 "to the right of the <guilabel>Filter</guilabel> field. You use this method "
@@ -15146,7 +15426,7 @@ msgstr ""
 "קבצים על פעולת השוואת תיקיות."
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: English/Filters.xml:1318
+#: English/Filters.xml:1409
 msgid ""
 "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</"
 "guimenuitem> </menuchoice>. This method can be used at any time except when "
@@ -15157,55 +15437,55 @@ msgstr ""
 "הדו-שיח בחר קבצים או תיקיות פתוחה."
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1327
+#: English/Filters.xml:1418
 msgid "The Filters dialog has a tab for each type of WinMerge filter:"
 msgstr "בתיבת הדו-שיח מסננים יש כרטיסייה לכל סוג של מסנן WinMerge:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1331
+#: English/Filters.xml:1422
 msgid "File Filters"
 msgstr "מסנני קבצים"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1334
+#: English/Filters.xml:1425
 msgid ""
 "Choose this tab to work with file filters for folder compare operations."
 msgstr "בחר כרטיסייה זו כדי לעבוד עם מסנני קבצים עבור פעולות השוואת תיקיות."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1340
+#: English/Filters.xml:1431
 msgid "Line Filters"
 msgstr "מסנני שורות"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1343
+#: English/Filters.xml:1434
 msgid "Choose this tab to work with line filters for file compare operations."
 msgstr "בחר כרטיסייה זו כדי לעבוד עם מסנני שורות עבור פעולות השוואת קבצים."
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1349
+#: English/Filters.xml:1440
 msgid "Substitution Filters"
 msgstr "מסנני החלפה"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1352
+#: English/Filters.xml:1443
 msgid ""
 "Choose this tab to work with substitution filters for file compare "
 "operations."
 msgstr "בחר כרטיסייה זו כדי לעבוד עם מסנני החלפה עבור פעולות השוואת קבצים."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Filters.xml:1362 English/Filters.xml:1628 English/Filters.xml:1720
+#: English/Filters.xml:1453 English/Filters.xml:1719 English/Filters.xml:1811
 msgid "enabling"
 msgstr "הפעלה"
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:1359
+#: English/Filters.xml:1450
 msgid "Using the File Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "שימוש בכרטיסייה מסנני קבצים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1365
+#: English/Filters.xml:1456
 msgid ""
 "The main part of this tab is a list of file filters that are available for "
 "folder compare operations. The list includes shared, private, and installed "
@@ -15217,12 +15497,12 @@ msgstr ""
 "מכיר, כמתואר ב-<xref linkend=\"Filters_FileFilterLoc\" />."
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1371
+#: English/Filters.xml:1462
 msgid "Enabling and disabling file filters"
 msgstr "הפעלה והשבתה של מסנני קבצים"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1373
+#: English/Filters.xml:1464
 msgid ""
 "You must enable a file filter to make it available in a folder comparison "
 "operation, or to disable a current filter to stop it from being used:"
@@ -15231,24 +15511,24 @@ msgstr ""
 "מסנן נוכחי כדי למנוע את השימוש בו:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1379
+#: English/Filters.xml:1470
 msgid "Open the Filters dialog, if it is not already open."
 msgstr "פתח את תיבת הדו-שיח מסננים, אם היא עדיין לא פתוחה."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1383
+#: English/Filters.xml:1474
 msgid ""
 "Select a file filter or <guimenuitem>&lt;None&gt;</guimenuitem> from the "
 "list."
 msgstr "בחר מסנן קבצים או <guimenuitem>&lt;ללא&gt;</guimenuitem> מהרשימה."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1388
+#: English/Filters.xml:1479
 msgid "Click <guibutton>OK</guibutton> to dismiss the Filters dialog."
 msgstr "לחץ על <guibutton>אישור</guibutton> כדי לסגור את תיבת הדו-שיח מסננים."
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1393
+#: English/Filters.xml:1484
 msgid ""
 "There are several ways to apply file filters after enabling them.  For "
 "details, see <xref linkend=\"Filters_FileFilterApply\" />."
@@ -15257,12 +15537,12 @@ msgstr ""
 "linkend=\"Filters_FileFilterApply\" />."
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1398
+#: English/Filters.xml:1489
 msgid "Configuring file filters"
 msgstr "הגדרת מסנני קבצים"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1400
+#: English/Filters.xml:1491
 msgid ""
 "Use these buttons to manage your <guilabel>File Filters</guilabel> list and "
 "create new file filters:"
@@ -15271,12 +15551,12 @@ msgstr ""
 "וליצור מסנני קבצים חדשים:"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1405
+#: English/Filters.xml:1496
 msgid "Test"
 msgstr "בדוק"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1408
+#: English/Filters.xml:1499
 msgid ""
 "Select a file filter in the list and click <guibutton>Test</guibutton> to "
 "quickly see how the filter works.  See <xref linkend=\"Filters_TestingDlg\" /"
@@ -15286,12 +15566,12 @@ msgstr ""
 "כיצד המסנן עובד. ראה <xref linkend=\"Filters_TestingDlg\" /> לפרטים."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1415
+#: English/Filters.xml:1506
 msgid "Install"
 msgstr "התקן"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1418
+#: English/Filters.xml:1509
 msgid ""
 "Enables you to locate a file filter and adds it to the Filters list. File "
 "filters that are not in either the shared or default private folder are not "
@@ -15302,12 +15582,12 @@ msgstr ""
 "אותם."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1426
+#: English/Filters.xml:1517
 msgid "New"
 msgstr "חדש"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1429
+#: English/Filters.xml:1520
 msgid ""
 "Creates a new copy of a file template in either the shared or private filter "
 "folders, and opens it in your default editor.  Edit the template and add "
@@ -15318,12 +15598,12 @@ msgstr ""
 "linkend=\"Filters_CreatingFile\" />."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1437
+#: English/Filters.xml:1528
 msgid "Edit"
 msgstr "ערוך"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1440
+#: English/Filters.xml:1531
 msgid ""
 "Select a file filter in the list and click <guibutton>Edit</guibutton> to "
 "open the file in your default editor."
@@ -15332,12 +15612,12 @@ msgstr ""
 "בעורך ברירת המחדל שלך."
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1447
+#: English/Filters.xml:1538
 msgid "Delete"
 msgstr "מחק"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: English/Filters.xml:1450
+#: English/Filters.xml:1541
 msgid ""
 "Select a file filter in the list and click <guibutton>Delete</guibutton> to "
 "delete the file and remove it from the list. Yes, the file is really deleted!"
@@ -15346,7 +15626,7 @@ msgstr ""
 "ולהסיר אותו מהרשימה. כן, הקובץ באמת נמחק!"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1457
+#: English/Filters.xml:1548
 msgid ""
 "Your changes are saved when you click <guibutton>OK</guibutton> to dismiss "
 "the Filters dialog. Line filters are stored in the Windows registry."
@@ -15355,12 +15635,12 @@ msgstr ""
 "תיבת הדו-שיח מסננים. מסנני שורות מאוחסנים ברישום של Windows."
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1463
+#: English/Filters.xml:1554
 msgid "Creating a file filter"
 msgstr "יצירת מסנן קבצים"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1465
+#: English/Filters.xml:1556
 msgid ""
 "If the file filters that are installed with WinMerge do not provide the "
 "filtering you need, you can create your own:"
@@ -15369,7 +15649,7 @@ msgstr ""
 "יכול ליצור מסננים משלך:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1470
+#: English/Filters.xml:1561
 msgid ""
 "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</"
 "guimenuitem> </menuchoice>. Or, from the Select Files or Folders dialog, "
@@ -15381,7 +15661,7 @@ msgstr ""
 "<guibutton>בחר</guibutton> מימין לשדה <guilabel>מסנן</guilabel>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1480
+#: English/Filters.xml:1571
 msgid ""
 "In the Filters dialog File Filters tab, click <guibutton>New</guibutton>."
 msgstr ""
@@ -15389,7 +15669,7 @@ msgstr ""
 "guibutton>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1485
+#: English/Filters.xml:1576
 msgid ""
 "In the Shared or Private Filter dialog, choose <guilabel>Shared Filter</"
 "guilabel> or <guilabel>Private Filter</guilabel> (see <xref "
@@ -15401,7 +15681,7 @@ msgstr ""
 "> לשימושים בהם) ולחץ על <keycap>אישור</keycap>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1490
+#: English/Filters.xml:1581
 msgid ""
 "The Select Filename for New Filter dialog opens in the shared or private "
 "files folder on your system (if the private folder does not exist, WinMerge "
@@ -15411,7 +15691,7 @@ msgstr ""
 "במערכת שלך (אם התיקייה הפרטית אינה קיימת, WinMerge יוצר אותה)."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1496
+#: English/Filters.xml:1587
 msgid ""
 "In the Select Filename for New Filter dialog, enter a new file name and "
 "click <guibutton>Save</guibutton>."
@@ -15420,7 +15700,7 @@ msgstr ""
 "<guibutton>שמור</guibutton>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><note><para>
-#: English/Filters.xml:1500
+#: English/Filters.xml:1591
 msgid ""
 "Don't choose an existing file name: to edit an existing file, go back to "
 "Step <xref linkend=\"Filters_New_step\" /> and click Edit instead of New."
@@ -15429,7 +15709,7 @@ msgstr ""
 "linkend=\"Filters_New_step\" /> ולחץ על ערוך במקום על חדש."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1505
+#: English/Filters.xml:1596
 msgid ""
 "WinMerge initializes the new file with the contents of the "
 "<filename>FileFilter.tmpl</filename> template, and opens it in your default "
@@ -15439,7 +15719,7 @@ msgstr ""
 "filename>, ופותח אותו בעורך הטקסט המוגדר כברירת מחדל שלך."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1511
+#: English/Filters.xml:1602
 msgid ""
 "Follow the template instructions to edit the template, updating the "
 "placeholder name and description and adding filter rules as described in "
@@ -15451,7 +15731,7 @@ msgstr ""
 "linkend=\"Filters_FileFilterSyntax\" />. שמור את הקובץ בעורך הטקסט שלך."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><tip><para>
-#: English/Filters.xml:1517
+#: English/Filters.xml:1608
 msgid ""
 "If you want to quickly test a rule that you are defining, try clicking Test "
 "in the Filters dialog. See <xref linkend=\"Filters_TestingDlg\" /> for "
@@ -15461,7 +15741,7 @@ msgstr ""
 "מסננים. ראה <xref linkend=\"Filters_TestingDlg\" /> לפרטים."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1525
+#: English/Filters.xml:1616
 msgid ""
 "If you created your file filter in one of the standard <filename>Filters</"
 "filename> folders, and the Filters dialog does not list your new file "
@@ -15478,7 +15758,7 @@ msgstr ""
 "צריכה לכלול כעת את מסנן הקבצים החדש."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1536
+#: English/Filters.xml:1627
 msgid ""
 "If you saved the file in an alternate location on your file system), "
 "WinMerge cannot detect it unless you install it. To make a file filter "
@@ -15489,12 +15769,12 @@ msgstr ""
 "במערכת שלך:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1542
+#: English/Filters.xml:1633
 msgid "Click <guibutton>Install</guibutton> in the Filters dialog."
 msgstr "לחץ על <guibutton>התקן</guibutton> בתיבת הדו-שיח מסננים."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><orderedlist><listitem><para>
-#: English/Filters.xml:1547
+#: English/Filters.xml:1638
 msgid ""
 "In the Locate Filter File to Install dialog, navigate to the <filename>flt</"
 "filename> file on your system, and click <guibutton>Open</guibutton>. The "
@@ -15505,17 +15785,17 @@ msgstr ""
 "לכלול כעת את מסנן הקבצים המותקן."
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
-#: English/Filters.xml:1561
+#: English/Filters.xml:1652
 msgid "testing"
 msgstr "בדיקה"
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: English/Filters.xml:1563
+#: English/Filters.xml:1654
 msgid "testing file filters"
 msgstr "בדיקת מסנני קבצים"
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1558
+#: English/Filters.xml:1649
 msgid ""
 "Testing file filter rules<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
@@ -15524,7 +15804,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1566
+#: English/Filters.xml:1657
 msgid ""
 "Use the Test Filter dialog to quickly test a file filter against sample "
 "data, to help you develop new rules or to understand how existing rules "
@@ -15535,17 +15815,17 @@ msgstr ""
 "להיות קל יותר מאשר הפעלת פעולת השוואה מלאה."
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1571
+#: English/Filters.xml:1662
 msgid "Starting from the Filters dialog:"
 msgstr "החל מתיבת הדו-שיח מסננים:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1575
+#: English/Filters.xml:1666
 msgid "In the File Filters tab, choose the file filter you want to test."
 msgstr "בכרטיסייה מסנני קבצים, בחר את מסנן הקבצים שברצונך לבדוק."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1580
+#: English/Filters.xml:1671
 msgid ""
 "If you want to see the rules you will be testing, click <guibutton>Edit</"
 "guibutton> now to open the file so that you can view it during the next "
@@ -15555,17 +15835,17 @@ msgstr ""
 "guibutton> עכשיו כדי לפתוח את הקובץ כדי שתוכל לצפות בו במהלך השלבים הבאים."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1586
+#: English/Filters.xml:1677
 msgid "Click <guibutton>Test</guibutton>."
 msgstr "לחץ על <guibutton>בדוק</guibutton>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1590
+#: English/Filters.xml:1681
 msgid "In the Test Filter dialog, choose the type of rule to test:"
 msgstr "בתיבת הדו-שיח בדוק מסנן, בחר את סוג הכלל לבדיקה:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Filters.xml:1595
+#: English/Filters.xml:1686
 msgid ""
 "To test an <guilabel>f:</guilabel> file rule in your file filter, uncheck "
 "the <guilabel>Folder Name</guilabel> option."
@@ -15574,7 +15854,7 @@ msgstr ""
 "של האפשרות <guilabel>שם תיקייה</guilabel>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: English/Filters.xml:1601
+#: English/Filters.xml:1692
 msgid ""
 "To test a <guilabel>d:</guilabel> folder rule, check the <guilabel>Folder "
 "Name</guilabel> option."
@@ -15583,12 +15863,12 @@ msgstr ""
 "תיקייה</guilabel>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1608
+#: English/Filters.xml:1699
 msgid "Enter the text to test."
 msgstr "הזן את הטקסט לבדיקה."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1610
+#: English/Filters.xml:1701
 msgid ""
 "The text should be appropriate for the type of rule you are testing. For "
 "example, if you have checked the <guilabel>Folder Name</guilabel> option, "
@@ -15599,7 +15879,7 @@ msgstr ""
 "\\temp."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1615
+#: English/Filters.xml:1706
 msgid ""
 "The <guilabel>Result</guilabel> box displays your entry, followed by its "
 "status: either <computeroutput>passed</computeroutput> or "
@@ -15610,12 +15890,12 @@ msgstr ""
 "computeroutput>."
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:1625
+#: English/Filters.xml:1716
 msgid "Using the Line Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "שימוש בכרטיסייה מסנני שורות<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Filters.xml:1631
+#: English/Filters.xml:1722
 msgid ""
 "Use this tab to configure and enable line filters for file compare "
 "operations. The tab features a list of rules. Each rule contains a single "
@@ -15627,12 +15907,12 @@ msgstr ""
 "להחיל כל שילוב של כללים מהרשימה על השוואת קבצים."
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1637
+#: English/Filters.xml:1728
 msgid "Configuring line filters"
 msgstr "הגדרת מסנני שורות"
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1639
+#: English/Filters.xml:1730
 msgid ""
 "Below the <guilabel>Regular Expressions</guilabel> list is an edit box and "
 "buttons that you can use to maintain the list at any time by adding, "
@@ -15642,12 +15922,12 @@ msgstr ""
 "תוכל להשתמש כדי לתחזק את הרשימה בכל עת על ידי הוספה, עריכה והסרה של כללים."
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1643
+#: English/Filters.xml:1734
 msgid "To add a new rule:"
 msgstr "כדי להוסיף כלל חדש:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1647
+#: English/Filters.xml:1738
 msgid ""
 "Click <guibutton>New</guibutton>. Your edit cursor is automatically enabled "
 "in the edit box."
@@ -15656,7 +15936,7 @@ msgstr ""
 "העריכה."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1652
+#: English/Filters.xml:1743
 msgid ""
 "Enter an expression in the edit box below the <guilabel>Regular Expressions</"
 "guilabel> list."
@@ -15664,7 +15944,7 @@ msgstr ""
 "הזן ביטוי בתיבת העריכה שמתחת לרשימת <guilabel>ביטויים רגולריים</guilabel>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1657
+#: English/Filters.xml:1748
 msgid ""
 "Click <guibutton>Save</guibutton> to load the expression in a new line in "
 "the list."
@@ -15672,28 +15952,28 @@ msgstr ""
 "לחץ על <guibutton>שמור</guibutton> כדי לטעון את הביטוי בשורה חדשה ברשימה."
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1662
+#: English/Filters.xml:1753
 msgid "To edit an existing rule:"
 msgstr "כדי לערוך כלל קיים:"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1666
+#: English/Filters.xml:1757
 msgid "Select the line and click <guibutton>Edit</guibutton>."
 msgstr "בחר את השורה ולחץ על <guibutton>ערוך</guibutton>."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1670
+#: English/Filters.xml:1761
 msgid "Edit the expression in the edit box."
 msgstr "ערוך את הביטוי בתיבת העריכה."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1674
+#: English/Filters.xml:1765
 msgid ""
 "Click <guibutton>Save</guibutton><guibutton> </guibutton>when you're done."
 msgstr "לחץ על <guibutton>שמור</guibutton><guibutton> </guibutton>כשסיימת."
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1679
+#: English/Filters.xml:1770
 msgid ""
 "To delete an existing rule, select (check) the rule and click "
 "<guibutton>Remove</guibutton>."
@@ -15701,18 +15981,18 @@ msgstr ""
 "כדי למחוק כלל קיים, בחר (סמן) את הכלל ולחץ על <guibutton>הסר</guibutton>."
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
-#: English/Filters.xml:1687 English/Filters.xml:1736
+#: English/Filters.xml:1778 English/Filters.xml:1827
 msgid "list of available"
 msgstr "רשימת זמינים"
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1684
+#: English/Filters.xml:1775
 msgid ""
 "Enabling and disabling line filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "הפעלה והשבתה של מסנני שורות<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1692
+#: English/Filters.xml:1783
 msgid ""
 "In the <guilabel>Regular Expressions</guilabel> list, check just the filters "
 "that you want to apply, and uncheck any filters you do not want to apply."
@@ -15721,7 +16001,7 @@ msgstr ""
 "להחיל ובטל את הסימון של כל המסננים שאינך רוצה להחיל."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1698
+#: English/Filters.xml:1789
 msgid ""
 "Check or uncheck the <guilabel>Enable Line Filters</guilabel> option. If you "
 "turn filtering on, all the rules that are currently checked in the "
@@ -15733,7 +16013,7 @@ msgstr ""
 "ישמשו. אם הסינון כבוי, לא ישמשו כללים גם אם הם מסומנים."
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: English/Filters.xml:1706
+#: English/Filters.xml:1797
 msgid ""
 "Click <guibutton>OK</guibutton> to dismiss the Filters dialog and save your "
 "settings."
@@ -15742,7 +16022,7 @@ msgstr ""
 "את ההגדרות שלך."
 
 #. type: Content of: <article><section><section><section><para>
-#: English/Filters.xml:1711
+#: English/Filters.xml:1802
 msgid ""
 "There are several ways to apply file filters after enabling them.  For "
 "details, see <xref linkend=\"Filters_LineFilterApply\" />."
@@ -15751,37 +16031,37 @@ msgstr ""
 "linkend=\"Filters_LineFilterApply\" />."
 
 #. type: Content of: <article><section><section><title>
-#: English/Filters.xml:1717
+#: English/Filters.xml:1808
 msgid ""
 "Using the Substitution Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "שימוש בכרטיסייה מסנני החלפה<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1726
+#: English/Filters.xml:1817
 msgid "Configuring substitution filters"
 msgstr "הגדרת מסנני החלפה"
 
 #. type: Content of: <article><section><section><section><title>
-#: English/Filters.xml:1733
+#: English/Filters.xml:1824
 msgid ""
 "Enabling and disabling substitution filters<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr "הפעלה והשבתה של מסנני החלפה<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Filters.xml:1748
+#: English/Filters.xml:1839
 msgid "getting help"
 msgstr "קבלת עזרה"
 
 #. type: Content of: <article><section><title>
-#: English/Filters.xml:1745
+#: English/Filters.xml:1836
 msgid ""
 "Getting help with regular expressions<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr "קבלת עזרה בביטויים רגולריים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1751
+#: English/Filters.xml:1842
 msgid ""
 "Regular expressions can be very complex. Fortunately, most file filters in "
 "WinMerge involve simple extension expressions, as shown in the examples in "
@@ -15793,19 +16073,19 @@ msgstr ""
 "המסנן המותקנים עם WinMerge כוללים דוגמאות שימושיות רבות אחרות."
 
 #. type: Content of: <article><section><para>
-#: English/Filters.xml:1756
+#: English/Filters.xml:1847
 msgid ""
 "Finally, there are lots of resources on the Web for help with regexps, "
 "including these sites:"
 msgstr "לבסוף, ישנם משאבים רבים באינטרנט לעזרה ב-regexps, כולל אתרים אלה:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1761
+#: English/Filters.xml:1852
 msgid "Good site devoted to regexps:"
 msgstr "אתר טוב המוקדש ל-regexps:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: English/Filters.xml:1764
+#: English/Filters.xml:1855
 msgid ""
 "<ulink url=\"https://www.regular-expressions.info/\">https://www.regular-"
 "expressions.info/</ulink>"
@@ -15814,12 +16094,12 @@ msgstr ""
 "expressions.info/</ulink>"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1770
+#: English/Filters.xml:1861
 msgid "Tutorial:"
 msgstr "הדרכה:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: English/Filters.xml:1773
+#: English/Filters.xml:1864
 msgid ""
 "<ulink url=\"http://www.zvon.org/comp/r/tut-Regexp.html\">http://www.zvon."
 "org/comp/r/tut-Regexp.html</ulink>"
@@ -15828,12 +16108,12 @@ msgstr ""
 "org/comp/r/tut-Regexp.html</ulink>"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Filters.xml:1779
+#: English/Filters.xml:1870
 msgid "PDF quick reference:"
 msgstr "עיון מהיר ב-PDF:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: English/Filters.xml:1782
+#: English/Filters.xml:1873
 msgid ""
 "<ulink url=\"https://github.com/GordonMcKinney/gist-assets/raw/master/regex."
 "pdf\"> https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf</"

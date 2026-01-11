@@ -1526,6 +1526,199 @@ static auto LogInfoFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	return LogFunc(2, ctxt, di, args);
 }
 
+static auto IfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType condition = args->at(0)->Evaluate(di);
+	auto condBool = evalAsBool(condition);
+	if (condBool && *condBool)
+		return args->at(1)->Evaluate(di);
+	else
+		return args->at(2)->Evaluate(di);
+}
+
+template<typename MapFunc>
+static auto ApplyToScalarOrArrayWithContext(const ValueType& input, MapFunc mapFunc) -> ValueType
+{
+	auto inputArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&input);
+	
+	if (!inputArray)
+		return mapFunc(input);
+	
+	auto result = std::make_shared<std::vector<ValueType2>>();
+	for (const auto& item : **inputArray)
+		result->emplace_back(ValueType2{ mapFunc(item.value) });
+	
+	return result;
+}
+
+static auto IfEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType argCond = args->at(0)->Evaluate(di);
+	ValueType argTrue = args->at(1)->Evaluate(di);
+	ValueType argFalse = args->at(2)->Evaluate(di);
+
+	auto trueArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argTrue);
+	auto falseArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argFalse);
+
+	size_t index = 0;
+	auto selectValue = [&](const ValueType& cond) -> ValueType
+		{
+			auto condBool = evalAsBool(cond);
+			ValueType trueVal = trueArray ? 
+				(index < (*trueArray)->size() ? (*trueArray)->at(index).value : std::monostate{}) : argTrue;
+			ValueType falseVal = falseArray ? 
+				(index < (*falseArray)->size() ? (*falseArray)->at(index).value : std::monostate{}) : argFalse;
+			++index;
+			
+			if (condBool && *condBool)
+				return trueVal;
+			else
+				return falseVal;
+		};
+
+	return ApplyToScalarOrArrayWithContext(argCond, selectValue);
+}
+
+static auto ChooseFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 2)
+		return std::monostate{};
+	
+	ValueType indexVal = args->at(0)->Evaluate(di);
+	auto indexInt = std::get_if<int64_t>(&indexVal);
+	
+	if (!indexInt)
+		return std::monostate{};
+	
+	int64_t idx = *indexInt;
+	if (idx < 0)
+		idx = 0;
+	
+	size_t choiceIdx = static_cast<size_t>(idx) + 1;
+	if (choiceIdx >= args->size())
+		choiceIdx = args->size() - 1;
+	
+	return args->at(choiceIdx)->Evaluate(di);
+}
+
+static auto ChooseEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 2)
+		return std::monostate{};
+	
+	ValueType indexVal = args->at(0)->Evaluate(di);
+	
+	auto selectFromIndex = [&](const ValueType& val) -> ValueType
+		{
+			auto indexInt = std::get_if<int64_t>(&val);
+			if (!indexInt)
+				return std::monostate{};
+			
+			int64_t idx = *indexInt;
+			if (idx < 0)
+				idx = 0;
+			
+			size_t choiceIdx = static_cast<size_t>(idx) + 1;
+			if (choiceIdx >= args->size())
+				choiceIdx = args->size() - 1;
+			
+			return args->at(choiceIdx)->Evaluate(di);
+		};
+	
+	return ApplyToScalarOrArrayWithContext(indexVal, selectFromIndex);
+}
+
+template<typename BinaryOp>
+static auto BinaryLogicalEachFunc(const ValueType& arg1, const ValueType& arg2, BinaryOp op) -> ValueType
+{
+	auto arg1Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1);
+	auto arg2Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg2);
+	
+	if (!arg1Array && !arg2Array)
+	{
+		auto bool1 = evalAsBool(arg1);
+		auto bool2 = evalAsBool(arg2);
+		if (bool1 && bool2)
+			return op(*bool1, *bool2);
+		return std::monostate{};
+	}
+	
+	auto result = std::make_shared<std::vector<ValueType2>>();
+	
+	if (arg1Array && arg2Array)
+	{
+		size_t maxSize = (std::max)((*arg1Array)->size(), (*arg2Array)->size());
+		for (size_t i = 0; i < maxSize; ++i)
+		{
+			ValueType val1 = i < (*arg1Array)->size() ? (*arg1Array)->at(i).value : std::monostate{};
+			ValueType val2 = i < (*arg2Array)->size() ? (*arg2Array)->at(i).value : std::monostate{};
+			
+			auto bool1 = evalAsBool(val1);
+			auto bool2 = evalAsBool(val2);
+			
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
+	}
+	else if (arg1Array)
+	{
+		auto bool2 = evalAsBool(arg2);
+		for (const auto& item : **arg1Array)
+		{
+			auto bool1 = evalAsBool(item.value);
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
+	}
+	else
+	{
+		auto bool1 = evalAsBool(arg1);
+		for (const auto& item : **arg2Array)
+		{
+			auto bool2 = evalAsBool(item.value);
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
+	}
+	
+	return result;
+}
+
+static auto AndEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg1 = args->at(0)->Evaluate(di);
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a && b; });
+}
+
+static auto OrEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg1 = args->at(0)->Evaluate(di);
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a || b; });
+}
+
+static auto NotEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg = args->at(0)->Evaluate(di);
+	
+	auto notFunc = [](const ValueType& val) -> ValueType
+		{
+			auto boolVal = evalAsBool(val);
+			if (boolVal)
+				return !*boolVal;
+			return std::monostate{};
+		};
+	
+	return ApplyToScalarOrArrayWithContext(arg, notFunc);
+}
+
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
@@ -1666,6 +1859,48 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		if (!args || args->size() < 1)
 			throw std::invalid_argument("loginfo function requires at least 1 arguments");
 		func = LogInfoFunc;
+	}
+	else if (functionName == "if")
+	{
+		if (!args || args->size() != 3)
+			throw std::invalid_argument("if function requires 3 arguments");
+		func = IfFunc;
+	}
+	else if (functionName == "ifeach")
+	{
+		if (!args || args->size() != 3)
+			throw std::invalid_argument("ifeach function requires 3 arguments");
+		func = IfEachFunc;
+	}
+	else if (functionName == "choose")
+	{
+		if (!args || args->size() < 2)
+			throw std::invalid_argument("choose function requires at least 2 arguments");
+		func = ChooseFunc;
+	}
+	else if (functionName == "chooseeach")
+	{
+		if (!args || args->size() < 2)
+			throw std::invalid_argument("chooseeach function requires at least 2 arguments");
+		func = ChooseEachFunc;
+	}
+	else if (functionName == "andeach")
+	{
+		if (!args || args->size() != 2)
+			throw std::invalid_argument("andeach function requires 2 arguments");
+		func = AndEachFunc;
+	}
+	else if (functionName == "oreach")
+	{
+		if (!args || args->size() != 2)
+			throw std::invalid_argument("oreach function requires 2 arguments");
+		func = OrEachFunc;
+	}
+	else if (functionName == "noteach")
+	{
+		if (!args || args->size() != 1)
+			throw std::invalid_argument("noteach function requires 1 argument");
+		func = NotEachFunc;
 	}
 	else
 	{
