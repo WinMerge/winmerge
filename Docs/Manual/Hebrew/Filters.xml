@@ -758,9 +758,9 @@ Files with extensions from 'a' to 'm' and size less than 1MB</para></listitem>
         </itemizedlist>
       </section>
     </section>
-      </section>
+  </section>
 
-      <section id="Filters_FileFilter">
+  <section id="Filters_FileFilter">
     <title>שימוש במסנני קבצים<indexterm>
         <primary>מסננים</primary>
 

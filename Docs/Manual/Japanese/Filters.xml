@@ -687,9 +687,9 @@ Non-hidden temporary files</para></listitem>
         </itemizedlist>
       </section>
     </section>
-      </section>
+  </section>
 
-      <section id="Filters_FileFilter">
+  <section id="Filters_FileFilter">
     <title>ファイルフィルターの使用<indexterm>
         <primary>フィルター</primary>
 

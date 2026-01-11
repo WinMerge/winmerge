@@ -1652,7 +1652,7 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	else if (functionName == "logerror")
 	{
 		if (!args || args->size() < 1)
-			throw std::invalid_argument("loginfo function requires at least 1 arguments");
+			throw std::invalid_argument("logerror function requires at least 1 arguments");
 		func = LogErrorFunc;
 	}
 	else if (functionName == "logwarn")
@@ -1664,7 +1664,7 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 	else if (functionName == "loginfo")
 	{
 		if (!args || args->size() < 1)
-			throw std::invalid_argument("logerror function requires at least 1 arguments");
+			throw std::invalid_argument("loginfo function requires at least 1 arguments");
 		func = LogInfoFunc;
 	}
 	else
@@ -1865,7 +1865,6 @@ SizeLiteral::SizeLiteral(const std::string& v)
 {
 	size_t pos = 0;
 	while (pos < v.size() && (isdigit(v[pos]) || v[pos] == '.'))
-
 		++pos;
 	std::string numberPart = v.substr(0, pos);
 	std::string unitPart = v.substr(pos);
