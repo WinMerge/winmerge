@@ -1970,7 +1970,6 @@ ExprNode* FunctionNode::Optimize()
 	{
 		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<IntLiteral*>((*args)[1])
 			&& (args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])))
-
 		{
 			auto* result = new StringLiteral(std::get<std::string>(func(ctxt, di, args)));
 			delete this;
