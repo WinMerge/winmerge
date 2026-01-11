@@ -1526,151 +1526,292 @@ static auto LogInfoFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	return LogFunc(2, ctxt, di, args);
 }
 
-FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
-	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
+static auto IfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
-	if (functionName == "abs")
+	ValueType condition = args->at(0)->Evaluate(di);
+	auto condBool = evalAsBool(condition);
+	if (condBool && *condBool)
+		return args->at(1)->Evaluate(di);
+	else
+		return args->at(2)->Evaluate(di);
+}
+
+template<typename MapFunc>
+static auto ApplyToScalarOrArrayWithContext(const ValueType& input, MapFunc mapFunc) -> ValueType
+{
+	auto inputArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&input);
+	
+	if (!inputArray)
+		return mapFunc(input);
+	
+	auto result = std::make_shared<std::vector<ValueType2>>();
+	for (const auto& item : **inputArray)
+		result->emplace_back(ValueType2{ mapFunc(item.value) });
+	
+	return result;
+}
+
+static auto IfEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType argCond = args->at(0)->Evaluate(di);
+	ValueType argTrue = args->at(1)->Evaluate(di);
+	ValueType argFalse = args->at(2)->Evaluate(di);
+
+	auto trueArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argTrue);
+	auto falseArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argFalse);
+
+	size_t index = 0;
+	auto selectValue = [&](const ValueType& cond) -> ValueType
+		{
+			auto condBool = evalAsBool(cond);
+			ValueType trueVal = trueArray ? 
+				(index < (*trueArray)->size() ? (*trueArray)->at(index).value : std::monostate{}) : argTrue;
+			ValueType falseVal = falseArray ? 
+				(index < (*falseArray)->size() ? (*falseArray)->at(index).value : std::monostate{}) : argFalse;
+			++index;
+			
+			if (condBool && *condBool)
+				return trueVal;
+			else
+				return falseVal;
+		};
+
+	return ApplyToScalarOrArrayWithContext(argCond, selectValue);
+}
+
+static auto ChooseFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 2)
+		return std::monostate{};
+	
+	ValueType indexVal = args->at(0)->Evaluate(di);
+	auto indexInt = std::get_if<int64_t>(&indexVal);
+	
+	if (!indexInt)
+		return std::monostate{};
+	
+	int64_t idx = *indexInt;
+	if (idx < 0)
+		idx = 0;
+	
+	size_t choiceIdx = static_cast<size_t>(idx) + 1;
+	if (choiceIdx >= args->size())
+		choiceIdx = args->size() - 1;
+	
+	return args->at(choiceIdx)->Evaluate(di);
+}
+
+static auto ChooseEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 2)
+		return std::monostate{};
+	
+	ValueType indexVal = args->at(0)->Evaluate(di);
+	
+	auto selectFromIndex = [&](const ValueType& val) -> ValueType
+		{
+			auto indexInt = std::get_if<int64_t>(&val);
+			if (!indexInt)
+				return std::monostate{};
+			
+			int64_t idx = *indexInt;
+			if (idx < 0)
+				idx = 0;
+			
+			size_t choiceIdx = static_cast<size_t>(idx) + 1;
+			if (choiceIdx >= args->size())
+				choiceIdx = args->size() - 1;
+			
+			return args->at(choiceIdx)->Evaluate(di);
+		};
+	
+	return ApplyToScalarOrArrayWithContext(indexVal, selectFromIndex);
+}
+
+template<typename BinaryOp>
+static auto BinaryLogicalEachFunc(const ValueType& arg1, const ValueType& arg2, BinaryOp op) -> ValueType
+{
+	auto arg1Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1);
+	auto arg2Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg2);
+	
+	if (!arg1Array && !arg2Array)
 	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("abs function requires 1 arguments");
-		func = AbsFunc;
+		auto bool1 = evalAsBool(arg1);
+		auto bool2 = evalAsBool(arg2);
+		if (bool1 && bool2)
+			return op(*bool1, *bool2);
+		return std::monostate{};
 	}
-	else if (functionName == "anyof")
+	
+	auto result = std::make_shared<std::vector<ValueType2>>();
+	
+	if (arg1Array && arg2Array)
 	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("anyof function requires 1 arguments");
-		func = AnyOfFunc;
+		size_t maxSize = (std::max)((*arg1Array)->size(), (*arg2Array)->size());
+		for (size_t i = 0; i < maxSize; ++i)
+		{
+			ValueType val1 = i < (*arg1Array)->size() ? (*arg1Array)->at(i).value : std::monostate{};
+			ValueType val2 = i < (*arg2Array)->size() ? (*arg2Array)->at(i).value : std::monostate{};
+			
+			auto bool1 = evalAsBool(val1);
+			auto bool2 = evalAsBool(val2);
+			
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
 	}
-	else if (functionName == "allof")
+	else if (arg1Array)
 	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("allof function requires 1 arguments");
-		func = AllOfFunc;
-	}
-	else if (functionName == "allequal")
-	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("allequal function requires at least 1 arguments");
-		func = AllEqualFunc;
-	}
-	else if (functionName == "array")
-	{
-		func = ArrayFunc;
-	}
-	else if (functionName == "at")
-	{
-		if (!args || args->size() != 2)
-			throw std::invalid_argument("at function requires 2 arguments");
-		func = AtFunc;
-	}
-	else if (functionName == "strlen")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("strlen function requires 1 arguments");
-		func = StrlenFunc;
-	}
-	else if (functionName == "substr")
-	{
-		if (!args || (args->size() < 2 || args->size() > 3))
-			throw std::invalid_argument("substr function requires 2 or 3 arguments: substr(string, start [, length])");
-		func = SubstrFunc;
-	}
-	else if (functionName == "linecount")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("linecount function requires 1 arguments");
-		func = LineCountFunc;
-	}
-	else if (functionName == "sublines")
-	{
-		if (!args || args->size() < 2 || args->size() > 3)
-			throw std::invalid_argument("sublines nesfunction requires 2 or 3 arguments: sublines(content, start [, length])");
-		func = SublinesFunc;
-	}
-	else if (functionName == "replace")
-	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("replace function requires exactly 3 arguments: replace(string, from, to)");
-		func = ReplaceFunc;
-	}
-	else if (functionName == "today")
-	{
-		if (args && args->size() != 0)
-			throw std::invalid_argument("today function requires 0 arguments");
-		func = TodayFunc;
-	}
-	else if (functionName == "now")
-	{
-		if (args && args->size() != 0)
-			throw std::invalid_argument("now function requires 0 arguments");
-		func = NowFunc;
-	}
-	else if (functionName == "startofweek")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofweek function requires 1 arguments");
-		func = StartOfWeekFunc;
-	}
-	else if (functionName == "startofmonth")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofmonth function requires 1 arguments");
-		func = StartOfMonthFunc;
-	}
-	else if (functionName == "startofyear")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofyear function requires 1 arguments");
-		func = StartOfYearFunc;
-	}
-	else if (functionName == "todatestr")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("todatestr function requires 1 arguments");
-		func = ToDateStrFunc;
-	}
-	else if (functionName == "prop")
-	{
-		SetPropFunc();
-	}
-	else if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
-	{
-		SetLeftMiddleRightPropFunc();
-	}
-	else if (functionName == "iswithin")
-	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("iswithin function requires 3 arguments");
-		func = IsWithinFunc;
-	}
-	else if (functionName == "inrange")
-	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("inrange function requires 3 arguments");
-		func = InRangeFunc;
-	}
-	else if (functionName == "logerror")
-	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("logerror function requires at least 1 arguments");
-		func = LogErrorFunc;
-	}
-	else if (functionName == "logwarn")
-	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("logwarn function requires at least 1 arguments");
-		func = LogWarnFunc;
-	}
-	else if (functionName == "loginfo")
-	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("loginfo function requires at least 1 arguments");
-		func = LogInfoFunc;
+		auto bool2 = evalAsBool(arg2);
+		for (const auto& item : **arg1Array)
+		{
+			auto bool1 = evalAsBool(item.value);
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
 	}
 	else
 	{
-		throw std::runtime_error("Unknown function: " + std::string(functionName.begin(), functionName.end()));
+		auto bool1 = evalAsBool(arg1);
+		for (const auto& item : **arg2Array)
+		{
+			auto bool2 = evalAsBool(item.value);
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
 	}
+	
+	return result;
+}
+
+static auto AndEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg1 = args->at(0)->Evaluate(di);
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a && b; });
+}
+
+static auto OrEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg1 = args->at(0)->Evaluate(di);
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a || b; });
+}
+
+static auto NotEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg = args->at(0)->Evaluate(di);
+	
+	auto notFunc = [](const ValueType& val) -> ValueType
+		{
+			auto boolVal = evalAsBool(val);
+			if (boolVal)
+				return !*boolVal;
+			return std::monostate{};
+		};
+	
+	return ApplyToScalarOrArrayWithContext(arg, notFunc);
+}
+
+struct FunctionInfo
+{
+	using FuncPtr = auto (*)(const FilterExpression*, const DIFFITEM&, std::vector<ExprNode*>*) -> ValueType;
+	const char* name;
+	FuncPtr func;
+	int minArgs;
+	int maxArgs;
+};
+
+// Compile-time constant array - zero runtime initialization cost
+static constexpr FunctionInfo functionTable[] = {
+	{"abs", AbsFunc, 1, 1},
+	{"allequal", AllEqualFunc, 1, -1},
+	{"allof", AllOfFunc, 1, 1},
+	{"andeach", AndEachFunc, 2, 2},
+	{"anyof", AnyOfFunc, 1, 1},
+	{"array", ArrayFunc, 0, -1},
+	{"at", AtFunc, 2, 2},
+	{"choose", ChooseFunc, 2, -1},
+	{"chooseeach", ChooseEachFunc, 2, -1},
+	{"if", IfFunc, 3, 3},
+	{"ifeach", IfEachFunc, 3, 3},
+	{"inrange", InRangeFunc, 3, 3},
+	{"iswithin", IsWithinFunc, 3, 3},
+	{"linecount", LineCountFunc, 1, 1},
+	{"logerror", LogErrorFunc, 1, -1},
+	{"loginfo", LogInfoFunc, 1, -1},
+	{"logwarn", LogWarnFunc, 1, -1},
+	{"noteach", NotEachFunc, 1, 1},
+	{"now", NowFunc, 0, 0},
+	{"oreach", OrEachFunc, 2, 2},
+	{"replace", ReplaceFunc, 3, 3},
+	{"startofmonth", StartOfMonthFunc, 1, 1},
+	{"startofweek", StartOfWeekFunc, 1, 1},
+	{"startofyear", StartOfYearFunc, 1, 1},
+	{"strlen", StrlenFunc, 1, 1},
+	{"sublines", SublinesFunc, 2, 3},
+	{"substr", SubstrFunc, 2, 3},
+	{"todatestr", ToDateStrFunc, 1, 1},
+	{"today", TodayFunc, 0, 0},
+};
+
+static constexpr size_t functionTableSize = sizeof(functionTable) / sizeof(functionTable[0]);
+
+// Binary search in sorted array - O(log n)
+static const FunctionInfo* findFunction(const std::string& name)
+{
+	auto it = std::lower_bound(std::begin(functionTable), std::end(functionTable), name,
+		[](const FunctionInfo& info, const std::string& n) {
+			return strcmp(info.name, n.c_str()) < 0;
+		}
+	);
+	
+	if (it != std::end(functionTable) && strcmp(it->name, name.c_str()) == 0)
+		return it;
+	
+	return nullptr;
+}
+
+FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
+	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
+{
+	// Special handling for prop functions
+	if (functionName == "prop")
+	{
+		SetPropFunc();
+		return;
+	}
+	if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
+	{
+		SetLeftMiddleRightPropFunc();
+		return;
+	}
+
+	// Look up function in table
+	const FunctionInfo* info = findFunction(functionName);
+	if (!info)
+		throw std::runtime_error("Unknown function: " + functionName);
+	
+	// Validate argument count
+	size_t argCount = args ? args->size() : 0;
+	if (info->minArgs >= 0 && argCount < static_cast<size_t>(info->minArgs))
+	{
+		throw std::invalid_argument(functionName + " function requires at least " + 
+			std::to_string(info->minArgs) + " argument" + (info->minArgs != 1 ? "s" : ""));
+	}
+	if (info->maxArgs >= 0 && argCount > static_cast<size_t>(info->maxArgs))
+	{
+		throw std::invalid_argument(functionName + " function requires at most " + 
+			std::to_string(info->maxArgs) + " argument" + (info->maxArgs != 1 ? "s" : ""));
+	}
+
+	func = info->func;
 }
 
 FunctionNode::~FunctionNode()

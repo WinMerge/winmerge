@@ -637,6 +637,112 @@ max)</literal>（下限を含み、上限を含まない）内にある場合に
               </itemizedlist>
             </listitem>
           </varlistentry>
+          <varlistentry>
+            <term>if(<replaceable>condition</replaceable>,
+<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+            <listitem>
+              <para>
+<replaceable>condition</replaceable> が true と評価された場合は
+<replaceable>trueValue</replaceable> を返し、それ以外の場合は
+<replaceable>falseValue</replaceable>
+を返します。この関数は短絡評価を行います（返される側の分岐のみが評価されます）。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>if(Size > 1MB, "large", "small")</literal> - ファイルサイズに応じて "large"
+または "small" を返します</para></listitem>
+                <listitem><para><literal>if(Extension = "txt", "text file", "other file")</literal> -
+拡張子によってファイルを分類します</para></listitem>
+                <listitem><para><literal>if(Exists, Size, 0)</literal> - ファイルが存在する場合はサイズを、存在しない場合は 0 を返します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>ifEach(<replaceable>conditionArray</replaceable>,
+<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+            <listitem>
+              <para>
+要素ごとの条件付き選択を行います。<replaceable>conditionArray</replaceable> の各要素について、条件が true
+の場合は <replaceable>trueValue</replaceable> の対応する要素を、false の場合は
+<replaceable>falseValue</replaceable>
+の対応する要素を返します。<replaceable>trueValue</replaceable> または
+<replaceable>falseValue</replaceable> がスカラー値の場合は、すべての要素にブロードキャストされます。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - 各ファイルについて
+"large" / "small" の配列を返します</para></listitem>
+                <listitem><para><literal>ifEach(array(true, false, true), array("a", "b", "c"), array("x",
+"y", "z"))</literal> - <literal>array("a", "y", "c")</literal> を返します</para></listitem>
+                <listitem><para><literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> -
+100KB 以上 10MB 未満のファイルが存在するかを確認します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>choose(<replaceable>index</replaceable>, <replaceable>value0</replaceable>,
+<replaceable>value1</replaceable>, ...)</term>
+            <listitem>
+              <para>
+<replaceable>index</replaceable>
+に基づいて引数の中から値を選択します。<replaceable>index</replaceable> が 0 の場合は
+<replaceable>value0</replaceable> を、1 の場合は <replaceable>value1</replaceable>
+を返します。負のインデックスは 0 として扱われます。最後の値を超えるインデックスが指定された場合は、最後の値を返します。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>choose(0, "first", "second", "third")</literal> - "first" を返します</para></listitem>
+                <listitem><para><literal>choose(DiffCode % 3, "equal", "different", "unique")</literal> -
+差分コードをラベルに対応付けます</para></listitem>
+                <listitem><para><literal>choose(5, "a", "b", "c")</literal> - "c" を返します（範囲外のため最後の値が返されます）</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>chooseEach(<replaceable>indexArray</replaceable>,
+<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+            <listitem>
+              <para>
+要素ごとの値選択を行います。<replaceable>indexArray</replaceable>
+の各インデックスに対して、残りの引数から対応する値を選択します。<replaceable>indexArray</replaceable>
+がスカラー値の場合は <literal>choose</literal> と同じ動作になります。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>chooseEach(array(0, 1, 2), "a", "b", "c")</literal> -
+<literal>array("a", "b", "c")</literal> を返します</para></listitem>
+                <listitem><para><literal>chooseEach(array(0, 0, 1), "x", "y")</literal> -
+<literal>array("x", "x", "y")</literal> を返します</para></listitem>
+                <listitem><para><literal>chooseEach(array(2, 0, 1), "first", "second", "third")</literal> -
+<literal>array("third", "first", "second")</literal> を返します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>andEach(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>),
+orEach(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>),
+notEach(<replaceable>value</replaceable>)</term>
+            <listitem>
+              <para>
+要素ごとの論理演算を行います。これらの関数は、真偽値、真偽値配列、またはその組み合わせに対して動作します。</para>
+              <itemizedlist>
+                <listitem><para><literal>andEach</literal> - 論理 AND 演算</para></listitem>
+                <listitem><para><literal>orEach</literal> - 論理 OR 演算</para></listitem>
+                <listitem><para><literal>notEach</literal> - 論理 NOT 演算（単一引数）</para></listitem>
+              </itemizedlist>
+              <para>
+引数がスカラー値の場合はスカラーの真偽値を返します。一方が配列でもう一方がスカラー値の場合は、スカラー値がすべての要素にブロードキャストされます。両方が配列の場合は、要素ごとの演算が行われます。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - 1KB 以上 1MB
+未満のファイル</para></listitem>
+                <listitem><para><literal>orEach(Extension = "txt", Extension = "log")</literal> - txt または
+log ファイル</para></listitem>
+                <listitem><para><literal>notEach(Exists)</literal> - 存在しないファイル</para></listitem>
+                <listitem><para><literal>allof(andEach(Exists, Size &gt; 0))</literal> - すべてのファイルが存在し、サイズが 0
+ではありません</para></listitem>
+                <listitem><para><literal>anyof(notEach(Size &gt; 1MB))</literal> - 1MB 以下のファイルが存在します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
         </variablelist>
       </section>
 
