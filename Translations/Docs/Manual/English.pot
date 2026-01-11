@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-01-04 11:39+0900\n"
+"POT-Creation-Date: 2026-01-11 08:41+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -389,14 +389,14 @@ msgid "TwoWords"
 msgstr ""
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><para>
-#: ./English/About_Doc.xml:313 ./English/Filters.xml:1011
-#: ./English/Filters.xml:1022 ./English/Filters.xml:1171
-#: ./English/Filters.xml:1177 ./English/Filters.xml:1193
-#: ./English/Filters.xml:1200 ./English/Filters.xml:1219
-#: ./English/Filters.xml:1223 ./English/Filters.xml:1227
-#: ./English/Filters.xml:1233 ./English/Filters.xml:1244
-#: ./English/Filters.xml:1248 ./English/Filters.xml:1256
-#: ./English/Filters.xml:1260 ./English/Intro_diffs.xml:62
+#: ./English/About_Doc.xml:313 ./English/Filters.xml:1027
+#: ./English/Filters.xml:1038 ./English/Filters.xml:1187
+#: ./English/Filters.xml:1193 ./English/Filters.xml:1209
+#: ./English/Filters.xml:1216 ./English/Filters.xml:1235
+#: ./English/Filters.xml:1239 ./English/Filters.xml:1243
+#: ./English/Filters.xml:1249 ./English/Filters.xml:1260
+#: ./English/Filters.xml:1264 ./English/Filters.xml:1272
+#: ./English/Filters.xml:1276 ./English/Intro_diffs.xml:62
 #: ./English/Intro_diffs.xml:71
 msgid "<placeholder type=\"screen\" id=\"0\"/>"
 msgstr ""
@@ -444,7 +444,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: ./English/Command_line.xml:4 ./English/Command_line.xml:8
-#: ./English/Filters.xml:102 ./English/Filters.xml:850
+#: ./English/Filters.xml:102 ./English/Filters.xml:866
 #: ./English/Open_paths.xml:369 ./English/Quick_start.xml:205
 msgid "command line"
 msgstr ""
@@ -552,11 +552,11 @@ msgstr ""
 #: ./English/Command_line.xml:226 ./English/Configuration.xml:820
 #: ./English/Configuration.xml:848 ./English/Configuration.xml:871
 #: ./English/Filters.xml:4 ./English/Filters.xml:87 ./English/Filters.xml:91
-#: ./English/Filters.xml:133 ./English/Filters.xml:704
-#: ./English/Filters.xml:708 ./English/Filters.xml:1033
-#: ./English/Filters.xml:1037 ./English/Filters.xml:1140
-#: ./English/Filters.xml:1267 ./English/Filters.xml:1271
-#: ./English/Filters.xml:1283 ./English/Open_paths.xml:91
+#: ./English/Filters.xml:133 ./English/Filters.xml:720
+#: ./English/Filters.xml:724 ./English/Filters.xml:1049
+#: ./English/Filters.xml:1053 ./English/Filters.xml:1156
+#: ./English/Filters.xml:1283 ./English/Filters.xml:1287
+#: ./English/Filters.xml:1299 ./English/Open_paths.xml:91
 msgid "filters"
 msgstr ""
 
@@ -4160,8 +4160,8 @@ msgstr ""
 #: ./English/Compare_files.xml:1476 ./English/Compare_images.xml:117
 #: ./English/Configuration.xml:2196 ./English/Configuration.xml:2362
 #: ./English/Configuration.xml:2481 ./English/Configuration.xml:2910
-#: ./English/Filters.xml:1276 ./English/Filters.xml:1707
-#: ./English/Filters.xml:1712 ./English/Filters.xml:1723
+#: ./English/Filters.xml:1292 ./English/Filters.xml:1723
+#: ./English/Filters.xml:1728 ./English/Filters.xml:1739
 msgid "TBD"
 msgstr ""
 
@@ -7257,7 +7257,7 @@ msgid "This setting affects newly created user data only."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2611 ./English/Filters.xml:732
+#: ./English/Configuration.xml:2611 ./English/Filters.xml:748
 msgid "Filters folders"
 msgstr ""
 
@@ -7972,10 +7972,10 @@ msgid "You can apply patches using the experimental plugin ApplyPatch.sct.  The 
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: ./English/Filters.xml:6 ./English/Filters.xml:706 ./English/Filters.xml:719
-#: ./English/Filters.xml:736 ./English/Filters.xml:780
-#: ./English/Filters.xml:866 ./English/Filters.xml:1344
-#: ./English/Filters.xml:1543
+#: ./English/Filters.xml:6 ./English/Filters.xml:722 ./English/Filters.xml:735
+#: ./English/Filters.xml:752 ./English/Filters.xml:796
+#: ./English/Filters.xml:882 ./English/Filters.xml:1360
+#: ./English/Filters.xml:1559
 msgid "file filters"
 msgstr ""
 
@@ -7986,14 +7986,14 @@ msgid "file masks"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: ./English/Filters.xml:10 ./English/Filters.xml:1610
-#: ./English/Filters.xml:1669
+#: ./English/Filters.xml:10 ./English/Filters.xml:1626
+#: ./English/Filters.xml:1685
 msgid "line filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: ./English/Filters.xml:12 ./English/Filters.xml:1702
-#: ./English/Filters.xml:1718
+#: ./English/Filters.xml:12 ./English/Filters.xml:1718
+#: ./English/Filters.xml:1734
 msgid "substitution filters"
 msgstr ""
 
@@ -8004,8 +8004,8 @@ msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: ./English/Filters.xml:20 ./English/Filters.xml:28 ./English/Filters.xml:137
-#: ./English/Filters.xml:956 ./English/Filters.xml:960
-#: ./English/Filters.xml:1144 ./English/Filters.xml:1730
+#: ./English/Filters.xml:972 ./English/Filters.xml:976
+#: ./English/Filters.xml:1160 ./English/Filters.xml:1746
 msgid "regular expressions"
 msgstr ""
 
@@ -8075,7 +8075,7 @@ msgid "Substitution filters are applied only to file compare operations.  They r
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Filters.xml:93 ./English/Filters.xml:710
+#: ./English/Filters.xml:93 ./English/Filters.xml:726
 msgid "in folder comparisons"
 msgstr ""
 
@@ -8115,8 +8115,8 @@ msgid "If you are using the WinMerge command line, use the <option>-f</option> f
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Filters.xml:129 ./English/Filters.xml:862
-#: ./English/Filters.xml:1136
+#: ./English/Filters.xml:129 ./English/Filters.xml:878
+#: ./English/Filters.xml:1152
 msgid "rules"
 msgstr ""
 
@@ -8224,7 +8224,7 @@ msgid "Exclude matching folders (Available since 2.16.19)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:164 ./English/Filters.xml:944
+#: ./English/Filters.xml:164 ./English/Filters.xml:960
 msgid "f: <replaceable>regexp</replaceable>"
 msgstr ""
 
@@ -8234,7 +8234,7 @@ msgid "Match file names using regular expressions (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:165 ./English/Filters.xml:945
+#: ./English/Filters.xml:165 ./English/Filters.xml:961
 msgid "f!: <replaceable>regexp</replaceable>"
 msgstr ""
 
@@ -8244,7 +8244,7 @@ msgid "Exclude files matching regex (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:166 ./English/Filters.xml:946
+#: ./English/Filters.xml:166 ./English/Filters.xml:962
 msgid "d: <replaceable>regexp</replaceable>"
 msgstr ""
 
@@ -8254,7 +8254,7 @@ msgid "Match folder names using regex (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:167 ./English/Filters.xml:947
+#: ./English/Filters.xml:167 ./English/Filters.xml:963
 msgid "d!: <replaceable>regexp</replaceable>"
 msgstr ""
 
@@ -8264,42 +8264,42 @@ msgid "Exclude folders matching regex (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:168 ./English/Filters.xml:948
+#: ./English/Filters.xml:168 ./English/Filters.xml:964
 msgid "fe: <replaceable>expr</replaceable>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:168 ./English/Filters.xml:948
+#: ./English/Filters.xml:168 ./English/Filters.xml:964
 msgid "Filter expression for files (e.g. fe:Size &lt; 1KB) (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:169 ./English/Filters.xml:949
+#: ./English/Filters.xml:169 ./English/Filters.xml:965
 msgid "fe!: <replaceable>expr</replaceable>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:169 ./English/Filters.xml:949
+#: ./English/Filters.xml:169 ./English/Filters.xml:965
 msgid "Filter expression to exclude files (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:170 ./English/Filters.xml:950
+#: ./English/Filters.xml:170 ./English/Filters.xml:966
 msgid "de: <replaceable>expr</replaceable>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:170 ./English/Filters.xml:950
+#: ./English/Filters.xml:170 ./English/Filters.xml:966
 msgid "Filter expression for folders (Available since 2.16.49)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:171 ./English/Filters.xml:951
+#: ./English/Filters.xml:171 ./English/Filters.xml:967
 msgid "de!: <replaceable>expr</replaceable>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:171 ./English/Filters.xml:951
+#: ./English/Filters.xml:171 ./English/Filters.xml:967
 msgid "Filter expression to exclude folders (Available since 2.16.49)"
 msgstr ""
 
@@ -8740,7 +8740,7 @@ msgid "For all other operators (e.g., <literal>&gt;</literal>, <literal>&lt;</li
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:462 ./English/Filters.xml:679
+#: ./English/Filters.xml:462 ./English/Filters.xml:695
 msgid "Examples"
 msgstr ""
 
@@ -9111,514 +9111,544 @@ msgstr ""
 msgid "<literal>anyof(inRange(Date, startOfMonth(today()), today()))</literal> checks if any file was modified this month (excluding today)"
 msgstr ""
 
-#. type: Content of: <article><section><section><section><title>
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: ./English/Filters.xml:656
+msgid "logError(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), logWarn(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), logInfo(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...)"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: ./English/Filters.xml:659
+msgid "Outputs the concatenated string representation of all arguments to the log (at error, warning, or information level respectively), separated by spaces, and returns the last argument value.  These functions are useful for debugging filter expressions."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Filters.xml:663
+msgid "Examples (using return value):"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Filters.xml:665
+msgid "<literal>logInfo(\"File size:\", Size) > 1MB</literal> - logs the file size(s) and checks if greater than 1MB"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Filters.xml:666
+msgid "<literal>logWarn(\"Processing:\", Name) like \"*.tmp\"</literal> - logs the file name(s) and checks if it's a temporary file"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Filters.xml:667
+msgid "<literal>Size > 1KB and logInfo(\"Large file:\", Name) contains \"test\"</literal> - logs only when size condition is true, then checks name"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><title>
+#: ./English/Filters.xml:675
 msgid "Units"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:660
+#: ./English/Filters.xml:676
 msgid "File sizes support these suffixes:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:662
+#: ./English/Filters.xml:678
 msgid "KB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:663
+#: ./English/Filters.xml:679
 msgid "MB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:664
+#: ./English/Filters.xml:680
 msgid "GB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:665
+#: ./English/Filters.xml:681
 msgid "TB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:667
+#: ./English/Filters.xml:683
 msgid "Time durations support these suffixes:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:669
+#: ./English/Filters.xml:685
 msgid "weeks"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:669
+#: ./English/Filters.xml:685
 msgid "week"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:669
+#: ./English/Filters.xml:685
 msgid "w"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:670
+#: ./English/Filters.xml:686
 msgid "days"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:670
+#: ./English/Filters.xml:686
 msgid "day"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:670
+#: ./English/Filters.xml:686
 msgid "d"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:671
+#: ./English/Filters.xml:687
 msgid "hours"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:671
+#: ./English/Filters.xml:687
 msgid "hour"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:671
+#: ./English/Filters.xml:687
 msgid "hr"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:671
+#: ./English/Filters.xml:687
 msgid "h"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:672
+#: ./English/Filters.xml:688
 msgid "minutes"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:672
+#: ./English/Filters.xml:688
 msgid "minute"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:672
+#: ./English/Filters.xml:688
 msgid "min"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:672
+#: ./English/Filters.xml:688
 msgid "m"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:673
+#: ./English/Filters.xml:689
 msgid "seconds"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:673
+#: ./English/Filters.xml:689
 msgid "second"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:673
+#: ./English/Filters.xml:689
 msgid "sec"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:673
+#: ./English/Filters.xml:689
 msgid "s"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:674
+#: ./English/Filters.xml:690
 msgid "milliseconds"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:674
+#: ./English/Filters.xml:690
 msgid "millisecond"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:674
+#: ./English/Filters.xml:690
 msgid "msec"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><simplelist><member>
-#: ./English/Filters.xml:674
+#: ./English/Filters.xml:690
 msgid "ms"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:681
+#: ./English/Filters.xml:697
 msgid "<literal>Size &lt; 10KB</literal> - Any side's size is less than 10KB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:682
+#: ./English/Filters.xml:698
 msgid "<literal>LeftSize &gt;= 10MB</literal> - Left side file is at least 10MB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:683
+#: ./English/Filters.xml:699
 msgid "<literal>allof(Size &lt; 1MB)</literal> - All sides are under 1MB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:684
+#: ./English/Filters.xml:700
 msgid "<literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - Size difference is small"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:685
+#: ./English/Filters.xml:701
 msgid "<literal>DateStr = \"2025-07-20\"</literal> - File was last modified on that date"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:686
+#: ./English/Filters.xml:702
 msgid "<literal>Date &gt;= today()</literal> - Modified today or later"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:687
+#: ./English/Filters.xml:703
 msgid "<literal>isWithin(Date, today() - 7days, today())</literal> - File modified within the last week"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:688
+#: ./English/Filters.xml:704
 msgid "<literal>inRange(Size, 1KB, 10MB)</literal> - File size is between 1KB (inclusive) and 10MB (exclusive)"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:689
+#: ./English/Filters.xml:705
 msgid "<literal>allof(isWithin(Size, 100KB, 1MB))</literal> - All file sizes are between 100KB and 1MB"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:690
+#: ./English/Filters.xml:706
 msgid "<literal>AttrStr contains \"R\"</literal> - File is read-only"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:691
+#: ./English/Filters.xml:707
 msgid "<literal>Name matches \"file[0-9]\\.txt\"</literal> - Regex on filename"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:692
+#: ./English/Filters.xml:708
 msgid "<literal>Content contains \"Test\"</literal> - File content includes keyword"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:693
+#: ./English/Filters.xml:709
 msgid "<literal>sublines(Content, 0, 1) contains \"XML\"</literal> - First line contains \"XML\""
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:694
+#: ./English/Filters.xml:710
 msgid "<literal>(Extension = \"log\" and Size > 10MB) or (Date &lt; today() - 7days)</literal> - Large log files or files older than a week"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:695
+#: ./English/Filters.xml:711
 msgid "<literal>AttrStr not contains \"H\" and Name like \"*.tmp\"</literal> - Non-hidden temporary files"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:696
+#: ./English/Filters.xml:712
 msgid "<literal>isWithin(Extension, \"a\", \"m\") and inRange(Size, 0, 1MB)</literal> - Files with extensions from 'a' to 'm' and size less than 1MB"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Filters.xml:703
+#: ./English/Filters.xml:719
 msgid "Using file filters<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:713
+#: ./English/Filters.xml:729
 msgid "<glossterm>File filters</glossterm> are text files with an extension of <filename>flt</filename>. They enable you to apply multiple filtering rules to a folder comparison. Unlike file masks, file filters can either include or exclude matches."
 msgstr ""
 
 #. type: Content of: <article><section><para><indexterm><secondary>
-#: ./English/Filters.xml:721
+#: ./English/Filters.xml:737
 msgid "template"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:718
+#: ./English/Filters.xml:734
 msgid "<placeholder type=\"indexterm\" id=\"0\"/>WinMerge installs a number of predefined file filters. If these file filters do not provide the filtering you need, you can create your own. To make that task easier, WinMerge also provides a template file named <filename>FileFilter.tmpl</filename>. This section describes how to apply file filters to comparisons, and documents the file filter syntax.  <xref linkend=\"Filters_dlg\" /> describes how to add, edit, and manage filters."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:734 ./English/Filters.xml:738
+#: ./English/Filters.xml:750 ./English/Filters.xml:754
 msgid "locations"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Filters.xml:731
+#: ./English/Filters.xml:747
 msgid "File filter locations<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:741
+#: ./English/Filters.xml:757
 msgid "WinMerge automatically detects file filters in these locations:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:746
+#: ./English/Filters.xml:762
 msgid "Filters subfolder in the WinMerge installation folder"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:749
+#: ./English/Filters.xml:765
 msgid "This is where the predefined file filters are installed. For example, <filename>C:\\Program Files\\WinMerge\\Filters</filename>. You can create or copy filter files in this location to make them available to all users on your system."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:754
+#: ./English/Filters.xml:770
 msgid "Before creating a new file filter, see if the predefined ones already contain what you need. If not, you might find useful rule examples in the existing files."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:761
+#: ./English/Filters.xml:777
 msgid "Default private filter folder"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:764
+#: ./English/Filters.xml:780
 msgid "The location of this folder is defined in the System page of WinMerge options. By default, it is specified as a subfolder in your user profile folder (for example, <filename>Documents</filename> in Windows 10). Filters that are created or copied here are normally visible only to you. If you create new file filters, you can copy them here to keep them private."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:774
+#: ./English/Filters.xml:790
 msgid "Before you can apply file filters that exist in any other folder, you must first install them."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:782
+#: ./English/Filters.xml:798
 msgid "applying"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Filters.xml:779
+#: ./English/Filters.xml:795
 msgid "Applying file filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:785
+#: ./English/Filters.xml:801
 msgid "You can apply a file filter using any of these methods:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:789
+#: ./English/Filters.xml:805
 msgid "When you launch a folder compare from the Select Files or Folders dialog:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:794
+#: ./English/Filters.xml:810
 msgid "After choosing the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel> folders, click <guibutton>Select</guibutton> next to the <guilabel>Filter</guilabel> field."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:801
+#: ./English/Filters.xml:817
 msgid "In the Filters dialog, use the File Filters tab to choose a file filter and load it in the <guilabel>Filter</guilabel> field."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><note><para>
-#: ./English/Filters.xml:806
+#: ./English/Filters.xml:822
 msgid "If a file filter is currently enabled, the selected file filter is already loaded in the <guilabel>Filter</guilabel> field."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:814
+#: ./English/Filters.xml:830
 msgid "Proceed with the compare operation. The file in the <guilabel>Filter</guilabel> field is applied when you start the operation."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:822
+#: ./English/Filters.xml:838
 msgid "To change file filtering after you have already launched a folder compare operation (for example, applying a different filter or disabling filtering):"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:828 ./English/Filters.xml:1094
+#: ./English/Filters.xml:844 ./English/Filters.xml:1110
 msgid "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</guimenuitem> </menuchoice>."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:836
+#: ./English/Filters.xml:852
 msgid "In the Filters dialog, configure your new file filter setting, and click <guibutton>OK</guibutton>."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:841
+#: ./English/Filters.xml:857
 msgid "The new filtering is not automatically applied when you close the Filters dialog: press <keycap>F5</keycap> to see the new results in the Folder Compare window."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para><indexterm><secondary>
-#: ./English/Filters.xml:852
+#: ./English/Filters.xml:868
 msgid "applying file filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:849
+#: ./English/Filters.xml:865
 msgid "<placeholder type=\"indexterm\" id=\"0\"/>When you launch a folder compare from the WinMerge command line, use the <option>-f</option> flag to specify a file filter."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:864
+#: ./English/Filters.xml:880
 msgid "file filter"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:868
+#: ./English/Filters.xml:884
 msgid "syntax"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Filters.xml:861
+#: ./English/Filters.xml:877
 msgid "File filter syntax<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:871
+#: ./English/Filters.xml:887
 msgid "This section describes the syntax of WinMerge file filters and provides guidelines for writing them."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:874
+#: ./English/Filters.xml:890
 msgid "The comment delimiter is <code>##</code>. After a comment delimiter, all characters in a line are ignored. WinMerge ignores most whitespace characters in rules. However, a comment must always be preceded by one or more whitespace (space or tab) characters. To use <code>##</code> as characters in a rule, omit the whitespace prefix."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:880
+#: ./English/Filters.xml:896
 msgid "The first two required lines of a file filter are:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:884
+#: ./English/Filters.xml:900
 msgid "name"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:887
+#: ./English/Filters.xml:903
 msgid "The filter name that is listed in the Files dialog"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:892
+#: ./English/Filters.xml:908
 msgid "def"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:895
+#: ./English/Filters.xml:911
 msgid "The type of filtering to be applied. Specify one of these values:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
-#: ./English/Filters.xml:900
+#: ./English/Filters.xml:916
 msgid "include"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:903
+#: ./English/Filters.xml:919
 msgid "Includes everything except items matching the specified rule."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
-#: ./English/Filters.xml:909
+#: ./English/Filters.xml:925
 msgid "exclude"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:912
+#: ./English/Filters.xml:928
 msgid "Excludes everything except items matching the specified rule."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:915
+#: ./English/Filters.xml:931
 msgid "When you choose the exclude method, you must also add a <guilabel>d</guilabel> (directory) rule that specifies the subfolders. It's usually a good idea to specify all subfolders, like this:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><screen>
-#: ./English/Filters.xml:920
+#: ./English/Filters.xml:936
 #, no-wrap
 msgid "d: \\\\*$ ## Subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><tip><para>
-#: ./English/Filters.xml:926
+#: ./English/Filters.xml:942
 msgid "Don't confuse these terms. Remember, in file filters, an <guilabel>include</guilabel> rule does not specify what to include, it specifies what <emphasis>not</emphasis> to include.  Similarly, <guilabel>exclude</guilabel> does not specify what to exclude, it specifies what not to exclude."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:936
+#: ./English/Filters.xml:952
 msgid "Next, your file should contain one or more filter rules. You can add as many rules as you like. There must be one rule per line, and each rule must be entirely on one line (no line breaks are allowed in a rule).  A rule begins with a type designator, followed by either a regular expression or a filter expression.  The supported type designators are:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:944
+#: ./English/Filters.xml:960
 msgid "Match file names using regular expressions"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:945
+#: ./English/Filters.xml:961
 msgid "Exclude files matching regex (Available since 2.16.19)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:946
+#: ./English/Filters.xml:962
 msgid "Match folder names using regex"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:947
+#: ./English/Filters.xml:963
 msgid "Exclude folders matching regex (Available since 2.16.19)"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><indexterm><secondary>
-#: ./English/Filters.xml:958
+#: ./English/Filters.xml:974
 msgid "special characters in filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><indexterm><secondary>
-#: ./English/Filters.xml:962
+#: ./English/Filters.xml:978
 msgid "in file filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:954
+#: ./English/Filters.xml:970
 msgid "Among the many regexp special characters, the following are particularly important in file filter rules:<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:967
+#: ./English/Filters.xml:983
 msgid "^ (beginning of line)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:970
+#: ./English/Filters.xml:986
 msgid "Frequently required for rules to work correctly."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:975
+#: ./English/Filters.xml:991
 msgid "$ (end of line)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:978
+#: ./English/Filters.xml:994
 msgid "Frequently required for rules to work correctly. For example:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
-#: ./English/Filters.xml:981
+#: ./English/Filters.xml:997
 #, no-wrap
 msgid ""
 "\\.c$ ## matches only file names with the extension, <filename>c</filename>.\n"
@@ -9626,37 +9656,37 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:987
+#: ./English/Filters.xml:1003
 msgid "\\ (escape)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:990
+#: ./English/Filters.xml:1006
 msgid "Forces special characters to match normal characters. For example, to match a folder name, precede the folder backslash delimiter with a backslash (<code>\\\\</code>). To match the dot in a file name, specify a backslash followed by a dot (<code>\\.</code>)."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:999
+#: ./English/Filters.xml:1015
 msgid "No special characters or wildcards are used to match file names. To match all filenames of a certain type, simply omit the filename."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:1002
+#: ./English/Filters.xml:1018
 msgid "Rules are case-insensitive. For example, <code>f: \\.bat$</code> matches <filename>winmerge.bat</filename> and <filename>compare.BAT</filename>."
 msgstr ""
 
 #. type: Content of: <article><section><section><example><title>
-#: ./English/Filters.xml:1007
+#: ./English/Filters.xml:1023
 msgid "File filter rule examples"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1009
+#: ./English/Filters.xml:1025
 msgid "Some simple file filter rules:"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1011
+#: ./English/Filters.xml:1027
 #, no-wrap
 msgid ""
 "f: \\.cpp$ ## Match <filename>*.cpp</filename> files\n"
@@ -9670,12 +9700,12 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1020
+#: ./English/Filters.xml:1036
 msgid "Some rules with more complex regular expressions:"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1022
+#: ./English/Filters.xml:1038
 #, no-wrap
 msgid ""
 "f: ^\\.#.*$ ## <filename>.#filename.version</filename> files\n"
@@ -9686,171 +9716,171 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1035 ./English/Filters.xml:1142
+#: ./English/Filters.xml:1051 ./English/Filters.xml:1158
 msgid "line"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1039 ./English/Filters.xml:1273
+#: ./English/Filters.xml:1055 ./English/Filters.xml:1289
 msgid "in file comparisons"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Filters.xml:1032
+#: ./English/Filters.xml:1048
 msgid "Using line filters<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:1042
+#: ./English/Filters.xml:1058
 msgid "In a file comparison, you can use line filters to ignore single lines.  For example, you might use line filters to ignore comments or certain type of generated code, like version control system timestamps. Each line filter is a rule, and you can apply any number of line filters to a file comparison."
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:1048
+#: ./English/Filters.xml:1064
 msgid "To learn how to add, edit, and manage filters, see <xref linkend=\"Filters_dlg\" />."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Filters.xml:1052
+#: ./English/Filters.xml:1068
 msgid "Applying line filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:1054
+#: ./English/Filters.xml:1070
 msgid "You can apply line filters using any of these methods:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1058
+#: ./English/Filters.xml:1074
 msgid "When you launch a file compare from the Select Files or Folders dialog"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1063
+#: ./English/Filters.xml:1079
 msgid "After choosing the <guilabel>1st</guilabel> and <guilabel>2nd</guilabel> files, click <guibutton>Select</guibutton> next to the <guilabel>Filter</guilabel> field."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1070
+#: ./English/Filters.xml:1086
 msgid "In the Filters dialog, use the Line Filters tab to enable the line filters you want to use (if any), or to see what line filters are currently enabled."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><note><para>
-#: ./English/Filters.xml:1075
+#: ./English/Filters.xml:1091
 msgid "The <guilabel>Filter</guilabel> field does not indicate what line filters are enabled."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1082
+#: ./English/Filters.xml:1098
 msgid "Proceed with the file compare operation. The enabled line filters are applied when you start the operation."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1089
+#: ./English/Filters.xml:1105
 msgid "After you have already launched a file compare operation (for example, to apply different filters or disabling filtering)"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1102
+#: ./English/Filters.xml:1118
 msgid "Open the File Filters tab."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1106
+#: ./English/Filters.xml:1122
 msgid "Check the individual line filters you want to apply, and uncheck filters that you don't want to apply."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1109
+#: ./English/Filters.xml:1125
 msgid "You can also add, edit, and remove filters from the list by using the <guibutton>New</guibutton>, <guibutton>Edit</guibutton>, and <guibutton>Remove</guibutton> buttons."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1115
+#: ./English/Filters.xml:1131
 msgid "To turn on line filtering, check the <guilabel>Enable Line Filters</guilabel>. To turn line filtering off, uncheck the option."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1121
+#: ./English/Filters.xml:1137
 msgid "Click <guibutton>OK</guibutton> to dismiss the File Filters dialog."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1126
+#: ./English/Filters.xml:1142
 msgid "Click <keycap>F5</keycap> to apply your changes and refresh the File Compare window."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1138
+#: ./English/Filters.xml:1154
 msgid "line filter"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1146
+#: ./English/Filters.xml:1162
 msgid "in line filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Filters.xml:1135
+#: ./English/Filters.xml:1151
 msgid "Line filter syntax<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:1149
+#: ./English/Filters.xml:1165
 msgid "A line filter is a rule that is evaluated against each single-line difference in your compared files, if line filter rules are enabled. When a rule matches a single-line difference, the difference is ignored."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:1153
+#: ./English/Filters.xml:1169
 msgid "Ignored differences are marked in the File Compare window with the <guilabel>Ignored Difference</guilabel> color (as defined in the Colors page of WinMerge Options). This enables you to distinguish ignored differences from other types. However, you cannot select or merge ignored difference."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:1159
+#: ./English/Filters.xml:1175
 msgid "Line filter matching can be described in terms of two ideas:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1163
+#: ./English/Filters.xml:1179
 msgid "When a rule matches any part of the line, the entire difference is ignored. Therefore, you cannot filter just part of a line. For example, suppose two files have the following single-line difference:"
 msgstr ""
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><title>
-#: ./English/Filters.xml:1169 ./English/Filters.xml:1191
+#: ./English/Filters.xml:1185 ./English/Filters.xml:1207
 #: ./English/Intro_diffs.xml:60
 msgid "File1:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: ./English/Filters.xml:1171
+#: ./English/Filters.xml:1187
 #, no-wrap
 msgid "# Jean Sibelius"
 msgstr ""
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><title>
-#: ./English/Filters.xml:1175 ./English/Filters.xml:1198
+#: ./English/Filters.xml:1191 ./English/Filters.xml:1214
 #: ./English/Intro_diffs.xml:69
 msgid "File2:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: ./English/Filters.xml:1177
+#: ./English/Filters.xml:1193
 #, no-wrap
 msgid "# Janne Sibelius"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1180
+#: ./English/Filters.xml:1196
 msgid "With no filtering, the line is detected as a difference. But if we apply a line filter rule with the expression, <code>^#</code>, the lines are reported as identical, because the expression specifies only the first character, which matches in both files."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1187
+#: ./English/Filters.xml:1203
 msgid "A rule is applied to a multi-line difference only if all the lines match. For example, consider this two-line difference:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: ./English/Filters.xml:1193
+#: ./English/Filters.xml:1209
 #, no-wrap
 msgid ""
 "# Jean Sibelius\n"
@@ -9858,7 +9888,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><formalpara><para><screen>
-#: ./English/Filters.xml:1200
+#: ./English/Filters.xml:1216
 #, no-wrap
 msgid ""
 "# Janne Sibelius\n"
@@ -9866,606 +9896,606 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1204
+#: ./English/Filters.xml:1220
 msgid "The same <code>^#</code> rule matches the first line, but not the second line. Therefore, the difference is not ignored."
 msgstr ""
 
 #. type: Content of: <article><section><section><tip><para>
-#: ./English/Filters.xml:1210
+#: ./English/Filters.xml:1226
 msgid "It's usually good practice to use the beginning of line ( <code>^</code> ) and end of line ( <code>$</code> ) markers to control your patterns precisely, because the rule is applied if any part of a line matches the expression."
 msgstr ""
 
 #. type: Content of: <article><section><section><example><title>
-#: ./English/Filters.xml:1217
+#: ./English/Filters.xml:1233
 msgid "Sample line filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1219
+#: ./English/Filters.xml:1235
 #, no-wrap
 msgid "^MYTAG$"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1221
+#: ./English/Filters.xml:1237
 msgid "Filters lines that exactly match <literal>MYTAG</literal>"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1223
+#: ./English/Filters.xml:1239
 #, no-wrap
 msgid "^::"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1225
+#: ./English/Filters.xml:1241
 msgid "Filters lines beginning with <literal>::</literal>"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1227
+#: ./English/Filters.xml:1243
 #, no-wrap
 msgid "^/\\*.*\\*/$"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1229
+#: ./English/Filters.xml:1245
 msgid "Filters lines beginning with <literal><constant>/*</constant></literal> and ending with <literal>*/</literal>"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1233
+#: ./English/Filters.xml:1249
 #, no-wrap
 msgid "^[1-5]00"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1235
+#: ./English/Filters.xml:1251
 msgid "Filters lines beginning with numbers 100, 200, 300, 400, and 500"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><title>
-#: ./English/Filters.xml:1240
+#: ./English/Filters.xml:1256
 msgid "Line filter rule matching CVS Id lines"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1242
+#: ./English/Filters.xml:1258
 msgid "CVS Id lines look like this:"
-msgstr ""
-
-#. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1244
-#, no-wrap
-msgid "// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $"
-msgstr ""
-
-#. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1246 ./English/Filters.xml:1258
-msgid "... and can be filtered with this rule:"
-msgstr ""
-
-#. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1248
-#, no-wrap
-msgid "^// \\WId: .*\\$"
-msgstr ""
-
-#. type: Content of: <article><section><section><example><title>
-#: ./English/Filters.xml:1252
-msgid "Filter line number comments in po files"
-msgstr ""
-
-#. type: Content of: <article><section><section><example><para>
-#: ./English/Filters.xml:1254
-msgid "po line number comments look like this:"
-msgstr ""
-
-#. type: Content of: <article><section><section><example><screen>
-#: ./English/Filters.xml:1256
-#, no-wrap
-msgid "#: src/filename.c:766"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><screen>
 #: ./English/Filters.xml:1260
 #, no-wrap
+msgid "// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $"
+msgstr ""
+
+#. type: Content of: <article><section><section><example><para>
+#: ./English/Filters.xml:1262 ./English/Filters.xml:1274
+msgid "... and can be filtered with this rule:"
+msgstr ""
+
+#. type: Content of: <article><section><section><example><screen>
+#: ./English/Filters.xml:1264
+#, no-wrap
+msgid "^// \\WId: .*\\$"
+msgstr ""
+
+#. type: Content of: <article><section><section><example><title>
+#: ./English/Filters.xml:1268
+msgid "Filter line number comments in po files"
+msgstr ""
+
+#. type: Content of: <article><section><section><example><para>
+#: ./English/Filters.xml:1270
+msgid "po line number comments look like this:"
+msgstr ""
+
+#. type: Content of: <article><section><section><example><screen>
+#: ./English/Filters.xml:1272
+#, no-wrap
+msgid "#: src/filename.c:766"
+msgstr ""
+
+#. type: Content of: <article><section><section><example><screen>
+#: ./English/Filters.xml:1276
+#, no-wrap
 msgid "^#"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1269
+#: ./English/Filters.xml:1285
 msgid "substitution"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Filters.xml:1266
+#: ./English/Filters.xml:1282
 msgid "Using substitution filters<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Filters.xml:1281
+#: ./English/Filters.xml:1297
 msgid "Filters dialog"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1285
+#: ./English/Filters.xml:1301
 msgid "managing and enabling"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Filters.xml:1280
+#: ./English/Filters.xml:1296
 msgid "Using the Filters dialog<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:1288
+#: ./English/Filters.xml:1304
 msgid "This section describes the Filters dialog, which provides functions to create and manage file filters and line filters."
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:1291
+#: ./English/Filters.xml:1307
 msgid "To open the Filters dialog, use either of these methods:"
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1295
+#: ./English/Filters.xml:1311
 msgid "In the Select Files or Folders dialog, click <guibutton>Select</guibutton> to the right of the <guilabel>Filter</guilabel> field. You use this method when you want to apply a file filter to a folder compare operation."
 msgstr ""
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1302
+#: ./English/Filters.xml:1318
 msgid "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</guimenuitem> </menuchoice>. This method can be used at any time except when the Select Files or Folders dialog is open."
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:1311
+#: ./English/Filters.xml:1327
 msgid "The Filters dialog has a tab for each type of WinMerge filter:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1315
+#: ./English/Filters.xml:1331
 msgid "File Filters"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:1318
+#: ./English/Filters.xml:1334
 msgid "Choose this tab to work with file filters for folder compare operations."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1324
+#: ./English/Filters.xml:1340
 msgid "Line Filters"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:1327
+#: ./English/Filters.xml:1343
 msgid "Choose this tab to work with line filters for file compare operations."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1333
+#: ./English/Filters.xml:1349
 msgid "Substitution Filters"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:1336
+#: ./English/Filters.xml:1352
 msgid "Choose this tab to work with substitution filters for file compare operations."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1346 ./English/Filters.xml:1612
-#: ./English/Filters.xml:1704
+#: ./English/Filters.xml:1362 ./English/Filters.xml:1628
+#: ./English/Filters.xml:1720
 msgid "enabling"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Filters.xml:1343
+#: ./English/Filters.xml:1359
 msgid "Using the File Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:1349
+#: ./English/Filters.xml:1365
 msgid "The main part of this tab is a list of file filters that are available for folder compare operations. The list includes shared, private, and installed file filters that WinMerge knows about, as described in <xref linkend=\"Filters_FileFilterLoc\" />."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:1355
+#: ./English/Filters.xml:1371
 msgid "Enabling and disabling file filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1357
+#: ./English/Filters.xml:1373
 msgid "You must enable a file filter to make it available in a folder comparison operation, or to disable a current filter to stop it from being used:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1363
+#: ./English/Filters.xml:1379
 msgid "Open the Filters dialog, if it is not already open."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1367
+#: ./English/Filters.xml:1383
 msgid "Select a file filter or <guimenuitem>&lt;None&gt;</guimenuitem> from the list."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1372
+#: ./English/Filters.xml:1388
 msgid "Click <guibutton>OK</guibutton> to dismiss the Filters dialog."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1377
+#: ./English/Filters.xml:1393
 msgid "There are several ways to apply file filters after enabling them.  For details, see <xref linkend=\"Filters_FileFilterApply\" />."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:1382
+#: ./English/Filters.xml:1398
 msgid "Configuring file filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1384
+#: ./English/Filters.xml:1400
 msgid "Use these buttons to manage your <guilabel>File Filters</guilabel> list and create new file filters:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1389
+#: ./English/Filters.xml:1405
 msgid "Test"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:1392
+#: ./English/Filters.xml:1408
 msgid "Select a file filter in the list and click <guibutton>Test</guibutton> to quickly see how the filter works.  See <xref linkend=\"Filters_TestingDlg\" /> for details."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1399
+#: ./English/Filters.xml:1415
 msgid "Install"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:1402
+#: ./English/Filters.xml:1418
 msgid "Enables you to locate a file filter and adds it to the Filters list. File filters that are not in either the shared or default private folder are not detected unless you install them."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1410
+#: ./English/Filters.xml:1426
 msgid "New"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:1413
+#: ./English/Filters.xml:1429
 msgid "Creates a new copy of a file template in either the shared or private filter folders, and opens it in your default editor.  Edit the template and add your rules, as described in <xref linkend=\"Filters_CreatingFile\" />."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1421
+#: ./English/Filters.xml:1437
 msgid "Edit"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:1424
+#: ./English/Filters.xml:1440
 msgid "Select a file filter in the list and click <guibutton>Edit</guibutton> to open the file in your default editor."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1431
+#: ./English/Filters.xml:1447
 msgid "Delete"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Filters.xml:1434
+#: ./English/Filters.xml:1450
 msgid "Select a file filter in the list and click <guibutton>Delete</guibutton> to delete the file and remove it from the list. Yes, the file is really deleted!"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1441
+#: ./English/Filters.xml:1457
 msgid "Your changes are saved when you click <guibutton>OK</guibutton> to dismiss the Filters dialog. Line filters are stored in the Windows registry."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:1447
+#: ./English/Filters.xml:1463
 msgid "Creating a file filter"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1449
+#: ./English/Filters.xml:1465
 msgid "If the file filters that are installed with WinMerge do not provide the filtering you need, you can create your own:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1454
+#: ./English/Filters.xml:1470
 msgid "Click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</guimenuitem> </menuchoice>. Or, from the Select Files or Folders dialog, click <guibutton>Select</guibutton> to the right of the <guilabel>Filter</guilabel> field."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1464
+#: ./English/Filters.xml:1480
 msgid "In the Filters dialog File Filters tab, click <guibutton>New</guibutton>."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1469
+#: ./English/Filters.xml:1485
 msgid "In the Shared or Private Filter dialog, choose <guilabel>Shared Filter</guilabel> or <guilabel>Private Filter</guilabel> (see <xref linkend=\"Filters_FileFilterLoc\" /> for their uses) and click <keycap>OK</keycap>."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1474
+#: ./English/Filters.xml:1490
 msgid "The Select Filename for New Filter dialog opens in the shared or private files folder on your system (if the private folder does not exist, WinMerge creates it)."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1480
+#: ./English/Filters.xml:1496
 msgid "In the Select Filename for New Filter dialog, enter a new file name and click <guibutton>Save</guibutton>."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><note><para>
-#: ./English/Filters.xml:1484
+#: ./English/Filters.xml:1500
 msgid "Don't choose an existing file name: to edit an existing file, go back to Step <xref linkend=\"Filters_New_step\" /> and click Edit instead of New."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1489
+#: ./English/Filters.xml:1505
 msgid "WinMerge initializes the new file with the contents of the <filename>FileFilter.tmpl</filename> template, and opens it in your default text editor."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1495
+#: ./English/Filters.xml:1511
 msgid "Follow the template instructions to edit the template, updating the placeholder name and description and adding filter rules as described in <xref linkend=\"Filters_FileFilterSyntax\" />.  Save the file in your text editor."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><tip><para>
-#: ./English/Filters.xml:1501
+#: ./English/Filters.xml:1517
 msgid "If you want to quickly test a rule that you are defining, try clicking Test in the Filters dialog. See <xref linkend=\"Filters_TestingDlg\" /> for details."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1509
+#: ./English/Filters.xml:1525
 msgid "If you created your file filter in one of the standard <filename>Filters</filename> folders, and the Filters dialog does not list your new file filter, try clicking <guibutton>OK</guibutton> to close it, then click <menuchoice> <guimenu>Tools</guimenu> <guimenuitem>Filters</guimenuitem> </menuchoice> again to reopen it. The <guilabel>File Filters</guilabel> list should now include the new file filter."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1520
+#: ./English/Filters.xml:1536
 msgid "If you saved the file in an alternate location on your file system), WinMerge cannot detect it unless you install it. To make a file filter detectable anywhere on your system:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1526
+#: ./English/Filters.xml:1542
 msgid "Click <guibutton>Install</guibutton> in the Filters dialog."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><orderedlist><listitem><para>
-#: ./English/Filters.xml:1531
+#: ./English/Filters.xml:1547
 msgid "In the Locate Filter File to Install dialog, navigate to the <filename>flt</filename> file on your system, and click <guibutton>Open</guibutton>. The File Filters list should now include the installed file filter."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1545
+#: ./English/Filters.xml:1561
 msgid "testing"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
-#: ./English/Filters.xml:1547
+#: ./English/Filters.xml:1563
 msgid "testing file filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:1542
+#: ./English/Filters.xml:1558
 msgid "Testing file filter rules<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1550
+#: ./English/Filters.xml:1566
 msgid "Use the Test Filter dialog to quickly test a file filter against sample data, to help you develop new rules or to understand how existing rules work. It can be easier than running a full compare operation."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1555
+#: ./English/Filters.xml:1571
 msgid "Starting from the Filters dialog:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1559
+#: ./English/Filters.xml:1575
 msgid "In the File Filters tab, choose the file filter you want to test."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1564
+#: ./English/Filters.xml:1580
 msgid "If you want to see the rules you will be testing, click <guibutton>Edit</guibutton> now to open the file so that you can view it during the next steps."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1570
+#: ./English/Filters.xml:1586
 msgid "Click <guibutton>Test</guibutton>."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1574
+#: ./English/Filters.xml:1590
 msgid "In the Test Filter dialog, choose the type of rule to test:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1579
+#: ./English/Filters.xml:1595
 msgid "To test an <guilabel>f:</guilabel> file rule in your file filter, uncheck the <guilabel>Folder Name</guilabel> option."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><itemizedlist><listitem><para>
-#: ./English/Filters.xml:1585
+#: ./English/Filters.xml:1601
 msgid "To test a <guilabel>d:</guilabel> folder rule, check the <guilabel>Folder Name</guilabel> option."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1592
+#: ./English/Filters.xml:1608
 msgid "Enter the text to test."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1594
+#: ./English/Filters.xml:1610
 msgid "The text should be appropriate for the type of rule you are testing. For example, if you have checked the <guilabel>Folder Name</guilabel> option, you probably want to enter a folder name, such as \\temp."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1599
+#: ./English/Filters.xml:1615
 msgid "The <guilabel>Result</guilabel> box displays your entry, followed by its status: either <computeroutput>passed</computeroutput> or <computeroutput>failed</computeroutput>."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Filters.xml:1609
+#: ./English/Filters.xml:1625
 msgid "Using the Line Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Filters.xml:1615
+#: ./English/Filters.xml:1631
 msgid "Use this tab to configure and enable line filters for file compare operations. The tab features a list of rules. Each rule contains a single regular expression. You can apply any combination of rules from the list to a file comparison."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:1621
+#: ./English/Filters.xml:1637
 msgid "Configuring line filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1623
+#: ./English/Filters.xml:1639
 msgid "Below the <guilabel>Regular Expressions</guilabel> list is an edit box and buttons that you can use to maintain the list at any time by adding, editing, and removing rules."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1627
+#: ./English/Filters.xml:1643
 msgid "To add a new rule:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1631
+#: ./English/Filters.xml:1647
 msgid "Click <guibutton>New</guibutton>. Your edit cursor is automatically enabled in the edit box."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1636
+#: ./English/Filters.xml:1652
 msgid "Enter an expression in the edit box below the <guilabel>Regular Expressions</guilabel> list."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1641
+#: ./English/Filters.xml:1657
 msgid "Click <guibutton>Save</guibutton> to load the expression in a new line in the list."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1646
+#: ./English/Filters.xml:1662
 msgid "To edit an existing rule:"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1650
+#: ./English/Filters.xml:1666
 msgid "Select the line and click <guibutton>Edit</guibutton>."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1654
+#: ./English/Filters.xml:1670
 msgid "Edit the expression in the edit box."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1658
+#: ./English/Filters.xml:1674
 msgid "Click <guibutton>Save</guibutton><guibutton> </guibutton>when you're done."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1663
+#: ./English/Filters.xml:1679
 msgid "To delete an existing rule, select (check) the rule and click <guibutton>Remove</guibutton>."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1671 ./English/Filters.xml:1720
+#: ./English/Filters.xml:1687 ./English/Filters.xml:1736
 msgid "list of available"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:1668
+#: ./English/Filters.xml:1684
 msgid "Enabling and disabling line filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1676
+#: ./English/Filters.xml:1692
 msgid "In the <guilabel>Regular Expressions</guilabel> list, check just the filters that you want to apply, and uncheck any filters you do not want to apply."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1682
+#: ./English/Filters.xml:1698
 msgid "Check or uncheck the <guilabel>Enable Line Filters</guilabel> option. If you turn filtering on, all the rules that are currently checked in the <guilabel>Regular Expression</guilabel> list are used. If filtering is off, no rules are used even if they are checked."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
-#: ./English/Filters.xml:1690
+#: ./English/Filters.xml:1706
 msgid "Click <guibutton>OK</guibutton> to dismiss the Filters dialog and save your settings."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
-#: ./English/Filters.xml:1695
+#: ./English/Filters.xml:1711
 msgid "There are several ways to apply file filters after enabling them.  For details, see <xref linkend=\"Filters_LineFilterApply\" />."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Filters.xml:1701
+#: ./English/Filters.xml:1717
 msgid "Using the Substitution Filters tab<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:1710
+#: ./English/Filters.xml:1726
 msgid "Configuring substitution filters"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
-#: ./English/Filters.xml:1717
+#: ./English/Filters.xml:1733
 msgid "Enabling and disabling substitution filters<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Filters.xml:1732
+#: ./English/Filters.xml:1748
 msgid "getting help"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Filters.xml:1729
+#: ./English/Filters.xml:1745
 msgid "Getting help with regular expressions<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:1735
+#: ./English/Filters.xml:1751
 msgid "Regular expressions can be very complex. Fortunately, most file filters in WinMerge involve simple extension expressions, as shown in the examples in this topic. The filter files installed with WinMerge include many other useful examples."
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Filters.xml:1740
+#: ./English/Filters.xml:1756
 msgid "Finally, there are lots of resources on the Web for help with regexps, including these sites:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1745
+#: ./English/Filters.xml:1761
 msgid "Good site devoted to regexps:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: ./English/Filters.xml:1748
+#: ./English/Filters.xml:1764
 msgid "<ulink url=\"https://www.regular-expressions.info/\">https://www.regular-expressions.info/</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1754
+#: ./English/Filters.xml:1770
 msgid "Tutorial:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: ./English/Filters.xml:1757
+#: ./English/Filters.xml:1773
 msgid "<ulink url=\"http://www.zvon.org/comp/r/tut-Regexp.html\">http://www.zvon.org/comp/r/tut-Regexp.html</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:1763
+#: ./English/Filters.xml:1779
 msgid "PDF quick reference:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><simpara>
-#: ./English/Filters.xml:1766
+#: ./English/Filters.xml:1782
 msgid "<ulink url=\"https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf\"> https://github.com/GordonMcKinney/gist-assets/raw/master/regex.pdf</ulink>"
 msgstr ""
 
