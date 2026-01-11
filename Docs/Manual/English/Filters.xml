@@ -652,6 +652,113 @@
               </itemizedlist>
             </listitem>
           </varlistentry>
+          <varlistentry>
+            <term>logError(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), logWarn(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), logInfo(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...)</term>
+            <listitem>
+              <para>
+                Outputs the concatenated string representation of all arguments to the log (at error, warning, or information level respectively), 
+                separated by spaces, and returns the last argument value.
+                These functions are useful for debugging filter expressions.
+              </para>
+              <para>Examples (using return value):</para>
+              <itemizedlist>
+                <listitem><para><literal>logInfo("File size:", Size) > 1MB</literal> - logs the file size(s) and checks if greater than 1MB</para></listitem>
+                <listitem><para><literal>logWarn("Processing:", Name) like "*.tmp"</literal> - logs the file name(s) and checks if it's a temporary file</para></listitem>
+                <listitem><para><literal>Size > 1KB and logInfo("Large file:", Name) contains "test"</literal> - logs only when size condition is true, then checks name</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>if(<replaceable>condition</replaceable>, <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+            <listitem>
+              <para>
+                Returns <replaceable>trueValue</replaceable> if <replaceable>condition</replaceable> evaluates to true, otherwise returns <replaceable>falseValue</replaceable>.
+                This function performs short-circuit evaluation (it only evaluates the branch that will be returned).
+              </para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>if(Size > 1MB, "large", "small")</literal> - returns "large" or "small" based on file size</para></listitem>
+                <listitem><para><literal>if(Extension = "txt", "text file", "other file")</literal> - classifies files by extension</para></listitem>
+                <listitem><para><literal>if(Exists, Size, 0)</literal> - returns file size or 0 if file doesn't exist</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>ifEach(<replaceable>conditionArray</replaceable>, <replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+            <listitem>
+              <para>
+                Element-wise conditional selection. For each element in <replaceable>conditionArray</replaceable>,
+                returns the corresponding element from <replaceable>trueValue</replaceable> if the condition is true,
+                otherwise returns the corresponding element from <replaceable>falseValue</replaceable>.
+                If <replaceable>trueValue</replaceable> or <replaceable>falseValue</replaceable> is a scalar, 
+                it is broadcast to all elements.
+              </para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - returns array of "large"/"small" labels for each file</para></listitem>
+                <listitem><para><literal>ifEach(array(true, false, true), array("a", "b", "c"), array("x", "y", "z"))</literal> - returns <literal>array("a", "y", "c")</literal></para></listitem>
+                <listitem><para><literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> - checks if any file is between 100KB and 10MB</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>choose(<replaceable>index</replaceable>, <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+            <listitem>
+              <para>
+                Selects a value from the arguments based on <replaceable>index</replaceable>.
+                If <replaceable>index</replaceable> is 0, returns <replaceable>value0</replaceable>; if 1, returns <replaceable>value1</replaceable>, etc.
+                Negative indices are clamped to 0. Indices beyond the last value return the last value.
+              </para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>choose(0, "first", "second", "third")</literal> - returns "first"</para></listitem>
+                <listitem><para><literal>choose(DiffCode % 3, "equal", "different", "unique")</literal> - maps diff codes to labels</para></listitem>
+                <listitem><para><literal>choose(5, "a", "b", "c")</literal> - returns "c" (out of bounds, returns last value)</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>chooseEach(<replaceable>indexArray</replaceable>, <replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+            <listitem>
+              <para>
+                Element-wise value selection. For each index in <replaceable>indexArray</replaceable>,
+                selects the corresponding value from the remaining arguments.
+                If <replaceable>indexArray</replaceable> is a scalar, behaves like <literal>choose</literal>.
+              </para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>chooseEach(array(0, 1, 2), "a", "b", "c")</literal> - returns <literal>array("a", "b", "c")</literal></para></listitem>
+                <listitem><para><literal>chooseEach(array(0, 0, 1), "x", "y")</literal> - returns <literal>array("x", "x", "y")</literal></para></listitem>
+                <listitem><para><literal>chooseEach(array(2, 0, 1), "first", "second", "third")</literal> - returns <literal>array("third", "first", "second")</literal></para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>andEach(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>), orEach(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>), notEach(<replaceable>value</replaceable>)</term>
+            <listitem>
+              <para>
+                Element-wise logical operations. These functions operate on booleans, boolean arrays, or a combination of both:
+              </para>
+              <itemizedlist>
+                <listitem><para><literal>andEach</literal> - Logical AND operation</para></listitem>
+                <listitem><para><literal>orEach</literal> - Logical OR operation</para></listitem>
+                <listitem><para><literal>notEach</literal> - Logical NOT operation (single argument)</para></listitem>
+              </itemizedlist>
+              <para>
+                When arguments are scalars, returns a scalar boolean result.
+                When one argument is an array and the other is a scalar, the scalar is broadcast to all elements.
+                When both arguments are arrays, performs element-wise operation.
+              </para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - files between 1KB and 1MB</para></listitem>
+                <listitem><para><literal>orEach(Extension = "txt", Extension = "log")</literal> - txt or log files</para></listitem>
+                <listitem><para><literal>notEach(Exists)</literal> - files that don't exist</para></listitem>
+                <listitem><para><literal>allof(andEach(Exists, Size &gt; 0))</literal> - all files exist with non-zero size</para></listitem>
+                <listitem><para><literal>anyof(notEach(Size &gt; 1MB))</literal> - any file 1MB or smaller</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
         </variablelist>
       </section>
 

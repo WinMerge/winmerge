@@ -1243,6 +1243,121 @@ TEST_P(FilterExpressionTest, Test1)
 	EXPECT_FALSE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, ConditionalFunctions)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Alice.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Bob.txt";
+	di.diffFileInfo[1].size = 2000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// if function tests
+	EXPECT_TRUE(fe.Parse("if(true, \"yes\", \"no\") == \"yes\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("if(false, \"yes\", \"no\") == \"no\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("if(LeftSize > 500, \"large\", \"small\") == \"large\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("if(LeftSize < 500, \"large\", \"small\") == \"small\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// ifEach function tests
+	EXPECT_TRUE(fe.Parse("ifEach(array(true, false, true), \"yes\", \"no\") == array(\"yes\", \"no\", \"yes\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("ifEach(Size > 1500, \"large\", \"small\") == array(\"small\", \"large\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("ifEach(array(true, false), array(\"a\", \"b\"), array(\"c\", \"d\")) == array(\"a\", \"d\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("ifEach(true, \"yes\", \"no\") == \"yes\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// choose function tests
+	EXPECT_TRUE(fe.Parse("choose(0, \"zero\", \"one\", \"two\") == \"zero\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("choose(1, \"zero\", \"one\", \"two\") == \"one\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("choose(2, \"zero\", \"one\", \"two\") == \"two\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("choose(-1, \"zero\", \"one\", \"two\") == \"zero\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("choose(5, \"zero\", \"one\", \"two\") == \"two\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// chooseEach function tests
+	EXPECT_TRUE(fe.Parse("chooseEach(array(0, 1, 2), \"a\", \"b\", \"c\") == array(\"a\", \"b\", \"c\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("chooseEach(array(0, 0, 1), \"x\", \"y\", \"z\") == array(\"x\", \"x\", \"y\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("chooseEach(array(-1, 5), \"a\", \"b\") == array(\"a\", \"b\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("chooseEach(0, \"a\", \"b\") == \"a\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// andEach function tests
+	EXPECT_TRUE(fe.Parse("andEach(true, true) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(true, false) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(false, true) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(false, false) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(array(true, false, true), true) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(true, array(true, false, true)) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(array(true, false, true), array(true, true, false)) == array(true, false, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(Size > 500, Size < 1500) == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// orEach function tests
+	EXPECT_TRUE(fe.Parse("orEach(true, true) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(true, false) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(false, true) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(false, false) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(array(true, false, true), false) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(false, array(true, false, true)) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(array(true, false, false), array(false, true, false)) == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(Size < 500, Size > 1500) == array(false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// notEach function tests
+	EXPECT_TRUE(fe.Parse("notEach(true) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("notEach(false) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("notEach(array(true, false, true)) == array(false, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("notEach(Size > 1500) == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined tests
+	EXPECT_TRUE(fe.Parse("anyof(andEach(Size > 500, Size < 1500))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(orEach(Size < 500, Size > 1500))"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("anyof(notEach(Size > 2500))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("ifEach(andEach(Size > 500, Size < 1500), \"in range\", \"out of range\") == array(\"in range\", \"out of range\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 INSTANTIATE_TEST_SUITE_P(
 	OptimizationCases,
 	FilterExpressionTest,

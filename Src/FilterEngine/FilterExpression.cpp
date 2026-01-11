@@ -223,7 +223,7 @@ bool FilterExpression::Evaluate(const DIFFITEM& di)
 		errorPosition = -1;
 		errorMessage = e.message();
 		if (logger)
-			logger("FilterExpression evaluation error: " + errorMessage);
+			logger(0, "FilterExpression evaluation error: " + errorMessage);
 		return false;
 	}
 	catch (const std::exception& e)
@@ -232,7 +232,7 @@ bool FilterExpression::Evaluate(const DIFFITEM& di)
 		errorPosition = -1;
 		errorMessage = e.what();
 		if (logger)
-			logger("FilterExpression evaluation error: " + errorMessage);
+			logger(0, "FilterExpression evaluation error: " + errorMessage);
 		return false;
 	}
 }
