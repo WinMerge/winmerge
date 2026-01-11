@@ -61,32 +61,41 @@ void Detect(CDiffContext& ctxt)
 	auto& movedItems = ctxt.m_movedItems;
 	for (DIFFITEM* pdi0 : unmatchedItems)
 	{
-		if (pdi0->diffcode.exists(0) && !pdi0->diffcode.exists(1))
+		if (!pdi0->diffcode.exists(0) && !pdi0->diffcode.exists(1))
+			continue;
+		const int idx0 = pdi0->diffcode.exists(0) ? 0 : 1;
+		const bool isfolder = pdi0->diffcode.isDirectory();
+		for (DIFFITEM* pdi1 : unmatchedItems)
 		{
-			const bool isfolder = pdi0->diffcode.isDirectory();
-			for (DIFFITEM* pdi1 : unmatchedItems)
+			if (ctxt.ShouldAbort())
+				return;
+			if (!pdi1->diffcode.exists(0) && !pdi1->diffcode.exists(1))
+				continue;
+			if (pdi0 != pdi1 && isfolder == pdi1->diffcode.isDirectory())
 			{
-				if (ctxt.ShouldAbort())
-					return;
-				if (pdi0 != pdi1 && !pdi1->diffcode.exists(0) && pdi1->diffcode.exists(1) && isfolder == pdi1->diffcode.isDirectory())
+				const int idx1 = pdi1->diffcode.exists(0) ? 0 : 1;
+				if (idx0 != idx1 && EvaluatePair(pdi0, idx0, pdi1, idx1, ctxt))
 				{
-					if (EvaluatePair(pdi0, 0, pdi1, 1, ctxt))
+					if (pdi0->movedGroupId != -1 && pdi1->movedGroupId == -1)
 					{
-						if (pdi1->movedGroupId != -1)
-						{
-							int existingGroupId = pdi1->movedGroupId;
-							pdi0->movedGroupId = existingGroupId;
-							movedItems[existingGroupId][0].push_back(pdi0);
-						}
-						else
-						{
-							movedItems.emplace_back();
-							const int movedGroupId = static_cast<int>(movedItems.size() - 1);
-							pdi0->movedGroupId = movedGroupId;
-							pdi1->movedGroupId = movedGroupId;
-							movedItems[movedGroupId][0].push_back(pdi0);
-							movedItems[movedGroupId][1].push_back(pdi1);
-						}
+						int existingGroupId = pdi0->movedGroupId;
+						pdi1->movedGroupId = existingGroupId;
+						movedItems[existingGroupId][idx1].push_back(pdi1);
+					}
+					else if (pdi0->movedGroupId == -1 && pdi1->movedGroupId != -1)
+					{
+						int existingGroupId = pdi1->movedGroupId;
+						pdi0->movedGroupId = existingGroupId;
+						movedItems[existingGroupId][idx0].push_back(pdi0);
+					}
+					else if (pdi0->movedGroupId == -1 && pdi1->movedGroupId == -1)
+					{
+						movedItems.emplace_back();
+						const int movedGroupId = static_cast<int>(movedItems.size() - 1);
+						pdi0->movedGroupId = movedGroupId;
+						pdi1->movedGroupId = movedGroupId;
+						movedItems[movedGroupId][idx0].push_back(pdi0);
+						movedItems[movedGroupId][idx1].push_back(pdi1);
 					}
 				}
 			}
@@ -96,38 +105,41 @@ void Detect(CDiffContext& ctxt)
 	{
 		for (DIFFITEM* pdi1 : unmatchedItems)
 		{
-			if (pdi1->diffcode.exists(1) && !pdi1->diffcode.exists(2))
+			if (!pdi1->diffcode.exists(1) && !pdi1->diffcode.exists(2))
+				continue;
+			const int idx1 = pdi1->diffcode.exists(1) ? 1 : 2;
+			const bool isfolder = pdi1->diffcode.isDirectory();
+			for (DIFFITEM* pdi2 : unmatchedItems)
 			{
-				const bool isfolder = pdi1->diffcode.isDirectory();
-				for (DIFFITEM* pdi2 : unmatchedItems)
+				if (ctxt.ShouldAbort())
+					return;
+				if (!pdi2->diffcode.exists(1) && !pdi2->diffcode.exists(2))
+					continue;
+				if (pdi1 != pdi2 && isfolder == pdi2->diffcode.isDirectory())
 				{
-					if (ctxt.ShouldAbort())
-						return;
-					if (pdi1 != pdi2 && !pdi2->diffcode.exists(1) && pdi2->diffcode.exists(2) && isfolder == pdi2->diffcode.isDirectory())
+					const int idx2 = pdi2->diffcode.exists(1) ? 1 : 2;
+					if (EvaluatePair(pdi1, idx1, pdi2, idx2, ctxt))
 					{
-						if (EvaluatePair(pdi1, 1, pdi2, 2, ctxt))
+						if (pdi1->movedGroupId != -1 && pdi2->movedGroupId == -1)
 						{
-							if (pdi1->movedGroupId != -1)
-							{
-								const int existingGroupId = pdi1->movedGroupId;
-								pdi2->movedGroupId = existingGroupId;
-								movedItems[existingGroupId][2].push_back(pdi2);
-							}
-							else if (pdi2->movedGroupId != -1)
-							{
-								int existingGroupId = pdi2->movedGroupId;
-								pdi1->movedGroupId = existingGroupId;
-								movedItems[existingGroupId][1].push_back(pdi1);
-							}
-							else
-							{
-								movedItems.emplace_back();
-								int movedGroupId = static_cast<int>(movedItems.size() - 1);
-								pdi1->movedGroupId = movedGroupId;
-								pdi2->movedGroupId = movedGroupId;
-								movedItems[movedGroupId][1].push_back(pdi1);
-								movedItems[movedGroupId][2].push_back(pdi2);
-							}
+							const int existingGroupId = pdi1->movedGroupId;
+							pdi2->movedGroupId = existingGroupId;
+							movedItems[existingGroupId][idx2].push_back(pdi2);
+						}
+						else if (pdi1->movedGroupId == -1 && pdi2->movedGroupId != -1)
+						{
+							int existingGroupId = pdi2->movedGroupId;
+							pdi1->movedGroupId = existingGroupId;
+							movedItems[existingGroupId][idx1].push_back(pdi1);
+						}
+						else if (pdi1->movedGroupId == -1 && pdi2->movedGroupId == -1)
+						{
+							movedItems.emplace_back();
+							int movedGroupId = static_cast<int>(movedItems.size() - 1);
+							pdi1->movedGroupId = movedGroupId;
+							pdi2->movedGroupId = movedGroupId;
+							movedItems[movedGroupId][idx1].push_back(pdi1);
+							movedItems[movedGroupId][idx2].push_back(pdi2);
 						}
 					}
 				}
