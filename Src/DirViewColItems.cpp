@@ -336,32 +336,51 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 		auto* pdi1 = it1->second[0];
 		size_t cnt0 = it0->second.size();
 		size_t cnt1 = it1->second.size();
-		String sMoved, sMoved2;
+		String label, src, dst;
+		String group = strutils::to_str(di.movedGroupId + 1);
 		if (pdi0->diffFileInfo[0].path == pdi1->diffFileInfo[1].path && pdi0->diffFileInfo[0].filename != pdi1->diffFileInfo[1].filename)
 		{
-			sMoved = strutils::format_string1(_("Renamed (set %1): "), strutils::to_str(di.movedGroupId + 1));
+			label = _("Renamed");
 			if (di.diffcode.exists(0))
-				sMoved2 = strutils::format_string1(_T("-> %1"), (cnt1 == 1) ? pdi1->diffFileInfo[1].filename.get() : _T("*"));
+			{
+				src = pdi0->diffFileInfo[0].filename;
+				dst = (cnt1 == 1) ? pdi1->diffFileInfo[1].filename.get() : _T("*");
+			}
 			else
-				sMoved2 = strutils::format_string1(_T("-> %1"), (cnt0 == 1) ? pdi0->diffFileInfo[0].filename.get() : _T("*"));
+			{
+				src = pdi1->diffFileInfo[1].filename;
+				dst = (cnt0 == 1) ? pdi0->diffFileInfo[0].filename.get() : _T("*");
+			}
 		}
 		else if (pdi0->diffFileInfo[0].path != pdi1->diffFileInfo[1].path && pdi0->diffFileInfo[0].filename == pdi1->diffFileInfo[1].filename)
 		{
-			sMoved = strutils::format_string1(_("Moved (set %1): "), strutils::to_str(di.movedGroupId + 1));
+			label = _("Moved");
 			if (di.diffcode.exists(0))
-				sMoved2 = strutils::format_string2(_T("%1 -> %2"), pdi0->diffFileInfo[0].path, (cnt1 == 1) ? pdi1->diffFileInfo[1].path.get() : _T("*"));
+			{
+				src = pdi0->diffFileInfo[0].path;
+				dst = (cnt1 == 1) ? pdi1->diffFileInfo[1].path.get() : _T("*");
+			}
 			else
-				sMoved2 = strutils::format_string2(_T("%1 -> %2"), pdi1->diffFileInfo[1].path, (cnt0 == 1) ? pdi0->diffFileInfo[0].path.get() : _T("*"));
+			{
+				src = pdi1->diffFileInfo[1].path;
+				dst = (cnt0 == 1) ? pdi0->diffFileInfo[0].path.get() : _T("*");
+			}
 		}
 		else
 		{
-			sMoved = strutils::format_string1(_("Moved/Renamed (set %1): "), strutils::to_str(di.movedGroupId + 1));
+			label = _("Moved/Renamed");
 			if (di.diffcode.exists(0))
-				sMoved2 = strutils::format_string2(_T("%1 -> %2"), pdi0->diffFileInfo[0].path, (cnt1 == 1) ? pdi1->diffFileInfo[1].GetFile() : _T("*"));
+			{
+				src = pdi0->diffFileInfo[0].GetFile();
+				dst = (cnt1 == 1) ? pdi1->diffFileInfo[1].GetFile() : _T("*");
+			}
 			else
-				sMoved2 = strutils::format_string2(_T("%1 -> %2"), pdi1->diffFileInfo[1].path, (cnt0 == 1) ? pdi0->diffFileInfo[0].GetFile() : _T("*"));
+			{
+				src = pdi1->diffFileInfo[1].GetFile();
+				dst = (cnt0 == 1) ? pdi0->diffFileInfo[0].GetFile() : _T("*");
+			}
 		}
-		return sMoved + sMoved2;
+		return strutils::format_string2(_("%1 (set %2): "), label, group) + strutils::format_string2(_T("%1 -> %2"), src, dst);
 	}
 }
 
