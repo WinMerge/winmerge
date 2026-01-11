@@ -323,65 +323,64 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 	}
 }
 
+/**
+ * @brief Format Moved column data.
+ */
 static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
-	if (pCtxt->GetCompareDirs() < 3)
+	const auto& movedItem = pCtxt->m_movedItems[di.movedGroupId];
+	String group = strutils::to_str(di.movedGroupId + 1);
+	const int nDirs = pCtxt->GetCompareDirs();
+	int fromSide = -1, toSide = -1;
+	if (nDirs < 3)
 	{
-		auto movedItem = pCtxt->m_movedItems[di.movedGroupId];
-		auto it0 = movedItem.find(0);
-		auto it1 = movedItem.find(1);
-		if (it0 == movedItem.end() || it1 == movedItem.end())
+		if (!movedItem.count(0) || !movedItem.count(1))
 			return _("Moved (incomplete group)");
-		auto* pdi0 = it0->second[0];
-		auto* pdi1 = it1->second[0];
-		size_t cnt0 = it0->second.size();
-		size_t cnt1 = it1->second.size();
-		String label, src, dst;
-		String group = strutils::to_str(di.movedGroupId + 1);
-		if (pdi0->diffFileInfo[0].path == pdi1->diffFileInfo[1].path && pdi0->diffFileInfo[0].filename != pdi1->diffFileInfo[1].filename)
-		{
-			label = _("Renamed");
-			if (di.diffcode.exists(0))
-			{
-				src = pdi0->diffFileInfo[0].filename;
-				dst = (cnt1 == 1) ? pdi1->diffFileInfo[1].filename.get() : _T("*");
-			}
-			else
-			{
-				src = pdi1->diffFileInfo[1].filename;
-				dst = (cnt0 == 1) ? pdi0->diffFileInfo[0].filename.get() : _T("*");
-			}
-		}
-		else if (pdi0->diffFileInfo[0].path != pdi1->diffFileInfo[1].path && pdi0->diffFileInfo[0].filename == pdi1->diffFileInfo[1].filename)
-		{
-			label = _("Moved");
-			if (di.diffcode.exists(0))
-			{
-				src = pdi0->diffFileInfo[0].path;
-				dst = (cnt1 == 1) ? pdi1->diffFileInfo[1].path.get() : _T("*");
-			}
-			else
-			{
-				src = pdi1->diffFileInfo[1].path;
-				dst = (cnt0 == 1) ? pdi0->diffFileInfo[0].path.get() : _T("*");
-			}
-		}
-		else
-		{
-			label = _("Moved/Renamed");
-			if (di.diffcode.exists(0))
-			{
-				src = pdi0->diffFileInfo[0].GetFile();
-				dst = (cnt1 == 1) ? pdi1->diffFileInfo[1].GetFile() : _T("*");
-			}
-			else
-			{
-				src = pdi1->diffFileInfo[1].GetFile();
-				dst = (cnt0 == 1) ? pdi0->diffFileInfo[0].GetFile() : _T("*");
-			}
-		}
-		return strutils::format_string2(_("%1 (set %2): "), label, group) + strutils::format_string2(_T("%1 -> %2"), src, dst);
+		fromSide = 0;
+		toSide = 1;
 	}
+	else
+	{
+		const bool has01 = movedItem.count(0) && movedItem.count(1);
+		const bool has12 = movedItem.count(1) && movedItem.count(2);
+		if (has01 == has12)
+			return _("Moved (incomplete group)");
+		fromSide = has01 ? 0 : 1;
+		toSide = has01 ? 1 : 2;
+	}
+	const auto& fromList = movedItem.at(fromSide);
+	const auto& toList = movedItem.at(toSide);
+	if (fromList.empty() || toList.empty())
+		return _("Moved (incomplete group)");
+	const DIFFITEM* pFrom = fromList[0];
+	const DIFFITEM* pTo = toList[0];
+	const size_t cntFrom = fromList.size();
+	const size_t cntTo = toList.size();
+	const auto& fiFrom = pFrom->diffFileInfo[fromSide];
+	const auto& fiTo = pTo->diffFileInfo[toSide];
+	String label, src, dst;
+	const bool samePath = (fiFrom.path == fiTo.path);
+	const bool sameName = (fiFrom.filename == fiTo.filename);
+	if (samePath && !sameName)
+	{
+		label = _("Renamed");
+		src = fiFrom.filename;
+		dst = (cntTo == 1) ? fiTo.filename.get() : _T("*");
+	}
+	else if (!samePath && sameName)
+	{
+		label = _("Moved");
+		src = fiFrom.path;
+		dst = (cntTo == 1) ? fiTo.path.get() : _T("*");
+	}
+	else
+	{
+		label = _("Moved/Renamed");
+		src = fiFrom.GetFile();
+		dst = (cntTo == 1) ? fiTo.GetFile() : _T("*");
+	}
+	return strutils::format_string2(_("%1 (set %2): "), label, group)
+	     + strutils::format_string2( _T("%1 - %2"), src, dst);
 }
 
 /**
