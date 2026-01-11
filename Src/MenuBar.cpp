@@ -398,10 +398,12 @@ BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 			}
 			return TRUE;
 		}
+	}
+	else if (pMsg->message == WM_SYSCHAR)
+	{
 		UINT uId = 0;
-		const TCHAR key = static_cast<TCHAR>(pMsg->wParam);
-		const bool alnum = (key >= '0' && key <= '9') || (key >= 'A' && key <= 'Z');
-		if ((pMsg->message == WM_SYSKEYDOWN) && alnum && GetToolBarCtrl().MapAccelerator(key, &uId) != 0)
+		const TCHAR ch = static_cast<TCHAR>(pMsg->wParam);
+		if (GetToolBarCtrl().MapAccelerator(ch, &uId) != 0)
 		{
 			ShowKeyboardCues(true);
 			OnMenuBarMenuItem(uId);
