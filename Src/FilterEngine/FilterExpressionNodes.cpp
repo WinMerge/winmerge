@@ -1459,6 +1459,73 @@ static auto InRangeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	return applyToScalarOrArray(arg1, inRangeFn);
 }
 
+static std::string ToStringValue(const ValueType& val)
+{
+	if (auto intVal = std::get_if<int64_t>(&val))
+		return std::to_string(*intVal);
+	if (auto doubleVal = std::get_if<double>(&val))
+		return std::to_string(*doubleVal);
+	if (auto strVal = std::get_if<std::string>(&val))
+		return *strVal;
+	if (auto boolVal = std::get_if<bool>(&val))
+		return *boolVal ? "true" : "false";
+	if (auto tsVal = std::get_if<Poco::Timestamp>(&val))
+	{
+		Poco::LocalDateTime ldt(*tsVal);
+		return Poco::DateTimeFormatter::format(ldt, "%Y-%m-%d %H:%M:%S");
+	}
+	if (auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&val))
+	{
+		std::string result = "[";
+		bool first = true;
+		for (const auto& item : **arrayVal)
+		{
+			if (!first) result += ", ";
+			result += ToStringValue(item.value);
+			first = false;
+		}
+		result += "]";
+		return result;
+	}
+	if (auto contentVal = std::get_if<std::shared_ptr<FileContentRef>>(&val))
+		return std::string("<FileContent:") + ucr::toUTF8((*contentVal)->path) + ">";
+	if (auto regexVal = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&val))
+		return "<Regex>";
+	if (std::holds_alternative<std::monostate>(val))
+		return "<undefined>";
+	return "<unknown>";
+}
+
+static auto LogFunc(int level, const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType val;
+	std::string msg;
+	for (size_t i = 0; i < args->size(); ++i)
+	{
+		val = args->at(i)->Evaluate(di);
+		if (i > 0)
+			msg += " ";
+		msg += ToStringValue(val);
+	}
+	ctxt->logger(level, msg);
+	return val;
+}
+
+static auto LogErrorFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LogFunc(0, ctxt, di, args);
+}
+
+static auto LogWarnFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LogFunc(1, ctxt, di, args);
+}
+
+static auto LogInfoFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LogFunc(2, ctxt, di, args);
+}
+
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
@@ -1581,6 +1648,24 @@ FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name
 		if (!args || args->size() != 3)
 			throw std::invalid_argument("inrange function requires 3 arguments");
 		func = InRangeFunc;
+	}
+	else if (functionName == "logerror")
+	{
+		if (!args || args->size() < 1)
+			throw std::invalid_argument("loginfo function requires at least 1 arguments");
+		func = LogErrorFunc;
+	}
+	else if (functionName == "logwarn")
+	{
+		if (!args || args->size() < 1)
+			throw std::invalid_argument("logwarn function requires at least 1 arguments");
+		func = LogWarnFunc;
+	}
+	else if (functionName == "loginfo")
+	{
+		if (!args || args->size() < 1)
+			throw std::invalid_argument("logerror function requires at least 1 arguments");
+		func = LogInfoFunc;
 	}
 	else
 	{
@@ -1780,6 +1865,7 @@ SizeLiteral::SizeLiteral(const std::string& v)
 {
 	size_t pos = 0;
 	while (pos < v.size() && (isdigit(v[pos]) || v[pos] == '.'))
+
 		++pos;
 	std::string numberPart = v.substr(0, pos);
 	std::string unitPart = v.substr(pos);

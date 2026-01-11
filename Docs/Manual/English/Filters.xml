@@ -652,6 +652,22 @@
               </itemizedlist>
             </listitem>
           </varlistentry>
+          <varlistentry>
+            <term>logError(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), logWarn(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...), logInfo(<replaceable>value1</replaceable>, <replaceable>value2</replaceable>, ...)</term>
+            <listitem>
+              <para>
+                Outputs the concatenated string representation of all arguments to the log (at error, warning, or information level respectively), 
+                separated by spaces, and returns the last argument value.
+                These functions are useful for debugging filter expressions.
+              </para>
+              <para>Examples (using return value):</para>
+              <itemizedlist>
+                <listitem><para><literal>logInfo("File size:", Size) > 1MB</literal> - logs the file size(s) and checks if greater than 1MB</para></listitem>
+                <listitem><para><literal>logWarn("Processing:", Name) like "*.tmp"</literal> - logs the file name(s) and checks if it's a temporary file</para></listitem>
+                <listitem><para><literal>Size > 1KB and logInfo("Large file:", Name) contains "test"</literal> - logs only when size condition is true, then checks name</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
         </variablelist>
       </section>
 
@@ -697,9 +713,9 @@
         </itemizedlist>
       </section>
     </section>
-  </section>
+      </section>
 
-  <section id="Filters_FileFilter">
+      <section id="Filters_FileFilter">
     <title>Using file filters<indexterm>
         <primary>filters</primary>
 
