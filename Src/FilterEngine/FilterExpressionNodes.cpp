@@ -1719,193 +1719,99 @@ static auto NotEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	return ApplyToScalarOrArrayWithContext(arg, notFunc);
 }
 
+struct FunctionInfo
+{
+	using FuncPtr = auto (*)(const FilterExpression*, const DIFFITEM&, std::vector<ExprNode*>*) -> ValueType;
+	const char* name;
+	FuncPtr func;
+	int minArgs;
+	int maxArgs;
+};
+
+// Compile-time constant array - zero runtime initialization cost
+static constexpr FunctionInfo functionTable[] = {
+	{"abs", AbsFunc, 1, 1},
+	{"allequal", AllEqualFunc, 1, -1},
+	{"allof", AllOfFunc, 1, 1},
+	{"andeach", AndEachFunc, 2, 2},
+	{"anyof", AnyOfFunc, 1, 1},
+	{"array", ArrayFunc, 0, -1},
+	{"at", AtFunc, 2, 2},
+	{"choose", ChooseFunc, 2, -1},
+	{"chooseeach", ChooseEachFunc, 2, -1},
+	{"if", IfFunc, 3, 3},
+	{"ifeach", IfEachFunc, 3, 3},
+	{"inrange", InRangeFunc, 3, 3},
+	{"iswithin", IsWithinFunc, 3, 3},
+	{"linecount", LineCountFunc, 1, 1},
+	{"logerror", LogErrorFunc, 1, -1},
+	{"loginfo", LogInfoFunc, 1, -1},
+	{"logwarn", LogWarnFunc, 1, -1},
+	{"noteach", NotEachFunc, 1, 1},
+	{"now", NowFunc, 0, 0},
+	{"oreach", OrEachFunc, 2, 2},
+	{"replace", ReplaceFunc, 3, 3},
+	{"startofmonth", StartOfMonthFunc, 1, 1},
+	{"startofweek", StartOfWeekFunc, 1, 1},
+	{"startofyear", StartOfYearFunc, 1, 1},
+	{"strlen", StrlenFunc, 1, 1},
+	{"sublines", SublinesFunc, 2, 3},
+	{"substr", SubstrFunc, 2, 3},
+	{"todatestr", ToDateStrFunc, 1, 1},
+	{"today", TodayFunc, 0, 0},
+};
+
+static constexpr size_t functionTableSize = sizeof(functionTable) / sizeof(functionTable[0]);
+
+// Binary search in sorted array - O(log n)
+static const FunctionInfo* findFunction(const std::string& name)
+{
+	auto it = std::lower_bound(std::begin(functionTable), std::end(functionTable), name,
+		[](const FunctionInfo& info, const std::string& n) {
+			return strcmp(info.name, n.c_str()) < 0;
+		}
+	);
+	
+	if (it != std::end(functionTable) && strcmp(it->name, name.c_str()) == 0)
+		return it;
+	
+	return nullptr;
+}
+
 FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
 	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
 {
-	if (functionName == "abs")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("abs function requires 1 arguments");
-		func = AbsFunc;
-	}
-	else if (functionName == "anyof")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("anyof function requires 1 arguments");
-		func = AnyOfFunc;
-	}
-	else if (functionName == "allof")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("allof function requires 1 arguments");
-		func = AllOfFunc;
-	}
-	else if (functionName == "allequal")
-	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("allequal function requires at least 1 arguments");
-		func = AllEqualFunc;
-	}
-	else if (functionName == "array")
-	{
-		func = ArrayFunc;
-	}
-	else if (functionName == "at")
-	{
-		if (!args || args->size() != 2)
-			throw std::invalid_argument("at function requires 2 arguments");
-		func = AtFunc;
-	}
-	else if (functionName == "strlen")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("strlen function requires 1 arguments");
-		func = StrlenFunc;
-	}
-	else if (functionName == "substr")
-	{
-		if (!args || (args->size() < 2 || args->size() > 3))
-			throw std::invalid_argument("substr function requires 2 or 3 arguments: substr(string, start [, length])");
-		func = SubstrFunc;
-	}
-	else if (functionName == "linecount")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("linecount function requires 1 arguments");
-		func = LineCountFunc;
-	}
-	else if (functionName == "sublines")
-	{
-		if (!args || args->size() < 2 || args->size() > 3)
-			throw std::invalid_argument("sublines nesfunction requires 2 or 3 arguments: sublines(content, start [, length])");
-		func = SublinesFunc;
-	}
-	else if (functionName == "replace")
-	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("replace function requires exactly 3 arguments: replace(string, from, to)");
-		func = ReplaceFunc;
-	}
-	else if (functionName == "today")
-	{
-		if (args && args->size() != 0)
-			throw std::invalid_argument("today function requires 0 arguments");
-		func = TodayFunc;
-	}
-	else if (functionName == "now")
-	{
-		if (args && args->size() != 0)
-			throw std::invalid_argument("now function requires 0 arguments");
-		func = NowFunc;
-	}
-	else if (functionName == "startofweek")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofweek function requires 1 arguments");
-		func = StartOfWeekFunc;
-	}
-	else if (functionName == "startofmonth")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofmonth function requires 1 arguments");
-		func = StartOfMonthFunc;
-	}
-	else if (functionName == "startofyear")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofyear function requires 1 arguments");
-		func = StartOfYearFunc;
-	}
-	else if (functionName == "todatestr")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("todatestr function requires 1 arguments");
-		func = ToDateStrFunc;
-	}
-	else if (functionName == "prop")
+	// Special handling for prop functions
+	if (functionName == "prop")
 	{
 		SetPropFunc();
+		return;
 	}
-	else if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
+	if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
 	{
 		SetLeftMiddleRightPropFunc();
+		return;
 	}
-	else if (functionName == "iswithin")
+
+	// Look up function in table
+	const FunctionInfo* info = findFunction(functionName);
+	if (!info)
+		throw std::runtime_error("Unknown function: " + functionName);
+	
+	// Validate argument count
+	size_t argCount = args ? args->size() : 0;
+	if (info->minArgs >= 0 && argCount < static_cast<size_t>(info->minArgs))
 	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("iswithin function requires 3 arguments");
-		func = IsWithinFunc;
+		throw std::invalid_argument(functionName + " function requires at least " + 
+			std::to_string(info->minArgs) + " argument" + (info->minArgs != 1 ? "s" : ""));
 	}
-	else if (functionName == "inrange")
+	if (info->maxArgs >= 0 && argCount > static_cast<size_t>(info->maxArgs))
 	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("inrange function requires 3 arguments");
-		func = InRangeFunc;
+		throw std::invalid_argument(functionName + " function requires at most " + 
+			std::to_string(info->maxArgs) + " argument" + (info->maxArgs != 1 ? "s" : ""));
 	}
-	else if (functionName == "logerror")
-	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("logerror function requires at least 1 arguments");
-		func = LogErrorFunc;
-	}
-	else if (functionName == "logwarn")
-	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("logwarn function requires at least 1 arguments");
-		func = LogWarnFunc;
-	}
-	else if (functionName == "loginfo")
-	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("loginfo function requires at least 1 arguments");
-		func = LogInfoFunc;
-	}
-	else if (functionName == "if")
-	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("if function requires 3 arguments");
-		func = IfFunc;
-	}
-	else if (functionName == "ifeach")
-	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("ifeach function requires 3 arguments");
-		func = IfEachFunc;
-	}
-	else if (functionName == "choose")
-	{
-		if (!args || args->size() < 2)
-			throw std::invalid_argument("choose function requires at least 2 arguments");
-		func = ChooseFunc;
-	}
-	else if (functionName == "chooseeach")
-	{
-		if (!args || args->size() < 2)
-			throw std::invalid_argument("chooseeach function requires at least 2 arguments");
-		func = ChooseEachFunc;
-	}
-	else if (functionName == "andeach")
-	{
-		if (!args || args->size() != 2)
-			throw std::invalid_argument("andeach function requires 2 arguments");
-		func = AndEachFunc;
-	}
-	else if (functionName == "oreach")
-	{
-		if (!args || args->size() != 2)
-			throw std::invalid_argument("oreach function requires 2 arguments");
-		func = OrEachFunc;
-	}
-	else if (functionName == "noteach")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("noteach function requires 1 argument");
-		func = NotEachFunc;
-	}
-	else
-	{
-		throw std::runtime_error("Unknown function: " + std::string(functionName.begin(), functionName.end()));
-	}
+
+	func = info->func;
 }
 
 FunctionNode::~FunctionNode()
@@ -2064,6 +1970,7 @@ ExprNode* FunctionNode::Optimize()
 	{
 		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<IntLiteral*>((*args)[1])
 			&& (args->size() == 2 || dynamic_cast<IntLiteral*>((*args)[2])))
+
 		{
 			auto* result = new StringLiteral(std::get<std::string>(func(ctxt, di, args)));
 			delete this;
