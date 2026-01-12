@@ -269,14 +269,19 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
 	}
 
-	auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
-	const String moveDetectionExpression = GetOptionsMgr()->GetString(OPT_CMP_MOVE_DETECTION_CONDITION);
-	if (!moveDetectionExpression.empty())
+	pCtxt->m_pMoveDetection.reset();
+	if (GetOptionsMgr()->GetBool(OPT_CMP_DETECT_MOVED_ITEMS))
 	{
-		pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
-		pMoveDetectionExpression->SetDiffContext(pCtxt);
+		pCtxt->m_pMoveDetection = std::make_unique<MoveDetection>();
+		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
+		const String moveDetectionExpression = GetOptionsMgr()->GetString(OPT_CMP_MOVE_DETECTION_CONDITION);
+		if (!moveDetectionExpression.empty())
+		{
+			pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
+			pMoveDetectionExpression->SetDiffContext(pCtxt);
+		}
+		pCtxt->m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
 	}
-	pCtxt->m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
 
 	std::vector<String> names;
 	if (m_pDirView)
@@ -328,12 +333,15 @@ void CDirDoc::CheckFilter()
 		RootLogger::Error(msg);
 		m_pCtxt->m_pAdditionalCompareExpression.reset();
 	}
-	auto* pMoveDetectionExpression = m_pCtxt->m_pMoveDetection->GetMoveDetectionExpression();
-	if (pMoveDetectionExpression && pMoveDetectionExpression->errorCode != 0)
+	if (m_pCtxt->m_pMoveDetection)
 	{
-		const String msg = FormatFilterErrorSummary(*pMoveDetectionExpression);
-		RootLogger::Error(msg);
-		m_pCtxt->m_pMoveDetection->SetMoveDetectionExpression(nullptr);
+		auto* pMoveDetectionExpression = m_pCtxt->m_pMoveDetection->GetMoveDetectionExpression();
+		if (pMoveDetectionExpression && pMoveDetectionExpression->errorCode != 0)
+		{
+			const String msg = FormatFilterErrorSummary(*pMoveDetectionExpression);
+			RootLogger::Error(msg);
+			m_pCtxt->m_pMoveDetection->SetMoveDetectionExpression(nullptr);
+		}
 	}
 }
 

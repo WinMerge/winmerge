@@ -112,6 +112,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_nCompareThreadsPrev(-1)
  , m_pAdditionalCompareCondition(new FilterExpression())
  , m_pMoveDetectionCondition(new FilterExpression())
+ , m_bMoveDetection(false)
 {
 	BindOption(OPT_CMP_METHOD, m_compareMethod, IDC_COMPAREMETHODCOMBO, DDX_CBIndex);
 	BindOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst, IDC_COMPARE_STOPFIRST, DDX_Check);
@@ -126,6 +127,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOptionCustom<unsigned, int>(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit, IDC_COMPARE_BINARYC_LIMIT, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads, IDC_COMPARE_THREAD_COUNT, DDX_Text);
 	BindOption(OPT_CMP_ADDITIONAL_CONDITION, m_sAdditionalCompareCondition, IDC_ADDTIONAL_COMPARE_CONDITION, DDX_CBStringExact);
+	BindOption(OPT_CMP_DETECT_MOVED_ITEMS, m_bMoveDetection, IDC_DETECT_MOVED_ITEMS, DDX_Check);
 	BindOption(OPT_CMP_MOVE_DETECTION_CONDITION, m_sMoveDetectionCondition, IDC_MOVE_DETECTION_CONDITION, DDX_CBStringExact);
 }
 

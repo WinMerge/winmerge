@@ -329,7 +329,7 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
  */
 static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
-	if (pCtxt->m_pMoveDetection->IsDetecting())
+	if (!pCtxt->m_pMoveDetection || pCtxt->m_pMoveDetection->IsDetecting())
 		return _("Moved (incomplete group)");
 
 	const int nDirs = pCtxt->GetCompareDirs();

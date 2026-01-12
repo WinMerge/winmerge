@@ -57,6 +57,7 @@ public:
 	int     m_nCompareThreads;
 	int     m_nCompareThreadsPrev;
 	String  m_sAdditionalCompareCondition;
+	bool    m_bMoveDetection;
 	String  m_sMoveDetectionCondition;
 	//}}AFX_DATA
 
