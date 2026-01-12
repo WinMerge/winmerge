@@ -145,6 +145,49 @@ void Detect(CDiffContext& ctxt)
 				}
 			}
 		}
+
+		for (DIFFITEM* pdi0 : unmatchedItems)
+		{
+			if (!pdi0->diffcode.exists(0) && !pdi0->diffcode.exists(2))
+				continue;
+			const int idx1 = pdi0->diffcode.exists(0) ? 0 : 2;
+			const bool isfolder = pdi0->diffcode.isDirectory();
+			for (DIFFITEM* pdi2 : unmatchedItems)
+			{
+				if (ctxt.ShouldAbort())
+					return;
+				if (!pdi2->diffcode.exists(0) && !pdi2->diffcode.exists(2))
+					continue;
+				if (pdi0 != pdi2 && isfolder == pdi2->diffcode.isDirectory())
+				{
+					const int idx2 = pdi2->diffcode.exists(0) ? 0 : 2;
+					if (EvaluatePair(pdi0, idx1, pdi2, idx2, ctxt))
+					{
+						if (pdi0->movedGroupId != -1 && pdi2->movedGroupId == -1)
+						{
+							const int existingGroupId = pdi0->movedGroupId;
+							pdi2->movedGroupId = existingGroupId;
+							movedItems[existingGroupId][idx2].push_back(pdi2);
+						}
+						else if (pdi0->movedGroupId == -1 && pdi2->movedGroupId != -1)
+						{
+							int existingGroupId = pdi2->movedGroupId;
+							pdi0->movedGroupId = existingGroupId;
+							movedItems[existingGroupId][idx1].push_back(pdi0);
+						}
+						else if (pdi0->movedGroupId == -1 && pdi2->movedGroupId == -1)
+						{
+							movedItems.emplace_back();
+							int movedGroupId = static_cast<int>(movedItems.size() - 1);
+							pdi0->movedGroupId = movedGroupId;
+							pdi2->movedGroupId = movedGroupId;
+							movedItems[movedGroupId][idx1].push_back(pdi0);
+							movedItems[movedGroupId][idx2].push_back(pdi2);
+						}
+					}
+				}
+			}
+		}
 	}
 }
 

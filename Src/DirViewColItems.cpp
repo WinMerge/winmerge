@@ -329,58 +329,89 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
 	const auto& movedItem = pCtxt->m_movedItems[di.movedGroupId];
-	String group = strutils::to_str(di.movedGroupId + 1);
 	const int nDirs = pCtxt->GetCompareDirs();
-	int fromSide = -1, toSide = -1;
+	String group = strutils::to_str(di.movedGroupId + 1);
+
+	auto has = [&](int i) { return movedItem.count(i) && !movedItem.at(i).empty(); };
+
+	// ---- 2 folder compare ----
 	if (nDirs < 3)
 	{
-		if (!movedItem.count(0) || !movedItem.count(1))
+		if (!has(0) || !has(1))
 			return _("Moved (incomplete group)");
-		fromSide = 0;
-		toSide = 1;
+
+		const auto& fi0 = movedItem.at(0)[0]->diffFileInfo[0];
+		const auto& fi1 = movedItem.at(1)[0]->diffFileInfo[1];
+
+		String label, s0, s1;
+		const bool samePath = (fi0.path == fi1.path);
+		const bool sameName = (fi0.filename == fi1.filename);
+
+		if (samePath && !sameName)
+		{
+			label = _("Renamed");
+			s0 = fi0.filename;
+			s1 = fi1.filename;
+		}
+		else if (!samePath && sameName)
+		{
+			label = _("Moved");
+			s0 = fi0.path;
+			s1 = fi1.path;
+		}
+		else
+		{
+			label = _("Moved/Renamed");
+			s0 = fi0.GetFile();
+			s1 = fi1.GetFile();
+		}
+
+		return strutils::format_string2(_("%1 (set %2): "), label, group)
+			+ strutils::format_string2(_T("%1 - %2"), s0, s1);
 	}
-	else
-	{
-		const bool has01 = movedItem.count(0) && movedItem.count(1);
-		const bool has12 = movedItem.count(1) && movedItem.count(2);
-		if (has01 == has12)
-			return _("Moved (incomplete group)");
-		fromSide = has01 ? 0 : 1;
-		toSide = has01 ? 1 : 2;
-	}
-	const auto& fromList = movedItem.at(fromSide);
-	const auto& toList = movedItem.at(toSide);
-	if (fromList.empty() || toList.empty())
+
+	// ---- 3 folder compare ----
+	const bool has0 = has(0);
+	const bool has1 = has(1);
+	const bool has2 = has(2);
+
+	if (!(has0 || has1 || has2))
 		return _("Moved (incomplete group)");
-	const DIFFITEM* pFrom = fromList[0];
-	const DIFFITEM* pTo = toList[0];
-	const size_t cntFrom = fromList.size();
-	const size_t cntTo = toList.size();
-	const auto& fiFrom = pFrom->diffFileInfo[fromSide];
-	const auto& fiTo = pTo->diffFileInfo[toSide];
-	String label, src, dst;
-	const bool samePath = (fiFrom.path == fiTo.path);
-	const bool sameName = (fiFrom.filename == fiTo.filename);
-	if (samePath && !sameName)
-	{
+
+	// helpers
+	auto getFi = [&](int side) -> const DiffFileInfo * { return has(side) ? &movedItem.at(side)[0]->diffFileInfo[side] : nullptr; };
+
+	const auto* fi0 = getFi(0);
+	const auto* fi1 = getFi(1);
+	const auto* fi2 = getFi(2);
+
+	auto samePath = [&](const DiffFileInfo* a, const DiffFileInfo* b) { return a && b && a->path == b->path; };
+	auto sameName = [&](const DiffFileInfo* a, const DiffFileInfo* b) { return a && b && a->filename == b->filename; };
+
+	bool renamed = false;
+	bool moved = false;
+
+	if (samePath(fi0, fi1) && !sameName(fi0, fi1)) renamed = true;
+	if (samePath(fi1, fi2) && !sameName(fi1, fi2)) renamed = true;
+	if (samePath(fi0, fi2) && !sameName(fi0, fi2)) renamed = true;
+
+	if (!samePath(fi0, fi1) && sameName(fi0, fi1)) moved = true;
+	if (!samePath(fi1, fi2) && sameName(fi1, fi2)) moved = true;
+	if (!samePath(fi0, fi2) && sameName(fi0, fi2)) moved = true;
+
+	String label;
+	if (renamed && !moved)
 		label = _("Renamed");
-		src = fiFrom.filename;
-		dst = (cntTo == 1) ? fiTo.filename.get() : _T("*");
-	}
-	else if (!samePath && sameName)
-	{
+	else if (moved && !renamed)
 		label = _("Moved");
-		src = fiFrom.path;
-		dst = (cntTo == 1) ? fiTo.path.get() : _T("*");
-	}
 	else
-	{
 		label = _("Moved/Renamed");
-		src = fiFrom.GetFile();
-		dst = (cntTo == 1) ? fiTo.GetFile() : _T("*");
-	}
+
+	auto fmt = [&](const DiffFileInfo* fi) { return fi ? fi->GetFile() : _T("-"); };
+
 	return strutils::format_string2(_("%1 (set %2): "), label, group)
-	     + strutils::format_string2( _T("%1 - %2"), src, dst);
+		+ strutils::format_string3(_T("%1 - %2 - %3"),
+			fmt(fi0), fmt(fi1), fmt(fi2));
 }
 
 /**
