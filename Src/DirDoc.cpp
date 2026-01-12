@@ -269,14 +269,15 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
 	}
 
-	pCtxt->m_pMoveDetectionExpression.reset();
+	auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
 	const String moveDetectionExpression = GetOptionsMgr()->GetString(OPT_CMP_MOVE_DETECTION_CONDITION);
 	if (!moveDetectionExpression.empty())
 	{
-		pCtxt->m_pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
-		pCtxt->m_pMoveDetectionExpression->SetDiffContext(pCtxt);
+		pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
+		pMoveDetectionExpression->SetDiffContext(pCtxt);
 	}
-	pCtxt->m_movedItems.clear();
+	pCtxt->m_pMoveDetection->Clear();
+	pCtxt->m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
 
 	std::vector<String> names;
 	if (m_pDirView)
@@ -328,11 +329,12 @@ void CDirDoc::CheckFilter()
 		RootLogger::Error(msg);
 		m_pCtxt->m_pAdditionalCompareExpression.reset();
 	}
-	if (m_pCtxt->m_pMoveDetectionExpression && m_pCtxt->m_pMoveDetectionExpression->errorCode != 0)
+	auto* pMoveDetectionExpression = m_pCtxt->m_pMoveDetection->GetMoveDetectionExpression();
+	if (pMoveDetectionExpression && pMoveDetectionExpression->errorCode != 0)
 	{
-		const String msg = FormatFilterErrorSummary(*m_pCtxt->m_pMoveDetectionExpression);
+		const String msg = FormatFilterErrorSummary(*pMoveDetectionExpression);
 		RootLogger::Error(msg);
-		m_pCtxt->m_pMoveDetectionExpression.reset();
+		m_pCtxt->m_pMoveDetection->SetMoveDetectionExpression(nullptr);
 	}
 }
 
@@ -477,7 +479,8 @@ void CDirDoc::Rescan()
 		});
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			DirScan_CompareItems(myStruct, nullptr);
-			myStruct->context->m_movedItems = MoveDetection::Detect(*myStruct->context);
+			if (myStruct->context->m_pMoveDetection)
+				myStruct->context->m_pMoveDetection->Detect(*myStruct->context);
 		});
 		m_diffThread.SetMarkedRescan(false);
 	}

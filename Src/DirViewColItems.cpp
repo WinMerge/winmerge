@@ -329,10 +329,9 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
  */
 static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
-	if (pCtxt->m_movedItems.size() <= static_cast<size_t>(di.movedGroupId))
+	if (pCtxt->m_pMoveDetection->IsDetecting())
 		return _("Moved (incomplete group)");
 
-	const auto& movedItem = pCtxt->m_movedItems[di.movedGroupId];
 	const int nDirs = pCtxt->GetCompareDirs();
 	const String group = strutils::to_str(di.movedGroupId + 1);
 
@@ -341,7 +340,7 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 
 	for (int side = 0; side < nDirs; ++side)
 	{
-		auto* pdiTmp = MoveDetection::GetMovedItemByDIFFITEM(*pCtxt, &di, side);
+		auto* pdiTmp = pCtxt->m_pMoveDetection->GetMovedItemByDIFFITEM(*pCtxt, &di, side);
 		if (pdiTmp)
 			fis[side] = &pdiTmp->diffFileInfo[side];
 	}

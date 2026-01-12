@@ -4234,7 +4234,7 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 		DIFFITEM* pdi = &GetDiffItem(sel);
 		for (int nIndex = 0; nIndex < ctxt.GetCompareDirs(); ++nIndex)
 		{
-			const DIFFITEM* pdiTmp = MoveDetection::GetMovedItemByDIFFITEM(ctxt, pdi, nIndex);
+			const DIFFITEM* pdiTmp = ctxt.m_pMoveDetection->GetMovedItemByDIFFITEM(ctxt, pdi, nIndex);
 			if (pdiTmp)
 			{
 				paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp, nIndex));

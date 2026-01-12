@@ -56,10 +56,10 @@ namespace
 		paths.SetRight(_T("C:\\Right"));
 		
 		CDiffContext ctxt(paths, 0);
-		ctxt.m_pMoveDetectionExpression = nullptr;
+		ctxt.m_pMoveDetection->SetMoveDetectionExpression(nullptr);
 		
 		// Should not crash and should return immediately
-		EXPECT_NO_THROW(MoveDetection::Detect(ctxt));
+		EXPECT_NO_THROW(ctxt.m_pMoveDetection->Detect(ctxt));
 	}
 
 	/**
@@ -74,8 +74,8 @@ namespace
 		CDiffContext ctxt(paths, 0);
 		
 		// Create a simple expression that matches files with same name
-		ctxt.m_pMoveDetectionExpression = std::make_unique<FilterExpression>();
-		ctxt.m_pMoveDetectionExpression->Parse("LeftName = RightName");
+		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
+		pMoveDetectionExpression->Parse("LeftName = RightName");
 		
 		// Add mock items
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
@@ -85,12 +85,13 @@ namespace
 		CreateMockDiffItem(*pdi2, _T("file1.txt"), false, true);
 		
 		// Run detection
-		MoveDetection::Detect(ctxt);
+		ctxt.m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
+		ctxt.m_pMoveDetection->Detect(ctxt);
 		
 		// Verify that items were grouped
 		EXPECT_NE(pdi1->movedGroupId, -1);
 		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
-		EXPECT_EQ(ctxt.m_movedItems.size(), 1u);
+		EXPECT_EQ(ctxt.m_pMoveDetection->GetMovedItems().size(), 1u);
 	}
 
 	/**
@@ -105,8 +106,8 @@ namespace
 		CDiffContext ctxt(paths, 0);
 		ctxt.InitDiffItemList();
 		
-		ctxt.m_pMoveDetectionExpression = std::make_unique<FilterExpression>();
-		ctxt.m_pMoveDetectionExpression->Parse("LeftName = RightName");
+		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
+		pMoveDetectionExpression->Parse("LeftName = RightName");
 		
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
 		CreateMockDiffItem(*pdi1, _T("file1.txt"), true, false);
@@ -114,12 +115,13 @@ namespace
 		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
 		CreateMockDiffItem(*pdi2, _T("file2.txt"), false, true);
 		
-		MoveDetection::Detect(ctxt);
+		ctxt.m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
+		ctxt.m_pMoveDetection->Detect(ctxt);
 		
 		// Items should not be grouped
 		EXPECT_EQ(pdi1->movedGroupId, -1);
 		EXPECT_EQ(pdi2->movedGroupId, -1);
-		EXPECT_EQ(ctxt.m_movedItems.size(), 0u);
+		EXPECT_EQ(ctxt.m_pMoveDetection->GetMovedItems().size(), 0u);
 	}
 
 	/**
@@ -134,8 +136,8 @@ namespace
 		CDiffContext ctxt(paths, 0);
 		ctxt.InitDiffItemList();
 		
-		ctxt.m_pMoveDetectionExpression = std::make_unique<FilterExpression>();
-		ctxt.m_pMoveDetectionExpression->Parse("LeftName = RightName");
+		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
+		pMoveDetectionExpression->Parse("LeftName = RightName");
 		
 		// File on left
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
@@ -145,7 +147,8 @@ namespace
 		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
 		CreateMockDiffItem(*pdi2, _T("item1"), false, true, true);
 		
-		MoveDetection::Detect(ctxt);
+		ctxt.m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
+		ctxt.m_pMoveDetection->Detect(ctxt);
 		
 		// Should not be grouped
 		EXPECT_EQ(pdi1->movedGroupId, -1);

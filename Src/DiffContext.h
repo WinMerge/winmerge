@@ -21,6 +21,7 @@ class CompareStats;
 class IAbortable;
 class CDiffWrapper;
 class CompareOptions;
+class MoveDetection;
 struct FilterExpression;
 struct DIFFOPTIONS;
 
@@ -215,9 +216,7 @@ public:
 	std::vector<std::map<std::vector<uint8_t>, DuplicateInfo>> m_duplicateValues; /**< Number of duplicate hash values */
 	std::vector<String> m_vCurrentlyHiddenItems; /**< The list of currently hidden items */
 	std::unique_ptr<FilterExpression> m_pAdditionalCompareExpression; /** Additional compare condition applied in folder comparison */
-	std::unique_ptr<FilterExpression> m_pMoveDetectionExpression; /** Move detection condition applied in folder comparison */
-	using MovedItemsArray = std::vector<std::map<int, std::vector<DIFFITEM*>>>;
-	MovedItemsArray m_movedItems; /** Moved items found during comparison */
+	std::unique_ptr<MoveDetection> m_pMoveDetection; /** Move detection object */
 
 private:
 	/**

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "UnicodeString.h"
+#include <vector>
+#include <map>
 
 class CDiffContext;
 class DIFFITEM;
@@ -8,8 +10,25 @@ struct FilterExpression;
 
 using MovedItemsArray = std::vector<std::map<int, std::vector<DIFFITEM*>>>;
 
-namespace MoveDetection
+class MoveDetection
 {
-	MovedItemsArray Detect(CDiffContext& ctxt);
-	const DIFFITEM* GetMovedItemByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex);
-}
+public:
+	MoveDetection();
+	~MoveDetection();
+
+	FilterExpression* GetMoveDetectionExpression() const { return m_pMoveDetectionExpression.get(); }
+	void SetMoveDetectionExpression(const FilterExpression* expr);
+	void Detect(CDiffContext& ctxt);
+	void Clear();
+	
+	const MovedItemsArray& GetMovedItems() const { return m_movedItems; }
+	const DIFFITEM* GetMovedItemByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const;
+	bool IsDetecting() const { return m_isDetecting.load(); }
+
+private:
+	void DetectMovedItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt);
+
+	std::atomic<bool> m_isDetecting{ false };
+	std::unique_ptr<FilterExpression> m_pMoveDetectionExpression;
+	MovedItemsArray m_movedItems;
+};
