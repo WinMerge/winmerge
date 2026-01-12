@@ -19,7 +19,6 @@ public:
 	FilterExpression* GetMoveDetectionExpression() const { return m_pMoveDetectionExpression.get(); }
 	void SetMoveDetectionExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt);
-	void Clear();
 	
 	const MovedItemsArray& GetMovedItems() const { return m_movedItems; }
 	const DIFFITEM* GetMovedItemByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const;

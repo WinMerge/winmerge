@@ -276,7 +276,6 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
 		pMoveDetectionExpression->SetDiffContext(pCtxt);
 	}
-	pCtxt->m_pMoveDetection->Clear();
 	pCtxt->m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
 
 	std::vector<String> names;

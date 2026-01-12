@@ -82,11 +82,6 @@ void MoveDetection::SetMoveDetectionExpression(const FilterExpression* expr)
 	m_pMoveDetectionExpression.reset(expr ? new FilterExpression(*expr) : nullptr);
 }
 
-void MoveDetection::Clear()
-{
-	m_movedItems.clear();
-}
-
 void MoveDetection::DetectMovedItemsBetweenSides(
 	const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt)
 {
@@ -129,7 +124,7 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 
 	m_isDetecting.store(true);
 
-	Clear();
+	m_movedItems.clear();
 
 	// Collect all unmatched items
 	std::vector<DIFFITEM*> unmatchedItems;
