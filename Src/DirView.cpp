@@ -4219,6 +4219,12 @@ void CDirView::OnMergeCompare(UINT nID)
 
 void CDirView::OnMergeCompareWithMovedRenamed()
 {
+	CDirDoc *pDoc = GetDocument();
+	CDiffContext& ctxt = GetDiffContext();
+	std::vector<PathContext> pathContextVec;
+	std::vector<std::array<fileopenflags_t, 3>> flagsVec;
+	std::vector<std::array<FileTextEncoding, 3>> encodingVec;
+
 	int sel = -1;
 	while (true)
 	{
@@ -4226,26 +4232,57 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 		if (sel == -1)
 			break;
 
-		CDirDoc *pDoc = GetDocument();
-		CDiffContext& ctxt = GetDiffContext();
-		FileTextEncoding encoding[3];
-		fileopenflags_t dwFlags[3] = {};
-		PathContext paths;
 		DIFFITEM* pdi = &GetDiffItem(sel);
+		std::vector<std::vector<const DIFFITEM*>> movedItemsVec;
+		const DIFFITEM* pdiTmp[3];
 		for (int nIndex = 0; nIndex < ctxt.GetCompareDirs(); ++nIndex)
+			movedItemsVec.push_back(ctxt.m_pMoveDetection->GetMovedItemsByDIFFITEM(ctxt, pdi, nIndex));
+		for (int i = 0; i < movedItemsVec[0].size(); ++i)
 		{
-			const DIFFITEM* pdiTmp = ctxt.m_pMoveDetection->GetMovedItemByDIFFITEM(ctxt, pdi, nIndex);
-			if (pdiTmp)
+			pdiTmp[0] = movedItemsVec[0][i];
+			for (int j = 0; j < movedItemsVec[1].size(); ++j)
 			{
-				paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp, nIndex));
-				encoding[nIndex] = pdiTmp->diffFileInfo[nIndex].encoding;
-				dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+				pdiTmp[1] = movedItemsVec[1][j];
+				if (ctxt.GetCompareDirs() == 2)
+				{
+					std::array<FileTextEncoding, 3> encoding;
+					std::array<fileopenflags_t, 3> dwFlags = {};
+					PathContext paths;
+					for (int nIndex = 0; nIndex < 2; nIndex++)
+					{
+						paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
+						encoding[nIndex] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
+						dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+					}
+					pathContextVec.push_back(paths);
+					encodingVec.push_back(encoding);
+					flagsVec.push_back(dwFlags);
+				}
+				else if (ctxt.GetCompareDirs() == 3)
+				{
+					for (int k = 0; k < movedItemsVec[2].size(); ++k)
+					{
+						pdiTmp[2] = movedItemsVec[2][k];
+						std::array<FileTextEncoding, 3> encoding;
+						std::array<fileopenflags_t, 3> dwFlags = {};
+						PathContext paths;
+						for (int nIndex = 0; nIndex < 3; nIndex++)
+						{
+							paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
+							encoding[nIndex] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
+							dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+						}
+						pathContextVec.push_back(paths);
+						encodingVec.push_back(encoding);
+						flagsVec.push_back(dwFlags);
+					}
+				}
 			}
 		}
-		if (paths.GetSize() == 1)
-			paths.SetRight(_T(""));
-		Open(GetDocument(), paths, dwFlags, encoding);
 	}
+
+	for (size_t i = 0; i < pathContextVec.size(); ++i)
+		Open(pDoc, pathContextVec[i], flagsVec[i].data(), encodingVec[i].data());
 }
 
 void CDirView::OnMergeCompareNonHorizontally()

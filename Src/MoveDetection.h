@@ -21,7 +21,7 @@ public:
 	void Detect(CDiffContext& ctxt);
 	
 	const MovedItemsArray& GetMovedItems() const { return m_movedItems; }
-	const DIFFITEM* GetMovedItemByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const;
+	const std::vector<const DIFFITEM*> GetMovedItemsByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const;
 	bool IsDetecting() const { return m_isDetecting.load(); }
 
 private:

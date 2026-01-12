@@ -335,21 +335,20 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	const int nDirs = pCtxt->GetCompareDirs();
 	const String group = strutils::to_str(di.movedGroupId + 1);
 
-	// ---- collect DiffFileInfo per side ----
-	std::vector<const DiffFileInfo*> fis(nDirs, nullptr);
+	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
 
 	for (int side = 0; side < nDirs; ++side)
 	{
-		auto* pdiTmp = pCtxt->m_pMoveDetection->GetMovedItemByDIFFITEM(*pCtxt, &di, side);
-		if (pdiTmp)
-			fis[side] = &pdiTmp->diffFileInfo[side];
+		auto items = pCtxt->m_pMoveDetection->GetMovedItemsByDIFFITEM(*pCtxt, &di, side);
+		if (!items.empty())
+			sideItems[side] = std::move(items);
 	}
 
 	// ---- count valid entries ----
-	std::vector<const DiffFileInfo*> valid;
-	for (auto fi : fis)
-		if (fi)
-			valid.push_back(fi);
+	std::vector<std::vector<const DIFFITEM*>> valid;
+	for (auto items : sideItems)
+		if (!items.empty())
+			valid.push_back(items);
 
 	if (valid.size() < 2)
 		return _("Moved (incomplete group)");
@@ -362,13 +361,18 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	{
 		for (size_t j = i + 1; j < valid.size(); ++j)
 		{
-			const auto* a = valid[i];
-			const auto* b = valid[j];
-
-			if (a->path == b->path && a->filename != b->filename)
-				renamed = true;
-			if (a->path != b->path && a->filename == b->filename)
-				moved = true;
+			for (size_t k = 0; k < valid[i].size(); ++k)
+			{
+				const auto* a = valid[i][k];
+				for (size_t l = 0; l < valid[j].size(); ++l)
+				{
+					const auto* b = valid[j][l];
+					if (a->diffFileInfo[i].path == b->diffFileInfo[j].path && a->diffFileInfo[i].filename != b->diffFileInfo[j].filename)
+						renamed = true;
+					if (a->diffFileInfo[i].path != b->diffFileInfo[j].path && a->diffFileInfo[i].filename == b->diffFileInfo[j].filename)
+						moved = true;
+				}
+			}
 		}
 	}
 
@@ -381,8 +385,10 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 		label = _("Moved/Renamed");
 
 	// ---- format output ----
-	auto fmt = [](const DiffFileInfo* fi) {
-		return fi ? fi->GetFile() : _T("-");
+	auto fmt = [&valid](int i) -> String {
+		if (valid[i].empty() || valid[i].size() > 1)
+			return strutils::format_string1(_("(%1 items)"), strutils::to_str(valid[i].size()));
+		return valid[i][0]->diffFileInfo[i].GetFile();
 		};
 
 	String files;
@@ -390,7 +396,7 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	{
 		if (i > 0)
 			files += _T(" - ");
-		files += fmt(fis[i]);
+		files += fmt(i);
 	}
 
 	return strutils::format_string2(_("%1 (set %2): "), label, group) + files;

@@ -152,29 +152,34 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 	m_isDetecting.store(false);
 }
 
-const DIFFITEM* MoveDetection::GetMovedItemByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const
+const std::vector<const DIFFITEM*> MoveDetection::GetMovedItemsByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const
 {
+	std::vector<const DIFFITEM*> items;
+
 	if (IsDetecting() || pdi == nullptr || pdi->movedGroupId == -1)
-		return nullptr;
+		return items;
 	
 	const auto& movedItem = m_movedItems[pdi->movedGroupId];
 	const DIFFITEM* pdiTmp = nullptr;
 	
 	if (pdi->diffcode.exists(sideIndex))
 	{
-		pdiTmp = pdi;
+		items.push_back(pdi);
 	}
 	else
 	{
 		for (int i = 0; i < ctxt.GetCompareDirs(); i++)
 		{
 			auto it = movedItem.find(i);
-			if (it != movedItem.end() && !it->second.empty() && it->second[0]->diffcode.exists(sideIndex))
+			if (it != movedItem.end() && !it->second.empty())
 			{
-				pdiTmp = it->second[0];
-				break;
+				for (auto pdi2: it->second)
+				{
+					if (pdi2->diffcode.exists(sideIndex))
+						items.push_back(pdi2);
+				}
 			}
 		}
 	}
-	return pdiTmp;
+	return items;
 }
