@@ -1073,6 +1073,9 @@ msgstr "Separa"
 msgid "Comp&are"
 msgstr "Compa&ra"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Compara en una nova &finestra"
 

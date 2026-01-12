@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-01-08 06:53+0000\n"
+"POT-Creation-Date: 2026-01-12 18:31+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -883,6 +883,9 @@ msgid "Sp&lit"
 msgstr ""
 
 msgid "Comp&are"
+msgstr ""
+
+msgid "Compar&e with Moved/Renamed Items"
 msgstr ""
 
 msgid "Compare in New &Window"

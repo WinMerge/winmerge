@@ -892,6 +892,9 @@ msgstr "Podzie&lone"
 msgid "Comp&are"
 msgstr "Porówn&aj"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Porównaj w nowym oknie"
 

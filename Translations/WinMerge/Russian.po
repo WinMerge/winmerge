@@ -893,6 +893,9 @@ msgstr "Разделить"
 msgid "Comp&are"
 msgstr "С&равнить"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Сравнить в новом окне"
 

@@ -1073,6 +1073,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Samm&enlign"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr ""
 

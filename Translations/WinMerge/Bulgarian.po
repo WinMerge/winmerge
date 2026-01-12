@@ -888,6 +888,9 @@ msgstr "Ра&зделяне"
 msgid "Comp&are"
 msgstr "&Сравняване"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Сравняване в нов &прозорец"
 

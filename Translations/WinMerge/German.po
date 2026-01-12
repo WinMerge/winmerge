@@ -1078,6 +1078,9 @@ msgstr "&Teilen"
 msgid "Comp&are"
 msgstr "Ver&gleichen"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "In neuem Fenster vergleichen"
 

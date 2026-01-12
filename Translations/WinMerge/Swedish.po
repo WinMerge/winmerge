@@ -894,6 +894,9 @@ msgstr "Dela"
 msgid "Comp&are"
 msgstr "Jämför"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Jämför i nytt fönster"
 

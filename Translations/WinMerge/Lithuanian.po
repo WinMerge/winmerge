@@ -891,6 +891,9 @@ msgstr "Pada&linti"
 msgid "Comp&are"
 msgstr "Lyg&inti"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Lyginti naujame &lange"
 

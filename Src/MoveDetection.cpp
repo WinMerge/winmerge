@@ -26,7 +26,7 @@ static void MoveDiffItemPartially(DIFFITEM& dst, int dstindex, DIFFITEM& src, in
 	dst.diffFileInfo[dstindex].m_pAdditionalProperties = std::move(src.diffFileInfo[srcindex].m_pAdditionalProperties); // move temporarily
 }
 
-static bool EvaluatePair(DIFFITEM* pdi0, int i0, DIFFITEM* pdi1, int i1, CDiffContext& ctxt)
+static bool EvaluatePair(DIFFITEM* pdi0, int i0, DIFFITEM* pdi1, int i1, FilterExpression* pExpression)
 {
 	DIFFITEM di;
 	di.diffcode.setSideFlag(0);
@@ -35,24 +35,16 @@ static bool EvaluatePair(DIFFITEM* pdi0, int i0, DIFFITEM* pdi1, int i1, CDiffCo
 	MoveDiffItemPartially(di, 0, *pdi0, i0);
 	CopyDiffItemPartially(di, 1, *pdi1, i1);
 	MoveDiffItemPartially(di, 1, *pdi1, i1);
-	bool found = ctxt.m_pMoveDetectionExpression->Evaluate(di);
+	bool found = pExpression->Evaluate(di);
 	MoveDiffItemPartially(*pdi0, i0, di, 0); // move back
 	MoveDiffItemPartially(*pdi1, i1, di, 1); // move back
 	return found;
 }
 
-namespace MoveDetection
+static void ProcessPair(DIFFITEM* pdi0, int idx0, DIFFITEM* pdi1, int idx1, FilterExpression* pExpression, MovedItemsArray& movedItems)
 {
-
-static void ProcessPair(
-	DIFFITEM* pdi0, int idx0,
-	DIFFITEM* pdi1, int idx1,
-	CDiffContext& ctxt)
-{
-	if (EvaluatePair(pdi0, idx0, pdi1, idx1, ctxt))
+	if (EvaluatePair(pdi0, idx0, pdi1, idx1, pExpression))
 	{
-		auto& movedItems = ctxt.m_movedItems;
-		
 		if (pdi0->movedGroupId != -1 && pdi1->movedGroupId == -1)
 		{
 			int existingGroupId = pdi0->movedGroupId;
@@ -78,10 +70,14 @@ static void ProcessPair(
 }
 
 static void DetectMovedItemsBetweenSides(
-	const std::vector<DIFFITEM*>& unmatchedItems,
-	int side0, int side1,
-	CDiffContext& ctxt)
+	const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemsArray& movedItems)
 {
+	PathContext paths(ctxt.GetPath(side0), ctxt.GetPath(side1));
+	CDiffContext ctxtTmp(paths, ctxt.GetCompareMethod());
+	std::unique_ptr<FilterExpression> pExpression(new FilterExpression());
+	pExpression->Parse(ctxt.m_pMoveDetectionExpression->expression);
+	pExpression->SetDiffContext(&ctxtTmp);
+
 	for (DIFFITEM* pdi0 : unmatchedItems)
 	{
 		if (!pdi0->diffcode.exists(side0) && !pdi0->diffcode.exists(side1))
@@ -103,17 +99,22 @@ static void DetectMovedItemsBetweenSides(
 				const int idx1 = pdi1->diffcode.exists(side0) ? side0 : side1;
 				if (idx0 != idx1)
 				{
-					ProcessPair(pdi0, idx0, pdi1, idx1, ctxt);
+					ProcessPair(pdi0, idx0, pdi1, idx1, pExpression.get(), movedItems);
 				}
 			}
 		}
 	}
 }
 
-void Detect(CDiffContext& ctxt)
+namespace MoveDetection
 {
+
+MovedItemsArray Detect(CDiffContext& ctxt)
+{
+	MovedItemsArray movedItems;
+
 	if (ctxt.m_pMoveDetectionExpression == nullptr)
-		return;
+		return movedItems;
 
 	// Collect all unmatched items
 	std::vector<DIFFITEM*> unmatchedItems;
@@ -126,17 +127,41 @@ void Detect(CDiffContext& ctxt)
 	}
 
 	// Detect moved items between side 0 and 1
-	DetectMovedItemsBetweenSides(unmatchedItems, 0, 1, ctxt);
+	DetectMovedItemsBetweenSides(unmatchedItems, 0, 1, ctxt, movedItems);
 	
 	// For 3-way comparison, check additional side pairs
 	if (ctxt.GetCompareDirs() > 2)
 	{
 		// Detect moved items between side 1 and 2
-		DetectMovedItemsBetweenSides(unmatchedItems, 1, 2, ctxt);
+		DetectMovedItemsBetweenSides(unmatchedItems, 1, 2, ctxt, movedItems);
 		
 		// Detect moved items between side 0 and 2
-		DetectMovedItemsBetweenSides(unmatchedItems, 0, 2, ctxt);
+		DetectMovedItemsBetweenSides(unmatchedItems, 0, 2, ctxt, movedItems);
 	}
+
+	return movedItems;
+}
+
+const DIFFITEM* GetMovedItemByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex)
+{
+	auto& movedItems = ctxt.m_movedItems;
+	if (!pdi || movedItems.size() <= pdi->movedGroupId)
+		return nullptr;
+	auto& movedItem = movedItems[pdi->movedGroupId];
+	const DIFFITEM* pdiTmp = nullptr;
+	if (pdi->diffcode.exists(sideIndex))
+	{
+		pdiTmp = pdi;
+	}
+	else
+	{
+		for (int i = 0; i < ctxt.GetCompareDirs(); i++)
+		{
+			if (movedItem.count(i) && !movedItem.at(i).empty() && movedItem.at(i)[0]->diffcode.exists(sideIndex))
+				pdiTmp = movedItem.at(i)[0];
+		}
+	}
+	return pdiTmp;
 }
 
 }

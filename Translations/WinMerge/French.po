@@ -898,6 +898,9 @@ msgstr "&Scinder"
 msgid "Comp&are"
 msgstr "Comp&arer"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Comparer dans une nouvelle &fenêtre"
 

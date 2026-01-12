@@ -903,6 +903,9 @@ msgstr "分割 (&L)"
 msgid "Comp&are"
 msgstr "比較 (&A)"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "在新視窗中比較 (&W)"
 

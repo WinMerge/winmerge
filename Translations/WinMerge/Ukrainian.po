@@ -891,6 +891,9 @@ msgstr "Розділення вікна"
 msgid "Comp&are"
 msgstr "По&рівняти"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Порівняти в новому вікні"
 

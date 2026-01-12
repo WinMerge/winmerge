@@ -1075,6 +1075,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "Alder&atu"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr ""
 

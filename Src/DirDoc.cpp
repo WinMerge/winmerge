@@ -477,7 +477,7 @@ void CDirDoc::Rescan()
 		});
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			DirScan_CompareItems(myStruct, nullptr);
-			MoveDetection::Detect(*myStruct->context);
+			myStruct->context->m_movedItems = MoveDetection::Detect(*myStruct->context);
 		});
 		m_diffThread.SetMarkedRescan(false);
 	}

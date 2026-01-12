@@ -892,6 +892,9 @@ msgstr "Bö&l"
 msgid "Comp&are"
 msgstr "K&arşılaştır"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Yeni &pencerede karşılaştır"
 

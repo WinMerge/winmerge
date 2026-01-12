@@ -49,6 +49,7 @@
 #include "Shell.h"
 #include "DirTravel.h"
 #include "MouseHook.h"
+#include "MoveDetection.h"
 #include <numeric>
 #include <functional>
 
@@ -206,6 +207,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	// [Merge] menu or Context menu
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE, ID_MERGE_COMPARE_IN_NEW_WINDOW, OnMergeCompare)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE, ID_MERGE_COMPARE_IN_NEW_WINDOW, OnUpdateMergeCompare)
+	ON_COMMAND(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, OnMergeCompareWithMovedRenamed)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, OnUpdateMergeCompare)
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
 	ON_COMMAND(ID_NEXTDIFF, OnNextdiff)
@@ -732,6 +735,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		return;
 
 	bool bDirSelected = false;
+	bool bMovedRenamed = true;
 	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
 	{
 		const DIFFITEM& di = *it;
@@ -740,9 +744,13 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 			bDirSelected = true;
 			break;
 		}
+		if (di.movedGroupId == -1)
+			bMovedRenamed = false;
 	}
 	if (GetDiffContext().m_bRecursive && bDirSelected)
 		pPopup->RemoveMenu(ID_MERGE_COMPARE, MF_BYCOMMAND);
+	if (!bMovedRenamed)
+		pPopup->RemoveMenu(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, MF_BYCOMMAND);
 	if (!bDirSelected)
 		pPopup->RemoveMenu(ID_MERGE_COMPARE_IN_NEW_WINDOW, MF_BYCOMMAND);
 
@@ -4206,6 +4214,37 @@ void CDirView::OnMergeCompare(UINT nID)
 				break;
 			OpenSelection(sel1, -1, -1, nID == ID_MERGE_COMPARE ? GetDocument() : nullptr);
 		}
+	}
+}
+
+void CDirView::OnMergeCompareWithMovedRenamed()
+{
+	int sel = -1;
+	while (true)
+	{
+		sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
+		if (sel == -1)
+			break;
+
+		CDirDoc *pDoc = GetDocument();
+		CDiffContext& ctxt = GetDiffContext();
+		FileTextEncoding encoding[3];
+		fileopenflags_t dwFlags[3] = {};
+		PathContext paths;
+		DIFFITEM* pdi = &GetDiffItem(sel);
+		for (int nIndex = 0; nIndex < ctxt.GetCompareDirs(); ++nIndex)
+		{
+			const DIFFITEM* pdiTmp = MoveDetection::GetMovedItemByDIFFITEM(ctxt, pdi, nIndex);
+			if (pdiTmp)
+			{
+				paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp, nIndex));
+				encoding[nIndex] = pdiTmp->diffFileInfo[nIndex].encoding;
+				dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly() ? FFILEOPEN_READONLY : 0);
+			}
+		}
+		if (paths.GetSize() == 1)
+			paths.SetRight(_T(""));
+		Open(GetDocument(), paths, dwFlags, encoding);
 	}
 }
 

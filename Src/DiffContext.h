@@ -216,7 +216,8 @@ public:
 	std::vector<String> m_vCurrentlyHiddenItems; /**< The list of currently hidden items */
 	std::unique_ptr<FilterExpression> m_pAdditionalCompareExpression; /** Additional compare condition applied in folder comparison */
 	std::unique_ptr<FilterExpression> m_pMoveDetectionExpression; /** Move detection condition applied in folder comparison */
-	std::vector<std::map<int, std::vector<DIFFITEM*>>> m_movedItems; /** Moved items found during comparison */
+	using MovedItemsArray = std::vector<std::map<int, std::vector<DIFFITEM*>>>;
+	MovedItemsArray m_movedItems; /** Moved items found during comparison */
 
 private:
 	/**

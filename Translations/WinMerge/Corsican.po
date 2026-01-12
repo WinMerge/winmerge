@@ -894,6 +894,9 @@ msgstr "&Sparte"
 msgid "Comp&are"
 msgstr "&Paragunà"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Paragunà in una nova &finestra"
 

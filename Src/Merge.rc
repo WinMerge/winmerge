@@ -918,6 +918,7 @@ BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM "Compar&e with Moved/Renamed Items", ID_MERGE_COMPARE_WITH_MOVED_RENAMED
         MENUITEM "Compare in New &Window",      ID_MERGE_COMPARE_IN_NEW_WINDOW
         MENUITEM "Compare Non-hor&izontally...", ID_MERGE_COMPARE_NONHORIZONTALLY
         POPUP "Compare Non-hor&izontally"

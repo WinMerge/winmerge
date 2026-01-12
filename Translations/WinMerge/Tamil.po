@@ -898,6 +898,9 @@ msgstr "பிளவு"
 msgid "Comp&are"
 msgstr "ஒப்பிடு"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "புதிய சாளரத்தில் ஒப்பிடு"
 

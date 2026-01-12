@@ -1072,6 +1072,9 @@ msgstr ""
 msgid "Comp&are"
 msgstr "&Porovnat"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr ""
 

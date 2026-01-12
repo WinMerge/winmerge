@@ -891,6 +891,9 @@ msgstr "Ra&zdeli"
 msgid "Comp&are"
 msgstr "P&rimerjaj"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Primerjaj v &novem oknu"
 

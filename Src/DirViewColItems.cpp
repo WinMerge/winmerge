@@ -19,6 +19,7 @@
 #include "FileTransform.h"
 #include "PropertySystem.h"
 #include "FilterEngine/FilterExpression.h"
+#include "MoveDetection.h"
 #include "DebugNew.h"
 
 using Poco::Timestamp;
@@ -328,76 +329,49 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
  */
 static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
-	const auto& movedItem = pCtxt->m_movedItems[di.movedGroupId];
-	const int nDirs = pCtxt->GetCompareDirs();
-	String group = strutils::to_str(di.movedGroupId + 1);
-
-	auto has = [&](int i) { return movedItem.count(i) && !movedItem.at(i).empty(); };
-
-	// ---- 2 folder compare ----
-	if (nDirs < 3)
-	{
-		if (!has(0) || !has(1))
-			return _("Moved (incomplete group)");
-
-		const auto& fi0 = movedItem.at(0)[0]->diffFileInfo[0];
-		const auto& fi1 = movedItem.at(1)[0]->diffFileInfo[1];
-
-		String label, s0, s1;
-		const bool samePath = (fi0.path == fi1.path);
-		const bool sameName = (fi0.filename == fi1.filename);
-
-		if (samePath && !sameName)
-		{
-			label = _("Renamed");
-			s0 = fi0.filename;
-			s1 = fi1.filename;
-		}
-		else if (!samePath && sameName)
-		{
-			label = _("Moved");
-			s0 = fi0.path;
-			s1 = fi1.path;
-		}
-		else
-		{
-			label = _("Moved/Renamed");
-			s0 = fi0.GetFile();
-			s1 = fi1.GetFile();
-		}
-
-		return strutils::format_string2(_("%1 (set %2): "), label, group)
-			+ strutils::format_string2(_T("%1 - %2"), s0, s1);
-	}
-
-	// ---- 3 folder compare ----
-	const bool has0 = has(0);
-	const bool has1 = has(1);
-	const bool has2 = has(2);
-
-	if (!(has0 || has1 || has2))
+	if (pCtxt->m_movedItems.size() <= static_cast<size_t>(di.movedGroupId))
 		return _("Moved (incomplete group)");
 
-	// helpers
-	auto getFi = [&](int side) -> const DiffFileInfo * { return has(side) ? &movedItem.at(side)[0]->diffFileInfo[side] : nullptr; };
+	const auto& movedItem = pCtxt->m_movedItems[di.movedGroupId];
+	const int nDirs = pCtxt->GetCompareDirs();
+	const String group = strutils::to_str(di.movedGroupId + 1);
 
-	const auto* fi0 = getFi(0);
-	const auto* fi1 = getFi(1);
-	const auto* fi2 = getFi(2);
+	// ---- collect DiffFileInfo per side ----
+	std::vector<const DiffFileInfo*> fis(nDirs, nullptr);
 
-	auto samePath = [&](const DiffFileInfo* a, const DiffFileInfo* b) { return a && b && a->path == b->path; };
-	auto sameName = [&](const DiffFileInfo* a, const DiffFileInfo* b) { return a && b && a->filename == b->filename; };
+	for (int side = 0; side < nDirs; ++side)
+	{
+		auto* pdiTmp = MoveDetection::GetMovedItemByDIFFITEM(*pCtxt, &di, side);
+		if (pdiTmp)
+			fis[side] = &pdiTmp->diffFileInfo[side];
+	}
 
-	bool renamed = false;
+	// ---- count valid entries ----
+	std::vector<const DiffFileInfo*> valid;
+	for (auto fi : fis)
+		if (fi)
+			valid.push_back(fi);
+
+	if (valid.size() < 2)
+		return _("Moved (incomplete group)");
+
+	// ---- moved / renamed detection ----
 	bool moved = false;
+	bool renamed = false;
 
-	if (samePath(fi0, fi1) && !sameName(fi0, fi1)) renamed = true;
-	if (samePath(fi1, fi2) && !sameName(fi1, fi2)) renamed = true;
-	if (samePath(fi0, fi2) && !sameName(fi0, fi2)) renamed = true;
+	for (size_t i = 0; i < valid.size(); ++i)
+	{
+		for (size_t j = i + 1; j < valid.size(); ++j)
+		{
+			const auto* a = valid[i];
+			const auto* b = valid[j];
 
-	if (!samePath(fi0, fi1) && sameName(fi0, fi1)) moved = true;
-	if (!samePath(fi1, fi2) && sameName(fi1, fi2)) moved = true;
-	if (!samePath(fi0, fi2) && sameName(fi0, fi2)) moved = true;
+			if (a->path == b->path && a->filename != b->filename)
+				renamed = true;
+			if (a->path != b->path && a->filename == b->filename)
+				moved = true;
+		}
+	}
 
 	String label;
 	if (renamed && !moved)
@@ -407,11 +381,20 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	else
 		label = _("Moved/Renamed");
 
-	auto fmt = [&](const DiffFileInfo* fi) { return fi ? fi->GetFile() : _T("-"); };
+	// ---- format output ----
+	auto fmt = [](const DiffFileInfo* fi) {
+		return fi ? fi->GetFile() : _T("-");
+		};
 
-	return strutils::format_string2(_("%1 (set %2): "), label, group)
-		+ strutils::format_string3(_T("%1 - %2 - %3"),
-			fmt(fi0), fmt(fi1), fmt(fi2));
+	String files;
+	for (int i = 0; i < nDirs; ++i)
+	{
+		if (i > 0)
+			files += _T(" - ");
+		files += fmt(fis[i]);
+	}
+
+	return strutils::format_string2(_("%1 (set %2): "), label, group) + files;
 }
 
 /**

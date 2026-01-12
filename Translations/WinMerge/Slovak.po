@@ -891,6 +891,9 @@ msgstr "Od&deliť"
 msgid "Comp&are"
 msgstr "Porovn&ať"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Porovnať v novom &okne"
 
