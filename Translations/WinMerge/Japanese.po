@@ -891,7 +891,7 @@ msgid "Comp&are"
 msgstr "比較(&A)"
 
 msgid "Compar&e with Moved/Renamed Items"
-msgstr ""
+msgstr "移動/名前変更された項目と比較(&E)"
 
 msgid "Compare in New &Window"
 msgstr "新しいウインドウで比較(&W)"
@@ -1625,16 +1625,16 @@ msgid "Compare C&ontents"
 msgstr "内容を比較(&O)"
 
 msgid "Match &Name"
-msgstr ""
+msgstr "名前が一致(&N)"
 
 msgid "Match &Size"
-msgstr ""
+msgstr "サイズが一致(&S)"
 
 msgid "Match &Date"
-msgstr ""
+msgstr "更新日時が一致(&D)"
 
 msgid "Match &Contents"
-msgstr ""
+msgstr "ファイルの内容が一致(&C)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -2652,7 +2652,7 @@ msgid "Additional comparison condi&tions:"
 msgstr "追加比較条件(&T):"
 
 msgid "&Detect moved/renamed items after comparison:"
-msgstr ""
+msgstr "移動/名前変更された項目を比較後に検出する(&D)"
 
 msgid "File patterns:"
 msgstr "ファイル パターン:"
