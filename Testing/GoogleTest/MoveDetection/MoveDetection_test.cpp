@@ -56,6 +56,7 @@ namespace
 		paths.SetRight(_T("C:\\Right"));
 		
 		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
 		ctxt.m_pMoveDetection->SetMoveDetectionExpression(nullptr);
 		
 		// Should not crash and should return immediately
@@ -72,6 +73,7 @@ namespace
 		paths.SetRight(_T("C:\\Right"));
 		
 		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
 		
 		// Create a simple expression that matches files with same name
 		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();

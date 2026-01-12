@@ -124,6 +124,9 @@ void MoveDetection::DetectMovedItemsBetweenSides(
 
 void MoveDetection::Detect(CDiffContext& ctxt)
 {
+	if (!m_pMoveDetectionExpression)
+		return;
+
 	m_isDetecting.store(true);
 
 	Clear();
