@@ -3702,7 +3702,6 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     100, 0, 0, 0,
-    0, 0, 100, 0,
     100, 0, 0, 0
 END
 
@@ -4605,6 +4604,12 @@ BEGIN
     IDS_IMAGE_FILES_DIFF    "Image files are different"
     IDS_EXPR_DIFF           "Files are different (expr: %1)"
     IDS_HASH_GROUP          "Group%d"
+    IDS_MOVED_MOVED         "Moved"
+    IDS_MOVED_RENAMED       "Renamed"
+    IDS_MOVED_MOVED_RENAMED "Moved/Renamed"
+    IDS_MOVED_INCOMPLETEGROUP "Moved(incomplete group)"
+    IDS_MOVED_ITEMS         "(%1 items)"
+    IDS_MOVED_RESULT        "%1 (set %2): "
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

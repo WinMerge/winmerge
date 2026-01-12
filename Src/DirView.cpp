@@ -4225,62 +4225,63 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 	std::vector<std::array<fileopenflags_t, 3>> flagsVec;
 	std::vector<std::array<FileTextEncoding, 3>> encodingVec;
 
-	int sel = -1;
-	while (true)
+	const int nDirs = ctxt.GetCompareDirs();
+	
+	// Iterate through all selected items
+	for (int sel = m_pList->GetNextItem(-1, LVNI_SELECTED); sel != -1; sel = m_pList->GetNextItem(sel, LVNI_SELECTED))
 	{
-		sel = m_pList->GetNextItem(sel, LVNI_SELECTED);
-		if (sel == -1)
-			break;
-
-		DIFFITEM* pdi = &GetDiffItem(sel);
+		const DIFFITEM* pdi = &GetDiffItem(sel);
+		
+		// Get moved items for each pane
 		std::vector<std::vector<const DIFFITEM*>> movedItemsVec;
-		const DIFFITEM* pdiTmp[3];
-		for (int nIndex = 0; nIndex < ctxt.GetCompareDirs(); ++nIndex)
+		for (int nIndex = 0; nIndex < nDirs; ++nIndex)
 			movedItemsVec.push_back(ctxt.m_pMoveDetection->GetMovedItemsByDIFFITEM(ctxt, pdi, nIndex));
-		for (int i = 0; i < movedItemsVec[0].size(); ++i)
+		
+		// Generate all combinations of moved items
+		const DIFFITEM* pdiTmp[3];
+		auto generateCombinations = [&]()
+		{
+			PathContext paths;
+			std::array<FileTextEncoding, 3> encoding;
+			std::array<fileopenflags_t, 3> dwFlags = {};
+			
+			for (int nIndex = 0; nIndex < nDirs; ++nIndex)
+			{
+				paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
+				encoding[nIndex] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
+				dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
+			}
+			
+			pathContextVec.push_back(paths);
+			encodingVec.push_back(encoding);
+			flagsVec.push_back(dwFlags);
+		};
+		
+		// Create combinations based on number of directories
+		for (size_t i = 0; i < movedItemsVec[0].size(); ++i)
 		{
 			pdiTmp[0] = movedItemsVec[0][i];
-			for (int j = 0; j < movedItemsVec[1].size(); ++j)
+			for (size_t j = 0; j < movedItemsVec[1].size(); ++j)
 			{
 				pdiTmp[1] = movedItemsVec[1][j];
-				if (ctxt.GetCompareDirs() == 2)
+				
+				if (nDirs == 2)
 				{
-					std::array<FileTextEncoding, 3> encoding;
-					std::array<fileopenflags_t, 3> dwFlags = {};
-					PathContext paths;
-					for (int nIndex = 0; nIndex < 2; nIndex++)
-					{
-						paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
-						encoding[nIndex] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
-						dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly() ? FFILEOPEN_READONLY : 0);
-					}
-					pathContextVec.push_back(paths);
-					encodingVec.push_back(encoding);
-					flagsVec.push_back(dwFlags);
+					generateCombinations();
 				}
-				else if (ctxt.GetCompareDirs() == 3)
+				else if (nDirs == 3)
 				{
-					for (int k = 0; k < movedItemsVec[2].size(); ++k)
+					for (size_t k = 0; k < movedItemsVec[2].size(); ++k)
 					{
 						pdiTmp[2] = movedItemsVec[2][k];
-						std::array<FileTextEncoding, 3> encoding;
-						std::array<fileopenflags_t, 3> dwFlags = {};
-						PathContext paths;
-						for (int nIndex = 0; nIndex < 3; nIndex++)
-						{
-							paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
-							encoding[nIndex] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
-							dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly() ? FFILEOPEN_READONLY : 0);
-						}
-						pathContextVec.push_back(paths);
-						encodingVec.push_back(encoding);
-						flagsVec.push_back(dwFlags);
+						generateCombinations();
 					}
 				}
 			}
 		}
 	}
 
+	// Open all collected items
 	for (size_t i = 0; i < pathContextVec.size(); ++i)
 		Open(pDoc, pathContextVec[i], flagsVec[i].data(), encodingVec[i].data());
 }

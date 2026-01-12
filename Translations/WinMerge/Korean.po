@@ -4522,6 +4522,26 @@ msgstr "추가 비교 조건: 파일이 다릅니다 (식: %1)"
 msgid "Group%d"
 msgstr "그룹%d"
 
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed"
+msgstr ""
+
+msgid "Moved/Renamed"
+msgstr ""
+
+msgid "Moved(incomplete group)"
+msgstr ""
+
+#, c-format
+msgid "(%1 items)"
+msgstr ""
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr ""
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "경과 시간: %ld ms"

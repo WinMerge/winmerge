@@ -3903,6 +3903,26 @@ msgstr "ファイルは異なります (式: %1)"
 msgid "Group%d"
 msgstr "グループ%d"
 
+msgid "Moved"
+msgstr "移動"
+
+msgid "Renamed"
+msgstr "名前変更"
+
+msgid "Moved/Renamed"
+msgstr "移動/名前変更"
+
+msgid "Moved(incomplete group)"
+msgstr "移動(不完全グループ)"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 項目)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (グループ %2): "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "経過時間: %ld ms"

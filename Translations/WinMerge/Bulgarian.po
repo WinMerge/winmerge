@@ -3886,6 +3886,26 @@ msgstr "Файловете са различни (израз: %1)"
 msgid "Group%d"
 msgstr "Група%d"
 
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed"
+msgstr ""
+
+msgid "Moved/Renamed"
+msgstr ""
+
+msgid "Moved(incomplete group)"
+msgstr ""
+
+#, c-format
+msgid "(%1 items)"
+msgstr ""
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr ""
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Изминало време: %ld мс"
