@@ -23,6 +23,7 @@ public:
 	
 	std::shared_ptr<const MovedItemsArray> GetMovedItems() const { return std::atomic_load(&m_pMovedItems); }
 	std::vector<const DIFFITEM*> GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const;
+	void MergeMovedItems(CDiffContext& ctxt);
 
 private:
 	void DetectMovedItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemsArray& movedItems);

@@ -7,6 +7,7 @@
 #include "DiffItem.h"
 #include "DiffContext.h"
 #include "FilterEngine/FilterExpression.h"
+#include <set>
 
 static void CopyDiffItemPartially(DIFFITEM& dst, int dstindex, DIFFITEM& src, int srcindex)
 {
@@ -103,13 +104,9 @@ void MoveDetection::DetectMovedItemsBetweenSides(
 			if (ctxt.ShouldAbort())
 				return;
 			
-			if (!pdi1->diffcode.exists(side0) && !pdi1->diffcode.exists(side1))
-				continue;
-			
-			if (pdi0->diffcode.exists(side0) && pdi1->diffcode.exists(side0))
-				continue;
-			
-			if (pdi1->diffcode.exists(side1) && pdi0->diffcode.exists(side1))
+			if ((!pdi1->diffcode.exists(side0) && !pdi1->diffcode.exists(side1)) ||
+			    ( pdi0->diffcode.exists(side0) &&  pdi1->diffcode.exists(side0)) ||
+			    ( pdi1->diffcode.exists(side1) &&  pdi0->diffcode.exists(side1)))
 				continue;
 			
 			if (pdi0 != pdi1 && isfolder == pdi1->diffcode.isDirectory())
@@ -194,3 +191,44 @@ std::vector<const DIFFITEM*> MoveDetection::GetMovedGroupItemsForSide(const CDif
 	}
 	return items;
 }
+
+void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
+{
+	auto movedItems = std::atomic_load(&m_pMovedItems);
+	if (!movedItems || movedItems->empty())
+		return;
+
+	std::set<DIFFITEM*> itemsToDelete;
+	const int nDirs = ctxt.GetCompareDirs();
+	DIFFITEM* diffpos = ctxt.GetFirstDiffPosition();
+	while (diffpos != nullptr)
+	{
+		DIFFITEM& di = ctxt.GetNextDiffRefPosition(diffpos);
+		if (di.movedGroupId != -1 && itemsToDelete.find(&di) != itemsToDelete.end())
+		{
+			auto& movedItemGroup = (*movedItems)[di.movedGroupId];
+			for (int i = 0; i < nDirs; ++i)
+			{
+				if (di.diffcode.exists(i) || di.diffcode.isDirectory())
+					continue;
+				auto it = movedItemGroup.find(i);
+				if (it == movedItemGroup.end() || it->second.size() != 1)
+					continue;
+				auto pdi2 = it->second[0];
+				if (di.GetParentLink() != pdi2->GetParentLink())
+					continue;
+				CopyDiffItemPartially(di, i, *pdi2, i);
+				MoveDiffItemPartially(di, i, *pdi2, i);
+				di.diffcode.setSideFlag(i);
+				di.movedGroupId = -1;
+				itemsToDelete.insert(pdi2);
+			}
+		}
+	}
+	for (DIFFITEM* pdi : itemsToDelete)
+	{
+		pdi->DelinkFromSiblings();
+		delete pdi;
+	}
+}
+

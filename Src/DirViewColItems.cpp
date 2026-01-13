@@ -351,9 +351,9 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 				for (size_t l = 0; l < sideItems[j].size(); ++l)
 				{
 					const auto* b = sideItems[j][l];
-					if (a->diffFileInfo[i].path == b->diffFileInfo[j].path && a->diffFileInfo[i].filename != b->diffFileInfo[j].filename)
+					if (a->GetParentLink() == b->GetParentLink() && a->diffFileInfo[i].filename != b->diffFileInfo[j].filename)
 						renamed = true;
-					if (a->diffFileInfo[i].path != b->diffFileInfo[j].path && a->diffFileInfo[i].filename == b->diffFileInfo[j].filename)
+					if (a->GetParentLink() != b->GetParentLink() && a->diffFileInfo[i].filename == b->diffFileInfo[j].filename)
 						moved = true;
 				}
 			}
