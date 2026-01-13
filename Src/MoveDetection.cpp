@@ -105,6 +105,12 @@ void MoveDetection::DetectMovedItemsBetweenSides(
 			if (!pdi1->diffcode.exists(side0) && !pdi1->diffcode.exists(side1))
 				continue;
 			
+			if (pdi0->diffcode.exists(side0) && pdi1->diffcode.exists(side0))
+				continue;
+			
+			if (pdi1->diffcode.exists(side1) && pdi0->diffcode.exists(side1))
+				continue;
+			
 			if (pdi0 != pdi1 && isfolder == pdi1->diffcode.isDirectory())
 			{
 				const int idx1 = pdi1->diffcode.exists(side0) ? side0 : side1;
