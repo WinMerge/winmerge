@@ -329,16 +329,13 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
  */
 static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
-	if (!pCtxt->m_pMoveDetection || pCtxt->m_pMoveDetection->IsDetecting())
-		return _("Moved (incomplete group)");
-
 	const int nDirs = pCtxt->GetCompareDirs();
 	const String group = strutils::to_str(di.movedGroupId + 1);
 
 	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
 
 	for (int side = 0; side < nDirs; ++side)
-		sideItems[side] = pCtxt->m_pMoveDetection->GetMovedItemsByDIFFITEM(*pCtxt, &di, side);
+		sideItems[side] = pCtxt->m_pMoveDetection->GetMovedGroupItemsForSide(*pCtxt, &di, side);
 
 	// ---- moved / renamed detection ----
 	bool moved = false;

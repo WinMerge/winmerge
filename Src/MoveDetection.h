@@ -3,6 +3,7 @@
 #include "UnicodeString.h"
 #include <vector>
 #include <map>
+#include <memory>
 
 class CDiffContext;
 class DIFFITEM;
@@ -20,14 +21,12 @@ public:
 	void SetMoveDetectionExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt);
 	
-	const MovedItemsArray& GetMovedItems() const { return m_movedItems; }
-	const std::vector<const DIFFITEM*> GetMovedItemsByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const;
-	bool IsDetecting() const { return m_isDetecting.load(); }
+	std::shared_ptr<const MovedItemsArray> GetMovedItems() const { return std::atomic_load(&m_pMovedItems); }
+	std::vector<const DIFFITEM*> GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const;
 
 private:
-	void DetectMovedItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt);
+	void DetectMovedItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemsArray& movedItems);
 
-	std::atomic<bool> m_isDetecting{ false };
 	std::unique_ptr<FilterExpression> m_pMoveDetectionExpression;
-	MovedItemsArray m_movedItems;
+	std::shared_ptr<MovedItemsArray> m_pMovedItems;
 };

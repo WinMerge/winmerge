@@ -70,6 +70,7 @@ static void ProcessPair(DIFFITEM* pdi0, int idx0, DIFFITEM* pdi1, int idx1, Filt
 }
 
 MoveDetection::MoveDetection()
+	: m_pMovedItems(std::make_shared<MovedItemsArray>())
 {
 }
 
@@ -83,7 +84,7 @@ void MoveDetection::SetMoveDetectionExpression(const FilterExpression* expr)
 }
 
 void MoveDetection::DetectMovedItemsBetweenSides(
-	const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt)
+	const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemsArray& movedItems)
 {
 	PathContext paths(ctxt.GetPath(side0), ctxt.GetPath(side1));
 	CDiffContext ctxtTmp(paths, ctxt.GetCompareMethod());
@@ -116,7 +117,7 @@ void MoveDetection::DetectMovedItemsBetweenSides(
 				const int idx1 = pdi1->diffcode.exists(side0) ? side0 : side1;
 				if (idx0 != idx1)
 				{
-					ProcessPair(pdi0, idx0, pdi1, idx1, m_pMoveDetectionExpression.get(), m_movedItems);
+					ProcessPair(pdi0, idx0, pdi1, idx1, m_pMoveDetectionExpression.get(), movedItems);
 				}
 			}
 		}
@@ -128,9 +129,8 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 	if (!m_pMoveDetectionExpression)
 		return;
 
-	m_isDetecting.store(true);
-
-	m_movedItems.clear();
+	// Create new MovedItemsArray for this detection run
+	auto newMovedItems = std::make_shared<MovedItemsArray>();
 
 	// Collect all unmatched items
 	std::vector<DIFFITEM*> unmatchedItems;
@@ -143,29 +143,35 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 	}
 
 	// Detect moved items between side 0 and 1
-	DetectMovedItemsBetweenSides(unmatchedItems, 0, 1, ctxt);
+	DetectMovedItemsBetweenSides(unmatchedItems, 0, 1, ctxt, *newMovedItems);
 	
 	// For 3-way comparison, check additional side pairs
 	if (ctxt.GetCompareDirs() > 2)
 	{
 		// Detect moved items between side 1 and 2
-		DetectMovedItemsBetweenSides(unmatchedItems, 1, 2, ctxt);
+		DetectMovedItemsBetweenSides(unmatchedItems, 1, 2, ctxt, *newMovedItems);
 		
 		// Detect moved items between side 0 and 2
-		DetectMovedItemsBetweenSides(unmatchedItems, 0, 2, ctxt);
+		DetectMovedItemsBetweenSides(unmatchedItems, 0, 2, ctxt, *newMovedItems);
 	}
 
-	m_isDetecting.store(false);
+	// Atomically replace the old MovedItemsArray with the new one
+	std::atomic_store(&m_pMovedItems, newMovedItems);
 }
 
-const std::vector<const DIFFITEM*> MoveDetection::GetMovedItemsByDIFFITEM(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const
+std::vector<const DIFFITEM*> MoveDetection::GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const
 {
 	std::vector<const DIFFITEM*> items;
 
-	if (IsDetecting() || pdi == nullptr || pdi->movedGroupId == -1)
+	if (pdi == nullptr || pdi->movedGroupId == -1)
 		return items;
 	
-	const auto& movedItem = m_movedItems[pdi->movedGroupId];
+	// Get a local copy of the shared_ptr to prevent it from being deleted during access
+	auto movedItems = std::atomic_load(&m_pMovedItems);
+	if (!movedItems || pdi->movedGroupId >= static_cast<int>(movedItems->size()))
+		return items;
+	
+	const auto& movedItem = (*movedItems)[pdi->movedGroupId];
 	
 	if (pdi->diffcode.exists(sideIndex))
 	{

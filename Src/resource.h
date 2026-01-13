@@ -1837,7 +1837,6 @@
 #define IDS_MOVED_MOVED                 42420
 #define IDS_MOVED_RENAMED               42421
 #define IDS_MOVED_MOVED_RENAMED         42422
-#define IDS_MOVED_INCOMPLETEGROUP       42423
 #define IDS_MOVED_ITEMS                 42424
 #define IDS_MOVED_RESULT                42425
 #define IDS_NO_ZIP_SUPPORT              42449
