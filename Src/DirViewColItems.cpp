@@ -338,35 +338,22 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
 
 	for (int side = 0; side < nDirs; ++side)
-	{
-		auto items = pCtxt->m_pMoveDetection->GetMovedItemsByDIFFITEM(*pCtxt, &di, side);
-		if (!items.empty())
-			sideItems[side] = std::move(items);
-	}
-
-	// ---- count valid entries ----
-	std::vector<std::vector<const DIFFITEM*>> valid;
-	for (auto items : sideItems)
-		if (!items.empty())
-			valid.push_back(items);
-
-	if (valid.size() < 2)
-		return _("Moved (incomplete group)");
+		sideItems[side] = pCtxt->m_pMoveDetection->GetMovedItemsByDIFFITEM(*pCtxt, &di, side);
 
 	// ---- moved / renamed detection ----
 	bool moved = false;
 	bool renamed = false;
 
-	for (size_t i = 0; i < valid.size(); ++i)
+	for (size_t i = 0; i < sideItems.size(); ++i)
 	{
-		for (size_t j = i + 1; j < valid.size(); ++j)
+		for (size_t j = i + 1; j < sideItems.size(); ++j)
 		{
-			for (size_t k = 0; k < valid[i].size(); ++k)
+			for (size_t k = 0; k < sideItems[i].size(); ++k)
 			{
-				const auto* a = valid[i][k];
-				for (size_t l = 0; l < valid[j].size(); ++l)
+				const auto* a = sideItems[i][k];
+				for (size_t l = 0; l < sideItems[j].size(); ++l)
 				{
-					const auto* b = valid[j][l];
+					const auto* b = sideItems[j][l];
 					if (a->diffFileInfo[i].path == b->diffFileInfo[j].path && a->diffFileInfo[i].filename != b->diffFileInfo[j].filename)
 						renamed = true;
 					if (a->diffFileInfo[i].path != b->diffFileInfo[j].path && a->diffFileInfo[i].filename == b->diffFileInfo[j].filename)
@@ -385,10 +372,10 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 		label = _("Moved/Renamed");
 
 	// ---- format output ----
-	auto fmt = [&valid](int i) -> String {
-		if (valid[i].empty() || valid[i].size() > 1)
-			return strutils::format_string1(_("(%1 items)"), strutils::to_str(valid[i].size()));
-		return valid[i][0]->diffFileInfo[i].GetFile();
+	auto fmt = [&sideItems](int i) -> String {
+		if (sideItems[i].empty() || sideItems[i].size() > 1)
+			return strutils::format_string1(_("(%1 items)"), strutils::to_str(sideItems[i].size()));
+		return sideItems[i][0]->diffFileInfo[i].GetFile();
 		};
 
 	String files;
@@ -1237,6 +1224,8 @@ static int ColStatusSort(const CDiffContext *, const void *p, const void *q, int
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
+	if (ldi.movedGroupId != rdi.movedGroupId)
+		return ldi.movedGroupId - rdi.movedGroupId;
 	return cmpdiffcode(rdi.diffcode.diffcode, ldi.diffcode.diffcode);
 }
 

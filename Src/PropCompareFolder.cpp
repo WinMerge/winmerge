@@ -52,7 +52,7 @@ public:
 					_T("allequal(Attributes)"),
 					_T("allequal(Content)"),
 				};
-				result = expr.empty() ? expr : expr + _T(" and ");
+				result = expr.empty() ? _T("") : expr + _T(" and ");
 				*result += Exprs[command - ID_ADDCMPMENU_CMP_FIRST];
 			}
 			else if (command == ID_ADDCMPMENU_PROPS)
@@ -61,7 +61,7 @@ public:
 				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_ADDCMPMENU_PROPS_FIRST, _("Compare %1"));
 				if (resultProp.has_value())
 				{
-					result = expr.empty() ? expr : expr + _T(" and ");
+					result = expr.empty() ? _T("") : expr + _T(" and ");
 					*result += _T("allequal(prop(\"") + *resultProp + _T("\"))");
 				}
 			}
@@ -73,7 +73,7 @@ public:
 					_T("allequal(Date)"),
 					_T("allequal(Content)"),
 				};
-				result = expr.empty() ? expr : expr + _T(" and ");
+				result = expr.empty() ? _T("") : expr + _T(" and ");
 				*result += Exprs[command - ID_MOVEDETECTIONMENU_FIRST];
 			}
 			else if (command == ID_MOVEDETECTIONMENU_PROPS)
@@ -82,7 +82,7 @@ public:
 				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_MOVEDETECTIONMENU_PROPS_FIRST, _("Match %1"));
 				if (resultProp.has_value())
 				{
-					result = expr.empty() ? expr : expr + _T(" and ");
+					result = expr.empty() ? _T("") : expr + _T(" and ");
 					*result += _T("allequal(prop(\"") + *resultProp + _T("\"))");
 				}
 			}
@@ -204,6 +204,8 @@ BOOL PropCompareFolder::OnInitDialog()
 	
 	m_ctlAdditionalCompareCondition.LoadState(_T("Files\\AdditionalCompareCondition"));
 	m_ctlAdditionalCompareCondition.SetWindowText(m_sAdditionalCompareCondition.c_str());
+	m_ctlMoveDetectionCondition.LoadState(_T("Files\\MoveDetectionCondition"));
+	m_ctlMoveDetectionCondition.SetWindowText(m_sMoveDetectionCondition.c_str());
 
 	COMBOBOXINFO cbi{ sizeof(COMBOBOXINFO) };
 	GetComboBoxInfo(m_ctlAdditionalCompareCondition.m_hWnd, &cbi);

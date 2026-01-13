@@ -739,13 +739,13 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
 	{
 		const DIFFITEM& di = *it;
+		if (di.movedGroupId == -1)
+			bMovedRenamed = false;
 		if (di.diffcode.isDirectory())
 		{
 			bDirSelected = true;
 			break;
 		}
-		if (di.movedGroupId == -1)
-			bMovedRenamed = false;
 	}
 	if (GetDiffContext().m_bRecursive && bDirSelected)
 		pPopup->RemoveMenu(ID_MERGE_COMPARE, MF_BYCOMMAND);
@@ -4235,7 +4235,11 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 		// Get moved items for each pane
 		std::vector<std::vector<const DIFFITEM*>> movedItemsVec;
 		for (int nIndex = 0; nIndex < nDirs; ++nIndex)
+		{
 			movedItemsVec.push_back(ctxt.m_pMoveDetection->GetMovedItemsByDIFFITEM(ctxt, pdi, nIndex));
+			if (movedItemsVec[nIndex].empty())
+				movedItemsVec[nIndex].push_back(DIFFITEM::GetEmptyItem());
+		}
 		
 		// Generate all combinations of moved items
 		const DIFFITEM* pdiTmp[3];
@@ -4247,7 +4251,8 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 			
 			for (int nIndex = 0; nIndex < nDirs; ++nIndex)
 			{
-				paths.SetPath(nIndex, GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
+				paths.SetPath(nIndex, (pdiTmp[nIndex] == DIFFITEM::GetEmptyItem()) ?
+					_T("") : GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
 				encoding[nIndex] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
 				dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
 			}

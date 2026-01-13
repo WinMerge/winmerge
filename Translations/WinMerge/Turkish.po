@@ -3933,7 +3933,7 @@ msgstr ""
 msgid "Moved/Renamed"
 msgstr ""
 
-msgid "Moved(incomplete group)"
+msgid "Moved (incomplete group)"
 msgstr ""
 
 #, c-format

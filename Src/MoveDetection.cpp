@@ -160,7 +160,6 @@ const std::vector<const DIFFITEM*> MoveDetection::GetMovedItemsByDIFFITEM(const 
 		return items;
 	
 	const auto& movedItem = m_movedItems[pdi->movedGroupId];
-	const DIFFITEM* pdiTmp = nullptr;
 	
 	if (pdi->diffcode.exists(sideIndex))
 	{
