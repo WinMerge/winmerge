@@ -2655,6 +2655,9 @@ msgstr ""
 msgid "&Detect moved/renamed items after comparison:"
 msgstr ""
 
+msgid "&Merge renamed items into single item"
+msgstr ""
+
 msgid "File patterns:"
 msgstr ""
 
@@ -3877,6 +3880,9 @@ msgid "Renamed"
 msgstr ""
 
 msgid "Moved/Renamed"
+msgstr ""
+
+msgid "Moved (incomplete group)"
 msgstr ""
 
 #, c-format

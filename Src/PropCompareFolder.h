@@ -59,6 +59,7 @@ public:
 	String  m_sAdditionalCompareCondition;
 	bool    m_bMoveDetection;
 	String  m_sMoveDetectionCondition;
+	bool    m_bMergeMoveDetectedItems;
 	//}}AFX_DATA
 
 
@@ -77,6 +78,7 @@ protected:
 	afx_msg void OnDefaults() override;
 	afx_msg void OnCbnSelchangeComparemethodcombo();
 	afx_msg void OnBnClickedRecursCheck();
+	afx_msg void OnBnClickedDetectMovedItems();
 	afx_msg void OnEditChangeAdditionalCompareCondition();
 	afx_msg void OnBnClickedAdditionalCompareConditionMenu();
 	afx_msg void OnEditChangeMoveDetectionCondition();

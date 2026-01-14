@@ -113,6 +113,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_pAdditionalCompareCondition(new FilterExpression())
  , m_pMoveDetectionCondition(new FilterExpression())
  , m_bMoveDetection(false)
+ , m_bMergeMoveDetectedItems(false)
 {
 	BindOption(OPT_CMP_METHOD, m_compareMethod, IDC_COMPAREMETHODCOMBO, DDX_CBIndex);
 	BindOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst, IDC_COMPARE_STOPFIRST, DDX_Check);
@@ -129,6 +130,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOption(OPT_CMP_ADDITIONAL_CONDITION, m_sAdditionalCompareCondition, IDC_ADDTIONAL_COMPARE_CONDITION, DDX_CBStringExact);
 	BindOption(OPT_CMP_DETECT_MOVED_ITEMS, m_bMoveDetection, IDC_DETECT_MOVED_ITEMS, DDX_Check);
 	BindOption(OPT_CMP_MOVE_DETECTION_CONDITION, m_sMoveDetectionCondition, IDC_MOVE_DETECTION_CONDITION, DDX_CBStringExact);
+	BindOption(OPT_CMP_MERGE_MOVED_ITEMS, m_bMergeMoveDetectedItems, IDC_MERGE_MOVED_ITEMS, DDX_Check);
 }
 
 void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
@@ -152,6 +154,7 @@ BEGIN_MESSAGE_MAP(PropCompareFolder, OptionsPanel)
 	ON_CBN_EDITCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
 	ON_CBN_SELCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
 	ON_BN_CLICKED(IDC_ADDTIONAL_COMPARE_CONDITION_MENU, OnBnClickedAdditionalCompareConditionMenu)
+	ON_BN_CLICKED(IDC_DETECT_MOVED_ITEMS, OnBnClickedDetectMovedItems)
 	ON_CBN_EDITCHANGE(IDC_MOVE_DETECTION_CONDITION, OnEditChangeMoveDetectionCondition)
 	ON_CBN_SELCHANGE(IDC_MOVE_DETECTION_CONDITION, OnEditChangeMoveDetectionCondition)
 	ON_BN_CLICKED(IDC_MOVE_DETECTION_CONDITION_MENU, OnBnClickedMoveDetectionConditionMenu)
@@ -266,6 +269,11 @@ void PropCompareFolder::OnBnClickedRecursCheck()
 	UpdateControls();
 }
 
+void PropCompareFolder::OnBnClickedDetectMovedItems()
+{
+	UpdateControls();
+}
+
 void PropCompareFolder::OnEditChangeAdditionalCompareCondition()
 {
 	m_ctlAdditionalCompareConditionEdit.OnEnChange();
@@ -317,4 +325,5 @@ void PropCompareFolder::UpdateControls()
 	EnableDlgItem(IDC_COMPARE_THREAD_COUNT, sel <= 1 ? true : false); // true: fullcontent, quickcontent
 	EnableDlgItem(IDC_COMPARE_QUICKC_LIMIT, sel == 0 ? true : false); // true: fullcontent
 	EnableDlgItem(IDC_COMPARE_BINARYC_LIMIT, sel <= 1 ? true : false); // true: fullcontent, quickcontent
+	EnableDlgItem(IDC_MERGE_MOVED_ITEMS, IsDlgButtonChecked(IDC_DETECT_MOVED_ITEMS) == 1);
 }

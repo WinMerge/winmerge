@@ -2654,6 +2654,9 @@ msgstr "追加比較条件(&T):"
 msgid "&Detect moved/renamed items after comparison:"
 msgstr "移動/名前変更された項目を比較後に検出する(&D)"
 
+msgid "&Merge renamed items into single item"
+msgstr ""
+
 msgid "File patterns:"
 msgstr "ファイル パターン:"
 
@@ -3911,6 +3914,9 @@ msgstr "名前変更"
 
 msgid "Moved/Renamed"
 msgstr "移動/名前変更"
+
+msgid "Moved (incomplete group)"
+msgstr ""
 
 #, c-format
 msgid "(%1 items)"

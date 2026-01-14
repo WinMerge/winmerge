@@ -126,6 +126,8 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 	if (!m_pMoveDetectionExpression)
 		return;
 
+	m_isDetecting.store(true);
+
 	// Create new MovedItemsArray for this detection run
 	auto newMovedItems = std::make_shared<MovedItemsArray>();
 
@@ -154,13 +156,15 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 
 	// Atomically replace the old MovedItemsArray with the new one
 	std::atomic_store(&m_pMovedItems, newMovedItems);
+
+	m_isDetecting.store(false);
 }
 
 std::vector<const DIFFITEM*> MoveDetection::GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const
 {
 	std::vector<const DIFFITEM*> items;
 
-	if (pdi == nullptr || pdi->movedGroupId == -1)
+	if (IsDetecting() || pdi == nullptr || pdi->movedGroupId == -1)
 		return items;
 	
 	// Get a local copy of the shared_ptr to prevent it from being deleted during access
@@ -204,7 +208,7 @@ void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 	while (diffpos != nullptr)
 	{
 		DIFFITEM& di = ctxt.GetNextDiffRefPosition(diffpos);
-		if (di.movedGroupId != -1 && itemsToDelete.find(&di) != itemsToDelete.end())
+		if (di.movedGroupId != -1 && itemsToDelete.find(&di) == itemsToDelete.end())
 		{
 			auto& movedItemGroup = (*movedItems)[di.movedGroupId];
 			for (int i = 0; i < nDirs; ++i)
@@ -220,6 +224,8 @@ void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 				CopyDiffItemPartially(di, i, *pdi2, i);
 				MoveDiffItemPartially(di, i, *pdi2, i);
 				di.diffcode.setSideFlag(i);
+				di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY | DIFFCODE::EXPRFLAGS);
+				di.diffcode.diffcode |= DIFFCODE::NEEDSCAN;
 				di.movedGroupId = -1;
 				itemsToDelete.insert(pdi2);
 			}
@@ -228,6 +234,16 @@ void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 	for (DIFFITEM* pdi : itemsToDelete)
 	{
 		pdi->DelinkFromSiblings();
+		auto& movedItemGroup = (*movedItems)[pdi->movedGroupId];
+		for (int i = 0; i < nDirs; ++i)
+		{
+			auto it = movedItemGroup.find(i);
+			if (it != movedItemGroup.end())
+			{
+				auto vec = it->second;
+				vec.erase(std::remove(vec.begin(), vec.end(), pdi), vec.end());
+			}
+		}
 		delete pdi;
 	}
 }

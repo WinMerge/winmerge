@@ -152,6 +152,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_ADDITIONAL_CONDITION, _T(""));
 	pOptions->InitOption(OPT_CMP_DETECT_MOVED_ITEMS, false);
 	pOptions->InitOption(OPT_CMP_MOVE_DETECTION_CONDITION, _T(""));
+	pOptions->InitOption(OPT_CMP_MERGE_MOVED_ITEMS, false);
 
 	pOptions->InitOption(OPT_CMP_BIN_FILEPATTERNS, _T("*.bin;*.frx"));
 

@@ -2883,6 +2883,7 @@ BEGIN
     CONTROL         "&Detect moved/renamed items after comparison:",IDC_DETECT_MOVED_ITEMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,228,279,10
     COMBOBOX        IDC_MOVE_DETECTION_CONDITION,6,240,302,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&=",IDC_MOVE_DETECTION_CONDITION_MENU,308,240,14,14
+    CONTROL         "&Merge renamed items into single item",IDC_MERGE_MOVED_ITEMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,256,279,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 
@@ -3702,6 +3703,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     100, 0, 0, 0,
+    0, 0, 100, 0,
     100, 0, 0, 0
 END
 
@@ -4607,6 +4609,7 @@ BEGIN
     IDS_MOVED_MOVED         "Moved"
     IDS_MOVED_RENAMED       "Renamed"
     IDS_MOVED_MOVED_RENAMED "Moved/Renamed"
+    IDS_MOVED_INCOMPLETE    "Moved (incomplete group)"
     IDS_MOVED_ITEMS         "(%1 items)"
     IDS_MOVED_RESULT        "%1 (set %2): "
 END

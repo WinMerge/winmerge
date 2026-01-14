@@ -2676,9 +2676,9 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	// Since the Collect thread deletes the DiffItems in the rescan by "Update selection",
 	// the UI update process should not be executed until the Collect thread process is completed 
 	// to avoid accessing the deleted DiffItem.
-	if (pDoc->m_diffThread.IsMarkedRescan() && pDoc->m_diffThread.GetCollectThreadState() != CDiffThread::THREAD_COMPLETED)
+	if ((pDoc->m_diffThread.IsMarkedRescan() || pDoc->GetDiffContext().m_pMoveDetection) &&
+	     pDoc->m_diffThread.GetCollectThreadState() != CDiffThread::THREAD_COMPLETED)
 	{
-		ASSERT(0);
 		return 0;	// return value unused
 	}
 

@@ -487,7 +487,17 @@ void CDirDoc::Rescan()
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			DirScan_CompareItems(myStruct, nullptr);
 			if (myStruct->context->m_pMoveDetection)
+			{
 				myStruct->context->m_pMoveDetection->Detect(*myStruct->context);
+				if (GetOptionsMgr()->GetBool(OPT_CMP_MERGE_MOVED_ITEMS))
+				{
+					myStruct->context->m_pMoveDetection->MergeMovedItems(*myStruct->context);
+					int nItems = DirScan_UpdateMarkedItems(myStruct, nullptr);
+					myStruct->context->m_pCompareStats->IncreaseTotalItems(nItems);
+					myStruct->pSemaphore->set();
+					DirScan_CompareRequestedItems(myStruct, nullptr);
+				}
+			}
 		});
 		m_diffThread.SetMarkedRescan(false);
 	}
