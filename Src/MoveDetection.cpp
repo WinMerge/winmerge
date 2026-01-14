@@ -213,7 +213,7 @@ void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 			auto& movedItemGroup = (*movedItems)[di.movedGroupId];
 			for (int i = 0; i < nDirs; ++i)
 			{
-				if (di.diffcode.exists(i) || di.diffcode.isDirectory())
+				if (di.diffcode.exists(i))
 					continue;
 				auto it = movedItemGroup.find(i);
 				if (it == movedItemGroup.end() || it->second.size() != 1)
@@ -221,6 +221,18 @@ void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 				auto pdi2 = it->second[0];
 				if (di.GetParentLink() != pdi2->GetParentLink())
 					continue;
+				// If the item to be deleted has children, reparent them
+				if (pdi2->HasChildren())
+				{
+					DIFFITEM* child = pdi2->GetFirstChild();
+					while (child != nullptr)
+					{
+						DIFFITEM* nextChild = child->GetFwdSiblingLink();
+						child->DelinkFromSiblings();
+						di.AddChildToParent(child);
+						child = nextChild;
+					}
+				}
 				CopyDiffItemPartially(di, i, *pdi2, i);
 				MoveDiffItemPartially(di, i, *pdi2, i);
 				di.diffcode.setSideFlag(i);
