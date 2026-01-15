@@ -1,15 +1,13 @@
 #pragma once
 
-#include "UnicodeString.h"
 #include <vector>
-#include <map>
 #include <memory>
 
 class CDiffContext;
 class DIFFITEM;
 struct FilterExpression;
 
-using MovedItemsArray = std::vector<std::map<int, std::vector<DIFFITEM*>>>;
+using MovedItemGroups = std::vector<std::array<std::vector<DIFFITEM*>, 3>>;
 
 class MoveDetection
 {
@@ -20,16 +18,14 @@ public:
 	FilterExpression* GetMoveDetectionExpression() const { return m_pMoveDetectionExpression.get(); }
 	void SetMoveDetectionExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt);
-	
-	std::shared_ptr<const MovedItemsArray> GetMovedItems() const { return std::atomic_load(&m_pMovedItems); }
-	std::vector<const DIFFITEM*> GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const;
 	void MergeMovedItems(CDiffContext& ctxt);
-	bool IsDetecting() const { return m_isDetecting.load(); }
+	std::shared_ptr<const MovedItemGroups> GetMovedItemGroups() const { return std::atomic_load(&m_pMovedItemGroups); }
+	std::vector<const DIFFITEM*> GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM& di, int sideIndex) const;
+	void CheckMovedOrRenamed(const CDiffContext& ctxt, const DIFFITEM& di, bool& moved, bool& renamed) const;
 
 private:
-	void DetectMovedItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemsArray& movedItems);
+	void DetectMovedItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemGroups& movedItemGroups);
 
-	std::atomic<bool> m_isDetecting{ false };
 	std::unique_ptr<FilterExpression> m_pMoveDetectionExpression;
-	std::shared_ptr<MovedItemsArray> m_pMovedItems;
+	std::shared_ptr<MovedItemGroups> m_pMovedItemGroups;
 };

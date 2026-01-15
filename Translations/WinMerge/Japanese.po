@@ -3915,9 +3915,6 @@ msgstr "名前変更"
 msgid "Moved/Renamed"
 msgstr "移動/名前変更"
 
-msgid "Moved (incomplete group)"
-msgstr ""
-
 #, c-format
 msgid "(%1 items)"
 msgstr "(%1 項目)"

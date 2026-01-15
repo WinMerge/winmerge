@@ -329,39 +329,13 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
  */
 static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
-	if (!pCtxt->m_pMoveDetection || pCtxt->m_pMoveDetection->IsDetecting())
-		return _("Moved (incomplete group)");
-
 	const int nDirs = pCtxt->GetCompareDirs();
 	const String group = strutils::to_str(di.movedGroupId + 1);
-
-	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
-
-	for (int side = 0; side < nDirs; ++side)
-		sideItems[side] = pCtxt->m_pMoveDetection->GetMovedGroupItemsForSide(*pCtxt, &di, side);
 
 	// ---- moved / renamed detection ----
 	bool moved = false;
 	bool renamed = false;
-
-	for (size_t i = 0; i < sideItems.size(); ++i)
-	{
-		for (size_t j = i + 1; j < sideItems.size(); ++j)
-		{
-			for (size_t k = 0; k < sideItems[i].size(); ++k)
-			{
-				const auto* a = sideItems[i][k];
-				for (size_t l = 0; l < sideItems[j].size(); ++l)
-				{
-					const auto* b = sideItems[j][l];
-					if (a->GetParentLink() == b->GetParentLink() && a->diffFileInfo[i].filename != b->diffFileInfo[j].filename)
-						renamed = true;
-					if (a->GetParentLink() != b->GetParentLink() && a->diffFileInfo[i].filename == b->diffFileInfo[j].filename)
-						moved = true;
-				}
-			}
-		}
-	}
+	pCtxt->m_pMoveDetection->CheckMovedOrRenamed(*pCtxt, di, moved, renamed);
 
 	String label;
 	if (renamed && !moved)
@@ -372,6 +346,10 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 		label = _("Moved/Renamed");
 
 	// ---- format output ----
+	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
+	for (int side = 0; side < nDirs; ++side)
+		sideItems[side] = pCtxt->m_pMoveDetection->GetMovedGroupItemsForSide(*pCtxt, di, side);
+
 	auto fmt = [&sideItems](int i) -> String {
 		if (sideItems[i].empty() || sideItems[i].size() > 1)
 			return strutils::format_string1(_("(%1 items)"), strutils::to_str(sideItems[i].size()));
@@ -382,7 +360,7 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	for (int i = 0; i < nDirs; ++i)
 	{
 		if (i > 0)
-			files += _T(" - ");
+			files += _T(" | ");
 		files += fmt(i);
 	}
 

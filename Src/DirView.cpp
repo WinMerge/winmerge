@@ -2676,11 +2676,13 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	// Since the Collect thread deletes the DiffItems in the rescan by "Update selection",
 	// the UI update process should not be executed until the Collect thread process is completed 
 	// to avoid accessing the deleted DiffItem.
-	if ((pDoc->m_diffThread.IsMarkedRescan() || pDoc->GetDiffContext().m_pMoveDetection) &&
-	     pDoc->m_diffThread.GetCollectThreadState() != CDiffThread::THREAD_COMPLETED)
+	if (pDoc->m_diffThread.IsMarkedRescan() && pDoc->m_diffThread.GetCollectThreadState() != CDiffThread::THREAD_COMPLETED)
 	{
+		ASSERT(0);
 		return 0;	// return value unused
 	}
+	if (pDoc->GetDiffContext().m_pMoveDetection && pDoc->m_diffThread.GetThreadState() != CDiffThread::THREAD_COMPLETED)
+		return 0;
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
@@ -4236,7 +4238,7 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 		std::vector<std::vector<const DIFFITEM*>> movedItemsVec;
 		for (int nIndex = 0; nIndex < nDirs; ++nIndex)
 		{
-			movedItemsVec.push_back(ctxt.m_pMoveDetection->GetMovedGroupItemsForSide(ctxt, pdi, nIndex));
+			movedItemsVec.push_back(ctxt.m_pMoveDetection->GetMovedGroupItemsForSide(ctxt, *pdi, nIndex));
 			if (movedItemsVec[nIndex].empty())
 				movedItemsVec[nIndex].push_back(DIFFITEM::GetEmptyItem());
 		}
@@ -4838,7 +4840,9 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 	// return compare result, considering sort direction
 	String rs = ldi.diffFileInfo[0].filename;
 	String ss = rdi.diffFileInfo[0].filename;
+#ifdef _DEBUG
 	OutputDebugString(strutils::format(_T("Comparing all properties for '%s' and '%s' ret=%d\n"), rs.c_str(), ss.c_str(), retVal).c_str());
+#endif
 	return pThis->bSortAscending ? retVal : -retVal;
 }
 

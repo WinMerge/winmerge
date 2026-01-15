@@ -7,6 +7,7 @@
 #include "DiffItem.h"
 #include "DiffContext.h"
 #include "FilterEngine/FilterExpression.h"
+#include "CompareStats.h"
 #include <set>
 
 static void CopyDiffItemPartially(DIFFITEM& dst, int dstindex, DIFFITEM& src, int srcindex)
@@ -42,36 +43,36 @@ static bool EvaluatePair(DIFFITEM* pdi0, int i0, DIFFITEM* pdi1, int i1, FilterE
 	return found;
 }
 
-static void ProcessPair(DIFFITEM* pdi0, int idx0, DIFFITEM* pdi1, int idx1, FilterExpression* pExpression, MovedItemsArray& movedItems)
+static void ProcessPair(DIFFITEM* pdi0, int idx0, DIFFITEM* pdi1, int idx1, FilterExpression* pExpression, MovedItemGroups& movedItems)
 {
-	if (EvaluatePair(pdi0, idx0, pdi1, idx1, pExpression))
+	if (!EvaluatePair(pdi0, idx0, pdi1, idx1, pExpression))
+		return;
+	
+	if (pdi0->movedGroupId != -1 && pdi1->movedGroupId == -1)
 	{
-		if (pdi0->movedGroupId != -1 && pdi1->movedGroupId == -1)
-		{
-			int existingGroupId = pdi0->movedGroupId;
-			pdi1->movedGroupId = existingGroupId;
-			movedItems[existingGroupId][idx1].push_back(pdi1);
-		}
-		else if (pdi0->movedGroupId == -1 && pdi1->movedGroupId != -1)
-		{
-			int existingGroupId = pdi1->movedGroupId;
-			pdi0->movedGroupId = existingGroupId;
-			movedItems[existingGroupId][idx0].push_back(pdi0);
-		}
-		else if (pdi0->movedGroupId == -1 && pdi1->movedGroupId == -1)
-		{
-			movedItems.emplace_back();
-			int movedGroupId = static_cast<int>(movedItems.size() - 1);
-			pdi0->movedGroupId = movedGroupId;
-			pdi1->movedGroupId = movedGroupId;
-			movedItems[movedGroupId][idx0].push_back(pdi0);
-			movedItems[movedGroupId][idx1].push_back(pdi1);
-		}
+		int existingGroupId = pdi0->movedGroupId;
+		pdi1->movedGroupId = existingGroupId;
+		movedItems[existingGroupId][idx1].push_back(pdi1);
+	}
+	else if (pdi0->movedGroupId == -1 && pdi1->movedGroupId != -1)
+	{
+		int existingGroupId = pdi1->movedGroupId;
+		pdi0->movedGroupId = existingGroupId;
+		movedItems[existingGroupId][idx0].push_back(pdi0);
+	}
+	else if (pdi0->movedGroupId == -1 && pdi1->movedGroupId == -1)
+	{
+		movedItems.emplace_back();
+		int movedGroupId = static_cast<int>(movedItems.size() - 1);
+		pdi0->movedGroupId = movedGroupId;
+		pdi1->movedGroupId = movedGroupId;
+		movedItems[movedGroupId][idx0].push_back(pdi0);
+		movedItems[movedGroupId][idx1].push_back(pdi1);
 	}
 }
 
 MoveDetection::MoveDetection()
-	: m_pMovedItems(std::make_shared<MovedItemsArray>())
+	: m_pMovedItemGroups(std::make_shared<MovedItemGroups>())
 {
 }
 
@@ -85,38 +86,53 @@ void MoveDetection::SetMoveDetectionExpression(const FilterExpression* expr)
 }
 
 void MoveDetection::DetectMovedItemsBetweenSides(
-	const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemsArray& movedItems)
+	const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemGroups& movedItems)
 {
 	PathContext paths(ctxt.GetPath(side0), ctxt.GetPath(side1));
 	CDiffContext ctxtTmp(paths, ctxt.GetCompareMethod());
 	m_pMoveDetectionExpression->SetDiffContext(&ctxtTmp);
 
-	for (DIFFITEM* pdi0 : unmatchedItems)
+	for (size_t i = 0; i < unmatchedItems.size(); ++i)
 	{
+		DIFFITEM* pdi0 = unmatchedItems[i];
+
+		if (ctxt.m_pCompareStats)
+		{
+			ctxt.m_pCompareStats->BeginCompare(pdi0, 0);
+			ctxt.m_pCompareStats->AddItem(-1);
+		}
+
 		if (!pdi0->diffcode.exists(side0) && !pdi0->diffcode.exists(side1))
 			continue;
 		
 		const int idx0 = pdi0->diffcode.exists(side0) ? side0 : side1;
-		const bool isfolder = pdi0->diffcode.isDirectory();
+		const bool pdi0IsFolder = pdi0->diffcode.isDirectory();
+		const bool pdi0ExistsSide0 = pdi0->diffcode.exists(side0);
+		const bool pdi0ExistsSide1 = pdi0->diffcode.exists(side1);
 		
-		for (DIFFITEM* pdi1 : unmatchedItems)
+		for (size_t j = i + 1; j < unmatchedItems.size(); ++j)
 		{
 			if (ctxt.ShouldAbort())
 				return;
 			
-			if ((!pdi1->diffcode.exists(side0) && !pdi1->diffcode.exists(side1)) ||
-			    ( pdi0->diffcode.exists(side0) &&  pdi1->diffcode.exists(side0)) ||
-			    ( pdi1->diffcode.exists(side1) &&  pdi0->diffcode.exists(side1)))
+			DIFFITEM* pdi1 = unmatchedItems[j];
+			const int idx1 = pdi1->diffcode.exists(side0) ? side0 : side1;
+
+			if (idx0 == idx1)
 				continue;
 			
-			if (pdi0 != pdi1 && isfolder == pdi1->diffcode.isDirectory())
-			{
-				const int idx1 = pdi1->diffcode.exists(side0) ? side0 : side1;
-				if (idx0 != idx1)
-				{
-					ProcessPair(pdi0, idx0, pdi1, idx1, m_pMoveDetectionExpression.get(), movedItems);
-				}
-			}
+			if (pdi0 == pdi1 || pdi0IsFolder != pdi1->diffcode.isDirectory())
+				continue;
+
+			if (pdi0->movedGroupId != -1 && pdi1->movedGroupId != -1)
+				continue;
+
+			if ((!pdi1->diffcode.exists(side0) && !pdi1->diffcode.exists(side1)) ||
+			    ( pdi0ExistsSide0              &&  pdi1->diffcode.exists(side0)) ||
+			    ( pdi1->diffcode.exists(side1) &&  pdi0ExistsSide1            ))
+				continue;
+			
+			ProcessPair(pdi0, idx0, pdi1, idx1, m_pMoveDetectionExpression.get(), movedItems);
 		}
 	}
 }
@@ -126,10 +142,8 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 	if (!m_pMoveDetectionExpression)
 		return;
 
-	m_isDetecting.store(true);
-
-	// Create new MovedItemsArray for this detection run
-	auto newMovedItems = std::make_shared<MovedItemsArray>();
+	// Create new MovedItemGroups for this detection run
+	auto newMovedItems = std::make_shared<MovedItemGroups>();
 
 	// Collect all unmatched items
 	std::vector<DIFFITEM*> unmatchedItems;
@@ -140,6 +154,9 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 		if (di.movedGroupId == -1 && !di.diffcode.existAll())
 			unmatchedItems.push_back(&di);
 	}
+
+	if (ctxt.m_pCompareStats)
+		ctxt.m_pCompareStats->IncreaseTotalItems(static_cast<int>(unmatchedItems.size()) * (ctxt.GetCompareDirs() > 2 ? 3 : 1));
 
 	// Detect moved items between side 0 and 1
 	DetectMovedItemsBetweenSides(unmatchedItems, 0, 1, ctxt, *newMovedItems);
@@ -154,52 +171,14 @@ void MoveDetection::Detect(CDiffContext& ctxt)
 		DetectMovedItemsBetweenSides(unmatchedItems, 0, 2, ctxt, *newMovedItems);
 	}
 
-	// Atomically replace the old MovedItemsArray with the new one
-	std::atomic_store(&m_pMovedItems, newMovedItems);
-
-	m_isDetecting.store(false);
-}
-
-std::vector<const DIFFITEM*> MoveDetection::GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM* pdi, int sideIndex) const
-{
-	std::vector<const DIFFITEM*> items;
-
-	if (IsDetecting() || pdi == nullptr || pdi->movedGroupId == -1)
-		return items;
-	
-	// Get a local copy of the shared_ptr to prevent it from being deleted during access
-	auto movedItems = std::atomic_load(&m_pMovedItems);
-	if (!movedItems || pdi->movedGroupId >= static_cast<int>(movedItems->size()))
-		return items;
-	
-	const auto& movedItem = (*movedItems)[pdi->movedGroupId];
-	
-	if (pdi->diffcode.exists(sideIndex))
-	{
-		items.push_back(pdi);
-	}
-	else
-	{
-		for (int i = 0; i < ctxt.GetCompareDirs(); i++)
-		{
-			auto it = movedItem.find(i);
-			if (it != movedItem.end() && !it->second.empty())
-			{
-				for (auto pdi2: it->second)
-				{
-					if (pdi2->diffcode.exists(sideIndex))
-						items.push_back(pdi2);
-				}
-			}
-		}
-	}
-	return items;
+	// Atomically replace the old MovedItemGroups with the new one
+	std::atomic_store(&m_pMovedItemGroups, newMovedItems);
 }
 
 void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 {
-	auto movedItems = std::atomic_load(&m_pMovedItems);
-	if (!movedItems || movedItems->empty())
+	auto movedItemGroups = std::atomic_load(&m_pMovedItemGroups);
+	if (!movedItemGroups || movedItemGroups->empty())
 		return;
 
 	std::set<DIFFITEM*> itemsToDelete;
@@ -210,15 +189,14 @@ void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 		DIFFITEM& di = ctxt.GetNextDiffRefPosition(diffpos);
 		if (di.movedGroupId != -1 && itemsToDelete.find(&di) == itemsToDelete.end())
 		{
-			auto& movedItemGroup = (*movedItems)[di.movedGroupId];
+			auto& movedItemGroup = (*movedItemGroups)[di.movedGroupId];
 			for (int i = 0; i < nDirs; ++i)
 			{
 				if (di.diffcode.exists(i))
 					continue;
-				auto it = movedItemGroup.find(i);
-				if (it == movedItemGroup.end() || it->second.size() != 1)
+				if (movedItemGroup[i].size() != 1)
 					continue;
-				auto pdi2 = it->second[0];
+				auto pdi2 = movedItemGroup[i][0];
 				if (di.GetParentLink() != pdi2->GetParentLink())
 					continue;
 				// If the item to be deleted has children, reparent them
@@ -246,17 +224,76 @@ void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 	for (DIFFITEM* pdi : itemsToDelete)
 	{
 		pdi->DelinkFromSiblings();
-		auto& movedItemGroup = (*movedItems)[pdi->movedGroupId];
+		auto& movedItemGroup = (*movedItemGroups)[pdi->movedGroupId];
 		for (int i = 0; i < nDirs; ++i)
 		{
-			auto it = movedItemGroup.find(i);
-			if (it != movedItemGroup.end())
-			{
-				auto vec = it->second;
-				vec.erase(std::remove(vec.begin(), vec.end(), pdi), vec.end());
-			}
+			auto vec = movedItemGroup[i];
+			vec.erase(std::remove(vec.begin(), vec.end(), pdi), vec.end());
 		}
 		delete pdi;
 	}
 }
 
+std::vector<const DIFFITEM*> MoveDetection::GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM& di, int sideIndex) const
+{
+	std::vector<const DIFFITEM*> items;
+
+	if (di.movedGroupId == -1)
+		return items;
+	
+	// Get a local copy of the shared_ptr to prevent it from being deleted during access
+	auto movedItemGroups = std::atomic_load(&m_pMovedItemGroups);
+	if (!movedItemGroups || di.movedGroupId >= static_cast<int>(movedItemGroups->size()))
+		return items;
+	
+	const auto& movedItemGroup = (*movedItemGroups)[di.movedGroupId];
+	
+	if (di.diffcode.exists(sideIndex))
+	{
+		items.push_back(&di);
+	}
+	else
+	{
+		for (int i = 0; i < ctxt.GetCompareDirs(); i++)
+		{
+			for (auto pdi2: movedItemGroup[i])
+			{
+				if (pdi2->diffcode.exists(sideIndex))
+					items.push_back(pdi2);
+			}
+		}
+	}
+	return items;
+}
+
+void MoveDetection::CheckMovedOrRenamed(const CDiffContext& ctxt, const DIFFITEM& di, bool& moved, bool& renamed) const
+{
+	const int nDirs = ctxt.GetCompareDirs();
+	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
+
+	for (int side = 0; side < nDirs; ++side)
+		sideItems[side] = GetMovedGroupItemsForSide(ctxt, di, side);
+
+	// ---- moved / renamed detection ----
+	moved = false;
+	renamed = false;
+
+	for (size_t i = 0; i < sideItems.size(); ++i)
+	{
+		for (size_t j = i + 1; j < sideItems.size(); ++j)
+		{
+			for (size_t k = 0; k < sideItems[i].size(); ++k)
+			{
+				const auto* a = sideItems[i][k];
+				for (size_t l = 0; l < sideItems[j].size(); ++l)
+				{
+					const auto* b = sideItems[j][l];
+					if (a->GetParentLink() == b->GetParentLink() && a->diffFileInfo[i].filename != b->diffFileInfo[j].filename)
+						renamed = true;
+					if (a->GetParentLink() != b->GetParentLink() && a->diffFileInfo[i].filename == b->diffFileInfo[j].filename)
+						moved = true;
+				}
+			}
+		}
+	}
+}

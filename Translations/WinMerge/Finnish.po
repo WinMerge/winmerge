@@ -3903,9 +3903,6 @@ msgstr ""
 msgid "Moved/Renamed"
 msgstr ""
 
-msgid "Moved (incomplete group)"
-msgstr ""
-
 #, c-format
 msgid "(%1 items)"
 msgstr ""
