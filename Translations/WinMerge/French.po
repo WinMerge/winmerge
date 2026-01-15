@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-12-29 12:06+0100\n"
+"PO-Revision-Date: 2026-01-15 14:54+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -566,7 +566,7 @@ msgid "Swap 1st | &3rd"
 msgstr "Intervertir 1er | &3ème"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "Afficher la barre de &filtrage\tCtrl+Shift+L"
 
 msgid "Com&pare Statistics..."
 msgstr "Statistiques des com&paraisons..."
@@ -1507,28 +1507,28 @@ msgid "Add F&older Condition"
 msgstr "Ajouter une condition de d&ossier"
 
 msgid "&Files"
-msgstr ""
+msgstr "&Fichiers"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 fichier"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 fichier ou plus"
 
 msgid "&Items"
-msgstr ""
+msgstr "&Éléments"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 élément"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 élément ou plus"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "&Taille totale"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "&Récursif"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Cible : &Tout (Gauche/Milieu/Droite)"
