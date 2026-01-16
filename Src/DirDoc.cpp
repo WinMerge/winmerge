@@ -45,6 +45,7 @@
 #include "DirViewColItems.h"
 #include "MoveDetection.h"
 #include <Poco/Semaphore.h>
+#include <set>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -230,26 +231,27 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	LoadLineFilterList(pCtxt);
 	LoadSubstitutionFiltersList(pCtxt);
 
+	auto* pOptions = GetOptionsMgr();
 	DIFFOPTIONS options = {0};
-	Options::DiffOptions::Load(GetOptionsMgr(), options);
+	Options::DiffOptions::Load(pOptions, options);
 
-	pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
+	pCtxt->CreateCompareOptions(pOptions->GetInt(OPT_CMP_METHOD), options);
 
-	pCtxt->m_iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+	pCtxt->m_iGuessEncodingType = pOptions->GetInt(OPT_CP_DETECT);
 	if ((pCtxt->m_iGuessEncodingType >> 16) == 0)
 		pCtxt->m_iGuessEncodingType |= 50001 << 16;
-	pCtxt->m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
-	pCtxt->m_bStopAfterFirstDiff = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
-	pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
-	pCtxt->m_nBinaryCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_BINARY_LIMIT);
-	pCtxt->m_bPluginsEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
-	pCtxt->m_bWalkUniques = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
-	pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
-	pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
-	pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
-	pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
+	pCtxt->m_bIgnoreSmallTimeDiff = pOptions->GetBool(OPT_IGNORE_SMALL_FILETIME);
+	pCtxt->m_bStopAfterFirstDiff = pOptions->GetBool(OPT_CMP_STOP_AFTER_FIRST);
+	pCtxt->m_nQuickCompareLimit = pOptions->GetInt(OPT_CMP_QUICK_LIMIT);
+	pCtxt->m_nBinaryCompareLimit = pOptions->GetInt(OPT_CMP_BINARY_LIMIT);
+	pCtxt->m_bPluginsEnabled = pOptions->GetBool(OPT_PLUGINS_ENABLED);
+	pCtxt->m_bWalkUniques = pOptions->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
+	pCtxt->m_bIgnoreReparsePoints = pOptions->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
+	pCtxt->m_bIgnoreCodepage = pOptions->GetBool(OPT_CMP_IGNORE_CODEPAGE);
+	pCtxt->m_bEnableImageCompare = pOptions->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
+	pCtxt->m_dColorDistanceThreshold = pOptions->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
 
-	m_imgfileFilter.SetMaskOrExpression(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	m_imgfileFilter.SetMaskOrExpression(pOptions->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	pCtxt->m_pImgfileFilter = &m_imgfileFilter;
 
 	pCtxt->m_pCompareStats = m_pCompareStats.get();
@@ -262,7 +264,7 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_piFilterGlobal->SetDiffContext(pCtxt);
 	
 	pCtxt->m_pAdditionalCompareExpression.reset();
-	const String additionalCompareCondition = GetOptionsMgr()->GetString(OPT_CMP_ADDITIONAL_CONDITION);
+	const String additionalCompareCondition = pOptions->GetString(OPT_CMP_ADDITIONAL_CONDITION);
 	if (!additionalCompareCondition.empty())
 	{
 		pCtxt->m_pAdditionalCompareExpression = std::make_unique<FilterExpression>(ucr::toUTF8(additionalCompareCondition));
@@ -270,42 +272,34 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	}
 
 	pCtxt->m_pMoveDetection.reset();
-	if (GetOptionsMgr()->GetBool(OPT_CMP_DETECT_MOVED_ITEMS))
+	if (pOptions->GetBool(OPT_CMP_DETECT_MOVED_ITEMS))
 	{
 		pCtxt->m_pMoveDetection = std::make_unique<MoveDetection>();
-		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
-		const String moveDetectionExpression = GetOptionsMgr()->GetString(OPT_CMP_MOVE_DETECTION_CONDITION);
+		const String moveDetectionExpression = pOptions->GetString(OPT_CMP_MOVE_DETECTION_CONDITION);
 		if (!moveDetectionExpression.empty())
 		{
-			pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
+			auto pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
 			pMoveDetectionExpression->SetDiffContext(pCtxt);
+			pCtxt->m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
 		}
-		pCtxt->m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
 	}
 
-	std::vector<String> names;
+	std::set<String> nameSet;
 	if (m_pDirView)
-		names = m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames();
-	std::vector<String> names2 = pGlobalFileFilter->GetPropertyNames();
-	for (const auto& name : names2)
-	{
-		if (std::find(std::begin(names), std::end(names), name) == std::end(names))
-			names.push_back(name);
-	}
+		for (const auto& name : m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames())
+			nameSet.insert(name);
+	for (const auto& name : pGlobalFileFilter->GetPropertyNames())
+		nameSet.insert(name);
 	if (pCtxt->m_pAdditionalCompareExpression)
-	{
-		const auto names3 = pCtxt->m_pAdditionalCompareExpression->GetPropertyNames();
-		for (const auto& name : names3)
-		{
-			String tname = ucr::toTString(name);
-			if (std::find(std::begin(names), std::end(names), tname) == std::end(names))
-				names.push_back(tname);
-		}
-	}
+		for (const auto& name : pCtxt->m_pAdditionalCompareExpression->GetPropertyNames())
+			nameSet.insert(ucr::toTString(name));
+	if (pCtxt->m_pMoveDetection)
+		for (const auto& name : pCtxt->m_pMoveDetection->GetMoveDetectionExpression()->GetPropertyNames())
+			nameSet.insert(ucr::toTString(name));
+	std::vector<String> names(nameSet.begin(), nameSet.end());
 	pCtxt->m_pPropertySystem.reset(new PropertySystem(names));
 
-	// All plugin management is done by our plugin manager
-	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
+	pCtxt->m_piPluginInfos = pOptions->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 
 	CheckFilter();
 	FilterExpression::SetLogger([](int level, const std::string& msg) {

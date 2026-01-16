@@ -227,7 +227,7 @@ void MoveDetection::MergeMovedItems(CDiffContext& ctxt)
 		auto& movedItemGroup = (*movedItemGroups)[pdi->movedGroupId];
 		for (int i = 0; i < nDirs; ++i)
 		{
-			auto vec = movedItemGroup[i];
+			auto& vec = movedItemGroup[i];
 			vec.erase(std::remove(vec.begin(), vec.end(), pdi), vec.end());
 		}
 		delete pdi;

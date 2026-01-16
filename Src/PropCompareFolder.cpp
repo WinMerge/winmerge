@@ -52,8 +52,8 @@ public:
 					_T("allequal(Attributes)"),
 					_T("allequal(Content)"),
 				};
-				result = expr.empty() ? _T("") : expr + _T(" and ");
-				*result += Exprs[command - ID_ADDCMPMENU_CMP_FIRST];
+				String newExpr = Exprs[command - ID_ADDCMPMENU_CMP_FIRST];
+				result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
 			}
 			else if (command == ID_ADDCMPMENU_PROPS)
 			{
@@ -61,8 +61,8 @@ public:
 				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_ADDCMPMENU_PROPS_FIRST, _("Compare %1"));
 				if (resultProp.has_value())
 				{
-					result = expr.empty() ? _T("") : expr + _T(" and ");
-					*result += _T("allequal(prop(\"") + *resultProp + _T("\"))");
+					String newExpr = _T("allequal(prop(\"") + *resultProp + _T("\"))");
+					result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
 				}
 			}
 			else if (command >= ID_MOVEDETECTIONMENU_FIRST && command <= ID_MOVEDETECTIONMENU_LAST)
@@ -73,8 +73,8 @@ public:
 					_T("allequal(Date)"),
 					_T("allequal(Content)"),
 				};
-				result = expr.empty() ? _T("") : expr + _T(" and ");
-				*result += Exprs[command - ID_MOVEDETECTIONMENU_FIRST];
+				String newExpr = Exprs[command - ID_MOVEDETECTIONMENU_FIRST];
+				result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
 			}
 			else if (command == ID_MOVEDETECTIONMENU_PROPS)
 			{
@@ -82,8 +82,8 @@ public:
 				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_MOVEDETECTIONMENU_PROPS_FIRST, _("Match %1"));
 				if (resultProp.has_value())
 				{
-					result = expr.empty() ? _T("") : expr + _T(" and ");
-					*result += _T("allequal(prop(\"") + *resultProp + _T("\"))");
+					String newExpr = _T("allequal(prop(\"") + *resultProp + _T("\"))");
+					result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
 				}
 			}
 		}
