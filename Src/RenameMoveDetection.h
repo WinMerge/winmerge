@@ -19,7 +19,7 @@ public:
 	void SetMoveDetectionExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt, bool doMoveDetection);
 	void Merge(CDiffContext& ctxt);
-	std::shared_ptr<const MovedItemGroups> GetMovedItemGroups() const { return std::atomic_load(&m_pMovedItemGroups); }
+	const MovedItemGroups& GetMovedItemGroups() const { return m_movedItemGroups; }
 	std::vector<const DIFFITEM*> GetMovedGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM& di, int sideIndex) const;
 	void CheckMovedOrRenamed(const CDiffContext& ctxt, const DIFFITEM& di, bool& moved, bool& renamed) const;
 
@@ -28,5 +28,5 @@ private:
 	void DetectMovedItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemGroups& movedItemGroups);
 
 	std::unique_ptr<FilterExpression> m_pRenameMoveDetectionExpression;
-	std::shared_ptr<MovedItemGroups> m_pMovedItemGroups;
+	MovedItemGroups m_movedItemGroups;
 };

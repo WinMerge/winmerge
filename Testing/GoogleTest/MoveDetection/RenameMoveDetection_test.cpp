@@ -93,7 +93,7 @@ namespace
 		// Verify that items were grouped
 		EXPECT_NE(pdi1->movedGroupId, -1);
 		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
-		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups()->size(), 1u);
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
 	}
 
 	/**
@@ -123,7 +123,7 @@ namespace
 		// Items should not be grouped
 		EXPECT_EQ(pdi1->movedGroupId, -1);
 		EXPECT_EQ(pdi2->movedGroupId, -1);
-		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups()->size(), 0u);
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 0u);
 	}
 
 	/**
