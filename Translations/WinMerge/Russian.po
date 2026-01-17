@@ -2642,7 +2642,7 @@ msgstr "Порог для перехода к двоичному сравнен�
 msgid "Additional comparison condi&tions:"
 msgstr "Дополнительные условия сравнения:"
 
-msgid "&Detect moved/renamed items after comparison:"
+msgid "&Detect renames and moves:"
 msgstr ""
 
 msgid "&Merge renamed items into single item"
@@ -3682,13 +3682,23 @@ msgstr "Файлы отличаются (выражение: %1)"
 msgid "Group%d"
 msgstr "Группа%d"
 
-msgid "Moved"
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
 msgstr ""
 
 msgid "Renamed"
 msgstr ""
 
-msgid "Moved/Renamed"
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
 msgstr ""
 
 #, c-format

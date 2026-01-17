@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-01-16 08:36+0000\n"
+"POT-Creation-Date: 2026-01-17 18:54+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2634,7 +2634,7 @@ msgstr ""
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
-msgid "&Detect moved/renamed items after comparison:"
+msgid "&Detect renames and moves:"
 msgstr ""
 
 msgid "&Merge renamed items into single item"
@@ -3674,13 +3674,23 @@ msgstr ""
 msgid "Group%d"
 msgstr ""
 
-msgid "Moved"
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
 msgstr ""
 
 msgid "Renamed"
 msgstr ""
 
-msgid "Moved/Renamed"
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
 msgstr ""
 
 #, c-format

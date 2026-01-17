@@ -19,7 +19,7 @@
 #include "FileTransform.h"
 #include "PropertySystem.h"
 #include "FilterEngine/FilterExpression.h"
-#include "MoveDetection.h"
+#include "RenameMoveDetection.h"
 #include "DebugNew.h"
 
 using Poco::Timestamp;
@@ -335,7 +335,7 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	// ---- moved / renamed detection ----
 	bool moved = false;
 	bool renamed = false;
-	pCtxt->m_pMoveDetection->CheckMovedOrRenamed(*pCtxt, di, moved, renamed);
+	pCtxt->m_pRenameMoveDetection->CheckMovedOrRenamed(*pCtxt, di, moved, renamed);
 
 	String label;
 	if (renamed && !moved)
@@ -343,12 +343,12 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	else if (moved && !renamed)
 		label = _("Moved");
 	else
-		label = _("Moved/Renamed");
+		label = _("Renamed/Moved");
 
 	// ---- format output ----
 	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
 	for (int side = 0; side < nDirs; ++side)
-		sideItems[side] = pCtxt->m_pMoveDetection->GetMovedGroupItemsForSide(*pCtxt, di, side);
+		sideItems[side] = pCtxt->m_pRenameMoveDetection->GetMovedGroupItemsForSide(*pCtxt, di, side);
 
 	auto fmt = [&sideItems](int i) -> String {
 		if (sideItems[i].empty() || sideItems[i].size() > 1)

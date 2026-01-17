@@ -2659,7 +2659,7 @@ msgstr "Passà à u paragone &binariu quandu a dimensione (in Mo) eccede :"
 msgid "Additional comparison condi&tions:"
 msgstr "Cundizioni addiziunale di parag&one :"
 
-msgid "&Detect moved/renamed items after comparison:"
+msgid "&Detect renames and moves:"
 msgstr ""
 
 msgid "&Merge renamed items into single item"
@@ -3921,13 +3921,23 @@ msgstr "I schedarii sò sfarenti (espr : %1)"
 msgid "Group%d"
 msgstr "Gruppu %d"
 
-msgid "Moved"
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
 msgstr ""
 
 msgid "Renamed"
 msgstr ""
 
-msgid "Moved/Renamed"
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
 msgstr ""
 
 #, c-format

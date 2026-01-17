@@ -40,7 +40,7 @@ public:
 	std::unique_ptr<FilterExpression> m_pAdditionalCompareCondition;
 	CSuperComboBox m_ctlMoveDetectionCondition;
 	CValidatingEdit m_ctlMoveDetectionConditionEdit;
-	std::unique_ptr<FilterExpression> m_pMoveDetectionCondition;
+	std::unique_ptr<FilterExpression> m_pRenameMoveDetectionCondition;
 
 // Dialog Data
 	//{{AFX_DATA(PropCompareFolder)
@@ -57,7 +57,7 @@ public:
 	int     m_nCompareThreads;
 	int     m_nCompareThreadsPrev;
 	String  m_sAdditionalCompareCondition;
-	bool    m_bMoveDetection;
+	int     m_nMoveDetectionType;
 	String  m_sMoveDetectionCondition;
 	bool    m_bMergeMoveDetectedItems;
 	//}}AFX_DATA
@@ -78,7 +78,7 @@ protected:
 	afx_msg void OnDefaults() override;
 	afx_msg void OnCbnSelchangeComparemethodcombo();
 	afx_msg void OnBnClickedRecursCheck();
-	afx_msg void OnBnClickedDetectMovedItems();
+	afx_msg void OnCbnSelchangeMoveDetectionType();
 	afx_msg void OnEditChangeAdditionalCompareCondition();
 	afx_msg void OnBnClickedAdditionalCompareConditionMenu();
 	afx_msg void OnEditChangeMoveDetectionCondition();

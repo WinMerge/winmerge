@@ -330,10 +330,10 @@
     <ClCompile Include="..\ExistenceCompare\ExistenceCompare_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\MoveDetection\MoveDetection_test.cpp">
+    <ClCompile Include="..\MoveDetection\RenameMoveDetection_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\MoveDetection.cpp">
+    <ClCompile Include="..\..\..\Src\RenameMoveDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\CompareStats.cpp">
@@ -503,7 +503,7 @@
     <ClInclude Include="..\..\..\Src\FileFlags.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Src\MoveDetection.h">
+    <ClInclude Include="..\..\..\Src\RenameMoveDetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\CompareStats.h">

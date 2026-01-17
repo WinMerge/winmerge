@@ -43,7 +43,7 @@
 #include "DiffWrapper.h"
 #include "FolderCmp.h"
 #include "DirViewColItems.h"
-#include "MoveDetection.h"
+#include "RenameMoveDetection.h"
 #include <Poco/Semaphore.h>
 #include <set>
 
@@ -271,16 +271,16 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
 	}
 
-	pCtxt->m_pMoveDetection.reset();
-	if (pOptions->GetBool(OPT_CMP_DETECT_MOVED_ITEMS))
+	pCtxt->m_pRenameMoveDetection.reset();
+	if (pOptions->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 0)
 	{
-		pCtxt->m_pMoveDetection = std::make_unique<MoveDetection>();
-		const String moveDetectionExpression = pOptions->GetString(OPT_CMP_MOVE_DETECTION_CONDITION);
+		pCtxt->m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		const String moveDetectionExpression = pOptions->GetString(OPT_CMP_RENAME_MOVE_CONDITION);
 		if (!moveDetectionExpression.empty())
 		{
-			auto pMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
-			pMoveDetectionExpression->SetDiffContext(pCtxt);
-			pCtxt->m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
+			auto pRenameMoveDetectionExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
+			pRenameMoveDetectionExpression->SetDiffContext(pCtxt);
+			pCtxt->m_pRenameMoveDetection->SetMoveDetectionExpression(pRenameMoveDetectionExpression.get());
 		}
 	}
 
@@ -293,8 +293,8 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	if (pCtxt->m_pAdditionalCompareExpression)
 		for (const auto& name : pCtxt->m_pAdditionalCompareExpression->GetPropertyNames())
 			nameSet.insert(ucr::toTString(name));
-	if (pCtxt->m_pMoveDetection)
-		for (const auto& name : pCtxt->m_pMoveDetection->GetMoveDetectionExpression()->GetPropertyNames())
+	if (pCtxt->m_pRenameMoveDetection)
+		for (const auto& name : pCtxt->m_pRenameMoveDetection->GetMoveDetectionExpression()->GetPropertyNames())
 			nameSet.insert(ucr::toTString(name));
 	std::vector<String> names(nameSet.begin(), nameSet.end());
 	pCtxt->m_pPropertySystem.reset(new PropertySystem(names));
@@ -327,14 +327,14 @@ void CDirDoc::CheckFilter()
 		RootLogger::Error(msg);
 		m_pCtxt->m_pAdditionalCompareExpression.reset();
 	}
-	if (m_pCtxt->m_pMoveDetection)
+	if (m_pCtxt->m_pRenameMoveDetection)
 	{
-		auto* pMoveDetectionExpression = m_pCtxt->m_pMoveDetection->GetMoveDetectionExpression();
-		if (pMoveDetectionExpression && pMoveDetectionExpression->errorCode != 0)
+		auto* pRenameMoveDetectionExpression = m_pCtxt->m_pRenameMoveDetection->GetMoveDetectionExpression();
+		if (pRenameMoveDetectionExpression && pRenameMoveDetectionExpression->errorCode != 0)
 		{
-			const String msg = FormatFilterErrorSummary(*pMoveDetectionExpression);
+			const String msg = FormatFilterErrorSummary(*pRenameMoveDetectionExpression);
 			RootLogger::Error(msg);
-			m_pCtxt->m_pMoveDetection->SetMoveDetectionExpression(nullptr);
+			m_pCtxt->m_pRenameMoveDetection->SetMoveDetectionExpression(nullptr);
 		}
 	}
 }
@@ -477,21 +477,21 @@ void CDirDoc::Rescan()
 			// Build results list (except delaying file comparisons until below)
 			DirScan_GetItems(paths, subdir, myStruct,
 					casesensitive, depth, nullptr, myStruct->context->m_bWalkUniques);
+			if (myStruct->context->m_pRenameMoveDetection)
+			{
+				bool doMoveDetection = GetOptionsMgr()->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 1;
+				myStruct->context->m_pRenameMoveDetection->Detect(*myStruct->context, doMoveDetection);
+				if (GetOptionsMgr()->GetBool(OPT_CMP_MERGE_RENAMED_ITEMS))
+					myStruct->context->m_pRenameMoveDetection->Merge(*myStruct->context);
+			}
 		});
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
-			DirScan_CompareItems(myStruct, nullptr);
-			if (myStruct->context->m_pMoveDetection)
+			if (myStruct->context->m_pRenameMoveDetection)
 			{
-				myStruct->context->m_pMoveDetection->Detect(*myStruct->context);
-				if (GetOptionsMgr()->GetBool(OPT_CMP_MERGE_MOVED_ITEMS))
-				{
-					myStruct->context->m_pMoveDetection->MergeMovedItems(*myStruct->context);
-					int nItems = DirScan_UpdateMarkedItems(myStruct, nullptr);
-					myStruct->context->m_pCompareStats->IncreaseTotalItems(nItems);
-					myStruct->pSemaphore->set();
-					DirScan_CompareRequestedItems(myStruct, nullptr);
-				}
+				while (myStruct->nCollectThreadState != CDiffThread::THREAD_COMPLETED)
+					Poco::Thread::sleep(100);
 			}
+			DirScan_CompareItems(myStruct, nullptr);
 		});
 		m_diffThread.SetMarkedRescan(false);
 	}

@@ -2662,7 +2662,7 @@ msgstr "Soglia per passare al confronto &binario (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "U&lteriori condizioni dii confronto:"
 
-msgid "&Detect moved/renamed items after comparison:"
+msgid "&Detect renames and moves:"
 msgstr ""
 
 msgid "&Merge renamed items into single item"
@@ -3954,13 +3954,23 @@ msgstr "I file sono differenti (espr: %1)"
 msgid "Group%d"
 msgstr "Gurppo%d"
 
-msgid "Moved"
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
 msgstr ""
 
 msgid "Renamed"
 msgstr ""
 
-msgid "Moved/Renamed"
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
 msgstr ""
 
 #, c-format

@@ -40,7 +40,7 @@ public:
 			{
 				// User cancelled the menu
 			}
-			else if (command == ID_ADDCMPMENU_CLEAR || command == ID_MOVEDETECTIONMENU_CLEAR)
+			else if (command == ID_ADDCMPMENU_CLEAR || command == ID_RENAME_MOVE_CONDITION_MENU_CLEAR)
 			{
 				result = _T("");
 			}
@@ -65,7 +65,7 @@ public:
 					result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
 				}
 			}
-			else if (command >= ID_MOVEDETECTIONMENU_FIRST && command <= ID_MOVEDETECTIONMENU_LAST)
+			else if (command >= ID_RENAME_MOVE_CONDITION_MENU_FIRST && command <= ID_RENAME_MOVE_CONDITION_MENU_LAST)
 			{
 				static const String Exprs[] = {
 					_T("allequal(Name)"),
@@ -73,13 +73,13 @@ public:
 					_T("allequal(Date)"),
 					_T("allequal(Content)"),
 				};
-				String newExpr = Exprs[command - ID_MOVEDETECTIONMENU_FIRST];
+				String newExpr = Exprs[command - ID_RENAME_MOVE_CONDITION_MENU_FIRST];
 				result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
 			}
-			else if (command == ID_MOVEDETECTIONMENU_PROPS)
+			else if (command == ID_RENAME_MOVE_CONDITION_MENU_PROPS)
 			{
 				CPropertySystemMenu menuProps;
-				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_MOVEDETECTIONMENU_PROPS_FIRST, _("Match %1"));
+				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_RENAME_MOVE_CONDITION_MENU_PROPS_FIRST, _("Match %1"));
 				if (resultProp.has_value())
 				{
 					String newExpr = _T("allequal(prop(\"") + *resultProp + _T("\"))");
@@ -111,8 +111,8 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_nCompareThreads(-1)
  , m_nCompareThreadsPrev(-1)
  , m_pAdditionalCompareCondition(new FilterExpression())
- , m_pMoveDetectionCondition(new FilterExpression())
- , m_bMoveDetection(false)
+ , m_pRenameMoveDetectionCondition(new FilterExpression())
+ , m_nMoveDetectionType(0)
  , m_bMergeMoveDetectedItems(false)
 {
 	BindOption(OPT_CMP_METHOD, m_compareMethod, IDC_COMPAREMETHODCOMBO, DDX_CBIndex);
@@ -128,9 +128,9 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOptionCustom<unsigned, int>(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit, IDC_COMPARE_BINARYC_LIMIT, DDX_Text, readconv, writeconv);
 	BindOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads, IDC_COMPARE_THREAD_COUNT, DDX_Text);
 	BindOption(OPT_CMP_ADDITIONAL_CONDITION, m_sAdditionalCompareCondition, IDC_ADDTIONAL_COMPARE_CONDITION, DDX_CBStringExact);
-	BindOption(OPT_CMP_DETECT_MOVED_ITEMS, m_bMoveDetection, IDC_DETECT_MOVED_ITEMS, DDX_Check);
-	BindOption(OPT_CMP_MOVE_DETECTION_CONDITION, m_sMoveDetectionCondition, IDC_MOVE_DETECTION_CONDITION, DDX_CBStringExact);
-	BindOption(OPT_CMP_MERGE_MOVED_ITEMS, m_bMergeMoveDetectedItems, IDC_MERGE_MOVED_ITEMS, DDX_Check);
+	BindOption(OPT_CMP_RENAME_MOVE_DETECTION, m_nMoveDetectionType, IDC_RENAME_MOVE_DETECTION, DDX_CBIndex);
+	BindOption(OPT_CMP_RENAME_MOVE_CONDITION, m_sMoveDetectionCondition, IDC_RENAME_MOVE_CONDITION, DDX_CBStringExact);
+	BindOption(OPT_CMP_MERGE_RENAMED_ITEMS, m_bMergeMoveDetectedItems, IDC_MERGE_RENAMED_ITEMS, DDX_Check);
 }
 
 void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
@@ -138,7 +138,7 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareFolder)
 	DDX_Control(pDX, IDC_ADDTIONAL_COMPARE_CONDITION, m_ctlAdditionalCompareCondition);
-	DDX_Control(pDX, IDC_MOVE_DETECTION_CONDITION, m_ctlMoveDetectionCondition);
+	DDX_Control(pDX, IDC_RENAME_MOVE_CONDITION, m_ctlMoveDetectionCondition);
 	//}}AFX_DATA_MAP
 	DoDataExchangeBindOptions(pDX);
 	UpdateControls();
@@ -154,10 +154,10 @@ BEGIN_MESSAGE_MAP(PropCompareFolder, OptionsPanel)
 	ON_CBN_EDITCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
 	ON_CBN_SELCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
 	ON_BN_CLICKED(IDC_ADDTIONAL_COMPARE_CONDITION_MENU, OnBnClickedAdditionalCompareConditionMenu)
-	ON_BN_CLICKED(IDC_DETECT_MOVED_ITEMS, OnBnClickedDetectMovedItems)
-	ON_CBN_EDITCHANGE(IDC_MOVE_DETECTION_CONDITION, OnEditChangeMoveDetectionCondition)
-	ON_CBN_SELCHANGE(IDC_MOVE_DETECTION_CONDITION, OnEditChangeMoveDetectionCondition)
-	ON_BN_CLICKED(IDC_MOVE_DETECTION_CONDITION_MENU, OnBnClickedMoveDetectionConditionMenu)
+	ON_CBN_SELCHANGE(IDC_RENAME_MOVE_DETECTION, OnCbnSelchangeMoveDetectionType)
+	ON_CBN_EDITCHANGE(IDC_RENAME_MOVE_CONDITION, OnEditChangeMoveDetectionCondition)
+	ON_CBN_SELCHANGE(IDC_RENAME_MOVE_CONDITION, OnEditChangeMoveDetectionCondition)
+	ON_BN_CLICKED(IDC_RENAME_MOVE_CONDITION_MENU, OnBnClickedMoveDetectionConditionMenu)
 END_MESSAGE_MAP()
 
 /** 
@@ -202,6 +202,8 @@ BOOL PropCompareFolder::OnInitDialog()
 		{ _("Full Contents"), _("Quick Contents"), _("Binary Contents"), _("Modified Date"), _("Modified Date and Size"), _("Size"), _("Existence")});
 	SetDlgItemComboBoxList(IDC_EXPAND_SUBDIRS,
 		{ _("Do not expand"), _("Expand all subfolders"), _("Expand different subfolders"), _("Expand identical subfolders") });
+	SetDlgItemComboBoxList(IDC_RENAME_MOVE_DETECTION,
+		{ _("Disabled"), _("Renamed items"), _("Renamed/Moved items") });
 
 	OptionsPanel::OnInitDialog();
 	
@@ -230,9 +232,9 @@ BOOL PropCompareFolder::OnInitDialog()
 		{
 			if (text.IsEmpty())
 				return true;
-			bool bError = !m_pMoveDetectionCondition->Parse(ucr::toUTF8((const tchar_t*)text));
+			bool bError = !m_pRenameMoveDetectionCondition->Parse(ucr::toUTF8((const tchar_t*)text));
 			if (bError)
-				error = FormatFilterErrorSummary(*m_pMoveDetectionCondition).c_str();
+				error = FormatFilterErrorSummary(*m_pRenameMoveDetectionCondition).c_str();
 			return !bError;
 		};
 	m_ctlMoveDetectionConditionEdit.Validate();
@@ -269,7 +271,7 @@ void PropCompareFolder::OnBnClickedRecursCheck()
 	UpdateControls();
 }
 
-void PropCompareFolder::OnBnClickedDetectMovedItems()
+void PropCompareFolder::OnCbnSelchangeMoveDetectionType()
 {
 	UpdateControls();
 }
@@ -304,7 +306,7 @@ void PropCompareFolder::OnBnClickedMoveDetectionConditionMenu()
 	UpdateData(TRUE);
 	CPropCompareFolderMenu menu;
 	CRect rc;
-	GetDlgItem(IDC_MOVE_DETECTION_CONDITION_MENU)->GetWindowRect(&rc);
+	GetDlgItem(IDC_RENAME_MOVE_CONDITION_MENU)->GetWindowRect(&rc);
 	const std::optional<String> expr = menu.ShowMenu(IDR_POPUP_MOVEDETECTIONMENU, m_sMoveDetectionCondition, rc.left, rc.bottom, this);
 	if (expr.has_value())
 	{
@@ -318,6 +320,8 @@ void PropCompareFolder::UpdateControls()
 {
 	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_COMPAREMETHODCOMBO);
 	const int sel = pCombo->GetCurSel();
+	CComboBox * pComboDetectionType = (CComboBox*)GetDlgItem(IDC_RENAME_MOVE_DETECTION);
+	const int selDetectionType = pComboDetectionType->GetCurSel();
 	EnableDlgItem(IDC_COMPARE_STOPFIRST, sel == 1);
 	EnableDlgItem(IDC_IGNORE_SMALLTIMEDIFF, sel == 3 || sel == 4);
 	EnableDlgItem(IDC_COMPARE_WALKSUBDIRS, IsDlgButtonChecked(IDC_RECURS_CHECK) == 1);
@@ -325,5 +329,5 @@ void PropCompareFolder::UpdateControls()
 	EnableDlgItem(IDC_COMPARE_THREAD_COUNT, sel <= 1 ? true : false); // true: fullcontent, quickcontent
 	EnableDlgItem(IDC_COMPARE_QUICKC_LIMIT, sel == 0 ? true : false); // true: fullcontent
 	EnableDlgItem(IDC_COMPARE_BINARYC_LIMIT, sel <= 1 ? true : false); // true: fullcontent, quickcontent
-	EnableDlgItem(IDC_MERGE_MOVED_ITEMS, IsDlgButtonChecked(IDC_DETECT_MOVED_ITEMS) == 1);
+	EnableDlgItem(IDC_MERGE_RENAMED_ITEMS, selDetectionType >= 1);
 }

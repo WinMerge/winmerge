@@ -49,7 +49,7 @@
 #include "Shell.h"
 #include "DirTravel.h"
 #include "MouseHook.h"
-#include "MoveDetection.h"
+#include "RenameMoveDetection.h"
 #include <numeric>
 #include <functional>
 
@@ -2681,7 +2681,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		ASSERT(0);
 		return 0;	// return value unused
 	}
-	if (pDoc->GetDiffContext().m_pMoveDetection && pDoc->m_diffThread.GetThreadState() != CDiffThread::THREAD_COMPLETED)
+	if (pDoc->GetDiffContext().m_pRenameMoveDetection && pDoc->m_diffThread.GetThreadState() != CDiffThread::THREAD_COMPLETED)
 		return 0;
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
@@ -4238,7 +4238,7 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 		std::vector<std::vector<const DIFFITEM*>> movedItemsVec;
 		for (int nIndex = 0; nIndex < nDirs; ++nIndex)
 		{
-			movedItemsVec.push_back(ctxt.m_pMoveDetection->GetMovedGroupItemsForSide(ctxt, *pdi, nIndex));
+			movedItemsVec.push_back(ctxt.m_pRenameMoveDetection->GetMovedGroupItemsForSide(ctxt, *pdi, nIndex));
 			if (movedItemsVec[nIndex].empty())
 				movedItemsVec[nIndex].push_back(DIFFITEM::GetEmptyItem());
 		}

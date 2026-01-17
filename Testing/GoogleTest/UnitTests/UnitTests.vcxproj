@@ -550,7 +550,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\MoveDetection.cpp" />
+    <ClCompile Include="..\..\..\Src\RenameMoveDetection.cpp" />
     <ClCompile Include="..\..\..\Src\MovedLines.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -601,7 +601,7 @@
     </ClCompile>
     <ClCompile Include="..\ExistenceCompare\ExistenceCompare_test.cpp" />
     <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp" />
-    <ClCompile Include="..\MoveDetection\MoveDetection_test.cpp" />
+    <ClCompile Include="..\MoveDetection\RenameMoveDetection_test.cpp" />
     <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -873,7 +873,7 @@
     <ClInclude Include="..\..\..\Src\MergeCmdLineInfo.h" />
     <ClInclude Include="..\..\..\Src\Common\multiformatText.h" />
     <ClInclude Include="..\..\..\Src\Common\OptionsMgr.h" />
-    <ClInclude Include="..\..\..\Src\MoveDetection.h" />
+    <ClInclude Include="..\..\..\Src\RenameMoveDetection.h" />
     <ClInclude Include="..\..\..\Src\MovedLines.h" />
     <ClInclude Include="..\..\..\Src\PatchHTML.h" />
     <ClInclude Include="..\..\..\Src\PathContext.h" />

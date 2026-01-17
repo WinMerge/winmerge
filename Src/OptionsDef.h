@@ -237,10 +237,10 @@ inline const String OPT_CMP_INDENT_HEURISTIC {_T("Settings/IndentHeuristic"s)};
 inline const String OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES {_T("Settings/CompletelyBlankOutIgnoredChanges"s)};
 inline const String OPT_CMP_ADDITIONAL_CONDITION {_T("Settings/AdditionalCompareCondition"s)};
 
-// Moved/renamed detection options
-inline const String OPT_CMP_DETECT_MOVED_ITEMS {_T("Settings/DetectMovedItems"s)};
-inline const String OPT_CMP_MOVE_DETECTION_CONDITION {_T("Settings/MoveDetectionCondition"s)};
-inline const String OPT_CMP_MERGE_MOVED_ITEMS {_T("Settings/MergeMovedItems"s)};
+// Renamed/moved detection options
+inline const String OPT_CMP_RENAME_MOVE_DETECTION {_T("Settings/RenameMoveDetection"s)};
+inline const String OPT_CMP_RENAME_MOVE_CONDITION {_T("Settings/RenameMoveCondition"s)};
+inline const String OPT_CMP_MERGE_RENAMED_ITEMS {_T("Settings/MergeRenamedItems"s)};
 
 // Image Compare options
 inline const String OPT_CMP_IMG_FILEPATTERNS {_T("Settings/ImageFilePatterns"s)};

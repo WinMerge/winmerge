@@ -2655,7 +2655,7 @@ msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "Ek karşılaştırma k&oşulları:"
 
-msgid "&Detect moved/renamed items after comparison:"
+msgid "&Detect renames and moves:"
 msgstr ""
 
 msgid "&Merge renamed items into single item"
@@ -3927,13 +3927,23 @@ msgstr "Dosyalar farklı (ifade: %1)"
 msgid "Group%d"
 msgstr "Grup%d"
 
-msgid "Moved"
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
 msgstr ""
 
 msgid "Renamed"
 msgstr ""
 
-msgid "Moved/Renamed"
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
 msgstr ""
 
 #, c-format

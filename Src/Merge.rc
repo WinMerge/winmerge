@@ -1740,13 +1740,13 @@ IDR_POPUP_MOVEDETECTIONMENU MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "&Clear conditions",           ID_MOVEDETECTIONMENU_CLEAR
+        MENUITEM "&Clear conditions",           ID_RENAME_MOVE_CONDITION_MENU_CLEAR
         MENUITEM SEPARATOR
-        MENUITEM "Match &Name",                 ID_MOVEDETECTIONMENU_NAME
-        MENUITEM "Match &Size",                 ID_MOVEDETECTIONMENU_SIZE
-        MENUITEM "Match &Date",                 ID_MOVEDETECTIONMENU_DATE
-        MENUITEM "Match &Contents",             ID_MOVEDETECTIONMENU_CONTENTS
-        MENUITEM "Additional &Properties...",   ID_MOVEDETECTIONMENU_PROPS
+        MENUITEM "Match &Name",                 ID_RENAME_MOVE_CONDITION_MENU_NAME
+        MENUITEM "Match &Size",                 ID_RENAME_MOVE_CONDITION_MENU_SIZE
+        MENUITEM "Match &Date",                 ID_RENAME_MOVE_CONDITION_MENU_DATE
+        MENUITEM "Match &Contents",             ID_RENAME_MOVE_CONDITION_MENU_CONTENTS
+        MENUITEM "Additional &Properties...",   ID_RENAME_MOVE_CONDITION_MENU_PROPS
     END
 END
 
@@ -2880,10 +2880,11 @@ BEGIN
     LTEXT           "Additional comparison condi&tions:",IDC_STATIC,6,200,279,10
     COMBOBOX        IDC_ADDTIONAL_COMPARE_CONDITION,6,212,302,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&=",IDC_ADDTIONAL_COMPARE_CONDITION_MENU,308,212,14,14
-    CONTROL         "&Detect moved/renamed items after comparison:",IDC_DETECT_MOVED_ITEMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,228,279,10
-    COMBOBOX        IDC_MOVE_DETECTION_CONDITION,6,240,302,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&=",IDC_MOVE_DETECTION_CONDITION_MENU,308,240,14,14
-    CONTROL         "&Merge renamed items into single item",IDC_MERGE_MOVED_ITEMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,256,279,10
+    LTEXT           "&Detect renames and moves:",IDC_STATIC,6,228,279,10
+    COMBOBOX        IDC_RENAME_MOVE_DETECTION,6,240,310,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RENAME_MOVE_CONDITION,6,256,302,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&=",IDC_RENAME_MOVE_CONDITION_MENU,308,256,14,14
+    CONTROL         "&Merge renamed items into single item",IDC_MERGE_RENAMED_ITEMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,272,279,10
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 
@@ -4606,11 +4607,14 @@ BEGIN
     IDS_IMAGE_FILES_DIFF    "Image files are different"
     IDS_EXPR_DIFF           "Files are different (expr: %1)"
     IDS_HASH_GROUP          "Group%d"
-    IDS_MOVED_MOVED         "Moved"
-    IDS_MOVED_RENAMED       "Renamed"
-    IDS_MOVED_MOVED_RENAMED "Moved/Renamed"
-    IDS_MOVED_ITEMS         "(%1 items)"
-    IDS_MOVED_RESULT        "%1 (set %2): "
+    IDS_RENAME_MOVE_DETECTION_DISALBED NC_("Options dialog|Compare|Folder|Detect renames and moves","Disabled")
+    IDS_RENAME_MOVE_DETECTION_RENAME "Detect renames"
+    IDS_RENAME_MOVE_DETECTION_RENAME_MOVE "Detect renames and moves"
+    IDS_RENAMED             "Renamed"
+    IDS_MOVED               "Moved"
+    IDS_RENAMED_MOVED       "Renamed/Moved"
+    IDS_RENAMED_MOVED_ITEMS "(%1 items)"
+    IDS_RENAMED_MOVED_RESULT "%1 (set %2): "
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

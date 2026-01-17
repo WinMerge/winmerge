@@ -2641,7 +2641,7 @@ msgstr "Próg przejścia na binarne porównywanie (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
-msgid "&Detect moved/renamed items after comparison:"
+msgid "&Detect renames and moves:"
 msgstr ""
 
 msgid "&Merge renamed items into single item"
@@ -3681,13 +3681,23 @@ msgstr "Pliki są różne (wyrażenie: %1)"
 msgid "Group%d"
 msgstr "Grupa%d"
 
-msgid "Moved"
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
 msgstr ""
 
 msgid "Renamed"
 msgstr ""
 
-msgid "Moved/Renamed"
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
 msgstr ""
 
 #, c-format

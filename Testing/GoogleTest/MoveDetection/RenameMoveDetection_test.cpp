@@ -1,6 +1,6 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include "MoveDetection.h"
+#include "RenameMoveDetection.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "FilterEngine/FilterExpression.h"
@@ -8,13 +8,13 @@
 namespace
 {
 	/**
-	 * @brief Test fixture for MoveDetection
+	 * @brief Test fixture for RenameMoveDetection
 	 */
-	class MoveDetectionTest : public testing::Test
+	class RenameMoveDetectionTest : public testing::Test
 	{
 	protected:
-		MoveDetectionTest() {}
-		virtual ~MoveDetectionTest() {}
+		RenameMoveDetectionTest() {}
+		virtual ~RenameMoveDetectionTest() {}
 
 		/**
 		 * @brief Create a mock DIFFITEM for testing
@@ -49,7 +49,7 @@ namespace
 	/**
 	 * @brief Test that Detect() does nothing when no expression is set
 	 */
-	TEST_F(MoveDetectionTest, NoExpressionSet)
+	TEST_F(RenameMoveDetectionTest, NoExpressionSet)
 	{
 		PathContext paths;
 		paths.SetLeft(_T("C:\\Left"));
@@ -57,16 +57,16 @@ namespace
 		
 		CDiffContext ctxt(paths, 0);
 		ctxt.InitDiffItemList();
-		ctxt.m_pMoveDetection->SetMoveDetectionExpression(nullptr);
+		ctxt.m_pRenameMoveDetection->SetMoveDetectionExpression(nullptr);
 		
 		// Should not crash and should return immediately
-		EXPECT_NO_THROW(ctxt.m_pMoveDetection->Detect(ctxt));
+		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Detect(ctxt, true));
 	}
 
 	/**
 	 * @brief Test basic move detection with simple expression
 	 */
-	TEST_F(MoveDetectionTest, BasicMoveDetection)
+	TEST_F(RenameMoveDetectionTest, BasicMoveDetection)
 	{
 		PathContext paths;
 		paths.SetLeft(_T("C:\\Left"));
@@ -76,8 +76,8 @@ namespace
 		ctxt.InitDiffItemList();
 		
 		// Create a simple expression that matches files with same name
-		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
-		pMoveDetectionExpression->Parse("LeftName = RightName");
+		auto pRenameMoveDetectionExpression = std::make_unique<FilterExpression>();
+		pRenameMoveDetectionExpression->Parse("LeftName = RightName");
 		
 		// Add mock items
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
@@ -87,19 +87,19 @@ namespace
 		CreateMockDiffItem(*pdi2, _T("file1.txt"), false, true);
 		
 		// Run detection
-		ctxt.m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
-		ctxt.m_pMoveDetection->Detect(ctxt);
+		ctxt.m_pRenameMoveDetection->SetMoveDetectionExpression(pRenameMoveDetectionExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 		
 		// Verify that items were grouped
 		EXPECT_NE(pdi1->movedGroupId, -1);
 		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
-		EXPECT_EQ(ctxt.m_pMoveDetection->GetMovedItemGroups()->size(), 1u);
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups()->size(), 1u);
 	}
 
 	/**
 	 * @brief Test that files with different names are not grouped
 	 */
-	TEST_F(MoveDetectionTest, DifferentNamesNotGrouped)
+	TEST_F(RenameMoveDetectionTest, DifferentNamesNotGrouped)
 	{
 		PathContext paths;
 		paths.SetLeft(_T("C:\\Left"));
@@ -108,8 +108,8 @@ namespace
 		CDiffContext ctxt(paths, 0);
 		ctxt.InitDiffItemList();
 		
-		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
-		pMoveDetectionExpression->Parse("LeftName = RightName");
+		auto pRenameMoveDetectionExpression = std::make_unique<FilterExpression>();
+		pRenameMoveDetectionExpression->Parse("LeftName = RightName");
 		
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
 		CreateMockDiffItem(*pdi1, _T("file1.txt"), true, false);
@@ -117,19 +117,19 @@ namespace
 		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
 		CreateMockDiffItem(*pdi2, _T("file2.txt"), false, true);
 		
-		ctxt.m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
-		ctxt.m_pMoveDetection->Detect(ctxt);
+		ctxt.m_pRenameMoveDetection->SetMoveDetectionExpression(pRenameMoveDetectionExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 		
 		// Items should not be grouped
 		EXPECT_EQ(pdi1->movedGroupId, -1);
 		EXPECT_EQ(pdi2->movedGroupId, -1);
-		EXPECT_EQ(ctxt.m_pMoveDetection->GetMovedItemGroups()->size(), 0u);
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups()->size(), 0u);
 	}
 
 	/**
 	 * @brief Test that directories and files are not mixed
 	 */
-	TEST_F(MoveDetectionTest, DirectoriesAndFilesNotMixed)
+	TEST_F(RenameMoveDetectionTest, DirectoriesAndFilesNotMixed)
 	{
 		PathContext paths;
 		paths.SetLeft(_T("C:\\Left"));
@@ -138,8 +138,8 @@ namespace
 		CDiffContext ctxt(paths, 0);
 		ctxt.InitDiffItemList();
 		
-		auto pMoveDetectionExpression = std::make_unique<FilterExpression>();
-		pMoveDetectionExpression->Parse("LeftName = RightName");
+		auto pRenameMoveDetectionExpression = std::make_unique<FilterExpression>();
+		pRenameMoveDetectionExpression->Parse("LeftName = RightName");
 		
 		// File on left
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
@@ -149,8 +149,8 @@ namespace
 		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
 		CreateMockDiffItem(*pdi2, _T("item1"), false, true, true);
 		
-		ctxt.m_pMoveDetection->SetMoveDetectionExpression(pMoveDetectionExpression.get());
-		ctxt.m_pMoveDetection->Detect(ctxt);
+		ctxt.m_pRenameMoveDetection->SetMoveDetectionExpression(pRenameMoveDetectionExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 		
 		// Should not be grouped
 		EXPECT_EQ(pdi1->movedGroupId, -1);

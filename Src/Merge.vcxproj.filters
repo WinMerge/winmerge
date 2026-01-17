@@ -804,7 +804,7 @@
     <ClCompile Include="DirFilterBar.cpp">
       <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MoveDetection.cpp">
+    <ClCompile Include="RenameMoveDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1538,7 +1538,7 @@
     <ClInclude Include="DirFilterBar.h">
       <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MoveDetection.h">
+    <ClInclude Include="RenameMoveDetection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

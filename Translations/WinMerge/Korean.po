@@ -3121,7 +3121,7 @@ msgstr "바이너리 비교로 전환하기 위한 임계값 (MB)(&B):"
 msgid "Additional comparison condi&tions:"
 msgstr "추가 비교 조건(&T):"
 
-msgid "&Detect moved/renamed items after comparison:"
+msgid "&Detect renames and moves:"
 msgstr ""
 
 msgid "&Merge renamed items into single item"
@@ -4525,13 +4525,23 @@ msgstr "추가 비교 조건: 파일이 다릅니다 (식: %1)"
 msgid "Group%d"
 msgstr "그룹%d"
 
-msgid "Moved"
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
 msgstr ""
 
 msgid "Renamed"
 msgstr ""
 
-msgid "Moved/Renamed"
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
 msgstr ""
 
 #, c-format
