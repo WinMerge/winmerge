@@ -1862,16 +1862,19 @@ msgstr "속성 비교(&A)"
 msgid "Compare C&ontents"
 msgstr "내용 비교(&O)"
 
-msgid "Match &Name"
+msgid "&Clear Keys"
 msgstr ""
 
-msgid "Match &Size"
+msgid "&Name"
 msgstr ""
 
-msgid "Match &Date"
+msgid "Normalized &Unicode Name"
 msgstr ""
 
-msgid "Match &Contents"
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash"
 msgstr ""
 
 #, c-format
@@ -3121,10 +3124,13 @@ msgstr "바이너리 비교로 전환하기 위한 임계값 (MB)(&B):"
 msgid "Additional comparison condi&tions:"
 msgstr "추가 비교 조건(&T):"
 
-msgid "&Detect renames and moves:"
+msgid "&Rename/move detection:"
 msgstr ""
 
-msgid "&Merge renamed items into single item"
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
 msgstr ""
 
 msgid "File patterns:"

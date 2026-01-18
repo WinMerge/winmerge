@@ -1626,16 +1626,19 @@ msgstr "Öznitelikleri k&arşılaştır"
 msgid "Compare C&ontents"
 msgstr "&İçerikleri karşılaştır"
 
-msgid "Match &Name"
+msgid "&Clear Keys"
 msgstr ""
 
-msgid "Match &Size"
+msgid "&Name"
 msgstr ""
 
-msgid "Match &Date"
+msgid "Normalized &Unicode Name"
 msgstr ""
 
-msgid "Match &Contents"
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash"
 msgstr ""
 
 msgid "About WinMerge"
@@ -2655,10 +2658,13 @@ msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "Ek karşılaştırma k&oşulları:"
 
-msgid "&Detect renames and moves:"
+msgid "&Rename/move detection:"
 msgstr ""
 
-msgid "&Merge renamed items into single item"
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
 msgstr ""
 
 msgid "File patterns:"

@@ -1459,7 +1459,7 @@ static auto InRangeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	return applyToScalarOrArray(arg1, inRangeFn);
 }
 
-static std::string ToStringValue(const ValueType& val)
+std::string ToStringValue(const ValueType& val)
 {
 	if (auto intVal = std::get_if<int64_t>(&val))
 		return std::to_string(*intVal);

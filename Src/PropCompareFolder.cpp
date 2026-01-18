@@ -40,7 +40,7 @@ public:
 			{
 				// User cancelled the menu
 			}
-			else if (command == ID_ADDCMPMENU_CLEAR || command == ID_RENAME_MOVE_CONDITION_MENU_CLEAR)
+			else if (command == ID_ADDCMPMENU_CLEAR || command == ID_RENAME_MOVE_KEY_MENU_CLEAR)
 			{
 				result = _T("");
 			}
@@ -65,25 +65,26 @@ public:
 					result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
 				}
 			}
-			else if (command >= ID_RENAME_MOVE_CONDITION_MENU_FIRST && command <= ID_RENAME_MOVE_CONDITION_MENU_LAST)
+			else if (command >= ID_RENAME_MOVE_KEY_MENU_FIRST && command <= ID_RENAME_MOVE_KEY_MENU_LAST)
 			{
 				static const String Exprs[] = {
-					_T("allequal(Name)"),
-					_T("allequal(Size)"),
-					_T("allequal(Date)"),
-					_T("allequal(Content)"),
+					_T("Name"),
+					_T("normalizeUnicode(Name)"),
+					_T("toString(Size)"),
+					_T("toString(Date)"),
+					_T("toString(prop(\"Hash.MD5\"))"),
 				};
-				String newExpr = Exprs[command - ID_RENAME_MOVE_CONDITION_MENU_FIRST];
-				result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
+				String newExpr = Exprs[command - ID_RENAME_MOVE_KEY_MENU_FIRST];
+				result = expr.empty() ? newExpr : (expr + _T(" + \"|\" + ") + newExpr);
 			}
-			else if (command == ID_RENAME_MOVE_CONDITION_MENU_PROPS)
+			else if (command == ID_RENAME_MOVE_KEY_MENU_PROPS)
 			{
 				CPropertySystemMenu menuProps;
-				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_RENAME_MOVE_CONDITION_MENU_PROPS_FIRST, _("Match %1"));
+				auto resultProp = menuProps.ShowMenu(pParentWnd, ID_RENAME_MOVE_KEY_MENU_PROPS_FIRST, _("Match %1"));
 				if (resultProp.has_value())
 				{
-					String newExpr = _T("allequal(prop(\"") + *resultProp + _T("\"))");
-					result = expr.empty() ? newExpr : (expr + _T(" and ") + newExpr);
+					String newExpr = _T("toString(prop(\"") + *resultProp + _T("\"))");
+					result = expr.empty() ? newExpr : (expr + _T(" + \"|\" + ") + newExpr);
 				}
 			}
 		}
@@ -129,7 +130,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads, IDC_COMPARE_THREAD_COUNT, DDX_Text);
 	BindOption(OPT_CMP_ADDITIONAL_CONDITION, m_sAdditionalCompareCondition, IDC_ADDTIONAL_COMPARE_CONDITION, DDX_CBStringExact);
 	BindOption(OPT_CMP_RENAME_MOVE_DETECTION, m_nMoveDetectionType, IDC_RENAME_MOVE_DETECTION, DDX_CBIndex);
-	BindOption(OPT_CMP_RENAME_MOVE_CONDITION, m_sMoveDetectionCondition, IDC_RENAME_MOVE_CONDITION, DDX_CBStringExact);
+	BindOption(OPT_CMP_RENAME_MOVE_KEY, m_sMoveDetectionCondition, IDC_RENAME_MOVE_KEY, DDX_CBStringExact);
 	BindOption(OPT_CMP_MERGE_RENAMED_ITEMS, m_bMergeMoveDetectedItems, IDC_MERGE_RENAMED_ITEMS, DDX_Check);
 }
 
@@ -138,7 +139,7 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareFolder)
 	DDX_Control(pDX, IDC_ADDTIONAL_COMPARE_CONDITION, m_ctlAdditionalCompareCondition);
-	DDX_Control(pDX, IDC_RENAME_MOVE_CONDITION, m_ctlMoveDetectionCondition);
+	DDX_Control(pDX, IDC_RENAME_MOVE_KEY, m_ctlMoveDetectionCondition);
 	//}}AFX_DATA_MAP
 	DoDataExchangeBindOptions(pDX);
 	UpdateControls();
@@ -155,9 +156,9 @@ BEGIN_MESSAGE_MAP(PropCompareFolder, OptionsPanel)
 	ON_CBN_SELCHANGE(IDC_ADDTIONAL_COMPARE_CONDITION, OnEditChangeAdditionalCompareCondition)
 	ON_BN_CLICKED(IDC_ADDTIONAL_COMPARE_CONDITION_MENU, OnBnClickedAdditionalCompareConditionMenu)
 	ON_CBN_SELCHANGE(IDC_RENAME_MOVE_DETECTION, OnCbnSelchangeMoveDetectionType)
-	ON_CBN_EDITCHANGE(IDC_RENAME_MOVE_CONDITION, OnEditChangeMoveDetectionCondition)
-	ON_CBN_SELCHANGE(IDC_RENAME_MOVE_CONDITION, OnEditChangeMoveDetectionCondition)
-	ON_BN_CLICKED(IDC_RENAME_MOVE_CONDITION_MENU, OnBnClickedMoveDetectionConditionMenu)
+	ON_CBN_EDITCHANGE(IDC_RENAME_MOVE_KEY, OnEditChangeMoveDetectionCondition)
+	ON_CBN_SELCHANGE(IDC_RENAME_MOVE_KEY, OnEditChangeMoveDetectionCondition)
+	ON_BN_CLICKED(IDC_RENAME_MOVE_KEY_MENU, OnBnClickedMoveDetectionConditionMenu)
 END_MESSAGE_MAP()
 
 /** 
@@ -203,7 +204,7 @@ BOOL PropCompareFolder::OnInitDialog()
 	SetDlgItemComboBoxList(IDC_EXPAND_SUBDIRS,
 		{ _("Do not expand"), _("Expand all subfolders"), _("Expand different subfolders"), _("Expand identical subfolders") });
 	SetDlgItemComboBoxList(IDC_RENAME_MOVE_DETECTION,
-		{ _("Disabled"), _("Renamed items"), _("Renamed/Moved items") });
+		{ _("Disabled"), _("Detect renames"), _("Detect renames and moves") });
 
 	OptionsPanel::OnInitDialog();
 	
@@ -306,8 +307,8 @@ void PropCompareFolder::OnBnClickedMoveDetectionConditionMenu()
 	UpdateData(TRUE);
 	CPropCompareFolderMenu menu;
 	CRect rc;
-	GetDlgItem(IDC_RENAME_MOVE_CONDITION_MENU)->GetWindowRect(&rc);
-	const std::optional<String> expr = menu.ShowMenu(IDR_POPUP_MOVEDETECTIONMENU, m_sMoveDetectionCondition, rc.left, rc.bottom, this);
+	GetDlgItem(IDC_RENAME_MOVE_KEY_MENU)->GetWindowRect(&rc);
+	const std::optional<String> expr = menu.ShowMenu(IDR_POPUP_RENAMEMOVE_MENU, m_sMoveDetectionCondition, rc.left, rc.bottom, this);
 	if (expr.has_value())
 	{
 		m_sMoveDetectionCondition = *expr;

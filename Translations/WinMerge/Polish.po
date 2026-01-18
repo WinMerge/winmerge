@@ -1626,16 +1626,19 @@ msgstr "Porównaj atrybuty"
 msgid "Compare C&ontents"
 msgstr "Porównaj zawartość"
 
-msgid "Match &Name"
+msgid "&Clear Keys"
 msgstr ""
 
-msgid "Match &Size"
+msgid "&Name"
 msgstr ""
 
-msgid "Match &Date"
+msgid "Normalized &Unicode Name"
 msgstr ""
 
-msgid "Match &Contents"
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash"
 msgstr ""
 
 msgid "About WinMerge"
@@ -2641,10 +2644,13 @@ msgstr "Próg przejścia na binarne porównywanie (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr ""
 
-msgid "&Detect renames and moves:"
+msgid "&Rename/move detection:"
 msgstr ""
 
-msgid "&Merge renamed items into single item"
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
 msgstr ""
 
 msgid "File patterns:"

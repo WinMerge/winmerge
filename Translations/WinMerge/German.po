@@ -1860,16 +1860,19 @@ msgstr "&Attribute vergleichen"
 msgid "Compare C&ontents"
 msgstr "&Inhalt vergleichen"
 
-msgid "Match &Name"
+msgid "&Clear Keys"
 msgstr ""
 
-msgid "Match &Size"
+msgid "&Name"
 msgstr ""
 
-msgid "Match &Date"
+msgid "Normalized &Unicode Name"
 msgstr ""
 
-msgid "Match &Contents"
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash"
 msgstr ""
 
 #, c-format
@@ -3125,10 +3128,13 @@ msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 msgid "Additional comparison condi&tions:"
 msgstr "Zusätzliche Vergleichsbedingungen:"
 
-msgid "&Detect renames and moves:"
+msgid "&Rename/move detection:"
 msgstr ""
 
-msgid "&Merge renamed items into single item"
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
 msgstr ""
 
 msgid "File patterns:"

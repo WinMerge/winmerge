@@ -15,8 +15,8 @@ public:
 	RenameMoveDetection();
 	~RenameMoveDetection();
 
-	FilterExpression* GetMoveDetectionExpression() const { return m_pRenameMoveDetectionExpression.get(); }
-	void SetMoveDetectionExpression(const FilterExpression* expr);
+	FilterExpression* GetMoveDetectionExpression() const { return m_pRenameMoveKeyExpression.get(); }
+	void SetRenameMoveKeyExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt, bool doMoveDetection);
 	void Merge(CDiffContext& ctxt);
 	const MovedItemGroups& GetMovedItemGroups() const { return m_movedItemGroups; }
@@ -27,6 +27,6 @@ private:
 	void DetectRenamedItems(CDiffContext& ctxt, std::vector<DIFFITEM*> parents, MovedItemGroups& movedItemGroups);
 	void DetectMovedItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, MovedItemGroups& movedItemGroups);
 
-	std::unique_ptr<FilterExpression> m_pRenameMoveDetectionExpression;
+	std::unique_ptr<FilterExpression> m_pRenameMoveKeyExpression;
 	MovedItemGroups m_movedItemGroups;
 };
