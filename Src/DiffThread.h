@@ -37,6 +37,7 @@ struct DiffFuncStruct
 	std::function<void (DiffFuncStruct*)> m_fncCollect;
 	std::function<void (DiffFuncStruct*)> m_fncCompare;
 	bool bMarkedRescan;	/**< Is the rescan due to "Refresh Selected"? */
+	Poco::Event m_collectCompletedEvent;
 
 	DiffFuncStruct()
 		: context(nullptr)

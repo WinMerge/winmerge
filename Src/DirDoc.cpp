@@ -487,10 +487,7 @@ void CDirDoc::Rescan()
 		});
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			if (myStruct->context->m_pRenameMoveDetection)
-			{
-				while (myStruct->nCollectThreadState != CDiffThread::THREAD_COMPLETED)
-					Poco::Thread::sleep(100);
-			}
+				myStruct->m_collectCompletedEvent.wait();
 			DirScan_CompareItems(myStruct, nullptr);
 		});
 		m_diffThread.SetMarkedRescan(false);
