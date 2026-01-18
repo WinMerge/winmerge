@@ -15,7 +15,7 @@ public:
 	RenameMoveDetection();
 	~RenameMoveDetection();
 
-	FilterExpression* GetMoveDetectionExpression() const { return m_pRenameMoveKeyExpression.get(); }
+	FilterExpression* GetRenameMoveKeyExpression() const { return m_pRenameMoveKeyExpression.get(); }
 	void SetRenameMoveKeyExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt, bool doMoveDetection);
 	void Merge(CDiffContext& ctxt);

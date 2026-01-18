@@ -359,7 +359,14 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 	auto rvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&rval);
 	if (!lvalArray && !rvalArray)
 	{
-		if (auto lvalDouble = std::get_if<double>(&lval))
+		if (op == TK_PLUS && lval.index() != rval.index() &&
+		   (std::holds_alternative<std::string>(lval) || std::holds_alternative<std::string>(rval)))
+		{
+			if (std::holds_alternative<std::monostate>(lval) || std::holds_alternative<std::monostate>(rval))
+				return std::monostate{};
+			return ToStringValue(lval) + ToStringValue(rval);
+		}
+		else if (auto lvalDouble = std::get_if<double>(&lval))
 		{
 			double r;
 			if (auto rvalDouble = std::get_if<double>(&rval))
@@ -664,6 +671,11 @@ static auto ExistsField(int index, const FilterExpression* ctxt, const DIFFITEM&
 	return di.diffcode.exists(index);
 }
 
+static auto IsFolderField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
+{
+	return di.diffcode.isDirectory();
+}
+
 template<typename Func>
 static auto FolderStatField(int index, const FilterExpression* ctxt, const DIFFITEM& di, Func func, bool recursive) -> ValueType
 {
@@ -855,6 +867,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	const char* p = vl.c_str() + prefixlen;
 	if (strcmp(p, "exists") == 0)
 		functmp = ExistsField;
+	else if (strcmp(p, "isfolder") == 0)
+		functmp = IsFolderField;
 	else if (strcmp(p, "files") == 0)
 		functmp = FilesField;
 	else if (strcmp(p, "items") == 0)
@@ -915,13 +929,22 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	if (prefixlen > 0)
 		func = [side, functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType { return functmp(side < 0 ? ctxt->ctxt->GetCompareDirs() + side: side, ctxt, di); };
 	else
-		func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType {
-			const int dirs = ctxt->ctxt->GetCompareDirs();
-			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
-			for (int i = 0; i < dirs; ++i)
-				values->emplace_back(ValueType2{ functmp(i, ctxt, di) });
-			return values;
-		};
+	{
+		if (side == -2)
+		{
+			func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType { return functmp(-2, ctxt, di); };
+		}
+		else
+		{
+			func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType {
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+				for (int i = 0; i < dirs; ++i)
+					values->emplace_back(ValueType2{ functmp(i, ctxt, di) });
+				return values;
+				};
+		}
+	}
 }
 
 ValueType FieldNode::Evaluate(const DIFFITEM& di) const

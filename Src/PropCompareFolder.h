@@ -38,9 +38,9 @@ public:
 	CSuperComboBox m_ctlAdditionalCompareCondition;
 	CValidatingEdit m_ctlAdditionalCompareConditionEdit;
 	std::unique_ptr<FilterExpression> m_pAdditionalCompareCondition;
-	CSuperComboBox m_ctlMoveDetectionCondition;
-	CValidatingEdit m_ctlMoveDetectionConditionEdit;
-	std::unique_ptr<FilterExpression> m_pRenameMoveDetectionCondition;
+	CSuperComboBox m_ctlRenameMoveKey;
+	CValidatingEdit m_ctlRenameMoveKeyEdit;
+	std::unique_ptr<FilterExpression> m_pRenameMoveKey;
 
 // Dialog Data
 	//{{AFX_DATA(PropCompareFolder)
@@ -57,9 +57,9 @@ public:
 	int     m_nCompareThreads;
 	int     m_nCompareThreadsPrev;
 	String  m_sAdditionalCompareCondition;
-	int     m_nMoveDetectionType;
-	String  m_sMoveDetectionCondition;
-	bool    m_bMergeMoveDetectedItems;
+	int     m_nRenameMoveDetection;
+	String  m_sRenameMoveKey;
+	bool    m_bMergeRenameItems;
 	//}}AFX_DATA
 
 
@@ -78,11 +78,11 @@ protected:
 	afx_msg void OnDefaults() override;
 	afx_msg void OnCbnSelchangeComparemethodcombo();
 	afx_msg void OnBnClickedRecursCheck();
-	afx_msg void OnCbnSelchangeMoveDetectionType();
+	afx_msg void OnCbnSelchangeRenameMoveDetection();
 	afx_msg void OnEditChangeAdditionalCompareCondition();
 	afx_msg void OnBnClickedAdditionalCompareConditionMenu();
-	afx_msg void OnEditChangeMoveDetectionCondition();
-	afx_msg void OnBnClickedMoveDetectionConditionMenu();
+	afx_msg void OnEditChangeRenameMoveKey();
+	afx_msg void OnBnClickedRenameMoveKeyMenu();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	void UpdateControls();

@@ -274,11 +274,11 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_pRenameMoveDetection.reset();
 	if (pOptions->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 0)
 	{
-		const String moveDetectionExpression = pOptions->GetString(OPT_CMP_RENAME_MOVE_KEY);
-		if (!moveDetectionExpression.empty())
+		const String renameMoveKeyExpression = pOptions->GetString(OPT_CMP_RENAME_MOVE_KEY);
+		if (!renameMoveKeyExpression.empty())
 		{
 			pCtxt->m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
-			auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
+			auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>(ucr::toUTF8(renameMoveKeyExpression));
 			pRenameMoveKeyExpression->SetDiffContext(pCtxt);
 			pCtxt->m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
 		}
@@ -294,7 +294,7 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		for (const auto& name : pCtxt->m_pAdditionalCompareExpression->GetPropertyNames())
 			nameSet.insert(ucr::toTString(name));
 	if (pCtxt->m_pRenameMoveDetection)
-		for (const auto& name : pCtxt->m_pRenameMoveDetection->GetMoveDetectionExpression()->GetPropertyNames())
+		for (const auto& name : pCtxt->m_pRenameMoveDetection->GetRenameMoveKeyExpression()->GetPropertyNames())
 			nameSet.insert(ucr::toTString(name));
 	std::vector<String> names(nameSet.begin(), nameSet.end());
 	pCtxt->m_pPropertySystem.reset(new PropertySystem(names));
@@ -329,7 +329,7 @@ void CDirDoc::CheckFilter()
 	}
 	if (m_pCtxt->m_pRenameMoveDetection)
 	{
-		auto* pRenameMoveKeyExpression = m_pCtxt->m_pRenameMoveDetection->GetMoveDetectionExpression();
+		auto* pRenameMoveKeyExpression = m_pCtxt->m_pRenameMoveDetection->GetRenameMoveKeyExpression();
 		if (pRenameMoveKeyExpression && pRenameMoveKeyExpression->errorCode != 0)
 		{
 			const String msg = FormatFilterErrorSummary(*pRenameMoveKeyExpression);
