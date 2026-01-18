@@ -67,7 +67,33 @@ static void ProcessPair(DIFFITEM* pdi0, int idx0, DIFFITEM* pdi1, int idx1, Move
 	// Case 4: Both already grouped (should be same group)
 	else if (pdi0->movedGroupId != -1 && pdi1->movedGroupId != -1)
 	{
-		//assert(pdi0->movedGroupId == pdi1->movedGroupId);
+		int groupA = pdi0->movedGroupId;
+		int groupB = pdi1->movedGroupId;
+
+		// Already same group ¨ nothing to do
+		if (groupA == groupB)
+			return;
+
+		// Merge groupB into groupA (policy: keep smaller ID)
+		if (groupA > groupB)
+			std::swap(groupA, groupB);
+
+		auto& dstGroup = movedItemGroups[groupA];
+		auto& srcGroup = movedItemGroups[groupB];
+
+		// Move all items from srcGroup to dstGroup
+		for (size_t side = 0; side < srcGroup.size(); ++side)
+		{
+			for (DIFFITEM* pdi : srcGroup[side])
+			{
+				pdi->movedGroupId = groupA;
+				dstGroup[side].push_back(pdi);
+			}
+			srcGroup[side].clear();
+		}
+
+		// Note:
+		// groupB entry remains empty; do not erase indices to keep IDs stable
 	}
 }
 

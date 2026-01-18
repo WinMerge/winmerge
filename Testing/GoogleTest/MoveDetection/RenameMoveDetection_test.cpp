@@ -77,7 +77,7 @@ namespace
 		
 		// Create a simple expression that matches files with same name
 		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
-		pRenameMoveKeyExpression->Parse("LeftName = RightName");
+		pRenameMoveKeyExpression->Parse("Name");
 		
 		// Add mock items
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
@@ -109,7 +109,7 @@ namespace
 		ctxt.InitDiffItemList();
 		
 		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
-		pRenameMoveKeyExpression->Parse("LeftName = RightName");
+		pRenameMoveKeyExpression->Parse("Name");
 		
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
 		CreateMockDiffItem(*pdi1, _T("file1.txt"), true, false);
@@ -139,7 +139,7 @@ namespace
 		ctxt.InitDiffItemList();
 		
 		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
-		pRenameMoveKeyExpression->Parse("LeftName = RightName");
+		pRenameMoveKeyExpression->Parse("Name");
 		
 		// File on left
 		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);

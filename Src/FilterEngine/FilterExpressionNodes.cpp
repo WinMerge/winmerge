@@ -11,6 +11,7 @@
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "paths.h"
+#include "unicoder.h"
 #include <string>
 #include <variant>
 #include <Poco/RegularExpression.h>
@@ -1704,6 +1705,72 @@ static auto OrEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a || b; });
 }
 
+static auto NormalizeUnicodeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	// Default normalization form: NFC (Normalization Form C)
+	ucr::NORMFORM normForm = ucr::NormC;
+	
+	// If a second argument is provided, it specifies the normalization form
+	if (args->size() > 1)
+	{
+		ValueType arg2 = args->at(1)->Evaluate(di);
+		if (auto formStr = std::get_if<std::string>(&arg2))
+		{
+			std::string form = Poco::toUpper(*formStr);
+			if (form == "NFC" || form == "C")
+				normForm = ucr::NormC;
+			else if (form == "NFD" || form == "D")
+				normForm = ucr::NormD;
+			else if (form == "NFKC" || form == "KC")
+				normForm = ucr::NormKC;
+			else if (form == "NFKD" || form == "KD")
+				normForm = ucr::NormKD;
+			else
+				return std::monostate{}; // Invalid normalization form
+		}
+		else if (auto formInt = std::get_if<int64_t>(&arg2))
+		{
+			// Support numeric form: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD
+			switch (*formInt)
+			{
+			case 1: normForm = ucr::NormC; break;
+			case 2: normForm = ucr::NormD; break;
+			case 5: normForm = ucr::NormKC; break;
+			case 6: normForm = ucr::NormKD; break;
+			default: return std::monostate{}; // Invalid form number
+			}
+		}
+	}
+	
+	ValueType arg = args->at(0)->Evaluate(di);
+	
+	auto normalizeUnicodeFunc = [normForm](const ValueType& val) -> ValueType
+		{
+			auto strVal = std::get_if<std::string>(&val);
+			if (!strVal)
+				return std::monostate{};
+			
+			try
+			{
+				// Convert UTF-8 string to String (tchar_t)
+				String tstr = ucr::toTString(*strVal);
+				
+				// Use ucr::normalizeString for Unicode normalization
+				String normalized = ucr::normalizeString(tstr, normForm);
+				
+				// Convert back to UTF-8
+				return ucr::toUTF8(normalized);
+			}
+			catch (...)
+			{
+				// If normalization fails, return the original string
+				return *strVal;
+			}
+		};
+	
+	return ApplyToScalarOrArrayWithContext(arg, normalizeUnicodeFunc);
+}
+
 static auto NotEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType arg = args->at(0)->Evaluate(di);
@@ -1747,6 +1814,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"logerror", LogErrorFunc, 1, -1},
 	{"loginfo", LogInfoFunc, 1, -1},
 	{"logwarn", LogWarnFunc, 1, -1},
+	{"normalizeunicode", NormalizeUnicodeFunc, 1, 2},
 	{"noteach", NotEachFunc, 1, 1},
 	{"now", NowFunc, 0, 0},
 	{"oreach", OrEachFunc, 2, 2},

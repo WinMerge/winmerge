@@ -274,10 +274,10 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_pRenameMoveDetection.reset();
 	if (pOptions->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 0)
 	{
-		pCtxt->m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		const String moveDetectionExpression = pOptions->GetString(OPT_CMP_RENAME_MOVE_KEY);
 		if (!moveDetectionExpression.empty())
 		{
+			pCtxt->m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 			auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>(ucr::toUTF8(moveDetectionExpression));
 			pRenameMoveKeyExpression->SetDiffContext(pCtxt);
 			pCtxt->m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
