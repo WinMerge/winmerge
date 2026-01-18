@@ -1520,6 +1520,51 @@ std::string ToStringValue(const ValueType& val)
 	return "<unknown>";
 }
 
+static auto RegexReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() != 3)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(di);
+	auto argPattern = (*args)[1]->Evaluate(di);
+	auto argReplacement = (*args)[2]->Evaluate(di);
+
+	const std::string* pattern = std::get_if<std::string>(&argPattern);
+	const std::string* replacement = std::get_if<std::string>(&argReplacement);
+
+	if (!pattern || !replacement)
+		return std::monostate{};
+
+	auto regexReplaceFn = [pattern, replacement](const ValueType& val) -> ValueType
+		{
+			const std::string* str = std::get_if<std::string>(&val);
+			if (!str)
+				return std::monostate{};
+
+			try
+			{
+				Poco::RegularExpression regex(*pattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+				std::string result = *str;
+				regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
+				return result;
+			}
+			catch (const Poco::RegularExpressionException&)
+			{
+				return std::monostate{};
+			}
+		};
+
+	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
+	{
+		auto result = std::make_shared<std::vector<ValueType2>>();
+		for (const auto& item : **argStrArray)
+			result->emplace_back(ValueType2{ regexReplaceFn(item.value) });
+		return result;
+	}
+
+	return regexReplaceFn(argStr);
+}
+
 static auto LogFunc(int level, const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType val;
@@ -1842,6 +1887,7 @@ static constexpr FunctionInfo functionTable[] = {
 	{"now", NowFunc, 0, 0},
 	{"oreach", OrEachFunc, 2, 2},
 	{"replace", ReplaceFunc, 3, 3},
+	{"regexreplace", RegexReplaceFunc, 3, 3},
 	{"startofmonth", StartOfMonthFunc, 1, 1},
 	{"startofweek", StartOfWeekFunc, 1, 1},
 	{"startofyear", StartOfYearFunc, 1, 1},
