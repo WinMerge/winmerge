@@ -891,6 +891,9 @@ msgstr "Pada&linti"
 msgid "Comp&are"
 msgstr "Lyg&inti"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Lyginti naujame &lange"
 
@@ -1621,6 +1624,21 @@ msgstr "Lyginti &atributus"
 
 msgid "Compare C&ontents"
 msgstr "Lyginti t&urinį"
+
+msgid "&Clear Keys"
+msgstr ""
+
+msgid "&Name"
+msgstr ""
+
+msgid "Normalized &Unicode Name"
+msgstr ""
+
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -2624,6 +2642,15 @@ msgstr "Persijungti į &binarinį palyginimą kai dydis virš (MB):"
 
 msgid "Additional comparison condi&tions:"
 msgstr "Papildomos palyginimo sąlygos:"
+
+msgid "&Rename/move detection:"
+msgstr ""
+
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Failų šablonai:"
@@ -3658,6 +3685,33 @@ msgstr "Failai skiriasi (išraiška: %1)"
 #, c-format
 msgid "Group%d"
 msgstr "Grupė%d"
+
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
+msgstr ""
+
+msgid "Renamed"
+msgstr ""
+
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
+msgstr ""
+
+#, c-format
+msgid "(%1 items)"
+msgstr ""
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

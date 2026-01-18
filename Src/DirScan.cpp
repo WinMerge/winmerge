@@ -992,8 +992,8 @@ static DIFFITEM* AddToList(const String& sDir1, const String& sDir2, const Strin
 				for (int i = 0; i < nItems; ++i)
 				{
 					auto& properties = di->diffFileInfo[i].m_pAdditionalProperties;
-        			if (properties)
-        				continue; // already have properties
+					if (properties)
+						continue; // already have properties
 					if (di->diffcode.exists(i))
 					{
 						properties.reset(new PropertyValues());

@@ -890,6 +890,9 @@ msgstr "分割(&L)"
 msgid "Comp&are"
 msgstr "比較(&A)"
 
+msgid "Compar&e with Moved/Renamed Items"
+msgstr "移動/名前変更された項目と比較(&E)"
+
 msgid "Compare in New &Window"
 msgstr "新しいウインドウで比較(&W)"
 
@@ -1620,6 +1623,21 @@ msgstr "属性を比較(&A)"
 
 msgid "Compare C&ontents"
 msgstr "内容を比較(&O)"
+
+msgid "&Clear Keys"
+msgstr "キーをクリア(&C)"
+
+msgid "&Name"
+msgstr "名前(&N)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Unicode正規化名(&U)"
+
+msgid "&Date"
+msgstr "更新日時(&D)"
+
+msgid "&Hash"
+msgstr "ハッシュ(&H)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -2635,6 +2653,15 @@ msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
 msgid "Additional comparison condi&tions:"
 msgstr "追加比較条件(&T):"
+
+msgid "&Rename/move detection:"
+msgstr "名前変更/移動検出(&R)"
+
+msgid "Rename/move detection &keys:"
+msgstr "名前変更/移動検出用キー生成式(&K)"
+
+msgid "&Merge renamed items into a single item"
+msgstr "名前変更された項目を1つの項目にマージする(&M)"
 
 msgid "File patterns:"
 msgstr "ファイル パターン:"
@@ -3884,6 +3911,33 @@ msgstr "ファイルは異なります (式: %1)"
 #, c-format
 msgid "Group%d"
 msgstr "グループ%d"
+
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
+msgstr ""
+
+msgid "Renamed"
+msgstr "名前変更"
+
+msgid "Moved"
+msgstr "移動"
+
+msgid "Renamed/Moved"
+msgstr "名前変更/移動"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 項目)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (グループ %2): "
 
 #, c-format
 msgid "Elapsed time: %ld ms"

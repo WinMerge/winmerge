@@ -8,6 +8,7 @@
 #include <string>
 #include <memory>
 #include "FilterError.h"
+#include "UnicodeString.h"
 
 class CDiffContext;
 class DIFFITEM;
@@ -25,6 +26,7 @@ struct FilterExpression
 	bool Parse();
 	void SetDiffContext(const CDiffContext* pCtxt) { ctxt = pCtxt; }
 	bool Evaluate(const DIFFITEM& di);
+	std::vector<String> EvaluateKeys(const DIFFITEM& di);
 	void UpdateTimestamp();
 	void Clear();
 	std::vector<std::string> GetPropertyNames() const;
