@@ -1630,14 +1630,17 @@ msgstr "キーをクリア(&C)"
 msgid "&Name"
 msgstr "名前(&N)"
 
+msgid "&Base name (without extension)"
+msgstr "拡張子を除いた名前(&B)"
+
 msgid "Normalized &Unicode Name"
-msgstr "Unicode正規化名(&U)"
+msgstr "Unicode正規化した名前(&U)"
 
 msgid "&Date"
 msgstr "更新日時(&D)"
 
-msgid "&Hash"
-msgstr "ハッシュ(&H)"
+msgid "&Hash(MD5)"
+msgstr "ハッシュ(MD5)(&H)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"

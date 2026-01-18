@@ -725,6 +725,13 @@ static auto NameField(int index, const FilterExpression* ctxt, const DIFFITEM& d
 	return ucr::toUTF8(di.diffFileInfo[index].filename.get());
 }
 
+static auto BaseNameField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
+{
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return ucr::toUTF8(paths::RemoveExtension(di.diffFileInfo[index].filename.get()));
+}
+
 static auto ExtensionField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
 {
 	if (!di.diffcode.exists(index))
@@ -883,6 +890,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = RecursiveTotalSizeField;
 	else if (strcmp(p, "name") == 0)
 		functmp = NameField;
+	else if (strcmp(p, "basename") == 0)
+		functmp = BaseNameField;
 	else if (strcmp(p, "extension") == 0)
 		functmp = ExtensionField;
 	else if (strcmp(p, "fullpath") == 0)

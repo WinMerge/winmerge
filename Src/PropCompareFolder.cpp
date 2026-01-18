@@ -69,6 +69,7 @@ public:
 			{
 				static const String Exprs[] = {
 					_T("Name"),
+					_T("BaseName"),
 					_T("normalizeUnicode(Name)"),
 					_T("Size"),
 					_T("Date"),

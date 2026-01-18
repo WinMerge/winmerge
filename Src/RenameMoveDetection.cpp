@@ -70,7 +70,7 @@ static void ProcessPair(DIFFITEM* pdi0, int idx0, DIFFITEM* pdi1, int idx1, Move
 		int groupA = pdi0->movedGroupId;
 		int groupB = pdi1->movedGroupId;
 
-		// Already same group ¨ nothing to do
+		// Already same group -> nothing to do
 		if (groupA == groupB)
 			return;
 

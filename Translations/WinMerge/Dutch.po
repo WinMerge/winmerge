@@ -1629,13 +1629,16 @@ msgstr ""
 msgid "&Name"
 msgstr ""
 
+msgid "&Base name (without extension)"
+msgstr ""
+
 msgid "Normalized &Unicode Name"
 msgstr ""
 
 msgid "&Date"
 msgstr ""
 
-msgid "&Hash"
+msgid "&Hash(MD5)"
 msgstr ""
 
 msgid "About WinMerge"

@@ -1743,10 +1743,11 @@ BEGIN
         MENUITEM "&Clear Keys",                 ID_RENAME_MOVE_KEY_MENU_CLEAR
         MENUITEM SEPARATOR
         MENUITEM "&Name",                       ID_RENAME_MOVE_KEY_MENU_NAME
+        MENUITEM "&Base name (without extension)", ID_RENAME_MOVE_KEY_MENU_BASENAME
         MENUITEM "Normalized &Unicode Name",    ID_RENAME_MOVE_KEY_MENU_NORMALIZED_NAME
         MENUITEM "&Size",                       ID_RENAME_MOVE_KEY_MENU_SIZE
         MENUITEM "&Date",                       ID_RENAME_MOVE_KEY_MENU_DATE
-        MENUITEM "&Hash",                       ID_RENAME_MOVE_KEY_MENU_HASH
+        MENUITEM "&Hash(MD5)",                  ID_RENAME_MOVE_KEY_MENU_HASH_MD5
         MENUITEM "Additional &Properties...",   ID_RENAME_MOVE_KEY_MENU_PROPS
     END
 END
