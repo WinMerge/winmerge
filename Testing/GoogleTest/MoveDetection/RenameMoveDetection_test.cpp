@@ -164,4 +164,388 @@ namespace
 		EXPECT_EQ(pdi2->movedGroupId, -1);
 	}
 
+	/**
+ * @brief Create a mock DIFFITEM for testing with 3-way comparison
+ */
+	void CreateMockDiffItem3Way(DIFFITEM& di, const String& filename, bool existsLeft, bool existsMiddle, bool existsRight, bool isDirectory = false)
+	{
+		di.movedGroupId = -1;
+
+		if (existsLeft)
+		{
+			di.diffcode.setSideFlag(0);
+			di.diffFileInfo[0].filename = filename;
+			di.diffFileInfo[0].path = _T("");
+			di.diffFileInfo[0].size = 1000;
+		}
+
+		if (existsMiddle)
+		{
+			di.diffcode.setSideFlag(1);
+			di.diffFileInfo[1].filename = filename;
+			di.diffFileInfo[1].path = _T("");
+			di.diffFileInfo[1].size = 1000;
+		}
+
+		if (existsRight)
+		{
+			di.diffcode.setSideFlag(2);
+			di.diffFileInfo[2].filename = filename;
+			di.diffFileInfo[2].path = _T("");
+			di.diffFileInfo[2].size = 1000;
+		}
+
+		if (isDirectory)
+			di.diffcode.diffcode |= DIFFCODE::DIR;
+		else
+			di.diffcode.diffcode |= DIFFCODE::FILE;
+	}
+
+	/**
+	 * @brief Test basic 3-way move detection
+	 */
+	TEST_F(RenameMoveDetectionTest, ThreeWayBasicMoveDetection)
+	{
+		PathContext paths;
+		paths.SetLeft(_T("C:\\Left"));
+		paths.SetMiddle(_T("C:\\Middle"));
+		paths.SetRight(_T("C:\\Right"));
+
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
+		pRenameMoveKeyExpression->Parse("Name");
+		pRenameMoveKeyExpression->SetDiffContext(&ctxt);
+
+		// Add mock items - same file in all three locations with same name
+		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi1, _T("file1.txt"), true, false, false);
+
+		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi2, _T("file1.txt"), false, true, false);
+
+		DIFFITEM* pdi3 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi3, _T("file1.txt"), false, false, true);
+
+		// Run detection
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
+
+		// Verify that all items were grouped together
+		EXPECT_NE(pdi1->movedGroupId, -1);
+		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
+		EXPECT_EQ(pdi2->movedGroupId, pdi3->movedGroupId);
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
+	}
+
+	/**
+	 * @brief Test 3-way move detection with partial matches
+	 */
+	TEST_F(RenameMoveDetectionTest, ThreeWayPartialMatches)
+	{
+		PathContext paths;
+		paths.SetLeft(_T("C:\\Left"));
+		paths.SetMiddle(_T("C:\\Middle"));
+		paths.SetRight(_T("C:\\Right"));
+
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
+		pRenameMoveKeyExpression->Parse("Name");
+		pRenameMoveKeyExpression->SetDiffContext(&ctxt);
+
+		// File exists in Left and Right only
+		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi1, _T("file1.txt"), true, false, false);
+
+		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi2, _T("file1.txt"), false, false, true);
+
+		// File exists in Middle only (different file)
+		DIFFITEM* pdi3 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi3, _T("file2.txt"), false, true, false);
+
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
+
+		// file1.txt should be grouped (Left and Right)
+		EXPECT_NE(pdi1->movedGroupId, -1);
+		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
+
+		// file2.txt should not be grouped (only in Middle)
+		EXPECT_EQ(pdi3->movedGroupId, -1);
+
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
+	}
+
+	/**
+	 * @brief Test 3-way move detection with multiple groups
+	 */
+	TEST_F(RenameMoveDetectionTest, ThreeWayMultipleGroups)
+	{
+		PathContext paths;
+		paths.SetLeft(_T("C:\\Left"));
+		paths.SetMiddle(_T("C:\\Middle"));
+		paths.SetRight(_T("C:\\Right"));
+
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
+		pRenameMoveKeyExpression->Parse("Name");
+		pRenameMoveKeyExpression->SetDiffContext(&ctxt);
+
+		// Group 1: file1.txt in Left and Middle
+		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi1, _T("file1.txt"), true, false, false);
+
+		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi2, _T("file1.txt"), false, true, false);
+
+		// Group 2: file2.txt in Middle and Right
+		DIFFITEM* pdi3 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi3, _T("file2.txt"), false, true, false);
+
+		DIFFITEM* pdi4 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi4, _T("file2.txt"), false, false, true);
+
+		// Group 3: file3.txt in all three locations
+		DIFFITEM* pdi5 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi5, _T("file3.txt"), true, false, false);
+
+		DIFFITEM* pdi6 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi6, _T("file3.txt"), false, true, false);
+
+		DIFFITEM* pdi7 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi7, _T("file3.txt"), false, false, true);
+
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
+
+		// Verify Group 1
+		EXPECT_NE(pdi1->movedGroupId, -1);
+		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
+
+		// Verify Group 2
+		EXPECT_NE(pdi3->movedGroupId, -1);
+		EXPECT_EQ(pdi3->movedGroupId, pdi4->movedGroupId);
+
+		// Verify Group 3
+		EXPECT_NE(pdi5->movedGroupId, -1);
+		EXPECT_EQ(pdi5->movedGroupId, pdi6->movedGroupId);
+		EXPECT_EQ(pdi6->movedGroupId, pdi7->movedGroupId);
+
+		// Verify groups are distinct
+		EXPECT_NE(pdi1->movedGroupId, pdi3->movedGroupId);
+		EXPECT_NE(pdi1->movedGroupId, pdi5->movedGroupId);
+		EXPECT_NE(pdi3->movedGroupId, pdi5->movedGroupId);
+
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 3u);
+	}
+
+	/**
+	 * @brief Test that 3-way directories and files are not mixed
+	 */
+	TEST_F(RenameMoveDetectionTest, ThreeWayDirectoriesAndFilesNotMixed)
+	{
+		PathContext paths;
+		paths.SetLeft(_T("C:\\Left"));
+		paths.SetMiddle(_T("C:\\Middle"));
+		paths.SetRight(_T("C:\\Right"));
+
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
+		pRenameMoveKeyExpression->Parse("Name");
+		pRenameMoveKeyExpression->SetDiffContext(&ctxt);
+
+		// File in Left
+		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi1, _T("item1"), true, false, false, false);
+
+		// Directory in Middle with same name
+		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi2, _T("item1"), false, true, false, true);
+
+		// File in Right with same name
+		DIFFITEM* pdi3 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi3, _T("item1"), false, false, true, false);
+
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
+
+		// Left and Right files should be grouped
+		EXPECT_NE(pdi1->movedGroupId, -1);
+		EXPECT_EQ(pdi1->movedGroupId, pdi3->movedGroupId);
+
+		// Middle directory should not be grouped with files
+		EXPECT_EQ(pdi2->movedGroupId, -1);
+
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
+	}
+
+	/**
+	 * @brief Test 3-way with complex expression
+	 */
+	TEST_F(RenameMoveDetectionTest, ThreeWayComplexExpression)
+	{
+		PathContext paths;
+		paths.SetLeft(_T("C:\\Left"));
+		paths.SetMiddle(_T("C:\\Middle"));
+		paths.SetRight(_T("C:\\Right"));
+
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		// Use size-based expression
+		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
+		pRenameMoveKeyExpression->Parse("Size");
+		pRenameMoveKeyExpression->SetDiffContext(&ctxt);
+
+		// Files with same size but different names
+		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi1, _T("fileA.txt"), true, false, false);
+		pdi1->diffFileInfo[0].size = 2000;
+
+		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi2, _T("fileB.txt"), false, true, false);
+		pdi2->diffFileInfo[1].size = 2000;
+
+		DIFFITEM* pdi3 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi3, _T("fileC.txt"), false, false, true);
+		pdi3->diffFileInfo[2].size = 2000;
+
+		// File with different size
+		DIFFITEM* pdi4 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi4, _T("fileD.txt"), true, false, false);
+		pdi4->diffFileInfo[0].size = 3000;
+
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
+
+		// Files with size 2000 should be grouped
+		EXPECT_NE(pdi1->movedGroupId, -1);
+		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
+		EXPECT_EQ(pdi2->movedGroupId, pdi3->movedGroupId);
+
+		// File with size 3000 should not be grouped
+		EXPECT_EQ(pdi4->movedGroupId, -1);
+
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
+	}
+
+	/**
+	 * @brief Test 3-way with only single file in each location
+	 */
+	TEST_F(RenameMoveDetectionTest, ThreeWaySingleFilePerLocation)
+	{
+		PathContext paths;
+		paths.SetLeft(_T("C:\\Left"));
+		paths.SetMiddle(_T("C:\\Middle"));
+		paths.SetRight(_T("C:\\Right"));
+
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
+		pRenameMoveKeyExpression->Parse("Name");
+		pRenameMoveKeyExpression->SetDiffContext(&ctxt);
+
+		// Only in Left
+		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi1, _T("leftonly.txt"), true, false, false);
+
+		// Only in Middle
+		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi2, _T("middleonly.txt"), false, true, false);
+
+		// Only in Right
+		DIFFITEM* pdi3 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi3, _T("rightonly.txt"), false, false, true);
+
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
+
+		// No items should be grouped (all have unique names)
+		EXPECT_EQ(pdi1->movedGroupId, -1);
+		EXPECT_EQ(pdi2->movedGroupId, -1);
+		EXPECT_EQ(pdi3->movedGroupId, -1);
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 0u);
+	}
+
+	/**
+	 * @brief Test 3-way with mixed 2-way and 3-way matches
+	 */
+	TEST_F(RenameMoveDetectionTest, ThreeWayMixed2WayAnd3WayMatches)
+	{
+		PathContext paths;
+		paths.SetLeft(_T("C:\\Left"));
+		paths.SetMiddle(_T("C:\\Middle"));
+		paths.SetRight(_T("C:\\Right"));
+
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>();
+		pRenameMoveKeyExpression->Parse("Name");
+		pRenameMoveKeyExpression->SetDiffContext(&ctxt);
+
+		// 3-way match: file1.txt
+		DIFFITEM* pdi1 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi1, _T("file1.txt"), true, false, false);
+
+		DIFFITEM* pdi2 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi2, _T("file1.txt"), false, true, false);
+
+		DIFFITEM* pdi3 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi3, _T("file1.txt"), false, false, true);
+
+		// 2-way match: file2.txt (Left-Right only)
+		DIFFITEM* pdi4 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi4, _T("file2.txt"), true, false, false);
+
+		DIFFITEM* pdi5 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi5, _T("file2.txt"), false, false, true);
+
+		// 2-way match: file3.txt (Left-Middle only)
+		DIFFITEM* pdi6 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi6, _T("file3.txt"), true, false, false);
+
+		DIFFITEM* pdi7 = ctxt.AddNewDiff(nullptr);
+		CreateMockDiffItem3Way(*pdi7, _T("file3.txt"), false, true, false);
+
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
+
+		// Verify 3-way match group
+		EXPECT_NE(pdi1->movedGroupId, -1);
+		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
+		EXPECT_EQ(pdi2->movedGroupId, pdi3->movedGroupId);
+
+		// Verify 2-way match group (Left-Right)
+		EXPECT_NE(pdi4->movedGroupId, -1);
+		EXPECT_EQ(pdi4->movedGroupId, pdi5->movedGroupId);
+
+		// Verify 2-way match group (Left-Middle)
+		EXPECT_NE(pdi6->movedGroupId, -1);
+		EXPECT_EQ(pdi6->movedGroupId, pdi7->movedGroupId);
+
+		// Verify all groups are distinct
+		EXPECT_NE(pdi1->movedGroupId, pdi4->movedGroupId);
+		EXPECT_NE(pdi1->movedGroupId, pdi6->movedGroupId);
+		EXPECT_NE(pdi4->movedGroupId, pdi6->movedGroupId);
+
+		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 3u);
+	}
+
 }  // namespace
