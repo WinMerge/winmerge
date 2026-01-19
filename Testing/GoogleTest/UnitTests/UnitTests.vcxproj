@@ -200,6 +200,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -230,6 +231,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -258,6 +260,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -286,6 +289,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -312,6 +316,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -341,6 +346,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -368,6 +374,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -395,6 +402,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>

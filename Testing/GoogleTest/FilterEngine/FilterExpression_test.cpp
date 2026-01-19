@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include <gtest/gtest.h>
 #include "FilterEngine/FilterExpression.h"
 #include "DiffContext.h"
@@ -1355,6 +1355,163 @@ TEST_P(FilterExpressionTest, ConditionalFunctions)
 	EXPECT_TRUE(fe.Parse("anyof(notEach(Size > 2500))"));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("ifEach(andEach(Size > 500, Size < 1500), \"in range\", \"out of range\") == array(\"in range\", \"out of range\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, RegexReplaceFunction)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Basic regex replace tests
+	EXPECT_TRUE(fe.Parse("regexReplace(\"abc123def\", \"[0-9]+\", \"XXX\") = \"abcXXXdef\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"hello world\", \"\\s+\", \"_\") = \"hello_world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"test123test456\", \"[0-9]+\", \"NUM\") = \"testNUMtestNUM\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Anchors
+	EXPECT_TRUE(fe.Parse("regexReplace(\"hello\", \"^h\", \"H\") = \"Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"hello\", \"o$\", \"O\") = \"hellO\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Character classes
+	EXPECT_TRUE(fe.Parse("regexReplace(\"a1b2c3\", \"[a-z]\", \"X\") = \"X1X2X3\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"a1b2c3\", \"[^0-9]\", \"X\") = \"X1X2X3\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Quantifiers
+	EXPECT_TRUE(fe.Parse("regexReplace(\"aaa\", \"a+\", \"b\") = \"b\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"aaa\", \"a*\", \"b\") = \"b\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"aaa\", \"a?\", \"b\") = \"bbb\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Capture groups (if supported)
+	EXPECT_TRUE(fe.Parse("regexReplace(\"hello world\", \"(\\w+) (\\w+)\", \"$2 $1\") = \"world hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"2025-01-19\", \"(\\d{4})-(\\d{2})-(\\d{2})\", \"$3/$2/$1\") = \"19/01/2025\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Array tests
+	EXPECT_TRUE(fe.Parse("regexReplace(array(\"abc123\", \"def456\"), \"[0-9]+\", \"NUM\") = array(\"abcNUM\", \"defNUM\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Empty string and no match
+	EXPECT_TRUE(fe.Parse("regexReplace(\"\", \"abc\", \"def\") = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"abc\", \"xyz\", \"def\") = \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Special characters
+	EXPECT_TRUE(fe.Parse("regexReplace(\"a.b.c\", \"\\.\", \"-\") = \"a-b-c\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"test()\", \"\\(\\)\", \"[]\") = \"test[]\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, NormalizeUnicodeFunction)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// NFC normalization
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"café\", \"NFC\") = normalizeUnicode(\"café\", \"NFC\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// NFD normalization
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"café\", \"NFD\") = normalizeUnicode(\"café\", \"NFD\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// NFKC normalization
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"ﬁle\", \"NFKC\") = \"file\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// NFKD normalization
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"ﬁle\", \"NFKD\") = normalizeUnicode(\"file\", \"NFD\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Comparing different normalizations
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"é\", \"NFC\") != normalizeUnicode(\"é\", \"NFD\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Default normalization (should be NFC if not specified)
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"test\") = \"test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Array tests
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(array(\"café\", \"naïve\"), \"NFC\") = normalizeUnicode(array(\"café\", \"naïve\"), \"NFC\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Empty string
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"\", \"NFC\") = \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// ASCII strings (should remain unchanged)
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"hello\", \"NFC\") = \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"hello\", \"NFD\") = \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Japanese text
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"カタカナ\", \"NFKC\") = \"カタカナ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Half-width to full-width conversion
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"ｶﾀｶﾅ\", \"NFKC\") = \"カタカナ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, StringFunctionsCombined)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Combining replace and other functions
+	EXPECT_TRUE(fe.Parse("strlen(replace(\"hello world\", \" \", \"\")) = 10"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(replace(\"test123\", \"123\", \"456\"), 4, 3) = \"456\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Combining regexReplace and other functions
+	EXPECT_TRUE(fe.Parse("strlen(regexReplace(\"a1b2c3\", \"[0-9]\", \"\")) = 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(regexReplace(\"hello world\", \"\\s+\", \"_\"), 0, 5) = \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Combining normalizeUnicode and other functions
+	EXPECT_TRUE(fe.Parse("strlen(normalizeUnicode(\"café\", \"NFC\")) = 4"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	
+	// Complex combinations
+	EXPECT_TRUE(fe.Parse("replace(normalizeUnicode(\"café\", \"NFC\"), \"é\", \"e\") = \"cafe\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(regexReplace(\"test  123\", \"\\s+\", \" \"), \"NFKC\") = \"test 123\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 

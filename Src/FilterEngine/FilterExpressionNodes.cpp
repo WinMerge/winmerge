@@ -1118,7 +1118,7 @@ static auto StrlenFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	auto strlenFn = [](const ValueType& val)->ValueType
 		{
 			if (auto arg1Str = std::get_if<std::string>(&val))
-				return static_cast<int64_t>(arg1Str->length());
+				return static_cast<int64_t>(ucr::stringlen_of_utf8(arg1Str->c_str(), arg1Str->length()));
 			return std::monostate{};
 		};
 	auto arg = (*args)[0]->Evaluate(di);
