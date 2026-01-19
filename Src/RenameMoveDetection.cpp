@@ -152,10 +152,6 @@ void RenameMoveDetection::DetectMovedItemsBetweenSides(
 			if (pdi0 == pdi1 || pdi0IsFolder != pdi1->diffcode.isDirectory())
 				continue;
 
-			// Skip if both already grouped
-			if (pdi0->movedGroupId != -1 && pdi1->movedGroupId != -1)
-				continue;
-
 			// Skip invalid combinations (both on same side)
 			if ((!pdi1->diffcode.exists(side0) && !pdi1->diffcode.exists(side1)) ||
 			    ( pdi0ExistsSide0              &&  pdi1->diffcode.exists(side0)) ||
@@ -488,14 +484,12 @@ void RenameMoveDetection::CheckMovedOrRenamed(const CDiffContext& ctxt, const DI
 				{
 					const auto* b = sideItems[j][l];
 					
-					// Renamed: same directory, different name
-					if (a->GetParentLink() == b->GetParentLink() && 
-					    a->diffFileInfo[i].filename != b->diffFileInfo[j].filename)
+					// Renamed: different name
+					if (a->diffFileInfo[i].filename != b->diffFileInfo[j].filename)
 						renamed = true;
 					
-					// Moved: different directory, same name
-					if (a->GetParentLink() != b->GetParentLink() && 
-					    a->diffFileInfo[i].filename == b->diffFileInfo[j].filename)
+					// Moved: different directory
+					if (a->GetParentLink() != b->GetParentLink())
 						moved = true;
 				}
 			}
