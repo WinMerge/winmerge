@@ -251,7 +251,7 @@ public:
 									// (see `DirColInfo` arrays in `DirViewColItems.cpp`) *>
 	DIFFCODE diffcode;				/**< Compare result */
 	unsigned customFlags;			/**< ViewCustomFlags flags */
-	int movedGroupId;				/**< ID of moved group, or -1 if not part of a moved group */
+	int renameMoveGroupId;				/**< ID of moved group, or -1 if not part of a moved group */
 
 	String getFilepath(int nIndex, const String &sRoot) const;
 	String getItemRelativePath() const;
@@ -301,7 +301,7 @@ public:
 public:
 	DIFFITEM() : parent(nullptr), children(nullptr), Flink(nullptr), Blink(nullptr), 
 					nidiffs(-1), nsdiffs(-1), customFlags(ViewCustomFlags::INVALID_CODE),
-					movedGroupId(-1)
+					renameMoveGroupId(-1)
 					// `DiffFileInfo` and `DIFFCODE` have their own initializers. 
 					{}
 	~DIFFITEM();

@@ -207,7 +207,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	// [Merge] menu or Context menu
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE, ID_MERGE_COMPARE_IN_NEW_WINDOW, OnMergeCompare)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE, ID_MERGE_COMPARE_IN_NEW_WINDOW, OnUpdateMergeCompare)
-	ON_COMMAND(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, OnMergeCompareWithMovedRenamed)
+	ON_COMMAND(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, OnMergeCompareWithRenamedMoved)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, OnUpdateMergeCompare)
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
@@ -739,7 +739,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
 	{
 		const DIFFITEM& di = *it;
-		if (di.movedGroupId == -1)
+		if (di.renameMoveGroupId == -1)
 			bMovedRenamed = false;
 		if (di.diffcode.isDirectory())
 		{
@@ -4219,7 +4219,7 @@ void CDirView::OnMergeCompare(UINT nID)
 	}
 }
 
-void CDirView::OnMergeCompareWithMovedRenamed()
+void CDirView::OnMergeCompareWithRenamedMoved()
 {
 	CDirDoc *pDoc = GetDocument();
 	CDiffContext& ctxt = GetDiffContext();
@@ -4234,16 +4234,16 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 	{
 		const DIFFITEM* pdi = &GetDiffItem(sel);
 		
-		// Get moved items for each pane
-		std::vector<std::vector<const DIFFITEM*>> movedItemsVec;
+		// Get renamed/moved items for each pane
+		std::vector<std::vector<const DIFFITEM*>> renameMoveItemsVec;
 		for (int nIndex = 0; nIndex < nDirs; ++nIndex)
 		{
-			movedItemsVec.push_back(ctxt.m_pRenameMoveDetection->GetMovedGroupItemsForSide(ctxt, *pdi, nIndex));
-			if (movedItemsVec[nIndex].empty())
-				movedItemsVec[nIndex].push_back(DIFFITEM::GetEmptyItem());
+			renameMoveItemsVec.push_back(ctxt.m_pRenameMoveDetection->GetRenameMoveGroupItemsForSide(ctxt, *pdi, nIndex));
+			if (renameMoveItemsVec[nIndex].empty())
+				renameMoveItemsVec[nIndex].push_back(DIFFITEM::GetEmptyItem());
 		}
 		
-		// Generate all combinations of moved items
+		// Generate all combinations of renamed/moved items
 		const DIFFITEM* pdiTmp[3];
 		auto generateCombinations = [&]()
 		{
@@ -4265,12 +4265,12 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 		};
 		
 		// Create combinations based on number of directories
-		for (size_t i = 0; i < movedItemsVec[0].size(); ++i)
+		for (size_t i = 0; i < renameMoveItemsVec[0].size(); ++i)
 		{
-			pdiTmp[0] = movedItemsVec[0][i];
-			for (size_t j = 0; j < movedItemsVec[1].size(); ++j)
+			pdiTmp[0] = renameMoveItemsVec[0][i];
+			for (size_t j = 0; j < renameMoveItemsVec[1].size(); ++j)
 			{
-				pdiTmp[1] = movedItemsVec[1][j];
+				pdiTmp[1] = renameMoveItemsVec[1][j];
 				
 				if (nDirs == 2)
 				{
@@ -4278,9 +4278,9 @@ void CDirView::OnMergeCompareWithMovedRenamed()
 				}
 				else if (nDirs == 3)
 				{
-					for (size_t k = 0; k < movedItemsVec[2].size(); ++k)
+					for (size_t k = 0; k < renameMoveItemsVec[2].size(); ++k)
 					{
-						pdiTmp[2] = movedItemsVec[2][k];
+						pdiTmp[2] = renameMoveItemsVec[2][k];
 						generateCombinations();
 					}
 				}

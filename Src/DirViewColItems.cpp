@@ -330,7 +330,7 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
 	const int nDirs = pCtxt->GetCompareDirs();
-	const String group = strutils::to_str(di.movedGroupId + 1);
+	const String group = strutils::to_str(di.renameMoveGroupId + 1);
 
 	// ---- moved / renamed detection ----
 	bool moved = false;
@@ -348,7 +348,7 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	// ---- format output ----
 	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
 	for (int side = 0; side < nDirs; ++side)
-		sideItems[side] = pCtxt->m_pRenameMoveDetection->GetMovedGroupItemsForSide(*pCtxt, di, side);
+		sideItems[side] = pCtxt->m_pRenameMoveDetection->GetRenameMoveGroupItemsForSide(*pCtxt, di, side);
 
 	auto fmt = [&sideItems](int i) -> String {
 		if (sideItems[i].empty() || sideItems[i].size() > 1)
@@ -397,7 +397,7 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 		else
 			s = _("File skipped");
 	}
-	else if (di.movedGroupId != -1)
+	else if (di.renameMoveGroupId != -1)
 	{
 		s = ColStatusGetMoved(pCtxt, di);
 	}
@@ -1202,8 +1202,8 @@ static int ColStatusSort(const CDiffContext *, const void *p, const void *q, int
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
-	if (ldi.movedGroupId != rdi.movedGroupId)
-		return ldi.movedGroupId - rdi.movedGroupId;
+	if (ldi.renameMoveGroupId != rdi.renameMoveGroupId)
+		return ldi.renameMoveGroupId - rdi.renameMoveGroupId;
 	return cmpdiffcode(rdi.diffcode.diffcode, ldi.diffcode.diffcode);
 }
 

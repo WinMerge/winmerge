@@ -21,7 +21,7 @@ namespace
 		 */
 		void CreateMockDiffItem(DIFFITEM& di, const String& filename, bool existsLeft, bool existsRight, bool isDirectory = false)
 		{
-			di.movedGroupId = -1;
+			di.renameMoveGroupId = -1;
 			
 			if (existsLeft)
 			{
@@ -94,8 +94,8 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 		
 		// Verify that items were grouped
-		EXPECT_NE(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
 	}
 
@@ -126,8 +126,8 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 		
 		// Items should not be grouped
-		EXPECT_EQ(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi2->movedGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi2->renameMoveGroupId, -1);
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 0u);
 	}
 
@@ -160,8 +160,8 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 		
 		// Should not be grouped
-		EXPECT_EQ(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi2->movedGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi2->renameMoveGroupId, -1);
 	}
 
 	/**
@@ -169,7 +169,7 @@ namespace
  */
 	void CreateMockDiffItem3Way(DIFFITEM& di, const String& filename, bool existsLeft, bool existsMiddle, bool existsRight, bool isDirectory = false)
 	{
-		di.movedGroupId = -1;
+		di.renameMoveGroupId = -1;
 
 		if (existsLeft)
 		{
@@ -234,9 +234,9 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 
 		// Verify that all items were grouped together
-		EXPECT_NE(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
-		EXPECT_EQ(pdi2->movedGroupId, pdi3->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
+		EXPECT_EQ(pdi2->renameMoveGroupId, pdi3->renameMoveGroupId);
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
 	}
 
@@ -273,11 +273,11 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 
 		// file1.txt should be grouped (Left and Right)
-		EXPECT_NE(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
 
 		// file2.txt should not be grouped (only in Middle)
-		EXPECT_EQ(pdi3->movedGroupId, -1);
+		EXPECT_EQ(pdi3->renameMoveGroupId, -1);
 
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
 	}
@@ -328,22 +328,22 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 
 		// Verify Group 1
-		EXPECT_NE(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
 
 		// Verify Group 2
-		EXPECT_NE(pdi3->movedGroupId, -1);
-		EXPECT_EQ(pdi3->movedGroupId, pdi4->movedGroupId);
+		EXPECT_NE(pdi3->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi3->renameMoveGroupId, pdi4->renameMoveGroupId);
 
 		// Verify Group 3
-		EXPECT_NE(pdi5->movedGroupId, -1);
-		EXPECT_EQ(pdi5->movedGroupId, pdi6->movedGroupId);
-		EXPECT_EQ(pdi6->movedGroupId, pdi7->movedGroupId);
+		EXPECT_NE(pdi5->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi5->renameMoveGroupId, pdi6->renameMoveGroupId);
+		EXPECT_EQ(pdi6->renameMoveGroupId, pdi7->renameMoveGroupId);
 
 		// Verify groups are distinct
-		EXPECT_NE(pdi1->movedGroupId, pdi3->movedGroupId);
-		EXPECT_NE(pdi1->movedGroupId, pdi5->movedGroupId);
-		EXPECT_NE(pdi3->movedGroupId, pdi5->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, pdi3->renameMoveGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, pdi5->renameMoveGroupId);
+		EXPECT_NE(pdi3->renameMoveGroupId, pdi5->renameMoveGroupId);
 
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 3u);
 	}
@@ -382,11 +382,11 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 
 		// Left and Right files should be grouped
-		EXPECT_NE(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi1->movedGroupId, pdi3->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, pdi3->renameMoveGroupId);
 
 		// Middle directory should not be grouped with files
-		EXPECT_EQ(pdi2->movedGroupId, -1);
+		EXPECT_EQ(pdi2->renameMoveGroupId, -1);
 
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
 	}
@@ -432,12 +432,12 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 
 		// Files with size 2000 should be grouped
-		EXPECT_NE(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
-		EXPECT_EQ(pdi2->movedGroupId, pdi3->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
+		EXPECT_EQ(pdi2->renameMoveGroupId, pdi3->renameMoveGroupId);
 
 		// File with size 3000 should not be grouped
-		EXPECT_EQ(pdi4->movedGroupId, -1);
+		EXPECT_EQ(pdi4->renameMoveGroupId, -1);
 
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 1u);
 	}
@@ -476,9 +476,9 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 
 		// No items should be grouped (all have unique names)
-		EXPECT_EQ(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi2->movedGroupId, -1);
-		EXPECT_EQ(pdi3->movedGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi2->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi3->renameMoveGroupId, -1);
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 0u);
 	}
 
@@ -528,22 +528,22 @@ namespace
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 
 		// Verify 3-way match group
-		EXPECT_NE(pdi1->movedGroupId, -1);
-		EXPECT_EQ(pdi1->movedGroupId, pdi2->movedGroupId);
-		EXPECT_EQ(pdi2->movedGroupId, pdi3->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
+		EXPECT_EQ(pdi2->renameMoveGroupId, pdi3->renameMoveGroupId);
 
 		// Verify 2-way match group (Left-Right)
-		EXPECT_NE(pdi4->movedGroupId, -1);
-		EXPECT_EQ(pdi4->movedGroupId, pdi5->movedGroupId);
+		EXPECT_NE(pdi4->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi4->renameMoveGroupId, pdi5->renameMoveGroupId);
 
 		// Verify 2-way match group (Left-Middle)
-		EXPECT_NE(pdi6->movedGroupId, -1);
-		EXPECT_EQ(pdi6->movedGroupId, pdi7->movedGroupId);
+		EXPECT_NE(pdi6->renameMoveGroupId, -1);
+		EXPECT_EQ(pdi6->renameMoveGroupId, pdi7->renameMoveGroupId);
 
 		// Verify all groups are distinct
-		EXPECT_NE(pdi1->movedGroupId, pdi4->movedGroupId);
-		EXPECT_NE(pdi1->movedGroupId, pdi6->movedGroupId);
-		EXPECT_NE(pdi4->movedGroupId, pdi6->movedGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, pdi4->renameMoveGroupId);
+		EXPECT_NE(pdi1->renameMoveGroupId, pdi6->renameMoveGroupId);
+		EXPECT_NE(pdi4->renameMoveGroupId, pdi6->renameMoveGroupId);
 
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetMovedItemGroups().size(), 3u);
 	}
