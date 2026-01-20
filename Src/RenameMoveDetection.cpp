@@ -435,7 +435,7 @@ std::vector<const DIFFITEM*> RenameMoveDetection::GetRenameMoveGroupItemsForSide
 	if (di.renameMoveGroupId >= static_cast<int>(m_renameMoveItemGroups.size()))
 		return items;
 	
-	const auto& movedItemGroup = m_renameMoveItemGroups[di.renameMoveGroupId];
+	const auto& renameMoveItemGroup = m_renameMoveItemGroups[di.renameMoveGroupId];
 	
 	// Return this item if it exists on requested side
 	if (di.diffcode.exists(sideIndex))
@@ -447,7 +447,7 @@ std::vector<const DIFFITEM*> RenameMoveDetection::GetRenameMoveGroupItemsForSide
 		// Find all items in group that exist on requested side
 		for (int i = 0; i < ctxt.GetCompareDirs(); i++)
 		{
-			for (auto pdi2: movedItemGroup[i])
+			for (auto pdi2: renameMoveItemGroup[i])
 			{
 				if (pdi2->diffcode.exists(sideIndex))
 					items.push_back(pdi2);
