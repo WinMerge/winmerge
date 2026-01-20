@@ -1283,47 +1283,58 @@ void setDefaultCodepage(int cp)
 	f_nDefaultCodepage = cp;
 }
 
+typedef int (WINAPI* PFN_NormalizeString)(_NORM_FORM NormForm, LPCWSTR lpSrcString, int cwSrcLength, LPWSTR lpDstString, int cwDstLength);
+
+static PFN_NormalizeString GetNormalizeStringProc()
+{
+	static PFN_NormalizeString pfn = nullptr;
+	static bool initialized = false;
+	if (!initialized)
+	{
+		initialized = true;
+		HMODULE hMod = ::LoadLibraryW(L"normaliz.dll");
+		if (hMod)
+		{
+			pfn = reinterpret_cast<PFN_NormalizeString>( ::GetProcAddress(hMod, "NormalizeString"));
+		}
+	}
+	return pfn;
+}
+
 String normalizeString(const String& str, NORMFORM form)
 {
 	if (str.empty())
 		return str;
 
-	// Windows NormalizeString requires Vista or later
-	// Map ucr::NORM_FORM to Windows _NORM_FORM enum values
-	// Our enum: NormalizationC=1, NormalizationD=2, NormalizationKC=5, NormalizationKD=6
+	PFN_NormalizeString pNormalizeString = GetNormalizeStringProc();
+	if (!pNormalizeString)
+		return str;
+
 	int winForm = static_cast<int>(form);
 
 #ifdef _UNICODE
-	// Unicode build: work directly with wide characters
-	int normalizedLen = ::NormalizeString(static_cast<_NORM_FORM>(winForm), str.c_str(), static_cast<int>(str.length()), nullptr, 0);
+	int normalizedLen = pNormalizeString(static_cast<_NORM_FORM>(winForm), str.c_str(), static_cast<int>(str.length()), nullptr, 0);
 	if (normalizedLen <= 0)
-	{
-		// If normalization fails or error occurs, return original string
-		DWORD dwError = ::GetLastError();
-		if (dwError == ERROR_SUCCESS || dwError == ERROR_NO_UNICODE_TRANSLATION)
-			return str;
 		return str;
-	}
 
 	String normalized;
 	try
 	{
 		normalized.resize(normalizedLen);
 	}
-	catch (std::bad_alloc&)
+	catch (...)
 	{
 		return str;
 	}
 
-	normalizedLen = ::NormalizeString(static_cast<_NORM_FORM>(winForm), str.c_str(), static_cast<int>(str.length()), 
-									  &normalized[0], normalizedLen);
+	normalizedLen = pNormalizeString(static_cast<_NORM_FORM>(winForm), str.c_str(), static_cast<int>(str.length()), &normalized[0], normalizedLen);
 	if (normalizedLen <= 0)
 		return str;
 
 	normalized.resize(normalizedLen);
 	return normalized;
+
 #else
-	// ANSI build: convert to Unicode, normalize, then convert back
 	std::wstring wstr;
 	try
 	{
@@ -1333,36 +1344,30 @@ String normalizeString(const String& str, NORMFORM form)
 	{
 		return str;
 	}
-	
+
 	if (wstr.empty())
 		return str;
 
-	int normalizedLen = ::NormalizeString(static_cast<_NORM_FORM>(winForm), wstr.c_str(), static_cast<int>(wstr.length()), nullptr, 0);
+	int normalizedLen = pNormalizeString(static_cast<_NORM_FORM>(winForm), wstr.c_str(), static_cast<int>(wstr.length()), nullptr, 0);
 	if (normalizedLen <= 0)
-	{
-		DWORD dwError = ::GetLastError();
-		if (dwError == ERROR_SUCCESS || dwError == ERROR_NO_UNICODE_TRANSLATION)
-			return str;
 		return str;
-	}
 
 	std::wstring normalized;
 	try
 	{
 		normalized.resize(normalizedLen);
 	}
-	catch (std::bad_alloc&)
+	catch (...)
 	{
 		return str;
 	}
 
-	normalizedLen = ::NormalizeString(static_cast<_NORM_FORM>(winForm), wstr.c_str(), static_cast<int>(wstr.length()), 
-									  &normalized[0], normalizedLen);
+	normalizedLen = pNormalizeString(static_cast<_NORM_FORM>(winForm), wstr.c_str(), static_cast<int>(wstr.length()), &normalized[0], normalizedLen);
 	if (normalizedLen <= 0)
 		return str;
 
 	normalized.resize(normalizedLen);
-	
+
 	try
 	{
 		return toThreadCP(normalized);
