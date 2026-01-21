@@ -39,6 +39,15 @@ enum
 #endif
 };
 
+enum NORMFORM
+{
+	NormOther = 0,
+	NormC = 0x1,
+	NormD = 0x2,
+	NormKC = 0x5,
+	NormKD = 0x6
+};
+
 /** @brief Known Unicode encodings. */
 enum UNICODESET : char
 {
@@ -130,5 +139,7 @@ int getDefaultCodepage();
 void setDefaultCodepage(int cp);
 
 bool EqualCodepages(int cp1, int cp2);
+
+String normalizeString(const String& str, NORMFORM form);
 
 } // namespace ucr

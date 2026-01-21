@@ -251,8 +251,17 @@ otherwise</para></listitem>
               <listitem><para>File name</para></listitem>
             </varlistentry>
             <varlistentry>
+              <term>BaseName</term>
+              <listitem><para>Returns the filename without extension. For example, "document.txt" returns
+"document".</para></listitem>
+            </varlistentry>
+            <varlistentry>
               <term>Extension</term>
               <listitem><para>File extension</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>IsFolder</term>
+              <listitem><para>Returns true if the item is a folder/directory, false if it's a file.</para></listitem>
             </varlistentry>
             <varlistentry>
               <term>תיקייה</term>
@@ -591,6 +600,34 @@ integer array. Example: <literal>strlen(Name)</literal></para></listitem>
 array</emphasis> as a <literal>String</literal>. If
 <replaceable>source</replaceable> is a string array, the result is a string
 array. Example: <literal>substr(Name, 0, 3)</literal></para></listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>replace(str, from, to)</term>
+            <listitem>
+              <para>
+Replaces all occurrences of the substring 'from' with 'to' in the string.
+Example: <literal>replace(name, "_old", "_new")</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>regexReplace(str, pattern, replacement)</term>
+            <listitem>
+              <para>
+Replaces all matches of the regular expression pattern with the replacement
+string.  Supports backreferences ($1, $2, etc.) in the replacement string.
+Example: <literal>regexReplace(name, "^(\\w+)_(\\w+)$", "$2_$1")</literal>
+swaps words separated by underscore.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>normalizeUnicode(str[, form])</term>
+            <listitem>
+              <para>
+Normalizes Unicode string. The optional form parameter specifies the
+normalization form: "NFC" or "C" (default), "NFD" or "D", "NFKC" or "KC",
+"NFKD" or "KD".  Can also use numeric forms: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD.
+Example: <literal>normalizeUnicode(name, "NFC")</literal></para>
+            </listitem>
           </varlistentry>
           <varlistentry>
             <term>now()</term>

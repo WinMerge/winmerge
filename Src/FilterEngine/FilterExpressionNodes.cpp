@@ -11,6 +11,7 @@
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "paths.h"
+#include "unicoder.h"
 #include <string>
 #include <variant>
 #include <Poco/RegularExpression.h>
@@ -358,7 +359,14 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 	auto rvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&rval);
 	if (!lvalArray && !rvalArray)
 	{
-		if (auto lvalDouble = std::get_if<double>(&lval))
+		if (op == TK_PLUS && lval.index() != rval.index() &&
+		   (std::holds_alternative<std::string>(lval) || std::holds_alternative<std::string>(rval)))
+		{
+			if (std::holds_alternative<std::monostate>(lval) || std::holds_alternative<std::monostate>(rval))
+				return std::monostate{};
+			return ToStringValue(lval) + ToStringValue(rval);
+		}
+		else if (auto lvalDouble = std::get_if<double>(&lval))
 		{
 			double r;
 			if (auto rvalDouble = std::get_if<double>(&rval))
@@ -663,6 +671,11 @@ static auto ExistsField(int index, const FilterExpression* ctxt, const DIFFITEM&
 	return di.diffcode.exists(index);
 }
 
+static auto IsFolderField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
+{
+	return di.diffcode.isDirectory();
+}
+
 template<typename Func>
 static auto FolderStatField(int index, const FilterExpression* ctxt, const DIFFITEM& di, Func func, bool recursive) -> ValueType
 {
@@ -710,6 +723,13 @@ static auto NameField(int index, const FilterExpression* ctxt, const DIFFITEM& d
 	if (!di.diffcode.exists(index))
 		return std::monostate{};
 	return ucr::toUTF8(di.diffFileInfo[index].filename.get());
+}
+
+static auto BaseNameField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
+{
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return ucr::toUTF8(paths::RemoveExtension(di.diffFileInfo[index].filename.get()));
 }
 
 static auto ExtensionField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
@@ -854,6 +874,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	const char* p = vl.c_str() + prefixlen;
 	if (strcmp(p, "exists") == 0)
 		functmp = ExistsField;
+	else if (strcmp(p, "isfolder") == 0)
+		functmp = IsFolderField;
 	else if (strcmp(p, "files") == 0)
 		functmp = FilesField;
 	else if (strcmp(p, "items") == 0)
@@ -868,6 +890,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = RecursiveTotalSizeField;
 	else if (strcmp(p, "name") == 0)
 		functmp = NameField;
+	else if (strcmp(p, "basename") == 0)
+		functmp = BaseNameField;
 	else if (strcmp(p, "extension") == 0)
 		functmp = ExtensionField;
 	else if (strcmp(p, "fullpath") == 0)
@@ -914,13 +938,22 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	if (prefixlen > 0)
 		func = [side, functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType { return functmp(side < 0 ? ctxt->ctxt->GetCompareDirs() + side: side, ctxt, di); };
 	else
-		func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType {
-			const int dirs = ctxt->ctxt->GetCompareDirs();
-			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
-			for (int i = 0; i < dirs; ++i)
-				values->emplace_back(ValueType2{ functmp(i, ctxt, di) });
-			return values;
-		};
+	{
+		if (side == -2)
+		{
+			func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType { return functmp(-2, ctxt, di); };
+		}
+		else
+		{
+			func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType {
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+				for (int i = 0; i < dirs; ++i)
+					values->emplace_back(ValueType2{ functmp(i, ctxt, di) });
+				return values;
+				};
+		}
+	}
 }
 
 ValueType FieldNode::Evaluate(const DIFFITEM& di) const
@@ -1085,7 +1118,7 @@ static auto StrlenFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	auto strlenFn = [](const ValueType& val)->ValueType
 		{
 			if (auto arg1Str = std::get_if<std::string>(&val))
-				return static_cast<int64_t>(arg1Str->length());
+				return static_cast<int64_t>(ucr::stringlen_of_utf8(arg1Str->c_str(), arg1Str->length()));
 			return std::monostate{};
 		};
 	auto arg = (*args)[0]->Evaluate(di);
@@ -1459,7 +1492,7 @@ static auto InRangeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	return applyToScalarOrArray(arg1, inRangeFn);
 }
 
-static std::string ToStringValue(const ValueType& val)
+std::string ToStringValue(const ValueType& val)
 {
 	if (auto intVal = std::get_if<int64_t>(&val))
 		return std::to_string(*intVal);
@@ -1494,6 +1527,51 @@ static std::string ToStringValue(const ValueType& val)
 	if (std::holds_alternative<std::monostate>(val))
 		return "<undefined>";
 	return "<unknown>";
+}
+
+static auto RegexReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() != 3)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(di);
+	auto argPattern = (*args)[1]->Evaluate(di);
+	auto argReplacement = (*args)[2]->Evaluate(di);
+
+	const std::string* pattern = std::get_if<std::string>(&argPattern);
+	const std::string* replacement = std::get_if<std::string>(&argReplacement);
+
+	if (!pattern || !replacement)
+		return std::monostate{};
+
+	auto regexReplaceFn = [pattern, replacement](const ValueType& val) -> ValueType
+		{
+			const std::string* str = std::get_if<std::string>(&val);
+			if (!str)
+				return std::monostate{};
+
+			try
+			{
+				Poco::RegularExpression regex(*pattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+				std::string result = *str;
+				regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
+				return result;
+			}
+			catch (const Poco::RegularExpressionException&)
+			{
+				return std::monostate{};
+			}
+		};
+
+	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
+	{
+		auto result = std::make_shared<std::vector<ValueType2>>();
+		for (const auto& item : **argStrArray)
+			result->emplace_back(ValueType2{ regexReplaceFn(item.value) });
+		return result;
+	}
+
+	return regexReplaceFn(argStr);
 }
 
 static auto LogFunc(int level, const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1704,6 +1782,72 @@ static auto OrEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a || b; });
 }
 
+static auto NormalizeUnicodeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	// Default normalization form: NFC (Normalization Form C)
+	ucr::NORMFORM normForm = ucr::NormC;
+	
+	// If a second argument is provided, it specifies the normalization form
+	if (args->size() > 1)
+	{
+		ValueType arg2 = args->at(1)->Evaluate(di);
+		if (auto formStr = std::get_if<std::string>(&arg2))
+		{
+			std::string form = Poco::toUpper(*formStr);
+			if (form == "NFC" || form == "C")
+				normForm = ucr::NormC;
+			else if (form == "NFD" || form == "D")
+				normForm = ucr::NormD;
+			else if (form == "NFKC" || form == "KC")
+				normForm = ucr::NormKC;
+			else if (form == "NFKD" || form == "KD")
+				normForm = ucr::NormKD;
+			else
+				return std::monostate{}; // Invalid normalization form
+		}
+		else if (auto formInt = std::get_if<int64_t>(&arg2))
+		{
+			// Support numeric form: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD
+			switch (*formInt)
+			{
+			case 1: normForm = ucr::NormC; break;
+			case 2: normForm = ucr::NormD; break;
+			case 5: normForm = ucr::NormKC; break;
+			case 6: normForm = ucr::NormKD; break;
+			default: return std::monostate{}; // Invalid form number
+			}
+		}
+	}
+	
+	ValueType arg = args->at(0)->Evaluate(di);
+	
+	auto normalizeUnicodeFunc = [normForm](const ValueType& val) -> ValueType
+		{
+			auto strVal = std::get_if<std::string>(&val);
+			if (!strVal)
+				return std::monostate{};
+			
+			try
+			{
+				// Convert UTF-8 string to String (tchar_t)
+				String tstr = ucr::toTString(*strVal);
+				
+				// Use ucr::normalizeString for Unicode normalization
+				String normalized = ucr::normalizeString(tstr, normForm);
+				
+				// Convert back to UTF-8
+				return ucr::toUTF8(normalized);
+			}
+			catch (...)
+			{
+				// If normalization fails, return the original string
+				return *strVal;
+			}
+		};
+	
+	return ApplyToScalarOrArrayWithContext(arg, normalizeUnicodeFunc);
+}
+
 static auto NotEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	ValueType arg = args->at(0)->Evaluate(di);
@@ -1747,9 +1891,11 @@ static constexpr FunctionInfo functionTable[] = {
 	{"logerror", LogErrorFunc, 1, -1},
 	{"loginfo", LogInfoFunc, 1, -1},
 	{"logwarn", LogWarnFunc, 1, -1},
+	{"normalizeunicode", NormalizeUnicodeFunc, 1, 2},
 	{"noteach", NotEachFunc, 1, 1},
 	{"now", NowFunc, 0, 0},
 	{"oreach", OrEachFunc, 2, 2},
+	{"regexreplace", RegexReplaceFunc, 3, 3},
 	{"replace", ReplaceFunc, 3, 3},
 	{"startofmonth", StartOfMonthFunc, 1, 1},
 	{"startofweek", StartOfWeekFunc, 1, 1},
