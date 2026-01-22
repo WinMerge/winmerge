@@ -259,6 +259,7 @@ popd
     <None Include="..\Translations\ShellExtension\Tamil.po" />
     <None Include="..\Translations\ShellExtension\Turkish.po" />
     <None Include="..\Translations\ShellExtension\Ukrainian.po" />
+    <None Include="..\Translations\ShellExtension\Vietnamese.po" />
     <None Include="..\Translations\ShellExtension\UpdatePoFilesFromPotFile.ps1" />
     <None Include="..\Translations\WinMerge\Arabic.po" />
     <None Include="..\Translations\WinMerge\Basque.po" />
@@ -300,6 +301,7 @@ popd
     <None Include="..\Translations\WinMerge\Tamil.po" />
     <None Include="..\Translations\WinMerge\Turkish.po" />
     <None Include="..\Translations\WinMerge\Ukrainian.po" />
+    <None Include="..\Translations\WinMerge\Vietnamese.po" />
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
   </ItemGroup>
   <ItemGroup>

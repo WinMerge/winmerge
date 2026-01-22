@@ -230,6 +230,9 @@ Localization:
   Serhii Romashko
   sggua
 
+* Vietnamese
+  IoeCmcomc
+
 Other Contributors (code, ideas, testing..):
 * James Abbatiello <abbeyj@users.sourceforge.net>
 * Andre Arpin

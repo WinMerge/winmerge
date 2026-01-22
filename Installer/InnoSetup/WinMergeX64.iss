@@ -166,6 +166,7 @@ Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Swedish.
 Name: Tamil; MessagesFile: compiler:Default.isl,..\..\Translations\InnoSetup\Tamil.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Tamil.txt
 Name: Turkish; MessagesFile: compiler:Languages\Turkish.isl,..\..\Translations\InnoSetup\Turkish.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt
 Name: Ukrainian; MessagesFile: compiler:Languages\Ukrainian.isl,..\..\Translations\InnoSetup\Ukrainian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt
+Name: Vietnamese; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Vietnamese.islu,..\..\Translations\InnoSetup\Vietnamese.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Vietnamese.txt
 
 
 [Messages]
@@ -302,6 +303,8 @@ Name: Languages\Turkish; Description: {cm:TurkishLanguage}; Flags: disablenounin
 Name: Languages\Ukrainian; Description: {cm:UkrainianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Ukrainian
 Name: Languages\Ukrainian; Description: {cm:UkrainianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Ukrainian
 
+Name: Languages\Vietnamese; Description: {cm:VietnameseLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Vietnamese
+Name: Languages\Vietnamese; Description: {cm:VietnameseLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Vietnamese
 
 [Tasks]
 Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: {cm:OptionalFeatures}
@@ -551,6 +554,8 @@ Source: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt; DestDir: {app}\Docs; 
 Source: ..\..\Translations\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\ShellExtension\Ukrainian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
+Source: ..\..\Translations\ShellExtension\Vietnamese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Vietnamese; Flags: ignoreversion comparetimestamp
+Source: ..\..\Translations\Docs\Readme\ReadMe-Vietnamese.txt; DestDir: {app}\Docs; Components: Languages\Vietnamese
 
 ;Filters
 Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
