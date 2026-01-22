@@ -41,6 +41,15 @@ static std::optional<bool> evalAsBool(const ValueType& val)
 	return std::nullopt;
 }
 
+static std::optional<std::string> getAsString(const ValueType& val)
+{
+	if (auto str = std::get_if<std::string>(&val))
+		return *str;
+	if (std::holds_alternative<std::monostate>(val))
+		return std::nullopt;
+	return ToStringValue(val);
+}
+
 ExprNode* OrNode::Optimize()
 {
 	if (!left || !right)
@@ -1133,7 +1142,6 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	if (args->size() < 2 || args->size() > 3)
 		return std::monostate{};
 
-	auto argStr = (*args)[0]->Evaluate(di);
 	auto argStart = (*args)[1]->Evaluate(di);
 	std::optional<ValueType> argLen;
 	if (args->size() == 3)
@@ -1145,70 +1153,30 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	if (!start)
 		return std::monostate{};
 
-	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
-	{
-		auto result = std::make_shared<std::vector<ValueType2>>();
-		for (const auto& item : *argStrArray->get())
+	auto substrFn = [start, len](const ValueType& val) -> ValueType
 		{
-			std::string tmp;
-			const std::string* str = std::get_if<std::string>(&item.value);
-			if (!str)
-			{
-				if (std::holds_alternative<std::monostate>(item.value))
-				{
-					result->emplace_back(ValueType2{ std::monostate{} });
-					continue;
-				}
-				tmp = ToStringValue(argStr);
-				str = &tmp;
-			}
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			const std::string* str = &*strOpt;
 
 			int64_t s = *start;
 			if (s < 0)
 				s += static_cast<int64_t>(str->length());
 			if (s < 0 || s >= str->length())
-			{
-				result->emplace_back(ValueType2{ std::string{} });
-				continue;
-			}
+				return std::string{};
 
 			if (!len)
-			{
-				result->emplace_back(ValueType2{ str->substr(static_cast<size_t>(s)) });
-				continue;
-			}
+				return str->substr(static_cast<size_t>(s));
 
 			int64_t actualLen = (*len >= 0) ? *len : static_cast<int64_t>(str->length()) - s + *len;
 			if (actualLen < 0)
 				actualLen = 0;
-			result->emplace_back(ValueType2{ str->substr(static_cast<size_t>(s), static_cast<size_t>(actualLen)) });
-		}
-		return result;
-	}
+			return str->substr(static_cast<size_t>(s), static_cast<size_t>(actualLen));
+		};
 
-	std::string tmp;
-	std::string* str = std::get_if<std::string>(&argStr);
-	if (!str)
-	{
-		if (std::holds_alternative<std::monostate>(argStr))
-			return std::monostate{};
-		tmp = ToStringValue(argStr);
-		str = &tmp;
-	}
-
-	int64_t s = *start;
-	if (s < 0)
-		s += static_cast<int64_t>(str->length());
-	if (s < 0 || s >= str->length())
-		return std::string{};
-
-	if (!len)
-		return str->substr(static_cast<size_t>(s));
-
-	int64_t actualLen = (*len >= 0) ? *len : static_cast<int64_t>(str->length()) - s + *len;
-	if (actualLen < 0)
-		actualLen = 0;
-	return str->substr(static_cast<size_t>(s), static_cast<size_t>(actualLen));
+	auto argStr = (*args)[0]->Evaluate(di);
+	return applyToScalarOrArray(argStr, substrFn);
 }
 
 static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1234,30 +1202,20 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 	if (args->size() == 3)
 		argLen = (*args)[2]->Evaluate(di);
 
-	const auto contentref = std::get_if<std::shared_ptr<FileContentRef>>(&argContentRef);
-	const auto contentrefArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argContentRef);
 	const int64_t* start = std::get_if<int64_t>(&argStart);
 	const int64_t* len = argLen ? std::get_if<int64_t>(&*argLen) : nullptr;
 
-	if ((!contentref && !contentrefArray) || !start)
+	if (!start)
 		return std::monostate{};
 
-	if (contentrefArray && *contentrefArray)
-	{
-		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
-		for (const auto& item : *contentrefArray->get())
+	auto sublinesFn = [start, len](const ValueType& val) -> ValueType
 		{
-			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
-				result->emplace_back(ValueType2{ static_cast<std::string>((*contentRef)->Sublines(*start, len ? *len : -1)) });
-			else
-				result->emplace_back(ValueType2{ std::monostate{} });
-		}
-		return result;
+			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&val))
+				return static_cast<std::string>((*contentRef)->Sublines(*start, len ? *len : -1));
+			return std::monostate{};
+		};
 
-	}
-	if (contentref && *contentref)
-		return (*contentref)->Sublines(*start, len ? *len : -1);
-	return std::monostate{};
+	return applyToScalarOrArray(argContentRef, sublinesFn);
 }
 
 static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1275,44 +1233,15 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	if (!from || !to || from->empty())
 		return std::monostate{};
 
-	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
-	{
-		auto& vec = **argStrArray;
-		auto result = std::make_shared<std::vector<ValueType2>>();
-		result->reserve(vec.size());
-
-		for (const auto& item : vec)
+	auto replaceFn = [from, to](const ValueType& val) -> ValueType
 		{
-			std::string tmp;
-			const std::string* str = std::get_if<std::string>(&item.value);
-			if (!str)
-			{
-				if (std::holds_alternative<std::monostate>(item.value))
-				{
-					result->emplace_back(ValueType2{ std::monostate{} });
-					continue;
-				}
-				tmp = ToStringValue(item.value);
-				str = &tmp;
-			}
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			return Poco::replace(*strOpt, *from, *to);
+		};
 
-			const auto replaced = Poco::replace(*str, *from, *to);
-			result->emplace_back(ValueType2{ replaced });
-		}
-
-		return result;
-	}
-
-	std::string tmp;
-	const std::string* str = std::get_if<std::string>(&argStr);
-	if (!str)
-	{
-		if (std::holds_alternative<std::monostate>(argStr))
-			return std::monostate{};
-		tmp = ToStringValue(argStr);
-		str = &tmp;
-	}
-	return Poco::replace(*str, *from, *to);
+	return applyToScalarOrArray(argStr, replaceFn);
 }
 
 static auto TodayFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1573,20 +1502,13 @@ static auto RegexReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, s
 
 	auto regexReplaceFn = [pattern, replacement](const ValueType& val) -> ValueType
 		{
-			std::string tmp;
-			const std::string* str = std::get_if<std::string>(&val);
-			if (!str)
-			{
-				if (std::holds_alternative<std::monostate>(val))
-					return std::monostate{};
-				tmp = ToStringValue(val);
-				str = &tmp;
-			}
-
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
 			try
 			{
 				Poco::RegularExpression regex(*pattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
-				std::string result = *str;
+				std::string result = *strOpt;
 				regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
 				return result;
 			}
@@ -1596,15 +1518,7 @@ static auto RegexReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, s
 			}
 		};
 
-	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
-	{
-		auto result = std::make_shared<std::vector<ValueType2>>();
-		for (const auto& item : **argStrArray)
-			result->emplace_back(ValueType2{ regexReplaceFn(item.value) });
-		return result;
-	}
-
-	return regexReplaceFn(argStr);
+	return applyToScalarOrArray(argStr, regexReplaceFn);
 }
 
 static auto LogFunc(int level, const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1856,32 +1770,15 @@ static auto NormalizeUnicodeFunc(const FilterExpression* ctxt, const DIFFITEM& d
 	
 	auto normalizeUnicodeFunc = [normForm](const ValueType& val) -> ValueType
 		{
-			std::string tmp;
-			auto strVal = std::get_if<std::string>(&val);
-			if (!strVal)
-			{
-				if (std::holds_alternative<std::monostate>(val))
-					return std::monostate{};
-				tmp = ToStringValue(val);
-				strVal = &tmp;
-			}
-			
-			try
-			{
-				// Convert UTF-8 string to String (tchar_t)
-				String tstr = ucr::toTString(*strVal);
-				
-				// Use ucr::normalizeString for Unicode normalization
-				String normalized = ucr::normalizeString(tstr, normForm);
-				
-				// Convert back to UTF-8
-				return ucr::toUTF8(normalized);
-			}
-			catch (...)
-			{
-				// If normalization fails, return the original string
-				return *strVal;
-			}
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			// Convert UTF-8 string to String (tchar_t)
+			String tstr = ucr::toTString(*strOpt);
+			// Use ucr::normalizeString for Unicode normalization
+			String normalized = ucr::normalizeString(tstr, normForm);
+			// Convert back to UTF-8
+			return ucr::toUTF8(normalized);
 		};
 	
 	return applyToScalarOrArray(arg, normalizeUnicodeFunc);
@@ -1892,16 +1789,10 @@ static auto ToXFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vecto
 	ValueType arg = args->at(0)->Evaluate(di);
 	auto toXFunc = [func](const ValueType& val) -> ValueType
 		{
-			std::string tmp;
-			auto strVal = std::get_if<std::string>(&val);
-			if (!strVal)
-			{
-				if (std::holds_alternative<std::monostate>(val))
-					return std::monostate{};
-				tmp = ToStringValue(val);
-				strVal = &tmp;
-			}
-			return ucr::toUTF8(func(ucr::toTString(*strVal)));
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			return ucr::toUTF8(func(ucr::toTString(*strOpt)));
 		};
 	
 	return applyToScalarOrArray(arg, toXFunc);

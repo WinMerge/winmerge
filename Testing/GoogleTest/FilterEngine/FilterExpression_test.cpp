@@ -1467,6 +1467,137 @@ TEST_P(FilterExpressionTest, StringTransformFunctions)
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// strlen with non-string arguments
+	EXPECT_TRUE(fe.Parse("strlen(123) == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(12345) == 5"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(123.45) == 6"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(true) == 4"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(false) == 5"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(array(123, 456)) == array(3, 3)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// substr with non-string first argument
+	EXPECT_TRUE(fe.Parse("substr(12345, 1, 3) == \"234\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(123.45, 0, 3) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(true, 0, 2) == \"tr\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(array(123, 456), 1, 2) == array(\"23\", \"56\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// replace with non-string first argument
+	EXPECT_TRUE(fe.Parse("replace(12345, \"23\", \"XX\") == \"1XX45\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(123.45, \".\", \",\") == \"123,45\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(true, \"t\", \"T\") == \"True\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(array(123, 456), \"3\", \"X\") == array(\"12X\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexReplace with non-string first argument
+	EXPECT_TRUE(fe.Parse("regexReplace(12345, \"[24]\", \"X\") == \"1X3X5\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(123.45, \"\\\\d\", \"X\") == \"XXX.XX\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(true, \"[a-z]\", \"X\") == \"XXXX\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(array(123, 456), \"[13]\", \"X\") == array(\"X2X\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toUpper with non-string argument
+	EXPECT_TRUE(fe.Parse("toUpper(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(123.45) == \"123.450000\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(true) == \"TRUE\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(false) == \"FALSE\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toLower with non-string argument
+	EXPECT_TRUE(fe.Parse("toLower(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(123.45) == \"123.450000\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(false) == \"false\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toHalfWidth with non-string argument
+	EXPECT_TRUE(fe.Parse("toHalfWidth(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHalfWidth(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHalfWidth(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toFullWidth with non-string argument
+	EXPECT_TRUE(fe.Parse("toFullWidth(123) == \"‚P‚Q‚R\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toFullWidth(array(123, 456)) == array(\"‚P‚Q‚R\", \"‚S‚T‚U\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toHiragana with non-string argument
+	EXPECT_TRUE(fe.Parse("toHiragana(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHiragana(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toKatakana with non-string argument
+	EXPECT_TRUE(fe.Parse("toKatakana(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toKatakana(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toSimplifiedChinese with non-string argument
+	EXPECT_TRUE(fe.Parse("toSimplifiedChinese(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toSimplifiedChinese(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toTraditionalChinese with non-string argument
+	EXPECT_TRUE(fe.Parse("toTraditionalChinese(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toTraditionalChinese(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// normalizeUnicode with non-string argument
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 INSTANTIATE_TEST_SUITE_P(
 	OptimizationCases,
 	FilterExpressionTest,
