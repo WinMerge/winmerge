@@ -1399,11 +1399,11 @@ static String LCMapStringAuto(const String& input, unsigned mapFlags)
 
 	if (pLCMapStringEx)
 	{
-		int len = pLCMapStringEx(LOCALE_NAME_USER_DEFAULT, mapFlags, input.c_str(), static_cast<int>(input.size()), nullptr, 0, nullptr, nullptr, 0);
+		int len = pLCMapStringEx(nullptr, mapFlags, input.c_str(), static_cast<int>(input.size()), nullptr, 0, nullptr, nullptr, 0);
 		if (len <= 0)
 			return input;
 		std::wstring result(len, L'\0');
-		pLCMapStringEx(LOCALE_NAME_USER_DEFAULT, mapFlags, input.c_str(), static_cast<int>(input.size()), result.data(), len, nullptr, nullptr, 0);
+		pLCMapStringEx(nullptr, mapFlags, input.c_str(), static_cast<int>(input.size()), result.data(), len, nullptr, nullptr, 0);
 		return result;
 	}
 
