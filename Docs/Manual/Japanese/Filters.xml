@@ -572,6 +572,80 @@ Unicode 文字列を正規化します。省略可能な form パラメータで
             </listitem>
           </varlistentry>
           <varlistentry>
+            <term>
+toLower(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+文字列内のすべての文字を小文字に変換します。<replaceable>str</replaceable>
+が配列の場合、結果は小文字に変換された文字列の配列になります。例: <literal>toLower("Hello World")</literal>
+は <literal>"hello world"</literal> を返します。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toUpper(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+文字列内のすべての文字を大文字に変換します。<replaceable>str</replaceable>
+が配列の場合、結果は大文字に変換された文字列の配列になります。例: <literal>toUpper("Hello World")</literal>
+は <literal>"HELLO WORLD"</literal> を返します。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toHalfWidth(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+全角文字を半角文字に変換します。主に全角の英数字やカタカナを半角に変換するために使用されます。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toFullWidth(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+半角文字を全角文字に変換します。主に半角の英数字やカタカナを全角に変換するために使用されます。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toKatakana(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+ひらがなをカタカナに変換します。ひらがな以外の文字は変更されません。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toHiragana(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+カタカナをひらがなに変換します。カタカナ以外の文字は変更されません。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toSimplifiedChinese(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+繁体字中国語を簡体字中国語に変換します。簡体字が存在しない文字は変更されません。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toTraditionalChinese(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+簡体字中国語を繁体字中国語に変換します。繁体字が存在しない文字は変更されません。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
             <term>now()</term>
             <listitem><para>現在の日時を <literal>Timestamp</literal> 型の値として返します。</para></listitem>
           </varlistentry>
@@ -823,6 +897,8 @@ log ファイル</para></listitem>
 Non-hidden temporary files</para></listitem>
           <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> -
 拡張子が「a」から「m」の範囲で、サイズが1MB未満のファイル</para></listitem>
+          <listitem><para><literal>toLower(Name) = "readme.txt"</literal> - 大文字・小文字を区別しないファイル名の一致判定</para></listitem>
+          <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - 全角を半角に変換した後で一致判定</para></listitem>
         </itemizedlist>
       </section>
     </section>
