@@ -1358,6 +1358,115 @@ TEST_P(FilterExpressionTest, ConditionalFunctions)
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, StringTransformFunctions)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// tolower function tests
+	EXPECT_TRUE(fe.Parse("tolower(\"HELLO\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tolower(\"Hello World\") == \"hello world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tolower(\"ABC123\") == \"abc123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tolower(array(\"HELLO\", \"WORLD\")) == array(\"hello\", \"world\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toupper function tests
+	EXPECT_TRUE(fe.Parse("toupper(\"hello\") == \"HELLO\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"Hello World\") == \"HELLO WORLD\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"abc123\") == \"ABC123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(array(\"hello\", \"world\")) == array(\"HELLO\", \"WORLD\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Japanese character conversion tests (tohalfwidth/tofullwidth)
+	EXPECT_TRUE(fe.Parse("tohalfwidth(\"Ç`ÇaÇbÇcÇd\") == \"ABCDE\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tofullwidth(\"ABCDE\") == \"Ç`ÇaÇbÇcÇd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohalfwidth(\"ÇPÇQÇRÇSÇT\") == \"12345\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tofullwidth(\"12345\") == \"ÇPÇQÇRÇSÇT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohalfwidth(array(\"Ç`ÇaÇbÇcÇd\", \"ÇPÇQÇRÇSÇT\")) == array(\"ABCDE\", \"12345\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tofullwidth(array(\"ABCDE\", \"12345\")) == array(\"Ç`ÇaÇbÇcÇd\", \"ÇPÇQÇRÇSÇT\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Japanese hiragana/katakana conversion tests
+	EXPECT_TRUE(fe.Parse("tokatakana(\"Ç†Ç¢Ç§Ç¶Ç®\") == \"ÉAÉCÉEÉGÉI\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohiragana(\"ÉAÉCÉEÉGÉI\") == \"Ç†Ç¢Ç§Ç¶Ç®\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tokatakana(\"Ç©Ç´Ç≠ÇØÇ±\") == \"ÉJÉLÉNÉPÉR\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohiragana(\"ÉJÉLÉNÉPÉR\") == \"Ç©Ç´Ç≠ÇØÇ±\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tokatakana(array(\"Ç†Ç¢Ç§Ç¶Ç®\", \"Ç©Ç´Ç≠ÇØÇ±\")) == array(\"ÉAÉCÉEÉGÉI\", \"ÉJÉLÉNÉPÉR\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohiragana(array(\"ÉAÉCÉEÉGÉI\", \"ÉJÉLÉNÉPÉR\")) == array(\"Ç†Ç¢Ç§Ç¶Ç®\", \"Ç©Ç´Ç≠ÇØÇ±\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Chinese character conversion tests (simplified/traditional)
+	EXPECT_TRUE(fe.Parse("tosimplifiedchinese(\"î…Èìéö\") == \"î…ëÃéö\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("totraditionalchinese(\"?ëÃéö\") == \"ä»Èìéö\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tosimplifiedchinese(\"ìd‰I\") == \"??\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("totraditionalchinese(\"?éZä˜\") == \"åvéZã@\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tosimplifiedchinese(array(\"î…Èìéö\", \"ìd‰I\")) == array(\"î…ëÃéö\", \"??\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("totraditionalchinese(array(\"?ëÃéö\", \"?éZä˜\")) == array(\"ä»Èìéö\", \"åvéZã@\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined usage tests
+	EXPECT_TRUE(fe.Parse("toupper(tolower(\"HeLLo\")) == \"HELLO\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohalfwidth(tofullwidth(\"ABC\")) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tokatakana(tohiragana(\"ÉAÉCÉEÉGÉI\")) == \"ÉAÉCÉEÉGÉI\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("totraditionalchinese(tosimplifiedchinese(\"î…Èìéö\")) == \"î…Èìéö\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Edge case: empty string
+	EXPECT_TRUE(fe.Parse("tolower(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohalfwidth(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tofullwidth(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Mixed content tests
+	EXPECT_TRUE(fe.Parse("tolower(\"Test123!@#\") == \"test123!@#\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"Test123!@#\") == \"TEST123!@#\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohalfwidth(\"Ç`ÇPÇ†ÉA\") == \"A1Ç†ÉA\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tokatakana(\"Ç†ÉA\") == \"ÉAÉA\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 INSTANTIATE_TEST_SUITE_P(
 	OptimizationCases,
 	FilterExpressionTest,
@@ -1366,4 +1475,7 @@ INSTANTIATE_TEST_SUITE_P(
 		FilterTestParam{ false }
 	)
 );
+
+
+
 

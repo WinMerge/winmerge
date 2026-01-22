@@ -1379,4 +1379,83 @@ String normalizeString(const String& str, NORMFORM form)
 #endif
 }
 
+using LCMapStringEx_t = int (WINAPI*)(LPCWSTR lpLocaleName, DWORD dwMapFlags, LPCWSTR lpSrcStr, int cchSrc, LPWSTR lpDestStr, int cchDest, LPNLSVERSIONINFO lpVersionInformation, LPVOID lpReserved, LPARAM sortHandle);
+
+static String LCMapStringAuto(const String& input, unsigned mapFlags)
+{
+	if (input.empty())
+		return input;
+
+	static LCMapStringEx_t pLCMapStringEx = nullptr;
+	static bool checked = false;
+
+	if (!checked)
+	{
+		HMODULE hKernel32 = GetModuleHandleW(L"kernel32.dll");
+		if (hKernel32)
+			pLCMapStringEx = reinterpret_cast<LCMapStringEx_t>(GetProcAddress(hKernel32, "LCMapStringEx"));
+		checked = true;
+	}
+
+	if (pLCMapStringEx)
+	{
+		int len = pLCMapStringEx(LOCALE_NAME_USER_DEFAULT, mapFlags, input.c_str(), static_cast<int>(input.size()), nullptr, 0, nullptr, nullptr, 0);
+		if (len <= 0)
+			return input;
+		std::wstring result(len, L'\0');
+		pLCMapStringEx(LOCALE_NAME_USER_DEFAULT, mapFlags, input.c_str(), static_cast<int>(input.size()), result.data(), len, nullptr, nullptr, 0);
+		return result;
+	}
+
+	// XP fallback
+	int len = LCMapStringW(LOCALE_USER_DEFAULT, mapFlags, input.c_str(), static_cast<int>(input.size()), nullptr, 0);
+	if (len <= 0)
+		return input;
+
+	std::wstring result(len, L'\0');
+	LCMapStringW(LOCALE_USER_DEFAULT, mapFlags, input.c_str(), static_cast<int>(input.size()), result.data(), len);
+
+	return result;
+}
+
+String toUpper(const String& s)
+{
+	return LCMapStringAuto(s, LCMAP_UPPERCASE);
+}
+
+String toLower(const String& s)
+{
+	return LCMapStringAuto(s, LCMAP_LOWERCASE);
+}
+
+String toHalfWidth(const String& s)
+{
+	return LCMapStringAuto(s, LCMAP_HALFWIDTH);
+}
+
+String toFullWidth(const String& s)
+{
+	return LCMapStringAuto(s, LCMAP_FULLWIDTH);
+}
+
+String toKatakana(const String& s)
+{
+	return LCMapStringAuto(s, LCMAP_KATAKANA);
+}
+
+String toHiragana(const String& s)
+{
+	return LCMapStringAuto(s, LCMAP_HIRAGANA);
+}
+
+String toSimplifiedChinese(const String& s)
+{
+	return LCMapStringAuto(s, LCMAP_SIMPLIFIED_CHINESE);
+}
+
+String toTraditionalChinese(const String& s)
+{
+	return LCMapStringAuto(s, LCMAP_TRADITIONAL_CHINESE);
+}
+
 } // namespace ucr

@@ -1782,6 +1782,21 @@ static auto OrEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a || b; });
 }
 
+static auto NotEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg = args->at(0)->Evaluate(di);
+	
+	auto notFunc = [](const ValueType& val) -> ValueType
+		{
+			auto boolVal = evalAsBool(val);
+			if (boolVal)
+				return !*boolVal;
+			return std::monostate{};
+		};
+	
+	return ApplyToScalarOrArrayWithContext(arg, notFunc);
+}
+
 static auto NormalizeUnicodeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
 	// Default normalization form: NFC (Normalization Form C)
@@ -1848,19 +1863,58 @@ static auto NormalizeUnicodeFunc(const FilterExpression* ctxt, const DIFFITEM& d
 	return ApplyToScalarOrArrayWithContext(arg, normalizeUnicodeFunc);
 }
 
-static auto NotEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+static auto ToXFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args, String (*func)(const String&)) -> ValueType
 {
 	ValueType arg = args->at(0)->Evaluate(di);
-	
-	auto notFunc = [](const ValueType& val) -> ValueType
+	auto toXFunc = [func](const ValueType& val) -> ValueType
 		{
-			auto boolVal = evalAsBool(val);
-			if (boolVal)
-				return !*boolVal;
-			return std::monostate{};
+			auto strVal = std::get_if<std::string>(&val);
+			if (!strVal)
+				return std::monostate{};
+			return ucr::toUTF8(func(ucr::toTString(*strVal)));
 		};
 	
-	return ApplyToScalarOrArrayWithContext(arg, notFunc);
+	return ApplyToScalarOrArrayWithContext(arg, toXFunc);
+}
+
+static auto ToLowerFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toLower);
+}
+
+static auto ToUpperFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toUpper);
+}
+
+static auto ToHalfWidthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toHalfWidth);
+}
+
+static auto ToFullWidthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toFullWidth);
+}
+
+static auto ToHiraganaFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toHiragana);
+}
+
+static auto ToKatakanaFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toKatakana);
+}
+
+static auto ToSimplifiedChineseFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toSimplifiedChinese);
+}
+
+static auto ToTraditionalChineseFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toTraditionalChinese);
 }
 
 struct FunctionInfo
@@ -1905,6 +1959,14 @@ static constexpr FunctionInfo functionTable[] = {
 	{"substr", SubstrFunc, 2, 3},
 	{"todatestr", ToDateStrFunc, 1, 1},
 	{"today", TodayFunc, 0, 0},
+	{"tofullwidth", ToFullWidthFunc, 1, 1},
+	{"tohalfwidth", ToHalfWidthFunc, 1, 1},
+	{"tohiragana", ToHiraganaFunc, 1, 1},
+	{"tokatakana", ToKatakanaFunc, 1, 1},
+	{"tolower", ToLowerFunc, 1, 1},
+	{"tosimplifiedchinese", ToSimplifiedChineseFunc, 1, 1},
+	{"totraditionalchinese", ToTraditionalChineseFunc, 1, 1},
+	{"toupper", ToUpperFunc, 1, 1},
 };
 
 static constexpr size_t functionTableSize = sizeof(functionTable) / sizeof(functionTable[0]);
