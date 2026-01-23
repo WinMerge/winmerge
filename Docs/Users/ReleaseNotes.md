@@ -1,6 +1,7 @@
-# WinMerge 2.16.53 Release Notes
+# WinMerge 2.16.54 Release Notes
 
 * [About This Release](#about-this-release)
+* [What Is New in 2.16.54](#what-is-new-in-21654)
 * [What Is New in 2.16.53 beta?](#what-is-new-in-21653-beta)
 * [Known issues](#known-issues)
 
@@ -8,12 +9,44 @@ January 2026
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.54 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.53
+## What Is New in 2.16.54
+
+### General
+
+* BugFix: Cyrilic shortcuts do not work for main menukeyboard shortcuts
+* BugFix: 2 recent-entries per project (#2990)
+
+### Folder compare
+
+* Add logInfo, logWarn, logError functions to filter expressions (PR #3131)
+* Add BaseName/IsFolder and new string transformation functions to filters
+    (PR #3146)
+
+### Options window
+
+* Adjusted the height of the Options dialog and the position of the Defaults
+    button
+
+### Shell extension
+
+* BugFix: Add-AppxPackage fails if path ends with backslash (PR #3145)
+
+### Translations
+
+* New translation: Vietnamese (PR #3142)
+* Translation updates:
+  * French (PR #3137)
+  * Japanese
+  * Korean (PR #3125,#3127)
+  * Lithuanian (PR #3144)
+  * Ukrainian (PR #3130)
+
+## What Is New in 2.16.53 Beta
 
 ### General
 
