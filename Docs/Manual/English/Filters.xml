@@ -594,8 +594,9 @@
             <term>replace(str, from, to)</term>
             <listitem>
               <para>
-                Replaces all occurrences of the substring 'from' with 'to' in the string.
-                Example: <literal>replace(name, "_old", "_new")</literal>
+                Replaces all occurrences of the string <replaceable>from</replaceable> with <replaceable>to</replaceable>.
+                If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
+                Example: <literal>replace(name, ".bak", ".txt")</literal>
               </para>
             </listitem>
           </varlistentry>
@@ -605,6 +606,7 @@
               <para>
                 Replaces all matches of the regular expression pattern with the replacement string.
                 Supports backreferences ($1, $2, etc.) in the replacement string.
+                If <replaceable>str</replaceable> is an array, the result is an array of strings with replacements applied.
                 Example: <literal>regexReplace(name, "^(\\w+)_(\\w+)$", "$2_$1")</literal> swaps words separated by underscore.
               </para>
             </listitem>
@@ -616,6 +618,7 @@
                 Normalizes Unicode string. The optional form parameter specifies the normalization form:
                 "NFC" or "C" (default), "NFD" or "D", "NFKC" or "KC", "NFKD" or "KD".
                 Can also use numeric forms: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD.
+                If <replaceable>str</replaceable> is an array, the result is an array of normalized strings.
                 Example: <literal>normalizeUnicode(name, "NFC")</literal>
               </para>
             </listitem>

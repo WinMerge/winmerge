@@ -550,7 +550,9 @@ Right, Middle）かを接頭辞で指定できます。</para>
             <term>replace(str, from, to)</term>
             <listitem>
               <para>
-文字列内に含まれる部分文字列 'from' をすべて 'to' に置換します。例: replace(name, "_old", "_new")</para>
+文字列内に含まれる部分文字列 'from' をすべて 'to'
+に置換します。<replaceable>str</replaceable>が文字列配列の場合、結果は文字列配列になります。例:
+replace(name, "_old", "_new")</para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -558,8 +560,8 @@ Right, Middle）かを接頭辞で指定できます。</para>
             <listitem>
               <para>
 正規表現 pattern に一致するすべての部分を replacement 文字列で置換します。replacement 文字列では後方参照（$1、$2
-など）を使用できます。例: regexReplace(name, "^(\w+)(\w+)$", "$2$1")
-は、アンダースコアで区切られた単語の順序を入れ替えます。</para>
+など）を使用できます。<replaceable>str</replaceable>が文字列配列の場合、結果は文字列配列になります。例:
+regexReplace(name, "^(\w+)(\w+)$", "$2$1") は、アンダースコアで区切られた単語の順序を入れ替えます。</para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -568,7 +570,8 @@ Right, Middle）かを接頭辞で指定できます。</para>
               <para>
 Unicode 文字列を正規化します。省略可能な form パラメータで正規化形式を指定できます。指定可能な形式は "NFC" または
 "C"（既定値）、"NFD" または "D"、"NFKC" または "KC"、"NFKD" または "KD" です。数値形式も指定できます:
-1=NFC、2=NFD、5=NFKC、6=NFKD。例: normalizeUnicode(name, "NFC")</para>
+1=NFC、2=NFD、5=NFKC、6=NFKD。<replaceable>str</replaceable>が文字列配列の場合、結果は文字列配列になります。例:
+normalizeUnicode(name, "NFC")</para>
             </listitem>
           </varlistentry>
           <varlistentry>
