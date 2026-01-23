@@ -12,6 +12,8 @@
 #include "OptionsDef.h"
 #include "MergeApp.h"
 
+#pragma execution_character_set("utf-8")
+
 struct FilterTestParam { bool optimize; };
 
 // The fixture for testing paths functions.
@@ -1358,11 +1360,15 @@ TEST_P(FilterExpressionTest, ConditionalFunctions)
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
-TEST_P(FilterExpressionTest, RegexReplaceFunction)
+TEST_P(FilterExpressionTest, StringTransformFunctions)
 {
 	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
 	CDiffContext ctxt(paths, 0);
 	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
 	di.diffcode.setSideFlag(0);
 	di.diffcode.setSideFlag(1);
 
@@ -1370,62 +1376,108 @@ TEST_P(FilterExpressionTest, RegexReplaceFunction)
 	fe.SetDiffContext(&ctxt);
 	fe.optimize = GetParam().optimize;
 
-	// Basic regex replace tests
-	EXPECT_TRUE(fe.Parse("regexReplace(\"abc123def\", \"[0-9]+\", \"XXX\") = \"abcXXXdef\""));
+	// tolower function tests
+	EXPECT_TRUE(fe.Parse("tolower(\"HELLO\") == \"hello\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"hello world\", \"\\s+\", \"_\") = \"hello_world\""));
+	EXPECT_TRUE(fe.Parse("tolower(\"Hello World\") == \"hello world\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"test123test456\", \"[0-9]+\", \"NUM\") = \"testNUMtestNUM\""));
+	EXPECT_TRUE(fe.Parse("tolower(\"ABC123\") == \"abc123\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Anchors
-	EXPECT_TRUE(fe.Parse("regexReplace(\"hello\", \"^h\", \"H\") = \"Hello\""));
+	EXPECT_TRUE(fe.Parse("tolower(array(\"HELLO\", \"WORLD\")) == array(\"hello\", \"world\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"hello\", \"o$\", \"O\") = \"hellO\""));
+
+	// toupper function tests
+	EXPECT_TRUE(fe.Parse("toupper(\"hello\") == \"HELLO\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Character classes
-	EXPECT_TRUE(fe.Parse("regexReplace(\"a1b2c3\", \"[a-z]\", \"X\") = \"X1X2X3\""));
+	EXPECT_TRUE(fe.Parse("toupper(\"Hello World\") == \"HELLO WORLD\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"a1b2c3\", \"[^0-9]\", \"X\") = \"X1X2X3\""));
+	EXPECT_TRUE(fe.Parse("toupper(\"abc123\") == \"ABC123\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Quantifiers
-	EXPECT_TRUE(fe.Parse("regexReplace(\"aaa\", \"a+\", \"b\") = \"b\""));
+	EXPECT_TRUE(fe.Parse("toupper(array(\"hello\", \"world\")) == array(\"HELLO\", \"WORLD\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"aaa\", \"a*\", \"b\") = \"b\""));
+
+	// Japanese character conversion tests (tohalfwidth/tofullwidth)
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"ＡＢＣＤＥ\") == \"ABCDE\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"aaa\", \"a?\", \"b\") = \"bbb\""));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(\"ABCDE\") == \"ＡＢＣＤＥ\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Capture groups (if supported)
-	EXPECT_TRUE(fe.Parse("regexReplace(\"hello world\", \"(\\w+) (\\w+)\", \"$2 $1\") = \"world hello\""));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"１２３４５\") == \"12345\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"2025-01-19\", \"(\\d{4})-(\\d{2})-(\\d{2})\", \"$3/$2/$1\") = \"19/01/2025\""));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(\"12345\") == \"１２３４５\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Array tests
-	EXPECT_TRUE(fe.Parse("regexReplace(array(\"abc123\", \"def456\"), \"[0-9]+\", \"NUM\") = array(\"abcNUM\", \"defNUM\")"));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(array(\"ＡＢＣＤＥ\", \"１２３４５\")) == array(\"ABCDE\", \"12345\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Empty string and no match
-	EXPECT_TRUE(fe.Parse("regexReplace(\"\", \"abc\", \"def\") = \"\""));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(array(\"ABCDE\", \"12345\")) == array(\"ＡＢＣＤＥ\", \"１２３４５\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"abc\", \"xyz\", \"def\") = \"abc\""));
+
+	// Japanese hiragana/katakana conversion tests
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"あいうえお\") == \"アイウエオ\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Special characters
-	EXPECT_TRUE(fe.Parse("regexReplace(\"a.b.c\", \"\\.\", \"-\") = \"a-b-c\""));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(\"アイウエオ\") == \"あいうえお\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(\"test()\", \"\\(\\)\", \"[]\") = \"test[]\""));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"かきくけこ\") == \"カキクケコ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(\"カキクケコ\") == \"かきくけこ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(array(\"あいうえお\", \"かきくけこ\")) == array(\"アイウエオ\", \"カキクケコ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(array(\"アイウエオ\", \"カキクケコ\")) == array(\"あいうえお\", \"かきくけこ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Chinese character conversion tests (simplified/traditional)
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(\"繁體字\") == \"繁体字\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(\"简体字\") == \"簡體字\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(\"電腦\") == \"电脑\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(\"计算机\") == \"計算機\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(array(\"繁體字\", \"電腦\")) == array(\"繁体字\", \"电脑\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(array(\"简体字\", \"计算机\")) == array(\"簡體字\", \"計算機\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined usage tests
+	EXPECT_TRUE(fe.Parse(u8"toupper(tolower(\"HeLLo\")) == \"HELLO\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(tofullwidth(\"ABC\")) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(tohiragana(\"アイウエオ\")) == \"アイウエオ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(tosimplifiedchinese(\"繁體字\")) == \"繁體字\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Edge case: empty string
+	EXPECT_TRUE(fe.Parse("tolower(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohalfwidth(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tofullwidth(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Mixed content tests
+	EXPECT_TRUE(fe.Parse("tolower(\"Test123!@#\") == \"test123!@#\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"Test123!@#\") == \"TEST123!@#\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"Ａ１あア\") == \"A1あｱ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"あア\") == \"アア\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
-TEST_P(FilterExpressionTest, NormalizeUnicodeFunction)
+TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 {
 	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
 	CDiffContext ctxt(paths, 0);
 	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
 	di.diffcode.setSideFlag(0);
 	di.diffcode.setSideFlag(1);
 
@@ -1433,85 +1485,118 @@ TEST_P(FilterExpressionTest, NormalizeUnicodeFunction)
 	fe.SetDiffContext(&ctxt);
 	fe.optimize = GetParam().optimize;
 
-	// NFC normalization
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"café\", \"NFC\") = normalizeUnicode(\"café\", \"NFC\")"));
+	// strlen with non-string arguments
+	EXPECT_TRUE(fe.Parse("strlen(123) == 3"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// NFD normalization
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"café\", \"NFD\") = normalizeUnicode(\"café\", \"NFD\")"));
+	EXPECT_TRUE(fe.Parse("strlen(12345) == 5"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// NFKC normalization
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"ﬁle\", \"NFKC\") = \"file\""));
+	EXPECT_TRUE(fe.Parse("strlen(123.45) == 10")); // "123.450000"
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// NFKD normalization
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"ﬁle\", \"NFKD\") = normalizeUnicode(\"file\", \"NFD\")"));
+	EXPECT_TRUE(fe.Parse("strlen(true) == 4"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Comparing different normalizations
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"é\", \"NFC\") != normalizeUnicode(\"é\", \"NFD\")"));
+	EXPECT_TRUE(fe.Parse("strlen(false) == 5"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Default normalization (should be NFC if not specified)
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"test\") = \"test\""));
+	EXPECT_TRUE(fe.Parse("strlen(array(123, 456)) == array(3, 3)"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Array tests
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(array(\"café\", \"naïve\"), \"NFC\") = normalizeUnicode(array(\"café\", \"naïve\"), \"NFC\")"));
-	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Empty string
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"\", \"NFC\") = \"\""));
-	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// ASCII strings (should remain unchanged)
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"hello\", \"NFC\") = \"hello\""));
-	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"hello\", \"NFD\") = \"hello\""));
-	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Japanese text
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"カタカナ\", \"NFKC\") = \"カタカナ\""));
-	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Half-width to full-width conversion
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(\"ｶﾀｶﾅ\", \"NFKC\") = \"カタカナ\""));
-	EXPECT_TRUE(fe.Evaluate(di));
-}
 
-TEST_P(FilterExpressionTest, StringFunctionsCombined)
-{
-	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
-	CDiffContext ctxt(paths, 0);
-	DIFFITEM di;
-	di.diffcode.setSideFlag(0);
-	di.diffcode.setSideFlag(1);
+	// substr with non-string first argument
+	EXPECT_TRUE(fe.Parse("substr(12345, 1, 3) == \"234\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(123.45, 0, 3) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(true, 0, 2) == \"tr\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(array(123, 456), 1, 2) == array(\"23\", \"56\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
 
-	FilterExpression fe;
-	fe.SetDiffContext(&ctxt);
-	fe.optimize = GetParam().optimize;
+	// replace with non-string first argument
+	EXPECT_TRUE(fe.Parse("replace(12345, \"23\", \"XX\") == \"1XX45\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(123.45, \".\", \",\") == \"123,450000\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(true, \"t\", \"T\") == \"True\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(array(123, 456), \"3\", \"X\") == array(\"12X\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
 
-	// Combining replace and other functions
-	EXPECT_TRUE(fe.Parse("strlen(replace(\"hello world\", \" \", \"\")) = 10"));
+	// regexReplace with non-string first argument
+	EXPECT_TRUE(fe.Parse("regexReplace(12345, \"[24]\", \"X\") == \"1X3X5\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("substr(replace(\"test123\", \"123\", \"456\"), 4, 3) = \"456\""));
+	EXPECT_TRUE(fe.Parse("regexReplace(123.45, \"\\d\", \"X\") == \"XXX.XXXXXX\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Combining regexReplace and other functions
-	EXPECT_TRUE(fe.Parse("strlen(regexReplace(\"a1b2c3\", \"[0-9]\", \"\")) = 3"));
+	EXPECT_TRUE(fe.Parse("regexReplace(true, \"[a-z]\", \"X\") == \"XXXX\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("substr(regexReplace(\"hello world\", \"\\s+\", \"_\"), 0, 5) = \"hello\""));
+	EXPECT_TRUE(fe.Parse("regexReplace(array(123, 456), \"[13]\", \"X\") == array(\"X2X\", \"456\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Combining normalizeUnicode and other functions
-	EXPECT_TRUE(fe.Parse("strlen(normalizeUnicode(\"café\", \"NFC\")) = 4"));
+
+	// toUpper with non-string argument
+	EXPECT_TRUE(fe.Parse("toUpper(123) == \"123\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	
-	// Complex combinations
-	EXPECT_TRUE(fe.Parse("replace(normalizeUnicode(\"café\", \"NFC\"), \"é\", \"e\") = \"cafe\""));
+	EXPECT_TRUE(fe.Parse("toUpper(123.45) == \"123.450000\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("normalizeUnicode(regexReplace(\"test  123\", \"\\s+\", \" \"), \"NFKC\") = \"test 123\""));
+	EXPECT_TRUE(fe.Parse("toUpper(true) == \"TRUE\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(false) == \"FALSE\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toLower with non-string argument
+	EXPECT_TRUE(fe.Parse("toLower(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(123.45) == \"123.450000\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(false) == \"false\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toHalfWidth with non-string argument
+	EXPECT_TRUE(fe.Parse("toHalfWidth(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHalfWidth(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHalfWidth(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toFullWidth with non-string argument
+	EXPECT_TRUE(fe.Parse("toFullWidth(123) == \"１２３\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"toFullWidth(array(123, 456)) == array(\"１２３\", \"４５６\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toHiragana with non-string argument
+	EXPECT_TRUE(fe.Parse("toHiragana(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHiragana(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toKatakana with non-string argument
+	EXPECT_TRUE(fe.Parse("toKatakana(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toKatakana(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toSimplifiedChinese with non-string argument
+	EXPECT_TRUE(fe.Parse("toSimplifiedChinese(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toSimplifiedChinese(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toTraditionalChinese with non-string argument
+	EXPECT_TRUE(fe.Parse("toTraditionalChinese(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toTraditionalChinese(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// normalizeUnicode with non-string argument
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(array(123, 456)) == array(\"123\", \"456\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
@@ -1523,4 +1608,7 @@ INSTANTIATE_TEST_SUITE_P(
 		FilterTestParam{ false }
 	)
 );
+
+
+
 

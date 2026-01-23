@@ -10,7 +10,7 @@ WinMerge has been actively developed since 2000.
 [![CI](https://github.com/WinMerge/winmerge/workflows/CI/badge.svg)](https://github.com/WinMerge/winmerge/actions)
 [![sourceforge.net downloads](https://img.shields.io/sourceforge/dt/winmerge)](https://sourceforge.net/projects/winmerge/files/)
 [![GitHub Releases](https://img.shields.io/github/downloads/winmerge/winmerge/total.svg)](https://github.com/WinMerge/winmerge/releases/latest)
-[![Translation status](https://img.shields.io/badge/translations-38-green)](https://github.com/WinMerge/winmerge/blob/master/Translations/TranslationsStatus.md)
+[![Translation status](https://img.shields.io/badge/translations-39-green)](https://github.com/WinMerge/winmerge/blob/master/Translations/TranslationsStatus.md)
 
 ---
 

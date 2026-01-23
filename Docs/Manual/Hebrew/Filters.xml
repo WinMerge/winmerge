@@ -605,8 +605,10 @@ array. Example: <literal>substr(Name, 0, 3)</literal></para></listitem>
             <term>replace(str, from, to)</term>
             <listitem>
               <para>
-Replaces all occurrences of the substring 'from' with 'to' in the string.
-Example: <literal>replace(name, "_old", "_new")</literal></para>
+Replaces all occurrences of the string <replaceable>from</replaceable> with
+<replaceable>to</replaceable>.  If <replaceable>str</replaceable> is an
+array, the result is an array of strings with replacements applied.
+Example: <literal>replace(name, ".bak", ".txt")</literal></para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -615,8 +617,9 @@ Example: <literal>replace(name, "_old", "_new")</literal></para>
               <para>
 Replaces all matches of the regular expression pattern with the replacement
 string.  Supports backreferences ($1, $2, etc.) in the replacement string.
-Example: <literal>regexReplace(name, "^(\\w+)_(\\w+)$", "$2_$1")</literal>
-swaps words separated by underscore.</para>
+If <replaceable>str</replaceable> is an array, the result is an array of
+strings with replacements applied.  Example: <literal>regexReplace(name,
+"^(\\w+)_(\\w+)$", "$2_$1")</literal> swaps words separated by underscore.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -626,7 +629,95 @@ swaps words separated by underscore.</para>
 Normalizes Unicode string. The optional form parameter specifies the
 normalization form: "NFC" or "C" (default), "NFD" or "D", "NFKC" or "KC",
 "NFKD" or "KD".  Can also use numeric forms: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD.
-Example: <literal>normalizeUnicode(name, "NFC")</literal></para>
+If <replaceable>str</replaceable> is an array, the result is an array of
+normalized strings.  Example: <literal>normalizeUnicode(name,
+"NFC")</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toLower(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts all characters in the string to lowercase.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+lowercase strings.  Example: <literal>toLower("Hello World")</literal>
+returns <literal>"hello world"</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toUpper(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts all characters in the string to uppercase.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+uppercase strings.  Example: <literal>toUpper("Hello World")</literal>
+returns <literal>"HELLO WORLD"</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toHalfWidth(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts full-width characters to half-width characters.  Primarily used for
+converting full-width alphanumeric and katakana characters to half-width.
+If <replaceable>str</replaceable> is an array, the result is an array of
+converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toFullWidth(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts half-width characters to full-width characters.  Primarily used for
+converting half-width alphanumeric and katakana characters to full-width.
+If <replaceable>str</replaceable> is an array, the result is an array of
+converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toKatakana(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts hiragana characters to katakana.  Non-hiragana characters remain
+unchanged.  If <replaceable>str</replaceable> is an array, the result is an
+array of converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toHiragana(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts katakana characters to hiragana.  Non-katakana characters remain
+unchanged.  If <replaceable>str</replaceable> is an array, the result is an
+array of converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toSimplifiedChinese(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts traditional Chinese characters to simplified Chinese characters.
+Characters that don't have a simplified form remain unchanged.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toTraditionalChinese(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts simplified Chinese characters to traditional Chinese characters.
+Characters that don't have a traditional form remain unchanged.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+converted strings.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -909,6 +1000,10 @@ contains "XML"</para></listitem>
 Non-hidden temporary files</para></listitem>
           <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> -
 Files with extensions from 'a' to 'm' and size less than 1MB</para></listitem>
+          <listitem><para><literal>toLower(Name) = "readme.txt"</literal> - Case-insensitive filename
+matching</para></listitem>
+          <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - Match after converting
+full-width to half-width</para></listitem>
         </itemizedlist>
       </section>
     </section>
