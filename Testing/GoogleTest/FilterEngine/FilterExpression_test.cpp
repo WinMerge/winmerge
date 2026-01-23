@@ -1490,7 +1490,7 @@ TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("strlen(12345) == 5"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("strlen(123.45) == 6"));
+	EXPECT_TRUE(fe.Parse("strlen(123.45) == 10")); // "123.450000"
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("strlen(true) == 4"));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -1512,7 +1512,7 @@ TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 	// replace with non-string first argument
 	EXPECT_TRUE(fe.Parse("replace(12345, \"23\", \"XX\") == \"1XX45\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("replace(123.45, \".\", \",\") == \"123,45\""));
+	EXPECT_TRUE(fe.Parse("replace(123.45, \".\", \",\") == \"123,450000\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("replace(true, \"t\", \"T\") == \"True\""));
 	EXPECT_TRUE(fe.Evaluate(di));
@@ -1522,7 +1522,7 @@ TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 	// regexReplace with non-string first argument
 	EXPECT_TRUE(fe.Parse("regexReplace(12345, \"[24]\", \"X\") == \"1X3X5\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("regexReplace(123.45, \"\\\\d\", \"X\") == \"XXX.XX\""));
+	EXPECT_TRUE(fe.Parse("regexReplace(123.45, \"\\d\", \"X\") == \"XXX.XXXXXX\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("regexReplace(true, \"[a-z]\", \"X\") == \"XXXX\""));
 	EXPECT_TRUE(fe.Evaluate(di));
