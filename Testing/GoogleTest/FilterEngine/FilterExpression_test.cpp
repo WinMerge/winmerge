@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include <gtest/gtest.h>
 #include "FilterEngine/FilterExpression.h"
 #include "DiffContext.h"
@@ -11,6 +11,8 @@
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "MergeApp.h"
+
+#pragma execution_character_set("utf-8")
 
 struct FilterTestParam { bool optimize; };
 
@@ -1395,55 +1397,55 @@ TEST_P(FilterExpressionTest, StringTransformFunctions)
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Japanese character conversion tests (tohalfwidth/tofullwidth)
-	EXPECT_TRUE(fe.Parse("tohalfwidth(\"‚`‚a‚b‚c‚d\") == \"ABCDE\""));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"ï¼¡ï¼¢ï¼£ï¼¤ï¼¥\") == \"ABCDE\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tofullwidth(\"ABCDE\") == \"‚`‚a‚b‚c‚d\""));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(\"ABCDE\") == \"ï¼¡ï¼¢ï¼£ï¼¤ï¼¥\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tohalfwidth(\"‚P‚Q‚R‚S‚T\") == \"12345\""));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"ï¼‘ï¼’ï¼“ï¼”ï¼•\") == \"12345\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tofullwidth(\"12345\") == \"‚P‚Q‚R‚S‚T\""));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(\"12345\") == \"ï¼‘ï¼’ï¼“ï¼”ï¼•\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tohalfwidth(array(\"‚`‚a‚b‚c‚d\", \"‚P‚Q‚R‚S‚T\")) == array(\"ABCDE\", \"12345\")"));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(array(\"ï¼¡ï¼¢ï¼£ï¼¤ï¼¥\", \"ï¼‘ï¼’ï¼“ï¼”ï¼•\")) == array(\"ABCDE\", \"12345\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tofullwidth(array(\"ABCDE\", \"12345\")) == array(\"‚`‚a‚b‚c‚d\", \"‚P‚Q‚R‚S‚T\")"));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(array(\"ABCDE\", \"12345\")) == array(\"ï¼¡ï¼¢ï¼£ï¼¤ï¼¥\", \"ï¼‘ï¼’ï¼“ï¼”ï¼•\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Japanese hiragana/katakana conversion tests
-	EXPECT_TRUE(fe.Parse("tokatakana(\"‚ ‚¢‚¤‚¦‚¨\") == \"ƒAƒCƒEƒGƒI\""));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"ã‚ã„ã†ãˆãŠ\") == \"ã‚¢ã‚¤ã‚¦ã‚¨ã‚ª\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tohiragana(\"ƒAƒCƒEƒGƒI\") == \"‚ ‚¢‚¤‚¦‚¨\""));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(\"ã‚¢ã‚¤ã‚¦ã‚¨ã‚ª\") == \"ã‚ã„ã†ãˆãŠ\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tokatakana(\"‚©‚«‚­‚¯‚±\") == \"ƒJƒLƒNƒPƒR\""));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"ã‹ããã‘ã“\") == \"ã‚«ã‚­ã‚¯ã‚±ã‚³\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tohiragana(\"ƒJƒLƒNƒPƒR\") == \"‚©‚«‚­‚¯‚±\""));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(\"ã‚«ã‚­ã‚¯ã‚±ã‚³\") == \"ã‹ããã‘ã“\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tokatakana(array(\"‚ ‚¢‚¤‚¦‚¨\", \"‚©‚«‚­‚¯‚±\")) == array(\"ƒAƒCƒEƒGƒI\", \"ƒJƒLƒNƒPƒR\")"));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(array(\"ã‚ã„ã†ãˆãŠ\", \"ã‹ããã‘ã“\")) == array(\"ã‚¢ã‚¤ã‚¦ã‚¨ã‚ª\", \"ã‚«ã‚­ã‚¯ã‚±ã‚³\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tohiragana(array(\"ƒAƒCƒEƒGƒI\", \"ƒJƒLƒNƒPƒR\")) == array(\"‚ ‚¢‚¤‚¦‚¨\", \"‚©‚«‚­‚¯‚±\")"));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(array(\"ã‚¢ã‚¤ã‚¦ã‚¨ã‚ª\", \"ã‚«ã‚­ã‚¯ã‚±ã‚³\")) == array(\"ã‚ã„ã†ãˆãŠ\", \"ã‹ããã‘ã“\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Chinese character conversion tests (simplified/traditional)
-	EXPECT_TRUE(fe.Parse("tosimplifiedchinese(\"”Éé“š\") == \"”É‘Ìš\""));
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(\"ç¹é«”å­—\") == \"ç¹ä½“å­—\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("totraditionalchinese(\"?‘Ìš\") == \"ŠÈé“š\""));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(\"ç®€ä½“å­—\") == \"ç°¡é«”å­—\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tosimplifiedchinese(\"“däI\") == \"??\""));
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(\"é›»è…¦\") == \"ç”µè„‘\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("totraditionalchinese(\"?ZŠ÷\") == \"ŒvZ‹@\""));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(\"è®¡ç®—æœº\") == \"è¨ˆç®—æ©Ÿ\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tosimplifiedchinese(array(\"”Éé“š\", \"“däI\")) == array(\"”É‘Ìš\", \"??\")"));
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(array(\"ç¹é«”å­—\", \"é›»è…¦\")) == array(\"ç¹ä½“å­—\", \"ç”µè„‘\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("totraditionalchinese(array(\"?‘Ìš\", \"?ZŠ÷\")) == array(\"ŠÈé“š\", \"ŒvZ‹@\")"));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(array(\"ç®€ä½“å­—\", \"è®¡ç®—æœº\")) == array(\"ç°¡é«”å­—\", \"è¨ˆç®—æ©Ÿ\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Combined usage tests
-	EXPECT_TRUE(fe.Parse("toupper(tolower(\"HeLLo\")) == \"HELLO\""));
+	EXPECT_TRUE(fe.Parse(u8"toupper(tolower(\"HeLLo\")) == \"HELLO\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tohalfwidth(tofullwidth(\"ABC\")) == \"ABC\""));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(tofullwidth(\"ABC\")) == \"ABC\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tokatakana(tohiragana(\"ƒAƒCƒEƒGƒI\")) == \"ƒAƒCƒEƒGƒI\""));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(tohiragana(\"ã‚¢ã‚¤ã‚¦ã‚¨ã‚ª\")) == \"ã‚¢ã‚¤ã‚¦ã‚¨ã‚ª\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("totraditionalchinese(tosimplifiedchinese(\"”Éé“š\")) == \"”Éé“š\""));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(tosimplifiedchinese(\"ç¹é«”å­—\")) == \"ç¹é«”å­—\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Edge case: empty string
@@ -1461,9 +1463,9 @@ TEST_P(FilterExpressionTest, StringTransformFunctions)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("toupper(\"Test123!@#\") == \"TEST123!@#\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tohalfwidth(\"‚`‚P‚ ƒA\") == \"A1‚ ƒA\""));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"ï¼¡ï¼‘ã‚ã‚¢\") == \"A1ã‚ï½±\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("tokatakana(\"‚ ƒA\") == \"ƒAƒA\""));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"ã‚ã‚¢\") == \"ã‚¢ã‚¢\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 
@@ -1560,9 +1562,9 @@ TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// toFullWidth with non-string argument
-	EXPECT_TRUE(fe.Parse("toFullWidth(123) == \"‚P‚Q‚R\""));
+	EXPECT_TRUE(fe.Parse("toFullWidth(123) == \"ï¼‘ï¼’ï¼“\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("toFullWidth(array(123, 456)) == array(\"‚P‚Q‚R\", \"‚S‚T‚U\")"));
+	EXPECT_TRUE(fe.Parse(u8"toFullWidth(array(123, 456)) == array(\"ï¼‘ï¼’ï¼“\", \"ï¼”ï¼•ï¼–\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// toHiragana with non-string argument
