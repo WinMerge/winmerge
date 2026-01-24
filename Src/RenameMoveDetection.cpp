@@ -37,13 +37,43 @@ static void TransferDiffItemData(DIFFITEM& dst, int dstindex, DIFFITEM& src, int
 }
 
 /**
+ * @brief Count how many sides have at least one item
+ * @param items Items to check
+ * @param nDirs Number of comparison directories
+ * @return Number of sides that have at least one item
+ */
+template<typename Container>
+static int CountSidesWithItems(const Container& items, int nDirs)
+{
+	bool sideHasItem[3] = { false, false, false };
+
+	for (auto* di : items)
+	{
+		for (int side = 0; side < nDirs; ++side)
+		{
+			if (di->diffcode.exists(side))
+				sideHasItem[side] = true;
+		}
+	}
+
+	int sideCount = 0;
+	for (int side = 0; side < nDirs; ++side)
+	{
+		if (sideHasItem[side])
+			++sideCount;
+	}
+
+	return sideCount;
+}
+
+/**
  * @brief Collect unmatched items and group them by detection keys
  * @param ctxt Diff context
- * @param diffpos Starting position for iteration (nullptr for entire tree)
+ * @param diffpos Starting position for iteration
  * @param keyExpression Expression to evaluate keys for matching
  * @param unmatchedFiles Output: map of file keys to items
  * @param unmatchedDirs Output: map of directory keys to items
- * @param iterateChildren If true, iterate children of diffpos; if false, iterate siblings
+ * @param iterateChildren If true, iterate children; if false, iterate all items
  */
 static void CollectUnmatchedItemsByKey(
 	CDiffContext& ctxt,
@@ -80,37 +110,21 @@ static void CollectUnmatchedItemsByKey(
 }
 
 /**
- * @brief Create candidate rename/move groups from items with matching keys
- *        that exist on at least two sides.
  * @brief Create rename/move groups from items with matching keys
+ * @param nDirs Number of comparison directories
  * @param itemMap Map of detection keys to items
  * @param renameMoveItemGroups Output: groups of matched items
  */
-static void CreateGroupsFromMatchedItems(int nDirs,
-	const std::map<String, std::vector<DIFFITEM*>>& itemMap,
+template<typename Container>
+static void CreateGroupsFromMatchedItems(
+	int nDirs,
+	const std::map<String, Container>& itemMap,
 	RenameMoveItemGroups& renameMoveItemGroups)
 {
 	for (const auto& [key, items] : itemMap)
 	{
-		bool sideHasItem[3] = { false, false, false };
-
-		for (auto* di : items)
-		{
-			for (int side = 0; side < nDirs; ++side)
-			{
-				if (di->diffcode.exists(side))
-					sideHasItem[side] = true;
-			}
-		}
-
-		int sideCount = 0;
-		for (int side = 0; side < nDirs; ++side)
-		{
-			if (sideHasItem[side])
-				++sideCount;
-		}
-
-		if (sideCount < 2)
+		// Only create groups for items that exist on at least 2 sides
+		if (CountSidesWithItems(items, nDirs) < 2)
 			continue;
 
 		renameMoveItemGroups.emplace_back();
@@ -177,37 +191,7 @@ static void GroupItemsBySameName(CDiffContext& ctxt, std::vector<DIFFITEM*> pare
 	}
 
 	// Create groups for items with same name
-	for (auto& [name, items] : nameToItemsMap)
-	{
-		bool sideHasItem[3] = { false, false, false };
-
-		for (auto* di : items)
-		{
-			for (int side = 0; side < nDirs; ++side)
-			{
-				if (di->diffcode.exists(side))
-					sideHasItem[side] = true;
-			}
-		}
-
-		int sideCount = 0;
-		for (int side = 0; side < nDirs; ++side)
-		{
-			if (sideHasItem[side])
-				++sideCount;
-		}
-
-		if (sideCount < 2)
-			continue;
-
-		renameMoveItemGroups.emplace_back();
-		int renameMoveGroupId = static_cast<int>(renameMoveItemGroups.size() - 1);
-		for (auto* di : items)
-		{
-			di->renameMoveGroupId = renameMoveGroupId;
-			renameMoveItemGroups[renameMoveGroupId].insert(di);
-		}
-	}
+	CreateGroupsFromMatchedItems(nDirs, nameToItemsMap, renameMoveItemGroups);
 }
 
 RenameMoveDetection::RenameMoveDetection()
@@ -366,15 +350,9 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt)
 			auto sideItems = OrganizeItemsBySide(renameMoveItemGroup, nDirs);
 
 			// Can only merge if each side has at most one item
-			bool canMerge = true;
-			for (int i = 0; i < nDirs; ++i)
-			{
-				if (sideItems[i].size() > 1)
-				{
-					canMerge = false;
-					break;
-				}
-			}
+			bool canMerge = std::all_of(sideItems.begin(), sideItems.begin() + nDirs,
+				[](const std::vector<DIFFITEM*>& items) { return items.size() <= 1; });
+
 			if (!canMerge)
 				continue;
 
