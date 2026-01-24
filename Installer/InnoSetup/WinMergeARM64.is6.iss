@@ -639,7 +639,7 @@ Source: ..\..\Build\{#ARCH}\Release\darkmodelib\LICENSE.md; DestDir: {app}\darkm
 Source: ..\..\Build\{#ARCH}\Release\darkmodelib\darkmode.dll; DestDir: {app}\darkmodelib; Flags: ignoreversion replacesameversion; Components: Core
 
 ;GNU patch
-Source: ..\..\Build\msys2\*.*; DestDir: {app}\Commands\msys2; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\msys2\*.*; DestDir: {app}\Commands\msys2; Flags: recursesubdirs; Components: Plugins; Excludes: "lemon*,re2c*"
 ; HTML Tidy
 Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
 Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
