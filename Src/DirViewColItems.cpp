@@ -348,7 +348,7 @@ static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 	// ---- format output ----
 	std::vector<std::vector<const DIFFITEM*>> sideItems(nDirs);
 	for (int side = 0; side < nDirs; ++side)
-		sideItems[side] = pCtxt->m_pRenameMoveDetection->GetRenameMoveGroupItemsForSide(*pCtxt, di, side);
+		sideItems[side] = pCtxt->m_pRenameMoveDetection->GetRenameMoveGroupItemsForSide(di, side);
 
 	auto fmt = [&sideItems](int i) -> String {
 		if (sideItems[i].empty() || sideItems[i].size() > 1)

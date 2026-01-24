@@ -13,15 +13,15 @@ using RenameMoveItemGroups = std::vector<std::set<DIFFITEM*>>;
 class RenameMoveDetection
 {
 public:
-	RenameMoveDetection();
-	~RenameMoveDetection();
+	RenameMoveDetection() = default;
+	~RenameMoveDetection() = default;
 
 	FilterExpression* GetRenameMoveKeyExpression() const { return m_pRenameMoveKeyExpression.get(); }
 	void SetRenameMoveKeyExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt, bool doMoveDetection);
 	void Merge(CDiffContext& ctxt);
 	const RenameMoveItemGroups& GetMovedItemGroups() const { return m_renameMoveItemGroups; }
-	std::vector<const DIFFITEM*> GetRenameMoveGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM& di, int sideIndex) const;
+	std::vector<const DIFFITEM*> GetRenameMoveGroupItemsForSide(const DIFFITEM& di, int sideIndex) const;
 	void CheckMovedOrRenamed(const CDiffContext& ctxt, const DIFFITEM& di, bool& moved, bool& renamed) const;
 
 private:

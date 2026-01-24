@@ -11,14 +11,14 @@
 #include "CompareStats.h"
 #include <set>
 
- /**
-  * @brief Transfer file info and properties from source to destination DIFFITEM
-  * @param dst Destination DIFFITEM to transfer data into
-  * @param dstindex Destination side index (0, 1, or 2 for left/middle/right)
-  * @param src Source DIFFITEM to transfer data from
-  * @param srcindex Source side index
-  * @note This function copies basic file information and moves additional properties
-  */
+/**
+ * @brief Transfer file info and properties from source to destination DIFFITEM
+ * @param dst Destination DIFFITEM to transfer data into
+ * @param dstindex Destination side index (0, 1, or 2 for left/middle/right)
+ * @param src Source DIFFITEM to transfer data from
+ * @param srcindex Source side index
+ * @note This function copies basic file information and moves additional properties
+ */
 static void TransferDiffItemData(DIFFITEM& dst, int dstindex, DIFFITEM& src, int srcindex)
 {
 	// Copy basic file information
@@ -192,14 +192,6 @@ static void GroupItemsBySameName(CDiffContext& ctxt, std::vector<DIFFITEM*> pare
 
 	// Create groups for items with same name
 	CreateGroupsFromMatchedItems(nDirs, nameToItemsMap, renameMoveItemGroups);
-}
-
-RenameMoveDetection::RenameMoveDetection()
-{
-}
-
-RenameMoveDetection::~RenameMoveDetection()
-{
 }
 
 /**
@@ -413,7 +405,7 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt)
  * @param sideIndex Side index (0=left, 1=middle, 2=right)
  * @return Vector of items in the same group that exist on the specified side
  */
-std::vector<const DIFFITEM*> RenameMoveDetection::GetRenameMoveGroupItemsForSide(const CDiffContext& ctxt, const DIFFITEM& di, int sideIndex) const
+std::vector<const DIFFITEM*> RenameMoveDetection::GetRenameMoveGroupItemsForSide(const DIFFITEM& di, int sideIndex) const
 {
 	std::vector<const DIFFITEM*> items;
 
@@ -459,7 +451,7 @@ void RenameMoveDetection::CheckMovedOrRenamed(const CDiffContext& ctxt, const DI
 
 	// Collect group items for each side
 	for (int side = 0; side < nDirs; ++side)
-		sideItems[side] = GetRenameMoveGroupItemsForSide(ctxt, di, side);
+		sideItems[side] = GetRenameMoveGroupItemsForSide(di, side);
 
 	moved = false;
 	renamed = false;

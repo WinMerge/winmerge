@@ -4238,7 +4238,7 @@ void CDirView::OnMergeCompareWithRenamedMoved()
 		std::vector<std::vector<const DIFFITEM*>> renameMoveItemsVec;
 		for (int nIndex = 0; nIndex < nDirs; ++nIndex)
 		{
-			renameMoveItemsVec.push_back(ctxt.m_pRenameMoveDetection->GetRenameMoveGroupItemsForSide(ctxt, *pdi, nIndex));
+			renameMoveItemsVec.push_back(ctxt.m_pRenameMoveDetection->GetRenameMoveGroupItemsForSide(*pdi, nIndex));
 			if (renameMoveItemsVec[nIndex].empty())
 				renameMoveItemsVec[nIndex].push_back(DIFFITEM::GetEmptyItem());
 		}
