@@ -1,13 +1,14 @@
 #pragma once
 
 #include <vector>
+#include <set>
 #include <memory>
 
 class CDiffContext;
 class DIFFITEM;
 struct FilterExpression;
 
-using RenameMoveItemGroups = std::vector<std::array<std::vector<DIFFITEM*>, 3>>;
+using RenameMoveItemGroups = std::vector<std::set<DIFFITEM*>>;
 
 class RenameMoveDetection
 {
@@ -25,7 +26,6 @@ public:
 
 private:
 	void DetectRenamedItems(CDiffContext& ctxt, std::vector<DIFFITEM*> parents, RenameMoveItemGroups& movedItemGroups);
-	void DetectRenameMoveItemsBetweenSides(const std::vector<DIFFITEM*>& unmatchedItems, int side0, int side1, CDiffContext& ctxt, RenameMoveItemGroups& movedItemGroups);
 
 	std::unique_ptr<FilterExpression> m_pRenameMoveKeyExpression;
 	RenameMoveItemGroups m_renameMoveItemGroups;
