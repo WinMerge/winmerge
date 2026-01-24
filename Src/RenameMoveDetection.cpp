@@ -80,17 +80,37 @@ static void CollectUnmatchedItemsByKey(
 }
 
 /**
+ * @brief Create candidate rename/move groups from items with matching keys
+ *        that exist on at least two sides.
  * @brief Create rename/move groups from items with matching keys
  * @param itemMap Map of detection keys to items
  * @param renameMoveItemGroups Output: groups of matched items
  */
-static void CreateGroupsFromMatchedItems(
+static void CreateGroupsFromMatchedItems(int nDirs,
 	const std::map<String, std::vector<DIFFITEM*>>& itemMap,
 	RenameMoveItemGroups& renameMoveItemGroups)
 {
 	for (const auto& [key, items] : itemMap)
 	{
-		if (items.size() < 2)
+		bool sideHasItem[3] = { false, false, false };
+
+		for (auto* di : items)
+		{
+			for (int side = 0; side < nDirs; ++side)
+			{
+				if (di->diffcode.exists(side))
+					sideHasItem[side] = true;
+			}
+		}
+
+		int sideCount = 0;
+		for (int side = 0; side < nDirs; ++side)
+		{
+			if (sideHasItem[side])
+				++sideCount;
+		}
+
+		if (sideCount < 2)
 			continue;
 
 		renameMoveItemGroups.emplace_back();
@@ -134,6 +154,8 @@ static std::array<std::vector<DIFFITEM*>, 3> OrganizeItemsBySide(
  */
 static void GroupItemsBySameName(CDiffContext& ctxt, std::vector<DIFFITEM*> parents, RenameMoveItemGroups& renameMoveItemGroups)
 {
+	const int nDirs = ctxt.GetCompareDirs();
+
 	// Build map: filename -> items with that name
 	std::map<String, std::set<DIFFITEM*>> nameToItemsMap;
 	for (auto* parent : parents)
@@ -145,7 +167,7 @@ static void GroupItemsBySameName(CDiffContext& ctxt, std::vector<DIFFITEM*> pare
 			// Only process unmatched items (not already in a group and not existing on all sides)
 			if (di.renameMoveGroupId == -1 && !di.diffcode.existAll())
 			{
-				for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
+				for (int i = 0; i < nDirs; ++i)
 				{
 					if (di.diffcode.exists(i))
 						nameToItemsMap[di.diffFileInfo[i].filename].insert(&di);
@@ -157,8 +179,27 @@ static void GroupItemsBySameName(CDiffContext& ctxt, std::vector<DIFFITEM*> pare
 	// Create groups for items with same name
 	for (auto& [name, items] : nameToItemsMap)
 	{
-		if (items.size() < 2)
+		bool sideHasItem[3] = { false, false, false };
+
+		for (auto* di : items)
+		{
+			for (int side = 0; side < nDirs; ++side)
+			{
+				if (di->diffcode.exists(side))
+					sideHasItem[side] = true;
+			}
+		}
+
+		int sideCount = 0;
+		for (int side = 0; side < nDirs; ++side)
+		{
+			if (sideHasItem[side])
+				++sideCount;
+		}
+
+		if (sideCount < 2)
 			continue;
+
 		renameMoveItemGroups.emplace_back();
 		int renameMoveGroupId = static_cast<int>(renameMoveItemGroups.size() - 1);
 		for (auto* di : items)
@@ -215,8 +256,8 @@ void RenameMoveDetection::DetectRenamedItems(CDiffContext& ctxt, std::vector<DIF
 	}
 
 	// Step 3: Create groups for items with matching keys
-	CreateGroupsFromMatchedItems(unmatchedFiles, renameMoveItemGroups);
-	CreateGroupsFromMatchedItems(unmatchedDirs, renameMoveItemGroups);
+	CreateGroupsFromMatchedItems(ctxt.GetCompareDirs(), unmatchedFiles, renameMoveItemGroups);
+	CreateGroupsFromMatchedItems(ctxt.GetCompareDirs(), unmatchedDirs, renameMoveItemGroups);
 
 	// Step 4: Recurse into subdirectories that exist on all sides
 	DIFFITEM* diffpos = ctxt.GetFirstChildDiffPosition(parents[0]);
@@ -287,8 +328,8 @@ void RenameMoveDetection::Detect(CDiffContext& ctxt, bool doMoveDetection)
 			unmatchedFiles, unmatchedDirs, false);
 
 		// Create groups for moved items
-		CreateGroupsFromMatchedItems(unmatchedFiles, m_renameMoveItemGroups);
-		CreateGroupsFromMatchedItems(unmatchedDirs, m_renameMoveItemGroups);
+		CreateGroupsFromMatchedItems(ctxt.GetCompareDirs(), unmatchedFiles, m_renameMoveItemGroups);
+		CreateGroupsFromMatchedItems(ctxt.GetCompareDirs(), unmatchedDirs, m_renameMoveItemGroups);
 	}
 
 	// Restore item count
