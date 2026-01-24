@@ -36,21 +36,93 @@ static void TransferDiffItemData(DIFFITEM& dst, int dstindex, DIFFITEM& src, int
 	dst.diffFileInfo[dstindex].m_pAdditionalProperties = std::move(src.diffFileInfo[srcindex].m_pAdditionalProperties);
 }
 
-RenameMoveDetection::RenameMoveDetection()
+/**
+ * @brief Collect unmatched items and group them by detection keys
+ * @param ctxt Diff context
+ * @param diffpos Starting position for iteration (nullptr for entire tree)
+ * @param keyExpression Expression to evaluate keys for matching
+ * @param unmatchedFiles Output: map of file keys to items
+ * @param unmatchedDirs Output: map of directory keys to items
+ * @param iterateChildren If true, iterate children of diffpos; if false, iterate siblings
+ */
+static void CollectUnmatchedItemsByKey(
+	CDiffContext& ctxt,
+	DIFFITEM* diffpos,
+	FilterExpression* keyExpression,
+	std::map<String, std::vector<DIFFITEM*>>& unmatchedFiles,
+	std::map<String, std::vector<DIFFITEM*>>& unmatchedDirs,
+	bool iterateChildren)
 {
-}
+	while (diffpos != nullptr)
+	{
+		DIFFITEM& di = iterateChildren
+			? ctxt.GetNextSiblingDiffRefPosition(diffpos)
+			: ctxt.GetNextDiffRefPosition(diffpos);
 
-RenameMoveDetection::~RenameMoveDetection()
-{
+		if (di.renameMoveGroupId == -1 && !di.diffcode.existAll())
+		{
+			std::vector<String> keys = keyExpression->EvaluateKeys(di);
+			if (keys.size() == ctxt.GetCompareDirs())
+			{
+				for (int i = 0; i < static_cast<int>(keys.size()); ++i)
+				{
+					if (di.diffcode.exists(i))
+					{
+						if (di.diffcode.isDirectory())
+							unmatchedDirs[keys[i]].push_back(&di);
+						else
+							unmatchedFiles[keys[i]].push_back(&di);
+					}
+				}
+			}
+		}
+	}
 }
 
 /**
- * @brief Set the filter expression used for rename/move detection
- * @param expr Filter expression that generates keys for matching items across sides
+ * @brief Create rename/move groups from items with matching keys
+ * @param itemMap Map of detection keys to items
+ * @param renameMoveItemGroups Output: groups of matched items
  */
-void RenameMoveDetection::SetRenameMoveKeyExpression(const FilterExpression* expr)
+static void CreateGroupsFromMatchedItems(
+	const std::map<String, std::vector<DIFFITEM*>>& itemMap,
+	RenameMoveItemGroups& renameMoveItemGroups)
 {
-	m_pRenameMoveKeyExpression.reset(expr ? new FilterExpression(*expr) : nullptr);
+	for (const auto& [key, items] : itemMap)
+	{
+		if (items.size() < 2)
+			continue;
+
+		renameMoveItemGroups.emplace_back();
+		int renameMoveGroupId = static_cast<int>(renameMoveItemGroups.size() - 1);
+		for (auto* di : items)
+		{
+			di->renameMoveGroupId = renameMoveGroupId;
+			renameMoveItemGroups[renameMoveGroupId].insert(di);
+		}
+	}
+}
+
+/**
+ * @brief Organize items by which side they exist on
+ * @param items Items to organize
+ * @param nDirs Number of comparison directories
+ * @return Array of vectors, one per side, containing items that exist on that side
+ */
+static std::array<std::vector<DIFFITEM*>, 3> OrganizeItemsBySide(
+	const std::set<DIFFITEM*>& items,
+	int nDirs)
+{
+	std::array<std::vector<DIFFITEM*>, 3> sideItems;
+	for (auto* pdi : items)
+	{
+		for (int i = 0; i < nDirs; ++i)
+		{
+			if (pdi->diffcode.exists(i))
+				sideItems[i].push_back(pdi);
+		}
+	}
+	return sideItems;
 }
 
 /**
@@ -97,6 +169,23 @@ static void GroupItemsBySameName(CDiffContext& ctxt, std::vector<DIFFITEM*> pare
 	}
 }
 
+RenameMoveDetection::RenameMoveDetection()
+{
+}
+
+RenameMoveDetection::~RenameMoveDetection()
+{
+}
+
+/**
+ * @brief Set the filter expression used for rename/move detection
+ * @param expr Filter expression that generates keys for matching items across sides
+ */
+void RenameMoveDetection::SetRenameMoveKeyExpression(const FilterExpression* expr)
+{
+	m_pRenameMoveKeyExpression.reset(expr ? new FilterExpression(*expr) : nullptr);
+}
+
 /**
  * @brief Recursively detect renamed items under parent directories
  * @param ctxt Diff context
@@ -121,54 +210,13 @@ void RenameMoveDetection::DetectRenamedItems(CDiffContext& ctxt, std::vector<DIF
 	for (auto* parent : parents)
 	{
 		DIFFITEM* diffpos = ctxt.GetFirstChildDiffPosition(parent);
-		while (diffpos != nullptr)
-		{
-			DIFFITEM& di = ctxt.GetNextSiblingDiffRefPosition(diffpos);
-			if (di.renameMoveGroupId == -1 && !di.diffcode.existAll())
-			{
-				// Evaluate filter expression to get keys for each side
-				std::vector<String> keys = m_pRenameMoveKeyExpression->EvaluateKeys(di);
-				if (keys.size() != ctxt.GetCompareDirs())
-					continue;
-				for (int i = 0; i < keys.size(); ++i)
-				{
-					if (di.diffcode.exists(i))
-					{
-						if (di.diffcode.isDirectory())
-							unmatchedDirs[keys[i]].push_back(&di);
-						else
-							unmatchedFiles[keys[i]].push_back(&di);
-					}
-				}
-			}
-		}
+		CollectUnmatchedItemsByKey(ctxt, diffpos, m_pRenameMoveKeyExpression.get(),
+			unmatchedFiles, unmatchedDirs, true);
 	}
 
 	// Step 3: Create groups for items with matching keys
-	for (auto& [key, items] : unmatchedFiles)
-	{
-		if (items.size() < 2)
-			continue;
-		renameMoveItemGroups.emplace_back();
-		int renameMoveGroupId = static_cast<int>(renameMoveItemGroups.size() - 1);
-		for (auto* di : items)
-		{
-			di->renameMoveGroupId = renameMoveGroupId;
-			renameMoveItemGroups[renameMoveGroupId].insert(di);
-		}
-	}
-	for (auto& [key, items] : unmatchedDirs)
-	{
-		if (items.size() < 2)
-			continue;
-		renameMoveItemGroups.emplace_back();
-		int renameMoveGroupId = static_cast<int>(renameMoveItemGroups.size() - 1);
-		for (auto* di : items)
-		{
-			di->renameMoveGroupId = renameMoveGroupId;
-			renameMoveItemGroups[renameMoveGroupId].insert(di);
-		}
-	}
+	CreateGroupsFromMatchedItems(unmatchedFiles, renameMoveItemGroups);
+	CreateGroupsFromMatchedItems(unmatchedDirs, renameMoveItemGroups);
 
 	// Step 4: Recurse into subdirectories that exist on all sides
 	DIFFITEM* diffpos = ctxt.GetFirstChildDiffPosition(parents[0]);
@@ -177,8 +225,7 @@ void RenameMoveDetection::DetectRenamedItems(CDiffContext& ctxt, std::vector<DIF
 		DIFFITEM& di = ctxt.GetNextSiblingDiffRefPosition(diffpos);
 		if (di.diffcode.isDirectory() && di.diffcode.existAll())
 		{
-			std::vector<DIFFITEM*> nextParents;
-			nextParents.push_back(&di);
+			std::vector<DIFFITEM*> nextParents = { &di };
 			DetectRenamedItems(ctxt, nextParents, renameMoveItemGroups);
 		}
 	}
@@ -187,23 +234,16 @@ void RenameMoveDetection::DetectRenamedItems(CDiffContext& ctxt, std::vector<DIF
 	for (auto& [key, items] : unmatchedDirs)
 	{
 		// Group directory items by side
-		std::array<std::vector<DIFFITEM*>, 3> sideItems;
-		for (auto* pdi : items)
-		{
-			for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
-			{
-				if (pdi->diffcode.exists(i))
-					sideItems[i].push_back(pdi);
-			}
-		}
+		auto sideItems = OrganizeItemsBySide(
+			std::set<DIFFITEM*>(items.begin(), items.end()),
+			ctxt.GetCompareDirs());
 
 		// Only recurse if we have exactly one directory per side
 		std::set<DIFFITEM*> nextParents;
 		for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
 		{
-			if (sideItems[i].size() != 1)
-				continue;
-			nextParents.insert(sideItems[i][0]);
+			if (sideItems[i].size() == 1)
+				nextParents.insert(sideItems[i][0]);
 		}
 
 		// Need at least 2 sides to compare
@@ -243,54 +283,12 @@ void RenameMoveDetection::Detect(CDiffContext& ctxt, bool doMoveDetection)
 		std::map<String, std::vector<DIFFITEM*>> unmatchedFiles;
 		std::map<String, std::vector<DIFFITEM*>> unmatchedDirs;
 		DIFFITEM* diffpos = ctxt.GetFirstDiffPosition();
-		while (diffpos != nullptr)
-		{
-			DIFFITEM& di = ctxt.GetNextDiffRefPosition(diffpos);
-			if (di.renameMoveGroupId == -1 && !di.diffcode.existAll())
-			{
-				std::vector<String> keys = m_pRenameMoveKeyExpression->EvaluateKeys(di);
-				if (keys.size() != ctxt.GetCompareDirs())
-					continue;
-				for (int i = 0; i < keys.size(); ++i)
-				{
-					if (di.diffcode.exists(i))
-					{
-						if (di.diffcode.isDirectory())
-							unmatchedDirs[keys[i]].push_back(&di);
-						else
-							unmatchedFiles[keys[i]].push_back(&di);
-					}
-				}
-			}
-		}
+		CollectUnmatchedItemsByKey(ctxt, diffpos, m_pRenameMoveKeyExpression.get(),
+			unmatchedFiles, unmatchedDirs, false);
 
-		// Group moved files
-		for (auto& [key, items] : unmatchedFiles)
-		{
-			if (items.size() < 2)
-				continue;
-			m_renameMoveItemGroups.emplace_back();
-			int renameMoveGroupId = static_cast<int>(m_renameMoveItemGroups.size() - 1);
-			for (auto* di : items)
-			{
-				di->renameMoveGroupId = renameMoveGroupId;
-				m_renameMoveItemGroups[renameMoveGroupId].insert(di);
-			}
-		}
-
-		// Group moved directories
-		for (auto& [key, items] : unmatchedDirs)
-		{
-			if (items.size() < 2)
-				continue;
-			m_renameMoveItemGroups.emplace_back();
-			int renameMoveGroupId = static_cast<int>(m_renameMoveItemGroups.size() - 1);
-			for (auto* di : items)
-			{
-				di->renameMoveGroupId = renameMoveGroupId;
-				m_renameMoveItemGroups[renameMoveGroupId].insert(di);
-			}
-		}
+		// Create groups for moved items
+		CreateGroupsFromMatchedItems(unmatchedFiles, m_renameMoveItemGroups);
+		CreateGroupsFromMatchedItems(unmatchedDirs, m_renameMoveItemGroups);
 	}
 
 	// Restore item count
@@ -324,16 +322,9 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt)
 			auto& renameMoveItemGroup = m_renameMoveItemGroups[di.renameMoveGroupId];
 
 			// Organize group items by side
-			std::array<std::vector<DIFFITEM*>, 3> sideItems;
-			for (auto* pdi : renameMoveItemGroup)
-			{
-				for (int i = 0; i < ctxt.GetCompareDirs(); ++i)
-				{
-					if (pdi->diffcode.exists(i))
-						sideItems[i].push_back(pdi);
-				}
-			}
+			auto sideItems = OrganizeItemsBySide(renameMoveItemGroup, nDirs);
 
+			// Can only merge if each side has at most one item
 			bool canMerge = true;
 			for (int i = 0; i < nDirs; ++i)
 			{
@@ -349,10 +340,11 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt)
 			// Try to merge items from other sides into this item
 			for (int i = 0; i < nDirs; ++i)
 			{
-				// Skip sides that already exist in this item
-				if (di.diffcode.exists(i))
+				// Skip sides that already exist in this item or have no items
+				if (di.diffcode.exists(i) || sideItems[i].empty())
 					continue;
-				auto pdi2 = sideItems[i][0];
+
+				auto* pdi2 = sideItems[i][0];
 				// Only merge items in same directory
 				if (di.GetParentLink() != pdi2->GetParentLink())
 					continue;
