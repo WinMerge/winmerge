@@ -12,14 +12,16 @@
 #include <set>
 
  /**
-  * @brief Copy file info from source to destination DIFFITEM
-  * @param dst Destination DIFFITEM to copy data into
+  * @brief Transfer file info and properties from source to destination DIFFITEM
+  * @param dst Destination DIFFITEM to transfer data into
   * @param dstindex Destination side index (0, 1, or 2 for left/middle/right)
-  * @param src Source DIFFITEM to copy data from
+  * @param src Source DIFFITEM to transfer data from
   * @param srcindex Source side index
+  * @note This function copies basic file information and moves additional properties
   */
-static void CopyDiffItemPartially(DIFFITEM& dst, int dstindex, DIFFITEM& src, int srcindex)
+static void TransferDiffItemData(DIFFITEM& dst, int dstindex, DIFFITEM& src, int srcindex)
 {
+	// Copy basic file information
 	dst.diffFileInfo[dstindex].filename = src.diffFileInfo[srcindex].filename;
 	dst.diffFileInfo[dstindex].path = src.diffFileInfo[srcindex].path;
 	dst.diffFileInfo[dstindex].size = src.diffFileInfo[srcindex].size;
@@ -29,17 +31,8 @@ static void CopyDiffItemPartially(DIFFITEM& dst, int dstindex, DIFFITEM& src, in
 	dst.diffFileInfo[dstindex].version = src.diffFileInfo[srcindex].version;
 	dst.diffFileInfo[dstindex].encoding = src.diffFileInfo[srcindex].encoding;
 	dst.diffFileInfo[dstindex].m_textStats = src.diffFileInfo[srcindex].m_textStats;
-}
 
-/**
- * @brief Move additional properties from source to destination
- * @param dst Destination DIFFITEM
- * @param dstindex Destination side index
- * @param src Source DIFFITEM
- * @param srcindex Source side index
- */
-static void MoveDiffItemPartially(DIFFITEM& dst, int dstindex, DIFFITEM& src, int srcindex)
-{
+	// Move additional properties (using move semantics for efficiency)
 	dst.diffFileInfo[dstindex].m_pAdditionalProperties = std::move(src.diffFileInfo[srcindex].m_pAdditionalProperties);
 }
 
@@ -341,14 +334,23 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt)
 				}
 			}
 
+			bool canMerge = true;
+			for (int i = 0; i < nDirs; ++i)
+			{
+				if (sideItems[i].size() > 1)
+				{
+					canMerge = false;
+					break;
+				}
+			}
+			if (!canMerge)
+				continue;
+
 			// Try to merge items from other sides into this item
 			for (int i = 0; i < nDirs; ++i)
 			{
 				// Skip sides that already exist in this item
 				if (di.diffcode.exists(i))
-					continue;
-				// Can only merge if exactly one item exists on this side
-				if (sideItems[i].size() != 1)
 					continue;
 				auto pdi2 = sideItems[i][0];
 				// Only merge items in same directory
@@ -368,9 +370,8 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt)
 					}
 				}
 
-				// Copy data from item being merged
-				CopyDiffItemPartially(di, i, *pdi2, i);
-				MoveDiffItemPartially(di, i, *pdi2, i);
+				// Transfer data from item being merged
+				TransferDiffItemData(di, i, *pdi2, i);
 				di.diffcode.setSideFlag(i);
 				di.renameMoveGroupId = -1;
 				itemsToDelete.insert(pdi2);
