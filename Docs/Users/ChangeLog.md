@@ -1,5 +1,37 @@
 # Change log
 
+## WinMerge 2.16.54 - 2026-01-27
+
+### General
+
+* BugFix: Cyrilic shortcuts do not work for main menukeyboard shortcuts
+* BugFix: 2 recent-entries per project (#2990)
+
+### Folder compare
+
+* Add logInfo, logWarn, logError functions to filter expressions (PR #3131)
+* Add BaseName/IsFolder and new string transformation functions to filters
+    (PR #3146)
+
+### Options window
+
+* Adjusted the height of the Options dialog and the position of the Defaults
+    button
+
+### Shell extension
+
+* BugFix: Add-AppxPackage fails if path ends with backslash (PR #3145)
+
+### Translations
+
+* New translation: Vietnamese (PR #3142)
+* Translation updates:
+  * French (PR #3137)
+  * Japanese
+  * Korean (PR #3125,#3127)
+  * Lithuanian (PR #3144)
+  * Ukrainian (PR #3130)
+
 ## WinMerge 2.16.53 - 2026-01-04
 
 ### General
