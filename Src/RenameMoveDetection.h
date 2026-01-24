@@ -8,7 +8,7 @@ class CDiffContext;
 class DIFFITEM;
 struct FilterExpression;
 
-using RenameMoveItemGroups = std::vector<std::set<DIFFITEM*>>;
+using RenameMoveItemGroups = std::vector<std::vector<DIFFITEM*>>;
 
 class RenameMoveDetection
 {
@@ -20,7 +20,7 @@ public:
 	void SetRenameMoveKeyExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt, bool doMoveDetection);
 	void Merge(CDiffContext& ctxt);
-	const RenameMoveItemGroups& GetMovedItemGroups() const { return m_renameMoveItemGroups; }
+	const RenameMoveItemGroups& GetRenameMoveItemGroups() const { return m_renameMoveItemGroups; }
 	std::vector<const DIFFITEM*> GetRenameMoveGroupItemsForSide(const DIFFITEM& di, int sideIndex) const;
 	void CheckMovedOrRenamed(const CDiffContext& ctxt, const DIFFITEM& di, bool& moved, bool& renamed) const;
 
