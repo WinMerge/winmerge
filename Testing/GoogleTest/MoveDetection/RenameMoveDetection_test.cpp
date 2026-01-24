@@ -269,8 +269,8 @@ namespace
 		expr->Parse("Size");
 		expr->SetDiffContext(&ctxt);
 
-		auto* pdi1 = CreateMockDiffItem2Way(ctxt, nullptr, _T("old.txt"), _T(""), 1000, true, false);
-		auto* pdi2 = CreateMockDiffItem2Way(ctxt, nullptr, _T("new.txt"), _T(""), 1000, false, true);
+		CreateMockDiffItem2Way(ctxt, nullptr, _T("old.txt"), _T(""), 1000, true, false);
+		CreateMockDiffItem2Way(ctxt, nullptr, _T("new.txt"), _T(""), 1000, false, true);
 
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
@@ -345,9 +345,9 @@ namespace
 		expr->Parse("Size");
 		expr->SetDiffContext(&ctxt);
 
-		auto* pdi1 = CreateMockDiffItem3Way(ctxt, nullptr, _T("file1.txt"), _T(""), 1000, true, false, false);
-		auto* pdi2 = CreateMockDiffItem3Way(ctxt, nullptr, _T("file2.txt"), _T(""), 1000, false, true, false);
-		auto* pdi3 = CreateMockDiffItem3Way(ctxt, nullptr, _T("file3.txt"), _T(""), 1000, false, false, true);
+		CreateMockDiffItem3Way(ctxt, nullptr, _T("file1.txt"), _T(""), 1000, true, false, false);
+		CreateMockDiffItem3Way(ctxt, nullptr, _T("file2.txt"), _T(""), 1000, false, true, false);
+		CreateMockDiffItem3Way(ctxt, nullptr, _T("file3.txt"), _T(""), 1000, false, false, true);
 
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
@@ -927,11 +927,11 @@ namespace
 
 		// Group 1
 		auto* pdi1 = CreateMockDiffItem2Way(ctxt, nullptr, _T("file1.tx1"), _T(""), 1000, true, false);
-		auto* pdi2 = CreateMockDiffItem2Way(ctxt, nullptr, _T("file1.tx2"), _T(""), 1000, false, true);
+		CreateMockDiffItem2Way(ctxt, nullptr, _T("file1.tx2"), _T(""), 1000, false, true);
 
 		// Group 2
 		auto* pdi3 = CreateMockDiffItem2Way(ctxt, nullptr, _T("file2.tx1"), _T(""), 2000, true, false);
-		auto* pdi4 = CreateMockDiffItem2Way(ctxt, nullptr, _T("file2.tx2"), _T(""), 2000, false, true);
+		CreateMockDiffItem2Way(ctxt, nullptr, _T("file2.tx2"), _T(""), 2000, false, true);
 
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
@@ -1056,8 +1056,8 @@ namespace
 		expr->SetDiffContext(&ctxt);
 
 		auto* pdi1 = CreateMockDiffItem3Way(ctxt, nullptr, _T("file1.txt"), _T(""), 1000, true, false, false);
-		auto* pdi2 = CreateMockDiffItem3Way(ctxt, nullptr, _T("file2.txt"), _T(""), 1000, false, true, false);
-		auto* pdi3 = CreateMockDiffItem3Way(ctxt, nullptr, _T("file3.txt"), _T(""), 1000, false, false, true);
+		CreateMockDiffItem3Way(ctxt, nullptr, _T("file2.txt"), _T(""), 1000, false, true, false);
+		CreateMockDiffItem3Way(ctxt, nullptr, _T("file3.txt"), _T(""), 1000, false, false, true);
 
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
@@ -1088,8 +1088,8 @@ namespace
 		auto* parent3 = CreateMockDiffItem3Way(ctxt, nullptr, _T("dir3"), _T(""), 0, false, false, true, true);
 
 		auto* pdi1 = CreateMockDiffItem3Way(ctxt, parent1, _T("file1.txt"), _T("dir1"), 1000, true, false, false);
-		auto* pdi2 = CreateMockDiffItem3Way(ctxt, parent2, _T("file2.txt"), _T("dir2"), 1000, false, true, false);
-		auto* pdi3 = CreateMockDiffItem3Way(ctxt, parent3, _T("file3.txt"), _T("dir3"), 1000, false, false, true);
+		CreateMockDiffItem3Way(ctxt, parent2, _T("file2.txt"), _T("dir2"), 1000, false, true, false);
+		CreateMockDiffItem3Way(ctxt, parent3, _T("file3.txt"), _T("dir3"), 1000, false, false, true);
 
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());

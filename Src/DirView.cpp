@@ -4226,8 +4226,10 @@ void CDirView::OnMergeCompareWithRenamedMoved()
 	std::vector<PathContext> pathContextVec;
 	std::vector<std::array<fileopenflags_t, 3>> flagsVec;
 	std::vector<std::array<FileTextEncoding, 3>> encodingVec;
-
 	const int nDirs = ctxt.GetCompareDirs();
+
+	if (!ctxt.m_pRenameMoveDetection)
+		return;
 	
 	// Iterate through all selected items
 	for (int sel = m_pList->GetNextItem(-1, LVNI_SELECTED); sel != -1; sel = m_pList->GetNextItem(sel, LVNI_SELECTED))
