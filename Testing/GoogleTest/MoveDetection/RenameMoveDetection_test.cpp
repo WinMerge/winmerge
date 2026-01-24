@@ -441,7 +441,7 @@ namespace
 		expr->SetDiffContext(&ctxt);
 
 		auto* pdi1 = CreateMockDiffItem2Way(ctxt, nullptr, _T("old.txt"), _T(""), 1000, true, false);
-		auto* pdi2 = CreateMockDiffItem2Way(ctxt, nullptr, _T("new.txt"), _T(""), 1000, false, true);
+		CreateMockDiffItem2Way(ctxt, nullptr, _T("new.txt"), _T(""), 1000, false, true);
 
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());

@@ -893,7 +893,7 @@ msgstr "Разделить"
 msgid "Comp&are"
 msgstr "С&равнить"
 
-msgid "Compar&e with Moved/Renamed Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"

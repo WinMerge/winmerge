@@ -1,3 +1,7 @@
+/** 
+ * @file RenameMoveDetection.h
+ * @brief Detects renamed and moved files/folders in folder comparison
+ */
 #pragma once
 
 #include <vector>
@@ -8,7 +12,7 @@ class CDiffContext;
 class DIFFITEM;
 struct FilterExpression;
 
-using RenameMoveItemGroups = std::vector<std::vector<DIFFITEM*>>;
+using RenameMoveItemGroups = std::vector<std::set<DIFFITEM*>>;
 
 class RenameMoveDetection
 {
@@ -27,6 +31,6 @@ public:
 private:
 	void DetectRenamedItems(CDiffContext& ctxt, std::vector<DIFFITEM*> parents, RenameMoveItemGroups& movedItemGroups);
 
-	std::unique_ptr<FilterExpression> m_pRenameMoveKeyExpression;
-	RenameMoveItemGroups m_renameMoveItemGroups;
+	std::unique_ptr<FilterExpression> m_pRenameMoveKeyExpression; /** Filter expression for generating matching keys */
+	RenameMoveItemGroups m_renameMoveItemGroups; /** Detected groups (index = renameMoveGroupId in DIFFITEM) */
 };
