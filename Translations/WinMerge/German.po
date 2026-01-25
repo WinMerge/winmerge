@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-01-02 10:42+0100\n"
+"PO-Revision-Date: 2026-01-25 11:23+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -1079,7 +1079,7 @@ msgid "Comp&are"
 msgstr "Ver&gleichen"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "V&ergleichen mit umbenannten/verschobenen Elementen"
 
 msgid "Compare in New &Window"
 msgstr "In neuem Fenster vergleichen"
@@ -1861,61 +1861,61 @@ msgid "Compare C&ontents"
 msgstr "&Inhalt vergleichen"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "&Schlüssel löschen"
 
 msgid "&Name"
-msgstr ""
+msgstr "&Name"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "&Basisname (ohne Erweiterung)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "Normalisierter &Unicode-Name"
 
 msgid "&Date"
-msgstr ""
+msgstr "&Datum"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "&Hash (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "&replace() Funktion hinzufügen"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "rege&xReplace() Funktion hinzufügen"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "Text&normalisierung"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "K&leinbuchstaben"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "Großb&uchstaben"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "&Halbe Breite"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "&Volle Breite"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "&Chinesische Konvertierung"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "Vereinfachtes Chine&sisch"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "&Traditionelles Chinesisch"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "&Japanische Konvertierung"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "&Hiragana"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "&Katakana"
 
 #, c-format
 msgid "About WinMerge"
@@ -3171,13 +3171,13 @@ msgid "Additional comparison condi&tions:"
 msgstr "Zusätzliche Vergleichsbedingungen:"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "Umbenennungs-/Ve&rschiebungserkennung:"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "Umbenennungs-/Verschiebungser&kennungsschlüssel:"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "&Zusammenführen umbenannter Elemente zu einem einzigen Element"
 
 msgid "File patterns:"
 msgstr "&Dateimuster:"
@@ -4585,30 +4585,30 @@ msgstr "Gruppe%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktiviert"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "Umbenennungen erkennen"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "Umbenennungen und Verschiebungen erkennen"
 
 msgid "Renamed"
-msgstr ""
+msgstr "Umbenannt"
 
 msgid "Moved"
-msgstr ""
+msgstr "Verschoben"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "Umbenannt/Verschoben"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1 Elemente)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (%2 bestimmt): "
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -5953,7 +5953,7 @@ msgstr "Systemeinstellung verwenden"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "z. B. %1"
 
 msgid "Prettification"
 msgstr "Verschönerung"
