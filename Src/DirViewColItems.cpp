@@ -330,6 +330,9 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
  */
 static String ColStatusGetRenamedMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
+	if (!pCtxt->m_pRenameMoveDetection)
+		return _T("");
+
 	const int nDirs = pCtxt->GetCompareDirs();
 	const String group = strutils::to_str(di.renameMoveGroupId + 1);
 
