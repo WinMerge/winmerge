@@ -49,6 +49,7 @@
 #include "Shell.h"
 #include "DirTravel.h"
 #include "MouseHook.h"
+#include "RenameMoveDetection.h"
 #include <numeric>
 #include <functional>
 
@@ -206,6 +207,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	// [Merge] menu or Context menu
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE, ID_MERGE_COMPARE_IN_NEW_WINDOW, OnMergeCompare)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE, ID_MERGE_COMPARE_IN_NEW_WINDOW, OnUpdateMergeCompare)
+	ON_COMMAND(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, OnMergeCompareWithRenamedMoved)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, OnUpdateMergeCompare)
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
 	ON_COMMAND(ID_NEXTDIFF, OnNextdiff)
@@ -732,9 +735,12 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		return;
 
 	bool bDirSelected = false;
+	bool bMovedRenamed = true;
 	for (DirItemIterator it = SelBegin(); it != SelEnd(); ++it)
 	{
 		const DIFFITEM& di = *it;
+		if (di.renameMoveGroupId == -1)
+			bMovedRenamed = false;
 		if (di.diffcode.isDirectory())
 		{
 			bDirSelected = true;
@@ -743,6 +749,8 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	}
 	if (GetDiffContext().m_bRecursive && bDirSelected)
 		pPopup->RemoveMenu(ID_MERGE_COMPARE, MF_BYCOMMAND);
+	if (!bMovedRenamed)
+		pPopup->RemoveMenu(ID_MERGE_COMPARE_WITH_MOVED_RENAMED, MF_BYCOMMAND);
 	if (!bDirSelected)
 		pPopup->RemoveMenu(ID_MERGE_COMPARE_IN_NEW_WINDOW, MF_BYCOMMAND);
 
@@ -2673,6 +2681,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		ASSERT(0);
 		return 0;	// return value unused
 	}
+	if (pDoc->GetDiffContext().m_pRenameMoveDetection && pDoc->m_diffThread.GetThreadState() != CDiffThread::THREAD_COMPLETED)
+		return 0;
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
@@ -4209,6 +4219,82 @@ void CDirView::OnMergeCompare(UINT nID)
 	}
 }
 
+void CDirView::OnMergeCompareWithRenamedMoved()
+{
+	CDirDoc *pDoc = GetDocument();
+	CDiffContext& ctxt = GetDiffContext();
+	std::vector<PathContext> pathContextVec;
+	std::vector<std::array<fileopenflags_t, 3>> flagsVec;
+	std::vector<std::array<FileTextEncoding, 3>> encodingVec;
+	const int nDirs = ctxt.GetCompareDirs();
+
+	if (!ctxt.m_pRenameMoveDetection)
+		return;
+	
+	// Iterate through all selected items
+	for (int sel = m_pList->GetNextItem(-1, LVNI_SELECTED); sel != -1; sel = m_pList->GetNextItem(sel, LVNI_SELECTED))
+	{
+		const DIFFITEM* pdi = &GetDiffItem(sel);
+		
+		// Get renamed/moved items for each pane
+		std::vector<std::vector<const DIFFITEM*>> renameMoveItemsVec;
+		for (int nIndex = 0; nIndex < nDirs; ++nIndex)
+		{
+			renameMoveItemsVec.push_back(ctxt.m_pRenameMoveDetection->GetRenameMoveGroupItemsForSide(*pdi, nIndex));
+			if (renameMoveItemsVec[nIndex].empty())
+				renameMoveItemsVec[nIndex].push_back(DIFFITEM::GetEmptyItem());
+		}
+		
+		// Generate all combinations of renamed/moved items
+		const DIFFITEM* pdiTmp[3];
+		auto generateCombinations = [&]()
+		{
+			PathContext paths;
+			std::array<FileTextEncoding, 3> encoding;
+			std::array<fileopenflags_t, 3> dwFlags = {};
+			
+			for (int nIndex = 0; nIndex < nDirs; ++nIndex)
+			{
+				paths.SetPath(nIndex, (pdiTmp[nIndex] == DIFFITEM::GetEmptyItem()) ?
+					_T("") : GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
+				encoding[nIndex] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
+				dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
+			}
+			
+			pathContextVec.push_back(paths);
+			encodingVec.push_back(encoding);
+			flagsVec.push_back(dwFlags);
+		};
+		
+		// Create combinations based on number of directories
+		for (size_t i = 0; i < renameMoveItemsVec[0].size(); ++i)
+		{
+			pdiTmp[0] = renameMoveItemsVec[0][i];
+			for (size_t j = 0; j < renameMoveItemsVec[1].size(); ++j)
+			{
+				pdiTmp[1] = renameMoveItemsVec[1][j];
+				
+				if (nDirs == 2)
+				{
+					generateCombinations();
+				}
+				else if (nDirs == 3)
+				{
+					for (size_t k = 0; k < renameMoveItemsVec[2].size(); ++k)
+					{
+						pdiTmp[2] = renameMoveItemsVec[2][k];
+						generateCombinations();
+					}
+				}
+			}
+		}
+	}
+
+	// Open all collected items
+	for (size_t i = 0; i < pathContextVec.size(); ++i)
+		Open(pDoc, pathContextVec[i], flagsVec[i].data(), encodingVec[i].data());
+}
+
 void CDirView::OnMergeCompareNonHorizontally()
 {
 	int sel1, sel2, sel3;
@@ -4756,7 +4842,9 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 	// return compare result, considering sort direction
 	String rs = ldi.diffFileInfo[0].filename;
 	String ss = rdi.diffFileInfo[0].filename;
+#ifdef _DEBUG
 	OutputDebugString(strutils::format(_T("Comparing all properties for '%s' and '%s' ret=%d\n"), rs.c_str(), ss.c_str(), retVal).c_str());
+#endif
 	return pThis->bSortAscending ? retVal : -retVal;
 }
 

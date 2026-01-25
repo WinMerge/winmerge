@@ -19,6 +19,7 @@
 #include "IAbortable.h"
 #include "DiffWrapper.h"
 #include "FilterEngine/FilterExpression.h"
+#include "RenameMoveDetection.h"
 #include "DebugNew.h"
 
 using Poco::FastMutex;
@@ -58,6 +59,7 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_bEnableImageCompare(false)
 , m_pImgfileFilter(nullptr)
 , m_dColorDistanceThreshold(0.0)
+, m_pRenameMoveDetection(nullptr)
 {
 	int index;
 	for (index = 0; index < paths.GetSize(); index++)

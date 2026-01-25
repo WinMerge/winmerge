@@ -708,6 +708,11 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\Src\RenameMoveDetection.cpp">
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="..\..\Src\MovedLines.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -844,6 +849,7 @@
     <ClInclude Include="..\..\Src\markdown.h" />
     <ClInclude Include="..\..\Src\MergeApp.h" />
     <ClInclude Include="..\..\Src\MergeAppCOMClass.h" />
+    <ClInclude Include="..\..\Src\RenameMoveDetection.h" />
     <ClInclude Include="..\..\Src\MovedLines.h" />
     <ClInclude Include="..\..\Src\Common\multiformatText.h" />
     <ClInclude Include="..\..\Src\OptionsDef.h" />

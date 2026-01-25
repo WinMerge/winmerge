@@ -43,7 +43,9 @@
 #include "DiffWrapper.h"
 #include "FolderCmp.h"
 #include "DirViewColItems.h"
+#include "RenameMoveDetection.h"
 #include <Poco/Semaphore.h>
+#include <set>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -229,26 +231,27 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	LoadLineFilterList(pCtxt);
 	LoadSubstitutionFiltersList(pCtxt);
 
+	auto* pOptions = GetOptionsMgr();
 	DIFFOPTIONS options = {0};
-	Options::DiffOptions::Load(GetOptionsMgr(), options);
+	Options::DiffOptions::Load(pOptions, options);
 
-	pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
+	pCtxt->CreateCompareOptions(pOptions->GetInt(OPT_CMP_METHOD), options);
 
-	pCtxt->m_iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+	pCtxt->m_iGuessEncodingType = pOptions->GetInt(OPT_CP_DETECT);
 	if ((pCtxt->m_iGuessEncodingType >> 16) == 0)
 		pCtxt->m_iGuessEncodingType |= 50001 << 16;
-	pCtxt->m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
-	pCtxt->m_bStopAfterFirstDiff = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
-	pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
-	pCtxt->m_nBinaryCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_BINARY_LIMIT);
-	pCtxt->m_bPluginsEnabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
-	pCtxt->m_bWalkUniques = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
-	pCtxt->m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
-	pCtxt->m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
-	pCtxt->m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
-	pCtxt->m_dColorDistanceThreshold = GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
+	pCtxt->m_bIgnoreSmallTimeDiff = pOptions->GetBool(OPT_IGNORE_SMALL_FILETIME);
+	pCtxt->m_bStopAfterFirstDiff = pOptions->GetBool(OPT_CMP_STOP_AFTER_FIRST);
+	pCtxt->m_nQuickCompareLimit = pOptions->GetInt(OPT_CMP_QUICK_LIMIT);
+	pCtxt->m_nBinaryCompareLimit = pOptions->GetInt(OPT_CMP_BINARY_LIMIT);
+	pCtxt->m_bPluginsEnabled = pOptions->GetBool(OPT_PLUGINS_ENABLED);
+	pCtxt->m_bWalkUniques = pOptions->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
+	pCtxt->m_bIgnoreReparsePoints = pOptions->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
+	pCtxt->m_bIgnoreCodepage = pOptions->GetBool(OPT_CMP_IGNORE_CODEPAGE);
+	pCtxt->m_bEnableImageCompare = pOptions->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
+	pCtxt->m_dColorDistanceThreshold = pOptions->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0;
 
-	m_imgfileFilter.SetMaskOrExpression(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	m_imgfileFilter.SetMaskOrExpression(pOptions->GetString(OPT_CMP_IMG_FILEPATTERNS));
 	pCtxt->m_pImgfileFilter = &m_imgfileFilter;
 
 	pCtxt->m_pCompareStats = m_pCompareStats.get();
@@ -261,36 +264,42 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 	pCtxt->m_piFilterGlobal->SetDiffContext(pCtxt);
 	
 	pCtxt->m_pAdditionalCompareExpression.reset();
-	const String additionalCompareCondition = GetOptionsMgr()->GetString(OPT_CMP_ADDITIONAL_CONDITION);
+	const String additionalCompareCondition = pOptions->GetString(OPT_CMP_ADDITIONAL_CONDITION);
 	if (!additionalCompareCondition.empty())
 	{
 		pCtxt->m_pAdditionalCompareExpression = std::make_unique<FilterExpression>(ucr::toUTF8(additionalCompareCondition));
 		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
 	}
 
-	std::vector<String> names;
-	if (m_pDirView)
-		names = m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames();
-	std::vector<String> names2 = pGlobalFileFilter->GetPropertyNames();
-	for (const auto& name : names2)
+	pCtxt->m_pRenameMoveDetection.reset();
+	if (pOptions->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 0)
 	{
-		if (std::find(std::begin(names), std::end(names), name) == std::end(names))
-			names.push_back(name);
-	}
-	if (pCtxt->m_pAdditionalCompareExpression)
-	{
-		const auto names3 = pCtxt->m_pAdditionalCompareExpression->GetPropertyNames();
-		for (const auto& name : names3)
+		const String renameMoveKeyExpression = pOptions->GetString(OPT_CMP_RENAME_MOVE_KEY);
+		if (!renameMoveKeyExpression.empty())
 		{
-			String tname = ucr::toTString(name);
-			if (std::find(std::begin(names), std::end(names), tname) == std::end(names))
-				names.push_back(tname);
+			pCtxt->m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+			FilterExpression renameMoveKeyExpressionObj(ucr::toUTF8(renameMoveKeyExpression));
+			renameMoveKeyExpressionObj.SetDiffContext(pCtxt);
+			pCtxt->m_pRenameMoveDetection->SetRenameMoveKeyExpression(&renameMoveKeyExpressionObj);
 		}
 	}
+
+	std::set<String> nameSet;
+	if (m_pDirView)
+		for (const auto& name : m_pDirView->GetDirViewColItems()->GetAdditionalPropertyNames())
+			nameSet.insert(name);
+	for (const auto& name : pGlobalFileFilter->GetPropertyNames())
+		nameSet.insert(name);
+	if (pCtxt->m_pAdditionalCompareExpression)
+		for (const auto& name : pCtxt->m_pAdditionalCompareExpression->GetPropertyNames())
+			nameSet.insert(ucr::toTString(name));
+	if (pCtxt->m_pRenameMoveDetection)
+		for (const auto& name : pCtxt->m_pRenameMoveDetection->GetRenameMoveKeyExpression()->GetPropertyNames())
+			nameSet.insert(ucr::toTString(name));
+	std::vector<String> names(nameSet.begin(), nameSet.end());
 	pCtxt->m_pPropertySystem.reset(new PropertySystem(names));
 
-	// All plugin management is done by our plugin manager
-	pCtxt->m_piPluginInfos = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
+	pCtxt->m_piPluginInfos = pOptions->GetBool(OPT_PLUGINS_ENABLED) ? &m_pluginman : nullptr;
 
 	CheckFilter();
 	FilterExpression::SetLogger([](int level, const std::string& msg) {
@@ -317,6 +326,16 @@ void CDirDoc::CheckFilter()
 		const String msg = FormatFilterErrorSummary(*m_pCtxt->m_pAdditionalCompareExpression);
 		RootLogger::Error(msg);
 		m_pCtxt->m_pAdditionalCompareExpression.reset();
+	}
+	if (m_pCtxt->m_pRenameMoveDetection)
+	{
+		auto* pRenameMoveKeyExpression = m_pCtxt->m_pRenameMoveDetection->GetRenameMoveKeyExpression();
+		if (pRenameMoveKeyExpression && pRenameMoveKeyExpression->errorCode != 0)
+		{
+			const String msg = FormatFilterErrorSummary(*pRenameMoveKeyExpression);
+			RootLogger::Error(msg);
+			m_pCtxt->m_pRenameMoveDetection->SetRenameMoveKeyExpression(nullptr);
+		}
 	}
 }
 
@@ -458,8 +477,17 @@ void CDirDoc::Rescan()
 			// Build results list (except delaying file comparisons until below)
 			DirScan_GetItems(paths, subdir, myStruct,
 					casesensitive, depth, nullptr, myStruct->context->m_bWalkUniques);
+			if (myStruct->context->m_pRenameMoveDetection)
+			{
+				bool doMoveDetection = GetOptionsMgr()->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 1;
+				myStruct->context->m_pRenameMoveDetection->Detect(*myStruct->context, doMoveDetection);
+				if (GetOptionsMgr()->GetBool(OPT_CMP_MERGE_RENAMED_ITEMS))
+					myStruct->context->m_pRenameMoveDetection->Merge(*myStruct->context);
+			}
 		});
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
+			if (myStruct->context->m_pRenameMoveDetection)
+				myStruct->m_collectCompletedEvent.wait();
 			DirScan_CompareItems(myStruct, nullptr);
 		});
 		m_diffThread.SetMarkedRescan(false);

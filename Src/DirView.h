@@ -384,6 +384,7 @@ protected:
 	afx_msg void OnUpdateOptionsShowMissingMiddleOnly(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare(UINT nID);
+	afx_msg void OnMergeCompareWithRenamedMoved();
 	template<SELECTIONTYPE seltype>
 	afx_msg void OnMergeCompare2() { OpenSelection(seltype); }
 	afx_msg void OnMergeCompareNonHorizontally();
