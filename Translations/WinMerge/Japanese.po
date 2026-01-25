@@ -1639,8 +1639,47 @@ msgstr "Unicode正規化した名前(&U)"
 msgid "&Date"
 msgstr "更新日時(&D)"
 
-msgid "&Hash(MD5)"
-msgstr "ハッシュ(MD5)(&H)"
+msgid "&Hash (MD5)"
+msgstr "ハッシュ (MD5)(&H)"
+
+msgid "Insert &replace() Function"
+msgstr "replace()関数を挿入(&R)"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "regexReplace() 関数を挿入(&X)"
+
+msgid "Text &Normalization"
+msgstr "テキストの正規化(&N)"
+
+msgid "&Lowercase"
+msgstr "小文字に変換(&N)"
+
+msgid "&Uppercase"
+msgstr "大文字に変換(&U)"
+
+msgid "&Half-width"
+msgstr "半角に変換(&H)"
+
+msgid "&Full-width"
+msgstr "全角に変換(&F)"
+
+msgid "&Chinese Conversion"
+msgstr "中国語変換(&C)"
+
+msgid "&Simplified Chinese"
+msgstr "繁体字中国語を簡体字中国語に変換(&S)"
+
+msgid "&Traditional Chinese"
+msgstr "簡体字中国語を繁体字中国語に変換(&T)"
+
+msgid "&Japanese Conversion"
+msgstr "日本語変換(&J)"
+
+msgid "&Hiragana"
+msgstr "カタカナをひらがなに変換(&H)"
+
+msgid "&Katakana"
+msgstr "ひらがなをカタカナに変換(&K)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"

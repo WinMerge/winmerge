@@ -1642,7 +1642,46 @@ msgstr ""
 msgid "&Date"
 msgstr ""
 
-msgid "&Hash(MD5)"
+msgid "&Hash (MD5)"
+msgstr ""
+
+msgid "Insert &replace() Function"
+msgstr ""
+
+msgid "Insert rege&xReplace() Function"
+msgstr ""
+
+msgid "Text &Normalization"
+msgstr ""
+
+msgid "&Lowercase"
+msgstr ""
+
+msgid "&Uppercase"
+msgstr ""
+
+msgid "&Half-width"
+msgstr ""
+
+msgid "&Full-width"
+msgstr ""
+
+msgid "&Chinese Conversion"
+msgstr ""
+
+msgid "&Simplified Chinese"
+msgstr ""
+
+msgid "&Traditional Chinese"
+msgstr ""
+
+msgid "&Japanese Conversion"
+msgstr ""
+
+msgid "&Hiragana"
+msgstr ""
+
+msgid "&Katakana"
 msgstr ""
 
 msgid "About WinMerge"

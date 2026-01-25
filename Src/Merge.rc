@@ -1747,8 +1747,28 @@ BEGIN
         MENUITEM "Normalized &Unicode Name",    ID_RENAME_MOVE_KEY_MENU_NORMALIZED_NAME
         MENUITEM "&Size",                       ID_RENAME_MOVE_KEY_MENU_SIZE
         MENUITEM "&Date",                       ID_RENAME_MOVE_KEY_MENU_DATE
-        MENUITEM "&Hash(MD5)",                  ID_RENAME_MOVE_KEY_MENU_HASH_MD5
+        MENUITEM "&Hash (MD5)",                 ID_RENAME_MOVE_KEY_MENU_HASH_MD5
         MENUITEM "Additional &Properties...",   ID_RENAME_MOVE_KEY_MENU_PROPS
+        MENUITEM SEPARATOR
+        MENUITEM "Insert &replace() Function",    ID_RENAME_MOVE_KEY_MENU_FUNC_REPLACE
+        MENUITEM "Insert rege&xReplace() Function",ID_RENAME_MOVE_KEY_MENU_FUNC_REGEXREPLACE
+        POPUP "Text &Normalization"
+        BEGIN
+            MENUITEM "&Lowercase", ID_RENAME_MOVE_KEY_MENU_FUNC_TOLOWER
+            MENUITEM "&Uppercase", ID_RENAME_MOVE_KEY_MENU_FUNC_TOUPPER
+            MENUITEM "&Half-width", ID_RENAME_MOVE_KEY_MENU_FUNC_TOHALFWIDTH
+            MENUITEM "&Full-width", ID_RENAME_MOVE_KEY_MENU_FUNC_TOFULLWIDTH
+            POPUP "&Chinese Conversion"
+            BEGIN
+                MENUITEM "&Simplified Chinese", ID_RENAME_MOVE_KEY_MENU_FUNC_TOSIMPLIFIEDCHINESE
+                MENUITEM "&Traditional Chinese", ID_RENAME_MOVE_KEY_MENU_FUNC_TOTRADITIONALCHINESE
+            END
+            POPUP "&Japanese Conversion"
+            BEGIN
+                MENUITEM "&Hiragana", ID_RENAME_MOVE_KEY_MENU_FUNC_TOHIRAGANA
+                MENUITEM "&Katakana", ID_RENAME_MOVE_KEY_MENU_FUNC_TOKATAKANA
+            END
+        END
     END
 END
 

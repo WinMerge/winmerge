@@ -70,7 +70,7 @@ public:
 				static const String Exprs[] = {
 					_T("Name"),
 					_T("BaseName"),
-					_T("normalizeUnicode(Name)"),
+					_T("normalizeUnicode(Name, \"NKC\")"),
 					_T("Size"),
 					_T("Date"),
 					_T("if(IsFolder, Name, prop(\"Hash.MD5\"))"),
@@ -87,6 +87,23 @@ public:
 					String newExpr = _T("if(IsFolder, Name, prop(\"") + *resultProp + _T("\"))");
 					result = expr.empty() ? newExpr : (expr + _T(" + \"|\" + ") + newExpr);
 				}
+			}
+			else if (command >= ID_RENAME_MOVE_KEY_MENU_FUNC_FIRST && command <= ID_RENAME_MOVE_KEY_MENU_FUNC_LAST)
+			{
+				static const String Exprs[] = {
+					_T("replace(%1, \"from\", \"to\")"),
+					_T("regexReplace(%1, \"pattern\", \"replacement\")"),
+					_T("toLower(%1)"),
+					_T("toUpper(%1)"),
+					_T("toHalfWidth(%1)"),
+					_T("toFullWidth(%1)"),
+					_T("toSimplifiedChinese(%1)"),
+					_T("toTraditionalChinese(%1)"),
+					_T("toHiragana(%1)"),
+					_T("toKatakana(%1)"),
+				};
+				String newExpr = Exprs[command - ID_RENAME_MOVE_KEY_MENU_FUNC_FIRST];
+				result = strutils::format_string1(newExpr, expr.empty() ? _T("Name") : expr);
 			}
 		}
 		DestroyMenu();
