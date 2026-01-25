@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-01-02 21:45-0300\n"
+"PO-Revision-Date: 2026-01-25 09:15-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -893,7 +893,7 @@ msgid "Comp&are"
 msgstr "Comp&arar"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "Comparar com It&ens Renomeados/Movidos"
 
 msgid "Compare in New &Window"
 msgstr "Comparar em Nova &Janela"
@@ -1627,61 +1627,61 @@ msgid "Compare C&ontents"
 msgstr "Comparar C&onteúdo"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "Limpar &Chaves"
 
 msgid "&Name"
-msgstr ""
+msgstr "&Nome"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "Nome &Base (sem extensão)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "Nome &Unicode Normalizado"
 
 msgid "&Date"
-msgstr ""
+msgstr "&Data"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "&Hash (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "Inserir Função &replace()"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "Inserir Função rege&xReplace()"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "&Normalização de Texto"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "Minúscu&los"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "Maiúsc&ulos"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "Meia-lar&gura"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "Largura total"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "Conversão do &Chinês"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "Chinês &Simplificado"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "Chinês &Tradicional"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "Conversão do &Japonês"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "&Hiragana"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "Sobre o WinMerge"
@@ -2687,13 +2687,13 @@ msgid "Additional comparison condi&tions:"
 msgstr "Co&ndições de comparação adicionais:"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "Detecção de &renomear/mover"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "Chaves para detecção de renomear/mover"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "Unir itens reno&meados em um único item"
 
 msgid "File patterns:"
 msgstr "Padrões de arquivo:"
@@ -3731,30 +3731,30 @@ msgstr "Grupo%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "Desabilitado"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "Detectar renomeados"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "Detectar rnomeados e movidos"
 
 msgid "Renamed"
-msgstr ""
+msgstr "Renomeados"
 
 msgid "Moved"
-msgstr ""
+msgstr "Movidos"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "Renomeados/Movidos"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1 itens)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (conjunto %2): "
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4787,7 +4787,7 @@ msgstr "Seguir o sistema"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "p.ex. %1"
 
 msgid "Prettification"
 msgstr "Embelezamento"
