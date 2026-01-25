@@ -435,10 +435,8 @@ std::vector<const DIFFITEM*> RenameMoveDetection::GetRenameMoveGroupItemsForSide
 	std::vector<const DIFFITEM*> items;
 
 	// Not in a moved group
-	if (di.renameMoveGroupId == -1)
-		return items;
-
-	if (di.renameMoveGroupId >= static_cast<int>(m_renameMoveItemGroups.size()))
+	if (di.renameMoveGroupId < 0 ||
+	    di.renameMoveGroupId >= static_cast<int>(m_renameMoveItemGroups.size()))
 		return items;
 
 	const auto& renameMoveItemGroup = m_renameMoveItemGroups[di.renameMoveGroupId];
