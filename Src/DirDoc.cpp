@@ -278,9 +278,9 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		if (!renameMoveKeyExpression.empty())
 		{
 			pCtxt->m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
-			auto pRenameMoveKeyExpression = std::make_unique<FilterExpression>(ucr::toUTF8(renameMoveKeyExpression));
-			pRenameMoveKeyExpression->SetDiffContext(pCtxt);
-			pCtxt->m_pRenameMoveDetection->SetRenameMoveKeyExpression(pRenameMoveKeyExpression.get());
+			FilterExpression renameMoveKeyExpressionObj(ucr::toUTF8(renameMoveKeyExpression));
+			renameMoveKeyExpressionObj.SetDiffContext(pCtxt);
+			pCtxt->m_pRenameMoveDetection->SetRenameMoveKeyExpression(&renameMoveKeyExpressionObj);
 		}
 	}
 
