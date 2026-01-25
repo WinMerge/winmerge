@@ -1075,7 +1075,7 @@ msgid "Comp&are"
 msgstr "&Összehasonlít"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "Összehasonlítá&s átnevezett/áthelyezett elemekkel"
 
 msgid "Compare in New &Window"
 msgstr "Összehasonlítás új ablakban"
@@ -1838,79 +1838,79 @@ msgid "Target: Middle and &Right"
 msgstr "Cél: Középső és &jobb"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Cél: &Összes"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "Feltételek &törlése"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "&Méret összehasonlítása"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "&Dátum összehasonlítása"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "&Attribútumok összehasonlítása"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "&Tartalom összehasonlítása"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "&Kulcsok törlése"
 
 msgid "&Name"
-msgstr ""
+msgstr "&Név"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "&Alapnév (kiterjesztés nélkül)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "Normalizált &Unicode név"
 
 msgid "&Date"
-msgstr ""
+msgstr "&Dátum"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "&Hash (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "&csere() függvény beszúrása"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "rege&xCsere() függvény beszúrása"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "Szöveg &normalizálás"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "&Kisbetűs"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "&Nagybetűs"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "&Fél szélességű"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "&Teljes szélességű"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "&Konvertálás kínaira"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "&Egyszerűsített kínai"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "&Hagyományos kínai"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "&Konvertálás japánra"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "&Hiragana"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "&Katakana"
 
 #, c-format
 msgid "About WinMerge"
@@ -3157,16 +3157,16 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "További összehasonlítási &feltételek:"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "&Átnevezés/áthelyezés észlelése:"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "Átnevezési/áthelyezési érzékelési &kulcsok:"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "Átnevezett elemek &egyesítése egyetlen elemmé"
 
 msgid "File patterns:"
 msgstr "Fájlfajták:"
@@ -4525,30 +4525,30 @@ msgstr "Csoport%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "Letiltva"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "Átnevezések észlelése"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "Átnevezések és áthelyezések észlelése"
 
 msgid "Renamed"
-msgstr ""
+msgstr "Átnevezve"
 
 msgid "Moved"
-msgstr ""
+msgstr "Áthelyezve"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "Átnevezve/Áthelyezve"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1 elem)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (készlet %2)"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -5740,7 +5740,7 @@ msgid "Unknown error"
 msgstr "Ismeretlen hiba"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "Érvénytelen tulajdonságnév"
 
 msgid "Equals"
 msgstr "Egyenlők"
@@ -5789,7 +5789,7 @@ msgstr "Rendszert követi"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "pl %1"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
