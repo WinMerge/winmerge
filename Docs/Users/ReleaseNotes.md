@@ -40,11 +40,19 @@ Please submit bug reports to our bug-tracker.
 
 * BugFix: Add-AppxPackage fails if path ends with backslash (PR #3145)
 
+### Installer
+
+* Removed build-time tools (lemon.exe, re2c.exe) from the installer package.
+
 ### Translations
 
 * New translation: Vietnamese (PR #3142)
 * Translation updates:
+  * Brazilian (PR #3150)
   * French (PR #3137)
+  * German (PR #3148)
+  * Hungarian (PR #3149)
+  * Italian (PR #3147)
   * Japanese
   * Korean (PR #3125,#3127)
   * Lithuanian (PR #3144)
