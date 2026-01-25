@@ -318,8 +318,7 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 		{
 			if (i > 0)
 				s += _T("\\");
-			String f = ColFileNameGet<String>(pCtxt, ancestors[i], 0);
-			s += (f.find('|') == String::npos) ? f : _T("(") + f + _T(")");
+			s += ColFileNameGet<String>(pCtxt, ancestors[i], 0);
 		}
 		return s;
 	}
