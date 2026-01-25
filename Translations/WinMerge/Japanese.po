@@ -890,8 +890,8 @@ msgstr "分割(&L)"
 msgid "Comp&are"
 msgstr "比較(&A)"
 
-msgid "Compar&e with Renamed/Moved/ Items"
-msgstr ""
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "名前変更/移動項目と比較(&E)"
 
 msgid "Compare in New &Window"
 msgstr "新しいウインドウで比較(&W)"
@@ -5223,6 +5223,10 @@ msgstr "ダーク"
 
 msgid "Follow system"
 msgstr "システムに従う"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "例: %1"
 
 msgid "Prettification"
 msgstr "整形"

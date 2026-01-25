@@ -891,7 +891,7 @@ msgstr "&Tách"
 msgid "Comp&are"
 msgstr "So &sánh"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -5245,6 +5245,10 @@ msgstr "Tối"
 
 msgid "Follow system"
 msgstr "Theo hệ thống"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Làm đẹp mã"

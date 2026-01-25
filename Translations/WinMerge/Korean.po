@@ -1081,7 +1081,7 @@ msgstr "분할(&L)"
 msgid "Comp&are"
 msgstr "비교(&A)"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -5940,6 +5940,10 @@ msgstr "어두운"
 
 msgid "Follow system"
 msgstr "시스템을 따름"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "꾸미기"

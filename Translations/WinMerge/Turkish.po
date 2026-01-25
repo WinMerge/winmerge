@@ -892,7 +892,7 @@ msgstr "Bö&l"
 msgid "Comp&are"
 msgstr "K&arşılaştır"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -5253,6 +5253,10 @@ msgstr "Karanlık"
 
 msgid "Follow system"
 msgstr "Sistem ayarını seç"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Sadeleştirme"

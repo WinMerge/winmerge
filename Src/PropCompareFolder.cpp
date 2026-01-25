@@ -70,7 +70,7 @@ public:
 				static const String Exprs[] = {
 					_T("Name"),
 					_T("BaseName"),
-					_T("normalizeUnicode(Name, \"NKC\")"),
+					_T("normalizeUnicode(Name, \"NFC\")"),
 					_T("Size"),
 					_T("Date"),
 					_T("if(IsFolder, Name, prop(\"Hash.MD5\"))"),
@@ -244,6 +244,7 @@ BOOL PropCompareFolder::OnInitDialog()
 			return !bError;
 		};
 	m_ctlAdditionalCompareConditionEdit.Validate();
+	m_ctlAdditionalCompareConditionEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("allequal(Date)")).c_str());
 
 	GetComboBoxInfo(m_ctlRenameMoveKey.m_hWnd, &cbi);
 	m_ctlRenameMoveKeyEdit.SubclassWindow(cbi.hwndItem);
@@ -257,6 +258,7 @@ BOOL PropCompareFolder::OnInitDialog()
 			return !bError;
 		};
 	m_ctlRenameMoveKeyEdit.Validate();
+	m_ctlRenameMoveKeyEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("BaseName + \"|\" + Size")).c_str());
 
 	UpdateControls();
 

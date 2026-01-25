@@ -918,7 +918,7 @@ BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Comp&are",                    ID_MERGE_COMPARE
-        MENUITEM "Compar&e with Renamed/Moved/ Items", ID_MERGE_COMPARE_WITH_MOVED_RENAMED
+        MENUITEM "Compar&e with Renamed/Moved Items", ID_MERGE_COMPARE_WITH_MOVED_RENAMED
         MENUITEM "Compare in New &Window",      ID_MERGE_COMPARE_IN_NEW_WINDOW
         MENUITEM "Compare Non-hor&izontally...", ID_MERGE_COMPARE_NONHORIZONTALLY
         POPUP "Compare Non-hor&izontally"
@@ -5323,6 +5323,11 @@ BEGIN
     IDS_COLORMODE_LIGHT              "Light"
     IDS_COLORMODE_DARK               "Dark"
     IDS_COLORMODE_FOLLOWSYSTEM       "Follow system"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_EXAMPLE                      "e.g. %1"
 END
 
 #endif    // English (United States) resources

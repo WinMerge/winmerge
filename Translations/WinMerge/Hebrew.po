@@ -889,7 +889,7 @@ msgstr "פצל"
 msgid "Comp&are"
 msgstr "השווה"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -5036,6 +5036,10 @@ msgid "Dark"
 msgstr ""
 
 msgid "Follow system"
+msgstr ""
+
+#, c-format
+msgid "e.g. %1"
 msgstr ""
 
 msgid "Prettification"

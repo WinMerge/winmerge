@@ -1074,7 +1074,7 @@ msgstr "Felosztás"
 msgid "Comp&are"
 msgstr "&Összehasonlít"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -5786,6 +5786,10 @@ msgstr "Sötét"
 
 msgid "Follow system"
 msgstr "Rendszert követi"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

@@ -892,7 +892,7 @@ msgstr "Di&vidir"
 msgid "Comp&are"
 msgstr "Comp&arar"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -4784,6 +4784,10 @@ msgstr "Escuro"
 
 msgid "Follow system"
 msgstr "Seguir o sistema"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

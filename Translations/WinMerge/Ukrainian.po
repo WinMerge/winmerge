@@ -891,7 +891,7 @@ msgstr "Розділення вікна"
 msgid "Comp&are"
 msgstr "По&рівняти"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -5220,6 +5220,10 @@ msgstr "Темна"
 
 msgid "Follow system"
 msgstr "Як в системі"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Форматування"

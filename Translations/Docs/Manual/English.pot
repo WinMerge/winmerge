@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-01-24 06:15+0900\n"
+"POT-Creation-Date: 2026-01-25 12:53+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2023,7 +2023,7 @@ msgid "In the WinMerge menu, <menuchoice> <guimenu>Merge</guimenu> <guimenuitem>
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Compare_dirs.xml:614 ./English/Configuration.xml:2491
+#: ./English/Compare_dirs.xml:614 ./English/Configuration.xml:2698
 msgid "deleting files"
 msgstr ""
 
@@ -2193,7 +2193,7 @@ msgid "A full refresh of large folders can take a long time. In WinMerge 2.2 and
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Compare_dirs.xml:798 ./English/Configuration.xml:2396
+#: ./English/Compare_dirs.xml:798 ./English/Configuration.xml:2603
 msgid "archiving files"
 msgstr ""
 
@@ -2871,7 +2871,7 @@ msgid "Copies just the source filename into the system clipboard."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Compare_files.xml:134 ./English/Configuration.xml:2287
+#: ./English/Compare_files.xml:134 ./English/Configuration.xml:2494
 msgid "difference colors"
 msgstr ""
 
@@ -3073,7 +3073,7 @@ msgid "In the second comparison, the lines <quote>mice</quote> and <quote>mice a
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Compare_files.xml:338 ./English/Configuration.xml:2074
+#: ./English/Compare_files.xml:338 ./English/Configuration.xml:2281
 msgid "line differences"
 msgstr ""
 
@@ -3259,8 +3259,8 @@ msgid "<imageobject> <imagedata contentwidth=\"494\" fileref=\"screenshots/line-
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Compare_files.xml:520 ./English/Configuration.xml:1813
-#: ./English/Configuration.xml:1984 ./English/Configuration.xml:2189
+#: ./English/Compare_files.xml:520 ./English/Configuration.xml:2020
+#: ./English/Configuration.xml:2191 ./English/Configuration.xml:2396
 msgid "editing"
 msgstr ""
 
@@ -3715,7 +3715,7 @@ msgid "for File Compare window"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Compare_files.xml:1007 ./English/Configuration.xml:1907
+#: ./English/Compare_files.xml:1007 ./English/Configuration.xml:2114
 msgid "tabs"
 msgstr ""
 
@@ -4158,8 +4158,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
 #: ./English/Compare_files.xml:1476 ./English/Compare_images.xml:117
-#: ./English/Configuration.xml:2196 ./English/Configuration.xml:2362
-#: ./English/Configuration.xml:2481 ./English/Configuration.xml:2910
+#: ./English/Configuration.xml:2403 ./English/Configuration.xml:2569
+#: ./English/Configuration.xml:2688 ./English/Configuration.xml:3117
 #: ./English/Filters.xml:1522 ./English/Filters.xml:1953
 #: ./English/Filters.xml:1958 ./English/Filters.xml:1969
 msgid "TBD"
@@ -4177,7 +4177,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: ./English/Compare_files.xml:1491 ./English/Compare_files.xml:1776
-#: ./English/Configuration.xml:1993
+#: ./English/Configuration.xml:2200
 msgid "rescanning files"
 msgstr ""
 
@@ -5125,11 +5125,11 @@ msgid "Comparing web pages with very different content may take a lot of time."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:5 ./English/Configuration.xml:2191
-#: ./English/Configuration.xml:2205 ./English/Configuration.xml:2289
-#: ./English/Configuration.xml:2340 ./English/Configuration.xml:2358
-#: ./English/Configuration.xml:2370 ./English/Configuration.xml:2476
-#: ./English/Configuration.xml:2493 ./English/Configuration.xml:2764
+#: ./English/Configuration.xml:5 ./English/Configuration.xml:2398
+#: ./English/Configuration.xml:2412 ./English/Configuration.xml:2496
+#: ./English/Configuration.xml:2547 ./English/Configuration.xml:2565
+#: ./English/Configuration.xml:2577 ./English/Configuration.xml:2683
+#: ./English/Configuration.xml:2700 ./English/Configuration.xml:2971
 msgid "options"
 msgstr ""
 
@@ -5400,7 +5400,7 @@ msgid "timestamps"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:353 ./English/Configuration.xml:1856
+#: ./English/Configuration.xml:353 ./English/Configuration.xml:2063
 msgid "preserving"
 msgstr ""
 
@@ -5739,7 +5739,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><see>
 #: ./English/Configuration.xml:743 ./English/Configuration.xml:849
-#: ./English/Configuration.xml:1854 ./English/Configuration.xml:1860
+#: ./English/Configuration.xml:2061 ./English/Configuration.xml:2067
 msgid "EOL"
 msgstr ""
 
@@ -5779,7 +5779,7 @@ msgid "<option>Enabled</option>: Numeric differences are ignored."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:796 ./English/Configuration.xml:2762
+#: ./English/Configuration.xml:796 ./English/Configuration.xml:2969
 msgid "codepage"
 msgstr ""
 
@@ -6327,1113 +6327,1313 @@ msgstr ""
 msgid "Allows specifying additional comparison conditions using filter expressions when comparing folders.  For example, even if files are considered identical by the selected comparison method (such as Full Contents), you can add conditions like <placeholder type=\"screen\" id=\"0\"/> or <placeholder type=\"screen\" id=\"1\"/> to require that file modification dates also match.  When you click the <guilabel>=</guilabel> button to the right of the input field, a menu appears with items such as <guilabel>Compare Size</guilabel> and <guilabel>Compare Date</guilabel>.  Selecting <guilabel>Compare Date</guilabel> automatically inserts <literal>allequal(Date)</literal> into the field."
 msgstr ""
 
-#. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1496
-msgid "table files"
-msgstr ""
-
-#. type: Content of: <article><section><title>
+#. type: Content of: <article><section><section><title><indexterm><primary>
 #: ./English/Configuration.xml:1495
-msgid "Compare &gt; Table page<placeholder type=\"indexterm\" id=\"0\"/>"
+msgid "rename detection"
+msgstr ""
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: ./English/Configuration.xml:1497
+msgid "move detection"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1500
-msgid "CSV file patterns"
+#: ./English/Configuration.xml:1494
+msgid "Rename/move detection<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
-#. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1502
-msgid "Specifies file name pattern for comma-separated values files to open in table format.  To specify multiple items, separate them with a semicolon.  By default, *.csv is specified. If you do not want to open the files with the extension .csv in table format. Delete the *.csv."
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1504
+msgid "<option>Disabled</option> (default): WinMerge does not detect renamed or moved files/folders."
 msgstr ""
 
-#. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1509
-msgid "TSV file patterns"
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1510
+msgid "<option>Rename detection</option>: Detects files or folders with different names but matching detection keys within the same directory.  Files/folders are grouped together when they share the same detection key."
 msgstr ""
 
-#. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1511
-msgid "Specifies file name pattern for tab-separated values files to open in table format.  To specify multiple items, separate them with a semicolon.  By default, *.tsv is specified. If you do not want to open the files with the extension .tsv in table format. Delete the *.tsv."
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1517
+msgid "<option>Rename and move detection</option>: Detects files or folders with different names or in different directories but matching detection keys.  This mode detects both renamed items (same directory) and moved items (different directories)."
 msgstr ""
 
-#. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1518
-msgid "Custom Delimiter-Separated Values"
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: ./English/Configuration.xml:1527
+msgid "rename detection keys"
 msgstr ""
 
-#. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1520
-msgid "If you want to open text files, with values separated by characters other than commas or tabs, in tabular format, specify the file name pattern and delimiter."
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: ./English/Configuration.xml:1529
+msgid "move detection keys"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: ./English/Configuration.xml:1526
+msgid "Rename/move detection keys<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
+msgstr ""
+
+#. type: Content of: <article><section><section><para>
+#: ./English/Configuration.xml:1534
+msgid "Specifies the filter expression used to generate detection keys for matching files/folders across sides.  Items with matching keys are grouped together as potentially renamed or moved items.  For example, setting the key to <literal>Size</literal> will group files with the same size, while <literal>Name</literal> will group files with the same filename (useful for detecting moves)."
+msgstr ""
+
+#. type: Content of: <article><section><section><para>
+#: ./English/Configuration.xml:1541
+msgid "When you click the <guilabel>=</guilabel> button to the right of the input field, a helper menu appears with common detection key expressions:"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: ./English/Configuration.xml:1547 ./English/Filters.xml:254
+msgid "Name"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Configuration.xml:1550
+msgid "Matches files/folders by name. Useful for detecting files that have been moved to different directories but kept the same name."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: ./English/Configuration.xml:1556 ./English/Filters.xml:258
+msgid "BaseName"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Configuration.xml:1559
+msgid "Matches files by name without extension. For example, \"file.txt\" and \"file.doc\" would match."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: ./English/Configuration.xml:1565
+msgid "normalizeUnicode(Name, \"NFC\")"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Configuration.xml:1568
+msgid "Matches files by normalized Unicode filename. Useful for detecting files with equivalent names but different Unicode representations."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: ./English/Configuration.xml:1574 ./English/Filters.xml:278
+msgid "Size"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Configuration.xml:1577
+msgid "Matches files by size. Useful for detecting files that have been renamed but have the same size."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: ./English/Configuration.xml:1583 ./English/Filters.xml:282
+msgid "Date"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Configuration.xml:1586
+msgid "Matches files by modification date/time."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: ./English/Configuration.xml:1592
+msgid "if(IsFolder, Name, prop(\"Hash.MD5\"))"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Configuration.xml:1595
+msgid "For folders, matches by name. For files, matches by MD5 hash of content.  This is the most accurate method for detecting renamed files, but requires computing MD5 hashes which can be slow for large files."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: ./English/Configuration.xml:1602
+msgid "Property-based keys"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Configuration.xml:1605
+msgid "The menu also provides access to Windows file properties such as <literal>System.Author</literal>, <literal>System.Title</literal>, etc. You can use these to match files based on their metadata."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: ./English/Configuration.xml:1612
+msgid "String transformation functions"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Configuration.xml:1615
+msgid "The menu includes string transformation functions that can be applied to detection keys:"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1620
+msgid "<literal>replace(str, \"from\", \"to\")</literal> - Replace text in the key"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1625
+msgid "<literal>regexReplace(str, \"pattern\", \"replacement\")</literal> - Replace using regular expressions"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1630
+msgid "<literal>toLower(str)</literal> / <literal>toUpper(str)</literal> - Convert case"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1635
+msgid "<literal>toHalfWidth(str)</literal> / <literal>toFullWidth(str)</literal> - Convert character width"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1640
+msgid "<literal>toSimplifiedChinese(str)</literal> / <literal>toTraditionalChinese(str)</literal> - Convert Chinese characters"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1645
+msgid "<literal>toHiragana(str)</literal> / <literal>toKatakana(str)</literal> - Convert Japanese characters"
+msgstr ""
+
+#. type: Content of: <article><section><section><para>
+#: ./English/Configuration.xml:1654
+msgid "You can combine multiple keys using the <literal>+</literal> operator with a separator.  For example, <literal>Name + \"|\" + Size</literal> will create a composite key combining both filename and size."
+msgstr ""
+
+#. type: Content of: <article><section><section><note><para>
+#: ./English/Configuration.xml:1660
+msgid "The detection key expression is evaluated for each side of a file/folder comparison to produce a key.  Items are grouped when their keys match. For example, with the key <literal>Size</literal>, a file of 1024 bytes on the left and a file of 1024 bytes on the right (even with different names) will be grouped together."
+msgstr ""
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: ./English/Configuration.xml:1670
+msgid "merge renamed items"
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: ./English/Configuration.xml:1669
+msgid "Merge renamed items into a single item<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1677
+msgid "<option>Disabled</option> (default): Renamed/moved items remain as separate entries in the folder comparison tree.  The items are grouped together (indicated by a common group ID), but each side's file/folder is shown separately."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1684
+msgid "<option>Enabled</option>: Items that have been detected as renamed but are in the same directory are merged into a single entry.  This simplifies the comparison tree by showing a single item that exists on multiple sides with different names.  Items in different directories (moved items) are not merged even when this option is enabled."
+msgstr ""
+
+#. type: Content of: <article><section><section><note><para>
+#: ./English/Configuration.xml:1693
+msgid "Merging only occurs when each side has at most one item in the group and the items are in the same parent directory.  If multiple files match on one side (ambiguous case), they are not merged."
+msgstr ""
+
+#. type: Content of: <article><section><title><indexterm><primary>
+#: ./English/Configuration.xml:1703
+msgid "table files"
+msgstr ""
+
+#. type: Content of: <article><section><title>
+#: ./English/Configuration.xml:1702
+msgid "Compare &gt; Table page<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: ./English/Configuration.xml:1707
+msgid "CSV file patterns"
+msgstr ""
+
+#. type: Content of: <article><section><section><para>
+#: ./English/Configuration.xml:1709
+msgid "Specifies file name pattern for comma-separated values files to open in table format.  To specify multiple items, separate them with a semicolon.  By default, *.csv is specified. If you do not want to open the files with the extension .csv in table format. Delete the *.csv."
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: ./English/Configuration.xml:1716
+msgid "TSV file patterns"
+msgstr ""
+
+#. type: Content of: <article><section><section><para>
+#: ./English/Configuration.xml:1718
+msgid "Specifies file name pattern for tab-separated values files to open in table format.  To specify multiple items, separate them with a semicolon.  By default, *.tsv is specified. If you do not want to open the files with the extension .tsv in table format. Delete the *.tsv."
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: ./English/Configuration.xml:1725
+msgid "Custom Delimiter-Separated Values"
+msgstr ""
+
+#. type: Content of: <article><section><section><para>
+#: ./English/Configuration.xml:1727
+msgid "If you want to open text files, with values separated by characters other than commas or tabs, in tabular format, specify the file name pattern and delimiter."
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: ./English/Configuration.xml:1733
 msgid "Allow newlines in quotes"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1530
+#: ./English/Configuration.xml:1737
 msgid "<option>Enabled</option> (default): If there is a newline character between the quote character and the next quote character, the newline character is treated as part of a value.  Enable this option if you want to process CSV/TSV files that contain multiple lines in one field."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1539
+#: ./English/Configuration.xml:1746
 msgid "<option>Disabled</option>: Disable the above.  Disable this option when opening files with incorrect quotes."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1548
+#: ./English/Configuration.xml:1755
 msgid "Quote character"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1550
+#: ./English/Configuration.xml:1757
 msgid "Specifies the character that is treated as quotation marks.  Delimiters within the text range enclosed by the characters specified here are treated as part of a value.  This field can be empty.  To open files in which the quotation marks are mere values, leave it empty or specify a character that does not exist in the file."
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:1560
+#: ./English/Configuration.xml:1767
 msgid "Compare &gt; Binary page"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1564
+#: ./English/Configuration.xml:1771
 msgid "binary files"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1563
+#: ./English/Configuration.xml:1770
 msgid "Binary file patterns<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1568
+#: ./English/Configuration.xml:1775
 msgid "Specifies file name patterns for binary files to be opened in the binary compare window.  To specify multiple items, separate them with a semicolon.  By default, *.bin is specified. If you do not want files with the .bin extension to be opened in the binary compare window, remove *.bin from the list."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1576
+#: ./English/Configuration.xml:1783
 msgid "frhed"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1575
+#: ./English/Configuration.xml:1782
 msgid "Frhed settings<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1581
+#: ./English/Configuration.xml:1788
 msgid "View Settings..."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1584
+#: ./English/Configuration.xml:1791
 msgid "Here you can choose:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1587
+#: ./English/Configuration.xml:1794
 msgid "The number of bytes to display per line of hexdump (only applies if &quot;Automatically adjust number of bytes per line&quot; is disabled)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1592
+#: ./English/Configuration.xml:1799
 msgid "If the &quot;Automatically adjust number of bytes per line&quot;- checkbox is checked, then the number of bytes displayed per hexdump line is adjusted in such a way that the whole window width is used at all times."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1598
+#: ./English/Configuration.xml:1805
 msgid "The number of digits for the offset length (only applies if &quot;Adjust offset length&quot; is disabled)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1602
+#: ./English/Configuration.xml:1809
 msgid "If the offset length should be automatically adjusted to that of the maximum offset (enabled) or right-padded with spaces (disabled)"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1607
+#: ./English/Configuration.xml:1814
 msgid "How to display the values at the caret position, either as signed or as unsigned integer values"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1611
+#: ./English/Configuration.xml:1818
 msgid "If read-only mode should be automatically set after opening files."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1615
+#: ./English/Configuration.xml:1822
 msgid "The name of the text editor that will be called by the <menuchoice><guimenu>Edit</guimenu><guimenuitem>Open in text editor </guimenuitem></menuchoice> command."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1624
+#: ./English/Configuration.xml:1831
 msgid "Binary Mode..."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1627
+#: ./English/Configuration.xml:1834
 msgid "What kind of byte order to use: Either Little-endian, as used in Intel-computers or Big-endian, used for example in computers with a Motorola processor. The difference between these modes is thus: Consider a longword, which is 4 bytes (named A to D) long."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
-#: ./English/Configuration.xml:1632
+#: ./English/Configuration.xml:1839
 #, no-wrap
 msgid "Longword in processor register = ABCD."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1634
+#: ./English/Configuration.xml:1841
 msgid "The least significant bit, which has the value 1, is found in byte \"D\". In a processor register the longword is ordered in this way. If this value is written to a position in memory, then by Intel convention the longword is written in this way, with the growing offsets to the right:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
-#: ./English/Configuration.xml:1640
+#: ./English/Configuration.xml:1847
 #, no-wrap
 msgid "Longword in memory = DCBA."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1642
+#: ./English/Configuration.xml:1849
 msgid "That is, the bytes making up the longword are written in reverse order as they are found in a processor register."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1645
+#: ./English/Configuration.xml:1852
 msgid "This means that a file written by a Big-endian machine will contain wrong longword and word values if read by a Little-endian machine without conversion."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1652
+#: ./English/Configuration.xml:1859
 msgid "Character Set..."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1655
+#: ./English/Configuration.xml:1862
 msgid "Here you can choose the character set for displaying and writing characters, either ANSI (the Windows character set) or OEM (the DOS character set). The font size in points can also be chosen."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1667
+#: ./English/Configuration.xml:1874
 msgid "image files"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:1666
+#: ./English/Configuration.xml:1873
 msgid "Compare &gt; Image page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1671
+#: ./English/Configuration.xml:1878
 msgid "Image file patterns"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1673
+#: ./English/Configuration.xml:1880
 msgid "Specifies file name patterns for image files to be opened in the image compare window.  To specify multiple items, separate them with a semicolon.  By default, the .pdf, .svg, .wmf, and .emf extensions are not in the list.  Add them if you want files with these extensions to be displayed in the image compare window."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1681
+#: ./English/Configuration.xml:1888
 msgid "Enable image compare in folder compare"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1683
+#: ./English/Configuration.xml:1890
 msgid "When this option is enabled, folder comparisons will compare files that match the specified patterns as images.  Metadata differences will be ignored, and a color distance threshold will be applied to determine visual differences between images."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1689
+#: ./English/Configuration.xml:1896
 msgid "OCR result"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1693
+#: ./English/Configuration.xml:1900
 msgid "<option>Text only</option> (default): Shows only the text recognized from the image."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1700
+#: ./English/Configuration.xml:1907
 msgid "<option>Line-by-line position and text</option>: Shows the recognized text line by line with its position in the original image."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1707
+#: ./English/Configuration.xml:1914
 msgid "<option>Word-by-word position and text</option>: Shows the recognized text word by word with its position in the original image."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1718
+#: ./English/Configuration.xml:1925
 msgid "webpages"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:1717
+#: ./English/Configuration.xml:1924
 msgid "Compare &gt; Webpage page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1724
+#: ./English/Configuration.xml:1931
 msgid "URL pattern to include (Regular expression)<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1728
+#: ./English/Configuration.xml:1935
 msgid "Enter a regular expression in this field to specify the file paths or URLs that should be opened in the webpage compare window.  For example, if you enter the regular expression <code>.*\\.html?|https?://.*</code>, files with the .html or .htm extension and URLs starting with http:// or https:// will be opened in the webpage compare window."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1736
+#: ./English/Configuration.xml:1943
 msgid "URL pattern to exclude (Regular expression)<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1740
+#: ./English/Configuration.xml:1947
 msgid "Enter a regular expression to exclude certain file paths or URLs from the Webpage Comparison window.  This applies to items that match the \"URL pattern to include\" field.  Use this to exclude specific patterns you don't want to include."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1748
+#: ./English/Configuration.xml:1955
 msgid "User data folder location<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1754
+#: ./English/Configuration.xml:1961
 msgid "<option>AppData folder</option> (default): Stores cookies, browsing history, and cache data in the %APPDATA%\\WinMerge\\WinWebDiff folder."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1760
+#: ./English/Configuration.xml:1967
 msgid "<option>Install folder</option>: Saves data in the WinMerge installation directory, which usually requires administrator permissions to write. This is generally not recommended."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1768
+#: ./English/Configuration.xml:1975
 msgid "Separate user data folders for each pane<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1771
+#: ./English/Configuration.xml:1978
 msgid "Creates distinct data folders for each pane, preventing data overlap between them."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1778
+#: ./English/Configuration.xml:1985
 msgid "message boxes"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:1777
+#: ./English/Configuration.xml:1984
 msgid "Message Boxes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1783
+#: ./English/Configuration.xml:1990
 msgid "Reset"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1786
+#: ./English/Configuration.xml:1993
 msgid "WinMerge allows you to suppress some common message boxes. For example, when two identical files are opened, the message box titled, <guilabel>The files are identical</guilabel>, is normally opened. If you don't want this box to display any more, you can enable (check) the option in that message box to not show the message again."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:1794
+#: ./English/Configuration.xml:2001
 msgid "Later, you might decide that you want to see those messages again.  If so, click the <guibutton>Reset</guibutton> button to make the message boxes display again."
 msgstr ""
 
 #. type: Content of: <article><section><section><note><para>
-#: ./English/Configuration.xml:1801
+#: ./English/Configuration.xml:2008
 msgid "We recommend that you not suppress messages when updating WinMerge to a newer version. The installer enables their display automatically, but if you don't use the installer, then remember to enable message display by using the <guibutton>Reset</guibutton> button."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:1815 ./English/Configuration.xml:1986
+#: ./English/Configuration.xml:2022 ./English/Configuration.xml:2193
 msgid "options for File Compare window"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:1812
+#: ./English/Configuration.xml:2019
 msgid "Editor &gt; General page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1822 ./English/Configuration.xml:2315
+#: ./English/Configuration.xml:2029 ./English/Configuration.xml:2522
 msgid "syntax highlighting"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:1824
+#: ./English/Configuration.xml:2031
 msgid "enabling and disabling"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1821
+#: ./English/Configuration.xml:2028
 msgid "Highlight syntax<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1831
+#: ./English/Configuration.xml:2038
 msgid "<option>Enabled</option> (default): WinMerge can syntax highlight many programming language and web formats. To see the formats that are supported by default, click <menuchoice> <guimenu>View</guimenu> <guimenuitem>Syntax Highlight</guimenuitem> </menuchoice>."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1843
+#: ./English/Configuration.xml:2050
 msgid "<option>Disabled</option>: Syntax highlighting consumes some processing power, so if WinMerge screen updating seems to be slow, turning off this option might help."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1858
+#: ./English/Configuration.xml:2065
 msgid "end of line"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1853
+#: ./English/Configuration.xml:2060
 msgid "Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1867
+#: ./English/Configuration.xml:2074
 msgid "<option>Disabled</option> (default): Assumes that files are meant to be Windows files. If a file does not use the standard Windows line ending, WinMerge considers this to be an error. It silently changes the line endings to the Windows style instead of detecting them as differences. Thus, the File Compare window status bar shows the EOL style as <guilabel>Win</guilabel>."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1876
+#: ./English/Configuration.xml:2083
 msgid "For most situations you should leave this option disabled: the default behavior works even when comparing two files that have different line ending styles."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1884
+#: ./English/Configuration.xml:2091
 msgid "<option>Enabled</option>: Prevents WinMerge from automatically changing line endings, so that it detects different EOL styles for every line. This might be useful for handling files from systems with different EOL styles (for example, Windows and Unix)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
-#: ./English/Configuration.xml:1892
+#: ./English/Configuration.xml:2099
 msgid "This is an advanced option for users who are familiar with EOL bytes and who want to compare files with different EOL styles inside <emphasis>one</emphasis> file. We recommend that you not enable this option unless you need this advanced functionality. Remember, this option is not required to compare two files with different EOL styles."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:1909
+#: ./English/Configuration.xml:2116
 msgid "editing options"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1906
+#: ./English/Configuration.xml:2113
 msgid "Tabs<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1915
+#: ./English/Configuration.xml:2122
 msgid "Tab size"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1919
+#: ./English/Configuration.xml:2126
 msgid "Width of a tab space. Specify a value <replaceable>n</replaceable>: the resulting width is equivalent to that of <replaceable>n</replaceable> characters. Default: 4. The maximum value is 64."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1928
+#: ./English/Configuration.xml:2135
 msgid "Tab insert options"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1932
+#: ./English/Configuration.xml:2139
 msgid "Determines what kind of character is used when you insert a tab in text. Only one of these options can be enabled:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1939
+#: ./English/Configuration.xml:2146
 msgid "<guilabel>Insert Tabs</guilabel> (default): Uses a single tab character."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1946
+#: ./English/Configuration.xml:2153
 msgid "<guilabel>Insert Spaces</guilabel>: Uses one or more spaces (determined by the <option>Tab size</option>) instead of a tab character. For example, with the default tab size, four spaces are inserted."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1961
+#: ./English/Configuration.xml:2168
 msgid "rendering"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1960
+#: ./English/Configuration.xml:2167
 msgid "Rendering Mode<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1968
+#: ./English/Configuration.xml:2175
 msgid "<option>GDI</option> (default): Renders text using the Graphics Device Interface (GDI)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1974
+#: ./English/Configuration.xml:2181
 msgid "<option>DirectWrite Modes</option>: Renders text using various DirectWrite rendering modes, including support for colored emojis on Windows 8.1 and later. Available only in the 64-bit version of WinMerge. See <ulink url=\"https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants\">DirectWrite Rendering Modes</ulink> for details."
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:1983
+#: ./English/Configuration.xml:2190
 msgid "Editor &gt; Compare/Merge page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:1995
+#: ./English/Configuration.xml:2202
 msgid "enabling and disabling autoscan"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1992
+#: ./English/Configuration.xml:2199
 msgid "Automatic rescan<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2002
+#: ./English/Configuration.xml:2209
 msgid "<option>Disabled</option> (default): WinMerge rescans automatically when you merge a difference, or if you manually rescan (for example, click the <guibutton>Rescan</guibutton> button)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2010
+#: ./English/Configuration.xml:2217
 msgid "<option>Enabled</option>: Forces WinMerge to rescan after every edit event (a change to files, like typing)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><note><para>
-#: ./English/Configuration.xml:2016
+#: ./English/Configuration.xml:2223
 msgid "To avoid slowing down your editing, WinMerge delays automatic rescanning a little: it waits one second after each edit event.  Because each new edit event resets the timer, no rescans occur until you pause or stop editing."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2029
+#: ./English/Configuration.xml:2236
 msgid "copy granularity"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2028
+#: ./English/Configuration.xml:2235
 msgid "Copy granularity for selected differences<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2034
+#: ./English/Configuration.xml:2241
 msgid "Specifies the copy granularity when copying to another pane by clicking the <guimenuitem>Copy to right</guimenuitem> menu item etc.  with text selected."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2042
+#: ./English/Configuration.xml:2249
 msgid "<option>Diff hunk</option>: Copies diff hunks within the selected text."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2049
+#: ./English/Configuration.xml:2256
 msgid "<option>Inline diff</option>: Copies inline diffs within the selected text."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2056
+#: ./English/Configuration.xml:2263
 msgid "<option>Line</option>: Copies the differences within the selected text line by line."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2063
+#: ./English/Configuration.xml:2270
 msgid "<option>Character</option> (default): Copies the differences within the selected text character by character."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:2076
+#: ./English/Configuration.xml:2283
 msgid "viewing options"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2073
+#: ./English/Configuration.xml:2280
 msgid "Line Difference Coloring<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2081
+#: ./English/Configuration.xml:2288
 msgid "These settings enable and configure the detection of <glossterm> line differences </glossterm> (changes within the lines of difference blocks):"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2090
+#: ./English/Configuration.xml:2297
 msgid "View line differences"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2096
+#: ./English/Configuration.xml:2303
 msgid "<option>Enabled</option> (default): WinMerge highlights differences within lines. Also enables the <menuchoice> <guimenu>View</guimenu> <guimenuitem>View Line Differences</guimenuitem> </menuchoice> menu item."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2104
+#: ./English/Configuration.xml:2311
 msgid "Choose one of these suboptions:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2109
+#: ./English/Configuration.xml:2316
 msgid "<guilabel>Character level</guilabel>: Highlights individual characters that are different. This option can be useful if you are looking for changes within words, or for file formats that do not have clear word breaks."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2118
+#: ./English/Configuration.xml:2325
 msgid "<guilabel>Word-level</guilabel> (default): Highlights entire words that are different."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2125
+#: ./English/Configuration.xml:2332
 msgid "<guilabel>Break at whitespace</guilabel> (default): Words are assumed to be separated by whitespace characters.  This usually works for typical text files."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2133
+#: ./English/Configuration.xml:2340
 msgid "<guilabel>Break at whitespace or punctuation</guilabel>: Considers both whitespace and punctuation characters to be word breaks. This can useful for handling lists that are separated with punctuation (like comma-separated lists)."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2147
+#: ./English/Configuration.xml:2354
 msgid "<option>Disabled</option>: WinMerge does not highlight line differences, and all settings for the level and whitespace options are ignored. Also disables the <menuchoice> <guimenu>View</guimenu> <guimenuitem>View Line Differences</guimenuitem> </menuchoice> menu item."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2163
+#: ./English/Configuration.xml:2370
 msgid "Word break characters"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:2166
+#: ./English/Configuration.xml:2373
 msgid "Specifies the symbols that are treated as non-whitespace word separators when <guilabel>Break at whitespace or punctuation</guilabel> is selected."
 msgstr ""
 
 #. type: Content of: <article><section><section><note><title>
-#: ./English/Configuration.xml:2175
+#: ./English/Configuration.xml:2382
 msgid "Related topic"
 msgstr ""
 
 #. type: Content of: <article><section><section><note><para>
-#: ./English/Configuration.xml:2178
+#: ./English/Configuration.xml:2385
 msgid "<xref linkend=\"CompareFiles_linediff-highlight\" /> explains in more detail how WinMerge detects and marks line differences."
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2188
+#: ./English/Configuration.xml:2395
 msgid "Editor &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2203
+#: ./English/Configuration.xml:2410
 msgid "color schemes"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2202
+#: ./English/Configuration.xml:2409
 msgid "Colors &gt; Color Schemes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2210
+#: ./English/Configuration.xml:2417
 msgid "The Color Schemes page allows you to customize the overall color appearance of WinMerge, including support for light and dark modes. You can select and manage color schemes for each mode, and save or delete your own custom schemes."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2215
+#: ./English/Configuration.xml:2422
 msgid "Color mode"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:2218
+#: ./English/Configuration.xml:2425
 msgid "Selects the color mode for the application. Choose from:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2223
+#: ./English/Configuration.xml:2430
 msgid "<option>Light</option> (default): Uses the color scheme specified for light mode. When selected, the appearance of dialog windows, menus, and other UI elements will be shown in a light style."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2228
+#: ./English/Configuration.xml:2435
 msgid "<option>Dark</option>: Uses the color scheme specified for dark mode. When selected, the appearance of dialog windows, menus, and other UI elements will be shown in a dark style."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2233
+#: ./English/Configuration.xml:2440
 msgid "<option>Follow system</option>: Automatically switches between light and dark mode based on your operating system's setting."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2241
+#: ./English/Configuration.xml:2448
 msgid "Light mode scheme"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:2244
+#: ./English/Configuration.xml:2451
 msgid "Selects the color scheme to use when <guilabel>Color mode</guilabel> is set to Light. Available schemes include <option>Default</option> (default), <option>Modern</option>, and any user-defined schemes you have saved."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2250
+#: ./English/Configuration.xml:2457
 msgid "Dark mode scheme"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:2253
+#: ./English/Configuration.xml:2460
 msgid "Selects the color scheme to use when <guilabel>Color mode</guilabel> is set to Dark. Available schemes include <option>VS Dark</option> (default), <option>Solarized Dark</option>, and any user-defined schemes you have saved."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2259
+#: ./English/Configuration.xml:2466
 msgid "Save current scheme"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:2262
+#: ./English/Configuration.xml:2469
 msgid "Saves the current color settings as a new scheme. The scheme is saved as an INI file. <emphasis> Only schemes saved in the <filename>Documents/WinMerge/ColorSchemes</filename> folder will appear in the <guilabel>Light mode scheme</guilabel> and <guilabel>Dark mode scheme</guilabel> lists.  </emphasis>"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2270
+#: ./English/Configuration.xml:2477
 msgid "Delete current scheme"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:2273
+#: ./English/Configuration.xml:2480
 msgid "Deletes the currently selected color scheme. This button is only enabled for user-defined schemes (not for built-in schemes like Default or VS Dark)."
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2280
+#: ./English/Configuration.xml:2487
 msgid "Use these options to tailor the WinMerge interface to your preferences or to match your system theme. Custom color schemes make it easy to share or reuse your preferred color settings."
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2286
+#: ./English/Configuration.xml:2493
 msgid "Colors &gt; Differences page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2294
+#: ./English/Configuration.xml:2501
 msgid "Use this page if you want to change any of the difference colors used in the File Compare window. You can set the background, deleted, and text color."
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2300 ./English/Configuration.xml:2381
+#: ./English/Configuration.xml:2507 ./English/Configuration.xml:2588
 msgid "To change a color, click in its box to open a standard Color chooser dialog. Choose one of the predefined colors or define your own custom color, then click <guibutton>OK</guibutton> to load the new color in the box."
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2307 ./English/Configuration.xml:2330
-#: ./English/Configuration.xml:2388
+#: ./English/Configuration.xml:2514 ./English/Configuration.xml:2537
+#: ./English/Configuration.xml:2595
 msgid "To revert to the default colors of a scheme, choose a different scheme and return to the modified scheme."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:2317
+#: ./English/Configuration.xml:2524
 msgid "color options"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2314
+#: ./English/Configuration.xml:2521
 msgid "Colors &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2322
+#: ./English/Configuration.xml:2529
 msgid "By default, the WinMerge File Compare window marks the syntax of certain kinds of source code, as described in <xref linkend=\"Configuration_syntaxhighlight\" />. This page lists the syntax elements that are recognized, and enables you to change their text color and weight."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2338
+#: ./English/Configuration.xml:2545
 msgid "text colors"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2337
+#: ./English/Configuration.xml:2544
 msgid "Colors &gt; Text page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2345
+#: ./English/Configuration.xml:2552
 msgid "Use this page to change the colors used for text. First, check the option, <guilabel>Use customized text colors</guilabel>. This activates the text options. There is an option for three kinds of text: whitespace, regular text, and selected text. For each kind of text , you can choose a color for the background and the text."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2356
+#: ./English/Configuration.xml:2563
 msgid "marker colors"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2355
+#: ./English/Configuration.xml:2562
 msgid "Colors &gt; Markers page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2368
+#: ./English/Configuration.xml:2575
 msgid "folder compare colors"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2367
+#: ./English/Configuration.xml:2574
 msgid "Colors &gt; Folder Compare page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2375
+#: ./English/Configuration.xml:2582
 msgid "By default, the WinMerge Folder Compare window use background colors to show the status from a item (equal, different, not exists on all sides or filtered)."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:2398
+#: ./English/Configuration.xml:2605
 msgid "configuring support after installation"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2395
+#: ./English/Configuration.xml:2602
 msgid "Archive Support page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2403
+#: ./English/Configuration.xml:2610
 msgid "This page contains options for configuring archive support using 7-Zip."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2410 ./English/Open_paths.xml:60
+#: ./English/Configuration.xml:2617 ./English/Open_paths.xml:60
 msgid "7-Zip archives"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:2412
+#: ./English/Configuration.xml:2619
 msgid "enabling and disabling integration"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2409
+#: ./English/Configuration.xml:2616
 msgid "Enable archive file support<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2417
+#: ./English/Configuration.xml:2624
 msgid "This option controls how WinMerge handles archive files (based on 7-Zip integration)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2424
+#: ./English/Configuration.xml:2631
 msgid "<option>Enabled</option> (default): WinMerge recognizes 7-Zip archives."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2431
+#: ./English/Configuration.xml:2638
 msgid "<option>Disabled</option>: Turns off 7-Zip archive integration."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2441
+#: ./English/Configuration.xml:2648
 msgid "detecting archive types"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2440
+#: ./English/Configuration.xml:2647
 msgid "Detect archive type from file signature<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2448
+#: ./English/Configuration.xml:2655
 msgid "<option>Disabled</option> (default): WinMerge recognizes only archives whose file extension is known on your system (for example, in the registry or through a file association)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2456
+#: ./English/Configuration.xml:2663
 msgid "<option>Enabled</option>: WinMerge can recognize archive files even if their file extension is not known. To recognize an archive, WinMerge searches the beginning of the file for the archive signature bytes."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para><tip><para>
-#: ./English/Configuration.xml:2461
+#: ./English/Configuration.xml:2668
 msgid "You can use this option to enable WinMerge to recognize Open Office files."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2474 ./English/Open_paths.xml:367
+#: ./English/Configuration.xml:2681 ./English/Open_paths.xml:367
 #: ./English/Quick_start.xml:203
 msgid "project files"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2473
+#: ./English/Configuration.xml:2680
 msgid "Project page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2486
+#: ./English/Configuration.xml:2693
 msgid "System page"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2490
+#: ./English/Configuration.xml:2697
 msgid "Send deleted files to Recycle Bin<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2500
+#: ./English/Configuration.xml:2707
 msgid "<option>Enabled</option> (default): Files and folders that you delete in a Folder Compare window are moved to the Recycle Bin, if it is available."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
-#: ./English/Configuration.xml:2507
+#: ./English/Configuration.xml:2714
 msgid "Remember: if the Recycle Bin on your system has been deactivated, this option does not work, and deleted files are lost!"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2517
+#: ./English/Configuration.xml:2724
 msgid "<option>Disabled</option>: Files and folders deleted in a directory compare actually deleted."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2527
+#: ./English/Configuration.xml:2734
 msgid "external editor"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:2529
+#: ./English/Configuration.xml:2736
 msgid "configuring"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2526
+#: ./English/Configuration.xml:2733
 msgid "External editor<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2534
+#: ./English/Configuration.xml:2741
 msgid "The WinMerge File Compare window provides common editing functions.  If you prefer using your favorite, full-featured editor, you can configure WinMerge to open an external editor from the Folder Compare context menu."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2541
+#: ./English/Configuration.xml:2748
 msgid "Installation configures Notepad as the default external editor, because it is found on all Windows systems. To configure a different external editor, enter the full path to its executable file."
 msgstr ""
 
 #. type: Content of: <article><section><section><tip><para>
-#: ./English/Configuration.xml:2548
+#: ./English/Configuration.xml:2755
 msgid "Along with the path, you can include any command line parameters supported by the external tool, in this format: <command> <replaceable>path to executable</replaceable> </command> <option>-option1</option> <option>-option2</option> <option> <replaceable>...</replaceable> </option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2561
+#: ./English/Configuration.xml:2768
 msgid "To use the configured external editor, right-click a file in the Folder Compare window and choose <menuchoice> <guimenuitem>Open Left</guimenuitem> <guimenuitem>With External Editor</guimenuitem> </menuchoice> or <menuchoice> <guimenuitem>Open Right</guimenuitem> <guimenuitem>With External Editor</guimenuitem> </menuchoice>."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2577
+#: ./English/Configuration.xml:2784
 msgid "user data"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:2578
+#: ./English/Configuration.xml:2785
 msgid "storage location"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2576
+#: ./English/Configuration.xml:2783
 msgid "Store user data in<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2583
+#: ./English/Configuration.xml:2790
 msgid "Specifies where WinMerge stores user data such as filters, plugins, color schemes, and configuration logs."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2590
+#: ./English/Configuration.xml:2797
 msgid "<guilabel>AppData (Roaming) folder</guilabel> (default): Stores user data in the roaming application data folder of your user profile."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2597
+#: ./English/Configuration.xml:2804
 msgid "<guilabel>Documents folder</guilabel>: Stores user data in the <filename>WinMerge</filename> subfolder of your Documents directory."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2604
+#: ./English/Configuration.xml:2811
 msgid "This setting affects newly created user data only."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2611 ./English/Filters.xml:978
+#: ./English/Configuration.xml:2818 ./English/Filters.xml:978
 msgid "Filters folders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:2613
+#: ./English/Configuration.xml:2820
 msgid "specifying default private folder"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2610
+#: ./English/Configuration.xml:2817
 msgid "Filter folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2618
+#: ./English/Configuration.xml:2825
 msgid "Use this field to specify your own private folder for file filters.  By default this folder is your user profile directory (for example, <filename>Documents</filename> on Windows 10). When you create a file filter, it is automatically added to this folder."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2628
+#: ./English/Configuration.xml:2835
 msgid "temporary files, folder used"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2627
+#: ./English/Configuration.xml:2834
 msgid "Temporary files folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2633
+#: ./English/Configuration.xml:2840
 msgid "Specify the folder where WinMerge stores temporary files. Either one of these options is available:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2640
+#: ./English/Configuration.xml:2847
 msgid "<guilabel>System's temp folder</guilabel> (default): For example, this might be <filename>C:\\Windows\\Temp</filename> on your system."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2647
+#: ./English/Configuration.xml:2854
 msgid "<guilabel>Custom folder</guilabel>: Click <guibutton>Browse</guibutton> and select a different folder where you have write access."
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: ./English/Configuration.xml:2658
+#: ./English/Configuration.xml:2865
 msgid "backup files, options"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2657
+#: ./English/Configuration.xml:2864
 msgid "Backup Files page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2663
+#: ./English/Configuration.xml:2870
 msgid "This page allows you to control how WinMerge creates backup files."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2668
+#: ./English/Configuration.xml:2875
 msgid "Create backup files for"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2671
+#: ./English/Configuration.xml:2878
 msgid "Specify when WinMerge should create backup files. You can enable or disable each of these options independently:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2678
+#: ./English/Configuration.xml:2885
 msgid "<guilabel>Folder compare</guilabel> (disabled by default): Backup files are create whenever files are overwritten (copied)."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2686
+#: ./English/Configuration.xml:2893
 msgid "<guilabel>File compare</guilabel> (enabled by default): Backup files are created whenever files are saved."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2694
+#: ./English/Configuration.xml:2901
 msgid "Create backup files in"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2697
+#: ./English/Configuration.xml:2904
 msgid "Specify where backup files are created. Only one of these options can be enabled:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2704
+#: ./English/Configuration.xml:2911
 msgid "<guilabel>Original file's folder</guilabel> (enabled by default): Backup files are created in the same folder as the source file. This is usually a good choice. The down side is that cleaning up backup files in big folders can take a lot of work."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2713
+#: ./English/Configuration.xml:2920
 msgid "<guilabel>Global backup folder</guilabel> (disabled by default): All backup files are created in one global folder. This makes them easy to clean up. But, if there are multiple source files with same file name, then the most recent backup file overwrites the previous one of the same name."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2724
+#: ./English/Configuration.xml:2931
 msgid "Backup filename"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2727
+#: ./English/Configuration.xml:2934
 msgid "When WinMerge creates a backup file, it appends an extension to the source file name. You can choose either or both of these extension schemes:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2735
+#: ./English/Configuration.xml:2942
 msgid "<guilabel>Append .bak extension</guilabel> (enabled by default): For example, the <filename>file.txt</filename> is backed up to <filename>file.txt.bak</filename>."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2743
+#: ./English/Configuration.xml:2950
 msgid "<guilabel>Append timestamp</guilabel> (enabled by default): Timestamps are almost always unique, so this option usually avoids duplicating backup file names when the source files have the same names."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2750
+#: ./English/Configuration.xml:2957
 msgid "Also, storing a copy of a file each time you save it provides a way to track changes to the file. However, you should consider that this option can create a lot of files."
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2761
+#: ./English/Configuration.xml:2968
 msgid "Codepage page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: ./English/Configuration.xml:2769
+#: ./English/Configuration.xml:2976
 msgid "WinMerge detects handles file encoding transparently, and in most cases you should not need to change the default settings.This page allows you to specify the codepages of certain file formats, should you need to."
 msgstr ""
 
 #. type: Content of: <article><section><note><para>
-#: ./English/Configuration.xml:2776
+#: ./English/Configuration.xml:2983
 msgid "A full explanation of text encoding and Windows codepages is beyond the scope of WinMerge documentation. Fortunately, there is lots of information about them on the Internet. For example, here are some places to start:"
 msgstr ""
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2785
+#: ./English/Configuration.xml:2992
 msgid "<ulink url=\"https://en.wikipedia.org/wiki/Code_pages\"> Wikipedia: Code pages </ulink>, <ulink url=\"https://en.wikipedia.org/wiki/Character_encoding\"> Character encoding </ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2798
+#: ./English/Configuration.xml:3005
 msgid "<ulink url=\"https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43\"> Microsoft: Code Pages Supported by Windows </ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2808
+#: ./English/Configuration.xml:3015
 msgid "Default Codepage"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2811
+#: ./English/Configuration.xml:3018
 msgid "Choose one of these radio buttons to set the default codepage that WinMerge uses when handling ANSI files:"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2818
+#: ./English/Configuration.xml:3025
 msgid "<guilabel>System codepage</guilabel> (default):The codepage used by your Windows system. This default is usually the best choice.  However if you know that you are comparing files that do not use the system codepage, consider one of the other options."
 msgstr ""
 
 #. This is just a guess - don't find any info on this option.
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2827
+#: ./English/Configuration.xml:3034
 msgid "<guilabel>According to WinMerge User Interface</guilabel>: The encoding used by your installation of WinMerge."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2834
+#: ./English/Configuration.xml:3041
 msgid "<guilabel>Custom codepage</guilabel>: Enter the codepage number explicitly. For example, <userinput>UTF-8</userinput> or <userinput>ISO-8851-1</userinput>."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2843
+#: ./English/Configuration.xml:3050
 msgid "Detect codepage info for these files: .html, .rc, .xml"
 msgstr ""
 
@@ -7441,105 +7641,105 @@ msgstr ""
 #. why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
 #. or is this understood?
 #. type: Content of: <article><section><section><important><para>
-#: ./English/Configuration.xml:2847
+#: ./English/Configuration.xml:3054
 msgid "Uncheck this option in <filename>WinMerge.exe</filename>.  Characters conversions can result in lossy conversions and the risk is very high. <filename>WinMerge.exe</filename> can display files only with your current codepage."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2859
+#: ./English/Configuration.xml:3066
 msgid "<option>Disabled</option> (default): WinMerge does not read codepage information from the source files. It uses the default codepage setting instead."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2867
+#: ./English/Configuration.xml:3074
 msgid "<option>Enabled</option>: WinMerge detects the codepage for these extensions: <filename class=\"extension\">html</filename>, <filename class=\"extension\">rc</filename> (resource files for VC++)  and <filename class=\"extension\">xml</filename>. The detected codepage overrides the setting for the default codepage option."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2875
+#: ./English/Configuration.xml:3082
 msgid "This option is of interest when your documents use a codepage that is different from the codepage of your Windows configuration."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2881
+#: ./English/Configuration.xml:3088
 msgid "For example, you might merge two Slovak or two Japanese files in an English environment. With this option enabled (and with the required fonts), your Slovak, or Japanese, the files are displayed using Slovak, or Japanese, characters."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2888
+#: ./English/Configuration.xml:3095
 msgid "WinMerge also detects a codepage difference between the left/right files. To avoid lossy conversions when you merge, copy, or paste, we suggest that you ignore the codepage information."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><caution><para>
-#: ./English/Configuration.xml:2895
+#: ./English/Configuration.xml:3102
 msgid "When you copy or paste text to an external application, the external application must use the same codepage as WinMerge does.  Refer to the documentation for your external editor. For copying to WinMerge, Internet Explorer offers codepage selection. If your external editor does not support custom codepages, disable this option."
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2908
+#: ./English/Configuration.xml:3115
 msgid "Detect codepage for text files using mlang.dll"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: ./English/Configuration.xml:2916
+#: ./English/Configuration.xml:3123
 msgid "Shell Integration page"
 msgstr ""
 
 #. type: Content of: <article><title><indexterm><primary>
-#: ./English/Configuration.xml:2921 ./English/Faq.xml:95
+#: ./English/Configuration.xml:3128 ./English/Faq.xml:95
 #: ./English/Install.xml:174 ./English/Install.xml:189
 #: ./English/Install.xml:352 ./English/Version_control.xml:4
 msgid "integration"
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: ./English/Configuration.xml:2923 ./English/Install.xml:191
+#: ./English/Configuration.xml:3130 ./English/Install.xml:191
 #: ./English/Install.xml:354
 msgid "with Windows shell"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:2920
+#: ./English/Configuration.xml:3127
 msgid "Explorer<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2928
+#: ./English/Configuration.xml:3135
 msgid "The <option>Add to context menu</option> option enables you to launch WinMerge directly from Windows Explorer, comparing items that you have selected there. It is enabled or disabled by default during WinMerge installation. If enabled, you can also enable one or both of these options:"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2937
+#: ./English/Configuration.xml:3144
 msgid "Enable advanced menu"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2943
+#: ./English/Configuration.xml:3150
 msgid "<option>Disabled</option> (default): Only the <guimenuitem>WinMerge</guimenuitem> shortcut is included in the Windows Explorer context menu."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2951
+#: ./English/Configuration.xml:3158
 msgid "<option>Enabled</option>: Replaces the <guimenuitem>WinMerge</guimenuitem> shortcut in the Explorer context menu with <guimenuitem>Compare</guimenuitem> shortcuts."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:2964
+#: ./English/Configuration.xml:3171
 msgid "Enable Compare As menu"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2970
+#: ./English/Configuration.xml:3177
 msgid "<option>Disabled</option> (default): Removes <guimenuitem>Compare As</guimenuitem> menu item from Explorer context menu."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:2978
+#: ./English/Configuration.xml:3185
 msgid "<option>Enabled</option>: Adds <guimenuitem>Compare As</guimenuitem> menu item to Explorer context menu."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: ./English/Configuration.xml:2989
+#: ./English/Configuration.xml:3196
 msgid "<xref linkend=\"OpenPaths_shell-integ\" /> describes how to use the WinMerge and Compare shortcuts."
 msgstr ""
 
@@ -8428,19 +8628,9 @@ msgstr ""
 msgid "Returns <literal>true</literal> if the file exists, <literal>false</literal> otherwise"
 msgstr ""
 
-#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:254
-msgid "Name"
-msgstr ""
-
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: ./English/Filters.xml:255
 msgid "File name"
-msgstr ""
-
-#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:258
-msgid "BaseName"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
@@ -8483,19 +8673,9 @@ msgstr ""
 msgid "Returns the full path of the file"
 msgstr ""
 
-#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:278
-msgid "Size"
-msgstr ""
-
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: ./English/Filters.xml:279
 msgid "File size"
-msgstr ""
-
-#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: ./English/Filters.xml:282
-msgid "Date"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>

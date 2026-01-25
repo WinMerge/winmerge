@@ -1078,7 +1078,7 @@ msgstr "&Teilen"
 msgid "Comp&are"
 msgstr "Ver&gleichen"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -5950,6 +5950,10 @@ msgstr "Dunkel"
 
 msgid "Follow system"
 msgstr "Systemeinstellung verwenden"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Verschönerung"

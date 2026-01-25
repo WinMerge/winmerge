@@ -79,6 +79,7 @@ BOOL CDirFilterBar::Create(CWnd* pParentWnd)
 			return !bError;
 		};
 	m_ctlMaskEdit.Validate();
+	m_ctlMaskEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("*.txt|fe:Size > 100KB")).c_str());
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

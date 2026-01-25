@@ -903,7 +903,7 @@ msgstr "分割 (&L)"
 msgid "Comp&are"
 msgstr "比較 (&A)"
 
-msgid "Compar&e with Renamed/Moved/ Items"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
 
 msgid "Compare in New &Window"
@@ -5242,6 +5242,10 @@ msgstr "暗色"
 
 msgid "Follow system"
 msgstr "遵循系統"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "排版美化"
