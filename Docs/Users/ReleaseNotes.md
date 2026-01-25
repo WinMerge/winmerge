@@ -24,8 +24,12 @@ Please submit bug reports to our bug-tracker.
 ### Folder compare
 
 * Add logInfo, logWarn, logError functions to filter expressions (PR #3131)
+* Add new filter expression functions
+    (if, ifEach, choose, chooseEach, andEach, orEach, notEach) (PR #3132)
 * Add BaseName/IsFolder and new string transformation functions to filters
     (PR #3146)
+* Add experimental customizable rename/move detection for folder comparison
+    (PR #3126)
 
 ### Options window
 
