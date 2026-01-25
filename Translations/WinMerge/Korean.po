@@ -1081,7 +1081,7 @@ msgstr "분할(&L)"
 msgid "Comp&are"
 msgstr "비교(&A)"
 
-msgid "Compar&e with Renamed/Moved Items"
+msgid "Compar&e with Renamed/Moved/ Items"
 msgstr ""
 
 msgid "Compare in New &Window"

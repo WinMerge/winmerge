@@ -895,7 +895,7 @@ msgstr "分隔(&L)"
 msgid "Comp&are"
 msgstr "比较(&A)"
 
-msgid "Compar&e with Renamed/Moved Items"
+msgid "Compar&e with Renamed/Moved/ Items"
 msgstr ""
 
 msgid "Compare in New &Window"

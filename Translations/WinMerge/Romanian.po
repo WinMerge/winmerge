@@ -890,7 +890,7 @@ msgstr "Divide"
 msgid "Comp&are"
 msgstr "Comp&ară"
 
-msgid "Compar&e with Renamed/Moved Items"
+msgid "Compar&e with Renamed/Moved/ Items"
 msgstr ""
 
 msgid "Compare in New &Window"

@@ -889,7 +889,7 @@ msgstr "Splitsen"
 msgid "Comp&are"
 msgstr "Vergelijken"
 
-msgid "Compar&e with Renamed/Moved Items"
+msgid "Compar&e with Renamed/Moved/ Items"
 msgstr ""
 
 msgid "Compare in New &Window"

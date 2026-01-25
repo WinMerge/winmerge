@@ -890,7 +890,7 @@ msgstr "S&plitt"
 msgid "Comp&are"
 msgstr "Samm&enlign"
 
-msgid "Compar&e with Renamed/Moved Items"
+msgid "Compar&e with Renamed/Moved/ Items"
 msgstr ""
 
 msgid "Compare in New &Window"

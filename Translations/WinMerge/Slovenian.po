@@ -891,7 +891,7 @@ msgstr "Ra&zdeli"
 msgid "Comp&are"
 msgstr "P&rimerjaj"
 
-msgid "Compar&e with Renamed/Moved Items"
+msgid "Compar&e with Renamed/Moved/ Items"
 msgstr ""
 
 msgid "Compare in New &Window"

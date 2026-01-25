@@ -890,8 +890,8 @@ msgstr "分割(&L)"
 msgid "Comp&are"
 msgstr "比較(&A)"
 
-msgid "Compar&e with Renamed/Moved Items"
-msgstr "名前変更/移動された項目と比較(&E)"
+msgid "Compar&e with Renamed/Moved/ Items"
+msgstr ""
 
 msgid "Compare in New &Window"
 msgstr "新しいウインドウで比較(&W)"

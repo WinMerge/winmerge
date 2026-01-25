@@ -318,16 +318,17 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 		{
 			if (i > 0)
 				s += _T("\\");
-			s += ColFileNameGet<String>(pCtxt, ancestors[i], 0);
+			String f = ColFileNameGet<String>(pCtxt, ancestors[i], 0);
+			s += (f.find('|') == String::npos) ? f : _T("(") + f + _T(")");
 		}
 		return s;
 	}
 }
 
 /**
- * @brief Format Moved column data.
+ * @brief Format Renamed/Moved column data.
  */
-static String ColStatusGetMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
+static String ColStatusGetRenamedMoved(const CDiffContext* pCtxt, const DIFFITEM& di)
 {
 	const int nDirs = pCtxt->GetCompareDirs();
 	const String group = strutils::to_str(di.renameMoveGroupId + 1);
@@ -399,7 +400,7 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 	}
 	else if (di.renameMoveGroupId != -1)
 	{
-		s = ColStatusGetMoved(pCtxt, di);
+		s = ColStatusGetRenamedMoved(pCtxt, di);
 	}
 	else if (di.diffcode.isSideFirstOnly())
 	{

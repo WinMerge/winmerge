@@ -1072,7 +1072,7 @@ msgstr ""
 msgid "Comp&are"
 msgstr "සසඳන්න"
 
-msgid "Compar&e with Renamed/Moved Items"
+msgid "Compar&e with Renamed/Moved/ Items"
 msgstr ""
 
 msgid "Compare in New &Window"
