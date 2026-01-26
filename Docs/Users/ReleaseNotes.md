@@ -20,6 +20,7 @@ Please submit bug reports to our bug-tracker.
 
 * BugFix: Cyrilic shortcuts do not work for main menukeyboard shortcuts
 * BugFix: 2 recent-entries per project (#2990)
+* Updated expat to version 2.7.3
 
 ### Folder compare
 
@@ -55,7 +56,9 @@ Please submit bug reports to our bug-tracker.
   * Italian (PR #3147)
   * Japanese
   * Korean (PR #3125,#3127)
-  * Lithuanian (PR #3144)
+  * Lithuanian (PR #3144,#3153)
+  * Polish (PR #3154)
+  * Turkish (PR #3152)
   * Ukrainian (PR #3130)
 
 ## What Is New in 2.16.53 Beta
