@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-01-02 14:04+0300\n"
+"PO-Revision-Date: 2026-01-26 11:11+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -893,7 +893,7 @@ msgid "Comp&are"
 msgstr "K&arşılaştır"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "Yeniden adlandırılan/taşınan ögelerle &karşılaştır"
 
 msgid "Compare in New &Window"
 msgstr "Yeni &pencerede karşılaştır"
@@ -1627,61 +1627,61 @@ msgid "Compare C&ontents"
 msgstr "&İçerikleri karşılaştır"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "&Tuşları Temizle"
 
 msgid "&Name"
-msgstr ""
+msgstr "&Ad"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "T&emel ad (uzantısız)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "Normalleştirilmiş &Unicode Adı"
 
 msgid "&Date"
-msgstr ""
+msgstr "Tari&h"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "&Sağlama Toplamı (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "&replace() İşlevini Ekle"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "rege&xReplace() İşlevini Ekle"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "Metin &Normalleştirme"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "&Küçük Harf"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "&Büyük Harf"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "&Yarım Genişlik"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "Tam &Genişlik"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "&Çince Dönüştürme"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "Ba&sitleştirilmiş Çince"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "&Geleneksel Çince"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "&Japonca Dönüştürme"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "&Hiragana"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
@@ -2701,13 +2701,13 @@ msgid "Additional comparison condi&tions:"
 msgstr "Ek karşılaştırma k&oşulları:"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "&Yeniden Adlandırma/Taşıma Algılama:"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "Yeniden Adlandırma/Taşıma Algılama &Tuşları:"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "Yeniden adlandırılan ögeleri tek &ögede birleştir"
 
 msgid "File patterns:"
 msgstr "Dosya modelleri:"
@@ -3977,30 +3977,30 @@ msgstr "Grup%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "Devre dışı"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "Yeniden adlandırmaları algıla"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "Yeniden adlandırmaları ve taşımaları algıla"
 
 msgid "Renamed"
-msgstr ""
+msgstr "Yeniden adlandırıldı"
 
 msgid "Moved"
-msgstr ""
+msgstr "Taşındı"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "Yeniden adlandırıldı/Taşındı"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1 öge)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (%2 kümesi): "
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -5256,7 +5256,7 @@ msgstr "Sistem ayarını seç"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "örn. %1"
 
 msgid "Prettification"
 msgstr "Sadeleştirme"
