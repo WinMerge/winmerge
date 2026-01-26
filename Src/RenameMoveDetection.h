@@ -27,6 +27,7 @@ public:
 	const RenameMoveItemGroups& GetRenameMoveItemGroups() const { return m_renameMoveItemGroups; }
 	std::vector<const DIFFITEM*> GetRenameMoveGroupItemsForSide(const DIFFITEM& di, int sideIndex) const;
 	void CheckMovedOrRenamed(const CDiffContext& ctxt, const DIFFITEM& di, bool& moved, bool& renamed) const;
+	void RemoveItemFromGroup(DIFFITEM* pdi);
 
 private:
 	void DetectRenamedItems(CDiffContext& ctxt, std::vector<DIFFITEM*> parents, RenameMoveItemGroups& movedItemGroups);

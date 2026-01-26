@@ -1920,6 +1920,8 @@ void CDirView::DeleteItem(int sel, bool removeDIFFITEM)
 	}
 	if (removeDIFFITEM)
 	{
+		if (diffpos->renameMoveGroupId != -1)
+			GetDiffContext().m_pRenameMoveDetection->RemoveItemFromGroup(diffpos);
 		if (diffpos->HasChildren())
 			diffpos->RemoveChildren();
 		diffpos->DelinkFromSiblings();
@@ -3769,6 +3771,8 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 							{
 								if ((pItem != &di) && (pItem->diffcode.isDirectory() == di.diffcode.isDirectory()) && (collstr(pItem->diffFileInfo[0].filename, di.diffFileInfo[0].filename, false) == 0))
 								{
+									if (pItem->renameMoveGroupId !=	-1)
+										GetDiffContext().m_pRenameMoveDetection->RemoveItemFromGroup(pItem);
 									pItem->DelinkFromSiblings();
 									delete pItem;
 									break;

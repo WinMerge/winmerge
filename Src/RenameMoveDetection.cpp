@@ -503,3 +503,24 @@ void RenameMoveDetection::CheckMovedOrRenamed(const CDiffContext& ctxt, const DI
 		}
 	}
 }
+
+/**
+ * @brief Remove an item from its rename/move group
+ * @param pdi Item to remove
+ *
+ * This is used when an item is deleted or no longer part of the group.
+ * The item and its children are removed from the group.
+ */
+void RenameMoveDetection::RemoveItemFromGroup(DIFFITEM* pdi)
+{
+	m_renameMoveItemGroups[pdi->renameMoveGroupId].erase(pdi);
+	if (m_renameMoveItemGroups[pdi->renameMoveGroupId].size() == 1)
+	{
+		// If only one item left in group, clear its group ID
+		DIFFITEM* remainingItem = *m_renameMoveItemGroups[pdi->renameMoveGroupId].begin();
+		remainingItem->renameMoveGroupId = -1;
+		m_renameMoveItemGroups[pdi->renameMoveGroupId].clear();
+	}
+	for (DIFFITEM* pdic = pdi->GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+		RemoveItemFromGroup(pdic);
+}
