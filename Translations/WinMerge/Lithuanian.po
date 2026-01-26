@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-01-02 07:06+0000\n"
-"PO-Revision-Date: 2026-01-02 07:07+0200\n"
+"POT-Creation-Date: 2026-01-25 13:30+0000\n"
+"PO-Revision-Date: 2026-01-26 11:11+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -892,7 +892,7 @@ msgid "Comp&are"
 msgstr "Lyg&inti"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "Lyginti su Pervardintais/Perkeltais &elementais"
 
 msgid "Compare in New &Window"
 msgstr "Lyginti naujame &lange"
@@ -1626,61 +1626,61 @@ msgid "Compare C&ontents"
 msgstr "Lyginti t&urinį"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "&Išvalyti raktus"
 
 msgid "&Name"
-msgstr ""
+msgstr "Pavadi&nimas"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "&Bazinis pavadinimas (be plėtinio)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "Normalizuotas &Unicode pavadinimas"
 
 msgid "&Date"
-msgstr ""
+msgstr "&Data"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "&Maiša (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "Įterpti &replace() funkciją"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "Įterpti rege&xReplace() funkciją"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "Teksto &normalizavimas"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "&Mažosiomis raidėmis"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "&Didžiosiomis raidėmis"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "&Pusė pločio"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "&Visas plotis"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "&Kinų k. konvertavimas"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "&Supaprastinta kinų"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "&Tradicinė kinų"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "&Japonų k. konvertavimas"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "&Hiragana"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -2677,22 +2677,22 @@ msgid "Ignore &reparse points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
 
 msgid "Switch to &quick compare when size exceeds (MB):"
-msgstr "Persijungti į &spartųjį palyginimą kai dydis virš (MB):"
+msgstr "Persijungti į &spartųjį lyginimą kai dydis virš (MB):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
-msgstr "Persijungti į &binarinį palyginimą kai dydis virš (MB):"
+msgstr "Persijungti į &binarinį lyginimą kai dydis virš (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr "Papildomos palyginimo sąlygos:"
+msgstr "Papildomos lyginimo sąlygos:"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "Pe&rvardijimo/perkėlimo aptikimas:"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "Pervardijimo/perkėlimo aptikimo ra&ktai:"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "Sulieti pervardytus ele&mentus į vieną elementą"
 
 msgid "File patterns:"
 msgstr "Failų šablonai:"
@@ -3730,30 +3730,30 @@ msgstr "Grupė%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "Išjungta"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "Aptikti pervardijimą"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "Aptikti pervardijimą ir perkėlimą"
 
 msgid "Renamed"
-msgstr ""
+msgstr "Pervardinta"
 
 msgid "Moved"
-msgstr ""
+msgstr "Perkelta"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "Pervardinta/Perkelta"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1 elementai)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (nust. %2): "
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4785,7 +4785,7 @@ msgstr "Kaip sistemos"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "pvz. %1"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
