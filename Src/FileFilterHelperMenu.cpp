@@ -124,10 +124,6 @@ std::optional<String> CFileFilterHelperMenu::ShowMenu(const String& masks, int x
 				m_recursive = !m_recursive;
 				continue;
 			}
-			else if (command == ID_FILTERMENU_ADDITIONAL_PROPS || command == ID_FILTERMENU_DIFF_ADDITIONAL_PROPS)
-			{
-				result = ShowPropMenu(command, masks, pParentWnd);
-			}
 			else
 			{
 				result = OnCommand(masks, command, pParentWnd);
