@@ -896,7 +896,7 @@ msgid "Comp&are"
 msgstr "比较(&A)"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "与重命名/移动的条目比较(&E)"
 
 msgid "Compare in New &Window"
 msgstr "在新窗口比较(&W)"
@@ -1630,61 +1630,61 @@ msgid "Compare C&ontents"
 msgstr "比较内容(&O)"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "清除键(&C)"
 
 msgid "&Name"
-msgstr ""
+msgstr "名称(&N)"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "基础名称（不含扩展名）(&B)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "规范化 Unicode 名称(&U)"
 
 msgid "&Date"
-msgstr ""
+msgstr "日期(&D)"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "MD5 哈希值(&H)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "插入 replace() 函数(&R)"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "插入 regexReplace() 函数(&X)"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "文本规范化(&N)"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "小写(&L)"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "大写(&U)"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "半宽(&H)"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "全宽(&F)"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "中文转换(&C)"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "简体中文(&S)"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "繁体中文(&T)"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "日文转换(&J)"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "平假名(&H)"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "片假名(&K)"
 
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
@@ -2700,13 +2700,13 @@ msgid "Additional comparison condi&tions:"
 msgstr "附加的比较条件(&T)："
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "重命名/移动检测(&R)："
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "重命名/移动检测键(&K)："
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "将重命名的条目合并到一个条目(&M)"
 
 msgid "File patterns:"
 msgstr "文件模式："
@@ -3965,30 +3965,30 @@ msgstr "分组 %d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "已禁用"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "检测重命名"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "检测重命名和移动"
 
 msgid "Renamed"
-msgstr ""
+msgstr "重命名的"
 
 msgid "Moved"
-msgstr ""
+msgstr "移动的"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "重命名的/移动的"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1 条目)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (集合 %2)"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -5231,7 +5231,7 @@ msgstr "跟随系统"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "例：%1"
 
 msgid "Prettification"
 msgstr "格式美化"
