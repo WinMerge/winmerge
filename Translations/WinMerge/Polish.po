@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-01-25 13:30+0000\n"
-"PO-Revision-Date: 2026-01-26 22:00+0000\n"
+"PO-Revision-Date: 2026-01-27 01:10+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1147,7 +1147,7 @@ msgid "Size"
 msgstr "Rozmiar"
 
 msgid "Existence"
-msgstr "Istnieje"
+msgstr "Czy istnieje"
 
 msgid "&Load Project..."
 msgstr "Wczytaj projekt..."
@@ -2023,13 +2023,13 @@ msgid "Search Marker:"
 msgstr "Znaleziony marker:"
 
 msgid "User Defined Marker 1:"
-msgstr "Zdefiniowany przez użytkownika Marker1:"
+msgstr "Marker zdefiniowany przez użytkownika 1:"
 
 msgid "User Defined Marker 2:"
-msgstr "Zdefiniowany przez użytkownika Marker2:"
+msgstr "Marker zdefiniowany przez użytkownika 2:"
 
 msgid "User Defined Marker 3:"
-msgstr "Zdefiniowany przez użytkownika Marker3:"
+msgstr "Marker zdefiniowany przez użytkownika 3:"
 
 msgid "&Use folder compare colors"
 msgstr "Użyj kolorów do porównania folderów"
@@ -2038,16 +2038,16 @@ msgid "Items equal:"
 msgstr "Identyczne elementy:"
 
 msgid "Items different:"
-msgstr "Różne elementy:"
+msgstr "Różniące się elementy:"
 
 msgid "Items missing:"
-msgstr "Wszystkie nieistniejące elementy:"
+msgstr "Nieistniejące elementy:"
 
 msgid "Items filtered:"
 msgstr "Przefiltrowane elementy:"
 
 msgid "&Use custom system colors"
-msgstr "Użyj niestandardowych kolorów systemu"
+msgstr "Użyj niestandardowych kolorów systemowych"
 
 msgid "System"
 msgstr "System"
@@ -2173,7 +2173,7 @@ msgid "&Word-level:"
 msgstr "Z poziomu słowa:"
 
 msgid "W&ord break characters:"
-msgstr "Znak dzielenia wyrazów:"
+msgstr "Znaki dzielenia wyrazów:"
 
 msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
 msgstr "WinMerge pozwala ukryć niektóre komunikaty. Naciśnij przycisk Resetuj, aby ponownie wyświetlać wszystkie komunikaty."
@@ -2353,7 +2353,7 @@ msgid "Default Codepage"
 msgstr "Domyślna strona kodowa"
 
 msgid "Select the default codepage for non-Unicode files:"
-msgstr "Wybierz domyślne kodowanie dla otwieranych plików nie będących plikami Unicode:"
+msgstr "Wybierz domyślną stronę kodową dla plików nie-Unicode:"
 
 msgid "System codepage"
 msgstr "Strona kodowa systemu"
@@ -2365,10 +2365,10 @@ msgid "Custom codepage:"
 msgstr "Niestandardowa strona kodowa:"
 
 msgid "Detect codepage for: .html, .rc, .xml\nRestart required."
-msgstr "Wykryj stronę kodową dla plików: .html, .rc, .xml \nWymagany restart sesji."
+msgstr "Wykryj stronę kodową dla plików: .html, .rc, .xml \nWymagany restart."
 
 msgid "Detect codepage for files with mlang.dll\nRestart required."
-msgstr "Wykryj stronę kodową dla plików tekstowych wykorzystując mlang.dll\nWymagany restart sesji."
+msgstr "Wykryj stronę kodową dla plików tekstowych wykorzystując mlang.dll\nWymagany restart."
 
 msgid "Archive Support"
 msgstr "Wsparcie dla archiwów"
@@ -2551,13 +2551,13 @@ msgid "Backup Files"
 msgstr "Pliki kopii zapasowej"
 
 msgid "Create backup files for:"
-msgstr "Twórz kopię zapasową plików w:"
+msgstr "Twórz pliki kopii zapasowej dla:"
 
 msgid "&Folder compare"
-msgstr "Porównywarce folderów"
+msgstr "Porównywanie folderów"
 
 msgid "Fil&e compare"
-msgstr "Porównywarce plików"
+msgstr "Porównywanie plików"
 
 msgid "Create backup files in:"
 msgstr "Utwórz pliki kopii zapasowej w:"
@@ -2638,16 +2638,16 @@ msgid "&Unregister Shell Extension"
 msgstr "Wyrejestruj rozszerzenie powłoki"
 
 msgid "Register Shell Extension for Current User &Only"
-msgstr "Zarejestruj rozszerzenie powłoki dla bieżącego użytkownika"
+msgstr "Zarejestruj rozszerzenie powłoki tylko dla bieżącego użytkownika"
 
 msgid "Unregister Shell Extension for Current User On&ly"
-msgstr "Wyrejestruj rozszerzenie powłoki z bieżącego użytkownika"
+msgstr "Wyrejestruj rozszerzenie powłoki tylko z bieżącego użytkownika"
 
 msgid "Register Shell Extension for &Windows 11"
-msgstr "Zarejestruj rozszerzenie powłoki dla Windows 11 lub nowszego"
+msgstr "Zarejestruj rozszerzenie powłoki dla Windows 11"
 
 msgid "Unregister Shell Extension for W&indows 11"
-msgstr "Wyrejestruj rozszerzenie powłoki z Windows 11 lub nowszego"
+msgstr "Wyrejestruj rozszerzenie powłoki z Windows 11"
 
 msgid "Jump List"
 msgstr "Lista szybkiego dostępu"
@@ -4284,7 +4284,7 @@ msgid "histogram"
 msgstr "Histogram"
 
 msgid "none"
-msgstr "brak"
+msgstr "Brak"
 
 msgid "GDI"
 msgstr "GDI"
