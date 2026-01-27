@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-01-06 15:03+0900\n"
+"PO-Revision-Date: 2026-01-27 22:00+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -1082,7 +1082,7 @@ msgid "Comp&are"
 msgstr "비교(&A)"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "이름 바꾸기/이동된 항목과 비교(&E)"
 
 msgid "Compare in New &Window"
 msgstr "새 창에서 비교(&W)"
@@ -1863,61 +1863,61 @@ msgid "Compare C&ontents"
 msgstr "내용 비교(&O)"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "키 지우기(&C)"
 
 msgid "&Name"
-msgstr ""
+msgstr "이름(&N)"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "기본 이름 (확장자 없음)(&B)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "정규화된 유니코드 이름(&U)"
 
 msgid "&Date"
-msgstr ""
+msgstr "날짜(&D)"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "해시 (MD5)(&H)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "replace() 함수 삽입(&R)"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "regexReplace() 함수 삽입(&X)"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "텍스트 정규화(&N)"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "소문자(&L)"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "대문자(&U)"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "반각 문자(&H)"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "전각 문자(&F)"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "중국어 변환(&C)"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "중국어 간체(&S)"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "중국어 번체(&T)"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "일본어 변환(&J)"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "히나가나(&H)"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "가타카나(&K)"
 
 #, c-format
 msgid "About WinMerge"
@@ -3167,13 +3167,13 @@ msgid "Additional comparison condi&tions:"
 msgstr "추가 비교 조건(&T):"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "이름 바꾸기/이동 감지(&R):"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "감지 키 이름 바꾸기/이동(&K):"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "이름이 변경된 항목을 단일 항목으로 병합(&M)"
 
 msgid "File patterns:"
 msgstr "파일 패턴:"
@@ -4575,30 +4575,30 @@ msgstr "그룹%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "사용 안 함"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "이름 바꾸기 감지"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "이름 바꾸기 및 이동 감지"
 
 msgid "Renamed"
-msgstr ""
+msgstr "이름 바뀜"
 
 msgid "Moved"
-msgstr ""
+msgstr "이동됨"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "이름 바뀜/이동됨"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1개 항목)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (세트 %2): "
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -5943,7 +5943,7 @@ msgstr "시스템을 따름"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "예: %1"
 
 msgid "Prettification"
 msgstr "꾸미기"
