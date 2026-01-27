@@ -50,6 +50,7 @@ Please submit bug reports to our bug-tracker.
 * New translation: Vietnamese (PR #3142)
 * Translation updates:
   * Brazilian (PR #3150)
+  * Chinese Simplified (PR #3156)
   * French (PR #3137)
   * German (PR #3148)
   * Hungarian (PR #3149)
@@ -57,7 +58,7 @@ Please submit bug reports to our bug-tracker.
   * Japanese
   * Korean (PR #3125,#3127)
   * Lithuanian (PR #3144,#3153)
-  * Polish (PR #3154)
+  * Polish (PR #3154,#3155)
   * Turkish (PR #3152)
   * Ukrainian (PR #3130)
 
