@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-01-25 13:30+0000\n"
-"PO-Revision-Date: 2026-01-27 01:10+0000\n"
+"PO-Revision-Date: 2026-01-27 21:30+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -2155,10 +2155,10 @@ msgid "&Rendering mode:"
 msgstr "&Tryb renderowania:"
 
 msgid "&Automatic rescan"
-msgstr "Automatyczne powtórz skanowanie"
+msgstr "Automatycznie powtórz skanowanie"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Dokładność kopiowania zaznaczonych różnic:"
 
 msgid "Line Difference Coloring"
 msgstr "Kolorowanie różniących się wierszy"
@@ -2684,7 +2684,7 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Próg przejścia na binarne porównywanie (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "Dodatkowe warunki porównywania:"
 
 msgid "&Rename/move detection:"
 msgstr "Wykrywanie zmiany nazwy/przeniesienia:"
@@ -4085,7 +4085,7 @@ msgid "Failed to write options to file."
 msgstr "Błąd podczas eksportu opcji do pliku."
 
 msgid "Close multiple compare windows?\n\nContinue?"
-msgstr "Zamierzasz zamknąć kilka okien porównania.\n\nCzy na pewno chcesz kontynuować?"
+msgstr "Zamierzasz zamknąć kilka okien porównywania.\n\nCzy na pewno chcesz kontynuować?"
 
 msgid "Mixed"
 msgstr "Mieszany"
@@ -4707,7 +4707,7 @@ msgid "Unknown character in filter expression"
 msgstr "Nieznany znak w wyrażeniu filtrującym"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "Niezakończony literał łańcuchowy"
 
 msgid "Syntax error in filter expression"
 msgstr "Błąd składni w wyrażeniu filtrującym"
@@ -4716,7 +4716,7 @@ msgid "Failed to parse filter expression"
 msgstr "Nie udało się przeanalizować wyrażenia filtrującego"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "Nieprawidłowa wartość literału"
 
 msgid "Invalid regular expression"
 msgstr "Nieprawidłowe wyrażenie regularne"
