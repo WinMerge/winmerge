@@ -327,6 +327,7 @@ void COpenView::OnInitialUpdate()
 			return !bError;
 		};
 	m_ctlExtEdit.Validate();
+	m_ctlExtEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("*.txt|fe:Size > 100KB")).c_str());
 
 	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{

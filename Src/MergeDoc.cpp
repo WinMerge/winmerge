@@ -803,7 +803,9 @@ void CMergeDoc::ShowRescanError(int nRescanResult, IDENTLEVEL identical)
 			GetParentFrame()->InitialUpdateFrame(this, true);
 			GetParentFrame()->SendMessageToDescendants(WM_IDLEUPDATECMDUI, static_cast<WPARAM>(true), 0, true, true);
 		}
-		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, identical == IDENTLEVEL::ALL, !IsModified());
+		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, identical == IDENTLEVEL::ALL,
+			std::none_of(m_filePaths.begin(), m_filePaths.end(), [](const String& s) { return s.empty(); })
+			&& !IsModified());
 	}
 }
 
@@ -2648,7 +2650,8 @@ void CMergeDoc::UpdateHeaderPath(int pane)
 
 	m_sCurrentHeaderTitle[pane] = sText;
 
-	pf->GetHeaderInterface()->SetText(pane, sText);
+	pf->GetHeaderInterface()->SetCaption(pane, sText);
+	pf->GetHeaderInterface()->SetPath(pane, m_filePaths[pane]);
 
 	SetTitle(nullptr);
 }

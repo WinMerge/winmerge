@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 07.12.2025\n"
+"Project-Id-Version: WinMerge - Italian - 25.01.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-12-07 16:56+0100\n"
+"PO-Revision-Date: 2026-01-25 10:42+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -559,6 +559,9 @@ msgstr "Scambia &2° | 3°"
 msgid "Swap 1st | &3rd"
 msgstr "Scambia 1° | &3°"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Visualizza barra filtro\tCtrl+Maiusc+L"
+
 msgid "Com&pare Statistics..."
 msgstr "Statistic&he confronto..."
 
@@ -889,6 +892,9 @@ msgstr "&Dividi"
 msgid "Comp&are"
 msgstr "&Confronta"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "Confronta con &elementi rinominati/spostati"
+
 msgid "Compare in New &Window"
 msgstr "Confronta in una nuova &finestra"
 
@@ -1044,8 +1050,11 @@ msgstr "Copia &percorso completo"
 msgid "Copy &Filename"
 msgstr "Copia nome &file"
 
-msgid "&Edit Caption"
-msgstr "Mo&difica didascalia"
+msgid "&Edit Caption\tF2"
+msgstr "Mo&difica didascalia\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "Modifica &percorso\tCtrl+L"
 
 msgid "&Open..."
 msgstr "&Apri..."
@@ -1491,6 +1500,30 @@ msgstr "&Proprietà aggiuntive..."
 msgid "Add F&older Condition"
 msgstr "Aggiungi c&ondizione cartella"
 
+msgid "&Files"
+msgstr "&File"
+
+msgid "0 files"
+msgstr "0 file"
+
+msgid "1 file or more"
+msgstr "1 file o più"
+
+msgid "&Items"
+msgstr "Element&i"
+
+msgid "0 items"
+msgstr "0 elementi"
+
+msgid "1 item or more"
+msgstr "1 elemento o più"
+
+msgid "&Total Size"
+msgstr "Dimensione &totale"
+
+msgid "&Recursive"
+msgstr "&Ricorsivo"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Obiettivo: &qualsiasi (sinistra/centrale/destra)"
 
@@ -1592,6 +1625,63 @@ msgstr "Confronta &attributi"
 
 msgid "Compare C&ontents"
 msgstr "Confronta c&ontenuto"
+
+msgid "&Clear Keys"
+msgstr "A&zzera tasti"
+
+msgid "&Name"
+msgstr "&Nome"
+
+msgid "&Base name (without extension)"
+msgstr "Nome base (senza estensione)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Nome &Unicode normalizzato"
+
+msgid "&Date"
+msgstr "&Data"
+
+msgid "&Hash (MD5)"
+msgstr "Hash (MD5)"
+
+msgid "Insert &replace() Function"
+msgstr "Inserisci funzione &replace()"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "Inserisci funzione rege&xReplace()"
+
+msgid "Text &Normalization"
+msgstr "&Normalizzazione testo"
+
+msgid "&Lowercase"
+msgstr "Miniusco&lo"
+
+msgid "&Uppercase"
+msgstr "Mai&uscolo"
+
+msgid "&Half-width"
+msgstr "&Mezza larg&hezza"
+
+msgid "&Full-width"
+msgstr "&Larghezza intera"
+
+msgid "&Chinese Conversion"
+msgstr "Conversione &cinese"
+
+msgid "&Simplified Chinese"
+msgstr "Cinese &semplificato"
+
+msgid "&Traditional Chinese"
+msgstr "Cinese &tradizionale"
+
+msgid "&Japanese Conversion"
+msgstr "Conversione &giapponese"
+
+msgid "&Hiragana"
+msgstr "&Hiragana"
+
+msgid "&Katakana"
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "Info su WinMerge"
@@ -1975,6 +2065,9 @@ msgstr "Sposta i file eliminati nel &Cestino"
 msgid "&External editor:"
 msgstr "&Editor esterno:"
 
+msgid "&Store user data in:"
+msgstr "Memorizza dati utente in:"
+
 msgid "&Filter folder:"
 msgstr "Cartella &filtri:"
 
@@ -2200,6 +2293,9 @@ msgstr "Totale elementi:"
 
 msgid "Items compared:"
 msgstr "Elementi confrontati:"
+
+msgid "&Close"
+msgstr "&Chiudi"
 
 msgid "Go to"
 msgstr "Vai a"
@@ -2448,9 +2544,6 @@ msgstr "Risultato:"
 msgid "&Test"
 msgstr "&Prova"
 
-msgid "&Close"
-msgstr "&Chiudi"
-
 msgid "Table"
 msgstr "Tabella"
 
@@ -2613,6 +2706,15 @@ msgstr "Soglia per passare al confronto &binario (MB):"
 
 msgid "Additional comparison condi&tions:"
 msgstr "U&lteriori condizioni dii confronto:"
+
+msgid "&Rename/move detection:"
+msgstr "&Rilevamento rinomina/spostamenti:"
+
+msgid "Rename/move detection &keys:"
+msgstr "Rilevamento tasti nomina/spostamento:"
+
+msgid "&Merge renamed items into a single item"
+msgstr "Unisci elementi rino&minati in un unico elemento"
 
 msgid "File patterns:"
 msgstr "Pattern file:"
@@ -3900,6 +4002,33 @@ msgstr "I file sono differenti (espr: %1)"
 msgid "Group%d"
 msgstr "Gurppo%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "Disabilitato"
+
+msgid "Detect renames"
+msgstr "Rileva rinomine"
+
+msgid "Detect renames and moves"
+msgstr "Rileva rinomine e spostamenti"
+
+msgid "Renamed"
+msgstr "Rinominato"
+
+msgid "Moved"
+msgstr "Spostato"
+
+msgid "Renamed/Moved"
+msgstr "Rinominato/spostato"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 elementi)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (imposta %2): "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Tempo trascorso: %ld ms"
@@ -4758,11 +4887,14 @@ msgstr "Posizione e testo riga per riga"
 msgid "Word-by-word position and text"
 msgstr "Posizione e testo parola per parola"
 
-msgid "AppData folder"
-msgstr "Cartella AppData"
+msgid "AppData (Roaming) folder"
+msgstr "Cartella Appdata (Roaming)"
 
 msgid "Install folder"
 msgstr "Cartella installazione"
+
+msgid "Documents folder"
+msgstr "Cartella Documenti"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5156,6 +5288,10 @@ msgstr "Scuro"
 
 msgid "Follow system"
 msgstr "Sistema"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "es. %1"
 
 msgid "Prettification"
 msgstr "Abbellimento"

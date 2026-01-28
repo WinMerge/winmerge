@@ -80,6 +80,7 @@ public:
 	static bool IsLoadable();
 	String GetSaveAsPath() const { return m_strSaveAsPath; }
 	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
+	IHeaderBar* GetHeaderInterface() override { return &m_wndFilePathBar; }
 
 // Attributes
 protected:

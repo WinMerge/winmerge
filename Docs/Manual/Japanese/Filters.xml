@@ -229,8 +229,16 @@ Right, Middle）かを接頭辞で指定できます。</para>
               <listitem><para>ファイル名</para></listitem>
             </varlistentry>
             <varlistentry>
+              <term>BaseName</term>
+              <listitem><para>拡張子を除いたファイル名を返します。たとえば、"document.txt" は "document" を返します。</para></listitem>
+            </varlistentry>
+            <varlistentry>
               <term>Extension</term>
               <listitem><para>ファイル拡張子</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>IsFolder</term>
+              <listitem><para>項目がフォルダー/ディレクトリの場合は true を返し、ファイルの場合は false を返します。</para></listitem>
             </varlistentry>
             <varlistentry>
               <term>Folder</term>
@@ -267,10 +275,52 @@ Right, Middle）かを接頭辞で指定できます。</para>
 は隠しファイル、<literal>"A"</literal> はアーカイブ、<literal>"S"</literal> はシステムファイルを示します。</para>
               </listitem>
             </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>ファイルのみ属性</title>
+          <para>
+以下の属性は、ファイル比較項目にのみ使用できます。フォルダー項目に使用した場合の動作は未定義です。</para>
+
+          <variablelist>
             <varlistentry>
               <term>Content</term>
               <listitem><para>ファイルの内容を表します。FileContent 型の値を返します。この型には <literal>contains</literal> および
 <literal>recontains</literal> のみ使用できます。</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>フォルダーのみ属性</title>
+          <para>
+以下の属性は、フォルダー比較項目にのみ使用できます。ファイル項目に使用した場合の動作は未定義です。</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Files</term>
+              <listitem><para>フォルダーに直接含まれるファイル数。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveFiles</term>
+              <listitem><para>すべてのサブフォルダーを含めた、フォルダー内のファイル総数。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Items</term>
+              <listitem><para>フォルダーに直接含まれる項目（ファイルおよびサブフォルダー）の数。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveItems</term>
+              <listitem><para>すべてのサブフォルダーを含めた、フォルダー内の項目（ファイルおよびサブフォルダー）の総数。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>TotalSize</term>
+              <listitem><para>フォルダーに直接含まれるすべてのファイルの合計サイズ（バイト単位）。</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveTotalSize</term>
+              <listitem><para>すべてのサブフォルダーを含めた、フォルダー内のすべてのファイルの合計サイズ（バイト単位）。</para></listitem>
             </varlistentry>
           </variablelist>
         </section>
@@ -497,6 +547,108 @@ Right, Middle）かを接頭辞で指定できます。</para>
 <literal>substr(Name, 0, 3)</literal></para></listitem>
           </varlistentry>
           <varlistentry>
+            <term>replace(str, from, to)</term>
+            <listitem>
+              <para>
+文字列内に含まれる部分文字列 'from' をすべて 'to'
+に置換します。<replaceable>str</replaceable>が文字列配列の場合、結果は文字列配列になります。例:
+replace(name, "_old", "_new")</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>regexReplace(str, pattern, replacement)</term>
+            <listitem>
+              <para>
+正規表現 pattern に一致するすべての部分を replacement 文字列で置換します。replacement 文字列では後方参照（$1、$2
+など）を使用できます。<replaceable>str</replaceable>が文字列配列の場合、結果は文字列配列になります。例:
+regexReplace(name, "^(\w+)(\w+)$", "$2$1") は、アンダースコアで区切られた単語の順序を入れ替えます。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>normalizeUnicode(str[, form])</term>
+            <listitem>
+              <para>
+Unicode 文字列を正規化します。省略可能な form パラメータで正規化形式を指定できます。指定可能な形式は "NFC" または
+"C"（既定値）、"NFD" または "D"、"NFKC" または "KC"、"NFKD" または "KD" です。数値形式も指定できます:
+1=NFC、2=NFD、5=NFKC、6=NFKD。<replaceable>str</replaceable>が文字列配列の場合、結果は文字列配列になります。例:
+normalizeUnicode(name, "NFC")</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toLower(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+文字列内のすべての文字を小文字に変換します。<replaceable>str</replaceable>
+が配列の場合、結果は小文字に変換された文字列の配列になります。例: <literal>toLower("Hello World")</literal>
+は <literal>"hello world"</literal> を返します。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toUpper(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+文字列内のすべての文字を大文字に変換します。<replaceable>str</replaceable>
+が配列の場合、結果は大文字に変換された文字列の配列になります。例: <literal>toUpper("Hello World")</literal>
+は <literal>"HELLO WORLD"</literal> を返します。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toHalfWidth(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+全角文字を半角文字に変換します。主に全角の英数字やカタカナを半角に変換するために使用されます。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toFullWidth(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+半角文字を全角文字に変換します。主に半角の英数字やカタカナを全角に変換するために使用されます。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toKatakana(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+ひらがなをカタカナに変換します。ひらがな以外の文字は変更されません。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toHiragana(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+カタカナをひらがなに変換します。カタカナ以外の文字は変更されません。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toSimplifiedChinese(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+繁体字中国語を簡体字中国語に変換します。簡体字が存在しない文字は変更されません。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toTraditionalChinese(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+簡体字中国語を繁体字中国語に変換します。繁体字が存在しない文字は変更されません。<replaceable>str</replaceable>
+が配列の場合、結果は変換された文字列の配列になります。</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
             <term>now()</term>
             <listitem><para>現在の日時を <literal>Timestamp</literal> 型の値として返します。</para></listitem>
           </varlistentry>
@@ -536,6 +688,171 @@ Right, Middle）かを接頭辞で指定できます。</para>
             <term>allequal(<replaceable>array</replaceable>)</term>
             <listitem><para>配列内のすべての値が等しい場合に <literal>true</literal> を返します。</para></listitem>
           </varlistentry>
+          <varlistentry>
+            <term>isWithin(<replaceable>value</replaceable>, <replaceable>min</replaceable>,
+<replaceable>max</replaceable>)</term>
+            <listitem>
+              <para>
+<replaceable>value</replaceable> が範囲 <literal>[min,
+max]</literal>（両端を含む）内にある場合に <literal>true</literal>
+を返します。整数、浮動小数点数、タイムスタンプ、文字列（大文字小文字を区別しない比較）に対応しています。<replaceable>value</replaceable>
+が配列の場合は、各要素を個別に評価した真偽値の配列を返します。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>isWithin(5, 1, 10)</literal> は <literal>true</literal> を返します</para></listitem>
+                <listitem><para><literal>isWithin(Size, 1KB, 10MB)</literal> - いずれかのファイルサイズが 1KB から 10MB
+の範囲内かを確認します</para></listitem>
+                <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> - ファイルが過去 1
+週間以内に更新されたかを確認します</para></listitem>
+                <listitem><para><literal>allof(isWithin(Size, 1KB, 10MB))</literal> - すべてのファイルサイズが 1KB から
+10MB の範囲内かを確認します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>inRange(<replaceable>value</replaceable>, <replaceable>min</replaceable>,
+<replaceable>max</replaceable>)</term>
+            <listitem>
+              <para>
+<replaceable>value</replaceable> が範囲 <literal>[min,
+max)</literal>（下限を含み、上限を含まない）内にある場合に <literal>true</literal>
+を返します。整数、浮動小数点数、タイムスタンプ、文字列（大文字小文字を区別しない比較）に対応しています。<replaceable>value</replaceable>
+が配列の場合は、各要素を個別に評価した真偽値の配列を返します。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>inRange(5, 1, 10)</literal> は <literal>true</literal> を返します</para></listitem>
+                <listitem><para><literal>inRange(10, 1, 10)</literal> は <literal>false</literal> を返します</para></listitem>
+                <listitem><para><literal>inRange(Size, 0, 1MB)</literal> - いずれかのファイルサイズが 1MB 未満かを確認します</para></listitem>
+                <listitem><para><literal>anyof(inRange(Date, startOfMonth(today()), today()))</literal> -
+いずれかのファイルが今月（今日を除く）に更新されたかを確認します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>logError(<replaceable>値1</replaceable>, <replaceable>値2</replaceable>,
+...)、logWarn(<replaceable>値1</replaceable>, <replaceable>値2</replaceable>,
+...)、logInfo(<replaceable>値1</replaceable>, <replaceable>値2</replaceable>,
+...)</term>
+            <listitem>
+              <para>
+すべての引数の文字列表現を連結してログに出力します（それぞれエラー、警告、情報レベルで出力）。引数は空白で区切られ、最後の引数の値が関数の戻り値として返されます。これらの関数はフィルタ式のデバッグに便利です。</para>
+              <para>使用例（戻り値を利用する場合）:</para>
+              <itemizedlist>
+                <listitem><para><literal>logInfo("ファイルサイズ:", Size) > 1MB</literal> -
+ファイルサイズをログに出力し、1MBより大きいかを確認します</para></listitem>
+                <listitem><para><literal>logWarn("処理中:", Name) like "*.tmp"</literal> -
+ファイル名をログに出力し、テンポラリファイルかどうかを確認します</para></listitem>
+                <listitem><para><literal>Size > 1KB and logInfo("大きなファイル:", Name) contains "test"</literal>
+- サイズ条件が真の場合のみログ出力し、その後ファイル名をチェックします</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>if(<replaceable>condition</replaceable>,
+<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+            <listitem>
+              <para>
+<replaceable>condition</replaceable> が true と評価された場合は
+<replaceable>trueValue</replaceable> を返し、それ以外の場合は
+<replaceable>falseValue</replaceable>
+を返します。この関数は短絡評価を行います（返される側の分岐のみが評価されます）。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>if(Size > 1MB, "large", "small")</literal> - ファイルサイズに応じて "large"
+または "small" を返します</para></listitem>
+                <listitem><para><literal>if(Extension = "txt", "text file", "other file")</literal> -
+拡張子によってファイルを分類します</para></listitem>
+                <listitem><para><literal>if(Exists, Size, 0)</literal> - ファイルが存在する場合はサイズを、存在しない場合は 0 を返します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>ifEach(<replaceable>conditionArray</replaceable>,
+<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+            <listitem>
+              <para>
+要素ごとの条件付き選択を行います。<replaceable>conditionArray</replaceable> の各要素について、条件が true
+の場合は <replaceable>trueValue</replaceable> の対応する要素を、false の場合は
+<replaceable>falseValue</replaceable>
+の対応する要素を返します。<replaceable>trueValue</replaceable> または
+<replaceable>falseValue</replaceable> がスカラー値の場合は、すべての要素にブロードキャストされます。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - 各ファイルについて
+"large" / "small" の配列を返します</para></listitem>
+                <listitem><para><literal>ifEach(array(true, false, true), array("a", "b", "c"), array("x",
+"y", "z"))</literal> - <literal>array("a", "y", "c")</literal> を返します</para></listitem>
+                <listitem><para><literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> -
+100KB 以上 10MB 未満のファイルが存在するかを確認します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>choose(<replaceable>index</replaceable>, <replaceable>value0</replaceable>,
+<replaceable>value1</replaceable>, ...)</term>
+            <listitem>
+              <para>
+<replaceable>index</replaceable>
+に基づいて引数の中から値を選択します。<replaceable>index</replaceable> が 0 の場合は
+<replaceable>value0</replaceable> を、1 の場合は <replaceable>value1</replaceable>
+を返します。負のインデックスは 0 として扱われます。最後の値を超えるインデックスが指定された場合は、最後の値を返します。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>choose(0, "first", "second", "third")</literal> - "first" を返します</para></listitem>
+                <listitem><para><literal>choose(DiffCode % 3, "equal", "different", "unique")</literal> -
+差分コードをラベルに対応付けます</para></listitem>
+                <listitem><para><literal>choose(5, "a", "b", "c")</literal> - "c" を返します（範囲外のため最後の値が返されます）</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>chooseEach(<replaceable>indexArray</replaceable>,
+<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+            <listitem>
+              <para>
+要素ごとの値選択を行います。<replaceable>indexArray</replaceable>
+の各インデックスに対して、残りの引数から対応する値を選択します。<replaceable>indexArray</replaceable>
+がスカラー値の場合は <literal>choose</literal> と同じ動作になります。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>chooseEach(array(0, 1, 2), "a", "b", "c")</literal> -
+<literal>array("a", "b", "c")</literal> を返します</para></listitem>
+                <listitem><para><literal>chooseEach(array(0, 0, 1), "x", "y")</literal> -
+<literal>array("x", "x", "y")</literal> を返します</para></listitem>
+                <listitem><para><literal>chooseEach(array(2, 0, 1), "first", "second", "third")</literal> -
+<literal>array("third", "first", "second")</literal> を返します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>andEach(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>),
+orEach(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>),
+notEach(<replaceable>value</replaceable>)</term>
+            <listitem>
+              <para>
+要素ごとの論理演算を行います。これらの関数は、真偽値、真偽値配列、またはその組み合わせに対して動作します。</para>
+              <itemizedlist>
+                <listitem><para><literal>andEach</literal> - 論理 AND 演算</para></listitem>
+                <listitem><para><literal>orEach</literal> - 論理 OR 演算</para></listitem>
+                <listitem><para><literal>notEach</literal> - 論理 NOT 演算（単一引数）</para></listitem>
+              </itemizedlist>
+              <para>
+引数がスカラー値の場合はスカラーの真偽値を返します。一方が配列でもう一方がスカラー値の場合は、スカラー値がすべての要素にブロードキャストされます。両方が配列の場合は、要素ごとの演算が行われます。</para>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - 1KB 以上 1MB
+未満のファイル</para></listitem>
+                <listitem><para><literal>orEach(Extension = "txt", Extension = "log")</literal> - txt または
+log ファイル</para></listitem>
+                <listitem><para><literal>notEach(Exists)</literal> - 存在しないファイル</para></listitem>
+                <listitem><para><literal>allof(andEach(Exists, Size &gt; 0))</literal> - すべてのファイルが存在し、サイズが 0
+ではありません</para></listitem>
+                <listitem><para><literal>anyof(notEach(Size &gt; 1MB))</literal> - 1MB 以下のファイルが存在します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
         </variablelist>
       </section>
 
@@ -568,6 +885,11 @@ Right, Middle）かを接頭辞で指定できます。</para>
           <listitem><para><literal>abs(LeftSize - RightSize) &lt; 1KB</literal> - サイズ差が小さい</para></listitem>
           <listitem><para><literal>DateStr = "2025-07-20"</literal> - その日に更新されたファイル</para></listitem>
           <listitem><para><literal>Date &gt;= today()</literal> - 今日以降に更新されたファイル</para></listitem>
+          <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> -
+過去1週間以内に更新されたファイル</para></listitem>
+          <listitem><para><literal>inRange(Size, 1KB, 10MB)</literal> - ファイルサイズが1KB以上10MB未満</para></listitem>
+          <listitem><para><literal>allof(isWithin(Size, 100KB, 1MB))</literal> -
+すべてのファイルサイズが100KBから1MBの範囲内</para></listitem>
           <listitem><para><literal>AttrStr contains "R"</literal> - 読み取り専用ファイル</para></listitem>
           <listitem><para><literal>Name matches "file[0-9]\.txt"</literal> - ファイル名に正規表現を適用</para></listitem>
           <listitem><para><literal>Content contains "Test"</literal> - 内容に "Test" を含む</para></listitem>
@@ -575,7 +897,11 @@ Right, Middle）かを接頭辞で指定できます。</para>
           <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() -
 7days)</literal> - 大きなログファイルまたは1週間以上前のファイル</para></listitem>
           <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> -
-非表示でない一時ファイル</para></listitem>
+Non-hidden temporary files</para></listitem>
+          <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> -
+拡張子が「a」から「m」の範囲で、サイズが1MB未満のファイル</para></listitem>
+          <listitem><para><literal>toLower(Name) = "readme.txt"</literal> - 大文字・小文字を区別しないファイル名の一致判定</para></listitem>
+          <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - 全角を半角に変換した後で一致判定</para></listitem>
         </itemizedlist>
       </section>
     </section>
@@ -610,7 +936,7 @@ linkend="Filters_dlg" />では、フィルターの追加、編集、管理方�
 
     <section id="Filters_FileFilterLoc">
       <title>ファイルフィルターの場所<indexterm>
-          <primary>Filters folders</primary>
+          <primary>フィルターフォルダー</primary>
 
           <secondary>locations</secondary>
         </indexterm><indexterm>

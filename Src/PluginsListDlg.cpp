@@ -218,7 +218,7 @@ void PluginsListDlg::AddPlugin(unsigned id)
 	for (;;)
 	{
 		CEditPluginDlg dlg(*info);
-		if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+		if (dlg.DoModal() == IDCANCEL || info->m_locationType == internal_plugin::LocationType::InstallationPath)
 			return;
 		String errmsg;
 		if (internal_plugin::AddPlugin(*info, errmsg))
@@ -240,7 +240,7 @@ void PluginsListDlg::EditPlugin()
 	for (;;)
 	{
 		CEditPluginDlg dlg(*info);
-		if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+		if (dlg.DoModal() == IDCANCEL || info->m_locationType == internal_plugin::LocationType::InstallationPath)
 			return;
 		String errmsg;
 		if (info->m_name == nameOrg)
@@ -253,7 +253,6 @@ void PluginsListDlg::EditPlugin()
 			if (internal_plugin::AddPlugin(*info, errmsg))
 			{
 				internal_plugin::Info infoOld(nameOrg);
-				infoOld.m_userDefined = true;
 				internal_plugin::RemovePlugin(infoOld, errmsg);
 				break;
 			}
@@ -269,7 +268,7 @@ void PluginsListDlg::DuplicatePlugin()
 	if (!info)
 		return;
 	internal_plugin::Info info2(*info);
-	info2.m_userDefined = true;
+	info2.m_locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? internal_plugin::LocationType::AppDataPath : internal_plugin::LocationType::DocumentsPath;
 	for (;;)
 	{
 		info2.m_name += _T("Copy");
@@ -279,7 +278,7 @@ void PluginsListDlg::DuplicatePlugin()
 	for (;;)
 	{
 		CEditPluginDlg dlg(info2);
-		if (dlg.DoModal() == IDCANCEL || !info2.m_userDefined)
+		if (dlg.DoModal() == IDCANCEL || info2.m_locationType == internal_plugin::LocationType::InstallationPath)
 			return;
 		String errmsg;
 		if (internal_plugin::AddPlugin(info2, errmsg))
@@ -428,7 +427,7 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomatic);
 		auto* info = internal_plugin::GetInternalPluginInfo(plugin);
 		EnableDlgItem(IDC_PLUGIN_EDIT, info != nullptr);
-		EnableDlgItem(IDC_PLUGIN_REMOVE, (info && info->m_userDefined));
+		EnableDlgItem(IDC_PLUGIN_REMOVE, (info && info->m_locationType != internal_plugin::LocationType::InstallationPath));
 	}
 }
 

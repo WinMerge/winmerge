@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2025-12-07 20:34+0300\n"
+"PO-Revision-Date: 2026-01-26 11:11+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -559,6 +559,9 @@ msgstr "2. ile 3. ögeyi değiştir"
 msgid "Swap 1st | &3rd"
 msgstr "1. ile 3. ögeyi değiştir"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Filtre Çubuğunu Görün&tüle\tCtrl+Shift+L"
+
 msgid "Com&pare Statistics..."
 msgstr "Karşılaştırma istatistikleri..."
 
@@ -889,6 +892,9 @@ msgstr "Bö&l"
 msgid "Comp&are"
 msgstr "K&arşılaştır"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "Yeniden adlandırılan/taşınan ögelerle &karşılaştır"
+
 msgid "Compare in New &Window"
 msgstr "Yeni &pencerede karşılaştır"
 
@@ -1044,8 +1050,11 @@ msgstr "Tam yolu &kopyala"
 msgid "Copy &Filename"
 msgstr "&Dosya adını kopyala"
 
-msgid "&Edit Caption"
-msgstr "&Başlığı düzenle"
+msgid "&Edit Caption\tF2"
+msgstr "&Başlığı düzenle\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "&Yolu Düzenle\tCtrl+L"
 
 msgid "&Open..."
 msgstr "&Aç..."
@@ -1491,6 +1500,30 @@ msgstr "Ek &Özellikler..."
 msgid "Add F&older Condition"
 msgstr "Klasör K&oşulu Ekle"
 
+msgid "&Files"
+msgstr "&Dosyalar"
+
+msgid "0 files"
+msgstr "0 dosya"
+
+msgid "1 file or more"
+msgstr "1 dosya veya daha fazla"
+
+msgid "&Items"
+msgstr "&Ögeler"
+
+msgid "0 items"
+msgstr "0 öge"
+
+msgid "1 item or more"
+msgstr "1 öge veya daha fazla"
+
+msgid "&Total Size"
+msgstr "&Toplam Boyut"
+
+msgid "&Recursive"
+msgstr "&Özyinelemeli"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Hedef: &Herhangi biri (Sol/Orta/Sağ)"
 
@@ -1592,6 +1625,63 @@ msgstr "Öznitelikleri k&arşılaştır"
 
 msgid "Compare C&ontents"
 msgstr "&İçerikleri karşılaştır"
+
+msgid "&Clear Keys"
+msgstr "&Tuşları Temizle"
+
+msgid "&Name"
+msgstr "&Ad"
+
+msgid "&Base name (without extension)"
+msgstr "T&emel ad (uzantısız)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Normalleştirilmiş &Unicode Adı"
+
+msgid "&Date"
+msgstr "Tari&h"
+
+msgid "&Hash (MD5)"
+msgstr "&Sağlama Toplamı (MD5)"
+
+msgid "Insert &replace() Function"
+msgstr "&replace() İşlevini Ekle"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "rege&xReplace() İşlevini Ekle"
+
+msgid "Text &Normalization"
+msgstr "Metin &Normalleştirme"
+
+msgid "&Lowercase"
+msgstr "&Küçük Harf"
+
+msgid "&Uppercase"
+msgstr "&Büyük Harf"
+
+msgid "&Half-width"
+msgstr "&Yarım Genişlik"
+
+msgid "&Full-width"
+msgstr "Tam &Genişlik"
+
+msgid "&Chinese Conversion"
+msgstr "&Çince Dönüştürme"
+
+msgid "&Simplified Chinese"
+msgstr "Ba&sitleştirilmiş Çince"
+
+msgid "&Traditional Chinese"
+msgstr "&Geleneksel Çince"
+
+msgid "&Japanese Conversion"
+msgstr "&Japonca Dönüştürme"
+
+msgid "&Hiragana"
+msgstr "&Hiragana"
+
+msgid "&Katakana"
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
@@ -1972,6 +2062,9 @@ msgstr "&Silinen dosyalar geri dönüşüm kutusuna atılsın"
 msgid "&External editor:"
 msgstr "Dış düz&enleyici:"
 
+msgid "&Store user data in:"
+msgstr "Kullanıcı verilerini şurada &depola:"
+
 msgid "&Filter folder:"
 msgstr "Süzgeç &klasörü:"
 
@@ -2195,6 +2288,9 @@ msgstr "Toplam öge:"
 
 msgid "Items compared:"
 msgstr "Karşılaştırılan öge:"
+
+msgid "&Close"
+msgstr "&Kapat"
 
 msgid "Go to"
 msgstr "Git"
@@ -2441,9 +2537,6 @@ msgstr "Sonuç:"
 msgid "&Test"
 msgstr "&Sına"
 
-msgid "&Close"
-msgstr "&Kapat"
-
 msgid "Table"
 msgstr "Tablo"
 
@@ -2606,6 +2699,15 @@ msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 
 msgid "Additional comparison condi&tions:"
 msgstr "Ek karşılaştırma k&oşulları:"
+
+msgid "&Rename/move detection:"
+msgstr "&Yeniden Adlandırma/Taşıma Algılama:"
+
+msgid "Rename/move detection &keys:"
+msgstr "Yeniden Adlandırma/Taşıma Algılama &Tuşları:"
+
+msgid "&Merge renamed items into a single item"
+msgstr "Yeniden adlandırılan ögeleri tek &ögede birleştir"
 
 msgid "File patterns:"
 msgstr "Dosya modelleri:"
@@ -3873,6 +3975,33 @@ msgstr "Dosyalar farklı (ifade: %1)"
 msgid "Group%d"
 msgstr "Grup%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "Devre dışı"
+
+msgid "Detect renames"
+msgstr "Yeniden adlandırmaları algıla"
+
+msgid "Detect renames and moves"
+msgstr "Yeniden adlandırmaları ve taşımaları algıla"
+
+msgid "Renamed"
+msgstr "Yeniden adlandırıldı"
+
+msgid "Moved"
+msgstr "Taşındı"
+
+msgid "Renamed/Moved"
+msgstr "Yeniden adlandırıldı/Taşındı"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 öge)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (%2 kümesi): "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Geçen süre: %ld ms"
@@ -4725,11 +4854,14 @@ msgstr "Satır satır konum ve metin"
 msgid "Word-by-word position and text"
 msgstr "Sözcük sözcük konum ve metin"
 
-msgid "AppData folder"
-msgstr "AppData klasörü"
+msgid "AppData (Roaming) folder"
+msgstr "AppData (Roaming) klasörü"
 
 msgid "Install folder"
 msgstr "Kurulum klasörü"
+
+msgid "Documents folder"
+msgstr "Belgeler klasörü"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5121,6 +5253,10 @@ msgstr "Karanlık"
 
 msgid "Follow system"
 msgstr "Sistem ayarını seç"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "örn. %1"
 
 msgid "Prettification"
 msgstr "Sadeleştirme"

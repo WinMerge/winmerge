@@ -129,6 +129,7 @@ namespace
 
 	TEST_F(FileFilterHelperTest, GetFileFilters)
 	{
+		int n = 3;
 		std::vector<FileFilterInfo> filters = m_fileFilterHelper.GetFileFilters();
 
 		for (std::vector<FileFilterInfo>::iterator it = filters.begin(); it != filters.end(); it++)
@@ -137,22 +138,26 @@ namespace
 			{
 				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_file.flt")) != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple file filter long description")) == 0);
+				--n;
 			}
 			else if ((*it).name.compare(_T("simple include dir")) == 0)
 			{
 				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_dir.flt"))  != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple directory filter long description")) == 0);
+				--n;
 			}
 			else if ((*it).name.compare(_T("error include")) == 0)
 			{
 				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\error_include.flt"))  != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("error file filter long description")) == 0);
+				--n;
 			}
 			else
 			{
-				EXPECT_TRUE(false);
+				// EXPECT_TRUE(false);
 			}
 		}
+		EXPECT_EQ(0, n);
 	}
 
 	TEST_F(FileFilterHelperTest, SetMaskOrExpression1)

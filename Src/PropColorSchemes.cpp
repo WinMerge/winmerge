@@ -105,8 +105,7 @@ void PropColorSchemes::UpdateControls()
 	EnableDlgItem(IDC_COLOR_SCHEME_DARK, 
 		DarkMode::isExperimentalSupported() && (m_nColorMode == 1 || m_nColorMode == 2));
 	EnableDlgItem(IDC_COLOR_MODE, DarkMode::isExperimentalSupported());
-	const bool canDelete = (strutils::compare_nocase(ColorSchemes::GetPrivateColorSchemesFolder(), paths::GetParentPath(GetCurrentColorSchemePath())) == 0);
-	EnableDlgItem(IDC_COLOR_SCHEME_DELETE, canDelete);
+	EnableDlgItem(IDC_COLOR_SCHEME_DELETE, ColorSchemes::IsPrivateColorSchemePath(GetCurrentColorSchemePath()));
 }
 
 void PropColorSchemes::UpdateColorScheme()
@@ -142,7 +141,7 @@ void PropColorSchemes::OnCbnSelchangeColorScheme()
 
 void PropColorSchemes::OnSaveCurrentScheme()
 {
-	const String dir = ColorSchemes::GetPrivateColorSchemesFolder();
+	const String dir = ColorSchemes::GetPrivateColorSchemesFolder(GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) != 0);
 	paths::CreateIfNeeded(dir);
 	String path;
 	if (!SelectFile(GetSafeHwnd(), path, false, 
@@ -178,7 +177,7 @@ void PropColorSchemes::OnSaveCurrentScheme()
 void PropColorSchemes::OnDeleteCurrentScheme()
 {
 	const String path = GetCurrentColorSchemePath();
-	if (strutils::compare_nocase(ColorSchemes::GetPrivateColorSchemesFolder(), paths::GetParentPath(path)) != 0)
+	if (!ColorSchemes::IsPrivateColorSchemePath(path))
 		return;
 	const String sConfirm = strutils::format_string1(_("Are you sure you want to delete\n\n%1 ?"), path);
 	const int res = AfxMessageBox(sConfirm.c_str(), MB_ICONWARNING | MB_YESNO);

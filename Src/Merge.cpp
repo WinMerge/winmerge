@@ -407,29 +407,6 @@ BOOL CMergeApp::InitInstance()
 	if (m_pSubstitutionFiltersList != nullptr)
 		m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
 
-	// Check if filter folder is set, and create it if not
-	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-	if (pathMyFolders.empty())
-	{
-		// No filter path, set it to default and make sure it exists.
-		pathMyFolders = GetOptionsMgr()->GetDefault<String>(OPT_FILTER_USERPATH);
-		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
-		theApp.GetGlobalFileFilter()->SetUserFilterPath(pathMyFolders);
-	}
-	if (!paths::CreateIfNeeded(pathMyFolders))
-	{
-		// Failed to create a folder, check it didn't already
-		// exist.
-		DWORD errCode = GetLastError();
-		if (errCode != ERROR_ALREADY_EXISTS)
-		{
-			// Failed to create a folder for filters, fallback to
-			// "My Documents"-folder. It is not worth the trouble to
-			// bother user about this or user more clever solutions.
-			GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, env::GetMyDocuments());
-		}
-	}
-
 	ReloadCustomSysColors();
 
 	strdiff::Init(); // String diff init
@@ -782,12 +759,7 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 void CMergeApp::InitializeFileFilters()
 {
 	assert(m_pGlobalFileFilter != nullptr);
-	const String& filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-
-	if (!filterPath.empty())
-	{
-		m_pGlobalFileFilter->SetUserFilterPath(filterPath);
-	}
+	m_pGlobalFileFilter->SetUserFilterPath(GetOptionsMgr()->GetString(OPT_FILTER_USERPATH));
 	m_pGlobalFileFilter->LoadAllFileFilters();
 }
 
@@ -1563,9 +1535,9 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		String strDesc[3];
 		fileopenflags_t dwFlags[3] = {
-			static_cast<fileopenflags_t>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-			static_cast<fileopenflags_t>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-			static_cast<fileopenflags_t>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
+			static_cast<fileopenflags_t>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU)),
+			static_cast<fileopenflags_t>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU)),
+			static_cast<fileopenflags_t>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU))
 		};
 		if (bLeftReadOnly)
 			dwFlags[0] |= FFILEOPEN_READONLY;

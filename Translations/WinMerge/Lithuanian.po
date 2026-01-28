@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-12-07 12:16+0000\n"
-"PO-Revision-Date: 2025-12-08 08:08+0200\n"
+"POT-Creation-Date: 2026-01-25 13:30+0000\n"
+"PO-Revision-Date: 2026-01-26 11:11+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.8.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -558,6 +558,9 @@ msgstr "Sukeisti &2-ą | 3-ią"
 msgid "Swap 1st | &3rd"
 msgstr "Sukeisti 1-ą | &3-ią"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Rod&yti filtrų juostą\tCtrl+Shift+L"
+
 msgid "Com&pare Statistics..."
 msgstr "Ly&ginimo statistika..."
 
@@ -888,6 +891,9 @@ msgstr "Pada&linti"
 msgid "Comp&are"
 msgstr "Lyg&inti"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "Lyginti su Pervardintais/Perkeltais &elementais"
+
 msgid "Compare in New &Window"
 msgstr "Lyginti naujame &lange"
 
@@ -1043,8 +1049,11 @@ msgstr "Kopijuoti pilną &kelią"
 msgid "Copy &Filename"
 msgstr "Kopijuoti &failo vardą"
 
-msgid "&Edit Caption"
-msgstr "R&edaguoti antraštę"
+msgid "&Edit Caption\tF2"
+msgstr "R&edaguoti antraštę\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "&Redaguoti kelią\tCtrl+L"
 
 msgid "&Open..."
 msgstr "&Atverti..."
@@ -1490,6 +1499,30 @@ msgstr "&Papildomos savybės..."
 msgid "Add F&older Condition"
 msgstr "Pridėti katal&ogo sąlygą"
 
+msgid "&Files"
+msgstr "&Failai"
+
+msgid "0 files"
+msgstr "0 failų"
+
+msgid "1 file or more"
+msgstr "1 ar daugiau failas (-ų)"
+
+msgid "&Items"
+msgstr "Elementa&i"
+
+msgid "0 items"
+msgstr "0 elementų"
+
+msgid "1 item or more"
+msgstr "1 ar daugiau elementas (-ų)"
+
+msgid "&Total Size"
+msgstr "&Dydis iš viso"
+
+msgid "&Recursive"
+msgstr "&Rekursinis"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Rezultatai: Bet kur (Kairėje/Viduryje/Dešinėje)"
 
@@ -1591,6 +1624,63 @@ msgstr "Lyginti &atributus"
 
 msgid "Compare C&ontents"
 msgstr "Lyginti t&urinį"
+
+msgid "&Clear Keys"
+msgstr "&Išvalyti raktus"
+
+msgid "&Name"
+msgstr "Pavadi&nimas"
+
+msgid "&Base name (without extension)"
+msgstr "&Bazinis pavadinimas (be plėtinio)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Normalizuotas &Unicode pavadinimas"
+
+msgid "&Date"
+msgstr "&Data"
+
+msgid "&Hash (MD5)"
+msgstr "&Maiša (MD5)"
+
+msgid "Insert &replace() Function"
+msgstr "Įterpti &replace() funkciją"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "Įterpti rege&xReplace() funkciją"
+
+msgid "Text &Normalization"
+msgstr "Teksto &normalizavimas"
+
+msgid "&Lowercase"
+msgstr "&Mažosiomis raidėmis"
+
+msgid "&Uppercase"
+msgstr "&Didžiosiomis raidėmis"
+
+msgid "&Half-width"
+msgstr "&Pusė pločio"
+
+msgid "&Full-width"
+msgstr "&Visas plotis"
+
+msgid "&Chinese Conversion"
+msgstr "&Kinų k. konvertavimas"
+
+msgid "&Simplified Chinese"
+msgstr "&Supaprastinta kinų"
+
+msgid "&Traditional Chinese"
+msgstr "&Tradicinė kinų"
+
+msgid "&Japanese Conversion"
+msgstr "&Japonų k. konvertavimas"
+
+msgid "&Hiragana"
+msgstr "&Hiragana"
+
+msgid "&Katakana"
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -1967,6 +2057,9 @@ msgstr "Na&udoti šiukšliadėžę"
 msgid "&External editor:"
 msgstr "Išorinis r&edaktorius:"
 
+msgid "&Store user data in:"
+msgstr "Naudotojo duomenis &saugoti:"
+
 msgid "&Filter folder:"
 msgstr "&Filtro katalogas:"
 
@@ -2188,6 +2281,9 @@ msgstr "Iš viso elementų:"
 
 msgid "Items compared:"
 msgstr "Elementų palyginta:"
+
+msgid "&Close"
+msgstr "&Užverti"
 
 msgid "Go to"
 msgstr "Pereiti į"
@@ -2426,9 +2522,6 @@ msgstr "Rezultatas:"
 msgid "&Test"
 msgstr "&Testuoti"
 
-msgid "&Close"
-msgstr "&Užverti"
-
 msgid "Table"
 msgstr "Lentelių"
 
@@ -2584,13 +2677,22 @@ msgid "Ignore &reparse points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
 
 msgid "Switch to &quick compare when size exceeds (MB):"
-msgstr "Persijungti į &spartųjį palyginimą kai dydis virš (MB):"
+msgstr "Persijungti į &spartųjį lyginimą kai dydis virš (MB):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
-msgstr "Persijungti į &binarinį palyginimą kai dydis virš (MB):"
+msgstr "Persijungti į &binarinį lyginimą kai dydis virš (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr "Papildomos palyginimo sąlygos:"
+msgstr "Papildomos lyginimo sąlygos:"
+
+msgid "&Rename/move detection:"
+msgstr "Pe&rvardijimo/perkėlimo aptikimas:"
+
+msgid "Rename/move detection &keys:"
+msgstr "Pervardijimo/perkėlimo aptikimo ra&ktai:"
+
+msgid "&Merge renamed items into a single item"
+msgstr "Sulieti pervardytus ele&mentus į vieną elementą"
 
 msgid "File patterns:"
 msgstr "Failų šablonai:"
@@ -3626,6 +3728,33 @@ msgstr "Failai skiriasi (išraiška: %1)"
 msgid "Group%d"
 msgstr "Grupė%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "Išjungta"
+
+msgid "Detect renames"
+msgstr "Aptikti pervardijimą"
+
+msgid "Detect renames and moves"
+msgstr "Aptikti pervardijimą ir perkėlimą"
+
+msgid "Renamed"
+msgstr "Pervardinta"
+
+msgid "Moved"
+msgstr "Perkelta"
+
+msgid "Renamed/Moved"
+msgstr "Pervardinta/Perkelta"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 elementai)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (nust. %2): "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Praėjęs laikas: %ld ms"
@@ -4313,11 +4442,14 @@ msgstr "Paeilutinė pozicija ir tekstas"
 msgid "Word-by-word position and text"
 msgstr "Pažodinė pozicija ir tekstas"
 
-msgid "AppData folder"
-msgstr "„AppData“ katalogas"
+msgid "AppData (Roaming) folder"
+msgstr "„AppData“ (Roaming) kataloge"
 
 msgid "Install folder"
-msgstr "Diegimo katalogas"
+msgstr "Diegimo kataloge"
+
+msgid "Documents folder"
+msgstr "„Documents“ kataloge"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -4650,6 +4782,10 @@ msgstr "Tamsi schema"
 
 msgid "Follow system"
 msgstr "Kaip sistemos"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "pvz. %1"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"

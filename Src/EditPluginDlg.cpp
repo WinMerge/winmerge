@@ -137,7 +137,7 @@ void CEditPluginDlg::ResizeDialog(bool alias, bool hasScript)
 
 void CEditPluginDlg::UpdateControls()
 {
-	if (!m_info.m_userDefined)
+	if (m_info.m_locationType == internal_plugin::LocationType::InstallationPath)
 	{
 		for (auto id : {
 				IDC_PLUGIN_NAME,
@@ -194,7 +194,7 @@ void CEditPluginDlg::UpdateControls()
 	const bool alias = (cursel > 3);
 	const bool urlhandler = (cursel == 0);
 	const bool hasScript = alias ? false : HasScript();
-	EnableDlgItem(IDC_PLUGIN_AUTOMATIC, !urlhandler && m_info.m_userDefined);
+	EnableDlgItem(IDC_PLUGIN_AUTOMATIC, !urlhandler && m_info.m_locationType != internal_plugin::LocationType::InstallationPath);
 	ShowDlgItem(IDC_PLUGIN_TAB, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE_STATIC, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE, !alias);
@@ -472,7 +472,7 @@ void CEditPluginDlg::OnEnChangePluginCommandLine()
 
 void CEditPluginDlg::OnOK()
 {
-	if (!m_info.m_userDefined)
+	if (m_info.m_locationType == internal_plugin::LocationType::InstallationPath)
 		return;
 	UpdateData(TRUE);
 	const int cursel = m_ctlEvent.GetCurSel();

@@ -189,6 +189,7 @@ struct IImgMergeWindow
 	virtual void SetOverlayAnimationInterval(int interval) = 0;
 	virtual bool IsDarkBackgroundEnabled() const = 0;
 	virtual void SetDarkBackgroundEnabled(bool enabled) = 0;
+	virtual int GetLastErrorCode() const = 0;
 };
 
 struct IImgToolWindow

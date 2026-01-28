@@ -119,6 +119,7 @@ static void DiffThreadCollect(void *pParam)
 	myStruct->nCollectThreadState = CDiffThread::THREAD_COMPLETED;
 	int event = CDiffThread::EVENT_COLLECT_COMPLETED;
 	myStruct->m_listeners.notify(myStruct, event);
+	myStruct->m_collectCompletedEvent.set();
 };
 
 /**

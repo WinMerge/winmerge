@@ -680,14 +680,31 @@ void FileFilterHelper::LoadAllFileFilters()
 	// First delete existing filters
 	m_fileFilterMgr->DeleteAllFilters();
 
+	std::vector<String> folders;
+	auto addUnique = [&](const String& path)
+	{
+		if (path.empty())
+			return;
+		for (const auto& f : folders)
+		{
+			if (strutils::compare_nocase(f, path) == 0)
+				return;
+		}
+		folders.push_back(path);
+	};
 	// Program application directory
 	m_sGlobalFilterPath = paths::ConcatPath(env::GetProgPath(), _T("Filters"));
-	paths::normalize(m_sGlobalFilterPath);
+	addUnique(m_sGlobalFilterPath);
+	addUnique(paths::ConcatPath(env::GetAppDataPath(), _T("WinMerge\\Filters")));
+	addUnique(paths::ConcatPath(env::GetMyDocuments(), _T("WinMerge\\Filters")));
+	if (!m_sUserSelFilterPath.empty())
+		addUnique(m_sUserSelFilterPath);
+
 	String pattern(_T("*"));
 	pattern += FileFilterExt;
-	LoadFileFilterDirPattern(m_sGlobalFilterPath, pattern);
-	if (strutils::compare_nocase(m_sGlobalFilterPath, m_sUserSelFilterPath) != 0)
-		LoadFileFilterDirPattern(m_sUserSelFilterPath, pattern);
+
+	for (const auto& folder : folders)
+		LoadFileFilterDirPattern(folder, pattern);
 }
 
 /**
@@ -696,14 +713,6 @@ void FileFilterHelper::LoadAllFileFilters()
 String FileFilterHelper::GetGlobalFilterPathWithCreate() const
 {
 	return paths::EnsurePathExist(m_sGlobalFilterPath);
-}
-
-/**
- * @brief Return path to user filters (& create if needed), or empty if cannot create
- */
-String FileFilterHelper::GetUserFilterPathWithCreate() const
-{
-	return paths::EnsurePathExist(m_sUserSelFilterPath);
 }
 
 /**

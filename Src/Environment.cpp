@@ -137,6 +137,19 @@ String GetMyDocuments()
 }
 
 /**
+ * @brief Return User's Application Data Folder.
+ * This function returns full path to User's Application Data -folder.
+ * @return Full path to Application Data -folder.
+ */
+String GetAppDataPath()
+{
+	tchar_t path[MAX_PATH];
+	path[0] = _T('\0');
+	SHGetFolderPath(nullptr, CSIDL_APPDATA, nullptr, 0, path);
+	return path;
+}
+
+/**
  * @brief Return unique string for the instance.
  * This function formats an unique string for WinMerge instance. The string
  * is quaranteed to be unique for instance asking it.

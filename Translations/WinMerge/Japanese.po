@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2025-11-08 05:46+0900\n"
+"PO-Revision-Date: 2026-01-18 20:12+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -557,6 +557,9 @@ msgstr "&2 番目と 3 番目を交換"
 msgid "Swap 1st | &3rd"
 msgstr "1 番目と &3 番目を交換"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "表示フィルター(&Y)\tCtrl+Shift+L"
+
 msgid "Com&pare Statistics..."
 msgstr "比較統計(&P)..."
 
@@ -887,6 +890,9 @@ msgstr "分割(&L)"
 msgid "Comp&are"
 msgstr "比較(&A)"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "名前変更/移動項目と比較(&E)"
+
 msgid "Compare in New &Window"
 msgstr "新しいウインドウで比較(&W)"
 
@@ -1042,8 +1048,11 @@ msgstr "フルパスをコピー(&C)"
 msgid "Copy &Filename"
 msgstr "ファイル名をコピー(&F)"
 
-msgid "&Edit Caption"
-msgstr "キャプションの編集(&E)"
+msgid "&Edit Caption\tF2"
+msgstr "キャプションの編集(&E)\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "パスの編集(&P)\tCtrl+L"
 
 msgid "&Open..."
 msgstr "開く(&O)..."
@@ -1489,6 +1498,30 @@ msgstr "追加プロパティ(&P)..."
 msgid "Add F&older Condition"
 msgstr "フォルダー条件を追加(&O)"
 
+msgid "&Files"
+msgstr "ファイル数(&F)"
+
+msgid "0 files"
+msgstr "0 ファイル"
+
+msgid "1 file or more"
+msgstr "1 ファイル以上"
+
+msgid "&Items"
+msgstr "項目数(&I)"
+
+msgid "0 items"
+msgstr "0 項目"
+
+msgid "1 item or more"
+msgstr "1 項目以上"
+
+msgid "&Total Size"
+msgstr "合計サイズ(&T)"
+
+msgid "&Recursive"
+msgstr "再帰的(&R)"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "対象: いずれか (左/中央/右)(&A)"
 
@@ -1590,6 +1623,63 @@ msgstr "属性を比較(&A)"
 
 msgid "Compare C&ontents"
 msgstr "内容を比較(&O)"
+
+msgid "&Clear Keys"
+msgstr "キーをクリア(&C)"
+
+msgid "&Name"
+msgstr "名前(&N)"
+
+msgid "&Base name (without extension)"
+msgstr "拡張子を除いた名前(&B)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Unicode正規化した名前(&U)"
+
+msgid "&Date"
+msgstr "更新日時(&D)"
+
+msgid "&Hash (MD5)"
+msgstr "ハッシュ (MD5)(&H)"
+
+msgid "Insert &replace() Function"
+msgstr "replace()関数を挿入(&R)"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "regexReplace() 関数を挿入(&X)"
+
+msgid "Text &Normalization"
+msgstr "テキストの正規化(&N)"
+
+msgid "&Lowercase"
+msgstr "小文字に変換(&N)"
+
+msgid "&Uppercase"
+msgstr "大文字に変換(&U)"
+
+msgid "&Half-width"
+msgstr "半角に変換(&H)"
+
+msgid "&Full-width"
+msgstr "全角に変換(&F)"
+
+msgid "&Chinese Conversion"
+msgstr "中国語変換(&C)"
+
+msgid "&Simplified Chinese"
+msgstr "繁体字中国語を簡体字中国語に変換(&S)"
+
+msgid "&Traditional Chinese"
+msgstr "簡体字中国語を繁体字中国語に変換(&T)"
+
+msgid "&Japanese Conversion"
+msgstr "日本語変換(&J)"
+
+msgid "&Hiragana"
+msgstr "カタカナをひらがなに変換(&H)"
+
+msgid "&Katakana"
+msgstr "ひらがなをカタカナに変換(&K)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -1970,6 +2060,9 @@ msgstr "削除されたファイルをごみ箱に移動する(&S)"
 msgid "&External editor:"
 msgstr "外部エディター(&E): (使用可能な置換文字列: $file, $linenum)"
 
+msgid "&Store user data in:"
+msgstr "ユーザーデータの保存先(&S):"
+
 msgid "&Filter folder:"
 msgstr "フィルター用フォルダー(&F):"
 
@@ -2191,6 +2284,9 @@ msgstr "全項目数:"
 
 msgid "Items compared:"
 msgstr "比較した項目:"
+
+msgid "&Close"
+msgstr "閉じる(&C)"
 
 msgid "Go to"
 msgstr "移動"
@@ -2437,9 +2533,6 @@ msgstr "結果:"
 msgid "&Test"
 msgstr "テスト(&T)"
 
-msgid "&Close"
-msgstr "閉じる(&C)"
-
 msgid "Table"
 msgstr "テーブル"
 
@@ -2602,6 +2695,15 @@ msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
 msgid "Additional comparison condi&tions:"
 msgstr "追加比較条件(&T):"
+
+msgid "&Rename/move detection:"
+msgstr "名前変更/移動検出(&R)"
+
+msgid "Rename/move detection &keys:"
+msgstr "名前変更/移動検出用キー生成式(&K)"
+
+msgid "&Merge renamed items into a single item"
+msgstr "名前変更された項目を1つの項目にマージする(&M)"
 
 msgid "File patterns:"
 msgstr "ファイル パターン:"
@@ -3852,6 +3954,33 @@ msgstr "ファイルは異なります (式: %1)"
 msgid "Group%d"
 msgstr "グループ%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "無効"
+
+msgid "Detect renames"
+msgstr "名前変更を検出"
+
+msgid "Detect renames and moves"
+msgstr "名前変更と移動を検出"
+
+msgid "Renamed"
+msgstr "名前変更"
+
+msgid "Moved"
+msgstr "移動"
+
+msgid "Renamed/Moved"
+msgstr "名前変更/移動"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 項目)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (グループ %2): "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "経過時間: %ld ms"
@@ -4011,17 +4140,29 @@ msgstr "同じファイルが両側のパネルで開かれています。"
 msgid "Selected files are identical."
 msgstr "選択されたファイルは同一です。"
 
-msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
-msgstr "選択されたファイルは(現在の比較設定で)一致しています。\r\nバイナリ一致を確認しています..."
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"Checking binary identity..."
+msgstr ""
+"選択されたファイルは(現在の比較設定で)一致しています。\r\n"
+"バイナリ一致を確認しています..."
 
-msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
-msgstr "選択されたファイルは(現在の比較設定で)一致しています。\r\nしかし、バイナリ比較でエラーが発生しました。"
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But binary comparison failed."
+msgstr ""
+"選択されたファイルは(現在の比較設定で)一致しています。\r\n"
+"しかし、バイナリ比較でエラーが発生しました。"
 
 msgid "Selected files are identical (binary match)."
 msgstr "選択されたファイルは一致しています(バイナリ一致)。"
 
-msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
-msgstr "選択されたファイルは(現在の比較設定で)一致しています。\r\nしかし、バイナリレベルでは異なります。"
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But differ at the binary level."
+msgstr ""
+"選択されたファイルは(現在の比較設定で)一致しています。\r\n"
+"しかし、バイナリレベルでは異なります。"
 
 msgid "An error occurred while comparing files."
 msgstr "ファイルの比較時にエラーが発生しました。"
@@ -4686,11 +4827,14 @@ msgstr "行毎の位置情報とテキスト"
 msgid "Word-by-word position and text"
 msgstr "単語毎の位置情報とテキスト"
 
-msgid "AppData folder"
-msgstr "AppData フォルダー"
+msgid "AppData (Roaming) folder"
+msgstr "AppData (Roaming) フォルダー"
 
 msgid "Install folder"
 msgstr "インストール フォルダー"
+
+msgid "Documents folder"
+msgstr "ドキュメントフォルダー"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5079,6 +5223,10 @@ msgstr "ダーク"
 
 msgid "Follow system"
 msgstr "システムに従う"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "例: %1"
 
 msgid "Prettification"
 msgstr "整形"

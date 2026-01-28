@@ -10,35 +10,59 @@
 namespace ColorSchemes
 {
 
-String GetColorSchemesFolder()
+std::vector<String> GetColorSchemesFolders()
 {
-	return paths::ConcatPath(env::GetProgPath(), _T("ColorSchemes"));
+	std::vector<String> folders;
+	folders.push_back(paths::ConcatPath(env::GetProgPath(), _T("ColorSchemes")));
+	folders.push_back(paths::ConcatPath(env::GetAppDataPath(), _T("WinMerge\\ColorSchemes")));
+	folders.push_back(paths::ConcatPath(env::GetMyDocuments(), _T("WinMerge\\ColorSchemes")));
+	return folders;
 }
 
-String GetPrivateColorSchemesFolder()
+String GetPrivateColorSchemesFolder(bool useMyDocument)
 {
-	return paths::ConcatPath(env::GetMyDocuments(), _T("WinMerge\\ColorSchemes"));
+	const auto folders = GetColorSchemesFolders();
+	return folders[useMyDocument ? 2 : 1];
+}
+
+bool IsPrivateColorSchemePath(const String& path)
+{
+	const String parentFolder = paths::GetParentPath(path);
+	int i = 0;
+	for (const auto& folder : GetColorSchemesFolders())
+	{
+		if (i > 0)
+		{
+			if (strutils::compare_nocase(folder, parentFolder) == 0)
+				return true;
+		}
+		++i;
+	}
+	return false;
 }
 
 String GetColorSchemePath(const String& name)
 {
-	const String path = paths::ConcatPath(GetColorSchemesFolder(), name + _T(".ini"));
-	if (paths::DoesPathExist(path))
-		return path;
-	const String pathPrivate = paths::ConcatPath(GetPrivateColorSchemesFolder(), name + _T(".ini"));
-	if (paths::DoesPathExist(pathPrivate))
-		return pathPrivate;
+	for (const String& folder : GetColorSchemesFolders())
+	{
+		const String path = paths::ConcatPath(folder, name + _T(".ini"));
+		if (paths::DoesPathExist(path))
+			return path;
+	}
 	return _T("");
 }
 
 std::vector<String> GetColorSchemeNames()
 {
-	DirItemArray dirs, files, filesPrivate;
+	DirItemArray files;
 	std::set<String> names;
 
-	DirTravel::LoadAndSortFiles(GetColorSchemesFolder(), &dirs, &files, false);
-	DirTravel::LoadAndSortFiles(GetPrivateColorSchemesFolder(), &dirs, &filesPrivate, false);
-	files.insert(files.end(), filesPrivate.begin(), filesPrivate.end());
+	for (const String& folder : GetColorSchemesFolders())
+	{
+		DirItemArray dirs, filesTmp;
+		DirTravel::LoadAndSortFiles(folder, &dirs, &filesTmp, false);
+		files.insert(files.end(), filesTmp.begin(), filesTmp.end());
+	}
 
 	for (DirItem& item : files)
 	{

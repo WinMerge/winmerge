@@ -223,7 +223,7 @@ bool FilterExpression::Evaluate(const DIFFITEM& di)
 		errorPosition = -1;
 		errorMessage = e.message();
 		if (logger)
-			logger("FilterExpression evaluation error: " + errorMessage);
+			logger(0, "FilterExpression evaluation error: " + errorMessage);
 		return false;
 	}
 	catch (const std::exception& e)
@@ -232,7 +232,49 @@ bool FilterExpression::Evaluate(const DIFFITEM& di)
 		errorPosition = -1;
 		errorMessage = e.what();
 		if (logger)
-			logger("FilterExpression evaluation error: " + errorMessage);
+			logger(0, "FilterExpression evaluation error: " + errorMessage);
 		return false;
+	}
+}
+
+static std::vector<String> ConvertStringArray(const ValueType& value)
+{
+	std::vector<String> result;
+	if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&value))
+	{
+		for (const auto& item : *arrayVal->get())
+			result.push_back(ucr::toTString(ToStringValue(item.value)));
+	}
+	else
+	{
+		result.push_back(ucr::toTString(ToStringValue(value)));
+	}
+	return result;
+}
+
+std::vector<String> FilterExpression::EvaluateKeys(const DIFFITEM& di)
+{
+	try
+	{
+		const auto result = rootNode->Evaluate(di);
+		return ConvertStringArray(result);
+	}
+	catch (const Poco::RegularExpressionException& e)
+	{
+		errorCode = FILTER_ERROR_INVALID_REGULAR_EXPRESSION;
+		errorPosition = -1;
+		errorMessage = e.message();
+		if (logger)
+			logger(0, "FilterExpression evaluation error: " + errorMessage);
+		return std::vector<String>();
+	}
+	catch (const std::exception& e)
+	{
+		errorCode = FILTER_ERROR_EVALUATION_FAILED;
+		errorPosition = -1;
+		errorMessage = e.what();
+		if (logger)
+			logger(0, "FilterExpression evaluation error: " + errorMessage);
+		return std::vector<String>();
 	}
 }

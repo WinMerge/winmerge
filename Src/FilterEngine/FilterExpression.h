@@ -8,6 +8,7 @@
 #include <string>
 #include <memory>
 #include "FilterError.h"
+#include "UnicodeString.h"
 
 class CDiffContext;
 class DIFFITEM;
@@ -25,10 +26,11 @@ struct FilterExpression
 	bool Parse();
 	void SetDiffContext(const CDiffContext* pCtxt) { ctxt = pCtxt; }
 	bool Evaluate(const DIFFITEM& di);
+	std::vector<String> EvaluateKeys(const DIFFITEM& di);
 	void UpdateTimestamp();
 	void Clear();
 	std::vector<std::string> GetPropertyNames() const;
-	static void SetLogger(std::function<void(const std::string&)> func) { logger = func; };
+	static void SetLogger(std::function<void(int level, const std::string&)> func) { logger = func; };
 	bool optimize = true;
 	const CDiffContext* ctxt = nullptr;
 	std::unique_ptr<Poco::Timestamp> now;
@@ -38,5 +40,5 @@ struct FilterExpression
 	FilterErrorCode errorCode = FILTER_ERROR_NO_ERROR;
 	int errorPosition = -1;
 	std::string errorMessage;
-	inline static std::function<void(const std::string&)> logger;
+	inline static std::function<void(int, const std::string&)> logger;
 };

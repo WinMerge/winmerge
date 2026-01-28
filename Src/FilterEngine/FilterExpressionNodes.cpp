@@ -7,9 +7,11 @@
 #include "FilterExpressionNodes.h"
 #include "FilterExpression.h"
 #include "FileContentRef.h"
+#include "FolderStats.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "paths.h"
+#include "unicoder.h"
 #include <string>
 #include <variant>
 #include <Poco/RegularExpression.h>
@@ -37,6 +39,15 @@ static std::optional<bool> evalAsBool(const ValueType& val)
 			});
 	}
 	return std::nullopt;
+}
+
+static std::optional<std::string> getAsString(const ValueType& val)
+{
+	if (auto str = std::get_if<std::string>(&val))
+		return *str;
+	if (std::holds_alternative<std::monostate>(val))
+		return std::nullopt;
+	return ToStringValue(val);
 }
 
 ExprNode* OrNode::Optimize()
@@ -357,7 +368,14 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 	auto rvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&rval);
 	if (!lvalArray && !rvalArray)
 	{
-		if (auto lvalDouble = std::get_if<double>(&lval))
+		if (op == TK_PLUS && lval.index() != rval.index() &&
+		   (std::holds_alternative<std::string>(lval) || std::holds_alternative<std::string>(rval)))
+		{
+			if (std::holds_alternative<std::monostate>(lval) || std::holds_alternative<std::monostate>(rval))
+				return std::monostate{};
+			return ToStringValue(lval) + ToStringValue(rval);
+		}
+		else if (auto lvalDouble = std::get_if<double>(&lval))
 		{
 			double r;
 			if (auto rvalDouble = std::get_if<double>(&rval))
@@ -662,11 +680,65 @@ static auto ExistsField(int index, const FilterExpression* ctxt, const DIFFITEM&
 	return di.diffcode.exists(index);
 }
 
+static auto IsFolderField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
+{
+	return di.diffcode.isDirectory();
+}
+
+template<typename Func>
+static auto FolderStatField(int index, const FilterExpression* ctxt, const DIFFITEM& di, Func func, bool recursive) -> ValueType
+{
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+
+	const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
+	const String fullPath = paths::ConcatPath(ctxt->ctxt->GetPath(index), relpath);
+
+	FolderStats::FolderStatsResult stats = FolderStats::ScanFolder(fullPath, recursive);
+	return func(stats);
+}
+
+static auto FilesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.fileCount); }, false);
+}
+
+static auto RecursiveFilesField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.fileCount); }, true);
+}
+
+static auto ItemsField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType {
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.itemCount); }, false);
+}
+
+static auto RecursiveItemsField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return static_cast<int64_t>(s.itemCount); }, true);
+}
+
+static auto TotalSizeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.totalSize; }, false);
+}
+
+static auto RecursiveTotalSizeField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return FolderStatField(index, ctxt, di, [](const FolderStats::FolderStatsResult& s) { return s.totalSize; }, true);
+}
+
 static auto NameField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
 {
 	if (!di.diffcode.exists(index))
 		return std::monostate{};
 	return ucr::toUTF8(di.diffFileInfo[index].filename.get());
+}
+
+static auto BaseNameField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
+{
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	return ucr::toUTF8(paths::RemoveExtension(di.diffFileInfo[index].filename.get()));
 }
 
 static auto ExtensionField(int index, const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType
@@ -811,8 +883,24 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	const char* p = vl.c_str() + prefixlen;
 	if (strcmp(p, "exists") == 0)
 		functmp = ExistsField;
+	else if (strcmp(p, "isfolder") == 0)
+		functmp = IsFolderField;
+	else if (strcmp(p, "files") == 0)
+		functmp = FilesField;
+	else if (strcmp(p, "items") == 0)
+		functmp = ItemsField;
+	else if (strcmp(p, "totalsize") == 0)
+		functmp = TotalSizeField;
+	else if (strcmp(p, "recursivefiles") == 0)
+		functmp = RecursiveFilesField;
+	else if (strcmp(p, "recursiveitems") == 0)
+		functmp = RecursiveItemsField;
+	else if (strcmp(p, "recursivetotalsize") == 0)
+		functmp = RecursiveTotalSizeField;
 	else if (strcmp(p, "name") == 0)
 		functmp = NameField;
+	else if (strcmp(p, "basename") == 0)
+		functmp = BaseNameField;
 	else if (strcmp(p, "extension") == 0)
 		functmp = ExtensionField;
 	else if (strcmp(p, "fullpath") == 0)
@@ -859,13 +947,22 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	if (prefixlen > 0)
 		func = [side, functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType { return functmp(side < 0 ? ctxt->ctxt->GetCompareDirs() + side: side, ctxt, di); };
 	else
-		func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType {
-			const int dirs = ctxt->ctxt->GetCompareDirs();
-			std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
-			for (int i = 0; i < dirs; ++i)
-				values->emplace_back(ValueType2{ functmp(i, ctxt, di) });
-			return values;
-		};
+	{
+		if (side == -2)
+		{
+			func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType { return functmp(-2, ctxt, di); };
+		}
+		else
+		{
+			func = [functmp](const FilterExpression* ctxt, const DIFFITEM& di)-> ValueType {
+				const int dirs = ctxt->ctxt->GetCompareDirs();
+				std::shared_ptr<std::vector<ValueType2>> values = std::make_shared<std::vector<ValueType2>>();
+				for (int i = 0; i < dirs; ++i)
+					values->emplace_back(ValueType2{ functmp(i, ctxt, di) });
+				return values;
+				};
+		}
+	}
 }
 
 ValueType FieldNode::Evaluate(const DIFFITEM& di) const
@@ -1030,8 +1127,11 @@ static auto StrlenFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	auto strlenFn = [](const ValueType& val)->ValueType
 		{
 			if (auto arg1Str = std::get_if<std::string>(&val))
-				return static_cast<int64_t>(arg1Str->length());
-			return std::monostate{};
+				return static_cast<int64_t>(ucr::stringlen_of_utf8(arg1Str->c_str(), arg1Str->length()));
+			if (std::holds_alternative<std::monostate>(val))
+				return std::monostate{};
+			auto str = ToStringValue(val);
+			return static_cast<int64_t>(ucr::stringlen_of_utf8(str.c_str(), str.length()));
 		};
 	auto arg = (*args)[0]->Evaluate(di);
 	return applyToScalarOrArray(arg, strlenFn);
@@ -1042,7 +1142,6 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	if (args->size() < 2 || args->size() > 3)
 		return std::monostate{};
 
-	auto argStr = (*args)[0]->Evaluate(di);
 	auto argStart = (*args)[1]->Evaluate(di);
 	std::optional<ValueType> argLen;
 	if (args->size() == 3)
@@ -1054,58 +1153,30 @@ static auto SubstrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::ve
 	if (!start)
 		return std::monostate{};
 
-	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
-	{
-		auto result = std::make_shared<std::vector<ValueType2>>();
-		for (const auto& item : *argStrArray->get())
+	auto substrFn = [start, len](const ValueType& val) -> ValueType
 		{
-			const std::string* str = std::get_if<std::string>(&item.value);
-			if (!str)
-			{
-				result->emplace_back(ValueType2{ std::monostate{} });
-				continue;
-			}
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			const std::string* str = &*strOpt;
 
 			int64_t s = *start;
 			if (s < 0)
 				s += static_cast<int64_t>(str->length());
 			if (s < 0 || s >= str->length())
-			{
-				result->emplace_back(ValueType2{ std::string{} });
-				continue;
-			}
+				return std::string{};
 
 			if (!len)
-			{
-				result->emplace_back(ValueType2{ str->substr(static_cast<size_t>(s)) });
-				continue;
-			}
+				return str->substr(static_cast<size_t>(s));
 
 			int64_t actualLen = (*len >= 0) ? *len : static_cast<int64_t>(str->length()) - s + *len;
 			if (actualLen < 0)
 				actualLen = 0;
-			result->emplace_back(ValueType2{ str->substr(static_cast<size_t>(s), static_cast<size_t>(actualLen)) });
-		}
-		return result;
-	}
+			return str->substr(static_cast<size_t>(s), static_cast<size_t>(actualLen));
+		};
 
-	const std::string* str = std::get_if<std::string>(&argStr);
-	if (!str)
-		return std::monostate{};
-
-	int64_t s = *start;
-	if (s < 0)
-		s += static_cast<int64_t>(str->length());
-	if (s < 0 || s >= str->length())
-		return std::string{};
-
-	if (!len)
-		return str->substr(static_cast<size_t>(s));
-
-	int64_t actualLen = (*len >= 0) ? *len : static_cast<int64_t>(str->length()) - s + *len;
-	if (actualLen < 0)
-		actualLen = 0;
-	return str->substr(static_cast<size_t>(s), static_cast<size_t>(actualLen));
+	auto argStr = (*args)[0]->Evaluate(di);
+	return applyToScalarOrArray(argStr, substrFn);
 }
 
 static auto LineCountFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1131,30 +1202,20 @@ static auto SublinesFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 	if (args->size() == 3)
 		argLen = (*args)[2]->Evaluate(di);
 
-	const auto contentref = std::get_if<std::shared_ptr<FileContentRef>>(&argContentRef);
-	const auto contentrefArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argContentRef);
 	const int64_t* start = std::get_if<int64_t>(&argStart);
 	const int64_t* len = argLen ? std::get_if<int64_t>(&*argLen) : nullptr;
 
-	if ((!contentref && !contentrefArray) || !start)
+	if (!start)
 		return std::monostate{};
 
-	if (contentrefArray && *contentrefArray)
-	{
-		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
-		for (const auto& item : *contentrefArray->get())
+	auto sublinesFn = [start, len](const ValueType& val) -> ValueType
 		{
-			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&item.value))
-				result->emplace_back(ValueType2{ static_cast<std::string>((*contentRef)->Sublines(*start, len ? *len : -1)) });
-			else
-				result->emplace_back(ValueType2{ std::monostate{} });
-		}
-		return result;
+			if (auto contentRef = std::get_if<std::shared_ptr<FileContentRef>>(&val))
+				return static_cast<std::string>((*contentRef)->Sublines(*start, len ? *len : -1));
+			return std::monostate{};
+		};
 
-	}
-	if (contentref && *contentref)
-		return (*contentref)->Sublines(*start, len ? *len : -1);
-	return std::monostate{};
+	return applyToScalarOrArray(argContentRef, sublinesFn);
 }
 
 static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1172,32 +1233,15 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	if (!from || !to || from->empty())
 		return std::monostate{};
 
-	if (auto argStrArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argStr))
-	{
-		auto& vec = **argStrArray;
-		auto result = std::make_shared<std::vector<ValueType2>>();
-		result->reserve(vec.size());
-
-		for (const auto& item : vec)
+	auto replaceFn = [from, to](const ValueType& val) -> ValueType
 		{
-			const std::string* str = std::get_if<std::string>(&item.value);
-			if (!str)
-			{
-				result->emplace_back(ValueType2{ std::monostate{} });
-				continue;
-			}
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			return Poco::replace(*strOpt, *from, *to);
+		};
 
-			const auto replaced = Poco::replace(*str, *from, *to);
-			result->emplace_back(ValueType2{ replaced });
-		}
-
-		return result;
-	}
-
-	const std::string* str = std::get_if<std::string>(&argStr);
-	if (!str)
-		return std::monostate{};
-	return Poco::replace(*str, *from, *to);
+	return applyToScalarOrArray(argStr, replaceFn);
 }
 
 static auto TodayFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1264,121 +1308,639 @@ static auto ToDateStrFunc(const FilterExpression* ctxt, const DIFFITEM& di, std:
 	return applyToScalarOrArray(arg, toDateStr);
 }
 
-FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
-	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
+static auto IsWithinFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
 {
-	if (functionName == "abs")
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	ValueType arg3 = args->at(2)->Evaluate(di);
+
+	auto isWithinFn = [&](const ValueType& val) -> ValueType
+		{
+			if (auto valInt = std::get_if<int64_t>(&val))
+			{
+				if (auto minInt = std::get_if<int64_t>(&arg2))
+				{
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (*valInt >= *minInt && *valInt <= *maxInt);
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (*valInt >= *minInt && static_cast<double>(*valInt) <= *maxDouble);
+				}
+				if (auto minDouble = std::get_if<double>(&arg2))
+				{
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && static_cast<double>(*valInt) <= *maxDouble);
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && *valInt <= *maxInt);
+				}
+			}
+			else if (auto valDouble = std::get_if<double>(&val))
+			{
+				double minVal = 0.0, maxVal = 0.0;
+				if (auto minDouble = std::get_if<double>(&arg2))
+					minVal = *minDouble;
+				else if (auto minInt = std::get_if<int64_t>(&arg2))
+					minVal = static_cast<double>(*minInt);
+				else
+					return std::monostate{};
+
+				if (auto maxDouble = std::get_if<double>(&arg3))
+					maxVal = *maxDouble;
+				else if (auto maxInt = std::get_if<int64_t>(&arg3))
+					maxVal = static_cast<double>(*maxInt);
+				else
+					return std::monostate{};
+
+				return (*valDouble >= minVal && *valDouble <= maxVal);
+			}
+			else if (auto valTimestamp = std::get_if<Poco::Timestamp>(&val))
+			{
+				if (auto minTimestamp = std::get_if<Poco::Timestamp>(&arg2))
+				{
+					if (auto maxTimestamp = std::get_if<Poco::Timestamp>(&arg3))
+						return (*valTimestamp >= *minTimestamp && *valTimestamp <= *maxTimestamp);
+				}
+			}
+			else if (auto valString = std::get_if<std::string>(&val))
+			{
+				if (auto minString = std::get_if<std::string>(&arg2))
+				{
+					if (auto maxString = std::get_if<std::string>(&arg3))
+					{
+						int cmpMin = Poco::icompare(*valString, *minString);
+						int cmpMax = Poco::icompare(*valString, *maxString);
+						return (cmpMin >= 0 && cmpMax <= 0);
+					}
+				}
+			}
+			return std::monostate{};
+		};
+
+	auto arg1 = args->at(0)->Evaluate(di);
+	return applyToScalarOrArray(arg1, isWithinFn);
+}
+
+static auto InRangeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	ValueType arg3 = args->at(2)->Evaluate(di);
+
+	auto inRangeFn = [&](const ValueType& val) -> ValueType
+		{
+			if (auto valInt = std::get_if<int64_t>(&val))
+			{
+				if (auto minInt = std::get_if<int64_t>(&arg2))
+				{
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (*valInt >= *minInt && *valInt < *maxInt);
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (*valInt >= *minInt && static_cast<double>(*valInt) < *maxDouble);
+				}
+				if (auto minDouble = std::get_if<double>(&arg2))
+				{
+					if (auto maxDouble = std::get_if<double>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && static_cast<double>(*valInt) < *maxDouble);
+					if (auto maxInt = std::get_if<int64_t>(&arg3))
+						return (static_cast<double>(*valInt) >= *minDouble && *valInt < *maxInt);
+				}
+			}
+			else if (auto valDouble = std::get_if<double>(&val))
+			{
+				double minVal = 0.0, maxVal = 0.0;
+				if (auto minDouble = std::get_if<double>(&arg2))
+					minVal = *minDouble;
+				else if (auto minInt = std::get_if<int64_t>(&arg2))
+					minVal = static_cast<double>(*minInt);
+				else
+					return std::monostate{};
+
+				if (auto maxDouble = std::get_if<double>(&arg3))
+					maxVal = *maxDouble;
+				else if (auto maxInt = std::get_if<int64_t>(&arg3))
+					maxVal = static_cast<double>(*maxInt);
+				else
+					return std::monostate{};
+
+				return (*valDouble >= minVal && *valDouble < maxVal);
+			}
+			else if (auto valTimestamp = std::get_if<Poco::Timestamp>(&val))
+			{
+				if (auto minTimestamp = std::get_if<Poco::Timestamp>(&arg2))
+				{
+					if (auto maxTimestamp = std::get_if<Poco::Timestamp>(&arg3))
+						return (*valTimestamp >= *minTimestamp && *valTimestamp < *maxTimestamp);
+				}
+			}
+			else if (auto valString = std::get_if<std::string>(&val))
+			{
+				if (auto minString = std::get_if<std::string>(&arg2))
+				{
+					if (auto maxString = std::get_if<std::string>(&arg3))
+					{
+						int cmpMin = Poco::icompare(*valString, *minString);
+						int cmpMax = Poco::icompare(*valString, *maxString);
+						return (cmpMin >= 0 && cmpMax < 0);
+					}
+				}
+			}
+			return std::monostate{};
+		};
+
+	auto arg1 = args->at(0)->Evaluate(di);
+	return applyToScalarOrArray(arg1, inRangeFn);
+}
+
+std::string ToStringValue(const ValueType& val)
+{
+	if (auto intVal = std::get_if<int64_t>(&val))
+		return std::to_string(*intVal);
+	if (auto doubleVal = std::get_if<double>(&val))
+		return std::to_string(*doubleVal);
+	if (auto strVal = std::get_if<std::string>(&val))
+		return *strVal;
+	if (auto boolVal = std::get_if<bool>(&val))
+		return *boolVal ? "true" : "false";
+	if (auto tsVal = std::get_if<Poco::Timestamp>(&val))
 	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("abs function requires 1 arguments");
-		func = AbsFunc;
+		Poco::LocalDateTime ldt(*tsVal);
+		return Poco::DateTimeFormatter::format(ldt, "%Y-%m-%d %H:%M:%S");
 	}
-	else if (functionName == "anyof")
+	if (auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&val))
 	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("anyof function requires 1 arguments");
-		func = AnyOfFunc;
+		std::string result = "[";
+		bool first = true;
+		for (const auto& item : **arrayVal)
+		{
+			if (!first) result += ", ";
+			result += ToStringValue(item.value);
+			first = false;
+		}
+		result += "]";
+		return result;
 	}
-	else if (functionName == "allof")
+	if (auto contentVal = std::get_if<std::shared_ptr<FileContentRef>>(&val))
+		return std::string("<FileContent:") + ucr::toUTF8((*contentVal)->path) + ">";
+	if (auto regexVal = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&val))
+		return "<Regex>";
+	if (std::holds_alternative<std::monostate>(val))
+		return "<undefined>";
+	return "<unknown>";
+}
+
+static auto RegexReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() != 3)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(di);
+	auto argPattern = (*args)[1]->Evaluate(di);
+	auto argReplacement = (*args)[2]->Evaluate(di);
+
+	const std::string* pattern = std::get_if<std::string>(&argPattern);
+	const std::string* replacement = std::get_if<std::string>(&argReplacement);
+
+	if (!pattern || !replacement)
+		return std::monostate{};
+
+	auto regexReplaceFn = [pattern, replacement](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			try
+			{
+				Poco::RegularExpression regex(*pattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+				std::string result = *strOpt;
+				regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
+				return result;
+			}
+			catch (const Poco::RegularExpressionException&)
+			{
+				return std::monostate{};
+			}
+		};
+
+	return applyToScalarOrArray(argStr, regexReplaceFn);
+}
+
+static auto LogFunc(int level, const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType val;
+	std::string msg;
+	for (size_t i = 0; i < args->size(); ++i)
 	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("allof function requires 1 arguments");
-		func = AllOfFunc;
+		val = args->at(i)->Evaluate(di);
+		if (i > 0)
+			msg += " ";
+		msg += ToStringValue(val);
 	}
-	else if (functionName == "allequal")
+	ctxt->logger(level, msg);
+	return val;
+}
+
+static auto LogErrorFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LogFunc(0, ctxt, di, args);
+}
+
+static auto LogWarnFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LogFunc(1, ctxt, di, args);
+}
+
+static auto LogInfoFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return LogFunc(2, ctxt, di, args);
+}
+
+static auto IfFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType condition = args->at(0)->Evaluate(di);
+	auto condBool = evalAsBool(condition);
+	if (condBool && *condBool)
+		return args->at(1)->Evaluate(di);
+	else
+		return args->at(2)->Evaluate(di);
+}
+
+static auto IfEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType argCond = args->at(0)->Evaluate(di);
+	ValueType argTrue = args->at(1)->Evaluate(di);
+	ValueType argFalse = args->at(2)->Evaluate(di);
+
+	auto trueArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argTrue);
+	auto falseArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argFalse);
+
+	size_t index = 0;
+	auto selectValue = [&](const ValueType& cond) -> ValueType
+		{
+			auto condBool = evalAsBool(cond);
+			ValueType trueVal = trueArray ? 
+				(index < (*trueArray)->size() ? (*trueArray)->at(index).value : std::monostate{}) : argTrue;
+			ValueType falseVal = falseArray ? 
+				(index < (*falseArray)->size() ? (*falseArray)->at(index).value : std::monostate{}) : argFalse;
+			++index;
+			
+			if (condBool && *condBool)
+				return trueVal;
+			else
+				return falseVal;
+		};
+
+	return applyToScalarOrArray(argCond, selectValue);
+}
+
+static auto ChooseFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 2)
+		return std::monostate{};
+	
+	ValueType indexVal = args->at(0)->Evaluate(di);
+	auto indexInt = std::get_if<int64_t>(&indexVal);
+	
+	if (!indexInt)
+		return std::monostate{};
+	
+	int64_t idx = *indexInt;
+	if (idx < 0)
+		idx = 0;
+	
+	size_t choiceIdx = static_cast<size_t>(idx) + 1;
+	if (choiceIdx >= args->size())
+		choiceIdx = args->size() - 1;
+	
+	return args->at(choiceIdx)->Evaluate(di);
+}
+
+static auto ChooseEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (args->size() < 2)
+		return std::monostate{};
+	
+	ValueType indexVal = args->at(0)->Evaluate(di);
+	
+	auto selectFromIndex = [&](const ValueType& val) -> ValueType
+		{
+			auto indexInt = std::get_if<int64_t>(&val);
+			if (!indexInt)
+				return std::monostate{};
+			
+			int64_t idx = *indexInt;
+			if (idx < 0)
+				idx = 0;
+			
+			size_t choiceIdx = static_cast<size_t>(idx) + 1;
+			if (choiceIdx >= args->size())
+				choiceIdx = args->size() - 1;
+			
+			return args->at(choiceIdx)->Evaluate(di);
+		};
+	
+	return applyToScalarOrArray(indexVal, selectFromIndex);
+}
+
+template<typename BinaryOp>
+static auto BinaryLogicalEachFunc(const ValueType& arg1, const ValueType& arg2, BinaryOp op) -> ValueType
+{
+	auto arg1Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg1);
+	auto arg2Array = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&arg2);
+	
+	if (!arg1Array && !arg2Array)
 	{
-		if (!args || args->size() < 1)
-			throw std::invalid_argument("allequal function requires at least 1 arguments");
-		func = AllEqualFunc;
+		auto bool1 = evalAsBool(arg1);
+		auto bool2 = evalAsBool(arg2);
+		if (bool1 && bool2)
+			return op(*bool1, *bool2);
+		return std::monostate{};
 	}
-	else if (functionName == "array")
+	
+	auto result = std::make_shared<std::vector<ValueType2>>();
+	
+	if (arg1Array && arg2Array)
 	{
-		func = ArrayFunc;
+		size_t maxSize = (std::max)((*arg1Array)->size(), (*arg2Array)->size());
+		for (size_t i = 0; i < maxSize; ++i)
+		{
+			ValueType val1 = i < (*arg1Array)->size() ? (*arg1Array)->at(i).value : std::monostate{};
+			ValueType val2 = i < (*arg2Array)->size() ? (*arg2Array)->at(i).value : std::monostate{};
+			
+			auto bool1 = evalAsBool(val1);
+			auto bool2 = evalAsBool(val2);
+			
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
 	}
-	else if (functionName == "at")
+	else if (arg1Array)
 	{
-		if (!args || args->size() != 2)
-			throw std::invalid_argument("at function requires 2 arguments");
-		func = AtFunc;
-	}
-	else if (functionName == "strlen")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("strlen function requires 1 arguments");
-		func = StrlenFunc;
-	}
-	else if (functionName == "substr")
-	{
-		if (!args || (args->size() < 2 || args->size() > 3))
-			throw std::invalid_argument("substr function requires 2 or 3 arguments: substr(string, start [, length])");
-		func = SubstrFunc;
-	}
-	else if (functionName == "linecount")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("linecount function requires 1 arguments");
-		func = LineCountFunc;
-	}
-	else if (functionName == "sublines")
-	{
-		if (!args || args->size() < 2 || args->size() > 3)
-			throw std::invalid_argument("sublines nesfunction requires 2 or 3 arguments: sublines(content, start [, length])");
-		func = SublinesFunc;
-	}
-	else if (functionName == "replace")
-	{
-		if (!args || args->size() != 3)
-			throw std::invalid_argument("replace function requires exactly 3 arguments: replace(string, from, to)");
-		func = ReplaceFunc;
-	}
-	else if (functionName == "today")
-	{
-		if (args && args->size() != 0)
-			throw std::invalid_argument("today function requires 0 arguments");
-		func = TodayFunc;
-	}
-	else if (functionName == "now")
-	{
-		if (args && args->size() != 0)
-			throw std::invalid_argument("now function requires 0 arguments");
-		func = NowFunc;
-	}
-	else if (functionName == "startofweek")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofweek function requires 1 arguments");
-		func = StartOfWeekFunc;
-	}
-	else if (functionName == "startofmonth")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofmonth function requires 1 arguments");
-		func = StartOfMonthFunc;
-	}
-	else if (functionName == "startofyear")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("startofyear function requires 1 arguments");
-		func = StartOfYearFunc;
-	}
-	else if (functionName == "todatestr")
-	{
-		if (!args || args->size() != 1)
-			throw std::invalid_argument("todatestr function requires 1 arguments");
-		func = ToDateStrFunc;
-	}
-	else if (functionName == "prop")
-	{
-		SetPropFunc();
-	}
-	else if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
-	{
-		SetLeftMiddleRightPropFunc();
+		auto bool2 = evalAsBool(arg2);
+		for (const auto& item : **arg1Array)
+		{
+			auto bool1 = evalAsBool(item.value);
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
 	}
 	else
 	{
-		throw std::runtime_error("Unknown function: " + std::string(functionName.begin(), functionName.end()));
+		auto bool1 = evalAsBool(arg1);
+		for (const auto& item : **arg2Array)
+		{
+			auto bool2 = evalAsBool(item.value);
+			if (bool1 && bool2)
+				result->emplace_back(ValueType2{ op(*bool1, *bool2) });
+			else
+				result->emplace_back(ValueType2{ std::monostate{} });
+		}
 	}
+	
+	return result;
+}
+
+static auto AndEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg1 = args->at(0)->Evaluate(di);
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a && b; });
+}
+
+static auto OrEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg1 = args->at(0)->Evaluate(di);
+	ValueType arg2 = args->at(1)->Evaluate(di);
+	return BinaryLogicalEachFunc(arg1, arg2, [](bool a, bool b) { return a || b; });
+}
+
+static auto NotEachFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	ValueType arg = args->at(0)->Evaluate(di);
+	
+	auto notFunc = [](const ValueType& val) -> ValueType
+		{
+			auto boolVal = evalAsBool(val);
+			if (boolVal)
+				return !*boolVal;
+			return std::monostate{};
+		};
+	
+	return applyToScalarOrArray(arg, notFunc);
+}
+
+static auto NormalizeUnicodeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	// Default normalization form: NFC (Normalization Form C)
+	ucr::NORMFORM normForm = ucr::NormC;
+	
+	// If a second argument is provided, it specifies the normalization form
+	if (args->size() > 1)
+	{
+		ValueType arg2 = args->at(1)->Evaluate(di);
+		if (auto formStr = std::get_if<std::string>(&arg2))
+		{
+			std::string form = Poco::toUpper(*formStr);
+			if (form == "NFC" || form == "C")
+				normForm = ucr::NormC;
+			else if (form == "NFD" || form == "D")
+				normForm = ucr::NormD;
+			else if (form == "NFKC" || form == "KC")
+				normForm = ucr::NormKC;
+			else if (form == "NFKD" || form == "KD")
+				normForm = ucr::NormKD;
+			else
+				return std::monostate{}; // Invalid normalization form
+		}
+		else if (auto formInt = std::get_if<int64_t>(&arg2))
+		{
+			// Support numeric form: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD
+			switch (*formInt)
+			{
+			case 1: normForm = ucr::NormC; break;
+			case 2: normForm = ucr::NormD; break;
+			case 5: normForm = ucr::NormKC; break;
+			case 6: normForm = ucr::NormKD; break;
+			default: return std::monostate{}; // Invalid form number
+			}
+		}
+	}
+	
+	ValueType arg = args->at(0)->Evaluate(di);
+	
+	auto normalizeUnicodeFunc = [normForm](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			// Convert UTF-8 string to String (tchar_t)
+			String tstr = ucr::toTString(*strOpt);
+			// Use ucr::normalizeString for Unicode normalization
+			String normalized = ucr::normalizeString(tstr, normForm);
+			// Convert back to UTF-8
+			return ucr::toUTF8(normalized);
+		};
+	
+	return applyToScalarOrArray(arg, normalizeUnicodeFunc);
+}
+
+static auto ToXFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args, String (*func)(const String&)) -> ValueType
+{
+	ValueType arg = args->at(0)->Evaluate(di);
+	auto toXFunc = [func](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt)
+				return std::monostate{};
+			return ucr::toUTF8(func(ucr::toTString(*strOpt)));
+		};
+	
+	return applyToScalarOrArray(arg, toXFunc);
+}
+
+static auto ToLowerFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toLower);
+}
+
+static auto ToUpperFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toUpper);
+}
+
+static auto ToHalfWidthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toHalfWidth);
+}
+
+static auto ToFullWidthFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toFullWidth);
+}
+
+static auto ToHiraganaFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toHiragana);
+}
+
+static auto ToKatakanaFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toKatakana);
+}
+
+static auto ToSimplifiedChineseFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toSimplifiedChinese);
+}
+
+static auto ToTraditionalChineseFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	return ToXFunc(ctxt, di, args, ucr::toTraditionalChinese);
+}
+
+struct FunctionInfo
+{
+	using FuncPtr = auto (*)(const FilterExpression*, const DIFFITEM&, std::vector<ExprNode*>*) -> ValueType;
+	const char* name;
+	FuncPtr func;
+	int minArgs;
+	int maxArgs;
+};
+
+// Compile-time constant array - zero runtime initialization cost
+static constexpr FunctionInfo functionTable[] = {
+	{"abs", AbsFunc, 1, 1},
+	{"allequal", AllEqualFunc, 1, -1},
+	{"allof", AllOfFunc, 1, 1},
+	{"andeach", AndEachFunc, 2, 2},
+	{"anyof", AnyOfFunc, 1, 1},
+	{"array", ArrayFunc, 0, -1},
+	{"at", AtFunc, 2, 2},
+	{"choose", ChooseFunc, 2, -1},
+	{"chooseeach", ChooseEachFunc, 2, -1},
+	{"if", IfFunc, 3, 3},
+	{"ifeach", IfEachFunc, 3, 3},
+	{"inrange", InRangeFunc, 3, 3},
+	{"iswithin", IsWithinFunc, 3, 3},
+	{"linecount", LineCountFunc, 1, 1},
+	{"logerror", LogErrorFunc, 1, -1},
+	{"loginfo", LogInfoFunc, 1, -1},
+	{"logwarn", LogWarnFunc, 1, -1},
+	{"normalizeunicode", NormalizeUnicodeFunc, 1, 2},
+	{"noteach", NotEachFunc, 1, 1},
+	{"now", NowFunc, 0, 0},
+	{"oreach", OrEachFunc, 2, 2},
+	{"regexreplace", RegexReplaceFunc, 3, 3},
+	{"replace", ReplaceFunc, 3, 3},
+	{"startofmonth", StartOfMonthFunc, 1, 1},
+	{"startofweek", StartOfWeekFunc, 1, 1},
+	{"startofyear", StartOfYearFunc, 1, 1},
+	{"strlen", StrlenFunc, 1, 1},
+	{"sublines", SublinesFunc, 2, 3},
+	{"substr", SubstrFunc, 2, 3},
+	{"todatestr", ToDateStrFunc, 1, 1},
+	{"today", TodayFunc, 0, 0},
+	{"tofullwidth", ToFullWidthFunc, 1, 1},
+	{"tohalfwidth", ToHalfWidthFunc, 1, 1},
+	{"tohiragana", ToHiraganaFunc, 1, 1},
+	{"tokatakana", ToKatakanaFunc, 1, 1},
+	{"tolower", ToLowerFunc, 1, 1},
+	{"tosimplifiedchinese", ToSimplifiedChineseFunc, 1, 1},
+	{"totraditionalchinese", ToTraditionalChineseFunc, 1, 1},
+	{"toupper", ToUpperFunc, 1, 1},
+};
+
+static constexpr size_t functionTableSize = sizeof(functionTable) / sizeof(functionTable[0]);
+
+// Binary search in sorted array - O(log n)
+static const FunctionInfo* findFunction(const std::string& name)
+{
+	auto it = std::lower_bound(std::begin(functionTable), std::end(functionTable), name,
+		[](const FunctionInfo& info, const std::string& n) {
+			return strcmp(info.name, n.c_str()) < 0;
+		}
+	);
+	
+	if (it != std::end(functionTable) && strcmp(it->name, name.c_str()) == 0)
+		return it;
+	
+	return nullptr;
+}
+
+FunctionNode::FunctionNode(const FilterExpression* ctxt, const std::string& name, std::vector<ExprNode*>* args)
+	: ctxt(ctxt), functionName(Poco::toLower(name)), args(args)
+{
+	// Special handling for prop functions
+	if (functionName == "prop")
+	{
+		SetPropFunc();
+		return;
+	}
+	if (functionName == "leftprop" || functionName == "middleprop" || functionName == "rightprop")
+	{
+		SetLeftMiddleRightPropFunc();
+		return;
+	}
+
+	// Look up function in table
+	const FunctionInfo* info = findFunction(functionName);
+	if (!info)
+		throw std::runtime_error("Unknown function: " + functionName);
+	
+	// Validate argument count
+	size_t argCount = args ? args->size() : 0;
+	if (info->minArgs >= 0 && argCount < static_cast<size_t>(info->minArgs))
+	{
+		throw std::invalid_argument(functionName + " function requires at least " + 
+			std::to_string(info->minArgs) + " argument" + (info->minArgs != 1 ? "s" : ""));
+	}
+	if (info->maxArgs >= 0 && argCount > static_cast<size_t>(info->maxArgs))
+	{
+		throw std::invalid_argument(functionName + " function requires at most " + 
+			std::to_string(info->maxArgs) + " argument" + (info->maxArgs != 1 ? "s" : ""));
+	}
+
+	func = info->func;
 }
 
 FunctionNode::~FunctionNode()

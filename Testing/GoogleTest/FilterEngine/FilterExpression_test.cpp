@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include <gtest/gtest.h>
 #include "FilterEngine/FilterExpression.h"
 #include "DiffContext.h"
@@ -11,6 +11,8 @@
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "MergeApp.h"
+
+#pragma execution_character_set("utf-8")
 
 struct FilterTestParam { bool optimize; };
 
@@ -1010,6 +1012,10 @@ TEST_P(FilterExpressionTest, ParseError)
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	EXPECT_FALSE(fe.Parse("toDateStr(now(), now())"));
 	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("isWithin(now(), now())"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
+	EXPECT_FALSE(fe.Parse("inRange(now(), now())"));
+	EXPECT_EQ(FILTER_ERROR_INVALID_ARGUMENT_COUNT, fe.errorCode);
 	if (fe.optimize) {
 		EXPECT_FALSE(fe.Parse("LeftName matches \"[[\""));
 		EXPECT_EQ(FILTER_ERROR_INVALID_REGULAR_EXPRESSION, fe.errorCode);
@@ -1018,6 +1024,176 @@ TEST_P(FilterExpressionTest, ParseError)
 	EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
 	EXPECT_FALSE(fe.Parse(")LeftSize == 1"));
 	EXPECT_EQ(FILTER_ERROR_SYNTAX_ERROR, fe.errorCode);
+}
+
+TEST_P(FilterExpressionTest, IsWithinAndInRange)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Integer tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(1, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(10, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(0, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(11, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Integer tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(1, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(10, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(0, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(11, 1, 10)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Double tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(5.5, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(1.0, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(10.0, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(0.9, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(10.1, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Double tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(5.5, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(1.0, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(10.0, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(0.9, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(10.1, 1.0, 10.0)"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Mixed int/double tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(5, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(5.5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(5, 1, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(5.5, 1.0, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Mixed int/double tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(5, 1.0, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(5.5, 1, 10)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(5, 1, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(5.5, 1, 10.0)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// String tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(\"bbb\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"aaa\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"ccc\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"ddd\", \"aaa\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"aaa\", \"bbb\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// String tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(\"bbb\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"aaa\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"ccc\", \"aaa\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"ddd\", \"aaa\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"aaa\", \"bbb\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// DateTime tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-15\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-10\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-20\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-09\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(d\"2025-05-21\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// DateTime tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-15\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-10\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-20\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-09\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(d\"2025-05-21\", d\"2025-05-10\", d\"2025-05-20\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Array tests for isWithin
+	EXPECT_TRUE(fe.Parse("isWithin(array(3, 5, 7), 1, 10) == array(true, true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(array(0, 5, 11), 1, 10) == array(false, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(array(1, 10), 1, 10) == array(true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array tests for inRange
+	EXPECT_TRUE(fe.Parse("inRange(array(3, 5, 7), 1, 10) == array(true, true, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(0, 5, 11), 1, 10) == array(false, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(1, 10), 1, 10) == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array tests with strings
+	EXPECT_TRUE(fe.Parse("isWithin(array(\"aaa\", \"bbb\", \"ddd\"), \"aaa\", \"ccc\") == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(\"aaa\", \"bbb\", \"ccc\"), \"aaa\", \"ccc\") == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array tests with doubles
+	EXPECT_TRUE(fe.Parse("isWithin(array(1.5, 5.5, 10.5), 1.0, 10.0) == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(1.0, 5.5, 10.0), 1.0, 10.0) == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Tests with anyof
+	EXPECT_TRUE(fe.Parse("anyof(isWithin(array(0, 5, 11), 1, 10))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("anyof(inRange(array(0, 5, 11), 1, 10))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Tests with allof
+	EXPECT_TRUE(fe.Parse("allof(isWithin(array(3, 5, 7), 1, 10))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(isWithin(array(0, 5, 11), 1, 10))"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(inRange(array(3, 5, 7), 1, 10))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(inRange(array(0, 5, 11), 1, 10))"));
+	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, Test1)
@@ -1069,6 +1245,361 @@ TEST_P(FilterExpressionTest, Test1)
 	EXPECT_FALSE(fe.Evaluate(di));
 }
 
+TEST_P(FilterExpressionTest, ConditionalFunctions)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Alice.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Bob.txt";
+	di.diffFileInfo[1].size = 2000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// if function tests
+	EXPECT_TRUE(fe.Parse("if(true, \"yes\", \"no\") == \"yes\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("if(false, \"yes\", \"no\") == \"no\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("if(LeftSize > 500, \"large\", \"small\") == \"large\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("if(LeftSize < 500, \"large\", \"small\") == \"small\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// ifEach function tests
+	EXPECT_TRUE(fe.Parse("ifEach(array(true, false, true), \"yes\", \"no\") == array(\"yes\", \"no\", \"yes\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("ifEach(Size > 1500, \"large\", \"small\") == array(\"small\", \"large\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("ifEach(array(true, false), array(\"a\", \"b\"), array(\"c\", \"d\")) == array(\"a\", \"d\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("ifEach(true, \"yes\", \"no\") == \"yes\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// choose function tests
+	EXPECT_TRUE(fe.Parse("choose(0, \"zero\", \"one\", \"two\") == \"zero\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("choose(1, \"zero\", \"one\", \"two\") == \"one\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("choose(2, \"zero\", \"one\", \"two\") == \"two\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("choose(-1, \"zero\", \"one\", \"two\") == \"zero\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("choose(5, \"zero\", \"one\", \"two\") == \"two\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// chooseEach function tests
+	EXPECT_TRUE(fe.Parse("chooseEach(array(0, 1, 2), \"a\", \"b\", \"c\") == array(\"a\", \"b\", \"c\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("chooseEach(array(0, 0, 1), \"x\", \"y\", \"z\") == array(\"x\", \"x\", \"y\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("chooseEach(array(-1, 5), \"a\", \"b\") == array(\"a\", \"b\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("chooseEach(0, \"a\", \"b\") == \"a\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// andEach function tests
+	EXPECT_TRUE(fe.Parse("andEach(true, true) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(true, false) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(false, true) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(false, false) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(array(true, false, true), true) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(true, array(true, false, true)) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(array(true, false, true), array(true, true, false)) == array(true, false, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("andEach(Size > 500, Size < 1500) == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// orEach function tests
+	EXPECT_TRUE(fe.Parse("orEach(true, true) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(true, false) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(false, true) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(false, false) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(array(true, false, true), false) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(false, array(true, false, true)) == array(true, false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(array(true, false, false), array(false, true, false)) == array(true, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("orEach(Size < 500, Size > 1500) == array(false, true)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// notEach function tests
+	EXPECT_TRUE(fe.Parse("notEach(true) == false"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("notEach(false) == true"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("notEach(array(true, false, true)) == array(false, true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("notEach(Size > 1500) == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined tests
+	EXPECT_TRUE(fe.Parse("anyof(andEach(Size > 500, Size < 1500))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(orEach(Size < 500, Size > 1500))"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("anyof(notEach(Size > 2500))"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("ifEach(andEach(Size > 500, Size < 1500), \"in range\", \"out of range\") == array(\"in range\", \"out of range\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, StringTransformFunctions)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// tolower function tests
+	EXPECT_TRUE(fe.Parse("tolower(\"HELLO\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tolower(\"Hello World\") == \"hello world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tolower(\"ABC123\") == \"abc123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tolower(array(\"HELLO\", \"WORLD\")) == array(\"hello\", \"world\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toupper function tests
+	EXPECT_TRUE(fe.Parse("toupper(\"hello\") == \"HELLO\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"Hello World\") == \"HELLO WORLD\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"abc123\") == \"ABC123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(array(\"hello\", \"world\")) == array(\"HELLO\", \"WORLD\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Japanese character conversion tests (tohalfwidth/tofullwidth)
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"ＡＢＣＤＥ\") == \"ABCDE\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(\"ABCDE\") == \"ＡＢＣＤＥ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"１２３４５\") == \"12345\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(\"12345\") == \"１２３４５\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(array(\"ＡＢＣＤＥ\", \"１２３４５\")) == array(\"ABCDE\", \"12345\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tofullwidth(array(\"ABCDE\", \"12345\")) == array(\"ＡＢＣＤＥ\", \"１２３４５\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Japanese hiragana/katakana conversion tests
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"あいうえお\") == \"アイウエオ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(\"アイウエオ\") == \"あいうえお\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"かきくけこ\") == \"カキクケコ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(\"カキクケコ\") == \"かきくけこ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(array(\"あいうえお\", \"かきくけこ\")) == array(\"アイウエオ\", \"カキクケコ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohiragana(array(\"アイウエオ\", \"カキクケコ\")) == array(\"あいうえお\", \"かきくけこ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Chinese character conversion tests (simplified/traditional)
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(\"繁體字\") == \"繁体字\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(\"简体字\") == \"簡體字\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(\"電腦\") == \"电脑\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(\"计算机\") == \"計算機\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tosimplifiedchinese(array(\"繁體字\", \"電腦\")) == array(\"繁体字\", \"电脑\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(array(\"简体字\", \"计算机\")) == array(\"簡體字\", \"計算機\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined usage tests
+	EXPECT_TRUE(fe.Parse(u8"toupper(tolower(\"HeLLo\")) == \"HELLO\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(tofullwidth(\"ABC\")) == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(tohiragana(\"アイウエオ\")) == \"アイウエオ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"totraditionalchinese(tosimplifiedchinese(\"繁體字\")) == \"繁體字\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Edge case: empty string
+	EXPECT_TRUE(fe.Parse("tolower(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tohalfwidth(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("tofullwidth(\"\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Mixed content tests
+	EXPECT_TRUE(fe.Parse("tolower(\"Test123!@#\") == \"test123!@#\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toupper(\"Test123!@#\") == \"TEST123!@#\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tohalfwidth(\"Ａ１あア\") == \"A1あｱ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"tokatakana(\"あア\") == \"アア\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// strlen with non-string arguments
+	EXPECT_TRUE(fe.Parse("strlen(123) == 3"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(12345) == 5"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(123.45) == 10")); // "123.450000"
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(true) == 4"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(false) == 5"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("strlen(array(123, 456)) == array(3, 3)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// substr with non-string first argument
+	EXPECT_TRUE(fe.Parse("substr(12345, 1, 3) == \"234\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(123.45, 0, 3) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(true, 0, 2) == \"tr\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("substr(array(123, 456), 1, 2) == array(\"23\", \"56\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// replace with non-string first argument
+	EXPECT_TRUE(fe.Parse("replace(12345, \"23\", \"XX\") == \"1XX45\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(123.45, \".\", \",\") == \"123,450000\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(true, \"t\", \"T\") == \"True\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(array(123, 456), \"3\", \"X\") == array(\"12X\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// regexReplace with non-string first argument
+	EXPECT_TRUE(fe.Parse("regexReplace(12345, \"[24]\", \"X\") == \"1X3X5\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(123.45, \"\\d\", \"X\") == \"XXX.XXXXXX\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(true, \"[a-z]\", \"X\") == \"XXXX\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(array(123, 456), \"[13]\", \"X\") == array(\"X2X\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toUpper with non-string argument
+	EXPECT_TRUE(fe.Parse("toUpper(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(123.45) == \"123.450000\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(true) == \"TRUE\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(false) == \"FALSE\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toUpper(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toLower with non-string argument
+	EXPECT_TRUE(fe.Parse("toLower(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(123.45) == \"123.450000\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(false) == \"false\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toLower(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toHalfWidth with non-string argument
+	EXPECT_TRUE(fe.Parse("toHalfWidth(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHalfWidth(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHalfWidth(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toFullWidth with non-string argument
+	EXPECT_TRUE(fe.Parse("toFullWidth(123) == \"１２３\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse(u8"toFullWidth(array(123, 456)) == array(\"１２３\", \"４５６\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toHiragana with non-string argument
+	EXPECT_TRUE(fe.Parse("toHiragana(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toHiragana(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toKatakana with non-string argument
+	EXPECT_TRUE(fe.Parse("toKatakana(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toKatakana(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toSimplifiedChinese with non-string argument
+	EXPECT_TRUE(fe.Parse("toSimplifiedChinese(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toSimplifiedChinese(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// toTraditionalChinese with non-string argument
+	EXPECT_TRUE(fe.Parse("toTraditionalChinese(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("toTraditionalChinese(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// normalizeUnicode with non-string argument
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(123) == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(true) == \"true\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("normalizeUnicode(array(123, 456)) == array(\"123\", \"456\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 INSTANTIATE_TEST_SUITE_P(
 	OptimizationCases,
 	FilterExpressionTest,
@@ -1077,4 +1608,7 @@ INSTANTIATE_TEST_SUITE_P(
 		FilterTestParam{ false }
 	)
 );
+
+
+
 

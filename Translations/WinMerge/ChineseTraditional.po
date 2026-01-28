@@ -566,6 +566,9 @@ msgstr "將第 &2 和第 3 對調"
 msgid "Swap 1st | &3rd"
 msgstr "將第 1 和第 &3 對調"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "統計比較結果 (&P)"
 
@@ -900,6 +903,9 @@ msgstr "分割 (&L)"
 msgid "Comp&are"
 msgstr "比較 (&A)"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "在新視窗中比較 (&W)"
 
@@ -1055,8 +1061,11 @@ msgstr "複製完整路徑 (&C)"
 msgid "Copy &Filename"
 msgstr "複製檔名 (&F)"
 
-msgid "&Edit Caption"
-msgstr "編輯標題(&E)"
+msgid "&Edit Caption\tF2"
+msgstr "編輯標題(&E)\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr ""
 
 msgid "&Open..."
 msgstr "開啟(&O)..."
@@ -1502,6 +1511,30 @@ msgstr "額外屬性(&P)..."
 msgid "Add F&older Condition"
 msgstr "新增資料夾條件(&O)"
 
+msgid "&Files"
+msgstr ""
+
+msgid "0 files"
+msgstr ""
+
+msgid "1 file or more"
+msgstr ""
+
+msgid "&Items"
+msgstr ""
+
+msgid "0 items"
+msgstr ""
+
+msgid "1 item or more"
+msgstr ""
+
+msgid "&Total Size"
+msgstr ""
+
+msgid "&Recursive"
+msgstr ""
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "目標：任意（左/中/右）(&A)"
 
@@ -1603,6 +1636,63 @@ msgstr "比較屬性(&A)"
 
 msgid "Compare C&ontents"
 msgstr "比較內容(&O)"
+
+msgid "&Clear Keys"
+msgstr ""
+
+msgid "&Name"
+msgstr ""
+
+msgid "&Base name (without extension)"
+msgstr ""
+
+msgid "Normalized &Unicode Name"
+msgstr ""
+
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash (MD5)"
+msgstr ""
+
+msgid "Insert &replace() Function"
+msgstr ""
+
+msgid "Insert rege&xReplace() Function"
+msgstr ""
+
+msgid "Text &Normalization"
+msgstr ""
+
+msgid "&Lowercase"
+msgstr ""
+
+msgid "&Uppercase"
+msgstr ""
+
+msgid "&Half-width"
+msgstr ""
+
+msgid "&Full-width"
+msgstr ""
+
+msgid "&Chinese Conversion"
+msgstr ""
+
+msgid "&Simplified Chinese"
+msgstr ""
+
+msgid "&Traditional Chinese"
+msgstr ""
+
+msgid "&Japanese Conversion"
+msgstr ""
+
+msgid "&Hiragana"
+msgstr ""
+
+msgid "&Katakana"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "關於 WinMerge"
@@ -1984,6 +2074,9 @@ msgstr "使用資源回收筒 (&U)"
 msgid "&External editor:"
 msgstr "外部編輯器 (&E)："
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "資料夾篩選器 (&F)："
 
@@ -2207,6 +2300,9 @@ msgstr "項目總數："
 
 msgid "Items compared:"
 msgstr "比較過的項目："
+
+msgid "&Close"
+msgstr "關閉 (&C)"
 
 msgid "Go to"
 msgstr "移至"
@@ -2453,9 +2549,6 @@ msgstr "結果："
 msgid "&Test"
 msgstr "測試 (&T)"
 
-msgid "&Close"
-msgstr "關閉 (&C)"
-
 msgid "Table"
 msgstr "表格"
 
@@ -2618,6 +2711,15 @@ msgstr "當大小超過以下ＭＢ限制時，切換為二進制比較(&B)："
 
 msgid "Additional comparison condi&tions:"
 msgstr "額外的比較條件(&t)："
+
+msgid "&Rename/move detection:"
+msgstr ""
+
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "檔案模式："
@@ -3878,6 +3980,33 @@ msgstr "檔案不同 (表達式：%1)"
 msgid "Group%d"
 msgstr "群組%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
+msgstr ""
+
+msgid "Renamed"
+msgstr ""
+
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
+msgstr ""
+
+#, c-format
+msgid "(%1 items)"
+msgstr ""
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr ""
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "經過時間： %ld 毫秒"
@@ -4717,11 +4846,14 @@ msgstr "逐行位置和文字"
 msgid "Word-by-word position and text"
 msgstr "逐字位置和文字"
 
-msgid "AppData folder"
-msgstr "AppData 資料夾"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "安裝資料夾"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5110,6 +5242,10 @@ msgstr "暗色"
 
 msgid "Follow system"
 msgstr "遵循系統"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "排版美化"

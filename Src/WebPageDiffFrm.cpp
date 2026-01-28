@@ -575,6 +575,7 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 				m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
 			UpdateHeaderPath(pane);
 		}
+		m_pWebDiffWindow->SetActivePane(pane);
 	});
 
 	// Merge frame also has a dockable bar at the very left
@@ -820,7 +821,8 @@ void CWebPageDiffFrame::UpdateHeaderPath(int pane)
 			m_pDirDoc->ApplyDisplayRoot(pane, sText);
 	}
 
-	m_wndFilePathBar.SetText(pane, sText.c_str());
+	m_wndFilePathBar.SetCaption(pane, sText);
+	m_wndFilePathBar.SetPath(pane, m_filePaths.GetPath(pane));
 
 	SetTitle(nullptr);
 }
@@ -1040,7 +1042,7 @@ void CWebPageDiffFrame::OnIdleUpdateCmdUI()
 		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		{
 			// Update mod indicators
-			m_wndFilePathBar.SetActive(pane, pane == nActivePane);
+			m_wndFilePathBar.SetActive(pane, pane == m_nActivePane);
 		}
 		UpdateLastCompareResult();
 	}

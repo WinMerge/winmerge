@@ -200,6 +200,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -230,6 +231,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -258,6 +260,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -286,6 +289,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -312,6 +316,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -341,6 +346,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -368,6 +374,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -395,6 +402,7 @@
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;version.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -437,6 +445,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\CompareStats.cpp" />
     <ClCompile Include="..\..\..\Src\DiffContext.cpp" />
     <ClCompile Include="..\..\..\Src\DiffFileData.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -549,6 +558,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\RenameMoveDetection.cpp" />
     <ClCompile Include="..\..\..\Src\MovedLines.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -599,6 +609,7 @@
     </ClCompile>
     <ClCompile Include="..\ExistenceCompare\ExistenceCompare_test.cpp" />
     <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp" />
+    <ClCompile Include="..\MoveDetection\RenameMoveDetection_test.cpp" />
     <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
@@ -844,6 +855,7 @@
     <ClInclude Include="..\..\..\Src\Common\VersionInfo.h" />
     <ClInclude Include="..\..\..\Src\CompareOptions.h" />
     <ClInclude Include="..\..\..\Src\Common\coretools.h" />
+    <ClInclude Include="..\..\..\Src\CompareStats.h" />
     <ClInclude Include="..\..\..\Src\DiffContext.h" />
     <ClInclude Include="..\..\..\Src\DiffFileData.h" />
     <ClInclude Include="..\..\..\Src\DiffItem.h" />
@@ -869,6 +881,7 @@
     <ClInclude Include="..\..\..\Src\MergeCmdLineInfo.h" />
     <ClInclude Include="..\..\..\Src\Common\multiformatText.h" />
     <ClInclude Include="..\..\..\Src\Common\OptionsMgr.h" />
+    <ClInclude Include="..\..\..\Src\RenameMoveDetection.h" />
     <ClInclude Include="..\..\..\Src\MovedLines.h" />
     <ClInclude Include="..\..\..\Src\PatchHTML.h" />
     <ClInclude Include="..\..\..\Src\PathContext.h" />

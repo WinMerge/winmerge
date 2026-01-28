@@ -61,6 +61,7 @@ SwedishLanguage=Шведский
 TamilLanguage=Тамильский
 TurkishLanguage=Турецкий
 UkrainianLanguage=Украинский
+VietnameseLanguage=Вьетнамский
 
 ;Tasks
 ExplorerContextMenu=Встроить в контекстное меню Проводника
@@ -89,4 +90,5 @@ ExplorerNeedsRestart=Для обновления расширения оболо
 
 ; Project file description
 ProjectFileDesc=Файл проекта WinMerge
+
 

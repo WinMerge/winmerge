@@ -489,6 +489,9 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		bResult = OpenImages();
 	}
 
+	if (!bResult)
+		return FALSE;
+
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		m_fileInfo[pane].Update(m_filePaths[pane]);
@@ -567,9 +570,11 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 				m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
 			UpdateHeaderPath(pane);
 		}
+		m_pImgMergeWindow->SetActivePane(pane);
 	});
 	m_wndFilePathBar.SetOnFileSelectedCallback([&](int pane, const String& sFilepath) {
 		ChangeFile(pane, sFilepath);
+		m_pImgMergeWindow->SetActivePane(pane);
 	});
 
 	// Merge frame also has a dockable bar at the very left
@@ -1072,7 +1077,8 @@ void CImgMergeFrame::UpdateHeaderPath(int pane)
 	if (m_pImgMergeWindow->IsModified(pane))
 		sText.insert(0, _T("* "));
 
-	m_wndFilePathBar.SetText(pane, sText.c_str());
+	m_wndFilePathBar.SetCaption(pane, sText);
+	m_wndFilePathBar.SetPath(pane, m_filePaths.GetPath(pane));
 
 	SetTitle(nullptr);
 }
@@ -1173,6 +1179,13 @@ bool CImgMergeFrame::OpenImages()
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
 	else
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
+	if (!bResult)
+	{
+		std::error_code ec(m_pImgMergeWindow->GetLastErrorCode(), std::generic_category());
+		String sSysError = ucr::toTString(ec.message());
+		String sError = strutils::format_string2(_("Cannot open file(s)\n%1\n\n%2"), filteredFilenames, sSysError);
+		AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
+	}
 
 	return bResult;
 }
@@ -1417,11 +1430,11 @@ void CImgMergeFrame::OnIdleUpdateCmdUI()
 		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		{
 			// Update mod indicators
-			String ind = m_wndFilePathBar.GetText(pane);
+			String ind = m_wndFilePathBar.GetCaption(pane);
 			if (m_pImgMergeWindow->IsModified(pane) ? ind[0] != _T('*') : ind[0] == _T('*'))
 				UpdateHeaderPath(pane);
 
-			m_wndFilePathBar.SetActive(pane, pane == nActivePane);
+			m_wndFilePathBar.SetActive(pane, pane == m_nActivePane);
 			POINT ptReal;
 			String text;
 			if (m_pImgMergeWindow->ConvertToRealPos(pane, pt, ptReal))
@@ -2352,7 +2365,9 @@ void CImgMergeFrame::OnToolsGenerateReport()
 void CImgMergeFrame::OnRefresh()
 {
 	if (UpdateLastCompareResult() == 0)
-		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true, !IsModified());
+		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
+			std::none_of(m_filePaths.begin(), m_filePaths.end(), [](const String& s) { return s.empty(); })
+			&& !IsModified());
 }
 
 void CImgMergeFrame::OnDropFiles(int pane, const std::vector<String>& files)

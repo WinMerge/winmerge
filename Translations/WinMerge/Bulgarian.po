@@ -555,6 +555,9 @@ msgstr "Разменяне на №&2 с №3"
 msgid "Swap 1st | &3rd"
 msgstr "Разменяне на №1 с №&3"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Статистика на &сравнение…"
 
@@ -885,6 +888,9 @@ msgstr "Ра&зделяне"
 msgid "Comp&are"
 msgstr "&Сравняване"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "Сравняване в нов &прозорец"
 
@@ -1040,8 +1046,11 @@ msgstr "&Копиране на пълния път"
 msgid "Copy &Filename"
 msgstr "Копиране на &името"
 
-msgid "&Edit Caption"
-msgstr "Промяна на &заглавието"
+msgid "&Edit Caption\tF2"
+msgstr "Промяна на &заглавието\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr ""
 
 msgid "&Open..."
 msgstr "&Отваряне…"
@@ -1487,6 +1496,30 @@ msgstr "Допълнителни &атрибути…"
 msgid "Add F&older Condition"
 msgstr ""
 
+msgid "&Files"
+msgstr ""
+
+msgid "0 files"
+msgstr ""
+
+msgid "1 file or more"
+msgstr ""
+
+msgid "&Items"
+msgstr ""
+
+msgid "0 items"
+msgstr ""
+
+msgid "1 item or more"
+msgstr ""
+
+msgid "&Total Size"
+msgstr ""
+
+msgid "&Recursive"
+msgstr ""
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr ""
 
@@ -1587,6 +1620,63 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
+msgstr ""
+
+msgid "&Clear Keys"
+msgstr ""
+
+msgid "&Name"
+msgstr ""
+
+msgid "&Base name (without extension)"
+msgstr ""
+
+msgid "Normalized &Unicode Name"
+msgstr ""
+
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash (MD5)"
+msgstr ""
+
+msgid "Insert &replace() Function"
+msgstr ""
+
+msgid "Insert rege&xReplace() Function"
+msgstr ""
+
+msgid "Text &Normalization"
+msgstr ""
+
+msgid "&Lowercase"
+msgstr ""
+
+msgid "&Uppercase"
+msgstr ""
+
+msgid "&Half-width"
+msgstr ""
+
+msgid "&Full-width"
+msgstr ""
+
+msgid "&Chinese Conversion"
+msgstr ""
+
+msgid "&Simplified Chinese"
+msgstr ""
+
+msgid "&Traditional Chinese"
+msgstr ""
+
+msgid "&Japanese Conversion"
+msgstr ""
+
+msgid "&Hiragana"
+msgstr ""
+
+msgid "&Katakana"
 msgstr ""
 
 msgid "About WinMerge"
@@ -1964,6 +2054,9 @@ msgstr "&Използване на Кошчето"
 msgid "&External editor:"
 msgstr "&Външен редактор:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "&Папка за филтри:"
 
@@ -2185,6 +2278,9 @@ msgstr "Всичко:"
 
 msgid "Items compared:"
 msgstr "Сравнени:"
+
+msgid "&Close"
+msgstr "&Затваряне"
 
 msgid "Go to"
 msgstr "Отиване към"
@@ -2431,9 +2527,6 @@ msgstr "Резултат:"
 msgid "&Test"
 msgstr "&Изпробване"
 
-msgid "&Close"
-msgstr "&Затваряне"
-
 msgid "Table"
 msgstr "Таблици"
 
@@ -2596,6 +2689,15 @@ msgstr "Използване на &двоично сравняване при р
 
 msgid "Additional comparison condi&tions:"
 msgstr "Допълнителни &условия за сравняване:"
+
+msgid "&Rename/move detection:"
+msgstr ""
+
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Шаблони за име на файл:"
@@ -3835,6 +3937,33 @@ msgstr "Файловете са различни (израз: %1)"
 msgid "Group%d"
 msgstr "Група%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
+msgstr ""
+
+msgid "Renamed"
+msgstr ""
+
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
+msgstr ""
+
+#, c-format
+msgid "(%1 items)"
+msgstr ""
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr ""
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Изминало време: %ld мс"
@@ -4659,10 +4788,13 @@ msgstr "Позиция на редове и текст"
 msgid "Word-by-word position and text"
 msgstr "Позиция на думи и текст"
 
-msgid "AppData folder"
+msgid "AppData (Roaming) folder"
 msgstr ""
 
 msgid "Install folder"
+msgstr ""
+
+msgid "Documents folder"
 msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
@@ -5024,6 +5156,10 @@ msgstr "Тъмна"
 
 msgid "Follow system"
 msgstr "Според системата"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Подреждане на кода"

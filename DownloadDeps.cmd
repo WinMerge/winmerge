@@ -20,10 +20,10 @@ https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.21-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.21-ARM.zip!Build\ARM\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.21-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.47/winimerge-1.0.47.0-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.47/winimerge-1.0.47.0-x64.zip!Build\x64\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.47/winimerge-1.0.47.0-ARM.zip!Build\ARM\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.47/winimerge-1.0.47.0-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.50/winimerge-1.0.50-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.50/winimerge-1.0.50-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.50/winimerge-1.0.50-ARM.zip!Build\ARM\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.50/winimerge-1.0.50-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.20/winwebdiff-1.0.20.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.20/winwebdiff-1.0.20.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.20/winwebdiff-1.0.20.0-ARM64.zip!Build\ARM64\Release ^
@@ -32,8 +32,8 @@ https://github.com/WinMerge/darkmodelib/releases/download/v0.21.2/darkmodelib-0.
 https://github.com/WinMerge/darkmodelib/releases/download/v0.21.2/darkmodelib-0.21.2.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
-https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-windows-i386.exe!Build\jq ^
-https://github.com/jqlang/jq/archive/refs/tags/jq-1.7.1.zip!Build\jq ^
+https://github.com/jqlang/jq/releases/download/jq-1.8.1/jq-windows-i386.exe!Build\jq ^
+https://github.com/jqlang/jq/archive/refs/tags/jq-1.8.1.zip!Build\jq ^
 https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-v1.5.2-win64.zip!Build\zstd ^
 https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.5.2-1-any.pkg.tar.zst!Build\md4c ^
 https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
@@ -112,7 +112,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     )
     echo ** jq
     copy Build\jq\jq-windows-i386.exe Build\%%i\%%j\Commands\jq\jq.exe
-    copy Build\jq\jq-jq-1.7.1\COPYING Build\%%i\%%j\Commands\jq\
+    copy Build\jq\jq-jq-1.8.1\COPYING Build\%%i\%%j\Commands\jq\
     echo ** tidy-html5
     copy Build\tidy-html5\bin\tidy.* Build\%%i\%%j\Commands\tidy-html5\
     copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md Build\%%i\%%j\Commands\tidy-html5\

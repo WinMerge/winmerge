@@ -114,7 +114,6 @@ public:
 	~FileFilterHelper();
 
 	String GetGlobalFilterPathWithCreate() const;
-	String GetUserFilterPathWithCreate() const;
 
 	FileFilterMgr* GetManager() const;
 	std::vector<FileFilterInfo> GetFileFilters() const;
@@ -127,6 +126,7 @@ public:
 
 	void LoadFileFilterDirPattern(const String& dir, const String& szPattern);
 
+	bool IsEmpty() const { return m_filterGroups.empty(); }
 	const String& GetMaskOrExpression() const { return m_sMask; }
 	void SetMaskOrExpression(const String& strMask);
 

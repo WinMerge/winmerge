@@ -12,6 +12,7 @@
 class PrediffingInfo;
 class PackingInfo;
 class CompareStats;
+class IHeaderBar;
 struct FileLocation;
 struct IMergeDoc;
 struct CEPoint;
@@ -49,6 +50,10 @@ public:
 	{
 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
 	}
+	virtual IHeaderBar* GetHeaderInterface()
+	{
+		return nullptr;
+	}
 protected:
 	int m_nLastSplitPos[3];
 private:
@@ -65,6 +70,7 @@ protected:
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 	afx_msg void OnDestroy();
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
+	afx_msg void OnEditorEditPath();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

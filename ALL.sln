@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11205.157 d18.0
+VisualStudioVersion = 18.0.11205.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Merge", "Src\Merge.vcxproj", "{9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE}"
 EndProject
@@ -453,6 +453,50 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\XML.vcxitems", "{DAFD8D9E-6509-4482-A533-44C843C3BCC7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "darkmodelib-DLL", "Externals\darkmodelib\vs.proj\darkmodelib-DLL.vcxproj", "{40AF6A7D-B4E7-4919-B38A-75F625E36AF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translations", "{02828B8D-E4B9-41FE-84C4-D5CDA7761627}"
+	ProjectSection(SolutionItems) = preProject
+		Translations\InnoSetup\Arabic.islu = Translations\InnoSetup\Arabic.islu
+		Translations\InnoSetup\Basque.islu = Translations\InnoSetup\Basque.islu
+		Translations\InnoSetup\Brazilian.islu = Translations\InnoSetup\Brazilian.islu
+		Translations\InnoSetup\Bulgarian.islu = Translations\InnoSetup\Bulgarian.islu
+		Translations\InnoSetup\Catalan.islu = Translations\InnoSetup\Catalan.islu
+		Translations\InnoSetup\ChineseSimplified.islu = Translations\InnoSetup\ChineseSimplified.islu
+		Translations\InnoSetup\ChineseTraditional.islu = Translations\InnoSetup\ChineseTraditional.islu
+		Translations\InnoSetup\Corsican.islu = Translations\InnoSetup\Corsican.islu
+		Translations\InnoSetup\Croatian.islu = Translations\InnoSetup\Croatian.islu
+		Translations\InnoSetup\Czech.islu = Translations\InnoSetup\Czech.islu
+		Translations\InnoSetup\Danish.islu = Translations\InnoSetup\Danish.islu
+		Translations\InnoSetup\Dutch.islu = Translations\InnoSetup\Dutch.islu
+		Translations\InnoSetup\English.islu = Translations\InnoSetup\English.islu
+		Translations\InnoSetup\Finnish.islu = Translations\InnoSetup\Finnish.islu
+		Translations\InnoSetup\French.islu = Translations\InnoSetup\French.islu
+		Translations\InnoSetup\Galician.islu = Translations\InnoSetup\Galician.islu
+		Translations\InnoSetup\German.islu = Translations\InnoSetup\German.islu
+		Translations\InnoSetup\Greek.islu = Translations\InnoSetup\Greek.islu
+		Translations\InnoSetup\Hebrew.islu = Translations\InnoSetup\Hebrew.islu
+		Translations\InnoSetup\Hungarian.islu = Translations\InnoSetup\Hungarian.islu
+		Translations\InnoSetup\Italian.islu = Translations\InnoSetup\Italian.islu
+		Translations\InnoSetup\Japanese.islu = Translations\InnoSetup\Japanese.islu
+		Translations\InnoSetup\Korean.islu = Translations\InnoSetup\Korean.islu
+		Translations\InnoSetup\Lithuanian.islu = Translations\InnoSetup\Lithuanian.islu
+		Translations\InnoSetup\Norwegian.islu = Translations\InnoSetup\Norwegian.islu
+		Translations\InnoSetup\Persian.islu = Translations\InnoSetup\Persian.islu
+		Translations\InnoSetup\Polish.islu = Translations\InnoSetup\Polish.islu
+		Translations\InnoSetup\Portuguese.islu = Translations\InnoSetup\Portuguese.islu
+		Translations\InnoSetup\Romanian.islu = Translations\InnoSetup\Romanian.islu
+		Translations\InnoSetup\Russian.islu = Translations\InnoSetup\Russian.islu
+		Translations\InnoSetup\Serbian.islu = Translations\InnoSetup\Serbian.islu
+		Translations\InnoSetup\Sinhala.islu = Translations\InnoSetup\Sinhala.islu
+		Translations\InnoSetup\Slovak.islu = Translations\InnoSetup\Slovak.islu
+		Translations\InnoSetup\Slovenian.islu = Translations\InnoSetup\Slovenian.islu
+		Translations\InnoSetup\Spanish.islu = Translations\InnoSetup\Spanish.islu
+		Translations\InnoSetup\Swedish.islu = Translations\InnoSetup\Swedish.islu
+		Translations\InnoSetup\Tamil.islu = Translations\InnoSetup\Tamil.islu
+		Translations\InnoSetup\Turkish.islu = Translations\InnoSetup\Turkish.islu
+		Translations\InnoSetup\Ukrainian.islu = Translations\InnoSetup\Ukrainian.islu
+		Translations\InnoSetup\Vietnamese.islu = Translations\InnoSetup\Vietnamese.islu
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1423,6 +1467,7 @@ Global
 		{B30837C4-F99F-46F9-ADFB-5FAEFB1D2FBB} = {220B870C-D051-463E-997B-8C392081EE15}
 		{DAFD8D9E-6509-4482-A533-44C843C3BCC7} = {220B870C-D051-463E-997B-8C392081EE15}
 		{40AF6A7D-B4E7-4919-B38A-75F625E36AF5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{02828B8D-E4B9-41FE-84C4-D5CDA7761627} = {5360DC20-6552-4F74-8D4D-BF88B23E0B3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
