@@ -2683,8 +2683,6 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		ASSERT(0);
 		return 0;	// return value unused
 	}
-	if (pDoc->GetDiffContext().m_pRenameMoveDetection && pDoc->m_diffThread.GetThreadState() != CDiffThread::THREAD_COMPLETED)
-		return 0;
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
