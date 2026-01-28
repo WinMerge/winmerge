@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2025-11-24 00:00+0000\n"
+"PO-Revision-Date: 2026-01-28 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -561,7 +561,7 @@ msgid "Swap 1st | &3rd"
 msgstr "Поменять 1-й | &3-й"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "Отображать панель фильтров\tCtrl+Shift+L"
 
 msgid "Com&pare Statistics..."
 msgstr "Статистика сравнения..."
@@ -894,7 +894,7 @@ msgid "Comp&are"
 msgstr "С&равнить"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "Сравнить с переименованными/перемещёнными"
 
 msgid "Compare in New &Window"
 msgstr "Сравнить в новом окне"
@@ -1055,7 +1055,7 @@ msgid "&Edit Caption\tF2"
 msgstr "&Изменить заголовок\tF2"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr ""
+msgstr "Изменить путь\tCtrl+L"
 
 msgid "&Open..."
 msgstr "&Открыть..."
@@ -1502,28 +1502,28 @@ msgid "Add F&older Condition"
 msgstr "Добавить условие папки"
 
 msgid "&Files"
-msgstr ""
+msgstr "Файлы"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 файлов"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 файл или более"
 
 msgid "&Items"
-msgstr ""
+msgstr "Элементы"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 элементов"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 элемент или более"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "Общий размер"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "Рекурсивно"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Назначение: Любое (Слева/В центре/Справа)"
@@ -1628,61 +1628,61 @@ msgid "Compare C&ontents"
 msgstr "Сравнить содержимое"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "Очистить ключи"
 
 msgid "&Name"
-msgstr ""
+msgstr "Имя"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "Базовое имя (без расширения)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "Нормализованное имя в Юникоде"
 
 msgid "&Date"
-msgstr ""
+msgstr "Дата"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "Хэш (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "Вставить функцию &replace()"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "Вставить функцию rege&xReplace()"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "Нормализация текста"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "Строчные"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "Прописные"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "Половина ширины"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "Полная ширина"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "Китайская конвертация"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "Упрощённый китайский"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "Традиционный китайский"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "Японская конвертация"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "Хирагана"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "Катакана"
 
 msgid "About WinMerge"
 msgstr "О программе WinMerge"
@@ -2060,7 +2060,7 @@ msgid "&External editor:"
 msgstr "Внешний редактор:"
 
 msgid "&Store user data in:"
-msgstr ""
+msgstr "Хранить данные пользователя в:"
 
 msgid "&Filter folder:"
 msgstr "Папка фильтров:"
@@ -2688,13 +2688,13 @@ msgid "Additional comparison condi&tions:"
 msgstr "Дополнительные условия сравнения:"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "Обнаружение переименования/перемещения:"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "Ключи обнаружения переименования/перемещения:"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "Объединить переименованные элементы в один"
 
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
@@ -3732,30 +3732,30 @@ msgstr "Группа%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "Обнаружение переименований"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "Обнаружение переименований и перемещений"
 
 msgid "Renamed"
-msgstr ""
+msgstr "Переименовано"
 
 msgid "Moved"
-msgstr ""
+msgstr "Перемещено"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "Переименовано/Перемещено"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(элементов %1)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (набор %2): "
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3913,16 +3913,16 @@ msgid "Selected files are identical."
 msgstr "Выбранные файлы идентичны."
 
 msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
-msgstr ""
+msgstr "Выбранные файлы идентичны (с текущими настройками).\r\nПроверка идентичности двоичных данных..."
 
 msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
-msgstr ""
+msgstr "Выбранные файлы идентичны (с текущими настройками).\Но произошёл сбой двоичного сравнения."
 
 msgid "Selected files are identical (binary match)."
-msgstr ""
+msgstr "Выбранные файлы идентичны (двоичное совпадение)."
 
 msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
-msgstr ""
+msgstr "Выбранные файлы идентичны (с текущими настройками).\r\nНо отличаются на двоичном уровне."
 
 msgid "An error occurred while comparing files."
 msgstr "При сравнении файлов произошла ошибка."
@@ -4445,13 +4445,13 @@ msgid "Word-by-word position and text"
 msgstr "Пословная позиция и текст"
 
 msgid "AppData (Roaming) folder"
-msgstr ""
+msgstr "Папка AppData (Roaming)"
 
 msgid "Install folder"
 msgstr "Папка установки"
 
 msgid "Documents folder"
-msgstr ""
+msgstr "Папка Документы"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -4787,7 +4787,7 @@ msgstr "Системный"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "например, %1"
 
 msgid "Prettification"
 msgstr "Приукрашивание"
