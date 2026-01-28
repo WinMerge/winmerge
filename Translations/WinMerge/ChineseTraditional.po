@@ -148,7 +148,7 @@ msgid "&Ignore Color Difference"
 msgstr "忽略顏色差異 (顏色差異閥值) (&I)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr "偵測插入/刪除 (&E)"
+msgstr "插入/刪除 偵測 (&E)"
 
 msgid "&None"
 msgstr "關閉 (&N)"
@@ -552,13 +552,13 @@ msgid "Sw&ap Panes"
 msgstr "窗格對調 (&A)"
 
 msgid "Swap &1st | 2nd"
-msgstr "將第 &1 和第 2 對調"
+msgstr "將第 1 和第 2 對調 (&1)"
 
 msgid "Swap &2nd | 3rd"
-msgstr "將第 &2 和第 3 對調"
+msgstr "將第 2 和第 3 對調 (&2)"
 
 msgid "Swap 1st | &3rd"
-msgstr "將第 1 和第 &3 對調"
+msgstr "將第 1 和第 3 對調 (&3)"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
 msgstr "顯示篩選欄 (&Y)\tCtrl+Shift+L"
@@ -1631,7 +1631,7 @@ msgid "Compare C&ontents"
 msgstr "比較內容 (&O)"
 
 msgid "&Clear Keys"
-msgstr "清除按鍵 (&C)"
+msgstr "清除鍵 (&C)"
 
 msgid "&Name"
 msgstr "名稱 (&N)"
@@ -4753,7 +4753,7 @@ msgstr "顏色差異閾值"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "插入/刪除偵測"
+msgstr "插入/刪除 偵測"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
