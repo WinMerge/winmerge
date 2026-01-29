@@ -3071,19 +3071,15 @@ struct FileCmpReport: public IFileCmpReport
 
 		strutils::replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
-		FileCmpReportMsg* pMsg = new FileCmpReportMsg();
+		auto pMsg = std::make_unique<FileCmpReportMsg>();
 		pMsg->sReportPath = paths::ConcatPath(sDestDir, sLinkPath);
 		pMsg->nIndex = nIndex;
 		pMsg->hEvent = ::CreateEvent(nullptr, FALSE, FALSE, nullptr);
 		if (!pMsg->hEvent)
-		{
-			delete pMsg;
 			return false;
-		}
-		m_pDirView->PostMessage(MSG_GENERATE_FLIE_COMPARE_REPORT, reinterpret_cast<WPARAM>(pMsg), 0);
+		m_pDirView->PostMessage(MSG_GENERATE_FLIE_COMPARE_REPORT, reinterpret_cast<WPARAM>(pMsg.get()), 0);
 		::WaitForSingleObject(pMsg->hEvent, INFINITE);
 		CloseHandle(pMsg->hEvent);
-		delete pMsg;
 
 		return true;
 	}
