@@ -271,6 +271,8 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
 	}
 
+	if (pCtxt->m_pRenameMoveDetection)
+		pCtxt->m_pRenameMoveDetection->RemoveAllGroups();
 	pCtxt->m_pRenameMoveDetection.reset();
 	if (pOptions->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 0)
 	{
@@ -461,8 +463,18 @@ void CDirDoc::Rescan()
 		m_diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
 			int nItems = DirScan_UpdateMarkedItems(myStruct, nullptr);
 			myStruct->context->m_pCompareStats->IncreaseTotalItems(nItems);
+			auto* pRenameMoveDetection = myStruct->context->m_pRenameMoveDetection.get();
+			if (pRenameMoveDetection)
+			{
+				bool doMoveDetection = GetOptionsMgr()->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 1;
+				pRenameMoveDetection->Detect(*myStruct->context, doMoveDetection);
+				if (GetOptionsMgr()->GetBool(OPT_CMP_MERGE_RENAMED_ITEMS))
+					pRenameMoveDetection->Merge(*myStruct->context);
+			}
 			});
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
+			if (myStruct->context->m_pRenameMoveDetection)
+				myStruct->m_collectCompletedEvent.wait();
 			DirScan_CompareRequestedItems(myStruct, nullptr);
 			});
 		m_diffThread.SetMarkedRescan(true);

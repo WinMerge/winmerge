@@ -524,3 +524,16 @@ void RenameMoveDetection::RemoveItemFromGroup(DIFFITEM* pdi)
 	for (DIFFITEM* pdic = pdi->GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
 		RemoveItemFromGroup(pdic);
 }
+
+/**
+ * @brief Remove all rename/move groups and clear group IDs from items
+ */
+void RenameMoveDetection::RemoveAllGroups()
+{
+	for (auto& group : m_renameMoveItemGroups)
+	{
+		for (auto* di : group)
+			di->renameMoveGroupId = -1;
+	}
+	m_renameMoveItemGroups.clear();
+}
