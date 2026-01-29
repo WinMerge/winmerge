@@ -3048,6 +3048,8 @@ std::vector<String> CDirView::GetCurrentColRegKeys()
 	return colKeys;
 }
 
+struct FileCmpReportMsg { String sReportPath; int nIndex; HANDLE hEvent; };
+
 struct FileCmpReport: public IFileCmpReport
 {
 	explicit FileCmpReport(CDirView *pDirView) : m_pDirView(pDirView) {}
@@ -3069,15 +3071,19 @@ struct FileCmpReport: public IFileCmpReport
 
 		strutils::replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
-		String sReportPath = paths::ConcatPath(sDestDir, sLinkPath);
-		bool completed = false;
-
-		m_pDirView->MoveFocus(m_pDirView->GetFirstSelectedInd(), nIndex, m_pDirView->GetSelectedCount());
-		m_pDirView->PostMessage(MSG_GENERATE_FLIE_COMPARE_REPORT,
-			reinterpret_cast<WPARAM>(sReportPath.c_str()), 
-			reinterpret_cast<LPARAM>(&completed));
-
-		CMainFrame::WaitAndDoMessageLoop(completed, 5);
+		FileCmpReportMsg* pMsg = new FileCmpReportMsg();
+		pMsg->sReportPath = paths::ConcatPath(sDestDir, sLinkPath);
+		pMsg->nIndex = nIndex;
+		pMsg->hEvent = ::CreateEvent(nullptr, FALSE, FALSE, nullptr);
+		if (!pMsg->hEvent)
+		{
+			delete pMsg;
+			return false;
+		}
+		m_pDirView->PostMessage(MSG_GENERATE_FLIE_COMPARE_REPORT, reinterpret_cast<WPARAM>(pMsg), 0);
+		::WaitForSingleObject(pMsg->hEvent, INFINITE);
+		CloseHandle(pMsg->hEvent);
+		delete pMsg;
 
 		return true;
 	}
@@ -3088,13 +3094,15 @@ private:
 
 LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 {
+	FileCmpReportMsg* pMsg = reinterpret_cast<FileCmpReportMsg*>(wParam);
+
+	MoveFocus(GetFirstSelectedInd(), pMsg->nIndex, GetSelectedCount());
+
 	OpenSelection();
 
-	auto *pReportFileName = reinterpret_cast<const tchar_t *>(wParam);
-	bool *pCompleted = reinterpret_cast<bool *>(lParam);
 	if (IMergeDoc * pMergeDoc = GetMainFrame()->GetActiveIMergeDoc())
 	{
-		pMergeDoc->GenerateReport(pReportFileName);
+		pMergeDoc->GenerateReport(pMsg->sReportPath);
 		pMergeDoc->CloseNow();
 	}
 	MSG msg;
@@ -3102,7 +3110,9 @@ LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 		if (!AfxGetApp()->PumpMessage())
 			break;
 	GetMainFrame()->OnUpdateFrameTitle(FALSE);
-	*pCompleted = true;
+
+	SetEvent(pMsg->hEvent);
+
 	return 0;
 }
 
