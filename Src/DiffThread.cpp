@@ -86,6 +86,8 @@ unsigned CDiffThread::CompareDirectories()
 	delete m_pDiffParm->pSemaphore;
 	m_pDiffParm->pSemaphore = new Semaphore(0, LONG_MAX);
 
+	m_pDiffParm->m_collectCompletedEvent.reset();
+
 	m_pDiffParm->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
 
 	m_threads[0].start(DiffThreadCollect, m_pDiffParm.get());

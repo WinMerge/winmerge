@@ -82,6 +82,7 @@ void CompareStats::Reset()
 	m_nTotalItems = 0;
 	m_nComparedItems = 0;
 	m_bCompareDone = false;
+	m_rgThreadState.clear();
 }
 
 /** 
