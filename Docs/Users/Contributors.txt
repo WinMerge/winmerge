@@ -165,6 +165,7 @@ Localization:
   jota11
   Gabriel Camargo Fukushima
   Marcello-mco
+  RicardoPC1967
 
 * Portuguese (Portugal):
   Nelson Simão
