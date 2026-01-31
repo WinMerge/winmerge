@@ -271,9 +271,6 @@ void CDirDoc::InitDiffContext(CDiffContext *pCtxt)
 		pCtxt->m_pAdditionalCompareExpression->SetDiffContext(pCtxt);
 	}
 
-	if (pCtxt->m_pRenameMoveDetection)
-		pCtxt->m_pRenameMoveDetection->RemoveAllGroups();
-	pCtxt->m_pRenameMoveDetection.reset();
 	if (pOptions->GetInt(OPT_CMP_RENAME_MOVE_DETECTION) > 0)
 	{
 		const String renameMoveKeyExpression = pOptions->GetString(OPT_CMP_RENAME_MOVE_KEY);
@@ -374,6 +371,9 @@ void CDirDoc::Rescan()
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan && !m_bGeneratingReport)
 	{
+		if (m_pCtxt->m_pRenameMoveDetection)
+			m_pCtxt->m_pRenameMoveDetection->RemoveAllGroups();
+		m_pCtxt->m_pRenameMoveDetection.reset();
 		m_pCtxt->RemoveAll();
 		m_pCtxt->InitDiffItemList();
 	}
