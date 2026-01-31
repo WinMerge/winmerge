@@ -1228,6 +1228,12 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CDirView::SortColumnsAppropriately()
 {
+	// Do not sort while comparing.
+	// Compare-result columns are updated asynchronously and may
+	// violate strict weak ordering required by std::sort.
+	if (GetDocument()->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
+		return;
+	
 	int sortCol = GetOptionsMgr()->GetInt((GetDocument()->m_nDirs < 3) ? OPT_DIRVIEW_SORT_COLUMN : OPT_DIRVIEW_SORT_COLUMN3);
 	if (sortCol < 0 || sortCol >= m_pColItems->GetColCount())
 		return;
@@ -3048,7 +3054,7 @@ std::vector<String> CDirView::GetCurrentColRegKeys()
 	return colKeys;
 }
 
-struct FileCmpReportMsg { String sReportPath; int nIndex; HANDLE hEvent; };
+struct FileCmpReportMsg { String sReportPath; int nIndex = 0; HANDLE hEvent = nullptr; };
 
 struct FileCmpReport: public IFileCmpReport
 {
@@ -4851,11 +4857,6 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 	// compare 'left' and 'right' parameters as appropriate
 	int retVal = pThis->pColItems->ColSort(pThis->pCtxt, pThis->sortCol, ldi, rdi, pThis->bTreeMode);
 	// return compare result, considering sort direction
-	String rs = ldi.diffFileInfo[0].filename;
-	String ss = rdi.diffFileInfo[0].filename;
-#ifdef _DEBUG
-	OutputDebugString(strutils::format(_T("Comparing all properties for '%s' and '%s' ret=%d\n"), rs.c_str(), ss.c_str(), retVal).c_str());
-#endif
 	return pThis->bSortAscending ? retVal : -retVal;
 }
 
