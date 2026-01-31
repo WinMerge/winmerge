@@ -4261,12 +4261,15 @@ void CDirView::OnMergeCompareWithRenamedMoved()
 			std::array<FileTextEncoding, 3> encoding;
 			std::array<fileopenflags_t, 3> dwFlags = {};
 			
-			for (int nIndex = 0; nIndex < nDirs; ++nIndex)
+			for (int nIndex = 0, j = 0; nIndex < nDirs; ++nIndex)
 			{
-				paths.SetPath(nIndex, (pdiTmp[nIndex] == DIFFITEM::GetEmptyItem()) ?
-					_T("") : GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
-				encoding[nIndex] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
-				dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
+				const bool isEmpty = pdiTmp[nIndex] == DIFFITEM::GetEmptyItem();
+				if (pdi->diffcode.isDirectory() && isEmpty)
+					continue;
+				paths.SetPath(j, isEmpty ?  _T("") : GetItemFileName(ctxt, *pdiTmp[nIndex], nIndex));
+				encoding[j] = pdiTmp[nIndex]->diffFileInfo[nIndex].encoding;
+				dwFlags[j] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
+				j++;
 			}
 			
 			pathContextVec.push_back(paths);
