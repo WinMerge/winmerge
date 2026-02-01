@@ -81,8 +81,9 @@ constexpr UINT BothCmdFirst = RightCmdLast + 1;
 // CDirView
 
 enum { 
-	COLUMN_REORDER = 99,
-	STATUSBAR_UPDATE = 100
+	TIMER_ID_COLUMN_REORDER = 99,
+	TIMER_ID_STATUSBAR_UPDATE = 100,
+	TIMER_ID_DBLCLICK_OPEN = 101
 };
 
 IMPLEMENT_DYNCREATE(CDirView, CListView)
@@ -532,7 +533,10 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		}
 		else
 		{
-			OpenSelection();
+			// Do not open the file immediately to avoid leftover clicks affecting
+			// other windows (e.g., status bar or another view). Use a timer
+			// to process the open operation after a short delay.
+			SetTimer(TIMER_ID_DBLCLICK_OPEN, 50, nullptr);
 		}
 	}
 	if (GetFocus() == this)
@@ -2721,7 +2725,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 		// If compare took more than TimeToSignalCompare seconds, notify user
 		m_elapsed = pDoc->GetElapsedTime();
-		SetTimer(STATUSBAR_UPDATE, 150, nullptr);
+		SetTimer(TIMER_ID_STATUSBAR_UPDATE, 150, nullptr);
 		if (m_elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);
 		GetMainFrame()->StartFlashing();
@@ -2869,12 +2873,12 @@ void CDirView::SetFont(const LOGFONT & lf)
 /** @brief Fire off a resort of the data, to take place when things stabilize. */
 void CDirView::InitiateSort()
 {
-	PostMessage(WM_TIMER, COLUMN_REORDER);
+	PostMessage(WM_TIMER, TIMER_ID_COLUMN_REORDER);
 }
 
 void CDirView::OnTimer(UINT_PTR nIDEvent)
 {
-	if (nIDEvent == COLUMN_REORDER)
+	if (nIDEvent == TIMER_ID_COLUMN_REORDER)
 	{
 		// Remove the windows reordering, as we're doing it ourselves
 		FixReordering();
@@ -2885,9 +2889,9 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 			std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), GetDefColumnWidth());
 		Redisplay();
 	}
-	else if (nIDEvent == STATUSBAR_UPDATE)
+	else if (nIDEvent == TIMER_ID_STATUSBAR_UPDATE)
 	{
-		KillTimer(STATUSBAR_UPDATE);
+		KillTimer(TIMER_ID_STATUSBAR_UPDATE);
 		int items = GetSelectedCount();
 		String msg;
 		if (m_elapsed != 0)
@@ -2900,6 +2904,11 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 			msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
 		}
 		GetParentFrame()->SetStatus(msg.c_str());
+	}
+	else if (nIDEvent == TIMER_ID_DBLCLICK_OPEN)
+	{
+		KillTimer(TIMER_ID_DBLCLICK_OPEN);
+		PostMessage(WM_COMMAND, ID_MERGE_COMPARE);
 	}
 	
 	__super::OnTimer(nIDEvent);
@@ -3688,7 +3697,7 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 	if ((pNMListView->uOldState & LVIS_SELECTED) !=
 			(pNMListView->uNewState & LVIS_SELECTED))
 	{
-		SetTimer(STATUSBAR_UPDATE, 100, nullptr);
+		SetTimer(TIMER_ID_STATUSBAR_UPDATE, 100, nullptr);
 	}
 	*pResult = 0;
 }
