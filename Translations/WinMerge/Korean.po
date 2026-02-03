@@ -5945,6 +5945,9 @@ msgstr "시스템을 따름"
 msgid "e.g. %1"
 msgstr "예: %1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "꾸미기"
 

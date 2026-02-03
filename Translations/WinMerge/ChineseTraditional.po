@@ -5251,6 +5251,9 @@ msgstr "遵循系統"
 msgid "e.g. %1"
 msgstr "例:%1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "排版美化"
 

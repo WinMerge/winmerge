@@ -22,3 +22,4 @@ This file lists versions of the external components we are using.
 - wil: 209ff9c7e30e71bf6d1405557bf78544920f8157 on Sep 9, 2021
 - md4c: 0.5.2
 - darkmodelib: 0.21.2.0
+- StackWalker: 7af4024 on Aug 4, 2025 (https://github.com/JochenKalmbach/StackWalker)

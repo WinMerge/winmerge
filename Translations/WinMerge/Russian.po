@@ -4789,6 +4789,9 @@ msgstr "Системный"
 msgid "e.g. %1"
 msgstr "например, %1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Приукрашивание"
 

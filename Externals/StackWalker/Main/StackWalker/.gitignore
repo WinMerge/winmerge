@@ -1,0 +1,13 @@
+/*.suo
+/*.user
+/*.sdf
+/*.opensdf
+/Debug_*
+/Release_*
+/x64
+/arm64
+/Itanium
+/ipch
+/.vs
+/*.vc.db
+/*.vc.opendb

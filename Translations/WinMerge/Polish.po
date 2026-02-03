@@ -4788,6 +4788,9 @@ msgstr "Systemowy"
 msgid "e.g. %1"
 msgstr "np. %1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Upiększanie"
 

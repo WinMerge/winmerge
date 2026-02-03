@@ -5215,6 +5215,9 @@ msgstr "Seguir o sistema"
 msgid "e.g. %1"
 msgstr "p.ex. %1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Embelezamento"
 

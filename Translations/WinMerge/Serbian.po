@@ -5654,6 +5654,9 @@ msgstr ""
 msgid "e.g. %1"
 msgstr ""
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr ""
 

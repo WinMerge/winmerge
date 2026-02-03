@@ -5328,6 +5328,11 @@ BEGIN
     IDS_EXAMPLE                      "e.g. %1"
 END
 
+
+STRINGTABLE
+BEGIN
+    IDS_DETECTED_PREVIOUS_CRASH      "WinMerge detected a previous crash. Please report this if possible."
+END
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
