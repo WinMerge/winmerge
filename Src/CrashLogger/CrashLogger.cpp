@@ -35,9 +35,32 @@ namespace
 		case EXCEPTION_DATATYPE_MISALIGNMENT: return _T("Datatype Misalignment");
 		case EXCEPTION_FLT_DIVIDE_BY_ZERO: return _T("Float Divide by Zero");
 		case EXCEPTION_ILLEGAL_INSTRUCTION: return _T("Illegal Instruction");
+		case EXCEPTION_IN_PAGE_ERROR: return _T("In Page Error");
 		case EXCEPTION_INT_DIVIDE_BY_ZERO: return _T("Integer Divide by Zero");
 		case EXCEPTION_STACK_OVERFLOW: return _T("Stack Overflow");
 		default: return _T("Unknown Exception");
+		}
+	}
+
+	/**
+	 * @brief Check if exception code is considered fatal
+	 */
+	bool IsFatalException(DWORD code)
+	{
+		switch (code)
+		{
+		case EXCEPTION_ACCESS_VIOLATION:
+		case EXCEPTION_STACK_OVERFLOW:
+		case EXCEPTION_ILLEGAL_INSTRUCTION:
+		case EXCEPTION_IN_PAGE_ERROR:
+			return true;
+#ifdef _DEBUG
+		case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:
+		case EXCEPTION_DATATYPE_MISALIGNMENT:
+			return true;
+#endif
+		default:
+			return false;
 		}
 	}
 
@@ -182,7 +205,8 @@ namespace
 	 */
 	LONG CALLBACK WinMergeVectoredExceptionHandler(EXCEPTION_POINTERS* ex)
 	{
-		if (!g_bCrashLoggingEnabled || !ex || !ex->ExceptionRecord)
+		if (!g_bCrashLoggingEnabled || !ex || !ex->ExceptionRecord ||
+		    !IsFatalException(ex->ExceptionRecord->ExceptionCode))
 			return EXCEPTION_CONTINUE_SEARCH;
 		
 		// One-time crash logging per process to prevent crash loops
