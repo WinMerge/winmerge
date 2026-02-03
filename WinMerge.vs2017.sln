@@ -55,6 +55,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "Externals\poc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\XML.vcxitems", "{DAFD8D9E-6509-4482-A533-44C843C3BCC7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrashLogger", "Src\CrashLogger\CrashLogger.vcxitems", "{CDEDDAC4-79B9-4A34-A564-8019F60D241F}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
@@ -78,9 +80,11 @@ Global
 		Externals\poco\XML\XML.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Src\CrashLogger\CrashLogger.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\FilterEngine\FilterEngine.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\poco\Foundation\Foundation.vcxitems*{b30837c4-f99f-46f9-adfb-5faefb1d2fbb}*SharedItemsImports = 9
+		Src\CrashLogger\CrashLogger.vcxitems*{cdeddac4-79b9-4a34-a564-8019f60d241f}*SharedItemsImports = 9
 		Externals\poco\XML\XML.vcxitems*{dafd8d9e-6509-4482-a533-44c843c3bcc7}*SharedItemsImports = 9
 		Src\diffutils\diffutils.vcxitems*{fc3b9df3-2854-4264-ab4b-ee8c43982513}*SharedItemsImports = 9
 	EndGlobalSection

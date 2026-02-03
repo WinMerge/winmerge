@@ -4787,6 +4787,9 @@ msgstr "Kaip sistemos"
 msgid "e.g. %1"
 msgstr "pvz. %1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Sutvarkymas"
 

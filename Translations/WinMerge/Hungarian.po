@@ -5791,6 +5791,9 @@ msgstr "Rendszert követi"
 msgid "e.g. %1"
 msgstr "pl %1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
 

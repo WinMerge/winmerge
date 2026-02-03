@@ -2115,6 +2115,7 @@
 #define IDS_COLORMODE_DARK              44701
 #define IDS_COLORMODE_FOLLOWSYSTEM      44702
 #define IDS_EXAMPLE                     44720
+#define IDS_DETECTED_PREVIOUS_CRASH     44721
 
 // Next default values for new objects
 // 

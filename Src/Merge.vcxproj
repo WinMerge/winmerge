@@ -196,6 +196,7 @@
     <Import Project="FilterEngine\FilterEngine.vcxitems" Label="Shared" />
     <Import Project="..\Externals\poco\Foundation\Foundation.vcxitems" Label="Shared" />
     <Import Project="..\Externals\poco\XML\XML.vcxitems" Label="Shared" />
+    <Import Project="CrashLogger\CrashLogger.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />

@@ -5258,6 +5258,9 @@ msgstr "Sistem ayarını seç"
 msgid "e.g. %1"
 msgstr "örn. %1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Sadeleştirme"
 

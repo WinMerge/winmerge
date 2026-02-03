@@ -5293,6 +5293,9 @@ msgstr "Sistema"
 msgid "e.g. %1"
 msgstr "es. %1"
 
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Abbellimento"
 

@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StackWalker", "StackWalker_VC70.vcproj", "{9B5607ED-595C-4439-91D9-6A085BE7DBB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug_VC70
+		ConfigName.1 = Debug_VC70-UNICODE
+		ConfigName.2 = Release_VC70
+		ConfigName.3 = Release_VC70-UNICODE
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{9B5607ED-595C-4439-91D9-6A085BE7DBB8}.Debug_VC70.ActiveCfg = Debug_VC70|Win32
+		{9B5607ED-595C-4439-91D9-6A085BE7DBB8}.Debug_VC70.Build.0 = Debug_VC70|Win32
+		{9B5607ED-595C-4439-91D9-6A085BE7DBB8}.Debug_VC70-UNICODE.ActiveCfg = Debug_VC70-UNICODE|Win32
+		{9B5607ED-595C-4439-91D9-6A085BE7DBB8}.Debug_VC70-UNICODE.Build.0 = Debug_VC70-UNICODE|Win32
+		{9B5607ED-595C-4439-91D9-6A085BE7DBB8}.Release_VC70.ActiveCfg = Release_VC70|Win32
+		{9B5607ED-595C-4439-91D9-6A085BE7DBB8}.Release_VC70.Build.0 = Release_VC70|Win32
+		{9B5607ED-595C-4439-91D9-6A085BE7DBB8}.Release_VC70-UNICODE.ActiveCfg = Release_VC70-UNICODE|Win32
+		{9B5607ED-595C-4439-91D9-6A085BE7DBB8}.Release_VC70-UNICODE.Build.0 = Release_VC70-UNICODE|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

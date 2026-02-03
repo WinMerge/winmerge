@@ -1,0 +1,18 @@
+---
+BasedOnStyle: LLVM
+IndentWidth: 2
+---
+Language: Cpp
+UseTab: Never
+ColumnLimit: 100
+AlignAfterOpenBracket: true
+BreakBeforeBraces: Allman
+AllowShortFunctionsOnASingleLine: InlineOnly
+ReflowComments: false
+BinPackParameters: false
+AlignEscapedNewlines: Right
+PointerAlignment: Left
+AlignConsecutiveDeclarations: true
+AlignEscapedNewlines: true
+IndentCaseLabels: true
+...
