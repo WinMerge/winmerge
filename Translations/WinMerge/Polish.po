@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-01-25 13:30+0000\n"
-"PO-Revision-Date: 2026-01-27 21:30+0000\n"
+"POT-Creation-Date: 2026-02-03 07:46+0000\n"
+"PO-Revision-Date: 2026-02-03 23:10+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -206,7 +206,7 @@ msgid "Dragging &Mode"
 msgstr "Tryb przeciągania"
 
 msgid "&Move"
-msgstr "Przesuń"
+msgstr "Przenieś"
 
 msgid "&Adjust Offset"
 msgstr "Dostosuj przesunięcie"
@@ -2937,13 +2937,13 @@ msgid "From left:"
 msgstr "Z lewej:"
 
 msgid "To left:"
-msgstr "Na lewą:"
+msgstr "Do lewej:"
 
 msgid "From right:"
 msgstr "Z prawej:"
 
 msgid "To right:"
-msgstr "Na prawą:"
+msgstr "Do prawej:"
 
 msgid "From middle:"
 msgstr "Od środka:"
@@ -3433,7 +3433,7 @@ msgid "Are you sure you want to move %d items?"
 msgstr "Czy na pewno chcesz przenieść %d elementów?"
 
 msgid "Confirm Move"
-msgstr "Potwierdzenie przenoszenia"
+msgstr "Potwierdź przenoszenie"
 
 msgid "Close the folder comparison window?"
 msgstr "Zamierzasz zamknąć okno porównujące foldery. Czy na pewno chcesz zamknąć okno?"
@@ -3761,11 +3761,11 @@ msgid "Elapsed time: %ld ms"
 msgstr "Upłynęło: %ld ms"
 
 msgid "1 item selected"
-msgstr "Wybrano 1 element"
+msgstr "Zaznaczono 1 element"
 
 #, c-format
 msgid "%1 items selected"
-msgstr "Wybrano %1 elementy(ów)"
+msgstr "Zaznaczono %1 elementy(ów)"
 
 msgid "Filename or folder name."
 msgstr "Nazwa pliku lub nazwa folderu."
@@ -4789,7 +4789,7 @@ msgid "e.g. %1"
 msgstr "np. %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
-msgstr ""
+msgstr "WinMerge wykrył błąd krytyczny podczas ostatniej sesji. Prosimy o zgłoszenie tego faktu, jeśli to możliwe."
 
 msgid "Prettification"
 msgstr "Upiększanie"
