@@ -175,12 +175,17 @@ namespace
 
 	/**
 	 * @brief Vectored exception handler for crash logging
+	 * @note This handler logs only the first crash per process lifetime to prevent
+	 *       crash loops. The handling flag is intentionally never reset, ensuring
+	 *       that if crash logging itself triggers an exception or if multiple crashes
+	 *       occur in rapid succession, only the first is logged.
 	 */
 	LONG CALLBACK WinMergeVectoredExceptionHandler(EXCEPTION_POINTERS* ex)
 	{
 		if (!g_bCrashLoggingEnabled || !ex || !ex->ExceptionRecord)
 			return EXCEPTION_CONTINUE_SEARCH;
 		
+		// One-time crash logging per process to prevent crash loops
 		static volatile LONG handling = 0;
 		if (InterlockedExchange(&handling, 1) == 1)
 			 return EXCEPTION_CONTINUE_SEARCH;
