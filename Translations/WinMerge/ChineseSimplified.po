@@ -5234,7 +5234,7 @@ msgid "e.g. %1"
 msgstr "例：%1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
-msgstr ""
+msgstr "WinMerge 检测到之前发生过崩溃。如有可能，请提交此问题报告。"
 
 msgid "Prettification"
 msgstr "格式美化"
