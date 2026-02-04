@@ -3061,7 +3061,7 @@ msgid "Cannot find filter template!\n\nCopy %1 to WinMerge/Filters Folder:\n%2."
 msgstr "Não foi possível encontrar o modelo de filtro!\n\nCopie %1 para a Pasta WinMerge/Filtros:\n%2."
 
 #, c-format
-msgid "Cannot copy filter template:\n%1\n\nMake sure the folder exists and is writable.
+msgid "Cannot copy filter template:\n%1\n\nMake sure the folder exists and is writable."
 msgstr "Não foi possível copiar o modelo de filtro:\n%1\n\nCertifique-se de que a pasta existe e é gravável."
 
 msgid "User's filter folder is not defined!\n\nSelect filter folder in Options/System."
@@ -3230,7 +3230,7 @@ msgstr "Falha ao analisar o arquivo de conflito."
 msgid "The file\n%1\nis not a conflict file."
 msgstr "O arquivo\n%1\nnão é um arquivo de conflito."
 
-msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?
+msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
 msgstr "A comparação de arquivos grandes requer uma memória significativa.\nMostrar apenas os resultados da comparação (não o conteúdo dos arquivos)?"
 
 msgid "Save As"
@@ -3248,7 +3248,7 @@ msgid "Error backing up file"
 msgstr "Erro ao fazer o backup do arquivo"
 
 #, c-format
-msgid "Unable to backup original file:\n%1\n\nContinue anyway?
+msgid "Unable to backup original file:\n%1\n\nContinue anyway?"
 msgstr "Incapaz de fazer o backup do arquivo original:\n%1\n\nContinuar de qualquer maneira?"
 
 #, c-format
@@ -3272,7 +3272,7 @@ msgid "Another application updated\n%1\nsince WinMerge loaded it.\n\nOverwrite?"
 msgstr "Outro aplicativo atualizou\n%1\ndesde que o WinMerge o carregou.\n\nSobrescrever?"
 
 #, c-format
-msgid "%1\nis read-only. Override?
+msgid "%1\nis read-only. Override?"
 msgstr "%1\né somente leitura. Substituir?"
 
 #, c-format
@@ -3289,7 +3289,7 @@ msgid "Save Right File As"
 msgstr "Salvar o Arquivo da Direita Como"
 
 #, c-format
-msgid "File\n%1\nnot found. Save a copy to continue.
+msgid "File\n%1\nnot found. Save a copy to continue."
 msgstr "Arquivo\n%1\nnão encontrado. Salve uma cópia para continuar."
 
 msgid "Cannot merge unsynched documents.\n\nRefresh before continuing."
@@ -4057,7 +4057,7 @@ msgstr "Especifique um arquivo de saída."
 msgid "Cannot create patch from binary files."
 msgstr "Não é possível criar patch a partir de arquivos binários."
 
-msgid "Save all files first.\n\nCreating a patch requires no unsaved changes.
+msgid "Save all files first.\n\nCreating a patch requires no unsaved changes."
 msgstr "Salve todos os arquivos primeiro.\n\nA criação de um patch requer que não haja alterações não salvas."
 
 msgid "Folder does not exist."
