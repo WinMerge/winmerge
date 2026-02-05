@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2025-11-24 15:26+0000\n"
+"PO-Revision-Date: 2026-02-05 14:59+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -560,7 +560,7 @@ msgid "Swap 1st | &3rd"
 msgstr "Trocar 1.º | &3.º"
 
 msgid "Displa&y Filter Bar\tCtrl+Shift+L"
-msgstr ""
+msgstr "Mostra&r barra de filtros\tCtrl+Shift+L"
 
 msgid "Com&pare Statistics..."
 msgstr "Comparar estatísticas..."
@@ -893,7 +893,7 @@ msgid "Comp&are"
 msgstr "Comparar"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "Com&parar com itens renomeados/movidos"
 
 msgid "Compare in New &Window"
 msgstr "Comparar em nova janela"
@@ -1054,7 +1054,7 @@ msgid "&Edit Caption\tF2"
 msgstr "&Editar legenda\tF2"
 
 msgid "Edit &Path\tCtrl+L"
-msgstr ""
+msgstr "Editar &caminho\tCtrl+L"
 
 msgid "&Open..."
 msgstr "&Abrir..."
@@ -1501,40 +1501,40 @@ msgid "Add F&older Condition"
 msgstr "Adicionar c&ondição de pasta"
 
 msgid "&Files"
-msgstr ""
+msgstr "&Ficheiros"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 ficheiros"
 
 msgid "1 file or more"
-msgstr ""
+msgstr "1 ficheiro ou mais"
 
 msgid "&Items"
-msgstr ""
+msgstr "&Itens"
 
 msgid "0 items"
-msgstr ""
+msgstr "0 itens"
 
 msgid "1 item or more"
-msgstr ""
+msgstr "1 item ou mais"
 
 msgid "&Total Size"
-msgstr ""
+msgstr "&Tamanho total"
 
 msgid "&Recursive"
-msgstr ""
+msgstr "&Recursivo"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "&Alvo: Qualquer (Esquerda/Meio/Direita)"
 
 msgid "Target: &Left"
-msgstr "Alvo: Esquerda"
+msgstr "Alvo: &Esquerda"
 
 msgid "Target: &Middle"
-msgstr "Alvo: Meio"
+msgstr "Alvo: &Meio"
 
 msgid "Target: &Right"
-msgstr "Alvo: Direita"
+msgstr "Alvo: &Direita"
 
 msgid "Add &Difference Condition"
 msgstr "Adicionar condição de &diferença"
@@ -1627,61 +1627,61 @@ msgid "Compare C&ontents"
 msgstr "Comparar c&onteúdo"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "&Limpar teclas"
 
 msgid "&Name"
-msgstr ""
+msgstr "&Nome"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "Nome &base (sem extensão)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "Nome &Unicode normalizado"
 
 msgid "&Date"
-msgstr ""
+msgstr "&Data"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "&Hash (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "Inserir &substituir() função"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "Inserir função regexReplace()"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "Texto &normalização"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "&Minúsculas"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "M&aiúsculas"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "&Meia largura"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "&Largura total"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "Conversão &chinesa"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "Chinês &simplificado"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "Chinês &tradicional"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "Conversão &japonesa"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "&Hiragana"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
@@ -2059,7 +2059,7 @@ msgid "&External editor:"
 msgstr "&Editor externo:"
 
 msgid "&Store user data in:"
-msgstr ""
+msgstr "&Armazenar dados do utilizador em:"
 
 msgid "&Filter folder:"
 msgstr "&Filtro de pasta:"
@@ -2695,13 +2695,13 @@ msgid "Additional comparison condi&tions:"
 msgstr "Com&dições adicionais de comparação:"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "Deteção de &renomear/movimentar:"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "&Teclas de deteção de renomear/movimentar:"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "&Fundir itens renomeados em um único item"
 
 msgid "File patterns:"
 msgstr "Padrões de ficheiros:"
@@ -3959,30 +3959,30 @@ msgstr "Grupo%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "Desativada"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "Detetar renomeações"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "Detetar renomeações e movimentações"
 
 msgid "Renamed"
-msgstr ""
+msgstr "Renomeados"
 
 msgid "Moved"
-msgstr ""
+msgstr "Movidos"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "Renomeados/movidos"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1 itens)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (conjunto %2): "
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4143,17 +4143,29 @@ msgstr "O mesmo ficheiro está aberto em ambos os painéis."
 msgid "Selected files are identical."
 msgstr "Os ficheiros selecionados são idênticos."
 
-msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"Checking binary identity..."
 msgstr ""
+"Os ficheiros selecionados são idênticos (com as definições atuais).\r\n"
+"A verificar a identidade binária..."
 
-msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But binary comparison failed."
 msgstr ""
+"Os ficheiros selecionados são idênticos (com as definições atuais).\r\n"
+"Mas a comparação binária falhou."
 
 msgid "Selected files are identical (binary match)."
-msgstr ""
+msgstr "Os ficheiros selecionados são idênticos (correspondência binária)."
 
-msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But differ at the binary level."
 msgstr ""
+"Os ficheiros selecionados são idênticos (com as definições atuais).\r\n"
+"Mas diferem ao nível binário."
 
 msgid "An error occurred while comparing files."
 msgstr "Ocorreu um erro ao comparar os ficheiros."
@@ -4817,13 +4829,13 @@ msgid "Word-by-word position and text"
 msgstr "Posição e texto palavra por palavra"
 
 msgid "AppData (Roaming) folder"
-msgstr ""
+msgstr "Pasta AppData (Roaming)"
 
 msgid "Install folder"
 msgstr "Pasta de instalação"
 
 msgid "Documents folder"
-msgstr ""
+msgstr "Pasta de Documentos"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5215,10 +5227,10 @@ msgstr "Seguir o sistema"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "por exemplo, %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
-msgstr ""
+msgstr "O WinMerge detetou uma falha anterior. Se possível, informe-nos sobre isso."
 
 msgid "Prettification"
 msgstr "Embelezamento"
