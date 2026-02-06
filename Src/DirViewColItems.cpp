@@ -241,15 +241,23 @@ static Type ColFileNameGet(const CDiffContext * pCtxt, const void *p, int) //sfi
  * @param [in] p Pointer to DIFFITEM.
  * @return String to show in the column.
  */
-static String ColExtGet(const CDiffContext *, const void *p, int) //sfilename
+static String ColExtGet(const CDiffContext *pCtxt, const void *p, int) //sfilename
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	// We don't show extension for folder names
 	if (di.diffcode.isDirectory())
 		return _T("");
-	const String &r = di.diffFileInfo[0].filename;
-	String s = paths::FindExtension(r);
-	return s.c_str() + tc::tcsspn(s.c_str(), _T("."));
+	String exts[3];
+	const int nDirs = pCtxt->GetCompareDirs();
+	for (int i = 0; i < nDirs; ++i)
+	{
+		const String& r = di.diffFileInfo[i].filename;
+		String s = paths::FindExtension(r);
+		exts[i] = s.c_str() + tc::tcsspn(s.c_str(), _T("."));
+	}
+	if (std::all_of(&exts[0], &exts[nDirs], [&](const String& s) { return s == exts[0]; }))
+		return exts[0];
+	return strutils::join(&exts[0], &exts[nDirs], _T("|"));
 }
 
 /**
