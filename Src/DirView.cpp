@@ -548,6 +548,8 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
  */
 void CDirView::ReloadColumns()
 {
+	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
+
 	LoadColumnHeaderItems();
 
 	UpdateColumnNames();
@@ -555,6 +557,9 @@ void CDirView::ReloadColumns()
 		GetOptionsMgr()->GetString(GetDocument()->m_nDirs < 3 ? OPT_DIRVIEW_COLUMN_WIDTHS : OPT_DIRVIEW3_COLUMN_WIDTHS),
 		std::bind(&CListCtrl::SetColumnWidth, m_pList, _1, _2), GetDefColumnWidth());
 	SetColAlignments();
+
+	m_pList->SetRedraw(TRUE);	// Turn updating back on
+
 }
 
 /**
