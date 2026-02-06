@@ -255,7 +255,7 @@ static String ColExtGet(const CDiffContext *pCtxt, const void *p, int) //sfilena
 		String s = paths::FindExtension(r);
 		exts[i] = s.c_str() + tc::tcsspn(s.c_str(), _T("."));
 	}
-	if (std::all_of(&exts[0], &exts[nDirs], [&](const String& s) { return s == exts[0]; }))
+	if (std::all_of(&exts[0], &exts[nDirs], [&](const String& s) { return strutils::compare_logical(s, exts[0]) == 0; }))
 		return exts[0];
 	return strutils::join(&exts[0], &exts[nDirs], _T("|"));
 }
