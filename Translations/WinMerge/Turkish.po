@@ -2706,8 +2706,8 @@ msgstr "&Yeniden Adlandırma/Taşıma Algılama:"
 msgid "Rename/move detection &keys:"
 msgstr "Yeniden Adlandırma/Taşıma Algılama &Tuşları:"
 
-msgid "&Merge renamed items into a single item"
-msgstr "Yeniden adlandırılan ögeleri tek &ögede birleştir"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Dosya modelleri:"
@@ -3958,6 +3958,9 @@ msgstr " (Sol ve sağ dosya aynı)"
 msgid " (Left and middle are identical)"
 msgstr " (Sol ve orta dosya aynı)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "Metin dosyaları farklı"
 
@@ -3985,6 +3988,12 @@ msgstr "Yeniden adlandırmaları algıla"
 msgid "Detect renames and moves"
 msgstr "Yeniden adlandırmaları ve taşımaları algıla"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "Yeniden adlandırıldı"
 
@@ -4001,6 +4010,9 @@ msgstr "(%1 öge)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (%2 kümesi): "
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

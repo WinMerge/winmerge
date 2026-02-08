@@ -2705,8 +2705,8 @@ msgstr "重命名/移动检测(&R)："
 msgid "Rename/move detection &keys:"
 msgstr "重命名/移动检测键(&K)："
 
-msgid "&Merge renamed items into a single item"
-msgstr "将重命名的条目合并到一个条目(&M)"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "文件模式："
@@ -3946,6 +3946,9 @@ msgstr " (左侧和右侧完全相同)"
 msgid " (Left and middle are identical)"
 msgstr " (左侧和中间完全相同)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "文本文件不同"
 
@@ -3973,6 +3976,12 @@ msgstr "检测重命名"
 msgid "Detect renames and moves"
 msgstr "检测重命名和移动"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "重命名的"
 
@@ -3989,6 +3998,9 @@ msgstr "(%1 条目)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (集合 %2)"
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

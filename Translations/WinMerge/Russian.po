@@ -2693,8 +2693,8 @@ msgstr "Обнаружение переименования/перемещени
 msgid "Rename/move detection &keys:"
 msgstr "Ключи обнаружения переименования/перемещения:"
 
-msgid "&Merge renamed items into a single item"
-msgstr "Объединить переименованные элементы в один"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
@@ -3713,6 +3713,9 @@ msgstr " (Слева и справа идентичны)"
 msgid " (Left and middle are identical)"
 msgstr " (Слева и в центре идентичны)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "Текстовые файлы отличаются"
 
@@ -3740,6 +3743,12 @@ msgstr "Обнаружение переименований"
 msgid "Detect renames and moves"
 msgstr "Обнаружение переименований и перемещений"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "Переименовано"
 
@@ -3756,6 +3765,9 @@ msgstr "(элементов %1)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (набор %2): "
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

@@ -2711,8 +2711,8 @@ msgstr "重新命名/移動 偵測: (&R)"
 msgid "Rename/move detection &keys:"
 msgstr "重新命名/移動 偵測鍵: (&K)"
 
-msgid "&Merge renamed items into a single item"
-msgstr "將已重新命名的項目合併為單一項目 (&M)"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "檔案模式："
@@ -3955,6 +3955,9 @@ msgstr " (左側和右側內容相同)"
 msgid " (Left and middle are identical)"
 msgstr " (左側和中間內容相同)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "文字檔內容不同"
 
@@ -3982,6 +3985,12 @@ msgstr "偵測重新命名"
 msgid "Detect renames and moves"
 msgstr "偵測重新命名與移動"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "已重新命名"
 
@@ -3998,6 +4007,9 @@ msgstr "(%1 個項目)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (組合 %2):"
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

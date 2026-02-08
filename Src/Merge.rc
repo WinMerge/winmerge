@@ -2899,15 +2899,16 @@ BEGIN
     EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,285,138,30,14,ES_AUTOHSCROLL
     LTEXT           "C&PU cores to use:",IDC_STATIC,6,154,239,10
     EDITTEXT        IDC_COMPARE_THREAD_COUNT,285,154,30,14,ES_AUTOHSCROLL
-    LTEXT           "Additional comparison condi&tions:",IDC_STATIC,6,170,279,10
-    COMBOBOX        IDC_ADDTIONAL_COMPARE_CONDITION,6,182,296,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&=",IDC_ADDTIONAL_COMPARE_CONDITION_MENU,302,182,14,14
-    LTEXT           "&Rename/move detection:",IDC_STATIC,6,198,279,10
-    COMBOBOX        IDC_RENAME_MOVE_DETECTION,6,210,310,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Rename/move detection &keys:",IDC_STATIC,6,226,279,10
-    COMBOBOX        IDC_RENAME_MOVE_KEY,6,238,296,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&=",IDC_RENAME_MOVE_KEY_MENU,302,238,14,14
-    CONTROL         "&Merge renamed items into a single item",IDC_MERGE_RENAMED_ITEMS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,254,279,10
+    LTEXT           "Additional comparison condi&tions:",IDC_STATIC,6,168,279,10
+    COMBOBOX        IDC_ADDTIONAL_COMPARE_CONDITION,6,180,296,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&=",IDC_ADDTIONAL_COMPARE_CONDITION_MENU,302,180,14,14
+    LTEXT           "&Rename/move detection:",IDC_STATIC,6,196,279,10
+    COMBOBOX        IDC_RENAME_MOVE_DETECTION,6,208,310,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Rename/move detection &keys:",IDC_STATIC,6,224,279,10
+    COMBOBOX        IDC_RENAME_MOVE_KEY,6,236,296,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&=",IDC_RENAME_MOVE_KEY_MENU,302,236,14,14
+    LTEXT           "M&erge renames and moves:",IDC_STATIC,6,252,279,10
+    COMBOBOX        IDC_RENAME_MOVE_MERGE_MODE,6,264,310,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,230,280,88,14
 END
 
@@ -3727,6 +3728,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     100, 0, 0, 0,
+    0, 0, 100, 0,
     0, 0, 100, 0,
     100, 0, 0, 0
 END
@@ -4625,6 +4627,7 @@ BEGIN
     IDS_LEFTONLY_DIFF       " (Middle and right are identical)"
     IDS_MIDDLEONLY_DIFF     " (Left and right are identical)"
     IDS_RIGHTONLY_DIFF      " (Left and middle are identical)"
+    IDS_PATH_MISMATCH       " (paths differ)"
     IDS_TEXT_FILES_DIFF     "Text files are different"
     IDS_IMAGE_FILES_SAME    "Image files are identical"
     IDS_IMAGE_FILES_DIFF    "Image files are different"
@@ -4633,11 +4636,14 @@ BEGIN
     IDS_RENAME_MOVE_DETECTION_DISALBED NC_("Options dialog|Compare|Folder|Detect renames and moves","Disabled")
     IDS_RENAME_MOVE_DETECTION_RENAME "Detect renames"
     IDS_RENAME_MOVE_DETECTION_RENAME_MOVE "Detect renames and moves"
+    IDS_RENAME_MOVE_MERGE_MODE_RENAME "Merge renames"
+    IDS_RENAME_MOVE_MERGE_MODE_RENAME_MOVE "Merge renames and moves"
     IDS_RENAMED             "Renamed"
     IDS_MOVED               "Moved"
     IDS_RENAMED_MOVED       "Renamed/Moved"
     IDS_RENAMED_MOVED_ITEMS "(%1 items)"
     IDS_RENAMED_MOVED_RESULT "%1 (set %2): "
+    IDS_SWITCH_FLAT_MODE     "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

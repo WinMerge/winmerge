@@ -2713,8 +2713,8 @@ msgstr "&Rilevamento rinomina/spostamenti:"
 msgid "Rename/move detection &keys:"
 msgstr "Rilevamento tasti nomina/spostamento:"
 
-msgid "&Merge renamed items into a single item"
-msgstr "Unisci elementi rino&minati in un unico elemento"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Pattern file:"
@@ -3985,6 +3985,9 @@ msgstr " (sinistro e destro sono identici)"
 msgid " (Left and middle are identical)"
 msgstr " (sinistro e centrale sono identici)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "I file di testo sono diversi"
 
@@ -4012,6 +4015,12 @@ msgstr "Rileva rinomine"
 msgid "Detect renames and moves"
 msgstr "Rileva rinomine e spostamenti"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "Rinominato"
 
@@ -4028,6 +4037,9 @@ msgstr "(%1 elementi)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (imposta %2): "
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

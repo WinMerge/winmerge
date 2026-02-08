@@ -1439,10 +1439,16 @@ be grouped together.</para>
  
     <section>
       <title>
-Merge renamed items into a single item<indexterm>
+Merge renames and moves<indexterm>
           <primary>merge renamed items</primary>
+        </indexterm><indexterm>
+          <primary>merge moved items</primary>
         </indexterm></title>
  
+      <para>
+Specifies how renamed and moved items detected by the rename/move detection
+feature should be merged into single entries in the folder comparison tree.</para>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -1454,19 +1460,28 @@ separately.</para>
  
         <listitem>
           <para>
-<option>Enabled</option>: Items that have been detected as renamed but are
-in the same directory are merged into a single entry.  This simplifies the
-comparison tree by showing a single item that exists on multiple sides with
-different names.  Items in different directories (moved items) are not
-merged even when this option is enabled.</para>
+<option>Merge renames</option>: Items that have been detected as renamed but
+are in the same directory are merged into a single entry.  This simplifies
+the comparison tree by showing a single item that exists on multiple sides
+with different names.  Items in different directories (moved items) are not
+merged.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Merge renames and moves</option>: Both renamed items (same
+directory, different names) and moved items (different directories) are
+merged into single entries when detected.  This provides the most compact
+view of renamed and relocated files/folders.</para>
         </listitem>
       </itemizedlist>
  
       <note>
         <para>
 Merging only occurs when each side has at most one item in the group and the
-items are in the same parent directory.  If multiple files match on one side
-(ambiguous case), they are not merged.</para>
+items satisfy the merge criteria (same directory for renames, or any
+directory for moves).  If multiple files match on one side (ambiguous case),
+they are not merged.</para>
       </note>
     </section>
   </section>

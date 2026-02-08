@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2026-01-18 20:12+0900\n"
+"PO-Revision-Date: 2026-02-08 11:13+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -2702,8 +2702,8 @@ msgstr "名前変更/移動検出(&R)"
 msgid "Rename/move detection &keys:"
 msgstr "名前変更/移動検出用キー生成式(&K)"
 
-msgid "&Merge renamed items into a single item"
-msgstr "名前変更された項目を1つの項目にマージする(&M)"
+msgid "M&erge renames and moves:"
+msgstr "名前変更/移動項目のマージ(&E):"
 
 msgid "File patterns:"
 msgstr "ファイル パターン:"
@@ -3937,6 +3937,9 @@ msgstr " (左側と右側は同一です)"
 msgid " (Left and middle are identical)"
 msgstr " (左側と中央は同一です)"
 
+msgid " (paths differ)"
+msgstr "(パス不一致)"
+
 msgid "Text files are different"
 msgstr "テキスト ファイルは異なります"
 
@@ -3964,6 +3967,12 @@ msgstr "名前変更を検出"
 msgid "Detect renames and moves"
 msgstr "名前変更と移動を検出"
 
+msgid "Merge renames"
+msgstr "名前変更項目をマージ"
+
+msgid "Merge renames and moves"
+msgstr "名前変更と移動項目をマージ"
+
 msgid "Renamed"
 msgstr "名前変更"
 
@@ -3980,6 +3989,15 @@ msgstr "(%1 項目)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (グループ %2): "
+
+msgid ""
+"Some moved items have been merged.\n"
+"In Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\n"
+"Switch to Flat Mode?"
+msgstr ""
+"一部の移動された項目がマージされました。\n"
+"ツリー表示では、これらの項目は実際のフォルダー構造を反映しない位置に表示される場合があり、混乱を招く可能性があります。\n"
+"フラット表示に切り替えますか?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"

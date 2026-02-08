@@ -132,7 +132,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_pAdditionalCompareCondition(new FilterExpression())
  , m_pRenameMoveKey(new FilterExpression())
  , m_nRenameMoveDetection(0)
- , m_bMergeRenameItems(false)
+ , m_nRenameMoveMergeMode(0)
 {
 	BindOption(OPT_CMP_METHOD, m_compareMethod, IDC_COMPAREMETHODCOMBO, DDX_CBIndex);
 	BindOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst, IDC_COMPARE_STOPFIRST, DDX_Check);
@@ -149,7 +149,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
 	BindOption(OPT_CMP_ADDITIONAL_CONDITION, m_sAdditionalCompareCondition, IDC_ADDTIONAL_COMPARE_CONDITION, DDX_CBStringExact);
 	BindOption(OPT_CMP_RENAME_MOVE_DETECTION, m_nRenameMoveDetection, IDC_RENAME_MOVE_DETECTION, DDX_CBIndex);
 	BindOption(OPT_CMP_RENAME_MOVE_KEY, m_sRenameMoveKey, IDC_RENAME_MOVE_KEY, DDX_CBStringExact);
-	BindOption(OPT_CMP_MERGE_RENAMED_ITEMS, m_bMergeRenameItems, IDC_MERGE_RENAMED_ITEMS, DDX_Check);
+	BindOption(OPT_CMP_RENAME_MOVE_MERGE_MODE, m_nRenameMoveMergeMode, IDC_RENAME_MOVE_MERGE_MODE, DDX_CBIndex);
 }
 
 void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
@@ -223,6 +223,8 @@ BOOL PropCompareFolder::OnInitDialog()
 		{ _("Do not expand"), _("Expand all subfolders"), _("Expand different subfolders"), _("Expand identical subfolders") });
 	SetDlgItemComboBoxList(IDC_RENAME_MOVE_DETECTION,
 		{ I18n::tr("Options dialog|Compare|Folder|Detect renames and moves","Disabled"), _("Detect renames"), _("Detect renames and moves") });
+	SetDlgItemComboBoxList(IDC_RENAME_MOVE_MERGE_MODE,
+		{ I18n::tr("Options dialog|Compare|Folder|Detect renames and moves","Disabled"), _("Merge renames"), _("Merge renames and moves") });
 
 	OptionsPanel::OnInitDialog();
 	
@@ -352,5 +354,5 @@ void PropCompareFolder::UpdateControls()
 	EnableDlgItem(IDC_COMPARE_BINARYC_LIMIT, sel <= 1 ? true : false); // true: fullcontent, quickcontent
 	EnableDlgItem(IDC_RENAME_MOVE_KEY, selRenameMoveDetection >= 1);
 	EnableDlgItem(IDC_RENAME_MOVE_KEY_MENU, selRenameMoveDetection >= 1);
-	EnableDlgItem(IDC_MERGE_RENAMED_ITEMS, selRenameMoveDetection >= 1);
+	EnableDlgItem(IDC_RENAME_MOVE_MERGE_MODE, selRenameMoveDetection >= 1);
 }

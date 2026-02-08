@@ -23,16 +23,18 @@ public:
 	FilterExpression* GetRenameMoveKeyExpression() const { return m_pRenameMoveKeyExpression.get(); }
 	void SetRenameMoveKeyExpression(const FilterExpression* expr);
 	void Detect(CDiffContext& ctxt, bool doMoveDetection);
-	void Merge(CDiffContext& ctxt);
+	void Merge(CDiffContext& ctxt, bool doMergeMovedItems);
 	const RenameMoveItemGroups& GetRenameMoveItemGroups() const { return m_renameMoveItemGroups; }
 	std::vector<const DIFFITEM*> GetRenameMoveGroupItemsForSide(const DIFFITEM& di, int sideIndex) const;
 	void CheckMovedOrRenamed(const CDiffContext& ctxt, const DIFFITEM& di, bool& moved, bool& renamed) const;
 	void RemoveItemFromGroup(DIFFITEM* pdi);
 	void RemoveAllGroups();
+	bool HasMergedMovedItems() const { return m_mergedMovedItems; }
 
 private:
 	void DetectRenamedItems(CDiffContext& ctxt, std::vector<DIFFITEM*> parents, RenameMoveItemGroups& movedItemGroups);
 
 	std::unique_ptr<FilterExpression> m_pRenameMoveKeyExpression; /** Filter expression for generating matching keys */
 	RenameMoveItemGroups m_renameMoveItemGroups; /** Detected groups (index = renameMoveGroupId in DIFFITEM) */
+	bool m_mergedMovedItems = false;
 };
