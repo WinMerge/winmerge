@@ -67,6 +67,30 @@ static int CountSidesWithItems(const Container& items, int nDirs)
 }
 
 /**
+ * @brief Check if there is a candidate item for move/rename on a different side
+ */
+template<typename Container>
+bool HasCandidateForMove(const DIFFITEM& item, const Container& items)
+{
+	const int srcMask = item.diffcode.diffcode & DIFFCODE::SIDEFLAGS;
+
+	for (const auto& cand : items)
+	{
+		if (cand == &item)
+			continue;
+
+		const int candMask = cand->diffcode.diffcode & DIFFCODE::SIDEFLAGS;
+		if ((srcMask & candMask) != 0)
+			continue;
+
+		if ((srcMask | candMask) != srcMask)
+			return true;
+	}
+
+	return false;
+}
+
+/**
  * @brief Collect unmatched items and group them by detection keys
  * @param ctxt Diff context
  * @param diffpos Starting position for iteration
@@ -131,6 +155,8 @@ static void CreateGroupsFromMatchedItems(
 		int renameMoveGroupId = static_cast<int>(renameMoveItemGroups.size() - 1);
 		for (auto* di : items)
 		{
+			if (nDirs > 2 && !HasCandidateForMove(*di, items))
+				continue;
 			di->renameMoveGroupId = renameMoveGroupId;
 			renameMoveItemGroups[renameMoveGroupId].insert(di);
 		}
