@@ -21,6 +21,7 @@
 #include "FileActionScript.h"
 #include "locality.h"
 #include "FileFilterHelper.h"
+#include "RenameMoveDetection.h"
 #include "DebugNew.h"
 
 static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destination, size_t count,
@@ -303,6 +304,21 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 DIFFITEM* FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 {
 	const int nDirs = paths.GetSize();
+	if (ctxt.m_pRenameMoveDetection && ctxt.m_pRenameMoveDetection->HasMergedMovedItems())
+	{
+		// Cannot use hierarchical search if we have renamed/moved items merged
+		for (DIFFITEM* pos = ctxt.GetFirstDiffPosition(); pos;)
+		{
+			DIFFITEM* cur = pos;
+			const DIFFITEM& di = ctxt.GetNextDiffPosition(pos);
+			PathContext files;
+			ctxt.GetComparePaths(*cur, files);
+			if (paths.GetSize() == files.GetSize() && std::equal(files.begin(), files.end(), paths.begin()))
+				return cur;
+		}
+		return nullptr;
+	}
+
 	String filename[3];
 	std::vector<String> pathComponents[3];
 
