@@ -2708,8 +2708,8 @@ msgstr "Détection du renommage/déplacement :"
 msgid "Rename/move detection &keys:"
 msgstr "Clés de détection du renommage/déplacement :"
 
-msgid "&Merge renamed items into a single item"
-msgstr "Fusionner les élé&ments renommés en un seul élément"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Modèles de fichiers :"
@@ -3936,6 +3936,9 @@ msgstr " (Gauche et Droite sont identiques)"
 msgid " (Left and middle are identical)"
 msgstr " (Gauche et Milieu sont identiques)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "Les fichiers texte sont différents"
 
@@ -3963,6 +3966,12 @@ msgstr "Détecter les renommages"
 msgid "Detect renames and moves"
 msgstr "Détecter les renommages et les déplacements"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "Renommé"
 
@@ -3979,6 +3988,9 @@ msgstr "(%1 éléments)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (ensemble %2) : "
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

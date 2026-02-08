@@ -275,7 +275,7 @@ namespace
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, false);
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// After merge, one item should exist on both sides
 		int mergedItemCount = 0;
@@ -315,7 +315,7 @@ namespace
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// Items should be grouped but NOT merged (different directories)
 		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
@@ -352,7 +352,7 @@ namespace
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, false);
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// After merge, should have 1 item on all 3 sides
 		int itemCount = 0;
@@ -568,7 +568,7 @@ namespace
 		EXPECT_EQ(pdi2->renameMoveGroupId, pdi3->renameMoveGroupId);
 
 		// But merge should not happen (multiple items on one side)
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		int itemCount = 0;
 		DIFFITEM* diffpos = ctxt.GetFirstDiffPosition();
@@ -772,7 +772,7 @@ namespace
 		// Total items should be restored after detection
 		EXPECT_EQ(ctxt.m_pCompareStats->GetTotalItems(), initialCount);
 
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// After merge, total items should be reduced by 1
 		EXPECT_EQ(ctxt.m_pCompareStats->GetTotalItems(), initialCount - 1);
@@ -803,7 +803,7 @@ namespace
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, false);
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// After merge, parent1 should have the child
 		EXPECT_TRUE(parent1->HasChildren());
@@ -966,7 +966,7 @@ namespace
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
 
-		// Should be grouped (2 sides is enough)
+		// file1.tx* should be grouped (2 sides)
 		EXPECT_NE(pdi1->renameMoveGroupId, -1);
 		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
 
@@ -992,7 +992,7 @@ namespace
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 
 		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Detect(ctxt, true));
-		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Merge(ctxt));
+		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Merge(ctxt, false));
 
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetRenameMoveItemGroups().size(), 0);
 	}
@@ -1013,7 +1013,7 @@ namespace
 
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 
-		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Merge(ctxt));
+		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Merge(ctxt, false));
 	}
 
 	/**
@@ -1158,6 +1158,144 @@ namespace
 
 		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Detect(ctxt, true));
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetRenameMoveItemGroups().size(), 100);
+	}
+
+	// ========================================================================
+	// Move Detection Merge Tests
+	// ========================================================================
+
+	/**
+	 * @brief Test merging moved items when doMergeMovedItems is true
+	 *
+	 * This test verifies that when doMergeMovedItems is true:
+	 * 1. Items moved to different directories are merged
+	 * 2. PATHMISMATCH flag is set on merged items
+	 * 3. m_mergedMovedItems flag is set to true
+	 */
+	TEST_F(RenameMoveDetectionTest, MergeMovedItems_True)
+	{
+		// Setup: Create items in different directories with same content hash
+		// Left:  dir1/file.txt
+		// Right: dir2/file.txt  (same content, different directory)
+
+		PathContext paths(_T("C:\\Left"), _T("C:\\Right"));
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto expr = std::make_unique<FilterExpression>();
+		expr->Parse("BaseName");
+		expr->SetDiffContext(&ctxt);
+
+		DIFFITEM* leftDir = CreateMockDiffItem2Way(ctxt, nullptr, _T("dir1"), _T(""), 1000, true, false, true);
+		DIFFITEM* rightDir = CreateMockDiffItem2Way(ctxt, nullptr, _T("dir2"), _T(""), 1000, false, true, true);
+
+		DIFFITEM* leftFile = CreateMockDiffItem2Way(ctxt, leftDir, _T("file.txt"), _T("dir1"), 1000, true, false);
+		CreateMockDiffItem2Way(ctxt, rightDir, _T("file.txt"), _T("dir2"), 1000, false, true);
+
+		// Detect and merge with doMergeMovedItems = true
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);  // true = detect moves
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, true);   // true = merge moved items
+
+		// Verify results
+		EXPECT_TRUE(ctxt.m_pRenameMoveDetection->HasMergedMovedItems())
+			<< "MergedMovedItems flag should be true";
+
+		EXPECT_TRUE(leftFile->diffcode.diffcode & DIFFCODE::PATHMISMATCH)
+			<< "PATHMISMATCH flag should be set on merged item";
+
+		EXPECT_TRUE(leftFile->diffcode.exists(0))
+			<< "Left side should exist";
+		EXPECT_TRUE(leftFile->diffcode.exists(1))
+			<< "Right side should be merged into left item";
+	}
+
+	/**
+	 * @brief Test NOT merging moved items when doMergeMovedItems is false
+	 *
+	 * This test verifies that when doMergeMovedItems is false:
+	 * 1. Items moved to different directories are NOT merged
+	 * 2. Items remain separate
+	 * 3. m_mergedMovedItems remains false
+	 */
+	TEST_F(RenameMoveDetectionTest, MergeMovedItems_False)
+	{
+		// Setup: Same as above
+		PathContext paths(_T("C:\\Left"), _T("C:\\Right"));
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto expr = std::make_unique<FilterExpression>();
+		expr->Parse("BaseName");
+		expr->SetDiffContext(&ctxt);
+
+		DIFFITEM* leftDir = CreateMockDiffItem2Way(ctxt, nullptr, _T("dir1"), _T(""), 1000, true, false, true);
+		DIFFITEM* rightDir = CreateMockDiffItem2Way(ctxt, nullptr, _T("dir2"), _T(""), 1000, false, true, true);
+
+		DIFFITEM* leftFile = CreateMockDiffItem2Way(ctxt, leftDir, _T("file.txt"), _T("dir1"), 1000, true, false);
+		DIFFITEM* rightFile = CreateMockDiffItem2Way(ctxt, rightDir, _T("file.txt"), _T("dir2"), 1000, false, true);
+
+		// Detect with move detection but DON'T merge moved items
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);  // true = detect moves
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);  // false = don't merge moved items
+
+		// Verify results - items should remain separate
+		EXPECT_FALSE(ctxt.m_pRenameMoveDetection->HasMergedMovedItems())
+			<< "MergedMovedItems flag should be false";
+
+		EXPECT_FALSE(leftFile->diffcode.exists(1))
+			<< "Right side should NOT be merged into left item";
+
+		EXPECT_TRUE(leftFile->diffcode.exists(0))
+			<< "Left side should still exist";
+		EXPECT_TRUE(rightFile->diffcode.exists(1))
+			<< "Right item should still exist separately";
+
+		EXPECT_NE(leftFile->renameMoveGroupId, -1)
+			<< "Items should still be in same group";
+		EXPECT_EQ(leftFile->renameMoveGroupId, rightFile->renameMoveGroupId)
+			<< "Items should be in same detection group";
+	}
+
+	/**
+	 * @brief Test PATHMISMATCH flag propagates to children
+	 *
+	 * When a directory is moved and merged, all children should also
+	 * get the PATHMISMATCH flag.
+	 */
+	TEST_F(RenameMoveDetectionTest, MergeMovedDirectory_ChildrenGetPathMismatch)
+	{
+		// Setup: Directory with children moved to different location
+		PathContext paths(_T("C:\\Left"), _T("C:\\Right"));
+		CDiffContext ctxt(paths, 0);
+		ctxt.InitDiffItemList();
+
+		auto expr = std::make_unique<FilterExpression>();
+		expr->Parse("Name");
+		expr->SetDiffContext(&ctxt);
+
+		DIFFITEM* leftDir = CreateMockDiffItem2Way(ctxt, nullptr, _T("dir1"), _T(""), 1000, true, false, true);
+		DIFFITEM* rightDir = CreateMockDiffItem2Way(ctxt, nullptr, _T("dir2"), _T(""), 1000, false, true, true);
+		DIFFITEM* rightSubDir = CreateMockDiffItem2Way(ctxt, rightDir, _T("dir1"), _T(""), 1000, false, true, true);
+
+		DIFFITEM* leftFile = CreateMockDiffItem2Way(ctxt, leftDir, _T("file.txt"), _T("dir1"), 1000, true, false);
+		CreateMockDiffItem2Way(ctxt, rightSubDir, _T("file.txt"), _T("dir1"), 1000, false, true);
+
+		// Detect and merge moved directories
+		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
+		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
+		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);  // true = detect moves
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, true);   // true = merge moved items
+
+		// Verify PATHMISMATCH on both directory and children
+		EXPECT_TRUE(leftDir->diffcode.diffcode & DIFFCODE::PATHMISMATCH)
+			<< "PATHMISMATCH should be set on moved directory";
+
+		EXPECT_TRUE(leftFile->diffcode.diffcode & DIFFCODE::PATHMISMATCH)
+			<< "PATHMISMATCH should propagate to children";
 	}
 
 }  // namespace

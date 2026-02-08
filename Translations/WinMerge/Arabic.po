@@ -2700,7 +2700,7 @@ msgstr ""
 msgid "Rename/move detection &keys:"
 msgstr ""
 
-msgid "&Merge renamed items into a single item"
+msgid "M&erge renames and moves:"
 msgstr ""
 
 msgid "File patterns:"
@@ -3898,6 +3898,9 @@ msgstr " (الجزء الأيسر والجزء الأيمن متطابقان)"
 msgid " (Left and middle are identical)"
 msgstr " (الجزء الأيسر والجزء الأوسط متطابقان)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "الملفات النصية مختلفة"
 
@@ -3925,6 +3928,12 @@ msgstr ""
 msgid "Detect renames and moves"
 msgstr ""
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr ""
 
@@ -3940,6 +3949,9 @@ msgstr ""
 
 #, c-format
 msgid "%1 (set %2): "
+msgstr ""
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
 msgstr ""
 
 #, c-format

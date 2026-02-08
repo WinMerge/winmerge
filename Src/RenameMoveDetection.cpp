@@ -337,16 +337,29 @@ void RenameMoveDetection::Detect(CDiffContext& ctxt, bool doMoveDetection)
 		ctxt.m_pCompareStats->IncreaseTotalItems(totalItems - ctxt.m_pCompareStats->GetTotalItems());
 }
 
+static void MarkPathMismatchRecursively(DIFFITEM& di)
+{
+	di.diffcode.diffcode |= DIFFCODE::PATHMISMATCH;
+	if (di.HasChildren())
+	{
+		for (DIFFITEM* p = di.GetFirstChild(); p != nullptr; p = p->GetFwdSiblingLink())
+			MarkPathMismatchRecursively(*p);
+	}
+}
+
 /**
  * @brief Merge grouped items into single diff items where possible
  * @param ctxt Diff context
+ * @param doMergeMovedItems If true, also merge items that were moved to different directories
  *
  * After detection, items in the same group that are in the same directory
  * can be merged into a single DIFFITEM representing the same logical entity
  * on different sides. This simplifies the comparison tree.
  */
-void RenameMoveDetection::Merge(CDiffContext& ctxt)
+void RenameMoveDetection::Merge(CDiffContext& ctxt, bool doMergeMovedItems)
 {
+	m_mergedMovedItems = false;
+
 	if (m_renameMoveItemGroups.empty())
 		return;
 
@@ -380,9 +393,17 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt)
 					continue;
 
 				auto* pdi2 = sideItems[i][0];
-				// Only merge items in same directory
+
 				if (di.GetParentLink() != pdi2->GetParentLink())
-					continue;
+				{
+					if (!doMergeMovedItems)
+					{
+						// Only merge items in same directory
+						continue;
+					}
+					m_mergedMovedItems = true;
+					MarkPathMismatchRecursively(di);
+				}
 
 				// Reparent children before deleting the merged item
 				if (pdi2->HasChildren())
@@ -393,6 +414,7 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt)
 						DIFFITEM* nextChild = child->GetFwdSiblingLink();
 						child->DelinkFromSiblings();
 						di.AddChildToParent(child);
+						MarkPathMismatchRecursively(*child);
 						child = nextChild;
 					}
 				}

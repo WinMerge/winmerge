@@ -3172,8 +3172,8 @@ msgstr "이름 바꾸기/이동 감지(&R):"
 msgid "Rename/move detection &keys:"
 msgstr "감지 키 이름 바꾸기/이동(&K):"
 
-msgid "&Merge renamed items into a single item"
-msgstr "이름이 변경된 항목을 단일 항목으로 병합(&M)"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "파일 패턴:"
@@ -4555,6 +4555,9 @@ msgstr " (왼쪽과 오른쪽은 동일합니다)"
 msgid " (Left and middle are identical)"
 msgstr " (왼쪽과 가운데는 동일합니다)"
 
+msgid " (paths differ)"
+msgstr ""
+
 #, c-format
 msgid "Text files are different"
 msgstr "텍스트 파일이 다릅니다"
@@ -4583,6 +4586,12 @@ msgstr "이름 바꾸기 감지"
 msgid "Detect renames and moves"
 msgstr "이름 바꾸기 및 이동 감지"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "이름 바뀜"
 
@@ -4599,6 +4608,9 @@ msgstr "(%1개 항목)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (세트 %2): "
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

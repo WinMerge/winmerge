@@ -170,9 +170,7 @@ fileref="screenshots/options_btn.png" /> </imageobject><textobject>
 
         <listitem>
           <para>
-<option>Close main window if there is on one MDI child window</option>:
-Pressing <keycap>Esc</keycap> closes a child window, and if there is only
-one child window, it will also close the main window.</para>
+<option>MDI子ウィンドウが1つのみの場合はメインウィンドウも閉じる</option>:<keycap>Esc</keycap>を押下すると子ウィンドウが閉じますが、子ウィンドウが1つしかない場合は、メインウィンドウも同時に閉じます。</para>
         </listitem>
 
         <listitem>
@@ -624,13 +622,12 @@ merge)。例のすべての行は、同一行として検出されます。</par
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option> (default): ファイルのエンコーディングの違いを検出します。 UTF-8
-BOMの有無の違いも検出します。</para>
+<option>無効</option> (デフォルト): ファイルのエンコーディングの違いを検出します。 UTF-8 BOMの有無の違いも検出します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option>:ファイルエンコーディングの違いは無視されます。</para>
+<option>有効</option>:ファイルエンコーディングの違いは無視されます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -741,8 +738,7 @@ def
       <itemizedlist>
         <listitem>
           <para>
-<option>無効</option>(デフォルト): Lines within difference blocks are shown as they
-occur in the source files.</para>
+<option>無効</option>(デフォルト): 差異ブロック内の行は、ソースファイルに現れる順に表示されます。</para>
         </listitem>
 
         <listitem>
@@ -822,16 +818,12 @@ Completely unhighlight the ignored differences<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option> (default): Difference lines ignored by line
-filters and substitution filters are displayed in the color of Ignored
-Difference.</para>
+<option>無効</option> (デフォルト): 行フィルターや置換フィルターによって無視された差異行は、無視された差異の色で表示されます。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option>: Makes the color of the different lines ignored by
-line filters and substitution filters the same as the color of the identical
-lines.</para>
+<option>有効</option>: 行フィルターや置換フィルターによって無視された差異行の色を、同一行と同じ色にします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1013,14 +1005,12 @@ Include subfolders<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>Enabled</option> (default): WinMerge doing a recursive comparing and
-also includes subfolders.</para>
+<option>有効</option> (デフォルト): WinMerge は再帰的に比較を行い、サブフォルダーも含めます。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Disabled</option>: WinMerge only comparing the files in the root
-folder.</para>
+<option>無効</option>: WinMerge はルートフォルダー内のファイルのみを比較します。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1093,10 +1083,9 @@ folder.</para>
 
         <listitem>
           <para>
-<option>Enabled</option>: Ignores the contents of folders that are reparse
-points. For example, C:\Users\All Users is a symbolic link to
-C:\ProgramData, and enabling this option will skip comparing the
-C:\Users\All Users folder.</para>
+<option>有効</option>: リパースポイントであるフォルダーの内容を無視します。例えば、C:\Users\All Users は
+C:\ProgramData へのシンボリックリンクですが、このオプションを有効にすると、C:\Users\All Users
+フォルダーの比較をスキップします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1112,20 +1101,19 @@ C:\Users\All Users folder.</para>
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option>: Is not active unless the Compare method is set to
-other than <guilabel>Full Contents</guilabel> compare method.</para>
+<option>無効</option>: 比較方法が
+<guilabel>フルコンテンツ</guilabel>以外に設定されている場合、有効になりません。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option>: Is active when the Compare method is set to
-<guilabel>Full Contents</guilabel> compare method.</para>
+<option>有効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel>に設定されている場合に有効になります。</para>
 
           <para>
-Threshold size for switching to <guilabel>Quick Contents</guilabel> compare
-method.  When <guilabel>Full Contents</guilabel> compare method is selected,
-files bigger (in mega bytes) than this value are compared using
-<guilabel>Quick Contents</guilabel> compare method.</para>
+<guilabel>クイックコンテンツ</guilabel>
+比較方法に切り替える閾値サイズです。<guilabel>フルコンテンツ</guilabel>
+比較方法が選択されている場合、この値（メガバイト単位）より大きいファイルは
+<guilabel>クイックコンテンツ</guilabel>比較方法を使用して比較されます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1141,22 +1129,19 @@ Switch to binary compare when size exceeds (MB)<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option>: Is not active unless the Compare method is set to
-other than <guilabel>Full Contents</guilabel> and <guilabel>Quick
-Contents</guilabel> compare method.</para>
+<option>無効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel>
+および<guilabel>クイックコンテンツ</guilabel> 以外に設定されている場合、有効になりません。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option>: Is active when the Compare method is set to
-<guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel>
-compare method.</para>
+<option>有効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel>
+または<guilabel>クイックコンテンツ</guilabel> に設定されている場合に有効になります。</para>
 
           <para>
-Threshold size for switching to Binary Contents compare method.  When
-<guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel>
-compare method is selected, files bigger (in mega bytes) than this value are
-compared using <guilabel>Binary Contents</guilabel> compare method.</para>
+バイナリコンテンツ比較方法に切り替える閾値サイズです。<guilabel>フルコンテンツ</guilabel> または
+<guilabel>クイックコンテンツ</guilabel>比較方法が選択されている場合、この値（メガバイト単位）より大きいファイルは<guilabel>バイナリコンテンツ</guilabel>
+比較方法を使用して比較されます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1168,8 +1153,7 @@ compared using <guilabel>Binary Contents</guilabel> compare method.</para>
         </indexterm></title>
 
       <para>
-Number of threads which use to comparing. With a negative value WinMerge
-will use addition of the number of available CPU cores.</para>
+比較に使用するスレッド数です。負の値を指定すると、WinMerge は利用可能なCPU コア数に加算した値を使用します。</para>
     </section>
 
     <section>
@@ -1345,10 +1329,15 @@ MD5 計算に時間がかかる場合があります。</para>
  
     <section>
       <title>
-名前変更された項目を 1 つの項目にマージ<indexterm>
+名前変更項目と移動項目のマージ<indexterm>
           <primary>名前変更された項目のマージ</primary>
+        </indexterm><indexterm>
+          <primary>移動された項目のマージ</primary>
         </indexterm></title>
  
+      <para>
+名前変更／移動検出機能によって検出された、名前変更および移動された項目を、フォルダー比較ツリー上でどのように単一の項目としてマージするかを指定します。</para>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -1359,16 +1348,22 @@ MD5 計算に時間がかかる場合があります。</para>
  
         <listitem>
           <para>
-<option>有効</option>: 名前変更されたと検出され、かつ同じディレクトリに存在する項目は、1
-つの項目にマージされます。これにより、異なる名前で複数の側に存在する項目が 1
-つにまとめられ、比較ツリーが簡潔になります。異なるディレクトリにある項目（移動された項目）は、このオプションが有効でもマージされません。</para>
+<option>名前変更をマージ</option>: 同一ディレクトリ内で名前変更されたと検出された項目を、1
+つの項目としてマージします。これにより、異なる名前で複数の側に存在する項目を 1
+つとして表示でき、比較ツリーが簡潔になります。異なるディレクトリにある項目（移動された項目）はマージされません。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>名前変更と移動をマージ</option>:
+名前変更された項目（同一ディレクトリで名前が異なるもの）と、移動された項目（異なるディレクトリにあるもの）の両方を、検出された場合に単一の項目としてマージします。これにより、名前変更や移動されたファイル／フォルダーを最もコンパクトに表示できます。</para>
         </listitem>
       </itemizedlist>
  
       <note>
         <para>
-マージは、各側に最大 1
-つの項目しか存在せず、かつ同じ親ディレクトリにある場合にのみ行われます。一方の側で複数のファイルが一致する場合（曖昧なケース）は、マージされません。</para>
+マージは、各側にグループ内の項目が最大 1
+つしか存在せず、かつマージ条件（名前変更の場合は同一ディレクトリ、移動の場合は任意のディレクトリ）を満たす場合にのみ行われます。一方の側で複数のファイルが一致する場合（曖昧なケース）は、マージされません。</para>
       </note>
     </section>
   </section>
@@ -1376,7 +1371,7 @@ MD5 計算に時間がかかる場合があります。</para>
   <section id="Configuration_compare_table">
     <title>
 比較 → テーブル ページ<indexterm>
-        <primary>table files</primary>
+        <primary>テーブルファイル</primary>
       </indexterm></title>
     <section>
       <title>CSV ファイルとして扱うパターン</title>
@@ -1535,10 +1530,7 @@ font size in points can also be chosen.</para>
     <section>
       <title>フォルダー比較で画像比較を有効にする</title>
       <para>
-When this option is enabled, folder comparisons will compare files that
-match the specified patterns as images.  Metadata differences will be
-ignored, and a color distance threshold will be applied to determine visual
-differences between images.</para>
+このオプションが有効な場合、フォルダー比較では指定されたパターンに一致するファイルを画像として比較します。メタデータの違いは無視され、画像間の視覚的な違いを判断するために色距離の閾値が適用されます。</para>
     </section>
 
     <section>
@@ -1551,14 +1543,12 @@ differences between images.</para>
 
         <listitem>
           <para>
-<option>Line-by-line position and text</option>: Shows the recognized text
-line by line with its position in the original image.</para>
+<option>行毎の位置情報とテキスト</option>: 認識されたテキストを、元の画像内での位置とともに行単位で表示します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Word-by-word position and text</option>: Shows the recognized text
-word by word with its position in the original image.</para>
+<option>単語毎の位置情報とテキスト</option>: 認識されたテキストを、元の画像内での位置とともに単語単位で表示します。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1575,11 +1565,10 @@ word by word with its position in the original image.</para>
 URL pattern to include (Regular expression)<indexterm>
         </indexterm></title>
       <para>
-Enter a regular expression in this field to specify the file paths or URLs
-that should be opened in the webpage compare window.  For example, if you
-enter the regular expression <code>.*\.html?|https?://.*</code>, files with
-the .html or .htm extension and URLs starting with http:// or https:// will
-be opened in the webpage compare window.</para>
+このフィールドに正規表現を入力して、Webページ比較ウィンドウで開くべき
+ファイルパスまたはURLを指定します。例えば、正規表現
+<code>.*\.html?|https?://.*</code> を入力すると、.html または .htm 拡張子を持つファイルと、http://
+または https:// で始まる URL がWebページ比較ウィンドウで開かれます。</para>
     </section>
 
     <section>
@@ -1587,10 +1576,8 @@ be opened in the webpage compare window.</para>
 URL pattern to exclude (Regular expression)<indexterm>
         </indexterm></title>
       <para>
-Enter a regular expression to exclude certain file paths or URLs from the
-Webpage Comparison window.  This applies to items that match the "URL
-pattern to include" field.  Use this to exclude specific patterns you don't
-want to include.</para>
+特定のファイルパスや URL を Webページ比較ウィンドウから除外するために、正規表現を入力します。これは「含める URL
+パターン」フィールドに一致する項目に適用されます。含めたくない特定のパターンを除外するために使用します。</para>
     </section>
 
     <section>
@@ -1600,15 +1587,14 @@ User data folder location<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>AppData folder</option> (default): Stores cookies, browsing history,
-and cache data in the %APPDATA%\WinMerge\WinWebDiff folder.</para>
+<option>AppData フォルダー</option> (デフォルト): クッキー、閲覧履歴、
+キャッシュデータを %APPDATA%\WinMerge\WinWebDiff フォルダーに保存します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Install folder</option>: Saves data in the WinMerge installation
-directory, which usually requires administrator permissions to write. This
-is generally not recommended.</para>
+<option>インストールフォルダー</option>: WinMerge
+のインストールディレクトリにデータを保存します。通常、書き込みには管理者権限が必要です。一般的には推奨されません。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1617,8 +1603,7 @@ is generally not recommended.</para>
       <title>
 Separate user data folders for each pane<indexterm>
         </indexterm></title>
-      <para>Creates distinct data folders for each pane, preventing data overlap between
-them.</para>
+      <para>各ペインごとに個別のデータフォルダーを作成し、ペイン間でのデータの重複を防ぎます。</para>
     </section>
   </section>
 
@@ -1777,17 +1762,17 @@ Unixなど)異なるEOLスタイルを持つシステムからのファイルを
       <itemizedlist>
         <listitem>
           <para>
-<option>GDI</option> (default): Renders text using the Graphics Device
-Interface (GDI).</para>
+<option>GDI</option> (デフォルト): Graphics Device Interface (GDI)
+を使用してテキストを描画します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>DirectWrite Modes</option>: Renders text using various DirectWrite
-rendering modes, including support for colored emojis on Windows 8.1 and
-later. Available only in the 64-bit version of WinMerge. See <ulink
+<option>DirectWrite モード</option>: 様々な DirectWrite レンダリングモードを
+使用してテキストを描画します。Windows 8.1 以降でカラー絵文字のサポートを含みます。
+WinMerge の 64 ビット版でのみ利用可能です。詳細は <ulink
 url="https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants">DirectWrite
-Rendering Modes</ulink> for details.</para>
+Rendering Modes</ulink> を参照してください。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1929,11 +1914,10 @@ Rendering Modes</ulink> for details.</para>
 
       <variablelist>
         <varlistentry>
-          <term>Word break characters</term>
+          <term>単語区切り文字</term>
 
           <listitem>
-            <para>Specifies the symbols that are treated as non-whitespace word separators
-when <guilabel>Break at whitespace or punctuation</guilabel> is selected.</para>
+            <para><guilabel>空白か句読点で区切る</guilabel> が選択されている場合に、空白以外の単語区切りとして扱われる記号を指定します。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -2049,8 +2033,7 @@ Dark</option>（デフォルト）、<option>Solarized Dark</option>、および
 <guibutton>OK</guibutton>をクリックすると、新しい色がボックスに読み込まれます。</para>
 
     <para>
-To revert to the default colors of a scheme, choose a different scheme and
-return to the modified scheme.</para>
+配色のデフォルト色に戻すには、別の配色を選択してから、変更した配色に戻してください。</para>
   </section>
 
   <section id="Configuration_colors_syntax">
@@ -2068,8 +2051,7 @@ linkend="Configuration_syntaxhighlight"
 このページは、認識されるシンタックス要素を列挙し、これらのテキストの色と太さを変更可能にします。</para>
 
     <para>
-To revert to the default colors of a scheme, choose a different scheme and
-return to the modified scheme.</para>
+配色のデフォルト色に戻すには、別の配色を選択してから、変更した配色に戻してください。</para>
   </section>
 
   <section id="Configuration_colors_text">
@@ -2107,17 +2089,15 @@ return to the modified scheme.</para>
       </indexterm></title>
 
     <para>
-By default, the WinMerge Folder Compare window use background colors to show
-the status from a item (equal, different, not exists on all sides or
-filtered).</para>
+デフォルトでは、WinMerge
+のフォルダー比較ウィンドウは、項目の状態（同一、異なる、すべての側に存在しない、またはフィルタリング済み）を表示するために背景色を使用します。</para>
 
     <para>
 色を変更するには色ボックスをクリックし、標準的な色の設定ダイアログを開きます。 基本色か作成した色から1つ選択し
 <guibutton>OK</guibutton>をクリックすると、新しい色がボックスに読み込まれます。</para>
 
     <para>
-To revert to the default colors of a scheme, choose a different scheme and
-return to the modified scheme.</para>
+配色のデフォルト色に戻すには、別の配色を選択してから、変更した配色に戻してください。</para>
   </section>
 
   <section id="Configuration_archive">

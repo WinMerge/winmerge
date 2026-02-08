@@ -1562,10 +1562,16 @@ ensemble.</para>
  
     <section>
       <title>
-Fusionner les éléments renommés en un seul élément<indexterm>
+Merge renames and moves<indexterm>
           <primary>fusionner des éléments renommés</primary>
+        </indexterm><indexterm>
+          <primary>merge moved items</primary>
         </indexterm></title>
  
+      <para>
+Specifies how renamed and moved items detected by the rename/move detection
+feature should be merged into single entries in the folder comparison tree.</para>
+
       <itemizedlist>
         <listitem>
           <para>
@@ -1577,21 +1583,28 @@ mais le fichier/dossier de chaque côté est affiché séparément.</para>
  
         <listitem>
           <para>
-<option>Activé</option> : les éléments qui ont été détectés comme renommés
-mais qui se trouvent dans le même répertoire sont fusionnés en une seule
-entrée. Cela simplifie l'arborescence de comparaison en affichant un élément
-unique qui existe sur plusieurs côtés avec des noms différents. Les éléments
-se trouvant dans des répertoires différents (éléments déplacés) ne sont pas
-fusionnés même lorsque cette option est activée.</para>
+<option>Merge renames</option>: Items that have been detected as renamed but
+are in the same directory are merged into a single entry.  This simplifies
+the comparison tree by showing a single item that exists on multiple sides
+with different names.  Items in different directories (moved items) are not
+merged.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Merge renames and moves</option>: Both renamed items (same
+directory, different names) and moved items (different directories) are
+merged into single entries when detected.  This provides the most compact
+view of renamed and relocated files/folders.</para>
         </listitem>
       </itemizedlist>
  
       <note>
         <para>
-La fusion n'a lieu que lorsque chaque côté possède au plus un élément dans
-le groupe et que les éléments se trouvent dans le même répertoire parent. Si
-plusieurs fichiers correspondent d'un côté (cas ambigu), ils ne sont pas
-fusionnés.</para>
+Merging only occurs when each side has at most one item in the group and the
+items satisfy the merge criteria (same directory for renames, or any
+directory for moves).  If multiple files match on one side (ambiguous case),
+they are not merged.</para>
       </note>
     </section>
   </section>

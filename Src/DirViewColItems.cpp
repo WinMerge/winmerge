@@ -247,8 +247,8 @@ static String ColExtGet(const CDiffContext *pCtxt, const void *p, int) //sfilena
 	// We don't show extension for folder names
 	if (di.diffcode.isDirectory())
 		return _T("");
-	String exts[3];
 	const int nDirs = pCtxt->GetCompareDirs();
+	String exts[3];
 	for (int i = 0; i < nDirs; ++i)
 	{
 		const String& r = di.diffFileInfo[i].filename;
@@ -270,66 +270,18 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 {
 	assert(pCtxt != nullptr && p != nullptr);
 
-	int nDirs = pCtxt->GetCompareDirs();
-
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
-
-	if (nDirs < 3)
+	const int nDirs = pCtxt->GetCompareDirs();
+	String paths[3];
+	for (int i = 0; i < nDirs; ++i)
 	{
-		String s = di.diffFileInfo[1].path;
-		const String& t = di.diffFileInfo[0].path;
-		
-		// If we have unique path, just print the existing path name
-		if (s.length() == 0 || t.length() == 0)
-		{
-			if (s.length() == 0)
-				return t;
-			else
-				return s;
-		}
-
-		size_t i = 0, j = 0;
-		do
-		{
-			const tchar_t* pi = tc::tcschr(s.c_str() + i, '\\');
-			const tchar_t* pj = tc::tcschr(t.c_str() + j, '\\');
-			size_t i_ahead = (pi != nullptr ? pi - s.c_str() : std::string::npos);
-			size_t j_ahead = (pj != nullptr ? pj - t.c_str() : std::string::npos);
-			size_t length_s = ((i_ahead != std::string::npos ? i_ahead : s.length()) - i);
-			size_t length_t = ((j_ahead != std::string::npos ? j_ahead : t.length()) - j);
-			if (length_s != length_t ||
-				memcmp(s.c_str() + i, t.c_str() + j, length_s) != 0)
-			{
-				String u(t.c_str() + j, length_t + 1);
-				u[length_t] = '|';
-				s.insert(i, u);
-				i_ahead += u.length();
-			}
-			i = i_ahead + 1;
-			j = j_ahead + 1;
-		} while (i && j);
-		if (s.empty())
-			s = _T(".");
-		return s;
+		paths[i] = di.diffFileInfo[i].path;
+		if (paths[i].empty())
+			paths[i] = _T(".\\");
 	}
-	else
-	{
-		// If we have unique path, just print the existing path name
-		const DiffFileInfo* pDiffFileInfo = di.diffFileInfo;
-		if (pDiffFileInfo[0].path == pDiffFileInfo[1].path && pDiffFileInfo[0].path == pDiffFileInfo[2].path)
-			return pDiffFileInfo[0].path;
-
-		String s;
-		const std::vector<const DIFFITEM*> ancestors = di.GetAncestors();
-		size_t depth = ancestors.size();
-		for (int i = 0; i < depth; i++)
-		{
-			if (i > 0)
-				s += _T("\\");
-			s += ColFileNameGet<String>(pCtxt, ancestors[i], 0);
-		}
-		return s;
-	}
+	if (std::all_of(&paths[0], &paths[nDirs], [&](const String& s) { return strutils::compare_logical(s, paths[0]) == 0; }))
+		return paths[0];
+	return strutils::join(&paths[0], &paths[nDirs], _T("|"));
 }
 
 /**
@@ -489,6 +441,10 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 		case DIFFCODE::DIFF2NDONLY: s += _(" (Left and right are identical)"); break;
 		case DIFFCODE::DIFF3RDONLY: s += _(" (Left and middle are identical)"); break;
 		}
+	}
+	if (di.diffcode.diffcode & DIFFCODE::PATHMISMATCH)
+	{
+		s += _(" (paths differ)");
 	}
 	return s;
 }

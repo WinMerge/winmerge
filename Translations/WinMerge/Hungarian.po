@@ -3165,8 +3165,8 @@ msgstr "&Átnevezés/áthelyezés észlelése:"
 msgid "Rename/move detection &keys:"
 msgstr "Átnevezési/áthelyezési érzékelési &kulcsok:"
 
-msgid "&Merge renamed items into a single item"
-msgstr "Átnevezett elemek &egyesítése egyetlen elemmé"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Fájlfajták:"
@@ -4505,6 +4505,9 @@ msgstr " (Bal és jobb egyforma)"
 msgid " (Left and middle are identical)"
 msgstr " (Bal és középső egyforma)"
 
+msgid " (paths differ)"
+msgstr ""
+
 #, c-format
 msgid "Text files are different"
 msgstr "A szövegfájlok különböznek"
@@ -4533,6 +4536,12 @@ msgstr "Átnevezések észlelése"
 msgid "Detect renames and moves"
 msgstr "Átnevezések és áthelyezések észlelése"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "Átnevezve"
 
@@ -4549,6 +4558,9 @@ msgstr "(%1 elem)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (készlet %2)"
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

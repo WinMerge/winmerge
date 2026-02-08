@@ -59,7 +59,7 @@ public:
 	String  m_sAdditionalCompareCondition;
 	int     m_nRenameMoveDetection;
 	String  m_sRenameMoveKey;
-	bool    m_bMergeRenameItems;
+	int     m_nRenameMoveMergeMode;
 	//}}AFX_DATA
 
 
