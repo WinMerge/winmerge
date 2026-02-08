@@ -388,7 +388,7 @@ void RenameMoveDetection::Merge(CDiffContext& ctxt, bool doMergeMovedItems)
 						DIFFITEM* nextChild = child->GetFwdSiblingLink();
 						child->DelinkFromSiblings();
 						di.AddChildToParent(child);
-						MarkPathMismatchRecursively(di);
+						MarkPathMismatchRecursively(*child);
 						child = nextChild;
 					}
 				}

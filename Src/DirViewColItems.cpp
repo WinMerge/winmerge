@@ -274,14 +274,13 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 	const int nDirs = pCtxt->GetCompareDirs();
 	String paths[3];
 	for (int i = 0; i < nDirs; ++i)
-		paths[i] = di.diffFileInfo[i].path;
-	if (std::all_of(&paths[0], &paths[nDirs], [&](const String& s) { return strutils::compare_logical(s, paths[0]) == 0; }))
-		return paths[0];
-	for (int i = 0; i < nDirs; ++i)
 	{
+		paths[i] = di.diffFileInfo[i].path;
 		if (paths[i].empty())
 			paths[i] = _T(".\\");
 	}
+	if (std::all_of(&paths[0], &paths[nDirs], [&](const String& s) { return strutils::compare_logical(s, paths[0]) == 0; }))
+		return paths[0];
 	return strutils::join(&paths[0], &paths[nDirs], _T("|"));
 }
 
