@@ -240,7 +240,7 @@ inline const String OPT_CMP_ADDITIONAL_CONDITION {_T("Settings/AdditionalCompare
 // Renamed/moved detection options
 inline const String OPT_CMP_RENAME_MOVE_DETECTION {_T("Settings/RenameMoveDetection"s)};
 inline const String OPT_CMP_RENAME_MOVE_KEY {_T("Settings/RenameMoveKey"s)};
-inline const String OPT_CMP_MERGE_RENAMED_ITEMS {_T("Settings/MergeRenamedItems"s)};
+inline const String OPT_CMP_RENAME_MOVE_MERGE_MODE {_T("Settings/RenameMoveMergeMode"s)};
 
 // Image Compare options
 inline const String OPT_CMP_IMG_FILEPATTERNS {_T("Settings/ImageFilePatterns"s)};

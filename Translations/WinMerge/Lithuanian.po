@@ -2691,8 +2691,8 @@ msgstr "Pe&rvardijimo/perkėlimo aptikimas:"
 msgid "Rename/move detection &keys:"
 msgstr "Pervardijimo/perkėlimo aptikimo ra&ktai:"
 
-msgid "&Merge renamed items into a single item"
-msgstr "Sulieti pervardytus ele&mentus į vieną elementą"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Failų šablonai:"
@@ -3711,6 +3711,9 @@ msgstr " (Kairysis ir dešinysis yra vienodi)"
 msgid " (Left and middle are identical)"
 msgstr " (Kairysis ir vidurinis yra vienodi)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "Tekstiniai failai skiriasi"
 
@@ -3738,6 +3741,12 @@ msgstr "Aptikti pervardijimą"
 msgid "Detect renames and moves"
 msgstr "Aptikti pervardijimą ir perkėlimą"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "Pervardinta"
 
@@ -3754,6 +3763,9 @@ msgstr "(%1 elementai)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (nust. %2): "
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

@@ -275,7 +275,7 @@ namespace
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, false);
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// After merge, one item should exist on both sides
 		int mergedItemCount = 0;
@@ -315,7 +315,7 @@ namespace
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, true);
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// Items should be grouped but NOT merged (different directories)
 		EXPECT_EQ(pdi1->renameMoveGroupId, pdi2->renameMoveGroupId);
@@ -352,7 +352,7 @@ namespace
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, false);
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// After merge, should have 1 item on all 3 sides
 		int itemCount = 0;
@@ -568,7 +568,7 @@ namespace
 		EXPECT_EQ(pdi2->renameMoveGroupId, pdi3->renameMoveGroupId);
 
 		// But merge should not happen (multiple items on one side)
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		int itemCount = 0;
 		DIFFITEM* diffpos = ctxt.GetFirstDiffPosition();
@@ -772,7 +772,7 @@ namespace
 		// Total items should be restored after detection
 		EXPECT_EQ(ctxt.m_pCompareStats->GetTotalItems(), initialCount);
 
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// After merge, total items should be reduced by 1
 		EXPECT_EQ(ctxt.m_pCompareStats->GetTotalItems(), initialCount - 1);
@@ -803,7 +803,7 @@ namespace
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 		ctxt.m_pRenameMoveDetection->Detect(ctxt, false);
-		ctxt.m_pRenameMoveDetection->Merge(ctxt);
+		ctxt.m_pRenameMoveDetection->Merge(ctxt, false);
 
 		// After merge, parent1 should have the child
 		EXPECT_TRUE(parent1->HasChildren());
@@ -992,7 +992,7 @@ namespace
 		ctxt.m_pRenameMoveDetection->SetRenameMoveKeyExpression(expr.get());
 
 		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Detect(ctxt, true));
-		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Merge(ctxt));
+		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Merge(ctxt, false));
 
 		EXPECT_EQ(ctxt.m_pRenameMoveDetection->GetRenameMoveItemGroups().size(), 0);
 	}
@@ -1013,7 +1013,7 @@ namespace
 
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
 
-		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Merge(ctxt));
+		EXPECT_NO_THROW(ctxt.m_pRenameMoveDetection->Merge(ctxt, false));
 	}
 
 	/**

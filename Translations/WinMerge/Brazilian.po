@@ -2692,8 +2692,8 @@ msgstr "Detecção de r&enomear/mover:"
 msgid "Rename/move detection &keys:"
 msgstr "C&haves de detecção de renomear/mover:"
 
-msgid "&Merge renamed items into a single item"
-msgstr "&Unir itens renomeados em um único item"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Padrões de arquivo:"
@@ -3712,6 +3712,9 @@ msgstr " (O da esquerda e o da direita são idênticos)"
 msgid " (Left and middle are identical)"
 msgstr " (O da esquerda e o do meio são idênticos)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "Os arquivos de texto são diferentes"
 
@@ -3739,6 +3742,12 @@ msgstr "Detectar renomeações"
 msgid "Detect renames and moves"
 msgstr "Detectar renomeações e movimentações"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "Renomeados"
 
@@ -3755,6 +3764,9 @@ msgstr "(%1 itens)"
 #, c-format
 msgid "%1 (set %2): "
 msgstr "%1 (conjunto %2): "
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"

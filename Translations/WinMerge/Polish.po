@@ -2692,8 +2692,8 @@ msgstr "Wykrywanie zmiany nazwy/przeniesienia:"
 msgid "Rename/move detection &keys:"
 msgstr "Klucze wykrywania zmiany nazwy/przeniesienia:"
 
-msgid "&Merge renamed items into a single item"
-msgstr "Scal zmienione nazwy elementów w jeden element"
+msgid "M&erge renames and moves:"
+msgstr ""
 
 msgid "File patterns:"
 msgstr "Szablony pliku:"
@@ -3712,6 +3712,9 @@ msgstr " (Lewy i prawy są identyczne)"
 msgid " (Left and middle are identical)"
 msgstr " (Lewy i środkowy są identyczne)"
 
+msgid " (paths differ)"
+msgstr ""
+
 msgid "Text files are different"
 msgstr "Pliki tekstowe są różne"
 
@@ -3739,6 +3742,12 @@ msgstr "Wykryj zmiany nazw"
 msgid "Detect renames and moves"
 msgstr "Wykryj zmiany nazw i przeniesienia"
 
+msgid "Merge renames"
+msgstr ""
+
+msgid "Merge renames and moves"
+msgstr ""
+
 msgid "Renamed"
 msgstr "Zmieniono nazwę"
 
@@ -3754,6 +3763,9 @@ msgstr "(%1 elementy(ów))"
 
 #, c-format
 msgid "%1 (set %2): "
+msgstr ""
+
+msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
 msgstr ""
 
 #, c-format
