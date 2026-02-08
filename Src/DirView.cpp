@@ -2743,7 +2743,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 			int ans = AfxMessageBox(
 				_("Some moved items have been merged.\n"
 				  "In Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\n"
-				  "Switch to Flat Mode?").c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+				  "Switch to Flat Mode?").c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_SWITCH_FLAT_MODE);
 			if (ans == IDYES)
 				OnViewTreeMode();
 		}
