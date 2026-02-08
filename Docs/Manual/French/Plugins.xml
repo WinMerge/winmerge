@@ -1,0 +1,2432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Plugins">
+  <title>Plug-ins<indexterm>
+      <primary>plug-ins</primary>
+    </indexterm></title>
+
+  <para>Les plug-ins WinMerge sont des fichiers DLL ou des scriptlets personnalisés,
+écrits via l'API COM, qui prétraitent les données avant une comparaison. Par
+exemple, vous pouvez utiliser un plug-in pour extraire les données
+textuelles de fichiers MS Word afin que WinMerge puisse les comparer.</para>
+  
+  <para>Chaque plug-in est :<indexterm>
+      <primary>installer des plug-ins</primary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para>Une seule DLL ou un fichier scriptlet (<filename
+class="extension">sct</filename>)</para>
+    </listitem>
+
+    <listitem>
+      <para>Installé dans le sous-dossier <filename
+class="directory">MergePlugins</filename>. Un certain nombre de plug-ins
+peuvent être installés pour vous par WinMerge.</para>
+    </listitem>
+
+    <listitem>
+      <para>Facile à installer : pour installer un plug-in non inclus dans
+l'installation de WinMerge, il suffit de copier le fichier du plug-in dans
+<filename class="directory">MergePlugins</filename>. Le plug-in sera
+disponible à la prochaine ouverture de WinMerge. Vous pouvez trouver
+d'autres plug-ins sur le Web, écrits par d'autres développeurs.</para>
+    </listitem>
+  </itemizedlist>
+
+  <section>
+    <title>Types de plug-ins</title>
+
+    <para>Les plug-ins sont regroupés en trois catégories principales :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Complément d'éditeur<indexterm>
+            <primary>plug-ins de complément d'éditeur</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Ce type de plug-in effectue des opérations personnalisées sur le texte
+sélectionné dans l'éditeur actif (volet fichier) de la fenêtre de
+comparaison de fichiers.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Décompresseur : transforme un fichier en format texte<indexterm>
+            <primary>plug-ins de décompression</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Ce type de plug-in transforme un fichier compressé en un format visualisable
+en le décompressant. Le fichier original n'est pas modifié : un fichier
+temporaire transformé est créé et chargé dans WinMerge.</para>
+
+          <para>Les plug-ins décompresseurs opèrent sur des fichiers entiers, et non sur du
+texte sélectionné ou des différences au sein des fichiers. Par conséquent,
+ils ne sont disponibles que lorsque vous lancez des comparaisons de
+fichiers, soit à partir de la fenêtre de comparaison de dossiers, soit à
+partir de la boîte de dialogue Sélectionner des fichiers ou des
+dossiers. Les plug-ins décompresseurs ne sont pas disponibles dans la
+fenêtre de comparaison de fichiers.</para>
+
+          <para>Parfois, le fichier décompacté peut être recompacté (voir les détails dans
+<xref linkend="Plugins_available" /> pour vérifier si un plug-in prend en
+charge le recompactage). Ensuite, vous pouvez fusionner et enregistrer le
+fichier transformé. Le compactage est effectué automatiquement dans ce
+cas. Par sécurité, nous vous suggérons de renommer le fichier transformé
+lorsque vous l'enregistrez.</para>
+
+          <note>
+            <para>Lorsque vous comparez des dossiers, WinMerge peut donner des résultats
+différents pour les fichiers compressés et non compressés. Par exemple, des
+fichiers identiques une fois décompressés pourraient être différents s'ils
+incluent la date de création. WinMerge applique le décompresseur dans toutes
+les situations, et vous êtes sûr d'avoir le même résultat lorsque vous
+comparez un dossier ou lorsque vous fusionnez deux versions d'un fichier.</para>
+          </note>
+
+          <para>Exemple de plug-in : <xref linkend="CompareMSExcelFiles" /> affiche le
+contenu textuel d'un fichier <trademark
+class="registered">Microsoft</trademark> <application>Excel</application>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Prediffer : prétraite les fichiers pour masquer certaines
+différences<indexterm>
+            <primary>plug-ins prediffer</primary>
+          </indexterm></term>
+
+        <listitem>
+          <para>Ce type de plug-in n'opère pas sur les fichiers sources affichés dans la
+fenêtre de comparaison. Il opère à la place sur des copies temporaires des
+fichiers, lesquelles sont ensuite analysées pour créer la liste des
+différences.</para>
+
+          <para>Exemple de plug-in : <xref linkend="IgnoreColumns" /> ignore les différences
+à l'intérieur de colonnes spécifiées, tout en affichant les caractères dans
+ces colonnes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section>
+    <title>Plug-ins suggérés et modes automatiques</title>
+
+    <para>Comment WinMerge parvient-il à appliquer le bon plug-in pour un fichier
+donné ? Chaque plug-in spécifie une liste d'extensions de fichiers
+(également répertoriée dans la section <xref linkend="Plugins_available" />
+de chaque plug-in, sous <citetitle>Filtre de fichier</citetitle>). Les
+extensions servent à associer un ou plusieurs types de fichiers au plug-in :
+lorsqu'une extension de fichier comparé correspond à une extension de la
+liste du plug-in, le plug-in est considéré comme un <firstterm>plug-in
+suggéré</firstterm></para>
+
+    <para>Il existe des options WinMerge distinctes pour les types de décompactage et
+de prediffer, décrites plus loin dans cette rubrique, qui vous permettent
+d'appliquer les plug-ins soit manuellement, soit automatiquement. Il n'y a
+pas de mode automatique pour les plug-ins de complément d'éditeur.</para>
+
+    <para>Lorsque vous appliquez des plug-ins à un fichier sélectionné en utilisant le
+mode automatique, WinMerge recherche dans sa liste de plug-ins suggérés pour
+ce type de fichier et applique le premier plug-in dont le nom correspond. La
+recherche est effectuée par ordre alphabétique, donc s'il existe plusieurs
+plug-ins suggérés pour un type de fichier, seul le premier trouvé est
+appliqué.</para>
+  </section>
+
+  <section>
+    <title>Appliquer des plug-ins</title>
+
+    <para>Les sous-sections suivantes décrivent comment appliquer chaque type de
+plug-in. Les méthodes sont différentes pour chaque type de plug-in et
+varient également selon que vous comparez des dossiers ou des fichiers.</para>
+
+    <section>
+      <title>Appliquer des plug-ins de complément d'éditeur dans la fenêtre de
+comparaison de fichiers</title>
+
+      <para>Le curseur étant placé dans l'un des volets de la fenêtre de comparaison de
+fichiers, cliquez sur <menuchoice> <guimenu>plug-ins</guimenu>
+<guisubmenu>Scripts</guisubmenu> </menuchoice> et choisissez l'une de ces
+fonctions :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><function>Mettre en majuscules</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Mettre en minuscules</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Supprimer les lignes en double</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Compter les lignes en double</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Trier les lignes par ordre croissant</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Trier les lignes par ordre décroissant</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Inverser les colonnes</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Inverser les lignes</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Sélectionner des colonnes...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Sélectionner des lignes...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Remplacer...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Appliquer la commande de filtre...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Découper en jetons...</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Supprimer les espaces</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Insérer la date</function></para>
+        </listitem>
+
+        <listitem>
+          <para><function>Insérer l'heure</function></para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Ces fonctions sont ajoutées au menu <guisubmenu>Scripts</guisubmenu> par les
+plug-ins <xref linkend="EditorAddin" /> et <xref linkend="Plugins_datetime"
+/>.</para>
+
+      <note>
+        <para>Les plug-ins de complément d'éditeur ne sont pas disponibles dans la fenêtre
+de comparaison de dossiers.</para>
+      </note>
+    </section>
+
+    <section>
+      <title>Appliquer des plug-ins décompresseurs dans la fenêtre de comparaison de
+dossiers</title>
+
+      <para>Avant d'appliquer des plug-ins décompresseurs, vous pouvez régler leur mode
+sur automatique ou manuel.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Pour définir le mode automatique pour ce type de plug-in, cliquez sur
+<menuchoice> <guimenu>Plug-ins</guimenu> <guimenuitem>Décompactage
+automatique</guimenuitem> </menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Pour définir le mode manuel, cliquez sur <menuchoice>
+<guimenu>Plug-ins</guimenu> <guimenuitem>Décompactage manuel</guimenuitem>
+</menuchoice>.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>N'oubliez pas d'appuyer sur <keycap>F5</keycap> pour recharger la fenêtre de
+comparaison de dossiers en utilisant le nouveau paramètre.</para>
+
+      <section>
+        <title>Utiliser le mode automatique</title>
+
+        <para>Pour appliquer des plug-ins lorsque le décompactage automatique est activé,
+lancez simplement une opération de comparaison sur un fichier dans la
+fenêtre de comparaison de dossiers. Si un plug-in décompresseur est suggéré
+pour le type de fichier, il prétraite le fichier avant que WinMerge ne
+l'ouvre dans la fenêtre de comparaison de fichiers.</para>
+
+        <para>Par exemple, supposons que vous fassiez un clic droit sur un fichier MS Word
+<filename>doc</filename> et que vous choisissiez
+<guimenuitem>Comparer</guimenuitem> (en supposant également que le plug-in
+<xref linkend="Plugins_msword" /> est disponible). WinMerge convertit le
+fichier doc (ou plutôt une copie de celui-ci) en un fichier texte brut et
+l'ouvre dans la fenêtre de comparaison de fichiers.</para>
+      </section>
+
+      <section>
+        <title>Utiliser le mode manuel</title>
+
+        <para>Le mode manuel vous permet de choisir un plug-in décompresseur différent de
+celui sélectionné pour vous en mode automatique. Vous pouvez également
+lancer la comparaison sans utiliser de plug-in.</para>
+
+        <para>Pour appliquer des plug-ins lorsque le décompactage manuel est activé :</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Sélectionnez le fichier que vous souhaitez comparer.</para>
+          </listitem>
+
+          <listitem>
+            <para>Cliquez sur <menuchoice> <guimenu>Plug-ins</guimenu> <guimenuitem>Éditer
+avec le décompresseur</guimenuitem> </menuchoice>.</para>
+
+            <para>Cet élément de menu n'est activé que si le type du fichier sélectionné est
+pris en charge par un plug-in de décompactage disponible.</para>
+          </listitem>
+
+          <listitem>
+            <para>Dans la boîte de dialogue Sélectionner un décompresseur :</para>
+
+            <xi:include href="select_unpacker.xml"
+                        xmlns:xi="http://www.w3.org/2001/XInclude"
+                        xpointer="element(select-unpacker-proc)" />
+          </listitem>
+
+          <listitem>
+            <para>Cliquez sur <guibutton>OK</guibutton> pour fermer la boîte de dialogue
+Sélectionner un décompresseur et lancer la comparaison de fichiers.</para>
+          </listitem>
+        </orderedlist>
+      </section>
+    </section>
+
+    <section>
+      <title>Appliquer des plug-ins décompresseurs dans la boîte de dialogue Sélectionner
+des fichiers ou des dossiers</title>
+
+      <para>Vous pouvez utiliser la boîte de dialogue Sélectionner un décompresseur pour
+appliquer un plug-in lorsque vous lancez une comparaison de fichiers à
+partir de la boîte de dialogue Sélectionner des fichiers ou des
+dossiers. Voir <xref linkend="Open_paths_unpacker" /> pour plus de détails.</para>
+    </section>
+
+    <section>
+      <title>Appliquer des plug-ins prediffer dans la fenêtre de comparaison de dossiers</title>
+
+      <para>Avec les plug-ins prediffer, vous réglez le mode
+(<firstterm>&lt;Automatique&gt;</firstterm> ou
+<firstterm>&lt;Aucun&gt;</firstterm>) ou le nom du plug-in pour des fichiers
+individuels. (Contrairement aux plug-ins décompresseurs, où vous réglez le
+mode pour tous les fichiers.) C'est-à-dire que certains fichiers d'un même
+dossier peuvent avoir des modes prediffer différents.</para>
+
+      <para>Pour régler le mode pour un ou plusieurs fichiers dans la fenêtre de
+comparaison de dossiers, faites un clic droit sur les fichiers et choisissez
+<menuchoice> <guimenu>Paramètres des plug-ins</guimenu>
+<guisubmenu>Paramètres Prediffer</guisubmenu> </menuchoice>, puis choisissez
+l'une des options du sous-menu :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guisubmenu>&lt;Automatique&gt;</guisubmenu> sélectionne le premier plug-in
+prediffer disponible pour le type de fichier.</para>
+        </listitem>
+
+        <listitem>
+          <para><guisubmenu>&lt;Aucun&gt;</guisubmenu> signifie qu'aucun plug-in prediffer
+n'est utilisé.</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Appuyez sur <keycap>F5</keycap> pour mettre à jour la fenêtre.</para>
+
+      <note>
+        <para>Lorsque vous ouvrez un sous-dossier lors d'une comparaison non récursive, le
+mode est toujours réinitialisé sur <guimenuitem>&lt;Aucun&gt;</guimenuitem>.</para>
+      </note>
+
+      <para>Lorsque vous ouvrez un fichier à partir de la fenêtre de comparaison de
+dossiers, votre paramètre prediffer pour ce fichier est appliqué avant
+l'ouverture de la fenêtre de comparaison de fichiers.</para>
+    </section>
+
+    <section>
+      <title>Appliquer des plug-ins prediffer dans la fenêtre de comparaison de fichiers</title>
+
+      <para>Dans la fenêtre de comparaison de fichiers, vous pouvez appliquer un plug-in
+prediffer en cliquant sur <menuchoice> <guimenu>Plug-ins</guimenu>
+<guisubmenu>Prediffer</guisubmenu> </menuchoice> et en choisissant l'un des
+plug-ins de la liste. Les plug-ins suggérés sont indiqués en haut de la
+liste. Les fichiers sont comparés à nouveau après l'application du plug-in,
+vous n'avez donc pas besoin de réanalyser les fichiers.</para>
+    </section>
+  </section>
+
+  <section id="Plugins_available">
+    <title>Plug-ins disponibles<indexterm>
+        <primary>DLL Visual Basic pour les plug-ins</primary>
+      </indexterm><indexterm>
+        <primary>plug-ins</primary>
+
+        <secondary>DLL Visual Basic</secondary>
+      </indexterm></title>
+
+    <section id="CompareEscapedJavaPropertiesFiles">
+      <title><filename>CompareEscapedJavaPropertiesFiles<indexterm>
+          <primary>Fichier du plug-in CompareEscapedJavaPropertiesFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Ce plug-in retire les caractères d'échappement des fichiers .properties Java
+pour faciliter leur lecture, puis les ré-échappe lors de l'enregistrement.</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.properties</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="CompareMSExcelFiles">
+      <title><filename>CompareMSExcelFiles<indexterm>
+          <primary>Fichier du plug-in CompareMSExcelFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Affiche le contenu textuel d'un fichier <trademark
+class="registered">Microsoft</trademark> <application>Excel</application>,
+en supprimant toute la mise en forme et les objets incorporés.</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.xls</filename>, <filename
+class="extension">*.xlsx</filename>, <filename
+class="extension">*.xlsm</filename>, <filename
+class="extension">*.xlsb</filename>, <filename
+class="extension">*.xla</filename>, <filename
+class="extension">*.xlax</filename>, <filename
+class="extension">*.xltx</filename>, <filename
+class="extension">*.xltm</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Oui</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Excel</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_powerpnt">
+      <title><filename>CompareMSPowerPointFiles<indexterm>
+          <primary>Fichier du plug-in CompareMSPowerPointFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Affiche le contenu textuel d'un fichier <trademark
+class="registered">Microsoft</trademark>
+<application>PowerPoint</application>, en supprimant toute la mise en forme
+et les objets incorporés.</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.ppt</filename>, <filename
+class="extension">*.pptx</filename>, <filename
+class="extension">*.pptm</filename>, <filename
+class="extension">*.ppa</filename>, <filename
+class="extension">*.ppam</filename>, <filename
+class="extension">*.pot</filename>, <filename
+class="extension">*.potx</filename>, <filename
+class="extension">*.potm</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Oui</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>PowerPoint</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_visio">
+      <title><filename>CompareMSVisioFiles<indexterm>
+          <primary>Fichier du plug-in CompareMSVisioFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Affiche le contenu textuel d'un fichier <trademark
+class="registered">Microsoft</trademark> <application>Visio</application>,
+en supprimant toute la mise en forme et les objets incorporés.</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.vsd</filename>, <filename
+class="extension">*.vsdx</filename>, <filename
+class="extension">*.vsdm</filename>, <filename
+class="extension">*.vss</filename>, <filename
+class="extension">*.vssx</filename>, <filename
+class="extension">*.vssm</filename>, <filename
+class="extension">*.vst</filename>, <filename
+class="extension">*.vstx</filename>, <filename
+class="extension">*.vstm</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Oui</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Visio</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_msword">
+      <title><filename>CompareMSWordFiles<indexterm>
+          <primary>Fichier du plug-in CompareMSWordFiles</primary>
+        </indexterm></filename></title>
+
+      <para>Affiche le contenu textuel d'un fichier <trademark
+class="registered">Microsoft</trademark> <application>Word</application>, en
+supprimant toute la mise en forme et les objets incorporés.</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+	    <seg><filename class="extension">*.doc</filename>, <filename
+class="extension">*.docx</filename>, <filename
+class="extension">*.docm</filename>, <filename
+class="extension">*.dot</filename>, <filename
+class="extension">*.dotx</filename>, <filename
+class="extension">*.dotm</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Oui</seg>
+
+            <seg><trademark class="registered">Microsoft</trademark>
+<application>Word</application></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyHTML">
+      <title><filename>PrettifyHTML<indexterm>
+          <primary>Fichier du plug-in PrettifyHTML</primary>
+        </indexterm></filename></title>
+
+      <para>Mise en forme HTML avec tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyHTML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.html</filename>, <filename
+class="extension">*.htm</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyXML">
+      <title><filename>PrettifyXML<indexterm>
+          <primary>Fichier du plug-in PrettifyXML</primary>
+        </indexterm></filename></title>
+
+      <para>Mise en forme XML avec tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyXML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.xml</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyJSON">
+      <title><filename>PrettifyJSON<indexterm>
+          <primary>Fichier du plug-in PrettifyJSON</primary>
+        </indexterm></filename></title>
+
+      <para>Mise en forme JSON avec la commande jq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyJSON</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filtre ou options de ligne de commande passés à la commande jq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.json</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PrettifyYAML">
+      <title><filename>PrettifyYAML<indexterm>
+          <primary>Fichier du plug-in PrettifyYAML</primary>
+        </indexterm></filename></title>
+
+      <para>Mise en forme YAML avec la commande yq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyYAML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filtre ou options de ligne de commande passés à la commande yq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.yaml</filename>, <filename
+class="extension">*.yml</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://stedolan.github.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryCSV">
+      <title><filename>QueryCSV<indexterm>
+          <primary>Fichier du plug-in QueryCSV</primary>
+        </indexterm></filename></title>
+
+      <para>Requêtes CSV avec la commande q</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryCSV</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Instruction SQL ou options de ligne de commande passées à la commande q</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryTSV">
+      <title><filename>QueryTSV<indexterm>
+          <primary>Fichier du plug-in QueryTSV</primary>
+        </indexterm></filename></title>
+
+      <para>Requêtes TSV avec la commande q</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryTSV</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Instruction SQL ou options de ligne de commande passées à la commande q</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.tsv</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryJSON">
+      <title><filename>QueryJSON<indexterm>
+          <primary>Fichier du plug-in QueryJSON</primary>
+        </indexterm></filename></title>
+
+      <para>Requêtes JSON avec la commande jq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryJSON</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filtre ou options de ligne de commande passés à la commande jq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.json</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_QueryYAML">
+      <title><filename>QueryYAML<indexterm>
+          <primary>Fichier du plug-in QueryYAML</primary>
+        </indexterm></filename></title>
+
+      <para>Requêtes YAML avec la commande yq</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>QueryYAML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Filtre ou options de ligne de commande passés à la commande yq</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.yaml</filename>, <filename
+class="extension">*.yml</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidateHTML">
+      <title><filename>ValidateHTML<indexterm>
+          <primary>Fichier du plug-in ValidateHTML</primary>
+        </indexterm></filename></title>
+
+      <para>Validateur HTML avec tidy-html5</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ValidateHTML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande tidy</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.html</filename>, <filename
+class="extension">*.htm</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewGraphviz">
+      <title><filename>PreviewGraphviz<indexterm>
+          <primary>Fichier du plug-in PreviewGraphviz</primary>
+        </indexterm></filename></title>
+
+      <para>Prévisualiseur Graphviz</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewGraphviz</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande dot</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.gv</filename>, <filename
+class="extension">,*.dot</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewMarkdown">
+      <title><filename>PreviewMarkdown<indexterm>
+          <primary>Fichier du plug-in PreviewMarkdown</primary>
+        </indexterm></filename></title>
+
+      <para>Prévisualiseur Markdown</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewMarkdown</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande md2html</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.md</filename>, <filename
+class="extension">,*.markdown</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://github.com/mity/md4c">md4c</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewPlantUML">
+      <title><filename>PreviewPlantUML<indexterm>
+          <primary>Fichier du plug-in PreviewPlantUML</primary>
+        </indexterm></filename></title>
+
+      <para>Prévisualiseur PlantUML</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PreviewPlantUML</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande plantuml.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.pu</filename>, <filename
+class="extension">,*.puml</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://plantuml.com/">PlantUML</ulink>, <ulink
+url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ApacheTika">
+      <title><filename>ApacheTika<indexterm>
+          <primary>Fichier du plug-in ApacheTika</primary>
+        </indexterm></filename></title>
+
+      <para>Extracteur de contenu général avec Apache Tika</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ApacheTika</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à tika-app.jar</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.*</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleJVM">
+      <title><filename>DisassembleJVM<indexterm>
+          <primary>Fichier du plug-in DisassembleJVM</primary>
+        </indexterm></filename></title>
+
+      <para>Désassembleur de bytecode JVM avec javap</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleJVM</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande javap</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.class</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleIL">
+      <title><filename>DisassembleIL<indexterm>
+          <primary>Fichier du plug-in DisassembleIL</primary>
+        </indexterm></filename></title>
+
+      <para>Désassembleur de code IL avec ildasm</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleIL</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande ildasm</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.obj</filename>, <filename
+class="extension">*.lib</filename>, <filename
+class="extension">*.exe</filename>, <filename
+class="extension">*.dll</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DisassembleNative">
+      <title><filename>DisassembleNative<indexterm>
+          <primary>Fichier du plug-in DisassembleNative</primary>
+        </indexterm></filename></title>
+
+      <para>Désassembleur de code natif avec dumpbin</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DisassembleNative</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Options de ligne de commande passées à la commande dumpbin</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.obj</filename>, <filename
+class="extension">*.lib</filename>, <filename
+class="extension">*.exe</filename>, <filename
+class="extension">*.dll</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ExecFilterCommand">
+      <title><filename>ExecFilterCommand<indexterm>
+          <primary>Fichier du plug-in ExecFilterCommand</primary>
+        </indexterm></filename></title>
+
+      <para>Applique la commande de filtre</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ExecFilterCommand</command> <arg choice="opt"
+rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>commande</replaceable></option></term>
+          <listitem>
+            <para>commande à exécuter. %1 dans la commande est remplacé par le nom du fichier</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeUpper">
+      <title><filename>MakeUpper<indexterm>
+          <primary>Fichier du plug-in MakeUpper</primary>
+        </indexterm></filename></title>
+
+      <para>Met les caractères en majuscules</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_MakeLower">
+      <title><filename>MakeLower<indexterm>
+          <primary>Fichier du plug-in MakeLower</primary>
+        </indexterm></filename></title>
+
+      <para>Met les caractères en minuscules</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_RemoveDuplicates">
+      <title><filename>RemoveDuplicates<indexterm>
+          <primary>Fichier du plug-in RemoveDuplicates</primary>
+        </indexterm></filename></title>
+
+      <para>Supprime les lignes en double</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_CountDuplicates">
+      <title><filename>CountDuplicates<indexterm>
+          <primary>Fichier du plug-in CountDuplicates</primary>
+        </indexterm></filename></title>
+
+      <para>Compte les lignes en double</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortAscending">
+      <title><filename>SortAscending<indexterm>
+          <primary>Fichier du plug-in SortAscending</primary>
+        </indexterm></filename></title>
+
+      <para>Trie les lignes par ordre croissant</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SortDescending">
+      <title><filename>SortDescending<indexterm>
+          <primary>Fichier du plug-in SortDescending</primary>
+        </indexterm></filename></title>
+
+      <para>Trie les lignes par ordre décroissant</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseColumns">
+      <title><filename>ReverseColumns<indexterm>
+          <primary>Fichier du plug-in ReverseColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Inverse les colonnes</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_ReverseLines">
+      <title><filename>ReverseLines<indexterm>
+          <primary>Fichier du plug-in ReverseLines</primary>
+        </indexterm></filename></title>
+
+      <para>Inverse les lignes</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectColumns">
+      <title><filename>SelectColumns<indexterm>
+          <primary>Fichier du plug-in SelectColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Sélectionne certaines colonnes</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectColumns</command> <arg choice="opt"
+rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectColumns</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-g</option></arg>
+<arg><option>-e</option> <replaceable>patterns</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ranges</replaceable></option></term>
+          <listitem>
+            <para>liste des plages de colonnes à sélectionner (ex. -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>expression régulière</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>sélectionne les colonnes ne correspondant pas</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignorer la casse</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-g</option></term>
+          <listitem>
+            <para>activer l'indicateur global (global flag)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>utiliser des <replaceable>motifs</replaceable> pour la correspondance</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_SelectLines">
+      <title><filename>SelectLines<indexterm>
+          <primary>Fichier du plug-in SelectLines</primary>
+        </indexterm></filename></title>
+
+      <para>Sélectionne certaines lignes</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectLines</command> <arg choice="opt"
+rep="norepeat"><replaceable>plages</replaceable></arg></cmdsynopsis>
+
+      <cmdsynopsis sepchar=" ">
+<command>SelectLines</command> <arg><option>-v</option></arg>
+<arg><option>-i</option></arg> <arg><option>-e</option>
+<replaceable>motifs</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>ranges</replaceable></option></term>
+          <listitem>
+            <para>liste des plages de lignes à sélectionner (ex: -3,5-10,30-)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>expression régulière</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-v</option></term>
+          <listitem>
+            <para>sélectionner les lignes ne correspondant pas</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignorer la casse</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>utiliser des <replaceable>motifs</replaceable> pour la correspondance</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Replace">
+      <title><filename>Replace<indexterm>
+          <primary>Fichier du plug-in Replace</primary>
+        </indexterm></filename></title>
+
+      <para>Remplace un texte par un autre</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>Replace</command> <arg><option>-i</option></arg>
+<arg><option>-e</option></arg> <arg
+rep="norepeat"><replaceable>texte_à_trouver</replaceable></arg> <arg
+rep="norepeat"><replaceable>texte_de_remplacement</replaceable></arg></cmdsynopsis>
+
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>texte_à_trouver</replaceable></option></term>
+          <listitem>
+            <para>texte à trouver</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option><replaceable>texte_de_remplacement</replaceable></option></term>
+          <listitem>
+            <para>texte de remplacement</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-i</option></term>
+          <listitem>
+            <para>ignorer la casse (seulement pour -e)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><option>-e</option></term>
+          <listitem>
+            <para>traiter le texte spécifié comme une expression régulière</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Tokenize">
+      <title><filename>Tokenize<indexterm>
+          <primary>Fichier du plug-in Tokenize</primary>
+        </indexterm></filename></title>
+
+      <para>Segmente (tokenize) la sélection</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>Tokenize</command> <arg
+rep="norepeat"><replaceable>motifs</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>patterns</replaceable></option></term>
+          <listitem>
+            <para>expression régulière pour la segmentation (ex: [^\w]+)</para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_Unpacker_Trim">
+      <title><filename>Trim<indexterm>
+          <primary>Fichier du plug-in Trim</primary>
+        </indexterm></filename></title>
+
+      <para>Supprimer les espaces</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.nomatch</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg>Windows Script Host</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="IgnoreColumns">
+      <title><filename>IgnoreColumns<indexterm>
+          <primary>Fichier du plug-in IgnoreColumns</primary>
+        </indexterm></filename></title>
+
+      <para>Ce plug-in ignore les caractères aux colonnes spécifiées. La première
+colonne est la numéro 1.</para>
+
+      <para>Notez que ce plug-in ne supporte pas les fichiers contenant des tabulations
+: le plug-in n'échouera pas, mais toutes les tabulations seront traitées
+comme des caractères normaux.</para>
+
+      <para>Pour spécifier les colonnes, utilisez la boîte de dialogue des paramètres du
+plug-in ou renommez la <filename>dll</filename> en utilisant les champs
+suivants comme paramètres :</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>Délimiteurs entre les plages : _ ou ,</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Délimiteurs entre min et max : <emphasis>n'importe quoi d'autre</emphasis></simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Min et max sont inclus.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Quand max = min, max peut être omis.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <example>
+        <title>Exemples de <filename>IgnoreColumns</filename></title>
+
+<variablelist>
+          <varlistentry>
+            <term><filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 - 33.dll</filename></term>
+
+            <listitem>
+              <simpara>Ignore tous les caractères de la colonne 3, des colonnes 10 à 20, et 32 à
+33.</simpara>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
+
+            <listitem>
+              <simpara>Ignore tous les caractères de la colonne 1, et des colonnes 30 à 40.</simpara>
+            </listitem>
+          </varlistentry>
+        </variablelist></example>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <seglistitem>
+            <seg>Pré-différenciateur</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Oui</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreCommentsC<indexterm>
+          <primary>Fichier du plug-in IgnoreCommentsC</primary>
+        </indexterm></filename></title>
+
+      <para>Ce plug-in ignore les commentaires délimités par <constant>
+//</constant>... et <constant>/*</constant> ... <constant>*/</constant> dans
+les fichiers C, C++, PHP et JavaScript.</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <seglistitem>
+            <seg>Pré-différenciateur</seg>
+
+            <seg><filename class="extension">*.cpp</filename>, <filename
+class="extension">*.cxx</filename>, <filename
+class="extension">*.h</filename>, <filename
+class="extension">*.hxx</filename>, <filename
+class="extension">*.c</filename>, <filename
+class="extension">*.php</filename>, <filename
+class="extension">*.js</filename>, <filename
+class="extension">*.cs</filename>, <filename
+class="extension">*.ts</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsComma<indexterm>
+          <primary>Fichier du plug-in IgnoreFieldsComma</primary>
+        </indexterm></filename></title>
+
+      <para>Ce plug-in est destiné aux fichiers utilisant des champs et des virgules
+comme délimiteurs (fichiers CSV, par exemple). Il ignore les caractères
+délimiteurs. Le premier champ est le numéro 1.</para>
+
+      <para>Pour spécifier les délimiteurs, utilisez la boîte de dialogue des paramètres
+du plug-in ou renommez la <filename>dll</filename> en utilisant les mêmes
+champs de paramètres que pour <xref linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <seglistitem>
+            <seg>Pré-différenciateur</seg>
+
+            <seg><filename class="extension">*.csv</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Oui</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreFieldsTab<indexterm>
+          <primary>Fichier du plug-in IgnoreFieldsTab</primary>
+        </indexterm></filename></title>
+
+      <para>Ce plug-in est destiné aux fichiers qui utilisent des champs et des
+tabulations comme délimiteurs (<application>par exemple, les fichiers
+Excel</application> enregistrés au format <filename
+class="extension">*.txt</filename>). Il ignore les caractères
+délimiteurs. Le premier champ est le numéro 1.</para>
+
+      <para>Pour spécifier les délimiteurs, utilisez la boîte de dialogue des paramètres
+du plug-in ou renommez la <filename>dll</filename> en utilisant les mêmes
+champs de paramètres que pour <xref linkend="IgnoreColumns" />.</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <seglistitem>
+            <seg>Pré-différenciateur</seg>
+
+            <seg><filename class="extension">*.txt</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Oui</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section>
+      <title><filename>IgnoreLeadingLineNumbers<indexterm>
+          <primary>Fichier du plug-in IgnoreLeadingLineNumbers</primary>
+        </indexterm></filename></title>
+
+      <para>Ce plug-in ignore les numéros de ligne au début dans les fichiers texte (par
+exemple, les fichiers NC et BASIC).</para>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Exigence</segtitle>
+
+          <seglistitem>
+            <seg>Pré-différenciateur</seg>
+
+            <seg><filename class="extension">*.nc</filename></seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="EditorAddin">
+      <title><filename>editor addin<indexterm>
+          <primary>fichier du plug-in d'extension d'éditeur</primary>
+        </indexterm></filename></title>
+
+      <para>Ajoute certaines fonctions au menu <menuchoice> <guimenu>Plug-ins</guimenu>
+<guisubmenu>Scripts</guisubmenu> </menuchoice> :</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>Mettre en majuscules</guimenuitem> convertit la sélection en
+MAJUSCULES.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Mettre en minuscules</guimenuitem> convertit la sélection en
+minuscules.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Supprimer les lignes en double</guimenuitem> supprime les
+lignes dupliquées dans la sélection.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Compter les lignes en double</guimenuitem> supprime les lignes
+dupliquées dans la sélection et insère le nombre de doublons sur la droite.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Trier les lignes (croissant)</guimenuitem> trie la sélection
+par ordre croissant.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Trier les lignes (décroissant)</guimenuitem> trie la sélection
+par ordre décroissant.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Inverser les colonnes</guimenuitem> inverse les colonnes dans
+la sélection.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Inverser les lignes</guimenuitem> inverse l'ordre des lignes
+dans la sélection.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Sélectionner des colonnes...</guimenuitem> sélectionne
+certaines colonnes dans la sélection.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Sélectionner des lignes...</guimenuitem> sélectionne certaines
+lignes dans la sélection.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Remplacer...</guimenuitem> remplace le texte dans la sélection
+par un autre texte.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Appliquer la commande de filtre...</guimenuitem> remplace la
+sélection par la sortie de la commande de filtre spécifiée. Spécifier %1
+dans l'argument remplace celui-ci par le nom du fichier du volet actif.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Segmenter (Tokenize)...</guimenuitem> remplace le délimiteur de
+jeton par un saut de ligne dans la sélection.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Supprimer les espaces</guimenuitem> supprime les espaces au
+début et à la fin des lignes de la sélection.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+          <segtitle>Filtre de fichiers</segtitle>
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <seglistitem>
+            <seg>Complément d'éditeur</seg>
+            <seg>*</seg>
+            <seg>Non</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_datetime">
+      <title><filename>insert datetime<indexterm>
+          <primary>fichier du plug-in insert datetime</primary>
+        </indexterm></filename></title>
+
+      <para>Ajoute deux fonctions au menu <menuchoice> <guimenu>Plug-ins</guimenu>
+<guisubmenu>Scripts</guisubmenu> </menuchoice> :</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>Insérer la date</guimenuitem> insère la date au format régional
+actuel.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara><guimenuitem>Insérer l'heure</guimenuitem> insère l'heure au format régional
+actuel.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <seglistitem>
+            <seg>Complément d'éditeur</seg>
+
+            <seg>*</seg>
+
+            <seg>Non</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+  </section>
+
+  <section>
+    <title>Exigences<indexterm>
+        <primary>plug-ins</primary>
+
+        <secondary>Exigence Windows Script Host</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>Windows Script Host</title>
+
+      <para>Certains plug-ins de complément d'éditeur nécessitent ce composant optionnel
+de <trademark class="registered">Microsoft</trademark>.</para>
+
+      <para>Il devrait déjà être inclus dans votre version de Windows, à moins que vous
+n'utilisiez une version vraiment ancienne antérieure à Windows XP.</para>
+    </section>
+  </section>
+</article>

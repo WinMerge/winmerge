@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_images">
+  <?target dbhh topicname="IDH_Compare_images" topicid ="003"?>
+
+  <title>Comparer des fichiers image</title>
+
+  <indexterm>
+    <primary>comparaison de fichiers</primary>
+    <secondary>images</secondary>
+  </indexterm>
+
+  <para>Cette rubrique décrit comment comparer des images à l'aide de la fenêtre de
+comparaison d'images.</para>
+
+  <section id="Compare_images_starting">
+    <title>Démarrer une opération de comparaison d'images</title>
+
+    <para>Vous pouvez lancer une opération de comparaison d'images soit à partir de la
+fenêtre de WinMerge, soit à partir d'une fenêtre d'invite de commande.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Depuis la fenêtre WinMerge</term>
+
+        <listitem>
+          <para>Cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
+<guimenuitem>Ouvrir</guimenuitem> </menuchoice>. Utilisez la boîte de
+dialogue Sélectionner des fichiers ou des dossiers pour spécifier les images
+sources de gauche et de droite à comparer. Pour plus de détails sur la boîte
+de dialogue Sélectionner des fichiers ou des dossiers, consultez <xref
+linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Depuis une fenêtre d'invite de commande</term>
+
+        <listitem>
+          <para>Exécutez <command>WinMergeU.exe</command>, qui se trouve dans votre
+répertoire d'installation de WinMerge. Dans vos arguments de commande,
+incluez les images de gauche et de droite à comparer. Pour plus
+d'informations sur l'utilisation de la ligne de commande, consultez <xref
+linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_images_window">
+    <title>Fenêtre de comparaison d'images</title>
+
+    <para>WinMerge prend en charge de nombreux types d'images et peut mettre en
+évidence les différences avec des blocs. La superposition des images est
+également possible.</para>
+
+    <mediaobject>
+<imageobject> <imagedata fileref="screenshots/imgcmp1.png" format="PNG" />
+</imageobject><textobject>
+        <phrase>Fenêtre de comparaison d'images</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>Vous pouvez définir la plupart des options dans le <guilabel>Volet
+Emplacement</guilabel> :</para>
+
+    <section>
+      <title>Différence<indexterm>
+        <primary>Diff</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Mettre en évidence</term>
+          <listitem>
+            <para>Avec la case à cocher <guilabel>Mettre en évidence</guilabel>, vous pouvez
+activer ou désactiver la mise en évidence des différences d'image.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Clignotement</term>
+          <listitem>
+            <para>Si la mise en évidence est activée, vous pouvez même la faire clignoter en
+cochant la case <guilabel>Clignotement</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Taille du bloc</term>
+          <listitem>
+            <para>Le curseur <guilabel>Taille du bloc</guilabel> définit la taille des blocs
+qui mettent en évidence les différences d'image.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Alpha du bloc</term>
+          <listitem>
+            <para>Le curseur <guilabel>Alpha du bloc</guilabel> définit l'intensité du mélange
+alpha (transparence) des blocs.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Seuil de distance de couleur</term>
+          <listitem>
+            <para>Le curseur <guilabel>CD</guilabel> règle le <emphasis>Seuil de distance de
+couleur</emphasis>, ce qui aide à ignorer les légères différences de
+couleur.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Détection Insertion/Suppression</term>
+          <listitem>
+            <para>À déterminer</para>
+            <itemizedlist>
+              <listitem><guilabel>Aucune</guilabel></listitem>
+              <listitem><guilabel>Verticale</guilabel></listitem>
+              <listitem><guilabel>Horizontale</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Superposition<indexterm>
+        <primary>Superposition</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Mode</term>
+          <listitem>
+            <para>Actuellement, les <emphasis>Modes de superposition</emphasis> suivants sont
+possibles :</para>
+            <itemizedlist>
+              <listitem><guilabel>Aucune</guilabel></listitem>
+              <listitem><guilabel>XOR</guilabel></listitem>
+              <listitem><guilabel>Mélange alpha (Alpha Blend)</guilabel></listitem>
+              <listitem><guilabel>Animation de mélange alpha</guilabel></listitem>
+            </itemizedlist>
+            <para></para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Alpha</term>
+          <listitem>
+            <para>Le curseur <guilabel>Alpha</guilabel> définit l'intensité du mélange alpha
+pour les modes de superposition <guilabel>Mélange alpha</guilabel> ou
+<guilabel>Animation de mélange alpha</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section>
+      <title>Zoom<indexterm>
+        <primary>Zoom</primary>
+      </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Zoom</term>
+          <listitem>
+            <para>Avec le curseur <guilabel>Zoom</guilabel>, vous pouvez zoomer ou dézoomer
+sur les images.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Page</term>
+          <listitem>
+            <para>Si le format d'image prend en charge plusieurs pages, vous pouvez
+sélectionner la page actuelle avec la zone numérique
+<guilabel>Page</guilabel>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+  </section>
+
+</article>

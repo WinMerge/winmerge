@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Introduction">
+  <title>Introduction à WinMerge</title>
+
+  <para>WinMerge est un outil de différenciation et de fusion <ulink
+url="https://opensource.org/">Open Source</ulink> pour Windows. WinMerge
+peut comparer deux ou trois dossiers et fichiers, en présentant les
+différences dans un format texte visuel facile à comprendre et à manipuler.</para>
+
+  <para>WinMerge est très utile pour déterminer ce qui a changé entre les versions
+d'un projet, puis pour fusionner les modifications entre les
+versions. WinMerge peut être utilisé comme outil de différenciation/fusion
+externe ou comme application autonome.</para>
+
+  <para>De plus, WinMerge possède de nombreuses fonctionnalités de support utiles
+qui rendent la comparaison, la synchronisation et la fusion aussi faciles et
+utiles que possible. Plusieurs langages de programmation et autres formats
+de fichiers bénéficient de la coloration syntaxique.</para>
+
+  <para>WinMerge n'est pas un éditeur hexadécimal. WinMerge peut afficher le contenu
+des fichiers binaires et les différences entre eux. Mais ces informations
+sont destinées à la visualisation uniquement : l'édition de fichiers
+binaires avec WinMerge peut endommager les fichiers.</para>
+
+  <para>L'objectif du développement de WinMerge est de rendre la comparaison, la
+synchronisation et la fusion de dossiers et de fichiers faciles et rapides,
+tout en maintenant une fiabilité maximale. La facilité d'utilisation est
+d'une importance capitale pour réduire les erreurs.</para>
+  
+  <para>La dernière version &WinMergeVersion; est considérée comme un programme
+stable et fiable à utiliser.</para>
+
+  <note>
+    <para>WinMerge n'est pas un gratuiciel (comme l'ont affirmé de nombreux sites sur
+le Web) : il est sous licence <ulink
+url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink>.</para>
+    <para>Nous vous fournissons gratuitement un bon outil, alors veuillez honorer
+votre contrat de licence et nous soumettre des améliorations. Nous sommes
+heureux de recevoir de l'aide pour améliorer WinMerge, au profit de tous les
+utilisateurs de WinMerge.</para>
+  </note>
+
+  <section>
+    <title>Versions de WinMerge<indexterm>
+        <primary>Versions de WinMerge</primary>
+      </indexterm></title>
+
+    <para>Il existe deux types de versions disponibles sur la page des <ulink
+url="https://sourceforge.net/projects/winmerge/files/">téléchargements</ulink>.</para>
+
+    <section>
+      <title><indexterm>
+          <primary>versions stables de WinMerge</primary>
+        </indexterm>Versions stables</title>
+
+      <para>Les <ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/">versions
+stables</ulink> sont recommandées pour la plupart des utilisateurs. Si vous
+n'êtes pas sûr de la version à utiliser, utilisez la dernière version
+stable. Les versions stables ont un dernier numéro pair, par exemple 2.14.0,
+2.16.2 et 2.16.4.</para>
+    </section>
+
+    <section>
+      <title><indexterm>
+          <primary>versions bêta de WinMerge</primary>
+        </indexterm>Versions bêta</title>
+
+      <para>Les <ulink
+url="https://sourceforge.net/projects/winmerge/files/beta/">versions
+bêta</ulink> sont destinées aux personnes qui souhaitent tester les
+dernières fonctionnalités et améliorations apportées après la dernière
+version stable. Les versions bêta ne sont pas testées aussi intensivement
+que les versions stables et comportent probablement quelques bogues. Les
+versions bêta ont un dernier numéro impair, par exemple 2.16.3 et
+2.16.5. Les versions bêta peuvent être utilisées en production, car elles ne
+sont pas censées présenter de bogues majeurs. Mais il y a toujours un risque
+à utiliser des versions de niveau bêta, alors réfléchissez-y bien. Nous
+avons essayé de publier une nouvelle série stable une fois par an, il peut
+donc valoir la peine d'attendre quelques mois pour la prochaine version
+stable...</para>
+    </section>
+  </section>
+
+  <section>
+    <title><indexterm>
+        <primary>Assistance WinMerge</primary>
+
+        <secondary>signaler des bogues</secondary>
+      </indexterm>Obtenir de l'aide et signaler des
+bogues</title>
+
+    <para>Les <emphasis>forums de discussion</emphasis> sont le moyen le plus rapide
+d'obtenir de l'aide :</para>
+    <itemizedlist>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winmerge/discussions">Discussions WinMerge</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winimerge/discussions">Discussions Comparaison d'images</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/website/discussions">Discussions Site Web</ulink>
+      </listitem>
+    </itemizedlist>
+
+    <para>Si vous trouvez un bogue, veuillez le soumettre sous forme de <ulink
+url="https://github.com/WinMerge/winmerge/issues">rapport de
+bogue</ulink>. Veuillez joindre autant d'informations que possible : au
+minimum, le numéro de version de WinMerge que vous utilisez. Si vous le
+pouvez, joignez également un journal de configuration, que vous pouvez
+afficher en cliquant sur <menuchoice> <guimenu>Aide</guimenu>
+<guimenuitem>Configuration</guimenuitem> </menuchoice> dans la fenêtre
+WinMerge. De bonnes informations dans un rapport de bogue augmentent les
+chances que votre bogue soit corrigé rapidement.</para>
+
+    <important>
+      <para>Incluez le numéro de version dans les rapports de bogues. Vous pouvez
+vérifier le numéro de version en cliquant sur <menuchoice>
+<guimenu>Aide</guimenu> <guimenuitem>À propos de WinMerge</guimenuitem>
+</menuchoice>.</para>
+    </important>
+  </section>
+
+  <section>
+    <title><indexterm>
+        <primary>Développement de WinMerge</primary>
+      </indexterm>Code source et développement de
+WinMerge</title>
+
+    <para>Le code source de WinMerge est disponible sur notre <ulink
+url="https://winmerge.org/source-code/">site Web</ulink> et sur les pages du
+projet <ulink url="https://github.com/WinMerge/">GitHub</ulink>. N'importe
+qui peut télécharger les sources, les étudier et les modifier. Si vous
+trouvez (et corrigez) des bogues, améliorez quelque chose, etc., veuillez
+nous soumettre vos modifications sous forme de correctifs ou de demandes de
+tirage (pull requests) et aidez-nous à améliorer ce produit ! Si vous
+publiez votre version modifiée, vous êtes tenu de publier également les
+modifications du code source. C'est l'objet de la licence <ulink
+url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> : veuillez la
+respecter.</para>
+
+    <para>Le travail de développement de WinMerge est effectué par des personnes sur
+leur temps libre. Personne n'est payé pour améliorer WinMerge. Nous essayons
+de corriger les bogues au fur et à mesure que nous les trouvons ou quand
+quelqu'un nous les signale. Nous essayons vraiment - nous utilisons aussi
+WinMerge. Mais il n'y a absolument aucune promesse de nouvelles
+fonctionnalités. Nous apprécions toujours toute aide apportée à WinMerge,
+qu'il s'agisse de tests, de documentation, de traduction ou de codage.</para>
+  </section>
+</article>

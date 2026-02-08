@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Open_paths">
+  <title>Ouvrir des fichiers et des dossiers<indexterm>
+      <primary>ouvrir des fichiers et des dossiers</primary>
+    </indexterm></title>
+
+  <para>WinMerge propose plusieurs façons de spécifier des chemins et d'ouvrir des
+fichiers ou des dossiers :<indexterm>
+      <primary>dossiers</primary>
+
+      <secondary>sélection dans la boîte de dialogue Sélectionner des fichiers ou des
+dossiers</secondary>
+    </indexterm><indexterm>
+      <primary>fichiers</primary>
+
+      <secondary>sélection dans la boîte de dialogue Sélectionner des fichiers ou des
+dossiers</secondary>
+    </indexterm></para>
+
+  <itemizedlist>
+    <listitem>
+      <para><xref linkend="OpenPaths_opendialog" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_shell-integ" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_dragndrop" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_project" /></para>
+    </listitem>
+  </itemizedlist>
+
+  <section id="OpenPaths_opendialog">
+    <title>Boîte de dialogue Sélectionner des fichiers ou des dossiers<indexterm>
+        <primary>Boîte de dialogue Sélectionner des fichiers ou des dossiers</primary>
+      </indexterm></title>
+
+    <para>La section <xref linkend="Quick_start" /> décrit la boîte de dialogue
+Sélectionner des fichiers ou des dossiers. Cette section fournit plus de
+détails et quelques conseils pour utiliser cette boîte de dialogue plus
+efficacement.</para>
+
+    <section>
+      <title>Utiliser des variables d'environnement<indexterm>
+          <primary>variables d'environnement, dans les chemins cibles de comparaison</primary>
+        </indexterm></title>
+
+      <para>Vous pouvez utiliser des variables d'environnement dans vos chemins. Windows
+développe le nom de la variable situé entre des délimiteurs %
+(pourcentage). Par exemple, si une variable d'environnement nommée
+<envar>WORKDIR</envar> a pour valeur <filename
+class="directory">c:\workfiles</filename>, alors le chemin
+<envar>%WORKDIR%\project1</envar> est développé en <filename
+class="directory">c:\workfiles\project1</filename>.</para>
+    </section>
+
+    <section id="OpeningArchives">
+      <title>Ouvrir des fichiers d'archives<indexterm>
+          <primary>archives 7-Zip</primary>
+
+          <secondary>ouverture</secondary>
+        </indexterm></title>
+
+      <para>La prise en charge des archives par WinMerge est assurée par le plug-in
+7-Zip. Voir <xref linkend="Install" /> pour installer ce plug-in.</para>
+
+      <para>L'ouverture de deux fichiers d'archives est similaire à l'ouverture de
+fichiers normaux : spécifiez deux fichiers d'archives dans les champs
+<guilabel>1er</guilabel> et <guilabel>2e</guilabel> de la boîte de dialogue
+d'ouverture. Si WinMerge reconnaît le format d'archive, il ouvre le contenu
+des fichiers d'archives dans la fenêtre de comparaison de dossiers.</para>
+
+      <para>La rubrique <xref linkend="Compare_dirs" /> décrit comment travailler avec
+des fichiers d'archives. Par exemple, si un fichier d'archive contient deux
+sous-dossiers nommés <filename class="directory">Original/</filename> et
+<filename class="directory">Altered/</filename>, vous pouvez comparer le
+contenu des deux sous-dossiers en spécifiant le même fichier d'archive des
+deux côtés dans la boîte de dialogue Sélectionner des fichiers ou des
+dossiers ou dans la ligne de commande WinMerge.</para>
+
+      <tip>
+        <para>Lorsque vous faites glisser un fichier d'archive vers la fenêtre WinMerge,
+appuyez sur <keycap>Maj</keycap> en déposant le fichier : WinMerge copie
+automatiquement le même nom de fichier des deux côtés et ouvre le fichier
+d'archive.</para>
+      </tip>
+    </section>
+
+    <section id="Open_paths_filters">
+      <title>Appliquer des filtres<indexterm>
+          <primary>filtres</primary>
+
+          <secondary>application dans la boîte de dialogue Sélectionner des fichiers ou des
+dossiers</secondary>
+        </indexterm></title>
+
+      <para>Le champ d'édition <guilabel>Filtre</guilabel> vous permet de restreindre
+les fichiers à inclure dans votre comparaison de dossiers. Vous pouvez
+spécifier un ou plusieurs masques de fichiers, ou un seul filtre de fichiers
+(pas les deux).</para>
+
+      <para>Un masque est une expression simple basée sur les extensions de
+fichiers. Par exemple, cette liste de masques de fichiers n'inclut que les
+fichiers ayant les extensions spécifiées ; tous les autres sont exclus de la
+sélection au démarrage de l'opération de comparaison :</para>
+
+      <screen>*.h;*.cpp;*.txt,*.ini</screen>
+
+      <para>Les masques de fichiers sont pratiques pour un filtrage simple ; pour une
+sélection plus avancée, utilisez des fichiers de filtres. Les fichiers de
+filtres sont des collections d'expressions régulières qui peuvent soit
+inclure, soit exclure des fichiers. WinMerge installe un certain nombre de
+fichiers de filtres prédéfinis dans son dossier
+<filename>Filters</filename>, et vous pouvez également créer les vôtres.</para>
+
+      <para>Pour spécifier un filtre, cliquez sur le bouton
+<guibutton>Sélectionner</guibutton> à côté du champ
+<guilabel>Filtres</guilabel> pour choisir dans une liste de filtres
+disponibles. Ou bien, cliquez sur la liste déroulante Filtre et choisissez
+un fichier de filtre récemment utilisé.</para>
+
+      <para>Pour des informations complètes sur les masques et les fichiers de filtres,
+voir <xref linkend="Filters" />.</para>
+    </section>
+
+    <section id="Open_paths_unpacker">
+      <title>Sélectionner un décompresseur pour les comparaisons de fichiers<indexterm>
+          <primary>plug-ins de décompression</primary>
+        </indexterm></title>
+
+      <para>Les décompresseurs sont des plug-ins installés avec WinMerge pour fournir
+des fonctionnalités qui ne sont pas utilisées par défaut. Ce sont des
+plug-ins utilisables pour prétraiter certains types de fichiers avant de les
+comparer. Par exemple, WinMerge ne peut normalement pas comparer les
+fichiers doc MS Word, mais en les décompactant, vous pouvez en comparer
+uniquement le contenu textuel. Voir <xref linkend="Plugins" /> pour plus de
+détails.</para>
+
+      <para>Pour appliquer un plug-in à votre comparaison de fichiers, cliquez sur le
+bouton <guibutton>Sélectionner</guibutton> de l'option
+<guilabel>Décompresseur</guilabel>. Dans la boîte de dialogue Sélectionner
+un décompresseur :</para>
+
+      <xi:include href="select_unpacker.xml"
+                  xmlns:xi="http://www.w3.org/2001/XInclude"
+                  xpointer="element(select-unpacker-proc)" />
+
+      <para>Votre choix s'affiche dans le champ
+<guilabel>Décompresseur</guilabel>. Notez que vous ne pouvez pas
+sélectionner de décompresseur lors du lancement d'une opération de
+comparaison de dossiers.</para>
+    </section>
+  </section>
+
+  <section id="OpenPaths_shell-integ">
+    <title><indexterm>
+        <primary>Intégration au shell Windows</primary>
+      </indexterm><indexterm>
+        <primary>menu contextuel, raccourcis WinMerge dans l'Explorateur Windows</primary>
+      </indexterm>Lancer des opérations WinMerge dans l'Explorateur Windows</title>
+
+    <para>L'intégration facultative au shell Windows vous permet d'exécuter des
+opérations de comparaison WinMerge directement depuis l'Explorateur Windows,
+en utilisant les raccourcis WinMerge du menu contextuel.</para>
+
+<!--WinMerge provides two optional types of integration with Windows Explorer. The first type lets you launch WinMerge compare operations directly from Windows Explorer, skipping the Select Files or Folders dialog. The second type lets you run Windows shell commands from the WinMerge window.-->
+    
+
+    <section>
+      <title>Activer l'intégration à l'Explorateur Windows</title>
+
+      <para>L'intégration au shell de l'Explorateur Windows n'est disponible que si elle
+est activée. Vous pouvez l'activer soit <link
+linkend="Installing_usinginstaller">pendant l'installation de
+WinMerge</link>, soit plus tard, en utilisant la section <xref
+linkend="Configuration_shell-integ" /> de la fenêtre Options. Dans la
+fenêtre Options, configurez l'option <option>Ajouter au menu
+contextuel</option>, y compris ses sous-options si vous le souhaitez.</para>
+    </section>
+
+    <section>
+      <title>Utiliser le raccourci WinMerge</title>
+
+      <para>Si vous activez <option>Ajouter au menu contextuel</option> sans la
+sous-option de menu avancé, le raccourci <guimenuitem>WinMerge</guimenuitem>
+est ajouté au menu contextuel de l'Explorateur. Par exemple :</para>
+
+      <para>Pour utiliser l'intégration de base au shell, commencez par sélectionner
+deux chemins dans l'Explorateur Windows. Ensuite, faites un clic droit et
+choisissez WinMerge dans le menu contextuel. Par exemple :</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/ctx_menu_simple.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Commande WinMerge dans le menu contextuel de l'Explorateur Windows</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>WinMerge ouvre les chemins directement dans la fenêtre de comparaison de
+fichiers ou de dossiers.</para>
+
+      <para>Les côtés gauche et droit sont déterminés par l'ordre de tri dans
+l'Explorateur Windows. Dans la capture d'écran précédente, la liste des
+fichiers de l'Explorateur Windows est par ordre croissant, donc WinMerge
+s'ouvre avec <filename>File2</filename> du 1er côté et
+<filename>File1</filename> du 2e côté.</para>
+
+      <note>
+        <para>Si l'un des chemins ne peut pas être ouvert pour une raison quelconque,
+WinMerge ouvre la boîte de dialogue Sélectionner des fichiers ou des
+dossiers, où vous pouvez spécifier de nouveaux chemins. De même, si vous ne
+sélectionnez qu'un seul chemin, la boîte de dialogue s'ouvre avec le fichier
+ou dossier sélectionné dans le champ <guilabel>1er</guilabel>, vous laissant
+le soin de spécifier le <guilabel>2e</guilabel> chemin.</para>
+      </note>
+
+      <para>Le raccourci <guimenuitem>WinMerge</guimenuitem> est rapide et facile à
+utiliser, mais vous ne pouvez comparer que des fichiers ou des dossiers que
+vous êtes en mesure de sélectionner simultanément dans l'Explorateur
+Windows. Pour des sélections plus flexibles, envisagez d'activer le menu
+avancé, décrit dans la section suivante.</para>
+    </section>
+
+    <section>
+      <title>Utiliser le menu avancé</title>
+
+      <para>Si vous choisissez <option>Activer le menu avancé</option>, le raccourci
+<guimenuitem>WinMerge</guimenuitem> est remplacé par deux raccourcis
+<guimenuitem>Comparer</guimenuitem> :</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/ctx_menu_advanced.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Menu contextuel avancé de WinMerge</phrase>
+        </textobject>
+      </mediaobject>
+
+      <para>Utilisez les raccourcis <guimenuitem>Comparer</guimenuitem> dans cet ordre :</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Faites un clic droit sur le premier chemin et choisissez
+<guimenuitem>Comparer à</guimenuitem>. WinMerge stocke le chemin en mémoire
+jusqu'à ce que vous sélectionniez le second chemin.</para>
+        </listitem>
+
+        <listitem>
+          <para>Si vous décidez que vous avez choisi le mauvais premier chemin, vous pouvez
+le modifier avant de choisir le second chemin :</para>
+
+          <para>Faites un clic droit sur le nouveau chemin et choisissez le raccourci
+<guimenuitem>Re-sélectionner le premier</guimenuitem>. La nouvelle sélection
+remplace votre chemin précédent, et vous pouvez passer à l'étape suivante.</para>
+        </listitem>
+
+        <listitem>
+          <para>Naviguez vers le second fichier ou dossier que vous souhaitez comparer. Le
+second chemin peut se trouver dans n'importe quel dossier, ou même dans une
+fenêtre d'Explorateur Windows différente du premier chemin. Faites un clic
+droit sur le second chemin et choisissez
+<guimenuitem>Comparer</guimenuitem>.</para>
+
+          <para>WinMerge ouvre la fenêtre de comparaison de fichiers ou de dossiers, en
+chargeant respectivement les premier et second chemins du 1er et du 2e côté.</para>
+        </listitem>
+      </orderedlist>
+
+      <note>
+        <para>Si vous cliquez sur <guimenuitem>Comparer</guimenuitem> avant d'avoir
+désigné le premier chemin, la boîte de dialogue Sélectionner des fichiers ou
+des dossiers s'ouvre, avec votre sélection en tant que premier
+(<guilabel>1er</guilabel>) chemin. Spécifiez le second chemin dans le champ
+<guilabel>2e</guilabel> pour poursuivre la comparaison.</para>
+      </note>
+
+<!--              <tip>
+<para>When you use this method, take advantage 
+of the Select Files or Folders dialog's MRU list. This is very handy when you need 
+to compare one file/folder against several files/folders.</para> </tip> -->
+      
+
+      <para>Le chemin de <guimenuitem>Comparer à</guimenuitem> est stocké en mémoire
+jusqu'à ce que WinMerge soit ouvert. Par conséquent, vous n'avez pas besoin
+de sélectionner les deux fichiers en même temps ni même d'utiliser la même
+vue de l'Explorateur Windows : vous pouvez en choisir un, ouvrir un
+répertoire différent et choisir l'autre. Les deux chemins sont effacés de la
+mémoire après une opération de comparaison. Cela signifie que vous ne pouvez
+pas sélectionner un chemin <guimenuitem>Comparer à</guimenuitem> et le
+comparer à plusieurs chemins.</para>
+    </section>
+
+    <section>
+      <title>Inclure les sous-dossiers lors de l'utilisation de l'intégration à
+l'Explorateur Windows<indexterm>
+          <primary>comparaison récursive de dossiers</primary>
+
+          <secondary>spécification dans la boîte de dialogue Sélectionner des fichiers ou des
+dossiers</secondary>
+        </indexterm><indexterm>
+          <primary>sous-dossiers</primary>
+
+          <seealso>comparaison récursive de dossiers</seealso>
+        </indexterm></title>
+
+      <para>Par défaut, les comparaisons de dossiers que vous effectuez à l'aide du
+raccourci <guimenuitem>WinMerge</guimenuitem> ou
+<guimenuitem>Comparer</guimenuitem> sont récursives. Il existe un moyen de
+lancer des comparaisons non récursives avec l'intégration à l'Explorateur
+Windows :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Désactivez <guilabel>Inclure les sous-dossiers</guilabel> dans la page
+Dossier de la boîte de dialogue Options de WinMerge.</para>
+        </listitem>
+      </itemizedlist>
+
+      <tip>
+        <para>Appuyez sur <keycap>Ctrl</keycap> tout en sélectionnant le raccourci
+<guimenuitem>WinMerge</guimenuitem> ou <guimenuitem>Comparer</guimenuitem>
+dans le menu contextuel de l'Explorateur Windows pour forcer une comparaison
+inverse par rapport aux paramètres actuels d'« Inclure les sous-dossiers ».</para>
+      </tip>
+    </section>
+  </section>
+
+  <section id="OpenPaths_dragndrop">
+    <title><indexterm>
+        <primary>glisser-déposer, dans la fenêtre WinMerge</primary>
+      </indexterm>Utiliser le glisser-déposer</title>
+
+    <para>Depuis n'importe quelle source Windows permettant de faire glisser des
+objets, comme l'Explorateur Windows ou le Bureau, vous pouvez faire glisser
+et déposer un ou deux chemins dans la fenêtre WinMerge. Si vous ne déposez
+qu'un seul chemin dans WinMerge, la boîte de dialogue Sélectionner des
+fichiers ou des dossiers s'ouvre pour vous permettre de sélectionner le
+second chemin. Si le chemin unique spécifie un fichier projet, alors le
+fichier projet est ouvert.</para>
+
+    <para>Par défaut, WinMerge inclut les sous-dossiers dans les opérations de
+comparaison. Pour ne pas inclure les sous-dossiers, maintenez la touche
+<keycap>Ctrl</keycap> enfoncée lors du dépôt des chemins. Une autre touche
+utile lors du dépôt de chemins est <keycap>Maj</keycap> : pour ouvrir le
+même chemin des deux côtés d'une fenêtre de comparaison, maintenez la touche
+<keycap>Maj</keycap> enfoncée en ne déposant qu'un seul chemin. C'est un
+moyen pratique d'ouvrir des fichiers d'archives (voir <xref
+linkend="OpeningArchives" />).</para>
+
+    <para>Vous pouvez déposer des chemins dans la boîte de dialogue Sélectionner des
+fichiers ou des dossiers. Une procédure typique consiste à faire glisser et
+déposer le premier chemin dans la fenêtre WinMerge, puis à faire glisser et
+déposer le second chemin dans la boîte de dialogue de sélection. Lorsqu'un
+chemin est déposé dans la boîte de dialogue Sélectionner des fichiers ou des
+dossiers, il est chargé dans le champ du 1er ou du 2e chemin :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>1er</term>
+
+        <listitem>
+          <para>Si le 1er champ est vide ou si les deux champs de chemin contiennent déjà
+des chemins</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>2e</term>
+
+        <listitem>
+          <para>Si le 1er chemin n'est pas vide et que le 2e chemin est vide</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="OpenPaths_project">
+    <title><indexterm>
+        <primary>fichiers de projet</primary>
+      </indexterm><indexterm>
+        <primary>ligne de commande</primary>
+
+        <secondary>spécification des fichiers projet</secondary>
+      </indexterm>Fichiers projet</title>
+
+    <para>Vous pouvez enregistrer les chemins et filtres actuellement ouverts dans un
+fichier projet. Ensuite, vous pourrez facilement ouvrir le projet plus tard
+pour comparer les mêmes fichiers. Les fichiers projet sont pratiques si vous
+comparez les mêmes fichiers de manière répétée.</para>
+
+    <section>
+      <title>Utiliser les fichiers projet</title>
+
+      <para>Pour utiliser un fichier projet dans la fenêtre WinMerge, cliquez sur
+<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Ouvrir un
+projet</guimenuitem> </menuchoice>. WinMerge lit les chemins du fichier
+projet. Si le fichier projet possède deux ou trois chemins, deux ou trois
+chemins sont ouverts. Si un seul chemin est donné ou si l'un des chemins est
+invalide, WinMerge ouvre la boîte de dialogue Sélectionner des fichiers ou
+des dossiers, où vous pouvez ajouter ou corriger les informations de
+chemin. Voici quelques points à considérer :</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>Si vous spécifiez deux fichiers projet, les fichiers projet eux-mêmes sont
+comparés.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Si vous spécifiez un fichier projet comme fichier de gauche mais ne
+spécifiez pas de fichier de droite, le fichier projet unique est ouvert
+comme si vous aviez utilisé la commande <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem>Ouvrir un projet</guimenuitem>
+</menuchoice>.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Si vous spécifiez un fichier projet comme fichier de gauche et n'importe
+quel autre fichier du côté droit, le contenu du fichier projet et de l'autre
+fichier est comparé.</simpara>
+        </listitem>
+      </itemizedlist>
+
+      <para>Pour spécifier un fichier projet sur la ligne de commande, saisissez-le
+simplement comme un chemin de fichier unique.</para>
+    </section>
+
+    <section>
+      <title>Édition et enregistrement de fichiers projet</title>
+
+      <para>Pour enregistrer un fichier projet, cliquez sur <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem>Enregistrer le projet</guimenuitem>
+</menuchoice>. La boîte de dialogue <guilabel>Fichier projet</guilabel>
+propose des champs et des options que vous pouvez facilement éditer pour
+construire un fichier projet. Si une fenêtre de comparaison est actuellement
+ouverte, la boîte de dialogue <guilabel>Fichier projet</guilabel> est
+initialisée avec les valeurs de la comparaison actuelle ; sinon, vous
+fournissez les valeurs vous-même. Pour utiliser un projet existant, cliquez
+sur <guibutton>Ouvrir</guibutton> et sélectionnez un projet pour charger ses
+valeurs (toutes les valeurs existantes sont écrasées dans la boîte de
+dialogue).</para>
+
+      <para>Une fois l'édition terminée, cliquez sur <guibutton>Enregistrer</guibutton>
+pour stocker le fichier.</para>
+
+      <mediaobject>
+<imageobject> <imagedata fileref="screenshots/projfile_save.png"
+format="PNG" /> </imageobject><textobject>
+          <phrase>Boîte de dialogue Fichier projet</phrase>
+        </textobject>
+      </mediaobject>
+    </section>
+
+    <section>
+      <title>Format de fichier projet</title>
+
+      <para>Les fichiers projet sont de simples fichiers XML avec une extension
+<filename class="extension">.WinMerge</filename>. Par exemple :</para>
+
+      <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;project&gt;
+   &lt;paths&gt;
+      &lt;left&gt;c:\travail\projet1&lt;/left&gt;
+      &lt;left-readonly&gt;1&lt;/left-readonly&gt;
+      &lt;middle&gt;c:\travail\projet2&lt;/middle&gt;
+      &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;
+      &lt;right&gt;c:\travail\projet3&lt;/right&gt;
+      &lt;right-readonly&gt;0&lt;/right-readonly&gt;
+      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;
+      &lt;subfolders&gt;0&lt;/subfolders&gt;
+   &lt;/paths&gt;
+&lt;/project&gt;</screen>
+
+      <para>Un fichier projet contient un élément <sgmltag>paths</sgmltag> qui peut
+contenir chacun de ces éléments :</para>
+
+      <variablelist>
+        <varlistentry>
+          <term><sgmltag>left</sgmltag></term>
+
+          <listitem>
+            <para>Chemin de gauche à ouvrir</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>left-desc</sgmltag></term>
+
+          <listitem>
+            <para>Description de gauche</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>left-readonly</sgmltag></term>
+
+          <listitem>
+            <para>1 = Ouvrir en lecture seule</para>
+
+            <para>0 = Ouvrir normalement</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>middle</sgmltag></term>
+
+          <listitem>
+            <para>Chemin du milieu à ouvrir</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>middle-desc</sgmltag></term>
+
+          <listitem>
+            <para>Description du milieu</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>middle-readonly</sgmltag></term>
+
+          <listitem>
+            <para>1 = Ouvrir en lecture seule</para>
+
+            <para>0 = Ouvrir normalement</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>right</sgmltag></term>
+
+          <listitem>
+            <para>Chemin de droite à ouvrir</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>right-desc</sgmltag></term>
+
+          <listitem>
+            <para>Description de droite</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>right-readonly</sgmltag></term>
+
+          <listitem>
+            <para>1 = Ouvrir en lecture seule</para>
+
+            <para>0 = Ouvrir normalement</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>filter</sgmltag></term>
+
+          <listitem>
+            <para>Nom du filtre de fichiers ou liste d'extensions</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>subfolders</sgmltag></term>
+
+          <listitem>
+            <para>0 = Sous-dossiers non inclus</para>
+
+            <para>1 = Sous-dossiers inclus</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>unpacker</sgmltag></term>
+
+          <listitem>
+            <para>Nom du plug-in décompresseur ou pipeline de plug-ins</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>prediffer</sgmltag></term>
+
+          <listitem>
+            <para>Nom du plug-in prediffer ou pipeline de plug-ins</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>window-type</sgmltag></term>
+
+          <listitem>
+            <para>1 = Fenêtre de comparaison de texte</para>
+
+            <para>2 = Fenêtre de comparaison de tableaux</para>
+
+            <para>3 = Fenêtre de comparaison binaire</para>
+
+            <para>4 = Fenêtre de comparaison d'images</para>
+
+            <para>5 = Fenêtre de comparaison de pages Web</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>table-delimiter</sgmltag></term>
+
+          <listitem>
+            <para>Délimiteur pour l'édition de tableaux</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>white-spaces</sgmltag></term>
+
+          <listitem>
+            <para>0 = Comparer les espaces blancs</para>
+
+            <para>1 = Ignorer les modifications d'espaces blancs</para>
+
+            <para>2 = Ignorer tous les espaces blancs</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-blank-lines</sgmltag></term>
+
+          <listitem>
+            <para>0 = Ne pas ignorer les lignes vides</para>
+
+            <para>1 = Ignorer les lignes vides</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-case</sgmltag></term>
+
+          <listitem>
+            <para>0 = Ne pas ignorer la casse</para>
+
+            <para>1 = Ignorer la casse</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-carriage-return-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = Ne pas ignorer les différences de retour chariot</para>
+
+            <para>1 = Ignorer les différences de retour chariot</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-numbers</sgmltag></term>
+
+          <listitem>
+            <para>0 = Ne pas ignorer les nombres</para>
+
+            <para>1 = Ignorer les nombres</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-codepage-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = Ne pas ignorer les différences de page de code</para>
+
+            <para>1 = Ignorer les différences de page de code</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-comment-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = Ne pas ignorer les différences de commentaires</para>
+
+            <para>1 = Ignorer les différences de commentaires</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-missing-trailing-eol</sgmltag></term>
+
+          <listitem>
+            <para>0 = Ne pas ignorer la fin de ligne manquante en fin de fichier</para>
+
+            <para>1 = Ignorer la fin de ligne manquante en fin de fichier</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-line-breaks</sgmltag></term>
+
+          <listitem>
+            <para>0 = Ne pas ignorer les sauts de ligne (les traiter comme des espaces)</para>
+
+            <para>1 = Ignorer les sauts de ligne (les traiter comme des espaces)</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>compare-method</sgmltag></term>
+
+          <listitem>
+            <para>0 = Contenu complet</para>
+
+            <para>1 = Contenu rapide</para>
+
+            <para>2 = Contenu binaire</para>
+
+            <para>3 = Date de modification</para>
+
+            <para>4 = Date de modification et taille</para>
+
+            <para>5 = Taille</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Aucun des champs n'est requis, et ils peuvent être vides (<literal>par
+exemple, &lt;left&gt;&lt;/left&gt; ou &lt;left/&gt;</literal>).</para>
+    </section>
+  </section>
+</article>

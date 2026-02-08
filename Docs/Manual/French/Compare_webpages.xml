@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_webpages">
+  <?target dbhh topicname="IDH_Compare_webpages" topicid ="005"?>
+
+  <title>Comparer des pages Web</title>
+
+  <indexterm>
+    <primary>comparaison de fichiers</primary>
+    <secondary>Pages Web</secondary>
+  </indexterm>
+
+  <para>
+Cette rubrique décrit comment comparer des pages Web à l'aide de la fenêtre
+de comparaison de pages Web. <note><para>
+Cette fonctionnalité est encore expérimentale et peut être instable et très
+lente.</para>
+</note></para>
+
+  <section id="Compare_webpage_starting">
+    <title>Démarrer une opération de comparaison de pages Web</title>
+
+    <para>Vous pouvez lancer une opération de comparaison de pages Web soit à partir
+de la fenêtre de WinMerge, soit à partir d'une fenêtre d'invite de commande.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Depuis la fenêtre WinMerge</term>
+
+        <listitem>
+          <para>
+Cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
+<guimenuitem>Ouvrir</guimenuitem> </menuchoice>. Spécifiez les deux ou trois
+URL que vous souhaitez comparer dans la boîte de dialogue « Sélectionner des
+fichiers ou des dossiers » et sélectionnez l'élément de menu
+<guimenuitem>Page Web</guimenuitem> dans le menu déroulant du bouton
+<guibutton>Comparer</guibutton>. <mediaobject>
+<imageobject> <imagedata fileref="screenshots/OpenDlg2.png" format="PNG" />
+</imageobject><textobject>
+                <phrase>Fenêtre Sélectionner des fichiers ou des dossiers</phrase>
+              </textobject>
+            </mediaobject></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Depuis une fenêtre d'invite de commande</term>
+
+        <listitem>
+          <para>Exécutez <command>WinMergeU.exe</command>, qui se trouve dans votre
+répertoire d'installation de WinMerge. Dans vos arguments de commande,
+incluez deux ou trois URL des pages Web que vous souhaitez comparer et
+spécifiez l'option de ligne de commande <option>/t webpage</option>. Pour
+plus d'informations sur l'utilisation de la ligne de commande, consultez
+<xref linkend="Command_line" />.</para>
+
+          <example>
+            <title>Ligne de commande</title>
+
+            <para>
+<userinput> "C:\Program Files\WinMerge\WinMergeU.exe" /t webpage
+https://exemple.net https://exemple.com </userinput></para>
+          </example>
+
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_webpage_window">
+    <title>Fenêtre de comparaison de pages Web</title>
+
+    <para>
+    </para>
+
+    <mediaobject>
+<imageobject> <imagedata fileref="screenshots/webcmp1.png" format="PNG" />
+</imageobject><textobject>
+        <phrase>Fenêtre de comparaison de pages Web</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>
+Lorsque la fenêtre de comparaison de pages Web s'affiche, le menu Page Web
+est ajouté à la barre de menus. Les éléments de ce menu sont les
+suivants. Une partie des fonctionnalités de ces éléments est également
+disponible dans le volet Emplacement.</para>
+
+    <section>
+      <title>
+Menu Page Web<indexterm>
+          <primary>menu page web</primary>
+        </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>Afficher les différences</term>
+          <listitem>
+            <para>
+Active ou désactive la coloration des différences de texte pour les pages
+Web.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <section>
+        <title>
+Menu Comparer<indexterm>
+            <primary>Menu Comparer</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Captures d'écran</term>
+            <listitem>
+              <para>
+Convertit la plage de pages Web actuellement affichée en images et les
+compare dans la fenêtre de comparaison d'images.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Captures d'écran pleine taille</term>
+            <listitem>
+              <para>
+Crée des images de toute la zone des pages Web et les compare dans la
+fenêtre de comparaison d'images.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>HTML</term>
+            <listitem>
+              <para>
+Compare le contenu HTML des pages Web dans la fenêtre de comparaison de
+fichiers.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Textes</term>
+            <listitem>
+              <para>
+Extrait les parties textuelles des pages Web et les compare dans la fenêtre
+de comparaison de fichiers.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Arborescences des ressources</term>
+            <listitem>
+              <para>
+Compare les arborescences de ressources des pages Web dans la fenêtre de
+comparaison de dossiers.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Menu Taille<indexterm>
+            <primary>Menu Taille</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Ajuster à la fenêtre</term>
+            <listitem>
+              <para>
+Ajuste la taille d'affichage de la page Web à la taille de chaque volet.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Largeur x Hauteur</term>
+            <listitem>
+              <para>
+Modifie la taille d'affichage de la page Web à la taille spécifiée.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Menu Synchro d'événements<indexterm>
+            <primary>Menu Synchro d'événements</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Activé</term>
+            <listitem>
+              <para>
+Active ou désactive la fonction de synchronisation d'événements tels que le
+défilement (Scroll) et le clic.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Défilement</term>
+            <listitem>
+              <para>
+Active ou désactive la synchronisation du défilement.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Clic</term>
+            <listitem>
+              <para>
+Active ou désactive la synchronisation du clic.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Saisie</term>
+            <listitem>
+              <para>
+Active ou désactive la synchronisation de la saisie (Input).</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Précédent/Suivant</term>
+            <listitem>
+              <para>
+Active ou désactive la synchronisation du retour à la page précédente ou du
+passage à la page suivante.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+Menu Effacer les données de navigation<indexterm>
+            <primary>Menu Effacer les données de navigation</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Cache disque</term>
+            <listitem>
+              <para>
+Efface uniquement le cache disque des données de navigation.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Cookies</term>
+            <listitem>
+              <para>
+Efface uniquement les cookies des données de navigation.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Historique de navigation</term>
+            <listitem>
+              <para>
+Efface uniquement l'historique de navigation des données de navigation.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Tout le profil</term>
+            <listitem>
+              <para>
+Efface toutes les données de navigation.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <para>
+        </para>
+   
+      </section>
+
+    </section>
+
+    <section>
+      <title>
+Limites actuelles<indexterm>
+          <primary>limites de la comparaison de pages Web</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+Les pages Web utilisant l'élément FRAMESET, actuellement obsolète, ne
+peuvent pas être comparées.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+Le contenu de l'élément IFRAME pourrait ne pas être comparé ou les
+événements pourraient ne pas être synchronisés.</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+La comparaison de pages Web ayant des contenus très différents peut prendre
+beaucoup de temps.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+  </section>
+
+</article>

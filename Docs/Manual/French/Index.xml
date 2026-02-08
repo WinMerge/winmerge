@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"../Tools/dtd/docbookx.dtd" [
+<!ENTITY % Copyrights SYSTEM "_Copyrights.xml">
+  %Copyrights;
+<!ENTITY % VersionNumbers SYSTEM "_VersionNumbers.xml">
+  %VersionNumbers;
+<!ENTITY About_Doc SYSTEM "About_Doc.xml">
+<!ENTITY Quick_start SYSTEM "Quick_start.xml">
+<!ENTITY Introduction SYSTEM "Introduction.xml">
+<!ENTITY Install SYSTEM "Install.xml">
+<!ENTITY Intro_diffs SYSTEM "Intro_diffs.xml">
+<!ENTITY Open_paths SYSTEM "Open_paths.xml">
+<!ENTITY Compare_dirs SYSTEM "Compare_dirs.xml">
+<!ENTITY Compare_files SYSTEM "Compare_files.xml">
+<!ENTITY Compare_bin SYSTEM "Compare_bin.xml">
+<!ENTITY Compare_table SYSTEM "Compare_table.xml">
+<!ENTITY Compare_images SYSTEM "Compare_images.xml">
+<!ENTITY Compare_webpages SYSTEM "Compare_webpages.xml">
+<!ENTITY Configuration SYSTEM "Configuration.xml">
+<!ENTITY Locales SYSTEM "Locales.xml">
+<!ENTITY Plugins SYSTEM "Plugins.xml">
+<!ENTITY Filters SYSTEM "Filters.xml">
+<!ENTITY Version_control SYSTEM "Version_control.xml">
+<!ENTITY Command_line SYSTEM "Command_line.xml">
+<!ENTITY Faq SYSTEM "Faq.xml">
+<!ENTITY Shortcut_keys SYSTEM "Shortcut_keys.xml">
+]>
+<book id="index">
+<!-- Note to maintainers:
+  Not all doc files are included in this file. There are also fragment files 
+  included at the topic level. A fragment file is for example select-unpacker.xml.
+  Please do not delete xml files in this directory unless you know for sure 
+  that they are not used. -->
+  <bookinfo>
+    <title>Aide de WinMerge &WinMergeVersion;</title>
+
+<productname>WinMerge</productname><releaseinfo><emphasis>Révision &ManualRevision;</emphasis></releaseinfo>
+
+<copyright> <year>&CopyrightYears;</year> <holder>&CopyrightHolder;</holder>
+</copyright><legalnotice>
+      <para>Les informations contenues dans ce document sont sujettes à modification
+sans préavis. Les autres produits et sociétés mentionnés ici sont des
+marques commerciales ou des marques déposées de leurs sociétés respectives
+ou de leurs détenteurs.</para>
+    </legalnotice>
+
+    <authorgroup>
+      <author>
+        <surname>Varis</surname>
+
+        <firstname>Kimmo</firstname>
+      </author>
+
+      <author>
+        <surname>Bradford</surname>
+
+        <firstname>Denis</firstname>
+      </author>
+
+      <author>
+        <surname>Grimm</surname>
+
+        <firstname>Dean</firstname>
+      </author>
+
+      <author>
+        <surname>Ganier</surname>
+
+        <firstname>Laurent</firstname>
+      </author>
+
+      <author>
+        <surname>Gerundt</surname>
+
+        <firstname>Tim</firstname>
+      </author>
+
+      <author>
+        <surname>Rapp</surname>
+
+        <firstname>Perry</firstname>
+      </author>
+
+      <author>
+        <surname>List</surname>
+
+        <firstname>Christian</firstname>
+      </author>
+	  
+      <author>
+        <contrib>et tous les autres qui ont aidé à ce projet.</contrib>
+      </author>
+    </authorgroup>
+  </bookinfo>
+
+  
+
+  &About_Doc;
+
+  &Quick_start;
+
+  &Introduction;
+
+  &Install;
+
+  &Intro_diffs;
+
+  &Open_paths;
+
+  &Compare_dirs;
+
+  &Compare_files;
+
+  &Compare_bin;
+
+  &Compare_table;
+
+  &Compare_images;
+
+  &Compare_webpages;
+
+  &Configuration;
+
+  &Locales;
+
+  &Plugins;
+
+  &Filters;
+
+  &Command_line;
+  
+  &Version_control;
+
+  &Faq;
+
+  &Shortcut_keys;
+
+  <index id="word_index"></index>
+</book>

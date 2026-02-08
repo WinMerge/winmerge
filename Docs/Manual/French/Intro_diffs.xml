@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Intro_diffs">
+  <title>Aperçu de la comparaison et de la fusion de fichiers</title>
+
+  <para>Cette rubrique décrit comment WinMerge détecte et affiche les différences au
+sein des fichiers texte, et présente des opérations simples de comparaison
+et de fusion de fichiers. Voir <xref linkend="Compare_bin" /> pour des
+informations connexes sur les fichiers hexadécimaux.</para>
+
+  <section id="Intro_diffs_comparing">
+    <title>Comparer des fichiers<indexterm>
+        <primary>comparaison de fichiers</primary>
+
+        <secondary>aperçu</secondary>
+      </indexterm></title>
+
+    <para>Nous comparons généralement deux fichiers liés d'une manière ou d'une autre,
+comme deux versions éditées à des moments différents ou par des personnes
+différentes. Si vous examinez deux fichiers de ce type, vous pouvez
+généralement voir des zones similaires, mais aussi identifier plusieurs
+types de différences : caractères et mots différents, lignes différentes,
+voire des blocs entiers de texte différents. Mais essayer de comprendre
+toutes les différences entre deux fichiers en les parcourant dans votre
+éditeur favori peut s'avérer fastidieux et source d'erreurs. Les outils
+spécialisés de différence/fusion comme WinMerge sont conçus pour rendre ce
+travail plus systématique et efficace.</para>
+
+    <para>Un utilitaire de différence simple que la plupart des gens ont utilisé est
+le correcteur orthographique : il vous fait parcourir systématiquement un
+document, met en évidence les mots qui diffèrent de ceux de son dictionnaire
+et vous aide à résoudre chaque problème d'orthographe. Cependant, s'arrêter
+aux caractères et aux mots n'est pas un moyen efficace de comprendre les
+différences entre plusieurs fichiers. Pour cette raison, de nombreux
+utilitaires de différence utilisent les lignes comme unité de base de
+comparaison.</para>
+
+    <para>WinMerge utilise également les lignes comme unité de base de différence. Les
+mots et les caractères ne sont pas traités individuellement dans les
+opérations de comparaison et de fusion. Pour illustrer cela, considérons
+deux fichiers identiques à l'exception d'une ligne qui est différente. Si
+les deux versions de la ligne comportent quatre mots différents et qu'une
+version a une espace supplémentaire, nous disons que le fichier présente une
+différence, et non cinq.</para>
+
+    <para>S'il est plus rapide de comparer des lignes que des mots, il est parfois
+aussi utile de traiter un bloc entier de lignes comme une seule différence,
+au lieu de comparer une ligne à la fois. Comme nous le verrons plus tard, la
+détection de différences sur plusieurs lignes rend la fusion plus efficace
+également.</para>
+
+    <section>
+      <title>Opération de comparaison simple</title>
+
+      <para>Cette section propose un exemple simple qui démontre comment comparer les
+différences de lignes entre deux fichiers dans WinMerge :</para>
+
+      <orderedlist>
+        <listitem>
+          <para>À l'aide d'un éditeur de texte, créez deux fichiers avec les noms et
+contenus indiqués ici, en veillant à préserver exactement les mots et les
+sauts de ligne :</para>
+
+          <formalpara>
+            <title>Fichier1 :</title>
+
+            <para><screen>Comparer les mots est lent 
+et les caractères. À la place,  
+WinMerge compare les lignes.
+Croyez-le ou non.</screen></para>
+          </formalpara>
+
+          <formalpara>
+            <title>Fichier2 :</title>
+
+            <para><screen>Comparer les mots est lent.
+WinMerge compare les lignes.
+Croyez-le ou non.</screen></para>
+          </formalpara>
+        </listitem>
+
+        <listitem>
+          <para>Lancez WinMerge. Par exemple, double-cliquez sur le raccourci bureau
+<inlinemediaobject>
+<imageobject> <imagedata contentwidth="32" fileref="screenshots/wm_icon.png"
+/> </imageobject><textobject>
+                <phrase>Raccourci bureau WinMerge</phrase>
+              </textobject>
+            </inlinemediaobject> WinMerge.</para>
+        </listitem>
+
+        <listitem>
+          <para>Dans la boîte de dialogue Sélectionner des fichiers et des dossiers,
+spécifiez <filename>Fichier1</filename> comme <guilabel>1er</guilabel>
+fichier et <filename>Fichier2</filename> comme <guilabel>2e</guilabel>
+fichier, puis cliquez sur <guibutton>Comparer</guibutton>. La fenêtre de
+comparaison de fichiers affiche les deux fichiers dans les volets Fichier
+gauche et droit, comme ceci :</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/missing_lines.png" /> </imageobject><textobject>
+              <phrase>Capture d'écran de Comparer les fichiers</phrase>
+            </textobject>
+          </mediaobject>
+
+          <para>Les éléments sont décrits plus en détail dans <xref linkend="Compare_files"
+/>. Voici quelques caractéristiques que vous devriez remarquer dans cet
+exemple :</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Nombre de différences</term>
+
+              <listitem>
+                <para>Le message dans la barre d'état au bas de la fenêtre WinMerge vous indique
+que deux différences ont été détectées.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Couleurs de différence</term>
+
+              <listitem>
+                <para>Les blocs de différence sont marqués avec la couleur d'arrière-plan de
+différence (doré, par défaut).</para>
+
+                <para>Les différences de lignes peuvent être activées pour marquer le texte
+modifié à l'intérieur des blocs de différences, en utilisant la couleur
+d'arrière-plan des mots (jaune clair, par défaut).</para>
+
+                <para>Les lignes identiques ne sont pas marquées : elles ont un fond blanc, comme
+la troisième ligne de l'exemple.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Lignes vides</term>
+
+              <listitem>
+                <para>Remarquez que dans le volet de comparaison de gauche, la deuxième ligne
+contient du texte ; l'autre volet présente une ligne grise vide au même
+endroit. Cette ligne vide n'existe pas dans le fichier source
+<filename>Fichier2</filename>, alors que fait-elle dans WinMerge ?</para>
+
+                <para>WinMerge insère une ou plusieurs lignes vides grises dans une version d'une
+différence lorsque l'autre version comporte plus de lignes. Ces lignes
+grises vides ne représentent pas des lignes blanches dans le fichier source
+; ce ne sont que des emplacements réservés dans l'affichage. Le but de ces
+lignes réservées est de maintenir l'alignement vertical entre les versions
+gauche et droite des différences. Ainsi, dans notre exemple, le texte
+<computeroutput>WinMerge compares lines</computeroutput> apparaît côte à
+côte dans la fenêtre de comparaison, même s'ils se trouvent sur des lignes
+différentes dans les fichiers sources. Cela rend la comparaison des
+différences beaucoup plus facile dans WinMerge que dans un éditeur
+classique.</para>
+
+                <tip>
+                  <para>L'une des conséquences de ces lignes vides est que les deux volets de la
+fenêtre de comparaison de fichiers affichent toujours le même nombre total
+de lignes, même si ce n'est pas le cas des fichiers sources.</para>
+                </tip>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para>Maintenant que vous comprenez comment WinMerge détecte et affiche les
+différences, vous pouvez utiliser les fonctions de comparaison efficacement,
+comme le montrent les étapes suivantes.</para>
+        </listitem>
+
+        <listitem>
+          <para>Cliquez sur <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Bouton Différence actuelle</phrase>
+              </textobject>
+            </inlinemediaobject>
+<guibutton>Différence actuelle</guibutton> dans la barre d'outils (ou
+appuyez sur <keycombo> <keycap>Alt</keycap> <keycap>Entrée</keycap>
+</keycombo>). Si ce bouton n'est pas activé (par exemple, si votre curseur
+se trouve sur une ligne différente), cliquez sur <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Bouton Première différence</phrase>
+              </textobject>
+            </inlinemediaobject> Première différence (ou appuyez sur
+<keycombo> <keycap>Alt</keycap> <keycap>Origine</keycap> </keycombo>) à la
+place.</para>
+
+          <para>Lorsque vous sélectionnez une différence, les deux versions sont chargées
+dans le volet Diff. Le volet Diff confirme quelles lignes sont incluses dans
+une différence et vous permet de les examiner isolément du reste du
+fichier. Dans notre exemple, la Différence 1 comporte clairement deux
+lignes.</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="588"
+fileref="screenshots/filecomp_diffpane1.png" /> </imageobject><textobject>
+              <phrase>Volet Diff de comparaison de fichiers</phrase>
+            </textobject>
+          </mediaobject>
+          <para></para>
+        </listitem>
+
+        <listitem>
+          <para>Cliquez sur <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Bouton Différence suivante</phrase>
+              </textobject>
+            </inlinemediaobject>
+<guibutton>Différence suivante</guibutton> dans la barre d'outils (ou
+cliquez sur <keycombo> <keycap>Alt</keycap> <keycap>Entrée</keycap>
+</keycombo>). Cela saute par-dessus la ligne identique (qui n'est pas une
+différence) et sélectionne la dernière ligne.</para>
+
+          <para>Vous avez atteint la fin du fichier et avez eu l'occasion d'examiner chaque
+différence. Il s'agissait d'un exemple trivial — il n'y avait que deux
+différences — et il existe d'autres façons de comparer les différences dans
+WinMerge. Mais cela démontre l'efficacité de l'utilisation des commandes de
+navigation de WinMerge.</para>
+        </listitem>
+      </orderedlist>
+    </section>
+  </section>
+
+  <section id="Intro_diffs_merging">
+    <title>Fusion des fichiers<indexterm>
+        <primary>fusion des différences</primary>
+
+        <secondary>aperçu et exemple</secondary>
+      </indexterm></title>
+
+    <para>Le but de la fusion est de combiner les modifications de deux fichiers en un
+seul. La fusion étend les concepts et fonctions utilisés dans l'opération de
+comparaison : veuillez lire la section précédente avant de commencer
+celle-ci. En plus de détecter les différences entre deux versions de
+fichiers, nous résolvons les différences et enregistrons le résultat dans
+une version <glossterm>cible</glossterm> unique.</para>
+
+    <para>La fusion de fichiers rend possible le développement simultané, et c'est une
+tâche courante dans les environnements d'équipe. Par exemple, supposons que
+vous et une autre personne souhaitiez ajouter du code au même fichier de
+programme en même temps. Vous commencez tous les deux avec une copie
+identique du fichier, mais au cours du développement, vous créez des
+versions distinctes qui ne sont pas identiques. À un moment donné, les deux
+versions doivent être fusionnées en une seule version qui préserve les
+modifications de chaque contributeur.</para>
+
+    <para>La fusion peut être suggérée (ou même initiée) par des systèmes de contrôle
+de version comme Subversion et Git. Par exemple, votre système de contrôle
+de version pourrait vous empêcher de soumettre des modifications à son dépôt
+en raison de conflits de fusion. Un conflit peut survenir si quelqu'un
+d'autre a enregistré une version différente du même fichier pendant que vous
+travailliez sur la vôtre, et que le système de contrôle de version n'a pas
+pu fusionner automatiquement les différences. Lorsque cela arrive, vous
+devrez peut-être fusionner les versions conflictuelles avant de tenter à
+nouveau de soumettre votre version. De nombreux systèmes disposent d'outils
+de différenciation et de fusion intégrés, mais vous préférerez peut-être
+utiliser WinMerge à la place.</para>
+
+    <para>Tout comme pour la comparaison, vous utilisez les commandes de la barre
+d'outils de WinMerge (ou les raccourcis clavier) pour parcourir
+systématiquement les différences. Résolvez chaque différence en copiant soit
+son <glossterm>candidat</glossterm> de gauche, soit celui de droite vers
+l'autre côté. Une fois que vous avez résolu toutes les différences, WinMerge
+vous informe que toutes les différences sont résolues (les versions sont
+identiques), et vous avez terminé la fusion.</para>
+
+    <section>
+      <title>Opération de fusion simple</title>
+
+      <para>Ce court exercice démontre comment utiliser les commandes de la fenêtre de
+comparaison de fichiers de manière systématique pour fusionner les fichiers
+simples présentés précédemment :</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Cliquez sur <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Bouton Différence actuelle</phrase>
+              </textobject>
+            </inlinemediaobject>
+<guibutton>Différence actuelle</guibutton> dans la barre d'outils pour
+sélectionner la première différence. Si ce bouton n'est pas activé, cliquez
+plutôt sur <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Bouton Première différence</phrase>
+              </textobject>
+            </inlinemediaobject>
+<guibutton>Première différence</guibutton>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Cliquez sur <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+                <phrase>Bouton Copier à droite</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Copier
+à droite</guibutton> pour fusionner la différence 1 de
+<filename>Fichier1</filename> vers <filename>Fichier2</filename>. Dans
+<filename>Fichier</filename>2, notez que la ligne de différence unique est
+remplacée par les deux lignes de <filename>Fichier1</filename>, et que la
+ligne grise vide a disparu.</para>
+        </listitem>
+
+        <listitem>
+          <para>Cliquez sur <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                <phrase>Bouton Différence suivante</phrase>
+              </textobject>
+            </inlinemediaobject>
+<guibutton>Différence suivante</guibutton> pour sélectionner la différence
+2. C'est plus facile que de chercher et sélectionner la différence
+vous-même. C'est particulièrement utile si vous souhaitez parcourir toutes
+les différences sans en oublier accidentellement.</para>
+        </listitem>
+
+        <listitem>
+          <para>Cliquez sur <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+                <phrase>Bouton Copier à gauche</phrase>
+              </textobject>
+            </inlinemediaobject> <guibutton>Copier
+à gauche</guibutton> pour fusionner la différence 2 de
+<filename>Fichier2</filename> vers <filename>Fichier1</filename>.</para>
+
+          <para>Le message indiquant que les fichiers sont identiques vous signale que la
+fusion est terminée :</para>
+
+          <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filemerged1.png" format="PNG" /> </imageobject></mediaobject>
+          <para></para>
+        </listitem>
+
+        <listitem>
+          <para>Cliquez sur <guibutton>OK</guibutton> pour fermer le message. Le message
+d'état de différence passe de <computeroutput>Différence 1 sur
+1</computeroutput> à <computeroutput>identique</computeroutput>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Appuyez sur <keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo>
+pour enregistrer vos modifications.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Bien que très simple, cet exemple illustre une méthodologie de base que vous
+pouvez utiliser pour parcourir une comparaison de n'importe quelle longueur,
+en fusionnant chaque différence une par une jusqu'à obtenir le résultat
+souhaité.</para>
+    </section>
+
+    <section>
+      <title>Choisir un fichier de résultat de fusion <indexterm>
+          <primary>fusion des différences</primary>
+
+          <secondary>fichier résultat</secondary>
+        </indexterm><indexterm>
+          <primary>fichier résultat, lors de la fusion</primary>
+        </indexterm></title>
+
+      <para>Vous contrôlez l'endroit où votre résultat de fusion est conservé. La
+fenêtre de comparaison de fichiers de WinMerge n'a pas de volet de résultat
+distinct, contrairement à certains outils de fusion. La stratégie la plus
+simple consiste donc à enregistrer vos modifications dans un, deux ou trois
+fichiers sources. Appuyez sur <keycombo> <keycap>Ctrl</keycap>
+<keycap>S</keycap> </keycombo> à tout moment pour enregistrer les
+modifications actuelles dans tous les fichiers ; alternativement, cliquez
+sur <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à
+gauche</guimenuitem> </menuchoice>, <menuchoice> <guimenu>Fichier</guimenu>
+<guimenuitem>Enregistrer au milieu</guimenuitem> </menuchoice> ou
+<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer à
+droite</guimenuitem> </menuchoice> pour n'enregistrer qu'un seul fichier.</para>
+
+      <para>Pour écrire dans un troisième fichier au lieu de l'un des fichiers sources,
+utilisez <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer
+sous</guimenuitem> </menuchoice>. Par exemple, votre fichier cible pourrait
+être le fichier de différence ou de conflit généré par un système de
+contrôle de version.</para>
+
+      <para>De même, dans la ligne de commande WinMerge, vous pouvez laisser les deux ou
+trois versions sources inchangées en utilisant l'argument optionnel
+<option>outputfile</option>, comme décrit dans <xref linkend="Command_line"
+/>.</para>
+    </section>
+  </section>
+</article>
