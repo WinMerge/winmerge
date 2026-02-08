@@ -132,7 +132,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_pAdditionalCompareCondition(new FilterExpression())
  , m_pRenameMoveKey(new FilterExpression())
  , m_nRenameMoveDetection(0)
- , m_nRenameMoveMergeMode(false)
+ , m_nRenameMoveMergeMode(0)
 {
 	BindOption(OPT_CMP_METHOD, m_compareMethod, IDC_COMPAREMETHODCOMBO, DDX_CBIndex);
 	BindOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst, IDC_COMPARE_STOPFIRST, DDX_Check);
