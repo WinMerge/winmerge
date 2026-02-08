@@ -1282,7 +1282,7 @@ namespace
 		DIFFITEM* rightSubDir = CreateMockDiffItem2Way(ctxt, rightDir, _T("dir1"), _T(""), 1000, false, true, true);
 
 		DIFFITEM* leftFile = CreateMockDiffItem2Way(ctxt, leftDir, _T("file.txt"), _T("dir1"), 1000, true, false);
-		DIFFITEM* rightFile = CreateMockDiffItem2Way(ctxt, rightSubDir, _T("file.txt"), _T("dir1"), 1000, false, true);
+		CreateMockDiffItem2Way(ctxt, rightSubDir, _T("file.txt"), _T("dir1"), 1000, false, true);
 
 		// Detect and merge moved directories
 		ctxt.m_pRenameMoveDetection = std::make_unique<RenameMoveDetection>();
