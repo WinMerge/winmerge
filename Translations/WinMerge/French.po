@@ -17,17 +17,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-01-30 21:00+0100\n"
-"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
+"POT-Creation-Date: 2026-02-03 07:46+0000\n"
+"PO-Revision-Date: 2026-02-07 22:55-0500\n"
+"Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.8\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -899,7 +899,7 @@ msgid "Comp&are"
 msgstr "Comp&arer"
 
 msgid "Compar&e with Renamed/Moved Items"
-msgstr ""
+msgstr "Compa&rer avec les éléments renommés/déplacés"
 
 msgid "Compare in New &Window"
 msgstr "Comparer dans une nouvelle &fenêtre"
@@ -1633,61 +1633,61 @@ msgid "Compare C&ontents"
 msgstr "Comparer les C&ontenus"
 
 msgid "&Clear Keys"
-msgstr ""
+msgstr "&Effacer les clés"
 
 msgid "&Name"
-msgstr ""
+msgstr "&Nom"
 
 msgid "&Base name (without extension)"
-msgstr ""
+msgstr "Nom de &base (sans extension)"
 
 msgid "Normalized &Unicode Name"
-msgstr ""
+msgstr "Nom &Unicode normalisé"
 
 msgid "&Date"
-msgstr ""
+msgstr "&Date"
 
 msgid "&Hash (MD5)"
-msgstr ""
+msgstr "&Hachage (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr ""
+msgstr "Insérer la fonction &replace()"
 
 msgid "Insert rege&xReplace() Function"
-msgstr ""
+msgstr "Insérer la fonction rege&xReplace()"
 
 msgid "Text &Normalization"
-msgstr ""
+msgstr "&Normalisation du texte"
 
 msgid "&Lowercase"
-msgstr ""
+msgstr "Minuscu&le"
 
 msgid "&Uppercase"
-msgstr ""
+msgstr "Maj&uscule"
 
 msgid "&Half-width"
-msgstr ""
+msgstr "&Demi-largeur"
 
 msgid "&Full-width"
-msgstr ""
+msgstr "&Pleine largeur"
 
 msgid "&Chinese Conversion"
-msgstr ""
+msgstr "Conversion &chinoise"
 
 msgid "&Simplified Chinese"
-msgstr ""
+msgstr "Chinois &simplifié"
 
 msgid "&Traditional Chinese"
-msgstr ""
+msgstr "Chinois &traditionnel"
 
 msgid "&Japanese Conversion"
-msgstr ""
+msgstr "Conversion &japonaise"
 
 msgid "&Hiragana"
-msgstr ""
+msgstr "&Hiragana"
 
 msgid "&Katakana"
-msgstr ""
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "À propos de WinMerge"
@@ -1930,7 +1930,7 @@ msgid "&Light mode scheme:"
 msgstr "&Schéma du mode clair :"
 
 msgid "&Dark mode scheme:"
-msgstr "&Schéma du mode sombre :"
+msgstr "&Schéma du mode foncé :"
 
 msgid "Your custom schemes"
 msgstr "Vos schémas personnalisés"
@@ -2703,13 +2703,13 @@ msgid "Additional comparison condi&tions:"
 msgstr "Conditions de comparaison supplémen&taires :"
 
 msgid "&Rename/move detection:"
-msgstr ""
+msgstr "Détection du renommage/déplacement :"
 
 msgid "Rename/move detection &keys:"
-msgstr ""
+msgstr "Clés de détection du renommage/déplacement :"
 
 msgid "&Merge renamed items into a single item"
-msgstr ""
+msgstr "Fusionner les élé&ments renommés en un seul élément"
 
 msgid "File patterns:"
 msgstr "Modèles de fichiers :"
@@ -3955,30 +3955,30 @@ msgstr "Groupe%d"
 
 msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivée"
 
 msgid "Detect renames"
-msgstr ""
+msgstr "Détecter les renommages"
 
 msgid "Detect renames and moves"
-msgstr ""
+msgstr "Détecter les renommages et les déplacements"
 
 msgid "Renamed"
-msgstr ""
+msgstr "Renommé"
 
 msgid "Moved"
-msgstr ""
+msgstr "Déplacé"
 
 msgid "Renamed/Moved"
-msgstr ""
+msgstr "Renommé/Déplacé"
 
 #, c-format
 msgid "(%1 items)"
-msgstr ""
+msgstr "(%1 éléments)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr ""
+msgstr "%1 (ensemble %2) : "
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -5211,17 +5211,17 @@ msgid "Light"
 msgstr "Clair"
 
 msgid "Dark"
-msgstr "Sombre"
+msgstr "Foncé"
 
 msgid "Follow system"
 msgstr "Suivre le système"
 
 #, c-format
 msgid "e.g. %1"
-msgstr ""
+msgstr "p. ex. %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
-msgstr ""
+msgstr "WinMerge a détecté un plantage précédent. Veuillez le signaler si possible."
 
 msgid "Prettification"
 msgstr "Embellissement"
@@ -5691,7 +5691,7 @@ msgstr ""
 "Activez \"Accès approuvé au modèle d'objet du projet Visual Basic\" sous Options/Centre de gestion de la confidentialité/Paramètres des macros de MS Office."
 
 msgid "Replace line breaks in formulas with spaces"
-msgstr "Remplacez les sauts de ligne dans les formules par des espaces."
+msgstr "Remplacez les sauts de ligne dans les formules par des espaces"
 
 msgid "Compare VBA macros"
 msgstr "Comparer les macros VBA"
