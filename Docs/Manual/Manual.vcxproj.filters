@@ -244,6 +244,84 @@
     <Xml Include="Hebrew\xsl\htmlhelp.xsl">
       <Filter>Hebrew\xsl</Filter>
     </Xml>
+    <Xml Include="French\_Copyrights.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\_VersionNumbers.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\About_Doc.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Command_line.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Compare_bin.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Compare_dirs.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Compare_files.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Compare_images.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Compare_table.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Compare_webpages.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Configuration.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Faq.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Filters.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Index.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Install.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Intro_diffs.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Introduction.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Locales.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Open_paths.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Plugins.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Quick_start.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\select_unpacker.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Shortcut_keys.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\Version_control.xml">
+      <Filter>French</Filter>
+    </Xml>
+    <Xml Include="French\xsl\html.xsl">
+      <Filter>French\xsl</Filter>
+    </Xml>
+    <Xml Include="French\xsl\htmlhelp.xsl">
+      <Filter>French\xsl</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="English">
@@ -284,6 +362,15 @@
     </Filter>
     <Filter Include="Hebrew\screenshots">
       <UniqueIdentifier>{51794b36-94bc-4205-8579-6f8666f78f5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="French">
+      <UniqueIdentifier>{d023190c-f612-4a76-853d-aac98fb159fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="French\screenshots">
+      <UniqueIdentifier>{1a0b7077-7ac6-47d3-a0b0-739670c23bc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="French\xsl">
+      <UniqueIdentifier>{f85085ca-19a5-4e48-bf1a-33ae1e264a1c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1000,6 +1087,249 @@
     </Image>
     <Image Include="Hebrew\screenshots\word-diff-nowhite.png">
       <Filter>Hebrew\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\aborted.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\allleft_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\allright_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\binary.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\binarydiff.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\char-diff-01.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\copyl_adv_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\copyl_button.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\copyr_adv_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\copyr_button.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\ctx_menu_advanced.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\ctx_menu_copy1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\ctx_menu_copy2.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\ctx_menu_simple.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\currentdiff_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\diff_inline_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\diff-blocks-01.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\equal.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\equaltextfile.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\error.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\file_headerbar1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\filecomp_context1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\filecomp_diffpane1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\filecomp_inlinediff.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\filecomp_margin1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\filecomp_margin2.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\filecomp1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\filemerged1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\fileskip.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\firstdiff_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\foldercmp_progress.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\foldercmp_unique1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\foldercmp_unique2.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\foldercomp_2same.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\foldercomp1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\folderdiff.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\foldersame.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\folderskip.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\folderup.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\folderup_disable.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\hexcmp1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\ignore-blank-lines.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\imgcmp1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\lastdiff_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\lfile.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\lfolder.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\linediff.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\line-diff-punctuation.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\locpane_currentdiff.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\locpane_diffs.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\locpane_moved_diffs.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\locpane_viewbar.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\merge_menu.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\mfile.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\mfolder.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\missing_lines.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\moved-01.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\nav_uparrow_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\nextdiff_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\notequal.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\notequaltextfile.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\open_icon.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\OpenDlg1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\OpenDlg2.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\options_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\prevdiff_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\projfile_save.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\refresh_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\rfile.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\rfolder.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\simlines-diffs-off.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\simlines-diffs-on.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\tblcomp1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\tfs_configure.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\treeview-01.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\undo_btn.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\webcmp1.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\wm_icon.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\word-diff-allwhite.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\word-diff-nochange.png">
+      <Filter>French\screenshots</Filter>
+    </Image>
+    <Image Include="French\screenshots\word-diff-nowhite.png">
+      <Filter>French\screenshots</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

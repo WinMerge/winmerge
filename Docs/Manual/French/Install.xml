@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Install">
+  <title>Obtenir et installer WinMerge<indexterm>
+      <primary>installer WinMerge</primary>
+    </indexterm></title>
+
+  <para>WinMerge peut être installé à l'aide de l'installateur ou en décompressant
+les fichiers d'une archive. L'utilisation de l'installateur est la méthode
+recommandée.</para>
+
+  <section>
+    <title>Obtenir les fichiers</title>
+
+    <para>La dernière version peut toujours être téléchargée sur la page d'accueil de
+WinMerge : <ulink url="https://winmerge.org/">WinMerge.org</ulink>. Notez
+que des délais peuvent survenir dans la mise à jour des pages d'accueil pour
+les dernières versions, mais la page d'état du projet sur <ulink
+url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
+affiche les fichiers les plus récents. Les versions stables sont également
+disponibles sur plusieurs sites de téléchargement de fichiers.</para>
+  </section>
+
+  <section>
+    <title>Compatibilité</title>
+	
+    <itemizedlist>
+      <listitem>
+        <para>WinMerge 2.16.8 et versions ultérieures (64 bits) nécessitent Windows 7 ou
+plus récent.</para>
+      </listitem>
+      <listitem>
+        <para>WinMerge (32 bits) prend en charge Windows XP SP3 et versions ultérieures, y
+compris les versions les plus récentes. Il fonctionne sur Windows 32 bits et
+64 bits.</para>
+      </listitem>
+      <listitem>
+        <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.16.6/">WinMerge
+2.16.6 (64 bits)</ulink> était la dernière version 64 bits à prendre en
+charge Windows XP 64 bits.</para>
+      </listitem>
+      <listitem>
+        <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.14.0/">WinMerge
+2.14.0</ulink> était la dernière version à prendre en charge Windows 2000.</para>
+      </listitem>
+      <listitem>
+        <para><ulink
+url="https://sourceforge.net/projects/winmerge/files/stable/2.12.4/">WinMerge
+2.12.4</ulink> était la dernière version à prendre en charge Windows 95, 98,
+ME et NT.</para>
+      </listitem>
+      <listitem>
+        <para>WinMerge n'est pas pris en charge sur Windows RT.</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  
+  <section id="Installing_usinginstaller">
+    <title>Utilisation de l'installateur (recommandé)</title>
+    <para></para>
+    <note>
+      <para>L'installateur nécessite des privilèges d'administrateur. Si vous n'avez pas
+de privilèges d'administrateur, vous pouvez installer WinMerge en
+décompressant un fichier archive (voir <xref linkend="InstallFromArchive"
+/>) ou en utilisant l'installateur par utilisateur
+(WinMerge-x.x.x-x64-PerUser-Setup.exe).</para>
+    </note>
+
+    <para>L'utilisation de l'installateur est recommandée pour la plupart des
+utilisateurs. L'installateur demande l'emplacement où WinMerge doit être
+installé. Il installe ensuite les fichiers, configure l'intégration au shell
+et ajoute WinMerge au menu Démarrer. Pour installer WinMerge :</para>
+
+    <orderedlist>
+      <listitem>
+        <simpara>Lancez l'exécutable de l'installateur (généralement nommé
+<filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>).</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Cliquez sur <guibutton>Suivant</guibutton> dans l'écran de l'accord de
+licence.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Dans la page Sélectionner le dossier de destination, acceptez l'emplacement
+pour WinMerge ou, si vous choisissez un autre emplacement, nous vous
+recommandons d'installer WinMerge dans son propre dossier. Cliquez sur
+<guibutton>Suivant</guibutton>.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Dans la page Sélectionner les composants, choisissez l'une des installations
+préconfigurées dans le contrôle supérieur. Nous recommandons la
+configuration <guilabel>Typique</guilabel> pour la plupart des
+utilisateurs. La boîte inférieure affiche tous les composants
+disponibles. Vous pouvez modifier la configuration par défaut en cochant ou
+décochant des composants. Par exemple, si vous souhaitez utiliser une
+localisation de WinMerge pour une langue autre que l'anglais, sélectionnez
+le composant <guilabel>Languages</guilabel>.</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>Fichiers de base de WinMerge<indexterm>
+                <primary>Exécutables WinMerge</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>L'exécutable WinMerge, l'Aide et les autres fichiers nécessaires. Ne peut
+pas être décoché.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>WinMerge ShellExtension 32 bits<indexterm>
+                <primary>Shellextension</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Cette option vous permet de lancer WinMerge directement depuis l'Explorateur
+Windows, en comparant les éléments que vous y avez sélectionnés.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Filtres</term>
+
+            <listitem>
+              <para>Les fichiers de filtres permettent de restreindre la portée des
+comparaisons.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Plug-ins</term>
+
+            <listitem>
+              <para>Les plug-ins WinMerge sont des DLL ou des scriptlets personnalisés, écrits
+via l'API COM, que vous pouvez utiliser pour prétraiter les données avant
+une comparaison.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Langues</term>
+
+            <listitem>
+              <para>Fichiers de traduction de WinMerge. Si vous souhaitez configurer WinMerge
+pour utiliser une autre langue que l'anglais, développez cet élément et
+choisissez une ou plusieurs traductions disponibles. L'installateur crée un
+sous-dossier Languages dans le dossier WinMerge, contenant un fichier de
+traduction *.po pour chacun de vos choix. Après l'installation, vous pouvez
+ouvrir WinMerge et changer sa localisation pour l'une des langues des
+fichiers de traduction. Voir <xref linkend="Locales" /> pour plus de
+détails.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Cliquez sur <guibutton>Suivant</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>Dans la page Sélectionner le dossier du menu Démarrer, configurez les
+raccourcis de WinMerge.</simpara>
+
+        <itemizedlist>
+          <listitem>
+            <para>Acceptez le réglage par défaut pour créer un raccourci de programme, ou
+spécifiez un dossier différent.</para>
+          </listitem>
+
+          <listitem>
+            <para>Facultativement, cochez l'option <guilabel>Ne pas créer de dossier dans le
+menu Démarrer</guilabel>.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>Cliquez sur <guibutton>Suivant</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Dans la page Sélectionner des tâches supplémentaires, spécifiez toutes les
+tâches additionnelles :<indexterm>
+            <primary>intégration</primary>
+
+            <secondary>avec un système de contrôle de version</secondary>
+          </indexterm><indexterm>
+            <primary>VCS</primary>
+
+            <see>systèmes de contrôle de version</see>
+          </indexterm></para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Activer l'intégration au menu contextuel de l'Explorateur</term>
+
+            <listitem>
+              <indexterm>
+                <primary>intégration</primary>
+
+                <secondary>avec le shell Windows</secondary>
+              </indexterm>
+
+              <indexterm>
+                <primary>Intégration au shell Windows</primary>
+              </indexterm>
+
+              <para>Vous permet de <link linkend="OpenPaths_shell-integ">lancer des opérations
+de comparaison WinMerge depuis l'Explorateur Windows</link> (cette
+intégration pourra être activée ou désactivée plus tard dans les options de
+WinMerge).</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Ajouter le dossier WinMerge au chemin système (PATH)</term>
+
+            <listitem>
+              <para>Ajoute le dossier d'installation de WinMerge à la variable d'environnement
+Path de votre système.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>S'intégrer à TortoiseCVS<indexterm>
+                <primary>Intégration TortoiseCVS</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Définit WinMerge comme application de diff pour TortoiseCVS.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>S'intégrer à TortoiseSVN<indexterm>
+                <primary>Intégration TortoiseSVN</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Définit WinMerge comme application de diff pour TortoiseSVN.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>S'intégrer à TortoiseGit<indexterm>
+                <primary>Intégration TortoiseGit</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Définit WinMerge comme application de diff pour TortoiseGit.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Créer un raccourci sur le bureau</term>
+
+            <listitem>
+              <para>Ajoute le raccourci WinMerge sur votre bureau Windows.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Cliquez sur <guibutton>Suivant</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>Dans la page de l'assistant de fusion à 3 voies, enregistrez WinMerge comme
+outil de fusion à 3 voies pour TortoiseSVN/Git.</simpara>
+
+        <variablelist>
+          <varlistentry>
+            <term>Enregistrer WinMerge comme outil de fusion à 3 voies<indexterm>
+                <primary>outil de fusion à 3 voies</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Enregistre WinMerge comme outil de fusion à 3 voies pour TortoiseSVN/Git.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Fusionner dans le volet droit</term>
+
+            <listitem>
+              <para>Fusionner dans le volet droit.</para>
+            </listitem>
+          </varlistentry>
+
+
+          <varlistentry>
+            <term>Fusionner dans le volet central</term>
+
+            <listitem>
+              <para>Fusionner dans le volet central.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Fusionner dans le volet gauche</term>
+
+            <listitem>
+              <para>Fusionner dans le volet gauche.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Fusion automatique au démarrage</term>
+
+            <listitem>
+              <para>Facultativement, désactivez l'option <guilabel>Fusion automatique au
+démarrage</guilabel>.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <para>Cliquez sur <guibutton>Suivant</guibutton>.</para>
+      </listitem>
+
+      <listitem>
+        <simpara>Dans la page Prêt à installer, vérifiez vos choix d'installation. Si
+nécessaire, cliquez sur <guibutton>Précédent</guibutton> pour modifier un
+élément dans une page précédente. Lorsque vous êtes sûr d'être prêt à
+continuer, cliquez sur <guibutton>Installer</guibutton>.</simpara>
+      <para></para>
+      </listitem>
+
+      <listitem>
+        <simpara>Une fois que l'installateur a copié les fichiers, l'écran final apparaît. À
+l'aide des deux cases à cocher, confirmez si le dossier WinMerge créé dans
+le menu Démarrer doit être ouvert et si l'application WinMerge doit être
+lancée.</simpara>
+      </listitem>
+    </orderedlist>
+  </section>
+
+  <section id="InstallFromArchive">
+    <title>Installation depuis une archive<indexterm>
+        <primary>archive, installer WinMerge depuis</primary>
+      </indexterm></title>
+
+    <para>WinMerge est assez indépendant des autres composants système. Il n'est pas
+étroitement intégré à Windows et n'utilise pas beaucoup de DLL.</para>
+
+    <para>Les fichiers archives ont la structure de dossiers correcte. WinMerge doit
+être dézippé en préservant cette structure de dossiers dans le dossier de
+destination. Par exemple, le dossier racine créé sous <filename
+class="directory">C:\Program Files\</filename> porte le nom <filename
+class="directory">WinMerge-<replaceable>version</replaceable></filename>
+(par exemple, <filename class="directory">WinMerge-2.6.0</filename>). Vous
+pouvez renommer ce dossier ou copier ses fichiers dans un autre dossier (en
+préservant la structure des dossiers !).</para>
+
+    <para>Une fois les fichiers dézippés, WinMerge est prêt à fonctionner !
+L'intégration au shell et l'intégration des archives peuvent nécessiter des
+étapes supplémentaires, comme décrit dans la section suivante.</para>
+  </section>
+
+  <section>
+    <title>Activer l'intégration au shell de l'Explorateur Windows sans l'installateur
+<indexterm>
+        <primary>intégration</primary>
+
+        <secondary>avec le shell Windows</secondary>
+      </indexterm><indexterm>
+        <primary>Intégration au shell Windows</primary>
+      </indexterm></title>
+
+    <para>Si vous n'utilisez pas le programme d'installation et que vous souhaitez
+activer l'intégration au shell de l'Explorateur Windows, vous devez
+enregistrer la DLL d'intégration au shell
+(<filename>ShellExtension*.dll</filename>) séparément.</para>
+
+    <note>
+      <para>L'installation de l'intégration au shell nécessite des privilèges
+d'utilisateur administrateur.</para>
+    </note>
+
+    <para>Ouvrez WinMerge et utilisez <xref linkend="Configuration_shell-integ" />
+dans la fenêtre Options. Dans la fenêtre Options, utilisez les boutons
+<guibutton>Enregistrer l'extension du shell</guibutton> ou
+<guibutton>Désenregistrer l'extension du shell</guibutton>.</para>
+  </section>
+</article>

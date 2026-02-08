@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE section PUBLIC  "-//OASIS//DTD DocBook XML V4.5//EN"  "../Tools/dtd/docbookx.dtd">
+<section id="select-unpacker">
+  <title>Utiliser la boîte de dialogue de sélection du décompresseur (Unpacker)</title>
+
+  <orderedlist id="select-unpacker-proc">
+    <listitem>
+      <para>Configurez la sélection automatique ou choisissez un plug-in manuellement :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Pour le mode automatique, vérifiez que
+<guilabel>&lt;Automatique&gt;</guilabel> est affiché dans le contrôle
+<guilabel>Décompresseur de fichiers</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Pour choisir un plug-in spécifique, utilisez la liste déroulante
+<guilabel>Décompresseur de fichiers</guilabel>.</para>
+
+          <para>Par défaut, seuls les plug-ins suggérés pour le type de fichier sont
+listés. Pour tout voir, cochez <guilabel>Afficher tous les compacteurs, ne
+pas vérifier l'extension</guilabel>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Pour comparer sans plug-in, choisissez
+<guimenuitem>&lt;Aucun&gt;</guimenuitem>.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+
+    <listitem>
+      <para>Cliquez sur <guibutton>OK</guibutton> pour fermer la boîte de dialogue.</para>
+    </listitem>
+  </orderedlist>
+</section>

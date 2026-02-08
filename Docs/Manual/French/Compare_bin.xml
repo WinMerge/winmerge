@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_bin">
+  <?target dbhh topicname="IDH_Compare_bin" topicid ="002"?>
+
+  <title>Comparer au format hexadécimal</title>
+
+  <indexterm>
+    <primary>comparaison de fichiers</primary>
+
+    <secondary>binaire</secondary>
+  </indexterm>
+
+  <para>WinMerge peut afficher et éditer vos fichiers au format hexadécimal.</para>
+  
+  <mediaobject>
+<imageobject> <imagedata fileref="screenshots/hexcmp1.png" format="PNG" />
+</imageobject><textobject>
+      <phrase>Fenêtre de comparaison HEX</phrase>
+    </textobject>
+  </mediaobject>
+  
+  <para>
+Le fait que les fichiers soient ouverts au format hexadécimal dépend du fait
+que le nom du fichier corresponde ou non aux motifs définis. Par défaut, si
+l'extension du fichier est .bin ou .frx, il sera ouvert au format
+hexadécimal. Si vous souhaitez modifier les motifs, spécifiez-les sur la
+page Comparer/Binaire de la boîte de dialogue Options.</para>
+</article>
