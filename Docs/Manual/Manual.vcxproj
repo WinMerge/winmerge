@@ -149,17 +149,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\Build\Manual\htmlhelp</OutDir>
-    <IntDir>..\..\BuildTmp\Manual\htmlhelp</IntDir>
-    <TargetName>WinMerge.chm</TargetName>
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_hw.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
-    <NMakeOutput>
-    </NMakeOutput>
-  </PropertyGroup>
   <PropertyGroup>
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\Build\Manual\htmlhelp</OutDir>
@@ -167,9 +156,9 @@
     <TargetName>WinMerge.chm</TargetName>
     <NMakeOutput>
     </NMakeOutput>
-    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_he.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>build_htmlhelp_en.bat /build &amp; build_htmlhelp_fr.bat /build &amp; build_htmlhelp_he.bat /build &amp; build_htmlhelp_jp.bat /build &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>build_htmlhelp_en.bat &amp; build_htmlhelp_fr.bat &amp; build_htmlhelp_he.bat &amp; build_htmlhelp_jp.bat &amp; mkdir $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\ 2&gt; NUL &amp; copy $(SolutionDir)Build\Manual\htmlhelp\WinMerge*.chm $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>build_htmlhelp_en.bat /clean &amp; build_htmlhelp_fr.bat /clean &amp; build_htmlhelp_he.bat /clean &amp; build_htmlhelp_jp.bat /clean &amp; del $(SolutionDir)Build\$(Platform)\$(Configuration)\Docs\WinMerge*.chm 2&gt; NUL</NMakeCleanCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
