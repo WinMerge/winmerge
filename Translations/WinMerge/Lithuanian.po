@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-02-03 07:46+0000\n"
-"PO-Revision-Date: 2026-02-03 16:25+0200\n"
+"POT-Creation-Date: 2026-02-08 10:11+0000\n"
+"PO-Revision-Date: 2026-02-09 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -2692,7 +2692,7 @@ msgid "Rename/move detection &keys:"
 msgstr "Pervardijimo/perkėlimo aptikimo ra&ktai:"
 
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "Suli&eti pervardijimus ir perkėlimus:"
 
 msgid "File patterns:"
 msgstr "Failų šablonai:"
@@ -3712,7 +3712,7 @@ msgid " (Left and middle are identical)"
 msgstr " (Kairysis ir vidurinis yra vienodi)"
 
 msgid " (paths differ)"
-msgstr ""
+msgstr " (keliai skiriasi)"
 
 msgid "Text files are different"
 msgstr "Tekstiniai failai skiriasi"
@@ -3742,10 +3742,10 @@ msgid "Detect renames and moves"
 msgstr "Aptikti pervardijimą ir perkėlimą"
 
 msgid "Merge renames"
-msgstr ""
+msgstr "Sulieti pervardijimus"
 
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "Sulieti pervardijimus ir perkėlimus"
 
 msgid "Renamed"
 msgstr "Pervardinta"
@@ -3765,7 +3765,7 @@ msgid "%1 (set %2): "
 msgstr "%1 (nust. %2): "
 
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
-msgstr ""
+msgstr "Kai kurie perkelti elementai buvo sujungti.\nMedžio režimu šie elementai gali būti rodomi pozicijose, neatspindinčiose tikrosios aplanko struktūros, kas gali kelti painiavą.\nPerjungti į plokščiąjį režimą?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
