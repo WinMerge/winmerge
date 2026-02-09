@@ -1854,9 +1854,7 @@ msgstr "删除"
 msgid "Substitution Filters"
 msgstr "置换过滤器"
 
-msgid ""
-"Changes to the listed pairs below will be ignored or marked as insignificant. Patches are "
-"unaffected."
+msgid "Changes to the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "面板中出现的下列变更组合将被忽略或视作无关紧要。补丁不受影响。"
 
 msgid "Enable"
@@ -2706,7 +2704,7 @@ msgid "Rename/move detection &keys:"
 msgstr "重命名/移动检测键(&K)："
 
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "合并重命名和被移动的文件(&E)："
 
 msgid "File patterns:"
 msgstr "文件模式："
@@ -2928,12 +2926,8 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge 文件夹比较"
 
-msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed "
-"under the conditions of the GNU General Public License - see the Help menu for details."
-msgstr ""
-"WinMerge 无任何担保。这是一款自由软件，可根据 GNU 通用公共许可证的条件重新分发，详情请查看帮助"
-"菜单。"
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
+msgstr "WinMerge 无任何担保。这是一款自由软件，可根据 GNU 通用公共许可证的条件重新分发，详情请查看帮助菜单。"
 
 msgid "&Abort"
 msgstr "中止(&A)"
@@ -3947,7 +3941,7 @@ msgid " (Left and middle are identical)"
 msgstr " (左侧和中间完全相同)"
 
 msgid " (paths differ)"
-msgstr ""
+msgstr "（路径不同）"
 
 msgid "Text files are different"
 msgstr "文本文件不同"
@@ -3977,10 +3971,10 @@ msgid "Detect renames and moves"
 msgstr "检测重命名和移动"
 
 msgid "Merge renames"
-msgstr ""
+msgstr "合并重命名的文件"
 
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "合并重命名和被移动的文件"
 
 msgid "Renamed"
 msgstr "重命名的"
@@ -3999,8 +3993,14 @@ msgstr "(%1 条目)"
 msgid "%1 (set %2): "
 msgstr "%1 (集合 %2)"
 
-msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgid ""
+"Some moved items have been merged.\n"
+"In Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\n"
+"Switch to Flat Mode?"
 msgstr ""
+"一些被移动的条目已经合并。\n"
+"在树状模式下，这些条目可能出现在与实际文件夹结构不同的位置上并产生混淆。\n"
+"是否要切换到扁平模式？"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
