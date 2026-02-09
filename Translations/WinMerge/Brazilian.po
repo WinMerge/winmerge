@@ -6,13 +6,14 @@
 # * Leonardo Peixoto <ljpeixoto at gmail.com>
 # * Felipe Periard Lopes <felipefplzx at gmail.com>
 # * Marcello Oliveira <marcello.mco at gmail.com>
+# * Ricardo <RicardoPC1967>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-01-29 19:47-0300\n"
+"PO-Revision-Date: 2026-02-09 08:25-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -2693,7 +2694,7 @@ msgid "Rename/move detection &keys:"
 msgstr "C&haves de detecção de renomear/mover:"
 
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "Unir renom&eados e movidos:"
 
 msgid "File patterns:"
 msgstr "Padrões de arquivo:"
@@ -3713,7 +3714,7 @@ msgid " (Left and middle are identical)"
 msgstr " (O da esquerda e o do meio são idênticos)"
 
 msgid " (paths differ)"
-msgstr ""
+msgstr " (diferenças nos caminhos)"
 
 msgid "Text files are different"
 msgstr "Os arquivos de texto são diferentes"
@@ -3743,10 +3744,10 @@ msgid "Detect renames and moves"
 msgstr "Detectar renomeações e movimentações"
 
 msgid "Merge renames"
-msgstr ""
+msgstr "Unir renomeados"
 
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "Unir renomeados e movidos"
 
 msgid "Renamed"
 msgstr "Renomeados"
@@ -3766,7 +3767,7 @@ msgid "%1 (set %2): "
 msgstr "%1 (conjunto %2): "
 
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
-msgstr ""
+msgstr "Alguns itens movidos foram unidos.\nNo Modo Árvore, estes itens podem aparecer em posições que não refletem a estrutura real da pasta, o que pode ser confuso.\nAlternar para Modo Normal?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
