@@ -8,7 +8,7 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>Does WinMerge run on older Windows versions?</para>
+          <para>WinMergeは古いバージョンのWindowsで動作する？</para>
         </question>
         <answer>
           <para><indexterm>
@@ -19,39 +19,19 @@
             </indexterm><indexterm>
               <primary>ANSI</primary>
               <secondary>WinMergeのサポート</secondary>
-            </indexterm>Beginning with Version 2.14,
-WinMerge ended support for older 32-bit Windows systems, including Windows
-9x, ME, and NT4.  In addition, WinMerge version 2.16 does not support
-Windows 2000.</para>
-          <para>Previously, WinMerge provided an ANSI (8-bit) executable,
-<filename>WinMerge.exe</filename>, that was designed around the old Windows
-codepages. <filename>WinMerge.exe</filename> internally stored only the ANSI
-characters supported by the Windows codepage.  This executable had severe
-limitations for working with Unicode: if you opened a Unicode file, the
-characters were converted to the Windows ANSI codepage. Because there are
-over 100,000 Unicode characters, and only 256 can be represented in the ANSI
-character set, data loss could occur. Conversion might be approximate (for
-example, accents are lost) or impossible: characters were replaced by
-question marks ( <literal>?</literal> ).</para>
-          <para><filename>WinMerge.exe</filename> also could not open files with names
-outside the current ANSI codepage. For example, on an English system,
-<filename>WinMerge.exe</filename> could not open a file with a Hebrew name.</para>
-          <para>WinMerge developed the Unicode-enabled <filename>WinMergeU.exe</filename>
-executable to work with newer, Unicode-based Windows
-systems. <filename>WinMergeU.exe</filename> has none of the limitations of
-the ANSI executable.</para>
-          <para><filename>WinMergeU.exe</filename> has been installed by default for some
-time, and since few ANSI-based Windows systems remain, the value of
-maintaining <filename>WinMerge.exe</filename> is minimal.  As of Version
-2.14, WinMerge no longer includes <filename>WinMerge.exe</filename> in the
-installer.</para>
+            </indexterm>バージョン2.14以降、WinMergeは、Windows
+9x、ME、NT4を含む古い32ビットWindowsシステムのサポートを終了しました。また、WinMergeバージョン2.16は、Windows
+2000をサポートしていません。</para>
+          <para>以前、WinMergeは、古いWindowsコードページを基に設計されたANSI（8ビット）実行ファイル<filename>WinMerge.exe</filename>を提供していました。<filename>WinMerge.exe</filename>は、内部的にWindowsコードページでサポートされているANSI文字のみを格納していました。この実行ファイルには、Unicodeを扱う上で深刻な制限がありました。Unicodeファイルを開くと、文字はWindowsのANSIコードページに変換されました。Unicodeには10万を超える文字がありますが、ANSI文字セットでは256文字しか表現できないため、データ損失が発生する可能性がありました。変換は近似的（例えば、アクセント記号が失われる）であったり、不可能（文字がクエスチョンマーク（<literal>?</literal>）に置き換えられる）であったりしました。</para>
+          <para><filename>WinMerge.exe</filename>は、現在のANSIコードページ以外のファイル名を持つファイルも開くことができませんでした。例えば、英語システムでは、<filename>WinMerge.exe</filename>はヘブライ語の名前を持つファイルを開くことができませんでした。</para>
+          <para>WinMergeは、新しいUnicodeベースのWindowsシステムで動作するように、Unicode対応の<filename>WinMergeU.exe</filename>実行ファイルを開発しました。<filename>WinMergeU.exe</filename>には、ANSI実行ファイルの制限はありません。</para>
+          <para><filename>WinMergeU.exe</filename>は、しばらくの間デフォルトでインストールされており、ANSIベースのWindowsシステムがほとんど残っていないため、<filename>WinMerge.exe</filename>を保守する価値は最小限です。バージョン2.14以降、WinMergeはインストーラーに<filename>WinMerge.exe</filename>を含めていません。</para>
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question>
-          <para>I want to compare folders, but I cannot select a folder in the Browse
-dialog.<indexterm>
+          <para>フォルダーを比較したいのですが、「参照」ダイアログでフォルダーを選択できないよ<indexterm>
               <primary>folders</primary>
 
               <secondary>selecting in Select Files or Folders dialog</secondary>
@@ -59,14 +39,7 @@ dialog.<indexterm>
         </question>
 
         <answer>
-          <para>Browse in the folder contents to the folder you want to compare.  Do not
-select any of the files or subfolders, just click
-<guibutton>Open</guibutton> when <literal>Folder Selection</literal> is
-displayed in the <guilabel>File name</guilabel> field. If you already
-selected a files or subfolders, just type a random string in the
-<guilabel>File name</guilabel> field and click
-<guibutton>Open</guibutton>. If the file name you enter is not found,
-WinMerge opens the folder.</para>
+          <para>比較したいフォルダーの中をブラウズしてください。ファイルやサブフォルダーは選択せず、<guilabel>ファイル名</guilabel>フィールドに<literal>フォルダーの選択</literal>と表示されたら、<guibutton>開く</guibutton>をクリックするだけです。既にファイルやサブフォルダーを選択してしまった場合は、<guilabel>ファイル名</guilabel>フィールドに適当な文字列を入力して<guibutton>開く</guibutton>をクリックしてください。入力したファイル名が見つからない場合、WinMergeはフォルダーを開きます。</para>
         </answer>
       </qandaentry>
 
@@ -76,10 +49,9 @@ WinMerge opens the folder.</para>
         </question>
 
         <answer>
-          <para>There are currently no plans for cross-platform support but you can try the
-unofficial version <ulink url="https://github.com/datadiode/winmerge2011">
-WinMerge 2011</ulink> by Jochen Neubeck. This version should work with Wine
-also under Linux.</para>
+          <para>現時点ではクロスプラットフォームサポートの予定はありませんが、Jochen Neubeck による非公式バージョン <ulink
+url="https://github.com/datadiode/winmerge2011"> WinMerge
+2011</ulink>をお試しください。このバージョンは Linux でも Wine で動作するはずです。</para>
         </answer>
       </qandaentry>
 
@@ -129,10 +101,10 @@ linkend="ResolveConflictFiles" />を参照)。</para>
 
           <itemizedlist>
             <listitem>
-              <para>In WinMerge, click the <guibutton>Options</guibutton> button (or click
-<menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Options</guimenuitem>
-</menuchoice>). In the Archive Support page, enable the <guilabel>Detect
-archive type from file signature</guilabel> option</para>
+              <para>WinMerge で、<guibutton>オプション</guibutton> ボタン（または<menuchoice>
+<guimenu>編集</guimenu>
+<guimenuitem>オプション</guimenuitem></menuchoice>）をクリックします。「アーカイブサポート」ページで、<guilabel>ファイル署名からアーカイブの種類を検出する</guilabel>
+オプションを有効にします。</para>
             </listitem>
           </itemizedlist>
         </answer>
@@ -429,8 +401,7 @@ url="https://sourceforge.net/projects/gnuwin32/">https://sourceforge.net/project
         </question>
 
         <answer>
-          <para>You can apply patches using the experimental plugin ApplyPatch.sct.  The
-extensions of patches supported by the plugin are .diff or .patch.</para>
+          <para>実験的なプラグインApplyPatch.sctを使用してパッチを適用できます。このプラグインがサポートするパッチの拡張子は、.diffまたは.patchです。</para>
         </answer>
       </qandaentry>
     </qandaset>
