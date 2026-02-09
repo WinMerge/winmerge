@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-01-25 12:53+0900\n"
-"PO-Revision-Date: 2026-01-19 07:26+0900\n"
+"PO-Revision-Date: 2026-02-09 21:41+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -11556,7 +11556,7 @@ msgstr "一般的な質問"
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
 #: English/Faq.xml:11
 msgid "Does WinMerge run on older Windows versions?"
-msgstr ""
+msgstr "WinMergeは古いバージョンのWindowsで動作する？"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para><indexterm><primary>
 #: English/Faq.xml:15
@@ -11587,6 +11587,11 @@ msgid ""
 "Windows 9x, ME, and NT4.  In addition, WinMerge version 2.16 does not "
 "support Windows 2000."
 msgstr ""
+"<placeholder type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" "
+"id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>バージョン2.14以降、"
+"WinMergeは、Windows 9x、ME、NT4を含む古い32ビットWindowsシステムのサポートを"
+"終了しました。また、WinMergeバージョン2.16は、Windows 2000をサポートしていま"
+"せん。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:25
@@ -11602,6 +11607,15 @@ msgid ""
 "accents are lost) or impossible: characters were replaced by question marks "
 "( <literal>?</literal> )."
 msgstr ""
+"以前、WinMergeは、古いWindowsコードページを基に設計されたANSI（8ビット）実行"
+"ファイル<filename>WinMerge.exe</filename>を提供していました。"
+"<filename>WinMerge.exe</filename>は、内部的にWindowsコードページでサポートさ"
+"れているANSI文字のみを格納していました。この実行ファイルには、Unicodeを扱う上"
+"で深刻な制限がありました。Unicodeファイルを開くと、文字はWindowsのANSIコード"
+"ページに変換されました。Unicodeには10万を超える文字がありますが、ANSI文字セッ"
+"トでは256文字しか表現できないため、データ損失が発生する可能性がありました。変"
+"換は近似的（例えば、アクセント記号が失われる）であったり、不可能（文字がクエ"
+"スチョンマーク（<literal>?</literal>）に置き換えられる）であったりしました。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:36
@@ -11610,6 +11624,10 @@ msgid ""
 "outside the current ANSI codepage. For example, on an English system, "
 "<filename>WinMerge.exe</filename> could not open a file with a Hebrew name."
 msgstr ""
+"<filename>WinMerge.exe</filename>は、現在のANSIコードページ以外のファイル名を"
+"持つファイルも開くことができませんでした。例えば、英語システムでは、"
+"<filename>WinMerge.exe</filename>はヘブライ語の名前を持つファイルを開くことが"
+"できませんでした。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:40
@@ -11619,6 +11637,9 @@ msgid ""
 "<filename>WinMergeU.exe</filename> has none of the limitations of the ANSI "
 "executable."
 msgstr ""
+"WinMergeは、新しいUnicodeベースのWindowsシステムで動作するように、Unicode対応"
+"の<filename>WinMergeU.exe</filename>実行ファイルを開発しました。"
+"<filename>WinMergeU.exe</filename>には、ANSI実行ファイルの制限はありません。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:44
@@ -11629,6 +11650,11 @@ msgid ""
 "2.14, WinMerge no longer includes <filename>WinMerge.exe</filename> in the "
 "installer."
 msgstr ""
+"<filename>WinMergeU.exe</filename>は、しばらくの間デフォルトでインストールさ"
+"れており、ANSIベースのWindowsシステムがほとんど残っていないため、"
+"<filename>WinMerge.exe</filename>を保守する価値は最小限です。バージョン2.14以"
+"降、WinMergeはインストーラーに<filename>WinMerge.exe</filename>を含めていませ"
+"ん。"
 
 #. type: Content of: <article><para><indexterm><secondary>
 #: English/Faq.xml:58 English/Open_paths.xml:11 English/Open_paths.xml:15
@@ -11641,6 +11667,8 @@ msgid ""
 "I want to compare folders, but I cannot select a folder in the Browse dialog."
 "<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"フォルダーを比較したいのですが、「参照」ダイアログでフォルダーを選択できない"
+"よ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:63
@@ -11653,6 +11681,13 @@ msgid ""
 "field and click <guibutton>Open</guibutton>. If the file name you enter is "
 "not found, WinMerge opens the folder."
 msgstr ""
+"比較したいフォルダーの中をブラウズしてください。ファイルやサブフォルダーは選"
+"択せず、<guilabel>ファイル名</guilabel>フィールドに<literal>フォルダーの選択"
+"</literal>と表示されたら、<guibutton>開く</guibutton>をクリックするだけです。"
+"既にファイルやサブフォルダーを選択してしまった場合は、<guilabel>ファイル名</"
+"guilabel>フィールドに適当な文字列を入力して<guibutton>開く</guibutton>をク"
+"リックしてください。入力したファイル名が見つからない場合、WinMergeはフォル"
+"ダーを開きます。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
 #: English/Faq.xml:76
@@ -11668,6 +11703,10 @@ msgid ""
 "WinMerge 2011</ulink> by Jochen Neubeck. This version should work with Wine "
 "also under Linux."
 msgstr ""
+"現時点ではクロスプラットフォームサポートの予定はありませんが、Jochen Neubeck "
+"による非公式バージョン <ulink url=\"https://github.com/datadiode/"
+"winmerge2011\"> WinMerge 2011</ulink>をお試しください。このバージョンは "
+"Linux でも Wine で動作するはずです。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Faq.xml:91 English/Install.xml:180 English/Version_control.xml:53
@@ -11753,6 +11792,10 @@ msgid ""
 "menuchoice>). In the Archive Support page, enable the <guilabel>Detect "
 "archive type from file signature</guilabel> option"
 msgstr ""
+"WinMerge で、<guibutton>オプション</guibutton> ボタン（または<menuchoice>  "
+"<guimenu>編集</guimenu>  <guimenuitem>オプション</guimenuitem></menuchoice>）"
+"をクリックします。「アーカイブサポート」ページで、<guilabel>ファイル署名から"
+"アーカイブの種類を検出する</guilabel> オプションを有効にします。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
 #: English/Faq.xml:153
@@ -12234,6 +12277,8 @@ msgid ""
 "You can apply patches using the experimental plugin ApplyPatch.sct.  The "
 "extensions of patches supported by the plugin are .diff or .patch."
 msgstr ""
+"実験的なプラグインApplyPatch.sctを使用してパッチを適用できます。このプラグイ"
+"ンがサポートするパッチの拡張子は、.diffまたは.patchです。"
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
 #: English/Filters.xml:6 English/Filters.xml:952 English/Filters.xml:965
