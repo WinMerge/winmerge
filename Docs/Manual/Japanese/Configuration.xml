@@ -170,7 +170,7 @@ fileref="screenshots/options_btn.png" /> </imageobject><textobject>
 
         <listitem>
           <para>
-<option>MDI子ウィンドウが1つのみの場合はメインウィンドウも閉じる</option>:<keycap>Esc</keycap>を押下すると子ウィンドウが閉じますが、子ウィンドウが1つしかない場合は、メインウィンドウも同時に閉じます。</para>
+<option>MDI子ウィンドウが1つしかない場合、メインウィンドウを閉じる</option>:<keycap>Esc</keycap>を押下すると子ウィンドウを閉じますが、子ウィンドウが1つしかない場合は、メインウィンドウも閉じます。</para>
         </listitem>
 
         <listitem>
@@ -390,7 +390,7 @@ OK押下時にファイルまたはフォルダーの選択ダイアログを閉
         </indexterm></title>
 
       <para>
-See <xref linkend="Locales_changing" />.</para>
+<xref linkend="Locales_changing" />を参照してください。</para>
 
     </section>
   </section>
@@ -738,7 +738,7 @@ def
       <itemizedlist>
         <listitem>
           <para>
-<option>無効</option>(デフォルト): 差異ブロック内の行は、ソースファイルに現れる順に表示されます。</para>
+<option>無効</option>(デフォルト): 差異ブロック内の行は、ソースファイルに現れる通りに表示されます。</para>
         </listitem>
 
         <listitem>
@@ -811,19 +811,19 @@ indent heuristic を有効にする<indexterm>
 
     <section>
       <title>
-Completely unhighlight the ignored differences<indexterm>
+無視された差異の行を同一行の色と同じにする<indexterm>
           <primary>unhighlight ignored differences</primary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
           <para>
-<option>無効</option> (デフォルト): 行フィルターや置換フィルターによって無視された差異行は、無視された差異の色で表示されます。</para>
+<option>無効</option> (デフォルト): 行フィルターおよび置換フィルターによって無視された差異行は、無視された差異の色で表示されます。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>有効</option>: 行フィルターや置換フィルターによって無視された差異行の色を、同一行と同じ色にします。</para>
+<option>有効</option>: 行フィルターおよび置換フィルターによって無視された差異行の色を、同一行の色と同じにします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -996,8 +996,8 @@ Completely unhighlight the ignored differences<indexterm>
 
     <section>
       <title>
-Include subfolders<indexterm>
-          <primary>include subfolders</primary>
+サブフォルダーを含める<indexterm>
+          <primary>サブフォルダーを含める</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
@@ -1005,12 +1005,12 @@ Include subfolders<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>有効</option> (デフォルト): WinMerge は再帰的に比較を行い、サブフォルダーも含めます。</para>
+<option>有効</option> (デフォルト): WinMergeは再帰的に比較を行い、サブフォルダーも含めます。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>無効</option>: WinMerge はルートフォルダー内のファイルのみを比較します。</para>
+<option>無効</option>: WinMergeはルートフォルダー内のファイルのみを比較します。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1083,9 +1083,9 @@ Include subfolders<indexterm>
 
         <listitem>
           <para>
-<option>有効</option>: リパースポイントであるフォルダーの内容を無視します。例えば、C:\Users\All Users は
-C:\ProgramData へのシンボリックリンクですが、このオプションを有効にすると、C:\Users\All Users
-フォルダーの比較をスキップします。</para>
+<option>有効</option>: リパースポイントであるフォルダーの内容を無視します。例えば、C:\Users\All
+Usersは、C:\ProgramDataへのシンボリックリンクですが、このオプションを有効にすると、C:\Users\All
+Usersフォルダーの比較をスキップします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1101,26 +1101,22 @@ C:\ProgramData へのシンボリックリンクですが、このオプショ�
       <itemizedlist>
         <listitem>
           <para>
-<option>無効</option>: 比較方法が
-<guilabel>フルコンテンツ</guilabel>以外に設定されている場合、有効になりません。</para>
+<option>無効</option>: 比較方法が<guilabel>フルコンテンツ</guilabel>以外に設定されている場合は無効です。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>有効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel>に設定されている場合に有効になります。</para>
+<option>有効</option>: 比較方法が<guilabel>フルコンテンツ</guilabel>に設定されている場合に有効です。</para>
 
           <para>
-<guilabel>クイックコンテンツ</guilabel>
-比較方法に切り替える閾値サイズです。<guilabel>フルコンテンツ</guilabel>
-比較方法が選択されている場合、この値（メガバイト単位）より大きいファイルは
-<guilabel>クイックコンテンツ</guilabel>比較方法を使用して比較されます。</para>
+<guilabel>クイックコンテンツ</guilabel>比較方法に切り替えるための閾値サイズです。<guilabel>フルコンテンツ</guilabel>比較方法が選択されている場合、この値（メガバイト単位）より大きいファイルは、<guilabel>クイックコンテンツ</guilabel>比較方法を使用して比較されます。</para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
       <title>
-Switch to binary compare when size exceeds (MB)<indexterm>
+サイズ超過時にバイナリ比較に切り替える (MB)<indexterm>
           <primary>Binary compare</primary>
 
           <secondary>limit</secondary>
@@ -1129,19 +1125,17 @@ Switch to binary compare when size exceeds (MB)<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>無効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel>
-および<guilabel>クイックコンテンツ</guilabel> 以外に設定されている場合、有効になりません。</para>
+<option>無効</option>:
+比較方法が<guilabel>フルコンテンツ</guilabel>および<guilabel>クイックコンテンツ</guilabel>以外に設定されている場合は無効です。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>有効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel>
-または<guilabel>クイックコンテンツ</guilabel> に設定されている場合に有効になります。</para>
+<option>有効</option>:
+比較方法が<guilabel>フルコンテンツ</guilabel>または<guilabel>クイックコンテンツ</guilabel>に設定されている場合に有効です。</para>
 
           <para>
-バイナリコンテンツ比較方法に切り替える閾値サイズです。<guilabel>フルコンテンツ</guilabel> または
-<guilabel>クイックコンテンツ</guilabel>比較方法が選択されている場合、この値（メガバイト単位）より大きいファイルは<guilabel>バイナリコンテンツ</guilabel>
-比較方法を使用して比較されます。</para>
+バイナリコンテンツ比較方法に切り替えるための閾値サイズです。<guilabel>フルコンテンツ</guilabel>または<guilabel>クイックコンテンツ</guilabel>比較方法が選択されている場合、この値（メガバイト単位）より大きいファイルは、<guilabel>バイナリコンテンツ</guilabel>比較方法を使用して比較されます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1153,7 +1147,7 @@ Switch to binary compare when size exceeds (MB)<indexterm>
         </indexterm></title>
 
       <para>
-比較に使用するスレッド数です。負の値を指定すると、WinMerge は利用可能なCPU コア数に加算した値を使用します。</para>
+比較に使用するスレッド数です。負の値を指定すると、WinMergeは利用可能なCPUコア数にその値を加えた数を使用します。</para>
     </section>
 
     <section>
@@ -1530,7 +1524,7 @@ font size in points can also be chosen.</para>
     <section>
       <title>フォルダー比較で画像比較を有効にする</title>
       <para>
-このオプションが有効な場合、フォルダー比較では指定されたパターンに一致するファイルを画像として比較します。メタデータの違いは無視され、画像間の視覚的な違いを判断するために色距離の閾値が適用されます。</para>
+このオプションを有効にすると、フォルダー比較時に指定されたパターンに一致するファイルを画像として比較します。メタデータの差異は無視され、画像間の視覚的な差異を判定するために色距離の閾値が適用されます。</para>
     </section>
 
     <section>
@@ -1543,12 +1537,12 @@ font size in points can also be chosen.</para>
 
         <listitem>
           <para>
-<option>行毎の位置情報とテキスト</option>: 認識されたテキストを、元の画像内での位置とともに行単位で表示します。</para>
+<option>行毎の位置情報とテキスト</option>: 認識されたテキストを、元の画像内での位置とともに行ごとに表示します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>単語毎の位置情報とテキスト</option>: 認識されたテキストを、元の画像内での位置とともに単語単位で表示します。</para>
+<option>単語毎の位置情報とテキスト</option>: 認識されたテキストを、元の画像内での位置とともに単語ごとに表示します。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1562,46 +1556,42 @@ font size in points can also be chosen.</para>
 
     <section>
       <title>
-URL pattern to include (Regular expression)<indexterm>
+URLパターン (正規表現)<indexterm>
         </indexterm></title>
       <para>
-このフィールドに正規表現を入力して、Webページ比較ウィンドウで開くべき
-ファイルパスまたはURLを指定します。例えば、正規表現
-<code>.*\.html?|https?://.*</code> を入力すると、.html または .htm 拡張子を持つファイルと、http://
-または https:// で始まる URL がWebページ比較ウィンドウで開かれます。</para>
+Webページ比較ウィンドウで開くべきファイルパスまたはURLを指定するために、このフィールドに正規表現を入力してください。例えば、正規表現<code>.*\.html?|https?://.*</code>を入力すると、.htmlまたは.htm拡張子のファイルと、http://またはhttps://で始まるURLがWebページ比較ウィンドウで開かれます。</para>
     </section>
 
     <section>
       <title>
-URL pattern to exclude (Regular expression)<indexterm>
+除外URLパターン (正規表現)<indexterm>
         </indexterm></title>
       <para>
-特定のファイルパスや URL を Webページ比較ウィンドウから除外するために、正規表現を入力します。これは「含める URL
-パターン」フィールドに一致する項目に適用されます。含めたくない特定のパターンを除外するために使用します。</para>
+Webページ比較ウィンドウから除外する特定のファイルパスまたはURLを指定するために正規表現を入力してください。これは「含めるURLパターン」フィールドに一致する項目に適用されます。含めたくない特定のパターンを除外するために使用します。</para>
     </section>
 
     <section>
       <title>
-User data folder location<indexterm>
+ユーザーデータフォルダーの場所<indexterm>
         </indexterm></title>
       <itemizedlist>
         <listitem>
           <para>
-<option>AppData フォルダー</option> (デフォルト): クッキー、閲覧履歴、
-キャッシュデータを %APPDATA%\WinMerge\WinWebDiff フォルダーに保存します。</para>
+<option>AppDataフォルダー</option> (デフォルト):
+クッキー、閲覧履歴、キャッシュデータを%APPDATA%\WinMerge\WinWebDiffフォルダーに保存します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>インストールフォルダー</option>: WinMerge
-のインストールディレクトリにデータを保存します。通常、書き込みには管理者権限が必要です。一般的には推奨されません。</para>
+<option>インストールフォルダー</option>:
+データをWinMergeインストールディレクトリに保存します。通常、書き込みには管理者権限が必要です。一般的には推奨されません。</para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
       <title>
-Separate user data folders for each pane<indexterm>
+ユーザーデータフォルダーをペイン毎に分離する<indexterm>
         </indexterm></title>
       <para>各ペインごとに個別のデータフォルダーを作成し、ペイン間でのデータの重複を防ぎます。</para>
     </section>
@@ -1762,17 +1752,17 @@ Unixなど)異なるEOLスタイルを持つシステムからのファイルを
       <itemizedlist>
         <listitem>
           <para>
-<option>GDI</option> (デフォルト): Graphics Device Interface (GDI)
-を使用してテキストを描画します。</para>
+<option>GDI</option> (デフォルト): Graphics Device Interface
+(GDI)を使用してテキストをレンダリングします。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>DirectWrite モード</option>: 様々な DirectWrite レンダリングモードを
-使用してテキストを描画します。Windows 8.1 以降でカラー絵文字のサポートを含みます。
-WinMerge の 64 ビット版でのみ利用可能です。詳細は <ulink
+<option>DirectWriteモード</option>:
+様々なDirectWriteレンダリングモードを使用してテキストをレンダリングします。Windows
+8.1以降でカラー絵文字をサポートします。WinMergeの64ビット版でのみ利用可能です。詳細については<ulink
 url="https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants">DirectWrite
-Rendering Modes</ulink> を参照してください。</para>
+Rendering Modes</ulink>を参照してください。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1917,7 +1907,7 @@ Rendering Modes</ulink> を参照してください。</para>
           <term>単語区切り文字</term>
 
           <listitem>
-            <para><guilabel>空白か句読点で区切る</guilabel> が選択されている場合に、空白以外の単語区切りとして扱われる記号を指定します。</para>
+            <para><guilabel>空白か句読点で区切る</guilabel>が選択されている場合に、空白以外の単語区切りとして扱われる記号を指定します。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -2089,8 +2079,7 @@ linkend="Configuration_syntaxhighlight"
       </indexterm></title>
 
     <para>
-デフォルトでは、WinMerge
-のフォルダー比較ウィンドウは、項目の状態（同一、異なる、すべての側に存在しない、またはフィルタリング済み）を表示するために背景色を使用します。</para>
+デフォルトでは、WinMergeのフォルダー比較ウィンドウは、背景色を使用して項目のステータス（同一、差異あり、片側に存在しない、またはフィルター済み）を表示します。</para>
 
     <para>
 色を変更するには色ボックスをクリックし、標準的な色の設定ダイアログを開きます。 基本色か作成した色から1つ選択し

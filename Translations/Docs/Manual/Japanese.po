@@ -7736,9 +7736,9 @@ msgid ""
 "Pressing <keycap>Esc</keycap> closes a child window, and if there is only "
 "one child window, it will also close the main window."
 msgstr ""
-"<option>MDI子ウィンドウが1つのみの場合はメインウィンドウも閉じる</option>:"
-"<keycap>Esc</keycap>を押下すると子ウィンドウが閉じますが、子ウィンドウが1つし"
-"かない場合は、メインウィンドウも同時に閉じます。"
+"<option>MDI子ウィンドウが1つしかない場合、メインウィンドウを閉じる</option>:"
+"<keycap>Esc</keycap>を押下すると子ウィンドウを閉じますが、子ウィンドウが1つし"
+"かない場合は、メインウィンドウも閉じます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:241
@@ -8071,7 +8071,7 @@ msgstr "言語<placeholder type=\"indexterm\" id=\"0\"/>"
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:508
 msgid "See <xref linkend=\"Locales_changing\" />."
-msgstr ""
+msgstr "<xref linkend=\"Locales_changing\" />を参照してください。"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:515
@@ -8636,7 +8636,7 @@ msgid ""
 "shown as they occur in the source files."
 msgstr ""
 "<option>無効</option>(デフォルト): 差異ブロック内の行は、ソースファイルに現れ"
-"る順に表示されます。"
+"る通りに表示されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:956
@@ -8747,6 +8747,8 @@ msgid ""
 "Completely unhighlight the ignored differences<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"無視された差異の行を同一行の色と同じにする<placeholder type=\"indexterm\" "
+"id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1049
@@ -8755,8 +8757,8 @@ msgid ""
 "filters and substitution filters are displayed in the color of Ignored "
 "Difference."
 msgstr ""
-"<option>無効</option> (デフォルト): 行フィルターや置換フィルターによって無視"
-"された差異行は、無視された差異の色で表示されます。"
+"<option>無効</option> (デフォルト): 行フィルターおよび置換フィルターによって"
+"無視された差異行は、無視された差異の色で表示されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1057
@@ -8765,8 +8767,8 @@ msgid ""
 "line filters and substitution filters the same as the color of the identical "
 "lines."
 msgstr ""
-"<option>有効</option>: 行フィルターや置換フィルターによって無視された差異行の"
-"色を、同一行と同じ色にします。"
+"<option>有効</option>: 行フィルターおよび置換フィルターによって無視された差異"
+"行の色を、同一行の色と同じにします。"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:1067
@@ -9038,12 +9040,12 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1292
 msgid "include subfolders"
-msgstr ""
+msgstr "サブフォルダーを含める"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1291
 msgid "Include subfolders<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "サブフォルダーを含める<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1301
@@ -9051,7 +9053,7 @@ msgid ""
 "<option>Enabled</option> (default): WinMerge doing a recursive comparing and "
 "also includes subfolders."
 msgstr ""
-"<option>有効</option> (デフォルト): WinMerge は再帰的に比較を行い、サブフォル"
+"<option>有効</option> (デフォルト): WinMergeは再帰的に比較を行い、サブフォル"
 "ダーも含めます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -9060,7 +9062,7 @@ msgid ""
 "<option>Disabled</option>: WinMerge only comparing the files in the root "
 "folder."
 msgstr ""
-"<option>無効</option>: WinMerge はルートフォルダー内のファイルのみを比較しま"
+"<option>無効</option>: WinMergeはルートフォルダー内のファイルのみを比較しま"
 "す。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
@@ -9171,9 +9173,9 @@ msgid ""
 "\\Users\\All Users folder."
 msgstr ""
 "<option>有効</option>: リパースポイントであるフォルダーの内容を無視します。例"
-"えば、C:\\Users\\All Users は C:\\ProgramData へのシンボリックリンクですが、"
-"このオプションを有効にすると、C:\\Users\\All Users フォルダーの比較をスキップ"
-"します。"
+"えば、C:\\Users\\All Usersは、C:\\ProgramDataへのシンボリックリンクですが、こ"
+"のオプションを有効にすると、C:\\Users\\All Usersフォルダーの比較をスキップし"
+"ます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1400
@@ -9198,8 +9200,8 @@ msgid ""
 "<option>Disabled</option>: Is not active unless the Compare method is set to "
 "other than <guilabel>Full Contents</guilabel> compare method."
 msgstr ""
-"<option>無効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel>以外に設"
-"定されている場合、有効になりません。"
+"<option>無効</option>: 比較方法が<guilabel>フルコンテンツ</guilabel>以外に設"
+"定されている場合は無効です。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1416
@@ -9207,8 +9209,8 @@ msgid ""
 "<option>Enabled</option>: Is active when the Compare method is set to "
 "<guilabel>Full Contents</guilabel> compare method."
 msgstr ""
-"<option>有効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel>に設定さ"
-"れている場合に有効になります。"
+"<option>有効</option>: 比較方法が<guilabel>フルコンテンツ</guilabel>に設定さ"
+"れている場合に有効です。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1421
@@ -9218,10 +9220,10 @@ msgid ""
 "files bigger (in mega bytes) than this value are compared using "
 "<guilabel>Quick Contents</guilabel> compare method."
 msgstr ""
-"<guilabel>クイックコンテンツ</guilabel> 比較方法に切り替える閾値サイズです。"
-"<guilabel>フルコンテンツ</guilabel> 比較方法が選択されている場合、この値（メ"
-"ガバイト単位）より大きいファイルは <guilabel>クイックコンテンツ</guilabel>比"
-"較方法を使用して比較されます。"
+"<guilabel>クイックコンテンツ</guilabel>比較方法に切り替えるための閾値サイズで"
+"す。<guilabel>フルコンテンツ</guilabel>比較方法が選択されている場合、この値"
+"（メガバイト単位）より大きいファイルは、<guilabel>クイックコンテンツ</"
+"guilabel>比較方法を使用して比較されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1432
@@ -9234,6 +9236,8 @@ msgid ""
 "Switch to binary compare when size exceeds (MB)<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"サイズ超過時にバイナリ比較に切り替える (MB)<placeholder type=\"indexterm\" "
+"id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1441
@@ -9242,9 +9246,8 @@ msgid ""
 "other than <guilabel>Full Contents</guilabel> and <guilabel>Quick Contents</"
 "guilabel> compare method."
 msgstr ""
-"<option>無効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel> および"
-"<guilabel>クイックコンテンツ</guilabel> 以外に設定されている場合、有効になり"
-"ません。"
+"<option>無効</option>: 比較方法が<guilabel>フルコンテンツ</guilabel>および"
+"<guilabel>クイックコンテンツ</guilabel>以外に設定されている場合は無効です。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1448
@@ -9253,9 +9256,8 @@ msgid ""
 "<guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel> "
 "compare method."
 msgstr ""
-"<option>有効</option>: 比較方法が <guilabel>フルコンテンツ</guilabel> または"
-"<guilabel>クイックコンテンツ</guilabel> に設定されている場合に有効になりま"
-"す。"
+"<option>有効</option>: 比較方法が<guilabel>フルコンテンツ</guilabel>または"
+"<guilabel>クイックコンテンツ</guilabel>に設定されている場合に有効です。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1453
@@ -9265,10 +9267,10 @@ msgid ""
 "compare method is selected, files bigger (in mega bytes) than this value are "
 "compared using <guilabel>Binary Contents</guilabel> compare method."
 msgstr ""
-"バイナリコンテンツ比較方法に切り替える閾値サイズです。<guilabel>フルコンテン"
-"ツ</guilabel> または <guilabel>クイックコンテンツ</guilabel>比較方法が選択さ"
-"れている場合、この値（メガバイト単位）より大きいファイルは<guilabel>バイナリ"
-"コンテンツ</guilabel> 比較方法を使用して比較されます。"
+"バイナリコンテンツ比較方法に切り替えるための閾値サイズです。<guilabel>フルコ"
+"ンテンツ</guilabel>または<guilabel>クイックコンテンツ</guilabel>比較方法が選"
+"択されている場合、この値（メガバイト単位）より大きいファイルは、<guilabel>バ"
+"イナリコンテンツ</guilabel>比較方法を使用して比較されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1464
@@ -9286,8 +9288,8 @@ msgid ""
 "Number of threads which use to comparing. With a negative value WinMerge "
 "will use addition of the number of available CPU cores."
 msgstr ""
-"比較に使用するスレッド数です。負の値を指定すると、WinMerge は利用可能なCPU コ"
-"ア数に加算した値を使用します。"
+"比較に使用するスレッド数です。負の値を指定すると、WinMergeは利用可能なCPUコア"
+"数にその値を加えた数を使用します。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1477
@@ -10014,9 +10016,9 @@ msgid ""
 "ignored, and a color distance threshold will be applied to determine visual "
 "differences between images."
 msgstr ""
-"このオプションが有効な場合、フォルダー比較では指定されたパターンに一致する"
-"ファイルを画像として比較します。メタデータの違いは無視され、画像間の視覚的な"
-"違いを判断するために色距離の閾値が適用されます。"
+"このオプションを有効にすると、フォルダー比較時に指定されたパターンに一致する"
+"ファイルを画像として比較します。メタデータの差異は無視され、画像間の視覚的な"
+"差異を判定するために色距離の閾値が適用されます。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1909
@@ -10038,7 +10040,7 @@ msgid ""
 "line by line with its position in the original image."
 msgstr ""
 "<option>行毎の位置情報とテキスト</option>: 認識されたテキストを、元の画像内で"
-"の位置とともに行単位で表示します。"
+"の位置とともに行ごとに表示します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1927
@@ -10047,7 +10049,7 @@ msgid ""
 "word by word with its position in the original image."
 msgstr ""
 "<option>単語毎の位置情報とテキスト</option>: 認識されたテキストを、元の画像内"
-"での位置とともに単語単位で表示します。"
+"での位置とともに単語ごとに表示します。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:1938
@@ -10064,7 +10066,7 @@ msgstr "比較 → Webページ ページ<placeholder type=\"indexterm\" id=\"0\
 msgid ""
 "URL pattern to include (Regular expression)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
-msgstr ""
+msgstr "URLパターン (正規表現)<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:1948
@@ -10075,18 +10077,17 @@ msgid ""
 "the .html or .htm extension and URLs starting with http:// or https:// will "
 "be opened in the webpage compare window."
 msgstr ""
-"このフィールドに正規表現を入力して、Webページ比較ウィンドウで開くべき\n"
-"ファイルパスまたはURLを指定します。例えば、正規表現\n"
-"<code>.*\\.html?|https?://.*</code> を入力すると、.html または .htm 拡張子を"
-"持つファイルと、http:// または https:// で始まる URL がWebページ比較ウィンド"
-"ウで開かれます。"
+"Webページ比較ウィンドウで開くべきファイルパスまたはURLを指定するために、この"
+"フィールドに正規表現を入力してください。例えば、正規表現<code>.*\\.html?|"
+"https?://.*</code>を入力すると、.htmlまたは.htm拡張子のファイルと、http://ま"
+"たはhttps://で始まるURLがWebページ比較ウィンドウで開かれます。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1956
 msgid ""
 "URL pattern to exclude (Regular expression)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
-msgstr ""
+msgstr "除外URLパターン (正規表現)<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:1960
@@ -10096,14 +10097,15 @@ msgid ""
 "pattern to include\" field.  Use this to exclude specific patterns you don't "
 "want to include."
 msgstr ""
-"特定のファイルパスや URL を Webページ比較ウィンドウから除外するために、正規表"
-"現を入力します。これは「含める URL パターン」フィールドに一致する項目に適用さ"
-"れます。含めたくない特定のパターンを除外するために使用します。"
+"Webページ比較ウィンドウから除外する特定のファイルパスまたはURLを指定するため"
+"に正規表現を入力してください。これは「含めるURLパターン」フィールドに一致する"
+"項目に適用されます。含めたくない特定のパターンを除外するために使用します。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1968
 msgid "User data folder location<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"ユーザーデータフォルダーの場所<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1974
@@ -10111,8 +10113,8 @@ msgid ""
 "<option>AppData folder</option> (default): Stores cookies, browsing history, "
 "and cache data in the %APPDATA%\\WinMerge\\WinWebDiff folder."
 msgstr ""
-"<option>AppData フォルダー</option> (デフォルト): クッキー、閲覧履歴、\n"
-"キャッシュデータを %APPDATA%\\WinMerge\\WinWebDiff フォルダーに保存します。"
+"<option>AppDataフォルダー</option> (デフォルト): クッキー、閲覧履歴、キャッ"
+"シュデータを%APPDATA%\\WinMerge\\WinWebDiffフォルダーに保存します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1980
@@ -10121,9 +10123,9 @@ msgid ""
 "directory, which usually requires administrator permissions to write. This "
 "is generally not recommended."
 msgstr ""
-"<option>インストールフォルダー</option>: WinMerge のインストールディレクトリ"
-"にデータを保存します。通常、書き込みには管理者権限が必要です。一般的には推奨"
-"されません。"
+"<option>インストールフォルダー</option>: データをWinMergeインストールディレク"
+"トリに保存します。通常、書き込みには管理者権限が必要です。一般的には推奨され"
+"ません。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1988
@@ -10131,6 +10133,8 @@ msgid ""
 "Separate user data folders for each pane<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
+"ユーザーデータフォルダーをペイン毎に分離する<placeholder type=\"indexterm\" "
+"id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Configuration.xml:1991
@@ -10388,8 +10392,8 @@ msgid ""
 "<option>GDI</option> (default): Renders text using the Graphics Device "
 "Interface (GDI)."
 msgstr ""
-"<option>GDI</option> (デフォルト): Graphics Device Interface (GDI) を使用して"
-"テキストを描画します。"
+"<option>GDI</option> (デフォルト): Graphics Device Interface (GDI)を使用して"
+"テキストをレンダリングします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:2194
@@ -10401,14 +10405,12 @@ msgid ""
 "dwrite_rendering_mode#constants\">DirectWrite Rendering Modes</ulink> for "
 "details."
 msgstr ""
-"<option>DirectWrite モード</option>: 様々な DirectWrite レンダリングモード"
-"を\n"
-"使用してテキストを描画します。Windows 8.1 以降でカラー絵文字のサポートを含み"
-"ます。\n"
-"WinMerge の 64 ビット版でのみ利用可能です。詳細は <ulink url=\"https://learn."
-"microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-"
-"dwrite_rendering_mode#constants\">DirectWrite Rendering Modes</ulink> を参照"
-"してください。"
+"<option>DirectWriteモード</option>: 様々なDirectWriteレンダリングモードを使用"
+"してテキストをレンダリングします。Windows 8.1以降でカラー絵文字をサポートしま"
+"す。WinMergeの64ビット版でのみ利用可能です。詳細については<ulink "
+"url=\"https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-"
+"dwrite_rendering_mode#constants\">DirectWrite Rendering Modes</ulink>を参照し"
+"てください。"
 
 #. type: Content of: <article><section><title>
 #: English/Configuration.xml:2203
@@ -10617,8 +10619,8 @@ msgid ""
 "Specifies the symbols that are treated as non-whitespace word separators "
 "when <guilabel>Break at whitespace or punctuation</guilabel> is selected."
 msgstr ""
-"<guilabel>空白か句読点で区切る</guilabel> が選択されている場合に、空白以外の"
-"単語区切りとして扱われる記号を指定します。"
+"<guilabel>空白か句読点で区切る</guilabel>が選択されている場合に、空白以外の単"
+"語区切りとして扱われる記号を指定します。"
 
 #. type: Content of: <article><section><section><note><title>
 #: English/Configuration.xml:2395
@@ -10890,9 +10892,9 @@ msgid ""
 "the status from a item (equal, different, not exists on all sides or "
 "filtered)."
 msgstr ""
-"デフォルトでは、WinMerge のフォルダー比較ウィンドウは、項目の状態（同一、異な"
-"る、すべての側に存在しない、またはフィルタリング済み）を表示するために背景色"
-"を使用します。"
+"デフォルトでは、WinMergeのフォルダー比較ウィンドウは、背景色を使用して項目の"
+"ステータス（同一、差異あり、片側に存在しない、またはフィルター済み）を表示し"
+"ます。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Configuration.xml:2618
