@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2025-10-27 21:57+0900\n"
+"PO-Revision-Date: 2026-01-27 22:00+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -660,6 +660,9 @@ msgstr "두 번째와 세 번째 맞바꾸기(&2)"
 msgid "Swap 1st | &3rd"
 msgstr "첫 번째와 세 번째 맞바꾸기(&3)"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "표시 필터 막대(&Y)\tCtrl+Shift+L"
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "통계 비교(&P)..."
@@ -722,7 +725,7 @@ msgstr "보고서 생성(&R)..."
 
 #, c-format
 msgid "&Edit with Unpacker..."
-msgstr "압축을 풀어 편집(&E)..."
+msgstr "Unpacker로 편집(&E)..."
 
 #, c-format
 msgid "&Save\tCtrl+S"
@@ -778,7 +781,7 @@ msgid "Mer&ge Mode\tF9"
 msgstr "병합 모드(&G)\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr "다시불러오기(&D)\tCtrl+F5"
+msgstr "다시 불러오기(&D)\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -1078,6 +1081,9 @@ msgstr "분할(&L)"
 msgid "Comp&are"
 msgstr "비교(&A)"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "이름 바꾸기/이동된 항목과 비교(&E)"
+
 msgid "Compare in New &Window"
 msgstr "새 창에서 비교(&W)"
 
@@ -1257,8 +1263,11 @@ msgstr "전체 경로 복사(&C)"
 msgid "Copy &Filename"
 msgstr "파일 이름 복사(&F)"
 
-msgid "&Edit Caption"
-msgstr "캡션 편집(&E)"
+msgid "&Edit Caption\tF2"
+msgstr "캡션 편집(&E)\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "편집 경로(&P)\tCtrl+L"
 
 msgid "&Open..."
 msgstr "열기(&O)..."
@@ -1727,6 +1736,30 @@ msgstr "추가 속성(&P)..."
 msgid "Add F&older Condition"
 msgstr "폴더 조건 추가(&O)"
 
+msgid "&Files"
+msgstr "파일(&F)"
+
+msgid "0 files"
+msgstr "0개 파일"
+
+msgid "1 file or more"
+msgstr "1개 이상의 파일"
+
+msgid "&Items"
+msgstr "항목(&I)"
+
+msgid "0 items"
+msgstr "0개 항목"
+
+msgid "1 item or more"
+msgstr "1개 이상의 항목"
+
+msgid "&Total Size"
+msgstr "전체 항목(&T)"
+
+msgid "&Recursive"
+msgstr "재귀적(&R)"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "대상: 모두 (왼쪽/가운데/오른쪽)(&A)"
 
@@ -1828,6 +1861,63 @@ msgstr "속성 비교(&A)"
 
 msgid "Compare C&ontents"
 msgstr "내용 비교(&O)"
+
+msgid "&Clear Keys"
+msgstr "키 지우기(&C)"
+
+msgid "&Name"
+msgstr "이름(&N)"
+
+msgid "&Base name (without extension)"
+msgstr "기본 이름 (확장자 없음)(&B)"
+
+msgid "Normalized &Unicode Name"
+msgstr "정규화된 유니코드 이름(&U)"
+
+msgid "&Date"
+msgstr "날짜(&D)"
+
+msgid "&Hash (MD5)"
+msgstr "해시 (MD5)(&H)"
+
+msgid "Insert &replace() Function"
+msgstr "replace() 함수 삽입(&R)"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "regexReplace() 함수 삽입(&X)"
+
+msgid "Text &Normalization"
+msgstr "텍스트 정규화(&N)"
+
+msgid "&Lowercase"
+msgstr "소문자(&L)"
+
+msgid "&Uppercase"
+msgstr "대문자(&U)"
+
+msgid "&Half-width"
+msgstr "반각 문자(&H)"
+
+msgid "&Full-width"
+msgstr "전각 문자(&F)"
+
+msgid "&Chinese Conversion"
+msgstr "중국어 변환(&C)"
+
+msgid "&Simplified Chinese"
+msgstr "중국어 간체(&S)"
+
+msgid "&Traditional Chinese"
+msgstr "중국어 번체(&T)"
+
+msgid "&Japanese Conversion"
+msgstr "일본어 변환(&J)"
+
+msgid "&Hiragana"
+msgstr "히나가나(&H)"
+
+msgid "&Katakana"
+msgstr "가타카나(&K)"
 
 #, c-format
 msgid "About WinMerge"
@@ -2301,6 +2391,9 @@ msgstr "삭제한 파일은 휴지통으로 보내기(&S)"
 msgid "&External editor:"
 msgstr "외부 편집기(&E):"
 
+msgid "&Store user data in:"
+msgstr "사용자 데이터 저장 위치(&S):"
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "필터 폴더(&F):"
@@ -2570,6 +2663,10 @@ msgstr "전체 항목:"
 #, c-format
 msgid "Items compared:"
 msgstr "비교된 항목:"
+
+#, c-format
+msgid "&Close"
+msgstr "닫기(&C)"
 
 msgid "Go to"
 msgstr "이동"
@@ -2878,10 +2975,6 @@ msgstr "결과:"
 msgid "&Test"
 msgstr "테스트(&T)"
 
-#, c-format
-msgid "&Close"
-msgstr "닫기(&C)"
-
 msgid "Table"
 msgstr "테이블"
 
@@ -3073,11 +3166,20 @@ msgstr "바이너리 비교로 전환하기 위한 임계값 (MB)(&B):"
 msgid "Additional comparison condi&tions:"
 msgstr "추가 비교 조건(&T):"
 
+msgid "&Rename/move detection:"
+msgstr "이름 바꾸기/이동 감지(&R):"
+
+msgid "Rename/move detection &keys:"
+msgstr "감지 키 이름 바꾸기/이동(&K):"
+
+msgid "&Merge renamed items into a single item"
+msgstr "이름이 변경된 항목을 단일 항목으로 병합(&M)"
+
 msgid "File patterns:"
 msgstr "파일 패턴:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr "사용자 설정 구분 기호"
+msgstr "사용자 지정 구분 기호로 구분된 값"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -3368,7 +3470,7 @@ msgid "Don't display this &message again."
 msgstr "이 메시지를 다시 표시하지 않음(&M)"
 
 msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
-msgstr "이 메시지 상자를 다시 표시하려면 옵션 대화 상자의 메시지 상자 페이지에서 재설정 버튼을 누르십시오."
+msgstr "이 메시지 상자를 다시 표시하려면 옵션 대화 상자의 메시지 상자 페이지에서 재설정 버튼을 누르세요."
 
 msgid "Compare/Merge"
 msgstr "비교/병합"
@@ -3554,7 +3656,7 @@ msgid ""
 msgstr ""
 "필터 템플릿 파일을 찾을 수 없습니다!\n"
 "\n"
-"%1 파일을 다음 WinMerge/Filters 폴더에 복사하십시오:\n"
+"%1 파일을 다음 WinMerge/Filters 폴더에 복사하세요:\n"
 "%2."
 
 #, c-format
@@ -3567,7 +3669,7 @@ msgstr ""
 "필터 템플릿 파일을 필터 폴더에 복사할 수 없습니다:\n"
 "%1\n"
 "\n"
-"폴더가 존재하고 쓰기 가능한지 확인하십시오."
+"폴더가 존재하고 쓰기 가능한지 확인하세요."
 
 #, c-format
 msgid ""
@@ -3577,7 +3679,7 @@ msgid ""
 msgstr ""
 "사용자의 필터 파일 폴더가 정의되지 않았습니다!\n"
 "\n"
-"옵션/시스템에서 필터 폴더를 선택하십시오."
+"옵션/시스템에서 필터 폴더를 선택하세요."
 
 #, c-format
 msgid ""
@@ -3682,18 +3784,18 @@ msgstr "차이 %1 / %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "%1개 차이 찾음"
+msgstr "%1개 차이 발견"
 
 #, c-format
 msgid "1 Difference Found"
-msgstr "1개 차이 찾음"
+msgstr "1개 차이 발견"
 
 #, c-format
 msgid "%1 Errors Found"
 msgstr "%1개의 오류 발견"
 
 msgid "1 Error Found"
-msgstr "1개의 오류 찾음"
+msgstr "1개의 오류 발견"
 
 #. Abbreviation from "Read Only"
 #, c-format
@@ -4471,6 +4573,33 @@ msgstr "추가 비교 조건: 파일이 다릅니다 (식: %1)"
 msgid "Group%d"
 msgstr "그룹%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "사용 안 함"
+
+msgid "Detect renames"
+msgstr "이름 바꾸기 감지"
+
+msgid "Detect renames and moves"
+msgstr "이름 바꾸기 및 이동 감지"
+
+msgid "Renamed"
+msgstr "이름 바뀜"
+
+msgid "Moved"
+msgstr "이동됨"
+
+msgid "Renamed/Moved"
+msgstr "이름 바뀜/이동됨"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1개 항목)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (세트 %2): "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "경과 시간: %ld ms"
@@ -4666,6 +4795,30 @@ msgstr "같은 파일을 양쪽 창에 열었습니다."
 msgid "Selected files are identical."
 msgstr "선택한 파일들은 동일합니다."
 
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"Checking binary identity..."
+msgstr ""
+"선택된 파일은 동일합니다 (현재 설정 기준).Wr\n"
+"바이너리 동일성 확인 중..."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But binary comparison failed."
+msgstr ""
+"선택된 파일은 동일합니다 (현재 설정 기준).Wr\n"
+"그러나 바이너리 비교가 실패했습니다."
+
+msgid "Selected files are identical (binary match)."
+msgstr "선택된 파일들은 동일합니다 (이진 일치)."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But differ at the binary level."
+msgstr ""
+"선택된 파일들은 동일합니다 (현재 설정 기준).Wr\n"
+"그러나 바이너리 수준에서는 차이가 있습니다."
+
 #, c-format
 msgid "An error occurred while comparing files."
 msgstr "파일 비교 중 오류가 발생했습니다."
@@ -4856,7 +5009,7 @@ msgid ""
 "\n"
 "Creating a patch requires no unsaved changes."
 msgstr ""
-"먼저 모든 파일을 저장하십시오.\n"
+"먼저 모든 파일을 저장하세요.\n"
 "\n"
 "패치를 만들려면 파일에 저장되지 않은 변경 사항이 없어야 합니다."
 
@@ -5390,11 +5543,14 @@ msgstr "줄별 위치 및 텍스트"
 msgid "Word-by-word position and text"
 msgstr "단어별 위치 및 텍스트"
 
-msgid "AppData folder"
-msgstr "AppData 폴더"
+msgid "AppData (Roaming) folder"
+msgstr "AppData (Roaming) 폴더"
 
 msgid "Install folder"
 msgstr "설치 폴더"
+
+msgid "Documents folder"
+msgstr "문서 폴더"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5784,6 +5940,13 @@ msgstr "어두운"
 
 msgid "Follow system"
 msgstr "시스템을 따름"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "예: %1"
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
 
 msgid "Prettification"
 msgstr "꾸미기"
@@ -6251,6 +6414,9 @@ msgid ""
 msgstr ""
 "매크로를 가져올 수 없습니다.\n"
 "MS Office 매크로 보안에서 '시각적 기본 프로젝트에 대한 신뢰 액세스'를 활성화합니다."
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr "공식에서 줄 바꿈을 공백으로 대체"
 
 msgid "Compare VBA macros"
 msgstr "VBA 매크로 비교"

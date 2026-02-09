@@ -1,0 +1,77 @@
+version: "{branch}-ci-{build}"
+
+environment:
+  matrix:
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    BUILDER: "msbuild"
+    PLATFORM: Win32
+    CONFIGURATION: "Release_VC9-UNICODE"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    BUILDER: "msbuild"
+    PLATFORM: x64
+    CONFIGURATION: "Release_VC9-UNICODE"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
+    CMAKE_GENERATOR: "Visual Studio 12 2013"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013    
+    CMAKE_GENERATOR: "Visual Studio 12 2013 Win64"
+    TARGET_CONFIG: "--config RelWithDebInfo"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    CMAKE_GENERATOR: "Visual Studio 14 2015"
+    TARGET_CONFIG: "--config RelWithDebInfo"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+    CMAKE_GENERATOR: "Visual Studio 14 2015 Win64"
+    TARGET_CONFIG: "--config RelWithDebInfo"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    CMAKE_GENERATOR: "Visual Studio 15 2017"
+    TARGET_CONFIG: "--config RelWithDebInfo"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    CMAKE_GENERATOR: "Visual Studio 15 2017 Win64"
+    TARGET_CONFIG: "--config RelWithDebInfo"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
+    CMAKE_GENERATOR: "Visual Studio 17 2022"
+    TARGET_ARCH: "-A Win32"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
+    CMAKE_GENERATOR: "Visual Studio 17 2022"
+    TARGET_ARCH: "-A x64"
+  - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
+    CMAKE_GENERATOR: "Visual Studio 17 2022"
+    TARGET_ARCH: "-A ARM64"
+
+
+before_build:
+  - if [%BUILDER%]==[msbuild] echo MSVC2008
+  - if [%BUILDER%]==[msbuild] set "SLN_NAME=Main\StackWalker\StackWalker_VC9.sln"
+  - if [%BUILDER%]==[msbuild] set "MS_BLD_TOOLSET=v90"
+  - if [%BUILDER%]==[msbuild] set "MS_VS_DIR=C:\Program Files (x86)\Microsoft Visual Studio 9.0"
+  - if [%BUILDER%]==[msbuild] set "MS_BLD_DIR=C:\Windows\Microsoft.NET\Framework\v3.5"
+  - if [%BUILDER%]==[msbuild] set "AVLOGGER=C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  - if [%BUILDER%]==[msbuild] set "MS_SDK_DIR=C:\Program Files\Microsoft SDKs\Windows\v7.1"
+  - if [%BUILDER%]==[msbuild] set "PATH=%MS_SDK_DIR%\bin;%PATH%"
+  - if [%BUILDER%]==[msbuild] set "PATH=%MS_BLD_DIR%;%PATH%"
+  - if [%BUILDER%]==[msbuild] set "PATH=%MS_VS_DIR%\Common7\IDE;%PATH%"
+  - if [%BUILDER%]==[msbuild] if [%PLATFORM%]==[Win32] set "PATH=%MS_VS_DIR%\VC\bin;%PATH%"
+  - if [%BUILDER%]==[msbuild] if [%PLATFORM%]==[x64]   set "PATH=%MS_VS_DIR%\VC\bin\amd64;%PATH%"
+  - if [%BUILDER%]==[msbuild] if [%PLATFORM%]==[Win32] set "LIB=%MS_SDK_DIR%\lib;%MS_VS_DIR%\VC\lib;"
+  - if [%BUILDER%]==[msbuild] if [%PLATFORM%]==[x64]   set "LIB=%MS_SDK_DIR%\lib\x64;%MS_VS_DIR%\VC\lib\amd64;"
+  - if [%BUILDER%]==[msbuild] if [%PLATFORM%]==[Win32] set TARGET_CPU=x86
+  - if [%BUILDER%]==[msbuild] if [%PLATFORM%]==[x64]   set TARGET_CPU=amd64
+  - if [%BUILDER%]==[msbuild] if [%PLATFORM%]==[x64]   set VC_PROJECT_ENGINE_NOT_USING_REGISTRY_FOR_INIT=1
+  - if [%BUILDER%]==[msbuild] set "INCLUDE=%MS_SDK_DIR%\include;%INCLUDE%"
+  - if [%BUILDER%]==[msbuild] set "INCLUDE=%MS_VS_DIR%\VC\include;%INCLUDE%"
+  - if [%BUILDER%]==[msbuild] set "MS_BLD_ARGS=/m /verbosity:m"
+  - if [%BUILDER%]==[msbuild] set "MS_BLD_ARGS=%MS_BLD_ARGS% /p:PlatformToolset=%MS_BLD_TOOLSET%"
+  - if [%BUILDER%]==[msbuild] set "MS_BLD_ARGS=%MS_BLD_ARGS% /t:Clean,Build"
+  - if [%BUILDER%]==[msbuild] set "MS_BLD_ARGS=%MS_BLD_ARGS% /p:Platform=%PLATFORM%"
+  - if [%BUILDER%]==[msbuild] set "MS_BLD_ARGS=%MS_BLD_ARGS% /p:Configuration=%CONFIGURATION%"
+  - if [%BUILDER%]==[msbuild] set "MS_BLD_ARGS=%MS_BLD_ARGS% /p:VCBuildUseEnvironment=true"
+
+build_script:
+  - if [%BUILDER%]==[msbuild] cl.exe
+  - if [%BUILDER%]==[msbuild] msbuild %SLN_NAME% %MS_BLD_ARGS% /logger:"%AVLOGGER%"
+  - if not [%BUILDER%]==[msbuild] cmake --version
+  - if not [%BUILDER%]==[msbuild] cmake -E make_directory "build-dir"
+  - if not [%BUILDER%]==[msbuild] cmake -E chdir "build-dir" cmake -G "%CMAKE_GENERATOR%" %TARGET_ARCH% %TARGET_CONFIG% -DCMAKE_INSTALL_PREFIX="%APPVEYOR_BUILD_FOLDER%/root" ..
+  - if not [%BUILDER%]==[msbuild] cmake --build "build-dir" --config RelWithDebInfo
+  - if not [%BUILDER%]==[msbuild] cmake --build "build-dir" --target install --config RelWithDebInfo
+
+

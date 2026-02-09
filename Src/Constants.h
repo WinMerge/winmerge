@@ -36,14 +36,7 @@ inline const tchar_t RelNotes[] = _T("\\Docs\\ReleaseNotes%s.html");
 inline const tchar_t LicenseFile[] = _T("Copying");
 
 /** @brief WinMerge folder in My Folders-folder. */
-inline const tchar_t WinMergeDocumentsFolder[] = _T("WinMerge");
-
-/**
- * @brief Default relative path to "My Documents" for private filters.
- * We want to use WinMerge folder as general user-file folder in future.
- * So it makes sense to have own subfolder for filters.
- */
-inline const tchar_t DefaultRelativeFilterPath[] = _T("WinMerge/Filters");
+inline const tchar_t WinMergeUserDataFolder[] = _T("WinMerge");
 
 /** @brief Temp folder name prefix for WinMerge temp folders. */
 inline const tchar_t TempFolderPrefix[] = _T("WinMerge_TEMP_");

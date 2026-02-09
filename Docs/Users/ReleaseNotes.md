@@ -1,160 +1,140 @@
-# WinMerge 2.16.52.2 Release Notes
+# WinMerge 2.16.54 Release Notes
 
 * [About This Release](#about-this-release)
-* [What Is New in 2.16.52.2](#what-is-new-in-216522)
-* [What Is New in 2.16.52](#what-is-new-in-21652)
-* [What Is New in 2.16.51 beta?](#what-is-new-in-21651-beta)
+* [What Is New in 2.16.54](#what-is-new-in-21654)
+* [What Is New in 2.16.53 beta?](#what-is-new-in-21653-beta)
 * [Known issues](#known-issues)
 
-November 2025
+January 2026
 
 ## About This Release
 
-This is a WinMerge 2.16.52.2 stable release.
+This is a WinMerge 2.16.54 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.52.2
-
-### Appearance
-
-* Match title bar text color to Windows using a 190 luminance threshold.
-
-### File compare
-
-* BugFix: [Bug] The configuration of tabulations is not working correctly
-    (#3015)
-* BugFix: Tab size set to '1' and 'insert spaces' causes redraw failures in
-    'File Compare' window. (#3047)
-* Update request: List of MATLAB specific keywords (#3040)
-
-### Folder compare
-
-* Set the default thread count for folder comparison to 4.
-
-### Filters dialog
-
-* BugFix: Newly added or installed filters were incorrectly flagged as missing
-    after selection.
-
-### Options dialog
-
-* Request to resize text boxes and button (#3017)
-
-### Manual
-
-* Typo in Help/FAQ (#3016)
-* Docs: Add comprehensive translation contribution guide (PR #3023)
-
-### Translations
-
-* Translation updates:
-  * Bulgarian (PR #3006)
-  * Chinese Simplified (PR #3011)
-  * Chinese Traditional (PR #3008)
-  * French (PR #3024)
-  * German (PR #3018)
-  * Hungarian (PR #3022)
-  * Japanese
-  * Korean (PR #3007)
-  * Lithuanian (PR #3019)
-  * Polish (PR #3014)
-  * Portuguese (PR #3046)
-  * Turkish (PR #3020)
-  * Russian (PR #3045)
-
-## What Is New in 2.16.52
+## What Is New in 2.16.54
 
 ### General
 
-* BugFix: Fixed an issue where leftover WinMerge temporary folders were not 
-    properly deleted on the next application exit (since version 2.16.51).
-* [Feature request] Alternate hotkeys for tab navigation (#2942)
-* Disabled darkmodelib in the ARM64 build due to an unresolved crash issue.
+* BugFix: Cyrilic shortcuts do not work for main menukeyboard shortcuts
+* BugFix: 2 recent-entries per project (#2990)
+* Updated expat to version 2.7.3
+
+### Folder compare
+
+* Add logInfo, logWarn, logError functions to filter expressions (PR #3131)
+* Add new filter expression functions
+    (if, ifEach, choose, chooseEach, andEach, orEach, notEach) (PR #3132)
+* Add BaseName/IsFolder and new string transformation functions to filters
+    (PR #3146)
+* Add experimental customizable rename/move detection for folder comparison
+    (PR #3126)
+
+### Options window
+
+* Adjusted the height of the Options dialog and the position of the Defaults
+    button
+
+### Shell extension
+
+* BugFix: Add-AppxPackage fails if path ends with backslash (PR #3145)
+
+### Installer
+
+* Removed build-time tools (lemon.exe, re2c.exe) from the installer package.
+
+### Translations
+
+* New translation: Vietnamese (PR #3142)
+* Translation updates:
+  * Brazilian (PR #3150)
+  * Chinese Simplified (PR #3156)
+  * French (PR #3137)
+  * German (PR #3148)
+  * Hungarian (PR #3149)
+  * Italian (PR #3147)
+  * Japanese
+  * Korean (PR #3125,#3127)
+  * Lithuanian (PR #3144,#3153)
+  * Polish (PR #3154,#3155)
+  * Turkish (PR #3152)
+  * Ukrainian (PR #3130)
+
+## What Is New in 2.16.53 Beta
+
+### General
+
+* Allow comparing files by editing header path (Ctrl+L / Alt+D) (PR #3093)
+
+### File compare
+
+* Async binary comparison for “Selected files are identical” dialog
+    (PR #3060)
 
 ### Binary compare
 
-* BugFix: Ctrl-W in Hex View : Close window? (#2294)
+* BugFix: Fixed crash when an error occurs while opening files in the binary
+    comparison window.
+
+### Image compare
+
+* [ImageCompare] Problems with unsupported formats (#3044)
+
+* Update freeimage to 3.19.10
+
+### Webpage compare
+
+* BugFix: Fixed garbled filenames displayed in Web comparison tabs and header
+    bar
 
 ### Folder compare
 
-* BugFix: Round timestamps before comparing to ensure consistent 1-second precision (#2973)
-* Add toDateStr filter function.
-* Add option for specifying additional comparison conditions (PR #2963)
-* Add support for prop, leftprop, middleprop, and rightprop functions in
-  filter expressions (PR #2974)
-* Add "Existence" folder comparison method (PR #2980)
+* BugFix: This line cannot be displayed correctly after translation.
+    msgid "Failed to extract archive.\nCompare as text file?" (#3073)
 
+* BugFix: Unexpected file closure when moving files from a comparison (#3088)
 
-### Translations
+* Add Display Filter to Folder Compare (PR #3106)
 
-* Translation updates:
-  * Brazilian (PR #2981,#2977,#2995)
-  * Chinese Simplified (PR #2978,#2991,#2996)
-  * Corsican (PR #2999)
-  * Italian (PR #2976,#2982,#2998)
-  * Japanese
-  * Korean (PR #2993)
-  * Lithuanian (PR #2975,#2986,#2997)
-  * Portuguese (PR #2971)
-  * Polish (PR #2972,#2979,#3003,#3005)
-  * Turkish (PR #2992)
-  * Russian (PR #2983)
+* Add folder statistics filter attributes and helper menu (PR #3111)
 
-## What Is New in 2.16.51 Beta
-
-### General
-
-* BugFix: The document does not scroll with the mouse if the documents are identical.
-  Or the text input cursor jumps to unequal lines. (#2939)
-
-### Appearance
-
-* Initial dark mode support via darkmodelib (PR #2834,#2885)
-* Improved header bar to reduce flicker
-
-### File compare
-
-* Add option to ignore line breaks (treat as spaces) (refs #373) (PR #2945)
-
-### Folder compare
-
-* Fixed an issue where adding exclusions via \[Add Exclude File] ->
-  \[Editor Backup Files] incorrectly excluded most files.
-
-### Filters dialog
-
-* Allow resizing of filters window using MFC Dynamic Layout (#509) (PR #2907)
+* Introduce isWithin() and inRange() for explicit inclusive/exclusive range
+    checks (PR #3124)
 
 ### Options dialog
 
-* Allow saving modified colors as new scheme (#1180) (PR #2908)
+* Add option to select user data location (AppData or Documents) (PR #3078)
+
+### Plugins
+
+* CompareMSExcelFiles: Replace line breaks with space in MSExcel formulas
+    (PR #3028)
+
+* Updated jq to 1.8.1
 
 ### Translations
 
 * Translation updates:
 
-  * Brazilian (#2886,#2910,#2951)
-  * Chinese Simplified (PR #2889,#2916,#2952)
-  * Corsican (PR #2915)
-  * French (PR #2887,#2938,#2969)
-  * Hungarian (PR #2909,#2948)
-  * Italian (PR #2892,#2911,#2956)
+  * Brazilian (PR #3034,#3064,#3085,#3101,#3107,#3121)
+  * Chinese Simplified (PR #3035,#3077,#3086,#3097,#3123)
+  * Chinese Traditional (PR #3052,#3073,WinMerge/frhed#26)
+  * Corsican (PR #3119)
+  * French (PR #3072,#3105,#3106)
+  * German (PR #3037,#3068,#3081,#3098,#3108,#3115)
+  * Hungarian (PR #3036,#3061,#3080,#3100,#3116)
+  * Italian (PR #3033,#3062,#3099,#3113,#3118)
   * Japanese
-  * Korean (PR #2913,#2934,#2950)
-  * Lithuanian (PR #2912,#2936,#2953)
-  * Portuguese (PR #2928)
-  * Polish (PR #2929,#2930,#2931)
-  * Russian (PR #2890,#2919,#2920,#2933,#2944,#2949)
-  * Spanish (PR #2961)
-  * Swedish
-  * Turkish (PR #2906,#2914,#2957)
-  * Ukrainian (PR #2932,#2937,#2954)
+  * Korean (PR #3062,#3082)
+  * Lithuanian (PR #3032,#3065,#3087,#3104,#3114)
+  * Polish (PR #3050,#3089,#3103,#3112,#3122)
+  * Turkish (PR #3043,#3063,#3083,#3102,#3111,#3117)
 
-### Internals
+### Manual
 
-* Refactor/use bindoption (PR #2955)
+* Added FAQ about file selection order in Windows Explorer. (#3090,#3094)
 
 ## Known issues
 

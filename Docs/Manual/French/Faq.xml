@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Faq">
+  <title>Foire aux questions</title>
+
+  <section>
+    <title>Questions générales</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>WinMerge fonctionne-t-il sur les anciennes versions de Windows ?</para>
+        </question>
+        <answer>
+          <para><indexterm>
+              <primary>Exécutables WinMerge, Unicode et ANSI</primary>
+            </indexterm><indexterm>
+              <primary>Unicode</primary>
+              <secondary>Assistance WinMerge</secondary>
+            </indexterm><indexterm>
+              <primary>ANSI</primary>
+              <secondary>Assistance WinMerge</secondary>
+            </indexterm>Depuis la version 2.14,
+WinMerge ne prend plus en charge les anciens systèmes Windows 32 bits,
+notamment Windows 9x, ME et NT4. De plus, la version 2.16 de WinMerge ne
+prend pas en charge Windows 2000.</para>
+          <para>Auparavant, WinMerge fournissait un exécutable ANSI (8 bits),
+<filename>WinMerge.exe</filename>, conçu autour des anciennes pages de codes
+Windows. <filename>WinMerge.exe</filename> ne stockait en interne que les
+caractères ANSI pris en charge par la page de code Windows. Cet exécutable
+présentait de graves limites pour le travail avec l'Unicode : si vous
+ouvriez un fichier Unicode, les caractères étaient convertis vers la page de
+code ANSI de Windows. Comme il existe plus de 100 000 caractères Unicode et
+que seuls 256 peuvent être représentés dans le jeu de caractères ANSI, des
+pertes de données pouvaient survenir. La conversion pouvait être
+approximative (par exemple, perte d'accents) ou impossible : les caractères
+étaient alors remplacés par des points d'interrogation (
+<literal>?</literal> ).</para>
+          <para><filename>WinMerge.exe</filename> ne pouvait pas non plus ouvrir de fichiers
+dont le nom contenait des caractères extérieurs à la page de code ANSI
+actuelle. Par exemple, sur un système anglais,
+<filename>WinMerge.exe</filename> ne pouvait pas ouvrir un fichier ayant un
+nom en hébreu.</para>
+          <para>WinMerge a développé l'exécutable compatible Unicode
+<filename>WinMergeU.exe</filename> pour fonctionner avec les systèmes
+Windows plus récents basés sur l'Unicode. <filename>WinMergeU.exe</filename>
+ne possède aucune des limites de l'exécutable ANSI.</para>
+          <para><filename>WinMergeU.exe</filename> est installé par défaut depuis un certain
+temps, et comme il reste peu de systèmes Windows basés sur l'ANSI, l'intérêt
+de maintenir <filename>WinMerge.exe</filename> est minime. À partir de la
+version 2.14, WinMerge n'inclut plus <filename>WinMerge.exe</filename> dans
+l'installateur.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Je veux comparer des dossiers, mais je ne peux pas sélectionner de dossier
+dans la boîte de dialogue de navigation.<indexterm>
+              <primary>dossiers</primary>
+
+              <secondary>sélection dans la boîte de dialogue Sélectionner des fichiers ou des
+dossiers</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Naviguez dans le contenu du dossier jusqu'au dossier que vous souhaitez
+comparer. Ne sélectionnez aucun fichier ou sous-dossier, cliquez simplement
+sur <guibutton>Ouvrir</guibutton> lorsque <literal>Sélection de
+dossier</literal> est affiché dans le champ <guilabel>Nom du
+fichier</guilabel>. Si vous avez déjà sélectionné un fichier ou un
+sous-dossier, tapez n'importe quelle chaîne de caractères au hasard dans le
+champ <guilabel>Nom du fichier</guilabel> et cliquez sur
+<guibutton>Ouvrir</guibutton>. Si le nom de fichier saisi n'est pas trouvé,
+WinMerge ouvrira le dossier.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Avez-vous l'intention de prendre en charge d'autres systèmes d'exploitation
+que Windows ?</para>
+        </question>
+
+        <answer>
+          <para>Il n'y a actuellement aucun projet de support multiplateforme, mais vous
+pouvez essayer la version non officielle <ulink
+url="https://github.com/datadiode/winmerge2011">WinMerge 2011</ulink> de
+Jochen Neubeck. Cette version devrait fonctionner avec Wine également sous
+Linux.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Pourquoi n'y a-t-il pas d'intégration CVS ?<indexterm>
+              <primary>systèmes de contrôle de version</primary>
+
+              <secondary>intégration avec</secondary>
+            </indexterm><indexterm>
+              <primary>intégration</primary>
+
+              <secondary>avec les systèmes de contrôle de version</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Fournir une intégration avec CVS est d'un intérêt discutable car il existe
+déjà d'excellents clients CVS. Cependant, WinMerge propose une intégration
+avec la fonction diff de l'un de ces clients, TortoiseCVS (comme décrit dans
+<xref linkend="Version_control" />). De plus, WinMerge peut résoudre les
+fichiers de conflit (voir <xref linkend="ResolveConflictFiles" />).</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Qu'est-ce qu'une liste MRU ?<indexterm>
+              <primary>liste MRU</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>MRU est l'abréviation de <quote>Most Recently Used</quote> (les plus
+récemment utilisés) et désigne les listes d'historique dans la boîte de
+dialogue Sélectionner des fichiers ou des dossiers. La liste contient les
+vingt derniers chemins utilisés de chaque côté.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>WinMerge peut-il ouvrir les fichiers OpenOffice ?<indexterm>
+              <primary>OpenOffice, ouverture de fichiers dans WinMerge</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Les fichiers OpenOffice sont des archives. Pour pouvoir les ouvrir dans
+WinMerge, vous devez configurer la prise en charge des archives :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Dans WinMerge, cliquez sur le bouton <guibutton>Options</guibutton> (ou
+cliquez sur <menuchoice> <guimenu>Édition</guimenu>
+<guimenuitem>Options</guimenuitem> </menuchoice>). Dans la page Prise en
+charge des archives, activez l'option <guilabel>Détecter le type d'archive à
+partir de la signature du fichier</guilabel></para>
+            </listitem>
+          </itemizedlist>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Pourquoi les fichiers volumineux apparaissent-ils parfois comme différents
+dans la fenêtre de comparaison de dossiers, mais identiques dans la fenêtre
+de comparaison de fichiers ?</para>
+        </question>
+
+        <answer>
+          <para>C'est parce que WinMerge utilise toujours la méthode de comparaison de
+fichiers <guilabel>Contenu rapide</guilabel> pour les fichiers
+volumineux. Cette méthode permet à WinMerge de comparer les gros fichiers
+plus efficacement. Pour vérifier si c'est la cause du comportement que vous
+observez, vous pouvez essayer d'augmenter le seuil de <guilabel>Contenu
+rapide</guilabel> pour les fichiers volumineux. Consultez la discussion sur
+cette méthode dans <xref linkend="Compare_dirs_starting" /> pour savoir
+comment faire.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Lors de la comparaison de plusieurs fichiers depuis l'Explorateur Windows,
+comment puis-je contrôler quel fichier apparaît du côté gauche ?<indexterm>
+              <primary>Explorateur Windows</primary>
+              <secondary>ordre de sélection des fichiers</secondary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Lorsque plusieurs fichiers sont sélectionnés dans l'Explorateur Windows, le
+fichier sur lequel vous faites un clic droit devient l'élément principal (le
+premier). Les autres éléments suivent dans l'ordre où ils ont été
+sélectionnés. Par conséquent, pour qu'un fichier apparaisse à gauche dans
+WinMerge, sélectionnez plusieurs fichiers et faites un clic droit sur celui
+que vous souhaitez comparer à gauche.</para>
+          <para>Pour plus d'informations sur ce comportement du shell Windows, voir : <ulink
+url="https://devblogs.microsoft.com/oldnewthing/20190409-00/?p=102406">The
+Old New Thing: How does Explorer determine which program to use to open a
+file if an explicit command is not provided?</ulink>.</para>
+        </answer>
+      </qandaentry>
+
+    </qandaset>
+  </section>
+
+  <section>
+    <title>Comparaison de fichiers</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Pourquoi toutes les lignes de mes fichiers sont-elles marquées comme
+différentes (colorées), alors que je sais qu'elles ne le sont pas toutes ?</para>
+        </question>
+
+        <answer>
+          <para>Il est possible que vos fichiers aient des styles de fin de ligne différents
+(par exemple, Windows et Unix). Par défaut, WinMerge compare les styles de
+fin de ligne. Pour désactiver cela, cliquez sur <menuchoice>
+<guimenu>Édition</guimenu> <guimenuitem>Options</guimenuitem>
+</menuchoice>. Dans la page Comparer, activez (cochez) l'option
+<guilabel>Ignorer les différences de retour chariot</guilabel>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>Questions sur l'éditeur</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Je vois des points d'interrogation au lieu de lettres dans les fichiers.</para>
+        </question>
+
+        <answer>
+          <para>C'est ce que nous appelons une <glossterm>conversion avec perte</glossterm>.</para>
+<!--<para>
+For Unicode files (UCS-2, UTF-8), use <filename>WinMergeU.exe</filename>.</para>-->
+          
+
+          <para>Pour les fichiers ANSI, c'est probablement dû à des problèmes de page de
+code. Pour résoudre le problème, cliquez sur <menuchoice>
+<guimenu>Édition</guimenu> <guimenuitem>Options</guimenuitem>
+</menuchoice>. Ensuite, dans la page Pages de code, vérifiez si l'option
+<guilabel>Détecter les infos de page de code</guilabel> est cochée. Si c'est
+le cas, décochez-la, cliquez sur <guibutton>OK</guibutton>, et voyez si cela
+aide.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Je ne peux pas sélectionner de polices proportionnelles pour l'éditeur.</para>
+        </question>
+
+        <answer>
+          <para>Malheureusement, WinMerge ne prend en charge que les polices à espacement
+fixe (non proportionnelles).</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Qu'est-ce que le <glossterm>délai de réanalyse automatique</glossterm> ?
+Pourquoi est-il nécessaire ?</para>
+        </question>
+
+        <answer>
+          <para>Lorsque la <guilabel>Réanalyse automatique</guilabel> est activée (dans la
+page Éditeur des Options), WinMerge retarde la réanalyse pendant que vous
+éditez des fichiers. C'est-à-dire qu'aucune réanalyse ne se produit avant un
+court instant après l'arrêt de la frappe. Sans ce délai, WinMerge
+réanalyserait après chaque caractère tapé, ce qui ralentirait trop le
+processus d'édition. Ce délai améliore particulièrement l'édition de
+fichiers volumineux, dont la réanalyse peut prendre plusieurs secondes.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Puis-je imprimer des fichiers depuis les volets de fichiers dans la fenêtre
+de comparaison de fichiers ?</para>
+        </question>
+
+        <answer>
+          <para>Oui, il existe un support d'impression de base : cliquez sur <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem>Imprimer</guimenuitem>
+</menuchoice>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Puis-je masquer les lignes similaires dans une comparaison de fichiers, afin
+que seules les lignes différentes soient visibles ?</para>
+        </question>
+
+        <answer>
+          <para>Oui, vous pouvez n'afficher que les lignes différentes en cliquant sur
+<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Contexte
+Diff</guimenuitem> <guimenuitem>0 ligne</guimenuitem> </menuchoice>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>WinMerge comme outil externe de comparaison ou de diff</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Je veux que WinMerge se ferme avec une seule pression sur
+<keycap>Echap</keycap> quand j'ai fini ?</para>
+        </question>
+
+        <answer>
+          <para>Ouvrez WinMerge depuis la ligne de commande et incluez le commutateur
+<option>-e</option>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Je ne veux pas voir le message <guilabel>Les fichiers sont
+identiques</guilabel> lorsque je compare des fichiers identiques, je veux
+simplement que WinMerge se ferme.</para>
+        </question>
+
+        <answer>
+          <para>Utilisez le commutateur de ligne de commande <option>-x</option>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Comment puis-je éviter de remplir les listes d'historique de la boîte de
+dialogue de sélection avec des chemins temporaires ?</para>
+        </question>
+
+        <answer>
+          <para>Faites en sorte que votre programme externe appelle WinMerge avec l'option
+<option>/ub</option>, qui indique à WinMerge de ne pas ajouter les fichiers
+à la liste MRU.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Mais le programme que j'utilise ne permet pas de paramètres de ligne de
+commande !</para>
+        </question>
+
+        <answer>
+          <para>Créez un fichier batch (.bat) qui contient l'une de ces lignes (mais pas les
+deux) :</para>
+
+          <itemizedlist>
+            <listitem>
+              <screen>CALL "<replaceable>&lt;chemin winmerge&gt;\WinMerge</replaceable>" /e /u %1 %2 %3</screen>
+            </listitem>
+
+            <listitem>
+              <screen>start "WinMerge" "<replaceable>&lt;chemin winmerge&gt;</replaceable>" /e /u %1 %2 %3</screen>
+            </listitem>
+          </itemizedlist>
+
+          <para>Appelez ce fichier batch depuis votre programme.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>Prise en charge des archives</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Comment puis-je ouvrir les fichiers de correctifs (patchs) de style Perry
+que les développeurs de WinMerge utilisent lors de la soumission de
+correctifs ?<indexterm>
+              <primary>fichiers patch, style Perry</primary>
+            </indexterm></para>
+        </question>
+
+        <answer>
+          <para>Les patchs de style Perry sont des fichiers zip contenant les fichiers
+originaux et modifiés dans différents répertoires. WinMerge possède une
+prise en charge interne pour gérer ces fichiers : lancez simplement une
+opération de comparaison en sélectionnant le fichier zip pour les deux côtés
+(gauche et droit). WinMerge ouvrira le contenu du fichier zip dans une
+fenêtre de comparaison de dossiers, comparant les fichiers originaux et les
+fichiers modifiés.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>WinMerge peut-il ouvrir des fichiers d'archives avec des extensions non
+standard ? (Par exemple, des fichiers .jar en tant que fichiers zip)</para>
+        </question>
+
+        <answer>
+          <para>Oui : cliquez sur le bouton <guibutton>Options</guibutton> (ou cliquez sur
+<menuchoice> <guimenu>Édition</guimenu> <guimenuitem>Options</guimenuitem>
+</menuchoice>). Dans la page Prise en charge des archives, activez l'option
+<guilabel>Détecter le type d'archive à partir de la signature du
+fichier</guilabel>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section id="Faq_encoding">
+    <title>Encodage du texte (pages de codes)<indexterm>
+        <primary>ANSI</primary>
+
+        <secondary>détection dans les fichiers à l'aide du Bloc-notes</secondary>
+      </indexterm></title>
+
+    <qandaset>
+      <qandaentry>
+        <question id="Faq_detectencoding">
+          <para id="Faq_detectencoding_text">Comment savoir si mon fichier est encodé dans la page de code Windows locale
+(ANSI) ?</para>
+        </question>
+
+        <answer>
+          <para>Ouvrez le fichier dans le Bloc-notes Windows (par exemple, cliquez sur
+<menuchoice> <guimenu>Démarrer</guimenu> <guisubmenu>(Tous les)
+Programmes</guisubmenu> <guisubmenu>Accessoires</guisubmenu>
+<guimenuitem>Bloc-notes</guimenuitem> </menuchoice>). Cliquez sur
+<menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer
+sous</guimenuitem> </menuchoice>, et dans la boîte de dialogue, regardez
+l'élément <guilabel>Encodage</guilabel> dans la liste déroulante. Les
+valeurs possibles incluent :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><guilabel>ANSI</guilabel> : le fichier est apparemment dans la page de code
+locale de Windows. Si le fichier est entièrement en anglais avec une
+ponctuation normale, alors le fichier est également en ASCII.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Unicode</guilabel> : le fichier est probablement dans l'encodage
+Unicode par défaut de Windows, UCS-2LE.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>UTF-8</guilabel> : le fichier est dans l'encodage Unicode
+multiplateforme, UTF-8.</para>
+            </listitem>
+
+            <listitem>
+              <para><guilabel>Unicode big endian</guilabel> : le fichier est dans un encodage
+Unicode différent qui est peu utilisé ou supporté par Windows, probablement
+UCS-2BE.</para>
+            </listitem>
+          </itemizedlist>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </section>
+
+  <section>
+    <title>Fichiers de correctifs (Patch)<indexterm>
+        <primary>fichiers correctifs (patch)</primary>
+
+        <secondary>création avec diffutils</secondary>
+      </indexterm><indexterm>
+        <primary>diffutils</primary>
+
+        <secondary>Patchs WinMerge compatibles avec</secondary>
+      </indexterm></title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Existe-t-il un moyen de créer des fichiers de correctifs (patchs) depuis la
+ligne de commande ?</para>
+        </question>
+
+        <answer>
+          <para>Non. Cela pourrait être ajouté dans des versions ultérieures. En attendant,
+vous pouvez utiliser le portage Win32 de <filename>diffutils</filename>. La
+version la plus récente de <filename>diffutils</filename> (et de patch) peut
+être téléchargée sur la page du projet <application>SourceForge
+GnuWin32</application> : <ulink
+url="https://sourceforge.net/projects/gnuwin32/">https://sourceforge.net/projects/gnuwin32</ulink>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Peut-on appliquer des correctifs (patchs) en utilisant WinMerge ?</para>
+        </question>
+
+        <answer>
+          <para>Vous pouvez appliquer des patchs en utilisant le plug-in expérimental
+ApplyPatch.sct. Les extensions de patchs prises en charge par le plug-in
+sont .diff ou .patch.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+    <para></para>
+  </section>
+</article>

@@ -3,8 +3,11 @@ for /f %%a in ('powershell -command "Get-Date -Format HH:mm:ss.fff"') do set sta
 set workdir=BuildTmp\Src
 if "%1" == "vs2017" (
   set vsversion=vs2017
+)
+if "%1" == "latest" (
+  set vsversion=vs2017_32bit_latest_64bit
 ) else (
-  set vsversion=vs2022x64_vs2017Win32
+  set vsversion=vs2017_32bit_vs2022_64bit
 )
 
 pushd "%~dp0"

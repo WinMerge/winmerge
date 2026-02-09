@@ -13,13 +13,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{DC3B258E-444F-460D-8FD9-09A8165212FA}"
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
+		BuildAll.cmd = BuildAll.cmd
 		BuildAll.vs2017.cmd = BuildAll.vs2017.cmd
-		BuildAll.vs2019.cmd = BuildAll.vs2019.cmd
+		BuildAll.vs2017_32bit_latest_64bit.cmd = BuildAll.vs2017_32bit_latest_64bit.cmd
 		BuildAll.vs2022.cmd = BuildAll.vs2022.cmd
-		BuildAll.vs2022x64_vs2017Win32.cmd = BuildAll.vs2022x64_vs2017Win32.cmd
 		BuildArc.cmd = BuildArc.cmd
+		BuildBin.cmd = BuildBin.cmd
 		BuildBin.vs2017.cmd = BuildBin.vs2017.cmd
-		BuildBin.vs2019.cmd = BuildBin.vs2019.cmd
 		BuildBin.vs2022.cmd = BuildBin.vs2022.cmd
 		BuildInstaller.cmd = BuildInstaller.cmd
 		BuildManual.cmd = BuildManual.cmd
@@ -40,9 +40,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUITests", "Testing\GoogleT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}"
 	ProjectSection(SolutionItems) = preProject
+		Plugins\BuildBin.cmd = Plugins\BuildBin.cmd
 		Plugins\BuildBin.vs2017.cmd = Plugins\BuildBin.vs2017.cmd
-		Plugins\BuildBin.vs2019.cmd = Plugins\BuildBin.vs2019.cmd
-		Plugins\BuildBin.vs2022.cmd = Plugins\BuildBin.vs2022.cmd
 		Plugins\CopyDlls.bat = Plugins\CopyDlls.bat
 		Plugins\Plugins.xml = Plugins\Plugins.xml
 		Plugins\README.md = Plugins\README.md
@@ -219,13 +218,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{2313487A-3891-4F6E-A4F4-13E8DE53D7AC}"
 	ProjectSection(SolutionItems) = preProject
 		Docs\Manual\build_html.bat = Docs\Manual\build_html.bat
-		Docs\Manual\build_html_en.bat = Docs\Manual\build_html_en.bat
-		Docs\Manual\build_html_he.bat = Docs\Manual\build_html_he.bat
-		Docs\Manual\build_html_jp.bat = Docs\Manual\build_html_jp.bat
 		Docs\Manual\build_htmlhelp.bat = Docs\Manual\build_htmlhelp.bat
 		Docs\Manual\build_htmlhelp_en.bat = Docs\Manual\build_htmlhelp_en.bat
+		Docs\Manual\build_htmlhelp_fr.bat = Docs\Manual\build_htmlhelp_fr.bat
 		Docs\Manual\build_htmlhelp_he.bat = Docs\Manual\build_htmlhelp_he.bat
 		Docs\Manual\build_htmlhelp_jp.bat = Docs\Manual\build_htmlhelp_jp.bat
+		Docs\Manual\build_html_en.bat = Docs\Manual\build_html_en.bat
+		Docs\Manual\build_html_fr.bat = Docs\Manual\build_html_fr.bat
+		Docs\Manual\build_html_he.bat = Docs\Manual\build_html_he.bat
+		Docs\Manual\build_html_jp.bat = Docs\Manual\build_html_jp.bat
 		Docs\Manual\configuration.bat = Docs\Manual\configuration.bat
 		Docs\Manual\Manual.cfg = Docs\Manual\Manual.cfg
 		Docs\Manual\README.md = Docs\Manual\README.md
@@ -440,6 +441,52 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Foundation", "Externals\poc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XML", "Externals\poco\XML\XML.vcxitems", "{DAFD8D9E-6509-4482-A533-44C843C3BCC7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translations", "{02828B8D-E4B9-41FE-84C4-D5CDA7761627}"
+	ProjectSection(SolutionItems) = preProject
+		Translations\InnoSetup\Arabic.islu = Translations\InnoSetup\Arabic.islu
+		Translations\InnoSetup\Basque.islu = Translations\InnoSetup\Basque.islu
+		Translations\InnoSetup\Brazilian.islu = Translations\InnoSetup\Brazilian.islu
+		Translations\InnoSetup\Bulgarian.islu = Translations\InnoSetup\Bulgarian.islu
+		Translations\InnoSetup\Catalan.islu = Translations\InnoSetup\Catalan.islu
+		Translations\InnoSetup\ChineseSimplified.islu = Translations\InnoSetup\ChineseSimplified.islu
+		Translations\InnoSetup\ChineseTraditional.islu = Translations\InnoSetup\ChineseTraditional.islu
+		Translations\InnoSetup\Corsican.islu = Translations\InnoSetup\Corsican.islu
+		Translations\InnoSetup\Croatian.islu = Translations\InnoSetup\Croatian.islu
+		Translations\InnoSetup\Czech.islu = Translations\InnoSetup\Czech.islu
+		Translations\InnoSetup\Danish.islu = Translations\InnoSetup\Danish.islu
+		Translations\InnoSetup\Dutch.islu = Translations\InnoSetup\Dutch.islu
+		Translations\InnoSetup\English.islu = Translations\InnoSetup\English.islu
+		Translations\InnoSetup\Finnish.islu = Translations\InnoSetup\Finnish.islu
+		Translations\InnoSetup\French.islu = Translations\InnoSetup\French.islu
+		Translations\InnoSetup\Galician.islu = Translations\InnoSetup\Galician.islu
+		Translations\InnoSetup\German.islu = Translations\InnoSetup\German.islu
+		Translations\InnoSetup\Greek.islu = Translations\InnoSetup\Greek.islu
+		Translations\InnoSetup\Hebrew.islu = Translations\InnoSetup\Hebrew.islu
+		Translations\InnoSetup\Hungarian.islu = Translations\InnoSetup\Hungarian.islu
+		Translations\InnoSetup\Italian.islu = Translations\InnoSetup\Italian.islu
+		Translations\InnoSetup\Japanese.islu = Translations\InnoSetup\Japanese.islu
+		Translations\InnoSetup\Korean.islu = Translations\InnoSetup\Korean.islu
+		Translations\InnoSetup\Lithuanian.islu = Translations\InnoSetup\Lithuanian.islu
+		Translations\InnoSetup\Norwegian.islu = Translations\InnoSetup\Norwegian.islu
+		Translations\InnoSetup\Persian.islu = Translations\InnoSetup\Persian.islu
+		Translations\InnoSetup\Polish.islu = Translations\InnoSetup\Polish.islu
+		Translations\InnoSetup\Portuguese.islu = Translations\InnoSetup\Portuguese.islu
+		Translations\InnoSetup\Romanian.islu = Translations\InnoSetup\Romanian.islu
+		Translations\InnoSetup\Russian.islu = Translations\InnoSetup\Russian.islu
+		Translations\InnoSetup\Serbian.islu = Translations\InnoSetup\Serbian.islu
+		Translations\InnoSetup\Sinhala.islu = Translations\InnoSetup\Sinhala.islu
+		Translations\InnoSetup\Slovak.islu = Translations\InnoSetup\Slovak.islu
+		Translations\InnoSetup\Slovenian.islu = Translations\InnoSetup\Slovenian.islu
+		Translations\InnoSetup\Spanish.islu = Translations\InnoSetup\Spanish.islu
+		Translations\InnoSetup\Swedish.islu = Translations\InnoSetup\Swedish.islu
+		Translations\InnoSetup\Tamil.islu = Translations\InnoSetup\Tamil.islu
+		Translations\InnoSetup\Turkish.islu = Translations\InnoSetup\Turkish.islu
+		Translations\InnoSetup\Ukrainian.islu = Translations\InnoSetup\Ukrainian.islu
+		Translations\InnoSetup\Vietnamese.islu = Translations\InnoSetup\Vietnamese.islu
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrashLogger", "Src\CrashLogger\CrashLogger.vcxitems", "{CDEDDAC4-79B9-4A34-A564-8019F60D241F}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Plugins\src_VCPP\Common\Common.vcxitems*{098b241d-63af-4683-baf8-6da57fd8fe75}*SharedItemsImports = 4
@@ -466,6 +513,7 @@ Global
 		Externals\poco\XML\XML.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Src\CrashLogger\CrashLogger.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\FilterEngine\FilterEngine.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Plugins\src_VCPP\Common\Common.vcxitems*{a644fba4-d76e-4500-b4b7-04d7a245359a}*SharedItemsImports = 4
@@ -483,6 +531,7 @@ Global
 		Plugins\src_VCPP\Common\Common.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
+		Src\CrashLogger\CrashLogger.vcxitems*{cdeddac4-79b9-4a34-a564-8019f60d241f}*SharedItemsImports = 9
 		Externals\poco\XML\XML.vcxitems*{dafd8d9e-6509-4482-a533-44c843c3bcc7}*SharedItemsImports = 9
 		Src\diffutils\diffutils.vcxitems*{fc3b9df3-2854-4264-ab4b-ee8c43982513}*SharedItemsImports = 9
 	EndGlobalSection
@@ -1370,6 +1419,7 @@ Global
 		{7DF65017-6089-4B89-B0E8-81B207B74869} = {97364844-A7DA-4D33-A49A-A9B81C70BD59}
 		{B30837C4-F99F-46F9-ADFB-5FAEFB1D2FBB} = {220B870C-D051-463E-997B-8C392081EE15}
 		{DAFD8D9E-6509-4482-A533-44C843C3BCC7} = {220B870C-D051-463E-997B-8C392081EE15}
+		{02828B8D-E4B9-41FE-84C4-D5CDA7761627} = {5360DC20-6552-4F74-8D4D-BF88B23E0B3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}

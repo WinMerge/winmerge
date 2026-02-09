@@ -41,7 +41,7 @@ END_MESSAGE_MAP()
 BOOL PropCompareWebPage::OnInitDialog()
 {
 	SetDlgItemComboBoxList(IDC_COMPAREWEBPAGE_USERDATAFOLDER_TYPE,
-		{ _("AppData folder"), _("Install folder") });
+		{ _("AppData (Roaming) folder"), _("Install folder") });
 
 	OptionsPanel::OnInitDialog();
 	return TRUE;  // return TRUE unless you set the focus to a control

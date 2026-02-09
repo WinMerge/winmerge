@@ -553,16 +553,16 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 
 		for (nBuffer = 0; nBuffer < nFiles; nBuffer++)
 			UpdateHeaderPath(nBuffer);
+
+		GetMainFrame()->WatchDocuments(this);
+
+		CMergeFrameCommon::LogComparisonCompleted(*this);
 	}
 	else
 	{
 		// Use verify macro to trap possible error in debug.
 		VERIFY(pf->DestroyWindow());
 	}
-
-	GetMainFrame()->WatchDocuments(this);
-
-	CMergeFrameCommon::LogComparisonCompleted(*this);
 
 	return bSucceeded;
 }
@@ -590,6 +590,7 @@ void CHexMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	m_strDesc[nBuffer].clear();
 	m_pView[nBuffer]->ClearUndoRecords();
 	LoadOneFile(nBuffer, path.c_str(), m_pView[nBuffer]->GetReadOnly(), _T(""));
+	UpdateHeaderPath(nBuffer);
 }
 
 void CHexMergeDoc::CheckFileChanged(void)
@@ -631,7 +632,8 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 	}
 	if (m_pView[pane]->GetModified())
 		sText.insert(0, _T("* "));
-	pf->GetHeaderInterface()->SetText(pane, sText);
+	pf->GetHeaderInterface()->SetCaption(pane, sText);
+	pf->GetHeaderInterface()->SetPath(pane, m_filePaths.GetPath(pane));
 
 	SetTitle(nullptr);
 }
@@ -957,10 +959,7 @@ void CHexMergeDoc::OnViewZoomNormal()
 void CHexMergeDoc::OnRefresh()
 {
 	if (UpdateLastCompareResult() == 0)
-	{
-		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-			[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
-	}
+		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true);
 }
 
 void CHexMergeDoc::OnFileRecompareAs(UINT nID)

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-09-17 08:05+0000\n"
-"PO-Revision-Date: 2025-09-22 13:04-0700\n"
+"PO-Revision-Date: 2026-01-09 17:35-0800\n"
 "Last-Translator: Yevgen Borodkin <zheka.borodkin@gmail.com>\n"
 "Language-Team: Ukrainian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: uk_UA\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -30,7 +30,7 @@ msgid "Copy to Middle"
 msgstr "Копіювати в центр"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr "Скопіювати &направо\tAlt+Right"
+msgstr "Копіювати &праворуч\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "Копіювати з центру"
@@ -39,7 +39,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr "Копіювати з п&равої панелі\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr "Копіювати &наліво\tAlt+Left"
+msgstr "Копіювати &ліворуч\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Копіювати з &лівої панелі\tAlt+Shift+Right"
@@ -48,31 +48,31 @@ msgid "Copy Selected Lines to Middle"
 msgstr "Копіювати виділені рядки в центр"
 
 msgid "Copy Selected Lines to Right"
-msgstr "Копіювати обрані рядки направо"
+msgstr "Копіювати виділені рядки праворуч"
 
 msgid "Copy Selected Lines from Middle"
-msgstr "Копіювати обрані рядки з середини"
+msgstr "Копіювати виділені рядки з центру"
 
 msgid "Copy Selected Lines from Right"
-msgstr "Копіювати обрані рядки з правої панелі"
+msgstr "Копіювати виділені рядки справа"
 
 msgid "Copy Selected Lines to Left"
-msgstr "Копіювати обрані рядки наліво"
+msgstr "Копіювати виділені рядки ліворуч"
 
 msgid "Copy Selected Lines from Left"
-msgstr "Копіювати обрані рядки з лівої панелі"
+msgstr "Копіювати виділені рядки зліва"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
-msgstr "Скопіювати обрані відмінності (з лівої панелі) до буферу\tCtrl+&1"
+msgstr "Копіювати виділені відмінності (зліва) до буфера обміну\tCtrl+&1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
-msgstr "Скопіювати обрані відмінності (з правої панелі) до буферу\tCtrl+&2"
+msgstr "Копіювати виділені відмінності (справа) до буфера обміну\tCtrl+&2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
-msgstr "Скопіювати обрані відмінності (з середини) до буферу\tCtrl+&2"
+msgstr "Копіювати виділені відмінності (з центу) до буфера обміну\tCtrl+&2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
-msgstr "Скопіювати обрані відмінності (з правої панелі) до буферу\tCtrl+&3"
+msgstr "Копіювати виділені відмінності (справа) до буфера обміну\tCtrl+&3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Позначити від&мінності\tF4"
@@ -81,13 +81,13 @@ msgid "Add to Substitution &Filters"
 msgstr "Додати до ф&ільтрів заміни"
 
 msgid "Add to &Line Filters"
-msgstr "Додати до рядка &фільтрів"
+msgstr "Додати до &фільтрів рядків"
 
 msgid "&Undo"
 msgstr "&Скасувати"
 
 msgid "&Redo"
-msgstr "По&ернути"
+msgstr "&Повторити"
 
 msgid "Cu&t"
 msgstr "Ви&різати"
@@ -99,21 +99,19 @@ msgid "&Paste"
 msgstr "&Вставити"
 
 msgid "&Scripts"
-msgstr "С&крипти"
+msgstr "&Сценарії"
 
 msgid "< Empty >"
 msgstr "< Порожньо >"
 
 msgid "&Go to...\tCtrl+G"
-msgstr "Перейти до рядка...\tCtrl+G"
+msgstr "&Перейти до...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
-"Перейти до переміщеного рядка між лівою та середньою панеллю\tCtrl+Shift+G"
+msgstr "Перейти до переміщеного рядка між лівою та середньою панеллю\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
-"Перейти до переміщеного рядка між середньою та правою панеллю\tCtrl+Alt+G"
+msgstr "Перейти до переміщеного рядка між середньою та правою панеллю\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "&Відкрити"
@@ -128,7 +126,7 @@ msgid "&With..."
 msgstr "&У..."
 
 msgid "Open &Parent Folder..."
-msgstr "Відкрити &батьківську теку..."
+msgstr "Відкрити &батьківську папку..."
 
 msgid "S&hell Menu"
 msgstr "Меню о&болонки"
@@ -152,7 +150,7 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr "Вия&влення вставки/видалення"
 
 msgid "&None"
-msgstr "&Нічого"
+msgstr "&Немає"
 
 msgid "&Vertical"
 msgstr "&Вертикально"
@@ -195,7 +193,7 @@ msgid "&Normal\tCtrl+*"
 msgstr "&Звичайний\tCtrl+*"
 
 msgid "&Overlay"
-msgstr "&Оверлей"
+msgstr "&Накладання"
 
 msgid "&Alpha Blend"
 msgstr "&Альфа-змішування"
@@ -222,7 +220,7 @@ msgid "Rectangle &Select"
 msgstr "Прямокутний &вибір"
 
 msgid "&Set Background Color"
-msgstr "Оберіть &колір фону"
+msgstr "Встановити &колір фону"
 
 msgid "&Vector Image Scaling"
 msgstr "&Масштаб векторних зображень"
@@ -231,10 +229,10 @@ msgid "&Animation Settings"
 msgstr "Налаштування &анімації"
 
 msgid "&Blink Interval"
-msgstr "Інтервал &блимання"
+msgstr "Інтервал &миготіння"
 
 msgid "&Overlay Animation Interval"
-msgstr "Інтервал &оверлейної анімації"
+msgstr "Інтервал анімацї &накладання"
 
 msgid "Compare Extracted &Text from Images"
 msgstr "Порівняти отриманий із зображення &текст"
@@ -339,7 +337,7 @@ msgid "Recent Projects"
 msgstr "Нещодавні проєкти"
 
 msgid "Recent F&iles or Folders"
-msgstr "Останні ф&айли та теки"
+msgstr "Нещодавні ф&айли або папки"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "В&ихід\tCtrl+Q"
@@ -357,13 +355,13 @@ msgid "&View"
 msgstr "Ви&гляд"
 
 msgid "Ta&b Bar"
-msgstr "Панель &закладок"
+msgstr "Панель &вкладок"
 
 msgid "&View Tab Bar"
-msgstr "&Вигляд панелі закладок"
+msgstr "Показати панель &вкладок"
 
 msgid "&On Title Bar"
-msgstr "&На панелі з назвою"
+msgstr "На &заголовку вікна"
 
 msgid "&Toolbar"
 msgstr "Пан&ель інструментів"
@@ -381,7 +379,7 @@ msgid "&Huge"
 msgstr "&Величезні"
 
 msgid "Men&u Bar"
-msgstr "Панель мен&ю"
+msgstr "Рядок м&еню"
 
 msgid "&Output Pane"
 msgstr "Панель &виводу"
@@ -396,7 +394,7 @@ msgid "&Filters..."
 msgstr "&Фільтри..."
 
 msgid "&Generate Patch..."
-msgstr "&Створити латку..."
+msgstr "&Створити патч..."
 
 msgid "&Plugins"
 msgstr "&Плагіни"
@@ -405,10 +403,10 @@ msgid "P&lugin Settings..."
 msgstr "Налаштування &плагінів..."
 
 msgid "Ma&nual Prediffer"
-msgstr "Ручний шаблон відмінностей"
+msgstr "Ру&чне попереднє порівняння"
 
 msgid "A&utomatic Prediffer"
-msgstr "Автоматичний шаблон відмінностей"
+msgstr "А&втоматичне попереднє порівняння"
 
 msgid "&Manual Unpacking"
 msgstr "Розпакування &вручну"
@@ -417,7 +415,7 @@ msgid "&Automatic Unpacking"
 msgstr "Розпакування &автоматичне"
 
 msgid "&Reload Plugins"
-msgstr "Перезавантажити &плагіни"
+msgstr "Пе&резавантажити плагіни"
 
 msgid "&Window"
 msgstr "&Вікно"
@@ -468,7 +466,7 @@ msgid "L&eft Read-Only"
 msgstr "З&ліва лише для читання"
 
 msgid "M&iddle Read-Only"
-msgstr "В&середині лише для читання"
+msgstr "У цен&трі лише для читання"
 
 msgid "Ri&ght Read-Only"
 msgstr "&Праворуч лише для читання"
@@ -480,88 +478,91 @@ msgid "Select &All\tCtrl+A"
 msgstr "В&ибрати все\tCtrl+A"
 
 msgid "Show &Identical Items"
-msgstr "Показати &однакові"
+msgstr "Показати &однакові елементи"
 
 msgid "Show &Different Items"
-msgstr "Показати &відмінні"
+msgstr "Показати елементи з &відмінностями"
 
 msgid "Show L&eft Unique Items"
-msgstr "Показати &ліві унікальні"
+msgstr "Показати унікальні елементи з&ліва"
 
 msgid "Show Midd&le Unique Items"
-msgstr "Показати &середні унікальні"
+msgstr "Показати унікальні елементи у &центрі"
 
 msgid "Show Ri&ght Unique Items"
-msgstr "Показати &праві унікальні"
+msgstr "Показати унікальні елементи сп&рава"
 
 msgid "Show S&kipped Items"
-msgstr "Показати про&пущені"
+msgstr "Показати пропу&щені елементи"
 
 msgid "S&how Binary Files"
 msgstr "Показати &двійкові файли"
 
 msgid "&3-way Compare"
-msgstr "&3-панельне порівняння"
+msgstr "&3-стороннє порівняння"
 
 msgid "Show &Left Only Different Items"
-msgstr "Показати тільки &ліві відмінні"
+msgstr "Показати &відмінні елементи зліва"
 
 msgid "Show &Middle Only Different Items"
-msgstr "Показати тільки &середні відмінні"
+msgstr "Показати відмінні елементи у &центрі"
 
 msgid "Show &Right Only Different Items"
-msgstr "Показати тільки &праві відмінні"
+msgstr "Показати відмінні елементи &справа"
 
 msgid "Show L&eft Only Missing Items"
-msgstr "Показати тільки &ліві пропущені"
+msgstr "Показати відсутні елементи з&ліва"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr "Показати тільки &середні пропущені"
+msgstr "Показати відсутні елементи у це&нтрі"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr "Показати тільки &праві пропущені"
+msgstr "Показати відсутні елементи спр&ава"
 
 msgid "Show Hidd&en Items"
-msgstr "Показати при&ховані"
+msgstr "Показати при&ховані елементи"
 
 msgid "Tree &Mode"
-msgstr "Режим &дерева"
+msgstr "&Режим дерева"
 
 msgid "E&xpand Subfolders"
-msgstr "Ро&зкрити підтеки"
+msgstr "Р&озгорнути вкладені папки"
 
 msgid "&All Subfolders"
-msgstr "&Усі підтеки"
+msgstr "&Усі вкладені папки"
 
 msgid "&Different Subfolders"
-msgstr "&Відмінні підтеки"
+msgstr "&Відмінні вкладені папки"
 
 msgid "&Identical Subfolders"
-msgstr "&Однакові підтеки"
+msgstr "&Ідентичні вкладені папки"
 
 msgid "&Collapse All Subfolders"
-msgstr "&Згорнути всі підтеки"
+msgstr "&Згорнути всі вкладені папки"
 
 msgid "Select &Font..."
 msgstr "Вибрати &шрифт..."
 
 msgid "Use Default Font"
-msgstr "Використовувати типовий шрифт"
+msgstr "Використовувати шрифт за замовчуванням"
 
 msgid "Sw&ap Panes"
 msgstr "Пом&іняти панелі місцями"
 
 msgid "Swap &1st | 2nd"
-msgstr "Поміняти місцями &1- шу|2-гу"
+msgstr "Поміняти місцями &1-у|2-у"
 
 msgid "Swap &2nd | 3rd"
-msgstr "Поміняти місцями &2-гу|3-тю"
+msgstr "Поміняти місцями &2-у|3-ю"
 
 msgid "Swap 1st | &3rd"
-msgstr "Поміняти місцями 1-шу|&3-тю"
+msgstr "Поміняти місцями 1-у|&3-ю"
+
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Показат&и панель фільтрів\tCtrl+Shift+L"
 
 msgid "Com&pare Statistics..."
-msgstr "Порівняти статистику..."
+msgstr "Пор&івняти статистику..."
 
 msgid "Refresh\tF5"
 msgstr "&Оновити\tF5"
@@ -591,10 +592,10 @@ msgid "&Last Difference\tAlt+End"
 msgstr "Ост&ання відмінність\tAlt+End"
 
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Скопіювати на пра&ву панель\tAlt+Right"
+msgstr "Копіювати пра&воруч\tAlt+Right"
 
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Скопіювати на &ліву панель\tAlt+Left"
+msgstr "Копіювати &ліворуч\tAlt+Left"
 
 msgid "&Delete\tDel"
 msgstr "&Видалити\tDel"
@@ -605,7 +606,6 @@ msgstr "&Налаштувати стовпчики..."
 msgid "Generate &Report..."
 msgstr "Створити &звіт..."
 
-#, fuzzy
 msgid "&Edit with Unpacker..."
 msgstr "&Редагувати з Розпакувальником..."
 
@@ -619,7 +619,7 @@ msgid "Save &Left"
 msgstr "Зберегти &лівий файл"
 
 msgid "Save &Middle"
-msgstr "Зберегти &середній файл"
+msgstr "Зберегти &центральний файл"
 
 msgid "Save &Right"
 msgstr "Зберегти &правий файл"
@@ -631,7 +631,7 @@ msgid "Save &Left As..."
 msgstr "Зберегти &лівий файл як..."
 
 msgid "Save &Middle As..."
-msgstr "Зберегти &середній файл як..."
+msgstr "Зберегти &центральний файл як..."
 
 msgid "Save &Right As..."
 msgstr "Зберегти &правий файл як..."
@@ -643,7 +643,7 @@ msgid "Page Set&up..."
 msgstr "Пара&метри сторінки..."
 
 msgid "Print Previe&w..."
-msgstr "&Перегляд до друку..."
+msgstr "&Попередній перегляд друку..."
 
 msgid "&Convert Line Endings to"
 msgstr "Конвертувати закінчення &рядків у"
@@ -652,7 +652,7 @@ msgid "Mer&ge Mode\tF9"
 msgstr "Режим &злиття\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr "&Перевідкрити\tCtrl+F5"
+msgstr "Пере&завантажити\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Порівняти &знову як"
@@ -661,7 +661,7 @@ msgid "&Undo\tCtrl+Z"
 msgstr "&Скасувати\tCtrl+Z"
 
 msgid "&Redo\tCtrl+Y"
-msgstr "Пов&ернути\tCtrl+Y"
+msgstr "&Повторити\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "Ви&різати\tCtrl+X"
@@ -727,10 +727,10 @@ msgid "&9 Lines"
 msgstr "&9 рядків"
 
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr ""
+msgstr "&Перемкнути всі та 0-9 рядків\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "&Інвертувати (приховати відмінні рядки)"
 
 msgid "&Lock Panes"
 msgstr "За&блокувати панелі"
@@ -739,10 +739,10 @@ msgid "&View Whitespace"
 msgstr "Показу&вати пропуски"
 
 msgid "View E&OL"
-msgstr ""
+msgstr "Показувати кінці р&ядків (EOL)"
 
 msgid "Vie&w Line Differences"
-msgstr "Показувати відмінності в рядках"
+msgstr "Пока&зувати відмінності в рядках"
 
 msgid "View Line &Numbers"
 msgstr "Показувати &номера рядків"
@@ -751,173 +751,176 @@ msgid "View &Margins"
 msgstr "Показувати п&оля"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "Показувати верхні &поля"
 
 msgid "W&rap Lines"
 msgstr "Переносити за &словами"
 
 msgid "Split V&ertically"
-msgstr ""
+msgstr "Розділити &вертикально"
 
 msgid "Diff &Pane"
-msgstr "Пане&ль порівняння"
+msgstr "Пане&ль відмінностей"
 
 msgid "Lo&cation Pane"
-msgstr "Панель місць &розташування"
+msgstr "Панель пози&цій"
 
 msgid "Output Pane"
-msgstr ""
+msgstr "Панель виводу"
 
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr ""
+msgstr "На&ступний конфлікт\tAlt+Shift+Down"
 
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr ""
+msgstr "&Попередній конфлікт\tAlt+Shift+Up"
 
 msgid "A&dvanced"
-msgstr ""
+msgstr "&Додатково"
 
 msgid "Next Difference (Left/Middle)\tAlt+1"
-msgstr ""
+msgstr "Наступна відмінність (ліво/центр)\tAlt+1"
 
 msgid "Previous Difference (Left/Middle)\tAlt+Shift+1"
-msgstr ""
+msgstr "Попередня відмінність (ліво/центр)\tAlt+Shift+1"
 
 msgid "Next Difference (Left/Right)\tAlt+2"
-msgstr ""
+msgstr "Наступна відмінність (ліво/право)\tAlt+2"
 
 msgid "Previous Difference (Left/Right)\tAlt+Shift+2"
-msgstr ""
+msgstr "Попередня відмінність (ліво/право)\tAlt+Shift+2"
 
 msgid "Next Difference (Middle/Right)\tAlt+3"
-msgstr ""
+msgstr "Наступна відмінність (цент/право)\tAlt+3"
 
 msgid "Previous Difference (Middle/Right)\tAlt+Shift+3"
-msgstr ""
+msgstr "Попередня відмінність (центр/право)\tAlt+Shift+3"
 
 msgid "Next Left-Only Difference\tAlt+7"
-msgstr ""
+msgstr "Наступна відмінність лише зліва\tAlt+7"
 
 msgid "Previous Left-Only Difference\tAlt+Shift+7"
-msgstr ""
+msgstr "Попередня відмінність лише зліва\tAlt+Shift+7"
 
 msgid "Next Middle-Only Difference\tAlt+8"
-msgstr ""
+msgstr "Наступна відмінність лише у центрі\tAlt+8"
 
 msgid "Previous Middle-Only Difference\tAlt+Shift+8"
-msgstr ""
+msgstr "Попередня відмінність лише у центрі\tAlt+Shift+8"
 
 msgid "Next Right-Only Difference\tAlt+9"
-msgstr ""
+msgstr "Наступна відмінність лише справа\tAlt+9"
 
 msgid "Previous Right-Only Difference\tAlt+Shift+9"
-msgstr ""
+msgstr "Попередня відмінність лише справа\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Копіювати з &ліва в"
 
 msgid "&Middle"
-msgstr ""
+msgstr "Центр"
 
 msgid "&Right"
 msgstr "&Праворуч"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Копіювати з &центру в"
 
 msgid "&Left"
 msgstr "&Ліворуч"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Копіювати з &центру в"
 
 msgid "Copy Selected Lines from Le&ft to"
-msgstr ""
+msgstr "Копіювати виділені рядки з &лівого боку в"
 
 msgid "Copy Selected Lines from Mi&ddle to"
-msgstr ""
+msgstr "Копіювати виділені рядки з центру в"
 
 msgid "Copy Selected Lines from Ri&ght to"
-msgstr ""
+msgstr "Копіювати виділені рядки з &правого боку в"
 
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Копіювати зліва\tAlt+Shift+Right"
 
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Копіювати справа\tAlt+Shift+Left"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Скопіювати на праву панель і перейти до наступної\tCtrl+Alt+Right"
+msgstr "Скопіювати праворуч і перейти далі\tCtrl+Alt+Right"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
 msgstr "Скопіювати на ліву панель і перейти до наступної\tCtrl+Alt+Left"
 
 msgid "Copy &All to Right"
-msgstr "Скопіювати все на праву панел&ь"
+msgstr "Копіювати все праворуч"
 
 msgid "Cop&y All to Left"
-msgstr "Скопі&ювати все на ліву панель"
+msgstr "Копіювати все ліворуч"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr ""
+msgstr "Автоматичне злиття\tCtrl+Alt+M"
 
 msgid "Add &Synchronization Point\tAlt+S"
-msgstr ""
+msgstr "Додати точку синхронізації\tAlt+S"
 
 msgid "Clear Sync&hronization Points"
-msgstr ""
+msgstr "Очистити точки синхронізації"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "Розпакувальник"
 
 msgid "&Prediffer"
-msgstr "&Попереднє порівняння"
+msgstr "&Попередній порівнювач"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "&Застосувати проедпорівняння..."
 
 msgid "&Transform with Editor Script..."
-msgstr ""
+msgstr "Перетворити за допомогою сценарію редактора..."
 
 msgid "Scripts for &Copying"
-msgstr ""
+msgstr "Сценарії для копіювання"
 
 msgid "Select &Editor Script..."
-msgstr ""
+msgstr "Вибор сценарія редактора..."
 
 msgid "Sp&lit"
-msgstr ""
+msgstr "Розділення вікна"
 
 msgid "Comp&are"
 msgstr "По&рівняти"
 
-msgid "Compare in New &Window"
+msgid "Compar&e with Renamed/Moved Items"
 msgstr ""
+
+msgid "Compare in New &Window"
+msgstr "Порівняти в новому вікні"
 
 msgid "Compare Non-hor&izontally..."
-msgstr ""
+msgstr "Порівняти не по го&ризонталі..."
 
 msgid "Compare Non-hor&izontally"
-msgstr ""
+msgstr "Порівняти не по го&ризонталі"
 
 msgid "First &Left with Second Left"
-msgstr ""
+msgstr "Перший лівий з другим лівим"
 
 msgid "First &Right with Second Right"
-msgstr ""
+msgstr "Пкрший правий з другим правим"
 
 msgid "&First Left with Second Right"
-msgstr ""
+msgstr "Перший лівий з другим правим"
 
 msgid "&Second Left with First Right"
-msgstr ""
+msgstr "Другий лівий з першим правим"
 
 msgid "Co&mpare As"
-msgstr ""
+msgstr "Порівняти як"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
-msgstr ""
+msgstr "Зліва в центр  (%1 of %2)"
 
 #, c-format
 msgid "Left to Right (%1 of %2)"
@@ -925,23 +928,23 @@ msgstr "Зліва праворуч (%1 з %2)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "Зліва... (%1 з %2)"
+msgstr "Зліва в... (%1 з %2)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr ""
+msgstr "Центральний ліворуч (%1 of %2)"
 
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr ""
+msgstr "Центральний праворуч (%1 of %2)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr ""
+msgstr "Центральний в... (%1 of %2)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr ""
+msgstr "Правий в центр (%1 of %2)"
 
 #, c-format
 msgid "Right to Left (%1 of %2)"
@@ -958,111 +961,114 @@ msgid "&Both"
 msgstr "&Обидва"
 
 msgid "&All"
-msgstr ""
+msgstr "Все"
 
 msgid "Re&name"
 msgstr "&Перейменувати"
 
 msgid "&Hide Items"
-msgstr "&Сховати"
+msgstr "&Сховати елементи"
 
 msgid "&Open Left"
-msgstr "&Відкрити лівий файл"
+msgstr "&Відкрити лівий"
 
 msgid "Open Midd&le"
-msgstr ""
+msgstr "Відкрити центральний"
 
 msgid "O&pen Right"
-msgstr "В&ідкрити правий файл"
+msgstr "В&ідкрити правий"
 
 msgid "Cop&y Paths"
 msgstr "Скопіювати &шляхи"
 
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "Ліворуч (%1 з %2)"
+msgstr "Зліва (%1 з %2)"
 
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr ""
+msgstr "З центру (%1 of %2)"
 
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "Праворуч (%1 з %2)"
+msgstr "Справа (%1 з %2)"
 
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "Разом (%1 з %2)"
+msgstr "Обидва (%1 з %2)"
 
 #, c-format
 msgid "All (%1 of %2)"
-msgstr ""
+msgstr "Усе (%1 of %2)"
 
 msgid "Copy &Filenames"
-msgstr "Скопіювати &імена файлів"
+msgstr "Копіювати &імена файлів"
 
 msgid "Copy Items to Clip&board"
-msgstr ""
+msgstr "Копіювати елементи в буфера обміну"
 
 msgid "Copy All Di&splayed Columns"
-msgstr ""
+msgstr "Копіювати усі відображені колонки"
 
 msgid "&Zip"
 msgstr "&Заархівувати"
 
 #, c-format
 msgid "Both to... (%1 of %2)"
-msgstr ""
+msgstr "Обидва в... (%1 of %2)"
 
 #, c-format
 msgid "All to... (%1 of %2)"
-msgstr ""
+msgstr "Усі в... (%1 of %2)"
 
 #, c-format
 msgid "Differences to... (%1 of %2)"
-msgstr ""
+msgstr "Відмінності в... (%1 of %2)"
 
 msgid "Left Shell Menu"
-msgstr ""
+msgstr "Меню оболонки для лівого"
 
 msgid "Middle Shell Menu"
-msgstr ""
+msgstr "Меню оболонки для центрального"
 
 msgid "Right Shell Menu"
-msgstr "Праве меню оболонки"
+msgstr "Меню оболонки для правого"
 
 msgid "Both Shell Menu"
-msgstr ""
+msgstr "Меню оболонки для обох"
 
 msgid "All Shell Menu"
-msgstr ""
+msgstr "Меню оболонки для всіх"
 
 msgid "Copy"
-msgstr ""
+msgstr "Копіювати"
 
 msgid "&Copy Full Path"
-msgstr "&Скопіювати повний шлях"
+msgstr "&Копіювати повний шлях"
 
 msgid "Copy &Filename"
-msgstr "Скопіювати &ім'я файлу"
+msgstr "Копіювати &ім'я файлу"
 
-msgid "&Edit Caption"
-msgstr ""
+msgid "&Edit Caption\tF2"
+msgstr "Редагувати заголовок\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "Редагувати &шлях\tCtrl+L"
 
 msgid "&Open..."
-msgstr ""
+msgstr "Відкроти..."
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "Налаштування розпакувальника"
 
 msgid "<None>"
-msgstr "<Нема>"
+msgstr "<Немає>"
 
 msgid "<Automatic>"
 msgstr "<Автоматично>"
 
 msgid "&Select..."
-msgstr "Вибрати..."
+msgstr "&Вибрати..."
 
 msgid "Prediffer Settings"
 msgstr "Параметри попереднього порівняння"
@@ -1071,7 +1077,7 @@ msgid "G&o to Diff"
 msgstr "Перейти до &відмінності"
 
 msgid "Move Cursor on &Click"
-msgstr ""
+msgstr "Переміщення курсора при кліку"
 
 msgid "&No Moved Blocks"
 msgstr "&Без переміщених блоків"
@@ -1086,580 +1092,661 @@ msgid "Com&pare"
 msgstr "Порівняти"
 
 msgid "I&gnore Changes"
-msgstr "Нехтувати змінами"
+msgstr "Ігнорувати зміни"
 
 msgid "Ig&nore All"
-msgstr "Нехтувати всюди"
+msgstr "Ігнорувати все"
 
 msgid "Ignore Blan&k Lines"
-msgstr "Нехтувати порожніми &лініями"
+msgstr "Ігнорувати порожні рядки"
 
 msgid "Ignore &Case"
-msgstr "Нехтувати р&егістр"
+msgstr "Не враховувати &регістр"
 
 msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
-msgstr "Нехтувати різницею в кінцях рядків (Win/Unix/Mac)"
+msgstr "Ігнорувати відмінності в кінцях рядків (Win/Unix/Mac)"
 
 msgid "Ignore Codepage &Differences"
-msgstr ""
+msgstr "Ігнорувати відмінності в кодуванні"
 
 msgid "Ignore Num&bers"
-msgstr ""
+msgstr "Ігнорувати числа"
 
 msgid "Ignore C&omment Differences"
-msgstr ""
+msgstr "Ігнорувати відмінності у коментарях"
 
 msgid "Ignore &Missing Trailing EOL"
-msgstr ""
+msgstr "Ігнорувати відсутні символи кінця строки"
 
 msgid "Ignore Line &Breaks (Treat as Spaces)"
-msgstr ""
+msgstr "Ігнорувати розриви рядків (трактувати як пробіли)"
 
 msgid "&Include Subfolders"
-msgstr "&Враховуючи підтеки"
+msgstr "&Враховувати вкладені папки"
 
 msgid "&Compare Method"
-msgstr ""
+msgstr "&Метод порівняння"
 
 msgid "Full Contents"
-msgstr "Повний пошук за вмістом"
+msgstr "Повний за вмістом"
 
 msgid "Quick Contents"
-msgstr "Швидкий пошук за вмістом"
+msgstr "Швидкий за вмістом"
 
 msgid "Binary Contents"
-msgstr ""
+msgstr "Двійковий за вмістом"
 
 msgid "Modified Date"
-msgstr "За розходженнями в даті"
+msgstr "За датою зміни"
 
 msgid "Modified Date and Size"
-msgstr "За датою зміни і розміру"
+msgstr "За датою зміни та розміром"
 
 msgid "Size"
 msgstr "За розміром"
 
 msgid "Existence"
-msgstr ""
+msgstr "За наявністю"
 
 msgid "&Load Project..."
-msgstr ""
+msgstr "Завантажити проєкт..."
 
 msgid "${*} - All Arguments"
-msgstr ""
+msgstr "${*} - Усі аргументи"
 
 msgid "${1} - First Argument"
-msgstr ""
+msgstr "${1} - Перший аргумент"
 
 msgid "${2} - Second Argument"
-msgstr ""
+msgstr "${2} - Другий аргумент"
 
 msgid "${3} - Third Argument"
-msgstr ""
+msgstr "${3} - Третій аргумент"
 
 msgid "${4} - Fourth Argument"
-msgstr ""
+msgstr "${4} - Четвертий аргумент"
 
 msgid "${5} - Fifth Argument"
-msgstr ""
+msgstr "${5} - П'ятий аргумент"
 
 msgid "${6} - Sixth Argument"
-msgstr ""
+msgstr "${6} - Шостий аргумент"
 
 msgid "${7} - Seventh Argument"
-msgstr ""
+msgstr "${7} - Сьомий аргумент"
 
 msgid "${8} - Eighth Argument"
-msgstr ""
+msgstr "${8} - Восьмий аргумент"
 
 msgid "${9} - Ninth Argument"
-msgstr ""
+msgstr "${9} - Дев'ятий аргумент"
 
 msgid "${SRC_FILE} - Source File"
-msgstr ""
+msgstr "${SRC_FILE} - Файл джерела"
 
 msgid "${SRC_FOLDER} - Source Folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Папка джерела"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - URL джерела"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Протокол URL джерела"
 
 msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Суфікс URL джерела"
 
 msgid "${DST_FILE} - Destination File"
-msgstr ""
+msgstr "${DST_FILE} - Файл призначення"
 
 msgid "${DST_FOLDER} - Destination Folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Папка призначення"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - URL призначення"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - Протокол URL призначення"
 
 msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - Суфікс URL призначення"
 
 msgid "${WINMERGE_HOME} - WinMerge Home Directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - Домашній каталог WinMerge"
 
 msgid "${SCRIPT_FILE} - Script File"
-msgstr ""
+msgstr "${SCRIPT_FILE} - Файл сценарію"
 
 msgid "Add &Unpacker Plugin..."
-msgstr ""
+msgstr "Додати плагін &розпакувальник..."
 
 msgid "Add &Prediffer Plugin..."
-msgstr ""
+msgstr "Додати плагін &попереднього порівняння..."
 
 msgid "&Duplicate Plugin..."
-msgstr ""
+msgstr "&Дублювати плагін..."
 
 msgid "Clear &All"
-msgstr ""
+msgstr "Очистити &все"
 
 msgid "&Clear All"
-msgstr ""
+msgstr "&Очистити все"
 
 msgid "Remove Last Filter &Group"
-msgstr ""
+msgstr "Видалити останню &групу фільтрів"
 
 msgid "R&eset to Default (*.*)"
-msgstr ""
+msgstr "С&кинути за замовчуванням (*.*)"
 
 msgid "Add E&xclude File"
-msgstr ""
+msgstr "Додати файл до ви&ключень"
 
 msgid "&System Files"
-msgstr ""
+msgstr "&Системні файли"
 
 msgid "&Editor Backup Files"
-msgstr ""
+msgstr "Резервні файли реда&ктора"
 
 msgid "&Compiled Binary Files"
-msgstr ""
+msgstr "&Скомпільовані двійкові файли"
 
 msgid "&Log Files"
-msgstr ""
+msgstr "Файли журналу"
 
 msgid "&Temporary or Cache Files"
-msgstr ""
+msgstr "&Тимчасові файли або файли кешу"
 
 msgid "Add Excl&ude Folder"
-msgstr ""
+msgstr "Додати папку до ви&ключень"
 
 msgid "&Version Control"
-msgstr ""
+msgstr "Контролю &версій"
 
 msgid "&Build Artifacts"
-msgstr ""
+msgstr "Артефактів &збірки"
 
 msgid "&IDE"
-msgstr ""
+msgstr "&Інтегрованого середовища розробки"
 
 msgid "Add &File Condition"
-msgstr ""
+msgstr "Додати умову для &файлу"
 
 msgid "File &Size"
-msgstr ""
+msgstr "&Розмір файла"
 
 msgid "Less than 1KB"
-msgstr ""
+msgstr "Менше ніж 1КБ"
 
 msgid "1KB or more"
-msgstr ""
+msgstr "1КБ або більше"
 
 msgid "Less than 10KB"
-msgstr ""
+msgstr "Менше 10КБ"
 
 msgid "10KB or more"
-msgstr ""
+msgstr "10КБ або більше"
 
 msgid "Less than 100KB"
-msgstr ""
+msgstr "Менше 100КБ"
 
 msgid "100KB or more"
-msgstr ""
+msgstr "100КБ або більше"
 
 msgid "Less than 1MB"
-msgstr ""
+msgstr "Менше 1МБ"
 
 msgid "1MB or more"
-msgstr ""
+msgstr "1МБ або більше"
 
 msgid "Less than 10MB"
-msgstr ""
+msgstr "Менше 10МБ"
 
 msgid "10MB or more"
-msgstr ""
+msgstr "10МБ або більше"
 
 msgid "Less than 100MB"
-msgstr ""
+msgstr "Менше 100МБ"
 
 msgid "100MB or more"
-msgstr ""
+msgstr "100МБ або більше"
 
 msgid "Less than 1GB"
-msgstr ""
+msgstr "Менше 1ГБ"
 
 msgid "1GB or more"
-msgstr ""
+msgstr "1ГБ або більше"
 
 msgid "Custom Range..."
-msgstr ""
+msgstr "Задати діапазон..."
 
 msgid "&Last Modified"
-msgstr ""
+msgstr "&Остання зміна"
 
 msgid "&Hour"
-msgstr ""
+msgstr "&Година"
 
 msgid "More than 1 hour ago"
-msgstr ""
+msgstr "Більше 1 години тому"
 
 msgid "Within 1 hour"
-msgstr ""
+msgstr "Протягом 1 години"
 
 msgid "&Day"
-msgstr ""
+msgstr "&Ден"
 
 msgid "Before today"
-msgstr ""
+msgstr "Раніше ніж сьогодні"
 
 msgid "Today"
-msgstr ""
+msgstr "Сьогодні"
 
 msgid "Before yesterday"
-msgstr ""
+msgstr "Раніше ніж вчора"
 
 msgid "Yesterday"
-msgstr ""
+msgstr "Вчора"
 
 msgid "Since yesterday"
-msgstr ""
+msgstr "З учора"
 
 msgid "&Week"
-msgstr ""
+msgstr "&Тиждень"
 
 msgid "Before this week"
-msgstr ""
+msgstr "До цього тижня"
 
 msgid "This week"
-msgstr ""
+msgstr "Цього тижня"
 
 msgid "Before last week"
-msgstr ""
+msgstr "До минулого тижн"
 
 msgid "Last week"
-msgstr ""
+msgstr "Минулого тижня"
 
 msgid "Since last week"
-msgstr ""
+msgstr "З минулого тижня"
 
 msgid "&Month"
-msgstr ""
+msgstr "&Місяць"
 
 msgid "Before this month"
-msgstr ""
+msgstr "До цього місяця"
 
 msgid "This month"
-msgstr ""
+msgstr "Цього місяця"
 
 msgid "Before last month"
-msgstr ""
+msgstr "До минулого місяц"
 
 msgid "Last month"
-msgstr ""
+msgstr "Минулого місяця"
 
 msgid "Since last month"
-msgstr ""
+msgstr "З минулого місяця"
 
 msgid "&Year"
-msgstr ""
+msgstr "&Рік"
 
 msgid "Before this year"
-msgstr ""
+msgstr "До цього року"
 
 msgid "This year"
-msgstr ""
+msgstr "Цього року"
 
 msgid "Before last year"
-msgstr ""
+msgstr "До минулого року"
 
 msgid "Last year"
-msgstr ""
+msgstr "Минулого року"
 
 msgid "Since last year"
-msgstr ""
+msgstr "З минулого року"
 
 msgid "&Custom Range..."
-msgstr ""
+msgstr "Задати діапазон..."
 
 msgid "&Attributes"
-msgstr ""
+msgstr "&Атрибути"
 
 msgid "Read-only files"
-msgstr ""
+msgstr "Файли лише для читання"
 
 msgid "Not read-only files"
-msgstr ""
+msgstr "Файли не лише для читання"
 
 msgid "Hidden files"
-msgstr ""
+msgstr "Приховані файли"
 
 msgid "Not hidden files"
-msgstr ""
+msgstr "Не приховані файли"
 
 msgid "System files"
-msgstr ""
+msgstr "Системні файли"
 
 msgid "Not system files"
-msgstr ""
+msgstr "Не системні файли"
 
 msgid "File &Content"
-msgstr ""
+msgstr "Вміст файлу"
 
 msgid "Contains string..."
-msgstr ""
+msgstr "Містить рядок..."
 
 msgid "Does not contain string..."
-msgstr ""
+msgstr "Не містить рядок..."
 
 msgid "First line contains string..."
-msgstr ""
+msgstr "Перший рядок містить..."
 
 msgid "First line does not contain string..."
-msgstr ""
+msgstr "Перший рядок не містить..."
 
 msgid "First 10 lines contain string..."
-msgstr ""
+msgstr "Перші 10 рядків містять..."
 
 msgid "First 10 lines do not contain string..."
-msgstr ""
+msgstr "Перші 10 рядків не містять..."
 
 msgid "Last 10 lines contain string..."
-msgstr ""
+msgstr "Останні 10 рядків містять..."
 
 msgid "Last 10 lines do not contain string..."
-msgstr ""
+msgstr "Останні 10 рядків не містять..."
 
 msgid "Last line contains string..."
-msgstr ""
+msgstr "Останній рядок містить..."
 
 msgid "Last line does not contain string..."
-msgstr ""
+msgstr "Останній рядок не містить..."
 
 msgid "&Line Count"
-msgstr ""
+msgstr "&Кількість рядків"
 
 msgid "Less than 10"
-msgstr ""
+msgstr "Менше 10"
 
 msgid "10 or more"
-msgstr ""
+msgstr "10 або більше"
 
 msgid "Less than 100"
-msgstr ""
+msgstr "Менше 100"
 
 msgid "100 or more"
-msgstr ""
+msgstr "100 або більше"
 
 msgid "Less than 1000"
-msgstr ""
+msgstr "Менше 1000"
 
 msgid "1000 or more"
-msgstr ""
+msgstr "1000 або більше"
 
 msgid "Less than 10000"
-msgstr ""
+msgstr "Менше 1000"
 
 msgid "10000 or more"
-msgstr ""
+msgstr "10000 або більше"
 
 msgid "Less than 100000"
-msgstr ""
+msgstr "Менше 100000"
 
 msgid "100000 or more"
-msgstr ""
+msgstr "100000 або більше"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "Додаткові &властивості..."
 
 msgid "Add F&older Condition"
-msgstr ""
+msgstr "Додати умову для &папки"
+
+msgid "&Files"
+msgstr "&Файли"
+
+msgid "0 files"
+msgstr "0 файлів"
+
+msgid "1 file or more"
+msgstr "1 файл або більше"
+
+msgid "&Items"
+msgstr "&Елементи"
+
+msgid "0 items"
+msgstr "0 елементів"
+
+msgid "1 item or more"
+msgstr "1 елемент або більше"
+
+msgid "&Total Size"
+msgstr "&Загальний розмір"
+
+msgid "&Recursive"
+msgstr "&Рекурсивно"
 
 msgid "Target: &Any (Left/Middle/Right)"
-msgstr ""
+msgstr "Застосувати: &Будь де (ліворуч/центр/праворуч)"
 
 msgid "Target: &Left"
-msgstr ""
+msgstr "Застосувати: &Ліворуч"
 
 msgid "Target: &Middle"
-msgstr ""
+msgstr "Застосувати: &В центрі"
 
 msgid "Target: &Right"
-msgstr ""
+msgstr "Застосувати: &Праворуч"
 
 msgid "Add &Difference Condition"
-msgstr ""
+msgstr "Додати умову для &відмінності"
 
 msgid "Equal"
-msgstr ""
+msgstr "Дорівнює"
 
 msgid "Not Equal"
-msgstr ""
+msgstr "Не дорівнює"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Менше ніж"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Менше або дорівнює"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Більше ніж"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Більше або дорівнює"
 
 msgid "Less than 10B"
-msgstr ""
+msgstr "Менше 10Б"
 
 msgid "10B or more"
-msgstr ""
+msgstr "10Б або більш"
 
 msgid "Less than 100B"
-msgstr ""
+msgstr "Менше 100Б"
 
 msgid "100B or more"
-msgstr ""
+msgstr "100Б або більше"
 
 msgid "Less than 1 second"
-msgstr ""
+msgstr "Менше 1 сек"
 
 msgid "1 second or more"
-msgstr ""
+msgstr "1 сек або більше"
 
 msgid "Less than 1 minute"
-msgstr ""
+msgstr "Менше 1 хв"
 
 msgid "1 minute or more"
-msgstr ""
+msgstr "1 хв або більше"
 
 msgid "Less than 1 hour"
-msgstr ""
+msgstr "Менше 1 год"
 
 msgid "1 hour or more"
-msgstr ""
+msgstr "1 год або більше"
 
 msgid "Less than 1 day"
-msgstr ""
+msgstr "Менше 1 доби"
 
 msgid "1 day or more"
-msgstr ""
+msgstr "1 доба або більше"
 
 msgid "Less than 1 week"
-msgstr ""
+msgstr "Менше 1 тижня"
 
 msgid "1 week or more"
-msgstr ""
+msgstr "1 тиждень або більше"
 
 msgid "Target: &Left and Right"
-msgstr ""
+msgstr "Застосувати: &ліворуч та праворуч"
 
 msgid "Target: Left and &Middle"
-msgstr ""
+msgstr "Застосувати: ліворуч та в &центрі"
 
 msgid "Target: Middle and &Right"
-msgstr ""
+msgstr "Застосувати: в центрі та &праворуч"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Застосувати: &Всюди"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "&Очистити умови"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "Порівняти &розмір"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "Порівняти &дату"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "Порівняти &атрибути"
 
 msgid "Compare C&ontents"
+msgstr "Порівняти в&міст"
+
+msgid "&Clear Keys"
+msgstr ""
+
+msgid "&Name"
+msgstr ""
+
+msgid "&Base name (without extension)"
+msgstr ""
+
+msgid "Normalized &Unicode Name"
+msgstr ""
+
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash (MD5)"
+msgstr ""
+
+msgid "Insert &replace() Function"
+msgstr ""
+
+msgid "Insert rege&xReplace() Function"
+msgstr ""
+
+msgid "Text &Normalization"
+msgstr ""
+
+msgid "&Lowercase"
+msgstr ""
+
+msgid "&Uppercase"
+msgstr ""
+
+msgid "&Half-width"
+msgstr ""
+
+msgid "&Full-width"
+msgstr ""
+
+msgid "&Chinese Conversion"
+msgstr ""
+
+msgid "&Simplified Chinese"
+msgstr ""
+
+msgid "&Traditional Chinese"
+msgstr ""
+
+msgid "&Japanese Conversion"
+msgstr ""
+
+msgid "&Hiragana"
+msgstr ""
+
+msgid "&Katakana"
 msgstr ""
 
 msgid "About WinMerge"
 msgstr "Про програму WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr "Відвідайте домашню сторінку WinMerge !"
+msgstr "Відвідайте домашню сторінку WinMerge!"
 
 msgid "OK"
-msgstr "Гаразд"
+msgstr "OK"
 
 msgid "Contributors"
-msgstr "Автори"
+msgstr "Співавтори"
 
 msgid "Select Files or Folders"
-msgstr "Виберіть файли або теки"
+msgstr "Вибір файлів або папок"
 
 msgid "&1st File or Folder"
-msgstr ""
+msgstr "&1-й файл або папка"
 
 msgid "Re&ad-only"
-msgstr "Лише читання"
+msgstr "Ли&ше для читання"
 
 msgid "Swap 1st | 2nd"
-msgstr ""
+msgstr "Обміняти 1-й | 2-й"
 
 msgid "&Browse..."
-msgstr "&Перегляд..."
+msgstr "&Огляд..."
 
 msgid "&2nd File or Folder"
-msgstr ""
+msgstr "&2-й файл або папка"
 
 msgid "Rea&d-only"
-msgstr ""
+msgstr "Лиш&е для читання"
 
 msgid "Swap 2nd | 3rd"
-msgstr ""
+msgstr "Обміняти 2-й | 3-й"
 
 msgid "B&rowse..."
-msgstr "П&ерегляд..."
+msgstr "О&гляд..."
 
 msgid "&3rd File or Folder (Optional)"
-msgstr ""
+msgstr "&3-й файл або папка (необов'язково)"
 
 msgid "Read-o&nly"
-msgstr ""
+msgstr "Лише для чи&тання"
 
 msgid "Swap 1st | 3rd"
-msgstr ""
+msgstr "Обміняти 1-й | 3-й"
 
 msgid "Browse..."
-msgstr "Перегляд ..."
+msgstr "Огляд..."
 
 msgid " Folder: Filter"
-msgstr ""
+msgstr " Папка: Фільтр"
 
 msgid "&Include subfolders"
-msgstr "&Враховуючи підтеки"
+msgstr "&Враховуючи вкладені папки"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Файл: Плагін попереднього порівняння"
 
 msgid " File: Unpacker Plugin"
-msgstr ""
+msgstr " Файл: Плагін розпакувальника"
 
 msgid "Se&lect..."
-msgstr ""
+msgstr "Ви&брати..."
 
 msgid "Cancel"
 msgstr "Скасувати"
@@ -1689,19 +1776,19 @@ msgid "Regular &expression"
 msgstr "Ре&гулярні вирази"
 
 msgid "D&on't wrap end of file"
-msgstr "Н&е зупинятися в кінці файлу"
+msgstr "З&упинятися в кінці файлу"
 
 msgid "&Don't close this dialog"
-msgstr ""
+msgstr "&Не закривати діалог"
 
 msgid "&Find Next"
-msgstr "&Далі"
+msgstr "Знайти &далі"
 
 msgid "Find &Prev"
-msgstr ""
+msgstr "Знайти &раніше"
 
 msgid "Replace"
-msgstr "Заміна"
+msgstr "Замінити"
 
 msgid "Re&place with:"
 msgstr "За&мінити на:"
@@ -1719,7 +1806,7 @@ msgid "Wh&ole file"
 msgstr "В всьому &файлі"
 
 msgid "Find Pre&v"
-msgstr ""
+msgstr "Знайти попередн&е"
 
 msgid "&Replace"
 msgstr "&Замінити"
@@ -1728,16 +1815,16 @@ msgid "Replace &All"
 msgstr "З&амінити всюди"
 
 msgid "Markers"
-msgstr ""
+msgstr "Маркери"
 
 msgid "Enable &markers"
-msgstr ""
+msgstr "Увімкнути &маркери"
 
 msgid "New"
 msgstr "Створити"
 
 msgid "&Background color:"
-msgstr ""
+msgstr "&Колір фону:"
 
 msgid "&Ok"
 msgstr "&OК"
@@ -1746,36 +1833,34 @@ msgid "&Apply"
 msgstr "&Застосувати"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Фільтри рядків"
 
 msgid "Enable Line Filters"
-msgstr "Дозволити фільтри рядків"
+msgstr "Увімкнути фільтри рядків"
 
 msgid "Regular Expressions (one per line):"
 msgstr "Регулярні вирази (один на рядок):"
 
 msgid "Edit"
-msgstr "Редакція"
+msgstr "Редагувати"
 
 msgid "Remove"
 msgstr "Вилучити"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "Фільтри підміни"
 
-msgid ""
-"Changes to the listed pairs below will be ignored or marked as "
-"insignificant. Patches are unaffected."
-msgstr ""
+msgid "Changes to the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr "Зміни в перелічених нижче парах будуть проігноровані або позначені як незначні. Патчі залишаються незмінними."
 
 msgid "Enable"
-msgstr ""
+msgstr "Увімкнути"
 
 msgid "Add"
-msgstr ""
+msgstr "Додати"
 
 msgid "Clear"
-msgstr ""
+msgstr "Очистити"
 
 msgid "Options"
 msgstr "Налаштування"
@@ -1790,10 +1875,10 @@ msgid "General"
 msgstr "Основні"
 
 msgid "Automatically &scroll to first difference"
-msgstr "Автоматично &перемістити до першої відмінності"
+msgstr "Автоматично &переходити до першої відмінності"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "Автоматично пе&реходити до першої відмінності у рядку"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "За&кривати вікна клавішею 'Esc':"
@@ -1802,7 +1887,7 @@ msgid "&Automatically verify paths in Open dialog"
 msgstr "Автоматично перевіряти шляхи в діалозі відкриття файлів"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Режим одного екземпляра:"
 
 msgid "As&k when closing multiple windows"
 msgstr "Запитати перед закриттям декількох вікон"
@@ -1814,43 +1899,43 @@ msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Показувати при запуску діалог вибору файлів та тек"
 
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr ""
+msgstr "Закривати діалог \"Вибір файлів або папок\" після натискання кнопки Порівняти"
 
 msgid "Op&en dialog Auto completion:"
 msgstr "Діалог Автоматичного доповнення:"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "Авто-&перезавантаження змінених файлів:"
 
 msgid "Language:"
-msgstr ""
+msgstr "Мова:"
 
 msgid "Defaults"
-msgstr "Звичайні параметри"
+msgstr "За замовчуванням"
 
 msgid "Colors"
 msgstr "Кольори"
 
 msgid "Color &mode:"
-msgstr ""
+msgstr "Кольоровий &режим:"
 
 msgid "&Light mode scheme:"
-msgstr ""
+msgstr "&Світла тема:"
 
 msgid "&Dark mode scheme:"
-msgstr ""
+msgstr "&Темна тема:"
 
 msgid "Your custom schemes"
-msgstr ""
+msgstr "Тема користувача"
 
 msgid "&Save current scheme..."
-msgstr ""
+msgstr "&Зберегти поточну схему..."
 
 msgid "Delete &current scheme..."
-msgstr ""
+msgstr "Видалити поточну схему..."
 
 msgid "Background"
-msgstr "Тло"
+msgstr "Фон"
 
 msgid "Deleted"
 msgstr "Вилучені"
@@ -1874,10 +1959,10 @@ msgid "Selected Moved:"
 msgstr "Відзначені переміщені:"
 
 msgid "Same As Next (3 panes):"
-msgstr ""
+msgstr "Збігається з наступною (3 панелі):"
 
 msgid "Same As Next (Selected):"
-msgstr ""
+msgstr "Збігається з наступною (Відзначені):"
 
 msgid "Word Difference:"
 msgstr "Словникова відмінність:"
@@ -1916,10 +2001,10 @@ msgid "User 2:"
 msgstr "Користувач 2:"
 
 msgid "Bold"
-msgstr "Грубий"
+msgstr "Жирний"
 
 msgid "&Use customized text colors"
-msgstr "Використати особливі кольори"
+msgstr "&Використати особливі кольори"
 
 msgid "Whitespace:"
 msgstr "Пропуски:"
@@ -1928,40 +2013,40 @@ msgid "Regular text:"
 msgstr "Звичайний текст:"
 
 msgid "Selection:"
-msgstr "Відзнач. текст:"
+msgstr "Вибрано:"
 
 msgid "Margin:"
-msgstr ""
+msgstr "Поле:"
 
 msgid "Search Marker:"
-msgstr ""
+msgstr "Маркер пошуку:"
 
 msgid "User Defined Marker 1:"
-msgstr ""
+msgstr "Маркер користувача 1:"
 
 msgid "User Defined Marker 2:"
-msgstr ""
+msgstr "Маркер користувача 2:"
 
 msgid "User Defined Marker 3:"
-msgstr ""
+msgstr "Маркер користувача 3:"
 
 msgid "&Use folder compare colors"
-msgstr ""
+msgstr "&Використовувати кольори порівняння папок"
 
 msgid "Items equal:"
-msgstr ""
+msgstr "Однакові елементи:"
 
 msgid "Items different:"
-msgstr ""
+msgstr "Різні елементи:"
 
 msgid "Items missing:"
-msgstr ""
+msgstr "Відсутні елементи:"
 
 msgid "Items filtered:"
-msgstr ""
+msgstr "Відфільтровані елементи:"
 
 msgid "&Use custom system colors"
-msgstr ""
+msgstr "&Використовувати власні системні кольори"
 
 msgid "System"
 msgstr "Система"
@@ -1972,20 +2057,23 @@ msgstr "Переміщувати вилучені файли до кошика"
 msgid "&External editor:"
 msgstr "Зовнішній редактор:"
 
+msgid "&Store user data in:"
+msgstr "&Зберігати дані користувача в:"
+
 msgid "&Filter folder:"
-msgstr "&Фільтри:"
+msgstr "Папка &фільтрів:"
 
 msgid "Temporary files folder"
-msgstr "Тека для тимчасових файлів"
+msgstr "Папка тимчасових файлів"
 
 msgid "S&ystem temp folder"
-msgstr "Системна тека Temp"
+msgstr "Системна тимчасова папка"
 
 msgid "C&ustom folder:"
-msgstr "Власна тека:"
+msgstr "Власна папка:"
 
 msgid "Br&owse..."
-msgstr "Переглядання ..."
+msgstr "Огляд..."
 
 msgid "Compare"
 msgstr "Порівняння"
@@ -2009,37 +2097,37 @@ msgid "Ignore &case"
 msgstr "Нехтувати р&егістр"
 
 msgid "Igno&re EOL differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Ігно&рувати відмінності в кінцях рядків (Win/Unix/Mac)"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "Ігнорувати чис&ла"
 
 msgid "Ignore codepage &differences"
-msgstr ""
+msgstr "Ігнорувати ві&дмінності в кодуванні"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "Ігнорувати відмінності у к&оментарях"
 
 msgid "Ignore &missing trailing EOL"
-msgstr ""
+msgstr "Ігнорувати в&ідсутні символи кінця строки"
 
 msgid "Ignore line &breaks (treat as spaces)"
-msgstr ""
+msgstr "Ігнорувати &розриви рядків (трактувати як пробіли)"
 
 msgid "E&nable moved block detection"
 msgstr "Виявлення перемі&щених блоків"
 
 msgid "Align &similar lines"
-msgstr ""
+msgstr "Вирівняти &схожі рядки"
 
 msgid "Diff &algorithm:"
-msgstr ""
+msgstr "Алгоритм &порівняння:"
 
 msgid "Enable indent &heuristic"
-msgstr ""
+msgstr "Увімкнути &евристичне вирівнювання відступів"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "Повністю не підсвічувати ігноровані відмінності"
 
 msgid "Editor"
 msgstr "Редактор"
@@ -2057,19 +2145,19 @@ msgid "&Tab size:"
 msgstr "Розмір &відступу:"
 
 msgid "&Insert tabs"
-msgstr ""
+msgstr "&Вставляти табуляцію"
 
 msgid "Insert &spaces"
 msgstr "&Пропуски"
 
 msgid "&Rendering mode:"
-msgstr ""
+msgstr "Режим &рендерингу:"
 
 msgid "&Automatic rescan"
 msgstr "Автоматичне &пересканування"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Гранулярність копіювання для вибраних відмінностей:"
 
 msgid "Line Difference Coloring"
 msgstr "Підсвічування відмінностей у рядку"
@@ -2086,18 +2174,14 @@ msgstr "За словами:"
 msgid "W&ord break characters:"
 msgstr "Символи для &розділення слів:"
 
-msgid ""
-"Some messages can be hidden by the user. Press Reset to make all messages "
-"visible again."
-msgstr ""
-"WinMerge не показує деякі повідомлення. Натисніть Скинути, щоб "
-"демонструвалися всі повідомлення."
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge не показує деякі повідомлення. Натисніть Скинути, щоб демонструвалися всі повідомлення."
 
 msgid "Reset"
 msgstr "Скинути"
 
 msgid "Patch Generator"
-msgstr "Генератор латок"
+msgstr "Генератор патчу"
 
 msgid "File&1:"
 msgstr "Файл 1:"
@@ -2118,7 +2202,7 @@ msgid "&Result:"
 msgstr "Результат:"
 
 msgid "Bro&wse..."
-msgstr "Пере&гляд..."
+msgstr "О&гляд..."
 
 msgid "&Format"
 msgstr "Формат"
@@ -2145,70 +2229,73 @@ msgid "Move &Down"
 msgstr "В&низ"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "&Додаткові властивості"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Додаткові властивості"
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "Вибрати плагін"
 
 msgid "Plugin &name:"
-msgstr ""
+msgstr "&Назва плагіну:"
 
 msgid "&Target files:"
-msgstr ""
+msgstr "&Цільові файли:"
 
 msgid "Extensions list:"
-msgstr "Список розширень:"
+msgstr "Перелік розширень:"
 
 msgid "Description:"
 msgstr "Опис:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "Аргументи за замовчуванням:"
 
 msgid "Display all plugins (Ignore extension)"
-msgstr ""
+msgstr "Показувати усі плагіни (Ігнорувати розширення)"
 
 msgid "&Open files in same window type after unpacking"
-msgstr ""
+msgstr "&Відкривати файли у вікні того ж типу після розпакування"
 
 msgid "&Plugin pipeline:"
-msgstr ""
+msgstr "Конвеєр &плагінів:"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "&Псевдонім..."
 
 msgid "Stop"
 msgstr "Зупинити"
 
 msgid "Pause"
-msgstr ""
+msgstr "Пауза"
 
 msgid "Continue"
-msgstr ""
+msgstr "Продовжити"
 
 msgid "C&PU cores to use:"
-msgstr ""
+msgstr "Ядра про&цесора, для використання:"
 
 msgid "Items total:"
-msgstr "Всього:"
+msgstr "Всього елементів:"
 
 msgid "Items compared:"
-msgstr "Опрацьованих:"
+msgstr "Порівняно елементів:"
+
+msgid "&Close"
+msgstr "&Закрити"
 
 msgid "Go to"
 msgstr "Перейти"
 
 msgid "G&o to:"
-msgstr "&До:"
+msgstr "П&ерейти до:"
 
 msgid "File"
 msgstr "Файл"
 
 msgid "Go to what"
-msgstr "До чого"
+msgstr "Перейти до чого"
 
 msgid "Li&ne"
 msgstr "&Рядок"
@@ -2220,16 +2307,16 @@ msgid "&Go to"
 msgstr "Перейт&и"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Фільтри файлів"
 
 msgid "&Mask / Filter Expression"
-msgstr ""
+msgstr "&Маска / Вираз фільтра"
 
 msgid "Preset &Filters"
-msgstr ""
+msgstr "Скинути &фільтри"
 
 msgid "Test..."
-msgstr "Випробувати..."
+msgstr "Тест..."
 
 msgid "Install..."
 msgstr "Встановити..."
@@ -2244,28 +2331,28 @@ msgid "Delete..."
 msgstr "Вилучити..."
 
 msgid "Filter Condition"
-msgstr ""
+msgstr "Умова фільтра"
 
 msgid "&Left-hand side:"
-msgstr ""
+msgstr "&Ліва сторона:"
 
 msgid "&Operator:"
-msgstr ""
+msgstr "&Оператор:"
 
 msgid "&Right-hand side:"
-msgstr ""
+msgstr "&Права сторона:"
 
 msgid "Expression:"
-msgstr ""
+msgstr "Вираз:"
 
 msgid "Codepage"
 msgstr "Сторінка кодування"
 
 msgid "Default Codepage"
-msgstr "Звичайна сторінка кодування"
+msgstr "Сторінка кодування за замовчуванням"
 
 msgid "Select the default codepage for non-Unicode files:"
-msgstr "Виберіть звичайну сторінку кодування для не Юнікодних файлів:"
+msgstr "Виберіть сторінку кодування для не Юнікодних файлів за замовчуванням:"
 
 msgid "System codepage"
 msgstr "Системна сторінка кодування"
@@ -2280,13 +2367,15 @@ msgid ""
 "Detect codepage for: .html, .rc, .xml\n"
 "Restart required."
 msgstr ""
-"Виявлення інформації про кодову сторінку для файлів\n"
-" .html, .rc, .xml вимагає перезапуску."
+"Визначати кодову сторінку для файлів: .html, .rc, .xml\n"
+"Потрібен перезапуск."
 
 msgid ""
 "Detect codepage for files with mlang.dll\n"
 "Restart required."
 msgstr ""
+"Визначати кодову сторінку за допомого mlang.dll\n"
+"Потрібен перезапуск."
 
 msgid "Archive Support"
 msgstr "Підтримка архівів"
@@ -2295,10 +2384,10 @@ msgid "&Enable archive file support"
 msgstr "&Ввімкнути підтримку архівів"
 
 msgid "&Detect archive type from file signature"
-msgstr "&Визначати тип архіву за сигнатурою або заголовком файлу"
+msgstr "&Визначати тип архіву за сигнатурою або за заголовком файлу"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "Елементи, збережені або відновлені з файлу проєкту:"
 
 msgid "Save Modified Files?"
 msgstr "Зберегти змінені файли?"
@@ -2313,13 +2402,13 @@ msgid "&Discard changes"
 msgstr "&Скасувати зміни"
 
 msgid "Middle side file"
-msgstr ""
+msgstr "Файл у центрі"
 
 msgid "Sa&ve changes"
-msgstr ""
+msgstr "З&берегти зміни"
 
 msgid "Discard c&hanges"
-msgstr ""
+msgstr "Від&хилити зміни"
 
 msgid "Right side file"
 msgstr "Файл з правої сторони"
@@ -2334,7 +2423,7 @@ msgid "Disca&rd All"
 msgstr "Скасу&вати все"
 
 msgid "Folder Compare Report"
-msgstr "Звіт порівняння тек"
+msgstr "Звіт порівняння папок"
 
 msgid "Report &file:"
 msgstr "&Файл звіту:"
@@ -2343,16 +2432,16 @@ msgid "&Style:"
 msgstr "&Стиль:"
 
 msgid "&Include file compare report"
-msgstr ""
+msgstr "Включити звіт порівняння файлів"
 
 msgid "Shared or Private Filter"
-msgstr "Загальні і особисті фільтри"
+msgstr "Спільний або особистий фільтр"
 
 msgid "What type of filter do you want?"
 msgstr "Який тип фільтру ви хочете створити?"
 
 msgid "Shared Filter (for all users)"
-msgstr "Загальний фільтр (для всіх користувачів цього ПК)"
+msgstr "Спільний фільтр (для всіх користувачів цього ПК)"
 
 msgid "Private Filter (current user only)"
 msgstr "Особистий фільтр (лише для поточного користувача)"
@@ -2361,7 +2450,7 @@ msgid "Compare Statistics"
 msgstr "Порівняння статистики"
 
 msgid "Folders:"
-msgstr "Теки:"
+msgstr "Папки:"
 
 msgid "Files:"
 msgstr "Файли:"
@@ -2370,7 +2459,7 @@ msgid "Different"
 msgstr "Відрізняються"
 
 msgid "Binary:"
-msgstr "Бінарні:"
+msgstr "Двійкові:"
 
 msgid "Unique"
 msgstr "Унікальні"
@@ -2391,29 +2480,28 @@ msgid "Close"
 msgstr "Закрити"
 
 msgid "Middle:"
-msgstr ""
+msgstr "Центр:"
 
 msgid "Missing Left:"
-msgstr ""
+msgstr "Відсутні зліва:"
 
 msgid "Missing Middle:"
-msgstr ""
+msgstr "Відсутні у центрі:"
 
 msgid "Missing Right:"
-msgstr ""
+msgstr "Відсутні справа:"
 
-#, fuzzy
 msgid "Affects"
-msgstr "Має вплив"
+msgstr "Впливає"
 
 msgid "(Affects)"
-msgstr "(застосувати)"
+msgstr "(впливає)"
 
 msgid "Select Codepage for"
 msgstr "Вибрати сторінку кодування для"
 
 msgid "&File Loading:"
-msgstr "Завант. файлу:"
+msgstr "Завантаження &файлу:"
 
 msgid "File &Saving:"
 msgstr "Збереження файлу:"
@@ -2434,7 +2522,7 @@ msgid "&Enter text to test:"
 msgstr "Вкажіть текст для випробування:"
 
 msgid "&Folder Name"
-msgstr "Тека"
+msgstr "Ім'я папки"
 
 msgid "Result:"
 msgstr "Результат:"
@@ -2442,32 +2530,29 @@ msgstr "Результат:"
 msgid "&Test"
 msgstr "&Випробувати"
 
-msgid "&Close"
-msgstr "&Закрити"
-
 msgid "Table"
-msgstr ""
+msgstr "Таблиця"
 
 msgid "File type"
-msgstr ""
+msgstr "Тип файлу"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Користувацькі значення з &роздільниками"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Символ р&оздільника:"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "&Дозволяти перенос рядка в лапках"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "&Символ лапок:"
 
 msgid "Backup Files"
 msgstr "Резервні копії"
@@ -2476,7 +2561,7 @@ msgid "Create backup files for:"
 msgstr "Створити резервні файли для:"
 
 msgid "&Folder compare"
-msgstr "Порівняння &тек"
+msgstr "Порівняння &папок"
 
 msgid "Fil&e compare"
 msgstr "Порівняння &файлів"
@@ -2485,10 +2570,10 @@ msgid "Create backup files in:"
 msgstr "Створити резервні файли:"
 
 msgid "&Original file's folder"
-msgstr "в теці з &оригінальним файлом"
+msgstr "&Папка оригінального файлу"
 
 msgid "&Global backup folder:"
-msgstr "в &загальній теці:"
+msgstr "&Загальна папка для резервних копій:"
 
 msgid "Backup filename:"
 msgstr "Ім'я резервного файлу:"
@@ -2497,7 +2582,7 @@ msgid "&Append .bak extension"
 msgstr "&Додати розширення .bak"
 
 msgid "A&ppend timestamp"
-msgstr "Додати дату"
+msgstr "Д&одати дату"
 
 msgid "Confirm Copy"
 msgstr "Підтвердження"
@@ -2512,7 +2597,7 @@ msgid "To right"
 msgstr "Праворуч"
 
 msgid "Don't ask this &question again."
-msgstr "Не задавати &це запитання знову."
+msgstr "Більше не &запитувати."
 
 msgid "Yes"
 msgstr "Так"
@@ -2521,22 +2606,22 @@ msgid "No"
 msgstr "Ні"
 
 msgid "Plugins"
-msgstr "Доповнення"
+msgstr "Плагіни"
 
 msgid "&Enable plugins"
-msgstr "&Ввімкнути доповнення"
+msgstr "&Ввімкнути плагіни"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "Тип &плагіна:"
 
 msgid "File filters:"
-msgstr ""
+msgstr "Фільтри файлів:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "Аргументи &плагіна:"
 
 msgid "Enable &automatic unpacking/prediffing"
-msgstr ""
+msgstr "Увімкнути &автоматичне розпакування/попереднє порівняння"
 
 msgid "Shell Integration"
 msgstr "Вживлення в оболонку"
@@ -2551,38 +2636,38 @@ msgid "E&nable advanced menu"
 msgstr "В&вімкнути розширене меню"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Увімкнути меню &Порівняти як"
 
 msgid "&Register Shell Extension"
-msgstr ""
+msgstr "&Зареєструвати розширення оболонки"
 
 msgid "&Unregister Shell Extension"
-msgstr ""
+msgstr "&Скасувати реєстрацію розширення оболонки"
 
 msgid "Register Shell Extension for Current User &Only"
-msgstr ""
+msgstr "Зареєструвати розширення оболонки &лише для поточного користувача"
 
 msgid "Unregister Shell Extension for Current User On&ly"
-msgstr ""
+msgstr "Скасувати реєстрацію розширення оболонки ли&ше для поточного користувача"
 
 msgid "Register Shell Extension for &Windows 11"
-msgstr ""
+msgstr "Зареєструвати розширення &оболонки для Windows 11"
 
 msgid "Unregister Shell Extension for W&indows 11"
-msgstr ""
+msgstr "Скасувати реєстрацію розширення о&болонки для &Windows 11"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Список переходів"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Очистити всі нещодавні елементи"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
-msgstr "Тека"
+msgstr "Папка"
 
 msgid "&Compare method:"
-msgstr ""
+msgstr "&Метод порівняння:"
 
 msgid "S&top after first difference"
 msgstr "&Зупинятися після першої відмінності"
@@ -2591,143 +2676,152 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Нехтувати різницею часу, меншою 3 секунд"
 
 msgid "Expand subfolders &after comparison:"
-msgstr ""
+msgstr "Розгорнути вкладені папки &після порівняння:"
 
 msgid "Include &unique subfolders contents"
-msgstr ""
+msgstr "Враховувати вміст унікальних вкладених папок"
 
 msgid "Ignore &reparse points"
-msgstr ""
+msgstr "Ігнорувати точки &повторної обробки"
 
 msgid "Switch to &quick compare when size exceeds (MB):"
-msgstr ""
+msgstr "Перейти до &швидкого порівняння при розмірі більше (МБ):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
-msgstr ""
+msgstr "Перейти до &двійкового порівняння при розмірі більше (МБ):"
 
 msgid "Additional comparison condi&tions:"
+msgstr "Додаткові умови порів&няння:"
+
+msgid "&Rename/move detection:"
+msgstr ""
+
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
 msgstr ""
 
 msgid "File patterns:"
-msgstr ""
+msgstr "Шаблони файлів:"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Користувацькі значення з роздільниками"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
-msgstr "Бінарний"
+msgstr "Двійковий"
 
 msgid "Binary file &patterns:"
-msgstr ""
+msgstr "&Шаблони двійкових файлів:"
 
 msgid "Frhed settings"
-msgstr ""
+msgstr "Налаштування Frhed"
 
 msgid "View &Settings..."
-msgstr ""
+msgstr "Переглянути &Налаштування..."
 
 msgid "&Binary Mode..."
-msgstr ""
+msgstr "&Двійковий режим..."
 
 msgid "&Character Set..."
-msgstr ""
+msgstr "&Набір символів..."
 
 msgid "Image"
-msgstr ""
+msgstr "Зображення"
 
 msgid "Image file &patterns:"
-msgstr ""
+msgstr "Шаблони &файлів зображень:"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "&Увімкнути порівняння зображень при порівнянні папок"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "Результат OCR:"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Вебсторінка"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Шаблон URL для &включення (регулярний вираз):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Шаблон URL для &виключення (регулярний вираз):"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "Розташування папки даних &користувача:"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "&Окремі папки даних користувача для кожної панелі"
 
 msgid "&Hex View"
-msgstr ""
+msgstr "&Шістнадцятковий перегляд"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Редагування плагіну"
 
 msgid "&Category:"
-msgstr ""
+msgstr "&Категорія:"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "Підпис меню:"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "Тип вікна:"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "&Розширення розпакованого файлу:"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "&Вимагати аргументи"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "&Генерувати сценарій редактора"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "Командний &рядок:"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "&Розширення файлу сценарію:"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "Тіло &сценарію:"
 
 msgid "Font"
-msgstr ""
+msgstr "Шрифт"
 
 msgid "&Font:"
-msgstr ""
+msgstr "&Шрифт:"
 
 msgid "Font st&yle:"
-msgstr ""
+msgstr "Ст&иль шрифту:"
 
 msgid "&Size:"
-msgstr ""
+msgstr "&Розмір:"
 
 msgid "Effects"
-msgstr ""
+msgstr "Ефекти"
 
 msgid "Stri&keout"
-msgstr ""
+msgstr "За&креслений"
 
 msgid "&Underline"
-msgstr ""
+msgstr "&Підкреслення"
 
 msgid "&Color:"
-msgstr ""
+msgstr "&Колір:"
 
 msgid "Sample"
-msgstr ""
+msgstr "Приклад"
 
 msgid "AaBbYyZz"
-msgstr ""
+msgstr "АаБбЄєЇїҐґ"
 
 msgid "Sc&ript:"
-msgstr ""
+msgstr "Ск&рипт:"
 
 msgid "<A>Show more fonts</A>"
-msgstr ""
+msgstr "<A>Показати більше шрифтів</A>"
 
 msgid "EXT"
 msgstr "EXT"
@@ -2751,16 +2845,22 @@ msgid ""
 "\n"
 "New Documents (Ctrl+N)"
 msgstr ""
+"\n"
+"Нові документи (Ctrl+N)"
 
 msgid ""
 "\n"
 "Open (Ctrl+O)"
 msgstr ""
+"\n"
+"Відкрити (Ctrl+O)"
 
 msgid ""
 "\n"
 "Save (Ctrl+S)"
 msgstr ""
+"\n"
+"Зберегти (Ctrl+S)"
 
 msgid "Unknown error opening project file."
 msgstr "Невідома помилка при відкритті файлу проєкту."
@@ -2778,11 +2878,15 @@ msgid ""
 "\n"
 "Undo (Ctrl+Z)"
 msgstr ""
+"\n"
+"Скасувати (Ctrl+Z)"
 
 msgid ""
 "\n"
 "Redo (Ctrl+Y)"
 msgstr ""
+"\n"
+"Повторити (Ctrl+Y)"
 
 msgid ""
 "\n"
@@ -2816,16 +2920,14 @@ msgstr ""
 "\n"
 "\n"
 "WinMerge.FolderCompare\n"
-"WinMerge Порівняння тек"
+"WinMerge Порівняння папок"
 
 msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be "
-"redistributed under the conditions of the GNU General Public License - see "
-"the Help menu for details."
+"WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of "
+"the GNU General Public License - see the Help menu for details."
 msgstr ""
-"WinMerge поставляється БЕЗ БУДЬ-ЯКОЇ ГАРАНТІЇ. Це вільне ПО і ми привітаємо "
-"його поширення згідно деяких умов; ознайомтеся з GNU General Public License "
-"в меню Довідка для докладнішої інформації."
+"WinMerge поставляється БЕЗ БУДЬ-ЯКОЇ ГАРАНТІЇ. Це вільне ПО і ми привітаємо його поширення згідно деяких умов; "
+"ознайомтеся з GNU General Public License в меню Довідка для докладнішої інформації."
 
 msgid "&Abort"
 msgstr "&Перервати"
@@ -2861,33 +2963,31 @@ msgid "Skip &all"
 msgstr "Проп&устити все"
 
 msgid "Don't display this &message again."
-msgstr "Не показувати &це повідомлення знову."
+msgstr "Більше не показувати &це повідомлення."
 
-msgid ""
-"To make this message box visible, press Reset on the Message Boxes page in "
-"Options."
-msgstr ""
+msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
+msgstr "Щоб зробити це повідомлення видимим, натисніть Скинути на сторінці Вікна повідомлень у Налаштуваннях."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Порівняння/Злиття"
 
 msgid "Syntax"
-msgstr ""
+msgstr "Синтаксис"
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Колірні схеми"
 
 msgid "Folder Compare"
-msgstr ""
+msgstr "Порівняння папок"
 
 msgid "Project"
-msgstr ""
+msgstr "Проєкт"
 
 msgid "Differences"
 msgstr "Відмінності"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "Вікна повідомлень"
 
 msgid "To:"
 msgstr "На:"
@@ -2905,10 +3005,10 @@ msgid "To right:"
 msgstr "Праворуч:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "З центру:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "В центр:"
 
 #, c-format
 msgid "Version %1"
@@ -2922,7 +3022,7 @@ msgid "Options (%1)"
 msgstr "Налаштування (%1)"
 
 msgid "All message boxes are now displayed again."
-msgstr "Тепер всі повідомлення знову відображатимуться."
+msgstr "Тепер знову всі повідомленя відображатимуться."
 
 #, c-format
 msgid "Tab size value is out of range. Please use 1 - %1."
@@ -2946,12 +3046,8 @@ msgstr "Файли проєктів WinMerge (*.WinMerge)|*.WinMerge||"
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Файли конфігурації (*.ini)|*.ini|Всі файли (*.*)|*.*||"
 
-msgid ""
-"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
-"*.*||"
-msgstr ""
-"Текстові файли (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Всі файли "
-"(*.*)|*.*||"
+msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+msgstr "Текстові файли (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Всі файли (*.*)|*.*||"
 
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "Файли HTML (*.htm,*.html)|*.htm;*.html|Всі файли (*.*)|*.*||"
@@ -2960,46 +3056,46 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Файли XML (*.xml)|*.xml|Всі файли (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Не разгортати"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Розгорнути усі вкладені папки"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Розгорнути різні вкладені папки"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Розгорнути ідентичні вкладені папки"
 
 msgid "File Type"
-msgstr ""
+msgstr "Тип файлу"
 
 msgid "Extension"
 msgstr "Розширення"
 
 msgid "Message"
-msgstr ""
+msgstr "Повідомлення"
 
 msgid "Answer"
-msgstr ""
+msgstr "Відповідь"
 
 msgid "Item"
-msgstr ""
+msgstr "Елемент"
 
 msgid "Load"
-msgstr ""
+msgstr "Завантажити"
 
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "Враховувати вкладені папки"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "Параметри порівняння"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "Приховані елементи"
 
 msgid "Name"
 msgstr "Ім'я"
@@ -3029,9 +3125,9 @@ msgid ""
 "Copy %1 to WinMerge/Filters Folder:\n"
 "%2."
 msgstr ""
-"Не вдалося знайти файл фільтра!\n"
+"Не вдалося знайти шаблон фільтра!\n"
 "\n"
-"Скопіюйте файл %1 у теку з фільтрами:\n"
+"Скопіюйте файл %1 у папку з фільтрами:\n"
 "%2."
 
 #, c-format
@@ -3041,19 +3137,19 @@ msgid ""
 "\n"
 "Make sure the folder exists and is writable."
 msgstr ""
-"Неможливо скопіювати файл фільтра в теку з фільтрами:\n"
+"Не вдалося скопіювати шаблон фільтра:\n"
 "%1\n"
 "\n"
-"Переконайтеся, що тека існує і доступна для записування."
+"Переконайтеся, що папка існує і доступна для запису."
 
 msgid ""
 "User's filter folder is not defined!\n"
 "\n"
 "Select filter folder in Options/System."
 msgstr ""
-"Тека з фільтрами користувача не визначена!\n"
+"Папка з фільтрами користувача не визначена!\n"
 "\n"
-"Вкажіть теку з фільтрами на вкладці Система в Налаштуваннях."
+"Вкажіть папку з фільтрами на вкладці Система в Налаштуваннях."
 
 #, c-format
 msgid ""
@@ -3062,13 +3158,13 @@ msgid ""
 "\n"
 "File may be read-only."
 msgstr ""
-"Неможливо вилучити файл фільтра:\n"
+"Не вдалося вилучити фільтр:\n"
 "%1\n"
 "\n"
-"Можливо файл використовується."
+"Можливо, файл доступний лише для читання."
 
 msgid "Locate Filter File to Install"
-msgstr "Вказати  файл фільтра"
+msgstr "Вкажіть файл фільтра для встановлення"
 
 msgid ""
 "Installing filter file failed.\n"
@@ -3077,10 +3173,10 @@ msgid ""
 msgstr ""
 "Помилка встановлення фільтра.\n"
 "\n"
-"Неможливо скопіювати файл фільтра в теку з фільтрами."
+"Не вдалося скопіювати новий фільтр в папку."
 
 msgid "Filter file exists. Overwrite?"
-msgstr "Фільтр уже існує. Перезаписати?"
+msgstr "Файл фільтра вже існує. Перезаписати?"
 
 msgid "Regular expression"
 msgstr "Регулярний вираз"
@@ -3090,41 +3186,40 @@ msgid ""
 "\n"
 "Select 'No' to refresh later."
 msgstr ""
-"Фільтри були поновлені. Ви хочете поновити всі відкриті порівняння тек?\n"
+"Фільтри були поновлені. Ви хочете поновити всі відкриті порівняння папок?\n"
 "\n"
-"Якщо ви не хочете поновлювати всі порівняння зараз, Ви можете вибрати Ні і "
-"поновити їх згодом."
+"Якщо ви не хочете поновлювати всі порівняння зараз, Ви можете вибрати Ні і поновити їх згодом."
 
 msgid "Folder Comparison Results"
-msgstr "Результати порівняння тек"
+msgstr "Результати порівняння папок"
 
 msgid "File Comparison"
 msgstr "Порівняння файлів"
 
 msgid "Untitled Left"
-msgstr "Безіменний ліворуч"
+msgstr "Безіменний зліва"
 
 msgid "Untitled Middle"
-msgstr ""
+msgstr "Безіменний в центрі"
 
 msgid "Untitled Right"
-msgstr "Безіменний праворуч"
+msgstr "Безіменний справа"
 
 msgid "Base File"
-msgstr ""
+msgstr "Базовий файл"
 
 msgid "Theirs File"
-msgstr "Їхй файл"
+msgstr "Їхній файл"
 
 msgid "Mine File"
 msgstr "Мій файл"
 
 msgid "Original File"
-msgstr ""
+msgstr "Оригінальний файл"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Рд: %s  Ст: %d/%d  Симв: %d/%d  Кін. рядка: %s"
 
 #, c-format
 msgid "Line: %s"
@@ -3132,11 +3227,11 @@ msgstr "Рядок: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Рд: %s  Ст: %d/%d  Симв: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Вибр: %d | %d"
 
 msgid "Merge"
 msgstr "Об'єднання"
@@ -3147,17 +3242,17 @@ msgstr "Відмінність %1 з %2"
 
 #, c-format
 msgid "%1 Differences Found"
-msgstr "%1 відмінностей знайшлося"
+msgstr "Знайдено відмінностей: %1"
 
 msgid "1 Difference Found"
-msgstr "Знайдена всього одна відмінність"
+msgstr "Знайдено відмінностей: 1"
 
 #, c-format
 msgid "%1 Errors Found"
-msgstr ""
+msgstr "Знайдено помилок: %1"
 
 msgid "1 Error Found"
-msgstr ""
+msgstr "Знайдено помилок: 1"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
@@ -3176,49 +3271,49 @@ msgstr "Триває порівняння..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[шт/сек]"
 
 msgid "Select two existing folders/files to compare."
-msgstr "Виберіть дві ІСНУЮЧІ теки або файли для порівняння."
+msgstr "Виберіть дві існуючі папки або файли для порівняння."
 
 msgid "Folder Selection"
-msgstr "Вибір теки"
+msgstr "Вибір папки"
 
 msgid "Select two (or three) folders/files to compare."
-msgstr ""
+msgstr "Виберіть дві (або три) папки/файли для порівняння."
 
 msgid "Left (1st) path is invalid!"
-msgstr ""
+msgstr "Шлях лівого (1-го) елемента недійсний!"
 
 msgid "Middle (2nd) path is invalid!"
-msgstr ""
+msgstr "Шлях середнього (2-го) елемента недійсний!"
 
 msgid "Right (2nd) path is invalid!"
-msgstr ""
+msgstr "Шлях правого (2-го) елемента недійсний!"
 
 msgid "Right (3rd) path is invalid!"
-msgstr ""
+msgstr "Шлях правого (3-го) елемента недійсний!"
 
 msgid "Both paths are invalid!"
-msgstr "Обидва шляхи - хибні!"
+msgstr "Обидва шляхи недійсні!"
 
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr ""
+msgstr "Шляхи лівого (1-го) та середнього (2-го) елементів недійсні!"
 
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Шляхи лівого (1-го) та правого (3-го) елементів недійсні!"
 
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr ""
+msgstr "Шляхи середнього (2-го) та правого (3-го) елементів недійсні!"
 
 msgid "All paths are invalid!"
-msgstr ""
+msgstr "Всі шляхи недійсні!"
 
 msgid "Only enabled for file comparisons"
-msgstr ""
+msgstr "Доступно лише для порівняння файлів"
 
 msgid "Cannot compare file and folder!"
-msgstr "Неможливе порівняння файлу і теки!"
+msgstr "Неможливе порівняння файлу і папки!"
 
 #, c-format
 msgid "File not found: %1"
@@ -3241,7 +3336,7 @@ msgstr ""
 "%2"
 
 msgid "Failed to parse conflict file."
-msgstr "Помилка розбору файлу конфліктів."
+msgstr "Не вдалося розібрати файл конфліктів."
 
 #, c-format
 msgid ""
@@ -3257,6 +3352,8 @@ msgid ""
 "Comparing large files requires significant memory.\n"
 "Show only comparison results (not file contents)?"
 msgstr ""
+"Порівняння великих файлів потребує значної пам'яті.\n"
+"Показати лише результати порівняння (без вмісту файлів)?"
 
 msgid "Save As"
 msgstr "Зберегти як"
@@ -3267,9 +3364,7 @@ msgstr "Зберегти зміни в %1?"
 
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
-msgstr ""
-"%1 позначений як лише для читання. Чи згодні ви замінити цей файл? (Не "
-"дозволяє вказати нове ім'я файлу)"
+msgstr "%1 позначений як лише для читання. Чи згодні ви замінити цей файл? (Не дозволяє вказати нове ім'я файлу)"
 
 msgid "Error backing up file"
 msgstr "Помилка створення резервної копії"
@@ -3307,11 +3402,9 @@ msgid ""
 "\n"
 "Original unchanged. Save unpacked version?"
 msgstr ""
-"Доповнення '%2' не може запакувати ваші зміни назад в файл ліворуч '%1'.\n"
+"Плагін '%2' не може запакувати зміни лівого файлу в '%1'.\n"
 "\n"
-"Оригінал залишиться не зміненим.\n"
-"\n"
-"Хочете зберегти розпаковану версію в інший файл?"
+"Оригінал не змінено. Зберегти розпаковану версію?"
 
 #, c-format
 msgid ""
@@ -3319,6 +3412,9 @@ msgid ""
 "\n"
 "Original unchanged. Save unpacked version?"
 msgstr ""
+"Плагін '%2' не може запакувати зміни середнього файлу в '%1'.\n"
+"\n"
+"Оригінал не змінено. Зберегти розпаковану версію?"
 
 #, c-format
 msgid ""
@@ -3326,11 +3422,9 @@ msgid ""
 "\n"
 "Original unchanged. Save unpacked version?"
 msgstr ""
-"Доповнення '%2' не може запакувати ваші зміни назад в файл праворуч '%1'.\n"
+"Плагін '%2' не може запакувати зміни правого файлу в '%1'.\n"
 "\n"
-"Оригінал залишиться не зміненим.\n"
-"\n"
-"Хочете зберегти розпаковану версію в інший файл?"
+"Оригінал не змінено. Зберегти розпаковану версію?"
 
 #, c-format
 msgid ""
@@ -3370,7 +3464,7 @@ msgid "Save Left File As"
 msgstr "Зберегти лівий файл як"
 
 msgid "Save Middle File As"
-msgstr ""
+msgstr "Зберегти файл в центрі як"
 
 msgid "Save Right File As"
 msgstr "Зберегти правий файл як"
@@ -3401,25 +3495,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "Розбивати за пропусками і символами пунктуації"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Копіювати в &центр\tAlt+Right"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Копіювати в &центр\tAlt+Left"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Копіювати з центру\tAlt+Shift+Right"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Копіювати з центру\tAlt+Shift+Left"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Копіювати в центр і перейти далі\tCtrl+Alt+Right"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Копіювати в центр і перейти далі\tCtrl+Alt+Left"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Копіювати все в центр"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3427,15 +3521,15 @@ msgstr "Скопіювати на ліву сторону %1 з %2 вибран�
 
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr ""
+msgstr "Справа в центр (%1)"
 
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr ""
+msgstr "З центру в ліво (%1)"
 
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr ""
+msgstr "З центру вправо (%1)"
 
 #, c-format
 msgid "Left to Right (%1)"
@@ -3443,36 +3537,38 @@ msgstr "Скопіювати на праву сторону %1 з %2 вибра�
 
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr ""
+msgstr "Зліва в центр (%1)"
 
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Зліва... (%1)"
+msgstr "Зліва в... (%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
-msgstr ""
+msgstr "З центру в... (%1)"
 
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Справа... (%1)"
+msgstr "Справа в... (%1)"
 
 #, c-format
 msgid "Both to... (%1)"
-msgstr ""
+msgstr "Обидва в... (%1)"
 
 #, c-format
 msgid "All to... (%1)"
-msgstr ""
+msgstr "Усі в... (%1)"
 
 #, c-format
 msgid "Differences to... (%1)"
-msgstr ""
+msgstr "Відмінності в... (%1)"
 
 msgid ""
 "Some selected items are identical or skipped.\n"
 "Copy only items with differences?"
 msgstr ""
+"Деякі вибрані елементи однакові або пропущені.\n"
+"Копіювати лише елементи з відмінностями?"
 
 #, c-format
 msgid "Left (%1)"
@@ -3480,7 +3576,7 @@ msgstr "Ліворуч (%1)"
 
 #, c-format
 msgid "Middle (%1)"
-msgstr ""
+msgstr "В центр (%1)"
 
 #, c-format
 msgid "Right (%1)"
@@ -3492,13 +3588,13 @@ msgstr "Обидва (%1)"
 
 #, c-format
 msgid "All (%1)"
-msgstr ""
+msgstr "Усе (%1)"
 
 msgid "Left Side - Select Destination Folder:"
 msgstr "Ліва сторона - вибір теки призначення:"
 
 msgid "Middle Side - Select Destination Folder:"
-msgstr ""
+msgstr "Центральна сторона - вибір папки призначення:"
 
 msgid "Right Side - Select Destination Folder:"
 msgstr "Права сторона - вибір теки призначення:"
@@ -3557,13 +3653,13 @@ msgid "Confirm Move"
 msgstr "Підтвердження переміщення"
 
 msgid "Close the folder comparison window?"
-msgstr ""
+msgstr "Закрити вікно порівняння папок?"
 
 msgid "Close the folder comparison window, which took a long time?"
-msgstr ""
+msgstr "Закрити вікно порівняння папок, яке зайняло багато часу?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "Ім'я файлу або папки неприпустиме."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3576,13 +3672,15 @@ msgid ""
 "Failed to extract archive.\n"
 "Compare as text file?"
 msgstr ""
+"Не вдалося розпакувати архів.\n"
+"Порівняти як текстовий файл?"
 
 msgid "Filename"
 msgstr "Ім'я файлу"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Folder"
-msgstr "Тека"
+msgstr "Папка"
 
 msgid "Comparison Result"
 msgstr "Результат порівняння"
@@ -3594,7 +3692,7 @@ msgid "Right Date"
 msgstr "Дата праворуч"
 
 msgid "Middle Date"
-msgstr ""
+msgstr "Дата в центрі"
 
 msgid "Left Size"
 msgstr "Розмір ліворуч"
@@ -3603,7 +3701,7 @@ msgid "Right Size"
 msgstr "Розмір праворуч"
 
 msgid "Middle Size"
-msgstr ""
+msgstr "Розмір в центрі"
 
 msgid "Right Size (Short)"
 msgstr "Розмір праворуч (скор.)"
@@ -3612,7 +3710,7 @@ msgid "Left Size (Short)"
 msgstr "Розмір ліворуч (скор.)"
 
 msgid "Middle Size (Short)"
-msgstr ""
+msgstr "Розмір в центрі (скор.)"
 
 msgid "Left Creation Time"
 msgstr "Час створення файлу ліворуч"
@@ -3621,7 +3719,7 @@ msgid "Right Creation Time"
 msgstr "Час створення файлу праворуч"
 
 msgid "Middle Creation Time"
-msgstr ""
+msgstr "Час створення в центрі"
 
 msgid "Newer File"
 msgstr "Новіший файл"
@@ -3633,7 +3731,7 @@ msgid "Right File Version"
 msgstr "Версія файлу праворуч"
 
 msgid "Middle File Version"
-msgstr ""
+msgstr "Версія файлу в центрі"
 
 msgid "Short Result"
 msgstr "Спрощений результат"
@@ -3645,25 +3743,25 @@ msgid "Right Attributes"
 msgstr "Атрибути файлу праворуч"
 
 msgid "Middle Attributes"
-msgstr ""
+msgstr "Атрибути в центрі"
 
 msgid "Left EOL"
-msgstr "Ліве закінчення рядка"
+msgstr "Символ завершення рядка зліва"
 
 msgid "Middle EOL"
-msgstr ""
+msgstr "Символ завершення рядка в центрі"
 
 msgid "Right EOL"
-msgstr "Праве закінчення рядка"
+msgstr "Символ завершення рядка справа"
 
 msgid "Left Encoding"
-msgstr "Кодування файлу ліворуч"
+msgstr "Кодування файлу зліва"
 
 msgid "Right Encoding"
-msgstr "Кодування файлу праворуч"
+msgstr "Кодування файлу справа"
 
 msgid "Middle Encoding"
-msgstr ""
+msgstr "Кодування файлу в центрі"
 
 msgid "Ignored Diff"
 msgstr "Знех. відмінності"
@@ -3676,91 +3774,91 @@ msgid "Unpacker"
 msgstr "Розпакувальник"
 
 msgid "Prediffer"
-msgstr "Нехтувач"
+msgstr "Попередній порівнювач"
 
 msgid "Left"
-msgstr ""
+msgstr "Зліва"
 
 msgid "Middle"
-msgstr ""
+msgstr "В центрі"
 
 msgid "Right"
-msgstr ""
+msgstr "Справа"
 
 msgid "Diff"
-msgstr ""
+msgstr "Відмінність"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Кількість дублікатів зліва"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Кількість дублікатів справа"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Кількість дублікатів в центрі"
 
 msgid "Move"
-msgstr ""
+msgstr "Перемістити"
 
 msgid "Audio"
-msgstr ""
+msgstr "Аудіо"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Календар"
 
 msgid "Communication"
-msgstr ""
+msgstr "Комунікація"
 
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
 msgid "Devices"
-msgstr ""
+msgstr "Пристрої"
 
 msgid "Document"
-msgstr ""
+msgstr "Документ"
 
 msgid "Home"
-msgstr ""
+msgstr "Домівка"
 
 msgid "Journal"
-msgstr ""
+msgstr "Журнал"
 
 msgid "Link"
-msgstr ""
+msgstr "Посилання"
 
 msgid "Media"
-msgstr ""
+msgstr "Медіа"
 
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 msgid "Note"
-msgstr ""
+msgstr "Нотатка"
 
 msgid "Photo"
-msgstr ""
+msgstr "Фото"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "Записане ТВ"
 
 msgid "Search"
-msgstr ""
+msgstr "Пошук"
 
 msgid "Security"
-msgstr ""
+msgstr "Безпека"
 
 msgid "Software"
-msgstr ""
+msgstr "Програмне забезпечення"
 
 msgid "Task"
-msgstr ""
+msgstr "Завдання"
 
 msgid "Video"
-msgstr ""
+msgstr "Відео"
 
 msgid "Hash"
-msgstr ""
+msgstr "Хеш"
 
 msgid "Unable to compare files"
 msgstr "Неможливо порівняти файли"
@@ -3772,7 +3870,7 @@ msgid "File skipped"
 msgstr "Файл пропущений"
 
 msgid "Folder skipped"
-msgstr "Тека пропущена"
+msgstr "Папка пропущена"
 
 #, c-format
 msgid "Left only: %1"
@@ -3780,7 +3878,7 @@ msgstr "Лише ліворуч: %1"
 
 #, c-format
 msgid "Middle only: %1"
-msgstr ""
+msgstr "Лише в центрі: %1"
 
 #, c-format
 msgid "Right only: %1"
@@ -3788,13 +3886,13 @@ msgstr "Лише праворуч: %1"
 
 #, c-format
 msgid "Does not exist in %1"
-msgstr ""
+msgstr "Не існує в %1"
 
 msgid "Binary files are identical"
-msgstr "Бінарні файли не мають відмінностей"
+msgstr "Двійкові файли ідентичні"
 
 msgid "Binary files are different"
-msgstr "Бінарні файли відрізняються"
+msgstr "Двійкові файли відрізняються"
 
 msgid "Files are different"
 msgstr "Файли відрізняються"
@@ -3809,16 +3907,16 @@ msgid "Right Only"
 msgstr "Лише праворуч"
 
 msgid "Middle Only"
-msgstr ""
+msgstr "Лише в центрі"
 
 msgid "No item in left"
-msgstr ""
+msgstr "Немає елемента ліворуч"
 
 msgid "No item in right"
-msgstr ""
+msgstr "Немає елемента праворуч"
 
 msgid "No item in middle"
-msgstr ""
+msgstr "Немає елемента в центрі"
 
 msgid "Error"
 msgstr "Помилка"
@@ -3827,34 +3925,61 @@ msgid "Text files are identical"
 msgstr "Текстові файли однакові"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (У центрі та справа однакові)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Зліва та справа однакові)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Зліва та У центрі однакові)"
 
 msgid "Text files are different"
 msgstr "Текстові файли різні"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "Файли зображень однакові"
 
 msgid "Image files are different"
-msgstr ""
+msgstr "Файли зображень відрузняються"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "Файли відрузняються (вираз: %1)"
 
 #, c-format
 msgid "Group%d"
+msgstr "Група%d"
+
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
+msgstr ""
+
+msgid "Renamed"
+msgstr ""
+
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
+msgstr ""
+
+#, c-format
+msgid "(%1 items)"
+msgstr ""
+
+#, c-format
+msgid "%1 (set %2): "
 msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "Пройшло часу: %ld мс"
+msgstr "Витрачений час: %ld мс"
 
 msgid "1 item selected"
 msgstr "Вибраний 1 елемент"
@@ -3864,22 +3989,22 @@ msgid "%1 items selected"
 msgstr "Вибрані елементи: %1"
 
 msgid "Filename or folder name."
-msgstr "Назва файлу або теки."
+msgstr "Ім'я файлу або папки."
 
 msgid "Subfolder name when subfolders are included."
-msgstr "Назви підтек, якщо вони включені."
+msgstr "Імена вкладених папок, якщо вкладені папки включені."
 
 msgid "Comparison result, long form."
 msgstr "Результат порівняння, довга форма."
 
 msgid "Left side modification date."
-msgstr "Час зміни файлу ліворуч."
+msgstr "Дата змін з лівої сторони."
 
 msgid "Right side modification date."
-msgstr "Час зміни файлу праворуч."
+msgstr "Дата змін з правої сторони."
 
 msgid "Middle side modification date."
-msgstr ""
+msgstr "Дата змін у центрі."
 
 msgid "File's extension."
 msgstr "Розширення файлу."
@@ -3891,7 +4016,7 @@ msgid "Right file size in bytes."
 msgstr "Розмір правого файлу у байтах."
 
 msgid "Middle file size in bytes."
-msgstr ""
+msgstr "Розмір файлу в центрі у байтах."
 
 msgid "Left file size abbreviated."
 msgstr "Розмір лівого файлу (скор.)"
@@ -3900,16 +4025,16 @@ msgid "Right file size abbreviated."
 msgstr "Розмір правого файлу (скор.)"
 
 msgid "Middle file size abbreviated."
-msgstr ""
+msgstr "Скорочений розмір файлу в центрі."
 
 msgid "Left side creation time."
-msgstr "Час створення файлу ліворуч."
+msgstr "Час створення лівої сторони."
 
 msgid "Right side creation time."
-msgstr "Час створення файлу праворуч."
+msgstr "Час створення правої сторони."
 
 msgid "Middle side creation time."
-msgstr ""
+msgstr "Час створення центаральної сторони."
 
 msgid "Tells which side has newer modification date."
 msgstr "Повідомляє, з якого боку зміни новіші."
@@ -3921,19 +4046,19 @@ msgid "Right side file version, only for some file types."
 msgstr "Версія файлу праворуч, лише для деяких типів файлів."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Версія файлу в центрі, лише для деяких типів файлів."
 
 msgid "Short comparison result."
 msgstr "Результат швидкого порівняння."
 
 msgid "Left side attributes."
-msgstr "Атрибути ліворуч."
+msgstr "Атрибути лівої сторони."
 
 msgid "Right side attributes."
-msgstr "Атрибути праворуч."
+msgstr "Атрибути правої сторони."
 
 msgid "Middle side attributes."
-msgstr ""
+msgstr "Атрибути центру."
 
 msgid "Left side file EOL type."
 msgstr "Позначка закінчення рядка для лівого файлу."
@@ -3942,33 +4067,32 @@ msgid "Right side file EOL type."
 msgstr "Позначка закінчення рядка для правого файлу."
 
 msgid "Middle side file EOL type."
-msgstr ""
+msgstr "Позначка закінчення рядка для файлу в центрі."
 
 msgid "Left side encoding."
-msgstr "Кодування ліворуч."
+msgstr "Кодування лівої сторони."
 
 msgid "Right side encoding."
-msgstr "Кодування праворуч."
+msgstr "Кодування правої сторони."
 
 msgid "Middle side encoding."
-msgstr ""
+msgstr "Кодування центру."
 
 msgid "Number of ignored differences in file. Ignored and cannot be merged."
 msgstr ""
-"Кількість ігнорованих відмінностей у файлі. Ці відмінності були ігноровані "
-"WinMerge і не можуть бути опрацьовані."
+"Кількість ігнорованих відмінностей у файлі. Ці відмінності були ігноровані WinMerge і не можуть бути опрацьовані."
 
 msgid "Number of differences in file (excluding ignored)."
 msgstr "Кількість відмінностей у файлі. Ігноровані відмінності не враховані."
 
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Показати зірочку (*) якщо файл бінарний."
+msgstr "Показати зірочку (*) якщо файл двійковий."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "Ім'я плагіна розпакувальника або конвеєра."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "Ім'я плагіна попереднього порівняння або конвеєра."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3976,7 +4100,7 @@ msgstr "Порівняння %1 з %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Порівняння %1 з %2 та %3"
 
 msgid "Comma-separated list"
 msgstr "Список, розділений комами"
@@ -4002,10 +4126,10 @@ msgstr ""
 "%1"
 
 msgid "Report created successfully."
-msgstr "Звіт успішно створений."
+msgstr "Звіт успішно створено."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "Неможливо додати точку синхронізації в цьому рядку."
 
 msgid "Same file is opened in both panes."
 msgstr "На обох панелях відкритий той самий файл."
@@ -4013,36 +4137,55 @@ msgstr "На обох панелях відкритий той самий фай
 msgid "Selected files are identical."
 msgstr "Вибрані файли ідентичні."
 
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"Checking binary identity..."
+msgstr ""
+"Вибрані файли ідентичні (з поточними налаштуваннями).\r\n"
+"Перевірка двійкової ідентичності..."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But binary comparison failed."
+msgstr ""
+"Вибрані файли ідентичні (з поточними налаштуваннями).\r\n"
+"Але двійкове порівняння не вдалося."
+
+msgid "Selected files are identical (binary match)."
+msgstr "Вибрані файли однакові (двійкове співпадіння)."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But differ at the binary level."
+msgstr ""
+"Вибрані файли ідентичні (з поточними налаштуваннями).\r\n"
+"Але відрізняються на двійковому рівні."
+
 msgid "An error occurred while comparing files."
 msgstr "При порівнянні файлів виникла помилка."
 
 msgid "Could not create temporary files. Check your temporary path settings."
-msgstr ""
-"Неможливо створити тимчасові файли. Перевірте налаштування для шляхів з "
-"тимчасовими файлами."
+msgstr "Не вдалося створити тимчасові файли. Перевірте налаштування шляхів для тимчасових файлів."
 
 msgid ""
 "Files use different EOL.\n"
 "\n"
 "Treat all EOL as equivalent?\n"
 "\n"
-"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of "
-"Options."
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "Ці файли мають різні типи позначок закінчень рядка.\n"
 "\n"
-"Хочете, щоб в цьому порівнянні вони ігнорувалися (вважалися "
-"рівнозначними) ?\n"
+"Хочете, щоб в цьому порівнянні вони ігнорувалися (вважалися рівнозначними) ?\n"
 "\n"
-"Увага: Якщо вас не цікавлять розходження в закінченнях рядка, налаштуйте "
-"опцію 'Нехтувати різницею в закінченнях рядків' на вкладці Порівняння в "
-"Налаштуваннях."
+"Увага: Якщо вас не цікавлять розходження в закінченнях рядка, налаштуйте опцію 'Нехтувати різницею в закінченнях "
+"рядків' на вкладці Порівняння в Налаштуваннях."
 
 msgid "Selected folder is invalid."
-msgstr "Неможливо відкрити вибрану теку."
+msgstr "Вибрана папка є недійсною."
 
 msgid "Cannot open a binary file in Editor."
-msgstr "Неможливо відкрити бінарний файл у редакторі."
+msgstr "Неможливо відкрити двійковий файл у редакторі."
 
 #, c-format
 msgid ""
@@ -4057,49 +4200,47 @@ msgstr ""
 "з іншої сторони і відкрити обидві?"
 
 msgid "Copy all differences to other file?"
-msgstr ""
+msgstr "Скопіювати всі відмінності в інший файл?"
 
 msgid "Move to next file?"
-msgstr ""
+msgstr "Перейти до наступного файлу?"
 
 msgid "Move to previous file?"
-msgstr ""
+msgstr "Перейти до попереднього файлу?"
 
 msgid "Move to next page?"
-msgstr ""
+msgstr "Перейти до наступної сторінки?"
 
 msgid "Move to previous page?"
-msgstr ""
+msgstr "Перейти до попередньої сторінки?"
 
 msgid "Move to first file?"
-msgstr ""
+msgstr "Перейти до першого файлу?"
 
 msgid "Move to last file?"
-msgstr ""
+msgstr "Перейти до останнього файлу?"
 
 #, c-format
 msgid ""
 "Different codepages: left (cp%d), right (cp%d).\n"
-"Display in codepage (better display) or default Windows codepage (safer "
-"merging)?\n"
+"Display in codepage (better display) or default Windows codepage (safer merging)?\n"
 "(Recommended: default Windows codepage)"
 msgstr ""
 "Різні кодування: лівий файл - (cp%d), правий файл - (cp%d).\n"
-"Кожний з файлів може бути показаний в своєму кодуванні, але їхнє злиття або "
-"копіювання може пошкодити інформацію.\n"
+"Кожний з файлів може бути показаний в своєму кодуванні, але їхнє злиття або копіювання може пошкодити інформацію.\n"
 "Показати обидва файли в системному кодуванні (рекомендується)?"
 
 msgid "Information lost due to encoding errors: both files"
 msgstr "Інформація втрачена через помилкове кодування: обидва файли"
 
 msgid "Information lost due to encoding errors: first file"
-msgstr ""
+msgstr "Інформація втрачена через помилкове кодування: перший файл"
 
 msgid "Information lost due to encoding errors: second file"
-msgstr ""
+msgstr "Інформація втрачена через помилкове кодування: другий файл"
 
 msgid "Information lost due to encoding errors: third file"
-msgstr ""
+msgstr "Інформація втрачена через помилкове кодування: третій файл"
 
 msgid "No difference"
 msgstr "Нема відмінностей"
@@ -4116,43 +4257,45 @@ msgid "Cannot find string \"%s\"."
 msgstr "Не вдалося знайти рядок \"%s\"."
 
 msgid "Entering Merge Mode. Press F9 to turn off."
-msgstr ""
+msgstr "Переход у режим злиття. Натисніть F9, щоб вимкнути."
 
 #, c-format
 msgid ""
 "Automatic merges: %1\n"
 "Unresolved conflicts: %2"
 msgstr ""
+"Автоматичних злиттів: %1\n"
+"Нерозв'язаних конфліктів: %2"
 
 msgid "Codepage change merged."
-msgstr ""
+msgstr "Зміни в кодуванні були об'єднані."
 
 msgid "Codepage changes are conflicting."
-msgstr ""
+msgstr "Конфліктують зміни в кодуванні."
 
 msgid "EOL change merged."
-msgstr ""
+msgstr "Зміни в EOL були об'єднані."
 
 msgid "EOL changes are conflicting."
-msgstr ""
+msgstr "Конфліктують зміни в EOL."
 
 msgid "Location Pane"
-msgstr "Місця розташування"
+msgstr "Панель позицій"
 
 msgid "Diff Pane"
-msgstr "Відмінності"
+msgstr "Пане&ль відмінностей"
 
 msgid "Patch file written."
-msgstr "Латка успішно записана."
+msgstr "Файл патча записано."
 
 msgid "First item not found!"
-msgstr ""
+msgstr "Перший елемент не знайдено!"
 
 msgid "Second item not found!"
-msgstr ""
+msgstr "Другий елемент не знайдено!"
 
 msgid "Patch file already exists. Overwrite?"
-msgstr "Латка вже існує. Хочете перезаписати її?"
+msgstr "Файл патча вже існує. Перезаписати?"
 
 #, c-format
 msgid "[%1 files selected]"
@@ -4179,7 +4322,7 @@ msgid "Specify an output file."
 msgstr "Вказати кінцевий файл."
 
 msgid "Cannot create patch from binary files."
-msgstr "Неможливо створити латку з двійкових файлів."
+msgstr "Неможливо створити патч з двійкових файлів."
 
 msgid ""
 "Save all files first.\n"
@@ -4188,10 +4331,10 @@ msgid ""
 msgstr ""
 "Спочатку збережіть всі файли.\n"
 "\n"
-"Створення латки вимагає збереження усіх змін."
+"Створення патча вимагає збереження усіх змін."
 
 msgid "Folder does not exist."
-msgstr "Тека не існує."
+msgstr "Папка не існує."
 
 msgid ""
 "Archive support not enabled.\n"
@@ -4200,9 +4343,8 @@ msgid ""
 msgstr ""
 "Підтримка архівів не ввімкнена.\n"
 " \n"
-"Не знайдені всі необхідні компоненти (7-Zip і/або Merge7z*.dll) . \n"
-"Подивіться інструкцію, щоб довідатися більше про підтримку архівів і як її "
-"ввімкнути."
+"Не знайдені всі необхідні компоненти (7-Zip і/або Merge7z*.dll). \n"
+"Подивіться інструкцію, щоб довідатися більше про підтримку архівів і як її ввімкнути."
 
 msgid "Select file for export"
 msgstr "Вибрати файл для експорту"
@@ -4211,23 +4353,23 @@ msgid "Select file for import"
 msgstr "Вибрати файл для імпорту"
 
 msgid "Options imported from file."
-msgstr "Опції, імпортовані з файлу."
+msgstr "Налаштування, імпортовані з файлу."
 
 msgid "Options exported to file."
-msgstr "Опції, експортовані в файл."
+msgstr "Налаштування, експортовані в файл."
 
 msgid "Failed to import options from file."
-msgstr "Помилка імпорту опцій з файлу."
+msgstr "Помилка імпорту налаштувань з файлу."
 
 msgid "Failed to write options to file."
-msgstr "Помилка експорту опцій в файл."
+msgstr "Помилка експорту налаштувань в файл."
 
 msgid ""
 "Close multiple compare windows?\n"
 "\n"
 "Continue?"
 msgstr ""
-"Ви хочете закрити закрити відразу кілька вікон порівняння.\n"
+"Ви хочете закрити відразу кілька вікон порівняння?\n"
 "\n"
 "Продовжити?"
 
@@ -4239,14 +4381,14 @@ msgid "Binary"
 msgstr "Двійковий"
 
 msgid "None"
-msgstr "Нема"
+msgstr "Немає"
 
 #, c-format
 msgid "Marker Color %d"
-msgstr ""
+msgstr "Колір маркера %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Новий шаблон"
 
 msgid "Type"
 msgstr "Тип"
@@ -4258,146 +4400,184 @@ msgid ""
 "\n"
 "Difference in Current Line (F4)"
 msgstr ""
+"\n"
+"Відмінність у поточному рядку (F4)"
 
 msgid ""
 "\n"
 "Options"
 msgstr ""
+"\n"
+"Налаштування"
 
 msgid ""
 "\n"
 "Refresh (F5)"
 msgstr ""
+"\n"
+"Оновити (F5)"
 
 msgid ""
 "\n"
 "Previous Difference (Alt+Up)"
 msgstr ""
+"\n"
+"Попередня відмінність (Alt+Up)"
 
 msgid ""
 "\n"
 "Next Difference (Alt+Down)"
 msgstr ""
+"\n"
+"Наступна відмінність (Alt+Down)"
 
 msgid ""
 "\n"
 "Previous Conflict (Alt+Shift+Up)"
 msgstr ""
+"\n"
+"Попередній конфлікт (Alt+Shift+Up)"
 
 msgid ""
 "\n"
 "Next Conflict (Alt+Shift+Down)"
 msgstr ""
+"\n"
+"Наступний конфлікт (Alt+Shift+Down)"
 
 msgid ""
 "\n"
 "First Difference (Alt+Home)"
 msgstr ""
+"\n"
+"Перша відмінність (Alt+Home)"
 
 msgid ""
 "\n"
 "Current Difference (Alt+Enter)"
 msgstr ""
+"\n"
+"Поточна відмінність (Alt+Enter)"
 
 msgid ""
 "\n"
 "Last Difference (Alt+End)"
 msgstr ""
+"\n"
+"Остання відмінність (Alt+End)"
 
 msgid ""
 "\n"
 "Copy to Right (Alt+Right)"
 msgstr ""
+"\n"
+"Копіювати праворуч (Alt+Right)"
 
 msgid ""
 "\n"
 "Copy to Left (Alt+Left)"
 msgstr ""
+"\n"
+"Копіювати ліворуч (Alt+Left)"
 
 msgid ""
 "\n"
 "Copy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
+"\n"
+"Копіювати праворуч і перейти далі (Ctrl+Alt+Right)"
 
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
+"\n"
+"Копіювати ліворуч і перейти далі (Ctrl+Alt+Left)"
 
 msgid ""
 "\n"
 "Copy All to Right"
 msgstr ""
 "\n"
-"Скопіювати все на праву панель"
+"Копіювати все праворуч"
 
 msgid ""
 "\n"
 "Copy All to Left"
 msgstr ""
 "\n"
-"Скопіювати все на ліву панель"
+"Копіювати все ліворуч"
 
 msgid ""
 "\n"
 "Auto Merge (Ctrl+Alt+M)"
 msgstr ""
+"\n"
+"Автоматичне злиття (Ctrl+Alt+M)"
 
 msgid ""
 "\n"
 "First File"
 msgstr ""
+"\n"
+"Перший файл"
 
 msgid ""
 "\n"
 "Next File (Ctrl+F8)"
 msgstr ""
+"\n"
+"Наступний файл (Ctrl+F8)"
 
 msgid ""
 "\n"
 "Last File"
 msgstr ""
+"\n"
+"Останній файл"
 
 msgid ""
 "\n"
 "Previous File (Ctrl+F7)"
 msgstr ""
+"\n"
+"Попередній файл (Ctrl+F7)"
 
 msgid "Adapted unpacker applied to both files (one needs extension)."
-msgstr ""
-"Автоматичний підбір розпакувальника (вкажіть розширення хоча б одного з "
-"файлів)."
+msgstr "Автоматичний підбір розпакувальника (вкажіть розширення хоча б одного з файлів)."
 
 msgid "No Prediffer (Normal)"
-msgstr "Без попереднього порівняння"
+msgstr "Без попереднього порівняння (звичайне)"
 
 msgid "Suggested Plugins"
-msgstr "Рекомендовані доповнення"
+msgstr "Рекомендовані плагіни"
 
 msgid "All Plugins"
-msgstr ""
+msgstr "Усі плагіни"
 
 #, c-format
 msgid "Private Build: %1"
 msgstr "Приватний білд: %1"
 
 msgid "Your software is up to date."
-msgstr ""
+msgstr "У вас встановлена актуальна версія програми."
 
 #, c-format
 msgid ""
 "WinMerge update available.\n"
 "%1 available (you have %2). Download now?"
 msgstr ""
+"Доступне оновлення WinMerge.\n"
+"%1 доступне (у вас %2). Завантажити зараз?"
 
 msgid " - All rights reserved."
-msgstr ""
+msgstr " - Усі права захищені."
 
 msgid "Failed to download latest version information"
-msgstr ""
+msgstr "Не вдалося завантажити інформацію про останню версію"
 
 msgid "Plugin Settings"
-msgstr "Налаштування доповнення"
+msgstr "Налаштування плагіну"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH не знайдений - .sct сценарії вимкнуті"
@@ -4407,7 +4587,7 @@ msgid "G&o to Line %1"
 msgstr "Перейти до &рядка %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "Перейти до переміщеного рядка\tCtrl+Shift+G"
 
 msgctxt "Options dialog|General|Open dialog Auto completion"
 msgid "Disabled"
@@ -4435,88 +4615,91 @@ msgid "Shell"
 msgstr "Shell"
 
 msgid "Close &Left Tabs"
-msgstr ""
+msgstr "Закрити вкладки зліва"
 
 msgid "Close R&ight Tabs"
-msgstr ""
+msgstr "Закрити вкладки справа"
 
 msgid "Close &Other Tabs"
-msgstr ""
+msgstr "Закрити інші вкладки"
 
 msgid "Enable &Auto Max Width"
-msgstr ""
+msgstr "Увімкнути автоматичну максимальну ширину"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "Ве&бсторінка"
 
 msgid "W&rap Text"
-msgstr ""
+msgstr "П&ереносити текст"
 
 #, c-format
 msgid "%1 is not installed."
-msgstr ""
+msgstr "%1 не встановлено."
 
 #, c-format
 msgid "%1 does not exist. Create it?"
-msgstr ""
+msgstr "%1 не існує. Створити?"
 
 msgid "Failed to create folder."
-msgstr ""
+msgstr "Не вдалося створити папку."
 
 msgid ""
 "Parameters:\n"
 "$file: Current file path\n"
 "$linenum: Current cursor line number"
 msgstr ""
+"Параметри:\n"
+"$file: Поточний шлях до файлу\n"
+"$linenum: Поточний номер рядка курсора"
 
 msgid "default"
-msgstr ""
+msgstr "за замовчуванням"
 
 msgid "minimal"
-msgstr ""
+msgstr "мінімально"
 
 msgid "patience"
-msgstr ""
+msgstr "терплячо"
 
 msgid "histogram"
-msgstr ""
+msgstr "гістограма"
 
 msgid "none"
-msgstr ""
+msgstr "немає"
 
 msgid "GDI"
-msgstr ""
+msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr ""
+msgstr "DirectWrite за замовчуванням"
 
 msgid "DirectWrite Aliased"
-msgstr ""
+msgstr "DirectWrite Aliased"
 
 msgid "DirectWrite GDI Classic"
-msgstr ""
+msgstr "DirectWrite GDI Classic"
 
 msgid "DirectWrite GDI Natural"
-msgstr ""
+msgstr "DirectWrite GDI Natural"
 
 msgid "DirectWrite Natural"
-msgstr ""
+msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr ""
+msgstr "DirectWrite Natural Symmetric"
 
 msgctxt "Options dialog|General|Close windows with Esc"
 msgid "Disabled"
 msgstr "Вимкнено"
 
 msgid "MDI child window or main window"
-msgstr ""
+msgstr "Дочірнє вікно MDI або головне вікно"
 
 msgid "MDI child window only"
-msgstr ""
+msgstr "Лише дочірнє вікно MDI"
 
 msgid "Close main window if only one MDI child window"
-msgstr ""
+msgstr "Закривати головне вікно, якщо є лише одне дочірнє вікно MDI"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -4536,31 +4719,31 @@ msgstr "Розмір блоку"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
-msgstr "Альфа-блок"
+msgstr "Прозорість блоку"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "CD Threshold"
-msgstr "Межа CD"
+msgstr "Поріг розрізнення кольорів"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Відстеження Ins/Del"
+msgstr "Виявлення вставок/видалень"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
-msgstr "Нічого"
+msgstr "Немає"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Вертикально"
+msgstr "Вертикальних"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Горизонтально"
+msgstr "Горизонтальних"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
-msgstr "Оверлей"
+msgstr "Накладання"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
@@ -4572,11 +4755,11 @@ msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
-msgstr "Альфа-змішування"
+msgstr "Змішування прозорості"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Animation"
-msgstr "Альфа-анімація"
+msgstr "Анімація прозорості"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
@@ -4588,64 +4771,67 @@ msgstr "Сторінка:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr ""
+msgstr "Точка: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr ""
+msgstr "Відстань: %g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr ""
+msgstr "Відстань: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
-msgstr ""
+msgstr "Сторінка: %d/%d  Масштаб: %d%%  %dx%dпікс  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "Rc: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "Перевернуто: %s  "
 
 #, c-format
 msgid "Rotated: %d  "
-msgstr ""
+msgstr "Повернуто: %d  "
 
 msgid "All pages"
-msgstr ""
+msgstr "Всі сторінки"
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<Редагувати тут>"
 
 msgid "No differences found to select"
-msgstr ""
+msgstr "Не знайдено відмінностей для вибору"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Не знайдено відмінностей для додавання як фільтр підміни"
 
 msgid "The pair is already in the Substitution Filters list"
-msgstr ""
+msgstr "Пара вже є в списку фільтрів підміни"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Додати цю зміну до фільтрів підміни?"
 
 msgid "Text only"
-msgstr ""
+msgstr "Тільки текст"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Порядкова позиція та текст"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Послівна позиція та текст"
 
-msgid "AppData folder"
-msgstr ""
+msgid "AppData (Roaming) folder"
+msgstr "Папка AppData (Roaming)"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Папка встановлення"
+
+msgid "Documents folder"
+msgstr "Папка Документів"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -4655,183 +4841,186 @@ msgid "Allow only one instance to run"
 msgstr "Дозволити запуск лише однієї копії"
 
 msgid "Allow only one instance; wait for termination"
-msgstr ""
+msgstr "Дозволити лише одну копію; чекати завершення"
 
 msgctxt "Options dialog|General|Auto-reload modified files"
 msgid "Disabled"
 msgstr "Вимкнено"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Тільки при активному вікні"
 
 msgid "Immediately"
-msgstr ""
+msgstr "Негайно"
 
 msgid "Al&l"
-msgstr ""
+msgstr "Ус&і"
 
+#  Context of the string - "Plugin type: Others". "Інший" is singular and it feets better.
 msgid "&Others"
-msgstr ""
+msgstr "&Інший"
 
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
-msgstr ""
+msgstr "Відсутня назва плагіна в конвеєрі: %1"
 
 #, c-format
 msgid "Missing quote in plugin pipeline: %1"
-msgstr ""
+msgstr "Відсутня лапка в конвеєрі плагіна: %1"
 
 #, c-format
 msgid "Plugin name '%1' already exists."
-msgstr ""
+msgstr "Плагін з назвою '%1' вже існує."
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Вкажіть аргументи плагіна"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Плагін не знайден або є недійсним: %1"
 
 #, c-format
 msgid "'%1' is not an unpacker plugin"
-msgstr ""
+msgstr "'%1' не є плагіном розпакувальника"
 
 #, c-format
 msgid "'%1' is not a prediffer plugin"
-msgstr ""
+msgstr "'%1' не є плагіном попереднього порівняння"
 
 #, c-format
 msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
-msgstr ""
+msgstr "Помилка при попередньому порівнянні '%1' з '%2'. Попереднє порівняння вимкнено."
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Кільцева залежність у конвеєрі плагінів: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "Обробник URL"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Розпакувальник файла"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Розпакувальник файли або папки"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Псевдонім для розпакувальника"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Псевдонім для попередньогр порівнювача"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Псевдонім для редактора сценаріїв"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Псевдонім для конвеєра плагінів '%1'"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Опис нового плагіна"
 
 msgid "All"
-msgstr ""
+msgstr "Все"
 
 msgid "1st"
-msgstr ""
+msgstr "1-й"
 
 msgid "2nd"
-msgstr ""
+msgstr "2-й"
 
 msgid "3rd"
-msgstr ""
+msgstr "3-й"
 
 msgid "1st and 2nd"
-msgstr ""
+msgstr "1-й та 2-й"
 
 msgid "1st and 3rd"
-msgstr ""
+msgstr "1-й та 3-й"
 
 msgid "2nd and 3rd"
-msgstr ""
+msgstr "2-й та 3-й"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Застосован Фільтр"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Порівняти %1"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Буфера обміну в %s"
 
 msgid ""
 "Clipboard history disabled.\r\n"
 "Enable: Windows logo key + V, then Turn on."
 msgstr ""
+"Історію буфера обміну вимкнено.\r\n"
+"Увімкнути: Win + V, потім увімкнути."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Ця сисмтема не підтримує історію буфера обміну."
 
 msgid "32-bit WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32-бітна версія WinMerge не підтримує порівняння з буфера обміну"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr ""
+msgstr "Середовище виконання WebView2 не встановлено. Завантажити?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Нове порівняння тексту"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Нове порівняння таблиць"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Нове двійкове порівняння"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Нове порівняння зображень"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Нове порівняння вебсторінки"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Порівняння буфера обміну"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Друк..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Поп&ередня сторінка"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Дві сторінки"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Одна сторінка"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Збільши&ти"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "З&меншити масштаб"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Порівняння..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Масштаб:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Блок відмінностей"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Відмінності у рядку"
 
 msgid "Line"
-msgstr ""
+msgstr "Рядок"
 
 msgid "Character"
-msgstr ""
+msgstr "Символ"
 
 msgid ""
 "\n"
@@ -4839,6 +5028,10 @@ msgid ""
 "(Right Button+Wheel Up)\n"
 "(Alt+Wheel Up)"
 msgstr ""
+"\n"
+"Попередня відмінність (Alt+Up)\n"
+"(Right Button+Wheel Up)\n"
+"(Alt+Wheel Up)"
 
 msgid ""
 "\n"
@@ -4846,6 +5039,9 @@ msgid ""
 "(Right Button+Wheel Down)\n"
 "(Alt+Wheel Down)"
 msgstr ""
+"\n"
+"Наступна відмінність (Alt+Down)(Right Button+Wheel Down)\n"
+"(Alt+Wheel Down)"
 
 msgid ""
 "\n"
@@ -4854,6 +5050,11 @@ msgid ""
 "(Alt+Wheel Right)\n"
 "(Alt+Shift+Wheel Down)"
 msgstr ""
+"\n"
+"Копіювати праворуч (Alt+Right)\n"
+"(Right Button+Wheel Right)\n"
+"(Alt+Wheel Right)\n"
+"(Alt+Shift+Wheel Down)"
 
 msgid ""
 "\n"
@@ -4862,6 +5063,11 @@ msgid ""
 "(Alt+Wheel Left)\n"
 "(Alt+Shift+Wheel Up)"
 msgstr ""
+"\n"
+"Копіювати ліворуч (Alt+Left)\n"
+"(Right Button+Wheel Left)\n"
+"(Alt+Wheel Left)\n"
+"(Alt+Shift+Wheel Up)"
 
 msgid ""
 "\n"
@@ -4869,6 +5075,10 @@ msgid ""
 "(Ctrl+Alt+Wheel Right)\n"
 "(Ctrl+Alt+Shift+Wheel Down)"
 msgstr ""
+"\n"
+"Копіювати праворуч і перейти далі (Ctrl+Alt+Right)\n"
+"(Ctrl+Alt+Wheel Right)\n"
+"(Ctrl+Alt+Shift+Wheel Down)"
 
 msgid ""
 "\n"
@@ -4876,304 +5086,315 @@ msgid ""
 "(Ctrl+Alt+Wheel Left)\n"
 "(Ctrl+Alt+Shift+Wheel Up)"
 msgstr ""
+"\n"
+"Копіювати ліворуч і перейти далі (Ctrl+Alt+Left)\n"
+"(Ctrl+Alt+Wheel Left)\n"
+"(Ctrl+Alt+Shift+Wheel Up)"
 
 #, c-format
 msgid "Comparing %1 with %2"
-msgstr ""
+msgstr "Порівняння  %1 з %2"
 
 #, c-format
 msgid "Comparing %1 with %2 and %3"
-msgstr ""
+msgstr "Порівняння  %1 з %2 та %3"
 
 msgid "Comparison completed"
-msgstr ""
+msgstr "Порівняння завершено"
 
 #, c-format
 msgid "Failed to compare %1 with %2: "
-msgstr ""
+msgstr "Не вдалося порівняти %1 із %2: "
 
 #, c-format
 msgid "Failed to compare %1 with %2 and %3: "
-msgstr ""
+msgstr "Не вдалося порівняти %1 із %2 та %3: "
 
 msgid "File saved"
-msgstr ""
+msgstr "Файл збережено"
 
 msgid "Copying files..."
-msgstr ""
+msgstr "Копіювання файлів..."
 
 msgid "Moving files..."
-msgstr ""
+msgstr "Переміщення файлів..."
 
 msgid "Deleting files..."
-msgstr ""
+msgstr "Видалення файлів..."
 
 msgid "Recycle Bin"
-msgstr ""
+msgstr "Кошик"
 
 msgid "Permanently deleted"
-msgstr ""
+msgstr "Видалено остаточно"
 
 msgid "File operation completed successfully"
-msgstr ""
+msgstr "Операція над файлами виконана успішно"
 
 msgid "File operation canceled"
-msgstr ""
+msgstr "Операція над файлами скасована"
 
 msgid "No error"
-msgstr ""
+msgstr "Без помилок"
 
 msgid "Filter expression is empty"
-msgstr ""
+msgstr "Вираз фільтра порожній"
 
 msgid "Unknown character in filter expression"
-msgstr ""
+msgstr "Невідомий символ у виразі фільтра"
 
 msgid "Unterminated string literal"
-msgstr ""
+msgstr "Незавершений рядковий літерал"
 
 msgid "Syntax error in filter expression"
-msgstr ""
+msgstr "Синтаксична помилка у виразі фільтра"
 
 msgid "Failed to parse filter expression"
-msgstr ""
+msgstr "Не вдалося розібрати вираз фільтра"
 
 msgid "Invalid literal value"
-msgstr ""
+msgstr "Неприпустиме значення літерала"
 
 msgid "Invalid regular expression"
-msgstr ""
+msgstr "Неприпустимий регулярний вираз"
 
 msgid "Undefined identifier"
-msgstr ""
+msgstr "Невизначений ідентифікатор"
 
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "Невірна кількість аргументів"
 
 msgid "Filter name not found"
-msgstr ""
+msgstr "Ім'я фільтра не знайдено"
 
 msgid "Division by zero in filter expression"
-msgstr ""
+msgstr "Ділення на нуль у виразі фільтра"
 
 msgid "Unknown error"
-msgstr ""
+msgstr "Невідома помилка"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "Неприпустимиа назва властивості"
 
 msgid "Equals"
-msgstr ""
+msgstr "Дорівнює"
 
 msgid "Does not equal"
-msgstr ""
+msgstr "Не дорівнює"
 
 msgid "Less than"
-msgstr ""
+msgstr "Менше ніж"
 
 msgid "Less than or equal to"
-msgstr ""
+msgstr "Менше або дорівнює"
 
 msgid "Greater than or equal to"
-msgstr ""
+msgstr "Більше або дорівнює"
 
 msgid "Greater than"
-msgstr ""
+msgstr "Більше ніж"
 
 msgid "Between"
-msgstr ""
+msgstr "В межах"
 
 msgid "Not Between"
-msgstr ""
+msgstr "Не в межах"
 
 msgid "Contains"
-msgstr ""
+msgstr "Містить"
 
 msgid "Not Contains"
-msgstr ""
+msgstr "Не містить"
 
 msgid "Contains (regex)"
-msgstr ""
+msgstr "Містить (регулярний вираз)"
 
 msgid "Not Contains (regex)"
-msgstr ""
+msgstr "Не містить (регулярний вираз)"
 
 msgid "Light"
-msgstr ""
+msgstr "Світла"
 
 msgid "Dark"
-msgstr ""
+msgstr "Темна"
 
 msgid "Follow system"
+msgstr "Як в системі"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr ""
 
 msgid "Prettification"
-msgstr ""
+msgstr "Форматування"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Витяг вмісту"
 
 msgid "Preview"
-msgstr ""
+msgstr "Попередній перегляд"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Запит даних"
 
 msgid "Validation"
-msgstr ""
+msgstr "Валідація"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "Декомпіляція"
 
 msgid "URL Handling"
-msgstr ""
+msgstr "Обробка URL"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "Декодування / Кодування"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "У верхній регістр"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "У нижній регістр"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Видалити дублікати рядків"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Порахувати дублікати рядків"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Сортувати рядки за зростанням"
 
 msgid "Sort Lines Descending"
-msgstr ""
+msgstr "Сортувати рядки за спаданням"
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "Обернути порядок стовпців"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "Обернути порядок рядків"
 
 msgid "Replace..."
-msgstr ""
+msgstr "Замінити..."
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Застосувати команду фільтра..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Токенізувати..."
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Обрізати пробіли"
 
 msgid "Select Columns..."
-msgstr ""
+msgstr "Вибрати стовпці..."
 
 msgid "Select Lines..."
-msgstr ""
+msgstr "Вибрати рядки..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Вставити дату"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Вставити час"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Застосувати патч..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Ігнорувати стовпці"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Ігнорувати коментарі (C-подібні мови)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "Ігнорувати поля CSV"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "Ігнорувати поля TSV"
 
 msgid "Ignore Leading Line Numbers"
-msgstr ""
+msgstr "Ігнорувати початкові номери рядків"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "Застосувати фільтри підміни переднього порівнювача"
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "Форматувати HTML"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "Форматувати JSON"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "Форматувати XML"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "Форматувати YAML"
 
 msgid "Preview Graphviz"
-msgstr ""
+msgstr "Попередній перегляд Graphviz"
 
 msgid "Preview Markdown"
-msgstr ""
+msgstr "Попередній перегляд Markdown"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "Попередній перегляд PlantUML"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "Запит даних CSV..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "Запит даних TSV..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "Запит даних JSON..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "Запит даних YAML..."
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "Перевірити HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Дизасемблювати JVM-байткод"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Дизасемблювати IL-код"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Дизасемблювати нативний код"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Перетворити текст за допомогою AI..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Прибрати екранування у файлах властивостей Java"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Символи у верхній регістр"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Символи у нижній регістр"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Видалити дублікати рядків"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Порахувати дублікати рядків"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Сортувати рядки за зростанням"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Сортувати рядки за спаданням"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Обернути порядок стовпців"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Обернути порядок рядків"
 
 msgid ""
 "Replace text.\r\n"
@@ -5185,6 +5406,14 @@ msgid ""
 " -e - regex\r\n"
 " -s - use Substitution Filters"
 msgstr ""
+"Замінити текст.\r\n"
+"Використання: Replace [-i] [-e] FIND REPLACE\r\n"
+" або: Replace -s\r\n"
+" FIND - текст для пошуку\r\n"
+" REPLACE - текст для заміни\r\n"
+" -i - ігнорувати регістр (тільки для -e)\r\n"
+" -e - регулярний вираз\r\n"
+" -s - використовувати фільтри підміни"
 
 #, c-format
 msgid ""
@@ -5192,15 +5421,21 @@ msgid ""
 "Usage: ExecFilterCommand COMMAND\r\n"
 " COMMAND - command to execute. %1 = filename."
 msgstr ""
+"Застосувати фільтр.\r\n"
+"Використання: ExecFilterCommand COMMAND\r\n"
+" COMMAND - команда для виконання. %1 = ім'я файлу."
 
 msgid ""
 "Tokenize. \r\n"
 "Usage: Tokenize PATTERNS\r\n"
 " PATTERNS - regex (e.g. [^\\w]+)"
 msgstr ""
+"Токенізувати.\r\n"
+"Використання: Tokenize PATTERNS\r\n"
+" PATTERNS - регулярний вираз (наприклад, [^\\w]+)"
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "Обрізати пробіли"
 
 msgid ""
 "Select columns.\r\n"
@@ -5213,6 +5448,15 @@ msgid ""
 " -g - enable global flag\r\n"
 " -e - use PATTERNS"
 msgstr ""
+"Вибрати стовпці.\r\n"
+"Використання: SelectColumns RANGES\r\n"
+" або: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+" RANGES - діапазони стовпців (-3,5-10,30-)\r\n"
+" PATTERNS - регулярний вираз\r\n"
+" -v - вибирати ті, що не підходять\r\n"
+" -i - ігнорувати регістр\r\n"
+" -g - увімкнути глобальний прапорець\r\n"
+" -e - використати PATTERNS"
 
 msgid ""
 "Select lines.\r\n"
@@ -5224,280 +5468,333 @@ msgid ""
 " -i - ignore case\r\n"
 " -e - use PATTERNS"
 msgstr ""
+"Вибрати рядки.\r\n"
+"Використання: SelectLines RANGES\r\n"
+" або: SelectLines [-v] [-i] -e PATTERNS\r\n"
+" RANGES - діапазони рядків (-3,5-10,30-)\r\n"
+" PATTERNS - регулярний вираз\r\n"
+" -v - вибирати ті, що не підходять\r\n"
+" -i - ігнорувати регістр\r\n"
+" -e - використати PATTERNS"
 
 msgid ""
 "HTML Prettier (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
+"Форматувальник HTML (tidy-html5).\r\n"
+"Аргументи: параметри командного рядка tidy."
 
 msgid ""
 "JSON Prettier (jq).\r\n"
 "Arguments: jq filter/command line options."
 msgstr ""
+"Форматувальник JSON (jq).\r\n"
+"Аргументи: jq фільтр/параметри командного рядка."
 
 msgid ""
 "XML Prettier (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
+"Форматувальник XML (tidy-html5).\r\n"
+"Аргументи: параметри командного рядка tidy."
 
 msgid ""
 "YAML Prettier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
+"Форматувальник YAML (yq).\r\n"
+"Аргументи: yq фільтр/параметри командного рядка."
 
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
 msgstr ""
+"Переглядач Graphviz.\r\n"
+"Аргументи: параметри командного рядка dot."
 
 msgid ""
 "Markdown Previewer.\r\n"
 "Arguments: md2html command line options."
 msgstr ""
+"Переглядач Markdown.\r\n"
+"Аргументи: параметри командного рядка md2html."
 
 msgid ""
 "PlantUML Previewer.\r\n"
 "Arguments: plantuml.jar command line options."
 msgstr ""
+"Переглядач PlantUML.\r\n"
+"Аргументи: параметри командного рядка plantuml.jar."
 
 msgid ""
 "CSV Querier (q).\r\n"
 "Arguments: SQL statement/q comannd line options."
 msgstr ""
+"Запитувач CSV (q).\r\n"
+"Аргументи: SQL-запит/параметри командного рядка q."
 
 msgid ""
 "TSV Querier (q).\r\n"
 "Arguments: SQL statement/q comannd line options."
 msgstr ""
+"Запитувач TSV (q).\r\n"
+"Аргументи: SQL-вираз/параметри командного рядка q."
 
 msgid ""
 "JSON Querier (jq).\r\n"
 "Arguments: jq filter/command line options."
 msgstr ""
+"Запитувач JSON (jq).\r\n"
+"Аргументи: jq фільтр/параметри командного рядка."
 
 msgid ""
 "YAML Querier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
+"Запитувач YAML (yq).\r\n"
+"Аргументи: yq фільтр/параметри командного рядка."
 
 msgid ""
 "HTML Validator (tidy-html5).\r\n"
 "Arguments: tidy command line options."
 msgstr ""
+"Валідатор HTML (tidy-html5).\r\n"
+"Аргументи: параметри командного рядка tidy."
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"
 "Arguments: javap command line options."
 msgstr ""
+"Дизасемблер JVM-байткоду (javap).\r\n"
+"Аргументи: параметри командного рядка javap."
 
 msgid ""
 "IL disassembler (ildasm).\r\n"
 "Arguments: ildasm command line options."
 msgstr ""
+"Дизасемблер IL (ildasm).\r\n"
+"Аргументи: параметри командного рядка ildasm."
 
 msgid ""
 "Native code disassembler (dumpbin).\r\n"
 "Arguments: dumpbin command line options."
 msgstr ""
+"Дизасемблер нативного коду (dumpbin).\r\n"
+"Аргументи: параметри командного рядка dumpbin."
 
 msgid ""
 "Content extractor (Apache Tika).\r\n"
 "Arguments: tika-app.jar command line options."
 msgstr ""
+"Витяг вмісту (Apache Tika).\r\n"
+"Аргументи: параметри командного рядка tika-app.jar."
 
 msgid "Apply patch (GNU patch)"
-msgstr ""
+msgstr "Застосувати патч (GNU patch)"
 
 msgid "Display MS Excel text content"
-msgstr ""
+msgstr "Показати текстовий вміст MS Excel"
 
 msgid "Display MS PowerPoint text content"
-msgstr ""
+msgstr "Показати текстовий вміст MS PowerPoint"
 
 msgid "Display MS Visio text content"
-msgstr ""
+msgstr "Показати текстовий вміст MS Visio"
 
 msgid "Display MS Word text content"
-msgstr ""
+msgstr "Показати текстовий вміст MS Word"
 
 msgid "Ignore columns - list from plugin name/argument"
-msgstr ""
+msgstr "Ігнорувати стовпці — список із назви/аргументу плагіна"
 
 msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
-msgstr ""
+msgstr "Ігнорувати коментарі в C, C++, PHP та JavaScript (//... і /* ... */)."
 
 msgid "Ignore fields - list from plugin name/argument"
-msgstr ""
+msgstr "Ігнорувати поля — список із назви/аргументу плагіна"
 
 msgid "Ignore leading line numbers (e.g., NC, BASIC)."
-msgstr ""
+msgstr "Ігнорувати початкові номери рядків (напр., NC, BASIC)."
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "Фільтр рядків попеднього порівняння"
 
 msgid "Date and time insertion"
-msgstr ""
+msgstr "Вставка дати та часу"
 
 msgid ""
 "HTTP URL Scheme Handler (curl).\r\n"
 "Arguments: curl command line options."
 msgstr ""
+"Обробник cхеми URL HTTP (curl).\r\n"
+"Аргументи: параметри командного рядка curl."
 
 msgid ""
 "Windows Registry URL Scheme Handler.\r\n"
 "Arguments: reg.exe command line options."
 msgstr ""
+"Обробник схеми URL реєстру Windows.\r\n"
+"Аргументи: параметри командного рядка reg.exe."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Базові текстові функції"
 
 msgid "AI-assisted text conversion"
-msgstr ""
+msgstr "Перетворення тексту за допомогою AI"
 
 msgid ""
 "Text converter (OpenAI API).\r\n"
 "Usage: AIConvertText PROMPT"
 msgstr ""
+"Конвертер тексту (OpenAI API).\r\n"
+"Використання: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Прибрати екранування та показати файли властивостей Java."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Параметри WinMerge плагіна CompareMSExcelFiles.sct"
 
 msgid "Extract workbook data to multiple files"
-msgstr ""
+msgstr "Витягти дані робочої книги в кілька файлів"
 
 msgid "Update external references (links)"
-msgstr ""
+msgstr "Оновити зовнішні посилання"
 
 msgid "Compare document properties"
-msgstr ""
+msgstr "Порівняти властивості документа"
 
 msgid "Compare names"
-msgstr ""
+msgstr "Порівняти імена"
 
 msgid "Compare cell values"
-msgstr ""
+msgstr "Порівняти значення клітинок"
 
 msgid "Compare worksheets as image (very slow)"
-msgstr ""
+msgstr "Порівняти аркуші як зображення (дуже повільно)"
 
 msgid " - Image split size: "
-msgstr ""
+msgstr " - Розмір поділу зображення: "
 
 msgid "Compare worksheets as HTML"
-msgstr ""
+msgstr "Порівняти аркуші як HTML"
 
 msgid "Compare formulas"
-msgstr ""
+msgstr "Порівняти формули"
 
 msgid "Compare texts in shapes"
-msgstr ""
+msgstr "Порівняти текст у фігурах"
 
 msgid "Compare headers and footers"
-msgstr ""
+msgstr "Порівняти верхні та нижні колонтитули"
 
 msgid ""
 "Cannot get Macros.\r\n"
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr ""
+"Не вдалося отримати макроси.\r\n"
+"Увімкніть опцію 'Довіряти доступ до проектів VBA' у налаштуваннях безпеки макросів MS Office."
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr "Замінити переноси рядків у формулах пробілами"
 
 msgid "Compare VBA macros"
-msgstr ""
+msgstr "Порівняти макроси VBA"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Параметри WinMerge плагіна CompareMSWordFiles.sct"
 
 msgid "Extract document data to multiple files"
-msgstr ""
+msgstr "Витягти дані документа в кілька файлів"
 
 msgid "Compare bookmarks"
-msgstr ""
+msgstr "Порівняти закладки"
 
 msgid "Compare text contents of documents"
-msgstr ""
+msgstr "Порівняти текстовий вміст документів"
 
 msgid "Compare documents as HTML file (very slow)"
-msgstr ""
+msgstr "Порівняти документи як HTML (дуже повільно)"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Параметри WinMerge плагіна CompareMSPowerPointFiles.sct"
 
 msgid "Extract slide data to multiple files"
-msgstr ""
+msgstr "Витягти дані слайдів у кілька файлів"
 
 msgid "Compare slides as image (very slow)"
-msgstr ""
+msgstr "Порівняти слайди як зображення (дуже повільно)"
 
 msgid "Compare texts in notes page"
-msgstr ""
+msgstr "Порівняти тексти на сторінці нотаток"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Параметри WinMerge плагіна CompareMSVisioFiles.sct"
 
 msgid "Extract page data to multiple files"
-msgstr ""
+msgstr "Витягти дані сторінок у кілька файлів"
 
 msgid "Compare pages as image (very slow)"
-msgstr ""
+msgstr "Порівняти сторінки як зображення (дуже повільно)"
 
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Параметри WinMerge плагіна PrediffLineFilter.sct"
 
 msgid "Delete"
-msgstr ""
+msgstr "Вилучити"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Увімкнено"
 
 msgid "Ignore Case"
-msgstr ""
+msgstr "Ігнорувати регістр"
 
 msgid "Use RegExp"
-msgstr ""
+msgstr "Використовувати Регулярні вирази"
 
 msgid "Find what"
-msgstr ""
+msgstr "Знайти"
 
 msgid "Replace with"
-msgstr ""
+msgstr "Замінити на"
 
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 msgid ""
 "Column Ranges to Ignore:\n"
 "e.g.) 3,10-20,32-33\n"
 msgstr ""
+"Діапазони стовпців для ігнорування:\n"
+"напр.) 3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter filename for patch '%1'"
-msgstr ""
+msgstr "Введіть ім'я файлу для патча '%1'"
 
 #, c-format
 msgid "File '%1' does not exist"
-msgstr ""
+msgstr "Файл '%1' не існує"
 
 msgid "Enter command line arguments for patch"
-msgstr ""
+msgstr "Введіть аргументи командного рядка для патча"
 
 #, c-format
 msgid "Enter folder name for patch '%1'"
-msgstr ""
+msgstr "Введіть ім'я папки для патча '%1'"
 
 #, c-format
 msgid "Folder '%1' does not exist"
-msgstr ""
+msgstr "Папка '%1' не існує"
 
 msgid "Do not use '-p0' for patch files with absolute paths"
-msgstr ""
+msgstr "Не використовуйте '-p0' для патч-файлів з абсолютними шляхами"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Параметри WinMerge плагіна AI.sct"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Введіть підказку (prompt)"
 
 #, c-format
 msgid ""
@@ -5505,21 +5802,24 @@ msgid ""
 "- Requires OpenAI registration (fees may apply).\r\n"
 "- Key stored in env var %1."
 msgstr ""
+"Введіть ключ OpenAI API.\r\n"
+"- Потрібна реєстрація в OpenAI (можливі збори).\r\n"
+"- Ключ зберігається в змінній оточення %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "Ім'я змінної оточення для ключа OpenAI API"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "Ключ OpenAI API"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Температура"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Максимальна довжина"
 
 msgid "Model"
-msgstr ""
+msgstr "Модель"
 
 msgid "OpenAI API key changed. Restart to apply."
-msgstr ""
+msgstr "Ключ OpenAI API змінено. Перезапустіть програму для застосування."

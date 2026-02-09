@@ -23,6 +23,7 @@
 #include "FilterErrorMessages.h"
 #include "FileFilterHelperMenu.h"
 #include "DirWatcher.h"
+#include "Environment.h"
 
 using std::vector;
 
@@ -250,6 +251,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 			return !bError;
 		};
 	m_ctlMaskEdit.Validate();
+	m_ctlMaskEdit.SetCueBanner(strutils::format_string1(_("e.g. %1"), _T("*.txt|fe:Size > 100KB")).c_str());
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -474,6 +476,18 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
 }
 
 /**
+ * @brief Get user filter path.
+ */
+static String GetUserPath()
+{
+	String userPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
+	if (userPath.empty())
+		userPath = paths::ConcatPath(GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? env::GetAppDataPath() : env::GetMyDocuments(), _T("WinMerge\\Filters"));
+	paths::normalize(userPath);
+	return userPath;
+}
+
+/**
  * @brief Called when user presses "New..." button.
  *
  * Asks filename for new filter from user (using standard
@@ -487,7 +501,8 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 	String globalPath = pGlobalFileFilter->GetGlobalFilterPathWithCreate();
-	String userPath = pGlobalFileFilter->GetUserFilterPathWithCreate();
+	String userPath = GetUserPath();
+	paths::CreateIfNeeded(userPath);
 
 	if (globalPath.empty() && userPath.empty())
 	{
@@ -654,7 +669,8 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	if (SelectFile(GetSafeHwnd(), s, true, path.c_str(),_("Locate Filter File to Install"),
 		_("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||")))
 	{
-		String userPath = pGlobalFileFilter->GetUserFilterPathWithCreate();
+		String userPath = GetUserPath();
+		paths::CreateIfNeeded(userPath);
 		userPath = paths::ConcatPath(userPath, paths::FindFileName(s));
 		if (!CopyFile(s.c_str(), userPath.c_str(), TRUE))
 		{

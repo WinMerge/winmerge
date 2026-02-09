@@ -91,6 +91,17 @@ BOOL CValidatingEdit::PreTranslateMessage(MSG* pMsg)
 {
 	if (m_toolTip.m_hWnd)
 		m_toolTip.RelayEvent(pMsg);
+	if (pMsg->message == WM_KEYDOWN && (GetKeyState(VK_CONTROL) & 0x8000))
+	{
+		switch (pMsg->wParam)
+		{
+		case 'X': SendMessage(WM_CUT);   return TRUE;
+		case 'C': SendMessage(WM_COPY);  return TRUE;
+		case 'V': SendMessage(WM_PASTE); return TRUE;
+		case 'Z': SendMessage(EM_UNDO);  return TRUE;
+		case 'A': SendMessage(EM_SETSEL, 0, -1); return TRUE;
+		}
+	}
 	return CEdit::PreTranslateMessage(pMsg);
 }
 

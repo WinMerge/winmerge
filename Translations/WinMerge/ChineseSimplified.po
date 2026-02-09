@@ -562,6 +562,9 @@ msgstr "交换组&2与组3"
 msgid "Swap 1st | &3rd"
 msgstr "交换组1与组&3"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "显示过滤器栏(&Y)\tCtrl+Shift+L"
+
 msgid "Com&pare Statistics..."
 msgstr "比较结果统计(&P)..."
 
@@ -892,6 +895,9 @@ msgstr "分隔(&L)"
 msgid "Comp&are"
 msgstr "比较(&A)"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "与重命名/移动的条目比较(&E)"
+
 msgid "Compare in New &Window"
 msgstr "在新窗口比较(&W)"
 
@@ -965,7 +971,7 @@ msgid "Re&name"
 msgstr "改名(&N)"
 
 msgid "&Hide Items"
-msgstr "隐藏(&H)"
+msgstr "隐藏条目(&H)"
 
 msgid "&Open Left"
 msgstr "打开左侧(&O)"
@@ -1003,7 +1009,7 @@ msgid "Copy &Filenames"
 msgstr "复制文件名(&F)"
 
 msgid "Copy Items to Clip&board"
-msgstr "复制项目到剪贴板(&B)"
+msgstr "复制条目到剪贴板(&B)"
 
 msgid "Copy All Di&splayed Columns"
 msgstr "复制所有显示的列(&S)"
@@ -1047,8 +1053,11 @@ msgstr "复制完整路径(&C)"
 msgid "Copy &Filename"
 msgstr "复制文件名(&F)"
 
-msgid "&Edit Caption"
-msgstr "编辑标题(&E)"
+msgid "&Edit Caption\tF2"
+msgstr "编辑标题(&E)\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "编辑路径(&P)\tCtrl+L"
 
 msgid "&Open..."
 msgstr "打开(&O)..."
@@ -1494,6 +1503,30 @@ msgstr "附加属性(&)..."
 msgid "Add F&older Condition"
 msgstr "添加文件夹条件(&O)"
 
+msgid "&Files"
+msgstr "文件(&F)"
+
+msgid "0 files"
+msgstr "0 个文件"
+
+msgid "1 file or more"
+msgstr "1 个或更多文件"
+
+msgid "&Items"
+msgstr "条目(&T)"
+
+msgid "0 items"
+msgstr "0 个条目"
+
+msgid "1 item or more"
+msgstr "1 个或更多条目"
+
+msgid "&Total Size"
+msgstr "总大小(&T)"
+
+msgid "&Recursive"
+msgstr "递归(&R)"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "目标：任意（左/中/右）(&A)"
 
@@ -1595,6 +1628,63 @@ msgstr "比较属性(&A)"
 
 msgid "Compare C&ontents"
 msgstr "比较内容(&O)"
+
+msgid "&Clear Keys"
+msgstr "清除键(&C)"
+
+msgid "&Name"
+msgstr "名称(&N)"
+
+msgid "&Base name (without extension)"
+msgstr "基础名称（不含扩展名）(&B)"
+
+msgid "Normalized &Unicode Name"
+msgstr "规范化 Unicode 名称(&U)"
+
+msgid "&Date"
+msgstr "日期(&D)"
+
+msgid "&Hash (MD5)"
+msgstr "MD5 哈希值(&H)"
+
+msgid "Insert &replace() Function"
+msgstr "插入 replace() 函数(&R)"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "插入 regexReplace() 函数(&X)"
+
+msgid "Text &Normalization"
+msgstr "文本规范化(&N)"
+
+msgid "&Lowercase"
+msgstr "小写(&L)"
+
+msgid "&Uppercase"
+msgstr "大写(&U)"
+
+msgid "&Half-width"
+msgstr "半宽(&H)"
+
+msgid "&Full-width"
+msgstr "全宽(&F)"
+
+msgid "&Chinese Conversion"
+msgstr "中文转换(&C)"
+
+msgid "&Simplified Chinese"
+msgstr "简体中文(&S)"
+
+msgid "&Traditional Chinese"
+msgstr "繁体中文(&T)"
+
+msgid "&Japanese Conversion"
+msgstr "日文转换(&J)"
+
+msgid "&Hiragana"
+msgstr "平假名(&H)"
+
+msgid "&Katakana"
+msgstr "片假名(&K)"
 
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
@@ -1765,8 +1855,8 @@ msgid "Substitution Filters"
 msgstr "置换过滤器"
 
 msgid ""
-"Changes to the listed pairs below will be ignored or marked as "
-"insignificant. Patches are unaffected."
+"Changes to the listed pairs below will be ignored or marked as insignificant. Patches are "
+"unaffected."
 msgstr "面板中出现的下列变更组合将被忽略或视作无关紧要。补丁不受影响。"
 
 msgid "Enable"
@@ -1950,16 +2040,16 @@ msgid "&Use folder compare colors"
 msgstr "使用文件夹比较颜色(&U)"
 
 msgid "Items equal:"
-msgstr "相同的项目："
+msgstr "相同的条目："
 
 msgid "Items different:"
-msgstr "不同的项目："
+msgstr "不同的条目："
 
 msgid "Items missing:"
-msgstr "并非都存在的项目："
+msgstr "不存在的条目："
 
 msgid "Items filtered:"
-msgstr "过滤的项目："
+msgstr "过滤的条目："
 
 msgid "&Use custom system colors"
 msgstr "使用自定义系统颜色（某些用户界面元素可能不适用）(&U)"
@@ -1972,6 +2062,9 @@ msgstr "将删除的文件放入回收站(&S)"
 
 msgid "&External editor:"
 msgstr "外部编辑器(&E)："
+
+msgid "&Store user data in:"
+msgstr "用户数据存储(&S)："
 
 msgid "&Filter folder:"
 msgstr "过滤器路径(&F)："
@@ -2087,11 +2180,8 @@ msgstr "单词级别(&W)："
 msgid "W&ord break characters:"
 msgstr "单词分隔字符："
 
-msgid ""
-"Some messages can be hidden by the user. Press Reset to make all messages "
-"visible again."
-msgstr ""
-"WinMerge 允许隐藏一些常见的提示框。点“重置”按钮可以恢复显示隐藏的消息框。"
+msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
+msgstr "WinMerge 允许隐藏一些常见的提示框。点“重置”按钮可以恢复显示隐藏的消息框。"
 
 msgid "Reset"
 msgstr "重置"
@@ -2197,6 +2287,9 @@ msgstr "条目总计："
 
 msgid "Items compared:"
 msgstr "已比较条目："
+
+msgid "&Close"
+msgstr "关闭(&C)"
 
 msgid "Go to"
 msgstr "转到"
@@ -2443,9 +2536,6 @@ msgstr "结果："
 msgid "&Test"
 msgstr "测试(&T)"
 
-msgid "&Close"
-msgstr "关闭(&C)"
-
 msgid "Table"
 msgstr "表格"
 
@@ -2504,7 +2594,7 @@ msgid "Confirm Copy"
 msgstr "确认复制"
 
 msgid "Are you sure you want to copy XXX items?"
-msgstr "您确定要复制 XXX 个项目吗？"
+msgstr "您确定要复制 XXX 条目吗？"
 
 msgid "From left"
 msgstr "从左侧"
@@ -2576,7 +2666,7 @@ msgid "Jump List"
 msgstr "跳转列表"
 
 msgid "Clear all recent items"
-msgstr "清除所有最近的项目"
+msgstr "清除所有最近的条目"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2608,6 +2698,15 @@ msgstr "切换到二进制比较的最小值(&B) (MB)："
 
 msgid "Additional comparison condi&tions:"
 msgstr "附加的比较条件(&T)："
+
+msgid "&Rename/move detection:"
+msgstr "重命名/移动检测(&R)："
+
+msgid "Rename/move detection &keys:"
+msgstr "重命名/移动检测键(&K)："
+
+msgid "&Merge renamed items into a single item"
+msgstr "将重命名的条目合并到一个条目(&M)"
 
 msgid "File patterns:"
 msgstr "文件模式："
@@ -2830,12 +2929,11 @@ msgstr ""
 "WinMerge 文件夹比较"
 
 msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be "
-"redistributed under the conditions of the GNU General Public License - see "
-"the Help menu for details."
+"WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed "
+"under the conditions of the GNU General Public License - see the Help menu for details."
 msgstr ""
-"WinMerge 无任何担保。这是一款自由软件，可根据 GNU 通用公共许可证的条件重新分"
-"发，详情请查看帮助菜单。"
+"WinMerge 无任何担保。这是一款自由软件，可根据 GNU 通用公共许可证的条件重新分发，详情请查看帮助"
+"菜单。"
 
 msgid "&Abort"
 msgstr "中止(&A)"
@@ -2873,9 +2971,7 @@ msgstr "全部跳过(&A)"
 msgid "Don't display this &message again."
 msgstr "不再显示此消息(&M)"
 
-msgid ""
-"To make this message box visible, press Reset on the Message Boxes page in "
-"Options."
+msgid "To make this message box visible, press Reset on the Message Boxes page in Options."
 msgstr "要使该消息框可见，请在“选项”中的“消息框”页面点击重置。"
 
 msgid "Compare/Merge"
@@ -2956,12 +3052,8 @@ msgstr "WinMerge 工程文件 (*.WinMerge)|*.WinMerge||"
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "配置文件 (*.ini)|*.ini|所有文件 (*.*)|*.*||"
 
-msgid ""
-"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
-"*.*||"
-msgstr ""
-"文本文件 (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|所有文件 (*.*)|*."
-"*||"
+msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+msgstr "文本文件 (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|所有文件 (*.*)|*.*||"
 
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML 文件 (*.htm,*.html)|*.htm;*.html|所有文件 (*.*)|*.*||"
@@ -3009,7 +3101,7 @@ msgid "Compare Options"
 msgstr "比较选项"
 
 msgid "Hidden Items"
-msgstr "隐藏项目"
+msgstr "隐藏条目"
 
 msgid "Name"
 msgstr "名称"
@@ -3177,7 +3269,7 @@ msgstr "第 %1 项，共 %2 项"
 
 #, c-format
 msgid "Items: %1"
-msgstr "项目：%1"
+msgstr "条目：%1"
 
 msgid "Comparing items..."
 msgstr "正在比较条目..."
@@ -3487,8 +3579,8 @@ msgid ""
 "Some selected items are identical or skipped.\n"
 "Copy only items with differences?"
 msgstr ""
-"某些选中的项目是相同的或被跳过了。\n"
-"您是否只想复制有差异的项目？"
+"某些选中的条目是相同的或被跳过了。\n"
+"您是否只想复制有差异的条目？"
 
 #, c-format
 msgid "Left (%1)"
@@ -3543,7 +3635,7 @@ msgstr "您确定要复制？"
 
 #, c-format
 msgid "Are you sure you want to copy %d items?"
-msgstr "您确定要复制 %d 个项目？"
+msgstr "您确定要复制 %d 个条目？"
 
 #, c-format
 msgid ""
@@ -3568,7 +3660,7 @@ msgstr "您确定要移动？"
 
 #, c-format
 msgid "Are you sure you want to move %d items?"
-msgstr "您确定要移动 %d 个项目？"
+msgstr "您确定要移动 %d 个条目？"
 
 msgid "Confirm Move"
 msgstr "确认移动"
@@ -3785,7 +3877,7 @@ msgid "Unable to compare files"
 msgstr "无法比较文件"
 
 msgid "Item aborted"
-msgstr "项目取消"
+msgstr "条目已取消"
 
 msgid "File skipped"
 msgstr "文件已跳过"
@@ -3831,13 +3923,13 @@ msgid "Middle Only"
 msgstr "只存在中间"
 
 msgid "No item in left"
-msgstr "左侧无项目"
+msgstr "左侧无条目"
 
 msgid "No item in right"
-msgstr "右侧无项目"
+msgstr "右侧无条目"
 
 msgid "No item in middle"
-msgstr "中间无项目"
+msgstr "中间无条目"
 
 msgid "Error"
 msgstr "错误"
@@ -3871,16 +3963,43 @@ msgstr "文件不同（表达式：%1）"
 msgid "Group%d"
 msgstr "分组 %d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "已禁用"
+
+msgid "Detect renames"
+msgstr "检测重命名"
+
+msgid "Detect renames and moves"
+msgstr "检测重命名和移动"
+
+msgid "Renamed"
+msgstr "重命名的"
+
+msgid "Moved"
+msgstr "移动的"
+
+msgid "Renamed/Moved"
+msgstr "重命名的/移动的"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 条目)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (集合 %2)"
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "执行时间：%ld 毫秒"
 
 msgid "1 item selected"
-msgstr "选中了 1 个项目"
+msgstr "选中了 1 个条目"
 
 #, c-format
 msgid "%1 items selected"
-msgstr "选中了 %1 个项目"
+msgstr "选中了 %1 个条目"
 
 msgid "Filename or folder name."
 msgstr "文件名或文件夹名。"
@@ -4030,6 +4149,30 @@ msgstr "两侧打开的是同一个文件。"
 msgid "Selected files are identical."
 msgstr "选中的文件完全相同。"
 
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"Checking binary identity..."
+msgstr ""
+"所选的文件完全相同（基于当前设置）。\r\n"
+"正在检查二进制的等同性..."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But binary comparison failed."
+msgstr ""
+"所选的文件完全相同（基于当前设置）。\n"
+"但二进制比较失败。"
+
+msgid "Selected files are identical (binary match)."
+msgstr "所选的文件完全相同（且二进制匹配）。"
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But differ at the binary level."
+msgstr ""
+"所选的文件完全相同（基于当前设置）。\n"
+"但在二进制层面存在差异。"
+
 msgid "An error occurred while comparing files."
 msgstr "比较文件时发生错误。"
 
@@ -4041,8 +4184,7 @@ msgid ""
 "\n"
 "Treat all EOL as equivalent?\n"
 "\n"
-"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of "
-"Options."
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
 msgstr ""
 "文件了使用不同的换行符。\n"
 "\n"
@@ -4092,8 +4234,7 @@ msgstr "您是否要跳转到最后一个文件？"
 #, c-format
 msgid ""
 "Different codepages: left (cp%d), right (cp%d).\n"
-"Display in codepage (better display) or default Windows codepage (safer "
-"merging)?\n"
+"Display in codepage (better display) or default Windows codepage (safer merging)?\n"
 "(Recommended: default Windows codepage)"
 msgstr ""
 "左右两侧为不同代码页的文件 (左侧为 cp%d，右侧为 cp%d)。\n"
@@ -4159,10 +4300,10 @@ msgid "Patch file written."
 msgstr "补丁文件写入成功。"
 
 msgid "First item not found!"
-msgstr "1. 找不到项目！"
+msgstr "找不到第一个条目！"
 
 msgid "Second item not found!"
-msgstr "2. 找不到项目！"
+msgstr "找不到第二个条目！"
 
 msgid "Patch file already exists. Overwrite?"
 msgstr "补丁文件已经存在。是否覆盖？"
@@ -4691,11 +4832,14 @@ msgstr "逐行定位输入"
 msgid "Word-by-word position and text"
 msgstr "逐字定位输入"
 
-msgid "AppData folder"
-msgstr "AppData 文件夹"
+msgid "AppData (Roaming) folder"
+msgstr "AppData（Roaming）文件夹"
 
 msgid "Install folder"
 msgstr "安装文件夹"
+
+msgid "Documents folder"
+msgstr "文档文件夹"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5085,6 +5229,13 @@ msgstr "深色"
 msgid "Follow system"
 msgstr "跟随系统"
 
+#, c-format
+msgid "e.g. %1"
+msgstr "例：%1"
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr "WinMerge 检测到之前发生过崩溃。如有可能，请提交此问题报告。"
+
 msgid "Prettification"
 msgstr "格式美化"
 
@@ -5465,9 +5616,7 @@ msgid "Ignore columns - list from plugin name/argument"
 msgstr "忽略一些列 - 忽略名称为插件名称或参数的列"
 
 msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
-msgstr ""
-"这个插件忽略在 C, C++, PHP 和 JavaScript 文件中的 (//... and /* ... */) 注释"
-"行。"
+msgstr "这个插件忽略在 C, C++, PHP 和 JavaScript 文件中的 (//... and /* ... */) 注释行。"
 
 msgid "Ignore fields - list from plugin name/argument"
 msgstr "忽略一些字段 - 忽略名称为插件名称或参数的字段"
@@ -5553,6 +5702,9 @@ msgid ""
 msgstr ""
 "无法获取宏。\r\n"
 "在 MS Office Macro Security 中启用 \"信任对 Visual Basic 项目的访问\"。"
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr "将公式中的换行符替换为空格"
 
 msgid "Compare VBA macros"
 msgstr "比较 VBA 宏"

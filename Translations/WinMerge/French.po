@@ -17,17 +17,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2025-11-04 15:25+0100\n"
-"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
+"POT-Creation-Date: 2026-02-03 07:46+0000\n"
+"PO-Revision-Date: 2026-02-07 22:55-0500\n"
+"Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.8\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -565,6 +565,9 @@ msgstr "Intervertir &2ème | 3ème"
 msgid "Swap 1st | &3rd"
 msgstr "Intervertir 1er | &3ème"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Afficher la barre de &filtrage\tCtrl+Shift+L"
+
 msgid "Com&pare Statistics..."
 msgstr "Statistiques des com&paraisons..."
 
@@ -895,6 +898,9 @@ msgstr "&Scinder"
 msgid "Comp&are"
 msgstr "Comp&arer"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "Compa&rer avec les éléments renommés/déplacés"
+
 msgid "Compare in New &Window"
 msgstr "Comparer dans une nouvelle &fenêtre"
 
@@ -1050,8 +1056,11 @@ msgstr "&Copier le chemin complet"
 msgid "Copy &Filename"
 msgstr "Copier le nom de &fichier"
 
-msgid "&Edit Caption"
-msgstr "Modifi&er la légende"
+msgid "&Edit Caption\tF2"
+msgstr "Modifi&er la légende\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "Modifier le &chemin\tCtrl+L"
 
 msgid "&Open..."
 msgstr "&Ouvrir..."
@@ -1497,6 +1506,30 @@ msgstr "&Propriétés supplémentaires..."
 msgid "Add F&older Condition"
 msgstr "Ajouter une condition de d&ossier"
 
+msgid "&Files"
+msgstr "&Fichiers"
+
+msgid "0 files"
+msgstr "0 fichier"
+
+msgid "1 file or more"
+msgstr "1 fichier ou plus"
+
+msgid "&Items"
+msgstr "&Éléments"
+
+msgid "0 items"
+msgstr "0 élément"
+
+msgid "1 item or more"
+msgstr "1 élément ou plus"
+
+msgid "&Total Size"
+msgstr "&Taille totale"
+
+msgid "&Recursive"
+msgstr "&Récursif"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Cible : &Tout (Gauche/Milieu/Droite)"
 
@@ -1598,6 +1631,63 @@ msgstr "Comparer les &Attributs"
 
 msgid "Compare C&ontents"
 msgstr "Comparer les C&ontenus"
+
+msgid "&Clear Keys"
+msgstr "&Effacer les clés"
+
+msgid "&Name"
+msgstr "&Nom"
+
+msgid "&Base name (without extension)"
+msgstr "Nom de &base (sans extension)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Nom &Unicode normalisé"
+
+msgid "&Date"
+msgstr "&Date"
+
+msgid "&Hash (MD5)"
+msgstr "&Hachage (MD5)"
+
+msgid "Insert &replace() Function"
+msgstr "Insérer la fonction &replace()"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "Insérer la fonction rege&xReplace()"
+
+msgid "Text &Normalization"
+msgstr "&Normalisation du texte"
+
+msgid "&Lowercase"
+msgstr "Minuscu&le"
+
+msgid "&Uppercase"
+msgstr "Maj&uscule"
+
+msgid "&Half-width"
+msgstr "&Demi-largeur"
+
+msgid "&Full-width"
+msgstr "&Pleine largeur"
+
+msgid "&Chinese Conversion"
+msgstr "Conversion &chinoise"
+
+msgid "&Simplified Chinese"
+msgstr "Chinois &simplifié"
+
+msgid "&Traditional Chinese"
+msgstr "Chinois &traditionnel"
+
+msgid "&Japanese Conversion"
+msgstr "Conversion &japonaise"
+
+msgid "&Hiragana"
+msgstr "&Hiragana"
+
+msgid "&Katakana"
+msgstr "&Katakana"
 
 msgid "About WinMerge"
 msgstr "À propos de WinMerge"
@@ -1840,7 +1930,7 @@ msgid "&Light mode scheme:"
 msgstr "&Schéma du mode clair :"
 
 msgid "&Dark mode scheme:"
-msgstr "&Schéma du mode sombre :"
+msgstr "&Schéma du mode foncé :"
 
 msgid "Your custom schemes"
 msgstr "Vos schémas personnalisés"
@@ -1975,6 +2065,9 @@ msgstr "&Utiliser la Corbeille"
 
 msgid "&External editor:"
 msgstr "Édit&eur externe :"
+
+msgid "&Store user data in:"
+msgstr "&Stocker les données utilisateur dans :"
 
 msgid "&Filter folder:"
 msgstr "Dossier de &filtre :"
@@ -2197,6 +2290,9 @@ msgstr "Total des éléments :"
 
 msgid "Items compared:"
 msgstr "Éléments comparés :"
+
+msgid "&Close"
+msgstr "&Fermer"
 
 msgid "Go to"
 msgstr "Atteindre"
@@ -2443,9 +2539,6 @@ msgstr "Résultat :"
 msgid "&Test"
 msgstr "&Tester"
 
-msgid "&Close"
-msgstr "&Fermer"
-
 msgid "Table"
 msgstr "Tableau"
 
@@ -2608,6 +2701,15 @@ msgstr "Passer à la comparaison &binaire quand la taille dépasse (Mo) :"
 
 msgid "Additional comparison condi&tions:"
 msgstr "Conditions de comparaison supplémen&taires :"
+
+msgid "&Rename/move detection:"
+msgstr "Détection du renommage/déplacement :"
+
+msgid "Rename/move detection &keys:"
+msgstr "Clés de détection du renommage/déplacement :"
+
+msgid "&Merge renamed items into a single item"
+msgstr "Fusionner les élé&ments renommés en un seul élément"
 
 msgid "File patterns:"
 msgstr "Modèles de fichiers :"
@@ -3851,6 +3953,33 @@ msgstr "Les fichiers sont différents (expr : %1)"
 msgid "Group%d"
 msgstr "Groupe%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "Désactivée"
+
+msgid "Detect renames"
+msgstr "Détecter les renommages"
+
+msgid "Detect renames and moves"
+msgstr "Détecter les renommages et les déplacements"
+
+msgid "Renamed"
+msgstr "Renommé"
+
+msgid "Moved"
+msgstr "Déplacé"
+
+msgid "Renamed/Moved"
+msgstr "Renommé/Déplacé"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 éléments)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (ensemble %2) : "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Temps écoulé: %ld ms"
@@ -4009,6 +4138,30 @@ msgstr "Le même fichier est ouvert dans les deux panneaux."
 
 msgid "Selected files are identical."
 msgstr "Les fichiers sélectionnés sont identiques."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"Checking binary identity..."
+msgstr ""
+"Les fichiers sélectionnés sont identiques (avec les paramètres actuels).\r\n"
+"Vérification de l'identité binaire..."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But binary comparison failed."
+msgstr ""
+"Les fichiers sélectionnés sont identiques (avec les paramètres actuels).\r\n"
+"Mais la comparaison binaire a échoué."
+
+msgid "Selected files are identical (binary match)."
+msgstr "Les fichiers sélectionnés sont identiques (correspondance binaire)."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But differ at the binary level."
+msgstr ""
+"Les fichiers sélectionnés sont identiques (avec les paramètres actuels).\r\n"
+"Mais diffèrent au niveau binaire."
 
 msgid "An error occurred while comparing files."
 msgstr "Une erreur s'est produite lors de la comparaison des fichiers."
@@ -4348,7 +4501,7 @@ msgid ""
 "Copy All to Left"
 msgstr ""
 "\n"
-"Tout copier vers la Droite"
+"Tout copier vers la Gauche"
 
 msgid ""
 "\n"
@@ -4666,11 +4819,14 @@ msgstr "Position et texte ligne par ligne"
 msgid "Word-by-word position and text"
 msgstr "Position et texte mot par mot"
 
-msgid "AppData folder"
-msgstr "Dossier AppData"
+msgid "AppData (Roaming) folder"
+msgstr "Dossier AppData (Roaming)"
 
 msgid "Install folder"
 msgstr "Dossier d'installation"
+
+msgid "Documents folder"
+msgstr "Dossier Documents"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5055,10 +5211,17 @@ msgid "Light"
 msgstr "Clair"
 
 msgid "Dark"
-msgstr "Sombre"
+msgstr "Foncé"
 
 msgid "Follow system"
 msgstr "Suivre le système"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "p. ex. %1"
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr "WinMerge a détecté un plantage précédent. Veuillez le signaler si possible."
 
 msgid "Prettification"
 msgstr "Embellissement"
@@ -5526,6 +5689,9 @@ msgid ""
 msgstr ""
 "Impossible d'obtenir l'accès aux macros.\r\n"
 "Activez \"Accès approuvé au modèle d'objet du projet Visual Basic\" sous Options/Centre de gestion de la confidentialité/Paramètres des macros de MS Office."
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr "Remplacez les sauts de ligne dans les formules par des espaces"
 
 msgid "Compare VBA macros"
 msgstr "Comparer les macros VBA"

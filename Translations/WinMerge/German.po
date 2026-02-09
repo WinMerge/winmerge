@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-11-02 10:30+0100\n"
+"PO-Revision-Date: 2026-02-03 20:52+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -657,6 +657,9 @@ msgstr "&2. | 3. vertauschen"
 msgid "Swap 1st | &3rd"
 msgstr "1. | &3. vertauschen"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Filterleiste a&nzeigen\tStrg+Umschalt+L"
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "&Vergleichsstatistik..."
@@ -1075,6 +1078,9 @@ msgstr "&Teilen"
 msgid "Comp&are"
 msgstr "Ver&gleichen"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "V&ergleichen mit umbenannten/verschobenen Elementen"
+
 msgid "Compare in New &Window"
 msgstr "In neuem Fenster vergleichen"
 
@@ -1254,8 +1260,11 @@ msgstr "Vollständigen Pfad kopieren"
 msgid "Copy &Filename"
 msgstr "Dateinamen kopieren"
 
-msgid "&Edit Caption"
-msgstr "Titelzeile bearbeiten"
+msgid "&Edit Caption\tF2"
+msgstr "Titelzeile bearbeiten\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "&Pfad bearbeiten\tStrg+L"
 
 msgid "&Open..."
 msgstr "&Öffnen..."
@@ -1462,7 +1471,7 @@ msgid "Remove Last Filter &Group"
 msgstr "Letzte Filter&gruppe entfernen"
 
 msgid "R&eset to Default (*.*)"
-msgstr "Auf Standard zurücksetzen (*.*)"
+msgstr "Auf Standard zurücks&etzen (*.*)"
 
 msgid "Add E&xclude File"
 msgstr "A&usschlussdatei hinzufügen"
@@ -1495,7 +1504,7 @@ msgid "&IDE"
 msgstr "&IDE"
 
 msgid "Add &File Condition"
-msgstr "Hinzufügen von &Datei-Bedingung"
+msgstr "&Dateibedingung hinzufügen"
 
 msgid "File &Size"
 msgstr "Datei&größe"
@@ -1723,7 +1732,31 @@ msgid "Additional &Properties..."
 msgstr "Zusätzliche &Eigenschaften..."
 
 msgid "Add F&older Condition"
-msgstr "&Ordner-Bedingung hinzufügen"
+msgstr "&Ordnerbedingung hinzufügen"
+
+msgid "&Files"
+msgstr "&Dateien"
+
+msgid "0 files"
+msgstr "0 Dateien"
+
+msgid "1 file or more"
+msgstr "1 Datei oder mehr"
+
+msgid "&Items"
+msgstr "&Elemente"
+
+msgid "0 items"
+msgstr "0 Elemente"
+
+msgid "1 item or more"
+msgstr "1 Element oder mehr"
+
+msgid "&Total Size"
+msgstr "&Gesamtgröße"
+
+msgid "&Recursive"
+msgstr "&Rekursiv"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Ziel: &Beliebig (Links/Mitte/Rechts)"
@@ -1738,7 +1771,7 @@ msgid "Target: &Right"
 msgstr "Ziel: &Rechts"
 
 msgid "Add &Difference Condition"
-msgstr "Hinzufügen &Differenzbedingung"
+msgstr "&Differenzbedingung hinzufügen"
 
 msgid "Equal"
 msgstr "Gleich"
@@ -1826,6 +1859,63 @@ msgstr "&Attribute vergleichen"
 
 msgid "Compare C&ontents"
 msgstr "&Inhalt vergleichen"
+
+msgid "&Clear Keys"
+msgstr "&Schlüssel löschen"
+
+msgid "&Name"
+msgstr "&Name"
+
+msgid "&Base name (without extension)"
+msgstr "&Basisname (ohne Erweiterung)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Normalisierter &Unicode-Name"
+
+msgid "&Date"
+msgstr "&Datum"
+
+msgid "&Hash (MD5)"
+msgstr "&Hash (MD5)"
+
+msgid "Insert &replace() Function"
+msgstr "&replace() Funktion hinzufügen"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "rege&xReplace() Funktion hinzufügen"
+
+msgid "Text &Normalization"
+msgstr "Text&normalisierung"
+
+msgid "&Lowercase"
+msgstr "K&leinbuchstaben"
+
+msgid "&Uppercase"
+msgstr "Großb&uchstaben"
+
+msgid "&Half-width"
+msgstr "&Halbe Breite"
+
+msgid "&Full-width"
+msgstr "&Volle Breite"
+
+msgid "&Chinese Conversion"
+msgstr "&Chinesische Konvertierung"
+
+msgid "&Simplified Chinese"
+msgstr "Vereinfachtes Chine&sisch"
+
+msgid "&Traditional Chinese"
+msgstr "&Traditionelles Chinesisch"
+
+msgid "&Japanese Conversion"
+msgstr "&Japanische Konvertierung"
+
+msgid "&Hiragana"
+msgstr "&Hiragana"
+
+msgid "&Katakana"
+msgstr "&Katakana"
 
 #, c-format
 msgid "About WinMerge"
@@ -2303,6 +2393,9 @@ msgstr "&Gelöschte Dateien in den Papierkorb verschieben"
 msgid "&External editor:"
 msgstr "&Externer Editor:"
 
+msgid "&Store user data in:"
+msgstr "Benutzerdaten &speichern in:"
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "&Filterordner:"
@@ -2574,6 +2667,10 @@ msgstr "Objekte gesamt:"
 #, c-format
 msgid "Items compared:"
 msgstr "Objekte verglichen:"
+
+#, c-format
+msgid "&Close"
+msgstr "&Schließen"
 
 msgid "Go to"
 msgstr "Gehe zu"
@@ -2882,10 +2979,6 @@ msgstr "Ergebnis:"
 msgid "&Test"
 msgstr "&Testen"
 
-#, c-format
-msgid "&Close"
-msgstr "&Schließen"
-
 msgid "Table"
 msgstr "Tabelle"
 
@@ -3076,6 +3169,15 @@ msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 
 msgid "Additional comparison condi&tions:"
 msgstr "Zusätzliche Vergleichsbedingungen:"
+
+msgid "&Rename/move detection:"
+msgstr "Umbenennungs-/Ve&rschiebungserkennung:"
+
+msgid "Rename/move detection &keys:"
+msgstr "Umbenennungs-/Verschiebungser&kennungsschlüssel:"
+
+msgid "&Merge renamed items into a single item"
+msgstr "&Zusammenführen umbenannter Elemente zu einem einzigen Element"
 
 msgid "File patterns:"
 msgstr "&Dateimuster:"
@@ -4481,6 +4583,33 @@ msgstr "Dateien sind unterschiedlich (Ausdruck: %1)"
 msgid "Group%d"
 msgstr "Gruppe%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgid "Detect renames"
+msgstr "Umbenennungen erkennen"
+
+msgid "Detect renames and moves"
+msgstr "Umbenennungen und Verschiebungen erkennen"
+
+msgid "Renamed"
+msgstr "Umbenannt"
+
+msgid "Moved"
+msgstr "Verschoben"
+
+msgid "Renamed/Moved"
+msgstr "Umbenannt/Verschoben"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 Elemente)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (%2 bestimmt): "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Ausführungszeit: %ld ms"
@@ -4675,6 +4804,30 @@ msgstr "In beiden Bereichen ist die gleiche Datei geöffnet."
 #, c-format
 msgid "Selected files are identical."
 msgstr "Die ausgewählten Dateien sind identisch."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"Checking binary identity..."
+msgstr ""
+"Die ausgewählten Dateien sind identisch (mit den aktuellen Einstellungen).\r\n"
+"Die binäre Übereinstimmung wird geprüft..."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But binary comparison failed."
+msgstr ""
+"Die ausgewählten Dateien sind identisch (mit den aktuellen Einstellungen).\r\n"
+"Binärvergleich fehlgeschlagen."
+
+msgid "Selected files are identical (binary match)."
+msgstr "Die ausgewählten Dateien sind identisch (binäre Übereinstimmung)."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But differ at the binary level."
+msgstr ""
+"Die ausgewählten Dateien sind identisch (mit den aktuellen Einstellungen).\r\n"
+"Unterscheiden sich jedoch auf binärer Ebene."
 
 #, c-format
 msgid "An error occurred while comparing files."
@@ -5400,11 +5553,14 @@ msgstr "Position und Text zeilenweise"
 msgid "Word-by-word position and text"
 msgstr "Position und Text wortweise"
 
-msgid "AppData folder"
-msgstr "AppData-Ordner"
+msgid "AppData (Roaming) folder"
+msgstr "AppData-Ordner (Roaming)"
 
 msgid "Install folder"
 msgstr "Installationsordner"
+
+msgid "Documents folder"
+msgstr "Dokumente-Ordner"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5794,6 +5950,13 @@ msgstr "Dunkel"
 
 msgid "Follow system"
 msgstr "Systemeinstellung verwenden"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "z. B. %1"
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr "WinMerge hat einen vorherigen Absturz festgestellt. Bitte melden Sie ihn, wenn möglich."
 
 msgid "Prettification"
 msgstr "Verschönerung"
@@ -6261,6 +6424,9 @@ msgid ""
 msgstr ""
 "Makros können nicht abgerufen werden.\r\n"
 "Aktivieren Sie 'Zugriff auf Visual Basic-Projekt vertrauen' in MS Office Macro Security."
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr "Zeilenumbrüche in Formeln durch Leerzeichen ersetzen"
 
 msgid "Compare VBA macros"
 msgstr "VBA-Makros vergleichen"

@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2025-11-24 00:00+0000\n"
+"PO-Revision-Date: 2026-01-28 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -560,6 +560,9 @@ msgstr "Поменять &2-й | 3-й"
 msgid "Swap 1st | &3rd"
 msgstr "Поменять 1-й | &3-й"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Отображать панель фильтров\tCtrl+Shift+L"
+
 msgid "Com&pare Statistics..."
 msgstr "Статистика сравнения..."
 
@@ -890,6 +893,9 @@ msgstr "Разделить"
 msgid "Comp&are"
 msgstr "С&равнить"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "Сравнить с переименованными/перемещёнными"
+
 msgid "Compare in New &Window"
 msgstr "Сравнить в новом окне"
 
@@ -1045,8 +1051,11 @@ msgstr "Копировать полный путь"
 msgid "Copy &Filename"
 msgstr "Копировать имя файла"
 
-msgid "&Edit Caption"
-msgstr "&Изменить заголовок"
+msgid "&Edit Caption\tF2"
+msgstr "&Изменить заголовок\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "Изменить путь\tCtrl+L"
 
 msgid "&Open..."
 msgstr "&Открыть..."
@@ -1492,6 +1501,30 @@ msgstr "Дополнительные свойства..."
 msgid "Add F&older Condition"
 msgstr "Добавить условие папки"
 
+msgid "&Files"
+msgstr "Файлы"
+
+msgid "0 files"
+msgstr "0 файлов"
+
+msgid "1 file or more"
+msgstr "1 файл или более"
+
+msgid "&Items"
+msgstr "Элементы"
+
+msgid "0 items"
+msgstr "0 элементов"
+
+msgid "1 item or more"
+msgstr "1 элемент или более"
+
+msgid "&Total Size"
+msgstr "Общий размер"
+
+msgid "&Recursive"
+msgstr "Рекурсивно"
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Назначение: Любое (Слева/В центре/Справа)"
 
@@ -1593,6 +1626,63 @@ msgstr "Сравнить атрибуты"
 
 msgid "Compare C&ontents"
 msgstr "Сравнить содержимое"
+
+msgid "&Clear Keys"
+msgstr "Очистить ключи"
+
+msgid "&Name"
+msgstr "Имя"
+
+msgid "&Base name (without extension)"
+msgstr "Базовое имя (без расширения)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Нормализованное имя в Юникоде"
+
+msgid "&Date"
+msgstr "Дата"
+
+msgid "&Hash (MD5)"
+msgstr "Хэш (MD5)"
+
+msgid "Insert &replace() Function"
+msgstr "Вставить функцию &replace()"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "Вставить функцию rege&xReplace()"
+
+msgid "Text &Normalization"
+msgstr "Нормализация текста"
+
+msgid "&Lowercase"
+msgstr "Строчные"
+
+msgid "&Uppercase"
+msgstr "Прописные"
+
+msgid "&Half-width"
+msgstr "Половина ширины"
+
+msgid "&Full-width"
+msgstr "Полная ширина"
+
+msgid "&Chinese Conversion"
+msgstr "Китайская конвертация"
+
+msgid "&Simplified Chinese"
+msgstr "Упрощённый китайский"
+
+msgid "&Traditional Chinese"
+msgstr "Традиционный китайский"
+
+msgid "&Japanese Conversion"
+msgstr "Японская конвертация"
+
+msgid "&Hiragana"
+msgstr "Хирагана"
+
+msgid "&Katakana"
+msgstr "Катакана"
 
 msgid "About WinMerge"
 msgstr "О программе WinMerge"
@@ -1969,6 +2059,9 @@ msgstr "Помещать удаленные файлы в корзину"
 msgid "&External editor:"
 msgstr "Внешний редактор:"
 
+msgid "&Store user data in:"
+msgstr "Хранить данные пользователя в:"
+
 msgid "&Filter folder:"
 msgstr "Папка фильтров:"
 
@@ -2190,6 +2283,9 @@ msgstr "Всего:"
 
 msgid "Items compared:"
 msgstr "Обработано:"
+
+msgid "&Close"
+msgstr "&Закрыть"
 
 msgid "Go to"
 msgstr "Перейти"
@@ -2428,9 +2524,6 @@ msgstr "Результат:"
 msgid "&Test"
 msgstr "&Тестировать"
 
-msgid "&Close"
-msgstr "&Закрыть"
-
 msgid "Table"
 msgstr "Таблица"
 
@@ -2593,6 +2686,15 @@ msgstr "Порог для перехода к двоичному сравнен�
 
 msgid "Additional comparison condi&tions:"
 msgstr "Дополнительные условия сравнения:"
+
+msgid "&Rename/move detection:"
+msgstr "Обнаружение переименования/перемещения:"
+
+msgid "Rename/move detection &keys:"
+msgstr "Ключи обнаружения переименования/перемещения:"
+
+msgid "&Merge renamed items into a single item"
+msgstr "Объединить переименованные элементы в один"
 
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
@@ -3628,6 +3730,33 @@ msgstr "Файлы отличаются (выражение: %1)"
 msgid "Group%d"
 msgstr "Группа%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "Отключено"
+
+msgid "Detect renames"
+msgstr "Обнаружение переименований"
+
+msgid "Detect renames and moves"
+msgstr "Обнаружение переименований и перемещений"
+
+msgid "Renamed"
+msgstr "Переименовано"
+
+msgid "Moved"
+msgstr "Перемещено"
+
+msgid "Renamed/Moved"
+msgstr "Переименовано/Перемещено"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(элементов %1)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (набор %2): "
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Прошло времени: %ld мс"
@@ -3782,6 +3911,18 @@ msgstr "На обеих панелях открыт один и тот же фа
 
 msgid "Selected files are identical."
 msgstr "Выбранные файлы идентичны."
+
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr "Выбранные файлы идентичны (с текущими настройками).\r\nПроверка идентичности двоичных данных..."
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr "Выбранные файлы идентичны (с текущими настройками).\Но произошёл сбой двоичного сравнения."
+
+msgid "Selected files are identical (binary match)."
+msgstr "Выбранные файлы идентичны (двоичное совпадение)."
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr "Выбранные файлы идентичны (с текущими настройками).\r\nНо отличаются на двоичном уровне."
 
 msgid "An error occurred while comparing files."
 msgstr "При сравнении файлов произошла ошибка."
@@ -4303,11 +4444,14 @@ msgstr "Построчная позиция и текст"
 msgid "Word-by-word position and text"
 msgstr "Пословная позиция и текст"
 
-msgid "AppData folder"
-msgstr "Папка данных"
+msgid "AppData (Roaming) folder"
+msgstr "Папка AppData (Roaming)"
 
 msgid "Install folder"
 msgstr "Папка установки"
+
+msgid "Documents folder"
+msgstr "Папка Документы"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -4641,6 +4785,13 @@ msgstr "Тёмный"
 msgid "Follow system"
 msgstr "Системный"
 
+#, c-format
+msgid "e.g. %1"
+msgstr "например, %1"
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Приукрашивание"
 
@@ -4965,6 +5116,9 @@ msgstr "Сравнить верхние и нижние колонтитулы"
 
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr "Не удается получить макрос.\r\n   Чтобы разрешить WinMerge сравнивать макросы, используйте MS Office для изменения настроек в Macro Security для текущего приложения.\r\n   Для использования этой функции в WinMerge необходимо включить функцию Trust access в Visual Basic Project.\r\n"
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr "Заменить переносы строк в формулах пробелами"
 
 msgid "Compare VBA macros"
 msgstr "Сравнить макросы VBA"

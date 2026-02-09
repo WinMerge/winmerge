@@ -9,13 +9,13 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Brazilian <winmerge-translate@lists.sourceforge.net>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: pt_BR\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 3.8\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -52,19 +52,19 @@ msgstr "&Comparar"
 #: ShellExtension.rc:115
 #, c-format
 msgid "Compare&..."
-msgstr "Comparar&..."
+msgstr "Compara&r..."
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
-msgstr "Selecionar &Esquerda"
+msgstr "Selecionar à &Esquerda"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
-msgstr "Selecionar &Meio"
+msgstr "Selecionar no &Meio"
 
 #: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
-msgstr "Re-selecionar &Esquerda"
+msgstr "Resselecionar à &Esquerda"

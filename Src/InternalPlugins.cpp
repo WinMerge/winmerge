@@ -671,14 +671,20 @@ private:
 	IDispatch* m_pDispatch;
 };
 
-String GetPluginXMLPath(bool userDefined)
+String GetPluginXMLPath(LocationType locationType)
 {
-	if (!userDefined)
+	switch (locationType)
+	{
+	case LocationType::AppDataPath:
+		return paths::ConcatPath(env::GetAppDataPath(), _T("WinMerge\\MergePlugins\\Plugins.xml"));
+	case LocationType::DocumentsPath:
+		return paths::ConcatPath(env::GetMyDocuments(), _T("WinMerge\\MergePlugins\\Plugins.xml"));
+	default:
 		return paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml"));
-	return env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"));
+	}
 }
 
-bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>& internalPlugins, String& errmsg)
+bool LoadFromXML(LocationType locationType, std::list<Info>& internalPlugins, String& errmsg)
 {
 	XMLHandler handler(&internalPlugins);
 	SAXParser parser;
@@ -688,13 +694,14 @@ bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>
 	try
 	{
 		size_t size = internalPlugins.size();
+		const String pluginsXMLPath = GetPluginXMLPath(locationType);
 		try { parser.parse(ucr::toUTF8(pluginsXMLPath)); }
 		catch (Poco::FileNotFoundException&) { }
 		size_t i = 0;
 		for (auto& info : internalPlugins)
 		{
 			if (i >= size)
-				info.m_userDefined = userDefined;
+				info.m_locationType = locationType;
 			++i;
 		}
 	}
@@ -740,7 +747,7 @@ Info CreateUnpackerPluginExample()
 	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
 	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
 	info.m_unpackFile->m_command = _T("cmd /c echo Hello World! \"${SRC_FILE}\" > \"${DST_FILE}\"");
-	info.m_userDefined = true;
+	info.m_locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? LocationType::AppDataPath : LocationType::DocumentsPath;
 	return info;
 }
 
@@ -753,14 +760,14 @@ Info CreatePredifferPluginExample()
 	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
 	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
 	info.m_unpackFile->m_command = _T("cmd /c type \"${SRC_FILE}\" | \"%ProgramFiles%\\Git\\usr\\bin\\sed.exe\" \"s/abc/xxx/g\" > \"${DST_FILE}\"");
-	info.m_userDefined = true;
+	info.m_locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? LocationType::AppDataPath : LocationType::DocumentsPath;
 	return info;
 }
 
 Info CreateAliasPluginExample(PluginInfo* plugin, const String& event, const String& pipeline)
 {
 	internal_plugin::Info info(_(""));
-	info.m_userDefined = true;
+	info.m_locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION) == 0 ? LocationType::AppDataPath : LocationType::DocumentsPath;
 	info.m_event = event;
 	for (tchar_t c : pipeline)
 	{
@@ -794,10 +801,10 @@ bool AddPlugin(const Info& info, String& errmsg)
 		return false;
 	}
 	std::list<internal_plugin::Info> list;
-	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
+	if (!internal_plugin::LoadFromXML(info.m_locationType, list, errmsg))
 		return false;
 	list.push_back(info);
-	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
+	if (!internal_plugin::SaveToXML(info.m_locationType, list, errmsg))
 		return false;
 	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
 	return true;
@@ -806,7 +813,7 @@ bool AddPlugin(const Info& info, String& errmsg)
 bool UpdatePlugin(const Info& info, String& errmsg)
 {
 	std::list<internal_plugin::Info> list;
-	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
+	if (!internal_plugin::LoadFromXML(info.m_locationType, list, errmsg))
 		return false;
 	for (auto it = list.begin(); it != list.end(); ++it)
 	{
@@ -817,7 +824,7 @@ bool UpdatePlugin(const Info& info, String& errmsg)
 			break;
 		}
 	}
-	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
+	if (!internal_plugin::SaveToXML(info.m_locationType, list, errmsg))
 		return false;
 	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
 	return true;
@@ -826,7 +833,7 @@ bool UpdatePlugin(const Info& info, String& errmsg)
 bool RemovePlugin(const Info& info, String& errmsg)
 {
 	std::list<internal_plugin::Info> list;
-	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
+	if (!internal_plugin::LoadFromXML(info.m_locationType, list, errmsg))
 		return false;
 	for (auto it = list.begin(); it != list.end(); ++it)
 	{
@@ -836,7 +843,7 @@ bool RemovePlugin(const Info& info, String& errmsg)
 			break;
 		}
 	}
-	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
+	if (!internal_plugin::SaveToXML(info.m_locationType, list, errmsg))
 		return false;
 	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
 	return true;
@@ -870,10 +877,11 @@ static void writeMethodElement(XMLWriter& writer, const std::string& tagname, co
 	writer.endElement("", "", tagname);
 }
 
-bool SaveToXML(const String& pluginsXMLPath, const std::list<Info>& internalPlugins, String& errmsg)
+bool SaveToXML(LocationType locationType, const std::list<Info>& internalPlugins, String& errmsg)
 {
 	try
 	{
+		const String pluginsXMLPath = GetPluginXMLPath(locationType);
 		paths::CreateIfNeeded(paths::GetPathOnly(pluginsXMLPath));
 		FileStream out(ucr::toUTF8(pluginsXMLPath), FileStream::out | FileStream::trunc);
 		XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
@@ -963,10 +971,11 @@ struct Loader
 		}
 
 		std::list<Info> internalPlugins;
-		if (!LoadFromXML(GetPluginXMLPath(false), false, internalPlugins, errmsg))
-			return false;
-		if (!LoadFromXML(GetPluginXMLPath(true), true, internalPlugins, errmsg))
-			return false;
+		for (auto locationType : {LocationType::InstallationPath, LocationType::AppDataPath, LocationType::DocumentsPath})
+		{
+			if (!LoadFromXML(locationType, internalPlugins, errmsg))
+				return false;
+		}
 
 		for (auto& info : internalPlugins)
 		{
@@ -977,7 +986,7 @@ struct Loader
 			PluginInfoPtr pluginNew(new PluginInfo());
 			IDispatch* pDispatch = new InternalPlugin(std::move(info));
 			pDispatch->AddRef();
-			if (pluginNew->MakeInfo(GetPluginXMLPath(info.m_userDefined), name, pDispatch) > 0)
+			if (pluginNew->MakeInfo(GetPluginXMLPath(info.m_locationType), name, pDispatch) > 0)
 				plugins[event]->push_back(pluginNew);
 		}
 

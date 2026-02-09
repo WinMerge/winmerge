@@ -49,6 +49,8 @@ void CompareStats::AddItem(int code)
 */
 const DIFFITEM *CompareStats::GetCurDiffItem()
 {
+	if (m_rgThreadState.empty())
+		return nullptr;
 	int nHitCountMax = 0;
 	const DIFFITEM *cdi = m_rgThreadState.front().m_pDiffItem;
 	std::vector<ThreadState>::iterator it = m_rgThreadState.begin();
@@ -80,6 +82,7 @@ void CompareStats::Reset()
 	m_nTotalItems = 0;
 	m_nComparedItems = 0;
 	m_bCompareDone = false;
+	m_rgThreadState.clear();
 }
 
 /** 

@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"X-Generator: Poedit 3.5.1\n"
+"X-Generator: Poedit 3.8.1\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19

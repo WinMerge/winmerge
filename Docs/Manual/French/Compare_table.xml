@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_table">
+  <?target dbhh topicname="IDH_Compare_table" topicid ="004"?>
+
+  <title>Comparer au format tableau</title>
+
+  <indexterm>
+    <primary>comparaison de fichiers</primary>
+
+    <secondary>tableau</secondary>
+  </indexterm>
+
+  <para>Dans la version 2.16.7 ou ultérieure, il est possible d'afficher et d'éditer
+des fichiers de valeurs séparées par un délimiteur (tels que CSV et TSV)
+dans un format tableau similaire à un tableur. Les opérations d'édition, le
+passage aux différences et les opérations de fusion dans ce format sont les
+mêmes que dans une fenêtre de fichier texte normale.</para>
+
+  <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/tblcomp1.png" format="PNG" /> </imageobject><textobject>
+      <phrase>Comparer au format tableau</phrase>
+    </textobject>
+  </mediaobject>
+  
+  <section id="Compare_files_in_table_format">
+    <title>Comparer au format tableau<indexterm>
+        <primary>comparer au format tableau</primary>
+      </indexterm></title>
+
+    <para>L'ouverture des fichiers au format tableau dépend de la correspondance du
+nom de fichier avec les modèles définis. Par défaut, si l'extension du
+fichier est .csv ou .tsv, il sera ouvert au format tableau. Si vous
+souhaitez modifier les modèles, spécifiez-les sur la page Comparer/Tableau
+dans la boîte de dialogue Options.</para>
+
+    <para>Si vous souhaitez l'ouvrir temporairement au format tableau après l'avoir
+ouvert en texte brut, cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
+<guimenuitem>Recomparer comme</guimenuitem>
+<guimenuitem>Tableau</guimenuitem> </menuchoice>. Si la boîte de dialogue
+Tableau apparaît, sélectionnez le type de fichier et cliquez sur
+<guilabel>OK</guilabel>.</para>
+    
+    <para>
+Si vous souhaitez ouvrir temporairement des fichiers qui ont été ouverts au
+format tableau en tant que fichiers texte normaux, cliquez sur <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem>Recomparer comme</guimenuitem>
+<guimenuitem>Texte</guimenuitem> </menuchoice>.</para>
+  </section>
+
+  <section id="Table_settings">
+    <title>Paramètres du format tableau<indexterm>
+        <primary>paramètres du format tableau</primary>
+      </indexterm></title>
+
+    <para>
+Par défaut, les données dans les fichiers texte de valeurs séparées par un
+délimiteur sont traitées comme suit<itemizedlist>
+        <listitem>
+          <para>Les fichiers CSV sont séparés par des virgules et les fichiers TSV par des
+tabulations, et les valeurs sont affichées par colonnes.</para>
+        </listitem>
+        <listitem>
+          <para>Toutefois, les caractères délimiteurs se trouvant dans une plage entre
+guillemets (doubles guillemets) sont traités comme des valeurs.</para>
+        </listitem>
+        <listitem>
+          <para>De plus, les caractères de fin de ligne (CR ou LF) dans la plage entre
+guillemets sont traités comme des valeurs.</para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+    <para>
+Si vous souhaitez modifier les paramètres ci-dessus, vous pouvez le faire
+dans la page Comparer/Tableau de la boîte de dialogue Options ou dans la
+boîte de dialogue Tableau qui apparaît lors d'un clic sur <menuchoice>
+<guimenu>Fichier</guimenu> <guimenuitem>Recomparer comme</guimenuitem>
+<guimenuitem>Tableau</guimenuitem> </menuchoice>. Voir <xref
+linkend="Configuration_compare_table" /> pour plus de détails.</para>
+
+  </section>
+
+  <section id="Table_operations">
+    <title>Opérations spécifiques au format tableau<indexterm>
+        <primary>opérations spécifiques au format tableau</primary>
+      </indexterm></title>
+
+    <para>
+      <itemizedlist>
+        <listitem>
+          <para>Vous pouvez modifier la largeur de la colonne en faisant glisser la bordure
+de la colonne dans un en-tête de colonne.</para>
+        </listitem>
+        <listitem>
+          <para>Un double-clic sur la bordure d'une colonne dans un en-tête de colonne
+ajuste automatiquement la largeur de la colonne en fonction de son contenu.</para>
+        </listitem>
+        <listitem>
+          <para>Le texte est sélectionné verticalement en faisant glisser une colonne dans
+l'en-tête de colonne.</para>
+        </listitem>
+        <listitem>
+          <para>
+Lorsque l'élément de menu <menuchoice> <guimenu>Affichage</guimenu>
+<guimenuitem>Retour à la ligne automatique</guimenuitem> </menuchoice> est
+coché, le texte est renvoyé à la ligne dans chaque colonne. Cochez cette
+option si vous souhaitez voir des valeurs de champ sur plusieurs lignes.</para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+  </section>
+
+</article>

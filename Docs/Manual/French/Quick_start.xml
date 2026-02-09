@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Quick_start">
+  <title>Démarrage rapide</title>
+
+  <section>
+    <title><indexterm>
+        <primary>débuter avec WinMerge</primary>
+      </indexterm><indexterm>
+        <primary>choisir des fichiers et des dossiers</primary>
+
+        <secondary>débuter</secondary>
+      </indexterm>Sélection des fichiers et dossiers à comparer</title>
+
+    <para>Après avoir installé WinMerge, suivez la procédure et les explications de ce
+chapitre pour apprendre les opérations et concepts de base de WinMerge. Les
+méthodes présentées ne sont pas les seules façons de procéder : il existe
+généralement plusieurs manières d'accomplir chaque tâche. Une fois terminé,
+vous pourrez apprendre d'autres méthodes et des compétences plus avancées
+traitées dans d'autres rubriques d'aide.</para>
+
+    <section>
+      <title><indexterm><primary>Fenêtre WinMerge</primary></indexterm>Ouvrir la fenêtre WinMerge</title>
+
+      <para>Voici quelques-unes des méthodes que vous pouvez utiliser :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Double-cliquez sur le raccourci WinMerge du bureau.</para>
+        </listitem>
+
+        <listitem>
+          <para>Naviguez vers le lanceur WinMerge dans votre menu Démarrer.</para>
+        </listitem>
+
+        <listitem>
+          <para>Dans une fenêtre d'invite de commandes, déplacez-vous vers le dossier
+d'installation de WinMerge et saisissez <command>WinMergeU</command>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Appuyez sur <keycombo><keycap>Windows</keycap><keycap>R</keycap></keycombo>
+et saisissez <command>winmerge</command>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Ouvrir la boîte de dialogue <guilabel>Ouvrir des fichiers ou
+dossiers</guilabel></title>
+
+      <para>Dans la fenêtre WinMerge, utilisez les méthodes suivantes pour ouvrir la
+boîte de dialogue <guilabel>Ouvrir des fichiers ou dossiers</guilabel> :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Cliquez sur
+<menuchoice><guimenu>Fichier</guimenu><guimenuitem>Ouvrir...</guimenuitem></menuchoice>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Cliquez sur le bouton de barre d'outils Ouvrir <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>Bouton Ouvrir de WinMerge</phrase></textobject>
+            </inlinemediaobject>.</para>
+        </listitem>
+
+        <listitem>
+          <para>Appuyez sur <keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title><indexterm><primary>Boîte de dialogue Sélectionner des fichiers ou des dossiers</primary></indexterm> La boîte de dialogue <guilabel>Ouvrir
+des fichiers ou dossiers</guilabel></title>
+
+      <para>
+<mediaobject>
+<imageobject> <imagedata fileref="screenshots/OpenDlg1.png" format="PNG" />
+</imageobject><textobject>
+            <phrase>Fenêtre Sélectionner des fichiers ou des dossiers</phrase>
+          </textobject>
+        </mediaobject></para>
+
+      <section>
+        <title>Spécifier les fichiers et dossiers</title>
+
+        <para>Dans les champs <guilabel>1er</guilabel> et <guilabel>2e</guilabel>,
+spécifiez les fichiers et dossiers à comparer. Utilisez l'une de ces
+méthodes :</para>
+
+        <para><itemizedlist>
+            <listitem>
+              <para>Saisissez les chemins d'accès directement dans les champs.</para>
+            </listitem>
+
+            <listitem>
+              <para>Cliquez sur le bouton <guibutton>Parcourir...</guibutton> pour naviguer vers
+le chemin souhaité.</para>
+
+              <para>Dans la boîte de dialogue Ouvrir, le texte <literal>Folder
+Selection</literal> s'affiche initialement dans le champ <guilabel>Nom du
+fichier</guilabel>. Votre sélection dépend du type de comparaison souhaité :</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Si vous comparez des fichiers, sélectionnez le fichier cible. Le texte
+<literal>Folder Selection</literal> sera remplacé par votre sélection.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Si vous comparez des dossiers, ouvrez le dossier cible ; ne sélectionnez pas
+de fichier. Le texte <literal>Folder Selection</literal> reste en place.</para>
+                </listitem>
+              </itemizedlist>
+
+              <para>Cliquez sur <guibutton>Ouvrir</guibutton> pour fermer la boîte de dialogue
+et charger votre sélection dans le champ <guilabel>1er</guilabel> ou
+<guilabel>2e</guilabel>. Si vous avez spécifié des dossiers, le champ
+inclura une barre oblique inversée ( \ ) à la fin du chemin.</para>
+            </listitem>
+
+            <listitem>
+              <para>Cliquez sur la zone de liste déroulante et choisissez un chemin précédemment
+utilisé.</para>
+
+              <tip>
+                <para>Pour faciliter la sélection de chemins fréquents, activez l'option
+<guilabel>Auto-complétion de la boîte de dialogue
+d'ouverture</guilabel>. WinMerge affichera une liste de chemins disponibles
+au fur et à mesure de votre saisie. Voir <xref linkend="Configuration" />
+pour plus de détails.</para>
+              </tip>
+              <para></para>
+            </listitem>
+
+            <listitem>
+              <para>Faites glisser et déposez un fichier ou un dossier dans la boîte de dialogue
+ou dans les champs <guilabel>1er</guilabel> ou <guilabel>2e</guilabel>.</para>
+            </listitem>
+          </itemizedlist></para>
+
+        <para><note><para>Vous ne pouvez sélectionner qu'une seule paire de fichiers ou une seule
+paire de dossiers à comparer. Si vous sélectionnez un fichier et un dossier,
+ou si l'un des éléments n'est pas trouvé, WinMerge désactivera le bouton
+<guibutton>Comparer</guibutton>.</para>
+
+            <para>Le message d'état en bas de la boîte de dialogue vous informe également si
+l'un des chemins est invalide.</para>
+</note></para>
+      </section>
+
+      <section>
+        <title>Contrôler la portée de la comparaison de dossiers</title>
+
+        <para>Si vous comparez des dossiers, vous pouvez utiliser le champ
+<guilabel>Filtre</guilabel> pour écarter certains fichiers. Ce champ
+spécifie un sous-ensemble de fichiers à inclure ; tous les fichiers non
+spécifiés sont exclus.</para>
+
+        <para>Vous pouvez saisir des masques de fichiers pour filtrer certaines
+extensions. Par exemple, cette expression n'inclut que les fichiers sources
+C et C++ ; tous les autres types sont éliminés.</para>
+
+        <para><filename><userinput>*.cpp;*.hpp;*.c;*.h</userinput></filename></para>
+
+        <para>Pour un filtrage plus robuste, utilisez un fichier de filtre : cliquez sur
+le bouton <guibutton>Sélectionner...</guibutton> à côté du champ
+<guilabel>Filtre</guilabel>. Les fichiers de filtres contiennent des règles
+pour inclure ou exclure des fichiers. WinMerge installe un ensemble de
+filtres que vous pouvez modifier ou compléter.</para>
+
+        <para>Voir <xref linkend="Filters" /> pour les détails complets sur les masques et
+fichiers de filtres.</para>
+
+        <para>La case <guilabel>Inclure les sous-dossiers</guilabel> permet de contrôler
+la profondeur. Si elle est cochée, WinMerge compare récursivement les
+sous-dossiers et affiche tout dans une vue unique. Sinon, seul le dossier
+courant est comparé et les sous-dossiers sont listés par nom pour navigation
+manuelle.</para>
+      </section>
+
+      <section>
+        <title>Utiliser les plug-ins de décompression (Unpacker)</title>
+        <para>Le champ Unpacker vous permet d'effectuer des opérations de comparaison via
+des plug-ins.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Autres façons d'ouvrir des fichiers et dossiers<indexterm>
+          <primary>fichiers de projet</primary>
+        </indexterm><indexterm>
+          <primary>ligne de commande</primary>
+
+          <secondary>ouvrir des fichiers et des dossiers</secondary>
+        </indexterm></title>
+
+      <para>La boîte de dialogue <guilabel>Ouvrir des fichiers ou dossiers</guilabel>
+est l'interface principale, mais il existe d'autres moyens :</para>
+
+      <itemizedlist>
+        <listitem>
+          <simpara>Les <xref linkend="OpenPaths_project" /> sont le moyen le plus simple
+d'ouvrir des chemins fréquents.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>L'<xref linkend="OpenPaths_shell-integ" />.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>L'interface en <xref linkend="Command_line" /> pour lancer WinMerge depuis
+d'autres applications ou scripts.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Le glisser-déposer de fichiers/dossiers sur la fenêtre ou le raccourci
+WinMerge.</simpara>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section>
+    <title><indexterm>
+        <primary>comparaison de dossiers</primary>
+
+        <secondary>débuter</secondary>
+      </indexterm><indexterm>
+        <primary>Fenêtre de comparaison de dossiers</primary>
+
+        <secondary>débuter</secondary>
+      </indexterm>Comparaison de dossiers</title>
+
+    <para>Si vous avez sélectionné deux dossiers, la fenêtre de comparaison de
+dossiers s'ouvre. Il s'agit d'une liste sous forme de tableau. Chaque ligne
+affiche des informations sur un fichier trouvé, avec son nom à gauche et des
+détails dans les autres colonnes :</para>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>Fenêtre de comparaison de dossiers</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>WinMerge ne gère pas de concept de côté <wordasword>original</wordasword> ou
+<wordasword>modifié</wordasword>. Il montre simplement les différences. Un
+élément présent d'un seul côté est affiché comme unique à ce côté. Par
+exemple, dans la colonne <guilabel>Résultat de la comparaison</guilabel>,
+les fichiers trouvés dans un seul dossier sont marqués comme tels.</para>
+
+    <para>Vous pouvez gérer les éléments via le menu <guimenu>Fusionner</guimenu>, la
+barre d'outils ou le menu contextuel. L'action principale consiste à rendre
+les éléments identiques en les copiant d'un côté vers l'autre. Le résultat
+devient alors <literal>Identique</literal>.</para>
+
+    <para>Si un fichier existe des deux côtés (et n'est pas binaire), il peut être
+ouvert pour comparaison via ces méthodes :<itemizedlist>
+        <listitem>
+          <simpara>Cliquez sur <menuchoice> <guimenuitem>Comparer</guimenuitem>
+<guimenuitem>Fusionner</guimenuitem> </menuchoice> dans le menu WinMerge.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Faites un clic droit sur la ligne et choisissez le raccourci
+<guimenuitem>Comparer</guimenuitem>.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Double-cliquez sur la ligne.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>Sélectionnez la ligne et appuyez sur <keycap>Entrée</keycap>.</simpara>
+        </listitem>
+      </itemizedlist>Si vous comparez un sous-dossier, son contenu remplace la vue actuelle. Pour
+revenir au dossier parent, double-cliquez sur la flèche vers le haut
+<inlinemediaobject>
+<imageobject> <imagedata contentwidth="23"
+fileref="screenshots/nav_uparrow_btn.png" /> </imageobject><textobject>
+          <phrase>Bouton flèche vers le haut du navigateur</phrase>
+        </textobject>
+      </inlinemediaobject> en haut de la colonne Nom du
+fichier.</para>
+
+    <para>Si vous comparez un fichier, la fenêtre de comparaison de fichiers
+s'ouvre. Si vous modifiez un fichier et revenez à la vue dossier, les
+données y seront mises à jour.</para>
+  </section>
+
+  <section id="QuickStart_comparingfiles">
+    <title><indexterm>
+        <primary>comparaison de fichiers</primary>
+
+        <secondary>débuter</secondary>
+      </indexterm><indexterm>
+        <primary>Fenêtre de comparaison de fichiers</primary>
+
+        <secondary>débuter</secondary>
+      </indexterm>Comparaison de fichiers</title>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>Fenêtre de comparaison de fichiers</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>La fenêtre de comparaison affiche les deux fichiers côte à côte. Les lignes
+différentes sont surlignées. Un bloc de lignes différentes forme une «
+différence » (ou <glossterm>diff</glossterm>). WinMerge travaille
+principalement par blocs de différences. Lors de la fusion, vous copiez tout
+le bloc d'un côté vers l'autre.</para>
+
+    <para><important>
+        <para>Notez comment WinMerge insère des lignes vides pour que les lignes
+similaires soient toujours alignées verticalement. C'est une particularité
+de WinMerge qui nécessite un petit temps d'adaptation.</para>
+      </important></para>
+
+    <para>WinMerge possède un éditeur intégré simple. Si le <guilabel>Rescan
+automatique</guilabel> est activé, les différences se mettent à jour pendant
+l'édition. Sinon, rafraîchissez via <menuchoice> <guimenu>Édition</guimenu>
+<guimenuitem>Rafraîchir</guimenuitem> </menuchoice>, le bouton <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+          <phrase>Bouton Actualiser</phrase>
+        </textobject>
+      </inlinemediaobject> ou <keycap>F5</keycap>.</para>
+  </section>
+</article>

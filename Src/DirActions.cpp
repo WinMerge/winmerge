@@ -298,64 +298,114 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
  * @brief Find the CDiffContext diffpos of an item from its left & right paths
  * @return POSITION to item, `nullptr` if not found.
  * @note Filenames must be same, if they differ `nullptr` is returned.
+ * @note This version uses hierarchical search for better performance.
  */
-DIFFITEM *FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
+DIFFITEM* FindItemFromPaths(const CDiffContext& ctxt, const PathContext& paths)
 {
-	int nBuffer;
-	String file[3], path[3], base;
-	for (nBuffer = 0; nBuffer < paths.GetSize(); ++nBuffer)
-	{
-		String p = paths[nBuffer];
-		file[nBuffer] = paths::FindFileName(p);
-		if (file[nBuffer].empty())
-			return 0;
-		// Path can contain (because of difftools?) '/' and '\'
-		// so for comparing purposes, convert whole path to use '\\'
-		path[nBuffer] = paths::ToWindowsPath(String(p, 0, p.length() - file[nBuffer].length())); // include trailing backslash
-		base = ctxt.GetPath(nBuffer); // include trailing backslash
-		if (path[nBuffer].compare(0, base.length(), base.c_str()) != 0)
-			return 0;
-		path[nBuffer].erase(0, base.length()); // turn into relative path
-		if (String::size_type length = path[nBuffer].length())
-			path[nBuffer].resize(length - 1); // remove trailing backslash
-	}
+	const int nDirs = paths.GetSize();
+	String filename[3];
+	std::vector<String> pathComponents[3];
 
-	// Filenames must be identical
-	if (std::any_of(file, file + paths.GetSize(), [&](auto& it) { return strutils::compare_nocase(it, file[0]) != 0; }))
-		return 0;
-
-	DIFFITEM *pos = ctxt.GetFirstDiffPosition();
-	if (paths.GetSize() == 2)
+	// Parse paths and extract folder components
+	for (int i = 0; i < nDirs; ++i)
 	{
-		while (DIFFITEM *currentPos = pos) // Save our current pos before getting next
+		const String fullPath = paths::ToWindowsPath(paths[i]);
+		const String basePath = ctxt.GetPath(i);
+
+		// Validate path is under base
+		if (fullPath.compare(0, basePath.length(), basePath) != 0)
+			return nullptr;
+
+		// Extract relative path
+		String relPath = fullPath.substr(basePath.length());
+
+		// Extract filename
+		size_t lastSlash = relPath.find_last_of(_T('\\'));
+		String currentFilename = (lastSlash != String::npos) ? relPath.substr(lastSlash + 1) : relPath;
+
+		if (currentFilename.empty())
+			return nullptr;
+
+		filename[i] = currentFilename;
+
+		// Split directory path into components
+		if (lastSlash != String::npos)
 		{
-			const DIFFITEM &di = ctxt.GetNextDiffPosition(pos);
-			if (di.diffFileInfo[0].path == path[0] &&
-				di.diffFileInfo[1].path == path[1] &&
-				di.diffFileInfo[0].filename == file[0] &&
-				di.diffFileInfo[1].filename == file[1])
+			String dirPath = relPath.substr(0, lastSlash);
+			size_t start = 0, end;
+			while ((end = dirPath.find(_T('\\'), start)) != String::npos)
 			{
-				return currentPos;
+				if (end > start)
+					pathComponents[i].push_back(dirPath.substr(start, end - start));
+				start = end + 1;
 			}
+			if (start < dirPath.length())
+				pathComponents[i].push_back(dirPath.substr(start));
 		}
 	}
-	else
+
+	// Start hierarchical search from root
+	DIFFITEM* current = ctxt.GetFirstDiffPosition();
+
+	// Navigate through folder hierarchy level by level
+	if (!pathComponents[0].empty())
 	{
-		while (DIFFITEM *currentPos = pos) // Save our current pos before getting next
+		for (size_t level = 0; level < pathComponents[0].size(); ++level)
 		{
-			const DIFFITEM &di = ctxt.GetNextDiffPosition(pos);
-			if (di.diffFileInfo[0].path == path[0] &&
-				di.diffFileInfo[1].path == path[1] &&
-				di.diffFileInfo[2].path == path[2] &&
-				di.diffFileInfo[0].filename == file[0] &&
-				di.diffFileInfo[1].filename == file[1] &&
-				di.diffFileInfo[2].filename == file[2])
+			bool found = false;
+
+			// Search for matching folder at current level
+			while (current)
 			{
-				return currentPos;
+				DIFFITEM* currentPos = current;
+				const DIFFITEM& di = ctxt.GetNextSiblingDiffPosition(current);
+
+				if (di.diffcode.isDirectory())
+				{
+					// Check if folder name matches at all indices
+					bool allMatch = true;
+					for (int i = 0; i < nDirs && allMatch; ++i)
+					{
+						if (level >= pathComponents[i].size() ||
+							di.diffFileInfo[i].filename != pathComponents[i][level])
+							allMatch = false;
+					}
+
+					if (allMatch)
+					{
+						// Found! Descend into this folder
+						current = ctxt.GetFirstChildDiffPosition(&di);
+						found = true;
+						break;
+					}
+				}
 			}
+
+			if (!found)
+				return nullptr; // Folder doesn't exist in tree
 		}
 	}
-	return 0;
+
+	// Search for file in current folder level (siblings only)
+	while (current)
+	{
+		DIFFITEM* currentPos = current;
+		const DIFFITEM& di = ctxt.GetNextSiblingDiffPosition(current);
+
+		// Skip directories
+		if (di.diffcode.isDirectory())
+			continue;
+
+		// Check if filename matches at all indices
+		bool allMatch = true;
+		for (int i = 0; i < nDirs && allMatch; ++i)
+			allMatch = (di.diffFileInfo[i].filename == filename[i]);
+
+		if (allMatch)
+			return currentPos;
+	}
+
+	return nullptr;
 }
 
 bool IsItemCopyable(const DIFFITEM &di, int index, bool copyOnlyDiffItems)
@@ -692,6 +742,8 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 				}
 			}
 		}
+		if (!filter.displayFilterHelper.IsEmpty() && !filter.displayFilterHelper.includeDir(di))
+			return false;
 	}
 	else
 	{
@@ -751,6 +803,8 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 			else if (di.diffcode.isResultDiff() && !filter.show_different)
 				return false;
 		}
+		if (!filter.displayFilterHelper.IsEmpty() && !filter.displayFilterHelper.includeFile(di))
+			return false;
 	}
 	return true;
 }

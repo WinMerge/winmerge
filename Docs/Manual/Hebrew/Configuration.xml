@@ -1263,6 +1263,212 @@ and <guilabel>Compare Date</guilabel>.  Selecting <guilabel>Compare
 Date</guilabel> automatically inserts <literal>allequal(Date)</literal> into
 the field.</para>
     </section>
+
+    <section>
+      <title>
+Rename/move detection<indexterm>
+          <primary>rename detection</primary>
+        </indexterm><indexterm>
+          <primary>move detection</primary>
+        </indexterm></title>
+ 
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (default): WinMerge does not detect renamed or
+moved files/folders.</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>Rename detection</option>: Detects files or folders with different
+names but matching detection keys within the same directory.  Files/folders
+are grouped together when they share the same detection key.</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>Rename and move detection</option>: Detects files or folders with
+different names or in different directories but matching detection keys.
+This mode detects both renamed items (same directory) and moved items
+(different directories).</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+Rename/move detection keys<indexterm>
+          <primary>rename detection keys</primary>
+        </indexterm><indexterm>
+          <primary>move detection keys</primary>
+        </indexterm></title>
+ 
+      <para>
+Specifies the filter expression used to generate detection keys for matching
+files/folders across sides.  Items with matching keys are grouped together
+as potentially renamed or moved items.  For example, setting the key to
+<literal>Size</literal> will group files with the same size, while
+<literal>Name</literal> will group files with the same filename (useful for
+detecting moves).</para>
+ 
+      <para>
+When you click the <guilabel>=</guilabel> button to the right of the input
+field, a helper menu appears with common detection key expressions:</para>
+ 
+      <variablelist>
+        <varlistentry>
+          <term>Name</term>
+          <listitem>
+            <para>
+Matches files/folders by name. Useful for detecting files that have been
+moved to different directories but kept the same name.</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>BaseName</term>
+          <listitem>
+            <para>
+Matches files by name without extension. For example, "file.txt" and
+"file.doc" would match.</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>normalizeUnicode(Name, "NFC")</term>
+          <listitem>
+            <para>
+Matches files by normalized Unicode filename. Useful for detecting files
+with equivalent names but different Unicode representations.</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>Size</term>
+          <listitem>
+            <para>
+Matches files by size. Useful for detecting files that have been renamed but
+have the same size.</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>Date</term>
+          <listitem>
+            <para>
+Matches files by modification date/time.</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>if(IsFolder, Name, prop("Hash.MD5"))</term>
+          <listitem>
+            <para>
+For folders, matches by name. For files, matches by MD5 hash of content.
+This is the most accurate method for detecting renamed files, but requires
+computing MD5 hashes which can be slow for large files.</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>Property-based keys</term>
+          <listitem>
+            <para>
+The menu also provides access to Windows file properties such as
+<literal>System.Author</literal>, <literal>System.Title</literal>, etc. You
+can use these to match files based on their metadata.</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>String transformation functions</term>
+          <listitem>
+            <para>
+The menu includes string transformation functions that can be applied to
+detection keys:</para>
+            <itemizedlist>
+              <listitem>
+                <para>
+<literal>replace(str, "from", "to")</literal> - Replace text in the key</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>regexReplace(str, "pattern", "replacement")</literal> - Replace
+using regular expressions</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>toLower(str)</literal> / <literal>toUpper(str)</literal> - Convert
+case</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>toHalfWidth(str)</literal> / <literal>toFullWidth(str)</literal> -
+Convert character width</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>toSimplifiedChinese(str)</literal> /
+<literal>toTraditionalChinese(str)</literal> - Convert Chinese characters</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>toHiragana(str)</literal> / <literal>toKatakana(str)</literal> -
+Convert Japanese characters</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+ 
+      <para>
+You can combine multiple keys using the <literal>+</literal> operator with a
+separator.  For example, <literal>Name + "|" + Size</literal> will create a
+composite key combining both filename and size.</para>
+ 
+      <note>
+        <para>
+The detection key expression is evaluated for each side of a file/folder
+comparison to produce a key.  Items are grouped when their keys match. For
+example, with the key <literal>Size</literal>, a file of 1024 bytes on the
+left and a file of 1024 bytes on the right (even with different names) will
+be grouped together.</para>
+      </note>
+    </section>
+ 
+    <section>
+      <title>
+Merge renamed items into a single item<indexterm>
+          <primary>merge renamed items</primary>
+        </indexterm></title>
+ 
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>Disabled</option> (default): Renamed/moved items remain as separate
+entries in the folder comparison tree.  The items are grouped together
+(indicated by a common group ID), but each side's file/folder is shown
+separately.</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>Enabled</option>: Items that have been detected as renamed but are
+in the same directory are merged into a single entry.  This simplifies the
+comparison tree by showing a single item that exists on multiple sides with
+different names.  Items in different directories (moved items) are not
+merged even when this option is enabled.</para>
+        </listitem>
+      </itemizedlist>
+ 
+      <note>
+        <para>
+Merging only occurs when each side has at most one item in the group and the
+items are in the same parent directory.  If multiple files match on one side
+(ambiguous case), they are not merged.</para>
+      </note>
+    </section>
   </section>
 
   <section id="Configuration_compare_table">
@@ -2176,6 +2382,35 @@ TBD</para>
 <guimenuitem>עם עורך חיצוני</guimenuitem> </menuchoice> או <menuchoice>
 <guimenuitem>פתח ימני</guimenuitem> <guimenuitem>עם עורך
 חיצוני</guimenuitem> </menuchoice>.</para>
+    </section>
+
+    <section>
+      <title>
+Store user data in<indexterm>
+          <primary>user data</primary>
+          <secondary>storage location</secondary>
+        </indexterm></title>
+    
+      <para>
+Specifies where WinMerge stores user data such as filters, plugins, color
+schemes, and configuration logs.</para>
+    
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>AppData (Roaming) folder</guilabel> (default): Stores user data in
+the roaming application data folder of your user profile.</para>
+        </listitem>
+    
+        <listitem>
+          <para>
+<guilabel>Documents folder</guilabel>: Stores user data in the
+<filename>WinMerge</filename> subfolder of your Documents directory.</para>
+        </listitem>
+      </itemizedlist>
+    
+      <para>
+This setting affects newly created user data only.</para>
     </section>
 
     <section>

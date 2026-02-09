@@ -61,6 +61,7 @@ SwedishLanguage=瑞典語
 TamilLanguage=坦米爾選單和對話框
 TurkishLanguage=土耳其語
 UkrainianLanguage=烏克蘭語
+VietnameseLanguage=越南語選單和對話框
 
 ;Tasks
 ExplorerContextMenu=啟用檔案總管右鍵選單整合 (&E)
@@ -89,4 +90,5 @@ ExplorerNeedsRestart=WinMerge ShellExtension 需要重新啟動檔案總管才�
 
 ; Project file description
 ProjectFileDesc=WinMerge 專案檔
+
 

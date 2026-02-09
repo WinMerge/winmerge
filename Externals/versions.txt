@@ -6,8 +6,8 @@ This file lists versions of the external components we are using.
 - POCO: 1.14.0
 - boost: 1.88.0
 - frhed: 0.10904.2017.21
-- WinIMerge: 1.0.47.0
-  - freeimage: 3.18.0
+- WinIMerge: 1.0.50.0
+  - freeimage: 3.19.10 (https://github.com/danoli3/FreeImage)
   - LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)
 - WinWebDiff: 1.0.20.0
   - WebView2: 1.0.1518.46
@@ -18,7 +18,8 @@ This file lists versions of the external components we are using.
 - 7-zip: 25.01
 - LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)
 - html-tidy5: 5.4.0
-- jq: 1.7.1
+- jq: 1.8.1
 - wil: 209ff9c7e30e71bf6d1405557bf78544920f8157 on Sep 9, 2021
 - md4c: 0.5.2
 - darkmodelib: 0.21.2.0
+- StackWalker: 7af4024 on Aug 4, 2025 (https://github.com/JochenKalmbach/StackWalker)

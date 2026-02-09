@@ -556,6 +556,9 @@ msgstr "2de en 3de wisselen"
 msgid "Swap 1st | &3rd"
 msgstr "1ste en 3de wisselen"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Vergelijkingsstatistieken..."
 
@@ -886,6 +889,9 @@ msgstr "Splitsen"
 msgid "Comp&are"
 msgstr "Vergelijken"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr ""
+
 msgid "Compare in New &Window"
 msgstr "In nieuw venster vergelijken"
 
@@ -1041,8 +1047,11 @@ msgstr "Volledig pad kopiëren"
 msgid "Copy &Filename"
 msgstr "Bestandsnaam kopiëren"
 
-msgid "&Edit Caption"
-msgstr "Ondertitel bewerken"
+msgid "&Edit Caption\tF2"
+msgstr "Ondertitel bewerken\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr ""
 
 msgid "&Open..."
 msgstr "Openen..."
@@ -1488,6 +1497,30 @@ msgstr ""
 msgid "Add F&older Condition"
 msgstr ""
 
+msgid "&Files"
+msgstr ""
+
+msgid "0 files"
+msgstr ""
+
+msgid "1 file or more"
+msgstr ""
+
+msgid "&Items"
+msgstr ""
+
+msgid "0 items"
+msgstr ""
+
+msgid "1 item or more"
+msgstr ""
+
+msgid "&Total Size"
+msgstr ""
+
+msgid "&Recursive"
+msgstr ""
+
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr ""
 
@@ -1588,6 +1621,63 @@ msgid "Compare &Attributes"
 msgstr ""
 
 msgid "Compare C&ontents"
+msgstr ""
+
+msgid "&Clear Keys"
+msgstr ""
+
+msgid "&Name"
+msgstr ""
+
+msgid "&Base name (without extension)"
+msgstr ""
+
+msgid "Normalized &Unicode Name"
+msgstr ""
+
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash (MD5)"
+msgstr ""
+
+msgid "Insert &replace() Function"
+msgstr ""
+
+msgid "Insert rege&xReplace() Function"
+msgstr ""
+
+msgid "Text &Normalization"
+msgstr ""
+
+msgid "&Lowercase"
+msgstr ""
+
+msgid "&Uppercase"
+msgstr ""
+
+msgid "&Half-width"
+msgstr ""
+
+msgid "&Full-width"
+msgstr ""
+
+msgid "&Chinese Conversion"
+msgstr ""
+
+msgid "&Simplified Chinese"
+msgstr ""
+
+msgid "&Traditional Chinese"
+msgstr ""
+
+msgid "&Japanese Conversion"
+msgstr ""
+
+msgid "&Hiragana"
+msgstr ""
+
+msgid "&Katakana"
 msgstr ""
 
 msgid "About WinMerge"
@@ -1970,6 +2060,9 @@ msgstr "Verwijderde bestanden naar prullenbak verplaatsen"
 msgid "&External editor:"
 msgstr "Externe editor:"
 
+msgid "&Store user data in:"
+msgstr ""
+
 msgid "&Filter folder:"
 msgstr "Map filteren:"
 
@@ -2196,6 +2289,9 @@ msgstr "Totaal aantal items:"
 
 msgid "Items compared:"
 msgstr "Items vergeleken:"
+
+msgid "&Close"
+msgstr "Sluiten"
 
 msgid "Go to"
 msgstr "Gaan naar"
@@ -2444,9 +2540,6 @@ msgstr "Resultaat:"
 msgid "&Test"
 msgstr "Testen"
 
-msgid "&Close"
-msgstr "Sluiten"
-
 msgid "Table"
 msgstr "Tabel"
 
@@ -2608,6 +2701,15 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "Drempel voor overschakelen naar binair vergelijken (MB):"
 
 msgid "Additional comparison condi&tions:"
+msgstr ""
+
+msgid "&Rename/move detection:"
+msgstr ""
+
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
 msgstr ""
 
 msgid "File patterns:"
@@ -3848,6 +3950,33 @@ msgstr ""
 msgid "Group%d"
 msgstr "Groep%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
+msgstr ""
+
+msgid "Renamed"
+msgstr ""
+
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
+msgstr ""
+
+#, c-format
+msgid "(%1 items)"
+msgstr ""
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr ""
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Verstreken tijd: %ld ms"
@@ -4012,6 +4141,18 @@ msgstr "Hetzelfde bestand is in beide vensters geopend."
 
 msgid "Selected files are identical."
 msgstr "De geselecteerde bestanden zijn identiek."
+
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr ""
+
+msgid "Selected files are identical (binary match)."
+msgstr ""
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr ""
 
 msgid "An error occurred while comparing files."
 msgstr "Er trad een fout op bij het vergelijken van de bestanden."
@@ -4671,11 +4812,14 @@ msgstr "Positie en tekst regel per regel"
 msgid "Word-by-word position and text"
 msgstr "Positie en tekst woord voor woord"
 
-msgid "AppData folder"
-msgstr "AppData-map"
+msgid "AppData (Roaming) folder"
+msgstr ""
 
 msgid "Install folder"
 msgstr "Installatiemap"
+
+msgid "Documents folder"
+msgstr ""
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5065,6 +5209,13 @@ msgid "Dark"
 msgstr ""
 
 msgid "Follow system"
+msgstr ""
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr ""
 
 msgid "Prettification"
@@ -5541,6 +5692,9 @@ msgstr ""
 "Kan geen macro's ophalen.\r\n"
 "   Om WinMerge toe te laten om macro's te vergelijken, gebruikt u MS Office om de instellingen in de macrobeveiliging voor de huidige toepassing te wijzigen.\r\n"
 "   De functie 'toegang vertrouwen tot Visual Basic project' moet worden ingeschakeld om deze functie in WinMerge te kunnen gebruiken.\r\n"
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr ""
 
 msgid "Compare VBA macros"
 msgstr "VBA-macro's vergelijken"

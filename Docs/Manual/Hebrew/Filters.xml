@@ -251,8 +251,17 @@ otherwise</para></listitem>
               <listitem><para>File name</para></listitem>
             </varlistentry>
             <varlistentry>
+              <term>BaseName</term>
+              <listitem><para>Returns the filename without extension. For example, "document.txt" returns
+"document".</para></listitem>
+            </varlistentry>
+            <varlistentry>
               <term>Extension</term>
               <listitem><para>File extension</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>IsFolder</term>
+              <listitem><para>Returns true if the item is a folder/directory, false if it's a file.</para></listitem>
             </varlistentry>
             <varlistentry>
               <term>תיקייה</term>
@@ -290,11 +299,57 @@ Read-only, <literal>"H"</literal> for Hidden, <literal>"A"</literal> for
 Archive, <literal>"S"</literal> for System file.</para>
               </listitem>
             </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>File-only Attributes</title>
+          <para>
+The following attributes are available only for file comparison items.  When
+used with folder items, the behavior is undefined.</para>
+
+          <variablelist>
             <varlistentry>
               <term>Content</term>
               <listitem><para>Content of the file. Returns a FileContent-type value. Only
 <literal>contains</literal> and <literal>recontains</literal> can be used
 with this type.</para></listitem>
+            </varlistentry>
+          </variablelist>
+        </section>
+
+        <section>
+          <title>Folder-only Attributes</title>
+          <para>
+The following attributes are available only for folder comparison items.
+When used with file items, the behavior is undefined.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Files</term>
+              <listitem><para>Number of files directly contained in the folder.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveFiles</term>
+              <listitem><para>Number of files contained in the folder, including all subfolders.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>Items</term>
+              <listitem><para>Number of items (files and subfolders) directly contained in the folder.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveItems</term>
+              <listitem><para>Number of items (files and subfolders) contained in the folder, including
+all subfolders.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>TotalSize</term>
+              <listitem><para>Total size of all files directly contained in the folder, in bytes.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>RecursiveTotalSize</term>
+              <listitem><para>Total size of all files contained in the folder, including all subfolders,
+in bytes.</para></listitem>
             </varlistentry>
           </variablelist>
         </section>
@@ -547,6 +602,125 @@ array</emphasis> as a <literal>String</literal>. If
 array. Example: <literal>substr(Name, 0, 3)</literal></para></listitem>
           </varlistentry>
           <varlistentry>
+            <term>replace(str, from, to)</term>
+            <listitem>
+              <para>
+Replaces all occurrences of the string <replaceable>from</replaceable> with
+<replaceable>to</replaceable>.  If <replaceable>str</replaceable> is an
+array, the result is an array of strings with replacements applied.
+Example: <literal>replace(name, ".bak", ".txt")</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>regexReplace(str, pattern, replacement)</term>
+            <listitem>
+              <para>
+Replaces all matches of the regular expression pattern with the replacement
+string.  Supports backreferences ($1, $2, etc.) in the replacement string.
+If <replaceable>str</replaceable> is an array, the result is an array of
+strings with replacements applied.  Example: <literal>regexReplace(name,
+"^(\\w+)_(\\w+)$", "$2_$1")</literal> swaps words separated by underscore.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>normalizeUnicode(str[, form])</term>
+            <listitem>
+              <para>
+Normalizes Unicode string. The optional form parameter specifies the
+normalization form: "NFC" or "C" (default), "NFD" or "D", "NFKC" or "KC",
+"NFKD" or "KD".  Can also use numeric forms: 1=NFC, 2=NFD, 5=NFKC, 6=NFKD.
+If <replaceable>str</replaceable> is an array, the result is an array of
+normalized strings.  Example: <literal>normalizeUnicode(name,
+"NFC")</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toLower(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts all characters in the string to lowercase.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+lowercase strings.  Example: <literal>toLower("Hello World")</literal>
+returns <literal>"hello world"</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toUpper(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts all characters in the string to uppercase.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+uppercase strings.  Example: <literal>toUpper("Hello World")</literal>
+returns <literal>"HELLO WORLD"</literal></para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toHalfWidth(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts full-width characters to half-width characters.  Primarily used for
+converting full-width alphanumeric and katakana characters to half-width.
+If <replaceable>str</replaceable> is an array, the result is an array of
+converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toFullWidth(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts half-width characters to full-width characters.  Primarily used for
+converting half-width alphanumeric and katakana characters to full-width.
+If <replaceable>str</replaceable> is an array, the result is an array of
+converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toKatakana(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts hiragana characters to katakana.  Non-hiragana characters remain
+unchanged.  If <replaceable>str</replaceable> is an array, the result is an
+array of converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toHiragana(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts katakana characters to hiragana.  Non-katakana characters remain
+unchanged.  If <replaceable>str</replaceable> is an array, the result is an
+array of converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toSimplifiedChinese(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts traditional Chinese characters to simplified Chinese characters.
+Characters that don't have a simplified form remain unchanged.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>
+toTraditionalChinese(<replaceable>str</replaceable>)</term>
+            <listitem>
+              <para>
+Converts simplified Chinese characters to traditional Chinese characters.
+Characters that don't have a traditional form remain unchanged.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+converted strings.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
             <term>now()</term>
             <listitem><para>Returns the current date and time as a <literal>Timestamp</literal> value.</para></listitem>
           </varlistentry>
@@ -590,6 +764,191 @@ array</emphasis> satisfy the condition.</para></listitem>
             <term>allequal(<replaceable>array</replaceable>)</term>
             <listitem><para>Returns <literal>true</literal> if all values in the array are equal.</para></listitem>
           </varlistentry>
+          <varlistentry>
+            <term>isWithin(<replaceable>value</replaceable>, <replaceable>min</replaceable>,
+<replaceable>max</replaceable>)</term>
+            <listitem>
+              <para>
+Returns <literal>true</literal> if <replaceable>value</replaceable> is
+within the range <literal>[min, max]</literal> (inclusive on both ends).
+Supports integers, floating-point numbers, timestamps, and strings
+(case-insensitive comparison).  If <replaceable>value</replaceable> is an
+array, the result is a boolean array with each element checked individually.</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>isWithin(5, 1, 10)</literal> returns <literal>true</literal></para></listitem>
+                <listitem><para><literal>isWithin(Size, 1KB, 10MB)</literal> checks if any file size is
+between 1KB and 10MB</para></listitem>
+                <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> checks if file
+was modified within the last week</para></listitem>
+                <listitem><para><literal>allof(isWithin(Size, 1KB, 10MB))</literal> checks if all file sizes
+are between 1KB and 10MB</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>inRange(<replaceable>value</replaceable>, <replaceable>min</replaceable>,
+<replaceable>max</replaceable>)</term>
+            <listitem>
+              <para>
+Returns <literal>true</literal> if <replaceable>value</replaceable> is
+within the range <literal>[min, max)</literal> (inclusive on the lower
+bound, exclusive on the upper bound).  Supports integers, floating-point
+numbers, timestamps, and strings (case-insensitive comparison).  If
+<replaceable>value</replaceable> is an array, the result is a boolean array
+with each element checked individually.</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>inRange(5, 1, 10)</literal> returns <literal>true</literal></para></listitem>
+                <listitem><para><literal>inRange(10, 1, 10)</literal> returns <literal>false</literal></para></listitem>
+                <listitem><para><literal>inRange(Size, 0, 1MB)</literal> checks if any file size is less
+than 1MB</para></listitem>
+                <listitem><para><literal>anyof(inRange(Date, startOfMonth(today()), today()))</literal>
+checks if any file was modified this month (excluding today)</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>logError(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>, ...),
+logWarn(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>, ...),
+logInfo(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>, ...)</term>
+            <listitem>
+              <para>
+Outputs the concatenated string representation of all arguments to the log
+(at error, warning, or information level respectively), separated by spaces,
+and returns the last argument value.  These functions are useful for
+debugging filter expressions.</para>
+              <para>Examples (using return value):</para>
+              <itemizedlist>
+                <listitem><para><literal>logInfo("File size:", Size) > 1MB</literal> - logs the file size(s)
+and checks if greater than 1MB</para></listitem>
+                <listitem><para><literal>logWarn("Processing:", Name) like "*.tmp"</literal> - logs the file
+name(s) and checks if it's a temporary file</para></listitem>
+                <listitem><para><literal>Size > 1KB and logInfo("Large file:", Name) contains
+"test"</literal> - logs only when size condition is true, then checks name</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>if(<replaceable>condition</replaceable>,
+<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+            <listitem>
+              <para>
+Returns <replaceable>trueValue</replaceable> if
+<replaceable>condition</replaceable> evaluates to true, otherwise returns
+<replaceable>falseValue</replaceable>.  This function performs short-circuit
+evaluation (it only evaluates the branch that will be returned).</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>if(Size > 1MB, "large", "small")</literal> - returns "large" or
+"small" based on file size</para></listitem>
+                <listitem><para><literal>if(Extension = "txt", "text file", "other file")</literal> -
+classifies files by extension</para></listitem>
+                <listitem><para><literal>if(Exists, Size, 0)</literal> - returns file size or 0 if file
+doesn't exist</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>ifEach(<replaceable>conditionArray</replaceable>,
+<replaceable>trueValue</replaceable>, <replaceable>falseValue</replaceable>)</term>
+            <listitem>
+              <para>
+Element-wise conditional selection. For each element in
+<replaceable>conditionArray</replaceable>, returns the corresponding element
+from <replaceable>trueValue</replaceable> if the condition is true,
+otherwise returns the corresponding element from
+<replaceable>falseValue</replaceable>.  If
+<replaceable>trueValue</replaceable> or
+<replaceable>falseValue</replaceable> is a scalar, it is broadcast to all
+elements.</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>ifEach(Size &gt; 1MB, "large", "small")</literal> - returns array
+of "large"/"small" labels for each file</para></listitem>
+                <listitem><para><literal>ifEach(array(true, false, true), array("a", "b", "c"), array("x",
+"y", "z"))</literal> - returns <literal>array("a", "y", "c")</literal></para></listitem>
+                <listitem><para><literal>anyof(ifEach(Size &gt; 100KB, Size &lt; 10MB, false))</literal> -
+checks if any file is between 100KB and 10MB</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>choose(<replaceable>index</replaceable>, <replaceable>value0</replaceable>,
+<replaceable>value1</replaceable>, ...)</term>
+            <listitem>
+              <para>
+Selects a value from the arguments based on
+<replaceable>index</replaceable>.  If <replaceable>index</replaceable> is 0,
+returns <replaceable>value0</replaceable>; if 1, returns
+<replaceable>value1</replaceable>, etc.  Negative indices are clamped to
+0. Indices beyond the last value return the last value.</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>choose(0, "first", "second", "third")</literal> - returns "first"</para></listitem>
+                <listitem><para><literal>choose(DiffCode % 3, "equal", "different", "unique")</literal> -
+maps diff codes to labels</para></listitem>
+                <listitem><para><literal>choose(5, "a", "b", "c")</literal> - returns "c" (out of bounds,
+returns last value)</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>chooseEach(<replaceable>indexArray</replaceable>,
+<replaceable>value0</replaceable>, <replaceable>value1</replaceable>, ...)</term>
+            <listitem>
+              <para>
+Element-wise value selection. For each index in
+<replaceable>indexArray</replaceable>, selects the corresponding value from
+the remaining arguments.  If <replaceable>indexArray</replaceable> is a
+scalar, behaves like <literal>choose</literal>.</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>chooseEach(array(0, 1, 2), "a", "b", "c")</literal> - returns
+<literal>array("a", "b", "c")</literal></para></listitem>
+                <listitem><para><literal>chooseEach(array(0, 0, 1), "x", "y")</literal> - returns
+<literal>array("x", "x", "y")</literal></para></listitem>
+                <listitem><para><literal>chooseEach(array(2, 0, 1), "first", "second", "third")</literal> -
+returns <literal>array("third", "first", "second")</literal></para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>andEach(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>),
+orEach(<replaceable>value1</replaceable>,
+<replaceable>value2</replaceable>),
+notEach(<replaceable>value</replaceable>)</term>
+            <listitem>
+              <para>
+Element-wise logical operations. These functions operate on booleans,
+boolean arrays, or a combination of both:</para>
+              <itemizedlist>
+                <listitem><para><literal>andEach</literal> - Logical AND operation</para></listitem>
+                <listitem><para><literal>orEach</literal> - Logical OR operation</para></listitem>
+                <listitem><para><literal>notEach</literal> - Logical NOT operation (single argument)</para></listitem>
+              </itemizedlist>
+              <para>
+When arguments are scalars, returns a scalar boolean result.  When one
+argument is an array and the other is a scalar, the scalar is broadcast to
+all elements.  When both arguments are arrays, performs element-wise
+operation.</para>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>andEach(Size &gt; 1KB, Size &lt; 1MB)</literal> - files between 1KB
+and 1MB</para></listitem>
+                <listitem><para><literal>orEach(Extension = "txt", Extension = "log")</literal> - txt or log
+files</para></listitem>
+                <listitem><para><literal>notEach(Exists)</literal> - files that don't exist</para></listitem>
+                <listitem><para><literal>allof(andEach(Exists, Size &gt; 0))</literal> - all files exist
+with non-zero size</para></listitem>
+                <listitem><para><literal>anyof(notEach(Size &gt; 1MB))</literal> - any file 1MB or smaller</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
         </variablelist>
       </section>
 
@@ -624,6 +983,12 @@ small</para></listitem>
           <listitem><para><literal>DateStr = "2025-07-20"</literal> - File was last modified on that
 date</para></listitem>
           <listitem><para><literal>Date &gt;= today()</literal> - Modified today or later</para></listitem>
+          <listitem><para><literal>isWithin(Date, today() - 7days, today())</literal> - File modified
+within the last week</para></listitem>
+          <listitem><para><literal>inRange(Size, 1KB, 10MB)</literal> - File size is between 1KB
+(inclusive) and 10MB (exclusive)</para></listitem>
+          <listitem><para><literal>allof(isWithin(Size, 100KB, 1MB))</literal> - All file sizes are
+between 100KB and 1MB</para></listitem>
           <listitem><para><literal>AttrStr contains "R"</literal> - File is read-only</para></listitem>
           <listitem><para><literal>Name matches "file[0-9]\.txt"</literal> - Regex on filename</para></listitem>
           <listitem><para><literal>Content contains "Test"</literal> - File content includes keyword</para></listitem>
@@ -633,6 +998,12 @@ contains "XML"</para></listitem>
 7days)</literal> - Large log files or files older than a week</para></listitem>
           <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> -
 Non-hidden temporary files</para></listitem>
+          <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> -
+Files with extensions from 'a' to 'm' and size less than 1MB</para></listitem>
+          <listitem><para><literal>toLower(Name) = "readme.txt"</literal> - Case-insensitive filename
+matching</para></listitem>
+          <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - Match after converting
+full-width to half-width</para></listitem>
         </itemizedlist>
       </section>
     </section>

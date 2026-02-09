@@ -5,8 +5,9 @@
 
 namespace ColorSchemes
 {
-String GetColorSchemesFolder();
-String GetPrivateColorSchemesFolder();
+std::vector<String> GetColorSchemesFolders();
+String GetPrivateColorSchemesFolder(bool useMyDocument);
+bool IsPrivateColorSchemePath(const String& path);
 String GetColorSchemePath(const String& name);
 std::vector<String> GetColorSchemeNames();
 }

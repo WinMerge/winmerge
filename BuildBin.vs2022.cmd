@@ -12,7 +12,6 @@ if exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
 )
 
 if "%1" == "" (
-  call :BuildBin ARM || goto :eof
   call :BuildBin ARM64 || goto :eof
   call :BuildBin x86|| goto :eof
   call :BuildBin x64 || goto :eof

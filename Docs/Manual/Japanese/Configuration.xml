@@ -1186,6 +1186,191 @@ Contents」を選択している場合でも、<screen>allequal(Date)</screen> �
 <guilabel>更新日時を比較</guilabel> などのメニューが表示されます。ここで <guilabel>更新日時を比較</guilabel>
 を選択すると、入力欄に <literal>allequal(Date)</literal> が自動的に挿入されます。</para>
     </section>
+
+    <section>
+      <title>
+名前変更/移動の検出<indexterm>
+          <primary>名前変更の検出</primary>
+        </indexterm><indexterm>
+          <primary>移動の検出</primary>
+        </indexterm></title>
+ 
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>無効</option> (既定): WinMerge は、名前変更または移動されたファイル/フォルダーを検出しません。</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>名前変更の検出</option>:
+同一ディレクトリ内で名前は異なるが検出キーが一致するファイル/フォルダーを検出します。同じ検出キーを持つファイル/フォルダーは同一グループとしてまとめられます。</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>名前変更と移動の検出</option>:
+名前が異なる、または異なるディレクトリに存在するが、検出キーが一致するファイル/フォルダーを検出します。このモードでは、名前変更された項目（同一ディレクトリ）と移動された項目（異なるディレクトリ）の両方を検出します。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>
+名前変更/移動検出キー<indexterm>
+          <primary>名前変更検出キー</primary>
+        </indexterm><indexterm>
+          <primary>移動検出キー</primary>
+        </indexterm></title>
+ 
+      <para>
+左右（または三方向）でファイル/フォルダーを照合するための検出キーを生成するフィルター式を指定します。一致するキーを持つ項目は、名前変更または移動された可能性のある項目としてグループ化されます。たとえば、キーに
+<literal>Size</literal> を指定すると同じサイズのファイルがグループ化され、<literal>Name</literal>
+を指定すると同じファイル名のファイルがグループ化されます（移動の検出に有効です）。</para>
+ 
+      <para>
+入力欄の右側にある <guilabel>=</guilabel>
+ボタンをクリックすると、一般的な検出キー式を簡単に挿入できるヘルパーメニューが表示されます。</para>
+ 
+      <variablelist>
+        <varlistentry>
+          <term>Name</term>
+          <listitem>
+            <para>
+ファイル名またはフォルダー名で一致判定を行います。名前を変えずに別のディレクトリへ移動したファイルの検出に有効です。</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>BaseName</term>
+          <listitem>
+            <para>
+拡張子を除いたファイル名で一致判定を行います。たとえば "file.txt" と "file.doc" は一致します。</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>normalizeUnicode(Name, "NFC")</term>
+          <listitem>
+            <para>
+Unicode 正規化後のファイル名で一致判定を行います。見た目は同じだが Unicode 表現が異なるファイル名の検出に有効です。</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>Size</term>
+          <listitem>
+            <para>
+ファイルサイズで一致判定を行います。サイズが同じまま名前だけが変更されたファイルの検出に有効です。</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>Date</term>
+          <listitem>
+            <para>
+更新日時で一致判定を行います。</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>if(IsFolder, Name, prop("Hash.MD5"))</term>
+          <listitem>
+            <para>
+フォルダーは名前で、ファイルは内容の MD5 ハッシュで一致判定を行います。名前変更されたファイルを検出する最も正確な方法ですが、大きなファイルでは
+MD5 計算に時間がかかる場合があります。</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>プロパティベースのキー</term>
+          <listitem>
+            <para>
+このメニューから <literal>System.Author</literal> や <literal>System.Title</literal>
+などのWindows ファイルプロパティにもアクセスできます。これらのメタデータを使ってファイルを一致判定することも可能です。</para>
+          </listitem>
+        </varlistentry>
+ 
+        <varlistentry>
+          <term>文字列変換関数</term>
+          <listitem>
+            <para>
+検出キーに適用できる文字列変換関数も用意されています。</para>
+            <itemizedlist>
+              <listitem>
+                <para>
+<literal>replace(str, "from", "to")</literal> - キー内の文字列を置換します</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>regexReplace(str, "pattern", "replacement")</literal> -
+正規表現による置換を行います</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>toLower(str)</literal> / <literal>toUpper(str)</literal> -
+大文字・小文字を変換します</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>toHalfWidth(str)</literal> / <literal>toFullWidth(str)</literal> -
+半角・全角を変換します</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>toSimplifiedChinese(str)</literal> /
+<literal>toTraditionalChinese(str)</literal> - 中国語の簡体字・繁体字を変換します</para>
+              </listitem>
+              <listitem>
+                <para>
+<literal>toHiragana(str)</literal> / <literal>toKatakana(str)</literal> -
+日本語のひらがな・カタカナを変換します</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+ 
+      <para>
+<literal>+</literal> 演算子と区切り文字を使って、複数のキーを組み合わせることもできます。たとえば <literal>Name +
+"|" + Size</literal> は、ファイル名とサイズを組み合わせた複合キーを生成します。</para>
+ 
+      <note>
+        <para>
+検出キー式は、ファイル/フォルダー比較の各側について評価され、キーが生成されます。キーが一致した項目は同一グループとしてまとめられます。たとえばキーに
+<literal>Size</literal> を指定した場合、左側に 1024 バイトのファイル、右側に 1024
+バイトのファイルがあれば、名前が異なっていても同じグループになります。</para>
+      </note>
+    </section>
+ 
+    <section>
+      <title>
+名前変更された項目を 1 つの項目にマージ<indexterm>
+          <primary>名前変更された項目のマージ</primary>
+        </indexterm></title>
+ 
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>無効</option> (既定):
+名前変更または移動された項目は、フォルダー比較ツリー上で別々の項目として表示されます。項目は共通のグループ ID
+によってグループ化されますが、各側のファイル/フォルダーは個別に表示されます。</para>
+        </listitem>
+ 
+        <listitem>
+          <para>
+<option>有効</option>: 名前変更されたと検出され、かつ同じディレクトリに存在する項目は、1
+つの項目にマージされます。これにより、異なる名前で複数の側に存在する項目が 1
+つにまとめられ、比較ツリーが簡潔になります。異なるディレクトリにある項目（移動された項目）は、このオプションが有効でもマージされません。</para>
+        </listitem>
+      </itemizedlist>
+ 
+      <note>
+        <para>
+マージは、各側に最大 1
+つの項目しか存在せず、かつ同じ親ディレクトリにある場合にのみ行われます。一方の側で複数のファイルが一致する場合（曖昧なケース）は、マージされません。</para>
+      </note>
+    </section>
   </section>
 
   <section id="Configuration_compare_table">
@@ -2074,10 +2259,38 @@ WinMergeのファイル比較ウィンドウは、一般的な編集機能を提
 
     <section>
       <title>
-フィルターフォルダー<indexterm>
-          <primary>Filters folders</primary>
+ユーザーデータの保存先<indexterm>
+          <primary>ユーザーデータ</primary>
+          <secondary>保存場所</secondary>
+        </indexterm></title>
+    
+      <para>
+WinMerge がフィルター、プラグイン、カラースキーマ、設定ログなどのユーザーデータを保存する場所を指定します。</para>
+    
+      <itemizedlist>
+        <listitem>
+          <para>
+<guilabel>AppData (Roaming) フォルダー</guilabel> (既定): ユーザープロファイルのアプリケーションデータ
+(Roaming) フォルダーにユーザーデータを保存します。</para>
+        </listitem>
+    
+        <listitem>
+          <para>
+<guilabel>ドキュメント フォルダー</guilabel>: ドキュメント フォルダー内の
+<filename>WinMerge</filename> サブフォルダーにユーザーデータを保存します。</para>
+        </listitem>
+      </itemizedlist>
+    
+      <para>
+この設定は、新しく作成されるユーザーデータにのみ適用されます。</para>
+    </section>
 
-          <secondary>specifying default private folder</secondary>
+    <section>
+      <title>
+フィルターフォルダー<indexterm>
+          <primary>フィルターフォルダー</primary>
+
+          <secondary>既定のプライベートフォルダーの指定</secondary>
         </indexterm></title>
 
       <para>

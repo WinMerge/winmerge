@@ -26,6 +26,10 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FolderStats.cpp" >
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FunctionNodeProperty.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -66,5 +70,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterExpressionNodes.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterLexer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterParser.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FolderStats.h" />
   </ItemGroup>
 </Project>

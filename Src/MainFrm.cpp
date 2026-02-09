@@ -1213,8 +1213,7 @@ void CMainFrame::OnOptions()
 		theApp.SetupTempPath();
 
 		// Set new filterpath
-		const String& filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-		theApp.GetGlobalFileFilter()->SetUserFilterPath(filterPath);
+		theApp.GetGlobalFileFilter()->SetUserFilterPath(GetOptionsMgr()->GetString(OPT_FILTER_USERPATH));
 
 		CCrystalTextView::RENDERING_MODE nRenderingMode = static_cast<CCrystalTextView::RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));
 		CCrystalTextView::SetRenderingModeDefault(nRenderingMode);
@@ -1448,7 +1447,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		DecompressResult res = DecompressArchive(m_hWnd, tFiles);
 		if (FAILED(res.hr))
 		{
-			int ans = AfxMessageBox(IDS_FAILED_EXTRACT_ARCHIVE_FILES, MB_YESNO | MB_DONT_ASK_AGAIN | MB_ICONWARNING, IDS_FAILED_EXTRACT_ARCHIVE_FILES);
+			int ans = AfxMessageBox(I18n::LoadString(IDS_FAILED_EXTRACT_ARCHIVE_FILES).c_str(), MB_YESNO | MB_DONT_ASK_AGAIN | MB_ICONWARNING, IDS_FAILED_EXTRACT_ARCHIVE_FILES);
 			if (ans == IDYES)
 			{
 				pathsType = paths::IS_EXISTING_FILE;

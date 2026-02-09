@@ -1,0 +1,5852 @@
+# This file is from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# Translators:
+# IoeCmcomc <53734763+IoeCmcomc@users.noreply.github.com>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge\n"
+"Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
+"POT-Creation-Date: 2026-01-02 07:06+0000\n"
+"PO-Revision-Date: 2026-01-07 16:00+0700\n"
+"Last-Translator: IoeCmcomc <53734763+IoeCmcomc@users.noreply.github.com>\n"
+"Language-Team: Vietnamese <winmerge-translate@lists.sourceforge.net>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../Src/\n"
+"X-Language: vi\n"
+"X-Source-Language: en\n"
+
+#. LANGUAGE, SUBLANGUAGE
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_VIETNAMESE, SUBLANG_DEFAULT"
+
+msgid "Copy to Middle"
+msgstr "Chép vào giữa"
+
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Ché&p sang phải\tAlt+Right"
+
+msgid "Copy from Middle"
+msgstr "Chép từ giữa"
+
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Chép t&ừ phải\tAlt+Shift+Left"
+
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Ché&p sang trái\tAlt+Left"
+
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Chép &từ trái\tAlt+Shift+Right"
+
+msgid "Copy Selected Lines to Middle"
+msgstr "Chép các dòng được chọn vào giữa"
+
+msgid "Copy Selected Lines to Right"
+msgstr "Chép các dòng được chọn sang phải"
+
+msgid "Copy Selected Lines from Middle"
+msgstr "Chép các dòng được chọn từ giữa"
+
+msgid "Copy Selected Lines from Right"
+msgstr "Chép các dòng được chọn từ phải"
+
+msgid "Copy Selected Lines to Left"
+msgstr "Chép các dòng được chọn sang trái"
+
+msgid "Copy Selected Lines from Left"
+msgstr "Chép các dòng được chọn từ trái"
+
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+&1"
+msgstr "Chép khác biệt được chọn (trái) vào bảng tạm\tCtrl+&1"
+
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&2"
+msgstr "Chép khác biệt được chọn (phải) vào bảng tạm\tCtrl+&2"
+
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+&2"
+msgstr "Chép khác biệt được chọn (giữa) vào bảng tạm\tCtrl+&2"
+
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
+msgstr "Chép khác biệt được chọn (phải) vào bảng tạm\tCtrl+&3"
+
+msgid "Select Line &Difference\tF4"
+msgstr "Chọn dòng &khác biệt\tF4"
+
+msgid "Add to Substitution &Filters"
+msgstr "Thêm vào &bộ lọc thay thế"
+
+msgid "Add to &Line Filters"
+msgstr "Thêm vào bộ lọc &dòng"
+
+msgid "&Undo"
+msgstr "&Hoàn tác"
+
+msgid "&Redo"
+msgstr "&Làm lại"
+
+msgid "Cu&t"
+msgstr "Cắ&t"
+
+msgid "&Copy"
+msgstr "&Sao chép"
+
+msgid "&Paste"
+msgstr "&Dán"
+
+msgid "&Scripts"
+msgstr "&Kịch bản"
+
+msgid "< Empty >"
+msgstr "< Trống >"
+
+msgid "&Go to...\tCtrl+G"
+msgstr "&Đi tới...\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr "Đi tới dòng được di chuyển giữa bên trái và chính giữa\tCtrl+Shift+G"
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr "Đi tới dòng được di chuyển giữa chính giữa và bên phải\tCtrl+Alt+G"
+
+msgid "Op&en"
+msgstr "&Mở"
+
+msgid "With &Registered Application"
+msgstr "Với ứng dụng đã &đăng ký"
+
+msgid "With &External Editor\tCtrl+Alt+E"
+msgstr "Với trình chỉnh sửa &bên ngoài\tCtrl+Alt+E"
+
+msgid "&With..."
+msgstr "&Với..."
+
+msgid "Open &Parent Folder..."
+msgstr "Mở thư mục &cha..."
+
+msgid "S&hell Menu"
+msgstr "Bảng chọn hệ &vỏ"
+
+msgid "Use First Line as Headers"
+msgstr "Sử dụng dòng đầu tiên làm đầu trang"
+
+msgid "Auto-Fit All Columns"
+msgstr "Tự động khớp tất cả các cột"
+
+msgid "View &Differences"
+msgstr "Xem các &khác biệt"
+
+msgid "Diff &Block Size"
+msgstr "Kích cỡ &khối khác biệt"
+
+msgid "&Ignore Color Difference"
+msgstr "&Bỏ qua khác biệt màu sắc"
+
+msgid "Ins&ertion/Deletion Detection"
+msgstr "Phát hiện &chèn/xoá"
+
+msgid "&None"
+msgstr "&Không"
+
+msgid "&Vertical"
+msgstr "&Dọc"
+
+msgid "&Horizontal"
+msgstr "&Ngang"
+
+msgid "&Previous Page"
+msgstr "Trang &trước"
+
+msgid "&Next Page"
+msgstr "Trang &sau"
+
+msgid "&Active Pane"
+msgstr "Khung đang &hoạt động"
+
+msgid "Rotate &Right 90deg"
+msgstr "Xoay sang &phải 90 độ"
+
+msgid "Rotate &Left 90deg"
+msgstr "Xoay sang &trái 90 độ"
+
+msgid "Flip V&ertically"
+msgstr "Lật theo chiều &dọc"
+
+msgid "Flip H&orizontally"
+msgstr "Lật theo chiều &ngang"
+
+msgid "&Zoom"
+msgstr "&Thu phóng"
+
+msgid "Zoom &In\tCtrl++"
+msgstr "Phóng &to\tCtrl++"
+
+msgid "Zoom &Out\tCtrl+-"
+msgstr "Thu &nhỏ\tCtrl+-"
+
+#. Zoom to normal
+msgid "&Normal\tCtrl+*"
+msgstr "&Bình thường\tCtrl+*"
+
+msgid "&Overlay"
+msgstr "Lớp &phủ"
+
+msgid "&Alpha Blend"
+msgstr "&Pha trộn am-pha"
+
+msgid "Alpha &Blend Animation"
+msgstr "Hoạt ảnh &pha trộn am-pha"
+
+msgid "Dragging &Mode"
+msgstr "&Chế độ kéo"
+
+msgid "&Move"
+msgstr "&Di chuyển"
+
+msgid "&Adjust Offset"
+msgstr "&Điều chỉnh độ lệch"
+
+msgid "&Vertical Wipe"
+msgstr "Quét theo chiều &dọc"
+
+msgid "&Horizontal Wipe"
+msgstr "Quét theo chiều &ngang"
+
+msgid "Rectangle &Select"
+msgstr "Chọn hình &chữ nhật"
+
+msgid "&Set Background Color"
+msgstr "&Đặt màu nền"
+
+msgid "&Vector Image Scaling"
+msgstr "Tỷ lệ hình ảnh &vector"
+
+msgid "&Animation Settings"
+msgstr "Thiết đặt &hoạt ảnh"
+
+msgid "&Blink Interval"
+msgstr "Khoảng thời gian &nhấp nháy"
+
+msgid "&Overlay Animation Interval"
+msgstr "Khoảng thời gian hoạt ảnh của lớp &phủ"
+
+msgid "Compare Extracted &Text from Images"
+msgstr "So sánh văn bản được &trích xuất từ hình ảnh"
+
+msgid "Co&mpare"
+msgstr "&So sánh"
+
+msgid "&Screenshots"
+msgstr "Ảnh &màn hình"
+
+msgid "&Full Size Screenshots"
+msgstr "Ảnh màn hình &kích thước đầy đủ"
+
+msgid "&HTMLs"
+msgstr "&HTML"
+
+msgid "&Texts"
+msgstr "&Văn bản"
+
+msgid "&Resource Trees"
+msgstr "&Cây tài nguyên"
+
+msgid "&Size"
+msgstr "&Kích cỡ"
+
+msgid "Fit to Window"
+msgstr "Khít vừa cửa sổ"
+
+msgid "&Event Sync"
+msgstr "Đồng bộ &sự kiện"
+
+msgid "&Enabled"
+msgstr "Đã &bật"
+
+msgid "&Scroll"
+msgstr "&Cuộn"
+
+msgid "&Click"
+msgstr "&Nháy chuột"
+
+msgid "&Input"
+msgstr "&Nhập"
+
+msgid "&Go Back/Forward"
+msgstr "&Quay lại/Tiến tới"
+
+msgid "Clear &Browsing Data"
+msgstr "Xoá &dữ liệu duyệt web"
+
+msgid "&Disk Cache"
+msgstr "Bộ nhớ đệm trên &đĩa"
+
+msgid "&Cookies"
+msgstr "&Cookie"
+
+msgid "&Browsing History"
+msgstr "&Lịch sử duyệt web"
+
+msgid "&All Profiles"
+msgstr "&Mọi hồ sơ"
+
+msgid "&File"
+msgstr "&Tệp"
+
+msgid "&New"
+msgstr "&Mới"
+
+msgid "&Text"
+msgstr "&Văn bản"
+
+msgid "T&able"
+msgstr "Bả&ng"
+
+msgid "&Binary"
+msgstr "&Nhị phân"
+
+msgid "&Image"
+msgstr "&Hình ảnh"
+
+msgid "&Webpage"
+msgstr "Trang &web"
+
+msgid "New (&3 panes)"
+msgstr "Mới (&3 khung)"
+
+msgid "&Open...\tCtrl+O"
+msgstr "&Mở...\tCtrl+O"
+
+msgid "Open Conflic&t File..."
+msgstr "Mở tệp &xung đột..."
+
+msgid "Open C&lipboard"
+msgstr "Mở &bảng tạm"
+
+msgid "Open Pro&ject...\tCtrl+J"
+msgstr "Mở &dự án...\tCtrl+J"
+
+msgid "Sa&ve Project..."
+msgstr "&Lưu dự án..."
+
+msgid "Recent Projects"
+msgstr "Các dự án gần đây"
+
+msgid "Recent F&iles or Folders"
+msgstr "Các &tệp hoặc thư mục gần đây"
+
+msgid "E&xit\tCtrl+Q"
+msgstr "&Thoát\tCtrl+Q"
+
+msgid "&Edit"
+msgstr "&Sửa"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&Dán\tCtrl+V"
+
+msgid "&Options...\tCtrl+,"
+msgstr "&Tuỳ chọn...\tCtrl+,"
+
+msgid "&View"
+msgstr "&Xem"
+
+msgid "Ta&b Bar"
+msgstr "Thanh &thẻ"
+
+msgid "&View Tab Bar"
+msgstr "&Xem thanh thẻ"
+
+msgid "&On Title Bar"
+msgstr "&Trên thanh tiêu đề"
+
+msgid "&Toolbar"
+msgstr "Thanh &công cụ"
+
+msgid "&Small"
+msgstr "&Nhỏ"
+
+msgid "&Medium"
+msgstr "&Vừa"
+
+msgid "&Big"
+msgstr "&Lớn"
+
+msgid "&Huge"
+msgstr "&Khổng lồ"
+
+msgid "Men&u Bar"
+msgstr "Thanh &bảng chọn"
+
+msgid "&Output Pane"
+msgstr "&Khung đầu ra"
+
+msgid "&Status Bar"
+msgstr "Thanh &trạng thái"
+
+msgid "&Tools"
+msgstr "&Công cụ"
+
+msgid "&Filters..."
+msgstr "&Bộ lọc..."
+
+msgid "&Generate Patch..."
+msgstr "&Sinh bản vá..."
+
+msgid "&Plugins"
+msgstr "Trìn&h cắm"
+
+msgid "P&lugin Settings..."
+msgstr "Thiết đặt &trình cắm..."
+
+msgid "Ma&nual Prediffer"
+msgstr "Trình tiền so sánh thủ &công"
+
+msgid "A&utomatic Prediffer"
+msgstr "Trình tiền so sánh &tự động"
+
+msgid "&Manual Unpacking"
+msgstr "Bung gói &thủ công"
+
+msgid "&Automatic Unpacking"
+msgstr "Bung gói &tự động"
+
+msgid "&Reload Plugins"
+msgstr "&Tải lại trình cắm"
+
+msgid "&Window"
+msgstr "Cử&a sổ"
+
+msgid "Cl&ose\tCtrl+W"
+msgstr "Đón&g\tCtrl+W"
+
+msgid "Clo&se All"
+msgstr "Đóng &tất cả"
+
+msgid "Change &Pane\tF6"
+msgstr "Thay đổi &khung\tF6"
+
+msgid "Tile &Horizontally"
+msgstr "Xếp &ngang"
+
+msgid "Tile &Vertically"
+msgstr "Xếp &dọc"
+
+msgid "&Cascade"
+msgstr "&Xếp tầng"
+
+msgid "&Help"
+msgstr "Trợ &giúp"
+
+msgid "&WinMerge Help\tF1"
+msgstr "Trợ giúp về &WinMerge\tF1"
+
+msgid "R&elease Notes"
+msgstr "Ghi &chú phát hành"
+
+msgid "&Translations"
+msgstr "&Bản dịch"
+
+msgid "C&onfiguration"
+msgstr "&Cấu hình"
+
+msgid "&GNU General Public License"
+msgstr "Giấy phép Công cộng &GNU"
+
+msgid "&About WinMerge..."
+msgstr "&Về WinMerge..."
+
+msgid "&Read-Only"
+msgstr "&Chỉ-đọc"
+
+msgid "L&eft Read-Only"
+msgstr "Bên &trái Chỉ-đọc"
+
+msgid "M&iddle Read-Only"
+msgstr "Ở &giữa Chỉ-đọc"
+
+msgid "Ri&ght Read-Only"
+msgstr "Bên &phải Chỉ-đọc"
+
+msgid "&File Encoding..."
+msgstr "Biên mã của &tệp..."
+
+msgid "Select &All\tCtrl+A"
+msgstr "Chọn &tất cả\tCtrl+A"
+
+msgid "Show &Identical Items"
+msgstr "Hiện các mục &giống hệt nhau"
+
+msgid "Show &Different Items"
+msgstr "Hiện các mục &khác nhau"
+
+msgid "Show L&eft Unique Items"
+msgstr "Hiện các mục duy nhất bên &trái"
+
+msgid "Show Midd&le Unique Items"
+msgstr "Hiện các mục duy nhất ở &giữa"
+
+msgid "Show Ri&ght Unique Items"
+msgstr "Hiện các mục duy nhất bên &phải"
+
+msgid "Show S&kipped Items"
+msgstr "Hiện các mục đã &bỏ qua"
+
+msgid "S&how Binary Files"
+msgstr "&Hiện các tệp nhị phân"
+
+msgid "&3-way Compare"
+msgstr "So sánh &3 bên"
+
+msgid "Show &Left Only Different Items"
+msgstr "Chỉ hiện các mục khác biệt bên &trái"
+
+msgid "Show &Middle Only Different Items"
+msgstr "Chỉ hiện các mục khác biệt ở &giữa"
+
+msgid "Show &Right Only Different Items"
+msgstr "Chỉ hiện các mục khác biệt bên &phải"
+
+msgid "Show L&eft Only Missing Items"
+msgstr "Chỉ hiện các mục còn thiếu bên &trái"
+
+msgid "Show Mi&ddle Only Missing Items"
+msgstr "Chỉ hiện các mục còn thiếu ở &giữa"
+
+msgid "Show Rig&ht Only Missing Items"
+msgstr "Chỉ hiện các mục còn thiếu bên &phải"
+
+msgid "Show Hidd&en Items"
+msgstr "Hiện các mục bị &ẩn"
+
+msgid "Tree &Mode"
+msgstr "&Chế độ cây"
+
+msgid "E&xpand Subfolders"
+msgstr "&Mở rộng thư mục con"
+
+msgid "&All Subfolders"
+msgstr "Tất cả các thư &mục con"
+
+msgid "&Different Subfolders"
+msgstr "Các thư mục con &khác biệt"
+
+msgid "&Identical Subfolders"
+msgstr "Các thư mục con &giống hệt"
+
+msgid "&Collapse All Subfolders"
+msgstr "&Gập tất cả thư mục con"
+
+msgid "Select &Font..."
+msgstr "Chọn &phông..."
+
+msgid "Use Default Font"
+msgstr "Sử dụng phông mặc định"
+
+msgid "Sw&ap Panes"
+msgstr "Hoán đổi các &khung"
+
+msgid "Swap &1st | 2nd"
+msgstr "Hoán đổi thứ &nhất | thứ 2"
+
+msgid "Swap &2nd | 3rd"
+msgstr "Hoán đổi thứ &2 | thứ 3"
+
+msgid "Swap 1st | &3rd"
+msgstr "Hoán đổi thứ nhất | thứ &3"
+
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Hiển thị &thanh bộ lọc\tCtrl+Shift+L"
+
+msgid "Com&pare Statistics..."
+msgstr "Thống kê so &sánh..."
+
+msgid "Refresh\tF5"
+msgstr "Tải lại\tF5"
+
+msgid "&Refresh Selected\tCtrl+F5"
+msgstr "&Tải lại phần được chọn\tCtrl+F5"
+
+msgid "&Merge"
+msgstr "Trộ&n"
+
+msgid "Co&mpare\tEnter"
+msgstr "So &sánh\tEnter"
+
+msgid "&Next Difference\tAlt+Down"
+msgstr "Khác biệt &tiếp theo\tAlt+Down"
+
+msgid "&Previous Difference\tAlt+Up"
+msgstr "Khác biệt &trước đó\tAlt+Up"
+
+msgid "&First Difference\tAlt+Home"
+msgstr "Khác biệt &đầu tiên\tAlt+Home"
+
+msgid "&Current Difference\tAlt+Enter"
+msgstr "Khác biệt &hiện tại\tAlt+Enter"
+
+msgid "&Last Difference\tAlt+End"
+msgstr "Khác biệt &cuối cùng\tAlt+End"
+
+msgid "Copy to &Right\tAlt+Right"
+msgstr "Chép sang bên &phải\tAlt+Right"
+
+msgid "Copy to L&eft\tAlt+Left"
+msgstr "Chép sang bên &trái\tAlt+Left"
+
+msgid "&Delete\tDel"
+msgstr "&Xoá\tDel"
+
+msgid "&Customize Columns..."
+msgstr "&Tuỳ chỉnh các cột..."
+
+msgid "Generate &Report..."
+msgstr "Sinh &báo cáo..."
+
+msgid "&Edit with Unpacker..."
+msgstr "&Chỉnh sửa bằng trình bung gói..."
+
+msgid "&Save\tCtrl+S"
+msgstr "&Lưu\tCtrl+S"
+
+msgid "Sav&e"
+msgstr "&Lưu"
+
+msgid "Save &Left"
+msgstr "Lưu bên &trái"
+
+msgid "Save &Middle"
+msgstr "Lưu ở &giữa"
+
+msgid "Save &Right"
+msgstr "Lưu bên &phải"
+
+msgid "Save &As"
+msgstr "Lưu &như..."
+
+msgid "Save &Left As..."
+msgstr "Lưu bên &trái thành..."
+
+msgid "Save &Middle As..."
+msgstr "Lưu ở &giữa thành..."
+
+msgid "Save &Right As..."
+msgstr "Lưu bên &phải thành..."
+
+msgid "&Print...\tCtrl+P"
+msgstr "&In...\tCtrl+P"
+
+msgid "Page Set&up..."
+msgstr "Thiết đặt &trang..."
+
+msgid "Print Previe&w..."
+msgstr "Xem &trước khi in..."
+
+msgid "&Convert Line Endings to"
+msgstr "&Chuyển đổi ký tự cuối dòng sang"
+
+msgid "Mer&ge Mode\tF9"
+msgstr "Chế độ &trộn\tF9"
+
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Nạp &lại\tCtrl+F5"
+
+msgid "Reco&mpare As"
+msgstr "So sánh &lại dưới dạng"
+
+msgid "&Undo\tCtrl+Z"
+msgstr "&Hoàn tác\tCtrl+Z"
+
+msgid "&Redo\tCtrl+Y"
+msgstr "&Làm lại\tCtrl+Y"
+
+msgid "Cu&t\tCtrl+X"
+msgstr "Cắ&t\tCtrl+X"
+
+msgid "&Copy\tCtrl+C"
+msgstr "&Sao chép\tCtrl+C"
+
+msgid "F&ind...\tCtrl+F"
+msgstr "Tì&m...\tCtrl+F"
+
+msgid "Repla&ce...\tCtrl+H"
+msgstr "Thay &thế...\tCtrl+H"
+
+msgid "&Marker...\tCtrl+Shift+M"
+msgstr "Dấu &mốc...\tCtrl+Shift+M"
+
+msgid "Advanced"
+msgstr "Nâng cao"
+
+msgid "&Copy With Line Numbers\tCtrl+Shift+C"
+msgstr "&Chép kèm số dòng\tCtrl+Shift+C"
+
+msgid "&Bookmarks"
+msgstr "&Dấu trang"
+
+msgid "&Toggle Bookmark\tCtrl+F2"
+msgstr "&Bật/tắt dấu trang\tCtrl+F2"
+
+msgid "&Next Bookmark\tF2"
+msgstr "Dấu trang &kế tiếp\tF2"
+
+msgid "&Previous Bookmark\tShift+F2"
+msgstr "Dấu trang &trước đó\tShift+F2"
+
+msgid "&Clear All Bookmarks"
+msgstr "&Xoá tất cả dấu trang"
+
+msgid "Syntax Highlight"
+msgstr "Tô sáng cú pháp"
+
+msgid "&Diff Context"
+msgstr "Ngữ cảnh &khác biệt"
+
+msgid "&All Lines"
+msgstr "&Tất cả các dòng"
+
+msgid "&0 Lines"
+msgstr "&0 dòng"
+
+msgid "&1 Line"
+msgstr "&1 dòng"
+
+msgid "&3 Lines"
+msgstr "&3 dòng"
+
+msgid "&5 Lines"
+msgstr "&5 dòng"
+
+msgid "&7 Lines"
+msgstr "&7 dòng"
+
+msgid "&9 Lines"
+msgstr "&9 dòng"
+
+msgid "&Toggle All and 0-9 Lines\tCtrl+D"
+msgstr "&Bật tắt tất cả và 0-9 dòng\tCtrl+D"
+
+msgid "&Invert (Hide Different Lines)"
+msgstr "&Đảo ngược (ẩn các dòng khác biệt)"
+
+msgid "&Lock Panes"
+msgstr "&Khoá các khung"
+
+msgid "&View Whitespace"
+msgstr "&Xem khoảng trắng"
+
+msgid "View E&OL"
+msgstr "Xem &kí tự cuối dòng (EOL)"
+
+msgid "Vie&w Line Differences"
+msgstr "Xe&m các khác biệt dòng"
+
+msgid "View Line &Numbers"
+msgstr "Xem &số dòng"
+
+msgid "View &Margins"
+msgstr "Xem các &mép"
+
+msgid "View To&p Margins"
+msgstr "Xem mép &trên"
+
+msgid "W&rap Lines"
+msgstr "Bọ&c dòng"
+
+msgid "Split V&ertically"
+msgstr "Tách theo chiều &dọc"
+
+msgid "Diff &Pane"
+msgstr "&Khung xem khác biệt"
+
+msgid "Lo&cation Pane"
+msgstr "Khung &vị trí"
+
+msgid "Output Pane"
+msgstr "Khung kết quả"
+
+msgid "Ne&xt Conflict\tAlt+Shift+Down"
+msgstr "Xung đột &tiếp theo\tAlt+Shift+Down"
+
+msgid "Pre&vious Conflict\tAlt+Shift+Up"
+msgstr "Xung đột &trước đó\tAlt+Shift+Up"
+
+msgid "A&dvanced"
+msgstr "&Nâng cao"
+
+msgid "Next Difference (Left/Middle)\tAlt+1"
+msgstr "Khác biệt tiếp theo (trái/giữa)\tAlt+1"
+
+msgid "Previous Difference (Left/Middle)\tAlt+Shift+1"
+msgstr "Khác biệt trước đó (trái/giữa)\tAlt+Shift+1"
+
+msgid "Next Difference (Left/Right)\tAlt+2"
+msgstr "Khác biệt tiếp theo (trái/phải)\tAlt+2"
+
+msgid "Previous Difference (Left/Right)\tAlt+Shift+2"
+msgstr "Khác biệt trước đó (trái/phải)\tAlt+Shift+2"
+
+msgid "Next Difference (Middle/Right)\tAlt+3"
+msgstr "Khác biệt tiếp theo (giữa/phải)\tAlt+3"
+
+msgid "Previous Difference (Middle/Right)\tAlt+Shift+3"
+msgstr "Khác biệt trước đó (giữa/phải)\tAlt+Shift+3"
+
+msgid "Next Left-Only Difference\tAlt+7"
+msgstr "Khác biệt tiếp theo chỉ có bên trái\tAlt+7"
+
+msgid "Previous Left-Only Difference\tAlt+Shift+7"
+msgstr "Khác biệt trước đó chỉ có bên trái\tAlt+Shift+7"
+
+msgid "Next Middle-Only Difference\tAlt+8"
+msgstr "Khác biệt tiếp theo chỉ có ở giữa\tAlt+8"
+
+msgid "Previous Middle-Only Difference\tAlt+Shift+8"
+msgstr "Khác biệt trước đó chỉ có ở giữa\tAlt+Shift+8"
+
+msgid "Next Right-Only Difference\tAlt+9"
+msgstr "Khác biệt tiếp theo chỉ có bên phải\tAlt+9"
+
+msgid "Previous Right-Only Difference\tAlt+Shift+9"
+msgstr "Khác biệt trước đó chỉ có bên phải\tAlt+Shift+9"
+
+msgid "Copy from &Left to"
+msgstr "Chép từ bên &trái sang"
+
+msgid "&Middle"
+msgstr "&Giữa"
+
+msgid "&Right"
+msgstr "&Phải"
+
+msgid "Copy from &Middle to"
+msgstr "Chép từ &giữa sang"
+
+msgid "&Left"
+msgstr "&Trái"
+
+msgid "Copy from &Right to"
+msgstr "Chép từ bên &phải sang"
+
+msgid "Copy Selected Lines from Le&ft to"
+msgstr "Chép các dòng được chọn từ bên &trái sang"
+
+msgid "Copy Selected Lines from Mi&ddle to"
+msgstr "Chép các dòng được chọn từ &giữa sang"
+
+msgid "Copy Selected Lines from Ri&ght to"
+msgstr "Chép các dòng được chọn từ bên &phải sang"
+
+msgid "Copy from Left\tAlt+Shift+Right"
+msgstr "Chép từ bên trái\tAlt+Shift+Right"
+
+msgid "Copy from Right\tAlt+Shift+Left"
+msgstr "Chép từ bên phải\tAlt+Shift+Left"
+
+msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
+msgstr "Sao &chép sang bên phải và tiến tiếp\tCtrl+Alt+Right"
+
+msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
+msgstr "Chép &sang bên trái và tiến tiếp\tCtrl+Alt+Left"
+
+msgid "Copy &All to Right"
+msgstr "Chép &tất cả sang bên phải"
+
+msgid "Cop&y All to Left"
+msgstr "Sao ché&p tất cả sang bên trái"
+
+msgid "A&uto Merge\tCtrl+Alt+M"
+msgstr "&Tự động trộn\tCtrl+Alt+M"
+
+msgid "Add &Synchronization Point\tAlt+S"
+msgstr "Thêm điểm &đồng bộ hoá\tAlt+S"
+
+msgid "Clear Sync&hronization Points"
+msgstr "Xoá các điểm đồng &bộ hoá"
+
+msgid "Unpac&ker"
+msgstr "Trình &bung gói"
+
+msgid "&Prediffer"
+msgstr "Trình tiền &so sánh"
+
+msgid "Apply Pre&differ..."
+msgstr "Áp dụng trình &so sánh trước..."
+
+msgid "&Transform with Editor Script..."
+msgstr "&Chuyển đổi bằng kịch bản chỉnh sửa..."
+
+msgid "Scripts for &Copying"
+msgstr "Mã kịch bản để &sao chép"
+
+msgid "Select &Editor Script..."
+msgstr "Chọn kịch bản &chỉnh sửa..."
+
+msgid "Sp&lit"
+msgstr "&Tách"
+
+msgid "Comp&are"
+msgstr "So &sánh"
+
+msgid "Compar&e with Renamed/Moved Items"
+msgstr ""
+
+msgid "Compare in New &Window"
+msgstr "So sánh trong &cửa sổ mới"
+
+msgid "Compare Non-hor&izontally..."
+msgstr "So sánh không theo chiều &ngang..."
+
+msgid "Compare Non-hor&izontally"
+msgstr "So sánh không theo chiều &ngang"
+
+msgid "First &Left with Second Left"
+msgstr "Bên &trái thứ nhất với bên trái thứ 2"
+
+msgid "First &Right with Second Right"
+msgstr "Bên &phải thứ nhất với bên phải thứ 2"
+
+msgid "&First Left with Second Right"
+msgstr "&Bên trái thứ nhất với bên phải thứ 2"
+
+msgid "&Second Left with First Right"
+msgstr "Bên trái thứ &2 với bên phải thứ nhất"
+
+msgid "Co&mpare As"
+msgstr "So &sánh dưới dạng"
+
+#, c-format
+msgid "Left to Middle (%1 of %2)"
+msgstr "Trái sang giữa (%1 trên %2)"
+
+#, c-format
+msgid "Left to Right (%1 of %2)"
+msgstr "Trái sang phải (%1 trên %2)"
+
+#, c-format
+msgid "Left to... (%1 of %2)"
+msgstr "Trái sang... (%1 trên %2)"
+
+#, c-format
+msgid "Middle to Left (%1 of %2)"
+msgstr "Giữa sang trái (%1 trên %2)"
+
+#, c-format
+msgid "Middle to Right (%1 of %2)"
+msgstr "Giữa sang phải (%1 trên %2)"
+
+#, c-format
+msgid "Middle to... (%1 of %2)"
+msgstr "Giữa sang... (%1 trên %2)"
+
+#, c-format
+msgid "Right to Middle (%1 of %2)"
+msgstr "Phải sang giữa (%1 trên %2)"
+
+#, c-format
+msgid "Right to Left (%1 of %2)"
+msgstr "Phải sang trái (%1 trên %2)"
+
+#, c-format
+msgid "Right to... (%1 of %2)"
+msgstr "Phải sang... (%1 trên %2)"
+
+msgid "&Delete"
+msgstr "&Xoá"
+
+msgid "&Both"
+msgstr "&Cả hai"
+
+msgid "&All"
+msgstr "&Tất cả"
+
+msgid "Re&name"
+msgstr "Đổi &tên"
+
+msgid "&Hide Items"
+msgstr "&Ẩn các mục"
+
+msgid "&Open Left"
+msgstr "&Mở bên trái"
+
+msgid "Open Midd&le"
+msgstr "Mở ở &giữa"
+
+msgid "O&pen Right"
+msgstr "Mở bên &phải"
+
+msgid "Cop&y Paths"
+msgstr "Sao &chép các đường dẫn"
+
+#, c-format
+msgid "Left (%1 of %2)"
+msgstr "Bên trái (%1 trên %2)"
+
+#, c-format
+msgid "Middle (%1 of %2)"
+msgstr "Ở giữa (%1 trên %2)"
+
+#, c-format
+msgid "Right (%1 of %2)"
+msgstr "Bên phải (%1 trên %2)"
+
+#, c-format
+msgid "Both (%1 of %2)"
+msgstr "Cả hai (%1 trên %2)"
+
+#, c-format
+msgid "All (%1 of %2)"
+msgstr "Tất cả (%1 trên %2)"
+
+msgid "Copy &Filenames"
+msgstr "Chép &tên tệp"
+
+msgid "Copy Items to Clip&board"
+msgstr "Chép các mục vào bảng &tạm"
+
+msgid "Copy All Di&splayed Columns"
+msgstr "Chép tất cả các cột đang &hiển thị"
+
+msgid "&Zip"
+msgstr "&Nén"
+
+#, c-format
+msgid "Both to... (%1 of %2)"
+msgstr "Cả hai sang... (%1 trên %2)"
+
+#, c-format
+msgid "All to... (%1 of %2)"
+msgstr "Tất cả sang... (%1 trên %2)"
+
+#, c-format
+msgid "Differences to... (%1 of %2)"
+msgstr "Các khác biệt sang... (%1 trên %2)"
+
+msgid "Left Shell Menu"
+msgstr "Bảng chọn hệ vỏ bên trái"
+
+msgid "Middle Shell Menu"
+msgstr "Bảng chọn hệ vỏ ở giữa"
+
+msgid "Right Shell Menu"
+msgstr "Bảng chọn hệ vỏ bên phải"
+
+msgid "Both Shell Menu"
+msgstr "Cả hai bảng chọn hệ vỏ"
+
+msgid "All Shell Menu"
+msgstr "Tất cả bảng chọn hệ vỏ"
+
+msgid "Copy"
+msgstr "Sao chép"
+
+msgid "&Copy Full Path"
+msgstr "Chép đường dẫn đầy đủ"
+
+msgid "Copy &Filename"
+msgstr "Chép tên tệp"
+
+msgid "&Edit Caption\tF2"
+msgstr "Chỉnh sửa tiêu đề\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "Chỉnh sửa đường dẫn\tCtrl+L"
+
+msgid "&Open..."
+msgstr "Mở..."
+
+msgid "Unpacker Settings"
+msgstr "Thiết đặt trình bung gói"
+
+msgid "<None>"
+msgstr "<Không có>"
+
+msgid "<Automatic>"
+msgstr "<Tự động>"
+
+msgid "&Select..."
+msgstr "Chọn..."
+
+msgid "Prediffer Settings"
+msgstr "Thiết đặt trình tiền so sánh"
+
+msgid "G&o to Diff"
+msgstr "Đi tới khác biệt"
+
+msgid "Move Cursor on &Click"
+msgstr "Di chuyển con trỏ khi nháy chuột"
+
+msgid "&No Moved Blocks"
+msgstr "Không có khối nào bị di chuyển"
+
+msgid "&All Moved Blocks"
+msgstr "Tất cả khối bị di chuyển"
+
+msgid "W&hitespaces"
+msgstr "Khoảng trắng"
+
+msgid "Com&pare"
+msgstr "So sánh"
+
+msgid "I&gnore Changes"
+msgstr "Bỏ qua các thay đổi"
+
+msgid "Ig&nore All"
+msgstr "Bỏ qua tất cả"
+
+msgid "Ignore Blan&k Lines"
+msgstr "Bỏ qua dòng trống"
+
+msgid "Ignore &Case"
+msgstr "Bỏ qua hoa thường"
+
+msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
+msgstr "Bỏ qua sự khác biệt EOL (Windows/Unix/Mac)"
+
+msgid "Ignore Codepage &Differences"
+msgstr "Bỏ qua sự khác biệt trang mã"
+
+msgid "Ignore Num&bers"
+msgstr "Bỏ qua số"
+
+msgid "Ignore C&omment Differences"
+msgstr "Bỏ qua sự khác biệt chú thích"
+
+msgid "Ignore &Missing Trailing EOL"
+msgstr "Bỏ qua thiếu kí tự EOL ở cuối"
+
+msgid "Ignore Line &Breaks (Treat as Spaces)"
+msgstr "Bỏ qua ngắt dòng (Coi như dấu cách)"
+
+msgid "&Include Subfolders"
+msgstr "Bao gồm cả thư mục con"
+
+msgid "&Compare Method"
+msgstr "Phương thức so sánh"
+
+msgid "Full Contents"
+msgstr "Nội dung đầy đủ"
+
+msgid "Quick Contents"
+msgstr "Nội dung nhanh"
+
+msgid "Binary Contents"
+msgstr "Nội dung nhị phân"
+
+msgid "Modified Date"
+msgstr "Ngày sửa đổi"
+
+msgid "Modified Date and Size"
+msgstr "Ngày sửa đổi và kích cỡ"
+
+msgid "Size"
+msgstr "Kích cỡ"
+
+msgid "Existence"
+msgstr "Sự tồn tại"
+
+msgid "&Load Project..."
+msgstr "Nạp dự án..."
+
+msgid "${*} - All Arguments"
+msgstr "${*} - Tất cả đối số"
+
+msgid "${1} - First Argument"
+msgstr "${1} - Đối số thứ nhất"
+
+msgid "${2} - Second Argument"
+msgstr "${2} - Đối số thứ hai"
+
+msgid "${3} - Third Argument"
+msgstr "${3} - Đối số thứ ba"
+
+msgid "${4} - Fourth Argument"
+msgstr "${4} - Đối số thứ tư"
+
+msgid "${5} - Fifth Argument"
+msgstr "${5} - Đối số thứ năm"
+
+msgid "${6} - Sixth Argument"
+msgstr "${6} - Đối số thứ sáu"
+
+msgid "${7} - Seventh Argument"
+msgstr "${7} - Đối số thứ bảy"
+
+msgid "${8} - Eighth Argument"
+msgstr "${8} - Đối số thứ tám"
+
+msgid "${9} - Ninth Argument"
+msgstr "${9} - Đối số thứ chín"
+
+msgid "${SRC_FILE} - Source File"
+msgstr "${SRC_FILE} - Tệp nguồn"
+
+msgid "${SRC_FOLDER} - Source Folder"
+msgstr "${SRC_FOLDER} - Thư mục nguồn"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - URL nguồn"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
+msgstr "${SRC_URL_PROTOCOL} - Giao thức URL nguồn"
+
+msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
+msgstr "${SRC_URL_SUFFIX} - Hậu tố URL nguồn"
+
+msgid "${DST_FILE} - Destination File"
+msgstr "${DST_FILE} - Tệp đích"
+
+msgid "${DST_FOLDER} - Destination Folder"
+msgstr "${DST_FOLDER} - Thư mục đích"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - URL đích"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
+msgstr "${DST_URL_PROTOCOL} - Giao thức URL đích"
+
+msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
+msgstr "${DST_URL_SUFFIX} - Hậu tố URL đích"
+
+msgid "${WINMERGE_HOME} - WinMerge Home Directory"
+msgstr "${WINMERGE_HOME} - Thư mục nhà của WinMerge"
+
+msgid "${SCRIPT_FILE} - Script File"
+msgstr "${SCRIPT_FILE} - Tệp kịch bản"
+
+msgid "Add &Unpacker Plugin..."
+msgstr "Thêm trình cắm bung gói..."
+
+msgid "Add &Prediffer Plugin..."
+msgstr "Thêm trình cắm tiền so sánh..."
+
+msgid "&Duplicate Plugin..."
+msgstr "Nhân bản trình cắm..."
+
+msgid "Clear &All"
+msgstr "Xoá sạch tất cả"
+
+msgid "&Clear All"
+msgstr "Xoá sạch tất cả"
+
+msgid "Remove Last Filter &Group"
+msgstr "Loại bỏ nhóm bộ lọc cuối cùng"
+
+msgid "R&eset to Default (*.*)"
+msgstr "Đặt lại về mặc định (*.*)"
+
+msgid "Add E&xclude File"
+msgstr "Thêm tệp loại trừ"
+
+msgid "&System Files"
+msgstr "Các tệp hệ thống"
+
+msgid "&Editor Backup Files"
+msgstr "Các tệp sao lưu của trình chỉnh sửa"
+
+msgid "&Compiled Binary Files"
+msgstr "Các tệp nhị phân đã biên dịch"
+
+msgid "&Log Files"
+msgstr "Các tệp nhật kí"
+
+msgid "&Temporary or Cache Files"
+msgstr "Các tệp tạm thời hoặc bộ nhớ đệm"
+
+msgid "Add Excl&ude Folder"
+msgstr "Thêm thư mục loại trừ"
+
+msgid "&Version Control"
+msgstr "Kiểm soát phiên bản"
+
+msgid "&Build Artifacts"
+msgstr "Các bản dựng thành phẩm"
+
+msgid "&IDE"
+msgstr "&IDE"
+
+msgid "Add &File Condition"
+msgstr "Thêm điều kiện tệp"
+
+msgid "File &Size"
+msgstr "Kích cỡ tệp"
+
+msgid "Less than 1KB"
+msgstr "Nhỏ hơn 1KB"
+
+msgid "1KB or more"
+msgstr "Từ 1KB trở lên"
+
+msgid "Less than 10KB"
+msgstr "Nhỏ hơn 10KB"
+
+msgid "10KB or more"
+msgstr "Từ 10KB trở lên"
+
+msgid "Less than 100KB"
+msgstr "Nhỏ hơn 100KB"
+
+msgid "100KB or more"
+msgstr "Từ 100KB trở lên"
+
+msgid "Less than 1MB"
+msgstr "Nhỏ hơn 1MB"
+
+msgid "1MB or more"
+msgstr "Từ 1MB trở lên"
+
+msgid "Less than 10MB"
+msgstr "Nhỏ hơn 10MB"
+
+msgid "10MB or more"
+msgstr "Từ 10MB trở lên"
+
+msgid "Less than 100MB"
+msgstr "Nhỏ hơn 100MB"
+
+msgid "100MB or more"
+msgstr "Từ 100MB trở lên"
+
+msgid "Less than 1GB"
+msgstr "Nhỏ hơn 1GB"
+
+msgid "1GB or more"
+msgstr "Từ 1GB trở lên"
+
+msgid "Custom Range..."
+msgstr "Khoảng tuỳ chỉnh..."
+
+msgid "&Last Modified"
+msgstr "Sửa đổi lần cuối"
+
+msgid "&Hour"
+msgstr "Giờ"
+
+msgid "More than 1 hour ago"
+msgstr "Cách đây hơn 1 giờ"
+
+msgid "Within 1 hour"
+msgstr "Trong vòng 1 giờ"
+
+msgid "&Day"
+msgstr "Ngày"
+
+msgid "Before today"
+msgstr "Trước hôm nay"
+
+msgid "Today"
+msgstr "Hôm nay"
+
+msgid "Before yesterday"
+msgstr "Trước hôm qua"
+
+msgid "Yesterday"
+msgstr "Hôm qua"
+
+msgid "Since yesterday"
+msgstr "Kể từ hôm qua"
+
+msgid "&Week"
+msgstr "Tuần"
+
+msgid "Before this week"
+msgstr "Trước tuần này"
+
+msgid "This week"
+msgstr "Tuần này"
+
+msgid "Before last week"
+msgstr "Trước tuần trước"
+
+msgid "Last week"
+msgstr "Tuần trước"
+
+msgid "Since last week"
+msgstr "Kể từ tuần trước"
+
+msgid "&Month"
+msgstr "Tháng"
+
+msgid "Before this month"
+msgstr "Trước tháng này"
+
+msgid "This month"
+msgstr "Tháng này"
+
+msgid "Before last month"
+msgstr "Trước tháng trước"
+
+msgid "Last month"
+msgstr "Tháng trước"
+
+msgid "Since last month"
+msgstr "Kể từ tháng trước"
+
+msgid "&Year"
+msgstr "Năm"
+
+msgid "Before this year"
+msgstr "Trước năm nay"
+
+msgid "This year"
+msgstr "Năm nay"
+
+msgid "Before last year"
+msgstr "Trước năm ngoái"
+
+msgid "Last year"
+msgstr "Năm ngoái"
+
+msgid "Since last year"
+msgstr "Kể từ năm ngoái"
+
+msgid "&Custom Range..."
+msgstr "Khoảng tuỳ chỉnh..."
+
+msgid "&Attributes"
+msgstr "Thuộc tính"
+
+msgid "Read-only files"
+msgstr "Các tệp chỉ-đọc"
+
+msgid "Not read-only files"
+msgstr "Các tệp không phải chỉ-đọc"
+
+msgid "Hidden files"
+msgstr "Các tệp ẩn"
+
+msgid "Not hidden files"
+msgstr "Các tệp không ẩn"
+
+msgid "System files"
+msgstr "Các tệp hệ thống"
+
+msgid "Not system files"
+msgstr "Các tệp không phải hệ thống"
+
+msgid "File &Content"
+msgstr "Nội dung tệp"
+
+msgid "Contains string..."
+msgstr "Có chứa xâu..."
+
+msgid "Does not contain string..."
+msgstr "Không chứa xâu..."
+
+msgid "First line contains string..."
+msgstr "Dòng đầu tiên có chứa xâu..."
+
+msgid "First line does not contain string..."
+msgstr "Dòng đầu tiên không chứa xâu..."
+
+msgid "First 10 lines contain string..."
+msgstr "10 dòng đầu có chứa xâu..."
+
+msgid "First 10 lines do not contain string..."
+msgstr "10 dòng đầu không chứa xâu..."
+
+msgid "Last 10 lines contain string..."
+msgstr "10 dòng cuối có chứa xâu..."
+
+msgid "Last 10 lines do not contain string..."
+msgstr "10 dòng cuối không chứa xâu..."
+
+msgid "Last line contains string..."
+msgstr "Dòng cuối cùng có chứa xâu..."
+
+msgid "Last line does not contain string..."
+msgstr "Dòng cuối cùng không chứa xâu..."
+
+msgid "&Line Count"
+msgstr "Số lượng dòng"
+
+msgid "Less than 10"
+msgstr "Nhỏ hơn 10"
+
+msgid "10 or more"
+msgstr "Từ 10 trở lên"
+
+msgid "Less than 100"
+msgstr "Nhỏ hơn 100"
+
+msgid "100 or more"
+msgstr "Từ 100 trở lên"
+
+msgid "Less than 1000"
+msgstr "Nhỏ hơn 1000"
+
+msgid "1000 or more"
+msgstr "Từ 1000 trở lên"
+
+msgid "Less than 10000"
+msgstr "Nhỏ hơn 10000"
+
+msgid "10000 or more"
+msgstr "Từ 10000 trở lên"
+
+msgid "Less than 100000"
+msgstr "Nhỏ hơn 100000"
+
+msgid "100000 or more"
+msgstr "Từ 100000 trở lên"
+
+msgid "Additional &Properties..."
+msgstr "Các thuộc tính bổ sung..."
+
+msgid "Add F&older Condition"
+msgstr "Thêm điều kiện thư mục"
+
+msgid "&Files"
+msgstr "Tệp"
+
+msgid "0 files"
+msgstr "0 tệp"
+
+msgid "1 file or more"
+msgstr "Từ 1 tệp trở lên"
+
+msgid "&Items"
+msgstr "Mục"
+
+msgid "0 items"
+msgstr "0 mục"
+
+msgid "1 item or more"
+msgstr "Từ 1 mục trở lên"
+
+msgid "&Total Size"
+msgstr "Tổng kích cỡ"
+
+msgid "&Recursive"
+msgstr "Đệ quy"
+
+msgid "Target: &Any (Left/Middle/Right)"
+msgstr "Đích: Bất kì (trái/giữa/phải)"
+
+msgid "Target: &Left"
+msgstr "Đích: Bên trái"
+
+msgid "Target: &Middle"
+msgstr "Đích: Ở giữa"
+
+msgid "Target: &Right"
+msgstr "Đích: Bên phải"
+
+msgid "Add &Difference Condition"
+msgstr "Thêm điều kiện khác biệt"
+
+msgid "Equal"
+msgstr "Bằng"
+
+msgid "Not Equal"
+msgstr "Không bằng"
+
+msgid "Less Than"
+msgstr "Nhỏ hơn"
+
+msgid "Less Than or Equal to"
+msgstr "Nhỏ hơn hoặc bằng"
+
+msgid "Greater Than"
+msgstr "Lớn hơn"
+
+msgid "Greater Than or Equal to"
+msgstr "Lớn hơn hoặc bằng"
+
+msgid "Less than 10B"
+msgstr "Nhỏ hơn 10B"
+
+msgid "10B or more"
+msgstr "Từ 10B trở lên"
+
+msgid "Less than 100B"
+msgstr "Nhỏ hơn 100B"
+
+msgid "100B or more"
+msgstr "Từ 100B trở lên"
+
+msgid "Less than 1 second"
+msgstr "Nhỏ hơn 1 giây"
+
+msgid "1 second or more"
+msgstr "Từ 1 giây trở lên"
+
+msgid "Less than 1 minute"
+msgstr "Nhỏ hơn 1 phút"
+
+msgid "1 minute or more"
+msgstr "Từ 1 phút trở lên"
+
+msgid "Less than 1 hour"
+msgstr "Nhỏ hơn 1 giờ"
+
+msgid "1 hour or more"
+msgstr "Từ 1 giờ trở lên"
+
+msgid "Less than 1 day"
+msgstr "Nhỏ hơn 1 ngày"
+
+msgid "1 day or more"
+msgstr "Từ 1 ngày trở lên"
+
+msgid "Less than 1 week"
+msgstr "Nhỏ hơn 1 tuần"
+
+msgid "1 week or more"
+msgstr "Từ 1 tuần trở lên"
+
+msgid "Target: &Left and Right"
+msgstr "Đích: Bên trái và phải"
+
+msgid "Target: Left and &Middle"
+msgstr "Đích: Bên trái và giữa"
+
+msgid "Target: Middle and &Right"
+msgstr "Đích: Ở giữa và phải"
+
+msgid "Target: &All"
+msgstr "Đích: Tất cả"
+
+msgid "&Clear conditions"
+msgstr "Xoá sạch các điều kiện"
+
+msgid "Compare &Size"
+msgstr "So sánh kích cỡ"
+
+msgid "Compare &Date"
+msgstr "So sánh ngày"
+
+msgid "Compare &Attributes"
+msgstr "So sánh thuộc tính"
+
+msgid "Compare C&ontents"
+msgstr "So sánh nội dung"
+
+msgid "&Clear Keys"
+msgstr ""
+
+msgid "&Name"
+msgstr ""
+
+msgid "&Base name (without extension)"
+msgstr ""
+
+msgid "Normalized &Unicode Name"
+msgstr ""
+
+msgid "&Date"
+msgstr ""
+
+msgid "&Hash (MD5)"
+msgstr ""
+
+msgid "Insert &replace() Function"
+msgstr ""
+
+msgid "Insert rege&xReplace() Function"
+msgstr ""
+
+msgid "Text &Normalization"
+msgstr ""
+
+msgid "&Lowercase"
+msgstr ""
+
+msgid "&Uppercase"
+msgstr ""
+
+msgid "&Half-width"
+msgstr ""
+
+msgid "&Full-width"
+msgstr ""
+
+msgid "&Chinese Conversion"
+msgstr ""
+
+msgid "&Simplified Chinese"
+msgstr ""
+
+msgid "&Traditional Chinese"
+msgstr ""
+
+msgid "&Japanese Conversion"
+msgstr ""
+
+msgid "&Hiragana"
+msgstr ""
+
+msgid "&Katakana"
+msgstr ""
+
+msgid "About WinMerge"
+msgstr "Về WinMerge"
+
+msgid "Visit the WinMerge Homepage!"
+msgstr "Hãy truy cập trang chủ WinMerge!"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Contributors"
+msgstr "Người đóng góp"
+
+msgid "Select Files or Folders"
+msgstr "Chọn tệp hoặc thư mục"
+
+msgid "&1st File or Folder"
+msgstr "Tệp hoặc thư mục thứ nhất"
+
+msgid "Re&ad-only"
+msgstr "Chỉ-đọc"
+
+msgid "Swap 1st | 2nd"
+msgstr "Hoán đổi 1 | 2"
+
+msgid "&Browse..."
+msgstr "Duyệt..."
+
+msgid "&2nd File or Folder"
+msgstr "Tệp hoặc thư mục thứ 2"
+
+msgid "Rea&d-only"
+msgstr "Chỉ-đọc"
+
+msgid "Swap 2nd | 3rd"
+msgstr "Hoán đổi 2 | 3"
+
+msgid "B&rowse..."
+msgstr "Duyệt..."
+
+msgid "&3rd File or Folder (Optional)"
+msgstr "Tệp hoặc thư mục thứ 3 (tuỳ chọn)"
+
+msgid "Read-o&nly"
+msgstr "Chỉ-đọc"
+
+msgid "Swap 1st | 3rd"
+msgstr "Hoán đổi 1 | 3"
+
+msgid "Browse..."
+msgstr "Duyệt..."
+
+msgid " Folder: Filter"
+msgstr " Thư mục: Bộ lọc"
+
+msgid "&Include subfolders"
+msgstr "Bao gồm các thư mục con"
+
+msgid " File: Prediffer Plugin"
+msgstr " Tệp: Trình cắm tiền so sánh"
+
+msgid " File: Unpacker Plugin"
+msgstr " Tệp: Trình cắm bung gói"
+
+msgid "Se&lect..."
+msgstr "Chọn..."
+
+msgid "Cancel"
+msgstr "Huỷ"
+
+msgid "Status:"
+msgstr "Trạng thái:"
+
+msgid "Help"
+msgstr "Trợ giúp"
+
+msgid "&Options..."
+msgstr "Tuỳ chọn..."
+
+msgid "Find"
+msgstr "Tìm"
+
+msgid "Fi&nd what:"
+msgstr "Tìm gì:"
+
+msgid "Match &whole word only"
+msgstr "Chỉ khớp cả từ"
+
+msgid "Match &case"
+msgstr "Phân biệt hoa thường"
+
+msgid "Regular &expression"
+msgstr "Biểu thức chính quy"
+
+msgid "D&on't wrap end of file"
+msgstr "Đừng tìm vòng lại khi tới cuối tệp"
+
+msgid "&Don't close this dialog"
+msgstr "Đừng đóng hộp thoại này"
+
+msgid "&Find Next"
+msgstr "Tìm tiếp"
+
+msgid "Find &Prev"
+msgstr "Tìm trước đó"
+
+msgid "Replace"
+msgstr "Thay thế"
+
+msgid "Re&place with:"
+msgstr "Thay bằng:"
+
+msgid "&Don't wrap at end of file"
+msgstr "Đừng tìm vòng lại khi tới cuối tệp"
+
+msgid "Replace in"
+msgstr "Thay thế trong"
+
+msgid "&Selection"
+msgstr "Phần được chọn"
+
+msgid "Wh&ole file"
+msgstr "Toàn bộ tệp"
+
+msgid "Find Pre&v"
+msgstr "Tìm trước đó"
+
+msgid "&Replace"
+msgstr "Thay thế"
+
+msgid "Replace &All"
+msgstr "Thay thế tất cả"
+
+msgid "Markers"
+msgstr "Dấu mốc"
+
+msgid "Enable &markers"
+msgstr "Bật dấu mốc"
+
+msgid "New"
+msgstr "Mới"
+
+msgid "&Background color:"
+msgstr "Màu nền:"
+
+msgid "&Ok"
+msgstr "OK"
+
+msgid "&Apply"
+msgstr "Áp dụng"
+
+msgid "Line Filters"
+msgstr "Bộ lọc dòng"
+
+msgid "Enable Line Filters"
+msgstr "Bật bộ lọc dòng"
+
+msgid "Regular Expressions (one per line):"
+msgstr "Biểu thức chính quy (mỗi dòng một biểu thức):"
+
+msgid "Edit"
+msgstr "Sửa"
+
+msgid "Remove"
+msgstr "Loại bỏ"
+
+msgid "Substitution Filters"
+msgstr "Bộ lọc thay thế"
+
+msgid ""
+"Changes to the listed pairs below will be ignored or marked as "
+"insignificant. Patches are unaffected."
+msgstr ""
+"Các thay đổi đối với những cặp liệt kê dưới đây sẽ được bỏ qua hoặc đánh dấu "
+"là không quan trọng. Các bản vá không bị ảnh hưởng."
+
+msgid "Enable"
+msgstr "Bật"
+
+msgid "Add"
+msgstr "Thêm"
+
+msgid "Clear"
+msgstr "Xoá sạch"
+
+msgid "Options"
+msgstr "Tuỳ chọn"
+
+msgid "Import..."
+msgstr "Nhập..."
+
+msgid "Export..."
+msgstr "Xuất..."
+
+msgid "General"
+msgstr "Tổng quát"
+
+msgid "Automatically &scroll to first difference"
+msgstr "Tự động cuộn đến điểm khác biệt đầu tiên"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr "Tự động cuộn đến khác biệt nội dòng đầu tiên"
+
+msgid "Cl&ose windows with 'Esc':"
+msgstr "Đóng cửa sổ bằng phím 'Esc':"
+
+msgid "&Automatically verify paths in Open dialog"
+msgstr "Tự động xác minh đường dẫn trong hộp thoại Mở"
+
+msgid "Single instance mode:"
+msgstr "Chế độ đơn-hiện-thể:"
+
+msgid "As&k when closing multiple windows"
+msgstr "Hỏi khi đóng nhiều cửa sổ"
+
+msgid "&Preserve file time in file compare"
+msgstr "Giữ nguyên thời gian tệp khi so sánh tệp"
+
+msgid "Show \"Select Files or Folders\" dialog on startup"
+msgstr "Hiện hộp thoại \"Chọn tệp hoặc thư mục\" khi khởi động"
+
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
+msgstr "Đóng hộp thoại \"Chọn tệp hoặc thư mục\" khi nhấn nút So sánh"
+
+msgid "Op&en dialog Auto completion:"
+msgstr "Tự động hoàn thành hộp thoại mở:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Tự động tải lại các tệp đã sửa đổi:"
+
+msgid "Language:"
+msgstr "Ngôn ngữ:"
+
+msgid "Defaults"
+msgstr "Mặc định"
+
+msgid "Colors"
+msgstr "Màu sắc"
+
+msgid "Color &mode:"
+msgstr "Chế độ màu:"
+
+msgid "&Light mode scheme:"
+msgstr "Sơ đồ chế độ sáng:"
+
+msgid "&Dark mode scheme:"
+msgstr "Sơ đồ chế độ tối:"
+
+msgid "Your custom schemes"
+msgstr "Sơ đồ tuỳ chỉnh của bạn"
+
+msgid "&Save current scheme..."
+msgstr "Lưu sơ đồ hiện tại..."
+
+msgid "Delete &current scheme..."
+msgstr "Xoá sơ đồ hiện tại..."
+
+msgid "Background"
+msgstr "Nền"
+
+msgid "Deleted"
+msgstr "Đã xoá"
+
+msgid "Text"
+msgstr "Văn bản"
+
+msgid "Difference:"
+msgstr "Khác biệt:"
+
+msgid "Selected Difference:"
+msgstr "Khác biệt được chọn:"
+
+msgid "Ignored Difference:"
+msgstr "Khác biệt được bỏ qua:"
+
+msgid "Moved:"
+msgstr "Đã di chuyển:"
+
+msgid "Selected Moved:"
+msgstr "Phần di chuyển được chọn:"
+
+msgid "Same As Next (3 panes):"
+msgstr "Giống như phần tiếp theo (3 khung):"
+
+msgid "Same As Next (Selected):"
+msgstr "Giống như phần tiếp theo (được chọn):"
+
+msgid "Word Difference:"
+msgstr "Khác biệt từ:"
+
+msgid "Selected Word Diff:"
+msgstr "Khác biệt từ được chọn:"
+
+msgid "Dialog"
+msgstr "Hộp thoại"
+
+msgid "Keywords:"
+msgstr "Từ khoá:"
+
+msgid "Function names:"
+msgstr "Tên hàm:"
+
+msgid "Comments:"
+msgstr "Chú thích:"
+
+msgid "Numbers:"
+msgstr "Số:"
+
+msgid "Operators:"
+msgstr "Toán tử:"
+
+msgid "Strings:"
+msgstr "Xâu ký tự:"
+
+msgid "Preprocessor:"
+msgstr "Bộ tiền xử lý:"
+
+msgid "User 1:"
+msgstr "Người dùng 1:"
+
+msgid "User 2:"
+msgstr "Người dùng 2:"
+
+msgid "Bold"
+msgstr "Đậm"
+
+msgid "&Use customized text colors"
+msgstr "Sử dụng màu văn bản tuỳ chỉnh"
+
+msgid "Whitespace:"
+msgstr "Khoảng trắng:"
+
+msgid "Regular text:"
+msgstr "Văn bản thường:"
+
+msgid "Selection:"
+msgstr "Phần được chọn:"
+
+msgid "Margin:"
+msgstr "Mép:"
+
+msgid "Search Marker:"
+msgstr "Tìm kiếm dấu mốc:"
+
+msgid "User Defined Marker 1:"
+msgstr "Dấu mốc người dùng tự định nghĩa 1:"
+
+msgid "User Defined Marker 2:"
+msgstr "Dấu mốc người dùng tự định nghĩa 2:"
+
+msgid "User Defined Marker 3:"
+msgstr "Dấu mốc người dùng tự định nghĩa 3:"
+
+msgid "&Use folder compare colors"
+msgstr "Sử dụng màu so sánh thư mục"
+
+msgid "Items equal:"
+msgstr "Mục trùng khớp:"
+
+msgid "Items different:"
+msgstr "Mục khác biệt:"
+
+msgid "Items missing:"
+msgstr "Mục bị thiếu:"
+
+msgid "Items filtered:"
+msgstr "Mục được lọc:"
+
+msgid "&Use custom system colors"
+msgstr "Sử dụng màu hệ thống tuỳ chỉnh"
+
+msgid "System"
+msgstr "Hệ thống"
+
+msgid "&Use Recycle Bin"
+msgstr "Sử dụng thùng rác"
+
+msgid "&External editor:"
+msgstr "Trình chỉnh sửa bên ngoài:"
+
+msgid "&Store user data in:"
+msgstr "Lưu trữ dữ liệu người dùng tại:"
+
+msgid "&Filter folder:"
+msgstr "Thư mục bộ lọc:"
+
+msgid "Temporary files folder"
+msgstr "Thư mục tệp tạm thời"
+
+msgid "S&ystem temp folder"
+msgstr "Thư mục tạm của hệ thống"
+
+msgid "C&ustom folder:"
+msgstr "Thư mục tuỳ chỉnh:"
+
+msgid "Br&owse..."
+msgstr "Duyệt..."
+
+msgid "Compare"
+msgstr "So sánh"
+
+msgid "Whitespaces"
+msgstr "Khoảng trắng"
+
+msgid "&Compare"
+msgstr "So sánh"
+
+msgid "&Ignore change"
+msgstr "Bỏ qua thay đổi"
+
+msgid "I&gnore all"
+msgstr "Bỏ qua tất cả"
+
+msgid "Ignore blan&k lines"
+msgstr "Bỏ qua các dòng trống"
+
+msgid "Ignore &case"
+msgstr "Bỏ qua &hoa thường"
+
+msgid "Igno&re EOL differences (Windows/Unix/Mac)"
+msgstr "Bỏ qua &khác biệt EOL (Windows/Unix/Mac)"
+
+msgid "Ignore num&bers"
+msgstr "Bỏ qua &số"
+
+msgid "Ignore codepage &differences"
+msgstr "Bỏ qua &khác biệt trang mã"
+
+msgid "Ignore c&omment differences"
+msgstr "Bỏ qua khác biệt &chú thích"
+
+msgid "Ignore &missing trailing EOL"
+msgstr "Bỏ qua &thiếu hụt EOL đằng sau"
+
+msgid "Ignore line &breaks (treat as spaces)"
+msgstr "Bỏ qua &ngắt dòng (coi như dấu cách)"
+
+msgid "E&nable moved block detection"
+msgstr "&Bật phát hiện khối đã di chuyển"
+
+msgid "Align &similar lines"
+msgstr "Căn chỉnh các dòng &tương tự"
+
+msgid "Diff &algorithm:"
+msgstr "&Thuật toán so sánh:"
+
+msgid "Enable indent &heuristic"
+msgstr "Bật &heuristic thụt lề"
+
+msgid "Completely unhighlight the ignored differences"
+msgstr "Bỏ tô sáng hoàn toàn các khác biệt được bỏ qua"
+
+msgid "Editor"
+msgstr "Trình chỉnh sửa"
+
+msgid "&Highlight syntax"
+msgstr "&Tô sáng cú pháp"
+
+msgid "&Preserve original EOL"
+msgstr "&Giữ nguyên EOL gốc"
+
+msgid "Tabs"
+msgstr "Thẻ"
+
+msgid "&Tab size:"
+msgstr "Cỡ &Tab:"
+
+msgid "&Insert tabs"
+msgstr "&Chèn tab"
+
+msgid "Insert &spaces"
+msgstr "Chèn &khoảng trắng"
+
+msgid "&Rendering mode:"
+msgstr "&Chế độ kết xuất:"
+
+msgid "&Automatic rescan"
+msgstr "Tự động quét &lại"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Độ &chi tiết sao chép cho các khác biệt được chọn:"
+
+msgid "Line Difference Coloring"
+msgstr "Tô màu khác biệt dòng"
+
+msgid "View line differences"
+msgstr "Xem khác biệt dòng"
+
+msgid "&Character-level"
+msgstr "Cấp độ &ký tự"
+
+msgid "&Word-level:"
+msgstr "Cấp độ &từ:"
+
+msgid "W&ord break characters:"
+msgstr "Ký tự ngắt &từ:"
+
+msgid ""
+"Some messages can be hidden by the user. Press Reset to make all messages "
+"visible again."
+msgstr ""
+"Một số thông điệp có thể bị người dùng ẩn đi. Ấn Đặt lại để hiển thị lại tất "
+"cả thông điệp."
+
+msgid "Reset"
+msgstr "Đặt lại"
+
+msgid "Patch Generator"
+msgstr "Trình sinh bản vá"
+
+msgid "File&1:"
+msgstr "Tệp &1:"
+
+msgid "File&2:"
+msgstr "Tệp &2:"
+
+msgid "&Swap"
+msgstr "&Hoán đổi"
+
+msgid "&Copy to clipboard"
+msgstr "&Chép vào bảng tạm"
+
+msgid "&Append to existing file"
+msgstr "&Thêm vào cuối tệp đã có"
+
+msgid "&Result:"
+msgstr "&Kết quả:"
+
+msgid "Bro&wse..."
+msgstr "&Duyệt..."
+
+msgid "&Format"
+msgstr "&Định dạng"
+
+msgid "St&yle:"
+msgstr "&Kiểu dáng:"
+
+msgid "&Context:"
+msgstr "&Ngữ cảnh:"
+
+msgid "Inclu&de command line"
+msgstr "Bao &gồm dòng lệnh"
+
+msgid "Open in e&xternal editor"
+msgstr "Mở trong trình chỉnh sửa &bên ngoài"
+
+msgid "Display Columns"
+msgstr "Hiển thị các cột"
+
+msgid "Move &Up"
+msgstr "Chuyển lên &trên"
+
+msgid "Move &Down"
+msgstr "Chuyển xuống &dưới"
+
+msgid "&Additional Properties"
+msgstr "Thuộc tính &bổ sung"
+
+msgid "Additional Properties"
+msgstr "Thuộc tính bổ sung"
+
+msgid "Select Plugin"
+msgstr "Chọn trình cắm"
+
+msgid "Plugin &name:"
+msgstr "&Tên trình cắm:"
+
+msgid "&Target files:"
+msgstr "Tệp &đích:"
+
+msgid "Extensions list:"
+msgstr "Danh sách phần mở rộng:"
+
+msgid "Description:"
+msgstr "Mô tả:"
+
+msgid "Default arguments:"
+msgstr "Đối số mặc định:"
+
+msgid "Display all plugins (Ignore extension)"
+msgstr "Hiển thị tất cả trình cắm (bỏ qua phần mở rộng)"
+
+msgid "&Open files in same window type after unpacking"
+msgstr "&Mở tệp trong cùng loại cửa sổ sau khi bung gói"
+
+msgid "&Plugin pipeline:"
+msgstr "Ống dẫn &trình cắm:"
+
+msgid "&Alias..."
+msgstr "&Bí danh..."
+
+msgid "Stop"
+msgstr "Dừng"
+
+msgid "Pause"
+msgstr "Tạm dừng"
+
+msgid "Continue"
+msgstr "Tiếp tục"
+
+msgid "C&PU cores to use:"
+msgstr "Số nhân C&PU sử dụng:"
+
+msgid "Items total:"
+msgstr "Tổng số mục:"
+
+msgid "Items compared:"
+msgstr "Mục đã so sánh:"
+
+msgid "&Close"
+msgstr "&Đóng"
+
+msgid "Go to"
+msgstr "Đi tới"
+
+msgid "G&o to:"
+msgstr "&Đi tới:"
+
+msgid "File"
+msgstr "Tệp"
+
+msgid "Go to what"
+msgstr "Đi tới mục gì"
+
+msgid "Li&ne"
+msgstr "&Dòng"
+
+msgid "&Difference"
+msgstr "&Khác biệt"
+
+msgid "&Go to"
+msgstr "&Đi tới"
+
+msgid "File Filters"
+msgstr "Bộ lọc tệp"
+
+msgid "&Mask / Filter Expression"
+msgstr "&Mặt nạ / biểu thức bộ lọc"
+
+msgid "Preset &Filters"
+msgstr "Bộ &lọc cài sẵn"
+
+msgid "Test..."
+msgstr "Kiểm tra..."
+
+msgid "Install..."
+msgstr "Cài đặt..."
+
+msgid "New..."
+msgstr "Mới..."
+
+msgid "Edit..."
+msgstr "Sửa..."
+
+msgid "Delete..."
+msgstr "Xoá..."
+
+msgid "Filter Condition"
+msgstr "Điều kiện bộ lọc"
+
+msgid "&Left-hand side:"
+msgstr "Bên &trái:"
+
+msgid "&Operator:"
+msgstr "&Toán tử:"
+
+msgid "&Right-hand side:"
+msgstr "Bên &phải:"
+
+msgid "Expression:"
+msgstr "Biểu thức:"
+
+msgid "Codepage"
+msgstr "Trang mã"
+
+msgid "Default Codepage"
+msgstr "Trang mã mặc định"
+
+msgid "Select the default codepage for non-Unicode files:"
+msgstr "Chọn trang mã mặc định cho các tệp không phải Unicode:"
+
+msgid "System codepage"
+msgstr "Trang mã hệ thống"
+
+msgid "According to WinMerge User Interface"
+msgstr "Theo giao diện người dùng WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Trang mã tuỳ chỉnh:"
+
+msgid ""
+"Detect codepage for: .html, .rc, .xml\n"
+"Restart required."
+msgstr ""
+"Phát hiện trang mã cho: .html, .rc, .xml\n"
+"Yêu cầu khởi động lại."
+
+msgid ""
+"Detect codepage for files with mlang.dll\n"
+"Restart required."
+msgstr ""
+"Phát hiện trang mã cho các tệp với mlang.dll\n"
+"Yêu cầu khởi động lại."
+
+msgid "Archive Support"
+msgstr "Hỗ trợ về lưu trữ"
+
+msgid "&Enable archive file support"
+msgstr "&Bật hỗ trợ tệp lưu trữ"
+
+msgid "&Detect archive type from file signature"
+msgstr "&Phát hiện loại lưu trữ từ chữ ký tệp"
+
+msgid "Items saved to or restored from the project file:"
+msgstr "Các mục được lưu vào hoặc khôi phục từ tệp dự án:"
+
+msgid "Save Modified Files?"
+msgstr "Có lưu các tệp đã sửa đổi không?"
+
+msgid "Left side file"
+msgstr "Tệp bên trái"
+
+msgid "&Save changes"
+msgstr "&Lưu thay đổi"
+
+msgid "&Discard changes"
+msgstr "&Huỷ bỏ thay đổi"
+
+msgid "Middle side file"
+msgstr "Tệp ở giữa"
+
+msgid "Sa&ve changes"
+msgstr "Lưu &thay đổi"
+
+msgid "Discard c&hanges"
+msgstr "Huỷ bỏ t&hay đổi"
+
+msgid "Right side file"
+msgstr "Tệp bên phải"
+
+msgid "S&ave changes"
+msgstr "Lư&u thay đổi"
+
+msgid "Dis&card changes"
+msgstr "Huỷ &bỏ thay đổi"
+
+msgid "Disca&rd All"
+msgstr "Huỷ bỏ &Tất cả"
+
+msgid "Folder Compare Report"
+msgstr "Báo cáo so sánh thư mục"
+
+msgid "Report &file:"
+msgstr "&Tệp báo cáo:"
+
+msgid "&Style:"
+msgstr "&Kiểu dáng:"
+
+msgid "&Include file compare report"
+msgstr "Bao &gồm báo cáo so sánh tệp"
+
+msgid "Shared or Private Filter"
+msgstr "Bộ lọc chung hoặc riêng"
+
+msgid "What type of filter do you want?"
+msgstr "Bạn muốn loại bộ lọc nào?"
+
+msgid "Shared Filter (for all users)"
+msgstr "Bộ lọc chung (cho tất cả người dùng)"
+
+msgid "Private Filter (current user only)"
+msgstr "Bộ lọc riêng (chỉ người dùng hiện tại)"
+
+msgid "Compare Statistics"
+msgstr "Thống kê so sánh"
+
+msgid "Folders:"
+msgstr "Thư mục:"
+
+msgid "Files:"
+msgstr "Tệp:"
+
+msgid "Different"
+msgstr "Khác biệt"
+
+msgid "Binary:"
+msgstr "Nhị phân:"
+
+msgid "Unique"
+msgstr "Duy nhất"
+
+msgid "Left:"
+msgstr "Trái:"
+
+msgid "Right:"
+msgstr "Bên phải:"
+
+msgid "Identical"
+msgstr "Giống hệt"
+
+msgid "Total:"
+msgstr "Tổng cộng:"
+
+msgid "Close"
+msgstr "Đóng"
+
+msgid "Middle:"
+msgstr "Giữa:"
+
+msgid "Missing Left:"
+msgstr "Thiếu bên trái:"
+
+msgid "Missing Middle:"
+msgstr "Thiếu ở giữa:"
+
+msgid "Missing Right:"
+msgstr "Thiếu bên phải:"
+
+msgid "Affects"
+msgstr "Ảnh hưởng"
+
+msgid "(Affects)"
+msgstr "(Ảnh hưởng)"
+
+msgid "Select Codepage for"
+msgstr "Chọn trang mã cho"
+
+msgid "&File Loading:"
+msgstr "Tải &tệp:"
+
+msgid "File &Saving:"
+msgstr "Lưu &tệp:"
+
+msgid "&Use same codepage for both"
+msgstr "&Sử dụng cùng trang mã cho cả hai"
+
+msgid "&Cancel"
+msgstr "&Huỷ"
+
+msgid "Test Filter"
+msgstr "Kiểm tra bộ lọc"
+
+msgid "Testing filter:"
+msgstr "Đang kiểm tra bộ lọc:"
+
+msgid "&Enter text to test:"
+msgstr "&Nhập văn bản để kiểm tra:"
+
+msgid "&Folder Name"
+msgstr "Tên &thư mục"
+
+msgid "Result:"
+msgstr "Kết quả:"
+
+msgid "&Test"
+msgstr "&Kiểm tra"
+
+msgid "Table"
+msgstr "Bảng"
+
+msgid "File type"
+msgstr "Loại tệp"
+
+msgid "&CSV"
+msgstr "&CSV"
+
+msgid "&TSV"
+msgstr "&TSV"
+
+msgid "Custom &Delimiter-Separated Values"
+msgstr "Giá trị ngăn cách bằng dấu &phân cách tuỳ chỉnh"
+
+msgid "D&elimiter character:"
+msgstr "Ký tự phân &cách:"
+
+msgid "&Allow newlines in quotes"
+msgstr "Cho &phép dòng mới trong ngoặc kép"
+
+msgid "&Quote character:"
+msgstr "Ký tự &ngoặc kép:"
+
+msgid "Backup Files"
+msgstr "Sao lưu tệp"
+
+msgid "Create backup files for:"
+msgstr "Tạo tệp sao lưu cho:"
+
+msgid "&Folder compare"
+msgstr "So sánh &thư mục"
+
+msgid "Fil&e compare"
+msgstr "So sánh &tệp"
+
+msgid "Create backup files in:"
+msgstr "Tạo tệp sao lưu tại:"
+
+msgid "&Original file's folder"
+msgstr "Thư mục của tệp &gốc"
+
+msgid "&Global backup folder:"
+msgstr "Thư mục sao lưu &toàn cục:"
+
+msgid "Backup filename:"
+msgstr "Tên tệp sao lưu:"
+
+msgid "&Append .bak extension"
+msgstr "Thêm &phần mở rộng .bak vào cuối"
+
+msgid "A&ppend timestamp"
+msgstr "Thêm tem &thời gian"
+
+msgid "Confirm Copy"
+msgstr "Xác nhận sao chép"
+
+msgid "Are you sure you want to copy XXX items?"
+msgstr "Bạn có chắc chắn muốn sao chép XXX mục không?"
+
+msgid "From left"
+msgstr "Từ bên trái"
+
+msgid "To right"
+msgstr "Sang bên phải"
+
+msgid "Don't ask this &question again."
+msgstr "Đừng hỏi lại câu &hỏi này nữa."
+
+msgid "Yes"
+msgstr "Có"
+
+msgid "No"
+msgstr "Không"
+
+msgid "Plugins"
+msgstr "Trình cắm"
+
+msgid "&Enable plugins"
+msgstr "&Bật trình cắm"
+
+msgid "Plugin &type:"
+msgstr "&Loại trình cắm:"
+
+msgid "File filters:"
+msgstr "Bộ lọc tệp:"
+
+msgid "&Plugin arguments:"
+msgstr "Đối số &trình cắm:"
+
+msgid "Enable &automatic unpacking/prediffing"
+msgstr "Bật tự động bung gói / tiền so sánh"
+
+msgid "Shell Integration"
+msgstr "Tích hợp hệ vỏ (shell)"
+
+msgid "Explorer"
+msgstr "Explorer"
+
+msgid "&Add to context menu"
+msgstr "&Thêm vào bảng chọn ngữ cảnh"
+
+msgid "E&nable advanced menu"
+msgstr "&Bật bảng chọn nâng cao"
+
+msgid "Enable &Compare As menu"
+msgstr "Bật bảng chọn \"&So sánh như là\""
+
+msgid "&Register Shell Extension"
+msgstr "Đăng ký &phần mở rộng hệ vỏ"
+
+msgid "&Unregister Shell Extension"
+msgstr "&Huỷ đăng ký phần mở rộng hệ vỏ"
+
+msgid "Register Shell Extension for Current User &Only"
+msgstr "Chỉ đăng ký phần mở rộng hệ vỏ cho người dùng &hiện tại"
+
+msgid "Unregister Shell Extension for Current User On&ly"
+msgstr "Chỉ &huỷ đăng ký phần mở rộng hệ vỏ cho người dùng hiện tại"
+
+msgid "Register Shell Extension for &Windows 11"
+msgstr "Đăng ký phần mở rộng hệ vỏ cho &Windows 11"
+
+msgid "Unregister Shell Extension for W&indows 11"
+msgstr "Huỷ đăng ký phần mở rộng hệ vỏ cho W&indows 11"
+
+msgid "Jump List"
+msgstr "Danh sách nhảy"
+
+msgid "Clear all recent items"
+msgstr "Xoá sạch tất cả các mục gần đây"
+
+msgctxt "Options dialog|Categories"
+msgid "Folder"
+msgstr "Thư mục"
+
+msgid "&Compare method:"
+msgstr "Phương pháp &so sánh:"
+
+msgid "S&top after first difference"
+msgstr "Dừng lại &sau khác biệt đầu tiên"
+
+msgid "Ign&ore time differences less than 3 seconds"
+msgstr "Bỏ &qua khác biệt thời gian dưới 3 giây"
+
+msgid "Expand subfolders &after comparison:"
+msgstr "Duỗi các thư mục con &sau khi so sánh:"
+
+msgid "Include &unique subfolders contents"
+msgstr "Bao gồm nội dung thư mục con &độc nhất"
+
+msgid "Ignore &reparse points"
+msgstr "Bỏ qua các điểm phân tích &lại"
+
+msgid "Switch to &quick compare when size exceeds (MB):"
+msgstr "Chuyển sang so sánh &nhanh khi kích cỡ vượt quá (MB):"
+
+msgid "Switch to &binary compare when size exceeds (MB):"
+msgstr "Chuyển sang so sánh &nhị phân khi kích cỡ vượt quá (MB):"
+
+msgid "Additional comparison condi&tions:"
+msgstr "Các điều &kiện so sánh bổ sung:"
+
+msgid "&Rename/move detection:"
+msgstr ""
+
+msgid "Rename/move detection &keys:"
+msgstr ""
+
+msgid "&Merge renamed items into a single item"
+msgstr ""
+
+msgid "File patterns:"
+msgstr "Mẫu tệp:"
+
+msgid "Custom Delimiter-Separated Values"
+msgstr "Các giá trị ngăn cách bằng dấu phân tách tuỳ chỉnh"
+
+msgctxt "Options dialog|Categories"
+msgid "Binary"
+msgstr "Nhị phân"
+
+msgid "Binary file &patterns:"
+msgstr "&Mẫu tệp nhị phân:"
+
+msgid "Frhed settings"
+msgstr "Thiết đặt Frhed"
+
+msgid "View &Settings..."
+msgstr "Xem &thiết đặt..."
+
+msgid "&Binary Mode..."
+msgstr "Chế độ &nhị phân..."
+
+msgid "&Character Set..."
+msgstr "Tập &ký tự..."
+
+msgid "Image"
+msgstr "Hình ảnh"
+
+msgid "Image file &patterns:"
+msgstr "&Mẫu tệp hình ảnh:"
+
+msgid "&Enable image compare in folder compare"
+msgstr "&Bật so sánh hình ảnh trong so sánh thư mục"
+
+msgid "OCR result:"
+msgstr "Kết quả OCR:"
+
+msgid "Webpage"
+msgstr "Trang web"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr "Mẫu URL cần &bao gồm (biểu thức chính quy):"
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr "Mẫu URL cần &loại trừ (biểu thức chính quy):"
+
+msgid "&User data folder location:"
+msgstr "Vị trí thư mục &dữ liệu người dùng:"
+
+msgid "&Separate user data folders for each pane"
+msgstr "Thư mục dữ liệu người dùng &riêng biệt cho mỗi khung"
+
+msgid "&Hex View"
+msgstr "Xem mã &Hex"
+
+msgid "Edit Plugin"
+msgstr "Sửa trình cắm"
+
+msgid "&Category:"
+msgstr "&Hạng mục:"
+
+msgid "&Menu caption:"
+msgstr "Phụ đề &bảng chọn:"
+
+msgid "&Window type:"
+msgstr "Loại &cửa sổ:"
+
+msgid "&Unpacked file extension:"
+msgstr "Đuôi tệp đã &bung gói:"
+
+msgid "&Require arguments"
+msgstr "&Yêu cầu đối số"
+
+msgid "&Generate editor script"
+msgstr "&Sinh kịch bản chỉnh sửa"
+
+msgid "Command &line:"
+msgstr "&Dòng lệnh:"
+
+msgid "&Script file extension:"
+msgstr "Đuôi tệp kịch &bản:"
+
+msgid "Script &body:"
+msgstr "&Thân kịch bản:"
+
+msgid "Font"
+msgstr "Phông"
+
+msgid "&Font:"
+msgstr "&Phông:"
+
+msgid "Font st&yle:"
+msgstr "Kiểu &dáng phông:"
+
+msgid "&Size:"
+msgstr "&Cỡ:"
+
+msgid "Effects"
+msgstr "Hiệu ứng"
+
+msgid "Stri&keout"
+msgstr "Gạch &ngang"
+
+msgid "&Underline"
+msgstr "&Gạch chân"
+
+msgid "&Color:"
+msgstr "&Màu sắc:"
+
+msgid "Sample"
+msgstr "Mẫu"
+
+msgid "AaBbYyZz"
+msgstr "AaBbYyZz"
+
+msgid "Sc&ript:"
+msgstr "Kịch &bản:"
+
+msgid "<A>Show more fonts</A>"
+msgstr "<A>Hiện thêm phông chữ</A>"
+
+msgid "EXT"
+msgstr "ĐUÔI"
+
+msgid "CAP"
+msgstr "HOA"
+
+msgid "NUM"
+msgstr "SỐ"
+
+msgid "SCRL"
+msgstr "CUỘN"
+
+msgid "OVR"
+msgstr "ĐÈ"
+
+msgid "REC"
+msgstr "GHI"
+
+msgid ""
+"\n"
+"New Documents (Ctrl+N)"
+msgstr ""
+"\n"
+"Tài liệu mới (Ctrl+N)"
+
+msgid ""
+"\n"
+"Open (Ctrl+O)"
+msgstr ""
+"\n"
+"Mở (Ctrl+O)"
+
+msgid ""
+"\n"
+"Save (Ctrl+S)"
+msgstr ""
+"\n"
+"Lưu (Ctrl+S)"
+
+msgid "Unknown error opening project file."
+msgstr "Lỗi không xác định khi mở tệp dự án."
+
+msgid "Unknown error saving project file."
+msgstr "Lỗi không xác định khi lưu tệp dự án."
+
+msgid "Project file loaded."
+msgstr "Tệp dự án đã được nạp."
+
+msgid "Project file saved."
+msgstr "Tệp dự án đã được lưu."
+
+msgid ""
+"\n"
+"Undo (Ctrl+Z)"
+msgstr ""
+"\n"
+"Hoàn tác (Ctrl+Z)"
+
+msgid ""
+"\n"
+"Redo (Ctrl+Y)"
+msgstr ""
+"\n"
+"Làm lại (Ctrl+Y)"
+
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
+msgstr ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"So sánh tệp WinMerge"
+
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
+msgstr ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"So sánh thư mục WinMerge"
+
+msgid ""
+"WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be "
+"redistributed under the conditions of the GNU General Public License - see "
+"the Help menu for details."
+msgstr ""
+"WinMerge HOÀN TOÀN KHÔNG CÓ BẢO HÀNH. Đây là phần mềm tự do và có thể được "
+"phân phối lại theo các điều kiện của Giấy phép Công cộng GNU - xem bảng chọn "
+"Trợ giúp để biết chi tiết."
+
+msgid "&Abort"
+msgstr "&Huỷ bỏ"
+
+msgid "&Retry"
+msgstr "&Thử lại"
+
+msgid "&Ignore"
+msgstr "&Bỏ qua"
+
+msgid "Ignore &all"
+msgstr "Bỏ qua &tất cả"
+
+msgid "&Yes"
+msgstr "&Có"
+
+msgid "Yes to &all"
+msgstr "Có với &tất cả"
+
+msgid "&No"
+msgstr "&Không"
+
+msgid "No to a&ll"
+msgstr "Không với tất &cả"
+
+msgid "&Continue"
+msgstr "&Tiếp tục"
+
+msgid "&Skip"
+msgstr "&Bỏ qua"
+
+msgid "Skip &all"
+msgstr "Bỏ qua &tất cả"
+
+msgid "Don't display this &message again."
+msgstr "Đừng hiển thị &thông điệp này nữa."
+
+msgid ""
+"To make this message box visible, press Reset on the Message Boxes page in "
+"Options."
+msgstr ""
+"Để làm hộp thông điệp này hiển thị lại, hãy nhấn Đặt lại tại trang Hộp thông "
+"điệp trong mục Tuỳ chọn."
+
+msgid "Compare/Merge"
+msgstr "So sánh/Trộn"
+
+msgid "Syntax"
+msgstr "Cú pháp"
+
+msgid "Color Schemes"
+msgstr "Lược đồ màu"
+
+msgid "Folder Compare"
+msgstr "So sánh thư mục"
+
+msgid "Project"
+msgstr "Dự án"
+
+msgid "Differences"
+msgstr "Khác biệt"
+
+msgid "Message Boxes"
+msgstr "Hộp thông điệp"
+
+msgid "To:"
+msgstr "Đến:"
+
+msgid "From left:"
+msgstr "Từ bên trái:"
+
+msgid "To left:"
+msgstr "Đến bên trái:"
+
+msgid "From right:"
+msgstr "Từ bên phải:"
+
+msgid "To right:"
+msgstr "Đến bên phải:"
+
+msgid "From middle:"
+msgstr "Từ giữa:"
+
+msgid "To middle:"
+msgstr "Đến giữa:"
+
+#, c-format
+msgid "Version %1"
+msgstr "Phiên bản %1"
+
+msgid "X64"
+msgstr "X64"
+
+#, c-format
+msgid "Options (%1)"
+msgstr "Tuỳ chọn (%1)"
+
+msgid "All message boxes are now displayed again."
+msgstr "Tất cả các hộp thông điệp hiện đã được hiển thị lại."
+
+#, c-format
+msgid "Tab size value is out of range. Please use 1 - %1."
+msgstr "Giá trị cỡ Tab nằm ngoài phạm vi. Xin hãy sử dụng từ 1 - %1."
+
+msgid "Open"
+msgstr "Mở"
+
+msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+msgstr "Chương trình|*.exe;*.bat;*.cmd|Tất cả các tệp (*.*)|*.*||"
+
+msgid "All Files (*.*)|*.*||"
+msgstr "Tất cả các tệp (*.*)|*.*||"
+
+msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+msgstr "Tệp dự án WinMerge (*.WinMerge)|*.WinMerge||"
+
+msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+msgstr "Tệp tuỳ chọn (*.ini)|*.ini|Tất cả các tệp (*.*)|*.*||"
+
+msgid ""
+"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files "
+"(*.*)|*.*||"
+msgstr ""
+"Tệp văn bản (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Tất cả các tệp "
+"(*.*)|*.*||"
+
+msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+msgstr "Tệp HTML (*.htm,*.html)|*.htm;*.html|Tất cả các tệp (*.*)|*.*||"
+
+msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr "Tệp XML (*.xml)|*.xml|Tất cả các tệp (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "Đừng duỗi"
+
+msgid "Expand all subfolders"
+msgstr "Duỗi tất cả thư mục con"
+
+msgid "Expand different subfolders"
+msgstr "Duỗi các thư mục con khác biệt"
+
+msgid "Expand identical subfolders"
+msgstr "Duỗi các thư mục con giống hệt"
+
+msgid "File Type"
+msgstr "Loại tệp"
+
+msgid "Extension"
+msgstr "Phần mở rộng"
+
+msgid "Message"
+msgstr "Thông điệp"
+
+msgid "Answer"
+msgstr "Trả lời"
+
+msgid "Item"
+msgstr "Mục"
+
+msgid "Load"
+msgstr "Nạp"
+
+msgid "Save"
+msgstr "Lưu"
+
+msgid "Include Subfolders"
+msgstr "Bao gồm thư mục con"
+
+msgid "Compare Options"
+msgstr "Tuỳ chọn so sánh"
+
+msgid "Hidden Items"
+msgstr "Các mục ẩn"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Location"
+msgstr "Vị trí"
+
+msgid "Filters"
+msgstr "Bộ lọc"
+
+msgid "[F] "
+msgstr "[F] "
+
+msgid "Description"
+msgstr "Mô tả"
+
+msgid "Select Filename for New Filter"
+msgstr "Chọn tên tệp cho bộ lọc mới"
+
+msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+msgstr "Bộ lọc tệp (*.flt)|*.flt|Tất cả các tệp (*.*)|*.*||"
+
+#, c-format
+msgid ""
+"Cannot find filter template!\n"
+"\n"
+"Copy %1 to WinMerge/Filters Folder:\n"
+"%2."
+msgstr ""
+"Không thể tìm thấy bản mẫu bộ lọc!\n"
+"\n"
+"Hãy chép %1 vào thư mục WinMerge/Filters:\n"
+"%2."
+
+#, c-format
+msgid ""
+"Cannot copy filter template:\n"
+"%1\n"
+"\n"
+"Make sure the folder exists and is writable."
+msgstr ""
+"Không thể chép bản mẫu bộ lọc:\n"
+"%1\n"
+"\n"
+"Hãy đảm bảo thư mục tồn tại và có thể ghi được."
+
+msgid ""
+"User's filter folder is not defined!\n"
+"\n"
+"Select filter folder in Options/System."
+msgstr ""
+"Thư mục bộ lọc của người dùng chưa được định nghĩa!\n"
+"\n"
+"Hãy chọn thư mục bộ lọc trong Tuỳ chọn/Hệ thống."
+
+#, c-format
+msgid ""
+"Failed to delete filter:\n"
+"%1\n"
+"\n"
+"File may be read-only."
+msgstr ""
+"Không thể xoá bộ lọc:\n"
+"%1\n"
+"\n"
+"Có lẽ tệp đang ở chế độ chỉ-đọc."
+
+msgid "Locate Filter File to Install"
+msgstr "Định vị tệp bộ lọc để cài đặt"
+
+msgid ""
+"Installing filter file failed.\n"
+"\n"
+"Could not copy new filter to folder."
+msgstr ""
+"Không thể cài đặt tệp bộ lọc.\n"
+"\n"
+"Không thể chép bộ lọc mới vào thư mục."
+
+msgid "Filter file exists. Overwrite?"
+msgstr "Tệp bộ lọc đã tồn tại. Có ghi đè không?"
+
+msgid "Regular expression"
+msgstr "Biểu thức chính quy"
+
+msgid ""
+"Filters updated. Refresh all open folder compares?\n"
+"\n"
+"Select 'No' to refresh later."
+msgstr ""
+"Đã cập nhật các bộ lọc. Có làm mới tất cả các so sánh thư mục đang mở "
+"không?\n"
+"\n"
+"Chọn 'Không' để làm mới sau."
+
+msgid "Folder Comparison Results"
+msgstr "Kết quả so sánh thư mục"
+
+msgid "File Comparison"
+msgstr "So sánh tệp"
+
+msgid "Untitled Left"
+msgstr "Bên trái không tiêu đề"
+
+msgid "Untitled Middle"
+msgstr "Ở giữa không tiêu đề"
+
+msgid "Untitled Right"
+msgstr "Bên phải không tiêu đề"
+
+msgid "Base File"
+msgstr "Tệp cơ sở"
+
+msgid "Theirs File"
+msgstr "Tệp của họ"
+
+msgid "Mine File"
+msgstr "Tệp của tôi"
+
+msgid "Original File"
+msgstr "Tệp gốc"
+
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr "Dòng: %s  Cột: %d/%d  K.tự: %d/%d  EOL: %s"
+
+#, c-format
+msgid "Line: %s"
+msgstr "Dòng: %s"
+
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr "Dòng: %s  Cột: %d/%d  Kí tự: %d/%d"
+
+#, c-format
+msgid "  Sel: %d | %d"
+msgstr "  Phần chọn: %d | %d"
+
+msgid "Merge"
+msgstr "Trộn"
+
+#, c-format
+msgid "Difference %1 of %2"
+msgstr "Khác biệt %1 trên %2"
+
+#, c-format
+msgid "%1 Differences Found"
+msgstr "Tìm thấy %1 khác biệt"
+
+msgid "1 Difference Found"
+msgstr "Tìm thấy 1 khác biệt"
+
+#, c-format
+msgid "%1 Errors Found"
+msgstr "Tìm thấy %1 lỗi"
+
+msgid "1 Error Found"
+msgstr "Tìm thấy 1 lỗi"
+
+#. Abbreviation from "Read Only"
+msgid "RO"
+msgstr "CĐ"
+
+#, c-format
+msgid "Item %1 of %2"
+msgstr "Mục %1 trên %2"
+
+#, c-format
+msgid "Items: %1"
+msgstr "Số mục: %1"
+
+msgid "Comparing items..."
+msgstr "Đang so sánh các mục..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f[mục/giây]"
+
+msgid "Select two existing folders/files to compare."
+msgstr "Chọn hai thư mục/tệp hiện có để so sánh."
+
+msgid "Folder Selection"
+msgstr "Chọn thư mục"
+
+msgid "Select two (or three) folders/files to compare."
+msgstr "Chọn hai (hoặc ba) thư mục / tệp để so sánh."
+
+msgid "Left (1st) path is invalid!"
+msgstr "Đường dẫn bên trái (thứ nhất) không hợp lệ!"
+
+msgid "Middle (2nd) path is invalid!"
+msgstr "Đường dẫn ở giữa (thứ 2) không hợp lệ!"
+
+msgid "Right (2nd) path is invalid!"
+msgstr "Đường dẫn bên phải (thứ 2) không hợp lệ!"
+
+msgid "Right (3rd) path is invalid!"
+msgstr "Đường dẫn bên phải (thứ 3) không hợp lệ!"
+
+msgid "Both paths are invalid!"
+msgstr "Cả hai đường dẫn đều không hợp lệ!"
+
+msgid "Left (1st) and Middle (2nd) paths are invalid!"
+msgstr "Đường dẫn bên trái (1) và ở giữa (2) không hợp lệ!"
+
+msgid "Left (1st) and Right (3rd) paths are invalid!"
+msgstr "Đường dẫn bên trái (1) và bên phải (3) không hợp lệ!"
+
+msgid "Middle (2nd) and Right (3rd) paths are invalid!"
+msgstr "Đường dẫn ở giữa (2) và bên phải (3) không hợp lệ!"
+
+msgid "All paths are invalid!"
+msgstr "Tất cả đường dẫn đều không hợp lệ!"
+
+msgid "Only enabled for file comparisons"
+msgstr "Chỉ bật cho so sánh tệp"
+
+msgid "Cannot compare file and folder!"
+msgstr "Không thể so sánh tệp và thư mục!"
+
+#, c-format
+msgid "File not found: %1"
+msgstr "Không tìm thấy tệp: %1"
+
+#, c-format
+msgid "File not unpacked: %1"
+msgstr "Tệp chưa được bung gói: %1"
+
+#, c-format
+msgid ""
+"Cannot open file\n"
+"%1\n"
+"\n"
+"%2"
+msgstr ""
+"Không thể mở tệp\n"
+"%1\n"
+"\n"
+"%2"
+
+msgid "Failed to parse conflict file."
+msgstr "Không thể phân tích cú pháp tệp xung đột."
+
+#, c-format
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
+msgstr ""
+"Tệp\n"
+"%1\n"
+"không phải là một tệp xung đột."
+
+msgid ""
+"Comparing large files requires significant memory.\n"
+"Show only comparison results (not file contents)?"
+msgstr ""
+"Cần nhiều bộ nhớ để so sánh các tệp lớn.\n"
+"Chỉ hiển thị kết quả so sánh (không hiện nội dung tệp) nhé?"
+
+msgid "Save As"
+msgstr "Lưu thành"
+
+#, c-format
+msgid "Save changes to %1?"
+msgstr "Có lưu các thay đổi vào %1 nhé?"
+
+#, c-format
+msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
+msgstr ""
+"%1 là tệp chỉ-đọc. Có ghi đè không? Hay là chọn 'Không' để lưu với tên tệp "
+"mới?"
+
+msgid "Error backing up file"
+msgstr "Lỗi khi sao lưu tệp"
+
+#, c-format
+msgid ""
+"Unable to backup original file:\n"
+"%1\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Không thể sao lưu tệp gốc:\n"
+"%1\n"
+"\n"
+"Vẫn tiếp tục nhé?"
+
+#, c-format
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"\t- Use different filename (OK)\n"
+"\t- Abort (Cancel)?"
+msgstr ""
+"Không thể lưu tệp.\n"
+"%1\n"
+"%2\n"
+"\t- Sử dụng tên tệp khác (OK)\n"
+"\t- Huỷ bỏ (Huỷ)?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack changes to left file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
+msgstr ""
+"Trình cắm '%2' không thể đóng gói thay đổi ở tệp bên trái vào '%1'.\n"
+"\n"
+"Tệp gốc chưa thay đổi. Có lưu phiên bản đã bung gói không?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack changes to middle file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
+msgstr ""
+"Trình cắm '%2' không thể đóng gói thay đổi ở tệp giữa vào '%1'.\n"
+"\n"
+"Tệp gốc chưa thay đổi. Có lưu phiên bản đã bung gói không?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack changes to right file into '%1'.\n"
+"\n"
+"Original unchanged. Save unpacked version?"
+msgstr ""
+"Trình cắm '%2' không thể đóng gói thay đổi ở tệp bên phải vào '%1'.\n"
+"\n"
+"Tệp gốc chưa thay đổi. Có lưu phiên bản đã bung gói không?"
+
+#, c-format
+msgid ""
+"Another application updated\n"
+"%1\n"
+"since WinMerge loaded it.\n"
+"\n"
+"Overwrite?"
+msgstr ""
+"Một ứng dụng khác đã cập nhật\n"
+"%1\n"
+"kể từ khi WinMerge nạp tệp này.\n"
+"\n"
+"Có ghi đè không?"
+
+#, c-format
+msgid ""
+"%1\n"
+"is read-only. Override?"
+msgstr ""
+"%1\n"
+"là tệp chỉ-đọc. Có ghi đè không?"
+
+#, c-format
+msgid ""
+"Another application updated\n"
+"%1\n"
+"since last scan.\n"
+"\n"
+"Reload?"
+msgstr ""
+"Một ứng dụng khác đã cập nhật\n"
+"%1\n"
+"kể từ lần quét cuối.\n"
+"\n"
+"Có tải lại không?"
+
+msgid "Save Left File As"
+msgstr "Lưu tệp bên trái thành"
+
+msgid "Save Middle File As"
+msgstr "Lưu tệp ở giữa thành"
+
+msgid "Save Right File As"
+msgstr "Lưu tệp bên phải thành"
+
+#, c-format
+msgid ""
+"File\n"
+"%1\n"
+"not found. Save a copy to continue."
+msgstr ""
+"Tệp\n"
+"%1\n"
+"không tìm thấy. Lưu một bản sao để tiếp tục."
+
+msgid ""
+"Cannot merge unsynched documents.\n"
+"\n"
+"Refresh before continuing."
+msgstr ""
+"Không thể trộn các tài liệu chưa đồng bộ.\n"
+"\n"
+"Hãy làm mới trước khi tiếp tục."
+
+msgid "Break at whitespace"
+msgstr "Ngắt tại khoảng trắng"
+
+msgid "Break at whitespace or punctuation"
+msgstr "Ngắt tại khoảng trắng hoặc dấu câu"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr "Chép sang &giữa\tAlt+Right"
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr "Chép sang &giữa\tAlt+Left"
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr "Chép từ giữa\tAlt+Shift+Right"
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr "Chép từ giữa\tAlt+Shift+Left"
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr "Chép sang giữa và tiến tiếp\tCtrl+Alt+Right"
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr "Chép sang giữa và tiến tiếp\tCtrl+Alt+Left"
+
+msgid "Copy All to Middle"
+msgstr "Chép tất cả sang giữa"
+
+#, c-format
+msgid "Right to Left (%1)"
+msgstr "Phải sang trái (%1)"
+
+#, c-format
+msgid "Right to Middle (%1)"
+msgstr "Phải sang giữa (%1)"
+
+#, c-format
+msgid "Middle to Left (%1)"
+msgstr "Giữa sang trái (%1)"
+
+#, c-format
+msgid "Middle to Right (%1)"
+msgstr "Giữa sang phải (%1)"
+
+#, c-format
+msgid "Left to Right (%1)"
+msgstr "Trái sang phải (%1)"
+
+#, c-format
+msgid "Left to Middle (%1)"
+msgstr "Trái sang giữa (%1)"
+
+#, c-format
+msgid "Left to... (%1)"
+msgstr "Trái sang... (%1)"
+
+#, c-format
+msgid "Middle to... (%1)"
+msgstr "Giữa sang... (%1)"
+
+#, c-format
+msgid "Right to... (%1)"
+msgstr "Phải sang... (%1)"
+
+#, c-format
+msgid "Both to... (%1)"
+msgstr "Cả hai sang... (%1)"
+
+#, c-format
+msgid "All to... (%1)"
+msgstr "Tất cả sang... (%1)"
+
+#, c-format
+msgid "Differences to... (%1)"
+msgstr "Khác biệt sang... (%1)"
+
+msgid ""
+"Some selected items are identical or skipped.\n"
+"Copy only items with differences?"
+msgstr ""
+"Một số mục được chọn giống hệt nhau hoặc bị bỏ qua.\n"
+"Chỉ sao chép những mục có sự khác biệt nhé?"
+
+#, c-format
+msgid "Left (%1)"
+msgstr "Bên trái (%1)"
+
+#, c-format
+msgid "Middle (%1)"
+msgstr "Giữa (%1)"
+
+#, c-format
+msgid "Right (%1)"
+msgstr "Phải (%1)"
+
+#, c-format
+msgid "Both (%1)"
+msgstr "Cả hai (%1)"
+
+#, c-format
+msgid "All (%1)"
+msgstr "Tất cả (%1)"
+
+msgid "Left Side - Select Destination Folder:"
+msgstr "Bên trái - chọn thư mục đích:"
+
+msgid "Middle Side - Select Destination Folder:"
+msgstr "Ở giữa - chọn thư mục đích:"
+
+msgid "Right Side - Select Destination Folder:"
+msgstr "Bên phải - chọn thư mục đích:"
+
+#, c-format
+msgid "(%1 Files Affected)"
+msgstr "(%1 tệp bị ảnh hưởng)"
+
+#, c-format
+msgid "(%1 of %2 Files Affected)"
+msgstr "(%1 trên %2 tệp bị ảnh hưởng)"
+
+#, c-format
+msgid ""
+"Are you sure you want to delete\n"
+"\n"
+"%1 ?"
+msgstr ""
+"Bạn có chắc chắn muốn xoá\n"
+"\n"
+"%1 không?"
+
+msgid "Are you sure you want to copy?"
+msgstr "Bạn có chắc chắn muốn sao chép không?"
+
+#, c-format
+msgid "Are you sure you want to copy %d items?"
+msgstr "Bạn có chắc chắn muốn sao chép %d mục không?"
+
+#, c-format
+msgid ""
+"Operation aborted!\n"
+"\n"
+"Folder contents changed, path\n"
+"%1\n"
+"not found.\n"
+"\n"
+"Refresh the compare."
+msgstr ""
+"Thao tác đã bị huỷ!\n"
+"\n"
+"Nội dung thư mục đã thay đổi, đường dẫn\n"
+"%1\n"
+"không tìm thấy.\n"
+"\n"
+"Hãy làm mới lại việc so sánh."
+
+msgid "Are you sure you want to move?"
+msgstr "Bạn có chắc chắn muốn di chuyển không?"
+
+#, c-format
+msgid "Are you sure you want to move %d items?"
+msgstr "Bạn có chắc chắn muốn di chuyển %d mục không?"
+
+msgid "Confirm Move"
+msgstr "Xác nhận di chuyển"
+
+msgid "Close the folder comparison window?"
+msgstr "Có đóng cửa sổ so sánh thư mục không?"
+
+msgid "Close the folder comparison window, which took a long time?"
+msgstr ""
+"Có đóng cửa sổ so sánh thư mục không (việc này tốn khá nhiều thời gian)?"
+
+msgid "The file or folder name is invalid."
+msgstr "Tên tệp hoặc tên thư mục không hợp lệ."
+
+#, c-format
+msgid "Failed to execute external editor: %1"
+msgstr "Không thể thực thi trình chỉnh sửa bên ngoài: %1"
+
+msgid "Unknown archive format"
+msgstr "Định dạng tệp nén không xác định"
+
+msgid ""
+"Failed to extract archive.\n"
+"Compare as text file?"
+msgstr ""
+"Không thể trích xuất tệp nén.\n"
+"Có so sánh dưới dạng tệp văn bản không?"
+
+msgid "Filename"
+msgstr "Tên tệp"
+
+msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr "Thư mục"
+
+msgid "Comparison Result"
+msgstr "Kết quả so sánh"
+
+msgid "Left Date"
+msgstr "Ngày (trái)"
+
+msgid "Right Date"
+msgstr "Ngày (phải)"
+
+msgid "Middle Date"
+msgstr "Ngày (giữa)"
+
+msgid "Left Size"
+msgstr "Kích cỡ (trái)"
+
+msgid "Right Size"
+msgstr "Kích cỡ (phải)"
+
+msgid "Middle Size"
+msgstr "Kích cỡ (giữa)"
+
+msgid "Right Size (Short)"
+msgstr "Kích cỡ (phải, ngắn)"
+
+msgid "Left Size (Short)"
+msgstr "Kích cỡ (trái, ngắn)"
+
+msgid "Middle Size (Short)"
+msgstr "Kích cỡ (giữa, ngắn)"
+
+msgid "Left Creation Time"
+msgstr "Thời gian tạo (trái)"
+
+msgid "Right Creation Time"
+msgstr "Thời gian tạo (phải)"
+
+msgid "Middle Creation Time"
+msgstr "Thời gian tạo (giữa)"
+
+msgid "Newer File"
+msgstr "Tệp mới hơn"
+
+msgid "Left File Version"
+msgstr "Phiên bản tệp (trái)"
+
+msgid "Right File Version"
+msgstr "Phiên bản tệp (phải)"
+
+msgid "Middle File Version"
+msgstr "Phiên bản tệp (giữa)"
+
+msgid "Short Result"
+msgstr "Kết quả ngắn"
+
+msgid "Left Attributes"
+msgstr "Thuộc tính (trái)"
+
+msgid "Right Attributes"
+msgstr "Thuộc tính (phải)"
+
+msgid "Middle Attributes"
+msgstr "Thuộc tính (giữa)"
+
+msgid "Left EOL"
+msgstr "EOL (trái)"
+
+msgid "Middle EOL"
+msgstr "EOL (giữa)"
+
+msgid "Right EOL"
+msgstr "EOL (phải)"
+
+msgid "Left Encoding"
+msgstr "Biên mã (trái)"
+
+msgid "Right Encoding"
+msgstr "Biên mã (phải)"
+
+msgid "Middle Encoding"
+msgstr "Biên mã (giữa)"
+
+msgid "Ignored Diff"
+msgstr "Khác biệt đã bỏ qua"
+
+msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr "Nhị phân"
+
+msgid "Unpacker"
+msgstr "Trình bung gói"
+
+msgid "Prediffer"
+msgstr "Trình tiền so sánh"
+
+msgid "Left"
+msgstr "Trái"
+
+msgid "Middle"
+msgstr "Giữa"
+
+msgid "Right"
+msgstr "Phải"
+
+msgid "Diff"
+msgstr "Khác biệt"
+
+msgid "Left Duplicate Count"
+msgstr "Số lượng trùng lặp (trái)"
+
+msgid "Right Duplicate Count"
+msgstr "Số lượng trùng lặp (phải)"
+
+msgid "Middle Duplicate Count"
+msgstr "Số lượng trùng lặp (giữa)"
+
+msgid "Move"
+msgstr "Di chuyển"
+
+msgid "Audio"
+msgstr "Âm thanh"
+
+msgid "Calendar"
+msgstr "Lịch"
+
+msgid "Communication"
+msgstr "Truyền thông"
+
+msgid "Contact"
+msgstr "Liên hệ"
+
+msgid "Devices"
+msgstr "Thiết bị"
+
+msgid "Document"
+msgstr "Tài liệu"
+
+msgid "Home"
+msgstr "Trang chủ"
+
+msgid "Journal"
+msgstr "Nhật ký"
+
+msgid "Link"
+msgstr "Liên kết"
+
+msgid "Media"
+msgstr "Phương tiện"
+
+msgid "Music"
+msgstr "Nhạc"
+
+msgid "Note"
+msgstr "Ghi chú"
+
+msgid "Photo"
+msgstr "Ảnh"
+
+msgid "RecordedTV"
+msgstr "TV đã ghi"
+
+msgid "Search"
+msgstr "Tìm kiếm"
+
+msgid "Security"
+msgstr "Bảo mật"
+
+msgid "Software"
+msgstr "Phần mềm"
+
+msgid "Task"
+msgstr "Công việc"
+
+msgid "Video"
+msgstr "Video"
+
+msgid "Hash"
+msgstr "Mã băm"
+
+msgid "Unable to compare files"
+msgstr "Không thể so sánh các tệp"
+
+msgid "Item aborted"
+msgstr "Mục bị huỷ bỏ"
+
+msgid "File skipped"
+msgstr "Tệp bị bỏ qua"
+
+msgid "Folder skipped"
+msgstr "Thư mục bị bỏ qua"
+
+#, c-format
+msgid "Left only: %1"
+msgstr "Chỉ bên trái: %1"
+
+#, c-format
+msgid "Middle only: %1"
+msgstr "Chỉ ở giữa: %1"
+
+#, c-format
+msgid "Right only: %1"
+msgstr "Chỉ bên phải: %1"
+
+#, c-format
+msgid "Does not exist in %1"
+msgstr "Không tồn tại trong %1"
+
+msgid "Binary files are identical"
+msgstr "Các tệp nhị phân giống hệt nhau"
+
+msgid "Binary files are different"
+msgstr "Các tệp nhị phân này khác nhau"
+
+msgid "Files are different"
+msgstr "Các tệp này khác nhau"
+
+msgid "Folders are different"
+msgstr "Các thư mục này khác nhau"
+
+msgid "Left Only"
+msgstr "Chỉ bên trái"
+
+msgid "Right Only"
+msgstr "Chỉ bên phải"
+
+msgid "Middle Only"
+msgstr "Chỉ ở giữa"
+
+msgid "No item in left"
+msgstr "Không có mục nào ở bên trái"
+
+msgid "No item in right"
+msgstr "Không có mục nào ở bên phải"
+
+msgid "No item in middle"
+msgstr "Không có mục nào ở giữa"
+
+msgid "Error"
+msgstr "Lỗi"
+
+msgid "Text files are identical"
+msgstr "Các tệp văn bản giống hệt nhau"
+
+msgid " (Middle and right are identical)"
+msgstr " (Ở giữa và bên phải giống hệt nhau)"
+
+msgid " (Left and right are identical)"
+msgstr " (Bên trái và bên phải giống hệt nhau)"
+
+msgid " (Left and middle are identical)"
+msgstr " (Bên trái và ở giữa giống hệt nhau)"
+
+msgid "Text files are different"
+msgstr "Các tệp văn bản này khác nhau"
+
+msgid "Image files are identical"
+msgstr "Các tệp hình ảnh giống hệt nhau"
+
+msgid "Image files are different"
+msgstr "Các tệp hình ảnh này khác nhau"
+
+#, c-format
+msgid "Files are different (expr: %1)"
+msgstr "Các tệp này khác nhau (biểu thức: %1)"
+
+#, c-format
+msgid "Group%d"
+msgstr "Nhóm %d"
+
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr ""
+
+msgid "Detect renames"
+msgstr ""
+
+msgid "Detect renames and moves"
+msgstr ""
+
+msgid "Renamed"
+msgstr ""
+
+msgid "Moved"
+msgstr ""
+
+msgid "Renamed/Moved"
+msgstr ""
+
+#, c-format
+msgid "(%1 items)"
+msgstr ""
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr ""
+
+#, c-format
+msgid "Elapsed time: %ld ms"
+msgstr "Thời gian trôi qua: %ld ms"
+
+msgid "1 item selected"
+msgstr "Đã chọn 1 mục"
+
+#, c-format
+msgid "%1 items selected"
+msgstr "Đã chọn %1 mục"
+
+msgid "Filename or folder name."
+msgstr "Tên tệp hoặc tên thư mục."
+
+msgid "Subfolder name when subfolders are included."
+msgstr "Tên thư mục con khi bao gồm các thư mục con."
+
+msgid "Comparison result, long form."
+msgstr "Kết quả so sánh, dạng dài."
+
+msgid "Left side modification date."
+msgstr "Ngày sửa đổi bên trái."
+
+msgid "Right side modification date."
+msgstr "Ngày sửa đổi bên phải."
+
+msgid "Middle side modification date."
+msgstr "Ngày sửa đổi ở giữa."
+
+msgid "File's extension."
+msgstr "Phần mở rộng của tệp."
+
+msgid "Left file size in bytes."
+msgstr "Kích cỡ tệp bên trái tính bằng byte."
+
+msgid "Right file size in bytes."
+msgstr "Kích cỡ tệp bên phải tính bằng byte."
+
+msgid "Middle file size in bytes."
+msgstr "Kích cỡ tệp ở giữa tính bằng byte."
+
+msgid "Left file size abbreviated."
+msgstr "Kích cỡ tệp bên trái viết tắt."
+
+msgid "Right file size abbreviated."
+msgstr "Kích cỡ tệp bên phải viết tắt."
+
+msgid "Middle file size abbreviated."
+msgstr "Kích cỡ tệp ở giữa viết tắt."
+
+msgid "Left side creation time."
+msgstr "Thời gian tạo bên trái."
+
+msgid "Right side creation time."
+msgstr "Thời gian tạo bên phải."
+
+msgid "Middle side creation time."
+msgstr "Thời gian tạo ở giữa."
+
+msgid "Tells which side has newer modification date."
+msgstr "Cho biết bên nào có ngày sửa đổi mới hơn."
+
+msgid "Left side file version, only for some file types."
+msgstr "Phiên bản tệp bên trái, chỉ dành cho một số loại tệp."
+
+msgid "Right side file version, only for some file types."
+msgstr "Phiên bản tệp bên phải, chỉ dành cho một số loại tệp."
+
+msgid "Middle side file version, only for some file types."
+msgstr "Phiên bản tệp ở giữa, chỉ dành cho một số loại tệp."
+
+msgid "Short comparison result."
+msgstr "Kết quả so sánh ngắn."
+
+msgid "Left side attributes."
+msgstr "Thuộc tính bên trái."
+
+msgid "Right side attributes."
+msgstr "Thuộc tính bên phải."
+
+msgid "Middle side attributes."
+msgstr "Thuộc tính ở giữa."
+
+msgid "Left side file EOL type."
+msgstr "Loại EOL tệp bên trái."
+
+msgid "Right side file EOL type."
+msgstr "Loại EOL tệp bên phải."
+
+msgid "Middle side file EOL type."
+msgstr "Loại EOL tệp ở giữa."
+
+msgid "Left side encoding."
+msgstr "Biên mã bên trái."
+
+msgid "Right side encoding."
+msgstr "Biên mã bên phải."
+
+msgid "Middle side encoding."
+msgstr "Biên mã ở giữa."
+
+msgid "Number of ignored differences in file. Ignored and cannot be merged."
+msgstr ""
+"Số lượng khác biệt bị bỏ qua trong tệp. Đã bị bỏ qua và không thể trộn."
+
+msgid "Number of differences in file (excluding ignored)."
+msgstr "Số lượng khác biệt trong tệp (không bao gồm các mục bị bỏ qua)."
+
+msgid "Shows an asterisk (*) if the file is binary."
+msgstr "Hiển thị dấu sao (*) nếu tệp là nhị phân."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr "Tên hoặc ống dẫn của trình cắm bung gói."
+
+msgid "Prediffer plugin name or pipeline."
+msgstr "Tên hoặc ống dẫn của trình cắm tiền so sánh."
+
+#, c-format
+msgid "Compare %1 with %2"
+msgstr "So sánh %1 với %2"
+
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr "So sánh %1 với %2 và %3"
+
+msgid "Comma-separated list"
+msgstr "Danh sách ngăn cách bằng dấu phẩy"
+
+msgid "Tab-separated list"
+msgstr "Danh sách ngăn cách bằng phím Tab"
+
+msgid "Simple HTML"
+msgstr "HTML đơn giản"
+
+msgid "Simple XML"
+msgstr "XML đơn giản"
+
+msgid "Report file already exists. Overwrite?"
+msgstr "Đã tồn tại tệp báo cáo. Có ghi đè không?"
+
+#, c-format
+msgid ""
+"Error creating the report:\n"
+"%1"
+msgstr ""
+"Lỗi khi tạo báo cáo:\n"
+"%1"
+
+msgid "Report created successfully."
+msgstr "Báo cáo đã được tạo thành công."
+
+msgid "Cannot add a synchronization point at this line."
+msgstr "Không thể thêm điểm đồng bộ hoá tại dòng này."
+
+msgid "Same file is opened in both panes."
+msgstr "Cùng một tệp đang được mở ở cả hai khung."
+
+msgid "Selected files are identical."
+msgstr "Các tệp được chọn giống hệt nhau."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"Checking binary identity..."
+msgstr ""
+"Các tệp được chọn giống hệt nhau (với các thiết đặt hiện tại).\r\n"
+"Đang kiểm tra tính đồng nhất nhị phân..."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But binary comparison failed."
+msgstr ""
+"Các tệp được chọn giống hệt nhau (với các thiết đặt hiện tại).\r\n"
+"Nhưng không so sánh nhị phân được."
+
+msgid "Selected files are identical (binary match)."
+msgstr "Các tệp được chọn giống hệt nhau (khớp về mặt nhị phân)."
+
+msgid ""
+"Selected files are identical (with current settings).\r\n"
+"But differ at the binary level."
+msgstr ""
+"Các tệp được chọn giống hệt nhau (với các thiết đặt hiện tại).\r\n"
+"Nhưng khác nhau ở cấp độ nhị phân."
+
+msgid "An error occurred while comparing files."
+msgstr "Đã xảy ra lỗi khi so sánh các tệp."
+
+msgid "Could not create temporary files. Check your temporary path settings."
+msgstr ""
+"Không thể tạo các tệp tạm thời. Hãy kiểm tra các thiết đặt đường dẫn tạm "
+"thời của bạn."
+
+msgid ""
+"Files use different EOL.\n"
+"\n"
+"Treat all EOL as equivalent?\n"
+"\n"
+"Set 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of "
+"Options."
+msgstr ""
+"Các tệp sử dụng kí tự cuối dòng (EOL) khác nhau.\n"
+"\n"
+"Có coi tất cả EOL là tương đương với nhau không?\n"
+"\n"
+"Hãy chọn 'Bỏ qua khác biệt EOL (Windows/Unix/Mac)' trong phần So sánh của "
+"Tuỳ chọn."
+
+msgid "Selected folder is invalid."
+msgstr "Thư mục được chọn không hợp lệ."
+
+msgid "Cannot open a binary file in Editor."
+msgstr "Không thể mở tệp nhị phân trong trình chỉnh sửa."
+
+#, c-format
+msgid ""
+"Create matching folder:\n"
+"%1\n"
+"on the other side and open?"
+msgstr ""
+"Có tạo thư mục tương ứng:\n"
+"%1\n"
+"ở phía bên kia và mở ra không?"
+
+msgid "Copy all differences to other file?"
+msgstr "Có chép tất cả khác biệt sang tệp kia không?"
+
+msgid "Move to next file?"
+msgstr "Có di chuyển đến tệp tiếp theo không?"
+
+msgid "Move to previous file?"
+msgstr "Có di chuyển đến tệp trước đó không?"
+
+msgid "Move to next page?"
+msgstr "Có di chuyển đến trang tiếp theo không?"
+
+msgid "Move to previous page?"
+msgstr "Có di chuyển đến trang trước đó không?"
+
+msgid "Move to first file?"
+msgstr "Có di chuyển đến tệp đầu tiên không?"
+
+msgid "Move to last file?"
+msgstr "Có di chuyển đến tệp cuối cùng không?"
+
+#, c-format
+msgid ""
+"Different codepages: left (cp%d), right (cp%d).\n"
+"Display in codepage (better display) or default Windows codepage (safer "
+"merging)?\n"
+"(Recommended: default Windows codepage)"
+msgstr ""
+"Trang mã khác nhau: bên trái (cp%d), bên phải (cp%d).\n"
+"Có hiển thị trong trang mã (hiển thị tốt hơn) hoặc trang mã Windows mặc định "
+"(trộn an toàn hơn) không?\n"
+"(Khuyên dùng: trang mã Windows mặc định)"
+
+msgid "Information lost due to encoding errors: both files"
+msgstr "Thông tin bị mất do lỗi biên mã: cả hai tệp"
+
+msgid "Information lost due to encoding errors: first file"
+msgstr "Thông tin bị mất do lỗi biên mã: tệp thứ nhất"
+
+msgid "Information lost due to encoding errors: second file"
+msgstr "Thông tin bị mất do lỗi biên mã: tệp thứ hai"
+
+msgid "Information lost due to encoding errors: third file"
+msgstr "Thông tin bị mất do lỗi biên mã: tệp thứ ba"
+
+msgid "No difference"
+msgstr "Không có khác biệt"
+
+msgid "Line difference"
+msgstr "Khác biệt dòng"
+
+#, c-format
+msgid "Replaced %1 string(s)."
+msgstr "Đã thay thế %1 xâu."
+
+#, c-format
+msgid "Cannot find string \"%s\"."
+msgstr "Không thể tìm thấy xâu \"%s\"."
+
+msgid "Entering Merge Mode. Press F9 to turn off."
+msgstr "Đang vào chế độ trộn. Nhấn F9 để tắt."
+
+#, c-format
+msgid ""
+"Automatic merges: %1\n"
+"Unresolved conflicts: %2"
+msgstr ""
+"Trộn tự động: %1\n"
+"Xung đột chưa được giải quyết: %2"
+
+msgid "Codepage change merged."
+msgstr "Đã trộn thay đổi về trang mã."
+
+msgid "Codepage changes are conflicting."
+msgstr "Các thay đổi trang mã đang bị xung đột."
+
+msgid "EOL change merged."
+msgstr "Đã trộn thay đổi EOL."
+
+msgid "EOL changes are conflicting."
+msgstr "Các thay đổi EOL đang bị xung đột."
+
+msgid "Location Pane"
+msgstr "Khung vị trí"
+
+msgid "Diff Pane"
+msgstr "Khung khác biệt"
+
+msgid "Patch file written."
+msgstr "Tệp bản vá đã được ghi."
+
+msgid "First item not found!"
+msgstr "Không tìm thấy mục thứ nhất!"
+
+msgid "Second item not found!"
+msgstr "Không tìm thấy mục thứ hai!"
+
+msgid "Patch file already exists. Overwrite?"
+msgstr "Đã tồn tại tệp bản vá. Có ghi đè không?"
+
+#, c-format
+msgid "[%1 files selected]"
+msgstr "[đã chọn %1 tệp]"
+
+msgid "Normal"
+msgstr "Bình thường"
+
+msgid "Context"
+msgstr "Ngữ cảnh"
+
+msgid "Unified"
+msgstr "Thống nhất"
+
+#, c-format
+msgid "Could not write to file %1."
+msgstr "Không thể ghi vào tệp %1."
+
+#, c-format
+msgid "Output path is not absolute: %1"
+msgstr "Đường dẫn đầu ra không phải là tuyệt đối: %1"
+
+msgid "Specify an output file."
+msgstr "Chỉ định một tệp đầu ra."
+
+msgid "Cannot create patch from binary files."
+msgstr "Không thể tạo bản vá từ các tệp nhị phân."
+
+msgid ""
+"Save all files first.\n"
+"\n"
+"Creating a patch requires no unsaved changes."
+msgstr ""
+"Hãy lưu tất cả các tệp trước.\n"
+"\n"
+"Việc tạo bản vá yêu cầu không có thay đổi nào chưa được lưu."
+
+msgid "Folder does not exist."
+msgstr "Thư mục không tồn tại."
+
+msgid ""
+"Archive support not enabled.\n"
+"7-Zip and/or Merge7z*.dll not found.\n"
+"See manual for archive support."
+msgstr ""
+"Hỗ trợ lưu trữ chưa được bật.\n"
+"Không tìm thấy 7-Zip và/hoặc Merge7z*.dll.\n"
+"Xem tài liệu hướng dẫn để biết về hỗ trợ lưu trữ."
+
+msgid "Select file for export"
+msgstr "Chọn tệp để xuất"
+
+msgid "Select file for import"
+msgstr "Chọn tệp để nhập"
+
+msgid "Options imported from file."
+msgstr "Các tuỳ chọn đã được nhập từ tệp."
+
+msgid "Options exported to file."
+msgstr "Các tuỳ chọn đã được xuất ra tệp."
+
+msgid "Failed to import options from file."
+msgstr "Không thể nhập tuỳ chọn từ tệp."
+
+msgid "Failed to write options to file."
+msgstr "Không thể ghi tuỳ chọn vào tệp."
+
+msgid ""
+"Close multiple compare windows?\n"
+"\n"
+"Continue?"
+msgstr ""
+"Có đóng nhiều cửa sổ so sánh không?\n"
+"\n"
+"Tiếp tục nhé?"
+
+msgid "Mixed"
+msgstr "Hỗn hợp"
+
+msgctxt "EOL Type"
+msgid "Binary"
+msgstr "Nhị phân"
+
+msgid "None"
+msgstr "Không có"
+
+#, c-format
+msgid "Marker Color %d"
+msgstr "Màu dấu mốc %d"
+
+msgid "New Pattern"
+msgstr "Mẫu mới"
+
+msgid "Type"
+msgstr "Loại"
+
+msgid "Editor script"
+msgstr "Kịch bản chỉnh sửa"
+
+msgid ""
+"\n"
+"Difference in Current Line (F4)"
+msgstr ""
+"\n"
+"Khác biệt trong dòng hiện tại (F4)"
+
+msgid ""
+"\n"
+"Options"
+msgstr ""
+"\n"
+"Tuỳ chọn"
+
+msgid ""
+"\n"
+"Refresh (F5)"
+msgstr ""
+"\n"
+"Làm mới (F5)"
+
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)"
+msgstr ""
+"\n"
+"Khác biệt trước đó (Alt+Lên)"
+
+msgid ""
+"\n"
+"Next Difference (Alt+Down)"
+msgstr ""
+"\n"
+"Khác biệt tiếp theo (Alt+Xuống)"
+
+msgid ""
+"\n"
+"Previous Conflict (Alt+Shift+Up)"
+msgstr ""
+"\n"
+"Xung đột trước đó (Alt+Shift+Lên)"
+
+msgid ""
+"\n"
+"Next Conflict (Alt+Shift+Down)"
+msgstr ""
+"\n"
+"Xung đột tiếp theo (Alt+Shift+Xuống)"
+
+msgid ""
+"\n"
+"First Difference (Alt+Home)"
+msgstr ""
+"\n"
+"Khác biệt đầu tiên (Alt+Home)"
+
+msgid ""
+"\n"
+"Current Difference (Alt+Enter)"
+msgstr ""
+"\n"
+"Khác biệt hiện tại (Alt+Enter)"
+
+msgid ""
+"\n"
+"Last Difference (Alt+End)"
+msgstr ""
+"\n"
+"Khác biệt cuối cùng (Alt+End)"
+
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)"
+msgstr ""
+"\n"
+"Chép sang bên phải (Alt+Phải)"
+
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)"
+msgstr ""
+"\n"
+"Chép sang bên trái (Alt+Trái)"
+
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)"
+msgstr ""
+"\n"
+"Chép sang bên phải và tiến tiếp (Ctrl+Alt+Phải)"
+
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)"
+msgstr ""
+"\n"
+"Chép sang bên trái và tiến tiếp (Ctrl+Alt+Trái)"
+
+msgid ""
+"\n"
+"Copy All to Right"
+msgstr ""
+"\n"
+"Chép tất cả sang bên phải"
+
+msgid ""
+"\n"
+"Copy All to Left"
+msgstr ""
+"\n"
+"Chép tất cả sang bên trái"
+
+msgid ""
+"\n"
+"Auto Merge (Ctrl+Alt+M)"
+msgstr ""
+"\n"
+"Tự động trộn (Ctrl+Alt+M)"
+
+msgid ""
+"\n"
+"First File"
+msgstr ""
+"\n"
+"Tệp đầu tiên"
+
+msgid ""
+"\n"
+"Next File (Ctrl+F8)"
+msgstr ""
+"\n"
+"Tệp tiếp theo (Ctrl+F8)"
+
+msgid ""
+"\n"
+"Last File"
+msgstr ""
+"\n"
+"Tệp cuối cùng"
+
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
+msgstr ""
+"\n"
+"Tệp trước đó (Ctrl+F7)"
+
+msgid "Adapted unpacker applied to both files (one needs extension)."
+msgstr ""
+"Trình bung gói thích ứng đã áp dụng cho cả hai tệp (một tệp cần phần mở "
+"rộng)."
+
+msgid "No Prediffer (Normal)"
+msgstr "Không dùng trình tiền so sánh (bình thường)"
+
+msgid "Suggested Plugins"
+msgstr "Trình cắm được đề xuất"
+
+msgid "All Plugins"
+msgstr "Tất cả trình cắm"
+
+#, c-format
+msgid "Private Build: %1"
+msgstr "Bản dựng riêng: %1"
+
+msgid "Your software is up to date."
+msgstr "Phần mềm của bạn đã được cập nhật."
+
+#, c-format
+msgid ""
+"WinMerge update available.\n"
+"%1 available (you have %2). Download now?"
+msgstr ""
+"Có bản cập nhật WinMerge mới.\n"
+"Phiên bản %1 đã sẵn sàng (bạn đang dùng %2). Có tải xuống luôn không?"
+
+msgid " - All rights reserved."
+msgstr " - Bảo lưu mọi quyền."
+
+msgid "Failed to download latest version information"
+msgstr "Không thể tải thông tin phiên bản mới nhất"
+
+msgid "Plugin Settings"
+msgstr "Thiết đặt trình cắm"
+
+msgid "WSH not found - .sct scripts disabled"
+msgstr "Không tìm thấy WSH - các kịch bản .sct đã bị vô hiệu hoá"
+
+#, c-format
+msgid "G&o to Line %1"
+msgstr "Đi tới dòng %1"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr "Đi tới dòng đã di chuyển\tCtrl+Shift+G"
+
+msgctxt "Options dialog|General|Open dialog Auto completion"
+msgid "Disabled"
+msgstr "Đã tắt"
+
+msgid "From file system"
+msgstr "Từ hệ thống tệp"
+
+msgid "From Most Recently Used list"
+msgstr "Từ danh sách dùng gần đây nhất"
+
+msgid "No Highlighting"
+msgstr "Không tô sáng"
+
+msgid "Batch"
+msgstr "Lệnh theo lô (Batch)"
+
+msgid "Portable Object"
+msgstr "Đối tượng di động (PO)"
+
+msgid "Resources"
+msgstr "Tài nguyên"
+
+msgid "Shell"
+msgstr "Hệ vỏ (shell)"
+
+msgid "Close &Left Tabs"
+msgstr "Đóng các thẻ bên trái"
+
+msgid "Close R&ight Tabs"
+msgstr "Đóng các thẻ bên phải"
+
+msgid "Close &Other Tabs"
+msgstr "Đóng các thẻ khác"
+
+msgid "Enable &Auto Max Width"
+msgstr "Bật tự động mở tối đa chiều rộng"
+
+msgid "We&bpage"
+msgstr "Trang web"
+
+msgid "W&rap Text"
+msgstr "Tự &ngắt dòng văn bản"
+
+#, c-format
+msgid "%1 is not installed."
+msgstr "%1 chưa được cài đặt."
+
+#, c-format
+msgid "%1 does not exist. Create it?"
+msgstr "Không tồn tại %1. Có tạo nó không?"
+
+msgid "Failed to create folder."
+msgstr "Không thể tạo thư mục."
+
+msgid ""
+"Parameters:\n"
+"$file: Current file path\n"
+"$linenum: Current cursor line number"
+msgstr ""
+"Tham số:\n"
+"$file: Đường dẫn tệp hiện tại\n"
+"$linenum: Số dòng tại con trỏ hiện tại"
+
+msgid "default"
+msgstr "mặc định"
+
+msgid "minimal"
+msgstr "tối thiểu"
+
+msgid "patience"
+msgstr "kiên nhẫn"
+
+msgid "histogram"
+msgstr "biểu đồ tần suất"
+
+msgid "none"
+msgstr "không"
+
+msgid "GDI"
+msgstr "GDI"
+
+msgid "DirectWrite Default"
+msgstr "DirectWrite Mặc định"
+
+msgid "DirectWrite Aliased"
+msgstr "DirectWrite Răng cưa"
+
+msgid "DirectWrite GDI Classic"
+msgstr "DirectWrite GDI Cổ điển"
+
+msgid "DirectWrite GDI Natural"
+msgstr "DirectWrite GDI Tự nhiên"
+
+msgid "DirectWrite Natural"
+msgstr "DirectWrite Tự nhiên"
+
+msgid "DirectWrite Natural Symmetric"
+msgstr "DirectWrite Tự nhiên Đối xứng"
+
+msgctxt "Options dialog|General|Close windows with Esc"
+msgid "Disabled"
+msgstr "Vô hiệu hoá"
+
+msgid "MDI child window or main window"
+msgstr "Cửa sổ con MDI hoặc cửa sổ chính"
+
+msgid "MDI child window only"
+msgstr "Chỉ cửa sổ con MDI"
+
+msgid "Close main window if only one MDI child window"
+msgstr "Đóng cửa sổ chính nếu chỉ còn một cửa sổ con MDI"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Diff"
+msgstr "Khác biệt"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Highlight"
+msgstr "Tô sáng"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Blink"
+msgstr "Nhấp nháy"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Size"
+msgstr "Kích cỡ khối"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Block Alpha"
+msgstr "Am-pha khối"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "CD Threshold"
+msgstr "Ngưỡng CD"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Ins/Del Detection"
+msgstr "Phát hiện thêm/xoá"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "None"
+msgstr "Không có"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Vertical"
+msgstr "Chiều dọc"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Horizontal"
+msgstr "Chiều ngang"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Overlay"
+msgstr "Lớp phủ"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha"
+msgstr "Am-pha"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "XOR"
+msgstr "XOR"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Blend"
+msgstr "Pha trộn am-pha"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Alpha Animation"
+msgstr "Hoạt ảnh am-pha"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Zoom"
+msgstr "Thu phóng"
+
+msgctxt "ImgMergeFrame|LocationPane"
+msgid "Page:"
+msgstr "Trang:"
+
+#, c-format
+msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
+msgstr "Điểm: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
+
+#, c-format
+msgid "Dist: %g  "
+msgstr "Kh.cách: %g  "
+
+#, c-format
+msgid "Dist: %g, %g  "
+msgstr "Kh.cách: %g, %g  "
+
+#, c-format
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+msgstr "Trang: %d/%d  T.phóng: %d%%  %dx%dpx  %dbpp  "
+
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr "Rc: (%d, %d)  "
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr "Đã lật: %s  "
+
+#, c-format
+msgid "Rotated: %d  "
+msgstr "Đã xoay: %d  "
+
+msgid "All pages"
+msgstr "Tất cả các trang"
+
+msgid "<Edit here>"
+msgstr "<Sửa ở đây>"
+
+msgid "No differences found to select"
+msgstr "Không tìm thấy khác biệt nào để chọn"
+
+msgid "No differences found to add as substitution filter"
+msgstr "Không tìm thấy khác biệt nào để thêm vào bộ lọc thay thế"
+
+msgid "The pair is already in the Substitution Filters list"
+msgstr "Cặp này đã có trong danh sách bộ lọc thay thế"
+
+msgid "Add this change to Substitution Filters?"
+msgstr "Có thêm thay đổi này vào bộ lọc thay thế không?"
+
+msgid "Text only"
+msgstr "Chỉ văn bản"
+
+msgid "Line-by-line position and text"
+msgstr "Vị trí và văn bản theo từng dòng"
+
+msgid "Word-by-word position and text"
+msgstr "Vị trí và văn bản theo từng từ"
+
+msgid "AppData (Roaming) folder"
+msgstr "Thư mục AppData (Roaming)"
+
+msgid "Install folder"
+msgstr "Thư mục cài đặt"
+
+msgid "Documents folder"
+msgstr "Thư mục tài liệu"
+
+msgctxt "Options dialog|General|Single instance mode"
+msgid "Disabled"
+msgstr "Đã tắt"
+
+msgid "Allow only one instance to run"
+msgstr "Chỉ cho phép một hiện thể chạy"
+
+msgid "Allow only one instance; wait for termination"
+msgstr "Chỉ cho phép một hiện thể; chờ cho đến khi kết thúc"
+
+msgctxt "Options dialog|General|Auto-reload modified files"
+msgid "Disabled"
+msgstr "Đã tắt"
+
+msgid "Only on window activated"
+msgstr "Chỉ khi cửa sổ được kích hoạt"
+
+msgid "Immediately"
+msgstr "Ngay lập tức"
+
+msgid "Al&l"
+msgstr "Tất cả"
+
+msgid "&Others"
+msgstr "&Khác"
+
+#, c-format
+msgid "Missing plugin name in pipeline: %1"
+msgstr "Thiếu tên trình cắm trong ống dẫn: %1"
+
+#, c-format
+msgid "Missing quote in plugin pipeline: %1"
+msgstr "Thiếu dấu ngoặc kép trong ống dẫn trình cắm: %1"
+
+#, c-format
+msgid "Plugin name '%1' already exists."
+msgstr "Tên trình cắm '%1' đã tồn tại."
+
+msgid "Specify plugin arguments"
+msgstr "Chỉ định đối số trình cắm"
+
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr "Không thấy trình cắm hoặc không hợp lệ: %1"
+
+#, c-format
+msgid "'%1' is not an unpacker plugin"
+msgstr "'%1' không phải là trình cắm bung gói"
+
+#, c-format
+msgid "'%1' is not a prediffer plugin"
+msgstr "'%1' không phải là trình cắm tiền so sánh"
+
+#, c-format
+msgid "Error prediffing '%1' with '%2'. Prediffing disabled."
+msgstr ""
+"Lỗi khi xử lí tiền so sánh '%1' với '%2'. Đã tắt tính năng tiền so sánh."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "Tham chiếu vòng tròn trong ống dẫn trình cắm: %1"
+
+msgid "URL Handler"
+msgstr "Trình xử lý URL"
+
+msgid "File Unpacker"
+msgstr "Trình bung gói tệp"
+
+msgid "File or Folder Unpacker"
+msgstr "Trình bung gói tệp hoặc thư mục"
+
+msgid "Alias for Unpacker"
+msgstr "Bí danh cho trình bung gói"
+
+msgid "Alias for Prediffer"
+msgstr "Bí danh cho trình tiền so sánh"
+
+msgid "Alias for Editor script"
+msgstr "Bí danh cho kịch bản chỉnh sửa"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "Bí danh cho ống dẫn trình cắm '%1'"
+
+msgid "New plugin description"
+msgstr "Mô tả trình cắm mới"
+
+msgid "All"
+msgstr "Tất cả"
+
+msgid "1st"
+msgstr "Thứ nhất"
+
+msgid "2nd"
+msgstr "Thứ 2"
+
+msgid "3rd"
+msgstr "Thứ 3"
+
+msgid "1st and 2nd"
+msgstr "Thứ nhất và thứ 2"
+
+msgid "1st and 3rd"
+msgstr "Thứ nhất và thứ 3"
+
+msgid "2nd and 3rd"
+msgstr "Thứ 2 và thứ 3"
+
+msgid "Filter applied"
+msgstr "Đã áp dụng bộ lọc"
+
+#, c-format
+msgid "Compare %1"
+msgstr "So sánh %1"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Bảng tạm lúc %s"
+
+msgid ""
+"Clipboard history disabled.\r\n"
+"Enable: Windows logo key + V, then Turn on."
+msgstr ""
+"Lịch sử bảng tạm đã bị tắt.\r\n"
+"Bật: Phím Windows + V, sau đó chọn Bật (Turn on)."
+
+msgid "This system does not support clipboard history."
+msgstr "Hệ thống này không hỗ trợ lịch sử bảng tạm."
+
+msgid "32-bit WinMerge does not support Clipboard Compare"
+msgstr "WinMerge phiên bản 32-bit không hỗ trợ So sánh bảng tạm"
+
+msgid "WebView2 runtime not installed. Download it?"
+msgstr "Chưa cài đặt thời gian chạy (runtime) WebView2. Có tải xuống không?"
+
+msgid "New Text Compare"
+msgstr "So sánh văn bản mới"
+
+msgid "New Table Compare"
+msgstr "So sánh bảng mới"
+
+msgid "New Binary Compare"
+msgstr "So sánh nhị phân mới"
+
+msgid "New Image Compare"
+msgstr "So sánh hình ảnh mới"
+
+msgid "New Webpage Compare"
+msgstr "So sánh trang web mới"
+
+msgid "Clipboard Compare"
+msgstr "So sánh bảng tạm"
+
+msgid "&Print..."
+msgstr "In..."
+
+msgid "Pre&v Page"
+msgstr "Trang trước"
+
+msgid "&Two Page"
+msgstr "Hai trang"
+
+msgid "&One Page"
+msgstr "Một trang"
+
+msgid "Zoom &In"
+msgstr "Phóng to"
+
+msgid "Zoom &Out"
+msgstr "Thu nhỏ"
+
+msgid "Comparing..."
+msgstr "Đang so sánh..."
+
+msgid "Zoom:"
+msgstr "Thu phóng:"
+
+msgid "Diff hunk"
+msgstr "Khối khác biệt"
+
+msgid "Inline diff"
+msgstr "Khác biệt trên dòng"
+
+msgid "Line"
+msgstr "Dòng"
+
+msgid "Character"
+msgstr "Kí tự"
+
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)\n"
+"(Right Button+Wheel Up)\n"
+"(Alt+Wheel Up)"
+msgstr ""
+"\n"
+"Khác biệt trước đó (Alt+Lên)\n"
+"(Chuột phải+Cuộn lên)\n"
+"(Alt+Cuộn lên)"
+
+msgid ""
+"\n"
+"Next Difference (Alt+Down)\n"
+"(Right Button+Wheel Down)\n"
+"(Alt+Wheel Down)"
+msgstr ""
+"\n"
+"Khác biệt tiếp theo (Alt+Xuống)\n"
+"(Chuột phải+Cuộn xuống)\n"
+"(Alt+Cuộn xuống)"
+
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)\n"
+"(Right Button+Wheel Right)\n"
+"(Alt+Wheel Right)\n"
+"(Alt+Shift+Wheel Down)"
+msgstr ""
+"\n"
+"Chép sang phải (Alt+Phải)\n"
+"(Chuột phải+Cuộn phải)\n"
+"(Alt+Cuộn phải)\n"
+"(Alt+Shift+Cuộn xuống)"
+
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)\n"
+"(Right Button+Wheel Left)\n"
+"(Alt+Wheel Left)\n"
+"(Alt+Shift+Wheel Up)"
+msgstr ""
+"\n"
+"Chép sang trái (Alt+Trái)\n"
+"(Chuột phải+Cuộn trái)\n"
+"(Alt+Cuộn trái)\n"
+"(Alt+Shift+Cuộn lên)"
+
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)\n"
+"(Ctrl+Alt+Wheel Right)\n"
+"(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+"\n"
+"Chép sang phải và tiến tiếp (Ctrl+Alt+Phải)\n"
+"(Ctrl+Alt+Cuộn phải)\n"
+"(Ctrl+Alt+Shift+Cuộn xuống)"
+
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)\n"
+"(Ctrl+Alt+Wheel Left)\n"
+"(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+"\n"
+"Chép sang trái và tiến tiếp (Ctrl+Alt+Trái)\n"
+"(Ctrl+Alt+Cuộn trái)\n"
+"(Ctrl+Alt+Shift+Cuộn lên)"
+
+#, c-format
+msgid "Comparing %1 with %2"
+msgstr "Đang so sánh %1 với %2"
+
+#, c-format
+msgid "Comparing %1 with %2 and %3"
+msgstr "Đang so sánh %1 với %2 và %3"
+
+msgid "Comparison completed"
+msgstr "So sánh hoàn tất"
+
+#, c-format
+msgid "Failed to compare %1 with %2: "
+msgstr "Không thể so sánh %1 với %2: "
+
+#, c-format
+msgid "Failed to compare %1 with %2 and %3: "
+msgstr "Không thể so sánh %1 với %2 và %3: "
+
+msgid "File saved"
+msgstr "Tệp đã được lưu"
+
+msgid "Copying files..."
+msgstr "Đang sao chép các tệp..."
+
+msgid "Moving files..."
+msgstr "Đang di chuyển các tệp..."
+
+msgid "Deleting files..."
+msgstr "Đang xoá các tệp..."
+
+msgid "Recycle Bin"
+msgstr "Thùng rác"
+
+msgid "Permanently deleted"
+msgstr "Đã xoá vĩnh viễn"
+
+msgid "File operation completed successfully"
+msgstr "Thao tác tệp đã hoàn thành thành công"
+
+msgid "File operation canceled"
+msgstr "Thao tác tệp đã bị huỷ"
+
+msgid "No error"
+msgstr "Không có lỗi"
+
+msgid "Filter expression is empty"
+msgstr "Biểu thức bộ lọc trống"
+
+msgid "Unknown character in filter expression"
+msgstr "Kí tự không xác định trong biểu thức bộ lọc"
+
+msgid "Unterminated string literal"
+msgstr "Chuỗi văn bản chưa được kết thúc"
+
+msgid "Syntax error in filter expression"
+msgstr "Lỗi cú pháp trong biểu thức bộ lọc"
+
+msgid "Failed to parse filter expression"
+msgstr "Không thể phân tích cú pháp biểu thức bộ lọc"
+
+msgid "Invalid literal value"
+msgstr "Giá trị hằng nguyên văn không hợp lệ"
+
+msgid "Invalid regular expression"
+msgstr "Biểu thức chính quy không hợp lệ"
+
+msgid "Undefined identifier"
+msgstr "Định danh chưa được định nghĩa"
+
+msgid "Invalid number of arguments"
+msgstr "Số lượng đối số không hợp lệ"
+
+msgid "Filter name not found"
+msgstr "Không tìm thấy tên bộ lọc"
+
+msgid "Division by zero in filter expression"
+msgstr "Lỗi chia cho số không trong biểu thức bộ lọc"
+
+msgid "Unknown error"
+msgstr "Lỗi không xác định"
+
+msgid "Invalid property name"
+msgstr "Tên thuộc tính không hợp lệ"
+
+msgid "Equals"
+msgstr "Bằng"
+
+msgid "Does not equal"
+msgstr "Không bằng"
+
+msgid "Less than"
+msgstr "Nhỏ hơn"
+
+msgid "Less than or equal to"
+msgstr "Nhỏ hơn hoặc bằng"
+
+msgid "Greater than or equal to"
+msgstr "Lớn hơn hoặc bằng"
+
+msgid "Greater than"
+msgstr "Lớn hơn"
+
+msgid "Between"
+msgstr "Ở giữa"
+
+msgid "Not Between"
+msgstr "Không ở giữa"
+
+msgid "Contains"
+msgstr "Chứa"
+
+msgid "Not Contains"
+msgstr "Không chứa"
+
+msgid "Contains (regex)"
+msgstr "Chứa (biểu thức chính quy)"
+
+msgid "Not Contains (regex)"
+msgstr "Không chứa (biểu thức chính quy)"
+
+msgid "Light"
+msgstr "Sáng"
+
+msgid "Dark"
+msgstr "Tối"
+
+msgid "Follow system"
+msgstr "Theo hệ thống"
+
+#, c-format
+msgid "e.g. %1"
+msgstr ""
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
+msgid "Prettification"
+msgstr "Làm đẹp mã"
+
+msgid "Content Extraction"
+msgstr "Trích xuất nội dung"
+
+msgid "Preview"
+msgstr "Xem trước"
+
+msgid "Data Query"
+msgstr "Truy vấn dữ liệu"
+
+msgid "Validation"
+msgstr "Hợp lệ hoá"
+
+msgid "Decompilation"
+msgstr "Biên dịch ngược"
+
+msgid "URL Handling"
+msgstr "Xử lý URL"
+
+msgid "Decoding / Encoding"
+msgstr "Giải mã / Biên mã"
+
+msgid "Make Uppercase"
+msgstr "Chuyển thành chữ hoa"
+
+msgid "Make Lowercase"
+msgstr "Chuyển thành chữ thường"
+
+msgid "Remove Duplicate Lines"
+msgstr "Xoá các dòng trùng lặp"
+
+msgid "Count Duplicate Lines"
+msgstr "Đếm các dòng trùng lặp"
+
+msgid "Sort Lines Ascending"
+msgstr "Sắp xếp các dòng tăng dần"
+
+msgid "Sort Lines Descending"
+msgstr "Sắp xếp các dòng giảm dần"
+
+msgid "Reverse Columns"
+msgstr "Đảo ngược cột"
+
+msgid "Reverse Lines"
+msgstr "Đảo ngược dòng"
+
+msgid "Replace..."
+msgstr "Thay thế..."
+
+msgid "Apply Filter Command..."
+msgstr "Áp dụng lệnh bộ lọc..."
+
+msgid "Tokenize..."
+msgstr "Tách từ tố..."
+
+msgid "Trim Spaces"
+msgstr "Xén bớt khoảng trắng"
+
+msgid "Select Columns..."
+msgstr "Chọn cột..."
+
+msgid "Select Lines..."
+msgstr "Chọn dòng..."
+
+msgid "Insert Date"
+msgstr "Chèn ngày"
+
+msgid "Insert Time"
+msgstr "Chèn giờ"
+
+msgid "Apply Patch..."
+msgstr "Áp dụng bản vá..."
+
+msgid "Ignore Columns"
+msgstr "Bỏ qua cột"
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr "Bỏ qua chú thích (các ngôn ngữ họ C)"
+
+msgid "Ignore CSV Fields"
+msgstr "Bỏ qua các trường CSV"
+
+msgid "Ignore TSV Fields"
+msgstr "Bỏ qua các trường TSV"
+
+msgid "Ignore Leading Line Numbers"
+msgstr "Bỏ qua số dòng ở đầu"
+
+msgid "Apply Prediff Substitution Filters"
+msgstr "Áp dụng bộ lọc thay thế tiền so sánh"
+
+msgid "Prettify HTML"
+msgstr "Làm đẹp mã HTML"
+
+msgid "Prettify JSON"
+msgstr "Làm đẹp mã JSON"
+
+msgid "Prettify XML"
+msgstr "Làm đẹp mã XML"
+
+msgid "Prettify YAML"
+msgstr "Làm đẹp mã YAML"
+
+msgid "Preview Graphviz"
+msgstr "Xem trước Graphviz"
+
+msgid "Preview Markdown"
+msgstr "Xem trước Markdown"
+
+msgid "Preview PlantUML"
+msgstr "Xem trước PlantUML"
+
+msgid "Query CSV Data..."
+msgstr "Truy vấn dữ liệu CSV..."
+
+msgid "Query TSV Data..."
+msgstr "Truy vấn dữ liệu TSV..."
+
+msgid "Query JSON Data..."
+msgstr "Truy vấn dữ liệu JSON..."
+
+msgid "Query YAML Data..."
+msgstr "Truy vấn dữ liệu YAML..."
+
+msgid "Validate HTML"
+msgstr "Hợp lệ hoá HTML"
+
+msgid "Disassemble JVM Bytecode"
+msgstr "Tách rời mã byte JVM"
+
+msgid "Disassemble IL Code"
+msgstr "Tách rời mã IL"
+
+msgid "Disassemble Native Code"
+msgstr "Tách rời mã máy"
+
+msgid "Convert Text with AI..."
+msgstr "Chuyển đổi văn bản bằng AI..."
+
+msgid "Unescape Java properties files"
+msgstr "Bỏ kí tự thoát trong các tệp thuộc tính Java"
+
+msgid "Make characters uppercase"
+msgstr "Chuyển các kí tự thành chữ hoa"
+
+msgid "Make characters lowercase"
+msgstr "Chuyển các kí tự thành chữ thường"
+
+msgid "Remove duplicate lines"
+msgstr "Xoá các dòng trùng lặp"
+
+msgid "Count duplicate lines"
+msgstr "Đếm các dòng trùng lặp"
+
+msgid "Sort lines ascending"
+msgstr "Sắp xếp các dòng tăng dần"
+
+msgid "Sort lines descending"
+msgstr "Sắp xếp các dòng giảm dần"
+
+msgid "Reverse columns"
+msgstr "Đảo ngược cột"
+
+msgid "Reverse lines"
+msgstr "Đảo ngược thứ tự dòng"
+
+msgid ""
+"Replace text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+" or: Replace -s\r\n"
+" FIND - text to find\r\n"
+" REPLACE - text to replace\r\n"
+" -i - ignore case (only for -e)\r\n"
+" -e - regex\r\n"
+" -s - use Substitution Filters"
+msgstr ""
+"Thay thế văn bản.\r\n"
+"Cách dùng: Replace [-i] [-e] TÌM THAY_THẾ\r\n"
+" hoặc: Replace -s\r\n"
+" TÌM - văn bản cần tìm\r\n"
+" THAY_THẾ - văn bản thay thế\r\n"
+" -i - bỏ qua hoa thường (chỉ cho -e)\r\n"
+" -e - biểu thức chính quy\r\n"
+" -s - dùng Bộ lọc Thay thế"
+
+#, c-format
+msgid ""
+"Apply filter. \r\n"
+"Usage: ExecFilterCommand COMMAND\r\n"
+" COMMAND - command to execute. %1 = filename."
+msgstr ""
+"Áp dụng bộ lọc. \r\n"
+"Cách dùng: ExecFilterCommand LỆNH\r\n"
+" LỆNH - lệnh cần thực thi. %1 = tên tệp."
+
+msgid ""
+"Tokenize. \r\n"
+"Usage: Tokenize PATTERNS\r\n"
+" PATTERNS - regex (e.g. [^\\w]+)"
+msgstr ""
+"Từ tố hoá. \n"
+"Cách dùng: Tokenize MẪU\n"
+" MẪU - biểu thức chính quy (ví dụ: [^\\w]+)"
+
+msgid "Trim spaces"
+msgstr "Xén bớt khoảng trắng"
+
+msgid ""
+"Select columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+" or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+" RANGES - column ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -g - enable global flag\r\n"
+" -e - use PATTERNS"
+msgstr ""
+"Chọn cột.\r\n"
+"Cách dùng: SelectColumns KHOẢNG\r\n"
+" hoặc: SelectColumns [-v] [-i] [-g] -e MẪU\r\n"
+" KHOẢNG - các khoảng cột (-3,5-10,30-)\r\n"
+" MẪU - biểu thức chính quy\r\n"
+" -v - chọn những phần không khớp\r\n"
+" -i - bỏ qua hoa thường\r\n"
+" -g - bật cờ toàn cục\r\n"
+" -e - dùng MẪU"
+
+msgid ""
+"Select lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+" or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+" RANGES - line ranges (-3,5-10,30-)\r\n"
+" PATTERNS - regex\r\n"
+" -v - select non-matching\r\n"
+" -i - ignore case\r\n"
+" -e - use PATTERNS"
+msgstr ""
+"Chọn dòng.\r\n"
+"Cách dùng: SelectLines KHOẢNG\r\n"
+" hoặc: SelectLines [-v] [-i] -e MẪU\r\n"
+" KHOẢNG - các khoảng dòng (-3,5-10,30-)\r\n"
+" MẪU - biểu thức chính quy\r\n"
+" -v - chọn những phần không khớp\r\n"
+" -i - bỏ qua hoa thường\r\n"
+" -e - dùng MẪU"
+
+msgid ""
+"HTML Prettier (tidy-html5).\r\n"
+"Arguments: tidy command line options."
+msgstr ""
+"Làm đẹp mã HTML (tidy-html5).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của tidy."
+
+msgid ""
+"JSON Prettier (jq).\r\n"
+"Arguments: jq filter/command line options."
+msgstr ""
+"Làm đẹp mã JSON (jq).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh/bộ lọc của jq."
+
+msgid ""
+"XML Prettier (tidy-html5).\r\n"
+"Arguments: tidy command line options."
+msgstr ""
+"Làm đẹp mã XML (tidy-html5).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của tidy."
+
+msgid ""
+"YAML Prettier (yq).\r\n"
+"Arguments: yq filter/command line options."
+msgstr ""
+"Làm đẹp mã YAML (yq).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh/bộ lọc của yq."
+
+msgid ""
+"Graphviz Previewer.\r\n"
+"Arguments: dot command line options."
+msgstr ""
+"Trình xem trước Graphviz.\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của dot."
+
+msgid ""
+"Markdown Previewer.\r\n"
+"Arguments: md2html command line options."
+msgstr ""
+"Trình xem trước Markdown.\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của md2html."
+
+msgid ""
+"PlantUML Previewer.\r\n"
+"Arguments: plantuml.jar command line options."
+msgstr ""
+"Trình xem trước PlantUML.\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của plantuml.jar."
+
+msgid ""
+"CSV Querier (q).\r\n"
+"Arguments: SQL statement/q comannd line options."
+msgstr ""
+"Trình truy vấn CSV (q).\r\n"
+"Đối số: câu lệnh SQL/tuỳ chọn dòng lệnh của q."
+
+msgid ""
+"TSV Querier (q).\r\n"
+"Arguments: SQL statement/q comannd line options."
+msgstr ""
+"Trình truy vấn TSV (q).\r\n"
+"Đối số: câu lệnh SQL/tuỳ chọn dòng lệnh của q."
+
+msgid ""
+"JSON Querier (jq).\r\n"
+"Arguments: jq filter/command line options."
+msgstr ""
+"Trình truy vấn JSON (jq).\r\n"
+"Đối số: bộ lọc jq/tuỳ chọn dòng lệnh."
+
+msgid ""
+"YAML Querier (yq).\r\n"
+"Arguments: yq filter/command line options."
+msgstr ""
+"Trình truy vấn YAML (yq).\r\n"
+"Đối số: bộ lọc yq/tuỳ chọn dòng lệnh."
+
+msgid ""
+"HTML Validator (tidy-html5).\r\n"
+"Arguments: tidy command line options."
+msgstr ""
+"Trình hợp lệ hoá HTML (tidy-html5).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của tidy."
+
+msgid ""
+"JVM bytecode disassembler (javap).\r\n"
+"Arguments: javap command line options."
+msgstr ""
+"Trình tách rời mã byte JVM (javap).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của javap."
+
+msgid ""
+"IL disassembler (ildasm).\r\n"
+"Arguments: ildasm command line options."
+msgstr ""
+"Trình tách rời mã IL (ildasm).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của ildasm."
+
+msgid ""
+"Native code disassembler (dumpbin).\r\n"
+"Arguments: dumpbin command line options."
+msgstr ""
+"Trình tách rời mã máy (dumpbin).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của dumpbin."
+
+msgid ""
+"Content extractor (Apache Tika).\r\n"
+"Arguments: tika-app.jar command line options."
+msgstr ""
+"Trình trích xuất nội dung (Apache Tika).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của tika-app.jar."
+
+msgid "Apply patch (GNU patch)"
+msgstr "Áp dụng bản vá (GNU patch)"
+
+msgid "Display MS Excel text content"
+msgstr "Hiển thị nội dung văn bản MS Excel"
+
+msgid "Display MS PowerPoint text content"
+msgstr "Hiển thị nội dung văn bản MS PowerPoint"
+
+msgid "Display MS Visio text content"
+msgstr "Hiển thị nội dung văn bản MS Visio"
+
+msgid "Display MS Word text content"
+msgstr "Hiển thị nội dung văn bản MS Word"
+
+msgid "Ignore columns - list from plugin name/argument"
+msgstr "Bỏ qua các cột - danh sách từ tên trình cắm/đối số"
+
+msgid "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
+msgstr "Bỏ qua chú thích C, C++, PHP, và JavaScript (//... và /* ... */)."
+
+msgid "Ignore fields - list from plugin name/argument"
+msgstr "Bỏ qua các trường - danh sách từ tên trình cắm/đối số"
+
+msgid "Ignore leading line numbers (e.g., NC, BASIC)."
+msgstr "Bỏ qua số dòng ở đầu (ví dụ: NC, BASIC)."
+
+msgid "Prediff Line Filter"
+msgstr "Bộ lọc dòng tiền so sánh"
+
+msgid "Date and time insertion"
+msgstr "Chèn ngày và giờ"
+
+msgid ""
+"HTTP URL Scheme Handler (curl).\r\n"
+"Arguments: curl command line options."
+msgstr ""
+"Trình xử lý lược đồ HTTP URL (curl).\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của curl."
+
+msgid ""
+"Windows Registry URL Scheme Handler.\r\n"
+"Arguments: reg.exe command line options."
+msgstr ""
+"Trình xử lý lược đồ Windows Registry URL.\r\n"
+"Đối số: các tuỳ chọn dòng lệnh của reg.exe."
+
+msgid "Basic text functions"
+msgstr "Các hàm văn bản cơ bản"
+
+msgid "AI-assisted text conversion"
+msgstr "Chuyển đổi văn bản hỗ trợ bởi AI"
+
+msgid ""
+"Text converter (OpenAI API).\r\n"
+"Usage: AIConvertText PROMPT"
+msgstr ""
+"Trình chuyển đổi văn bản (OpenAI API).\r\n"
+"Cách dùng: AIConvertText LỜI_NHẮC"
+
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
+"Giải thoát và hiển thị các tệp thuộc tính Java đã được thoát (escaped)."
+
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr "Tuỳ chọn trình cắm CompareMSExcelFiles.sct của WinMerge"
+
+msgid "Extract workbook data to multiple files"
+msgstr "Trích xuất dữ liệu bảng tính thành nhiều tệp"
+
+msgid "Update external references (links)"
+msgstr "Cập nhật các tham chiếu bên ngoài (liên kết)"
+
+msgid "Compare document properties"
+msgstr "So sánh thuộc tính tài liệu"
+
+msgid "Compare names"
+msgstr "So sánh tên"
+
+msgid "Compare cell values"
+msgstr "So sánh giá trị ô"
+
+msgid "Compare worksheets as image (very slow)"
+msgstr "So sánh bảng tính dưới dạng hình ảnh (rất chậm)"
+
+msgid " - Image split size: "
+msgstr " - Kích thước chia nhỏ hình ảnh: "
+
+msgid "Compare worksheets as HTML"
+msgstr "So sánh bảng tính dưới dạng HTML"
+
+msgid "Compare formulas"
+msgstr "So sánh công thức"
+
+msgid "Compare texts in shapes"
+msgstr "So sánh văn bản trong các hình khối (shapes)"
+
+msgid "Compare headers and footers"
+msgstr "So sánh đầu trang và chân trang"
+
+msgid ""
+"Cannot get Macros.\r\n"
+"Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
+msgstr ""
+"Không thể lấy các Vĩ lệnh (Macros).\r\n"
+"Hãy bật 'Tin cậy quyền truy cập vào Dự án Visual Basic' trong Thiết đặt Bảo "
+"mật Vĩ lệnh của MS Office."
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr "Thay thế dấu ngắt dòng trong công thức bằng dấu cách"
+
+msgid "Compare VBA macros"
+msgstr "So sánh vĩ lệnh VBA"
+
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr "Tuỳ chọn trình cắm CompareMSWordFiles.sct của WinMerge"
+
+msgid "Extract document data to multiple files"
+msgstr "Trích xuất dữ liệu tài liệu thành nhiều tệp"
+
+msgid "Compare bookmarks"
+msgstr "So sánh dấu trang"
+
+msgid "Compare text contents of documents"
+msgstr "So sánh nội dung văn bản của tài liệu"
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr "So sánh tài liệu dưới dạng tệp HTML (rất chậm)"
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr "Tuỳ chọn trình cắm CompareMSPowerPointFiles.sct của WinMerge"
+
+msgid "Extract slide data to multiple files"
+msgstr "Trích xuất dữ liệu bản trình chiếu thành nhiều tệp"
+
+msgid "Compare slides as image (very slow)"
+msgstr "So sánh bản trình chiếu dưới dạng hình ảnh (rất chậm)"
+
+msgid "Compare texts in notes page"
+msgstr "So sánh văn bản trong trang ghi chú"
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr "Tuỳ chọn trình cắm CompareMSVisioFiles.sct của WinMerge"
+
+msgid "Extract page data to multiple files"
+msgstr "Trích xuất dữ liệu trang thành nhiều tệp"
+
+msgid "Compare pages as image (very slow)"
+msgstr "So sánh trang dưới dạng hình ảnh (rất chậm)"
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr "Tuỳ chọn trình cắm PrediffLineFilter.sct của WinMerge"
+
+msgid "Delete"
+msgstr "Xoá"
+
+msgid "Enabled"
+msgstr "Đã bật"
+
+msgid "Ignore Case"
+msgstr "Bỏ qua hoa thường"
+
+msgid "Use RegExp"
+msgstr "Dùng biểu thức chính quy"
+
+msgid "Find what"
+msgstr "Tìm gì"
+
+msgid "Replace with"
+msgstr "Thay bằng"
+
+msgid "Settings"
+msgstr "Thiết đặt"
+
+msgid ""
+"Column Ranges to Ignore:\n"
+"e.g.) 3,10-20,32-33\n"
+msgstr ""
+"Các khoảng cột cần bỏ qua:\n"
+"ví dụ: 3,10-20,32-33\n"
+
+#, c-format
+msgid "Enter filename for patch '%1'"
+msgstr "Nhập tên tệp cho bản vá '%1'"
+
+#, c-format
+msgid "File '%1' does not exist"
+msgstr "Tệp '%1' không tồn tại"
+
+msgid "Enter command line arguments for patch"
+msgstr "Nhập các đối số dòng lệnh cho bản vá"
+
+#, c-format
+msgid "Enter folder name for patch '%1'"
+msgstr "Nhập tên thư mục cho bản vá '%1'"
+
+#, c-format
+msgid "Folder '%1' does not exist"
+msgstr "Thư mục '%1' không tồn tại"
+
+msgid "Do not use '-p0' for patch files with absolute paths"
+msgstr "Đừng dùng '-p0' cho các tệp vá có đường dẫn tuyệt đối"
+
+msgid "AI.sct WinMerge Plugin Options"
+msgstr "Tuỳ chọn trình cắm AI.sct của WinMerge"
+
+msgid "Enter prompt"
+msgstr "Nhập lời nhắc"
+
+#, c-format
+msgid ""
+"Enter OpenAI API key.\r\n"
+"- Requires OpenAI registration (fees may apply).\r\n"
+"- Key stored in env var %1."
+msgstr ""
+"Nhập khoá OpenAI API.\r\n"
+"- Yêu cầu đăng ký OpenAI (có thể mất phí).\r\n"
+"- Khoá được lưu trong biến môi trường %1."
+
+msgid "Environment variable name for OpenAI API key"
+msgstr "Tên biến môi trường cho khoá API OpenAI"
+
+msgid "OpenAI API key"
+msgstr "Khoá API OpenAI"
+
+msgid "Temperature"
+msgstr "Nhiệt độ"
+
+msgid "Maximum length"
+msgstr "Độ dài tối đa"
+
+msgid "Model"
+msgstr "Mô hình"
+
+msgid "OpenAI API key changed. Restart to apply."
+msgstr "Khoá API OpenAI đã thay đổi. Hãy khởi động lại để áp dụng."

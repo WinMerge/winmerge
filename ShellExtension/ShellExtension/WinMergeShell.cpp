@@ -43,6 +43,7 @@
 #include "../Common/WinMergeContextMenu.h"
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <algorithm>
 
 OBJECT_ENTRY_AUTO(CLSID_WinMergeShell, CWinMergeShell)
 
@@ -182,8 +183,11 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 
 		hr = S_OK;
 
+		/// Max. filecount to select
+		constexpr unsigned MaxFileCount = 3u;
+
 		// Get all file names.
-		for (UINT x = 0 ; x < uNumFilesDropped; x++)
+		for (UINT x = 0 ; x < (std::min)(MaxFileCount + 1, uNumFilesDropped); x++)
 		{
 			// Get the number of bytes required by the file's full pathname
 			UINT wPathnameSize = DragQueryFile(hDropInfo, x, NULL, 0);

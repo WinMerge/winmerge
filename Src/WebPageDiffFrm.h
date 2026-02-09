@@ -73,6 +73,7 @@ public:
 	String GetDescription(int pane) const override { return m_strDesc[pane]; }
 	static bool IsLoadable();
 	static bool MatchURLPattern(const String& url);
+	IHeaderBar* GetHeaderInterface() override { return &m_wndFilePathBar; }
 
 // Attributes
 protected:

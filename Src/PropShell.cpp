@@ -56,19 +56,32 @@ static bool IsShellExtensionRegistered(bool peruser)
 
 static bool IsWinMergeContextMenuRegistered()
 {
-	HKEY hKey;
 #ifdef _WIN64
-	DWORD ulOptions = KEY_QUERY_VALUE;
+	DWORD ulOptions = KEY_READ;
 #else
 	auto Is64BitWindows = []() { BOOL f64 = FALSE; return IsWow64Process(GetCurrentProcess(), &f64) && f64; };
-	DWORD ulOptions = KEY_QUERY_VALUE | (Is64BitWindows() ? KEY_WOW64_64KEY : 0);
+	DWORD ulOptions = KEY_READ | (Is64BitWindows() ? KEY_WOW64_64KEY : 0);
 #endif
-	if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_CURRENT_USER, _T("Software\\Microsoft\\Windows\\CurrentVersion\\AppHost\\IndexedDB\\WinMerge_83g614hpn1ttr"), 0, ulOptions, &hKey))
+	HKEY hBaseKey;
+	bool found = false;
+	if (RegOpenKeyEx(HKEY_CURRENT_USER, _T("Software\\Microsoft\\Windows\\CurrentVersion\\AppHost\\IndexedDB"), 0, ulOptions, &hBaseKey) == ERROR_SUCCESS)
 	{
-		RegCloseKey(hKey);
-		return true;
+		DWORD index = 0;
+		while (true)
+		{
+			TCHAR name[256];
+			DWORD nameLen = _countof(name);
+			if (RegEnumKeyEx(hBaseKey, index++, name, &nameLen, nullptr, nullptr, nullptr, nullptr) != ERROR_SUCCESS)
+				break;
+			if (tc::tcsncmp(name, _T("WinMerge_"), 9) == 0)
+			{
+				found = true;
+				break;
+			}
+		}
+		RegCloseKey(hBaseKey);
 	}
-	return false;
+	return found;
 }
 
 static bool RegisterShellExtension(bool unregister, bool peruser)

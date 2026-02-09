@@ -12,6 +12,7 @@
 #include <vector>
 #include <sstream>
 #include <memory>
+#include <algorithm>
 #include <Shlwapi.h>
 #include <ExDisp.h>
 #include <ShlObj.h>
@@ -164,8 +165,10 @@ protected:
         }
         else
         {
+            /// Max. filecount to select
+            constexpr DWORD MaxFileCount = 3u;
             selection->GetCount(&dwNumItems);
-            for (DWORD i = 0; i < dwNumItems; ++i)
+            for (DWORD i = 0; i < (std::min)(MaxFileCount + 1, dwNumItems); ++i)
             {
                 ComPtr<IShellItem> psi;
                 wil::unique_cotaskmem_string pszFilePath;

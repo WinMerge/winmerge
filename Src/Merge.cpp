@@ -71,6 +71,7 @@
 #include "SysColorHook.h"
 #include "Logger.h"
 #include "ColorSchemes.h"
+#include "CrashLogger.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
@@ -379,6 +380,9 @@ BOOL CMergeApp::InitInstance()
 	charsets_init();
 	UpdateCodepageModule();
 
+	// Install crash logger
+	CrashLogger::Install();
+
 	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
 	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
 
@@ -406,29 +410,6 @@ BOOL CMergeApp::InitInstance()
 
 	if (m_pSubstitutionFiltersList != nullptr)
 		m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
-
-	// Check if filter folder is set, and create it if not
-	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-	if (pathMyFolders.empty())
-	{
-		// No filter path, set it to default and make sure it exists.
-		pathMyFolders = GetOptionsMgr()->GetDefault<String>(OPT_FILTER_USERPATH);
-		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
-		theApp.GetGlobalFileFilter()->SetUserFilterPath(pathMyFolders);
-	}
-	if (!paths::CreateIfNeeded(pathMyFolders))
-	{
-		// Failed to create a folder, check it didn't already
-		// exist.
-		DWORD errCode = GetLastError();
-		if (errCode != ERROR_ALREADY_EXISTS)
-		{
-			// Failed to create a folder for filters, fallback to
-			// "My Documents"-folder. It is not worth the trouble to
-			// bother user about this or user more clever solutions.
-			GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, env::GetMyDocuments());
-		}
-	}
 
 	ReloadCustomSysColors();
 
@@ -624,6 +605,9 @@ void CMergeApp::OnAppAbout()
  */
 int CMergeApp::ExitInstance()
 {
+	// Disable crash logging before shutdown (to avoid logging shutdown crashes)
+	CrashLogger::Disable();
+
 	CMouseHook::UnhookMouseHook();
 
 	charsets_cleanup();
@@ -744,6 +728,14 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	if (CWinApp::OnIdle(lCount))
 		return TRUE;
 
+	// Check for previous crash (only once, on first idle)
+	static bool s_bCrashChecked = false;
+	if (!s_bCrashChecked && CrashLogger::HasPreviousCrash())
+	{
+		s_bCrashChecked = true;
+		CrashLogger::CheckAndReportPreviousCrash();
+	}
+
 	// If anyone has requested notification when next idle occurs, send it
 	if (m_bNeedIdleTimer)
 	{
@@ -782,12 +774,7 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 void CMergeApp::InitializeFileFilters()
 {
 	assert(m_pGlobalFileFilter != nullptr);
-	const String& filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-
-	if (!filterPath.empty())
-	{
-		m_pGlobalFileFilter->SetUserFilterPath(filterPath);
-	}
+	m_pGlobalFileFilter->SetUserFilterPath(GetOptionsMgr()->GetString(OPT_FILTER_USERPATH));
 	m_pGlobalFileFilter->LoadAllFileFilters();
 }
 
@@ -1563,9 +1550,9 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 
 		String strDesc[3];
 		fileopenflags_t dwFlags[3] = {
-			static_cast<fileopenflags_t>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-			static_cast<fileopenflags_t>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
-			static_cast<fileopenflags_t>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT)
+			static_cast<fileopenflags_t>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU)),
+			static_cast<fileopenflags_t>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU)),
+			static_cast<fileopenflags_t>(tFiles.GetPath(2).empty() ? FFILEOPEN_NONE : (FFILEOPEN_PROJECT | FFILEOPEN_NOMRU))
 		};
 		if (bLeftReadOnly)
 			dwFlags[0] |= FFILEOPEN_READONLY;

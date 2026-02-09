@@ -237,6 +237,11 @@ inline const String OPT_CMP_INDENT_HEURISTIC {_T("Settings/IndentHeuristic"s)};
 inline const String OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES {_T("Settings/CompletelyBlankOutIgnoredChanges"s)};
 inline const String OPT_CMP_ADDITIONAL_CONDITION {_T("Settings/AdditionalCompareCondition"s)};
 
+// Renamed/moved detection options
+inline const String OPT_CMP_RENAME_MOVE_DETECTION {_T("Settings/RenameMoveDetection"s)};
+inline const String OPT_CMP_RENAME_MOVE_KEY {_T("Settings/RenameMoveKey"s)};
+inline const String OPT_CMP_MERGE_RENAMED_ITEMS {_T("Settings/MergeRenamedItems"s)};
+
 // Image Compare options
 inline const String OPT_CMP_IMG_FILEPATTERNS {_T("Settings/ImageFilePatterns"s)};
 inline const String OPT_CMP_IMG_SHOWDIFFERENCES {_T("Settings/ImageShowDifferences"s)};
@@ -289,6 +294,7 @@ inline const String OPT_LINEFILTER_ENABLED {_T("Settings/IgnoreRegExp"s)};
 inline const String OPT_FILEFILTER_CURRENT {_T("Settings/FileFilterCurrent"s)};
 inline const String OPT_FILTER_USERPATH {_T("Settings/UserFilterPath"s)};
 inline const String OPT_FILEFILTER_SHARED {_T("Settings/Filters/Shared"s)};
+inline const String OPT_USERDATA_LOCATION {_T("Settings/UserDataLocation"s)};
 
 /// Substitution Filters
 inline const String OPT_SUBSTITUTION_FILTERS_ENABLED {_T("Settings/SubstitutionFiltersEnabled"s)};

@@ -653,6 +653,9 @@ msgstr "Csere 2-3"
 msgid "Swap 1st | &3rd"
 msgstr "Csere 1-3"
 
+msgid "Displa&y Filter Bar\tCtrl+Shift+L"
+msgstr "Szűrősáv &megjelenítése\tCtrl+Shift+L"
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Összehasonlítási statisztika..."
@@ -1071,6 +1074,9 @@ msgstr "Felosztás"
 msgid "Comp&are"
 msgstr "&Összehasonlít"
 
+msgid "Compar&e with Renamed/Moved Items"
+msgstr "Összehasonlítá&s átnevezett/áthelyezett elemekkel"
+
 msgid "Compare in New &Window"
 msgstr "Összehasonlítás új ablakban"
 
@@ -1250,8 +1256,11 @@ msgstr "&Teljes útvonal másolása"
 msgid "Copy &Filename"
 msgstr "&Fájlnév másolása"
 
-msgid "&Edit Caption"
-msgstr "Felirat szerkesztése"
+msgid "&Edit Caption\tF2"
+msgstr "Felirat szerkesztése\tF2"
+
+msgid "Edit &Path\tCtrl+L"
+msgstr "&Elérési út szerkesztése\tCtrl+L"
 
 msgid "&Open..."
 msgstr "Megnyitás..."
@@ -1715,10 +1724,34 @@ msgid "100000 or more"
 msgstr "100000 vagy több"
 
 msgid "Additional &Properties..."
-msgstr ""
+msgstr "További &tulajdonságok..."
 
 msgid "Add F&older Condition"
 msgstr "&Mappa feltétel hozzáadása"
+
+msgid "&Files"
+msgstr "&Fájlok"
+
+msgid "0 files"
+msgstr "0 fájl"
+
+msgid "1 file or more"
+msgstr "1 vagy több fájl"
+
+msgid "&Items"
+msgstr "&Elemek"
+
+msgid "0 items"
+msgstr "0 elem"
+
+msgid "1 item or more"
+msgstr "1 vagy több elem"
+
+msgid "&Total Size"
+msgstr "&Teljes méret"
+
+msgid "&Recursive"
+msgstr "&Ismétlődő"
 
 msgid "Target: &Any (Left/Middle/Right)"
 msgstr "Cél: &Bármelyik (Bal/Középső/Jobb)"
@@ -1805,22 +1838,79 @@ msgid "Target: Middle and &Right"
 msgstr "Cél: Középső és &jobb"
 
 msgid "Target: &All"
-msgstr ""
+msgstr "Cél: &Összes"
 
 msgid "&Clear conditions"
-msgstr ""
+msgstr "Feltételek &törlése"
 
 msgid "Compare &Size"
-msgstr ""
+msgstr "&Méret összehasonlítása"
 
 msgid "Compare &Date"
-msgstr ""
+msgstr "&Dátum összehasonlítása"
 
 msgid "Compare &Attributes"
-msgstr ""
+msgstr "&Attribútumok összehasonlítása"
 
 msgid "Compare C&ontents"
-msgstr ""
+msgstr "&Tartalom összehasonlítása"
+
+msgid "&Clear Keys"
+msgstr "&Kulcsok törlése"
+
+msgid "&Name"
+msgstr "&Név"
+
+msgid "&Base name (without extension)"
+msgstr "&Alapnév (kiterjesztés nélkül)"
+
+msgid "Normalized &Unicode Name"
+msgstr "Normalizált &Unicode név"
+
+msgid "&Date"
+msgstr "&Dátum"
+
+msgid "&Hash (MD5)"
+msgstr "&Hash (MD5)"
+
+msgid "Insert &replace() Function"
+msgstr "&csere() függvény beszúrása"
+
+msgid "Insert rege&xReplace() Function"
+msgstr "rege&xCsere() függvény beszúrása"
+
+msgid "Text &Normalization"
+msgstr "Szöveg &normalizálás"
+
+msgid "&Lowercase"
+msgstr "&Kisbetűs"
+
+msgid "&Uppercase"
+msgstr "&Nagybetűs"
+
+msgid "&Half-width"
+msgstr "&Fél szélességű"
+
+msgid "&Full-width"
+msgstr "&Teljes szélességű"
+
+msgid "&Chinese Conversion"
+msgstr "&Konvertálás kínaira"
+
+msgid "&Simplified Chinese"
+msgstr "&Egyszerűsített kínai"
+
+msgid "&Traditional Chinese"
+msgstr "&Hagyományos kínai"
+
+msgid "&Japanese Conversion"
+msgstr "&Konvertálás japánra"
+
+msgid "&Hiragana"
+msgstr "&Hiragana"
+
+msgid "&Katakana"
+msgstr "&Katakana"
 
 #, c-format
 msgid "About WinMerge"
@@ -2294,6 +2384,9 @@ msgstr "A törölt fájlok a &Lomtárba kerüljenek"
 msgid "&External editor:"
 msgstr "Külső szerkesztő:"
 
+msgid "&Store user data in:"
+msgstr "&Felhasználói adatok tárolása itt:"
+
 #, c-format
 msgid "&Filter folder:"
 msgstr "Szűrők mappája:"
@@ -2563,6 +2656,10 @@ msgstr "Összes elem:"
 #, c-format
 msgid "Items compared:"
 msgstr "Összehasonlított elemek:"
+
+#, c-format
+msgid "&Close"
+msgstr "&Bezárás"
 
 msgid "Go to"
 msgstr "Ugrás"
@@ -2871,10 +2968,6 @@ msgstr "Kimenet:"
 msgid "&Test"
 msgstr "Tesztelés"
 
-#, c-format
-msgid "&Close"
-msgstr "Bezárás"
-
 msgid "Table"
 msgstr "Táblázat"
 
@@ -3064,7 +3157,16 @@ msgid "Switch to &binary compare when size exceeds (MB):"
 msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
 msgid "Additional comparison condi&tions:"
-msgstr ""
+msgstr "További összehasonlítási &feltételek:"
+
+msgid "&Rename/move detection:"
+msgstr "&Átnevezés/áthelyezés észlelése:"
+
+msgid "Rename/move detection &keys:"
+msgstr "Átnevezési/áthelyezési érzékelési &kulcsok:"
+
+msgid "&Merge renamed items into a single item"
+msgstr "Átnevezett elemek &egyesítése egyetlen elemmé"
 
 msgid "File patterns:"
 msgstr "Fájlfajták:"
@@ -4421,6 +4523,33 @@ msgstr ""
 msgid "Group%d"
 msgstr "Csoport%d"
 
+msgctxt "Options dialog|Compare|Folder|Detect renames and moves"
+msgid "Disabled"
+msgstr "Letiltva"
+
+msgid "Detect renames"
+msgstr "Átnevezések észlelése"
+
+msgid "Detect renames and moves"
+msgstr "Átnevezések és áthelyezések észlelése"
+
+msgid "Renamed"
+msgstr "Átnevezve"
+
+msgid "Moved"
+msgstr "Áthelyezve"
+
+msgid "Renamed/Moved"
+msgstr "Átnevezve/Áthelyezve"
+
+#, c-format
+msgid "(%1 items)"
+msgstr "(%1 elem)"
+
+#, c-format
+msgid "%1 (set %2): "
+msgstr "%1 (készlet %2)"
+
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Eltelt idő: %ld ms"
@@ -4615,6 +4744,18 @@ msgstr "Ugyanaz a fájl van megnyitva mindkét panelen."
 #, c-format
 msgid "Selected files are identical."
 msgstr "A kijelölt fájlok egyformák."
+
+msgid "Selected files are identical (with current settings).\r\nChecking binary identity..."
+msgstr "A kijelölt fájlok egyformák (a jelenlegi beállításokkal).\r\nBináris azonosság ellenőrzése..."
+
+msgid "Selected files are identical (with current settings).\r\nBut binary comparison failed."
+msgstr "A kijelölt fájlok egyformák (a jelenlegi beállításokkal).\r\nDe a bináris összehasonlítás sikertelen."
+
+msgid "Selected files are identical (binary match)."
+msgstr "A kijelölt fájlok egyformák (bináris egyezés)."
+
+msgid "Selected files are identical (with current settings).\r\nBut differ at the binary level."
+msgstr "A kijelölt fájlok egyformák (a jelenlegi beállításokkal).\r\nDe bináris szinten különböznek."
 
 #, c-format
 msgid "An error occurred while comparing files."
@@ -5305,11 +5446,14 @@ msgstr "Pozíció és szöveg sorról sorra"
 msgid "Word-by-word position and text"
 msgstr "Pozíció és szöveg szóról szóra"
 
-msgid "AppData folder"
-msgstr "Programadat mappa"
+msgid "AppData (Roaming) folder"
+msgstr "AppData (Roaming) mappa"
 
 msgid "Install folder"
-msgstr "Mappa telepítése"
+msgstr "Telepítési mappa"
+
+msgid "Documents folder"
+msgstr "Dokumentumok mappa"
 
 msgctxt "Options dialog|General|Single instance mode"
 msgid "Disabled"
@@ -5596,7 +5740,7 @@ msgid "Unknown error"
 msgstr "Ismeretlen hiba"
 
 msgid "Invalid property name"
-msgstr ""
+msgstr "Érvénytelen tulajdonságnév"
 
 msgid "Equals"
 msgstr "Egyenlők"
@@ -5642,6 +5786,13 @@ msgstr "Sötét"
 
 msgid "Follow system"
 msgstr "Rendszert követi"
+
+#, c-format
+msgid "e.g. %1"
+msgstr "pl %1"
+
+msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr "A WinMerge egy korábbi összeomlást észlelt. Kérjük, jelentse ezt, ha lehetséges."
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
@@ -5967,6 +6118,9 @@ msgstr "Fejlécek és láblécek összehasonlítása"
 
 msgid "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
 msgstr "Nem lehet makrókat elérni.\r\n    Ahhoz, hogy a WinMerge összehasonlíthassa a makrókat, az MS Office segítségével módosítsd a Macro biztonsági beállításait az aktuális alkalmazáshoz.\r\n   A Visual Basic Project megbízható hozzáférése funkciót be kell kapcsolni ehhez a WinMerge funkcióhoz.\r\n"
+
+msgid "Replace line breaks in formulas with spaces"
+msgstr "Sortörések cseréje szóközökre a képletekben"
 
 msgid "Compare VBA macros"
 msgstr "VBA makrók összehasonlítása"

@@ -1,0 +1,1648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article id="Compare_files">
+  <?target dbhh topicname="IDH_Compare_files" topicid ="001"?>
+
+  <title>Comparer et fusionner des fichiers texte<indexterm>
+      <primary>comparaison de fichiers</primary>
+    </indexterm></title>
+
+  <para>Cette rubrique décrit comment utiliser la fenêtre de comparaison de fichiers
+WinMerge pour comparer et fusionner des fichiers texte. Pour comprendre les
+concepts de base sur les différences abordés ici, nous vous suggérons de
+lire d'abord <xref linkend="Intro_diffs" />. Consultez <xref
+linkend="Compare_bin" /> pour des informations connexes sur les fichiers
+hexadécimaux.</para>
+
+  <section id="Compare_files_starting">
+    <title>Démarrer une opération de comparaison de fichiers</title>
+
+    <para>Vous pouvez lancer une opération de comparaison de fichiers soit à partir de
+la fenêtre de WinMerge, soit à partir d'une fenêtre d'invite de commande.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Depuis la fenêtre WinMerge</term>
+
+        <listitem>
+          <para>Cliquez sur <menuchoice> <guimenu>Fichier</guimenu>
+<guimenuitem>Ouvrir</guimenuitem> </menuchoice>. Utilisez la boîte de
+dialogue Sélectionner des fichiers ou des dossiers pour spécifier les
+fichiers sources de gauche et de droite à comparer. Pour plus de détails sur
+la boîte de dialogue Sélectionner des fichiers ou des dossiers, consultez
+<xref linkend="Open_paths" />.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Depuis une fenêtre d'invite de commande</term>
+
+        <listitem>
+          <para>Exécutez <command>WinMergeU.exe</command>, qui se trouve dans votre
+répertoire d'installation de WinMerge. Dans vos arguments de commande,
+incluez les fichiers de gauche et de droite à comparer. Pour plus
+d'informations sur l'utilisation de la ligne de commande, consultez <xref
+linkend="Command_line" />.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_files_window">
+    <title>Fenêtre de comparaison de fichiers<indexterm>
+        <primary>Fenêtre de comparaison de fichiers</primary>
+
+        <seealso>Fenêtre de comparaison</seealso>
+      </indexterm><indexterm>
+        <primary>Fenêtre de comparaison</primary>
+
+        <secondary>Fichier</secondary>
+      </indexterm></title>
+
+    <para>La fenêtre de comparaison de fichiers affiche les fichiers comparés dans
+deux volets de fichiers, côte à côte. La barre d'outils et le menu
+contextuel de WinMerge fournissent des fonctions pour visualiser, naviguer
+et fusionner les différences. La capture d'écran ci-dessous montre une
+comparaison de deux versions d'un fichier.</para>
+
+    <mediaobject>
+<imageobject> <imagedata contentwidth="600"
+fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
+        <phrase>Fenêtre de comparaison de fichiers</phrase>
+      </textobject>
+    </mediaobject>
+
+    <section>
+      <title>Volets de fichiers<indexterm>
+          <primary>Volets de fichiers</primary>
+        </indexterm></title>
+
+      <para>Les volets de fichiers gauche et droit affichent le contenu textuel et les
+différences des deux fichiers comparés. Les volets de fichiers constituent
+la zone principale pour la navigation et la fusion des différences, et vous
+permettent également d'éditer le texte directement. Cette section décrit les
+fonctionnalités qui prennent en charge ces actions, ainsi que les façons
+dont vous pouvez personnaliser les volets de fichiers.</para>
+
+      <section>
+        <title>En-tête du volet de fichier</title>
+
+        <para>L'en-tête en haut de chaque volet de fichier indique le chemin complet du
+fichier source. Les noms des fichiers de gauche et de droite sont également
+identifiés dans l'en-tête de la fenêtre de comparaison, au-dessus des volets
+de fichiers.</para>
+
+        <para>L'un des volets de fichiers est toujours actif (indiqué par un fond
+d'en-tête foncé) ; l'autre est inactif et possède une barre d'en-tête plus
+claire. Vous ne pouvez éditer que dans le volet actif (comme décrit dans
+<xref linkend="CompareFiles_editing" />). Cliquez d'un côté ou de l'autre
+pour le rendre actif et rendre l'autre côté inactif.</para>
+
+        <para>Un astérisque (*) devant le nom du fichier dans l'en-tête indique qu'il y a
+des modifications non enregistrées dans le fichier.</para>
+
+        <para>Le menu contextuel de la barre d'en-tête propose des raccourcis utiles pour
+copier et coller des informations sur les fichiers :</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Copier le chemin complet<indexterm>
+                <primary>Fonction Copier le chemin complet</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Copie le chemin complet du fichier source dans le presse-papiers du système.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Copier le nom du fichier<indexterm>
+                <primary>Fonction Copier le nom du fichier</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Copie uniquement le nom du fichier source dans le presse-papiers du système.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_diffcolors">
+        <title>Coloration des différences<indexterm>
+            <primary>couleurs de différence</primary>
+
+            <secondary>dans les volets de fichiers</secondary>
+          </indexterm></title>
+
+        <para>WinMerge met en évidence plusieurs types de différences dans les volets de
+fichiers. La page Couleurs de la boîte de dialogue Options définit un
+ensemble de couleurs d'arrière-plan et de texte pour la plupart des types de
+différences, avec des variantes indiquant leur état : non sélectionné,
+sélectionné ou supprimé. Cette section décrit comment chacun des types de
+différences de base est détecté et affiché.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Différence</term>
+
+            <listitem>
+              <para>Un bloc de différence contient une ou plusieurs lignes contiguës qui sont
+différentes. La couleur d'arrière-plan de la différence par défaut est or,
+mais les lignes vides sont marquées avec la couleur de suppression.</para>
+
+              <para>Pour cet écran et les autres de cette section, nous avons activé
+<option>Afficher les numéros de ligne</option> afin de montrer quelles
+lignes des fichiers sources sont comparées.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="489"
+fileref="screenshots/diff-blocks-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>Couleurs d'arrière-plan des blocs de différences</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <para>Cette comparaison détecte trois blocs de différences :</para>
+
+              <orderedlist>
+                <listitem>
+                  <para>La première différence est une ligne unique.</para>
+                </listitem>
+
+                <listitem>
+                  <para>La ligne vide dans <filename>fichier2</filename> n'a pas de ligne vide
+correspondante dans <filename>fichier1</filename>. WinMerge traite la ligne
+vide manquante comme une différence supprimée, marquée ici par la couleur
+grise par défaut.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Le dernier bloc de différence comprend deux lignes.</para>
+                </listitem>
+              </orderedlist>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Différence ignorée<indexterm>
+                <primary>différences ignorées</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Cette couleur marque le contenu que vous avez configuré WinMerge pour
+ignorer. Contrairement aux blocs de différence, le contenu ignoré n'est pas
+comparé, il est simplement mis en évidence pour vous aider à voir ce qui a
+été ignoré. Les différences ignorées incluent :</para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Les lignes vides, si vous avez activé <option>Ignorer les lignes
+vides</option> dans la page Comparer de la boîte de dialogue Options.</para>
+                </listitem>
+
+                <listitem>
+                  <para>Les différences qui correspondent aux motifs des filtres de lignes que vous
+avez définis (consultez <xref linkend="Filters" /> pour savoir comment
+faire).</para>
+                </listitem>
+              </itemizedlist>
+
+              <para>L'exemple suivant répète la comparaison précédente, cette fois avec l'option
+<option>Ignorer les lignes vides</option> activée. Il n'y a plus que deux
+différences. La ligne vide sur le côté droit est marquée avec la couleur des
+différences ignorées.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="492"
+fileref="screenshots/ignore-blank-lines.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>Couleurs de blocs de différences avec une diff ignorée</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Déplacé<indexterm>
+                <primary>différences déplacées</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Les différences déplacées sont des lignes identiques trouvées à des
+emplacements différents dans les fichiers comparés, si l'option
+<option>Détection de blocs déplacés</option> est activée dans la page
+Comparer de la boîte de dialogue Options. La capture d'écran suivante répète
+la comparaison précédente, cette fois avec la détection de blocs déplacés
+activée.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="490"
+fileref="screenshots/moved-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>Couleurs de blocs de différences avec la détection de blocs déplacés</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <para>Remarquez que les deux lignes identiques (contenant <literal>a</literal> et
+<literal>c</literal>) qui se trouvent à des emplacements différents sont
+marquées avec la couleur de déplacement orange par défaut. Un autre effet de
+la détection de blocs déplacés dans ce cas est que les deux dernières lignes
+sont maintenant deux différences distinctes au lieu d'un seul bloc de
+différence.</para>
+
+              <para>Dans certains cas, l'affichage des différences déplacées peut faciliter la
+visualisation des changements dans les fichiers. Cependant, un trop grand
+nombre de lignes déplacées peut rendre votre comparaison difficile à
+parcourir. Faites preuve de discernement !</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Différence de mot</term>
+
+            <listitem>
+              <para>WinMerge peut marquer le texte modifié avec des blocs de différences. Les
+différences de lignes sont marquées avec la couleur de différence de
+mot. Voir <xref linkend="CompareFiles_linediff-highlight" /> pour plus de
+détails.</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Lignes similaires<indexterm>
+                <primary>lignes similaires, dans les différences</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>WinMerge essaie d'aligner les lignes similaires à l'intérieur des blocs de
+différences lorsque vous activez l'option <option>Aligner les lignes
+similaires</option> dans la page Comparer de la boîte de dialogue
+Options. Que signifie <quote>similaires</quote> ? En général, cette
+fonctionnalité fonctionne mieux dans les cas simples, par exemple pour des
+lignes présentant de fortes similitudes. Lorsqu'elles sont détectées, les
+lignes similaires sont ajustées pour être alignées dans le volet Fichier. La
+figure suivante montre des comparaisons des deux mêmes fichiers, avant et
+après l'activation de l'option <option>Aligner les lignes
+similaires</option> :</para>
+
+              <simplelist columns="2" type="horiz">
+                <member><emphasis role="strong">Désactivé</emphasis> : <inlinemediaobject>
+<imageobject> <imagedata contentwidth="273"
+fileref="screenshots/simlines-diffs-off.png" /> </imageobject><textobject>
+                      <phrase>Comparaison sans correspondance des lignes similaires</phrase>
+                    </textobject>
+                  </inlinemediaobject></member>
+
+                <member><emphasis role="strong">Activé</emphasis> : <inlinemediaobject>
+<imageobject> <imagedata contentwidth="273"
+fileref="screenshots/simlines-diffs-on.png" /> </imageobject><textobject>
+                      <phrase>Comparaison avec correspondance des lignes similaires</phrase>
+                    </textobject>
+                  </inlinemediaobject></member>
+              </simplelist>
+
+              <para>Dans la seconde comparaison, les lignes <quote>mice</quote> et <quote>mice
+and a</quote> sont détectées comme similaires. WinMerge ajoute des lignes
+vides dans l'affichage pour faire apparaître ces lignes au même niveau à
+l'intérieur du bloc de différence.</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_linediff-highlight">
+        <title>Mise en évidence des différences de lignes<indexterm>
+            <primary>différences de lignes</primary>
+
+            <secondary>détection</secondary>
+          </indexterm><indexterm>
+            <primary>espaces</primary>
+
+            <secondary>dans les différences de lignes</secondary>
+          </indexterm></title>
+
+        <para>Il est parfois utile de mettre en évidence non seulement les blocs de
+différences, mais aussi le texte modifié à l'intérieur de ceux-ci. Vous
+pouvez les activer ou les désactiver de deux manières :</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Définissez toutes les options <option>Afficher les différences de
+lignes</option> dans la page Éditeur de la boîte de dialogue Options.</para>
+          </listitem>
+
+          <listitem>
+            <para>Cliquez sur <menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Afficher
+les différences de lignes</guimenuitem> </menuchoice> pour activer ou
+désactiver les différences de lignes.</para>
+          </listitem>
+        </itemizedlist>
+
+        <note>
+          <para>Rappelez-vous que les fonctions de navigation et de fusion de WinMerge
+(comme Différence suivante ou Copier à gauche) travaillent sur des blocs de
+différences, et non sur les différences de lignes à l'intérieur de ceux-ci.</para>
+        </note>
+
+        <para>Cette section décrit comment les différences de lignes sont détectées et
+marquées. Notez que l'effet de ces options est également influencé par vos
+paramètres d'espaces actuels dans la page Comparer de la boîte de dialogue
+Options.</para>
+
+        <variablelist>
+          <varlistentry>
+            <term id="wordlevel-linediffs">Différences de lignes au niveau des mots<indexterm>
+                <primary>différences de mots</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Les exemples suivants montrent comment les différences de lignes au niveau
+des mots sont affichées avec chacun des paramètres d'espaces :</para>
+
+              <example>
+                <title>Différences de lignes avec Espaces : Comparer</title>
+
+                <para>WinMerge détecte tous les mots et espaces différents :</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-allwhite.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>Diff de ligne au niveau du mot comparant les espaces</phrase>
+                  </textobject>
+                </mediaobject></example>
+
+              <example>
+                <title>Différences de lignes avec Espaces : Ignorer les modifications</title>
+
+                <para>Les espaces multiples et les tabulations sont traités de la même manière
+qu'un espace simple. Dans l'exemple, l'espace supplémentaire entre les deux
+derniers mots n'est pas marqué :</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-nochange.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>Diff de ligne au niveau du mot ne comparant pas les changements d'espaces</phrase>
+                  </textobject>
+                </mediaobject></example>
+
+              <example>
+                <title>Différences de lignes avec Espaces : Tout ignorer</title>
+
+                <para>Aucun espace entre les mots n'est comparé, ces lignes sont donc traitées
+comme identiques :</para>
+
+<mediaobject>
+<imageobject> <imagedata contentwidth="530"
+fileref="screenshots/word-diff-nowhite.png" format="PNG" /> </imageobject><textobject>
+                    <phrase>Diff de ligne au niveau du mot ne comparant pas les espaces</phrase>
+                  </textobject>
+                </mediaobject></example>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Différences de lignes au niveau des caractères<indexterm>
+                <primary>différence de ligne au niveau des caractères</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Une différence de ligne au niveau des caractères inclut le premier et le
+dernier caractère différent dans un mot, ainsi que tous les caractères entre
+eux. Une seule différence au niveau des caractères peut s'étendre sur des
+mots adjacents. L'exemple suivant illustre ce point :</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="485"
+fileref="screenshots/char-diff-01.png" format="PNG" /> </imageobject><textobject>
+                  <phrase>Diff de ligne au niveau du caractère ne comparant pas les espaces</phrase>
+                </textobject>
+              </mediaobject>
+              <para></para>
+
+              <note>
+                <para>Comme pour les différences de lignes au niveau des mots, la mise en évidence
+des caractères varie selon la configuration de WinMerge pour détecter les
+coupures de mots. Dans l'exemple, l'espace supplémentaire après le mot
+<literal>cure</literal> dans <filename>fichier2</filename> n'est mis en
+évidence que si les espaces sont comparés.</para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+        <variablelist>
+          <varlistentry>
+            <term>Coupures pour mots ou caractères<indexterm>
+                <primary>coupures de mots dans les différences de lignes</primary>
+              </indexterm></term>
+
+            <listitem>
+              <para>Les mots et les caractères dans les différences de lignes peuvent être
+séparés par des espaces, ou par une combinaison d'espaces et de
+ponctuation. Les espaces (par défaut) sont le choix typique pour comparer la
+plupart des fichiers texte. Tous les exemples de différences de lignes
+précédents utilisent les espaces pour séparer les mots et les caractères.</para>
+
+              <para>Dans certains cas, il est utile de couper à la ponctuation. Par exemple, la
+capture d'écran suivante compare une liste séparée par des virgules. Pour
+mettre en évidence les différences de lignes significatives, nous avons
+activé <option>Couper aux espaces ou à la ponctuation</option> dans la page
+Éditeur de la boîte de dialogue Options.</para>
+
+              <mediaobject>
+<imageobject> <imagedata contentwidth="494"
+fileref="screenshots/line-diff-punctuation.png" format="PNG" />
+</imageobject><textobject>
+                  <phrase>Diff de ligne au niveau du caractère ne comparant pas les espaces</phrase>
+                </textobject>
+              </mediaobject>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section id="CompareFiles_editing">
+        <title>Fonctionnalités d'édition du volet Fichier<indexterm>
+            <primary>édition</primary>
+
+            <secondary>fonctionnalités dans la fenêtre de comparaison de fichiers</secondary>
+          </indexterm></title>
+
+        <para>Bien que WinMerge ne soit pas un éditeur complet ou un IDE, il fournit des
+fonctions d'édition de base, comme <guilabel>Annuler</guilabel> et
+<guilabel>Rétablir</guilabel>, <guilabel>Rechercher</guilabel> et
+<guilabel>Remplacer</guilabel>, et <guilabel>Atteindre</guilabel>. Ces
+tâches d'édition de base sont souvent nécessaires lors de la fusion (par
+exemple, pour modifier le texte à l'intérieur des différences). Vous pouvez
+éditer dans le volet Fichier actif (n'oubliez pas, cliquez dans un volet
+pour le rendre actif). Les modifications ne sont pas écrites dans un fichier
+tant que vous n'avez pas enregistré un volet dans un fichier résultat.</para>
+
+        <para>Les fonctionnalités d'édition de WinMerge incluent également la coloration
+syntaxique. Cette fonctionnalité optionnelle prend en charge plusieurs
+formats de fichiers, et vous pouvez configurer les couleurs utilisées. Notez
+que la coloration syntaxique n'est pas appliquée à l'intérieur des
+différences, comme le montre la capture d'écran précédente.</para>
+
+        <tip>
+          <para>Assurez-vous que l'option <guilabel>Réanalyse automatique</guilabel> est
+activée, comme décrit dans <xref linkend="Compare_files_scan" />. Si ce
+n'est pas le cas, actualisez manuellement votre vue (appuyez sur F5) avant
+et après l'édition d'un fichier, pour vous assurer que la détection des
+différences de WinMerge est à jour.</para>
+        </tip>
+      </section>
+
+      <section id="CompareFiles_fonts">
+        <title>Polices du volet Fichier<indexterm>
+            <primary>polices</primary>
+
+            <secondary>choix dans la fenêtre de comparaison de fichiers</secondary>
+          </indexterm></title>
+
+        <para>Vous pouvez choisir les polices pour le volet Fichier en cliquant sur
+<menuchoice> <guimenu>Affichage</guimenu> <guimenuitem>Choisir la
+police</guimenuitem> </menuchoice>. WinMerge ne prend en charge que les
+polices à espacement fixe.</para>
+
+        <para>Voici des suggestions de polices pour utiliser WinMerge avec les langues
+d'Asie de l'Est :</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>Chinois simplifié : polices à espacement fixe <guilabel>SimSun</guilabel> ou
+<guilabel>SimHei</guilabel></simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Chinois traditionnel : police à espacement fixe <guilabel>MingLiU</guilabel></simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Japonais : polices à espacement fixe <guilabel>MS Gothic</guilabel> ou
+<guilabel>MS Mincho</guilabel></simpara>
+          </listitem>
+
+          <listitem>
+            <simpara>Coréen : police à espacement fixe <guilabel>GulimChe</guilabel> (pas
+<guilabel>Gulim</guilabel>, car cette variante utilise des glyphes à
+espacement proportionnel qui ne sont pas centrés dans les cellules de la
+grille et mal alignés en mode espacement fixe).</simpara>
+          </listitem>
+        </itemizedlist>
+      </section>
+
+      <section>
+        <title>Marges du volet Fichier<indexterm>
+            <primary>marges</primary>
+
+            <secondary>dans les volets de fichiers</secondary>
+          </indexterm></title>
+
+        <para>Les volets de fichiers disposent de marges grises optionnelles qui affichent
+les numéros de ligne et certains symboles. Pour afficher ou masquer les
+marges, cliquez sur <menuchoice> <guimenu>Affichage</guimenu>
+<guimenuitem>Afficher les marges</guimenuitem> </menuchoice>. Si vous
+utilisez plusieurs fenêtres de comparaison de fichiers, vous pouvez
+contrôler les marges de chaque fenêtre indépendamment. La marge peut
+afficher l'une ou l'ensemble de ces fonctionnalités :</para>
+
+        <indexterm>
+          <primary>numéros de ligne</primary>
+
+          <secondary>dans les volets de fichiers</secondary>
+        </indexterm>
+
+        <indexterm>
+          <primary>signets</primary>
+        </indexterm>
+
+        <indexterm>
+          <primary>retour à la ligne</primary>
+
+          <secondary>dans les volets de fichiers</secondary>
+        </indexterm>
+
+        <itemizedlist>
+          <listitem>
+            <para>Numéros de ligne, si <menuchoice> <guimenu>Affichage</guimenu>
+<guimenuitem>Afficher les numéros de ligne</guimenuitem> </menuchoice> est
+activé.</para>
+          </listitem>
+
+          <listitem>
+            <para>Signets, si <menuchoice> <guimenu>Édition</guimenu>
+<guisubmenu>Signets</guisubmenu> </menuchoice> est activé. Un signet est un
+cercle bleu dans la marge à côté d'une ligne, que WinMerge peut mémoriser
+pour y revenir.</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>Pour définir un signet sur une ligne, double-cliquez dans sa marge (ou
+appuyez sur <keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap>
+</keycombo>). La même action supprime un signet existant.</para>
+              </listitem>
+
+              <listitem>
+                <para>Pour naviguer entre les signets, cliquez sur <menuchoice>
+<guimenu>Édition</guimenu> <guimenuitem>Signets</guimenuitem> </menuchoice>
+et choisissez <guimenuitem>Suivant</guimenuitem> ou
+<guimenuitem>Précédent</guimenuitem>.</para>
+              </listitem>
+
+              <listitem>
+                <para>Double-cliquez sur un signet individuel pour le supprimer (ou appuyez sur
+<keycombo> <keycap>Ctrl</keycap> <keycap>F2</keycap> </keycombo>).</para>
+              </listitem>
+
+              <listitem>
+                <para>Cliquez sur <menuchoice> <guimenu>Édition</guimenu>
+<guimenuitem>Signets</guimenuitem> <guimenuitem>Effacer tous les
+signets</guimenuitem> </menuchoice> pour supprimer tous les signets.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>Symboles fléchés de retour à la ligne automatique, si <menuchoice>
+<guimenu>Affichage</guimenu> <guimenuitem>Retour à la ligne
+automatique</guimenuitem> </menuchoice> est activé.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>La capture d'écran suivante montre une marge avec les signets et le retour à
+la ligne automatique activés. Sans numéros de ligne, la largeur de la marge
+est minimale.</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentwidth="384"
+fileref="screenshots/filecomp_margin1.png" format="PNG" /> </imageobject><textobject>
+            <phrase>Marge de la fenêtre de comparaison avec signet et retour à la ligne</phrase>
+          </textobject>
+        </mediaobject>
+
+        <para>La capture d'écran suivante montre une marge avec les signets et les numéros
+de ligne activés. Notez que la marge est plus large. En fait, la marge est
+assez large pour le plus grand numéro de ligne. Ainsi, les marges pour les
+fichiers volumineux avec de nombreuses lignes peuvent être assez larges.</para>
+
+        <mediaobject>
+<imageobject> <imagedata contentdepth="77" contentwidth="384"
+fileref="screenshots/filecomp_margin2.png" format="PNG" /> </imageobject><textobject>
+            <phrase>Marge de la fenêtre de comparaison avec signet et numéros de ligne</phrase>
+          </textobject>
+        </mediaobject>
+      </section>
+    </section>
+
+    <section id="Compare_files_functions">
+      <title>Barre d'outils et menus<indexterm>
+          <primary>barre d'outils, avec la fenêtre de comparaison de fichiers</primary>
+        </indexterm><indexterm>
+          <primary>menus, avec la fenêtre de comparaison de fichiers</primary>
+        </indexterm></title>
+
+      <para>La barre d'outils et les menus de WinMerge offrent une gamme de fonctions
+pour naviguer, sélectionner et fusionner les différences à l'intérieur des
+fichiers.</para>
+
+      <note>
+        <para>Les raccourcis WinMerge portent les mêmes noms et boutons, que vous ouvriez
+une fenêtre de comparaison de dossiers ou de fichiers. Cependant, les
+fonctions se comportent différemment : avec une fenêtre de comparaison de
+fichiers, les fonctions agissent sur les différences à l'intérieur des
+fichiers, et non sur les différences à l'intérieur des dossiers.</para>
+      </note>
+
+      <para>Les fonctions de différence que vous pouvez utiliser dépendent de votre
+contexte, qui change souvent au fur et à mesure de votre travail. Cela
+signifie qu'une fonction n'est disponible que lorsque son opération est
+possible pour un emplacement donné ou une autre condition de votre
+environnement WinMerge. Par exemple, si vous cliquez dans une ligne de texte
+à l'intérieur d'une différence, vous remarquerez peut-être que plusieurs
+boutons de navigation et de fusion s'activent dans la barre d'outils. Si
+vous cliquez dans une autre zone de texte qui n'est pas à l'intérieur d'une
+différence, ces fonctions deviennent indisponibles.</para>
+
+      <para>Les fonctions de différence sont disponibles dans la barre d'outils
+WinMerge, ainsi que par ces autres mécanismes :</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Menus WinMerge, en particulier <guimenu>Fusionner</guimenu></para>
+        </listitem>
+
+        <listitem>
+          <para>Menus contextuels dans la fenêtre de comparaison de fichiers (lorsque vous
+faites un clic droit sur le texte)</para>
+        </listitem>
+
+        <listitem>
+          <para>Raccourcis clavier</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>Les fonctions de différence sont décrites dans <xref
+linkend="Compare_files_nav" /> et <xref linkend="Compare_files_merge" />,
+plus loin dans cette rubrique. <xref linkend="Quick_start" /> et <xref
+linkend="Intro_diffs" /> fournissent des exemples de comparaison et de
+fusion.</para>
+
+      <section>
+        <title>Mode Fusion<indexterm>
+            <primary>mode fusion</primary>
+          </indexterm></title>
+
+        <para><menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Mode
+Fusion</guimenuitem> </menuchoice> (ou appuyez sur <keycap>F9</keycap>)
+restaure ces raccourcis clavier simples de WinMerge 1.7.1 pour les fonctions
+de navigation et de fusion des différences :</para>
+
+        <itemizedlist>
+          <listitem>
+            <simpara>Touches <keycap>Haut</keycap> et <keycap>Bas</keycap> pour les fonctions
+<function>Différence précédente</function> et <function>Différence
+suivante</function>.</simpara>
+            <para></para>
+          </listitem>
+
+          <listitem>
+            <simpara>Touches <keycap>Gauche</keycap> et <keycap>Droite</keycap> pour les
+fonctions <function>Copier à gauche</function> et <function>Copier à
+droite</function>.</simpara>
+          </listitem>
+        </itemizedlist>
+
+        <para>Le mode Fusion supprime la touche <keycap>Alt</keycap> pour ces opérations
+courantes (les rendant plus rapides à utiliser que le mode normal). Notez
+que les combinaisons de touches <keycap>Maj</keycap> et <keycap>Alt</keycap>
++ <keycap>Flèche</keycap> fonctionnent en mode fusion de la même manière
+qu'en mode normal.</para>
+
+        <para>Le mode Fusion est indiqué dans la barre d'état par le texte
+<guilabel>Fusion</guilabel>.</para>
+      </section>
+    </section>
+
+    <section>
+      <title>Volet Emplacement</title>
+
+      <indexterm>
+        <primary>Volet Emplacement, fenêtre de comparaison de fichiers</primary>
+      </indexterm>
+
+      <indexterm>
+        <primary>navigation dans les différences</primary>
+      </indexterm>
+
+      <para>Le volet Emplacement, à gauche des volets Fichier, projette toute la
+longueur des fichiers comparés sur deux barres verticales (correspondant aux
+volets Fichier gauche et droit). Il est particulièrement utile pour
+travailler avec des fichiers trop longs pour être facilement parcourus dans
+les volets Fichier.</para>
+
+      <para>Le volet Emplacement affiche plusieurs types d'éléments :</para>
+
+      <variablelist>
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_diffs.png" /> </imageobject><textobject>
+                <phrase>Lignes de diff du volet d'emplacement</phrase>
+              </textobject>
+            </inlinemediaobject> Blocs de différences</term>
+
+          <listitem>
+            <para>Chaque bloc de différence dans les volets Fichier est indiqué dans le volet
+Emplacement par une ligne horizontale traversant chaque barre
+verticale. L'épaisseur, la couleur et l'emplacement de ces lignes sont des
+indices sur la taille (nombre de lignes), le type et la répartition de
+toutes les différences dans les fichiers. Par exemple, la couleur d'une
+ligne est la même que celle du bloc de différence correspondant. Le volet
+Emplacement de la capture d'écran précédente montre de nombreuses
+différences de base (or) et quelques blocs de différences vides (gris).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
+                <phrase>Pointeur de diff actuelle du volet d'emplacement</phrase>
+              </textobject>
+            </inlinemediaobject> Différence actuelle</term>
+
+          <listitem>
+            <para>Si vous avez sélectionné une différence, le volet Emplacement marque la
+ligne de la différence actuelle par une paire de petits triangles de chaque
+côté des barres verticales. Si vous naviguez vers une autre différence, le
+pointeur se déplace vers le haut ou vers le bas avec l'emplacement. Le fait
+de faire défiler le volet Fichier ne modifie pas l'emplacement du pointeur
+de différence (ni aucune des lignes de différence) dans le volet
+d'emplacement.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/locpane_viewbar.png" /> </imageobject><textobject>
+                <phrase>Barre de zone de visualisation du volet d'emplacement</phrase>
+              </textobject>
+            </inlinemediaobject> Zone de visualisation</term>
+
+          <listitem>
+            <para>La zone des fichiers actuellement visible dans les volets Fichier est
+indiquée par une barre de visualisation ombrée (translucide) sur le volet
+Emplacement. La hauteur et l'emplacement de cette barre correspondent à la
+portion des fichiers visible dans la zone de défilement. Par exemple, vous
+pourriez voir la barre s'agrandir ou rétrécir si vous changez la hauteur de
+vos volets Fichier. Cette synchronisation entre la barre de visualisation du
+volet Emplacement et les volets Fichier permet une navigation rapide et
+certaines actions utiles :</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>Lorsque vous faites défiler les volets Fichier, la zone de visualisation
+dans le volet Emplacement se déplace avec eux.</para>
+              </listitem>
+
+              <listitem>
+                <para>Inversement, vous pouvez faire glisser la barre de la zone de visualisation
+dans le volet Emplacement vers le haut ou vers le bas pour faire défiler les
+volets Fichier. Cette action sur le curseur de défilement est très pratique
+pour naviguer dans des fichiers longs.</para>
+              </listitem>
+
+              <listitem>
+                <para>Cliquez n'importe où dans le volet Emplacement pour sauter à l'emplacement
+correspondant dans les volets Fichier.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Différences déplacées<indexterm>
+              <primary>différences déplacées</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Les différences déplacées sont des lignes identiques situées à des
+emplacements différents. Elles ne sont affichées que si l'option
+<guilabel>Détection de blocs déplacés</guilabel> est cochée dans la page
+Comparer de la boîte de dialogue Options. Voir <xref
+linkend="CompareFiles_diffcolors" /> pour plus de détails sur les
+différences déplacées dans le volet Fichier. Le volet Emplacement trace une
+ligne reliant les différences déplacées dans les barres d'emplacement de
+gauche et de droite. Par exemple :</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="576"
+fileref="screenshots/locpane_moved_diffs.png" format="PNG" /> </imageobject><textobject>
+                <phrase>Volet Emplacement avec diff déplacée</phrase>
+              </textobject>
+            </mediaobject>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Le menu contextuel du volet Emplacement contient ces raccourcis
+:<indexterm>
+          <primary>menu contextuel</primary>
+
+          <secondary>Volet Emplacement</secondary>
+        </indexterm><indexterm>
+          <primary>Fonctions de Blocs Déplacés</primary>
+        </indexterm></para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guimenuitem>Atteindre la ligne 1</guimenuitem> : déplace le curseur au
+début du fichier.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Atteindre</guimenuitem> : déplace le curseur vers une ligne que
+vous spécifiez (décrit dans <xref linkend="Compare_files_nav_functions" />).</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Aucun bloc déplacé</guimenuitem> : désactive la couleur des
+différences de déplacement pour les blocs déplacés.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Tous les blocs déplacés</guimenuitem> : active la couleur des
+différences de déplacement pour tous les blocs déplacés.</para>
+        </listitem>
+
+        <listitem>
+          <para><guimenuitem>Bloc déplacé pour la diff actuelle</guimenuitem> : active la
+couleur des différences de déplacement uniquement pour la différence
+déplacée actuellement sélectionnée.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Volet Diff<indexterm>
+          <primary>Volet Diff, fenêtre de comparaison de fichiers</primary>
+        </indexterm></title>
+
+      <para>Le volet Diff affiche le contenu des deux côtés d'une différence
+sélectionnée.</para>
+
+      <para>Lorsque vous sélectionnez une différence, les deux versions sont chargées
+dans les parties supérieure et inférieure du volet Diff. De cette façon, le
+volet Diff confirme quelles lignes sont incluses dans une différence et vous
+permet de les examiner isolément du reste du fichier.</para>
+
+      <para>Vous pouvez fusionner les différences directement dans le volet Diff en
+faisant un clic droit soit sur la partie supérieure soit sur la partie
+inférieure et en choisissant <guimenuitem>Copier à droite</guimenuitem> ou
+<guimenuitem>Copier à gauche</guimenuitem>.</para>
+    </section>
+
+    <section>
+      <title>Barres d'état<indexterm>
+          <primary>barres d'état</primary>
+
+          <secondary>pour la fenêtre de comparaison de fichiers</secondary>
+        </indexterm><indexterm>
+          <primary>onglets</primary>
+
+          <secondary>encodage des caractères</secondary>
+        </indexterm></title>
+
+      <para>Chaque volet Fichier contient une barre d'état au bas. La barre d'état
+comprend plusieurs zones avec différents types d'informations sur le
+document et votre emplacement dans celui-ci :</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>État de la ligne</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><guilabel>Lig</guilabel> : Numéro de ligne dans le fichier source.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Col</guilabel> : Emplacement de la colonne du curseur et nombre
+total de colonnes dans la ligne.</para>
+
+                <para><guilabel>Col</guilabel> compte les tabulations comme
+<replaceable>n</replaceable> espaces, où <replaceable>n</replaceable> est le
+nombre de caractères défini comme <guilabel>Taille de tabulation</guilabel>
+dans la page Éditeur des options de WinMerge (4 par défaut).</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>Ch</guilabel> : Emplacement du caractère du curseur et nombre
+total de caractères dans la ligne.</para>
+
+                <para><guilabel>Ch</guilabel> compte les tabulations comme un seul caractère de
+tabulation.</para>
+              </listitem>
+
+              <listitem>
+                <para><guilabel>EOL</guilabel> : Style de fin de ligne de la ligne actuelle
+(affiché uniquement lorsque l'option <guilabel>Préserver les fins de ligne
+originales</guilabel> est activée dans la page Éditeur des options de
+WinMerge).</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>État de lecture seule</term>
+
+          <listitem>
+            <para><guilabel>RO</guilabel> s'affiche dans la zone si le fichier est défini en
+lecture seule (comme décrit dans <xref linkend="protectingfiles" />). Sinon,
+la zone est vide.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Encodage du fichier</term>
+
+          <listitem>
+            <para>Numéro de page de code pour les fichiers ANSI, type d'encodage Unicode pour
+les fichiers Unicode.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Style de fin de ligne (EOL)</term>
+
+          <listitem>
+            <para>Style EOL du fichier : <guilabel>Win</guilabel> pour les fichiers
+Windows/DOS (CRLF), <guilabel>Unix</guilabel> (LF), <guilabel>Mac</guilabel>
+(CR), ou <guilabel>Mixte</guilabel>.</para>
+
+            <note>
+              <para>Lorsque le style EOL par ligne est utilisé, le style EOL global du fichier
+n'est pas affiché (cette zone est vide).</para>
+            </note>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>Lorsqu'une fenêtre de comparaison de fichiers est ouverte, la barre d'état
+de la fenêtre WinMerge affiche l'un de ces messages concernant les fichiers
+comparés :<itemizedlist>
+          <listitem>
+            <para><guilabel>Identiques</guilabel> : les fichiers ne contiennent aucune
+différence</para>
+          </listitem>
+
+          <listitem>
+            <para><guilabel><replaceable>n</replaceable> différences trouvées</guilabel> : le
+nombre de différences détectées, affiché uniquement lorsqu'aucune différence
+n'est sélectionnée.</para>
+          </listitem>
+
+          <listitem>
+            <para><guilabel>Différence <replaceable>x</replaceable> sur
+<replaceable>n</replaceable></guilabel> : le numéro de séquence de la
+différence sélectionnée par rapport au nombre total de différences, en
+commençant par 1.</para>
+          </listitem>
+        </itemizedlist></para>
+    </section>
+  </section>
+
+  <section id="Compare_files_nav">
+    <title>Navigation dans les différences<indexterm>
+        <primary>navigation dans les différences</primary>
+
+        <secondary>Fenêtre de comparaison de fichiers</secondary>
+      </indexterm></title>
+
+    <para>Cette section décrit comment naviguer et sélectionner des différences dans
+la fenêtre de comparaison de fichiers. Notez que lorsque vous sélectionnez
+une différence, elle est toujours sélectionnée dans les deux ou les trois
+volets Fichier.</para>
+
+    <tip>
+      <para>Pour gagner du temps, activez <guilabel>Faire défiler automatiquement
+jusqu'à la première différence</guilabel> dans la page Général des options
+de WinMerge. Ainsi, vous n'aurez pas besoin de naviguer manuellement vers la
+première différence pour la sélectionner.</para>
+    </tip>
+
+    <section id="Compare_files_nav_functions">
+      <title>Fonctions de navigation<indexterm>
+          <primary>Fonctions WinMerge</primary>
+
+          <secondary>navigation dans les différences de la fenêtre de comparaison de fichiers</secondary>
+        </indexterm><indexterm>
+          <primary>fonctions de navigation</primary>
+
+          <secondary>comparaison de fichiers</secondary>
+        </indexterm></title>
+
+      <para>Voici les fonctions de navigation dans les différences de la fenêtre de
+comparaison de fichiers, ainsi que leurs raccourcis dans la barre d'outils
+et les menus :</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Différence dans la ligne actuelle/Sélectionner la différence de
+ligne<indexterm>
+              <primary>Fonction Différence dans la ligne actuelle</primary>
+            </indexterm><indexterm>
+              <primary>Fonction Sélectionner la différence de ligne</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Activé si vous avez cliqué (ou sélectionné) du texte à l'intérieur d'une
+différence dans un volet Fichier. Sélectionne les différences de mots dans
+la ligne. Par exemple :</para>
+
+            <mediaobject>
+<imageobject> <imagedata contentwidth="562"
+fileref="screenshots/linediff.png" format="PNG" /> </imageobject><textobject>
+                <phrase>Exemple de Sélectionner la différence de ligne</phrase>
+              </textobject>
+            </mediaobject>
+            <para></para>
+
+            <para>Si vous souhaitez sélectionner le bloc de différence lui-même, utilisez
+plutôt <command>Différence actuelle</command>.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/diff_inline_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Différence dans la ligne actuelle</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Édition</guimenu> <guimenuitem>Sélectionner la
+différence de ligne</guimenuitem> </menuchoice>, <keycap>F4</keycap>, menu
+contextuel dans le volet Fichier à l'intérieur d'une différence.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Différence suivante<indexterm>
+              <primary>Fonction Différence suivante</primary>
+
+              <secondary>avec Comparer les fichiers</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Sélectionne la différence suivante en dessous de l'emplacement actuel de
+votre curseur dans le document (pas nécessairement par rapport à la
+différence actuelle). Utilisez cette fonction pour parcourir les différences
+de manière séquentielle à partir de n'importe quel point. Disponible sauf si
+la dernière différence est actuellement sélectionnée.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Différence suivante</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Différence
+suivante</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Bas</keycap> </keycombo> (ou <keycap>Bas</keycap> en mode fusion).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Différence précédente<indexterm>
+              <primary>Fonction Différence précédente</primary>
+
+              <secondary>avec Comparer les fichiers</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Sélectionne la différence précédente au-dessus de l'emplacement actuel de
+votre curseur (pas nécessairement par rapport à la différence
+actuelle). Utilisez cette fonction pour revenir séquentiellement en arrière
+à travers les différences. Disponible sauf si la première différence est
+actuellement sélectionnée.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/prevdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Différence précédente</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Différence
+précédente</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Haut</keycap> </keycombo> (ou <keycap>Haut</keycap> en mode fusion).</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Première différence<indexterm>
+              <primary>Fonction Première différence</primary>
+
+              <secondary>avec Comparer les fichiers</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Utilisez cette option pour commencer à comparer ou à fusionner les
+différences, ou pour localiser la première différence à partir de n'importe
+quel autre endroit. Disponible sauf si la première différence est
+actuellement sélectionnée. Vous pouvez également sélectionner une différence
+en double-cliquant sur son texte.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Première différence</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Première
+différence</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Origine (Home)</keycap> </keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Différence actuelle<indexterm>
+              <primary>Fonction Différence actuelle</primary>
+
+              <secondary>avec Comparer les fichiers</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Cette fonction a deux modes d'action :</para>
+
+            <para><itemizedlist>
+                <listitem>
+                  <simpara>Si votre curseur se trouve à l'intérieur d'une différence mais qu'aucune
+différence n'est sélectionnée, cette fonction sélectionne l'intégralité de
+la différence. C'est un moyen très pratique de sélectionner une différence à
+l'aide du clavier.</simpara>
+                </listitem>
+
+                <listitem>
+                  <simpara>Lorsqu'il y a une différence actuelle, la fonction saute à cet
+emplacement. C'est pratique si vous avez fait défiler la différence
+sélectionnée hors de la vue et que vous souhaitez revenir rapidement à son
+emplacement.</simpara>
+                </listitem>
+              </itemizedlist></para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Différence actuelle</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Différence
+actuelle</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Entrée</keycap> </keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Dernière différence<indexterm>
+              <primary>Fonction Dernière différence</primary>
+
+              <secondary>avec Comparer les fichiers</secondary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Activé sauf si la dernière différence est actuellement sélectionnée.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Dernière différence</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Dernière
+différence</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Fin (End)</keycap> </keycombo>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Atteindre<indexterm>
+              <primary>Fonction Atteindre</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Vous permet de sauter soit vers un numéro de ligne, soit vers un numéro de
+différence (par exemple, la différence 2 est la deuxième différence). Ouvre
+la boîte de dialogue Atteindre, où vous spécifiez le numéro, le fichier à
+utiliser (gauche ou droit) et le type d'emplacement (ligne ou différence).</para>
+
+            <tip>
+              <para>L'option Atteindre le numéro de ligne peut être utile lorsque vous devez
+fusionner la même modification d'un fichier vers plusieurs fichiers
+cibles. Sauter à une différence particulière peut être plus rapide que
+d'utiliser <guimenuitem>Rechercher</guimenuitem> pour chercher du texte, ou
+de parcourir les différences une par une.</para>
+            </tip>
+            <para></para>
+
+            <para>Raccourcis : <menuchoice> <guimenu>Édition</guimenu>
+<guimenuitem>Atteindre</guimenuitem> </menuchoice>, <keycombo>
+<keycap>Ctrl</keycap> <keycap>G</keycap> </keycombo>, menu contextuel dans
+le volet Fichier et le volet Emplacement.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Atteindre la ligne déplacée<indexterm>
+              <primary>Fonction Atteindre</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Permet de sauter vers l'origine/la destination du déplacement de la diff
+actuelle sur l'autre panneau (2 volets).</para>
+
+            <para>Raccourcis : <keycombo> <keycap>Ctrl</keycap> <keycap>Maj</keycap>
+<keycap>G</keycap> </keycombo>, menu contextuel dans le volet Fichier et le
+volet Diff.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Atteindre la ligne déplacée entre Gauche et Milieu<indexterm>
+              <primary>Fonction Atteindre</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Permet de sauter vers l'origine/la destination du déplacement de la diff
+actuelle sur l'autre panneau (3 volets).</para>
+
+            <para>Raccourcis : <keycombo> <keycap>Ctrl</keycap> <keycap>Maj</keycap>
+<keycap>G</keycap> </keycombo>, menu contextuel dans le volet Fichier et le
+volet Diff.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Atteindre la ligne déplacée entre Milieu et Droite<indexterm>
+              <primary>Fonction Atteindre</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Permet de sauter vers l'origine/la destination du déplacement de la diff
+actuelle sur l'autre panneau (3 volets).</para>
+
+            <para>Raccourcis : <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
+<keycap>G</keycap> </keycombo>, menu contextuel dans le volet Fichier et le
+volet Diff.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Actualiser</term>
+
+          <listitem>
+            <para>Voir <xref linkend="Compare_files_merge_functions" />.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+  </section>
+
+  <section id="Compare_files_syncpoints">
+    <title>Points de synchronisation<indexterm>
+        <primary>points de synchronisation</primary>
+      </indexterm></title>
+    <para>À déterminer</para>
+  </section>
+
+  <section id="Compare_files_merge">
+    <title>Fusion des différences<indexterm>
+        <primary>fusion des différences</primary>
+      </indexterm></title>
+
+    <para>La fusion copie les différences d'un volet Fichier vers l'autre : soit de
+gauche à droite, soit de droite à gauche. Cela est différent de l'édition
+directe de texte à l'aide des fonctions d'édition de WinMerge (décrites plus
+haut dans cette rubrique).</para>
+
+    <section id="Compare_files_scan">
+      <title>Réanalyse des fichiers<indexterm>
+          <primary>réanalyse des fichiers</primary>
+        </indexterm></title>
+
+      <para>Par défaut, l'option <guilabel>Réanalyse automatique</guilabel> est activée
+dans la page Éditeur des options de WinMerge. La réanalyse maintient vos
+opérations de comparaison et de fusion à jour. Sans réanalyse, WinMerge ne
+détecte pas les changements qui pourraient survenir dans les fichiers
+pendant que vous les comparez, par exemple dans un éditeur externe.</para>
+
+      <para>La réanalyse se produit lorsque vous effectuez certaines actions (comme
+fusionner une différence ou éditer un fichier) pendant une comparaison de
+fichiers. Si un fichier a été modifié, WinMerge affiche une boîte de
+dialogue vous avertissant qu'une autre application a mis à jour le fichier
+et vous demande si vous souhaitez recharger le fichier.</para>
+
+      <para>Cliquez sur <guibutton>Oui</guibutton> pour recharger le fichier avant de
+continuer, ou sur <guibutton>Non</guibutton> pour ignorer les changements et
+travailler avec la version du fichier chargée précédemment.</para>
+
+      <important>
+        <para>Si la <guilabel>Réanalyse automatique</guilabel> est désactivée, ou si vous
+soupçonnez qu'un fichier a pu changer, nous vous conseillons vivement
+d'exécuter <guimenuitem>Actualiser</guimenuitem> <emphasis>avant</emphasis>
+toute opération de fusion : cliquez sur <menuchoice>
+<guimenu>Édition</guimenu> <guimenuitem>Actualiser</guimenuitem>
+</menuchoice> ou sur le bouton <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+              <phrase>Bouton Actualiser</phrase>
+            </textobject>
+          </inlinemediaobject> de la barre d'outils, ou appuyez sur <keycap>F5</keycap>.</para>
+
+        <para>Si le résultat d'une fusion semble incorrect, cliquez sur <menuchoice>
+<guimenu>Édition</guimenu> <guimenuitem>Annuler</guimenuitem> </menuchoice>
+ou appuyez sur <keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap>
+</keycombo> pour annuler la fusion. Ensuite, réanalysez les fichiers et
+tentez à nouveau la fusion.</para>
+      </important>
+    </section>
+
+    <section id="Compare_files_merge_functions">
+      <title>Fonctions de fusion<indexterm>
+          <primary>Fonctions WinMerge</primary>
+
+          <secondary>fusion</secondary>
+        </indexterm></title>
+
+      <para>Les fonctions de fusion peuvent sélectionner implicitement des différences
+en fonction de l'emplacement du curseur ou d'une sélection de texte. Par
+exemple, si vous cliquez n'importe où dans une différence puis cliquez sur
+le bouton <guibutton>Copier à droite</guibutton> de la barre d'outils, tout
+le bloc de différence est fusionné. Cela facilite la fusion de nombreuses
+petites différences. De même, si vous sélectionnez du texte s'étendant sur
+tout ou partie de plusieurs différences, toutes les différences incluses
+sont fusionnées par une seule commande de fusion.</para>
+
+      <para>Si le résultat d'une opération de fusion n'est pas celui attendu, vous
+pouvez cliquer sur <guibutton>Annuler</guibutton> pour inverser l'opération.</para>
+
+      <para>Voici les fonctions de fusion et leurs raccourcis dans la barre d'outils et
+les menus :</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>Copier à droite<indexterm>
+              <primary>Fonction Copier à droite</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Copie une ou plusieurs différences de gauche à droite. Notez que les
+différences n'ont pas besoin d'être entièrement sélectionnées : au plus
+simple, cela signifie remplacer le texte de la différence cible par le texte
+de la différence source. Mais comme les différences peuvent aussi contenir
+des lignes vides, de nouvelles lignes peuvent être créées ou supprimées.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+                  <phrase>Bouton Copier à droite</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier à
+droite</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Droite</keycap> </keycombo> (ou <keycap>Droite</keycap> en mode
+fusion), menu contextuel dans le volet Fichier à l'intérieur d'une
+différence, et dans le volet Diff.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Copier à gauche<indexterm>
+              <primary>Fonction Copier à gauche</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Copie la différence actuelle du volet Fichier droit vers le volet
+gauche. Voir la description de <command>Copier à droite</command> pour plus
+de détails.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+                  <phrase>Bouton Copier à gauche</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier à
+gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Gauche</keycap> </keycombo> (ou <keycap>Gauche</keycap> en mode
+fusion), menu contextuel dans le volet Fichier à l'intérieur d'une
+différence, et dans le volet Diff.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Copier à droite et avancer<indexterm>
+              <primary>Fonction Copier à droite et avancer</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Fusionne la différence actuelle du volet Fichier droit vers le volet gauche,
+puis sélectionne la différence suivante (si elle existe). Équivaut à
+<command>Copier à droite</command> et <command>Différence suivante</command>
+en une seule étape.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Copier à droite et avancer</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier à
+gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>Alt</keycap> <keycap>Droite</keycap> </keycombo>, menu contextuel
+dans le volet Fichier à l'intérieur d'une différence.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Copier à gauche et avancer<indexterm>
+              <primary>Fonction Copier à gauche et avancer</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Fusionne la différence actuelle de gauche à droite, puis sélectionne la
+différence suivante (si elle existe). Équivaut à <command>Copier à
+gauche</command> et <command>Différence suivante</command> en une seule
+étape.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/copyl_adv_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Copier à gauche et avancer</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier à
+gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Ctrl</keycap>
+<keycap>Alt</keycap> <keycap>Gauche</keycap> </keycombo>, menu contextuel
+dans le volet Fichier à l'intérieur d'une différence.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Tout à droite<indexterm>
+              <primary>Fonction Tout à droite</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Copie toutes les différences du volet Fichier gauche vers le volet
+droit. Utilisez cette fonction pour synchroniser deux fichiers en une seule
+commande. De même, vous pouvez annuler toute la fusion en cliquant sur
+<inlinemediaobject>
+<imageobject> <imagedata contentdepth="11"
+fileref="screenshots/undo_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Actualiser</phrase>
+                </textobject>
+              </inlinemediaobject> Annuler ou en appuyant sur
+<keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap> </keycombo>.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Tout à droite</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier à
+gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Gauche</keycap> </keycombo>, menu contextuel dans le volet Fichier à
+l'intérieur d'une différence.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Tout à gauche<indexterm>
+              <primary>Fonction Tout à gauche</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>Copie toutes les différences du volet Fichier droit vers le volet
+gauche. Remplace effectivement le contenu du volet gauche. Voir la fonction
+similaire <command>Tout à droite</command>.</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Tout à gauche</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Fusionner</guimenu> <guimenuitem>Copier à
+gauche</guimenuitem> </menuchoice>, <keycombo> <keycap>Alt</keycap>
+<keycap>Gauche</keycap> </keycombo>, menu contextuel dans le volet Fichier à
+l'intérieur d'une différence.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Actualiser<indexterm>
+              <primary>Fonction Actualiser</primary>
+
+              <seealso>réanalyse des fichiers</seealso>
+            </indexterm></term>
+
+          <listitem>
+            <para>Réanalyse les fichiers pour mettre à jour les différences. À utiliser après
+avoir apporté des modifications aux fichiers si l'analyse automatique est
+désactivée (voir <xref linkend="Compare_files_scan" /> pour plus de
+détails).</para>
+
+            <para>Raccourcis : bouton <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+                  <phrase>Bouton Actualiser</phrase>
+                </textobject>
+              </inlinemediaobject>,
+<menuchoice> <guimenu>Affichage</guimenu>
+<guimenuitem>Actualiser</guimenuitem> </menuchoice>, <keycap>F5</keycap>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="ResolveConflictFiles">
+      <title>Résolution de fichiers de conflit<indexterm>
+          <primary>fichiers de conflit</primary>
+        </indexterm></title>
+
+      <para>Vous pouvez utiliser WinMerge pour résoudre les fichiers de conflit que
+certains systèmes de contrôle de version produisent lors de leurs opérations
+de fusion. Un fichier de conflit est créé lorsqu'une fusion rencontre des
+différences qui ne peuvent pas être résolues automatiquement. Il s'agit d'un
+fichier unique contenant le contenu incomplètement fusionné des deux
+fichiers. WinMerge sépare le fichier de conflit en fichiers distincts et
+ouvre ces fichiers dans la fenêtre de comparaison de fichiers. Vous pouvez
+ensuite utiliser les fonctions de comparaison et de fusion de WinMerge pour
+résoudre les conflits et enregistrer le fichier résultat fusionné.</para>
+
+      <orderedlist>
+        <listitem>
+          <para>Cliquez sur <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Ouvrir un
+fichier de conflit</guimenuitem> </menuchoice>, et utilisez la boîte de
+dialogue Ouvrir pour sélectionner le fichier de conflit dans votre système
+de fichiers. Le fichier de conflit s'ouvre dans la fenêtre de comparaison de
+fichiers :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>L'en-tête du fichier dans le volet gauche s'intitule <guilabel>Fichier tiers
+(Theirs)</guilabel>. Ce côté représente le fichier qui se trouve
+généralement dans le dépôt du système de contrôle de version. Ce fichier ne
+peut généralement pas être édité, c'est pourquoi WinMerge définit le volet
+gauche en lecture seule. Cela signifie que les différences ne peuvent être
+fusionnées que de ce fichier vers l'autre.</para>
+            </listitem>
+
+            <listitem>
+              <para>Le volet droit s'intitule <guilabel>Mon fichier (Mine)</guilabel>. Ce côté
+est la copie de travail du fichier. Toutes les modifications doivent être
+effectuées dans ce fichier, qui est le fichier résultat.</para>
+
+              <para>Le côté <guilabel>Mon fichier</guilabel> est marqué comme modifié après
+l'ouverture du fichier de conflit (vous remarquerez l'astérisque dans
+l'en-tête du volet). Cela vous permet d'enregistrer le fichier rapidement
+s'il ne nécessite aucune modification. Cela garantit également que vous
+n'oubliez pas de résoudre les fichiers. Si vous choisissez de ne pas
+enregistrer le fichier, le fichier de conflit d'origine n'est pas modifié.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>Utilisez toutes les fonctions normales de comparaison et de fusion décrites
+plus haut dans cette rubrique pour résoudre les conflits dans le volet Mon
+fichier.</para>
+        </listitem>
+
+        <listitem>
+          <para>Lorsque vous avez terminé, cliquez sur <keycombo> <keycap>Ctrl</keycap>
+<keycap>S</keycap> </keycombo> pour enregistrer le côté <guilabel>Mon
+fichier</guilabel> en tant que fichier résultat. Par défaut, la nouvelle
+version écrase le fichier de conflit d'origine. Alternativement, vous pouvez
+cliquer sur <menuchoice> <guimenu>Fichier</guimenu> <guimenuitem>Enregistrer
+à droite</guimenuitem> <guimenuitem>Enregistrer sous</guimenuitem>
+</menuchoice>, et choisir un nom de fichier différent.</para>
+        </listitem>
+      </orderedlist>
+
+      <para>De nombreux systèmes de contrôle de version vous permettent de configurer un
+outil de fusion externe. Si c'est le cas du vôtre, vous pourrez peut-être
+faire en sorte que votre système de contrôle de version lance WinMerge
+automatiquement lorsqu'un conflit de fusion survient.</para>
+
+      <para>Vous pouvez également ouvrir un fichier de conflit à partir de la ligne de
+commande WinMerge, qui accepte trois paramètres de nom de fichier :
+<option>Theirs</option>, <option>Mine</option>, et facultativement
+<option>Resolved</option> (si vous voulez un fichier résultat différent du
+fichier de conflit). Pour plus d'informations, voir <xref
+linkend="Command_line" />. Un chemin unique vers le fichier de conflit est
+également accepté en ligne de commande.</para>
+    </section>
+  </section>
+</article>
