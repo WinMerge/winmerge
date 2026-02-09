@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-02-03 20:52+0100\n"
+"PO-Revision-Date: 2026-02-09 19:06+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -3177,7 +3177,7 @@ msgid "Rename/move detection &keys:"
 msgstr "Umbenennungs-/Verschiebungser&kennungsschlüssel:"
 
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "Umbenennungen und Verschiebungen &zusammenführen:"
 
 msgid "File patterns:"
 msgstr "&Dateimuster:"
@@ -4566,7 +4566,7 @@ msgid " (Left and middle are identical)"
 msgstr " (Links und Mitte sind identisch)"
 
 msgid " (paths differ)"
-msgstr ""
+msgstr " (Pfade unterscheiden sich)"
 
 #, c-format
 msgid "Text files are different"
@@ -4597,10 +4597,10 @@ msgid "Detect renames and moves"
 msgstr "Umbenennungen und Verschiebungen erkennen"
 
 msgid "Merge renames"
-msgstr ""
+msgstr "Umbenennungen zusammenführen"
 
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "Umbenennungen und Verschiebungen zusammenführen"
 
 msgid "Renamed"
 msgstr "Umbenannt"
@@ -4617,10 +4617,16 @@ msgstr "(%1 Elemente)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr "%1 (%2 bestimmt): "
+msgstr "%1 (Gruppe %2): "
 
-msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgid ""
+"Some moved items have been merged.\n"
+"In Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\n"
+"Switch to Flat Mode?"
 msgstr ""
+"Einige verschobene Elemente wurden zusammengeführt.\n"
+"Im Baummodus werden diese Elemente möglicherweise an Positionen angezeigt, die nicht der tatsächlichen Ordnerstruktur entsprechen, was verwirrend sein kann.\n"
+"In den Flachmodus wechseln?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
