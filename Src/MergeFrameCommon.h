@@ -25,6 +25,7 @@ public:
 	bool IsActivated() const { return m_bActivated; }
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
+	static void ShowShellMenu(CWnd* pWnd, const String& path);
 	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, bool bExactCompareAsync = false);
 	static String GetPluginInfoString(const PackingInfo* infoUnpacker, const PrediffingInfo* infoPrediffer);
 	static String GetDiffStatusString(int curDiff, int diffCount);

@@ -28,7 +28,6 @@
 #include "paths.h"
 #include "DropHandler.h"
 #include "IDirDoc.h"
-#include "ShellContextMenu.h"
 #include "editcmd.h"
 #include "Shell.h"
 #include "SelectPluginDlg.h"
@@ -3408,25 +3407,8 @@ void CMergeEditView::OnUpdateGotoMovedLineMR(CCmdUI* pCmdUI)
 
 void CMergeEditView::OnShellMenu()
 {
-	CFrameWnd *pFrame = GetTopLevelFrame();
-	ASSERT(pFrame != nullptr);
-	BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
-	pFrame->m_bAutoMenuEnable = FALSE;
-
-	String path = GetDocument()->m_filePaths[m_nThisPane];
-	auto pContextMenu = std::make_unique<CShellContextMenu>(CShellContextMenu(0x9000, 0x9FFF));
-	pContextMenu->Initialize();
-	pContextMenu->AddItem(path);
-	pContextMenu->RequeryShellContextMenu();
-	CPoint point;
-	::GetCursorPos(&point);
-	HWND hWnd = GetSafeHwnd();
-	BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, nullptr);
-	if (nCmd)
-		pContextMenu->InvokeCommand(nCmd, hWnd);
-	pContextMenu->ReleaseShellContextMenu();
-
-	pFrame->m_bAutoMenuEnable = bAutoMenuEnableOld;
+	const String path = GetDocument()->m_filePaths[m_nThisPane];
+	CMergeFrameCommon::ShowShellMenu(this, path);
 }
 
 void CMergeEditView::OnUpdateShellMenu(CCmdUI* pCmdUI)

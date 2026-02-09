@@ -167,6 +167,8 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_IMG_OVERLAYANIMINTERVAL_200, ID_IMG_OVERLAYANIMINTERVAL_4000, OnImgOverlayAnimationInterval)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_OVERLAYANIMINTERVAL_200, ID_IMG_OVERLAYANIMINTERVAL_4000, OnUpdateImgOverlayAnimationInterval)
 	ON_COMMAND(ID_IMG_COMPARE_EXTRACTED_TEXT, OnImgCompareExtractedText)
+	ON_COMMAND(ID_FILE_SHELLMENU, OnShellMenu)
+	ON_UPDATE_COMMAND_UI(ID_FILE_SHELLMENU, OnUpdateShellMenu)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
@@ -2226,6 +2228,21 @@ void CImgMergeFrame::OnImgCompareExtractedText()
 		}
 	}
 	GetMainFrame()->ShowTextMergeDoc(m_pDirDoc, m_filePaths.GetSize(), text, desc, _T(".yaml"));
+}
+
+void CImgMergeFrame::OnShellMenu()
+{
+	const int pane = m_pImgMergeWindow->GetActivePane();
+	if (pane < 0)
+		return;
+	const String path = m_filePaths[pane];
+	CMergeFrameCommon::ShowShellMenu(CWnd::FromHandle(m_pImgMergeWindow->GetPaneHWND(pane)), path);
+}
+
+void CImgMergeFrame::OnUpdateShellMenu(CCmdUI* pCmdUI)
+{
+	const int pane = m_pImgMergeWindow->GetActivePane();
+	pCmdUI->Enable(pane < 0 ? false : !m_filePaths[pane].empty());
 }
 
 bool CImgMergeFrame::GenerateReport(const String& sFileName) const

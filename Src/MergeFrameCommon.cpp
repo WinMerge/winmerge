@@ -22,6 +22,7 @@
 #include "IAbortable.h"
 #include "IAsyncTask.h"
 #include "EditorFilePathBar.h"
+#include "ShellContextMenu.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
@@ -148,6 +149,28 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 	}
 
 	theApp.SetLastCompareResult(nResult);
+}
+
+void CMergeFrameCommon::ShowShellMenu(CWnd* pWnd, const String& path)
+{
+	CFrameWnd *pFrame = pWnd->GetTopLevelFrame();
+	ASSERT(pFrame != nullptr);
+	BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
+	pFrame->m_bAutoMenuEnable = FALSE;
+
+	auto pContextMenu = std::make_unique<CShellContextMenu>(CShellContextMenu(0x9000, 0x9FFF));
+	pContextMenu->Initialize();
+	pContextMenu->AddItem(path);
+	pContextMenu->RequeryShellContextMenu();
+	CPoint point;
+	::GetCursorPos(&point);
+	HWND hWnd = pWnd->GetSafeHwnd();
+	BOOL nCmd = TrackPopupMenu(pContextMenu->GetHMENU(), TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, 0, hWnd, nullptr);
+	if (nCmd)
+		pContextMenu->InvokeCommand(nCmd, hWnd);
+	pContextMenu->ReleaseShellContextMenu();
+
+	pFrame->m_bAutoMenuEnable = bAutoMenuEnableOld;
 }
 
 void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, bool bExactCompareAsync)

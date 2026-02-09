@@ -249,6 +249,8 @@ protected:
 	afx_msg void OnUpdateImgOverlayAnimationInterval(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
 	afx_msg void OnImgCompareExtractedText();
+	afx_msg void OnShellMenu();
+	afx_msg void OnUpdateShellMenu(CCmdUI* pCmdUI);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);

@@ -1233,6 +1233,8 @@ BEGIN
         MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
         MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
         MENUITEM "Rectangle &Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
+        MENUITEM SEPARATOR
+        MENUITEM "S&hell Menu",                 ID_FILE_SHELLMENU
     END
 END
 
