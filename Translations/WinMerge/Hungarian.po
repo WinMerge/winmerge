@@ -1375,7 +1375,7 @@ msgid "Size"
 msgstr "Méret"
 
 msgid "Existence"
-msgstr ""
+msgstr "Létezés"
 
 #, c-format
 msgid "&Load Project..."
@@ -1775,16 +1775,16 @@ msgid "Not Equal"
 msgstr "Nem egyenlő"
 
 msgid "Less Than"
-msgstr ""
+msgstr "Kevesebb, mint"
 
 msgid "Less Than or Equal to"
-msgstr ""
+msgstr "Kisebb vagy egyenlő, mint"
 
 msgid "Greater Than"
-msgstr ""
+msgstr "Nagyobb, mint"
 
 msgid "Greater Than or Equal to"
-msgstr ""
+msgstr "Nagyobb vagy egyenlő, mint"
 
 msgid "Less than 10B"
 msgstr "Kevesebb, mint 10 B"
@@ -3166,7 +3166,7 @@ msgid "Rename/move detection &keys:"
 msgstr "Átnevezési/áthelyezési érzékelési &kulcsok:"
 
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "Átnevezések és áthelyezések &egyesítése:"
 
 msgid "File patterns:"
 msgstr "Fájlfajták:"
@@ -3326,7 +3326,7 @@ msgid ""
 "New Documents (Ctrl+N)"
 msgstr ""
 "\n"
-"Új dokumentum (Ctrl+N)"
+"Új dokumentumok (Ctrl+N)"
 
 #, c-format
 msgid ""
@@ -3672,7 +3672,7 @@ msgstr ""
 "Nem sikerült törölni a szűrőfájlt:\n"
 "%1\n"
 "\n"
-"Lehet, hogy a fájl írásvédett?"
+"Lehet, hogy a fájl írásvédett."
 
 #, c-format
 msgid "Locate Filter File to Install"
@@ -3882,10 +3882,7 @@ msgid "The file\n%1\nis not a conflict file."
 msgstr "A fájl\n%1\nnem egy konfliktus fájl."
 
 msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
-msgstr ""
-"Nagyon nagy fájlok összehasonlítására készülsz.\n"
-"A fájlok tartalmának megjelenítése nagyon sok memóriát igényel.\n"
-"Csak az összehasonlítás eredményét szeretnéd megjeleníteni, a fájlok tartalmát nem?\n"
+msgstr "Nagy fájlok összehasonlítása sok memóriát igényel.\nCsak az összehasonlítás eredményét szeretnéd megjeleníteni, (a fájlok tartalmát nem)?\n"
 "\n"
 
 #, c-format
@@ -3928,12 +3925,7 @@ msgstr ""
 
 #, c-format
 msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
-msgstr ""
-"A(z) %2 bővítmény nem tudja becsomagolni a bal fájlban végzett módosításokat itt: %1.\n"
-"\n"
-"Az eredeti fájl nem változik.\n"
-"\n"
-"Elmented a be nem csomagolt verziót egy másik fájlba?"
+msgstr "A(z) %2 bővítmény nem tudja becsomagolni a bal fájlban végzett módosításokat itt: %1.\n\nAz eredeti fájl nem változott. Elmented a be nem csomagolt verziót?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
@@ -4506,7 +4498,7 @@ msgid " (Left and middle are identical)"
 msgstr " (Bal és középső egyforma)"
 
 msgid " (paths differ)"
-msgstr ""
+msgstr " (utak különbözősége)"
 
 #, c-format
 msgid "Text files are different"
@@ -4520,7 +4512,7 @@ msgstr "A képfájlok különböznek"
 
 #, c-format
 msgid "Files are different (expr: %1)"
-msgstr ""
+msgstr "A fájlok eltérőek (kifejezés: %1)"
 
 #, c-format
 msgid "Group%d"
@@ -4537,10 +4529,10 @@ msgid "Detect renames and moves"
 msgstr "Átnevezések és áthelyezések észlelése"
 
 msgid "Merge renames"
-msgstr ""
+msgstr "Átnevezések egyesítése"
 
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "Átnevezések és áthelyezések egyesítése"
 
 msgid "Renamed"
 msgstr "Átnevezve"
@@ -4560,7 +4552,7 @@ msgid "%1 (set %2): "
 msgstr "%1 (készlet %2)"
 
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
-msgstr ""
+msgstr "Néhány áthelyezett elem egyesítésre került.\nFa nézetben ezek az elemek olyan pozíciókban jelenhetnek meg, amelyek nem tükrözik a tényleges mappastruktúrát, ami zavaró lehet.\nVáltás sík nézetre?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -5579,7 +5571,7 @@ msgstr "Szűrő alkalmazva"
 
 #, c-format
 msgid "Compare %1"
-msgstr ""
+msgstr "Összehasonlítás %1"
 
 #, c-format
 msgid "Clipboard at %s"
