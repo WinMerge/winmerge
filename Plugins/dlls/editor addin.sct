@@ -184,37 +184,40 @@ function ParseArguments(args) {
   var token = "";
   var argsLen = args.length;
   var inQuotes = false;
+  var hadQuotes = false;
+
   for (var i = 0; i < argsLen; i++) {
     var ch = args.charAt(i);
     if (!inQuotes) {
       if (ch === " " || ch === "\t") {
-        if (token.length > 0) {
+        if (token.length > 0 || hadQuotes) {
           ary.push(token);
           token = "";
+          hadQuotes = false;
         }
       } else if (ch === "\"") {
         inQuotes = true;
+        hadQuotes = true;
       } else {
         token += ch;
       }
     } else {
       if (ch === "\"") {
-        if (i + 1 < argsLen) {
-          if (args.charAt(i) === "\"") {
-            token += ch;
-          }
+        if (i + 1 < argsLen && args.charAt(i + 1) === "\"") {
+          token += ch;
+          i++;
+        } else {
+          inQuotes = false;
         }
-        inQuotes = false;
       } else {
         token += ch;
       }
     }
   }
-  if (token.length > 0) {
+  if (token.length > 0 || hadQuotes) {
     ary.push(token);
-    token = "";
   }
-  return ary; 
+  return ary;
 }
 
 function ParseRanges(rangeText) {

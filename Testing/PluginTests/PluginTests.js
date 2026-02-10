@@ -454,6 +454,70 @@ function EditorAddinTest() {
   assertEquals("aaa\r\nbbb", p.Trim(" aaa  \r\n  bbb "));
   assertEquals("aaa\r\nbbb\r\n", p.Trim(" aaa  \r\n  bbb \r\n"));
 
+  // Test: Replace with double quotes (escaped as "")
+  setTestName("Replace_DoubleQuotes");
+  p.PluginArguments = '"""abc""" """def"""';
+  assertEquals("", p.Replace(""));
+  assertEquals('"def" test "def"', p.Replace('"abc" test "abc"'));
+  
+  // Test: Replace pattern containing double quotes
+  p.PluginArguments = '"a""b""c" XXX';
+  assertEquals('XXX test XXX', p.Replace('a"b"c test a"b"c'));
+  
+  // Test: Replace with quotes at boundaries
+  p.PluginArguments = '""test"" ""result""';
+  assertEquals('"result"', p.Replace('"test"'));
+  assertEquals('"result" and "result"', p.Replace('"test" and "test"'));
+  
+  // Test: Replace with escaped quotes using regex
+  p.PluginArguments = '-e """(\\w+)""" [\\1]';
+  assertEquals('[test] and [data]', p.Replace('"test" and "data"'));
+  
+  // Test: Replace to empty string (remove pattern)
+  setTestName("Replace_EmptyString");
+  p.PluginArguments = 'abc ""';
+  assertEquals("", p.Replace(""));
+  assertEquals(" test ", p.Replace("abc test abc"));
+  assertEquals("", p.Replace("abc"));
+  assertEquals("", p.Replace("abcabcabc"));
+  
+  // Test: Remove pattern with surrounding text
+  p.PluginArguments = 'remove ""';
+  assertEquals("test  test", p.Replace("test remove test"));
+  assertEquals("", p.Replace("remove"));
+  assertEquals("before  after", p.Replace("before remove after"));
+  
+  // Test: Remove using regex - whitespace
+  p.PluginArguments = '-e \\s+ ""';
+  assertEquals("testdata", p.Replace("test data"));
+  assertEquals("abc123def", p.Replace("abc   123   def"));
+  assertEquals("", p.Replace("   "));
+  
+  // Test: Remove using regex - specific words
+  p.PluginArguments = '-e \\b(TODO|FIXME):\\s* ""';
+  assertEquals("This is a comment", p.Replace("TODO: This is a comment"));
+  assertEquals("Fix this bug", p.Replace("FIXME: Fix this bug"));
+  assertEquals("Normal text", p.Replace("Normal text"));
+  
+  // Test: Remove digits
+  p.PluginArguments = '-e \\d+ ""';
+  assertEquals("abc def", p.Replace("abc123 def456"));
+  assertEquals("", p.Replace("12345"));
+  
+  // Test: Complex - remove quotes and their content
+  p.PluginArguments = '-e """[^""]*""" ""';
+  assertEquals(" and ", p.Replace('"test" and "data"'));
+  
+  // Test: Replace empty string to non-empty (insert)
+  p.PluginArguments = '"" INSERT';
+  // Note: This would insert at beginning, behavior depends on implementation
+  
+  // Test: Case insensitive with quotes and empty replacement
+  p.PluginArguments = '-e -i """TEST""" ""';
+  assertEquals(" data", p.Replace('"test" data'));
+  assertEquals(" data", p.Replace('"TEST" data'));
+
+  // Cleanup
   p.PluginOnEvent(1, MergeApp);
 }
 

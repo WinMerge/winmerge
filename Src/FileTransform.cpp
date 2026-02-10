@@ -245,7 +245,11 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 				newarg += *p;
 			}
 		}
-		if (newarg.find_first_of(_T(" \"")) != String::npos)
+		if (newarg.empty())
+		{
+			newstr += _T("\"\"");
+		}
+		else if (newarg.find_first_of(_T(" \t\"")) != String::npos)
 		{
 			strutils::replace(newarg, _T("\""), _T("\"\""));
 			newstr += _T("\"") + newarg + _T("\"");
