@@ -5214,6 +5214,9 @@ msgstr ""
 msgid "Prettify YAML"
 msgstr ""
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr ""
 
@@ -5236,6 +5239,9 @@ msgid "Query YAML Data..."
 msgstr ""
 
 msgid "Validate HTML"
+msgstr ""
+
+msgid "Validate PO"
 msgstr ""
 
 msgid "Disassemble JVM Bytecode"
@@ -5336,6 +5342,9 @@ msgid ""
 "Arguments: yq filter/command line options."
 msgstr ""
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr ""
 
@@ -5347,12 +5356,12 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 
 msgid ""
@@ -5368,6 +5377,9 @@ msgstr ""
 msgid ""
 "HTML Validator (tidy-html5).\r\n"
 "Arguments: tidy command line options."
+msgstr ""
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
 msgstr ""
 
 msgid ""

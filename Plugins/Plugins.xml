@@ -71,9 +71,21 @@
     <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\yq\yq.bat" ${*} &gt; "${DST_FILE}"</command>
     </unpack-file>
   </plugin>
+  <plugin name="PrettifyPO">
+    <event value="FILE_PACK_UNPACK"/>
+    <description value="PO Prettier (gettext msgcat).&#xD;&#xA;Arguments: msgcat command line options."/>
+    <file-filters value="\.po$;\.pot$"/>
+    <is-automatic value="false"/>
+    <unpacked-file-extension value=".po"/>
+    <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify PO;GenerateEditorScript"/>
+    <arguments value="--no-wrap --force-po"/>
+    <unpack-file>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\gettext\msgcat.bat" ${*} - --output-file="${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
   <plugin name="QueryCSV">
     <event value="FILE_PACK_UNPACK" />
-    <description value="CSV Querier (q).&#xD;&#xA;Arguments: SQL statement/q comannd line options." />
+    <description value="CSV Querier (q).&#xD;&#xA;Arguments: SQL statement/q command line options." />
     <file-filters value="\.csv$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".csv" />
@@ -85,7 +97,7 @@
   </plugin>
   <plugin name="QueryTSV">
     <event value="FILE_PACK_UNPACK" />
-    <description value="TSV Querier (q).&#xD;&#xA;Arguments: SQL statement/q comannd line options." />
+    <description value="TSV Querier (q).&#xD;&#xA;Arguments: SQL statement/q command line options." />
     <file-filters value="\.tsv$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".tsv" />
@@ -129,6 +141,18 @@
     <arguments value="-e" />
     <unpack-file>
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} 2> "${DST_FILE}" | exit 0</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="ValidatePO">
+    <event value="FILE_PACK_UNPACK"/>
+    <description value="PO Validator (gettext msgfmt).&#xD;&#xA;Arguments: msgfmt command line options."/>
+    <file-filters value="\.po$;\.pot$"/>
+    <is-automatic value="false"/>
+    <unpacked-file-extension value=".po"/>
+    <extended-properties value="ProcessType=Validation;MenuCaption=Validate PO" />
+    <arguments value="--check --statistics"/>
+    <unpack-file>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\gettext\msgfmt.bat" ${*} - 2> ${DST_FILE}</command>
     </unpack-file>
   </plugin>
   <plugin name="PreviewGraphviz">

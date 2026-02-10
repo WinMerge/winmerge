@@ -5397,6 +5397,9 @@ msgstr "அழகுபடுத்து XML"
 msgid "Prettify YAML"
 msgstr "அழகுபடுத்து YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "முன்னோட்டம் வரைகலைவிச்"
 
@@ -5420,6 +5423,9 @@ msgstr "YAML தரவை வினவவும்..."
 
 msgid "Validate HTML"
 msgstr "உஉகுமொ ஐ சரிபார்"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "சேவிஎம் பைட்குறியீட்டை பிரித்தெடு"
@@ -5569,6 +5575,9 @@ msgstr ""
 "YAML ப்ரீட்டியர் (yq).\r\n"
 "வாதங்கள்: yq வடிகட்டி/கட்டளை வரி விருப்பங்கள்."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5592,14 +5601,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "காபிம வினாவி (q).\r\n"
 "வாதங்கள்: கவிமொ அறிக்கை/q கட்டளை வரி விருப்பங்கள்."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "தாபிம வினாவி (q).\r\n"
 "வாதங்கள்: கவிமொ அறிக்கை/q கட்டளை வரி விருப்பங்கள்."
@@ -5624,6 +5633,9 @@ msgid ""
 msgstr ""
 "உஉகுமொ சரிபார்ப்பான் (tidy-html5).\r\n"
 "வாதங்கள்: நேர்த்தியான கட்டளை வரி விருப்பங்கள்."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

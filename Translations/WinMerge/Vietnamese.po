@@ -5370,6 +5370,9 @@ msgstr "Làm đẹp mã XML"
 msgid "Prettify YAML"
 msgstr "Làm đẹp mã YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Xem trước Graphviz"
 
@@ -5393,6 +5396,9 @@ msgstr "Truy vấn dữ liệu YAML..."
 
 msgid "Validate HTML"
 msgstr "Hợp lệ hoá HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Tách rời mã byte JVM"
@@ -5542,6 +5548,9 @@ msgstr ""
 "Làm đẹp mã YAML (yq).\r\n"
 "Đối số: các tuỳ chọn dòng lệnh/bộ lọc của yq."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5565,14 +5574,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Trình truy vấn CSV (q).\r\n"
 "Đối số: câu lệnh SQL/tuỳ chọn dòng lệnh của q."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Trình truy vấn TSV (q).\r\n"
 "Đối số: câu lệnh SQL/tuỳ chọn dòng lệnh của q."
@@ -5597,6 +5606,9 @@ msgid ""
 msgstr ""
 "Trình hợp lệ hoá HTML (tidy-html5).\r\n"
 "Đối số: các tuỳ chọn dòng lệnh của tidy."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

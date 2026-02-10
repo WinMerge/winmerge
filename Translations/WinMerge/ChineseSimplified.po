@@ -5353,6 +5353,9 @@ msgstr "格式化 XML"
 msgid "Prettify YAML"
 msgstr "格式化 YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "预览 Graphviz"
 
@@ -5376,6 +5379,9 @@ msgstr "查询 YAML 数据..."
 
 msgid "Validate HTML"
 msgstr "验证 HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "反汇编 JVM 字节码"
@@ -5525,6 +5531,9 @@ msgstr ""
 "用 jq 命令来美化 YAML。\r\n"
 "参数： 发送给 jq 的过滤器或命令选项。"
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5548,14 +5557,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "用 q 命令查询 CSV。\r\n"
 "参数： 发送给 q 命令的 SQL 语句或命令选项。"
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "用 q 命令查询 TSV。\r\n"
 "参数： 发送给 q 命令的 SQL 语句或命令选项。"
@@ -5580,6 +5589,9 @@ msgid ""
 msgstr ""
 "用 tidy-html5 来验证 HTML。 \r\n"
 "参数： 发送给 tidy 的命令选项。"
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

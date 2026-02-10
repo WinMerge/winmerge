@@ -5345,6 +5345,9 @@ msgstr "Форматувати XML"
 msgid "Prettify YAML"
 msgstr "Форматувати YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Попередній перегляд Graphviz"
 
@@ -5368,6 +5371,9 @@ msgstr "Запит даних YAML..."
 
 msgid "Validate HTML"
 msgstr "Перевірити HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Дизасемблювати JVM-байткод"
@@ -5517,6 +5523,9 @@ msgstr ""
 "Форматувальник YAML (yq).\r\n"
 "Аргументи: yq фільтр/параметри командного рядка."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5540,14 +5549,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Запитувач CSV (q).\r\n"
 "Аргументи: SQL-запит/параметри командного рядка q."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Запитувач TSV (q).\r\n"
 "Аргументи: SQL-вираз/параметри командного рядка q."
@@ -5572,6 +5581,9 @@ msgid ""
 msgstr ""
 "Валідатор HTML (tidy-html5).\r\n"
 "Аргументи: параметри командного рядка tidy."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

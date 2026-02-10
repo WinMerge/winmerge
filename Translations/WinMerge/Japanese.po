@@ -5354,6 +5354,9 @@ msgstr "XML整形"
 msgid "Prettify YAML"
 msgstr "YAML 整形"
 
+msgid "Prettify PO"
+msgstr "PO 整形"
+
 msgid "Preview Graphviz"
 msgstr "Graphvizプレビュー"
 
@@ -5377,6 +5380,9 @@ msgstr "YAML データの問い合わせ..."
 
 msgid "Validate HTML"
 msgstr "HTML 検証"
+
+msgid "Validate PO"
+msgstr "PO 検証"
 
 msgid "Disassemble JVM Bytecode"
 msgstr "JVM バイトコード逆アセンブル"
@@ -5526,6 +5532,10 @@ msgstr ""
 "yq コマンドを使用して YAML ファイルを整形します。\r\n"
 "引数: フィルターまたは yq コマンドに渡すコマンドライン オプション。"
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr "gettext msgcat コマンドを使用して PO ファイルを整形します。\r\n"
+"引数: msgcat コマンドに渡すコマンドライン オプション。"
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5549,14 +5559,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "q コマンドを使用して CSV ファイルからデータを抽出します。\r\n"
 "引数: SQL文または q コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "q コマンドを使用して TSV ファイルからデータを抽出します。\r\n"
 "引数: SQL文または q コマンドに渡すコマンドライン オプション。"
@@ -5581,6 +5591,10 @@ msgid ""
 msgstr ""
 "tidy-html5 を使用して HTML ファイルを検証します。\r\n"
 "引数: tidy コマンドに渡すコマンドライン オプション。"
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr "gettext msgfmt コマンドを使用して PO ファイルを検証します。\r\n"
+"引数: msgfmt コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

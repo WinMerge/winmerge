@@ -5378,6 +5378,9 @@ msgstr "XML sadeleştirme"
 msgid "Prettify YAML"
 msgstr "YAML sadeleştirme"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Graphviz ön izlemesi"
 
@@ -5401,6 +5404,9 @@ msgstr "YAML verilerini sorgula..."
 
 msgid "Validate HTML"
 msgstr "HTML kodunu doğrula"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "JVM bayt kodunu çözümle"
@@ -5550,6 +5556,9 @@ msgstr ""
 "YAML iyileştirici: yq komutu. \r\n"
 "Parametreler: yq komutuna aktarılacak süzgeç ya da komut satırı parametreleri."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5573,14 +5582,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV sorgulayıcı: q komutu. \r\n"
 "Parametreler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "TSV sorgulayıcı: q komutu. \r\n"
 "Parametreler: q komutuna aktarılacak SQL ifadesi ya da komut satırı parametreleri."
@@ -5605,6 +5614,9 @@ msgid ""
 msgstr ""
 "HTML doğrulayıcı: tidy-html5. \r\n"
 "Parametreler: Tidy komutuna aktarılacak komut satırı parametreleri."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

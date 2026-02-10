@@ -5365,6 +5365,9 @@ msgstr "Imbellisce XML"
 msgid "Prettify YAML"
 msgstr "Imbellisce YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Fighjulata Graphviz"
 
@@ -5388,6 +5391,9 @@ msgstr "Interrugazione di dati YAML…"
 
 msgid "Validate HTML"
 msgstr "Cunvalidà HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Disassemblà JVM Bytecode"
@@ -5538,6 +5544,9 @@ msgstr ""
 "Imbellimentu YAML (yq).\r\n"
 "Parametri : Ozzioni di linea di a cumanda « yq »."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5561,14 +5570,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Cheritore CSV (q).\r\n"
 "Parametri : Ordine SQL/ozzioni di linea di a cumanda « q »."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Cheritore TSV (q).\r\n"
 "Parametri : Ordine SQL/ozzioni di linea di a cumanda « q »."
@@ -5593,6 +5602,9 @@ msgid ""
 msgstr ""
 "Cunvalidazione HTML (tidy-html5).\r\n"
 "Parametri : Ozzioni di linea di a cumanda « tidy »."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

@@ -6081,6 +6081,9 @@ msgstr "XML verschönern"
 msgid "Prettify YAML"
 msgstr "YAML verschönern"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Graphviz-Vorschau"
 
@@ -6104,6 +6107,9 @@ msgstr "YAML-Daten abfragen..."
 
 msgid "Validate HTML"
 msgstr "HTML überprüfen"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "JVM-Bytecode disassemblieren"
@@ -6253,6 +6259,9 @@ msgstr ""
 "YAML-Prettier mit yq-Befehl. \r\n"
 "Argumente: Filter- oder Befehlszeilenoptionen, die an den Befehl yq übergeben werden."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -6276,14 +6285,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV-Querier mit q-Befehl. \r\n"
 "Argumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "TSV-Querier mit q-Befehl. \r\n"
 "Argumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
@@ -6308,6 +6317,9 @@ msgid ""
 msgstr ""
 "HTML-Validator mit Tidy-HTML5. \r\n"
 "Argumente: Befehlszeilenoptionen, die an den Befehl tidy übergeben werden."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

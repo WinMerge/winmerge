@@ -5242,6 +5242,9 @@ msgstr "Kaunistele XML"
 msgid "Prettify YAML"
 msgstr "Kaunistele YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr ""
 
@@ -5265,6 +5268,9 @@ msgstr "YAML-tietojen kysely..."
 
 msgid "Validate HTML"
 msgstr "Validoi HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Pura JVM:n bittikoodi"
@@ -5405,6 +5411,9 @@ msgstr ""
 "Argumentit: Suodattimen tai komentorivin vaihtoehdot, jotka välitetään yq-"
 "komennolle."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr ""
 
@@ -5416,7 +5425,7 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV Querier q-komennolla\r\n"
 "Argumentit: SQL-lause tai komentorivin asetukset, jotka välitetään q-"
@@ -5424,7 +5433,7 @@ msgstr ""
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "TSV Querier q-komennolla\r\n"
 "Argumentit: SQL-lause tai komentorivin asetukset, jotka välitetään q-"
@@ -5452,6 +5461,9 @@ msgid ""
 msgstr ""
 "HTML-validoija tidy-html5:llä\r\n"
 "Argumentit: Komentorivin vaihtoehdot, jotka välitetään tidy-komennolle."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

@@ -5220,6 +5220,9 @@ msgstr "Skrášliť XML"
 msgid "Prettify YAML"
 msgstr "Skrášliť YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr ""
 
@@ -5243,6 +5246,9 @@ msgstr "Vyhľadávanie údajov YAML..."
 
 msgid "Validate HTML"
 msgstr "Overenie HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Rozloženie bytového JVM kódu"
@@ -5384,6 +5390,9 @@ msgstr ""
 "YAML skrášlené príkazom yq\r\n"
 "Argumenty: Možnosti filtra alebo príkazového riadka odovzdané príkazu yq."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr ""
 
@@ -5395,14 +5404,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV dopyt príkazom q\r\n"
 "Argumenty: Príkaz SQL alebo možnosti príkazového riadka odovzdané príkazu q."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "TSV dopyt príkazom q\r\n"
 "Argumenty: SQL príkaz alebo možnosti príkazového riadka odovzdané príkazu q."
@@ -5427,6 +5436,9 @@ msgid ""
 msgstr ""
 "Validátor HTML s tidy-html5\r\n"
 "Argumenty: Možnosti príkazového riadku odovzdané príkazu tidy."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"
