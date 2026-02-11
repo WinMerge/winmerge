@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include "ImageCompare.h"
+#include "DiffContext.h"
 #include "DiffItem.h"
 #include "PathContext.h"
 #include "WinIMergeLib.h"
@@ -14,8 +15,9 @@
 namespace CompareEngines
 {
 
-ImageCompare::ImageCompare()
-	: m_colorDistanceThreshold(0.0)
+ImageCompare::ImageCompare(CDiffContext& ctxt)
+	: m_ctxt(ctxt)
+	, m_colorDistanceThreshold(ctxt.m_dColorDistanceThreshold)
 	, m_pImgMergeWindow(nullptr)
 	, m_hModule(nullptr)
 {
@@ -75,8 +77,11 @@ int ImageCompare::compare_files(const String& file1, const String& file2) const
  * @param [in] di Diffitem info.
  * @return DIFFCODE
  */
-int ImageCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) const
+int ImageCompare::CompareFiles(const DIFFITEM &di) const
 {
+	PathContext files;
+	m_ctxt.GetComparePaths(di, files);
+
 	switch (files.GetSize())
 	{
 	case 2:

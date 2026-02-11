@@ -431,44 +431,32 @@ exitPrepAndCompare:
 	else if (nCompMethod == CMP_BINARY_CONTENT)
 	{
 		if (m_pBinaryCompare == nullptr)
-			m_pBinaryCompare.reset(new BinaryCompare());
-		m_pBinaryCompare->SetAbortable(m_pCtxt->GetAbortable());
-		PathContext tFiles;
-		m_pCtxt->GetComparePaths(di, tFiles);
-		code = m_pBinaryCompare->CompareFiles(tFiles, di);
+			m_pBinaryCompare.reset(new BinaryCompare(*m_pCtxt));
+		code = m_pBinaryCompare->CompareFiles(di);
 		if (DIFFCODE::isResultError(code))
 			LogError(di);
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
 	{
 		if (m_pTimeSizeCompare == nullptr)
-			m_pTimeSizeCompare.reset(new TimeSizeCompare());
-
-		m_pTimeSizeCompare->SetAdditionalOptions(m_pCtxt->m_bIgnoreSmallTimeDiff);
-		code = m_pTimeSizeCompare->CompareFiles(nCompMethod, m_pCtxt->GetCompareDirs(), di);
+			m_pTimeSizeCompare.reset(new TimeSizeCompare(*m_pCtxt));
+		code = m_pTimeSizeCompare->CompareFiles(di);
 		if (DIFFCODE::isResultError(code))
 			LogError(di);
 	}
 	else if (nCompMethod == CMP_EXISTENCE)
 	{
 		if (m_pExistenceCompare == nullptr)
-			m_pExistenceCompare.reset(new ExistenceCompare());
-
-		code = m_pExistenceCompare->CompareFiles(nCompMethod, m_pCtxt->GetCompareDirs(), di);
+			m_pExistenceCompare.reset(new ExistenceCompare(*m_pCtxt));
+		code = m_pExistenceCompare->CompareFiles(di);
 		if (DIFFCODE::isResultError(code))
 			LogError(di);
 	}
 	else if (nCompMethod == CMP_IMAGE_CONTENT)
 	{
 		if (!m_pImageCompare)
-		{
-			m_pImageCompare.reset(new ImageCompare());
-			m_pImageCompare->SetColorDistanceThreshold(m_pCtxt->m_dColorDistanceThreshold);
-		}
-
-		PathContext tFiles;
-		m_pCtxt->GetComparePaths(di, tFiles);
-		code = DIFFCODE::IMAGE | m_pImageCompare->CompareFiles(tFiles, di);
+			m_pImageCompare.reset(new ImageCompare(*m_pCtxt));
+		code = DIFFCODE::IMAGE | m_pImageCompare->CompareFiles(di);
 		if (DIFFCODE::isResultError(code))
 			LogError(di);
 	}

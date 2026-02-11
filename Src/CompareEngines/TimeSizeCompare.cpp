@@ -7,6 +7,7 @@
 #include "pch.h"
 #include "TimeSizeCompare.h"
 #include <Poco/Timestamp.h>
+#include "DiffContext.h"
 #include "DiffItem.h"
 #include "DiffWrapper.h"
 
@@ -15,29 +16,21 @@ using Poco::Timestamp;
 namespace CompareEngines
 {
 
-TimeSizeCompare::TimeSizeCompare()
-		: m_ignoreSmallDiff(false)
+TimeSizeCompare::TimeSizeCompare(CDiffContext& ctxt)
+	: m_nfiles(ctxt.GetCompareDirs())
+	, m_compMethod(ctxt.GetCompareMethod())
+	, m_ignoreSmallDiff(ctxt.m_bIgnoreSmallTimeDiff)
 {
 }
 
 TimeSizeCompare::~TimeSizeCompare() = default;
 
 /**
- * @brief Set compare-type specific options.
- * @param [in] ignoreSmallDiff Ignore small time differences?
- */
-void TimeSizeCompare::SetAdditionalOptions(bool ignoreSmallDiff)
-{
-	m_ignoreSmallDiff = ignoreSmallDiff;
-}
-
-/**
  * @brief Compare two specified files, byte-by-byte
- * @param [in] compMethod Compare method used.
  * @param [in] di Diffitem info.
  * @return DIFFCODE
  */
-int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di) const
+int TimeSizeCompare::CompareFiles(const DIFFITEM &di) const
 {
 	unsigned code = DIFFCODE::SAME;
 	int64_t nTimeDiff = 0;
@@ -45,16 +38,16 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 	int64_t nTimeDiff02 = 0;
 	auto roundToSeconds = [](Poco::Timestamp tim) -> int64_t
 		{
-			const auto unit = Poco::Timestamp::resolution();
+			constexpr auto unit = Poco::Timestamp::resolution();
 			return (tim.epochMicroseconds() / unit) * unit;
 		};
-	if ((compMethod == CMP_DATE) || (compMethod == CMP_DATE_SIZE))
+	if ((m_compMethod == CMP_DATE) || (m_compMethod == CMP_DATE_SIZE))
 	{
 		// Compare by modified date
 		// Check that we have both filetimes
 		nTimeDiff   = roundToSeconds(di.diffFileInfo[0].mtime) - roundToSeconds(di.diffFileInfo[1].mtime);
 		if (nTimeDiff   < 0) nTimeDiff   *= -1;
-		if (nfiles > 2)
+		if (m_nfiles > 2)
 		{
 			nTimeDiff12 = roundToSeconds(di.diffFileInfo[1].mtime) - roundToSeconds(di.diffFileInfo[2].mtime);
 			nTimeDiff02 = roundToSeconds(di.diffFileInfo[0].mtime) - roundToSeconds(di.diffFileInfo[2].mtime);
@@ -74,7 +67,7 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 		else
 			code = DIFFCODE::DIFF;
 
-		for (int i = 0; i < nfiles; ++i)
+		for (int i = 0; i < m_nfiles; ++i)
 		{
 			if (di.diffFileInfo[i].mtime == Poco::Timestamp::TIMEVAL_MIN && di.diffcode.exists(i))
 				code = DIFFCODE::CMPERR;
@@ -82,23 +75,23 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 	}
 	// This is actual CMP_SIZE method..
 	// If file sizes differ mark them different
-	if ((compMethod == CMP_DATE_SIZE) || (compMethod == CMP_SIZE))
+	if ((m_compMethod == CMP_DATE_SIZE) || (m_compMethod == CMP_SIZE))
 	{
 		if (di.diffFileInfo[0].size != di.diffFileInfo[1].size || 
-		    (nfiles > 2 && di.diffFileInfo[1].size != di.diffFileInfo[2].size))
+		    (m_nfiles > 2 && di.diffFileInfo[1].size != di.diffFileInfo[2].size))
 		{
 			code = DIFFCODE::DIFF;
 		}
 
-		for (int i = 0; i < nfiles; ++i)
+		for (int i = 0; i < m_nfiles; ++i)
 		{
 			if (di.diffFileInfo[i].size == DirItem::FILE_SIZE_NONE && di.diffcode.exists(i))
 				code = DIFFCODE::CMPERR;
 		}
 	}
-	if (nfiles > 2 && (code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
+	if (m_nfiles > 2 && (code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
 	{
-		if (compMethod == CMP_DATE)
+		if (m_compMethod == CMP_DATE)
 		{
 			if (nTimeDiff12 <= 0)
 				code |= DIFFCODE::DIFF1STONLY;
@@ -107,7 +100,7 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 			else if (nTimeDiff <= 0)
 				code |= DIFFCODE::DIFF3RDONLY;
 		}
-		else if (compMethod == CMP_DATE_SIZE)
+		else if (m_compMethod == CMP_DATE_SIZE)
 		{
 			if (nTimeDiff12 <= 0 && di.diffFileInfo[1].size == di.diffFileInfo[2].size)
 				code |= DIFFCODE::DIFF1STONLY;
@@ -116,7 +109,7 @@ int TimeSizeCompare::CompareFiles(int compMethod, int nfiles, const DIFFITEM &di
 			else if (nTimeDiff <= 0 && di.diffFileInfo[0].size == di.diffFileInfo[1].size)
 				code |= DIFFCODE::DIFF3RDONLY;
 		}
-		else if (compMethod == CMP_SIZE)
+		else if (m_compMethod == CMP_SIZE)
 		{
 			if (di.diffFileInfo[1].size == di.diffFileInfo[2].size)
 				code |= DIFFCODE::DIFF1STONLY;

@@ -5,6 +5,7 @@
  */
 #pragma once
 
+class CDiffContext;
 class DIFFITEM;
 
 namespace CompareEngines
@@ -16,9 +17,11 @@ namespace CompareEngines
 class ExistenceCompare
 {
 public:
-	ExistenceCompare();
+	ExistenceCompare(CDiffContext& ctxt);
 	~ExistenceCompare();
-	int CompareFiles(int compMethod, int nfiles, const DIFFITEM &di) const;
+	int CompareFiles(const DIFFITEM &di) const;
+private:
+	int m_nfiles;
 };
 
 } // namespace CompareEngines

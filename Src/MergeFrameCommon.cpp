@@ -10,6 +10,8 @@
 #include "OptionsMgr.h"
 #include "paths.h"
 #include "Merge.h"
+#include "DiffContext.h"
+#include "DiffWrapper.h"
 #include "FileTransform.h"
 #include "FileLocation.h"
 #include "Logger.h"
@@ -62,17 +64,21 @@ public:
 	{
 		m_pCancelFlag = &cancelFlag;
 		DIFFITEM di;
+		PathContext paths;
 		for (int i = 0; i < m_paths.GetSize(); ++i)
 		{
-			di.diffFileInfo[i].SetFile(m_paths[i]);
+			paths.SetPath(i, paths::GetParentPath(m_paths[i]));
+			di.diffFileInfo[i].path = _T("");
+			di.diffFileInfo[i].filename = paths::FindFileName(m_paths[i]);
 			if (di.diffFileInfo[i].Update(m_paths[i]))
 				di.diffcode.setSideFlag(i);
 		}
 		if (m_paths.GetSize() == 3)
 			di.diffcode.diffcode |= DIFFCODE::THREEWAY;
-		CompareEngines::BinaryCompare binaryCompare;
-		binaryCompare.SetAbortable(this);
-		di.diffcode.diffcode |= binaryCompare.CompareFiles(m_paths, di);
+		CDiffContext ctxt(paths, CMP_BINARY_CONTENT);
+		ctxt.SetAbortable(this);
+		CompareEngines::BinaryCompare binaryCompare(ctxt);
+		di.diffcode.diffcode |= binaryCompare.CompareFiles(di);
 		if (di.diffcode.isResultError())
 			return _("Selected files are identical (with current settings).\r\nBut binary comparison failed.");
 		return di.diffcode.isResultSame()

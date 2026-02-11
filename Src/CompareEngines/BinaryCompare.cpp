@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include "BinaryCompare.h"
+#include "DiffContext.h"
 #include "DiffItem.h"
 #include "PathContext.h"
 #include "IAbortable.h"
@@ -14,22 +15,9 @@
 namespace CompareEngines
 {
 
-BinaryCompare::BinaryCompare() : m_piAbortable(nullptr)
-{
-}
-
 BinaryCompare::~BinaryCompare() = default;
 
-/**
- * @brief Set Abortable-interface.
- * @param [in] piAbortable Pointer to abortable interface.
- */
-void BinaryCompare::SetAbortable(const IAbortable * piAbortable)
-{
-	m_piAbortable = const_cast<IAbortable*>(piAbortable);
-}
-
-static int compare_files(const String& file1, const String& file2, IAbortable *piAbortable)
+static int compare_files(const String& file1, const String& file2, const IAbortable *piAbortable)
 {
 	const size_t bufsize = 1024 * 256;
 	int code;
@@ -84,8 +72,11 @@ static int compare_files(const String& file1, const String& file2, IAbortable *p
  * @param [in] di Diffitem info.
  * @return DIFFCODE
  */
-int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) const
+int BinaryCompare::CompareFiles(const DIFFITEM &di) const
 {
+	PathContext files;
+	m_ctxt.GetComparePaths(di, files);
+
 	auto cmp = [&](int p1, int p2) -> unsigned
 	{
 		if (di.diffFileInfo[p1].size == DirItem::FILE_SIZE_NONE &&
@@ -97,7 +88,7 @@ int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) co
 			(di.diffFileInfo[p1].size != di.diffFileInfo[p2].size &&
 			 di.diffFileInfo[p1].size != 0 && di.diffFileInfo[p2].size != 0))
 			return DIFFCODE::DIFF;
-		return compare_files(files[p1], files[p2], m_piAbortable);
+		return compare_files(files[p1], files[p2], m_ctxt.GetAbortable());
 	};
 	switch (files.GetSize())
 	{
