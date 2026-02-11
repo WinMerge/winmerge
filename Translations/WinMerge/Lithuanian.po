@@ -4907,6 +4907,9 @@ msgstr "Sutvarkyti XML"
 msgid "Prettify YAML"
 msgstr "Sutvarkyti YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "„Graphviz“ peržiūra"
 
@@ -4930,6 +4933,9 @@ msgstr "Pateikti YAML duomenų užklausą..."
 
 msgid "Validate HTML"
 msgstr "Patikrinti HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Dekompiliuoti JVM baitinį kodą"
@@ -5001,6 +5007,9 @@ msgstr "XML tvarkytojas (tidy-html5).\r\nArgumentai: tidy command line options."
 msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
 msgstr "YAML tvarkytojas (yq).\r\nArgumentai: yq filter/command line options."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr "Graphviz peržiūrėtojas.\r\nArgumentai: dot command line options."
 
@@ -5010,11 +5019,11 @@ msgstr "Markdown peržiūrėtojas.\r\nArgumentai: md2html command line options."
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr "PlantUML peržiūrėtojas.\r\nArgumentai: plantuml.jar command line options."
 
-msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
-msgstr "CSV užklausėjas (q).\r\nArgumentai: SQL statement/q comannd line options."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q command line options."
+msgstr "CSV užklausėjas (q).\r\nArgumentai: SQL statement/q command line options."
 
-msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
-msgstr "TSV užklausėjas (q).\r\nArgumentai: SQL statement/q comannd line options."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q command line options."
+msgstr "TSV užklausėjas (q).\r\nArgumentai: SQL statement/q command line options."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."
 msgstr "JSON užklausėjas (jq).\r\nArgumentai: jq filter/command line options."
@@ -5024,6 +5033,9 @@ msgstr "YAML užklausėjas (yq).\r\nArgumentai: yq filter/command line options."
 
 msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "HTML tikrintojas (tidy-html5).\r\nArgumentai: tidy command line options."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
 msgstr "JVM baitinio kodo dekompiliatorius (javap).\r\nArgumentai: javap command line options."

@@ -729,6 +729,61 @@ class="extension">*.yml</filename></seg>
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_PrettifyPO">
+      <title>
+<filename>PrettifyPO<indexterm>
+            <primary>PrettifyPO plugin file</primary></indexterm></filename></title>
+
+      <para>gettext msgcat コマンドを使用してPO ファイルを整形します。</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>PrettifyPO</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term>
+<option> <replaceable>arguments</replaceable> </option></term>
+          <listitem>
+            <para>msgcat コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+        <segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルター</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg>
+<filename class="extension">*.po</filename> <filename
+class="extension">*.pot</filename></seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>
+<ulink url="https://www.gnu.org/software/gettext/">gettext</ulink></seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </section>
+
     <section id="Plugins_QueryCSV">
       <title><filename>QueryCSV<indexterm>
           <primary>QueryCSV plugin file</primary>
@@ -974,6 +1029,61 @@ class="extension">*.htm</filename></seg>
             <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidatePO">
+      <title>
+<filename>ValidatePO<indexterm>
+            <primary>ValidatePO plugin file</primary></indexterm></filename></title>
+
+      <para>gettext msgfmt コマンドを使用して PO ファイルを検査します。</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>ValidatePO</command> <arg choice="opt" rep="repeat">
+<replaceable>arguments</replaceable> </arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term>
+<option> <replaceable>arguments</replaceable> </option></term>
+          <listitem>
+            <para>msgfmt コマンドに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+        <segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルター</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg>
+<filename class="extension">*.po</filename> <filename
+class="extension">*.pot</filename></seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>
+<ulink url="https://www.gnu.org/software/gettext/">gettext</ulink></seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
     </section>
 
     <section id="Plugins_PreviewGraphviz">

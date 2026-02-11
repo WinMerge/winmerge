@@ -5335,6 +5335,9 @@ msgstr "XML mooi maken"
 msgid "Prettify YAML"
 msgstr "YAML mooi maken"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Graphviz-voorbeeld"
 
@@ -5358,6 +5361,9 @@ msgstr "YAML-gegevens bevragen..."
 
 msgid "Validate HTML"
 msgstr "HTML valideren"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "JVM-bytecode ontleden"
@@ -5507,6 +5513,9 @@ msgstr ""
 "YAML mooi maken met de yq-opdracht. \r\n"
 "Argumenten: filteren of opdrachtregelopties doorgegeven aan de yq-opdracht."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5530,14 +5539,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV querier met de q-opdracht. \r\n"
 "Argumenten: SQL-statement or opdrachtregelopties doorgegeven aan de q-opdracht."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "TSV querier met de q-opdracht. \r\n"
 "Argumenten: SQL-statement or opdrachtregelopties doorgegeven aan de q-opdracht."
@@ -5562,6 +5571,9 @@ msgid ""
 msgstr ""
 "HTML-validator met tidy-html5. \r\n"
 "Argumenten: opdrachtregelopties doorgegeven aan de tidy-opdracht."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

@@ -84,23 +84,25 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION25 "Prettify JSON"
     IDS_PLUGIN_MENU_CAPTION26 "Prettify XML"
     IDS_PLUGIN_MENU_CAPTION27 "Prettify YAML"
-    IDS_PLUGIN_MENU_CAPTION28 "Preview Graphviz"
-    IDS_PLUGIN_MENU_CAPTION29 "Preview Markdown"
+    IDS_PLUGIN_MENU_CAPTION28 "Prettify PO"
+    IDS_PLUGIN_MENU_CAPTION29 "Preview Graphviz"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_PLUGIN_MENU_CAPTION30 "Preview PlantUML"
-    IDS_PLUGIN_MENU_CAPTION31 "Query CSV Data..."
-    IDS_PLUGIN_MENU_CAPTION32 "Query TSV Data..."
-    IDS_PLUGIN_MENU_CAPTION33 "Query JSON Data..."
-    IDS_PLUGIN_MENU_CAPTION34 "Query YAML Data..."
-    IDS_PLUGIN_MENU_CAPTION35 "Validate HTML"
-    IDS_PLUGIN_MENU_CAPTION36 "Disassemble JVM Bytecode"
-    IDS_PLUGIN_MENU_CAPTION37 "Disassemble IL Code"
-    IDS_PLUGIN_MENU_CAPTION38 "Disassemble Native Code"
-    IDS_PLUGIN_MENU_CAPTION39 "Convert Text with AI..."
-    IDS_PLUGIN_MENU_CAPTION40 "Unescape Java properties files"
+    IDS_PLUGIN_MENU_CAPTION30 "Preview Markdown"
+    IDS_PLUGIN_MENU_CAPTION31 "Preview PlantUML"
+    IDS_PLUGIN_MENU_CAPTION32 "Query CSV Data..."
+    IDS_PLUGIN_MENU_CAPTION33 "Query TSV Data..."
+    IDS_PLUGIN_MENU_CAPTION34 "Query JSON Data..."
+    IDS_PLUGIN_MENU_CAPTION35 "Query YAML Data..."
+    IDS_PLUGIN_MENU_CAPTION36 "Validate HTML"
+    IDS_PLUGIN_MENU_CAPTION37 "Validate PO"
+    IDS_PLUGIN_MENU_CAPTION38 "Disassemble JVM Bytecode"
+    IDS_PLUGIN_MENU_CAPTION39 "Disassemble IL Code"
+    IDS_PLUGIN_MENU_CAPTION40 "Disassemble Native Code"
+    IDS_PLUGIN_MENU_CAPTION41 "Convert Text with AI..."
+    IDS_PLUGIN_MENU_CAPTION42 "Unescape Java properties files"
 END
 
 STRINGTABLE
@@ -140,60 +142,64 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION26 
                             "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
     IDS_PLUGIN_DESCRIPTION27 
-                            "Graphviz Previewer.\r\nArguments: dot command line options."
+                            "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
     IDS_PLUGIN_DESCRIPTION28 
-                            "Markdown Previewer.\r\nArguments: md2html command line options."
+                            "Graphviz Previewer.\r\nArguments: dot command line options."
     IDS_PLUGIN_DESCRIPTION29 
-                            "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
+                            "Markdown Previewer.\r\nArguments: md2html command line options."
     IDS_PLUGIN_DESCRIPTION30 
-                            "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
+                            "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
     IDS_PLUGIN_DESCRIPTION31 
-                            "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
+                            "CSV Querier (q).\r\nArguments: SQL statement/q command line options."
     IDS_PLUGIN_DESCRIPTION32 
-                            "JSON Querier (jq).\r\nArguments: jq filter/command line options."
+                            "TSV Querier (q).\r\nArguments: SQL statement/q command line options."
     IDS_PLUGIN_DESCRIPTION33 
-                            "YAML Querier (yq).\r\nArguments: yq filter/command line options."
+                            "JSON Querier (jq).\r\nArguments: jq filter/command line options."
 END
 
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_DESCRIPTION34 
-                            "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
+                            "YAML Querier (yq).\r\nArguments: yq filter/command line options."
     IDS_PLUGIN_DESCRIPTION35 
-                            "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
+                            "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
     IDS_PLUGIN_DESCRIPTION36 
-                            "IL disassembler (ildasm).\r\nArguments: ildasm command line options."
+                            "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
     IDS_PLUGIN_DESCRIPTION37 
-                            "Native code disassembler (dumpbin).\r\nArguments: dumpbin command line options."
+                            "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
     IDS_PLUGIN_DESCRIPTION38 
+                            "IL disassembler (ildasm).\r\nArguments: ildasm command line options."
+    IDS_PLUGIN_DESCRIPTION39 
+                            "Native code disassembler (dumpbin).\r\nArguments: dumpbin command line options."
+    IDS_PLUGIN_DESCRIPTION40 
                             "Content extractor (Apache Tika).\r\nArguments: tika-app.jar command line options."
-    IDS_PLUGIN_DESCRIPTION39 "Apply patch (GNU patch)"
-    IDS_PLUGIN_DESCRIPTION40 "Display MS Excel text content"
-    IDS_PLUGIN_DESCRIPTION41 "Display MS PowerPoint text content"
-    IDS_PLUGIN_DESCRIPTION42 "Display MS Visio text content"
-    IDS_PLUGIN_DESCRIPTION43 "Display MS Word text content"
-    IDS_PLUGIN_DESCRIPTION44 
-                            "Ignore columns - list from plugin name/argument"
-    IDS_PLUGIN_DESCRIPTION45 
-                            "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
+    IDS_PLUGIN_DESCRIPTION41 "Apply patch (GNU patch)"
+    IDS_PLUGIN_DESCRIPTION42 "Display MS Excel text content"
+    IDS_PLUGIN_DESCRIPTION43 "Display MS PowerPoint text content"
+    IDS_PLUGIN_DESCRIPTION44 "Display MS Visio text content"
+    IDS_PLUGIN_DESCRIPTION45 "Display MS Word text content"
     IDS_PLUGIN_DESCRIPTION46 
-                            "Ignore fields - list from plugin name/argument"
+                            "Ignore columns - list from plugin name/argument"
     IDS_PLUGIN_DESCRIPTION47 
+                            "Ignore C, C++, PHP, and JavaScript comments (//... and /* ... */)."
+    IDS_PLUGIN_DESCRIPTION48 
+                            "Ignore fields - list from plugin name/argument"
+    IDS_PLUGIN_DESCRIPTION49 
 			    "Ignore leading line numbers (e.g., NC, BASIC)."
-    IDS_PLUGIN_DESCRIPTION48 "Prediff Line Filter"
-    IDS_PLUGIN_DESCRIPTION49 "Date and time insertion"
-    IDS_PLUGIN_DESCRIPTION50
+    IDS_PLUGIN_DESCRIPTION50 "Prediff Line Filter"
+    IDS_PLUGIN_DESCRIPTION51 "Date and time insertion"
+    IDS_PLUGIN_DESCRIPTION52
                             "HTTP URL Scheme Handler (curl).\r\nArguments: curl command line options."
 END
 
 STRINGTABLE
 BEGIN
-    IDS_PLUGIN_DESCRIPTION51 
+    IDS_PLUGIN_DESCRIPTION53 
                             "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
-    IDS_PLUGIN_DESCRIPTION52 "Basic text functions"
-    IDS_PLUGIN_DESCRIPTION53 "AI-assisted text conversion"
-    IDS_PLUGIN_DESCRIPTION54 "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
-    IDS_PLUGIN_DESCRIPTION55 "Unescape and display escaped Java properties files."
+    IDS_PLUGIN_DESCRIPTION54 "Basic text functions"
+    IDS_PLUGIN_DESCRIPTION55 "AI-assisted text conversion"
+    IDS_PLUGIN_DESCRIPTION56 "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
+    IDS_PLUGIN_DESCRIPTION57 "Unescape and display escaped Java properties files."
 END
 
 STRINGTABLE

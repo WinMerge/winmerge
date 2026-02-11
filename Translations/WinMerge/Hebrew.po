@@ -5162,6 +5162,9 @@ msgstr "ייפה XML"
 msgid "Prettify YAML"
 msgstr "ייפה YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "תצוגה מקדימה של Graphviz"
 
@@ -5185,6 +5188,9 @@ msgstr "בצע שאילתה על נתוני YAML..."
 
 msgid "Validate HTML"
 msgstr "אמת HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "פרק קוד JVM Bytecode"
@@ -5306,6 +5312,9 @@ msgstr ""
 "עיצוב YAML עם פקודת yq.\r\n"
 "ארגומנטים: מסנן או אפשרויות שורת פקודה המועברות לפקודת yq."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5329,14 +5338,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "שאילתת CSV עם פקודת q.\r\n"
 "ארגומנטים: משפט SQL או אפשרויות שורת פקודה המועברות לפקודת q."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "שאילתת TSV עם פקודת q.\r\n"
 "ארגומנטים: משפט SQL או אפשרויות שורת פקודה המועברות לפקודת q."
@@ -5361,6 +5370,9 @@ msgid ""
 msgstr ""
 "אימות HTML עם tidy-html5.\r\n"
 "ארגומנטים: אפשרויות שורת פקודה המועברות לפקודת tidy."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

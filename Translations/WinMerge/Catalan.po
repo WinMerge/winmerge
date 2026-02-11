@@ -5958,6 +5958,9 @@ msgstr "Embelleix XML"
 msgid "Prettify YAML"
 msgstr "Embelleix YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Vista prèvia de Graphviz"
 
@@ -5981,6 +5984,9 @@ msgstr "Consulta dades en YAML..."
 
 msgid "Validate HTML"
 msgstr "Valida HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Desassembla Bytecode JVM"
@@ -6130,6 +6136,9 @@ msgstr ""
 "Embellidor de format YAML amb l'ordre yq.\n"
 "Arguments: Filtre o línia d'ordres a utilitzar amb l'ordre yq."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -6153,14 +6162,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Consulta de dades en format CSV amb l'ordre q.\r\n"
 "Arguments: Sentència SQL o línia d'ordres a utilitzar amb l'ordre q."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Consulta de dades en format TSV amb l'ordre q.\r\n"
 "Arguments: Sentència SQL o línia d'ordres a utilitzar amb l'ordre q."
@@ -6185,6 +6194,9 @@ msgid ""
 msgstr ""
 "Validador HTML amb tidy-html5.\r\n"
 "Arguments: Línia d'ordres a utilitzar amb l'ordre tidy."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

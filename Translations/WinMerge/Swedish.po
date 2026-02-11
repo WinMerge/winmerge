@@ -5334,6 +5334,9 @@ msgstr "Snygga till XML"
 msgid "Prettify YAML"
 msgstr "Snygga till YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Förhandsgranska Graphviz"
 
@@ -5357,6 +5360,9 @@ msgstr "Fråga YAML-data..."
 
 msgid "Validate HTML"
 msgstr "Validera HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Disassemblera JVM bytekod"
@@ -5506,6 +5512,9 @@ msgstr ""
 "YAML putsning med yq kommando.\r\n"
 "Argument: Filter eller kommandoradsalternativ som passeras till yq-kommandot."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5529,14 +5538,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV förfrågare med q kommando.\n"
 "Argument: SQL fråga eller kommandoradsalternativ som passeras till q-kommandot."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "CSV förfrågare med q kommando.\n"
 "Argument: SQL fråga eller kommandoradsalternativ som passeras till q-kommandot."
@@ -5561,6 +5570,9 @@ msgid ""
 msgstr ""
 "HTML validering med tidy-html kommando.\n"
 "Argument: Kommandoradsalternativ som går till tidy-kommandot."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

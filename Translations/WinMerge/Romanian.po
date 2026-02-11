@@ -5293,6 +5293,9 @@ msgstr "Înfrumusețează XML"
 msgid "Prettify YAML"
 msgstr "Înfrumusețează YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Previzualizează Graphviz"
 
@@ -5316,6 +5319,9 @@ msgstr "Interoghează date YAML..."
 
 msgid "Validate HTML"
 msgstr "Validează HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Dezasamblează bytecode JVM"
@@ -5457,6 +5463,9 @@ msgstr ""
 "Înfrumusețator YAML cu comanda yq. \n"
 "Argumente: Opțiunile linie de comandă sau filtrele furnizate comenzii yq."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -5480,7 +5489,7 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Interogator CSV cu comanda q. \r\n"
 "Argumente: Declarația SQL sau opțiunile linie de comandă furnizate comenzii "
@@ -5488,7 +5497,7 @@ msgstr ""
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "Interogator TSV cu comanda q. \n"
 "Argumente: Declarația SQL sau opțiunile linie de comandă furnizate comenzii "
@@ -5514,6 +5523,9 @@ msgid ""
 msgstr ""
 "Validator HTML cu tidy-html5. \n"
 "Argumente: Opțiunile linie de comandă furnizate comenzii tidy."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

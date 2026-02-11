@@ -4908,6 +4908,9 @@ msgstr "Upiększ kod XML"
 msgid "Prettify YAML"
 msgstr "Upiększ kod YAML"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Podgląd Graphviz"
 
@@ -4931,6 +4934,9 @@ msgstr "Kwerenda danych YAML..."
 
 msgid "Validate HTML"
 msgstr "Walidacja HTML"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Dezasembluj kod bajtowy JVM"
@@ -5002,6 +5008,9 @@ msgstr "XML Prettier z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekaz
 msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
 msgstr "YAML Prettier z poleceniem yq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia yq."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr "Przeglądarka Graphviz. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia dot."
 
@@ -5011,10 +5020,10 @@ msgstr "Przeglądarka Markdown. \r\nArgumenty: Opcje wiersza poleceń przekazywa
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr "Przeglądarka PlantUML. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia plantuml.jar."
 
-msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q command line options."
 msgstr "CSV Querier z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
 
-msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q command line options."
 msgstr "TSV Querier z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."
@@ -5025,6 +5034,9 @@ msgstr "YAML Querier z poleceniem yq. \r\nArgumenty: Filtr lub opcje wiersza pol
 
 msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "Walidator HTML z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
 msgstr "Disassembler kodu bajtowego JVM z javap. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia javap."

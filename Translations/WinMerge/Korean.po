@@ -6065,6 +6065,9 @@ msgstr "XML 꾸미기"
 msgid "Prettify YAML"
 msgstr "YAML 꾸미기"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Graphviz 미리보기"
 
@@ -6088,6 +6091,9 @@ msgstr "YAML 데이터 쿼리..."
 
 msgid "Validate HTML"
 msgstr "HTML 유효성 검사"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "JVM 바이트코드 분해"
@@ -6237,6 +6243,9 @@ msgstr ""
 "'yq command'를 사용하여 YAML 꾸미기입니다. \r\n"
 "인수: yq 명령에 전달된 필터 또는 명령줄 옵션입니다."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid ""
 "Graphviz Previewer.\r\n"
 "Arguments: dot command line options."
@@ -6260,14 +6269,14 @@ msgstr ""
 
 msgid ""
 "CSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "q 명령을 사용하는 CSV 쿼리어입니다. \r\n"
 "인수: q 명령에 전달된 SQL문 또는 명령줄 옵션입니다."
 
 msgid ""
 "TSV Querier (q).\r\n"
-"Arguments: SQL statement/q comannd line options."
+"Arguments: SQL statement/q command line options."
 msgstr ""
 "q 명령을 사용하는 TSV 쿼리어입니다. \n"
 "인수: q 명령에 전달된 SQL문 또는 명령줄 옵션입니다."
@@ -6292,6 +6301,9 @@ msgid ""
 msgstr ""
 "Tidy-html5를 사용하여 HTML 유효성 검사입니다. \r\n"
 "인수: tidy 명령에 전달된 명령줄 옵션입니다."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"

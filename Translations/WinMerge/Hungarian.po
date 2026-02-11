@@ -5903,6 +5903,9 @@ msgstr "XML formázása"
 msgid "Prettify YAML"
 msgstr "YAML formázása"
 
+msgid "Prettify PO"
+msgstr ""
+
 msgid "Preview Graphviz"
 msgstr "Graphviz előnézet"
 
@@ -5926,6 +5929,9 @@ msgstr "YAML adatok lekérdezése..."
 
 msgid "Validate HTML"
 msgstr "HTML érvényesítése"
+
+msgid "Validate PO"
+msgstr ""
 
 msgid "Disassemble JVM Bytecode"
 msgstr "JVM Bytekód kibontása"
@@ -5997,6 +6003,9 @@ msgstr "XML formázás tidy-html5-tel. \r\nArgumentumok: A tidy parancsnak megfe
 msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
 msgstr "YAML formázás yq paranccsal. \r\nArgumentumok: Az yq parancsnak megfelelő szűrő vagy parancssori opciók."
 
+msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgstr ""
+
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr "Graphviz előnézeti program. \r\nArgumentumok: A dot parancsnak megfelelő parancssori opciók."
 
@@ -6006,10 +6015,10 @@ msgstr "Jelölés előnézeti program. \r\nArgumentumok: Az md2html parancsnak m
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
 msgstr "PlantUML előnézeti program. \r\nArgumentumok: A plantuml.jar parancsnak megfelelő parancssori opciók."
 
-msgid "CSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
+msgid "CSV Querier (q).\r\nArguments: SQL statement/q command line options."
 msgstr "CSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
 
-msgid "TSV Querier (q).\r\nArguments: SQL statement/q comannd line options."
+msgid "TSV Querier (q).\r\nArguments: SQL statement/q command line options."
 msgstr "TSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."
@@ -6020,6 +6029,9 @@ msgstr "YAML Lekérdező yq paranccsal. \r\nArgumentumok: Az yq parancsnak megfe
 
 msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "HTML Validátor tidy-html5-tel. \r\nArgumentumok: A tidy parancsnak megfelelő parancssori opciók."
+
+msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgstr ""
 
 msgid "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
 msgstr "JVM bytecode disassembler javap-vel. \r\nArgumentumok: A javap parancsnak megfelelő parancssori opciók."
