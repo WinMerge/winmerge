@@ -339,6 +339,9 @@
     <ClCompile Include="..\..\..\Src\CompareStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\ImageCompare\ImageCompare_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\charsets.h">

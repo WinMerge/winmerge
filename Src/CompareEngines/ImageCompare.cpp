@@ -10,6 +10,7 @@
 #include "DiffItem.h"
 #include "PathContext.h"
 #include "WinIMergeLib.h"
+#include "IAbortable.h"
 #include <windows.h>
 
 namespace CompareEngines
@@ -44,32 +45,39 @@ ImageCompare::~ImageCompare()
 		FreeLibrary(m_hModule);
 }
 
-int ImageCompare::compare_files(const String& file1, const String& file2) const
+int ImageCompare::compare_files(const String& file1, const String& file2, const IAbortable *piAbortable) const
 {
 	if (!m_pImgMergeWindow)
 		return DIFFCODE::CMPERR;
-	int code = DIFFCODE::CMPERR;
 	m_pImgMergeWindow->SetColorDistanceThreshold(m_colorDistanceThreshold);
-	if (m_pImgMergeWindow->OpenImages(file1.c_str(), file2.c_str()))
+	if (!m_pImgMergeWindow->OpenImages(file1.c_str(), file2.c_str()))
+		return DIFFCODE::CMPERR;
+	std::optional<bool> bImgDiff = false;
+	if (m_pImgMergeWindow->GetPageCount(0) == m_pImgMergeWindow->GetPageCount(1))
 	{
-		bool bImgDiff = false;
-		if (m_pImgMergeWindow->GetPageCount(0) == m_pImgMergeWindow->GetPageCount(1))
+		for (int page = 0; page < m_pImgMergeWindow->GetPageCount(0); ++page)
 		{
-			for (int page = 0; page < m_pImgMergeWindow->GetPageCount(0); ++page)
+			if (piAbortable && piAbortable->ShouldAbort())
 			{
-				m_pImgMergeWindow->SetCurrentPageAll(page);
-				if (m_pImgMergeWindow->GetDiffCount() > 0)
-					bImgDiff = true;
+				bImgDiff.reset();
+				break;
+			}
+			m_pImgMergeWindow->SetCurrentPageAll(page);
+			if (m_pImgMergeWindow->GetDiffCount() > 0)
+			{
+				bImgDiff = true;
+				break;
 			}
 		}
-		else
-		{
-			bImgDiff = true;
-		}
-		code = bImgDiff ? DIFFCODE::DIFF : DIFFCODE::SAME;
-		m_pImgMergeWindow->CloseImages();
 	}
-	return code;
+	else
+	{
+		bImgDiff = true;
+	}
+	m_pImgMergeWindow->CloseImages();
+	if (!bImgDiff.has_value())
+		return DIFFCODE::CMPABORT;
+	return *bImgDiff ? DIFFCODE::DIFF : DIFFCODE::SAME;
 }
 
 /**
@@ -86,12 +94,12 @@ int ImageCompare::CompareFiles(const DIFFITEM &di) const
 	{
 	case 2:
 		return (!di.diffcode.exists(0) || !di.diffcode.exists(1)) ?
-			DIFFCODE::DIFF : compare_files(files[0], files[1]);
+			DIFFCODE::DIFF : compare_files(files[0], files[1], m_ctxt.GetAbortable());
 	case 3:
 		unsigned code10 = (!di.diffcode.exists(1) || !di.diffcode.exists(0)) ?
-			DIFFCODE::DIFF : compare_files(files[1], files[0]);
+			DIFFCODE::DIFF : compare_files(files[1], files[0], m_ctxt.GetAbortable());
 		unsigned code12 = (!di.diffcode.exists(1) || !di.diffcode.exists(2)) ?
-			DIFFCODE::DIFF : compare_files(files[1], files[2]);
+			DIFFCODE::DIFF : compare_files(files[1], files[2], m_ctxt.GetAbortable());
 		unsigned code02 = DIFFCODE::SAME;
 		if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
 			return DIFFCODE::SAME;
@@ -102,7 +110,7 @@ int ImageCompare::CompareFiles(const DIFFITEM &di) const
 		else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::DIFF)
 		{
 			code02 = (!di.diffcode.exists(0) || !di.diffcode.exists(2)) ?
-				DIFFCODE::DIFF : compare_files(files[0], files[2]);
+				DIFFCODE::DIFF : compare_files(files[0], files[2], m_ctxt.GetAbortable());
 			if (code02 == DIFFCODE::SAME)
 				return DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;
 		}

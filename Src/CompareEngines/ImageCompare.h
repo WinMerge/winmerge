@@ -9,6 +9,7 @@
 
 class CDiffContext;
 class DIFFITEM;
+class IAbortable;
 struct IImgMergeWindow;
 struct HINSTANCE__;
 
@@ -27,7 +28,7 @@ public:
 	int CompareFiles(const DIFFITEM &di) const;
 
 private:
-	int compare_files(const String& file1, const String& file2) const;
+	int compare_files(const String& file1, const String& file2, const IAbortable *piAbortable) const;
 	mutable IImgMergeWindow *m_pImgMergeWindow;
 	double m_colorDistanceThreshold;
 	struct HINSTANCE__* m_hModule;
