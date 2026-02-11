@@ -753,8 +753,7 @@ class="extension">*.yml</filename></seg>
     <section id="Plugins_PrettifyPO">
       <title>
 <filename>PrettifyPO<indexterm>
-            <primary>PrettifyPO plugin file</primary>
-          </indexterm> </filename></title>
+            <primary>PrettifyPO plugin file</primary></indexterm></filename></title>
 
       <para>PO Prettier with gettext msgcat</para>
 
@@ -1056,8 +1055,7 @@ class="extension">*.htm</filename></seg>
     <section id="Plugins_ValidatePO">
       <title>
 <filename>ValidatePO<indexterm>
-            <primary>ValidatePO plugin file</primary>
-          </indexterm> </filename></title>
+            <primary>ValidatePO plugin file</primary></indexterm></filename></title>
 
       <para>PO Validator with gettext msgfmt</para>
 

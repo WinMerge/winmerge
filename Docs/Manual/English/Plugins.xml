@@ -812,11 +812,8 @@
 
     <section id="Plugins_PrettifyPO">
       <title>
-        <filename>
-          PrettifyPO<indexterm>
-            <primary>PrettifyPO plugin file</primary>
-          </indexterm>
-        </filename>
+        <filename>PrettifyPO<indexterm>
+            <primary>PrettifyPO plugin file</primary></indexterm></filename>
       </title>
 
       <para>PO Prettier with gettext msgcat</para>
@@ -1148,11 +1145,8 @@
 
     <section id="Plugins_ValidatePO">
       <title>
-        <filename>
-          ValidatePO<indexterm>
-            <primary>ValidatePO plugin file</primary>
-          </indexterm>
-        </filename>
+        <filename>ValidatePO<indexterm>
+            <primary>ValidatePO plugin file</primary></indexterm></filename>
       </title>
 
       <para>PO Validator with gettext msgfmt</para>

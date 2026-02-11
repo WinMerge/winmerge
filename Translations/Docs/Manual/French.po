@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-02-11 09:01+0900\n"
+"POT-Creation-Date: 2026-02-11 10:46+0900\n"
 "PO-Revision-Date: 2026-02-07 22:55-0500\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
@@ -21418,7 +21418,7 @@ msgstr ""
 "exemple, &lt;left&gt;&lt;/left&gt; ou &lt;left/&gt;</literal>)."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Plugins.xml:4 English/Plugins.xml:378 English/Plugins.xml:2670
+#: English/Plugins.xml:4 English/Plugins.xml:378 English/Plugins.xml:2664
 msgid "plugins"
 msgstr "plug-ins"
 
@@ -22120,18 +22120,18 @@ msgstr ""
 #: English/Plugins.xml:392 English/Plugins.xml:426 English/Plugins.xml:472
 #: English/Plugins.xml:518 English/Plugins.xml:565 English/Plugins.xml:623
 #: English/Plugins.xml:677 English/Plugins.xml:730 English/Plugins.xml:783
-#: English/Plugins.xml:848 English/Plugins.xml:906 English/Plugins.xml:959
-#: English/Plugins.xml:1012 English/Plugins.xml:1065 English/Plugins.xml:1119
-#: English/Plugins.xml:1184 English/Plugins.xml:1242 English/Plugins.xml:1296
-#: English/Plugins.xml:1350 English/Plugins.xml:1404 English/Plugins.xml:1457
-#: English/Plugins.xml:1510 English/Plugins.xml:1566 English/Plugins.xml:1622
-#: English/Plugins.xml:1659 English/Plugins.xml:1696 English/Plugins.xml:1733
-#: English/Plugins.xml:1770 English/Plugins.xml:1807 English/Plugins.xml:1844
-#: English/Plugins.xml:1881 English/Plugins.xml:1918 English/Plugins.xml:2020
-#: English/Plugins.xml:2113 English/Plugins.xml:2195 English/Plugins.xml:2249
-#: English/Plugins.xml:2286 English/Plugins.xml:2374 English/Plugins.xml:2402
-#: English/Plugins.xml:2444 English/Plugins.xml:2479 English/Plugins.xml:2508
-#: English/Plugins.xml:2615 English/Plugins.xml:2651
+#: English/Plugins.xml:845 English/Plugins.xml:903 English/Plugins.xml:956
+#: English/Plugins.xml:1009 English/Plugins.xml:1062 English/Plugins.xml:1116
+#: English/Plugins.xml:1178 English/Plugins.xml:1236 English/Plugins.xml:1290
+#: English/Plugins.xml:1344 English/Plugins.xml:1398 English/Plugins.xml:1451
+#: English/Plugins.xml:1504 English/Plugins.xml:1560 English/Plugins.xml:1616
+#: English/Plugins.xml:1653 English/Plugins.xml:1690 English/Plugins.xml:1727
+#: English/Plugins.xml:1764 English/Plugins.xml:1801 English/Plugins.xml:1838
+#: English/Plugins.xml:1875 English/Plugins.xml:1912 English/Plugins.xml:2014
+#: English/Plugins.xml:2107 English/Plugins.xml:2189 English/Plugins.xml:2243
+#: English/Plugins.xml:2280 English/Plugins.xml:2368 English/Plugins.xml:2396
+#: English/Plugins.xml:2438 English/Plugins.xml:2473 English/Plugins.xml:2502
+#: English/Plugins.xml:2609 English/Plugins.xml:2645
 msgid "Category"
 msgstr "Catégorie"
 
@@ -22139,18 +22139,18 @@ msgstr "Catégorie"
 #: English/Plugins.xml:394 English/Plugins.xml:428 English/Plugins.xml:474
 #: English/Plugins.xml:520 English/Plugins.xml:567 English/Plugins.xml:625
 #: English/Plugins.xml:679 English/Plugins.xml:732 English/Plugins.xml:785
-#: English/Plugins.xml:850 English/Plugins.xml:908 English/Plugins.xml:961
-#: English/Plugins.xml:1014 English/Plugins.xml:1067 English/Plugins.xml:1121
-#: English/Plugins.xml:1186 English/Plugins.xml:1244 English/Plugins.xml:1298
-#: English/Plugins.xml:1352 English/Plugins.xml:1406 English/Plugins.xml:1459
-#: English/Plugins.xml:1512 English/Plugins.xml:1568 English/Plugins.xml:1624
-#: English/Plugins.xml:1661 English/Plugins.xml:1698 English/Plugins.xml:1735
-#: English/Plugins.xml:1772 English/Plugins.xml:1809 English/Plugins.xml:1846
-#: English/Plugins.xml:1883 English/Plugins.xml:1920 English/Plugins.xml:2022
-#: English/Plugins.xml:2115 English/Plugins.xml:2197 English/Plugins.xml:2251
-#: English/Plugins.xml:2288 English/Plugins.xml:2376 English/Plugins.xml:2404
-#: English/Plugins.xml:2446 English/Plugins.xml:2481 English/Plugins.xml:2510
-#: English/Plugins.xml:2616 English/Plugins.xml:2653
+#: English/Plugins.xml:847 English/Plugins.xml:905 English/Plugins.xml:958
+#: English/Plugins.xml:1011 English/Plugins.xml:1064 English/Plugins.xml:1118
+#: English/Plugins.xml:1180 English/Plugins.xml:1238 English/Plugins.xml:1292
+#: English/Plugins.xml:1346 English/Plugins.xml:1400 English/Plugins.xml:1453
+#: English/Plugins.xml:1506 English/Plugins.xml:1562 English/Plugins.xml:1618
+#: English/Plugins.xml:1655 English/Plugins.xml:1692 English/Plugins.xml:1729
+#: English/Plugins.xml:1766 English/Plugins.xml:1803 English/Plugins.xml:1840
+#: English/Plugins.xml:1877 English/Plugins.xml:1914 English/Plugins.xml:2016
+#: English/Plugins.xml:2109 English/Plugins.xml:2191 English/Plugins.xml:2245
+#: English/Plugins.xml:2282 English/Plugins.xml:2370 English/Plugins.xml:2398
+#: English/Plugins.xml:2440 English/Plugins.xml:2475 English/Plugins.xml:2504
+#: English/Plugins.xml:2610 English/Plugins.xml:2647
 msgid "File filter"
 msgstr "Filtre de fichiers"
 
@@ -22158,17 +22158,17 @@ msgstr "Filtre de fichiers"
 #: English/Plugins.xml:396 English/Plugins.xml:430 English/Plugins.xml:476
 #: English/Plugins.xml:522 English/Plugins.xml:569 English/Plugins.xml:627
 #: English/Plugins.xml:681 English/Plugins.xml:734 English/Plugins.xml:787
-#: English/Plugins.xml:852 English/Plugins.xml:910 English/Plugins.xml:963
-#: English/Plugins.xml:1016 English/Plugins.xml:1069 English/Plugins.xml:1123
-#: English/Plugins.xml:1188 English/Plugins.xml:1246 English/Plugins.xml:1300
-#: English/Plugins.xml:1354 English/Plugins.xml:1408 English/Plugins.xml:1461
-#: English/Plugins.xml:1514 English/Plugins.xml:1570 English/Plugins.xml:1626
-#: English/Plugins.xml:1663 English/Plugins.xml:1700 English/Plugins.xml:1737
-#: English/Plugins.xml:1774 English/Plugins.xml:1811 English/Plugins.xml:1848
-#: English/Plugins.xml:1885 English/Plugins.xml:1922 English/Plugins.xml:2024
-#: English/Plugins.xml:2117 English/Plugins.xml:2199 English/Plugins.xml:2253
-#: English/Plugins.xml:2290 English/Plugins.xml:2378 English/Plugins.xml:2406
-#: English/Plugins.xml:2448 English/Plugins.xml:2483 English/Plugins.xml:2512
+#: English/Plugins.xml:849 English/Plugins.xml:907 English/Plugins.xml:960
+#: English/Plugins.xml:1013 English/Plugins.xml:1066 English/Plugins.xml:1120
+#: English/Plugins.xml:1182 English/Plugins.xml:1240 English/Plugins.xml:1294
+#: English/Plugins.xml:1348 English/Plugins.xml:1402 English/Plugins.xml:1455
+#: English/Plugins.xml:1508 English/Plugins.xml:1564 English/Plugins.xml:1620
+#: English/Plugins.xml:1657 English/Plugins.xml:1694 English/Plugins.xml:1731
+#: English/Plugins.xml:1768 English/Plugins.xml:1805 English/Plugins.xml:1842
+#: English/Plugins.xml:1879 English/Plugins.xml:1916 English/Plugins.xml:2018
+#: English/Plugins.xml:2111 English/Plugins.xml:2193 English/Plugins.xml:2247
+#: English/Plugins.xml:2284 English/Plugins.xml:2372 English/Plugins.xml:2400
+#: English/Plugins.xml:2442 English/Plugins.xml:2477 English/Plugins.xml:2506
 msgid "Plugin arguments"
 msgstr "Arguments du plug-in"
 
@@ -22176,16 +22176,16 @@ msgstr "Arguments du plug-in"
 #: English/Plugins.xml:398 English/Plugins.xml:432 English/Plugins.xml:478
 #: English/Plugins.xml:524 English/Plugins.xml:571 English/Plugins.xml:629
 #: English/Plugins.xml:683 English/Plugins.xml:736 English/Plugins.xml:789
-#: English/Plugins.xml:854 English/Plugins.xml:912 English/Plugins.xml:965
-#: English/Plugins.xml:1018 English/Plugins.xml:1071 English/Plugins.xml:1125
-#: English/Plugins.xml:1190 English/Plugins.xml:1248 English/Plugins.xml:1302
-#: English/Plugins.xml:1356 English/Plugins.xml:1410 English/Plugins.xml:1463
-#: English/Plugins.xml:1516 English/Plugins.xml:1572 English/Plugins.xml:1628
-#: English/Plugins.xml:1665 English/Plugins.xml:1702 English/Plugins.xml:1739
-#: English/Plugins.xml:1776 English/Plugins.xml:1813 English/Plugins.xml:1850
-#: English/Plugins.xml:1887 English/Plugins.xml:1924 English/Plugins.xml:2026
-#: English/Plugins.xml:2119 English/Plugins.xml:2201 English/Plugins.xml:2255
-#: English/Plugins.xml:2292
+#: English/Plugins.xml:851 English/Plugins.xml:909 English/Plugins.xml:962
+#: English/Plugins.xml:1015 English/Plugins.xml:1068 English/Plugins.xml:1122
+#: English/Plugins.xml:1184 English/Plugins.xml:1242 English/Plugins.xml:1296
+#: English/Plugins.xml:1350 English/Plugins.xml:1404 English/Plugins.xml:1457
+#: English/Plugins.xml:1510 English/Plugins.xml:1566 English/Plugins.xml:1622
+#: English/Plugins.xml:1659 English/Plugins.xml:1696 English/Plugins.xml:1733
+#: English/Plugins.xml:1770 English/Plugins.xml:1807 English/Plugins.xml:1844
+#: English/Plugins.xml:1881 English/Plugins.xml:1918 English/Plugins.xml:2020
+#: English/Plugins.xml:2113 English/Plugins.xml:2195 English/Plugins.xml:2249
+#: English/Plugins.xml:2286
 msgid "Packing"
 msgstr "Compactage"
 
@@ -22193,18 +22193,18 @@ msgstr "Compactage"
 #: English/Plugins.xml:400 English/Plugins.xml:434 English/Plugins.xml:480
 #: English/Plugins.xml:526 English/Plugins.xml:573 English/Plugins.xml:631
 #: English/Plugins.xml:685 English/Plugins.xml:738 English/Plugins.xml:791
-#: English/Plugins.xml:856 English/Plugins.xml:914 English/Plugins.xml:967
-#: English/Plugins.xml:1020 English/Plugins.xml:1073 English/Plugins.xml:1127
-#: English/Plugins.xml:1192 English/Plugins.xml:1250 English/Plugins.xml:1304
-#: English/Plugins.xml:1358 English/Plugins.xml:1412 English/Plugins.xml:1465
-#: English/Plugins.xml:1518 English/Plugins.xml:1574 English/Plugins.xml:1630
-#: English/Plugins.xml:1667 English/Plugins.xml:1704 English/Plugins.xml:1741
-#: English/Plugins.xml:1778 English/Plugins.xml:1815 English/Plugins.xml:1852
-#: English/Plugins.xml:1889 English/Plugins.xml:1926 English/Plugins.xml:2028
-#: English/Plugins.xml:2121 English/Plugins.xml:2203 English/Plugins.xml:2257
-#: English/Plugins.xml:2294 English/Plugins.xml:2380 English/Plugins.xml:2408
-#: English/Plugins.xml:2450 English/Plugins.xml:2485 English/Plugins.xml:2514
-#: English/Plugins.xml:2617 English/Plugins.xml:2655
+#: English/Plugins.xml:853 English/Plugins.xml:911 English/Plugins.xml:964
+#: English/Plugins.xml:1017 English/Plugins.xml:1070 English/Plugins.xml:1124
+#: English/Plugins.xml:1186 English/Plugins.xml:1244 English/Plugins.xml:1298
+#: English/Plugins.xml:1352 English/Plugins.xml:1406 English/Plugins.xml:1459
+#: English/Plugins.xml:1512 English/Plugins.xml:1568 English/Plugins.xml:1624
+#: English/Plugins.xml:1661 English/Plugins.xml:1698 English/Plugins.xml:1735
+#: English/Plugins.xml:1772 English/Plugins.xml:1809 English/Plugins.xml:1846
+#: English/Plugins.xml:1883 English/Plugins.xml:1920 English/Plugins.xml:2022
+#: English/Plugins.xml:2115 English/Plugins.xml:2197 English/Plugins.xml:2251
+#: English/Plugins.xml:2288 English/Plugins.xml:2374 English/Plugins.xml:2402
+#: English/Plugins.xml:2444 English/Plugins.xml:2479 English/Plugins.xml:2508
+#: English/Plugins.xml:2611 English/Plugins.xml:2649
 msgid "Settings dialog support"
 msgstr "Support de la boîte de dialogue des paramètres"
 
@@ -22212,16 +22212,16 @@ msgstr "Support de la boîte de dialogue des paramètres"
 #: English/Plugins.xml:403 English/Plugins.xml:439 English/Plugins.xml:485
 #: English/Plugins.xml:531 English/Plugins.xml:578 English/Plugins.xml:636
 #: English/Plugins.xml:690 English/Plugins.xml:743 English/Plugins.xml:796
-#: English/Plugins.xml:861 English/Plugins.xml:919 English/Plugins.xml:972
-#: English/Plugins.xml:1025 English/Plugins.xml:1078 English/Plugins.xml:1132
-#: English/Plugins.xml:1197 English/Plugins.xml:1255 English/Plugins.xml:1309
-#: English/Plugins.xml:1363 English/Plugins.xml:1417 English/Plugins.xml:1470
-#: English/Plugins.xml:1523 English/Plugins.xml:1579 English/Plugins.xml:1635
-#: English/Plugins.xml:1672 English/Plugins.xml:1709 English/Plugins.xml:1746
-#: English/Plugins.xml:1783 English/Plugins.xml:1820 English/Plugins.xml:1857
-#: English/Plugins.xml:1894 English/Plugins.xml:1931 English/Plugins.xml:2033
-#: English/Plugins.xml:2126 English/Plugins.xml:2208 English/Plugins.xml:2262
-#: English/Plugins.xml:2299
+#: English/Plugins.xml:858 English/Plugins.xml:916 English/Plugins.xml:969
+#: English/Plugins.xml:1022 English/Plugins.xml:1075 English/Plugins.xml:1129
+#: English/Plugins.xml:1191 English/Plugins.xml:1249 English/Plugins.xml:1303
+#: English/Plugins.xml:1357 English/Plugins.xml:1411 English/Plugins.xml:1464
+#: English/Plugins.xml:1517 English/Plugins.xml:1573 English/Plugins.xml:1629
+#: English/Plugins.xml:1666 English/Plugins.xml:1703 English/Plugins.xml:1740
+#: English/Plugins.xml:1777 English/Plugins.xml:1814 English/Plugins.xml:1851
+#: English/Plugins.xml:1888 English/Plugins.xml:1925 English/Plugins.xml:2027
+#: English/Plugins.xml:2120 English/Plugins.xml:2202 English/Plugins.xml:2256
+#: English/Plugins.xml:2293
 msgid "Unpacker"
 msgstr "Décompresseur"
 
@@ -22237,30 +22237,30 @@ msgstr "<filename class=\"extension\">*.properties</filename>"
 #: English/Plugins.xml:589 English/Plugins.xml:644 English/Plugins.xml:646
 #: English/Plugins.xml:697 English/Plugins.xml:699 English/Plugins.xml:750
 #: English/Plugins.xml:752 English/Plugins.xml:804 English/Plugins.xml:806
-#: English/Plugins.xml:870 English/Plugins.xml:872 English/Plugins.xml:926
-#: English/Plugins.xml:928 English/Plugins.xml:979 English/Plugins.xml:981
-#: English/Plugins.xml:1032 English/Plugins.xml:1034 English/Plugins.xml:1086
-#: English/Plugins.xml:1088 English/Plugins.xml:1140 English/Plugins.xml:1142
-#: English/Plugins.xml:1206 English/Plugins.xml:1208 English/Plugins.xml:1263
-#: English/Plugins.xml:1265 English/Plugins.xml:1317 English/Plugins.xml:1319
-#: English/Plugins.xml:1371 English/Plugins.xml:1373 English/Plugins.xml:1424
-#: English/Plugins.xml:1426 English/Plugins.xml:1477 English/Plugins.xml:1479
-#: English/Plugins.xml:1533 English/Plugins.xml:1535 English/Plugins.xml:1589
-#: English/Plugins.xml:1591 English/Plugins.xml:1642 English/Plugins.xml:1644
-#: English/Plugins.xml:1677 English/Plugins.xml:1679 English/Plugins.xml:1681
-#: English/Plugins.xml:1714 English/Plugins.xml:1716 English/Plugins.xml:1718
-#: English/Plugins.xml:1751 English/Plugins.xml:1753 English/Plugins.xml:1755
-#: English/Plugins.xml:1788 English/Plugins.xml:1790 English/Plugins.xml:1792
-#: English/Plugins.xml:1825 English/Plugins.xml:1827 English/Plugins.xml:1829
-#: English/Plugins.xml:1862 English/Plugins.xml:1864 English/Plugins.xml:1866
-#: English/Plugins.xml:1899 English/Plugins.xml:1901 English/Plugins.xml:1903
-#: English/Plugins.xml:1936 English/Plugins.xml:1938 English/Plugins.xml:1940
-#: English/Plugins.xml:2040 English/Plugins.xml:2042 English/Plugins.xml:2133
-#: English/Plugins.xml:2135 English/Plugins.xml:2215 English/Plugins.xml:2217
-#: English/Plugins.xml:2269 English/Plugins.xml:2271 English/Plugins.xml:2304
-#: English/Plugins.xml:2306 English/Plugins.xml:2308 English/Plugins.xml:2423
-#: English/Plugins.xml:2425 English/Plugins.xml:2523 English/Plugins.xml:2525
-#: English/Plugins.xml:2622 English/Plugins.xml:2662
+#: English/Plugins.xml:867 English/Plugins.xml:869 English/Plugins.xml:923
+#: English/Plugins.xml:925 English/Plugins.xml:976 English/Plugins.xml:978
+#: English/Plugins.xml:1029 English/Plugins.xml:1031 English/Plugins.xml:1083
+#: English/Plugins.xml:1085 English/Plugins.xml:1137 English/Plugins.xml:1139
+#: English/Plugins.xml:1200 English/Plugins.xml:1202 English/Plugins.xml:1257
+#: English/Plugins.xml:1259 English/Plugins.xml:1311 English/Plugins.xml:1313
+#: English/Plugins.xml:1365 English/Plugins.xml:1367 English/Plugins.xml:1418
+#: English/Plugins.xml:1420 English/Plugins.xml:1471 English/Plugins.xml:1473
+#: English/Plugins.xml:1527 English/Plugins.xml:1529 English/Plugins.xml:1583
+#: English/Plugins.xml:1585 English/Plugins.xml:1636 English/Plugins.xml:1638
+#: English/Plugins.xml:1671 English/Plugins.xml:1673 English/Plugins.xml:1675
+#: English/Plugins.xml:1708 English/Plugins.xml:1710 English/Plugins.xml:1712
+#: English/Plugins.xml:1745 English/Plugins.xml:1747 English/Plugins.xml:1749
+#: English/Plugins.xml:1782 English/Plugins.xml:1784 English/Plugins.xml:1786
+#: English/Plugins.xml:1819 English/Plugins.xml:1821 English/Plugins.xml:1823
+#: English/Plugins.xml:1856 English/Plugins.xml:1858 English/Plugins.xml:1860
+#: English/Plugins.xml:1893 English/Plugins.xml:1895 English/Plugins.xml:1897
+#: English/Plugins.xml:1930 English/Plugins.xml:1932 English/Plugins.xml:1934
+#: English/Plugins.xml:2034 English/Plugins.xml:2036 English/Plugins.xml:2127
+#: English/Plugins.xml:2129 English/Plugins.xml:2209 English/Plugins.xml:2211
+#: English/Plugins.xml:2263 English/Plugins.xml:2265 English/Plugins.xml:2298
+#: English/Plugins.xml:2300 English/Plugins.xml:2302 English/Plugins.xml:2417
+#: English/Plugins.xml:2419 English/Plugins.xml:2517 English/Plugins.xml:2519
+#: English/Plugins.xml:2616 English/Plugins.xml:2656
 msgid "No"
 msgstr "Non"
 
@@ -22268,14 +22268,14 @@ msgstr "Non"
 #: English/Plugins.xml:409 English/Plugins.xml:454 English/Plugins.xml:500
 #: English/Plugins.xml:547 English/Plugins.xml:591 English/Plugins.xml:642
 #: English/Plugins.xml:695 English/Plugins.xml:748 English/Plugins.xml:802
-#: English/Plugins.xml:868 English/Plugins.xml:924 English/Plugins.xml:977
-#: English/Plugins.xml:1030 English/Plugins.xml:1084 English/Plugins.xml:1138
-#: English/Plugins.xml:1204 English/Plugins.xml:1261 English/Plugins.xml:1315
-#: English/Plugins.xml:1369 English/Plugins.xml:1422 English/Plugins.xml:1475
-#: English/Plugins.xml:1531 English/Plugins.xml:1587 English/Plugins.xml:1640
-#: English/Plugins.xml:2038 English/Plugins.xml:2131 English/Plugins.xml:2213
-#: English/Plugins.xml:2267 English/Plugins.xml:2387 English/Plugins.xml:2457
-#: English/Plugins.xml:2459 English/Plugins.xml:2492 English/Plugins.xml:2494
+#: English/Plugins.xml:865 English/Plugins.xml:921 English/Plugins.xml:974
+#: English/Plugins.xml:1027 English/Plugins.xml:1081 English/Plugins.xml:1135
+#: English/Plugins.xml:1198 English/Plugins.xml:1255 English/Plugins.xml:1309
+#: English/Plugins.xml:1363 English/Plugins.xml:1416 English/Plugins.xml:1469
+#: English/Plugins.xml:1525 English/Plugins.xml:1581 English/Plugins.xml:1634
+#: English/Plugins.xml:2032 English/Plugins.xml:2125 English/Plugins.xml:2207
+#: English/Plugins.xml:2261 English/Plugins.xml:2381 English/Plugins.xml:2451
+#: English/Plugins.xml:2453 English/Plugins.xml:2486 English/Plugins.xml:2488
 msgid "Yes"
 msgstr "Oui"
 
@@ -22307,16 +22307,16 @@ msgstr ""
 #. type: Content of: <article><section><section><para><segmentedlist><segtitle>
 #: English/Plugins.xml:436 English/Plugins.xml:482 English/Plugins.xml:528
 #: English/Plugins.xml:575 English/Plugins.xml:633 English/Plugins.xml:687
-#: English/Plugins.xml:740 English/Plugins.xml:793 English/Plugins.xml:858
-#: English/Plugins.xml:916 English/Plugins.xml:969 English/Plugins.xml:1022
-#: English/Plugins.xml:1075 English/Plugins.xml:1129 English/Plugins.xml:1194
-#: English/Plugins.xml:1252 English/Plugins.xml:1306 English/Plugins.xml:1360
-#: English/Plugins.xml:1414 English/Plugins.xml:1467 English/Plugins.xml:1520
-#: English/Plugins.xml:1576 English/Plugins.xml:1632 English/Plugins.xml:1669
-#: English/Plugins.xml:1706 English/Plugins.xml:1743 English/Plugins.xml:1780
-#: English/Plugins.xml:1817 English/Plugins.xml:1854 English/Plugins.xml:1891
-#: English/Plugins.xml:1928 English/Plugins.xml:2030 English/Plugins.xml:2123
-#: English/Plugins.xml:2205 English/Plugins.xml:2259 English/Plugins.xml:2296
+#: English/Plugins.xml:740 English/Plugins.xml:793 English/Plugins.xml:855
+#: English/Plugins.xml:913 English/Plugins.xml:966 English/Plugins.xml:1019
+#: English/Plugins.xml:1072 English/Plugins.xml:1126 English/Plugins.xml:1188
+#: English/Plugins.xml:1246 English/Plugins.xml:1300 English/Plugins.xml:1354
+#: English/Plugins.xml:1408 English/Plugins.xml:1461 English/Plugins.xml:1514
+#: English/Plugins.xml:1570 English/Plugins.xml:1626 English/Plugins.xml:1663
+#: English/Plugins.xml:1700 English/Plugins.xml:1737 English/Plugins.xml:1774
+#: English/Plugins.xml:1811 English/Plugins.xml:1848 English/Plugins.xml:1885
+#: English/Plugins.xml:1922 English/Plugins.xml:2024 English/Plugins.xml:2117
+#: English/Plugins.xml:2199 English/Plugins.xml:2253 English/Plugins.xml:2290
 msgid "Dependency"
 msgstr "Dépendance"
 
@@ -22527,21 +22527,21 @@ msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Plugins.xml:615 English/Plugins.xml:669 English/Plugins.xml:722
-#: English/Plugins.xml:775 English/Plugins.xml:898 English/Plugins.xml:951
-#: English/Plugins.xml:1004 English/Plugins.xml:1057 English/Plugins.xml:1111
-#: English/Plugins.xml:1234 English/Plugins.xml:1288 English/Plugins.xml:1342
-#: English/Plugins.xml:1396 English/Plugins.xml:1449 English/Plugins.xml:1502
-#: English/Plugins.xml:1558
+#: English/Plugins.xml:775 English/Plugins.xml:895 English/Plugins.xml:948
+#: English/Plugins.xml:1001 English/Plugins.xml:1054 English/Plugins.xml:1108
+#: English/Plugins.xml:1228 English/Plugins.xml:1282 English/Plugins.xml:1336
+#: English/Plugins.xml:1390 English/Plugins.xml:1443 English/Plugins.xml:1496
+#: English/Plugins.xml:1552
 msgid "<option><replaceable>arguments</replaceable></option>"
 msgstr "<option><replaceable>arguments</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:617 English/Plugins.xml:671 English/Plugins.xml:1113
+#: English/Plugins.xml:617 English/Plugins.xml:671 English/Plugins.xml:1110
 msgid "Command line options passed to the tidy command"
 msgstr "Options de ligne de commande passées à la commande tidy"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:638 English/Plugins.xml:1134
+#: English/Plugins.xml:638 English/Plugins.xml:1131
 msgid ""
 "<filename class=\"extension\">*.html</filename>, <filename "
 "class=\"extension\">*.htm</filename>"
@@ -22550,7 +22550,7 @@ msgstr ""
 "class=\"extension\">*.htm</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:648 English/Plugins.xml:701 English/Plugins.xml:1144
+#: English/Plugins.xml:648 English/Plugins.xml:701 English/Plugins.xml:1141
 msgid "<ulink url=\"https://www.html-tidy.org/\">tidy-html5</ulink>"
 msgstr "<ulink url=\"https://www.html-tidy.org/\">tidy-html5</ulink>"
 
@@ -22612,17 +22612,17 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:724 English/Plugins.xml:1006
+#: English/Plugins.xml:724 English/Plugins.xml:1003
 msgid "Filter or command line options passed to the jq command"
 msgstr "Filtre ou options de ligne de commande passés à la commande jq"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:745 English/Plugins.xml:1027
+#: English/Plugins.xml:745 English/Plugins.xml:1024
 msgid "<filename class=\"extension\">*.json</filename>"
 msgstr "<filename class=\"extension\">*.json</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:754 English/Plugins.xml:1036
+#: English/Plugins.xml:754 English/Plugins.xml:1033
 msgid "<ulink url=\"https://stedolan.github.io/jq/\">jq</ulink>"
 msgstr "<ulink url=\"https://stedolan.github.io/jq/\">jq</ulink>"
 
@@ -22653,12 +22653,12 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:777 English/Plugins.xml:1059
+#: English/Plugins.xml:777 English/Plugins.xml:1056
 msgid "Filter or command line options passed to the yq command"
 msgstr "Filtre ou options de ligne de commande passés à la commande yq"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:798 English/Plugins.xml:1080
+#: English/Plugins.xml:798 English/Plugins.xml:1077
 msgid ""
 "<filename class=\"extension\">*.yaml</filename>, <filename "
 "class=\"extension\">*.yml</filename>"
@@ -22672,7 +22672,7 @@ msgid "<ulink url=\"https://stedolan.github.io/yq/\">yq</ulink>"
 msgstr "<ulink url=\"https://stedolan.github.io/yq/\">yq</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:817
+#: English/Plugins.xml:816
 #, fuzzy
 #| msgid "PrettifyJSON plugin file"
 msgid "PrettifyPO plugin file"
@@ -22685,19 +22685,19 @@ msgstr "Fichier du plug-in PrettifyJSON"
 #| "<filename>PrettifyJSON<placeholder type=\"indexterm\" id=\"0\"/></"
 #| "filename>"
 msgid ""
-"<filename> PrettifyPO<placeholder type=\"indexterm\" id=\"0\"/> </filename>"
+"<filename>PrettifyPO<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>PrettifyJSON<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:822
+#: English/Plugins.xml:819
 #, fuzzy
 #| msgid "JSON Prettier with jq command"
 msgid "PO Prettier with gettext msgcat"
 msgstr "Mise en forme JSON avec la commande jq"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:825
+#: English/Plugins.xml:822
 #, fuzzy
 #| msgid ""
 #| "<command>PrettifyJSON</command> <arg choice=\"opt\" "
@@ -22710,21 +22710,21 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:836 English/Plugins.xml:1172
+#: English/Plugins.xml:833 English/Plugins.xml:1166
 #, fuzzy
 #| msgid "<option><replaceable>arguments</replaceable></option>"
 msgid "<option> <replaceable>arguments</replaceable> </option>"
 msgstr "<option><replaceable>arguments</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:841
+#: English/Plugins.xml:838
 #, fuzzy
 #| msgid "Command line options passed to the dot command"
 msgid "Command line options passed to the msgcat command"
 msgstr "Options de ligne de commande passées à la commande dot"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:864 English/Plugins.xml:1200
+#: English/Plugins.xml:861 English/Plugins.xml:1194
 #, fuzzy
 #| msgid ""
 #| "<filename class=\"extension\">*.gv</filename>, <filename "
@@ -22737,30 +22737,30 @@ msgstr ""
 "class=\"extension\">,*.dot</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:875 English/Plugins.xml:1211
+#: English/Plugins.xml:872 English/Plugins.xml:1205
 #, fuzzy
 #| msgid "<ulink url=\"https://www.html-tidy.org/\">tidy-html5</ulink>"
 msgid "<ulink url=\"https://www.gnu.org/software/gettext/\">gettext</ulink>"
 msgstr "<ulink url=\"https://www.html-tidy.org/\">tidy-html5</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:884
+#: English/Plugins.xml:881
 msgid "QueryCSV plugin file"
 msgstr "Fichier du plug-in QueryCSV"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:883
+#: English/Plugins.xml:880
 msgid "<filename>QueryCSV<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>QueryCSV<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:887
+#: English/Plugins.xml:884
 msgid "CSV Querier with q command"
 msgstr "Requêtes CSV avec la commande q"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:890
+#: English/Plugins.xml:887
 msgid ""
 "<command>QueryCSV</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -22769,39 +22769,39 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:900 English/Plugins.xml:953
+#: English/Plugins.xml:897 English/Plugins.xml:950
 msgid "SQL statement or command line options passed to the q command"
 msgstr ""
 "Instruction SQL ou options de ligne de commande passées à la commande q"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:921 English/Plugins.xml:2455
+#: English/Plugins.xml:918 English/Plugins.xml:2449
 msgid "<filename class=\"extension\">*.csv</filename>"
 msgstr "<filename class=\"extension\">*.csv</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:930 English/Plugins.xml:983
+#: English/Plugins.xml:927 English/Plugins.xml:980
 msgid "<ulink url=\"https://harelba.github.io/q/\">q</ulink>"
 msgstr "<ulink url=\"https://harelba.github.io/q/\">q</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:937
+#: English/Plugins.xml:934
 msgid "QueryTSV plugin file"
 msgstr "Fichier du plug-in QueryTSV"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:936
+#: English/Plugins.xml:933
 msgid "<filename>QueryTSV<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>QueryTSV<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:940
+#: English/Plugins.xml:937
 msgid "TSV Querier with q command"
 msgstr "Requêtes TSV avec la commande q"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:943
+#: English/Plugins.xml:940
 msgid ""
 "<command>QueryTSV</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -22810,29 +22810,29 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:974
+#: English/Plugins.xml:971
 msgid "<filename class=\"extension\">*.tsv</filename>"
 msgstr "<filename class=\"extension\">*.tsv</filename>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:990
+#: English/Plugins.xml:987
 msgid "QueryJSON plugin file"
 msgstr "Fichier du plug-in QueryJSON"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:989
+#: English/Plugins.xml:986
 msgid ""
 "<filename>QueryJSON<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>QueryJSON<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:993
+#: English/Plugins.xml:990
 msgid "JSON Querier with jq command"
 msgstr "Requêtes JSON avec la commande jq"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:996
+#: English/Plugins.xml:993
 msgid ""
 "<command>QueryJSON</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -22841,24 +22841,24 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1043
+#: English/Plugins.xml:1040
 msgid "QueryYAML plugin file"
 msgstr "Fichier du plug-in QueryYAML"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1042
+#: English/Plugins.xml:1039
 msgid ""
 "<filename>QueryYAML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>QueryYAML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1046
+#: English/Plugins.xml:1043
 msgid "YAML Querier with yq command"
 msgstr "Requêtes YAML avec la commande yq"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1049
+#: English/Plugins.xml:1046
 msgid ""
 "<command>QueryYAML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -22867,29 +22867,29 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1090
+#: English/Plugins.xml:1087
 msgid "<ulink url=\"https://mikefarah.gitbook.io/yq/\">yq</ulink>"
 msgstr "<ulink url=\"https://mikefarah.gitbook.io/yq/\">yq</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1097
+#: English/Plugins.xml:1094
 msgid "ValidateHTML plugin file"
 msgstr "Fichier du plug-in ValidateHTML"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1096
+#: English/Plugins.xml:1093
 msgid ""
 "<filename>ValidateHTML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>ValidateHTML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1100
+#: English/Plugins.xml:1097
 msgid "HTML Validator with tidy-html5"
 msgstr "Validateur HTML avec tidy-html5"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1103
+#: English/Plugins.xml:1100
 msgid ""
 "<command>ValidateHTML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -22898,32 +22898,32 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1153
+#: English/Plugins.xml:1149
 #, fuzzy
 #| msgid "ValidateHTML plugin file"
 msgid "ValidatePO plugin file"
 msgstr "Fichier du plug-in ValidateHTML"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1151
+#: English/Plugins.xml:1148
 #, fuzzy
 #| msgid ""
 #| "<filename>ValidateHTML<placeholder type=\"indexterm\" id=\"0\"/></"
 #| "filename>"
 msgid ""
-"<filename> ValidatePO<placeholder type=\"indexterm\" id=\"0\"/> </filename>"
+"<filename>ValidatePO<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>ValidateHTML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1158
+#: English/Plugins.xml:1152
 #, fuzzy
 #| msgid "HTML Validator with tidy-html5"
 msgid "PO Validator with gettext msgfmt"
 msgstr "Validateur HTML avec tidy-html5"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1161
+#: English/Plugins.xml:1155
 #, fuzzy
 #| msgid ""
 #| "<command>ValidateHTML</command> <arg choice=\"opt\" "
@@ -22936,19 +22936,19 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1177
+#: English/Plugins.xml:1171
 #, fuzzy
 #| msgid "Command line options passed to the dot command"
 msgid "Command line options passed to the msgfmt command"
 msgstr "Options de ligne de commande passées à la commande dot"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1220
+#: English/Plugins.xml:1214
 msgid "PreviewGraphviz plugin file"
 msgstr "Fichier du plug-in PreviewGraphviz"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1219
+#: English/Plugins.xml:1213
 msgid ""
 "<filename>PreviewGraphviz<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -22957,12 +22957,12 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1223
+#: English/Plugins.xml:1217
 msgid "Graphviz Previewer"
 msgstr "Prévisualiseur Graphviz"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1226
+#: English/Plugins.xml:1220
 msgid ""
 "<command>PreviewGraphviz</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -22971,12 +22971,12 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1236
+#: English/Plugins.xml:1230
 msgid "Command line options passed to the dot command"
 msgstr "Options de ligne de commande passées à la commande dot"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1257
+#: English/Plugins.xml:1251
 msgid ""
 "<filename class=\"extension\">*.gv</filename>, <filename "
 "class=\"extension\">,*.dot</filename>"
@@ -22985,17 +22985,17 @@ msgstr ""
 "class=\"extension\">,*.dot</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1267
+#: English/Plugins.xml:1261
 msgid "<ulink url=\"https://graphviz.org/\">Graphviz</ulink>"
 msgstr "<ulink url=\"https://graphviz.org/\">Graphviz</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1274
+#: English/Plugins.xml:1268
 msgid "PreviewMarkdown plugin file"
 msgstr "Fichier du plug-in PreviewMarkdown"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1273
+#: English/Plugins.xml:1267
 msgid ""
 "<filename>PreviewMarkdown<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23004,12 +23004,12 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1277
+#: English/Plugins.xml:1271
 msgid "Markdown Previewer"
 msgstr "Prévisualiseur Markdown"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1280
+#: English/Plugins.xml:1274
 msgid ""
 "<command>PreviewMarkdown</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -23018,12 +23018,12 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1290
+#: English/Plugins.xml:1284
 msgid "Command line options passed to the md2html command"
 msgstr "Options de ligne de commande passées à la commande md2html"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1311
+#: English/Plugins.xml:1305
 msgid ""
 "<filename class=\"extension\">*.md</filename>, <filename "
 "class=\"extension\">,*.markdown</filename>"
@@ -23032,17 +23032,17 @@ msgstr ""
 "class=\"extension\">,*.markdown</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1321
+#: English/Plugins.xml:1315
 msgid "<ulink url=\"https://github.com/mity/md4c\">md4c</ulink>"
 msgstr "<ulink url=\"https://github.com/mity/md4c\">md4c</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1328
+#: English/Plugins.xml:1322
 msgid "PreviewPlantUML plugin file"
 msgstr "Fichier du plug-in PreviewPlantUML"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1327
+#: English/Plugins.xml:1321
 msgid ""
 "<filename>PreviewPlantUML<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23051,12 +23051,12 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1331
+#: English/Plugins.xml:1325
 msgid "PlantUML Previewer"
 msgstr "Prévisualiseur PlantUML"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1334
+#: English/Plugins.xml:1328
 msgid ""
 "<command>PreviewPlantUML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -23065,12 +23065,12 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1344
+#: English/Plugins.xml:1338
 msgid "Command line options passed to the plantuml.jar command"
 msgstr "Options de ligne de commande passées à la commande plantuml.jar"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1365
+#: English/Plugins.xml:1359
 msgid ""
 "<filename class=\"extension\">*.pu</filename>, <filename "
 "class=\"extension\">,*.puml</filename>"
@@ -23079,7 +23079,7 @@ msgstr ""
 "class=\"extension\">,*.puml</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1375
+#: English/Plugins.xml:1369
 msgid ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>, "
 "<ulink url=\"https://plantuml.com/\">PlantUML</ulink>, <ulink url=\"https://"
@@ -23090,24 +23090,24 @@ msgstr ""
 "graphviz.org/\">Graphviz</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1382
+#: English/Plugins.xml:1376
 msgid "ApacheTika plugin file"
 msgstr "Fichier du plug-in ApacheTika"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1381
+#: English/Plugins.xml:1375
 msgid ""
 "<filename>ApacheTika<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>ApacheTika<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1385
+#: English/Plugins.xml:1379
 msgid "General content extractor with Apache Tika"
 msgstr "Extracteur de contenu général avec Apache Tika"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1388
+#: English/Plugins.xml:1382
 msgid ""
 "<command>ApacheTika</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -23116,17 +23116,17 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1398
+#: English/Plugins.xml:1392
 msgid "Command line options passed to the tika-app.jar"
 msgstr "Options de ligne de commande passées à tika-app.jar"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1419
+#: English/Plugins.xml:1413
 msgid "<filename class=\"extension\">*.*</filename>"
 msgstr "<filename class=\"extension\">*.*</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1428
+#: English/Plugins.xml:1422
 msgid ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>, "
 "<ulink url=\"https://tika.apache.org/\">Apache Tika</ulink>"
@@ -23135,24 +23135,24 @@ msgstr ""
 "<ulink url=\"https://tika.apache.org/\">Apache Tika</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1435
+#: English/Plugins.xml:1429
 msgid "DisassembleJVM plugin file"
 msgstr "Fichier du plug-in DisassembleJVM"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1434
+#: English/Plugins.xml:1428
 msgid ""
 "<filename>DisassembleJVM<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>DisassembleJVM<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1438
+#: English/Plugins.xml:1432
 msgid "JVM bytecode disassembler with javap"
 msgstr "Désassembleur de bytecode JVM avec javap"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1441
+#: English/Plugins.xml:1435
 msgid ""
 "<command>DisassembleJVM</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -23161,41 +23161,41 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1451
+#: English/Plugins.xml:1445
 msgid "Command line options passed to the javap command"
 msgstr "Options de ligne de commande passées à la commande javap"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1472
+#: English/Plugins.xml:1466
 msgid "<filename class=\"extension\">*.class</filename>"
 msgstr "<filename class=\"extension\">*.class</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1481
+#: English/Plugins.xml:1475
 msgid ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>"
 msgstr ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1488
+#: English/Plugins.xml:1482
 msgid "DisassembleIL plugin file"
 msgstr "Fichier du plug-in DisassembleIL"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1487
+#: English/Plugins.xml:1481
 msgid ""
 "<filename>DisassembleIL<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>DisassembleIL<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1491
+#: English/Plugins.xml:1485
 msgid "IL code disassembler with ildasm"
 msgstr "Désassembleur de code IL avec ildasm"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1494
+#: English/Plugins.xml:1488
 msgid ""
 "<command>DisassembleIL</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -23204,12 +23204,12 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1504
+#: English/Plugins.xml:1498
 msgid "Command line options passed to the ildasm command"
 msgstr "Options de ligne de commande passées à la commande ildasm"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1525 English/Plugins.xml:1581
+#: English/Plugins.xml:1519 English/Plugins.xml:1575
 msgid ""
 "<filename class=\"extension\">*.obj</filename>, <filename "
 "class=\"extension\">*.lib</filename>, <filename class=\"extension\">*.exe</"
@@ -23220,19 +23220,19 @@ msgstr ""
 "filename>, <filename class=\"extension\">*.dll</filename>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1537 English/Plugins.xml:1593
+#: English/Plugins.xml:1531 English/Plugins.xml:1587
 msgid ""
 "<ulink url=\"https://visualstudio.microsoft.com/\">Visual Studio</ulink>"
 msgstr ""
 "<ulink url=\"https://visualstudio.microsoft.com/\">Visual Studio</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1544
+#: English/Plugins.xml:1538
 msgid "DisassembleNative plugin file"
 msgstr "Fichier du plug-in DisassembleNative"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1543
+#: English/Plugins.xml:1537
 msgid ""
 "<filename>DisassembleNative<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23241,12 +23241,12 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1547
+#: English/Plugins.xml:1541
 msgid "Native code disassembler with dumpbin"
 msgstr "Désassembleur de code natif avec dumpbin"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1550
+#: English/Plugins.xml:1544
 msgid ""
 "<command>DisassembleNative</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -23255,17 +23255,17 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1560
+#: English/Plugins.xml:1554
 msgid "Command line options passed to the dumpbin command"
 msgstr "Options de ligne de commande passées à la commande dumpbin"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1600
+#: English/Plugins.xml:1594
 msgid "ExecFilterCommand plugin file"
 msgstr "Fichier du plug-in ExecFilterCommand"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1599
+#: English/Plugins.xml:1593
 msgid ""
 "<filename>ExecFilterCommand<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23274,12 +23274,12 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1603
+#: English/Plugins.xml:1597
 msgid "Applys filter command"
 msgstr "Applique la commande de filtre"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1606
+#: English/Plugins.xml:1600
 msgid ""
 "<command>ExecFilterCommand</command> <arg choice=\"opt\" "
 "rep=\"norepeat\"><replaceable>command</replaceable></arg>"
@@ -23288,75 +23288,75 @@ msgstr ""
 "rep=\"norepeat\"><replaceable>command</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1614
+#: English/Plugins.xml:1608
 msgid "<option><replaceable>command</replaceable></option>"
 msgstr "<option><replaceable>commande</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1616
+#: English/Plugins.xml:1610
 msgid "command to execute. %1 in the command is replaced with the filename"
 msgstr ""
 "commande à exécuter. %1 dans la commande est remplacé par le nom du fichier"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1637 English/Plugins.xml:1674 English/Plugins.xml:1711
-#: English/Plugins.xml:1748 English/Plugins.xml:1785 English/Plugins.xml:1822
-#: English/Plugins.xml:1859 English/Plugins.xml:1896 English/Plugins.xml:1933
-#: English/Plugins.xml:2035 English/Plugins.xml:2128 English/Plugins.xml:2210
-#: English/Plugins.xml:2264 English/Plugins.xml:2301
+#: English/Plugins.xml:1631 English/Plugins.xml:1668 English/Plugins.xml:1705
+#: English/Plugins.xml:1742 English/Plugins.xml:1779 English/Plugins.xml:1816
+#: English/Plugins.xml:1853 English/Plugins.xml:1890 English/Plugins.xml:1927
+#: English/Plugins.xml:2029 English/Plugins.xml:2122 English/Plugins.xml:2204
+#: English/Plugins.xml:2258 English/Plugins.xml:2295
 msgid "<filename class=\"extension\">*.nomatch</filename>"
 msgstr "<filename class=\"extension\">*.nomatch</filename>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1646 English/Plugins.xml:1683 English/Plugins.xml:1720
-#: English/Plugins.xml:1757 English/Plugins.xml:1794 English/Plugins.xml:1831
-#: English/Plugins.xml:1868 English/Plugins.xml:1905 English/Plugins.xml:1942
-#: English/Plugins.xml:2044 English/Plugins.xml:2137 English/Plugins.xml:2219
-#: English/Plugins.xml:2273 English/Plugins.xml:2310 English/Plugins.xml:2676
+#: English/Plugins.xml:1640 English/Plugins.xml:1677 English/Plugins.xml:1714
+#: English/Plugins.xml:1751 English/Plugins.xml:1788 English/Plugins.xml:1825
+#: English/Plugins.xml:1862 English/Plugins.xml:1899 English/Plugins.xml:1936
+#: English/Plugins.xml:2038 English/Plugins.xml:2131 English/Plugins.xml:2213
+#: English/Plugins.xml:2267 English/Plugins.xml:2304 English/Plugins.xml:2670
 msgid "Windows Script Host"
 msgstr "Windows Script Host"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1653
+#: English/Plugins.xml:1647
 msgid "MakeUpper plugin file"
 msgstr "Fichier du plug-in MakeUpper"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1652
+#: English/Plugins.xml:1646
 msgid ""
 "<filename>MakeUpper<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>MakeUpper<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1656
+#: English/Plugins.xml:1650
 msgid "Makes characters uppercase"
 msgstr "Met les caractères en majuscules"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1690
+#: English/Plugins.xml:1684
 msgid "MakeLower plugin file"
 msgstr "Fichier du plug-in MakeLower"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1689
+#: English/Plugins.xml:1683
 msgid ""
 "<filename>MakeLower<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>MakeLower<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1693
+#: English/Plugins.xml:1687
 msgid "Makes characters lowercase"
 msgstr "Met les caractères en minuscules"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1727
+#: English/Plugins.xml:1721
 msgid "RemoveDuplicates plugin file"
 msgstr "Fichier du plug-in RemoveDuplicates"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1726
+#: English/Plugins.xml:1720
 msgid ""
 "<filename>RemoveDuplicates<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23365,17 +23365,17 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1730
+#: English/Plugins.xml:1724
 msgid "Removes duplicate lines"
 msgstr "Supprime les lignes en double"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1764
+#: English/Plugins.xml:1758
 msgid "CountDuplicates plugin file"
 msgstr "Fichier du plug-in CountDuplicates"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1763
+#: English/Plugins.xml:1757
 msgid ""
 "<filename>CountDuplicates<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23384,97 +23384,97 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1767
+#: English/Plugins.xml:1761
 msgid "Counts duplicate lines"
 msgstr "Compte les lignes en double"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1801
+#: English/Plugins.xml:1795
 msgid "SortAscending plugin file"
 msgstr "Fichier du plug-in SortAscending"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1800
+#: English/Plugins.xml:1794
 msgid ""
 "<filename>SortAscending<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>SortAscending<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1804
+#: English/Plugins.xml:1798
 msgid "Sorts lines ascending"
 msgstr "Trie les lignes par ordre croissant"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1838
+#: English/Plugins.xml:1832
 msgid "SortDescending plugin file"
 msgstr "Fichier du plug-in SortDescending"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1837
+#: English/Plugins.xml:1831
 msgid ""
 "<filename>SortDescending<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>SortDescending<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1841
+#: English/Plugins.xml:1835
 msgid "Sorts lines descending"
 msgstr "Trie les lignes par ordre décroissant"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1875
+#: English/Plugins.xml:1869
 msgid "ReverseColumns plugin file"
 msgstr "Fichier du plug-in ReverseColumns"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1874
+#: English/Plugins.xml:1868
 msgid ""
 "<filename>ReverseColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>ReverseColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1878
+#: English/Plugins.xml:1872
 msgid "Reverses columns"
 msgstr "Inverse les colonnes"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1912
+#: English/Plugins.xml:1906
 msgid "ReverseLines plugin file"
 msgstr "Fichier du plug-in ReverseLines"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1911
+#: English/Plugins.xml:1905
 msgid ""
 "<filename>ReverseLines<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>ReverseLines<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1915
+#: English/Plugins.xml:1909
 msgid "Reverses lines"
 msgstr "Inverse les lignes"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1949
+#: English/Plugins.xml:1943
 msgid "SelectColumns plugin file"
 msgstr "Fichier du plug-in SelectColumns"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1948
+#: English/Plugins.xml:1942
 msgid ""
 "<filename>SelectColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>SelectColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1952
+#: English/Plugins.xml:1946
 msgid "Selects some columns"
 msgstr "Sélectionne certaines colonnes"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1955
+#: English/Plugins.xml:1949
 msgid ""
 "<command>SelectColumns</command> <arg choice=\"opt\" "
 "rep=\"norepeat\"><replaceable>ranges</replaceable></arg>"
@@ -23483,7 +23483,7 @@ msgstr ""
 "rep=\"norepeat\"><replaceable>ranges</replaceable></arg>"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1962
+#: English/Plugins.xml:1956
 msgid ""
 "<command>SelectColumns</command> <arg><option>-v</option></arg> "
 "<arg><option>-i</option></arg> <arg><option>-g</option></arg> <arg><option>-"
@@ -23494,84 +23494,84 @@ msgstr ""
 "e</option> <replaceable>patterns</replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1976 English/Plugins.xml:2076
+#: English/Plugins.xml:1970 English/Plugins.xml:2070
 msgid "<option><replaceable>ranges</replaceable></option>"
 msgstr "<option><replaceable>ranges</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1978
+#: English/Plugins.xml:1972
 msgid "list of column ranges to select. (e.g. -3,5-10,30-)"
 msgstr "liste des plages de colonnes à sélectionner (ex. -3,5-10,30-)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1983 English/Plugins.xml:2083 English/Plugins.xml:2240
+#: English/Plugins.xml:1977 English/Plugins.xml:2077 English/Plugins.xml:2234
 msgid "<option><replaceable>patterns</replaceable></option>"
 msgstr "<option><replaceable>patterns</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1985 English/Plugins.xml:2085
+#: English/Plugins.xml:1979 English/Plugins.xml:2079
 msgid "regular expression"
 msgstr "expression régulière"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1990 English/Plugins.xml:2090
+#: English/Plugins.xml:1984 English/Plugins.xml:2084
 msgid "<option>-v</option>"
 msgstr "<option>-v</option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1992
+#: English/Plugins.xml:1986
 msgid "select non-matching columns"
 msgstr "sélectionne les colonnes ne correspondant pas"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1997 English/Plugins.xml:2097 English/Plugins.xml:2179
+#: English/Plugins.xml:1991 English/Plugins.xml:2091 English/Plugins.xml:2173
 msgid "<option>-i</option>"
 msgstr "<option>-i</option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1999 English/Plugins.xml:2099
+#: English/Plugins.xml:1993 English/Plugins.xml:2093
 msgid "ignore case"
 msgstr "ignorer la casse"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:2004
+#: English/Plugins.xml:1998
 msgid "<option>-g</option>"
 msgstr "<option>-g</option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2006
+#: English/Plugins.xml:2000
 msgid "enable global flag"
 msgstr "activer l'indicateur global (global flag)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:2011 English/Plugins.xml:2104 English/Plugins.xml:2186
+#: English/Plugins.xml:2005 English/Plugins.xml:2098 English/Plugins.xml:2180
 msgid "<option>-e</option>"
 msgstr "<option>-e</option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2013 English/Plugins.xml:2106
+#: English/Plugins.xml:2007 English/Plugins.xml:2100
 msgid "use <replaceable>patterns</replaceable> for matching"
 msgstr "utiliser des <replaceable>motifs</replaceable> pour la correspondance"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2051
+#: English/Plugins.xml:2045
 msgid "SelectLines plugin file"
 msgstr "Fichier du plug-in SelectLines"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2050
+#: English/Plugins.xml:2044
 msgid ""
 "<filename>SelectLines<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>SelectLines<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2054
+#: English/Plugins.xml:2048
 msgid "Selects some lines"
 msgstr "Sélectionne certaines lignes"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:2057
+#: English/Plugins.xml:2051
 msgid ""
 "<command>SelectLines</command> <arg choice=\"opt\" "
 "rep=\"norepeat\"><replaceable>ranges</replaceable></arg>"
@@ -23580,7 +23580,7 @@ msgstr ""
 "rep=\"norepeat\"><replaceable>plages</replaceable></arg>"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:2064
+#: English/Plugins.xml:2058
 msgid ""
 "<command>SelectLines</command> <arg><option>-v</option></arg> <arg><option>-"
 "i</option></arg> <arg><option>-e</option> <replaceable>patterns</"
@@ -23591,32 +23591,32 @@ msgstr ""
 "arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2078
+#: English/Plugins.xml:2072
 msgid "list of line ranges to select. (e.g. -3,5-10,30-)"
 msgstr "liste des plages de lignes à sélectionner (ex: -3,5-10,30-)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2092
+#: English/Plugins.xml:2086
 msgid "select non-matching lines"
 msgstr "sélectionner les lignes ne correspondant pas"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2144
+#: English/Plugins.xml:2138
 msgid "Replace plugin file"
 msgstr "Fichier du plug-in Replace"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2143
+#: English/Plugins.xml:2137
 msgid "<filename>Replace<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr "<filename>Replace<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2147
+#: English/Plugins.xml:2141
 msgid "Replaces text with another text"
 msgstr "Remplace un texte par un autre"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:2150
+#: English/Plugins.xml:2144
 msgid ""
 "<command>Replace</command> <arg><option>-i</option></arg> <arg><option>-e</"
 "option></arg> <arg rep=\"norepeat\"><replaceable>text_to_find</replaceable></"
@@ -23628,53 +23628,53 @@ msgstr ""
 "replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:2165
+#: English/Plugins.xml:2159
 msgid "<option><replaceable>text_to_find</replaceable></option>"
 msgstr "<option><replaceable>texte_à_trouver</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2167
+#: English/Plugins.xml:2161
 msgid "text to find"
 msgstr "texte à trouver"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:2172
+#: English/Plugins.xml:2166
 msgid "<option><replaceable>text_to_replace</replaceable></option>"
 msgstr "<option><replaceable>texte_de_remplacement</replaceable></option>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2174
+#: English/Plugins.xml:2168
 msgid "text to replace"
 msgstr "texte de remplacement"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2181
+#: English/Plugins.xml:2175
 msgid "ignore case (only for -e)"
 msgstr "ignorer la casse (seulement pour -e)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2188
+#: English/Plugins.xml:2182
 msgid "treat the specified text as a regular expression"
 msgstr "traiter le texte spécifié comme une expression régulière"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2226
+#: English/Plugins.xml:2220
 msgid "Tokenize plugin file"
 msgstr "Fichier du plug-in Tokenize"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2225
+#: English/Plugins.xml:2219
 msgid "<filename>Tokenize<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>Tokenize<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2229
+#: English/Plugins.xml:2223
 msgid "Tokenizes selection"
 msgstr "Segmente (tokenize) la sélection"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:2232
+#: English/Plugins.xml:2226
 msgid ""
 "<command>Tokenize</command> <arg rep=\"norepeat\"><replaceable>patterns</"
 "replaceable></arg>"
@@ -23683,39 +23683,39 @@ msgstr ""
 "replaceable></arg>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2242
+#: English/Plugins.xml:2236
 msgid "regular expression for tokenizing. (e.g. [^\\w]+)"
 msgstr "expression régulière pour la segmentation (ex: [^\\w]+)"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2280
+#: English/Plugins.xml:2274
 msgid "Trim plugin file"
 msgstr "Fichier du plug-in Trim"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2279
+#: English/Plugins.xml:2273
 msgid "<filename>Trim<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr "<filename>Trim<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2283
+#: English/Plugins.xml:2277
 msgid "Trim spaces"
 msgstr "Supprimer les espaces"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2317
+#: English/Plugins.xml:2311
 msgid "IgnoreColumns plugin file"
 msgstr "Fichier du plug-in IgnoreColumns"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2316
+#: English/Plugins.xml:2310
 msgid ""
 "<filename>IgnoreColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>IgnoreColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2320
+#: English/Plugins.xml:2314
 msgid ""
 "This plugin ignores characters at specified columns. The first column is "
 "number 1."
@@ -23724,7 +23724,7 @@ msgstr ""
 "colonne est la numéro 1."
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2323
+#: English/Plugins.xml:2317
 msgid ""
 "Note that this plugin does not support files with tabs: the plugin does not "
 "fail, but all tabs are be treated as normal characters."
@@ -23734,7 +23734,7 @@ msgstr ""
 "traitées comme des caractères normaux."
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2326
+#: English/Plugins.xml:2320
 msgid ""
 "To specify columns, use plugin settings dialog or rename the <filename>dll</"
 "filename> using following fields as parameters:"
@@ -23744,76 +23744,76 @@ msgstr ""
 "suivants comme paramètres :"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2331
+#: English/Plugins.xml:2325
 msgid "Delimiters between ranges: _ or ,"
 msgstr "Délimiteurs entre les plages : _ ou ,"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2335
+#: English/Plugins.xml:2329
 msgid "Delimiters between min and max: <emphasis>anything else</emphasis>"
 msgstr ""
 "Délimiteurs entre min et max : <emphasis>n'importe quoi d'autre</emphasis>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2340
+#: English/Plugins.xml:2334
 msgid "Min and max are included."
 msgstr "Min et max sont inclus."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2344
+#: English/Plugins.xml:2338
 msgid "When max = min, max can be omitted."
 msgstr "Quand max = min, max peut être omis."
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Plugins.xml:2349
+#: English/Plugins.xml:2343
 msgid "<filename>IgnoreColumns</filename> examples"
 msgstr "Exemples de <filename>IgnoreColumns</filename>"
 
 #. type: Content of: <article><section><section><example><variablelist><varlistentry><term>
-#: English/Plugins.xml:2353
+#: English/Plugins.xml:2347
 msgid "<filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 - 33.dll</filename>"
 msgstr "<filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 - 33.dll</filename>"
 
 #. type: Content of: <article><section><section><example><variablelist><varlistentry><listitem><simpara>
-#: English/Plugins.xml:2357
+#: English/Plugins.xml:2351
 msgid ""
 "Ignore all characters at column 3, and in columns 10 to 20, and 32 to 33."
 msgstr ""
 "Ignore tous les caractères de la colonne 3, des colonnes 10 à 20, et 32 à 33."
 
 #. type: Content of: <article><section><section><example><variablelist><varlistentry><term>
-#: English/Plugins.xml:2363
+#: English/Plugins.xml:2357
 msgid "<filename>IgnoreColumns_1,30 to 40.dll</filename>"
 msgstr "<filename>IgnoreColumns_1,30 to 40.dll</filename>"
 
 #. type: Content of: <article><section><section><example><variablelist><varlistentry><listitem><simpara>
-#: English/Plugins.xml:2366
+#: English/Plugins.xml:2360
 msgid "Ignore all the characters in column 1, and in columns 30 to 40."
 msgstr "Ignore tous les caractères de la colonne 1, et des colonnes 30 à 40."
 
 #. type: Content of: <article><section><section><example>
-#: English/Plugins.xml:2351
+#: English/Plugins.xml:2345
 msgid "<placeholder type=\"variablelist\" id=\"0\"/>"
 msgstr "<placeholder type=\"variablelist\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2383 English/Plugins.xml:2411 English/Plugins.xml:2453
-#: English/Plugins.xml:2488 English/Plugins.xml:2519
+#: English/Plugins.xml:2377 English/Plugins.xml:2405 English/Plugins.xml:2447
+#: English/Plugins.xml:2482 English/Plugins.xml:2513
 msgid "Prediffer"
 msgstr "Pré-différenciateur"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2385 English/Plugins.xml:2490
+#: English/Plugins.xml:2379 English/Plugins.xml:2484
 msgid "<filename class=\"extension\">*.txt</filename>"
 msgstr "<filename class=\"extension\">*.txt</filename>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2394
+#: English/Plugins.xml:2388
 msgid "IgnoreCommentsC plugin file"
 msgstr "Fichier du plug-in IgnoreCommentsC"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2393
+#: English/Plugins.xml:2387
 msgid ""
 "<filename>IgnoreCommentsC<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23822,7 +23822,7 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2397
+#: English/Plugins.xml:2391
 msgid ""
 "The plugin ignores comments within<constant> //</constant>... and <constant>/"
 "*</constant> ... <constant>*/</constant> delimiters in C, C++, PHP and "
@@ -23833,7 +23833,7 @@ msgstr ""
 "C++, PHP et JavaScript."
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2413
+#: English/Plugins.xml:2407
 msgid ""
 "<filename class=\"extension\">*.cpp</filename>, <filename "
 "class=\"extension\">*.cxx</filename>, <filename class=\"extension\">*.h</"
@@ -23852,12 +23852,12 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2432
+#: English/Plugins.xml:2426
 msgid "IgnoreFieldsComma plugin file"
 msgstr "Fichier du plug-in IgnoreFieldsComma"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2431
+#: English/Plugins.xml:2425
 msgid ""
 "<filename>IgnoreFieldsComma<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23866,7 +23866,7 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2435
+#: English/Plugins.xml:2429
 msgid ""
 "This plugin is for files with fields and commas as delimiters (CSV files, "
 "for example). It ignores the delimiter characters. The first field is number "
@@ -23877,7 +23877,7 @@ msgstr ""
 "délimiteurs. Le premier champ est le numéro 1."
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2439 English/Plugins.xml:2474
+#: English/Plugins.xml:2433 English/Plugins.xml:2468
 msgid ""
 "To specify the delimiters, use plugin settings dialog or rename the "
 "<filename>dll</filename> using the same parameter fields used for <xref "
@@ -23888,12 +23888,12 @@ msgstr ""
 "champs de paramètres que pour <xref linkend=\"IgnoreColumns\" />."
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2466
+#: English/Plugins.xml:2460
 msgid "IgnoreFieldsTab plugin file"
 msgstr "Fichier du plug-in IgnoreFieldsTab"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2465
+#: English/Plugins.xml:2459
 msgid ""
 "<filename>IgnoreFieldsTab<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -23902,7 +23902,7 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2469
+#: English/Plugins.xml:2463
 msgid ""
 "This plugin is for files that use fields and tabs as delimiters "
 "(<application>for example, Excel</application> files saved in the <filename "
@@ -23916,12 +23916,12 @@ msgstr ""
 "numéro 1."
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2501
+#: English/Plugins.xml:2495
 msgid "IgnoreLeadingLineNumbers plugin file"
 msgstr "Fichier du plug-in IgnoreLeadingLineNumbers"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2500
+#: English/Plugins.xml:2494
 msgid ""
 "<filename>IgnoreLeadingLineNumbers<placeholder type=\"indexterm\" id=\"0\"/"
 "></filename>"
@@ -23930,7 +23930,7 @@ msgstr ""
 "></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2504
+#: English/Plugins.xml:2498
 msgid ""
 "This plugin ignores the leading line numbers in text files (for example, NC "
 "and BASIC files)."
@@ -23939,29 +23939,29 @@ msgstr ""
 "exemple, les fichiers NC et BASIC)."
 
 #. type: Content of: <article><section><section><para><segmentedlist><segtitle>
-#: English/Plugins.xml:2516
+#: English/Plugins.xml:2510
 msgid "Requirement"
 msgstr "Exigence"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2521
+#: English/Plugins.xml:2515
 msgid "<filename class=\"extension\">*.nc</filename>"
 msgstr "<filename class=\"extension\">*.nc</filename>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2532
+#: English/Plugins.xml:2526
 msgid "editor addin plugin file"
 msgstr "fichier du plug-in d'extension d'éditeur"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2531
+#: English/Plugins.xml:2525
 msgid ""
 "<filename>editor addin<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>editor addin<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2535
+#: English/Plugins.xml:2529
 msgid ""
 "Adds some functions to the <menuchoice> <guimenu>Plugins</guimenu> "
 "<guisubmenu>Scripts</guisubmenu> </menuchoice> menu:"
@@ -23970,7 +23970,7 @@ msgstr ""
 "<guisubmenu>Scripts</guisubmenu> </menuchoice> :"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2543
+#: English/Plugins.xml:2537
 msgid ""
 "<guimenuitem>Make Uppercase</guimenuitem> convert the selection to UPPER "
 "CASE."
@@ -23979,7 +23979,7 @@ msgstr ""
 "MAJUSCULES."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2548
+#: English/Plugins.xml:2542
 msgid ""
 "<guimenuitem>Make Lowercase</guimenuitem> convert the selection to lower "
 "case."
@@ -23988,7 +23988,7 @@ msgstr ""
 "minuscules."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2553
+#: English/Plugins.xml:2547
 msgid ""
 "<guimenuitem>Remove Duplicate Lines</guimenuitem> remove duplicate lines in "
 "the selection."
@@ -23997,7 +23997,7 @@ msgstr ""
 "lignes dupliquées dans la sélection."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2558
+#: English/Plugins.xml:2552
 msgid ""
 "<guimenuitem>Count Duplicate Lines</guimenuitem> remove duplicate lines in "
 "the selection and insert the number of duplicate lines on the right."
@@ -24006,7 +24006,7 @@ msgstr ""
 "dupliquées dans la sélection et insère le nombre de doublons sur la droite."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2563
+#: English/Plugins.xml:2557
 msgid ""
 "<guimenuitem>Sort Lines Ascending</guimenuitem> sort the selection in "
 "ascending order."
@@ -24015,7 +24015,7 @@ msgstr ""
 "par ordre croissant."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2568
+#: English/Plugins.xml:2562
 msgid ""
 "<guimenuitem>Sort Lines Descending</guimenuitem> sort the selection in "
 "descending order."
@@ -24024,7 +24024,7 @@ msgstr ""
 "par ordre décroissant."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2573
+#: English/Plugins.xml:2567
 msgid ""
 "<guimenuitem>Reverse Columns</guimenuitem> reverse columns in the selection."
 msgstr ""
@@ -24032,7 +24032,7 @@ msgstr ""
 "la sélection."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2578
+#: English/Plugins.xml:2572
 msgid ""
 "<guimenuitem>Reverse Lines</guimenuitem> reverse lines in the selection."
 msgstr ""
@@ -24040,7 +24040,7 @@ msgstr ""
 "dans la sélection."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2583
+#: English/Plugins.xml:2577
 msgid ""
 "<guimenuitem>Select Columns...</guimenuitem> select some columns in the "
 "selection."
@@ -24049,7 +24049,7 @@ msgstr ""
 "certaines colonnes dans la sélection."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2588
+#: English/Plugins.xml:2582
 msgid ""
 "<guimenuitem>Select Lines...</guimenuitem> select some lines in the "
 "selection."
@@ -24058,7 +24058,7 @@ msgstr ""
 "lignes dans la sélection."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2593
+#: English/Plugins.xml:2587
 msgid ""
 "<guimenuitem>Replace...</guimenuitem> replace text in the selection with "
 "another text."
@@ -24067,7 +24067,7 @@ msgstr ""
 "par un autre texte."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2598
+#: English/Plugins.xml:2592
 msgid ""
 "<guimenuitem>Apply Filter Command...</guimenuitem> replace the selection "
 "with the output of the specified filter command.  Specifying %1 in the "
@@ -24079,7 +24079,7 @@ msgstr ""
 "dans l'argument remplace celui-ci par le nom du fichier du volet actif."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2604
+#: English/Plugins.xml:2598
 msgid ""
 "<guimenuitem>Tokenize...</guimenuitem> replaces the token delimiter with a "
 "newline in the selection."
@@ -24088,7 +24088,7 @@ msgstr ""
 "jeton par un saut de ligne dans la sélection."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2609
+#: English/Plugins.xml:2603
 msgid ""
 "<guimenuitem>Trim Spaces</guimenuitem> remove spaces at the beginning and "
 "end of lines in the selection."
@@ -24097,22 +24097,22 @@ msgstr ""
 "début et à la fin des lignes de la sélection."
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2620 English/Plugins.xml:2658
+#: English/Plugins.xml:2614 English/Plugins.xml:2652
 msgid "Editor complement"
 msgstr "Complément d'éditeur"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2621 English/Plugins.xml:2660
+#: English/Plugins.xml:2615 English/Plugins.xml:2654
 msgid "*"
 msgstr "*"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2629
+#: English/Plugins.xml:2623
 msgid "insert datetime plugin file"
 msgstr "fichier du plug-in insert datetime"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2628
+#: English/Plugins.xml:2622
 msgid ""
 "<filename>insert datetime<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
@@ -24121,7 +24121,7 @@ msgstr ""
 "filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2632
+#: English/Plugins.xml:2626
 msgid ""
 "Adds two functions to the <menuchoice> <guimenu>Plugins</guimenu> "
 "<guisubmenu>Scripts</guisubmenu> </menuchoice> menu:"
@@ -24130,7 +24130,7 @@ msgstr ""
 "<guisubmenu>Scripts</guisubmenu> </menuchoice> :"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2640
+#: English/Plugins.xml:2634
 msgid ""
 "<guimenuitem>Insert Date</guimenuitem> insert date in the current locale "
 "format."
@@ -24139,7 +24139,7 @@ msgstr ""
 "actuel."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2645
+#: English/Plugins.xml:2639
 msgid ""
 "<guimenuitem>Insert Time</guimenuitem> insert time in the current locale "
 "format."
@@ -24148,17 +24148,17 @@ msgstr ""
 "actuel."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Plugins.xml:2672
+#: English/Plugins.xml:2666
 msgid "Windows Script Host requirement"
 msgstr "Exigence Windows Script Host"
 
 #. type: Content of: <article><section><title>
-#: English/Plugins.xml:2669
+#: English/Plugins.xml:2663
 msgid "Requirements<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "Exigences<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2678
+#: English/Plugins.xml:2672
 msgid ""
 "Some editor complement plugins require this optional component from "
 "<trademark class=\"registered\">Microsoft</trademark>."
@@ -24167,7 +24167,7 @@ msgstr ""
 "de <trademark class=\"registered\">Microsoft</trademark>."
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2681
+#: English/Plugins.xml:2675
 msgid ""
 "It should already be included in your version of Windows, unless you use "
 "some really old pre Windows XP version."
