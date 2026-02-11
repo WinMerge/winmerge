@@ -372,22 +372,22 @@ namespace
 		di.diffFileInfo[0].mtime = Poco::Timestamp();
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime + (Poco::Timestamp::resolution() * CompareEngines::TimeSizeCompare::SmallTimeDiff - 1 * 1000 * 1000);
-		EXPECT_EQ(int(DIFFCODE::SAME), tsci.CompareFiles(di));
+		EXPECT_EQ(int(DIFFCODE::SAME), tsc3i.CompareFiles(di));
 
 		di.diffFileInfo[0].mtime = Poco::Timestamp();
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime + (Poco::Timestamp::resolution() * CompareEngines::TimeSizeCompare::SmallTimeDiff - 1 * 1000 * 1000);
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime;
-		EXPECT_EQ(int(DIFFCODE::SAME), tsci.CompareFiles(di));
+		EXPECT_EQ(int(DIFFCODE::SAME), tsc3i.CompareFiles(di));
 
 		di.diffFileInfo[0].mtime = Poco::Timestamp();
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime;
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime - (Poco::Timestamp::resolution() * CompareEngines::TimeSizeCompare::SmallTimeDiff - 1 * 1000 * 1000);
-		EXPECT_EQ(int(DIFFCODE::SAME), tsci.CompareFiles(di));
+		EXPECT_EQ(int(DIFFCODE::SAME), tsc3i.CompareFiles(di));
 
 		di.diffFileInfo[0].mtime = Poco::Timestamp();
 		di.diffFileInfo[1].mtime = di.diffFileInfo[0].mtime - (Poco::Timestamp::resolution() * CompareEngines::TimeSizeCompare::SmallTimeDiff - 1 * 1000 * 1000);
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime;
-		EXPECT_EQ(int(DIFFCODE::SAME), tsci.CompareFiles(di));
+		EXPECT_EQ(int(DIFFCODE::SAME), tsc3i.CompareFiles(di));
 	}
 
 	TEST_F(TimeSizeCompareTest, TimeCompare_DifferentTime)
