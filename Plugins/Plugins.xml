@@ -152,7 +152,7 @@
     <extended-properties value="ProcessType=Validation;MenuCaption=Validate PO" />
     <arguments value="--check --statistics"/>
     <unpack-file>
-      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\gettext\msgfmt.bat" ${*} - 2> ${DST_FILE}</command>
+      <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\gettext\msgfmt.bat" ${*} - 2> "${DST_FILE}" | exit 0</command>
     </unpack-file>
   </plugin>
   <plugin name="PreviewGraphviz">
