@@ -451,6 +451,74 @@ protected:
 		return result;
 	}
 
+	std::vector<String> parseArguments(const String& arguments)
+	{
+		std::vector<String> result;
+		String current;
+		bool inQuotes = false;
+
+		const tchar_t* p = arguments.c_str();
+		while (*p)
+		{
+			if (!inQuotes)
+			{
+				if (*p == _T(' '))
+				{
+					if (!current.empty())
+					{
+						result.push_back(current);
+						current.clear();
+					}
+					++p;
+				}
+				else if (*p == _T('"'))
+				{
+					inQuotes = true;
+					++p;
+				}
+				else
+				{
+					current += *p++;
+				}
+			}
+			else
+			{
+				if (*p == _T('"'))
+				{
+					if (*(p + 1) == _T('"'))
+					{
+						// Escaped quote
+						current += _T('"');
+						p += 2;
+					}
+					else
+					{
+						// End quote
+						inQuotes = false;
+						++p;
+					}
+				}
+				else
+				{
+					current += *p++;
+				}
+			}
+		}
+
+		// Push last argument
+		if (inQuotes)
+		{
+			// Unterminated quote → accept as-is
+			result.push_back(current);
+		}
+		else if (!current.empty() || (!arguments.empty() && arguments.back() == _T('"')))
+		{
+			result.push_back(current);
+		}
+
+		return result;
+	}
+
 	String replaceMacros(const String& cmd, const String & fileSrc, const String& fileDst)
 	{
 		String command = cmd;
@@ -473,6 +541,7 @@ protected:
 				parsedURL.pszSuffix ? parsedURL.pszSuffix : _T(""));
 		}
 
+		std::vector<String> args;
 		std::vector<String> macroNames = getMacroNames(cmd);
 		for (const auto& name : macroNames)
 		{
@@ -488,9 +557,12 @@ protected:
 				strutils::replace(command, _T("${WINMERGE_HOME}"), env::GetProgPath());
 			else if (name.length() == 1 && tc::istdigit(name.front()))
 			{
-				std::vector<StringView> vars = strutils::split(m_sVariables, '\0');
-				for (size_t i = 0; i < vars.size(); ++i)
-					strutils::replace(command, strutils::format(_T("${%d}"), i), strutils::to_str(vars[i]));
+				if (args.empty())
+					args = parseArguments(m_sArguments);
+				int num = tc::ttoi(name.c_str());
+				if (num < 1 || static_cast<size_t>(num) > args.size())
+					continue;
+				strutils::replace(command, strutils::format(_T("${%d}"), num), args[num - 1]);
 			}
 			else if (name == _T("*"))
 				strutils::replace(command, _T("${*}"), m_sArguments);
