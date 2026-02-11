@@ -810,6 +810,75 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_PrettifyPO">
+      <title>
+        <filename>
+          PrettifyPO<indexterm>
+            <primary>PrettifyPO plugin file</primary>
+          </indexterm>
+        </filename>
+      </title>
+
+      <para>PO Prettier with gettext msgcat</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PrettifyPO</command>
+
+        <arg choice="opt"
+         rep="repeat">
+          <replaceable>arguments</replaceable>
+        </arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term>
+            <option>
+              <replaceable>arguments</replaceable>
+            </option>
+          </term>
+          <listitem>
+            <para>Command line options passed to the msgcat command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+        <segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg>
+              <filename class="extension">*.po</filename>
+              <filename class="extension">*.pot</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>
+              <ulink url="https://www.gnu.org/software/gettext/">gettext</ulink>
+            </seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </section>
+
     <section id="Plugins_QueryCSV">
       <title><filename>QueryCSV<indexterm>
           <primary>QueryCSV plugin file</primary>
@@ -1075,6 +1144,75 @@
             <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_ValidatePO">
+      <title>
+        <filename>
+          ValidatePO<indexterm>
+            <primary>ValidatePO plugin file</primary>
+          </indexterm>
+        </filename>
+      </title>
+
+      <para>PO Validator with gettext msgfmt</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>ValidatePO</command>
+
+        <arg choice="opt"
+         rep="repeat">
+          <replaceable>arguments</replaceable>
+        </arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term>
+            <option>
+              <replaceable>arguments</replaceable>
+            </option>
+          </term>
+          <listitem>
+            <para>Command line options passed to the msgfmt command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>
+        <segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg>
+              <filename class="extension">*.po</filename>
+              <filename class="extension">*.pot</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg>
+              <ulink url="https://www.gnu.org/software/gettext/">gettext</ulink>
+            </seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
     </section>
 
     <section id="Plugins_PreviewGraphviz">
