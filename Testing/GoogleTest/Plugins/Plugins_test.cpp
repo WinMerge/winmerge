@@ -299,12 +299,13 @@ namespace
 	TEST_F(PluginsTest, ReplaceVariable)
 	{
 		String result;
-		EXPECT_STREQ(_T(""), PluginForFile::MakeArguments(std::vector<String>{_T("")}, { _T("abc") }).c_str());
+		EXPECT_STREQ(_T(""), PluginForFile::MakeArguments(std::vector<String>{}, { _T("abc") }).c_str());
+		EXPECT_STREQ(_T("\"\""), PluginForFile::MakeArguments(std::vector<String>{_T("")}, { _T("abc") }).c_str());
 		EXPECT_STREQ(_T("%"), PluginForFile::MakeArguments(std::vector<String>{_T("%")}, {_T("abc")}).c_str());
 		EXPECT_STREQ(_T("abc"), PluginForFile::MakeArguments(std::vector<String>{_T("%1")}, {_T("abc")}).c_str());
 		EXPECT_STREQ(_T("%1"), PluginForFile::MakeArguments(std::vector<String>{_T("%%1")}, {_T("abc")}).c_str());
 		EXPECT_STREQ(_T("%1a"), PluginForFile::MakeArguments(std::vector<String>{_T("%%1a")}, {_T("abc")}).c_str());
-		EXPECT_STREQ(_T(""), PluginForFile::MakeArguments(std::vector<String>{_T("%2")}, {_T("abc")}).c_str());
+		EXPECT_STREQ(_T("\"\""), PluginForFile::MakeArguments(std::vector<String>{_T("%2")}, {_T("abc")}).c_str());
 		EXPECT_STREQ(_T("%TIME%"), PluginForFile::MakeArguments(std::vector<String>{_T("%TIME%")}, {_T("abc")}).c_str());
 		EXPECT_STREQ(_T("aaaabcaaa"), PluginForFile::MakeArguments(std::vector<String>{_T("aaa%1aaa")}, {_T("abc")}).c_str());
 		EXPECT_STREQ(_T("abcdef"), PluginForFile::MakeArguments(std::vector<String>{_T("%1%2")}, { _T("abc"), _T("def") }).c_str());
