@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 03.02.2026\n"
+"Project-Id-Version: WinMerge - Italian - 12.02.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-02-03 10:06+0100\n"
+"POT-Creation-Date: 2025-04-17 08:23+0000\n"
+"PO-Revision-Date: 2026-02-12 10:06+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -2714,7 +2714,7 @@ msgid "Rename/move detection &keys:"
 msgstr "Rilevamento tasti nomina/spostamento:"
 
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "Unisci rinomina &e sposta:"
 
 msgid "File patterns:"
 msgstr "Pattern file:"
@@ -3986,7 +3986,7 @@ msgid " (Left and middle are identical)"
 msgstr " (sinistro e centrale sono identici)"
 
 msgid " (paths differ)"
-msgstr ""
+msgstr " (percorso differente)"
 
 msgid "Text files are different"
 msgstr "I file di testo sono diversi"
@@ -4016,10 +4016,10 @@ msgid "Detect renames and moves"
 msgstr "Rileva rinomine e spostamenti"
 
 msgid "Merge renames"
-msgstr ""
+msgstr "Unisci rinomina"
 
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "Unisci rinomina e sposta"
 
 msgid "Renamed"
 msgstr "Rinominato"
@@ -4039,7 +4039,7 @@ msgid "%1 (set %2): "
 msgstr "%1 (imposta %2): "
 
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
-msgstr ""
+msgstr "Alcuni elementi spostati sono stati uniti.\nIn modalità struttura, questi elementi potrebbero essere visualizzati in posizioni che non riflettono la struttura effettiva delle cartelle, il che può creare confusione.\nVuoi passare alla modalità semplice?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -5414,7 +5414,7 @@ msgid "Prettify YAML"
 msgstr "Abbellisci YAML"
 
 msgid "Prettify PO"
-msgstr ""
+msgstr "Abbellisci PO"
 
 msgid "Preview Graphviz"
 msgstr "Anteprima Graphviz"
@@ -5438,10 +5438,10 @@ msgid "Query YAML Data..."
 msgstr "Interroga dati YAML..."
 
 msgid "Validate HTML"
-msgstr "Valida HTML"
+msgstr "Convalida HTML"
 
 msgid "Validate PO"
-msgstr ""
+msgstr "Convalida PO"
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Disassembla bytecode JVM"
@@ -5594,7 +5594,7 @@ msgstr ""
 "Argomenti: opzioni filtro o riga di comando passate al comando yq."
 
 msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
-msgstr ""
+msgstr "Abbellimento PO (gettext msgcat).\r\nArgomenti: opzioni riga di comando msgcat."
 
 msgid ""
 "Graphviz Previewer.\r\n"
@@ -5653,7 +5653,7 @@ msgstr ""
 "Argomenti: opzioni riga di comando passate al comando tidy."
 
 msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
-msgstr ""
+msgstr "Convalida PO (gettext msgfmt).\r\nArgomenti: opzioni riga di comando msgfmt."
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"
