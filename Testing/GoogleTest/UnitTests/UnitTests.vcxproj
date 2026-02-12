@@ -609,6 +609,7 @@
     </ClCompile>
     <ClCompile Include="..\ExistenceCompare\ExistenceCompare_test.cpp" />
     <ClCompile Include="..\FilterEngine\FilterExpression_test.cpp" />
+    <ClCompile Include="..\ImageCompare\ImageCompare_test.cpp" />
     <ClCompile Include="..\MoveDetection\RenameMoveDetection_test.cpp" />
     <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>

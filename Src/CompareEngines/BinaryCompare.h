@@ -5,9 +5,8 @@
  */
 #pragma once
 
+class CDiffContext;
 class DIFFITEM;
-class PathContext;
-class IAbortable;
 
 namespace CompareEngines
 {
@@ -19,12 +18,11 @@ namespace CompareEngines
 class BinaryCompare
 {
 public:
-	BinaryCompare();
+	BinaryCompare(CDiffContext& ctxt) : m_ctxt(ctxt) {}
 	~BinaryCompare();
-	void SetAbortable(const IAbortable * piAbortable);
-	int CompareFiles(const PathContext& files, const DIFFITEM &di) const;
+	int CompareFiles(const DIFFITEM &di) const;
 private:
-	IAbortable * m_piAbortable;
+	CDiffContext& m_ctxt;
 };
 
 } // namespace CompareEngines

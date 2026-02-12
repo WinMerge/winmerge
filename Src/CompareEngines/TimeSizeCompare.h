@@ -5,6 +5,7 @@
  */
 #pragma once
 
+class CDiffContext;
 class DIFFITEM;
 
 namespace CompareEngines
@@ -22,12 +23,13 @@ public:
 		SmallTimeDiff = 2
 	};
 
-	TimeSizeCompare();
+	TimeSizeCompare(CDiffContext& ctxt);
 	~TimeSizeCompare();
-	void SetAdditionalOptions(bool ignoreSmallDiff);
-	int CompareFiles(int compMethod, int nfiles, const DIFFITEM &di) const;
+	int CompareFiles(const DIFFITEM &di) const;
 
 private:
+	int m_nfiles;
+	int m_compMethod;
 	bool m_ignoreSmallDiff;
 };
 

@@ -3,6 +3,7 @@
 #include "DiffContext.h"
 #include "PathContext.h"
 #include "CompareEngines/BinaryCompare.h"
+#include "DiffWrapper.h"
 #include <fstream>
 
 namespace
@@ -57,100 +58,139 @@ namespace
 
 	TEST_F(BinaryCompareTest, SameSize)
 	{
-		CompareEngines::BinaryCompare bc;
+		PathContext paths;
+		paths.SetLeft(_T("."));
+		paths.SetRight(_T("."));
+		CDiffContext ctxt(paths, CMP_BINARY_CONTENT);
+		CompareEngines::BinaryCompare bc(ctxt);
+		PathContext paths3;
+		paths3.SetLeft(_T("."));
+		paths3.SetMiddle(_T("."));
+		paths3.SetRight(_T("."));
+		CDiffContext ctxt3(paths3, CMP_BINARY_CONTENT);
+		CompareEngines::BinaryCompare bc3(ctxt3);
 		DIFFITEM di;
-		PathContext files;
 
 		{
 			TempFile l1("A", "1", 1);
 			TempFile r1("B", "1", 1);
-			files.SetLeft(_T("A"));
-			files.SetRight(_T("B"));
+			di.diffcode.setSideFlag(0);
+			di.diffcode.setSideFlag(1);
+			di.diffFileInfo[0].SetFile(_T("A"));
+			di.diffFileInfo[1].SetFile(_T("B"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
-			EXPECT_EQ(int(DIFFCODE::SAME), bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::SAME), bc.CompareFiles(di));
 		}
-		
+
 		{
 			TempFile l1("A", "1", 1);
 			TempFile r1("B", "2", 1);
-			files.SetLeft(_T("A"));
-			files.SetRight(_T("B"));
+			di.diffcode.setSideFlag(0);
+			di.diffcode.setSideFlag(1);
+			di.diffFileInfo[0].SetFile(_T("A"));
+			di.diffFileInfo[1].SetFile(_T("B"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
-			EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(di));
 		}
 
 		{
 			TempFile l1("A", "1", 1);
 			TempFile m1("B", "1", 1);
 			TempFile r1("C", "1", 1);
-			files.SetLeft(_T("A"));
-			files.SetMiddle(_T("B"));
-			files.SetRight(_T("C"));
+			di.diffcode.setSideFlag(0);
+			di.diffcode.setSideFlag(1);
+			di.diffcode.setSideFlag(2);
+			di.diffFileInfo[0].SetFile(_T("A"));
+			di.diffFileInfo[1].SetFile(_T("B"));
+			di.diffFileInfo[2].SetFile(_T("C"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(int(DIFFCODE::SAME), bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::SAME), bc3.CompareFiles(di));
 		}
-		
+
 		{
 			TempFile l1("A", "1", 1);
 			TempFile m1("B", "1", 1);
 			TempFile r1("C", "2", 1);
-			files.SetLeft(_T("A"));
-			files.SetMiddle(_T("B"));
-			files.SetRight(_T("C"));
+			di.diffcode.setSideFlag(0);
+			di.diffcode.setSideFlag(1);
+			di.diffcode.setSideFlag(2);
+			di.diffFileInfo[0].SetFile(_T("A"));
+			di.diffFileInfo[1].SetFile(_T("B"));
+			di.diffFileInfo[2].SetFile(_T("C"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc3.CompareFiles(di));
 		}
 
 		{
 			TempFile l1("A", "1", 1);
 			TempFile m1("B", "2", 1);
 			TempFile r1("C", "1", 1);
-			files.SetLeft(_T("A"));
-			files.SetMiddle(_T("B"));
-			files.SetRight(_T("C"));
+			di.diffcode.setSideFlag(0);
+			di.diffcode.setSideFlag(1);
+			di.diffcode.setSideFlag(2);
+			di.diffFileInfo[0].SetFile(_T("A"));
+			di.diffFileInfo[1].SetFile(_T("B"));
+			di.diffFileInfo[2].SetFile(_T("C"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc3.CompareFiles(di));
 		}
 
 		{
 			TempFile l1("A", "2", 1);
 			TempFile m1("B", "1", 1);
 			TempFile r1("C", "1", 1);
-			files.SetLeft(_T("A"));
-			files.SetMiddle(_T("B"));
-			files.SetRight(_T("C"));
+			di.diffcode.setSideFlag(0);
+			di.diffcode.setSideFlag(1);
+			di.diffcode.setSideFlag(2);
+			di.diffFileInfo[0].SetFile(_T("A"));
+			di.diffFileInfo[1].SetFile(_T("B"));
+			di.diffFileInfo[2].SetFile(_T("C"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc3.CompareFiles(di));
 		}
 
 		{
 			TempFile l1("A", "1", 1);
 			TempFile m1("B", "2", 1);
 			TempFile r1("C", "3", 1);
-			files.SetLeft(_T("A"));
-			files.SetMiddle(_T("B"));
-			files.SetRight(_T("C"));
+			di.diffcode.setSideFlag(0);
+			di.diffcode.setSideFlag(1);
+			di.diffcode.setSideFlag(2);
+			di.diffFileInfo[0].SetFile(_T("A"));
+			di.diffFileInfo[1].SetFile(_T("B"));
+			di.diffFileInfo[2].SetFile(_T("C"));
 			di.diffFileInfo[0].size = 1;
 			di.diffFileInfo[1].size = 1;
 			di.diffFileInfo[2].size = 1;
-			EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
+			EXPECT_EQ(int(DIFFCODE::DIFF), bc3.CompareFiles(di));
 		}
 	}
 
 	TEST_F(BinaryCompareTest, DifferentSize)
 	{
-		CompareEngines::BinaryCompare bc;
-		PathContext files;
+		PathContext paths;
+		paths.SetLeft(_T("."));
+		paths.SetRight(_T("."));
+		CDiffContext ctxt(paths, CMP_BINARY_CONTENT);
+		CompareEngines::BinaryCompare bc(ctxt);
+
+		PathContext paths3;
+		paths3.SetLeft(_T("."));
+		paths3.SetMiddle(_T("."));
+		paths3.SetRight(_T("."));
+		CDiffContext ctxt3(paths3, CMP_BINARY_CONTENT);
+		CompareEngines::BinaryCompare bc3(ctxt3);
+
 		DIFFITEM di;
 
 		TempFile l1("A", "1", 1);
@@ -160,138 +200,193 @@ namespace
 		TempFile m2("Be", "", 0);
 		TempFile r2("Ce", "", 0);
 
-		files.SetLeft(_T("A"));
-		files.SetRight(_T("B"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.unsetSideFlag(1);
+		di.diffFileInfo[0].SetFile(_T("A"));
+		di.diffFileInfo[1].SetFile(_T("B"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(di));
 
-		files.SetLeft(_T("A"));
-		files.SetRight(_T("B"));
+		di.diffcode.unsetSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffFileInfo[0].SetFile(_T("A"));
+		di.diffFileInfo[1].SetFile(_T("B"));
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 1;
-		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(di));
 
-		files.SetLeft(_T("Ae"));
-		files.SetRight(_T("NUL"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.unsetSideFlag(1);
+		di.diffFileInfo[0].SetFile(_T("Ae"));
+		di.diffFileInfo[1].SetFile(_T("NUL"));
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(di));
 
-		files.SetLeft(_T("NUL"));
-		files.SetRight(_T("Be"));
+		di.diffcode.unsetSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffFileInfo[0].SetFile(_T("NUL"));
+		di.diffFileInfo[1].SetFile(_T("Be"));
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 0;
-		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(di));
 
-		files.SetLeft(_T("A"));
-		files.SetRight(_T("B"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffFileInfo[0].SetFile(_T("A"));
+		di.diffFileInfo[1].SetFile(_T("B"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 2;
-		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF), bc.CompareFiles(di));
 
-		files.SetLeft(_T("A"));
-		files.SetMiddle(_T("B"));
-		files.SetRight(_T("C"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffcode.setSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("A"));
+		di.diffFileInfo[1].SetFile(_T("B"));
+		di.diffFileInfo[2].SetFile(_T("C"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 2;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc3.CompareFiles(di));
 
-		files.SetLeft(_T("A"));
-		files.SetMiddle(_T("B"));
-		files.SetRight(_T("C"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffcode.setSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("A"));
+		di.diffFileInfo[1].SetFile(_T("B"));
+		di.diffFileInfo[2].SetFile(_T("C"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 2;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc3.CompareFiles(di));
 
-		files.SetLeft(_T("A"));
-		files.SetMiddle(_T("B"));
-		files.SetRight(_T("C"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffcode.setSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("A"));
+		di.diffFileInfo[1].SetFile(_T("B"));
+		di.diffFileInfo[2].SetFile(_T("C"));
 		di.diffFileInfo[0].size = 2;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc3.CompareFiles(di));
 
-		files.SetLeft(_T("NUL"));
-		files.SetMiddle(_T("Be"));
-		files.SetRight(_T("Ce"));
+		di.diffcode.unsetSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffcode.setSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("NUL"));
+		di.diffFileInfo[1].SetFile(_T("Be"));
+		di.diffFileInfo[2].SetFile(_T("Ce"));
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 0;
 		di.diffFileInfo[2].size = 0;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc3.CompareFiles(di));
 
-		files.SetLeft(_T("Ae"));
-		files.SetMiddle(_T("NUL"));
-		files.SetRight(_T("Ce"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.unsetSideFlag(1);
+		di.diffcode.setSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("Ae"));
+		di.diffFileInfo[1].SetFile(_T("NUL"));
+		di.diffFileInfo[2].SetFile(_T("Ce"));
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = 0;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc3.CompareFiles(di));
 
-		files.SetLeft(_T("Ae"));
-		files.SetMiddle(_T("Be"));
-		files.SetRight(_T("NUL"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffcode.unsetSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("Ae"));
+		di.diffFileInfo[1].SetFile(_T("Be"));
+		di.diffFileInfo[2].SetFile(_T("NUL"));
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = 0;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc3.CompareFiles(di));
 
-		files.SetLeft(_T("Ae"));
-		files.SetMiddle(_T("NUL"));
-		files.SetRight(_T("NUL"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.unsetSideFlag(1);
+		di.diffcode.unsetSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("Ae"));
+		di.diffFileInfo[1].SetFile(_T("NUL"));
+		di.diffFileInfo[2].SetFile(_T("NUL"));
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), bc3.CompareFiles(di));
 
-		files.SetLeft(_T("NUL"));
-		files.SetMiddle(_T("Be"));
-		files.SetRight(_T("NUL"));
+		di.diffcode.unsetSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffcode.unsetSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("NUL"));
+		di.diffFileInfo[1].SetFile(_T("Be"));
+		di.diffFileInfo[2].SetFile(_T("NUL"));
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 0;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), bc3.CompareFiles(di));
 
-		files.SetLeft(_T("NUL"));
-		files.SetMiddle(_T("NUL"));
-		files.SetRight(_T("Ce"));
+		di.diffcode.unsetSideFlag(0);
+		di.diffcode.unsetSideFlag(1);
+		di.diffcode.setSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("NUL"));
+		di.diffFileInfo[1].SetFile(_T("NUL"));
+		di.diffFileInfo[2].SetFile(_T("Ce"));
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = 0;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), bc3.CompareFiles(di));
 
 	}
 
 	TEST_F(BinaryCompareTest, Error)
 	{
-		CompareEngines::BinaryCompare bc;
-		PathContext files;
+		PathContext paths;
+		paths.SetLeft(_T("."));
+		paths.SetRight(_T("."));
+		CDiffContext ctxt(paths, CMP_BINARY_CONTENT);
+		CompareEngines::BinaryCompare bc(ctxt);
+
+		PathContext paths3;
+		paths3.SetLeft(_T("."));
+		paths3.SetMiddle(_T("."));
+		paths3.SetRight(_T("."));
+		CDiffContext ctxt3(paths3, CMP_BINARY_CONTENT);
+		CompareEngines::BinaryCompare bc3(ctxt3);
+
 		DIFFITEM di;
 
 		TempFile l1("A", "1", 1);
 		TempFile r1("B", "1", 1);
 
-		files.SetLeft(_T("/1>"));
-		files.SetRight(_T("B"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffFileInfo[0].SetFile(_T("/1>"));
+		di.diffFileInfo[1].SetFile(_T("B"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
-		EXPECT_EQ(int(DIFFCODE::CMPERR), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::CMPERR), bc.CompareFiles(di));
 
-		files.SetLeft(_T("A"));
-		files.SetRight(_T("/2>"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffFileInfo[0].SetFile(_T("A"));
+		di.diffFileInfo[1].SetFile(_T("/2>"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
-		EXPECT_EQ(int(DIFFCODE::CMPERR), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::CMPERR), bc.CompareFiles(di));
 
-		files.SetLeft(_T("A"));
-		files.SetMiddle(_T("B"));
-		files.SetRight(_T("/3>"));
+		di.diffcode.setSideFlag(0);
+		di.diffcode.setSideFlag(1);
+		di.diffcode.setSideFlag(2);
+		di.diffFileInfo[0].SetFile(_T("A"));
+		di.diffFileInfo[1].SetFile(_T("B"));
+		di.diffFileInfo[2].SetFile(_T("/3>"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(int(DIFFCODE::CMPERR), bc.CompareFiles(files, di));
+		EXPECT_EQ(int(DIFFCODE::CMPERR), bc3.CompareFiles(di));
 	}
 
 }  // namespace
