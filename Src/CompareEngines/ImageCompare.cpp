@@ -114,6 +114,8 @@ int ImageCompare::CompareFiles(const DIFFITEM &di) const
 			if (code02 == DIFFCODE::SAME)
 				return DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;
 		}
+		if (code10 == DIFFCODE::CMPABORT || code12 == DIFFCODE::CMPABORT || code02 == DIFFCODE::CMPABORT)
+			return DIFFCODE::CMPABORT;
 		if (code10 == DIFFCODE::CMPERR || code12 == DIFFCODE::CMPERR || code02 == DIFFCODE::CMPERR)
 			return DIFFCODE::CMPERR;
 		return DIFFCODE::DIFF;
