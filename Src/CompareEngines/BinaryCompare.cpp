@@ -69,10 +69,10 @@ static int compare_files(const String& file1, const String& file2, const IAborta
 
 /**
  * @brief Compare two specified files, byte-by-byte
- * @param [in] di Diffitem info.
+ * @param [in,out] di Diffitem info. Results are written to di.diffcode.
  * @return DIFFCODE
  */
-int BinaryCompare::CompareFiles(const DIFFITEM &di) const
+int BinaryCompare::CompareFiles(DIFFITEM& di) const
 {
 	PathContext files;
 	m_ctxt.GetComparePaths(di, files);
@@ -90,31 +90,43 @@ int BinaryCompare::CompareFiles(const DIFFITEM &di) const
 			return DIFFCODE::DIFF;
 		return compare_files(files[p1], files[p2], m_ctxt.GetAbortable());
 	};
+
+	int result = DIFFCODE::CMPERR;
+
 	switch (files.GetSize())
 	{
 	case 2:
-		return cmp(0, 1);
+		result = cmp(0, 1);
+		break;
+
 	case 3:
-		unsigned code10 = cmp(1, 0);
-		unsigned code12 = cmp(1, 2);
-		unsigned code02 = DIFFCODE::SAME;
-		if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
-			return DIFFCODE::SAME;
-		else if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::DIFF)
-			return DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY;
-		else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::SAME)
-			return DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY;
-		else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::DIFF)
 		{
-			code02 = cmp(0, 2);
-			if (code02 == DIFFCODE::SAME)
-				return DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;
+			unsigned code10 = cmp(1, 0);
+			unsigned code12 = cmp(1, 2);
+			unsigned code02 = DIFFCODE::SAME;
+			if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
+				result = DIFFCODE::SAME;
+			else if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::DIFF)
+				result = DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY;
+			else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::SAME)
+				result = DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY;
+			else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::DIFF)
+			{
+				code02 = cmp(0, 2);
+				if (code02 == DIFFCODE::SAME)
+					result = DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;
+				else
+					result = DIFFCODE::DIFF;
+			}
+			if (code10 == DIFFCODE::CMPERR || code12 == DIFFCODE::CMPERR || code02 == DIFFCODE::CMPERR)
+				result = DIFFCODE::CMPERR;
 		}
-		if (code10 == DIFFCODE::CMPERR || code12 == DIFFCODE::CMPERR || code02 == DIFFCODE::CMPERR)
-			return DIFFCODE::CMPERR;
-		return DIFFCODE::DIFF;
+		break;
 	}
-	return DIFFCODE::CMPERR;
+
+	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
+	di.diffcode.diffcode = DIFFCODE::FILE | result;
+	return result;
 }
 
 } // namespace CompareEngines

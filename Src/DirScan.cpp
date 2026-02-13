@@ -850,21 +850,7 @@ static void CompareDiffItem(FolderCmp &fc, DIFFITEM &di)
 	{
 		// 1. Test against filters
 		if (!di.diffcode.isResultFiltered())
-		{
-			di.diffcode.diffcode |= fc.prepAndCompareFiles(di);
-			di.nsdiffs = fc.m_ndiffs;
-			di.nidiffs = fc.m_ntrivialdiffs;
-
-			for (int i = 0; i < nDirs; ++i)
-			{
-				// Set text statistics
-				if (di.diffcode.exists(i))
-				{
-					di.diffFileInfo[i].m_textStats = fc.m_diffFileData.m_textStats[i];
-					di.diffFileInfo[i].encoding = fc.m_diffFileData.m_FileLocation[i].encoding;
-				}
-			}
-		}
+			fc.prepAndCompareFiles(di);
 	}
 	pCtxt->m_pCompareStats->AddItem(di.diffcode.diffcode);
 }

@@ -60,6 +60,7 @@ namespace
 		int result = ic.CompareFiles(di);
 		// Result could be DIFF or CMPERR depending on implementation
 		EXPECT_TRUE(result == DIFFCODE::DIFF || result == DIFFCODE::CMPERR);
+		EXPECT_EQ(result, di.diffcode.diffcode);
 	}
 
 	// Test with one side missing (2-way comparison)
@@ -109,6 +110,7 @@ namespace
 
 		int result = ic.CompareFiles(di);
 		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), result);
+		EXPECT_EQ(result, di.diffcode.diffcode);
 
 		// Only left and right exist
 		di.diffcode.setSideNone();
@@ -117,6 +119,7 @@ namespace
 
 		result = ic.CompareFiles(di);
 		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), result);
+		EXPECT_EQ(result, di.diffcode.diffcode);
 
 		// Only left and middle exist
 		di.diffcode.setSideNone();
@@ -125,6 +128,7 @@ namespace
 
 		result = ic.CompareFiles(di);
 		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), result);
+		EXPECT_EQ(result, di.diffcode.diffcode);
 	}
 
 	// Test with all sides missing (3-way)
