@@ -103,22 +103,45 @@ void BinaryCompare::CompareFiles(DIFFITEM& di) const
 			unsigned code10 = cmp(1, 0);
 			unsigned code12 = cmp(1, 2);
 			unsigned code02 = DIFFCODE::SAME;
-			if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
+			// Propagate user aborts from pairwise comparisons
+			if (code10 == DIFFCODE::CMPABORT || code12 == DIFFCODE::CMPABORT)
+			{
+				result = DIFFCODE::CMPABORT;
+			}
+			else if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
+			{
 				result = DIFFCODE::SAME;
+			}
 			else if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::DIFF)
+			{
 				result = DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY;
+			}
 			else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::SAME)
+			{
 				result = DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY;
+			}
 			else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::DIFF)
 			{
 				code02 = cmp(0, 2);
-				if (code02 == DIFFCODE::SAME)
+				if (code02 == DIFFCODE::CMPABORT)
+				{
+					result = DIFFCODE::CMPABORT;
+				}
+				else if (code02 == DIFFCODE::SAME)
+				{
 					result = DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;
+				}
 				else
+				{
 					result = DIFFCODE::DIFF;
+				}
 			}
-			if (code10 == DIFFCODE::CMPERR || code12 == DIFFCODE::CMPERR || code02 == DIFFCODE::CMPERR)
+			// Propagate comparison errors, but do not override an abort result
+			if (result != DIFFCODE::CMPABORT &&
+				(code10 == DIFFCODE::CMPERR || code12 == DIFFCODE::CMPERR || code02 == DIFFCODE::CMPERR))
+			{
 				result = DIFFCODE::CMPERR;
+			}
 		}
 		break;
 	}
