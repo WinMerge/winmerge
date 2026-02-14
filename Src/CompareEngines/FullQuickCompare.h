@@ -25,7 +25,7 @@ class FullQuickCompare
 public:
 	explicit FullQuickCompare(CDiffContext& ctxt, int nCompMethod);
 	~FullQuickCompare();
-	int CompareFiles(DIFFITEM& di) const;
+	void CompareFiles(DIFFITEM& di) const;
 	
 private:
 	CDiffContext* m_pCtxt;

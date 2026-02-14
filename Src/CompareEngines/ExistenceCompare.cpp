@@ -24,9 +24,8 @@ ExistenceCompare::~ExistenceCompare() = default;
 /**
  * @brief Compare specified files by their existence
  * @param [in,out] di Diffitem info. Results are written to di.diffcode.
- * @return DIFFCODE
  */
-int ExistenceCompare::CompareFiles(DIFFITEM& di) const
+void ExistenceCompare::CompareFiles(DIFFITEM& di) const
 {
 	unsigned code = DIFFCODE::SAME;
 	if (di.diffcode.exists(0) != di.diffcode.exists(1) ||
@@ -47,7 +46,6 @@ int ExistenceCompare::CompareFiles(DIFFITEM& di) const
 
 	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
 	di.diffcode.diffcode |= DIFFCODE::FILE | code;
-	return code;
 }
 
 } // namespace CompareEngines

@@ -70,9 +70,8 @@ static int compare_files(const String& file1, const String& file2, const IAborta
 /**
  * @brief Compare two specified files, byte-by-byte
  * @param [in,out] di Diffitem info. Results are written to di.diffcode.
- * @return DIFFCODE
  */
-int BinaryCompare::CompareFiles(DIFFITEM& di) const
+void BinaryCompare::CompareFiles(DIFFITEM& di) const
 {
 	PathContext files;
 	m_ctxt.GetComparePaths(di, files);
@@ -125,8 +124,7 @@ int BinaryCompare::CompareFiles(DIFFITEM& di) const
 	}
 
 	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
-	di.diffcode.diffcode = DIFFCODE::FILE | result;
-	return result;
+	di.diffcode.diffcode |= DIFFCODE::FILE | result;
 }
 
 } // namespace CompareEngines

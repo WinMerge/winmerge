@@ -58,7 +58,8 @@ namespace
 
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 2;
-		EXPECT_EQ(int(DIFFCODE::SAME), m_pCompare2->CompareFiles(di));
+		m_pCompare2->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::SAME), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideFlag(2);
 		di.diffcode.diffcode |= DIFFCODE::THREEWAY;
@@ -66,7 +67,8 @@ namespace
 		di.diffFileInfo[0].size = 0;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 2;
-		EXPECT_EQ(int(DIFFCODE::SAME), m_pCompare3->CompareFiles(di));
+		m_pCompare3->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::SAME), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 	}
 
 	TEST_F(ExistenceCompareTest, UniqueFile)
@@ -80,19 +82,22 @@ namespace
 		di.diffcode.setSideNone();
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::SAME), m_pCompare2->CompareFiles(di));
+		m_pCompare2->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::SAME), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(0);
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF), m_pCompare2->CompareFiles(di));
+		m_pCompare2->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(1);
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 1;
-		EXPECT_EQ(int(DIFFCODE::DIFF), m_pCompare2->CompareFiles(di));
+		m_pCompare2->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.diffcode |= DIFFCODE::THREEWAY;
 
@@ -100,7 +105,8 @@ namespace
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::SAME), m_pCompare3->CompareFiles(di));
+		m_pCompare3->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::SAME), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(1);
@@ -108,7 +114,8 @@ namespace
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = 2;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), m_pCompare3->CompareFiles(di));
+		m_pCompare3->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(0);
@@ -116,7 +123,8 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = 2;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), m_pCompare3->CompareFiles(di));
+		m_pCompare3->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(0);
@@ -124,7 +132,8 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 2;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), m_pCompare3->CompareFiles(di));
+		m_pCompare3->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 
 		di.diffcode.setSideNone();
@@ -132,21 +141,25 @@ namespace
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), m_pCompare3->CompareFiles(di));
+		m_pCompare3->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(1);
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = 1;
 		di.diffFileInfo[2].size = DirItem::FILE_SIZE_NONE;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), m_pCompare3->CompareFiles(di));
+		m_pCompare3->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(2);
 		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[2].size = 1;
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), m_pCompare3->CompareFiles(di));
+		m_pCompare3->CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 	}
 
 }  // namespace
+

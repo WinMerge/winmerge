@@ -25,7 +25,7 @@ class ImageCompare
 public:
 	ImageCompare(CDiffContext& ctxt);
 	~ImageCompare();
-	int CompareFiles(DIFFITEM& di) const;
+	void CompareFiles(DIFFITEM& di) const;
 
 private:
 	int compare_files(const String& file1, const String& file2, const IAbortable *piAbortable) const;

@@ -31,9 +31,8 @@ FullQuickCompare::~FullQuickCompare() = default;
 /**
  * @brief Compare two specified files using full content comparison
  * @param [in,out] di Diffitem info. Results are written to di.diffcode.
- * @return DIFFCODE
  */
-int FullQuickCompare::CompareFiles(DIFFITEM& di) const
+void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 {
 	DiffFileData m_diffFileData;
 
@@ -161,7 +160,7 @@ int FullQuickCompare::CompareFiles(DIFFITEM& di) const
 		if (tFiles.GetSize() == 2)
 		{
 			code = m_pDiffUtilsEngine->CompareFiles(&m_diffFileData);
-			m_pDiffUtilsEngine->GetDiffCounts(di.nsdiffs, di.nidiffs);
+				m_pDiffUtilsEngine->GetDiffCounts(m_ndiffs, m_ntrivialdiffs);
 
 			// If unique item, it was being compared to itself to determine encoding
 			// and the #diffs is invalid
@@ -358,14 +357,12 @@ exitPrepAndCompare:
 		}
 	}
 
-	errno = errnoSaved;
-
 	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
 	di.diffcode.diffcode |= code;
 	di.nsdiffs = m_ndiffs;
 	di.nidiffs = m_ntrivialdiffs;
-	return code;
 
+	errno = errnoSaved;
 }
 
 } // namespace CompareEngines

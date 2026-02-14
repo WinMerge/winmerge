@@ -50,14 +50,11 @@ void FolderCmp::LogError(const DIFFITEM& di)
  * file compare.
  * @param [in] pCtxt Pointer to compare context.
  * @param [in, out] di Compared files with associated data.
- * @return Compare result code.
  */
-int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
+void FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 {
 	int nCompMethod = m_pCtxt->GetCompareMethod();
 	int nDirs = m_pCtxt->GetCompareDirs();
-
-	unsigned code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 
 	if (nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT)
 	{
@@ -95,64 +92,62 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 	{
 		if (m_pFullCompare == nullptr)
 			m_pFullCompare.reset(new FullQuickCompare(*m_pCtxt, nCompMethod));
-		code = m_pFullCompare->CompareFiles(di);
+		m_pFullCompare->CompareFiles(di);
 	}
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
 		if (m_pQuickCompare == nullptr)
 			m_pQuickCompare.reset(new FullQuickCompare(*m_pCtxt, nCompMethod));
-		code = m_pQuickCompare->CompareFiles(di);
+		m_pQuickCompare->CompareFiles(di);
 	}
 	else if (nCompMethod == CMP_BINARY_CONTENT)
 	{
 		if (m_pBinaryCompare == nullptr)
 			m_pBinaryCompare.reset(new BinaryCompare(*m_pCtxt));
-		code = m_pBinaryCompare->CompareFiles(di);
+		m_pBinaryCompare->CompareFiles(di);
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
 	{
 		if (m_pTimeSizeCompare == nullptr)
 			m_pTimeSizeCompare.reset(new TimeSizeCompare(*m_pCtxt));
-		code = m_pTimeSizeCompare->CompareFiles(di);
+		m_pTimeSizeCompare->CompareFiles(di);
 	}
 	else if (nCompMethod == CMP_EXISTENCE)
 	{
 		if (m_pExistenceCompare == nullptr)
 			m_pExistenceCompare.reset(new ExistenceCompare(*m_pCtxt));
-		code = m_pExistenceCompare->CompareFiles(di);
+		m_pExistenceCompare->CompareFiles(di);
 	}
 	else if (nCompMethod == CMP_IMAGE_CONTENT)
 	{
 		if (!m_pImageCompare)
 			m_pImageCompare.reset(new ImageCompare(*m_pCtxt));
-		code = DIFFCODE::IMAGE | m_pImageCompare->CompareFiles(di);
+		m_pImageCompare->CompareFiles(di);
 	}
 	else
 	{
 		// Print error since we should have handled by date compare earlier
 		throw "Invalid compare type, DiffFileData can't handle it";
 	}
-	if (DIFFCODE::isResultError(code))
+	if (DIFFCODE::isResultError(di.diffcode.diffcode))
 		LogError(di);
 
-	if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME && m_pCtxt->m_pAdditionalCompareExpression)
+	if ((di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME && m_pCtxt->m_pAdditionalCompareExpression)
 	{
 		m_pCtxt->m_pAdditionalCompareExpression->errorCode = FilterErrorCode::FILTER_ERROR_NO_ERROR;
 		if (!m_pCtxt->m_pAdditionalCompareExpression->Evaluate(di))
 		{
 			if (m_pCtxt->m_pAdditionalCompareExpression->errorCode != FilterErrorCode::FILTER_ERROR_NO_ERROR)
 			{
-				code &= ~DIFFCODE::COMPAREFLAGS;
-				code |= DIFFCODE::CMPERR;
+				di.diffcode.diffcode &= ~DIFFCODE::COMPAREFLAGS;
+				di.diffcode.diffcode |= DIFFCODE::CMPERR;
 			}
 			else
 			{
-				code &= ~(DIFFCODE::COMPAREFLAGS | DIFFCODE::EXPRFLAGS);
-				code |= DIFFCODE::DIFF | DIFFCODE::EXPRDIFF;
+				di.diffcode.diffcode &= ~(DIFFCODE::COMPAREFLAGS | DIFFCODE::EXPRFLAGS);
+				di.diffcode.diffcode |= DIFFCODE::DIFF | DIFFCODE::EXPRDIFF;
 			}
 		}
 	}
-
-	return code;
 }
 

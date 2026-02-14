@@ -26,7 +26,7 @@ public:
 	explicit FolderCmp(CDiffContext *pCtxt);
 	~FolderCmp();
 	void LogError(const DIFFITEM& di);
-	int prepAndCompareFiles(DIFFITEM &di);
+	void prepAndCompareFiles(DIFFITEM &di);
 
 	CDiffContext *const m_pCtxt;
 

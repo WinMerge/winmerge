@@ -57,10 +57,10 @@ namespace
 		di.diffcode.setSideFlag(1);
 
 		// Compare should detect that files don't exist or return error
-		int result = ic.CompareFiles(di);
+		ic.CompareFiles(di);
 		// Result could be DIFF or CMPERR depending on implementation
 		EXPECT_TRUE(result == DIFFCODE::DIFF || result == DIFFCODE::CMPERR);
-		EXPECT_EQ(result, di.diffcode.diffcode);
+		EXPECT_EQ(result, di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 	}
 
 	// Test with one side missing (2-way comparison)
@@ -75,15 +75,15 @@ namespace
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(0); // Only left side exists
 
-		int result = ic.CompareFiles(di);
-		EXPECT_EQ(int(DIFFCODE::DIFF), result);
+		ic.CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::IMAGE|DIFFCODE::DIFF), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		// Right side exists, left side doesn't
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(1); // Only right side exists
 
-		result = ic.CompareFiles(di);
-		EXPECT_EQ(int(DIFFCODE::DIFF), result);
+		ic.CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::IMAGE|DIFFCODE::DIFF), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 	}
 
 	// Test with 3-way comparison where sides are missing
@@ -108,27 +108,24 @@ namespace
 		di.diffcode.setSideFlag(1);
 		di.diffcode.setSideFlag(2);
 
-		int result = ic.CompareFiles(di);
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), result);
-		EXPECT_EQ(result, di.diffcode.diffcode);
+		ic.CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::IMAGE|DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		// Only left and right exist
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(2);
 
-		result = ic.CompareFiles(di);
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), result);
-		EXPECT_EQ(result, di.diffcode.diffcode);
+		ic.CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::IMAGE|DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		// Only left and middle exist
 		di.diffcode.setSideNone();
 		di.diffcode.setSideFlag(0);
 		di.diffcode.setSideFlag(1);
 
-		result = ic.CompareFiles(di);
-		EXPECT_EQ(int(DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), result);
-		EXPECT_EQ(result, di.diffcode.diffcode);
+		ic.CompareFiles(di);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::IMAGE|DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 	}
 
 	// Test with all sides missing (3-way)
@@ -151,9 +148,9 @@ namespace
 		// No sides exist
 		di.diffcode.setSideNone();
 
-		int result = ic.CompareFiles(di);
+		ic.CompareFiles(di);
 		// When no files exist, comparison should return DIFF
-		EXPECT_EQ(int(DIFFCODE::DIFF), result);
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::IMAGE|DIFFCODE::DIFF), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 	}
 
 	// Note: Testing actual image comparison would require:
@@ -166,3 +163,4 @@ namespace
 #endif
 
 }  // namespace
+

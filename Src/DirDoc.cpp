@@ -1101,7 +1101,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, oldCompareMethod); // Restore previous compare method
 	FolderCmp cmp(&ctxt);
 	CWaitCursor waitstatus;
-	di.diffcode.diffcode |= cmp.prepAndCompareFiles(di);
+	cmp.prepAndCompareFiles(di);
 	if (di.diffcode.isResultSame())
 	{
 		ctxt.GetComparePaths(di, paths);

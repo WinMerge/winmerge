@@ -83,9 +83,8 @@ int ImageCompare::compare_files(const String& file1, const String& file2, const 
 /**
  * @brief Compare two specified files
  * @param [in,out] di Diffitem info. Results are written to di.diffcode.
- * @return DIFFCODE
  */
-int ImageCompare::CompareFiles(DIFFITEM& di) const
+void ImageCompare::CompareFiles(DIFFITEM& di) const
 {
 	PathContext files;
 	m_ctxt.GetComparePaths(di, files);
@@ -139,7 +138,6 @@ int ImageCompare::CompareFiles(DIFFITEM& di) const
 
 	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
 	di.diffcode.diffcode |= DIFFCODE::FILE | DIFFCODE::IMAGE | result;
-	return result;
 }
 
 } // namespace CompareEngines

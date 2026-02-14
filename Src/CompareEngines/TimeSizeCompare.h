@@ -25,7 +25,7 @@ public:
 
 	TimeSizeCompare(CDiffContext& ctxt);
 	~TimeSizeCompare();
-	int CompareFiles(DIFFITEM& di) const;
+	void CompareFiles(DIFFITEM& di) const;
 
 private:
 	int m_nfiles;
