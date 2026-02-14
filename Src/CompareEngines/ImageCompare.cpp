@@ -130,6 +130,8 @@ void ImageCompare::CompareFiles(DIFFITEM& di) const
 					result = DIFFCODE::DIFF;
 			}
 
+			if (code02 == DIFFCODE::CMPABORT)
+				result = DIFFCODE::CMPABORT;
 			if (code10 == DIFFCODE::CMPERR || code12 == DIFFCODE::CMPERR || code02 == DIFFCODE::CMPERR)
 				result = DIFFCODE::CMPERR;
 		}
