@@ -29,7 +29,7 @@ FullQuickCompare::FullQuickCompare(CDiffContext& ctxt, int nCompMethod)
 FullQuickCompare::~FullQuickCompare() = default;
 
 /**
- * @brief Compare two specified files using full content comparison
+ * @brief Compare two specified files using full or quick content comparison
  * @param [in,out] di Diffitem info. Results are written to di.diffcode.
  */
 void FullQuickCompare::CompareFiles(DIFFITEM& di) const
