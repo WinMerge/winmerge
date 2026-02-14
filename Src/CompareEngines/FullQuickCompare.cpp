@@ -265,7 +265,7 @@ void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 		if (tFiles.GetSize() == 2)
 		{
 			// use our own byte-by-byte compare
-			code = m_pByteCompare->CompareFiles(&m_diffFileData);
+			code = DIFFCODE::FILE | m_pByteCompare->CompareFiles(&m_diffFileData);
 
 			// Quick contents doesn't know about diff counts
 			// Set to special value to indicate invalid
@@ -298,11 +298,11 @@ void FullQuickCompare::CompareFiles(DIFFITEM& di) const
 				code |= DIFFCODE::TEXT;
 			else
 				code |= DIFFCODE::BIN;
-			if ((code10 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE1))
+			if ((code10 & DIFFCODE::BINSIDE1) != 0)
 				code |= DIFFCODE::BINSIDE2;
-			if ((code10 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE2))
+			if ((code10 & DIFFCODE::BINSIDE2) != 0)
 				code |= DIFFCODE::BINSIDE1;
-			if ((code12 & DIFFCODE::TEXTFLAGS) == (DIFFCODE::BIN | DIFFCODE::BINSIDE2))
+			if ((code12 & DIFFCODE::BINSIDE2) != 0)
 				code |= DIFFCODE::BINSIDE3;
 			if ((code & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF)
 			{

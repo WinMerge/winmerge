@@ -388,7 +388,7 @@ namespace
 		di.diffFileInfo[1].SetFile(_T("B"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
-		bc3.CompareFiles(di);
+		bc.CompareFiles(di);
 		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::CMPERR), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideFlag(0);
@@ -397,7 +397,7 @@ namespace
 		di.diffFileInfo[1].SetFile(_T("/2>"));
 		di.diffFileInfo[0].size = 1;
 		di.diffFileInfo[1].size = 1;
-		bc3.CompareFiles(di);
+		bc.CompareFiles(di);
 		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::CMPERR), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
 
 		di.diffcode.setSideFlag(0);

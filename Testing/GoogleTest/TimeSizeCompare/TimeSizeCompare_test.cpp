@@ -990,7 +990,8 @@ namespace
 		di.diffFileInfo[1].mtime = 0;
 		di.diffFileInfo[2].mtime = 1 * 1000 * 1000;
 		tsc3.CompareFiles(di);
-		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY)); }
+		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::DIFF | DIFFCODE::DIFF3RDONLY), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
+	}
 
 	TEST_F(TimeSizeCompareTest, TimeSizeCompare_TimeError)
 	{
