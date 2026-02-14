@@ -166,7 +166,7 @@ namespace
 		di.diffFileInfo[2].mtime = di.diffFileInfo[0].mtime + 20000000;
 
 		di.diffcode.setSideNone();
-		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
+		di.diffFileInfo[0].size = DirItem::FILE_SIZE_NONE;
 		di.diffFileInfo[1].size = DirItem::FILE_SIZE_NONE;
 		tsc.CompareFiles(di);
 		EXPECT_EQ(int(DIFFCODE::FILE|DIFFCODE::SAME), di.diffcode.diffcode & (DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY));
