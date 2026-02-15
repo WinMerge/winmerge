@@ -271,6 +271,10 @@
               <listitem><para>Returns the relative path excluding the file name and base folder</para></listitem>
             </varlistentry>
             <varlistentry>
+              <term>RelPath</term>
+              <listitem><para>Returns the relative path from the comparison root directory, including both folder path and filename. For example, if comparing "C:\Project" and the file is at "C:\Project\src\main.cpp", RelPath returns "src\main.cpp".</para></listitem>
+            </varlistentry>
+            <varlistentry>
               <term>FullPath</term>
               <listitem><para>Returns the full path of the file</para></listitem>
             </varlistentry>

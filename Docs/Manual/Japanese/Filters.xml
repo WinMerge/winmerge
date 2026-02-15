@@ -245,6 +245,11 @@ Right, Middle）かを接頭辞で指定できます。</para>
               <listitem><para>ファイル名およびベースフォルダーを除いた相対パスを返します。</para></listitem>
             </varlistentry>
             <varlistentry>
+              <term>RelPath</term>
+              <listitem><para>比較ルートディレクトリからの相対パスを、フォルダーパスとファイル名を含めて返します。例えば、"C:\Project" を比較していて、ファイルが
+"C:\Project\src\main.cpp" にある場合、RelPath は "src\main.cpp" を返します。</para></listitem>
+            </varlistentry>
+            <varlistentry>
               <term>FullPath</term>
               <listitem><para>ファイルのフルパスを返します。</para></listitem>
             </varlistentry>

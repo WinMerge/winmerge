@@ -298,6 +298,12 @@ fichier.</para></listitem>
 base</para></listitem>
             </varlistentry>
             <varlistentry>
+              <term>RelPath</term>
+              <listitem><para>Returns the relative path from the comparison root directory, including both
+folder path and filename. For example, if comparing "C:\Project" and the
+file is at "C:\Project\src\main.cpp", RelPath returns "src\main.cpp".</para></listitem>
+            </varlistentry>
+            <varlistentry>
               <term>FullPath</term>
               <listitem><para>Retourne le chemin complet du fichier</para></listitem>
             </varlistentry>

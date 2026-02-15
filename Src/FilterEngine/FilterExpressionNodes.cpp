@@ -835,6 +835,14 @@ static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITE
 	return ucr::toUTF8(di.diffFileInfo[index].encoding.GetName());
 }
 
+static auto RelPathField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	const String relpath = paths::ConcatPath(di.diffFileInfo[index].path, di.diffFileInfo[index].filename);
+	return ucr::toUTF8(relpath);
+}
+
 static auto FullPathField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
 	if (!di.diffcode.exists(index))
@@ -903,6 +911,8 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 		functmp = BaseNameField;
 	else if (strcmp(p, "extension") == 0)
 		functmp = ExtensionField;
+	else if (strcmp(p, "relpath") == 0)
+		functmp = RelPathField;
 	else if (strcmp(p, "fullpath") == 0)
 		functmp = FullPathField;
 	else if (strcmp(p, "folder") == 0)
