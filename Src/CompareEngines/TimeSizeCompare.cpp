@@ -27,10 +27,9 @@ TimeSizeCompare::~TimeSizeCompare() = default;
 
 /**
  * @brief Compare two specified files, byte-by-byte
- * @param [in] di Diffitem info.
- * @return DIFFCODE
+ * @param [in,out] di Diffitem info. Results are written to di.diffcode.
  */
-int TimeSizeCompare::CompareFiles(const DIFFITEM &di) const
+void TimeSizeCompare::CompareFiles(DIFFITEM& di) const
 {
 	unsigned code = DIFFCODE::SAME;
 	int64_t nTimeDiff = 0;
@@ -119,7 +118,9 @@ int TimeSizeCompare::CompareFiles(const DIFFITEM &di) const
 				code |= DIFFCODE::DIFF3RDONLY;
 		}
 	}
-	return code;
+
+	di.diffcode.diffcode &= ~(DIFFCODE::TEXTFLAGS | DIFFCODE::TYPEFLAGS | DIFFCODE::COMPAREFLAGS | DIFFCODE::COMPAREFLAGS3WAY);
+	di.diffcode.diffcode |= DIFFCODE::FILE | code;
 }
 
 } // namespace CompareEngines

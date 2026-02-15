@@ -19,7 +19,7 @@ class ExistenceCompare
 public:
 	ExistenceCompare(CDiffContext& ctxt);
 	~ExistenceCompare();
-	int CompareFiles(const DIFFITEM &di) const;
+	void CompareFiles(DIFFITEM& di) const;
 private:
 	int m_nfiles;
 };

@@ -20,7 +20,7 @@ class BinaryCompare
 public:
 	BinaryCompare(CDiffContext& ctxt) : m_ctxt(ctxt) {}
 	~BinaryCompare();
-	int CompareFiles(const DIFFITEM &di) const;
+	void CompareFiles(DIFFITEM& di) const;
 private:
 	CDiffContext& m_ctxt;
 };

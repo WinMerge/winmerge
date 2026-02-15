@@ -31,6 +31,9 @@
     <Filter Include="Filters">
       <UniqueIdentifier>{cb88fcf0-76e5-4193-8733-6bb0813ca17b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tests\CompareEngines">
+      <UniqueIdentifier>{bc4ab695-3157-4f31-a925-052f89811cd5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Src\charsets.c">
@@ -129,9 +132,6 @@
     <ClCompile Include="..\..\..\Src\Common\varprop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ByteCompare\ByteCompare_test.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\Encoding\charsets_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
@@ -216,14 +216,8 @@
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffItem.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\TimeSizeCompare\TimeSizeCompare_test.cpp">
-      <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffFileInfo.cpp">
       <Filter>Source Files</Filter>
@@ -327,9 +321,6 @@
     <ClCompile Include="..\..\..\Src\FileFlags.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ExistenceCompare\ExistenceCompare_test.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
     <ClCompile Include="..\MoveDetection\RenameMoveDetection_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
@@ -339,8 +330,23 @@
     <ClCompile Include="..\..\..\Src\CompareStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp">
+      <Filter>Tests\CompareEngines</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ByteCompare\ByteCompare_test.cpp">
+      <Filter>Tests\CompareEngines</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ExistenceCompare\ExistenceCompare_test.cpp">
+      <Filter>Tests\CompareEngines</Filter>
+    </ClCompile>
     <ClCompile Include="..\ImageCompare\ImageCompare_test.cpp">
-      <Filter>Tests</Filter>
+      <Filter>Tests\CompareEngines</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TimeSizeCompare\TimeSizeCompare_test.cpp">
+      <Filter>Tests\CompareEngines</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FullQuickCompare\FullQuickCompare_test.cpp">
+      <Filter>Tests\CompareEngines</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

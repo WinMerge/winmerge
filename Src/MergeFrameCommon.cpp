@@ -78,7 +78,7 @@ public:
 		CDiffContext ctxt(paths, CMP_BINARY_CONTENT);
 		ctxt.SetAbortable(this);
 		CompareEngines::BinaryCompare binaryCompare(ctxt);
-		di.diffcode.diffcode |= binaryCompare.CompareFiles(di);
+		binaryCompare.CompareFiles(di);
 		if (di.diffcode.isResultError())
 			return _("Selected files are identical (with current settings).\r\nBut binary comparison failed.");
 		return di.diffcode.isResultSame()
