@@ -141,25 +141,25 @@ namespace
 		{
 			if ((*it).name.compare(_T("simple include file")) == 0)
 			{
-				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_file.flt")) != String::npos);
+				EXPECT_TRUE((*it).fullpath.find(_T("Filters\\simple_include_file.flt")) != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple file filter long description")) == 0);
 				--n;
 			}
 			else if ((*it).name.compare(_T("simple include dir")) == 0)
 			{
-				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_dir.flt"))  != String::npos);
+				EXPECT_TRUE((*it).fullpath.find(_T("Filters\\simple_include_dir.flt"))  != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple directory filter long description")) == 0);
 				--n;
 			}
 			else if ((*it).name.compare(_T("simple include file and dir")) == 0)
 			{
-				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_both.flt"))  != String::npos);
+				EXPECT_TRUE((*it).fullpath.find(_T("Filters\\simple_include_both.flt"))  != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple file and dir filter long description")) == 0);
 				--n;
 			}
 			else if ((*it).name.compare(_T("error include")) == 0)
 			{
-				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\error_include.flt"))  != String::npos);
+				EXPECT_TRUE((*it).fullpath.find(_T("Filters\\error_include.flt"))  != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("error file filter long description")) == 0);
 				--n;
 			}
