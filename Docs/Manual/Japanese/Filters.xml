@@ -1129,6 +1129,8 @@ expression.  The supported type designators are:</para>
         <varlistentry><term>fe!: <replaceable>式</replaceable></term><listitem><para>ファイルを除外するためのフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
         <varlistentry><term>de: <replaceable>式</replaceable></term><listitem><para>フォルダーに対するフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
         <varlistentry><term>de!: <replaceable>式</replaceable></term><listitem><para>フォルダーを除外するためのフィルター式（2.16.49 以降で使用可能）</para></listitem></varlistentry>
+        <varlistentry><term>e: <replaceable>式</replaceable></term><listitem><para>ファイルｔｐフォルダー両方に適用されるフィルター式（例: e:Name like "Common*.*"）（2.16.56 以降で使用可能）</para></listitem></varlistentry>
+        <varlistentry><term>e!: <replaceable>式</replaceable></term><listitem><para>ファイルとフォルダー両方を除外するためのフィルター式（2.16.56 以降で使用可能）</para></listitem></varlistentry>
       </variablelist>
 
       <para>多くの正規表現の特殊文字の中で、次の文字は、ファイルフィルターでは特に重要です: <indexterm>

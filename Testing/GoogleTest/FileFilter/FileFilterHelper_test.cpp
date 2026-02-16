@@ -115,6 +115,11 @@ namespace
 		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
 		EXPECT_TRUE(filtername.compare(_T("simple include dir")) == 0);
 
+		filterpath = m_fileFilterHelper.GetFileFilterPath(_T("simple include file and dir"));
+		EXPECT_TRUE(filterpath.find_first_of(_T("Filters\\simple_include_both.flt")) != String::npos);
+		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
+		EXPECT_TRUE(filtername.compare(_T("simple include file and dir")) == 0);
+
 		filterpath = m_fileFilterHelper.GetFileFilterPath(_T("error include"));
 		EXPECT_TRUE(filterpath.find_first_of(_T("Filters\\error_include.flt")) != String::npos);
 		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
@@ -129,7 +134,7 @@ namespace
 
 	TEST_F(FileFilterHelperTest, GetFileFilters)
 	{
-		int n = 3;
+		int n = 4;
 		std::vector<FileFilterInfo> filters = m_fileFilterHelper.GetFileFilters();
 
 		for (std::vector<FileFilterInfo>::iterator it = filters.begin(); it != filters.end(); it++)
@@ -144,6 +149,12 @@ namespace
 			{
 				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_dir.flt"))  != String::npos);
 				EXPECT_TRUE((*it).description.compare(_T("simple directory filter long description")) == 0);
+				--n;
+			}
+			else if ((*it).name.compare(_T("simple include file and dir")) == 0)
+			{
+				EXPECT_TRUE((*it).fullpath.find_first_of(_T("Filters\\simple_include_both.flt"))  != String::npos);
+				EXPECT_TRUE((*it).description.compare(_T("simple file and dir filter long description")) == 0);
 				--n;
 			}
 			else if ((*it).name.compare(_T("error include")) == 0)
@@ -245,6 +256,27 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
 		SetDiffItemRightOnly(_T("abc"), _T("a.b.c"), false, di);
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
+
+		m_fileFilterHelper.SetMaskOrExpression(_T("pf:simple include file and dir"));
+
+		m_fileFilterHelper.SetDiffContext(&ctxt);
+		SetDiffItem(_T(""), _T("file.exp"), _T("file.exp"), true, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(di));
+		SetDiffItem(_T(""), _T("exp.exp"), _T("exp.exp"), true, di);
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(di));
+		SetDiffItem(_T(""), _T("Common.txt"), _T("Common.txt"), true, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(di));
+		SetDiffItem(_T(""), _T("CommonBak"), _T("CommonBak"), true, di);
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(di));
+
+		SetDiffItem(_T(""), _T("file.exp"), _T("file.exp"), false, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
+		SetDiffItem(_T(""), _T("exp.exp"), _T("exp.exp"), false, di);
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(di));
+		SetDiffItem(_T(""), _T("Common.txt"), _T("Common.txt"), false, di);
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(di));
+		SetDiffItem(_T(""), _T("CommonBak"), _T("CommonBak"), false, di);
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(di));
 	}
 
 	TEST_F(FileFilterHelperTest, SetMaskOrExpression2)

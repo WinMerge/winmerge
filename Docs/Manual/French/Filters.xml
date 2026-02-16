@@ -1317,6 +1317,10 @@ depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des fichiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Filter expression applied to both files and folders (e.g. e:Name like
+"Common*.*") (Available since 2.16.56)</para></listitem></varlistentry>
+        <varlistentry><term>e!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude both files and folders (Available since
+2.16.56)</para></listitem></varlistentry>
       </variablelist>
 
       <para>Parmi les nombreux caractères spéciaux de regex, les suivants sont
