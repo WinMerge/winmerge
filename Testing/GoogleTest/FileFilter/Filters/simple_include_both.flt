@@ -1,0 +1,5 @@
+name: simple include file and dir
+desc: simple file and dir filter long description
+def: exclude
+e: Name like "*.exp" or Name like "Common*"
+e!: Name = "exp.exp" or Name like "CommonBak"

@@ -390,7 +390,7 @@ static std::size_t findSeparator(const String& str, String& prefix, std::size_t 
 	bool allowOnlyBasicSeparators = false;
 	while (startPos < str.size() && str[startPos] == ' ')
 		++startPos;
-	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("fe!:"), _T("de!:"), _T("pf:") };
+	const String prefixes[] = { _T("f:"), _T("d:"), _T("f!:"), _T("d!:"), _T("fe:"), _T("de:"), _T("e:"), _T("fe!:"), _T("de!:"), _T("e!:"), _T("pf:")};
 	for (const auto& pf : prefixes)
 	{
 		if (str.compare(startPos, pf.size(), pf) == 0)
@@ -567,6 +567,20 @@ FileFilterHelper::ParseExtensions(const String &extensions) const
 				else if (prefix == _T("de!:"))
 					pRegexOrExpressionFilter->AddFilterExpression(
 						&pRegexOrExpressionFilter->dirExpressionFiltersExclude, token, 0);
+				else if (prefix == _T("e:"))
+				{
+					pRegexOrExpressionFilter->AddFilterExpression(
+						&pRegexOrExpressionFilter->fileExpressionFilters, token, 0);
+					pRegexOrExpressionFilter->AddFilterExpression(
+						&pRegexOrExpressionFilter->dirExpressionFilters, token, 0);
+				}
+				else if (prefix == _T("e!:"))
+				{
+					pRegexOrExpressionFilter->AddFilterExpression(
+						&pRegexOrExpressionFilter->fileExpressionFiltersExclude, token, 0);
+					pRegexOrExpressionFilter->AddFilterExpression(
+						&pRegexOrExpressionFilter->dirExpressionFiltersExclude, token, 0);
+				}
 				else if (prefix == _T("pf:"))
 				{
 					const String path = GetFileFilterPath(token);

@@ -249,6 +249,14 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(3);
 			AddFilterExpression(pfilter, &pfilter->dirExpressionFilters, str, lineNumber);
 		}
+		else if (0 == sLine.compare(0, 2, _T("e:"), 2))
+		{
+			// file expression filter
+			String str = sLine.substr(2);
+			AddFilterExpression(pfilter, &pfilter->fileExpressionFilters, str, lineNumber);
+			// directory expression filter
+			AddFilterExpression(pfilter, &pfilter->dirExpressionFilters, str, lineNumber);
+		}
 		else if (0 == sLine.compare(0, 3, _T("f!:"), 3))
 		{
 			// file filter
@@ -271,6 +279,14 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		{
 			// directory expression filter
 			String str = sLine.substr(4);
+			AddFilterExpression(pfilter, &pfilter->dirExpressionFiltersExclude, str, lineNumber);
+		}
+		else if (0 == sLine.compare(0, 3, _T("e!:"), 3))
+		{
+			// file expression filter
+			String str = sLine.substr(3);
+			AddFilterExpression(pfilter, &pfilter->fileExpressionFiltersExclude, str, lineNumber);
+			// directory expression filter
 			AddFilterExpression(pfilter, &pfilter->dirExpressionFiltersExclude, str, lineNumber);
 		}
 		lineNumber++;

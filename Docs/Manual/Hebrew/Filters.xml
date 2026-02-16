@@ -1239,6 +1239,10 @@ expression.  The supported type designators are:</para>
         <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude files (Available since 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Filter expression for folders (Available since 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude folders (Available since 2.16.49)</para></listitem></varlistentry>
+        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Filter expression applied to both files and folders (e.g. e:Name like
+"Common*.*") (Available since 2.16.56)</para></listitem></varlistentry>
+        <varlistentry><term>e!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude both files and folders (Available since
+2.16.56)</para></listitem></varlistentry>
       </variablelist>
 
       <para>בין רבים מתווים מיוחדים של regexp, הבאים חשובים במיוחד בכללי מסנן
