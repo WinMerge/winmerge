@@ -106,22 +106,22 @@ namespace
 	{
 		String filterpath, filtername;
 		filterpath = m_fileFilterHelper.GetFileFilterPath(_T("simple include file"));
-		EXPECT_TRUE(filterpath.find_first_of(_T("Filters\\simple_include_file.flt")) != String::npos);
+		EXPECT_TRUE(filterpath.find(_T("Filters\\simple_include_file.flt")) != String::npos);
 		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
 		EXPECT_TRUE(filtername.compare(_T("simple include file")) == 0);
 
 		filterpath = m_fileFilterHelper.GetFileFilterPath(_T("simple include dir"));
-		EXPECT_TRUE(filterpath.find_first_of(_T("Filters\\simple_include_dir.flt")) != String::npos);
+		EXPECT_TRUE(filterpath.find(_T("Filters\\simple_include_dir.flt")) != String::npos);
 		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
 		EXPECT_TRUE(filtername.compare(_T("simple include dir")) == 0);
 
 		filterpath = m_fileFilterHelper.GetFileFilterPath(_T("simple include file and dir"));
-		EXPECT_TRUE(filterpath.find_first_of(_T("Filters\\simple_include_both.flt")) != String::npos);
+		EXPECT_TRUE(filterpath.find(_T("Filters\\simple_include_both.flt")) != String::npos);
 		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
 		EXPECT_TRUE(filtername.compare(_T("simple include file and dir")) == 0);
 
 		filterpath = m_fileFilterHelper.GetFileFilterPath(_T("error include"));
-		EXPECT_TRUE(filterpath.find_first_of(_T("Filters\\error_include.flt")) != String::npos);
+		EXPECT_TRUE(filterpath.find(_T("Filters\\error_include.flt")) != String::npos);
 		filtername = m_fileFilterHelper.GetFileFilterName(filterpath.c_str());
 		EXPECT_TRUE(filtername.compare(_T("error include")) == 0);
 
