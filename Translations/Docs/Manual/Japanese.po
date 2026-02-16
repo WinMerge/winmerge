@@ -15217,7 +15217,7 @@ msgid ""
 "Filter expression applied to both files and folders (e.g. e:Name like "
 "\"Common*.*\") (Available since 2.16.56)"
 msgstr ""
-"ファイルｔｐフォルダー両方に適用されるフィルター式（例: e:Name like "
+"ファイルとフォルダー両方に適用されるフィルター式（例: e:Name like "
 "\"Common*.*\"）（2.16.56 以降で使用可能）"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
