@@ -421,6 +421,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 		// register a new class
 		wndcls.lpszClassName = szClassName;
 		wndcls.hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(IDR_MAINFRAME));
+		if (DarkMode::isEnabled())
+			wndcls.hbrBackground = DarkMode::getDlgBackgroundBrush();
 		::RegisterClass(&wndcls);
 	}
 	cs.lpszClass = szClassName;
