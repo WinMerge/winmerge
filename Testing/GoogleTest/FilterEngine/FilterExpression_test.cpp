@@ -4,6 +4,7 @@
 #include "DiffContext.h"
 #include "DiffItem.h"
 #include "PathContext.h"
+#include "UniFile.h"
 #include "Poco/DateTimeParser.h"
 #include "Poco/Timezone.h"
 #include "Environment.h"
@@ -1598,6 +1599,240 @@ TEST_P(FilterExpressionTest, StringFunctionsWithNonStringArguments)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("normalizeUnicode(array(123, 456)) == array(\"123\", \"456\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, ReplaceWithList)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Create temporary directory path
+	const String tempDir = env::GetProgPath();
+	const String replaceListPath = paths::ConcatPath(tempDir, L"test_replacelist.txt");
+	const String regexReplaceListPath = paths::ConcatPath(tempDir, L"test_regex_replacelist.txt");
+
+	// Create replace list file
+	{
+		UniStdioFile file;
+		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
+		file.WriteString(L"# Comment line\n");
+		file.WriteString(L"apple\tりんご\n");
+		file.WriteString(L"orange\tオレンジ\n");
+		file.WriteString(L"banana\tバナナ\n");
+		file.WriteString(L"# Another comment\n");
+		file.WriteString(L"grape\tぶどう\n");
+		file.Close();
+	}
+
+	// Create regex replace list file
+	{
+		UniStdioFile file;
+		EXPECT_TRUE(file.OpenCreateUtf8(regexReplaceListPath));
+		file.WriteString(L"# Regex patterns\n");
+		file.WriteString(L"\\d+\t----\n");
+		file.WriteString(L"[a-z]+\t****\n");
+		file.WriteString(L"\\s+\t|\n");
+		file.Close();
+	}
+
+	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+
+	// Test replaceWithList function
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"I like apple and orange\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"I like りんご and オレンジ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"banana is yellow\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"バナナ is yellow\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"grape juice\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"ぶどう juice\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Multiple replacements in one string
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"apple orange banana\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"りんご オレンジ バナナ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// No match
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"watermelon\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"watermelon\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Empty string
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array of strings
+	EXPECT_TRUE(fe.Parse("replaceWithList(array(\"apple\", \"banana\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"りんご\", \"バナナ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Test regexReplaceWithList function
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"abc123def456\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"****----****----\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"Hello World 2025\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"****|****|----\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"test 123\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"****|----\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Multiple spaces
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"a   b\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"****|****\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// No match
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"!@#$%\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"!@#$%\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Empty string
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array of strings
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(array(\"abc123\", \"789XYZ789\"), \"" + ucr::toUTF8(regexReplaceListPath) + "\") == array(\"****----\", \"----****----\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Test with non-existent file (should return original string)
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"test\", \"nonexistent.txt\") == \"test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"test\", \"nonexistent.txt\") == \"test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Cleanup temporary files
+	DeleteFile(replaceListPath.c_str());
+	DeleteFile(regexReplaceListPath.c_str());
+}
+
+TEST_P(FilterExpressionTest, ReplaceWithListAdvanced)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	const String tempDir = env::GetProgPath();
+	const String replaceListPath = paths::ConcatPath(tempDir, L"test_replacelist2.txt");
+	const String regexReplaceListPath = paths::ConcatPath(tempDir, L"test_regex_replacelist2.txt");
+
+	// Create replace list with edge cases
+	{
+		UniStdioFile file;
+		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
+		file.WriteString(L"# Test special characters\n");
+		file.WriteString(L"C++\tCプラプラ\n");
+		file.WriteString(L"a\tb\tc\td\n"); // Extra tabs should be ignored
+		file.WriteString(L"\n"); // Empty line should be skipped
+		file.WriteString(L"test\t\n"); // Replace with empty string
+		file.WriteString(L"# Comment at end\n");
+		file.Close();
+	}
+
+	// Create regex replace list with capturing groups
+	{
+		UniStdioFile file;
+		EXPECT_TRUE(file.OpenCreateUtf8(regexReplaceListPath));
+		file.WriteString(L"# Regex with captures\n");
+		file.WriteString(L"(\\d{4})-(\\d{2})-(\\d{2})\t$3/$2/$1\n");
+		file.WriteString(L"\\b(\\w+)\\s+\\1\\b\t$1\n"); // Remove duplicate words
+		file.Close();
+	}
+
+	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+
+	// Test special characters
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"I love C++\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"I love Cプラプラ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Test extra tabs (should only use first two fields)
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"a\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"b\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Test replace with empty string
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"test123\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"123\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Test regex with date format
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"2025-05-16\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"16/05/2025\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Test regex for removing duplicate words
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"the the cat\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"the cat\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(\"hello hello world world\", \"" + ucr::toUTF8(regexReplaceListPath) + "\") == \"hello world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Combined test with array
+	EXPECT_TRUE(fe.Parse("regexReplaceWithList(array(\"2025-05-16\", \"2025-12-31\"), \"" + ucr::toUTF8(regexReplaceListPath) + "\") == array(\"16/05/2025\", \"31/12/2025\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Cleanup
+	DeleteFile(replaceListPath.c_str());
+	DeleteFile(regexReplaceListPath.c_str());
+}
+
+TEST_P(FilterExpressionTest, ReplaceWithListEncoding)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	const String tempDir = env::GetProgPath();
+	const String replaceListPath = paths::ConcatPath(tempDir, L"test_replacelist_utf8.txt");
+
+	// Create UTF-8 encoded file with Japanese characters
+	{
+		UniStdioFile file;
+		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
+		file.WriteString(L"# 日本語のテスト\n");
+		file.WriteString(L"こんにちは\thello\n");
+		file.WriteString(L"さようなら\tgoodbye\n");
+		file.WriteString(L"ありがとう\tthank you\n");
+		file.WriteString(L"犬\tdog\n");
+		file.WriteString(L"猫\tcat\n");
+		file.Close();
+	}
+
+	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+
+	// Test Japanese to English
+	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"こんにちは\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"さようなら\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"goodbye\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"私の犬と猫\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"私のdogとcat\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array test
+	EXPECT_TRUE(fe.Parse(u8"replaceWithList(array(\"こんにちは\", \"ありがとう\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"hello\", \"thank you\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Cleanup
+	DeleteFile(replaceListPath.c_str());
 }
 
 INSTANTIATE_TEST_SUITE_P(

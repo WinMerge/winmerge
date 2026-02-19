@@ -7,6 +7,7 @@
 #include "FilterExpressionNodes.h"
 #include "FilterExpression.h"
 #include "FileContentRef.h"
+#include "ReplaceList.h"
 #include "FolderStats.h"
 #include "DiffContext.h"
 #include "DiffItem.h"
@@ -1243,6 +1244,8 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	if (!from || !to || from->empty())
 		return std::monostate{};
 
+	std::vector<std::pair<Poco::RegularExpression, std::string>> replacements;
+
 	auto replaceFn = [from, to](const ValueType& val) -> ValueType
 		{
 			auto strOpt = getAsString(val);
@@ -1252,6 +1255,106 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 		};
 
 	return applyToScalarOrArray(argStr, replaceFn);
+}
+
+static auto RegexReplaceWithListFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() != 2)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(di);
+	auto argPathOrList = (*args)[1]->Evaluate(di);
+
+	const std::string* path = std::get_if<std::string>(&argPathOrList);
+	auto list = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argPathOrList);
+
+	std::shared_ptr<std::vector<ValueType2>> list2;
+	if (path)
+	{
+		list2 = ReplaceList::LoadRegexList(*ctxt, ucr::toTString(*path));
+		list = &list2;
+	}
+
+	auto regexReplaceWithListFn = [&list](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt || !list->get())
+				return val;
+			std::string result = *strOpt;
+			for (const auto& item : (*list->get()))
+			{
+				if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&item.value))
+				{
+					if ((*arrayVal)->size() != 2)
+						continue;
+					auto replacement = std::get_if<std::string>(&(*arrayVal)->at(1).value);
+					if (!replacement)
+						continue;
+					try
+					{
+						if (auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&(*arrayVal)->at(0).value))
+						{
+							(*rePattern)->subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
+						}
+						else if (auto strPattern = std::get_if<std::string>(&(*arrayVal)->at(0).value))
+						{
+							Poco::RegularExpression regex(*strPattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+							regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
+						}
+					}
+					catch (const Poco::RegularExpressionException&)
+					{
+						continue;
+					}
+				}
+			}
+			return result;
+		};
+
+	return applyToScalarOrArray(argStr, regexReplaceWithListFn);
+}
+
+static auto ReplaceWithListFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
+{
+	if (!args || args->size() != 2)
+		return std::monostate{};
+
+	auto argStr = (*args)[0]->Evaluate(di);
+	auto argPathOrList = (*args)[1]->Evaluate(di);
+
+	const std::string* path = std::get_if<std::string>(&argPathOrList);
+	auto list = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&argPathOrList);
+
+	std::shared_ptr<std::vector<ValueType2>> list2;
+	if (path)
+	{
+		list2 = ReplaceList::LoadList(*ctxt, ucr::toTString(*path));
+		list = &list2;
+	}
+
+	auto replaceWithListFn = [&list](const ValueType& val) -> ValueType
+		{
+			auto strOpt = getAsString(val);
+			if (!strOpt || !list->get())
+				return val;
+			std::string result = *strOpt;
+			for (const auto& item : (*list->get()))
+			{
+				if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&item.value))
+				{
+					if ((*arrayVal)->size() != 2)
+						continue;
+					if (auto from = std::get_if<std::string>(&(*arrayVal)->at(0).value))
+					{
+						if (auto to = std::get_if<std::string>(&(*arrayVal)->at(1).value))
+							Poco::replaceInPlace(result, *from, *to);
+					}
+				}
+			}
+			return result;
+		};
+
+	return applyToScalarOrArray(argStr, replaceWithListFn);
 }
 
 static auto TodayFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1504,20 +1607,27 @@ static auto RegexReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, s
 	auto argPattern = (*args)[1]->Evaluate(di);
 	auto argReplacement = (*args)[2]->Evaluate(di);
 
-	const std::string* pattern = std::get_if<std::string>(&argPattern);
+	const std::string* strPattern = std::get_if<std::string>(&argPattern);
+	const auto rePattern = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argPattern);
 	const std::string* replacement = std::get_if<std::string>(&argReplacement);
 
-	if (!pattern || !replacement)
+	if ((!strPattern && !rePattern) || !replacement)
 		return std::monostate{};
 
-	auto regexReplaceFn = [pattern, replacement](const ValueType& val) -> ValueType
+	auto regexReplaceFn = [strPattern, rePattern, replacement](const ValueType& val) -> ValueType
 		{
 			auto strOpt = getAsString(val);
 			if (!strOpt)
 				return std::monostate{};
 			try
 			{
-				Poco::RegularExpression regex(*pattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+				if (rePattern)
+				{
+					std::string result = *strOpt;
+					(*rePattern)->subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
+					return result;
+				}
+				Poco::RegularExpression regex(*strPattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
 				std::string result = *strOpt;
 				regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
 				return result;
@@ -1881,7 +1991,9 @@ static constexpr FunctionInfo functionTable[] = {
 	{"now", NowFunc, 0, 0},
 	{"oreach", OrEachFunc, 2, 2},
 	{"regexreplace", RegexReplaceFunc, 3, 3},
+	{"regexreplacewithlist", RegexReplaceWithListFunc, 2, 2},
 	{"replace", ReplaceFunc, 3, 3},
+	{"replacewithlist", ReplaceWithListFunc, 2, 2},
 	{"startofmonth", StartOfMonthFunc, 1, 1},
 	{"startofweek", StartOfWeekFunc, 1, 1},
 	{"startofyear", StartOfYearFunc, 1, 1},
@@ -2117,11 +2229,52 @@ ExprNode* FunctionNode::Optimize()
 	}
 	else if (functionName == "replace")
 	{
-		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<StringLiteral*>((*args)[2]) && dynamic_cast<StringLiteral*>((*args)[2]))
+		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
 		{
 			auto* result = new StringLiteral(std::get<std::string>(func(ctxt, di, args)));
 			delete this;
 			return result;
+		}
+	}
+	else if (functionName == "regexreplace")
+	{
+		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[1]))
+		{
+			try
+			{
+				auto* re = new RegularExpressionLiteral(dynamic_cast<StringLiteral*>((*args)[1])->value);
+				delete (*args)[1];
+				(*args)[1] = re;
+			}
+			catch (const Poco::RegularExpressionException&)
+			{
+				// Invalid regex pattern, cannot optimize
+				return this;
+			}
+		}
+		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
+		{
+			auto* result = new StringLiteral(std::get<std::string>(func(ctxt, di, args)));
+			delete this;
+			return result;
+		}
+	}
+	else if (functionName == "replacewithlist")
+	{
+		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[1]))
+		{
+			auto list = ReplaceList::LoadList(*ctxt, ucr::toTString(dynamic_cast<StringLiteral*>((*args)[1])->value));
+			delete (*args)[1];
+			(*args)[1] = new ArrayLiteral(list);
+		}
+	}
+	else if (functionName == "regexreplacewithlist")
+	{
+		if (args && args->size() >= 2 && dynamic_cast<StringLiteral*>((*args)[1]))
+		{
+			auto list = ReplaceList::LoadRegexList(*ctxt, ucr::toTString(dynamic_cast<StringLiteral*>((*args)[1])->value));
+			delete (*args)[1];
+			(*args)[1] = new ArrayLiteral(list);
 		}
 	}
 	else if (functionName == "startofweek" || functionName == "startofmonth" || functionName == "startofyear")

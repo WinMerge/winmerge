@@ -629,6 +629,53 @@ strings with replacements applied.  Example: <literal>regexReplace(name,
             </listitem>
           </varlistentry>
           <varlistentry>
+            <term>replaceWithList(str, filepath)</term>
+            <listitem>
+              <para>
+Replaces multiple strings in <replaceable>str</replaceable> using
+replacement rules loaded from a tab-separated file.  The file format is one
+replacement rule per line:
+<literal>search_string&lt;TAB&gt;replacement_string</literal>.  Lines
+starting with <literal>#</literal> are treated as comments and ignored.
+Empty lines are also ignored.  If <replaceable>str</replaceable> is an
+array, the result is an array of strings with replacements applied.</para>
+              <para>File format example:</para>
+              <screen># Comment line
+apple	orange
+cat	dog
+old	new</screen>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>replaceWithList(Name, "C:\Filters\replacements.txt")</literal> -
+applies replacements from file to file name</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>regexReplaceWithList(str, filepath)</term>
+            <listitem>
+              <para>
+Replaces strings in <replaceable>str</replaceable> using regular expression
+patterns loaded from a tab-separated file.  The file format is one pattern
+per line: <literal>regex_pattern&lt;TAB&gt;replacement_string</literal>.
+The replacement string can include backreferences ($1, $2, etc.) to captured
+groups.  Lines starting with <literal>#</literal> are treated as comments
+and ignored.  Empty lines are also ignored.  If
+<replaceable>str</replaceable> is an array, the result is an array of
+strings with replacements applied.</para>
+              <para>File format example:</para>
+              <screen># Comment line
+\d+	NUMBER
+(\d{4})-(\d{2})-(\d{2})	$3/$2/$1</screen>
+              <para>Examples:</para>
+              <itemizedlist>
+                <listitem><para><literal>regexReplaceWithList(Name,
+"C:\Filters\regex_replacements.txt")</literal> - applies regex replacements
+to file name</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
             <term>normalizeUnicode(str[, form])</term>
             <listitem>
               <para>

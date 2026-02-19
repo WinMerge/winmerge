@@ -570,6 +570,50 @@ regexReplace(name, "^(\w+)(\w+)$", "$2$1") は、アンダースコアで区切�
             </listitem>
           </varlistentry>
           <varlistentry>
+            <term>replaceWithList(str, filepath)</term>
+            <listitem>
+              <para>
+タブ区切りファイルから読み込んだ置換ルールを使用して、<replaceable>str</replaceable>
+内の複数の文字列を置換します。ファイル形式は 1 行につき 1
+つの置換ルールで、<literal>search_string&lt;TAB&gt;replacement_string</literal>
+の形式です。<literal>#</literal>
+で始まる行はコメントとして扱われ、無視されます。空行も無視されます。<replaceable>str</replaceable>
+が配列の場合、置換が適用された文字列の配列が結果として返されます。</para>
+              <para>ファイル形式の例:</para>
+              <screen># コメント行
+apple	orange
+cat	dog
+old	new</screen>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>replaceWithList(Name, "C:\Filters\replacements.txt")</literal> -
+ファイル内の置換ルールをファイル名に適用します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>regexReplaceWithList(str, filepath)</term>
+            <listitem>
+              <para>
+タブ区切りファイルから読み込んだ正規表現パターンを使用して、<replaceable>str</replaceable>
+内の文字列を置換します。ファイル形式は 1 行につき 1
+つのパターンで、<literal>regex_pattern&lt;TAB&gt;replacement_string</literal>
+の形式です。置換文字列には、キャプチャされたグループへの後方参照 ($1, $2 など)
+を含めることができます。<literal>#</literal>
+で始まる行はコメントとして扱われ、無視されます。空行も無視されます。<replaceable>str</replaceable>
+が配列の場合、置換が適用された文字列の配列が結果として返されます。</para>
+              <para>ファイル形式の例:</para>
+              <screen># コメント行
+\d+	NUMBER
+(\d{4})-(\d{2})-(\d{2})	$3/$2/$1</screen>
+              <para>例:</para>
+              <itemizedlist>
+                <listitem><para><literal>regexReplaceWithList(Name,
+"C:\Filters\regex_replacements.txt")</literal> - 正規表現による置換をファイル名に適用します</para></listitem>
+              </itemizedlist>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
             <term>normalizeUnicode(str[, form])</term>
             <listitem>
               <para>
