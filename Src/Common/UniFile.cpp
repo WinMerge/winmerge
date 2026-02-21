@@ -222,7 +222,7 @@ bool UniMemFile::DoOpen(const String& filename, AccessMode mode)
 		}
 		catch (Exception&)
 		{
-			if (file.getSize() == 0)
+			if (file.path().empty() || file.getSize() == 0)
 			{
 				m_lineno = 0;
 				return true;
