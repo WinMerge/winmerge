@@ -26,7 +26,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)FolderStats.cpp" >
+    <ClCompile Include="$(MSBuildThisFileDirectory)FolderStats.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
@@ -44,6 +44,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FilterParser.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ReplaceList.cpp">
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,5 +75,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterLexer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FilterParser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FolderStats.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ReplaceList.h" />
   </ItemGroup>
 </Project>

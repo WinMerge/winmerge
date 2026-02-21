@@ -33,6 +33,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FolderStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ReplaceList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="$(MSBuildThisFileDirectory)FilterLexer.re">
@@ -62,6 +65,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)FolderStats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ReplaceList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
