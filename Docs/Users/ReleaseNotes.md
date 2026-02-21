@@ -1,18 +1,82 @@
-# WinMerge 2.16.54 Release Notes
+# WinMerge 2.16.54.2 Release Notes
 
 * [About This Release](#about-this-release)
+* [What Is New in 2.16.54.2](#what-is-new-in-216542)
 * [What Is New in 2.16.54](#what-is-new-in-21654)
 * [What Is New in 2.16.53 beta?](#what-is-new-in-21653-beta)
 * [Known issues](#known-issues)
 
-January 2026
+February 2026
 
 ## About This Release
 
-This is a WinMerge 2.16.54 stable release.
+This is a WinMerge 2.16.54.2 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.54.2
+
+### General
+
+* Add automatic crash detection and reporting (PR #3167)
+
+### Appearance
+
+* BugFix: white flash after opening WinMerge with Dark Mode (#3210)
+
+### Folder compare
+
+* BugFix: Fixed “Expand all subfolders” not working when rename/move detection
+    is enabled
+* BugFix: Fixed incorrect results or crashes during recompare (F5) when
+   "Merge renamed items into a single item" is enabled
+* BugFix: Fixed an issue where the Comparison Result showed 0 items after
+    selecting “Refresh Selected” from the folder comparison context menu when
+    rename/move detection is enabled
+* BugFix: Fixed the folder comparison window not updating after saving renamed
+    files in file comparison
+* BugFix: Fixed incorrect file comparison being opened for rename/move items
+    in 3-way folder comparison
+* BugFix: Prevent sorting while directory comparison is in progress
+* BugFix: Delayed file opening on double-click to prevent leftover clicks from
+    affecting other windows
+* BugFix: Display each file extension when merged renamed items have different
+    extensions
+* BugFix: Optimized column reloading and fixed a ReflectGetdispinfo-related
+    crash
+
+### Options dialog
+
+* BugFix: Request to resize text boxes (#3163)
+
+### Plugins
+
+* BugFix: Fixed handling of empty replacement arguments in the Replace plugin
+* BugFix: Fixed incorrect substitution of plugin arguments (${1}, ${2}, …) by
+    properly parsing the argument string
+
+### Manual
+
+* Fixes and completion of French translation including complete Manual
+    (PR #3182)
+
+### Translations
+
+* Translation updates:
+  * Brazilian (#3164,PR #3171)
+  * Chinese Simplified (PR #3161,#3169)
+  * French (PR #3165,#3182)
+  * German (PR #3175)
+  * Hungarian (PR #3173)
+  * Italian (PR #3170)
+  * Japanese
+  * Korean (PR #3157)
+  * Lithuanian (PR #3177)
+  * Polish (PR #3158,#3176)
+  * Portuguese (PR #3179)
+  * Russian (PR #3159,#3160)
+  * Turkish (PR #3178)
 
 ## What Is New in 2.16.54
 
