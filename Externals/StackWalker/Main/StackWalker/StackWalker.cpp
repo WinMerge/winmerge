@@ -1254,6 +1254,18 @@ BOOL StackWalker::ShowCallstack(HANDLE                    hThread,
   s.AddrFrame.Mode = AddrModeFlat;
   s.AddrStack.Offset = c.Sp;
   s.AddrStack.Mode = AddrModeFlat;
+#elif _M_ARM
+  // NOTE:
+  // Windows ARM32 uses IMAGE_FILE_MACHINE_ARMNT.
+  // Stack walking on ARM32 is unreliable, so we only initialize PC and SP
+  // to avoid crashes. This is best-effort support.
+  imageType = IMAGE_FILE_MACHINE_ARMNT;
+  s.AddrPC.Offset = c.Pc;
+  s.AddrPC.Mode = AddrModeFlat;
+  s.AddrFrame.Offset = c.Sp;
+  s.AddrFrame.Mode = AddrModeFlat;
+  s.AddrStack.Offset = c.Sp;
+  s.AddrStack.Mode = AddrModeFlat;
 #else
 #error "Platform not supported!"
 #endif
