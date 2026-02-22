@@ -6830,9 +6830,9 @@ LRESULT CCrystalTextView::BuildReconvertString(
   pReconv->dwStrLen = dwStrLen;
   pReconv->dwStrOffset = sizeof(RECONVERTSTRING);
   pReconv->dwCompStrLen = dwTargetCharLen;
-  pReconv->dwCompStrOffset = dwTargetCharOffset * sizeof(tchar_t);
+  pReconv->dwCompStrOffset = pReconv->dwStrOffset + dwTargetCharOffset * sizeof(tchar_t);
   pReconv->dwTargetStrLen = dwTargetCharLen;
-  pReconv->dwTargetStrOffset = dwTargetCharOffset * sizeof(tchar_t);
+  pReconv->dwTargetStrOffset = pReconv->dwStrOffset + dwTargetCharOffset * sizeof(tchar_t);
 
   tchar_t* pszDest = reinterpret_cast<tchar_t*>(
     reinterpret_cast<BYTE*>(pReconv) + pReconv->dwStrOffset);
