@@ -6806,8 +6806,7 @@ LRESULT CCrystalTextView::BuildReconvertString(
 {
   int nLineLen = GetLineLength(nLineIndex);
   const tchar_t* pszLine = GetLineChars(nLineIndex);
-  // Allow zero-length lines; only treat negative lengths or null pointers as errors.
-  if (pszLine == nullptr || nLineLen < 0)
+  if (pszLine == nullptr || nLineLen <= 0)
       return 0;
 
   DWORD dwStrLen = static_cast<DWORD>(nLineLen);
