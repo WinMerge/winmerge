@@ -183,6 +183,7 @@ ON_COMMAND (ID_EDIT_MARK, OnEditMark)
 ON_WM_MOUSEWHEEL ()
 ON_WM_MOUSEHWHEEL ()
 ON_MESSAGE (WM_IME_STARTCOMPOSITION, OnImeStartComposition) /* IME */
+ON_MESSAGE (WM_IME_REQUEST, OnImeRequest) /* IME */
 //}}AFX_MSG_MAP
 ON_COMMAND (ID_EDIT_CHAR_LEFT, OnCharLeft)
 ON_COMMAND (ID_EDIT_EXT_CHAR_LEFT, OnExtCharLeft)
@@ -6798,6 +6799,129 @@ LRESULT CCrystalTextView::OnImeStartComposition(WPARAM wParam, LPARAM lParam) /*
   UpdateCompositionWindowPos();
 
   return DefWindowProc(WM_IME_STARTCOMPOSITION, wParam, lParam);
+}
+
+LRESULT CCrystalTextView::BuildReconvertString(
+    RECONVERTSTRING* pReconv, int nLineIndex, DWORD dwTargetCharOffset, DWORD dwTargetCharLen)
+{
+  int nLineLen = GetLineLength(nLineIndex);
+  const tchar_t* pszLine = GetLineChars(nLineIndex);
+  if (pszLine == nullptr || nLineLen <= 0)
+      return 0;
+
+  DWORD dwStrLen = static_cast<DWORD>(nLineLen);
+
+  // clamp
+  dwTargetCharOffset = (std::min)(dwTargetCharOffset, dwStrLen);
+  if (dwTargetCharOffset + dwTargetCharLen > dwStrLen)
+    dwTargetCharLen = dwStrLen - dwTargetCharOffset;
+
+  DWORD dwSize = sizeof(RECONVERTSTRING) + (dwStrLen + 1) * sizeof(tchar_t);
+
+  if (pReconv == nullptr)
+    return static_cast<LRESULT>(dwSize);
+
+  if (pReconv->dwSize < dwSize)
+    return 0;
+
+  pReconv->dwSize = dwSize;
+  pReconv->dwVersion = 0;
+  pReconv->dwStrLen = dwStrLen;
+  pReconv->dwStrOffset = sizeof(RECONVERTSTRING);
+  pReconv->dwCompStrLen = dwTargetCharLen;
+  pReconv->dwCompStrOffset = dwTargetCharOffset * sizeof(tchar_t);
+  pReconv->dwTargetStrLen = dwTargetCharLen;
+  pReconv->dwTargetStrOffset = dwTargetCharOffset * sizeof(tchar_t);
+
+  tchar_t* pszDest = reinterpret_cast<tchar_t*>(
+    reinterpret_cast<BYTE*>(pReconv) + pReconv->dwStrOffset);
+
+  memcpy(pszDest, pszLine, dwStrLen * sizeof(tchar_t));
+  pszDest[dwStrLen] = _T('\0');
+
+  return static_cast<LRESULT>(dwSize);
+}
+
+LRESULT CCrystalTextView::OnImeRequest(WPARAM wParam, LPARAM lParam)
+{
+  if (wParam != IMR_RECONVERTSTRING &&
+      wParam != IMR_CONFIRMRECONVERTSTRING &&
+      wParam != IMR_DOCUMENTFEED)
+    return DefWindowProc(WM_IME_REQUEST, wParam, lParam);
+
+  switch (wParam)
+    {
+    case IMR_RECONVERTSTRING:
+      {
+        CEPoint ptCursor = GetCursorPos();
+        int nLineIndex = ptCursor.y;
+        DWORD dwOffset = static_cast<DWORD>(ptCursor.x);
+        DWORD dwLen = 0;
+
+        if (IsSelection())
+          {
+            CEPoint s, e;
+            GetSelection(s, e);
+            if (s.y != e.y)
+                return 0;
+            nLineIndex = s.y;
+            dwOffset = static_cast<DWORD>(s.x);
+            dwLen = static_cast<DWORD>(e.x - s.x);
+          }
+
+        return BuildReconvertString(
+            reinterpret_cast<RECONVERTSTRING*>(lParam), nLineIndex, dwOffset, dwLen);
+      }
+
+    case IMR_CONFIRMRECONVERTSTRING:
+      {
+        RECONVERTSTRING* pReconv = reinterpret_cast<RECONVERTSTRING*>(lParam);
+        if (pReconv == nullptr)
+          return FALSE;
+
+        DWORD dwCompCharOffset = pReconv->dwCompStrOffset / sizeof(tchar_t);
+        DWORD dwCompCharLen = pReconv->dwCompStrLen;
+
+        CEPoint ptCursor = GetCursorPos();
+        int nLineIndex = ptCursor.y;
+
+        if (IsSelection())
+          {
+            CEPoint ptSelStart, ptSelEnd;
+            GetSelection(ptSelStart, ptSelEnd);
+            if (ptSelStart.y != ptSelEnd.y)
+                return FALSE;  // Multi-line selection not supported
+            nLineIndex = ptSelStart.y;
+          }
+
+        // IME adjusted the range but resulted in zero length - reject this
+        int nLineLen = GetLineLength(nLineIndex);
+        if (dwCompCharLen == 0)
+            return FALSE;
+        if (dwCompCharOffset >= static_cast<DWORD>(nLineLen))
+            return FALSE;
+        if (dwCompCharOffset + dwCompCharLen > static_cast<DWORD>(nLineLen))
+            return FALSE;
+
+        CEPoint ptNewStart(static_cast<int>(dwCompCharOffset), nLineIndex);
+        CEPoint ptNewEnd(static_cast<int>(dwCompCharOffset + dwCompCharLen), nLineIndex);
+        SetSelection(ptNewStart, ptNewEnd);
+        SetCursorPos(ptNewStart);
+        EnsureVisible(ptNewStart);
+        UpdateCompositionWindowPos();
+
+        return TRUE;
+      }
+
+    case IMR_DOCUMENTFEED:
+      {
+        CEPoint ptCursor = GetCursorPos();
+        return BuildReconvertString(
+            reinterpret_cast<RECONVERTSTRING*>(lParam), ptCursor.y, static_cast<DWORD>(ptCursor.x), 0);
+      }
+  }
+
+  return 0;  // Should not reach here
 }
 
 void CCrystalTextView::OnEditDeleteBack() 

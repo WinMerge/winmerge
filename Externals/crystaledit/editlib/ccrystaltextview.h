@@ -53,6 +53,7 @@ class CFindTextDlg;
 struct LastSearchInfos;
 class CCrystalTextMarkers;
 class CEditReplaceDlg;
+struct tagRECONVERTSTRING;
 
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView class declaration
@@ -875,6 +876,8 @@ protected :
     afx_msg BOOL OnMouseWheel (UINT nFlags, short zDelta, CPoint pt);
     afx_msg void OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt);
     LRESULT OnImeStartComposition(WPARAM wParam, LPARAM lParam);
+    LRESULT BuildReconvertString(struct tagRECONVERTSTRING* pReconv, int nLineIndex, DWORD dwTargetCharOffset, DWORD dwTargetCharLen);
+    LRESULT OnImeRequest(WPARAM wParam, LPARAM lParam);
     //}}AFX_MSG
     afx_msg void OnFilePageSetup ();
 
