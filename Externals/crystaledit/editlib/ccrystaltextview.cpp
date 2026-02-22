@@ -6880,7 +6880,18 @@ LRESULT CCrystalTextView::OnImeRequest(WPARAM wParam, LPARAM lParam)
         if (pReconv == nullptr)
           return FALSE;
 
-        DWORD dwCompCharOffset = pReconv->dwCompStrOffset / sizeof(tchar_t);
+        // RECONVERTSTRING offsets are byte offsets from the start of the structure.
+        // Validate structure and compute character offset within the string buffer.
+        if (pReconv->dwSize < sizeof(RECONVERTSTRING))
+            return FALSE;
+        if (pReconv->dwStrOffset >= pReconv->dwSize)
+            return FALSE;
+        if (pReconv->dwCompStrOffset < pReconv->dwStrOffset ||
+            pReconv->dwCompStrOffset >= pReconv->dwSize)
+            return FALSE;
+
+        DWORD dwCompOffsetBytes = pReconv->dwCompStrOffset - pReconv->dwStrOffset;
+        DWORD dwCompCharOffset = dwCompOffsetBytes / sizeof(tchar_t);
         DWORD dwCompCharLen = pReconv->dwCompStrLen;
 
         CEPoint ptCursor = GetCursorPos();
