@@ -20,6 +20,7 @@
 #include "Shell.h"
 #include "UniFile.h"
 #include <Poco/Environment.h>
+#include <set>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -45,6 +46,8 @@ static String GetReplaceListFolder(int locationType, bool isRegex)
 }
 
 // Get files in replace list folder
+// Loads from the configured location first, then from the alternate location,
+// skipping any files whose filename already appears in the primary list.
 static std::vector<String> GetReplaceLists(bool isRegex)
 {
 	int locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION);
@@ -64,14 +67,22 @@ static std::vector<String> GetReplaceLists(bool isRegex)
 	DirItemArray files, dirs;
 	DirTravel::LoadFiles(folder, &dirs, &files, _T("*.*"));
 
+	std::set<String> seenFilenames;
 	for (const auto& file : files)
+	{
+		seenFilenames.insert(strutils::makelower(file.filename.get()));
 		list.push_back(paths::ConcatPath(folder, file.filename.get()));
+	}
 
+	// Also load from the alternate location, skipping duplicate filenames
 	folder = GetReplaceListFolder(1 - locationType, isRegex);
 	DirTravel::LoadFiles(folder, &dirs, &files, _T("*.*"));
 
 	for (const auto& file : files)
-		list.push_back(paths::ConcatPath(folder, file.filename.get()));
+	{
+		if (seenFilenames.find(strutils::makelower(file.filename.get())) == seenFilenames.end())
+			list.push_back(paths::ConcatPath(folder, file.filename.get()));
+	}
 
 	return list;
 }
