@@ -12,6 +12,13 @@
 #include "FilterErrorMessages.h"
 #include "PropertySystemMenu.h"
 #include "unicoder.h"
+#include "paths.h"
+#include "FileOrFolderSelect.h"
+#include "DirItem.h"
+#include "DirTravel.h"
+#include "Environment.h"
+#include "Shell.h"
+#include "UniFile.h"
 #include <Poco/Environment.h>
 
 #ifdef _DEBUG
@@ -19,9 +26,225 @@
 #endif
 
 static const int Mega = 1024 * 1024;
+// Max number of replace lists shown in menu.
+// NOTE: This relies on the resource ID ranges for string and regex replace lists
+//       being consecutive and of equal size. If those ranges change in resource.h
+//       (ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST / _REGEX_...), update
+//       MaxReplaceListSize accordingly.
+static const int MaxReplaceListSize = 20;
+static_assert(
+    ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST - ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST == MaxReplaceListSize,
+    "MaxReplaceListSize must match the distance between the string and regex replace-list ID ranges."
+);
+
+// Get replace list folder
+static String GetReplaceListFolder(int locationType, bool isRegex)
+{
+	String folder = locationType == 0 ? env::GetAppDataPath() : env::GetMyDocuments();
+	return paths::ConcatPath(folder, isRegex ? _T("WinMerge\\RegexReplaceLists") : _T("WinMerge\\ReplaceLists"));
+}
+
+// Get files in replace list folder
+static std::vector<String> GetReplaceLists(bool isRegex)
+{
+	int locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION);
+	std::vector<String> list;
+	String folder = GetReplaceListFolder(locationType, isRegex);
+
+	if (folder.empty())
+		return list;
+
+	// Create folder if it doesn't exist
+	if (paths::DoesPathExist(folder) != paths::IS_EXISTING_DIR)
+	{
+		if (!paths::CreateIfNeeded(folder))
+			return list;
+	}
+
+	DirItemArray files, dirs;
+	DirTravel::LoadFiles(folder, &dirs, &files, _T("*.*"));
+
+	for (const auto& file : files)
+		list.push_back(paths::ConcatPath(folder, file.filename.get()));
+
+	DirItemArray files2, dirs2;
+	folder = GetReplaceListFolder(1 - locationType, isRegex);
+	DirTravel::LoadFiles(folder, &dirs2, &files2, _T("*.*"));
+
+	for (const auto& file : files2)
+		list.push_back(paths::ConcatPath(folder, file.filename.get()));
+
+	return list;
+}
+
+// Create template file
+static bool CreateTemplateFile(const String& filepath, bool isRegex)
+{
+	// Write template content
+	String templateText = isRegex ?
+			// Regex replacement list template
+			_("# Regex replacement list\r\n"
+			"# Format: regex<TAB>replacement\r\n"
+			"# Backreferences like $1, $2 are supported\r\n"
+			"\r\n"
+			"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n")
+		:
+			// Replacement list template
+			_("# Replacement list\r\n"
+			"# Format: search<TAB>replacement\r\n"
+			"# Lines starting with # are ignored\r\n"
+			"\r\n"
+			"from1\tto1\r\n"
+			"from2\tto2\r\n");
+
+	UniStdioFile file;
+	if (!file.OpenCreateUtf8(filepath))
+		return false;
+	file.WriteString(templateText);
+	return true;
+}
+
+static String ReplaceAppDataFolderOrUserProfileFolder(const String& path)
+{
+	String result = path;
+	String appData = env::GetAppDataPath();
+	if (tc::tcsstr(path.c_str(), appData.c_str()))
+	{
+		strutils::replace(result, appData, _T("%APPDATA%"));
+		return result;
+	}
+	String userProfile = env::ExpandEnvironmentVariables(_T("%USERPROFILE%"));
+	if (tc::tcsstr(path.c_str(), userProfile.c_str()))
+	{
+		strutils::replace(result, userProfile, _T("%USERPROFILE%"));
+		return result;
+	}
+	return result;
+}
 
 class CPropCompareFolderMenu : public CMenu
 {
+private:
+	void PopulateReplaceLists(CMenu* pPopup)
+	{
+		// Find "Replace Lists" submenu
+		for (int i = 0; i < pPopup->GetMenuItemCount(); i++)
+		{
+			CMenu* pSubMenu = pPopup->GetSubMenu(i);
+			if (pSubMenu)
+			{
+				MENUITEMINFO mii = { sizeof(MENUITEMINFO) };
+				mii.fMask = MIIM_STRING;
+				tchar_t buf[256];
+				mii.dwTypeData = buf;
+				mii.cch = 256;
+				if (pPopup->GetMenuItemInfo(i, &mii, TRUE))
+				{
+					if (tc::tcsstr(buf, _("Replace &Lists").c_str()))
+					{
+						PopulateReplaceListsSubMenu(pSubMenu);
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	void PopulateReplaceListsSubMenu(CMenu* pReplaceListsMenu)
+	{
+		// Find String Replace Lists and Regex Replace Lists submenus
+		for (int i = 0; i < pReplaceListsMenu->GetMenuItemCount(); i++)
+		{
+			CMenu* pSubMenu = pReplaceListsMenu->GetSubMenu(i);
+			if (pSubMenu)
+			{
+				MENUITEMINFO mii = { sizeof(MENUITEMINFO) };
+				mii.fMask = MIIM_ID;
+				if (pSubMenu->GetMenuItemInfo(0, &mii, TRUE))
+				{
+					if (mii.wID == ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST)
+					{
+						PopulateListMenu(pSubMenu, false, ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST);
+					}
+					else if (mii.wID == ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST)
+					{
+						PopulateListMenu(pSubMenu, true, ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST);
+					}
+				}
+			}
+		}
+	}
+
+	void PopulateListMenu(CMenu* pMenu, bool isRegex, UINT firstID)
+	{
+		// Delete existing "<None>" item
+		pMenu->DeleteMenu(0, MF_BYPOSITION);
+
+		// Get lists in folder
+		std::vector<String> lists = GetReplaceLists(isRegex);
+
+		if (lists.empty())
+		{
+			pMenu->AppendMenu(MF_STRING | MF_GRAYED, firstID, _("<None>").c_str());
+		}
+		else
+		{
+			for (size_t i = 0; i < lists.size() && i < MaxReplaceListSize; i++)
+			{
+				String filename = paths::FindFileName(lists[i]);
+				pMenu->AppendMenu(MF_STRING, firstID + static_cast<UINT>(i), filename.c_str());
+			}
+		}
+	}
+
+	// Create and select replace list file
+	std::optional<String> CreateAndSelectReplaceListFile(CWnd* pParentWnd, bool isRegex)
+	{
+		int locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION);
+		String folder = GetReplaceListFolder(locationType, isRegex);
+		if (folder.empty())
+		{
+			AfxMessageBox(_T("Failed to get ReplaceList folder."), MB_ICONERROR);
+			return std::nullopt;
+		}
+
+		// Create folder if it doesn't exist
+		if (paths::DoesPathExist(folder) != paths::IS_EXISTING_DIR)
+		{
+			if (!paths::CreateIfNeeded(folder))
+			{
+				AfxMessageBox((_T("Failed to create folder:\n") + folder).c_str(), MB_ICONERROR);
+				return std::nullopt;
+			}
+		}
+
+		String title = isRegex ?
+			_("Create &Regex Replace List and Insert...") :
+			_("&Create String Replace List and Insert...");
+		strutils::replace(title, _T("&"), _T("")); // Remove & for file dialog title
+
+		// Display file save dialog
+		String sFilePath;
+		String initialDir = folder;
+		if (!SelectFile(pParentWnd->GetSafeHwnd(), sFilePath, false, initialDir.c_str(), title, 
+			_("Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"), _T("tsv")))
+			return std::nullopt;
+
+		String filepath = sFilePath;
+
+		// Create template file
+		if (!CreateTemplateFile(filepath, isRegex))
+		{
+			AfxMessageBox((_T("Failed to create file:\n") + filepath).c_str(), MB_ICONERROR);
+			return std::nullopt;
+		}
+
+		// Open with default editor
+		shell::Edit(filepath.c_str());
+
+		return filepath;
+	}
+
 public:
 	std::optional<String> ShowMenu(int menuid, const String& expr, int x, int y, CWnd* pParentWnd)
 	{
@@ -34,6 +257,12 @@ public:
 #ifndef _WIN64
 			pPopup->EnableMenuItem(ID_ADDCMPMENU_PROPS, MF_GRAYED);
 #endif
+			// Build menu dynamically
+			if (menuid == IDR_POPUP_RENAMEMOVE_MENU)
+			{
+				PopulateReplaceLists(pPopup);
+			}
+
 			const int command = pPopup->TrackPopupMenu(
 				TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, x, y, pParentWnd);
 			if (command == 0)
@@ -71,6 +300,7 @@ public:
 					_T("Name"),
 					_T("BaseName"),
 					_T("normalizeUnicode(Name, \"NFC\")"),
+					_T("RelPath"),
 					_T("Size"),
 					_T("Date"),
 					_T("if(IsFolder, Name, prop(\"Hash.MD5\"))"),
@@ -101,9 +331,72 @@ public:
 					_T("toTraditionalChinese(%1)"),
 					_T("toHiragana(%1)"),
 					_T("toKatakana(%1)"),
+					_T("normalizeUnicode(%1, \"NFC\")"),
 				};
 				String newExpr = Exprs[command - ID_RENAME_MOVE_KEY_MENU_FUNC_FIRST];
 				result = strutils::format_string1(newExpr, expr.empty() ? _T("Name") : expr);
+			}
+			else if (command == ID_RENAME_MOVE_KEY_MENU_CREATE_REPLACELIST)
+			{
+				auto filepath = CreateAndSelectReplaceListFile(pParentWnd, false);
+				if (filepath.has_value())
+				{
+					String filepath2 = ReplaceAppDataFolderOrUserProfileFolder(*filepath);
+					String newExpr = _T("replaceWithList(") + (expr.empty() ? _T("Name") : expr) + 
+						_T(", \"") + filepath2 + _T("\")");
+					result = newExpr;
+				}
+			}
+			else if (command == ID_RENAME_MOVE_KEY_MENU_CREATE_REGEXREPLACELIST)
+			{
+				auto filepath = CreateAndSelectReplaceListFile(pParentWnd, true);
+				if (filepath.has_value())
+				{
+					String filepath2 = ReplaceAppDataFolderOrUserProfileFolder(*filepath);
+					String newExpr = _T("regexReplaceWithList(") + (expr.empty() ? _T("Name") : expr) + 
+						_T(", \"") + filepath2 + _T("\")");
+					result = newExpr;
+				}
+			}
+			else if (command >= ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST && 
+					 command < ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST + MaxReplaceListSize)
+			{
+				auto lists = GetReplaceLists(false);
+				int index = command - ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST;
+				if (index < static_cast<int>(lists.size()))
+				{
+					String filepath = ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
+					String newExpr = _T("replaceWithList(") + (expr.empty() ? _T("Name") : expr) + 
+						_T(", \"") + filepath + _T("\")");
+					result = newExpr;
+				}
+			}
+			else if (command >= ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST && 
+					 command < ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST + MaxReplaceListSize)
+			{
+				auto lists = GetReplaceLists(true);
+				int index = command - ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST;
+				if (index < static_cast<int>(lists.size()))
+				{
+					String filepath = ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
+					String newExpr = _T("regexReplaceWithList(") + (expr.empty() ? _T("Name") : expr) + 
+						_T(", \"") + filepath + _T("\")");
+					result = newExpr;
+				}
+			}
+			else if (command == ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FOLDER)
+			{
+				int locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION);
+				String folder = GetReplaceListFolder(locationType, false);
+				if (!folder.empty())
+					shell::Open(folder.c_str());
+			}
+			else if (command == ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FOLDER)
+			{
+				int locationType = GetOptionsMgr()->GetInt(OPT_USERDATA_LOCATION);
+				String folder = GetReplaceListFolder(locationType, true);
+				if (!folder.empty())
+					shell::Open(folder.c_str());
 			}
 		}
 		DestroyMenu();

@@ -1867,6 +1867,9 @@ msgstr "&Alapnév (kiterjesztés nélkül)"
 msgid "Normalized &Unicode Name"
 msgstr "Normalizált &Unicode név"
 
+msgid "&Relative Path"
+msgstr ""
+
 msgid "&Date"
 msgstr "&Dátum"
 
@@ -1878,6 +1881,27 @@ msgstr "&csere() függvény beszúrása"
 
 msgid "Insert rege&xReplace() Function"
 msgstr "rege&xCsere() függvény beszúrása"
+
+msgid "Replace &Lists"
+msgstr ""
+
+msgid "&Create String Replace List and Insert..."
+msgstr ""
+
+msgid "Create &Regex Replace List and Insert..."
+msgstr ""
+
+msgid "&String Replace Lists"
+msgstr ""
+
+msgid "Re&gex Replace Lists"
+msgstr ""
+
+msgid "Open String Replace Lists Folder..."
+msgstr ""
+
+msgid "Open Regex Replace Lists Folder..."
+msgstr ""
 
 msgid "Text &Normalization"
 msgstr "Szöveg &normalizálás"
@@ -1911,6 +1935,9 @@ msgstr "&Hiragana"
 
 msgid "&Katakana"
 msgstr "&Katakana"
+
+msgid "Normalize &Unicode"
+msgstr ""
 
 #, c-format
 msgid "About WinMerge"
@@ -3552,6 +3579,9 @@ msgstr "WinMerge Projekt fájlok (*.WinMerge)|*.WinMerge||"
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Ini fájlok (*.ini)|*.ini|Minden fájl (*.*)|*.*||"
+
+msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
+msgstr ""
 
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
@@ -5797,6 +5827,12 @@ msgstr "pl %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "A WinMerge egy korábbi összeomlást észlelt. Kérjük, jelentse ezt, ha lehetséges."
+
+msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgstr ""
+
+msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

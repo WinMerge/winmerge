@@ -1747,6 +1747,7 @@ BEGIN
         MENUITEM "&Name",                       ID_RENAME_MOVE_KEY_MENU_NAME
         MENUITEM "&Base name (without extension)", ID_RENAME_MOVE_KEY_MENU_BASENAME
         MENUITEM "Normalized &Unicode Name",    ID_RENAME_MOVE_KEY_MENU_NORMALIZED_NAME
+        MENUITEM "&Relative Path",              ID_RENAME_MOVE_KEY_MENU_RELPATH
         MENUITEM "&Size",                       ID_RENAME_MOVE_KEY_MENU_SIZE
         MENUITEM "&Date",                       ID_RENAME_MOVE_KEY_MENU_DATE
         MENUITEM "&Hash (MD5)",                 ID_RENAME_MOVE_KEY_MENU_HASH_MD5
@@ -1754,22 +1755,41 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Insert &replace() Function",    ID_RENAME_MOVE_KEY_MENU_FUNC_REPLACE
         MENUITEM "Insert rege&xReplace() Function",ID_RENAME_MOVE_KEY_MENU_FUNC_REGEXREPLACE
+        POPUP "Replace &Lists"
+        BEGIN
+            MENUITEM "&Create String Replace List and Insert...", ID_RENAME_MOVE_KEY_MENU_CREATE_REPLACELIST
+            MENUITEM "Create &Regex Replace List and Insert...",  ID_RENAME_MOVE_KEY_MENU_CREATE_REGEXREPLACELIST
+            MENUITEM SEPARATOR
+            POPUP "&String Replace Lists"
+            BEGIN
+                MENUITEM "<None>",                      ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST
+            END
+            POPUP "Re&gex Replace Lists"
+            BEGIN
+                MENUITEM "<None>",                      ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST
+            END
+            MENUITEM SEPARATOR
+            MENUITEM "Open String Replace Lists Folder...", ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FOLDER
+            MENUITEM "Open Regex Replace Lists Folder...", ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FOLDER
+        END
+        MENUITEM SEPARATOR
         POPUP "Text &Normalization"
         BEGIN
-            MENUITEM "&Lowercase", ID_RENAME_MOVE_KEY_MENU_FUNC_TOLOWER
-            MENUITEM "&Uppercase", ID_RENAME_MOVE_KEY_MENU_FUNC_TOUPPER
-            MENUITEM "&Half-width", ID_RENAME_MOVE_KEY_MENU_FUNC_TOHALFWIDTH
-            MENUITEM "&Full-width", ID_RENAME_MOVE_KEY_MENU_FUNC_TOFULLWIDTH
+            MENUITEM "&Lowercase",                  ID_RENAME_MOVE_KEY_MENU_FUNC_TOLOWER
+            MENUITEM "&Uppercase",                  ID_RENAME_MOVE_KEY_MENU_FUNC_TOUPPER
+            MENUITEM "&Half-width",                 ID_RENAME_MOVE_KEY_MENU_FUNC_TOHALFWIDTH
+            MENUITEM "&Full-width",                 ID_RENAME_MOVE_KEY_MENU_FUNC_TOFULLWIDTH
             POPUP "&Chinese Conversion"
             BEGIN
-                MENUITEM "&Simplified Chinese", ID_RENAME_MOVE_KEY_MENU_FUNC_TOSIMPLIFIEDCHINESE
-                MENUITEM "&Traditional Chinese", ID_RENAME_MOVE_KEY_MENU_FUNC_TOTRADITIONALCHINESE
+                MENUITEM "&Simplified Chinese",         ID_RENAME_MOVE_KEY_MENU_FUNC_TOSIMPLIFIEDCHINESE
+                MENUITEM "&Traditional Chinese",        ID_RENAME_MOVE_KEY_MENU_FUNC_TOTRADITIONALCHINESE
             END
             POPUP "&Japanese Conversion"
             BEGIN
-                MENUITEM "&Hiragana", ID_RENAME_MOVE_KEY_MENU_FUNC_TOHIRAGANA
-                MENUITEM "&Katakana", ID_RENAME_MOVE_KEY_MENU_FUNC_TOKATAKANA
+                MENUITEM "&Hiragana",                   ID_RENAME_MOVE_KEY_MENU_FUNC_TOHIRAGANA
+                MENUITEM "&Katakana",                   ID_RENAME_MOVE_KEY_MENU_FUNC_TOKATAKANA
             END
+            MENUITEM "Normalize &Unicode",          ID_RENAME_MOVE_KEY_MENU_FUNC_NORMALIZEUNICODE
         END
     END
 END
@@ -4184,6 +4204,7 @@ BEGIN
     IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
     IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+    IDS_REPLACELIST_FILES   "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
 END
 
 // REPORT FILES
@@ -5336,11 +5357,17 @@ BEGIN
     IDS_EXAMPLE                      "e.g. %1"
 END
 
-
 STRINGTABLE
 BEGIN
     IDS_DETECTED_PREVIOUS_CRASH      "WinMerge detected a previous crash. Please report this if possible."
 END
+
+STRINGTABLE
+BEGIN
+    IDS_REGEX_REPLACE_LIST_TEMPLATE  "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+    IDS_STRING_REPLACE_LIST_TEMPLATE "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

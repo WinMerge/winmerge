@@ -1644,6 +1644,9 @@ msgstr "Nom de &base (sans extension)"
 msgid "Normalized &Unicode Name"
 msgstr "Nom &Unicode normalisé"
 
+msgid "&Relative Path"
+msgstr ""
+
 msgid "&Date"
 msgstr "&Date"
 
@@ -1655,6 +1658,27 @@ msgstr "Insérer la fonction &replace()"
 
 msgid "Insert rege&xReplace() Function"
 msgstr "Insérer la fonction rege&xReplace()"
+
+msgid "Replace &Lists"
+msgstr ""
+
+msgid "&Create String Replace List and Insert..."
+msgstr ""
+
+msgid "Create &Regex Replace List and Insert..."
+msgstr ""
+
+msgid "&String Replace Lists"
+msgstr ""
+
+msgid "Re&gex Replace Lists"
+msgstr ""
+
+msgid "Open String Replace Lists Folder..."
+msgstr ""
+
+msgid "Open Regex Replace Lists Folder..."
+msgstr ""
 
 msgid "Text &Normalization"
 msgstr "&Normalisation du texte"
@@ -1688,6 +1712,9 @@ msgstr "&Hiragana"
 
 msgid "&Katakana"
 msgstr "&Katakana"
+
+msgid "Normalize &Unicode"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "À propos de WinMerge"
@@ -3047,6 +3074,9 @@ msgstr "Fichiers de projet WinMerge (*.WinMerge)|*.WinMerge||"
 
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Fichiers de préférences (*.ini)|*.ini|Tous les fichiers (*.*)|*.*||"
+
+msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
+msgstr ""
 
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Fichiers texte (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Tous les fichiers (*.*)|*.*||"
@@ -5234,6 +5264,12 @@ msgstr "p. ex. %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "WinMerge a détecté un plantage précédent. Veuillez le signaler si possible."
+
+msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgstr ""
+
+msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embellissement"

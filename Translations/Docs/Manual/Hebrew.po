@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-02-20 08:38+0900\n"
+"POT-Creation-Date: 2026-02-23 12:14+0900\n"
 "PO-Revision-Date: 2025-03-13 09:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2999,7 +2999,7 @@ msgstr ""
 "פקודות ההעתקה של סרגל הכלים."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_dirs.xml:614 English/Configuration.xml:2711
+#: English/Compare_dirs.xml:614 English/Configuration.xml:2853
 msgid "deleting files"
 msgstr "מחיקת קבצים"
 
@@ -3290,7 +3290,7 @@ msgstr ""
 "<guimenuitem>רענן נבחר</guimenuitem> </menuchoice> מהתפריט הראשי."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_dirs.xml:798 English/Configuration.xml:2616
+#: English/Compare_dirs.xml:798 English/Configuration.xml:2758
 msgid "archiving files"
 msgstr "ארכיון קבצים"
 
@@ -4439,7 +4439,7 @@ msgid "Copies just the source filename into the system clipboard."
 msgstr "מעתיק רק את שם קובץ המקור ללוח המערכת."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_files.xml:134 English/Configuration.xml:2507
+#: English/Compare_files.xml:134 English/Configuration.xml:2649
 msgid "difference colors"
 msgstr "צבעי הבדל"
 
@@ -4763,7 +4763,7 @@ msgstr ""
 "באותה רמה בתוך בלוק ההבדלים."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:338 English/Configuration.xml:2294
+#: English/Compare_files.xml:338 English/Configuration.xml:2436
 msgid "line differences"
 msgstr "הבדלי שורות"
 
@@ -5036,8 +5036,8 @@ msgstr ""
 "diff-punctuation.png\" format=\"PNG\" /> </imageobject>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Compare_files.xml:520 English/Configuration.xml:2033
-#: English/Configuration.xml:2204 English/Configuration.xml:2409
+#: English/Compare_files.xml:520 English/Configuration.xml:2175
+#: English/Configuration.xml:2346 English/Configuration.xml:2551
 msgid "editing"
 msgstr "עריכה"
 
@@ -5781,7 +5781,7 @@ msgid "for File Compare window"
 msgstr "עבור חלון השוואת קבצים"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Compare_files.xml:1007 English/Configuration.xml:2127
+#: English/Compare_files.xml:1007 English/Configuration.xml:2269
 msgid "tabs"
 msgstr "טאבים"
 
@@ -6445,8 +6445,8 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_files.xml:1476 English/Compare_images.xml:117
-#: English/Configuration.xml:2416 English/Configuration.xml:2582
-#: English/Configuration.xml:2701 English/Configuration.xml:3130
+#: English/Configuration.xml:2558 English/Configuration.xml:2724
+#: English/Configuration.xml:2843 English/Configuration.xml:3272
 #: English/Filters.xml:1570 English/Filters.xml:2001 English/Filters.xml:2006
 #: English/Filters.xml:2017
 msgid "TBD"
@@ -6470,7 +6470,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:1491 English/Compare_files.xml:1776
-#: English/Configuration.xml:2213
+#: English/Configuration.xml:2355
 msgid "rescanning files"
 msgstr "סריקה חוזרת של קבצים"
 
@@ -7860,11 +7860,11 @@ msgid "Comparing web pages with very different content may take a lot of time."
 msgstr "השוואת דפי אינטרנט עם תוכן שונה מאוד עשויה להימשך זמן רב."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:5 English/Configuration.xml:2411
-#: English/Configuration.xml:2425 English/Configuration.xml:2509
-#: English/Configuration.xml:2560 English/Configuration.xml:2578
-#: English/Configuration.xml:2590 English/Configuration.xml:2696
-#: English/Configuration.xml:2713 English/Configuration.xml:2984
+#: English/Configuration.xml:5 English/Configuration.xml:2553
+#: English/Configuration.xml:2567 English/Configuration.xml:2651
+#: English/Configuration.xml:2702 English/Configuration.xml:2720
+#: English/Configuration.xml:2732 English/Configuration.xml:2838
+#: English/Configuration.xml:2855 English/Configuration.xml:3126
 msgid "options"
 msgstr "אפשרויות"
 
@@ -8306,7 +8306,7 @@ msgid "timestamps"
 msgstr "חותמות זמן"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:353 English/Configuration.xml:2076
+#: English/Configuration.xml:353 English/Configuration.xml:2218
 msgid "preserving"
 msgstr "שימור"
 
@@ -8808,7 +8808,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><see>
 #: English/Configuration.xml:743 English/Configuration.xml:849
-#: English/Configuration.xml:2074 English/Configuration.xml:2080
+#: English/Configuration.xml:2216 English/Configuration.xml:2222
 msgid "EOL"
 msgstr "EOL"
 
@@ -8859,7 +8859,7 @@ msgid "<option>Enabled</option>: Numeric differences are ignored."
 msgstr "<option>מופעל</option>: מתעלמים מהבדלים מספריים."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:796 English/Configuration.xml:2982
+#: English/Configuration.xml:796 English/Configuration.xml:3124
 msgid "codepage"
 msgstr "דף קוד"
 
@@ -9821,149 +9821,369 @@ msgid ""
 "field, a helper menu appears with common detection key expressions:"
 msgstr ""
 
+#. type: Content of: <article><section><section><section><title>
+#: English/Configuration.xml:1546
+#, fuzzy
+#| msgid "detection"
+msgid "Basic Detection Keys"
+msgstr "איתור"
+
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1547 English/Filters.xml:254
+#: English/Configuration.xml:1549 English/Filters.xml:254
 msgid "Name"
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1550
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1552
 msgid ""
 "Matches files/folders by name. Useful for detecting files that have been "
 "moved to different directories but kept the same name."
 msgstr ""
 
-#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1556 English/Filters.xml:258
-msgid "BaseName"
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1558
+msgid "Base name (without extension)"
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1559
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1561
 msgid ""
 "Matches files by name without extension. For example, \"file.txt\" and "
 "\"file.doc\" would match."
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1565
-msgid "normalizeUnicode(Name, \"NFC\")"
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1567
+msgid "Normalized Unicode Name"
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1568
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1570
 msgid ""
-"Matches files by normalized Unicode filename. Useful for detecting files "
-"with equivalent names but different Unicode representations."
+"Inserts <literal>normalizeUnicode(Name, \"NFC\")</literal> which matches "
+"files by normalized Unicode filename.  Useful for detecting files with "
+"equivalent names but different Unicode representations (e.g., composed vs. "
+"decomposed characters)."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1577
+#, fuzzy
+#| msgid "Related topic"
+msgid "Relative Path"
+msgstr "נושא קשור"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1580
+msgid ""
+"Matches files by their relative path from the comparison root. Useful for "
+"detecting files that have been renamed but maintain their relative directory "
+"structure."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1574 English/Filters.xml:282
+#: English/Configuration.xml:1586 English/Filters.xml:282
 #, fuzzy
 #| msgid "5 = Size"
 msgid "Size"
 msgstr "5 = גודל"
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1577
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1589
 msgid ""
 "Matches files by size. Useful for detecting files that have been renamed but "
 "have the same size."
 msgstr ""
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1583 English/Filters.xml:286
+#: English/Configuration.xml:1595 English/Filters.xml:286
 msgid "Date"
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1586
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1598
 msgid "Matches files by modification date/time."
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1592
-msgid "if(IsFolder, Name, prop(\"Hash.MD5\"))"
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1604
+msgid "Hash (MD5)"
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1595
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1607
 msgid ""
-"For folders, matches by name. For files, matches by MD5 hash of content.  "
-"This is the most accurate method for detecting renamed files, but requires "
+"Inserts <literal>if(IsFolder, Name, prop(\"Hash.MD5\"))</literal>.  For "
+"folders, matches by name. For files, matches by MD5 hash of content.  This "
+"is the most accurate method for detecting renamed files, but requires "
 "computing MD5 hashes which can be slow for large files."
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1602
-msgid "Property-based keys"
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1615
+msgid "Additional Properties..."
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1605
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1618
 msgid ""
-"The menu also provides access to Windows file properties such as "
-"<literal>System.Author</literal>, <literal>System.Title</literal>, etc. You "
-"can use these to match files based on their metadata."
+"Opens a submenu providing access to Windows file properties such as "
+"<literal>System.Author</literal>, <literal>System.Title</literal>, "
+"<literal>System.Keywords</literal>, etc.  You can use these to match files "
+"based on their metadata.  The inserted expression will be "
+"<literal>if(IsFolder, Name, prop(\"PropertyName\"))</literal>."
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1612
+#. type: Content of: <article><section><section><section><title>
+#: English/Configuration.xml:1629
 #, fuzzy
 #| msgid "navigation functions"
-msgid "String transformation functions"
+msgid "String Transformation Functions"
 msgstr "פונקציות ניווט"
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1615
+#. type: Content of: <article><section><section><section><para>
+#: English/Configuration.xml:1631
 msgid ""
 "The menu includes string transformation functions that can be applied to "
-"detection keys:"
+"detection keys.  When selected, these functions wrap the current expression "
+"(or <literal>Name</literal> if empty):"
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1620
-msgid ""
-"<literal>replace(str, \"from\", \"to\")</literal> - Replace text in the key"
-msgstr ""
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1637
+#, fuzzy
+#| msgid "Next Difference function"
+msgid "Insert replace() Function"
+msgstr "פונקציית הבדל הבא"
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1625
-msgid ""
-"<literal>regexReplace(str, \"pattern\", \"replacement\")</literal> - Replace "
-"using regular expressions"
-msgstr ""
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1630
-msgid ""
-"<literal>toLower(str)</literal> / <literal>toUpper(str)</literal> - Convert "
-"case"
-msgstr ""
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1635
-msgid ""
-"<literal>toHalfWidth(str)</literal> / <literal>toFullWidth(str)</literal> - "
-"Convert character width"
-msgstr ""
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:1640
 msgid ""
-"<literal>toSimplifiedChinese(str)</literal> / "
-"<literal>toTraditionalChinese(str)</literal> - Convert Chinese characters"
+"Inserts <literal>replace(expression, \"from\", \"to\")</literal> to replace "
+"literal text strings in the key.  You need to edit the placeholder strings "
+"\"from\" and \"to\" to specify what text to search for and what to replace "
+"it with.  Example: <literal>replace(Name, \".backup\", \"\")</literal> "
+"removes \".backup\" from filenames."
 msgstr ""
 
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1645
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1648
+msgid "Insert regexReplace() Function"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1651
 msgid ""
-"<literal>toHiragana(str)</literal> / <literal>toKatakana(str)</literal> - "
-"Convert Japanese characters"
+"Inserts <literal>regexReplace(expression, \"pattern\", \"replacement\")</"
+"literal> to replace text using regular expressions.  Supports backreferences "
+"($1, $2, etc.) in the replacement string.  Example: "
+"<literal>regexReplace(Name, \"^(\\\\d+)_(.+)$\", \"$2\")</literal> removes a "
+"leading number and underscore from filenames."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Configuration.xml:1661
+msgid "Replace Lists"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Configuration.xml:1663
+msgid ""
+"The Replace Lists submenu provides access to batch string replacement "
+"functionality using external files:"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1668
+msgid "Create String Replace List and Insert..."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1671
+msgid ""
+"Creates a new tab-separated values (TSV) file with a template for string "
+"replacements.  The file is stored in <filename>%APPDATA%"
+"\\WinMerge\\ReplaceLists</filename> (or "
+"<filename>Documents\\WinMerge\\ReplaceLists</filename> depending on your "
+"settings).  After creation, the file opens in your default text editor and "
+"the function <literal>replaceWithList(expression, \"filepath\")</literal> is "
+"inserted."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1676
+msgid ""
+"The file format is one replacement per line: <literal>search_string&lt;"
+"TAB&gt;replacement_string</literal>.  Lines starting with <literal>#</"
+"literal> are comments."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para><screen>
+#: English/Configuration.xml:1681
+#, no-wrap
+msgid ""
+"# Replace version numbers in filenames\n"
+"v1.0\tv2.0\n"
+"beta\trelease"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1680 English/Configuration.xml:1700
+#, fuzzy
+#| msgid "<placeholder type=\"screen\" id=\"0\"/>"
+msgid "Example file content: <placeholder type=\"screen\" id=\"0\"/>"
+msgstr "<placeholder type=\"screen\" id=\"0\"/>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1689
+msgid "Create Regex Replace List and Insert..."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1692
+msgid ""
+"Similar to Create String Replace List, but for regular expression "
+"replacements.  Creates a template file in <filename>%APPDATA%"
+"\\WinMerge\\RegexReplaceLists</filename> (or "
+"<filename>Documents\\WinMerge\\RegexReplaceLists</filename>).  Inserts "
+"<literal>regexReplaceWithList(expression, \"filepath\")</literal>."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1697
+msgid ""
+"The file format is: <literal>regex_pattern&lt;TAB&gt;replacement</literal> "
+"with support for backreferences."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para><screen>
+#: English/Configuration.xml:1701
+#, no-wrap
+msgid ""
+"# Normalize date formats\n"
+"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\n"
+"\\d+\tNUMBER"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1709
+msgid "String Replace Lists / Regex Replace Lists"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1712
+msgid ""
+"These submenus list all TSV files found in the respective ReplaceLists "
+"folders.  Selecting a file from the list inserts the corresponding "
+"<literal>replaceWithList()</literal> or <literal>regexReplaceWithList()</"
+"literal> function with the file's path.  This allows you to quickly reuse "
+"previously created replacement lists."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1721
+msgid ""
+"Open String Replace Lists Folder... / Open Regex Replace Lists Folder..."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1724
+msgid ""
+"Opens Windows Explorer at the folder where replacement list files are "
+"stored, allowing you to manage (edit, delete, organize) your replacement "
+"list files directly."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Configuration.xml:1733
+msgid "Text Normalization"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Configuration.xml:1735
+msgid ""
+"The Text Normalization submenu provides functions to normalize text for more "
+"flexible matching:"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1740
+msgid "Lowercase / Uppercase"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1743
+msgid ""
+"Inserts <literal>toLower(expression)</literal> or "
+"<literal>toUpper(expression)</literal> to convert all characters to "
+"lowercase or uppercase.  Useful for case-insensitive matching.  Example: "
+"<literal>toLower(Name)</literal> matches \"File.txt\", \"FILE.TXT\", and "
+"\"file.txt\" as identical."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1751
+msgid "Half-width / Full-width"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1754
+msgid ""
+"Inserts <literal>toHalfWidth(expression)</literal> or "
+"<literal>toFullWidth(expression)</literal>.  Converts between half-width and "
+"full-width characters (primarily for Japanese text).  Example: "
+"<literal>toHalfWidth(Name)</literal> converts \"ファイル\" (full-width "
+"katakana) to \"ﾌｧｲﾙ\" (half-width)."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1762
+#, fuzzy
+#| msgid "WinMerge versions"
+msgid "Chinese Conversion"
+msgstr "גרסאות WinMerge"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1765
+msgid ""
+"Provides <literal>toSimplifiedChinese(expression)</literal> and "
+"<literal>toTraditionalChinese(expression)</literal> functions.  Converts "
+"between Simplified and Traditional Chinese characters.  Useful for matching "
+"files with names in different Chinese character sets."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1773
+#, fuzzy
+#| msgid "WinMerge versions"
+msgid "Japanese Conversion"
+msgstr "גרסאות WinMerge"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1776
+msgid ""
+"Provides <literal>toHiragana(expression)</literal> and "
+"<literal>toKatakana(expression)</literal> functions.  Converts between "
+"Hiragana and Katakana Japanese characters."
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1783
+msgid "Normalize Unicode"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1786
+msgid ""
+"Inserts <literal>normalizeUnicode(expression)</literal> which normalizes "
+"Unicode text to NFC (Normalization Form Canonical Composition) form.  This "
+"is useful for matching files whose names may use different Unicode encodings "
+"for the same characters (e.g., a single é character vs. e + combining acute "
+"accent)."
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1654
+#: English/Configuration.xml:1796
 msgid ""
 "You can combine multiple keys using the <literal>+</literal> operator with a "
 "separator.  For example, <literal>Name + \"|\" + Size</literal> will create "
@@ -9971,7 +10191,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:1660
+#: English/Configuration.xml:1802
 msgid ""
 "The detection key expression is evaluated for each side of a file/folder "
 "comparison to produce a key.  Items are grouped when their keys match. For "
@@ -9981,21 +10201,21 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1670
+#: English/Configuration.xml:1812
 #, fuzzy
 #| msgid "merge mode"
 msgid "merge renamed items"
 msgstr "מצב מיזוג"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1672
+#: English/Configuration.xml:1814
 #, fuzzy
 #| msgid "merge mode"
 msgid "merge moved items"
 msgstr "מצב מיזוג"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1669
+#: English/Configuration.xml:1811
 #, fuzzy
 #| msgid ""
 #| "Command line<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
@@ -10008,14 +10228,14 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1677
+#: English/Configuration.xml:1819
 msgid ""
 "Specifies how renamed and moved items detected by the rename/move detection "
 "feature should be merged into single entries in the folder comparison tree."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1683
+#: English/Configuration.xml:1825
 msgid ""
 "<option>Disabled</option> (default): Renamed/moved items remain as separate "
 "entries in the folder comparison tree.  The items are grouped together "
@@ -10024,7 +10244,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1690
+#: English/Configuration.xml:1832
 msgid ""
 "<option>Merge renames</option>: Items that have been detected as renamed but "
 "are in the same directory are merged into a single entry.  This simplifies "
@@ -10034,7 +10254,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1698
+#: English/Configuration.xml:1840
 msgid ""
 "<option>Merge renames and moves</option>: Both renamed items (same "
 "directory, different names) and moved items (different directories) are "
@@ -10043,7 +10263,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:1706
+#: English/Configuration.xml:1848
 msgid ""
 "Merging only occurs when each side has at most one item in the group and the "
 "items satisfy the merge criteria (same directory for renames, or any "
@@ -10052,22 +10272,22 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1716
+#: English/Configuration.xml:1858
 msgid "table files"
 msgstr "קבצי טבלה"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1715
+#: English/Configuration.xml:1857
 msgid "Compare &gt; Table page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "השוואה &gt; דף טבלה<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1720
+#: English/Configuration.xml:1862
 msgid "CSV file patterns"
 msgstr "תבניות קבצי CSV"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1722
+#: English/Configuration.xml:1864
 msgid ""
 "Specifies file name pattern for comma-separated values files to open in "
 "table format.  To specify multiple items, separate them with a semicolon.  "
@@ -10079,12 +10299,12 @@ msgstr ""
 "אם אינך רוצה לפתוח את הקבצים עם הסיומת .csv בפורמט טבלה. מחק את ה-*.csv."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1729
+#: English/Configuration.xml:1871
 msgid "TSV file patterns"
 msgstr "תבניות קבצי TSV"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1731
+#: English/Configuration.xml:1873
 msgid ""
 "Specifies file name pattern for tab-separated values files to open in table "
 "format.  To specify multiple items, separate them with a semicolon.  By "
@@ -10096,12 +10316,12 @@ msgstr ""
 "אם אינך רוצה לפתוח את הקבצים עם הסיומת .tsv בפורמט טבלה. מחק את ה-*.tsv."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1738
+#: English/Configuration.xml:1880
 msgid "Custom Delimiter-Separated Values"
 msgstr "ערכים מופרדים במפריד מותאם אישית"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1740
+#: English/Configuration.xml:1882
 msgid ""
 "If you want to open text files, with values separated by characters other "
 "than commas or tabs, in tabular format, specify the file name pattern and "
@@ -10111,12 +10331,12 @@ msgstr ""
 "טאבים, בפורמט טבלאי, ציין את תבנית שם הקובץ ואת המפריד."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1746
+#: English/Configuration.xml:1888
 msgid "Allow newlines in quotes"
 msgstr "אפשר שורות חדשות בתוך מרכאות"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1750
+#: English/Configuration.xml:1892
 msgid ""
 "<option>Enabled</option> (default): If there is a newline character between "
 "the quote character and the next quote character, the newline character is "
@@ -10128,7 +10348,7 @@ msgstr ""
 "קבצי CSV/TSV המכילים מספר שורות בשדה אחד."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1759
+#: English/Configuration.xml:1901
 msgid ""
 "<option>Disabled</option>: Disable the above.  Disable this option when "
 "opening files with incorrect quotes."
@@ -10137,12 +10357,12 @@ msgstr ""
 "קבצים עם מרכאות שגויות."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1768
+#: English/Configuration.xml:1910
 msgid "Quote character"
 msgstr "תו מרכאות"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1770
+#: English/Configuration.xml:1912
 msgid ""
 "Specifies the character that is treated as quotation marks.  Delimiters "
 "within the text range enclosed by the characters specified here are treated "
@@ -10155,22 +10375,22 @@ msgstr ""
 "סימני הציטוט הם ערכים בלבד, השאר אותו ריק או ציין תו שאינו קיים בקובץ."
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1780
+#: English/Configuration.xml:1922
 msgid "Compare &gt; Binary page"
 msgstr "השוואה &gt; דף בינארי"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1784
+#: English/Configuration.xml:1926
 msgid "binary files"
 msgstr "קבצים בינאריים"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1783
+#: English/Configuration.xml:1925
 msgid "Binary file patterns<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "תבניות קבצים בינאריים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1788
+#: English/Configuration.xml:1930
 msgid ""
 "Specifies file name patterns for binary files to be opened in the binary "
 "compare window.  To specify multiple items, separate them with a semicolon.  "
@@ -10184,27 +10404,27 @@ msgstr ""
 "את ה-*.bin מהרשימה."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1796
+#: English/Configuration.xml:1938
 msgid "frhed"
 msgstr "Frhed"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1795
+#: English/Configuration.xml:1937
 msgid "Frhed settings<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "הגדרות Frhed<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1801
+#: English/Configuration.xml:1943
 msgid "View Settings..."
 msgstr "הגדרות תצוגה..."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1804
+#: English/Configuration.xml:1946
 msgid "Here you can choose:"
 msgstr "כאן תוכל לבחור:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1807
+#: English/Configuration.xml:1949
 msgid ""
 "The number of bytes to display per line of hexdump (only applies if &quot;"
 "Automatically adjust number of bytes per line&quot; is disabled)"
@@ -10213,7 +10433,7 @@ msgstr ""
 "הבתים לשורה&quot; מושבת)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1812
+#: English/Configuration.xml:1954
 msgid ""
 "If the &quot;Automatically adjust number of bytes per line&quot;- checkbox "
 "is checked, then the number of bytes displayed per hexdump line is adjusted "
@@ -10223,14 +10443,14 @@ msgstr ""
 "הבתים המוצגים בשורה של hexdump מותאם באופן כזה שכל רוחב החלון משמש בכל עת."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1818
+#: English/Configuration.xml:1960
 msgid ""
 "The number of digits for the offset length (only applies if &quot;Adjust "
 "offset length&quot; is disabled)"
 msgstr "מספר הספרות לאורך ההיסט (חל רק אם &quot;התאם אורך היסט&quot; מושבת)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1822
+#: English/Configuration.xml:1964
 msgid ""
 "If the offset length should be automatically adjusted to that of the maximum "
 "offset (enabled) or right-padded with spaces (disabled)"
@@ -10239,7 +10459,7 @@ msgstr ""
 "מימין ברווחים (מושבת)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1827
+#: English/Configuration.xml:1969
 msgid ""
 "How to display the values at the caret position, either as signed or as "
 "unsigned integer values"
@@ -10247,12 +10467,12 @@ msgstr ""
 "כיצד להציג את הערכים במיקום הסמן, כערכי שלמים חתומים או כערכי שלמים לא חתומים"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1831
+#: English/Configuration.xml:1973
 msgid "If read-only mode should be automatically set after opening files."
 msgstr "אם מצב קריאה בלבד צריך להיות מוגדר אוטומטית לאחר פתיחת קבצים."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:1835
+#: English/Configuration.xml:1977
 msgid ""
 "The name of the text editor that will be called by the "
 "<menuchoice><guimenu>Edit</guimenu><guimenuitem>Open in text editor </"
@@ -10262,12 +10482,12 @@ msgstr ""
 "guimenu><guimenuitem>פתח בעורך טקסט</guimenuitem></menuchoice>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1844
+#: English/Configuration.xml:1986
 msgid "Binary Mode..."
 msgstr "מצב בינארי..."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1847
+#: English/Configuration.xml:1989
 msgid ""
 "What kind of byte order to use: Either Little-endian, as used in Intel-"
 "computers or Big-endian, used for example in computers with a Motorola "
@@ -10279,13 +10499,13 @@ msgstr ""
 "שקול longword, שאורכו 4 בתים (ששמם A עד D)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
-#: English/Configuration.xml:1852
+#: English/Configuration.xml:1994
 #, no-wrap
 msgid "Longword in processor register = ABCD."
 msgstr "Longword באוגר מעבד = ABCD."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1854
+#: English/Configuration.xml:1996
 msgid ""
 "The least significant bit, which has the value 1, is found in byte \"D\". In "
 "a processor register the longword is ordered in this way. If this value is "
@@ -10297,13 +10517,13 @@ msgstr ""
 "ה-longword נכתב בצורה זו, עם ההיסטים הגדלים מימין:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><screen>
-#: English/Configuration.xml:1860
+#: English/Configuration.xml:2002
 #, no-wrap
 msgid "Longword in memory = DCBA."
 msgstr "Longword בזיכרון = DCBA."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1862
+#: English/Configuration.xml:2004
 msgid ""
 "That is, the bytes making up the longword are written in reverse order as "
 "they are found in a processor register."
@@ -10312,7 +10532,7 @@ msgstr ""
 "מעבד."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1865
+#: English/Configuration.xml:2007
 msgid ""
 "This means that a file written by a Big-endian machine will contain wrong "
 "longword and word values if read by a Little-endian machine without "
@@ -10322,12 +10542,12 @@ msgstr ""
 "אם ייקרא על ידי מכונת Little-endian ללא המרה."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1872
+#: English/Configuration.xml:2014
 msgid "Character Set..."
 msgstr "ערכת תווים..."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1875
+#: English/Configuration.xml:2017
 msgid ""
 "Here you can choose the character set for displaying and writing characters, "
 "either ANSI (the Windows character set) or OEM (the DOS character set). The "
@@ -10337,22 +10557,22 @@ msgstr ""
 "Windows) או OEM (ערכת התווים של DOS). ניתן לבחור גם את גודל הגופן בנקודות."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1887
+#: English/Configuration.xml:2029
 msgid "image files"
 msgstr "קבצי תמונה"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1886
+#: English/Configuration.xml:2028
 msgid "Compare &gt; Image page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "השוואה &gt; דף תמונה<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1891
+#: English/Configuration.xml:2033
 msgid "Image file patterns"
 msgstr "תבניות קבצי תמונה"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1893
+#: English/Configuration.xml:2035
 msgid ""
 "Specifies file name patterns for image files to be opened in the image "
 "compare window.  To specify multiple items, separate them with a semicolon.  "
@@ -10366,12 +10586,12 @@ msgstr ""
 "בחלון השוואת התמונות."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1901
+#: English/Configuration.xml:2043
 msgid "Enable image compare in folder compare"
 msgstr "אפשר השוואת תמונות בהשוואת תיקיות"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1903
+#: English/Configuration.xml:2045
 msgid ""
 "When this option is enabled, folder comparisons will compare files that "
 "match the specified patterns as images.  Metadata differences will be "
@@ -10383,12 +10603,12 @@ msgstr ""
 "בין תמונות."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1909
+#: English/Configuration.xml:2051
 msgid "OCR result"
 msgstr "תוצאת OCR"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1913
+#: English/Configuration.xml:2055
 msgid ""
 "<option>Text only</option> (default): Shows only the text recognized from "
 "the image."
@@ -10396,7 +10616,7 @@ msgstr ""
 "<option>טקסט בלבד</option> (ברירת מחדל): מציג רק את הטקסט שזוהה מהתמונה."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1920
+#: English/Configuration.xml:2062
 msgid ""
 "<option>Line-by-line position and text</option>: Shows the recognized text "
 "line by line with its position in the original image."
@@ -10405,7 +10625,7 @@ msgstr ""
 "שורה עם מיקומו בתמונה המקורית."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1927
+#: English/Configuration.xml:2069
 msgid ""
 "<option>Word-by-word position and text</option>: Shows the recognized text "
 "word by word with its position in the original image."
@@ -10414,17 +10634,17 @@ msgstr ""
 "מילה עם מיקומו בתמונה המקורית."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1938
+#: English/Configuration.xml:2080
 msgid "webpages"
 msgstr "דפי אינטרנט"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1937
+#: English/Configuration.xml:2079
 msgid "Compare &gt; Webpage page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "השוואה &gt; דף אינטרנט<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1944
+#: English/Configuration.xml:2086
 msgid ""
 "URL pattern to include (Regular expression)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -10432,7 +10652,7 @@ msgstr ""
 "תבנית URL לכלול (ביטוי רגולרי)<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1948
+#: English/Configuration.xml:2090
 msgid ""
 "Enter a regular expression in this field to specify the file paths or URLs "
 "that should be opened in the webpage compare window.  For example, if you "
@@ -10446,7 +10666,7 @@ msgstr ""
 "המתחילות ב-http:// או https:// ייפתחו בחלון השוואת דפי האינטרנט."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1956
+#: English/Configuration.xml:2098
 msgid ""
 "URL pattern to exclude (Regular expression)<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -10454,7 +10674,7 @@ msgstr ""
 "תבנית URL לא לכלול (ביטוי רגולרי)<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1960
+#: English/Configuration.xml:2102
 msgid ""
 "Enter a regular expression to exclude certain file paths or URLs from the "
 "Webpage Comparison window.  This applies to items that match the \"URL "
@@ -10466,12 +10686,12 @@ msgstr ""
 "בזה כדי לא לכלול תבניות ספציפיות שאינך רוצה לכלול."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1968
+#: English/Configuration.xml:2110
 msgid "User data folder location<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "מיקום תיקיית נתוני משתמש<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1974
+#: English/Configuration.xml:2116
 msgid ""
 "<option>AppData folder</option> (default): Stores cookies, browsing history, "
 "and cache data in the %APPDATA%\\WinMerge\\WinWebDiff folder."
@@ -10480,7 +10700,7 @@ msgstr ""
 "גלישה ונתוני מטמון בתיקייה %APPDATA%\\WinMerge\\WinWebDiff."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1980
+#: English/Configuration.xml:2122
 msgid ""
 "<option>Install folder</option>: Saves data in the WinMerge installation "
 "directory, which usually requires administrator permissions to write. This "
@@ -10490,7 +10710,7 @@ msgstr ""
 "כלל דורשת הרשאות מנהל מערכת לכתיבה. זה בדרך כלל לא מומלץ."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1988
+#: English/Configuration.xml:2130
 msgid ""
 "Separate user data folders for each pane<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -10499,29 +10719,29 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:1991
+#: English/Configuration.xml:2133
 msgid ""
 "Creates distinct data folders for each pane, preventing data overlap between "
 "them."
 msgstr "יוצר תיקיות נתונים נפרדות עבור כל חלונית, ומונע חפיפה בנתונים ביניהן."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:1998
+#: English/Configuration.xml:2140
 msgid "message boxes"
 msgstr "תיבות הודעות"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:1997
+#: English/Configuration.xml:2139
 msgid "Message Boxes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "דף תיבות הודעות<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2003
+#: English/Configuration.xml:2145
 msgid "Reset"
 msgstr "איפוס"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2006
+#: English/Configuration.xml:2148
 msgid ""
 "WinMerge allows you to suppress some common message boxes. For example, when "
 "two identical files are opened, the message box titled, <guilabel>The files "
@@ -10535,7 +10755,7 @@ msgstr ""
 "הודעה זו שלא להציג את ההודעה שוב."
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2014
+#: English/Configuration.xml:2156
 msgid ""
 "Later, you might decide that you want to see those messages again.  If so, "
 "click the <guibutton>Reset</guibutton> button to make the message boxes "
@@ -10545,7 +10765,7 @@ msgstr ""
 "הלחצן <guibutton>איפוס</guibutton> כדי לגרום לתיבות ההודעות להופיע שוב."
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:2021
+#: English/Configuration.xml:2163
 msgid ""
 "We recommend that you not suppress messages when updating WinMerge to a "
 "newer version. The installer enables their display automatically, but if you "
@@ -10557,32 +10777,32 @@ msgstr ""
 "הודעות באמצעות הלחצן <guibutton>איפוס</guibutton>."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2035 English/Configuration.xml:2206
+#: English/Configuration.xml:2177 English/Configuration.xml:2348
 msgid "options for File Compare window"
 msgstr "אפשרויות עבור חלון השוואת קבצים"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2032
+#: English/Configuration.xml:2174
 msgid "Editor &gt; General page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "עורך &gt; דף כללי<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2042 English/Configuration.xml:2535
+#: English/Configuration.xml:2184 English/Configuration.xml:2677
 msgid "syntax highlighting"
 msgstr "הדגשת תחביר"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2044
+#: English/Configuration.xml:2186
 msgid "enabling and disabling"
 msgstr "אפשרות והשבתה"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2041
+#: English/Configuration.xml:2183
 msgid "Highlight syntax<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "הדגש תחביר<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2051
+#: English/Configuration.xml:2193
 msgid ""
 "<option>Enabled</option> (default): WinMerge can syntax highlight many "
 "programming language and web formats. To see the formats that are supported "
@@ -10595,7 +10815,7 @@ msgstr ""
 "guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2063
+#: English/Configuration.xml:2205
 msgid ""
 "<option>Disabled</option>: Syntax highlighting consumes some processing "
 "power, so if WinMerge screen updating seems to be slow, turning off this "
@@ -10605,12 +10825,12 @@ msgstr ""
 "המסך של WinMerge נראה איטי, כיבוי אפשרות זו עשוי לעזור."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2078
+#: English/Configuration.xml:2220
 msgid "end of line"
 msgstr "סוף שורה"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2073
+#: English/Configuration.xml:2215
 msgid ""
 "Preserve original EOL<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
@@ -10619,7 +10839,7 @@ msgstr ""
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2087
+#: English/Configuration.xml:2229
 msgid ""
 "<option>Disabled</option> (default): Assumes that files are meant to be "
 "Windows files. If a file does not use the standard Windows line ending, "
@@ -10635,7 +10855,7 @@ msgstr ""
 "כ-<guilabel>Win</guilabel>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2096
+#: English/Configuration.xml:2238
 msgid ""
 "For most situations you should leave this option disabled: the default "
 "behavior works even when comparing two files that have different line ending "
@@ -10645,7 +10865,7 @@ msgstr ""
 "השוואת שני קבצים בעלי סגנונות סיום שורה שונים."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2104
+#: English/Configuration.xml:2246
 msgid ""
 "<option>Enabled</option>: Prevents WinMerge from automatically changing line "
 "endings, so that it detects different EOL styles for every line. This might "
@@ -10657,7 +10877,7 @@ msgstr ""
 "ממערכות עם סגנונות EOL שונים (לדוגמה, Windows ו-Unix)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
-#: English/Configuration.xml:2112
+#: English/Configuration.xml:2254
 msgid ""
 "This is an advanced option for users who are familiar with EOL bytes and who "
 "want to compare files with different EOL styles inside <emphasis>one</"
@@ -10671,22 +10891,22 @@ msgstr ""
 "נדרשת כדי להשוות שני קבצים עם סגנונות EOL שונים."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2129
+#: English/Configuration.xml:2271
 msgid "editing options"
 msgstr "אפשרויות עריכה"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2126
+#: English/Configuration.xml:2268
 msgid "Tabs<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "טאבים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2135
+#: English/Configuration.xml:2277
 msgid "Tab size"
 msgstr "גודל טאב"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2139
+#: English/Configuration.xml:2281
 msgid ""
 "Width of a tab space. Specify a value <replaceable>n</replaceable>: the "
 "resulting width is equivalent to that of <replaceable>n</replaceable> "
@@ -10696,12 +10916,12 @@ msgstr ""
 "לזה של <replaceable>n</replaceable> תווים. ברירת מחדל: 4. הערך המרבי הוא 64."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2148
+#: English/Configuration.xml:2290
 msgid "Tab insert options"
 msgstr "אפשרויות הוספת טאב"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2152
+#: English/Configuration.xml:2294
 msgid ""
 "Determines what kind of character is used when you insert a tab in text. "
 "Only one of these options can be enabled:"
@@ -10710,13 +10930,13 @@ msgstr ""
 "להיות מופעלת:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2159
+#: English/Configuration.xml:2301
 msgid ""
 "<guilabel>Insert Tabs</guilabel> (default): Uses a single tab character."
 msgstr "<guilabel>הכנס טאבים</guilabel> (ברירת מחדל): משתמש בתו טאב בודד."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2166
+#: English/Configuration.xml:2308
 msgid ""
 "<guilabel>Insert Spaces</guilabel>: Uses one or more spaces (determined by "
 "the <option>Tab size</option>) instead of a tab character. For example, with "
@@ -10727,17 +10947,17 @@ msgstr ""
 "מחדל, מוכנסים ארבעה רווחים."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2181
+#: English/Configuration.xml:2323
 msgid "rendering"
 msgstr "רינדור"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2180
+#: English/Configuration.xml:2322
 msgid "Rendering Mode<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "מצב רינדור<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2188
+#: English/Configuration.xml:2330
 msgid ""
 "<option>GDI</option> (default): Renders text using the Graphics Device "
 "Interface (GDI)."
@@ -10746,7 +10966,7 @@ msgstr ""
 "Interface (GDI)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2194
+#: English/Configuration.xml:2336
 msgid ""
 "<option>DirectWrite Modes</option>: Renders text using various DirectWrite "
 "rendering modes, including support for colored emojis on Windows 8.1 and "
@@ -10762,23 +10982,23 @@ msgstr ""
 "רינדור DirectWrite</ulink> לפרטים."
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2203
+#: English/Configuration.xml:2345
 msgid ""
 "Editor &gt; Compare/Merge page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "עורך &gt; דף השוואה/מיזוג<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2215
+#: English/Configuration.xml:2357
 msgid "enabling and disabling autoscan"
 msgstr "אפשרות והשבתת סריקה אוטומטית"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2212
+#: English/Configuration.xml:2354
 msgid "Automatic rescan<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "סריקה מחדש אוטומטית<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2222
+#: English/Configuration.xml:2364
 msgid ""
 "<option>Disabled</option> (default): WinMerge rescans automatically when you "
 "merge a difference, or if you manually rescan (for example, click the "
@@ -10789,7 +11009,7 @@ msgstr ""
 "מחדש</guibutton>)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2230
+#: English/Configuration.xml:2372
 msgid ""
 "<option>Enabled</option>: Forces WinMerge to rescan after every edit event "
 "(a change to files, like typing)."
@@ -10798,7 +11018,7 @@ msgstr ""
 "(שינוי בקבצים, כמו הקלדה)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><note><para>
-#: English/Configuration.xml:2236
+#: English/Configuration.xml:2378
 msgid ""
 "To avoid slowing down your editing, WinMerge delays automatic rescanning a "
 "little: it waits one second after each edit event.  Because each new edit "
@@ -10809,12 +11029,12 @@ msgstr ""
 "הטיימר, לא מתרחשות סריקות מחדש עד שאתה עוצר או מפסיק לערוך."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2249
+#: English/Configuration.xml:2391
 msgid "copy granularity"
 msgstr "גרעיניות העתקה"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2248
+#: English/Configuration.xml:2390
 msgid ""
 "Copy granularity for selected differences<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
@@ -10822,7 +11042,7 @@ msgstr ""
 "גרעיניות העתקה עבור הבדלים נבחרים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2254
+#: English/Configuration.xml:2396
 msgid ""
 "Specifies the copy granularity when copying to another pane by clicking the "
 "<guimenuitem>Copy to right</guimenuitem> menu item etc.  with text selected."
@@ -10831,18 +11051,18 @@ msgstr ""
 "<guimenuitem>העתק לימין</guimenuitem> וכו' עם טקסט נבחר."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2262
+#: English/Configuration.xml:2404
 msgid "<option>Diff hunk</option>: Copies diff hunks within the selected text."
 msgstr "<option>חלק הבדל</option>: מעתיק חלקי הבדל בתוך הטקסט שנבחר."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2269
+#: English/Configuration.xml:2411
 msgid ""
 "<option>Inline diff</option>: Copies inline diffs within the selected text."
 msgstr "<option>הבדל בשורה</option>: מעתיק הבדלים בשורה בתוך הטקסט שנבחר."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2276
+#: English/Configuration.xml:2418
 msgid ""
 "<option>Line</option>: Copies the differences within the selected text line "
 "by line."
@@ -10850,7 +11070,7 @@ msgstr ""
 "<option>שורה</option>: מעתיק את ההבדלים בתוך הטקסט שנבחר שורה אחר שורה."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2283
+#: English/Configuration.xml:2425
 msgid ""
 "<option>Character</option> (default): Copies the differences within the "
 "selected text character by character."
@@ -10859,17 +11079,17 @@ msgstr ""
 "תו."
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2296
+#: English/Configuration.xml:2438
 msgid "viewing options"
 msgstr "אפשרויות תצוגה"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2293
+#: English/Configuration.xml:2435
 msgid "Line Difference Coloring<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "צביעת הבדלי שורות<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2301
+#: English/Configuration.xml:2443
 msgid ""
 "These settings enable and configure the detection of <glossterm> line "
 "differences </glossterm> (changes within the lines of difference blocks):"
@@ -10878,12 +11098,12 @@ msgstr ""
 "(שינויים בתוך השורות של בלוקי הבדלים):"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2310
+#: English/Configuration.xml:2452
 msgid "View line differences"
 msgstr "הצג הבדלי שורות"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2316
+#: English/Configuration.xml:2458
 msgid ""
 "<option>Enabled</option> (default): WinMerge highlights differences within "
 "lines. Also enables the <menuchoice> <guimenu>View</guimenu> "
@@ -10894,12 +11114,12 @@ msgstr ""
 "<guimenuitem>הצג הבדלי שורות</guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2324
+#: English/Configuration.xml:2466
 msgid "Choose one of these suboptions:"
 msgstr "בחר אחת מאפשרויות המשנה האלה:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2329
+#: English/Configuration.xml:2471
 msgid ""
 "<guilabel>Character level</guilabel>: Highlights individual characters that "
 "are different. This option can be useful if you are looking for changes "
@@ -10910,7 +11130,7 @@ msgstr ""
 "שאין להם מעברי מילים ברורים."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2338
+#: English/Configuration.xml:2480
 msgid ""
 "<guilabel>Word-level</guilabel> (default): Highlights entire words that are "
 "different."
@@ -10918,7 +11138,7 @@ msgstr ""
 "<guilabel>רמת מילה</guilabel> (ברירת מחדל): מדגיש מילים שלמות השונות זו מזו."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2345
+#: English/Configuration.xml:2487
 msgid ""
 "<guilabel>Break at whitespace</guilabel> (default): Words are assumed to be "
 "separated by whitespace characters.  This usually works for typical text "
@@ -10928,7 +11148,7 @@ msgstr ""
 "ידי תווי רווח לבן. זה בדרך כלל עובד עבור קבצי טקסט טיפוסיים."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><itemizedlist><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2353
+#: English/Configuration.xml:2495
 msgid ""
 "<guilabel>Break at whitespace or punctuation</guilabel>: Considers both "
 "whitespace and punctuation characters to be word breaks. This can useful for "
@@ -10940,7 +11160,7 @@ msgstr ""
 "פיסוק (כמו רשימות מופרדות בפסיקים)."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2367
+#: English/Configuration.xml:2509
 msgid ""
 "<option>Disabled</option>: WinMerge does not highlight line differences, and "
 "all settings for the level and whitespace options are ignored. Also disables "
@@ -10953,12 +11173,12 @@ msgstr ""
 "menuchoice>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2383
+#: English/Configuration.xml:2525
 msgid "Word break characters"
 msgstr "תווי שבירת מילים"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2386
+#: English/Configuration.xml:2528
 msgid ""
 "Specifies the symbols that are treated as non-whitespace word separators "
 "when <guilabel>Break at whitespace or punctuation</guilabel> is selected."
@@ -10967,12 +11187,12 @@ msgstr ""
 "<guilabel>שבור ברווח לבן או פיסוק</guilabel>."
 
 #. type: Content of: <article><section><section><note><title>
-#: English/Configuration.xml:2395
+#: English/Configuration.xml:2537
 msgid "Related topic"
 msgstr "נושא קשור"
 
 #. type: Content of: <article><section><section><note><para>
-#: English/Configuration.xml:2398
+#: English/Configuration.xml:2540
 msgid ""
 "<xref linkend=\"CompareFiles_linediff-highlight\" /> explains in more detail "
 "how WinMerge detects and marks line differences."
@@ -10981,23 +11201,23 @@ msgstr ""
 "כיצד WinMerge מזהה ומסמן הבדלי שורות."
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2408
+#: English/Configuration.xml:2550
 msgid "Editor &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "עורך &gt; דף תחביר<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2423
+#: English/Configuration.xml:2565
 msgid "color schemes"
 msgstr "ערכות צבעים"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2422
+#: English/Configuration.xml:2564
 msgid ""
 "Colors &gt; Color Schemes page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "צבעים &gt; דף ערכות צבעים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2430
+#: English/Configuration.xml:2572
 msgid ""
 "The Color Schemes page allows you to customize the overall color appearance "
 "of WinMerge, including support for light and dark modes. You can select and "
@@ -11006,19 +11226,19 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2435
+#: English/Configuration.xml:2577
 #, fuzzy
 #| msgid "color schemes"
 msgid "Color mode"
 msgstr "ערכות צבעים"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2438
+#: English/Configuration.xml:2580
 msgid "Selects the color mode for the application. Choose from:"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2443
+#: English/Configuration.xml:2585
 msgid ""
 "<option>Light</option> (default): Uses the color scheme specified for light "
 "mode. When selected, the appearance of dialog windows, menus, and other UI "
@@ -11026,7 +11246,7 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2448
+#: English/Configuration.xml:2590
 msgid ""
 "<option>Dark</option>: Uses the color scheme specified for dark mode. When "
 "selected, the appearance of dialog windows, menus, and other UI elements "
@@ -11034,19 +11254,19 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:2453
+#: English/Configuration.xml:2595
 msgid ""
 "<option>Follow system</option>: Automatically switches between light and "
 "dark mode based on your operating system's setting."
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2461
+#: English/Configuration.xml:2603
 msgid "Light mode scheme"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2464
+#: English/Configuration.xml:2606
 msgid ""
 "Selects the color scheme to use when <guilabel>Color mode</guilabel> is set "
 "to Light. Available schemes include <option>Default</option> (default), "
@@ -11054,12 +11274,12 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2470
+#: English/Configuration.xml:2612
 msgid "Dark mode scheme"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2473
+#: English/Configuration.xml:2615
 msgid ""
 "Selects the color scheme to use when <guilabel>Color mode</guilabel> is set "
 "to Dark. Available schemes include <option>VS Dark</option> (default), "
@@ -11067,12 +11287,12 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2479
+#: English/Configuration.xml:2621
 msgid "Save current scheme"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2482
+#: English/Configuration.xml:2624
 msgid ""
 "Saves the current color settings as a new scheme. The scheme is saved as an "
 "INI file. <emphasis> Only schemes saved in the <filename>Documents/WinMerge/"
@@ -11082,19 +11302,19 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:2490
+#: English/Configuration.xml:2632
 msgid "Delete current scheme"
 msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:2493
+#: English/Configuration.xml:2635
 msgid ""
 "Deletes the currently selected color scheme. This button is only enabled for "
 "user-defined schemes (not for built-in schemes like Default or VS Dark)."
 msgstr ""
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2500
+#: English/Configuration.xml:2642
 msgid ""
 "Use these options to tailor the WinMerge interface to your preferences or to "
 "match your system theme. Custom color schemes make it easy to share or reuse "
@@ -11102,12 +11322,12 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2506
+#: English/Configuration.xml:2648
 msgid "Colors &gt; Differences page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "צבעים &gt; דף הבדלים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2514
+#: English/Configuration.xml:2656
 msgid ""
 "Use this page if you want to change any of the difference colors used in the "
 "File Compare window. You can set the background, deleted, and text color."
@@ -11116,7 +11336,7 @@ msgstr ""
 "הקבצים. אתה יכול להגדיר את הרקע, צבע שנמחק וצבע טקסט."
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2520 English/Configuration.xml:2601
+#: English/Configuration.xml:2662 English/Configuration.xml:2743
 msgid ""
 "To change a color, click in its box to open a standard Color chooser dialog. "
 "Choose one of the predefined colors or define your own custom color, then "
@@ -11127,25 +11347,25 @@ msgstr ""
 "<guibutton>אישור</guibutton> כדי לטעון את הצבע החדש בתיבה."
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2527 English/Configuration.xml:2550
-#: English/Configuration.xml:2608
+#: English/Configuration.xml:2669 English/Configuration.xml:2692
+#: English/Configuration.xml:2750
 msgid ""
 "To revert to the default colors of a scheme, choose a different scheme and "
 "return to the modified scheme."
 msgstr "כדי לחזור לצבעי ברירת המחדל של ערכה, בחר ערכה אחרת וחזור לערכה ששונתה."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2537
+#: English/Configuration.xml:2679
 msgid "color options"
 msgstr "אפשרויות צבע"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2534
+#: English/Configuration.xml:2676
 msgid "Colors &gt; Syntax page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "צבעים &gt; דף תחביר<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2542
+#: English/Configuration.xml:2684
 msgid ""
 "By default, the WinMerge File Compare window marks the syntax of certain "
 "kinds of source code, as described in <xref "
@@ -11158,17 +11378,17 @@ msgstr ""
 "זה מפרט את רכיבי התחביר המזוהים ומאפשר לך לשנות את צבע הטקסט והמשקל שלהם."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2558
+#: English/Configuration.xml:2700
 msgid "text colors"
 msgstr "צבעי טקסט"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2557
+#: English/Configuration.xml:2699
 msgid "Colors &gt; Text page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "צבעים &gt; דף טקסט<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2565
+#: English/Configuration.xml:2707
 msgid ""
 "Use this page to change the colors used for text. First, check the option, "
 "<guilabel>Use customized text colors</guilabel>. This activates the text "
@@ -11182,28 +11402,28 @@ msgstr ""
 "סוג של טקסט, אתה יכול לבחור צבע עבור הרקע והטקסט."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2576
+#: English/Configuration.xml:2718
 msgid "marker colors"
 msgstr "צבעי סמן"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2575
+#: English/Configuration.xml:2717
 msgid "Colors &gt; Markers page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "צבעים &gt; דף סמנים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2588
+#: English/Configuration.xml:2730
 msgid "folder compare colors"
 msgstr "צבעי השוואת תיקיות"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2587
+#: English/Configuration.xml:2729
 msgid ""
 "Colors &gt; Folder Compare page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "צבעים &gt; דף השוואת תיקיות<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2595
+#: English/Configuration.xml:2737
 msgid ""
 "By default, the WinMerge Folder Compare window use background colors to show "
 "the status from a item (equal, different, not exists on all sides or "
@@ -11213,37 +11433,37 @@ msgstr ""
 "הסטטוס מפריט (שווה, שונה, לא קיים בכל הצדדים או מסונן)."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:2618
+#: English/Configuration.xml:2760
 msgid "configuring support after installation"
 msgstr "הגדרת תמיכה לאחר ההתקנה"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2615
+#: English/Configuration.xml:2757
 msgid "Archive Support page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "דף תמיכה בארכיון<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2623
+#: English/Configuration.xml:2765
 msgid "This page contains options for configuring archive support using 7-Zip."
 msgstr "דף זה מכיל אפשרויות להגדרת תמיכה בארכיון באמצעות 7-Zip."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2630 English/Open_paths.xml:60
+#: English/Configuration.xml:2772 English/Open_paths.xml:60
 msgid "7-Zip archives"
 msgstr "ארכיוני 7-Zip"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2632
+#: English/Configuration.xml:2774
 msgid "enabling and disabling integration"
 msgstr "אפשרות והשבתת שילוב"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2629
+#: English/Configuration.xml:2771
 msgid "Enable archive file support<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "אפשר תמיכה בקבצי ארכיון<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2637
+#: English/Configuration.xml:2779
 msgid ""
 "This option controls how WinMerge handles archive files (based on 7-Zip "
 "integration)."
@@ -11251,29 +11471,29 @@ msgstr ""
 "אפשרות זו שולטת כיצד WinMerge מטפל בקבצי ארכיון (בהתבסס על שילוב 7-Zip)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2644
+#: English/Configuration.xml:2786
 msgid "<option>Enabled</option> (default): WinMerge recognizes 7-Zip archives."
 msgstr "<option>Enabled</option> (ברירת מחדל): WinMerge מזהה ארכיוני 7-Zip."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2651
+#: English/Configuration.xml:2793
 msgid "<option>Disabled</option>: Turns off 7-Zip archive integration."
 msgstr "<option>Disabled</option>: מכבה את שילוב ארכיון 7-Zip."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2661
+#: English/Configuration.xml:2803
 msgid "detecting archive types"
 msgstr "זיהוי סוגי ארכיון"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2660
+#: English/Configuration.xml:2802
 msgid ""
 "Detect archive type from file signature<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr "זהה סוג ארכיון מחתימת קובץ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2668
+#: English/Configuration.xml:2810
 msgid ""
 "<option>Disabled</option> (default): WinMerge recognizes only archives whose "
 "file extension is known on your system (for example, in the registry or "
@@ -11283,7 +11503,7 @@ msgstr ""
 "שלהם ידועה במערכת שלך (לדוגמה, במרשם או באמצעות שיוך קבצים)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2676
+#: English/Configuration.xml:2818
 msgid ""
 "<option>Enabled</option>: WinMerge can recognize archive files even if their "
 "file extension is not known. To recognize an archive, WinMerge searches the "
@@ -11294,36 +11514,36 @@ msgstr ""
 "חתימת הארכיון."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para><tip><para>
-#: English/Configuration.xml:2681
+#: English/Configuration.xml:2823
 msgid ""
 "You can use this option to enable WinMerge to recognize Open Office files."
 msgstr ""
 "אתה יכול להשתמש באפשרות זו כדי לאפשר ל-WinMerge לזהות קבצי Open Office."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2694 English/Open_paths.xml:367
+#: English/Configuration.xml:2836 English/Open_paths.xml:367
 #: English/Quick_start.xml:203
 msgid "project files"
 msgstr "קבצי פרויקט"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2693
+#: English/Configuration.xml:2835
 msgid "Project page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "דף פרויקט<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2706
+#: English/Configuration.xml:2848
 msgid "System page"
 msgstr "דף מערכת"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2710
+#: English/Configuration.xml:2852
 msgid ""
 "Send deleted files to Recycle Bin<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "שלח קבצים שנמחקו לסל המיחזור<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2720
+#: English/Configuration.xml:2862
 msgid ""
 "<option>Enabled</option> (default): Files and folders that you delete in a "
 "Folder Compare window are moved to the Recycle Bin, if it is available."
@@ -11332,7 +11552,7 @@ msgstr ""
 "תיקיות מועברים לסל המיחזור, אם הוא זמין."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><important><para>
-#: English/Configuration.xml:2727
+#: English/Configuration.xml:2869
 msgid ""
 "Remember: if the Recycle Bin on your system has been deactivated, this "
 "option does not work, and deleted files are lost!"
@@ -11340,7 +11560,7 @@ msgstr ""
 "זכור: אם סל המיחזור במערכת שלך בוטל, אפשרות זו לא תפעל, וקבצים שנמחקו יאבדו!"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2737
+#: English/Configuration.xml:2879
 msgid ""
 "<option>Disabled</option>: Files and folders deleted in a directory compare "
 "actually deleted."
@@ -11348,22 +11568,22 @@ msgstr ""
 "<option>Disabled</option>: קבצים ותיקיות שנמחקו בהשוואת ספריות נמחקים בפועל."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2747
+#: English/Configuration.xml:2889
 msgid "external editor"
 msgstr "עורך חיצוני"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2749
+#: English/Configuration.xml:2891
 msgid "configuring"
 msgstr "הגדרה"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2746
+#: English/Configuration.xml:2888
 msgid "External editor<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "עורך חיצוני<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2754
+#: English/Configuration.xml:2896
 msgid ""
 "The WinMerge File Compare window provides common editing functions.  If you "
 "prefer using your favorite, full-featured editor, you can configure WinMerge "
@@ -11374,7 +11594,7 @@ msgstr ""
 "עורך חיצוני מתפריט ההקשר של השוואת תיקיות."
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2761
+#: English/Configuration.xml:2903
 msgid ""
 "Installation configures Notepad as the default external editor, because it "
 "is found on all Windows systems. To configure a different external editor, "
@@ -11385,7 +11605,7 @@ msgstr ""
 "ההפעלה שלו."
 
 #. type: Content of: <article><section><section><tip><para>
-#: English/Configuration.xml:2768
+#: English/Configuration.xml:2910
 msgid ""
 "Along with the path, you can include any command line parameters supported "
 "by the external tool, in this format: <command> <replaceable>path to "
@@ -11398,7 +11618,7 @@ msgstr ""
 "<replaceable>...</replaceable> </option>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2781
+#: English/Configuration.xml:2923
 msgid ""
 "To use the configured external editor, right-click a file in the Folder "
 "Compare window and choose <menuchoice> <guimenuitem>Open Left</guimenuitem> "
@@ -11413,40 +11633,40 @@ msgstr ""
 "guimenuitem> </menuchoice>."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2797
+#: English/Configuration.xml:2939
 msgid "user data"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2798
+#: English/Configuration.xml:2940
 #, fuzzy
 #| msgid "locations"
 msgid "storage location"
 msgstr "מיקומים"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2796
+#: English/Configuration.xml:2938
 #, fuzzy
 #| msgid "Frhed settings<placeholder type=\"indexterm\" id=\"0\"/>"
 msgid "Store user data in<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "הגדרות Frhed<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2803
+#: English/Configuration.xml:2945
 msgid ""
 "Specifies where WinMerge stores user data such as filters, plugins, color "
 "schemes, and configuration logs."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2810
+#: English/Configuration.xml:2952
 msgid ""
 "<guilabel>AppData (Roaming) folder</guilabel> (default): Stores user data in "
 "the roaming application data folder of your user profile."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2817
+#: English/Configuration.xml:2959
 #, fuzzy
 #| msgid ""
 #| "<guilabel>System's temp folder</guilabel> (default): For example, this "
@@ -11459,27 +11679,27 @@ msgstr ""
 "להיות <filename>C:\\Windows\\Temp</filename> במערכת שלך."
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2824
+#: English/Configuration.xml:2966
 msgid "This setting affects newly created user data only."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2831 English/Filters.xml:1024
+#: English/Configuration.xml:2973 English/Filters.xml:1024
 msgid "Filters folders"
 msgstr "תיקיות סינון"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Configuration.xml:2833
+#: English/Configuration.xml:2975
 msgid "specifying default private folder"
 msgstr "ציון תיקייה פרטית ברירת מחדל"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2830
+#: English/Configuration.xml:2972
 msgid "Filter folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "תיקיית סינון<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2838
+#: English/Configuration.xml:2980
 msgid ""
 "Use this field to specify your own private folder for file filters.  By "
 "default this folder is your user profile directory (for example, "
@@ -11491,17 +11711,17 @@ msgstr ""
 "ב-Windows 10). כשאתה יוצר מסנן קבצים, הוא מתווסף אוטומטית לתיקייה זו."
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:2848
+#: English/Configuration.xml:2990
 msgid "temporary files, folder used"
 msgstr "קבצים זמניים, תיקייה בשימוש"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2847
+#: English/Configuration.xml:2989
 msgid "Temporary files folder<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "תיקיית קבצים זמניים<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2853
+#: English/Configuration.xml:2995
 msgid ""
 "Specify the folder where WinMerge stores temporary files. Either one of "
 "these options is available:"
@@ -11509,7 +11729,7 @@ msgstr ""
 "ציין את התיקייה שבה WinMerge מאחסן קבצים זמניים. אחת מהאפשרויות הבאות זמינה:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2860
+#: English/Configuration.xml:3002
 msgid ""
 "<guilabel>System's temp folder</guilabel> (default): For example, this might "
 "be <filename>C:\\Windows\\Temp</filename> on your system."
@@ -11518,7 +11738,7 @@ msgstr ""
 "להיות <filename>C:\\Windows\\Temp</filename> במערכת שלך."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2867
+#: English/Configuration.xml:3009
 msgid ""
 "<guilabel>Custom folder</guilabel>: Click <guibutton>Browse</guibutton> and "
 "select a different folder where you have write access."
@@ -11527,27 +11747,27 @@ msgstr ""
 "ובחר תיקייה אחרת שבה יש לך גישה לכתיבה."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Configuration.xml:2878
+#: English/Configuration.xml:3020
 msgid "backup files, options"
 msgstr "קבצי גיבוי, אפשרויות"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2877
+#: English/Configuration.xml:3019
 msgid "Backup Files page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "דף קבצי גיבוי<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2883
+#: English/Configuration.xml:3025
 msgid "This page allows you to control how WinMerge creates backup files."
 msgstr "דף זה מאפשר לך לשלוט כיצד WinMerge יוצר קבצי גיבוי."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2888
+#: English/Configuration.xml:3030
 msgid "Create backup files for"
 msgstr "צור קבצי גיבוי ב"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2891
+#: English/Configuration.xml:3033
 msgid ""
 "Specify when WinMerge should create backup files. You can enable or disable "
 "each of these options independently:"
@@ -11556,7 +11776,7 @@ msgstr ""
 "מהאפשרויות האלה באופן עצמאי:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2898
+#: English/Configuration.xml:3040
 msgid ""
 "<guilabel>Folder compare</guilabel> (disabled by default): Backup files are "
 "create whenever files are overwritten (copied)."
@@ -11565,7 +11785,7 @@ msgstr ""
 "בכל פעם שקבצים מוחלפים (מועתקים)."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2906
+#: English/Configuration.xml:3048
 msgid ""
 "<guilabel>File compare</guilabel> (enabled by default): Backup files are "
 "created whenever files are saved."
@@ -11574,12 +11794,12 @@ msgstr ""
 "פעם שקבצים נשמרים."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2914
+#: English/Configuration.xml:3056
 msgid "Create backup files in"
 msgstr "צור קבצי גיבוי אל"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2917
+#: English/Configuration.xml:3059
 msgid ""
 "Specify where backup files are created. Only one of these options can be "
 "enabled:"
@@ -11587,7 +11807,7 @@ msgstr ""
 "ציין היכן קבצי גיבוי נוצרים. רק אחת מהאפשרויות האלה יכולה להיות מופעלת:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2924
+#: English/Configuration.xml:3066
 msgid ""
 "<guilabel>Original file's folder</guilabel> (enabled by default): Backup "
 "files are created in the same folder as the source file. This is usually a "
@@ -11599,7 +11819,7 @@ msgstr ""
 "שניקוי קבצי גיבוי בתיקיות גדולות יכול לקחת הרבה עבודה."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2933
+#: English/Configuration.xml:3075
 msgid ""
 "<guilabel>Global backup folder</guilabel> (disabled by default): All backup "
 "files are created in one global folder. This makes them easy to clean up. "
@@ -11611,12 +11831,12 @@ msgstr ""
 "מקור מרובים עם אותו שם קובץ, אז קובץ הגיבוי האחרון דורס את הקודם באותו שם."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:2944
+#: English/Configuration.xml:3086
 msgid "Backup filename"
 msgstr "שם קובץ גיבוי"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:2947
+#: English/Configuration.xml:3089
 msgid ""
 "When WinMerge creates a backup file, it appends an extension to the source "
 "file name. You can choose either or both of these extension schemes:"
@@ -11625,7 +11845,7 @@ msgstr ""
 "לבחור באחת או בשתיהן של תוכניות הסיומת האלה:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2955
+#: English/Configuration.xml:3097
 msgid ""
 "<guilabel>Append .bak extension</guilabel> (enabled by default): For "
 "example, the <filename>file.txt</filename> is backed up to <filename>file."
@@ -11635,7 +11855,7 @@ msgstr ""
 "<filename>file.txt</filename> מגובה אל <filename>file.txt.bak</filename>."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2963
+#: English/Configuration.xml:3105
 msgid ""
 "<guilabel>Append timestamp</guilabel> (enabled by default): Timestamps are "
 "almost always unique, so this option usually avoids duplicating backup file "
@@ -11646,7 +11866,7 @@ msgstr ""
 "לקבצי המקור יש את אותם שמות."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:2970
+#: English/Configuration.xml:3112
 msgid ""
 "Also, storing a copy of a file each time you save it provides a way to track "
 "changes to the file. However, you should consider that this option can "
@@ -11656,12 +11876,12 @@ msgstr ""
 "בקובץ. עם זאת, עליך לשקול שאפשרות זו יכולה ליצור הרבה קבצים."
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:2981
+#: English/Configuration.xml:3123
 msgid "Codepage page<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "דף קידוד<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Configuration.xml:2989
+#: English/Configuration.xml:3131
 msgid ""
 "WinMerge detects handles file encoding transparently, and in most cases you "
 "should not need to change the default settings.This page allows you to "
@@ -11672,7 +11892,7 @@ msgstr ""
 "מסוימים, אם תצטרך."
 
 #. type: Content of: <article><section><note><para>
-#: English/Configuration.xml:2996
+#: English/Configuration.xml:3138
 msgid ""
 "A full explanation of text encoding and Windows codepages is beyond the "
 "scope of WinMerge documentation. Fortunately, there is lots of information "
@@ -11683,7 +11903,7 @@ msgstr ""
 "להתחיל בהם:"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
-#: English/Configuration.xml:3005
+#: English/Configuration.xml:3147
 msgid ""
 "<ulink url=\"https://en.wikipedia.org/wiki/Code_pages\"> Wikipedia: Code "
 "pages </ulink>, <ulink url=\"https://en.wikipedia.org/wiki/"
@@ -11694,7 +11914,7 @@ msgstr ""
 "Character_encoding\"> קידוד תווים </ulink>"
 
 #. type: Content of: <article><section><note><itemizedlist><listitem><para>
-#: English/Configuration.xml:3018
+#: English/Configuration.xml:3160
 msgid ""
 "<ulink url=\"https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-"
 "ucoderef/28fefe92-d66c-4b03-90a9-97b473223d43\"> Microsoft: Code Pages "
@@ -11705,12 +11925,12 @@ msgstr ""
 "הנתמכים על ידי Windows </ulink>"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3028
+#: English/Configuration.xml:3170
 msgid "Default Codepage"
 msgstr "קידוד עמודים ברירת מחדל"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3031
+#: English/Configuration.xml:3173
 msgid ""
 "Choose one of these radio buttons to set the default codepage that WinMerge "
 "uses when handling ANSI files:"
@@ -11719,7 +11939,7 @@ msgstr ""
 "ש-WinMerge משתמש בו בעת טיפול בקבצי ANSI:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3038
+#: English/Configuration.xml:3180
 msgid ""
 "<guilabel>System codepage</guilabel> (default):The codepage used by your "
 "Windows system. This default is usually the best choice.  However if you "
@@ -11733,7 +11953,7 @@ msgstr ""
 
 #. This is just a guess - don't find any info on this option.
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3047
+#: English/Configuration.xml:3189
 msgid ""
 "<guilabel>According to WinMerge User Interface</guilabel>: The encoding used "
 "by your installation of WinMerge."
@@ -11742,7 +11962,7 @@ msgstr ""
 "שלך של WinMerge."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3054
+#: English/Configuration.xml:3196
 msgid ""
 "<guilabel>Custom codepage</guilabel>: Enter the codepage number explicitly. "
 "For example, <userinput>UTF-8</userinput> or <userinput>ISO-8851-1</"
@@ -11753,7 +11973,7 @@ msgstr ""
 "userinput>."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3063
+#: English/Configuration.xml:3205
 msgid "Detect codepage info for these files: .html, .rc, .xml"
 msgstr "זהה מידע קידוד עמודים עבור קבצים אלה: .html, .rc, .xml"
 
@@ -11761,7 +11981,7 @@ msgstr "זהה מידע קידוד עמודים עבור קבצים אלה: .htm
 #. why is the option there? Also, should we mention WinMergeU.exe when we mention WinMerge.exe,
 #. or is this understood?
 #. type: Content of: <article><section><section><important><para>
-#: English/Configuration.xml:3067
+#: English/Configuration.xml:3209
 msgid ""
 "Uncheck this option in <filename>WinMerge.exe</filename>.  Characters "
 "conversions can result in lossy conversions and the risk is very high. "
@@ -11773,7 +11993,7 @@ msgstr ""
 "filename> יכול להציג קבצים רק עם קידוד העמודים הנוכחי שלך."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3079
+#: English/Configuration.xml:3221
 msgid ""
 "<option>Disabled</option> (default): WinMerge does not read codepage "
 "information from the source files. It uses the default codepage setting "
@@ -11783,7 +12003,7 @@ msgstr ""
 "מקבצי המקור. הוא משתמש בהגדרת קידוד העמודים ברירת המחדל במקום זאת."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3087
+#: English/Configuration.xml:3229
 msgid ""
 "<option>Enabled</option>: WinMerge detects the codepage for these "
 "extensions: <filename class=\"extension\">html</filename>, <filename "
@@ -11798,7 +12018,7 @@ msgstr ""
 "אפשרות קידוד העמודים ברירת המחדל."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3095
+#: English/Configuration.xml:3237
 msgid ""
 "This option is of interest when your documents use a codepage that is "
 "different from the codepage of your Windows configuration."
@@ -11807,7 +12027,7 @@ msgstr ""
 "העמודים של תצורת Windows שלך."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3101
+#: English/Configuration.xml:3243
 msgid ""
 "For example, you might merge two Slovak or two Japanese files in an English "
 "environment. With this option enabled (and with the required fonts), your "
@@ -11819,7 +12039,7 @@ msgstr ""
 "מוצגים באמצעות תווים סלובקיים או יפניים."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:3108
+#: English/Configuration.xml:3250
 msgid ""
 "WinMerge also detects a codepage difference between the left/right files. To "
 "avoid lossy conversions when you merge, copy, or paste, we suggest that you "
@@ -11830,7 +12050,7 @@ msgstr ""
 "העמודים."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><caution><para>
-#: English/Configuration.xml:3115
+#: English/Configuration.xml:3257
 msgid ""
 "When you copy or paste text to an external application, the external "
 "application must use the same codepage as WinMerge does.  Refer to the "
@@ -11844,35 +12064,35 @@ msgstr ""
 "אינו תומך בקידודי עמודים מותאמים אישית, השבת אפשרות זו."
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3128
+#: English/Configuration.xml:3270
 msgid "Detect codepage for text files using mlang.dll"
 msgstr "זהה קידוד עמודים עבור קבצי טקסט באמצעות mlang.dll"
 
 #. type: Content of: <article><section><title>
-#: English/Configuration.xml:3136
+#: English/Configuration.xml:3278
 msgid "Shell Integration page"
 msgstr "דף שילוב מעטפת"
 
 #. type: Content of: <article><title><indexterm><primary>
-#: English/Configuration.xml:3141 English/Faq.xml:95 English/Install.xml:174
+#: English/Configuration.xml:3283 English/Faq.xml:95 English/Install.xml:174
 #: English/Install.xml:189 English/Install.xml:352
 #: English/Version_control.xml:4
 msgid "integration"
 msgstr "שילוב"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Configuration.xml:3143 English/Install.xml:191
+#: English/Configuration.xml:3285 English/Install.xml:191
 #: English/Install.xml:354
 msgid "with Windows shell"
 msgstr "עם מעטפת Windows"
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:3140
+#: English/Configuration.xml:3282
 msgid "Explorer<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "סייר<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3148
+#: English/Configuration.xml:3290
 msgid ""
 "The <option>Add to context menu</option> option enables you to launch "
 "WinMerge directly from Windows Explorer, comparing items that you have "
@@ -11885,12 +12105,12 @@ msgstr ""
 "שתיהן מהאפשרויות האלה:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:3157
+#: English/Configuration.xml:3299
 msgid "Enable advanced menu"
 msgstr "אפשר תפריט מתקדם"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:3163
+#: English/Configuration.xml:3305
 msgid ""
 "<option>Disabled</option> (default): Only the <guimenuitem>WinMerge</"
 "guimenuitem> shortcut is included in the Windows Explorer context menu."
@@ -11899,7 +12119,7 @@ msgstr ""
 "guimenuitem> כלול בתפריט ההקשר של Windows Explorer."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:3171
+#: English/Configuration.xml:3313
 msgid ""
 "<option>Enabled</option>: Replaces the <guimenuitem>WinMerge</guimenuitem> "
 "shortcut in the Explorer context menu with <guimenuitem>Compare</"
@@ -11910,12 +12130,12 @@ msgstr ""
 "guimenuitem>."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:3184
+#: English/Configuration.xml:3326
 msgid "Enable Compare As menu"
 msgstr "אפשר תפריט השווה כ"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:3190
+#: English/Configuration.xml:3332
 msgid ""
 "<option>Disabled</option> (default): Removes <guimenuitem>Compare As</"
 "guimenuitem> menu item from Explorer context menu."
@@ -11924,7 +12144,7 @@ msgstr ""
 "<guimenuitem>השווה כ</guimenuitem> מתפריט ההקשר של Explorer."
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
-#: English/Configuration.xml:3198
+#: English/Configuration.xml:3340
 msgid ""
 "<option>Enabled</option>: Adds <guimenuitem>Compare As</guimenuitem> menu "
 "item to Explorer context menu."
@@ -11933,7 +12153,7 @@ msgstr ""
 "guimenuitem> לתפריט ההקשר של Explorer."
 
 #. type: Content of: <article><section><section><para>
-#: English/Configuration.xml:3209
+#: English/Configuration.xml:3351
 msgid ""
 "<xref linkend=\"OpenPaths_shell-integ\" /> describes how to use the WinMerge "
 "and Compare shortcuts."
@@ -13306,6 +13526,11 @@ msgstr ""
 msgid "File name"
 msgstr "שמות קבצים"
 
+#. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
+#: English/Filters.xml:258
+msgid "BaseName"
+msgstr ""
+
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:259
 msgid ""
@@ -14092,7 +14317,7 @@ msgstr ""
 msgid ""
 "# Comment line\n"
 "\\d+\tNUMBER\n"
-"(\\d{4})-(\\d{2})-(\\d{2})\t$3/$2/$1"
+"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3"
 msgstr ""
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>

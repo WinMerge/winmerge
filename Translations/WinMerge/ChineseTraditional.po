@@ -1642,6 +1642,9 @@ msgstr "基本名稱（不含副檔名） (&B)"
 msgid "Normalized &Unicode Name"
 msgstr "已規範化 Unicode 名稱 (&U)"
 
+msgid "&Relative Path"
+msgstr ""
+
 msgid "&Date"
 msgstr "日期 (&D)"
 
@@ -1653,6 +1656,27 @@ msgstr "插入 replace()函數 (&R)"
 
 msgid "Insert rege&xReplace() Function"
 msgstr "插入 regexReplace()函數 (&X)"
+
+msgid "Replace &Lists"
+msgstr ""
+
+msgid "&Create String Replace List and Insert..."
+msgstr ""
+
+msgid "Create &Regex Replace List and Insert..."
+msgstr ""
+
+msgid "&String Replace Lists"
+msgstr ""
+
+msgid "Re&gex Replace Lists"
+msgstr ""
+
+msgid "Open String Replace Lists Folder..."
+msgstr ""
+
+msgid "Open Regex Replace Lists Folder..."
+msgstr ""
 
 msgid "Text &Normalization"
 msgstr "文本規範化 (&N)"
@@ -1686,6 +1710,9 @@ msgstr "平假名 (&H)"
 
 msgid "&Katakana"
 msgstr "片假名 (&K)"
+
+msgid "Normalize &Unicode"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "關於 WinMerge"
@@ -3060,6 +3087,9 @@ msgstr "WinMerge 專案檔 (*.WinMerge)|*.WinMerge||"
 
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "選項檔 (*.ini)|*.ini|所有檔案 (*.*)|*.*||"
+
+msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
+msgstr ""
 
 msgid ""
 "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
@@ -5264,6 +5294,12 @@ msgid "e.g. %1"
 msgstr "例:%1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
+msgstr ""
+
+msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgstr ""
+
+msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr ""
 
 msgid "Prettification"

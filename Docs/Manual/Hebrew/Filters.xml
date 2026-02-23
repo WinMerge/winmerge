@@ -666,7 +666,7 @@ strings with replacements applied.</para>
               <para>File format example:</para>
               <screen># Comment line
 \d+	NUMBER
-(\d{4})-(\d{2})-(\d{2})	$3/$2/$1</screen>
+(\d{4})-(\d{2})-(\d{2})	$1_$2_$3</screen>
               <para>Examples:</para>
               <itemizedlist>
                 <listitem><para><literal>regexReplaceWithList(Name,
