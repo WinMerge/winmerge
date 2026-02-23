@@ -36,7 +36,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Src\charsets.c">
+    <ClCompile Include="..\..\..\Src\Common\charsets.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\codepage_detect.cpp">
@@ -51,7 +51,7 @@
     <ClCompile Include="..\..\..\Src\DirItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\Environment.cpp">
+    <ClCompile Include="..\..\..\Src\Common\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\ExConverter.cpp">
@@ -96,10 +96,10 @@
     <ClCompile Include="..\..\..\Src\Common\OptionsMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\PathContext.cpp">
+    <ClCompile Include="..\..\..\Src\Common\PathContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\paths.cpp">
+    <ClCompile Include="..\..\..\Src\Common\paths.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\PluginManager.cpp">
@@ -350,7 +350,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Src\charsets.h">
+    <ClInclude Include="..\..\..\Src\Common\charsets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\codepage_detect.h">
@@ -365,7 +365,7 @@
     <ClInclude Include="..\..\..\Src\DirItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Src\Environment.h">
+    <ClInclude Include="..\..\..\Src\Common\Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\Common\ExConverter.h">
@@ -410,10 +410,10 @@
     <ClInclude Include="..\..\..\Src\Common\OptionsMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Src\PathContext.h">
+    <ClInclude Include="..\..\..\Src\Common\PathContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Src\paths.h">
+    <ClInclude Include="..\..\..\Src\Common\paths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\PluginManager.h">

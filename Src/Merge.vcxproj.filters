@@ -147,8 +147,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="charsets.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Common\charsets.c">
+      <Filter>Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="codepage_detect.cpp">
       <Filter>Source Files</Filter>
@@ -204,8 +204,8 @@
     <ClCompile Include="dllpstub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Environment.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Common\Environment.cpp">
+      <Filter>Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileFilter.cpp">
       <Filter>Source Files</Filter>
@@ -234,8 +234,8 @@
     <ClCompile Include="FolderCmp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="locality.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Common\locality.cpp">
+      <Filter>Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="markdown.cpp">
       <Filter>Source Files</Filter>
@@ -255,11 +255,11 @@
     <ClCompile Include="PatchHTML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PathContext.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Common\PathContext.cpp">
+      <Filter>Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="paths.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Common\paths.cpp">
+      <Filter>Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PluginManager.cpp">
       <Filter>Source Files</Filter>
@@ -516,8 +516,8 @@
     <ClCompile Include="DirSelectFilesDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Concurrent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Common\Concurrent.cpp">
+      <Filter>Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PropMergeColors.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
@@ -684,9 +684,6 @@
     <ClCompile Include="Common\MDITabBar.cpp">
       <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileActionScript.cpp">
-      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HashCalc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -742,7 +739,7 @@
       <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\SysColorHook.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PropSysColors.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
@@ -807,10 +804,13 @@
     <ClCompile Include="RenameMoveDetection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileActionScript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="charsets.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Common\charsets.h">
+      <Filter>Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="codepage_detect.h">
       <Filter>Header Files</Filter>
@@ -869,8 +869,8 @@
     <ClInclude Include="dllpstub.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Environment.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Common\Environment.h">
+      <Filter>Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Exceptions.h">
       <Filter>Header Files</Filter>
@@ -914,8 +914,8 @@
     <ClInclude Include="IntToIntMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="locality.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Common\locality.h">
+      <Filter>Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="markdown.h">
       <Filter>Header Files</Filter>
@@ -932,11 +932,11 @@
     <ClInclude Include="PatchHTML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PathContext.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Common\PathContext.h">
+      <Filter>Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="paths.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Common\paths.h">
+      <Filter>Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PluginManager.h">
       <Filter>Header Files</Filter>
@@ -1223,8 +1223,8 @@
     <ClInclude Include="DirSelectFilesDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Concurrent.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Common\Concurrent.h">
+      <Filter>Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PropMergeColors.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
@@ -1400,9 +1400,6 @@
     <ClInclude Include="Common\MDITabBar.h">
       <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileActionScript.h">
-      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HashCalc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1479,7 +1476,7 @@
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\SysColorHook.h">
-      <Filter>Header Files</Filter>
+      <Filter>Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ColorSchemes.h">
       <Filter>Header Files</Filter>
@@ -1539,6 +1536,9 @@
       <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RenameMoveDetection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileActionScript.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

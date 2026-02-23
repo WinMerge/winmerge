@@ -426,7 +426,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\charsets.c">
+    <ClCompile Include="..\..\..\Src\Common\charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\codepage_detect.cpp">
@@ -486,7 +486,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\Environment.cpp">
+    <ClCompile Include="..\..\..\Src\Common\Environment.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -649,12 +649,12 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\PathContext.cpp">
+    <ClCompile Include="..\..\..\Src\Common\PathContext.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\paths.cpp">
+    <ClCompile Include="..\..\..\Src\Common\paths.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -852,7 +852,7 @@
     <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\icu.hpp" />
     <ClInclude Include="..\..\..\Src\Common\cio.h" />
     <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h" />
-    <ClInclude Include="..\..\..\Src\charsets.h" />
+    <ClInclude Include="..\..\..\Src\Common\charsets.h" />
     <ClInclude Include="..\..\..\Src\codepage_detect.h" />
     <ClInclude Include="..\..\..\Src\Common\VersionInfo.h" />
     <ClInclude Include="..\..\..\Src\CompareOptions.h" />
@@ -866,7 +866,7 @@
     <ClInclude Include="..\..\..\Src\DirItem.h" />
     <ClInclude Include="..\..\..\Src\DirTravel.h" />
     <ClInclude Include="..\..\..\Src\DirWatcher.h" />
-    <ClInclude Include="..\..\..\Src\Environment.h" />
+    <ClInclude Include="..\..\..\Src\Common\Environment.h" />
     <ClInclude Include="..\..\..\Src\Common\ExConverter.h" />
     <ClInclude Include="..\..\..\Src\FileFlags.h" />
     <ClInclude Include="..\..\..\Src\FileFilter.h" />
@@ -886,8 +886,8 @@
     <ClInclude Include="..\..\..\Src\RenameMoveDetection.h" />
     <ClInclude Include="..\..\..\Src\MovedLines.h" />
     <ClInclude Include="..\..\..\Src\PatchHTML.h" />
-    <ClInclude Include="..\..\..\Src\PathContext.h" />
-    <ClInclude Include="..\..\..\Src\paths.h" />
+    <ClInclude Include="..\..\..\Src\Common\PathContext.h" />
+    <ClInclude Include="..\..\..\Src\Common\paths.h" />
     <ClInclude Include="..\..\..\Src\PluginManager.h" />
     <ClInclude Include="..\..\..\Src\Plugins.h" />
     <ClInclude Include="..\..\..\Src\ProjectFile.h" />

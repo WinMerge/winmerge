@@ -945,12 +945,12 @@
     </ClCompile>
     <ClCompile Include="Common\SysColorHook.cpp" />
     <ClCompile Include="Common\ValidatingEdit.cpp" />
-    <ClCompile Include="Concurrent.cpp">
+    <ClCompile Include="Common\Concurrent.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Common\BCMenu.cpp" />
     <ClCompile Include="Common\Bitmap.cpp" />
-    <ClCompile Include="charsets.c">
+    <ClCompile Include="Common\charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="DirFilterBar.cpp" />
@@ -1163,7 +1163,7 @@
     <ClCompile Include="dllpstub.cpp" />
     <ClCompile Include="EditorFilepathBar.cpp" />
     <ClCompile Include="EncodingErrorBar.cpp" />
-    <ClCompile Include="Environment.cpp">
+    <ClCompile Include="Common\Environment.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1241,7 +1241,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="LoadSaveCodepageDlg.cpp" />
-    <ClCompile Include="locality.cpp">
+    <ClCompile Include="Common\locality.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1344,12 +1344,12 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="PatchTool.cpp" />
-    <ClCompile Include="PathContext.cpp">
+    <ClCompile Include="Common\PathContext.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="paths.cpp">
+    <ClCompile Include="Common\paths.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1513,10 +1513,10 @@
     <ClInclude Include="Common\IMDITab.h" />
     <ClInclude Include="Common\RoundedRectWithShadow.h" />
     <ClInclude Include="Common\Shell.h" />
-    <ClInclude Include="Concurrent.h" />
+    <ClInclude Include="Common\Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
-    <ClInclude Include="charsets.h" />
+    <ClInclude Include="Common\charsets.h" />
     <ClInclude Include="DirAdditionalPropertiesDlg.h" />
     <ClInclude Include="DirWatcher.h" />
     <ClInclude Include="DirItemIterator.h" />
@@ -1593,7 +1593,7 @@
     <ClInclude Include="dllpstub.h" />
     <ClInclude Include="EditorFilepathBar.h" />
     <ClInclude Include="EncodingErrorBar.h" />
-    <ClInclude Include="Environment.h" />
+    <ClInclude Include="Common\Environment.h" />
     <ClInclude Include="Exceptions.h" />
     <ClInclude Include="FileActionScript.h" />
     <ClInclude Include="FileFilter.h" />
@@ -1627,7 +1627,7 @@
     <ClInclude Include="LineFiltersList.h" />
     <ClInclude Include="SubstitutionList.h" />
     <ClInclude Include="LoadSaveCodepageDlg.h" />
-    <ClInclude Include="locality.h" />
+    <ClInclude Include="Common\locality.h" />
     <ClInclude Include="LocationBar.h" />
     <ClInclude Include="LocationView.h" />
     <ClInclude Include="Common\lwdisp.h" />
@@ -1662,8 +1662,8 @@
     <ClInclude Include="PatchDlg.h" />
     <ClInclude Include="PatchHTML.h" />
     <ClInclude Include="PatchTool.h" />
-    <ClInclude Include="PathContext.h" />
-    <ClInclude Include="paths.h" />
+    <ClInclude Include="Common\PathContext.h" />
+    <ClInclude Include="Common\paths.h" />
     <ClInclude Include="Common\PidlContainer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PluginManager.h" />
