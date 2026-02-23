@@ -67,10 +67,11 @@ static std::vector<String> GetReplaceLists(bool isRegex)
 	for (const auto& file : files)
 		list.push_back(paths::ConcatPath(folder, file.filename.get()));
 
+	DirItemArray files2, dirs2;
 	folder = GetReplaceListFolder(1 - locationType, isRegex);
-	DirTravel::LoadFiles(folder, &dirs, &files, _T("*.*"));
+	DirTravel::LoadFiles(folder, &dirs2, &files2, _T("*.*"));
 
-	for (const auto& file : files)
+	for (const auto& file : files2)
 		list.push_back(paths::ConcatPath(folder, file.filename.get()));
 
 	return list;
