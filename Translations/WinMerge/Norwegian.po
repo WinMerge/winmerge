@@ -3044,9 +3044,6 @@ msgstr ""
 msgid "Version %1"
 msgstr "Versjon %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Innstillinger (%1)"

@@ -3052,9 +3052,6 @@ msgstr "Naar midden:"
 msgid "Version %1"
 msgstr "Versie %1 - Nederlands"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Opties (%1)"

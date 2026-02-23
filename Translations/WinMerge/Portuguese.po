@@ -3040,9 +3040,6 @@ msgstr "Para o meio:"
 msgid "Version %1"
 msgstr "Versão %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Opções (%1)"

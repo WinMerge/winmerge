@@ -3046,9 +3046,6 @@ msgstr "Vers Milieu :"
 msgid "Version %1"
 msgstr "Version %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Préférences (%1)"

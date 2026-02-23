@@ -3545,10 +3545,6 @@ msgid "Version %1"
 msgstr "Versió %1 - Català"
 
 #, c-format
-msgid "X64"
-msgstr "X64"
-
-#, c-format
 msgid "Options (%1)"
 msgstr "Opcions (%1)"
 

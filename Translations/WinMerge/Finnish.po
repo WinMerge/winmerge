@@ -3047,9 +3047,6 @@ msgstr "Keskelle:"
 msgid "Version %1"
 msgstr "Versio %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Asetukset (%1)"

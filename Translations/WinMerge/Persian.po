@@ -3528,10 +3528,6 @@ msgid "Version %1"
 msgstr " نسخه %1"
 
 #, c-format
-msgid "X64"
-msgstr "X64"
-
-#, c-format
 msgid "Options (%1)"
 msgstr "(%1) خيارات "
 

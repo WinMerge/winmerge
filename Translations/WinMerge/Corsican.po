@@ -3055,9 +3055,6 @@ msgstr "À u centru :"
 msgid "Version %1"
 msgstr "Versione %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Ozzioni (%1)"

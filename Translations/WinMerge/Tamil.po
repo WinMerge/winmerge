@@ -3071,9 +3071,6 @@ msgstr "நடுவிற்கு:"
 msgid "Version %1"
 msgstr "பதிப்பு %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "விருப்பங்கள் (%1)"

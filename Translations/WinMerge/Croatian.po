@@ -3518,10 +3518,6 @@ msgid "Version %1"
 msgstr "inačica %1"
 
 #, c-format
-msgid "X64"
-msgstr "X64"
-
-#, c-format
 msgid "Options (%1)"
 msgstr "Postavke"
 

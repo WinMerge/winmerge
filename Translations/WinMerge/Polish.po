@@ -2982,9 +2982,6 @@ msgstr "Do środka:"
 msgid "Version %1"
 msgstr "Wersja %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Opcje (%1)"

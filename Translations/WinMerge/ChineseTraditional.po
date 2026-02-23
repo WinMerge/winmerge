@@ -3057,9 +3057,6 @@ msgstr "至中間："
 msgid "Version %1"
 msgstr "版本 %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "選項 (%1)"

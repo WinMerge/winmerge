@@ -3034,9 +3034,6 @@ msgstr "Всредата:"
 msgid "Version %1"
 msgstr "Издание %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Настройки (%1)"

@@ -3037,9 +3037,6 @@ msgstr "V sredino:"
 msgid "Version %1"
 msgstr "Različica %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Možnosti (%1)"

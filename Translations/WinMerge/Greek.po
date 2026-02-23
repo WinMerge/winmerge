@@ -3515,10 +3515,6 @@ msgid "Version %1"
 msgstr "Έκδοση %1"
 
 #, c-format
-msgid "X64"
-msgstr ""
-
-#, c-format
 msgid "Options (%1)"
 msgstr "Επιλογές (%1)"
 

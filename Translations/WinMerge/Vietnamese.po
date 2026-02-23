@@ -3055,9 +3055,6 @@ msgstr "Đến giữa:"
 msgid "Version %1"
 msgstr "Phiên bản %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Tuỳ chọn (%1)"

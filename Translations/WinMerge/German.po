@@ -3557,10 +3557,6 @@ msgid "Version %1"
 msgstr "Version %1 - Deutsch"
 
 #, c-format
-msgid "X64"
-msgstr "x64"
-
-#, c-format
 msgid "Options (%1)"
 msgstr "Eigenschaften (%1)"
 

@@ -4183,7 +4183,6 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Version %1"
-    IDS_WINX64              "X64"
 END
 
 // VARIOUS OPTIONS

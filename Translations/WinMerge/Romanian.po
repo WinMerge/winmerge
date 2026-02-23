@@ -3054,9 +3054,6 @@ msgstr "Către mijloc:"
 msgid "Version %1"
 msgstr "Versiunea %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Opțiuni (%1)"

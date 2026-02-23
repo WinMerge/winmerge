@@ -3037,9 +3037,6 @@ msgstr "Na stred:"
 msgid "Version %1"
 msgstr "Verzia %1"
 
-msgid "X64"
-msgstr "X64 - Slovenský preklad"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Vlastnosti (%1)"

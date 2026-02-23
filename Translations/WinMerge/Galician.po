@@ -3038,9 +3038,6 @@ msgstr "Ao central:"
 msgid "Version %1"
 msgstr "Versión %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Configuración (%1)"

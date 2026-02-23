@@ -3490,10 +3490,6 @@ msgid "Version %1"
 msgstr "Verze %1 - Česky"
 
 #, c-format
-msgid "X64"
-msgstr ""
-
-#, c-format
 msgid "Options (%1)"
 msgstr "Možnosti (%1)"
 

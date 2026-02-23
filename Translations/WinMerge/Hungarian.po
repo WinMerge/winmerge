@@ -3546,10 +3546,6 @@ msgid "Version %1"
 msgstr "%1 verzió"
 
 #, c-format
-msgid "X64"
-msgstr "X64"
-
-#, c-format
 msgid "Options (%1)"
 msgstr "Opciók (%1)"
 

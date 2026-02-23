@@ -1521,7 +1521,6 @@
 #define IDS_FROM_MIDDLE                 40005
 #define IDS_TO_MIDDLE                   40006
 #define IDS_VERSION_FMT                 40385
-#define IDS_WINX64                      40388
 #define IDS_OPTIONS_TITLE               40400
 #define IDS_MESSAGE_BOX_ARE_RESET       40401
 #define IDS_OPTIONS_INVALID_TABSIZE     40404

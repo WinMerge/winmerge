@@ -2983,9 +2983,6 @@ msgstr "В центр:"
 msgid "Version %1"
 msgstr "Версия %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Настройки (%1)"

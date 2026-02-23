@@ -2981,9 +2981,6 @@ msgstr "Į vidurį:"
 msgid "Version %1"
 msgstr "Versija %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "Nuostatos (%1)"

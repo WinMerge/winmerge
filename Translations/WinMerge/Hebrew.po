@@ -3023,9 +3023,6 @@ msgstr "אל אמצע:"
 msgid "Version %1"
 msgstr "גרסה %1"
 
-msgid "X64"
-msgstr "X64"
-
 #, c-format
 msgid "Options (%1)"
 msgstr "אפשרויות (%1)"
