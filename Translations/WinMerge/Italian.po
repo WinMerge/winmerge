@@ -5339,8 +5339,7 @@ msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "WinMerge ha rilevato un precedente arresto anomalo. Se possibile, segnalalo."
 
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
-msgstr ""# Elenco sostituzione Regex\r\n# Formato: sostituzione regex\r\n# Sono supportati riferimenti all'indietro come $1, $2\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
-msgstr ""# Elenco sostituzione Regex\r\n# Formato: regex<TAB>sostituzione\r\n# Sono supportati riferimenti all'indietro come $1, $2\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgstr "# Elenco sostituzione Regex\r\n# Formato: regex<TAB>sostituzione\r\n# Sono supportati riferimenti all'indietro come $1, $2\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 msgstr "# Elenco sostituzioni\r\n# Formato: ricerca<TAB>sostituzione\r\n# Le righe che iniziano con # verranno ignorate\r\n\r\nda1\ta1\r\nda2\ta2\r\n"
