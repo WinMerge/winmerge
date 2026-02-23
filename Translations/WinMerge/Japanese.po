@@ -3038,7 +3038,7 @@ msgstr "中央へ:"
 
 #, c-format
 msgid "Version %1"
-msgstr "Version %1 - Japanese"
+msgstr "Version %1"
 
 msgid "X64"
 msgstr "X64"

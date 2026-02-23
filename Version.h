@@ -3,3 +3,4 @@
 #define STRFILEVER     "2.16.55.0"
 #define STRPRODUCTVER  "2.16.55.0"
 #define STRPRIVATEBUILD ""
+#define STRYEARMONTH   "2026.02"
