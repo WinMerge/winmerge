@@ -26,8 +26,16 @@
 #endif
 
 static const int Mega = 1024 * 1024;
-// Max number of replace lists shown in menu (based on ID range)
-static const int MaxReplaceListSize = ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST - ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST;
+// Max number of replace lists shown in menu.
+// NOTE: This relies on the resource ID ranges for string and regex replace lists
+//       being consecutive and of equal size. If those ranges change in resource.h
+//       (ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST / _REGEX_...), update
+//       MaxReplaceListSize accordingly.
+static const int MaxReplaceListSize = 20;
+static_assert(
+    ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST - ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST == MaxReplaceListSize,
+    "MaxReplaceListSize must match the distance between the string and regex replace-list ID ranges."
+);
 
 // Get replace list folder
 static String GetReplaceListFolder(int locationType, bool isRegex)
