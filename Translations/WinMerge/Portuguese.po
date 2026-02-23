@@ -1638,6 +1638,9 @@ msgstr "Nome &base (sem extensão)"
 msgid "Normalized &Unicode Name"
 msgstr "Nome &Unicode normalizado"
 
+msgid "&Relative Path"
+msgstr ""
+
 msgid "&Date"
 msgstr "&Data"
 
@@ -1649,6 +1652,27 @@ msgstr "Inserir &substituir() função"
 
 msgid "Insert rege&xReplace() Function"
 msgstr "Inserir função regexReplace()"
+
+msgid "Replace &Lists"
+msgstr ""
+
+msgid "&Create String Replace List and Insert..."
+msgstr ""
+
+msgid "Create &Regex Replace List and Insert..."
+msgstr ""
+
+msgid "&String Replace Lists"
+msgstr ""
+
+msgid "Re&gex Replace Lists"
+msgstr ""
+
+msgid "Open String Replace Lists Folder..."
+msgstr ""
+
+msgid "Open Regex Replace Lists Folder..."
+msgstr ""
 
 msgid "Text &Normalization"
 msgstr "Texto &normalização"
@@ -1682,6 +1706,9 @@ msgstr "&Hiragana"
 
 msgid "&Katakana"
 msgstr "&Katakana"
+
+msgid "Normalize &Unicode"
+msgstr ""
 
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
@@ -3044,6 +3071,9 @@ msgstr "Ficheiros do Projeto WinMerge (*.WinMerge)|*.WinMerge||"
 
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Opções de ficheiros (*.ini)|*.ini|Todos os ficheiros (*.*)|*.*||"
+
+msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
+msgstr ""
 
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Ficheiros de texto (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Todos os ficheiros (*.*)|*.*||"
@@ -5243,6 +5273,12 @@ msgstr "por exemplo, %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "O WinMerge detetou uma falha anterior. Se possível, informe-nos sobre isso."
+
+msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgstr ""
+
+msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

@@ -1529,132 +1529,274 @@ def
           <primary>move detection keys</primary>
         </indexterm>
       </title>
- 
+
       <para>
         Specifies the filter expression used to generate detection keys for matching files/folders across sides.
         Items with matching keys are grouped together as potentially renamed or moved items.
         For example, setting the key to <literal>Size</literal> will group files with the same size,
         while <literal>Name</literal> will group files with the same filename (useful for detecting moves).
       </para>
- 
+
       <para>
         When you click the <guilabel>=</guilabel> button to the right of the input field,
         a helper menu appears with common detection key expressions:
       </para>
- 
-      <variablelist>
-        <varlistentry>
-          <term>Name</term>
-          <listitem>
-            <para>
-              Matches files/folders by name. Useful for detecting files that have been moved to different directories but kept the same name.
-            </para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>BaseName</term>
-          <listitem>
-            <para>
-              Matches files by name without extension. For example, "file.txt" and "file.doc" would match.
-            </para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>normalizeUnicode(Name, "NFC")</term>
-          <listitem>
-            <para>
-              Matches files by normalized Unicode filename. Useful for detecting files with equivalent names but different Unicode representations.
-            </para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>Size</term>
-          <listitem>
-            <para>
-              Matches files by size. Useful for detecting files that have been renamed but have the same size.
-            </para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>Date</term>
-          <listitem>
-            <para>
-              Matches files by modification date/time.
-            </para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>if(IsFolder, Name, prop("Hash.MD5"))</term>
-          <listitem>
-            <para>
-              For folders, matches by name. For files, matches by MD5 hash of content.
-              This is the most accurate method for detecting renamed files, but requires computing MD5 hashes which can be slow for large files.
-            </para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>Property-based keys</term>
-          <listitem>
-            <para>
-              The menu also provides access to Windows file properties such as <literal>System.Author</literal>,
-              <literal>System.Title</literal>, etc. You can use these to match files based on their metadata.
-            </para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>String transformation functions</term>
-          <listitem>
-            <para>
-              The menu includes string transformation functions that can be applied to detection keys:
-            </para>
-            <itemizedlist>
-              <listitem>
-                <para>
-                  <literal>replace(str, "from", "to")</literal> - Replace text in the key
-                </para>
-              </listitem>
-              <listitem>
-                <para>
-                  <literal>regexReplace(str, "pattern", "replacement")</literal> - Replace using regular expressions
-                </para>
-              </listitem>
-              <listitem>
-                <para>
-                  <literal>toLower(str)</literal> / <literal>toUpper(str)</literal> - Convert case
-                </para>
-              </listitem>
-              <listitem>
-                <para>
-                  <literal>toHalfWidth(str)</literal> / <literal>toFullWidth(str)</literal> - Convert character width
-                </para>
-              </listitem>
-              <listitem>
-                <para>
-                  <literal>toSimplifiedChinese(str)</literal> / <literal>toTraditionalChinese(str)</literal> - Convert Chinese characters
-                </para>
-              </listitem>
-              <listitem>
-                <para>
-                  <literal>toHiragana(str)</literal> / <literal>toKatakana(str)</literal> - Convert Japanese characters
-                </para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-        </varlistentry>
-      </variablelist>
- 
+
+      <section>
+        <title>Basic Detection Keys</title>
+        <variablelist>
+          <varlistentry>
+            <term>Name</term>
+            <listitem>
+              <para>
+                Matches files/folders by name. Useful for detecting files that have been moved to different directories but kept the same name.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Base name (without extension)</term>
+            <listitem>
+              <para>
+                Matches files by name without extension. For example, "file.txt" and "file.doc" would match.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Normalized Unicode Name</term>
+            <listitem>
+              <para>
+                Inserts <literal>normalizeUnicode(Name, "NFC")</literal> which matches files by normalized Unicode filename. 
+                Useful for detecting files with equivalent names but different Unicode representations (e.g., composed vs. decomposed characters).
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Relative Path</term>
+            <listitem>
+              <para>
+                Matches files by their relative path from the comparison root. Useful for detecting files that have been renamed but maintain their relative directory structure.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Size</term>
+            <listitem>
+              <para>
+                Matches files by size. Useful for detecting files that have been renamed but have the same size.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Date</term>
+            <listitem>
+              <para>
+                Matches files by modification date/time.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Hash (MD5)</term>
+            <listitem>
+              <para>
+                Inserts <literal>if(IsFolder, Name, prop("Hash.MD5"))</literal>.
+                For folders, matches by name. For files, matches by MD5 hash of content.
+                This is the most accurate method for detecting renamed files, but requires computing MD5 hashes which can be slow for large files.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Additional Properties...</term>
+            <listitem>
+              <para>
+                Opens a submenu providing access to Windows file properties such as <literal>System.Author</literal>,
+                <literal>System.Title</literal>, <literal>System.Keywords</literal>, etc. 
+                You can use these to match files based on their metadata.
+                The inserted expression will be <literal>if(IsFolder, Name, prop("PropertyName"))</literal>.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>String Transformation Functions</title>
+        <para>
+          The menu includes string transformation functions that can be applied to detection keys.
+          When selected, these functions wrap the current expression (or <literal>Name</literal> if empty):
+        </para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Insert replace() Function</term>
+            <listitem>
+              <para>
+                Inserts <literal>replace(expression, "from", "to")</literal> to replace literal text strings in the key.
+                You need to edit the placeholder strings "from" and "to" to specify what text to search for and what to replace it with.
+                Example: <literal>replace(Name, ".backup", "")</literal> removes ".backup" from filenames.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Insert regexReplace() Function</term>
+            <listitem>
+              <para>
+                Inserts <literal>regexReplace(expression, "pattern", "replacement")</literal> to replace text using regular expressions.
+                Supports backreferences ($1, $2, etc.) in the replacement string.
+                Example: <literal>regexReplace(Name, "^(\\d+)_(.+)$", "$2")</literal> removes a leading number and underscore from filenames.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>Replace Lists</title>
+        <para>
+          The Replace Lists submenu provides access to batch string replacement functionality using external files:
+        </para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Create String Replace List and Insert...</term>
+            <listitem>
+              <para>
+                Creates a new tab-separated values (TSV) file with a template for string replacements.
+                The file is stored in <filename>%APPDATA%\WinMerge\ReplaceLists</filename> (or <filename>Documents\WinMerge\ReplaceLists</filename> depending on your settings).
+                After creation, the file opens in your default text editor and the function <literal>replaceWithList(expression, "filepath")</literal> is inserted.
+              </para>
+              <para>
+                The file format is one replacement per line: <literal>search_string&lt;TAB&gt;replacement_string</literal>.
+                Lines starting with <literal>#</literal> are comments.
+              </para>
+              <para>
+                Example file content:
+<screen># Replace version numbers in filenames
+v1.0	v2.0
+beta	release</screen>
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Create Regex Replace List and Insert...</term>
+            <listitem>
+              <para>
+                Similar to Create String Replace List, but for regular expression replacements.
+                Creates a template file in <filename>%APPDATA%\WinMerge\RegexReplaceLists</filename> (or <filename>Documents\WinMerge\RegexReplaceLists</filename>).
+                Inserts <literal>regexReplaceWithList(expression, "filepath")</literal>.
+              </para>
+              <para>
+                The file format is: <literal>regex_pattern&lt;TAB&gt;replacement</literal> with support for backreferences.
+              </para>
+              <para>
+                Example file content:
+<screen># Normalize date formats
+(\d{4})-(\d{2})-(\d{2})	$1_$2_$3
+\d+	NUMBER</screen>
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>String Replace Lists / Regex Replace Lists</term>
+            <listitem>
+              <para>
+                These submenus list all TSV files found in the respective ReplaceLists folders.
+                Selecting a file from the list inserts the corresponding <literal>replaceWithList()</literal> or 
+                <literal>regexReplaceWithList()</literal> function with the file's path.
+                This allows you to quickly reuse previously created replacement lists.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Open String Replace Lists Folder... / Open Regex Replace Lists Folder...</term>
+            <listitem>
+              <para>
+                Opens Windows Explorer at the folder where replacement list files are stored,
+                allowing you to manage (edit, delete, organize) your replacement list files directly.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>Text Normalization</title>
+        <para>
+          The Text Normalization submenu provides functions to normalize text for more flexible matching:
+        </para>
+
+        <variablelist>
+          <varlistentry>
+            <term>Lowercase / Uppercase</term>
+            <listitem>
+              <para>
+                Inserts <literal>toLower(expression)</literal> or <literal>toUpper(expression)</literal> to convert all characters to lowercase or uppercase.
+                Useful for case-insensitive matching.
+                Example: <literal>toLower(Name)</literal> matches "File.txt", "FILE.TXT", and "file.txt" as identical.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Half-width / Full-width</term>
+            <listitem>
+              <para>
+                Inserts <literal>toHalfWidth(expression)</literal> or <literal>toFullWidth(expression)</literal>.
+                Converts between half-width and full-width characters (primarily for Japanese text).
+                Example: <literal>toHalfWidth(Name)</literal> converts "ファイル" (full-width katakana) to "ﾌｧｲﾙ" (half-width).
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Chinese Conversion</term>
+            <listitem>
+              <para>
+                Provides <literal>toSimplifiedChinese(expression)</literal> and <literal>toTraditionalChinese(expression)</literal> functions.
+                Converts between Simplified and Traditional Chinese characters.
+                Useful for matching files with names in different Chinese character sets.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Japanese Conversion</term>
+            <listitem>
+              <para>
+                Provides <literal>toHiragana(expression)</literal> and <literal>toKatakana(expression)</literal> functions.
+                Converts between Hiragana and Katakana Japanese characters.
+              </para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Normalize Unicode</term>
+            <listitem>
+              <para>
+                Inserts <literal>normalizeUnicode(expression)</literal> which normalizes Unicode text to NFC (Normalization Form Canonical Composition) form.
+                This is useful for matching files whose names may use different Unicode encodings for the same characters
+                (e.g., a single é character vs. e + combining acute accent).
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
       <para>
         You can combine multiple keys using the <literal>+</literal> operator with a separator.
         For example, <literal>Name + "|" + Size</literal> will create a composite key combining both filename and size.
       </para>
- 
+
       <note>
         <para>
           The detection key expression is evaluated for each side of a file/folder comparison to produce a key.

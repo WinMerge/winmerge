@@ -1872,6 +1872,9 @@ msgstr "&Basisname (ohne Erweiterung)"
 msgid "Normalized &Unicode Name"
 msgstr "Normalisierter &Unicode-Name"
 
+msgid "&Relative Path"
+msgstr ""
+
 msgid "&Date"
 msgstr "&Datum"
 
@@ -1883,6 +1886,27 @@ msgstr "&replace() Funktion hinzufügen"
 
 msgid "Insert rege&xReplace() Function"
 msgstr "rege&xReplace() Funktion hinzufügen"
+
+msgid "Replace &Lists"
+msgstr ""
+
+msgid "&Create String Replace List and Insert..."
+msgstr ""
+
+msgid "Create &Regex Replace List and Insert..."
+msgstr ""
+
+msgid "&String Replace Lists"
+msgstr ""
+
+msgid "Re&gex Replace Lists"
+msgstr ""
+
+msgid "Open String Replace Lists Folder..."
+msgstr ""
+
+msgid "Open Regex Replace Lists Folder..."
+msgstr ""
 
 msgid "Text &Normalization"
 msgstr "Text&normalisierung"
@@ -1916,6 +1940,9 @@ msgstr "&Hiragana"
 
 msgid "&Katakana"
 msgstr "&Katakana"
+
+msgid "Normalize &Unicode"
+msgstr ""
 
 #, c-format
 msgid "About WinMerge"
@@ -3567,6 +3594,9 @@ msgstr "WinMerge-Projektdatei (*.WinMerge)|*.WinMerge||"
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Einstellungsdateien (*.ini)|*.ini|Alle Dateien (*.*)|*.*||"
+
+msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
+msgstr ""
 
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
@@ -5975,6 +6005,12 @@ msgstr "z. B. %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "WinMerge hat einen vorherigen Absturz festgestellt. Bitte melden Sie ihn, wenn möglich."
+
+msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgstr ""
+
+msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Verschönerung"

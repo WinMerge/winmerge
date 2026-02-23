@@ -1200,119 +1200,245 @@ Contents」を選択している場合でも、<screen>allequal(Date)</screen> �
         </indexterm><indexterm>
           <primary>移動検出キー</primary>
         </indexterm></title>
- 
+
       <para>
 左右（または三方向）でファイル/フォルダーを照合するための検出キーを生成するフィルター式を指定します。一致するキーを持つ項目は、名前変更または移動された可能性のある項目としてグループ化されます。たとえば、キーに
 <literal>Size</literal> を指定すると同じサイズのファイルがグループ化され、<literal>Name</literal>
 を指定すると同じファイル名のファイルがグループ化されます（移動の検出に有効です）。</para>
- 
+
       <para>
-入力欄の右側にある <guilabel>=</guilabel>
-ボタンをクリックすると、一般的な検出キー式を簡単に挿入できるヘルパーメニューが表示されます。</para>
- 
-      <variablelist>
-        <varlistentry>
-          <term>Name</term>
-          <listitem>
-            <para>
+入力欄の右側にある <guilabel>=</guilabel> ボタンをクリックすると、一般的な検出キー式を挿入できる補助メニューが表示されます。</para>
+
+      <section>
+        <title>基本的な検出キー</title>
+        <variablelist>
+          <varlistentry>
+            <term>Name</term>
+            <listitem>
+              <para>
 ファイル名またはフォルダー名で一致判定を行います。名前を変えずに別のディレクトリへ移動したファイルの検出に有効です。</para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>BaseName</term>
-          <listitem>
-            <para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>ベース名（拡張子なし）</term>
+            <listitem>
+              <para>
 拡張子を除いたファイル名で一致判定を行います。たとえば "file.txt" と "file.doc" は一致します。</para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>normalizeUnicode(Name, "NFC")</term>
-          <listitem>
-            <para>
-Unicode 正規化後のファイル名で一致判定を行います。見た目は同じだが Unicode 表現が異なるファイル名の検出に有効です。</para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>Size</term>
-          <listitem>
-            <para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>正規化された Unicode 名</term>
+            <listitem>
+              <para>
+Unicode 正規化されたファイル名で一致判定を行う <literal>normalizeUnicode(Name, "NFC")</literal>
+を挿入します。合成文字と分解文字など、Unicode 表現は異なるが同等の名前を持つファイルの検出に有効です。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>相対パス</term>
+            <listitem>
+              <para>
+比較ルートからの相対パスでファイルを一致判定します。ディレクトリ構造を保ったまま名前だけが変更されたファイルの検出に有効です。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Size</term>
+            <listitem>
+              <para>
 ファイルサイズで一致判定を行います。サイズが同じまま名前だけが変更されたファイルの検出に有効です。</para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>Date</term>
-          <listitem>
-            <para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Date</term>
+            <listitem>
+              <para>
 更新日時で一致判定を行います。</para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>if(IsFolder, Name, prop("Hash.MD5"))</term>
-          <listitem>
-            <para>
-フォルダーは名前で、ファイルは内容の MD5 ハッシュで一致判定を行います。名前変更されたファイルを検出する最も正確な方法ですが、大きなファイルでは
-MD5 計算に時間がかかる場合があります。</para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>プロパティベースのキー</term>
-          <listitem>
-            <para>
-このメニューから <literal>System.Author</literal> や <literal>System.Title</literal>
-などのWindows ファイルプロパティにもアクセスできます。これらのメタデータを使ってファイルを一致判定することも可能です。</para>
-          </listitem>
-        </varlistentry>
- 
-        <varlistentry>
-          <term>文字列変換関数</term>
-          <listitem>
-            <para>
-検出キーに適用できる文字列変換関数も用意されています。</para>
-            <itemizedlist>
-              <listitem>
-                <para>
-<literal>replace(str, "from", "to")</literal> - キー内の文字列を置換します</para>
-              </listitem>
-              <listitem>
-                <para>
-<literal>regexReplace(str, "pattern", "replacement")</literal> -
-正規表現による置換を行います</para>
-              </listitem>
-              <listitem>
-                <para>
-<literal>toLower(str)</literal> / <literal>toUpper(str)</literal> -
-大文字・小文字を変換します</para>
-              </listitem>
-              <listitem>
-                <para>
-<literal>toHalfWidth(str)</literal> / <literal>toFullWidth(str)</literal> -
-半角・全角を変換します</para>
-              </listitem>
-              <listitem>
-                <para>
-<literal>toSimplifiedChinese(str)</literal> /
-<literal>toTraditionalChinese(str)</literal> - 中国語の簡体字・繁体字を変換します</para>
-              </listitem>
-              <listitem>
-                <para>
-<literal>toHiragana(str)</literal> / <literal>toKatakana(str)</literal> -
-日本語のひらがな・カタカナを変換します</para>
-              </listitem>
-            </itemizedlist>
-          </listitem>
-        </varlistentry>
-      </variablelist>
- 
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>ハッシュ（MD5）</term>
+            <listitem>
+              <para>
+<literal>if(IsFolder, Name, prop("Hash.MD5"))</literal>
+を挿入します。フォルダーの場合は名前で一致判定し、ファイルの場合は内容の MD5
+ハッシュで一致判定します。名前変更されたファイルを検出する最も正確な方法ですが、大きなファイルでは MD5 計算に時間がかかる場合があります。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>追加のプロパティ...</term>
+            <listitem>
+              <para>
+<literal>System.Author</literal>、<literal>System.Title</literal>、<literal>System.Keywords</literal>
+などの Windows ファイルプロパティにアクセスできるサブメニューを開きます。これらのメタデータを使用してファイルを一致判定できます。挿入される式は
+<literal>if(IsFolder, Name, prop("PropertyName"))</literal> です。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>文字列変換関数</title>
+        <para>
+このメニューには、検出キーに適用できる文字列変換関数が含まれています。選択すると、現在の式（空の場合は
+<literal>Name</literal>）を関数でラップします。</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>replace() 関数を挿入</term>
+            <listitem>
+              <para>
+キー内の文字列を置換するための <literal>replace(expression, "from", "to")</literal>
+を挿入します。検索対象と置換後の文字列を指定するために、"from" と "to" を編集してください。例:
+<literal>replace(Name, ".backup", "")</literal> はファイル名から ".backup" を削除します。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>regexReplace() 関数を挿入</term>
+            <listitem>
+              <para>
+正規表現を使用して文字列を置換する <literal>regexReplace(expression, "pattern",
+"replacement")</literal> を挿入します。置換文字列では後方参照（$1、$2 など）が使用できます。例:
+<literal>regexReplace(Name, "^(\\d+)_(.+)$", "$2")</literal>
+はファイル名の先頭にある番号とアンダースコアを削除します。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>置換リスト</title>
+        <para>
+［置換リスト］サブメニューでは、外部ファイルを使用した一括文字列置換機能を利用できます。</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>文字列置換リストを作成して挿入...</term>
+            <listitem>
+              <para>
+文字列置換用のテンプレートを含む TSV（タブ区切り）ファイルを新規作成します。ファイルは
+<filename>%APPDATA%\WinMerge\ReplaceLists</filename>（設定によっては
+<filename>Documents\WinMerge\ReplaceLists</filename>）に保存されます。作成後、既定のテキストエディターでファイルが開かれ、<literal>replaceWithList(expression,
+"filepath")</literal> が挿入されます。</para>
+              <para>
+ファイル形式は 1 行につき 1 つの置換で、<literal>検索文字列&lt;TAB&gt;置換文字列</literal>
+の形式です。<literal>#</literal> で始まる行はコメントとして扱われます。</para>
+              <para>
+ファイル内容の例:<screen># ファイル名のバージョン番号を置換
+v1.0	v2.0
+beta	release</screen></para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>正規表現置換リストを作成して挿入...</term>
+            <listitem>
+              <para>
+文字列置換リストと同様ですが、正規表現による置換用です。<filename>%APPDATA%\WinMerge\RegexReplaceLists</filename>（または
+<filename>Documents\WinMerge\RegexReplaceLists</filename>）にテンプレートファイルを作成し、<literal>regexReplaceWithList(expression,
+"filepath")</literal> を挿入します。</para>
+              <para>
+ファイル形式は <literal>正規表現&lt;TAB&gt;置換文字列</literal> で、後方参照をサポートします。</para>
+              <para>
+ファイル内容の例:<screen># 日付の書式の正規化
+\d+	NUMBER
+(\d{4})-(\d{2})-(\d{2})	$1_$2_$3</screen></para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>文字列置換リスト / 正規表現置換リスト</term>
+            <listitem>
+              <para>
+これらのサブメニューには、それぞれの ReplaceLists フォルダー内にあるすべての TSV
+ファイルが一覧表示されます。一覧からファイルを選択すると、そのファイルのパスを指定した
+<literal>replaceWithList()</literal> または
+<literal>regexReplaceWithList()</literal>
+が挿入されます。これにより、以前に作成した置換リストを簡単に再利用できます。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>文字列置換リストフォルダーを開く... / 正規表現置換リストフォルダーを開く...</term>
+            <listitem>
+              <para>
+置換リストファイルが保存されているフォルダーを Windows エクスプローラーで開きます。ここから、置換リストファイルを直接編集、削除、整理できます。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
+      <section>
+        <title>テキストの正規化</title>
+        <para>
+［テキストの正規化］サブメニューでは、より柔軟な一致判定を行うための正規化関数を利用できます。</para>
+
+        <variablelist>
+          <varlistentry>
+            <term>小文字 / 大文字</term>
+            <listitem>
+              <para>
+<literal>toLower(expression)</literal> または
+<literal>toUpper(expression)</literal>
+を挿入し、すべての文字を小文字または大文字に変換します。大文字・小文字を区別しない一致判定に有効です。例:
+<literal>toLower(Name)</literal> は "File.txt"、"FILE.TXT"、"file.txt"
+を同一として一致させます。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>半角 / 全角</term>
+            <listitem>
+              <para>
+<literal>toHalfWidth(expression)</literal> または
+<literal>toFullWidth(expression)</literal>
+を挿入します。主に日本語テキストを対象に、半角文字と全角文字を相互に変換します。例:
+<literal>toHalfWidth(Name)</literal> は、全角カタカナの「ファイル」を半角の「ﾌｧｲﾙ」に変換します。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>中国語変換</term>
+            <listitem>
+              <para>
+<literal>toSimplifiedChinese(expression)</literal> および
+<literal>toTraditionalChinese(expression)</literal>
+関数を提供します。簡体字中国語と繁体字中国語の相互変換を行います。異なる中国語文字セットで記述された名前を持つファイルの一致判定に有効です。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>日本語変換</term>
+            <listitem>
+              <para>
+<literal>toHiragana(expression)</literal> および
+<literal>toKatakana(expression)</literal> 関数を提供します。日本語のひらがなとカタカナを相互に変換します。</para>
+            </listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term>Unicode を正規化</term>
+            <listitem>
+              <para>
+Unicode 正規化されたファイル名で一致判定を行う <literal>normalizeUnicode(Name, "NFC")</literal>
+を挿入します。合成文字と分解文字など、Unicode 表現は異なるが同等の名前を持つファイルの検出に有効です。（例：単一のé文字とe +
+結合鋭アクセント）</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+      </section>
+
       <para>
 <literal>+</literal> 演算子と区切り文字を使って、複数のキーを組み合わせることもできます。たとえば <literal>Name +
 "|" + Size</literal> は、ファイル名とサイズを組み合わせた複合キーを生成します。</para>
- 
+
       <note>
         <para>
 検出キー式は、ファイル/フォルダー比較の各側について評価され、キーが生成されます。キーが一致した項目は同一グループとしてまとめられます。たとえばキーに
@@ -1599,7 +1725,7 @@ Webページ比較ウィンドウから除外する特定のファイルパス�
 
   <section id="Configuration_messageboxes">
     <title>
-Message Boxes page<indexterm>
+メッセージボックスページ<indexterm>
         <primary>message boxes</primary>
       </indexterm></title>
 

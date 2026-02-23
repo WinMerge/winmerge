@@ -605,7 +605,7 @@ old	new</screen>
               <para>ファイル形式の例:</para>
               <screen># コメント行
 \d+	NUMBER
-(\d{4})-(\d{2})-(\d{2})	$3/$2/$1</screen>
+(\d{4})-(\d{2})-(\d{2})	$1_$2_$3</screen>
               <para>例:</para>
               <itemizedlist>
                 <listitem><para><literal>regexReplaceWithList(Name,

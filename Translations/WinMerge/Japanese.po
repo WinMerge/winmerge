@@ -1636,6 +1636,9 @@ msgstr "拡張子を除いた名前(&B)"
 msgid "Normalized &Unicode Name"
 msgstr "Unicode正規化した名前(&U)"
 
+msgid "&Relative Path"
+msgstr "相対パス(&R)"
+
 msgid "&Date"
 msgstr "更新日時(&D)"
 
@@ -1647,6 +1650,27 @@ msgstr "replace()関数を挿入(&R)"
 
 msgid "Insert rege&xReplace() Function"
 msgstr "regexReplace() 関数を挿入(&X)"
+
+msgid "Replace &Lists"
+msgstr "置換リスト(&L)"
+
+msgid "&Create String Replace List and Insert..."
+msgstr "文字列置換リストを作成して挿入(&C)..."
+
+msgid "Create &Regex Replace List and Insert..."
+msgstr "正規表現置換リストを作成して挿入(&R)..."
+
+msgid "&String Replace Lists"
+msgstr "文字列置換リスト(&S)"
+
+msgid "Re&gex Replace Lists"
+msgstr "正規表現置換リスト(&G)"
+
+msgid "Open String Replace Lists Folder..."
+msgstr "文字列置換リストのフォルダーを開く..."
+
+msgid "Open Regex Replace Lists Folder..."
+msgstr "正規表現置換リストのフォルダーを開く..."
 
 msgid "Text &Normalization"
 msgstr "テキストの正規化(&N)"
@@ -1680,6 +1704,9 @@ msgstr "カタカナをひらがなに変換(&H)"
 
 msgid "&Katakana"
 msgstr "ひらがなをカタカナに変換(&K)"
+
+msgid "Normalize &Unicode"
+msgstr "Unicode正規化(&U)"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -3044,6 +3071,9 @@ msgstr "WinMerge プロジェクト ファイル (*.WinMerge)|*.WinMerge||"
 
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "設定ファイル (*.ini)|*.ini|すべてのファイル (*.*)|*.*||"
+
+msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
+msgstr "タブ区切り値 (*.tsv;*.txt)|*.tsv;*.txt|すべてのファイル (*.*)|*.*||"
 
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "テキスト ファイル (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|すべてのファイル (*.*)|*.*||"
@@ -5248,6 +5278,12 @@ msgstr "例: %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "以前の WinMerge のクラッシュを検出しました。可能であればご報告ください。"
+
+msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgstr "# 正規表現置換リスト\r\n# 書式: 正規表現<TAB>置換後文字列\r\n# $1, $2 などの後方参照が使用できます\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+
+msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+msgstr "# 置換リスト\r\n# 書式: 検索文字列<TAB>置換後文字列\r\n# # で始まる行は無視されます\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 
 msgid "Prettification"
 msgstr "整形"
