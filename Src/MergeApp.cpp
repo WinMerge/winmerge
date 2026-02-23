@@ -4,6 +4,7 @@
 #include "VersionInfo.h"
 #include "Constants.h"
 #include "Logger.h"
+#include "../Version.h"
 
 // Get user language description of error, if available
 String GetSysError(int nerr /* =-1 */)
@@ -125,6 +126,7 @@ AboutInfo::AboutInfo()
 {
 	CVersionInfo verinfo;
 	version = strutils::format_string1(_("Version %1"), verinfo.GetProductVersion());
+	version += _T(" (") + _(STRYEARMONTH) + _T(")");
 	private_build = verinfo.GetPrivateBuild();
 	if (!private_build.empty())
 	{
