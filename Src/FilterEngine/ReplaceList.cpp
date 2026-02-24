@@ -100,11 +100,43 @@ std::shared_ptr<std::vector<ValueType2>> LoadList(const FilterExpression& ctxt, 
 			std::string fromUtf8 = ucr::toUTF8(from);
 			std::string toUtf8 = ucr::toUTF8(to);
 
-			auto pair = std::make_shared<std::vector<ValueType2>>();
-			pair->push_back(ValueType2{ fromUtf8 });
-			pair->push_back(ValueType2{ toUtf8 });
+			try
+			{
+				// Escape and compile regex for case-insensitive replacement
+				std::string pattern;
+				pattern.reserve(fromUtf8.size());
+				for (char c : fromUtf8)
+				{
+					if (c == '.' || c == '^' || c == '$' || c == '*' || c == '+' || c == '?' ||
+						c == '{' || c == '}' || c == '[' || c == ']' || c == '\\' || c == '|' ||
+						c == '(' || c == ')')
+					{
+						pattern += '\\';
+					}
+					pattern += c;
+				}
 
-			return pair;
+				auto regex = std::make_shared<Poco::RegularExpression>(
+					pattern,
+					Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8
+				);
+
+				auto pair = std::make_shared<std::vector<ValueType2>>();
+				pair->push_back(ValueType2{ regex });
+				pair->push_back(ValueType2{ toUtf8 });
+
+				return pair;
+			}
+			catch (const Poco::RegularExpressionException& e)
+			{
+				if (ctxt.logger)
+				{
+					ctxt.logger(0, "Invalid pattern at line " + std::to_string(lineNumber) +
+						" in file: " + ucr::toUTF8(path) + ", pattern: " + fromUtf8 +
+						", error: " + e.message());
+				}
+				return nullptr;
+			}
 		});
 }
 

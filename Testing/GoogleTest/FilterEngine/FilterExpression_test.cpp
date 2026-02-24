@@ -395,6 +395,15 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("replace(array(\"abcd\"), \"cd\", \"\") = array(\"ab\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
+	// Case-insensitive replace: search pattern matches regardless of case
+	EXPECT_TRUE(fe.Parse("replace(\"ABCD\", \"ab\", \"cd\") = \"cdCD\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(\"TeSt\", \"test\", \"X\") = \"X\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(\"Hello World\", \"hello\", \"Hi\") = \"Hi World\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(array(\"TEST\", \"TeSt\"), \"test\", \"foo\") = array(\"foo\", \"foo\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("at(array(\"ab\", \"cd\"), 0) == \"ab\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("at(array(\"ab\", \"cd\"), 1) == \"cd\""));
@@ -1670,6 +1679,22 @@ TEST_P(FilterExpressionTest, ReplaceWithList)
 
 	// Array of strings
 	EXPECT_TRUE(fe.Parse("replaceWithList(array(\"apple\", \"banana\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"りんご\", \"バナナ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Case-insensitive: uppercase input matches lowercase pattern
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"APPLE\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"りんご\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Case-insensitive: mixed case input
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"Apple is good\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"りんご is good\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Case-insensitive: multiple mixed-case words
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"ORANGE and Banana\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"オレンジ and バナナ\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Case-insensitive: array with mixed case
+	EXPECT_TRUE(fe.Parse("replaceWithList(array(\"APPLE\", \"GRAPE\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"りんご\", \"ぶどう\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Test regexReplaceWithList function
