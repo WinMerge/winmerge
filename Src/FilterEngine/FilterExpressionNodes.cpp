@@ -51,6 +51,23 @@ static std::optional<std::string> getAsString(const ValueType& val)
 	return ToStringValue(val);
 }
 
+static std::string escapeRegex(const std::string& str)
+{
+	std::string result;
+	result.reserve(str.size());
+	for (char c : str)
+	{
+		if (c == '.' || c == '^' || c == '$' || c == '*' || c == '+' || c == '?' ||
+			c == '{' || c == '}' || c == '[' || c == ']' || c == '\\' || c == '|' ||
+			c == '(' || c == ')')
+		{
+			result += '\\';
+		}
+		result += c;
+	}
+	return result;
+}
+
 ExprNode* OrNode::Optimize()
 {
 	if (!left || !right)
@@ -1239,22 +1256,58 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 	auto argTo = (*args)[2]->Evaluate(di);
 
 	const std::string* from = std::get_if<std::string>(&argFrom);
+	const auto fromRegex = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&argFrom);
 	const std::string* to = std::get_if<std::string>(&argTo);
 
-	if (!from || !to || from->empty())
+	if ((!from && !fromRegex) || !to)
 		return std::monostate{};
 
-	std::vector<std::pair<Poco::RegularExpression, std::string>> replacements;
+	if (fromRegex)
+	{
+		// Use pre-compiled regex from Optimize()
+		auto replaceFn = [fromRegex, to](const ValueType& val) -> ValueType
+			{
+				auto strOpt = getAsString(val);
+				if (!strOpt)
+					return std::monostate{};
+				std::string result = *strOpt;
+				(*fromRegex)->subst(result, *to, Poco::RegularExpression::RE_GLOBAL);
+				return result;
+			};
+		return applyToScalarOrArray(argStr, replaceFn);
+	}
+	else if (from)
+	{
+		// Dynamic case: compile regex at runtime
+		if (from->empty())
+			return std::monostate{};
 
-	auto replaceFn = [from, to](const ValueType& val) -> ValueType
+		try
 		{
-			auto strOpt = getAsString(val);
-			if (!strOpt)
-				return std::monostate{};
-			return Poco::replace(*strOpt, *from, *to);
-		};
+			std::string pattern = escapeRegex(*from);
+			Poco::RegularExpression regex(pattern,
+				Poco::RegularExpression::RE_CASELESS |
+				Poco::RegularExpression::RE_UTF8);
 
-	return applyToScalarOrArray(argStr, replaceFn);
+			auto replaceFn = [&regex, to](const ValueType& val) -> ValueType
+				{
+					auto strOpt = getAsString(val);
+					if (!strOpt)
+						return std::monostate{};
+					std::string result = *strOpt;
+					regex.subst(result, *to, Poco::RegularExpression::RE_GLOBAL);
+					return result;
+				};
+
+			return applyToScalarOrArray(argStr, replaceFn);
+		}
+		catch (const Poco::RegularExpressionException&)
+		{
+			return std::monostate{};
+		}
+	}
+
+	return std::monostate{};
 }
 
 static auto RegexReplaceWithListFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::vector<ExprNode*>* args) -> ValueType
@@ -1338,16 +1391,20 @@ static auto ReplaceWithListFunc(const FilterExpression* ctxt, const DIFFITEM& di
 			if (!strOpt || !list->get())
 				return val;
 			std::string result = *strOpt;
+			// Use pre-compiled regex objects from LoadList()
 			for (const auto& item : (*list->get()))
 			{
 				if (const auto arrayVal = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&item.value))
 				{
 					if ((*arrayVal)->size() != 2)
 						continue;
-					if (auto from = std::get_if<std::string>(&(*arrayVal)->at(0).value))
+					// Get pre-compiled regex and replacement string
+					if (auto regex = std::get_if<std::shared_ptr<Poco::RegularExpression>>(&(*arrayVal)->at(0).value))
 					{
-						if (auto to = std::get_if<std::string>(&(*arrayVal)->at(1).value))
-							Poco::replaceInPlace(result, *from, *to);
+						if (auto replacement = std::get_if<std::string>(&(*arrayVal)->at(1).value))
+						{
+							(*regex)->subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
+						}
 					}
 				}
 			}
@@ -2229,7 +2286,24 @@ ExprNode* FunctionNode::Optimize()
 	}
 	else if (functionName == "replace")
 	{
-		if (args && dynamic_cast<StringLiteral*>((*args)[0]) && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
+		// Optimize: convert search string to pre-compiled regex for case-insensitive search
+		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[1]))
+		{
+			try
+			{
+				std::string pattern = escapeRegex(dynamic_cast<StringLiteral*>((*args)[1])->value);
+				auto* re = new RegularExpressionLiteral(pattern);
+				delete (*args)[1];
+				(*args)[1] = re;
+			}
+			 catch (const Poco::RegularExpressionException&)
+			{
+				// Invalid pattern, cannot optimize (keep as string)
+				return this;
+			}
+		}
+		// If all arguments are literals, evaluate at compile time
+		if (args && args->size() >= 3 && dynamic_cast<StringLiteral*>((*args)[0]) && dynamic_cast<RegularExpressionLiteral*>((*args)[1]) && dynamic_cast<StringLiteral*>((*args)[2]))
 		{
 			auto* result = new StringLiteral(std::get<std::string>(func(ctxt, di, args)));
 			delete this;
