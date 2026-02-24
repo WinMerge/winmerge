@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-02-11 06:55-0300\n"
+"PO-Revision-Date: 2026-02-23 23:00-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1640,7 +1640,7 @@ msgid "Normalized &Unicode Name"
 msgstr "Nome &Unicode Normalizado"
 
 msgid "&Relative Path"
-msgstr ""
+msgstr "Caminho &Relativo"
 
 msgid "&Date"
 msgstr "&Data"
@@ -1655,25 +1655,25 @@ msgid "Insert rege&xReplace() Function"
 msgstr "Inserir Função rege&xReplace()"
 
 msgid "Replace &Lists"
-msgstr ""
+msgstr "Substituir &Listas"
 
 msgid "&Create String Replace List and Insert..."
-msgstr ""
+msgstr "&Criar Lista de Substituição de String e Adicionar..."
 
 msgid "Create &Regex Replace List and Insert..."
-msgstr ""
+msgstr "Criar Lista de Substituição &Regex e Adicionar..."
 
 msgid "&String Replace Lists"
-msgstr ""
+msgstr "Listas de Substituição de &String"
 
 msgid "Re&gex Replace Lists"
-msgstr ""
+msgstr "Listas de Substituição de Re&gex"
 
 msgid "Open String Replace Lists Folder..."
-msgstr ""
+msgstr "Abrir Pasta de Listas de Substituição de String..."
 
 msgid "Open Regex Replace Lists Folder..."
-msgstr ""
+msgstr "Abrir Pasta de Listas de Substituição de Regex..."
 
 msgid "Text &Normalization"
 msgstr "&Normalização de Texto"
@@ -1709,7 +1709,7 @@ msgid "&Katakana"
 msgstr "&Katakana"
 
 msgid "Normalize &Unicode"
-msgstr ""
+msgstr "Normalizar &Unicode"
 
 msgid "About WinMerge"
 msgstr "Sobre o WinMerge"
@@ -3010,7 +3010,7 @@ msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Arquivos de Opções (*.ini)|*.ini|Todos os Arquivos (*.*)|*.*||"
 
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Valores Separados por Tab (*.tsv;*.txt)|*.tsv;*.txt|Todos os Arquivos (*.*)|*.*||"
 
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Arquivos de Texto (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Todos os Arquivos (*.*)|*.*||"
@@ -4833,10 +4833,10 @@ msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "O WinMerge detectou um travamento ocorrido. Por favor, relate-o, se possível."
 
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
-msgstr ""
+msgstr "# Lista de substituição Regex\r\n# Formato: regex<TAB>substituto\r\n# Referências anteriores como $1, $2 são suportadas\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
-msgstr ""
+msgstr "# Lista de substuição\r\n# Formato: busca<TAB>substituto\r\n# Linhas começando com # são ignoradas\r\n\r\nde1\tpara1\r\nde2\tpara2\r\n"
 
 msgid "Prettification"
 msgstr "Embelezamento"
