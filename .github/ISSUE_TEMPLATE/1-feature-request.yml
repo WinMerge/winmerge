@@ -1,0 +1,73 @@
+name: ⭐ Feature Request
+description: Suggest a new feature or improvement to the project.
+title: "[FEATURE]: "
+labels:
+  - "enhancement"
+  - "documentation"
+  - "help wanted"
+  - "good first issue"
+
+body:
+  - type: markdown
+    id: introduction
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request 💛 it's very appreciated!
+        Please provide as much detail as possible to help us understand and potentially implement the feature.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: What feature would you like, or what problem are you facing?
+      description: Describe the feature you would like to see implemented or the problem you are experiencing.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: What's your proposed solution?
+      description: A clear description of the enhancement you propose. Please include relevant information and resources if applicable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, please add screenshots to help explain your request.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: assignee
+    attributes:
+      label: Do you want to work on this issue/improvement?
+      options:
+        - "Maybe"
+        - "Yes"
+        - "No"
+      default: 0
+      multiple: false
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra-info
+    attributes:
+      label: Any additional context?
+      description: Add any other relevant context about your proposed solution.
+      placeholder: |
+        Examples:
+
+        - The solution will affect other functions (potential script breaking changes) ...
+        - Influences and relationship to other functionality ...
+        - My considered alternatives are ...
+    validations:
+      required: false
+
+  - type: markdown
+    id: thanks
+    attributes:
+      value: |
+        Thanks for your effort and interest ✌️ in improving the project.
