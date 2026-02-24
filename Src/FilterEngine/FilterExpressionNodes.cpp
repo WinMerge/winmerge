@@ -1285,17 +1285,17 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 		try
 		{
 			std::string pattern = escapeRegex(*from);
-			Poco::RegularExpression regex(pattern,
+			auto regex = std::make_shared<Poco::RegularExpression>(pattern,
 				Poco::RegularExpression::RE_CASELESS |
 				Poco::RegularExpression::RE_UTF8);
 
-			auto replaceFn = [&regex, to](const ValueType& val) -> ValueType
+			auto replaceFn = [regex, to](const ValueType& val) -> ValueType
 				{
 					auto strOpt = getAsString(val);
 					if (!strOpt)
 						return std::monostate{};
 					std::string result = *strOpt;
-					regex.subst(result, *to, Poco::RegularExpression::RE_GLOBAL);
+					regex->subst(result, *to, Poco::RegularExpression::RE_GLOBAL);
 					return result;
 				};
 
