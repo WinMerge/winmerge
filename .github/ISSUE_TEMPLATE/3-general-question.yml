@@ -1,51 +1,27 @@
-name: 💬 General Question
-description: Ask a general question or start a discussion about the project.
-title: "[QUESTION]: "
+name: Question
+description: Ask a question about using WinMerge.
+title: "[QUESTION] "
 labels:
-  - "question"
+  - question
 
 body:
   - type: markdown
-    id: introduction
     attributes:
       value: |
-        Thanks for your interest in the project 💛 feel free to ask any general questions or start a discussion here.
-        Please provide as much detail as possible to help others understand your question or topic.
+        Ask a question about WinMerge usage or behavior.
 
   - type: textarea
-    id: question-topic
+    id: question
     attributes:
-      label: What is your question or topic?
-      description: Clearly state your question or the topic you want to discuss.
+      label: Question
+      description: What would you like to ask?
     validations:
       required: true
 
   - type: textarea
-    id: context
+    id: details
     attributes:
-      label: What context or background information can you provide?
-      description: Add any relevant details, background, or examples to help others understand your question.
+      label: Details (optional)
+      description: Any additional context, examples, or screenshots.
     validations:
       required: false
-
-  - type: textarea
-    id: prior-attempts
-    attributes:
-      label: What have you tried or researched already?
-      description: Briefly describe any steps you've taken or resources you've checked before posting your question.
-    validations:
-      required: false
-
-  - type: textarea
-    id: extra-info
-    attributes:
-      label: Any additional comments?
-      description: Add any other comments, links, or related discussions here.
-    validations:
-      required: false
-
-  - type: markdown
-    id: thanks
-    attributes:
-      value: |
-        Thanks for your effort and interest ✌️ in improving the project.
