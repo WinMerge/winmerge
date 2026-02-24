@@ -2296,7 +2296,7 @@ ExprNode* FunctionNode::Optimize()
 				delete (*args)[1];
 				(*args)[1] = re;
 			}
-			 catch (const Poco::RegularExpressionException&)
+			catch (const Poco::RegularExpressionException&)
 			{
 				// Invalid pattern, cannot optimize (keep as string)
 				return this;
