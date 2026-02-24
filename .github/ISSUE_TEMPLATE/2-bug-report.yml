@@ -1,0 +1,129 @@
+name: 🪲 Bug Report
+description: Report a bug or unexpected behavior to help improve the project.
+title: "[BUG]: "
+labels:
+  - "bug"
+  - "invalid"
+
+body:
+  - type: markdown
+    id: introduction
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report 💛 it's very appreciated!
+        Please provide as much detail as possible to help us identify and fix the issue.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug you have found. Please include relevant information and resources if applicable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: What did you expect to happen?
+      description: A clear description of what you think the expected behavior should be.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Which steps did you take to reproduce the bug?
+      description: A clear description of the steps taken to reproduce the buggy behavior.
+      placeholder: |
+        You know the steps? Please try to follow the format below to provide steps to reproduce.
+
+        1. Go to ...
+        2. Click on ...
+        3. Scroll down to ...
+        4. Do this and that ...
+        5. See error
+
+        You don't know the exact steps? Just include any relevant details like:
+
+        - What you were trying to do ...
+        - What went wrong ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, please add screenshots to help explain your problem.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of the project are you running? See Releases (or TAGs) of the repository.
+      options:
+        - latest version
+        - older version
+        - unknown
+      default: 0
+      multiple: false
+    validations:
+      required: true
+
+  - type: input
+    id: specific-version
+    attributes:
+      label: Older or unknown version?
+      description: In case there are no Releases (or TAGs) in the repository yet, please see possible version information within the code base.
+      placeholder: |
+        Example: "0.17.1" or "0.5.0 - 2026-01-22"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: assignee
+    attributes:
+      label: Do you want to work on this issue/fix?
+      options:
+        - "Maybe"
+        - "Yes"
+        - "No"
+      default: 0
+      multiple: false
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: system-under-test
+    attributes:
+      label: What system are you running?
+      description: Please select all applicable options where the bug occurred for you.
+      options:
+        - label: Windows 11 (x64)
+        - label: Windows 10 (x64)
+        - label: Windows 10 (x86)
+        - label: other Windows version
+        - label: other operating system
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra-info
+    attributes:
+      label: Any additional context?
+      description: Add any other context about the problem or your specific environment here if relevant.
+      placeholder: |
+        Examples:
+
+        - I am using ...
+        - I am using ...
+    validations:
+      required: false
+
+  - type: markdown
+    id: thanks
+    attributes:
+      value: |
+        Thanks for your effort and interest ✌️ in improving the project.
