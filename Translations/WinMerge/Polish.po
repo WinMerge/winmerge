@@ -5176,6 +5176,9 @@ msgstr "Nie można pobrać makr.\r\nWłącz 'Ufaj dostępowi do projektu Visual 
 msgid "Replace line breaks in formulas with spaces"
 msgstr "Zastąp podział wierszy w formułach na spacje"
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Porównaj makra VBA"
 

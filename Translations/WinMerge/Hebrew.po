@@ -5546,6 +5546,9 @@ msgstr ""
 msgid "Replace line breaks in formulas with spaces"
 msgstr ""
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "השווה מאקרואים VBA"
 

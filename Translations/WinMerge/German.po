@@ -6520,6 +6520,9 @@ msgstr ""
 msgid "Replace line breaks in formulas with spaces"
 msgstr "Zeilenumbrüche in Formeln durch Leerzeichen ersetzen"
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "VBA-Makros vergleichen"
 

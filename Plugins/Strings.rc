@@ -222,6 +222,7 @@ BEGIN
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 
                             "Cannot get Macros.\r\nEnable 'Trust access to Visual Basic Project' in MS Office Macro Security."
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR14 "Replace line breaks in formulas with spaces"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR15 "Include sheet order number in filename"
 END
 
 STRINGTABLE

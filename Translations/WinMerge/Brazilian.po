@@ -5178,6 +5178,9 @@ msgstr "Não é possível obter Macros.\r\nHabilite ‘Confiar no acesso ao Proj
 msgid "Replace line breaks in formulas with spaces"
 msgstr "Substituir quebras de linha em fórmulas com espaços"
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Comparar macros do VBA"
 

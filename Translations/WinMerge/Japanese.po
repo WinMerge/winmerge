@@ -5767,6 +5767,9 @@ msgstr ""
 msgid "Replace line breaks in formulas with spaces"
 msgstr "数式内の改行を空白に置換する"
 
+msgid "Include sheet order number in filename"
+msgstr "ファイル名にシート番号を含める"
+
 msgid "Compare VBA macros"
 msgstr "VBA マクロを比較する"
 

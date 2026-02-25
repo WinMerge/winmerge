@@ -6170,6 +6170,9 @@ msgstr "Nem lehet makrókat elérni.\r\n    Ahhoz, hogy a WinMerge összehasonl�
 msgid "Replace line breaks in formulas with spaces"
 msgstr "Sortörések cseréje szóközökre a képletekben"
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "VBA makrók összehasonlítása"
 

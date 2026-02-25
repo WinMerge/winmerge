@@ -5759,6 +5759,9 @@ msgstr ""
 msgid "Replace line breaks in formulas with spaces"
 msgstr "Substituir as quebras de linha nas fórmulas por espaços"
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Comparar macros VBA"
 

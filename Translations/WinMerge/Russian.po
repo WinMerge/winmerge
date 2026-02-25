@@ -5177,6 +5177,9 @@ msgstr "Не удается получить макрос.\r\n   Чтобы ра
 msgid "Replace line breaks in formulas with spaces"
 msgstr "Заменить переносы строк в формулах пробелами"
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Сравнить макросы VBA"
 

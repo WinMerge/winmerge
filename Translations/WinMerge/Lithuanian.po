@@ -5175,6 +5175,9 @@ msgstr "Nepavyksta gauti makrokomandų.\r\nĮjunkite „Pasitikėti prieiga prie
 msgid "Replace line breaks in formulas with spaces"
 msgstr "Formulėse keisti eilučių lūžius tarpais"
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "Lyginti VBA makrokomandas"
 

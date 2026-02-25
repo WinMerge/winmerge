@@ -5793,6 +5793,9 @@ msgstr ""
 msgid "Replace line breaks in formulas with spaces"
 msgstr "将公式中的换行符替换为空格"
 
+msgid "Include sheet order number in filename"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr "比较 VBA 宏"
 
