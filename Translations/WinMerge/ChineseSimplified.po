@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -3968,7 +3968,7 @@ msgid " (Left and middle are identical)"
 msgstr " (左侧和中间完全相同)"
 
 msgid " (paths differ)"
-msgstr "（路径不同）"
+msgstr " （路径不同）"
 
 msgid "Text files are different"
 msgstr "文本文件不同"
@@ -4018,7 +4018,7 @@ msgstr "(%1 条目)"
 
 #, c-format
 msgid "%1 (set %2): "
-msgstr "%1 (集合 %2)"
+msgstr "%1 (集合 %2)："
 
 msgid ""
 "Some moved items have been merged.\n"
@@ -5794,7 +5794,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "将公式中的换行符替换为空格"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "在文件名中包含表的顺序编号"
 
 msgid "Compare VBA macros"
 msgstr "比较 VBA 宏"
