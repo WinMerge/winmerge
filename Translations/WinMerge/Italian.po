@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 23.02.2026\n"
+"Project-Id-Version: WinMerge - Italian - 25.02.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-02-23 21:58+0100\n"
+"PO-Revision-Date: 2026-02-25 21:00+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -5835,7 +5835,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "Sostituisci nelle formule interruzioni di riga con spazi"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "Includi numero ordine del foglio nel nome del file"
 
 msgid "Compare VBA macros"
 msgstr "Confronta macro VBA"
