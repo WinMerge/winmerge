@@ -376,9 +376,14 @@ void CDirDoc::Rescan()
 		m_pCtxt->m_pRenameMoveDetection.reset();
 		m_pCtxt->RemoveAll();
 		m_pCtxt->InitDiffItemList();
+		InitDiffContext(m_pCtxt.get());
 	}
-
-	InitDiffContext(m_pCtxt.get());
+	else
+	{
+		auto pRenameMoveDetection = std::move(m_pCtxt->m_pRenameMoveDetection);
+		InitDiffContext(m_pCtxt.get());
+		m_pCtxt->m_pRenameMoveDetection = std::move(pRenameMoveDetection);
+	}
 
 	auto* pHeaderBar = pf->GetHeaderInterface();
 	pHeaderBar->SetPaneCount(m_nDirs);
