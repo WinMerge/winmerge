@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2026-01-28 00:00+0000\n"
+"PO-Revision-Date: 2026-02-25 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1640,7 +1640,7 @@ msgid "Normalized &Unicode Name"
 msgstr "Нормализованное имя в Юникоде"
 
 msgid "&Relative Path"
-msgstr ""
+msgstr "Относительный путь"
 
 msgid "&Date"
 msgstr "Дата"
@@ -1655,25 +1655,25 @@ msgid "Insert rege&xReplace() Function"
 msgstr "Вставить функцию rege&xReplace()"
 
 msgid "Replace &Lists"
-msgstr ""
+msgstr "Списки замены"
 
 msgid "&Create String Replace List and Insert..."
-msgstr ""
+msgstr "Создать список замены строк и вставить..."
 
 msgid "Create &Regex Replace List and Insert..."
-msgstr ""
+msgstr "Создать список замены регулярных выражений и вставить..."
 
 msgid "&String Replace Lists"
-msgstr ""
+msgstr "Списки замены строк"
 
 msgid "Re&gex Replace Lists"
-msgstr ""
+msgstr "Списки замены регулярных выражений"
 
 msgid "Open String Replace Lists Folder..."
-msgstr ""
+msgstr "Открыть папку списков замены строк..."
 
 msgid "Open Regex Replace Lists Folder..."
-msgstr ""
+msgstr "Открыть папку списков замены регулярных выражений..."
 
 msgid "Text &Normalization"
 msgstr "Нормализация текста"
@@ -1709,7 +1709,7 @@ msgid "&Katakana"
 msgstr "Катакана"
 
 msgid "Normalize &Unicode"
-msgstr ""
+msgstr "Нормализовать Юникод"
 
 msgid "About WinMerge"
 msgstr "О программе WinMerge"
@@ -2721,7 +2721,7 @@ msgid "Rename/move detection &keys:"
 msgstr "Ключи обнаружения переименования/перемещения:"
 
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "Объединение переименований и перемещений:"
 
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
@@ -3010,7 +3010,7 @@ msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Файлы настроек (*.ini)|*.ini|Все файлы (*.*)|*.*||"
 
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Значения, разделённые табуляцией (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
 
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Текстовые файлы (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Все файлы (*.*)|*.*||"
@@ -3741,7 +3741,7 @@ msgid " (Left and middle are identical)"
 msgstr " (Слева и в центре идентичны)"
 
 msgid " (paths differ)"
-msgstr ""
+msgstr " (пути отличаются)"
 
 msgid "Text files are different"
 msgstr "Текстовые файлы отличаются"
@@ -3771,10 +3771,10 @@ msgid "Detect renames and moves"
 msgstr "Обнаружение переименований и перемещений"
 
 msgid "Merge renames"
-msgstr ""
+msgstr "Объединение переименований"
 
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "Объединение переименований и перемещений"
 
 msgid "Renamed"
 msgstr "Переименовано"
@@ -3794,7 +3794,7 @@ msgid "%1 (set %2): "
 msgstr "%1 (набор %2): "
 
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
-msgstr ""
+msgstr "Некоторые перемещённые элементы были объединены.\nВ режиме дерева эти элементы могут отображаться в позициях, не соответствующих фактической структуре папок, что может вызывать путаницу.\nПереключиться в плоский режим?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4829,13 +4829,13 @@ msgid "e.g. %1"
 msgstr "например, %1"
 
 msgid "WinMerge detected a previous crash. Please report this if possible."
-msgstr ""
+msgstr "WinMerge обнаружил предыдущий сбой. Пожалуйста, сообщите о нём, если это возможно."
 
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
-msgstr ""
+msgstr "# Список замены регулярных выражений\r\n# Формат: регулярное выражение<TAB>замена\r\n# Поддерживаются обратные ссылки типа $1, $2\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
-msgstr ""
+msgstr "# Список замены\r\n# Формат: поиск<TAB>замена\r\n# Строки, начинающиеся с #, игнорируются\r\n\r\nот1\tдо1\r\nот2\tдо2\r\n"
 
 msgid "Prettification"
 msgstr "Приукрашивание"
@@ -4943,7 +4943,7 @@ msgid "Prettify YAML"
 msgstr "Приукрасить YAML"
 
 msgid "Prettify PO"
-msgstr ""
+msgstr "Приукрасить PO"
 
 msgid "Preview Graphviz"
 msgstr "Предпросмотр Graphviz"
@@ -4970,7 +4970,7 @@ msgid "Validate HTML"
 msgstr "Валидация HTML"
 
 msgid "Validate PO"
-msgstr ""
+msgstr "Валидация PO"
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Разбор байт-кода JVM"
@@ -5043,7 +5043,7 @@ msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
 msgstr "YAML Prettier с командой yq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде yq."
 
 msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
-msgstr ""
+msgstr "PO Prettier с gettext msgcat.\r\nАргументы: Параметры командной строки, передаваемые команде msgcat."
 
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr "Предпросмотр Graphviz. \r\nАргументы: Параметры командной строки, передаваемые команде dot."
@@ -5070,7 +5070,7 @@ msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "Валидатор HTML с tidy-html5. \r\nАргументы: Параметры командной строки, передаваемые команде tidy."
 
 msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
-msgstr ""
+msgstr "Валидатор PO с gettext msgfmt. \r\nАргументы: Параметры командной строки, передаваемые команде msgfmt."
 
 msgid "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
 msgstr "Дизассемблер байткода JVM с javap. \r\nАргументы: Параметры командной строки, передаваемые команде javap."
