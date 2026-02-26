@@ -3050,7 +3050,7 @@ msgstr "Naar midden:"
 
 #, c-format
 msgid "Version %1"
-msgstr "Versie %1 - Nederlands"
+msgstr "Versie %1"
 
 #, c-format
 msgid "Options (%1)"
