@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-02-11 07:50+0000\n"
-"PO-Revision-Date: 2026-02-11 08:08+0200\n"
+"POT-Creation-Date: 2026-02-25 21:21+0000\n"
+"PO-Revision-Date: 2026-02-26 09:09+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1638,7 +1638,7 @@ msgid "Normalized &Unicode Name"
 msgstr "Normalizuotas &Unicode pavadinimas"
 
 msgid "&Relative Path"
-msgstr ""
+msgstr "&Santykinis kelias"
 
 msgid "&Date"
 msgstr "&Data"
@@ -1653,25 +1653,25 @@ msgid "Insert rege&xReplace() Function"
 msgstr "Įterpti rege&xReplace() funkciją"
 
 msgid "Replace &Lists"
-msgstr ""
+msgstr "Pakeitimų &sąrašai"
 
 msgid "&Create String Replace List and Insert..."
-msgstr ""
+msgstr "&Kurti eilučių pakeitimų sąrašą ir įterpti..."
 
 msgid "Create &Regex Replace List and Insert..."
-msgstr ""
+msgstr "Kurti &Regex pakeitimų sąrašą ir įterpti..."
 
 msgid "&String Replace Lists"
-msgstr ""
+msgstr "Eilučių pakeitimų &sąrašai"
 
 msgid "Re&gex Replace Lists"
-msgstr ""
+msgstr "Re&gex pakeitimų sąrašai"
 
 msgid "Open String Replace Lists Folder..."
-msgstr ""
+msgstr "Atverti eilučių pakeitimų sąrašų katalogą..."
 
 msgid "Open Regex Replace Lists Folder..."
-msgstr ""
+msgstr "Atverti Regex pakeitimų sąrašų katalogą..."
 
 msgid "Text &Normalization"
 msgstr "Teksto &normalizavimas"
@@ -1707,7 +1707,7 @@ msgid "&Katakana"
 msgstr "&Katakana"
 
 msgid "Normalize &Unicode"
-msgstr ""
+msgstr "Normalizuoti &Unicode"
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -3008,7 +3008,7 @@ msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Nuostatų failai (*.ini)|*.ini|Visi failai (*.*)|*.*||"
 
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "TAB simboliais sudalintos reikšmės (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
 
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Teksto failai (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Visi failai (*.*)|*.*||"
@@ -4830,10 +4830,10 @@ msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "„WinMerge“ aptiko, kad buvo gedimas. Jei įmanoma, praneškite apie tai."
 
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
-msgstr ""
+msgstr "# Regex pakeitimų sąrašas\r\n# Formatas: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
-msgstr ""
+msgstr "# Pakeitimų sąrašas\r\n# Formatas: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
@@ -5176,7 +5176,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "Formulėse keisti eilučių lūžius tarpais"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "Į failo vardą įtraukti skaičiuoklės lapo eil. numerį"
 
 msgid "Compare VBA macros"
 msgstr "Lyginti VBA makrokomandas"
