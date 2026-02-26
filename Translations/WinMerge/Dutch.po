@@ -3023,7 +3023,7 @@ msgstr "Naar midden:"
 
 #, c-format
 msgid "Version %1"
-msgstr "Versie %1 - Nederlands"
+msgstr "Versie %1"
 
 msgid "X64"
 msgstr "X64"

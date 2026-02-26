@@ -3527,7 +3527,7 @@ msgstr "In die Mitte:"
 
 #, c-format
 msgid "Version %1"
-msgstr "Version %1 - Deutsch"
+msgstr "Version %1"
 
 #, c-format
 msgid "X64"

@@ -3460,7 +3460,7 @@ msgstr ""
 
 #, c-format
 msgid "Version %1"
-msgstr "Verze %1 - Česky"
+msgstr "Verze %1"
 
 #, c-format
 msgid "X64"

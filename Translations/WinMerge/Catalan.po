@@ -3515,7 +3515,7 @@ msgstr "Cap al Mig:"
 
 #, c-format
 msgid "Version %1"
-msgstr "Versió %1 - Català"
+msgstr "Versió %1"
 
 #, c-format
 msgid "X64"
