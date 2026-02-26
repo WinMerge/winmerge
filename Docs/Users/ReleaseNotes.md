@@ -56,6 +56,10 @@ Please submit bug reports to our bug-tracker.
 * BugFix: Fixed incorrect substitution of plugin arguments (${1}, ${2}, …) by
     properly parsing the argument string
 
+### Archive support
+
+* Update 7-zip to 26.00
+
 ### Manual
 
 * Fixes and completion of French translation including complete Manual
