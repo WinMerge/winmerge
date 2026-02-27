@@ -1625,7 +1625,7 @@ TEST_P(FilterExpressionTest, ReplaceWithList)
 	fe.optimize = GetParam().optimize;
 
 	// Create temporary directory path
-	const String tempDir = env::GetProgPath();
+	const String tempDir = env::GetTemporaryPath();
 	const String replaceListPath = paths::ConcatPath(tempDir, L"test_replacelist.txt");
 	const String regexReplaceListPath = paths::ConcatPath(tempDir, L"test_regex_replacelist.txt");
 
@@ -1751,7 +1751,7 @@ TEST_P(FilterExpressionTest, ReplaceWithListAdvanced)
 	fe.SetDiffContext(&ctxt);
 	fe.optimize = GetParam().optimize;
 
-	const String tempDir = env::GetProgPath();
+	const String tempDir = env::GetTemporaryPath();
 	const String replaceListPath = paths::ConcatPath(tempDir, L"test_replacelist2.txt");
 	const String regexReplaceListPath = paths::ConcatPath(tempDir, L"test_regex_replacelist2.txt");
 
@@ -1828,7 +1828,7 @@ TEST_P(FilterExpressionTest, ReplaceWithListEncoding)
 	fe.SetDiffContext(&ctxt);
 	fe.optimize = GetParam().optimize;
 
-	const String tempDir = env::GetProgPath();
+	const String tempDir = env::GetTemporaryPath();
 	const String replaceListPath = paths::ConcatPath(tempDir, L"test_replacelist_utf8.txt");
 
 	// Create UTF-8 encoded file with Japanese characters
