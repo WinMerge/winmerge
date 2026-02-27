@@ -1633,6 +1633,7 @@ TEST_P(FilterExpressionTest, ReplaceWithList)
 	{
 		UniStdioFile file;
 		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
+		file.WriteBom();
 		file.WriteString(L"# Comment line\n");
 		file.WriteString(L"apple\tりんご\n");
 		file.WriteString(L"orange\tオレンジ\n");
@@ -1646,6 +1647,7 @@ TEST_P(FilterExpressionTest, ReplaceWithList)
 	{
 		UniStdioFile file;
 		EXPECT_TRUE(file.OpenCreateUtf8(regexReplaceListPath));
+		file.WriteBom();
 		file.WriteString(L"# Regex patterns\n");
 		file.WriteString(L"\\d+\t----\n");
 		file.WriteString(L"[a-z]+\t****\n");
@@ -1757,6 +1759,7 @@ TEST_P(FilterExpressionTest, ReplaceWithListAdvanced)
 	{
 		UniStdioFile file;
 		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
+		file.WriteBom();
 		file.WriteString(L"# Test special characters\n");
 		file.WriteString(L"C++\tCプラプラ\n");
 		file.WriteString(L"a\tb\tc\td\n"); // Extra tabs should be ignored
@@ -1770,6 +1773,7 @@ TEST_P(FilterExpressionTest, ReplaceWithListAdvanced)
 	{
 		UniStdioFile file;
 		EXPECT_TRUE(file.OpenCreateUtf8(regexReplaceListPath));
+		file.WriteBom();
 		file.WriteString(L"# Regex with captures\n");
 		file.WriteString(L"(\\d{4})-(\\d{2})-(\\d{2})\t$3/$2/$1\n");
 		file.WriteString(L"\\b(\\w+)\\s+\\1\\b\t$1\n"); // Remove duplicate words
@@ -1831,6 +1835,7 @@ TEST_P(FilterExpressionTest, ReplaceWithListEncoding)
 	{
 		UniStdioFile file;
 		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
+		file.WriteBom();
 		file.WriteString(L"# 日本語のテスト\n");
 		file.WriteString(L"こんにちは\thello\n");
 		file.WriteString(L"さようなら\tgoodbye\n");
