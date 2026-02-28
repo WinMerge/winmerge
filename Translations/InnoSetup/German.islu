@@ -1,6 +1,6 @@
 ﻿[Messages]
 
-WizardInfoBefore=License Agreement
+WizardInfoBefore=Lizenzvereinbarung
 InfoBeforeLabel=GNU General Public License
 
 [CustomMessages]
@@ -33,13 +33,13 @@ CorsicanLanguage=Korsische Menüs und Dialoge
 CroatianLanguage=Kroatische Menüs und Dialoge
 CzechLanguage=Tschechische Menüs und Dialoge
 DanishLanguage=Dänische Menüs und Dialoge
-DutchLanguage=Holländische Menüs und Dialoge
+DutchLanguage=Niederländische Menüs und Dialoge
 FinnishLanguage=Finnische Menüs und Dialoge
 FrenchLanguage=Französische Menüs und Dialoge
 GalicianLanguage=Galicische Menüs und Dialoge
 GermanLanguage=Deutsche Menüs und Dialoge
 GreekLanguage=Griechische Menüs und Dialoge
-HebrewLanguage=Hebrew menus and dialogs
+HebrewLanguage=Hebräische Menüs und Dialoge
 HungarianLanguage=Ungarische Menüs und Dialoge
 ItalianLanguage=Italienische Menüs und Dialoge
 JapaneseLanguage=Japanische Menüs und Dialoge
@@ -58,10 +58,10 @@ SlovakLanguage=Slowakische Menüs und Dialoge
 SlovenianLanguage=Slowenische Menüs und Dialoge
 SpanishLanguage=Spanische Menüs und Dialoge
 SwedishLanguage=Schwedische Menüs und Dialoge
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=Tamilische Menüs und Dialoge
 TurkishLanguage=Türkische Menüs und Dialoge
 UkrainianLanguage=Ukrainische Menüs und Dialoge
-VietnameseLanguage=Vietnamese menus and dialogs
+VietnameseLanguage=Vietnamesische Menüs und Dialoge
 
 ;Tasks
 ExplorerContextMenu=&Explorer-Kontextmenüintegration aktivieren
@@ -86,7 +86,7 @@ ViewStartMenuFolder=&Startmenü-Ordner anzeigen
 
 ;Code Dialogs
 DeletePreviousStartMenu=Das Setup hat entdeckt, dass Sie den Startmenü-Ordner von "%s" in "%s" geändert haben. Möchten Sie den vorherigen Startmenü-Ordner löschen?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=Die WinMerge-Shellintegration benötigt zum Aktualisieren einen Neustart des Explorers. Möchten Sie den Explorer neu starten?
 
 ; Project file description
 ProjectFileDesc=WinMerge-Projektdatei
