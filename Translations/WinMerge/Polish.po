@@ -5029,7 +5029,7 @@ msgstr "Wybierz niektóre kolumny. \r\nUżycie: SelectColumns ZAKRESY\r\n   lub:
 msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
 msgstr "Wybierz niektóre wiersze. \r\nUżycie: SelectLines ZAKRESY\r\n   lub: SelectLines [-v] [-i] -e SZABLONY\r\n  ZAKRESY   - lista zakresów wierszy do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące wiersze\r\n  -i - ignoruj wielkość liter\r\n  -e - użyj SZABLONÓW do dopasowywania"
 
-msgid "Upiększanie HTML (tidy-html5).\r\nArguments: tidy command line options."
+msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "Upiększanie HTML (tidy-html5).\r\nArgumenty: Opcje wiersza poleceń tidy."
 
 msgid "JSON Prettier (jq).\r\nArguments: jq filter/command line options."
