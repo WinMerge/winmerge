@@ -961,6 +961,9 @@ msgstr "Beide"
 msgid "&All"
 msgstr "Alle"
 
+msgid "&Selection"
+msgstr "Selectie"
+
 msgid "Re&name"
 msgstr "Naam wijzigen"
 
@@ -1823,9 +1826,6 @@ msgstr "Bij einde bestand stoppen"
 
 msgid "Replace in"
 msgstr "Vervangen in"
-
-msgid "&Selection"
-msgstr "Selectie"
 
 msgid "Wh&ole file"
 msgstr "Volledig bestand"

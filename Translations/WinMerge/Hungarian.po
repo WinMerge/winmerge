@@ -1156,6 +1156,10 @@ msgid "&All"
 msgstr "Mind"
 
 #, c-format
+msgid "&Selection"
+msgstr "&Kijelölés"
+
+#, c-format
 msgid "Re&name"
 msgstr "Át&nevezés"
 
@@ -2090,10 +2094,6 @@ msgstr "&Álljon meg a fájl végénél"
 #, c-format
 msgid "Replace in"
 msgstr "Csere itt"
-
-#, c-format
-msgid "&Selection"
-msgstr "&Kijelölés"
 
 #, c-format
 msgid "Wh&ole file"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-02-25 21:21+0000\n"
+"POT-Creation-Date: 2026-02-28 15:41+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -957,6 +957,9 @@ msgstr ""
 msgid "&All"
 msgstr ""
 
+msgid "&Selection"
+msgstr ""
+
 msgid "Re&name"
 msgstr ""
 
@@ -1818,9 +1821,6 @@ msgid "&Don't wrap at end of file"
 msgstr ""
 
 msgid "Replace in"
-msgstr ""
-
-msgid "&Selection"
 msgstr ""
 
 msgid "Wh&ole file"

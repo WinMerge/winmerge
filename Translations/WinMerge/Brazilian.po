@@ -965,6 +965,9 @@ msgstr "&Ambos"
 msgid "&All"
 msgstr "&Tudo"
 
+msgid "&Selection"
+msgstr "&Seleção"
+
 msgid "Re&name"
 msgstr "Re&nomear"
 
@@ -1827,9 +1830,6 @@ msgstr "&Não quebrar no final do arquivo"
 
 msgid "Replace in"
 msgstr "Substituir em"
-
-msgid "&Selection"
-msgstr "&Seleção"
 
 msgid "Wh&ole file"
 msgstr "O &arquivo inteiro"

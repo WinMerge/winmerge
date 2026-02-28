@@ -970,6 +970,9 @@ msgstr "இரண்டும்"
 msgid "&All"
 msgstr "அனைத்தும்"
 
+msgid "&Selection"
+msgstr "தேர்வு"
+
 msgid "Re&name"
 msgstr "மறுபெயர்"
 
@@ -1833,9 +1836,6 @@ msgstr "கோப்பின் முடிவை மடிக்க வேண
 
 msgid "Replace in"
 msgstr "உள்ளே மாற்று"
-
-msgid "&Selection"
-msgstr "தேர்வு"
 
 msgid "Wh&ole file"
 msgstr "முழு கோப்பு"

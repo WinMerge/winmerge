@@ -968,6 +968,9 @@ msgstr "兩邊 (&B)"
 msgid "&All"
 msgstr "全部 (&A)"
 
+msgid "&Selection"
+msgstr "選取區 (&S)"
+
 msgid "Re&name"
 msgstr "重新命名 (&N)"
 
@@ -1830,9 +1833,6 @@ msgstr "至檔尾不折返 (&D)"
 
 msgid "Replace in"
 msgstr "替換於"
-
-msgid "&Selection"
-msgstr "選取區 (&S)"
 
 msgid "Wh&ole file"
 msgstr "整個檔案 (&O)"

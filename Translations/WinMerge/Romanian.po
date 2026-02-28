@@ -962,6 +962,9 @@ msgstr "Am&bele"
 msgid "&All"
 msgstr "Toate"
 
+msgid "&Selection"
+msgstr "&Selecție"
+
 msgid "Re&name"
 msgstr "Rede&numește"
 
@@ -1824,9 +1827,6 @@ msgstr "Nu relua de la începutul &fișierului"
 
 msgid "Replace in"
 msgstr "Înlocuiește în"
-
-msgid "&Selection"
-msgstr "&Selecție"
 
 msgid "Wh&ole file"
 msgstr "Între&gul fișier"

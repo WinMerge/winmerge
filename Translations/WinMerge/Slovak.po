@@ -963,6 +963,9 @@ msgstr "&Oba"
 msgid "&All"
 msgstr "&Všetky"
 
+msgid "&Selection"
+msgstr "&výber"
+
 msgid "Re&name"
 msgstr "Pre&menovať"
 
@@ -1825,9 +1828,6 @@ msgstr "&Nezalamovať koniec súboru"
 
 msgid "Replace in"
 msgstr "Nahradiť v"
-
-msgid "&Selection"
-msgstr "&výber"
 
 msgid "Wh&ole file"
 msgstr "&celý súbor"

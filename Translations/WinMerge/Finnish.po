@@ -963,6 +963,9 @@ msgstr "Molemmat"
 msgid "&All"
 msgstr "K&aikki"
 
+msgid "&Selection"
+msgstr "Valinta"
+
 msgid "Re&name"
 msgstr "Nimeä uudelleen"
 
@@ -1825,9 +1828,6 @@ msgstr "Älä rivitä tiedoston loppua"
 
 msgid "Replace in"
 msgstr "Korvaa kohteessa"
-
-msgid "&Selection"
-msgstr "Valinta"
 
 msgid "Wh&ole file"
 msgstr "Koko tiedosto"

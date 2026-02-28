@@ -964,6 +964,9 @@ msgstr "İ&kisi de"
 msgid "&All"
 msgstr "&Tümü"
 
+msgid "&Selection"
+msgstr "&Seçilmiş bölümde"
+
 msgid "Re&name"
 msgstr "Ye&niden adlandır"
 
@@ -1826,9 +1829,6 @@ msgstr "Dosya &sonundan başa dönülmesin"
 
 msgid "Replace in"
 msgstr "Şurada değiştir"
-
-msgid "&Selection"
-msgstr "&Seçilmiş bölümde"
 
 msgid "Wh&ole file"
 msgstr "D&osyanın tümünde"

@@ -964,6 +964,9 @@ msgstr "O&ba"
 msgid "&All"
 msgstr "Wszystkie"
 
+msgid "&Selection"
+msgstr "Zaznaczeniu"
+
 msgid "Re&name"
 msgstr "Zmień &nazwę"
 
@@ -1826,9 +1829,6 @@ msgstr "Szukaj tylko &do końca pliku"
 
 msgid "Replace in"
 msgstr "Zastąp w"
-
-msgid "&Selection"
-msgstr "Zaznaczeniu"
 
 msgid "Wh&ole file"
 msgstr "Całym pliku"

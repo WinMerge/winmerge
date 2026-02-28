@@ -963,6 +963,9 @@ msgstr "A&bu"
 msgid "&All"
 msgstr "V&iską"
 
+msgid "&Selection"
+msgstr "&Pažym. fragmente"
+
 msgid "Re&name"
 msgstr "Pervardi&nti"
 
@@ -1825,9 +1828,6 @@ msgstr "Failo gale nepra&dėti iš pradžių"
 
 msgid "Replace in"
 msgstr "Keisti"
-
-msgid "&Selection"
-msgstr "&Pažym. fragmente"
 
 msgid "Wh&ole file"
 msgstr "Vi&same faile"

@@ -1153,6 +1153,10 @@ msgid "&All"
 msgstr ""
 
 #, c-format
+msgid "&Selection"
+msgstr "&Επιλογής"
+
+#, c-format
 msgid "Re&name"
 msgstr "Μετο&νομασία"
 
@@ -2087,10 +2091,6 @@ msgstr "Χωρίς ανα&δίπλωση στο τέλος του αρχείου
 #, c-format
 msgid "Replace in"
 msgstr "Αντικατάσταση εντός"
-
-#, c-format
-msgid "&Selection"
-msgstr "&Επιλογής"
 
 #, c-format
 msgid "Wh&ole file"

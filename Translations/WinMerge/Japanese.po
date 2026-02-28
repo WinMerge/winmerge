@@ -962,6 +962,9 @@ msgstr "両側(&B)"
 msgid "&All"
 msgstr "すべて(&A)"
 
+msgid "&Selection"
+msgstr "選択範囲(&S)"
+
 msgid "Re&name"
 msgstr "名前の変更(&N)"
 
@@ -1824,9 +1827,6 @@ msgstr "ファイルの終端で折り返さない(&D)"
 
 msgid "Replace in"
 msgstr "範囲"
-
-msgid "&Selection"
-msgstr "選択範囲(&S)"
 
 msgid "Wh&ole file"
 msgstr "ファイル全体(&O)"

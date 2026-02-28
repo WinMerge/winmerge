@@ -970,6 +970,9 @@ msgstr "Les &deux"
 msgid "&All"
 msgstr "&Tous"
 
+msgid "&Selection"
+msgstr "&sélection"
+
 msgid "Re&name"
 msgstr "Re&nommer"
 
@@ -1832,9 +1835,6 @@ msgstr "Ne pas boucler à la fin &du fichier"
 
 msgid "Replace in"
 msgstr "Remplacer dans"
-
-msgid "&Selection"
-msgstr "&sélection"
 
 msgid "Wh&ole file"
 msgstr "T&out le fichier"

@@ -1157,6 +1157,10 @@ msgid "&All"
 msgstr ""
 
 #, c-format
+msgid "&Selection"
+msgstr "Hauta&pena"
+
+#, c-format
 msgid "Re&name"
 msgstr "Birri&zendatu"
 
@@ -2091,10 +2095,6 @@ msgstr "&Ez inguratu agiri amaiera"
 #, c-format
 msgid "Replace in"
 msgstr "Ordeztu hemen"
-
-#, c-format
-msgid "&Selection"
-msgstr "Hauta&pena"
 
 #, c-format
 msgid "Wh&ole file"

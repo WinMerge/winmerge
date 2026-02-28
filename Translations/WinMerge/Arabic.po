@@ -964,6 +964,9 @@ msgstr "&كلاهما"
 msgid "&All"
 msgstr "&الكل"
 
+msgid "&Selection"
+msgstr "&تحديد"
+
 msgid "Re&name"
 msgstr "إ&عادة تسمية"
 
@@ -1828,9 +1831,6 @@ msgstr "لا تقم بعمل التفاف لنهاية الملف"
 
 msgid "Replace in"
 msgstr "استبدال في"
-
-msgid "&Selection"
-msgstr "&تحديد"
 
 msgid "Wh&ole file"
 msgstr "&كامل الملف"

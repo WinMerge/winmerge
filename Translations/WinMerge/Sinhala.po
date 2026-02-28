@@ -1154,6 +1154,10 @@ msgid "&All"
 msgstr ""
 
 #, c-format
+msgid "&Selection"
+msgstr "තෝරා ගත් කොටස"
+
+#, c-format
 msgid "Re&name"
 msgstr "නැවත නම් කරන්න"
 
@@ -2088,10 +2092,6 @@ msgstr "&Don't wrap at end of file"
 #, c-format
 msgid "Replace in"
 msgstr "මෙම ස්ථාන ප්‍රතිස්ථාපනය කරන්න"
-
-#, c-format
-msgid "&Selection"
-msgstr "තෝරා ගත් කොටස"
 
 #, c-format
 msgid "Wh&ole file"

@@ -967,6 +967,9 @@ msgstr "两侧(&B)"
 msgid "&All"
 msgstr "全部(&A)"
 
+msgid "&Selection"
+msgstr "选中内容(&S)"
+
 msgid "Re&name"
 msgstr "改名(&N)"
 
@@ -1829,9 +1832,6 @@ msgstr "至文件末尾不从头查找(&D)"
 
 msgid "Replace in"
 msgstr "替换范围"
-
-msgid "&Selection"
-msgstr "选中内容(&S)"
 
 msgid "Wh&ole file"
 msgstr "整个文件(&O)"

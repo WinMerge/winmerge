@@ -1160,6 +1160,10 @@ msgid "&All"
 msgstr "&Alle"
 
 #, c-format
+msgid "&Selection"
+msgstr "&Auswahl"
+
+#, c-format
 msgid "Re&name"
 msgstr "&Umbenennen"
 
@@ -2095,10 +2099,6 @@ msgstr "Am Dateiende nicht von vorn &beginnen"
 #, c-format
 msgid "Replace in"
 msgstr "Ersetzen in"
-
-#, c-format
-msgid "&Selection"
-msgstr "&Auswahl"
 
 #, c-format
 msgid "Wh&ole file"

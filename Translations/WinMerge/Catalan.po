@@ -1155,6 +1155,10 @@ msgid "&All"
 msgstr "Tots"
 
 #, c-format
+msgid "&Selection"
+msgstr "&Selecció"
+
+#, c-format
 msgid "Re&name"
 msgstr "Canvia el &nom"
 
@@ -2089,10 +2093,6 @@ msgstr "No facis la &volta al final del fitxer"
 #, c-format
 msgid "Replace in"
 msgstr "Substitueix a"
-
-#, c-format
-msgid "&Selection"
-msgstr "&Selecció"
 
 #, c-format
 msgid "Wh&ole file"

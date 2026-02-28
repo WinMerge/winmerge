@@ -965,6 +965,9 @@ msgstr "Оба"
 msgid "&All"
 msgstr "Все"
 
+msgid "&Selection"
+msgstr "В выбранном"
+
 msgid "Re&name"
 msgstr "&Переименовать"
 
@@ -1827,9 +1830,6 @@ msgstr "Останавливаться в конце файла"
 
 msgid "Replace in"
 msgstr "Заменить"
-
-msgid "&Selection"
-msgstr "В выбранном"
 
 msgid "Wh&ole file"
 msgstr "Во всем &файле"

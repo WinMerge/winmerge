@@ -964,6 +964,9 @@ msgstr "&Entrambi"
 msgid "&All"
 msgstr "&Tutti"
 
+msgid "&Selection"
+msgstr "Sele&zione"
+
 msgid "Re&name"
 msgstr "&Rinomina"
 
@@ -1826,9 +1829,6 @@ msgstr "&Fermati alla fine del file"
 
 msgid "Replace in"
 msgstr "Sostituisci in"
-
-msgid "&Selection"
-msgstr "Sele&zione"
 
 msgid "Wh&ole file"
 msgstr "T&utto il file"

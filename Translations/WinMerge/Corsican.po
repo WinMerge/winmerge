@@ -966,6 +966,9 @@ msgstr "&Tramindui"
 msgid "&All"
 msgstr "T&uttu"
 
+msgid "&Selection"
+msgstr "Sele&zzione"
+
 msgid "Re&name"
 msgstr "Ri&numinà"
 
@@ -1828,9 +1831,6 @@ msgstr "Ùn micca circunvoglie à a &fine di u schedariu"
 
 msgid "Replace in"
 msgstr "Rimpiazzà in"
-
-msgid "&Selection"
-msgstr "Sele&zzione"
 
 msgid "Wh&ole file"
 msgstr "Sc&hedariu sanu"

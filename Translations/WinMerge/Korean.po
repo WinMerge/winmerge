@@ -1163,6 +1163,10 @@ msgid "&All"
 msgstr "전체(&A)"
 
 #, c-format
+msgid "&Selection"
+msgstr "선택(&S)"
+
+#, c-format
 msgid "Re&name"
 msgstr "이름 바꾸기(&N)"
 
@@ -2097,10 +2101,6 @@ msgstr "파일 끝을 줄 바꾸지 않음(&D)"
 #, c-format
 msgid "Replace in"
 msgstr "적용 범위"
-
-#, c-format
-msgid "&Selection"
-msgstr "선택(&S)"
 
 #, c-format
 msgid "Wh&ole file"

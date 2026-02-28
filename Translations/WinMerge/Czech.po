@@ -1154,6 +1154,10 @@ msgid "&All"
 msgstr ""
 
 #, c-format
+msgid "&Selection"
+msgstr "ve vý&běru"
+
+#, c-format
 msgid "Re&name"
 msgstr "Přej&menovat"
 
@@ -2088,10 +2092,6 @@ msgstr "Zastavit na &konci souboru"
 #, c-format
 msgid "Replace in"
 msgstr "Nahrazovat"
-
-#, c-format
-msgid "&Selection"
-msgstr "ve vý&běru"
 
 #, c-format
 msgid "Wh&ole file"

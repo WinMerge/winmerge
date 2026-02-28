@@ -960,6 +960,9 @@ msgstr "&Двете"
 msgid "&All"
 msgstr "&Всички"
 
+msgid "&Selection"
+msgstr "&Избраното"
+
 msgid "Re&name"
 msgstr "&Преименуване"
 
@@ -1822,9 +1825,6 @@ msgstr "До &края на файла"
 
 msgid "Replace in"
 msgstr "Заменяне в"
-
-msgid "&Selection"
-msgstr "&Избраното"
 
 msgid "Wh&ole file"
 msgstr "В &целия файл"

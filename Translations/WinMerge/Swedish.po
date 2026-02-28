@@ -966,6 +966,9 @@ msgstr "Båda"
 msgid "&All"
 msgstr "Alla"
 
+msgid "&Selection"
+msgstr "Markering"
+
 msgid "Re&name"
 msgstr "Döp om"
 
@@ -1828,9 +1831,6 @@ msgstr "Växla inte vid slutet av filen"
 
 msgid "Replace in"
 msgstr "Ersätt i"
-
-msgid "&Selection"
-msgstr "Markering"
 
 msgid "Wh&ole file"
 msgstr "Hela filen"

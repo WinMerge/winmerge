@@ -963,6 +963,9 @@ msgstr "&Cả hai"
 msgid "&All"
 msgstr "&Tất cả"
 
+msgid "&Selection"
+msgstr "Phần được chọn"
+
 msgid "Re&name"
 msgstr "Đổi &tên"
 
@@ -1825,9 +1828,6 @@ msgstr "Đừng tìm vòng lại khi tới cuối tệp"
 
 msgid "Replace in"
 msgstr "Thay thế trong"
-
-msgid "&Selection"
-msgstr "Phần được chọn"
 
 msgid "Wh&ole file"
 msgstr "Toàn bộ tệp"

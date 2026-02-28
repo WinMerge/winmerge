@@ -970,6 +970,7 @@ BEGIN
             MENUITEM "&Right",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Both",                       ID_DIR_DEL_BOTH
             MENUITEM "&All",                        ID_DIR_DEL_ALL
+            MENUITEM "&Selection",                  ID_MERGE_DELETE
         END
         MENUITEM "Re&name",                     ID_DIR_ITEM_RENAME
         MENUITEM "&Hide Items",                 ID_DIR_HIDE_FILENAMES

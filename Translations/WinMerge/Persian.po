@@ -1155,6 +1155,10 @@ msgid "&All"
 msgstr ""
 
 #, c-format
+msgid "&Selection"
+msgstr "&S گزينش "
+
+#, c-format
 msgid "Re&name"
 msgstr "&n تغيير نام "
 
@@ -2089,10 +2093,6 @@ msgstr "&D پايان پرونده را سطربندي نکن "
 #, c-format
 msgid "Replace in"
 msgstr " جايگزيني در "
-
-#, c-format
-msgid "&Selection"
-msgstr "&S گزينش "
 
 #, c-format
 msgid "Wh&ole file"

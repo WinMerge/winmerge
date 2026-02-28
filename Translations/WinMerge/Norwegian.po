@@ -962,6 +962,9 @@ msgstr "&Begge"
 msgid "&All"
 msgstr ""
 
+msgid "&Selection"
+msgstr "&Merket område"
+
 msgid "Re&name"
 msgstr "En&dre navn"
 
@@ -1824,9 +1827,6 @@ msgstr "&Ikke bryt ved filende"
 
 msgid "Replace in"
 msgstr "Erstatt i"
-
-msgid "&Selection"
-msgstr "&Merket område"
 
 msgid "Wh&ole file"
 msgstr "He&le filen"

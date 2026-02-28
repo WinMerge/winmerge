@@ -1151,6 +1151,10 @@ msgid "&All"
 msgstr ""
 
 #, c-format
+msgid "&Selection"
+msgstr "Изабраним"
+
+#, c-format
 msgid "Re&name"
 msgstr "Преиме&нуј"
 
@@ -2075,10 +2079,6 @@ msgstr "&Без прелома текста"
 #, c-format
 msgid "Replace in"
 msgstr "Замени у"
-
-#, c-format
-msgid "&Selection"
-msgstr "Изабраним"
 
 #, c-format
 msgid "Wh&ole file"

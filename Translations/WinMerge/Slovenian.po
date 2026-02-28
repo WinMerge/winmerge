@@ -963,6 +963,9 @@ msgstr "&Oboje"
 msgid "&All"
 msgstr "&Vse"
 
+msgid "&Selection"
+msgstr "&Izbor"
+
 msgid "Re&name"
 msgstr "P&reimenuj"
 
@@ -1825,9 +1828,6 @@ msgstr "&Po koncu datoteke ne nadaljuj na začetku"
 
 msgid "Replace in"
 msgstr "Zamenjaj v"
-
-msgid "&Selection"
-msgstr "&Izbor"
 
 msgid "Wh&ole file"
 msgstr "&Celotna datoteka"

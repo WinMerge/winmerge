@@ -1155,6 +1155,10 @@ msgid "&All"
 msgstr ""
 
 #, c-format
+msgid "&Selection"
+msgstr "&Valgte"
+
+#, c-format
 msgid "Re&name"
 msgstr "Om&døb"
 
@@ -2089,10 +2093,6 @@ msgstr "&Ombryd ikke filendelser"
 #, c-format
 msgid "Replace in"
 msgstr "Erstat i"
-
-#, c-format
-msgid "&Selection"
-msgstr "&Valgte"
 
 #, c-format
 msgid "Wh&ole file"

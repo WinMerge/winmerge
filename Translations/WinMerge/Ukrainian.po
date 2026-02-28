@@ -963,6 +963,9 @@ msgstr "&Обидва"
 msgid "&All"
 msgstr "Все"
 
+msgid "&Selection"
+msgstr "В ві&дзначеному"
+
 msgid "Re&name"
 msgstr "&Перейменувати"
 
@@ -1825,9 +1828,6 @@ msgstr "Не зупинятися при досягненні кінця фай�
 
 msgid "Replace in"
 msgstr "Замінити"
-
-msgid "&Selection"
-msgstr "В ві&дзначеному"
 
 msgid "Wh&ole file"
 msgstr "В всьому &файлі"

@@ -961,6 +961,9 @@ msgstr "שניהם"
 msgid "&All"
 msgstr "הכל"
 
+msgid "&Selection"
+msgstr "בחירה"
+
 msgid "Re&name"
 msgstr "שנה שם"
 
@@ -1823,9 +1826,6 @@ msgstr "אל תגלוש לסוף הקובץ"
 
 msgid "Replace in"
 msgstr "החלפה ב"
-
-msgid "&Selection"
-msgstr "בחירה"
 
 msgid "Wh&ole file"
 msgstr "כל הקובץ"
