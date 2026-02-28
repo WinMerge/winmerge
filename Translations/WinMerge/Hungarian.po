@@ -1872,7 +1872,7 @@ msgid "Normalized &Unicode Name"
 msgstr "Normalizált &Unicode név"
 
 msgid "&Relative Path"
-msgstr ""
+msgstr "&Relatív elérési út"
 
 msgid "&Date"
 msgstr "&Dátum"
@@ -1887,25 +1887,25 @@ msgid "Insert rege&xReplace() Function"
 msgstr "rege&xCsere() függvény beszúrása"
 
 msgid "Replace &Lists"
-msgstr ""
+msgstr "&Listák cseréje"
 
 msgid "&Create String Replace List and Insert..."
-msgstr ""
+msgstr "&Karakterlánc-cserelista létrehozása és beszúrása..."
 
 msgid "Create &Regex Replace List and Insert..."
-msgstr ""
+msgstr "&Regex cserelista létrehozása és beszúrása..."
 
 msgid "&String Replace Lists"
-msgstr ""
+msgstr "&Karakterlánc-cserelisták"
 
 msgid "Re&gex Replace Lists"
-msgstr ""
+msgstr "Re&gex kifejezések cserelistái"
 
 msgid "Open String Replace Lists Folder..."
-msgstr ""
+msgstr "Karakterlánc-cserelisták mappájának megnyitása..."
 
 msgid "Open Regex Replace Lists Folder..."
-msgstr ""
+msgstr "Regex cserelisták mappájának megnyitása..."
 
 msgid "Text &Normalization"
 msgstr "Szöveg &normalizálás"
@@ -1941,7 +1941,7 @@ msgid "&Katakana"
 msgstr "&Katakana"
 
 msgid "Normalize &Unicode"
-msgstr ""
+msgstr "&Unicode normalizálása"
 
 #, c-format
 msgid "About WinMerge"
@@ -3577,7 +3577,7 @@ msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Ini fájlok (*.ini)|*.ini|Minden fájl (*.*)|*.*||"
 
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Tabulátorral elválasztott értékek (*.tsv;*.txt)|*.tsv;*.txt|Összes fájl (*.*)|*.*||"
 
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
@@ -5825,10 +5825,10 @@ msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "A WinMerge egy korábbi összeomlást észlelt. Kérjük, jelentse ezt, ha lehetséges."
 
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
-msgstr ""
+msgstr "# Regex helyettesítési lista\r\n# Formátum: regex<TAB>csere\r\n# A $1 és $2-hez hasonló visszahivatkozások támogatottak\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
-msgstr ""
+msgstr "# Cserelista\r\n# Formátum: search<TAB>replacement\r\n# A # karakterrel kezdődő sorokat figyelmen kívül hagyja\r\n\r\n1-től 1-ig\r\n2-től 2-ig\r\n"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
@@ -5936,7 +5936,7 @@ msgid "Prettify YAML"
 msgstr "YAML formázása"
 
 msgid "Prettify PO"
-msgstr ""
+msgstr "PO formázása"
 
 msgid "Preview Graphviz"
 msgstr "Graphviz előnézet"
@@ -5963,7 +5963,7 @@ msgid "Validate HTML"
 msgstr "HTML érvényesítése"
 
 msgid "Validate PO"
-msgstr ""
+msgstr "PO érvényesítése"
 
 msgid "Disassemble JVM Bytecode"
 msgstr "JVM Bytekód kibontása"
@@ -6036,7 +6036,7 @@ msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
 msgstr "YAML formázás yq paranccsal. \r\nArgumentumok: Az yq parancsnak megfelelő szűrő vagy parancssori opciók."
 
 msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
-msgstr ""
+msgstr "PO formázó (gettext msgcat).\r\nArgumentumok: msgcat parancssori opciók."
 
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
 msgstr "Graphviz előnézeti program. \r\nArgumentumok: A dot parancsnak megfelelő parancssori opciók."
@@ -6063,7 +6063,7 @@ msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "HTML Validátor tidy-html5-tel. \r\nArgumentumok: A tidy parancsnak megfelelő parancssori opciók."
 
 msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
-msgstr ""
+msgstr "PO Validator (gettext msgfmt).\r\nArgumentumok: msgfmt parancssori opciók."
 
 msgid "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
 msgstr "JVM bytecode disassembler javap-vel. \r\nArgumentumok: A javap parancsnak megfelelő parancssori opciók."
@@ -6171,7 +6171,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "Sortörések cseréje szóközökre a képletekben"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "A fájlnévben szerepeljen a lap sorszáma"
 
 msgid "Compare VBA macros"
 msgstr "VBA makrók összehasonlítása"
