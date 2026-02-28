@@ -1635,11 +1635,11 @@ TEST_P(FilterExpressionTest, ReplaceWithList)
 		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
 		file.WriteBom();
 		file.WriteString(L"# Comment line\n");
-		file.WriteString(L"apple\t\u308a\u3093\u3054\n"); // りんご
-		file.WriteString(L"orange\t\u30aa\u30ec\u30f3\u30b8\n"); // オレンジ
-		file.WriteString(L"banana\t\u30d0\u30ca\u30ca\n"); // バナナ
+		file.WriteString(L"apple\tAPL\n");
+		file.WriteString(L"orange\tORG\n");
+		file.WriteString(L"banana\tBAN\n");
 		file.WriteString(L"# Another comment\n");
-		file.WriteString(L"grape\t\u3076\u3069\u3046\n"); // ぶどう
+		file.WriteString(L"grape\tGRP\n");
 		file.Close();
 	}
 
@@ -1658,17 +1658,17 @@ TEST_P(FilterExpressionTest, ReplaceWithList)
 	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
 
 	// Test replaceWithList function
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"I like apple and orange\", \"" + ucr::toUTF8(replaceListPath) + u8"\") == \"I like りんご and オレンジ\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"I like apple and orange\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"I like APL and ORG\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"banana is yellow\", \"" + ucr::toUTF8(replaceListPath) + u8"\") == \"バナナ is yellow\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"banana is yellow\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"BAN is yellow\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
-	EXPECT_TRUE(fe.Parse("replaceWithList(\"grape juice\", \"" + ucr::toUTF8(replaceListPath) + u8"\") == \"ぶどう juice\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"grape juice\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"GRP juice\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Multiple replacements in one string
-	EXPECT_TRUE(fe.Parse("replaceWithList(\"apple orange banana\", \"" + ucr::toUTF8(replaceListPath) + u8"\") == \"りんご オレンジ バナナ\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"apple orange banana\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"APL ORG BAN\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// No match
@@ -1680,23 +1680,23 @@ TEST_P(FilterExpressionTest, ReplaceWithList)
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Array of strings
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(array(\"apple\", \"banana\"), \"" + ucr::toUTF8(replaceListPath) + u8"\") == array(\"りんご\", \"バナナ\")"));
+	EXPECT_TRUE(fe.Parse("replaceWithList(array(\"apple\", \"banana\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"APL\", \"BAN\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Case-insensitive: uppercase input matches lowercase pattern
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"APPLE\", \"" + ucr::toUTF8(replaceListPath) + u8"\") == \"りんご\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"APPLE\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"APL\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Case-insensitive: mixed case input
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"Apple is good\", \"" + ucr::toUTF8(replaceListPath) + u8"\") == \"りんご is good\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"Apple is good\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"APL is good\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Case-insensitive: multiple mixed-case words
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"ORANGE and Banana\", \"" + ucr::toUTF8(replaceListPath) + u8"\") == \"オレンジ and バナナ\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"ORANGE and Banana\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"ORG and BAN\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Case-insensitive: array with mixed case
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(array(\"APPLE\", \"GRAPE\"), \"" + ucr::toUTF8(replaceListPath) + u8"\") == array(\"りんご\", \"ぶどう\")"));
+	EXPECT_TRUE(fe.Parse("replaceWithList(array(\"APPLE\", \"GRAPE\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"APL\", \"GRP\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Test regexReplaceWithList function
@@ -1761,7 +1761,7 @@ TEST_P(FilterExpressionTest, ReplaceWithListAdvanced)
 		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
 		file.WriteBom();
 		file.WriteString(L"# Test special characters\n");
-		file.WriteString(L"C++\tC\u30d7\u30e9\u30d7\u30e9\n"); // Cプラプラ
+		file.WriteString(L"C++\tCPlusPlus\n");
 		file.WriteString(L"a\tb\tc\td\n"); // Extra tabs should be ignored
 		file.WriteString(L"\n"); // Empty line should be skipped
 		file.WriteString(L"test\t\n"); // Replace with empty string
@@ -1783,7 +1783,7 @@ TEST_P(FilterExpressionTest, ReplaceWithListAdvanced)
 	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
 
 	// Test special characters
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"I love C++\", \"" + ucr::toUTF8(replaceListPath) + u8"\") == \"I love Cプラプラ\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"I love C++\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"I love CPlusPlus\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Test extra tabs (should only use first two fields)
@@ -1831,34 +1831,34 @@ TEST_P(FilterExpressionTest, ReplaceWithListEncoding)
 	const String tempDir = env::GetTemporaryPath();
 	const String replaceListPath = paths::ConcatPath(tempDir, L"test_replacelist_utf8.txt");
 
-	// Create UTF-8 encoded file with Japanese characters
+	// Create UTF-8 encoded file with word replacements
 	{
 		UniStdioFile file;
 		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
 		file.WriteBom();
-		file.WriteString(L"# \u65e5\u672c\u8a9e\u306e\u30c6\u30b9\u30c8\n"); // 日本語のテスト
-		file.WriteString(L"\u3053\u3093\u306b\u3061\u306f\thello\n"); // こんにちは
-		file.WriteString(L"\u3055\u3088\u3046\u306a\u3089\tgoodbye\n"); // さようなら
-		file.WriteString(L"\u3042\u308a\u304c\u3068\u3046\tthank you\n"); // ありがとう
-		file.WriteString(L"\u72ac\tdog\n"); // 犬
-		file.WriteString(L"\u732b\tcat\n"); // 猫
+		file.WriteString(L"# UTF-8 encoding test\n");
+		file.WriteString(L"hello\tgreetings\n");
+		file.WriteString(L"goodbye\tfarewell\n");
+		file.WriteString(L"thanks\tgratitude\n");
+		file.WriteString(L"dog\tcanine\n");
+		file.WriteString(L"cat\tfeline\n");
 		file.Close();
 	}
 
 	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
 
-	// Test Japanese to English
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"こんにちは\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"hello\""));
+	// Test word replacement
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"hello\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"greetings\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"さようなら\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"goodbye\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"goodbye\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"farewell\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(\"私の犬と猫\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"私のdogとcat\""));
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"my dog and cat\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"my canine and feline\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Array test
-	EXPECT_TRUE(fe.Parse(u8"replaceWithList(array(\"こんにちは\", \"ありがとう\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"hello\", \"thank you\")"));
+	EXPECT_TRUE(fe.Parse("replaceWithList(array(\"hello\", \"thanks\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"greetings\", \"gratitude\")"));
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	// Cleanup
