@@ -13,6 +13,7 @@
 #include "IListCtrl.h"
 
 struct DiffFuncStruct;
+class UniStdioFile;
 
 /**
  * @brief This class creates directory compare reports.
@@ -65,6 +66,9 @@ protected:
 	void GenerateXmlHtmlContent(bool xml);
 	void GenerateHTMLFooter();
 	void GenerateXmlFooter();
+	void GenerateCF_HTML(const String& htmlContent);
+	bool GenerateReportToClipboard(String &errStr);
+	bool GenerateReportToFile(String &errStr);
 
 private:
 	std::unique_ptr<IListCtrl> m_pList; /**< Pointer to UI-list */
@@ -73,7 +77,7 @@ private:
 	String m_sReportFile;
 	int m_nColumns; /**< Columns in UI */
 	String m_sSeparator; /**< Column separator for report */
-	CFile *m_pFile; /**< File to write report to */
+	UniStdioFile *m_pFile; /**< File to write report to */
 	std::vector<String> m_colRegKeys; /**< Key names for currently displayed columns */
 	std::unique_ptr<IFileCmpReport> m_pFileCmpReport;
 	bool m_bIncludeFileCmpReport; /**< Do we include file compare report in folder compare report? */

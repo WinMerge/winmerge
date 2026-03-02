@@ -1133,7 +1133,10 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="DirCmpReport.cpp" />
+    <ClCompile Include="DirCmpReport.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="DirCmpReportDlg.cpp" />
     <ClCompile Include="DirColsDlg.cpp" />
     <ClCompile Include="DirCompProgressBar.cpp" />
