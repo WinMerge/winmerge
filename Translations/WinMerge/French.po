@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2026-02-03 07:46+0000\n"
-"PO-Revision-Date: 2026-02-07 22:55-0500\n"
+"PO-Revision-Date: 2026-03-03 16:05-0500\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -160,10 +160,10 @@ msgid "&None"
 msgstr "&Aucune"
 
 msgid "&Vertical"
-msgstr "&Vertical"
+msgstr ""
 
 msgid "&Horizontal"
-msgstr "&Horizontal"
+msgstr ""
 
 msgid "&Previous Page"
 msgstr "Page &précédente"
@@ -187,7 +187,7 @@ msgid "Flip H&orizontally"
 msgstr "Retournement h&orizontal"
 
 msgid "&Zoom"
-msgstr "&Zoom"
+msgstr ""
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Zoom a&vant\tCtrl++"
@@ -254,7 +254,7 @@ msgid "&Full Size Screenshots"
 msgstr "Captures d'écran en taille &réelle"
 
 msgid "&HTMLs"
-msgstr "&HTMLs"
+msgstr ""
 
 msgid "&Texts"
 msgstr "&Textes"
@@ -293,7 +293,7 @@ msgid "&Disk Cache"
 msgstr "Cache du &disque"
 
 msgid "&Cookies"
-msgstr "&Cookies"
+msgstr ""
 
 msgid "&Browsing History"
 msgstr "&Historique de navigation"
@@ -317,7 +317,7 @@ msgid "&Binary"
 msgstr "&Binaire"
 
 msgid "&Image"
-msgstr "&Image"
+msgstr ""
 
 msgid "&Webpage"
 msgstr "Page &Web"
@@ -458,7 +458,7 @@ msgid "&Translations"
 msgstr "&Traductions"
 
 msgid "C&onfiguration"
-msgstr "C&onfiguration"
+msgstr ""
 
 msgid "&GNU General Public License"
 msgstr "Licence publique générale &GNU"
@@ -1156,7 +1156,7 @@ msgid "Size"
 msgstr "Taille"
 
 msgid "Existence"
-msgstr "Existence"
+msgstr ""
 
 msgid "&Load Project..."
 msgstr "Charger &un projet..."
@@ -1276,7 +1276,7 @@ msgid "&Build Artifacts"
 msgstr "&Créer des artefacts"
 
 msgid "&IDE"
-msgstr "&IDE"
+msgstr ""
 
 msgid "Add &File Condition"
 msgstr "Ajouter une condition de &fichier"
@@ -1648,10 +1648,10 @@ msgid "Normalized &Unicode Name"
 msgstr "Nom &Unicode normalisé"
 
 msgid "&Relative Path"
-msgstr ""
+msgstr "Chemin &relatif"
 
 msgid "&Date"
-msgstr "&Date"
+msgstr ""
 
 msgid "&Hash (MD5)"
 msgstr "&Hachage (MD5)"
@@ -1663,25 +1663,25 @@ msgid "Insert rege&xReplace() Function"
 msgstr "Insérer la fonction rege&xReplace()"
 
 msgid "Replace &Lists"
-msgstr ""
+msgstr "&Listes de remplacement"
 
 msgid "&Create String Replace List and Insert..."
-msgstr ""
+msgstr "&Créer une liste de remplacement de chaînes et insérer..."
 
 msgid "Create &Regex Replace List and Insert..."
-msgstr ""
+msgstr "Créer une liste de remplacement &regex et insérer..."
 
 msgid "&String Replace Lists"
-msgstr ""
+msgstr "Li&stes de remplacement de chaînes"
 
 msgid "Re&gex Replace Lists"
-msgstr ""
+msgstr "Listes de remplacement re&gex"
 
 msgid "Open String Replace Lists Folder..."
-msgstr ""
+msgstr "Ouvrir le dossier des listes de remplacement de chaînes..."
 
 msgid "Open Regex Replace Lists Folder..."
-msgstr ""
+msgstr "Ouvrir le dossier des listes de remplacement regex..."
 
 msgid "Text &Normalization"
 msgstr "&Normalisation du texte"
@@ -1711,13 +1711,13 @@ msgid "&Japanese Conversion"
 msgstr "Conversion &japonaise"
 
 msgid "&Hiragana"
-msgstr "&Hiragana"
+msgstr ""
 
 msgid "&Katakana"
-msgstr "&Katakana"
+msgstr ""
 
 msgid "Normalize &Unicode"
-msgstr ""
+msgstr "Normaliser l'&Unicode"
 
 msgid "About WinMerge"
 msgstr "À propos de WinMerge"
@@ -1726,7 +1726,7 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "Visiter la page d'accueil de WinMerge !"
 
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 msgid "Contributors"
 msgstr "Contributeurs"
@@ -1795,7 +1795,7 @@ msgid "Help"
 msgstr "Aide"
 
 msgid "&Options..."
-msgstr "&Options..."
+msgstr ""
 
 msgid "Find"
 msgstr "Rechercher"
@@ -1861,7 +1861,7 @@ msgid "&Background color:"
 msgstr "&Couleur du fond :"
 
 msgid "&Ok"
-msgstr "&Ok"
+msgstr ""
 
 msgid "&Apply"
 msgstr "&Appliquer"
@@ -2241,7 +2241,7 @@ msgid "Bro&wse..."
 msgstr "&Parcourir..."
 
 msgid "&Format"
-msgstr "&Format"
+msgstr ""
 
 msgid "St&yle:"
 msgstr "St&yle :"
@@ -2298,7 +2298,7 @@ msgid "&Plugin pipeline:"
 msgstr "&Pipeline du plug-in :"
 
 msgid "&Alias..."
-msgstr "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Arrêter"
@@ -2379,7 +2379,7 @@ msgid "&Right-hand side:"
 msgstr "Côté &droit :"
 
 msgid "Expression:"
-msgstr "Expression:"
+msgstr ""
 
 msgid "Codepage"
 msgstr "Page de code"
@@ -2498,7 +2498,7 @@ msgid "Binary:"
 msgstr "Binaire :"
 
 msgid "Unique"
-msgstr "Unique"
+msgstr ""
 
 msgid "Left:"
 msgstr "Gauche :"
@@ -2573,10 +2573,10 @@ msgid "File type"
 msgstr "Type de fichier"
 
 msgid "&CSV"
-msgstr "&CSV"
+msgstr ""
 
 msgid "&TSV"
-msgstr "&TSV"
+msgstr ""
 
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Personnalisation des &délimiteurs"
@@ -2736,7 +2736,7 @@ msgid "Rename/move detection &keys:"
 msgstr "Clés de détection du renommage/déplacement :"
 
 msgid "M&erge renames and moves:"
-msgstr ""
+msgstr "Fusionn&er les renommages et les déplacements :"
 
 msgid "File patterns:"
 msgstr "Modèles de fichiers :"
@@ -2764,7 +2764,7 @@ msgid "&Character Set..."
 msgstr "En&codage..."
 
 msgid "Image"
-msgstr "Image"
+msgstr ""
 
 msgid "Image file &patterns:"
 msgstr "&Modèles de fichiers image :"
@@ -2851,7 +2851,7 @@ msgid "Sample"
 msgstr "Exemple"
 
 msgid "AaBbYyZz"
-msgstr "AaBbYyZz"
+msgstr ""
 
 msgid "Sc&ript:"
 msgstr "Sc&ript :"
@@ -2860,22 +2860,22 @@ msgid "<A>Show more fonts</A>"
 msgstr "<A>Afficher plus de polices</A>"
 
 msgid "EXT"
-msgstr "EXT"
+msgstr ""
 
 msgid "CAP"
 msgstr "MAJ"
 
 msgid "NUM"
-msgstr "NUM"
+msgstr ""
 
 msgid "SCRL"
-msgstr "SCRL"
+msgstr ""
 
 msgid "OVR"
-msgstr "OVR"
+msgstr ""
 
 msgid "REC"
-msgstr "REC"
+msgstr ""
 
 msgid ""
 "\n"
@@ -3044,7 +3044,7 @@ msgstr "Vers Milieu :"
 
 #, c-format
 msgid "Version %1"
-msgstr "Version %1"
+msgstr ""
 
 #, c-format
 msgid "Options (%1)"
@@ -3073,7 +3073,7 @@ msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Fichiers de préférences (*.ini)|*.ini|Tous les fichiers (*.*)|*.*||"
 
 msgid "Tab-Separated Values (*.tsv;*.txt)|*.tsv;*.txt|All Files (*.*)|*.*||"
-msgstr ""
+msgstr "Valeurs séparées par des tabulations (*.tsv;*.txt)|*.tsv;*.txt|Tous les fichiers (*.*)|*.*||"
 
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "Fichiers texte (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Tous les fichiers (*.*)|*.*||"
@@ -3100,10 +3100,10 @@ msgid "File Type"
 msgstr "Type de fichier"
 
 msgid "Extension"
-msgstr "Extension"
+msgstr ""
 
 msgid "Message"
-msgstr "Message"
+msgstr ""
 
 msgid "Answer"
 msgstr "Réponse"
@@ -3136,10 +3136,10 @@ msgid "Filters"
 msgstr "Filtres"
 
 msgid "[F] "
-msgstr "[F] "
+msgstr ""
 
 msgid "Description"
-msgstr "Description"
+msgstr ""
 
 msgid "Select Filename for New Filter"
 msgstr "Sélectionnez un nom de fichier pour le nouveau filtre"
@@ -3248,7 +3248,7 @@ msgstr "Fichier original"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr ""
 
 #, c-format
 msgid "Line: %s"
@@ -3256,7 +3256,7 @@ msgstr "Ligne: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
 
 #, c-format
 msgid "  Sel: %d | %d"
@@ -3831,28 +3831,28 @@ msgid "Move"
 msgstr "Déplacer"
 
 msgid "Audio"
-msgstr "Audio"
+msgstr ""
 
 msgid "Calendar"
 msgstr "Calendrier"
 
 msgid "Communication"
-msgstr "Communication"
+msgstr ""
 
 msgid "Contact"
-msgstr "Contact"
+msgstr ""
 
 msgid "Devices"
 msgstr "Appareils"
 
 msgid "Document"
-msgstr "Document"
+msgstr ""
 
 msgid "Home"
 msgstr "Accueil"
 
 msgid "Journal"
-msgstr "Journal"
+msgstr ""
 
 msgid "Link"
 msgstr "Lien"
@@ -3864,10 +3864,10 @@ msgid "Music"
 msgstr "Musique"
 
 msgid "Note"
-msgstr "Note"
+msgstr ""
 
 msgid "Photo"
-msgstr "Photo"
+msgstr ""
 
 msgid "RecordedTV"
 msgstr "Enregistrement TV"
@@ -3964,7 +3964,7 @@ msgid " (Left and middle are identical)"
 msgstr " (Gauche et Milieu sont identiques)"
 
 msgid " (paths differ)"
-msgstr ""
+msgstr " (différences des chemins)"
 
 msgid "Text files are different"
 msgstr "Les fichiers texte sont différents"
@@ -3994,10 +3994,10 @@ msgid "Detect renames and moves"
 msgstr "Détecter les renommages et les déplacements"
 
 msgid "Merge renames"
-msgstr ""
+msgstr "Fusionner les renommages"
 
 msgid "Merge renames and moves"
-msgstr ""
+msgstr "Fusionner les renommages et les déplacements"
 
 msgid "Renamed"
 msgstr "Renommé"
@@ -4016,8 +4016,14 @@ msgstr "(%1 éléments)"
 msgid "%1 (set %2): "
 msgstr "%1 (ensemble %2) : "
 
-msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
+msgid ""
+"Some moved items have been merged.\n"
+"In Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\n"
+"Switch to Flat Mode?"
 msgstr ""
+"Certains éléments déplacés ont été fusionnés.\n"
+"En mode Arborescence, ces éléments peuvent apparaître à des emplacements qui ne correspondent pas à la structure réelle des dossiers, ce qui peut prêter à confusion.\n"
+"Passer en mode Plat ?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -4340,7 +4346,7 @@ msgid "[%1 files selected]"
 msgstr "[%1 fichiers sélectionnés]"
 
 msgid "Normal"
-msgstr "Normal"
+msgstr ""
 
 msgid "Context"
 msgstr "Contexte"
@@ -4425,7 +4431,7 @@ msgid "New Pattern"
 msgstr "Nouveau modèle"
 
 msgid "Type"
-msgstr "Type"
+msgstr ""
 
 msgid "Editor script"
 msgstr "Éditeur de script"
@@ -4646,7 +4652,7 @@ msgid "Resources"
 msgstr "Ressources"
 
 msgid "Shell"
-msgstr "Shell"
+msgstr ""
 
 msgid "Close &Left Tabs"
 msgstr "Fermer l'ong&let de Gauche"
@@ -4690,10 +4696,10 @@ msgid "default"
 msgstr "par défaut"
 
 msgid "minimal"
-msgstr "minimal"
+msgstr ""
 
 msgid "patience"
-msgstr "patience"
+msgstr ""
 
 msgid "histogram"
 msgstr "histogramme"
@@ -4702,7 +4708,7 @@ msgid "none"
 msgstr "aucun"
 
 msgid "GDI"
-msgstr "GDI"
+msgstr ""
 
 msgid "DirectWrite Default"
 msgstr "DirectWrite par défaut"
@@ -4769,11 +4775,11 @@ msgstr "Aucun"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Vertical"
-msgstr "Vertical"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Horizontal"
-msgstr "Horizontal"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Overlay"
@@ -4781,11 +4787,11 @@ msgstr "Recouvrir"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha"
-msgstr "Alpha"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr "XOR"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
@@ -4797,7 +4803,7 @@ msgstr "Animation alpha"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Zoom"
-msgstr "Zoom"
+msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
@@ -5262,11 +5268,34 @@ msgstr "p. ex. %1"
 msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "WinMerge a détecté un plantage précédent. Veuillez le signaler si possible."
 
-msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
+msgid ""
+"# Regex replacement list\r\n"
+"# Format: regex<TAB>replacement\r\n"
+"# Backreferences like $1, $2 are supported\r\n"
+"\r\n"
+"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 msgstr ""
+"# Liste de remplacement regex\n"
+"# Format : regex<TAB>remplacement\n"
+"# Les références arrières comme $1, $2 sont prises en charge\r\n"
+"\r\n"
+"(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\n"
+"\v\n"
 
-msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
+msgid ""
+"# Replacement list\r\n"
+"# Format: search<TAB>replacement\r\n"
+"# Lines starting with # are ignored\r\n"
+"\r\n"
+"from1\tto1\r\n"
+"from2\tto2\r\n"
 msgstr ""
+"# Liste de remplacement\n"
+"# Format : recherche <TAB>remplacement\r\n"
+"# Les lignes commençant par # sont ignorées\r\n"
+"de 1\tà 1\n"
+"de 2\tà 2\r\n"
+"\v\n"
 
 msgid "Prettification"
 msgstr "Embellissement"
@@ -5281,7 +5310,7 @@ msgid "Data Query"
 msgstr "Requête de données"
 
 msgid "Validation"
-msgstr "Validation"
+msgstr ""
 
 msgid "Decompilation"
 msgstr "Décompilation"
@@ -5362,19 +5391,19 @@ msgid "Apply Prediff Substitution Filters"
 msgstr "Appliquer les filtres de substitution pour la précomparaison"
 
 msgid "Prettify HTML"
-msgstr "Embellir HTML"
+msgstr "Embellir le HTML"
 
 msgid "Prettify JSON"
-msgstr "Embellir JSON"
+msgstr "Embellir le JSON"
 
 msgid "Prettify XML"
-msgstr "Embellir XML"
+msgstr "Embellir le XML"
 
 msgid "Prettify YAML"
-msgstr "Embellir YAML"
+msgstr "Embellir le YAML"
 
 msgid "Prettify PO"
-msgstr ""
+msgstr "Embellir le PO"
 
 msgid "Preview Graphviz"
 msgstr "Aperçu Graphviz"
@@ -5401,7 +5430,7 @@ msgid "Validate HTML"
 msgstr "Valider le HTML"
 
 msgid "Validate PO"
-msgstr ""
+msgstr "Valider le PO"
 
 msgid "Disassemble JVM Bytecode"
 msgstr "Désassembler le bytecode JVM"
@@ -5551,8 +5580,12 @@ msgstr ""
 "Embelisseur YAML (yq).\r\n"
 "Arguments : options de filtre / ligne de commande pour yq."
 
-msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
+msgid ""
+"PO Prettier (gettext msgcat).\r\n"
+"Arguments: msgcat command line options."
 msgstr ""
+"PO Prettier (gettext msgcat).\r\n"
+"Arguments : options de ligne de commande de msgcat."
 
 msgid ""
 "Graphviz Previewer.\r\n"
@@ -5610,8 +5643,12 @@ msgstr ""
 "Validateur XML (tidy-html5).\r\n"
 "Arguments : options de ligne de commande pour tidy-html5."
 
-msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
+msgid ""
+"PO Validator (gettext msgfmt).\r\n"
+"Arguments: msgfmt command line options."
 msgstr ""
+"Validateur de PO (gettext msgfmt).\r\n"
+"Arguments : options de ligne de commande msgfmt."
 
 msgid ""
 "JVM bytecode disassembler (javap).\r\n"
@@ -5751,7 +5788,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "Remplacez les sauts de ligne dans les formules par des espaces"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "Inclure le numéro de commande de la feuille dans le nom du fichier"
 
 msgid "Compare VBA macros"
 msgstr "Comparer les macros VBA"
