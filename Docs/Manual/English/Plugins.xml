@@ -1482,7 +1482,7 @@
           <primary>DecompileJVM plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Java decompiler with CFR - decompiles .class files to readable Java source code</para>
+      <para>Java decompiler with CFR - decompiles .class files into readable Java source code</para>
 
       <cmdsynopsis sepchar=" ">
         <command>DecompileJVM</command>
