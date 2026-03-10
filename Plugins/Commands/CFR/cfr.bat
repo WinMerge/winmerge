@@ -6,7 +6,7 @@ set DOWNLOAD_URL=https://github.com/leibnitz27/cfr/releases/download/%CFRVer%/%C
 set CFR_PATH=Commands\CFR\%CFRJar%
 set MESSAGE='CFR Java Decompiler is not installed. Do you want to download it from %DOWNLOAD_URL%'
 set TITLE='CFR Java Decompiler Plugin'
-set CFR_SHA256=21d86138f8ce39027f782a2c4a5a7e7d6e8c94e3d5df27a2f3c2a68fcaa27b8a
+set CFR_SHA256=f686e8f3ded377d7bc87d216a90e9e9512df4156e75b06c655a16648ae8765b2
 
 cd /d "%APPDATA%\WinMerge"
 if not exist %CFR_PATH% (
@@ -20,8 +20,10 @@ if not exist %CFR_PATH% (
       echo "download is canceled" 1>&2
     ) else (
       start "Downloading..." /WAIT powershell -command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri %DOWNLOAD_URL% -UseBasicParsing -Outfile %CFR_PATH%"
-      if not exist %CFR_PATH% (
+      powershell -command "$(CertUtil -hashfile %CFR_PATH% SHA256)[1] -replace ' ','' -eq '%CFR_SHA256%'" | findstr True > NUL
+      if errorlevel 1 (
         echo %CFR_PATH%: download failed 1>&2
+        del %CFR_PATH% 2> NUL
       )
     )
   )
