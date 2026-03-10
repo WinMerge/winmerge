@@ -4986,6 +4986,9 @@ msgstr "Konwertuj tekst za pomocą AI..."
 msgid "Unescape Java properties files"
 msgstr ""
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Zrób duże litery"
 
@@ -5132,6 +5135,9 @@ msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
 msgstr "Konwerter tekstu wykorzystujący OpenAI API.\r\nUżycie: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
 msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"

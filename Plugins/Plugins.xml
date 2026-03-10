@@ -217,7 +217,7 @@
   </plugin>
   <plugin name="DecompileJVM">
     <event value="FILE_PACK_UNPACK" />
-    <description value="Java decompiler (CFR).&#xD;&#xA;Decompiles .class files to readable Java source code.&#xD;&#xA;Arguments: CFR command line options." />
+    <description value="Java decompiler (CFR).&#xD;&#xA;Decompiles .class files into readable Java source code.&#xD;&#xA;Arguments: CFR command line options." />
     <file-filters value="\.class$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".java" />

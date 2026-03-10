@@ -103,6 +103,7 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION40 "Disassemble Native Code"
     IDS_PLUGIN_MENU_CAPTION41 "Convert Text with AI..."
     IDS_PLUGIN_MENU_CAPTION42 "Unescape Java properties files"
+    IDS_PLUGIN_MENU_CAPTION43 "Decompile Java (CFR)"
 END
 
 STRINGTABLE
@@ -200,6 +201,7 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION55 "AI-assisted text conversion"
     IDS_PLUGIN_DESCRIPTION56 "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
     IDS_PLUGIN_DESCRIPTION57 "Unescape and display escaped Java properties files."
+    IDS_PLUGIN_DESCRIPTION58 "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
 END
 
 STRINGTABLE

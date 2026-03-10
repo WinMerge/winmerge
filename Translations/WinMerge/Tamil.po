@@ -5475,6 +5475,9 @@ msgstr "செநு உடன் உரையை மாற்று ..."
 msgid "Unescape Java properties files"
 msgstr "யுனெச்கேப் சாவா பண்புகள் கோப்புகள்"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "எழுத்துகளை பெரியஎழுத்து"
 
@@ -5766,6 +5769,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "தப்பித்த சாவா பண்புகள் கோப்புகளை uncape மற்றும் காட்சி."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct சாளரஒன்றிணை சொருகி விருப்பங்கள்"

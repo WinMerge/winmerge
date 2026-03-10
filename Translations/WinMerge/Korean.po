@@ -6142,6 +6142,9 @@ msgstr "AI로 텍스트 변환..."
 msgid "Unescape Java properties files"
 msgstr "Java 속성 파일 이스케이프 해제"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "문자를 대문자로 만들기"
 
@@ -6427,6 +6430,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "이스케이프 처리된 Java 속성 파일을 이스케이프 해제하고 표시합니다."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge 플러그인 옵션"

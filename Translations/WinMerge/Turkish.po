@@ -5456,6 +5456,9 @@ msgstr "Metni yapay zeka ile dönüştür..."
 msgid "Unescape Java properties files"
 msgstr "Java özellikleri dosyalarından kaçınma"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Büyük harflere dönüştür"
 
@@ -5749,6 +5752,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "Kaçınılan Java özellikleri dosyalarından kaçınma ve görüntüle."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge eklentisi ayarları"

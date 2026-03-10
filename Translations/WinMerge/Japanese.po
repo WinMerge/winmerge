@@ -5432,6 +5432,9 @@ msgstr "AIテキスト変換..."
 msgid "Unescape Java properties files"
 msgstr "Java プロパティファイルをアンエスケープ"
 
+msgid "Decompile Java (CFR)"
+msgstr "Java クラスのデコンパイル (CFR)"
+
 msgid "Make characters uppercase"
 msgstr "テキストを大文字に変換します"
 
@@ -5719,6 +5722,11 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "エスケープされたJavaプロパティファイルをエスケープ解除して表示します。"
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr "Java デコンパイラ (CFR)。\r\n."
+"class ファイルを読みやすい Java ソースコードにデコンパイルします。\r\n"
+"引数: CFR のコマンドラインオプション"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge プラグインオプション"

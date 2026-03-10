@@ -6180,6 +6180,9 @@ msgstr "Textumwandlung mit AI..."
 msgid "Unescape Java properties files"
 msgstr "Java-Properties-Dateien unescapen"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Großbuchstaben erzeugen"
 
@@ -6473,6 +6476,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "Escape-Sequenzen in Java-Properties-Dateien auflösen und die Inhalte anzeigen."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Plugin-Einstellungen für CompareMSExcelFiles"

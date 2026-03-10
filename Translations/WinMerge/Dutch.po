@@ -5413,6 +5413,9 @@ msgstr "Tekst converteren met AI..."
 msgid "Unescape Java properties files"
 msgstr "Java properties-bestanden unescapen"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Tekens hoofdletters maken"
 
@@ -5704,6 +5707,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "Java properties-bestanden unescapen en weergeven als escaped."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opties voor CompareMSExcelFiles.sct WinMerge-plugin"

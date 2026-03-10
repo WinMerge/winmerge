@@ -4987,6 +4987,9 @@ msgstr "Конвертировать текст с помощью ИИ..."
 msgid "Unescape Java properties files"
 msgstr "Деэкранировать файлы свойств Java"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "В верхний регистр"
 
@@ -5134,6 +5137,9 @@ msgstr "Конвертер текста с использованием API Open
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "Деэкранировать и отобразить экранированные файлы свойств Java."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Параметры плагина WinMerge CompareMSExcelFiles.sct"
