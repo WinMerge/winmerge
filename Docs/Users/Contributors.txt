@@ -314,6 +314,7 @@ Other Contributors (code, ideas, testing..):
 * Rob Kodey (VS Dark color scheme)
 * ozone10 (darkmodelib)
 * Anthony Lee Stark
+* Gaurav Pasi
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)
