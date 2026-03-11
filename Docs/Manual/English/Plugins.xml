@@ -1477,6 +1477,59 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_DecompileJVM">
+      <title><filename>DecompileJVM<indexterm>
+          <primary>DecompileJVM plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Java decompiler with CFR - decompiles .class files into readable Java source code</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>DecompileJVM</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the CFR decompiler</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.class</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>, <ulink url="https://github.com/leibnitz27/cfr">CFR</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_DisassembleIL">
       <title><filename>DisassembleIL<indexterm>
           <primary>DisassembleIL plugin file</primary>

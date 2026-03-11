@@ -961,6 +961,9 @@ msgstr "שניהם"
 msgid "&All"
 msgstr "הכל"
 
+msgid "&Selection"
+msgstr "בחירה"
+
 msgid "Re&name"
 msgstr "שנה שם"
 
@@ -1823,9 +1826,6 @@ msgstr "אל תגלוש לסוף הקובץ"
 
 msgid "Replace in"
 msgstr "החלפה ב"
-
-msgid "&Selection"
-msgstr "בחירה"
 
 msgid "Wh&ole file"
 msgstr "כל הקובץ"
@@ -5240,6 +5240,9 @@ msgstr "המר טקסט באמצעות בינה מלאכותית..."
 msgid "Unescape Java properties files"
 msgstr "בטל התמרה בקובצי מאפייני Java"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "הפוך תווים לאותיות גדולות"
 
@@ -5497,6 +5500,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "המרת תווים והצגת קבצי מאפיינים של Java."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "אפשרויות התוסף CompareMSExcelFiles.sct עבור WinMerge"

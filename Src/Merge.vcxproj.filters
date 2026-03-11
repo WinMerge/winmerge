@@ -145,6 +145,15 @@
     <Filter Include="MFCGui\MDIChild\WebPageCompare\Source Files">
       <UniqueIdentifier>{531213fd-cf86-41a6-9841-985bf32f78fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MFCGui\Menu">
+      <UniqueIdentifier>{86b9dc2b-35a5-426d-945d-bd78c6275d24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\Menu\Header Files">
+      <UniqueIdentifier>{11f1ed39-13d0-436c-99c6-0390218f37c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\Menu\Source Files">
+      <UniqueIdentifier>{459f5abc-e3bb-4033-9611-db5aa1b0c7d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\charsets.c">
@@ -771,9 +780,6 @@
     <ClCompile Include="Common\ValidatingEdit.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileFilterHelperMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FilterConditionDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
@@ -792,9 +798,6 @@
     <ClCompile Include="I18nGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PropertySystemMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WinRtLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -806,6 +809,12 @@
     </ClCompile>
     <ClCompile Include="FileActionScript.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropertySystemMenu.cpp">
+      <Filter>MFCGui\Menu\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileFilterHelperMenu.cpp">
+      <Filter>MFCGui\Menu\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1505,9 +1514,6 @@
     <ClInclude Include="Common\ValidatingEdit.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileFilterHelperMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FilterConditionDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
@@ -1529,9 +1535,6 @@
     <ClInclude Include="I18nGUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PropertySystemMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DirFilterBar.h">
       <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
     </ClInclude>
@@ -1540,6 +1543,12 @@
     </ClInclude>
     <ClInclude Include="FileActionScript.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFilterHelperMenu.h">
+      <Filter>MFCGui\Menu\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertySystemMenu.h">
+      <Filter>MFCGui\Menu\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

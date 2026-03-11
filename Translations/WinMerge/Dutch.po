@@ -961,6 +961,9 @@ msgstr "Beide"
 msgid "&All"
 msgstr "Alle"
 
+msgid "&Selection"
+msgstr "Selectie"
+
 msgid "Re&name"
 msgstr "Naam wijzigen"
 
@@ -1823,9 +1826,6 @@ msgstr "Bij einde bestand stoppen"
 
 msgid "Replace in"
 msgstr "Vervangen in"
-
-msgid "&Selection"
-msgstr "Selectie"
 
 msgid "Wh&ole file"
 msgstr "Volledig bestand"
@@ -3050,7 +3050,7 @@ msgstr "Naar midden:"
 
 #, c-format
 msgid "Version %1"
-msgstr "Versie %1 - Nederlands"
+msgstr "Versie %1"
 
 #, c-format
 msgid "Options (%1)"
@@ -5413,6 +5413,9 @@ msgstr "Tekst converteren met AI..."
 msgid "Unescape Java properties files"
 msgstr "Java properties-bestanden unescapen"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Tekens hoofdletters maken"
 
@@ -5704,6 +5707,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "Java properties-bestanden unescapen en weergeven als escaped."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opties voor CompareMSExcelFiles.sct WinMerge-plugin"

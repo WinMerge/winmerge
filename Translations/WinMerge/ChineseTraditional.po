@@ -968,6 +968,9 @@ msgstr "兩邊 (&B)"
 msgid "&All"
 msgstr "全部 (&A)"
 
+msgid "&Selection"
+msgstr "選取區 (&S)"
+
 msgid "Re&name"
 msgstr "重新命名 (&N)"
 
@@ -1830,9 +1833,6 @@ msgstr "至檔尾不折返 (&D)"
 
 msgid "Replace in"
 msgstr "替換於"
-
-msgid "&Selection"
-msgstr "選取區 (&S)"
 
 msgid "Wh&ole file"
 msgstr "整個檔案 (&O)"
@@ -5449,6 +5449,9 @@ msgstr "使用 AI 轉換文字..."
 msgid "Unescape Java properties files"
 msgstr "取消轉義 Java 屬性文件"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "字元轉換成大寫"
 
@@ -5735,6 +5738,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "將已轉義的 Java 屬性檔案還原並顯示。"
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge 外掛程式選項"

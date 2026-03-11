@@ -1,6 +1,6 @@
 ﻿[Messages]
 
-WizardInfoBefore=Accordo di licenza
+WizardInfoBefore=Accordo licenza
 InfoBeforeLabel=Licenza GNU (General Public License)
 
 [CustomMessages]
@@ -17,14 +17,14 @@ CompactInstallation=Installazione compatta
 CustomInstallation=Installazione personalizzata
 
 ;Components
-AppCoreFiles=File base di WinMerge
+AppCoreFiles=File base WinMerge
 Filters=Filtri
 Plugins=Plugin
-ShellExtension32bit=Estensione shell 32bit WinMerge
+ShellExtension32bit=Estensione shell WinMerge 32bit
 
 ;Localization Components
 Languages=Lingue
-ArabicLanguage=Menu e finestre di dialogo in arabi
+ArabicLanguage=Menu e finestre di dialogo in arabo
 BasqueLanguage=Menu e finestre di dialogo in basco
 BulgarianLanguage=Menu e finestre di dialogo in bulgaro
 CatalanLanguage=Menu e finestre di dialogo in catalano
@@ -40,7 +40,7 @@ FrenchLanguage=Menu e finestre di dialogo in francese
 GalicianLanguage=Menu e finestre di dialogo in galiziano
 GermanLanguage=Menu e finestre di dialogo in tedesco
 GreekLanguage=Menu e finestre di dialogo in greco
-HebrewLanguage=Hebrew menus and dialogs
+HebrewLanguage=Menu e finestre di dialogo in ebraico
 HungarianLanguage=Menu e finestre di dialogo in ungherese
 ItalianLanguage=Menu e finestre di dialogo in italiano
 JapaneseLanguage=Menu e finestre di dialogo in giapponese
@@ -59,35 +59,36 @@ SlovakLanguage=Menu e finestre di dialogo in slovacco
 SlovenianLanguage=Menu e finestre di dialogo in sloveno
 SpanishLanguage=Menu e finestre di dialogo in spagnolo
 SwedishLanguage=Menu e finestre di dialogo in svedese
-TamilLanguage=Menu e finestre di dialogo tamil
+TamilLanguage=Menu e finestre di dialogo in tamil
 TurkishLanguage=Menu e finestre di dialogo in turco
 UkrainianLanguage=Menu e finestre di dialogo in ucraino
-VietnameseLanguage=Vietnamese menus and dialogs
+VietnameseLanguage=Menu e finestre di dialogo in vietnamita
 
 ;Tasks
-ExplorerContextMenu=&Attiva l'integrazione con il menu contestuale di Explorer
-IntegrateTortoiseCVS=Integrazione con &TortoiseCVS
-IntegrateTortoiseGit=Integrazione con To&rtoiseGit
-IntegrateTortoiseSVN=Integrazione con T&ortoiseSVN
+ExplorerContextMenu=&Attiva integrazione menu contestuale Explorer
+IntegrateTortoiseCVS=Integrazione &TortoiseCVS
+IntegrateTortoiseGit=Integrazione To&rtoiseGit
+IntegrateTortoiseSVN=Integrazione T&ortoiseSVN
 AddToPath=&Aggiungi cartella WinMerge al percorso di sistema
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=Unione a 3 vie
 ThreeWayMergeWizardPageDescription=Vuoi usare WinMerge come strumento di unione a 3 vie per TortoiseSVN/Git?
-RegisterWinMergeAs3WayMergeTool=Registra WinMerge come strumento unione a 3 vie
+RegisterWinMergeAs3WayMergeTool=Registra WinMerge come strumento di unione a 3 vie
 MergeAtRightPane=Unisci nel riquadro a destra
 MergeAtCenterPane=Unisci nel riquadro centrale
 MergeAtLeftPane=Unisci nel riquadro a sinistra
 AutoMergeAtStartup=Unione automatica all'avvio
 
 ;Icon Labels
-ReadMe=Leggimi
-UsersGuide=Guida utente
+ReadMe=File Leggimi WinMerge
+UsersGuide=Guida utente WinMerge
 ViewStartMenuFolder=&Visualizza cartella menu Start di WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Il programma di installazione ha rilevato che il menu Start è stato spostato da "%s" a "%s".%n%nVuoi eliminare la precedente cartella del menu Start?
-ExplorerNeedsRestart=WinMerge ShellExtension richiede il riavvio di Explorer per l'aggiornamento.%n%nVuoi riavviare Explorer?
+ExplorerNeedsRestart=Per l'aggiornamento di WinMerge ShellExtension è richiesto il riavvio di Explorer.%n%nVuoi riavviare Explorer?
 
 ; Project file description
-ProjectFileDesc=File progetto di WinMerge
+ProjectFileDesc=File progetto WinMerge
+

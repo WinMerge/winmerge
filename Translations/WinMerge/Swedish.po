@@ -966,6 +966,9 @@ msgstr "Båda"
 msgid "&All"
 msgstr "Alla"
 
+msgid "&Selection"
+msgstr "Markering"
+
 msgid "Re&name"
 msgstr "Döp om"
 
@@ -1828,9 +1831,6 @@ msgstr "Växla inte vid slutet av filen"
 
 msgid "Replace in"
 msgstr "Ersätt i"
-
-msgid "&Selection"
-msgstr "Markering"
 
 msgid "Wh&ole file"
 msgstr "Hela filen"
@@ -5412,6 +5412,9 @@ msgstr "Konvertera text med AI..."
 msgid "Unescape Java properties files"
 msgstr "Ofly Javaegenskapsfiler"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Konvertera tecken till VERSALER"
 
@@ -5697,6 +5700,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "Ofly och visa flydda Javaegenskapsfiler."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge Pluginalternativ"

@@ -962,6 +962,9 @@ msgstr "両側(&B)"
 msgid "&All"
 msgstr "すべて(&A)"
 
+msgid "&Selection"
+msgstr "選択範囲(&S)"
+
 msgid "Re&name"
 msgstr "名前の変更(&N)"
 
@@ -1824,9 +1827,6 @@ msgstr "ファイルの終端で折り返さない(&D)"
 
 msgid "Replace in"
 msgstr "範囲"
-
-msgid "&Selection"
-msgstr "選択範囲(&S)"
 
 msgid "Wh&ole file"
 msgstr "ファイル全体(&O)"
@@ -5432,6 +5432,9 @@ msgstr "AIテキスト変換..."
 msgid "Unescape Java properties files"
 msgstr "Java プロパティファイルをアンエスケープ"
 
+msgid "Decompile Java (CFR)"
+msgstr "Java クラスのデコンパイル (CFR)"
+
 msgid "Make characters uppercase"
 msgstr "テキストを大文字に変換します"
 
@@ -5719,6 +5722,11 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "エスケープされたJavaプロパティファイルをエスケープ解除して表示します。"
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr "Java デコンパイラ (CFR)。\r\n."
+"class ファイルを読みやすい Java ソースコードにデコンパイルします。\r\n"
+"引数: CFR のコマンドラインオプション"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge プラグインオプション"

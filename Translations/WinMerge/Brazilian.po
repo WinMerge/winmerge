@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-02-23 23:00-0300\n"
+"PO-Revision-Date: 2026-02-26 23:00-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -965,6 +965,9 @@ msgstr "&Ambos"
 msgid "&All"
 msgstr "&Tudo"
 
+msgid "&Selection"
+msgstr "&Seleção"
+
 msgid "Re&name"
 msgstr "Re&nomear"
 
@@ -1827,9 +1830,6 @@ msgstr "&Não quebrar no final do arquivo"
 
 msgid "Replace in"
 msgstr "Substituir em"
-
-msgid "&Selection"
-msgstr "&Seleção"
 
 msgid "Wh&ole file"
 msgstr "O &arquivo inteiro"
@@ -4988,6 +4988,9 @@ msgstr "Converter Texto com IA..."
 msgid "Unescape Java properties files"
 msgstr "Remover escape dos arquivos de propriedades Java"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Converter caracteres para maiúsculos"
 
@@ -5136,6 +5139,9 @@ msgstr "Conversor de texto (API da OpenAI).\r\nUso: AIConvertText PROMPT"
 msgid "Unescape and display escaped Java properties files."
 msgstr "Remover escape e exibir arquivos de propriedades Java com escape."
 
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opções do Plugin do WinMerge CompareMSExcelFiles.sct"
 
@@ -5179,7 +5185,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "Substituir quebras de linha em fórmulas com espaços"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "Incluir número de sequência de aba de planilha no nome do arquivo"
 
 msgid "Compare VBA macros"
 msgstr "Comparar macros do VBA"

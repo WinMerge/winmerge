@@ -963,6 +963,9 @@ msgstr "&Cả hai"
 msgid "&All"
 msgstr "&Tất cả"
 
+msgid "&Selection"
+msgstr "Phần được chọn"
+
 msgid "Re&name"
 msgstr "Đổi &tên"
 
@@ -1825,9 +1828,6 @@ msgstr "Đừng tìm vòng lại khi tới cuối tệp"
 
 msgid "Replace in"
 msgstr "Thay thế trong"
-
-msgid "&Selection"
-msgstr "Phần được chọn"
 
 msgid "Wh&ole file"
 msgstr "Toàn bộ tệp"
@@ -5448,6 +5448,9 @@ msgstr "Chuyển đổi văn bản bằng AI..."
 msgid "Unescape Java properties files"
 msgstr "Bỏ kí tự thoát trong các tệp thuộc tính Java"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Chuyển các kí tự thành chữ hoa"
 
@@ -5734,6 +5737,9 @@ msgstr ""
 msgid "Unescape and display escaped Java properties files."
 msgstr ""
 "Giải thoát và hiển thị các tệp thuộc tính Java đã được thoát (escaped)."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Tuỳ chọn trình cắm CompareMSExcelFiles.sct của WinMerge"

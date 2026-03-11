@@ -1157,6 +1157,10 @@ msgid "&All"
 msgstr ""
 
 #, c-format
+msgid "&Selection"
+msgstr "Hauta&pena"
+
+#, c-format
 msgid "Re&name"
 msgstr "Birri&zendatu"
 
@@ -2091,10 +2095,6 @@ msgstr "&Ez inguratu agiri amaiera"
 #, c-format
 msgid "Replace in"
 msgstr "Ordeztu hemen"
-
-#, c-format
-msgid "&Selection"
-msgstr "Hauta&pena"
 
 #, c-format
 msgid "Wh&ole file"
@@ -5880,6 +5880,9 @@ msgstr ""
 msgid "Unescape Java properties files"
 msgstr ""
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr ""
 
@@ -6026,6 +6029,9 @@ msgid "Text converter (OpenAI API).\r\nUsage: AIConvertText PROMPT"
 msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
 msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"

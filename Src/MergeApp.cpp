@@ -126,22 +126,12 @@ AboutInfo::AboutInfo()
 {
 	CVersionInfo verinfo;
 	version = strutils::format_string1(_("Version %1"), verinfo.GetProductVersion());
-	version += _T(" (") + _(STRYEARMONTH) + _T(")");
 	private_build = verinfo.GetPrivateBuild();
 	if (!private_build.empty())
-	{
-		version += _T(" + ") + private_build;
-	}
-
-	if (version.find(_T(" - ")) != String::npos)
-	{
-		strutils::replace(version, _T(" - "), _T("\r\n"));
-		version += _T(" ");
-	}
-	else
-	{
-		version += _T("\r\n");
-	}
+		version += _T("+") + private_build;
+	version += _T(" (");
+	version += _(STRYEARMONTH);
+	version += _T(")\r\n");
 
 #if defined _M_IX86
 	version += _T(" x86");

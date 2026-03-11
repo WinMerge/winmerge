@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-02-23 18:50+0100\n"
+"PO-Revision-Date: 2026-02-26 19:26+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -1160,6 +1160,10 @@ msgid "&All"
 msgstr "&Alle"
 
 #, c-format
+msgid "&Selection"
+msgstr "&Auswahl"
+
+#, c-format
 msgid "Re&name"
 msgstr "&Umbenennen"
 
@@ -2095,10 +2099,6 @@ msgstr "Am Dateiende nicht von vorn &beginnen"
 #, c-format
 msgid "Replace in"
 msgstr "Ersetzen in"
-
-#, c-format
-msgid "&Selection"
-msgstr "&Auswahl"
 
 #, c-format
 msgid "Wh&ole file"
@@ -3554,7 +3554,7 @@ msgstr "In die Mitte:"
 
 #, c-format
 msgid "Version %1"
-msgstr "Version %1 - Deutsch"
+msgstr "Version %1"
 
 #, c-format
 msgid "Options (%1)"
@@ -6180,6 +6180,9 @@ msgstr "Textumwandlung mit AI..."
 msgid "Unescape Java properties files"
 msgstr "Java-Properties-Dateien unescapen"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Großbuchstaben erzeugen"
 
@@ -6474,6 +6477,9 @@ msgstr ""
 msgid "Unescape and display escaped Java properties files."
 msgstr "Escape-Sequenzen in Java-Properties-Dateien auflösen und die Inhalte anzeigen."
 
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Plugin-Einstellungen für CompareMSExcelFiles"
 
@@ -6521,7 +6527,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "Zeilenumbrüche in Formeln durch Leerzeichen ersetzen"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "Blattnummer in Dateinamen einfügen"
 
 msgid "Compare VBA macros"
 msgstr "VBA-Makros vergleichen"

@@ -966,6 +966,9 @@ msgstr "&Ambos"
 msgid "&All"
 msgstr "&Todos"
 
+msgid "&Selection"
+msgstr "&Selección"
+
 msgid "Re&name"
 msgstr "Re&nombrar"
 
@@ -1828,9 +1831,6 @@ msgstr "&Detenerse al final del archivo"
 
 msgid "Replace in"
 msgstr "Reemplazar en"
-
-msgid "&Selection"
-msgstr "&Selección"
 
 msgid "Wh&ole file"
 msgstr "T&odo el archivo"
@@ -5415,6 +5415,9 @@ msgstr "Convertir texto con IA..."
 msgid "Unescape Java properties files"
 msgstr "Desescapar archivos de propiedades Java"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Convertir a mayúsculas"
 
@@ -5700,6 +5703,9 @@ msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
 msgstr "Desescapar y mostrar archivos de propiedades Java escapados."
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opciones del complemento WinMerge CompareMSExcelFiles.sct"

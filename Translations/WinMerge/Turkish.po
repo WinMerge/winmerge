@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-02-24 11:37+0300\n"
+"PO-Revision-Date: 2026-02-25 17:20+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -964,6 +964,9 @@ msgstr "İ&kisi de"
 msgid "&All"
 msgstr "&Tümü"
 
+msgid "&Selection"
+msgstr "&Seçilmiş bölümde"
+
 msgid "Re&name"
 msgstr "Ye&niden adlandır"
 
@@ -1826,9 +1829,6 @@ msgstr "Dosya &sonundan başa dönülmesin"
 
 msgid "Replace in"
 msgstr "Şurada değiştir"
-
-msgid "&Selection"
-msgstr "&Seçilmiş bölümde"
 
 msgid "Wh&ole file"
 msgstr "D&osyanın tümünde"
@@ -5456,6 +5456,9 @@ msgstr "Metni yapay zeka ile dönüştür..."
 msgid "Unescape Java properties files"
 msgstr "Java özellikleri dosyalarından kaçınma"
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Büyük harflere dönüştür"
 
@@ -5750,6 +5753,9 @@ msgstr ""
 msgid "Unescape and display escaped Java properties files."
 msgstr "Kaçınılan Java özellikleri dosyalarından kaçınma ve görüntüle."
 
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge eklentisi ayarları"
 
@@ -5797,7 +5803,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "Formüllerdeki satır sonlarını boşluklarla değiştirin"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "Sayfa sıra numarasını dosya adına ekle"
 
 msgid "Compare VBA macros"
 msgstr "VBA makroları karşılaştırılsın"

@@ -5,7 +5,7 @@
  *
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include <ctime>
 #include <cassert>
 #include <sstream>
@@ -20,6 +20,9 @@
 #include "DiffItem.h"
 #include "DiffThread.h"
 #include "IAbortable.h"
+#include "UniFile.h"
+#include "TempFile.h"
+#include "I18n.h"
 
 UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
 
@@ -123,37 +126,164 @@ void DirCmpReport::SetFileCmpReport(IFileCmpReport *pFileCmpReport)
 	m_pFileCmpReport.reset(pFileCmpReport);
 }
 
-static ULONG GetLength32(CFile const &f)
+/**
+ * @brief Copy string content to clipboard as Unicode text.
+ * @param [in] content String to copy to clipboard.
+ * @return true if successful, false otherwise.
+ */
+static bool CopyTextToClipboard(const String& content)
 {
-	ULONGLONG length = f.GetLength();
-	if (length > ULONG_MAX)
-		length = ULONG_MAX;
-	return static_cast<ULONG>(length);
+	size_t len = content.length();
+	HGLOBAL hMem = GlobalAlloc(GMEM_DDESHARE | GMEM_MOVEABLE, (len + 1) * sizeof(wchar_t));
+	if (!hMem)
+		return false;
+
+	wchar_t* pMem = static_cast<wchar_t*>(GlobalLock(hMem));
+	if (!pMem)
+	{
+		GlobalFree(hMem);
+		return false;
+	}
+
+	wcscpy_s(pMem, len + 1, content.c_str());
+	GlobalUnlock(hMem);
+	SetClipboardData(CF_UNICODETEXT, hMem);
+	return true;
 }
 
-static HGLOBAL ConvertToUTF16ForClipboard(HGLOBAL hMem, int codepage)
+/**
+ * @brief Generate CF_HTML format data and copy to clipboard.
+ * @param [in] htmlContent HTML content string to convert to CF_HTML format.
+ */
+void DirCmpReport::GenerateCF_HTML(const String& htmlContent)
 {
-	size_t len = GlobalSize(hMem);
-	HGLOBAL hMemW = GlobalAlloc(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT, (len + 1) * sizeof(wchar_t));
-	if (hMemW == nullptr)
-		return nullptr;
-	LPCSTR pstr = reinterpret_cast<LPCSTR>(GlobalLock(hMem));
-	LPWSTR pwstr = reinterpret_cast<LPWSTR>(GlobalLock(hMemW));
-	if (pstr == nullptr || pwstr == nullptr)
+	// CF_HTML format constants
+	static const char header[] =
+		"Version:0.9\n"
+		"StartHTML:%09d\n"
+		"EndHTML:%09d\n"
+		"StartFragment:%09d\n"
+		"EndFragment:%09d\n";
+	static const char start[] = "<html><body>\n<!--StartFragment -->";
+	static const char end[] = "\n<!--EndFragment -->\n</body>\n</html>\n";
+
+	// Convert to UTF-8 for CF_HTML
+	std::string htmlUtf8 = ucr::toUTF8(htmlContent);
+	std::vector<char> htmlBuffer(htmlUtf8.begin(), htmlUtf8.end());
+
+	// Rewrite CF_HTML header with valid offsets
+	char headerBuf[MAX_PATH_FULL];
+	int cbHeader = wsprintfA(headerBuf, header, 0, 0, 0, 0);
+	int size = static_cast<int>(htmlBuffer.size());
+	wsprintfA(headerBuf, header, cbHeader,
+		size - 1,
+		cbHeader + sizeof start - 1,
+		size - sizeof end + 1);
+	memcpy(htmlBuffer.data(), headerBuf, cbHeader);
+
+	HGLOBAL hMemHTML = GlobalAlloc(GMEM_DDESHARE | GMEM_MOVEABLE, size);
+	if (hMemHTML)
 	{
-		GlobalFree(hMemW);
-		return nullptr;
+		memcpy(GlobalLock(hMemHTML), htmlBuffer.data(), size);
+		GlobalUnlock(hMemHTML);
+		SetClipboardData(CF_HTML, hMemHTML);
 	}
-	int wlen = MultiByteToWideChar(codepage, 0, pstr, static_cast<int>(len), pwstr, static_cast<int>(len + 1));
-	if (len > 0 && pstr[len - 1] != '\0')
+}
+
+/**
+ * @brief Generate report to clipboard.
+ * @param [out] errStr Empty if succeeded, otherwise contains error message.
+ * @return true if successful, false otherwise.
+ */
+bool DirCmpReport::GenerateReportToClipboard(String &errStr)
+{
+	if (!OpenClipboard(NULL))
+		return false;
+	if (!EmptyClipboard())
 	{
-		pwstr[wlen] = 0;
-		++wlen;
+		CloseClipboard();
+		return false;
 	}
-	GlobalUnlock(hMemW);
-	hMemW = GlobalReAlloc(hMemW, wlen * sizeof(wchar_t), 0);
-	GlobalUnlock(hMem);
-	return hMemW;
+
+	// Generate report to temporary file
+	TempFile tempFile;
+	String tempFilePath = tempFile.Create(_T("winmerge_report_"), _T(".txt"));
+	bool savedIncludeFileCmpReport = m_bIncludeFileCmpReport;
+	m_bIncludeFileCmpReport = false;
+
+	{
+		UniStdioFile file;
+		if (!file.OpenCreateUtf8(tempFilePath))
+		{
+			CloseClipboard();
+			errStr = _("Failed to create temporary file.");
+			return false;
+		}
+		file.SetBom(true);
+		file.WriteBom();
+		m_pFile = &file;
+		GenerateReport(m_nReportType);
+		file.Close();
+		m_pFile = nullptr;
+	}
+
+	// Read temporary file and copy to clipboard
+	UniMemFile file;
+	if (file.OpenReadOnly(tempFilePath))
+	{
+		file.ReadBom();
+		String content;
+		file.ReadStringAll(content);
+		file.Close();
+
+		// Copy to clipboard as Unicode text
+		if (!CopyTextToClipboard(content))
+		{
+			errStr = _("Failed to copy to clipboard.");
+			CloseClipboard();
+			m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
+			return false;
+		}
+
+		// If report type is HTML, render CF_HTML format as well
+		if (m_nReportType == REPORT_TYPE_SIMPLEHTML)
+		{
+			GenerateCF_HTML(content);  // Pass the content directly
+		}
+	}
+	CloseClipboard();
+	m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
+	// TempFile destructor will automatically delete the temporary file
+	return true;
+}
+
+/**
+ * @brief Generate report to file.
+ * @param [out] errStr Empty if succeeded, otherwise contains error message.
+ * @return true if successful, false otherwise.
+ */
+bool DirCmpReport::GenerateReportToFile(String &errStr)
+{
+	String path;
+	paths::SplitFilename(m_sReportFile, &path, nullptr, nullptr);
+	if (!paths::CreateIfNeeded(path))
+	{
+		errStr = _("Folder does not exist.");
+		return false;
+	}
+
+	UniStdioFile file;
+	if (!file.OpenCreateUtf8(m_sReportFile))
+	{
+		errStr = _("Failed to create report file.");
+		return false;
+	}
+
+	m_pFile = &file;
+	GenerateReport(m_nReportType);
+	file.Close();
+	m_pFile = nullptr;
+	return true;
 }
 
 /**
@@ -165,83 +295,18 @@ bool DirCmpReport::GenerateReport(String &errStr)
 {
 	assert(m_pList != nullptr);
 	assert(m_pFile == nullptr);
-	bool bRet = false;
-	try
+
+	if (m_bCopyToClipboard)
 	{
-		if (m_bCopyToClipboard)
-		{
-			if (!OpenClipboard(NULL))
-				return false;
-			if (!EmptyClipboard())
-				return false;
-			CSharedFile file(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT);
-			m_pFile = &file;
-			bool savedIncludeFileCmpReport = m_bIncludeFileCmpReport;
-			m_bIncludeFileCmpReport = false;
-			GenerateReport(m_nReportType);
-			HGLOBAL hMem = file.Detach();
-			SetClipboardData(CF_UNICODETEXT, ConvertToUTF16ForClipboard(hMem, m_bOutputUTF8 ? CP_UTF8 : CP_THREAD_ACP));
-			GlobalFree(hMem);
-			// If report type is HTML, render CF_HTML format as well
-			if (m_nReportType == REPORT_TYPE_SIMPLEHTML)
-			{
-				// Reconstruct the CSharedFile object
-				file.~CSharedFile();
-				file.CSharedFile::CSharedFile(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT);
-				// Write preliminary CF_HTML header with all offsets zero
-				static const char header[] =
-					"Version:0.9\n"
-					"StartHTML:%09d\n"
-					"EndHTML:%09d\n"
-					"StartFragment:%09d\n"
-					"EndFragment:%09d\n";
-				static const char start[] = "<html><body>\n<!--StartFragment -->";
-				static const char end[] = "\n<!--EndFragment -->\n</body>\n</html>\n";
-				char buffer[MAX_PATH_FULL];
-				int cbHeader = wsprintfA(buffer, header, 0, 0, 0, 0);
-				file.Write(buffer, cbHeader);
-				file.Write(start, sizeof start - 1);
-				GenerateHTMLHeaderBodyPortion();
-				GenerateXmlHtmlContent(false);
-				file.Write(end, sizeof end); // include terminating zero
-				DWORD size = GetLength32(file);
-				// Rewrite CF_HTML header with valid offsets
-				file.SeekToBegin();
-				wsprintfA(buffer, header, cbHeader, 
-					static_cast<int>(size - 1),
-					static_cast<int>(cbHeader + sizeof start - 1),
-					static_cast<int>(size - sizeof end + 1));
-				file.Write(buffer, cbHeader);
-				SetClipboardData(CF_HTML, GlobalReAlloc(file.Detach(), size, 0));
-			}
-			CloseClipboard();
-			m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
-			m_pFile = nullptr;
-		}
-		if (!m_sReportFile.empty())
-		{
-			String path;
-			paths::SplitFilename(m_sReportFile, &path, nullptr, nullptr);
-			if (!paths::CreateIfNeeded(path))
-			{
-				errStr = _("Folder does not exist.");
-				return false;
-			}
-			m_pFile = new CFile(m_sReportFile.c_str(),
-				CFile::modeWrite|CFile::modeCreate|CFile::shareDenyWrite);
-			GenerateReport(m_nReportType);
-			delete m_pFile;
-			m_pFile = nullptr;
-		}
-		bRet = true;
+		if (!GenerateReportToClipboard(errStr))
+			return false;
 	}
-	catch (CException *e)
+	if (!m_sReportFile.empty())
 	{
-		e->ReportError(MB_ICONSTOP);
-		e->Delete();
+		if (!GenerateReportToFile(errStr))
+			return false;
 	}
-	m_pFile = nullptr;
-	return bRet;
+	return true;
 }
 
 /**
@@ -285,21 +350,7 @@ void DirCmpReport::GenerateReport(REPORT_TYPE nReportType)
  */
 void DirCmpReport::WriteString(const String& sText)
 {
-	std::string sOctets(m_bOutputUTF8 ? ucr::toUTF8(sText) : ucr::toThreadCP(sText));
-	const char *pchOctets = sOctets.c_str();
-	size_t cchAhead = sOctets.length();
-	while (const char *pchAhead = (const char *)memchr(pchOctets, '\n', cchAhead))
-	{
-		size_t cchLine = pchAhead - pchOctets;
-		m_pFile->Write(pchOctets, static_cast<unsigned>(cchLine));
-		static const char eol[] = { '\r', '\n' };
-		m_pFile->Write(eol, sizeof eol);
-		++cchLine;
-		pchOctets += cchLine;
-		cchAhead -= cchLine;
-	}
-	m_pFile->Write(pchOctets, static_cast<unsigned>(cchAhead));
-
+	m_pFile->WriteString(sText);
 }
 
 /**
@@ -492,7 +543,7 @@ void DirCmpReport::GenerateXmlHeader()
 void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 {
 	String sFileName, sParentDir;
-	paths::SplitFilename((const tchar_t *)m_pFile->GetFilePath(), &sParentDir, &sFileName, nullptr);
+	paths::SplitFilename(m_pFile->GetFullyQualifiedPath(), &sParentDir, &sFileName, nullptr);
 	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T('.'))) + _T(".files");
 	String sDestDir = paths::ConcatPath(sParentDir, sRelDestDir);
 	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)

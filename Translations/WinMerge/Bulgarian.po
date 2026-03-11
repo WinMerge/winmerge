@@ -960,6 +960,9 @@ msgstr "&Двете"
 msgid "&All"
 msgstr "&Всички"
 
+msgid "&Selection"
+msgstr "&Избраното"
+
 msgid "Re&name"
 msgstr "&Преименуване"
 
@@ -1822,9 +1825,6 @@ msgstr "До &края на файла"
 
 msgid "Replace in"
 msgstr "Заменяне в"
-
-msgid "&Selection"
-msgstr "&Избраното"
 
 msgid "Wh&ole file"
 msgstr "В &целия файл"
@@ -5359,6 +5359,9 @@ msgstr ""
 msgid "Unescape Java properties files"
 msgstr ""
 
+msgid "Decompile Java (CFR)"
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr ""
 
@@ -5574,6 +5577,9 @@ msgid ""
 msgstr ""
 
 msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
+msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
 msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
