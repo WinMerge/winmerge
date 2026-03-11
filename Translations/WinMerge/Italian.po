@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 25.02.2026\n"
+"Project-Id-Version: WinMerge - Italian - 11.03.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-02-25 21:00+0100\n"
+"PO-Revision-Date: 2026-03-11 16:04+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -3424,9 +3424,7 @@ msgstr "Vuoi salvare le modifiche in %1?"
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
 msgstr ""
-"%1 è segnato come di sola lettura.\n"
-"Vuoi non tenere conto di questa impostazione (seleziona 'No' per salvare con "
-"un nuovo nome)?"
+"%1 è in sola lettura. Vuoi sovrascriverlo?"
 
 msgid "Error backing up file"
 msgstr "Errore durante il salvataggio di una copia di backup del file"
@@ -3517,8 +3515,7 @@ msgid ""
 "is read-only. Override?"
 msgstr ""
 "%1\n"
-"è segnato come di sola lettura.\n"
-"Vuoi non tenere conto dell'elemento in sola lettura?"
+"è in sola lettura. Vuoi sovrascriverlo?"
 
 #, c-format
 msgid ""
@@ -5492,7 +5489,7 @@ msgid "Unescape Java properties files"
 msgstr "Elimina escape dai file proprietà Java"
 
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "Decompila Java (CFR)"
 
 msgid "Make characters uppercase"
 msgstr "Rendi caratteri maiuscoli"
@@ -5791,7 +5788,7 @@ msgid "Unescape and display escaped Java properties files."
 msgstr "Annulla l'escape e visualizza i file delle proprietà Java con escape."
 
 msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
-msgstr ""
+msgstr "Decompilatore Java (CFR).\r\nDecompila i file .class in codice sorgente Java leggibile.\r\nArgomenti: opzioni riga di comando CFR."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opzioni plugin WinMerge CompareMSExcelFiles.sct"
