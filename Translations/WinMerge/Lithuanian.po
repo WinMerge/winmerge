@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-02-25 21:21+0000\n"
-"PO-Revision-Date: 2026-02-26 09:09+0200\n"
+"POT-Creation-Date: 2026-03-10 21:57+0000\n"
+"PO-Revision-Date: 2026-03-12 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -4514,7 +4514,7 @@ msgid "Al&l"
 msgstr "Visi"
 
 msgid "&Others"
-msgstr "Kiti"
+msgstr "Kita"
 
 #, c-format
 msgid "Missing plugin name in pipeline: %1"
@@ -4986,7 +4986,7 @@ msgid "Unescape Java properties files"
 msgstr "Gražinti praleistus „Java“ savybių failus"
 
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "Dekompiliuoti Java (CFR)"
 
 msgid "Make characters uppercase"
 msgstr "Konvertuoti į didžiąsias raides"
@@ -5032,58 +5032,58 @@ msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] 
 msgstr "Pažymėti eilutes.\r\nNaudojimas: SelectLines RANGES\r\n arba: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
 
 msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
-msgstr "HTML tvarkytojas (tidy-html5).\r\nArgumentai: tidy command line options."
+msgstr "HTML tvarkytojas (tidy-html5).\r\nArgumentai: tidy komandinės eilutės parametrai."
 
 msgid "JSON Prettier (jq).\r\nArguments: jq filter/command line options."
-msgstr "JSON tvarkytojas (jq).\r\nArgumentai: jq filter/command line options."
+msgstr "JSON tvarkytojas (jq).\r\nArgumentai: jq filtro/komandinės eilutės parametrai."
 
 msgid "XML Prettier (tidy-html5).\r\nArguments: tidy command line options."
-msgstr "XML tvarkytojas (tidy-html5).\r\nArgumentai: tidy command line options."
+msgstr "XML tvarkytojas (tidy-html5).\r\nArgumentai: tidy komandinės eilutės parametrai."
 
 msgid "YAML Prettier (yq).\r\nArguments: yq filter/command line options."
-msgstr "YAML tvarkytojas (yq).\r\nArgumentai: yq filter/command line options."
+msgstr "YAML tvarkytojas (yq).\r\nArgumentai: yq filtro/komandinės eilutės parametrai."
 
 msgid "PO Prettier (gettext msgcat).\r\nArguments: msgcat command line options."
-msgstr "PO tvarkytojas (gettext msgcat).\r\nArgumentai: msgcat command line options."
+msgstr "PO tvarkytojas (gettext msgcat).\r\nArgumentai: msgcat komandinės eilutės parametrai."
 
 msgid "Graphviz Previewer.\r\nArguments: dot command line options."
-msgstr "Graphviz peržiūrėtojas.\r\nArgumentai: dot command line options."
+msgstr "Graphviz peržiūrėtojas.\r\nArgumentai: dot komandinės eilutės parametrai."
 
 msgid "Markdown Previewer.\r\nArguments: md2html command line options."
-msgstr "Markdown peržiūrėtojas.\r\nArgumentai: md2html command line options."
+msgstr "Markdown peržiūrėtojas.\r\nArgumentai: md2html komandinės eilutės parametrai."
 
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
-msgstr "PlantUML peržiūrėtojas.\r\nArgumentai: plantuml.jar command line options."
+msgstr "PlantUML peržiūrėtojas.\r\nArgumentai: plantuml.jar komandinės eilutės parametrai."
 
 msgid "CSV Querier (q).\r\nArguments: SQL statement/q command line options."
-msgstr "CSV užklausėjas (q).\r\nArgumentai: SQL statement/q command line options."
+msgstr "CSV užklausėjas (q).\r\nArgumentai: SQL statement/q komandinės eilutės parametrai."
 
 msgid "TSV Querier (q).\r\nArguments: SQL statement/q command line options."
-msgstr "TSV užklausėjas (q).\r\nArgumentai: SQL statement/q command line options."
+msgstr "TSV užklausėjas (q).\r\nArgumentai: SQL statement/q komandinės eilutės parametrai."
 
 msgid "JSON Querier (jq).\r\nArguments: jq filter/command line options."
-msgstr "JSON užklausėjas (jq).\r\nArgumentai: jq filter/command line options."
+msgstr "JSON užklausėjas (jq).\r\nArgumentai: jq filtro/komandinės eilutės parametrai."
 
 msgid "YAML Querier (yq).\r\nArguments: yq filter/command line options."
-msgstr "YAML užklausėjas (yq).\r\nArgumentai: yq filter/command line options."
+msgstr "YAML užklausėjas (yq).\r\nArgumentai: yq filtro/komandinės eilutės parametrai."
 
 msgid "HTML Validator (tidy-html5).\r\nArguments: tidy command line options."
-msgstr "HTML tikrintojas (tidy-html5).\r\nArgumentai: tidy command line options."
+msgstr "HTML tikrintojas (tidy-html5).\r\nArgumentai: tidy komandinės eilutės parametrai."
 
 msgid "PO Validator (gettext msgfmt).\r\nArguments: msgfmt command line options."
-msgstr "PO tikrintojas (gettext msgfmt).\r\nArgumentai: msgfmt command line options."
+msgstr "PO tikrintojas (gettext msgfmt).\r\nArgumentai: msgfmt komandinės eilutės parametrai."
 
 msgid "JVM bytecode disassembler (javap).\r\nArguments: javap command line options."
-msgstr "JVM baitinio kodo dekompiliatorius (javap).\r\nArgumentai: javap command line options."
+msgstr "JVM baitinio kodo dekompiliatorius (javap).\r\nArgumentai: javap komandinės eilutės parametrai."
 
 msgid "IL disassembler (ildasm).\r\nArguments: ildasm command line options."
-msgstr "IL dekompiliatorius (ildasm).\r\nArgumentai: ildasm command line options."
+msgstr "IL dekompiliatorius (ildasm).\r\nArgumentai: ildasm komandinės eilutės parametrai."
 
 msgid "Native code disassembler (dumpbin).\r\nArguments: dumpbin command line options."
-msgstr "Savojo kodo dekompiliatorius (dumpbin).\r\nArgumentai: dumpbin command line options."
+msgstr "Savojo kodo dekompiliatorius (dumpbin).\r\nArgumentai: dumpbin komandinės eilutės parametrai."
 
 msgid "Content extractor (Apache Tika).\r\nArguments: tika-app.jar command line options."
-msgstr "Turinio ištraukėjas (Apache Tika).\r\nArgumentai: tika-app.jar command line options."
+msgstr "Turinio ištraukėjas (Apache Tika).\r\nArgumentai: tika-app.jar komandinės eilutės parametrai."
 
 msgid "Apply patch (GNU patch)"
 msgstr "Taikyti pataisą („GNU patch“)"
@@ -5119,10 +5119,10 @@ msgid "Date and time insertion"
 msgstr "Datos ir laiko įterpimas"
 
 msgid "HTTP URL Scheme Handler (curl).\r\nArguments: curl command line options."
-msgstr "HTTP URL schemos apdorotojas (curl).\r\nArgumentai: curl command line options."
+msgstr "HTTP URL schemos apdorotojas (curl).\r\nArgumentai: curl komandinės eilutės parametrai."
 
 msgid "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
-msgstr "Windows Registry URL schemos apdorotojas.\r\nArgumentai: reg.exe command line options."
+msgstr "Windows Registry URL schemos apdorotojas.\r\nArgumentai: reg.exe komandinės eilutės parametrai."
 
 msgid "Basic text functions"
 msgstr "Pagrindinės tekstų funkcijos"
@@ -5137,7 +5137,7 @@ msgid "Unescape and display escaped Java properties files."
 msgstr "Gražinti ir rodyti praleistus „Java“ savybių failus."
 
 msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
-msgstr ""
+msgstr "Java dekompiliatorius (CFR).\r\nDekompiliuoja .class failus į skaitomą Java pradinį kodą.\r\nArgumentai: CFR komandinės eilutės parametrai."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct „WinMerge“ papildinio nuostatos"
