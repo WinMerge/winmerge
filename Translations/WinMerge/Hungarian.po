@@ -1907,6 +1907,10 @@ msgstr "Karakterlánc-cserelisták mappájának megnyitása..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "Regex cserelisták mappájának megnyitása..."
 
+#, c-format
+msgid "Match &case"
+msgstr "Kis-nagybetű &érzékenység"
+
 msgid "Text &Normalization"
 msgstr "Szöveg &normalizálás"
 
@@ -2054,10 +2058,6 @@ msgstr "Keresés erre:"
 #, c-format
 msgid "Match &whole word only"
 msgstr "Pontos egyezés"
-
-#, c-format
-msgid "Match &case"
-msgstr "Kis-nagybetű &érzékenység"
 
 #, c-format
 msgid "Regular &expression"

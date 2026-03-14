@@ -1679,6 +1679,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Matcha VERSALER/gemener"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1801,9 +1804,6 @@ msgstr "Sök efter:"
 
 msgid "Match &whole word only"
 msgstr "Matcha endast hela ord"
-
-msgid "Match &case"
-msgstr "Matcha VERSALER/gemener"
 
 msgid "Regular &expression"
 msgstr "Reguljärt uttryck"

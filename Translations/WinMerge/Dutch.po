@@ -1674,6 +1674,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Hoofdlettergevoelig"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1796,9 +1799,6 @@ msgstr "Zoeken naar:"
 
 msgid "Match &whole word only"
 msgstr "Alleen hele woorden"
-
-msgid "Match &case"
-msgstr "Hoofdlettergevoelig"
 
 msgid "Regular &expression"
 msgstr "Reguliere expressies"

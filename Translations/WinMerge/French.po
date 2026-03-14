@@ -1683,6 +1683,9 @@ msgstr "Ouvrir le dossier des listes de remplacement de chaînes..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "Ouvrir le dossier des listes de remplacement regex..."
 
+msgid "Match &case"
+msgstr "Respecter la &casse"
+
 msgid "Text &Normalization"
 msgstr "&Normalisation du texte"
 
@@ -1805,9 +1808,6 @@ msgstr "Chercher q&uoi :"
 
 msgid "Match &whole word only"
 msgstr "&Mot entier seulement"
-
-msgid "Match &case"
-msgstr "Respecter la &casse"
 
 msgid "Regular &expression"
 msgstr "E&xpressions régulières"

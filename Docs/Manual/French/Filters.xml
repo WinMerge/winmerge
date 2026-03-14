@@ -256,6 +256,102 @@ Réel, Horodatage, Chaîne, Contenu de fichier, Tableau (Array), ou
 <literal>undefined</literal>.</para>
       </section>
 
+      <section id="FilterExpression_Directives">
+        <title>Directives</title>
+
+        <para>
+Filter expressions support directives that control how the expression is
+evaluated.  Directives are specified at the beginning of the expression,
+prefixed with <literal>@</literal>, and separated from the expression by
+whitespace.</para>
+
+        <section id="FilterExpression_CaseSensitivity">
+          <title>Case Sensitivity Directives</title>
+
+          <para>
+By default, all string comparison operators (<literal>=</literal>,
+<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>,
+<literal>&gt;</literal>, <literal>&gt;=</literal>,
+<literal>contains</literal>, <literal>recontains</literal>,
+<literal>like</literal>, <literal>matches</literal>)  are
+case-insensitive. You can control this behavior using the following
+directives:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@cs</literal>, <literal>@casesensitive</literal>,
+<literal>@cs=true</literal>, <literal>@casesensitive=true</literal>,
+<literal>@ci=false</literal></term>
+              <listitem>
+                <para>
+Enable case-sensitive comparison. With these directives,
+<literal>"ABC"</literal> and <literal>"abc"</literal> are considered
+different.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal>,
+<literal>@ci=true</literal>, <literal>@cs=false</literal>,
+<literal>@casesensitive=false</literal>,
+<literal>@caseinsensitive=false</literal></term>
+              <listitem>
+                <para>
+Enable case-insensitive comparison (default behavior). With these
+directives, <literal>"ABC"</literal> and <literal>"abc"</literal> are
+considered identical.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Case Sensitivity Examples</title>
+<programlisting>@cs Name = "README.txt"           ## Case-sensitive: matches only "README.txt"
+@ci Name = "readme.txt"           ## Case-insensitive: matches "README.txt", "readme.txt", "ReadMe.TXT", etc.
+@casesensitive Extension = "TXT"  ## Case-sensitive: matches only files with ".TXT" extension
+@caseinsensitive Content contains "error"  ## Case-insensitive: matches "Error", "ERROR", "error", etc.</programlisting></example>
+        </section>
+
+        <section id="FilterExpression_Name">
+          <title>Name Directive</title>
+
+          <para>
+The <literal>@name</literal> directive allows you to assign a descriptive
+name to a filter expression.  This name is intended for use in error
+messages and logs to help identify which filter expression caused an issue.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@name="Filter Name"</literal>, <literal>@name=FilterName</literal></term>
+              <listitem>
+                <para>
+Assigns a name to the filter expression. If the name contains spaces or
+special characters, it must be enclosed in double quotes. Names without
+spaces can be specified without quotes.</para>
+                <para>
+The specified name will be used in error messages and diagnostic output to
+identify the filter.  This is particularly useful when working with multiple
+complex filter expressions.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Name Directive Examples</title>
+<programlisting>@name="Large Image Files" Size &gt; 10MB and Extension = "png"
+@name=SmallTextFiles Size &lt; 1KB and Extension = "txt"
+@name="Modified Today" Date &gt;= today()
+@name="Test Filter" @cs Name like "test_*.cpp"</programlisting></example>
+
+          <note>
+            <para>
+The <literal>@name</literal> directive can be combined with other
+directives.  When multiple directives are used, they should all appear at
+the beginning of the expression, separated by whitespace.</para>
+          </note>
+        </section>
+      </section>
+
       <section id="FilterExpression_Attributes">
         <title>Attributs</title>
 
@@ -299,9 +395,10 @@ base</para></listitem>
             </varlistentry>
             <varlistentry>
               <term>RelPath</term>
-              <listitem><para>Returns the relative path from the comparison root directory, including both
-folder path and filename. For example, if comparing "C:\Project" and the
-file is at "C:\Project\src\main.cpp", RelPath returns "src\main.cpp".</para></listitem>
+              <listitem><para>Renvoie le chemin relatif à partir du répertoire racine de comparaison,
+incluant le chemin du dossier et le nom du fichier. Par exemple, si la
+comparaison porte sur « C:\Project » et que le fichier se trouve dans
+« C:\Project\src\main.cpp », RelPath renvoie « src\main.cpp ».</para></listitem>
             </varlistentry>
             <varlistentry>
               <term>FullPath</term>
@@ -545,10 +642,13 @@ n'importe quel élément est <literal>true</literal>.</para>
         <title>Opérateurs</title>
 
         <para>
-Tous les opérateurs de comparaison de chaînes (tels que
-<literal>=</literal>, <literal>!=</literal>, <literal>like</literal>,
-<literal>matches</literal>, <literal>contains</literal> et
-<literal>recontains</literal>) sont actuellement insensibles à la casse.</para>
+By default, all string comparison operators (such as <literal>=</literal>,
+<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>,
+<literal>&gt;</literal>, <literal>&gt;=</literal>, <literal>like</literal>,
+<literal>matches</literal>, <literal>contains</literal>, and
+<literal>recontains</literal>)  are case-insensitive. You can control this
+behavior using directives (see <xref
+linkend="FilterExpression_CaseSensitivity" />).</para>
 
         <variablelist>
           <varlistentry>
@@ -675,49 +775,54 @@ appliqués. Exemple : <literal>regexReplace(name, "^(\\w+)_(\\w+)$",
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term>replaceWithList(str, filepath)</term>
+            <term>remplacerParListe(str, chemin_fichier)</term>
             <listitem>
               <para>
-Replaces multiple strings in <replaceable>str</replaceable> using
-replacement rules loaded from a tab-separated file.  The file format is one
-replacement rule per line:
-<literal>search_string&lt;TAB&gt;replacement_string</literal>.  Lines
-starting with <literal>#</literal> are treated as comments and ignored.
-Empty lines are also ignored.  If <replaceable>str</replaceable> is an
-array, the result is an array of strings with replacements applied.</para>
-              <para>File format example:</para>
-              <screen># Comment line
-apple	orange
-cat	dog
-old	new</screen>
+Remplace plusieurs chaînes de caractères dans
+`<replaceable>str</replaceable>` en utilisant des règles de remplacement
+chargées depuis un fichier séparé par des tabulations. Le format du fichier
+est le suivant : une règle de remplacement par ligne :
+`<literal>search_string&lt;TAB&gt;replacement_string</literal>`. Les lignes
+commençant par `<literal>#</literal>` sont considérées comme des
+commentaires et ignorées. Les lignes vides sont également ignorées. Si
+`<replaceable>str</replaceable>` est un tableau, le résultat est un tableau
+de chaînes de caractères avec les remplacements appliqués.</para>
+              <para>Exemple de format de fichier :</para>
+              <screen># Ligne de commentaires
+pomme	orange
+chat	chien
+ancien	nouveau</screen>
               <para>Exemples :</para>
               <itemizedlist>
                 <listitem><para><literal>replaceWithList(Name, "C:\Filters\replacements.txt")</literal> -
-applies replacements from file to file name</para></listitem>
+applique les remplacements du fichier au nom du fichier</para></listitem>
               </itemizedlist>
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term>regexReplaceWithList(str, filepath)</term>
+            <term>regexReplaceWithList(str, chemin_fichier)</term>
             <listitem>
               <para>
-Replaces strings in <replaceable>str</replaceable> using regular expression
-patterns loaded from a tab-separated file.  The file format is one pattern
-per line: <literal>regex_pattern&lt;TAB&gt;replacement_string</literal>.
-The replacement string can include backreferences ($1, $2, etc.) to captured
-groups.  Lines starting with <literal>#</literal> are treated as comments
-and ignored.  Empty lines are also ignored.  If
-<replaceable>str</replaceable> is an array, the result is an array of
-strings with replacements applied.</para>
-              <para>File format example:</para>
-              <screen># Comment line
-\d+	NUMBER
+Remplace les chaînes de caractères dans `<replaceable>str</replaceable>` à
+l'aide d'expressions régulières chargées depuis un fichier texte séparé par
+des tabulations. Le format du fichier est le suivant : une expression
+régulière par ligne :
+`<literal>regex_pattern&lt;TAB&gt;replacement_string</literal>`. La chaîne
+de remplacement peut inclure des références arrière ($1, $2, etc.) vers des
+groupes capturés. Les lignes commençant par `<literal>#</literal>` sont
+considérées comme des commentaires et ignorées. Les lignes vides sont
+également ignorées. Si `<replaceable>str</replaceable>` est un tableau, le
+résultat est un tableau de chaînes de caractères avec les remplacements
+appliqués.</para>
+              <para>Exemple de format de fichier :</para>
+              <screen># Ligne de commentaire
+\d+	NOMBRE
 (\d{4})-(\d{2})-(\d{2})	$1_$2_$3</screen>
               <para>Exemples :</para>
               <itemizedlist>
                 <listitem><para><literal>regexReplaceWithList(Name,
-"C:\Filters\regex_replacements.txt")</literal> - applies regex replacements
-to file name</para></listitem>
+"C:\Filters\regex_replacements.txt")</literal> - applique des remplacements
+d'expressions régulières au nom du fichier</para></listitem>
               </itemizedlist>
             </listitem>
           </varlistentry>
@@ -1364,10 +1469,10 @@ depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>fe!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des fichiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour les dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
         <varlistentry><term>de!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre pour exclure des dossiers (disponible depuis 2.16.49)</para></listitem></varlistentry>
-        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Filter expression applied to both files and folders (e.g. e:Name like
-"Common*.*") (Available since 2.16.56)</para></listitem></varlistentry>
-        <varlistentry><term>e!: <replaceable>expr</replaceable></term><listitem><para>Filter expression to exclude both files and folders (Available since
-2.16.56)</para></listitem></varlistentry>
+        <varlistentry><term>e: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre appliquée aux fichiers et aux dossiers (par exemple :
+e:Name like "Common*.*") (Disponible depuis la version 2.16.56)</para></listitem></varlistentry>
+        <varlistentry><term>e!: <replaceable>expr</replaceable></term><listitem><para>Expression de filtre permettant d'exclure à la fois les fichiers et les
+dossiers (Disponible depuis la version 2.16.56)</para></listitem></varlistentry>
       </variablelist>
 
       <para>Parmi les nombreux caractères spéciaux de regex, les suivants sont

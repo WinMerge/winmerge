@@ -1905,6 +1905,10 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+#, c-format
+msgid "Match &case"
+msgstr "&Rozlišovat malá a velká písmena"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -2052,10 +2056,6 @@ msgstr "C&o hledat:"
 #, c-format
 msgid "Match &whole word only"
 msgstr "Pouze &celá slova"
-
-#, c-format
-msgid "Match &case"
-msgstr "&Rozlišovat malá a velká písmena"
 
 #, c-format
 msgid "Regular &expression"

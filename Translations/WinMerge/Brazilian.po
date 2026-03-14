@@ -1678,6 +1678,9 @@ msgstr "Abrir Pasta de Listas de Substituição de String..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "Abrir Pasta de Listas de Substituição de Regex..."
 
+msgid "Match &case"
+msgstr "&Corresponder maiúsculas/minúsculas"
+
 msgid "Text &Normalization"
 msgstr "&Normalização de Texto"
 
@@ -1800,9 +1803,6 @@ msgstr "E&ncontrar o quê:"
 
 msgid "Match &whole word only"
 msgstr "C&orresponder apenas palavras inteiras"
-
-msgid "Match &case"
-msgstr "&Corresponder maiúsculas/minúsculas"
 
 msgid "Regular &expression"
 msgstr "Expressão &regular"

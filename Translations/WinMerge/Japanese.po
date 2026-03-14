@@ -1675,6 +1675,9 @@ msgstr "文字列置換リストのフォルダーを開く..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "正規表現置換リストのフォルダーを開く..."
 
+msgid "Match &case"
+msgstr "大文字と小文字を区別する(&C)"
+
 msgid "Text &Normalization"
 msgstr "テキストの正規化(&N)"
 
@@ -1797,9 +1800,6 @@ msgstr "検索する文字列(&N):"
 
 msgid "Match &whole word only"
 msgstr "単語単位で探す(&W)"
-
-msgid "Match &case"
-msgstr "大文字と小文字を区別する(&C)"
 
 msgid "Regular &expression"
 msgstr "正規表現(&E)"

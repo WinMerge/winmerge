@@ -1675,6 +1675,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Respectă minuscule/majuscule"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1797,9 +1800,6 @@ msgstr "Ce a&nume:"
 
 msgid "Match &whole word only"
 msgstr "Potrivește doar cu&vinte întregi"
-
-msgid "Match &case"
-msgstr "Respectă minuscule/majuscule"
 
 msgid "Regular &expression"
 msgstr "&Expresie regulată"

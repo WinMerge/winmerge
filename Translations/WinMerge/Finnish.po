@@ -1676,6 +1676,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Sama kirjainkoko"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1798,9 +1801,6 @@ msgstr "Etsittävä:"
 
 msgid "Match &whole word only"
 msgstr "Vain &kokonaiset sanat"
-
-msgid "Match &case"
-msgstr "Sama kirjainkoko"
 
 msgid "Regular &expression"
 msgstr "Säännöllinen lauseke"

@@ -1677,6 +1677,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Reconhecer maiúsculas/minúsculas"
+
 msgid "Text &Normalization"
 msgstr "Texto &normalização"
 
@@ -1799,9 +1802,6 @@ msgstr "Localizar o quê:"
 
 msgid "Match &whole word only"
 msgstr "Apenas palavras completas"
-
-msgid "Match &case"
-msgstr "Reconhecer maiúsculas/minúsculas"
 
 msgid "Regular &expression"
 msgstr "Expressão regular"

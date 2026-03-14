@@ -1679,6 +1679,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "مطابقة مع مراعاة حالة الحرف (للغة الإنجليزية)"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1801,9 +1804,6 @@ msgstr "ال&بحث عن:"
 
 msgid "Match &whole word only"
 msgstr "إجراء &مطابقة للكلمة كاملة فقط"
-
-msgid "Match &case"
-msgstr "مطابقة مع مراعاة حالة الحرف (للغة الإنجليزية)"
 
 msgid "Regular &expression"
 msgstr "التعابير النمطية"

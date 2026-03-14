@@ -1905,6 +1905,10 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+#, c-format
+msgid "Match &case"
+msgstr "Osjetljivost na &V/m slova"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -2052,10 +2056,6 @@ msgstr "&Pojam:"
 #, c-format
 msgid "Match &whole word only"
 msgstr "Poklapanje &cijele riječi"
-
-#, c-format
-msgid "Match &case"
-msgstr "Osjetljivost na &V/m slova"
 
 #, c-format
 msgid "Regular &expression"

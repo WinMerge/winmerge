@@ -229,6 +229,102 @@ Internally, values may be of the following types: Boolean, Integer, Real,
 Timestamp, String, File Content, Array, or <literal>undefined</literal>.</para>
       </section>
 
+      <section id="FilterExpression_Directives">
+        <title>Directives</title>
+
+        <para>
+Filter expressions support directives that control how the expression is
+evaluated.  Directives are specified at the beginning of the expression,
+prefixed with <literal>@</literal>, and separated from the expression by
+whitespace.</para>
+
+        <section id="FilterExpression_CaseSensitivity">
+          <title>Case Sensitivity Directives</title>
+
+          <para>
+By default, all string comparison operators (<literal>=</literal>,
+<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>,
+<literal>&gt;</literal>, <literal>&gt;=</literal>,
+<literal>contains</literal>, <literal>recontains</literal>,
+<literal>like</literal>, <literal>matches</literal>)  are
+case-insensitive. You can control this behavior using the following
+directives:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@cs</literal>, <literal>@casesensitive</literal>,
+<literal>@cs=true</literal>, <literal>@casesensitive=true</literal>,
+<literal>@ci=false</literal></term>
+              <listitem>
+                <para>
+Enable case-sensitive comparison. With these directives,
+<literal>"ABC"</literal> and <literal>"abc"</literal> are considered
+different.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal>,
+<literal>@ci=true</literal>, <literal>@cs=false</literal>,
+<literal>@casesensitive=false</literal>,
+<literal>@caseinsensitive=false</literal></term>
+              <listitem>
+                <para>
+Enable case-insensitive comparison (default behavior). With these
+directives, <literal>"ABC"</literal> and <literal>"abc"</literal> are
+considered identical.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Case Sensitivity Examples</title>
+<programlisting>@cs Name = "README.txt"           ## Case-sensitive: matches only "README.txt"
+@ci Name = "readme.txt"           ## Case-insensitive: matches "README.txt", "readme.txt", "ReadMe.TXT", etc.
+@casesensitive Extension = "TXT"  ## Case-sensitive: matches only files with ".TXT" extension
+@caseinsensitive Content contains "error"  ## Case-insensitive: matches "Error", "ERROR", "error", etc.</programlisting></example>
+        </section>
+
+        <section id="FilterExpression_Name">
+          <title>Name Directive</title>
+
+          <para>
+The <literal>@name</literal> directive allows you to assign a descriptive
+name to a filter expression.  This name is intended for use in error
+messages and logs to help identify which filter expression caused an issue.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@name="Filter Name"</literal>, <literal>@name=FilterName</literal></term>
+              <listitem>
+                <para>
+Assigns a name to the filter expression. If the name contains spaces or
+special characters, it must be enclosed in double quotes. Names without
+spaces can be specified without quotes.</para>
+                <para>
+The specified name will be used in error messages and diagnostic output to
+identify the filter.  This is particularly useful when working with multiple
+complex filter expressions.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Name Directive Examples</title>
+<programlisting>@name="Large Image Files" Size &gt; 10MB and Extension = "png"
+@name=SmallTextFiles Size &lt; 1KB and Extension = "txt"
+@name="Modified Today" Date &gt;= today()
+@name="Test Filter" @cs Name like "test_*.cpp"</programlisting></example>
+
+          <note>
+            <para>
+The <literal>@name</literal> directive can be combined with other
+directives.  When multiple directives are used, they should all appear at
+the beginning of the expression, separated by whitespace.</para>
+          </note>
+        </section>
+      </section>
+
       <section id="FilterExpression_Attributes">
         <title>Attributes</title>
 
@@ -503,10 +599,13 @@ result is <literal>true</literal> if any element is <literal>true</literal>.</pa
         <title>Operators</title>
 
         <para>
-All string comparison operators (such as <literal>=</literal>,
-<literal>!=</literal>, <literal>like</literal>, <literal>matches</literal>,
-<literal>contains</literal>, and <literal>recontains</literal>) are
-currently case-insensitive.</para>
+By default, all string comparison operators (such as <literal>=</literal>,
+<literal>!=</literal>, <literal>&lt;</literal>, <literal>&lt;=</literal>,
+<literal>&gt;</literal>, <literal>&gt;=</literal>, <literal>like</literal>,
+<literal>matches</literal>, <literal>contains</literal>, and
+<literal>recontains</literal>)  are case-insensitive. You can control this
+behavior using directives (see <xref
+linkend="FilterExpression_CaseSensitivity" />).</para>
 
         <variablelist>
           <varlistentry>

@@ -31,7 +31,14 @@ struct FilterExpression
 	void Clear();
 	std::vector<std::string> GetPropertyNames() const;
 	static void SetLogger(std::function<void(int level, const std::string&)> func) { logger = func; };
+	static bool HasCaseSensitiveDirective(const String& expression);
+	static String AddCaseSensitiveDirective(const String& expression);
+	static String RemoveCaseSensitiveDirective(const String& expression);
+	static String ExtractDirectivesPrefix(const String& expression);
+	static String RemoveAllDirectives(const String& expression);
 	bool optimize = true;
+	bool caseSensitive = false;
+	std::string name;
 	const CDiffContext* ctxt = nullptr;
 	std::unique_ptr<Poco::Timestamp> now;
 	std::unique_ptr<Poco::Timestamp> today;
@@ -41,4 +48,7 @@ struct FilterExpression
 	int errorPosition = -1;
 	std::string errorMessage;
 	inline static std::function<void(int, const std::string&)> logger;
+private:
+	bool ParseDirective(const std::string& directive);
+	bool ParseAllDirectives(const std::string& expressionStr, std::string& actualExpression);
 };

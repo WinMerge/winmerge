@@ -1673,6 +1673,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Съвпадение на &регистъра"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1795,9 +1798,6 @@ msgstr "Търс&ене:"
 
 msgid "Match &whole word only"
 msgstr "&Само цели думи"
-
-msgid "Match &case"
-msgstr "Съвпадение на &регистъра"
 
 msgid "Regular &expression"
 msgstr "Регулярен &израз"

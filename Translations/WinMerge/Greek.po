@@ -1904,6 +1904,10 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+#, c-format
+msgid "Match &case"
+msgstr "Διάκριση Πεζών/&Κεφαλαίων"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -2051,10 +2055,6 @@ msgstr "Ανα&ζήτηση για:"
 #, c-format
 msgid "Match &whole word only"
 msgstr "Εύρεση ολοκλήρων &λέξεων μόνο"
-
-#, c-format
-msgid "Match &case"
-msgstr "Διάκριση Πεζών/&Κεφαλαίων"
 
 #, c-format
 msgid "Regular &expression"

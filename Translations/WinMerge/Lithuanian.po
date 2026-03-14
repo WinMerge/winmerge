@@ -1676,6 +1676,9 @@ msgstr "Atverti eilučių pakeitimų sąrašų katalogą..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "Atverti Regex pakeitimų sąrašų katalogą..."
 
+msgid "Match &case"
+msgstr "Paisyti &raidžių dydžio"
+
 msgid "Text &Normalization"
 msgstr "Teksto &normalizavimas"
 
@@ -1798,9 +1801,6 @@ msgstr "Ko &ieškoti?:"
 
 msgid "Match &whole word only"
 msgstr "Tik &pilnų žodžių"
-
-msgid "Match &case"
-msgstr "Paisyti &raidžių dydžio"
 
 msgid "Regular &expression"
 msgstr "Naud. reguliariąją &išraišką"

@@ -1679,6 +1679,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "&Rispettà Maiuscule è minuscule"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1801,9 +1804,6 @@ msgstr "Cosa circà :"
 
 msgid "Match &whole word only"
 msgstr "&Currispundenza di a parolla sana"
-
-msgid "Match &case"
-msgstr "&Rispettà Maiuscule è minuscule"
 
 msgid "Regular &expression"
 msgstr "&Espressione regulare"

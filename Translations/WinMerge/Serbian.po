@@ -1901,6 +1901,10 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+#, c-format
+msgid "Match &case"
+msgstr "Упореди ста&ње"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -2039,10 +2043,6 @@ msgstr "Претра&жи:"
 #, c-format
 msgid "Match &whole word only"
 msgstr "Упореди &цео израз"
-
-#, c-format
-msgid "Match &case"
-msgstr "Упореди ста&ње"
 
 #, c-format
 msgid "Regular &expression"

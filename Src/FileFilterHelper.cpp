@@ -467,6 +467,45 @@ std::vector<String> FileFilterHelper::SplitFilterGroups(const String& filterGrou
 }
 
 /**
+ * @brief Split filters within a group by separators (;, space, comma, colon).
+ * This splits a single filter group (e.g., "*.cpp;fe:Size>1MB;fe:@cs Date>today()") 
+ * into individual filters (e.g., ["*.cpp", "fe:Size>1MB", "fe:@cs Date>today()"]).
+ */
+std::vector<String> FileFilterHelper::SplitFiltersInGroup(const String& group)
+{
+	std::vector<String> result;
+	String remaining = group;
+
+	while (!remaining.empty())
+	{
+		String prefix;
+		size_t pos = findSeparator(remaining, prefix, 0);
+
+		String filter;
+		if (pos == String::npos)
+		{
+			// Last filter
+			filter = remaining;
+			remaining.clear();
+		}
+		else
+		{
+			filter = remaining.substr(0, pos);
+			remaining = remaining.substr(pos + 1); // Skip separator
+		}
+
+		filter = strutils::trim_ws(filter);
+		if (!filter.empty())
+			result.push_back(filter);
+
+		if (remaining.empty())
+			break;
+	}
+
+	return result;
+}
+
+/**
  * @brief Join filter groups into a single string.
  */
 String FileFilterHelper::JoinFilterGroups(const std::vector<String>& filterGroups)
@@ -479,6 +518,24 @@ String FileFilterHelper::JoinFilterGroups(const std::vector<String>& filterGroup
 		filterGroups2.push_back(group2);
 	}
 	return strutils::join(filterGroups2.begin(), filterGroups2.end(), _T("|"));
+}
+
+/**
+ * @brief Check if the given expression is a filter expression.
+ * Filter expressions have prefixes: fe:, de:, e:, fe!:, de!:, e!:
+ * (Note: f:, d:, f!:, d!:, pf: are also prefixes but for different purposes)
+ */
+bool FileFilterHelper::IsFilterExpression(const String& expression)
+{
+	String trimmed = strutils::trim_ws(expression);
+	// Only fe:, de:, e: and their exclusion variants are filter expressions
+	const String filterExprPrefixes[] = { _T("fe!:"), _T("de!:"), _T("e!:"), _T("fe:"), _T("de:"), _T("e:") };
+	for (const auto& prefix : filterExprPrefixes)
+	{
+		if (trimmed.find(prefix) == 0)
+			return true;
+	}
+	return false;
 }
 
 /** 

@@ -209,6 +209,86 @@ WinMerge
 Array, or <literal>undefined</literal>.</para>
       </section>
 
+      <section id="FilterExpression_Directives">
+        <title>ディレクティブ</title>
+
+        <para>
+フィルタ式は、式の評価方法を制御するディレクティブをサポートしています。ディレクティブは式の先頭に指定し、<literal>@</literal>
+を付けて記述し、式本体とは空白で区切ります。</para>
+
+        <section id="FilterExpression_CaseSensitivity">
+          <title>大文字小文字の区別に関するディレクティブ</title>
+
+          <para>
+デフォルトでは、すべての文字列比較演算子（<literal>=</literal>、<literal>!=</literal>、<literal>&lt;</literal>、<literal>&lt;=</literal>、<literal>&gt;</literal>、<literal>&gt;=</literal>、<literal>contains</literal>、<literal>recontains</literal>、<literal>like</literal>、<literal>matches</literal>）は大文字小文字を区別しません。この動作は次のディレクティブで制御できます。</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@cs</literal>, <literal>@casesensitive</literal>,
+<literal>@cs=true</literal>, <literal>@casesensitive=true</literal>,
+<literal>@ci=false</literal></term>
+              <listitem>
+                <para>
+大文字小文字を区別する比較を有効にします。これらのディレクティブを指定すると、<literal>"ABC"</literal> と
+<literal>"abc"</literal> は異なるものとして扱われます。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal>,
+<literal>@ci=true</literal>, <literal>@cs=false</literal>,
+<literal>@casesensitive=false</literal>,
+<literal>@caseinsensitive=false</literal></term>
+              <listitem>
+                <para>
+大文字小文字を区別しない比較を有効にします（デフォルトの動作）。これらのディレクティブを指定すると、<literal>"ABC"</literal> と
+<literal>"abc"</literal> は同一として扱われます。</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>大文字小文字の区別の例</title>
+<programlisting>@cs Name = "README.txt"           ## 大文字小文字を区別: "README.txt" のみ一致
+@ci Name = "readme.txt"           ## 大文字小文字を区別しない: "README.txt", "readme.txt", "ReadMe.TXT" などに一致
+@casesensitive Extension = "TXT"  ## 大文字小文字を区別: 拡張子 ".TXT" のファイルのみ一致
+@caseinsensitive Content contains "error"  ## 大文字小文字を区別しない: "Error", "ERROR", "error" などに一致</programlisting></example>
+        </section>
+
+        <section id="FilterExpression_Name">
+          <title>Name ディレクティブ</title>
+
+          <para>
+<literal>@name</literal>
+ディレクティブを使用すると、フィルタ式に説明用の名前を付けることができます。この名前はエラーメッセージやログで使用され、どのフィルタ式が問題を引き起こしたかを識別するのに役立ちます。</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@name="Filter Name"</literal>, <literal>@name=FilterName</literal></term>
+              <listitem>
+                <para>
+フィルタ式に名前を付けます。名前に空白や特殊文字を含む場合は、二重引用符で囲む必要があります。空白を含まない名前は引用符なしで指定できます。</para>
+                <para>
+指定した名前は、エラーメッセージや診断出力でフィルタを識別するために使用されます。複数の複雑なフィルタ式を扱う場合に特に便利です。</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Name ディレクティブの例</title>
+<programlisting>@name="Large Image Files" Size &gt; 10MB and Extension = "png"
+@name=SmallTextFiles Size &lt; 1KB and Extension = "txt"
+@name="Modified Today" Date &gt;= today()
+@name="Test Filter" @cs Name like "test_*.cpp"</programlisting></example>
+
+          <note>
+            <para>
+<literal>@name</literal>
+ディレクティブは他のディレクティブと組み合わせて使用できます。複数のディレクティブを使用する場合は、すべて式の先頭に記述し、空白で区切ります。</para>
+          </note>
+        </section>
+      </section>
+
       <section id="FilterExpression_Attributes">
         <title>Attributes</title>
 
@@ -458,8 +538,8 @@ Right, Middle）かを接頭辞で指定できます。</para>
         <title>演算子</title>
 
         <para>
-<literal>=</literal>、<literal>!=</literal>、<literal>like</literal>、<literal>matches</literal>、<literal>contains</literal>、<literal>recontains</literal>
-などの文字列比較演算子は、現在すべて大文字小文字を区別しません。</para>
+デフォルトでは、すべての文字列比較演算子（<literal>=</literal>、<literal>!=</literal>、<literal>&lt;</literal>、<literal>&lt;=</literal>、<literal>&gt;</literal>、<literal>&gt;=</literal>、<literal>like</literal>、<literal>matches</literal>、<literal>contains</literal>、<literal>recontains</literal>）は大文字小文字を区別しません。この動作はディレクティブで制御できます（<xref
+linkend="FilterExpression_CaseSensitivity" /> を参照）。</para>
 
         <variablelist>
           <varlistentry>

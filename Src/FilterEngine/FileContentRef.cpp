@@ -63,33 +63,39 @@ bool FileContentRef::operator==(const FileContentRef& other) const
 	}
 }
 
-bool FileContentRef::Contains(const std::string& str) const
+bool FileContentRef::Contains(const std::string& str, bool caseSensitive) const
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(path))
 		return false;
 	GuessEncoding(file, path);
 	String searchStr = ucr::toTString(str);
-	strutils::makelower(searchStr);
+
+	if (!caseSensitive)
+		strutils::makelower(searchStr);
+
 	std::boyer_moore_horspool_searcher<String::const_iterator> searcher(searchStr.begin(), searchStr.end());
+
 	bool linesToRead = true;
-	bool found = false;
 	do
 	{
 		bool lossy;
 		String line, eol;
 		linesToRead = file.ReadString(line, eol, &lossy);
-		strutils::makelower(line);
-		using iterator = String::const_iterator;
-		std::pair<iterator, iterator> result = searcher(line.begin(), line.end());
+
+		if (!caseSensitive)
+			strutils::makelower(line);
+
+		std::pair<String::const_iterator, String::const_iterator> result = searcher(line.begin(), line.end());
 		if (result.first != result.second)
 		{
-			found = true;
-			break;
+			file.Close();
+			return true;
 		}
 	} while (linesToRead);
+
 	file.Close();
-	return found;
+	return false;
 }
 
 bool FileContentRef::REContains(const Poco::RegularExpression& regexp) const

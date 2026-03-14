@@ -79,7 +79,7 @@ struct AndNode : public ExprNode
 
 struct BinaryOpNode : public ExprNode
 {
-	BinaryOpNode(ExprNode* l, int o, ExprNode* r) : left(l), right(r), op(o) { }
+	BinaryOpNode(const FilterExpression* c, ExprNode* l, int o, ExprNode* r) : ctxt(c), left(l), right(r), op(o) { }
 	virtual ~BinaryOpNode()
 	{
 		delete left;
@@ -87,6 +87,7 @@ struct BinaryOpNode : public ExprNode
 	}
 	ExprNode* Optimize() override;
 	ValueType Evaluate(const DIFFITEM& di) const override;
+	const FilterExpression* ctxt;
 	int op;
 	ExprNode* left;
 	ExprNode* right;
@@ -186,7 +187,7 @@ struct VersionLiteral : public ExprNode
 
 struct RegularExpressionLiteral : public ExprNode
 {
-	RegularExpressionLiteral(const std::string& v);
+	RegularExpressionLiteral(const std::string& v, bool caseSensitive = false);
 	inline ValueType Evaluate(const DIFFITEM& di) const override { return value; }
 	std::shared_ptr<Poco::RegularExpression> value;
 };

@@ -1912,6 +1912,10 @@ msgstr "Ordner für Zeichenketten-Ersetzungslisten öffnen..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "Ordner für Regex-Ersetzungslisten öffnen..."
 
+#, c-format
+msgid "Match &case"
+msgstr "&Groß-/Kleinschreibung beachten"
+
 msgid "Text &Normalization"
 msgstr "Text&normalisierung"
 
@@ -2059,10 +2063,6 @@ msgstr "&Suchen nach:"
 #, c-format
 msgid "Match &whole word only"
 msgstr "&Nur ganze Wörter"
-
-#, c-format
-msgid "Match &case"
-msgstr "&Groß-/Kleinschreibung beachten"
 
 #, c-format
 msgid "Regular &expression"

@@ -1914,6 +1914,10 @@ msgstr "문자열 대체 목록 폴더 열기..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "정규식 대체 목록 폴더 열기..."
 
+#, c-format
+msgid "Match &case"
+msgstr "대소문자 구분(&C)"
+
 msgid "Text &Normalization"
 msgstr "텍스트 정규화(&N)"
 
@@ -2061,10 +2065,6 @@ msgstr "찾을 내용(&N) :"
 #, c-format
 msgid "Match &whole word only"
 msgstr "전체 단어만 일치(&W)"
-
-#, c-format
-msgid "Match &case"
-msgstr "대소문자 구분(&C)"
 
 #, c-format
 msgid "Regular &expression"

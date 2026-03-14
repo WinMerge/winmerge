@@ -1678,6 +1678,9 @@ msgstr "Открыть папку списков замены строк..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "Открыть папку списков замены регулярных выражений..."
 
+msgid "Match &case"
+msgstr "Учитывать &регистр"
+
 msgid "Text &Normalization"
 msgstr "Нормализация текста"
 
@@ -1800,9 +1803,6 @@ msgstr "Найти:"
 
 msgid "Match &whole word only"
 msgstr "Искать слова &целиком"
-
-msgid "Match &case"
-msgstr "Учитывать &регистр"
 
 msgid "Regular &expression"
 msgstr "Ре&гулярные выражения"

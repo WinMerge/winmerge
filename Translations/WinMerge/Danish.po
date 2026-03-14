@@ -1906,6 +1906,10 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+#, c-format
+msgid "Match &case"
+msgstr "Sammenlign store/små &bogstaver"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -2053,10 +2057,6 @@ msgstr "F&ind hvad:"
 #, c-format
 msgid "Match &whole word only"
 msgstr "Sammenlign &hele ordet"
-
-#, c-format
-msgid "Match &case"
-msgstr "Sammenlign store/små &bogstaver"
 
 #, c-format
 msgid "Regular &expression"
