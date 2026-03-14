@@ -5981,7 +5981,7 @@ msgid "Unescape Java properties files"
 msgstr "Java tulajdonságfájlok feloldása"
 
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "Java dekompilálása (CFR)"
 
 msgid "Make characters uppercase"
 msgstr "Nagybetűsítés"
@@ -6132,7 +6132,7 @@ msgid "Unescape and display escaped Java properties files."
 msgstr "Az escape-elt Java tulajdonságfájlok feloldása és megjelenítése."
 
 msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
-msgstr ""
+msgstr "Java dekompilátor (CFR).\r\nA .class fájlokat olvasható Java forráskóddá dekompilálja.\r\nArgumentumok: CFR parancssori opciók."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge beépülő opciói"
