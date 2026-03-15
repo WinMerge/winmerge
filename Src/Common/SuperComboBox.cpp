@@ -399,7 +399,7 @@ BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
 		int nVirtKey = (int) pMsg->wParam;
 		// If Shift+Del pressed when dropdown is open, delete selected item
 		// from dropdown list
-		if (GetAsyncKeyState(VK_SHIFT))
+		if (GetAsyncKeyState(VK_SHIFT) < 0)
 		{
 			if (GetDroppedState() && nVirtKey == VK_DELETE)
 			{
