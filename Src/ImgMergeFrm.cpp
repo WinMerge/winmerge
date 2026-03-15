@@ -702,9 +702,19 @@ void CImgMergeFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDe
 
 void CImgMergeFrame::OnClose() 
 {
+	// Prevent re-entry while dialog is showing
+	if (m_bInOnClose)
+		return;
+	m_bInOnClose = true;
+
 	// Allow user to cancel closing
 	if (!PromptAndSaveIfNeeded(true))
+	{
+		m_bInOnClose = false;
 		return;
+	}
+
+	m_bInOnClose = false;
 
 	// clean up pointers.
 	CMergeFrameCommon::OnClose();
