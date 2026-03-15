@@ -40,7 +40,7 @@ public:
 
 	static bool ShowAndSave(
 		int nBuffers,
-		bool bModified[3],
+		const bool bModified[3],
 		const String paths[3],
 		const String descs[3],
 		const String& saveAsPath,
