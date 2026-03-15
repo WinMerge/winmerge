@@ -9,6 +9,7 @@
 #include "TrDialogs.h"
 #include "CMoveConstraint.h"
 #include "UnicodeString.h"
+#include <functional>
 
 /////////////////////////////////////////////////////////////////////////////
 // SaveClosingDlg dialog
@@ -36,6 +37,17 @@ public:
 
 	explicit SaveClosingDlg(CWnd* pParent = nullptr);   // standard constructor
 	void DoAskFor(bool bLeft = false, bool bMiddle = false, bool bRight = false);
+
+	static bool ShowAndSave(
+		int nBuffers,
+		bool bModified[3],
+		const String paths[3],
+		const String descs[3],
+		const String& saveAsPath,
+		bool bAllowCancel,
+		bool bSaveSuccess[3],
+		const std::function<bool(int)>& doSave,
+		const std::function<void(int)>& setSavePoint = nullptr);
 
 // Dialog Data
 	//{{AFX_DATA(SaveClosingDlg)

@@ -1223,71 +1223,29 @@ bool CImgMergeFrame::OpenImages()
  */
 bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 {
-	bool bLModified = false, bMModified = false, bRModified = false;
-	bool result = true;
-	bool bLSaveSuccess = false, bMSaveSuccess = false, bRSaveSuccess = false;
+	bool bSaveSuccess[3] = { false, false, false };
+	bool bModified[3] = { false, false, false };
+	String paths[3] = { };
 
-	if (m_pImgMergeWindow->GetPaneCount() == 3)
+	int nPaneCount = m_pImgMergeWindow->GetPaneCount();
+	for (int i = 0; i < nPaneCount; ++i)
 	{
-		bLModified = m_pImgMergeWindow->IsModified(0);
-		bMModified = m_pImgMergeWindow->IsModified(1);
-		bRModified = m_pImgMergeWindow->IsModified(2);
+		bModified[i] = m_pImgMergeWindow->IsModified(i);
+		paths[i] = m_filePaths.GetPath(i);
 	}
-	else
-	{
-		bLModified = m_pImgMergeWindow->IsModified(0);
-		bRModified = m_pImgMergeWindow->IsModified(1);
-	}
-	if (!bLModified && !bMModified && !bRModified)
+	if (!bModified[0] && !bModified[1] && !bModified[2])
 		 return true;
 
-	SaveClosingDlg dlg;
-	dlg.DoAskFor(bLModified, bMModified, bRModified);
-	if (!bAllowCancel)
-		dlg.m_bDisableCancel = true;
-	if (!m_filePaths.GetLeft().empty())
-		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_filePaths.GetLeft() : m_strSaveAsPath;
-	else
-		dlg.m_sLeftFile = m_strSaveAsPath.empty() ?m_strDesc[0] : m_strSaveAsPath;
-	if (m_pImgMergeWindow->GetPaneCount() == 3)
-	{
-		if (!m_filePaths.GetMiddle().empty())
-			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_filePaths.GetMiddle() : m_strSaveAsPath;
-		else
-			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
-	}
-	if (!m_filePaths.GetRight().empty())
-		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_filePaths.GetRight() : m_strSaveAsPath;
-	else
-		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1] : m_strSaveAsPath;
-
-	if (dlg.DoModal() == IDOK)
-	{
-		if (bLModified && dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
-		{
-			bLSaveSuccess = DoFileSave(0);
-			if (!bLSaveSuccess)
-				result = false;
-		}
-
-		if (bMModified && dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
-		{
-			bMSaveSuccess = DoFileSave(1);
-			if (!bMSaveSuccess)
-				result = false;
-		}
-
-		if (bRModified && dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
-		{
-			bRSaveSuccess = DoFileSave(m_pImgMergeWindow->GetPaneCount() - 1);
-			if (!bRSaveSuccess)
-				result = false;
-		}
-	}
-	else
-	{	
-		result = false;
-	}
+	bool result = SaveClosingDlg::ShowAndSave(
+		nPaneCount,
+		bModified,
+		paths,
+		m_strDesc,
+		m_strSaveAsPath,
+		bAllowCancel,
+		bSaveSuccess,
+		[this](int i) { return DoFileSave(i); }
+	);
 
 	return result;
 }

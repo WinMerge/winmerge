@@ -167,95 +167,29 @@ int CHexMergeDoc::UpdateLastCompareResult()
  */
 bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 {
-	bool bLModified = false, bMModified = false, bRModified = false;
+	bool bSaveSuccess[3] = { false, false, false };
+	bool bModified[3] = { false, false, false };
+	String paths[3] = { };
 
-	if (m_nBuffers == 3)
+	for (int i = 0; i < m_nBuffers; ++i)
 	{
-		bLModified = m_pView[0]->GetModified();
-		bMModified = m_pView[1]->GetModified();
-		bRModified = m_pView[2]->GetModified();
+		bModified[i] = m_pView[i]->GetModified();
+		paths[i] = m_filePaths.GetPath(i);
 	}
-	else
-	{
-		bLModified = m_pView[0]->GetModified();
-		bRModified = m_pView[1]->GetModified();
-	}
-	if (!bLModified && !bMModified && !bRModified)
+	if (!bModified[0] && !bModified[1] && !bModified[2])
 		 return true;
 
-	const String &pathLeft = m_filePaths.GetLeft();
-	const String &pathMiddle = m_filePaths.GetMiddle();
-	const String &pathRight = m_filePaths.GetRight();
-
-	bool result = true;
-	bool bLSaveSuccess = false, bMSaveSuccess = false, bRSaveSuccess = false;
-
-	SaveClosingDlg dlg;
-	dlg.DoAskFor(bLModified, bMModified, bRModified);
-	if (!bAllowCancel)
-		dlg.m_bDisableCancel = true;
-	if (!pathLeft.empty())
-		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? pathLeft : m_strSaveAsPath;
-	else
-		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_strDesc[0] : m_strSaveAsPath;
-	if (m_nBuffers == 3)
-	{
-		if (!pathMiddle.empty())
-			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? pathMiddle : m_strSaveAsPath;
-		else
-			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
-	}
-	if (!pathRight.empty())
-		dlg.m_sRightFile = m_strSaveAsPath.empty() ? pathRight : m_strSaveAsPath;
-	else
-		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
-
-	if (dlg.DoModal() == IDOK)
-	{
-		if (bLModified)
-		{
-			if (dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
-			{
-				bLSaveSuccess = DoFileSave(0);
-				if (!bLSaveSuccess)
-					result = false;
-			}
-			else
-			{
-				m_pView[0]->SetSavePoint();
-			}
-		}
-		if (bMModified)
-		{
-			if (dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
-			{
-				bMSaveSuccess = DoFileSave(1);
-				if (!bMSaveSuccess)
-					result = false;
-			}
-			else
-			{
-				m_pView[1]->SetSavePoint();
-			}
-		}
-		if (bRModified)
-		{
-			if (dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
-			{
-				bRSaveSuccess = DoFileSave(m_nBuffers - 1);
-				if (!bRSaveSuccess)
-					result = false;
-			}
-			else
-			{
-				m_pView[m_nBuffers - 1]->SetSavePoint();
-			}
-		}
-	}
-	else
-	{	
-		result = false;
-	}
+	bool result = SaveClosingDlg::ShowAndSave(
+		m_nBuffers,
+		bModified,
+		paths,
+		m_strDesc,
+		m_strSaveAsPath,
+		bAllowCancel,
+		bSaveSuccess,
+		[this, &bSaveSuccess](int i) { return DoFileSave(i); },
+		[this](int i) { m_pView[i]->SetSavePoint(); }
+	);
 
 	return result;
 }

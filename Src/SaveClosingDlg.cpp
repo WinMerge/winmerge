@@ -135,3 +135,92 @@ void SaveClosingDlg::OnDiscardAll()
 	UpdateData(FALSE);
 	OnOK();
 }
+
+/**
+ * @brief Common helper to ask user about saving modified documents
+ */
+bool SaveClosingDlg::ShowAndSave(
+	int nBuffers,
+	bool bModified[3],
+	const String paths[3],
+	const String descs[3],
+	const String& saveAsPath,
+	bool bAllowCancel,
+	bool bSaveSuccess[3],
+	const std::function<bool(int)>& doSave,
+	const std::function<void(int)>& setSavePoint)
+{
+	bool result = true;
+	SaveClosingDlg dlg;
+	
+	if (nBuffers == 3)
+		dlg.DoAskFor(bModified[0], bModified[1], bModified[2]);
+	else
+		dlg.DoAskFor(bModified[0], false, bModified[1]);
+
+	if (!bAllowCancel)
+		dlg.m_bDisableCancel = true;
+
+	if (!paths[0].empty())
+		dlg.m_sLeftFile = saveAsPath.empty() ? paths[0] : saveAsPath;
+	else
+		dlg.m_sLeftFile = saveAsPath.empty() ? descs[0] : saveAsPath;
+
+	if (nBuffers == 3)
+	{
+		if (!paths[1].empty())
+			dlg.m_sMiddleFile = saveAsPath.empty() ? paths[1] : saveAsPath;
+		else
+			dlg.m_sMiddleFile = saveAsPath.empty() ? descs[1] : saveAsPath;
+	}
+
+	if (!paths[nBuffers - 1].empty())
+		dlg.m_sRightFile = saveAsPath.empty() ? paths[nBuffers - 1] : saveAsPath;
+	else
+		dlg.m_sRightFile = saveAsPath.empty() ? descs[nBuffers - 1] : saveAsPath;
+
+	if (dlg.DoModal() == IDOK)
+	{
+		if (bModified[0])
+		{
+			if (dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
+			{
+				bSaveSuccess[0] = doSave(0);
+				if (!bSaveSuccess[0])
+					result = false;
+			}
+			else if (setSavePoint)
+				setSavePoint(0);
+		}
+
+		if (nBuffers == 3 && bModified[1])
+		{
+			if (dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
+			{
+				bSaveSuccess[1] = doSave(1);
+				if (!bSaveSuccess[1])
+					result = false;
+			}
+			else if (setSavePoint)
+				setSavePoint(1);
+		}
+
+		if (bModified[nBuffers - 1])
+		{
+			if (dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
+			{
+				bSaveSuccess[nBuffers - 1] = doSave(nBuffers - 1);
+				if (!bSaveSuccess[nBuffers - 1])
+					result = false;
+			}
+			else if (setSavePoint)
+				setSavePoint(nBuffers - 1);
+		}
+	}
+	else
+	{
+		result = false;
+	}
+
+	return result;
+}

@@ -1853,74 +1853,34 @@ void CMergeDoc::AddToLineFilters(const String& text)
  */
 bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 {
-	bool bLModified = false, bMModified = false, bRModified = false;
-	bool result = true;
-	bool bLSaveSuccess = false, bMSaveSuccess = false, bRSaveSuccess = false;
+	bool bSaveSuccess[3] = { false, false, false };
+	bool bModified[3] = { false, false, false };
+	String paths[3] = { };
 
-	if (m_nBuffers == 3)
+	for (int i = 0; i < m_nBuffers; ++i)
 	{
-		bLModified = m_ptBuf[0]->IsModified();
-		bMModified = m_ptBuf[1]->IsModified();
-		bRModified = m_ptBuf[2]->IsModified();
+		bModified[i] = m_ptBuf[i]->IsModified();
+		paths[i] = m_filePaths.GetPath(i);
 	}
-	else
-	{
-		bLModified = m_ptBuf[0]->IsModified();
-		bRModified = m_ptBuf[1]->IsModified();
-	}
-	if (!bLModified && !bMModified && !bRModified)
+	if (!bModified[0] && !bModified[1] && !bModified[2])
 		 return true;
 
-	SaveClosingDlg dlg;
-	dlg.DoAskFor(bLModified, bMModified, bRModified);
-	if (!bAllowCancel)
-		dlg.m_bDisableCancel = true;
-	if (!m_filePaths.GetLeft().empty())
-		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_filePaths.GetLeft() : m_strSaveAsPath;
-	else
-		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_strDesc[0] : m_strSaveAsPath;
-	if (m_nBuffers == 3)
-	{
-		if (!m_filePaths.GetMiddle().empty())
-			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_filePaths.GetMiddle() : m_strSaveAsPath;
-		else
-			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
-	}
-	if (!m_filePaths.GetRight().empty())
-		dlg.m_sRightFile = m_strSaveAsPath.empty() ?m_filePaths.GetRight() : m_strSaveAsPath;
-	else
-		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_strDesc[m_nBuffers - 1] : m_strSaveAsPath;
-
-	if (dlg.DoModal() == IDOK)
-	{
-		if (bLModified && dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
-		{
-			if (!DoSave(m_filePaths.GetLeft().c_str(), bLSaveSuccess, 0))
-				result = false;
-		}
-
-		if (bMModified && dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
-		{
-			if (!DoSave(m_filePaths.GetMiddle().c_str(), bMSaveSuccess, 1))
-				result = false;
-		}
-
-		if (bRModified && dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
-		{
-			if (!DoSave(m_filePaths.GetRight().c_str(), bRSaveSuccess, m_nBuffers - 1))
-				result = false;
-		}
-	}
-	else
-	{	
-		result = false;
-	}
+	bool result = SaveClosingDlg::ShowAndSave(
+		m_nBuffers,
+		bModified,
+		paths,
+		m_strDesc,
+		m_strSaveAsPath,
+		bAllowCancel,
+		bSaveSuccess,
+		[this, &bSaveSuccess](int i) { return DoSave(m_filePaths[i].c_str(), bSaveSuccess[i], i); }
+	);
 
 	// If file were modified and saving was successfull,
 	// update status on dir view
-	if ((bLModified && bLSaveSuccess) || 
-	     (bMModified && bMSaveSuccess) ||
-		 (bRModified && bRSaveSuccess))
+	if ((bModified[0] && bSaveSuccess[0]) || 
+	    (bModified[1] && bSaveSuccess[1]) ||
+	    (bModified[2] && bSaveSuccess[2]))
 	{
 		// If directory compare has results
 		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
