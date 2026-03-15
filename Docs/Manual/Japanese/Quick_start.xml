@@ -8,7 +8,7 @@
       </indexterm><indexterm>
         <primary>ファイルとフォルダーの選択</primary>
 
-        <secondary>getting started</secondary>
+        <secondary>はじめる</secondary>
       </indexterm>比較するファイルとフォルダーの選択</title>
 
     <para>WinMergeをインストールしたら、トピック中の手順と議論を通じて、 基本的なWinMergeの操作と概念を学んでください。
@@ -52,7 +52,7 @@
         <listitem>
           <para>ツールバーの開くボタン <inlinemediaobject>
 <imageobject> <imagedata contentwidth="16"
-fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>WinMerge open button</phrase></textobject>
+fileref="screenshots/open_icon.png" /> </imageobject><textobject><phrase>WinMerge の「開く」ボタン</phrase></textobject>
             </inlinemediaobject> をクリックします。</para>
         </listitem>
 
@@ -126,7 +126,7 @@ linkend="Configuration" />を参照してください。</para>
             </listitem>
           </itemizedlist></para>
 
-        <para><note><para>あなたは、一組のファイル、または、フォルダーを比較することができます。
+        <para><メモ><para>あなたは、一組のファイル、または、フォルダーを比較することができます。
 もし、ファイルとフォルダーを選択するか、または、ファイルやフォルダーが存在しない場合、
 WinMergeは、ダイアログの<guibutton>比較</guibutton>ボタンを使用不可にします。</para>
 
@@ -171,7 +171,7 @@ WinMergeは、フィルターファイルのセットをインストールしま
         </indexterm><indexterm>
           <primary>コマンドライン</primary>
 
-          <secondary>opening files and folders</secondary>
+          <secondary>ファイルとフォルダーを開く</secondary>
         </indexterm></title>
 
       <para><guilabel>ファイルまたはフォルダーの選択</guilabel>ダイアログは、ファイルやフォルダーを開くための主要なインターフェイスです。
@@ -183,7 +183,7 @@ WinMergeは、フィルターファイルのセットをインストールしま
         </listitem>
 
         <listitem>
-          <simpara><xref linkend="OpenPaths_shell-integ" />.</simpara>
+          <simpara><xref linkend="OpenPaths_shell-integ" />。</simpara>
         </listitem>
 
         <listitem>
@@ -202,11 +202,11 @@ WinMergeは、フィルターファイルのセットをインストールしま
     <title><indexterm>
         <primary>フォルダーの比較</primary>
 
-        <secondary>getting started</secondary>
+        <secondary>はじめる</secondary>
       </indexterm><indexterm>
         <primary>フォルダー比較ウィンドウ</primary>
 
-        <secondary>getting started</secondary>
+        <secondary>はじめる</secondary>
       </indexterm>フォルダーの比較</title>
 
     <para>もし、開くダイアログで、2つのフォルダーを選択したなら、フォルダー比較ウィンドウが開かれます。フォルダー比較ウィンドウは、比較対象フォルダー中で見つかった項目の表です。それぞれの行は、見つかったファイルについて、左の列にファイル名、その他の列に付加的な情報を表示します。</para>
@@ -252,7 +252,7 @@ folders identical in both sides by selecting one of several Copy items.
 フォルダー比較を完了したら、ファイル名列の一番上の上矢印ボタン <inlinemediaobject>
 <imageobject> <imagedata contentwidth="23"
 fileref="screenshots/nav_uparrow_btn.png" /> </imageobject><textobject>
-          <phrase>Navigator up arrow button</phrase>
+          <phrase>ナビゲータの上矢印ボタン</phrase>
         </textobject>
       </inlinemediaobject>をダブルクリックし、親フォルダーに戻ることができます。</para>
 
@@ -263,11 +263,11 @@ fileref="screenshots/nav_uparrow_btn.png" /> </imageobject><textobject>
     <title><indexterm>
         <primary>ファイルの比較</primary>
 
-        <secondary>getting started</secondary>
+        <secondary>はじめる</secondary>
       </indexterm><indexterm>
         <primary>ファイル比較ウィンドウ</primary>
 
-        <secondary>getting started</secondary>
+        <secondary>はじめる</secondary>
       </indexterm>ファイルの比較</title>
 
     <mediaobject>

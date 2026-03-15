@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Locales">
   <title>ロケールサポート<indexterm>
-      <primary>localizing WinMerge</primary>
+      <primary>WinMerge のローカライズ</primary>
     </indexterm></title>
 
   <para>WinMergeのインターフェイスはデフォルトで英語となっていますが、ローカライズが可能です。
@@ -71,13 +71,11 @@ WinMergeインストールディレクトリの<filename>Languages</filename>サ
       </listitem>
 
       <listitem>
-        <simpara>Select <guimenuitem>Options</guimenuitem> from the <guimenu>Edit</guimenu>
-menu.</simpara>
+        <simpara><guimenu>編集</guimenu> メニューから <guimenuitem>オプション</guimenuitem> を選択します。</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Select your language and click <guibutton>OK</guibutton> in the Options
-dialog General page.</simpara>
+        <simpara>言語を選択し、[オプション] ダイアログの [全般] ページで <guibutton>OK</guibutton> をクリックします。</simpara>
       </listitem>
     </orderedlist>
 
@@ -153,7 +151,7 @@ dialog General page.</simpara>
       </listitem>
 
       <listitem>
-        <simpara>Hebrew</simpara>
+        <simpara>ヘブライ語</simpara>
       </listitem>
 
       <listitem>
@@ -244,7 +242,7 @@ dialog General page.</simpara>
 
   <section>
     <title>翻訳ミスの報告<indexterm>
-        <primary>translations, reporting errors</primary>
+        <primary>翻訳、エラーの報告</primary>
       </indexterm></title>
 
     <para>あながたが翻訳ミスを見つけた場合は、バグとして <ulink

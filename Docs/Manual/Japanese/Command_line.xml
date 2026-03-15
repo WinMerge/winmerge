@@ -627,7 +627,7 @@ c:\tmp\report.html</option></para>
 Diff コンテキスト → 0 行」と同等)。</para></listitem>
           <listitem><para><option>/cfg Settings/ViewLineNumbers=1</option> - 行番号を出力します（0 にすると非表示）。</para></listitem>
         </itemizedlist>
-        <para>フォルダ比較の場合:</para>
+        <para>フォルダー比較の場合:</para>
         <itemizedlist>
           <listitem><para><option>/cfg Settings/DirViewExpandSubdirs=1</option> - サブフォルダを自動的に展開します。</para></listitem>
           <listitem><para><option>/cfg ReportFiles/ReportType=2</option> - レポート形式: Simple HTML。</para></listitem>

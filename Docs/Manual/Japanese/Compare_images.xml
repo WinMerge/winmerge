@@ -6,26 +6,24 @@
 
   <indexterm>
     <primary>ファイルの比較</primary>
-    <secondary>images</secondary>
+    <secondary>画像</secondary>
   </indexterm>
 
-  <para>This topic describes how to compare images using the Image Compare window.</para>
+  <para>このトピックでは、[イメージ比較] ウィンドウを使用してイメージを比較する方法について説明します。</para>
 
   <section id="Compare_images_starting">
     <title>画像比較操作を開始する</title>
 
-    <para>You can start an image compare operation from either the WinMerge window or
-a Command Prompt window.</para>
+    <para>イメージ比較操作は、WinMerge ウィンドウまたはコマンド プロンプト ウィンドウから開始できます。</para>
 
     <variablelist>
       <varlistentry>
         <term>WinMergeウインドウから</term>
 
         <listitem>
-          <para>Click <menuchoice> <guimenu>File</guimenu> <guimenuitem>Open</guimenuitem>
-</menuchoice>. Use the Select Files or Folders dialog to specify the left
-and right source images to compare. For more details about the Select Files
-or Folder dialog, see <xref linkend="Open_paths" />.</para>
+          <para><menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>開く</guimenuitem>
+</menuchoice> をクリックします。 [ファイルまたはフォルダーの選択] ダイアログを使用して、比較する左右のソース イメージを指定します。
+「ファイルまたはフォルダーの選択」ダイアログの詳細については、「<xref linkend="Open_paths" />」を参照してください。</para>
         </listitem>
       </varlistentry>
 
@@ -33,10 +31,9 @@ or Folder dialog, see <xref linkend="Open_paths" />.</para>
         <term>コマンドプロンプトウインドウから</term>
 
         <listitem>
-          <para>Run <command>WinMergeU.exe</command>, which is in your WinMerge install
-directory. In your command arguments, include the left and right images to
-compare. For more information about using the command line, see <xref
-linkend="Command_line" />.</para>
+          <para>WinMerge インストール ディレクトリにある <command>WinMergeU.exe</command>
+を実行します。コマンド引数に、比較する左右の画像を含めます。コマンド ラインの使用の詳細については、「<xref
+linkend="Command_line" />」を参照してください。</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -45,72 +42,68 @@ linkend="Command_line" />.</para>
   <section id="Compare_images_window">
     <title>画像比較ウィンドウ</title>
 
-    <para>WinMerge support many types of images and can highlight the differences with
-blocks. Overlaying of the pictures is also possible.</para>
+    <para>WinMerge は多くの種類の画像をサポートしており、ブロックとの違いを強調表示できます。写真を重ねて表示することも可能です。</para>
 
     <mediaobject>
 <imageobject> <imagedata fileref="screenshots/imgcmp1.png" format="PNG" />
 </imageobject><textobject>
-        <phrase>Image Compare Window</phrase>
+        <phrase>画像比較ウィンドウ</phrase>
       </textobject>
     </mediaobject>
 
-    <para>You can set the most options in the <guilabel>Location Pane</guilabel>:</para>
+    <para><guilabel>場所ペイン</guilabel>でほとんどのオプションを設定できます。</para>
 
     <section>
       <title>差異<indexterm>
-        <primary>Diff</primary>
+        <primary>差分</primary>
       </indexterm></title>
 
       <variablelist>
         <varlistentry>
-          <term>Highlight</term>
+          <term>ハイライト</term>
           <listitem>
-            <para>With the check box <guilabel>Highlight</guilabel> you can enable or disable
-the highlighting of the image differences.</para>
+            <para><guilabel>ハイライト</guilabel>チェックボックスを使用すると、画像の相違点のハイライトを有効または無効にできます。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term>点滅</term>
           <listitem>
-            <para>If the highlighting is enabled you can even make it blinking by checking the
-check box <guilabel>Blink</guilabel>.</para>
+            <para>ハイライトが有効になっている場合は、チェックボックス <guilabel>Blink</guilabel>
+をチェックすると、ハイライトを点滅させることもできます。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Block Size</term>
+          <term>ブロックサイズ</term>
           <listitem>
-            <para>The slider <guilabel>Block Size</guilabel> defines the size of the blocks
-which highlighting the image differences.</para>
+            <para>スライダー <guilabel>ブロック サイズ</guilabel> は、画像の違いを強調するブロックのサイズを定義します。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Block Alpha</term>
+          <term>ブロックアルファ</term>
           <listitem>
-            <para>The <guilabel>Block Alpha</guilabel> slider defines how strong the alpha
-blending of the blocks is.</para>
+            <para><guilabel>ブロック アルファ</guilabel> スライダーは、ブロックのアルファ ブレンドの強さを定義します。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Color Distance Threshold</term>
+          <term>色の距離のしきい値</term>
           <listitem>
-            <para>The slider <guilabel>CD</guilabel> sets the <emphasis>Color Distance
-Threshold</emphasis> which helps to ignore color differences.</para>
+            <para>スライダー <guilabel>CD</guilabel> は、色の違いを無視するのに役立つ <emphasis>色距離しきい値</emphasis>
+を設定します。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Ins/Del Detection</term>
+          <term>インス/デルの検出</term>
           <listitem>
-            <para>TBD</para>
+            <para>未定</para>
             <itemizedlist>
-              <listitem><guilabel>None</guilabel></listitem>
-              <listitem><guilabel>Vertical</guilabel></listitem>
-              <listitem><guilabel>Horizontal</guilabel></listitem>
+              <listitem><guilabel>なし</guilabel></listitem>
+              <listitem><guilabel>垂直</guilabel></listitem>
+              <listitem><guilabel>水平</guilabel></listitem>
             </itemizedlist>
             <para></para>
           </listitem>
@@ -121,30 +114,30 @@ Threshold</emphasis> which helps to ignore color differences.</para>
 
     <section>
       <title>重ね合わせ<indexterm>
-        <primary>Overlay</primary>
+        <primary>かぶせる</primary>
       </indexterm></title>
 
       <variablelist>
         <varlistentry>
-          <term>Mode</term>
+          <term>モード</term>
           <listitem>
-            <para>Currently the following <emphasis>Overlay Modes</emphasis> are possible:</para>
+            <para>現在、次の <emphasis>オーバーレイ モード</emphasis> が可能です。</para>
             <itemizedlist>
-              <listitem><guilabel>None</guilabel></listitem>
+              <listitem><guilabel>なし</guilabel></listitem>
               <listitem><guilabel>XOR</guilabel></listitem>
-              <listitem><guilabel>Alpha Blend</guilabel></listitem>
-              <listitem><guilabel>Alpha Blend Animation</guilabel></listitem>
+              <listitem><guilabel>アルファブレンド</guilabel></listitem>
+              <listitem><guilabel>アルファブレンドアニメーション</guilabel></listitem>
             </itemizedlist>
             <para></para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Alpha</term>
+          <term>アルファ</term>
           <listitem>
-            <para>The <guilabel>Alpha</guilabel> slider defines how strong the alpha blending
-of the overlay nodes <guilabel>Alpha Blend</guilabel> or <guilabel>Alpha
-Blend Animation</guilabel> is.</para>
+            <para><guilabel>Alpha</guilabel> スライダーは、オーバーレイ ノード <guilabel>Alpha
+Blend</guilabel> または <guilabel>Alpha Blendアニメーション</guilabel> のアルファ
+ブレンドの強さを定義します。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -159,16 +152,15 @@ Blend Animation</guilabel> is.</para>
         <varlistentry>
           <term>拡大/縮小</term>
           <listitem>
-            <para>With the <guilabel>Zoom</guilabel> slider you can zoom in or out of the
-images.</para>
+            <para><guilabel>ズーム</guilabel> スライダーを使用すると、画像をズームインまたはズームアウトできます。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>Page</term>
+          <term>ページ</term>
           <listitem>
-            <para>If the image format support multiple pages you can select the current page
-with the <guilabel>Page</guilabel> number box.</para>
+            <para>画像形式が複数のページをサポートしている場合は、<guilabel>ページ</guilabel> ナンバー
+ボックスを使用して現在のページを選択できます。</para>
           </listitem>
         </varlistentry>
       </variablelist>

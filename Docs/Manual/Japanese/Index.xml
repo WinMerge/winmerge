@@ -35,9 +35,9 @@
   <bookinfo>
     <title>WinMerge &WinMergeVersion; ヘルプ</title>
 
-<productname>WinMerge</productname><releaseinfo><emphasis>Revision &ManualRevision;</emphasis></releaseinfo>
+<productname>WinMerge</productname><releaseinfo><emphasis>リビジョン &ManualRevision;</emphasis></releaseinfo>
 
-<copyright> <year>&CopyrightYears;</year> <holder>&CopyrightHolder;</holder>
+<copyright> <year>&Copyrightyears;</year> <holder>&CopyrightHolder;</holder>
 </copyright><legalnotice>
       <para>この文書の情報は予告なしに変更されます。 この文書に引用された製品や企業は、 それらの企業・権利者の商標、および、 登録商標です。</para>
     </legalnotice>

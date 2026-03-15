@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Open_paths">
   <title>ファイルとフォルダーを開く<indexterm>
-      <primary>opening files and folders</primary>
+      <primary>ファイルとフォルダーを開く</primary>
     </indexterm></title>
 
-  <para>WinMerge provides several ways to specify paths and open files or
-folders:<indexterm>
-      <primary>folders</primary>
+  <para>WinMerge には、パスを指定してファイルまたはフォルダーを開くためのいくつかの方法が用意されています。<indexterm>
+      <primary>フォルダー</primary>
 
-      <secondary>selecting in Select Files or Folders dialog</secondary>
+      <secondary>「ファイルまたはフォルダの選択」ダイアログでの選択</secondary>
     </indexterm><indexterm>
-      <primary>files</primary>
+      <primary>ファイル</primary>
 
-      <secondary>selecting in Select Files or Folders dialog</secondary>
+      <secondary>「ファイルまたはフォルダの選択」ダイアログでの選択</secondary>
     </indexterm></para>
 
   <itemizedlist>
@@ -38,49 +37,45 @@ folders:<indexterm>
         <primary>ファイルまたはフォルダーの選択ダイアログ</primary>
       </indexterm></title>
 
-    <para><xref linkend="Quick_start" /> describes the Select Files or Folders
-dialog. This section provides more details, and some tips for using the
-Select Files or Folders dialog more efficiently.</para>
+    <para><xref linkend="Quick_start" /> では、[ファイルまたはフォルダの選択]
+ダイアログについて説明します。このセクションでは、詳細と、[ファイルまたはフォルダーの選択]
+ダイアログをより効率的に使用するためのいくつかのヒントを説明します。</para>
 
     <section>
       <title>環境変数の使用<indexterm>
-          <primary>environment variables, in compare target paths</primary>
+          <primary>環境変数、比較ターゲット パス内</primary>
         </indexterm></title>
 
-      <para>You can use environment variables in your paths. Windows expands the
-variable name between % (percent) delimiters. For example, if an environment
-variable named <envar>WORKDIR</envar> has the value <filename
-class="directory">c:\workfiles</filename>, then the path
-<envar>%WORKDIR%\project1</envar> is expanded to <filename
-class="directory">c:\workfiles\project1</filename> .</para>
+      <para>パスで環境変数を使用できます。 Windows は、変数名を % (パーセント) 区切り記号で区切って展開します。たとえば、
+<envar>WORKDIR</envar> という名前の環境変数の値が <filename
+class="directory">c:\workfiles</filename> である場合、パス
+<envar>%WORKDIR%\project1</envar> は <filename
+class="directory">c:\workfiles\project1</filename> に展開されます。</para>
     </section>
 
     <section id="OpeningArchives">
       <title>アーカイブファイルを開く<indexterm>
-          <primary>7-Zip archives</primary>
+          <primary>7-Zip アーカイブ</primary>
 
-          <secondary>opening</secondary>
+          <secondary>オープニング</secondary>
         </indexterm></title>
 
-      <para>WinMerge archive support is provided in the 7-Zip plugin. See <xref
-linkend="Install" /> to install this plugin.</para>
+      <para>WinMerge アーカイブのサポートは 7-Zip プラグインで提供されます。このプラグインをインストールするには、<xref
+linkend="Install" /> を参照してください。</para>
 
-      <para>Opening two archive files is similar to opening normal files: specify two
-archive files in the Open-dialog's <guilabel>1st</guilabel> and
-<guilabel>2nd</guilabel> fields. If WinMerge recognizes the archive format,
-it opens the contents of the archive files in the Folder Compare window.</para>
+      <para>2 つのアーカイブ ファイルを開くことは、通常のファイルを開くことと似ています。開くダイアログの <guilabel>1st</guilabel>
+フィールドと <guilabel>2nd</guilabel> フィールドに 2 つのアーカイブ ファイルを指定します。 WinMerge
+がアーカイブ形式を認識すると、アーカイブ ファイルの内容が [フォルダー比較] ウィンドウで開きます。</para>
 
-      <para>The <xref linkend="Compare_dirs" /> topic describes how to work with archive
-files. For example, if an archive file contains two subfolders named
-<filename class="directory">Original/</filename> and <filename
-class="directory">Altered/</filename>, you can compare the contents of the
-two subfolders by specifying the same archive file in both sides in the
-Select Files or Folders dialog or WinMerge command line.</para>
+      <para><xref linkend="Compare_dirs" /> トピックでは、アーカイブ ファイルの操作方法について説明します。たとえば、アーカイブ
+ファイルに <filename class="directory">Original/</filename> と <filename
+class="directory">Altered/</filename> という名前の 2
+つのサブフォルダーが含まれている場合、[ファイルまたはフォルダーの選択] ダイアログまたは WinMerge コマンド ラインで両側に同じアーカイブ
+ファイルを指定することで、2 つのサブフォルダーの内容を比較できます。</para>
 
       <tip>
-        <para>When you drag an archive file to the WinMerge window, press
-<keycap>Shift</keycap> when dropping the file: WinMerge automatically copies
-the same filename to both sides and opens the archive file.</para>
+        <para>アーカイブ ファイルを WinMerge ウィンドウにドラッグする場合、ファイルをドロップするときに <keycap>Shift</keycap>
+を押します。WinMerge は同じファイル名を自動的に両側にコピーし、アーカイブ ファイルを開きます。</para>
       </tip>
     </section>
 
@@ -88,57 +83,46 @@ the same filename to both sides and opens the archive file.</para>
       <title>フィルターの指定<indexterm>
           <primary>フィルター</primary>
 
-          <secondary>applying in Select Files or Folders dialog</secondary>
+          <secondary>「ファイルまたはフォルダの選択」ダイアログでの適用</secondary>
         </indexterm></title>
 
-      <para>The <guilabel>Filter</guilabel> edit field enables you to restrict the files
-to be included in your folder compare. You can specify one or more file
-masks, or a single file filter (not both).</para>
+      <para><guilabel>フィルター</guilabel> 編集フィールドを使用すると、フォルダー比較に含めるファイルを制限できます。 1 つ以上のファイル
+マスク、または 1 つのファイル フィルタを指定できます (両方は指定できません)。</para>
 
-      <para>A mask is a simple expression based on file extensions. For example, this
-list of file masks includes only files with the specified extensions; all
-others are excluded from the selection when the compare operation starts:</para>
+      <para>マスクは、ファイル拡張子に基づく単純な式です。たとえば、このファイル
+マスクのリストには、指定された拡張子を持つファイルのみが含まれています。比較操作の開始時に、他のすべては選択から除外されます。</para>
 
-      <screen>*.h;*.cpp;*.txt,*.ini</screen>
+      <screen>*.h;*.cpp;*.txt、*.ini</screen>
 
-      <para>File masks are practical for simple filtering; for more advanced selecting,
-use filter files. Filter files are collections of regular expressions that
-can either include or exclude files. WinMerge installs a number of
-predefined filter files in its <filename>Filters</filename> folder, and you
-can create your own, too.</para>
+      <para>ファイル マスクは、単純なフィルタリングに実用的です。より高度な選択を行うには、フィルター ファイルを使用します。フィルター
+ファイルは、ファイルを含めたり除外したりできる正規表現のコレクションです。 WinMerge は、事前定義された多数のフィルター ファイルを
+<filename>Filters</filename> フォルダーにインストールします。また、独自のフィルター ファイルを作成することもできます。</para>
 
-      <para>To specify a filter, click the <guibutton>Select</guibutton> button next to
-the <guilabel>Filters</guilabel> field to choose from a list of available
-filters. Or, click the Filter drop-down list and choose a recently-used
-filter file.</para>
+      <para>フィルターを指定するには、「<guilabel>フィルター</guilabel>」フィールドの横にある「<guibutton>選択</guibutton>」ボタンをクリックして、使用可能なフィルターのリストから選択します。または、[フィルタ]
+ドロップダウン リストをクリックして、最近使用したフィルタ ファイルを選択します。</para>
 
-      <para>For full information about filter masks and filter files, see <xref
-linkend="Filters" />.</para>
+      <para>フィルタ マスクとフィルタ ファイルの詳細については、<xref linkend="Filters" /> を参照してください。</para>
     </section>
 
     <section id="Open_paths_unpacker">
       <title>ファイル比較で使用する展開プラグインの選択<indexterm>
-          <primary>unpacker plugins</primary>
+          <primary>展開プラグイン</primary>
         </indexterm></title>
 
-      <para>Unpackers are plugins that are installed with WinMerge to provide
-functionality that is not used by default. Plugins that can be used to
-preprocess certain types of files before comparing them. For example,
-WinMerge cannot normally compare MS Word doc files, but by unpacking them,
-you can compare just the text contents. See <xref linkend="Plugins" /> for
-details.</para>
+      <para>展開プラグインは、デフォルトでは使用されない機能を提供するために WinMerge
+とともにインストールされるプラグインです。特定の種類のファイルを比較する前に前処理するために使用できるプラグイン。たとえば、WinMerge
+は通常、MS Word ドキュメント ファイルを比較できませんが、解凍することでテキストの内容だけを比較できます。詳細については、「<xref
+linkend="プラグイン" />」を参照してください。</para>
 
-      <para>To apply a plugin to your file comparison, click the
-<guibutton>Select</guibutton> button for the <guilabel>Unpacker</guilabel>
-option. In the Select Unpacker dialog:</para>
+      <para>ファイル比較にプラグインを適用するには、<guilabel>Unpacker</guilabel> オプションの
+<guibutton>選択</guibutton> ボタンをクリックします。 [展開プラグインの選択] ダイアログで:</para>
 
       <xi:include href="select_unpacker.xml"
                   xmlns:xi="http://www.w3.org/2001/XInclude"
                   xpointer="element(select-unpacker-proc)" />
 
-      <para>Your choice is displayed in the <guilabel>Unpacker</guilabel> field.  Note
-that you cannot select an unpacker when launching a Folder Compare
-operation.</para>
+      <para>選択内容は、<guilabel>Unpacker</guilabel> フィールドに表示されます。
+フォルダー比較操作を起動するときは、展開プラグインを選択できないことに注意してください。</para>
     </section>
   </section>
 
@@ -146,12 +130,11 @@ operation.</para>
     <title><indexterm>
         <primary>Windowsシェル統合</primary>
       </indexterm><indexterm>
-        <primary>context menu, WinMerge shortcuts in Windows Explorer</primary>
+        <primary>Windows エクスプローラーのコンテキスト メニュー、WinMerge ショートカット</primary>
       </indexterm>WindowsエクスプローラーからWinMergeの起動</title>
 
-    <para>The optional Windows shell integration enables you to run WinMerge compare
-operations directly from Windows Explorer, using WinMerge shortcuts in the
-context menu.</para>
+    <para>オプションの Windows シェル統合により、コンテキスト メニューの WinMerge ショートカットを使用して、Windows
+エクスプローラーから直接 WinMerge 比較操作を実行できます。</para>
 
 <!--WinMerge provides two optional types of integration with Windows Explorer. The first type lets you launch WinMerge compare operations directly from Windows Explorer, skipping the Select Files or Folders dialog. The second type lets you run Windows shell commands from the WinMerge window.-->
     
@@ -159,102 +142,87 @@ context menu.</para>
     <section>
       <title>Windowsエクスプローラー統合を有効にする</title>
 
-      <para>The Windows Explorer shell integration is available only if enabled.  You
-can enable it either <link linkend="Installing_usinginstaller">during
-WinMerge installation</link> or later, using the <xref
-linkend="Configuration_shell-integ" /> in the Options window. In the Options
-window, configure the <option>Add to context menu</option> option, including
-its suboptions if you like.</para>
+      <para>Windows Explorer シェル統合は、有効になっている場合にのみ使用できます。  これは、<link
+linkend="Installing_usinginstaller">WinMerge のインストール中</link>、またはその後、[オプション]
+ウィンドウの <xref linkend="Configuration_shell-integ" /> を使用して有効にできます。 [オプション]
+ウィンドウで、必要に応じてサブオプションを含め、<option>コンテキスト メニューに追加</option> オプションを設定します。</para>
     </section>
 
     <section>
       <title>WinMergeショートカットを使用する</title>
 
-      <para>If you enable <option>Add to context menu</option> without the advanced menu
-suboption, the <guimenuitem>WinMerge</guimenuitem> shortcut is added to the
-Explorer context menu. For example:</para>
+      <para>詳細メニューのサブオプションを指定せずに <option>コンテキスト メニューに追加</option>
+を有効にすると、<guimenuitem>WinMerge</guimenuitem> ショートカットがエクスプローラのコンテキスト
+メニューに追加されます。例えば：</para>
 
-      <para>To use the basic shell integration, begin by selecting two paths in Windows
-Explorer. Then, right-click and choose WinMerge in the context menu. For
-example:</para>
+      <para>基本的なシェル統合を使用するには、まず Windows エクスプローラーで 2 つのパスを選択します。次に、右クリックしてコンテキスト メニューから
+WinMerge を選択します。例えば：</para>
 
       <mediaobject>
 <imageobject> <imagedata fileref="screenshots/ctx_menu_simple.png"
 format="PNG" /> </imageobject><textobject>
-          <phrase>WinMerge command in Windows Explorer context menu</phrase>
+          <phrase>Windows エクスプローラーのコンテキスト メニューの WinMerge コマンド</phrase>
         </textobject>
       </mediaobject>
 
-      <para>WinMerge opens the paths directly in the File Compare or Folder Compare
-window.</para>
+      <para>WinMerge は、ファイル比較ウィンドウまたはフォルダー比較ウィンドウでパスを直接開きます。</para>
 
-      <para>The left and right sides are determined by the sort order in Windows
-Explorer. In the preceding screenshot, the Windows Explorer file list is in
-ascending order, so WinMerge opens with <filename>File2</filename> on the
-1st side and <filename>File1</filename> on the 2nd..</para>
+      <para>左側と右側は、Windows エクスプローラーの並べ替え順序によって決まります。前のスクリーンショットでは、Windows エクスプローラーのファイル
+リストは昇順になっているため、WinMerge は最初の側に <filename>File2</filename> が開き、2 番目の側に
+<filename>File1</filename> が開きます。</para>
 
       <note>
-        <para>If either path cannot be opened for any reason, WinMerge opens the Select
-Files or Folders dialog, where you can specify new paths.  Similarly, if you
-select only a single path, the Select Files or Folders dialog opens with the
-selected file or folder in the <guilabel>1st</guilabel> field, leaving the
-<guilabel>2nd</guilabel> path for you to specify.</para>
+        <para>何らかの理由でいずれかのパスを開けない場合、WinMerge は [ファイルまたはフォルダーの選択] ダイアログを開き、新しいパスを指定できます。
+同様に、パスを 1 つだけ選択した場合は、[ファイルまたはフォルダーの選択] ダイアログが開き、<guilabel>1 番目</guilabel>
+フィールドに選択したファイルまたはフォルダーが表示され、<guilabel>2 番目</guilabel> パスは指定したままになります。</para>
       </note>
 
-      <para>The <guimenuitem>WinMerge</guimenuitem> shortcut is quick and easy to use,
-but you can compare only files or folders that you are able to select
-concurrently in Windows Explorer. For more flexible selections, consider
-enabling the advanced menu, described in the next section.</para>
+      <para><guimenuitem>WinMerge</guimenuitem> ショートカットはすばやく簡単に使用できますが、比較できるのは Windows
+エクスプローラーで同時に選択できるファイルまたはフォルダーのみです。より柔軟な選択を行うには、次のセクションで説明する詳細メニューを有効にすることを検討してください。</para>
     </section>
 
     <section>
       <title>高度なメニューの使用</title>
 
-      <para>If you choose the <option>Enable advanced menu</option>, the
-<guimenuitem>WinMerge</guimenuitem> shortcut is replaced with two
-<guimenuitem>Compare</guimenuitem> shortcuts:</para>
+      <para><option>詳細メニューを有効にする</option> を選択すると、<guimenuitem>WinMerge</guimenuitem>
+ショートカットは 2 つの <guimenuitem>Compare</guimenuitem> ショートカットに置き換えられます。</para>
 
       <mediaobject>
 <imageobject> <imagedata fileref="screenshots/ctx_menu_advanced.png"
 format="PNG" /> </imageobject><textobject>
-          <phrase>Advanced WinMerge context menu</phrase>
+          <phrase>高度な WinMerge コンテキスト メニュー</phrase>
         </textobject>
       </mediaobject>
 
-      <para>Use the <guimenuitem>Compare</guimenuitem> shortcuts in this order:</para>
+      <para><guimenuitem>Compare</guimenuitem> ショートカットを次の順序で使用します。</para>
 
       <orderedlist>
         <listitem>
-          <para>Right-click the first path and choose <guimenuitem>Compare
-To</guimenuitem>. WinMerge stores the path in memory until you select the
-second path.</para>
+          <para>最初のパスを右クリックし、<guimenuitem>比較対象</guimenuitem>を選択します。 WinMerge は、2
+番目のパスが選択されるまで、パスをメモリに保存します。</para>
         </listitem>
 
         <listitem>
-          <para>If you decide that you have chosen the wrong first path, you can change it
-before choosing the second path:</para>
+          <para>間違った最初のパスを選択したと判断した場合は、2 番目のパスを選択する前にパスを変更できます。</para>
 
-          <para>Right-click the new path and choose the <guimenuitem>Re-select
-First</guimenuitem> shortcut. The new selection overrides your previous
-path, and you can go on to the next step.</para>
+          <para>新しいパスを右クリックし、<guimenuitem>最初を再選択</guimenuitem>
+ショートカットを選択します。新しい選択により以前のパスが上書きされ、次のステップに進むことができます。</para>
         </listitem>
 
         <listitem>
-          <para>Navigate to the second file or folder that you want to compare.  The second
-path can be in any folder, or even in a different Windows Explorer window
-from the first path. Right-click the second path and choose
-<guimenuitem>Compare</guimenuitem>.</para>
+          <para>比較する 2 番目のファイルまたはフォルダーに移動します。  2 番目のパスは任意のフォルダーに置くことも、最初のパスとは別の Windows
+エクスプローラー ウィンドウに置くこともできます。 2 番目のパスを右クリックし、<guimenuitem>比較</guimenuitem>
+を選択します。</para>
 
-          <para>WinMerge opens the File Compare or Folder Compare window, loading the first
-and second paths in the 1st and 2nd sides, respectively.</para>
+          <para>WinMerge はファイル比較ウィンドウまたはフォルダー比較ウィンドウを開き、1 番目と 2 番目のパスをそれぞれ 1 番目と 2
+番目の側にロードします。</para>
         </listitem>
       </orderedlist>
 
       <note>
-        <para>If you click <guimenuitem>Compare</guimenuitem> before designating the first
-path, the Select Files or Folders dialog is opened, with your selection as
-the first (<guilabel>1st</guilabel>) path. Specify the second path in the
-<guilabel>2nd</guilabel> field to continue with the comparison.</para>
+        <para>最初のパスを指定する前に <guimenuitem>比較</guimenuitem> をクリックすると、選択したパスが最初
+(<guilabel>1st</guilabel>) として、「ファイルまたはフォルダの選択」ダイアログが開きます。
+<guilabel>2nd</guilabel> フィールドに 2 番目のパスを指定して、比較を続行します。</para>
       </note>
 
 <!--              <tip>
@@ -263,85 +231,77 @@ of the Select Files or Folders dialog's MRU list. This is very handy when you ne
 to compare one file/folder against several files/folders.</para> </tip> -->
       
 
-      <para>The <guimenuitem>Compare To</guimenuitem> paths is stored in memory until
-WinMerge is opened. As a result, you don't need to select both files at the
-same time or even using the same Windows Explorer view: you can choose one,
-open a different directory, and choose the other one. Both paths are
-discarded from memory after a compare operation. This means that you cannot
-select one <guimenuitem>Compare To</guimenuitem> path and compare it against
-several paths.</para>
+      <para><guimenuitem>Compare To</guimenuitem> パスは、WinMerge
+が開かれるまでメモリに保存されます。その結果、両方のファイルを同時に選択したり、同じ Windows エクスプローラー
+ビューを使用したりする必要がなく、一方を選択し、別のディレクトリを開いて、もう一方を選択することができます。比較操作の後、両方のパスがメモリから破棄されます。これは、1
+つの <guimenuitem>Compare To</guimenuitem>
+パスを選択して、それを複数のパスと比較することはできないことを意味します。</para>
     </section>
 
     <section>
       <title>Windowsエクスプローラー統合使用時にサブフォルダーを含める <indexterm>
           <primary>再帰フォルダー比較</primary>
 
-          <secondary>specifying in Select Files or Folders dialog</secondary>
+          <secondary>「ファイルまたはフォルダの選択」ダイアログでの指定</secondary>
         </indexterm><indexterm>
-          <primary>subfolders</primary>
+          <primary>サブフォルダー</primary>
 
           <seealso>再帰フォルダー比較</seealso>
         </indexterm></title>
 
-      <para>By default, folder compares that you do using the
-<guimenuitem>WinMerge</guimenuitem> or <guimenuitem>Compare</guimenuitem>
-shortcut are recursive.  There is a way to launch non-recursive compares
-with the Windows Explorer integration:</para>
+      <para>デフォルトでは、<guimenuitem>WinMerge</guimenuitem> または
+<guimenuitem>Compare</guimenuitem> ショートカットを使用して行うフォルダー比較は再帰的です。  Windows
+Explorer 統合を使用して非再帰比較を起動する方法があります。</para>
 
       <itemizedlist>
         <listitem>
-          <para>Disable <guilabel>Include subfolders</guilabel> in the Folder page of the
-WinMerge Options dialog.</para>
+          <para>[WinMerge オプション] ダイアログの [フォルダー] ページで <guilabel>サブフォルダーを含める</guilabel>
+を無効にします。</para>
         </listitem>
       </itemizedlist>
 
       <tip>
-        <para>Press <keycap>Ctrl</keycap> while selecting the
-<guimenuitem>WinMerge</guimenuitem> or <guimenuitem>Compare</guimenuitem>
-shortcut in the Windows Explorer context menu to force a reverse comparison
-with the current 'Include subfolders' settings.</para>
+        <para>Windows エクスプローラーのコンテキスト メニューで <guimenuitem>WinMerge</guimenuitem> または
+<guimenuitem>Compare</guimenuitem> ショートカットを選択しているときに <keycap>Ctrl</keycap>
+を押して、現在の「サブフォルダーを含める」設定との逆比較を強制します。</para>
       </tip>
     </section>
   </section>
 
   <section id="OpenPaths_dragndrop">
     <title><indexterm>
-        <primary>drag and drop, in WinMerge window</primary>
+        <primary>WinMerge ウィンドウでのドラッグ アンド ドロップ</primary>
       </indexterm>ドラッグアンドドロップの使用</title>
 
-    <para>From any Windows source that allows you to drag objects, such as Windows
-Explorer or the Desktop, you can drag and drop one or two paths into the
-WinMerge window. If you drop only one path into WinMerge, the Select Files
-or Folders dialog opens for you to select the second path. If the single
-path specifies a project file, then the project file is opened.</para>
+    <para>Windows エクスプローラーやデスクトップなど、オブジェクトをドラッグできる Windows ソースから、1 つまたは 2 つのパスを
+WinMerge ウィンドウにドラッグ アンド ドロップできます。パスを 1 つだけ WinMerge
+にドロップすると、[ファイルまたはフォルダーの選択] ダイアログが開き、2 番目のパスを選択できます。単一のパスでプロジェクト
+ファイルが指定されている場合、そのプロジェクト ファイルが開きます。</para>
 
-    <para>By default, WinMerge does include subfolders in compare operations. To not
-include subfolders, press and hold <keycap>Ctrl</keycap> while dropping
-paths. Another useful key when dropping paths is <keycap>Shift</keycap>: To
-open the same path in both sides of a Compare window, press and hold
-<keycap>Shift</keycap> while dropping only one path.  This is a handy way to
-open archive files (see <xref linkend="OpeningArchives" />).</para>
+    <para>デフォルトでは、WinMerge
+は比較操作にサブフォルダーを含めます。サブフォルダーを含めないようにするには、<keycap>Ctrl</keycap>
+を押したままパスをドロップします。パスをドロップするときに便利なもう 1 つのキーは <keycap>Shift</keycap>
+です。比較ウィンドウの両側で同じパスを開くには、<keycap>Shift</keycap> を押したまま 1 つのパスのみをドロップします。
+これはアーカイブ ファイルを開く便利な方法です (<xref linkend="openingArchives" /> を参照)。</para>
 
-    <para>You can drop paths into the Select Files or Folders dialog. A typical
-procedure is to drag and drop the first path into the WinMerge window, and
-then drag and drop the second path into the Select Files or Folders dialog.
-When a path is dropped into the Select Files or Folders dialog, it is loaded
-into either the 1st or 2nd path field:</para>
+    <para>「ファイルまたはフォルダーの選択」ダイアログにパスをドロップできます。一般的な手順は、最初のパスを WinMerge ウィンドウにドラッグ アンド
+ドロップし、次に 2 番目のパスを [ファイルまたはフォルダーの選択] ダイアログにドラッグ アンド ドロップします。  パスが
+[ファイルまたはフォルダーの選択] ダイアログにドロップされると、そのパスは 1 番目または 2 番目のパス フィールドにロードされます。</para>
 
     <variablelist>
       <varlistentry>
-        <term>1st</term>
+        <term>1番目</term>
 
         <listitem>
-          <para>If the 1st field is empty or both path fields already contain paths</para>
+          <para>最初のフィールドが空であるか、両方のパス フィールドにすでにパスが含まれている場合</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>2nd</term>
+        <term>2番目</term>
 
         <listitem>
-          <para>If the 1st path is not empty and the 2nd path is empty</para>
+          <para>1 番目のパスが空ではなく、2 番目のパスが空の場合</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -353,66 +313,57 @@ into either the 1st or 2nd path field:</para>
       </indexterm><indexterm>
         <primary>コマンドライン</primary>
 
-        <secondary>specifying project files</secondary>
-      </indexterm>Project files</title>
+        <secondary>プロジェクトファイルの指定</secondary>
+      </indexterm>プロジェクト ファイル</title>
 
-    <para>You can save the currently open paths and filters in a project file.  Then,
-you can easily open the project later to compare the same files.  Project
-files are handy if you compare the same files repeatedly.</para>
+    <para>現在開いているパスとフィルターをプロジェクト ファイルに保存できます。  そうすれば、後で簡単にプロジェクトを開いて同じファイルを比較できます。
+プロジェクト ファイルは、同じファイルを繰り返し比較する場合に便利です。</para>
 
     <section>
       <title>プロジェクトファイルの使用</title>
 
-      <para>To use a project file In the WinMerge window, click <menuchoice>
-<guimenu>File</guimenu> <guimenuitem>Open Project</guimenuitem>
-</menuchoice>. WinMerge reads the paths from the project file. If the
-project file has two or three paths, two or three paths are opened. If only
-one path is given or one of the paths is invalid, WinMerge opens the Select
-Files or Folders dialog, where you can add or correct the path
-information. Here are a few things to consider:</para>
+      <para>プロジェクト ファイルを使用するには WinMerge ウィンドウで、<menuchoice> <guimenu>ファイル</guimenu>
+<guimenuitem>プロジェクトを開く</guimenuitem> </menuchoice> をクリックします。 WinMerge
+はプロジェクト ファイルからパスを読み取ります。プロジェクト ファイルに 2 つまたは 3 つのパスがある場合は、2 つまたは 3
+つのパスが開きます。パスが 1 つだけ指定されているか、パスの 1 つが無効な場合、WinMerge は [ファイルまたはフォルダーの選択]
+ダイアログを開き、パス情報を追加または修正できます。考慮すべき点がいくつかあります。</para>
 
       <itemizedlist>
         <listitem>
-          <simpara>If you specify two project files, the project files themselves are compared.</simpara>
+          <simpara>2 つのプロジェクト ファイルを指定した場合は、プロジェクト ファイル自体が比較されます。</simpara>
         </listitem>
 
         <listitem>
-          <simpara>If you specify a project file as the left file but do not specify a right
-file, the single project file is opened as if you had used the <menuchoice>
+          <simpara>プロジェクト ファイルを左側のファイルとして指定し、右側のファイルを指定しない場合は、 <menuchoice>
 <guimenu>File</guimenu> <guimenuitem>Open Project</guimenuitem>
-</menuchoice> command.</simpara>
+</menuchoice> コマンドを使用した場合と同様に、単一のプロジェクト ファイルが開きます。</simpara>
         </listitem>
 
         <listitem>
-          <simpara>If you specify a project file as the left file and any other file on the
-right side, the contents of the project file and the other file are
-compared.</simpara>
+          <simpara>左側にプロジェクトファイルを指定し、右側にその他のファイルを指定すると、プロジェクトファイルとその他のファイルの内容が比較されます。</simpara>
         </listitem>
       </itemizedlist>
 
-      <para>To specify a project file on the command line, simply enter it as a single
-file path.</para>
+      <para>コマンドラインでプロジェクトファイルを指定するには、それを単一のファイルパスとして入力するだけです。</para>
     </section>
 
     <section>
       <title>プロジェクトファイルの編集と保存</title>
 
-      <para>To save a project file, click <menuchoice> <guimenu>File</guimenu>
-<guimenuitem>Save Project</guimenuitem> </menuchoice>. The <guilabel>Project
-File</guilabel> dialog provides fields and options that you can easily edit
-to build a project file. If a compare window is currently open, the
-<guilabel>Project File</guilabel> dialog is initialized with values from the
-current compare; otherwise, you provide the values yourself. To use an
-existing project, click <guibutton>Open</guibutton> and select a project to
-load its values (any existing values are overwritten in the dialog).</para>
+      <para>プロジェクト ファイルを保存するには、<menuchoice> <guimenu>ファイル</guimenu>
+<guimenuitem>プロジェクトの保存</guimenuitem> </menuchoice> をクリックします。
+<guilabel>プロジェクト ファイル</guilabel> ダイアログには、プロジェクト
+ファイルを構築するために簡単に編集できるフィールドとオプションが用意されています。比較ウィンドウが現在開いている場合、<guilabel>プロジェクト
+ファイル</guilabel>
+ダイアログは現在の比較の値で初期化されます。それ以外の場合は、自分で値を指定します。既存のプロジェクトを使用するには、<guibutton>開く</guibutton>
+をクリックし、プロジェクトを選択してその値をロードします (既存の値はダイアログで上書きされます)。</para>
 
-      <para>When you finished editing, click <guibutton>Save</guibutton> to store the
-file.</para>
+      <para>編集が完了したら、<guibutton>保存</guibutton> をクリックしてファイルを保存します。</para>
 
       <mediaobject>
 <imageobject> <imagedata fileref="screenshots/projfile_save.png"
 format="PNG" /> </imageobject><textobject>
-          <phrase>Project File dialog</phrase>
+          <phrase>プロジェクトファイルダイアログ</phrase>
         </textobject>
       </mediaobject>
     </section>
@@ -420,32 +371,31 @@ format="PNG" /> </imageobject><textobject>
     <section>
       <title>プロジェクトファイルフォーマット</title>
 
-      <para>Project files are simple XML files with <filename class="extension">a
-.WinMerge</filename> extension. For example:</para>
+      <para>プロジェクト ファイルは、<filename class="extension">.WinMerge</filename> 拡張子が付いた単純な XML
+ファイルです。例えば：</para>
 
-      <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
-&lt;project&gt;
-   &lt;paths&gt;
-      &lt;left&gt;c:\work\project1&lt;/left&gt;
-      &lt;left-readonly&gt;1&lt;/left-readonly&gt;
-      &lt;middle&gt;c:\work\project2&lt;/middle&gt;
-      &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;
-      &lt;right&gt;c:\work\project3&lt;/right&gt;
-      &lt;right-readonly&gt;0&lt;/right-readonly&gt;
-      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;
-      &lt;subfolders&gt;0&lt;/subfolders&gt;
-   &lt;/paths&gt;
-&lt;/project&gt;</screen>
+      <screen><?xml version='1.0'coding='UTF-8'?>
+<プロジェクト>
+ <パス>
+ <left>c:\work\project1</left>
+ <left-readonly>1</left-readonly>
+ <middle>c:\work\project2</middle>
+ <middle-readonly>1</middle-readonly>
+ <right>c:\work\project3</right>
+ <right-readonly>0</right-readonly>
+ <filter>Visual C++ ルーズ</filter>
+ <subfolders>0</subfolders>
+ </paths>
+</project></screen>
 
-      <para>A project file contains a <sgmltag>paths</sgmltag> element that can contain
-one of each of these elements:</para>
+      <para>プロジェクト ファイルには、次の各要素のいずれかを含めることができる <sgmltag>paths</sgmltag> 要素が含まれています。</para>
 
       <variablelist>
         <varlistentry>
           <term><sgmltag>left</sgmltag></term>
 
           <listitem>
-            <para>Left path to open</para>
+            <para>開くべき左の道</para>
           </listitem>
         </varlistentry>
 
@@ -453,7 +403,7 @@ one of each of these elements:</para>
           <term><sgmltag>left-desc</sgmltag></term>
 
           <listitem>
-            <para>Left description</para>
+            <para>左の説明</para>
           </listitem>
         </varlistentry>
 
@@ -461,9 +411,9 @@ one of each of these elements:</para>
           <term><sgmltag>left-readonly</sgmltag></term>
 
           <listitem>
-            <para>1 = Open read only</para>
+            <para>1 = 読み取り専用で開く</para>
 
-            <para>0 = Open normally</para>
+            <para>0 = 通常通り開く</para>
           </listitem>
         </varlistentry>
 
@@ -471,7 +421,7 @@ one of each of these elements:</para>
           <term><sgmltag>middle</sgmltag></term>
 
           <listitem>
-            <para>Middle path to open</para>
+            <para>開くための中間パス</para>
           </listitem>
         </varlistentry>
 
@@ -479,7 +429,7 @@ one of each of these elements:</para>
           <term><sgmltag>middle-desc</sgmltag></term>
 
           <listitem>
-            <para>Middle description</para>
+            <para>中間の説明</para>
           </listitem>
         </varlistentry>
 
@@ -487,9 +437,9 @@ one of each of these elements:</para>
           <term><sgmltag>middle-readonly</sgmltag></term>
 
           <listitem>
-            <para>1 = Open read only</para>
+            <para>1 = 読み取り専用で開く</para>
 
-            <para>0 = Open normally</para>
+            <para>0 = 通常通り開く</para>
           </listitem>
         </varlistentry>
 
@@ -497,7 +447,7 @@ one of each of these elements:</para>
           <term><sgmltag>right</sgmltag></term>
 
           <listitem>
-            <para>Right path to open</para>
+            <para>開くべき正しい道</para>
           </listitem>
         </varlistentry>
 
@@ -505,7 +455,7 @@ one of each of these elements:</para>
           <term><sgmltag>right-desc</sgmltag></term>
 
           <listitem>
-            <para>Right description</para>
+            <para>正しい説明</para>
           </listitem>
         </varlistentry>
 
@@ -513,9 +463,9 @@ one of each of these elements:</para>
           <term><sgmltag>right-readonly</sgmltag></term>
 
           <listitem>
-            <para>1 = Open read only</para>
+            <para>1 = 読み取り専用で開く</para>
 
-            <para>0 = Open normally</para>
+            <para>0 = 通常通り開く</para>
           </listitem>
         </varlistentry>
 
@@ -523,7 +473,7 @@ one of each of these elements:</para>
           <term><sgmltag>filter</sgmltag></term>
 
           <listitem>
-            <para>File filter name or list of extensions</para>
+            <para>ファイルフィルター名または拡張子のリスト</para>
           </listitem>
         </varlistentry>
 
@@ -531,9 +481,9 @@ one of each of these elements:</para>
           <term><sgmltag>subfolders</sgmltag></term>
 
           <listitem>
-            <para>0 = Subfolders not included</para>
+            <para>0 = サブフォルダーは含まれません</para>
 
-            <para>1 = Subfolders included</para>
+            <para>1 = サブフォルダーが含まれます</para>
           </listitem>
         </varlistentry>
 
@@ -541,7 +491,7 @@ one of each of these elements:</para>
           <term><sgmltag>unpacker</sgmltag></term>
 
           <listitem>
-            <para>Unpacker plugin name or plugin pipeline</para>
+            <para>Unpacker プラグイン名またはプラグイン パイプライン</para>
           </listitem>
         </varlistentry>
 
@@ -549,7 +499,7 @@ one of each of these elements:</para>
           <term><sgmltag>prediffer</sgmltag></term>
 
           <listitem>
-            <para>Prediffer plugin name or plugin pipeline</para>
+            <para>Prediffer プラグイン名またはプラグイン パイプライン</para>
           </listitem>
         </varlistentry>
 
@@ -557,15 +507,15 @@ one of each of these elements:</para>
           <term><sgmltag>window-type</sgmltag></term>
 
           <listitem>
-            <para>1 = Text compare window</para>
+            <para>1 = テキスト比較ウィンドウ</para>
 
-            <para>2 = Table compare window</para>
+            <para>2 = テーブル比較ウィンドウ</para>
 
-            <para>3 = Binary compare window</para>
+            <para>3 = バイナリ比較ウィンドウ</para>
 
-            <para>4 = Image compare window</para>
+            <para>4 = 画像比較ウィンドウ</para>
 
-            <para>5 = Webpage compare window</para>
+            <para>5 = Web ページ比較ウィンドウ</para>
           </listitem>
         </varlistentry>
 
@@ -573,7 +523,7 @@ one of each of these elements:</para>
           <term><sgmltag>table-delimiter</sgmltag></term>
 
           <listitem>
-            <para>Delimiter for table editing</para>
+            <para>テーブル編集の区切り文字</para>
           </listitem>
         </varlistentry>
 
@@ -581,11 +531,11 @@ one of each of these elements:</para>
           <term><sgmltag>white-spaces</sgmltag></term>
 
           <listitem>
-            <para>0 = Compare whitespaces</para>
+            <para>0 = 空白を比較する</para>
 
-            <para>1 = Ignore whitespace changes</para>
+            <para>1 = 空白の変更を無視する</para>
 
-            <para>2 = Ignore all whitespaces</para>
+            <para>2 = すべての空白を無視します</para>
           </listitem>
         </varlistentry>
 
@@ -593,9 +543,9 @@ one of each of these elements:</para>
           <term><sgmltag>ignore-blank-lines</sgmltag></term>
 
           <listitem>
-            <para>0 = Do not ignore blank lines</para>
+            <para>0 = 空白行を無視しません</para>
 
-            <para>1 = Ignore blank lines</para>
+            <para>1 = 空白行を無視します</para>
           </listitem>
         </varlistentry>
 
@@ -603,9 +553,9 @@ one of each of these elements:</para>
           <term><sgmltag>ignore-case</sgmltag></term>
 
           <listitem>
-            <para>0 = Do not ignore case</para>
+            <para>0 = 大文字と小文字を区別しない</para>
 
-            <para>1 = Ignore case</para>
+            <para>1 = 大文字と小文字を区別しない</para>
           </listitem>
         </varlistentry>
 
@@ -613,9 +563,9 @@ one of each of these elements:</para>
           <term><sgmltag>ignore-carriage-return-diff</sgmltag></term>
 
           <listitem>
-            <para>0 = Do not ignore carriage return differences</para>
+            <para>0 = キャリッジリターンの違いを無視しない</para>
 
-            <para>1 = Ignore carriage return differences</para>
+            <para>1 = キャリッジリターンの違いを無視する</para>
           </listitem>
         </varlistentry>
 
@@ -623,9 +573,9 @@ one of each of these elements:</para>
           <term><sgmltag>ignore-numbers</sgmltag></term>
 
           <listitem>
-            <para>0 = Do not ignore numbers</para>
+            <para>0 = 数値を無視しない</para>
 
-            <para>1 = Ignore numbers</para>
+            <para>1 = 数値を無視します</para>
           </listitem>
         </varlistentry>
 
@@ -633,9 +583,9 @@ one of each of these elements:</para>
           <term><sgmltag>ignore-codepage-diff</sgmltag></term>
 
           <listitem>
-            <para>0 = Do not ignore codepage differences</para>
+            <para>0 = コードページの違いを無視しない</para>
 
-            <para>1 = Ignore codepage differences</para>
+            <para>1 = コードページの違いを無視する</para>
           </listitem>
         </varlistentry>
 
@@ -643,9 +593,9 @@ one of each of these elements:</para>
           <term><sgmltag>ignore-comment-diff</sgmltag></term>
 
           <listitem>
-            <para>0 = Do not ignore comment differences</para>
+            <para>0 = コメントの相違を無視しません</para>
 
-            <para>1 = Ignore comment differences</para>
+            <para>1 = コメントの違いを無視する</para>
           </listitem>
         </varlistentry>
 
@@ -653,9 +603,9 @@ one of each of these elements:</para>
           <term><sgmltag>ignore-missing-trailing-eol</sgmltag></term>
 
           <listitem>
-            <para>0 = Do not ignore missing trailing eol</para>
+            <para>0 = 末尾の eol の欠落を無視しません</para>
 
-            <para>1 = Ignore missing trailing eol</para>
+            <para>1 = 末尾の eol の欠落を無視します</para>
           </listitem>
         </varlistentry>
 
@@ -663,9 +613,9 @@ one of each of these elements:</para>
           <term><sgmltag>ignore-line-breaks</sgmltag></term>
 
           <listitem>
-            <para>0 = Do not ignore line breaks (treat as spaces)</para>
+            <para>0 = 改行を無視しません(空白として扱う)</para>
 
-            <para>1 = Ignore line breaks (treat as spaces)</para>
+            <para>1 = 改行を無視します(空白として扱う)</para>
           </listitem>
         </varlistentry>
 
@@ -673,23 +623,23 @@ one of each of these elements:</para>
           <term><sgmltag>compare-method</sgmltag></term>
 
           <listitem>
-            <para>0 = Full Contents</para>
+            <para>0 = フルコンテンツ</para>
 
-            <para>1 = Quick Contents</para>
+            <para>1 = クイックコンテンツ</para>
 
-            <para>2 = Binary Contents</para>
+            <para>2 = バイナリコンテンツ</para>
 
-            <para>3 = Modified Date</para>
+            <para>3 = 更新日時のみ</para>
 
-            <para>4 = Modified Date and Size</para>
+            <para>4 = 更新日時とサイズ</para>
 
-            <para>5 = Size</para>
+            <para>5 = サイズのみ</para>
           </listitem>
         </varlistentry>
       </variablelist>
 
-      <para>None of the fields is required, and they can be empty (<literal>for example,
-&lt;left&gt;&lt;/left&gt; or &lt;left/&gt;</literal>).</para>
+      <para>どのフィールドも必須ではなく、空にすることができます (<literal>たとえば、&lt;left&gt;&lt;/left&gt; または
+&lt;left/&gt;</literal>)。</para>
     </section>
   </section>
 </article>

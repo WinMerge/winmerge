@@ -146,19 +146,19 @@ format="PNG" /> </imageobject></mediaobject>
 			<para>Configure Tool で次のオプションを指定します</para>
 			<itemizedlist>
               <listitem>
-                <para>Extension: .*</para>
+                <para>拡大： 。*</para>
               </listitem>
 
               <listitem>
-                <para>Operation: Compare</para>
+                <para>操作: 比較</para>
               </listitem>
 			  
 			  <listitem>
-                <para>Command: {Path to WinMerge}\WinMergeU.exe</para>
+                <para>コマンド: {WinMerge へのパス}\WinMergeU.exe</para>
               </listitem>
 			  
 			  <listitem>
-                <para>Arguments: /e /u /dl %6 /dr %7 %1 %2</para>
+                <para>引数: /e /u /dl %6 /dr %7 %1 %2</para>
               </listitem>
             </itemizedlist>
 			<para>{Path to WinMerge}はWinMergeがインストールされているパスです。 上記のスクリーンショットでは、デフォルトのインストールパス

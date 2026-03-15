@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Plugins">
   <title>プラグイン<indexterm>
-      <primary>plugins</primary>
+      <primary>プラグイン</primary>
     </indexterm></title>
 
   <para>WinMergeプラグインは、COM APIで書かれたカスタムDLLまたはスクリプトレットです。 これは、比較の前にデータを前処理します。
 例えば、WinMergeで比較するためにMS Word のファイルからテキストデータを抽出するプラグインがあります。</para>
   
   <para>プラグインは:<indexterm>
-      <primary>installing plugins</primary>
+      <primary>プラグインのインストール</primary>
     </indexterm></para>
 
   <itemizedlist>
@@ -36,7 +36,7 @@ class="directory">MergePlugins</filename> にコピーするだけです。
     <variablelist>
       <varlistentry>
         <term>エディタースクリプトプラグイン<indexterm>
-            <primary>editor complement plugins</primary>
+            <primary>エディタ補完プラグイン</primary>
           </indexterm></term>
 
         <listitem>
@@ -46,7 +46,7 @@ class="directory">MergePlugins</filename> にコピーするだけです。
 
       <varlistentry>
         <term>展開プラグイン - ファイルからテキストフォーマットへ<indexterm>
-            <primary>unpacker plugins</primary>
+            <primary>展開プラグイン</primary>
           </indexterm></term>
 
         <listitem>
@@ -75,7 +75,7 @@ class="registered">Microsoft</trademark> <application>Excel</application>
 
       <varlistentry>
         <term>比較前処理プラグイン: 差異を隠すためのファイルの前処理<indexterm>
-            <primary>prediffer plugins</primary>
+            <primary>比較前処理プラグイン</primary>
           </indexterm></term>
 
         <listitem>
@@ -309,16 +309,16 @@ class="registered">Microsoft</trademark> <application>Excel</application>
 
   <section id="Plugins_available">
     <title>使用できるプラグイン<indexterm>
-        <primary>Visual Basic dlls for plugins</primary>
+        <primary>プラグイン用の Visual Basic DLL</primary>
       </indexterm><indexterm>
-        <primary>plugins</primary>
+        <primary>プラグイン</primary>
 
-        <secondary>Visual Basic dlls</secondary>
+        <secondary>Visual Basic DLL</secondary>
       </indexterm></title>
 
     <section id="CompareEscapedJavaPropertiesFiles">
       <title><filename>CompareEscapedJavaPropertiesFiles<indexterm>
-          <primary>CompareEscapedJavaPropertiesFiles plugin file</primary>
+          <primary>CompareEscapedJavaPropertiesFiles プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、Javaの.propertiesファイルをアンエスケープして表示し、保存時に再度エスケープします。</para>
@@ -339,18 +339,18 @@ class="registered">Microsoft</trademark> <application>Excel</application>
 
             <seg><filename class="extension">*.properties</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section id="CompareMSExcelFiles">
       <title><filename>CompareMSExcelFiles<indexterm>
-          <primary>CompareMSExcelFiles plugin file</primary>
+          <primary>CompareMSExcelFiles プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para><trademark class="registered">Microsoft</trademark>
@@ -373,20 +373,20 @@ class="registered">Microsoft</trademark> <application>Excel</application>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.xls</filename>, <filename
-class="extension">*.xlsx</filename>, <filename
-class="extension">*.xlsm</filename>, <filename
-class="extension">*.xlsb</filename>, <filename
-class="extension">*.xla</filename>, <filename
-class="extension">*.xlax</filename>, <filename
-class="extension">*.xltx</filename>, <filename
+            <seg><filename class="extension">*.xls</filename>、<filename
+class="extension">*.xlsx</filename>、<filename
+class="extension">*.xlsm</filename>、<filename
+class="extension">*.xlsb</filename>、<filename
+class="extension">*.xla</filename>、<filename
+class="extension">*.xlax</filename>、<filename
+class="extension">*.xltx</filename>、<filename
 class="extension">*.xltm</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
 <application>Excel</application></seg>
@@ -396,7 +396,7 @@ class="extension">*.xltm</filename></seg>
 
     <section id="Plugins_powerpnt">
       <title><filename>CompareMSPowerPointFiles<indexterm>
-          <primary>CompareMSPowerPointFiles plugin file</primary>
+          <primary>CompareMSPowerPointFiles プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para><trademark class="registered">Microsoft</trademark>
@@ -419,20 +419,20 @@ class="extension">*.xltm</filename></seg>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.ppt</filename>, <filename
-class="extension">*.pptx</filename>, <filename
-class="extension">*.pptm</filename>, <filename
-class="extension">*.ppa</filename>, <filename
-class="extension">*.ppam</filename>, <filename
-class="extension">*.pot</filename>, <filename
-class="extension">*.potx</filename>, <filename
+            <seg><filename class="extension">*.ppt</filename>、<filename
+class="extension">*.pptx</filename>、<filename
+class="extension">*.pptm</filename>、<filename
+class="extension">*.ppa</filename>、<filename
+class="extension">*.ppam</filename>、<filename
+class="extension">*.pot</filename>、<filename
+class="extension">*.potx</filename>、<filename
 class="extension">*.potm</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
 <application>PowerPoint</application></seg>
@@ -442,7 +442,7 @@ class="extension">*.potm</filename></seg>
 
     <section id="Plugins_visio">
       <title><filename>CompareMSVisioFiles<indexterm>
-          <primary>CompareMSVisioFiles plugin file</primary>
+          <primary>CompareMSVisioFiles プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para><trademark class="registered">Microsoft</trademark>
@@ -465,21 +465,21 @@ class="extension">*.potm</filename></seg>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.vsd</filename>, <filename
-class="extension">*.vsdx</filename>, <filename
-class="extension">*.vsdm</filename>, <filename
-class="extension">*.vss</filename>, <filename
-class="extension">*.vssx</filename>, <filename
-class="extension">*.vssm</filename>, <filename
-class="extension">*.vst</filename>, <filename
-class="extension">*.vstx</filename>, <filename
+            <seg><filename class="extension">*.vsd</filename>、<filename
+class="extension">*.vsdx</filename>、<filename
+class="extension">*.vsdm</filename>、<filename
+class="extension">*.vss</filename>、<filename
+class="extension">*.vssx</filename>、<filename
+class="extension">*.vssm</filename>、<filename
+class="extension">*.vst</filename>、<filename
+class="extension">*.vstx</filename>、<filename
 class="extension">*.vstm</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
 <application>Visio</application></seg>
@@ -489,7 +489,7 @@ class="extension">*.vstm</filename></seg>
 
     <section id="Plugins_msword">
       <title><filename>CompareMSWordFiles<indexterm>
-          <primary>CompareMSWordFiles plugin file</primary>
+          <primary>CompareMSWordFiles プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para><trademark class="registered">Microsoft</trademark>
@@ -512,18 +512,18 @@ class="extension">*.vstm</filename></seg>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-	    <seg><filename class="extension">*.doc</filename>, <filename
-class="extension">*.docx</filename>, <filename
-class="extension">*.docm</filename>, <filename
-class="extension">*.dot</filename>, <filename
-class="extension">*.dotx</filename>, <filename
+	    <seg><filename class="extension">*.doc</filename>、<filename
+class="extension">*.docx</filename>、<filename
+class="extension">*.docm</filename>、<filename
+class="extension">*.dot</filename>、<filename
+class="extension">*.dotx</filename>、<filename
 class="extension">*.dotm</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
             <seg><trademark class="registered">Microsoft</trademark>
 <application>Word</application></seg>
@@ -533,18 +533,18 @@ class="extension">*.dotm</filename></seg>
 
     <section id="Plugins_PrettifyHTML">
       <title><filename>PrettifyHTML<indexterm>
-          <primary>PrettifyHTML plugin file</primary>
+          <primary>PrettifyHTML プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>tidy-html5 を使用して HTML ファイルを整形します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>PrettifyHTML</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>tidy コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -567,14 +567,14 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.html</filename>, <filename
+            <seg><filename class="extension">*.html</filename>、<filename
 class="extension">*.htm</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
           </seglistitem>
@@ -583,18 +583,18 @@ class="extension">*.htm</filename></seg>
 
     <section id="Plugins_PrettifyXML">
       <title><filename>PrettifyXML<indexterm>
-          <primary>PrettifyXML plugin file</primary>
+          <primary>PrettifyXML プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>tidy-html5 を使用して XML ファイルを整形します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>PrettifyXML</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>tidy コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -619,11 +619,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.xml</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
           </seglistitem>
@@ -632,7 +632,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_PrettifyJSON">
       <title><filename>PrettifyJSON<indexterm>
-          <primary>PrettifyJSON plugin file</primary>
+          <primary>PrettifyJSON プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>jq コマンドを使用してJSON ファイルを整形します。</para>
@@ -643,7 +643,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>フィルターまたは jq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -668,11 +668,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.json</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
           </seglistitem>
@@ -681,18 +681,18 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_PrettifyYAML">
       <title><filename>PrettifyYAML<indexterm>
-          <primary>PrettifyYAML plugin file</primary>
+          <primary>PrettifyYAML プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>yq コマンドを使用してYAML ファイルを整形します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>PrettifyYAML</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>フィルターまたは yq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -715,14 +715,14 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.yaml</filename>, <filename
+            <seg><filename class="extension">*.yaml</filename>、<filename
 class="extension">*.yml</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://stedolan.github.io/yq/">yq</ulink></seg>
           </seglistitem>
@@ -732,7 +732,7 @@ class="extension">*.yml</filename></seg>
     <section id="Plugins_PrettifyPO">
       <title>
 <filename>PrettifyPO<indexterm>
-            <primary>PrettifyPO plugin file</primary></indexterm></filename></title>
+            <primary>PrettifyPO プラグイン ファイル</primary></indexterm></filename></title>
 
       <para>gettext msgcat コマンドを使用してPO ファイルを整形します。</para>
 
@@ -771,11 +771,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 <filename class="extension">*.po</filename> <filename
 class="extension">*.pot</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>
 <ulink url="https://www.gnu.org/software/gettext/">gettext</ulink></seg>
@@ -786,7 +786,7 @@ class="extension">*.pot</filename></seg>
 
     <section id="Plugins_QueryCSV">
       <title><filename>QueryCSV<indexterm>
-          <primary>QueryCSV plugin file</primary>
+          <primary>QueryCSV プラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>q コマンドを使用して CSVファイルからデータを抽出します。</para>
@@ -797,7 +797,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>SQL文または q コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -822,11 +822,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.csv</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
           </seglistitem>
@@ -835,7 +835,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_QueryTSV">
       <title><filename>QueryTSV<indexterm>
-          <primary>QueryTSV plugin file</primary>
+          <primary>QueryTSV プラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>q コマンドを使用して TSVファイルからデータを抽出します。</para>
@@ -846,7 +846,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>SQL文または q コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -871,11 +871,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.tsv</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://harelba.github.io/q/">q</ulink></seg>
           </seglistitem>
@@ -884,7 +884,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_QueryJSON">
       <title><filename>QueryJSON<indexterm>
-          <primary>QueryJSON plugin file</primary>
+          <primary>QueryJSON プラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>jq コマンドを使用して JSONファイルからデータを抽出します。</para>
@@ -895,7 +895,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>フィルターまたは jq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -920,11 +920,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.json</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://stedolan.github.io/jq/">jq</ulink></seg>
           </seglistitem>
@@ -933,7 +933,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_QueryYAML">
       <title><filename>QueryYAML<indexterm>
-          <primary>QueryYAML plugin file</primary>
+          <primary>QueryYAML プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>yq コマンドを使用して YAMLファイルからデータを抽出します。</para>
@@ -944,7 +944,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>フィルターまたは yq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -967,14 +967,14 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.yaml</filename>, <filename
+            <seg><filename class="extension">*.yaml</filename>、<filename
 class="extension">*.yml</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://mikefarah.gitbook.io/yq/">yq</ulink></seg>
           </seglistitem>
@@ -983,18 +983,18 @@ class="extension">*.yml</filename></seg>
 
     <section id="Plugins_ValidateHTML">
       <title><filename>ValidateHTML<indexterm>
-          <primary>ValidateHTML plugin file</primary>
+          <primary>ValidateHTML プラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>tidy コマンドを使用して HTMLファイルを検査します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>ValidateHTML</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>tidy コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -1017,14 +1017,14 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.html</filename>, <filename
+            <seg><filename class="extension">*.html</filename>、<filename
 class="extension">*.htm</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://www.html-tidy.org/">tidy-html5</ulink></seg>
           </seglistitem>
@@ -1034,13 +1034,13 @@ class="extension">*.htm</filename></seg>
     <section id="Plugins_ValidatePO">
       <title>
 <filename>ValidatePO<indexterm>
-            <primary>ValidatePO plugin file</primary></indexterm></filename></title>
+            <primary>ValidatePO プラグイン ファイル</primary></indexterm></filename></title>
 
       <para>gettext msgfmt コマンドを使用して PO ファイルを検査します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>ValidatePO</command> <arg choice="opt" rep="repeat">
-<replaceable>arguments</replaceable> </arg></cmdsynopsis>
+<replaceable>引数</replaceable> </arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
@@ -1073,11 +1073,11 @@ class="extension">*.htm</filename></seg>
 <filename class="extension">*.po</filename> <filename
 class="extension">*.pot</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>
 <ulink url="https://www.gnu.org/software/gettext/">gettext</ulink></seg>
@@ -1088,18 +1088,18 @@ class="extension">*.pot</filename></seg>
 
     <section id="Plugins_PreviewGraphviz">
       <title><filename>PreviewGraphviz<indexterm>
-          <primary>PreviewGraphviz plugin file</primary>
+          <primary>PreviewGraphviz プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>Graphviz ファイルを画像化して表示します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>PreviewGraphviz</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>dot コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -1125,31 +1125,31 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
             <seg><filename class="extension">*.gv</filename>, <filename
 class="extension">,*.dot</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg><ulink url="https://graphviz.org/">Graphviz</ulink></seg>
+            <seg><ulink url="https://graphviz.org/">グラフビズ</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section id="Plugins_PreviewMarkdown">
       <title><filename>PreviewMarkdown<indexterm>
-          <primary>PreviewMarkdown plugin file</primary>
+          <primary>PreviewMarkdown プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>Markdown ファイルをHTMLに変換して表示します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>PreviewMarkdown</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>md2html コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -1175,11 +1175,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
             <seg><filename class="extension">*.md</filename>, <filename
 class="extension">,*.markdown</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://github.com/mity/md4c">md4c</ulink></seg>
           </seglistitem>
@@ -1188,7 +1188,7 @@ class="extension">,*.markdown</filename></seg>
 
     <section id="Plugins_PreviewPlantUML">
       <title><filename>PreviewPlantUML<indexterm>
-          <primary>PreviewPlantUML plugin file</primary>
+          <primary>PreviewPlantUML プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>PlantUML ファイルを画像化して表示します。</para>
@@ -1199,7 +1199,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>plantuml.jar コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -1225,14 +1225,15 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
             <seg><filename class="extension">*.pu</filename>, <filename
 class="extension">,*.puml</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
-<ulink url="https://plantuml.com/">PlantUML</ulink>, <ulink
+            <seg><ulink
+url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>、<ulink
+url="https://plantuml.com/">PlantUML</ulink>、<ulink
 url="https://graphviz.org/">Graphviz</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
@@ -1240,18 +1241,18 @@ url="https://graphviz.org/">Graphviz</ulink></seg>
 
     <section id="Plugins_ApacheTika">
       <title><filename>ApacheTika<indexterm>
-          <primary>ApacheTika plugin file</primary>
+          <primary>ApacheTika プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>Apache Tika を使用してファイルからテキストを抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>ApacheTika</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>tika-app.jar に渡すコマンドラインオプション。</para>
           </listitem>
@@ -1276,14 +1277,15 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.*</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
-<ulink url="https://tika.apache.org/">Apache Tika</ulink></seg>
+            <seg><ulink
+url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>、<ulink
+url="https://tika.apache.org/">Apache Tika</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -1301,7 +1303,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>javap コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -1326,11 +1328,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.class</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink></seg>
           </seglistitem>
@@ -1339,7 +1341,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_DecompileJVM">
       <title><filename>DecompileJVM<indexterm>
-          <primary>DecompileJVM plugin file</primary>
+          <primary>DecompileJVM プラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>CFR を使用する Java デコンパイラ。 .class ファイルを読みやすい Java ソースコードにデコンパイルします。</para>
@@ -1350,7 +1352,7 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>CFR デコンパイラに渡すコマンドラインオプション。</para>
           </listitem>
@@ -1375,11 +1377,11 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.class</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
 <ulink url="https://github.com/leibnitz27/cfr">CFR</ulink></seg>
@@ -1389,18 +1391,18 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_DisassembleIL">
       <title><filename>DisassembleIL<indexterm>
-          <primary>DisassembleIL plugin file</primary>
+          <primary>DisassembleIL プラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>ildasm を使用してILコードをディスアセンブルします。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>DisassembleIL</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>ildasm コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -1423,16 +1425,16 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.obj</filename>, <filename
-class="extension">*.lib</filename>, <filename
-class="extension">*.exe</filename>, <filename
+            <seg><filename class="extension">*.obj</filename>、<filename
+class="extension">*.lib</filename>、<filename
+class="extension">*.exe</filename>、<filename
 class="extension">*.dll</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
           </seglistitem>
@@ -1441,18 +1443,18 @@ class="extension">*.dll</filename></seg>
 
     <section id="Plugins_DisassembleNative">
       <title><filename>DisassembleNative<indexterm>
-          <primary>DisassembleNative plugin file</primary>
+          <primary>DisassembleNative プラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>dumpbin を使用してネイティブコードをディスアセンブルします。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>DisassembleNative</command> <arg choice="opt"
-rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+rep="repeat"><replaceable>引数</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>arguments</replaceable></option></term>
+          <term><option><replaceable>引数</replaceable></option></term>
           <listitem>
             <para>dumpbin コマンドに渡すコマンドラインオプション。</para>
           </listitem>
@@ -1475,16 +1477,16 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
           <seglistitem>
             <seg>展開プラグイン</seg>
 
-            <seg><filename class="extension">*.obj</filename>, <filename
-class="extension">*.lib</filename>, <filename
-class="extension">*.exe</filename>, <filename
+            <seg><filename class="extension">*.obj</filename>、<filename
+class="extension">*.lib</filename>、<filename
+class="extension">*.exe</filename>、<filename
 class="extension">*.dll</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg><ulink url="https://visualstudio.microsoft.com/">Visual Studio</ulink></seg>
           </seglistitem>
@@ -1493,18 +1495,18 @@ class="extension">*.dll</filename></seg>
 
     <section id="Plugins_Unpacker_ExecFilterCommand">
       <title><filename>ExecFilterCommand<indexterm>
-          <primary>ExecFilterCommand plugin file</primary>
+          <primary>ExecFilterCommand プラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>フィルターコマンドを適用します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>ExecFilterCommand</command> <arg choice="opt"
-rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
+rep="norepeat"><replaceable>コマンド</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>command</replaceable></option></term>
+          <term><option><replaceable>コマンド</replaceable></option></term>
           <listitem>
             <para>実行するコマンド。 コマンド内の %1 はファイル名に置き換わります。</para>
           </listitem>
@@ -1529,11 +1531,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1542,7 +1544,7 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_MakeUpper">
       <title><filename>MakeUpper<indexterm>
-          <primary>MakeUpper plugin file</primary>
+          <primary>MakeUpper プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>テキストを大文字に変換します</para>
@@ -1565,11 +1567,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1578,7 +1580,7 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_MakeLower">
       <title><filename>MakeLower<indexterm>
-          <primary>MakeLower plugin file</primary>
+          <primary>MakeLower プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>テキストを小文字に変換します</para>
@@ -1601,11 +1603,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1614,7 +1616,7 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_RemoveDuplicates">
       <title><filename>RemoveDuplicates<indexterm>
-          <primary>RemoveDuplicates plugin file</primary>
+          <primary>RemoveDuplicates プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>重複行を削除します</para>
@@ -1637,11 +1639,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1650,7 +1652,7 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_CountDuplicates">
       <title><filename>CountDuplicates<indexterm>
-          <primary>CountDuplicates plugin file</primary>
+          <primary>CountDuplicates プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>重複行をカウントします</para>
@@ -1673,11 +1675,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1686,7 +1688,7 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_SortAscending">
       <title><filename>SortAscending<indexterm>
-          <primary>SortAscending plugin file</primary>
+          <primary>SortAscending プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>行を昇順にソートします</para>
@@ -1709,11 +1711,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1722,7 +1724,7 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_SortDescending">
       <title><filename>SortDescending<indexterm>
-          <primary>SortDescending plugin file</primary>
+          <primary>SortDescending プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>行を降順にソートします</para>
@@ -1745,11 +1747,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1758,7 +1760,7 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_ReverseColumns">
       <title><filename>ReverseColumns<indexterm>
-          <primary>ReverseColumns plugin file</primary>
+          <primary>ReverseColumns プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>列を逆順にします</para>
@@ -1781,11 +1783,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1794,7 +1796,7 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_ReverseLines">
       <title><filename>ReverseLines<indexterm>
-          <primary>ReverseLines plugin file</primary>
+          <primary>ReverseLines プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>行を逆順にします</para>
@@ -1817,11 +1819,11 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1830,30 +1832,30 @@ rep="norepeat"><replaceable>command</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_SelectColumns">
       <title><filename>SelectColumns<indexterm>
-          <primary>SelectColumns plugin file</primary>
+          <primary>SelectColumns プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>指定した列を抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg choice="opt"
-rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
+rep="norepeat"><replaceable>範囲</replaceable></arg></cmdsynopsis>
 
       <cmdsynopsis sepchar=" ">
 <command>SelectColumns</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-g</option></arg>
-<arg><option>-e</option> <replaceable>patterns</replaceable></arg></cmdsynopsis>
+<arg><option>-e</option> <replaceable>パターン</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>ranges</replaceable></option></term>
+          <term><option><replaceable>範囲</replaceable></option></term>
           <listitem>
             <para>抽出する列範囲のリスト (例 -3,5-10,30-)</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term><option><replaceable>patterns</replaceable></option></term>
+          <term><option><replaceable>パターン</replaceable></option></term>
           <listitem>
             <para>正規表現</para>
           </listitem>
@@ -1907,11 +1909,11 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -1920,30 +1922,30 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_SelectLines">
       <title><filename>SelectLines<indexterm>
-          <primary>SelectLines plugin file</primary>
+          <primary>SelectLines プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>指定した行を抽出します。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg choice="opt"
-rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
+rep="norepeat"><replaceable>範囲</replaceable></arg></cmdsynopsis>
 
       <cmdsynopsis sepchar=" ">
 <command>SelectLines</command> <arg><option>-v</option></arg>
 <arg><option>-i</option></arg> <arg><option>-e</option>
-<replaceable>patterns</replaceable></arg></cmdsynopsis>
+<replaceable>パターン</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>ranges</replaceable></option></term>
+          <term><option><replaceable>範囲</replaceable></option></term>
           <listitem>
             <para>抽出する行範囲のリスト (例 -3,5-10,30-)</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term><option><replaceable>patterns</replaceable></option></term>
+          <term><option><replaceable>パターン</replaceable></option></term>
           <listitem>
             <para>正規表現</para>
           </listitem>
@@ -1990,11 +1992,11 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -2003,7 +2005,7 @@ rep="norepeat"><replaceable>ranges</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_Replace">
       <title><filename>Replace<indexterm>
-          <primary>Replace plugin file</primary>
+          <primary>プラグインファイルを置き換える</primary>
         </indexterm></filename></title>
 
       <para>テキストを置換します。</para>
@@ -2017,14 +2019,14 @@ rep="norepeat"><replaceable>text_to_replace</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>text_to_find</replaceable></option></term>
+          <term><option><replaceable>検索するテキスト</replaceable></option></term>
           <listitem>
             <para>検索するテキスト</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term><option><replaceable>text_to_replace</replaceable></option></term>
+          <term><option><replaceable>置換するテキスト</replaceable></option></term>
           <listitem>
             <para>置換するテキスト</para>
           </listitem>
@@ -2064,11 +2066,11 @@ rep="norepeat"><replaceable>text_to_replace</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -2077,18 +2079,18 @@ rep="norepeat"><replaceable>text_to_replace</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_Tokenize">
       <title><filename>Tokenize<indexterm>
-          <primary>Tokenize plugin file</primary>
+          <primary>プラグインファイルをトークン化する</primary>
         </indexterm></filename></title>
 
       <para>トークン分割を行います。</para>
 
       <cmdsynopsis sepchar=" ">
 <command>Tokenize</command> <arg
-rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
+rep="norepeat"><replaceable>パターン</replaceable></arg></cmdsynopsis>
 
       <variablelist>
         <varlistentry>
-          <term><option><replaceable>patterns</replaceable></option></term>
+          <term><option><replaceable>パターン</replaceable></option></term>
           <listitem>
             <para>トークン分割に使用する正規表現 (例 [^\w]+)</para>
           </listitem>
@@ -2114,11 +2116,11 @@ rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -2127,7 +2129,7 @@ rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
 
     <section id="Plugins_Unpacker_Trim">
       <title><filename>Trim<indexterm>
-          <primary>Trim plugin file</primary>
+          <primary>プラグインファイルをトリミングする</primary>
         </indexterm></filename></title>
 
       <para>行頭行末の空白を削除します</para>
@@ -2150,11 +2152,11 @@ rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.nomatch</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
             <seg>Windows Script Host</seg>
           </seglistitem>
@@ -2163,7 +2165,7 @@ rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
 
     <section id="IgnoreColumns">
       <title><filename>IgnoreColumns<indexterm>
-          <primary>IgnoreColumns plugin file</primary>
+          <primary>IgnoreColumns プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です。</para>
@@ -2191,7 +2193,7 @@ rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
       </itemizedlist>
 
       <example>
-        <title><filename>IgnoreColumns</filename> examples</title>
+        <title><filename>IgnoreColumns</filename> の例</title>
 
 <variablelist>
           <varlistentry>
@@ -2203,7 +2205,7 @@ rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
           </varlistentry>
 
           <varlistentry>
-            <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
+            <term><filename>IgnoreColumns_1,30 ～ 40.dll</filename></term>
 
             <listitem>
               <simpara>列1と列30から40のすべての文字を無視します。</simpara>
@@ -2225,14 +2227,14 @@ rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
 
             <seg><filename class="extension">*.txt</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
       <title><filename>IgnoreCommentsC<indexterm>
-          <primary>IgnoreCommentsC plugin file</primary>
+          <primary>IgnoreCommentsC プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>このプラグインはC言語, C++, PHP, JavaScript ファイルの<constant> //</constant>... と
@@ -2250,26 +2252,26 @@ rep="norepeat"><replaceable>patterns</replaceable></arg></cmdsynopsis>
           <seglistitem>
             <seg>比較前処理プラグイン</seg>
 
-            <seg><filename class="extension">*.cpp</filename>, <filename
-class="extension">*.cxx</filename>, <filename
-class="extension">*.h</filename>, <filename
-class="extension">*.hxx</filename>, <filename
-class="extension">*.c</filename>, <filename
-class="extension">*.php</filename>, <filename
-class="extension">*.js</filename>, <filename
-class="extension">*.cs</filename>, <filename
+            <seg><filename class="extension">*.cpp</filename>、<filename
+class="extension">*.cxx</filename>、<filename
+class="extension">*.h</filename>、<filename
+class="extension">*.hxx</filename>、<filename
+class="extension">*.c</filename>、<filename
+class="extension">*.php</filename>、<filename
+class="extension">*.js</filename>、<filename
+class="extension">*.cs</filename>、<filename
 class="extension">*.ts</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
       <title><filename>IgnoreFieldsComma<indexterm>
-          <primary>IgnoreFieldsComma plugin file</primary>
+          <primary>IgnoreFieldsComma プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、フィールドとコンマを区切り文字として使用するファイル用です （CSVファイルなど）。 区切り文字は無視されます。
@@ -2292,16 +2294,16 @@ class="extension">*.ts</filename></seg>
 
             <seg><filename class="extension">*.csv</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
       <title><filename>IgnoreFieldsTab<indexterm>
-          <primary>IgnoreFieldsTab plugin file</primary>
+          <primary>IgnoreFieldsTab プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、フィールドとタブを区切り記号として使用するファイル用です (<application>たとえばExcel
@@ -2325,16 +2327,16 @@ class="extension">*.ts</filename></seg>
 
             <seg><filename class="extension">*.txt</filename></seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
 
-            <seg>Yes</seg>
+            <seg>はい</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section>
       <title><filename>IgnoreLeadingLineNumbers<indexterm>
-          <primary>IgnoreLeadingLineNumbers plugin file</primary>
+          <primary>IgnoreLeadingLineNumbers プラグイン ファイル</primary>
         </indexterm></filename></title>
 
       <para>このプラグインは、テキストファイル (NCファイルやBASICファイルなど)の先頭の行番号を無視します。</para>
@@ -2355,16 +2357,16 @@ class="extension">*.ts</filename></seg>
 
             <seg><filename class="extension">*.nc</filename></seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section id="EditorAddin">
-      <title><filename>editor addin<indexterm>
-          <primary>editor addin plugin file</primary>
+      <title><filename>エディターアドイン<indexterm>
+          <primary>エディターアドインプラグインファイル</primary>
         </indexterm></filename></title>
 
       <para>いくつかの関数を<menuchoice> <guimenu>プラグイン</guimenu> <guisubmenu>スクリプト</guisubmenu>
@@ -2437,14 +2439,14 @@ class="extension">*.ts</filename></seg>
           <seglistitem>
             <seg>エディター補完</seg>
             <seg>*</seg>
-            <seg>No</seg>
+            <seg>いいえ</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
 
     <section id="Plugins_datetime">
-      <title><filename>insert datetime<indexterm>
-          <primary>insert datetime plugin file</primary>
+      <title><filename>日付時刻を挿入<indexterm>
+          <primary>日時プラグインファイルを挿入</primary>
         </indexterm></filename></title>
 
       <para><menuchoice> <guimenu>プラグイン</guimenu> <guisubmenu>スクリプト</guisubmenu>
@@ -2472,7 +2474,7 @@ class="extension">*.ts</filename></seg>
 
             <seg>*</seg>
 
-            <seg>No</seg>
+            <seg>いいえ</seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -2480,9 +2482,9 @@ class="extension">*.ts</filename></seg>
 
   <section>
     <title>必要なもの<indexterm>
-        <primary>plugins</primary>
+        <primary>プラグイン</primary>
 
-        <secondary>Windows Script Host requirement</secondary>
+        <secondary>Windows スクリプト ホストの要件</secondary>
       </indexterm></title>
 
     <section>
