@@ -299,7 +299,7 @@ format="PNG" /> </imageobject></inlinemediaobject>
 
       <para><link
 linkend="Shortcut_keys">キーボード</link>と同様にマウスを使用して、フォルダー比較ウィンドウをコンテキストメニューでナビゲートできます。例えば、<inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
             <phrase>次の差異ボタン</phrase>
           </textobject>

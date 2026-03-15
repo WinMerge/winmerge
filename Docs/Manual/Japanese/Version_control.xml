@@ -146,7 +146,7 @@ format="PNG" /> </imageobject></mediaobject>
 			<para>Configure Tool で次のオプションを指定します</para>
 			<itemizedlist>
               <listitem>
-                <para>拡大： 。*</para>
+                <para>Extension: .*</para>
               </listitem>
 
               <listitem>

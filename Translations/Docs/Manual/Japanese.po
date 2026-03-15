@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
 "POT-Creation-Date: 2026-03-15 09:53+0900\n"
-"PO-Revision-Date: 2026-02-08 21:48+0900\n"
+"PO-Revision-Date: 2026-03-16 07:07+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -2811,7 +2811,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "nextdiff_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "nextdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
@@ -5456,7 +5456,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"77\" contentwidth=\"384\" "
 "fileref=\"screenshots/filecomp_margin2.png\" format=\"PNG\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"77\" contentwidth=\"384\" "
+"<imageobject> <imagedata contentdepth=\"77\" contentwidth=\"384\" "
 "fileref=\"screenshots/filecomp_margin2.png\" format=\"PNG\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><section><mediaobject><textobject><phrase>
@@ -5665,7 +5665,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_diffs.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_diffs.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
@@ -5702,7 +5702,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_currentdiff.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_currentdiff.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
@@ -5736,7 +5736,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_viewbar.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "locpane_viewbar.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
@@ -6234,7 +6234,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "diff_inline_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "diff_inline_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
@@ -6326,7 +6326,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "prevdiff_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "prevdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
@@ -6376,7 +6376,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "firstdiff_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "firstdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
@@ -6440,7 +6440,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "currentdiff_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "currentdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
@@ -6483,7 +6483,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "lastdiff_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "lastdiff_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
@@ -6897,7 +6897,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "copyr_adv_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "copyr_adv_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
@@ -6946,7 +6946,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "copyl_adv_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "copyl_adv_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
@@ -6985,7 +6985,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"11\" fileref=\"screenshots/undo_btn."
 "png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"11\" fileref=\"screenshots/undo_btn."
+"<imageobject> <imagedata contentdepth=\"11\" fileref=\"screenshots/undo_btn."
 "png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
@@ -7009,7 +7009,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "allright_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "allright_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
@@ -7057,7 +7057,7 @@ msgid ""
 "<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "allleft_btn.png\" /> </imageobject>"
 msgstr ""
-"<imageobject> <imagedata content Depth=\"15\" fileref=\"screenshots/"
+"<imageobject> <imagedata contentdepth=\"15\" fileref=\"screenshots/"
 "allleft_btn.png\" /> </imageobject>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
@@ -7789,7 +7789,7 @@ msgid ""
 "<userinput> \"C:\\Program Files\\WinMerge\\WinMergeU.exe\" /t webpage "
 "https://example.net https://example.com </userinput>"
 msgstr ""
-"<userinput> \"C:\\Program Files\\WinMerge\\WinMergeU.exe\" /t ウェブページ "
+"<userinput> \"C:\\Program Files\\WinMerge\\WinMergeU.exe\" /t webpage "
 "https://example.net https://example.com </userinput>"
 
 #. type: Content of: <article><section><mediaobject><textobject><phrase>
@@ -8880,7 +8880,7 @@ msgstr "行と異なるホワイトスペース"
 #: English/Configuration.xml:607
 #, no-wrap
 msgid "Two Words"
-msgstr "二つの言葉"
+msgstr "Two Words"
 
 #. type: Content of: <article><section><section><example><para>
 #: English/Configuration.xml:607
@@ -8891,7 +8891,7 @@ msgstr "単語間に一つのスペース:<placeholder type=\"screen\" id=\"0\"/
 #: English/Configuration.xml:611
 #, no-wrap
 msgid "Two  Words"
-msgstr "二つの言葉"
+msgstr "Two  Words"
 
 #. type: Content of: <article><section><section><example><para>
 #: English/Configuration.xml:611
@@ -10777,12 +10777,12 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1938
 msgid "frhed"
-msgstr "真っ赤な"
+msgstr "frhed"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1937
 msgid "Frhed settings<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "完全な設定<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Frhed の設定<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1943
@@ -16411,7 +16411,7 @@ msgstr "ファイルフィルターで、まずはじめに必要な2行は:"
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1305
 msgid "name"
-msgstr "名前"
+msgstr "name"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1308
@@ -16421,7 +16421,7 @@ msgstr "ファイルダイアログに表示されるフィルター名です"
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1313
 msgid "def"
-msgstr "確かに"
+msgstr "def"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1316
@@ -16431,7 +16431,7 @@ msgstr "適用されるフィルタータイプです。次の値のうち、1�
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
 #: English/Filters.xml:1321
 msgid "include"
-msgstr "含む"
+msgstr "include"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1324
@@ -16441,7 +16441,7 @@ msgstr "指定されたルールにマッチしたアイテム以外はすべて
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><term>
 #: English/Filters.xml:1330
 msgid "exclude"
-msgstr "除外する"
+msgstr "exclude"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1333
@@ -16463,7 +16463,7 @@ msgstr ""
 #: English/Filters.xml:1341
 #, no-wrap
 msgid "d: \\\\*$ ## Subfolders"
-msgstr "d: \\\\*$ ## サブフォルダー"
+msgstr "d: \\\\*$ ## Subfolders"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><tip><para>
 #: English/Filters.xml:1347
@@ -16531,7 +16531,7 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:1374
 msgid "e!: <replaceable>expr</replaceable>"
-msgstr "e!: <replaceable>式</replaceable>"
+msgstr "e!: <replaceable>expr</replaceable>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1374
@@ -17899,7 +17899,7 @@ msgid ""
 "<copyright> <year>&CopyrightYears;</year> <holder>&CopyrightHolder;</holder> "
 "</copyright>"
 msgstr ""
-"<copyright> <year>&Copyrightyears;</year> <holder>&CopyrightHolder;</holder> "
+"<copyright> <year>&CopyrightYears;</year> <holder>&CopyrightHolder;</holder> "
 "</copyright>"
 
 #. type: Content of: <book><bookinfo><legalnotice><para>
@@ -20122,7 +20122,7 @@ msgstr ""
 #: English/Open_paths.xml:105
 #, no-wrap
 msgid "*.h;*.cpp;*.txt,*.ini"
-msgstr "*.h;*.cpp;*.txt、*.ini"
+msgstr "*.h;*.cpp;*.txt,*.ini"
 
 #. type: Content of: <article><section><section><para>
 #: English/Open_paths.xml:107
@@ -20189,7 +20189,7 @@ msgstr ""
 "ともにインストールされるプラグインです。特定の種類のファイルを比較する前に前"
 "処理するために使用できるプラグイン。たとえば、WinMerge は通常、MS Word ドキュ"
 "メント ファイルを比較できませんが、解凍することでテキストの内容だけを比較でき"
-"ます。詳細については、「<xref linkend=\"プラグイン\" />」を参照してください。"
+"ます。詳細については、「<xref linkend=\"Plugins\" />」を参照してください。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Open_paths.xml:134
@@ -20559,7 +20559,7 @@ msgstr ""
 "ます。パスをドロップするときに便利なもう 1 つのキーは <keycap>Shift</keycap> "
 "です。比較ウィンドウの両側で同じパスを開くには、<keycap>Shift</keycap> を押し"
 "たまま 1 つのパスのみをドロップします。  これはアーカイブ ファイルを開く便利"
-"な方法です (<xref linkend=\"openingArchives\" /> を参照)。"
+"な方法です (<xref linkend=\"OpeningArchives\" /> を参照)。"
 
 #. type: Content of: <article><section><para>
 #: English/Open_paths.xml:339
@@ -20768,19 +20768,19 @@ msgid ""
 "   &lt;/paths&gt;\n"
 "&lt;/project&gt;"
 msgstr ""
-"<?xml version='1.0'coding='UTF-8'?>\n"
-"<プロジェクト>\n"
-" <パス>\n"
-" <left>c:\\work\\project1</left>\n"
-" <left-readonly>1</left-readonly>\n"
-" <middle>c:\\work\\project2</middle>\n"
-" <middle-readonly>1</middle-readonly>\n"
-" <right>c:\\work\\project3</right>\n"
-" <right-readonly>0</right-readonly>\n"
-" <filter>Visual C++ ルーズ</filter>\n"
-" <subfolders>0</subfolders>\n"
-" </paths>\n"
-"</project>"
+"&lt;?xml version='1.0' encoding='UTF-8'?&gt;\n"
+"&lt;project&gt;\n"
+"   &lt;paths&gt;\n"
+"      &lt;left&gt;c:\\work\\project1&lt;/left&gt;\n"
+"      &lt;left-readonly&gt;1&lt;/left-readonly&gt;\n"
+"      &lt;middle&gt;c:\\work\\project2&lt;/middle&gt;\n"
+"      &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;\n"
+"      &lt;right&gt;c:\\work\\project3&lt;/right&gt;\n"
+"      &lt;right-readonly&gt;0&lt;/right-readonly&gt;\n"
+"      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;\n"
+"      &lt;subfolders&gt;0&lt;/subfolders&gt;\n"
+"   &lt;/paths&gt;\n"
+"&lt;/project&gt;"
 
 #. type: Content of: <article><section><section><para>
 #: English/Open_paths.xml:467
@@ -21006,7 +21006,7 @@ msgstr "<sgmltag>ignore-case</sgmltag>"
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Open_paths.xml:633
 msgid "0 = Do not ignore case"
-msgstr "0 = 大文字と小文字を区別しない"
+msgstr "0 = 大文字と小文字を区別する"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Open_paths.xml:635
@@ -25522,7 +25522,7 @@ msgstr "Configure Tool で次のオプションを指定します"
 #. type: Content of: <article><section><section><example><orderedlist><listitem><itemizedlist><listitem><para>
 #: English/Version_control.xml:188
 msgid "Extension: .*"
-msgstr "拡大： 。*"
+msgstr "Extension: .*"
 
 #. type: Content of: <article><section><section><example><orderedlist><listitem><itemizedlist><listitem><para>
 #: English/Version_control.xml:192

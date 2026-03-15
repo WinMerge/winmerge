@@ -522,7 +522,7 @@ fileref="screenshots/filecomp_margin1.png" format="PNG" /> </imageobject><textob
         <para>次のスクリーンショットは、ブックマークと行番号が有効になっているマージンを示しています。余白が広くなっていることに注目してください。実際、マージンは最大行番号に対して十分広いです。したがって、行数が多い大きなファイルの余白は非常に広くなる可能性があります。</para>
 
         <mediaobject>
-<imageobject> <imagedata content Depth="77" contentwidth="384"
+<imageobject> <imagedata contentdepth="77" contentwidth="384"
 fileref="screenshots/filecomp_margin2.png" format="PNG" /> </imageobject><textobject>
             <phrase>ファイル ウィンドウのマージンとブックマークおよび行番号を比較します</phrase>
           </textobject>
@@ -617,7 +617,7 @@ Difference</function> 機能の <keycap>Up</keycap> キーと <keycap>Down</keyc
       <variablelist>
         <varlistentry>
           <term><inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/locpane_diffs.png" /> </imageobject><textobject>
                 <phrase>場所ペインの差分線</phrase>
               </textobject>
@@ -633,7 +633,7 @@ fileref="screenshots/locpane_diffs.png" /> </imageobject><textobject>
 
         <varlistentry>
           <term><inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
                 <phrase>場所ペインの現在の差分ポインター</phrase>
               </textobject>
@@ -647,7 +647,7 @@ fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
 
         <varlistentry>
           <term><inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/locpane_viewbar.png" /> </imageobject><textobject>
                 <phrase>場所ペインのビューエリアバー</phrase>
               </textobject>
@@ -892,7 +892,7 @@ fileref="screenshots/linediff.png" format="PNG" /> </imageobject><textobject>
             <para>差分ブロック自体を選択したい場合は、代わりに <command>Current Difference</command> を使用します。</para>
 
             <para>ショートカット: <inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/diff_inline_btn.png" /> </imageobject><textobject>
                   <phrase>現在の行内差異ボタン</phrase>
                 </textobject>
@@ -914,7 +914,7 @@ fileref="screenshots/diff_inline_btn.png" /> </imageobject><textobject>
 (必ずしも現在の相違点に相対しているわけではありません)。任意の点から相違点を順番に確認するために使用します。最後の差異が現在選択されている場合を除き、使用できます。</para>
 
             <para>ショートカット: <inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
                   <phrase>次の差異ボタン</phrase>
                 </textobject>
@@ -937,7 +937,7 @@ fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
 (必ずしも現在の差分に相対しているわけではありません)。差分を順番に後退するために使用します。最初の差異が現在選択されている場合を除き、使用できます。</para>
 
             <para>ショートカット: <inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/prevdiff_btn.png" /> </imageobject><textobject>
                   <phrase>前の差異ボタン</phrase>
                 </textobject>
@@ -959,7 +959,7 @@ fileref="screenshots/prevdiff_btn.png" /> </imageobject><textobject>
             <para>これを使用して、相違点の比較またはマージを開始したり、他の場所から最初の相違点を特定したりできます。最初の差異が現在選択されている場合を除き、使用できます。テキストをダブルクリックして相違点を選択することもできます。</para>
 
             <para>ショートカット: <inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
                   <phrase>最初の差異ボタン</phrase>
                 </textobject>
@@ -991,7 +991,7 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
               </itemizedlist></para>
 
             <para>ショートカット: <inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
                   <phrase>現在の差異ボタン</phrase>
                 </textobject>
@@ -1013,7 +1013,7 @@ fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
             <para>現在最後の差分が選択されている場合を除き、有効になります。</para>
 
             <para>ショートカット: <inlinemediaobject>
-<imageobject> <imagedata content Depth="15"
+<imageobject> <imagedata contentdepth="15"
 fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
                   <phrase>最後の差異ボタン</phrase>
                 </textobject>

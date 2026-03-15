@@ -92,7 +92,7 @@ class="directory">Altered/</filename> という名前の 2
       <para>マスクは、ファイル拡張子に基づく単純な式です。たとえば、このファイル
 マスクのリストには、指定された拡張子を持つファイルのみが含まれています。比較操作の開始時に、他のすべては選択から除外されます。</para>
 
-      <screen>*.h;*.cpp;*.txt、*.ini</screen>
+      <screen>*.h;*.cpp;*.txt,*.ini</screen>
 
       <para>ファイル マスクは、単純なフィルタリングに実用的です。より高度な選択を行うには、フィルター ファイルを使用します。フィルター
 ファイルは、ファイルを含めたり除外したりできる正規表現のコレクションです。 WinMerge は、事前定義された多数のフィルター ファイルを
@@ -112,7 +112,7 @@ class="directory">Altered/</filename> という名前の 2
       <para>展開プラグインは、デフォルトでは使用されない機能を提供するために WinMerge
 とともにインストールされるプラグインです。特定の種類のファイルを比較する前に前処理するために使用できるプラグイン。たとえば、WinMerge
 は通常、MS Word ドキュメント ファイルを比較できませんが、解凍することでテキストの内容だけを比較できます。詳細については、「<xref
-linkend="プラグイン" />」を参照してください。</para>
+linkend="Plugins" />」を参照してください。</para>
 
       <para>ファイル比較にプラグインを適用するには、<guilabel>Unpacker</guilabel> オプションの
 <guibutton>選択</guibutton> ボタンをクリックします。 [展開プラグインの選択] ダイアログで:</para>
@@ -282,7 +282,7 @@ WinMerge ウィンドウにドラッグ アンド ドロップできます。パ
 は比較操作にサブフォルダーを含めます。サブフォルダーを含めないようにするには、<keycap>Ctrl</keycap>
 を押したままパスをドロップします。パスをドロップするときに便利なもう 1 つのキーは <keycap>Shift</keycap>
 です。比較ウィンドウの両側で同じパスを開くには、<keycap>Shift</keycap> を押したまま 1 つのパスのみをドロップします。
-これはアーカイブ ファイルを開く便利な方法です (<xref linkend="openingArchives" /> を参照)。</para>
+これはアーカイブ ファイルを開く便利な方法です (<xref linkend="OpeningArchives" /> を参照)。</para>
 
     <para>「ファイルまたはフォルダーの選択」ダイアログにパスをドロップできます。一般的な手順は、最初のパスを WinMerge ウィンドウにドラッグ アンド
 ドロップし、次に 2 番目のパスを [ファイルまたはフォルダーの選択] ダイアログにドラッグ アンド ドロップします。  パスが
@@ -374,19 +374,19 @@ format="PNG" /> </imageobject><textobject>
       <para>プロジェクト ファイルは、<filename class="extension">.WinMerge</filename> 拡張子が付いた単純な XML
 ファイルです。例えば：</para>
 
-      <screen><?xml version='1.0'coding='UTF-8'?>
-<プロジェクト>
- <パス>
- <left>c:\work\project1</left>
- <left-readonly>1</left-readonly>
- <middle>c:\work\project2</middle>
- <middle-readonly>1</middle-readonly>
- <right>c:\work\project3</right>
- <right-readonly>0</right-readonly>
- <filter>Visual C++ ルーズ</filter>
- <subfolders>0</subfolders>
- </paths>
-</project></screen>
+      <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+&lt;project&gt;
+   &lt;paths&gt;
+      &lt;left&gt;c:\work\project1&lt;/left&gt;
+      &lt;left-readonly&gt;1&lt;/left-readonly&gt;
+      &lt;middle&gt;c:\work\project2&lt;/middle&gt;
+      &lt;middle-readonly&gt;1&lt;/middle-readonly&gt;
+      &lt;right&gt;c:\work\project3&lt;/right&gt;
+      &lt;right-readonly&gt;0&lt;/right-readonly&gt;
+      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;
+      &lt;subfolders&gt;0&lt;/subfolders&gt;
+   &lt;/paths&gt;
+&lt;/project&gt;</screen>
 
       <para>プロジェクト ファイルには、次の各要素のいずれかを含めることができる <sgmltag>paths</sgmltag> 要素が含まれています。</para>
 
@@ -553,7 +553,7 @@ format="PNG" /> </imageobject><textobject>
           <term><sgmltag>ignore-case</sgmltag></term>
 
           <listitem>
-            <para>0 = 大文字と小文字を区別しない</para>
+            <para>0 = 大文字と小文字を区別する</para>
 
             <para>1 = 大文字と小文字を区別しない</para>
           </listitem>

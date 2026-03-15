@@ -48,7 +48,7 @@ linkend="Command_line" />を参照してください。</para>
             <title>コマンドライン</title>
 
             <para>
-<userinput> "C:\Program Files\WinMerge\WinMergeU.exe" /t ウェブページ
+<userinput> "C:\Program Files\WinMerge\WinMergeU.exe" /t webpage
 https://example.net https://example.com </userinput></para>
           </example>
 
