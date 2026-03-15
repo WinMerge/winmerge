@@ -42,6 +42,7 @@ CMenuBar::CMenuBar()
 	, m_nCurrentHotItem(-1)
 	, m_hCurrentPopupMenu(nullptr)
 	, m_bShowKeyboardCues(false)
+	, m_bAltUsedWithMouse(false)
 {
 	m_pThis = this;
 }
@@ -387,10 +388,22 @@ BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 		{
 			if (pMsg->message == WM_SYSKEYDOWN)
 			{
+				if (pMsg->wParam == VK_MENU)
+				{
+					DWORD buttons = ::GetAsyncKeyState(VK_LBUTTON) | ::GetAsyncKeyState(VK_RBUTTON) | ::GetAsyncKeyState(VK_MBUTTON);
+					if (!m_bAltUsedWithMouse && (buttons & 0x8000))
+						m_bAltUsedWithMouse = true;
+				}
 				ShowKeyboardCues(true);
 			}
 			else if (pMsg->message == WM_SYSKEYUP && m_bShowKeyboardCues)
 			{
+				if (m_bAltUsedWithMouse)
+				{
+					m_bAltUsedWithMouse = false;
+					ShowKeyboardCues(false);
+					return TRUE; // Alt was used with mouse
+				}
 				if (!m_bActive)
 					SetFocus();
 				else if (m_hwndOldFocus != nullptr && IsWindow(m_hwndOldFocus))
