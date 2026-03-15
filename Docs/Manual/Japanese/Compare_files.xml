@@ -1131,7 +1131,12 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
 が無効になっている場合、またはファイルが変更された可能性があると思われる場合は、マージ操作を実行する<emphasis>前</emphasis> に
 <guimenuitem>更新</guimenuitem> を実行することを強くお勧めします。<menuchoice>
 <guimenu>編集</guimenu> <guimenuitem>更新</guimenuitem> </menuchoice> または
-<プレースホルダをクリックします。 type="inlinemediaobject" id="0"/> ツールバー
+<inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+              <phrase>表示更新ボタン</phrase>
+            </textobject>
+          </inlinemediaobject> ツールバー
 ボタンを押すか、<keycap>F5</keycap> を押します。</para>
 
         <para>マージ結果が正しくない場合は、<menuchoice> <guimenu>編集</guimenu>
@@ -1142,4 +1147,237 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
     </section>
 
     <section id="Compare_files_merge_functions">
-      <title>
+      <title>マージ機能<indexterm>
+          <primary>WinMerge 機能</primary>
+
+          <secondary>結合する</secondary>
+        </indexterm></title>
+
+      <para>マージ機能は、カーソル位置またはテキスト選択に基づいて相違点を暗黙的に選択できます。たとえば、差分内の任意の場所をクリックしてから、ツールバーの
+<guibutton>右にコピー</guibutton>
+ボタンをクリックすると、差分ブロック全体がマージされます。これにより、多くの小さな違いを簡単にマージできます。同様に、複数の相違点のすべてまたは一部にまたがるテキストを選択すると、含まれるすべての相違点が
+1 つのマージ コマンドでマージされます。</para>
+
+      <para>マージ操作の結果が期待したものと異なる場合は、<guibutton>元に戻す</guibutton> をクリックして操作を元に戻すことができます。</para>
+
+      <para>ツールバーとメニューのマージ機能とそのショートカットは次のとおりです。</para>
+
+      <variablelist>
+        <varlistentry>
+          <term>右にコピー<indexterm>
+              <primary>コピーライト機能</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>1
+つ以上の差異を左から右にコピーします。差分を完全に選択する必要はないことに注意してください。最も簡単に言うと、これは、ターゲット差分のテキストをソース差分のテキストに置き換えることを意味します。ただし、相違点には空の行が含まれる場合もあるため、新しい行が作成または削除される場合があります。</para>
+
+            <para>ショートカット: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
+                  <phrase>右へコピーボタン</phrase>
+                </textobject>
+              </inlinemediaobject> ボタン、<menuchoice>
+<guimenu>マージ</guimenu> <guimenuitem>右にコピー</guimenuitem>
+</menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Right</keycap>
+</keycombo> (マージでは <keycap>Right</keycap>)モード)、差分内のファイル ペインのコンテキスト
+メニュー、および差分ペインのコンテキスト メニュー。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>左にコピー<indexterm>
+              <primary>左コピー機能</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>現在の差分を右のファイル ペインから左のファイル ペインにコピーします。詳細については、<command>Copy Right</command>
+の説明を参照してください。</para>
+
+            <para>ショートカット: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="17"
+fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
+                  <phrase>左へコピーボタン</phrase>
+                </textobject>
+              </inlinemediaobject> ボタン、<menuchoice>
+<guimenu>マージ</guimenu> <guimenuitem>左にコピー</guimenuitem>
+</menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</keycap>
+</keycombo> (マージでは <keycap>Left</keycap>)モード)、差分内のファイル ペインのコンテキスト
+メニュー、および差分ペインのコンテキスト メニュー。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>右にコピーして進む<indexterm>
+              <primary>コピー権とアドバンス機能</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>現在の差分を右から左のファイル ペインにマージし、次の差分 (存在する場合) を選択します。 1 つのステップの <command>Copy
+Right</command> と <command>Next Difference</command> に相当します。</para>
+
+            <para>ショートカット: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
+                  <phrase>「右にコピー」ボタンと「進む」ボタン</phrase>
+                </textobject>
+              </inlinemediaobject> ボタン、<menuchoice>
+<guimenu>結合</guimenu> <guimenuitem>左にコピー</guimenuitem>
+</menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
+<keycap>右</keycap> </keycombo>、コンテキスト メニュー差分内のファイルペイン。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>左にコピーして進みます<indexterm>
+              <primary>左コピーとアドバンス機能</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>現在の差分を左から右にマージし、次の差分 (存在する場合) を選択します。 1 つのステップの <command>Copy Left</command>
+と <command>Next Difference</command> に相当します。</para>
+
+            <para>ショートカット: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/copyl_adv_btn.png" /> </imageobject><textobject>
+                  <phrase>左にコピーして進むボタン</phrase>
+                </textobject>
+              </inlinemediaobject> ボタン、<menuchoice>
+<guimenu>結合</guimenu> <guimenuitem>左にコピー</guimenuitem>
+</menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
+<keycap>Left</keycap> </keycombo>、コンテキスト メニュー差分内のファイルペイン。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>わかりました<indexterm>
+              <primary>オールライト機能</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>すべての相違点を左側のファイル ペインから右側にコピーします。  1 つのコマンドで 2
+つのファイルを同期するために使用します。同様に、<inlinemediaobject>
+<imageobject> <imagedata contentdepth="11"
+fileref="screenshots/undo_btn.png" /> </imageobject><textobject>
+                  <phrase>表示更新ボタン</phrase>
+                </textobject>
+              </inlinemediaobject>
+[元に戻す] をクリックするか、<keycombo> <keycap>Ctrl</keycap> <keycap>Z</keycap>
+</keycombo> を押すと、マージ全体を取り消すことができます。</para>
+
+            <para>ショートカット: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
+                  <phrase>[OK]ボタン</phrase>
+                </textobject>
+              </inlinemediaobject> ボタン、<menuchoice>
+<guimenu>Merge</guimenu> <guimenuitem>Copy to Left</guimenuitem>
+</menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</keycap>
+</keycombo>、差分内のファイル ペインのコンテキスト メニュー。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>すべて左<indexterm>
+              <primary>オールレフト機能</primary>
+            </indexterm></term>
+
+          <listitem>
+            <para>すべての相違点を右のファイル ペインから左のファイル ペインにコピーします。  事実上、左側のファイル ペインの内容を置き換えます。
+<command>All Right</command> と同様を参照してください。</para>
+
+            <para>ショートカット: <inlinemediaobject>
+<imageobject> <imagedata contentdepth="15"
+fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
+                  <phrase>「すべて左」ボタン</phrase>
+                </textobject>
+              </inlinemediaobject> ボタン、<menuchoice>
+<guimenu>Merge</guimenu> <guimenuitem>Copy to Left</guimenuitem>
+</menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</keycap>
+</keycombo>、差分内のファイル ペインのコンテキスト メニュー。</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>更新<indexterm>
+              <primary>リフレッシュ機能</primary>
+
+              <seealso>ファイルの再スキャン</seealso>
+            </indexterm></term>
+
+          <listitem>
+            <para>ファイルを再スキャンして差分を更新します。自動スキャンが無効になっている場合は、ファイルに変更を加えた後に使用します (詳細については、<xref
+linkend="Compare_files_scan" /> を参照)。</para>
+
+            <para>ショートカット: <inlinemediaobject>
+<imageobject> <imagedata contentwidth="16"
+fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
+                  <phrase>表示更新ボタン</phrase>
+                </textobject>
+              </inlinemediaobject> ボタン、<menuchoice>
+<guimenu>表示</guimenu> <guimenuitem>更新</guimenuitem>
+</menuchoice>、<keycap>F5</keycap>。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+
+    <section id="ResolveConflictFiles">
+      <title>コンフリクトファイルの解決<indexterm>
+          <primary>コンフリクトファイル</primary>
+        </indexterm></title>
+
+      <para>WinMerge
+を使用すると、一部のバージョン管理システムがマージ操作中に生成する競合ファイルを解決できます。競合ファイルは、マージで自動的に解決できない差異が発生した場合に作成されます。これは、2
+つのファイルの不完全にマージされたコンテンツを含む 1 つのファイルです。 WinMerge
+は競合ファイルを個別のファイルに分割し、それらのファイルをファイル比較ウィンドウで開きます。その後、WinMerge
+の比較およびマージ機能を使用して競合を解決し、マージされた結果ファイルを保存できます。</para>
+
+      <orderedlist>
+        <listitem>
+          <para><menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>競合ファイルを開く</guimenuitem>
+</menuchoice> をクリックし、開くダイアログを使用してファイル システム内の競合ファイルを選択します。 [ファイル比較]
+ウィンドウで競合ファイルが開きます。</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>左側のファイル ペインのファイル ヘッダーのタイトルは、<guilabel>Theirs File</guilabel>
+です。この側は、通常、バージョン管理システムのリポジトリにあるファイルを表します。通常、このファイルは編集できないため、WinMerge は左側の
+[ファイル] ペインを読み取り専用に設定します。  これは、差分をこのファイルから他のファイルにのみマージできることを意味します。</para>
+            </listitem>
+
+            <listitem>
+              <para>右側のファイル ペインには、<guilabel>Mine File</guilabel>
+というタイトルが付いています。この側はファイルの作業コピーです。すべての変更は、結果ファイルであるこのファイルに対して行う必要があります。</para>
+
+              <para><guilabel>Mine File</guilabel> 側は、競合ファイルを開いた後に変更されるように設定されます (ファイル
+ペインのヘッダーにアスタリスクが表示されます)。これにより、変更が必要ない場合は、ファイルをすばやく保存できます。また、ファイルの解決を忘れることがなくなります。ファイルを保存しないことを選択した場合、元の競合ファイルは変更されません。</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+
+        <listitem>
+          <para>このトピックで前述した通常の比較およびマージ機能をすべて使用して、[Mine File] ペインの競合を解決します。</para>
+        </listitem>
+
+        <listitem>
+          <para>完了したら、<keycombo> <keycap>Ctrl</keycap> <keycap>S</keycap> </keycombo>
+をクリックして、<guilabel>Mine File</guilabel>
+側を結果ファイルとして保存します。デフォルトでは、新しいバージョンは元の競合ファイルを上書きします。または、<menuchoice>
+<guimenu>ファイル</guimenu> <guimenuitem>右に保存</guimenuitem>
+<guimenuitem>名前を付けて保存</guimenuitem> </menuchoice>
+をクリックし、別のファイル名を選択することもできます。</para>
+        </listitem>
+      </orderedlist>
+
+      <para>多くのバージョン管理システムでは、外部マージ ツールを構成できます。そうであれば、マージ競合が発生したときにバージョン管理システムで WinMerge
+を自動的に起動できる可能性があります。</para>
+
+      <para>また、WinMerge コマンド ラインから競合ファイルを開くこともできます。このコマンド
+ラインでは、<option>Theirs</option>、<option>Mine</option>、およびオプションで
+<option>Resolved</option> (競合ファイルとは異なる結果ファイルが必要な場合) の 3
+つのファイル名パラメータを受け入れます。詳細については、「<xref linkend="Command_line"
+/>」を参照してください。競合ファイルへの単一パスもコマンド ラインで受け入れられます。</para>
+    </section>
+  </section>
+</article>

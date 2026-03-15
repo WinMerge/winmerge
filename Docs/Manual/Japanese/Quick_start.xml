@@ -126,7 +126,7 @@ linkend="Configuration" />を参照してください。</para>
             </listitem>
           </itemizedlist></para>
 
-        <para><メモ><para>あなたは、一組のファイル、または、フォルダーを比較することができます。
+        <para><note><para>あなたは、一組のファイル、または、フォルダーを比較することができます。
 もし、ファイルとフォルダーを選択するか、または、ファイルやフォルダーが存在しない場合、
 WinMergeは、ダイアログの<guibutton>比較</guibutton>ボタンを使用不可にします。</para>
 

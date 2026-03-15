@@ -6737,9 +6737,8 @@ msgstr ""
 "変更された可能性があると思われる場合は、マージ操作を実行する<emphasis>前</"
 "emphasis> に <guimenuitem>更新</guimenuitem> を実行することを強くお勧めしま"
 "す。<menuchoice> <guimenu>編集</guimenu> <guimenuitem>更新</guimenuitem> </"
-"menuchoice> または <プレースホルダをクリックします。 "
-"type=\"inlinemediaobject\" id=\"0\"/> ツールバー ボタンを押すか、<keycap>F5</"
-"keycap> を押します。"
+"menuchoice> または <placeholder type=\"inlinemediaobject\" id=\"0\"/> ツール"
+"バー ボタンを押すか、<keycap>F5</keycap> を押します。"
 
 #. type: Content of: <article><section><section><important><para>
 #: English/Compare_files.xml:1528
@@ -24121,7 +24120,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><para><note>
 #: English/Quick_start.xml:151
 msgid "<note>"
-msgstr "<メモ>"
+msgstr "<note>"
 
 #. type: Content of: <article><section><section><section><para><note><para>
 #: English/Quick_start.xml:152
