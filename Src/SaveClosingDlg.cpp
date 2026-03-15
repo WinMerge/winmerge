@@ -150,6 +150,10 @@ bool SaveClosingDlg::ShowAndSave(
 	const std::function<bool(int)>& doSave,
 	const std::function<void(int)>& setSavePoint)
 {
+	ASSERT(nBuffers == 2 || nBuffers == 3);
+	if (nBuffers != 2 && nBuffers != 3)
+		return false;
+
 	bool result = true;
 	SaveClosingDlg dlg;
 	
