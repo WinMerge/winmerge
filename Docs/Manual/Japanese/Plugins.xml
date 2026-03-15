@@ -1337,6 +1337,56 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_DecompileJVM">
+      <title><filename>DecompileJVM<indexterm>
+          <primary>DecompileJVM plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>CFR を使用する Java デコンパイラ。 .class ファイルを読みやすい Java ソースコードにデコンパイルします。</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DecompileJVM</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>CFR デコンパイラに渡すコマンドラインオプション。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルター</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <segtitle>依存するもの</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.class</filename></seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://github.com/leibnitz27/cfr">CFR</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_DisassembleIL">
       <title><filename>DisassembleIL<indexterm>
           <primary>DisassembleIL plugin file</primary>

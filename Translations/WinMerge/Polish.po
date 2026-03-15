@@ -1677,6 +1677,9 @@ msgstr "Otwórz folder listy zastąp ciągu znaków..."
 msgid "Open Regex Replace Lists Folder..."
 msgstr "Otwórz folder listy zastąp wyrażenie regularne..."
 
+msgid "Match &case"
+msgstr "Uwzględnij wielkość liter"
+
 msgid "Text &Normalization"
 msgstr "Normalizacja tekstu"
 
@@ -1799,9 +1802,6 @@ msgstr "Z&najdź:"
 
 msgid "Match &whole word only"
 msgstr "Dopasuj tylko całe sło&wa"
-
-msgid "Match &case"
-msgstr "Uwzględnij wielkość liter"
 
 msgid "Regular &expression"
 msgstr "Wyrażenie r&egularne"

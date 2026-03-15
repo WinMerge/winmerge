@@ -1908,6 +1908,10 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+#, c-format
+msgid "Match &case"
+msgstr "Hizki larriak eta &xeheak"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -2055,10 +2059,6 @@ msgstr "Bi&latu zer:"
 #, c-format
 msgid "Match &whole word only"
 msgstr "Hitz osoa bat datorre&nean bakarrik"
-
-#, c-format
-msgid "Match &case"
-msgstr "Hizki larriak eta &xeheak"
 
 #, c-format
 msgid "Regular &expression"

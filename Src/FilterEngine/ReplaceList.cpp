@@ -102,7 +102,7 @@ std::shared_ptr<std::vector<ValueType2>> LoadList(const FilterExpression& ctxt, 
 
 			try
 			{
-				// Escape and compile regex for case-insensitive replacement
+				// Escape and compile regex for replacement
 				std::string pattern;
 				pattern.reserve(fromUtf8.size());
 				for (char c : fromUtf8)
@@ -116,10 +116,8 @@ std::shared_ptr<std::vector<ValueType2>> LoadList(const FilterExpression& ctxt, 
 					pattern += c;
 				}
 
-				auto regex = std::make_shared<Poco::RegularExpression>(
-					pattern,
-					Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8
-				);
+				const int flags = Poco::RegularExpression::RE_UTF8 | (ctxt.caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS);
+				auto regex = std::make_shared<Poco::RegularExpression>(pattern, flags);
 
 				auto pair = std::make_shared<std::vector<ValueType2>>();
 				pair->push_back(ValueType2{ regex });
@@ -151,10 +149,8 @@ std::shared_ptr<std::vector<ValueType2>> LoadRegexList(const FilterExpression& c
 
 			try
 			{
-				auto regex = std::make_shared<Poco::RegularExpression>(
-					patternUtf8,
-					Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8
-				);
+				const int flags = Poco::RegularExpression::RE_UTF8 | (ctxt.caseSensitive ? 0 : Poco::RegularExpression::RE_CASELESS);
+				auto regex = std::make_shared<Poco::RegularExpression>(patternUtf8, flags);
 
 				auto pair = std::make_shared<std::vector<ValueType2>>();
 				pair->push_back(ValueType2{ regex });

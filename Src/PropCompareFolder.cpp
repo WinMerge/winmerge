@@ -10,6 +10,7 @@
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
 #include "FilterErrorMessages.h"
+#include "FilterExpression.h"
 #include "PropertySystemMenu.h"
 #include "unicoder.h"
 #include "paths.h"
@@ -125,6 +126,19 @@ static String ReplaceAppDataFolderOrUserProfileFolder(const String& path)
 class CPropCompareFolderMenu : public CMenu
 {
 private:
+	// Transform expression while preserving directives at the beginning
+	static String TransformExpressionPreservingDirectives(const String& expr, std::function<String(const String&)> transform)
+	{
+		String baseExpr = expr.empty() ? _T("Name") : expr;
+		String directives = FilterExpression::ExtractDirectivesPrefix(baseExpr);
+		String exprWithoutDirective = FilterExpression::RemoveAllDirectives(baseExpr);
+
+		String newExpr = transform(exprWithoutDirective);
+		if (!directives.empty())
+			newExpr = directives + _T(" ") + newExpr;
+		return newExpr;
+	}
+
 	void PopulateReplaceLists(CMenu* pPopup)
 	{
 		// Find "Replace Lists" submenu
@@ -261,6 +275,9 @@ public:
 			if (menuid == IDR_POPUP_RENAMEMOVE_MENU)
 			{
 				PopulateReplaceLists(pPopup);
+				bool caseSensitive = FilterExpression::HasCaseSensitiveDirective(expr);
+				pPopup->CheckMenuItem(ID_RENAME_MOVE_KEY_MENU_MATCHCASE, 
+					MF_BYCOMMAND | (caseSensitive ? MF_CHECKED : 0));
 			}
 
 			const int command = pPopup->TrackPopupMenu(
@@ -333,8 +350,9 @@ public:
 					_T("toKatakana(%1)"),
 					_T("normalizeUnicode(%1, \"NFC\")"),
 				};
-				String newExpr = Exprs[command - ID_RENAME_MOVE_KEY_MENU_FUNC_FIRST];
-				result = strutils::format_string1(newExpr, expr.empty() ? _T("Name") : expr);
+				result = TransformExpressionPreservingDirectives(expr, [&](const String& e) {
+					return strutils::format_string1(Exprs[command - ID_RENAME_MOVE_KEY_MENU_FUNC_FIRST], e);
+				});
 			}
 			else if (command == ID_RENAME_MOVE_KEY_MENU_CREATE_REPLACELIST)
 			{
@@ -342,9 +360,9 @@ public:
 				if (filepath.has_value())
 				{
 					String filepath2 = ReplaceAppDataFolderOrUserProfileFolder(*filepath);
-					String newExpr = _T("replaceWithList(") + (expr.empty() ? _T("Name") : expr) + 
-						_T(", \"") + filepath2 + _T("\")");
-					result = newExpr;
+					result = TransformExpressionPreservingDirectives(expr, [&](const String& e) {
+						return _T("replaceWithList(") + e + _T(", \"") + filepath2 + _T("\")");
+					});
 				}
 			}
 			else if (command == ID_RENAME_MOVE_KEY_MENU_CREATE_REGEXREPLACELIST)
@@ -353,9 +371,9 @@ public:
 				if (filepath.has_value())
 				{
 					String filepath2 = ReplaceAppDataFolderOrUserProfileFolder(*filepath);
-					String newExpr = _T("regexReplaceWithList(") + (expr.empty() ? _T("Name") : expr) + 
-						_T(", \"") + filepath2 + _T("\")");
-					result = newExpr;
+					result = TransformExpressionPreservingDirectives(expr, [&](const String& e) {
+						return _T("regexReplaceWithList(") + e + _T(", \"") + filepath2 + _T("\")");
+					});
 				}
 			}
 			else if (command >= ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FIRST && 
@@ -366,9 +384,9 @@ public:
 				if (index < static_cast<int>(lists.size()))
 				{
 					String filepath = ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
-					String newExpr = _T("replaceWithList(") + (expr.empty() ? _T("Name") : expr) + 
-						_T(", \"") + filepath + _T("\")");
-					result = newExpr;
+					result = TransformExpressionPreservingDirectives(expr, [&](const String& e) {
+						return _T("replaceWithList(") + e + _T(", \"") + filepath + _T("\")");
+					});
 				}
 			}
 			else if (command >= ID_RENAME_MOVE_KEY_MENU_REGEX_REPLACE_LISTS_FIRST && 
@@ -379,9 +397,9 @@ public:
 				if (index < static_cast<int>(lists.size()))
 				{
 					String filepath = ReplaceAppDataFolderOrUserProfileFolder(lists[index]);
-					String newExpr = _T("regexReplaceWithList(") + (expr.empty() ? _T("Name") : expr) + 
-						_T(", \"") + filepath + _T("\")");
-					result = newExpr;
+					result = TransformExpressionPreservingDirectives(expr, [&](const String& e) {
+						return _T("regexReplaceWithList(") + e + _T(", \"") + filepath + _T("\")");
+					});
 				}
 			}
 			else if (command == ID_RENAME_MOVE_KEY_MENU_STRING_REPLACE_LISTS_FOLDER)
@@ -397,6 +415,14 @@ public:
 				String folder = GetReplaceListFolder(locationType, true);
 				if (!folder.empty())
 					shell::Open(folder.c_str());
+			}
+			else if (command == ID_RENAME_MOVE_KEY_MENU_MATCHCASE)
+			{
+				bool caseSensitive = FilterExpression::HasCaseSensitiveDirective(expr);
+				if (caseSensitive)
+					result = FilterExpression::RemoveCaseSensitiveDirective(expr);
+				else
+					result = FilterExpression::AddCaseSensitiveDirective(expr);
 			}
 		}
 		DestroyMenu();

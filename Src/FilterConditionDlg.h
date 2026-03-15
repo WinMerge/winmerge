@@ -32,6 +32,7 @@ public:
 	String m_sValue2;
 	String m_sExpression;
 	bool m_bRecursive;
+	bool m_bCaseSensitive;
 	CComboBox m_ctlValue1;
 	CComboBox m_ctlValue2;
 	CTime m_tmValue1;

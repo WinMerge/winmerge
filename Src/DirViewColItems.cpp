@@ -419,7 +419,13 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 	else if (di.diffcode.isResultDiff()) // diff
 	{
 		if (di.diffcode.isExprDiff())
-			s = strutils::format_string1(_("Files are different (expr: %1)"), ucr::toTString(pCtxt->m_pAdditionalCompareExpression->expression));
+		{
+			const auto& expr = *pCtxt->m_pAdditionalCompareExpression;
+			String exprText = expr.name.empty() 
+				? ucr::toTString(expr.expression) 
+				: ucr::toTString(expr.name);
+			s = strutils::format_string1(_("Files are different (expr: %1)"), exprText);
+		}
 		else if (di.diffcode.isText())
 			s = _("Text files are different");
 		else if (di.diffcode.isBin())

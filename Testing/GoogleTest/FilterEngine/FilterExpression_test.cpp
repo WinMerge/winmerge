@@ -1865,6 +1865,860 @@ TEST_P(FilterExpressionTest, ReplaceWithListEncoding)
 	DeleteFile(replaceListPath.c_str());
 }
 
+TEST_P(FilterExpressionTest, CaseSensitiveStringComparison)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	// String comparison with case sensitivity
+	EXPECT_TRUE(fe.Parse("\"abc\" == \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc\" == \"ABC\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"ABC\" == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc\" != \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc\" != \"abc\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Less than / greater than with case sensitivity
+	EXPECT_TRUE(fe.Parse("\"abc\" < \"abd\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"ABC\" < \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di)); // Uppercase comes before lowercase in ASCII
+	EXPECT_TRUE(fe.Parse("\"abc\" > \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc\" <= \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc\" <= \"ABC\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"ABC\" <= \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc\" >= \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc\" >= \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"ABC\" >= \"abc\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Array comparisons
+	EXPECT_TRUE(fe.Parse("array(\"abc\", \"def\") == array(\"abc\", \"def\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("array(\"abc\", \"def\") == array(\"ABC\", \"DEF\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("array(\"abc\", \"def\") != array(\"ABC\", \"DEF\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, CaseSensitiveContains)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	// contains operator with case sensitivity
+	EXPECT_TRUE(fe.Parse("\"Hello World\" contains \"Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello World\" contains \"hello\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello World\" contains \"World\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello World\" contains \"world\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello World\" contains \"HELLO\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Array with contains
+	EXPECT_TRUE(fe.Parse("array(\"Hello\", \"WORLD\") contains \"Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("array(\"Hello\", \"WORLD\") contains \"hello\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("array(\"Hello\", \"WORLD\") contains \"WORLD\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("array(\"Hello\", \"WORLD\") contains \"world\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, CaseSensitiveRegex)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	// recontains with case sensitivity
+	EXPECT_TRUE(fe.Parse("\"Hello World\" recontains \"Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello World\" recontains \"hello\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello World\" recontains \"[A-Z][a-z]+\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello World\" recontains \"^hello\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello World\" recontains \"^Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// matches with case sensitivity
+	EXPECT_TRUE(fe.Parse("\"Hello\" matches \"Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello\" matches \"hello\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello\" matches \"H.*o\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello\" matches \"h.*o\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello\" matches \"[A-Z][a-z]+\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"hello\" matches \"[A-Z][a-z]+\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Array with regex
+	EXPECT_TRUE(fe.Parse("array(\"Hello\", \"World\") matches \"^[A-Z][a-z]+\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("array(\"hello\", \"world\") matches \"^[A-Z][a-z]+\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, CaseSensitiveLike)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	// like operator with case sensitivity
+	EXPECT_TRUE(fe.Parse("\"Hello.txt\" like \"Hello.*\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Hello.txt\" like \"hello.*\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Test.TXT\" like \"*.TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"Test.TXT\" like \"*.txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"ABC.doc\" like \"[A-Z]*.doc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("\"abc.doc\" like \"[A-Z]*.doc\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Array with like
+	EXPECT_TRUE(fe.Parse("array(\"Test.TXT\", \"Test.txt\") like \"*.TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("allof(array(\"Test.TXT\", \"Test.txt\") like \"*.TXT\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, CaseSensitiveReplace)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	// replace function with case sensitivity
+	EXPECT_TRUE(fe.Parse("replace(\"Hello World\", \"Hello\", \"Hi\") == \"Hi World\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(\"Hello World\", \"hello\", \"Hi\") == \"Hello World\""));
+	EXPECT_TRUE(fe.Evaluate(di)); // No replacement because case doesn't match
+	EXPECT_TRUE(fe.Parse("replace(\"HELLO WORLD\", \"HELLO\", \"Hi\") == \"Hi WORLD\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(\"HELLO WORLD\", \"hello\", \"Hi\") == \"HELLO WORLD\""));
+	EXPECT_TRUE(fe.Evaluate(di)); // No replacement
+	EXPECT_TRUE(fe.Parse("replace(\"Test Test test\", \"Test\", \"X\") == \"X X test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(\"Test Test test\", \"test\", \"X\") == \"Test Test X\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array with replace
+	EXPECT_TRUE(fe.Parse("replace(array(\"Hello\", \"HELLO\"), \"Hello\", \"Hi\") == array(\"Hi\", \"HELLO\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("replace(array(\"Test\", \"test\"), \"Test\", \"X\") == array(\"X\", \"test\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, CaseSensitiveRegexReplace)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	// regexReplace with case sensitivity
+	EXPECT_TRUE(fe.Parse("regexReplace(\"Hello World\", \"Hello\", \"Hi\") == \"Hi World\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"Hello World\", \"hello\", \"Hi\") == \"Hello World\""));
+	EXPECT_TRUE(fe.Evaluate(di)); // No replacement
+	EXPECT_TRUE(fe.Parse("regexReplace(\"ABC abc\", \"[A-Z]+\", \"X\") == \"X abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"ABC abc\", \"[a-z]+\", \"X\") == \"ABC X\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"Test TEST test\", \"Test\", \"X\") == \"X TEST test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(\"Test TEST test\", \"TEST\", \"X\") == \"Test X test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array with regexReplace
+	EXPECT_TRUE(fe.Parse("regexReplace(array(\"Hello\", \"HELLO\"), \"Hello\", \"Hi\") == array(\"Hi\", \"HELLO\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("regexReplace(array(\"ABC\", \"abc\"), \"[A-Z]+\", \"X\") == array(\"X\", \"abc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, CaseSensitiveIsWithinAndInRange)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	// isWithin with case-sensitive string comparison
+	EXPECT_TRUE(fe.Parse("isWithin(\"abc\", \"aaa\", \"zzz\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"ABC\", \"AAA\", \"ZZZ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"abc\", \"AAA\", \"ZZZ\")"));
+	EXPECT_FALSE(fe.Evaluate(di)); // Lowercase 'a' > uppercase 'Z' in ASCII
+	EXPECT_TRUE(fe.Parse("isWithin(\"ABC\", \"aaa\", \"zzz\")"));
+	EXPECT_FALSE(fe.Evaluate(di)); // Uppercase 'A' < lowercase 'a'
+	EXPECT_TRUE(fe.Parse("isWithin(\"bbb\", \"aaa\", \"ccc\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("isWithin(\"BBB\", \"aaa\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di)); // 'B' < 'a' in ASCII
+
+	// inRange with case-sensitive string comparison
+	EXPECT_TRUE(fe.Parse("inRange(\"abc\", \"aaa\", \"zzz\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"ABC\", \"AAA\", \"ZZZ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"aaa\", \"aaa\", \"zzz\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(\"zzz\", \"aaa\", \"zzz\")"));
+	EXPECT_FALSE(fe.Evaluate(di)); // Exclusive upper bound
+	EXPECT_TRUE(fe.Parse("inRange(\"BBB\", \"aaa\", \"ccc\")"));
+	EXPECT_FALSE(fe.Evaluate(di)); // 'B' < 'a'
+
+	// Array tests
+	EXPECT_TRUE(fe.Parse("isWithin(array(\"abc\", \"ABC\"), \"aaa\", \"zzz\") == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("inRange(array(\"abc\", \"ABC\"), \"aaa\", \"zzz\") == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, CaseSensitiveReplaceWithList)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	const String tempDir = env::GetTemporaryPath();
+	const String replaceListPath = paths::ConcatPath(tempDir, L"test_replacelist_casesensitive.txt");
+
+	// Create replace list file
+	{
+		UniStdioFile file;
+		EXPECT_TRUE(file.OpenCreateUtf8(replaceListPath));
+		file.WriteBom();
+		file.WriteString(L"# Case-sensitive replacements\n");
+		file.WriteString(L"Hello\tHI\n");
+		file.WriteString(L"World\tEARTH\n");
+		file.WriteString(L"test\tEXAM\n");
+		file.Close();
+	}
+
+	GetOptionsMgr()->InitOption(OPT_CP_DETECT, 0);
+
+	// Case-sensitive: exact match required
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"Hello World\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"HI EARTH\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// No match due to case difference
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"hello world\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"hello world\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"HELLO WORLD\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"HELLO WORLD\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Partial match
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"test Test\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"EXAM Test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("replaceWithList(\"Test test\", \"" + ucr::toUTF8(replaceListPath) + "\") == \"Test EXAM\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array test
+	EXPECT_TRUE(fe.Parse("replaceWithList(array(\"Hello\", \"hello\"), \"" + ucr::toUTF8(replaceListPath) + "\") == array(\"HI\", \"hello\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Cleanup
+	DeleteFile(replaceListPath.c_str());
+}
+
+TEST_P(FilterExpressionTest, CaseSensitiveFileAttributes)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].path = L"abc";
+	di.diffFileInfo[0].filename = L"Test.TXT";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].path = L"abc";
+	di.diffFileInfo[1].filename = L"test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+	fe.caseSensitive = true;
+
+	// File name comparison with case sensitivity
+	EXPECT_TRUE(fe.Parse("LeftName == \"Test.TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftName == \"test.txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightName == \"test.txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightName == \"Test.TXT\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// File name with contains
+	EXPECT_TRUE(fe.Parse("LeftName contains \"Test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftName contains \"test\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftName contains \".TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftName contains \".txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// File name with matches
+	EXPECT_TRUE(fe.Parse("LeftName matches \"Test\\.TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftName matches \"test\\.txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightName matches \"test\\.txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Extension comparison
+	di.diffFileInfo[0].filename = L"file.TXT";
+	di.diffFileInfo[1].filename = L"file.txt";
+	EXPECT_TRUE(fe.Parse("LeftExtension == \"TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("LeftExtension == \"txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightExtension == \"txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+	EXPECT_TRUE(fe.Parse("RightExtension == \"TXT\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, DirectiveCaseSensitive)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Default: case-insensitive
+	EXPECT_TRUE(fe.Parse("\"ABC\" == \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @cs directive: case-sensitive
+	EXPECT_TRUE(fe.Parse("@cs \"ABC\" == \"abc\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs \"ABC\" == \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @casesensitive directive
+	EXPECT_TRUE(fe.Parse("@casesensitive \"Test\" == \"test\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, DirectiveCaseInsensitive)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// @ci directive: case-insensitive (explicit)
+	EXPECT_TRUE(fe.Parse("@ci \"ABC\" == \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @caseinsensitive directive
+	EXPECT_TRUE(fe.Parse("@caseinsensitive \"Test\" == \"test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, DirectiveWithOperators)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// contains with @cs
+	EXPECT_TRUE(fe.Parse("@cs \"Hello World\" contains \"Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs \"Hello World\" contains \"hello\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// like with @cs
+	EXPECT_TRUE(fe.Parse("@cs \"Test.TXT\" like \"*.TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs \"Test.TXT\" like \"*.txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// matches with @cs
+	EXPECT_TRUE(fe.Parse("@cs \"Hello\" matches \"H.*o\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs \"Hello\" matches \"h.*o\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// recontains with @cs
+	EXPECT_TRUE(fe.Parse("@cs \"Hello World\" recontains \"Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs \"Hello World\" recontains \"hello\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// String comparison with @cs
+	EXPECT_TRUE(fe.Parse("@cs \"ABC\" < \"abc\""));
+	EXPECT_TRUE(fe.Evaluate(di)); // Uppercase comes before lowercase in ASCII
+
+	EXPECT_TRUE(fe.Parse("@cs \"abc\" > \"ABC\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// replace with @cs
+	EXPECT_TRUE(fe.Parse("@cs replace(\"Hello World\", \"Hello\", \"Hi\") == \"Hi World\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs replace(\"Hello World\", \"hello\", \"Hi\") == \"Hello World\""));
+	EXPECT_TRUE(fe.Evaluate(di)); // No replacement
+}
+
+TEST_P(FilterExpressionTest, DirectiveInvalidSyntax)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Invalid directive
+	EXPECT_FALSE(fe.Parse("@unknown \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@xyz \"Test\" == \"test\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	// Typo in directive
+	EXPECT_FALSE(fe.Parse("@casesensitve \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	// Flag directives should not accept values
+	EXPECT_FALSE(fe.Parse("@cs=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@cs=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@casesensitive=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@casesensitive=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@ci=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@ci=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@caseinsensitive=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@caseinsensitive=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@optimize=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@optimize=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@opt=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@nooptimize=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@noopt=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	// Invalid values for any directive
+	EXPECT_FALSE(fe.Parse("@cs=yes \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@casesensitive=1 \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+}
+
+TEST_P(FilterExpressionTest, DirectiveWithFileAttributes)
+{
+	PathContext paths(L"C:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].path = L"abc";
+	di.diffFileInfo[0].filename = L"Test.TXT";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].path = L"abc";
+	di.diffFileInfo[1].filename = L"test.txt";
+	di.diffFileInfo[1].size = 1000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Default: case-insensitive
+	EXPECT_TRUE(fe.Parse("LeftName == \"test.txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @cs: case-sensitive
+	EXPECT_TRUE(fe.Parse("@cs LeftName == \"Test.TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs LeftName == \"test.txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs RightName == \"test.txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs RightName == \"Test.TXT\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Extension with @cs
+	di.diffFileInfo[0].filename = L"file.TXT";
+	di.diffFileInfo[1].filename = L"file.txt";
+
+	EXPECT_TRUE(fe.Parse("@cs LeftExtension == \"TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs LeftExtension == \"txt\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs RightExtension == \"txt\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Name contains with @cs
+	di.diffFileInfo[0].filename = L"TestFile.TXT";
+	di.diffFileInfo[1].filename = L"testfile.txt";
+
+	EXPECT_TRUE(fe.Parse("@cs LeftName contains \"Test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs LeftName contains \"test\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs RightName contains \"test\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs RightName contains \"Test\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, DirectiveWithArrays)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Array comparison with @cs
+	EXPECT_TRUE(fe.Parse("@cs array(\"abc\", \"def\") == array(\"abc\", \"def\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs array(\"abc\", \"def\") == array(\"ABC\", \"DEF\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs array(\"abc\", \"def\") != array(\"ABC\", \"DEF\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Array with contains and @cs
+	EXPECT_TRUE(fe.Parse("@cs array(\"Hello\", \"WORLD\") contains \"Hello\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs array(\"Hello\", \"WORLD\") contains \"hello\""));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Array with like and @cs
+	EXPECT_TRUE(fe.Parse("@cs array(\"Test.TXT\", \"Test.txt\") like \"*.TXT\""));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs allof(array(\"Test.TXT\", \"Test.txt\") like \"*.TXT\")"));
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	// Array with replace and @cs
+	EXPECT_TRUE(fe.Parse("@cs replace(array(\"Hello\", \"HELLO\"), \"Hello\", \"Hi\") == array(\"Hi\", \"HELLO\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs replace(array(\"Test\", \"test\"), \"Test\", \"X\") == array(\"X\", \"test\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, DirectiveEmptyExpression)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// Directive only, no expression
+	EXPECT_FALSE(fe.Parse("@cs"));
+	EXPECT_TRUE(fe.caseSensitive);
+
+	EXPECT_FALSE(fe.Parse("@ci"));
+	EXPECT_FALSE(fe.caseSensitive);
+
+	EXPECT_FALSE(fe.Parse("@casesensitive"));
+	EXPECT_TRUE(fe.caseSensitive);
+
+	EXPECT_FALSE(fe.Parse("@caseinsensitive"));
+	EXPECT_FALSE(fe.caseSensitive);
+
+	// Multiple directives without expression
+	EXPECT_FALSE(fe.Parse("@cs"));
+	EXPECT_TRUE(fe.caseSensitive);
+}
+
+TEST_P(FilterExpressionTest, DirectiveIsWithinAndInRange)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+	fe.optimize = GetParam().optimize;
+
+	// isWithin with case-sensitive string comparison
+	EXPECT_TRUE(fe.Parse("@cs isWithin(\"abc\", \"aaa\", \"zzz\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs isWithin(\"ABC\", \"AAA\", \"ZZZ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs isWithin(\"abc\", \"AAA\", \"ZZZ\")"));
+	EXPECT_FALSE(fe.Evaluate(di)); // Lowercase 'a' > uppercase 'Z' in ASCII
+
+	EXPECT_TRUE(fe.Parse("@cs isWithin(\"ABC\", \"aaa\", \"zzz\")"));
+	EXPECT_FALSE(fe.Evaluate(di)); // Uppercase 'A' < lowercase 'a'
+
+	// inRange with case-sensitive string comparison
+	EXPECT_TRUE(fe.Parse("@cs inRange(\"abc\", \"aaa\", \"zzz\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs inRange(\"ABC\", \"AAA\", \"ZZZ\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs inRange(\"aaa\", \"aaa\", \"zzz\")"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs inRange(\"zzz\", \"aaa\", \"zzz\")"));
+	EXPECT_FALSE(fe.Evaluate(di)); // Exclusive upper bound
+
+	// Array tests with @cs
+	EXPECT_TRUE(fe.Parse("@cs isWithin(array(\"abc\", \"ABC\"), \"aaa\", \"zzz\") == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@cs inRange(array(\"abc\", \"ABC\"), \"aaa\", \"zzz\") == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, DirectiveOptimize)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 2000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+
+	// Default: optimization enabled
+	EXPECT_TRUE(fe.Parse("Size > 500"));
+	EXPECT_TRUE(fe.optimize);
+
+	// @optimize directive: explicitly enable optimization
+	EXPECT_TRUE(fe.Parse("@optimize Size > 500"));
+	EXPECT_TRUE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @opt directive: short form
+	EXPECT_TRUE(fe.Parse("@opt Size < 1500"));
+	EXPECT_TRUE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @nooptimize directive: disable optimization
+	EXPECT_TRUE(fe.Parse("@nooptimize Size > 500"));
+	EXPECT_FALSE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @noopt directive: short form
+	EXPECT_TRUE(fe.Parse("@noopt Size < 1500"));
+	EXPECT_FALSE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Directive only, no expression
+	EXPECT_FALSE(fe.Parse("@optimize"));
+	EXPECT_TRUE(fe.optimize);
+
+	EXPECT_FALSE(fe.Parse("@nooptimize"));
+	EXPECT_FALSE(fe.optimize);
+
+	EXPECT_FALSE(fe.Parse("@opt"));
+	EXPECT_TRUE(fe.optimize);
+
+	EXPECT_FALSE(fe.Parse("@noopt"));
+	EXPECT_FALSE(fe.optimize);
+
+	// Combined with other directives
+	EXPECT_TRUE(fe.Parse("@cs @nooptimize \"ABC\" == \"abc\""));
+	EXPECT_TRUE(fe.caseSensitive);
+	EXPECT_FALSE(fe.optimize);
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@noopt @ci Size > 500"));
+	EXPECT_FALSE(fe.caseSensitive);
+	EXPECT_FALSE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@optimize @cs @name=\"Test\" Size > 500"));
+	EXPECT_TRUE(fe.caseSensitive);
+	EXPECT_TRUE(fe.optimize);
+	EXPECT_EQ("Test", fe.name);
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
 INSTANTIATE_TEST_SUITE_P(
 	OptimizationCases,
 	FilterExpressionTest,

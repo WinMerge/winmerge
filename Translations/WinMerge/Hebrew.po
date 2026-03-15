@@ -1674,6 +1674,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "התאם רישיות"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1796,9 +1799,6 @@ msgstr "חפש את:"
 
 msgid "Match &whole word only"
 msgstr "התאם רק מילים שלמות"
-
-msgid "Match &case"
-msgstr "התאם רישיות"
 
 msgid "Regular &expression"
 msgstr "ביטוי רגולרי"

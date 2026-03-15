@@ -178,7 +178,7 @@ static std::optional<int64_t> getConstIntValue(const ExprNode* node)
  * @param right The right-hand side expression node.
  * @return A new ExprNode representing the folded constant, or nullptr if folding is not possible.
  */
-static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
+static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right, bool caseSensitive)
 {
 	// If both nodes are constants, attempt to fold them.
 	auto lDouble = dynamic_cast<DoubleLiteral*>(left);
@@ -273,14 +273,29 @@ static ExprNode* TryFoldConstants(ExprNode* left, int op, ExprNode* right)
 		if (op >= TK_EQ && op <= TK_GE)
 		{
 			bool result = false;
-			switch (op)
+			if (!caseSensitive)
 			{
-			case TK_EQ: result = Poco::icompare(lStr->value, rStr->value) == 0; break;
-			case TK_NE: result = Poco::icompare(lStr->value, rStr->value) != 0; break;
-			case TK_LT: result = Poco::icompare(lStr->value, rStr->value) < 0; break;
-			case TK_LE: result = Poco::icompare(lStr->value, rStr->value) <= 0; break;
-			case TK_GT: result = Poco::icompare(lStr->value, rStr->value) > 0; break;
-			case TK_GE: result = Poco::icompare(lStr->value, rStr->value) >= 0; break;
+				switch (op)
+				{
+				case TK_EQ: result = Poco::icompare(lStr->value, rStr->value) == 0; break;
+				case TK_NE: result = Poco::icompare(lStr->value, rStr->value) != 0; break;
+				case TK_LT: result = Poco::icompare(lStr->value, rStr->value) < 0; break;
+				case TK_LE: result = Poco::icompare(lStr->value, rStr->value) <= 0; break;
+				case TK_GT: result = Poco::icompare(lStr->value, rStr->value) > 0; break;
+				case TK_GE: result = Poco::icompare(lStr->value, rStr->value) >= 0; break;
+				}
+			}
+			else
+			{
+				switch (op)
+				{
+				case TK_EQ: result = lStr->value == rStr->value; break;
+				case TK_NE: result = lStr->value != rStr->value; break;
+				case TK_LT: result = lStr->value < rStr->value; break;
+				case TK_LE: result = lStr->value <= rStr->value; break;
+				case TK_GT: result = lStr->value > rStr->value; break;
+				case TK_GE: result = lStr->value >= rStr->value; break;
+				}
 			}
 			return new BoolLiteral(result);
 		}
@@ -364,7 +379,7 @@ ExprNode* BinaryOpNode::Optimize()
 		return this;
 	left = left->Optimize();
 	right = right->Optimize();
-	if (ExprNode* folded = TryFoldConstants(left, op, right))
+	if (ExprNode* folded = TryFoldConstants(left, op, right, ctxt->caseSensitive))
 	{
 		delete this;
 		return folded;
@@ -373,14 +388,14 @@ ExprNode* BinaryOpNode::Optimize()
 	{
 		if (auto strNode = dynamic_cast<StringLiteral*>(right))
 		{
-			right = new RegularExpressionLiteral(strNode->value);
+			right = new RegularExpressionLiteral(strNode->value, ctxt->caseSensitive);
 			delete strNode;
 		}
 	}
 	return this;
 }
 
-static auto compute(int op, const ValueType& lval, const ValueType& rval) -> ValueType
+static auto compute(int op, const ValueType& lval, const ValueType& rval, bool caseSensitive) -> ValueType
 {
 	auto lvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&lval);
 	auto rvalArray = std::get_if<std::shared_ptr<std::vector<ValueType2>>>(&rval);
@@ -486,31 +501,55 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 		{
 			if (auto rvalString = std::get_if<std::string>(&rval))
 			{
-				if (op == TK_EQ) return Poco::icompare(*lvalString, *rvalString) == 0;
-				if (op == TK_NE) return Poco::icompare(*lvalString, *rvalString) != 0;
-				if (op == TK_LT) return Poco::icompare(*lvalString, *rvalString) < 0;
-				if (op == TK_LE) return Poco::icompare(*lvalString, *rvalString) <= 0;
-				if (op == TK_GT) return Poco::icompare(*lvalString, *rvalString) > 0;
-				if (op == TK_GE) return Poco::icompare(*lvalString, *rvalString) >= 0;
+				if (!caseSensitive)
+				{
+					if (op == TK_EQ) return Poco::icompare(*lvalString, *rvalString) == 0;
+					if (op == TK_NE) return Poco::icompare(*lvalString, *rvalString) != 0;
+					if (op == TK_LT) return Poco::icompare(*lvalString, *rvalString) < 0;
+					if (op == TK_LE) return Poco::icompare(*lvalString, *rvalString) <= 0;
+					if (op == TK_GT) return Poco::icompare(*lvalString, *rvalString) > 0;
+					if (op == TK_GE) return Poco::icompare(*lvalString, *rvalString) >= 0;
+				}
+				else
+				{
+					if (op == TK_EQ) return *lvalString == *rvalString;
+					if (op == TK_NE) return *lvalString != *rvalString;
+					if (op == TK_LT) return *lvalString < *rvalString;
+					if (op == TK_LE) return *lvalString <= *rvalString;
+					if (op == TK_GT) return *lvalString > *rvalString;
+					if (op == TK_GE) return *lvalString >= *rvalString;
+				}
 				if (op == TK_PLUS) return *lvalString + *rvalString;
 				if (op == TK_CONTAINS)
 				{
-					auto searcher = std::boyer_moore_horspool_searcher(
-						rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
-						[](char a, char b) {
-							return std::tolower(static_cast<unsigned char>(a)) ==
-								std::tolower(static_cast<unsigned char>(b));
-						}
-					);
-					using iterator = std::string::const_iterator;
-					std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
-					return (result.first != result.second);
+					if (!caseSensitive)
+					{
+						auto searcher = std::boyer_moore_horspool_searcher(
+							rvalString->cbegin(), rvalString->cend(), std::hash<char>(),
+							[](char a, char b) {
+								return std::tolower(static_cast<unsigned char>(a)) ==
+									std::tolower(static_cast<unsigned char>(b));
+							}
+						);
+						using iterator = std::string::const_iterator;
+						std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
+						return (result.first != result.second);
+					}
+					else
+					{
+						auto searcher = std::boyer_moore_horspool_searcher(
+							rvalString->cbegin(), rvalString->cend());
+						using iterator = std::string::const_iterator;
+						std::pair<iterator, iterator> result = searcher(lvalString->begin(), lvalString->end());
+						return (result.first != result.second);
+					}
 				}
 				if (op == TK_RECONTAINS)
 				{
 					try
 					{
-						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						const int flags = Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+						Poco::RegularExpression regex(*rvalString, flags);
 						Poco::RegularExpression::Match match;
 						return (regex.match(*lvalString, match) > 0);
 					}
@@ -521,14 +560,16 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 				}
 				if (op == TK_LIKE)
 				{
-					Poco::Glob glob(*rvalString, Poco::Glob::GLOB_CASELESS);
+					const int flags = (!caseSensitive) ? Poco::Glob::GLOB_CASELESS : 0;
+					Poco::Glob glob(*rvalString, flags);
 					return glob.match(*lvalString);
 				}
 				if (op == TK_MATCHES)
 				{
 					try
 					{
-						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						const int flags = Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+						Poco::RegularExpression regex(*rvalString, flags);
 						return regex.match(*lvalString);
 					}
 					catch (const Poco::RegularExpressionException&)
@@ -564,12 +605,13 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 			}
 			if (auto rvalString = std::get_if<std::string>(&rval))
 			{
-				if (op == TK_CONTAINS) return (*lvalContent)->Contains(*rvalString);
+				if (op == TK_CONTAINS) return (*lvalContent)->Contains(*rvalString, caseSensitive);
 				if (op == TK_RECONTAINS)
 				{
 					try
 					{
-						Poco::RegularExpression regex(*rvalString, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+						const int flags = Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+						Poco::RegularExpression regex(*rvalString, flags);
 						return (*lvalContent)->REContains(regex);
 					}
 					catch (const Poco::RegularExpressionException&)
@@ -617,14 +659,14 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 	{
 		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (const auto& item : *(lvalArray->get()))
-			result->emplace_back(ValueType2{ compute(op, item.value, rval) });
+			result->emplace_back(ValueType2{ compute(op, item.value, rval, caseSensitive) });
 		return result;
 	}
 	else if (!lvalArray && rvalArray)
 	{
 		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (const auto& item : *(rvalArray->get()))
-			result->emplace_back(ValueType2{ compute(op, lval, item.value) });
+			result->emplace_back(ValueType2{ compute(op, lval, item.value, caseSensitive) });
 		return result;
 	}
 	else
@@ -638,7 +680,7 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 			{
 				ValueType lv = (*lvalArray)->at(i).value;
 				ValueType rv = (*rvalArray)->at(i).value;
-				ValueType eq = compute(TK_EQ, lv, rv);
+				ValueType eq = compute(TK_EQ, lv, rv, caseSensitive);
 				if (!std::holds_alternative<bool>(eq) || !std::get<bool>(eq))
 					return (op == TK_NE);
 			}
@@ -648,7 +690,7 @@ static auto compute(int op, const ValueType& lval, const ValueType& rval) -> Val
 		const size_t minSize = (std::min)((*lvalArray)->size(), (*rvalArray)->size());
 		std::shared_ptr<std::vector<ValueType2>> result = std::make_shared<std::vector<ValueType2>>();
 		for (size_t i = 0; i < minSize; ++i)
-			result->emplace_back(ValueType2{ compute(op, (*lvalArray)->at(i).value, (*rvalArray)->at(i).value) });
+			result->emplace_back(ValueType2{ compute(op, (*lvalArray)->at(i).value, (*rvalArray)->at(i).value, caseSensitive) });
 		for (size_t i = 0; i < maxSize - minSize; ++i)
 			result->emplace_back(ValueType2{ std::monostate{} });
 		return result;
@@ -659,7 +701,7 @@ ValueType BinaryOpNode::Evaluate(const DIFFITEM& di) const
 {
 	auto lval = left->Evaluate(di);
 	auto rval = right->Evaluate(di);
-	return compute(op, lval, rval);
+	return compute(op, lval, rval, ctxt->caseSensitive);
 }
 
 ExprNode* NegateNode::Optimize()
@@ -1285,9 +1327,8 @@ static auto ReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 		try
 		{
 			std::string pattern = escapeRegex(*from);
-			auto regex = std::make_shared<Poco::RegularExpression>(pattern,
-				Poco::RegularExpression::RE_CASELESS |
-				Poco::RegularExpression::RE_UTF8);
+			const int flags = Poco::RegularExpression::RE_UTF8 | (!ctxt->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+			auto regex = std::make_shared<Poco::RegularExpression>(pattern, flags);
 
 			auto replaceFn = [regex, to](const ValueType& val) -> ValueType
 				{
@@ -1328,7 +1369,7 @@ static auto RegexReplaceWithListFunc(const FilterExpression* ctxt, const DIFFITE
 		list = &list2;
 	}
 
-	auto regexReplaceWithListFn = [&list](const ValueType& val) -> ValueType
+	auto regexReplaceWithListFn = [&list, &ctxt](const ValueType& val) -> ValueType
 		{
 			auto strOpt = getAsString(val);
 			if (!strOpt || !list->get())
@@ -1351,7 +1392,8 @@ static auto RegexReplaceWithListFunc(const FilterExpression* ctxt, const DIFFITE
 						}
 						else if (auto strPattern = std::get_if<std::string>(&(*arrayVal)->at(0).value))
 						{
-							Poco::RegularExpression regex(*strPattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+							const int flags = Poco::RegularExpression::RE_UTF8 | (!ctxt->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+							Poco::RegularExpression regex(*strPattern, flags);
 							regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
 						}
 					}
@@ -1535,8 +1577,17 @@ static auto IsWithinFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::
 				{
 					if (auto maxString = std::get_if<std::string>(&arg3))
 					{
-						int cmpMin = Poco::icompare(*valString, *minString);
-						int cmpMax = Poco::icompare(*valString, *maxString);
+						int cmpMin, cmpMax;
+						if (!ctxt->caseSensitive)
+						{
+							cmpMin = Poco::icompare(*valString, *minString);
+							cmpMax = Poco::icompare(*valString, *maxString);
+						}
+						else
+						{
+							cmpMin = valString->compare(*minString);
+							cmpMax = valString->compare(*maxString);
+						}
 						return (cmpMin >= 0 && cmpMax <= 0);
 					}
 				}
@@ -1605,8 +1656,17 @@ static auto InRangeFunc(const FilterExpression* ctxt, const DIFFITEM& di, std::v
 				{
 					if (auto maxString = std::get_if<std::string>(&arg3))
 					{
-						int cmpMin = Poco::icompare(*valString, *minString);
-						int cmpMax = Poco::icompare(*valString, *maxString);
+						int cmpMin, cmpMax;
+						if (!ctxt->caseSensitive)
+						{
+							cmpMin = Poco::icompare(*valString, *minString);
+							cmpMax = Poco::icompare(*valString, *maxString);
+						}
+						else
+						{
+							cmpMin = valString->compare(*minString);
+							cmpMax = valString->compare(*maxString);
+						}
 						return (cmpMin >= 0 && cmpMax < 0);
 					}
 				}
@@ -1671,7 +1731,7 @@ static auto RegexReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, s
 	if ((!strPattern && !rePattern) || !replacement)
 		return std::monostate{};
 
-	auto regexReplaceFn = [strPattern, rePattern, replacement](const ValueType& val) -> ValueType
+	auto regexReplaceFn = [ctxt, strPattern, rePattern, replacement](const ValueType& val) -> ValueType
 		{
 			auto strOpt = getAsString(val);
 			if (!strOpt)
@@ -1684,7 +1744,8 @@ static auto RegexReplaceFunc(const FilterExpression* ctxt, const DIFFITEM& di, s
 					(*rePattern)->subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
 					return result;
 				}
-				Poco::RegularExpression regex(*strPattern, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8);
+				const int flags = Poco::RegularExpression::RE_UTF8 | (!ctxt->caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+				Poco::RegularExpression regex(*strPattern, flags);
 				std::string result = *strOpt;
 				regex.subst(result, *replacement, Poco::RegularExpression::RE_GLOBAL);
 				return result;
@@ -1702,6 +1763,11 @@ static auto LogFunc(int level, const FilterExpression* ctxt, const DIFFITEM& di,
 {
 	ValueType val;
 	std::string msg;
+
+	// Add filter name prefix if available
+	if (!ctxt->name.empty())
+		msg = "[" + ctxt->name + "] ";
+
 	for (size_t i = 0; i < args->size(); ++i)
 	{
 		val = args->at(i)->Evaluate(di);
@@ -2292,7 +2358,7 @@ ExprNode* FunctionNode::Optimize()
 			try
 			{
 				std::string pattern = escapeRegex(dynamic_cast<StringLiteral*>((*args)[1])->value);
-				auto* re = new RegularExpressionLiteral(pattern);
+				auto* re = new RegularExpressionLiteral(pattern, ctxt->caseSensitive);
 				delete (*args)[1];
 				(*args)[1] = re;
 			}
@@ -2316,7 +2382,7 @@ ExprNode* FunctionNode::Optimize()
 		{
 			try
 			{
-				auto* re = new RegularExpressionLiteral(dynamic_cast<StringLiteral*>((*args)[1])->value);
+				auto* re = new RegularExpressionLiteral(dynamic_cast<StringLiteral*>((*args)[1])->value, ctxt->caseSensitive);
 				delete (*args)[1];
 				(*args)[1] = re;
 			}
@@ -2469,8 +2535,9 @@ VersionLiteral::VersionLiteral(const std::string& v)
 	value = (static_cast<int64_t>(major) << 48) + (static_cast<int64_t>(minor) << 32) + (static_cast<int64_t>(build) << 16) + revision;
 }
 
-RegularExpressionLiteral::RegularExpressionLiteral(const std::string& v)
+RegularExpressionLiteral::RegularExpressionLiteral(const std::string& v, bool caseSensitive)
 {
-	value.reset(new Poco::RegularExpression(v, Poco::RegularExpression::RE_CASELESS | Poco::RegularExpression::RE_UTF8));
+	const int flags = Poco::RegularExpression::RE_UTF8 | (!caseSensitive ? Poco::RegularExpression::RE_CASELESS : 0);
+	value.reset(new Poco::RegularExpression(v, flags));
 }
 

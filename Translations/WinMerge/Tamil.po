@@ -1684,6 +1684,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "வழக்கு பொருத்து"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1806,9 +1809,6 @@ msgstr "எதைக் கண்டுபிடி:"
 
 msgid "Match &whole word only"
 msgstr "முழு சொல்லை மட்டும் பொருத்து"
-
-msgid "Match &case"
-msgstr "வழக்கு பொருத்து"
 
 msgid "Regular &expression"
 msgstr "வழக்கமான &வெளிப்பாடு"

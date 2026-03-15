@@ -1681,6 +1681,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "區分大小寫 (&C)"
+
 msgid "Text &Normalization"
 msgstr "文本規範化 (&N)"
 
@@ -1803,9 +1806,6 @@ msgstr "尋找 (&N)："
 
 msgid "Match &whole word only"
 msgstr "只匹配完整單詞 (&W)"
-
-msgid "Match &case"
-msgstr "區分大小寫 (&C)"
 
 msgid "Regular &expression"
 msgstr "正規表達式 (&E)"

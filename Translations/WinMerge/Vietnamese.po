@@ -1676,6 +1676,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Phân biệt hoa thường"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1798,9 +1801,6 @@ msgstr "Tìm gì:"
 
 msgid "Match &whole word only"
 msgstr "Chỉ khớp cả từ"
-
-msgid "Match &case"
-msgstr "Phân biệt hoa thường"
 
 msgid "Regular &expression"
 msgstr "Biểu thức chính quy"

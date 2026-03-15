@@ -132,6 +132,8 @@ public:
 
 	static std::vector<String> SplitFilterGroups(const String& filterGroups);
 	static String JoinFilterGroups(const std::vector<String>& filterGroups);
+	static std::vector<String> SplitFiltersInGroup(const String& group);
+	static bool IsFilterExpression(const String& expression);
 
 	void SetDiffContext(const CDiffContext* pCtxt) override;
 	std::vector<const FileFilterErrorInfo*> GetErrorList() const override;

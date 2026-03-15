@@ -1675,6 +1675,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Skill mellom store/små &bokstaver"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1797,9 +1800,6 @@ msgstr "F&inn hva:"
 
 msgid "Match &whole word only"
 msgstr "Bare &hele ord"
-
-msgid "Match &case"
-msgstr "Skill mellom store/små &bokstaver"
 
 msgid "Regular &expression"
 msgstr "Regulære &uttrykk"

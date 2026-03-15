@@ -1676,6 +1676,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Ujemaj m/V črke"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1798,9 +1801,6 @@ msgstr "&Kaj naj iščem:"
 
 msgid "Match &whole word only"
 msgstr "Ujemaj le &cele besede"
-
-msgid "Match &case"
-msgstr "Ujemaj m/V črke"
 
 msgid "Regular &expression"
 msgstr "&Regularni izraz"

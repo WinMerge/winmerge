@@ -1676,6 +1676,9 @@ msgstr ""
 msgid "Open Regex Replace Lists Folder..."
 msgstr ""
 
+msgid "Match &case"
+msgstr "Rozlišovať &veľké/malé"
+
 msgid "Text &Normalization"
 msgstr ""
 
@@ -1798,9 +1801,6 @@ msgstr "&Hľadať:"
 
 msgid "Match &whole word only"
 msgstr "Iba celé &slová"
-
-msgid "Match &case"
-msgstr "Rozlišovať &veľké/malé"
 
 msgid "Regular &expression"
 msgstr "&Regulárny výraz"

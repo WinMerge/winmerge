@@ -797,9 +797,9 @@ class="extension">*.yml</filename></seg>
     <section id="Plugins_PrettifyPO">
       <title>
 <filename>PrettifyPO<indexterm>
-            <primary>PrettifyPO plugin file</primary></indexterm></filename></title>
+            <primary>Fichier du plug-in PrettifyPO</primary></indexterm></filename></title>
 
-      <para>PO Prettier with gettext msgcat</para>
+      <para>Embellir le PO avec gettext msgcat</para>
 
       <cmdsynopsis sepchar=" ">
 <command>PrettifyPO</command> <arg choice="opt" rep="repeat">
@@ -810,7 +810,7 @@ class="extension">*.yml</filename></seg>
           <term>
 <option> <replaceable>arguments</replaceable> </option></term>
           <listitem>
-            <para>Command line options passed to the msgcat command</para>
+            <para>Options de ligne de commande transmises à la commande msgcat</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1099,9 +1099,9 @@ class="extension">*.htm</filename></seg>
     <section id="Plugins_ValidatePO">
       <title>
 <filename>ValidatePO<indexterm>
-            <primary>ValidatePO plugin file</primary></indexterm></filename></title>
+            <primary>Fichier du plug-in ValidatePO</primary></indexterm></filename></title>
 
-      <para>PO Validator with gettext msgfmt</para>
+      <para>Validateur de PO avec gettext msgfmt</para>
 
       <cmdsynopsis sepchar=" ">
 <command>ValidatePO</command> <arg choice="opt" rep="repeat">
@@ -1112,7 +1112,7 @@ class="extension">*.htm</filename></seg>
           <term>
 <option> <replaceable>arguments</replaceable> </option></term>
           <listitem>
-            <para>Command line options passed to the msgfmt command</para>
+            <para>Options de ligne de commande transmises à la commande msgfmt</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -1398,6 +1398,57 @@ rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
             <seg>Non</seg>
 
             <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_DecompileJVM">
+      <title><filename>DecompileJVM<indexterm>
+          <primary>DecompileJVM plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Java decompiler with CFR - decompiles .class files into readable Java source
+code</para>
+
+      <cmdsynopsis sepchar=" ">
+<command>DecompileJVM</command> <arg choice="opt"
+rep="repeat"><replaceable>arguments</replaceable></arg></cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the CFR decompiler</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Catégorie</segtitle>
+
+          <segtitle>Filtre de fichiers</segtitle>
+
+          <segtitle>Arguments du plug-in</segtitle>
+
+          <segtitle>Compactage</segtitle>
+
+          <segtitle>Support de la boîte de dialogue des paramètres</segtitle>
+
+          <segtitle>Dépendance</segtitle>
+
+          <seglistitem>
+            <seg>Décompresseur</seg>
+
+            <seg><filename class="extension">*.class</filename></seg>
+
+            <seg>Oui</seg>
+
+            <seg>Non</seg>
+
+            <seg>Non</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>,
+<ulink url="https://github.com/leibnitz27/cfr">CFR</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>

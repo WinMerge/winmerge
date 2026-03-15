@@ -1677,6 +1677,9 @@ msgstr "Dize Değiştirme Listeleri Klasörünü Aç…"
 msgid "Open Regex Replace Lists Folder..."
 msgstr "Regex Değiştirme Listeleri Klasörünü Aç…"
 
+msgid "Match &case"
+msgstr "BÜYÜK/küçük &harfler eşleştirilsin"
+
 msgid "Text &Normalization"
 msgstr "Metin &Normalleştirme"
 
@@ -1799,9 +1802,6 @@ msgstr "&Aranacak:"
 
 msgid "Match &whole word only"
 msgstr "Sözcükler &tam olarak eşleştirilsin"
-
-msgid "Match &case"
-msgstr "BÜYÜK/küçük &harfler eşleştirilsin"
 
 msgid "Regular &expression"
 msgstr "Kurallı ifad&e"

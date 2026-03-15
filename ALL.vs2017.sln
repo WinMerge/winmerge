@@ -433,6 +433,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{7DF65017-6089-4B89-B0E8-81B207B74869}"
 	ProjectSection(SolutionItems) = preProject
 		Translations\Docs\Manual\English.pot = Translations\Docs\Manual\English.pot
+		Translations\Docs\Manual\French.po = Translations\Docs\Manual\French.po
 		Translations\Docs\Manual\Hebrew.po = Translations\Docs\Manual\Hebrew.po
 		Translations\Docs\Manual\Japanese.po = Translations\Docs\Manual\Japanese.po
 	EndProjectSection

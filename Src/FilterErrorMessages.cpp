@@ -36,6 +36,8 @@ String GetFilterErrorMessage(FilterErrorCode code)
 		return _("Division by zero in filter expression");
 	case FILTER_ERROR_INVALID_PROPERTY_NAME:
 		return _("Invalid property name");
+	case FILTER_ERROR_INVALID_DIRECTIVE:
+		return _("Invalid directive");
 	default:
 		return _("Unknown error");
 	}
@@ -64,5 +66,7 @@ String FormatFilterErrorSummary(const FilterExpression& fe)
 	if (fe.errorPosition >= 0)
 		msg += _T(" ") + _("at position") + _T(" ") + strutils::to_str(fe.errorPosition + 1);
 	msg += _T(": ") + ucr::toTString(fe.expression);
+	if (!fe.name.empty())
+		msg += _T(" (\"") + ucr::toTString(fe.name) + _T("\")");
 	return msg;
 }
