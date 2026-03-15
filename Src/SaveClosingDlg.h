@@ -45,7 +45,6 @@ public:
 		const String descs[3],
 		const String& saveAsPath,
 		bool bAllowCancel,
-		bool bSaveSuccess[3],
 		const std::function<bool(int)>& doSave,
 		const std::function<void(int)>& setSavePoint = nullptr);
 

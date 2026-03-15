@@ -141,12 +141,11 @@ void SaveClosingDlg::OnDiscardAll()
  */
 bool SaveClosingDlg::ShowAndSave(
 	int nBuffers,
-	bool bModified[3],
+	const bool bModified[3],
 	const String paths[3],
 	const String descs[3],
 	const String& saveAsPath,
 	bool bAllowCancel,
-	bool bSaveSuccess[3],
 	const std::function<bool(int)>& doSave,
 	const std::function<void(int)>& setSavePoint)
 {
@@ -189,8 +188,8 @@ bool SaveClosingDlg::ShowAndSave(
 		{
 			if (dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				bSaveSuccess[0] = doSave(0);
-				if (!bSaveSuccess[0])
+				bool canContinue = doSave(0);
+				if (!canContinue)
 					result = false;
 			}
 			else if (setSavePoint)
@@ -201,8 +200,8 @@ bool SaveClosingDlg::ShowAndSave(
 		{
 			if (dlg.m_middleSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				bSaveSuccess[1] = doSave(1);
-				if (!bSaveSuccess[1])
+				bool canContinue = doSave(1);
+				if (!canContinue)
 					result = false;
 			}
 			else if (setSavePoint)
@@ -213,8 +212,8 @@ bool SaveClosingDlg::ShowAndSave(
 		{
 			if (dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
 			{
-				bSaveSuccess[nBuffers - 1] = doSave(nBuffers - 1);
-				if (!bSaveSuccess[nBuffers - 1])
+				bool canContinue = doSave(nBuffers - 1);
+				if (!canContinue)
 					result = false;
 			}
 			else if (setSavePoint)

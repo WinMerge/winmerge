@@ -167,7 +167,6 @@ int CHexMergeDoc::UpdateLastCompareResult()
  */
 bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 {
-	bool bSaveSuccess[3] = { false, false, false };
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
 
@@ -186,7 +185,6 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		m_strDesc,
 		m_strSaveAsPath,
 		bAllowCancel,
-		bSaveSuccess,
 		[this](int i) { return DoFileSave(i); },
 		[this](int i) { m_pView[i]->SetSavePoint(); }
 	);

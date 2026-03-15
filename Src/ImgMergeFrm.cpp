@@ -1223,7 +1223,6 @@ bool CImgMergeFrame::OpenImages()
  */
 bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 {
-	bool bSaveSuccess[3] = { false, false, false };
 	bool bModified[3] = { false, false, false };
 	String paths[3] = { };
 
@@ -1243,7 +1242,6 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 		m_strDesc,
 		m_strSaveAsPath,
 		bAllowCancel,
-		bSaveSuccess,
 		[this](int i) { return DoFileSave(i); }
 	);
 

@@ -1872,7 +1872,6 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		m_strDesc,
 		m_strSaveAsPath,
 		bAllowCancel,
-		bSaveSuccess,
 		[this, &bSaveSuccess](int i) { return DoSave(m_filePaths[i].c_str(), bSaveSuccess[i], i); }
 	);
 
