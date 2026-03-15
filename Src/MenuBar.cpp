@@ -390,7 +390,7 @@ BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 			{
 				if (pMsg->wParam == VK_MENU)
 				{
-					DWORD buttons = GetAsyncKeyState(VK_LBUTTON) | GetAsyncKeyState(VK_RBUTTON) | GetAsyncKeyState(VK_MBUTTON);
+					DWORD buttons = ::GetAsyncKeyState(VK_LBUTTON) | ::GetAsyncKeyState(VK_RBUTTON) | ::GetAsyncKeyState(VK_MBUTTON);
 					if (!m_bAltUsedWithMouse && (buttons & 0x8000))
 						m_bAltUsedWithMouse = true;
 				}
