@@ -187,7 +187,7 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		m_strSaveAsPath,
 		bAllowCancel,
 		bSaveSuccess,
-		[this, &bSaveSuccess](int i) { return DoFileSave(i); },
+		[this](int i) { return DoFileSave(i); },
 		[this](int i) { m_pView[i]->SetSavePoint(); }
 	);
 
