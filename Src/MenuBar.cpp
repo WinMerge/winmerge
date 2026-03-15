@@ -401,6 +401,7 @@ BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 				if (m_bAltUsedWithMouse)
 				{
 					m_bAltUsedWithMouse = false;
+					ShowKeyboardCues(false);
 					return TRUE; // Alt was used with mouse
 				}
 				if (!m_bActive)
