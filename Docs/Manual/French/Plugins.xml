@@ -1098,7 +1098,7 @@ class="extension">*.htm</filename></seg>
 
     <section id="Plugins_ValidatePO">
       <title>
-<filename>Valider le bon de commande<indexterm>
+<filename>ValidatePO<indexterm>
             <primary>Fichier du plug-in ValidatePO</primary></indexterm></filename></title>
 
       <para>Validateur de PO avec gettext msgfmt</para>

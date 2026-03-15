@@ -224,9 +224,7 @@ Array, or <literal>undefined</literal>.</para>
 
           <variablelist>
             <varlistentry>
-              <term><literal>@cs</literal>, <literal>@casesensitive</literal>,
-<literal>@cs=true</literal>, <literal>@casesensitive=true</literal>,
-<literal>@ci=false</literal></term>
+              <term><literal>@cs</literal>, <literal>@casesensitive</literal></term>
               <listitem>
                 <para>
 大文字小文字を区別する比較を有効にします。これらのディレクティブを指定すると、<literal>"ABC"</literal> と
@@ -235,10 +233,7 @@ Array, or <literal>undefined</literal>.</para>
             </varlistentry>
 
             <varlistentry>
-              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal>,
-<literal>@ci=true</literal>, <literal>@cs=false</literal>,
-<literal>@casesensitive=false</literal>,
-<literal>@caseinsensitive=false</literal></term>
+              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal>literal></term>
               <listitem>
                 <para>
 大文字小文字を区別しない比較を有効にします（デフォルトの動作）。これらのディレクティブを指定すると、<literal>"ABC"</literal> と
@@ -253,6 +248,37 @@ Array, or <literal>undefined</literal>.</para>
 @ci Name = "readme.txt"           ## 大文字小文字を区別しない: "README.txt", "readme.txt", "ReadMe.TXT" などに一致
 @casesensitive Extension = "TXT"  ## 大文字小文字を区別: 拡張子 ".TXT" のファイルのみ一致
 @caseinsensitive Content contains "error"  ## 大文字小文字を区別しない: "Error", "ERROR", "error" などに一致</programlisting></example>
+        </section>
+
+        <section id="FilterExpression_Optimize">
+          <title>最適化ディレクティブ</title>
+
+          <para>
+デフォルトでは、フィルタ式はパフォーマンス向上のために最適化されます。この動作は次のディレクティブで制御できます。</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@optimize</literal>, <literal>@opt</literal></term>
+              <listitem>
+                <para>
+フィルタ式の最適化を有効にします（デフォルトの動作）。複雑な式の場合、パフォーマンスが向上する可能性があります。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><literal>@nooptimize</literal>, <literal>@noopt</literal></term>
+              <listitem>
+                <para>
+フィルタ式の最適化を無効にします。デバッグ時や、最適化によって予期しない結果が発生する場合に役立ちます。</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>最適化の例</title>
+<programlisting>@optimize Size &gt; 10MB and Extension = "log"     ## 最適化を有効（デフォルト）
+@noopt Name matches "complex[0-9]+pattern"    ## デバッグのため最適化を無効
+@nooptimize Content contains "special-case"   ## 最適化を無効</programlisting></example>
         </section>
 
         <section id="FilterExpression_Name">

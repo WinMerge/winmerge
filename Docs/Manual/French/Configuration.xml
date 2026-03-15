@@ -1662,7 +1662,7 @@ japonais). Exemple : <literal>toHalfWidth(Name)</literal> convertit « ファ�
           </varlistentry>
 
           <varlistentry>
-            <term>Conversion chinoiseVersions de WinMerge</term>
+            <term>Conversion chinoise</term>
             <listitem>
               <para>
 Fournit les fonctions <literal>toSimplifiedChinese(expression)</literal> et

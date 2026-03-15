@@ -233,29 +233,27 @@ bool FilterExpression::ParseDirective(const std::string& directive)
 		return true;
 	}
 
-	// Convert value to lowercase for comparison
-	std::string valueLower = value;
-	std::transform(valueLower.begin(), valueLower.end(), valueLower.begin(),
-		[](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+	// Helper for flag-based directives (no values allowed)
+	auto setFlagDirective = [&](const std::initializer_list<const char*>& keys, bool& flag, bool flagValue) -> bool
+	{
+		for (const char* k : keys)
+		{
+			if (keyLower == k)
+			{
+				if (!value.empty())
+					return false; // No values allowed
+				flag = flagValue;
+				return true;
+			}
+		}
+		return false;
+	};
 
-	// Parse case-sensitivity directives
-	if (keyLower == "cs" || keyLower == "casesensitive")
-	{
-		caseSensitive = (valueLower != "false");
-		return true;
-	}
-	if (keyLower == "ci" || keyLower == "caseinsensitive")
-	{
-		caseSensitive = (valueLower == "false");
-		return true;
-	}
-
-	// Parse optimize directives
-	if (keyLower == "optimize")
-	{
-		optimize = (valueLower != "false");
-		return true;
-	}
+	// Parse flag-based directives
+	if (setFlagDirective({"cs", "casesensitive"}, caseSensitive, true)) return true;
+	if (setFlagDirective({"ci", "caseinsensitive"}, caseSensitive, false)) return true;
+	if (setFlagDirective({"optimize", "opt"}, optimize, true)) return true;
+	if (setFlagDirective({"nooptimize", "noopt"}, optimize, false)) return true;
 
 	return false; // Unknown directive
 }
@@ -323,10 +321,6 @@ bool FilterExpression::ParseAllDirectives(const std::string& expressionStr, std:
 bool FilterExpression::Parse(const std::string& expressionStr)
 {
 	expression = expressionStr;
-	errorCode = FILTER_ERROR_NO_ERROR;
-	errorPosition = -1;
-	errorMessage.clear();
-	rootNode.reset();
 
 	std::string actualExpression;
 	if (!ParseAllDirectives(expressionStr, actualExpression))
@@ -430,26 +424,9 @@ bool FilterExpression::HasCaseSensitiveDirective(const String& expression)
 		return false;
 
 	// Check for case-sensitive directives in directives part only
-	if (directives.find(_T("@cs")) != String::npos || 
-		directives.find(_T("@caseSensitive")) != String::npos || 
-		directives.find(_T("@casesensitive")) != String::npos)
-	{
-		// Check for explicit =false
-		size_t pos = directives.find(_T("@caseSensitive="));
-		if (pos != String::npos && directives.find(_T("=false"), pos) != String::npos)
-			return false;
-
-		pos = directives.find(_T("@casesensitive="));
-		if (pos != String::npos && directives.find(_T("=false"), pos) != String::npos)
-			return false;
-
-		pos = directives.find(_T("@cs="));
-		if (pos != String::npos && directives.find(_T("=false"), pos) != String::npos)
-			return false;
-
-		return true;
-	}
-	return false;
+	return (directives.find(_T("@cs")) != String::npos || 
+			directives.find(_T("@caseSensitive")) != String::npos || 
+			directives.find(_T("@casesensitive")) != String::npos);
 }
 
 String FilterExpression::AddCaseSensitiveDirective(const String& expression)
@@ -481,10 +458,7 @@ String FilterExpression::RemoveCaseSensitiveDirective(const String& expression)
 	const tchar_t* csDirectives[] = { 
 		_T("@cs "), _T("@cs"),
 		_T("@caseSensitive "), _T("@caseSensitive"),
-		_T("@casesensitive "), _T("@casesensitive"),
-		_T("@cs=true "), _T("@cs=true"),
-		_T("@caseSensitive=true "), _T("@caseSensitive=true"),
-		_T("@casesensitive=true "), _T("@casesensitive=true")
+		_T("@casesensitive "), _T("@casesensitive")
 	};
 
 	for (const tchar_t* directive : csDirectives)
@@ -514,7 +488,7 @@ static size_t FindDirectivesEnd(const String& expression)
 	while (true)
 	{
 		// Skip leading whitespace
-		while (pos < expr.size() && std::isspace(static_cast<unsigned char>(expr[pos])))
+		while (pos < expr.size() && tc::istspace(expr[pos]))
 			++pos;
 
 		// Check if this is a directive
@@ -532,7 +506,7 @@ static size_t FindDirectivesEnd(const String& expression)
 			tchar_t ch = expr[endPos];
 			if (ch == _T('"'))
 				inQuote = !inQuote;
-			else if (!inQuote && std::isspace(static_cast<unsigned char>(ch)))
+			else if (!inQuote && tc::istspace(ch))
 				break;
 			++endPos;
 		}
@@ -561,7 +535,7 @@ String FilterExpression::RemoveAllDirectives(const String& expression)
 	size_t pos = FindDirectivesEnd(expr);
 
 	// Skip any remaining whitespace after directives
-	while (pos < expr.size() && std::isspace(static_cast<unsigned char>(expr[pos])))
+	while (pos < expr.size() && tc::istspace(expr[pos]))
 		++pos;
 
 	// Return the expression without directives

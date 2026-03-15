@@ -2309,18 +2309,6 @@ TEST_P(FilterExpressionTest, DirectiveCaseSensitive)
 	// @casesensitive directive
 	EXPECT_TRUE(fe.Parse("@casesensitive \"Test\" == \"test\""));
 	EXPECT_FALSE(fe.Evaluate(di));
-
-	// @cs=true directive
-	EXPECT_TRUE(fe.Parse("@cs=true \"Hello\" == \"hello\""));
-	EXPECT_FALSE(fe.Evaluate(di));
-
-	// @casesensitive=true directive
-	EXPECT_TRUE(fe.Parse("@casesensitive=true \"World\" == \"world\""));
-	EXPECT_FALSE(fe.Evaluate(di));
-
-	// @ci=false directive (case-insensitive=false -> case-sensitive=true)
-	EXPECT_TRUE(fe.Parse("@ci=false \"ABC\" == \"abc\""));
-	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, DirectiveCaseInsensitive)
@@ -2344,22 +2332,6 @@ TEST_P(FilterExpressionTest, DirectiveCaseInsensitive)
 	// @caseinsensitive directive
 	EXPECT_TRUE(fe.Parse("@caseinsensitive \"Test\" == \"test\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-
-	// @ci=true directive
-	EXPECT_TRUE(fe.Parse("@ci=true \"Hello\" == \"hello\""));
-	EXPECT_TRUE(fe.Evaluate(di));
-
-	// @cs=false directive (case-sensitive=false -> case-insensitive=true)
-	EXPECT_TRUE(fe.Parse("@cs=false \"World\" == \"world\""));
-	EXPECT_TRUE(fe.Evaluate(di));
-
-	// @casesensitive=false directive
-	EXPECT_TRUE(fe.Parse("@casesensitive=false \"ABC\" == \"abc\""));
-	EXPECT_TRUE(fe.Evaluate(di));
-
-	// @caseinsensitive=false (case-insensitive=false -> case-sensitive=true)
-	EXPECT_TRUE(fe.Parse("@caseinsensitive=false \"ABC\" == \"abc\""));
-	EXPECT_FALSE(fe.Evaluate(di));
 }
 
 TEST_P(FilterExpressionTest, DirectiveWithOperators)
@@ -2438,7 +2410,47 @@ TEST_P(FilterExpressionTest, DirectiveInvalidSyntax)
 	EXPECT_FALSE(fe.Parse("@casesensitve \"ABC\" == \"abc\""));
 	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
 
-	// Invalid value
+	// Flag directives should not accept values
+	EXPECT_FALSE(fe.Parse("@cs=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@cs=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@casesensitive=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@casesensitive=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@ci=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@ci=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@caseinsensitive=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@caseinsensitive=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@optimize=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@optimize=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@opt=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@nooptimize=true \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	EXPECT_FALSE(fe.Parse("@noopt=false \"ABC\" == \"abc\""));
+	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
+
+	// Invalid values for any directive
 	EXPECT_FALSE(fe.Parse("@cs=yes \"ABC\" == \"abc\""));
 	EXPECT_EQ(FILTER_ERROR_INVALID_DIRECTIVE, fe.errorCode);
 
@@ -2571,21 +2583,21 @@ TEST_P(FilterExpressionTest, DirectiveEmptyExpression)
 	fe.SetDiffContext(&ctxt);
 	fe.optimize = GetParam().optimize;
 
-	// Directive only, no expression (should be valid)
-	EXPECT_TRUE(fe.Parse("@cs"));
+	// Directive only, no expression
+	EXPECT_FALSE(fe.Parse("@cs"));
 	EXPECT_TRUE(fe.caseSensitive);
 
-	EXPECT_TRUE(fe.Parse("@ci"));
+	EXPECT_FALSE(fe.Parse("@ci"));
 	EXPECT_FALSE(fe.caseSensitive);
 
-	EXPECT_TRUE(fe.Parse("@casesensitive"));
+	EXPECT_FALSE(fe.Parse("@casesensitive"));
 	EXPECT_TRUE(fe.caseSensitive);
 
-	EXPECT_TRUE(fe.Parse("@caseinsensitive"));
+	EXPECT_FALSE(fe.Parse("@caseinsensitive"));
 	EXPECT_FALSE(fe.caseSensitive);
 
 	// Multiple directives without expression
-	EXPECT_TRUE(fe.Parse("@cs"));
+	EXPECT_FALSE(fe.Parse("@cs"));
 	EXPECT_TRUE(fe.caseSensitive);
 }
 
@@ -2634,6 +2646,76 @@ TEST_P(FilterExpressionTest, DirectiveIsWithinAndInRange)
 	EXPECT_TRUE(fe.Evaluate(di));
 
 	EXPECT_TRUE(fe.Parse("@cs inRange(array(\"abc\", \"ABC\"), \"aaa\", \"zzz\") == array(true, false)"));
+	EXPECT_TRUE(fe.Evaluate(di));
+}
+
+TEST_P(FilterExpressionTest, DirectiveOptimize)
+{
+	PathContext paths(L"D:\\dev\\winmerge\\src", L"D:\\dev\\winmerge\\src");
+	CDiffContext ctxt(paths, 0);
+	DIFFITEM di;
+	di.diffFileInfo[0].filename = L"Test.txt";
+	di.diffFileInfo[0].size = 1000;
+	di.diffFileInfo[1].filename = L"Test.txt";
+	di.diffFileInfo[1].size = 2000;
+	di.diffcode.setSideFlag(0);
+	di.diffcode.setSideFlag(1);
+
+	FilterExpression fe;
+	fe.SetDiffContext(&ctxt);
+
+	// Default: optimization enabled
+	EXPECT_TRUE(fe.Parse("Size > 500"));
+	EXPECT_TRUE(fe.optimize);
+
+	// @optimize directive: explicitly enable optimization
+	EXPECT_TRUE(fe.Parse("@optimize Size > 500"));
+	EXPECT_TRUE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @opt directive: short form
+	EXPECT_TRUE(fe.Parse("@opt Size < 1500"));
+	EXPECT_TRUE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @nooptimize directive: disable optimization
+	EXPECT_TRUE(fe.Parse("@nooptimize Size > 500"));
+	EXPECT_FALSE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// @noopt directive: short form
+	EXPECT_TRUE(fe.Parse("@noopt Size < 1500"));
+	EXPECT_FALSE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	// Directive only, no expression
+	EXPECT_FALSE(fe.Parse("@optimize"));
+	EXPECT_TRUE(fe.optimize);
+
+	EXPECT_FALSE(fe.Parse("@nooptimize"));
+	EXPECT_FALSE(fe.optimize);
+
+	EXPECT_FALSE(fe.Parse("@opt"));
+	EXPECT_TRUE(fe.optimize);
+
+	EXPECT_FALSE(fe.Parse("@noopt"));
+	EXPECT_FALSE(fe.optimize);
+
+	// Combined with other directives
+	EXPECT_TRUE(fe.Parse("@cs @nooptimize \"ABC\" == \"abc\""));
+	EXPECT_TRUE(fe.caseSensitive);
+	EXPECT_FALSE(fe.optimize);
+	EXPECT_FALSE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@noopt @ci Size > 500"));
+	EXPECT_FALSE(fe.caseSensitive);
+	EXPECT_FALSE(fe.optimize);
+	EXPECT_TRUE(fe.Evaluate(di));
+
+	EXPECT_TRUE(fe.Parse("@optimize @cs @name=\"Test\" Size > 500"));
+	EXPECT_TRUE(fe.caseSensitive);
+	EXPECT_TRUE(fe.optimize);
+	EXPECT_EQ("Test", fe.name);
 	EXPECT_TRUE(fe.Evaluate(di));
 }
 

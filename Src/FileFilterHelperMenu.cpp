@@ -4,7 +4,6 @@
 #include "FilterConditionDlg.h"
 #include "PropertySystem.h"
 #include "PropertySystemMenu.h"
-#include "FilterExpression.h"
 #include "resource.h"
 
 template <typename Func>

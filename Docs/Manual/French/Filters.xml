@@ -279,9 +279,7 @@ directives:</para>
 
           <variablelist>
             <varlistentry>
-              <term><literal>@cs</literal>, <literal>@casesensitive</literal>,
-<literal>@cs=true</literal>, <literal>@casesensitive=true</literal>,
-<literal>@ci=false</literal></term>
+              <term><literal>@cs</literal>, <literal>@casesensitive</literal></term>
               <listitem>
                 <para>
 Enable case-sensitive comparison. With these directives,
@@ -291,10 +289,7 @@ different.</para>
             </varlistentry>
 
             <varlistentry>
-              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal>,
-<literal>@ci=true</literal>, <literal>@cs=false</literal>,
-<literal>@casesensitive=false</literal>,
-<literal>@caseinsensitive=false</literal></term>
+              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal></term>
               <listitem>
                 <para>
 Enable case-insensitive comparison (default behavior). With these
@@ -310,6 +305,40 @@ considered identical.</para>
 @ci Name = "readme.txt"           ## Case-insensitive: matches "README.txt", "readme.txt", "ReadMe.TXT", etc.
 @casesensitive Extension = "TXT"  ## Case-sensitive: matches only files with ".TXT" extension
 @caseinsensitive Content contains "error"  ## Case-insensitive: matches "Error", "ERROR", "error", etc.</programlisting></example>
+        </section>
+
+        <section id="FilterExpression_Optimize">
+          <title>Optimization Directives</title>
+
+          <para>
+By default, filter expressions are optimized to improve performance. You can
+control this behavior using the following directives:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><literal>@optimize</literal>, <literal>@opt</literal></term>
+              <listitem>
+                <para>
+Enable filter expression optimization (default behavior). This may improve
+performance for complex expressions.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><literal>@nooptimize</literal>, <literal>@noopt</literal></term>
+              <listitem>
+                <para>
+Disable filter expression optimization. This is useful for debugging or when
+optimization causes unexpected results.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <example>
+            <title>Optimization Examples</title>
+<programlisting>@optimize Size &gt; 10MB and Extension = "log"     ## Enable optimization (default)
+@noopt Name matches "complex[0-9]+pattern"    ## Disable optimization for debugging
+@nooptimize Content contains "special-case"   ## Disable optimization</programlisting></example>
         </section>
 
         <section id="FilterExpression_Name">
@@ -775,7 +804,7 @@ appliqués. Exemple : <literal>regexReplace(name, "^(\\w+)_(\\w+)$",
             </listitem>
           </varlistentry>
           <varlistentry>
-            <term>remplacerParListe(str, chemin_fichier)</term>
+            <term>replaceWithList(str, chemin_fichier)</term>
             <listitem>
               <para>
 Remplace plusieurs chaînes de caractères dans

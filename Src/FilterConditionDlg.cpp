@@ -21,6 +21,7 @@ CFilterConditionDlg::CFilterConditionDlg(CWnd* pParent /*= nullptr*/)
 : CTrDialog(CFilterConditionDlg::IDD, pParent)
 , m_bDiff(false)
 , m_nSide(0)
+, m_bCaseSensitive(false)
 {
 }
 
@@ -35,6 +36,7 @@ CFilterConditionDlg::CFilterConditionDlg(bool diff, int side, const String& fiel
 , m_tmValue2(CTime::GetCurrentTime())
 , m_sLHS(transform)
 , m_bRecursive(recursive)
+, m_bCaseSensitive(false)
 {
 	//{{AFX_DATA_INIT(CFilterConditionDlg)
 		// NOTE: the ClassWizard will add member initialization here
