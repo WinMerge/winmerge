@@ -739,8 +739,8 @@ linkend="Compare_files_nav_functions" /> で説明)。</para>
       <para>差分を選択すると、2
 つのバージョンが差分ペインの上部と下部にロードされます。このように、差分ペインでは差分にどの行が含まれているかを確認し、ファイルの残りの部分から切り離してそれらの行を調べることができます。</para>
 
-      <para>[差分] ペインで差分を直接マージするには、上側または下側を右クリックし、<guimenuitem>右にコピー</guimenuitem> または
-<guimenuitem>左にコピー</guimenuitem> を選択します。</para>
+      <para>[差分] ペインで差分を直接マージするには、上側または下側を右クリックし、<guimenuitem>右側にコピー</guimenuitem> または
+<guimenuitem>左側にコピー</guimenuitem> を選択します。</para>
     </section>
 
     <section>
@@ -759,7 +759,7 @@ linkend="Compare_files_nav_functions" /> で説明)。</para>
 
       <variablelist>
         <varlistentry>
-          <term>回線状態</term>
+          <term>行の状態</term>
 
           <listitem>
             <itemizedlist>
@@ -1026,8 +1026,8 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
 
         <varlistentry>
           <term><indexterm>
-              <primary>機能に移動</primary>
-            </indexterm> に移動します</term>
+              <primary>移動機能</primary>
+            </indexterm> 移動</term>
 
           <listitem>
             <para>行番号または差分番号のいずれかにジャンプできます (たとえば、差分 2 は 2 番目の差分です)。
@@ -1048,7 +1048,7 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
 
         <varlistentry>
           <term>移動した行に移動<indexterm>
-              <primary>機能に移動</primary>
+              <primary>移動機能</primary>
             </indexterm></term>
 
           <listitem>
@@ -1060,8 +1060,8 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
         </varlistentry>
 
         <varlistentry>
-          <term>左と中央の間の移動された行に移動<indexterm>
-              <primary>機能に移動</primary>
+          <term>左と中央の間の移動ブロックに移動<indexterm>
+              <primary>移動機能</primary>
             </indexterm></term>
 
           <listitem>
@@ -1073,8 +1073,8 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
         </varlistentry>
 
         <varlistentry>
-          <term>中央と右の間の移動された行に移動<indexterm>
-              <primary>機能に移動</primary>
+          <term>中央と右側の間の移動ブロックに移動<indexterm>
+              <primary>移動機能</primary>
             </indexterm></term>
 
           <listitem>
@@ -1100,7 +1100,7 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
     <title>同期ポイント<indexterm>
         <primary>同期ポイント</primary>
       </indexterm></title>
-    <para>未定</para>
+    <para>TBD</para>
   </section>
 
   <section id="Compare_files_merge">
@@ -1108,8 +1108,8 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
         <primary>差異をマージする</primary>
       </indexterm></title>
 
-    <para>マージすると、一方のファイル ペインからもう一方のファイル ペインに差分が左から右、または右から左にコピーされます。これは、WinMerge の編集機能
-(このトピックで前述した) を使用してテキストを直接編集することとは異なります。</para>
+    <para>マージすると、一方のファイル ペインからもう一方のファイル ペインに差分が左側から右側、または右側から左側にコピーされます。これは、WinMerge
+の編集機能 (このトピックで前述した) を使用してテキストを直接編集することとは異なります。</para>
 
     <section id="Compare_files_scan">
       <title>ファイルの再スキャン<indexterm>
@@ -1150,11 +1150,11 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
       <title>マージ機能<indexterm>
           <primary>WinMerge 機能</primary>
 
-          <secondary>結合する</secondary>
+          <secondary>マージする</secondary>
         </indexterm></title>
 
       <para>マージ機能は、カーソル位置またはテキスト選択に基づいて相違点を暗黙的に選択できます。たとえば、差分内の任意の場所をクリックしてから、ツールバーの
-<guibutton>右にコピー</guibutton>
+<guibutton>右側にコピー</guibutton>
 ボタンをクリックすると、差分ブロック全体がマージされます。これにより、多くの小さな違いを簡単にマージできます。同様に、複数の相違点のすべてまたは一部にまたがるテキストを選択すると、含まれるすべての相違点が
 1 つのマージ コマンドでマージされます。</para>
 
@@ -1164,21 +1164,21 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
 
       <variablelist>
         <varlistentry>
-          <term>右にコピー<indexterm>
+          <term>右側にコピー<indexterm>
               <primary>コピーライト機能</primary>
             </indexterm></term>
 
           <listitem>
             <para>1
-つ以上の差異を左から右にコピーします。差分を完全に選択する必要はないことに注意してください。最も簡単に言うと、これは、ターゲット差分のテキストをソース差分のテキストに置き換えることを意味します。ただし、相違点には空の行が含まれる場合もあるため、新しい行が作成または削除される場合があります。</para>
+つ以上の差異を左側から右側側にコピーします。差分を完全に選択する必要はないことに注意してください。最も簡単に言うと、これは、ターゲット差分のテキストをソース差分のテキストに置き換えることを意味します。ただし、相違点には空の行が含まれる場合もあるため、新しい行が作成または削除される場合があります。</para>
 
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
-                  <phrase>右へコピーボタン</phrase>
+                  <phrase>右側へコピーボタン</phrase>
                 </textobject>
               </inlinemediaobject> ボタン、<menuchoice>
-<guimenu>マージ</guimenu> <guimenuitem>右にコピー</guimenuitem>
+<guimenu>マージ</guimenu> <guimenuitem>右側にコピー</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Right</keycap>
 </keycombo> (マージでは <keycap>Right</keycap>)モード)、差分内のファイル ペインのコンテキスト
 メニュー、および差分ペインのコンテキスト メニュー。</para>
@@ -1186,7 +1186,7 @@ fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
         </varlistentry>
 
         <varlistentry>
-          <term>左にコピー<indexterm>
+          <term>左側にコピー<indexterm>
               <primary>左コピー機能</primary>
             </indexterm></term>
 
@@ -1197,10 +1197,10 @@ fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
-                  <phrase>左へコピーボタン</phrase>
+                  <phrase>左側へコピーボタン</phrase>
                 </textobject>
               </inlinemediaobject> ボタン、<menuchoice>
-<guimenu>マージ</guimenu> <guimenuitem>左にコピー</guimenuitem>
+<guimenu>マージ</guimenu> <guimenuitem>左側にコピー</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</keycap>
 </keycombo> (マージでは <keycap>Left</keycap>)モード)、差分内のファイル ペインのコンテキスト
 メニュー、および差分ペインのコンテキスト メニュー。</para>
@@ -1208,50 +1208,50 @@ fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
         </varlistentry>
 
         <varlistentry>
-          <term>右にコピーして進む<indexterm>
+          <term>右側にコピーして進む<indexterm>
               <primary>コピー権とアドバンス機能</primary>
             </indexterm></term>
 
           <listitem>
-            <para>現在の差分を右から左のファイル ペインにマージし、次の差分 (存在する場合) を選択します。 1 つのステップの <command>Copy
+            <para>現在の差分を右側から左のファイル ペインにマージし、次の差分 (存在する場合) を選択します。 1 つのステップの <command>Copy
 Right</command> と <command>Next Difference</command> に相当します。</para>
 
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
-                  <phrase>「右にコピー」ボタンと「進む」ボタン</phrase>
+                  <phrase>「右側にコピー」ボタンと「進む」ボタン</phrase>
                 </textobject>
               </inlinemediaobject> ボタン、<menuchoice>
-<guimenu>結合</guimenu> <guimenuitem>左にコピー</guimenuitem>
+<guimenu>マージ</guimenu> <guimenuitem>左側にコピー</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
 <keycap>右</keycap> </keycombo>、コンテキスト メニュー差分内のファイルペイン。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>左にコピーして進みます<indexterm>
-              <primary>左コピーとアドバンス機能</primary>
+          <term>左側にコピーして次に進む<indexterm>
+              <primary>左側にコピーして次に進む機能</primary>
             </indexterm></term>
 
           <listitem>
-            <para>現在の差分を左から右にマージし、次の差分 (存在する場合) を選択します。 1 つのステップの <command>Copy Left</command>
-と <command>Next Difference</command> に相当します。</para>
+            <para>現在の差分を左側から右側にマージし、次の差分 (存在する場合) を選択します。 1 つのステップの <command>Copy
+Left</command> と <command>Next Difference</command> に相当します。</para>
 
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/copyl_adv_btn.png" /> </imageobject><textobject>
-                  <phrase>左にコピーして進むボタン</phrase>
+                  <phrase>左側にコピーして次に進むボタン</phrase>
                 </textobject>
               </inlinemediaobject> ボタン、<menuchoice>
-<guimenu>結合</guimenu> <guimenuitem>左にコピー</guimenuitem>
+<guimenu>マージ</guimenu> <guimenuitem>左側にコピー</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
 <keycap>Left</keycap> </keycombo>、コンテキスト メニュー差分内のファイルペイン。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>わかりました<indexterm>
-              <primary>オールライト機能</primary>
+          <term>すべてを右側にコピー<indexterm>
+              <primary>すべてを右側にコピー機能</primary>
             </indexterm></term>
 
           <listitem>
@@ -1278,8 +1278,8 @@ fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
         </varlistentry>
 
         <varlistentry>
-          <term>すべて左<indexterm>
-              <primary>オールレフト機能</primary>
+          <term>すべてを左側にコピー<indexterm>
+              <primary>すべてを左側にコピー機能</primary>
             </indexterm></term>
 
           <listitem>
@@ -1289,7 +1289,7 @@ fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
-                  <phrase>「すべて左」ボタン</phrase>
+                  <phrase>「すべてを左側にコピー」ボタン</phrase>
                 </textobject>
               </inlinemediaobject> ボタン、<menuchoice>
 <guimenu>Merge</guimenu> <guimenuitem>Copy to Left</guimenuitem>
@@ -1299,8 +1299,8 @@ fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
         </varlistentry>
 
         <varlistentry>
-          <term>更新<indexterm>
-              <primary>リフレッシュ機能</primary>
+          <term>表示更新<indexterm>
+              <primary>表示更新機能</primary>
 
               <seealso>ファイルの再スキャン</seealso>
             </indexterm></term>

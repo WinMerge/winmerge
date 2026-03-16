@@ -196,8 +196,8 @@ linkend="OpenPaths_shell-integ">Windowsエクスプローラーから、WinMerge
           </varlistentry>
 
           <varlistentry>
-            <term>TortoiseCVS との統合<indexterm>
-                <primary>TortoiseCVS の統合</primary>
+            <term>TortoiseCVS との連携<indexterm>
+                <primary>TortoiseCVS との連携</primary>
               </indexterm></term>
 
             <listitem>
@@ -206,8 +206,8 @@ linkend="OpenPaths_shell-integ">Windowsエクスプローラーから、WinMerge
           </varlistentry>
 
           <varlistentry>
-            <term>TortoiseSVN との統合<indexterm>
-                <primary>TortoiseSVNとの統合</primary>
+            <term>TortoiseSVN との連携<indexterm>
+                <primary>TortoiseSVNとの連携</primary>
               </indexterm></term>
 
             <listitem>
@@ -216,8 +216,8 @@ linkend="OpenPaths_shell-integ">Windowsエクスプローラーから、WinMerge
           </varlistentry>
 
           <varlistentry>
-            <term>TortoiseGit との統合<indexterm>
-                <primary>TortoiseGit の統合</primary>
+            <term>TortoiseGit との連携<indexterm>
+                <primary>TortoiseGit との連携</primary>
               </indexterm></term>
 
             <listitem>
@@ -252,24 +252,24 @@ linkend="OpenPaths_shell-integ">Windowsエクスプローラーから、WinMerge
           </varlistentry>
 
           <varlistentry>
-            <term>右ペインで結合</term>
+            <term>右側ペインでマージ</term>
 
             <listitem>
-              <para>右側のペインで結合します。</para>
+              <para>右側のペインでマージします。</para>
             </listitem>
           </varlistentry>
 
 
           <varlistentry>
-            <term>中央ペインで結合</term>
+            <term>中央ペインでマージ</term>
 
             <listitem>
-              <para>中央のペインで結合します。</para>
+              <para>中央のペインでマージします。</para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term>左側のペインで結合</term>
+            <term>左側ペインでマージ</term>
 
             <listitem>
               <para>左側のペインでマージします。</para>
@@ -277,7 +277,7 @@ linkend="OpenPaths_shell-integ">Windowsエクスプローラーから、WinMerge
           </varlistentry>
 
           <varlistentry>
-            <term>起動時に自動マージ</term>
+            <term>起動時に自動マージする</term>
 
             <listitem>
               <para>必要に応じて、<guilabel>起動時に自動マージ</guilabel>オプションを無効にします。</para>
@@ -337,7 +337,7 @@ class="directory">WinMerge-<replaceable>version</replaceable></filename>
     </note>
 
     <para>WinMerge を開き、[オプション] ウィンドウで <xref linkend="Configuration_shell-integ" />
-を使用します。 [オプション] ウィンドウで、<guibutton>シェル拡張の登録</guibutton> または
-<guibutton>シェル拡張の登録解除</guibutton> ボタンを使用します。</para>
+を使用します。 [オプション] ウィンドウで、<guibutton>シェル拡張を登録</guibutton> または
+<guibutton>シェル拡張の登録を解除</guibutton> ボタンを使用します。</para>
   </section>
 </article>

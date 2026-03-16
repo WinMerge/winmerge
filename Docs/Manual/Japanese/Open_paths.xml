@@ -395,7 +395,7 @@ format="PNG" /> </imageobject><textobject>
           <term><sgmltag>left</sgmltag></term>
 
           <listitem>
-            <para>開くべき左の道</para>
+            <para>開く左側のパス</para>
           </listitem>
         </varlistentry>
 
@@ -403,7 +403,7 @@ format="PNG" /> </imageobject><textobject>
           <term><sgmltag>left-desc</sgmltag></term>
 
           <listitem>
-            <para>左の説明</para>
+            <para>左側の説明</para>
           </listitem>
         </varlistentry>
 
@@ -421,7 +421,7 @@ format="PNG" /> </imageobject><textobject>
           <term><sgmltag>middle</sgmltag></term>
 
           <listitem>
-            <para>開くための中間パス</para>
+            <para>開く中央のパス</para>
           </listitem>
         </varlistentry>
 
@@ -429,7 +429,7 @@ format="PNG" /> </imageobject><textobject>
           <term><sgmltag>middle-desc</sgmltag></term>
 
           <listitem>
-            <para>中間の説明</para>
+            <para>中央の説明</para>
           </listitem>
         </varlistentry>
 
@@ -447,7 +447,7 @@ format="PNG" /> </imageobject><textobject>
           <term><sgmltag>right</sgmltag></term>
 
           <listitem>
-            <para>開くべき正しい道</para>
+            <para>開く右側のパス</para>
           </listitem>
         </varlistentry>
 
@@ -455,7 +455,7 @@ format="PNG" /> </imageobject><textobject>
           <term><sgmltag>right-desc</sgmltag></term>
 
           <listitem>
-            <para>正しい説明</para>
+            <para>右側の説明</para>
           </listitem>
         </varlistentry>
 

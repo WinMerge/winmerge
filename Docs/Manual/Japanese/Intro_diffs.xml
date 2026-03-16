@@ -233,10 +233,10 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
           <para><inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
-                <phrase>右へコピーボタン</phrase>
+                <phrase>右側へコピーボタン</phrase>
               </textobject>
             </inlinemediaobject>
-<guibutton>右へコピー</guibutton>をクリックすると、
+<guibutton>右側へコピー</guibutton>をクリックすると、
 <filename>File1</filename>から、<filename>File2</filename>へ、 一つの差異がマージされます。
 <filename>File2</filename>の中の差分1行が、 <filename>File1</filename>の2行で置き換えられ、
 灰色の空行が無くなっていることに注意してください。</para>
@@ -257,9 +257,9 @@ fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
           <para><inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
 fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
-                <phrase>左へコピーボタン</phrase>
+                <phrase>左側へコピーボタン</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton>左へコピー</guibutton>
+            </inlinemediaobject> <guibutton>左側へコピー</guibutton>
 をクリックすると、 2番目の差異を、<filename>File2</filename>から、
 <filename>File1</filename>へマージします。</para>
 

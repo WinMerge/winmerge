@@ -60,17 +60,17 @@ linkend="Command_line" />」を参照してください。</para>
 
       <variablelist>
         <varlistentry>
-          <term>ハイライト</term>
+          <term>差異表示</term>
           <listitem>
-            <para><guilabel>ハイライト</guilabel>チェックボックスを使用すると、画像の相違点のハイライトを有効または無効にできます。</para>
+            <para><guilabel>差異表示</guilabel>チェックボックスを使用すると、画像の相違点のハイライトを有効または無効にできます。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term>点滅</term>
           <listitem>
-            <para>ハイライトが有効になっている場合は、チェックボックス <guilabel>Blink</guilabel>
-をチェックすると、ハイライトを点滅させることもできます。</para>
+            <para>差異表示が有効になっている場合は、チェックボックス <guilabel>Blink</guilabel>
+をチェックすると、差異を点滅させることもできます。</para>
           </listitem>
         </varlistentry>
 
@@ -89,21 +89,21 @@ linkend="Command_line" />」を参照してください。</para>
         </varlistentry>
 
         <varlistentry>
-          <term>色の距離のしきい値</term>
+          <term>色距離閾値</term>
           <listitem>
-            <para>スライダー <guilabel>CD</guilabel> は、色の違いを無視するのに役立つ <emphasis>色距離しきい値</emphasis>
+            <para>スライダー <guilabel>CD</guilabel> は、色の違いを無視するのに役立つ <emphasis>色距離閾値</emphasis>
 を設定します。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>インス/デルの検出</term>
+          <term>挿入/削除検出</term>
           <listitem>
-            <para>未定</para>
+            <para>TBD</para>
             <itemizedlist>
               <listitem><guilabel>なし</guilabel></listitem>
-              <listitem><guilabel>垂直</guilabel></listitem>
-              <listitem><guilabel>水平</guilabel></listitem>
+              <listitem><guilabel>垂直方向</guilabel></listitem>
+              <listitem><guilabel>水平方向</guilabel></listitem>
             </itemizedlist>
             <para></para>
           </listitem>
@@ -114,19 +114,19 @@ linkend="Command_line" />」を参照してください。</para>
 
     <section>
       <title>重ね合わせ<indexterm>
-        <primary>かぶせる</primary>
+        <primary>重ね合わせ</primary>
       </indexterm></title>
 
       <variablelist>
         <varlistentry>
           <term>モード</term>
           <listitem>
-            <para>現在、次の <emphasis>オーバーレイ モード</emphasis> が可能です。</para>
+            <para>現在、次の <emphasis>重ね合わせモード</emphasis> が可能です。</para>
             <itemizedlist>
               <listitem><guilabel>なし</guilabel></listitem>
               <listitem><guilabel>XOR</guilabel></listitem>
               <listitem><guilabel>アルファブレンド</guilabel></listitem>
-              <listitem><guilabel>アルファブレンドアニメーション</guilabel></listitem>
+              <listitem><guilabel>アニメ表示</guilabel></listitem>
             </itemizedlist>
             <para></para>
           </listitem>
@@ -145,12 +145,12 @@ Blend</guilabel> または <guilabel>Alpha Blendアニメーション</guilabel>
 
     <section>
       <title>拡大<indexterm>
-        <primary>拡大/縮小</primary>
+        <primary>拡大</primary>
       </indexterm></title>
 
       <variablelist>
         <varlistentry>
-          <term>拡大/縮小</term>
+          <term>拡大</term>
           <listitem>
             <para><guilabel>ズーム</guilabel> スライダーを使用すると、画像をズームインまたはズームアウトできます。</para>
           </listitem>

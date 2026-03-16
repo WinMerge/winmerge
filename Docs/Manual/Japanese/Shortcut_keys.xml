@@ -102,13 +102,13 @@
         <row>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>左矢印</keycap> </keycombo></entry>
 
-          <entry>選択されている項目を右から左へコピー</entry>
+          <entry>選択されている項目を右側から左側へコピー</entry>
         </row>
 
         <row>
           <entry><keycombo><keycap>Alt</keycap><keycap>右矢印</keycap></keycombo></entry>
 
-          <entry>選択されている項目を左から右へコピー</entry>
+          <entry>選択されている項目を左側から右側へコピー</entry>
         </row>
       </tbody>
     </tgroup>
@@ -365,27 +365,27 @@ Arrow</keycap> </keycombo></entry>
         <row>
           <entry><keycombo> <keycap>Alt</keycap> <keycap>左矢印</keycap> </keycombo></entry>
 
-          <entry>右から左へ差異をコピー</entry>
+          <entry>右側から左側へ差異をコピー</entry>
         </row>
 
         <row>
           <entry><keycombo><keycap>Alt</keycap><keycap>右矢印</keycap></keycombo></entry>
 
-          <entry>左から右へ差異をコピー</entry>
+          <entry>左側から右側へ差異をコピー</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>左矢印</keycap>
 </keycombo></entry>
 
-          <entry>右から左へ差異をコピーし、次の差異を選択</entry>
+          <entry>右側から左側へ差異をコピーし、次の差異を選択</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>右矢印</keycap>
 </keycombo></entry>
 
-          <entry>左から右へ差異をコピーし、次の差異を選択</entry>
+          <entry>左側から右側へ差異をコピーし、次の差異を選択</entry>
         </row>
       </tbody>
     </tgroup>
@@ -419,27 +419,27 @@ Arrow</keycap> </keycombo></entry>
         <row>
           <entry><keycap>左矢印</keycap></entry>
 
-          <entry>右から左へ差異をコピー</entry>
+          <entry>右側から左側へ差異をコピー</entry>
         </row>
 
         <row>
           <entry><keycap>右矢印</keycap></entry>
 
-          <entry>左から右へ差異をコピー</entry>
+          <entry>左側から右側へ差異をコピー</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>左矢印</keycap>
 </keycombo></entry>
 
-          <entry>右から左へ差異をコピーし、次の差異を選択</entry>
+          <entry>右側から左側へ差異をコピーし、次の差異を選択</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> <keycap>右矢印</keycap>
 </keycombo></entry>
 
-          <entry>左から右へ差異をコピーし、次の差異を選択</entry>
+          <entry>左側から右側へ差異をコピーし、次の差異を選択</entry>
         </row>
       </tbody>
     </tgroup>
@@ -541,7 +541,7 @@ Arrow</keycap> </keycombo></entry>
   </table>
 
   <table>
-    <title>拡大/縮小</title>
+    <title>拡大</title>
 
     <tgroup cols="2">
       <thead>

@@ -233,7 +233,7 @@ Array, or <literal>undefined</literal>.</para>
             </varlistentry>
 
             <varlistentry>
-              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal>literal></term>
+              <term><literal>@ci</literal>, <literal>@caseinsensitive</literal></term>
               <listitem>
                 <para>
 大文字小文字を区別しない比較を有効にします（デフォルトの動作）。これらのディレクティブを指定すると、<literal>"ABC"</literal> と
@@ -347,7 +347,7 @@ Right, Middle）かを接頭辞で指定できます。</para>
               <listitem><para>項目がフォルダー/ディレクトリの場合は true を返し、ファイルの場合は false を返します。</para></listitem>
             </varlistentry>
             <varlistentry>
-              <term>フォルダ</term>
+              <term>Folder</term>
               <listitem><para>ファイル名およびベースフォルダーを除いた相対パスを返します。</para></listitem>
             </varlistentry>
             <varlistentry>
@@ -1551,7 +1551,7 @@ Pekka Himanen</screen></para>
         <secondary>ファイル比較で</secondary>
       </indexterm></title>
 
-    <para>未定</para>
+    <para>TBD</para>
   </section>
 
   <section id="Filters_dlg">
@@ -1918,12 +1918,12 @@ linkend="Filters_LineFilterApply" />を参照してください。</para>
           <secondary>有効にする</secondary>
         </indexterm></title>
 
-        <para>未定</para>
+        <para>TBD</para>
 
       <section id="Filters_SubstitutionFilterCfg">
         <title>置換フィルターの構成</title>
 
-        <para>未定</para>
+        <para>TBD</para>
 
       </section>
 
@@ -1934,7 +1934,7 @@ linkend="Filters_LineFilterApply" />を参照してください。</para>
             <secondary>利用可能なリスト</secondary>
           </indexterm></title>
 
-        <para>未定</para>
+        <para>TBD</para>
       </section>
     </section>
   </section>
