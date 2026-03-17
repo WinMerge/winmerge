@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-03-15 09:53+0900\n"
+"POT-Creation-Date: 2026-03-18 06:14+0900\n"
 "PO-Revision-Date: 2026-03-15 08:05+0900\n"
 "Last-Translator: t3chnob0y <t3chnob0y at outlook.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
@@ -20773,20 +20773,27 @@ msgstr "Turc"
 msgid "Ukrainian"
 msgstr "Ukrainien"
 
+#. type: Content of: <article><section><itemizedlist><listitem><simpara>
+#: English/Locales.xml:270
+#, fuzzy
+#| msgid "file names"
+msgid "Vietnamese"
+msgstr "noms de fichiers"
+
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Locales.xml:273
+#: English/Locales.xml:277
 msgid "translations, reporting errors"
 msgstr "traductions, signalement d'erreurs"
 
 #. type: Content of: <article><section><title>
-#: English/Locales.xml:272
+#: English/Locales.xml:276
 msgid ""
 "Reporting errors in translation<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Signaler des erreurs de traduction<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Locales.xml:276
+#: English/Locales.xml:280
 msgid ""
 "Please submit any errors you find in translations as bugs to our <ulink "
 "url=\"https://github.com/WinMerge/winmerge/issues\">bug-list</ulink>.  It "
@@ -20799,18 +20806,18 @@ msgstr ""
 "également une version corrigée du texte traduit."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Locales.xml:285
+#: English/Locales.xml:289
 msgid "submitting translations"
 msgstr "soumettre des traductions"
 
 #. type: Content of: <article><section><title>
-#: English/Locales.xml:284
+#: English/Locales.xml:288
 msgid "Submitting a new translation<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 "Soumettre une nouvelle traduction<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Locales.xml:288
+#: English/Locales.xml:292
 msgid ""
 "If you would like to add your language to the list, then please read the "
 "<ulink url=\"https://winmerge.org/translations/\">translation documentation</"

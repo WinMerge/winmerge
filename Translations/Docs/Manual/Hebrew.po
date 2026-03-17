@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues\n"
-"POT-Creation-Date: 2026-03-15 09:53+0900\n"
+"POT-Creation-Date: 2026-03-18 06:14+0900\n"
 "PO-Revision-Date: 2025-03-13 09:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19124,19 +19124,26 @@ msgstr "טורקית"
 msgid "Ukrainian"
 msgstr "אוקראינית"
 
+#. type: Content of: <article><section><itemizedlist><listitem><simpara>
+#: English/Locales.xml:270
+#, fuzzy
+#| msgid "file names"
+msgid "Vietnamese"
+msgstr "שמות קבצים"
+
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Locales.xml:273
+#: English/Locales.xml:277
 msgid "translations, reporting errors"
 msgstr "תרגומים, דיווח על שגיאות"
 
 #. type: Content of: <article><section><title>
-#: English/Locales.xml:272
+#: English/Locales.xml:276
 msgid ""
 "Reporting errors in translation<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "דיווח על שגיאות בתרגום<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Locales.xml:276
+#: English/Locales.xml:280
 msgid ""
 "Please submit any errors you find in translations as bugs to our <ulink "
 "url=\"https://github.com/WinMerge/winmerge/issues\">bug-list</ulink>.  It "
@@ -19148,17 +19155,17 @@ msgstr ""
 "גרסה מתוקנת של הטקסט המתורגם."
 
 #. type: Content of: <article><section><title><indexterm><primary>
-#: English/Locales.xml:285
+#: English/Locales.xml:289
 msgid "submitting translations"
 msgstr "שליחת תרגומים"
 
 #. type: Content of: <article><section><title>
-#: English/Locales.xml:284
+#: English/Locales.xml:288
 msgid "Submitting a new translation<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "שליחת תרגום חדש<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
-#: English/Locales.xml:288
+#: English/Locales.xml:292
 msgid ""
 "If you would like to add your language to the list, then please read the "
 "<ulink url=\"https://winmerge.org/translations/\">translation documentation</"
