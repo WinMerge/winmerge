@@ -1051,7 +1051,7 @@ log ファイル</para></listitem>
           <listitem><para><literal>sublines(Content, 0, 1) contains "XML"</literal> - 1行目に "XML" を含む</para></listitem>
           <listitem><para><literal>(Extension = "log" and Size > 10MB) or (Date &lt; today() -
 7days)</literal> - 大きなログファイルまたは1週間以上前のファイル</para></listitem>
-          <listitem><para><literal>AttrStr に "H" や "*.tmp" のような名前が含まれていない</literal> - 非表示でない一時ファイル</para></listitem>
+          <listitem><para><literal>AttrStr not contains "H" and Name like "*.tmp"</literal> - 非表示でない一時ファイル</para></listitem>
           <listitem><para><literal>isWithin(Extension, "a", "m") and inRange(Size, 0, 1MB)</literal> -
 拡張子が「a」から「m」の範囲で、サイズが1MB未満のファイル</para></listitem>
           <listitem><para><literal>toLower(Name) = "readme.txt"</literal> - 大文字・小文字を区別しないファイル名の一致判定</para></listitem>
