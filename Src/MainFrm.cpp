@@ -1338,12 +1338,19 @@ static bool AddToRecentDocs(const PathContext& paths,
 	{
 		params = _T("/self-compare ");
 
+		const tchar_t* lmr = _T("lr");
+		for (int nIndex = 0; nIndex < 2; ++nIndex)
+		{
+			if (desc && !desc[nIndex].empty())
+			{
+				String desc2 = desc[nIndex];
+				strutils::replace(desc2, _T("\""), _T("\"\""));
+				params += strutils::format(_T("/d%c \"%s\" "), lmr[nIndex], desc2);
+			}
+		}
+
 		// Add file path
 		params += _T("\"") + paths[0] + _T("\" ");
-
-		// Add description if provided
-		if (desc && !desc[0].empty())
-			params += strutils::format(_T("/dl \"%s\" "), desc[0]);
 
 		// Add common comparison parameters
 		AppendComparisonCommandLineParams(params, nID, pOpenParams, infoUnpacker, infoPrediffer);
@@ -1369,7 +1376,11 @@ static bool AddToRecentDocs(const PathContext& paths,
 					params += strutils::format(_T("/a%c "), lmr[nIndex]);
 			}
 			if (desc && !desc[nIndex].empty())
-				params += strutils::format(_T("/d%c \"%s\" "), lmr[nIndex], desc[nIndex]);
+			{
+				String desc2 = desc[nIndex];
+				strutils::replace(desc2, _T("\""), _T("\"\""));
+				params += strutils::format(_T("/d%c \"%s\" "), lmr[nIndex], desc2);
+			}
 			params += _T("\"") + paths[nIndex] + _T("\" ");
 
 			String path = paths[nIndex];
