@@ -1253,52 +1253,24 @@ void CMainFrame::OnOptions()
 	}
 }
 
-static bool AddToRecentDocs(const PathContext& paths,
-	const unsigned flags[], const String desc[],
-	std::optional<bool> recurse, const String& filter,
-	const PackingInfo *infoUnpacker, const PrediffingInfo *infoPrediffer,
-	UINT nID, const CMainFrame::OpenFileParams *pOpenParams)
+static void AppendComparisonCommandLineParams(
+	String& params,
+	UINT nID,
+	const CMainFrame::OpenFileParams* pOpenParams,
+	const PackingInfo* infoUnpacker,
+	const PrediffingInfo* infoPrediffer)
 {
-	ASSERT(paths.GetSize() <= 3);
-	const tchar_t *lmr= (paths.GetSize() == 2) ? _T("lr") : _T("lmr");
-	String params, title;
-	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
-	{
-		if (flags)
-		{
-			if (flags[nIndex] & FFILEOPEN_READONLY)
-				params += strutils::format(_T("/w%c "), lmr[nIndex]);
-			if (flags[nIndex] & FFILEOPEN_SETFOCUS)
-				params += strutils::format(_T("/f%c "), lmr[nIndex]);
-			if (flags[nIndex] & FFILEOPEN_AUTOMERGE)
-				params += strutils::format(_T("/a%c "), lmr[nIndex]);
-		}
-		if (desc && !desc[nIndex].empty())
-			params += strutils::format(_T("/d%c \"%s\" "), lmr[nIndex], desc[nIndex]);
-		params += _T("\"") + paths[nIndex] + _T("\" ");
-
-		String path = paths[nIndex];
-		paths::normalize(path);
-		title += paths::FindFileName(path);
-		if (nIndex < paths.GetSize() - 1)
-			title += _T(" - ");
-	}
-	if (recurse.has_value())
-		params += *recurse ? _T("/r ") : _T("/r- ");
-	if (!filter.empty())
-	{
-		String filter2 = filter;
-		strutils::replace(filter2, _T("\""), _T("\"\""));
-		params += _T("/f \"") + filter2 + _T("\" ");
-	}
+	// Add comparison type parameter
 	switch (nID)
 	{
-	case ID_MERGE_COMPARE_TEXT:  params += _T("/t text "); break;
-	case ID_MERGE_COMPARE_TABLE: params += _T("/t table "); break;
-	case ID_MERGE_COMPARE_HEX:   params += _T("/t binary "); break;
-	case ID_MERGE_COMPARE_IMAGE: params += _T("/t image "); break;
+	case ID_MERGE_COMPARE_TEXT:    params += _T("/t text "); break;
+	case ID_MERGE_COMPARE_TABLE:   params += _T("/t table "); break;
+	case ID_MERGE_COMPARE_HEX:     params += _T("/t binary "); break;
+	case ID_MERGE_COMPARE_IMAGE:   params += _T("/t image "); break;
 	case ID_MERGE_COMPARE_WEBPAGE: params += _T("/t webpage "); break;
 	}
+
+	// Add OpenParams
 	if (pOpenParams)
 	{
 		if (const auto* pOpenTextFileParams = dynamic_cast<const CMainFrame::OpenTextFileParams*>(pOpenParams))
@@ -1332,17 +1304,102 @@ static bool AddToRecentDocs(const PathContext& paths,
 				params += strutils::format(_T("/table-allownewlinesinquotes %d "), *pOpenTableFileParams->m_tableAllowNewlinesInQuotes);
 		}
 	}
+
+	// Add unpacker
 	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
 	{
 		String pipeline = infoUnpacker->GetPluginPipeline();
 		strutils::replace(pipeline, _T("\""), _T("\"\""));
 		params += _T("/unpacker \"") + pipeline + _T("\" ");
 	}
+
+	// Add prediffer
 	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
 	{
 		String pipeline = infoPrediffer->GetPluginPipeline();
 		strutils::replace(pipeline, _T("\""), _T("\"\""));
 		params += _T("/prediffer \"") + pipeline + _T("\" ");
+	}
+}
+
+static bool AddToRecentDocs(const PathContext& paths,
+	const unsigned flags[], const String desc[],
+	std::optional<bool> recurse, const String& filter,
+	const PackingInfo *infoUnpacker, const PrediffingInfo *infoPrediffer,
+	UINT nID, const CMainFrame::OpenFileParams *pOpenParams,
+	bool isSelfCompare = false)
+{
+	ASSERT(paths.GetSize() <= 3);
+
+	String params, title;
+
+	// Self-compare mode
+	if (isSelfCompare)
+	{
+		params = _T("/self-compare ");
+
+		const tchar_t* lmr = _T("lr");
+		for (int nIndex = 0; nIndex < 2; ++nIndex)
+		{
+			if (desc && !desc[nIndex].empty())
+			{
+				String desc2 = desc[nIndex];
+				strutils::replace(desc2, _T("\""), _T("\"\""));
+				params += strutils::format(_T("/d%c \"%s\" "), lmr[nIndex], desc2);
+			}
+		}
+
+		// Add file path
+		params += _T("\"") + paths[0] + _T("\" ");
+
+		// Add common comparison parameters
+		AppendComparisonCommandLineParams(params, nID, pOpenParams, infoUnpacker, infoPrediffer);
+
+		// Create title
+		String path = paths[0];
+		paths::normalize(path);
+		title = paths::FindFileName(path);
+	}
+	else
+	{
+		// Normal multi-file comparison mode
+		const tchar_t *lmr = (paths.GetSize() == 2) ? _T("lr") : _T("lmr");
+		for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
+		{
+			if (flags)
+			{
+				if (flags[nIndex] & FFILEOPEN_READONLY)
+					params += strutils::format(_T("/w%c "), lmr[nIndex]);
+				if (flags[nIndex] & FFILEOPEN_SETFOCUS)
+					params += strutils::format(_T("/f%c "), lmr[nIndex]);
+				if (flags[nIndex] & FFILEOPEN_AUTOMERGE)
+					params += strutils::format(_T("/a%c "), lmr[nIndex]);
+			}
+			if (desc && !desc[nIndex].empty())
+			{
+				String desc2 = desc[nIndex];
+				strutils::replace(desc2, _T("\""), _T("\"\""));
+				params += strutils::format(_T("/d%c \"%s\" "), lmr[nIndex], desc2);
+			}
+			params += _T("\"") + paths[nIndex] + _T("\" ");
+
+			String path = paths[nIndex];
+			paths::normalize(path);
+			title += paths::FindFileName(path);
+			if (nIndex < paths.GetSize() - 1)
+				title += _T(" - ");
+		}
+		if (recurse.has_value())
+			params += *recurse ? _T("/r ") : _T("/r- ");
+		if (!filter.empty())
+		{
+			String filter2 = filter;
+			strutils::replace(filter2, _T("\""), _T("\"\""));
+			params += _T("/f \"") + filter2 + _T("\" ");
+		}
+
+		// Add common comparison parameters
+		AppendComparisonCommandLineParams(params, nID, pOpenParams, infoUnpacker, infoPrediffer);
 	}
 
 	Concurrent::CreateTask([params, title](){
@@ -3103,7 +3160,13 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("") };
 	fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 	PathContext tmpPathContext(copiedFile, file);
-	return DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
+	bool result = DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
+
+	// Register in MRU using AddToRecentDocs with single-file PathContext in self-compare mode
+	if (result)
+		AddToRecentDocs(PathContext(file), (unsigned *)dwFlags, strDesc, {}, _T(""), infoUnpacker, infoPrediffer, nID, pOpenParams, true);
+
+	return result;
 }
 
 /**
