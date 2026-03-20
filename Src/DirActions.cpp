@@ -645,9 +645,19 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 
 	if (di.diffcode.isResultFiltered())
 	{
+		if (!filter.show_skipped)
+			return false;
+
+		if (!filter.displayFilterHelper.IsEmpty())
+		{
+			return di.diffcode.isDirectory() ? 
+				filter.displayFilterHelper.includeDir(di) :
+				filter.displayFilterHelper.includeFile(di);
+		};
+
 		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
 		// wants to see skipped items show item regardless of other flags
-		return filter.show_skipped;
+		return true;
 	}
 
 	if (di.diffcode.isDirectory())
