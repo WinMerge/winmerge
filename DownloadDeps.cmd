@@ -20,10 +20,10 @@ https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.22-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.22-ARM.zip!Build\ARM\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.22-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.50/winimerge-1.0.50-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.50/winimerge-1.0.50-x64.zip!Build\x64\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.50/winimerge-1.0.50-ARM.zip!Build\ARM\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.50/winimerge-1.0.50-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.51/winimerge-1.0.51-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.51/winimerge-1.0.51-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.51/winimerge-1.0.51-ARM.zip!Build\ARM\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.51/winimerge-1.0.51-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.20/winwebdiff-1.0.20.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.20/winwebdiff-1.0.20.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.20/winwebdiff-1.0.20.0-ARM64.zip!Build\ARM64\Release ^
