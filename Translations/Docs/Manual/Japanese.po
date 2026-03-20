@@ -463,8 +463,8 @@ msgid ""
 "One or more consecutive different lines form one difference (or "
 "<glossterm>diff</glossterm>)."
 msgstr ""
-"1行以上の連続する差異行は、1つの差異(または<glossterm>diff差分</glossterm>)を"
-"形成します。"
+"1行以上の連続する差異行は、1つの差異(または<glossterm>diff</glossterm>)を形成"
+"します。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:291
@@ -593,9 +593,8 @@ msgid ""
 "as an external compare application or starting a compare operation from a "
 "batch file."
 msgstr ""
-"WinMergeのコマンドラインは、比較するパスに加えいくつかのパラメーターを受け付"
-"けます。これらのパラメーターのほとんどは、外部比較ツールとして使用したり、"
-"バッチファイルから比較操作を開始できるようにすることを目的としています。"
+"WinMerge のコマンドラインでは、比較対象のパスと各種オプションを指定できます。"
+"主に、外部ツール連携やバッチ・スクリプトからの実行に使用されます。"
 
 #. type: Content of: <article><para>
 #: English/Command_line.xml:16
@@ -2012,7 +2011,7 @@ msgstr ""
 #: English/Compare_dirs.xml:18 English/Compare_files.xml:23
 #: English/Compare_images.xml:23 English/Compare_webpages.xml:30
 msgid "From the WinMerge window"
-msgstr "WinMergeウインドウから"
+msgstr "WinMergeウィンドウから"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_dirs.xml:21
@@ -2035,7 +2034,7 @@ msgstr ""
 #: English/Compare_dirs.xml:35 English/Compare_files.xml:38
 #: English/Compare_images.xml:38 English/Compare_webpages.xml:57
 msgid "From a Command Prompt window"
-msgstr "コマンドプロンプトウインドウから"
+msgstr "コマンドプロンプトウィンドウから"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_dirs.xml:38
@@ -4374,7 +4373,7 @@ msgstr ""
 "このトピックでは、WinMerge ファイル比較ウィンドウを使用してテキスト ファイル"
 "を比較およびマージする方法について説明します。ここで説明する相違点に関する基"
 "本概念を理解するには、最初に <xref linkend=\"Intro_diffs\" /> を読むことをお"
-"勧めします。 hex ファイルの関連情報については、<xref "
+"勧めします。 Hex ファイルの関連情報については、<xref "
 "linkend=\"Compare_bin\" /> を参照してください。"
 
 #. type: Content of: <article><section><title>
@@ -4485,10 +4484,10 @@ msgid ""
 "can customize the File panes."
 msgstr ""
 "左右のファイル ペインには、比較対象の 2 つのファイルのテキスト内容と相違点が"
-"表示されます。ファイル ペインは、相違点をナビゲートしたりマージしたりするため"
-"のメイン領域であり、テキストを直接編集することもできます。このセクションで"
-"は、これらのアクションをサポートする機能と、ファイル ペインをカスタマイズする"
-"方法について説明します。"
+"表示されます。ファイル ペインは、差異に移動したりマージしたりするためのメイン"
+"領域であり、テキストを直接編集することもできます。このセクションでは、これら"
+"のアクションをサポートする機能と、ファイル ペインをカスタマイズする方法につい"
+"て説明します。"
 
 #. type: Content of: <article><section><section><section><title>
 #: English/Compare_files.xml:89
@@ -4612,7 +4611,7 @@ msgid ""
 "The default difference background color is gold, but blank lines are marked "
 "with the deleted color."
 msgstr ""
-"差分ブロックには、異なる 1 つ以上の連続した行が含まれます。デフォルトの差分の"
+"差異ブロックには、異なる 1 つ以上の連続した行が含まれます。デフォルトの差異の"
 "背景色は金色ですが、空白行は削除された色でマークされます。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
@@ -4636,7 +4635,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:166
 msgid "Difference block background colors"
-msgstr "差分ブロックの背景色"
+msgstr "差異ブロックの背景色"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:171
@@ -4656,13 +4655,13 @@ msgid ""
 "deleted difference, marked here with the default gray color."
 msgstr ""
 "<filename>file2</filename> の空白行には、<filename>file1</filename> には対応"
-"する空白行がありません。  WinMerge は欠落している空白行を削除された差分として"
+"する空白行がありません。  WinMerge は欠落している空白行を削除された差異として"
 "扱い、ここではデフォルトの灰色でマークされます。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><orderedlist><listitem><para>
 #: English/Compare_files.xml:186
 msgid "The last difference block includes two lines."
-msgstr "最後の差分ブロックには 2 行が含まれます。"
+msgstr "最後の差異ブロックには 2 行が含まれます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:194 English/Configuration.xml:543
@@ -4682,7 +4681,7 @@ msgid ""
 "highlighted to help you see what has been ignored. Ignored differences "
 "include:"
 msgstr ""
-"この色は、WinMerge が無視するように構成したコンテンツをマークします。差分ブ"
+"この色は、WinMerge が無視するように構成したコンテンツをマークします。差異ブ"
 "ロックとは対照的に、無視されたコンテンツは比較されず、何が無視されたかを確認"
 "しやすくするために強調表示されるだけです。無視される違いには次のようなものが"
 "あります。"
@@ -4729,7 +4728,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:229
 msgid "Difference block colors with ignored diff"
-msgstr "差分を無視した差分ブロックの色"
+msgstr "差異を無視した差異ブロックの色"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:238 English/Compare_files.xml:917
@@ -4781,7 +4780,7 @@ msgstr ""
 "異なる場所にある 2 つの同一の行 (<literal>a</literal> と <literal>c</"
 "literal> を含む) が、デフォルトのオレンジ色の移動色でマークされていることに注"
 "意してください。この場合の移動ブロック検出のもう 1 つの効果は、最後の 2 行が "
-"1 つの差分ブロックではなく 2 つの別個の差分になることです。"
+"1 つの差異ブロックではなく 2 つの別個の差異になることです。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:268
@@ -4790,7 +4789,7 @@ msgid ""
 "changes in files. However, too many moved lines might make your comparison "
 "hard to navigate. Use your own judgement!"
 msgstr ""
-"場合によっては、移動された差分を表示すると、ファイル内の変更を視覚化しやすく"
+"場合によっては、移動された差異を表示すると、ファイル内の変更を視覚化しやすく"
 "なります。ただし、移動した行が多すぎると、比較が困難になる可能性があります。"
 "ご自身の判断で行ってください。"
 
@@ -4806,7 +4805,7 @@ msgid ""
 "differences are marked with the word difference color. See <xref "
 "linkend=\"CompareFiles_linediff-highlight\" /> for details."
 msgstr ""
-"WinMerge は、変更されたテキストを差分ブロックでマークできます。行の違いは単語"
+"WinMerge は、変更されたテキストを差異ブロックでマークできます。行の違いは単語"
 "の違いの色でマークされます。詳細については、<xref "
 "linkend=\"CompareFiles_linediff-highlight\" /> を参照してください。"
 
@@ -4832,7 +4831,7 @@ msgid ""
 "enabling the <option>Align similar lines</option> option:"
 msgstr ""
 "[オプション] ダイアログの [比較] ページで <option>類似行をマッチさせる</"
-"option> を有効にすると、WinMerge は差分ブロック内の類似行を整列しようとしま"
+"option> を有効にすると、WinMerge は差異ブロック内の類似行を整列しようとしま"
 "す。 <quote>similar</quote> とはどういう意味ですか?一般に、この機能は、強い類"
 "似性を持つ行な​​どの単純な場合に最も効果的に機能します。類似した行が検出される"
 "と、ファイル ペインで整列するように調整されます。次の図は、<option>類似行を"
@@ -4894,7 +4893,7 @@ msgid ""
 msgstr ""
 "2 番目の比較では、行 <quote>mice</quote> と <quote>mice and a</quote> が類似"
 "しているものとして検出されます。 WinMerge は表示に空白行を追加して、これらの"
-"行が差分ブロック内の同じレベルに表示されるようにします。"
+"行が差異ブロック内の同じレベルに表示されるようにします。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:338 English/Configuration.xml:2436
@@ -4931,7 +4930,7 @@ msgid ""
 "Sometimes it's useful to highlight not just difference blocks, but also the "
 "text within them that is changed. You can disable or enable them in two ways:"
 msgstr ""
-"場合によっては、差分ブロックだけでなく、変更されたブロック内のテキストも強調"
+"場合によっては、差異ブロックだけでなく、変更されたブロック内のテキストも強調"
 "表示すると便利です。次の 2 つの方法で無効または有効にすることができます。"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
@@ -4960,8 +4959,8 @@ msgid ""
 "Difference or Copy Left) work on difference blocks, not on line differences "
 "within them."
 msgstr ""
-"WinMerge のナビゲーションおよびマージ機能 (次の差分やコピー左など) は、差分ブ"
-"ロック内の行の差分ではなく、差分ブロックに対して機能することに注意してくださ"
+"WinMerge のナビゲーションおよびマージ機能 (次の差異やコピー左など) は、差異ブ"
+"ロック内の行の差異ではなく、差異ブロックに対して機能することに注意してくださ"
 "い。"
 
 #. type: Content of: <article><section><section><section><para>
@@ -5016,7 +5015,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><example><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:399
 msgid "Word-level line diff comparing whitespace"
-msgstr "空白を比較するワードレベルの行の差分"
+msgstr "空白を比較するワードレベルの行の差異"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:391 English/Compare_files.xml:411
@@ -5050,7 +5049,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><example><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:419
 msgid "Word-level line diff comparing no whitespace changes"
-msgstr "空白の変更がない場合のワードレベルの行の差分"
+msgstr "空白の変更がない場合のワードレベルの行の差異"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><example><title>
 #: English/Compare_files.xml:426
@@ -5077,7 +5076,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><example><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:439
 msgid "Word-level line diff comparing no whitespace"
-msgstr "空白なしを比較するワードレベルの行の差分"
+msgstr "空白なしを比較するワードレベルの行の差異"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term><indexterm><primary>
 #: English/Compare_files.xml:449
@@ -5114,7 +5113,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:465 English/Compare_files.xml:509
 msgid "Character-level line diff comparing no whitespace"
-msgstr "空白なしを比較する文字レベルの行の差分"
+msgstr "空白なしを比較する文字レベルの行の差異"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><note><para>
 #: English/Compare_files.xml:472
@@ -5205,7 +5204,7 @@ msgstr ""
 "</guilabel> と <guilabel>やり直し</guilabel>、<guilabel>検索</guilabel> と "
 "<guilabel>置換</guilabel>、および <guilabel>移動</guilabel> などの基本的な編"
 "集機能を提供します。これらの基本的な編集タスクは、多くの場合、マージ中に必要"
-"になります (差分内のテキストを変更する場合など)。アクティブなファイル ペイン"
+"になります (差異内のテキストを変更する場合など)。アクティブなファイル ペイン"
 "で編集できます (ペインをクリックしてアクティブにすることに注意してください)。"
 "ペインを結果ファイルに保存するまで、変更はファイルに書き込まれません。"
 
@@ -5219,7 +5218,7 @@ msgid ""
 msgstr ""
 "WinMerge の編集機能には、構文の強調表示も含まれています。このオプション機能は"
 "複数のファイル形式をサポートしており、使用する色を構成できます。前のスクリー"
-"ンショットが示すように、構文の強調表示は差分内には適用されないことに注意して"
+"ンショットが示すように、構文の強調表示は差異内には適用されないことに注意して"
 "ください。"
 
 #. type: Content of: <article><section><section><section><tip><para>
@@ -5516,11 +5515,11 @@ msgid ""
 "enabled in the toolbar. If you click in another area of text that is not "
 "within a difference, these functions become unavailable."
 msgstr ""
-"使用できる差分機能はコンテキストによって異なり、作業中に変化することがよくあ"
+"使用できる差異機能はコンテキストによって異なり、作業中に変化することがよくあ"
 "ります。これは、WinMerge 環境の特定の場所またはその他の条件でその操作が可能な"
-"場合にのみ機能が使用可能であることを意味します。たとえば、差分内のテキスト行"
+"場合にのみ機能が使用可能であることを意味します。たとえば、差異内のテキスト行"
 "をクリックすると、ツールバーでいくつかのナビゲーション ボタンとマージ ボタン"
-"が有効になることに気づく場合があります。差分内にないテキストの別の領域をク"
+"が有効になることに気づく場合があります。差異内にないテキストの別の領域をク"
 "リックすると、これらの機能は使用できなくなります。"
 
 #. type: Content of: <article><section><section><para>
@@ -5529,7 +5528,7 @@ msgid ""
 "Difference functions are available in the WinMerge toolbar,and also through "
 "these alternate mechanisms:"
 msgstr ""
-"差分機能は、WinMerge ツールバーで使用できるほか、次の代替メカニズムでも使用で"
+"差異機能は、WinMerge ツールバーで使用できるほか、次の代替メカニズムでも使用で"
 "きます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -5558,7 +5557,7 @@ msgid ""
 "linkend=\"Quick_start\" /> and <xref linkend=\"Intro_diffs\" /> provide "
 "examples of comparing and merging."
 msgstr ""
-"差分機能については、このトピックの後半の <xref "
+"差異機能については、このトピックの後半の <xref "
 "linkend=\"Compare_files_nav\" /> および <xref "
 "linkend=\"Compare_files_merge\" /> で説明します。 <xref "
 "linkend=\"Quick_start\" /> と <xref linkend=\"Intro_diffs\" /> には、比較と"
@@ -5582,7 +5581,7 @@ msgid ""
 "single keyboard shortcuts for difference merging and navigating functions:"
 msgstr ""
 "<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>マージ モード</"
-"guimenuitem> </menuchoice> (または <keycap>F9</keycap> を押す) は、差分マージ"
+"guimenuitem> </menuchoice> (または <keycap>F9</keycap> を押す) は、差異マージ"
 "およびナビゲート機能用の WinMerge 1.7.1 の単一キーボード ショートカットを復元"
 "します。"
 
@@ -5593,8 +5592,8 @@ msgid ""
 "<function>Previous Difference</function> and <function>Next Difference</"
 "function> functions."
 msgstr ""
-"<function>Previous Difference</function> および <function>Next Difference</"
-"function> 機能の <keycap>Up</keycap> キーと <keycap>Down</keycap> キー。"
+"<function>前の差異</function> および <function>次の差異</function> 機能の "
+"<keycap>Up</keycap> キーと <keycap>Down</keycap> キー。"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><simpara>
 #: English/Compare_files.xml:792
@@ -5602,8 +5601,8 @@ msgid ""
 "<keycap>Left</keycap> and <keycap>Right</keycap> keys for the <function>Copy "
 "Left</function> and <function>Copy Right</function> functions."
 msgstr ""
-"<function>Copy Left</function> および <function>Copy Right</function> 機能の "
-"<keycap>Left</keycap> キーと <keycap>Right</keycap> キー。"
+"<function>左側にコピー</function> および <function>右側にコピー</function> 機"
+"能の <keycap>Left</keycap> キーと <keycap>Right</keycap> キー。"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_files.xml:798
@@ -5635,12 +5634,12 @@ msgstr "ロケーションペイン"
 #. type: Content of: <article><section><section><indexterm><primary>
 #: English/Compare_files.xml:813
 msgid "Location pane, File Compare window"
-msgstr "場所ペイン、ファイル比較ウィンドウ"
+msgstr "ロケーションペイン、ファイル比較ウィンドウ"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_files.xml:817 English/Compare_files.xml:1116
 msgid "difference navigation"
-msgstr "差分ナビゲーション"
+msgstr "差異ナビゲーション"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:820
@@ -5650,9 +5649,10 @@ msgid ""
 "right File panes). It is especially useful for working with files that are "
 "too long to easily navigate in the File panes."
 msgstr ""
-"ファイル ペインの左側にある場所ペインでは、比較されるファイルの全長が 2 つの"
-"垂直バー (左右のファイル ペインに対応) にマップされます。これは、長すぎて "
-"[ファイル] ペイン内で簡単に移動できないファイルを操作する場合に特に便利です。"
+"ファイル ペインの左側にあるロケーションペインでは、比較されるファイルの全長"
+"が 2 つの垂直バー (左右のファイル ペインに対応) にマップされます。これは、長"
+"すぎて [ファイル] ペイン内で簡単に移動できないファイルを操作する場合に特に便"
+"利です。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:825
@@ -5671,12 +5671,12 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
 #: English/Compare_files.xml:836
 msgid "Location pane diff lines"
-msgstr "場所ペインの差分線"
+msgstr "ロケーションペインの差異線"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:829
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Difference blocks"
-msgstr "<placeholder type=\"inlinemediaobject\" id=\"0\"/> 差分ブロック"
+msgstr "<placeholder type=\"inlinemediaobject\" id=\"0\"/> 差異ブロック"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:841
@@ -5689,10 +5689,10 @@ msgid ""
 "block. The Location pane in the preceding screenshot shows many basic "
 "differences (gold) and some empty difference blocks (gray)."
 msgstr ""
-"[ファイル] ペインの各差分ブロックは、[場所] ペインで各垂直バーを横切る水平線"
+"[ファイル] ペインの各差異ブロックは、[場所] ペインで各垂直バーを横切る水平線"
 "で示されます。これらの線の太さ、色、位置は、ファイル内のすべての相違点のサイ"
 "ズ (線数)、タイプ、および分布に関する手がかりとなります。たとえば、線の色は、"
-"対応する差分ブロックの色と同じです。前のスクリーンショットの [場所] ペインに"
+"対応する差異ブロックの色と同じです。前のスクリーンショットの [場所] ペインに"
 "は、多くの基本的な差異 (金色) といくつかの空の差異ブロック (灰色) が表示され"
 "ます。"
 
@@ -5708,12 +5708,12 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
 #: English/Compare_files.xml:860
 msgid "Location pane current diff pointer"
-msgstr "場所ペインの現在の差分ポインター"
+msgstr "ロケーションペインの現在の差異ポインター"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:853
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Current difference"
-msgstr "<placeholder type=\"inlinemediaobject\" id=\"0\"/> 現在の差分"
+msgstr "<placeholder type=\"inlinemediaobject\" id=\"0\"/> 現在の差異"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:865
@@ -5727,8 +5727,8 @@ msgid ""
 msgstr ""
 "差異を選択した場合、「場所」ペインでは、垂直バーの両側にある一対の小さな三角"
 "形で現在の差異線をマークします。別の相違点に移動すると、ポインタはその位置に"
-"合わせて上下に移動します。ファイル ペインをスクロールしても、場所ペイン内の差"
-"分ポインタ (または差分行) の位置は変わりません。"
+"合わせて上下に移動します。ファイル ペインをスクロールしても、ロケーションペイ"
+"ン内の差分ポインタ (または差異行) の位置は変わりません。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject>
 #: English/Compare_files.xml:876
@@ -5742,7 +5742,7 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><inlinemediaobject><textobject><phrase>
 #: English/Compare_files.xml:882
 msgid "Location pane view area bar"
-msgstr "場所ペインのビューエリアバー"
+msgstr "ロケーションペインのビューエリアバー"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:875
@@ -5763,9 +5763,9 @@ msgstr ""
 "[ファイル] ペインに現在表示されているファイルの領域は、[場所] ペイン上の影付"
 "き (半透明) ビュー バーで示されます。  エリア バーの高さと位置は、スクロール"
 "領域に表示されるファイルの部分に対応します。たとえば、ファイル ペインの高さを"
-"変更すると、バーが拡大または縮小することがあります。場所ペインのビュー バーと"
-"ファイル ペインのこの同期により、素早いナビゲーションといくつかの便利なアク"
-"ションが可能になります。"
+"変更すると、バーが拡大または縮小することがあります。ロケーションペインの"
+"ビュー バーとファイル ペインのこの同期により、素早いナビゲーションといくつか"
+"の便利なアクションが可能になります。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Compare_files.xml:897
@@ -5811,11 +5811,11 @@ msgid ""
 "draws a line connecting moved differences in the left and right location "
 "bars.  For example:"
 msgstr ""
-"移動された差分は、異なる場所にある同一の行です。  これらは、[オプション]ダイ"
+"移動された差異は、異なる場所にある同一の行です。  これらは、[オプション]ダイ"
 "アログの[比較]ページで[移動ブロックの検出を有効にする]がチェックされている場"
-"合にのみ表示されます。 [ファイル] ペインで移動された差分の詳細については、 "
-"<xref linkend=\"CompareFiles_diffcolors\" /> を参照してください。場所ペイン"
-"は、左右の場所バーの移動された差異を接続する線を描画します。  例えば："
+"合にのみ表示されます。 [ファイル] ペインで移動された差異の詳細については、 "
+"<xref linkend=\"CompareFiles_diffcolors\" /> を参照してください。ロケーション"
+"ペインは、左右の場所バーの移動された差異を接続する線を描画します。  例えば："
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><mediaobject>
 #: English/Compare_files.xml:930
@@ -5829,7 +5829,7 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:937
 msgid "Location pane with moved diff"
-msgstr "移動された差分を含む場所ペイン"
+msgstr "移動された差異を含むロケーションペイン"
 
 #. type: Content of: <article><section><section><para><indexterm><primary>
 #: English/Compare_files.xml:945
@@ -5885,7 +5885,7 @@ msgid ""
 "for all moved blocks."
 msgstr ""
 "<guimenuitem>すべての移動ブロック</guimenuitem>: すべての移動ブロックの移動さ"
-"れた差分カラーをオンにします。"
+"れた差異カラーをオンにします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Compare_files.xml:975
@@ -5893,8 +5893,8 @@ msgid ""
 "<guimenuitem>Moved Block for Current Diff</guimenuitem>: Turns on moved "
 "difference color only for current selected moved difference."
 msgstr ""
-"<guimenuitem>現在の差分の移動ブロック</guimenuitem>: 現在選択されている移動差"
-"分の移動差分のみの色をオンにします。"
+"<guimenuitem>現在の差異の移動ブロック</guimenuitem>: 現在選択されている移動差"
+"分の移動差異のみの色をオンにします。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:984
@@ -5910,7 +5910,7 @@ msgstr "Diff ペイン<placeholder type=\"indexterm\" id=\"0\"/>"
 #: English/Compare_files.xml:987
 msgid ""
 "The Diff pane shows the contents of the two sides of a selected difference."
-msgstr "差分ペインには、選択した差分の両側の内容が表示されます。"
+msgstr "差異ペインには、選択した差異の両側の内容が表示されます。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_files.xml:990
@@ -5920,8 +5920,8 @@ msgid ""
 "lines are included in a difference, and lets you examine them in isolation "
 "from the rest of the file."
 msgstr ""
-"差分を選択すると、2 つのバージョンが差分ペインの上部と下部にロードされます。"
-"このように、差分ペインでは差分にどの行が含まれているかを確認し、ファイルの残"
+"差異を選択すると、2 つのバージョンが差異ペインの上部と下部にロードされます。"
+"このように、差異ペインでは差異にどの行が含まれているかを確認し、ファイルの残"
 "りの部分から切り離してそれらの行を調べることができます。"
 
 #. type: Content of: <article><section><section><para>
@@ -5931,7 +5931,7 @@ msgid ""
 "either the top or bottom side and choosing <guimenuitem>Copy to Right</"
 "guimenuitem> or <guimenuitem>Copy to Left</guimenuitem>."
 msgstr ""
-"[差分] ペインで差分を直接マージするには、上側または下側を右クリックし、"
+"[差異] ペインで差異を直接マージするには、上側または下側を右クリックし、"
 "<guimenuitem>右側にコピー</guimenuitem> または <guimenuitem>左側にコピー</"
 "guimenuitem> を選択します。"
 
@@ -6103,8 +6103,8 @@ msgid ""
 "number of differences detected, displayed only when no difference is "
 "selected."
 msgstr ""
-"<guilabel><replaceable>n</replaceable> Differences Found</guilabel>: 検出され"
-"た差異の数。差異が選択されていない場合にのみ表示されます。"
+"<guilabel><replaceable>n</replaceable> 件の差異が見つかりました</guilabel>: "
+"検出された差異の数。差異が選択されていない場合にのみ表示されます。"
 
 #. type: Content of: <article><section><section><para><itemizedlist><listitem><para>
 #: English/Compare_files.xml:1105
@@ -6113,8 +6113,8 @@ msgid ""
 "replaceable></guilabel>: The selected difference's sequence number in the "
 "total number of differences, starting with 1."
 msgstr ""
-"<guilabel>差分 <replaceable>x</replaceable>/<replaceable>n</replaceable></"
-"guilabel>: 差分の総数における選択した差分のシーケンス番号 (1 から始まりま"
+"<guilabel>差異 <replaceable>x</replaceable>/<replaceable>n</replaceable></"
+"guilabel>: 差異の総数における選択した差異のシーケンス番号 (1 から始まりま"
 "す)。"
 
 #. type: Content of: <article><section><title>
@@ -6152,7 +6152,7 @@ msgstr "WinMerge 機能"
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_files.xml:1136
 msgid "difference navigation in File Compare window"
-msgstr "ファイル比較ウィンドウの差分ナビゲーション"
+msgstr "ファイル比較ウィンドウの差異ナビゲーション"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_files.xml:1140
@@ -6193,7 +6193,7 @@ msgid ""
 "Difference in the Current Line/Select Line Difference<placeholder "
 "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
-"現在行/選択行の差分<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
+"現在行/選択行の差異<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
@@ -6202,7 +6202,7 @@ msgid ""
 "Enabled if you have clicked in (or selected) text within a difference in a "
 "File pane. Selects the word differences within the line. For example:"
 msgstr ""
-"ファイル ペインの差分内のテキストをクリック (または選択) した場合に有効になり"
+"ファイル ペインの差異内のテキストをクリック (または選択) した場合に有効になり"
 "ます。行内の単語の相違点を選択します。例えば："
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><mediaobject>
@@ -6217,7 +6217,7 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:1166
 msgid "Select Line Difference example"
-msgstr "行の差分を選択する例"
+msgstr "行の差異を選択する例"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:1171
@@ -6225,7 +6225,7 @@ msgid ""
 "If you want to select the difference block itself, use <command>Current "
 "Difference</command> instead."
 msgstr ""
-"差分ブロック自体を選択したい場合は、代わりに <command>Current Difference</"
+"差異ブロック自体を選択したい場合は、代わりに <command>Current Difference</"
 "command> を使用します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
@@ -6251,8 +6251,8 @@ msgid ""
 "within a difference."
 msgstr ""
 "ショートカット: <placeholder type=\"inlinemediaobject\" id=\"0\"/> ボタン、"
-"<menuchoice> <guimenu>編集</guimenu> <guimenuitem>行の差分を選択</"
-"guimenuitem> </menuchoice>、<keycap>F4</keycap>、差分内のファイルペインのコン"
+"<menuchoice> <guimenu>編集</guimenu> <guimenuitem>行の差異を選択</"
+"guimenuitem> </menuchoice>、<keycap>F4</keycap>、差異内のファイルペインのコン"
 "テキストメニュー。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
@@ -6294,7 +6294,7 @@ msgid ""
 "keycap> </keycombo> (or <keycap>Down</keycap> in merge mode)."
 msgstr ""
 "ショートカット: <placeholder type=\"inlinemediaobject\" id=\"0\"/> ボタン、"
-"<menuchoice> <guimenu>マージ</guimenu> <guimenuitem>次の差分</guimenuitem> </"
+"<menuchoice> <guimenu>マージ</guimenu> <guimenuitem>次の差異</guimenuitem> </"
 "menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Down</keycap> </"
 "keycombo> (マージでは <keycap>Down</keycap>)モード）。"
 
@@ -6316,8 +6316,8 @@ msgid ""
 "sequentially through differences. Available except when the first difference "
 "is currently selected."
 msgstr ""
-"現在のカーソル位置の上にある以前の差分を選択します (必ずしも現在の差分に相対"
-"しているわけではありません)。差分を順番に後退するために使用します。最初の差異"
+"現在のカーソル位置の上にある以前の差異を選択します (必ずしも現在の差異に相対"
+"しているわけではありません)。差異を順番に後退するために使用します。最初の差異"
 "が現在選択されている場合を除き、使用できます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
@@ -6420,7 +6420,7 @@ msgid ""
 "function selects the entire difference. This is a very handy way to select a "
 "difference using the keyboard."
 msgstr ""
-"カーソルが差分内にあり、差分が選択されていない場合、この機能は差分全体を選択"
+"カーソルが差異内にあり、差異が選択されていない場合、この機能は差異全体を選択"
 "します。これは、キーボードを使用して違いを選択する非常に便利な方法です。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><itemizedlist><listitem><simpara>
@@ -6430,7 +6430,7 @@ msgid ""
 "This is handy if you have scrolled the selected difference out of view, and "
 "want to quickly return to its location."
 msgstr ""
-"現在の差異がある場合、その位置にジャンプします。これは、選択した差分をスク"
+"現在の差異がある場合、その位置にジャンプします。これは、選択した差異をスク"
 "ロールして見えなくなった場合に、その位置にすぐに戻りたい場合に便利です。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
@@ -6458,7 +6458,7 @@ msgid ""
 "keycap> </keycombo>."
 msgstr ""
 "ショートカット: <placeholder type=\"inlinemediaobject\" id=\"0\"/> ボタン、"
-"<menuchoice> <guimenu>マージ</guimenu> <guimenuitem>現在の差分</guimenuitem> "
+"<menuchoice> <guimenu>マージ</guimenu> <guimenuitem>現在の差異</guimenuitem> "
 "</menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Enter</keycap> </"
 "keycombo>。"
 
@@ -6475,7 +6475,7 @@ msgstr "最後の差異<placeholder type=\"indexterm\" id=\"0\"/>"
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:1350
 msgid "Enabled except when the last difference is currently selected."
-msgstr "現在最後の差分が選択されている場合を除き、有効になります。"
+msgstr "現在最後の差異が選択されている場合を除き、有効になります。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject>
 #: English/Compare_files.xml:1354
@@ -6523,9 +6523,9 @@ msgid ""
 "where you specify the number, which file to use (either the left or right), "
 "and the type of location (either line or difference)."
 msgstr ""
-"行番号または差分番号のいずれかにジャンプできます (たとえば、差分 2 は 2 番目"
-"の差分です)。 「移動」ダイアログを開きます。ここで、番号、使用するファイル "
-"(左側または右側)、および場所のタイプ (行または差分) を指定します。"
+"行番号または差異番号のいずれかにジャンプできます (たとえば、差異 2 は 2 番目"
+"の差異です)。 「移動」ダイアログを開きます。ここで、番号、使用するファイル "
+"(左側または右側)、および場所のタイプ (行または差異) を指定します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><tip><para>
 #: English/Compare_files.xml:1387
@@ -6549,7 +6549,8 @@ msgid ""
 msgstr ""
 "ショートカット: <menuchoice> <guimenu>編集</guimenu> <guimenuitem>Go to</"
 "guimenuitem> </menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>G</"
-"keycap> </keycombo>、ファイル ペインおよび場所ペインのコンテキスト メニュー。"
+"keycap> </keycombo>、ファイル ペインおよびロケーションペインのコンテキスト メ"
+"ニュー。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_files.xml:1408
@@ -6562,7 +6563,7 @@ msgid ""
 "Enables to jump to the moved from/to of current diff on the other panel (2 "
 "panes)."
 msgstr ""
-"他のパネル(2ペイン)上の現在の差分の差分移動元/移動先へジャンプできるようにし"
+"他のパネル(2ペイン)上の現在の差異の差異移動元/移動先へジャンプできるようにし"
 "ます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
@@ -6572,7 +6573,7 @@ msgid ""
 "<keycap>G</keycap> </keycombo>, context menu in File pane and Diff pane."
 msgstr ""
 "ショートカット: <keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap> "
-"<keycap>G</keycap> </keycombo>、ファイル ペインおよび差分ペインのコンテキス"
+"<keycap>G</keycap> </keycombo>、ファイル ペインおよび差異ペインのコンテキス"
 "ト メニュー。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
@@ -6589,7 +6590,7 @@ msgid ""
 "Enables to jump to the moved from/to of current diff on the other panel (3 "
 "panes)."
 msgstr ""
-"他のパネル (3 ペイン) の現在の差分の差分の移動元/移動先へジャンプできるように"
+"他のパネル (3 ペイン) の現在の差異の差異の移動元/移動先へジャンプできるように"
 "します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
@@ -6607,7 +6608,7 @@ msgid ""
 "keycap> </keycombo>, context menu in File pane and Diff pane."
 msgstr ""
 "ショートカット: <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap> "
-"<keycap>G</keycap> </keycombo>、ファイル ペインおよび差分ペインのコンテキス"
+"<keycap>G</keycap> </keycombo>、ファイル ペインおよび差異ペインのコンテキス"
 "ト メニュー。"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
@@ -6652,7 +6653,7 @@ msgid ""
 "right, or right to left. This is different from directly editing text using "
 "WinMerge's editing functions (described earlier in this topic)."
 msgstr ""
-"マージすると、一方のファイル ペインからもう一方のファイル ペインに差分が左側"
+"マージすると、一方のファイル ペインからもう一方のファイル ペインに差異が左側"
 "から右側、または右側から左側にコピーされます。これは、WinMerge の編集機能 (こ"
 "のトピックで前述した) を使用してテキストを直接編集することとは異なります。"
 
@@ -6678,7 +6679,7 @@ msgid ""
 msgstr ""
 "デフォルトでは、WinMerge オプションのエディター ページで <guilabel>自動再ス"
 "キャン</guilabel> オプションが有効になっています。再スキャンにより、比較およ"
-"びマージ操作が最新の状態に保たれます。再スキャンしない場合、WinMerge 差分は、"
+"びマージ操作が最新の状態に保たれます。再スキャンしない場合、WinMerge 差異は、"
 "外部エディタなどでファイルを比較しているときにファイルに発生する可能性のある"
 "変更を検出しません。"
 
@@ -6690,7 +6691,7 @@ msgid ""
 "WinMerge displays a dialog advising you that another application has updated "
 "the file, and asks whether you want to reload the file."
 msgstr ""
-"再スキャンは、ファイル比較中に特定のアクション (差分のマージやファイルの編集"
+"再スキャンは、ファイル比較中に特定のアクション (差異のマージやファイルの編集"
 "など) を実行すると発生します。ファイルが変更されている場合、WinMerge は別のア"
 "プリケーションがファイルを更新したことを通知するダイアログを表示し、ファイル"
 "を再ロードするかどうかを尋ねます。"
@@ -6775,8 +6776,8 @@ msgid ""
 "single merge command."
 msgstr ""
 "マージ機能は、カーソル位置またはテキスト選択に基づいて相違点を暗黙的に選択で"
-"きます。たとえば、差分内の任意の場所をクリックしてから、ツールバーの "
-"<guibutton>右側にコピー</guibutton> ボタンをクリックすると、差分ブロック全体"
+"きます。たとえば、差異内の任意の場所をクリックしてから、ツールバーの "
+"<guibutton>右側にコピー</guibutton> ボタンをクリックすると、差異ブロック全体"
 "がマージされます。これにより、多くの小さな違いを簡単にマージできます。同様"
 "に、複数の相違点のすべてまたは一部にまたがるテキストを選択すると、含まれるす"
 "べての相違点が 1 つのマージ コマンドでマージされます。"
@@ -6815,9 +6816,9 @@ msgid ""
 "differences can also contain empty lines, new lines may be created or "
 "removed."
 msgstr ""
-"1 つ以上の差異を左側から右側側にコピーします。差分を完全に選択する必要はない"
-"ことに注意してください。最も簡単に言うと、これは、ターゲット差分のテキストを"
-"ソース差分のテキストに置き換えることを意味します。ただし、相違点には空の行が"
+"1 つ以上の差異を左側から右側側にコピーします。差異を完全に選択する必要はない"
+"ことに注意してください。最も簡単に言うと、これは、ターゲット差異のテキストを"
+"ソース差異のテキストに置き換えることを意味します。ただし、相違点には空の行が"
 "含まれる場合もあるため、新しい行が作成または削除される場合があります。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
@@ -6832,8 +6833,8 @@ msgstr ""
 "ショートカット: <placeholder type=\"inlinemediaobject\" id=\"0\"/> ボタン、"
 "<menuchoice> <guimenu>マージ</guimenu> <guimenuitem>右側にコピー</"
 "guimenuitem> </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Right</"
-"keycap> </keycombo> (マージでは <keycap>Right</keycap>)モード)、差分内のファ"
-"イル ペインのコンテキスト メニュー、および差分ペインのコンテキスト メニュー。"
+"keycap> </keycombo> (マージでは <keycap>Right</keycap>)モード)、差異内のファ"
+"イル ペインのコンテキスト メニュー、および差異ペインのコンテキスト メニュー。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
 #: English/Compare_files.xml:1599
@@ -6851,7 +6852,7 @@ msgid ""
 "Copies the current difference from the right to the left File pane. See "
 "<command>Copy Right</command> description for details."
 msgstr ""
-"現在の差分を右のファイル ペインから左のファイル ペインにコピーします。詳細に"
+"現在の差異を右のファイル ペインから左のファイル ペインにコピーします。詳細に"
 "ついては、<command>Copy Right</command> の説明を参照してください。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
@@ -6866,8 +6867,8 @@ msgstr ""
 "ショートカット: <placeholder type=\"inlinemediaobject\" id=\"0\"/> ボタン、"
 "<menuchoice> <guimenu>マージ</guimenu> <guimenuitem>左側にコピー</"
 "guimenuitem> </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</"
-"keycap> </keycombo> (マージでは <keycap>Left</keycap>)モード)、差分内のファイ"
-"ル ペインのコンテキスト メニュー、および差分ペインのコンテキスト メニュー。"
+"keycap> </keycombo> (マージでは <keycap>Left</keycap>)モード)、差異内のファイ"
+"ル ペインのコンテキスト メニュー、および差異ペインのコンテキスト メニュー。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
 #: English/Compare_files.xml:1631
@@ -6886,7 +6887,7 @@ msgid ""
 "selects the next difference (if one exists). Equivalent to <command>Copy "
 "Right</command> and <command>Next Difference</command> in one step."
 msgstr ""
-"現在の差分を右側から左のファイル ペインにマージし、次の差分 (存在する場合) を"
+"現在の差異を右側から左のファイル ペインにマージし、次の差異 (存在する場合) を"
 "選択します。 1 つのステップの <command>Copy Right</command> と <command>Next "
 "Difference</command> に相当します。"
 
@@ -6916,7 +6917,7 @@ msgstr ""
 "ショートカット: <placeholder type=\"inlinemediaobject\" id=\"0\"/> ボタン、"
 "<menuchoice> <guimenu>マージ</guimenu> <guimenuitem>左側にコピー</"
 "guimenuitem> </menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</"
-"keycap> <keycap>右</keycap> </keycombo>、コンテキスト メニュー差分内のファイ"
+"keycap> <keycap>右</keycap> </keycombo>、コンテキスト メニュー差異内のファイ"
 "ルペイン。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
@@ -6936,7 +6937,7 @@ msgid ""
 "difference (if one exists). Equivalent to <command>Copy Left</command> and "
 "<command>Next Difference</command> in one step."
 msgstr ""
-"現在の差分を左側から右側にマージし、次の差分 (存在する場合) を選択します。 1 "
+"現在の差異を左側から右側にマージし、次の差異 (存在する場合) を選択します。 1 "
 "つのステップの <command>Copy Left</command> と <command>Next Difference</"
 "command> に相当します。"
 
@@ -6966,7 +6967,7 @@ msgstr ""
 "ショートカット: <placeholder type=\"inlinemediaobject\" id=\"0\"/> ボタン、"
 "<menuchoice> <guimenu>マージ</guimenu> <guimenuitem>左側にコピー</"
 "guimenuitem> </menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</"
-"keycap> <keycap>Left</keycap> </keycombo>、コンテキスト メニュー差分内のファ"
+"keycap> <keycap>Left</keycap> </keycombo>、コンテキスト メニュー差異内のファ"
 "イルペイン。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
@@ -7028,7 +7029,7 @@ msgstr ""
 "ショートカット: <placeholder type=\"inlinemediaobject\" id=\"0\"/> ボタン、"
 "<menuchoice> <guimenu>Merge</guimenu> <guimenuitem>Copy to Left</"
 "guimenuitem> </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</"
-"keycap> </keycombo>、差分内のファイル ペインのコンテキスト メニュー。"
+"keycap> </keycombo>、差異内のファイル ペインのコンテキスト メニュー。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term><indexterm><primary>
 #: English/Compare_files.xml:1743
@@ -7082,7 +7083,7 @@ msgid ""
 "automatic scanning is disabled (see <xref linkend=\"Compare_files_scan\" /> "
 "for details)."
 msgstr ""
-"ファイルを再スキャンして差分を更新します。自動スキャンが無効になっている場合"
+"ファイルを再スキャンして差異を更新します。自動スキャンが無効になっている場合"
 "は、ファイルに変更を加えた後に使用します (詳細については、<xref "
 "linkend=\"Compare_files_scan\" /> を参照)。"
 
@@ -7145,7 +7146,7 @@ msgstr ""
 "左側のファイル ペインのファイル ヘッダーのタイトルは、<guilabel>Theirs File</"
 "guilabel> です。この側は、通常、バージョン管理システムのリポジトリにあるファ"
 "イルを表します。通常、このファイルは編集できないため、WinMerge は左側の [ファ"
-"イル] ペインを読み取り専用に設定します。  これは、差分をこのファイルから他の"
+"イル] ペインを読み取り専用に設定します。  これは、差異をこのファイルから他の"
 "ファイルにのみマージできることを意味します。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><itemizedlist><listitem><para>
@@ -7243,8 +7244,8 @@ msgstr "画像"
 msgid ""
 "This topic describes how to compare images using the Image Compare window."
 msgstr ""
-"このトピックでは、[イメージ比較] ウィンドウを使用してイメージを比較する方法に"
-"ついて説明します。"
+"このトピックでは、[画像比較] ウィンドウを使用して画像を比較する方法について説"
+"明します。"
 
 #. type: Content of: <article><section><title>
 #: English/Compare_images.xml:16
@@ -7257,8 +7258,8 @@ msgid ""
 "You can start an image compare operation from either the WinMerge window or "
 "a Command Prompt window."
 msgstr ""
-"イメージ比較操作は、WinMerge ウィンドウまたはコマンド プロンプト ウィンドウか"
-"ら開始できます。"
+"画像比較操作は、WinMerge ウィンドウまたはコマンド プロンプト ウィンドウから開"
+"始できます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_images.xml:26
@@ -7270,9 +7271,9 @@ msgid ""
 msgstr ""
 "<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>開く</guimenuitem> </"
 "menuchoice> をクリックします。 [ファイルまたはフォルダーの選択] ダイアログを"
-"使用して、比較する左右のソース イメージを指定します。 「ファイルまたはフォル"
-"ダーの選択」ダイアログの詳細については、「<xref linkend=\"Open_paths\" />」を"
-"参照してください。"
+"使用して、比較する左右のソース 画像を指定します。 「ファイルまたはフォルダー"
+"の選択」ダイアログの詳細については、「<xref linkend=\"Open_paths\" />」を参照"
+"してください。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_images.xml:41
@@ -7297,8 +7298,8 @@ msgid ""
 "WinMerge support many types of images and can highlight the differences with "
 "blocks. Overlaying of the pictures is also possible."
 msgstr ""
-"WinMerge は多くの種類の画像をサポートしており、ブロックとの違いを強調表示でき"
-"ます。写真を重ねて表示することも可能です。"
+"WinMerge は多くの種類の画像をサポートしており、ブロック単位で違いを強調表示で"
+"きます。画像を重ねて表示することもできます。"
 
 #. type: Content of: <article><section><mediaobject>
 #: English/Compare_images.xml:57
@@ -7317,12 +7318,13 @@ msgstr "画像比較ウィンドウ"
 #. type: Content of: <article><section><para>
 #: English/Compare_images.xml:66
 msgid "You can set the most options in the <guilabel>Location Pane</guilabel>:"
-msgstr "<guilabel>場所ペイン</guilabel>でほとんどのオプションを設定できます。"
+msgstr ""
+"<guilabel>ロケーションペイン</guilabel>でほとんどのオプションを設定できます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_images.xml:70
 msgid "Diff"
-msgstr "差分"
+msgstr "差異"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_images.xml:69
@@ -7368,13 +7370,13 @@ msgid ""
 "The slider <guilabel>Block Size</guilabel> defines the size of the blocks "
 "which highlighting the image differences."
 msgstr ""
-"スライダー <guilabel>ブロック サイズ</guilabel> は、画像の違いを強調するブ"
+"<guilabel>ブロック サイズ</guilabel> スライダー は、画像の違いを強調するブ"
 "ロックのサイズを定義します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_images.xml:99
 msgid "Block Alpha"
-msgstr "ブロックアルファ"
+msgstr "ブロック透明度"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_images.xml:101
@@ -7382,8 +7384,8 @@ msgid ""
 "The <guilabel>Block Alpha</guilabel> slider defines how strong the alpha "
 "blending of the blocks is."
 msgstr ""
-"<guilabel>ブロック アルファ</guilabel> スライダーは、ブロックのアルファ ブレ"
-"ンドの強さを定義します。"
+"<guilabel>ブロック 透明度</guilabel> スライダーは、ブロックのアルファ ブレン"
+"ドの強さを定義します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_images.xml:107
@@ -7396,7 +7398,7 @@ msgid ""
 "The slider <guilabel>CD</guilabel> sets the <emphasis>Color Distance "
 "Threshold</emphasis> which helps to ignore color differences."
 msgstr ""
-"スライダー <guilabel>CD</guilabel> は、色の違いを無視するのに役立つ "
+"<guilabel>色距離閾値</guilabel> スライダー は、色の違いを無視するのに役立つ "
 "<emphasis>色距離閾値</emphasis> を設定します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
@@ -7467,9 +7469,9 @@ msgid ""
 "of the overlay nodes <guilabel>Alpha Blend</guilabel> or <guilabel>Alpha "
 "Blend Animation</guilabel> is."
 msgstr ""
-"<guilabel>Alpha</guilabel> スライダーは、オーバーレイ ノード <guilabel>Alpha "
-"Blend</guilabel> または <guilabel>Alpha Blendアニメーション</guilabel> のアル"
-"ファ ブレンドの強さを定義します。"
+"<guilabel>透明度</guilabel> スライダーは、<guilabel>アルファブレンドAlpha</"
+"guilabel> または <guilabel>アニメ表示</guilabel> のアルファ ブレンドの強さを"
+"定義します。"
 
 #. type: Content of: <appendix><table><title>
 #: English/Compare_images.xml:163 English/Compare_images.xml:168
@@ -7523,10 +7525,10 @@ msgid ""
 "software.  Editing operations, moving to differences, and merging operations "
 "in this format are the same as in a normal text file window."
 msgstr ""
-"バージョン2.16.8からCSVやTSVなどの区切り値テキストファイルを表計算ソフトのよ"
-"うにテーブル形式で表示し、編集することができるようになりました。 この形式での"
-"編集操作、差異への移動操作、マージ操作は、通常のテキストファイルウィンドウと"
-"同じです。"
+"バージョン2.16.8からCSVやTSVなどのテキストファイルを表計算ソフトのようにテー"
+"ブル形式で表示し、編集することができるようになりました。 この形式での編集操"
+"作、差異への移動操作、マージ操作は、通常のテキストファイルウィンドウと同じで"
+"す。"
 
 #. type: Content of: <article><mediaobject>
 #: English/Compare_table.xml:18
@@ -7556,9 +7558,9 @@ msgid ""
 "specify it on the Compare/Table page in the Options dialog."
 msgstr ""
 "ファイルがテーブル形式で開かれるかどうかは、ファイル名が定義されたパターンに"
-"一致するかどうかで決まります。デフォルトでは、ファイル名が、～.csv、～.tsvな"
-"らばテーブル形式で開かれます。このパターンを変更したい場合は、オプションダイ"
-"アログの比較/テーブルページでパターンを指定します。"
+"一致するかどうかで決まります。デフォルトでは、ファイル名が、*.csv、*.tsvなら"
+"ばテーブル形式で開かれます。このパターンを変更したい場合は、オプションダイア"
+"ログの比較/テーブルページでパターンを指定します。"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_table.xml:38
@@ -7662,7 +7664,7 @@ msgstr "テーブル形式固有の操作<placeholder type=\"indexterm\" id=\"0\
 msgid ""
 "You can change the column width by dragging the column boundary of a column "
 "heading."
-msgstr "列見出しの列の境界をマウスでドラッグすると列幅が変更されます。"
+msgstr "列ヘッダーの境界をマウスでドラッグすると列幅が変更されます。"
 
 #. type: Content of: <article><section><para><itemizedlist><listitem><para>
 #: English/Compare_table.xml:106
@@ -7676,7 +7678,7 @@ msgstr ""
 #. type: Content of: <article><section><para><itemizedlist><listitem><para>
 #: English/Compare_table.xml:110
 msgid "Text is selected vertically by dragging a column in the column heading."
-msgstr "列見出しの列をドラッグすると垂直方向にテキストが選択されます。"
+msgstr "列見出しの列をドラッグすると列単位でテキストが選択されます。"
 
 #. type: Content of: <article><section><para><itemizedlist><listitem><para>
 #: English/Compare_table.xml:115
@@ -7687,8 +7689,8 @@ msgid ""
 msgstr ""
 "<menuchoice> <guimenu>表示</guimenu> <guimenuitem>行を右端で折り返す</"
 "guimenuitem> </menuchoice> にチェックを入れると列ごとにテキストが折り返して表"
-"示されます。 セル内改行されたテキストを表示するにはこのメニューにチェックを入"
-"れてください。"
+"示されます。 セル内で改行されたテキストを表示するにはこのメニューにチェックを"
+"入れてください。"
 
 #. type: Content of: <article><title>
 #: English/Compare_webpages.xml:5
@@ -7706,7 +7708,7 @@ msgid ""
 "This topic describes how to compare webpages using the Webpage Compare "
 "window.  <note>"
 msgstr ""
-"このトピックは、Webページ比較ウインドウを使用して、Webページを比較する方法を"
+"このトピックは、Webページ比較ウィンドウを使用して、Webページを比較する方法を"
 "説明しています。<note>"
 
 #. type: Content of: <article><para><note><para>
@@ -7858,7 +7860,7 @@ msgstr "スクリーンショット"
 msgid ""
 "Converts the currently displayed range of web pages into images and compares "
 "them in the image comparison window."
-msgstr "Webページの現在表示範囲を画像化し、画像比較ウインドウで比較します。"
+msgstr "Webページの現在表示範囲を画像化し、画像比較ウィンドウで比較します。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Compare_webpages.xml:145
@@ -7870,7 +7872,7 @@ msgstr "フルサイズ スクリーンショット"
 msgid ""
 "Creates images of the entire area of web pages and compares them in the "
 "image comparison window."
-msgstr "Webページの全領域を画像化し、画像比較ウインドウで比較します。"
+msgstr "Webページの全領域を画像化し、画像比較ウィンドウで比較します。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Compare_webpages.xml:157
@@ -7880,7 +7882,7 @@ msgstr "HTML"
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_webpages.xml:160
 msgid "Compare the HTML contents of web pages in the file comparison window."
-msgstr "WebページのHTMLの内容をファイル比較ウインドウで比較します。"
+msgstr "WebページのHTMLの内容をファイル比較ウィンドウで比較します。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Compare_webpages.xml:169
@@ -7892,7 +7894,7 @@ msgstr "テキスト"
 msgid ""
 "Extracts text parts of web pages and compares them in the file comparison "
 "window."
-msgstr "Webページのテキスト部分を抽出し、ファイル比較ウインドウで比較します。"
+msgstr "Webページのテキスト部分を抽出し、ファイル比較ウィンドウで比較します。"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
 #: English/Compare_webpages.xml:181
@@ -7902,7 +7904,7 @@ msgstr "リソースツリー"
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_webpages.xml:184
 msgid "Compare resource trees of web pages in the folder comparison window."
-msgstr "Webページのリソースツリーをフォルダー比較ウインドウで比較します。"
+msgstr "Webページのリソースツリーをフォルダー比較ウィンドウで比較します。"
 
 #. type: Content of: <article><section><section><section><title><indexterm><primary>
 #: English/Compare_webpages.xml:196
@@ -8208,7 +8210,7 @@ msgid ""
 "you want to use those settings, you can simply import the options file "
 "instead of setting options manually."
 msgstr ""
-"差分比較、または、マージの設定を頻繁に変更する場合、また、 あなたの設定を他の"
+"差異比較、または、マージの設定を頻繁に変更する場合、また、 あなたの設定を他の"
 "WinMergeユーザーと共有したい場合は、 設定をファイルへエクスポートして保存する"
 "ことを検討してください。 あとでそれらの設定を使いたい時は、手動でオプションを"
 "設定する代わりに、単に設定ファイルをインポートすることができます。"
@@ -8706,7 +8708,7 @@ msgid ""
 "\"Don't ask this question again\" and press the Yes button."
 msgstr ""
 "<guilabel>ウィンドウがアクティブになった時のみ</guilabel> (デフォルト): "
-"WinMergeのウインドウがアクティブになった時、 もしファイルが変更されていれば、"
+"WinMergeのウィンドウがアクティブになった時、 もしファイルが変更されていれば、"
 "ファイルを再読み込みします。 ただし、この時ファイルを開きなおすか問い合わせる"
 "メッセージボックスが表示されます。 このメッセージボックスを表示したくない場合"
 "は、「再びこの質問をしない」をチェックし、 はいボタンを押下してください。"
@@ -9339,7 +9341,7 @@ msgstr "Diff アルゴリズム<placeholder type=\"indexterm\" id=\"0\"/>"
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:980
 msgid "<option>default</option> (default): The basic greedy diff algorithm."
-msgstr "<option>default</option> (デフォルト): 基本的な差分アルゴリズムです。"
+msgstr "<option>default</option> (デフォルト): 基本的な差異アルゴリズムです。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:987
@@ -9347,7 +9349,7 @@ msgid ""
 "<option>minimal</option>: Spend extra time to make sure the smallest "
 "possible diff is produced."
 msgstr ""
-"<option>minimal</option>: できるだけ差分が少なくなるように比較します。 その"
+"<option>minimal</option>: できるだけ差異が少なくなるように比較します。 その"
 "分、比較に時間がかかります。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -9355,7 +9357,7 @@ msgstr ""
 msgid ""
 "<option>patience</option>: Use \"patience diff\" algorithm when generating "
 "diff."
-msgstr "<option>patience</option>: patienceアルゴリズムで差分を比較します。"
+msgstr "<option>patience</option>: patienceアルゴリズムで差異を比較します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1001
@@ -9363,7 +9365,7 @@ msgid ""
 "<option>histogram</option>: This algorithm extends the patience algorithm to "
 "\"support low-occurrence common elements\"."
 msgstr ""
-"<option>histogram</option>: histogramアルゴリズムで差分を比較します。 このア"
+"<option>histogram</option>: histogramアルゴリズムで差異を比較します。 このア"
 "ルゴリズムはpatienceアルゴリズムを低頻度の共通要素に対応するように拡張してい"
 "ます。"
 
@@ -9393,8 +9395,8 @@ msgid ""
 "hunk boundaries to make diffs easier to read.  It has no effect if the Diff "
 "algorithm is default."
 msgstr ""
-"<option>有効</option> (デフォルト): 差分のハンク境界をシフトするヒューリス"
-"ティックを有効にして、差分を読みやすくします。 Diff アルゴリズムがdefaultの場"
+"<option>有効</option> (デフォルト): 差異のハンク境界をシフトするヒューリス"
+"ティックを有効にして、差異を読みやすくします。 Diff アルゴリズムがdefaultの場"
 "合、効果はありません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -12750,13 +12752,13 @@ msgid ""
 "field and click <guibutton>Open</guibutton>. If the file name you enter is "
 "not found, WinMerge opens the folder."
 msgstr ""
-"比較したいフォルダーの中をブラウズしてください。ファイルやサブフォルダーは選"
-"択せず、<guilabel>ファイル名</guilabel>フィールドに<literal>フォルダーの選択"
-"</literal>と表示されたら、<guibutton>開く</guibutton>をクリックするだけです。"
-"既にファイルやサブフォルダーを選択してしまった場合は、<guilabel>ファイル名</"
+"比較したいフォルダーを開いてください。ファイルやサブフォルダーは選択せず、"
+"<guilabel>ファイル名</guilabel>フィールドに<literal>Folder Selection</"
+"literal>と表示されたら、<guibutton>開く</guibutton>をクリックするだけです。既"
+"にファイルやサブフォルダーを選択してしまった場合は、<guilabel>ファイル名</"
 "guilabel>フィールドに適当な文字列を入力して<guibutton>開く</guibutton>をク"
-"リックしてください。入力したファイル名が見つからない場合、WinMergeはフォル"
-"ダーを開きます。"
+"リックしてください。入力したファイル名が見つからない場合、フォルダーが開きま"
+"す。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
 #: English/Faq.xml:76
@@ -12775,7 +12777,7 @@ msgstr ""
 "現時点ではクロスプラットフォームサポートの予定はありませんが、Jochen Neubeck "
 "による非公式バージョン <ulink url=\"https://github.com/datadiode/"
 "winmerge2011\"> WinMerge 2011</ulink>をお試しください。このバージョンは "
-"Linux でも Wine で動作するはずです。"
+"Linux でも Wine で動作する可能性があります。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Faq.xml:91 English/Install.xml:180 English/Version_control.xml:53
@@ -12812,7 +12814,7 @@ msgid ""
 msgstr ""
 "CVS統合機能を提供することは微妙です。 なぜなら、すでに多くの良質なCVSクライア"
 "ントが存在するからです。 けれども、WinMergeは、それらのCVSクライアントのひと"
-"つ、TortoiseCVS(<xref linkend=\"Version_control\" />で後述)  の差分機能を統合"
+"つ、TortoiseCVS(<xref linkend=\"Version_control\" />で後述)  の差異機能を統合"
 "します。 WinMergeは、コンフリクトファイルを解決することもできます。 (さらなる"
 "情報は、<xref linkend=\"ResolveConflictFiles\" />を参照)。"
 
@@ -12982,7 +12984,7 @@ msgstr "ファイル内の文字がクエスチョンマークになってみえ
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:219
 msgid "This is what we call a <glossterm>lossy conversion</glossterm>."
-msgstr "私たちは、これを、<glossterm>非可逆式変換</glossterm>と呼んでいます。"
+msgstr "私たちは、これを、<glossterm>不可逆変換</glossterm>と呼んでいます。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:223
@@ -12993,12 +12995,12 @@ msgid ""
 "<guilabel>Detect codepage info</guilabel> is checked. If it is, deselect the "
 "option, click <guibutton>OK</guibutton>, and see if that helps."
 msgstr ""
-"ANSIのファイルに関しては、多分コードページの問題です。障害調査をする為に、"
-"<menuchoice><guimenu>編集(E)</guimenu>→<guimenuitem>設定(O)</guimenuitem></"
-"menuchoice>とクリックしてください。「コードページ」カテゴリにある<guilabel>"
-"ファイルのコードページ情報を検出する</guilabel>がチェックされているか確認して"
-"ください。もしチェックされていたら、チェックを外し、<guibutton>OK</guibutton>"
-"をクリックし、問題が解決するかを確認してください。"
+"ANSIのファイルに関しては、コードページの問題の可能性があります。障害調査をす"
+"るために、<menuchoice><guimenu>編集(E)</guimenu>→<guimenuitem>設定(O)</"
+"guimenuitem></menuchoice>とクリックしてください。「コードページ」カテゴリにあ"
+"る<guilabel>ファイルのコードページ情報を検出する</guilabel>がチェックされてい"
+"るか確認してください。もしチェックされていたら、チェックを外し、"
+"<guibutton>OK</guibutton>をクリックし、問題が解決するかを確認してください。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
 #: English/Faq.xml:237
@@ -13182,9 +13184,9 @@ msgid ""
 msgstr ""
 "ペリースタイルのパッチは、別のフォルダーに、元ファイルと変更後のファイルが"
 "入っているzipファイルです。 WinMergeは、(驚くべきことに！)これらのファイルの"
-"取扱いを内部的にサポートしています。 比較操作を実行し、zipファイルを左右両方"
-"とも選択してください。WinMergeは、zipファイルの内容をフォルダー比較ウィンドウ"
-"に展開し、 元ファイルと変更後ファイルを比較します。"
+"取扱いを内部的にサポートしています。 比較操作を実行し、左右の両方に同じzip"
+"ファイルを指定してください。WinMergeは、zipファイルの内容をフォルダー比較ウィ"
+"ンドウに展開し、 元ファイルと変更後ファイルを比較します。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
 #: English/Faq.xml:385
@@ -13263,7 +13265,7 @@ msgid ""
 "Unicode encoding, UCS-2LE."
 msgstr ""
 "<guilabel>Unicode</guilabel>: そのファイルは、多分、Windowsのデフォルトの"
-"Unicodeエンコーティングである、UCS-2LEです。"
+"Unicode エンコーディングである、UCS-2LEです。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><para>
 #: English/Faq.xml:447
@@ -13280,9 +13282,9 @@ msgid ""
 "<guilabel>Unicode big endian</guilabel>: The file is in a different Unicode "
 "encoding that is little used or supported in Windows, probably UCS-2BE."
 msgstr ""
-"<guilabel>Unicode ビッグ・エインディアン</guilabel>: そのファイルは、あまり使"
-"用されていないかWindowsでサポートされている 異なるUnicodeエンコーディングで、"
-"恐らく、UCS-2BEです。"
+"<guilabel>Unicode ビッグエンディアン</guilabel>: そのファイルは、あまり使用さ"
+"れていないかWindowsでサポートされている 異なるUnicodeエンコーディングで、恐ら"
+"く、UCS-2BEです。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Faq.xml:464
@@ -13412,10 +13414,11 @@ msgid ""
 msgstr ""
 "ファイルやフォルダー比較の際、比較範囲を限定するためにファイルフィルターを使"
 "用することができます。 これは、比較結果から、あなたが興味のない差異を取り除き"
-"たい場合に便利です。 フィルターは、正規表現を元に規定します。 WinMerge は、ポ"
-"ピュラーな PCRE (Perl Compatible Regular Expressions) 正規表現エンジンを使用"
-"しています。<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
-"type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
+"たい場合に便利です。 フィルターは、正規表現を基づいて定義されます。 WinMerge "
+"は、一般的に広く使われている PCRE (Perl Compatible Regular Expressions) 正規"
+"表現エンジンを使用しています。<placeholder type=\"indexterm\" id=\"0\"/"
+"><placeholder type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" "
+"id=\"2\"/>"
 
 #. type: Content of: <article><para>
 #: English/Filters.xml:31
@@ -13426,10 +13429,10 @@ msgid ""
 "the type of filter, the item is either included or excluded in the "
 "comparison."
 msgstr ""
-"フィルターの基本機能はシンプルです。 通常比較されるであろう、それぞれのアイテ"
-"ム(フォルダー、ファイル、ファイル中の行)を評価し、 対象のアイテムがフィルター"
-"式にマッチした場合、フィルターを適用します。 フィルタータイプにより、アイテム"
-"は、比較に含められるか、除外されるかのどちらかです。"
+"フィルターの基本機能はシンプルです。 比較対象となる各項目(フォルダー、ファイ"
+"ル、ファイル中の行)を評価し、 対象の項目がフィルター式にマッチした場合、フィ"
+"ルターを適用します。 フィルタータイプにより、項目は、比較に含められるか、除外"
+"されるかのどちらかです。"
 
 #. type: Content of: <article><para>
 #: English/Filters.xml:37
@@ -15688,7 +15691,7 @@ msgid ""
 "literal> - maps diff codes to labels"
 msgstr ""
 "<literal>choose(DiffCode % 3, \"equal\", \"different\", \"unique\")</"
-"literal> - 差分コードをラベルに対応付けます"
+"literal> - 差異コードをラベルに対応付けます"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Filters.xml:1028
@@ -18345,7 +18348,7 @@ msgstr "TortoiseCVS との連携<placeholder type=\"indexterm\" id=\"0\"/>"
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
 #: English/Install.xml:220
 msgid "Sets WinMerge to be the TortoiseCVS diff application."
-msgstr "WinMergeを、TortoiseCVSの差分比較ツールに設定します。"
+msgstr "WinMergeを、TortoiseCVSのDiff ツールに設定します。"
 
 #. type: Content of: <article><section><section><example><title>
 #: English/Install.xml:226 English/Version_control.xml:65
@@ -18361,7 +18364,7 @@ msgstr "TortoiseSVN との連携<placeholder type=\"indexterm\" id=\"0\"/>"
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
 #: English/Install.xml:230
 msgid "Sets WinMerge to be the TortoiseSVN diff application."
-msgstr "WinMergeを、TortoiseSVNの差分比較ツールに設定します。"
+msgstr "WinMergeを、TortoiseSVNのDiff ツールに設定します。"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term><indexterm><primary>
 #: English/Install.xml:236
@@ -18586,7 +18589,7 @@ msgid ""
 "text files, and demonstrates simple file comparing and merging operations. "
 "See <xref linkend=\"Compare_bin\" /> for related information about hex files."
 msgstr ""
-"このセクションでは、WinMerge がテキストファイルの差分をどのように検出し、表示"
+"このセクションでは、WinMerge がテキストファイルの差異をどのように検出し、表示"
 "するかを説明します。また、簡単な比較およびマージ操作の例も紹介します。バイナ"
 "リファイルに関する情報は、<xref linkend=\"Compare_bin\" />を参照してくださ"
 "い。"
@@ -18617,7 +18620,7 @@ msgstr ""
 "通常、何らかの関連を持つ 2 つのファイルを比較します。たとえば、別々の時間、ま"
 "たは、別々の人によって編集された二つのバージョンのファイルなどです。 そのよう"
 "な二つのファイルを検査すれば、いくつかの同じような領域と 同様に、異なる文字と"
-"単語、異なる行、連続したテキストブロックの差分など、いくつかの違いを見つける"
+"単語、異なる行、連続したテキストブロックの差異など、いくつかの違いを見つける"
 "ことができます。 しかし、二つのファイル間のすべての差異を、お気に入りのエディ"
 "ターで調べることは、 退屈で間違いを起こしやすいでしょう。 WinMergeのような、"
 "比較／マージに特化したツールは、 この作業を体系的かつ効率的に 行えるように設"
@@ -18636,7 +18639,7 @@ msgstr ""
 "スペルチェッカーのようなシンプルなツールは、文書全体を通して、辞書と異なる単"
 "語をハイライトし、 スペルミスの修正を支援します。しかしながら、文字と単語のみ"
 "で見ることは、複数ファイル間の差異を理解するために 効率的な方法ではありませ"
-"ん。 この理由で、多くの差分ユーティリティは比較の基本単位として、 行を代わり"
+"ん。 この理由で、多くのDiff ユーティリティは比較の基本単位として、 行を代わり"
 "に使用します。"
 
 #. type: Content of: <article><section><para>
@@ -18664,7 +18667,7 @@ msgid ""
 msgstr ""
 "行単位での比較は、単語単位よりも高速であるため、一度に一行を比較する代わり"
 "に、単一の違いとして行全体を扱うことは、さらに有効です。 あとで見るように、複"
-"数行の差分を見つけることは、 マージにも効率的です。"
+"数行の差異を見つけることは、 マージにも効率的です。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Intro_diffs.xml:48
@@ -18677,7 +18680,7 @@ msgid ""
 "This section offers a simple example that demonstrates how to compare line "
 "differences between two files in WinMerge:"
 msgstr ""
-"このセクションは、二つのファイル間の差分を、 WinMergeで行比較する方法の単純な"
+"このセクションは、二つのファイル間の差異を、 WinMergeで行比較する方法の単純な"
 "例を述べています。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
@@ -18781,7 +18784,7 @@ msgstr ""
 #. type: Content of: <article><section><section><orderedlist><listitem><variablelist><varlistentry><term>
 #: English/Intro_diffs.xml:113
 msgid "Number of differences"
-msgstr "差分の個数"
+msgstr "差異の個数"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
 #: English/Intro_diffs.xml:116
@@ -18789,7 +18792,7 @@ msgid ""
 "The message in the status bar at the bottom of the WinMerge window tells you "
 "that two differences were detected."
 msgstr ""
-"このメッセージは、 WinMergeウィンドウ下部のステータスバーにあり、 2つの差分が"
+"このメッセージは、 WinMergeウィンドウ下部のステータスバーにあり、 2つの差異が"
 "見つかったことを説明しています。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><variablelist><varlistentry><term>
@@ -18802,7 +18805,7 @@ msgstr "差異の色"
 msgid ""
 "Difference blocks are marked with the difference background color (gold, by "
 "default)."
-msgstr "差分ブロックは異なる背景色でマークされます。 (デフォルトは、ゴールド)"
+msgstr "差異ブロックは異なる背景色でマークされます。 (デフォルトは、ゴールド)"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
 #: English/Intro_diffs.xml:129
@@ -18810,7 +18813,7 @@ msgid ""
 "Line differences can be enabled to mark changed text within differences "
 "blocks, using the word background color (light yellow, by default)."
 msgstr ""
-"行差分は、単語背景色を使用して、 差分ブロック中の変更されたテキストをマークす"
+"行差異は、単語背景色を使用して、 差異ブロック中の変更されたテキストをマークす"
 "ることができます。 (デフォルトは、ライトイエロー)"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
@@ -18855,10 +18858,10 @@ msgstr ""
 "り多くの灰色の空行を、一方のバージョンに挿入します。 これらの灰色の空行は、"
 "ソースファイル中の空行を表しているわけではありません。 これらは、表示上のプ"
 "レースホルダーに過ぎません。 プレースホルダー行の目的は、左と右のバージョンの"
-"差分を垂直に整列させることです。 例で述べたように、 <computeroutput>WinMerge "
+"差異を垂直に整列させることです。 例で述べたように、 <computeroutput>WinMerge "
 "compares lines</computeroutput>のテキストは、 たとえソースファイル中では異な"
 "る行にあっても、 比較ウィンドウには並んで表示されます。 このことが、WinMerge"
-"での差分比較を、 従来のエディターより容易にさせています。"
+"での差異比較を、 従来のエディターより容易にさせています。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><variablelist><varlistentry><listitem><tip><para>
 #: English/Intro_diffs.xml:161
@@ -18923,7 +18926,7 @@ msgstr ""
 #. type: Content of: <article><section><section><orderedlist><listitem><mediaobject><textobject><phrase>
 #: English/Intro_diffs.xml:217
 msgid "Compare Files Diff Pane"
-msgstr "ファイル比較の差分ペイン"
+msgstr "ファイル比較の差異ペイン"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
 #: English/Intro_diffs.xml:224
@@ -19011,9 +19014,9 @@ msgstr ""
 "があります。 例えば、お使いのバージョン管理システムが、マージ・コンフリクトに"
 "より、リポジトリへのコミットを妨害するかもしれません。 あなたが自分のバージョ"
 "ンで作業中に、他の誰かが、同じファイルの異なるバージョンをチェックインして、 "
-"バージョン管理システムが差分を自動マージできなかった場合、競合が発生します。 "
+"バージョン管理システムが差異を自動マージできなかった場合、競合が発生します。 "
 "競合が発生した場合、あなたのバージョンをコミットする前に、 競合しているバー"
-"ジョンをマージする必要があるかもしれません。 多くのシステムには、差分とマージ"
+"ジョンをマージする必要があるかもしれません。 多くのシステムには、差異とマージ"
 "ツールが統合されています。 しかし、あなたは、代わりにWinMergeを使いたいかもし"
 "れません。"
 
@@ -19028,7 +19031,7 @@ msgid ""
 "identical), and you are done merging."
 msgstr ""
 "比較時と同様に、WinMerge のツールバー（またはキーボードショートカット）を使っ"
-"て差分を順に確認します。各差分について、左または右の内容を反対側にコピーして"
+"て差異を順に確認します。各差異について、左または右の内容を反対側にコピーして"
 "解決します。すべての差異を解決した時、 WinMergeは、すべての差異が解決されたこ"
 "とを知らせ、 マージ作業を完了します。"
 
@@ -19071,7 +19074,7 @@ msgstr ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> <guibutton>右側へコピー</"
 "guibutton>をクリックすると、 <filename>File1</filename>から、"
 "<filename>File2</filename>へ、 一つの差異がマージされます。 <filename>File2</"
-"filename>の中の差分1行が、 <filename>File1</filename>の2行で置き換えられ、 灰"
+"filename>の中の差異1行が、 <filename>File1</filename>の2行で置き換えられ、 灰"
 "色の空行が無くなっていることに注意してください。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
@@ -19193,7 +19196,7 @@ msgstr ""
 "どちらか一方のソースファイルの代わりに、別のファイルに書き込むには、 "
 "<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>名前を付けて保存</"
 "guimenuitem> </menuchoice>を使用してください。例えば、ターゲットファイルが、"
-"バージョン管理システムによって作成された、 差分ファイル、または、競合ファイル"
+"バージョン管理システムによって作成された、 差異ファイル、または、競合ファイル"
 "などの場合です。"
 
 #. type: Content of: <article><section><section><para>
@@ -19221,7 +19224,7 @@ msgid ""
 "easy to understand and handle."
 msgstr ""
 "WinMergeは、<ulink url=\"https://opensource.org/\">オープンソース </ulink>"
-"の、Windows用差分表示／マージツールです。WinMergeは、 フォルダーとファイルの"
+"の、Windows用差異表示／マージツールです。WinMergeは、 フォルダーとファイルの"
 "両方(または3つすべて)をわかり易く、 そして扱い易いヴィジュアル形式で比較でき"
 "ます。"
 
@@ -19233,7 +19236,7 @@ msgid ""
 "an external differencing/merging tool or as a standalone application."
 msgstr ""
 "WinMergeは、プロジェクトバージョン間の変更点を特定したり、マージしたりする際"
-"に、非常に有効です。 WinMergeは、外部の差分／マージツール、または、単体のアプ"
+"に、非常に有効です。 WinMergeは、外部の差異／マージツール、または、単体のアプ"
 "リケーションとして 使用することができます。"
 
 #. type: Content of: <article><para>
@@ -19255,7 +19258,7 @@ msgid ""
 "editing binary files with WinMerge can break the files."
 msgstr ""
 "WinMergeは、バイナリエディターではありません。WinMergeは、バイナリ・ファイル"
-"の内容と 差分を表示することができます。しかし、その情報は表示専用を意図してい"
+"の内容と 差異を表示することができます。しかし、その情報は表示専用を意図してい"
 "ます (WinMergeでのバイナリ・ファイル編集は、ファイルを壊すかもしれません)。"
 
 #. type: Content of: <article><para>
@@ -19275,8 +19278,8 @@ msgid ""
 "The latest version &WinMergeVersion; is considered a stable and reliable "
 "program to use."
 msgstr ""
-"最新バージョン &WinMergeVersion;安定して信頼できるプログラムであると考えられ"
-"ています。"
+"最新バージョン &WinMergeVersion; は、安定して信頼できるプログラムとされていま"
+"す。"
 
 #. type: Content of: <article><note><para>
 #: English/Introduction.xml:31
@@ -19396,17 +19399,17 @@ msgstr ""
 #. type: Content of: <article><section><itemizedlist><listitem><ulink>
 #: English/Introduction.xml:88
 msgid "WinMerge discussions"
-msgstr "WinMerge ディスカッション"
+msgstr "WinMerge discussions"
 
 #. type: Content of: <article><section><itemizedlist><listitem><ulink>
 #: English/Introduction.xml:91
 msgid "Image Compare discussions"
-msgstr "画像比較に関するディスカッション"
+msgstr "Image Compare discussions"
 
 #. type: Content of: <article><section><itemizedlist><listitem><ulink>
 #: English/Introduction.xml:94
 msgid "Website discussions"
-msgstr "ウェブサイトでのディスカッション"
+msgstr "Website discussions"
 
 #. type: Content of: <article><section><para>
 #: English/Introduction.xml:98
@@ -19509,9 +19512,9 @@ msgid ""
 "the interface, including menus, dialogs, tooltips, and messages, to the "
 "language you choose."
 msgstr ""
-"WinMergeのインターフェイスはデフォルトで英語となっていますが、ローカライズが"
-"可能です。 各種インターフェイス、メニュー、ダイアログ、ツールチップ、メ"
-"ニュー、 メッセージの各種インターフェイスが 選択した言語に翻訳されます。"
+"WinMergeのユーザーインターフェイスは、既定では英語ですが、他の言語に変更でき"
+"ます。 ユーザーインターフェイス（メニュー、ダイアログ、ツールチップ、メッセー"
+"ジなど）は、選択した言語で表示されます。"
 
 #. type: Content of: <article><para>
 #: English/Locales.xml:13
@@ -19521,14 +19524,14 @@ msgid ""
 "alphabetized. (Those issues should be addressed in the conventional Windows "
 "manner by using the Regional settings in the Control Panel.)"
 msgstr ""
-"ローカライズされるのは文字列のみであることに注意してください。 例えば、数値の"
-"桁区切りや、単語の並び替えの順序などには影響されません。 (これらはWindowsのコ"
-"ントロールパネルの「地域と言語」設定に依存します。)"
+"ローカライズの対象は文字列のみです。 例えば、数値の桁区切りや、単語の並び替え"
+"の順序などには影響されません。 (これらはWindowsのコントロールパネルの「地域と"
+"言語」設定に依存します。)"
 
 #. type: Content of: <article><para>
 #: English/Locales.xml:18
 msgid "Localizing your WinMerge installation involves these two basic steps:"
-msgstr "WinMergeのローカライズする手順は以下の２ステップとなります。"
+msgstr "WinMerge をローカライズする手順は、次の 2 ステップです。"
 
 #. type: Content of: <article><orderedlist><listitem><para>
 #: English/Locales.xml:23
@@ -19536,8 +19539,8 @@ msgid ""
 "<xref linkend=\"Locales_config_files\" />: Make one or more language files "
 "available to WinMerge."
 msgstr ""
-"<xref linkend=\"Locales_config_files\" />1つ以上の翻訳ファイルをWinMergeに利"
-"用可能なファイルに設定"
+"<xref linkend=\"Locales_config_files\" />: 翻訳ファイルを WinMerge で使用でき"
+"るようにします。"
 
 #. type: Content of: <article><orderedlist><listitem><para>
 #: English/Locales.xml:28
@@ -19545,7 +19548,7 @@ msgid ""
 "<xref linkend=\"Locales_changing\" />: Choose one of the configured language "
 "files."
 msgstr ""
-"<xref linkend=\"Locales_changing\" />使用可能な言語から翻訳したい言語を選択"
+"<xref linkend=\"Locales_changing\" />使用可能な言語から表示したい言語を選択"
 
 #. type: Content of: <article><section><title>
 #: English/Locales.xml:34
@@ -19568,8 +19571,8 @@ msgid ""
 "instructions in <xref linkend=\"Installing_usinginstaller\" /> describe how "
 "to use the Select Components page to install one or more translation files."
 msgstr ""
-"WinMergeインストール中に言語の設定を行うのが最も簡単です。 <xref "
-"linkend=\"Installing_usinginstaller\" />には、コンポーネントの選択ページから "
+"インストール時に言語を設定するのが最も簡単です。 <xref "
+"linkend=\"Installing_usinginstaller\" />では、コンポーネントの選択ページから "
 "1つ以上の翻訳ファイルを選択する方法が説明されています。"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
@@ -19580,9 +19583,9 @@ msgid ""
 "can get the latest translation files from the WinMerge site and configure it "
 "yourself:"
 msgstr ""
-"インストール時に、翻訳ファイルを構成しなかった(または、インストーラーを全く使"
-"用しなかった)場合も、 WinMergeを再インストールする必要はありません。WinMerge"
-"サイトから最新の翻訳ファイルを手に入れて構成することができます。"
+"インストール時に、翻訳ファイルをインストールしなかった(または、インストーラー"
+"を全く使用しなかった)場合も、 WinMergeを再インストールする必要はありません。"
+"WinMergeサイトから最新の翻訳ファイルを手に入れて構成することができます。"
 
 #. type: Content of: <article><section><itemizedlist><listitem><orderedlist><listitem><simpara>
 #: English/Locales.xml:55
@@ -19591,10 +19594,10 @@ msgid ""
 "under the WinMerge installation directory (where <filename>WinMergeU.exe</"
 "filename> is located), if it does not already exist."
 msgstr ""
-"WinMergeのインストールディレクトリ(WinMerge.exeかWinMergeU.exeがあるディレク"
-"トリ）に <filename class=\"directory\">Languages</filename>という名前のフォル"
-"ダーを作成します。（既にLanguagesフォルダーが存在する場合はスキップして構いま"
-"せん。）"
+"WinMerge のインストールフォルダー（WinMerge.exe または WinMergeU.exe がある"
+"フォルダー）に <filename class=\"directory\">Languages</filename>という名前の"
+"フォルダーを作成します。（既にLanguagesフォルダーが存在する場合はスキップして"
+"構いません。）"
 
 #. type: Content of: <article><section><itemizedlist><listitem><orderedlist><listitem><simpara>
 #: English/Locales.xml:62
@@ -19617,10 +19620,10 @@ msgid ""
 "directory."
 msgstr ""
 "ダウンロードされたアーカイブを解凍し、その中より<filename>*.po</filename>ファ"
-"イルを探します。 (*の個所は言語名となります。例えば、スウェーデンの翻訳ファイ"
-"ル名であれば<filename>Swedish.po</filename>となります。)  WinMergeインストー"
-"ルディレクトリの<filename>Languages</filename>サブフォルダーにあなたの欲しい"
-"翻訳ファイルをコピーしてください。"
+"イルを探します。 (* は言語名を表します。例えば、スウェーデン語の翻訳ファイル"
+"名であれば<filename>Swedish.po</filename>です。)  WinMergeインストールディレ"
+"クトリの<filename>Languages</filename>サブフォルダーに必要な翻訳ファイルをコ"
+"ピーしてください。"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
 #: English/Locales.xml:79
@@ -19668,7 +19671,7 @@ msgstr ""
 #. type: Content of: <article><section><para>
 #: English/Locales.xml:108
 msgid "The language of the WinMerge user interface is instantly updated."
-msgstr "GUI言語の変更は、即座にWinMergeの各インターフェイスに反映されます。"
+msgstr "GUI言語の変更は、即座に反映されます。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Locales.xml:114
@@ -19687,7 +19690,7 @@ msgid ""
 "WinMerge localizations contributed to date include the following "
 "translations:"
 msgstr ""
-"これまでの寄贈により、WinMergeは以下の言語のローカライズが可能となっていま"
+"これまでの貢献により、WinMergeは以下の言語のローカライズが可能となっていま"
 "す。"
 
 #. type: Content of: <article><section><itemizedlist><listitem><simpara>
@@ -19899,9 +19902,9 @@ msgid ""
 "would be great if you also provide a corrected version of the translated "
 "text."
 msgstr ""
-"あながたが翻訳ミスを見つけた場合は、バグとして <ulink url=\"https://github."
-"com/WinMerge/winmerge/issues\">バグリスト</ulink>に投稿してください。 また、"
-"翻訳された文章の訂正版を提供してくだされば幸いです。"
+"あなたが翻訳ミスを見つけた場合は、バグとして <ulink url=\"https://github.com/"
+"WinMerge/winmerge/issues\">バグトラッカー</ulink>に投稿してください。 また、"
+"翻訳された文章の修正版を提供していただけると助かります。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Locales.xml:289
@@ -19926,13 +19929,13 @@ msgid ""
 "from us in one of the <ulink url=\"https://forums.winmerge.org/\">WinMerge "
 "forums</ulink>."
 msgstr ""
-"新たに翻訳ファイルをリストに追加したい場合は、WinMergeのサイトにある<ulink "
+"新たに翻訳ファイルを追加したい場合は、WinMergeのサイトにある<ulink "
 "url=\"https://winmerge.org/translations/\">翻訳ドキュメント</ulink> を読み、"
-"方法を学んでください。ほとんどの翻訳が完全にできていないため、ぜひご協力をお"
-"願いいたします。翻訳する（または翻訳を改善する）に あたって、コンパイルツール"
-"や、WinMergeの知識をすべて備えている必要はありません。もし困ったことがあれ"
-"ば、 <ulink url=\"https://forums.winmerge.org/ \">WinMergeフォーラム</ulink>"
-"より、私たちに支援を求めてください。"
+"手順を確認してください。まだ未完成の翻訳も多いため、ぜひご協力をお願いいたし"
+"ます。翻訳する（または翻訳を改善する）に あたって、コンパイルツールや、"
+"WinMergeの知識をすべて備えている必要はありません。もし困ったことがあれば、 "
+"<ulink url=\"https://forums.winmerge.org/ \">WinMergeフォーラム</ulink>より、"
+"フォーラムでお気軽にご相談ください。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Open_paths.xml:4 English/Quick_start.xml:207
@@ -21165,8 +21168,9 @@ msgid ""
 "extract text data from MS Word files for WinMerge to compare."
 msgstr ""
 "WinMergeプラグインは、COM APIで書かれたカスタムDLLまたはスクリプトレットで"
-"す。 これは、比較の前にデータを前処理します。 例えば、WinMergeで比較するため"
-"にMS Word のファイルからテキストデータを抽出するプラグインがあります。"
+"す。 プラグインは、比較前にデータを加工(前処理)します。 例えば、WinMergeで比"
+"較するためにMS Word のファイルからテキストを抽出して比較可能にするプラグイン"
+"があります。"
 
 #. type: Content of: <article><para><indexterm><primary>
 #: English/Plugins.xml:12
@@ -21194,7 +21198,8 @@ msgid ""
 "subfolder. A number of plugins can be installed for you by WinMerge."
 msgstr ""
 "<filename class=\"directory\">MergePlugins</filename> サブフォルダーにインス"
-"トールされます。WinMergeは、いくつかのプラグインをインストールします。"
+"トールされます。WinMerge には、いくつかのプラグインがあらかじめ含まれていま"
+"す。"
 
 #. type: Content of: <article><itemizedlist><listitem><para>
 #: English/Plugins.xml:27
@@ -21257,9 +21262,9 @@ msgid ""
 "decompressing it. The original file is not changed: a temporary transformed "
 "file is created and loaded in WinMerge."
 msgstr ""
-"このタイプのプラグインは、圧縮ファイルを解凍して表示可能な形式に変換します。 "
-"元のファイルは変更されません。 一時的に変換されたファイルが作成され、WinMerge"
-"にロードされます。"
+"このタイプのプラグインは、ファイルを展開・変換し、表示可能な形式にします。元"
+"のファイルは変更されません。 一時的に変換されたファイルが作成され、WinMergeに"
+"ロードされます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Plugins.xml:62
@@ -21270,7 +21275,7 @@ msgid ""
 "Folders dialog. Unpacker plugins are not available in the File Compare "
 "window."
 msgstr ""
-"展開プラグインは、選択されたテキストやファイル内の差分に対してではなく、ファ"
+"展開プラグインは、選択されたテキストやファイル内の差異に対してではなく、ファ"
 "イル全体に対して機能します。 したがって、フォルダー比較ウィンドウまたはファイ"
 "ルまたは フォルダーの選択ダイアログからファイル比較を起動するときのみ利用可能"
 "です。 展開プラグインはファイル比較ウィンドウでは利用できません。"
@@ -21299,7 +21304,7 @@ msgid ""
 "applies the unpacker in all situations, and you are sure to have the same "
 "result when you compare a folder, or when you merge two versions of a file."
 msgstr ""
-"フォルダーを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに 対して異なる"
+"フォルダーを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに対して異なる"
 "結果をもたらす可能性があります。 たとえば、圧縮されていないときには同一のファ"
 "イルでも、 圧縮された場合、作成日が含まれているために異なる場合があります。 "
 "WinMergeはすべての状況で展開プラグインを適用します。フォルダーを比較するとき"
@@ -21353,7 +21358,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Plugins.xml:110
 msgid "Suggested plugins and automatic modes"
-msgstr "提案されたプラグインと自動モード"
+msgstr "推奨プラグインと自動モード"
 
 #. type: Content of: <article><section><para>
 #: English/Plugins.xml:112
@@ -21372,7 +21377,7 @@ msgstr ""
 "ルフィルター</citetitle>にも リストされています) その拡張子は、1つ以上のファ"
 "イルタイプをプラグインに関連付けるために使用されます。: 比較するファイルの拡"
 "張子があるプラグインの拡張子リストと一致する場合、 そのプラグインが"
-"<firstterm>提案されたプラグイン</firstterm>となります。"
+"<firstterm>推奨プラグイン</firstterm>となります。"
 
 #. type: Content of: <article><section><para>
 #: English/Plugins.xml:120
@@ -21647,8 +21652,8 @@ msgid ""
 "This menu item is enabled only if the selected file's type is supported by "
 "an available unpacking plugin."
 msgstr ""
-"選択したファイルのタイプが利用可能な展開プラグインによってサポートされている"
-"場合にのみ、 このメニュー項目が有効になります。"
+"選択したファイル形式が、利用可能な展開プラグインに対応している場合のみ、 この"
+"メニュー項目が有効になります。"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Plugins.xml:296
@@ -22653,7 +22658,7 @@ msgstr ""
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
 #: English/Plugins.xml:1261
 msgid "<ulink url=\"https://graphviz.org/\">Graphviz</ulink>"
-msgstr "<ulink url=\"https://graphviz.org/\">グラフビズ</ulink>"
+msgstr "<ulink url=\"https://graphviz.org/\">Graphviz</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
 #: English/Plugins.xml:1268
@@ -23824,8 +23829,7 @@ msgid ""
 "<guimenuitem>Insert Date</guimenuitem> insert date in the current locale "
 "format."
 msgstr ""
-"<guimenuitem>日付を挿入</guimenuitem> insert date in the current locale "
-"format."
+"<guimenuitem>日付を挿入</guimenuitem> 現在のロケール形式で日付を挿入します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
 #: English/Plugins.xml:2692
@@ -23833,8 +23837,7 @@ msgid ""
 "<guimenuitem>Insert Time</guimenuitem> insert time in the current locale "
 "format."
 msgstr ""
-"<guimenuitem>時刻を挿入</guimenuitem> insert time in the current locale "
-"format."
+"<guimenuitem>時刻を挿入</guimenuitem> 現在のロケール形式で時刻を挿入します。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Plugins.xml:2719
@@ -23905,10 +23908,9 @@ msgid ""
 "other methods and more advanced skills, which are covered in other help "
 "topics."
 msgstr ""
-"WinMergeをインストールしたら、トピック中の手順と議論を通じて、 基本的な"
-"WinMergeの操作と概念を学んでください。 その方法は、一つではありません。各タス"
-"クを実行するには、通常いくつの方法があります。 これが完了したら、他のヘルプト"
-"ピックでカバーされる他の方法やより高度なスキルを学ぶことができます。"
+"WinMergeをインストールしたら、このトピックで基本操作と概念を学んでください。"
+"操作方法はいくつかあり、同じ作業でも複数の方法で実行できます。基本を理解した"
+"後は、他のトピックで応用や高度な使い方を学べます。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Quick_start.xml:22
@@ -24339,9 +24341,9 @@ msgid ""
 msgstr ""
 "<guimenu>マージ(M)</guimenu>メニュー、ツールバーボタン、または、コンテキスト"
 "(右クリック)メニューなど、 多くの方法で、ファイルとフォルダーを管理できま"
-"す。 The most important action is making files or folders identical in both "
-"sides by selecting one of several Copy items.  ファイル、または、フォルダーを"
-"他方へコピーした時、比較結果は、<literal>同一</literal>に変わります。"
+"す。 最も重要な操作は、コピー操作を使って、左右のファイルまたはフォルダーを同"
+"一にすることです。  ファイル、または、フォルダーを他方へコピーした時、比較結"
+"果は、<literal>同一</literal>に変わります。"
 
 #. type: Content of: <article><section><para>
 #: English/Quick_start.xml:281
@@ -24436,10 +24438,10 @@ msgstr ""
 "ファイル比較ウィンドウは、分割されたファイルペインに、二つの選択されたファイ"
 "ルをとなり同士に表示します。 異なる行は、背景色がハイライト表示されます。 ひ"
 "とつ、または、連続した異なる行は、ひとつの差異(<glossterm>diff</glossterm>)と"
-"して表されます。 In the preceding example, a single difference is selected "
-"in the File panes and displayed by itself in the Diff Pane.  WinMerge mainly "
-"works with these differences, not separate lines.  差異をマージすると、その差"
-"異のすべての行を他方にコピーします。"
+"して表されます。 例では、ファイルペインで1つの差異が選択され、Diff ペインにそ"
+"の差異のみが表示されています。WinMergeは主に個々の行ではなく、このような差異"
+"単位で動作します。  差異をマージすると、その差異のすべての行を他方にコピーし"
+"ます。"
 
 #. type: Content of: <article><section><para><important><para>
 #: English/Quick_start.xml:355
@@ -24489,8 +24491,8 @@ msgid ""
 "WinMerge includes most of the familiar shortcut keys commonly used in other "
 "Windows applications."
 msgstr ""
-"WinMergeは、他のWindowsアプリケーションで一般的に使用されている、 おなじみの"
-"ショートカットキーを含んでいます。"
+"WinMergeは、他のWindowsアプリケーションで一般的に使用されているショートカット"
+"キーに対応しています。"
 
 #. type: Content of: <appendix><table><title>
 #: English/Shortcut_keys.xml:11
@@ -24689,7 +24691,7 @@ msgstr "<keycap>Ctrl</keycap>+<keycap>F5</keycap>"
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:196
 msgid "Reload"
-msgstr "Reload"
+msgstr "再読み込み"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:200
@@ -24699,7 +24701,7 @@ msgstr "<keycap>F6</keycap>"
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:202
 msgid "Change to next pane (active file)"
-msgstr "ペイン(アクティブなファイル)を切り替える"
+msgstr "次のペインに切替"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:206
@@ -24709,7 +24711,7 @@ msgstr "<keycap>Shift</keycap>+<keycap>F6</keycap>"
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:208
 msgid "Change to previous pane (active file)"
-msgstr "前のペイン (アクティブなファイル) に変更します。"
+msgstr "前のペインに切替"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:212
@@ -24791,7 +24793,7 @@ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo>"
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:260
 msgid "Begin column selection"
-msgstr "列の選択を開始します"
+msgstr "列選択を開始します"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:264
@@ -24801,7 +24803,7 @@ msgstr "<keycombo> <keycap>Ctrl</keycap> <keycap>D</keycap> </keycombo>"
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:270
 msgid "Toggle diff context mode"
-msgstr "差分コンテキストモードを切り替えます"
+msgstr "Diff コンテキストモードを切り替えます"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:274
@@ -24968,7 +24970,7 @@ msgid ""
 "<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Up Arrow</"
 "keycap> </keycombo>"
 msgstr ""
-"<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Up Arrow</"
+"<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>上矢印</"
 "keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
@@ -24977,7 +24979,7 @@ msgid ""
 "<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down Arrow</"
 "keycap> </keycombo>"
 msgstr ""
-"<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down Arrow</"
+"<keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>下矢印</"
 "keycap> </keycombo>"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
@@ -25329,7 +25331,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Version_control.xml:62
 msgid "Using WinMerge as a version control system's diff tool"
-msgstr "WinMergeを、バージョン管理システムの、差分ツールとして使用する"
+msgstr "WinMergeを、バージョン管理システムの、Diff ツールとして使用する"
 
 #. type: Content of: <article><section><section><para>
 #: English/Version_control.xml:68
@@ -25340,9 +25342,9 @@ msgid ""
 "linkend=\"Installing_usinginstaller\">WinMerge installation</link>."
 msgstr ""
 "TortoiseCVS、TortoiseSVN、または、TortoiseGit でファイル比較する際、 VCSは、"
-"組込みの差分ツールの代わりに、WinMergeを起動することができます。 この設定は、"
-"<link linkend=\"Installing_usinginstaller\">WinMergeのインストール</link>の最"
-"中のみで可能です。"
+"組込みのDiff ツールの代わりに、WinMergeを起動することができます。 この設定"
+"は、<link linkend=\"Installing_usinginstaller\">WinMergeのインストール</link>"
+"の最中のみで可能です。"
 
 #. type: Content of: <article><section><section><example><para>
 #: English/Version_control.xml:76
@@ -25609,8 +25611,8 @@ msgid ""
 "To launch the compare without using any plugin, choose <guimenuitem>&lt;"
 "None&gt;</guimenuitem> in the <guilabel>File unpacker</guilabel> control."
 msgstr ""
-"プラグインを使用せずに比較を行い対場合は、<guilabel>ファイル展開プラグイン</"
-"guilabel>にて <guimenuitem>&lt;なし&gt;</guimenuitem>を選んでください。"
+"プラグインを使用せずに比較を行いたい場合は、<guilabel>ファイル展開プラグイン"
+"</guilabel>にて <guimenuitem>&lt;なし&gt;</guimenuitem>を選んでください。"
 
 #. type: Content of: <section><orderedlist><listitem><para>
 #: English/select_unpacker.xml:38

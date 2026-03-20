@@ -8,7 +8,7 @@
 
   <para>このトピックでは、WinMerge ファイル比較ウィンドウを使用してテキスト
 ファイルを比較およびマージする方法について説明します。ここで説明する相違点に関する基本概念を理解するには、最初に <xref
-linkend="Intro_diffs" /> を読むことをお勧めします。 hex ファイルの関連情報については、<xref
+linkend="Intro_diffs" /> を読むことをお勧めします。 Hex ファイルの関連情報については、<xref
 linkend="Compare_bin" /> を参照してください。</para>
 
   <section id="Compare_files_starting">
@@ -18,7 +18,7 @@ linkend="Compare_bin" /> を参照してください。</para>
 
     <variablelist>
       <varlistentry>
-        <term>WinMergeウインドウから</term>
+        <term>WinMergeウィンドウから</term>
 
         <listitem>
           <para><menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>開く</guimenuitem>
@@ -28,7 +28,7 @@ linkend="Compare_bin" /> を参照してください。</para>
       </varlistentry>
 
       <varlistentry>
-        <term>コマンドプロンプトウインドウから</term>
+        <term>コマンドプロンプトウィンドウから</term>
 
         <listitem>
           <para>WinMerge インストール ディレクトリにある <command>WinMergeU.exe</command>
@@ -67,7 +67,7 @@ fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
         </indexterm></title>
 
       <para>左右のファイル ペインには、比較対象の 2 つのファイルのテキスト内容と相違点が表示されます。ファイル
-ペインは、相違点をナビゲートしたりマージしたりするためのメイン領域であり、テキストを直接編集することもできます。このセクションでは、これらのアクションをサポートする機能と、ファイル
+ペインは、差異に移動したりマージしたりするためのメイン領域であり、テキストを直接編集することもできます。このセクションでは、これらのアクションをサポートする機能と、ファイル
 ペインをカスタマイズする方法について説明します。</para>
 
       <section>
@@ -123,7 +123,7 @@ fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
             <term>差異</term>
 
             <listitem>
-              <para>差分ブロックには、異なる 1 つ以上の連続した行が含まれます。デフォルトの差分の背景色は金色ですが、空白行は削除された色でマークされます。</para>
+              <para>差異ブロックには、異なる 1 つ以上の連続した行が含まれます。デフォルトの差異の背景色は金色ですが、空白行は削除された色でマークされます。</para>
 
               <para>このセクションのこの画面と他の画面では、<option>行番号の表示</option> を有効にして、ソース
 ファイル内のどの行が比較されているかを表示しました。</para>
@@ -131,7 +131,7 @@ fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
               <mediaobject>
 <imageobject> <imagedata contentwidth="489"
 fileref="screenshots/diff-blocks-01.png" format="PNG" /> </imageobject><textobject>
-                  <phrase>差分ブロックの背景色</phrase>
+                  <phrase>差異ブロックの背景色</phrase>
                 </textobject>
               </mediaobject>
               <para></para>
@@ -145,11 +145,11 @@ fileref="screenshots/diff-blocks-01.png" format="PNG" /> </imageobject><textobje
 
                 <listitem>
                   <para><filename>file2</filename> の空白行には、<filename>file1</filename>
-には対応する空白行がありません。  WinMerge は欠落している空白行を削除された差分として扱い、ここではデフォルトの灰色でマークされます。</para>
+には対応する空白行がありません。  WinMerge は欠落している空白行を削除された差異として扱い、ここではデフォルトの灰色でマークされます。</para>
                 </listitem>
 
                 <listitem>
-                  <para>最後の差分ブロックには 2 行が含まれます。</para>
+                  <para>最後の差異ブロックには 2 行が含まれます。</para>
                 </listitem>
               </orderedlist>
             </listitem>
@@ -162,7 +162,7 @@ fileref="screenshots/diff-blocks-01.png" format="PNG" /> </imageobject><textobje
 
             <listitem>
               <para>この色は、WinMerge
-が無視するように構成したコンテンツをマークします。差分ブロックとは対照的に、無視されたコンテンツは比較されず、何が無視されたかを確認しやすくするために強調表示されるだけです。無視される違いには次のようなものがあります。</para>
+が無視するように構成したコンテンツをマークします。差異ブロックとは対照的に、無視されたコンテンツは比較されず、何が無視されたかを確認しやすくするために強調表示されるだけです。無視される違いには次のようなものがあります。</para>
 
               <itemizedlist>
                 <listitem>
@@ -180,7 +180,7 @@ fileref="screenshots/diff-blocks-01.png" format="PNG" /> </imageobject><textobje
               <mediaobject>
 <imageobject> <imagedata contentwidth="492"
 fileref="screenshots/ignore-blank-lines.png" format="PNG" /> </imageobject><textobject>
-                  <phrase>差分を無視した差分ブロックの色</phrase>
+                  <phrase>差異を無視した差異ブロックの色</phrase>
                 </textobject>
               </mediaobject>
               <para></para>
@@ -207,9 +207,9 @@ fileref="screenshots/moved-01.png" format="PNG" /> </imageobject><textobject>
 
               <para>異なる場所にある 2 つの同一の行 (<literal>a</literal> と <literal>c</literal> を含む)
 が、デフォルトのオレンジ色の移動色でマークされていることに注意してください。この場合の移動ブロック検出のもう 1 つの効果は、最後の 2 行が 1
-つの差分ブロックではなく 2 つの別個の差分になることです。</para>
+つの差異ブロックではなく 2 つの別個の差異になることです。</para>
 
-              <para>場合によっては、移動された差分を表示すると、ファイル内の変更を視覚化しやすくなります。ただし、移動した行が多すぎると、比較が困難になる可能性があります。ご自身の判断で行ってください。</para>
+              <para>場合によっては、移動された差異を表示すると、ファイル内の変更を視覚化しやすくなります。ただし、移動した行が多すぎると、比較が困難になる可能性があります。ご自身の判断で行ってください。</para>
             </listitem>
           </varlistentry>
 
@@ -217,7 +217,7 @@ fileref="screenshots/moved-01.png" format="PNG" /> </imageobject><textobject>
             <term>単語の差異</term>
 
             <listitem>
-              <para>WinMerge は、変更されたテキストを差分ブロックでマークできます。行の違いは単語の違いの色でマークされます。詳細については、<xref
+              <para>WinMerge は、変更されたテキストを差異ブロックでマークできます。行の違いは単語の違いの色でマークされます。詳細については、<xref
 linkend="CompareFiles_linediff-highlight" /> を参照してください。</para>
             </listitem>
           </varlistentry>
@@ -229,7 +229,7 @@ linkend="CompareFiles_linediff-highlight" /> を参照してください。</par
 
             <listitem>
               <para>[オプション] ダイアログの [比較] ページで <option>類似行をマッチさせる</option> を有効にすると、WinMerge
-は差分ブロック内の類似行を整列しようとします。 <quote>similar</quote>
+は差異ブロック内の類似行を整列しようとします。 <quote>similar</quote>
 とはどういう意味ですか?一般に、この機能は、強い類似性を持つ行な​​どの単純な場合に最も効果的に機能します。類似した行が検出されると、ファイル
 ペインで整列するように調整されます。次の図は、<option>類似行をマッチさせ</option> オプションを有効にする前と後の、同じ 2
 つのファイルの比較を示しています。</para>
@@ -251,7 +251,7 @@ fileref="screenshots/simlines-diffs-on.png" /> </imageobject><textobject>
               </simplelist>
 
               <para>2 番目の比較では、行 <quote>mice</quote> と <quote>mice and a</quote>
-が類似しているものとして検出されます。 WinMerge は表示に空白行を追加して、これらの行が差分ブロック内の同じレベルに表示されるようにします。</para>
+が類似しているものとして検出されます。 WinMerge は表示に空白行を追加して、これらの行が差異ブロック内の同じレベルに表示されるようにします。</para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -268,7 +268,7 @@ fileref="screenshots/simlines-diffs-on.png" /> </imageobject><textobject>
             <secondary>行内の差異</secondary>
           </indexterm></title>
 
-        <para>場合によっては、差分ブロックだけでなく、変更されたブロック内のテキストも強調表示すると便利です。次の 2 つの方法で無効または有効にすることができます。</para>
+        <para>場合によっては、差異ブロックだけでなく、変更されたブロック内のテキストも強調表示すると便利です。次の 2 つの方法で無効または有効にすることができます。</para>
 
         <itemizedlist>
           <listitem>
@@ -282,8 +282,8 @@ fileref="screenshots/simlines-diffs-on.png" /> </imageobject><textobject>
         </itemizedlist>
 
         <note>
-          <para>WinMerge のナビゲーションおよびマージ機能 (次の差分やコピー左など)
-は、差分ブロック内の行の差分ではなく、差分ブロックに対して機能することに注意してください。</para>
+          <para>WinMerge のナビゲーションおよびマージ機能 (次の差異やコピー左など)
+は、差異ブロック内の行の差異ではなく、差異ブロックに対して機能することに注意してください。</para>
         </note>
 
         <para>このセクションでは、行の違いがどのように検出され、マークされるかについて説明します。これらのオプションの効果は、「オプション」ダイアログの「比較」ページの現在の空白設定にも影響されることに注意してください。</para>
@@ -305,7 +305,7 @@ fileref="screenshots/simlines-diffs-on.png" /> </imageobject><textobject>
 <mediaobject>
 <imageobject> <imagedata contentwidth="530"
 fileref="screenshots/word-diff-allwhite.png" format="PNG" /> </imageobject><textobject>
-                    <phrase>空白を比較するワードレベルの行の差分</phrase>
+                    <phrase>空白を比較するワードレベルの行の差異</phrase>
                   </textobject>
                 </mediaobject></example>
 
@@ -317,7 +317,7 @@ fileref="screenshots/word-diff-allwhite.png" format="PNG" /> </imageobject><text
 <mediaobject>
 <imageobject> <imagedata contentwidth="530"
 fileref="screenshots/word-diff-nochange.png" format="PNG" /> </imageobject><textobject>
-                    <phrase>空白の変更がない場合のワードレベルの行の差分</phrase>
+                    <phrase>空白の変更がない場合のワードレベルの行の差異</phrase>
                   </textobject>
                 </mediaobject></example>
 
@@ -329,7 +329,7 @@ fileref="screenshots/word-diff-nochange.png" format="PNG" /> </imageobject><text
 <mediaobject>
 <imageobject> <imagedata contentwidth="530"
 fileref="screenshots/word-diff-nowhite.png" format="PNG" /> </imageobject><textobject>
-                    <phrase>空白なしを比較するワードレベルの行の差分</phrase>
+                    <phrase>空白なしを比較するワードレベルの行の差異</phrase>
                   </textobject>
                 </mediaobject></example>
             </listitem>
@@ -346,7 +346,7 @@ fileref="screenshots/word-diff-nowhite.png" format="PNG" /> </imageobject><texto
               <mediaobject>
 <imageobject> <imagedata contentwidth="485"
 fileref="screenshots/char-diff-01.png" format="PNG" /> </imageobject><textobject>
-                  <phrase>空白なしを比較する文字レベルの行の差分</phrase>
+                  <phrase>空白なしを比較する文字レベルの行の差異</phrase>
                 </textobject>
               </mediaobject>
               <para></para>
@@ -377,7 +377,7 @@ fileref="screenshots/char-diff-01.png" format="PNG" /> </imageobject><textobject
 <imageobject> <imagedata contentwidth="494"
 fileref="screenshots/line-diff-punctuation.png" format="PNG" />
 </imageobject><textobject>
-                  <phrase>空白なしを比較する文字レベルの行の差分</phrase>
+                  <phrase>空白なしを比較する文字レベルの行の差異</phrase>
                 </textobject>
               </mediaobject>
             </listitem>
@@ -396,11 +396,11 @@ fileref="screenshots/line-diff-punctuation.png" format="PNG" />
 <guilabel>やり直し</guilabel>、<guilabel>検索</guilabel> と
 <guilabel>置換</guilabel>、および <guilabel>移動</guilabel>
 などの基本的な編集機能を提供します。これらの基本的な編集タスクは、多くの場合、マージ中に必要になります
-(差分内のテキストを変更する場合など)。アクティブなファイル ペインで編集できます
+(差異内のテキストを変更する場合など)。アクティブなファイル ペインで編集できます
 (ペインをクリックしてアクティブにすることに注意してください)。ペインを結果ファイルに保存するまで、変更はファイルに書き込まれません。</para>
 
         <para>WinMerge
-の編集機能には、構文の強調表示も含まれています。このオプション機能は複数のファイル形式をサポートしており、使用する色を構成できます。前のスクリーンショットが示すように、構文の強調表示は差分内には適用されないことに注意してください。</para>
+の編集機能には、構文の強調表示も含まれています。このオプション機能は複数のファイル形式をサポートしており、使用する色を構成できます。前のスクリーンショットが示すように、構文の強調表示は差異内には適用されないことに注意してください。</para>
 
         <tip>
           <para><xref linkend="Compare_files_scan" />
@@ -544,11 +544,11 @@ fileref="screenshots/filecomp_margin2.png" format="PNG" /> </imageobject><textob
 ショートカットには、フォルダー比較ウィンドウを開いた場合でもファイル比較ウィンドウを開いた場合でも、同じ名前とボタンが付いています。ただし、これらの機能の動作は異なります。ファイル比較ウィンドウでは、機能はフォルダー内の相違点ではなく、ファイル内の相違点に対して動作します。</para>
       </note>
 
-      <para>使用できる差分機能はコンテキストによって異なり、作業中に変化することがよくあります。これは、WinMerge
-環境の特定の場所またはその他の条件でその操作が可能な場合にのみ機能が使用可能であることを意味します。たとえば、差分内のテキスト行をクリックすると、ツールバーでいくつかのナビゲーション
-ボタンとマージ ボタンが有効になることに気づく場合があります。差分内にないテキストの別の領域をクリックすると、これらの機能は使用できなくなります。</para>
+      <para>使用できる差異機能はコンテキストによって異なり、作業中に変化することがよくあります。これは、WinMerge
+環境の特定の場所またはその他の条件でその操作が可能な場合にのみ機能が使用可能であることを意味します。たとえば、差異内のテキスト行をクリックすると、ツールバーでいくつかのナビゲーション
+ボタンとマージ ボタンが有効になることに気づく場合があります。差異内にないテキストの別の領域をクリックすると、これらの機能は使用できなくなります。</para>
 
-      <para>差分機能は、WinMerge ツールバーで使用できるほか、次の代替メカニズムでも使用できます。</para>
+      <para>差異機能は、WinMerge ツールバーで使用できるほか、次の代替メカニズムでも使用できます。</para>
 
       <itemizedlist>
         <listitem>
@@ -564,7 +564,7 @@ fileref="screenshots/filecomp_margin2.png" format="PNG" /> </imageobject><textob
         </listitem>
       </itemizedlist>
 
-      <para>差分機能については、このトピックの後半の <xref linkend="Compare_files_nav" /> および <xref
+      <para>差異機能については、このトピックの後半の <xref linkend="Compare_files_nav" /> および <xref
 linkend="Compare_files_merge" /> で説明します。 <xref linkend="Quick_start" /> と
 <xref linkend="Intro_diffs" /> には、比較とマージの例が示されています。</para>
 
@@ -574,18 +574,18 @@ linkend="Compare_files_merge" /> で説明します。 <xref linkend="Quick_star
           </indexterm></title>
 
         <para><menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>マージ モード</guimenuitem>
-</menuchoice> (または <keycap>F9</keycap> を押す) は、差分マージおよびナビゲート機能用の WinMerge
+</menuchoice> (または <keycap>F9</keycap> を押す) は、差異マージおよびナビゲート機能用の WinMerge
 1.7.1 の単一キーボード ショートカットを復元します。</para>
 
         <itemizedlist>
           <listitem>
-            <simpara><function>Previous Difference</function> および <function>Next
-Difference</function> 機能の <keycap>Up</keycap> キーと <keycap>Down</keycap> キー。</simpara>
+            <simpara><function>前の差異</function> および <function>次の差異</function> 機能の
+<keycap>Up</keycap> キーと <keycap>Down</keycap> キー。</simpara>
             <para></para>
           </listitem>
 
           <listitem>
-            <simpara><function>Copy Left</function> および <function>Copy Right</function> 機能の
+            <simpara><function>左側にコピー</function> および <function>右側にコピー</function> 機能の
 <keycap>Left</keycap> キーと <keycap>Right</keycap> キー。</simpara>
           </listitem>
         </itemizedlist>
@@ -602,14 +602,14 @@ Difference</function> 機能の <keycap>Up</keycap> キーと <keycap>Down</keyc
       <title>ロケーションペイン</title>
 
       <indexterm>
-        <primary>場所ペイン、ファイル比較ウィンドウ</primary>
+        <primary>ロケーションペイン、ファイル比較ウィンドウ</primary>
       </indexterm>
 
       <indexterm>
-        <primary>差分ナビゲーション</primary>
+        <primary>差異ナビゲーション</primary>
       </indexterm>
 
-      <para>ファイル ペインの左側にある場所ペインでは、比較されるファイルの全長が 2 つの垂直バー (左右のファイル ペインに対応)
+      <para>ファイル ペインの左側にあるロケーションペインでは、比較されるファイルの全長が 2 つの垂直バー (左右のファイル ペインに対応)
 にマップされます。これは、長すぎて [ファイル] ペイン内で簡単に移動できないファイルを操作する場合に特に便利です。</para>
 
       <para>[場所] ペインには、いくつかの種類の項目が表示されます。</para>
@@ -619,14 +619,14 @@ Difference</function> 機能の <keycap>Up</keycap> キーと <keycap>Down</keyc
           <term><inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/locpane_diffs.png" /> </imageobject><textobject>
-                <phrase>場所ペインの差分線</phrase>
+                <phrase>ロケーションペインの差異線</phrase>
               </textobject>
-            </inlinemediaobject> 差分ブロック</term>
+            </inlinemediaobject> 差異ブロック</term>
 
           <listitem>
-            <para>[ファイル] ペインの各差分ブロックは、[場所]
+            <para>[ファイル] ペインの各差異ブロックは、[場所]
 ペインで各垂直バーを横切る水平線で示されます。これらの線の太さ、色、位置は、ファイル内のすべての相違点のサイズ
-(線数)、タイプ、および分布に関する手がかりとなります。たとえば、線の色は、対応する差分ブロックの色と同じです。前のスクリーンショットの [場所]
+(線数)、タイプ、および分布に関する手がかりとなります。たとえば、線の色は、対応する差異ブロックの色と同じです。前のスクリーンショットの [場所]
 ペインには、多くの基本的な差異 (金色) といくつかの空の差異ブロック (灰色) が表示されます。</para>
           </listitem>
         </varlistentry>
@@ -635,13 +635,13 @@ fileref="screenshots/locpane_diffs.png" /> </imageobject><textobject>
           <term><inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
-                <phrase>場所ペインの現在の差分ポインター</phrase>
+                <phrase>ロケーションペインの現在の差異ポインター</phrase>
               </textobject>
-            </inlinemediaobject> 現在の差分</term>
+            </inlinemediaobject> 現在の差異</term>
 
           <listitem>
             <para>差異を選択した場合、「場所」ペインでは、垂直バーの両側にある一対の小さな三角形で現在の差異線をマークします。別の相違点に移動すると、ポインタはその位置に合わせて上下に移動します。ファイル
-ペインをスクロールしても、場所ペイン内の差分ポインタ (または差分行) の位置は変わりません。</para>
+ペインをスクロールしても、ロケーションペイン内の差分ポインタ (または差異行) の位置は変わりません。</para>
           </listitem>
         </varlistentry>
 
@@ -649,14 +649,14 @@ fileref="screenshots/locpane_currentdiff.png" /> </imageobject><textobject>
           <term><inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
 fileref="screenshots/locpane_viewbar.png" /> </imageobject><textobject>
-                <phrase>場所ペインのビューエリアバー</phrase>
+                <phrase>ロケーションペインのビューエリアバー</phrase>
               </textobject>
             </inlinemediaobject> 表示領域</term>
 
           <listitem>
             <para>[ファイル] ペインに現在表示されているファイルの領域は、[場所] ペイン上の影付き (半透明) ビュー バーで示されます。  エリア
 バーの高さと位置は、スクロール領域に表示されるファイルの部分に対応します。たとえば、ファイル
-ペインの高さを変更すると、バーが拡大または縮小することがあります。場所ペインのビュー バーとファイル
+ペインの高さを変更すると、バーが拡大または縮小することがあります。ロケーションペインのビュー バーとファイル
 ペインのこの同期により、素早いナビゲーションといくつかの便利なアクションが可能になります。</para>
 
             <itemizedlist>
@@ -682,15 +682,15 @@ fileref="screenshots/locpane_viewbar.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>移動された差分は、異なる場所にある同一の行です。
+            <para>移動された差異は、異なる場所にある同一の行です。
 これらは、[オプション]ダイアログの[比較]ページで[移動ブロックの検出を有効にする]がチェックされている場合にのみ表示されます。 [ファイル]
-ペインで移動された差分の詳細については、 <xref linkend="CompareFiles_diffcolors" />
-を参照してください。場所ペインは、左右の場所バーの移動された差異を接続する線を描画します。  例えば：</para>
+ペインで移動された差異の詳細については、 <xref linkend="CompareFiles_diffcolors" />
+を参照してください。ロケーションペインは、左右の場所バーの移動された差異を接続する線を描画します。  例えば：</para>
 
             <mediaobject>
 <imageobject> <imagedata contentwidth="576"
 fileref="screenshots/locpane_moved_diffs.png" format="PNG" /> </imageobject><textobject>
-                <phrase>移動された差分を含む場所ペイン</phrase>
+                <phrase>移動された差異を含むロケーションペイン</phrase>
               </textobject>
             </mediaobject>
           </listitem>
@@ -720,11 +720,11 @@ linkend="Compare_files_nav_functions" /> で説明)。</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>すべての移動ブロック</guimenuitem>: すべての移動ブロックの移動された差分カラーをオンにします。</para>
+          <para><guimenuitem>すべての移動ブロック</guimenuitem>: すべての移動ブロックの移動された差異カラーをオンにします。</para>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>現在の差分の移動ブロック</guimenuitem>: 現在選択されている移動差分の移動差分のみの色をオンにします。</para>
+          <para><guimenuitem>現在の差異の移動ブロック</guimenuitem>: 現在選択されている移動差分の移動差異のみの色をオンにします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -734,12 +734,12 @@ linkend="Compare_files_nav_functions" /> で説明)。</para>
           <primary>Diff ペイン, ファイル比較ウィンドウ</primary>
         </indexterm></title>
 
-      <para>差分ペインには、選択した差分の両側の内容が表示されます。</para>
+      <para>差異ペインには、選択した差異の両側の内容が表示されます。</para>
 
-      <para>差分を選択すると、2
-つのバージョンが差分ペインの上部と下部にロードされます。このように、差分ペインでは差分にどの行が含まれているかを確認し、ファイルの残りの部分から切り離してそれらの行を調べることができます。</para>
+      <para>差異を選択すると、2
+つのバージョンが差異ペインの上部と下部にロードされます。このように、差異ペインでは差異にどの行が含まれているかを確認し、ファイルの残りの部分から切り離してそれらの行を調べることができます。</para>
 
-      <para>[差分] ペインで差分を直接マージするには、上側または下側を右クリックし、<guimenuitem>右側にコピー</guimenuitem> または
+      <para>[差異] ペインで差異を直接マージするには、上側または下側を右クリックし、<guimenuitem>右側にコピー</guimenuitem> または
 <guimenuitem>左側にコピー</guimenuitem> を選択します。</para>
     </section>
 
@@ -829,14 +829,14 @@ linkend="Compare_files_nav_functions" /> で説明)。</para>
           </listitem>
 
           <listitem>
-            <para><guilabel><replaceable>n</replaceable> Differences Found</guilabel>:
+            <para><guilabel><replaceable>n</replaceable> 件の差異が見つかりました</guilabel>:
 検出された差異の数。差異が選択されていない場合にのみ表示されます。</para>
           </listitem>
 
           <listitem>
-            <para><guilabel>差分
+            <para><guilabel>差異
 <replaceable>x</replaceable>/<replaceable>n</replaceable></guilabel>:
-差分の総数における選択した差分のシーケンス番号 (1 から始まります)。</para>
+差異の総数における選択した差異のシーケンス番号 (1 から始まります)。</para>
           </listitem>
         </itemizedlist></para>
     </section>
@@ -844,7 +844,7 @@ linkend="Compare_files_nav_functions" /> で説明)。</para>
 
   <section id="Compare_files_nav">
     <title>差異への移動<indexterm>
-        <primary>差分ナビゲーション</primary>
+        <primary>差異ナビゲーション</primary>
 
         <secondary>ファイル比較ウィンドウ</secondary>
       </indexterm></title>
@@ -861,7 +861,7 @@ linkend="Compare_files_nav_functions" /> で説明)。</para>
       <title>ナビゲーション機能<indexterm>
           <primary>WinMerge 機能</primary>
 
-          <secondary>ファイル比較ウィンドウの差分ナビゲーション</secondary>
+          <secondary>ファイル比較ウィンドウの差異ナビゲーション</secondary>
         </indexterm><indexterm>
           <primary>ナビゲーション機能</primary>
 
@@ -872,24 +872,24 @@ linkend="Compare_files_nav_functions" /> で説明)。</para>
 
       <variablelist>
         <varlistentry>
-          <term>現在行/選択行の差分<indexterm>
+          <term>現在行/選択行の差異<indexterm>
               <primary>現在行機能の違い</primary>
             </indexterm><indexterm>
               <primary>行内差異の選択」機能</primary>
             </indexterm></term>
 
           <listitem>
-            <para>ファイル ペインの差分内のテキストをクリック (または選択) した場合に有効になります。行内の単語の相違点を選択します。例えば：</para>
+            <para>ファイル ペインの差異内のテキストをクリック (または選択) した場合に有効になります。行内の単語の相違点を選択します。例えば：</para>
 
             <mediaobject>
 <imageobject> <imagedata contentwidth="562"
 fileref="screenshots/linediff.png" format="PNG" /> </imageobject><textobject>
-                <phrase>行の差分を選択する例</phrase>
+                <phrase>行の差異を選択する例</phrase>
               </textobject>
             </mediaobject>
             <para></para>
 
-            <para>差分ブロック自体を選択したい場合は、代わりに <command>Current Difference</command> を使用します。</para>
+            <para>差異ブロック自体を選択したい場合は、代わりに <command>Current Difference</command> を使用します。</para>
 
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -897,8 +897,8 @@ fileref="screenshots/diff_inline_btn.png" /> </imageobject><textobject>
                   <phrase>現在の行内差異ボタン</phrase>
                 </textobject>
               </inlinemediaobject> ボタン、<menuchoice>
-<guimenu>編集</guimenu> <guimenuitem>行の差分を選択</guimenuitem>
-</menuchoice>、<keycap>F4</keycap>、差分内のファイルペインのコンテキストメニュー。</para>
+<guimenu>編集</guimenu> <guimenuitem>行の差異を選択</guimenuitem>
+</menuchoice>、<keycap>F4</keycap>、差異内のファイルペインのコンテキストメニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -919,7 +919,7 @@ fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
                   <phrase>次の差異ボタン</phrase>
                 </textobject>
               </inlinemediaobject> ボタン、<menuchoice>
-<guimenu>マージ</guimenu> <guimenuitem>次の差分</guimenuitem>
+<guimenu>マージ</guimenu> <guimenuitem>次の差異</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Down</keycap>
 </keycombo> (マージでは <keycap>Down</keycap>)モード）。</para>
           </listitem>
@@ -933,8 +933,8 @@ fileref="screenshots/nextdiff_btn.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>現在のカーソル位置の上にある以前の差分を選択します
-(必ずしも現在の差分に相対しているわけではありません)。差分を順番に後退するために使用します。最初の差異が現在選択されている場合を除き、使用できます。</para>
+            <para>現在のカーソル位置の上にある以前の差異を選択します
+(必ずしも現在の差異に相対しているわけではありません)。差異を順番に後退するために使用します。最初の差異が現在選択されている場合を除き、使用できます。</para>
 
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -982,11 +982,11 @@ fileref="screenshots/firstdiff_btn.png" /> </imageobject><textobject>
 
             <para><itemizedlist>
                 <listitem>
-                  <simpara>カーソルが差分内にあり、差分が選択されていない場合、この機能は差分全体を選択します。これは、キーボードを使用して違いを選択する非常に便利な方法です。</simpara>
+                  <simpara>カーソルが差異内にあり、差異が選択されていない場合、この機能は差異全体を選択します。これは、キーボードを使用して違いを選択する非常に便利な方法です。</simpara>
                 </listitem>
 
                 <listitem>
-                  <simpara>現在の差異がある場合、その位置にジャンプします。これは、選択した差分をスクロールして見えなくなった場合に、その位置にすぐに戻りたい場合に便利です。</simpara>
+                  <simpara>現在の差異がある場合、その位置にジャンプします。これは、選択した差異をスクロールして見えなくなった場合に、その位置にすぐに戻りたい場合に便利です。</simpara>
                 </listitem>
               </itemizedlist></para>
 
@@ -996,7 +996,7 @@ fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
                   <phrase>現在の差異ボタン</phrase>
                 </textobject>
               </inlinemediaobject> ボタン、<menuchoice>
-<guimenu>マージ</guimenu> <guimenuitem>現在の差分</guimenuitem>
+<guimenu>マージ</guimenu> <guimenuitem>現在の差異</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Enter</keycap>
 </keycombo>。</para>
           </listitem>
@@ -1010,7 +1010,7 @@ fileref="screenshots/currentdiff_btn.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>現在最後の差分が選択されている場合を除き、有効になります。</para>
+            <para>現在最後の差異が選択されている場合を除き、有効になります。</para>
 
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentdepth="15"
@@ -1030,8 +1030,8 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
             </indexterm> 移動</term>
 
           <listitem>
-            <para>行番号または差分番号のいずれかにジャンプできます (たとえば、差分 2 は 2 番目の差分です)。
-「移動」ダイアログを開きます。ここで、番号、使用するファイル (左側または右側)、および場所のタイプ (行または差分) を指定します。</para>
+            <para>行番号または差異番号のいずれかにジャンプできます (たとえば、差異 2 は 2 番目の差異です)。
+「移動」ダイアログを開きます。ここで、番号、使用するファイル (左側または右側)、および場所のタイプ (行または差異) を指定します。</para>
 
             <tip>
               <para>「行番号に移動」は、1 つのファイルから複数のターゲット ファイルに同じ変更をマージする必要がある場合に役立ちます。
@@ -1042,7 +1042,7 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
 
             <para>ショートカット: <menuchoice> <guimenu>編集</guimenu> <guimenuitem>Go to</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>G</keycap>
-</keycombo>、ファイル ペインおよび場所ペインのコンテキスト メニュー。</para>
+</keycombo>、ファイル ペインおよびロケーションペインのコンテキスト メニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -1052,10 +1052,10 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>他のパネル(2ペイン)上の現在の差分の差分移動元/移動先へジャンプできるようにします。</para>
+            <para>他のパネル(2ペイン)上の現在の差異の差異移動元/移動先へジャンプできるようにします。</para>
 
             <para>ショートカット: <keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap>
-<keycap>G</keycap> </keycombo>、ファイル ペインおよび差分ペインのコンテキスト メニュー。</para>
+<keycap>G</keycap> </keycombo>、ファイル ペインおよび差異ペインのコンテキスト メニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -1065,10 +1065,10 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>他のパネル (3 ペイン) の現在の差分の差分の移動元/移動先へジャンプできるようにします。</para>
+            <para>他のパネル (3 ペイン) の現在の差異の差異の移動元/移動先へジャンプできるようにします。</para>
 
             <para>ショートカット: <keycombo> <keycap>Ctrl</keycap> <keycap>Shift</keycap>
-<keycap>G</keycap> </keycombo>、ファイル ペインおよび差分ペインのコンテキスト メニュー。</para>
+<keycap>G</keycap> </keycombo>、ファイル ペインおよび差異ペインのコンテキスト メニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -1078,10 +1078,10 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>他のパネル (3 ペイン) の現在の差分の差分の移動元/移動先へジャンプできるようにします。</para>
+            <para>他のパネル (3 ペイン) の現在の差異の差異の移動元/移動先へジャンプできるようにします。</para>
 
             <para>ショートカット: <keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
-<keycap>G</keycap> </keycombo>、ファイル ペインおよび差分ペインのコンテキスト メニュー。</para>
+<keycap>G</keycap> </keycombo>、ファイル ペインおよび差異ペインのコンテキスト メニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -1108,7 +1108,7 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
         <primary>差異をマージする</primary>
       </indexterm></title>
 
-    <para>マージすると、一方のファイル ペインからもう一方のファイル ペインに差分が左側から右側、または右側から左側にコピーされます。これは、WinMerge
+    <para>マージすると、一方のファイル ペインからもう一方のファイル ペインに差異が左側から右側、または右側から左側にコピーされます。これは、WinMerge
 の編集機能 (このトピックで前述した) を使用してテキストを直接編集することとは異なります。</para>
 
     <section id="Compare_files_scan">
@@ -1118,9 +1118,9 @@ fileref="screenshots/lastdiff_btn.png" /> </imageobject><textobject>
 
       <para>デフォルトでは、WinMerge オプションのエディター ページで <guilabel>自動再スキャン</guilabel>
 オプションが有効になっています。再スキャンにより、比較およびマージ操作が最新の状態に保たれます。再スキャンしない場合、WinMerge
-差分は、外部エディタなどでファイルを比較しているときにファイルに発生する可能性のある変更を検出しません。</para>
+差異は、外部エディタなどでファイルを比較しているときにファイルに発生する可能性のある変更を検出しません。</para>
 
-      <para>再スキャンは、ファイル比較中に特定のアクション (差分のマージやファイルの編集など)
+      <para>再スキャンは、ファイル比較中に特定のアクション (差異のマージやファイルの編集など)
 を実行すると発生します。ファイルが変更されている場合、WinMerge
 は別のアプリケーションがファイルを更新したことを通知するダイアログを表示し、ファイルを再ロードするかどうかを尋ねます。</para>
 
@@ -1153,9 +1153,9 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
           <secondary>マージする</secondary>
         </indexterm></title>
 
-      <para>マージ機能は、カーソル位置またはテキスト選択に基づいて相違点を暗黙的に選択できます。たとえば、差分内の任意の場所をクリックしてから、ツールバーの
+      <para>マージ機能は、カーソル位置またはテキスト選択に基づいて相違点を暗黙的に選択できます。たとえば、差異内の任意の場所をクリックしてから、ツールバーの
 <guibutton>右側にコピー</guibutton>
-ボタンをクリックすると、差分ブロック全体がマージされます。これにより、多くの小さな違いを簡単にマージできます。同様に、複数の相違点のすべてまたは一部にまたがるテキストを選択すると、含まれるすべての相違点が
+ボタンをクリックすると、差異ブロック全体がマージされます。これにより、多くの小さな違いを簡単にマージできます。同様に、複数の相違点のすべてまたは一部にまたがるテキストを選択すると、含まれるすべての相違点が
 1 つのマージ コマンドでマージされます。</para>
 
       <para>マージ操作の結果が期待したものと異なる場合は、<guibutton>元に戻す</guibutton> をクリックして操作を元に戻すことができます。</para>
@@ -1170,7 +1170,7 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
 
           <listitem>
             <para>1
-つ以上の差異を左側から右側側にコピーします。差分を完全に選択する必要はないことに注意してください。最も簡単に言うと、これは、ターゲット差分のテキストをソース差分のテキストに置き換えることを意味します。ただし、相違点には空の行が含まれる場合もあるため、新しい行が作成または削除される場合があります。</para>
+つ以上の差異を左側から右側側にコピーします。差異を完全に選択する必要はないことに注意してください。最も簡単に言うと、これは、ターゲット差異のテキストをソース差異のテキストに置き換えることを意味します。ただし、相違点には空の行が含まれる場合もあるため、新しい行が作成または削除される場合があります。</para>
 
             <para>ショートカット: <inlinemediaobject>
 <imageobject> <imagedata contentwidth="17"
@@ -1180,8 +1180,8 @@ fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
               </inlinemediaobject> ボタン、<menuchoice>
 <guimenu>マージ</guimenu> <guimenuitem>右側にコピー</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Right</keycap>
-</keycombo> (マージでは <keycap>Right</keycap>)モード)、差分内のファイル ペインのコンテキスト
-メニュー、および差分ペインのコンテキスト メニュー。</para>
+</keycombo> (マージでは <keycap>Right</keycap>)モード)、差異内のファイル ペインのコンテキスト
+メニュー、および差異ペインのコンテキスト メニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -1191,7 +1191,7 @@ fileref="screenshots/copyr_button.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>現在の差分を右のファイル ペインから左のファイル ペインにコピーします。詳細については、<command>Copy Right</command>
+            <para>現在の差異を右のファイル ペインから左のファイル ペインにコピーします。詳細については、<command>Copy Right</command>
 の説明を参照してください。</para>
 
             <para>ショートカット: <inlinemediaobject>
@@ -1202,8 +1202,8 @@ fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
               </inlinemediaobject> ボタン、<menuchoice>
 <guimenu>マージ</guimenu> <guimenuitem>左側にコピー</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</keycap>
-</keycombo> (マージでは <keycap>Left</keycap>)モード)、差分内のファイル ペインのコンテキスト
-メニュー、および差分ペインのコンテキスト メニュー。</para>
+</keycombo> (マージでは <keycap>Left</keycap>)モード)、差異内のファイル ペインのコンテキスト
+メニュー、および差異ペインのコンテキスト メニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -1213,7 +1213,7 @@ fileref="screenshots/copyl_button.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>現在の差分を右側から左のファイル ペインにマージし、次の差分 (存在する場合) を選択します。 1 つのステップの <command>Copy
+            <para>現在の差異を右側から左のファイル ペインにマージし、次の差異 (存在する場合) を選択します。 1 つのステップの <command>Copy
 Right</command> と <command>Next Difference</command> に相当します。</para>
 
             <para>ショートカット: <inlinemediaobject>
@@ -1224,7 +1224,7 @@ fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
               </inlinemediaobject> ボタン、<menuchoice>
 <guimenu>マージ</guimenu> <guimenuitem>左側にコピー</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
-<keycap>右</keycap> </keycombo>、コンテキスト メニュー差分内のファイルペイン。</para>
+<keycap>右</keycap> </keycombo>、コンテキスト メニュー差異内のファイルペイン。</para>
           </listitem>
         </varlistentry>
 
@@ -1234,7 +1234,7 @@ fileref="screenshots/copyr_adv_btn.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>現在の差分を左側から右側にマージし、次の差分 (存在する場合) を選択します。 1 つのステップの <command>Copy
+            <para>現在の差異を左側から右側にマージし、次の差異 (存在する場合) を選択します。 1 つのステップの <command>Copy
 Left</command> と <command>Next Difference</command> に相当します。</para>
 
             <para>ショートカット: <inlinemediaobject>
@@ -1245,7 +1245,7 @@ fileref="screenshots/copyl_adv_btn.png" /> </imageobject><textobject>
               </inlinemediaobject> ボタン、<menuchoice>
 <guimenu>マージ</guimenu> <guimenuitem>左側にコピー</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Ctrl</keycap> <keycap>Alt</keycap>
-<keycap>Left</keycap> </keycombo>、コンテキスト メニュー差分内のファイルペイン。</para>
+<keycap>Left</keycap> </keycombo>、コンテキスト メニュー差異内のファイルペイン。</para>
           </listitem>
         </varlistentry>
 
@@ -1273,7 +1273,7 @@ fileref="screenshots/allright_btn.png" /> </imageobject><textobject>
               </inlinemediaobject> ボタン、<menuchoice>
 <guimenu>Merge</guimenu> <guimenuitem>Copy to Left</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</keycap>
-</keycombo>、差分内のファイル ペインのコンテキスト メニュー。</para>
+</keycombo>、差異内のファイル ペインのコンテキスト メニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -1294,7 +1294,7 @@ fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
               </inlinemediaobject> ボタン、<menuchoice>
 <guimenu>Merge</guimenu> <guimenuitem>Copy to Left</guimenuitem>
 </menuchoice>、<keycombo> <keycap>Alt</keycap> <keycap>Left</keycap>
-</keycombo>、差分内のファイル ペインのコンテキスト メニュー。</para>
+</keycombo>、差異内のファイル ペインのコンテキスト メニュー。</para>
           </listitem>
         </varlistentry>
 
@@ -1306,7 +1306,7 @@ fileref="screenshots/allleft_btn.png" /> </imageobject><textobject>
             </indexterm></term>
 
           <listitem>
-            <para>ファイルを再スキャンして差分を更新します。自動スキャンが無効になっている場合は、ファイルに変更を加えた後に使用します (詳細については、<xref
+            <para>ファイルを再スキャンして差異を更新します。自動スキャンが無効になっている場合は、ファイルに変更を加えた後に使用します (詳細については、<xref
 linkend="Compare_files_scan" /> を参照)。</para>
 
             <para>ショートカット: <inlinemediaobject>
@@ -1343,7 +1343,7 @@ fileref="screenshots/refresh_btn.png" /> </imageobject><textobject>
             <listitem>
               <para>左側のファイル ペインのファイル ヘッダーのタイトルは、<guilabel>Theirs File</guilabel>
 です。この側は、通常、バージョン管理システムのリポジトリにあるファイルを表します。通常、このファイルは編集できないため、WinMerge は左側の
-[ファイル] ペインを読み取り専用に設定します。  これは、差分をこのファイルから他のファイルにのみマージできることを意味します。</para>
+[ファイル] ペインを読み取り専用に設定します。  これは、差異をこのファイルから他のファイルにのみマージできることを意味します。</para>
             </listitem>
 
             <listitem>

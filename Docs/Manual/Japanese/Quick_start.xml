@@ -11,9 +11,7 @@
         <secondary>はじめる</secondary>
       </indexterm>比較するファイルとフォルダーの選択</title>
 
-    <para>WinMergeをインストールしたら、トピック中の手順と議論を通じて、 基本的なWinMergeの操作と概念を学んでください。
-その方法は、一つではありません。各タスクを実行するには、通常いくつの方法があります。
-これが完了したら、他のヘルプトピックでカバーされる他の方法やより高度なスキルを学ぶことができます。</para>
+    <para>WinMergeをインストールしたら、このトピックで基本操作と概念を学んでください。操作方法はいくつかあり、同じ作業でも複数の方法で実行できます。基本を理解した後は、他のトピックで応用や高度な使い方を学べます。</para>
 
     <section>
       <title><indexterm><primary>WinMergeウィンドウ</primary></indexterm>WinMerge ウィンドウの起動</title>
@@ -226,8 +224,7 @@ fileref="screenshots/foldercomp1.png" format="PNG" /> </imageobject><textobject>
 どちらも比較されたフォルダーの一方でしか見つかりませんでした。</para>
 
     <para><guimenu>マージ(M)</guimenu>メニュー、ツールバーボタン、または、コンテキスト(右クリック)メニューなど、
-多くの方法で、ファイルとフォルダーを管理できます。 The most important action is making files or
-folders identical in both sides by selecting one of several Copy items.
+多くの方法で、ファイルとフォルダーを管理できます。 最も重要な操作は、コピー操作を使って、左右のファイルまたはフォルダーを同一にすることです。
 ファイル、または、フォルダーを他方へコピーした時、比較結果は、<literal>同一</literal>に変わります。</para>
 
     <para>もし、ファイル、または、フォルダーが、左右両方に存在した(かつ、バイナリファイルでない)場合、
@@ -278,10 +275,10 @@ fileref="screenshots/filecomp1.png" format="PNG" /> </imageobject><textobject>
     </mediaobject>
 
     <para>ファイル比較ウィンドウは、分割されたファイルペインに、二つの選択されたファイルをとなり同士に表示します。 異なる行は、背景色がハイライト表示されます。
-ひとつ、または、連続した異なる行は、ひとつの差異(<glossterm>diff</glossterm>)として表されます。 In the
-preceding example, a single difference is selected in the File panes and
-displayed by itself in the Diff Pane.  WinMerge mainly works with these
-differences, not separate lines.  差異をマージすると、その差異のすべての行を他方にコピーします。</para>
+ひとつ、または、連続した異なる行は、ひとつの差異(<glossterm>diff</glossterm>)として表されます。
+例では、ファイルペインで1つの差異が選択され、Diff
+ペインにその差異のみが表示されています。WinMergeは主に個々の行ではなく、このような差異単位で動作します。
+差異をマージすると、その差異のすべての行を他方にコピーします。</para>
 
     <para><important>
         <para>同じ行が、いつも隣同士に並べられるように、WinMergeが、どのように無くなった行を埋めるかに、

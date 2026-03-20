@@ -10,7 +10,7 @@
     <secondary>テーブル</secondary>
   </indexterm>
 
-  <para>バージョン2.16.8からCSVやTSVなどの区切り値テキストファイルを表計算ソフトのようにテーブル形式で表示し、編集することができるようになりました。
+  <para>バージョン2.16.8からCSVやTSVなどのテキストファイルを表計算ソフトのようにテーブル形式で表示し、編集することができるようになりました。
 この形式での編集操作、差異への移動操作、マージ操作は、通常のテキストファイルウィンドウと同じです。</para>
 
   <mediaobject>
@@ -25,7 +25,7 @@ fileref="screenshots/tblcomp1.png" format="PNG" /> </imageobject><textobject>
         <primary>テーブル形式で開く</primary>
       </indexterm></title>
 
-    <para>ファイルがテーブル形式で開かれるかどうかは、ファイル名が定義されたパターンに一致するかどうかで決まります。デフォルトでは、ファイル名が、～.csv、～.tsvならばテーブル形式で開かれます。このパターンを変更したい場合は、オプションダイアログの比較/テーブルページでパターンを指定します。</para>
+    <para>ファイルがテーブル形式で開かれるかどうかは、ファイル名が定義されたパターンに一致するかどうかで決まります。デフォルトでは、ファイル名が、*.csv、*.tsvならばテーブル形式で開かれます。このパターンを変更したい場合は、オプションダイアログの比較/テーブルページでパターンを指定します。</para>
 
     <para>通常のテキストとして開かれた後、一時的にテーブル形式で開きたい場合は、<menuchoice><guimenu>ファイル</guimenu><guimenuitem>形式を指定して再比較</guimenuitem><guimenuitem>テーブル</guimenuitem></menuchoice>をクリックします。テーブルダイアログが表示された場合は、形式を指定して<guilabel>OK</guilabel>をクリックします。</para>
     
@@ -70,19 +70,19 @@ linkend="Configuration_compare_table" />を参照してください。</para>
     <para>
       <itemizedlist>
         <listitem>
-          <para>列見出しの列の境界をマウスでドラッグすると列幅が変更されます。</para>
+          <para>列ヘッダーの境界をマウスでドラッグすると列幅が変更されます。</para>
         </listitem>
         <listitem>
           <para>列見出しの列の境界をダブルクリックすると自動的に列の内容に応じて列幅が調整されます。</para>
         </listitem>
         <listitem>
-          <para>列見出しの列をドラッグすると垂直方向にテキストが選択されます。</para>
+          <para>列見出しの列をドラッグすると列単位でテキストが選択されます。</para>
         </listitem>
         <listitem>
           <para>
 <menuchoice> <guimenu>表示</guimenu> <guimenuitem>行を右端で折り返す</guimenuitem>
 </menuchoice> にチェックを入れると列ごとにテキストが折り返して表示されます。
-セル内改行されたテキストを表示するにはこのメニューにチェックを入れてください。</para>
+セル内で改行されたテキストを表示するにはこのメニューにチェックを入れてください。</para>
         </listitem>
       </itemizedlist>
     </para>

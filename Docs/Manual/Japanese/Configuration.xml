@@ -57,7 +57,7 @@ fileref="screenshots/options_btn.png" /> </imageobject><textobject>
       </indexterm></title>
 
     <para>
-差分比較、または、マージの設定を頻繁に変更する場合、また、 あなたの設定を他のWinMergeユーザーと共有したい場合は、
+差異比較、または、マージの設定を頻繁に変更する場合、また、 あなたの設定を他のWinMergeユーザーと共有したい場合は、
 設定をファイルへエクスポートして保存することを検討してください。
 あとでそれらの設定を使いたい時は、手動でオプションを設定する代わりに、単に設定ファイルをインポートすることができます。</para>
 
@@ -369,7 +369,7 @@ OK押下時にファイルまたはフォルダーの選択ダイアログを閉
 
         <listitem>
           <para>
-<guilabel>ウィンドウがアクティブになった時のみ</guilabel> (デフォルト): WinMergeのウインドウがアクティブになった時、
+<guilabel>ウィンドウがアクティブになった時のみ</guilabel> (デフォルト): WinMergeのウィンドウがアクティブになった時、
 もしファイルが変更されていれば、ファイルを再読み込みします。 ただし、この時ファイルを開きなおすか問い合わせるメッセージボックスが表示されます。
 このメッセージボックスを表示したくない場合は、「再びこの質問をしない」をチェックし、 はいボタンを押下してください。</para>
         </listitem>
@@ -763,22 +763,22 @@ Diff アルゴリズム<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>default</option> (デフォルト): 基本的な差分アルゴリズムです。</para>
+<option>default</option> (デフォルト): 基本的な差異アルゴリズムです。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>minimal</option>: できるだけ差分が少なくなるように比較します。 その分、比較に時間がかかります。</para>
+<option>minimal</option>: できるだけ差異が少なくなるように比較します。 その分、比較に時間がかかります。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>patience</option>: patienceアルゴリズムで差分を比較します。</para>
+<option>patience</option>: patienceアルゴリズムで差異を比較します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>histogram</option>: histogramアルゴリズムで差分を比較します。
+<option>histogram</option>: histogramアルゴリズムで差異を比較します。
 このアルゴリズムはpatienceアルゴリズムを低頻度の共通要素に対応するように拡張しています。</para>
         </listitem>
 
@@ -798,7 +798,7 @@ indent heuristic を有効にする<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>有効</option> (デフォルト): 差分のハンク境界をシフトするヒューリスティックを有効にして、差分を読みやすくします。 Diff
+<option>有効</option> (デフォルト): 差異のハンク境界をシフトするヒューリスティックを有効にして、差異を読みやすくします。 Diff
 アルゴリズムがdefaultの場合、効果はありません。</para>
         </listitem>
 

@@ -4,8 +4,8 @@
       <primary>プラグイン</primary>
     </indexterm></title>
 
-  <para>WinMergeプラグインは、COM APIで書かれたカスタムDLLまたはスクリプトレットです。 これは、比較の前にデータを前処理します。
-例えば、WinMergeで比較するためにMS Word のファイルからテキストデータを抽出するプラグインがあります。</para>
+  <para>WinMergeプラグインは、COM APIで書かれたカスタムDLLまたはスクリプトレットです。 プラグインは、比較前にデータを加工(前処理)します。
+例えば、WinMergeで比較するためにMS Word のファイルからテキストを抽出して比較可能にするプラグインがあります。</para>
   
   <para>プラグインは:<indexterm>
       <primary>プラグインのインストール</primary>
@@ -18,7 +18,7 @@
 
     <listitem>
       <para><filename class="directory">MergePlugins</filename>
-サブフォルダーにインストールされます。WinMergeは、いくつかのプラグインをインストールします。</para>
+サブフォルダーにインストールされます。WinMerge には、いくつかのプラグインがあらかじめ含まれています。</para>
     </listitem>
 
     <listitem>
@@ -50,10 +50,10 @@ class="directory">MergePlugins</filename> にコピーするだけです。
           </indexterm></term>
 
         <listitem>
-          <para>このタイプのプラグインは、圧縮ファイルを解凍して表示可能な形式に変換します。 元のファイルは変更されません。
+          <para>このタイプのプラグインは、ファイルを展開・変換し、表示可能な形式にします。元のファイルは変更されません。
 一時的に変換されたファイルが作成され、WinMergeにロードされます。</para>
 
-          <para>展開プラグインは、選択されたテキストやファイル内の差分に対してではなく、ファイル全体に対して機能します。
+          <para>展開プラグインは、選択されたテキストやファイル内の差異に対してではなく、ファイル全体に対して機能します。
 したがって、フォルダー比較ウィンドウまたはファイルまたは フォルダーの選択ダイアログからファイル比較を起動するときのみ利用可能です。
 展開プラグインはファイル比較ウィンドウでは利用できません。</para>
 
@@ -62,7 +62,7 @@ class="directory">MergePlugins</filename> にコピーするだけです。
 この場合、梱包は自動的に行われます。 安全のために、変換したファイルを保存するときに名前を変更することをお勧めします。</para>
 
           <note>
-            <para>フォルダーを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに 対して異なる結果をもたらす可能性があります。
+            <para>フォルダーを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに対して異なる結果をもたらす可能性があります。
 たとえば、圧縮されていないときには同一のファイルでも、 圧縮された場合、作成日が含まれているために異なる場合があります。
 WinMergeはすべての状況で展開プラグインを適用します。フォルダーを比較するときや、 ２つのファイルを比較するときでも同じ結果が得られます</para>
           </note>
@@ -89,14 +89,14 @@ class="registered">Microsoft</trademark> <application>Excel</application>
   </section>
 
   <section>
-    <title>提案されたプラグインと自動モード</title>
+    <title>推奨プラグインと自動モード</title>
 
     <para>WinMergeはどのようにして渡されたファイルに適切なプラグインを適用しているのでしょうか？ 各プラグインはファイル拡張子のリストを持っています
 （<xref linkend = "Plugins_available"
 />セクションの各プラグインの<citetitle>ファイルフィルター</citetitle>にも リストされています)
 その拡張子は、1つ以上のファイルタイプをプラグインに関連付けるために使用されます。:
 比較するファイルの拡張子があるプラグインの拡張子リストと一致する場合、
-そのプラグインが<firstterm>提案されたプラグイン</firstterm>となります。</para>
+そのプラグインが<firstterm>推奨プラグイン</firstterm>となります。</para>
 
     <para>このトピックで後述する展開プラグインタイプと比較前処理プラグインタイプには
 別々のオプションがあり、これらを使用して手動または自動でプラグインを適用できます。 エディタースクリプトプラグインには自動モードはありません。</para>
@@ -239,7 +239,7 @@ class="registered">Microsoft</trademark> <application>Excel</application>
             <para><menuchoice> <guimenu>プラグイン</guimenu> <guimenuitem>展開プラグインで開く</guimenuitem>
 </menuchoice>をクリックします</para>
 
-            <para>選択したファイルのタイプが利用可能な展開プラグインによってサポートされている場合にのみ、 このメニュー項目が有効になります。</para>
+            <para>選択したファイル形式が、利用可能な展開プラグインに対応している場合のみ、 このメニュー項目が有効になります。</para>
           </listitem>
 
           <listitem>
@@ -1131,7 +1131,7 @@ class="extension">,*.dot</filename></seg>
 
             <seg>いいえ</seg>
 
-            <seg><ulink url="https://graphviz.org/">グラフビズ</ulink></seg>
+            <seg><ulink url="https://graphviz.org/">Graphviz</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -2454,11 +2454,11 @@ class="extension">*.ts</filename></seg>
 
       <itemizedlist>
         <listitem>
-          <simpara><guimenuitem>日付を挿入</guimenuitem> insert date in the current locale format.</simpara>
+          <simpara><guimenuitem>日付を挿入</guimenuitem> 現在のロケール形式で日付を挿入します。</simpara>
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>時刻を挿入</guimenuitem> insert time in the current locale format.</simpara>
+          <simpara><guimenuitem>時刻を挿入</guimenuitem> 現在のロケール形式で時刻を挿入します。</simpara>
         </listitem>
       </itemizedlist>
 

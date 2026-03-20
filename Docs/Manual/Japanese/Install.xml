@@ -193,7 +193,7 @@ linkend="OpenPaths_shell-integ">Windowsエクスプローラーから、WinMerge
               </indexterm></term>
 
             <listitem>
-              <para>WinMergeを、TortoiseCVSの差分比較ツールに設定します。</para>
+              <para>WinMergeを、TortoiseCVSのDiff ツールに設定します。</para>
             </listitem>
           </varlistentry>
 
@@ -203,7 +203,7 @@ linkend="OpenPaths_shell-integ">Windowsエクスプローラーから、WinMerge
               </indexterm></term>
 
             <listitem>
-              <para>WinMergeを、TortoiseSVNの差分比較ツールに設定します。</para>
+              <para>WinMergeを、TortoiseSVNのDiff ツールに設定します。</para>
             </listitem>
           </varlistentry>
 

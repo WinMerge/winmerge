@@ -4,7 +4,7 @@
       <primary>ショートカットキー</primary>
     </indexterm></title>
 
-  <para>WinMergeは、他のWindowsアプリケーションで一般的に使用されている、 おなじみのショートカットキーを含んでいます。</para>
+  <para>WinMergeは、他のWindowsアプリケーションで一般的に使用されているショートカットキーに対応しています。</para>
 
   <table>
     <title>全般</title>
@@ -154,19 +154,19 @@
         <row>
           <entry><keycap>Ctrl</keycap>+<keycap>F5</keycap></entry>
 
-          <entry>Reload</entry>
+          <entry>再読み込み</entry>
         </row>
 
         <row>
           <entry><keycap>F6</keycap></entry>
 
-          <entry>ペイン(アクティブなファイル)を切り替える</entry>
+          <entry>次のペインに切替</entry>
         </row>
 
         <row>
           <entry><keycap>Shift</keycap>+<keycap>F6</keycap></entry>
 
-          <entry>前のペイン (アクティブなファイル) に変更します。</entry>
+          <entry>前のペインに切替</entry>
         </row>
 
         <row>
@@ -214,13 +214,13 @@
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>B</keycap> </keycombo></entry>
 
-          <entry>列の選択を開始します</entry>
+          <entry>列選択を開始します</entry>
         </row>
 
         <row>
           <entry><keycombo> <keycap>Ctrl</keycap> <keycap>D</keycap> </keycombo></entry>
 
-          <entry>差分コンテキストモードを切り替えます</entry>
+          <entry>Diff コンテキストモードを切り替えます</entry>
         </row>
 
         <row>
@@ -349,15 +349,15 @@
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Up
-Arrow</keycap> </keycombo></entry>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>上矢印</keycap>
+</keycombo></entry>
 
           <entry>前のコンフリクトへ移動</entry>
         </row>
 
         <row>
-          <entry><keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>Down
-Arrow</keycap> </keycombo></entry>
+          <entry><keycombo> <keycap>Alt</keycap> <keycap>Shift</keycap> <keycap>下矢印</keycap>
+</keycombo></entry>
 
           <entry>次のコンフリクトへ移動</entry>
         </row>

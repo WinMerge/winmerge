@@ -9,26 +9,26 @@
     <secondary>画像</secondary>
   </indexterm>
 
-  <para>このトピックでは、[イメージ比較] ウィンドウを使用してイメージを比較する方法について説明します。</para>
+  <para>このトピックでは、[画像比較] ウィンドウを使用して画像を比較する方法について説明します。</para>
 
   <section id="Compare_images_starting">
     <title>画像比較操作を開始する</title>
 
-    <para>イメージ比較操作は、WinMerge ウィンドウまたはコマンド プロンプト ウィンドウから開始できます。</para>
+    <para>画像比較操作は、WinMerge ウィンドウまたはコマンド プロンプト ウィンドウから開始できます。</para>
 
     <variablelist>
       <varlistentry>
-        <term>WinMergeウインドウから</term>
+        <term>WinMergeウィンドウから</term>
 
         <listitem>
           <para><menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>開く</guimenuitem>
-</menuchoice> をクリックします。 [ファイルまたはフォルダーの選択] ダイアログを使用して、比較する左右のソース イメージを指定します。
+</menuchoice> をクリックします。 [ファイルまたはフォルダーの選択] ダイアログを使用して、比較する左右のソース 画像を指定します。
 「ファイルまたはフォルダーの選択」ダイアログの詳細については、「<xref linkend="Open_paths" />」を参照してください。</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>コマンドプロンプトウインドウから</term>
+        <term>コマンドプロンプトウィンドウから</term>
 
         <listitem>
           <para>WinMerge インストール ディレクトリにある <command>WinMergeU.exe</command>
@@ -42,7 +42,7 @@ linkend="Command_line" />」を参照してください。</para>
   <section id="Compare_images_window">
     <title>画像比較ウィンドウ</title>
 
-    <para>WinMerge は多くの種類の画像をサポートしており、ブロックとの違いを強調表示できます。写真を重ねて表示することも可能です。</para>
+    <para>WinMerge は多くの種類の画像をサポートしており、ブロック単位で違いを強調表示できます。画像を重ねて表示することもできます。</para>
 
     <mediaobject>
 <imageobject> <imagedata fileref="screenshots/imgcmp1.png" format="PNG" />
@@ -51,11 +51,11 @@ linkend="Command_line" />」を参照してください。</para>
       </textobject>
     </mediaobject>
 
-    <para><guilabel>場所ペイン</guilabel>でほとんどのオプションを設定できます。</para>
+    <para><guilabel>ロケーションペイン</guilabel>でほとんどのオプションを設定できます。</para>
 
     <section>
       <title>差異<indexterm>
-        <primary>差分</primary>
+        <primary>差異</primary>
       </indexterm></title>
 
       <variablelist>
@@ -77,21 +77,21 @@ linkend="Command_line" />」を参照してください。</para>
         <varlistentry>
           <term>ブロックサイズ</term>
           <listitem>
-            <para>スライダー <guilabel>ブロック サイズ</guilabel> は、画像の違いを強調するブロックのサイズを定義します。</para>
+            <para><guilabel>ブロック サイズ</guilabel> スライダー は、画像の違いを強調するブロックのサイズを定義します。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>ブロックアルファ</term>
+          <term>ブロック透明度</term>
           <listitem>
-            <para><guilabel>ブロック アルファ</guilabel> スライダーは、ブロックのアルファ ブレンドの強さを定義します。</para>
+            <para><guilabel>ブロック 透明度</guilabel> スライダーは、ブロックのアルファ ブレンドの強さを定義します。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
           <term>色距離閾値</term>
           <listitem>
-            <para>スライダー <guilabel>CD</guilabel> は、色の違いを無視するのに役立つ <emphasis>色距離閾値</emphasis>
+            <para><guilabel>色距離閾値</guilabel> スライダー は、色の違いを無視するのに役立つ <emphasis>色距離閾値</emphasis>
 を設定します。</para>
           </listitem>
         </varlistentry>
@@ -135,9 +135,8 @@ linkend="Command_line" />」を参照してください。</para>
         <varlistentry>
           <term>アルファ</term>
           <listitem>
-            <para><guilabel>Alpha</guilabel> スライダーは、オーバーレイ ノード <guilabel>Alpha
-Blend</guilabel> または <guilabel>Alpha Blendアニメーション</guilabel> のアルファ
-ブレンドの強さを定義します。</para>
+            <para><guilabel>透明度</guilabel> スライダーは、<guilabel>アルファブレンドAlpha</guilabel> または
+<guilabel>アニメ表示</guilabel> のアルファ ブレンドの強さを定義します。</para>
           </listitem>
         </varlistentry>
       </variablelist>

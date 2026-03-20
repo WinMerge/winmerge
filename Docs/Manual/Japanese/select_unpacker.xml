@@ -21,7 +21,7 @@
         </listitem>
 
         <listitem>
-          <para>プラグインを使用せずに比較を行い対場合は、<guilabel>ファイル展開プラグイン</guilabel>にて
+          <para>プラグインを使用せずに比較を行いたい場合は、<guilabel>ファイル展開プラグイン</guilabel>にて
 <guimenuitem>&lt;なし&gt;</guimenuitem>を選んでください。</para>
         </listitem>
       </itemizedlist>
