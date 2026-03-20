@@ -468,7 +468,7 @@ WinMerge内で特別な方法で扱われます。</para>
 単語間に二つのスペース:<screen format="linespecific">Two  Words</screen></para>
 
         <para>
-単語間にタブ:<screen format="linespecific">2 つの単語</screen></para>
+単語間にタブ:<screen format="linespecific">Two	Words</screen></para>
 
         <para>
 単語間にスペースなし:<screen format="linespecific">TwoWords</screen></para>
