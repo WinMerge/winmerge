@@ -1613,6 +1613,12 @@ msgstr ""
 msgid "Target: &All"
 msgstr ""
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr ""
 
@@ -4913,6 +4919,12 @@ msgstr "Použitý filter"
 msgid "Compare %1"
 msgstr ""
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Schránka na %s"
@@ -5090,6 +5102,9 @@ msgstr ""
 msgid "Invalid property name"
 msgstr ""
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr ""
 
@@ -5124,6 +5139,18 @@ msgid "Contains (regex)"
 msgstr ""
 
 msgid "Not Contains (regex)"
+msgstr ""
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
 msgstr ""
 
 msgid "Light"

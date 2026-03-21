@@ -1599,6 +1599,19 @@ BEGIN
     END
 END
 
+IDR_POPUP_FILTERMENU_ATTR MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Read-only files",             ID_FILTERMENU_ATTR_READONLY
+        MENUITEM "Not read-only files",         ID_FILTERMENU_ATTR_NOT_READONLY
+        MENUITEM "Hidden files",                ID_FILTERMENU_ATTR_HIDDEN
+        MENUITEM "Not hidden files",            ID_FILTERMENU_ATTR_NOT_HIDDEN
+        MENUITEM "System files",                ID_FILTERMENU_ATTR_SYSTEM
+        MENUITEM "Not system files",            ID_FILTERMENU_ATTR_NOT_SYSTEM
+    END
+END
+
 IDR_POPUP_FILTERMENU_SIZE MENU
 BEGIN
     POPUP "_POPUP_"
@@ -1722,6 +1735,15 @@ BEGIN
         MENUITEM "Less Than or Equal to",       ID_FILTERMENU_DIFF_PROP_LESS_EQUAL
         MENUITEM "Greater Than",                ID_FILTERMENU_DIFF_PROP_GREATER
         MENUITEM "Greater Than or Equal to",    ID_FILTERMENU_DIFF_PROP_GREATER_EQUAL
+    END
+END
+
+IDR_POPUP_FILTERMENU_NAME MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&File Name..."                ID_FILTERMENU_FILENAME
+        MENUITEM "Fo&lder Name..."              ID_FILTERMENU_FOLDERNAME
     END
 END
 
@@ -5228,6 +5250,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_FILTERMENU_COMPARE  "Compare %1"
+    IDS_FILTERMENU_FILTER_BY_THIS_COLUMN "&Filter by This Column"
+    IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2 "&Filter by This Column..."
 END
 
 STRINGTABLE
@@ -5329,6 +5353,7 @@ BEGIN
     IDS_FILTER_ERROR_DIVIDE_BY_ZERO "Division by zero in filter expression"
     IDS_FILTER_ERROR_UNKNOWN_ERROR "Unknown error"
     IDS_FILTER_ERROR_INVALID_PROPERTY_NAME "Invalid property name"
+    IDS_FILTER_ERROR_INVALID_DIRECTIVE "Invalid directive"
 END
 
 STRINGTABLE
@@ -5345,6 +5370,10 @@ BEGIN
     IDS_FILTER_OP_NOT_CONTAINS       "Not Contains"
     IDS_FILTER_OP_RECONTAINS         "Contains (regex)"
     IDS_FILTER_OP_NOT_RECONTAINS     "Not Contains (regex)"
+    IDS_FILTER_OP_LIKE               "Match (wildcard)"
+    IDS_FILTER_OP_NOT_LIKE           "Not match (wildcard)"
+    IDS_FILTER_OP_MATCHES            "Match (regex)"
+    IDS_FILTER_OP_NOT_MATCHES        "Not match (regex)"
 END
 
 STRINGTABLE

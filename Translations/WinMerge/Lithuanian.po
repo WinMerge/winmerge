@@ -1613,6 +1613,12 @@ msgstr "Rezultatai: Viduryje ir &Dešinėje"
 msgid "Target: &All"
 msgstr "Rezultatai: &Visi"
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "&Išvalyti sąlygas"
 
@@ -4604,6 +4610,12 @@ msgstr "Pritaikytas filtras"
 msgid "Compare %1"
 msgstr "Palyginti %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Mainų sritis %s"
@@ -4777,6 +4789,9 @@ msgstr "Nežinoma klaida"
 msgid "Invalid property name"
 msgstr "Netinkamas ypatybės pavadinimas"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "Lygu"
 
@@ -4812,6 +4827,18 @@ msgstr "Turi (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Neturi (regex)"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "Šviesi schema"

@@ -11,6 +11,8 @@ class CFileFilterHelperMenu : public CMenu
 {
 public:
 	std::optional<String> ShowMenu(const String& masks, int x, int y, CWnd* pParentWnd);
+	static std::unique_ptr<CFileFilterHelperMenu> AppendColumnFilterMenu(CMenu* pPopup, const tchar_t* pRegName);
+	std::optional<String> HandleMenuCommand(const String& masks, int command, CWnd* pParentWnd);
 private:
 	std::optional<String> ShowPropMenu(int command, const String& masks, CWnd* pParentWnd);
 	String defaultProp(const String& name) const;

@@ -50,6 +50,7 @@
 #include "DirTravel.h"
 #include "MouseHook.h"
 #include "RenameMoveDetection.h"
+#include "FileFilterHelper.h"
 #include <numeric>
 #include <functional>
 
@@ -224,6 +225,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_L2R, ID_R2L, OnUpdateDirCopy)
 	ON_COMMAND(ID_MERGE_DELETE, OnDelete)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_DELETE, OnUpdateDelete)
+	ON_COMMAND_RANGE(ID_FILTERMENU_FIRST, ID_FILTERMENU_LAST, OnFilterMenuCommand)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
@@ -685,10 +687,9 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 	else
 	{
 		// Check if user right-clicked on header
-		// convert screen coordinates to client coordinates of listview
+		// convert screen coordinates to client coordinates of header control
 		CPoint insidePt = point;
-		GetListCtrl().ScreenToClient(&insidePt);
-		// TODO: correct for hscroll ?
+		GetListCtrl().GetHeaderCtrl()->ScreenToClient(&insidePt);
 		// Ask header control if click was on one of its header items
 		HDHITTESTINFO hhti = { 0 };
 		hhti.pt = insidePt;
@@ -828,7 +829,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 /**
  * @brief User right-clicked on specified logical column
  */
-void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
+void CDirView::HeaderContextMenu(CPoint point, int i)
 {
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
@@ -838,10 +839,31 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(1));
 	ASSERT(pPopup != nullptr);
 
+	const DirColInfo * col = m_pColItems->GetDirColInfo(i);
+	ASSERT(col != nullptr);
+	m_pFilterMenu = CFileFilterHelperMenu::AppendColumnFilterMenu(pPopup, col->regName);
+
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
 			AfxGetMainWnd());
+}
+
+void CDirView::OnFilterMenuCommand(UINT nID)
+{
+	if (!m_pFilterMenu)
+		return;
+	String masks = m_dirfilter.displayFilterHelper.GetMaskOrExpression();
+	CDirFrame* pFrame = GetParentFrame();
+	auto* pFilterBar = pFrame->GetFilterBar();
+	if (pFilterBar)
+		pFilterBar->GetDlgItemText(IDC_FILTERFILE_MASK, masks);
+	auto newMasks = m_pFilterMenu->HandleMenuCommand(masks, nID, this);
+	if (!newMasks.has_value())
+		return;
+	m_dirfilter.displayFilterHelper.SetMaskOrExpression(*newMasks);
+	OnViewDisplayFilterBar();
+	OnViewDisplayFilterBarApply();
 }
 
 /**

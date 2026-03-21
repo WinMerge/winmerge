@@ -1610,6 +1610,12 @@ msgstr ""
 msgid "Target: &All"
 msgstr ""
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr ""
 
@@ -4950,6 +4956,12 @@ msgstr ""
 msgid "Compare %1"
 msgstr "Сравняване на %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr ""
@@ -5151,6 +5163,9 @@ msgstr "Неочаквана грешка"
 msgid "Invalid property name"
 msgstr "Неприемливо име на свойство"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "Е равно на"
 
@@ -5186,6 +5201,18 @@ msgstr "Съдържа (регулярен израз)"
 
 msgid "Not Contains (regex)"
 msgstr "Не съдържа (регулярен израз)"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "Светла"

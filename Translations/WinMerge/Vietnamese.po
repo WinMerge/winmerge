@@ -1613,6 +1613,12 @@ msgstr "Đích: Ở giữa và phải"
 msgid "Target: &All"
 msgstr "Đích: Tất cả"
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "Xoá sạch các điều kiện"
 
@@ -5011,6 +5017,12 @@ msgstr "Đã áp dụng bộ lọc"
 msgid "Compare %1"
 msgstr "So sánh %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Bảng tạm lúc %s"
@@ -5240,6 +5252,9 @@ msgstr "Lỗi không xác định"
 msgid "Invalid property name"
 msgstr "Tên thuộc tính không hợp lệ"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "Bằng"
 
@@ -5275,6 +5290,18 @@ msgstr "Chứa (biểu thức chính quy)"
 
 msgid "Not Contains (regex)"
 msgstr "Không chứa (biểu thức chính quy)"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "Sáng"

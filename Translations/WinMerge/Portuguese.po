@@ -1614,6 +1614,12 @@ msgstr "Alvo: Meio e Direita"
 msgid "Target: &All"
 msgstr "Alvo: &Tudo"
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "&Limpar condições"
 
@@ -4990,6 +4996,12 @@ msgstr "Filtro aplicado"
 msgid "Compare %1"
 msgstr "Comparar %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Área de transferência em %s"
@@ -5219,6 +5231,9 @@ msgstr "Erro desconhecido"
 msgid "Invalid property name"
 msgstr "Nome de propriedade inválido"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "Igual a"
 
@@ -5254,6 +5269,18 @@ msgstr "Contém (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Não contém (regex)"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "Claro"

@@ -1615,6 +1615,12 @@ msgstr "Destinazione : Centru è &Diritta"
 msgid "Target: &All"
 msgstr "Destinazione : &Tutte"
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "&Squassà e cundizioni"
 
@@ -4988,6 +4994,12 @@ msgstr "Filtru appiecatu"
 msgid "Compare %1"
 msgstr "Paragunà %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Preme’papei di u %s"
@@ -5215,6 +5227,9 @@ msgstr "Sbagliu scunnisciutu"
 msgid "Invalid property name"
 msgstr "Nome di pruprietà inaccettevule"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "Hè uguale à"
 
@@ -5250,6 +5265,18 @@ msgstr "Cuntene (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Ùn cuntene micca (regex)"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "Chjaru"

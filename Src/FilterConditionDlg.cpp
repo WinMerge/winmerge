@@ -157,7 +157,7 @@ String CFilterConditionDlg::GetExpression()
  */
 BOOL CFilterConditionDlg::OnInitDialog()
 {
-	CTrDialog::OnInitDialog();
+	__super::OnInitDialog();
 
 	SetDlgItemText(IDC_CONDITION_LHS, GetLHS());
 
@@ -195,12 +195,16 @@ BOOL CFilterConditionDlg::OnInitDialog()
 				{ _("Not Contains (regex)"), L"%1 not recontains %2" },
 			}, m_sOperator);
 	} 
-	else if (m_vt == VT_LPWSTR || m_vt == (VT_VECTOR|VT_LPWSTR))
+	else if (m_sField == _T("Name") || m_sField == _T("Folder") || m_sField == _T("Extension") || m_vt == VT_LPWSTR || m_vt == (VT_VECTOR | VT_LPWSTR))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
 			{
 				{ _("Equals"), L"%1 = %2" },
 				{ _("Does not equal"), L"%1 != %2" },
+				{ _("Match (wildcard)"), L"%1 like %2" },
+				{ _("Not match (wildcard)"), L"%1 not like %2" },
+				{ _("Match (regex)"), L"%1 matches %2" },
+				{ _("Not match (regex)"), L"%1 not matches %2" },
 				{ _("Contains"), L"%1 contains %2" },
 				{ _("Not Contains"), L"%1 not contains %2" },
 				{ _("Contains (regex)"), L"%1 recontains %2" },
@@ -246,12 +250,12 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	}
 
 	// Show Match Case checkbox only for string-based fields
-	const bool isStringField = (m_sField == _T("Content") || m_vt == VT_LPWSTR || m_vt == (VT_VECTOR|VT_LPWSTR));
+	const bool isStringField = (m_sField == _T("Content") || m_sField == _T("Name") || m_sField == _T("Folder") || m_sField == _T("Extension") || m_vt == VT_LPWSTR || m_vt == (VT_VECTOR | VT_LPWSTR));
 	ShowDlgItem(IDC_CONDITION_MATCHCASE, isStringField);
 
-	OnCbnSelchangeOperator();
-
 	UpdateData(FALSE);
+
+	OnCbnSelchangeOperator();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

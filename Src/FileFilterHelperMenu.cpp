@@ -295,6 +295,44 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		result = masks.empty() ? masks : masks + _T(";");
 		*result += _T("!.vs\\;!.idea\\;!.vscode\\;!.metadata\\;!.settings\\");
 	}
+	else if (command == ID_FILTERMENU_FILENAME)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Name"), m_propName, _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+	}
+	else if (command == ID_FILTERMENU_FOLDERNAME)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Name"), m_propName, _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
+	}
+	else if (command == ID_FILTERMENU_EXTENSION)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Extension"), m_propName, _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+	}
+	else if (command == ID_FILTERMENU_RELATIVEFOLDER)
+	{
+		CFilterConditionDlg dlg(false, m_targetSide, _T("Folder"), m_propName, _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("e:") + dlg.m_sExpression;
+	}
+	else if (command == ID_FILTERMENU_ADDITIONAL_PROP_DIALOG)
+	{
+		PropertySystem ps({ m_propName });
+		VARTYPE vt;
+		int id = 0;
+		ps.GetPropertyType(0, vt);
+		if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
+			vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR || vt == (VT_VECTOR|VT_LPWSTR))
+		{
+			CFilterConditionDlg dlg(false, m_targetSide, _T(""), m_propName, _("%1 = %2"), _T("%1"));
+			if (dlg.DoModal() == IDOK)
+				result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+		}
+	}
 	else if (command >= ID_FILTERMENU_SIZE_LT_1KB && command <= ID_FILTERMENU_SIZE_GE_1GB)
 	{
 		static const String SizeConditions[] = {
@@ -582,3 +620,107 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	return result;
 }
 
+std::unique_ptr<CFileFilterHelperMenu> CFileFilterHelperMenu::AppendColumnFilterMenu(CMenu* pPopup, const tchar_t* pRegName)
+{
+	std::unique_ptr<CFileFilterHelperMenu> pMenu(new CFileFilterHelperMenu());
+	std::optional<int> menuId;
+	int menuItemId = 0;
+
+	if (tc::tcschr(pRegName, _T('.')) != nullptr)
+	{
+		// Column names containing '.' represent additional properties.
+		bool supported = true;
+		tchar_t firstChar = pRegName[0];
+		if (firstChar == _T('A'))
+			pMenu->m_targetSide = 0;
+		else if (firstChar == _T('L'))
+			pMenu->m_targetSide = 1;
+		else if (firstChar == _T('M'))
+			pMenu->m_targetSide = 2;
+		else if (firstChar == _T('R'))
+			pMenu->m_targetSide = 3;
+		else
+			supported = false;
+		if (supported)
+		{
+			String propName = pRegName + 1;
+			PropertySystem ps({ propName });
+			VARTYPE vt;
+			int id = 0;
+			ps.GetPropertyType(0, vt);
+			if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
+				vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR || vt == (VT_VECTOR | VT_LPWSTR))
+			{
+				menuId = -1;
+				menuItemId = ID_FILTERMENU_ADDITIONAL_PROP_DIALOG;
+				pMenu->m_propName = propName;
+			}
+		}
+	}
+
+	struct ColumnMapping { const tchar_t* suffix; int menuId; int menuItemId; };
+	static const ColumnMapping mappings[] = {
+		{ _T("Name"), IDR_POPUP_FILTERMENU_NAME, -1 },
+		{ _T("Path"), -1, ID_FILTERMENU_RELATIVEFOLDER },
+		{ _T("Ext"), -1, ID_FILTERMENU_EXTENSION },
+		{ _T("mtime"), IDR_POPUP_FILTERMENU_DATE, -1 },
+		{ _T("size"), IDR_POPUP_FILTERMENU_SIZE, -1 },
+		{ _T("sizeShort"), IDR_POPUP_FILTERMENU_SIZE, -1 },
+		{ _T("attr"), IDR_POPUP_FILTERMENU_ATTR, -1 }
+	};
+
+	for (const auto& mapping : mappings)
+	{
+		if (tc::tcscmp(pRegName, mapping.suffix) == 0)
+		{
+			pMenu->m_targetSide = 0;
+			menuId = mapping.menuId;
+			menuItemId = mapping.menuItemId;
+			break;
+		}
+	}
+	if (!menuId.has_value())
+	{
+		// Check if the column name starts with L, M, or R (indicating side)
+		tchar_t firstChar = pRegName[0];
+		if (firstChar == _T('L') || firstChar == _T('M') || firstChar == _T('R'))
+		{
+			// Set target side: L=1, M=2, R=3
+			pMenu->m_targetSide = (firstChar == _T('L')) ? 1 : (firstChar == _T('M')) ? 2 : 3;
+
+			// Check suffix to determine menu ID
+			const tchar_t* suffix = pRegName + 1;
+			for (const auto& mapping : mappings)
+			{
+				if (tc::tcscmp(suffix, mapping.suffix) == 0)
+				{
+					menuId = mapping.menuId;
+					menuItemId = mapping.menuItemId;
+					break;
+				}
+			}
+		}
+	}
+	if (!menuId.has_value())
+		return nullptr;
+
+	if (menuItemId != -1)
+	{
+		pPopup->AppendMenu(MF_SEPARATOR);
+		pPopup->AppendMenu(MF_STRING, menuItemId, _("&Filter by This Column...").c_str());
+	}
+	else
+	{
+		VERIFY(pMenu->LoadMenu(*menuId));
+		CMenu* pSubMenu = pMenu->GetSubMenu(0);
+		I18n::TranslateMenu(pMenu->m_hMenu);
+		pPopup->AppendMenu(MF_SEPARATOR);
+		pPopup->AppendMenu(MF_POPUP, static_cast<int>(reinterpret_cast<uintptr_t>(pSubMenu->m_hMenu)), _("&Filter by This Column").c_str());
+	}
+	return pMenu;
+}
+
+std::optional<String> CFileFilterHelperMenu::HandleMenuCommand(const String& masks, int command, CWnd* pParentWnd)
+{
+	return OnCommand(masks, command, pParentWnd);
+}

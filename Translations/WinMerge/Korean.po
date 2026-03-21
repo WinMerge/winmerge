@@ -1851,6 +1851,12 @@ msgstr "대상: 가운데 및 오른쪽(&R)"
 msgid "Target: &All"
 msgstr "대상: 모두(&A)"
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "조건 지우기(&C)"
 
@@ -5711,6 +5717,12 @@ msgstr "필터 적용됨"
 msgid "Compare %1"
 msgstr "비교 %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "%s의 클립보드"
@@ -5940,6 +5952,9 @@ msgstr "알 수 없는 오류"
 msgid "Invalid property name"
 msgstr "잘못된 속성 이름"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "같음"
 
@@ -5975,6 +5990,18 @@ msgstr "포함 (정규식)"
 
 msgid "Not Contains (regex)"
 msgstr "포함하지 않음 (정규식)"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "밝은"

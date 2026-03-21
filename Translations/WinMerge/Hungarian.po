@@ -1844,6 +1844,12 @@ msgstr "Cél: Középső és &jobb"
 msgid "Target: &All"
 msgstr "Cél: &Összes"
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "Feltételek &törlése"
 
@@ -5599,6 +5605,12 @@ msgstr "Szűrő alkalmazva"
 msgid "Compare %1"
 msgstr "Összehasonlítás %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Vágólap itt: %s"
@@ -5772,6 +5784,9 @@ msgstr "Ismeretlen hiba"
 msgid "Invalid property name"
 msgstr "Érvénytelen tulajdonságnév"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "Egyenlők"
 
@@ -5807,6 +5822,18 @@ msgstr "Tartalmazza (regex)"
 
 msgid "Not Contains (regex)"
 msgstr "Nem tartalmazza (regex)"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "Világos"

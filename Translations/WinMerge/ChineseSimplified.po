@@ -1617,6 +1617,12 @@ msgstr "目标：中和右(&R)"
 msgid "Target: &All"
 msgstr "目标：全部(&A)"
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "清除条件(&C)"
 
@@ -4994,6 +5000,12 @@ msgstr "过滤器已应用"
 msgid "Compare %1"
 msgstr "比较 %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "剪贴板位于 %s"
@@ -5223,6 +5235,9 @@ msgstr "未知错误"
 msgid "Invalid property name"
 msgstr "无效的属性名称"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "等于"
 
@@ -5258,6 +5273,18 @@ msgstr "包含（正则表达式）"
 
 msgid "Not Contains (regex)"
 msgstr "未包含（正则表达式）"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "浅色"

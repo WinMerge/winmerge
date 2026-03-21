@@ -42,6 +42,7 @@ class CDiffContext;
 class DirViewColItems;
 class DirItemEnumerator;
 struct IListCtrl;
+class CFileFilterHelperMenu;
 
 /**
  * @brief Position value for special items (..) in directory compare view.
@@ -138,7 +139,6 @@ private:
 	bool AreItemsComparable(SELECTIONTYPE selectionType, bool openableForDir = true);
 	bool AreItemsComparableIndivisually(UINT nID, bool openableForDir);
 	void DoUpdateOpen(SELECTIONTYPE selectionType, CCmdUI* pCmdUI, bool openableForDir = true);
-	void RemoveDuplicatedActions(FileActionScript & actions);
 	void ConfirmAndPerformActions(FileActionScript & actions);
 	void PerformActionList(FileActionScript & actions);
 	void UpdateAfterFileScript(FileActionScript & actionList);
@@ -225,6 +225,7 @@ protected:
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
 	std::unique_ptr<DirViewTreeState> m_pSavedTreeState;
 	std::unique_ptr<DirViewColItems> m_pColItems;
+	std::unique_ptr<CFileFilterHelperMenu> m_pFilterMenu;
 	int m_nActivePane;
 
 	// Generated message map functions
@@ -410,6 +411,7 @@ protected:
 	afx_msg void OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnViewDisplayFilterBarApply();
 	afx_msg void OnViewDisplayFilterBar();
+	afx_msg void OnFilterMenuCommand(UINT nID);
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

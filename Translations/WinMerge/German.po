@@ -1849,6 +1849,12 @@ msgstr "Ziel: Mitte und &Rechts"
 msgid "Target: &All"
 msgstr "Ziel: &Alle"
 
+msgid "&File Name..."
+msgstr ""
+
+msgid "Fo&lder Name..."
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "Bedingungen &löschen"
 
@@ -5721,6 +5727,12 @@ msgstr "Angewandter Filter"
 msgid "Compare %1"
 msgstr "Vergleiche %1"
 
+msgid "&Filter by This Column"
+msgstr ""
+
+msgid "&Filter by This Column..."
+msgstr ""
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "Zwischenablage am %s"
@@ -5950,6 +5962,9 @@ msgstr "Unbekannter Fehler"
 msgid "Invalid property name"
 msgstr "Ungültiger Eigenschaftsname"
 
+msgid "Invalid directive"
+msgstr ""
+
 msgid "Equals"
 msgstr "Ist gleich"
 
@@ -5985,6 +6000,18 @@ msgstr "Enthält (regulärer Ausdruck)"
 
 msgid "Not Contains (regex)"
 msgstr "Enthält nicht (regulärer Ausdruck)"
+
+msgid "Match (wildcard)"
+msgstr ""
+
+msgid "Not match (wildcard)"
+msgstr ""
+
+msgid "Match (regex)"
+msgstr ""
+
+msgid "Not match (regex)"
+msgstr ""
 
 msgid "Light"
 msgstr "Hell"

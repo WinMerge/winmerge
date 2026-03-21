@@ -1612,6 +1612,12 @@ msgstr "対象: 中央と右(&R)"
 msgid "Target: &All"
 msgstr "対象: すべて(&A)"
 
+msgid "&File Name..."
+msgstr "ファイル名(&F)..."
+
+msgid "Fo&lder Name..."
+msgstr "フォルダー名(&L)..."
+
 msgid "&Clear conditions"
 msgstr "条件をクリア(&C)"
 
@@ -4995,6 +5001,12 @@ msgstr "フィルター適用"
 msgid "Compare %1"
 msgstr "%1 を比較"
 
+msgid "&Filter by This Column"
+msgstr "この列でフィルター(&F)"
+
+msgid "&Filter by This Column..."
+msgstr "この列でフィルター(&F)..."
+
 #, c-format
 msgid "Clipboard at %s"
 msgstr "クリップボード %s"
@@ -5224,6 +5236,9 @@ msgstr "不明なエラーです"
 msgid "Invalid property name"
 msgstr "無効なプロパティ名です"
 
+msgid "Invalid directive"
+msgstr "無効なディレクティブです"
+
 msgid "Equals"
 msgstr "等しい"
 
@@ -5259,6 +5274,18 @@ msgstr "含む(正規表現)"
 
 msgid "Not Contains (regex)"
 msgstr "含まない(正規表現)"
+
+msgid "Match (wildcard)"
+msgstr "一致(ワイルドカード)"
+
+msgid "Not match (wildcard)"
+msgstr "不一致(ワイルドカード)"
+
+msgid "Match (regex)"
+msgstr "一致(正規表現)"
+
+msgid "Not match (regex)"
+msgstr "不一致(正規表現)"
 
 msgid "Light"
 msgstr "ライト"
