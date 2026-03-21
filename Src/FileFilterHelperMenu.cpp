@@ -646,7 +646,6 @@ std::unique_ptr<CFileFilterHelperMenu> CFileFilterHelperMenu::AppendColumnFilter
 			PropertySystem ps({ propName });
 			VARTYPE vt;
 			int id = 0;
-			ps.GetPropertyType(0, vt);
 			if (vt == VT_I4 || vt == VT_UI4 || vt == VT_I8 || vt == VT_UI8 ||
 				vt == VT_R4 || vt == VT_R8 || vt == VT_LPWSTR || vt == (VT_VECTOR | VT_LPWSTR))
 			{
