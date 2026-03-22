@@ -4,7 +4,7 @@
 # Translators:
 # * Pawel Wawrzysko <traduc at kki.pl>
 # * Skiff <skiffatsf at users.sourceforge.net>
-# * Michał Trzebiatowski <hippie_1968@hotmail.com>
+# * Michał Trzebiatowski <hippie_1968 at hotmail.com>
 # * Mirosław Żylewicz
 # * Michał Lipok
 #
@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-02-25 21:21+0000\n"
-"PO-Revision-Date: 2026-02-27 00:21+0000\n"
+"POT-Creation-Date: 2026-03-22 09:52+0000\n"
+"PO-Revision-Date: 2026-03-22 20:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -869,13 +869,13 @@ msgid "Clear Sync&hronization Points"
 msgstr "Wyczyść punkty sync&hronizacji"
 
 msgid "Unpac&ker"
-msgstr "Rozpakowuj"
+msgstr "Rozpakowywanie"
 
 msgid "&Prediffer"
 msgstr "Porównywanie"
 
 msgid "Apply Pre&differ..."
-msgstr "Zastosuj porównane..."
+msgstr "Zastosuj porównywanie..."
 
 msgid "&Transform with Editor Script..."
 msgstr "Przekształć za pomocą edytora skryptu..."
@@ -1813,10 +1813,10 @@ msgid "&Don't close this dialog"
 msgstr "Nie zamykaj tego okna"
 
 msgid "&Find Next"
-msgstr "Znajdź nast."
+msgstr "Znajdź następny"
 
 msgid "Find &Prev"
-msgstr "Znajdź &poprz."
+msgstr "Znajdź poprzedni"
 
 msgid "Replace"
 msgstr "Zastąp"
@@ -2155,7 +2155,7 @@ msgid "Enable indent &heuristic"
 msgstr "Włącz heurystykę wcięcia"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr "Nie podkreślaj ignorowanych różnic"
+msgstr "Nie podświetlaj ignorowanych różnic"
 
 msgid "Editor"
 msgstr "Edytor"
@@ -2203,7 +2203,7 @@ msgid "W&ord break characters:"
 msgstr "Znaki dzielenia wyrazów:"
 
 msgid "Some messages can be hidden by the user. Press Reset to make all messages visible again."
-msgstr "WinMerge pozwala ukryć niektóre komunikaty. Naciśnij przycisk Resetuj, aby ponownie wyświetlać wszystkie komunikaty."
+msgstr "WinMerge pozwala ukryć niektóre komunikaty. Naciśnij Resetuj, aby ponownie wyświetlać wszystkie komunikaty."
 
 msgid "Reset"
 msgstr "Resetuj"
@@ -2338,7 +2338,7 @@ msgid "File Filters"
 msgstr "Filtry plików"
 
 msgid "&Mask / Filter Expression"
-msgstr "Maska / wyrażenie filtra"
+msgstr "Wyrażenie maski / filtra"
 
 msgid "Preset &Filters"
 msgstr "Predefiniowane filtry"
@@ -2569,7 +2569,7 @@ msgid "D&elimiter character:"
 msgstr "Znak rozgraniczający:"
 
 msgid "&Allow newlines in quotes"
-msgstr "Zezwalaj na nowe wiersze w cudzysłowie"
+msgstr "Zezwól na nowe wiersze w cudzysłowach"
 
 msgid "&Quote character:"
 msgstr "Znak cudzysłowu:"
@@ -2641,7 +2641,7 @@ msgid "&Plugin arguments:"
 msgstr "Argumenty wtyczki:"
 
 msgid "Enable &automatic unpacking/prediffing"
-msgstr "Włącz automatyczne rozpakowywanie/porównywanie dla wtyczki"
+msgstr "Włącz automatyczne rozpakowywanie/porównywanie"
 
 msgid "Shell Integration"
 msgstr "Integracja z powłoką"
@@ -2696,7 +2696,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignoruj różnice czasu mniejsze niż 3 sekundy"
 
 msgid "Expand subfolders &after comparison:"
-msgstr "Automatycznie rozwiń podfoldery po porównaniu:"
+msgstr "Rozwiń podfoldery po porównaniu:"
 
 msgid "Include &unique subfolders contents"
 msgstr "Uwzględnij unikalną zawartość podfolderów"
@@ -2705,10 +2705,10 @@ msgid "Ignore &reparse points"
 msgstr "Ignoruj punkty ponownej analizy składniowej"
 
 msgid "Switch to &quick compare when size exceeds (MB):"
-msgstr "Próg przejścia na szybkie porównywanie (MB):"
+msgstr "Przełącz na szybkie porównywanie, gdy rozmiar przekroczy (MB):"
 
 msgid "Switch to &binary compare when size exceeds (MB):"
-msgstr "Próg przejścia na binarne porównywanie (MB):"
+msgstr "Przełącz na binarne porównywanie, gdy rozmiar przekroczy (MB):"
 
 msgid "Additional comparison condi&tions:"
 msgstr "Dodatkowe warunki porównywania:"
@@ -2895,7 +2895,7 @@ msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nPorównywanieFolderów\n\n\n\nWinMerge.PorównywanieFolderów\nWinMerge Porównywanie Folderów"
 
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. It is free software and can be redistributed under the conditions of the GNU General Public License - see the Help menu for details."
-msgstr "WinMerge nie jest objęty ABSOLUTNIE ŻADNĄ GWARANCJĄ. Jest darmowym oprogramowaniem i mile widziane jest jego dalsze rozpowszechnianie na określonych warunkach. W celu uzyskania dalszych informacji odwiedź w menu Pomoc zakładkę \"Powszechna Licencja Publiczna GNU\"."
+msgstr "WinMerge jest dostarczany bez ABSOLUTNIE ŻADNEJ GWARANCJI. Jest to darmowe oprogramowanie i może być rozpowszechniane na warunkach Powszechnej Licencji Publicznej GNU - szczegóły znajdziesz w menu Pomoc."
 
 msgid "&Abort"
 msgstr "Przerwij"
@@ -3105,13 +3105,13 @@ msgid "Installing filter file failed.\n\nCould not copy new filter to folder."
 msgstr "Instalowanie pliku filtra nie powiodło się.\n\nNie można skopiować pliku do foldera filtrów."
 
 msgid "Filter file exists. Overwrite?"
-msgstr "Plik filtra już istnieje. Czy nadpisać istniejący plik?"
+msgstr "Plik filtra już istnieje. Nadpisać?"
 
 msgid "Regular expression"
 msgstr "Wyrażenia regularne"
 
 msgid "Filters updated. Refresh all open folder compares?\n\nSelect 'No' to refresh later."
-msgstr "Filtry zostały zaktualizowane. Czy chcesz odświeżyć wszystkie okna porównania folderów?\n\nJeżeli nie chcesz odświeżać okien porównań teraz, wybierz 'Nie' i odśwież okna później."
+msgstr "Filtry zostały zaktualizowane. Odświeżyć wszystkie otwarte okna porównania folderów?\n\nWybierz 'Nie', aby odświeżyć później."
 
 msgid "Folder Comparison Results"
 msgstr "Wyniki porównania folderów"
@@ -3258,7 +3258,7 @@ msgid "The file\n%1\nis not a conflict file."
 msgstr "Plik\n%1\nnie jest plikiem konfliktu."
 
 msgid "Comparing large files requires significant memory.\nShow only comparison results (not file contents)?"
-msgstr "Masz zamiar porównać bardzo duże pliki.\nWyświetlanie zawartości plików wymaga bardzo dużej ilości pamięci.\nCzy chcesz wyświetlić tylko wyniki porównania, a nie zawartość plików?\n\n"
+msgstr "Porównanie dużych plików wymaga znacznej ilości pamięci.\nWyświetlić tylko wyniki porównania (bez zawartości plików)?"
 
 msgid "Save As"
 msgstr "Zapisz jako"
@@ -3269,7 +3269,7 @@ msgstr "Zapisać zmiany w %1?"
 
 #, c-format
 msgid "%1 is read-only. Override? Or 'No' to save as new filename?"
-msgstr "%1 został oznaczony jako tylko do odczytu. Czy chcesz nadpisać istniejący plik?"
+msgstr "%1 jest tylko do odczytu. Nadpisać go? Wybierz 'Nie', aby zapisać pod nową nazwą."
 
 msgid "Error backing up file"
 msgstr "Błąd przy tworzeniu kopii zapasowej pliku"
@@ -3280,31 +3280,31 @@ msgstr "Nie można wykonać kopii zapasowej oryginalnego pliku:\n%1\n\nKontynuow
 
 #, c-format
 msgid "Saving file failed.\n%1\n%2\n\t- Use different filename (OK)\n\t- Abort (Cancel)?"
-msgstr "Zapis pliku nieudany.\n%1\n%2\nCzy chcesz:\n\t- użyć innej nazwy pliku (naciśnij OK)\n\t- przerwać bieżącą operację (naciśnij Anuluj)?"
+msgstr "Zapis pliku nieudany.\n%1\n%2\n\t- użyć innej nazwy pliku (OK)\n\t- przerwij bieżącą operację (Anuluj)?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
-msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w lewym pliku do '%1'.\n\nOryginalny plik nie zostanie zmieniony.\n\nCzy chcesz zapisać rozpakowaną wersję w innym pliku?"
+msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w lewym pliku do '%1'.\n\nOryginalny plik pozostał niezmieniony.\n\nZapisać rozpakowaną wersję?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
-msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w środkowym pliku do '%1'.\n\nOryginalny plik nie zostanie zmieniony.\n\nCzy chcesz zapisać rozpakowaną wersję w innym pliku?"
+msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w środkowym pliku do '%1'.\n\nOryginalny plik pozostał niezmieniony.\n\nZapisać rozpakowaną wersję?"
 
 #, c-format
 msgid "Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?"
-msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w prawym pliku do '%1'.\n\nOryginalny plik nie zostanie zmieniony.\n\nCzy chcesz zapisać rozpakowaną wersję w innym pliku?"
+msgstr "Wtyczka '%2' nie może spakować zmian wprowadzonych w prawym pliku do '%1'.\n\nOryginalny plik pozostał niezmieniony.\n\nZapisać rozpakowaną wersję?"
 
 #, c-format
 msgid "Another application updated\n%1\nsince WinMerge loaded it.\n\nOverwrite?"
-msgstr "Inna aplikacja dokonała zmian w pliku\n%1\npo tym jak WinMerge go wczytał.\n\nCzy nadpisać plik?"
+msgstr "Inna aplikacja dokonała zmian w pliku\n%1\npo tym jak WinMerge go wczytał.\n\nNadpisać?"
 
 #, c-format
 msgid "%1\nis read-only. Override?"
-msgstr "%1\nzostał oznaczony jako tylko do odczytu. Czy chcesz zastąpić element tylko do odczytu?"
+msgstr "%1\njest tylko do odczytu. Nadpisać?"
 
 #, c-format
 msgid "Another application updated\n%1\nsince last scan.\n\nReload?"
-msgstr "Plik\n%1\nzostał zmodyfikowany przez inną aplikację.\n\nCzy chcesz ponownie wczytać plik?"
+msgstr "Plik\n%1\nzostał zmodyfikowany przez inną aplikację.\n\nWczytać ponownie?"
 
 msgid "Save Left File As"
 msgstr "Zapisz lewy plik jako"
@@ -3398,7 +3398,7 @@ msgid "Differences to... (%1)"
 msgstr "Różnice do... (%1)"
 
 msgid "Some selected items are identical or skipped.\nCopy only items with differences?"
-msgstr "Niektóre zaznaczone elementy są identyczne lub zostały pominięte.\nSkopiować tylko elementy różniące się?"
+msgstr "Niektóre zaznaczone elementy są identyczne lub zostały pominięte.\nSkopiować tylko elementy z różnicami?"
 
 #, c-format
 msgid "Left (%1)"
@@ -3463,10 +3463,10 @@ msgid "Confirm Move"
 msgstr "Potwierdź przenoszenie"
 
 msgid "Close the folder comparison window?"
-msgstr "Zamierzasz zamknąć okno porównujące foldery. Czy na pewno chcesz zamknąć okno?"
+msgstr "Zamknąć okno porównywania folderu?"
 
 msgid "Close the folder comparison window, which took a long time?"
-msgstr "Zamierzasz zamknąć okno porównywania folderu, któremu poświęcono znaczną ilość czasu. Czy na pewno chcesz zamknąć okno?"
+msgstr "Zamknąć okno porównywania folderu, któremu poświęcono znaczną ilość czasu?"
 
 msgid "The file or folder name is invalid."
 msgstr "Nazwa pliku lub folderu jest nieprawidłowa."
@@ -3479,7 +3479,7 @@ msgid "Unknown archive format"
 msgstr "Nieznany format archiwum"
 
 msgid "Failed to extract archive.\nCompare as text file?"
-msgstr "Nie udało się wyodrębnić plików archiwum.\nCzy chcesz porównać pliki archiwum jak pliki tekstowe?"
+msgstr "Nie udało się wyodrębnić archiwum.\nPorównać jako plik tekstowy?"
 
 msgid "Filename"
 msgstr "Nazwa pliku"
@@ -3793,7 +3793,7 @@ msgid "%1 (set %2): "
 msgstr ""
 
 msgid "Some moved items have been merged.\nIn Tree Mode, these items may appear in positions that do not reflect the actual folder structure, which can be confusing.\nSwitch to Flat Mode?"
-msgstr ""
+msgstr "Niektóre przeniesione elementy zostały scalone.\nW trybie drzewa elementy te mogą pojawiać się w miejscach, które nie odzwierciedlają rzeczywistej struktury folderów, co może być mylące.\nPrzełączyć na tryb płaski?"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3932,7 +3932,7 @@ msgid "Simple XML"
 msgstr "Prosty XML"
 
 msgid "Report file already exists. Overwrite?"
-msgstr "Plik raportu już istnieje. Czy nadpisać plik?"
+msgstr "Plik raportu już istnieje. Nadpisać?"
 
 #, c-format
 msgid "Error creating the report:\n%1"
@@ -3969,7 +3969,7 @@ msgid "Could not create temporary files. Check your temporary path settings."
 msgstr "Nie można utworzyć plików tymczasowych. Sprawdź ustawienie ścieżki tymczasowej."
 
 msgid "Files use different EOL.\n\nTreat all EOL as equivalent?\n\nSet 'Ignore EOL differences (Windows/Unix/Mac)' in Compare section of Options."
-msgstr "Te pliki używają różnych znaków końca linii.\n\nCzy chcesz traktować wszystkie typy znaków końca linii jako równoważne?\n\nUwaga: Jeśli różne znaki końca linii mają być zawsze traktowane jako równoważne, ustaw w opcjach 'Ignoruj znaki końca linii (Windows/Unix/Mac)' (opcja dostępna w menu Edycja/Opcje w zakładce Porównaj)."
+msgstr "Pliki używają różnych znaków końca linii.\n\nCzy traktować wszystkie znaki końca linii jako równoważne?\n\nUstaw 'Ignoruj znaki końca linii (Windows/Unix/Mac)' w Edycja/Opcje/Porównaj."
 
 msgid "Selected folder is invalid."
 msgstr "Wybrany folder jest nieprawidłowy."
@@ -3982,29 +3982,29 @@ msgid "Create matching folder:\n%1\non the other side and open?"
 msgstr "Folder istnieje tylko na jednej ze stron i nie może zostać otwarty.\n\nCzy chcesz utworzyć odpowiedni folder:\n%1\npo drugiej stronie i otworzyć te foldery?"
 
 msgid "Copy all differences to other file?"
-msgstr "Czy na pewno chcesz skopiować wszystkie różnice do innego pliku?"
+msgstr "Skopiować wszystkie różnice do innego pliku?"
 
 msgid "Move to next file?"
-msgstr "Czy chcesz przejść do następnego pliku?"
+msgstr "Przejść do następnego pliku?"
 
 msgid "Move to previous file?"
-msgstr "Czy chcesz przejść do poprzedniego pliku?"
+msgstr "Przejść do poprzedniego pliku?"
 
 msgid "Move to next page?"
-msgstr "Czy chcesz przejść do następnej strony?"
+msgstr "Przejść do następnej strony?"
 
 msgid "Move to previous page?"
-msgstr "Czy chcesz przejść do poprzedniej strony?"
+msgstr "Przejść do poprzedniej strony?"
 
 msgid "Move to first file?"
-msgstr "Czy chcesz przejść do pierwszego pliku?"
+msgstr "Przejść do pierwszego pliku?"
 
 msgid "Move to last file?"
-msgstr "Czy chcesz przejść do ostatniego pliku?"
+msgstr "Przejść do ostatniego pliku?"
 
 #, c-format
 msgid "Different codepages: left (cp%d), right (cp%d).\nDisplay in codepage (better display) or default Windows codepage (safer merging)?\n(Recommended: default Windows codepage)"
-msgstr "Znaleziono różne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d) stronie.\nWyświetlanie każdego pliku z osobna w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/kopiowanie będzie niebezpieczne.\nCzy chcesz traktować oba pliki jako znajdujące się w domyślnej stronie kodowej systemu Windows (zalecane)?"
+msgstr "Różne strony kodowe: lewa (cp%d), prawa (cp%d).\nWyświetlić w stronie kodowej (lepszy wynik) czy w domyślnej stronie kodowej Windows (bezpieczne scalanie)?\n(Zalecane: domyślna strona kodowa Windows)"
 
 msgid "Information lost due to encoding errors: both files"
 msgstr "Utracono informacje z powodu błędów kodowania: oba pliki"
@@ -4030,7 +4030,7 @@ msgstr "Zastąpiono %1 sekwencję(i) znaków."
 
 #, c-format
 msgid "Cannot find string \"%s\"."
-msgstr "Nie można znaleźć sekwencji znaków \"%s\"."
+msgstr "Nie znaleziono ciągu znaków \"%s\"."
 
 msgid "Entering Merge Mode. Press F9 to turn off."
 msgstr "Przechodzisz do trybu scalania. Naciśnij F9, aby go wyłączyć."
@@ -4067,7 +4067,7 @@ msgid "Second item not found!"
 msgstr "Drugi element nie został znaleziony!"
 
 msgid "Patch file already exists. Overwrite?"
-msgstr "Plik łatki już istnieje. Czy napisać plik?"
+msgstr "Plik łatki już istnieje. Nadpisać?"
 
 #, c-format
 msgid "[%1 files selected]"
@@ -4124,7 +4124,7 @@ msgid "Failed to write options to file."
 msgstr "Błąd podczas eksportu opcji do pliku."
 
 msgid "Close multiple compare windows?\n\nContinue?"
-msgstr "Zamierzasz zamknąć kilka okien porównywania.\n\nCzy na pewno chcesz kontynuować?"
+msgstr "Zamierzasz zamknąć wiele okien porównywania.\n\nKontynuować?"
 
 msgid "Mixed"
 msgstr "Mieszany"
@@ -4233,7 +4233,7 @@ msgstr "Twoje oprogramowanie jest aktualne."
 
 #, c-format
 msgid "WinMerge update available.\n%1 available (you have %2). Download now?"
-msgstr "Dostępna jest nowa wersja WinMerge.\n%1 jest już dostępny (posiadasz %2). Czy chcesz ją teraz pobrać?"
+msgstr "Dostępna aktualizacja WinMerge.\nWersja %1 jest już dostępna (posiadasz %2). Pobrać teraz?"
 
 msgid " - All rights reserved."
 msgstr " - wszelkie prawa zastrzeżone."
@@ -4302,7 +4302,7 @@ msgstr "%1 nie został zainstalowany."
 
 #, c-format
 msgid "%1 does not exist. Create it?"
-msgstr "%1 nie istnieje. Czy chcesz go utworzyć?"
+msgstr "%1 nie istnieje. Utworzyć go?"
 
 msgid "Failed to create folder."
 msgstr "Nie udało się utworzyć folderu."
@@ -4606,10 +4606,10 @@ msgid "Compare %1"
 msgstr "Porównaj %1"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "Filtruj według tej kolumny
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "Filtruj według tej kolumny..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -4625,7 +4625,7 @@ msgid "32-bit WinMerge does not support Clipboard Compare"
 msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania schowka"
 
 msgid "WebView2 runtime not installed. Download it?"
-msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"
+msgstr "WebView2 Runtime nie został zainstalowany. Pobrać go?"
 
 msgid "New Text Compare"
 msgstr "Porównaj nowy tekst"
@@ -4785,7 +4785,7 @@ msgid "Invalid property name"
 msgstr "Nieprawidłowa nazwa właściwości"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "Nieprawidłowa dyrektywa"
 
 msgid "Equals"
 msgstr "Równe"
@@ -4824,16 +4824,16 @@ msgid "Not Contains (regex)"
 msgstr "Nie zawiera (wyrażenie regularne)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Dopasuj (symbol wieloznaczny)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Nie dopasuj (symbol wieloznaczny)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "Dopasuj (wyrażenie regularne)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Nie dopasuj (wyrażenie regularne)"
 
 msgid "Light"
 msgstr "Jasny"
@@ -4852,10 +4852,10 @@ msgid "WinMerge detected a previous crash. Please report this if possible."
 msgstr "WinMerge wykrył błąd krytyczny podczas ostatniej sesji. Prosimy o zgłoszenie tego faktu, jeśli to możliwe."
 
 msgid "# Regex replacement list\r\n# Format: regex<TAB>replacement\r\n# Backreferences like $1, $2 are supported\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
-msgstr ""
+msgstr "# Lista zastąpionych wyrażeń regularnych\r\n# Format: wyrażenie regularne<TAB>zastąpienie\r\n# Obsługiwane są odwołania wsteczne, takie jak $1, $2\r\n\r\n(\\d{4})-(\\d{2})-(\\d{2})\t$1_$2_$3\r\n"
 
 msgid "# Replacement list\r\n# Format: search<TAB>replacement\r\n# Lines starting with # are ignored\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
-msgstr ""
+msgstr "# Lista zastąpionych\r\n# Format: szukaj<TAB>zastąpienie\r\n# Linie zaczynające się od # są ignorowane\r\n\r\nfrom1\tto1\r\nfrom2\tto2\r\n"
 
 msgid "Prettification"
 msgstr "Upiększanie"
@@ -5008,7 +5008,7 @@ msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "Dekompiluj Java (CFR)"
 
 msgid "Make characters uppercase"
 msgstr "Zrób duże litery"
@@ -5035,23 +5035,23 @@ msgid "Reverse lines"
 msgstr "Odwróć wiersze"
 
 msgid "Replace text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n or: Replace -s\r\n FIND - text to find\r\n REPLACE - text to replace\r\n -i - ignore case (only for -e)\r\n -e - regex\r\n -s - use Substitution Filters"
-msgstr "Zastąp tekst innym tekstem.\r\nUżycie: Replace [-i] [-e] ZNAJDŹ ZASTĄP\r\n  lub: Replace -s\r\n  ZNAJDŹ    - tekst do znalezienia\r\n  ZASTĄP - tekst do zastąpienia\r\n  -i - ignoruj wielkość liter (tylko dla -e)\r\n  -e - traktuj określony tekst jako wyrażenie regularne\r\n -s - użyj filtrów zamiany"
+msgstr "Zastąp tekst innym tekstem.\r\nUżycie: Replace [-i] [-e] ZNAJDŹ ZASTĄP\r\n lub: Replace -s\r\n ZNAJDŹ - tekst do znalezienia\r\n ZASTĄP - tekst do zastąpienia\r\n -i - ignoruj wielkość liter (tylko dla -e)\r\n -e - traktuj określony tekst jako wyrażenie regularne\r\n -s - użyj filtrów zamiany"
 
 #, c-format
 msgid "Apply filter. \r\nUsage: ExecFilterCommand COMMAND\r\n COMMAND - command to execute. %1 = filename."
 msgstr "Zastosuj filtrowanie. \r\nUżycie: ExecFilterCommand POLECENIE\r\n POLECENIE - polecenie do wykonania. %1 = nazwa pliku."
 
 msgid "Tokenize. \r\nUsage: Tokenize PATTERNS\r\n PATTERNS - regex (e.g. [^\\w]+)"
-msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie: Tokenize SZABLONY\r\n  SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
+msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie: Tokenize SZABLONY\r\n SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
 
 msgid "Trim spaces"
 msgstr "Usuń spacje"
 
 msgid "Select columns.\r\nUsage: SelectColumns RANGES\r\n or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n RANGES - column ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -g - enable global flag\r\n -e - use PATTERNS"
-msgstr "Wybierz niektóre kolumny. \r\nUżycie: SelectColumns ZAKRESY\r\n   lub: SelectColumns [-v] [-i] [-g] -e SZABLONY\r\n  ZAKRESY   - lista zakresów kolumn do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące kolumny\r\n  -i - ignoruj wielkość liter\r\n  -g - włącz flagę globalną\r\n  -e - użyj SZABLONÓW do dopasowywania"
+msgstr "Wybierz kolumny.\r\nUżycie: SelectColumns ZAKRESY\r\n lub: SelectColumns [-v] [-i] [-g] -e SZABLONY\r\n ZAKRESY - lista zakresów kolumn do wybrania. (np. -3,5-10,30-)\r\n SZABLONY - wyrażenie regularne\r\n -v - wybierz niepasujące kolumny\r\n -i - ignoruj wielkość liter\r\n -g - włącz flagę globalną\r\n -e - użyj SZABLONÓW do dopasowywania"
 
 msgid "Select lines.\r\nUsage: SelectLines RANGES\r\n or: SelectLines [-v] [-i] -e PATTERNS\r\n RANGES - line ranges (-3,5-10,30-)\r\n PATTERNS - regex\r\n -v - select non-matching\r\n -i - ignore case\r\n -e - use PATTERNS"
-msgstr "Wybierz niektóre wiersze. \r\nUżycie: SelectLines ZAKRESY\r\n   lub: SelectLines [-v] [-i] -e SZABLONY\r\n  ZAKRESY   - lista zakresów wierszy do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące wiersze\r\n  -i - ignoruj wielkość liter\r\n  -e - użyj SZABLONÓW do dopasowywania"
+msgstr "Wybierz wiersze.\r\nUżycie: SelectLines ZAKRESY\r\n lub: SelectLines [-v] [-i] -e SZABLONY\r\n ZAKRESY - lista zakresów wierszy do wybrania. (np. -3,5-10,30-)\r\n SZABLONY - wyrażenie regularne\r\n -v - wybierz niepasujące wiersze\r\n -i - ignoruj wielkość liter\r\n -e - użyj SZABLONÓW do dopasowywania"
 
 msgid "HTML Prettier (tidy-html5).\r\nArguments: tidy command line options."
 msgstr "Upiększanie HTML (tidy-html5).\r\nArgumenty: Opcje wiersza poleceń tidy."
@@ -5159,7 +5159,7 @@ msgid "Unescape and display escaped Java properties files."
 msgstr ""
 
 msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
-msgstr ""
+msgstr "Dekompilator Java (CFR).\r\nDekompiluje pliki .class do czytelnego kodu źródłowego Java.\r\nArgumenty: Opcje wiersza poleceń CFR."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opcje wtyczki WinMerge CompareMSExcelFiles.sct"
