@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-03-12 12:16+0300\n"
+"PO-Revision-Date: 2026-03-22 15:08+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -1654,7 +1654,7 @@ msgid "Insert &replace() Function"
 msgstr "&replace() İşlevini Ekle"
 
 msgid "Insert rege&xReplace() Function"
-msgstr "rege&xReplace() İşlevini Ekle"
+msgstr "rege&xReplace() işlevini ekle"
 
 msgid "Replace &Lists"
 msgstr "&Listeleri Değiştir"
@@ -4998,10 +4998,10 @@ msgid "Compare %1"
 msgstr "%1’i karşılaştır"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "Bu sütuna göre &filtrele"
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "Bu sütuna göre &filtrele..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -5233,7 +5233,7 @@ msgid "Invalid property name"
 msgstr "Geçersiz özellik adı"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "Geçersiz yönerge"
 
 msgid "Equals"
 msgstr "Eşittir"
@@ -5272,16 +5272,16 @@ msgid "Not Contains (regex)"
 msgstr "İçermez (regex)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Eşleştir (joker karakter)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Eşleşmez (joker karakter)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "Eşleştir (regex)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Eşleşmez (regex)"
 
 msgid "Light"
 msgstr "Aydınlık"
