@@ -1616,12 +1616,6 @@ msgstr "Objetivo: central y de&recho"
 msgid "Target: &All"
 msgstr ""
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr ""
 

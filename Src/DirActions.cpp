@@ -766,7 +766,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 					while (diffpos != nullptr)
 					{
 						const DIFFITEM &dic = ctxt.GetNextSiblingDiffPosition(diffpos);
-						if (IsShowable(ctxt, dic, filter))
+						if (dic.diffcode.isDirectory() && IsShowable(ctxt, dic, filter))
 							return true;
 					}
 					return false;
@@ -783,7 +783,7 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 					while (diffpos != nullptr)
 					{
 						const DIFFITEM &dic = ctxt.GetNextSiblingDiffPosition(diffpos);
-						if (IsShowable(ctxt, dic, filter))
+						if (dic.diffcode.isDirectory() && IsShowable(ctxt, dic, filter))
 							return true;
 					}
 					return false;

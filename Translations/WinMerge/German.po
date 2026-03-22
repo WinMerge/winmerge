@@ -1849,12 +1849,6 @@ msgstr "Ziel: Mitte und &Rechts"
 msgid "Target: &All"
 msgstr "Ziel: &Alle"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "Bedingungen &löschen"
 

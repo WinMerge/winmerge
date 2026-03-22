@@ -1613,12 +1613,6 @@ msgstr "Đích: Ở giữa và phải"
 msgid "Target: &All"
 msgstr "Đích: Tất cả"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "Xoá sạch các điều kiện"
 

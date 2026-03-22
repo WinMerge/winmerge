@@ -1614,12 +1614,6 @@ msgstr "Miejsce docelowe: środkowy i prawy"
 msgid "Target: &All"
 msgstr "Miejsce docelowe: wszystkie"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "Wyczyść warunki"
 

@@ -1613,12 +1613,6 @@ msgstr "Rezultatai: Viduryje ir &Dešinėje"
 msgid "Target: &All"
 msgstr "Rezultatai: &Visi"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "&Išvalyti sąlygas"
 

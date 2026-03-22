@@ -1620,12 +1620,6 @@ msgstr "Cible : Milieu et &Droite"
 msgid "Target: &All"
 msgstr "Cible : &Tous"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "&Supprimer les conditions"
 

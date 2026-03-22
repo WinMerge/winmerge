@@ -1614,12 +1614,6 @@ msgstr "Alvo: Meio e Direita"
 msgid "Target: &All"
 msgstr "Alvo: &Tudo"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "&Limpar condições"
 

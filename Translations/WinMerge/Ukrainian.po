@@ -1613,12 +1613,6 @@ msgstr "Застосувати: в центрі та &праворуч"
 msgid "Target: &All"
 msgstr "Застосувати: &Всюди"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "&Очистити умови"
 

@@ -301,12 +301,6 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
-	else if (command == ID_FILTERMENU_FOLDERNAME)
-	{
-		CFilterConditionDlg dlg(false, m_targetSide, _T("Name"), m_propName, _("%1 contains %2"), _T("%1"));
-		if (dlg.DoModal() == IDOK)
-			result = (masks.empty() ? masks : masks + _T("|")) + _T("de:") + dlg.m_sExpression;
-	}
 	else if (command == ID_FILTERMENU_EXTENSION)
 	{
 		CFilterConditionDlg dlg(false, m_targetSide, _T("Extension"), m_propName, _("%1 contains %2"), _T("%1"));
@@ -317,7 +311,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	{
 		CFilterConditionDlg dlg(false, m_targetSide, _T("Folder"), m_propName, _("%1 contains %2"), _T("%1"));
 		if (dlg.DoModal() == IDOK)
-			result = (masks.empty() ? masks : masks + _T("|")) + _T("e:") + dlg.m_sExpression;
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
 	else if (command == ID_FILTERMENU_ADDITIONAL_PROP_DIALOG)
 	{
@@ -658,7 +652,7 @@ std::unique_ptr<CFileFilterHelperMenu> CFileFilterHelperMenu::AppendColumnFilter
 
 	struct ColumnMapping { const tchar_t* suffix; int menuId; int menuItemId; };
 	static const ColumnMapping mappings[] = {
-		{ _T("Name"), IDR_POPUP_FILTERMENU_NAME, -1 },
+		{ _T("Name"), -1, ID_FILTERMENU_FILENAME },
 		{ _T("Path"), -1, ID_FILTERMENU_RELATIVEFOLDER },
 		{ _T("Ext"), -1, ID_FILTERMENU_EXTENSION },
 		{ _T("mtime"), IDR_POPUP_FILTERMENU_DATE, -1 },

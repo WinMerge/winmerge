@@ -1851,12 +1851,6 @@ msgstr "대상: 가운데 및 오른쪽(&R)"
 msgid "Target: &All"
 msgstr "대상: 모두(&A)"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "조건 지우기(&C)"
 

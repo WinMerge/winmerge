@@ -1612,12 +1612,6 @@ msgstr "対象: 中央と右(&R)"
 msgid "Target: &All"
 msgstr "対象: すべて(&A)"
 
-msgid "&File Name..."
-msgstr "ファイル名(&F)..."
-
-msgid "Fo&lder Name..."
-msgstr "フォルダー名(&L)..."
-
 msgid "&Clear conditions"
 msgstr "条件をクリア(&C)"
 

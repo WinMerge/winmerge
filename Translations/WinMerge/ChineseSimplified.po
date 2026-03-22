@@ -1617,12 +1617,6 @@ msgstr "目标：中和右(&R)"
 msgid "Target: &All"
 msgstr "目标：全部(&A)"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "清除条件(&C)"
 

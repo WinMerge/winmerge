@@ -1615,12 +1615,6 @@ msgstr "Destinazione : Centru è &Diritta"
 msgid "Target: &All"
 msgstr "Destinazione : &Tutte"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "&Squassà e cundizioni"
 

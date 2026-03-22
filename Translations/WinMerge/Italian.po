@@ -1614,12 +1614,6 @@ msgstr "Obiettivo: centrale e &destra"
 msgid "Target: &All"
 msgstr "Obiettivo: &tutti"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "Azzera &condizioni"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-03-21 20:48+0000\n"
+"POT-Creation-Date: 2026-03-22 09:52+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1605,12 +1605,6 @@ msgid "Target: Middle and &Right"
 msgstr ""
 
 msgid "Target: &All"
-msgstr ""
-
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
 msgstr ""
 
 msgid "&Clear conditions"

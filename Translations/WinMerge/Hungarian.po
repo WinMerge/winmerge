@@ -1844,12 +1844,6 @@ msgstr "Cél: Középső és &jobb"
 msgid "Target: &All"
 msgstr "Cél: &Összes"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "Feltételek &törlése"
 

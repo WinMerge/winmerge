@@ -1614,12 +1614,6 @@ msgstr "Hedef: Orta ve &Sağ"
 msgid "Target: &All"
 msgstr "Hedef: &Tümü"
 
-msgid "&File Name..."
-msgstr ""
-
-msgid "Fo&lder Name..."
-msgstr ""
-
 msgid "&Clear conditions"
 msgstr "Koşulları &temizle"
 
