@@ -5051,7 +5051,7 @@ msgid "&Filter by This Column"
 msgstr "&Filtra per questa colonna"
 
 msgid "&Filter by This Column..."
-msgstr "&Filtra per colonne..."
+msgstr "&Filtra per questa colonna..."
 
 #, c-format
 msgid "Clipboard at %s"
