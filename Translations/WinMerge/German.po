@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-03-13 21:40+0100\n"
+"PO-Revision-Date: 2026-03-22 23:40+0100\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
@@ -5722,10 +5722,10 @@ msgid "Compare %1"
 msgstr "Vergleiche %1"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "Nach dieser Spalte &filtern"
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "Nach dieser Spalte &filtern..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -5957,7 +5957,7 @@ msgid "Invalid property name"
 msgstr "Ungültiger Eigenschaftsname"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "Ungültige Anweisung"
 
 msgid "Equals"
 msgstr "Ist gleich"
@@ -5990,22 +5990,22 @@ msgid "Not Contains"
 msgstr "Enthält nicht"
 
 msgid "Contains (regex)"
-msgstr "Enthält (regulärer Ausdruck)"
+msgstr "Enthält (Regex)"
 
 msgid "Not Contains (regex)"
-msgstr "Enthält nicht (regulärer Ausdruck)"
+msgstr "Enthält nicht (Regex)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Entspricht (Platzhalter)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Entspricht nicht (Platzhalter)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "Entspricht (Regex)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Entspricht nicht (Regex)"
 
 msgid "Light"
 msgstr "Hell"
