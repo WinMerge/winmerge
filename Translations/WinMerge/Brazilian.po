@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-03-11 11:00-0300\n"
+"PO-Revision-Date: 2026-03-22 21:15-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -4608,10 +4608,10 @@ msgid "Compare %1"
 msgstr "Comparar %1"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "&Filtrar por Esta Coluna"
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "&Filtrar por Esta Coluna..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -4787,7 +4787,7 @@ msgid "Invalid property name"
 msgstr "Nome de propriedade inválido"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "Diretiva inválida"
 
 msgid "Equals"
 msgstr "Igual a"
@@ -4826,16 +4826,16 @@ msgid "Not Contains (regex)"
 msgstr "Não Contém (regex)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Corresponde (coringa)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Não corresponde (coringa)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "Corresponde (regex)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Não corresponde (regex)"
 
 msgid "Light"
 msgstr "Claro"
