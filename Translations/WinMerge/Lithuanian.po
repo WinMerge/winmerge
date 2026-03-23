@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-03-10 21:57+0000\n"
-"PO-Revision-Date: 2026-03-12 08:08+0200\n"
+"POT-Creation-Date: 2026-03-22 09:52+0000\n"
+"PO-Revision-Date: 2026-03-23 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -4605,10 +4605,10 @@ msgid "Compare %1"
 msgstr "Palyginti %1"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "&Filtruoti pagal šį stulpelį"
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "&Filtruoti pagal šį stulpelį..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -4784,7 +4784,7 @@ msgid "Invalid property name"
 msgstr "Netinkamas ypatybės pavadinimas"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "Netinkama direktyva"
 
 msgid "Equals"
 msgstr "Lygu"
@@ -4823,16 +4823,16 @@ msgid "Not Contains (regex)"
 msgstr "Neturi (regex)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Sutampa (wildcard)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Nesutampa (wildcard)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "Sutampa (regex)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Nesutampa (regex)"
 
 msgid "Light"
 msgstr "Šviesi schema"
