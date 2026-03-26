@@ -197,6 +197,7 @@
     <Import Project="..\Externals\poco\Foundation\Foundation.vcxitems" Label="Shared" />
     <Import Project="..\Externals\poco\XML\XML.vcxitems" Label="Shared" />
     <Import Project="CrashLogger\CrashLogger.vcxitems" Label="Shared" />
+    <Import Project="..\Externals\tree-sitter\tree-sitter.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -1907,6 +1908,23 @@
     <Message Text="Copy visual elements to $(OutDir)" />
     <Copy SourceFiles="@(VisualElementsManifest)" DestinationFolder="$(OutDir)" ContinueOnError="true" />
     <Copy SourceFiles="@(LogoImages)" DestinationFolder="$(OutDir)\LogoImages" ContinueOnError="true" />
+  </Target>
+  <!--
+    Copy tree-sitter grammar DLLs and highlight queries from the Release output
+    to the current build output (Debug, Test, etc.).  Grammars are compiled once
+    via Build\TreeSitterGrammars\build-grammars.ps1 into the Release directory.
+    The copy is skipped silently when the source directory does not exist.
+  -->
+  <Target Name="CopyTreeSitterGrammars" AfterTargets="Build"
+          Condition="'$(Configuration)' != 'Release' AND Exists('$(OutDir)..\Release\TreeSitterGrammars')">
+    <ItemGroup>
+      <TreeSitterDlls Include="$(OutDir)..\Release\TreeSitterGrammars\*.dll" />
+      <TreeSitterQueries Include="$(OutDir)..\Release\TreeSitterGrammars\*.scm" />
+    </ItemGroup>
+    <Message Text="Copying tree-sitter grammars from Release to $(OutDir)TreeSitterGrammars\" Importance="high" />
+    <MakeDir Directories="$(OutDir)TreeSitterGrammars" />
+    <Copy SourceFiles="@(TreeSitterDlls)" DestinationFolder="$(OutDir)TreeSitterGrammars" SkipUnchangedFiles="true" ContinueOnError="true" />
+    <Copy SourceFiles="@(TreeSitterQueries)" DestinationFolder="$(OutDir)TreeSitterGrammars" SkipUnchangedFiles="true" ContinueOnError="true" />
   </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

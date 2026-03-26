@@ -287,6 +287,14 @@ void CMergeStatusBar::MergeStatus::Update()
 
 		if (m_nCodepage > 0)
 			strEncoding.Format(_("%s").c_str(), m_sCodepageName.c_str());
+		if (!m_sSyntaxParser.empty())
+		{
+			if (!strEncoding.IsEmpty())
+				strEncoding += _T("  ");
+			strEncoding += _T("[TS:");
+			strEncoding += m_sSyntaxParser.c_str();
+			strEncoding += _T("]");
+		}
 		m_pWndStatusBar->SetPaneText(m_base, strInfo);
 		m_pWndStatusBar->SetPaneText(m_base + 1, strEncoding);
 	}
@@ -298,6 +306,20 @@ void CMergeStatusBar::MergeStatus::Update()
 void CMergeStatusBar::MergeStatus::UpdateResources()
 {
 	Update();
+}
+
+/**
+ * @brief Set the syntax parser indicator text.
+ * @param szParser  Language name (e.g. "fsharp"), or empty/null to clear.
+ */
+void CMergeStatusBar::MergeStatus::SetSyntaxParser(const tchar_t* szParser)
+{
+	String sParser = szParser ? szParser : _T("");
+	if (m_sSyntaxParser != sParser)
+	{
+		m_sSyntaxParser = sParser;
+		Update();
+	}
 }
 
 /// Visible representation of eol

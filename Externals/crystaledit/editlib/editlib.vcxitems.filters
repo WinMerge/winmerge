@@ -100,6 +100,7 @@
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FindTextHelper.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TreeSitterParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaleditview.h">
@@ -205,5 +206,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)darkmodelib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TreeSitterParser.h" />
   </ItemGroup>
 </Project>

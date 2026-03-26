@@ -1,0 +1,1034 @@
+////////////////////////////////////////////////////////////////////////////
+//  File:       TreeSitterParser.cpp
+//  Version:    1.0.1
+//  Created:    2026-03-26
+//
+//  Tree-sitter based syntax highlighting bridge for CrystalEdit.
+//
+//  SPDX-License-Identifier: GPL-2.0-or-later
+////////////////////////////////////////////////////////////////////////////
+
+#include "StdAfx.h"
+#include "TreeSitterParser.h"
+#include "ccrystaltextview.h"
+#include "ccrystaltextbuffer.h"
+
+#include <tree_sitter/api.h>
+
+#include <fstream>
+#include <sstream>
+#include <cassert>
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
+// ============================================================================
+// CTreeSitterColorMap
+// ============================================================================
+
+CTreeSitterColorMap::CTreeSitterColorMap()
+{
+    // Map standard tree-sitter highlight capture names to WinMerge COLORINDEX.
+    //
+    // Tree-sitter highlight queries use capture names like @keyword, @string,
+    // @comment, etc. These names come from nvim-treesitter conventions.
+    // We collapse them into WinMerge's available color categories.
+
+    // Keywords: control flow, storage, operators as keywords
+    m_map["keyword"]                = COLORINDEX_KEYWORD;
+    m_map["keyword.function"]       = COLORINDEX_KEYWORD;
+    m_map["keyword.operator"]       = COLORINDEX_KEYWORD;
+    m_map["keyword.import"]         = COLORINDEX_KEYWORD;
+    m_map["keyword.type"]           = COLORINDEX_KEYWORD;
+    m_map["keyword.modifier"]       = COLORINDEX_KEYWORD;
+    m_map["keyword.repeat"]         = COLORINDEX_KEYWORD;
+    m_map["keyword.return"]         = COLORINDEX_KEYWORD;
+    m_map["keyword.conditional"]    = COLORINDEX_KEYWORD;
+    m_map["keyword.exception"]      = COLORINDEX_KEYWORD;
+    m_map["keyword.directive"]      = COLORINDEX_PREPROCESSOR;
+    m_map["keyword.coroutine"]      = COLORINDEX_KEYWORD;
+    m_map["include"]                = COLORINDEX_KEYWORD;
+    m_map["repeat"]                 = COLORINDEX_KEYWORD;
+    m_map["conditional"]            = COLORINDEX_KEYWORD;
+    m_map["exception"]              = COLORINDEX_KEYWORD;
+
+    // Functions
+    m_map["function"]               = COLORINDEX_FUNCNAME;
+    m_map["function.call"]          = COLORINDEX_FUNCNAME;
+    m_map["function.builtin"]       = COLORINDEX_FUNCNAME;
+    m_map["function.macro"]         = COLORINDEX_FUNCNAME;
+    m_map["method"]                 = COLORINDEX_FUNCNAME;
+    m_map["method.call"]            = COLORINDEX_FUNCNAME;
+    m_map["constructor"]            = COLORINDEX_FUNCNAME;
+
+    // Comments
+    m_map["comment"]                = COLORINDEX_COMMENT;
+    m_map["comment.documentation"]  = COLORINDEX_COMMENT;
+
+    // Strings
+    m_map["string"]                 = COLORINDEX_STRING;
+    m_map["string.documentation"]   = COLORINDEX_STRING;
+    m_map["string.regex"]           = COLORINDEX_STRING;
+    m_map["string.escape"]          = COLORINDEX_STRING;
+    m_map["string.special"]         = COLORINDEX_STRING;
+    m_map["character"]              = COLORINDEX_STRING;
+    m_map["character.special"]      = COLORINDEX_STRING;
+
+    // Numbers
+    m_map["number"]                 = COLORINDEX_NUMBER;
+    m_map["number.float"]           = COLORINDEX_NUMBER;
+    m_map["float"]                  = COLORINDEX_NUMBER;
+    m_map["boolean"]                = COLORINDEX_NUMBER;
+
+    // Operators and punctuation
+    m_map["operator"]               = COLORINDEX_OPERATOR;
+    m_map["punctuation"]            = COLORINDEX_OPERATOR;
+    m_map["punctuation.bracket"]    = COLORINDEX_OPERATOR;
+    m_map["punctuation.delimiter"]  = COLORINDEX_OPERATOR;
+    m_map["punctuation.special"]    = COLORINDEX_OPERATOR;
+
+    // Preprocessor / attributes
+    m_map["preproc"]                = COLORINDEX_PREPROCESSOR;
+    m_map["define"]                 = COLORINDEX_PREPROCESSOR;
+    m_map["attribute"]              = COLORINDEX_PREPROCESSOR;
+    m_map["attribute.builtin"]      = COLORINDEX_PREPROCESSOR;
+
+    // Types -> USER1 (types are important in F# for merge understanding)
+    m_map["type"]                   = COLORINDEX_USER1;
+    m_map["type.builtin"]           = COLORINDEX_USER1;
+    m_map["type.definition"]        = COLORINDEX_USER1;
+    m_map["type.qualifier"]         = COLORINDEX_USER1;
+    m_map["storageclass"]           = COLORINDEX_USER1;
+
+    // Variables / properties / modules -> USER2 or NORMALTEXT
+    m_map["variable"]               = COLORINDEX_NORMALTEXT;
+    m_map["variable.builtin"]       = COLORINDEX_USER2;
+    m_map["variable.parameter"]     = COLORINDEX_NORMALTEXT;
+    m_map["variable.member"]        = COLORINDEX_USER2;
+    m_map["property"]               = COLORINDEX_USER2;
+    m_map["field"]                  = COLORINDEX_USER2;
+    m_map["constant"]               = COLORINDEX_USER2;
+    m_map["constant.builtin"]       = COLORINDEX_USER2;
+    m_map["constant.macro"]         = COLORINDEX_USER2;
+    m_map["module"]                 = COLORINDEX_USER1;
+    m_map["namespace"]              = COLORINDEX_USER1;
+    m_map["label"]                  = COLORINDEX_USER2;
+    m_map["tag"]                    = COLORINDEX_KEYWORD;
+    m_map["tag.attribute"]          = COLORINDEX_USER2;
+    m_map["tag.delimiter"]          = COLORINDEX_OPERATOR;
+}
+
+int CTreeSitterColorMap::MapCapture(const std::string& sCaptureName) const
+{
+    // Try exact match first
+    auto it = m_map.find(sCaptureName);
+    if (it != m_map.end())
+        return it->second;
+
+    // Try prefix match: e.g. "keyword.control.fsharp" -> "keyword"
+    std::string prefix = sCaptureName;
+    while (true)
+    {
+        auto pos = prefix.rfind('.');
+        if (pos == std::string::npos)
+            break;
+        prefix = prefix.substr(0, pos);
+        it = m_map.find(prefix);
+        if (it != m_map.end())
+            return it->second;
+    }
+
+    return COLORINDEX_NORMALTEXT;
+}
+
+
+// ============================================================================
+// CTreeSitterLanguage
+// ============================================================================
+
+CTreeSitterLanguage::CTreeSitterLanguage()
+    : m_hDll(nullptr)
+    , m_pLanguage(nullptr)
+    , m_pQuery(nullptr)
+{
+}
+
+CTreeSitterLanguage::~CTreeSitterLanguage()
+{
+    if (m_pQuery)
+        ts_query_delete(m_pQuery);
+    if (m_hDll)
+        FreeLibrary(m_hDll);
+}
+
+bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstring& sLanguage)
+{
+    m_sName = sLanguage;
+
+    // Load the grammar DLL
+    // Expected name: tree-sitter-<language>.dll (e.g. tree-sitter-fsharp.dll)
+    std::wstring sDllPath = sGrammarDir + L"\\tree-sitter-" + sLanguage + L".dll";
+    m_hDll = LoadLibraryW(sDllPath.c_str());
+    if (!m_hDll)
+        return false;
+
+    // Get the language function
+    // Expected export: tree_sitter_<language> (e.g. tree_sitter_fsharp)
+    // Note: hyphens in language names are converted to underscores for the
+    // C export name (e.g. "c-sharp" -> "tree_sitter_c_sharp")
+    std::string sFuncName = "tree_sitter_";
+    for (wchar_t ch : sLanguage)
+    {
+        if (ch == L'-')
+            sFuncName += '_';
+        else
+            sFuncName += static_cast<char>(ch);  // ASCII language names only
+    }
+
+    typedef const TSLanguage* (*TSLanguageFunc)();
+    TSLanguageFunc pfnLanguage = reinterpret_cast<TSLanguageFunc>(
+        GetProcAddress(m_hDll, sFuncName.c_str()));
+    if (!pfnLanguage)
+    {
+        FreeLibrary(m_hDll);
+        m_hDll = nullptr;
+        return false;
+    }
+
+    m_pLanguage = pfnLanguage();
+    if (!m_pLanguage)
+    {
+        FreeLibrary(m_hDll);
+        m_hDll = nullptr;
+        return false;
+    }
+
+    // Load highlight query (.scm file)
+    // Expected name: <language>-highlights.scm (e.g. fsharp-highlights.scm)
+    std::wstring sQueryPath = sGrammarDir + L"\\" + sLanguage + L"-highlights.scm";
+    std::ifstream queryFile(sQueryPath, std::ios::binary);
+    if (queryFile.is_open())
+    {
+        std::string querySource((std::istreambuf_iterator<char>(queryFile)),
+                                 std::istreambuf_iterator<char>());
+
+        uint32_t errorOffset = 0;
+        TSQueryError errorType = TSQueryErrorNone;
+        m_pQuery = ts_query_new(
+            m_pLanguage,
+            querySource.c_str(),
+            static_cast<uint32_t>(querySource.size()),
+            &errorOffset,
+            &errorType);
+
+        if (errorType != TSQueryErrorNone)
+        {
+            // Query compilation failed - log but continue without highlighting
+            m_pQuery = nullptr;
+        }
+    }
+
+    return true;
+}
+
+
+// ============================================================================
+// CTreeSitterParser
+// ============================================================================
+
+CTreeSitterParser::CTreeSitterParser()
+    : m_pParser(nullptr)   // Fix #2: lazy-init, don't call ts_parser_new() here
+    , m_pTree(nullptr)
+    , m_pLang(nullptr)
+    , m_bDirty(false)
+    , m_nLineCount(0)
+{
+}
+
+CTreeSitterParser::~CTreeSitterParser()
+{
+    if (m_pTree)
+        ts_tree_delete(m_pTree);
+    if (m_pParser)
+        ts_parser_delete(m_pParser);
+}
+
+/**
+ * @brief Lazily create the TSParser instance on first use.
+ *
+ * This avoids calling ts_parser_new() in the constructor, which would
+ * happen for every CMergeEditView even when tree-sitter isn't needed.
+ */
+void CTreeSitterParser::EnsureParser()
+{
+    if (!m_pParser)
+        m_pParser = ts_parser_new();
+}
+
+void CTreeSitterParser::SetLanguage(const CTreeSitterLanguage* pLang)
+{
+    m_pLang = pLang;
+    if (pLang && pLang->GetLanguage())
+    {
+        EnsureParser();
+        if (m_pParser)
+            ts_parser_set_language(m_pParser, pLang->GetLanguage());
+    }
+    Invalidate();
+}
+
+void CTreeSitterParser::Invalidate()
+{
+    if (m_pTree)
+    {
+        ts_tree_delete(m_pTree);
+        m_pTree = nullptr;
+    }
+    m_lineBlocks.clear();
+    m_lineUtf8.clear();
+    m_documentText.clear();
+    m_nLineCount = 0;
+    m_bDirty = false;
+}
+
+void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
+                                       const int* pnLineLengths,
+                                       int nLineCount)
+{
+    EnsureParser();
+    if (!m_pParser || !m_pLang || !m_pLang->GetLanguage())
+        return;
+
+    // Build contiguous document text from line pointers.
+    // Tree-sitter requires UTF-8 input, so we convert from tchar_t (wchar_t on Windows).
+    m_documentText.clear();
+    m_lineUtf8.clear();
+    m_nLineCount = nLineCount;
+
+    // Pre-calculate total size estimate
+    size_t totalEstimate = 0;
+    for (int i = 0; i < nLineCount; i++)
+        totalEstimate += static_cast<size_t>(pnLineLengths[i]) * 3 + 1; // worst case UTF-8
+    m_documentText.reserve(totalEstimate);
+    m_lineUtf8.resize(nLineCount);
+
+    for (int i = 0; i < nLineCount; i++)
+    {
+        if (ppszLines[i] && pnLineLengths[i] > 0)
+        {
+#ifdef _UNICODE
+            // Convert UTF-16 to UTF-8
+            int nLen = WideCharToMultiByte(CP_UTF8, 0,
+                ppszLines[i], pnLineLengths[i],
+                nullptr, 0, nullptr, nullptr);
+            if (nLen > 0)
+            {
+                std::string lineUtf8(nLen, '\0');
+                WideCharToMultiByte(CP_UTF8, 0,
+                    ppszLines[i], pnLineLengths[i],
+                    &lineUtf8[0], nLen,
+                    nullptr, nullptr);
+                m_lineUtf8[i] = lineUtf8;
+                m_documentText.append(lineUtf8);
+            }
+#else
+            m_lineUtf8[i].assign(ppszLines[i], pnLineLengths[i]);
+            m_documentText.append(ppszLines[i], pnLineLengths[i]);
+#endif
+        }
+        if (i < nLineCount - 1)
+            m_documentText += '\n';
+    }
+
+    // Parse the document.
+    // Pass the old tree if available -- tree-sitter can reuse unchanged subtrees
+    // for faster re-parsing. (For full incremental support, ts_tree_edit() should
+    // be called on the old tree before re-parsing, but even without edit info
+    // tree-sitter benefits from having the previous tree as a reference.)
+    TSTree* pOldTree = m_pTree;
+    m_pTree = ts_parser_parse_string(
+        m_pParser,
+        pOldTree,
+        m_documentText.c_str(),
+        static_cast<uint32_t>(m_documentText.size()));
+
+    if (pOldTree)
+        ts_tree_delete(pOldTree);
+
+    if (m_pTree)
+    {
+        RunHighlightQuery();
+        BuildLineCache(nLineCount);
+    }
+
+    // Cache is now fresh
+    m_bDirty = false;
+}
+
+void CTreeSitterParser::ParseFromView(CCrystalTextView* pView)
+{
+    if (!pView)
+        return;
+
+    CCrystalTextBuffer* pBuf = pView->LocateTextBuffer();
+    if (!pBuf)
+        return;
+
+    int nLineCount = pBuf->GetLineCount();
+    if (nLineCount <= 0)
+        return;
+
+    // Collect line pointers and lengths
+    std::vector<const tchar_t*> lines(nLineCount);
+    std::vector<int> lengths(nLineCount);
+    for (int i = 0; i < nLineCount; i++)
+    {
+        lines[i] = pBuf->GetLineChars(i);
+        lengths[i] = pBuf->GetLineLength(i);
+    }
+
+    ParseDocument(lines.data(), lengths.data(), nLineCount);
+}
+
+/**
+ * @brief Notify the parser of an edit for incremental reparsing.
+ *
+ * Reads the last UndoRecord from the buffer to get the edit position,
+ * then calls ts_tree_edit() on the existing tree. This allows tree-sitter
+ * to reuse unchanged subtrees during the next reparse, which is
+ * significantly faster for large documents.
+ *
+ * Falls back to a simple MarkDirty() if the tree or undo info is unavailable.
+ */
+void CTreeSitterParser::NotifyEdit(CCrystalTextBuffer* pBuf)
+{
+    m_bDirty = true;
+
+    // If we don't have a tree, there's nothing to edit incrementally
+    if (!m_pTree || !pBuf || !pBuf->CanUndo())
+        return;
+
+    int nUndoPos = pBuf->GetUndoPosition();
+    if (nUndoPos <= 0)
+        return;
+
+    UndoRecord ur = pBuf->GetUndoRecord(nUndoPos - 1);
+    bool bInsert = (ur.m_dwFlags & UNDO_INSERT) != 0;
+
+    // Convert CEPoint (char-based, line/col) to UTF-8 byte offsets.
+    // m_lineUtf8 holds the per-line UTF-8 from the previous parse.
+    // We need:
+    //   start_byte:     absolute byte offset of the edit start in old doc
+    //   old_end_byte:   absolute byte offset of the old content end
+    //   new_end_byte:   absolute byte offset of the new content end
+
+    // Helper: compute absolute byte offset from (line, charPos) using old m_lineUtf8
+    // Each line in m_documentText is followed by '\n' (except the last)
+    auto charPosToByteOffset = [this](int line, int charPos) -> uint32_t
+    {
+        uint32_t byteOffset = 0;
+        int nLines = static_cast<int>(m_lineUtf8.size());
+
+        // Sum up all lines before 'line'
+        for (int i = 0; i < line && i < nLines; i++)
+        {
+            byteOffset += static_cast<uint32_t>(m_lineUtf8[i].size());
+            byteOffset += 1; // for '\n' separator
+        }
+
+        // Add the byte offset within the target line
+        if (line >= 0 && line < nLines && charPos > 0)
+        {
+#ifdef _UNICODE
+            const std::string& utf8Line = m_lineUtf8[line];
+            // Convert charPos (UTF-16 units) to UTF-8 byte count
+            // We need the original line text to do this properly.
+            // Use the stored UTF-8 line and convert back to count bytes.
+            int nUtf16Len = MultiByteToWideChar(CP_UTF8, 0,
+                utf8Line.c_str(), static_cast<int>(utf8Line.size()),
+                nullptr, 0);
+            if (charPos >= nUtf16Len)
+            {
+                byteOffset += static_cast<uint32_t>(utf8Line.size());
+            }
+            else
+            {
+                // Walk the UTF-8 bytes counting UTF-16 chars until we reach charPos
+                int utf16Count = 0;
+                uint32_t byteIdx = 0;
+                const uint8_t* p = reinterpret_cast<const uint8_t*>(utf8Line.c_str());
+                uint32_t lineLen = static_cast<uint32_t>(utf8Line.size());
+                while (byteIdx < lineLen && utf16Count < charPos)
+                {
+                    uint8_t ch = p[byteIdx];
+                    uint32_t seqLen;
+                    if (ch < 0x80)
+                        seqLen = 1;
+                    else if (ch < 0xE0)
+                        seqLen = 2;
+                    else if (ch < 0xF0)
+                        seqLen = 3;
+                    else
+                        seqLen = 4;
+
+                    byteIdx += seqLen;
+                    // A 4-byte UTF-8 sequence produces a surrogate pair (2 UTF-16 units)
+                    utf16Count += (seqLen == 4) ? 2 : 1;
+                }
+                byteOffset += byteIdx;
+            }
+#else
+            byteOffset += static_cast<uint32_t>(charPos);
+#endif
+        }
+        else if (line >= nLines && line > 0)
+        {
+            // Line is beyond our cached data -- use end of document
+            byteOffset = static_cast<uint32_t>(m_documentText.size());
+        }
+
+        return byteOffset;
+    };
+
+    // Helper: compute TSPoint (row, column in bytes) from (line, charPos)
+    auto charPosToTSPoint = [this](int line, int charPos) -> TSPoint
+    {
+        TSPoint pt;
+        pt.row = static_cast<uint32_t>(line);
+        pt.column = 0;
+
+        if (charPos > 0 && line >= 0 && line < static_cast<int>(m_lineUtf8.size()))
+        {
+            const std::string& utf8Line = m_lineUtf8[line];
+#ifdef _UNICODE
+            int nUtf16Len = MultiByteToWideChar(CP_UTF8, 0,
+                utf8Line.c_str(), static_cast<int>(utf8Line.size()),
+                nullptr, 0);
+            if (charPos >= nUtf16Len)
+            {
+                pt.column = static_cast<uint32_t>(utf8Line.size());
+            }
+            else
+            {
+                int utf16Count = 0;
+                uint32_t byteIdx = 0;
+                const uint8_t* p = reinterpret_cast<const uint8_t*>(utf8Line.c_str());
+                uint32_t lineLen = static_cast<uint32_t>(utf8Line.size());
+                while (byteIdx < lineLen && utf16Count < charPos)
+                {
+                    uint8_t ch = p[byteIdx];
+                    uint32_t seqLen;
+                    if (ch < 0x80)
+                        seqLen = 1;
+                    else if (ch < 0xE0)
+                        seqLen = 2;
+                    else if (ch < 0xF0)
+                        seqLen = 3;
+                    else
+                        seqLen = 4;
+                    byteIdx += seqLen;
+                    utf16Count += (seqLen == 4) ? 2 : 1;
+                }
+                pt.column = byteIdx;
+            }
+#else
+            pt.column = static_cast<uint32_t>(charPos);
+#endif
+        }
+        return pt;
+    };
+
+    TSInputEdit edit;
+    memset(&edit, 0, sizeof(edit));
+
+    if (bInsert)
+    {
+        // Insert: old range is empty (start == old_end), new range is the inserted text
+        edit.start_byte = charPosToByteOffset(ur.m_ptStartPos.y, ur.m_ptStartPos.x);
+        edit.old_end_byte = edit.start_byte;
+        edit.start_point = charPosToTSPoint(ur.m_ptStartPos.y, ur.m_ptStartPos.x);
+        edit.old_end_point = edit.start_point;
+
+        // For new_end, we need the end position after insert.
+        // The UndoRecord's m_ptEndPos gives us the end position in the *new* document.
+        // But our m_lineUtf8 is from the *old* document, so we can't use
+        // charPosToByteOffset for the end position directly.
+        // Instead, compute new_end_byte = start_byte + utf8_length_of_inserted_text.
+        const tchar_t* pInsText = ur.GetText();
+        size_t nInsLen = ur.GetTextLength();
+#ifdef _UNICODE
+        int nUtf8Len = WideCharToMultiByte(CP_UTF8, 0,
+            pInsText, static_cast<int>(nInsLen),
+            nullptr, 0, nullptr, nullptr);
+        edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(nUtf8Len);
+#else
+        edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(nInsLen);
+#endif
+        edit.new_end_point.row = static_cast<uint32_t>(ur.m_ptEndPos.y);
+        // For the column, we can compute it from the text: count bytes after last newline
+        uint32_t lastNewlineBytes = 0;
+        bool foundNewline = false;
+#ifdef _UNICODE
+        // Convert the inserted text to UTF-8 to find the last newline position
+        if (nUtf8Len > 0)
+        {
+            std::string insUtf8(nUtf8Len, '\0');
+            WideCharToMultiByte(CP_UTF8, 0, pInsText, static_cast<int>(nInsLen),
+                &insUtf8[0], nUtf8Len, nullptr, nullptr);
+            auto lastNL = insUtf8.rfind('\n');
+            if (lastNL != std::string::npos)
+            {
+                foundNewline = true;
+                lastNewlineBytes = static_cast<uint32_t>(nUtf8Len - lastNL - 1);
+            }
+        }
+#else
+        {
+            const char* pText = pInsText;
+            for (int i = static_cast<int>(nInsLen) - 1; i >= 0; i--)
+            {
+                if (pText[i] == '\n') { foundNewline = true; lastNewlineBytes = nInsLen - i - 1; break; }
+            }
+        }
+#endif
+        if (foundNewline)
+        {
+            edit.new_end_point.column = lastNewlineBytes;
+        }
+        else
+        {
+            // No newline in inserted text: column = start column + inserted byte length
+            edit.new_end_point.column = edit.start_point.column +
+                (edit.new_end_byte - edit.start_byte);
+        }
+    }
+    else
+    {
+        // Delete: old range is the deleted text, new range is empty (start == new_end)
+        edit.start_byte = charPosToByteOffset(ur.m_ptStartPos.y, ur.m_ptStartPos.x);
+        edit.start_point = charPosToTSPoint(ur.m_ptStartPos.y, ur.m_ptStartPos.x);
+
+        // For old_end, we use the old document positions
+        edit.old_end_byte = charPosToByteOffset(ur.m_ptEndPos.y, ur.m_ptEndPos.x);
+        edit.old_end_point = charPosToTSPoint(ur.m_ptEndPos.y, ur.m_ptEndPos.x);
+
+        // After deletion, the cursor is at start
+        edit.new_end_byte = edit.start_byte;
+        edit.new_end_point = edit.start_point;
+    }
+
+    ts_tree_edit(m_pTree, &edit);
+}
+
+/**
+ * @brief Ensure the document is parsed if the cache is dirty.
+ *
+ * Called lazily from ParseLine during the paint cycle. This means
+ * we reparse at most once per paint, not once per keystroke.
+ */
+void CTreeSitterParser::EnsureParsed(CCrystalTextView* pView)
+{
+    if (m_bDirty && m_pLang)
+    {
+        ParseFromView(pView);
+        // ParseFromView sets m_bDirty = false via ParseDocument
+    }
+}
+
+/**
+ * @brief Convert a UTF-8 byte offset within a line to a UTF-16 character position.
+ *
+ * Tree-sitter reports column positions as byte offsets in the UTF-8 text.
+ * WinMerge's TEXTBLOCK.m_nCharPos expects tchar_t (wchar_t) character indices.
+ * For pure ASCII, these are identical. For multi-byte UTF-8 / surrogate pairs,
+ * we need to walk the UTF-8 bytes and count the corresponding UTF-16 code units.
+ *
+ * @param nLine    Zero-based line index.
+ * @param byteCol  Byte offset within the line's UTF-8 representation.
+ * @return Character position (index into the wchar_t line).
+ */
+int CTreeSitterParser::Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const
+{
+    if (nLine < 0 || nLine >= static_cast<int>(m_lineUtf8.size()))
+        return static_cast<int>(byteCol);
+
+    const std::string& utf8Line = m_lineUtf8[nLine];
+    if (utf8Line.empty() || byteCol == 0)
+        return 0;
+
+    // Clamp to line length
+    uint32_t maxByte = static_cast<uint32_t>(utf8Line.size());
+    if (byteCol > maxByte)
+        byteCol = maxByte;
+
+#ifdef _UNICODE
+    // Convert the prefix [0..byteCol) from UTF-8 to UTF-16 and count chars
+    int nChars = MultiByteToWideChar(CP_UTF8, 0,
+        utf8Line.c_str(), static_cast<int>(byteCol),
+        nullptr, 0);
+    return nChars;
+#else
+    return static_cast<int>(byteCol);
+#endif
+}
+
+/**
+ * @brief Run the highlight query against the parsed tree and collect token ranges.
+ *
+ * This produces per-line block arrays by walking all highlight query matches
+ * and mapping tree-sitter byte positions to WinMerge character positions.
+ */
+void CTreeSitterParser::RunHighlightQuery()
+{
+    if (!m_pTree || !m_pLang || !m_pLang->GetHighlightQuery())
+        return;
+
+    const TSQuery* pQuery = m_pLang->GetHighlightQuery();
+    TSNode rootNode = ts_tree_root_node(m_pTree);
+
+    TSQueryCursor* pCursor = ts_query_cursor_new();
+    if (!pCursor)
+        return;
+
+    ts_query_cursor_exec(pCursor, pQuery, rootNode);
+
+    // Temporary structure to collect all highlights
+    struct HighlightEntry
+    {
+        uint32_t startRow;
+        uint32_t startCol;   // UTF-8 byte offset in line
+        uint32_t endRow;
+        uint32_t endCol;     // UTF-8 byte offset in line
+        int colorIndex;
+    };
+    std::vector<HighlightEntry> highlights;
+
+    TSQueryMatch match;
+    while (ts_query_cursor_next_match(pCursor, &match))
+    {
+        for (uint16_t i = 0; i < match.capture_count; i++)
+        {
+            TSQueryCapture capture = match.captures[i];
+            TSNode node = capture.node;
+
+            uint32_t captureNameLen = 0;
+            const char* captureName = ts_query_capture_name_for_id(
+                pQuery, capture.index, &captureNameLen);
+
+            std::string sName(captureName, captureNameLen);
+            int colorIndex = m_colorMap.MapCapture(sName);
+
+            TSPoint startPoint = ts_node_start_point(node);
+            TSPoint endPoint = ts_node_end_point(node);
+
+            HighlightEntry entry;
+            entry.startRow = startPoint.row;
+            entry.startCol = startPoint.column;
+            entry.endRow = endPoint.row;
+            entry.endCol = endPoint.column;
+            entry.colorIndex = colorIndex;
+
+            highlights.push_back(entry);
+        }
+    }
+
+    ts_query_cursor_delete(pCursor);
+
+    // Sort by start position (row, then column)
+    std::sort(highlights.begin(), highlights.end(),
+        [](const HighlightEntry& a, const HighlightEntry& b)
+        {
+            if (a.startRow != b.startRow)
+                return a.startRow < b.startRow;
+            return a.startCol < b.startCol;
+        });
+
+    // Build per-line block arrays
+    m_lineBlocks.clear();
+    m_lineBlocks.resize(m_nLineCount);
+
+    for (const auto& h : highlights)
+    {
+        // Handle tokens that span multiple lines (e.g. multi-line strings/comments)
+        for (uint32_t row = h.startRow; row <= h.endRow && row < static_cast<uint32_t>(m_nLineCount); row++)
+        {
+            uint32_t byteCol = (row == h.startRow) ? h.startCol : 0;
+
+            // Convert UTF-8 byte offset to UTF-16 character position
+            int charPos = Utf8ByteOffsetToCharPos(static_cast<int>(row), byteCol);
+
+            TreeSitterLineBlock block;
+            block.nCharPos = charPos;
+            block.nColorIndex = h.colorIndex;
+            m_lineBlocks[row].push_back(block);
+        }
+    }
+}
+
+void CTreeSitterParser::BuildLineCache(int nLineCount)
+{
+    // Sort each line's blocks by character position and remove duplicates
+    for (int i = 0; i < nLineCount && i < static_cast<int>(m_lineBlocks.size()); i++)
+    {
+        auto& blocks = m_lineBlocks[i];
+        std::sort(blocks.begin(), blocks.end(),
+            [](const TreeSitterLineBlock& a, const TreeSitterLineBlock& b)
+            {
+                return a.nCharPos < b.nCharPos;
+            });
+
+        // Remove consecutive entries at the same position (keep the last one,
+        // which is typically the more specific/inner match)
+        if (blocks.size() > 1)
+        {
+            std::vector<TreeSitterLineBlock> deduped;
+            deduped.reserve(blocks.size());
+            for (size_t j = 0; j < blocks.size(); j++)
+            {
+                if (j + 1 < blocks.size() && blocks[j].nCharPos == blocks[j + 1].nCharPos)
+                    continue;  // skip, keep the later one
+                deduped.push_back(blocks[j]);
+            }
+            blocks = std::move(deduped);
+        }
+    }
+}
+
+void CTreeSitterParser::GetLineBlocks(int nLineIndex,
+                                           CrystalLineParser::TEXTBLOCK* pBuf,
+                                           int& nActualItems,
+                                           int nMaxBlocks) const
+{
+    // Cookie-only mode (pBuf == nullptr): caller just wants the cookie.
+    // Tree-sitter doesn't use cookies, so nothing to do.
+    if (!pBuf)
+        return;
+
+    // Fix #4: bounds check against cached line count
+    if (nLineIndex < 0 || nLineIndex >= static_cast<int>(m_lineBlocks.size()))
+        return;
+
+    const auto& blocks = m_lineBlocks[nLineIndex];
+
+    // The caller (GetTextBlocks) pre-inserts a NORMALTEXT block at position 0
+    // and sets nActualItems = 1 before calling ParseLine. We follow the same
+    // convention as existing parsers: append our blocks starting at the current
+    // nActualItems, but overwrite the caller's default block if we have our own
+    // block at position 0.
+
+    for (const auto& block : blocks)
+    {
+        // If the caller's last block is at the same position, overwrite it
+        // (same logic as DEFINE_BLOCK macro in crystallineparser.h)
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nCharPos == block.nCharPos)
+        {
+            pBuf[nActualItems - 1].m_nColorIndex = block.nColorIndex;
+            pBuf[nActualItems - 1].m_nBgColorIndex = COLORINDEX_BKGND;
+            continue;
+        }
+
+        // Skip if same color as previous block (no visible change)
+        if (nActualItems > 0 && pBuf[nActualItems - 1].m_nColorIndex == block.nColorIndex)
+            continue;
+
+        // Bounds check: stop if we'd overflow the buffer
+        if (nMaxBlocks > 0 && nActualItems >= nMaxBlocks)
+            break;
+
+        pBuf[nActualItems].m_nCharPos = block.nCharPos;
+        pBuf[nActualItems].m_nColorIndex = block.nColorIndex;
+        pBuf[nActualItems].m_nBgColorIndex = COLORINDEX_BKGND;
+        nActualItems++;
+    }
+}
+
+
+// ============================================================================
+// TreeSitterRegistry
+// ============================================================================
+
+// Default extension -> language mappings.
+// Users can extend this via configuration.
+static const struct
+{
+    const wchar_t* ext;
+    const wchar_t* language;
+} s_defaultExtMap[] =
+{
+    // F# (primary target)
+    { L"fs",    L"fsharp" },
+    { L"fsx",   L"fsharp" },
+    { L"fsi",   L"fsharp_signature" },
+
+    // Common languages
+    { L"c",     L"c" },
+    { L"h",     L"c" },
+    { L"cpp",   L"cpp" },
+    { L"cxx",   L"cpp" },
+    { L"cc",    L"cpp" },
+    { L"hpp",   L"cpp" },
+    { L"hxx",   L"cpp" },
+    { L"cs",    L"c-sharp" },
+    { L"py",    L"python" },
+    { L"js",    L"javascript" },
+    { L"ts",    L"typescript" },
+    { L"tsx",   L"tsx" },
+    { L"jsx",   L"javascript" },
+    { L"java",  L"java" },
+    { L"go",    L"go" },
+    { L"rs",    L"rust" },
+    { L"rb",    L"ruby" },
+    { L"lua",   L"lua" },
+    { L"sh",    L"bash" },
+    { L"bash",  L"bash" },
+    { L"json",  L"json" },
+    { L"yaml",  L"yaml" },
+    { L"yml",   L"yaml" },
+    { L"xml",   L"xml" },
+    { L"html",  L"html" },
+    { L"htm",   L"html" },
+    { L"css",   L"css" },
+    { L"sql",   L"sql" },
+    { L"ps1",   L"powershell" },
+    { L"psm1",  L"powershell" },
+    { L"php",   L"php" },
+    { L"pl",    L"perl" },
+    { L"swift", L"swift" },
+    { L"kt",    L"kotlin" },
+    { L"scala", L"scala" },
+    { L"hs",    L"haskell" },
+    { L"ml",    L"ocaml" },
+    { L"mli",   L"ocaml" },
+    { L"ex",    L"elixir" },
+    { L"exs",   L"elixir" },
+    { L"zig",   L"zig" },
+    { L"nim",   L"nim" },
+    { L"toml",  L"toml" },
+    { L"md",    L"markdown" },
+};
+
+TreeSitterRegistry& TreeSitterRegistry::Instance()
+{
+    static TreeSitterRegistry instance;
+    return instance;
+}
+
+void TreeSitterRegistry::Initialize(const std::wstring& sGrammarDir)
+{
+    if (m_bInitialized)
+        return;
+
+    // Determine grammar directory
+    if (sGrammarDir.empty())
+    {
+        // Use <exe_dir>/TreeSitterGrammars/
+        wchar_t szExePath[MAX_PATH] = {};
+        GetModuleFileNameW(nullptr, szExePath, MAX_PATH);
+        std::wstring sExeDir(szExePath);
+        auto pos = sExeDir.rfind(L'\\');
+        if (pos != std::wstring::npos)
+            sExeDir = sExeDir.substr(0, pos);
+        m_sGrammarDir = sExeDir + L"\\TreeSitterGrammars";
+    }
+    else
+    {
+        m_sGrammarDir = sGrammarDir;
+    }
+
+    // Register default extension mappings
+    for (const auto& mapping : s_defaultExtMap)
+    {
+        m_extMap[mapping.ext] = mapping.language;
+    }
+
+    // Check if the grammar directory exists
+    DWORD dwAttrib = GetFileAttributesW(m_sGrammarDir.c_str());
+    if (dwAttrib == INVALID_FILE_ATTRIBUTES || !(dwAttrib & FILE_ATTRIBUTE_DIRECTORY))
+    {
+        // Directory doesn't exist - that's OK, just means no tree-sitter support
+        m_bInitialized = true;
+        return;
+    }
+
+    // Fix #3: Only discover available grammar DLLs, don't load them yet.
+    // Grammars are loaded lazily on first request in GetLanguageForExt().
+    WIN32_FIND_DATAW findData;
+    std::wstring searchPattern = m_sGrammarDir + L"\\tree-sitter-*.dll";
+    HANDLE hFind = FindFirstFileW(searchPattern.c_str(), &findData);
+    if (hFind != INVALID_HANDLE_VALUE)
+    {
+        do
+        {
+            // Extract language name from "tree-sitter-<language>.dll"
+            std::wstring sFileName(findData.cFileName);
+            const std::wstring prefix = L"tree-sitter-";
+            const std::wstring suffix = L".dll";
+            if (sFileName.size() > prefix.size() + suffix.size())
+            {
+                std::wstring sLangName = sFileName.substr(
+                    prefix.size(),
+                    sFileName.size() - prefix.size() - suffix.size());
+
+                // Just record that this language is available
+                m_availableLanguages.insert(sLangName);
+            }
+        } while (FindNextFileW(hFind, &findData));
+        FindClose(hFind);
+    }
+
+    m_bInitialized = true;
+}
+
+const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForExt(const std::wstring& sExt)
+{
+    // Look up extension -> language name
+    auto itExt = m_extMap.find(sExt);
+    if (itExt == m_extMap.end())
+        return nullptr;
+
+    const std::wstring& sLangName = itExt->second;
+
+    // Check if already loaded
+    auto itLang = m_languages.find(sLangName);
+    if (itLang != m_languages.end())
+    {
+        // Already loaded - return if it has a valid highlight query
+        if (!itLang->second->GetHighlightQuery())
+            return nullptr;
+        return itLang->second.get();
+    }
+
+    // Check if this language previously failed to load
+    if (m_failedLanguages.count(sLangName) > 0)
+        return nullptr;
+
+    // Check if a DLL is available for this language
+    if (m_availableLanguages.count(sLangName) == 0)
+        return nullptr;
+
+    // Lazy load: load the grammar DLL now
+    auto pLang = std::make_unique<CTreeSitterLanguage>();
+    if (!pLang->Load(m_sGrammarDir, sLangName))
+    {
+        // Record failure so we don't retry
+        m_failedLanguages.insert(sLangName);
+        return nullptr;
+    }
+
+    // Check if the loaded grammar has a highlight query
+    if (!pLang->GetHighlightQuery())
+    {
+        m_failedLanguages.insert(sLangName);
+        return nullptr;
+    }
+
+    const CTreeSitterLanguage* pResult = pLang.get();
+    m_languages[sLangName] = std::move(pLang);
+    return pResult;
+}
+
+void TreeSitterRegistry::RegisterExtension(const std::wstring& sExt, const std::wstring& sLanguage)
+{
+    m_extMap[sExt] = sLanguage;
+}

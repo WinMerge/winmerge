@@ -22,6 +22,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)crystaleditviewex.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)crystalparser.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)crystaltextblock.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TreeSitterParser.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\ceditreplacedlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\cfindtextdlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\chcondlg.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)crystaleditviewex.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crystalparser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crystaltextblock.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TreeSitterParser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)darkmodelib.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\ceditreplacedlg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\cfindtextdlg.h" />

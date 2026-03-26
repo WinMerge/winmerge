@@ -31,3 +31,6 @@
 [submodule "Externals/darkmodelib"]
 	path = Externals/darkmodelib
 	url = https://github.com/winmerge/darkmodelib.git
+[submodule "Externals/tree-sitter"]
+	path = Externals/tree-sitter
+	url = https://github.com/tree-sitter/tree-sitter.git
