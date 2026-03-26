@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-03-12 00:42+0900\n"
+"PO-Revision-Date: 2026-03-26 17:43+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -5712,10 +5712,10 @@ msgid "Compare %1"
 msgstr "비교 %1"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "이 열로 필터링(&F)"
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "이 열로 필터링(&F)..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -5947,7 +5947,7 @@ msgid "Invalid property name"
 msgstr "잘못된 속성 이름"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "잘못된 지침"
 
 msgid "Equals"
 msgstr "같음"
@@ -5986,16 +5986,16 @@ msgid "Not Contains (regex)"
 msgstr "포함하지 않음 (정규식)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "일치 (와일드카드)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "일치하지 않음 (와일드카드)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "일치 (정규 표현식)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "일치하지 않음 (정규 표현식)"
 
 msgid "Light"
 msgstr "밝은"
