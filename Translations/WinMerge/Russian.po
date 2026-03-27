@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2026-02-25 00:00+0000\n"
+"PO-Revision-Date: 2026-03-27 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -4607,10 +4607,10 @@ msgid "Compare %1"
 msgstr "Сравнить %1"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "Фильтр по этому столбцу"
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "Фильтр по этому столбцу..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -4786,7 +4786,7 @@ msgid "Invalid property name"
 msgstr "Неверное имя свойства"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "Неверная директива"
 
 msgid "Equals"
 msgstr "Равно"
@@ -4825,16 +4825,16 @@ msgid "Not Contains (regex)"
 msgstr "Не содержит (regex)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Совпадение (маска)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Несовпадение (маска)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "Совпадение (regex)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Несовпадение (regex)"
 
 msgid "Light"
 msgstr "Светлый"
@@ -5009,7 +5009,7 @@ msgid "Unescape Java properties files"
 msgstr "Деэкранировать файлы свойств Java"
 
 msgid "Decompile Java (CFR)"
-msgstr ""
+msgstr "Декомпилятор Java (CFR)"
 
 msgid "Make characters uppercase"
 msgstr "В верхний регистр"
@@ -5076,7 +5076,7 @@ msgid "Markdown Previewer.\r\nArguments: md2html command line options."
 msgstr "Предпросмотр Markdown. \r\nАргументы: Параметры командной строки, передаваемые команде md2html."
 
 msgid "PlantUML Previewer.\r\nArguments: plantuml.jar command line options."
-msgstr "Предпросмотр PlantUML. \r\nАргументы: Параметры командной строки, передаваемые команде plantuml.jar."
+msgstr "Предпросмотр PlantUML. \r\nАргументы: Параметры командной строки, передаваемые plantuml.jar."
 
 msgid "CSV Querier (q).\r\nArguments: SQL statement/q command line options."
 msgstr "CSV Querier с командой q. \r\nАргументы: Оператор SQL или параметры командной строки, передаваемые команде q."
@@ -5106,7 +5106,7 @@ msgid "Native code disassembler (dumpbin).\r\nArguments: dumpbin command line op
 msgstr "Дизассемблер нативного кода с dumpbin. \r\nАргументы: Параметры командной строки, передаваемые команде dumpbin."
 
 msgid "Content extractor (Apache Tika).\r\nArguments: tika-app.jar command line options."
-msgstr "Экстрактор общего содержания с Apache Tika. \r\nАргументы: Параметры командной строки, передаваемые в tika-app.jar."
+msgstr "Экстрактор общего содержания с Apache Tika. \r\nАргументы: Параметры командной строки, передаваемые tika-app.jar."
 
 msgid "Apply patch (GNU patch)"
 msgstr "Применить патч, используя патч GNU"
@@ -5142,7 +5142,7 @@ msgid "Date and time insertion"
 msgstr "Функция вставки даты и времени"
 
 msgid "HTTP URL Scheme Handler (curl).\r\nArguments: curl command line options."
-msgstr "Обработчик схемы URL HTTP с помощью curl. \r\nАргументы: Параметры командной строки, передаваемые программе curl."
+msgstr "Обработчик схемы URL HTTP с помощью curl. \r\nАргументы: Параметры командной строки, передаваемые команде curl."
 
 msgid "Windows Registry URL Scheme Handler.\r\nArguments: reg.exe command line options."
 msgstr "Обработчик схемы URL реестра Windows. \r\nАргументы: Параметры командной строки, передаваемые программе reg.exe."
@@ -5160,7 +5160,7 @@ msgid "Unescape and display escaped Java properties files."
 msgstr "Деэкранировать и отобразить экранированные файлы свойств Java."
 
 msgid "Java decompiler (CFR).\r\nDecompiles .class files into readable Java source code.\r\nArguments: CFR command line options."
-msgstr ""
+msgstr "Декомпилятор Java (CFR).\r\nДекомпилирует файлы .class в читаемый исходный код Java.\r\nАргументы: Параметры командной строки, передаваемые команде CFR."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Параметры плагина WinMerge CompareMSExcelFiles.sct"
@@ -5205,7 +5205,7 @@ msgid "Replace line breaks in formulas with spaces"
 msgstr "Заменить переносы строк в формулах пробелами"
 
 msgid "Include sheet order number in filename"
-msgstr ""
+msgstr "Включить порядковый номер листа в имя файла"
 
 msgid "Compare VBA macros"
 msgstr "Сравнить макросы VBA"
