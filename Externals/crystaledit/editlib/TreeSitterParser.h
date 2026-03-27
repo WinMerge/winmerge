@@ -43,7 +43,7 @@ class CCrystalTextBuffer;
  * @brief Manages a tree-sitter grammar loaded from a DLL.
  *
  * Each instance holds a loaded grammar DLL, the TSLanguage pointer,
- * and the compiled highlight query for that language.
+ * and the compiled highlight, locals, and injection queries for that language.
  */
 class CTreeSitterLanguage
 {
@@ -55,10 +55,13 @@ public:
     CTreeSitterLanguage& operator=(const CTreeSitterLanguage&) = delete;
 
     /**
-     * @brief Load a grammar DLL and its highlight query file.
+     * @brief Load a grammar DLL and its query files.
      * @param sGrammarDir  Directory containing grammar DLLs and .scm files.
      * @param sLanguage    Language name (e.g. "fsharp", "python", "cpp").
-     * @return true if both the DLL and query loaded successfully.
+     * @return true if both the DLL and highlight query loaded successfully.
+     *
+     * Also attempts to load locals.scm and injections.scm if present.
+     * Failure to load locals or injections is not fatal.
      */
     bool Load(const std::wstring& sGrammarDir, const std::wstring& sLanguage);
 
@@ -66,16 +69,27 @@ public:
     const TSLanguage* GetLanguage() const { return m_pLanguage; }
 
     /** @brief Get the compiled highlight TSQuery (or nullptr). */
-    const TSQuery* GetHighlightQuery() const { return m_pQuery; }
+    const TSQuery* GetHighlightQuery() const { return m_pHighlightQuery; }
+
+    /** @brief Get the compiled locals TSQuery (or nullptr). */
+    const TSQuery* GetLocalsQuery() const { return m_pLocalsQuery; }
+
+    /** @brief Get the compiled injection TSQuery (or nullptr). */
+    const TSQuery* GetInjectionQuery() const { return m_pInjectionQuery; }
 
     /** @brief Get the language name. */
     const std::wstring& GetName() const { return m_sName; }
 
 private:
-    HMODULE         m_hDll;
+    /** @brief Helper to load and compile a .scm query file. */
+    TSQuery* LoadQuery(const std::wstring& sPath);
+
+    HMODULE           m_hDll;
     const TSLanguage* m_pLanguage;
-    TSQuery*        m_pQuery;
-    std::wstring    m_sName;
+    TSQuery*          m_pHighlightQuery;
+    TSQuery*          m_pLocalsQuery;
+    TSQuery*          m_pInjectionQuery;
+    std::wstring      m_sName;
 };
 
 
@@ -233,8 +247,21 @@ public:
 private:
     void EnsureParser();
     void RunHighlightQuery();
+    void RunLocalsQuery();
+    void RunInjectionQuery();
     void BuildLineCache(int nLineCount);
     int Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) const;
+
+    /**
+     * @brief Extract #set! predicate properties from a query pattern.
+     * @param pQuery       The query containing the pattern.
+     * @param patternIndex The pattern index.
+     * @param key          The property key to look for (e.g. "injection.language").
+     * @return The property value, or empty string if not found.
+     */
+    static std::string GetSetProperty(const TSQuery* pQuery,
+                                       uint32_t patternIndex,
+                                       const std::string& key);
 
     TSParser*           m_pParser;      // Created lazily on first use
     TSTree*             m_pTree;
@@ -252,6 +279,42 @@ private:
     // or a custom read callback)
     std::string m_documentText;
     int         m_nLineCount;
+
+    // --- Locals support ---
+    // Maps (startByte, endByte) of definition nodes to their highlight color.
+    // Built by RunLocalsQuery + RunHighlightQuery cross-referencing.
+    struct LocalDef
+    {
+        std::string name;       // Variable/symbol name
+        uint32_t    startByte;  // Definition node start
+        uint32_t    endByte;    // Definition node end
+        int         highlight;  // COLORINDEX from highlights.scm (-1 = unknown)
+    };
+
+    struct LocalScope
+    {
+        uint32_t startByte;
+        uint32_t endByte;
+        bool     inherits;
+        std::vector<LocalDef> defs;
+    };
+
+    // Scopes from locals.scm, sorted by startByte
+    std::vector<LocalScope> m_localScopes;
+
+    // Map from reference node byte range -> resolved highlight color.
+    // Key: (startByte << 32 | endByte). Assumes files < 4GB.
+    std::unordered_map<uint64_t, int> m_localRefHighlights;
+
+    // Pending references from RunLocalsQuery, resolved during RunHighlightQuery
+    struct PendingRef
+    {
+        std::string name;
+        uint32_t    startByte;
+        uint32_t    endByte;
+        uint32_t    scopeStartByte;
+    };
+    std::vector<PendingRef> m_pendingRefs;
 };
 
 
@@ -287,6 +350,16 @@ public:
      * Loads the grammar DLL lazily on first request for each language.
      */
     const CTreeSitterLanguage* GetLanguageForExt(const std::wstring& sExt);
+
+    /**
+     * @brief Find a loaded language by language name.
+     * @param sLangName  Language name (e.g. "javascript", "css", "python").
+     * @return Pointer to the language, or nullptr if not available.
+     *
+     * Used by injection processing to look up grammars for embedded languages.
+     * Loads the grammar DLL lazily on first request.
+     */
+    const CTreeSitterLanguage* GetLanguageForName(const std::wstring& sLangName);
 
     /**
      * @brief Register a file extension mapping to a language name.

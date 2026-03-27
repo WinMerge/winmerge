@@ -127,6 +127,8 @@ function Build-GrammarDll {
         [string]$SourceDir,
         [string]$RepoDir,
         [string]$HighlightsScm,
+        [string]$LocalsScm,
+        [string]$InjectionsScm,
         [string]$DllName
     )
     $srcDir   = Join-Path $SourceDir "src"
@@ -186,6 +188,16 @@ function Build-GrammarDll {
         Write-Host "  Copied highlights -> $GrammarName-highlights.scm"
     } else {
         Write-Warning "  No highlights.scm for $GrammarName"
+    }
+    if ($LocalsScm -and (Test-Path $LocalsScm)) {
+        $dest = Join-Path $OutDir "$GrammarName-locals.scm"
+        Copy-Item $LocalsScm $dest -Force
+        Write-Host "  Copied locals -> $GrammarName-locals.scm"
+    }
+    if ($InjectionsScm -and (Test-Path $InjectionsScm)) {
+        $dest = Join-Path $OutDir "$GrammarName-injections.scm"
+        Copy-Item $InjectionsScm $dest -Force
+        Write-Host "  Copied injections -> $GrammarName-injections.scm"
     }
     Write-Host "  OK: $dllPath"
     return $true
@@ -280,8 +292,68 @@ foreach ($entry in $config.grammars) {
             }
         }
 
+        # Resolve locals.scm (same pattern as highlights)
+        $lcScm = $null
+        $lcRel = $g.locals
+        if ($lcRel) {
+            $lcPaths = if ($lcRel -is [array]) { $lcRel } else { @($lcRel) }
+            foreach ($candidate in $lcPaths) {
+                $tryPath = Join-Path $repoDir $candidate
+                if (Test-Path $tryPath) {
+                    $lcScm = $tryPath
+                    break
+                }
+                $tryPath = Join-Path $sourceDir $candidate
+                if (Test-Path $tryPath) {
+                    $lcScm = $tryPath
+                    break
+                }
+            }
+        }
+        if (-not $lcScm) {
+            $fallback = Join-Path $sourceDir "queries\locals.scm"
+            if (Test-Path $fallback) {
+                $lcScm = $fallback
+            } else {
+                $fallback = Join-Path $repoDir "queries\locals.scm"
+                if (Test-Path $fallback) {
+                    $lcScm = $fallback
+                }
+            }
+        }
+
+        # Resolve injections.scm (same pattern as highlights)
+        $ijScm = $null
+        $ijRel = $g.injections
+        if ($ijRel) {
+            $ijPaths = if ($ijRel -is [array]) { $ijRel } else { @($ijRel) }
+            foreach ($candidate in $ijPaths) {
+                $tryPath = Join-Path $repoDir $candidate
+                if (Test-Path $tryPath) {
+                    $ijScm = $tryPath
+                    break
+                }
+                $tryPath = Join-Path $sourceDir $candidate
+                if (Test-Path $tryPath) {
+                    $ijScm = $tryPath
+                    break
+                }
+            }
+        }
+        if (-not $ijScm) {
+            $fallback = Join-Path $sourceDir "queries\injections.scm"
+            if (Test-Path $fallback) {
+                $ijScm = $fallback
+            } else {
+                $fallback = Join-Path $repoDir "queries\injections.scm"
+                if (Test-Path $fallback) {
+                    $ijScm = $fallback
+                }
+            }
+        }
+
         Write-Host "  Grammar: $gName (path: $gPath)"
-        $ok = Build-GrammarDll -GrammarName $gName -SourceDir $sourceDir -RepoDir $repoDir -HighlightsScm $hlScm -DllName $dllName
+        $ok = Build-GrammarDll -GrammarName $gName -SourceDir $sourceDir -RepoDir $repoDir -HighlightsScm $hlScm -LocalsScm $lcScm -InjectionsScm $ijScm -DllName $dllName
         if ($ok) { $succeeded++ } else { $failed++ }
     }
     Write-Host ""
