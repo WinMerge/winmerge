@@ -135,23 +135,27 @@ function Resolve-NodeModulesPath {
 
     $packageName = $parts[1]
     $restIndex = 2
+    $cacheDirs = New-Object System.Collections.Generic.List[string]
     if ($packageName.StartsWith('@')) {
         if ($parts.Count -lt 4) {
             return $null
         }
-        $packageName = $parts[2]
+        $packageName = "$packageName\$($parts[2])"
         $restIndex = 3
+        $cacheDirs.Add((Join-Path $TempBase $packageName))
+        $packageName = $parts[2]
     }
-
-    $cachedSourceDir = Join-Path $TempBase $packageName
-    if (-not (Test-Path $cachedSourceDir)) {
-        return $null
-    }
+    $cacheDirs.Add((Join-Path $TempBase $packageName))
 
     $relativePath = $parts[$restIndex..($parts.Count - 1)] -join '\'
-    $resolvedPath = Join-Path $cachedSourceDir $relativePath
-    if (Test-Path $resolvedPath) {
-        return $resolvedPath
+    foreach ($cachedSourceDir in $cacheDirs) {
+        if (-not (Test-Path $cachedSourceDir)) {
+            continue
+        }
+        $resolvedPath = Join-Path $cachedSourceDir $relativePath
+        if (Test-Path $resolvedPath) {
+            return $resolvedPath
+        }
     }
 
     return $null
@@ -283,17 +287,14 @@ function Build-GrammarDll {
     }
 
     if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-highlights.scm") -SourcePaths $HighlightsScm) {
-        $dest = Join-Path $OutDir "$GrammarName-highlights.scm"
         Write-Host "  Copied highlights -> $GrammarName-highlights.scm"
     } else {
         Write-Warning "  No highlights.scm for $GrammarName"
     }
     if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-locals.scm") -SourcePaths $LocalsScm) {
-        $dest = Join-Path $OutDir "$GrammarName-locals.scm"
         Write-Host "  Copied locals -> $GrammarName-locals.scm"
     }
     if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-injections.scm") -SourcePaths $InjectionsScm) {
-        $dest = Join-Path $OutDir "$GrammarName-injections.scm"
         Write-Host "  Copied injections -> $GrammarName-injections.scm"
     }
     Write-Host "  OK: $dllPath"
