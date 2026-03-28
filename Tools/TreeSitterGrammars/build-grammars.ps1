@@ -119,6 +119,105 @@ function Get-GrammarSource {
     return $extractDir
 }
 
+function Resolve-NodeModulesPath {
+    param([string]$Candidate)
+
+    $normalized = $Candidate -replace '/','\'
+    if (-not $normalized.StartsWith("node_modules\")) {
+        return $null
+    }
+
+    $parts = $normalized -split '\\'
+    if ($parts.Count -lt 3) {
+        return $null
+    }
+
+    $packageName = $parts[1]
+    $restIndex = 2
+    if ($packageName.StartsWith('@')) {
+        if ($parts.Count -lt 4) {
+            return $null
+        }
+        $packageName = $parts[2]
+        $restIndex = 3
+    }
+
+    $cachedSourceDir = Join-Path $TempBase $packageName
+    if (-not (Test-Path $cachedSourceDir)) {
+        return $null
+    }
+
+    $relativePath = $parts[$restIndex..($parts.Count - 1)] -join '\'
+    $resolvedPath = Join-Path $cachedSourceDir $relativePath
+    if (Test-Path $resolvedPath) {
+        return $resolvedPath
+    }
+
+    return $null
+}
+
+function Resolve-QueryFiles {
+    param(
+        [object]$QuerySpec,
+        [string]$SourceDir,
+        [string]$RepoDir,
+        [string]$FallbackRelativePath
+    )
+
+    $resolved = New-Object System.Collections.Generic.List[string]
+
+    if ($QuerySpec) {
+        $queryPaths = if ($QuerySpec -is [array]) { $QuerySpec } else { @($QuerySpec) }
+        foreach ($candidate in $queryPaths) {
+            $tryPaths = @(
+                (Join-Path $RepoDir $candidate),
+                (Join-Path $SourceDir $candidate),
+                (Resolve-NodeModulesPath -Candidate $candidate)
+            ) | Where-Object { $_ }
+
+            foreach ($tryPath in $tryPaths) {
+                if ((Test-Path $tryPath) -and (-not $resolved.Contains($tryPath))) {
+                    $resolved.Add($tryPath)
+                    break
+                }
+            }
+        }
+    }
+
+    if ($resolved.Count -eq 0 -and $FallbackRelativePath) {
+        $fallbacks = @(
+            (Join-Path $SourceDir $FallbackRelativePath),
+            (Join-Path $RepoDir $FallbackRelativePath)
+        )
+        foreach ($fallback in $fallbacks) {
+            if ((Test-Path $fallback) -and (-not $resolved.Contains($fallback))) {
+                $resolved.Add($fallback)
+                break
+            }
+        }
+    }
+
+    return $resolved.ToArray()
+}
+
+function Write-QueryBundle {
+    param(
+        [string]$DestinationPath,
+        [string[]]$SourcePaths
+    )
+
+    if (-not $SourcePaths -or $SourcePaths.Count -eq 0) {
+        return $false
+    }
+
+    $contents = foreach ($sourcePath in $SourcePaths) {
+        [System.IO.File]::ReadAllText($sourcePath)
+    }
+    $bundle = ($contents -join "`r`n`r`n").TrimEnd()
+    [System.IO.File]::WriteAllText($DestinationPath, $bundle + "`r`n", [System.Text.UTF8Encoding]::new($false))
+    return $true
+}
+
 # ---- Compile a grammar to DLL ----
 
 function Build-GrammarDll {
@@ -126,9 +225,9 @@ function Build-GrammarDll {
         [string]$GrammarName,
         [string]$SourceDir,
         [string]$RepoDir,
-        [string]$HighlightsScm,
-        [string]$LocalsScm,
-        [string]$InjectionsScm,
+        [string[]]$HighlightsScm,
+        [string[]]$LocalsScm,
+        [string[]]$InjectionsScm,
         [string]$DllName
     )
     $srcDir   = Join-Path $SourceDir "src"
@@ -182,21 +281,18 @@ function Build-GrammarDll {
         return $false
     }
 
-    if ($HighlightsScm -and (Test-Path $HighlightsScm)) {
+    if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-highlights.scm") -SourcePaths $HighlightsScm) {
         $dest = Join-Path $OutDir "$GrammarName-highlights.scm"
-        Copy-Item $HighlightsScm $dest -Force
         Write-Host "  Copied highlights -> $GrammarName-highlights.scm"
     } else {
         Write-Warning "  No highlights.scm for $GrammarName"
     }
-    if ($LocalsScm -and (Test-Path $LocalsScm)) {
+    if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-locals.scm") -SourcePaths $LocalsScm) {
         $dest = Join-Path $OutDir "$GrammarName-locals.scm"
-        Copy-Item $LocalsScm $dest -Force
         Write-Host "  Copied locals -> $GrammarName-locals.scm"
     }
-    if ($InjectionsScm -and (Test-Path $InjectionsScm)) {
+    if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-injections.scm") -SourcePaths $InjectionsScm) {
         $dest = Join-Path $OutDir "$GrammarName-injections.scm"
-        Copy-Item $InjectionsScm $dest -Force
         Write-Host "  Copied injections -> $GrammarName-injections.scm"
     }
     Write-Host "  OK: $dllPath"
@@ -256,101 +352,11 @@ foreach ($entry in $config.grammars) {
         $sourceDir = if ($gPath -eq ".") { $repoDir } else { Join-Path $repoDir $gPath }
         $dllName   = "tree-sitter-$gName"
 
-        # Resolve highlights.scm — handles three cases:
-        #   1. String: "queries/highlights.scm"
-        #   2. Array: ["node_modules/.../highlights.scm", "queries/highlights.scm"]
-        #   3. Missing: no highlights field at all
-        $hlScm = $null
-        $hlRel = $g.highlights
-        if ($hlRel) {
-            # Normalize to array
-            $hlPaths = if ($hlRel -is [array]) { $hlRel } else { @($hlRel) }
-            # Try each path, use the first that exists on disk
-            foreach ($candidate in $hlPaths) {
-                $tryPath = Join-Path $repoDir $candidate
-                if (Test-Path $tryPath) {
-                    $hlScm = $tryPath
-                    break
-                }
-                $tryPath = Join-Path $sourceDir $candidate
-                if (Test-Path $tryPath) {
-                    $hlScm = $tryPath
-                    break
-                }
-            }
-        }
-        # Fallback: check standard location queries/highlights.scm
-        if (-not $hlScm) {
-            $fallback = Join-Path $sourceDir "queries\highlights.scm"
-            if (Test-Path $fallback) {
-                $hlScm = $fallback
-            } else {
-                $fallback = Join-Path $repoDir "queries\highlights.scm"
-                if (Test-Path $fallback) {
-                    $hlScm = $fallback
-                }
-            }
-        }
-
-        # Resolve locals.scm (same pattern as highlights)
-        $lcScm = $null
-        $lcRel = $g.locals
-        if ($lcRel) {
-            $lcPaths = if ($lcRel -is [array]) { $lcRel } else { @($lcRel) }
-            foreach ($candidate in $lcPaths) {
-                $tryPath = Join-Path $repoDir $candidate
-                if (Test-Path $tryPath) {
-                    $lcScm = $tryPath
-                    break
-                }
-                $tryPath = Join-Path $sourceDir $candidate
-                if (Test-Path $tryPath) {
-                    $lcScm = $tryPath
-                    break
-                }
-            }
-        }
-        if (-not $lcScm) {
-            $fallback = Join-Path $sourceDir "queries\locals.scm"
-            if (Test-Path $fallback) {
-                $lcScm = $fallback
-            } else {
-                $fallback = Join-Path $repoDir "queries\locals.scm"
-                if (Test-Path $fallback) {
-                    $lcScm = $fallback
-                }
-            }
-        }
-
-        # Resolve injections.scm (same pattern as highlights)
-        $ijScm = $null
-        $ijRel = $g.injections
-        if ($ijRel) {
-            $ijPaths = if ($ijRel -is [array]) { $ijRel } else { @($ijRel) }
-            foreach ($candidate in $ijPaths) {
-                $tryPath = Join-Path $repoDir $candidate
-                if (Test-Path $tryPath) {
-                    $ijScm = $tryPath
-                    break
-                }
-                $tryPath = Join-Path $sourceDir $candidate
-                if (Test-Path $tryPath) {
-                    $ijScm = $tryPath
-                    break
-                }
-            }
-        }
-        if (-not $ijScm) {
-            $fallback = Join-Path $sourceDir "queries\injections.scm"
-            if (Test-Path $fallback) {
-                $ijScm = $fallback
-            } else {
-                $fallback = Join-Path $repoDir "queries\injections.scm"
-                if (Test-Path $fallback) {
-                    $ijScm = $fallback
-                }
-            }
-        }
+        # Resolve .scm query files. When tree-sitter.json uses an array, all
+        # matching files are bundled in order so inherited queries are kept.
+        $hlScm = Resolve-QueryFiles -QuerySpec $g.highlights -SourceDir $sourceDir -RepoDir $repoDir -FallbackRelativePath "queries\highlights.scm"
+        $lcScm = Resolve-QueryFiles -QuerySpec $g.locals -SourceDir $sourceDir -RepoDir $repoDir -FallbackRelativePath "queries\locals.scm"
+        $ijScm = Resolve-QueryFiles -QuerySpec $g.injections -SourceDir $sourceDir -RepoDir $repoDir -FallbackRelativePath "queries\injections.scm"
 
         Write-Host "  Grammar: $gName (path: $gPath)"
         $ok = Build-GrammarDll -GrammarName $gName -SourceDir $sourceDir -RepoDir $repoDir -HighlightsScm $hlScm -LocalsScm $lcScm -InjectionsScm $ijScm -DllName $dllName
