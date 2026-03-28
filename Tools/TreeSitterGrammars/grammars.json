@@ -1,0 +1,21 @@
+{
+  "grammars": [
+    { "repo": "ionide/tree-sitter-fsharp",           "tag": "0.2.2"   },
+    { "repo": "tree-sitter/tree-sitter-c",            "tag": "v0.24.1" },
+    { "repo": "tree-sitter/tree-sitter-cpp",           "tag": "v0.23.4" },
+    { "repo": "tree-sitter/tree-sitter-c-sharp",       "tag": "v0.23.1" },
+    { "repo": "tree-sitter/tree-sitter-python",        "tag": "v0.25.0" },
+    { "repo": "tree-sitter/tree-sitter-javascript",    "tag": "v0.25.0" },
+    { "repo": "tree-sitter/tree-sitter-typescript",    "tag": "v0.23.2" },
+    { "repo": "tree-sitter/tree-sitter-java",          "tag": "v0.23.5" },
+    { "repo": "tree-sitter/tree-sitter-go",            "tag": "v0.25.0" },
+    { "repo": "tree-sitter/tree-sitter-rust",          "tag": "v0.24.1" },
+    { "repo": "tree-sitter/tree-sitter-json",          "tag": "v0.24.8" },
+    { "repo": "tree-sitter/tree-sitter-html",          "tag": "v0.23.2" },
+    { "repo": "tree-sitter/tree-sitter-css",           "tag": "v0.25.0" },
+    { "repo": "tree-sitter/tree-sitter-bash",          "tag": "v0.25.1" },
+    { "repo": "tree-sitter/tree-sitter-ruby",          "tag": "v0.23.1" },
+    { "repo": "tree-sitter/tree-sitter-php",           "tag": "v0.24.2" },
+    { "repo": "tree-sitter-grammars/tree-sitter-xml",  "tag": "v0.7.0"  }
+  ]
+}

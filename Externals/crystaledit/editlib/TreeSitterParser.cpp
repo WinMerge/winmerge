@@ -150,16 +150,49 @@ int CTreeSitterColorMap::MapCapture(const std::string& sCaptureName) const
 CTreeSitterLanguage::CTreeSitterLanguage()
     : m_hDll(nullptr)
     , m_pLanguage(nullptr)
-    , m_pQuery(nullptr)
+    , m_pHighlightQuery(nullptr)
+    , m_pLocalsQuery(nullptr)
+    , m_pInjectionQuery(nullptr)
 {
 }
 
 CTreeSitterLanguage::~CTreeSitterLanguage()
 {
-    if (m_pQuery)
-        ts_query_delete(m_pQuery);
+    if (m_pHighlightQuery)
+        ts_query_delete(m_pHighlightQuery);
+    if (m_pLocalsQuery)
+        ts_query_delete(m_pLocalsQuery);
+    if (m_pInjectionQuery)
+        ts_query_delete(m_pInjectionQuery);
     if (m_hDll)
         FreeLibrary(m_hDll);
+}
+
+TSQuery* CTreeSitterLanguage::LoadQuery(const std::wstring& sPath)
+{
+    std::ifstream file(sPath, std::ios::binary);
+    if (!file.is_open())
+        return nullptr;
+
+    std::string source((std::istreambuf_iterator<char>(file)),
+                        std::istreambuf_iterator<char>());
+
+    uint32_t errorOffset = 0;
+    TSQueryError errorType = TSQueryErrorNone;
+    TSQuery* pQuery = ts_query_new(
+        m_pLanguage,
+        source.c_str(),
+        static_cast<uint32_t>(source.size()),
+        &errorOffset,
+        &errorType);
+
+    if (errorType != TSQueryErrorNone)
+    {
+        // Query compilation failed - log but continue without this query
+        return nullptr;
+    }
+
+    return pQuery;
 }
 
 bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstring& sLanguage)
@@ -204,30 +237,20 @@ bool CTreeSitterLanguage::Load(const std::wstring& sGrammarDir, const std::wstri
         return false;
     }
 
-    // Load highlight query (.scm file)
+    // Load highlight query (.scm file) - required
     // Expected name: <language>-highlights.scm (e.g. fsharp-highlights.scm)
-    std::wstring sQueryPath = sGrammarDir + L"\\" + sLanguage + L"-highlights.scm";
-    std::ifstream queryFile(sQueryPath, std::ios::binary);
-    if (queryFile.is_open())
-    {
-        std::string querySource((std::istreambuf_iterator<char>(queryFile)),
-                                 std::istreambuf_iterator<char>());
+    std::wstring sHighlightPath = sGrammarDir + L"\\" + sLanguage + L"-highlights.scm";
+    m_pHighlightQuery = LoadQuery(sHighlightPath);
 
-        uint32_t errorOffset = 0;
-        TSQueryError errorType = TSQueryErrorNone;
-        m_pQuery = ts_query_new(
-            m_pLanguage,
-            querySource.c_str(),
-            static_cast<uint32_t>(querySource.size()),
-            &errorOffset,
-            &errorType);
+    // Load locals query (.scm file) - optional
+    // Expected name: <language>-locals.scm (e.g. fsharp-locals.scm)
+    std::wstring sLocalsPath = sGrammarDir + L"\\" + sLanguage + L"-locals.scm";
+    m_pLocalsQuery = LoadQuery(sLocalsPath);
 
-        if (errorType != TSQueryErrorNone)
-        {
-            // Query compilation failed - log but continue without highlighting
-            m_pQuery = nullptr;
-        }
-    }
+    // Load injection query (.scm file) - optional
+    // Expected name: <language>-injections.scm (e.g. html-injections.scm)
+    std::wstring sInjectionPath = sGrammarDir + L"\\" + sLanguage + L"-injections.scm";
+    m_pInjectionQuery = LoadQuery(sInjectionPath);
 
     return true;
 }
@@ -288,6 +311,8 @@ void CTreeSitterParser::Invalidate()
     m_lineBlocks.clear();
     m_lineUtf8.clear();
     m_documentText.clear();
+    m_localScopes.clear();
+    m_localRefHighlights.clear();
     m_nLineCount = 0;
     m_bDirty = false;
 }
@@ -358,7 +383,12 @@ void CTreeSitterParser::ParseDocument(const tchar_t* const* ppszLines,
 
     if (m_pTree)
     {
+        // 1. Run locals query first to build scope/def/ref information
+        RunLocalsQuery();
+        // 2. Run highlight query (uses locals info for scope-aware coloring)
         RunHighlightQuery();
+        // 3. Run injection query to handle embedded languages
+        RunInjectionQuery();
         BuildLineCache(nLineCount);
     }
 
@@ -674,10 +704,207 @@ int CTreeSitterParser::Utf8ByteOffsetToCharPos(int nLine, uint32_t byteCol) cons
 }
 
 /**
+ * @brief Extract a #set! predicate property value from a query pattern.
+ *
+ * Tree-sitter predicates like (#set! injection.language "javascript") are
+ * encoded as sequences of TSQueryPredicateStep:
+ *   [String "set!", String "injection.language", String "javascript", Done]
+ *
+ * @param pQuery       The query containing the pattern.
+ * @param patternIndex The pattern index.
+ * @param key          The property key to look for (e.g. "injection.language").
+ * @return The property value, or empty string if not found.
+ */
+std::string CTreeSitterParser::GetSetProperty(const TSQuery* pQuery,
+                                               uint32_t patternIndex,
+                                               const std::string& key)
+{
+    uint32_t stepCount = 0;
+    const TSQueryPredicateStep* steps =
+        ts_query_predicates_for_pattern(pQuery, patternIndex, &stepCount);
+    if (!steps || stepCount == 0)
+        return std::string();
+
+    // Walk through predicate steps looking for: "set!" <key> <value>
+    for (uint32_t i = 0; i + 2 < stepCount; i++)
+    {
+        // Look for a string step containing "set!"
+        if (steps[i].type != TSQueryPredicateStepTypeString)
+            continue;
+
+        uint32_t nameLen = 0;
+        const char* name = ts_query_string_value_for_id(pQuery, steps[i].value_id, &nameLen);
+        if (!name || std::string(name, nameLen) != "set!")
+            continue;
+
+        // Next step should be the property key (string)
+        if (i + 1 >= stepCount || steps[i + 1].type != TSQueryPredicateStepTypeString)
+            continue;
+
+        uint32_t keyLen = 0;
+        const char* keyStr = ts_query_string_value_for_id(pQuery, steps[i + 1].value_id, &keyLen);
+        if (!keyStr || std::string(keyStr, keyLen) != key)
+        {
+            // Skip to the Done sentinel for this predicate
+            while (i < stepCount && steps[i].type != TSQueryPredicateStepTypeDone)
+                i++;
+            continue;
+        }
+
+        // Next step should be the property value (string)
+        if (i + 2 >= stepCount || steps[i + 2].type != TSQueryPredicateStepTypeString)
+            continue;
+
+        uint32_t valLen = 0;
+        const char* valStr = ts_query_string_value_for_id(pQuery, steps[i + 2].value_id, &valLen);
+        if (valStr)
+            return std::string(valStr, valLen);
+    }
+
+    return std::string();
+}
+
+/**
+ * @brief Run the locals query to build scope/definition/reference information.
+ *
+ * Processes locals.scm captures:
+ *   @local.scope      - Defines a scope boundary
+ *   @local.definition  - Defines a local variable/symbol
+ *   @local.reference   - References a local variable/symbol
+ *
+ * The results are stored in m_localScopes and m_localRefHighlights,
+ * which are used by RunHighlightQuery to provide scope-aware coloring.
+ */
+void CTreeSitterParser::RunLocalsQuery()
+{
+    m_localScopes.clear();
+    m_localRefHighlights.clear();
+
+    if (!m_pTree || !m_pLang || !m_pLang->GetLocalsQuery())
+        return;
+
+    const TSQuery* pQuery = m_pLang->GetLocalsQuery();
+    TSNode rootNode = ts_tree_root_node(m_pTree);
+
+    TSQueryCursor* pCursor = ts_query_cursor_new();
+    if (!pCursor)
+        return;
+
+    ts_query_cursor_exec(pCursor, pQuery, rootNode);
+
+    // Temporary storage for references (resolved after all defs are collected)
+    std::vector<PendingRef> references;
+
+    TSQueryMatch match;
+    while (ts_query_cursor_next_match(pCursor, &match))
+    {
+        for (uint16_t i = 0; i < match.capture_count; i++)
+        {
+            TSQueryCapture capture = match.captures[i];
+            TSNode node = capture.node;
+
+            uint32_t nameLen = 0;
+            const char* captureName = ts_query_capture_name_for_id(
+                pQuery, capture.index, &nameLen);
+            std::string sCapture(captureName, nameLen);
+
+            uint32_t nodeStart = ts_node_start_byte(node);
+            uint32_t nodeEnd = ts_node_end_byte(node);
+
+            if (sCapture == "local.scope")
+            {
+                // Check for #set! local.scope-inherits predicate
+                bool inherits = true;
+                std::string inheritVal = GetSetProperty(pQuery, match.pattern_index, "local.scope-inherits");
+                if (inheritVal == "false")
+                    inherits = false;
+
+                LocalScope scope;
+                scope.startByte = nodeStart;
+                scope.endByte = nodeEnd;
+                scope.inherits = inherits;
+                m_localScopes.push_back(scope);
+            }
+            else if (sCapture == "local.definition")
+            {
+                // Extract the text of the definition node as the symbol name
+                if (nodeStart < m_documentText.size() && nodeEnd <= m_documentText.size())
+                {
+                    std::string defName = m_documentText.substr(nodeStart, nodeEnd - nodeStart);
+
+                    // Find the innermost enclosing scope and add this definition
+                    LocalScope* pBestScope = nullptr;
+                    for (auto& scope : m_localScopes)
+                    {
+                        if (nodeStart >= scope.startByte && nodeEnd <= scope.endByte)
+                        {
+                            if (!pBestScope ||
+                                (scope.endByte - scope.startByte) < (pBestScope->endByte - pBestScope->startByte))
+                            {
+                                pBestScope = &scope;
+                            }
+                        }
+                    }
+                    if (pBestScope)
+                    {
+                        LocalDef def;
+                        def.name = defName;
+                        def.startByte = nodeStart;
+                        def.endByte = nodeEnd;
+                        def.highlight = -1;  // Will be resolved during RunHighlightQuery
+                        pBestScope->defs.push_back(def);
+                    }
+                }
+            }
+            else if (sCapture == "local.reference")
+            {
+                if (nodeStart < m_documentText.size() && nodeEnd <= m_documentText.size())
+                {
+                    PendingRef ref;
+                    ref.name = m_documentText.substr(nodeStart, nodeEnd - nodeStart);
+                    ref.startByte = nodeStart;
+                    ref.endByte = nodeEnd;
+                    ref.scopeStartByte = nodeStart;
+                    references.push_back(ref);
+                }
+            }
+        }
+    }
+
+    ts_query_cursor_delete(pCursor);
+
+    // Sort scopes by start byte, then by size (smallest/innermost first for lookup)
+    std::sort(m_localScopes.begin(), m_localScopes.end(),
+        [](const LocalScope& a, const LocalScope& b)
+        {
+            if (a.startByte != b.startByte)
+                return a.startByte < b.startByte;
+            return (a.endByte - a.startByte) < (b.endByte - b.startByte);
+        });
+
+    // Store references for later resolution in RunHighlightQuery.
+    // We can't resolve them yet because definition highlights haven't been
+    // determined. Instead, store them and resolve after RunHighlightQuery
+    // has assigned highlights to definitions.
+    //
+    // Actually, we'll store the reference info and do a two-pass approach:
+    // RunHighlightQuery will first assign highlights to definition nodes,
+    // then we resolve references.
+    //
+    // For now, store references as pending. The key is (startByte << 32 | endByte).
+    // We'll store reference name -> node range for later lookup.
+    m_pendingRefs = std::move(references);
+}
+
+/**
  * @brief Run the highlight query against the parsed tree and collect token ranges.
  *
  * This produces per-line block arrays by walking all highlight query matches
  * and mapping tree-sitter byte positions to WinMerge character positions.
+ *
+ * If locals information is available, definition nodes get their highlights
+ * recorded, and references are resolved to use the same highlight as their
+ * matching definition.
  */
 void CTreeSitterParser::RunHighlightQuery()
 {
@@ -700,9 +927,16 @@ void CTreeSitterParser::RunHighlightQuery()
         uint32_t startCol;   // UTF-8 byte offset in line
         uint32_t endRow;
         uint32_t endCol;     // UTF-8 byte offset in line
+        uint32_t startByte;
+        uint32_t endByte;
         int colorIndex;
     };
     std::vector<HighlightEntry> highlights;
+
+    // Map from (startByte, endByte) to colorIndex for definition resolution.
+    // Key: (startByte << 32 | endByte). This assumes files < 4GB and that
+    // nodes with identical byte ranges should share the same highlight.
+    std::unordered_map<uint64_t, int> nodeHighlightMap;
 
     TSQueryMatch match;
     while (ts_query_cursor_next_match(pCursor, &match))
@@ -719,6 +953,8 @@ void CTreeSitterParser::RunHighlightQuery()
             std::string sName(captureName, captureNameLen);
             int colorIndex = m_colorMap.MapCapture(sName);
 
+            uint32_t nodeStartByte = ts_node_start_byte(node);
+            uint32_t nodeEndByte = ts_node_end_byte(node);
             TSPoint startPoint = ts_node_start_point(node);
             TSPoint endPoint = ts_node_end_point(node);
 
@@ -727,13 +963,100 @@ void CTreeSitterParser::RunHighlightQuery()
             entry.startCol = startPoint.column;
             entry.endRow = endPoint.row;
             entry.endCol = endPoint.column;
+            entry.startByte = nodeStartByte;
+            entry.endByte = nodeEndByte;
             entry.colorIndex = colorIndex;
 
             highlights.push_back(entry);
+
+            // Record this node's highlight for locals resolution
+            uint64_t nodeKey = (static_cast<uint64_t>(nodeStartByte) << 32) |
+                               static_cast<uint64_t>(nodeEndByte);
+            nodeHighlightMap[nodeKey] = colorIndex;
         }
     }
 
     ts_query_cursor_delete(pCursor);
+
+    // --- Locals resolution ---
+    // Now that we know the highlight for each node, assign highlights to
+    // definitions and resolve references.
+    if (!m_localScopes.empty())
+    {
+        // Pass 1: Assign highlights to definitions based on their node's highlight
+        for (auto& scope : m_localScopes)
+        {
+            for (auto& def : scope.defs)
+            {
+                uint64_t defKey = (static_cast<uint64_t>(def.startByte) << 32) |
+                                  static_cast<uint64_t>(def.endByte);
+                auto it = nodeHighlightMap.find(defKey);
+                if (it != nodeHighlightMap.end())
+                    def.highlight = it->second;
+            }
+        }
+
+        // Pass 2: Resolve references — find matching definition in enclosing scopes
+        for (const auto& ref : m_pendingRefs)
+        {
+            int resolvedHighlight = -1;
+
+            // Search scopes from innermost to outermost
+            // Find all scopes that contain this reference
+            std::vector<const LocalScope*> enclosingScopes;
+            for (const auto& scope : m_localScopes)
+            {
+                if (ref.startByte >= scope.startByte && ref.endByte <= scope.endByte)
+                    enclosingScopes.push_back(&scope);
+            }
+
+            // Sort by size (smallest = innermost first)
+            std::sort(enclosingScopes.begin(), enclosingScopes.end(),
+                [](const LocalScope* a, const LocalScope* b)
+                {
+                    return (a->endByte - a->startByte) < (b->endByte - b->startByte);
+                });
+
+            // Search for a matching definition
+            for (const auto* pScope : enclosingScopes)
+            {
+                for (const auto& def : pScope->defs)
+                {
+                    // Match by name and ensure the definition appears before the reference
+                    if (def.name == ref.name && def.startByte <= ref.startByte && def.highlight >= 0)
+                    {
+                        resolvedHighlight = def.highlight;
+                        break;
+                    }
+                }
+                if (resolvedHighlight >= 0)
+                    break;
+                // If this scope doesn't inherit, stop searching
+                if (!pScope->inherits)
+                    break;
+            }
+
+            if (resolvedHighlight >= 0)
+            {
+                uint64_t refKey = (static_cast<uint64_t>(ref.startByte) << 32) |
+                                  static_cast<uint64_t>(ref.endByte);
+                m_localRefHighlights[refKey] = resolvedHighlight;
+            }
+        }
+
+        // Pass 3: Apply resolved reference highlights to the highlight entries
+        for (auto& h : highlights)
+        {
+            uint64_t key = (static_cast<uint64_t>(h.startByte) << 32) |
+                           static_cast<uint64_t>(h.endByte);
+            auto it = m_localRefHighlights.find(key);
+            if (it != m_localRefHighlights.end())
+                h.colorIndex = it->second;
+        }
+    }
+
+    // Clear pending refs (no longer needed)
+    m_pendingRefs.clear();
 
     // Sort by start position (row, then column)
     std::sort(highlights.begin(), highlights.end(),
@@ -763,6 +1086,216 @@ void CTreeSitterParser::RunHighlightQuery()
             block.nColorIndex = h.colorIndex;
             m_lineBlocks[row].push_back(block);
         }
+    }
+}
+
+/**
+ * @brief Run the injection query to find embedded language regions.
+ *
+ * Processes injections.scm captures:
+ *   @injection.content   - The node whose content should be parsed as another language
+ *   @injection.language  - The node whose text specifies the language name
+ *   (#set! injection.language "xxx") - Hard-coded language name
+ *
+ * For each injection region, this spawns a sub-parser with the appropriate
+ * language grammar, runs highlights on the injected content, and merges
+ * the results into the main highlight blocks.
+ */
+void CTreeSitterParser::RunInjectionQuery()
+{
+    if (!m_pTree || !m_pLang || !m_pLang->GetInjectionQuery())
+        return;
+
+    const TSQuery* pQuery = m_pLang->GetInjectionQuery();
+    TSNode rootNode = ts_tree_root_node(m_pTree);
+
+    TSQueryCursor* pCursor = ts_query_cursor_new();
+    if (!pCursor)
+        return;
+
+    ts_query_cursor_exec(pCursor, pQuery, rootNode);
+
+    // Collect injection regions
+    struct InjectionRegion
+    {
+        std::string language;       // Target language name
+        uint32_t    contentStart;   // Byte offset in document
+        uint32_t    contentEnd;
+        TSPoint     startPoint;
+        TSPoint     endPoint;
+    };
+    std::vector<InjectionRegion> injections;
+
+    TSQueryMatch match;
+    while (ts_query_cursor_next_match(pCursor, &match))
+    {
+        std::string language;
+        TSNode contentNode = {};
+        bool hasContent = false;
+
+        // Check for #set! injection.language predicate first
+        language = GetSetProperty(pQuery, match.pattern_index, "injection.language");
+
+        // Also check for #set! injection.self
+        if (language.empty())
+        {
+            std::string selfVal = GetSetProperty(pQuery, match.pattern_index, "injection.self");
+            if (!selfVal.empty())
+            {
+                // Use the current language
+                const std::wstring& wname = m_pLang->GetName();
+                for (wchar_t ch : wname)
+                    language += static_cast<char>(ch);  // ASCII only
+            }
+        }
+
+        for (uint16_t i = 0; i < match.capture_count; i++)
+        {
+            TSQueryCapture capture = match.captures[i];
+
+            uint32_t nameLen = 0;
+            const char* captureName = ts_query_capture_name_for_id(
+                pQuery, capture.index, &nameLen);
+            std::string sCapture(captureName, nameLen);
+
+            if (sCapture == "injection.content")
+            {
+                contentNode = capture.node;
+                hasContent = true;
+            }
+            else if (sCapture == "injection.language" && language.empty())
+            {
+                // The captured node's text is the language name
+                uint32_t start = ts_node_start_byte(capture.node);
+                uint32_t end = ts_node_end_byte(capture.node);
+                if (start < m_documentText.size() && end <= m_documentText.size())
+                    language = m_documentText.substr(start, end - start);
+            }
+        }
+
+        if (hasContent && !language.empty())
+        {
+            InjectionRegion region;
+            region.language = language;
+            region.contentStart = ts_node_start_byte(contentNode);
+            region.contentEnd = ts_node_end_byte(contentNode);
+            region.startPoint = ts_node_start_point(contentNode);
+            region.endPoint = ts_node_end_point(contentNode);
+            injections.push_back(region);
+        }
+    }
+
+    ts_query_cursor_delete(pCursor);
+
+    if (injections.empty())
+        return;
+
+    // Process each injection: look up the language, parse the content, run highlights
+    TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
+
+    for (const auto& inj : injections)
+    {
+        // Convert language name to wstring for registry lookup
+        std::wstring wLangName;
+        for (char ch : inj.language)
+            wLangName += static_cast<wchar_t>(ch);
+
+        // Try to find the language — look it up by name directly in the registry's
+        // available languages (we need a way to get language by name, not just by ext).
+        // For now, try common mappings. The language name from injections.scm
+        // is typically the tree-sitter language name (e.g. "javascript", "css").
+        // We can look it up as an extension since many languages use their name
+        // as the extension.
+        const CTreeSitterLanguage* pInjLang = registry.GetLanguageForName(wLangName);
+        if (!pInjLang || !pInjLang->GetHighlightQuery())
+            continue;
+
+        // Extract the injection content
+        if (inj.contentStart >= m_documentText.size() || inj.contentEnd > m_documentText.size())
+            continue;
+
+        std::string injContent = m_documentText.substr(inj.contentStart, inj.contentEnd - inj.contentStart);
+        if (injContent.empty())
+            continue;
+
+        // Create a temporary parser for the injected content
+        TSParser* pInjParser = ts_parser_new();
+        if (!pInjParser)
+            continue;
+
+        ts_parser_set_language(pInjParser, pInjLang->GetLanguage());
+
+        TSTree* pInjTree = ts_parser_parse_string(
+            pInjParser, nullptr,
+            injContent.c_str(),
+            static_cast<uint32_t>(injContent.size()));
+
+        if (pInjTree)
+        {
+            // Run highlight query on the injected tree
+            const TSQuery* pInjQuery = pInjLang->GetHighlightQuery();
+            TSNode injRoot = ts_tree_root_node(pInjTree);
+            TSQueryCursor* pInjCursor = ts_query_cursor_new();
+
+            if (pInjCursor)
+            {
+                ts_query_cursor_exec(pInjCursor, pInjQuery, injRoot);
+
+                TSQueryMatch injMatch;
+                while (ts_query_cursor_next_match(pInjCursor, &injMatch))
+                {
+                    for (uint16_t ci = 0; ci < injMatch.capture_count; ci++)
+                    {
+                        TSQueryCapture cap = injMatch.captures[ci];
+                        TSNode capNode = cap.node;
+
+                        uint32_t capNameLen = 0;
+                        const char* capName = ts_query_capture_name_for_id(
+                            pInjQuery, cap.index, &capNameLen);
+                        std::string sCapName(capName, capNameLen);
+                        int colorIndex = m_colorMap.MapCapture(sCapName);
+
+                        // Map the injected node's position back to the parent document.
+                        // The injection content starts at inj.startPoint in the parent doc.
+                        TSPoint capStart = ts_node_start_point(capNode);
+                        TSPoint capEnd = ts_node_end_point(capNode);
+
+                        // Translate rows/columns to parent document coordinates.
+                        // Since the injection content is a contiguous substring of
+                        // m_documentText, continuation line columns in the sub-parse
+                        // are already correct relative to the parent document lines.
+                        // NOTE: This does NOT handle injection.combined (multiple
+                        // disjoint ranges concatenated into one parse), but we don't
+                        // support that feature currently.
+                        uint32_t parentStartRow = inj.startPoint.row + capStart.row;
+                        uint32_t parentEndRow = inj.startPoint.row + capEnd.row;
+                        uint32_t parentStartCol = (capStart.row == 0)
+                            ? inj.startPoint.column + capStart.column
+                            : capStart.column;
+
+                        // Add to parent's line blocks
+                        for (uint32_t row = parentStartRow;
+                             row <= parentEndRow && row < static_cast<uint32_t>(m_nLineCount);
+                             row++)
+                        {
+                            uint32_t byteCol = (row == parentStartRow) ? parentStartCol : 0;
+                            int charPos = Utf8ByteOffsetToCharPos(static_cast<int>(row), byteCol);
+
+                            TreeSitterLineBlock block;
+                            block.nCharPos = charPos;
+                            block.nColorIndex = colorIndex;
+                            m_lineBlocks[row].push_back(block);
+                        }
+                    }
+                }
+
+                ts_query_cursor_delete(pInjCursor);
+            }
+
+            ts_tree_delete(pInjTree);
+        }
+
+        ts_parser_delete(pInjParser);
     }
 }
 
@@ -1017,6 +1550,44 @@ const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForExt(const std::wstr
     }
 
     // Check if the loaded grammar has a highlight query
+    if (!pLang->GetHighlightQuery())
+    {
+        m_failedLanguages.insert(sLangName);
+        return nullptr;
+    }
+
+    const CTreeSitterLanguage* pResult = pLang.get();
+    m_languages[sLangName] = std::move(pLang);
+    return pResult;
+}
+
+const CTreeSitterLanguage* TreeSitterRegistry::GetLanguageForName(const std::wstring& sLangName)
+{
+    // Check if already loaded
+    auto itLang = m_languages.find(sLangName);
+    if (itLang != m_languages.end())
+    {
+        if (!itLang->second->GetHighlightQuery())
+            return nullptr;
+        return itLang->second.get();
+    }
+
+    // Check if this language previously failed to load
+    if (m_failedLanguages.count(sLangName) > 0)
+        return nullptr;
+
+    // Check if a DLL is available for this language
+    if (m_availableLanguages.count(sLangName) == 0)
+        return nullptr;
+
+    // Lazy load: load the grammar DLL now
+    auto pLang = std::make_unique<CTreeSitterLanguage>();
+    if (!pLang->Load(m_sGrammarDir, sLangName))
+    {
+        m_failedLanguages.insert(sLangName);
+        return nullptr;
+    }
+
     if (!pLang->GetHighlightQuery())
     {
         m_failedLanguages.insert(sLangName);
