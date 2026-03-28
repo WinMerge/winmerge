@@ -112,9 +112,10 @@ function Get-GrammarSource {
 
     Write-Host "  Extracting ..."
     # Use git-bash tar with Unix-style paths (Windows tar.exe fails on ./prefixed entries)
+    $gitBash = Join-Path $env:ProgramFiles "Git\bin\bash.exe"
     $unixTarFile = $tarFile -replace '\\','/' -replace '^([A-Za-z]):','/$1'
     $unixExtractDir = $extractDir -replace '\\','/' -replace '^([A-Za-z]):','/$1'
-    bash -c "tar -xf '$unixTarFile' -C '$unixExtractDir'"
+    & $gitBash -c "tar -xf '$unixTarFile' -C '$unixExtractDir'"
     Remove-Item $tarFile -Force
     return $extractDir
 }

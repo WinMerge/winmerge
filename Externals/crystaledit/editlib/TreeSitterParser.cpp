@@ -18,6 +18,7 @@
 #include <fstream>
 #include <sstream>
 #include <cassert>
+#include <algorithm>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

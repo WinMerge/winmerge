@@ -506,6 +506,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Translations", "Translation
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrashLogger", "Src\CrashLogger\CrashLogger.vcxitems", "{CDEDDAC4-79B9-4A34-A564-8019F60D241F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tree-sitter", "Externals\tree-sitter\tree-sitter.vcxitems", "{A3E7E04F-5D2B-4F3A-B725-8F5C4B1E9D3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -1476,6 +1478,7 @@ Global
 		{DAFD8D9E-6509-4482-A533-44C843C3BCC7} = {220B870C-D051-463E-997B-8C392081EE15}
 		{40AF6A7D-B4E7-4919-B38A-75F625E36AF5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{02828B8D-E4B9-41FE-84C4-D5CDA7761627} = {5360DC20-6552-4F74-8D4D-BF88B23E0B3A}
+		{A3E7E04F-5D2B-4F3A-B725-8F5C4B1E9D3C} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
@@ -1503,11 +1506,13 @@ Global
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\poco\Foundation\Foundation.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\poco\XML\XML.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\tree-sitter\tree-sitter.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CrashLogger\CrashLogger.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\FilterEngine\FilterEngine.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\tree-sitter\tree-sitter.vcxitems*{a3e7e04f-5d2b-4f3a-b725-8f5c4b1e9d3c}*SharedItemsImports = 9
 		Plugins\src_VCPP\Common\Common.vcxitems*{a644fba4-d76e-4500-b4b7-04d7a245359a}*SharedItemsImports = 4
 		Plugins\src_VCPP\Common\Common.vcxitems*{aa88b46e-b2e2-4b03-8cd5-1e9d60db6ab2}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
@@ -1523,6 +1528,7 @@ Global
 		Plugins\src_VCPP\Common\Common.vcxitems*{bd0c5fe1-8457-49c2-8801-0c99a6e6cc03}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
+		Externals\tree-sitter\tree-sitter.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
 		Src\CrashLogger\CrashLogger.vcxitems*{cdeddac4-79b9-4a34-a564-8019f60d241f}*SharedItemsImports = 9
 		Externals\poco\XML\XML.vcxitems*{dafd8d9e-6509-4482-a533-44c843c3bcc7}*SharedItemsImports = 9
 		Src\diffutils\diffutils.vcxitems*{fc3b9df3-2854-4264-ab4b-ee8c43982513}*SharedItemsImports = 9
