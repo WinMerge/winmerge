@@ -4655,6 +4655,13 @@ unsigned CMergeEditView::ParseLine(unsigned dwCookie, const tchar_t *pszChars,
  */
 void CMergeEditView::InitializeTreeSitter()
 {
+	// Clear any existing tree-sitter state so that re-used views do not
+	// retain stale highlighting or a stale status-bar indicator when the
+	// new file has no matching grammar.
+	m_treeSitterParser.SetLanguage(nullptr);
+	if (m_piMergeEditStatus)
+		m_piMergeEditStatus->SetSyntaxParser(L"");
+
 	// Make sure the registry is initialized
 	TreeSitterRegistry& registry = TreeSitterRegistry::Instance();
 	if (!registry.IsInitialized())
@@ -4691,6 +4698,11 @@ void CMergeEditView::InitializeTreeSitter()
 	// Set up the parser and parse the document
 	m_treeSitterParser.SetLanguage(pLang);
 	m_treeSitterParser.ParseFromView(this);
+
+	// After enabling tree-sitter, invalidate any existing CrystalEdit
+	// parse cookies so that subsequent GetParseCookie() calls recompute
+	// them using the tree-sitter-aware convention (cookie = line index).
+	InvalidateParseCookies();
 
 	// Update status bar to show tree-sitter is active
 	if (m_piMergeEditStatus)
