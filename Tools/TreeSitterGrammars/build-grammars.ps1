@@ -121,33 +121,42 @@ function Get-GrammarSource {
 }
 
 function Resolve-NodeModulesPath {
-    param([string]$Candidate)
+    param(
+        [string]$Candidate,
+        [string]$CacheBaseDir
+    )
 
-    $normalized = $Candidate -replace '/','\'
-    if (-not $normalized.StartsWith("node_modules\")) {
+    $separator = [string][IO.Path]::DirectorySeparatorChar
+    $escapedSeparator = [regex]::Escape($separator)
+    $normalized = $Candidate -replace '/', $separator
+    if (-not $normalized.StartsWith("node_modules$separator")) {
         return $null
     }
 
-    $parts = $normalized -split '\\'
-    if ($parts.Count -lt 3) {
+    $parts = $normalized -split $escapedSeparator
+    $isScopedPackage = ($parts.Count -ge 2 -and $parts[1].StartsWith('@'))
+    $minPartCount = if ($isScopedPackage) { 4 } else { 3 }
+    if ($parts.Count -lt $minPartCount) {
         return $null
     }
 
     $packageName = $parts[1]
     $restIndex = 2
     $cacheDirs = New-Object System.Collections.Generic.List[string]
-    if ($packageName.StartsWith('@')) {
-        if ($parts.Count -lt 4) {
-            return $null
-        }
-        $packageName = "$packageName\$($parts[2])"
+    if ($isScopedPackage) {
+        $scopedPackageName = $packageName + $separator + $parts[2]
         $restIndex = 3
-        $cacheDirs.Add((Join-Path $TempBase $packageName))
-        $packageName = $parts[2]
+        $cacheDirs.Add((Join-Path $CacheBaseDir $scopedPackageName))
+        $packageNameWithinScope = $parts[2]
+    } else {
+        $packageNameWithinScope = $packageName
     }
-    $cacheDirs.Add((Join-Path $TempBase $packageName))
+    $cacheDirs.Add((Join-Path $CacheBaseDir $packageNameWithinScope))
 
-    $relativePath = $parts[$restIndex..($parts.Count - 1)] -join '\'
+    if ($restIndex -ge $parts.Count) {
+        return $null
+    }
+    $relativePath = $parts[$restIndex..($parts.Count - 1)] -join $separator
     foreach ($cachedSourceDir in $cacheDirs) {
         if (-not (Test-Path $cachedSourceDir)) {
             continue
@@ -166,6 +175,7 @@ function Resolve-QueryFiles {
         [object]$QuerySpec,
         [string]$SourceDir,
         [string]$RepoDir,
+        [string]$CacheBaseDir,
         [string]$FallbackRelativePath
     )
 
@@ -177,7 +187,7 @@ function Resolve-QueryFiles {
             $tryPaths = @(
                 (Join-Path $RepoDir $candidate),
                 (Join-Path $SourceDir $candidate),
-                (Resolve-NodeModulesPath -Candidate $candidate)
+                (Resolve-NodeModulesPath -Candidate $candidate -CacheBaseDir $CacheBaseDir)
             ) | Where-Object { $_ }
 
             foreach ($tryPath in $tryPaths) {
@@ -216,10 +226,20 @@ function Write-QueryBundle {
     }
 
     $contents = foreach ($sourcePath in $SourcePaths) {
-        [System.IO.File]::ReadAllText($sourcePath)
+        try {
+            [System.IO.File]::ReadAllText($sourcePath)
+        } catch {
+            Write-Warning "  Failed to read query source '$sourcePath': $_"
+            return $false
+        }
     }
-    $bundle = ($contents -join "`r`n`r`n").TrimEnd()
-    [System.IO.File]::WriteAllText($DestinationPath, $bundle + "`r`n", [System.Text.UTF8Encoding]::new($false))
+    if ($contents -contains $false) {
+        return $false
+    }
+    $newline = [System.Environment]::NewLine
+    $doubleNewline = $newline + $newline
+    $bundle = ($contents -join $doubleNewline).TrimEnd()
+    [System.IO.File]::WriteAllText($DestinationPath, $bundle + $newline, [System.Text.UTF8Encoding]::new($false))
     return $true
 }
 
@@ -287,15 +307,15 @@ function Build-GrammarDll {
     }
 
     if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-highlights.scm") -SourcePaths $HighlightsScm) {
-        Write-Host "  Copied highlights -> $GrammarName-highlights.scm"
+        Write-Host "  Bundled highlights -> $GrammarName-highlights.scm"
     } else {
         Write-Warning "  No highlights.scm for $GrammarName"
     }
     if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-locals.scm") -SourcePaths $LocalsScm) {
-        Write-Host "  Copied locals -> $GrammarName-locals.scm"
+        Write-Host "  Bundled locals -> $GrammarName-locals.scm"
     }
     if (Write-QueryBundle -DestinationPath (Join-Path $OutDir "$GrammarName-injections.scm") -SourcePaths $InjectionsScm) {
-        Write-Host "  Copied injections -> $GrammarName-injections.scm"
+        Write-Host "  Bundled injections -> $GrammarName-injections.scm"
     }
     Write-Host "  OK: $dllPath"
     return $true
@@ -356,9 +376,9 @@ foreach ($entry in $config.grammars) {
 
         # Resolve .scm query files. When tree-sitter.json uses an array, all
         # matching files are bundled in order so inherited queries are kept.
-        $hlScm = Resolve-QueryFiles -QuerySpec $g.highlights -SourceDir $sourceDir -RepoDir $repoDir -FallbackRelativePath "queries\highlights.scm"
-        $lcScm = Resolve-QueryFiles -QuerySpec $g.locals -SourceDir $sourceDir -RepoDir $repoDir -FallbackRelativePath "queries\locals.scm"
-        $ijScm = Resolve-QueryFiles -QuerySpec $g.injections -SourceDir $sourceDir -RepoDir $repoDir -FallbackRelativePath "queries\injections.scm"
+        $hlScm = Resolve-QueryFiles -QuerySpec $g.highlights -SourceDir $sourceDir -RepoDir $repoDir -CacheBaseDir $TempBase -FallbackRelativePath "queries\highlights.scm"
+        $lcScm = Resolve-QueryFiles -QuerySpec $g.locals -SourceDir $sourceDir -RepoDir $repoDir -CacheBaseDir $TempBase -FallbackRelativePath "queries\locals.scm"
+        $ijScm = Resolve-QueryFiles -QuerySpec $g.injections -SourceDir $sourceDir -RepoDir $repoDir -CacheBaseDir $TempBase -FallbackRelativePath "queries\injections.scm"
 
         Write-Host "  Grammar: $gName (path: $gPath)"
         $ok = Build-GrammarDll -GrammarName $gName -SourceDir $sourceDir -RepoDir $repoDir -HighlightsScm $hlScm -LocalsScm $lcScm -InjectionsScm $ijScm -DllName $dllName
