@@ -146,7 +146,7 @@ struct TreeSitterLineBlock
  *
  * Usage:
  * @code
- *   auto pLang = TreeSitterRegistry::GetLanguageForExt(L"fs");
+ *   auto pLang = TreeSitterRegistry::Instance().GetLanguageForExt(L"fs");
  *   if (pLang) {
  *       m_treeSitterParser.SetLanguage(pLang);
  *       m_treeSitterParser.ParseFromView(pView);

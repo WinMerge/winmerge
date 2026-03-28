@@ -586,27 +586,38 @@ void CTreeSitterParser::NotifyEdit(CCrystalTextBuffer* pBuf)
         // But our m_lineUtf8 is from the *old* document, so we can't use
         // charPosToByteOffset for the end position directly.
         // Instead, compute new_end_byte = start_byte + utf8_length_of_inserted_text.
+        // Normalize to LF-only: ParseDocument() concatenates lines with '\n' (no '\r'),
+        // so '\r' bytes must be excluded from all byte-offset calculations.
         const tchar_t* pInsText = ur.GetText();
         size_t nInsLen = ur.GetTextLength();
 #ifdef _UNICODE
-        int nUtf8Len = WideCharToMultiByte(CP_UTF8, 0,
+        // Convert to UTF-8 and strip '\r' to match ParseDocument()'s representation.
+        int nRawUtf8Len = WideCharToMultiByte(CP_UTF8, 0,
             pInsText, static_cast<int>(nInsLen),
             nullptr, 0, nullptr, nullptr);
+        std::string insUtf8;
+        if (nRawUtf8Len > 0)
+        {
+            insUtf8.resize(nRawUtf8Len);
+            WideCharToMultiByte(CP_UTF8, 0, pInsText, static_cast<int>(nInsLen),
+                &insUtf8[0], nRawUtf8Len, nullptr, nullptr);
+            insUtf8.erase(std::remove(insUtf8.begin(), insUtf8.end(), '\r'), insUtf8.end());
+        }
+        int nUtf8Len = static_cast<int>(insUtf8.size());
         edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(nUtf8Len);
 #else
-        edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(nInsLen);
+        // Exclude '\r' characters to match ParseDocument()'s LF-only representation.
+        int nCrCount = static_cast<int>(std::count(pInsText, pInsText + nInsLen, static_cast<char>('\r')));
+        edit.new_end_byte = edit.start_byte + static_cast<uint32_t>(nInsLen - nCrCount);
 #endif
         edit.new_end_point.row = static_cast<uint32_t>(ur.m_ptEndPos.y);
         // For the column, we can compute it from the text: count bytes after last newline
         uint32_t lastNewlineBytes = 0;
         bool foundNewline = false;
 #ifdef _UNICODE
-        // Convert the inserted text to UTF-8 to find the last newline position
+        // Use the already-normalized UTF-8 string to find the last newline position.
         if (nUtf8Len > 0)
         {
-            std::string insUtf8(nUtf8Len, '\0');
-            WideCharToMultiByte(CP_UTF8, 0, pInsText, static_cast<int>(nInsLen),
-                &insUtf8[0], nUtf8Len, nullptr, nullptr);
             auto lastNL = insUtf8.rfind('\n');
             if (lastNL != std::string::npos)
             {
@@ -1086,6 +1097,21 @@ void CTreeSitterParser::RunHighlightQuery()
             block.nCharPos = charPos;
             block.nColorIndex = h.colorIndex;
             m_lineBlocks[row].push_back(block);
+        }
+
+        // Emit a block at the end of the capture to restore normal color.
+        // This prevents the token's color from "bleeding" past its end.
+        if (h.endRow < static_cast<uint32_t>(m_nLineCount))
+        {
+            uint32_t endByteCol = h.endCol;
+
+            // Convert UTF-8 byte offset at token end to UTF-16 character position
+            int endCharPos = Utf8ByteOffsetToCharPos(static_cast<int>(h.endRow), endByteCol);
+
+            TreeSitterLineBlock endBlock;
+            endBlock.nCharPos = endCharPos;
+            endBlock.nColorIndex = COLORINDEX_NORMALTEXT;
+            m_lineBlocks[h.endRow].push_back(endBlock);
         }
     }
 }
