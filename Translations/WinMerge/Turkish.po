@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-08-24 14:39+0000\n"
-"PO-Revision-Date: 2026-03-22 15:08+0300\n"
+"PO-Revision-Date: 2026-03-29 14:21+0300\n"
 "Last-Translator: Ahmet Murat Özhan <ozhanmurat@gmail.com>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -79,10 +79,10 @@ msgid "Select Line &Difference\tF4"
 msgstr "Satır &farkını seç\tF4"
 
 msgid "Add to Substitution &Filters"
-msgstr "Değiştirme &süzgeçlerine ekle"
+msgstr "Değiştirme &filrelerine ekle"
 
 msgid "Add to &Line Filters"
-msgstr "Satır süz&geçlerine ekle"
+msgstr "Satır &filtrelerine ekle"
 
 msgid "&Undo"
 msgstr "Geri a&l"
@@ -392,7 +392,7 @@ msgid "&Tools"
 msgstr "&Araçlar"
 
 msgid "&Filters..."
-msgstr "&Süzgeçler..."
+msgstr "&Filtreler..."
 
 msgid "&Generate Patch..."
 msgstr "Ya&ma oluştur..."
@@ -1252,7 +1252,7 @@ msgid "&Editor Backup Files"
 msgstr "&Editör yedekleme dosyaları"
 
 msgid "&Compiled Binary Files"
-msgstr "&Derlenmiş ikili dosyalar"
+msgstr "&Derlenmiş binary dosyalar"
 
 msgid "&Log Files"
 msgstr "Gün&lük dosyaları"
@@ -1603,22 +1603,22 @@ msgid "1 week or more"
 msgstr "1 hafta veya daha fazla"
 
 msgid "Target: &Left and Right"
-msgstr "Hedef: &Sol ve Sağ"
+msgstr "Hedef: &sol ve sağ"
 
 msgid "Target: Left and &Middle"
-msgstr "Hedef: Sol ve &Orta"
+msgstr "Hedef: sol ve &orta"
 
 msgid "Target: Middle and &Right"
-msgstr "Hedef: Orta ve &Sağ"
+msgstr "Hedef: orta ve &sağ"
 
 msgid "Target: &All"
-msgstr "Hedef: &Tümü"
+msgstr "Hedef: &tümü"
 
 msgid "Binary files only"
-msgstr ""
+msgstr "Yalnızca binary dosyalar"
 
 msgid "Text files only"
-msgstr ""
+msgstr "Yalnızca metin dosyaları"
 
 msgid "&Clear conditions"
 msgstr "Koşulları &temizle"
@@ -1648,61 +1648,61 @@ msgid "Normalized &Unicode Name"
 msgstr "Normalleştirilmiş &Unicode Adı"
 
 msgid "&Relative Path"
-msgstr "&Göreli Yol"
+msgstr "&Göreli yol"
 
 msgid "&Date"
 msgstr "Tari&h"
 
 msgid "&Hash (MD5)"
-msgstr "&Sağlama Toplamı (MD5)"
+msgstr "&Sağlama toplamı (MD5)"
 
 msgid "Insert &replace() Function"
-msgstr "&replace() İşlevini Ekle"
+msgstr "&replace() işlevini ekle"
 
 msgid "Insert rege&xReplace() Function"
 msgstr "rege&xReplace() işlevini ekle"
 
 msgid "Replace &Lists"
-msgstr "&Listeleri Değiştir"
+msgstr "&Listeleri değiştir"
 
 msgid "&Create String Replace List and Insert..."
-msgstr "Dize Değiştirme Listesi &Oluştur ve Ekle…"
+msgstr "Dize değiştirme listesi &oluştur ve ekle…"
 
 msgid "Create &Regex Replace List and Insert..."
-msgstr "&Regex Değiştirme Listesi Oluştur ve Ekle…"
+msgstr "&Regex değiştirme listesi oluştur ve ekle…"
 
 msgid "&String Replace Lists"
-msgstr "&Dize Değiştirme Listeleri"
+msgstr "&Dize değiştirme listeleri"
 
 msgid "Re&gex Replace Lists"
-msgstr "Re&gex Değiştirme Listeleri"
+msgstr "Re&gex değiştirme listeleri"
 
 msgid "Open String Replace Lists Folder..."
-msgstr "Dize Değiştirme Listeleri Klasörünü Aç…"
+msgstr "Dize değiştirme listeleri klasörünü aç…"
 
 msgid "Open Regex Replace Lists Folder..."
-msgstr "Regex Değiştirme Listeleri Klasörünü Aç…"
+msgstr "Regex değiştirme listeleri klasörünü aç…"
 
 msgid "Match &case"
 msgstr "BÜYÜK/küçük &harfler eşleştirilsin"
 
 msgid "Text &Normalization"
-msgstr "Metin &Normalleştirme"
+msgstr "Metin &normalleştirme"
 
 msgid "&Lowercase"
-msgstr "&Küçük Harf"
+msgstr "&Küçük harf"
 
 msgid "&Uppercase"
-msgstr "&Büyük Harf"
+msgstr "&Büyük harf"
 
 msgid "&Half-width"
-msgstr "&Yarım Genişlik"
+msgstr "&Yarım genişlik"
 
 msgid "&Full-width"
-msgstr "Tam &Genişlik"
+msgstr "Tam &genişlik"
 
 msgid "&Chinese Conversion"
-msgstr "&Çince Dönüştürme"
+msgstr "&Çince dönüştürme"
 
 msgid "&Simplified Chinese"
 msgstr "Ba&sitleştirilmiş Çince"
@@ -1711,7 +1711,7 @@ msgid "&Traditional Chinese"
 msgstr "&Geleneksel Çince"
 
 msgid "&Japanese Conversion"
-msgstr "&Japonca Dönüştürme"
+msgstr "&Japonca dönüştürme"
 
 msgid "&Hiragana"
 msgstr "&Hiragana"
@@ -1720,7 +1720,7 @@ msgid "&Katakana"
 msgstr "&Katakana"
 
 msgid "Normalize &Unicode"
-msgstr "&Unicode’u Normalleştir"
+msgstr "&Unicode’u normalleştir"
 
 msgid "About WinMerge"
 msgstr "WinMerge hakkında"
@@ -1738,7 +1738,7 @@ msgid "Select Files or Folders"
 msgstr "Dosya ya da klasör seçin"
 
 msgid "&1st File or Folder"
-msgstr "&1. dosya ya da dlasör"
+msgstr "&1. dosya ya da klasör"
 
 msgid "Re&ad-only"
 msgstr "S&alt okunur"
@@ -1774,7 +1774,7 @@ msgid "Browse..."
 msgstr "Göz at..."
 
 msgid " Folder: Filter"
-msgstr " Klasör: Süzgeç"
+msgstr " Klasör: Filtre"
 
 msgid "&Include subfolders"
 msgstr "A&lt klasörler katılsın"
@@ -1786,7 +1786,7 @@ msgid " File: Unpacker Plugin"
 msgstr " Dosya: Ayıklayıcı eklentisi"
 
 msgid "Se&lect..."
-msgstr "&Seçin..."
+msgstr "&Seç..."
 
 msgid "Cancel"
 msgstr "İptal"
@@ -1867,10 +1867,10 @@ msgid "&Apply"
 msgstr "&Uygula"
 
 msgid "Line Filters"
-msgstr "Satır süzgeçleri"
+msgstr "Satır filtreleri"
 
 msgid "Enable Line Filters"
-msgstr "Satır süzgeçleri kullanılsın"
+msgstr "Satır filtreleri kullanılsın"
 
 msgid "Regular Expressions (one per line):"
 msgstr "Kurallı ifadeler (her satıra bir tane):"
@@ -1882,7 +1882,7 @@ msgid "Remove"
 msgstr "Sil"
 
 msgid "Substitution Filters"
-msgstr "Değişiklik süzgeçleri"
+msgstr "Değişiklik filtreleri"
 
 msgid "Changes to the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
 msgstr "Panolarda görünen, aşağıda çiftler olarak listelenmiş değişiklikler yok sayılacak veya önemsiz olarak işaretlenecek. Yamalar etkilenmez."
@@ -2077,7 +2077,7 @@ msgid "Items missing:"
 msgstr "Artık var olmayan ögeler:"
 
 msgid "Items filtered:"
-msgstr "Süzülmüş ögeler:"
+msgstr "Filtrelenmiş ögeler:"
 
 msgid "&Use custom system colors"
 msgstr "Özel &sistem renkleri kullanılsın (bazı arayüz bileşenlerine uygulanmayabilir)"
@@ -2095,7 +2095,7 @@ msgid "&Store user data in:"
 msgstr "Kullanıcı verilerini şurada &depola:"
 
 msgid "&Filter folder:"
-msgstr "Süzgeç &klasörü:"
+msgstr "Filtre &klasörü:"
 
 msgid "Temporary files folder"
 msgstr "Geçici dosya klasörü"
@@ -2341,13 +2341,13 @@ msgid "&Go to"
 msgstr "&Git"
 
 msgid "File Filters"
-msgstr "Dosya süzgeçleri"
+msgstr "Dosya filtreleri"
 
 msgid "&Mask / Filter Expression"
-msgstr "&Maske / Filtre İfadesi"
+msgstr "&Maske / filtre ifadesi"
 
 msgid "Preset &Filters"
-msgstr "Ön Ayarlı &Filtreler"
+msgstr "Ön ayarlı &filtreler"
 
 msgid "Test..."
 msgstr "Sına..."
@@ -2365,7 +2365,7 @@ msgid "Delete..."
 msgstr "Sil..."
 
 msgid "Filter Condition"
-msgstr "Filtre Koşulu"
+msgstr "Filtre koşulu"
 
 msgid "&Left-hand side:"
 msgstr "&Sol taraf:"
@@ -2380,16 +2380,16 @@ msgid "Expression:"
 msgstr "İfade:"
 
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Karşılaştırma sonucuna göre filtrele"
 
 msgid "&Include"
-msgstr ""
+msgstr "&Dahil et"
 
 msgid "&Exclude"
-msgstr ""
+msgstr "&Hariç tut"
 
 msgid "Comparison Results"
-msgstr ""
+msgstr "Karşılaştırma sonuçları"
 
 msgid "Identical"
 msgstr "Aynı"
@@ -2398,34 +2398,34 @@ msgid "Different"
 msgstr "Farklılık"
 
 msgid "Left only"
-msgstr ""
+msgstr "Yalnızca solda"
 
 msgid "Right only"
-msgstr ""
+msgstr "Yalnızca sağda"
 
 msgid "Skipped"
-msgstr ""
+msgstr "Atlandı"
 
 msgid "Middle only"
-msgstr ""
+msgstr "Yalnızca ortada"
 
 msgid "Left only (different)"
-msgstr ""
+msgstr "Yalnızca solda (farklı)"
 
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Yalnızca ortada (farklı)"
 
 msgid "Right only (different)"
-msgstr ""
+msgstr "Yalnızca sağda (farklı)"
 
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Yalnızca solda (eksik)"
 
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Yalnızca ortada (eksik)"
 
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Yalnızca sağda (eksik)"
 
 msgid "Codepage"
 msgstr "Kod sayfası"
@@ -2505,7 +2505,7 @@ msgid "Disca&rd All"
 msgstr "&Tümünü yok say"
 
 msgid "Folder Compare Report"
-msgstr "Klasör Karşılaştırma Raporu"
+msgstr "Klasör karşılaştırma raporu"
 
 msgid "Report &file:"
 msgstr "Rapor &dosyası:"
@@ -2517,16 +2517,16 @@ msgid "&Include file compare report"
 msgstr "K&lasör karşılaştırma raporu eklensin"
 
 msgid "Shared or Private Filter"
-msgstr "Ortak ya da özel süzgeç"
+msgstr "Ortak ya da özel filtre"
 
 msgid "What type of filter do you want?"
-msgstr "Oluşturmak istediğiniz süzgeç türü nedir?"
+msgstr "Oluşturmak istediğiniz filtre türü nedir?"
 
 msgid "Shared Filter (for all users)"
-msgstr "Ortak süzgeç (bilgisayardaki tüm kullanıcılar için)"
+msgstr "Ortak filtre (bilgisayardaki tüm kullanıcılar için)"
 
 msgid "Private Filter (current user only)"
-msgstr "Özel süzgeç (yalnızca geçerli kullanıcı için)"
+msgstr "Özel filtre (yalnızca geçerli kullanıcı için)"
 
 msgid "Compare Statistics"
 msgstr "Karşılaştırma istatistikleri"
@@ -2589,10 +2589,10 @@ msgid "&Cancel"
 msgstr "İ&ptal"
 
 msgid "Test Filter"
-msgstr "Süzgeci sına"
+msgstr "Filtreyi sına"
 
 msgid "Testing filter:"
-msgstr "Süzgeç sınanıyor:"
+msgstr "Filtre sınanıyor:"
 
 msgid "&Enter text to test:"
 msgstr "Sınanacak m&etni yazın:"
@@ -2691,7 +2691,7 @@ msgid "Plugin &type:"
 msgstr "Eklenti &türü:"
 
 msgid "File filters:"
-msgstr "Dosya süzgeçleri:"
+msgstr "Dosya filtreleri:"
 
 msgid "&Plugin arguments:"
 msgstr "&Eklenti değişkenleri:"
@@ -3043,7 +3043,7 @@ msgid "To make this message box visible, press Reset on the Message Boxes page i
 msgstr "Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümünde İleti kutuları grubu altındaki Sıfırla düğmesine tıklayın."
 
 msgid "Compare/Merge"
-msgstr "Karşılaştır/Birleştir"
+msgstr "Karşılaştır/birleştir"
 
 msgid "Syntax"
 msgstr "Söz dizimi"
@@ -3178,7 +3178,7 @@ msgid "Location"
 msgstr "Konum"
 
 msgid "Filters"
-msgstr "Süzgeçler"
+msgstr "Filtreler"
 
 msgid "[F] "
 msgstr "[F] "
@@ -3187,10 +3187,10 @@ msgid "Description"
 msgstr "Açıklama"
 
 msgid "Select Filename for New Filter"
-msgstr "Yeni süzgeç için bir dosya adı yazın"
+msgstr "Yeni filtre için bir dosya adı yazın"
 
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "Dosya süzgeçleri (*.flt)|*.flt|Tüm dosyalar (*.*)|*.*||"
+msgstr "Dosya filtreleri (*.flt)|*.flt|Tüm dosyalar (*.*)|*.*||"
 
 #, c-format
 msgid ""
@@ -3199,7 +3199,7 @@ msgid ""
 "Copy %1 to WinMerge/Filters Folder:\n"
 "%2."
 msgstr ""
-"Dosya süzgeci kalıp dosyası bulunamadı!\n"
+"Dosya filtresi kalıp dosyası bulunamadı!\n"
 "\n"
 "Lütfen %1 dosyasını, WinMerge/Filters klasörüne kopyalayın:\n"
 "%2."
@@ -3211,7 +3211,7 @@ msgid ""
 "\n"
 "Make sure the folder exists and is writable."
 msgstr ""
-"Süzgeç kalıbı dosyası süzgeç klasörüne kopyalanamıyor:\n"
+"Filtre kalıbı dosyası filtre klasörüne kopyalanamıyor:\n"
 "%1\n"
 "\n"
 "Klasörün var ve yazılabilir olduğundan emin olun."
@@ -3221,9 +3221,9 @@ msgid ""
 "\n"
 "Select filter folder in Options/System."
 msgstr ""
-"Kullanıcı süzgeç dosyası klasörü belirtilmemiş!\n"
+"Kullanıcı filtre dosyası klasörü belirtilmemiş!\n"
 "\n"
-"Lütfen 'Ayarlar/Sistem' bölümünden süzgeç klasörünü belirtin."
+"Lütfen 'Ayarlar/Sistem' bölümünden filtre klasörünü belirtin."
 
 #, c-format
 msgid ""
@@ -3238,19 +3238,19 @@ msgstr ""
 "Dosya salt okunur olabilir."
 
 msgid "Locate Filter File to Install"
-msgstr "Kurulacak süzgeç dosyasını seçin"
+msgstr "Kurulacak filtre dosyasını seçin"
 
 msgid ""
 "Installing filter file failed.\n"
 "\n"
 "Could not copy new filter to folder."
 msgstr ""
-"Süzgeç dosyası kurulamadı.\n"
+"Filtre dosyası kurulamadı.\n"
 "\n"
-"Yeni süzgeç dosyası süzgeç klasörüne kopyalanamadı."
+"Yeni filtre dosyası filtre klasörüne kopyalanamadı."
 
 msgid "Filter file exists. Overwrite?"
-msgstr "Bu süzgeç dosyası zaten var. Üzerine yazılsın mı?"
+msgstr "Bu filtre dosyası zaten var. Üzerine yazılsın mı?"
 
 msgid "Regular expression"
 msgstr "Kurallı ifade"
@@ -3260,7 +3260,7 @@ msgid ""
 "\n"
 "Select 'No' to refresh later."
 msgstr ""
-"Süzgeçler güncellendi. Tüm açık klasör karşılaştırmalarını yenilemek ister misiniz?\n"
+"Filtreler güncellendi. Tüm açık klasör karşılaştırmalarını yenilemek ister misiniz?\n"
 "\n"
 "Şimdi yenilemek istemezseniz 'Hayır' üzerine tıklayabilir ve karşılaştırmaları daha sonra yenileyebilirsiniz."
 
@@ -4251,7 +4251,7 @@ msgstr ""
 "Ancak ikili (binary) karşılaştırma başarısız oldu."
 
 msgid "Selected files are identical (binary match)."
-msgstr "Seçilen dosyalar özdeş (ikili eşleşme)."
+msgstr "Seçilen dosyalar özdeş (binary eşleşme)."
 
 msgid ""
 "Selected files are identical (with current settings).\r\n"
@@ -4825,7 +4825,7 @@ msgstr "CD eşiği"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Ekleme/Silme algılaması"
+msgstr "Ekleme/silme algılaması"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
@@ -4905,13 +4905,13 @@ msgid "No differences found to select"
 msgstr "Seçilebilecek bir fark bulunamadı"
 
 msgid "No differences found to add as substitution filter"
-msgstr "Değişiklik süzgeci ekleyecek bir fark bulunamadı"
+msgstr "Değişiklik filtresi ekleyecek bir fark bulunamadı"
 
 msgid "The pair is already in the Substitution Filters list"
-msgstr "Bu çift zaten Değişiklik Süzgeçleri listesinde var"
+msgstr "Bu çift zaten Değişiklik Filtreleri listesinde var"
 
 msgid "Add this change to Substitution Filters?"
-msgstr "Bu değişiklik Değişiklik Süzgeçlerine eklensin mi?"
+msgstr "Bu değişiklik Değişiklik Filtrelerine eklensin mi?"
 
 msgid "Text only"
 msgstr "Yalnızca metin"
@@ -5039,7 +5039,7 @@ msgid "2nd and 3rd"
 msgstr "İkinci ve üçüncü"
 
 msgid "Filter applied"
-msgstr "Süzgeç uygulandı"
+msgstr "Filtre uygulandı"
 
 #, c-format
 msgid "Compare %1"
@@ -5427,7 +5427,7 @@ msgid "Replace..."
 msgstr "Değiştir..."
 
 msgid "Apply Filter Command..."
-msgstr "Süzgeç komutunu uygula..."
+msgstr "Filtre komutunu uygula..."
 
 msgid "Tokenize..."
 msgstr "Kodla..."
@@ -5466,7 +5466,7 @@ msgid "Ignore Leading Line Numbers"
 msgstr "Baştaki satır sayıları yok sayılsın"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr "Ön farklılaştırıcı değiştirme süzgeçlerini uygula"
+msgstr "Ön farklılaştırıcı değiştirme filtrelerini uygula"
 
 msgid "Prettify HTML"
 msgstr "HTML sadeleştirme"
@@ -5577,7 +5577,7 @@ msgid ""
 "Usage: ExecFilterCommand COMMAND\r\n"
 " COMMAND - command to execute. %1 = filename."
 msgstr ""
-"Süzgeç komutunu uygular. \r\n"
+"Filtre komutunu uygular. \r\n"
 "Kullanımı: ExecFilterCommand KOMUT\r\n"
 "  KOMUT - Yürütülecek komut. Komut içindeki %1 dosya adı ile değiştirilir."
 
@@ -5645,7 +5645,7 @@ msgid ""
 "Arguments: jq filter/command line options."
 msgstr ""
 "JSON iyileştirici: jq komutu. \r\n"
-"Parametreler: jq komutuna aktarılacak süzgeç ya da komut satırı parametreleri."
+"Parametreler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 msgid ""
 "XML Prettier (tidy-html5).\r\n"
@@ -5659,7 +5659,7 @@ msgid ""
 "Arguments: yq filter/command line options."
 msgstr ""
 "YAML iyileştirici: yq komutu. \r\n"
-"Parametreler: yq komutuna aktarılacak süzgeç ya da komut satırı parametreleri."
+"Parametreler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 msgid ""
 "PO Prettier (gettext msgcat).\r\n"
@@ -5708,14 +5708,14 @@ msgid ""
 "Arguments: jq filter/command line options."
 msgstr ""
 "JSON sorgulayıcı: jq komutu. \r\n"
-"Parametreler: jq komutuna aktarılacak süzgeç ya da komut satırı parametreleri."
+"Parametreler: jq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 msgid ""
 "YAML Querier (yq).\r\n"
 "Arguments: yq filter/command line options."
 msgstr ""
 "YAML sorgulayıcı: yq komutu. \r\n"
-"Parametreler: yq komutuna aktarılacak süzgeç ya da komut satırı parametreleri."
+"Parametreler: yq komutuna aktarılacak filtre ya da komut satırı parametreleri."
 
 msgid ""
 "HTML Validator (tidy-html5).\r\n"
@@ -5787,7 +5787,7 @@ msgid "Ignore leading line numbers (e.g., NC, BASIC)."
 msgstr "Bu eklenti metin dosyalarında baştaki satır numaralarını yok sayar (NC ve BASIC dosyaları gibi)."
 
 msgid "Prediff Line Filter"
-msgstr "Ön farklılaştırıcı satır süzgeci"
+msgstr "Ön farklılaştırıcı satır filtresi"
 
 msgid "Date and time insertion"
 msgstr "Tarih ve saat ekleme işlevi"
