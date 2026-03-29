@@ -1,7 +1,7 @@
 /** 
  * @file  FilterConditionDlg.cpp
  *
- * @brief Implementation of the dialog used to select table properties
+ * @brief Implementation of the filter condition dialog, which allows users to create/edit filter conditions for file/folder properties.
  */
 
 #include "stdafx.h"

@@ -1,7 +1,7 @@
 /** 
  * @file  FilterConditionDlg.h
  *
- * @brief Declaration of the dialog used to select codepages
+ * @brief Declaration of CFilterConditionDlg class, which implements the dialog for creating/editing filter conditions based on file/folder properties.
  */
 #pragma once
 

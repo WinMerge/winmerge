@@ -1,7 +1,11 @@
+/** 
+ * @file ComparisonResultFilterDlg.cpp
+ *
+ * @brief Implementation of the CComparisonResultFilterDlg class, which implements the dialog for filtering comparison results based on various criteria such as identical, different, left-only, right-only, etc.
+ */
 #include "StdAfx.h"
 #include "ComparisonResultFilterDlg.h"
 #include "Merge.h"
-#include "LanguageSelect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

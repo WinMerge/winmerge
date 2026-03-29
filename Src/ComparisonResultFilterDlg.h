@@ -1,3 +1,8 @@
+/** 
+ * @file ComparisonResultFilterDlg.h
+ *
+ * @brief Declaration of CComparisonResultFilterDlg class, which implements the dialog for filtering comparison results based on various criteria such as identical, different, left-only, right-only, etc.
+ */
 #pragma once
 
 #include "TrDialogs.h"
