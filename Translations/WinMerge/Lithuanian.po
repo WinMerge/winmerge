@@ -1613,6 +1613,12 @@ msgstr "Rezultatai: Viduryje ir &Dešinėje"
 msgid "Target: &All"
 msgstr "Rezultatai: &Visi"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "&Išvalyti sąlygas"
 
@@ -2372,6 +2378,54 @@ msgstr "&Dešinėje:"
 msgid "Expression:"
 msgstr "Išraiška:"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "Yra vienodi"
+
+msgid "Different"
+msgstr "Yra skirtingi"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "Koduotės"
 
@@ -2474,9 +2528,6 @@ msgstr "Katalogai:"
 msgid "Files:"
 msgstr "Failai:"
 
-msgid "Different"
-msgstr "Yra skirtingi"
-
 msgid "Binary:"
 msgstr "Binariniai:"
 
@@ -2488,9 +2539,6 @@ msgstr "Kairėje:"
 
 msgid "Right:"
 msgstr "Dešinėje:"
-
-msgid "Identical"
-msgstr "Yra vienodi"
 
 msgid "Total:"
 msgstr "Iš viso:"

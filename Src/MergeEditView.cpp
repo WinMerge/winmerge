@@ -653,7 +653,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 		return emptyBlocks;
 
 	CMergeDoc *pDoc = GetDocument();
-	if (pDoc->IsEditedAfterRescan(m_nThisPane))
+	if (pDoc->IsEditedAfterRescan(-1))
 		return emptyBlocks;
 	
 	int nDiff = pDoc->m_diffList.LineToDiff(nLineIndex);

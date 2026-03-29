@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-03-12 00:42+0900\n"
+"PO-Revision-Date: 2026-03-26 17:43+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -1851,6 +1851,12 @@ msgstr "대상: 가운데 및 오른쪽(&R)"
 msgid "Target: &All"
 msgstr "대상: 모두(&A)"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "조건 지우기(&C)"
 
@@ -2762,6 +2768,56 @@ msgstr "오른쪽(&R)"
 msgid "Expression:"
 msgstr "표현식:"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+#, c-format
+msgid "Identical"
+msgstr "동일"
+
+#, c-format
+msgid "Different"
+msgstr "다름"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 #, c-format
 msgid "Codepage"
 msgstr "코드페이지"
@@ -2904,10 +2960,6 @@ msgid "Files:"
 msgstr "파일:"
 
 #, c-format
-msgid "Different"
-msgstr "다름"
-
-#, c-format
 msgid "Binary:"
 msgstr "바이너리:"
 
@@ -2922,10 +2974,6 @@ msgstr "왼쪽:"
 #, c-format
 msgid "Right:"
 msgstr "오른쪽:"
-
-#, c-format
-msgid "Identical"
-msgstr "동일"
 
 #, c-format
 msgid "Total:"
@@ -5712,10 +5760,10 @@ msgid "Compare %1"
 msgstr "비교 %1"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "이 열로 필터링(&F)"
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "이 열로 필터링(&F)..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -5947,7 +5995,7 @@ msgid "Invalid property name"
 msgstr "잘못된 속성 이름"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "잘못된 지침"
 
 msgid "Equals"
 msgstr "같음"
@@ -5986,16 +6034,16 @@ msgid "Not Contains (regex)"
 msgstr "포함하지 않음 (정규식)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "일치 (와일드카드)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "일치하지 않음 (와일드카드)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "일치 (정규 표현식)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "일치하지 않음 (정규 표현식)"
 
 msgid "Light"
 msgstr "밝은"

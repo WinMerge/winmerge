@@ -1844,6 +1844,12 @@ msgstr "Cél: Középső és &jobb"
 msgid "Target: &All"
 msgstr "Cél: &Összes"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "Feltételek &törlése"
 
@@ -2755,6 +2761,56 @@ msgstr "&Jobbkezes oldal:"
 msgid "Expression:"
 msgstr "Kifejezés:"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+#, c-format
+msgid "Identical"
+msgstr "Egyező"
+
+#, c-format
+msgid "Different"
+msgstr "Különböző"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 #, c-format
 msgid "Codepage"
 msgstr "Kódlap"
@@ -2897,10 +2953,6 @@ msgid "Files:"
 msgstr "Fájlok:"
 
 #, c-format
-msgid "Different"
-msgstr "Különböző"
-
-#, c-format
 msgid "Binary:"
 msgstr "Bináris:"
 
@@ -2915,10 +2967,6 @@ msgstr "Bal:"
 #, c-format
 msgid "Right:"
 msgstr "Jobb:"
-
-#, c-format
-msgid "Identical"
-msgstr "Egyező"
 
 #, c-format
 msgid "Total:"

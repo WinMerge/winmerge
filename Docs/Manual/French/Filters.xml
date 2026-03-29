@@ -586,6 +586,134 @@ Valeur de propriété du fichier du côté gauche. Exemple :
           </variablelist>
         </section>
 
+        <section>
+          <title>Display Filters Only Attributes</title>
+          <para>
+The following attributes are designed for use in <emphasis
+role="bold">Display filters only</emphasis> (specified via
+<guilabel>e:</guilabel>, <guilabel>e!:</guilabel>, <guilabel>fe:</guilabel>,
+<guilabel>fe!:</guilabel>, <guilabel>de:</guilabel>, or
+<guilabel>de!:</guilabel> prefixes in the Filter field).  They should not be
+used in file filter (<filename>.flt</filename>) include/exclude rules, as
+they require the comparison to be completed first and may lead to unexpected
+behavior.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><varname>Identical</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the comparison result indicates the items
+are identical, <literal>false</literal> otherwise.  This is a global
+attribute (does not support side-specific prefixes).  Example:
+<literal>Identical</literal> to show only identical files.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Different</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the comparison result indicates the items
+are different, <literal>false</literal> otherwise.  This is a global
+attribute (does not support side-specific prefixes).  Example:
+<literal>Different</literal> to show only different files.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Skipped</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the comparison was skipped due to an
+error or filter rule, <literal>false</literal> otherwise.  This is a global
+attribute (does not support side-specific prefixes).  Example:
+<literal>Skipped</literal> to show only skipped items.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Binary</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the file is detected as binary,
+<literal>false</literal> if it's text, or <literal>undefined</literal> if
+the file doesn't exist.  This attribute supports side-specific prefixes
+(e.g., <literal>LeftBinary</literal>, <literal>RightBinary</literal>).
+Example: <literal>allof(Binary)</literal> to show files that are binary on
+all sides.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentLeftMiddle</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the left and middle files are different
+in a 3-way comparison, <literal>false</literal> otherwise.  Returns
+<literal>undefined</literal> in 2-way comparisons.  This is a global
+attribute (does not support side-specific prefixes).  Example:
+<literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> to find
+files where only left differs from middle.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentMiddleRight</varname></term>
+              <listitem>
+                <para>
+Returns <literal>true</literal> if the middle and right files are different
+in a 3-way comparison, <literal>false</literal> otherwise.  Returns
+<literal>undefined</literal> in 2-way comparisons.  This is a global
+attribute (does not support side-specific prefixes).  Example:
+<literal>DifferentMiddleRight</literal> to show files where middle and right
+differ.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentLeftRight</varname></term>
+              <listitem>
+                <para>
+In 3-way comparisons, returns <literal>true</literal> if the left and right
+files are different, <literal>false</literal> otherwise.  In 2-way
+comparisons, returns <literal>true</literal> if both files exist and are
+different.  This is a global attribute (does not support side-specific
+prefixes).  Example: <literal>DifferentLeftRight</literal> to show files
+where left and right differ.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Differences</varname></term>
+              <listitem>
+                <para>
+Returns the number of text differences in the file comparison.  This
+attribute is only meaningful for text files that have been compared.  This
+is a global attribute (does not support side-specific prefixes).  Example:
+<literal>Differences &gt; 0</literal> to show files with differences, or
+<literal>Differences &gt; 10</literal> to show files with more than 10
+differences.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>IgnoredDiffs</varname></term>
+              <listitem>
+                <para>
+Returns the number of ignored differences in the file comparison
+(differences filtered by line filters or whitespace settings).  This
+attribute is only meaningful for text files that have been compared.  This
+is a global attribute (does not support side-specific prefixes).  Example:
+<literal>IgnoredDiffs &gt; 0</literal> to show files with ignored
+differences, or <literal>Differences = 0 and IgnoredDiffs &gt; 0</literal>
+to show files that are identical except for ignored differences.</para>
+              </listitem>
+            </varlistentry>
+
+          </variablelist>
+        </section>
+
         <section id="FilterExpression_ArrayEvaluation">
           <title>Évaluation de tableau</title>
 
@@ -1246,6 +1374,15 @@ Fichiers avec extensions de 'a' à 'm' et taille inférieure à 1 Mo</para></lis
 fichier insensible à la casse</para></listitem>
           <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - Correspondance après
 conversion pleine chasse en demi-chasse</para></listitem>
+          <listitem><para><literal>Different</literal> - Show only files/folders that are different
+(Display filter only)</para></listitem>
+          <listitem><para><literal>Identical</literal> - Show only files/folders that are identical
+(Display filter only)</para></listitem>
+          <listitem><para><literal>allof(Binary)</literal> - Show only files that are binary on all
+sides (Display filter only)</para></listitem>
+          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> - In
+3-way comparison, show files where only left-middle pair differs (Display
+filter only)</para></listitem>
         </itemizedlist>
       </section>
     </section>

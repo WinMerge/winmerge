@@ -1621,6 +1621,12 @@ msgstr ""
 msgid "Target: &All"
 msgstr ""
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr ""
 
@@ -2392,6 +2398,54 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "ஒத்த"
+
+msgid "Different"
+msgstr "வேறு"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "குறியீடு பக்கம்"
 
@@ -2504,9 +2558,6 @@ msgstr "கோப்புறைகள்:"
 msgid "Files:"
 msgstr "கோப்புகள்:"
 
-msgid "Different"
-msgstr "வேறு"
-
 msgid "Binary:"
 msgstr "இருமம்:"
 
@@ -2518,9 +2569,6 @@ msgstr "இடது:"
 
 msgid "Right:"
 msgstr "வலது:"
-
-msgid "Identical"
-msgstr "ஒத்த"
 
 msgid "Total:"
 msgstr "மொத்தம்:"

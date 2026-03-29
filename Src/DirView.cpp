@@ -844,7 +844,7 @@ void CDirView::HeaderContextMenu(CPoint point, int i)
 
 	const DirColInfo * col = m_pColItems->GetDirColInfo(i);
 	ASSERT(col != nullptr);
-	m_pFilterMenu = CFileFilterHelperMenu::AppendColumnFilterMenu(pPopup, col->regName);
+	m_pFilterMenu = CFileFilterHelperMenu::AppendColumnFilterMenu(pPopup, col->regName, GetDocument()->m_nDirs >= 3);
 
 	// invoke context menu
 	// this will invoke all the OnUpdate methods to enable/disable the individual items

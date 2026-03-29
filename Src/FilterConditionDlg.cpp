@@ -1,7 +1,7 @@
 /** 
  * @file  FilterConditionDlg.cpp
  *
- * @brief Implementation of the dialog used to select table properties
+ * @brief Implementation of the filter condition dialog, which allows users to create/edit filter conditions for file/folder properties.
  */
 
 #include "stdafx.h"
@@ -116,8 +116,9 @@ String CFilterConditionDlg::GetExpression()
 	String result;
 	if (m_sField == _T("Size") || m_sField == _T("TotalSize") ||
 	    m_sField == _T("Files") || m_sField == _T("Items") ||
-	    m_sField == _T("Date") || m_sLHS == _T("lineCount(%1)") ||
-	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I4 || m_vt == VT_UI8 || m_vt == VT_I8)
+	    m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
+	    m_sLHS == _T("lineCount(%1)") ||
+	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_UI8 || m_vt == VT_I8)
 	{
 		result = strutils::format_string3(expression, lhs, m_sValue1, m_sValue2);
 	}
@@ -125,7 +126,7 @@ String CFilterConditionDlg::GetExpression()
 	{
 		String value1;
 		String value2;
-		if (m_sField == _T("DateStr"))
+		if (m_sField == _T("DateStr") || m_sLHS == _T("toDateStr(%1)"))
 		{
 			value1 = m_tmValue1.Format(_T("%Y-%m-%d"));
 			value2 = m_tmValue2.Format(_T("%Y-%m-%d"));
@@ -170,7 +171,8 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	// Initialize the operator combo box
 	if (m_sField == _T("Size") || m_sField == _T("TotalSize") ||
 	    m_sField == _T("Files") || m_sField == _T("Items") ||
-	    m_sField == _T("Date") || m_sField == _T("DateStr") ||
+	    m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
+		m_sField == _T("DateStr") || m_sLHS == _T("toDateStr(%1)") ||
 	    m_sLHS == _T("lineCount(%1)") || m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I8 || m_vt == VT_UI8)
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
@@ -220,7 +222,7 @@ BOOL CFilterConditionDlg::OnInitDialog()
 		m_sValue1 = _T("0B");
 		m_sValue2 = _T("0B");
 	}
-	else if (m_sLHS == _T("lineCount(%1)") || m_sField == _T("Files") || m_sField == _T("Items"))
+	else if (m_sLHS == _T("lineCount(%1)") || m_sField == _T("Files") || m_sField == _T("Items") || m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs"))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE1, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
 		SetDlgItemComboBoxList(IDC_CONDITION_VALUE2, { _("0"), _("1"), _("10"), _("100"),_("1000"), _("10000"), _("100000") });
@@ -234,7 +236,7 @@ BOOL CFilterConditionDlg::OnInitDialog()
 		m_sValue1 = _T("0second");
 		m_sValue2 = _T("0second");
 	}
-	else if (m_sField == _T("DateStr"))
+	else if (m_sField == _T("DateStr") || m_sLHS == _T("toDateStr(%1)"))
 	{
 		// No initialization required for "DateStr" field
 	}
@@ -269,7 +271,7 @@ void CFilterConditionDlg::OnCbnSelchangeOperator()
 		return;
 	String expression = (const wchar_t*)expressionptr;
 	const bool showValue2 = expression.find(_T("%3")) != String::npos;
-	const bool showDatePicker = (m_sField == _T("DateStr"));
+	const bool showDatePicker = (m_sField == _T("DateStr") || m_sLHS == _T("toDateStr(%1)"));
 	ShowDlgItem(IDC_CONDITION_VALUE1, !showDatePicker);
 	ShowDlgItem(IDC_CONDITION_VALUE2, !showDatePicker && showValue2);
 	ShowDlgItem(IDC_CONDITION_VALUEDTP1, showDatePicker);

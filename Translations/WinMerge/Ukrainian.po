@@ -1613,6 +1613,12 @@ msgstr "Застосувати: в центрі та &праворуч"
 msgid "Target: &All"
 msgstr "Застосувати: &Всюди"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "&Очистити умови"
 
@@ -2372,6 +2378,54 @@ msgstr "&Права сторона:"
 msgid "Expression:"
 msgstr "Вираз:"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "Однакові"
+
+msgid "Different"
+msgstr "Відрізняються"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "Сторінка кодування"
 
@@ -2482,9 +2536,6 @@ msgstr "Папки:"
 msgid "Files:"
 msgstr "Файли:"
 
-msgid "Different"
-msgstr "Відрізняються"
-
 msgid "Binary:"
 msgstr "Двійкові:"
 
@@ -2496,9 +2547,6 @@ msgstr "Ліворуч:"
 
 msgid "Right:"
 msgstr "Праворуч:"
-
-msgid "Identical"
-msgstr "Однакові"
 
 msgid "Total:"
 msgstr "Всього:"

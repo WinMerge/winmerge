@@ -1842,6 +1842,12 @@ msgstr ""
 msgid "Target: &All"
 msgstr ""
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr ""
 
@@ -2755,6 +2761,56 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+#, c-format
+msgid "Identical"
+msgstr "Shodné"
+
+#, c-format
+msgid "Different"
+msgstr "Rozdílné"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 #, c-format
 msgid "Codepage"
 msgstr "Kódování"
@@ -2889,10 +2945,6 @@ msgid "Files:"
 msgstr "Soubory:"
 
 #, c-format
-msgid "Different"
-msgstr "Rozdílné"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binární:"
 
@@ -2907,10 +2959,6 @@ msgstr "Vlevo:"
 #, c-format
 msgid "Right:"
 msgstr "Vpravo:"
-
-#, c-format
-msgid "Identical"
-msgstr "Shodné"
 
 #, c-format
 msgid "Total:"

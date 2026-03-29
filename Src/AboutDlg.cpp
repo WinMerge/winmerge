@@ -82,7 +82,7 @@ CAboutDlg::Impl::Impl(CAboutDlg *p, CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CAboutDlg::Impl::IDD)
 	, m_p(p)
 {
-	m_font.CreatePointFont(10 * 10, _T("Tahoma"));
+	m_font.CreatePointFont(9 * 10, _T("Tahoma"));
 	LOGFONT lf = { 0 };
 	lf.lfHeight = 14 * 10;
 	lf.lfWeight = FW_BOLD;

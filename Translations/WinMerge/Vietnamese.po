@@ -1613,6 +1613,12 @@ msgstr "Đích: Ở giữa và phải"
 msgid "Target: &All"
 msgstr "Đích: Tất cả"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "Xoá sạch các điều kiện"
 
@@ -2380,6 +2386,54 @@ msgstr "Bên &phải:"
 msgid "Expression:"
 msgstr "Biểu thức:"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "Giống hệt"
+
+msgid "Different"
+msgstr "Khác biệt"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "Trang mã"
 
@@ -2490,9 +2544,6 @@ msgstr "Thư mục:"
 msgid "Files:"
 msgstr "Tệp:"
 
-msgid "Different"
-msgstr "Khác biệt"
-
 msgid "Binary:"
 msgstr "Nhị phân:"
 
@@ -2504,9 +2555,6 @@ msgstr "Trái:"
 
 msgid "Right:"
 msgstr "Bên phải:"
-
-msgid "Identical"
-msgstr "Giống hệt"
 
 msgid "Total:"
 msgstr "Tổng cộng:"

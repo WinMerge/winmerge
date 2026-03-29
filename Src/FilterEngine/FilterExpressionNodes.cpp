@@ -888,11 +888,57 @@ static auto IgnoredDiffsField(int index, const FilterExpression* ctxt, const DIF
 	return static_cast<int64_t>(di.nidiffs);
 }
 
+static auto IdenticalField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return di.diffcode.isResultSame();
+}
+
+static auto DifferentField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return di.diffcode.isResultDiff();
+}
+
+static auto SkippedField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	return di.diffcode.isResultFiltered();
+}
+
 static auto EncodingField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
 {
 	if (!di.diffcode.exists(index))
 		return std::monostate{};
 	return ucr::toUTF8(di.diffFileInfo[index].encoding.GetName());
+}
+
+static auto BinaryField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (!di.diffcode.exists(index))
+		return std::monostate{};
+	const unsigned diffcode = di.diffcode.diffcode;
+	const unsigned binarySide = (index == 0) ? DIFFCODE::BINSIDE1 : (index == 1) ? DIFFCODE::BINSIDE2 : DIFFCODE::BINSIDE3;
+	return (diffcode & binarySide) != 0;
+}
+
+static auto DifferentLeftMiddleField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (ctxt->ctxt->GetCompareDirs() < 3)
+		return std::monostate{};
+	return (di.diffcode.diffcode & DIFFCODE::DIFF1STONLY) != 0;
+}
+
+static auto DifferentMiddleRightField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (ctxt->ctxt->GetCompareDirs() < 3)
+		return std::monostate{};
+	return (di.diffcode.diffcode & DIFFCODE::DIFF2NDONLY) != 0;
+}
+
+static auto DifferentLeftRightField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (ctxt->ctxt->GetCompareDirs() >= 3)
+		return (di.diffcode.diffcode & DIFFCODE::DIFF3RDONLY) != 0;
+	else
+		return di.diffcode.existAll() && di.diffcode.isResultDiff();
 }
 
 static auto RelPathField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
@@ -1008,6 +1054,38 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	else if (strcmp(p, "ignoreddiffs") == 0)
 	{
 		functmp = IgnoredDiffsField;
+		side = -2;
+	}
+	else if (strcmp(p, "identical") == 0)
+	{
+		functmp = IdenticalField;
+		side = -2;
+	}
+	else if (strcmp(p, "different") == 0)
+	{
+		functmp = DifferentField;
+		side = -2;
+	}
+	else if (strcmp(p, "skipped") == 0)
+	{
+		functmp = SkippedField;
+		side = -2;
+	}
+	else if (strcmp(p, "binary") == 0)
+		functmp = BinaryField;
+	else if (strcmp(p, "differentleftmiddle") == 0)
+	{
+		functmp = DifferentLeftMiddleField;
+		side = -2;
+	}
+	else if (strcmp(p, "differentmiddleright") == 0)
+	{
+		functmp = DifferentMiddleRightField;
+		side = -2;
+	}
+	else if (strcmp(p, "differentleftright") == 0)
+	{
+		functmp = DifferentLeftRightField;
 		side = -2;
 	}
 	else if (strcmp(p, "content") == 0)

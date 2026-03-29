@@ -1838,6 +1838,12 @@ msgstr ""
 msgid "Target: &All"
 msgstr ""
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr ""
 
@@ -2736,6 +2742,56 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+#, c-format
+msgid "Identical"
+msgstr "Исте"
+
+#, c-format
+msgid "Different"
+msgstr "Разлика"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 #, c-format
 msgid "Codepage"
 msgstr "Кодна страница"
@@ -2872,10 +2928,6 @@ msgid "Files:"
 msgstr "Датотеке:"
 
 #, c-format
-msgid "Different"
-msgstr "Разлика"
-
-#, c-format
 msgid "Binary:"
 msgstr "Бинарни:"
 
@@ -2890,10 +2942,6 @@ msgstr "Лева:"
 #, c-format
 msgid "Right:"
 msgstr "Десна:"
-
-#, c-format
-msgid "Identical"
-msgstr "Исте"
 
 #, c-format
 msgid "Total:"

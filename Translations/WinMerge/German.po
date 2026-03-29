@@ -1849,6 +1849,12 @@ msgstr "Ziel: Mitte und &Rechts"
 msgid "Target: &All"
 msgstr "Ziel: &Alle"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "Bedingungen &löschen"
 
@@ -2766,6 +2772,56 @@ msgstr "&Rechte Seite:"
 msgid "Expression:"
 msgstr "Ausdruck:"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+#, c-format
+msgid "Identical"
+msgstr "Identisch"
+
+#, c-format
+msgid "Different"
+msgstr "Unterschiedlich"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 #, c-format
 msgid "Codepage"
 msgstr "Codeseite"
@@ -2908,10 +2964,6 @@ msgid "Files:"
 msgstr "Dateien:"
 
 #, c-format
-msgid "Different"
-msgstr "Unterschiedlich"
-
-#, c-format
 msgid "Binary:"
 msgstr "Binär:"
 
@@ -2926,10 +2978,6 @@ msgstr "Links:"
 #, c-format
 msgid "Right:"
 msgstr "Rechts:"
-
-#, c-format
-msgid "Identical"
-msgstr "Identisch"
 
 #, c-format
 msgid "Total:"
