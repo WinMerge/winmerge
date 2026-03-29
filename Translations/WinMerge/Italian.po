@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 11.03.2026\n"
+"Project-Id-Version: WinMerge - Italian - 29.03.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-03-11 16:04+0100\n"
+"PO-Revision-Date: 2026-03-29 10:36+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1615,10 +1615,10 @@ msgid "Target: &All"
 msgstr "Obiettivo: &tutti"
 
 msgid "Binary files only"
-msgstr ""
+msgstr "Solo file binari"
 
 msgid "Text files only"
-msgstr ""
+msgstr "Solo file testo"
 
 msgid "&Clear conditions"
 msgstr "Azzera &condizioni"
@@ -2391,16 +2391,16 @@ msgid "Expression:"
 msgstr "Espressione:"
 
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Filtra per risultati confronto"
 
 msgid "&Include"
-msgstr ""
+msgstr "&Includi"
 
 msgid "&Exclude"
-msgstr ""
+msgstr "&Excludi"
 
 msgid "Comparison Results"
-msgstr ""
+msgstr "Risultati confronto"
 
 msgid "Identical"
 msgstr "Identici"
@@ -2409,34 +2409,34 @@ msgid "Different"
 msgstr "Diversi"
 
 msgid "Left only"
-msgstr ""
+msgstr "Solo sinistro"
 
 msgid "Right only"
-msgstr ""
+msgstr "Solo destro"
 
 msgid "Skipped"
-msgstr ""
+msgstr "Ignorato"
 
 msgid "Middle only"
-msgstr ""
+msgstr "Solo centrale"
 
 msgid "Left only (different)"
-msgstr ""
+msgstr "Solo sinistro (differente)"
 
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Solo centrale (differente)"
 
 msgid "Right only (different)"
-msgstr ""
+msgstr "Solo destro (differente)"
 
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Solo sinistro (mancante)"
 
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Solo centrale (mancante)"
 
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Solo destro (mancante)"
 
 msgid "Codepage"
 msgstr "Codice pagina"
@@ -5096,10 +5096,10 @@ msgid "Compare %1"
 msgstr "Confronta %1"
 
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "&Filtra in base a questa colonna"
 
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "&Filtra in base a questa colonna..."
 
 #, c-format
 msgid "Clipboard at %s"
@@ -5335,7 +5335,7 @@ msgid "Invalid property name"
 msgstr "Nome proprietà non valido"
 
 msgid "Invalid directive"
-msgstr ""
+msgstr "Direttiva non valida"
 
 msgid "Equals"
 msgstr "Uguale"
@@ -5374,16 +5374,16 @@ msgid "Not Contains (regex)"
 msgstr "Non contiene (regex)"
 
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Corrispondenza (carattere jolly)"
 
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Non corrispondenza (carattere jolly)"
 
 msgid "Match (regex)"
-msgstr ""
+msgstr "Corrispondenza (regex)"
 
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Non corrispondenza (regex)"
 
 msgid "Light"
 msgstr "Chiaro"
