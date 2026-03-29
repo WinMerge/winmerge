@@ -328,7 +328,7 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 	}
 	else if (command == ID_FILTERMENU_IGNORED_DIFFS)
 	{
-		CFilterConditionDlg dlg(false, 0, _T("Ignored Diffs"), _T(""), _("%1 = %2"), _T("IgnoredDiffs"));
+		CFilterConditionDlg dlg(false, 0, _T("IgnoredDiffs"), _T(""), _("%1 = %2"), _T("IgnoredDiffs"));
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
