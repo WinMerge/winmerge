@@ -14,15 +14,14 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2026-03-22 23:40+0100\n"
+"PO-Revision-Date: 2026-03-29 22:26+0200\n"
 "Last-Translator: René Nicolaus <translation at havoc.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
-"X-Poedit-Language: German\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 
@@ -1850,10 +1849,10 @@ msgid "Target: &All"
 msgstr "Ziel: &Alle"
 
 msgid "Binary files only"
-msgstr ""
+msgstr "Nur Binärdateien"
 
 msgid "Text files only"
-msgstr ""
+msgstr "Nur Textdateien"
 
 msgid "&Clear conditions"
 msgstr "Bedingungen &löschen"
@@ -2773,16 +2772,16 @@ msgid "Expression:"
 msgstr "Ausdruck:"
 
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Nach Vergleichsergebnissen filtern"
 
 msgid "&Include"
-msgstr ""
+msgstr "E&inbeziehen"
 
 msgid "&Exclude"
-msgstr ""
+msgstr "Ausschli&eßen"
 
 msgid "Comparison Results"
-msgstr ""
+msgstr "Vergleichsergebnisse"
 
 #, c-format
 msgid "Identical"
@@ -2793,34 +2792,34 @@ msgid "Different"
 msgstr "Unterschiedlich"
 
 msgid "Left only"
-msgstr ""
+msgstr "Nur links"
 
 msgid "Right only"
-msgstr ""
+msgstr "Nur rechts"
 
 msgid "Skipped"
-msgstr ""
+msgstr "Übersprungen"
 
 msgid "Middle only"
-msgstr ""
+msgstr "Nur Mitte"
 
 msgid "Left only (different)"
-msgstr ""
+msgstr "Nur links (unterschiedlich)"
 
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Nur Mitte (unterschiedlich)"
 
 msgid "Right only (different)"
-msgstr ""
+msgstr "Nur rechts (unterschiedlich)"
 
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Nur links (fehlend)"
 
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Nur Mitte (fehlend)"
 
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Nur rechts (fehlend)"
 
 #, c-format
 msgid "Codepage"
