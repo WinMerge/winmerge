@@ -1614,6 +1614,12 @@ msgstr "Miejsce docelowe: środkowy i prawy"
 msgid "Target: &All"
 msgstr "Miejsce docelowe: wszystkie"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "Wyczyść warunki"
 
@@ -2373,6 +2379,54 @@ msgstr "Prawa strona:"
 msgid "Expression:"
 msgstr "Wyrażenie:"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "Identyczne"
+
+msgid "Different"
+msgstr "Różne"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "Strona kodowa"
 
@@ -2475,9 +2529,6 @@ msgstr "Foldery:"
 msgid "Files:"
 msgstr "Pliki:"
 
-msgid "Different"
-msgstr "Różne"
-
 msgid "Binary:"
 msgstr "Binarny:"
 
@@ -2489,9 +2540,6 @@ msgstr "Lewa:"
 
 msgid "Right:"
 msgstr "Prawa:"
-
-msgid "Identical"
-msgstr "Identyczne"
 
 msgid "Total:"
 msgstr "Łącznie:"

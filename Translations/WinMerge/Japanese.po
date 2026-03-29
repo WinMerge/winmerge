@@ -1612,6 +1612,12 @@ msgstr "対象: 中央と右(&R)"
 msgid "Target: &All"
 msgstr "対象: すべて(&A)"
 
+msgid "Binary files only"
+msgstr "バイナリファイルのみ"
+
+msgid "Text files only"
+msgstr "テキストファイルのみ"
+
 msgid "&Clear conditions"
 msgstr "条件をクリア(&C)"
 
@@ -2375,6 +2381,54 @@ msgstr "右辺(&R):"
 msgid "Expression:"
 msgstr "式:"
 
+msgid "Filter by Comparison Result"
+msgstr "比較結果でフィルター"
+
+msgid "&Include"
+msgstr "含める(&I)"
+
+msgid "&Exclude"
+msgstr "除外(&E)"
+
+msgid "Comparison Results"
+msgstr "比較結果"
+
+msgid "Identical"
+msgstr "同一"
+
+msgid "Different"
+msgstr "差異あり"
+
+msgid "Left only"
+msgstr "左側のみ"
+
+msgid "Right only"
+msgstr "右側のみ"
+
+msgid "Skipped"
+msgstr "スキップ"
+
+msgid "Middle only"
+msgstr "中央のみ"
+
+msgid "Left only (different)"
+msgstr "左側のみ（差異あり）"
+
+msgid "Middle only (different)"
+msgstr "中央のみ（差異あり）"
+
+msgid "Right only (different)"
+msgstr "右側のみ（差異あり）"
+
+msgid "Left only (missing)"
+msgstr "左側のみ（欠如）"
+
+msgid "Middle only (missing)"
+msgstr "中央のみ（欠如）"
+
+msgid "Right only (missing)"
+msgstr "右側のみ（欠如）"
+
 msgid "Codepage"
 msgstr "コードページ"
 
@@ -2485,9 +2539,6 @@ msgstr "フォルダー:"
 msgid "Files:"
 msgstr "ファイル:"
 
-msgid "Different"
-msgstr "差異あり"
-
 msgid "Binary:"
 msgstr "バイナリ:"
 
@@ -2499,9 +2550,6 @@ msgstr "左側:"
 
 msgid "Right:"
 msgstr "右側:"
-
-msgid "Identical"
-msgstr "同一"
 
 msgid "Total:"
 msgstr "合計:"

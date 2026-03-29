@@ -1611,6 +1611,12 @@ msgstr ""
 msgid "Target: &All"
 msgstr ""
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr ""
 
@@ -2380,6 +2386,54 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "Identiek"
+
+msgid "Different"
+msgstr "Verschillend"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "Tekenset"
 
@@ -2492,9 +2546,6 @@ msgstr "Mappen:"
 msgid "Files:"
 msgstr "Bestanden:"
 
-msgid "Different"
-msgstr "Verschillend"
-
 msgid "Binary:"
 msgstr "Binair:"
 
@@ -2506,9 +2557,6 @@ msgstr "Links:"
 
 msgid "Right:"
 msgstr "Rechts:"
-
-msgid "Identical"
-msgstr "Identiek"
 
 msgid "Total:"
 msgstr "Totaal:"

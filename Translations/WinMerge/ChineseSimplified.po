@@ -1617,6 +1617,12 @@ msgstr "目标：中和右(&R)"
 msgid "Target: &All"
 msgstr "目标：全部(&A)"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "清除条件(&C)"
 
@@ -2376,6 +2382,54 @@ msgstr "右手边(&R)："
 msgid "Expression:"
 msgstr "表达式："
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "完全相同"
+
+msgid "Different"
+msgstr "不同"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "代码页"
 
@@ -2486,9 +2540,6 @@ msgstr "文件夹："
 msgid "Files:"
 msgstr "文件："
 
-msgid "Different"
-msgstr "不同"
-
 msgid "Binary:"
 msgstr "二进制："
 
@@ -2500,9 +2551,6 @@ msgstr "左侧："
 
 msgid "Right:"
 msgstr "右侧："
-
-msgid "Identical"
-msgstr "完全相同"
 
 msgid "Total:"
 msgstr "总计："

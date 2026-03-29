@@ -1613,6 +1613,12 @@ msgstr ""
 msgid "Target: &All"
 msgstr ""
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr ""
 
@@ -2372,6 +2378,54 @@ msgstr ""
 msgid "Expression:"
 msgstr ""
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "Enako"
+
+msgid "Different"
+msgstr "Razlika"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "Kodna stran"
 
@@ -2482,9 +2536,6 @@ msgstr "Mape:"
 msgid "Files:"
 msgstr "Datoteke:"
 
-msgid "Different"
-msgstr "Razlika"
-
 msgid "Binary:"
 msgstr "Dvojiško:"
 
@@ -2496,9 +2547,6 @@ msgstr "Levo:"
 
 msgid "Right:"
 msgstr "Desno:"
-
-msgid "Identical"
-msgstr "Enako"
 
 msgid "Total:"
 msgstr "Skupaj:"

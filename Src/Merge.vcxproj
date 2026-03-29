@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
@@ -967,6 +967,7 @@
     </ClCompile>
     <ClCompile Include="EditPluginDlg.cpp" />
     <ClCompile Include="FileFilterHelperMenu.cpp" />
+    <ClCompile Include="ComparisonResultFilterDlg.cpp" />
     <ClCompile Include="FilterConditionDlg.cpp" />
     <ClCompile Include="FilterErrorMessages.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -990,6 +991,7 @@
     <ClInclude Include="Common\ValidatingEdit.h" />
     <ClInclude Include="FileFilterHelperMenu.h" />
     <ClInclude Include="DirFilterBar.h" />
+    <ClInclude Include="ComparisonResultFilterDlg.h" />
     <ClInclude Include="FilterConditionDlg.h" />
     <ClInclude Include="FilterErrorMessages.h" />
     <ClInclude Include="FiltersPropertySheet.h" />

@@ -1615,6 +1615,12 @@ msgstr "Destinazione : Centru è &Diritta"
 msgid "Target: &All"
 msgstr "Destinazione : &Tutte"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "&Squassà e cundizioni"
 
@@ -2374,6 +2380,54 @@ msgstr "A manu &diritta :"
 msgid "Expression:"
 msgstr "Spressione :"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+msgid "Identical"
+msgstr "Identichi"
+
+msgid "Different"
+msgstr "Sfarente"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 msgid "Codepage"
 msgstr "Pagina di codice"
 
@@ -2484,9 +2538,6 @@ msgstr "Cartulari :"
 msgid "Files:"
 msgstr "Schedarii :"
 
-msgid "Different"
-msgstr "Sfarente"
-
 msgid "Binary:"
 msgstr "Binariu :"
 
@@ -2498,9 +2549,6 @@ msgstr "Manca :"
 
 msgid "Right:"
 msgstr "Diritta :"
-
-msgid "Identical"
-msgstr "Identichi"
 
 msgid "Total:"
 msgstr "Tutale :"

@@ -1851,6 +1851,12 @@ msgstr "대상: 가운데 및 오른쪽(&R)"
 msgid "Target: &All"
 msgstr "대상: 모두(&A)"
 
+msgid "Binary files only"
+msgstr ""
+
+msgid "Text files only"
+msgstr ""
+
 msgid "&Clear conditions"
 msgstr "조건 지우기(&C)"
 
@@ -2762,6 +2768,56 @@ msgstr "오른쪽(&R)"
 msgid "Expression:"
 msgstr "표현식:"
 
+msgid "Filter by Comparison Result"
+msgstr ""
+
+msgid "&Include"
+msgstr ""
+
+msgid "&Exclude"
+msgstr ""
+
+msgid "Comparison Results"
+msgstr ""
+
+#, c-format
+msgid "Identical"
+msgstr "동일"
+
+#, c-format
+msgid "Different"
+msgstr "다름"
+
+msgid "Left only"
+msgstr ""
+
+msgid "Right only"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Middle only"
+msgstr ""
+
+msgid "Left only (different)"
+msgstr ""
+
+msgid "Middle only (different)"
+msgstr ""
+
+msgid "Right only (different)"
+msgstr ""
+
+msgid "Left only (missing)"
+msgstr ""
+
+msgid "Middle only (missing)"
+msgstr ""
+
+msgid "Right only (missing)"
+msgstr ""
+
 #, c-format
 msgid "Codepage"
 msgstr "코드페이지"
@@ -2904,10 +2960,6 @@ msgid "Files:"
 msgstr "파일:"
 
 #, c-format
-msgid "Different"
-msgstr "다름"
-
-#, c-format
 msgid "Binary:"
 msgstr "바이너리:"
 
@@ -2922,10 +2974,6 @@ msgstr "왼쪽:"
 #, c-format
 msgid "Right:"
 msgstr "오른쪽:"
-
-#, c-format
-msgid "Identical"
-msgstr "동일"
 
 #, c-format
 msgid "Total:"

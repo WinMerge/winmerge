@@ -492,6 +492,114 @@ Right, Middle）かを接頭辞で指定できます。</para>
           </variablelist>
         </section>
 
+        <section>
+          <title>表示フィルター専用の属性</title>
+          <para>
+以下の属性は<emphasis role="bold">表示フィルター専用</emphasis>として設計されています（フィルター欄で
+<guilabel>e:</guilabel>、<guilabel>e!:</guilabel>、<guilabel>fe:</guilabel>、<guilabel>fe!:</guilabel>、<guilabel>de:</guilabel>、<guilabel>de!:</guilabel>
+プレフィックスを指定）。これらは比較が完了していることを前提とするため、ファイルフィルター（<filename>.flt</filename>）のインクルード／エクスクルードルールでは使用しないでください。予期しない動作の原因となる可能性があります。</para>
+
+          <variablelist>
+            <varlistentry>
+              <term><varname>Identical</varname></term>
+              <listitem>
+                <para>
+比較結果が項目が同一であることを示す場合は <literal>true</literal>、それ以外の場合は
+<literal>false</literal> を返します。これはグローバル属性（サイド別プレフィックスは使用不可）です。例:
+<literal>Identical</literal> と指定すると同一ファイルのみを表示します。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Different</varname></term>
+              <listitem>
+                <para>
+比較結果が項目が異なることを示す場合は <literal>true</literal>、それ以外の場合は
+<literal>false</literal> を返します。これはグローバル属性（サイド別プレフィックスは使用不可）です。例:
+<literal>Different</literal> と指定すると差異のあるファイルのみを表示します。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Skipped</varname></term>
+              <listitem>
+                <para>
+エラーやフィルタールールにより比較がスキップされた場合は <literal>true</literal>、それ以外の場合は
+<literal>false</literal> を返します。これはグローバル属性（サイド別プレフィックスは使用不可）です。例:
+<literal>Skipped</literal> と指定するとスキップされた項目のみを表示します。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Binary</varname></term>
+              <listitem>
+                <para>
+ファイルがバイナリとして検出された場合は <literal>true</literal>、テキストの場合は
+<literal>false</literal>、ファイルが存在しない場合は <literal>undefined</literal>
+を返します。この属性はサイド別プレフィックス（例:
+<literal>LeftBinary</literal>、<literal>RightBinary</literal>）に対応しています。例:
+<literal>allof(Binary)</literal> と指定すると、すべての側でバイナリであるファイルを表示します。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentLeftMiddle</varname></term>
+              <listitem>
+                <para>
+3方向比較において左と中央のファイルが異なる場合は <literal>true</literal>、それ以外は
+<literal>false</literal> を返します。2方向比較では <literal>undefined</literal>
+を返します。これはグローバル属性（サイド別プレフィックスは使用不可）です。例: <literal>DifferentLeftMiddle and not
+DifferentMiddleRight</literal> と指定すると、左のみが中央と異なるファイルを見つけることができます。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentMiddleRight</varname></term>
+              <listitem>
+                <para>
+3方向比較において中央と右のファイルが異なる場合は <literal>true</literal>、それ以外は
+<literal>false</literal> を返します。2方向比較では <literal>undefined</literal>
+を返します。これはグローバル属性（サイド別プレフィックスは使用不可）です。例:
+<literal>DifferentMiddleRight</literal> と指定すると、中央と右が異なるファイルを表示します。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>DifferentLeftRight</varname></term>
+              <listitem>
+                <para>
+3方向比較では左と右のファイルが異なる場合に <literal>true</literal>、それ以外は
+<literal>false</literal> を返します。2方向比較では両方のファイルが存在し、かつ異なる場合に
+<literal>true</literal> を返します。これはグローバル属性（サイド別プレフィックスは使用不可）です。例:
+<literal>DifferentLeftRight</literal> と指定すると、左と右が異なるファイルを表示します。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Differences</varname></term>
+              <listitem>
+                <para>
+ファイル比較におけるテキスト差分の数を返します。この属性は比較済みのテキストファイルに対してのみ有効です。これはグローバル属性（サイド別プレフィックスは使用不可）です。例:
+<literal>Differences &gt; 0</literal>
+と指定すると差分のあるファイルを表示し、<literal>Differences &gt; 10</literal>
+と指定すると差分が10個を超えるファイルを表示します。</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>IgnoredDiffs</varname></term>
+              <listitem>
+                <para>
+ファイル比較において無視された差分の数（行フィルターや空白設定により除外された差分）を返します。この属性は比較済みのテキストファイルに対してのみ有効です。これはグローバル属性（サイド別プレフィックスは使用不可）です。例:
+<literal>IgnoredDiffs &gt; 0</literal>
+と指定すると無視された差分があるファイルを表示し、<literal>Differences = 0 and IgnoredDiffs &gt;
+0</literal> と指定すると無視された差分を除けば同一であるファイルを表示します。</para>
+              </listitem>
+            </varlistentry>
+
+          </variablelist>
+        </section>
+
         <section id="FilterExpression_ArrayEvaluation">
           <title>配列の評価</title>
 
@@ -1059,6 +1167,11 @@ log ファイル</para></listitem>
 拡張子が「a」から「m」の範囲で、サイズが1MB未満のファイル</para></listitem>
           <listitem><para><literal>toLower(Name) = "readme.txt"</literal> - 大文字・小文字を区別しないファイル名の一致判定</para></listitem>
           <listitem><para><literal>toHalfWidth(Name) like "*.txt"</literal> - 全角を半角に変換した後で一致判定</para></listitem>
+          <listitem><para><literal>Different</literal> - 差異のあるファイル／フォルダーのみを表示します（表示フィルター専用）</para></listitem>
+          <listitem><para><literal>Identical</literal> - 同一のファイル／フォルダーのみを表示します（表示フィルター専用）</para></listitem>
+          <listitem><para><literal>allof(Binary)</literal> - すべての側でバイナリであるファイルのみを表示します（表示フィルター専用）</para></listitem>
+          <listitem><para><literal>DifferentLeftMiddle and not DifferentMiddleRight</literal> -
+3方向比較において、左と中央のみが異なるファイルを表示します（表示フィルター専用）</para></listitem>
         </itemizedlist>
       </section>
     </section>

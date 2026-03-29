@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -780,6 +780,9 @@
     <ClCompile Include="Common\ValidatingEdit.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
+      <ClCompile Include="ComparisonResultFilterDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="FilterConditionDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
@@ -1513,6 +1516,9 @@
     </ClInclude>
     <ClInclude Include="Common\ValidatingEdit.h">
       <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+      <ClInclude Include="ComparisonResultFilterDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FilterConditionDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
