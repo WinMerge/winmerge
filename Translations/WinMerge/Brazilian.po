@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-03-22 21:15-0300\n"
+"PO-Revision-Date: 2026-03-29 16:15-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1616,10 +1616,10 @@ msgid "Target: &All"
 msgstr "&Alvo: Todos"
 
 msgid "Binary files only"
-msgstr ""
+msgstr "Apenas arquivos binários"
 
 msgid "Text files only"
-msgstr ""
+msgstr "Apenas arquivos texto"
 
 msgid "&Clear conditions"
 msgstr "Limpar &condições"
@@ -2381,16 +2381,16 @@ msgid "Expression:"
 msgstr "Expressão:"
 
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Filtrar por Resultado da Comparação"
 
 msgid "&Include"
-msgstr ""
+msgstr "&Incluir"
 
 msgid "&Exclude"
-msgstr ""
+msgstr "&Excluir"
 
 msgid "Comparison Results"
-msgstr ""
+msgstr "Resultados da Comparação"
 
 msgid "Identical"
 msgstr "Idênticos(as)"
@@ -2399,34 +2399,34 @@ msgid "Different"
 msgstr "Diferentes"
 
 msgid "Left only"
-msgstr ""
+msgstr "Apenas à esquerda"
 
 msgid "Right only"
-msgstr ""
+msgstr "Apenas à direita"
 
 msgid "Skipped"
-msgstr ""
+msgstr "Pulado"
 
 msgid "Middle only"
-msgstr ""
+msgstr "Apenas no meio"
 
 msgid "Left only (different)"
-msgstr ""
+msgstr "Apenas à esquerda (diferente)"
 
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Apenas no meio (diferente)"
 
 msgid "Right only (different)"
-msgstr ""
+msgstr "Apenas à direita (diferente)"
 
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Apenas à esquerda (faltando)"
 
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Apenas no meio (faltando)"
 
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Apenas à direita (faltando)"
 
 msgid "Codepage"
 msgstr "Página de código"
