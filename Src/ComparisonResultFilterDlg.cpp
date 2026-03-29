@@ -28,7 +28,7 @@ CComparisonResultFilterDlg::CComparisonResultFilterDlg(bool is3Way, CWnd* pParen
 
 void CComparisonResultFilterDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CTrDialog::DoDataExchange(pDX);
 	DDX_Radio(pDX, IDC_RADIO_INCLUDE, m_nIncludeExclude);
 	DDX_Check(pDX, IDC_CHECK_IDENTICAL, m_bIdentical);
 	DDX_Check(pDX, IDC_CHECK_DIFFERENT, m_bDifferent);
@@ -47,7 +47,7 @@ void CComparisonResultFilterDlg::DoDataExchange(CDataExchange* pDX)
 	}
 }
 
-BEGIN_MESSAGE_MAP(CComparisonResultFilterDlg, CDialog)
+BEGIN_MESSAGE_MAP(CComparisonResultFilterDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_RADIO_INCLUDE, OnBnClickedInclude)
 	ON_BN_CLICKED(IDC_RADIO_EXCLUDE, OnBnClickedExclude)
 END_MESSAGE_MAP()
