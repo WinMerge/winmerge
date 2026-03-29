@@ -118,7 +118,7 @@ String CFilterConditionDlg::GetExpression()
 	    m_sField == _T("Files") || m_sField == _T("Items") ||
 	    m_sField == _T("Differences") || m_sField == _T("IgnoredDiffs") ||
 	    m_sLHS == _T("lineCount(%1)") ||
-	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_I4 || m_vt == VT_UI8 || m_vt == VT_I8)
+	    m_vt == VT_I4 || m_vt == VT_UI4 || m_vt == VT_UI8 || m_vt == VT_I8)
 	{
 		result = strutils::format_string3(expression, lhs, m_sValue1, m_sValue2);
 	}
