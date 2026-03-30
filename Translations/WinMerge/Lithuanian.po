@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-03-22 09:52+0000\n"
-"PO-Revision-Date: 2026-03-23 08:08+0200\n"
+"POT-Creation-Date: 2026-03-29 10:41+0000\n"
+"PO-Revision-Date: 2026-03-30 07:30+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.8.1\n"
+"X-Generator: Poedit 3.9.0\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1614,10 +1614,10 @@ msgid "Target: &All"
 msgstr "Rezultatai: &Visi"
 
 msgid "Binary files only"
-msgstr ""
+msgstr "Tik binariniai failai"
 
 msgid "Text files only"
-msgstr ""
+msgstr "Tik tekstiniai failai"
 
 msgid "&Clear conditions"
 msgstr "&Išvalyti sąlygas"
@@ -2379,16 +2379,16 @@ msgid "Expression:"
 msgstr "Išraiška:"
 
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Filtruoti pagal lyginimo rezultatus"
 
 msgid "&Include"
-msgstr ""
+msgstr "Įtraukt&i"
 
 msgid "&Exclude"
-msgstr ""
+msgstr "N&eįtraukti"
 
 msgid "Comparison Results"
-msgstr ""
+msgstr "Lyginimo rezultatai"
 
 msgid "Identical"
 msgstr "Yra vienodi"
@@ -2397,34 +2397,34 @@ msgid "Different"
 msgstr "Yra skirtingi"
 
 msgid "Left only"
-msgstr ""
+msgstr "Tik kairysis"
 
 msgid "Right only"
-msgstr ""
+msgstr "Tik dešinysis"
 
 msgid "Skipped"
-msgstr ""
+msgstr "Praleistas"
 
 msgid "Middle only"
-msgstr ""
+msgstr "Tik vidurinis"
 
 msgid "Left only (different)"
-msgstr ""
+msgstr "Tik kairysis (skirtingas)"
 
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Tik vidurinis (skirtingas)"
 
 msgid "Right only (different)"
-msgstr ""
+msgstr "Tik dešinysis (skirtingas)"
 
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Tik kairysis (trūkstamas)"
 
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Tik vidurinis (trūkstamas)"
 
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Tik dešinysis (trūkstamas)"
 
 msgid "Codepage"
 msgstr "Koduotės"
