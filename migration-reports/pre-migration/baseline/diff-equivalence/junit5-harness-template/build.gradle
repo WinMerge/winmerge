@@ -1,0 +1,16 @@
+plugins {
+  id 'java'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.11.1'
+  testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+}
+
+test {
+  useJUnitPlatform()
+}

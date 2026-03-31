@@ -7,6 +7,8 @@
 #include "UniFile.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
+#include <cstdio>
+#include <vector>
 
 const TempFile WriteToTempFile(const String& text)
 {
@@ -17,6 +19,33 @@ const TempFile WriteToTempFile(const String& text)
 	file.WriteString(text);
 	file.Close();
 	return tmpfile;
+}
+
+const TempFile WriteBinaryToTempFile(const std::vector<unsigned char>& bytes)
+{
+	TempFile tmpfile;
+	tmpfile.Create();
+	FILE* file = _wfopen(tmpfile.GetPath().c_str(), L"wb");
+	if (file == nullptr)
+		return tmpfile;
+
+	if (!bytes.empty())
+		fwrite(bytes.data(), sizeof(unsigned char), bytes.size(), file);
+	fclose(file);
+	return tmpfile;
+}
+
+String MakeLargeTextFixture(size_t lines, size_t changedLine)
+{
+	String text;
+	text.reserve(lines * 24);
+	for (size_t i = 0; i < lines; ++i)
+	{
+		text += _T("line:");
+		text += std::to_wstring(i);
+		text += (i == changedLine) ? _T(":changed\n") : _T(":stable\n");
+	}
+	return text;
 }
 
 TEST(DiffWrapper, RunFileDiff_NoEol)
@@ -505,4 +534,111 @@ TEST(DiffWrapper, RunFileDiff_SubstitutionFilters)
 			EXPECT_EQ(2, dr.end[1]);
 		}
 	}
+}
+
+TEST(DiffWrapper, RunFileDiff_UnicodeRoundTripAndMutation)
+{
+	CDiffWrapper dw;
+	DIFFOPTIONS options{};
+	DIFFRANGE dr;
+
+	{
+		DiffList diffList;
+		TempFile left = WriteToTempFile(_T("caf\u00E9\nna\u00EFve\n\u6771\u4EAC\n"));
+		TempFile right = WriteToTempFile(_T("caf\u00E9\nna\u00EFve\n\u6771\u4EAC\n"));
+		dw.SetCreateDiffList(&diffList);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.SetOptions(&options);
+		dw.RunFileDiff();
+		EXPECT_EQ(0, diffList.GetSize());
+	}
+
+	{
+		DiffList diffList;
+		TempFile left = WriteToTempFile(_T("caf\u00E9\nna\u00EFve\n\u6771\u4EAC\n"));
+		TempFile right = WriteToTempFile(_T("cafe\nna\u00EFve\n\u6771\u4EAC\n"));
+		dw.SetCreateDiffList(&diffList);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.SetOptions(&options);
+		dw.RunFileDiff();
+		EXPECT_EQ(1, diffList.GetSize());
+		diffList.GetDiff(0, dr);
+		EXPECT_EQ(OP_DIFF, dr.op);
+	}
+}
+
+TEST(DiffWrapper, RunFileDiff_WhitespaceOnlyChangeBehavior)
+{
+	CDiffWrapper dw;
+	DIFFOPTIONS options{};
+	DIFFRANGE dr;
+
+	const TempFile left = WriteToTempFile(_T("alpha beta\nsame\n"));
+	const TempFile right = WriteToTempFile(_T("alpha   beta\nsame\n"));
+
+	{
+		DiffList diffList;
+		dw.SetCreateDiffList(&diffList);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.SetOptions(&options);
+		dw.RunFileDiff();
+		EXPECT_EQ(1, diffList.GetSize());
+		diffList.GetDiff(0, dr);
+		EXPECT_EQ(OP_DIFF, dr.op);
+	}
+
+	options.nIgnoreWhitespace = WHITESPACE_IGNORE_CHANGE;
+	{
+		DiffList diffList;
+		dw.SetCreateDiffList(&diffList);
+		dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+		dw.SetOptions(&options);
+		dw.RunFileDiff();
+		EXPECT_EQ(1, diffList.GetSize());
+		diffList.GetDiff(0, dr);
+		EXPECT_EQ(OP_TRIVIAL, dr.op);
+	}
+}
+
+TEST(DiffWrapper, RunFileDiff_BinaryDetection)
+{
+	CDiffWrapper dw;
+	DIFFOPTIONS options{};
+	DIFFSTATUS status{};
+
+	const TempFile left = WriteBinaryToTempFile({ 0x00, 0x11, 0x22, 0x33, 0x44, 0x55 });
+	const TempFile right = WriteBinaryToTempFile({ 0x00, 0x11, 0x22, 0x99, 0x44, 0x55 });
+	DiffList diffList;
+	dw.SetCreateDiffList(&diffList);
+	dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+	dw.SetOptions(&options);
+	dw.RunFileDiff();
+	dw.GetDiffStatus(&status);
+
+	EXPECT_TRUE(status.bBinaries);
+	EXPECT_GE(diffList.GetSize(), 1);
+}
+
+TEST(DiffWrapper, RunFileDiff_LargeFileBaselineOver1MiB)
+{
+	CDiffWrapper dw;
+	DIFFOPTIONS options{};
+	DIFFRANGE dr;
+
+	const size_t kLines = 75000; // >1MiB payload with current fixture shape.
+	const TempFile left = WriteToTempFile(MakeLargeTextFixture(kLines, static_cast<size_t>(-1)));
+	const TempFile right = WriteToTempFile(MakeLargeTextFixture(kLines, 74000));
+
+	DiffList diffList;
+	const ULONGLONG startMs = GetTickCount64();
+	dw.SetCreateDiffList(&diffList);
+	dw.SetPaths({ left.GetPath(), right.GetPath() }, false);
+	dw.SetOptions(&options);
+	dw.RunFileDiff();
+	const ULONGLONG elapsedMs = GetTickCount64() - startMs;
+
+	EXPECT_GE(diffList.GetSize(), 1);
+	diffList.GetDiff(0, dr);
+	EXPECT_EQ(OP_DIFF, dr.op);
+	EXPECT_LT(elapsedMs, 30000ULL);
 }

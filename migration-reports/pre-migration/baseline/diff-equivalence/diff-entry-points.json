@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-03-31",
+  "entry_points": [
+    {
+      "component": "DiffWrapper",
+      "files": [
+        "Src/DiffWrapper.h",
+        "Src/DiffWrapper.cpp"
+      ],
+      "key_symbols": [
+        "CDiffWrapper",
+        "CDiffWrapper::RunFileDiff",
+        "CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3"
+      ]
+    },
+    {
+      "component": "DiffList",
+      "files": [
+        "Src/DiffList.h",
+        "Src/DiffList.cpp"
+      ],
+      "key_symbols": [
+        "DIFFRANGE",
+        "DiffList",
+        "DiffList::GetDiff",
+        "DiffList::AddDiff"
+      ]
+    },
+    {
+      "component": "Diff3",
+      "files": [
+        "Src/Diff3.h"
+      ],
+      "key_symbols": [
+        "Make3wayDiff"
+      ]
+    },
+    {
+      "component": "DiffContext",
+      "files": [
+        "Src/DiffContext.h",
+        "Src/DiffContext.cpp"
+      ],
+      "key_symbols": [
+        "CDiffContext"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "source": "Testing/Data/DiffAlgorithmCorpus/manifest.json",
+  "cases": [
+    "empty_vs_empty",
+    "empty_vs_single_line",
+    "single_line_edit",
+    "whitespace_only",
+    "unicode_mutation",
+    "binary_mutation",
+    "large_over_1mb"
+  ]
+}

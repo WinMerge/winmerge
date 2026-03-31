@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-03-31T00:00:00",
+  "status": "captured",
+  "cases": [
+    { "id": "empty_vs_empty", "exit_code": 0 },
+    { "id": "single_line_edit", "exit_code": 1 }
+  ]
+}

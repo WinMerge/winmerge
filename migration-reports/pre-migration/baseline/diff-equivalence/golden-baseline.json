@@ -1,0 +1,13 @@
+{
+  "generated_at": null,
+  "status": "blocked",
+  "blocker": "No runnable Windows WinMerge binary available in current execution environment.",
+  "required_runtime": {
+    "platform": "Windows",
+    "artifacts": [
+      "WinMergeU.exe",
+      "diff2winmergeU.exe"
+    ]
+  },
+  "cases": []
+}

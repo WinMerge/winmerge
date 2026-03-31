@@ -1,0 +1,11 @@
+{
+  "generated_at": null,
+  "status": "pending_capture",
+  "metrics": {
+    "large_over_1mb": {
+      "elapsed_ms": null,
+      "peak_working_set_bytes": null,
+      "notes": "Capture on Windows runner with release WinMerge build."
+    }
+  }
+}

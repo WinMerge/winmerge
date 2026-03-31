@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-03-31",
+  "description": "Pre-migration functional equivalence corpus for WinMerge diff algorithms.",
+  "generator": "Testing/Data/DiffAlgorithmCorpus/generate-large-fixtures.sh",
+  "cases": [
+    {
+      "id": "empty_vs_empty",
+      "left": "cases/empty_vs_empty.left.txt",
+      "right": "cases/empty_vs_empty.right.txt",
+      "type": "text",
+      "tags": ["empty", "identity"],
+      "expected": "identical"
+    },
+    {
+      "id": "empty_vs_single_line",
+      "left": "cases/empty_vs_single_line.left.txt",
+      "right": "cases/empty_vs_single_line.right.txt",
+      "type": "text",
+      "tags": ["empty", "single-line"],
+      "expected": "different"
+    },
+    {
+      "id": "single_line_edit",
+      "left": "cases/single_line_edit.left.txt",
+      "right": "cases/single_line_edit.right.txt",
+      "type": "text",
+      "tags": ["single-line", "regression"],
+      "expected": "different"
+    },
+    {
+      "id": "whitespace_only",
+      "left": "cases/whitespace_only.left.txt",
+      "right": "cases/whitespace_only.right.txt",
+      "type": "text",
+      "tags": ["whitespace"],
+      "expected": "different_without_ignore_whitespace"
+    },
+    {
+      "id": "unicode_mutation",
+      "left": "cases/unicode.left.txt",
+      "right": "cases/unicode.right.txt",
+      "type": "text",
+      "tags": ["unicode", "utf-8"],
+      "expected": "different"
+    },
+    {
+      "id": "binary_mutation",
+      "left": "cases/binary.left.bin",
+      "right": "cases/binary.right.bin",
+      "type": "binary",
+      "tags": ["binary"],
+      "expected": "different"
+    },
+    {
+      "id": "large_over_1mb",
+      "left": "cases/large_over_1mb.left.txt",
+      "right": "cases/large_over_1mb.right.txt",
+      "type": "text",
+      "tags": ["large", "performance", "over-1mb"],
+      "expected": "different",
+      "requires_generation": true
+    }
+  ]
+}
