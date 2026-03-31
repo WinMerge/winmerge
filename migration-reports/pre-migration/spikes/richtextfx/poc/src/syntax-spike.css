@@ -1,0 +1,35 @@
+.root {
+  -fx-font-family: "JetBrains Mono", "Consolas", monospace;
+  -fx-font-size: 13px;
+  -fx-text-background-color: #d4d4d4;
+  -fx-control-inner-background: #1e1e1e;
+}
+
+.toolbar {
+  -fx-padding: 8px;
+  -fx-spacing: 8px;
+}
+
+.code-area {
+  -fx-background-color: #1e1e1e;
+  -fx-highlight-fill: #264f78;
+  -fx-highlight-text-fill: white;
+  -fx-text-fill: #d4d4d4;
+}
+
+.keyword {
+  -fx-fill: #569cd6;
+  -fx-font-weight: bold;
+}
+
+.comment {
+  -fx-fill: #6a9955;
+}
+
+.string {
+  -fx-fill: #ce9178;
+}
+
+.number {
+  -fx-fill: #b5cea8;
+}

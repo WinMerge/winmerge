@@ -1,0 +1,196 @@
+{
+  "source_dir": "Externals/crystaledit/editlib/parsers",
+  "generated_at_utc": "2026-03-31T00:00:00Z",
+  "parser_cpp_file_count": 47,
+  "language_parser_count_excluding_core": 46,
+  "core_files": [
+    "crystallineparser.cpp",
+    "crystallineparser.h"
+  ],
+  "language_parsers": [
+    {
+      "file": "abap.cpp",
+      "language": "ABAP"
+    },
+    {
+      "file": "ada.cpp",
+      "language": "Ada"
+    },
+    {
+      "file": "asp.cpp",
+      "language": "ASP"
+    },
+    {
+      "file": "autoit.cpp",
+      "language": "AutoIt"
+    },
+    {
+      "file": "basic.cpp",
+      "language": "Basic"
+    },
+    {
+      "file": "batch.cpp",
+      "language": "Batch"
+    },
+    {
+      "file": "cplusplus.cpp",
+      "language": "C++"
+    },
+    {
+      "file": "csharp.cpp",
+      "language": "C#"
+    },
+    {
+      "file": "css.cpp",
+      "language": "CSS"
+    },
+    {
+      "file": "dcl.cpp",
+      "language": "DCL"
+    },
+    {
+      "file": "dlang.cpp",
+      "language": "D"
+    },
+    {
+      "file": "fortran.cpp",
+      "language": "Fortran"
+    },
+    {
+      "file": "fsharp.cpp",
+      "language": "F#"
+    },
+    {
+      "file": "go.cpp",
+      "language": "Go"
+    },
+    {
+      "file": "html.cpp",
+      "language": "HTML"
+    },
+    {
+      "file": "ini.cpp",
+      "language": "INI"
+    },
+    {
+      "file": "innosetup.cpp",
+      "language": "Inno Setup"
+    },
+    {
+      "file": "is.cpp",
+      "language": "InstallShield"
+    },
+    {
+      "file": "isx.cpp",
+      "language": "Inno Setup ISX"
+    },
+    {
+      "file": "java.cpp",
+      "language": "Java"
+    },
+    {
+      "file": "javascript.cpp",
+      "language": "JavaScript"
+    },
+    {
+      "file": "lisp.cpp",
+      "language": "Lisp"
+    },
+    {
+      "file": "lua.cpp",
+      "language": "Lua"
+    },
+    {
+      "file": "matlab.cpp",
+      "language": "MATLAB"
+    },
+    {
+      "file": "nsis.cpp",
+      "language": "NSIS"
+    },
+    {
+      "file": "pascal.cpp",
+      "language": "Pascal"
+    },
+    {
+      "file": "perl.cpp",
+      "language": "Perl"
+    },
+    {
+      "file": "php.cpp",
+      "language": "PHP"
+    },
+    {
+      "file": "plain.cpp",
+      "language": "Plain Text"
+    },
+    {
+      "file": "po.cpp",
+      "language": "PO"
+    },
+    {
+      "file": "powershell.cpp",
+      "language": "PowerShell"
+    },
+    {
+      "file": "python.cpp",
+      "language": "Python"
+    },
+    {
+      "file": "rexx.cpp",
+      "language": "Rexx"
+    },
+    {
+      "file": "rsrc.cpp",
+      "language": "RC/Resource"
+    },
+    {
+      "file": "ruby.cpp",
+      "language": "Ruby"
+    },
+    {
+      "file": "rust.cpp",
+      "language": "Rust"
+    },
+    {
+      "file": "sgml.cpp",
+      "language": "SGML"
+    },
+    {
+      "file": "sh.cpp",
+      "language": "Shell"
+    },
+    {
+      "file": "siod.cpp",
+      "language": "SIOD"
+    },
+    {
+      "file": "smarty.cpp",
+      "language": "Smarty"
+    },
+    {
+      "file": "sql.cpp",
+      "language": "SQL"
+    },
+    {
+      "file": "tcl.cpp",
+      "language": "Tcl"
+    },
+    {
+      "file": "tex.cpp",
+      "language": "TeX"
+    },
+    {
+      "file": "verilog.cpp",
+      "language": "Verilog"
+    },
+    {
+      "file": "vhdl.cpp",
+      "language": "VHDL"
+    },
+    {
+      "file": "xml.cpp",
+      "language": "XML"
+    }
+  ]
+}
