@@ -170,7 +170,7 @@
 	#define POCO_ARCH POCO_ARCH_HPPA
 	#define POCO_ARCH_BIG_ENDIAN 1
 #elif defined(__PPC) || defined(__POWERPC__) || defined(__powerpc) || defined(__PPC__) || \
-      defined(__powerpc__) || defined(__ppc__) || defined(__ppc) || defined(_ARCH_PPC) || defined(_M_PPC)
+	  defined(__powerpc__) || defined(__ppc__) || defined(__ppc) || defined(_ARCH_PPC) || defined(_M_PPC)
 	#define POCO_ARCH POCO_ARCH_PPC
 	#if defined(__BYTE_ORDER__) && (__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__)
 		#define POCO_ARCH_LITTLE_ENDIAN 1
@@ -178,7 +178,7 @@
 		#define POCO_ARCH_BIG_ENDIAN 1
 	#endif
 #elif defined(_POWER) || defined(_ARCH_PWR) || defined(_ARCH_PWR2) || defined(_ARCH_PWR3) || \
-      defined(_ARCH_PWR4) || defined(__THW_RS6000)
+	  defined(_ARCH_PWR4) || defined(__THW_RS6000)
 	#define POCO_ARCH POCO_ARCH_POWER
 	#define POCO_ARCH_BIG_ENDIAN 1
 #elif defined(__sparc__) || defined(__sparc) || defined(sparc)
@@ -247,12 +247,16 @@
 
 #if defined(__clang__)
 	#define POCO_COMPILER_CLANG
-	#define POCO_HAVE_CXXABI_H
+	#if __has_include(<cxxabi.h>)
+		#define POCO_HAVE_CXXABI_H
+	#endif
 #elif defined(_MSC_VER)
 	#define POCO_COMPILER_MSVC
 #elif defined (__GNUC__)
 	#define POCO_COMPILER_GCC
-	#define POCO_HAVE_CXXABI_H
+	#if __has_include(<cxxabi.h>)
+		#define POCO_HAVE_CXXABI_H
+	#endif
 	#if defined (__MINGW32__) || defined (__MINGW64__)
 		#define POCO_COMPILER_MINGW
 	#endif

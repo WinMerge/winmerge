@@ -40,18 +40,10 @@ public:
 	using Iterator = typename Delegates::iterator;
 
 public:
-	PriorityStrategy()
-	{
-	}
-
-	PriorityStrategy(const PriorityStrategy& s):
-		_delegates(s._delegates)
-	{
-	}
-
-	~PriorityStrategy()
-	{
-	}
+	PriorityStrategy() = default;
+	PriorityStrategy(const PriorityStrategy& s) = default;
+	PriorityStrategy(PriorityStrategy&& s) = default;
+	~PriorityStrategy() = default;
 
 	void notify(const void* sender, TArgs& arguments)
 	{
@@ -145,6 +137,14 @@ public:
 	using Iterator = typename Delegates::iterator;
 
 public:
+	PriorityStrategy() = default;
+
+	PriorityStrategy(const PriorityStrategy& s):
+		_delegates(s._delegates)
+	{
+	}
+
+	~PriorityStrategy() = default;
 
 	void notify(const void* sender)
 	{

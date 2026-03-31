@@ -206,7 +206,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\Path_WIN32U.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_auto_possess.c">

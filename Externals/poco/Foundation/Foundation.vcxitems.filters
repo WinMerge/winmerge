@@ -568,7 +568,7 @@
       <Filter>URI\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\PocoFoundation.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2.c" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Any.h">

@@ -44,7 +44,7 @@ class Foundation_API ProcessHandle
 	/// the completion of a process.
 {
 public:
-	typedef ProcessImpl::PIDImpl PID;
+	using PID = ProcessImpl::PIDImpl;
 
 	ProcessHandle(const ProcessHandle& handle);
 		/// Creates a ProcessHandle by copying another one.
@@ -63,9 +63,9 @@ public:
 		/// and returns the exit code of the process.
 
 	int tryWait() const;
- 		/// Checks that process is terminated
- 		/// and returns the exit code of the process.
- 		/// If the process is still running, returns -1.
+		/// Checks that process is terminated
+		/// and returns the exit code of the process.
+		/// If the process is still running, returns -1.
 
 protected:
 	ProcessHandle(ProcessHandleImpl* pImpl);
@@ -83,9 +83,9 @@ class Foundation_API Process: public ProcessImpl
 	/// This class provides methods for working with processes.
 {
 public:
-	typedef PIDImpl  PID;
-	typedef ArgsImpl Args;
-	typedef EnvImpl  Env;
+	using PID = PIDImpl;
+	using Args = ArgsImpl;
+	using Env = EnvImpl;
 
 	static PID id();
 		/// Returns the process ID of the current process.
@@ -222,8 +222,8 @@ public:
 		/// and returns the exit code of the process.
 
 	static int tryWait(const ProcessHandle& handle);
- 		/// Checks that process is finished and returns the exit code of the
- 		/// process. If the process is still running, returns -1.
+		/// Checks that process is finished and returns the exit code of the
+		/// process. If the process is still running, returns -1.
 
 	static bool isRunning(const ProcessHandle& handle);
 		/// check if the process specified by handle is running or not

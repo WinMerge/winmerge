@@ -30,45 +30,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\ascii.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\asciitab.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat_config.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat_external.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\iasciitab.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\internal.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\latin1tab.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\nametab.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\utf8tab.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmlrole.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmltok.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmltok_impl.h">
-      <Filter>Expat\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SAX\Attributes.h">
       <Filter>SAX\Header Files</Filter>
     </ClInclude>
@@ -156,23 +117,56 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Xml\XMLWriter.h">
       <Filter>XML\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\ascii.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\asciitab.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat_config.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\expat_external.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\iasciitab.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\internal.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\latin1tab.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\nametab.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\ParserEngine.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\siphash.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\utf8tab.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\winconfig.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmlrole.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmltok.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)src\xmltok_impl.h">
+      <Filter>Expat\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmlparse.cpp">
-      <Filter>Expat\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmlrole.c">
-      <Filter>Expat\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmltok.c">
-      <Filter>Expat\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmltok_impl.c">
-      <Filter>Expat\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\xmltok_ns.c">
-      <Filter>Expat\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\Attributes.cpp">
       <Filter>SAX\Source Files</Filter>
     </ClCompile>
@@ -252,6 +246,21 @@
       <Filter>XML\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\PocoXML.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\expat.c" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\expat\src\expat.c" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\expat\src\xmlparse.c">
+      <Filter>Expat\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\expat\src\xmlrole.c">
+      <Filter>Expat\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\expat\src\xmltok.c">
+      <Filter>Expat\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\expat\src\xmltok_impl.c">
+      <Filter>Expat\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\expat\src\xmltok_ns.c">
+      <Filter>Expat\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

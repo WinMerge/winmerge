@@ -63,7 +63,7 @@ public:
 		resetBuffers();
 	}
 
-	~BasicBufferedBidirectionalStreamBuf()
+	~BasicBufferedBidirectionalStreamBuf() override
 	{
 		Allocator::deallocate(_pReadBuffer, _bufsize);
 		Allocator::deallocate(_pWriteBuffer, _bufsize);
@@ -72,7 +72,7 @@ public:
 	BasicBufferedBidirectionalStreamBuf(const BasicBufferedBidirectionalStreamBuf&) = delete;
 	BasicBufferedBidirectionalStreamBuf& operator = (const BasicBufferedBidirectionalStreamBuf&) = delete;
 
-	virtual int_type overflow(int_type c)
+	int_type overflow(int_type c) override
 	{
 		if (!(_mode & IOS::out)) return char_traits::eof();
 
@@ -86,7 +86,7 @@ public:
 		return c;
 	}
 
-	virtual int_type underflow()
+	int_type underflow() override
 	{
 		if (!(_mode & IOS::in)) return char_traits::eof();
 
@@ -98,7 +98,7 @@ public:
 
 		char_traits::move(_pReadBuffer + (4 - putback), this->gptr() - putback, putback);
 
-		int n = readFromDevice(_pReadBuffer + 4, _bufsize - 4);
+		std::streamsize n = readFromDevice(_pReadBuffer + 4, _bufsize - 4);
 		if (n <= 0) return char_traits::eof();
 
 		this->setg(_pReadBuffer + (4 - putback), _pReadBuffer + 4, _pReadBuffer + 4 + n);
@@ -107,7 +107,7 @@ public:
 		return char_traits::to_int_type(*this->gptr());
 	}
 
-	virtual int sync()
+	int sync() override
 	{
 		if (this->pptr() && this->pptr() > this->pbase())
 		{
@@ -150,22 +150,22 @@ protected:
 	}
 
 private:
-	virtual int readFromDevice(char_type* /*buffer*/, std::streamsize /*length*/)
+	virtual std::streamsize readFromDevice(char_type* /*buffer*/, std::streamsize /*length*/)
 	{
 		return 0;
 	}
 
-	virtual int writeToDevice(const char_type* /*buffer*/, std::streamsize /*length*/)
+	virtual std::streamsize writeToDevice(const char_type* /*buffer*/, std::streamsize /*length*/)
 	{
 		return 0;
 	}
 
-	int flushBuffer()
+	std::streamsize flushBuffer()
 	{
-		int n = int(this->pptr() - this->pbase());
+		std::streamsize n = this->pptr() - this->pbase();
 		if (writeToDevice(this->pbase(), n) == n)
 		{
-			this->pbump(-n);
+			this->pbump(static_cast<int>(-n));
 			return n;
 		}
 		return -1;
@@ -181,15 +181,14 @@ private:
 //
 // We provide an instantiation for char.
 //
-// Visual C++ needs a workaround - explicitly importing the template
-// instantiation - to avoid duplicate symbols due to multiple
-// instantiations in different libraries.
-//
-#if defined(_MSC_VER) && defined(POCO_DLL) && !defined(Foundation_EXPORTS)
-template class Foundation_API BasicBufferedBidirectionalStreamBuf<char, std::char_traits<char>>;
+
+#if defined(POCO_OS_FAMILY_WINDOWS) && defined(Foundation_EXPORTS)
+extern template class BasicBufferedBidirectionalStreamBuf<char, std::char_traits<char>>;
+#else
+extern template class Foundation_API BasicBufferedBidirectionalStreamBuf<char, std::char_traits<char>>;
 #endif
-using BufferedBidirectionalStreamBuf
-	= BasicBufferedBidirectionalStreamBuf<char, std::char_traits<char>>;
+
+using BufferedBidirectionalStreamBuf = BasicBufferedBidirectionalStreamBuf<char, std::char_traits<char>>;
 
 } // namespace Poco
 

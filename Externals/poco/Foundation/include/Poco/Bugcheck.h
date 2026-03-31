@@ -39,7 +39,7 @@ class Foundation_API Bugcheck
 	/// automatically provide useful context information.
 {
 public:
-	[[noreturn]] static void assertion(const char* cond, const char* file, LineNumber line, const char* text = 0);
+	[[noreturn]] static void assertion(const char* cond, const char* file, LineNumber line, const char* text = nullptr);
 		/// An assertion failed. Break into the debugger, if
 		/// possible, then throw an AssertionViolationException.
 
@@ -70,7 +70,7 @@ public:
 		/// possible.
 
 protected:
-	static std::string what(const char* msg, const char* file, LineNumber line, const char* text = 0);
+	static std::string what(const char* msg, const char* file, LineNumber line, const char* text = nullptr);
 };
 
 
@@ -104,10 +104,10 @@ protected:
 
 #if defined(_DEBUG)
 	#define poco_assert_dbg(cond) \
-		if (!(cond)) Poco::Bugcheck::assertion(#cond, __FILE__, __LINE__); else (void) 0
+		if (!(cond)) Poco::Bugcheck::assertion(#cond, __FILE__, __LINE__); else (void) nullptr
 
 	#define poco_assert_msg_dbg(cond, text) \
-		if (!(cond)) Poco::Bugcheck::assertion(#cond, __FILE__, __LINE__, text); else (void) 0
+		if (!(cond)) Poco::Bugcheck::assertion(#cond, __FILE__, __LINE__, text); else (void) nullptr
 #else
 	#define poco_assert_msg_dbg(cond, text)
 	#define poco_assert_dbg(cond)
@@ -115,15 +115,15 @@ protected:
 
 
 #define poco_assert(cond) \
-	if (!(cond)) Poco::Bugcheck::assertion(#cond, __FILE__, __LINE__); else (void) 0
+	if (!(cond)) Poco::Bugcheck::assertion(#cond, __FILE__, __LINE__); else (void) nullptr
 
 
 #define poco_assert_msg(cond, text) \
-	if (!(cond)) Poco::Bugcheck::assertion(#cond, __FILE__, __LINE__, text); else (void) 0
+	if (!(cond)) Poco::Bugcheck::assertion(#cond, __FILE__, __LINE__, text); else (void) nullptr
 
 
 #define poco_check_ptr(ptr) \
-	if (!(ptr)) Poco::Bugcheck::nullPointer(#ptr, __FILE__, __LINE__); else (void) 0
+	if (!(ptr)) Poco::Bugcheck::nullPointer(#ptr, __FILE__, __LINE__); else (void) nullptr
 
 
 #define poco_bugcheck() \
@@ -138,7 +138,7 @@ protected:
 
 
 #define poco_unexpected() \
-	Poco::Bugcheck::unexpected(__FILE__, __LINE__);
+	Poco::Bugcheck::unexpected(__FILE__, __LINE__)
 
 
 #define poco_debugger() \

@@ -54,7 +54,7 @@ public:
 	Buffer(std::size_t length):
 		_capacity(length),
 		_used(length),
-		_ptr(0),
+		_ptr(nullptr),
 		_ownMem(true)
 		/// Creates and allocates the Buffer.
 	{
@@ -81,7 +81,7 @@ public:
 	Buffer(const T* pMem, std::size_t length):
 		_capacity(length),
 		_used(length),
-		_ptr(0),
+		_ptr(nullptr),
 		_ownMem(true)
 		/// Creates and allocates the Buffer; copies the contents of
 		/// the supplied memory into the buffer. Length argument specifies
@@ -99,7 +99,7 @@ public:
 		/// Copy constructor.
 		_capacity(other._used),
 		_used(other._used),
-		_ptr(0),
+		_ptr(nullptr),
 		_ownMem(true)
 	{
 		if (_used)
@@ -158,6 +158,8 @@ public:
 		if (_ownMem) delete [] _ptr;
 	}
 
+	Buffer() = delete;
+
 	void resize(std::size_t newCapacity, bool preserveContent = true)
 		/// Resizes the buffer capacity and size. If preserveContent is true,
 		/// the content of the old buffer is copied over to the
@@ -202,7 +204,7 @@ public:
 
 		if (newCapacity != _capacity)
 		{
-			T* ptr = 0;
+			T* ptr = nullptr;
 			if (newCapacity > 0)
 			{
 				ptr = new T[newCapacity];
@@ -362,8 +364,6 @@ public:
 	}
 
 private:
-	Buffer();
-
 	std::size_t _capacity;
 	std::size_t _used;
 	T*          _ptr;
