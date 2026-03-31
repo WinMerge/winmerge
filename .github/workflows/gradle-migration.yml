@@ -1,0 +1,51 @@
+name: Gradle Migration CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  gradle-build:
+    name: Build + JavaFX Smoke (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Build (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          chmod +x ./gradlew
+          ./gradlew --no-daemon build
+
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: .\\gradlew.bat --no-daemon build
+
+      - name: JavaFX smoke test (Linux)
+        if: runner.os == 'Linux'
+        run: xvfb-run -a ./gradlew --no-daemon :winmerge-desktop:run --args="--smoke-test"
+
+      - name: JavaFX smoke test (macOS)
+        if: runner.os == 'macOS'
+        run: ./gradlew --no-daemon :winmerge-desktop:run --args="--smoke-test"
+
+      - name: JavaFX smoke test (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: .\\gradlew.bat --no-daemon :winmerge-desktop:run --args="--smoke-test"
