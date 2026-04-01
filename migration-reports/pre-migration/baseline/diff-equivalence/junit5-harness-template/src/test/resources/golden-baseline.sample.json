@@ -1,8 +1,14 @@
 {
-  "generated_at": "2026-03-31T00:00:00",
+  "generated_at": "2026-04-01T12:58:40Z",
   "status": "captured",
+  "tool": "gnu-diff",
   "cases": [
-    { "id": "empty_vs_empty", "exit_code": 0 },
-    { "id": "single_line_edit", "exit_code": 1 }
+    { "id": "empty_vs_empty", "exit_code": 0, "comparison": "identical", "hunk_count": 0 },
+    { "id": "empty_vs_single_line", "exit_code": 1, "comparison": "different", "hunk_count": 1 },
+    { "id": "single_line_edit", "exit_code": 1, "comparison": "different", "hunk_count": 1 },
+    { "id": "whitespace_only", "exit_code": 1, "comparison": "different", "hunk_count": 1 },
+    { "id": "unicode_mutation", "exit_code": 1, "comparison": "different", "hunk_count": 1 },
+    { "id": "binary_mutation", "exit_code": 1, "comparison": "different", "hunk_count": 0 },
+    { "id": "large_over_1mb", "exit_code": 1, "comparison": "different", "hunk_count": 1 }
   ]
 }
