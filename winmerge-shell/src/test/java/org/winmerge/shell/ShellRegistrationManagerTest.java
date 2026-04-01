@@ -53,6 +53,26 @@ class ShellRegistrationManagerTest {
     }
 
     @Test
+    void windowsUnregisterFailsWhenRegQueryFailsForNonMissingReason() {
+        RecordingCommandRunner runner = new RecordingCommandRunner();
+        runner.scriptPrefix("reg query", new ShellCommandResult(1, "", "ERROR: Access is denied."));
+
+        ShellFolderResolver resolver = new ShellFolderResolver(ShellPlatform.WINDOWS, Map.of(), Path.of("C:/Users/tester"));
+        ShellRegistrationManager manager = new ShellRegistrationManager(
+            ShellPlatform.WINDOWS,
+            runner,
+            resolver,
+            Path.of("C:/Program Files/WinMerge/WinMerge.exe")
+        );
+
+        ShellOperationResult result = manager.unregisterContextMenu();
+
+        assertFalse(result.success());
+        assertTrue(result.message().contains("Access is denied"));
+        assertTrue(runner.commands.stream().allMatch(command -> !"delete".equalsIgnoreCase(command.get(1))));
+    }
+
+    @Test
     void nonWindowsFileAssociationUnregisterReturnsFailure() {
         RecordingCommandRunner runner = new RecordingCommandRunner();
         ShellFolderResolver resolver = new ShellFolderResolver(ShellPlatform.LINUX, Map.of(), Path.of("/tmp/home"));

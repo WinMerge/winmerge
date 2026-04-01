@@ -223,9 +223,8 @@ public final class ShellRegistrationManager {
             try {
                 ShellCommandResult result = commandRunner.run(command);
                 if (!result.isSuccess()) {
-                    String details = (result.stderr() == null || result.stderr().isBlank()) ? result.stdout() : result.stderr();
                     return ShellOperationResult.failure(
-                        "Command failed (" + result.exitCode() + "): " + details,
+                        "Command failed (" + result.exitCode() + "): " + commandFailureDetails(result),
                         executed
                     );
                 }
@@ -247,18 +246,20 @@ public final class ShellRegistrationManager {
             try {
                 ShellCommandResult queryResult = commandRunner.run(queryCommand);
                 if (!queryResult.isSuccess()) {
-                    // Missing keys are treated as already converged desired state.
-                    continue;
+                    if (isMissingRegistryKey(queryResult)) {
+                        continue;
+                    }
+                    return ShellOperationResult.failure(
+                        "Command failed (" + queryResult.exitCode() + "): " + commandFailureDetails(queryResult),
+                        executed
+                    );
                 }
                 List<String> deleteCommand = regDelete(key);
                 executed.add(String.join(" ", deleteCommand));
                 ShellCommandResult deleteResult = commandRunner.run(deleteCommand);
                 if (!deleteResult.isSuccess()) {
-                    String details = (deleteResult.stderr() == null || deleteResult.stderr().isBlank())
-                        ? deleteResult.stdout()
-                        : deleteResult.stderr();
                     return ShellOperationResult.failure(
-                        "Command failed (" + deleteResult.exitCode() + "): " + details,
+                        "Command failed (" + deleteResult.exitCode() + "): " + commandFailureDetails(deleteResult),
                         executed
                     );
                 }
@@ -286,5 +287,24 @@ public final class ShellRegistrationManager {
         }
         String normalized = extension.trim().toLowerCase(Locale.ROOT);
         return normalized.startsWith(".") ? normalized : "." + normalized;
+    }
+
+    private static String commandFailureDetails(ShellCommandResult result) {
+        if (result.stderr() != null && !result.stderr().isBlank()) {
+            return result.stderr();
+        }
+        if (result.stdout() != null && !result.stdout().isBlank()) {
+            return result.stdout();
+        }
+        return "No output";
+    }
+
+    private static boolean isMissingRegistryKey(ShellCommandResult queryResult) {
+        String output = ((queryResult.stderr() == null ? "" : queryResult.stderr()) + "\n"
+            + (queryResult.stdout() == null ? "" : queryResult.stdout())).toLowerCase(Locale.ROOT);
+        return output.contains("unable to find the specified registry key")
+            || output.contains("unable to find")
+            || output.contains("cannot find")
+            || output.contains("not found");
     }
 }

@@ -112,7 +112,7 @@ public final class ShellLauncher {
                 return ShellOperationResult.success(successMessage, List.of(String.join(" ", command)));
             }
             return ShellOperationResult.failure(
-                "Command failed (" + result.exitCode() + "): " + result.stderr(),
+                "Command failed (" + result.exitCode() + "): " + commandFailureDetails(result),
                 List.of(String.join(" ", command))
             );
         } catch (InterruptedException ex) {
@@ -121,5 +121,15 @@ public final class ShellLauncher {
         } catch (IOException ex) {
             return ShellOperationResult.failure("Command execution failed: " + ex.getMessage(), List.of(String.join(" ", command)));
         }
+    }
+
+    private static String commandFailureDetails(ShellCommandResult result) {
+        if (result.stderr() != null && !result.stderr().isBlank()) {
+            return result.stderr();
+        }
+        if (result.stdout() != null && !result.stdout().isBlank()) {
+            return result.stdout();
+        }
+        return "No output";
     }
 }
