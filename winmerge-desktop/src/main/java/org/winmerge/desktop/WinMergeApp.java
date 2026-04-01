@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.winmerge.desktop.i18n.I18n;
 import org.winmerge.desktop.ui.MainController;
 
 public class WinMergeApp extends Application {
@@ -28,7 +29,7 @@ public class WinMergeApp extends Application {
             WinMergeApp.class.getResource("/org/winmerge/desktop/style/winmerge.css").toExternalForm()
         );
 
-        primaryStage.setTitle("WinMerge");
+        primaryStage.setTitle(I18n.tr("AFX_IDS_APP_TITLE"));
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest(mainController::handleWindowCloseRequest);
         primaryStage.show();

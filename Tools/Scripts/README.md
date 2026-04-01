@@ -17,3 +17,9 @@ Batch file for updating PO template (.pot) file and merging changes to
 all PO files.
 
 Remember to call this batch file after every Merge.rc file change!
+
+
+GenerateResourceBundles.py
+--------------------------
+Generates Java ResourceBundle files in `winmerge-desktop/src/main/resources/i18n/`
+from `Src/Merge.rc` and `Translations/WinMerge/*.po`.

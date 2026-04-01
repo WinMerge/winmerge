@@ -12,6 +12,9 @@ dependencies {
     implementation(project(":winmerge-core"))
     runtimeOnly(project(":winmerge-shell"))
     runtimeOnly(project(":winmerge-plugins"))
+
+    testImplementation(platform("org.junit:junit-bom:5.11.4"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
 javafx {
