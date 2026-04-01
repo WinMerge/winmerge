@@ -128,6 +128,58 @@ class ShellRegistrationManagerTest {
     }
 
     @Test
+    void windowsRegisterRefusesToOverrideForeignAssociationWithLocalizedDefaultLabel() {
+        RecordingCommandRunner runner = new RecordingCommandRunner();
+        runner.scriptPrefix(
+            "reg query HKCU\\Software\\Classes\\.txt /ve",
+            new ShellCommandResult(0, "    (Predeterminado)    REG_SZ    txtfile", "")
+        );
+        ShellFolderResolver resolver = new ShellFolderResolver(ShellPlatform.WINDOWS, Map.of(), Path.of("C:/Users/tester"));
+        ShellRegistrationManager manager = new ShellRegistrationManager(
+            ShellPlatform.WINDOWS,
+            runner,
+            resolver,
+            Path.of("C:/Program Files/WinMerge/WinMerge.exe")
+        );
+
+        ShellOperationResult result = manager.registerFileAssociation(".txt", "text/plain", "Text file");
+
+        assertFalse(result.success());
+        assertTrue(result.message().contains("Refusing to overwrite"));
+        assertTrue(runner.commands.stream().noneMatch(command -> "add".equalsIgnoreCase(command.get(1))));
+    }
+
+    @Test
+    void windowsRegisterDoesNotRemapExtensionWhenProgIdCommandWriteFails() {
+        RecordingCommandRunner runner = new RecordingCommandRunner();
+        runner.scriptPrefix(
+            "reg query HKCU\\Software\\Classes\\.txt /ve",
+            new ShellCommandResult(1, "", "ERROR: The system was unable to find the specified registry key or value.")
+        );
+        runner.scriptPrefix(
+            "reg add HKCU\\Software\\Classes\\WinMerge.TXT\\shell\\open\\command",
+            new ShellCommandResult(1, "", "simulated failure")
+        );
+        ShellFolderResolver resolver = new ShellFolderResolver(ShellPlatform.WINDOWS, Map.of(), Path.of("C:/Users/tester"));
+        ShellRegistrationManager manager = new ShellRegistrationManager(
+            ShellPlatform.WINDOWS,
+            runner,
+            resolver,
+            Path.of("C:/Program Files/WinMerge/WinMerge.exe")
+        );
+
+        ShellOperationResult result = manager.registerFileAssociation(".txt", "text/plain", "Text file");
+
+        assertFalse(result.success());
+        assertTrue(result.message().contains("simulated failure"));
+        assertTrue(
+            runner.commands.stream().noneMatch(command -> String.join(" ", command).startsWith(
+                "reg add HKCU\\Software\\Classes\\.txt /ve /d WinMerge.TXT /f"
+            ))
+        );
+    }
+
+    @Test
     void windowsUnregisterRefusesToDeleteForeignAssociation() {
         RecordingCommandRunner runner = new RecordingCommandRunner();
         runner.scriptPrefix(

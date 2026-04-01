@@ -8,8 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class ShellRegistrationManager {
+    private static final Pattern REGISTRY_VALUE_TYPE_PATTERN = Pattern.compile("\\bREG_[A-Z0-9_]+\\b");
+
     private final ShellPlatform platform;
     private final CommandRunner commandRunner;
     private final ShellFolderResolver folderResolver;
@@ -154,6 +158,7 @@ public final class ShellRegistrationManager {
         String progId = "WinMerge." + suffix;
         String commandLine = "\"" + executablePath.toAbsolutePath().normalize() + "\" \"%1\"";
         String extensionKey = "HKCU\\Software\\Classes\\" + extension;
+        String progIdKey = "HKCU\\Software\\Classes\\" + progId;
 
         RegistryDefaultValueQuery existingAssociation = queryRegistryDefaultValue(extensionKey);
         if (!existingAssociation.querySucceeded()) {
@@ -171,11 +176,11 @@ public final class ShellRegistrationManager {
         }
 
         List<List<String>> commands = List.of(
-            regAdd(extensionKey, progId),
-            regAdd("HKCU\\Software\\Classes\\" + progId, description == null || description.isBlank()
+            regAdd(progIdKey, description == null || description.isBlank()
                 ? "WinMerge file association (" + extension + ")"
                 : description),
-            regAdd("HKCU\\Software\\Classes\\" + progId + "\\shell\\open\\command", commandLine)
+            regAdd(progIdKey + "\\shell\\open\\command", commandLine),
+            regAdd(extensionKey, progId)
         );
         ShellOperationResult registrationResult = runCommands(commands, "Windows file association registration completed for " + extension);
         List<String> executed = new ArrayList<>(existingAssociation.executedCommands());
@@ -401,14 +406,14 @@ public final class ShellRegistrationManager {
         }
         for (String line : stdout.split("\\R")) {
             String trimmed = line.trim();
-            if (!trimmed.startsWith("(Default)")) {
+            if (trimmed.isEmpty() || trimmed.startsWith("HKEY_")) {
                 continue;
             }
-            String[] parts = trimmed.split("\\s+", 3);
-            if (parts.length < 2) {
-                return "";
+            Matcher typeMatcher = REGISTRY_VALUE_TYPE_PATTERN.matcher(trimmed);
+            if (!typeMatcher.find()) {
+                continue;
             }
-            return parts.length == 2 ? "" : parts[2].trim();
+            return trimmed.substring(typeMatcher.end()).trim();
         }
         return null;
     }
