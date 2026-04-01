@@ -33,8 +33,16 @@ tasks.register<JavaExec>("smokeTestUi") {
     description = "Launches a blank JavaFX window and exits automatically."
     dependsOn(tasks.named("classes"))
 
-    val sourceSets = extensions.getByType(SourceSetContainer::class.java)
+    val sourceSets = project.extensions.getByType(SourceSetContainer::class.java)
     classpath = sourceSets.getByName("main").runtimeClasspath
     mainClass.set(application.mainClass)
     args("--smoke-test")
+
+    // javafxplugin configures --module-path on the run task outside of jvmArgs, so we
+    // replicate it here: JavaFX JARs must be on the module path, not the classpath.
+    doFirst {
+        val javafxJars = classpath.filter { f -> f.name.startsWith("javafx-") }
+        classpath = classpath.filter { f -> !f.name.startsWith("javafx-") }
+        jvmArgs("--module-path", javafxJars.asPath, "--add-modules", "javafx.controls,javafx.fxml")
+    }
 }
