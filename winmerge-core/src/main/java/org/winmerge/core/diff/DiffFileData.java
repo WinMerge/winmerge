@@ -113,7 +113,7 @@ public final class DiffFileData implements AutoCloseable {
 
             openSingle(0, leftPath);
 
-            if (leftPath.toString().equalsIgnoreCase(rightPath.toString())) {
+            if (leftPath.equals(rightPath)) {
                 buffers[1] = buffers[0].asReadOnlyBuffer();
                 fileSizes[1] = fileSizes[0];
                 copyTextStats(0, 1);

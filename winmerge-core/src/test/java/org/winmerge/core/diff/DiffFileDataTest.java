@@ -2,12 +2,18 @@ package org.winmerge.core.diff;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.winmerge.core.io.FileSystemService;
 import org.winmerge.core.io.FileTextStats;
 import org.winmerge.core.io.NioFileSystemService;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -82,5 +88,79 @@ class DiffFileDataTest {
         DiffFileData fileData = new DiffFileData(new NioFileSystemService());
         assertFalse(fileData.openFiles(tempDir.resolve("missing-left.txt").toString(), tempDir.resolve("missing-right.txt").toString()));
         assertFalse(fileData.isUsed());
+    }
+
+    @Test
+    void treatsCaseDifferentNormalizedPathsAsDistinctFiles() {
+        FakeFileSystemService fileSystem = new FakeFileSystemService();
+        Path upper = Path.of("CaseName.TXT");
+        Path lower = Path.of("casename.txt");
+        fileSystem.addFile(upper, new byte[] {1});
+        fileSystem.addFile(lower, new byte[] {2, 3});
+
+        DiffFileData fileData = new DiffFileData(fileSystem);
+        assertTrue(fileData.openFiles(upper.toString(), lower.toString()));
+        assertEquals(2, fileSystem.getMapReadOnlyCalls());
+        assertEquals(1, fileData.getFileSize(0));
+        assertEquals(2, fileData.getFileSize(1));
+    }
+
+    private static final class FakeFileSystemService implements FileSystemService {
+        private final Map<Path, byte[]> files = new HashMap<>();
+        private int mapReadOnlyCalls = 0;
+
+        void addFile(Path path, byte[] bytes) {
+            files.put(normalize(path), bytes.clone());
+        }
+
+        int getMapReadOnlyCalls() {
+            return mapReadOnlyCalls;
+        }
+
+        @Override
+        public Path normalize(Path path) {
+            return path.normalize();
+        }
+
+        @Override
+        public boolean exists(Path path) {
+            return files.containsKey(normalize(path));
+        }
+
+        @Override
+        public boolean isRegularFile(Path path) {
+            return exists(path);
+        }
+
+        @Override
+        public long size(Path path) {
+            return files.get(normalize(path)).length;
+        }
+
+        @Override
+        public byte[] readAllBytes(Path path) {
+            return files.get(normalize(path)).clone();
+        }
+
+        @Override
+        public String readString(Path path, Charset charset) {
+            return new String(readAllBytes(path), charset);
+        }
+
+        @Override
+        public void writeString(Path path, String value, Charset charset, OpenOption... options) throws IOException {
+            throw new IOException("Not implemented for test");
+        }
+
+        @Override
+        public void writeBytes(Path path, byte[] value, OpenOption... options) throws IOException {
+            throw new IOException("Not implemented for test");
+        }
+
+        @Override
+        public ByteBuffer mapReadOnly(Path path) {
+            mapReadOnlyCalls++;
+            return ByteBuffer.wrap(readAllBytes(path)).asReadOnlyBuffer();
+        }
     }
 }
