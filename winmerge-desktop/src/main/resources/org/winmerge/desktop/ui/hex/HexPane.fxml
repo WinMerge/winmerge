@@ -5,7 +5,9 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.winmerge.desktop.ui.hex.HexGridCanvas?>
@@ -16,10 +18,19 @@
     <children>
         <ToolBar styleClass="hex-path-toolbar">
             <items>
-                <Label text="Left:"/>
-                <Label fx:id="leftPathLabel" maxWidth="Infinity" text=""/>
-                <Label text="Right:"/>
-                <Label fx:id="rightPathLabel" maxWidth="Infinity" text=""/>
+                <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefWidth="0.0" spacing="4.0">
+                    <children>
+                        <Label styleClass="hex-path-caption" text="Left:"/>
+                        <Label fx:id="leftPathLabel" maxWidth="Infinity" styleClass="hex-path-value" text="" textOverrun="CENTER_ELLIPSIS" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
+                <Region minWidth="12.0" prefWidth="12.0"/>
+                <HBox alignment="CENTER_LEFT" maxWidth="Infinity" prefWidth="0.0" spacing="4.0">
+                    <children>
+                        <Label styleClass="hex-path-caption" text="Right:"/>
+                        <Label fx:id="rightPathLabel" maxWidth="Infinity" styleClass="hex-path-value" text="" textOverrun="CENTER_ELLIPSIS" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
             </items>
         </ToolBar>
         <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">

@@ -78,7 +78,19 @@
 
 .hex-path-toolbar {
     -fx-padding: 4 8 4 8;
-    -fx-spacing: 6;
+    -fx-spacing: 8;
+}
+
+.hex-path-caption {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #344054;
+}
+
+.hex-path-value {
+    -fx-font-family: "Consolas", "Monaco", "JetBrains Mono", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #475467;
 }
 
 .hex-pane-side {
