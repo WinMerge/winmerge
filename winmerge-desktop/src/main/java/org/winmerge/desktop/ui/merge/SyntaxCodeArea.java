@@ -52,9 +52,17 @@ public final class SyntaxCodeArea extends BorderPane {
 
     public void focusDiff(DiffChunk chunk, boolean isLeftSide) {
         int line = isLeftSide ? chunk.leftStartLine() : chunk.rightStartLine();
-        if (line >= 0 && line < codeArea.getParagraphs().size()) {
-            codeArea.showParagraphAtTop(line);
-            codeArea.moveTo(line, 0);
+        focusLine(line);
+    }
+
+    public int lineCount() {
+        return codeArea.getParagraphs().size();
+    }
+
+    public void focusLine(int zeroBasedLine) {
+        if (zeroBasedLine >= 0 && zeroBasedLine < codeArea.getParagraphs().size()) {
+            codeArea.showParagraphAtTop(zeroBasedLine);
+            codeArea.moveTo(zeroBasedLine, 0);
             codeArea.requestFocus();
         }
     }

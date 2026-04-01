@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.WMGotoDialogController">
+    <content>
+        <GridPane hgap="12.0" vgap="10.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                <Label text="Go to:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="rangeLabel" text="" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="parameterField" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <children>
+                        <Label text="File" />
+                        <RadioButton fx:id="fileLeftRadio" mnemonicParsing="true" text="_Left" />
+                        <RadioButton fx:id="fileMiddleRadio" mnemonicParsing="true" text="_Middle" />
+                        <RadioButton fx:id="fileRightRadio" mnemonicParsing="true" text="_Right" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <Label text="Go to what" />
+                        <RadioButton fx:id="toLineRadio" mnemonicParsing="true" text="Li_ne" />
+                        <RadioButton fx:id="toDifferenceRadio" mnemonicParsing="true" text="_Difference" />
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+    </content>
+</DialogPane>

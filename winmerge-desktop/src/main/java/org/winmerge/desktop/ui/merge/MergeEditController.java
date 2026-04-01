@@ -91,6 +91,46 @@ public class MergeEditController {
         this.statusListener = Objects.requireNonNull(statusListener, "statusListener");
     }
 
+    public boolean isNavigationReady() {
+        return model != null;
+    }
+
+    public int fileCount() {
+        return 2;
+    }
+
+    public int lineCountForFile(int fileIndex) {
+        if (model == null) {
+            return 0;
+        }
+        return fileIndex == 0 ? model.leftLineCount() : model.rightLineCount();
+    }
+
+    public int diffCount() {
+        return model == null ? 0 : model.diffChunks().size();
+    }
+
+    public void navigateToLine(int fileIndex, int oneBasedLine) {
+        if (model == null || oneBasedLine <= 0) {
+            return;
+        }
+        int lineIndex = oneBasedLine - 1;
+        if (fileIndex == 0) {
+            leftEditor.focusLine(lineIndex);
+            statusListener.accept("Navigated to left line " + oneBasedLine + ".");
+            return;
+        }
+        rightEditor.focusLine(lineIndex);
+        statusListener.accept("Navigated to right line " + oneBasedLine + ".");
+    }
+
+    public void navigateToDiff(int oneBasedDiff) {
+        if (oneBasedDiff <= 0) {
+            return;
+        }
+        goToDiff(oneBasedDiff - 1);
+    }
+
     public void loadFiles(Path leftPath, Path rightPath) {
         Objects.requireNonNull(leftPath, "leftPath");
         Objects.requireNonNull(rightPath, "rightPath");

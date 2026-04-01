@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.AboutDialogController">
+    <content>
+        <VBox spacing="8.0">
+            <padding>
+                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+            </padding>
+            <Label fx:id="appNameLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="WinMerge" />
+            <Label fx:id="versionLabel" text="Version" />
+            <HBox spacing="6.0">
+                <Label text="Website:" />
+                <Hyperlink fx:id="websiteLink" onAction="#onOpenWebsite" text="https://winmerge.org" />
+            </HBox>
+            <Label fx:id="summaryLabel" wrapText="true" />
+            <TextArea fx:id="asciiArtTextArea" prefColumnCount="36" prefRowCount="9" style="-fx-font-family: 'Courier New';" />
+            <Button fx:id="openContributorsButton" mnemonicParsing="true" onAction="#onOpenContributors" text="_Contributors" />
+            <Label fx:id="statusLabel" style="-fx-text-fill: #a94442;" wrapText="true" />
+        </VBox>
+    </content>
+</DialogPane>

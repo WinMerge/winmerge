@@ -14,7 +14,11 @@
                 <MenuItem fx:id="fileExitMenuItem" mnemonicParsing="true" text="E_xit"/>
             </items>
         </Menu>
-        <Menu mnemonicParsing="true" text="_Edit" />
+        <Menu mnemonicParsing="true" text="_Edit">
+            <items>
+                <MenuItem fx:id="editGoToMenuItem" mnemonicParsing="true" text="_Go to..." />
+            </items>
+        </Menu>
         <Menu mnemonicParsing="true" text="_View" />
         <Menu mnemonicParsing="true" text="_Tools">
             <items>
@@ -23,6 +27,10 @@
         </Menu>
         <Menu mnemonicParsing="true" text="_Plugins" />
         <Menu mnemonicParsing="true" text="_Window" />
-        <Menu mnemonicParsing="true" text="_Help" />
+        <Menu mnemonicParsing="true" text="_Help">
+            <items>
+                <MenuItem fx:id="helpAboutMenuItem" mnemonicParsing="true" text="_About WinMerge" />
+            </items>
+        </Menu>
     </menus>
 </MenuBar>

@@ -15,6 +15,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
+import org.winmerge.desktop.ui.dialogs.WMGotoDialogResult;
+import org.winmerge.desktop.ui.dialogs.WMGotoTarget;
 import org.winmerge.desktop.ui.dir.DirController;
 import org.winmerge.desktop.ui.hex.HexController;
 import org.winmerge.desktop.ui.merge.MergeEditController;
@@ -84,6 +87,7 @@ public class TabManager {
 
                 String tabTitle = buildComparisonTabTitle(request.leftPath(), request.rightPath());
                 Tab tab = openTab(tabTitle, contentRoot);
+                tab.setUserData(dirController);
                 safeStatus.accept("Opened directory diff: " + tab.getText());
                 return tab;
             } catch (IOException ioException) {
@@ -107,19 +111,69 @@ public class TabManager {
                 HexController hexController = loader.getController();
                 hexController.setStatusListener(safeStatus);
                 hexController.loadFiles(request.leftPath(), request.rightPath());
+                Tab tab = openTab(buildComparisonTabTitle(request.leftPath(), request.rightPath()), contentRoot);
+                tab.setUserData(hexController);
+                safeStatus.accept("Opened hex diff: " + tab.getText());
+                return tab;
             } else {
                 MergeEditController mergeController = loader.getController();
                 mergeController.setStatusListener(safeStatus);
                 mergeController.loadFiles(request.leftPath(), request.rightPath());
+                Tab tab = openTab(buildComparisonTabTitle(request.leftPath(), request.rightPath()), contentRoot);
+                tab.setUserData(mergeController);
+                safeStatus.accept("Opened text diff: " + tab.getText());
+                return tab;
             }
-
-            String tabTitle = buildComparisonTabTitle(request.leftPath(), request.rightPath());
-            Tab tab = openTab(tabTitle, contentRoot);
-            safeStatus.accept("Opened " + (openHexView ? "hex" : "text") + " diff: " + tab.getText());
-            return tab;
         } catch (IOException ioException) {
             throw new IllegalStateException("Unable to load comparison tab content", ioException);
         }
+    }
+
+    public Optional<WMGotoDialogRequest> createGotoRequestForActiveTab() {
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedTab == null || !(selectedTab.getUserData() instanceof MergeEditController mergeController)) {
+            return Optional.empty();
+        }
+        if (!mergeController.isNavigationReady()) {
+            return Optional.empty();
+        }
+
+        int leftLineCount = Math.max(1, mergeController.lineCountForFile(0));
+        int rightLineCount = Math.max(1, mergeController.lineCountForFile(1));
+        int[] maxLinePerFile = new int[] {leftLineCount, rightLineCount, rightLineCount};
+
+        return Optional.of(
+            new WMGotoDialogRequest(
+                "1",
+                0,
+                WMGotoTarget.LINE,
+                mergeController.fileCount(),
+                maxLinePerFile,
+                mergeController.diffCount()
+            )
+        );
+    }
+
+    public boolean applyGotoSelection(WMGotoDialogResult selection, Consumer<String> statusListener) {
+        Objects.requireNonNull(selection, "selection");
+        Consumer<String> safeStatus = statusListener == null ? message -> { } : statusListener;
+
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedTab == null || !(selectedTab.getUserData() instanceof MergeEditController mergeController)) {
+            return false;
+        }
+        if (!mergeController.isNavigationReady()) {
+            safeStatus.accept("Go to is not available until the comparison is loaded.");
+            return false;
+        }
+
+        if (selection.target() == WMGotoTarget.LINE) {
+            int targetFile = selection.fileIndex() <= 0 ? 0 : 1;
+            mergeController.navigateToLine(targetFile, selection.value());
+        } else {
+            mergeController.navigateToDiff(selection.value());
+        }
+        return true;
     }
 
     private static String buildComparisonTabTitle(Path leftPath, Path rightPath) {
