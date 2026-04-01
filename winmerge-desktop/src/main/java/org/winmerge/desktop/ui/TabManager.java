@@ -22,6 +22,7 @@ import org.winmerge.desktop.ui.dialogs.WMGotoTarget;
 import org.winmerge.desktop.ui.dir.DirController;
 import org.winmerge.desktop.ui.hex.HexController;
 import org.winmerge.desktop.ui.merge.MergeEditController;
+import org.winmerge.desktop.ui.merge.MergeDocModel;
 
 public class TabManager {
     public enum CompareTarget {
@@ -105,7 +106,7 @@ public class TabManager {
             safeStatus.accept("3-way mode is pending; opening a left/right comparison.");
         }
 
-        boolean openHexView = isLikelyBinary(request.leftPath()) || isLikelyBinary(request.rightPath());
+        boolean openHexView = shouldOpenHexView(request.leftPath(), request.rightPath());
         String fxmlResource = openHexView
             ? "/org/winmerge/desktop/ui/hex/HexPane.fxml"
             : "/org/winmerge/desktop/ui/merge/MergeEditPane.fxml";
@@ -190,7 +191,14 @@ public class TabManager {
         return leftName + " ↔ " + rightName;
     }
 
-    private static boolean isLikelyBinary(Path path) {
+    static boolean shouldOpenHexView(Path leftPath, Path rightPath) {
+        return exceedsTextCompareLimit(leftPath)
+            || exceedsTextCompareLimit(rightPath)
+            || isLikelyBinary(leftPath)
+            || isLikelyBinary(rightPath);
+    }
+
+    static boolean isLikelyBinary(Path path) {
         byte[] probe = new byte[2048];
         int bytesRead;
         try (InputStream stream = Files.newInputStream(path)) {
@@ -199,6 +207,9 @@ public class TabManager {
             return false;
         }
         if (bytesRead <= 0) {
+            return false;
+        }
+        if (hasUnicodeTextBom(probe, bytesRead)) {
             return false;
         }
 
@@ -213,6 +224,31 @@ public class TabManager {
             }
         }
         return nonTextCount > (bytesRead / 5);
+    }
+
+    private static boolean exceedsTextCompareLimit(Path path) {
+        try {
+            return Files.size(path) > MergeDocModel.textCompareSizeLimitBytes();
+        } catch (IOException ignored) {
+            return false;
+        }
+    }
+
+    private static boolean hasUnicodeTextBom(byte[] probe, int bytesRead) {
+        if (bytesRead >= 3
+            && (probe[0] & 0xFF) == 0xEF
+            && (probe[1] & 0xFF) == 0xBB
+            && (probe[2] & 0xFF) == 0xBF) {
+            return true;
+        }
+        if (bytesRead >= 2) {
+            int first = probe[0] & 0xFF;
+            int second = probe[1] & 0xFF;
+            if ((first == 0xFF && second == 0xFE) || (first == 0xFE && second == 0xFF)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     static void disposeController(Object controller) {

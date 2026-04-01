@@ -1,5 +1,7 @@
 package org.winmerge.desktop.ui.merge;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MergeDocModelTest {
     @TempDir
@@ -41,6 +44,20 @@ class MergeDocModelTest {
         MergeDocModel merged = model.mergeLeftChunkToRight(0);
         assertFalse(merged.hasDiffs());
         assertEquals(model.leftText(), merged.rightText());
+    }
+
+    @Test
+    void convergesMergeWhenRightHasNoEolStyle() {
+        MergeDocModel model = MergeDocModel.fromTexts(
+            Path.of("left.txt"),
+            Path.of("right.txt"),
+            "alpha\r\nbeta\r\n",
+            ""
+        );
+
+        MergeDocModel merged = model.mergeLeftChunkToRight(0);
+        assertFalse(merged.hasDiffs());
+        assertEquals("alpha\r\nbeta\r\n", merged.rightText());
     }
 
     @Test
@@ -121,6 +138,17 @@ class MergeDocModelTest {
         assertEquals("alpha\r\nbeta\r\n", model.rightText());
     }
 
+    @Test
+    void rejectsOversizedFilesBeforeDecode() throws Exception {
+        Path oversized = tempDir.resolve("oversized.txt");
+        Path right = tempDir.resolve("right.txt");
+        setLength(oversized, MergeDocModel.textCompareSizeLimitBytes() + 1);
+        Files.writeString(right, "alpha\n", StandardCharsets.UTF_8);
+
+        IOException error = assertThrows(IOException.class, () -> MergeDocModel.load(oversized, right));
+        assertTrue(error.getMessage().contains("text compare size limit"));
+    }
+
     private static String buildLineSeries(String prefix, int count) {
         StringBuilder builder = new StringBuilder(count * 8);
         for (int i = 0; i < count; i++) {
@@ -139,5 +167,11 @@ class MergeDocModelTest {
         bytes[1] = (byte) 0xFE;
         System.arraycopy(payload, 0, bytes, 2, payload.length);
         Files.write(path, bytes);
+    }
+
+    private static void setLength(Path path, long length) throws Exception {
+        try (RandomAccessFile file = new RandomAccessFile(path.toFile(), "rw")) {
+            file.setLength(length);
+        }
     }
 }

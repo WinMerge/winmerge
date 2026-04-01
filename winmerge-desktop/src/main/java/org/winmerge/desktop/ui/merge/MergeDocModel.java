@@ -1,6 +1,7 @@
 package org.winmerge.desktop.ui.merge;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +14,7 @@ import org.winmerge.core.io.UnicodeFileReader;
 
 public final class MergeDocModel {
     private static final long MAX_LCS_MATRIX_CELLS = 8_000_000L;
+    private static final long MAX_TEXT_COMPARE_BYTES = 32L * 1024L * 1024L;
     private static final String DEFAULT_EOL = "\n";
     private static final UnicodeFileReader FILE_READER = new UnicodeFileReader(new NioFileSystemService());
 
@@ -57,6 +59,8 @@ public final class MergeDocModel {
     public static MergeDocModel load(Path leftPath, Path rightPath) throws IOException {
         Objects.requireNonNull(leftPath, "leftPath");
         Objects.requireNonNull(rightPath, "rightPath");
+        enforceTextCompareSizeLimit(leftPath);
+        enforceTextCompareSizeLimit(rightPath);
         UnicodeFileReader.ReadResult left = FILE_READER.readAll(leftPath);
         UnicodeFileReader.ReadResult right = FILE_READER.readAll(rightPath);
         return fromTextsWithEncodings(
@@ -78,6 +82,10 @@ public final class MergeDocModel {
             defaultUtf8Encoding(),
             defaultUtf8Encoding()
         );
+    }
+
+    public static long textCompareSizeLimitBytes() {
+        return MAX_TEXT_COMPARE_BYTES;
     }
 
     private static MergeDocModel fromTextsWithEncodings(
@@ -183,9 +191,10 @@ public final class MergeDocModel {
         int rightStart = chunk.rightStartLine();
         int rightEnd = chunk.rightEndLine();
         mergedRightLines.subList(rightStart, rightEnd).clear();
+        String mergeEol = resolveMergeEol(preferredRightEol, leftLines.subList(chunk.leftStartLine(), chunk.leftEndLine()));
         List<TextLine> replacementLines = normalizeLineEndings(
             leftLines.subList(chunk.leftStartLine(), chunk.leftEndLine()),
-            preferredRightEol
+            mergeEol
         );
         mergedRightLines.addAll(rightStart, replacementLines);
         return fromTextsWithEncodings(leftPath, rightPath, leftText, joinLines(mergedRightLines), leftEncoding, rightEncoding);
@@ -260,6 +269,17 @@ public final class MergeDocModel {
         return normalized;
     }
 
+    private static String resolveMergeEol(String preferredEol, List<TextLine> replacementLines) {
+        if (!preferredEol.isEmpty()) {
+            return preferredEol;
+        }
+        String replacementPreferred = detectPreferredEol(replacementLines);
+        if (!replacementPreferred.isEmpty()) {
+            return replacementPreferred;
+        }
+        return DEFAULT_EOL;
+    }
+
     private static String detectPreferredEol(String text) {
         int crlf = 0;
         int lf = 0;
@@ -286,7 +306,32 @@ public final class MergeDocModel {
         if (cr > 0) {
             return "\r";
         }
-        return DEFAULT_EOL;
+        return "";
+    }
+
+    private static String detectPreferredEol(List<TextLine> lines) {
+        int crlf = 0;
+        int lf = 0;
+        int cr = 0;
+        for (TextLine line : lines) {
+            if ("\r\n".equals(line.eol())) {
+                crlf++;
+            } else if ("\n".equals(line.eol())) {
+                lf++;
+            } else if ("\r".equals(line.eol())) {
+                cr++;
+            }
+        }
+        if (crlf >= lf && crlf >= cr && crlf > 0) {
+            return "\r\n";
+        }
+        if (lf >= cr && lf > 0) {
+            return "\n";
+        }
+        if (cr > 0) {
+            return "\r";
+        }
+        return "";
     }
 
     private static boolean hasTerminalEol(String text) {
@@ -295,6 +340,15 @@ public final class MergeDocModel {
         }
         char last = text.charAt(text.length() - 1);
         return last == '\n' || last == '\r';
+    }
+
+    private static void enforceTextCompareSizeLimit(Path path) throws IOException {
+        long size = Files.size(path);
+        if (size > MAX_TEXT_COMPARE_BYTES) {
+            throw new IOException(
+                "File exceeds text compare size limit (" + MAX_TEXT_COMPARE_BYTES + " bytes): " + path
+            );
+        }
     }
 
     private static DiffComputation computeDiffChunks(List<String> left, List<String> right) {
