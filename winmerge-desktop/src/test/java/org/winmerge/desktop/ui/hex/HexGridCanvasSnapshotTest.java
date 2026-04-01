@@ -46,9 +46,17 @@ class HexGridCanvasSnapshotTest {
                 return;
             }
             CountDownLatch latch = new CountDownLatch(1);
-            Platform.startup(latch::countDown);
-            if (!latch.await(5, TimeUnit.SECONDS)) {
-                throw new IllegalStateException("Timed out starting JavaFX toolkit");
+            try {
+                Platform.startup(latch::countDown);
+                if (!latch.await(5, TimeUnit.SECONDS)) {
+                    throw new IllegalStateException("Timed out starting JavaFX toolkit");
+                }
+            } catch (IllegalStateException exception) {
+                // Other JavaFX tests may have already initialized the toolkit in this JVM.
+                String message = exception.getMessage();
+                if (message == null || !message.contains("already initialized")) {
+                    throw exception;
+                }
             }
             toolkitReady = true;
         }

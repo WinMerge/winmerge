@@ -1,0 +1,42 @@
+{
+  "issue": "AMP-16",
+  "evaluated_commit": "b25b10bb1+qa-local",
+  "baseline_commit": "d32e60995",
+  "captured_at": "2026-04-01",
+  "method": {
+    "commands": [
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-desktop:clean :winmerge-desktop:compileJava",
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-desktop:clean :winmerge-desktop:test --rerun-tasks",
+      "./gradlew --no-daemon :winmerge-desktop:jar"
+    ],
+    "notes": [
+      "This phase is a JavaFX desktop migration unit; browser page-load and Core Web Vitals metrics are not applicable.",
+      "Resource-size comparison is captured from winmerge-desktop jar output.",
+      "smokeTestUi task is currently misconfigured in both baseline and candidate (SourceSetContainer extension error); treated as a pre-existing, non-regression build issue."
+    ]
+  },
+  "metrics": {
+    "compile_time_seconds": {
+      "baseline": 4.72,
+      "candidate": 4.85,
+      "delta_percent": 2.75
+    },
+    "desktop_test_time_seconds": {
+      "baseline": 5.81,
+      "candidate": 5.98,
+      "delta_percent": 2.93
+    },
+    "artifact_size_bytes": {
+      "winmerge_desktop_jar": {
+        "baseline": 674156,
+        "candidate": 702654,
+        "delta_percent": 4.23
+      }
+    }
+  },
+  "regression_policy": {
+    "threshold_percent": 10,
+    "status": "pass",
+    "violations": []
+  }
+}

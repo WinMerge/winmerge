@@ -1,0 +1,48 @@
+{
+  "issue": "AMP-16",
+  "tier": "Standard",
+  "tool": "playwright",
+  "mode": "headless",
+  "captured_at": "2026-04-01",
+  "flows": [
+    {
+      "name": "Baseline summary report",
+      "source": "file:///tmp/winmerge-qa-amp16-pre-d32/winmerge-desktop/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-16/pre-d32e60995-summary.png"
+    },
+    {
+      "name": "Candidate summary report",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-16/post-b25b10bb1-summary.png"
+    },
+    {
+      "name": "Candidate hex model regression flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.hex.HexDocModelTest.html",
+      "screenshot": "migration-reports/qa/AMP-16/post-b25b10bb1-hex-doc-model.png"
+    },
+    {
+      "name": "Candidate hex async executor flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.hex.HexLoadExecutorTest.html",
+      "screenshot": "migration-reports/qa/AMP-16/post-b25b10bb1-hex-load-executor.png"
+    },
+    {
+      "name": "Candidate hex controller end-to-end flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.hex.HexControllerFxIntegrationTest.html",
+      "screenshot": "migration-reports/qa/AMP-16/post-b25b10bb1-hex-controller-fx.png"
+    },
+    {
+      "name": "Candidate hex snapshot flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.hex.HexGridCanvasSnapshotTest.html",
+      "screenshot": "migration-reports/qa/AMP-16/post-b25b10bb1-hex-snapshot.png"
+    }
+  ],
+  "results": {
+    "baseline_total_tests": 31,
+    "candidate_total_tests": 48,
+    "baseline_failures": 0,
+    "candidate_failures": 0,
+    "candidate_skipped": 1,
+    "candidate_hex_regression_tests": 11,
+    "candidate_hex_regression_failures": 0
+  }
+}
