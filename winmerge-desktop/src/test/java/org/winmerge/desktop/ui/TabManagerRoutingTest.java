@@ -4,12 +4,21 @@ import java.io.RandomAccessFile;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
+import javafx.scene.control.TabPane;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.winmerge.desktop.ui.dialogs.AboutDialogModel;
+import org.winmerge.desktop.ui.dialogs.CompareStatisticsDialogModel;
+import org.winmerge.desktop.ui.dialogs.DialogService;
+import org.winmerge.desktop.ui.dialogs.SaveClosingChoice;
+import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
+import org.winmerge.desktop.ui.dialogs.WMGotoDialogResult;
 import org.winmerge.desktop.ui.merge.MergeDocModel;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TabManagerRoutingTest {
@@ -36,6 +45,29 @@ class TabManagerRoutingTest {
         assertTrue(TabManager.shouldOpenHexView(oversized, right));
     }
 
+    @Test
+    void rejectsThreeWayComparisonRequestsUntilImplemented() throws Exception {
+        FxThreadTestSupport.initializeToolkit();
+        TabManager tabManager = FxThreadTestSupport.callOnFxThread(() -> new TabManager(new TabPane(), new NoOpDialogService()));
+
+        Path left = tempDir.resolve("left.txt");
+        Path right = tempDir.resolve("right.txt");
+        Path middle = tempDir.resolve("middle.txt");
+        Files.writeString(left, "left\n", StandardCharsets.UTF_8);
+        Files.writeString(right, "right\n", StandardCharsets.UTF_8);
+        Files.writeString(middle, "middle\n", StandardCharsets.UTF_8);
+
+        TabManager.ComparisonRequest request = new TabManager.ComparisonRequest(
+            left,
+            right,
+            Optional.of(middle),
+            TabManager.CompareTarget.FILES,
+            "*.*"
+        );
+
+        assertThrows(UnsupportedOperationException.class, () -> tabManager.openComparison(request, null));
+    }
+
     private static void writeUtf16LeWithBom(Path path, String text) throws Exception {
         byte[] payload = text.getBytes(StandardCharsets.UTF_16LE);
         byte[] bytes = new byte[payload.length + 2];
@@ -48,6 +80,31 @@ class TabManagerRoutingTest {
     private static void setLength(Path path, long length) throws Exception {
         try (RandomAccessFile file = new RandomAccessFile(path.toFile(), "rw")) {
             file.setLength(length);
+        }
+    }
+
+    private static final class NoOpDialogService implements DialogService {
+        @Override
+        public void showAboutDialog(AboutDialogModel model) {
+        }
+
+        @Override
+        public Optional<WMGotoDialogResult> showGotoDialog(WMGotoDialogRequest request) {
+            return Optional.empty();
+        }
+
+        @Override
+        public void showCompareStatisticsDialog(CompareStatisticsDialogModel model) {
+        }
+
+        @Override
+        public Optional<String> showComparisonResultFilterDialog(boolean threeWay) {
+            return Optional.empty();
+        }
+
+        @Override
+        public SaveClosingChoice showSaveClosingDialog(Path filePath) {
+            return SaveClosingChoice.CANCEL;
         }
     }
 }

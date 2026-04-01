@@ -72,8 +72,10 @@ public final class OpenController {
         filterCombo.getItems().setAll("*.*", "*.txt", "*.java", "*.xml", "*.json");
         filterCombo.getSelectionModel().selectFirst();
 
+        threeWayCheckBox.setSelected(false);
+        threeWayCheckBox.setDisable(true);
+        threeWayCheckBox.setText("Enable 3-way mode (coming soon)");
         setThreeWayVisible(false);
-        threeWayCheckBox.selectedProperty().addListener((obs, oldValue, newValue) -> setThreeWayVisible(newValue));
     }
 
     public void configure(TabManager tabManager, Runnable closeRequest, Consumer<String> statusListener) {
@@ -111,20 +113,11 @@ public final class OpenController {
             return;
         }
 
-        Optional<Path> middlePath = Optional.empty();
         if (threeWayCheckBox.isSelected()) {
-            String middle = middlePathField.getText().trim();
-            if (middle.isEmpty()) {
-                statusListener.accept("Select the middle path for 3-way mode.");
-                return;
-            }
-            try {
-                middlePath = Optional.of(Paths.get(middle));
-            } catch (InvalidPathException invalidPathException) {
-                statusListener.accept("Invalid middle path: " + invalidPathException.getInput());
-                return;
-            }
+            statusListener.accept("3-way comparisons are not supported yet.");
+            return;
         }
+        Optional<Path> middlePath = Optional.empty();
 
         String filterValue = Optional.ofNullable(filterCombo.getEditor().getText())
             .orElse("*.*")

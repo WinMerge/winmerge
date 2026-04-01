@@ -81,11 +81,11 @@ public class TabManager {
     public Tab openComparison(ComparisonRequest request, Consumer<String> statusListener) {
         Objects.requireNonNull(request, "request");
         Consumer<String> safeStatus = statusListener == null ? message -> { } : statusListener;
+        if (request.middlePath().isPresent()) {
+            throw new UnsupportedOperationException("3-way comparisons are not supported yet.");
+        }
 
         if (request.target() == CompareTarget.FOLDERS) {
-            if (request.middlePath().isPresent()) {
-                safeStatus.accept("3-way folder compare is pending; opening a left/right comparison.");
-            }
             try {
                 FXMLLoader loader = new FXMLLoader(TabManager.class.getResource("/org/winmerge/desktop/ui/dir/DirPane.fxml"));
                 Parent contentRoot = loader.load();
@@ -102,9 +102,6 @@ public class TabManager {
             } catch (IOException ioException) {
                 throw new IllegalStateException("Unable to load directory comparison tab content", ioException);
             }
-        }
-        if (request.middlePath().isPresent()) {
-            safeStatus.accept("3-way mode is pending; opening a left/right comparison.");
         }
 
         boolean openHexView = shouldOpenHexView(request.leftPath(), request.rightPath());
