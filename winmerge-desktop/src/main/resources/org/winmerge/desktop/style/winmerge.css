@@ -92,3 +92,30 @@
 .hex-grid-canvas {
     -fx-background-color: #ffffff;
 }
+
+.dir-filter-toolbar,
+.dir-path-toolbar,
+.dir-status-toolbar {
+    -fx-padding: 4 8 4 8;
+    -fx-spacing: 6;
+}
+
+.dir-table {
+    -fx-background-color: #ffffff;
+}
+
+.table-row-cell.dir-status-only-left {
+    -fx-background-color: rgba(255, 196, 196, 0.55);
+}
+
+.table-row-cell.dir-status-only-right {
+    -fx-background-color: rgba(189, 224, 254, 0.55);
+}
+
+.table-row-cell.dir-status-different {
+    -fx-background-color: rgba(255, 236, 179, 0.65);
+}
+
+.table-row-cell.dir-status-identical {
+    -fx-background-color: rgba(211, 255, 211, 0.5);
+}

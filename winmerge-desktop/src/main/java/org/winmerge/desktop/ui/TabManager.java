@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import org.winmerge.desktop.ui.dir.DirController;
 import org.winmerge.desktop.ui.hex.HexController;
 import org.winmerge.desktop.ui.merge.MergeEditController;
 
@@ -70,7 +71,24 @@ public class TabManager {
         Consumer<String> safeStatus = statusListener == null ? message -> { } : statusListener;
 
         if (request.target() == CompareTarget.FOLDERS) {
-            throw new UnsupportedOperationException("Directory comparison tabs are not implemented yet.");
+            if (request.middlePath().isPresent()) {
+                safeStatus.accept("3-way folder compare is pending; opening a left/right comparison.");
+            }
+            try {
+                FXMLLoader loader = new FXMLLoader(TabManager.class.getResource("/org/winmerge/desktop/ui/dir/DirPane.fxml"));
+                Parent contentRoot = loader.load();
+
+                DirController dirController = loader.getController();
+                dirController.configure(this, safeStatus);
+                dirController.loadDirectories(request.leftPath(), request.rightPath(), request.filter());
+
+                String tabTitle = buildComparisonTabTitle(request.leftPath(), request.rightPath());
+                Tab tab = openTab(tabTitle, contentRoot);
+                safeStatus.accept("Opened directory diff: " + tab.getText());
+                return tab;
+            } catch (IOException ioException) {
+                throw new IllegalStateException("Unable to load directory comparison tab content", ioException);
+            }
         }
         if (request.middlePath().isPresent()) {
             safeStatus.accept("3-way mode is pending; opening a left/right comparison.");

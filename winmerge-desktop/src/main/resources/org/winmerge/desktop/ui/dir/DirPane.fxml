@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.winmerge.desktop.ui.dir.DirController"
+      styleClass="dir-pane">
+    <children>
+        <ToolBar styleClass="dir-filter-toolbar">
+            <items>
+                <Label text="Status Filter:"/>
+                <ComboBox fx:id="statusFilterCombo" prefWidth="160.0"/>
+                <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#onRefresh" text="Refresh"/>
+                <Region maxWidth="Infinity" prefWidth="0.0" HBox.hgrow="ALWAYS"/>
+                <Label fx:id="itemCountLabel" text="Rows: 0 / 0"/>
+            </items>
+        </ToolBar>
+        <ToolBar styleClass="dir-path-toolbar">
+            <items>
+                <Label text="Left:"/>
+                <Label fx:id="leftPathLabel" maxWidth="Infinity" text=""/>
+                <Label text="Right:"/>
+                <Label fx:id="rightPathLabel" maxWidth="Infinity" text=""/>
+            </items>
+        </ToolBar>
+        <StackPane VBox.vgrow="ALWAYS">
+            <children>
+                <TableView fx:id="dirTable"
+                           columnResizePolicy="CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN"
+                           styleClass="dir-table"
+                           VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" prefWidth="180.0" text="Name"/>
+                        <TableColumn fx:id="pathColumn" prefWidth="280.0" text="Path"/>
+                        <TableColumn fx:id="statusColumn" prefWidth="120.0" text="Status"/>
+                        <TableColumn fx:id="leftDateColumn" prefWidth="160.0" text="Date (L)"/>
+                        <TableColumn fx:id="rightDateColumn" prefWidth="160.0" text="Date (R)"/>
+                        <TableColumn fx:id="leftSizeColumn" prefWidth="120.0" text="Size (L)"/>
+                        <TableColumn fx:id="rightSizeColumn" prefWidth="120.0" text="Size (R)"/>
+                    </columns>
+                </TableView>
+                <StackPane fx:id="loadingOverlay"
+                           alignment="CENTER"
+                           managed="false"
+                           mouseTransparent="true"
+                           styleClass="loading-overlay"
+                           visible="false">
+                    <children>
+                        <ProgressIndicator fx:id="loadingIndicator" managed="false" visible="false"/>
+                    </children>
+                </StackPane>
+            </children>
+        </StackPane>
+        <ToolBar styleClass="dir-status-toolbar">
+            <items>
+                <Label fx:id="comparisonSummaryLabel" text="Ready"/>
+            </items>
+        </ToolBar>
+    </children>
+    <VBox.vgrow>
+        <Priority fx:constant="ALWAYS"/>
+    </VBox.vgrow>
+</VBox>
