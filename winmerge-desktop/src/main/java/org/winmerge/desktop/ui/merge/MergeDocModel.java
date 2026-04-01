@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import org.winmerge.core.io.FileTextEncoding;
 import org.winmerge.core.io.NioFileSystemService;
 import org.winmerge.core.io.UnicodeFileReader;
 
@@ -24,6 +25,8 @@ public final class MergeDocModel {
     private final List<DiffChunk> diffChunks;
     private final boolean guardedDiffFallbackUsed;
     private final String preferredRightEol;
+    private final FileTextEncoding leftEncoding;
+    private final FileTextEncoding rightEncoding;
 
     private MergeDocModel(
         Path leftPath,
@@ -34,7 +37,9 @@ public final class MergeDocModel {
         List<TextLine> rightLines,
         List<DiffChunk> diffChunks,
         boolean guardedDiffFallbackUsed,
-        String preferredRightEol
+        String preferredRightEol,
+        FileTextEncoding leftEncoding,
+        FileTextEncoding rightEncoding
     ) {
         this.leftPath = leftPath;
         this.rightPath = rightPath;
@@ -45,6 +50,8 @@ public final class MergeDocModel {
         this.diffChunks = diffChunks;
         this.guardedDiffFallbackUsed = guardedDiffFallbackUsed;
         this.preferredRightEol = preferredRightEol;
+        this.leftEncoding = copyEncoding(leftEncoding);
+        this.rightEncoding = copyEncoding(rightEncoding);
     }
 
     public static MergeDocModel load(Path leftPath, Path rightPath) throws IOException {
@@ -52,19 +59,41 @@ public final class MergeDocModel {
         Objects.requireNonNull(rightPath, "rightPath");
         UnicodeFileReader.ReadResult left = FILE_READER.readAll(leftPath);
         UnicodeFileReader.ReadResult right = FILE_READER.readAll(rightPath);
-        return fromTexts(
+        return fromTextsWithEncodings(
             leftPath,
             rightPath,
             left.content(),
-            right.content()
+            right.content(),
+            left.encoding(),
+            right.encoding()
         );
     }
 
     public static MergeDocModel fromTexts(Path leftPath, Path rightPath, String leftText, String rightText) {
+        return fromTextsWithEncodings(
+            leftPath,
+            rightPath,
+            leftText,
+            rightText,
+            defaultUtf8Encoding(),
+            defaultUtf8Encoding()
+        );
+    }
+
+    private static MergeDocModel fromTextsWithEncodings(
+        Path leftPath,
+        Path rightPath,
+        String leftText,
+        String rightText,
+        FileTextEncoding leftEncoding,
+        FileTextEncoding rightEncoding
+    ) {
         Objects.requireNonNull(leftPath, "leftPath");
         Objects.requireNonNull(rightPath, "rightPath");
         Objects.requireNonNull(leftText, "leftText");
         Objects.requireNonNull(rightText, "rightText");
+        Objects.requireNonNull(leftEncoding, "leftEncoding");
+        Objects.requireNonNull(rightEncoding, "rightEncoding");
 
         List<TextLine> leftLines = splitLines(leftText);
         List<TextLine> rightLines = splitLines(rightText);
@@ -79,7 +108,9 @@ public final class MergeDocModel {
             Collections.unmodifiableList(rightLines),
             Collections.unmodifiableList(diffComputation.chunks()),
             diffComputation.usedGuardedFallback(),
-            detectPreferredEol(rightText)
+            detectPreferredEol(rightText),
+            leftEncoding,
+            rightEncoding
         );
     }
 
@@ -105,6 +136,10 @@ public final class MergeDocModel {
 
     public boolean usedGuardedDiffFallback() {
         return guardedDiffFallbackUsed;
+    }
+
+    public FileTextEncoding rightEncoding() {
+        return copyEncoding(rightEncoding);
     }
 
     public int leftLineCount() {
@@ -153,7 +188,21 @@ public final class MergeDocModel {
             preferredRightEol
         );
         mergedRightLines.addAll(rightStart, replacementLines);
-        return fromTexts(leftPath, rightPath, leftText, joinLines(mergedRightLines));
+        return fromTextsWithEncodings(leftPath, rightPath, leftText, joinLines(mergedRightLines), leftEncoding, rightEncoding);
+    }
+
+    private static FileTextEncoding defaultUtf8Encoding() {
+        FileTextEncoding encoding = new FileTextEncoding();
+        encoding.setCodepage(FileTextEncoding.CP_UTF_8);
+        encoding.setBom(false);
+        return encoding;
+    }
+
+    private static FileTextEncoding copyEncoding(FileTextEncoding source) {
+        FileTextEncoding copy = new FileTextEncoding();
+        copy.setCodepage(source.getCodepage());
+        copy.setBom(source.hasBom());
+        return copy;
     }
 
     private static List<TextLine> splitLines(String text) {

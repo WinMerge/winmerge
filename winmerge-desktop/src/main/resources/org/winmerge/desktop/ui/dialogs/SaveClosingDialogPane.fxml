@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.SaveClosingDialogController">
+    <content>
+        <VBox spacing="10.0" prefWidth="520.0">
+            <children>
+                <Label fx:id="promptLabel" wrapText="true" />
+                <Label text="File" />
+                <Label fx:id="filePathLabel" wrapText="true" style="-fx-font-family: 'Monospaced';" />
+            </children>
+        </VBox>
+    </content>
+</DialogPane>

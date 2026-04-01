@@ -76,7 +76,7 @@ public class MainController {
         requireInjected(menuBarViewController, "menuBarViewController");
         requireInjected(statusBarViewController, "statusBarViewController");
 
-        tabManager = new TabManager(mainTabPane);
+        tabManager = new TabManager(mainTabPane, dialogService);
         registerActions();
         menuBarViewController.bind(actionDispatcher);
         toolbarOpenButton.setOnAction(event -> actionDispatcher.dispatch(ActionId.FILE_OPEN));

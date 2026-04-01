@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import org.winmerge.desktop.ui.dialogs.DialogService;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogResult;
 import org.winmerge.desktop.ui.dialogs.WMGotoTarget;
@@ -45,9 +46,11 @@ public class TabManager {
     }
 
     private final TabPane tabPane;
+    private final DialogService dialogService;
 
-    public TabManager(TabPane tabPane) {
+    public TabManager(TabPane tabPane, DialogService dialogService) {
         this.tabPane = Objects.requireNonNull(tabPane, "tabPane");
+        this.dialogService = Objects.requireNonNull(dialogService, "dialogService");
     }
 
     public Tab openTab(String title, Node content) {
@@ -65,9 +68,11 @@ public class TabManager {
         if (tab == null) {
             return false;
         }
-        disposeController(tab.getUserData());
         final boolean[] removed = new boolean[1];
         runOnFxThreadAndWait(() -> removed[0] = tabPane.getTabs().remove(tab));
+        if (removed[0]) {
+            disposeController(tab.getUserData());
+        }
         return removed[0];
     }
 
@@ -123,6 +128,7 @@ public class TabManager {
                 mergeController.loadFiles(request.leftPath(), request.rightPath());
                 Tab tab = openTab(buildComparisonTabTitle(request.leftPath(), request.rightPath()), contentRoot);
                 tab.setUserData(mergeController);
+                installDirtyCloseGuard(tab, mergeController, safeStatus);
                 safeStatus.accept("Opened text diff: " + tab.getText());
                 return tab;
             }
@@ -218,6 +224,14 @@ public class TabManager {
         } catch (Exception ignored) {
             // Best-effort cleanup on tab close.
         }
+    }
+
+    private void installDirtyCloseGuard(Tab tab, DirtyTab dirtyTab, Consumer<String> statusListener) {
+        tab.setOnCloseRequest(event -> {
+            if (!SaveClosingHandler.confirmClose(dirtyTab, dialogService, statusListener)) {
+                event.consume();
+            }
+        });
     }
 
     private void runOnFxThreadAndWait(Runnable action) {

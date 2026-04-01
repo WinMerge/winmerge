@@ -12,8 +12,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.StackPane;
+import org.winmerge.core.io.NioFileSystemService;
+import org.winmerge.core.io.UnicodeFileWriter;
+import org.winmerge.desktop.ui.DirtyTab;
 
-public class MergeEditController implements AutoCloseable {
+public class MergeEditController implements AutoCloseable, DirtyTab {
     private static final long LARGE_FILE_BYTES = 5L * 1024L * 1024L;
 
     @FXML
@@ -51,6 +54,7 @@ public class MergeEditController implements AutoCloseable {
 
     private final TextMateGrammarParser grammarParser = new TextMateGrammarParser();
     private final MergeLoadExecutor loadExecutor = new MergeLoadExecutor("merge-file-loader");
+    private final UnicodeFileWriter fileWriter = new UnicodeFileWriter(new NioFileSystemService());
 
     private final SyntaxCodeArea leftEditor = new SyntaxCodeArea(grammarParser);
     private final SyntaxCodeArea rightEditor = new SyntaxCodeArea(grammarParser);
@@ -60,6 +64,7 @@ public class MergeEditController implements AutoCloseable {
     private int currentDiffIndex = -1;
     private volatile Task<MergeDocModel> activeLoadTask;
     private volatile boolean disposed;
+    private volatile boolean dirty;
 
     @FXML
     private void initialize() {
@@ -157,6 +162,7 @@ public class MergeEditController implements AutoCloseable {
             }
             model = loadTask.getValue();
             currentDiffIndex = model.hasDiffs() ? 0 : -1;
+            dirty = false;
             refreshView();
             setLoading(false);
             if (model.usedGuardedDiffFallback()) {
@@ -211,7 +217,11 @@ public class MergeEditController implements AutoCloseable {
         if (model == null || !model.hasDiffs() || currentDiffIndex < 0) {
             return;
         }
+        String previousRightText = model.rightText();
         model = model.mergeLeftChunkToRight(currentDiffIndex);
+        if (!Objects.equals(previousRightText, model.rightText())) {
+            dirty = true;
+        }
         if (model.hasDiffs()) {
             currentDiffIndex = Math.min(currentDiffIndex, model.diffChunks().size() - 1);
         } else {
@@ -303,6 +313,36 @@ public class MergeEditController implements AutoCloseable {
     @Override
     public void close() {
         dispose();
+    }
+
+    @Override
+    public boolean hasUnsavedChanges() {
+        return dirty;
+    }
+
+    @Override
+    public Path pathForSavePrompt() {
+        if (model == null) {
+            throw new IllegalStateException("Comparison model is not loaded.");
+        }
+        return model.rightPath();
+    }
+
+    @Override
+    public boolean saveChanges() {
+        if (model == null || !dirty) {
+            return true;
+        }
+
+        try {
+            fileWriter.write(model.rightPath(), model.rightText(), model.rightEncoding());
+            dirty = false;
+            statusListener.accept("Saved merged file: " + model.rightPath() + ".");
+            return true;
+        } catch (IOException ioException) {
+            statusListener.accept("Failed to save merged file: " + ioException.getMessage());
+            return false;
+        }
     }
 
     private void cancelActiveLoad() {

@@ -1,5 +1,6 @@
 package org.winmerge.desktop.ui.dialogs;
 
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -23,5 +24,11 @@ public final class DefaultDialogService implements DialogService {
     public Optional<WMGotoDialogResult> showGotoDialog(WMGotoDialogRequest request) {
         WMGotoDialog dialog = new WMGotoDialog(ownerSupplier.get(), request);
         return dialog.showAndWait();
+    }
+
+    @Override
+    public SaveClosingChoice showSaveClosingDialog(Path filePath) {
+        SaveClosingDialog dialog = new SaveClosingDialog(ownerSupplier.get(), filePath);
+        return dialog.showAndWait().orElse(SaveClosingChoice.CANCEL);
     }
 }
