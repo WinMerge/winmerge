@@ -1,0 +1,88 @@
+{
+  "issue": "AMP-26",
+  "evaluated_commit": "5162a4d73",
+  "baseline_commit": "a3dfd4d40",
+  "captured_at": "2026-04-02",
+  "method": {
+    "commands": [
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-core:clean :winmerge-core:build --rerun-tasks",
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-core:test --rerun-tasks"
+    ],
+    "notes": [
+      "Web metrics (page load, Core Web Vitals) are not applicable to AMP-26 because this phase modifies winmerge-core JUnit regression coverage and has no web runtime surface.",
+      "Resource-size comparison is captured from winmerge-core jar outputs.",
+      "Corpus per-case timing comes from DiffBaselineParityTest system-out for rollback-threshold monitoring (3x guard)."
+    ]
+  },
+  "metrics": {
+    "build_time_seconds": {
+      "baseline": 5.77,
+      "candidate": 4.97,
+      "delta_percent": -13.86
+    },
+    "core_test_time_seconds": {
+      "baseline": 5.03,
+      "candidate": 5.06,
+      "delta_percent": 0.60
+    },
+    "artifact_size_bytes": {
+      "jar": {
+        "baseline": 109742,
+        "candidate": 109742,
+        "delta_percent": 0.0
+      },
+      "sources_jar": {
+        "baseline": 46134,
+        "candidate": 46134,
+        "delta_percent": 0.0
+      }
+    },
+    "corpus_case_timing_ms": {
+      "empty_vs_empty": {
+        "baseline": 5.32,
+        "candidate": 0.21,
+        "ratio": 0.04
+      },
+      "empty_vs_single_line": {
+        "baseline": 5.97,
+        "candidate": 0.44,
+        "ratio": 0.07
+      },
+      "single_line_edit": {
+        "baseline": 6.11,
+        "candidate": 0.67,
+        "ratio": 0.11
+      },
+      "whitespace_only": {
+        "baseline": 5.44,
+        "candidate": 0.92,
+        "ratio": 0.17
+      },
+      "unicode_mutation": {
+        "baseline": 5.48,
+        "candidate": 1.90,
+        "ratio": 0.35
+      },
+      "binary_mutation": {
+        "baseline": 6.10,
+        "candidate": 0.46,
+        "ratio": 0.08
+      },
+      "large_over_1mb": {
+        "baseline": 28.94,
+        "candidate": 73.61,
+        "ratio": 2.54
+      }
+    }
+  },
+  "regression_policy": {
+    "threshold_percent": 10,
+    "status": "pass",
+    "violations": []
+  },
+  "rollback_threshold_monitoring": {
+    "corpus_max_ratio_threshold": 3.0,
+    "observed_max_ratio": 2.54,
+    "status": "pass"
+  }
+}

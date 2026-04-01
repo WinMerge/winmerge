@@ -1,0 +1,41 @@
+{
+  "issue": "AMP-26",
+  "tier": "Standard",
+  "tool": "playwright",
+  "mode": "headless",
+  "captured_at": "2026-04-02",
+  "flows": [
+    {
+      "name": "Baseline summary report",
+      "source": "file:///tmp/winmerge-qa-amp26-pre-2RPToq/winmerge-core/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-26/pre-a3dfd4d40-summary.png"
+    },
+    {
+      "name": "Baseline diff-engine suite details",
+      "source": "file:///tmp/winmerge-qa-amp26-pre-2RPToq/winmerge-core/build/reports/tests/test/classes/org.winmerge.core.diff.DiffEngineTest.html",
+      "screenshot": "migration-reports/qa/AMP-26/pre-a3dfd4d40-diff-engine.png"
+    },
+    {
+      "name": "Candidate summary report",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-core/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-26/post-5162a4d73-summary.png"
+    },
+    {
+      "name": "Candidate diff-engine suite details",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-core/build/reports/tests/test/classes/org.winmerge.core.diff.DiffEngineTest.html",
+      "screenshot": "migration-reports/qa/AMP-26/post-5162a4d73-diff-engine.png"
+    },
+    {
+      "name": "Candidate corpus parity suite details",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-core/build/reports/tests/test/classes/org.winmerge.core.diff.DiffBaselineParityTest.html",
+      "screenshot": "migration-reports/qa/AMP-26/post-5162a4d73-diff-baseline-parity.png"
+    }
+  ],
+  "results": {
+    "baseline_total_tests": 55,
+    "candidate_total_tests": 62,
+    "baseline_failures": 0,
+    "candidate_failures": 0,
+    "candidate_parity_tests": 7
+  }
+}

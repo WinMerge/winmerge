@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-04-02",
+  "phase": "2g",
+  "status": "complete",
+  "test_command": "./gradlew test",
+  "toolchain_available": true,
+  "exit_code": 0,
+  "total_tests": 135,
+  "passed": 135,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 1,
+  "test_suites": 52,
+  "modules": {
+    "winmerge-core": {"tests": 62, "failures": 0},
+    "winmerge-shell": {"tests": 13, "failures": 0},
+    "winmerge-plugins": {"tests": 7, "failures": 0},
+    "winmerge-desktop": {"tests": 53, "failures": 0}
+  },
+  "corpus_validation": {
+    "status": "complete",
+    "failure_rate_percent": 0.0,
+    "reason": "DiffBaselineParityTest wired to real compare engine path and passing all 7 corpus cases.",
+    "template_location": "migration-reports/pre-migration/baseline/diff-equivalence/junit5-harness-template/",
+    "target_location": "winmerge-core/src/test/java/org/winmerge/core/diff/DiffBaselineParityTest.java",
+    "qa_artifact": "migration-reports/qa/AMP-26/headless-results.json"
+  },
+  "performance_baseline": {
+    "status": "complete",
+    "reason": "Benchmark captured in QA artifact package.",
+    "qa_artifact": "migration-reports/qa/AMP-26/benchmark-comparison.json"
+  }
+}
