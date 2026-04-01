@@ -126,12 +126,21 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
             return;
         }
 
-        try (ArchiveOutputStream archiveOutput = openArchiveOutputStream(archivePath);
+        try (ArchiveOutputStream<?> archiveOutput = openArchiveOutputStream(archivePath);
              Stream<Path> stream = Files.walk(sourceDirectory)) {
-            stream
-                .filter(path -> !sourceDirectory.equals(path))
-                .sorted()
-                .forEach(path -> writeArchiveEntry(sourceDirectory, path, archiveOutput));
+            if (archiveOutput instanceof ZipArchiveOutputStream zipOutput) {
+                stream
+                    .filter(path -> !sourceDirectory.equals(path))
+                    .sorted()
+                    .forEach(path -> writeZipArchiveEntry(sourceDirectory, path, zipOutput));
+            } else if (archiveOutput instanceof TarArchiveOutputStream tarOutput) {
+                stream
+                    .filter(path -> !sourceDirectory.equals(path))
+                    .sorted()
+                    .forEach(path -> writeTarArchiveEntry(sourceDirectory, path, tarOutput));
+            } else {
+                throw new IOException("Unsupported archive output stream type: " + archiveOutput.getClass().getName());
+            }
             archiveOutput.finish();
         } catch (RuntimeException ex) {
             if (ex.getCause() instanceof IOException ioException) {
@@ -183,36 +192,35 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
         }
     }
 
-    private void writeArchiveEntry(Path sourceDirectory, Path path, ArchiveOutputStream archiveOutput) {
+    private void writeZipArchiveEntry(Path sourceDirectory, Path path, ZipArchiveOutputStream archiveOutput) {
         String entryName = sourceDirectory.relativize(path).toString().replace('\\', '/');
         try {
-            if (archiveOutput instanceof ZipArchiveOutputStream) {
-                ZipArchiveEntry entry = new ZipArchiveEntry(entryName + (Files.isDirectory(path) ? "/" : ""));
-                if (Files.isRegularFile(path)) {
-                    entry.setSize(Files.size(path));
-                }
-                archiveOutput.putArchiveEntry(entry);
-                if (Files.isRegularFile(path)) {
-                    Files.copy(path, archiveOutput);
-                }
-                archiveOutput.closeArchiveEntry();
-                return;
+            ZipArchiveEntry entry = new ZipArchiveEntry(entryName + (Files.isDirectory(path) ? "/" : ""));
+            if (Files.isRegularFile(path)) {
+                entry.setSize(Files.size(path));
             }
-
-            if (archiveOutput instanceof TarArchiveOutputStream) {
-                TarArchiveEntry entry = new TarArchiveEntry(path.toFile(), entryName);
-                if (Files.isDirectory(path) && !entryName.endsWith("/")) {
-                    entry.setName(entryName + "/");
-                }
-                archiveOutput.putArchiveEntry(entry);
-                if (Files.isRegularFile(path)) {
-                    Files.copy(path, archiveOutput);
-                }
-                archiveOutput.closeArchiveEntry();
-                return;
+            archiveOutput.putArchiveEntry(entry);
+            if (Files.isRegularFile(path)) {
+                Files.copy(path, archiveOutput);
             }
+            archiveOutput.closeArchiveEntry();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
-            throw new IOException("Unsupported archive output stream type: " + archiveOutput.getClass().getName());
+    private void writeTarArchiveEntry(Path sourceDirectory, Path path, TarArchiveOutputStream archiveOutput) {
+        String entryName = sourceDirectory.relativize(path).toString().replace('\\', '/');
+        try {
+            TarArchiveEntry entry = new TarArchiveEntry(path.toFile(), entryName);
+            if (Files.isDirectory(path) && !entryName.endsWith("/")) {
+                entry.setName(entryName + "/");
+            }
+            archiveOutput.putArchiveEntry(entry);
+            if (Files.isRegularFile(path)) {
+                Files.copy(path, archiveOutput);
+            }
+            archiveOutput.closeArchiveEntry();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -369,7 +377,7 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
         }
     }
 
-    private ArchiveOutputStream openArchiveOutputStream(Path archivePath) throws IOException {
+    private ArchiveOutputStream<?> openArchiveOutputStream(Path archivePath) throws IOException {
         String lower = archivePath.getFileName().toString().toLowerCase(Locale.ROOT);
 
         OutputStream fileOutput = new BufferedOutputStream(Files.newOutputStream(archivePath));
