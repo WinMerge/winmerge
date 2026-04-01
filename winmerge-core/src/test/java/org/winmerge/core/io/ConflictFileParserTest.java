@@ -141,8 +141,25 @@ class ConflictFileParserTest {
         String onWorking = new String(Files.readAllBytes(workingGuessOn), windows1252);
         String onTheirs = new String(Files.readAllBytes(theirsGuessOn), windows1252);
 
-        assertFalse(offWorking.contains("café"));
         assertTrue(onWorking.contains("café"));
         assertTrue(onTheirs.contains("thé"));
+        if (Charset.defaultCharset().name().equalsIgnoreCase("windows-1252")) {
+            assertTrue(offWorking.contains("café"));
+        } else {
+            assertFalse(offWorking.contains("café"));
+        }
+    }
+
+    @Test
+    void defaultsToProvidedSystemCodepageWhenGuessDisabled() {
+        byte[] bytes = "<<<<<<< mine\ncaf\u00E9\n=======\nfin\n>>>>>>> rev\n".getBytes(Charset.forName("windows-1252"));
+
+        FileTextEncoding noGuess = ConflictFileParser.guessEncodingForTests(bytes, 0, Charset.forName("windows-1252"));
+        assertEquals(1252, noGuess.getCodepage());
+        assertEquals(UnicodeEncoding.NONE, noGuess.getUnicoding());
+
+        FileTextEncoding guessEnabled = ConflictFileParser.guessEncodingForTests(bytes, 2, Charset.forName("windows-1252"));
+        assertEquals(1252, guessEnabled.getCodepage());
+        assertEquals(UnicodeEncoding.NONE, guessEnabled.getUnicoding());
     }
 }

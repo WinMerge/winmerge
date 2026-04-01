@@ -185,13 +185,20 @@ public final class ConflictFileParser {
     }
 
     private static FileTextEncoding guessEncoding(byte[] contentBytes, int guessEncodingType) {
+        return guessEncoding(contentBytes, guessEncodingType, Charset.defaultCharset());
+    }
+
+    static FileTextEncoding guessEncodingForTests(byte[] contentBytes, int guessEncodingType, Charset systemCharset) {
+        return guessEncoding(contentBytes, guessEncodingType, systemCharset);
+    }
+
+    private static FileTextEncoding guessEncoding(byte[] contentBytes, int guessEncodingType, Charset systemCharset) {
         FileTextEncoding encoding = detectBomEncoding(contentBytes);
         if (encoding.getUnicoding() != UnicodeEncoding.NONE) {
             return encoding;
         }
 
-        encoding.setUnicoding(UnicodeEncoding.UTF8);
-        encoding.setBom(false);
+        encoding = defaultEncodingForCharset(systemCharset);
 
         if (guessEncodingType == 0) {
             return encoding;
@@ -205,6 +212,52 @@ public final class ConflictFileParser {
             encoding.setCodepage(1252);
         }
         return encoding;
+    }
+
+    static FileTextEncoding defaultEncodingForCharset(Charset charset) {
+        FileTextEncoding encoding = new FileTextEncoding();
+        encoding.setBom(false);
+        String name = charset.name().toUpperCase();
+        if (name.equals("UTF-8")) {
+            encoding.setUnicoding(UnicodeEncoding.UTF8);
+            return encoding;
+        }
+        if (name.equals("UTF-16LE")) {
+            encoding.setUnicoding(UnicodeEncoding.UCS2LE);
+            return encoding;
+        }
+        if (name.equals("UTF-16BE")) {
+            encoding.setUnicoding(UnicodeEncoding.UCS2BE);
+            return encoding;
+        }
+
+        int codepage = parseCodepage(name);
+        if (codepage > 0) {
+            encoding.setCodepage(codepage);
+            return encoding;
+        }
+
+        encoding.setUnicoding(UnicodeEncoding.UTF8);
+        return encoding;
+    }
+
+    private static int parseCodepage(String charsetName) {
+        if (charsetName.startsWith("WINDOWS-")) {
+            return parsePositiveInt(charsetName.substring("WINDOWS-".length()));
+        }
+        if (charsetName.startsWith("CP")) {
+            return parsePositiveInt(charsetName.substring(2));
+        }
+        return -1;
+    }
+
+    private static int parsePositiveInt(String candidate) {
+        try {
+            int value = Integer.parseInt(candidate);
+            return value > 0 ? value : -1;
+        } catch (NumberFormatException ignored) {
+            return -1;
+        }
     }
 
     private static FileTextEncoding detectBomEncoding(byte[] contentBytes) {
