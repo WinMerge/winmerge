@@ -75,3 +75,20 @@
 .loading-overlay {
     -fx-background-color: rgba(255, 255, 255, 0.65);
 }
+
+.hex-path-toolbar {
+    -fx-padding: 4 8 4 8;
+    -fx-spacing: 6;
+}
+
+.hex-pane-side {
+    -fx-background-color: #ffffff;
+}
+
+.hex-canvas-container {
+    -fx-background-color: #ffffff;
+}
+
+.hex-grid-canvas {
+    -fx-background-color: #ffffff;
+}

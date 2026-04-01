@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.winmerge.desktop.ui.hex.HexGridCanvas?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.winmerge.desktop.ui.hex.HexController"
+      styleClass="hex-pane">
+    <children>
+        <ToolBar styleClass="hex-path-toolbar">
+            <items>
+                <Label text="Left:"/>
+                <Label fx:id="leftPathLabel" maxWidth="Infinity" text=""/>
+                <Label text="Right:"/>
+                <Label fx:id="rightPathLabel" maxWidth="Infinity" text=""/>
+            </items>
+        </ToolBar>
+        <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
+            <items>
+                <BorderPane styleClass="hex-pane-side">
+                    <center>
+                        <StackPane fx:id="leftCanvasContainer" styleClass="hex-canvas-container">
+                            <children>
+                                <HexGridCanvas fx:id="leftCanvas" styleClass="hex-grid-canvas"/>
+                            </children>
+                        </StackPane>
+                    </center>
+                    <right>
+                        <ScrollBar fx:id="leftScrollBar" orientation="VERTICAL"/>
+                    </right>
+                </BorderPane>
+                <BorderPane styleClass="hex-pane-side">
+                    <center>
+                        <StackPane fx:id="rightCanvasContainer" styleClass="hex-canvas-container">
+                            <children>
+                                <HexGridCanvas fx:id="rightCanvas" styleClass="hex-grid-canvas"/>
+                            </children>
+                        </StackPane>
+                    </center>
+                    <right>
+                        <ScrollBar fx:id="rightScrollBar" orientation="VERTICAL"/>
+                    </right>
+                </BorderPane>
+            </items>
+        </SplitPane>
+    </children>
+    <VBox.vgrow>
+        <Priority fx:constant="ALWAYS"/>
+    </VBox.vgrow>
+</VBox>
