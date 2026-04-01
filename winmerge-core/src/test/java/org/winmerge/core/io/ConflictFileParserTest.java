@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -161,5 +162,19 @@ class ConflictFileParserTest {
         FileTextEncoding guessEnabled = ConflictFileParser.guessEncodingForTests(bytes, 2, Charset.forName("windows-1252"));
         assertEquals(1252, guessEnabled.getCodepage());
         assertEquals(UnicodeEncoding.NONE, guessEnabled.getUnicoding());
+    }
+
+    @Test
+    void prefersUtf8WhenUtf8PayloadIsValidUnderNonUtfSystemCharset() {
+        byte[] utf8Bytes = "<<<<<<< mine\ncafé\n=======\nfin\n>>>>>>> rev\n".getBytes(StandardCharsets.UTF_8);
+
+        FileTextEncoding guessEnabled = ConflictFileParser.guessEncodingForTests(
+            utf8Bytes,
+            2,
+            Charset.forName("windows-1252")
+        );
+
+        assertEquals(FileTextEncoding.CP_UTF_8, guessEnabled.getCodepage());
+        assertEquals(UnicodeEncoding.UTF8, guessEnabled.getUnicoding());
     }
 }

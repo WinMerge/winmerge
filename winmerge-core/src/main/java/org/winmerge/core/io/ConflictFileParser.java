@@ -205,7 +205,10 @@ public final class ConflictFileParser {
         }
 
         if (isValidUtf8(contentBytes)) {
-            return encoding;
+            FileTextEncoding utf8 = new FileTextEncoding();
+            utf8.setBom(false);
+            utf8.setUnicoding(UnicodeEncoding.UTF8);
+            return utf8;
         }
 
         if ((guessEncodingType & 2) != 0) {
