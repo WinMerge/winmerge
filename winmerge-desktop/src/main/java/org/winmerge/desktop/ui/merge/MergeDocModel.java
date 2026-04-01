@@ -1,31 +1,40 @@
 package org.winmerge.desktop.ui.merge;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import org.winmerge.core.io.NioFileSystemService;
+import org.winmerge.core.io.UnicodeFileReader;
+
 public final class MergeDocModel {
+    private static final long MAX_LCS_MATRIX_CELLS = 8_000_000L;
+    private static final String DEFAULT_EOL = "\n";
+    private static final UnicodeFileReader FILE_READER = new UnicodeFileReader(new NioFileSystemService());
+
     private final Path leftPath;
     private final Path rightPath;
     private final String leftText;
     private final String rightText;
-    private final List<String> leftLines;
-    private final List<String> rightLines;
+    private final List<TextLine> leftLines;
+    private final List<TextLine> rightLines;
     private final List<DiffChunk> diffChunks;
+    private final boolean guardedDiffFallbackUsed;
+    private final String preferredRightEol;
 
     private MergeDocModel(
         Path leftPath,
         Path rightPath,
         String leftText,
         String rightText,
-        List<String> leftLines,
-        List<String> rightLines,
-        List<DiffChunk> diffChunks
+        List<TextLine> leftLines,
+        List<TextLine> rightLines,
+        List<DiffChunk> diffChunks,
+        boolean guardedDiffFallbackUsed,
+        String preferredRightEol
     ) {
         this.leftPath = leftPath;
         this.rightPath = rightPath;
@@ -34,16 +43,20 @@ public final class MergeDocModel {
         this.leftLines = leftLines;
         this.rightLines = rightLines;
         this.diffChunks = diffChunks;
+        this.guardedDiffFallbackUsed = guardedDiffFallbackUsed;
+        this.preferredRightEol = preferredRightEol;
     }
 
     public static MergeDocModel load(Path leftPath, Path rightPath) throws IOException {
         Objects.requireNonNull(leftPath, "leftPath");
         Objects.requireNonNull(rightPath, "rightPath");
+        UnicodeFileReader.ReadResult left = FILE_READER.readAll(leftPath);
+        UnicodeFileReader.ReadResult right = FILE_READER.readAll(rightPath);
         return fromTexts(
             leftPath,
             rightPath,
-            Files.readString(leftPath, StandardCharsets.UTF_8),
-            Files.readString(rightPath, StandardCharsets.UTF_8)
+            left.content(),
+            right.content()
         );
     }
 
@@ -53,9 +66,9 @@ public final class MergeDocModel {
         Objects.requireNonNull(leftText, "leftText");
         Objects.requireNonNull(rightText, "rightText");
 
-        List<String> leftLines = splitLines(leftText);
-        List<String> rightLines = splitLines(rightText);
-        List<DiffChunk> chunks = computeDiffChunks(leftLines, rightLines);
+        List<TextLine> leftLines = splitLines(leftText);
+        List<TextLine> rightLines = splitLines(rightText);
+        DiffComputation diffComputation = computeDiffChunks(toComparableLines(leftLines), toComparableLines(rightLines));
 
         return new MergeDocModel(
             leftPath,
@@ -64,7 +77,9 @@ public final class MergeDocModel {
             rightText,
             Collections.unmodifiableList(leftLines),
             Collections.unmodifiableList(rightLines),
-            Collections.unmodifiableList(chunks)
+            Collections.unmodifiableList(diffComputation.chunks()),
+            diffComputation.usedGuardedFallback(),
+            detectPreferredEol(rightText)
         );
     }
 
@@ -86,6 +101,10 @@ public final class MergeDocModel {
 
     public List<DiffChunk> diffChunks() {
         return diffChunks;
+    }
+
+    public boolean usedGuardedDiffFallback() {
+        return guardedDiffFallbackUsed;
     }
 
     public int leftLineCount() {
@@ -125,30 +144,121 @@ public final class MergeDocModel {
             return this;
         }
         DiffChunk chunk = diffChunks.get(diffIndex);
-        List<String> mergedRightLines = new ArrayList<>(rightLines);
+        List<TextLine> mergedRightLines = new ArrayList<>(rightLines);
         int rightStart = chunk.rightStartLine();
         int rightEnd = chunk.rightEndLine();
         mergedRightLines.subList(rightStart, rightEnd).clear();
-        mergedRightLines.addAll(
-            rightStart,
-            leftLines.subList(chunk.leftStartLine(), chunk.leftEndLine())
+        List<TextLine> replacementLines = normalizeLineEndings(
+            leftLines.subList(chunk.leftStartLine(), chunk.leftEndLine()),
+            preferredRightEol
         );
-
+        mergedRightLines.addAll(rightStart, replacementLines);
         return fromTexts(leftPath, rightPath, leftText, joinLines(mergedRightLines));
     }
 
-    private static List<String> splitLines(String text) {
-        String normalized = text.replace("\r\n", "\n").replace('\r', '\n');
-        return new ArrayList<>(List.of(normalized.split("\n", -1)));
+    private static List<TextLine> splitLines(String text) {
+        List<TextLine> lines = new ArrayList<>();
+        int start = 0;
+        int index = 0;
+        while (index < text.length()) {
+            char value = text.charAt(index);
+            if (value == '\r' || value == '\n') {
+                String eol;
+                if (value == '\r' && index + 1 < text.length() && text.charAt(index + 1) == '\n') {
+                    eol = "\r\n";
+                    index += 2;
+                } else {
+                    eol = value == '\r' ? "\r" : "\n";
+                    index++;
+                }
+                lines.add(new TextLine(text.substring(start, index - eol.length()), eol));
+                start = index;
+                continue;
+            }
+            index++;
+        }
+        if (start < text.length()) {
+            lines.add(new TextLine(text.substring(start), ""));
+        } else if (text.isEmpty() || hasTerminalEol(text)) {
+            lines.add(new TextLine("", ""));
+        }
+        return lines;
     }
 
-    private static String joinLines(List<String> lines) {
-        return String.join("\n", lines);
+    private static List<String> toComparableLines(List<TextLine> lines) {
+        List<String> comparable = new ArrayList<>(lines.size());
+        for (TextLine line : lines) {
+            comparable.add(line.content() + '\u0000' + line.eol());
+        }
+        return comparable;
     }
 
-    private static List<DiffChunk> computeDiffChunks(List<String> left, List<String> right) {
+    private static String joinLines(List<TextLine> lines) {
+        StringBuilder builder = new StringBuilder();
+        for (TextLine line : lines) {
+            builder.append(line.content());
+            builder.append(line.eol());
+        }
+        return builder.toString();
+    }
+
+    private static List<TextLine> normalizeLineEndings(List<TextLine> lines, String preferredEol) {
+        List<TextLine> normalized = new ArrayList<>(lines.size());
+        for (TextLine line : lines) {
+            String eol = line.eol().isEmpty() ? "" : preferredEol;
+            normalized.add(new TextLine(line.content(), eol));
+        }
+        return normalized;
+    }
+
+    private static String detectPreferredEol(String text) {
+        int crlf = 0;
+        int lf = 0;
+        int cr = 0;
+        for (int i = 0; i < text.length(); i++) {
+            char value = text.charAt(i);
+            if (value == '\r') {
+                if (i + 1 < text.length() && text.charAt(i + 1) == '\n') {
+                    crlf++;
+                    i++;
+                } else {
+                    cr++;
+                }
+            } else if (value == '\n') {
+                lf++;
+            }
+        }
+        if (crlf >= lf && crlf >= cr && crlf > 0) {
+            return "\r\n";
+        }
+        if (lf >= cr && lf > 0) {
+            return "\n";
+        }
+        if (cr > 0) {
+            return "\r";
+        }
+        return DEFAULT_EOL;
+    }
+
+    private static boolean hasTerminalEol(String text) {
+        if (text.isEmpty()) {
+            return false;
+        }
+        char last = text.charAt(text.length() - 1);
+        return last == '\n' || last == '\r';
+    }
+
+    private static DiffComputation computeDiffChunks(List<String> left, List<String> right) {
         if (left.equals(right)) {
-            return List.of();
+            return new DiffComputation(List.of(), false);
+        }
+
+        long matrixCells = (long) left.size() * (long) right.size();
+        if (matrixCells > MAX_LCS_MATRIX_CELLS) {
+            return new DiffComputation(
+                List.of(new DiffChunk(0, left.size(), 0, right.size())),
+                true
+            );
         }
 
         List<EditStep> steps = computeEditScript(left, right);
@@ -185,7 +295,7 @@ public final class MergeDocModel {
         if (inChunk) {
             chunks.add(new DiffChunk(chunkLeftStart, leftLine, chunkRightStart, rightLine));
         }
-        return chunks;
+        return new DiffComputation(chunks, false);
     }
 
     private static List<EditStep> computeEditScript(List<String> left, List<String> right) {
@@ -286,5 +396,11 @@ public final class MergeDocModel {
         EQUAL,
         INSERT,
         DELETE
+    }
+
+    private record TextLine(String content, String eol) {
+    }
+
+    private record DiffComputation(List<DiffChunk> chunks, boolean usedGuardedFallback) {
     }
 }

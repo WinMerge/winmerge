@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 import javafx.concurrent.Task;
@@ -15,7 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.StackPane;
 
-public class MergeEditController {
+public class MergeEditController implements AutoCloseable {
     private static final long LARGE_FILE_BYTES = 5L * 1024L * 1024L;
 
     @FXML
@@ -52,13 +50,7 @@ public class MergeEditController {
     private LocationController locationPaneViewController;
 
     private final TextMateGrammarParser grammarParser = new TextMateGrammarParser();
-    private final ExecutorService ioExecutor = Executors.newSingleThreadExecutor(
-        runnable -> {
-            Thread thread = new Thread(runnable, "merge-file-loader");
-            thread.setDaemon(true);
-            return thread;
-        }
-    );
+    private final MergeLoadExecutor loadExecutor = new MergeLoadExecutor("merge-file-loader");
 
     private final SyntaxCodeArea leftEditor = new SyntaxCodeArea(grammarParser);
     private final SyntaxCodeArea rightEditor = new SyntaxCodeArea(grammarParser);
@@ -66,6 +58,8 @@ public class MergeEditController {
 
     private MergeDocModel model;
     private int currentDiffIndex = -1;
+    private volatile Task<MergeDocModel> activeLoadTask;
+    private volatile boolean disposed;
 
     @FXML
     private void initialize() {
@@ -134,6 +128,12 @@ public class MergeEditController {
     public void loadFiles(Path leftPath, Path rightPath) {
         Objects.requireNonNull(leftPath, "leftPath");
         Objects.requireNonNull(rightPath, "rightPath");
+        if (disposed) {
+            statusListener.accept("Comparison tab is closing; load skipped.");
+            return;
+        }
+
+        cancelActiveLoad();
 
         leftPathLabel.setText(leftPath.toString());
         rightPathLabel.setText(rightPath.toString());
@@ -148,22 +148,46 @@ public class MergeEditController {
                 return MergeDocModel.load(leftPath, rightPath);
             }
         };
+        activeLoadTask = loadTask;
 
         loadTask.setOnSucceeded(event -> {
+            activeLoadTask = null;
+            if (disposed || loadTask.isCancelled()) {
+                return;
+            }
             model = loadTask.getValue();
             currentDiffIndex = model.hasDiffs() ? 0 : -1;
             refreshView();
             setLoading(false);
-            statusListener.accept("Loaded diff: " + model.diffChunks().size() + " change block(s).");
+            if (model.usedGuardedDiffFallback()) {
+                statusListener.accept(
+                    "Loaded diff with fallback range due to file size guard (" + model.diffChunks().size() + " block)."
+                );
+            } else {
+                statusListener.accept("Loaded diff: " + model.diffChunks().size() + " change block(s).");
+            }
         });
 
         loadTask.setOnFailed(event -> {
+            activeLoadTask = null;
+            if (disposed || loadTask.isCancelled()) {
+                return;
+            }
             Throwable failure = loadTask.getException();
             setLoading(false);
             statusListener.accept("Failed to load files: " + failure.getMessage());
         });
 
-        ioExecutor.submit(loadTask);
+        loadTask.setOnCancelled(event -> {
+            activeLoadTask = null;
+            if (disposed) {
+                return;
+            }
+            setLoading(false);
+            statusListener.accept("File load cancelled.");
+        });
+
+        loadExecutor.submit(loadTask);
     }
 
     @FXML
@@ -265,5 +289,28 @@ public class MergeEditController {
 
     private static void requireInjected(Object field, String fieldName) {
         Objects.requireNonNull(field, () -> "Missing @FXML injection for " + fieldName);
+    }
+
+    public void dispose() {
+        if (disposed) {
+            return;
+        }
+        disposed = true;
+        cancelActiveLoad();
+        loadExecutor.close();
+    }
+
+    @Override
+    public void close() {
+        dispose();
+    }
+
+    private void cancelActiveLoad() {
+        Task<MergeDocModel> task = activeLoadTask;
+        if (task != null) {
+            task.cancel(true);
+        }
+        loadExecutor.cancelActive();
+        activeLoadTask = null;
     }
 }

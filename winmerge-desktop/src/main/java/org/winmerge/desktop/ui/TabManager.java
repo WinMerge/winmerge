@@ -53,6 +53,7 @@ public class TabManager {
     public Tab openTab(String title, Node content) {
         Tab tab = new Tab(Objects.requireNonNull(title, "title"), Objects.requireNonNull(content, "content"));
         tab.setClosable(true);
+        tab.setOnClosed(event -> disposeController(tab.getUserData()));
         runOnFxThreadAndWait(() -> {
             tabPane.getTabs().add(tab);
             tabPane.getSelectionModel().select(tab);
@@ -64,6 +65,7 @@ public class TabManager {
         if (tab == null) {
             return false;
         }
+        disposeController(tab.getUserData());
         final boolean[] removed = new boolean[1];
         runOnFxThreadAndWait(() -> removed[0] = tabPane.getTabs().remove(tab));
         return removed[0];
@@ -205,6 +207,17 @@ public class TabManager {
             }
         }
         return nonTextCount > (bytesRead / 5);
+    }
+
+    static void disposeController(Object controller) {
+        if (!(controller instanceof AutoCloseable closeable)) {
+            return;
+        }
+        try {
+            closeable.close();
+        } catch (Exception ignored) {
+            // Best-effort cleanup on tab close.
+        }
     }
 
     private void runOnFxThreadAndWait(Runnable action) {
