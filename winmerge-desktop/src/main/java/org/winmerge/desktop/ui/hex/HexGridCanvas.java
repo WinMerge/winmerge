@@ -34,6 +34,7 @@ public final class HexGridCanvas extends Canvas {
     private HexDocModel model;
     private HexDocModel.Side side = HexDocModel.Side.LEFT;
     private double firstVisibleRow;
+    private String placeholderText = "Open two files to show hex diff.";
 
     public HexGridCanvas() {
         widthProperty().addListener((obs, oldValue, newValue) -> redraw());
@@ -44,6 +45,13 @@ public final class HexGridCanvas extends Canvas {
     public void setModel(HexDocModel model) {
         this.model = model;
         redraw();
+    }
+
+    public void setPlaceholderText(String placeholderText) {
+        this.placeholderText = Objects.requireNonNull(placeholderText, "placeholderText");
+        if (model == null) {
+            redraw();
+        }
     }
 
     public void setSide(HexDocModel.Side side) {
@@ -73,7 +81,7 @@ public final class HexGridCanvas extends Canvas {
         if (model == null) {
             gc.setFont(BODY_FONT);
             gc.setFill(COLOR_PLACEHOLDER);
-            gc.fillText("Open two files to show hex diff.", OFFSET_X, HEADER_HEIGHT + ROW_HEIGHT);
+            gc.fillText(placeholderText, OFFSET_X, HEADER_HEIGHT + ROW_HEIGHT);
             return;
         }
 

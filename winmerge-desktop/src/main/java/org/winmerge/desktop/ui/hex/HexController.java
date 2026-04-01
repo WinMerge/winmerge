@@ -1,17 +1,19 @@
 package org.winmerge.desktop.ui.hex;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.StackPane;
 
-public final class HexController {
+public final class HexController implements AutoCloseable {
+    private static final String DEFAULT_PLACEHOLDER_TEXT = "Open two files to show hex diff.";
+
     @FXML
     private Label leftPathLabel;
 
@@ -39,6 +41,9 @@ public final class HexController {
     private Consumer<String> statusListener = message -> { };
     private HexDocModel model;
     private boolean syncingScroll;
+    private final HexLoadExecutor loadExecutor = new HexLoadExecutor("hex-file-loader");
+    private volatile Task<HexDocModel> activeLoadTask;
+    private volatile boolean disposed;
 
     @FXML
     private void initialize() {
@@ -58,6 +63,8 @@ public final class HexController {
         leftCanvas.heightProperty().bind(leftCanvasContainer.heightProperty());
         rightCanvas.widthProperty().bind(rightCanvasContainer.widthProperty());
         rightCanvas.heightProperty().bind(rightCanvasContainer.heightProperty());
+        leftCanvas.setPlaceholderText(DEFAULT_PLACEHOLDER_TEXT);
+        rightCanvas.setPlaceholderText(DEFAULT_PLACEHOLDER_TEXT);
 
         leftScrollBar.valueProperty().addListener((obs, oldValue, newValue) -> applySharedScroll(newValue.doubleValue(), true));
         rightScrollBar.valueProperty().addListener((obs, oldValue, newValue) -> applySharedScroll(newValue.doubleValue(), false));
@@ -75,22 +82,83 @@ public final class HexController {
         this.statusListener = Objects.requireNonNull(statusListener, "statusListener");
     }
 
-    public void loadFiles(Path leftPath, Path rightPath) throws IOException {
+    public void loadFiles(Path leftPath, Path rightPath) {
         Objects.requireNonNull(leftPath, "leftPath");
         Objects.requireNonNull(rightPath, "rightPath");
+        if (disposed) {
+            statusListener.accept("Hex tab is closing; load skipped.");
+            return;
+        }
+
+        cancelActiveLoad();
 
         leftPathLabel.setText(leftPath.toString());
         rightPathLabel.setText(rightPath.toString());
 
-        model = HexDocModel.load(leftPath, rightPath);
-        leftCanvas.setModel(model);
-        rightCanvas.setModel(model);
-
+        model = null;
+        leftCanvas.setModel(null);
+        rightCanvas.setModel(null);
+        leftCanvas.setPlaceholderText("Loading binary files...");
+        rightCanvas.setPlaceholderText("Loading binary files...");
+        statusListener.accept("Loading binary files...");
         updateScrollMetrics();
         setSharedScrollValue(0.0);
 
-        String diffStatus = model.hasDiffs() ? "Differences highlighted." : "Files are identical.";
-        statusListener.accept("Opened binary hex view. " + diffStatus);
+        Task<HexDocModel> loadTask = new Task<>() {
+            @Override
+            protected HexDocModel call() throws Exception {
+                return HexDocModel.load(leftPath, rightPath);
+            }
+        };
+        activeLoadTask = loadTask;
+
+        loadTask.setOnSucceeded(event -> {
+            activeLoadTask = null;
+            if (disposed || loadTask.isCancelled()) {
+                return;
+            }
+            model = loadTask.getValue();
+            leftCanvas.setModel(model);
+            rightCanvas.setModel(model);
+            updateScrollMetrics();
+            setSharedScrollValue(0.0);
+
+            String diffStatus = model.hasDiffs() ? "Differences highlighted." : "Files are identical.";
+            statusListener.accept("Opened binary hex view. " + diffStatus);
+        });
+
+        loadTask.setOnFailed(event -> {
+            activeLoadTask = null;
+            if (disposed || loadTask.isCancelled()) {
+                return;
+            }
+            Throwable failure = loadTask.getException();
+            model = null;
+            leftCanvas.setModel(null);
+            rightCanvas.setModel(null);
+            leftCanvas.setPlaceholderText("Unable to load binary files.");
+            rightCanvas.setPlaceholderText("Unable to load binary files.");
+            updateScrollMetrics();
+            setSharedScrollValue(0.0);
+            statusListener.accept(formatLoadFailure(failure));
+        });
+
+        loadTask.setOnCancelled(event -> {
+            activeLoadTask = null;
+            if (disposed) {
+                return;
+            }
+            model = null;
+            leftCanvas.setModel(null);
+            rightCanvas.setModel(null);
+            leftCanvas.setPlaceholderText(DEFAULT_PLACEHOLDER_TEXT);
+            rightCanvas.setPlaceholderText(DEFAULT_PLACEHOLDER_TEXT);
+            updateScrollMetrics();
+            setSharedScrollValue(0.0);
+            statusListener.accept("Binary file load cancelled.");
+        });
+
+        loadExecutor.submit(loadTask);
     }
 
     private void onCanvasScroll(ScrollEvent event) {
@@ -165,5 +233,34 @@ public final class HexController {
 
     private static void requireInjected(Object field, String fieldName) {
         Objects.requireNonNull(field, () -> "Missing @FXML injection for " + fieldName);
+    }
+
+    private static String formatLoadFailure(Throwable failure) {
+        if (failure instanceof HexDocModel.HexLoadLimitExceededException limitExceeded) {
+            return "Hex view size guard: '" + limitExceeded.path().getFileName() + "' is "
+                + HexDocModel.formatMiB(limitExceeded.sizeBytes())
+                + " (limit " + HexDocModel.formatMiB(limitExceeded.limitBytes()) + ").";
+        }
+        String reason = failure == null || failure.getMessage() == null ? "unknown error" : failure.getMessage();
+        return "Failed to load binary files: " + reason;
+    }
+
+    private void cancelActiveLoad() {
+        Task<HexDocModel> task = activeLoadTask;
+        if (task != null) {
+            task.cancel(true);
+        }
+        loadExecutor.cancelActive();
+        activeLoadTask = null;
+    }
+
+    @Override
+    public void close() {
+        if (disposed) {
+            return;
+        }
+        disposed = true;
+        cancelActiveLoad();
+        loadExecutor.close();
     }
 }
