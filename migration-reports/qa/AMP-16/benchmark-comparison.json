@@ -1,6 +1,6 @@
 {
   "issue": "AMP-16",
-  "evaluated_commit": "b25b10bb1+qa-local",
+  "evaluated_commit": "e29cad8b3",
   "baseline_commit": "d32e60995",
   "captured_at": "2026-04-01",
   "method": {

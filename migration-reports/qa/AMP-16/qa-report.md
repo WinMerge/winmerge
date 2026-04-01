@@ -7,7 +7,7 @@
 - **Release Recommendation:** Ready for handoff to Release Engineer
 
 ## Scope Verified
-- Commit under QA: `b25b10bb1` + QA hardening for deterministic test execution
+- Commit under QA: `e29cad8b3` (includes AMP-16 design-review commits through `b25b10bb1` plus QA hardening for deterministic test execution)
 - Baseline for comparison: `d32e60995`
 - Migrated surface under test:
   - `winmerge-desktop/src/main/java/org/winmerge/desktop/ui/hex/HexDocModel.java`
