@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropCompareImageTab">
+<VBox fx:id="contentRoot" alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropCompareImageTab">
     <children>
-        <Label text="PropCompareImageTab" style="-fx-font-size: 14; -fx-font-weight: bold;" />
-        <Label wrapText="true" text="This tab is scaffolded for the phase 2c options migration and is ready for detailed field bindings." />
+        <Label text="Compare image options" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <CheckBox text="Enable image compare in directory compare" userData="bool|options.compareImage.enableInDirectoryCompare|false" />
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Image file patterns:" />
+                <TextField HBox.hgrow="ALWAYS" userData="string|options.compareImage.filePatterns|*.png;*.jpg" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="OCR result type:" />
+                <Spinner prefWidth="90.0" userData="int|options.compareImage.ocrResultType|0|0|3" />
+            </children>
+        </HBox>
     </children>
     <padding>
         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />

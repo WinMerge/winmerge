@@ -27,6 +27,7 @@ import org.winmerge.desktop.ui.open.OpenController;
 import org.winmerge.desktop.ui.options.AppSettings;
 import org.winmerge.desktop.ui.options.AppSettingsStore;
 import org.winmerge.desktop.ui.options.OptionsDialog;
+import org.winmerge.desktop.ui.options.OptionsDialogSession;
 
 public class MainController {
     private static final String GNU_ASCII = """
@@ -126,21 +127,16 @@ public class MainController {
     }
 
     private void openOptionsDialog() {
-        AppSettings baseline = appSettings.copy();
-        AppSettings draft = appSettings.copy();
+        OptionsDialogSession session = new OptionsDialogSession(appSettings, appSettingsStore);
 
-        OptionsDialog optionsDialog = new OptionsDialog(primaryStage, draft, () -> {
-            appSettings.applyFrom(draft);
+        OptionsDialog optionsDialog = new OptionsDialog(primaryStage, session.draft(), () -> {
+            session.applyPreview();
             statusBarViewController.setStatusText("Options applied (preview).");
         });
 
-        Optional<ButtonType> result = optionsDialog.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            appSettings.applyFrom(draft);
-            appSettingsStore.save(appSettings);
+        if (session.finish(optionsDialog.showAndWait())) {
             statusBarViewController.setStatusText("Options saved.");
         } else {
-            appSettings.applyFrom(baseline);
             statusBarViewController.setStatusText("Options changes discarded.");
         }
     }

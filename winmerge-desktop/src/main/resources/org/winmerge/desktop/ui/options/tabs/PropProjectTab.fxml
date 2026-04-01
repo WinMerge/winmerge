@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropProjectTab">
+<VBox fx:id="contentRoot" alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropProjectTab">
     <children>
-        <Label text="PropProjectTab" style="-fx-font-size: 14; -fx-font-weight: bold;" />
-        <Label wrapText="true" text="This tab is scaffolded for the phase 2c options migration and is ready for detailed field bindings." />
+        <Label text="Project" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <CheckBox text="Include file filters on project open" userData="bool|options.project.includeFileFiltersOnOpen|false" />
+        <CheckBox text="Include compare options on project load" userData="bool|options.project.includeCompareOptionsOnLoad|false" />
+        <CheckBox text="Include hidden-items setting on project save" userData="bool|options.project.includeHiddenItemsOnSave|false" />
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Project matrix JSON:" />
+                <TextField HBox.hgrow="ALWAYS" userData="string|options.project.matrixJson|" />
+            </children>
+        </HBox>
     </children>
     <padding>
         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />

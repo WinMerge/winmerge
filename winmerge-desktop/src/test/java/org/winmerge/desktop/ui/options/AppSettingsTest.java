@@ -12,22 +12,31 @@ class AppSettingsTest {
         AppSettings source = new AppSettings();
         source.setAutomaticRescan(false);
         source.setEditorTabSize(8);
+        source.setBoolean("options.compare.ignoreCase", false, true);
+        source.setInteger("options.compare.diffAlgorithm", 0, 2);
+        source.setString("options.compareBinary.filePatterns", "*.bin", "*.bin;*.dat");
 
         AppSettings copy = source.copy();
         assertFalse(copy.isAutomaticRescan());
         assertEquals(8, copy.getEditorTabSize());
+        assertTrue(copy.getBoolean("options.compare.ignoreCase", false));
+        assertEquals(2, copy.getInteger("options.compare.diffAlgorithm", 0));
+        assertEquals("*.bin;*.dat", copy.getString("options.compareBinary.filePatterns", "*.bin"));
 
         source.setAutomaticRescan(true);
         source.setEditorTabSize(2);
+        source.setBoolean("options.compare.ignoreCase", false, false);
 
         assertFalse(copy.isAutomaticRescan());
         assertEquals(8, copy.getEditorTabSize());
+        assertTrue(copy.getBoolean("options.compare.ignoreCase", false));
 
         AppSettings target = new AppSettings();
         target.applyFrom(source);
 
         assertTrue(target.isAutomaticRescan());
         assertEquals(2, target.getEditorTabSize());
+        assertFalse(target.getBoolean("options.compare.ignoreCase", false));
     }
 
     @Test

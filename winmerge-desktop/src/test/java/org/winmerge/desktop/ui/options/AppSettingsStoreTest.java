@@ -20,6 +20,8 @@ class AppSettingsStoreTest {
 
         assertTrue(settings.isAutomaticRescan());
         assertEquals(4, settings.getEditorTabSize());
+        assertFalse(settings.getBoolean("options.compare.ignoreCase", false));
+        assertEquals("*.bin", settings.getString("options.compareBinary.filePatterns", ""));
     }
 
     @Test
@@ -30,11 +32,15 @@ class AppSettingsStoreTest {
         AppSettings input = new AppSettings();
         input.setAutomaticRescan(false);
         input.setEditorTabSize(6);
+        input.setBoolean("options.compare.ignoreCase", false, true);
+        input.setString("options.compareBinary.filePatterns", "*.bin", "*.bin;*.dat");
         store.save(input);
 
         AppSettings loaded = store.load();
         assertFalse(loaded.isAutomaticRescan());
         assertEquals(6, loaded.getEditorTabSize());
+        assertTrue(loaded.getBoolean("options.compare.ignoreCase", false));
+        assertEquals("*.bin;*.dat", loaded.getString("options.compareBinary.filePatterns", ""));
     }
 
     private static final class InMemoryConfigurationStore implements ConfigurationStore {

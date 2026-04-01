@@ -1,13 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropCompareFolderTab">
+<VBox fx:id="contentRoot" alignment="TOP_LEFT" spacing="8.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropCompareFolderTab">
     <children>
-        <Label text="PropCompareFolderTab" style="-fx-font-size: 14; -fx-font-weight: bold;" />
-        <Label wrapText="true" text="This tab is scaffolded for the phase 2c options migration and is ready for detailed field bindings." />
+        <Label text="Compare folder options" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <CheckBox text="Stop after first difference" userData="bool|options.compareFolder.stopAfterFirst|false" />
+        <CheckBox text="Ignore small file time differences" userData="bool|options.compareFolder.ignoreSmallTimeDiff|false" />
+        <CheckBox text="Include unique folders" userData="bool|options.compareFolder.includeUniqueFolders|false" />
+        <CheckBox text="Include subdirectories" userData="bool|options.compareFolder.includeSubdirs|false" />
+        <CheckBox text="Ignore reparse points" userData="bool|options.compareFolder.ignoreReparsePoints|false" />
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Compare method:" />
+                <Spinner prefWidth="90.0" userData="int|options.compareFolder.compareMethod|0|0|3" />
+                <Label text="Expand subdirs:" />
+                <Spinner prefWidth="90.0" userData="int|options.compareFolder.expandSubdirsMode|0|0|3" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Quick limit (MB):" />
+                <Spinner prefWidth="100.0" userData="int|options.compareFolder.quickCompareLimit|4|1|2048" />
+                <Label text="Binary limit (MB):" />
+                <Spinner prefWidth="100.0" userData="int|options.compareFolder.binaryCompareLimit|4|1|2048" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Compare threads:" />
+                <Spinner prefWidth="100.0" userData="int|options.compareFolder.compareThreads|1|1|64" />
+                <Label text="Rename/move detection:" />
+                <Spinner prefWidth="100.0" userData="int|options.compareFolder.renameMoveDetection|0|0|3" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Rename/move merge mode:" />
+                <Spinner prefWidth="100.0" userData="int|options.compareFolder.renameMoveMergeMode|0|0|3" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Additional condition:" />
+                <TextField HBox.hgrow="ALWAYS" userData="string|options.compareFolder.additionalCondition|" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Rename/move key:" />
+                <TextField HBox.hgrow="ALWAYS" userData="string|options.compareFolder.renameMoveKey|" />
+            </children>
+        </HBox>
     </children>
     <padding>
         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />

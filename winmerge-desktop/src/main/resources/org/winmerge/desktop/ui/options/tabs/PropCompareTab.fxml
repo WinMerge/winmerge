@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropCompareTab">
+<VBox fx:id="contentRoot" alignment="TOP_LEFT" spacing="8.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropCompareTab">
     <children>
-        <Label text="PropCompareTab" style="-fx-font-size: 14; -fx-font-weight: bold;" />
-        <Label wrapText="true" text="This tab is scaffolded for the phase 2c options migration and is ready for detailed field bindings." />
+        <Label text="Compare options" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <CheckBox text="Ignore blank lines" userData="bool|options.compare.ignoreBlankLines|false" />
+        <CheckBox text="Filter comment lines" userData="bool|options.compare.filterCommentLines|false" />
+        <CheckBox text="Ignore case" userData="bool|options.compare.ignoreCase|false" />
+        <CheckBox text="Ignore numbers" userData="bool|options.compare.ignoreNumbers|false" />
+        <CheckBox text="Ignore end-of-line differences" userData="bool|options.compare.ignoreEol|true" />
+        <CheckBox text="Ignore codepage differences" userData="bool|options.compare.ignoreCodepage|true" />
+        <CheckBox text="Ignore missing trailing EOL" userData="bool|options.compare.ignoreMissingTrailingEol|true" />
+        <CheckBox text="Ignore line breaks" userData="bool|options.compare.ignoreLineBreaks|true" />
+        <CheckBox text="Detect moved blocks" userData="bool|options.compare.movedBlocks|false" />
+        <CheckBox text="Align similar lines" userData="bool|options.compare.alignSimilarLines|false" />
+        <CheckBox text="Use indent heuristic" userData="bool|options.compare.indentHeuristic|true" />
+        <CheckBox text="Blank out ignored changes" userData="bool|options.compare.blankOutIgnoredChanges|false" />
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Whitespace mode:" />
+                <Spinner prefWidth="90.0" userData="int|options.compare.ignoreWhitespaceMode|0|0|2" />
+                <Label text="Diff algorithm:" />
+                <Spinner prefWidth="90.0" userData="int|options.compare.diffAlgorithm|0|0|4" />
+            </children>
+        </HBox>
     </children>
     <padding>
         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />

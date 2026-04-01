@@ -2,12 +2,32 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropColorSchemesTab">
+<VBox fx:id="contentRoot" alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropColorSchemesTab">
     <children>
-        <Label text="PropColorSchemesTab" style="-fx-font-size: 14; -fx-font-weight: bold;" />
-        <Label wrapText="true" text="This tab is scaffolded for the phase 2c options migration and is ready for detailed field bindings." />
+        <Label text="Color schemes" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Color mode:" />
+                <Spinner prefWidth="90.0" userData="int|options.colorSchemes.mode|0|0|2" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Light scheme:" />
+                <TextField HBox.hgrow="ALWAYS" userData="string|options.colorSchemes.lightScheme|Default" />
+            </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Dark scheme:" />
+                <TextField HBox.hgrow="ALWAYS" userData="string|options.colorSchemes.darkScheme|Default Dark" />
+            </children>
+        </HBox>
     </children>
     <padding>
         <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
