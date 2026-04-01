@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropEditorCompareMergeTab">
+    <children>
+        <Label text="PropEditorCompareMergeTab" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <Label wrapText="true" text="This tab is scaffolded for the phase 2c options migration and is ready for detailed field bindings." />
+    </children>
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+</VBox>

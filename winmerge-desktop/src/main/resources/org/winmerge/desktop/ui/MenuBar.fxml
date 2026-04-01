@@ -16,7 +16,11 @@
         </Menu>
         <Menu mnemonicParsing="true" text="_Edit" />
         <Menu mnemonicParsing="true" text="_View" />
-        <Menu mnemonicParsing="true" text="_Tools" />
+        <Menu mnemonicParsing="true" text="_Tools">
+            <items>
+                <MenuItem fx:id="toolsOptionsMenuItem" mnemonicParsing="true" text="_Options..."/>
+            </items>
+        </Menu>
         <Menu mnemonicParsing="true" text="_Plugins" />
         <Menu mnemonicParsing="true" text="_Window" />
         <Menu mnemonicParsing="true" text="_Help" />

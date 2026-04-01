@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_LEFT" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropGeneralTab">
+    <children>
+        <Label text="General options" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <CheckBox fx:id="automaticRescanCheckBox" mnemonicParsing="false" text="Enable automatic rescan after file system changes" />
+        <Label wrapText="true" text="Changes are previewed immediately in the in-memory AppSettings bean and persisted when OK is pressed." />
+    </children>
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+</VBox>

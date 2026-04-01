@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_LEFT" spacing="12.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.tabs.PropEditorTab">
+    <children>
+        <Label text="Editor options" style="-fx-font-size: 14; -fx-font-weight: bold;" />
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Tab size:" />
+                <Spinner fx:id="tabSizeSpinner" prefWidth="90.0" />
+            </children>
+        </HBox>
+        <Label wrapText="true" text="This setting is used as the migrated equivalent of the editor tab size option." />
+    </children>
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+</VBox>

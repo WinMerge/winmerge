@@ -13,15 +13,20 @@ public class MenuBarController {
     private MenuItem fileExitMenuItem;
 
     @FXML
+    private MenuItem toolsOptionsMenuItem;
+
+    @FXML
     private void initialize() {
         requireInjected(fileOpenMenuItem, "fileOpenMenuItem");
         requireInjected(fileExitMenuItem, "fileExitMenuItem");
+        requireInjected(toolsOptionsMenuItem, "toolsOptionsMenuItem");
     }
 
     public void bind(ActionDispatcher dispatcher) {
         Objects.requireNonNull(dispatcher, "dispatcher");
         fileOpenMenuItem.setOnAction(event -> dispatcher.dispatch(ActionId.FILE_OPEN));
         fileExitMenuItem.setOnAction(event -> dispatcher.dispatch(ActionId.FILE_EXIT));
+        toolsOptionsMenuItem.setOnAction(event -> dispatcher.dispatch(ActionId.TOOLS_OPTIONS));
     }
 
     private static void requireInjected(Object field, String fieldName) {

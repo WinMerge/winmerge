@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TabPane?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.options.OptionsDialogController">
+    <content>
+        <TabPane fx:id="optionsTabPane" prefHeight="640.0" prefWidth="920.0" tabClosingPolicy="UNAVAILABLE" />
+    </content>
+</DialogPane>
