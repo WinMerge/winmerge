@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.StatusBarController" spacing="8.0" styleClass="status-bar">
+    <padding>
+        <Insets bottom="6.0" left="8.0" right="8.0" top="6.0"/>
+    </padding>
+    <children>
+        <Label fx:id="statusTextLabel" text="Ready" />
+        <Region HBox.hgrow="ALWAYS" />
+    </children>
+</HBox>

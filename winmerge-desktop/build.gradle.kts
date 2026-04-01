@@ -20,7 +20,7 @@ javafx {
 }
 
 application {
-    mainClass.set("org.winmerge.desktop.WinMergeDesktopApp")
+    mainClass.set("org.winmerge.desktop.WinMergeApp")
 }
 
 tasks.register<JavaExec>("smokeTestUi") {

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.MainController">
+    <children>
+        <fx:include source="MenuBar.fxml" fx:id="menuBarView"/>
+        <ToolBar fx:id="mainToolBar" styleClass="main-toolbar">
+            <items>
+                <Button fx:id="toolbarOpenButton" mnemonicParsing="true" text="_Open"/>
+                <Separator />
+                <Button fx:id="toolbarExitButton" mnemonicParsing="true" text="E_xit"/>
+            </items>
+        </ToolBar>
+        <TabPane fx:id="mainTabPane" tabClosingPolicy="ALL_TABS" VBox.vgrow="ALWAYS" />
+        <fx:include source="StatusBar.fxml" fx:id="statusBarView"/>
+    </children>
+</VBox>

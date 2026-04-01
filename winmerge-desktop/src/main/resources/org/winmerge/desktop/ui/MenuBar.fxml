@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+
+<MenuBar xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.MenuBarController">
+    <menus>
+        <Menu mnemonicParsing="true" text="_File">
+            <items>
+                <MenuItem fx:id="fileOpenMenuItem" mnemonicParsing="true" text="_Open..."/>
+                <SeparatorMenuItem />
+                <MenuItem fx:id="fileExitMenuItem" mnemonicParsing="true" text="E_xit"/>
+            </items>
+        </Menu>
+        <Menu mnemonicParsing="true" text="_Edit" />
+        <Menu mnemonicParsing="true" text="_View" />
+        <Menu mnemonicParsing="true" text="_Tools" />
+        <Menu mnemonicParsing="true" text="_Plugins" />
+        <Menu mnemonicParsing="true" text="_Window" />
+        <Menu mnemonicParsing="true" text="_Help" />
+    </menus>
+</MenuBar>
