@@ -83,10 +83,7 @@ public class MainController {
             Platform.exit();
             return;
         }
-        primaryStage.fireEvent(
-            new WindowEvent(primaryStage, WindowEvent.WINDOW_CLOSE_REQUEST)
-        );
-        Platform.exit();
+        primaryStage.close();
     }
 
     private static void requireInjected(Object field, String fieldName) {
