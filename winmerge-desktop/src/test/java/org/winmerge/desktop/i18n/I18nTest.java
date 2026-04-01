@@ -1,6 +1,8 @@
 package org.winmerge.desktop.i18n;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Locale;
 
@@ -43,5 +45,29 @@ class I18nTest {
     void shouldLoadLocalizedBundles() {
         I18n.setLocale(Locale.GERMAN);
         assertEquals("Allgemein", I18n.tr("IDS_OPTIONSPG_GENERAL"));
+    }
+
+    @Test
+    void shouldFormatPersianStringsWithLiteralBraces() {
+        I18n.setLocale(Locale.forLanguageTag("fa"));
+
+        String filesAffected = assertDoesNotThrow(() -> I18n.tr("IDS_FILES_AFFECTED_FMT", "5"));
+        String filesAffected2 = assertDoesNotThrow(() -> I18n.tr("IDS_FILES_AFFECTED_FMT2", "5", "9"));
+        String replaced = assertDoesNotThrow(() -> I18n.tr("IDS_NUM_REPLACED", "3"));
+        String selectedFiles = assertDoesNotThrow(() -> I18n.tr("IDS_DIFF_SELECTEDFILES", "7"));
+
+        assertTrue(filesAffected.contains("5"));
+        assertTrue(filesAffected2.contains("5"));
+        assertTrue(filesAffected2.contains("9"));
+        assertTrue(filesAffected.trim().startsWith("{"));
+        assertTrue(filesAffected.trim().endsWith("}"));
+        assertTrue(filesAffected2.trim().startsWith("{"));
+        assertTrue(filesAffected2.trim().endsWith("}"));
+        assertTrue(replaced.contains("3"));
+        assertTrue(replaced.contains("{"));
+        assertTrue(replaced.contains("}"));
+        assertTrue(selectedFiles.contains("7"));
+        assertTrue(selectedFiles.trim().startsWith("{"));
+        assertTrue(selectedFiles.trim().endsWith("}"));
     }
 }

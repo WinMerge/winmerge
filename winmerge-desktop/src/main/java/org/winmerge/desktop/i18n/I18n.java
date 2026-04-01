@@ -43,14 +43,29 @@ public final class I18n {
     }
 
     private static String normalizeForMessageFormat(String value) {
-        String escapedQuotes = value.replace("'", "''");
-        Matcher matcher = POSITIONAL_PLACEHOLDER.matcher(escapedQuotes);
-        StringBuffer converted = new StringBuffer();
+        Matcher matcher = POSITIONAL_PLACEHOLDER.matcher(value);
+        StringBuilder converted = new StringBuilder(value.length() + 16);
+        int cursor = 0;
         while (matcher.find()) {
+            appendEscapedLiteral(converted, value, cursor, matcher.start());
             int oneBased = Integer.parseInt(matcher.group(1));
-            matcher.appendReplacement(converted, "{" + Math.max(0, oneBased - 1) + "}");
+            converted.append('{').append(Math.max(0, oneBased - 1)).append('}');
+            cursor = matcher.end();
         }
-        matcher.appendTail(converted);
+        appendEscapedLiteral(converted, value, cursor, value.length());
         return converted.toString();
+    }
+
+    private static void appendEscapedLiteral(StringBuilder output, String value, int start, int end) {
+        for (int i = start; i < end; i++) {
+            char ch = value.charAt(i);
+            if (ch == '\'') {
+                output.append("''");
+            } else if (ch == '{' || ch == '}') {
+                output.append('\'').append(ch).append('\'');
+            } else {
+                output.append(ch);
+            }
+        }
     }
 }
