@@ -26,10 +26,10 @@ This project uses gated migration phases with explicit handoffs.
   - `ARCHITECTURE.md`
   - release record under `migration-reports/post-migration/releases/`
 
-## AMP-12 Reference
+## Latest Release Reference
 
-The latest completed release phase is `AMP-12` (Phase 2b Wave 3b compare engine
+The latest completed release phase is `AMP-16` (Phase 2c-4 hex merge view
 migration). See:
 
-- `migration-reports/qa/AMP-12/qa-report.md`
-- `migration-reports/post-migration/releases/AMP-12-release-record.md`
+- `migration-reports/qa/AMP-16/qa-report.md`
+- `migration-reports/post-migration/releases/AMP-16-release-record.md`

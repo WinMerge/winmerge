@@ -19,25 +19,27 @@ migrated Java module structure used by the migration program.
 - `Src`, `ShellExtension`, `Plugins`, and related directories remain present for
   parity validation and phased migration checks.
 
-## Phase 2b Wave 3b (AMP-12) Impact
+## Latest Released Migration Impact (AMP-16, Phase 2c-4)
 
-Phase 2b Wave 3b shipped compare engine ports in `winmerge-core` under
-`org.winmerge.core.compare.engines`:
+AMP-16 shipped the JavaFX hex merge view surface in `winmerge-desktop`:
 
-- ExistenceCompare
-- TimeSizeCompare
-- BinaryCompare
-- ImageCompare
-- DiffUtilsEngine
-- ByteCompare
-- FullQuickCompare
-- ByteComparator
+- `org.winmerge.desktop.ui.hex.HexDocModel`
+- `org.winmerge.desktop.ui.hex.HexController`
+- `org.winmerge.desktop.ui.hex.HexGridCanvas`
+- `org/winmerge/desktop/ui/hex/HexPane.fxml`
 
-Quality gates were enforced before release handoff:
+The release includes:
 
-- Staff review gate (request-changes resolved)
-- Security review clearance
-- QA release gate pass with health score 96/100
+- async hex loading off the JavaFX UI thread
+- bounded binary read guard (64 MiB per file) with user-visible feedback
+- synchronized side-by-side pane scrolling and diff-byte highlighting
 
-See `migration-reports/post-migration/releases/AMP-12-release-record.md` for
+Release gates completed before release handoff:
+
+- staff review approval
+- security review clearance
+- design review pass
+- QA gate pass with health score 95/100
+
+See `migration-reports/post-migration/releases/AMP-16-release-record.md` for
 release-level verification evidence.

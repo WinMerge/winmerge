@@ -16,14 +16,13 @@ WinMerge has been actively developed since 2000.
 
 ## Migration Status (Paperclip Program)
 
-- Current migration phase release: **Phase 2b Wave 3b** (`AMP-12`)
-- Release commit set validated: `62ce3b0f7` (engine remediation) + `ba3792ebb`
-  (QA report artifacts)
-- QA release gate: **PASS** with health score **96/100**
+- Current migration phase release: **Phase 2c-4** (`AMP-16`)
+- Release commit set validated: `e29cad8b3` + `31cfee44a`
+- QA release gate: **PASS** with health score **95/100**
 - Evidence:
-  - `migration-reports/qa/AMP-12/qa-report.md`
-  - `migration-reports/qa/AMP-12/benchmark-comparison.json`
-  - `migration-reports/post-migration/releases/AMP-12-release-record.md`
+  - `migration-reports/qa/AMP-16/qa-report.md`
+  - `migration-reports/qa/AMP-16/benchmark-comparison.json`
+  - `migration-reports/post-migration/releases/AMP-16-release-record.md`
 
 Migration architecture and process docs:
 

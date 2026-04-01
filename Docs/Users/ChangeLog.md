@@ -1,5 +1,19 @@
 # Change log
 
+## WinMerge 2.16.57 - 2026-04-01
+
+### Migration
+
+* Phase 2c-4 release landed for hex merge view migration (`AMP-16`)
+* Added JavaFX hex compare surface:
+    `HexDocModel`, `HexController`, `HexGridCanvas`, and `HexPane.fxml`
+* Hardened binary loading path with async executor, cancel-safe lifecycle, and
+    per-file 64 MiB guard with explicit user feedback
+* Added regression coverage for async load status, size-guard failure handling,
+    and synchronized left/right pane scroll behavior
+* QA gate passed with health score 95/100; benchmark deltas:
+    compile +2.75%, desktop tests +2.93%, jar size +4.23%
+
 ## WinMerge 2.16.56 - 2026-04-01
 
 ### Migration
