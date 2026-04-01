@@ -3,6 +3,7 @@ package org.winmerge.core.io;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -111,5 +112,37 @@ class ConflictFileParserTest {
                 """, Files.readString(working));
         assertEquals("theirs\n", Files.readString(theirs));
         assertEquals("", Files.readString(base));
+    }
+
+    @Test
+    void honorsGuessEncodingTypeForNonUtfInput() throws Exception {
+        Path conflict = tempDir.resolve("cp1252-conflict.txt");
+        Charset windows1252 = Charset.forName("windows-1252");
+        String source = """
+                <<<<<<< mine
+                café
+                =======
+                thé
+                >>>>>>> rev
+                """;
+        Files.write(conflict, source.getBytes(windows1252));
+
+        Path workingGuessOff = tempDir.resolve("working-guess-off.txt");
+        Path theirsGuessOff = tempDir.resolve("theirs-guess-off.txt");
+        Path baseGuessOff = tempDir.resolve("base-guess-off.txt");
+        ConflictFileParser.parseConflictFile(conflict, workingGuessOff, theirsGuessOff, baseGuessOff, 0);
+
+        Path workingGuessOn = tempDir.resolve("working-guess-on.txt");
+        Path theirsGuessOn = tempDir.resolve("theirs-guess-on.txt");
+        Path baseGuessOn = tempDir.resolve("base-guess-on.txt");
+        ConflictFileParser.parseConflictFile(conflict, workingGuessOn, theirsGuessOn, baseGuessOn, 2);
+
+        String offWorking = Files.readString(workingGuessOff);
+        String onWorking = new String(Files.readAllBytes(workingGuessOn), windows1252);
+        String onTheirs = new String(Files.readAllBytes(theirsGuessOn), windows1252);
+
+        assertFalse(offWorking.contains("café"));
+        assertTrue(onWorking.contains("café"));
+        assertTrue(onTheirs.contains("thé"));
     }
 }

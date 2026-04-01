@@ -1,6 +1,7 @@
 package org.winmerge.core.io;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +56,10 @@ public final class ConflictFileParser {
             Path baseRevisionFilePath,
             int guessEncodingType,
             FileSystemService fileSystem) throws IOException {
-        UnicodeFileReader reader = new UnicodeFileReader(fileSystem);
         UnicodeFileWriter writer = new UnicodeFileWriter(fileSystem);
-        UnicodeFileReader.ReadResult readResult = reader.readAll(conflictFilePath);
-        FileTextEncoding encoding = readResult.encoding();
+        byte[] contentBytes = fileSystem.readAllBytes(conflictFilePath);
+        FileTextEncoding encoding = guessEncoding(contentBytes, guessEncodingType);
+        String content = decode(contentBytes, encoding);
 
         StringBuilder workingCopy = new StringBuilder();
         StringBuilder newRevision = new StringBuilder();
@@ -71,13 +72,7 @@ public final class ConflictFileParser {
         boolean parsedConflict = false;
         String revision = "none";
 
-        // Reserved for future parity work where code-page guess strategy affects decoding.
-        int ignoredGuessEncodingType = guessEncodingType;
-        if (ignoredGuessEncodingType < 0) {
-            ignoredGuessEncodingType = 0;
-        }
-
-        for (LineToken token : splitLines(readResult.content())) {
+        for (LineToken token : splitLines(content)) {
             String line = token.line();
             String eol = token.eol();
             int pos;
@@ -187,6 +182,112 @@ public final class ConflictFileParser {
         writer.write(baseRevisionFilePath, baseRevision.toString(), encoding, encoding.hasBom());
 
         return new ParseResult(parsedConflict, nestedConflicts, threeWay, revision);
+    }
+
+    private static FileTextEncoding guessEncoding(byte[] contentBytes, int guessEncodingType) {
+        FileTextEncoding encoding = detectBomEncoding(contentBytes);
+        if (encoding.getUnicoding() != UnicodeEncoding.NONE) {
+            return encoding;
+        }
+
+        encoding.setUnicoding(UnicodeEncoding.UTF8);
+        encoding.setBom(false);
+
+        if (guessEncodingType == 0) {
+            return encoding;
+        }
+
+        if (isValidUtf8(contentBytes)) {
+            return encoding;
+        }
+
+        if ((guessEncodingType & 2) != 0) {
+            encoding.setCodepage(1252);
+        }
+        return encoding;
+    }
+
+    private static FileTextEncoding detectBomEncoding(byte[] contentBytes) {
+        FileTextEncoding encoding = new FileTextEncoding();
+        if (contentBytes.length >= 3
+                && (contentBytes[0] & 0xFF) == 0xEF
+                && (contentBytes[1] & 0xFF) == 0xBB
+                && (contentBytes[2] & 0xFF) == 0xBF) {
+            encoding.setUnicoding(UnicodeEncoding.UTF8);
+            encoding.setBom(true);
+            return encoding;
+        }
+        if (contentBytes.length >= 2
+                && (contentBytes[0] & 0xFF) == 0xFF
+                && (contentBytes[1] & 0xFF) == 0xFE) {
+            encoding.setUnicoding(UnicodeEncoding.UCS2LE);
+            encoding.setBom(true);
+            return encoding;
+        }
+        if (contentBytes.length >= 2
+                && (contentBytes[0] & 0xFF) == 0xFE
+                && (contentBytes[1] & 0xFF) == 0xFF) {
+            encoding.setUnicoding(UnicodeEncoding.UCS2BE);
+            encoding.setBom(true);
+            return encoding;
+        }
+        return encoding;
+    }
+
+    private static String decode(byte[] contentBytes, FileTextEncoding encoding) {
+        int offset = 0;
+        if (encoding.hasBom()) {
+            if (encoding.getUnicoding() == UnicodeEncoding.UTF8 && contentBytes.length >= 3) {
+                offset = 3;
+            } else if ((encoding.getUnicoding() == UnicodeEncoding.UCS2LE
+                    || encoding.getUnicoding() == UnicodeEncoding.UCS2BE) && contentBytes.length >= 2) {
+                offset = 2;
+            }
+        }
+        Charset charset = encoding.toCharset();
+        return new String(contentBytes, offset, contentBytes.length - offset, charset);
+    }
+
+    private static boolean isValidUtf8(byte[] bytes) {
+        int i = 0;
+        while (i < bytes.length) {
+            int b = bytes[i] & 0xFF;
+            if (b <= 0x7F) {
+                i++;
+                continue;
+            }
+            if ((b >> 5) == 0b110) {
+                if (!isContinuation(bytes, i + 1)) {
+                    return false;
+                }
+                i += 2;
+                continue;
+            }
+            if ((b >> 4) == 0b1110) {
+                if (!isContinuation(bytes, i + 1) || !isContinuation(bytes, i + 2)) {
+                    return false;
+                }
+                i += 3;
+                continue;
+            }
+            if ((b >> 3) == 0b11110) {
+                if (!isContinuation(bytes, i + 1) || !isContinuation(bytes, i + 2) || !isContinuation(bytes, i + 3)) {
+                    return false;
+                }
+                i += 4;
+                continue;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean isContinuation(byte[] bytes, int index) {
+        if (index >= bytes.length) {
+            return false;
+        }
+        int b = bytes[index] & 0xFF;
+        return (b >> 6) == 0b10;
     }
 
     private static void appendLine(StringBuilder builder, String line, String eol) {
