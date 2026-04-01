@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:controller="org.winmerge.desktop.ui.open.OpenController" spacing="12.0" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+    </padding>
+
+    <children>
+        <Label styleClass="open-pane-title" text="Open Comparison" />
+
+        <GridPane hgap="8.0" vgap="8.0">
+            <columnConstraints>
+                <ColumnConstraints minWidth="80.0" />
+                <ColumnConstraints hgrow="ALWAYS" />
+                <ColumnConstraints minWidth="90.0" />
+            </columnConstraints>
+
+            <children>
+                <Label text="Left:" GridPane.rowIndex="0" />
+                <TextField fx:id="leftPathField" promptText="Select left path" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Button mnemonicParsing="false" onAction="#onBrowseLeft" text="Browse..." GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+                <Label text="Right:" GridPane.rowIndex="1" />
+                <TextField fx:id="rightPathField" promptText="Select right path" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button mnemonicParsing="false" onAction="#onBrowseRight" text="Browse..." GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+                <Label fx:id="middlePathLabel" text="Middle:" GridPane.rowIndex="2" />
+                <TextField fx:id="middlePathField" promptText="Select middle path (3-way)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="middleBrowseButton" mnemonicParsing="false" onAction="#onBrowseMiddle" text="Browse..." GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            </children>
+        </GridPane>
+
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <CheckBox fx:id="threeWayCheckBox" mnemonicParsing="false" text="Enable 3-way mode" />
+                <Label text="Mode:" />
+                <ComboBox fx:id="compareModeCombo" prefWidth="140.0" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="8.0">
+            <children>
+                <Label text="Filter:" />
+                <ComboBox fx:id="filterCombo" prefWidth="250.0" />
+            </children>
+        </HBox>
+
+        <Separator />
+
+        <HBox alignment="CENTER_RIGHT" spacing="8.0">
+            <children>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="compareButton" defaultButton="true" mnemonicParsing="false" onAction="#onCompare" text="Compare" />
+                <Button cancelButton="true" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+            </children>
+        </HBox>
+    </children>
+</VBox>
