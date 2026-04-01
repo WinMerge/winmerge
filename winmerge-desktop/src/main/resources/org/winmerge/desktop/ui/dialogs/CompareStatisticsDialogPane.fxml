@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.winmerge.desktop.ui.dialogs.CompareStatisticsDialogController">
+    <content>
+        <GridPane hgap="12.0" vgap="8.0">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+                <Label text="Left root:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label fx:id="leftRootLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Right root:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Label fx:id="rightRootLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Only Left (files):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <Label fx:id="onlyLeftFilesLabel" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Label text="Only Right (files):" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Label fx:id="onlyRightFilesLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <Label text="Different (files):" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <Label fx:id="differentFilesLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                <Label text="Identical (files):" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <Label fx:id="identicalFilesLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                <Label text="Total files:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <Label fx:id="totalFilesLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            </children>
+        </GridPane>
+    </content>
+</DialogPane>

@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Consumer;
@@ -29,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
 import org.winmerge.desktop.ui.TabManager;
+import org.winmerge.desktop.ui.dialogs.CompareStatisticsDialogModel;
 
 public final class DirController {
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
@@ -141,6 +143,13 @@ public final class DirController {
     public void configure(TabManager tabManager, Consumer<String> statusListener) {
         this.tabManager = Objects.requireNonNull(tabManager, "tabManager");
         this.statusListener = Objects.requireNonNull(statusListener, "statusListener");
+    }
+
+    public Optional<CompareStatisticsDialogModel> createCompareStatisticsSnapshot() {
+        if (model == null) {
+            return Optional.empty();
+        }
+        return Optional.of(CompareStatisticsMapper.fromModel(model));
     }
 
     public void loadDirectories(Path leftPath, Path rightPath, String pathFilter) {

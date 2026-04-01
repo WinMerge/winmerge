@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.jupiter.api.Test;
 import org.winmerge.desktop.ui.dialogs.AboutDialogModel;
+import org.winmerge.desktop.ui.dialogs.CompareStatisticsDialogModel;
 import org.winmerge.desktop.ui.dialogs.DialogService;
 import org.winmerge.desktop.ui.dialogs.SaveClosingChoice;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
@@ -123,6 +124,10 @@ class SaveClosingHandlerTest {
         @Override
         public Optional<WMGotoDialogResult> showGotoDialog(WMGotoDialogRequest request) {
             return Optional.empty();
+        }
+
+        @Override
+        public void showCompareStatisticsDialog(CompareStatisticsDialogModel model) {
         }
 
         @Override

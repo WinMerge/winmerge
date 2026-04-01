@@ -16,6 +16,9 @@ public class MenuBarController {
     private MenuItem editGoToMenuItem;
 
     @FXML
+    private MenuItem toolsCompareStatisticsMenuItem;
+
+    @FXML
     private MenuItem toolsComparisonResultFilterMenuItem;
 
     @FXML
@@ -29,6 +32,7 @@ public class MenuBarController {
         requireInjected(fileOpenMenuItem, "fileOpenMenuItem");
         requireInjected(fileExitMenuItem, "fileExitMenuItem");
         requireInjected(editGoToMenuItem, "editGoToMenuItem");
+        requireInjected(toolsCompareStatisticsMenuItem, "toolsCompareStatisticsMenuItem");
         requireInjected(toolsComparisonResultFilterMenuItem, "toolsComparisonResultFilterMenuItem");
         requireInjected(toolsOptionsMenuItem, "toolsOptionsMenuItem");
         requireInjected(helpAboutMenuItem, "helpAboutMenuItem");
@@ -39,6 +43,7 @@ public class MenuBarController {
         fileOpenMenuItem.setOnAction(event -> dispatcher.dispatch(ActionId.FILE_OPEN));
         fileExitMenuItem.setOnAction(event -> dispatcher.dispatch(ActionId.FILE_EXIT));
         editGoToMenuItem.setOnAction(event -> dispatcher.dispatch(ActionId.EDIT_GO_TO));
+        toolsCompareStatisticsMenuItem.setOnAction(event -> dispatcher.dispatch(ActionId.TOOLS_COMPARE_STATISTICS));
         toolsComparisonResultFilterMenuItem.setOnAction(
             event -> dispatcher.dispatch(ActionId.TOOLS_COMPARISON_RESULT_FILTER)
         );

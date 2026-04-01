@@ -8,6 +8,8 @@ public interface DialogService {
 
     Optional<WMGotoDialogResult> showGotoDialog(WMGotoDialogRequest request);
 
+    void showCompareStatisticsDialog(CompareStatisticsDialogModel model);
+
     Optional<String> showComparisonResultFilterDialog(boolean threeWay);
 
     SaveClosingChoice showSaveClosingDialog(Path filePath);

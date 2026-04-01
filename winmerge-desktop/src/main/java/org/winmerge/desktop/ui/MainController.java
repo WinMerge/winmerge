@@ -19,6 +19,7 @@ import javafx.stage.WindowEvent;
 import org.winmerge.core.WinMergeCore;
 import org.winmerge.desktop.i18n.I18n;
 import org.winmerge.desktop.ui.dialogs.AboutDialogModel;
+import org.winmerge.desktop.ui.dialogs.CompareStatisticsDialogModel;
 import org.winmerge.desktop.ui.dialogs.DefaultDialogService;
 import org.winmerge.desktop.ui.dialogs.DialogService;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
@@ -96,6 +97,7 @@ public class MainController {
         actionDispatcher.register(ActionId.FILE_OPEN, this::openOpenPaneTab);
         actionDispatcher.register(ActionId.FILE_EXIT, this::requestExit);
         actionDispatcher.register(ActionId.EDIT_GO_TO, this::openGotoDialog);
+        actionDispatcher.register(ActionId.TOOLS_COMPARE_STATISTICS, this::openCompareStatisticsDialog);
         actionDispatcher.register(ActionId.TOOLS_COMPARISON_RESULT_FILTER, this::openComparisonResultFilterDialog);
         actionDispatcher.register(ActionId.TOOLS_OPTIONS, this::openOptionsDialog);
         actionDispatcher.register(ActionId.HELP_ABOUT, this::openAboutDialog);
@@ -173,6 +175,22 @@ public class MainController {
             return;
         }
         statusBarViewController.setStatusText("Comparison result filter: " + expression.get());
+    }
+
+    private void openCompareStatisticsDialog() {
+        if (tabManager == null) {
+            statusBarViewController.setStatusText("Compare Statistics is not available yet.");
+            return;
+        }
+
+        Optional<CompareStatisticsDialogModel> snapshot = tabManager.createCompareStatisticsForActiveTab();
+        if (snapshot.isEmpty()) {
+            statusBarViewController.setStatusText("Compare Statistics is available for folder compare tabs.");
+            return;
+        }
+
+        dialogService.showCompareStatisticsDialog(snapshot.get());
+        statusBarViewController.setStatusText("Compare statistics dialog closed.");
     }
 
     private void openAboutDialog() {

@@ -47,6 +47,10 @@ class OptionsDialogFxIntegrationTest {
                 });
                 dispatcher.register(ActionId.EDIT_GO_TO, () -> {
                 });
+                dispatcher.register(ActionId.TOOLS_COMPARE_STATISTICS, () -> {
+                });
+                dispatcher.register(ActionId.TOOLS_COMPARISON_RESULT_FILTER, () -> {
+                });
                 dispatcher.register(ActionId.HELP_ABOUT, () -> {
                 });
                 controller.bind(dispatcher);

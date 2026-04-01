@@ -27,6 +27,12 @@ public final class DefaultDialogService implements DialogService {
     }
 
     @Override
+    public void showCompareStatisticsDialog(CompareStatisticsDialogModel model) {
+        CompareStatisticsDialog dialog = new CompareStatisticsDialog(ownerSupplier.get(), model);
+        dialog.showAndWait();
+    }
+
+    @Override
     public Optional<String> showComparisonResultFilterDialog(boolean threeWay) {
         ComparisonResultFilterDialog dialog = new ComparisonResultFilterDialog(ownerSupplier.get(), threeWay);
         return dialog.showAndWait();

@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import org.winmerge.desktop.ui.dialogs.CompareStatisticsDialogModel;
 import org.winmerge.desktop.ui.dialogs.DialogService;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogResult;
@@ -161,6 +162,14 @@ public class TabManager {
                 mergeController.diffCount()
             )
         );
+    }
+
+    public Optional<CompareStatisticsDialogModel> createCompareStatisticsForActiveTab() {
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+        if (selectedTab == null || !(selectedTab.getUserData() instanceof DirController dirController)) {
+            return Optional.empty();
+        }
+        return dirController.createCompareStatisticsSnapshot();
     }
 
     public boolean applyGotoSelection(WMGotoDialogResult selection, Consumer<String> statusListener) {
