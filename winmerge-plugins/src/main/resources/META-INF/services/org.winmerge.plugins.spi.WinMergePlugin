@@ -1,0 +1,3 @@
+org.winmerge.plugins.builtin.CommonsCompressArchivePlugin
+org.winmerge.plugins.builtin.LineEndingPrediffPlugin
+org.winmerge.plugins.builtin.TrimTrailingWhitespacePrediffPlugin
