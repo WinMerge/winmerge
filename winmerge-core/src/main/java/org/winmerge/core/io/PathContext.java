@@ -36,8 +36,8 @@ public final class PathContext implements Iterable<String> {
 
     public PathContext(List<String> paths) {
         this();
-        files = paths.size();
-        for (int i = 0; i < paths.size() && i < path.length; i++) {
+        files = clampFileCount(paths.size());
+        for (int i = 0; i < files; i++) {
             path[i].setPath(paths.get(i));
         }
     }
@@ -126,7 +126,7 @@ public final class PathContext implements Iterable<String> {
     }
 
     public void setSize(int files) {
-        this.files = files;
+        this.files = clampFileCount(files);
     }
 
     public int getSize() {
@@ -167,5 +167,9 @@ public final class PathContext implements Iterable<String> {
         if (index < 0 || index >= path.length) {
             throw new IllegalArgumentException("index out of range for path array");
         }
+    }
+
+    private int clampFileCount(int candidate) {
+        return Math.max(0, Math.min(candidate, path.length));
     }
 }

@@ -31,4 +31,15 @@ class CompareStatsTest {
 
         assertTrue(stats.isCompareDone());
     }
+
+    @Test
+    void doesNotIncrementResultBucketsForSentinelMinusOne() {
+        CompareStats stats = new CompareStats(2);
+
+        stats.addItem(-1);
+
+        assertEquals(1, stats.getComparedItems());
+        assertEquals(0, stats.getCount(CompareStats.Result.SKIP));
+        assertEquals(0, stats.getCount(CompareStats.Result.DIFF));
+    }
 }

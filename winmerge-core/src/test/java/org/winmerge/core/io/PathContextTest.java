@@ -2,6 +2,8 @@ package org.winmerge.core.io;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PathContextTest {
@@ -25,5 +27,23 @@ class PathContextTest {
         assertEquals("left", context.getLeft(true));
         assertEquals("middle", context.getMiddle(true));
         assertEquals("right", context.getRight(true));
+    }
+
+    @Test
+    void clampsOversizedPathListsToSupportedCardinality() {
+        PathContext context = new PathContext(List.of("left", "middle", "right", "extra"));
+
+        assertEquals(3, context.getSize());
+        assertEquals("left", context.getLeft(true));
+        assertEquals("middle", context.getMiddle(true));
+        assertEquals("right", context.getRight(true));
+    }
+
+    @Test
+    void clampsSetSizeToThree() {
+        PathContext context = new PathContext();
+        context.setSize(99);
+
+        assertEquals(3, context.getSize());
     }
 }

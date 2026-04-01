@@ -101,6 +101,10 @@ public final class CompareStats {
     }
 
     public void addItem(int diffCode) {
+        if (diffCode == -1) {
+            comparedItems.incrementAndGet();
+            return;
+        }
         addItem(getResultFromCode(diffCode));
     }
 
