@@ -1,0 +1,53 @@
+{
+  "issue": "AMP-8",
+  "evaluated_commit": "601f06c91",
+  "baseline_commit": "c8912c266",
+  "captured_at": "2026-04-02",
+  "method": {
+    "commands": [
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-shell:clean :winmerge-shell:compileJava",
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-shell:clean :winmerge-shell:test --rerun-tasks",
+      "./gradlew --no-daemon :winmerge-shell:jar"
+    ],
+    "notes": [
+      "This migration unit targets a Java desktop shell module. Browser page-load and Core Web Vitals metrics are not applicable.",
+      "Baseline commit c8912c266 has no shell test sources (:winmerge-shell:test NO-SOURCE), so test-time and artifact-size deltas are inflated by newly introduced migrated functionality.",
+      "All >10% deltas were reported to Engineering Manager before QA clearance as required."
+    ]
+  },
+  "metrics": {
+    "compile_time_seconds": {
+      "baseline": 4.47,
+      "candidate": 4.0,
+      "delta_percent": -10.51
+    },
+    "module_test_time_seconds": {
+      "baseline": 3.68,
+      "candidate": 4.32,
+      "delta_percent": 17.39
+    },
+    "artifact_size_bytes": {
+      "winmerge_shell_jar": {
+        "baseline": 1011,
+        "candidate": 24797,
+        "delta_percent": 2352.72
+      }
+    }
+  },
+  "regression_policy": {
+    "threshold_percent": 10,
+    "status": "flagged_to_engineering_manager",
+    "violations": [
+      {
+        "metric": "module_test_time_seconds",
+        "delta_percent": 17.39,
+        "reason": "Baseline had no shell test sources; candidate executes 13 new migration tests."
+      },
+      {
+        "metric": "artifact_size_bytes.winmerge_shell_jar",
+        "delta_percent": 2352.72,
+        "reason": "Baseline jar was near-empty pre-migration; candidate now contains migrated shell integration implementation."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "issue": "AMP-8",
+  "tier": "Standard",
+  "tool": "playwright",
+  "mode": "headless",
+  "captured_at": "2026-04-02",
+  "flows": [
+    {
+      "name": "Baseline summary report",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/migration-reports/qa/AMP-8/tmp/baseline-summary.html",
+      "screenshot": "migration-reports/qa/AMP-8/pre-c8912c266-summary.png"
+    },
+    {
+      "name": "Candidate summary report",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-shell/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-8/post-601f06c91-summary.png"
+    },
+    {
+      "name": "Shell launcher flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-shell/build/reports/tests/test/classes/org.winmerge.shell.ShellLauncherTest.html",
+      "screenshot": "migration-reports/qa/AMP-8/post-601f06c91-shell-launcher.png"
+    },
+    {
+      "name": "Shell preferences persistence flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-shell/build/reports/tests/test/classes/org.winmerge.shell.ShellPreferencesStoreTest.html",
+      "screenshot": "migration-reports/qa/AMP-8/post-601f06c91-shell-preferences.png"
+    },
+    {
+      "name": "Shell registration and rollback flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-shell/build/reports/tests/test/classes/org.winmerge.shell.ShellRegistrationManagerTest.html",
+      "screenshot": "migration-reports/qa/AMP-8/post-601f06c91-shell-registration.png"
+    },
+    {
+      "name": "Integration facade transactional flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-shell/build/reports/tests/test/classes/org.winmerge.shell.WinMergeShellIntegrationTest.html",
+      "screenshot": "migration-reports/qa/AMP-8/post-601f06c91-shell-integration.png"
+    }
+  ],
+  "results": {
+    "baseline_total_tests": 0,
+    "candidate_total_tests": 13,
+    "baseline_failures": 0,
+    "candidate_failures": 0,
+    "candidate_skipped": 0,
+    "candidate_shell_regression_tests": 13,
+    "candidate_shell_regression_failures": 0
+  }
+}
