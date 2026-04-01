@@ -14,11 +14,14 @@ public final class HexGridCanvas extends Canvas {
 
     private static final double OFFSET_X = 8.0;
     private static final double OFFSET_WIDTH = 86.0;
-    private static final double HEX_START_X = OFFSET_X + OFFSET_WIDTH;
     private static final double HEX_CELL_WIDTH = 22.0;
     private static final double HEX_GROUP_GAP = 10.0;
-    private static final double ASCII_START_X = HEX_START_X + (HexDocModel.BYTES_PER_ROW * HEX_CELL_WIDTH) + HEX_GROUP_GAP;
     private static final double ASCII_CELL_WIDTH = 11.0;
+    private static final double MIN_OFFSET_WIDTH = 72.0;
+    private static final double MIN_HEX_CELL_WIDTH = 18.0;
+    private static final double MIN_HEX_GROUP_GAP = 6.0;
+    private static final double MIN_ASCII_CELL_WIDTH = 8.0;
+    private static final double RIGHT_PADDING = 8.0;
 
     private static final Color COLOR_BACKGROUND = Color.web("#ffffff");
     private static final Color COLOR_HEADER_BACKGROUND = Color.web("#f4f6f8");
@@ -30,6 +33,8 @@ public final class HexGridCanvas extends Canvas {
 
     private static final Font HEADER_FONT = Font.font("Consolas", 11);
     private static final Font BODY_FONT = Font.font("Consolas", 12);
+    private static final Font COMPACT_HEADER_FONT = Font.font("Consolas", 10);
+    private static final Font COMPACT_BODY_FONT = Font.font("Consolas", 11);
 
     private HexDocModel model;
     private HexDocModel.Side side = HexDocModel.Side.LEFT;
@@ -77,9 +82,10 @@ public final class HexGridCanvas extends Canvas {
             return;
         }
 
-        drawHeader(gc, width);
+        LayoutMetrics layout = LayoutMetrics.forWidth(width);
+        drawHeader(gc, width, layout);
         if (model == null) {
-            gc.setFont(BODY_FONT);
+            gc.setFont(layout.bodyFont());
             gc.setFill(COLOR_PLACEHOLDER);
             gc.fillText(placeholderText, OFFSET_X, HEADER_HEIGHT + ROW_HEIGHT);
             return;
@@ -96,30 +102,30 @@ public final class HexGridCanvas extends Canvas {
                 gc.setFill(COLOR_ROW_ALT);
                 gc.fillRect(0, y, width, ROW_HEIGHT);
             }
-            drawRow(gc, row, y);
+            drawRow(gc, row, y, layout);
             row++;
             y += ROW_HEIGHT;
         }
     }
 
-    private void drawHeader(GraphicsContext gc, double width) {
+    private void drawHeader(GraphicsContext gc, double width, LayoutMetrics layout) {
         gc.setFill(COLOR_HEADER_BACKGROUND);
         gc.fillRect(0, 0, width, HEADER_HEIGHT);
         gc.setStroke(COLOR_GRID_LINE);
         gc.strokeLine(0, HEADER_HEIGHT - 0.5, width, HEADER_HEIGHT - 0.5);
 
-        gc.setFont(HEADER_FONT);
+        gc.setFont(layout.headerFont());
         gc.setFill(COLOR_TEXT);
         gc.fillText("Offset", OFFSET_X, 16);
-        gc.fillText("Hex", HEX_START_X, 16);
-        gc.fillText("ASCII", ASCII_START_X, 16);
+        gc.fillText("Hex", layout.hexStartX(), 16);
+        gc.fillText("ASCII", layout.asciiStartX(), 16);
     }
 
-    private void drawRow(GraphicsContext gc, int rowIndex, double y) {
+    private void drawRow(GraphicsContext gc, int rowIndex, double y, LayoutMetrics layout) {
         double baselineY = y + 14;
         int rowStartByte = rowIndex * HexDocModel.BYTES_PER_ROW;
 
-        gc.setFont(BODY_FONT);
+        gc.setFont(layout.bodyFont());
         gc.setFill(COLOR_TEXT);
         gc.fillText(model.formatOffsetForRow(rowIndex), OFFSET_X, baselineY);
 
@@ -127,13 +133,13 @@ public final class HexGridCanvas extends Canvas {
             int byteIndex = rowStartByte + byteInRow;
             boolean hasByte = model.hasByte(side, byteIndex);
             boolean diff = model.isDifferentByte(byteIndex);
-            double hexX = hexCellX(byteInRow);
-            double asciiX = asciiCellX(byteInRow);
+            double hexX = layout.hexCellX(byteInRow);
+            double asciiX = layout.asciiCellX(byteInRow);
 
             if (diff) {
                 gc.setFill(COLOR_DIFF);
-                gc.fillRect(hexX - 2, y + 2, HEX_CELL_WIDTH - 2, ROW_HEIGHT - 4);
-                gc.fillRect(asciiX - 1, y + 2, ASCII_CELL_WIDTH, ROW_HEIGHT - 4);
+                gc.fillRect(hexX - 2, y + 2, Math.max(8.0, layout.hexCellWidth() - 2), ROW_HEIGHT - 4);
+                gc.fillRect(asciiX - 1, y + 2, Math.max(6.0, layout.asciiCellWidth()), ROW_HEIGHT - 4);
             }
 
             if (hasByte) {
@@ -156,12 +162,90 @@ public final class HexGridCanvas extends Canvas {
         return '.';
     }
 
-    private static double hexCellX(int byteInRow) {
-        double groupGap = byteInRow >= 8 ? HEX_GROUP_GAP : 0;
-        return HEX_START_X + (byteInRow * HEX_CELL_WIDTH) + groupGap;
-    }
+    private record LayoutMetrics(
+        double offsetWidth,
+        double hexCellWidth,
+        double hexGroupGap,
+        double asciiCellWidth,
+        Font headerFont,
+        Font bodyFont
+    ) {
+        static LayoutMetrics forWidth(double canvasWidth) {
+            double availableContentWidth = Math.max(0.0, canvasWidth - OFFSET_X - RIGHT_PADDING);
 
-    private static double asciiCellX(int byteInRow) {
-        return ASCII_START_X + (byteInRow * ASCII_CELL_WIDTH);
+            double offsetWidth = OFFSET_WIDTH;
+            double hexCellWidth = HEX_CELL_WIDTH;
+            double hexGroupGap = HEX_GROUP_GAP;
+            double asciiCellWidth = ASCII_CELL_WIDTH;
+
+            double requiredContentWidth = requiredWidth(offsetWidth, hexCellWidth, hexGroupGap, asciiCellWidth);
+            double deficit = Math.max(0.0, requiredContentWidth - availableContentWidth);
+
+            if (deficit > 0.0) {
+                double asciiShrinkCapacity = (ASCII_CELL_WIDTH - MIN_ASCII_CELL_WIDTH) * HexDocModel.BYTES_PER_ROW;
+                double asciiShrink = Math.min(deficit, asciiShrinkCapacity);
+                asciiCellWidth -= asciiShrink / HexDocModel.BYTES_PER_ROW;
+                deficit -= asciiShrink;
+            }
+
+            if (deficit > 0.0) {
+                double hexShrinkCapacity = (HEX_CELL_WIDTH - MIN_HEX_CELL_WIDTH) * HexDocModel.BYTES_PER_ROW;
+                double hexShrink = Math.min(deficit, hexShrinkCapacity);
+                hexCellWidth -= hexShrink / HexDocModel.BYTES_PER_ROW;
+                deficit -= hexShrink;
+            }
+
+            if (deficit > 0.0) {
+                double offsetShrinkCapacity = OFFSET_WIDTH - MIN_OFFSET_WIDTH;
+                double offsetShrink = Math.min(deficit, offsetShrinkCapacity);
+                offsetWidth -= offsetShrink;
+                deficit -= offsetShrink;
+            }
+
+            if (deficit > 0.0) {
+                double gapShrinkCapacity = HEX_GROUP_GAP - MIN_HEX_GROUP_GAP;
+                double gapShrink = Math.min(deficit, gapShrinkCapacity);
+                hexGroupGap -= gapShrink;
+            }
+
+            boolean compact = hexCellWidth <= 19.0 || asciiCellWidth <= 9.0;
+            return new LayoutMetrics(
+                offsetWidth,
+                hexCellWidth,
+                hexGroupGap,
+                asciiCellWidth,
+                compact ? COMPACT_HEADER_FONT : HEADER_FONT,
+                compact ? COMPACT_BODY_FONT : BODY_FONT
+            );
+        }
+
+        private static double requiredWidth(
+            double offsetWidth,
+            double hexCellWidth,
+            double hexGroupGap,
+            double asciiCellWidth
+        ) {
+            return offsetWidth
+                + (HexDocModel.BYTES_PER_ROW * hexCellWidth)
+                + hexGroupGap
+                + (HexDocModel.BYTES_PER_ROW * asciiCellWidth);
+        }
+
+        double hexStartX() {
+            return OFFSET_X + offsetWidth;
+        }
+
+        double asciiStartX() {
+            return hexStartX() + (HexDocModel.BYTES_PER_ROW * hexCellWidth) + hexGroupGap;
+        }
+
+        double hexCellX(int byteInRow) {
+            double groupGap = byteInRow >= 8 ? hexGroupGap : 0.0;
+            return hexStartX() + (byteInRow * hexCellWidth) + groupGap;
+        }
+
+        double asciiCellX(int byteInRow) {
+            return asciiStartX() + (byteInRow * asciiCellWidth);
+        }
     }
 }
