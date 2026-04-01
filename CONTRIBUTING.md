@@ -28,8 +28,8 @@ This project uses gated migration phases with explicit handoffs.
 
 ## Latest Release Reference
 
-The latest completed release phase is `AMP-16` (Phase 2c-4 hex merge view
+The latest completed release phase is `AMP-8` (Phase 2d shell integration
 migration). See:
 
-- `migration-reports/qa/AMP-16/qa-report.md`
-- `migration-reports/post-migration/releases/AMP-16-release-record.md`
+- `migration-reports/qa/AMP-8/qa-report.md`
+- `migration-reports/post-migration/releases/AMP-8-release-record.md`

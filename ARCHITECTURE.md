@@ -19,27 +19,28 @@ migrated Java module structure used by the migration program.
 - `Src`, `ShellExtension`, `Plugins`, and related directories remain present for
   parity validation and phased migration checks.
 
-## Latest Released Migration Impact (AMP-16, Phase 2c-4)
+## Latest Released Migration Impact (AMP-8, Phase 2d)
 
-AMP-16 shipped the JavaFX hex merge view surface in `winmerge-desktop`:
+AMP-8 shipped the shell integration migration in `winmerge-shell`:
 
-- `org.winmerge.desktop.ui.hex.HexDocModel`
-- `org.winmerge.desktop.ui.hex.HexController`
-- `org.winmerge.desktop.ui.hex.HexGridCanvas`
-- `org/winmerge/desktop/ui/hex/HexPane.fxml`
+- `org.winmerge.shell.ShellLauncher`
+- `org.winmerge.shell.ShellPreferencesStore`
+- `org.winmerge.shell.ShellRegistrationManager`
+- `org.winmerge.shell.WinMergeShellIntegration`
 
 The release includes:
 
-- async hex loading off the JavaFX UI thread
-- bounded binary read guard (64 MiB per file) with user-visible feedback
-- synchronized side-by-side pane scrolling and diff-byte highlighting
+- platform-aware command launching with failure diagnostics propagation
+- preferences-backed shell settings with persistence consistency on failures
+- idempotent Windows unregister handling with missing-key convergence
+- explicit unsupported rollback signaling for non-Windows file association
+  unregister flows
 
 Release gates completed before release handoff:
 
 - staff review approval
-- security review clearance
-- design review pass
-- QA gate pass with health score 95/100
+- QA gate pass with health score 92/100
+- Engineering Manager benchmark policy clearance for >10% deltas
 
-See `migration-reports/post-migration/releases/AMP-16-release-record.md` for
+See `migration-reports/post-migration/releases/AMP-8-release-record.md` for
 release-level verification evidence.

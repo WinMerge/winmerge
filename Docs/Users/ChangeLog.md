@@ -1,5 +1,23 @@
 # Change log
 
+## WinMerge 2.16.58 - 2026-04-02
+
+### Migration
+
+* Phase 2d release landed for shell integration migration (`AMP-8`)
+* Added cross-platform shell integration service layer in `winmerge-shell`:
+    `ShellLauncher`, `ShellPreferencesStore`, `ShellRegistrationManager`, and
+    `WinMergeShellIntegration`
+* Hardened rollback/idempotency behavior for shell unregister flows, including
+    Windows registry missing-key convergence and explicit unsupported failures
+    for non-Windows file-association rollback
+* Added regression coverage for launcher failure diagnostics, idempotent
+    unregister semantics, and settings persistence consistency on failed side
+    effects
+* QA gate passed with health score 92/100; benchmark deltas:
+    compile -10.51%, shell tests +17.39% (coverage expansion), jar size
+    +2352.72% (expected vs pre-migration stub baseline)
+
 ## WinMerge 2.16.57 - 2026-04-01
 
 ### Migration
