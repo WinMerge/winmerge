@@ -51,9 +51,10 @@ public final class ShellRegistrationManager {
         String normalizedExtension = normalizeExtension(extension);
         return switch (platform) {
             case WINDOWS -> registerFileAssociationWindows(normalizedExtension, description);
-            case LINUX -> registerFileAssociationLinux(mimeType);
-            case MAC -> registerFileAssociationMac(normalizedExtension);
-            case OTHER -> ShellOperationResult.failure("File association is not supported on this platform.", List.of());
+            case LINUX, MAC, OTHER -> ShellOperationResult.failure(
+                "File-association registration is disabled on this platform because rollback cannot be guaranteed.",
+                List.of()
+            );
         };
     }
 
@@ -152,27 +153,76 @@ public final class ShellRegistrationManager {
         String suffix = extension.substring(1).toUpperCase(Locale.ROOT);
         String progId = "WinMerge." + suffix;
         String commandLine = "\"" + executablePath.toAbsolutePath().normalize() + "\" \"%1\"";
+        String extensionKey = "HKCU\\Software\\Classes\\" + extension;
+
+        RegistryDefaultValueQuery existingAssociation = queryRegistryDefaultValue(extensionKey);
+        if (!existingAssociation.querySucceeded()) {
+            return ShellOperationResult.failure(existingAssociation.errorMessage(), existingAssociation.executedCommands());
+        }
+        if (existingAssociation.keyExists() && !progId.equalsIgnoreCase(existingAssociation.defaultValue())) {
+            return ShellOperationResult.failure(
+                "Refusing to overwrite existing Windows association for "
+                    + extension
+                    + " because rollback cannot restore current handler '"
+                    + existingAssociation.defaultValue()
+                    + "'.",
+                existingAssociation.executedCommands()
+            );
+        }
 
         List<List<String>> commands = List.of(
-            regAdd("HKCU\\Software\\Classes\\" + extension, progId),
+            regAdd(extensionKey, progId),
             regAdd("HKCU\\Software\\Classes\\" + progId, description == null || description.isBlank()
                 ? "WinMerge file association (" + extension + ")"
                 : description),
             regAdd("HKCU\\Software\\Classes\\" + progId + "\\shell\\open\\command", commandLine)
         );
-        return runCommands(commands, "Windows file association registration completed for " + extension);
+        ShellOperationResult registrationResult = runCommands(commands, "Windows file association registration completed for " + extension);
+        List<String> executed = new ArrayList<>(existingAssociation.executedCommands());
+        executed.addAll(registrationResult.executedCommands());
+        return registrationResult.success()
+            ? ShellOperationResult.success(registrationResult.message(), executed)
+            : ShellOperationResult.failure(registrationResult.message(), executed);
     }
 
     private ShellOperationResult unregisterFileAssociationWindows(String extension) {
         String suffix = extension.substring(1).toUpperCase(Locale.ROOT);
         String progId = "WinMerge." + suffix;
-        return runRegDeletesIdempotent(
+        String extensionKey = "HKCU\\Software\\Classes\\" + extension;
+
+        RegistryDefaultValueQuery existingAssociation = queryRegistryDefaultValue(extensionKey);
+        if (!existingAssociation.querySucceeded()) {
+            return ShellOperationResult.failure(existingAssociation.errorMessage(), existingAssociation.executedCommands());
+        }
+        if (!existingAssociation.keyExists()) {
+            return ShellOperationResult.success(
+                "Windows file association already removed for " + extension,
+                existingAssociation.executedCommands()
+            );
+        }
+        if (!progId.equalsIgnoreCase(existingAssociation.defaultValue())) {
+            return ShellOperationResult.failure(
+                "Refusing to remove Windows association for "
+                    + extension
+                    + " because current handler is '"
+                    + existingAssociation.defaultValue()
+                    + "'.",
+                existingAssociation.executedCommands()
+            );
+        }
+
+        ShellOperationResult deleteResult = runRegDeletesIdempotent(
             List.of(
-                "HKCU\\Software\\Classes\\" + extension,
+                extensionKey,
                 "HKCU\\Software\\Classes\\" + progId
             ),
             "Windows file association removed for " + extension
         );
+        List<String> executed = new ArrayList<>(existingAssociation.executedCommands());
+        executed.addAll(deleteResult.executedCommands());
+        return deleteResult.success()
+            ? ShellOperationResult.success(deleteResult.message(), executed)
+            : ShellOperationResult.failure(deleteResult.message(), executed);
     }
 
     private ShellOperationResult registerFileAssociationLinux(String mimeType) {
@@ -306,5 +356,69 @@ public final class ShellRegistrationManager {
             || output.contains("unable to find")
             || output.contains("cannot find")
             || output.contains("not found");
+    }
+
+    private RegistryDefaultValueQuery queryRegistryDefaultValue(String key) {
+        List<String> queryCommand = List.of("reg", "query", key, "/ve");
+        List<String> executed = List.of(String.join(" ", queryCommand));
+        try {
+            ShellCommandResult queryResult = commandRunner.run(queryCommand);
+            if (!queryResult.isSuccess()) {
+                if (isMissingRegistryKey(queryResult)) {
+                    return new RegistryDefaultValueQuery(true, false, "", "", executed);
+                }
+                return new RegistryDefaultValueQuery(
+                    false,
+                    false,
+                    "",
+                    "Command failed (" + queryResult.exitCode() + "): " + commandFailureDetails(queryResult),
+                    executed
+                );
+            }
+
+            String parsedValue = parseRegistryDefaultValue(queryResult.stdout());
+            if (parsedValue == null) {
+                return new RegistryDefaultValueQuery(
+                    false,
+                    true,
+                    "",
+                    "Unable to parse current registry handler for key " + key + ".",
+                    executed
+                );
+            }
+            return new RegistryDefaultValueQuery(true, true, parsedValue, "", executed);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+            return new RegistryDefaultValueQuery(false, false, "", "Command interrupted: " + ex.getMessage(), executed);
+        } catch (IOException ex) {
+            return new RegistryDefaultValueQuery(false, false, "", "Command execution failed: " + ex.getMessage(), executed);
+        }
+    }
+
+    private static String parseRegistryDefaultValue(String stdout) {
+        if (stdout == null || stdout.isBlank()) {
+            return null;
+        }
+        for (String line : stdout.split("\\R")) {
+            String trimmed = line.trim();
+            if (!trimmed.startsWith("(Default)")) {
+                continue;
+            }
+            String[] parts = trimmed.split("\\s+", 3);
+            if (parts.length < 2) {
+                return "";
+            }
+            return parts.length == 2 ? "" : parts[2].trim();
+        }
+        return null;
+    }
+
+    private record RegistryDefaultValueQuery(
+        boolean querySucceeded,
+        boolean keyExists,
+        String defaultValue,
+        String errorMessage,
+        List<String> executedCommands
+    ) {
     }
 }

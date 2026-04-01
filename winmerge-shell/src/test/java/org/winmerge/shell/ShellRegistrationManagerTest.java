@@ -89,6 +89,67 @@ class ShellRegistrationManagerTest {
     }
 
     @Test
+    void nonWindowsFileAssociationRegisterReturnsFailure() {
+        RecordingCommandRunner runner = new RecordingCommandRunner();
+        ShellFolderResolver resolver = new ShellFolderResolver(ShellPlatform.LINUX, Map.of(), Path.of("/tmp/home"));
+        ShellRegistrationManager manager = new ShellRegistrationManager(
+            ShellPlatform.LINUX,
+            runner,
+            resolver,
+            Path.of("/opt/winmerge/bin/winmerge")
+        );
+
+        ShellOperationResult result = manager.registerFileAssociation(".txt", "text/plain", "Text file");
+
+        assertFalse(result.success());
+        assertTrue(runner.commands.isEmpty());
+    }
+
+    @Test
+    void windowsRegisterRefusesToOverrideForeignAssociation() {
+        RecordingCommandRunner runner = new RecordingCommandRunner();
+        runner.scriptPrefix(
+            "reg query HKCU\\Software\\Classes\\.txt /ve",
+            new ShellCommandResult(0, "    (Default)    REG_SZ    txtfile", "")
+        );
+        ShellFolderResolver resolver = new ShellFolderResolver(ShellPlatform.WINDOWS, Map.of(), Path.of("C:/Users/tester"));
+        ShellRegistrationManager manager = new ShellRegistrationManager(
+            ShellPlatform.WINDOWS,
+            runner,
+            resolver,
+            Path.of("C:/Program Files/WinMerge/WinMerge.exe")
+        );
+
+        ShellOperationResult result = manager.registerFileAssociation(".txt", "text/plain", "Text file");
+
+        assertFalse(result.success());
+        assertTrue(result.message().contains("Refusing to overwrite"));
+        assertTrue(runner.commands.stream().noneMatch(command -> "add".equalsIgnoreCase(command.get(1))));
+    }
+
+    @Test
+    void windowsUnregisterRefusesToDeleteForeignAssociation() {
+        RecordingCommandRunner runner = new RecordingCommandRunner();
+        runner.scriptPrefix(
+            "reg query HKCU\\Software\\Classes\\.txt /ve",
+            new ShellCommandResult(0, "    (Default)    REG_SZ    txtfile", "")
+        );
+        ShellFolderResolver resolver = new ShellFolderResolver(ShellPlatform.WINDOWS, Map.of(), Path.of("C:/Users/tester"));
+        ShellRegistrationManager manager = new ShellRegistrationManager(
+            ShellPlatform.WINDOWS,
+            runner,
+            resolver,
+            Path.of("C:/Program Files/WinMerge/WinMerge.exe")
+        );
+
+        ShellOperationResult result = manager.unregisterFileAssociation(".txt", "text/plain");
+
+        assertFalse(result.success());
+        assertTrue(result.message().contains("Refusing to remove"));
+        assertTrue(runner.commands.stream().noneMatch(command -> "delete".equalsIgnoreCase(command.get(1))));
+    }
+
+    @Test
     void writesLinuxContextMenuDesktopEntry() throws IOException {
         Path home = Files.createTempDirectory("winmerge-shell-test-home");
         try {
