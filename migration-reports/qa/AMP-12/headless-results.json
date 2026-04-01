@@ -1,0 +1,35 @@
+{
+  "issue": "AMP-12",
+  "tier": "Standard",
+  "tool": "playwright",
+  "mode": "headless",
+  "captured_at": "2026-04-01",
+  "flows": [
+    {
+      "name": "Baseline summary report",
+      "source": "file:///tmp/winmerge-qa-pre-zijZBq/winmerge-core/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-12/pre-e8abe70b3-summary.png"
+    },
+    {
+      "name": "Baseline compare-engine suite details",
+      "source": "file:///tmp/winmerge-qa-pre-zijZBq/winmerge-core/build/reports/tests/test/classes/org.winmerge.core.compare.engines.CompareEnginesTest.html",
+      "screenshot": "migration-reports/qa/AMP-12/pre-e8abe70b3-compare-engines.png"
+    },
+    {
+      "name": "Candidate summary report",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-core/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-12/post-62ce3b0f7-summary.png"
+    },
+    {
+      "name": "Candidate compare-engine suite details",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-core/build/reports/tests/test/classes/org.winmerge.core.compare.engines.CompareEnginesTest.html",
+      "screenshot": "migration-reports/qa/AMP-12/post-62ce3b0f7-compare-engines.png"
+    }
+  ],
+  "results": {
+    "baseline_compare_engine_tests": 10,
+    "candidate_compare_engine_tests": 12,
+    "baseline_failures": 0,
+    "candidate_failures": 0
+  }
+}

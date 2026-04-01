@@ -1,0 +1,45 @@
+{
+  "issue": "AMP-12",
+  "evaluated_commit": "62ce3b0f7",
+  "baseline_commit": "e8abe70b3",
+  "captured_at": "2026-04-01",
+  "method": {
+    "commands": [
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-core:clean :winmerge-core:build --rerun-tasks",
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-core:clean :winmerge-core:test --tests org.winmerge.core.compare.engines.CompareEnginesTest --rerun-tasks"
+    ],
+    "notes": [
+      "Web metrics (page load, Core Web Vitals) are not applicable to this phase because AMP-12 modifies winmerge-core compare engines and introduces no web surface.",
+      "Resource-size comparison is captured from built jar artifacts."
+    ]
+  },
+  "metrics": {
+    "build_time_seconds": {
+      "baseline": 5.63,
+      "candidate": 5.04,
+      "delta_percent": -10.48
+    },
+    "compare_engines_test_time_seconds": {
+      "baseline": 5.69,
+      "candidate": 6.14,
+      "delta_percent": 7.91
+    },
+    "artifact_size_bytes": {
+      "jar": {
+        "baseline": 109385,
+        "candidate": 109742,
+        "delta_percent": 0.33
+      },
+      "sources_jar": {
+        "baseline": 45946,
+        "candidate": 46134,
+        "delta_percent": 0.41
+      }
+    }
+  },
+  "regression_policy": {
+    "threshold_percent": 10,
+    "status": "pass",
+    "violations": []
+  }
+}
