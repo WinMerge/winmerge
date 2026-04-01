@@ -20,6 +20,10 @@ public final class WinMergePluginBridge {
         this(new ServiceLoaderPluginRegistry());
     }
 
+    public WinMergePluginBridge(List<Path> pluginLocations) {
+        this(new ServiceLoaderPluginRegistry(pluginLocations));
+    }
+
     WinMergePluginBridge(ServiceLoaderPluginRegistry registry) {
         this.registry = Objects.requireNonNull(registry, "registry");
     }

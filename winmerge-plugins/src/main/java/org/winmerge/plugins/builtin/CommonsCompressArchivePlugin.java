@@ -17,10 +17,15 @@ import org.apache.commons.compress.archivers.ArchiveException;
 import org.apache.commons.compress.archivers.ArchiveInputStream;
 import org.apache.commons.compress.archivers.ArchiveOutputStream;
 import org.apache.commons.compress.archivers.ArchiveStreamFactory;
+import org.apache.commons.compress.archivers.sevenz.SevenZArchiveEntry;
+import org.apache.commons.compress.archivers.sevenz.SevenZFile;
+import org.apache.commons.compress.archivers.sevenz.SevenZOutputFile;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipArchiveOutputStream;
+import org.apache.commons.compress.compressors.CompressorException;
+import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorOutputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
@@ -35,6 +40,7 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
     private static final Set<String> SUPPORTED_EXTENSIONS = Set.of(
         ".zip",
         ".jar",
+        ".7z",
         ".tar",
         ".tgz",
         ".tar.gz",
@@ -58,8 +64,15 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
 
     @Override
     public boolean supportsArchive(Path archivePath) {
-        String fileName = archivePath.getFileName().toString().toLowerCase(Locale.ROOT);
-        return SUPPORTED_EXTENSIONS.stream().anyMatch(fileName::endsWith);
+        if (supportsByExtension(archivePath)) {
+            return true;
+        }
+        if (!Files.isRegularFile(archivePath)) {
+            return false;
+        }
+        return isSevenZipArchiveBySignature(archivePath)
+            || supportsByKnownArchiveSignature(archivePath)
+            || supportsCompressedTarSignature(archivePath);
     }
 
     @Override
@@ -69,6 +82,11 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
         }
         Files.createDirectories(destinationDirectory);
         Path normalizedDestination = destinationDirectory.toAbsolutePath().normalize();
+
+        if (isSevenZipArchive(archivePath)) {
+            extractSevenZipArchive(archivePath, normalizedDestination);
+            return;
+        }
 
         try (InputStream payload = openArchivePayloadInputStream(archivePath);
              ArchiveInputStream archiveInput = openArchiveInputStream(archivePath, payload)) {
@@ -102,6 +120,12 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
         if (parent != null) {
             Files.createDirectories(parent);
         }
+
+        if (isSevenZipArchiveByExtension(archivePath)) {
+            createSevenZipArchive(sourceDirectory, archivePath);
+            return;
+        }
+
         try (ArchiveOutputStream archiveOutput = openArchiveOutputStream(archivePath);
              Stream<Path> stream = Files.walk(sourceDirectory)) {
             stream
@@ -109,6 +133,48 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
                 .sorted()
                 .forEach(path -> writeArchiveEntry(sourceDirectory, path, archiveOutput));
             archiveOutput.finish();
+        } catch (RuntimeException ex) {
+            if (ex.getCause() instanceof IOException ioException) {
+                throw ioException;
+            }
+            throw ex;
+        }
+    }
+
+    private void extractSevenZipArchive(Path archivePath, Path destinationDirectory) throws IOException {
+        try (SevenZFile sevenZFile = new SevenZFile(archivePath.toFile())) {
+            SevenZArchiveEntry entry;
+            byte[] buffer = new byte[8192];
+            while ((entry = sevenZFile.getNextEntry()) != null) {
+                Path outputPath = destinationDirectory.resolve(entry.getName()).normalize();
+                if (!outputPath.startsWith(destinationDirectory)) {
+                    throw new IOException("Blocked zip-slip path: " + entry.getName());
+                }
+                if (entry.isDirectory()) {
+                    Files.createDirectories(outputPath);
+                    continue;
+                }
+                Path parent = outputPath.getParent();
+                if (parent != null) {
+                    Files.createDirectories(parent);
+                }
+                try (OutputStream output = new BufferedOutputStream(Files.newOutputStream(outputPath))) {
+                    int read;
+                    while ((read = sevenZFile.read(buffer)) != -1) {
+                        output.write(buffer, 0, read);
+                    }
+                }
+            }
+        }
+    }
+
+    private void createSevenZipArchive(Path sourceDirectory, Path archivePath) throws IOException {
+        try (SevenZOutputFile sevenZOutput = new SevenZOutputFile(archivePath.toFile());
+             Stream<Path> stream = Files.walk(sourceDirectory)) {
+            stream
+                .filter(path -> !sourceDirectory.equals(path))
+                .sorted()
+                .forEach(path -> writeSevenZipEntry(sourceDirectory, path, sevenZOutput));
         } catch (RuntimeException ex) {
             if (ex.getCause() instanceof IOException ioException) {
                 throw ioException;
@@ -152,19 +218,90 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
         }
     }
 
-    private InputStream openArchivePayloadInputStream(Path archivePath) throws IOException {
+    private void writeSevenZipEntry(Path sourceDirectory, Path path, SevenZOutputFile sevenZOutput) {
+        String entryName = sourceDirectory.relativize(path).toString().replace('\\', '/');
+        if (Files.isDirectory(path) && !entryName.endsWith("/")) {
+            entryName = entryName + "/";
+        }
+        try {
+            SevenZArchiveEntry entry = sevenZOutput.createArchiveEntry(path.toFile(), entryName);
+            sevenZOutput.putArchiveEntry(entry);
+            if (Files.isRegularFile(path)) {
+                try (InputStream input = new BufferedInputStream(Files.newInputStream(path))) {
+                    byte[] buffer = new byte[8192];
+                    int read;
+                    while ((read = input.read(buffer)) != -1) {
+                        sevenZOutput.write(buffer, 0, read);
+                    }
+                }
+            }
+            sevenZOutput.closeArchiveEntry();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private boolean supportsByExtension(Path archivePath) {
+        String fileName = archivePath.getFileName().toString().toLowerCase(Locale.ROOT);
+        return SUPPORTED_EXTENSIONS.stream().anyMatch(fileName::endsWith);
+    }
+
+    private boolean isSevenZipArchive(Path archivePath) {
+        return isSevenZipArchiveByExtension(archivePath) || isSevenZipArchiveBySignature(archivePath);
+    }
+
+    private boolean isSevenZipArchiveByExtension(Path archivePath) {
         String lower = archivePath.getFileName().toString().toLowerCase(Locale.ROOT);
-        InputStream fileInput = new BufferedInputStream(Files.newInputStream(archivePath));
-        if (lower.endsWith(".tgz") || lower.endsWith(".tar.gz")) {
-            return new GzipCompressorInputStream(fileInput, true);
+        return lower.endsWith(".7z");
+    }
+
+    private boolean isSevenZipArchiveBySignature(Path archivePath) {
+        try (InputStream input = new BufferedInputStream(Files.newInputStream(archivePath))) {
+            byte[] signature = input.readNBytes(12);
+            return SevenZFile.matches(signature, signature.length);
+        } catch (IOException ex) {
+            return false;
         }
-        if (lower.endsWith(".tbz2") || lower.endsWith(".tar.bz2")) {
-            return new BZip2CompressorInputStream(fileInput, true);
+    }
+
+    private boolean supportsByKnownArchiveSignature(Path archivePath) {
+        try (InputStream input = new BufferedInputStream(Files.newInputStream(archivePath))) {
+            String detected = ArchiveStreamFactory.detect(input);
+            return ArchiveStreamFactory.ZIP.equals(detected) || ArchiveStreamFactory.TAR.equals(detected);
+        } catch (ArchiveException | IOException ex) {
+            return false;
         }
-        if (lower.endsWith(".txz") || lower.endsWith(".tar.xz")) {
-            return new XZCompressorInputStream(fileInput, true);
+    }
+
+    private boolean supportsCompressedTarSignature(Path archivePath) {
+        String compressor;
+        try {
+            compressor = detectCompressor(archivePath);
+        } catch (IOException ex) {
+            return false;
         }
-        return fileInput;
+        if (compressor == null) {
+            return false;
+        }
+
+        try (InputStream payload = openCompressedPayloadInputStream(archivePath, compressor);
+             InputStream bufferedPayload = new BufferedInputStream(payload)) {
+            String detected = ArchiveStreamFactory.detect(bufferedPayload);
+            return ArchiveStreamFactory.TAR.equals(detected);
+        } catch (ArchiveException | IOException ex) {
+            return false;
+        }
+    }
+
+    private InputStream openArchivePayloadInputStream(Path archivePath) throws IOException {
+        String compressor = compressorFromExtension(archivePath);
+        if (compressor == null) {
+            compressor = detectCompressor(archivePath);
+        }
+        if (compressor != null) {
+            return openCompressedPayloadInputStream(archivePath, compressor);
+        }
+        return new BufferedInputStream(Files.newInputStream(archivePath));
     }
 
     private ArchiveInputStream openArchiveInputStream(Path archivePath, InputStream payload) throws IOException {
@@ -185,6 +322,50 @@ public final class CommonsCompressArchivePlugin implements ArchivePlugin {
             return new ArchiveStreamFactory().createArchiveInputStream(payload);
         } catch (ArchiveException ex) {
             throw new IOException("Failed to read archive stream for " + archivePath, ex);
+        }
+    }
+
+    private String compressorFromExtension(Path archivePath) {
+        String lower = archivePath.getFileName().toString().toLowerCase(Locale.ROOT);
+        if (lower.endsWith(".tgz") || lower.endsWith(".tar.gz")) {
+            return CompressorStreamFactory.GZIP;
+        }
+        if (lower.endsWith(".tbz2") || lower.endsWith(".tar.bz2")) {
+            return CompressorStreamFactory.BZIP2;
+        }
+        if (lower.endsWith(".txz") || lower.endsWith(".tar.xz")) {
+            return CompressorStreamFactory.XZ;
+        }
+        return null;
+    }
+
+    private String detectCompressor(Path archivePath) throws IOException {
+        try (InputStream input = new BufferedInputStream(Files.newInputStream(archivePath))) {
+            return CompressorStreamFactory.detect(input);
+        } catch (CompressorException ex) {
+            return null;
+        }
+    }
+
+    private InputStream openCompressedPayloadInputStream(Path archivePath, String compressor) throws IOException {
+        InputStream fileInput = new BufferedInputStream(Files.newInputStream(archivePath));
+        try {
+            if (CompressorStreamFactory.GZIP.equals(compressor)) {
+                return new GzipCompressorInputStream(fileInput, true);
+            }
+            if (CompressorStreamFactory.BZIP2.equals(compressor)) {
+                return new BZip2CompressorInputStream(fileInput, true);
+            }
+            if (CompressorStreamFactory.XZ.equals(compressor)) {
+                return new XZCompressorInputStream(fileInput, true);
+            }
+            return fileInput;
+        } catch (IOException ex) {
+            try {
+                fileInput.close();
+            } catch (IOException ignored) {
+            }
+            throw ex;
         }
     }
 
