@@ -1,6 +1,7 @@
 package org.winmerge.core.compare.engines;
 
 import org.winmerge.core.compare.DiffCode;
+import org.winmerge.core.io.FileTextEncoding;
 import org.winmerge.core.io.FileTextStats;
 
 import java.io.IOException;
@@ -49,6 +50,10 @@ public class ByteComparator implements CompareEngine {
         try {
             byte[] leftBytes = context.getFileSystem().readAllBytes(leftPath);
             byte[] rightBytes = context.getFileSystem().readAllBytes(rightPath);
+            FileTextEncoding leftEncoding = CompareEngineSupport.detectEncoding(leftBytes);
+            FileTextEncoding rightEncoding = CompareEngineSupport.detectEncoding(rightBytes);
+            leftInfo.setEncoding(leftEncoding);
+            rightInfo.setEncoding(rightEncoding);
 
             FileTextStats leftStats = new FileTextStats();
             FileTextStats rightStats = new FileTextStats();
@@ -76,9 +81,6 @@ public class ByteComparator implements CompareEngine {
                 return DiffCode.CMPABORT;
             }
             if (leftBytes[i] != rightBytes[i]) {
-                return DiffCode.DIFF;
-            }
-            if (context.isStopAfterFirstDiff() && leftBytes[i] != rightBytes[i]) {
                 return DiffCode.DIFF;
             }
         }

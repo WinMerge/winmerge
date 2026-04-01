@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.winmerge.core.compare.DiffCode;
 import org.winmerge.core.compare.QuickCompareOptions;
+import org.winmerge.core.compare.WhitespaceIgnoreChoice;
 import org.winmerge.core.diff.DiffEngine;
 import org.winmerge.core.io.NioFileSystemService;
 import org.winmerge.core.io.PathContext;
@@ -11,6 +12,7 @@ import org.winmerge.core.io.PathContext;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -106,14 +108,28 @@ class CompareEnginesTest {
 
     @Test
     void diffUtilsEngineReturnsKnownDiffCountsForTextDiff() throws IOException {
-        Path left = write("left.txt", "alpha\nbeta\n");
-        Path right = write("right.txt", "alpha\nBETA\n");
+        Path left = write("left.txt", "alpha\nbeta\ngamma\ndelta\n");
+        Path right = write("right.txt", "alpha\nBETA\ngamma\nDELTA\n");
 
         CompareEngineContext context = context(left, right);
         CompareEngineResult result = new DiffUtilsEngine().compare(context);
         assertEquals(DiffCode.FILE | DiffCode.TEXT | DiffCode.DIFF, result.diffCode());
-        assertEquals(1, result.significantDiffs());
+        assertEquals(2, result.significantDiffs());
         assertEquals(0, result.trivialDiffs());
+    }
+
+    @Test
+    void ignoreChangeTreatsTrailingWhitespaceBeforeEolAsSame() throws IOException {
+        Path left = write("left.txt", "x \n");
+        Path right = write("right.txt", "x\n");
+
+        CompareEngineContext context = context(left, right);
+        QuickCompareOptions options = new QuickCompareOptions();
+        options.setIgnoreWhitespace(WhitespaceIgnoreChoice.IGNORE_CHANGE);
+        context.setQuickCompareOptions(options);
+
+        CompareEngineResult result = new ByteComparator().compare(context);
+        assertEquals(DiffCode.FILE | DiffCode.TEXT | DiffCode.SAME, result.diffCode());
     }
 
     @Test
@@ -129,6 +145,22 @@ class CompareEnginesTest {
         context.setCompareType(DiffEngine.CompareType.CONTENT);
         CompareEngineResult full = new FullQuickCompare().compare(context);
         assertEquals(DiffCode.SAME, full.diffCode() & DiffCode.COMPAREFLAGS);
+    }
+
+    @Test
+    void fullQuickCompareTreatsEncodingMismatchAsDiffWhenIgnoreCodepageDisabled() throws IOException {
+        Path left = tempDir.resolve("left-utf8-bom.txt");
+        Path right = tempDir.resolve("right-utf8.txt");
+        Files.write(left, new byte[] {(byte) 0xEF, (byte) 0xBB, (byte) 0xBF});
+        Files.writeString(left, "same\n", StandardCharsets.UTF_8, java.nio.file.StandardOpenOption.APPEND);
+        Files.writeString(right, "same\n", StandardCharsets.UTF_8);
+
+        CompareEngineContext context = context(left, right);
+        context.setCompareType(DiffEngine.CompareType.CONTENT);
+        context.setIgnoreCodepage(false);
+
+        CompareEngineResult result = new FullQuickCompare().compare(context);
+        assertEquals(DiffCode.DIFF, result.diffCode() & DiffCode.COMPAREFLAGS);
     }
 
     private CompareEngineContext context(Path left, Path right) {
