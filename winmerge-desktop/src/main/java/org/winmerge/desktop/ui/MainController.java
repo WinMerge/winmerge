@@ -1,17 +1,23 @@
 package org.winmerge.desktop.ui;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Objects;
+import java.util.Optional;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToolBar;
-import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.winmerge.desktop.ui.merge.MergeEditController;
 
 public class MainController {
     @FXML
@@ -35,7 +41,6 @@ public class MainController {
     private final ActionDispatcher actionDispatcher = new ActionDispatcher();
     private TabManager tabManager;
     private Stage primaryStage;
-    private int openCounter = 1;
 
     @FXML
     private void initialize() {
@@ -63,19 +68,38 @@ public class MainController {
     }
 
     private void registerActions() {
-        actionDispatcher.register(ActionId.FILE_OPEN, this::openPlaceholderTab);
+        actionDispatcher.register(ActionId.FILE_OPEN, this::openFileDiffTab);
         actionDispatcher.register(ActionId.FILE_EXIT, this::requestExit);
     }
 
-    private void openPlaceholderTab() {
-        String tabTitle = "Open " + openCounter++;
-        Label placeholderText = new Label("Open dialog migration lands in phase 2c-5.");
-        placeholderText.getStyleClass().add("placeholder-text");
-        StackPane content = new StackPane(placeholderText);
-        content.getStyleClass().add("placeholder-tab-content");
+    private void openFileDiffTab() {
+        if (primaryStage == null) {
+            statusBarViewController.setStatusText("Window is not initialized yet.");
+            return;
+        }
 
-        Tab tab = tabManager.openTab(tabTitle, content);
-        statusBarViewController.setStatusText("Opened tab: " + tab.getText());
+        Optional<FilePair> selectedPair = promptForTwoFiles(primaryStage);
+        if (selectedPair.isEmpty()) {
+            statusBarViewController.setStatusText("Open cancelled.");
+            return;
+        }
+
+        FilePair pair = selectedPair.get();
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                MainController.class.getResource("/org/winmerge/desktop/ui/merge/MergeEditPane.fxml")
+            );
+            Parent mergeRoot = loader.load();
+            MergeEditController mergeController = loader.getController();
+            mergeController.setStatusListener(statusBarViewController::setStatusText);
+            mergeController.loadFiles(pair.leftPath(), pair.rightPath());
+
+            String tabTitle = pair.leftPath().getFileName() + " ↔ " + pair.rightPath().getFileName();
+            Tab tab = tabManager.openTab(tabTitle, mergeRoot);
+            statusBarViewController.setStatusText("Opened file diff: " + tab.getText());
+        } catch (IOException ioException) {
+            statusBarViewController.setStatusText("Failed to open file diff: " + ioException.getMessage());
+        }
     }
 
     private void requestExit() {
@@ -88,5 +112,24 @@ public class MainController {
 
     private static void requireInjected(Object field, String fieldName) {
         Objects.requireNonNull(field, () -> "Missing @FXML injection for " + fieldName);
+    }
+
+    private static Optional<FilePair> promptForTwoFiles(Stage owner) {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Select left file for comparison");
+        File leftFile = chooser.showOpenDialog(owner);
+        if (leftFile == null) {
+            return Optional.empty();
+        }
+
+        chooser.setTitle("Select right file for comparison");
+        File rightFile = chooser.showOpenDialog(owner);
+        if (rightFile == null) {
+            return Optional.empty();
+        }
+        return Optional.of(new FilePair(leftFile.toPath(), rightFile.toPath()));
+    }
+
+    private record FilePair(Path leftPath, Path rightPath) {
     }
 }

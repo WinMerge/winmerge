@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.winmerge.desktop.ui.merge.MergeEditController"
+      styleClass="merge-edit-pane">
+    <children>
+        <ToolBar styleClass="merge-toolbar">
+            <items>
+                <Button fx:id="previousDiffButton" mnemonicParsing="false" onAction="#onPreviousDiff" text="Previous"/>
+                <Button fx:id="nextDiffButton" mnemonicParsing="false" onAction="#onNextDiff" text="Next"/>
+                <Button fx:id="mergeLeftToRightButton" mnemonicParsing="false" onAction="#onMergeLeftToRight" text="Merge Left → Right"/>
+                <Label fx:id="diffCounterLabel" text="No differences"/>
+            </items>
+        </ToolBar>
+        <ToolBar styleClass="merge-path-toolbar">
+            <items>
+                <Label text="Left:"/>
+                <Label fx:id="leftPathLabel" maxWidth="Infinity" text=""/>
+                <Label text="Right:"/>
+                <Label fx:id="rightPathLabel" maxWidth="Infinity" text=""/>
+            </items>
+        </ToolBar>
+        <StackPane VBox.vgrow="ALWAYS">
+            <children>
+                <SplitPane dividerPositions="0.46,0.92" VBox.vgrow="ALWAYS">
+                    <items>
+                        <StackPane fx:id="leftEditorContainer" styleClass="merge-editor-container"/>
+                        <StackPane fx:id="rightEditorContainer" styleClass="merge-editor-container"/>
+                        <fx:include source="LocationPane.fxml" fx:id="locationPaneView"/>
+                    </items>
+                </SplitPane>
+                <StackPane fx:id="loadingOverlay"
+                           alignment="CENTER"
+                           managed="false"
+                           mouseTransparent="true"
+                           styleClass="loading-overlay"
+                           visible="false">
+                    <children>
+                        <ProgressIndicator fx:id="loadingIndicator" managed="false" visible="false"/>
+                    </children>
+                </StackPane>
+            </children>
+        </StackPane>
+    </children>
+    <VBox.vgrow>
+        <Priority fx:constant="ALWAYS"/>
+    </VBox.vgrow>
+</VBox>

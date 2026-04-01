@@ -1,0 +1,10 @@
+{
+  "name": "Python",
+  "scopeName": "source.python",
+  "fileTypes": ["py"],
+  "patterns": [
+    {"include": "#comments"},
+    {"include": "#strings"},
+    {"include": "#keywords"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Java",
+  "scopeName": "source.java",
+  "fileTypes": ["java"],
+  "patterns": [
+    {"include": "#comments"},
+    {"include": "#strings"},
+    {"include": "#keywords"}
+  ]
+}

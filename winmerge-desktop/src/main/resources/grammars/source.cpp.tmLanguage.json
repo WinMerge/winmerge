@@ -1,0 +1,10 @@
+{
+  "name": "C++",
+  "scopeName": "source.cpp",
+  "fileTypes": ["cpp", "cxx", "cc", "h", "hpp"],
+  "patterns": [
+    {"include": "#comments"},
+    {"include": "#strings"},
+    {"include": "#keywords"}
+  ]
+}

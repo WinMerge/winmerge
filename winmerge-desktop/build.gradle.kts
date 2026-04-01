@@ -10,6 +10,8 @@ description = "WinMerge JavaFX desktop application module"
 
 dependencies {
     implementation(project(":winmerge-core"))
+    implementation("org.fxmisc.richtext:richtextfx:0.11.5")
+    implementation("dev.secondsun:org.eclipse.tm4e.core:0.5.0")
     runtimeOnly(project(":winmerge-shell"))
     runtimeOnly(project(":winmerge-plugins"))
 

@@ -19,3 +19,59 @@
 .placeholder-text {
     -fx-text-fill: #344054;
 }
+
+.merge-toolbar {
+    -fx-padding: 6 8 6 8;
+    -fx-spacing: 6;
+}
+
+.merge-path-toolbar {
+    -fx-padding: 4 8 4 8;
+    -fx-spacing: 6;
+}
+
+.merge-editor-container {
+    -fx-background-color: #ffffff;
+}
+
+.merge-code-area {
+    -fx-font-family: "Consolas", "Monaco", "JetBrains Mono", monospace;
+    -fx-font-size: 13px;
+    -fx-background-color: #ffffff;
+}
+
+.merge-code-area .syntax-keyword {
+    -fx-fill: #1d4ed8;
+    -fx-font-weight: bold;
+}
+
+.merge-code-area .syntax-comment {
+    -fx-fill: #6b7280;
+    -fx-font-style: italic;
+}
+
+.merge-code-area .syntax-string {
+    -fx-fill: #0f766e;
+}
+
+.merge-code-area .syntax-number {
+    -fx-fill: #7c3aed;
+}
+
+.merge-code-area .diff-line {
+    -fx-background-color: #fff3bf;
+}
+
+.merge-code-area .diff-line-active {
+    -fx-background-color: #ffd8a8;
+}
+
+.location-pane {
+    -fx-background-color: #eef2f6;
+    -fx-border-color: #d0d7de;
+    -fx-border-width: 0 0 0 1;
+}
+
+.loading-overlay {
+    -fx-background-color: rgba(255, 255, 255, 0.65);
+}
