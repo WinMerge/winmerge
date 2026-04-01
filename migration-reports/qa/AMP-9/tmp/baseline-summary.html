@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AMP-9 Baseline Summary (6300aa210)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 32px; color: #111; }
+    h1 { margin-bottom: 8px; }
+    .meta { color: #444; margin-bottom: 20px; }
+    table { border-collapse: collapse; width: 900px; max-width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f4f4f4; }
+    .ok { color: #0a7a33; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>AMP-9 Baseline Summary</h1>
+  <div class="meta">Commit <code>6300aa210</code> | Rollback validation snapshot for Phase 2e plugin migration QA</div>
+
+  <table>
+    <tr><th>Check</th><th>Result</th><th>Details</th></tr>
+    <tr><td>Compile</td><td class="ok">PASS</td><td><code>:winmerge-plugins:clean :winmerge-plugins:compileJava</code> (4.09s)</td></tr>
+    <tr><td>Tests</td><td class="ok">PASS</td><td><code>:winmerge-plugins:test --rerun-tasks</code> (NO-SOURCE, 0 tests)</td></tr>
+    <tr><td>Build</td><td class="ok">PASS</td><td><code>:winmerge-plugins:build</code> (4.13s)</td></tr>
+    <tr><td>Jar size</td><td class="ok">Captured</td><td><code>winmerge-plugins-0.1.2.jar</code> = 1,017 bytes</td></tr>
+  </table>
+</body>
+</html>

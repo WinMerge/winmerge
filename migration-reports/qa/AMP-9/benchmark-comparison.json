@@ -1,0 +1,59 @@
+{
+  "issue": "AMP-9",
+  "evaluated_commit": "beeb2520b",
+  "baseline_commit": "6300aa210",
+  "captured_at": "2026-04-02",
+  "method": {
+    "commands": [
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-plugins:clean :winmerge-plugins:compileJava",
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-plugins:clean :winmerge-plugins:test --rerun-tasks",
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-plugins:build",
+      "./gradlew --no-daemon :winmerge-plugins:jar"
+    ],
+    "notes": [
+      "This phase is a Java desktop plugin migration unit; browser page-load and Core Web Vitals metrics are not applicable.",
+      "Resource-size comparison is captured from winmerge-plugins jar output.",
+      "Candidate run includes one QA-added regression test for system-property plugin-directory discovery."
+    ]
+  },
+  "metrics": {
+    "compile_time_seconds": {
+      "baseline": 4.09,
+      "candidate": 4.05,
+      "delta_percent": -0.98
+    },
+    "plugin_test_time_seconds": {
+      "baseline": 3.95,
+      "candidate": 4.54,
+      "delta_percent": 14.94
+    },
+    "plugin_build_time_seconds": {
+      "baseline": 4.13,
+      "candidate": 3.28,
+      "delta_percent": -20.58
+    },
+    "artifact_size_bytes": {
+      "winmerge_plugins_jar": {
+        "baseline": 1017,
+        "candidate": 22428,
+        "delta_percent": 2105.31
+      }
+    }
+  },
+  "regression_policy": {
+    "threshold_percent": 10,
+    "status": "flagged",
+    "violations": [
+      {
+        "metric": "plugin_test_time_seconds",
+        "delta_percent": 14.94,
+        "direction": "increase"
+      },
+      {
+        "metric": "artifact_size_bytes.winmerge_plugins_jar",
+        "delta_percent": 2105.31,
+        "direction": "increase"
+      }
+    ]
+  }
+}

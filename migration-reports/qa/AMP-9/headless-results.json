@@ -1,0 +1,38 @@
+{
+  "issue": "AMP-9",
+  "tier": "Quick",
+  "tool": "playwright",
+  "mode": "headless",
+  "captured_at": "2026-04-02",
+  "flows": [
+    {
+      "name": "Baseline summary report",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/migration-reports/qa/AMP-9/tmp/baseline-summary.html",
+      "screenshot": "migration-reports/qa/AMP-9/pre-6300aa210-summary.png"
+    },
+    {
+      "name": "Candidate summary report",
+      "source": "file:///tmp/winmerge-qa-amp9-cand-SfPrBi/winmerge-plugins/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-9/post-beeb2520b-summary.png"
+    },
+    {
+      "name": "Candidate plugin bridge flow",
+      "source": "file:///tmp/winmerge-qa-amp9-cand-SfPrBi/winmerge-plugins/build/reports/tests/test/classes/org.winmerge.plugins.WinMergePluginBridgeTest.html",
+      "screenshot": "migration-reports/qa/AMP-9/post-beeb2520b-plugin-bridge.png"
+    },
+    {
+      "name": "Candidate archive plugin flow",
+      "source": "file:///tmp/winmerge-qa-amp9-cand-SfPrBi/winmerge-plugins/build/reports/tests/test/classes/org.winmerge.plugins.builtin.CommonsCompressArchivePluginTest.html",
+      "screenshot": "migration-reports/qa/AMP-9/post-beeb2520b-archive-plugin.png"
+    }
+  ],
+  "results": {
+    "baseline_total_tests": 0,
+    "candidate_total_tests": 7,
+    "baseline_failures": 0,
+    "candidate_failures": 0,
+    "candidate_skipped": 0,
+    "candidate_plugin_regression_tests": 7,
+    "candidate_plugin_regression_failures": 0
+  }
+}

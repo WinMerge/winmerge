@@ -49,6 +49,32 @@ class WinMergePluginBridgeTest {
     }
 
     @Test
+    void discoversExternalPluginFromSystemPropertyWithDefaultBridge() throws IOException {
+        Path root = Files.createTempDirectory("winmerge-external-plugin-property-test");
+        String previous = System.getProperty("winmerge.plugins.dir");
+        try {
+            Path pluginDirectory = root.resolve("plugins");
+            Files.createDirectories(pluginDirectory);
+            Path pluginJar = pluginDirectory.resolve("external-fixture-plugin.jar");
+            writeExternalFixturePluginJar(pluginJar);
+
+            System.setProperty("winmerge.plugins.dir", pluginDirectory.toString());
+            WinMergePluginBridge bridge = new WinMergePluginBridge();
+            List<String> ids = bridge.availablePlugins().stream().map(descriptor -> descriptor.id()).toList();
+
+            assertTrue(ids.contains("prediff.external-fixture"));
+            assertEquals("content|external", bridge.applyPrediffPipeline("content", List.of("prediff.external-fixture")));
+        } finally {
+            if (previous == null) {
+                System.clearProperty("winmerge.plugins.dir");
+            } else {
+                System.setProperty("winmerge.plugins.dir", previous);
+            }
+            deleteRecursively(root);
+        }
+    }
+
+    @Test
     void appliesPrediffPipelineInOrder() {
         WinMergePluginBridge bridge = new WinMergePluginBridge();
         String input = "first\r\nsecond   \r\nthird\t\r\n";
