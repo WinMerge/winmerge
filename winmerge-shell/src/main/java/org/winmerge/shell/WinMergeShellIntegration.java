@@ -52,11 +52,13 @@ public final class WinMergeShellIntegration {
 
     public ShellOperationResult applySettings(ShellIntegrationSettings settings) {
         Objects.requireNonNull(settings, "settings");
-        preferencesStore.save(settings);
-        if (settings.contextMenuEnabled()) {
-            return registrationManager.registerContextMenu(settings);
+        ShellOperationResult result = settings.contextMenuEnabled()
+            ? registrationManager.registerContextMenu(settings)
+            : registrationManager.unregisterContextMenu();
+        if (result.success()) {
+            preferencesStore.save(settings);
         }
-        return registrationManager.unregisterContextMenu();
+        return result;
     }
 
     public ShellOperationResult registerContextMenu() {
@@ -67,8 +69,11 @@ public final class WinMergeShellIntegration {
             current.compareAsSubmenu(),
             current.jumpListTasks()
         );
-        preferencesStore.save(desired);
-        return registrationManager.registerContextMenu(desired);
+        ShellOperationResult result = registrationManager.registerContextMenu(desired);
+        if (result.success()) {
+            preferencesStore.save(desired);
+        }
+        return result;
     }
 
     public ShellOperationResult unregisterContextMenu() {
@@ -79,8 +84,11 @@ public final class WinMergeShellIntegration {
             current.compareAsSubmenu(),
             current.jumpListTasks()
         );
-        preferencesStore.save(desired);
-        return registrationManager.unregisterContextMenu();
+        ShellOperationResult result = registrationManager.unregisterContextMenu();
+        if (result.success()) {
+            preferencesStore.save(desired);
+        }
+        return result;
     }
 
     public ShellOperationResult registerFileAssociation(String extension, String mimeType, String description) {

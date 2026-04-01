@@ -10,14 +10,15 @@ public final class ProcessCommandRunner implements CommandRunner {
     public ShellCommandResult run(List<String> command) throws IOException, InterruptedException {
         Objects.requireNonNull(command, "command");
         ProcessBuilder processBuilder = new ProcessBuilder(command);
+        processBuilder.redirectErrorStream(true);
         Process process = processBuilder.start();
-        byte[] stdoutBytes = process.getInputStream().readAllBytes();
-        byte[] stderrBytes = process.getErrorStream().readAllBytes();
+        byte[] mergedOutputBytes = process.getInputStream().readAllBytes();
         int exitCode = process.waitFor();
+        String mergedOutput = new String(mergedOutputBytes, StandardCharsets.UTF_8).trim();
         return new ShellCommandResult(
             exitCode,
-            new String(stdoutBytes, StandardCharsets.UTF_8).trim(),
-            new String(stderrBytes, StandardCharsets.UTF_8).trim()
+            mergedOutput,
+            ""
         );
     }
 }

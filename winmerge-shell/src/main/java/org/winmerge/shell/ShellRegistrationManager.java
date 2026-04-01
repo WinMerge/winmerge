@@ -61,8 +61,8 @@ public final class ShellRegistrationManager {
         String normalizedExtension = normalizeExtension(extension);
         return switch (platform) {
             case WINDOWS -> unregisterFileAssociationWindows(normalizedExtension);
-            case LINUX, MAC, OTHER -> ShellOperationResult.success(
-                "Unregister requested; manual platform default handler reset may still be required.",
+            case LINUX, MAC, OTHER -> ShellOperationResult.failure(
+                "Automated file-association rollback is not supported on this platform.",
                 List.of()
             );
         };
@@ -91,13 +91,15 @@ public final class ShellRegistrationManager {
     }
 
     private ShellOperationResult unregisterContextMenuWindows() {
-        List<List<String>> commands = List.of(
-            regDelete("HKCU\\Software\\Classes\\*\\shell\\WinMerge"),
-            regDelete("HKCU\\Software\\Classes\\Directory\\shell\\WinMerge"),
-            regDelete("HKCU\\Software\\Classes\\Directory\\Background\\shell\\WinMergeAdvanced"),
-            regDelete("HKCU\\Software\\Classes\\*\\shell\\WinMergeCompareAs")
+        return runRegDeletesIdempotent(
+            List.of(
+                "HKCU\\Software\\Classes\\*\\shell\\WinMerge",
+                "HKCU\\Software\\Classes\\Directory\\shell\\WinMerge",
+                "HKCU\\Software\\Classes\\Directory\\Background\\shell\\WinMergeAdvanced",
+                "HKCU\\Software\\Classes\\*\\shell\\WinMergeCompareAs"
+            ),
+            "Windows context menu entries removed"
         );
-        return runCommands(commands, "Windows context menu entries removed");
     }
 
     private ShellOperationResult registerContextMenuLinux() {
@@ -164,11 +166,13 @@ public final class ShellRegistrationManager {
     private ShellOperationResult unregisterFileAssociationWindows(String extension) {
         String suffix = extension.substring(1).toUpperCase(Locale.ROOT);
         String progId = "WinMerge." + suffix;
-        List<List<String>> commands = List.of(
-            regDelete("HKCU\\Software\\Classes\\" + extension),
-            regDelete("HKCU\\Software\\Classes\\" + progId)
+        return runRegDeletesIdempotent(
+            List.of(
+                "HKCU\\Software\\Classes\\" + extension,
+                "HKCU\\Software\\Classes\\" + progId
+            ),
+            "Windows file association removed for " + extension
         );
-        return runCommands(commands, "Windows file association removed for " + extension);
     }
 
     private ShellOperationResult registerFileAssociationLinux(String mimeType) {
@@ -219,8 +223,42 @@ public final class ShellRegistrationManager {
             try {
                 ShellCommandResult result = commandRunner.run(command);
                 if (!result.isSuccess()) {
+                    String details = (result.stderr() == null || result.stderr().isBlank()) ? result.stdout() : result.stderr();
                     return ShellOperationResult.failure(
-                        "Command failed (" + result.exitCode() + "): " + result.stderr(),
+                        "Command failed (" + result.exitCode() + "): " + details,
+                        executed
+                    );
+                }
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+                return ShellOperationResult.failure("Command interrupted: " + ex.getMessage(), executed);
+            } catch (IOException ex) {
+                return ShellOperationResult.failure("Command execution failed: " + ex.getMessage(), executed);
+            }
+        }
+        return ShellOperationResult.success(successMessage, executed);
+    }
+
+    private ShellOperationResult runRegDeletesIdempotent(List<String> keys, String successMessage) {
+        List<String> executed = new ArrayList<>();
+        for (String key : keys) {
+            List<String> queryCommand = List.of("reg", "query", key);
+            executed.add(String.join(" ", queryCommand));
+            try {
+                ShellCommandResult queryResult = commandRunner.run(queryCommand);
+                if (!queryResult.isSuccess()) {
+                    // Missing keys are treated as already converged desired state.
+                    continue;
+                }
+                List<String> deleteCommand = regDelete(key);
+                executed.add(String.join(" ", deleteCommand));
+                ShellCommandResult deleteResult = commandRunner.run(deleteCommand);
+                if (!deleteResult.isSuccess()) {
+                    String details = (deleteResult.stderr() == null || deleteResult.stderr().isBlank())
+                        ? deleteResult.stdout()
+                        : deleteResult.stderr();
+                    return ShellOperationResult.failure(
+                        "Command failed (" + deleteResult.exitCode() + "): " + details,
                         executed
                     );
                 }
