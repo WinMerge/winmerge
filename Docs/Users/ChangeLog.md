@@ -1,5 +1,17 @@
 # Change log
 
+## WinMerge 2.16.56 - 2026-04-01
+
+### Migration
+
+* Phase 2b Wave 3b release landed for compare-engine migration (`AMP-12`)
+* Ported compare engines: ExistenceCompare, TimeSizeCompare, BinaryCompare,
+    ImageCompare, DiffUtilsEngine, ByteCompare, FullQuickCompare, ByteComparator
+* Added migration parity regressions for whitespace, encoding mismatch, and
+    non-UTF8 byte stability in `CompareEnginesTest`
+* QA gate passed with health score 96/100; benchmark deltas:
+    build -10.48%, compare-engine test +7.91%, artifact size +0.33%/+0.41%
+
 ## WinMerge 2.16.55 - 2026-04-05
 
 ### General
