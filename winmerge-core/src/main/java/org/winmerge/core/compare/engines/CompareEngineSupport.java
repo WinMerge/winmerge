@@ -8,7 +8,11 @@ import org.winmerge.core.io.UnicodeEncoding;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.CodingErrorAction;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Locale;
@@ -148,7 +152,16 @@ final class CompareEngineSupport {
             }
         }
         Charset charset = encoding.toCharset();
-        return new String(bytes, offset, bytes.length - offset, charset);
+        try {
+            return charset.newDecoder()
+                    .onMalformedInput(CodingErrorAction.REPORT)
+                    .onUnmappableCharacter(CodingErrorAction.REPORT)
+                    .decode(ByteBuffer.wrap(bytes, offset, bytes.length - offset))
+                    .toString();
+        } catch (CharacterCodingException ex) {
+            // Preserve one-to-one byte distinction when the selected charset cannot decode the buffer.
+            return new String(bytes, offset, bytes.length - offset, StandardCharsets.ISO_8859_1);
+        }
     }
 
     static void collectTextStats(FileTextStats stats, byte[] bytes) {

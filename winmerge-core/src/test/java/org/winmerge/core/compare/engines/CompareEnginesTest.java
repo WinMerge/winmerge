@@ -163,6 +163,34 @@ class CompareEnginesTest {
         assertEquals(DiffCode.DIFF, result.diffCode() & DiffCode.COMPAREFLAGS);
     }
 
+    @Test
+    void quickCompareDoesNotCollapseDistinctInvalidUtf8BytesToSame() throws IOException {
+        Path left = tempDir.resolve("left.bin");
+        Path right = tempDir.resolve("right.bin");
+        Files.write(left, new byte[] {(byte) 0x80});
+        Files.write(right, new byte[] {(byte) 0x81});
+
+        CompareEngineContext context = context(left, right);
+        context.setCompareType(DiffEngine.CompareType.QUICK_CONTENT);
+
+        CompareEngineResult result = new FullQuickCompare().compare(context);
+        assertEquals(DiffCode.DIFF, result.diffCode() & DiffCode.COMPAREFLAGS);
+    }
+
+    @Test
+    void fullContentCompareDoesNotCollapseDistinctInvalidUtf8BytesToSame() throws IOException {
+        Path left = tempDir.resolve("left.bin");
+        Path right = tempDir.resolve("right.bin");
+        Files.write(left, new byte[] {(byte) 0x80});
+        Files.write(right, new byte[] {(byte) 0x81});
+
+        CompareEngineContext context = context(left, right);
+        context.setCompareType(DiffEngine.CompareType.CONTENT);
+
+        CompareEngineResult result = new FullQuickCompare().compare(context);
+        assertEquals(DiffCode.DIFF, result.diffCode() & DiffCode.COMPAREFLAGS);
+    }
+
     private CompareEngineContext context(Path left, Path right) {
         return new CompareEngineContext(new PathContext(left.toString(), right.toString()), new NioFileSystemService());
     }
