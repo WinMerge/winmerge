@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="460.0"
+            prefHeight="520.0"
+            fx:controller="org.winmerge.desktop.ui.dialogs.ComparisonResultFilterDialogController">
+    <content>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+            </padding>
+            <HBox spacing="18.0">
+                <RadioButton fx:id="includeRadio" mnemonicParsing="true" text="_Include"/>
+                <RadioButton fx:id="excludeRadio" mnemonicParsing="true" text="_Exclude"/>
+            </HBox>
+            <Label text="Comparison Results"/>
+            <CheckBox fx:id="identicalCheck" mnemonicParsing="false" text="Identical"/>
+            <CheckBox fx:id="differentCheck" mnemonicParsing="false" text="Different"/>
+            <CheckBox fx:id="leftOnlyCheck" mnemonicParsing="false" text="Left only"/>
+            <CheckBox fx:id="rightOnlyCheck" mnemonicParsing="false" text="Right only"/>
+            <CheckBox fx:id="skippedCheck" mnemonicParsing="false" text="Skipped"/>
+            <CheckBox fx:id="middleOnlyCheck" mnemonicParsing="false" text="Middle only"/>
+            <CheckBox fx:id="leftOnlyDifferentCheck" mnemonicParsing="false" text="Left only (different)"/>
+            <CheckBox fx:id="middleOnlyDifferentCheck" mnemonicParsing="false" text="Middle only (different)"/>
+            <CheckBox fx:id="rightOnlyDifferentCheck" mnemonicParsing="false" text="Right only (different)"/>
+            <CheckBox fx:id="leftOnlyMissingCheck" mnemonicParsing="false" text="Left only (missing)"/>
+            <CheckBox fx:id="middleOnlyMissingCheck" mnemonicParsing="false" text="Middle only (missing)"/>
+            <CheckBox fx:id="rightOnlyMissingCheck" mnemonicParsing="false" text="Right only (missing)"/>
+        </VBox>
+    </content>
+</DialogPane>

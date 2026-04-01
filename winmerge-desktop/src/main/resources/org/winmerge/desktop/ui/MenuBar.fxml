@@ -22,6 +22,10 @@
         <Menu mnemonicParsing="true" text="_View" />
         <Menu mnemonicParsing="true" text="_Tools">
             <items>
+                <MenuItem fx:id="toolsComparisonResultFilterMenuItem"
+                          mnemonicParsing="true"
+                          text="Comparison Result _Filter..."/>
+                <SeparatorMenuItem />
                 <MenuItem fx:id="toolsOptionsMenuItem" mnemonicParsing="true" text="_Options..."/>
             </items>
         </Menu>

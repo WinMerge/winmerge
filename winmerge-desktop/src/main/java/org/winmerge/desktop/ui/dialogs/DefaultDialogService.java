@@ -27,6 +27,12 @@ public final class DefaultDialogService implements DialogService {
     }
 
     @Override
+    public Optional<String> showComparisonResultFilterDialog(boolean threeWay) {
+        ComparisonResultFilterDialog dialog = new ComparisonResultFilterDialog(ownerSupplier.get(), threeWay);
+        return dialog.showAndWait();
+    }
+
+    @Override
     public SaveClosingChoice showSaveClosingDialog(Path filePath) {
         SaveClosingDialog dialog = new SaveClosingDialog(ownerSupplier.get(), filePath);
         return dialog.showAndWait().orElse(SaveClosingChoice.CANCEL);

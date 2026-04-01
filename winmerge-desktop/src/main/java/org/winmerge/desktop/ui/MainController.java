@@ -96,6 +96,7 @@ public class MainController {
         actionDispatcher.register(ActionId.FILE_OPEN, this::openOpenPaneTab);
         actionDispatcher.register(ActionId.FILE_EXIT, this::requestExit);
         actionDispatcher.register(ActionId.EDIT_GO_TO, this::openGotoDialog);
+        actionDispatcher.register(ActionId.TOOLS_COMPARISON_RESULT_FILTER, this::openComparisonResultFilterDialog);
         actionDispatcher.register(ActionId.TOOLS_OPTIONS, this::openOptionsDialog);
         actionDispatcher.register(ActionId.HELP_ABOUT, this::openAboutDialog);
     }
@@ -163,6 +164,15 @@ public class MainController {
         if (!applied) {
             statusBarViewController.setStatusText("Go to failed: active tab does not support navigation.");
         }
+    }
+
+    private void openComparisonResultFilterDialog() {
+        Optional<String> expression = dialogService.showComparisonResultFilterDialog(false);
+        if (expression.isEmpty()) {
+            statusBarViewController.setStatusText("Comparison result filter cancelled.");
+            return;
+        }
+        statusBarViewController.setStatusText("Comparison result filter: " + expression.get());
     }
 
     private void openAboutDialog() {

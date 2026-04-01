@@ -8,5 +8,7 @@ public interface DialogService {
 
     Optional<WMGotoDialogResult> showGotoDialog(WMGotoDialogRequest request);
 
+    Optional<String> showComparisonResultFilterDialog(boolean threeWay);
+
     SaveClosingChoice showSaveClosingDialog(Path filePath);
 }

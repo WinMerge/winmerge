@@ -126,6 +126,11 @@ class SaveClosingHandlerTest {
         }
 
         @Override
+        public Optional<String> showComparisonResultFilterDialog(boolean threeWay) {
+            return Optional.empty();
+        }
+
+        @Override
         public SaveClosingChoice showSaveClosingDialog(Path filePath) {
             promptCalls++;
             return choice;
