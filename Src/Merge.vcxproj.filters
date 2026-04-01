@@ -1088,6 +1088,99 @@
     <ClInclude Include="Common\SuperComboBox.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AboutDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompareStatisticsDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfirmFolderCopyDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirCmpReportDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirColsDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFiltersDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LineFiltersDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadSaveCodepageDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PatchDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginsListDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\PreferencesDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveClosingDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectPluginDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedFilterDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestFilterDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WMGotoDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropArchive.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropBackups.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCodepage.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompare.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareBinary.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareFolder.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareImage.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropDirColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropEditor.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropGeneral.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropMarkerColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropRegistry.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropShell.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropSyntaxColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropTextColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Common\ClipBoard.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
@@ -1139,8 +1232,23 @@
     <ClInclude Include="xdiff_gnudiff_compat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DirSelectFilesDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Common\Concurrent.h">
       <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropMergeColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropColorSchemes.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareTable.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenTableDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WildcardDropList.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
@@ -1148,11 +1256,17 @@
     <ClInclude Include="LineFiltersList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SubstitutionFiltersDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SubstitutionList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SubstitutionFiltersList.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropEditorSyntax.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsEditorSyntax.h">
       <Filter>Header Files</Filter>
@@ -1165,6 +1279,12 @@
     </ClInclude>
     <ClInclude Include="WinMergePluginBase.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropMessageBoxes.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropProject.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OptionsProject.h">
       <Filter>Header Files</Filter>
@@ -1265,6 +1385,9 @@
     <ClInclude Include="IOptionsPanel.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsPanel.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="PatchTool.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
@@ -1295,6 +1418,9 @@
     <ClInclude Include="PropertySystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DirAdditionalPropertiesDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="DirItemIterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1306,6 +1432,9 @@
     </ClInclude>
     <ClInclude Include="WebPageDiffFrm.h">
       <Filter>MFCGui\MDIChild\WebPageCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropCompareWebPage.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DirWatcher.h">
       <Filter>Header Files</Filter>
@@ -1328,8 +1457,14 @@
     <ClInclude Include="Common\DebugNew.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PropEditorCompareMerge.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="InternalPlugins.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EditPluginDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\RoundedRectWithShadow.h">
       <Filter>MFCGui\Common\Header Files</Filter>
@@ -1348,6 +1483,9 @@
     </ClInclude>
     <ClInclude Include="MouseHook.h">
       <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropSysColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\SysColorHook.h">
       <Filter>Common\Header Files</Filter>
@@ -1378,6 +1516,12 @@
     </ClInclude>
     <ClInclude Include="Common\ValidatingEdit.h">
       <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+      <ClInclude Include="ComparisonResultFilterDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilterConditionDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyColorDialog.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>

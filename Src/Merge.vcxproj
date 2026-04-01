@@ -921,6 +921,8 @@
   <ItemGroup>
     <ClCompile Include="7zCommon.cpp">
     </ClCompile>
+    <ClCompile Include="AboutDlg.cpp">
+    </ClCompile>
     <ClCompile Include="BasicFlatStatusBar.cpp" />
     <ClCompile Include="ClipboardHistory.cpp" />
     <ClCompile Include="ColorSchemes.cpp">
@@ -957,11 +959,16 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="PropertySystemMenu.cpp" />
+    <ClCompile Include="DirAdditionalPropertiesDlg.cpp" />
+    <ClCompile Include="DirSelectFilesDlg.cpp" />
     <ClCompile Include="DirWatcher.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="EditPluginDlg.cpp" />
     <ClCompile Include="FileFilterHelperMenu.cpp" />
+    <ClCompile Include="ComparisonResultFilterDlg.cpp" />
+    <ClCompile Include="FilterConditionDlg.cpp" />
     <ClCompile Include="FilterErrorMessages.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1039,6 +1046,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="CompareStatisticsDlg.cpp" />
     <ClCompile Include="CompareStats.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1049,6 +1057,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="ConfirmFolderCopyDlg.cpp" />
     <ClCompile Include="ConflictFileParser.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1073,6 +1082,7 @@
     </ClCompile>
     <ClCompile Include="MergeEditSplitterView.cpp" />
     <ClCompile Include="MergeStatusBar.cpp" />
+    <ClCompile Include="OpenTableDlg.cpp" />
     <ClCompile Include="OptionsCustomColors.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1129,6 +1139,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="DirCmpReportDlg.cpp" />
+    <ClCompile Include="DirColsDlg.cpp" />
     <ClCompile Include="DirCompProgressBar.cpp" />
     <ClCompile Include="DirDoc.cpp" />
     <ClCompile Include="DirFrame.cpp" />
@@ -1177,6 +1189,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="FileFiltersDlg.cpp" />
     <ClCompile Include="FileFlags.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1224,12 +1237,15 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="LineFiltersDlg.cpp" />
+    <ClCompile Include="SubstitutionFiltersDlg.cpp" />
     <ClCompile Include="SubeditList.cpp" />
     <ClCompile Include="LineFiltersList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="LoadSaveCodepageDlg.cpp" />
     <ClCompile Include="Common\locality.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1326,6 +1342,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="PatchDlg.cpp" />
     <ClCompile Include="PatchHTML.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1362,6 +1379,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="PluginsListDlg.cpp" />
     <ClCompile Include="Common\PreferencesDlg.cpp" />
     <ClCompile Include="ProjectFile.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -1399,8 +1417,11 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="SaveClosingDlg.cpp" />
     <ClCompile Include="Common\scbarcf.cpp" />
     <ClCompile Include="Common\scbarg.cpp" />
+    <ClCompile Include="SelectPluginDlg.cpp" />
+    <ClCompile Include="SharedFilterDlg.cpp" />
     <ClCompile Include="Common\ShellContextMenu.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1433,6 +1454,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="Test.cpp" />
+    <ClCompile Include="TestFilterDlg.cpp" />
     <ClCompile Include="Common\unicoder.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -1466,6 +1488,7 @@
     <ClCompile Include="WindowsManager.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WinRtLoader.cpp" />
+    <ClCompile Include="WMGotoDlg.cpp" />
     <ClCompile Include="MergeAppCOMClass.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1515,8 +1538,12 @@
     <ClInclude Include="OutputBar.h" />
     <ClInclude Include="OutputDoc.h" />
     <ClInclude Include="OutputView.h" />
+    <ClInclude Include="PropCompareWebPage.h" />
+    <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropertySystemMenu.h" />
+    <ClInclude Include="PropMessageBoxes.h" />
+    <ClInclude Include="PropSysColors.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
@@ -1600,6 +1627,8 @@
     <ClInclude Include="IOptionsPanel.h" />
     <ClInclude Include="Common\LanguageSelect.h" />
     <ClInclude Include="JumpList.h" />
+    <ClInclude Include="LineFiltersDlg.h" />
+    <ClInclude Include="SubstitutionFiltersDlg.h" />
     <ClInclude Include="LineFiltersList.h" />
     <ClInclude Include="SubstitutionList.h" />
     <ClInclude Include="LoadSaveCodepageDlg.h" />
@@ -1632,6 +1661,7 @@
     <ClInclude Include="OptionsEditorSyntax.h" />
     <ClInclude Include="OptionsFont.h" />
     <ClInclude Include="OptionsInit.h" />
+    <ClInclude Include="OptionsPanel.h" />
     <ClInclude Include="OptionsProject.h" />
     <ClInclude Include="OptionsSyntaxColors.h" />
     <ClInclude Include="PatchDlg.h" />
@@ -1644,8 +1674,29 @@
     <ClInclude Include="PluginManager.h" />
     <ClInclude Include="Plugins.h" />
     <ClInclude Include="PluginsListDlg.h" />
+    <ClInclude Include="Common\PreferencesDlg.h" />
     <ClInclude Include="ProjectFile.h" />
+    <ClInclude Include="PropArchive.h" />
+    <ClInclude Include="PropBackups.h" />
+    <ClInclude Include="PropCodepage.h" />
+    <ClInclude Include="PropColorSchemes.h" />
+    <ClInclude Include="PropCompareTable.h" />
+    <ClInclude Include="PropEditorSyntax.h" />
+    <ClInclude Include="PropMergeColors.h" />
+    <ClInclude Include="PropCompare.h" />
+    <ClInclude Include="PropCompareBinary.h" />
+    <ClInclude Include="PropCompareFolder.h" />
+    <ClInclude Include="PropCompareImage.h" />
+    <ClInclude Include="PropDirColors.h" />
+    <ClInclude Include="PropEditor.h" />
     <ClInclude Include="Common\PropertyPageHost.h" />
+    <ClInclude Include="PropGeneral.h" />
+    <ClInclude Include="PropMarkerColors.h" />
+    <ClInclude Include="PropProject.h" />
+    <ClInclude Include="PropRegistry.h" />
+    <ClInclude Include="PropShell.h" />
+    <ClInclude Include="PropSyntaxColors.h" />
+    <ClInclude Include="PropTextColors.h" />
     <ClInclude Include="Common\RegKey.h" />
     <ClInclude Include="Common\RegOptionsMgr.h" />
     <ClInclude Include="Resource.h" />
