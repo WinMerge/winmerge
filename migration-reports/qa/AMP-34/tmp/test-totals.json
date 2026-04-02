@@ -1,0 +1,72 @@
+{
+  "migrated_flow_tests": {
+    "org.winmerge.desktop.ui.dialogs.FilterConditionDialogControllerTest": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "org.winmerge.desktop.ui.dialogs.FileFiltersDialogModelTest": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "org.winmerge.desktop.ui.dialogs.SharedFilterDialogTest": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "org.winmerge.desktop.ui.dialogs.LineFiltersDialogModelTest": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "org.winmerge.desktop.ui.dialogs.SubstitutionFiltersDialogModelTest": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "org.winmerge.desktop.ui.FilterSettingsDialogFxIntegrationTest": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "candidate_desktop_totals": {
+    "tests": 84,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  },
+  "candidate_all_modules_totals": {
+    "core": {
+      "tests": 63,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "desktop": {
+      "tests": 84,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "plugins": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "shell": {
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.gitignore
+winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java
+winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DialogService.java
+winmerge-desktop/src/main/resources/i18n/WinMerge.properties
+winmerge-desktop/src/test/java/org/winmerge/desktop/ui/SaveClosingHandlerTest.java
+winmerge-desktop/src/test/java/org/winmerge/desktop/ui/TabManagerRoutingTest.java

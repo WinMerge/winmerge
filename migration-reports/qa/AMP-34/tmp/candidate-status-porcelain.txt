@@ -1,0 +1,62 @@
+ M .gitignore
+ M winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java
+ M winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DialogService.java
+ M winmerge-desktop/src/main/resources/i18n/WinMerge.properties
+ M winmerge-desktop/src/test/java/org/winmerge/desktop/ui/SaveClosingHandlerTest.java
+ M winmerge-desktop/src/test/java/org/winmerge/desktop/ui/TabManagerRoutingTest.java
+?? .agents/
+?? .context/
+?? "Testing/Data/MoveRenameDetection/R/Case14/caf\303\251/"
+?? migration-reports/design/AMP-16/after-hex-canvas.ppm
+?? migration-reports/design/AMP-16/before-hex-canvas.ppm
+?? migration-reports/design/AMP-29/
+?? migration-reports/design/AMP-34/
+?? migration-reports/migration/compile-baseline.json
+?? migration-reports/migration/compile-loop/
+?? migration-reports/pipeline-run-journal.tsv
+?? migration-reports/post-migration/verification/
+?? migration-reports/pre-migration/baseline/e2e-test/
+?? migration-reports/pre-migration/baseline/smoke-test/
+?? migration-reports/pre-migration/baseline/unit-test/
+?? migration-reports/pre-migration/gate/
+?? migration-reports/pre-migration/inventory/
+?? migration-reports/pre-migration/plan/
+?? migration-reports/qa/AMP-16/post-b25b10bb1-hex-canvas.ppm
+?? migration-reports/qa/AMP-16/pre-fe84ffb90-summary.png
+?? migration-reports/qa/AMP-34/
+?? migration-reports/qa/AMP-8/tmp/
+?? migration-reports/shared/
+?? tmp-utf16le.txt
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FileFiltersDialog.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FileFiltersDialogController.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FileFiltersDialogModel.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FilterConditionDialog.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FilterConditionDialogController.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FilterConditionDialogLogic.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FilterConditionRequest.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FilterConditionResult.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FilterSettingsDialog.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/FilterSettingsModel.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/LineFiltersDialog.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/LineFiltersDialogController.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/LineFiltersDialogModel.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/SharedFilterDialog.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/SubstitutionFiltersDialog.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/SubstitutionFiltersDialogController.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/SubstitutionFiltersDialogModel.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/TestFilterDialog.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/TestFilterDialogController.java
+?? winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/TestFilterModel.java
+?? winmerge-desktop/src/main/resources/org/winmerge/desktop/ui/dialogs/FileFiltersDialogPane.fxml
+?? winmerge-desktop/src/main/resources/org/winmerge/desktop/ui/dialogs/FilterConditionDialogPane.fxml
+?? winmerge-desktop/src/main/resources/org/winmerge/desktop/ui/dialogs/FilterSettingsDialogPane.fxml
+?? winmerge-desktop/src/main/resources/org/winmerge/desktop/ui/dialogs/LineFiltersDialogPane.fxml
+?? winmerge-desktop/src/main/resources/org/winmerge/desktop/ui/dialogs/SharedFilterDialogPane.fxml
+?? winmerge-desktop/src/main/resources/org/winmerge/desktop/ui/dialogs/SubstitutionFiltersDialogPane.fxml
+?? winmerge-desktop/src/main/resources/org/winmerge/desktop/ui/dialogs/TestFilterDialogPane.fxml
+?? winmerge-desktop/src/test/java/org/winmerge/desktop/ui/FilterSettingsDialogFxIntegrationTest.java
+?? winmerge-desktop/src/test/java/org/winmerge/desktop/ui/dialogs/FileFiltersDialogModelTest.java
+?? winmerge-desktop/src/test/java/org/winmerge/desktop/ui/dialogs/FilterConditionDialogControllerTest.java
+?? winmerge-desktop/src/test/java/org/winmerge/desktop/ui/dialogs/LineFiltersDialogModelTest.java
+?? winmerge-desktop/src/test/java/org/winmerge/desktop/ui/dialogs/SharedFilterDialogTest.java
+?? winmerge-desktop/src/test/java/org/winmerge/desktop/ui/dialogs/SubstitutionFiltersDialogModelTest.java

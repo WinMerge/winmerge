@@ -1,0 +1,40 @@
+<!doctype html><html><head><meta charset="utf-8"><title>QA Log</title><style>body{font-family:Menlo,Consolas,monospace;background:#0f172a;color:#e2e8f0;padding:20px}pre{white-space:pre-wrap;word-break:break-word;background:#111827;border:1px solid #334155;border-radius:8px;padding:16px;line-height:1.35}</style></head><body><pre>
+[command] ./gradlew --no-daemon :winmerge-desktop:test --rerun-tasks --tests 'org.winmerge.desktop.ui.dialogs.FilterConditionDialogControllerTest' --tests 'org.winmerge.desktop.ui.dialogs.FileFiltersDialogModelTest' --tests 'org.winmerge.desktop.ui.dialogs.SharedFilterDialogTest' --tests 'org.winmerge.desktop.ui.dialogs.LineFiltersDialogModelTest' --tests 'org.winmerge.desktop.ui.dialogs.SubstitutionFiltersDialogModelTest' --tests 'org.winmerge.desktop.ui.FilterSettingsDialogFxIntegrationTest'
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+&gt; Task :winmerge-shell:processResources NO-SOURCE
+&gt; Task :winmerge-plugins:processResources
+&gt; Task :winmerge-desktop:processResources
+&gt; Task :winmerge-desktop:processTestResources NO-SOURCE
+&gt; Task :winmerge-core:compileJava
+&gt; Task :winmerge-core:processResources NO-SOURCE
+&gt; Task :winmerge-core:classes
+&gt; Task :winmerge-core:jar
+&gt; Task :winmerge-shell:compileJava
+&gt; Task :winmerge-shell:classes
+&gt; Task :winmerge-shell:jar
+
+&gt; Task :winmerge-plugins:compileJava
+Note: /Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-plugins/src/main/java/org/winmerge/plugins/builtin/CommonsCompressArchivePlugin.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+&gt; Task :winmerge-plugins:classes
+&gt; Task :winmerge-plugins:jar
+&gt; Task :winmerge-desktop:compileJava
+&gt; Task :winmerge-desktop:classes
+&gt; Task :winmerge-desktop:compileTestJava
+&gt; Task :winmerge-desktop:testClasses
+&gt; Task :winmerge-desktop:test
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 5s
+11 actionable tasks: 11 executed
+real 6.07
+user 13.77
+sys 1.08
+</pre></body></html>

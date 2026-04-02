@@ -1,0 +1,115 @@
+<!doctype html><html><head><meta charset="utf-8"><title>QA Log</title><style>body{font-family:Menlo,Consolas,monospace;background:#0f172a;color:#e2e8f0;padding:20px}pre{white-space:pre-wrap;word-break:break-word;background:#111827;border:1px solid #334155;border-radius:8px;padding:16px;line-height:1.35}</style></head><body><pre>
+[command] ./gradlew --no-daemon :winmerge-desktop:clean :winmerge-desktop:compileJava --rerun-tasks
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+&gt; Task :winmerge-desktop:clean UP-TO-DATE
+&gt; Task :winmerge-core:compileJava
+
+&gt; Task :winmerge-desktop:compileJava FAILED
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DialogService.java:37: error: cannot find symbol
+    void showFilterSettingsDialog(FilterSettingsModel model);
+                                  ^
+  symbol:   class FilterSettingsModel
+  location: interface DialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DialogService.java:39: error: cannot find symbol
+    Optional&lt;FilterConditionResult&gt; showFilterConditionDialog(FilterConditionRequest request);
+                                                              ^
+  symbol:   class FilterConditionRequest
+  location: interface DialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DialogService.java:39: error: cannot find symbol
+    Optional&lt;FilterConditionResult&gt; showFilterConditionDialog(FilterConditionRequest request);
+             ^
+  symbol:   class FilterConditionResult
+  location: interface DialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DialogService.java:41: error: package SharedFilterDialog does not exist
+    Optional&lt;SharedFilterDialog.FilterType&gt; showSharedFilterDialog();
+                               ^
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DialogService.java:43: error: cannot find symbol
+    void showTestFilterDialog(TestFilterModel model);
+                              ^
+  symbol:   class TestFilterModel
+  location: interface DialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:76: error: cannot find symbol
+    public void showFilterSettingsDialog(FilterSettingsModel model) {
+                                         ^
+  symbol:   class FilterSettingsModel
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:82: error: cannot find symbol
+    public Optional&lt;FilterConditionResult&gt; showFilterConditionDialog(FilterConditionRequest request) {
+                                                                     ^
+  symbol:   class FilterConditionRequest
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:82: error: cannot find symbol
+    public Optional&lt;FilterConditionResult&gt; showFilterConditionDialog(FilterConditionRequest request) {
+                    ^
+  symbol:   class FilterConditionResult
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:88: error: package SharedFilterDialog does not exist
+    public Optional&lt;SharedFilterDialog.FilterType&gt; showSharedFilterDialog() {
+                                      ^
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:94: error: cannot find symbol
+    public void showTestFilterDialog(TestFilterModel model) {
+                                     ^
+  symbol:   class TestFilterModel
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:77: error: cannot find symbol
+        FilterSettingsDialog dialog = new FilterSettingsDialog(ownerSupplier.get(), model);
+        ^
+  symbol:   class FilterSettingsDialog
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:77: error: cannot find symbol
+        FilterSettingsDialog dialog = new FilterSettingsDialog(ownerSupplier.get(), model);
+                                          ^
+  symbol:   class FilterSettingsDialog
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:83: error: cannot find symbol
+        FilterConditionDialog dialog = new FilterConditionDialog(ownerSupplier.get(), request);
+        ^
+  symbol:   class FilterConditionDialog
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:83: error: cannot find symbol
+        FilterConditionDialog dialog = new FilterConditionDialog(ownerSupplier.get(), request);
+                                           ^
+  symbol:   class FilterConditionDialog
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:89: error: cannot find symbol
+        SharedFilterDialog dialog = new SharedFilterDialog(ownerSupplier.get(), SharedFilterDialog.FilterType.PRIVATE);
+        ^
+  symbol:   class SharedFilterDialog
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:89: error: cannot find symbol
+        SharedFilterDialog dialog = new SharedFilterDialog(ownerSupplier.get(), SharedFilterDialog.FilterType.PRIVATE);
+                                        ^
+  symbol:   class SharedFilterDialog
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:89: error: package SharedFilterDialog does not exist
+        SharedFilterDialog dialog = new SharedFilterDialog(ownerSupplier.get(), SharedFilterDialog.FilterType.PRIVATE);
+                                                                                                  ^
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:95: error: cannot find symbol
+        TestFilterDialog dialog = new TestFilterDialog(ownerSupplier.get(), model);
+        ^
+  symbol:   class TestFilterDialog
+  location: class DefaultDialogService
+/private/tmp/winmerge-qa-amp34-pre-iI2l1x/winmerge-desktop/src/main/java/org/winmerge/desktop/ui/dialogs/DefaultDialogService.java:95: error: cannot find symbol
+        TestFilterDialog dialog = new TestFilterDialog(ownerSupplier.get(), model);
+                                      ^
+  symbol:   class TestFilterDialog
+  location: class DefaultDialogService
+19 errors
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':winmerge-desktop:compileJava'.
+&gt; Compilation failed; see the compiler error output for details.
+
+* Try:
+&gt; Run with --info option to get more log output.
+&gt; Run with --scan to get full insights.
+
+BUILD FAILED in 5s
+3 actionable tasks: 2 executed, 1 up-to-date
+real 5.96
+user 9.20
+sys 0.88
+</pre></body></html>

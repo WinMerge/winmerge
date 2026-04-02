@@ -1,0 +1,76 @@
+{
+  "issue": "AMP-34",
+  "evaluated_commit": "workspace-amp34 (uncommitted)",
+  "baseline_commit": "2d8222b20",
+  "captured_at": "2026-04-02",
+  "method": {
+    "commands": [
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-desktop:clean :winmerge-desktop:compileJava --rerun-tasks",
+      "/usr/bin/time -p ./gradlew --no-daemon :winmerge-desktop:test --rerun-tasks",
+      "/usr/bin/time -p ./gradlew --no-daemon test --rerun-tasks",
+      "./gradlew --no-daemon :winmerge-desktop:jar"
+    ],
+    "notes": [
+      "This migration unit is JavaFX desktop scope; browser page-load and Core Web Vitals are not applicable.",
+      "Resource-size comparison is captured from winmerge-desktop jar output.",
+      "Baseline committed state is currently non-reproducible (compile/test/jar all fail) so numeric deltas are diagnostic only, not release-quality performance evidence."
+    ]
+  },
+  "metrics": {
+    "compile_time_seconds": {
+      "baseline": 5.96,
+      "candidate": 5.48,
+      "delta_percent": -8.05,
+      "baseline_status": "fail",
+      "candidate_status": "pass"
+    },
+    "desktop_test_time_seconds": {
+      "baseline": 4.67,
+      "candidate": 6.7,
+      "delta_percent": 43.47,
+      "baseline_status": "fail",
+      "candidate_status": "pass"
+    },
+    "full_test_time_seconds": {
+      "baseline": 5.12,
+      "candidate": 7.85,
+      "delta_percent": 53.32,
+      "baseline_status": "fail",
+      "candidate_status": "pass"
+    },
+    "artifact_size_bytes": {
+      "winmerge_desktop_jar": {
+        "baseline": 0,
+        "candidate": 896685,
+        "delta_percent": null,
+        "baseline_status": "fail",
+        "candidate_status": "pass"
+      }
+    },
+    "web_metrics": {
+      "page_load_time_ms": "not_applicable",
+      "core_web_vitals": "not_applicable"
+    }
+  },
+  "regression_policy": {
+    "threshold_percent": 10,
+    "status": "fail",
+    "violations": [
+      {
+        "metric": "desktop_test_time_seconds",
+        "delta_percent": 43.47,
+        "reason": "Exceeds 10% threshold."
+      },
+      {
+        "metric": "full_test_time_seconds",
+        "delta_percent": 53.32,
+        "reason": "Exceeds 10% threshold."
+      },
+      {
+        "metric": "baseline_reproducibility",
+        "delta_percent": null,
+        "reason": "Baseline committed state fails compile/test/jar due missing filter-dialog symbols; benchmark deltas are not release-valid."
+      }
+    ]
+  }
+}

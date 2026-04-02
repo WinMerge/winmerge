@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><title>QA Log</title><style>body{font-family:Menlo,Consolas,monospace;background:#0f172a;color:#e2e8f0;padding:20px}pre{white-space:pre-wrap;word-break:break-word;background:#111827;border:1px solid #334155;border-radius:8px;padding:16px;line-height:1.35}</style></head><body><pre>
+[command] ./gradlew --no-daemon :winmerge-desktop:clean :winmerge-desktop:compileJava --rerun-tasks
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+&gt; Task :winmerge-desktop:clean
+&gt; Task :winmerge-core:compileJava
+&gt; Task :winmerge-desktop:compileJava
+
+BUILD SUCCESSFUL in 5s
+3 actionable tasks: 3 executed
+real 5.48
+user 10.45
+sys 0.96
+</pre></body></html>

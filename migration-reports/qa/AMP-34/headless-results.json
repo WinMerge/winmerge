@@ -1,0 +1,180 @@
+{
+  "issue": "AMP-34",
+  "tier": "Exhaustive",
+  "tool": "playwright-cli",
+  "mode": "headless",
+  "captured_at": "2026-04-02",
+  "flows": [
+    {
+      "name": "Baseline clean compile gate (2d8222b20)",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/migration-reports/qa/AMP-34/tmp/pre-2d8222b20-compile-log.html",
+      "screenshot": "migration-reports/qa/AMP-34/pre-2d8222b20-compile-gate.png"
+    },
+    {
+      "name": "Candidate compile gate (workspace-amp34)",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/migration-reports/qa/AMP-34/tmp/post-workspace-amp34-compile-log.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-compile-gate.png"
+    },
+    {
+      "name": "Candidate targeted migrated-flow tests (workspace-amp34)",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/migration-reports/qa/AMP-34/tmp/post-workspace-amp34-targeted-tests-log.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-targeted-tests-log.png"
+    },
+    {
+      "name": "Candidate desktop test summary",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-summary.png"
+    },
+    {
+      "name": "FilterCondition dialog logic flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.dialogs.FilterConditionDialogControllerTest.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-filter-condition-dialog.png"
+    },
+    {
+      "name": "FileFilters model flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.dialogs.FileFiltersDialogModelTest.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-file-filters-model.png"
+    },
+    {
+      "name": "SharedFilter selection flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.dialogs.SharedFilterDialogTest.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-shared-filter.png"
+    },
+    {
+      "name": "LineFilters model flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.dialogs.LineFiltersDialogModelTest.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-line-filters.png"
+    },
+    {
+      "name": "SubstitutionFilters model flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.dialogs.SubstitutionFiltersDialogModelTest.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-substitution-filters.png"
+    },
+    {
+      "name": "FilterSettings integration flow",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.FilterSettingsDialogFxIntegrationTest.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-filter-settings-integration.png"
+    },
+    {
+      "name": "DialogService routing continuity",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.TabManagerRoutingTest.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-tab-routing.png"
+    },
+    {
+      "name": "Save/close session continuity",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.SaveClosingHandlerTest.html",
+      "screenshot": "migration-reports/qa/AMP-34/post-workspace-amp34-save-closing.png"
+    }
+  ],
+  "results": {
+    "candidate_status": {
+      "cand_compile_status": "0",
+      "cand_targeted_tests_status": "0",
+      "cand_desktop_tests_status": "0",
+      "cand_full_tests_status": "0",
+      "cand_jar_status": "0"
+    },
+    "baseline_status": {
+      "base_compile_status": "1",
+      "base_desktop_tests_status": "1",
+      "base_full_tests_status": "1",
+      "base_jar_status": "1"
+    },
+    "migrated_flow_tests": {
+      "org.winmerge.desktop.ui.dialogs.FilterConditionDialogControllerTest": {
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "org.winmerge.desktop.ui.dialogs.FileFiltersDialogModelTest": {
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "org.winmerge.desktop.ui.dialogs.SharedFilterDialogTest": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "org.winmerge.desktop.ui.dialogs.LineFiltersDialogModelTest": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "org.winmerge.desktop.ui.dialogs.SubstitutionFiltersDialogModelTest": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "org.winmerge.desktop.ui.FilterSettingsDialogFxIntegrationTest": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "candidate_desktop_totals": {
+      "tests": 84,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    "candidate_all_modules_totals": {
+      "core": {
+        "tests": 63,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "desktop": {
+        "tests": 84,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "plugins": {
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "shell": {
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "baseline_all_modules_totals": {
+      "core": {
+        "tests": 63,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "desktop": {
+        "tests": 0,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "plugins": {
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "shell": {
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  }
+}
