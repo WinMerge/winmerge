@@ -20,17 +20,12 @@ import org.winmerge.desktop.ui.dialogs.DirPropertyNode;
 import org.winmerge.desktop.ui.dialogs.DirSelectFilesRequest;
 import org.winmerge.desktop.ui.dialogs.DirSelectFilesResult;
 import org.winmerge.desktop.ui.dialogs.DialogService;
-import org.winmerge.desktop.ui.dialogs.FilterConditionRequest;
-import org.winmerge.desktop.ui.dialogs.FilterConditionResult;
-import org.winmerge.desktop.ui.dialogs.FilterSettingsModel;
 import org.winmerge.desktop.ui.dialogs.MessageBoxRequest;
 import org.winmerge.desktop.ui.dialogs.OpenTableRequest;
 import org.winmerge.desktop.ui.dialogs.OpenTableResult;
 import org.winmerge.desktop.ui.dialogs.PatchDialogRequest;
 import org.winmerge.desktop.ui.dialogs.PatchDialogResult;
 import org.winmerge.desktop.ui.dialogs.SaveClosingChoice;
-import org.winmerge.desktop.ui.dialogs.SharedFilterDialog;
-import org.winmerge.desktop.ui.dialogs.TestFilterModel;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogResult;
 import org.winmerge.desktop.ui.dialogs.WindowsManagerModel;
@@ -170,24 +165,6 @@ class SaveClosingHandlerTest {
         @Override
         public Optional<String> showComparisonResultFilterDialog(boolean threeWay) {
             return Optional.empty();
-        }
-
-        @Override
-        public void showFilterSettingsDialog(FilterSettingsModel model) {
-        }
-
-        @Override
-        public Optional<FilterConditionResult> showFilterConditionDialog(FilterConditionRequest request) {
-            return Optional.empty();
-        }
-
-        @Override
-        public Optional<SharedFilterDialog.FilterType> showSharedFilterDialog() {
-            return Optional.empty();
-        }
-
-        @Override
-        public void showTestFilterDialog(TestFilterModel model) {
         }
 
         @Override

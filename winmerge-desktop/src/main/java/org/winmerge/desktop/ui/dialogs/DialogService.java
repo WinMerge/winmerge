@@ -34,14 +34,6 @@ public interface DialogService {
 
     Optional<String> showComparisonResultFilterDialog(boolean threeWay);
 
-    void showFilterSettingsDialog(FilterSettingsModel model);
-
-    Optional<FilterConditionResult> showFilterConditionDialog(FilterConditionRequest request);
-
-    Optional<SharedFilterDialog.FilterType> showSharedFilterDialog();
-
-    void showTestFilterDialog(TestFilterModel model);
-
     SaveClosingChoice showSaveClosingDialog(Path filePath);
 
     List<DirColumn> showDirColumnsDialog(List<DirColumn> columns);
