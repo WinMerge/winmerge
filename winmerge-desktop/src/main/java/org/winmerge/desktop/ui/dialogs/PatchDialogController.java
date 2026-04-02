@@ -65,9 +65,11 @@ public final class PatchDialogController {
         rightFileCombo.setEditable(true);
         resultFileCombo.setEditable(true);
 
-        styleCombo.getItems().setAll("Normal", "Context", "Unified");
+        styleCombo.getItems().setAll("Normal", "Context", "Unified", "HTML");
         styleCombo.setValue("Normal");
 
+        leftFileCombo.getEditor().textProperty().addListener((obs, oldValue, newValue) -> updateCanSubmit());
+        rightFileCombo.getEditor().textProperty().addListener((obs, oldValue, newValue) -> updateCanSubmit());
         resultFileCombo.getEditor().textProperty().addListener((obs, oldValue, newValue) -> updateCanSubmit());
         contextLinesField.textProperty().addListener((obs, oldValue, newValue) -> updateCanSubmit());
 
@@ -110,19 +112,21 @@ public final class PatchDialogController {
     }
 
     private void updateCanSubmit() {
+        String leftPath = readComboValue(leftFileCombo);
+        String rightPath = readComboValue(rightFileCombo);
         String resultPath = readComboValue(resultFileCombo);
         String contextText = contextLinesField.getText();
 
-        String validationKey = PatchDialogLogic.validationMessage(resultPath, contextText);
+        String validationKey = PatchDialogLogic.validationMessage(leftPath, rightPath, resultPath, contextText);
         if (validationKey.isEmpty()) {
             validationLabel.setVisible(false);
             validationLabel.setText("");
         } else {
             validationLabel.setVisible(true);
-            validationLabel.setText(I18n.tr(validationKey));
+            validationLabel.setText(resolveValidationMessage(validationKey, resultPath));
         }
 
-        canSubmit.set(PatchDialogLogic.canSubmit(resultPath, contextText));
+        canSubmit.set(PatchDialogLogic.canSubmit(leftPath, rightPath, resultPath, contextText));
     }
 
     private static void applyValues(ComboBox<String> combo, List<String> values, String selectedValue) {
@@ -165,5 +169,12 @@ public final class PatchDialogController {
 
     private static void requireInjected(Object field, String fieldName) {
         Objects.requireNonNull(field, () -> "Missing @FXML injection for " + fieldName);
+    }
+
+    private static String resolveValidationMessage(String validationKey, String resultPath) {
+        if ("IDS_PATH_NOT_ABSOLUTE".equals(validationKey)) {
+            return I18n.tr(validationKey, resultPath);
+        }
+        return I18n.tr(validationKey);
     }
 }

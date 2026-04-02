@@ -1,6 +1,7 @@
 package org.winmerge.desktop.ui.dialogs;
 
 import java.util.List;
+import java.util.Set;
 
 public record PatchDialogRequest(
     List<PatchFiles> files,
@@ -14,6 +15,8 @@ public record PatchDialogRequest(
     boolean openInEditor,
     boolean includeCommandLine
 ) {
+    private static final Set<String> SUPPORTED_STYLES = Set.of("Normal", "Context", "Unified", "HTML");
+
     public PatchDialogRequest {
         files = files == null ? List.of() : List.copyOf(files);
         leftPath = normalize(leftPath);
@@ -37,7 +40,7 @@ public record PatchDialogRequest(
     }
 
     public static PatchDialogRequest defaults(List<PatchFiles> files) {
-        return new PatchDialogRequest(files, "", "", "", "Normal", 3, false, false, false, true);
+        return new PatchDialogRequest(files, "", "", "", "Normal", 3, false, false, false, false);
     }
 
     private static String normalize(String value) {
@@ -46,6 +49,9 @@ public record PatchDialogRequest(
 
     private static String normalizeStyle(String value) {
         String normalized = normalize(value);
-        return normalized.isEmpty() ? "Normal" : normalized;
+        if (normalized.isEmpty()) {
+            return "Normal";
+        }
+        return SUPPORTED_STYLES.contains(normalized) ? normalized : "Normal";
     }
 }
