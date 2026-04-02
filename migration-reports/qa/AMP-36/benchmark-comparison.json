@@ -1,0 +1,63 @@
+{
+  "issue": "AMP-36",
+  "evaluated_commit": "347f6a2bc",
+  "baseline_commit": "24b276ea5",
+  "captured_at": "2026-04-02",
+  "method": {
+    "commands": [
+      "clean baseline: /usr/bin/time -p ./gradlew --no-daemon :winmerge-desktop:compileJava",
+      "clean candidate: /usr/bin/time -p ./gradlew --no-daemon :winmerge-desktop:compileJava",
+      "workspace candidate targeted tests: /usr/bin/time -p ./gradlew --no-daemon :winmerge-desktop:test --rerun-tasks --tests org.winmerge.desktop.ui.dialogs.CodepageDialogTest --tests org.winmerge.desktop.ui.dialogs.PatchDialogTest --tests org.winmerge.desktop.ui.dialogs.OpenTableDialogTest",
+      "workspace candidate desktop tests: /usr/bin/time -p ./gradlew --no-daemon :winmerge-desktop:test --rerun-tasks",
+      "workspace candidate full tests: /usr/bin/time -p ./gradlew --no-daemon test --rerun-tasks"
+    ],
+    "notes": [
+      "Web page metrics and Core Web Vitals are not applicable to this desktop JavaFX migration scope.",
+      "Performance comparison is invalidated by a reproducibility blocker: the reviewed commit does not compile in a clean worktree.",
+      "Workspace-only timings are included as diagnostic context, not release benchmark evidence."
+    ]
+  },
+  "metrics": {
+    "clean_compile_time_seconds": {
+      "baseline": 6.70,
+      "candidate": 5.91,
+      "delta_percent": -11.79,
+      "baseline_status": "failed",
+      "candidate_status": "failed"
+    },
+    "workspace_compile_time_seconds": {
+      "candidate": 5.52,
+      "status": "pass"
+    },
+    "workspace_targeted_test_time_seconds": {
+      "candidate": 6.32,
+      "status": "pass"
+    },
+    "workspace_desktop_test_time_seconds": {
+      "candidate": 6.66,
+      "status": "pass"
+    },
+    "workspace_full_test_time_seconds": {
+      "candidate": 6.75,
+      "status": "pass"
+    },
+    "artifact_size_bytes": {
+      "baseline_jar": null,
+      "candidate_jar": 718848,
+      "baseline_sources_jar": null,
+      "candidate_sources_jar": 617536,
+      "status": "not_comparable"
+    }
+  },
+  "regression_policy": {
+    "threshold_percent": 10,
+    "status": "fail",
+    "violations": [
+      {
+        "type": "reproducibility",
+        "severity": "critical",
+        "detail": "Reviewed commit 347f6a2bc fails compile in clean worktree because DialogService depends on non-committed filter-dialog classes."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "issue": "AMP-36",
+  "tier": "Standard",
+  "tool": "playwright",
+  "mode": "headless",
+  "captured_at": "2026-04-02",
+  "flows": [
+    {
+      "name": "Baseline clean compile gate (24b276ea5)",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/migration-reports/qa/AMP-36/tmp/pre-24b276ea5-compile-log.html",
+      "screenshot": "migration-reports/qa/AMP-36/pre-24b276ea5-compile-gate.png"
+    },
+    {
+      "name": "Candidate clean compile gate (347f6a2bc)",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/migration-reports/qa/AMP-36/tmp/post-347f6a2bc-compile-log.html",
+      "screenshot": "migration-reports/qa/AMP-36/post-347f6a2bc-compile-gate.png"
+    },
+    {
+      "name": "Candidate workspace test summary",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/index.html",
+      "screenshot": "migration-reports/qa/AMP-36/post-347f6a2bc-summary.png"
+    },
+    {
+      "name": "Codepage dialog regression tests",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.dialogs.CodepageDialogTest.html",
+      "screenshot": "migration-reports/qa/AMP-36/post-347f6a2bc-codepage-dialog.png"
+    },
+    {
+      "name": "Open-table dialog regression tests",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.dialogs.OpenTableDialogTest.html",
+      "screenshot": "migration-reports/qa/AMP-36/post-347f6a2bc-open-table-dialog.png"
+    },
+    {
+      "name": "Patch dialog regression tests",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.dialogs.PatchDialogTest.html",
+      "screenshot": "migration-reports/qa/AMP-36/post-347f6a2bc-patch-dialog.png"
+    },
+    {
+      "name": "Save-closing routing regression tests",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.SaveClosingHandlerTest.html",
+      "screenshot": "migration-reports/qa/AMP-36/post-347f6a2bc-save-closing.png"
+    },
+    {
+      "name": "Tab-manager routing regression tests",
+      "source": "file:///Users/pddstudio/arconsis/migration-projects/winmerge-paperclip/winmerge-desktop/build/reports/tests/test/classes/org.winmerge.desktop.ui.TabManagerRoutingTest.html",
+      "screenshot": "migration-reports/qa/AMP-36/post-347f6a2bc-tab-routing.png"
+    }
+  ],
+  "results": {
+    "clean_baseline_compile": "failed",
+    "clean_candidate_compile": "failed",
+    "workspace_desktop_tests_total": 84,
+    "workspace_desktop_failures": 0,
+    "workspace_targeted_tests_total": 8,
+    "workspace_targeted_failures": 0,
+    "workspace_full_tests_total": 172,
+    "workspace_full_failures": 0
+  }
+}
