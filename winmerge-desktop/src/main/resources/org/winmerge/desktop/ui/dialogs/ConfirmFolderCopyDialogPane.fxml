@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.ConfirmFolderCopyDialogController">
+    <content>
+        <VBox spacing="8.0" prefWidth="620.0">
+            <padding>
+                <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+            </padding>
+            <children>
+                <Label fx:id="questionLabel" wrapText="true" />
+                <Label fx:id="fromTextLabel" />
+                <Label fx:id="fromPathLabel" wrapText="true" style="-fx-font-family: 'Monospaced';" />
+                <Label fx:id="toTextLabel" />
+                <Label fx:id="toPathLabel" wrapText="true" style="-fx-font-family: 'Monospaced';" />
+            </children>
+        </VBox>
+    </content>
+</DialogPane>

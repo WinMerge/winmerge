@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.DirCompareReportDialogController">
+    <content>
+        <GridPane hgap="8.0" vgap="10.0" prefWidth="620.0">
+            <padding>
+                <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints minWidth="140.0" prefWidth="140.0"/>
+                <ColumnConstraints minWidth="320.0" hgrow="ALWAYS"/>
+                <ColumnConstraints minWidth="90.0" prefWidth="90.0"/>
+            </columnConstraints>
+            <children>
+                <Label text="Report file" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <TextField fx:id="reportFileField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+                <Button text="Browse" onAction="#onBrowse" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+
+                <Label text="Style" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <ComboBox fx:id="styleCombo" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <CheckBox fx:id="copyToClipboardCheckBox" text="Copy report to clipboard" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                <CheckBox fx:id="includeFileCompareReportCheckBox" text="Include file compare report (HTML only)" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+            </children>
+        </GridPane>
+    </content>
+</DialogPane>

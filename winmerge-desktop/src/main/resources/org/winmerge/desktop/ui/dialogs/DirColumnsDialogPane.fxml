@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.DirColumnsDialogController">
+    <content>
+        <BorderPane prefWidth="560.0" prefHeight="420.0">
+            <padding>
+                <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+            </padding>
+            <center>
+                <ListView fx:id="columnsList" prefHeight="300.0" prefWidth="420.0"/>
+            </center>
+            <right>
+                <VBox spacing="8.0" BorderPane.alignment="TOP_CENTER">
+                    <children>
+                        <Button fx:id="upButton" text="Up" onAction="#onMoveUp" minWidth="92.0"/>
+                        <Button fx:id="downButton" text="Down" onAction="#onMoveDown" minWidth="92.0"/>
+                    </children>
+                </VBox>
+            </right>
+            <bottom>
+                <HBox spacing="8.0" BorderPane.alignment="CENTER_LEFT">
+                    <children>
+                        <Label text="Description:" />
+                        <Label fx:id="descriptionLabel" wrapText="true" maxWidth="460.0" />
+                    </children>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </content>
+</DialogPane>

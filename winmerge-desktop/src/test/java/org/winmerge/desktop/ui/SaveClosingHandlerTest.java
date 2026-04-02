@@ -7,8 +7,21 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.junit.jupiter.api.Test;
 import org.winmerge.desktop.ui.dialogs.AboutDialogModel;
 import org.winmerge.desktop.ui.dialogs.CompareStatisticsDialogModel;
+import org.winmerge.desktop.ui.dialogs.ConfirmFolderCopyChoice;
+import org.winmerge.desktop.ui.dialogs.ConfirmFolderCopyRequest;
+import org.winmerge.desktop.ui.dialogs.DirColumn;
+import org.winmerge.desktop.ui.dialogs.DirCompareReportRequest;
+import org.winmerge.desktop.ui.dialogs.DirCompareReportResult;
+import org.winmerge.desktop.ui.dialogs.DirPropertyNode;
+import org.winmerge.desktop.ui.dialogs.DirSelectFilesRequest;
+import org.winmerge.desktop.ui.dialogs.DirSelectFilesResult;
 import org.winmerge.desktop.ui.dialogs.DialogService;
+import org.winmerge.desktop.ui.dialogs.FilterConditionRequest;
+import org.winmerge.desktop.ui.dialogs.FilterConditionResult;
+import org.winmerge.desktop.ui.dialogs.FilterSettingsModel;
 import org.winmerge.desktop.ui.dialogs.SaveClosingChoice;
+import org.winmerge.desktop.ui.dialogs.SharedFilterDialog;
+import org.winmerge.desktop.ui.dialogs.TestFilterModel;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogResult;
 
@@ -136,9 +149,52 @@ class SaveClosingHandlerTest {
         }
 
         @Override
+        public void showFilterSettingsDialog(FilterSettingsModel model) {
+        }
+
+        @Override
+        public Optional<FilterConditionResult> showFilterConditionDialog(FilterConditionRequest request) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<SharedFilterDialog.FilterType> showSharedFilterDialog() {
+            return Optional.empty();
+        }
+
+        @Override
+        public void showTestFilterDialog(TestFilterModel model) {
+        }
+
+        @Override
         public SaveClosingChoice showSaveClosingDialog(Path filePath) {
             promptCalls++;
             return choice;
+        }
+
+        @Override
+        public java.util.List<DirColumn> showDirColumnsDialog(java.util.List<DirColumn> columns) {
+            return columns;
+        }
+
+        @Override
+        public Optional<DirCompareReportResult> showDirCompareReportDialog(DirCompareReportRequest request) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<DirSelectFilesResult> showDirSelectFilesDialog(DirSelectFilesRequest request) {
+            return Optional.empty();
+        }
+
+        @Override
+        public java.util.List<String> showDirAdditionalPropertiesDialog(java.util.List<DirPropertyNode> nodes) {
+            return java.util.List.of();
+        }
+
+        @Override
+        public ConfirmFolderCopyChoice showConfirmFolderCopyDialog(ConfirmFolderCopyRequest request) {
+            return ConfirmFolderCopyChoice.NO;
         }
     }
 }
