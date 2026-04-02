@@ -29,7 +29,7 @@
   - Compile fails with missing symbols in `DefaultDialogService` for `FilterSettingsModel`, `FilterConditionRequest`, `FilterConditionResult`, `SharedFilterDialog`, `TestFilterDialog` (19 errors).
 - Evidence:
   - `migration-reports/qa/AMP-34/pre-2d8222b20-compile-gate.png`
-  - `migration-reports/qa/AMP-34/tmp/base_compile.log`
+  - `migration-reports/qa/AMP-34/tmp/pre-2d8222b20-compile-log.html`
 
 ## Regression Test Results
 
