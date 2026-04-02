@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.CodepageDialogController">
+    <content>
+        <GridPane hgap="10.0" vgap="10.0" prefWidth="520.0">
+            <padding>
+                <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints minWidth="140.0" prefWidth="160.0"/>
+                <ColumnConstraints minWidth="260.0" hgrow="ALWAYS"/>
+            </columnConstraints>
+            <children>
+                <Label text="%IDS_CODEPAGE_DIALOG_LOAD" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="loadCodepageCombo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="%IDS_CODEPAGE_DIALOG_SAVE" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="saveCodepageCombo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <CheckBox fx:id="includeBomCheckBox" text="%IDS_CODEPAGE_DIALOG_BOM" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <CheckBox fx:id="affectLeftCheckBox" text="%IDS_CODEPAGE_DIALOG_AFFECT_LEFT" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <CheckBox fx:id="affectMiddleCheckBox" text="%IDS_CODEPAGE_DIALOG_AFFECT_MIDDLE" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <CheckBox fx:id="affectRightCheckBox" text="%IDS_CODEPAGE_DIALOG_AFFECT_RIGHT" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <Label fx:id="loadingLabel" text="%IDS_CODEPAGE_DIALOG_LOADING" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                <Label fx:id="validationLabel" GridPane.rowIndex="7" GridPane.columnIndex="1" style="-fx-text-fill: #B00020;" wrapText="true"/>
+            </children>
+        </GridPane>
+    </content>
+</DialogPane>

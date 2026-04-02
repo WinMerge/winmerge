@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.OpenTableDialogController">
+    <content>
+        <GridPane hgap="10.0" vgap="10.0" prefWidth="560.0">
+            <padding>
+                <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints minWidth="170.0" prefWidth="190.0"/>
+                <ColumnConstraints minWidth="260.0" hgrow="ALWAYS"/>
+            </columnConstraints>
+            <children>
+                <Label text="%IDS_OPEN_TABLE_FILE_TYPE" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
+                <RadioButton fx:id="csvRadioButton" text="%IDS_OPEN_TABLE_TYPE_CSV" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="fileTypeToggleGroup"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="dsvRadioButton" text="%IDS_OPEN_TABLE_TYPE_DSV" toggleGroup="$fileTypeToggleGroup" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <RadioButton fx:id="customRadioButton" text="%IDS_OPEN_TABLE_TYPE_CUSTOM" toggleGroup="$fileTypeToggleGroup" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="%IDS_OPEN_TABLE_CSV_DELIMITER" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="csvDelimiterField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="%IDS_OPEN_TABLE_DSV_DELIMITER" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="dsvDelimiterField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="%IDS_OPEN_TABLE_CUSTOM_DELIMITER" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="customDelimiterField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <Label text="%IDS_OPEN_TABLE_QUOTE_CHAR" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <TextField fx:id="quoteCharacterField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                <CheckBox fx:id="allowNewlinesInQuotesCheckBox" text="%IDS_OPEN_TABLE_ALLOW_NEWLINES" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+                <Label fx:id="validationLabel" GridPane.rowIndex="8" GridPane.columnIndex="1" style="-fx-text-fill: #B00020;" wrapText="true"/>
+            </children>
+        </GridPane>
+    </content>
+</DialogPane>

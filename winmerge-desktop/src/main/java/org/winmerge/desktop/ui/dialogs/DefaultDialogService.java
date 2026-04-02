@@ -6,6 +6,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+import javafx.scene.control.Alert;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Window;
 
 public final class DefaultDialogService implements DialogService {
@@ -13,6 +16,36 @@ public final class DefaultDialogService implements DialogService {
 
     public DefaultDialogService(Supplier<Window> ownerSupplier) {
         this.ownerSupplier = Objects.requireNonNull(ownerSupplier, "ownerSupplier");
+    }
+
+    @Override
+    public void showMessageBox(MessageBoxRequest request) {
+        Objects.requireNonNull(request, "request");
+
+        Alert alert = new Alert(request.alertType());
+        Window owner = ownerSupplier.get();
+        if (owner != null) {
+            alert.initOwner(owner);
+        }
+        alert.setTitle(request.title());
+        alert.setHeaderText(request.headerText());
+        alert.setContentText(request.contentText());
+        if (!request.buttons().isEmpty()) {
+            alert.getButtonTypes().setAll(request.buttons());
+        }
+        alert.showAndWait();
+    }
+
+    @Override
+    public Optional<Color> showColorDialog(Color initialColor) {
+        ColorPickerDialog dialog = new ColorPickerDialog(ownerSupplier.get(), initialColor);
+        return dialog.showAndWait();
+    }
+
+    @Override
+    public Optional<Font> showFontDialog(Font initialFont) {
+        FontChooserDialog dialog = new FontChooserDialog(ownerSupplier.get(), initialFont);
+        return dialog.showAndWait();
     }
 
     @Override
@@ -97,5 +130,29 @@ public final class DefaultDialogService implements DialogService {
     public ConfirmFolderCopyChoice showConfirmFolderCopyDialog(ConfirmFolderCopyRequest request) {
         ConfirmFolderCopyDialog dialog = new ConfirmFolderCopyDialog(ownerSupplier.get(), request);
         return dialog.showAndWait().orElse(ConfirmFolderCopyChoice.NO);
+    }
+
+    @Override
+    public Optional<CodepageResult> showCodepageDialog(CodepageRequest request) {
+        CodepageDialog dialog = new CodepageDialog(ownerSupplier.get(), request);
+        return dialog.showAndWait();
+    }
+
+    @Override
+    public Optional<PatchDialogResult> showPatchDialog(PatchDialogRequest request) {
+        PatchDialog dialog = new PatchDialog(ownerSupplier.get(), request);
+        return dialog.showAndWait();
+    }
+
+    @Override
+    public Optional<Integer> showWindowsManagerDialog(WindowsManagerModel model) {
+        WindowsManagerDialog dialog = new WindowsManagerDialog(ownerSupplier.get(), model);
+        return dialog.showAndWait();
+    }
+
+    @Override
+    public Optional<OpenTableResult> showOpenTableDialog(OpenTableRequest request) {
+        OpenTableDialog dialog = new OpenTableDialog(ownerSupplier.get(), request);
+        return dialog.showAndWait();
     }
 }

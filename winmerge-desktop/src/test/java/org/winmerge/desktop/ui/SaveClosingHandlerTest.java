@@ -4,8 +4,12 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import org.junit.jupiter.api.Test;
 import org.winmerge.desktop.ui.dialogs.AboutDialogModel;
+import org.winmerge.desktop.ui.dialogs.CodepageRequest;
+import org.winmerge.desktop.ui.dialogs.CodepageResult;
 import org.winmerge.desktop.ui.dialogs.CompareStatisticsDialogModel;
 import org.winmerge.desktop.ui.dialogs.ConfirmFolderCopyChoice;
 import org.winmerge.desktop.ui.dialogs.ConfirmFolderCopyRequest;
@@ -19,11 +23,17 @@ import org.winmerge.desktop.ui.dialogs.DialogService;
 import org.winmerge.desktop.ui.dialogs.FilterConditionRequest;
 import org.winmerge.desktop.ui.dialogs.FilterConditionResult;
 import org.winmerge.desktop.ui.dialogs.FilterSettingsModel;
+import org.winmerge.desktop.ui.dialogs.MessageBoxRequest;
+import org.winmerge.desktop.ui.dialogs.OpenTableRequest;
+import org.winmerge.desktop.ui.dialogs.OpenTableResult;
+import org.winmerge.desktop.ui.dialogs.PatchDialogRequest;
+import org.winmerge.desktop.ui.dialogs.PatchDialogResult;
 import org.winmerge.desktop.ui.dialogs.SaveClosingChoice;
 import org.winmerge.desktop.ui.dialogs.SharedFilterDialog;
 import org.winmerge.desktop.ui.dialogs.TestFilterModel;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogRequest;
 import org.winmerge.desktop.ui.dialogs.WMGotoDialogResult;
+import org.winmerge.desktop.ui.dialogs.WindowsManagerModel;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -131,6 +141,20 @@ class SaveClosingHandlerTest {
         }
 
         @Override
+        public void showMessageBox(MessageBoxRequest request) {
+        }
+
+        @Override
+        public Optional<Color> showColorDialog(Color initialColor) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<Font> showFontDialog(Font initialFont) {
+            return Optional.empty();
+        }
+
+        @Override
         public void showAboutDialog(AboutDialogModel model) {
         }
 
@@ -195,6 +219,26 @@ class SaveClosingHandlerTest {
         @Override
         public ConfirmFolderCopyChoice showConfirmFolderCopyDialog(ConfirmFolderCopyRequest request) {
             return ConfirmFolderCopyChoice.NO;
+        }
+
+        @Override
+        public Optional<CodepageResult> showCodepageDialog(CodepageRequest request) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<PatchDialogResult> showPatchDialog(PatchDialogRequest request) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<Integer> showWindowsManagerDialog(WindowsManagerModel model) {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<OpenTableResult> showOpenTableDialog(OpenTableRequest request) {
+            return Optional.empty();
         }
     }
 }

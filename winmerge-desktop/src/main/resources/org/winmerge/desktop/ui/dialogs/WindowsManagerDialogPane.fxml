@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.winmerge.desktop.ui.dialogs.WindowsManagerDialogController">
+    <content>
+        <VBox spacing="8.0" prefWidth="520.0">
+            <padding>
+                <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+            </padding>
+            <children>
+                <Label text="%IDS_WINDOWS_MANAGER_OPEN_WINDOWS"/>
+                <ListView fx:id="windowsListView" prefHeight="280.0"/>
+            </children>
+        </VBox>
+    </content>
+</DialogPane>
