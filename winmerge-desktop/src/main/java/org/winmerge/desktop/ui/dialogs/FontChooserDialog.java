@@ -33,9 +33,9 @@ public final class FontChooserDialog {
 
     public Optional<Font> showAndWait() {
         if (isControlsFxPresent()) {
-            Optional<Font> controlsFxResult = showControlsFxDialog();
-            if (controlsFxResult.isPresent()) {
-                return controlsFxResult;
+            ControlsFxOutcome outcome = showControlsFxDialog();
+            if (outcome.displayed()) {
+                return outcome.result();
             }
         }
         return showFallbackDialog();
@@ -54,7 +54,7 @@ public final class FontChooserDialog {
         return false;
     }
 
-    private Optional<Font> showControlsFxDialog() {
+    private ControlsFxOutcome showControlsFxDialog() {
         for (String className : CONTROLSFX_DIALOG_CLASSES) {
             try {
                 Class<?> dialogClass = Class.forName(className, true, getClass().getClassLoader());
@@ -68,13 +68,13 @@ public final class FontChooserDialog {
                     dialog.initOwner(owner);
                 }
                 dialog.setTitle(I18n.tr("IDS_FONT_DIALOG_TITLE"));
-                return dialog.showAndWait();
+                return ControlsFxOutcome.displayed(dialog.showAndWait());
             } catch (ReflectiveOperationException | RuntimeException ex) {
                 // Try fallback dialog if ControlsFX API differs.
-                return Optional.empty();
+                return ControlsFxOutcome.notDisplayed();
             }
         }
-        return Optional.empty();
+        return ControlsFxOutcome.notDisplayed();
     }
 
     private Optional<Font> showFallbackDialog() {
@@ -152,6 +152,16 @@ public final class FontChooserDialog {
             return Integer.parseInt(value.trim());
         } catch (RuntimeException ex) {
             return fallback;
+        }
+    }
+
+    private record ControlsFxOutcome(boolean displayed, Optional<Font> result) {
+        private static ControlsFxOutcome displayed(Optional<Font> result) {
+            return new ControlsFxOutcome(true, result == null ? Optional.empty() : result);
+        }
+
+        private static ControlsFxOutcome notDisplayed() {
+            return new ControlsFxOutcome(false, Optional.empty());
         }
     }
 }
