@@ -138,3 +138,6 @@ Src/FilterEngine/FilterParser.c
 # Gradle build artifacts
 .gradle/
 **/build/
+
+# Security reports (local only)
+.gstack/
