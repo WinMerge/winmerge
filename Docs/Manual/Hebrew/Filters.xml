@@ -671,6 +671,32 @@ to show files that are identical except for ignored differences.</para>
               </listitem>
             </varlistentry>
 
+            <varlistentry>
+              <term><varname>Unpacker</varname></term>
+              <listitem>
+                <para>
+Returns the name of the unpacker plugin used for the file comparison, or an
+empty string if no unpacker was used.  This is a global attribute (does not
+support side-specific prefixes).  Example: <literal>Unpacker =
+"CompareMSExcelFiles"</literal> to show files compared using the Excel
+unpacker, or <literal>Unpacker != ""</literal> to show all files where an
+unpacker was used.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term><varname>Prediffer</varname></term>
+              <listitem>
+                <para>
+Returns the name of the prediffer plugin used for the file comparison, or an
+empty string if no prediffer was used.  This is a global attribute (does not
+support side-specific prefixes).  Example: <literal>Prediffer =
+"IgnoreColumns"</literal> to show files compared using the IgnoreColumns
+prediffer, or <literal>Prediffer != ""</literal> to show all files where a
+prediffer was used.</para>
+              </listitem>
+            </varlistentry>
+
           </variablelist>
         </section>
 

@@ -52,6 +52,7 @@ public:
 protected:
 	String GetExpression();
 	String GetLHS() const;
+	bool IsStringField(bool includeContent = true) const;
 
 	// Generated message map functions
 	//{{AFX_MSG(CFilterConditionDlg)

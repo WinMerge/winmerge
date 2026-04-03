@@ -308,6 +308,18 @@ std::optional<String> CFileFilterHelperMenu::OnCommand(const String& masks, int 
 		if (dlg.DoModal() == IDOK)
 			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
 	}
+	else if (command == ID_FILTERMENU_UNPACKER)
+	{
+		CFilterConditionDlg dlg(false, 0, _T("Unpacker"), m_propName, _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+	}
+	else if (command == ID_FILTERMENU_PREDIFFER)
+	{
+		CFilterConditionDlg dlg(false, 0, _T("Prediffer"), m_propName, _("%1 contains %2"), _T("%1"));
+		if (dlg.DoModal() == IDOK)
+			result = (masks.empty() ? masks : masks + _T("|")) + _T("fe:") + dlg.m_sExpression;
+	}
 	else if (command == ID_FILTERMENU_RELATIVEFOLDER)
 	{
 		CFilterConditionDlg dlg(false, m_targetSide, _T("Folder"), m_propName, _("%1 contains %2"), _T("%1"));
@@ -701,6 +713,8 @@ std::unique_ptr<CFileFilterHelperMenu> CFileFilterHelperMenu::AppendColumnFilter
 		{ _T("size"), IDR_POPUP_FILTERMENU_SIZE, -1 },
 		{ _T("sizeShort"), IDR_POPUP_FILTERMENU_SIZE, -1 },
 		{ _T("attr"), IDR_POPUP_FILTERMENU_ATTR, -1 },
+		{ _T("Unpacker"), -1, ID_FILTERMENU_UNPACKER },
+		{ _T("Prediffer"), -1, ID_FILTERMENU_PREDIFFER },
 	};
 
 	for (const auto& mapping : mappings)

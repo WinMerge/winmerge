@@ -106,6 +106,16 @@ String CFilterConditionDlg::GetLHS() const
 	return lhs;
 }
 
+bool CFilterConditionDlg::IsStringField(bool includeContent /* = true */) const
+{
+	if (includeContent && m_sField == _T("Content"))
+		return true;
+	return m_sField == _T("Name") || m_sField == _T("Folder") || 
+		   m_sField == _T("Extension") || m_sField == _T("Unpacker") || 
+		   m_sField == _T("Prediffer") ||
+		   m_vt == VT_LPWSTR || m_vt == (VT_VECTOR | VT_LPWSTR);
+}
+
 String CFilterConditionDlg::GetExpression()
 {
 	auto expressionptr = (intptr_t)GetDlgItemDataCurSel(IDC_CONDITION_OPERATOR);
@@ -197,7 +207,7 @@ BOOL CFilterConditionDlg::OnInitDialog()
 				{ _("Not Contains (regex)"), L"%1 not recontains %2" },
 			}, m_sOperator);
 	} 
-	else if (m_sField == _T("Name") || m_sField == _T("Folder") || m_sField == _T("Extension") || m_vt == VT_LPWSTR || m_vt == (VT_VECTOR | VT_LPWSTR))
+	else if (IsStringField(false))
 	{
 		SetDlgItemComboBoxList(IDC_CONDITION_OPERATOR,
 			{
@@ -252,7 +262,7 @@ BOOL CFilterConditionDlg::OnInitDialog()
 	}
 
 	// Show Match Case checkbox only for string-based fields
-	const bool isStringField = (m_sField == _T("Content") || m_sField == _T("Name") || m_sField == _T("Folder") || m_sField == _T("Extension") || m_vt == VT_LPWSTR || m_vt == (VT_VECTOR | VT_LPWSTR));
+	const bool isStringField = IsStringField();
 	ShowDlgItem(IDC_CONDITION_MATCHCASE, isStringField);
 
 	UpdateData(FALSE);
