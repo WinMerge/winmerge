@@ -15,6 +15,7 @@
 #include <afxcview.h>
 #include <memory>
 #include <optional>
+#include <unordered_map>
 #include "OptionsDirColors.h"
 #include "SortHeaderCtrl.h"
 #include "UnicodeString.h"
