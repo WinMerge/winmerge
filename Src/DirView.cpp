@@ -567,10 +567,9 @@ void CDirView::ReloadColumns()
 }
 
 /**
- * @brief Count showable children without modifying the display list
- * @param [in] parent Parent item
- * @param [in] level Indent level
- * @return Number of showable child items
+ * @brief Check whether the specified parent has any showable descendant.
+ * @param [in] parent Parent item.
+ * @return true if the parent has at least one showable descendant; otherwise false.
  */
 bool CDirView::HasShowableDescendant(DIFFITEM* parent)
 {
