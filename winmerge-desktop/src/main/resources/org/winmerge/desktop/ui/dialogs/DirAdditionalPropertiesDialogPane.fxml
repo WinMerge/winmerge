@@ -26,9 +26,9 @@
 
                 <HBox spacing="8.0">
                     <children>
-                        <Button text="Add" onAction="#onAdd" />
-                        <Button text="Delete" onAction="#onDelete" />
-                        <Button text="Delete All" onAction="#onDeleteAll" />
+                        <Button text="%IDS_DIR_ADDITIONAL_ADD" onAction="#onAdd" />
+                        <Button text="%IDS_DIR_ADDITIONAL_DELETE" onAction="#onDelete" />
+                        <Button text="%IDS_DIR_ADDITIONAL_DELETE_ALL" onAction="#onDeleteAll" />
                     </children>
                 </HBox>
             </children>

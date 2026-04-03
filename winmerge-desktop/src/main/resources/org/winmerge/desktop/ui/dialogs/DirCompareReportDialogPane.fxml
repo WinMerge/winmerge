@@ -22,15 +22,15 @@
                 <ColumnConstraints minWidth="90.0" prefWidth="90.0"/>
             </columnConstraints>
             <children>
-                <Label text="Report file" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <Label text="%IDS_DIR_COMPARE_REPORT_FILE" GridPane.rowIndex="0" GridPane.columnIndex="0" />
                 <TextField fx:id="reportFileField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-                <Button text="Browse" onAction="#onBrowse" GridPane.rowIndex="0" GridPane.columnIndex="2" />
+                <Button text="%IDS_DIR_COMPARE_REPORT_BROWSE" onAction="#onBrowse" GridPane.rowIndex="0" GridPane.columnIndex="2" />
 
-                <Label text="Style" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <Label text="%IDS_DIR_COMPARE_REPORT_STYLE" GridPane.rowIndex="1" GridPane.columnIndex="0" />
                 <ComboBox fx:id="styleCombo" GridPane.rowIndex="1" GridPane.columnIndex="1" />
 
-                <CheckBox fx:id="copyToClipboardCheckBox" text="Copy report to clipboard" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-                <CheckBox fx:id="includeFileCompareReportCheckBox" text="Include file compare report (HTML only)" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                <CheckBox fx:id="copyToClipboardCheckBox" text="%IDS_DIR_COMPARE_REPORT_COPY_CLIPBOARD" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                <CheckBox fx:id="includeFileCompareReportCheckBox" text="%IDS_DIR_COMPARE_REPORT_INCLUDE_FILE" GridPane.rowIndex="3" GridPane.columnIndex="1" />
             </children>
         </GridPane>
     </content>

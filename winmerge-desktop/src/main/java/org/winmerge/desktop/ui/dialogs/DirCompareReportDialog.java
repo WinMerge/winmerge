@@ -1,11 +1,14 @@
 package org.winmerge.desktop.ui.dialogs;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
@@ -22,7 +25,10 @@ public final class DirCompareReportDialog extends Dialog<DirCompareReportResult>
             initOwner(owner);
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/winmerge/desktop/ui/dialogs/DirCompareReportDialogPane.fxml"));
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/org/winmerge/desktop/ui/dialogs/DirCompareReportDialogPane.fxml"),
+            ResourceBundle.getBundle("i18n.WinMerge")
+        );
         final DialogPane dialogPane;
         try {
             dialogPane = loader.load();
@@ -48,7 +54,28 @@ public final class DirCompareReportDialog extends Dialog<DirCompareReportResult>
                     return null;
                 }
                 Optional<DirCompareReportResult> result = controller.buildResult();
-                return result.orElse(null);
+                if (result.isEmpty()) {
+                    return null;
+                }
+                String reportFilePath = result.get().reportFilePath();
+                if (reportFilePath != null && !reportFilePath.isBlank()) {
+                    File reportFile = new File(reportFilePath);
+                    if (reportFile.exists()) {
+                        Alert confirm = new Alert(Alert.AlertType.WARNING,
+                            I18n.tr("IDS_REPORT_FILEOVERWRITE"),
+                            ButtonType.YES, ButtonType.NO);
+                        confirm.setTitle(I18n.tr("IDS_DIR_COMPARE_REPORT_TITLE"));
+                        confirm.setHeaderText(null);
+                        if (owner != null) {
+                            confirm.initOwner(owner);
+                        }
+                        Optional<ButtonType> choice = confirm.showAndWait();
+                        if (choice.isEmpty() || choice.get() != ButtonType.YES) {
+                            return null;
+                        }
+                    }
+                }
+                return result.get();
             }
         );
     }

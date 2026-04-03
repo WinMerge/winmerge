@@ -178,9 +178,8 @@ public final class DirSelectFilesDialogController {
         for (int optionIndex = 0; optionIndex < buttons.length; optionIndex++) {
             Button button = buttons[optionIndex];
             boolean exists = available[optionIndex];
-            button.setDisable(!exists);
-            button.setVisible(true);
-            button.setManaged(true);
+            button.setVisible(exists);
+            button.setManaged(exists);
             button.setText("");
             button.setAccessibleText(paths[optionIndex]);
             button.setUserData(paneIndex * 3 + optionIndex);
@@ -188,28 +187,7 @@ public final class DirSelectFilesDialogController {
     }
 
     private String resolvePath(int buttonId) {
-        if (buttonId < 0 || buttonId >= optionButtons.length) {
-            return null;
-        }
-        int paneIndex = buttonId / 3;
-        int optionIndex = buttonId % 3;
-
-        DirSelectFilesRequest.DirSelectFilesPane pane = switch (paneIndex) {
-            case 0 -> request.pane1();
-            case 1 -> request.pane2();
-            case 2 -> request.pane3();
-            default -> null;
-        };
-        if (pane == null) {
-            return null;
-        }
-
-        String[] paths = pane.filePaths();
-        boolean[] available = pane.available();
-        if (optionIndex < 0 || optionIndex >= paths.length || !available[optionIndex]) {
-            return null;
-        }
-        return paths[optionIndex];
+        return DirSelectFilesDialogLogic.resolvePath(request, buttonId);
     }
 
     private void updateButtonCaptions() {

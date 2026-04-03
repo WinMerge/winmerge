@@ -3,6 +3,7 @@ package org.winmerge.desktop.ui.dialogs;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,7 +23,10 @@ public final class DirColumnsDialog extends Dialog<List<DirColumn>> {
             initOwner(owner);
         }
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/winmerge/desktop/ui/dialogs/DirColumnsDialogPane.fxml"));
+        FXMLLoader loader = new FXMLLoader(
+            getClass().getResource("/org/winmerge/desktop/ui/dialogs/DirColumnsDialogPane.fxml"),
+            ResourceBundle.getBundle("i18n.WinMerge")
+        );
         final DialogPane dialogPane;
         try {
             dialogPane = loader.load();

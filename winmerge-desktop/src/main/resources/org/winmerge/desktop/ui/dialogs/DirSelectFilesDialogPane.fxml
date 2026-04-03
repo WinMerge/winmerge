@@ -44,9 +44,9 @@
 
                 <HBox spacing="8.0">
                     <children>
-                        <Button text="Reset" onAction="#onReset" />
+                        <Button text="%IDS_DIR_SELECT_RESET" onAction="#onReset" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Label text="Click boxes to set selection order (1..3)." />
+                        <Label text="%IDS_DIR_SELECT_ORDER_HINT" />
                     </children>
                 </HBox>
             </children>

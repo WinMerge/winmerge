@@ -21,15 +21,15 @@
             <right>
                 <VBox spacing="8.0" BorderPane.alignment="TOP_CENTER">
                     <children>
-                        <Button fx:id="upButton" text="Up" onAction="#onMoveUp" minWidth="92.0"/>
-                        <Button fx:id="downButton" text="Down" onAction="#onMoveDown" minWidth="92.0"/>
+                        <Button fx:id="upButton" text="%IDS_DIR_COLUMNS_UP" onAction="#onMoveUp" minWidth="92.0"/>
+                        <Button fx:id="downButton" text="%IDS_DIR_COLUMNS_DOWN" onAction="#onMoveDown" minWidth="92.0"/>
                     </children>
                 </VBox>
             </right>
             <bottom>
                 <HBox spacing="8.0" BorderPane.alignment="CENTER_LEFT">
                     <children>
-                        <Label text="Description:" />
+                        <Label text="%IDS_DIR_COLUMNS_DESCRIPTION" />
                         <Label fx:id="descriptionLabel" wrapText="true" maxWidth="460.0" />
                     </children>
                 </HBox>
