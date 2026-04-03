@@ -23,7 +23,7 @@ var bRunFromCmd = false;
 if (oFSO.GetFileName(WScript.FullName).toLowerCase() === "cscript.exe") {
   bRunFromCmd = true;
 }
-var bInsertLineNumbers = false;
+var bInsertLineNumbers = true;
 if (WScript.Arguments.Named.Exists("InsertLineNumbers")) {
   bInsertLineNumbers = (WScript.Arguments.Named("InsertLineNumbers").toLowerCase() === "true");
 }
@@ -92,6 +92,7 @@ function GetStringsFromRcFile(sRcFilePath) {
     var sRcFileName = oFSO.GetFileName(sRcFilePath);
     var iLine = 0;
     var iBlockType = NO_BLOCK;
+    var sParentContextID = "";
     var oRcFile = oFSO.OpenTextFile(sRcFilePath, ForReading);
     while (!oRcFile.AtEndOfStream) { //For all lines...
       var sLine = oRcFile.ReadLine().replace(/^\s+|\s+$/g, "");
@@ -106,10 +107,15 @@ function GetStringsFromRcFile(sRcFilePath) {
         // Nothing to do
       } else if (sLine.indexOf(" MENU") >= 0 && sLine.indexOf("IDR_") >= 0) { //MENU...
         iBlockType = MENU_BLOCK;
+        var m = /^\s*(IDR_[A-Za-z0-9_]*)/.exec(sLine);
+        if (m) sParentContextID = m[1];
       } else if (sLine.indexOf(" DIALOGEX") >= 0) { //DIALOGEX...
         iBlockType = DIALOGEX_BLOCK;
+        var m = /^\s*(IDD_[A-Za-z0-9_]*)/.exec(sLine);
+        if (m) sParentContextID = m[1];
       } else if (sLine === "STRINGTABLE") { //STRINGTABLE...
         iBlockType = STRINGTABLE_BLOCK;
+        sParentContextID = "";
       } else if (sLine.indexOf(" VERSIONINFO") >= 0) { //VERSIONINFO...
         iBlockType = VERSIONINFO_BLOCK;
       } else if (sLine.indexOf(" ACCELERATORS") >= 0) { //ACCELERATORS...
@@ -160,6 +166,24 @@ function GetStringsFromRcFile(sRcFilePath) {
                 } else if (oMatch4) { //If found a context for the translation...
                   sContext = oMatch4[1].replace(/^\s+|\s+$/g, "");
                   sComment = sContext;
+                }
+
+                var sLineNoString = sLine.replace(/"(?:""|[^"])*"/g, ""); // Remove string literals
+                var oMatchID = /\b(ID[A-Z_][A-Z0-9_]*)\b/.exec(sLineNoString);
+                var sExtractedStr = "";
+                if (oMatchID) {
+                    sExtractedStr = oMatchID[1];
+                }
+                if (sParentContextID !== "" && (iBlockType === MENU_BLOCK || iBlockType === DIALOGEX_BLOCK)) {
+                    sExtractedStr = sExtractedStr ? (sParentContextID + ", " + sExtractedStr) : sParentContextID;
+                }
+
+                if (sExtractedStr !== "") {
+                  if (sComment !== "") {
+                    sComment = sExtractedStr + ", " + sComment;
+                  } else {
+                    sComment = sExtractedStr;
+                  }
                 }
               }
             }

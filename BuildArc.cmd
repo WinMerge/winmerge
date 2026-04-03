@@ -126,6 +126,7 @@ rem Translations
 echo Copy Translations...
 copy Build\%PLATFORM%\Release\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
 copy Translations\ShellExtension\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\ShellExtension" > NUL
+powershell -ExecutionPolicy RemoteSigned -File "%~dp0Translations\StripPoComments.ps1" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages"
 
 rem ColorSchemes
 echo Copy ColorSchemes...
