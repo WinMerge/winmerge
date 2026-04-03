@@ -1,4 +1,4 @@
-﻿;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis,
+;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis,
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinMerge application.
 ; Tools Needed To Compile:  Inno Setup 5.1.7+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 5.1.7+(http://www.jrsoftware.org/isdl.php)
 ;                           note: the versions of Inno Setup and the QuickStart Pack should be identical to ensure proper function
@@ -54,6 +54,9 @@
 #define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ShellExtension64bit)
 #define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ARCH + "\WinMergeContextMenu.dll")
 #define CurYear GetDateTimeString('yyyy', '', '')
+#ifndef TranslationsDir
+  #define TranslationsDir "..\..\Translations"
+#endif
 
 [Setup]
 AppName=WinMerge
@@ -448,115 +451,115 @@ Source: ..\..\Build\{#ARCH}\Release\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags
 Source: ..\..\Build\{#ARCH}\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: Core
 
 ; Language files
-Source: ..\..\BuildTmp\Translations\WinMerge\Arabic.po; DestDir: {app}\Languages; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Arabic.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Basque.po; DestDir: {app}\Languages; Components: Languages\Basque; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Basque.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Basque; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Arabic.po; DestDir: {app}\Languages; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Arabic.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Basque.po; DestDir: {app}\Languages; Components: Languages\Basque; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Basque.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Basque; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Basque.txt; DestDir: {app}\Docs; Components: Languages\Basque
-Source: ..\..\BuildTmp\Translations\WinMerge\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Brazilian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Brazilian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt; DestDir: {app}\Docs; Components: Languages\PortugueseBrazilian
-Source: ..\..\BuildTmp\Translations\WinMerge\Bulgarian.po; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Bulgarian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Bulgarian.po; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Bulgarian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
-Source: ..\..\BuildTmp\Translations\WinMerge\Catalan.po; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Catalan.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Catalan.po; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Catalan.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Catalan.txt; DestDir: {app}\Docs; Components: Languages\Catalan
-Source: ..\..\BuildTmp\Translations\WinMerge\ChineseSimplified.po; DestDir: {app}\Languages; Components: Languages\ChineseSimplified; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\ChineseSimplified.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\ChineseSimplified; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\ChineseSimplified.po; DestDir: {app}\Languages; Components: Languages\ChineseSimplified; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\ChineseSimplified.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\ChineseSimplified; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-ChineseSimplified.txt; DestDir: {app}\Docs; Components: Languages\ChineseSimplified
-Source: ..\..\BuildTmp\Translations\WinMerge\ChineseTraditional.po; DestDir: {app}\Languages; Components: Languages\ChineseTraditional; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\ChineseTraditional.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\ChineseTraditional; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\ChineseTraditional.po; DestDir: {app}\Languages; Components: Languages\ChineseTraditional; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\ChineseTraditional.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\ChineseTraditional; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-ChineseTraditional.txt; DestDir: {app}\Docs; Components: Languages\ChineseTraditional
-Source: ..\..\BuildTmp\Translations\WinMerge\Corsican.po; DestDir: {app}\Languages; Components: Languages\Corsican; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Corsican.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Corsican; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Corsican.po; DestDir: {app}\Languages; Components: Languages\Corsican; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Corsican.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Corsican; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Corsican.txt; DestDir: {app}\Docs; Components: Languages\Corsican
-Source: ..\..\BuildTmp\Translations\WinMerge\Croatian.po; DestDir: {app}\Languages; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Croatian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Croatian.po; DestDir: {app}\Languages; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Croatian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Croatian.txt; DestDir: {app}\Docs; Components: Languages\Croatian
-Source: ..\..\BuildTmp\Translations\WinMerge\Czech.po; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Czech.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Danish.po; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Danish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Dutch.po; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Dutch.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Czech.po; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Czech.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Danish.po; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Danish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Dutch.po; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Dutch.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Dutch.txt; DestDir: {app}\Docs; Components: Languages\Dutch
-Source: ..\..\BuildTmp\Translations\WinMerge\Finnish.po; DestDir: {app}\Languages; Components: Languages\Finnish; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Finnish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Finnish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Finnish.po; DestDir: {app}\Languages; Components: Languages\Finnish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Finnish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Finnish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Finnish.txt; DestDir: {app}\Docs; Components: Languages\Finnish
-Source: ..\..\BuildTmp\Translations\WinMerge\French.po; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\French.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\French; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\French.po; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\French.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\French; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-French.txt; DestDir: {app}\Docs; Components: Languages\French
 Source: ..\..\Build\Manual\htmlhelp\WinMergeFrench.chm; DestDir: {app}\Docs; Components: Languages\French
-Source: ..\..\BuildTmp\Translations\WinMerge\Galician.po; DestDir: {app}\Languages; Components: Languages\Galician; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Galician.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Galician; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Galician.po; DestDir: {app}\Languages; Components: Languages\Galician; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Galician.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Galician; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Galician.txt; DestDir: {app}\Docs; Components: Languages\Galician
-Source: ..\..\BuildTmp\Translations\WinMerge\German.po; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\German.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\German; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\German.po; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\German.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\German; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-German.txt; DestDir: {app}\Docs; Components: Languages\German
-Source: ..\..\BuildTmp\Translations\WinMerge\Greek.po; DestDir: {app}\Languages; Components: Languages\Greek; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Greek.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Greek; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Greek.po; DestDir: {app}\Languages; Components: Languages\Greek; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Greek.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Greek; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Greek.txt; DestDir: {app}\Docs; Components: Languages\Greek
-Source: ..\..\BuildTmp\Translations\WinMerge\Hebrew.po; DestDir: {app}\Languages; Components: Languages\Hebrew; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Hebrew.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Hebrew; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Hebrew.po; DestDir: {app}\Languages; Components: Languages\Hebrew; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Hebrew.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Hebrew; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Hebrew.txt; DestDir: {app}\Docs; Components: Languages\Hebrew
 Source: ..\..\Build\Manual\htmlhelp\WinMergeHebrew.chm; DestDir: {app}\Docs; Components: Languages\Hebrew
-Source: ..\..\BuildTmp\Translations\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Hungarian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Italian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Hungarian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Italian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Italian.txt; DestDir: {app}\Docs; Components: Languages\Italian
 Source: ..\..\Build\Manual\htmlhelp\WinMergeItalian.chm; DestDir: {app}\Docs; Components: Languages\Italian
-Source: ..\..\BuildTmp\Translations\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Japanese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Japanese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Japanese.txt; DestDir: {app}\Docs; Components: Languages\Japanese
 Source: ..\..\Build\Manual\htmlhelp\WinMergeJapanese.chm; DestDir: {app}\Docs; Components: Languages\Japanese
-Source: ..\..\BuildTmp\Translations\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Korean.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Lithuanian.po; DestDir: {app}\Languages; Components: Languages\Lithuanian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Lithuanian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Lithuanian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Korean.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Lithuanian.po; DestDir: {app}\Languages; Components: Languages\Lithuanian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Lithuanian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Lithuanian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Lithuanian.txt; DestDir: {app}\Docs; Components: Languages\Lithuanian
-Source: ..\..\BuildTmp\Translations\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Norwegian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Persian.po; DestDir: {app}\Languages; Components: Languages\Persian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Persian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Persian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Polish.po; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Polish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Portuguese.po; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Portuguese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Norwegian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Persian.po; DestDir: {app}\Languages; Components: Languages\Persian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Persian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Persian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Polish.po; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Polish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Portuguese.po; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Portuguese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Portuguese.txt; DestDir: {app}\Docs; Components: Languages\Portuguese
-Source: ..\..\BuildTmp\Translations\WinMerge\Romanian.po; DestDir: {app}\Languages; Components: Languages\Romanian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Romanian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Romanian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Romanian.po; DestDir: {app}\Languages; Components: Languages\Romanian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Romanian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Romanian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Romanian.txt; DestDir: {app}\Docs; Components: Languages\Romanian
-Source: ..\..\BuildTmp\Translations\WinMerge\Russian.po; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Russian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Serbian.po; DestDir: {app}\Languages; Components: Languages\Serbian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Serbian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Serbian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Russian.po; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Russian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Serbian.po; DestDir: {app}\Languages; Components: Languages\Serbian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Serbian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Serbian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt; DestDir: {app}\Docs; Components: Languages\Serbian
-Source: ..\..\BuildTmp\Translations\WinMerge\Sinhala.po; DestDir: {app}\Languages; Components: Languages\Sinhala; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Sinhala.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Sinhala; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\WinMerge\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Slovak.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Sinhala.po; DestDir: {app}\Languages; Components: Languages\Sinhala; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Sinhala.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Sinhala; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Slovak.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Slovak.txt; DestDir: {app}\Docs; Components: Languages\Slovak
-Source: ..\..\BuildTmp\Translations\WinMerge\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Slovenian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Slovenian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Slovenian.txt; DestDir: {app}\Docs; Components: Languages\Slovenian
-Source: ..\..\BuildTmp\Translations\WinMerge\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Spanish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Spanish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Spanish.txt; DestDir: {app}\Docs; Components: Languages\Spanish
-Source: ..\..\BuildTmp\Translations\WinMerge\Swedish.po; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Swedish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Swedish.po; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Swedish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Swedish.txt; DestDir: {app}\Docs; Components: Languages\Swedish
-Source: ..\..\BuildTmp\Translations\WinMerge\Tamil.po; DestDir: {app}\Languages; Components: Languages\Tamil; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Tamil.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Tamil; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Tamil.po; DestDir: {app}\Languages; Components: Languages\Tamil; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Tamil.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Tamil; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Tamil.txt; DestDir: {app}\Docs; Components: Languages\Tamil
-Source: ..\..\BuildTmp\Translations\WinMerge\Turkish.po; DestDir: {app}\Languages; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Turkish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Turkish.po; DestDir: {app}\Languages; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Turkish.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt; DestDir: {app}\Docs; Components: Languages\Turkish
-Source: ..\..\BuildTmp\Translations\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
-Source: ..\..\BuildTmp\Translations\ShellExtension\Ukrainian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\WinMerge\Ukrainian.po; DestDir: {app}\Languages; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Ukrainian.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Ukrainian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt; DestDir: {app}\Docs; Components: Languages\Ukrainian
-Source: ..\..\BuildTmp\Translations\ShellExtension\Vietnamese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Vietnamese; Flags: ignoreversion comparetimestamp
+Source: {#TranslationsDir}\ShellExtension\Vietnamese.po; DestDir: {app}\Languages\ShellExtension; Components: Languages\Vietnamese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Translations\Docs\Readme\ReadMe-Vietnamese.txt; DestDir: {app}\Docs; Components: Languages\Vietnamese
 
 ;Filters
