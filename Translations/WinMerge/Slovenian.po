@@ -540,6 +540,9 @@ msgstr "&Enake podmape"
 msgid "&Collapse All Subfolders"
 msgstr "S&trni vse podmape"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Izberi &pisavo..."
 

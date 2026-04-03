@@ -146,6 +146,7 @@ private:
 
 // End DirActions.cpp
 	void ReflectGetdispinfo(NMLVDISPINFO *);
+	bool HasShowableDescendant(DIFFITEM *parent);
 
 // Implementation in DirViewColHandler.cpp
 public:
@@ -216,6 +217,7 @@ protected:
 	std::optional<int> m_firstDiffItem;
 	std::optional<int> m_lastDiffItem;
 	DIRCOLORSETTINGS m_cachedColors; /**< Cached color settings */
+	std::unordered_map<DIFFITEM*, bool> m_hasShowableDescendantCache;
 	bool m_bUseColors;
 
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
@@ -346,6 +348,8 @@ protected:
 	afx_msg void OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI);
 	afx_msg void OnViewTreeMode();
 	afx_msg void OnUpdateViewTreeMode(CCmdUI* pCmdUI);
+	afx_msg void OnViewShowEmptyFolders();
+	afx_msg void OnUpdateViewShowEmptyFolders(CCmdUI* pCmdUI);
 	afx_msg void OnViewExpandAllSubdirs();
 	afx_msg void OnViewExpandDifferentSubdirs();
 	afx_msg void OnViewExpandIdenticalSubdirs();

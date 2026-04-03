@@ -629,6 +629,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr ""
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "Επιλογή &Γραμματοσειράς..."

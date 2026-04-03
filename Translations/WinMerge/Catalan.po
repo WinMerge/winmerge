@@ -631,6 +631,9 @@ msgstr "Subcarpetes &idèntiques"
 msgid "&Collapse All Subfolders"
 msgstr "&Contrau les subcarpetes"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "&Tipus de lletra..."

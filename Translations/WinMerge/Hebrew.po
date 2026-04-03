@@ -538,6 +538,9 @@ msgstr "תיקיות משנה זהות"
 msgid "&Collapse All Subfolders"
 msgstr "כווץ את כל תיקיות המשנה"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "בחר גופן..."
 

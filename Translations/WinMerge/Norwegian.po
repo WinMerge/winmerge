@@ -539,6 +539,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "Sammen&trekk alle undermapper"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Velg &skrifttype..."
 

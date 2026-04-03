@@ -633,6 +633,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "&Azpiagiritegi Denak Erauzi"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "Hautatu &Hizkia..."

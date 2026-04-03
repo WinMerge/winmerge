@@ -540,6 +540,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "Tiivistä kaikki alikansiot"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Valitse &fontti..."
 

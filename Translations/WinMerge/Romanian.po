@@ -539,6 +539,9 @@ msgstr "Subdirectoarele &identice"
 msgid "&Collapse All Subfolders"
 msgstr "&Colapsează toate subdirectoarele"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Selectează &font..."
 

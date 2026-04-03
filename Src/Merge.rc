@@ -485,6 +485,7 @@ BEGIN
             MENUITEM "&Identical Subfolders",       ID_VIEW_EXPAND_IDENTICAL_SUBDIRS
         END
         MENUITEM "&Collapse All Subfolders",    ID_VIEW_COLLAPSE_ALLSUBDIRS
+        MENUITEM "Show &Empty Folders",         ID_VIEW_SHOW_EMPTY_FOLDERS
         MENUITEM SEPARATOR
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default Font",            ID_VIEW_USEDEFAULTFONT

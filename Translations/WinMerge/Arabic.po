@@ -541,6 +541,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "إخفاء محتويات المجلدات الفرعية"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "اختيار نوع الخط..."
 

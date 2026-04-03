@@ -543,6 +543,9 @@ msgstr "Subcarpetas &idénticas"
 msgid "&Collapse All Subfolders"
 msgstr "&Contraer todas las subcarpetas"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Seleccionar &fuente..."
 

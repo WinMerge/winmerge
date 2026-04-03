@@ -537,6 +537,9 @@ msgstr "&Еднаквите подпапки"
 msgid "&Collapse All Subfolders"
 msgstr "&Свиване на всички възли"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Избиране на &шрифт…"
 

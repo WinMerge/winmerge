@@ -542,6 +542,9 @@ msgstr "相同子資料夾 (&I)"
 msgid "&Collapse All Subfolders"
 msgstr "收合所有子資料夾 (&C)"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "選取字型 (&F)..."
 

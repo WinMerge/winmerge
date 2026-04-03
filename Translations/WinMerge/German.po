@@ -635,6 +635,9 @@ msgstr "&Identische Unterordner"
 msgid "&Collapse All Subfolders"
 msgstr "Alle Unterordner &einklappen"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "Schrift ausw&ählen..."

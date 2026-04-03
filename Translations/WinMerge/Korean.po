@@ -639,6 +639,9 @@ msgstr "같은 하위 폴더(&I)"
 msgid "&Collapse All Subfolders"
 msgstr "모든 하위 폴더 접기(&C)"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "글꼴 선택(&F)..."

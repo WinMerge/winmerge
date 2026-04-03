@@ -547,6 +547,9 @@ msgstr "ஒத்த துணை கோப்புறைகள்"
 msgid "&Collapse All Subfolders"
 msgstr "எல்லா துணை கோப்புறைகளையும் சுருக்கு"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "எழுத்துருவை தேர்ந்தெடு..."
 

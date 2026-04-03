@@ -540,6 +540,9 @@ msgstr "&Identiškus pakatalogius"
 msgid "&Collapse All Subfolders"
 msgstr "Sus&kleisti visus pakatalogius"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Parinkti &šriftą..."
 

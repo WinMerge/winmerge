@@ -542,6 +542,9 @@ msgstr "Subpastas &Idênticas"
 msgid "&Collapse All Subfolders"
 msgstr "&Retrair Todas as Subpastas"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Selecionar &Fonte..."
 

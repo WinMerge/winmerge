@@ -630,6 +630,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "&Zatvori sve podmape"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "Izbor &fonta..."

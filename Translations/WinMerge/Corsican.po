@@ -542,6 +542,9 @@ msgstr "I sottucartulari &uguali"
 msgid "&Collapse All Subfolders"
 msgstr "&Ripiegà tutti i sottucartulari"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Selezziunà a &grafia…"
 

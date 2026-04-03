@@ -540,6 +540,9 @@ msgstr "&Ідентичні вкладені папки"
 msgid "&Collapse All Subfolders"
 msgstr "&Згорнути всі вкладені папки"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Вибрати &шрифт..."
 

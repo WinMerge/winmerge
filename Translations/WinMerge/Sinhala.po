@@ -630,6 +630,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "සියළුම උප ගොනු හකුළුවා දක්වන්න"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr " මුද්‍රණ අකුරු &වර්ගය තෝරන්න..."

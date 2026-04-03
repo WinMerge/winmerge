@@ -541,6 +541,9 @@ msgstr "Identyczne podfoldery"
 msgid "&Collapse All Subfolders"
 msgstr "Zwiń wszystkie podfoldery"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Wybierz czcionkę..."
 

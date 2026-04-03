@@ -541,6 +541,9 @@ msgstr "A&ynı alt klasörler"
 msgid "&Collapse All Subfolders"
 msgstr "Tüm alt klasörleri &daralt"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Ya&zı türünü değiştir..."
 

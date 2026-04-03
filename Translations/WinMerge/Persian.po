@@ -631,6 +631,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "&C فروپاشي همه زير پوشه ها "
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "&F انتخاب قلم  "

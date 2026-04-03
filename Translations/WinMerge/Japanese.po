@@ -539,6 +539,9 @@ msgstr "同一のサブフォルダー(&I)"
 msgid "&Collapse All Subfolders"
 msgstr "すべてのサブフォルダーを折りたたむ(&C)"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "フォントの選択(&F)..."
 

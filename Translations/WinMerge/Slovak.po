@@ -540,6 +540,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "&Zvinúť všetky podpriečinky"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Vybrať &písmo..."
 

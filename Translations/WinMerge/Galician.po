@@ -541,6 +541,9 @@ msgstr "Subcarpetas &iguais"
 msgid "&Collapse All Subfolders"
 msgstr "Colapsar todas as s&ubcarpetas"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Seleccionar &fonte..."
 

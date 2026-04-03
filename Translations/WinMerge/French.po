@@ -547,6 +547,9 @@ msgstr "Sous-dossiers &identiques"
 msgid "&Collapse All Subfolders"
 msgstr "Réduire l'arbores&cense"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Choisir une &police..."
 

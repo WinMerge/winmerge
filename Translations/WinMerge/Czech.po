@@ -630,6 +630,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "Sbali&t všechny podsložky"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "Vybrat písmo..."

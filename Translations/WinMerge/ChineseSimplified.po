@@ -544,6 +544,9 @@ msgstr "相同的子文件夹(&I)"
 msgid "&Collapse All Subfolders"
 msgstr "折叠所有子目录(&C)"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "选择字体(&F)..."
 

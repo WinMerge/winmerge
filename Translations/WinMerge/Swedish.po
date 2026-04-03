@@ -543,6 +543,9 @@ msgstr "Identiska underkataloger"
 msgid "&Collapse All Subfolders"
 msgstr "Veckla ihop underkataloger"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Välj typsnitt..."
 

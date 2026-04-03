@@ -631,6 +631,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "Luk &alle undermapper"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "Vælg &skrifttype..."

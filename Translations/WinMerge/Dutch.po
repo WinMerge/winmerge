@@ -538,6 +538,9 @@ msgstr "Identieke submappen"
 msgid "&Collapse All Subfolders"
 msgstr "Alle submappen inklappen"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Lettertype kiezen..."
 

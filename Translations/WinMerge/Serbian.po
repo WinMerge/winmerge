@@ -628,6 +628,9 @@ msgstr ""
 msgid "&Collapse All Subfolders"
 msgstr "Затвори све потфасцикле"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 #, c-format
 msgid "Select &Font..."
 msgstr "Изабери &слова..."

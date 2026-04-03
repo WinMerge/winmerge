@@ -540,6 +540,9 @@ msgstr "Các thư mục con &giống hệt"
 msgid "&Collapse All Subfolders"
 msgstr "&Gập tất cả thư mục con"
 
+msgid "Show &Empty Folders"
+msgstr ""
+
 msgid "Select &Font..."
 msgstr "Chọn &phông..."
 
