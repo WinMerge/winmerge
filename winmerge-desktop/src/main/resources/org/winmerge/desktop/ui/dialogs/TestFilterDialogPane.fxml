@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.winmerge.desktop.ui.dialogs.TestFilterDialogController"
+      spacing="10.0"
+      prefWidth="520.0"
+      prefHeight="360.0">
+    <children>
+        <Label text="%IDS_TEST_FILTER_LABEL" />
+        <Label fx:id="filterNameLabel" style="-fx-font-weight: bold;" />
+
+        <HBox spacing="8.0" alignment="CENTER_LEFT">
+            <children>
+                <TextField fx:id="testTextField" HBox.hgrow="ALWAYS" promptText="%IDS_TEST_FILTER_PROMPT" />
+                <Button text="%IDS_FILTER_DIALOG_TEST" onAction="#onTestClicked" />
+            </children>
+        </HBox>
+
+        <CheckBox fx:id="isDirectoryCheck" text="%IDS_TEST_FILTER_TREAT_AS_DIRECTORY" />
+
+        <Label text="%IDS_TEST_FILTER_RESULTS" />
+        <TextArea fx:id="resultTextArea" wrapText="false" editable="false" VBox.vgrow="ALWAYS" />
+    </children>
+    <padding>
+        <Insets top="12.0" right="12.0" bottom="12.0" left="12.0" />
+    </padding>
+</VBox>

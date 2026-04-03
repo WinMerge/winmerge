@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.winmerge.desktop.ui.dialogs.FileFiltersDialogController"
+      spacing="10.0"
+      prefWidth="760.0"
+      prefHeight="460.0">
+    <children>
+        <HBox spacing="8.0" alignment="CENTER_LEFT">
+            <children>
+                <Label text="%IDS_FILTER_DIALOG_MASK" />
+                <TextField fx:id="maskField" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+
+        <TableView fx:id="filtersTable" VBox.vgrow="ALWAYS" editable="true">
+            <columns>
+                <TableColumn fx:id="enabledColumn" text="%IDS_FILTER_DIALOG_ENABLED" prefWidth="80.0" />
+                <TableColumn fx:id="nameColumn" text="%IDS_FILTERFILE_NAMETITLE" prefWidth="170.0" />
+                <TableColumn fx:id="descriptionColumn" text="%IDS_FILTERFILE_DESCTITLE" prefWidth="240.0" />
+                <TableColumn fx:id="locationColumn" text="%IDS_FILTERFILE_PATHTITLE" prefWidth="240.0" />
+            </columns>
+        </TableView>
+
+        <HBox spacing="8.0" alignment="CENTER_RIGHT">
+            <children>
+                <Button text="%IDS_FILTER_DIALOG_TEST" fx:id="testButton" onAction="#onTestClicked" />
+                <Button text="%IDS_FILTER_DIALOG_NEW" onAction="#onNewClicked" />
+                <Button text="%IDS_FILTER_DIALOG_EDIT" fx:id="editButton" onAction="#onEditClicked" />
+                <Button text="%IDS_FILTER_DIALOG_DELETE" fx:id="deleteButton" onAction="#onDeleteClicked" />
+                <Button text="%IDS_FILTER_DIALOG_INSTALL" onAction="#onInstallClicked" />
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets top="12.0" right="12.0" bottom="12.0" left="12.0" />
+    </padding>
+</VBox>

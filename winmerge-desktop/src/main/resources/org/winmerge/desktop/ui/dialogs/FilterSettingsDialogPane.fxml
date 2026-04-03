@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="900.0"
+            prefHeight="620.0">
+    <content>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="%IDS_FILTER_SETTINGS_TAB_FILE">
+                    <content>
+                        <StackPane id="fileTabContainer" />
+                    </content>
+                </Tab>
+                <Tab text="%IDS_FILTER_SETTINGS_TAB_LINE">
+                    <content>
+                        <StackPane id="lineTabContainer" />
+                    </content>
+                </Tab>
+                <Tab text="%IDS_FILTER_SETTINGS_TAB_SUBSTITUTION">
+                    <content>
+                        <StackPane id="substitutionTabContainer" />
+                    </content>
+                </Tab>
+            </tabs>
+            <padding>
+                <Insets top="8.0" right="8.0" bottom="8.0" left="8.0" />
+            </padding>
+        </TabPane>
+    </content>
+</DialogPane>

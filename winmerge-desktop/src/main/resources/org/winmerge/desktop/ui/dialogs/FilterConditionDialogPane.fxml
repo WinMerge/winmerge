@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.winmerge.desktop.ui.dialogs.FilterConditionDialogController"
+      spacing="10.0"
+      prefWidth="560.0">
+    <children>
+        <Label text="%IDS_FILTER_CONDITION_LHS" />
+        <Label fx:id="lhsLabel" style="-fx-font-family: 'Monospaced';" wrapText="true" />
+
+        <GridPane hgap="8.0" vgap="8.0">
+            <children>
+                <Label text="%IDS_FILTER_CONDITION_OPERATOR" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ComboBox fx:id="operatorCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" />
+
+                <Label text="%IDS_FILTER_CONDITION_VALUE1" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="value1Field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <DatePicker fx:id="value1DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" visible="false" managed="false" />
+
+                <Label text="%IDS_FILTER_CONDITION_VALUE2" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="value2Field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <DatePicker fx:id="value2DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" visible="false" managed="false" />
+            </children>
+        </GridPane>
+
+        <CheckBox fx:id="caseSensitiveCheck" text="%IDS_FILTER_CONDITION_MATCH_CASE" />
+
+        <HBox spacing="8.0" alignment="CENTER_LEFT">
+            <children>
+                <Label text="%IDS_FILTER_CONDITION_EXPRESSION" />
+                <Label fx:id="expressionPreviewLabel" style="-fx-font-family: 'Monospaced';" wrapText="true" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets top="12.0" right="12.0" bottom="12.0" left="12.0" />
+    </padding>
+</VBox>

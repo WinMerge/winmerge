@@ -73,6 +73,30 @@ public final class DefaultDialogService implements DialogService {
     }
 
     @Override
+    public void showFilterSettingsDialog(FilterSettingsModel model) {
+        FilterSettingsDialog dialog = new FilterSettingsDialog(ownerSupplier.get(), model);
+        dialog.showAndWait();
+    }
+
+    @Override
+    public Optional<FilterConditionResult> showFilterConditionDialog(FilterConditionRequest request) {
+        FilterConditionDialog dialog = new FilterConditionDialog(ownerSupplier.get(), request);
+        return dialog.showAndWait();
+    }
+
+    @Override
+    public Optional<SharedFilterDialog.FilterType> showSharedFilterDialog() {
+        SharedFilterDialog dialog = new SharedFilterDialog(ownerSupplier.get(), SharedFilterDialog.FilterType.PRIVATE);
+        return dialog.showAndWait();
+    }
+
+    @Override
+    public void showTestFilterDialog(TestFilterModel model) {
+        TestFilterDialog dialog = new TestFilterDialog(ownerSupplier.get(), model);
+        dialog.showAndWait();
+    }
+
+    @Override
     public SaveClosingChoice showSaveClosingDialog(Path filePath) {
         SaveClosingDialog dialog = new SaveClosingDialog(ownerSupplier.get(), filePath);
         return dialog.showAndWait().orElse(SaveClosingChoice.CANCEL);
