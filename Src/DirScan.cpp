@@ -75,8 +75,8 @@ private:
 class DiffWorker: public Runnable
 {
 public:
-	DiffWorker(NotificationQueue& queue, CDiffContext *pCtxt, int id):
-	  m_queue(queue), m_pCtxt(pCtxt), m_id(id) {}
+	DiffWorker(NotificationQueue& queue, CDiffContext *pCtxt, int id, std::atomic<bool>& terminate):
+	  m_queue(queue), m_pCtxt(pCtxt), m_id(id), m_terminate(terminate) {}
 
 	void run()
 	{
@@ -85,9 +85,11 @@ public:
 		// when we exit the thread, we delete this and release the scripts
 		CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
 
-		AutoPtr<Notification> pNf(m_queue.waitDequeueNotification());
-		while (pNf.get() != nullptr)
+		while (!m_terminate)
 		{
+			AutoPtr<Notification> pNf(m_queue.waitDequeueNotification());
+			if (!pNf) continue;
+
 			WorkNotification* pWorkNf = dynamic_cast<WorkNotification*>(pNf.get());
 			if (pWorkNf != nullptr) {
 				m_pCtxt->m_pCompareStats->BeginCompare(&pWorkNf->data(), m_id);
@@ -98,11 +100,9 @@ public:
 			if (m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
 			{
 				m_pCtxt->m_pCompareStats->BeginCompare(nullptr, m_id);
-				while (!m_pCtxt->ShouldAbort() && m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
+				while (!m_pCtxt->ShouldAbort() && m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id) && !m_terminate)
 					Poco::Thread::sleep(10);
 			}
-
-			pNf = m_queue.waitDequeueNotification();
 		}
 	}
 
@@ -110,6 +110,7 @@ private:
 	NotificationQueue& m_queue;
 	CDiffContext *m_pCtxt;
 	int m_id;
+	std::atomic<bool>& m_terminate;
 };
 
 typedef std::shared_ptr<DiffWorker> DiffWorkerPtr;
@@ -471,18 +472,19 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 	ThreadPool threadPool(nworkers, nworkers);
 	std::vector<DiffWorkerPtr> workers;
 	NotificationQueue queue;
+	std::atomic<bool> terminate{ false };
 	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
 	workers.reserve(nworkers);
 	for (int i = 0; i < nworkers; ++i)
 	{
-		workers.emplace_back(std::make_shared<DiffWorker>(queue, myStruct->context, i));
+		workers.emplace_back(std::make_shared<DiffWorker>(queue, myStruct->context, i, terminate));
 		threadPool.start(*workers[i]);
 	}
 
 	int res = CompareItems(queue, myStruct, parentdiffpos);
 
 	myStruct->context->m_pCompareStats->SetIdleCompareThreadCount(0);
-	Thread::sleep(100);
+	terminate = true;
 	queue.wakeUpAll();
 	threadPool.joinAll();
 
