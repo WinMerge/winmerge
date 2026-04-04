@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2026-03-29 16:15-0300\n"
+"PO-Revision-Date: 2026-04-04 16:50-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -322,7 +322,7 @@ msgstr "P&ainel Ativo"
 #: Merge.rc:185
 #: Merge.rc:1225
 msgid "Rotate &Right 90deg"
-msgstr "Rotacionar 90 &graus para a &direita"
+msgstr "&Rotacionar 90 graus para a direita"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_LEFT_90
 #: Merge.rc:186
@@ -1126,7 +1126,7 @@ msgstr "&Retrair Todas as Subpastas"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:488
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "Mostrar Pastas Vazias"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:490
