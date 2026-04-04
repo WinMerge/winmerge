@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge - Italian - 29.03.2026\n"
+"Project-Id-Version: WinMerge - Italian - 04.04.2026\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2025-04-17 09:05+0000\n"
-"PO-Revision-Date: 2026-03-29 10:36+0100\n"
+"PO-Revision-Date: 2026-04-04 14:40+0100\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: bovirus (bovirus@gmail.com)\n"
 "Language: it\n"
@@ -1125,7 +1125,7 @@ msgstr "C&ontrai tutte le sotto cartelle"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:488
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "Visualizza cart&elle vuote"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:490
