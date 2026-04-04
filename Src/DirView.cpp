@@ -186,6 +186,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_OPTIONS_SHOWMISSINGRIGHTONLY, OnUpdateOptionsShowMissingRightOnly)
 	ON_COMMAND(ID_VIEW_SHOWHIDDENITEMS, OnViewShowHiddenItems)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOWHIDDENITEMS, OnUpdateViewShowHiddenItems)
+	ON_COMMAND(ID_VIEW_SHOW_EMPTY_FOLDERS, OnViewShowEmptyFolders)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOW_EMPTY_FOLDERS, OnUpdateViewShowEmptyFolders)
 	ON_COMMAND(ID_VIEW_TREEMODE, OnViewTreeMode)
 	ON_COMMAND(ID_VIEW_EXPAND_ALLSUBDIRS, OnViewExpandAllSubdirs)
 	ON_COMMAND(ID_VIEW_EXPAND_DIFFERENT_SUBDIRS, OnViewExpandDifferentSubdirs)
@@ -565,6 +567,45 @@ void CDirView::ReloadColumns()
 }
 
 /**
+ * @brief Check whether the specified parent has any showable descendant.
+ * @param [in] parent Parent item.
+ * @return true if the parent has at least one showable descendant; otherwise false.
+ */
+bool CDirView::HasShowableDescendant(DIFFITEM* parent)
+{
+	auto it = m_hasShowableDescendantCache.find(parent);
+	if (it != m_hasShowableDescendantCache.end())
+		return it->second;
+
+	const CDiffContext& ctxt = GetDiffContext();
+	DIFFITEM* diffpos = ctxt.GetFirstChildDiffPosition(parent);
+
+	while (diffpos != nullptr)
+	{
+		DIFFITEM* curdiffpos = diffpos;
+		const DIFFITEM& di = ctxt.GetNextSiblingDiffPosition(diffpos);
+
+		if (IsShowable(ctxt, di, m_dirfilter))
+		{
+			if (!di.diffcode.isDirectory())
+			{
+				m_hasShowableDescendantCache[parent] = true;
+				return true;
+			}
+
+			if (di.HasChildren() && HasShowableDescendant(curdiffpos))
+			{
+				m_hasShowableDescendantCache[parent] = true;
+				return true;
+			}
+		}
+	}
+
+	m_hasShowableDescendantCache[parent] = false;
+	return false;
+}
+
+/**
  * @brief Redisplay items in subfolder
  * @param [in] parent Parent item (nullptr for root level).
  * @param [in] level Indent level
@@ -591,30 +632,43 @@ int CDirView::RedisplayChildren(DIFFITEM *parent, int level, UINT &index, int &a
 			result = -1;
 
 		bool bShowable = IsShowable(ctxt, di, m_dirfilter);
+
+		if (m_bTreeMode && !m_dirfilter.show_empty_folders && di.diffcode.isDirectory() && !HasShowableDescendant(curdiffpos))
+			bShowable = false;
+
 		if (bShowable)
 		{
 			if (m_bTreeMode)
 			{
+				// In tree mode, add the item first
 				AddNewItem(index, curdiffpos, I_IMAGECALLBACK, level);
 				index++;
+
+				// Process children if directory has children
 				if (di.HasChildren())
 				{
 					if (di.customFlags & ViewCustomFlags::EXPANDED)
 					{
+						// Expanded: recursively display children
 						if (RedisplayChildren(curdiffpos, level + 1, index, alldiffs) < 0)
 							result = -1;
 					}
+					// Note: For collapsed directories, we don't process children
+					// Empty folder filtering is handled when expanding
 				}
 			}
 			else
 			{
+				// Flat mode
 				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || !di.diffcode.existAll())
 				{
 					AddNewItem(index, curdiffpos, I_IMAGECALLBACK, 0);
 					index++;
 				}
+
 				if (di.HasChildren())
 				{
+					// Recursively process children
 					if (RedisplayChildren(curdiffpos, level + 1, index, alldiffs) < 0)
 						result = -1;
 				}
@@ -655,6 +709,7 @@ void CDirView::Redisplay()
 
 	m_dirfilter.displayFilterHelper.SetDiffContext(&ctxt);
 	int alldiffs = 0;
+	m_hasShowableDescendantCache.clear();
 	const int result = RedisplayChildren(nullptr, 0, cnt, alldiffs);
 	const unsigned int threadState = pDoc->m_diffThread.GetThreadState();
 	GetParentFrame()->SetLastCompareResult((threadState != CDiffThread::THREAD_COMPLETED || result < 0) ? -1 : alldiffs);
@@ -1400,7 +1455,8 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 		ExpandSubdirs(ctxt, dip);
 
 	UINT indext = sel + 1;
-	int alldiffs;
+	int alldiffs = 0;
+	m_hasShowableDescendantCache.clear();
 	RedisplayChildren(GetItemKey(sel), dip.GetDepth() + 1, indext, alldiffs);
 
 	SortColumnsAppropriately();
@@ -3986,6 +4042,25 @@ void CDirView::OnUpdateViewTreeMode(CCmdUI* pCmdUI)
 		pCmdUI->SetCheck(FALSE);
 		pCmdUI->Enable(FALSE);
 	}
+}
+
+/**
+ * @brief Toggle Show Empty Folders
+ */
+void CDirView::OnViewShowEmptyFolders()
+{
+	m_dirfilter.show_empty_folders = !m_dirfilter.show_empty_folders;
+	GetOptionsMgr()->SaveOption(OPT_SHOW_EMPTY_FOLDERS, m_dirfilter.show_empty_folders);
+	Redisplay();
+}
+
+/**
+ * @brief Update 'Show Empty Folders' menuitem.
+ */
+void CDirView::OnUpdateViewShowEmptyFolders(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_dirfilter.show_empty_folders);
+	pCmdUI->Enable(GetDocument()->GetDiffContext().m_bRecursive && m_bTreeMode);
 }
 
 /**
