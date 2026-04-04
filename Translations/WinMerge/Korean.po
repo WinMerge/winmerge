@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2026-03-26 17:43+0900\n"
+"PO-Revision-Date: 2026-04-04 20:08+0900\n"
 "Last-Translator: VenusGirl <venusgirl@outlook.com>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -30,82 +30,68 @@ msgstr ""
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26
-#: Merge.rc:59
-#: Merge.rc:5453
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5453
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_KOREAN, SUBLANG_DEFAULT"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
-#: Merge.rc:79
-#: Merge.rc:87
+#: Merge.rc:79 Merge.rc:87
 msgid "Copy to Middle"
 msgstr "가운데로 복사"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_RIGHT_M
-#: Merge.rc:80
-#: Merge.rc:84
+#: Merge.rc:80 Merge.rc:84
 msgid "C&opy to Right\tAlt+Right"
 msgstr "오른쪽으로 복사(&O)\tAlt+Right"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_FROM_MIDDLE_R
-#: Merge.rc:81
-#: Merge.rc:89
+#: Merge.rc:81 Merge.rc:89
 msgid "Copy from Middle"
 msgstr "가운데에서 복사"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_FROM_RIGHT_M
-#: Merge.rc:82
-#: Merge.rc:86
+#: Merge.rc:82 Merge.rc:86
 msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr "오른쪽에서 복사(&M)\tAlt+Shift+Left"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_LEFT_R
-#: Merge.rc:83
-#: Merge.rc:88
+#: Merge.rc:83 Merge.rc:88
 msgid "Cop&y to Left\tAlt+Left"
 msgstr "왼쪽으로 복사(&Y)\tAlt+Left"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_FROM_LEFT_R
-#: Merge.rc:85
-#: Merge.rc:90
+#: Merge.rc:85 Merge.rc:90
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "왼쪽에서 복사(&F)\tAlt+Shift+Right"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_MIDDLE_R
-#: Merge.rc:92
-#: Merge.rc:100
+#: Merge.rc:92 Merge.rc:100
 msgid "Copy Selected Lines to Middle"
 msgstr "선택한 줄을 가운데로 복사"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_RIGHT_M
-#: Merge.rc:93
-#: Merge.rc:97
+#: Merge.rc:93 Merge.rc:97
 msgid "Copy Selected Lines to Right"
 msgstr "선택한 줄을 오른쪽으로 복사"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_MIDDLE_R
-#: Merge.rc:94
-#: Merge.rc:102
+#: Merge.rc:94 Merge.rc:102
 msgid "Copy Selected Lines from Middle"
 msgstr "가운데에서 선택한 줄 복사"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_RIGHT_M
-#: Merge.rc:95
-#: Merge.rc:99
+#: Merge.rc:95 Merge.rc:99
 msgid "Copy Selected Lines from Right"
 msgstr "오른쪽에서 선택한 줄 복사"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_LEFT_R
-#: Merge.rc:96
-#: Merge.rc:101
+#: Merge.rc:96 Merge.rc:101
 msgid "Copy Selected Lines to Left"
 msgstr "선택한 줄을 왼쪽으로 복사"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_LEFT_R
-#: Merge.rc:98
-#: Merge.rc:103
+#: Merge.rc:98 Merge.rc:103
 msgid "Copy Selected Lines from Left"
 msgstr "왼쪽에서 선택한 줄 복사"
 
@@ -130,8 +116,7 @@ msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
 msgstr "선택한 차이 (오른쪽)를 클립보드로 복사\tCtrl+&3"
 
 #. IDR_MERGEDOCTYPE, ID_SELECTLINEDIFF
-#: Merge.rc:110
-#: Merge.rc:673
+#: Merge.rc:110 Merge.rc:673
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "다음 차이 선택(&D)\tF4"
@@ -165,8 +150,7 @@ msgid "Cu&t"
 msgstr "잘라내기(&T)"
 
 #. IDR_POPUP_DIRVIEW
-#: Merge.rc:118
-#: Merge.rc:943
+#: Merge.rc:118 Merge.rc:943
 #, c-format
 msgid "&Copy"
 msgstr "복사(&C)"
@@ -178,33 +162,21 @@ msgid "&Paste"
 msgstr "붙여넣기(&P)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:121
-#: Merge.rc:875
-#: Merge.rc:882
+#: Merge.rc:121 Merge.rc:875 Merge.rc:882
 #, c-format
 msgid "&Scripts"
 msgstr "스크립트(&S)"
 
 #. IDS_NO_EDIT_SCRIPTS
-#: Merge.rc:123
-#: Merge.rc:338
-#: Merge.rc:447
-#: Merge.rc:654
-#: Merge.rc:659
-#: Merge.rc:865
-#: Merge.rc:877
-#: Merge.rc:884
-#: Merge.rc:940
-#: Merge.rc:1183
+#: Merge.rc:123 Merge.rc:338 Merge.rc:447 Merge.rc:654 Merge.rc:659
+#: Merge.rc:865 Merge.rc:877 Merge.rc:884 Merge.rc:940 Merge.rc:1183
 #: Merge.rc:5028
 #, c-format
 msgid "< Empty >"
 msgstr "< 비어 있음 >"
 
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_WMGOTO
-#: Merge.rc:126
-#: Merge.rc:691
-#: Merge.rc:1081
+#: Merge.rc:126 Merge.rc:691 Merge.rc:1081
 msgid "&Go to...\tCtrl+G"
 msgstr "이동(&G)...\tCtrl+G"
 
@@ -225,40 +197,27 @@ msgid "Op&en"
 msgstr "열기(&E)"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT
-#: Merge.rc:132
-#: Merge.rc:981
-#: Merge.rc:988
-#: Merge.rc:995
+#: Merge.rc:132 Merge.rc:981 Merge.rc:988 Merge.rc:995
 msgid "With &Registered Application"
 msgstr "등록된 응용 프로그램 사용(&R)"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_WITHEDITOR
-#: Merge.rc:133
-#: Merge.rc:982
-#: Merge.rc:989
-#: Merge.rc:996
+#: Merge.rc:133 Merge.rc:982 Merge.rc:989 Merge.rc:996
 msgid "With &External Editor\tCtrl+Alt+E"
 msgstr "외부 편집기 사용(&E)\tCtrl+Alt+E"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_WITH
-#: Merge.rc:134
-#: Merge.rc:983
-#: Merge.rc:990
-#: Merge.rc:997
+#: Merge.rc:134 Merge.rc:983 Merge.rc:990 Merge.rc:997
 msgid "&With..."
 msgstr "프로그램 선택(&W)..."
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_PARENT_FOLDER
-#: Merge.rc:135
-#: Merge.rc:984
-#: Merge.rc:991
-#: Merge.rc:998
+#: Merge.rc:135 Merge.rc:984 Merge.rc:991 Merge.rc:998
 msgid "Open &Parent Folder..."
 msgstr "상위 폴더 열기(&P)"
 
 #. IDR_POPUP_IMG_CTXT, ID_FILE_SHELLMENU
-#: Merge.rc:137
-#: Merge.rc:1239
+#: Merge.rc:137 Merge.rc:1239
 msgid "S&hell Menu"
 msgstr "셸 메뉴(&H)"
 
@@ -273,8 +232,7 @@ msgid "Auto-Fit All Columns"
 msgstr "모든 열 자동 맞춤"
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
-#: Merge.rc:154
-#: Merge.rc:271
+#: Merge.rc:154 Merge.rc:271
 #, c-format
 msgid "View &Differences"
 msgstr "차이 보기(&D)"
@@ -297,11 +255,7 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr "삽입/삭제 감지(&E)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_NONE
-#: Merge.rc:176
-#: Merge.rc:209
-#: Merge.rc:216
-#: Merge.rc:358
-#: Merge.rc:507
+#: Merge.rc:176 Merge.rc:209 Merge.rc:216 Merge.rc:358 Merge.rc:507
 #: Merge.rc:751
 #, c-format
 msgid "&None"
@@ -318,18 +272,13 @@ msgid "&Horizontal"
 msgstr "수평(&H)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_PREVPAGE
-#: Merge.rc:181
-#: Merge.rc:189
-#: Merge.rc:1230
+#: Merge.rc:181 Merge.rc:189 Merge.rc:1230
 #, c-format
 msgid "&Previous Page"
 msgstr "이전 페이지(&P)"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:182
-#: Merge.rc:190
-#: Merge.rc:1231
-#: Merge.rc:5322
+#: Merge.rc:182 Merge.rc:190 Merge.rc:1231 Merge.rc:5322
 #, c-format
 msgid "&Next Page"
 msgstr "다음 페이지(&N)"
@@ -341,53 +290,45 @@ msgid "&Active Pane"
 msgstr "활성 창(&A)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_RIGHT_90
-#: Merge.rc:185
-#: Merge.rc:1225
+#: Merge.rc:185 Merge.rc:1225
 msgid "Rotate &Right 90deg"
 msgstr "오른쪽으로 90도 회전(&R)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_LEFT_90
-#: Merge.rc:186
-#: Merge.rc:1226
+#: Merge.rc:186 Merge.rc:1226
 msgid "Rotate &Left 90deg"
 msgstr "왼쪽으로 90도 회전(&L)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_FLIP_VERTICALLY
-#: Merge.rc:187
-#: Merge.rc:1227
+#: Merge.rc:187 Merge.rc:1227
 msgid "Flip V&ertically"
 msgstr "수직으로 뒤집기(&E)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_FLIP_HORIZONTALLY
-#: Merge.rc:188
-#: Merge.rc:1228
+#: Merge.rc:188 Merge.rc:1228
 msgid "Flip H&orizontally"
 msgstr "수평으로 뒤집기(&O)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:193
-#: Merge.rc:699
+#: Merge.rc:193 Merge.rc:699
 #, c-format
 msgid "&Zoom"
 msgstr "확대/축소(&Z)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_ZOOMIN
-#: Merge.rc:202
-#: Merge.rc:701
+#: Merge.rc:202 Merge.rc:701
 #, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "확대(&I)\tCtrl++"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_ZOOMOUT
-#: Merge.rc:203
-#: Merge.rc:702
+#: Merge.rc:203 Merge.rc:702
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
 msgstr "축소(&O)\tCtrl+-"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_ZOOMNORMAL, Zoom to normal
-#: Merge.rc:205
-#: Merge.rc:704
+#: Merge.rc:205 Merge.rc:704
 #, c-format
 msgid "&Normal\tCtrl+*"
 msgstr "정상(&N)\tCtrl+*"
@@ -417,35 +358,29 @@ msgid "Dragging &Mode"
 msgstr "끌기 모드(&M)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_MOVE
-#: Merge.rc:217
-#: Merge.rc:955
-#: Merge.rc:1233
+#: Merge.rc:217 Merge.rc:955 Merge.rc:1233
 #, c-format
 msgid "&Move"
 msgstr "이동(&M)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
-#: Merge.rc:218
-#: Merge.rc:1234
+#: Merge.rc:218 Merge.rc:1234
 #, c-format
 msgid "&Adjust Offset"
 msgstr "오프셋 조정(&A)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
-#: Merge.rc:219
-#: Merge.rc:1235
+#: Merge.rc:219 Merge.rc:1235
 msgid "&Vertical Wipe"
 msgstr "수직 지우기(&V)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
-#: Merge.rc:220
-#: Merge.rc:1236
+#: Merge.rc:220 Merge.rc:1236
 msgid "&Horizontal Wipe"
 msgstr "수평 지우기(&H)"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
-#: Merge.rc:221
-#: Merge.rc:1237
+#: Merge.rc:221 Merge.rc:1237
 msgid "Rectangle &Select"
 msgstr "직사각형 영역 선택(&S)"
 
@@ -481,44 +416,37 @@ msgid "Compare Extracted &Text from Images"
 msgstr "이미지에서 추출한 텍스트 비교(&T)"
 
 #. IDD_OPEN, IDOK
-#: Merge.rc:272
-#: Merge.rc:1980
+#: Merge.rc:272 Merge.rc:1980
 msgid "Co&mpare"
 msgstr "비교(&M)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_SCREENSHOTS
-#: Merge.rc:274
-#: Merge.rc:1247
+#: Merge.rc:274 Merge.rc:1247
 msgid "&Screenshots"
 msgstr "스크린샷(&S)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
-#: Merge.rc:275
-#: Merge.rc:1248
+#: Merge.rc:275 Merge.rc:1248
 msgid "&Full Size Screenshots"
 msgstr "전체 크기 스크린샷(&F)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_HTMLS
-#: Merge.rc:276
-#: Merge.rc:1249
+#: Merge.rc:276 Merge.rc:1249
 msgid "&HTMLs"
 msgstr "HTML(&H)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_TEXTS
-#: Merge.rc:277
-#: Merge.rc:1250
+#: Merge.rc:277 Merge.rc:1250
 msgid "&Texts"
 msgstr "텍스트(&T)"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_RESOURCETREES
-#: Merge.rc:278
-#: Merge.rc:1251
+#: Merge.rc:278 Merge.rc:1251
 msgid "&Resource Trees"
 msgstr "리소스 트리(&R)"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_SIZE
-#: Merge.rc:280
-#: Merge.rc:1775
+#: Merge.rc:280 Merge.rc:1775
 msgid "&Size"
 msgstr "크기(&S)"
 
@@ -533,32 +461,27 @@ msgid "&Event Sync"
 msgstr "이벤트 동기화(&E)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_ENABLED
-#: Merge.rc:291
-#: Merge.rc:1259
+#: Merge.rc:291 Merge.rc:1259
 msgid "&Enabled"
 msgstr "사용함(&E)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_SCROLL
-#: Merge.rc:293
-#: Merge.rc:1261
+#: Merge.rc:293 Merge.rc:1261
 msgid "&Scroll"
 msgstr "스크롤(&S)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_CLICK
-#: Merge.rc:294
-#: Merge.rc:1262
+#: Merge.rc:294 Merge.rc:1262
 msgid "&Click"
 msgstr "클릭(&C)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_INPUT
-#: Merge.rc:295
-#: Merge.rc:1263
+#: Merge.rc:295 Merge.rc:1263
 msgid "&Input"
 msgstr "입력(&I)"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_GOBACKFORWARD
-#: Merge.rc:296
-#: Merge.rc:1264
+#: Merge.rc:296 Merge.rc:1264
 msgid "&Go Back/Forward"
 msgstr "뒤로 이동/앞으로(&G)"
 
@@ -588,140 +511,81 @@ msgid "&All Profiles"
 msgstr "모든 프로필(&A)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:310
-#: Merge.rc:411
-#: Merge.rc:586
+#: Merge.rc:310 Merge.rc:411 Merge.rc:586
 #, c-format
 msgid "&File"
 msgstr "파일(&F)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:312
-#: Merge.rc:413
-#: Merge.rc:588
+#: Merge.rc:312 Merge.rc:413 Merge.rc:588
 #, c-format
 msgid "&New"
 msgstr "새로 만들기(&N)"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TEXT
-#: Merge.rc:314
-#: Merge.rc:322
-#: Merge.rc:415
-#: Merge.rc:423
-#: Merge.rc:590
-#: Merge.rc:598
-#: Merge.rc:649
-#: Merge.rc:935
-#: Merge.rc:1159
-#: Merge.rc:1171
+#: Merge.rc:314 Merge.rc:322 Merge.rc:415 Merge.rc:423 Merge.rc:590
+#: Merge.rc:598 Merge.rc:649 Merge.rc:935 Merge.rc:1159 Merge.rc:1171
 #, c-format
 msgid "&Text"
 msgstr "텍스트(&T)"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TABLE
-#: Merge.rc:315
-#: Merge.rc:323
-#: Merge.rc:416
-#: Merge.rc:424
-#: Merge.rc:591
-#: Merge.rc:599
-#: Merge.rc:650
-#: Merge.rc:936
-#: Merge.rc:1160
-#: Merge.rc:1172
+#: Merge.rc:315 Merge.rc:323 Merge.rc:416 Merge.rc:424 Merge.rc:591
+#: Merge.rc:599 Merge.rc:650 Merge.rc:936 Merge.rc:1160 Merge.rc:1172
 msgid "T&able"
 msgstr "테이블(&A)"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_HEX
-#: Merge.rc:316
-#: Merge.rc:324
-#: Merge.rc:417
-#: Merge.rc:425
-#: Merge.rc:592
-#: Merge.rc:600
-#: Merge.rc:651
-#: Merge.rc:937
-#: Merge.rc:1161
-#: Merge.rc:1173
+#: Merge.rc:316 Merge.rc:324 Merge.rc:417 Merge.rc:425 Merge.rc:592
+#: Merge.rc:600 Merge.rc:651 Merge.rc:937 Merge.rc:1161 Merge.rc:1173
 #, c-format
 msgid "&Binary"
 msgstr "바이너리(&B)"
 
 #. IDS_IMAGE_MENU
-#: Merge.rc:317
-#: Merge.rc:325
-#: Merge.rc:418
-#: Merge.rc:426
-#: Merge.rc:593
-#: Merge.rc:601
-#: Merge.rc:652
-#: Merge.rc:938
-#: Merge.rc:1162
-#: Merge.rc:1174
+#: Merge.rc:317 Merge.rc:325 Merge.rc:418 Merge.rc:426 Merge.rc:593
+#: Merge.rc:601 Merge.rc:652 Merge.rc:938 Merge.rc:1162 Merge.rc:1174
 #: Merge.rc:5123
 #, c-format
 msgid "&Image"
 msgstr "이미지(&I)"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_WEBPAGE
-#: Merge.rc:318
-#: Merge.rc:326
-#: Merge.rc:419
-#: Merge.rc:427
-#: Merge.rc:594
-#: Merge.rc:602
-#: Merge.rc:653
-#: Merge.rc:939
-#: Merge.rc:1163
-#: Merge.rc:1175
+#: Merge.rc:318 Merge.rc:326 Merge.rc:419 Merge.rc:427 Merge.rc:594
+#: Merge.rc:602 Merge.rc:653 Merge.rc:939 Merge.rc:1163 Merge.rc:1175
 msgid "&Webpage"
 msgstr "웹페이지(&W)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:320
-#: Merge.rc:421
-#: Merge.rc:596
+#: Merge.rc:320 Merge.rc:421 Merge.rc:596
 #, c-format
 msgid "New (&3 panes)"
 msgstr "새로 만들기 (3개 창)(&3)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_OPEN
-#: Merge.rc:328
-#: Merge.rc:429
-#: Merge.rc:604
+#: Merge.rc:328 Merge.rc:429 Merge.rc:604
 #, c-format
 msgid "&Open...\tCtrl+O"
 msgstr "열기(&O)...\tCtrl+O"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_OPENCONFLICT
-#: Merge.rc:329
-#: Merge.rc:430
-#: Merge.rc:605
+#: Merge.rc:329 Merge.rc:430 Merge.rc:605
 msgid "Open Conflic&t File..."
 msgstr "충돌 파일 열기(&T)..."
 
 #. IDR_MERGEDOCTYPE, ID_FILE_OPENCLIPBOARD
-#: Merge.rc:330
-#: Merge.rc:431
-#: Merge.rc:606
+#: Merge.rc:330 Merge.rc:431 Merge.rc:606
 msgid "Open C&lipboard"
 msgstr "클립보드 열기(&L)"
 
 #. IDR_POPUP_PROJECT, ID_FILE_OPENPROJECT
-#: Merge.rc:332
-#: Merge.rc:433
-#: Merge.rc:608
-#: Merge.rc:1191
+#: Merge.rc:332 Merge.rc:433 Merge.rc:608 Merge.rc:1191
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "프로젝트 열기(&J)...\tCtrl+J"
 
 #. IDD_OPEN, ID_SAVE_PROJECT
-#: Merge.rc:333
-#: Merge.rc:434
-#: Merge.rc:609
-#: Merge.rc:1193
-#: Merge.rc:1979
+#: Merge.rc:333 Merge.rc:434 Merge.rc:609 Merge.rc:1193 Merge.rc:1979
 #, c-format
 msgid "Sa&ve Project..."
 msgstr "프로젝트 저장(&V)..."
@@ -733,370 +597,276 @@ msgid "Recent Projects"
 msgstr "최근 프로젝트"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:336
-#: Merge.rc:445
-#: Merge.rc:657
+#: Merge.rc:336 Merge.rc:445 Merge.rc:657
 #, c-format
 msgid "Recent F&iles or Folders"
 msgstr "최근 파일/폴더(&I)"
 
 #. IDR_MERGEDOCTYPE, ID_APP_EXIT
-#: Merge.rc:341
-#: Merge.rc:450
-#: Merge.rc:662
+#: Merge.rc:341 Merge.rc:450 Merge.rc:662
 msgid "E&xit\tCtrl+Q"
 msgstr "종료(&X)\tCtrl+Q"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:343
-#: Merge.rc:452
-#: Merge.rc:664
+#: Merge.rc:343 Merge.rc:452 Merge.rc:664
 #, c-format
 msgid "&Edit"
 msgstr "편집(&E)"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_PASTE
-#: Merge.rc:345
-#: Merge.rc:671
+#: Merge.rc:345 Merge.rc:671
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "붙여넣기(&P)\tCtrl+V"
 
 #. IDR_MERGEDOCTYPE, ID_OPTIONS
-#: Merge.rc:347
-#: Merge.rc:456
-#: Merge.rc:693
+#: Merge.rc:347 Merge.rc:456 Merge.rc:693
 #, c-format
 msgid "&Options...\tCtrl+,"
 msgstr "옵션(&O)...\tCtrl+,"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:349
-#: Merge.rc:458
-#: Merge.rc:695
+#: Merge.rc:349 Merge.rc:458 Merge.rc:695
 #, c-format
 msgid "&View"
 msgstr "보기(&V)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:351
-#: Merge.rc:500
-#: Merge.rc:744
+#: Merge.rc:351 Merge.rc:500 Merge.rc:744
 #, c-format
 msgid "Ta&b Bar"
 msgstr "탭 표시줄(&B)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_TAB_BAR
-#: Merge.rc:353
-#: Merge.rc:502
-#: Merge.rc:746
+#: Merge.rc:353 Merge.rc:502 Merge.rc:746
 msgid "&View Tab Bar"
 msgstr "보기 탭 표시줄(&V)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_TAB_BAR_ON_TITLE_BAR
-#: Merge.rc:354
-#: Merge.rc:503
-#: Merge.rc:747
+#: Merge.rc:354 Merge.rc:503 Merge.rc:747
 msgid "&On Title Bar"
 msgstr "제목 표시줄에(&O)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:356
-#: Merge.rc:505
-#: Merge.rc:749
+#: Merge.rc:356 Merge.rc:505 Merge.rc:749
 #, c-format
 msgid "&Toolbar"
 msgstr "도구 모음(&T)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_SMALL
-#: Merge.rc:359
-#: Merge.rc:508
-#: Merge.rc:752
+#: Merge.rc:359 Merge.rc:508 Merge.rc:752
 #, c-format
 msgid "&Small"
 msgstr "작게(&S)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_MEDIUM
-#: Merge.rc:360
-#: Merge.rc:509
-#: Merge.rc:753
+#: Merge.rc:360 Merge.rc:509 Merge.rc:753
 msgid "&Medium"
 msgstr "중간(&M)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_BIG
-#: Merge.rc:361
-#: Merge.rc:510
-#: Merge.rc:754
+#: Merge.rc:361 Merge.rc:510 Merge.rc:754
 #, c-format
 msgid "&Big"
 msgstr "크게(&B)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_HUGE
-#: Merge.rc:362
-#: Merge.rc:511
-#: Merge.rc:755
+#: Merge.rc:362 Merge.rc:511 Merge.rc:755
 #, c-format
 msgid "&Huge"
 msgstr "매우 크게(&H)"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:364
-#: Merge.rc:513
-#: Merge.rc:757
-#: Merge.rc:5357
+#: Merge.rc:364 Merge.rc:513 Merge.rc:757 Merge.rc:5357
 msgid "Men&u Bar"
 msgstr "메뉴 표시줄(&U)"
 
 #. IDR_DIRDOCTYPE, ID_VIEW_OUTPUT_BAR
-#: Merge.rc:365
-#: Merge.rc:515
+#: Merge.rc:365 Merge.rc:515
 msgid "&Output Pane"
 msgstr "출력 창(&O)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_STATUS_BAR
-#: Merge.rc:366
-#: Merge.rc:516
-#: Merge.rc:758
+#: Merge.rc:366 Merge.rc:516 Merge.rc:758
 #, c-format
 msgid "&Status Bar"
 msgstr "상태 표시줄(&S)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:368
-#: Merge.rc:539
-#: Merge.rc:847
+#: Merge.rc:368 Merge.rc:539 Merge.rc:847
 #, c-format
 msgid "&Tools"
 msgstr "도구(&T)"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLS_FILTERS
-#: Merge.rc:370
-#: Merge.rc:542
-#: Merge.rc:849
+#: Merge.rc:370 Merge.rc:542 Merge.rc:849
 #, c-format
 msgid "&Filters..."
 msgstr "필터(&F)..."
 
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEPATCH
-#: Merge.rc:371
-#: Merge.rc:543
-#: Merge.rc:850
+#: Merge.rc:371 Merge.rc:543 Merge.rc:850
 #, c-format
 msgid "&Generate Patch..."
 msgstr "패치 생성(&G)..."
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:373
-#: Merge.rc:546
-#: Merge.rc:853
+#: Merge.rc:373 Merge.rc:546 Merge.rc:853
 #, c-format
 msgid "&Plugins"
 msgstr "플러그인(&P)"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_SETTINGS
-#: Merge.rc:375
-#: Merge.rc:548
-#: Merge.rc:855
-#: Merge.rc:2494
-#: Merge.rc:2926
+#: Merge.rc:375 Merge.rc:548 Merge.rc:855 Merge.rc:2494 Merge.rc:2926
 #, c-format
 msgid "P&lugin Settings..."
 msgstr "플러그인 설정(&L)..."
 
 #. IDR_MERGEDOCTYPE, ID_PREDIFFER_MANUAL
-#: Merge.rc:377
-#: Merge.rc:550
-#: Merge.rc:857
+#: Merge.rc:377 Merge.rc:550 Merge.rc:857
 #, c-format
 msgid "Ma&nual Prediffer"
 msgstr "수동 사전 차이(&N)"
 
 #. IDR_MERGEDOCTYPE, ID_PREDIFFER_AUTO
-#: Merge.rc:378
-#: Merge.rc:551
-#: Merge.rc:858
+#: Merge.rc:378 Merge.rc:551 Merge.rc:858
 #, c-format
 msgid "A&utomatic Prediffer"
 msgstr "자동 사전 차이(&U)"
 
 #. IDR_MERGEDOCTYPE, ID_UNPACK_MANUAL
-#: Merge.rc:380
-#: Merge.rc:553
-#: Merge.rc:860
+#: Merge.rc:380 Merge.rc:553 Merge.rc:860
 #, c-format
 msgid "&Manual Unpacking"
 msgstr "수동 압축 풀기(&M)"
 
 #. IDR_MERGEDOCTYPE, ID_UNPACK_AUTO
-#: Merge.rc:381
-#: Merge.rc:554
-#: Merge.rc:861
+#: Merge.rc:381 Merge.rc:554 Merge.rc:861
 #, c-format
 msgid "&Automatic Unpacking"
 msgstr "자동 압축 풀기(&A)"
 
 #. IDR_MERGEDOCTYPE, ID_RELOAD_PLUGINS
-#: Merge.rc:383
-#: Merge.rc:558
-#: Merge.rc:889
+#: Merge.rc:383 Merge.rc:558 Merge.rc:889
 #, c-format
 msgid "&Reload Plugins"
 msgstr "플러그인 다시 불러오기(&R)"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:385
-#: Merge.rc:560
-#: Merge.rc:891
+#: Merge.rc:385 Merge.rc:560 Merge.rc:891
 #, c-format
 msgid "&Window"
 msgstr "창(&W)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_CLOSE
-#: Merge.rc:387
-#: Merge.rc:562
-#: Merge.rc:893
+#: Merge.rc:387 Merge.rc:562 Merge.rc:893
 msgid "Cl&ose\tCtrl+W"
 msgstr "닫기(&O)\tCtrl+W"
 
 #. IDR_MERGEDOCTYPE, ID_WINDOW_CLOSEALL
-#: Merge.rc:388
-#: Merge.rc:563
-#: Merge.rc:894
+#: Merge.rc:388 Merge.rc:563 Merge.rc:894
 #, c-format
 msgid "Clo&se All"
 msgstr "모두 닫기(&S)"
 
 #. IDR_MERGEDOCTYPE, ID_NEXT_PANE
-#: Merge.rc:390
-#: Merge.rc:565
-#: Merge.rc:896
+#: Merge.rc:390 Merge.rc:565 Merge.rc:896
 #, c-format
 msgid "Change &Pane\tF6"
 msgstr "창 전환(&P)\tF6"
 
 #. IDR_MERGEDOCTYPE, ID_WINDOW_TILE_HORZ
-#: Merge.rc:392
-#: Merge.rc:567
-#: Merge.rc:900
+#: Merge.rc:392 Merge.rc:567 Merge.rc:900
 #, c-format
 msgid "Tile &Horizontally"
 msgstr "수평 배열(&H)"
 
 #. IDR_MERGEDOCTYPE, ID_WINDOW_TILE_VERT
-#: Merge.rc:393
-#: Merge.rc:568
-#: Merge.rc:901
+#: Merge.rc:393 Merge.rc:568 Merge.rc:901
 #, c-format
 msgid "Tile &Vertically"
 msgstr "수직 배열(&V)"
 
 #. IDR_MERGEDOCTYPE, ID_WINDOW_CASCADE
-#: Merge.rc:394
-#: Merge.rc:569
-#: Merge.rc:902
+#: Merge.rc:394 Merge.rc:569 Merge.rc:902
 #, c-format
 msgid "&Cascade"
 msgstr "계단식(&C)"
 
 #. IDS_MESSAGEBOX_HELP
-#: Merge.rc:396
-#: Merge.rc:571
-#: Merge.rc:904
-#: Merge.rc:3200
-#: Merge.rc:4189
+#: Merge.rc:396 Merge.rc:571 Merge.rc:904 Merge.rc:3200 Merge.rc:4189
 #, c-format
 msgid "&Help"
 msgstr "도움말(&H)"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_CONTENTS
-#: Merge.rc:398
-#: Merge.rc:573
-#: Merge.rc:906
+#: Merge.rc:398 Merge.rc:573 Merge.rc:906
 #, c-format
 msgid "&WinMerge Help\tF1"
 msgstr "WinMerge 도움말(&W)\tF1"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_RELEASENOTES
-#: Merge.rc:400
-#: Merge.rc:575
-#: Merge.rc:908
+#: Merge.rc:400 Merge.rc:575 Merge.rc:908
 #, c-format
 msgid "R&elease Notes"
 msgstr "릴리즈 노트(&E)"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_TRANSLATIONS
-#: Merge.rc:401
-#: Merge.rc:576
-#: Merge.rc:909
+#: Merge.rc:401 Merge.rc:576 Merge.rc:909
 #, c-format
 msgid "&Translations"
 msgstr "번역(&T)"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_GETCONFIG
-#: Merge.rc:402
-#: Merge.rc:577
-#: Merge.rc:910
+#: Merge.rc:402 Merge.rc:577 Merge.rc:910
 #, c-format
 msgid "C&onfiguration"
 msgstr "구성(&O)"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_GNULICENSE
-#: Merge.rc:404
-#: Merge.rc:579
-#: Merge.rc:912
+#: Merge.rc:404 Merge.rc:579 Merge.rc:912
 #, c-format
 msgid "&GNU General Public License"
 msgstr "GNU 일반 공용 라이선스(&G)"
 
 #. IDR_MERGEDOCTYPE, ID_APP_ABOUT
-#: Merge.rc:405
-#: Merge.rc:580
-#: Merge.rc:913
+#: Merge.rc:405 Merge.rc:580 Merge.rc:913
 #, c-format
 msgid "&About WinMerge..."
 msgstr "WinMerge 정보(&A)..."
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:436
-#: Merge.rc:629
+#: Merge.rc:436 Merge.rc:629
 #, c-format
 msgid "&Read-Only"
 msgstr "읽기 전용(&R)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_LEFT_READONLY
-#: Merge.rc:438
-#: Merge.rc:631
+#: Merge.rc:438 Merge.rc:631
 #, c-format
 msgid "L&eft Read-Only"
 msgstr "왼쪽 읽기 전용(&E)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_MIDDLE_READONLY
-#: Merge.rc:439
-#: Merge.rc:632
+#: Merge.rc:439 Merge.rc:632
 #, c-format
 msgid "M&iddle Read-Only"
 msgstr "가운데 읽기 전용(&I)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_RIGHT_READONLY
-#: Merge.rc:440
-#: Merge.rc:633
+#: Merge.rc:440 Merge.rc:633
 #, c-format
 msgid "Ri&ght Read-Only"
 msgstr "오른쪽 읽기 전용(&G)"
 
 #. IDD_ENCODINGERROR, IDC_FILEENCODING
-#: Merge.rc:443
-#: Merge.rc:646
-#: Merge.rc:1038
-#: Merge.rc:3063
+#: Merge.rc:443 Merge.rc:646 Merge.rc:1038 Merge.rc:3063
 #, c-format
 msgid "&File Encoding..."
 msgstr "파일 인코딩(&F)..."
 
 #. IDR_POPUP_OUTPUTVIEW, ID_EDIT_SELECT_ALL
-#: Merge.rc:454
-#: Merge.rc:674
-#: Merge.rc:1343
+#: Merge.rc:454 Merge.rc:674 Merge.rc:1343
 #, c-format
 msgid "Select &All\tCtrl+A"
 msgstr "전체 선택(&A)\tCtrl+A"
@@ -1223,44 +993,38 @@ msgstr "모든 하위 폴더 접기(&C)"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:488
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "빈 폴더 표시(&E)"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
-#: Merge.rc:490
-#: Merge.rc:697
+#: Merge.rc:490 Merge.rc:697
 #, c-format
 msgid "Select &Font..."
 msgstr "글꼴 선택(&F)..."
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_USEDEFAULTFONT
-#: Merge.rc:491
-#: Merge.rc:698
+#: Merge.rc:491 Merge.rc:698
 #, c-format
 msgid "Use Default Font"
 msgstr "기본 글꼴 사용"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:493
-#: Merge.rc:736
+#: Merge.rc:493 Merge.rc:736
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "창 맞바꾸기(&A)"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP12
-#: Merge.rc:495
-#: Merge.rc:738
+#: Merge.rc:495 Merge.rc:738
 msgid "Swap &1st | 2nd"
 msgstr "첫 번째와 두 번째 맞바꾸기(&1)"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP23
-#: Merge.rc:496
-#: Merge.rc:739
+#: Merge.rc:496 Merge.rc:739
 msgid "Swap &2nd | 3rd"
 msgstr "두 번째와 세 번째 맞바꾸기(&2)"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP13
-#: Merge.rc:497
-#: Merge.rc:740
+#: Merge.rc:497 Merge.rc:740
 msgid "Swap 1st | &3rd"
 msgstr "첫 번째와 세 번째 맞바꾸기(&3)"
 
@@ -1276,22 +1040,19 @@ msgid "Com&pare Statistics..."
 msgstr "통계 비교(&P)..."
 
 #. IDR_MERGEDOCTYPE, ID_REFRESH
-#: Merge.rc:520
-#: Merge.rc:763
+#: Merge.rc:520 Merge.rc:763
 #, c-format
 msgid "Refresh\tF5"
 msgstr "새로 고침\tF5"
 
 #. IDR_POPUP_DIRVIEW, ID_RESCAN
-#: Merge.rc:521
-#: Merge.rc:1030
+#: Merge.rc:521 Merge.rc:1030
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "선택 영역 새로 고침(&R)\tCtrl+F5"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:523
-#: Merge.rc:765
+#: Merge.rc:523 Merge.rc:765
 #, c-format
 msgid "&Merge"
 msgstr "병합(&M)"
@@ -1303,50 +1064,43 @@ msgid "Co&mpare\tEnter"
 msgstr "비교(&M)\tEnter"
 
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFF
-#: Merge.rc:527
-#: Merge.rc:767
+#: Merge.rc:527 Merge.rc:767
 #, c-format
 msgid "&Next Difference\tAlt+Down"
 msgstr "다음 차이(&N)\tAlt+Down"
 
 #. IDR_MERGEDOCTYPE, ID_PREVDIFF
-#: Merge.rc:528
-#: Merge.rc:768
+#: Merge.rc:528 Merge.rc:768
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
 msgstr "이전 차이(&P)\tAlt+Up"
 
 #. IDR_MERGEDOCTYPE, ID_FIRSTDIFF
-#: Merge.rc:530
-#: Merge.rc:773
+#: Merge.rc:530 Merge.rc:773
 #, c-format
 msgid "&First Difference\tAlt+Home"
 msgstr "처음 차이(&F)\tAlt+Home"
 
 #. IDR_MERGEDOCTYPE, ID_CURDIFF
-#: Merge.rc:531
-#: Merge.rc:774
+#: Merge.rc:531 Merge.rc:774
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
 msgstr "현재 차이(&C)\tAlt+Enter"
 
 #. IDR_MERGEDOCTYPE, ID_LASTDIFF
-#: Merge.rc:532
-#: Merge.rc:775
+#: Merge.rc:532 Merge.rc:775
 #, c-format
 msgid "&Last Difference\tAlt+End"
 msgstr "마지막 차이(&L)\tAlt+End"
 
 #. IDR_MERGEDOCTYPE, ID_L2R
-#: Merge.rc:534
-#: Merge.rc:830
+#: Merge.rc:534 Merge.rc:830
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
 msgstr "오른쪽으로 복사(&R)\tAlt+Right"
 
 #. IDR_MERGEDOCTYPE, ID_R2L
-#: Merge.rc:535
-#: Merge.rc:831
+#: Merge.rc:535 Merge.rc:831
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
 msgstr "왼쪽으로 복사(&E)\tAlt+Left"
@@ -1358,23 +1112,19 @@ msgid "&Delete\tDel"
 msgstr "삭제(&D)\tDel"
 
 #. IDR_POPUP_DIRVIEW, ID_TOOLS_CUSTOMIZECOLUMNS
-#: Merge.rc:541
-#: Merge.rc:1042
+#: Merge.rc:541 Merge.rc:1042
 #, c-format
 msgid "&Customize Columns..."
 msgstr "열 사용자 정의(&C)..."
 
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEREPORT
-#: Merge.rc:544
-#: Merge.rc:851
+#: Merge.rc:544 Merge.rc:851
 #, c-format
 msgid "Generate &Report..."
 msgstr "보고서 생성(&R)..."
 
 #. IDD_ENCODINGERROR, IDC_PLUGIN
-#: Merge.rc:556
-#: Merge.rc:867
-#: Merge.rc:3064
+#: Merge.rc:556 Merge.rc:867 Merge.rc:3064
 #, c-format
 msgid "&Edit with Unpacker..."
 msgstr "Unpacker로 편집(&E)..."
@@ -1392,22 +1142,19 @@ msgid "Sav&e"
 msgstr "저장(&E)"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_LEFT
-#: Merge.rc:614
-#: Merge.rc:1201
+#: Merge.rc:614 Merge.rc:1201
 #, c-format
 msgid "Save &Left"
 msgstr "왼쪽 저장(&L)"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MIDDLE
-#: Merge.rc:615
-#: Merge.rc:1202
+#: Merge.rc:615 Merge.rc:1202
 #, c-format
 msgid "Save &Middle"
 msgstr "가운데 저장(&M)"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_RIGHT
-#: Merge.rc:616
-#: Merge.rc:1203
+#: Merge.rc:616 Merge.rc:1203
 #, c-format
 msgid "Save &Right"
 msgstr "오른쪽 저장(&R)"
@@ -1419,22 +1166,19 @@ msgid "Save &As"
 msgstr "다른 이름으로(&A)"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_LEFT
-#: Merge.rc:620
-#: Merge.rc:1205
+#: Merge.rc:620 Merge.rc:1205
 #, c-format
 msgid "Save &Left As..."
 msgstr "왼쪽 저장(&L)..."
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MIDDLE
-#: Merge.rc:621
-#: Merge.rc:1206
+#: Merge.rc:621 Merge.rc:1206
 #, c-format
 msgid "Save &Middle As..."
 msgstr "가운데 저장(&M)..."
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_RIGHT
-#: Merge.rc:622
-#: Merge.rc:1207
+#: Merge.rc:622 Merge.rc:1207
 #, c-format
 msgid "Save &Right As..."
 msgstr "오른쪽 저장(&R)..."
@@ -1496,8 +1240,7 @@ msgid "Cu&t\tCtrl+X"
 msgstr "잘라내기(&T)\tCtrl+X"
 
 #. IDR_POPUP_OUTPUTVIEW, ID_EDIT_COPY
-#: Merge.rc:670
-#: Merge.rc:1342
+#: Merge.rc:670 Merge.rc:1342
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "복사(&C)\tCtrl+C"
@@ -1692,8 +1435,7 @@ msgid "Lo&cation Pane"
 msgstr "위치 창(&C)"
 
 #. IDS_OUTPUTBAR_CAPTION
-#: Merge.rc:761
-#: Merge.rc:4902
+#: Merge.rc:761 Merge.rc:4902
 msgid "Output Pane"
 msgstr "출력 창"
 
@@ -1793,25 +1535,15 @@ msgid "Copy from &Left to"
 msgstr "왼쪽에서 복사(&L)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
-#: Merge.rc:799
-#: Merge.rc:810
-#: Merge.rc:815
-#: Merge.rc:826
-#: Merge.rc:970
-#: Merge.rc:2545
-#: Merge.rc:2817
+#: Merge.rc:799 Merge.rc:810 Merge.rc:815 Merge.rc:826 Merge.rc:970
+#: Merge.rc:2545 Merge.rc:2817
 #, c-format
 msgid "&Middle"
 msgstr "가운데(&M)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
-#: Merge.rc:800
-#: Merge.rc:805
-#: Merge.rc:816
-#: Merge.rc:821
-#: Merge.rc:971
-#: Merge.rc:2546
-#: Merge.rc:2819
+#: Merge.rc:800 Merge.rc:805 Merge.rc:816 Merge.rc:821 Merge.rc:971
+#: Merge.rc:2546 Merge.rc:2819
 #, c-format
 msgid "&Right"
 msgstr "오른쪽(&R)"
@@ -1822,13 +1554,8 @@ msgid "Copy from &Middle to"
 msgstr "가운데에서 복사(&M)"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
-#: Merge.rc:804
-#: Merge.rc:809
-#: Merge.rc:820
-#: Merge.rc:825
-#: Merge.rc:969
-#: Merge.rc:2544
-#: Merge.rc:2815
+#: Merge.rc:804 Merge.rc:809 Merge.rc:820 Merge.rc:825 Merge.rc:969
+#: Merge.rc:2544 Merge.rc:2815
 #, c-format
 msgid "&Left"
 msgstr "왼쪽(&L)"
@@ -1958,8 +1685,7 @@ msgid "Compare in New &Window"
 msgstr "새 창에서 비교(&W)"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE_NONHORIZONTALLY
-#: Merge.rc:924
-#: Merge.rc:931
+#: Merge.rc:924 Merge.rc:931
 msgid "Compare Non-hor&izontally..."
 msgstr "수평이 아닌 방식으로 비교(&I)..."
 
@@ -2000,86 +1726,61 @@ msgid "Co&mpare As"
 msgstr "다른 방식으로 비교(&M)"
 
 #. IDS_COPY_LEFT_TO_MIDDLE2
-#: Merge.rc:945
-#: Merge.rc:957
-#: Merge.rc:4502
+#: Merge.rc:945 Merge.rc:957 Merge.rc:4502
 #, c-format
 msgid "Left to Middle (%1 of %2)"
 msgstr "왼쪽에서 가운데로 (%1 / %2)"
 
 #. IDS_COPY_LEFT_TO_RIGHT2
-#: Merge.rc:946
-#: Merge.rc:958
-#: Merge.rc:4501
+#: Merge.rc:946 Merge.rc:958 Merge.rc:4501
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "왼쪽에서 오른쪽으로 (%1 / %2)"
 
 #. IDS_MOVE_LEFT_TO2
-#: Merge.rc:947
-#: Merge.rc:959
-#: Merge.rc:1022
-#: Merge.rc:4513
-#: Merge.rc:4542
+#: Merge.rc:947 Merge.rc:959 Merge.rc:1022 Merge.rc:4513 Merge.rc:4542
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "왼쪽에서... (%1 / %2)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT2
-#: Merge.rc:948
-#: Merge.rc:960
-#: Merge.rc:4499
+#: Merge.rc:948 Merge.rc:960 Merge.rc:4499
 #, c-format
 msgid "Middle to Left (%1 of %2)"
 msgstr "가운데에서 왼쪽으로 (%1 / %2)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT2
-#: Merge.rc:949
-#: Merge.rc:961
-#: Merge.rc:4500
+#: Merge.rc:949 Merge.rc:961 Merge.rc:4500
 #, c-format
 msgid "Middle to Right (%1 of %2)"
 msgstr "가운데에서 오른쪽으로 (%1 / %2)"
 
 #. IDS_MOVE_MIDDLE_TO2
-#: Merge.rc:950
-#: Merge.rc:962
-#: Merge.rc:1023
-#: Merge.rc:4514
-#: Merge.rc:4543
+#: Merge.rc:950 Merge.rc:962 Merge.rc:1023 Merge.rc:4514 Merge.rc:4543
 #, c-format
 msgid "Middle to... (%1 of %2)"
 msgstr "가운데에서... (%1 / %2)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE2
-#: Merge.rc:951
-#: Merge.rc:963
-#: Merge.rc:4498
+#: Merge.rc:951 Merge.rc:963 Merge.rc:4498
 #, c-format
 msgid "Right to Middle (%1 of %2)"
 msgstr "오른쪽에서 가운데로 (%1 / %2)"
 
 #. IDS_COPY_RIGHT_TO_LEFT2
-#: Merge.rc:952
-#: Merge.rc:964
-#: Merge.rc:4497
+#: Merge.rc:952 Merge.rc:964 Merge.rc:4497
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "오른쪽에서 왼쪽으로 (%1 / %2)"
 
 #. IDS_MOVE_RIGHT_TO2
-#: Merge.rc:953
-#: Merge.rc:965
-#: Merge.rc:1024
-#: Merge.rc:4515
-#: Merge.rc:4544
+#: Merge.rc:953 Merge.rc:965 Merge.rc:1024 Merge.rc:4515 Merge.rc:4544
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "오른쪽에서... (%1 / %2)"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_MARKER_DELETE
-#: Merge.rc:967
-#: Merge.rc:2036
+#: Merge.rc:967 Merge.rc:2036
 #, c-format
 msgid "&Delete"
 msgstr "삭제(&D)"
@@ -2097,8 +1798,7 @@ msgid "&All"
 msgstr "전체(&A)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_SELECTION
-#: Merge.rc:974
-#: Merge.rc:2019
+#: Merge.rc:974 Merge.rc:2019
 #, c-format
 msgid "&Selection"
 msgstr "선택(&S)"
@@ -2140,41 +1840,31 @@ msgid "Cop&y Paths"
 msgstr "경로 복사(&Y)"
 
 #. IDS_DEL_LEFT_FMT2
-#: Merge.rc:1003
-#: Merge.rc:1012
-#: Merge.rc:4530
+#: Merge.rc:1003 Merge.rc:1012 Merge.rc:4530
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "왼쪽 (%1 / %2)"
 
 #. IDS_DEL_MIDDLE_FMT2
-#: Merge.rc:1004
-#: Merge.rc:1013
-#: Merge.rc:4531
+#: Merge.rc:1004 Merge.rc:1013 Merge.rc:4531
 #, c-format
 msgid "Middle (%1 of %2)"
 msgstr "가운데 (%1 / %2)"
 
 #. IDS_DEL_RIGHT_FMT2
-#: Merge.rc:1005
-#: Merge.rc:1014
-#: Merge.rc:4532
+#: Merge.rc:1005 Merge.rc:1014 Merge.rc:4532
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "오른쪽 (%1 / %2)"
 
 #. IDS_DEL_BOTH_FMT2
-#: Merge.rc:1006
-#: Merge.rc:1015
-#: Merge.rc:4533
+#: Merge.rc:1006 Merge.rc:1015 Merge.rc:4533
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "양쪽 (%1 / %2)"
 
 #. IDS_DEL_ALL_FMT2
-#: Merge.rc:1007
-#: Merge.rc:1016
-#: Merge.rc:4538
+#: Merge.rc:1007 Merge.rc:1016 Merge.rc:4538
 #, c-format
 msgid "All (%1 of %2)"
 msgstr "전체 (%1 / %2)"
@@ -2203,22 +1893,19 @@ msgid "&Zip"
 msgstr "Zip 압축(&Z)"
 
 #. IDS_COPY_BOTH_TO2
-#: Merge.rc:1025
-#: Merge.rc:4516
+#: Merge.rc:1025 Merge.rc:4516
 #, c-format
 msgid "Both to... (%1 of %2)"
 msgstr "양쪽... (%1 / %2)"
 
 #. IDS_COPY_ALL_TO2
-#: Merge.rc:1026
-#: Merge.rc:4517
+#: Merge.rc:1026 Merge.rc:4517
 #, c-format
 msgid "All to... (%1 of %2)"
 msgstr "모두... (%1 / %2)"
 
 #. IDS_COPY_DIFFERENCES_TO2
-#: Merge.rc:1027
-#: Merge.rc:4518
+#: Merge.rc:1027 Merge.rc:4518
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "차이... (%1 / %2)"
@@ -2290,28 +1977,19 @@ msgid "Unpacker Settings"
 msgstr "압축 풀기 설정"
 
 #. IDS_USERCHOICE_NONE
-#: Merge.rc:1064
-#: Merge.rc:1070
-#: Merge.rc:1789
-#: Merge.rc:1793
-#: Merge.rc:5030
+#: Merge.rc:1064 Merge.rc:1070 Merge.rc:1789 Merge.rc:1793 Merge.rc:5030
 #, c-format
 msgid "<None>"
 msgstr "<없음>"
 
 #. IDS_USERCHOICE_AUTOMATIC
-#: Merge.rc:1065
-#: Merge.rc:1071
-#: Merge.rc:5031
+#: Merge.rc:1065 Merge.rc:1071 Merge.rc:5031
 #, c-format
 msgid "<Automatic>"
 msgstr "<자동>"
 
 #. IDD_OPEN, IDC_SELECT_PREDIFFER
-#: Merge.rc:1066
-#: Merge.rc:1072
-#: Merge.rc:1970
-#: Merge.rc:1974
+#: Merge.rc:1066 Merge.rc:1072 Merge.rc:1970 Merge.rc:1974
 #, c-format
 msgid "&Select..."
 msgstr "선택(&S)..."
@@ -2345,158 +2023,123 @@ msgid "&All Moved Blocks"
 msgstr "모든 이동된 블럭(&A)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS
-#: Merge.rc:1094
-#: Merge.rc:1127
+#: Merge.rc:1094 Merge.rc:1127
 #, c-format
 msgid "W&hitespaces"
 msgstr "공백 문자(&H)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
-#: Merge.rc:1096
-#: Merge.rc:1129
+#: Merge.rc:1096 Merge.rc:1129
 #, c-format
 msgid "Com&pare"
 msgstr "비교(&P)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
-#: Merge.rc:1097
-#: Merge.rc:1130
+#: Merge.rc:1097 Merge.rc:1130
 #, c-format
 msgid "I&gnore Changes"
 msgstr "변경사항 무시(&G)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL
-#: Merge.rc:1098
-#: Merge.rc:1131
+#: Merge.rc:1098 Merge.rc:1131
 #, c-format
 msgid "Ig&nore All"
 msgstr "모두 무시(&N)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES
-#: Merge.rc:1100
-#: Merge.rc:1133
+#: Merge.rc:1100 Merge.rc:1133
 #, c-format
 msgid "Ignore Blan&k Lines"
 msgstr "공백 줄 무시(&K)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE
-#: Merge.rc:1101
-#: Merge.rc:1134
+#: Merge.rc:1101 Merge.rc:1134
 #, c-format
 msgid "Ignore &Case"
 msgstr "대소문자 무시(&C)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL
-#: Merge.rc:1102
-#: Merge.rc:1135
+#: Merge.rc:1102 Merge.rc:1135
 #, c-format
 msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
 msgstr "케리지 리턴 차이 무시 (Windows/Unix/Mac)(&R)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
-#: Merge.rc:1103
-#: Merge.rc:1136
+#: Merge.rc:1103 Merge.rc:1136
 #, c-format
 msgid "Ignore Codepage &Differences"
 msgstr "코드페이지 차이 무시(&D)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
-#: Merge.rc:1104
-#: Merge.rc:1137
+#: Merge.rc:1104 Merge.rc:1137
 msgid "Ignore Num&bers"
 msgstr "숫자 무시(&B)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
-#: Merge.rc:1105
-#: Merge.rc:1138
+#: Merge.rc:1105 Merge.rc:1138
 msgid "Ignore C&omment Differences"
 msgstr "주석 차이 무시(&O)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
-#: Merge.rc:1106
-#: Merge.rc:1139
+#: Merge.rc:1106 Merge.rc:1139
 msgid "Ignore &Missing Trailing EOL"
 msgstr "누락된 후행 EOL 무시(&M)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_LINE_BREAKS
-#: Merge.rc:1107
-#: Merge.rc:1140
+#: Merge.rc:1107 Merge.rc:1140
 msgid "Ignore Line &Breaks (Treat as Spaces)"
 msgstr "줄 바꿈 무시 (공백으로 처리)(&B)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_RECURS_CHECK
-#: Merge.rc:1109
-#: Merge.rc:2963
+#: Merge.rc:1109 Merge.rc:2963
 #, c-format
 msgid "&Include Subfolders"
 msgstr "하위 폴더 포함(&I)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS
-#: Merge.rc:1110
-#: Merge.rc:1142
+#: Merge.rc:1110 Merge.rc:1142
 #, c-format
 msgid "&Compare Method"
 msgstr "비교 방법(&C)"
 
 #. IDS_COMPMETHOD_FULL_CONTENTS
-#: Merge.rc:1112
-#: Merge.rc:1144
-#: Merge.rc:1328
-#: Merge.rc:4282
+#: Merge.rc:1112 Merge.rc:1144 Merge.rc:1328 Merge.rc:4282
 #, c-format
 msgid "Full Contents"
 msgstr "전체 내용"
 
 #. IDS_COMPMETHOD_QUICK_CONTENTS
-#: Merge.rc:1113
-#: Merge.rc:1145
-#: Merge.rc:1329
-#: Merge.rc:4283
+#: Merge.rc:1113 Merge.rc:1145 Merge.rc:1329 Merge.rc:4283
 #, c-format
 msgid "Quick Contents"
 msgstr "빠른 내용"
 
 #. IDS_COMPMETHOD_BINARY_CONTENTS
-#: Merge.rc:1114
-#: Merge.rc:1146
-#: Merge.rc:1330
-#: Merge.rc:4284
+#: Merge.rc:1114 Merge.rc:1146 Merge.rc:1330 Merge.rc:4284
 #, c-format
 msgid "Binary Contents"
 msgstr "바이너리 내용"
 
 #. IDS_COMPMETHOD_MODDATE
-#: Merge.rc:1115
-#: Merge.rc:1147
-#: Merge.rc:1331
-#: Merge.rc:4285
+#: Merge.rc:1115 Merge.rc:1147 Merge.rc:1331 Merge.rc:4285
 #, c-format
 msgid "Modified Date"
 msgstr "변경된 날짜"
 
 #. IDS_COMPMETHOD_DATESIZE
-#: Merge.rc:1116
-#: Merge.rc:1148
-#: Merge.rc:1332
-#: Merge.rc:4286
+#: Merge.rc:1116 Merge.rc:1148 Merge.rc:1332 Merge.rc:4286
 #, c-format
 msgid "Modified Date and Size"
 msgstr "변경된 날짜 및 크기"
 
 #. IDS_COMPMETHOD_SIZE
-#: Merge.rc:1117
-#: Merge.rc:1149
-#: Merge.rc:1333
-#: Merge.rc:4287
+#: Merge.rc:1117 Merge.rc:1149 Merge.rc:1333 Merge.rc:4287
 #, c-format
 msgid "Size"
 msgstr "크기"
 
 #. IDS_COMPMETHOD_EXISTENCE
-#: Merge.rc:1118
-#: Merge.rc:1150
-#: Merge.rc:1334
-#: Merge.rc:4288
+#: Merge.rc:1118 Merge.rc:1150 Merge.rc:1334 Merge.rc:4288
 msgid "Existence"
 msgstr "존재"
 
@@ -2507,62 +2150,52 @@ msgid "&Load Project..."
 msgstr "프로젝트 불러오기(&L)..."
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARGALL
-#: Merge.rc:1272
-#: Merge.rc:1301
+#: Merge.rc:1272 Merge.rc:1301
 msgid "${*} - All Arguments"
 msgstr "${*} - 모든 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG1
-#: Merge.rc:1273
-#: Merge.rc:1302
+#: Merge.rc:1273 Merge.rc:1302
 msgid "${1} - First Argument"
 msgstr "${1} - 첫 번째 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG2
-#: Merge.rc:1274
-#: Merge.rc:1303
+#: Merge.rc:1274 Merge.rc:1303
 msgid "${2} - Second Argument"
 msgstr "${2} - 두 번째 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG3
-#: Merge.rc:1275
-#: Merge.rc:1304
+#: Merge.rc:1275 Merge.rc:1304
 msgid "${3} - Third Argument"
 msgstr "${3} - 세 번째 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG4
-#: Merge.rc:1276
-#: Merge.rc:1305
+#: Merge.rc:1276 Merge.rc:1305
 msgid "${4} - Fourth Argument"
 msgstr "${4} - 네 번째 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG5
-#: Merge.rc:1277
-#: Merge.rc:1306
+#: Merge.rc:1277 Merge.rc:1306
 msgid "${5} - Fifth Argument"
 msgstr "${5} - 다섯 번쩨 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG6
-#: Merge.rc:1278
-#: Merge.rc:1307
+#: Merge.rc:1278 Merge.rc:1307
 msgid "${6} - Sixth Argument"
 msgstr "${6} - 여섯 번째 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG7
-#: Merge.rc:1279
-#: Merge.rc:1308
+#: Merge.rc:1279 Merge.rc:1308
 msgid "${7} - Seventh Argument"
 msgstr "${7} - 일곱 번째 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG8
-#: Merge.rc:1280
-#: Merge.rc:1309
+#: Merge.rc:1280 Merge.rc:1309
 msgid "${8} - Eighth Argument"
 msgstr "${8} - 여덟 번째 인수"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG9
-#: Merge.rc:1281
-#: Merge.rc:1310
+#: Merge.rc:1281 Merge.rc:1310
 msgid "${9} - Ninth Argument"
 msgstr "${9} - 아홉 번째 인수"
 
@@ -2717,368 +2350,263 @@ msgid "Add &File Condition"
 msgstr "파일 조건 추가(&F)"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1372
-#: Merge.rc:1551
+#: Merge.rc:1372 Merge.rc:1551
 msgid "File &Size"
 msgstr "파일 크기(&S)"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_1KB
-#: Merge.rc:1374
-#: Merge.rc:1527
-#: Merge.rc:1564
-#: Merge.rc:1629
-#: Merge.rc:1707
+#: Merge.rc:1374 Merge.rc:1527 Merge.rc:1564 Merge.rc:1629 Merge.rc:1707
 msgid "Less than 1KB"
 msgstr "1KB 미만"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_1KB
-#: Merge.rc:1375
-#: Merge.rc:1528
-#: Merge.rc:1565
-#: Merge.rc:1630
-#: Merge.rc:1708
+#: Merge.rc:1375 Merge.rc:1528 Merge.rc:1565 Merge.rc:1630 Merge.rc:1708
 msgid "1KB or more"
 msgstr "1KB 이상"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_10KB
-#: Merge.rc:1376
-#: Merge.rc:1529
-#: Merge.rc:1631
+#: Merge.rc:1376 Merge.rc:1529 Merge.rc:1631
 msgid "Less than 10KB"
 msgstr "10KB 미만"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_10KB
-#: Merge.rc:1377
-#: Merge.rc:1530
-#: Merge.rc:1632
+#: Merge.rc:1377 Merge.rc:1530 Merge.rc:1632
 msgid "10KB or more"
 msgstr "10KB 이상"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_100KB
-#: Merge.rc:1378
-#: Merge.rc:1531
-#: Merge.rc:1633
+#: Merge.rc:1378 Merge.rc:1531 Merge.rc:1633
 msgid "Less than 100KB"
 msgstr "100KB 미만"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_100KB
-#: Merge.rc:1379
-#: Merge.rc:1532
-#: Merge.rc:1634
+#: Merge.rc:1379 Merge.rc:1532 Merge.rc:1634
 msgid "100KB or more"
 msgstr "100KB 이상"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_1MB
-#: Merge.rc:1380
-#: Merge.rc:1533
-#: Merge.rc:1635
+#: Merge.rc:1380 Merge.rc:1533 Merge.rc:1635
 msgid "Less than 1MB"
 msgstr "1MB 미만"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_1MB
-#: Merge.rc:1381
-#: Merge.rc:1534
-#: Merge.rc:1636
+#: Merge.rc:1381 Merge.rc:1534 Merge.rc:1636
 msgid "1MB or more"
 msgstr "1MB 이상"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_10MB
-#: Merge.rc:1382
-#: Merge.rc:1535
-#: Merge.rc:1637
+#: Merge.rc:1382 Merge.rc:1535 Merge.rc:1637
 msgid "Less than 10MB"
 msgstr "10MB 미만"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_10MB
-#: Merge.rc:1383
-#: Merge.rc:1536
-#: Merge.rc:1638
+#: Merge.rc:1383 Merge.rc:1536 Merge.rc:1638
 msgid "10MB or more"
 msgstr "10MB 이상"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_100MB
-#: Merge.rc:1384
-#: Merge.rc:1537
-#: Merge.rc:1639
+#: Merge.rc:1384 Merge.rc:1537 Merge.rc:1639
 msgid "Less than 100MB"
 msgstr "100MB 미만"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_100MB
-#: Merge.rc:1385
-#: Merge.rc:1538
-#: Merge.rc:1640
+#: Merge.rc:1385 Merge.rc:1538 Merge.rc:1640
 msgid "100MB or more"
 msgstr "100MB 이상"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_1GB
-#: Merge.rc:1386
-#: Merge.rc:1539
-#: Merge.rc:1641
+#: Merge.rc:1386 Merge.rc:1539 Merge.rc:1641
 msgid "Less than 1GB"
 msgstr "1GB 미만"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_1GB
-#: Merge.rc:1387
-#: Merge.rc:1642
+#: Merge.rc:1387 Merge.rc:1642
 msgid "1GB or more"
 msgstr "1GB 이상"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_RANGE
-#: Merge.rc:1388
-#: Merge.rc:1465
-#: Merge.rc:1517
-#: Merge.rc:1523
-#: Merge.rc:1540
-#: Merge.rc:1566
-#: Merge.rc:1587
-#: Merge.rc:1643
-#: Merge.rc:1709
-#: Merge.rc:1734
+#: Merge.rc:1388 Merge.rc:1465 Merge.rc:1517 Merge.rc:1523 Merge.rc:1540
+#: Merge.rc:1566 Merge.rc:1587 Merge.rc:1643 Merge.rc:1709 Merge.rc:1734
 msgid "Custom Range..."
 msgstr "사용자 지정 범위..."
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1390
-#: Merge.rc:1471
-#: Merge.rc:1568
+#: Merge.rc:1390 Merge.rc:1471 Merge.rc:1568
 msgid "&Last Modified"
 msgstr "마지막 수정일(&L)"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1392
-#: Merge.rc:1473
-#: Merge.rc:1651
+#: Merge.rc:1392 Merge.rc:1473 Merge.rc:1651
 msgid "&Hour"
 msgstr "시(&H)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_HOUR_BEFORE_1
-#: Merge.rc:1394
-#: Merge.rc:1475
-#: Merge.rc:1653
+#: Merge.rc:1394 Merge.rc:1475 Merge.rc:1653
 msgid "More than 1 hour ago"
 msgstr "1시간 이상 전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_HOUR_WITHIN_1
-#: Merge.rc:1395
-#: Merge.rc:1476
-#: Merge.rc:1654
+#: Merge.rc:1395 Merge.rc:1476 Merge.rc:1654
 msgid "Within 1 hour"
 msgstr "1시간 이내"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1397
-#: Merge.rc:1478
-#: Merge.rc:1656
+#: Merge.rc:1397 Merge.rc:1478 Merge.rc:1656
 msgid "&Day"
 msgstr "일(&D)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_BEFORE_TODAY
-#: Merge.rc:1399
-#: Merge.rc:1480
-#: Merge.rc:1658
+#: Merge.rc:1399 Merge.rc:1480 Merge.rc:1658
 msgid "Before today"
 msgstr "오늘 이전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_TODAY
-#: Merge.rc:1400
-#: Merge.rc:1481
-#: Merge.rc:1659
+#: Merge.rc:1400 Merge.rc:1481 Merge.rc:1659
 msgid "Today"
 msgstr "오늘"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_BEFORE_YESTERDAY
-#: Merge.rc:1401
-#: Merge.rc:1482
-#: Merge.rc:1660
+#: Merge.rc:1401 Merge.rc:1482 Merge.rc:1660
 msgid "Before yesterday"
 msgstr "어제 이전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_YESTERDAY
-#: Merge.rc:1402
-#: Merge.rc:1483
-#: Merge.rc:1661
+#: Merge.rc:1402 Merge.rc:1483 Merge.rc:1661
 msgid "Yesterday"
 msgstr "어제"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_SINCE_YESTERDAY
-#: Merge.rc:1403
-#: Merge.rc:1484
-#: Merge.rc:1662
+#: Merge.rc:1403 Merge.rc:1484 Merge.rc:1662
 msgid "Since yesterday"
 msgstr "어제부터"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1405
-#: Merge.rc:1486
-#: Merge.rc:1664
+#: Merge.rc:1405 Merge.rc:1486 Merge.rc:1664
 msgid "&Week"
 msgstr "주(&W)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_BEFORE_THIS
-#: Merge.rc:1407
-#: Merge.rc:1488
-#: Merge.rc:1666
+#: Merge.rc:1407 Merge.rc:1488 Merge.rc:1666
 msgid "Before this week"
 msgstr "이번 주 이전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_THIS
-#: Merge.rc:1408
-#: Merge.rc:1489
-#: Merge.rc:1667
+#: Merge.rc:1408 Merge.rc:1489 Merge.rc:1667
 msgid "This week"
 msgstr "이번 주"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_BEFORE_LAST
-#: Merge.rc:1409
-#: Merge.rc:1490
-#: Merge.rc:1668
+#: Merge.rc:1409 Merge.rc:1490 Merge.rc:1668
 msgid "Before last week"
 msgstr "지난주 이전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_LAST
-#: Merge.rc:1410
-#: Merge.rc:1491
-#: Merge.rc:1669
+#: Merge.rc:1410 Merge.rc:1491 Merge.rc:1669
 msgid "Last week"
 msgstr "지난주"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_SINCE_LAST
-#: Merge.rc:1411
-#: Merge.rc:1492
-#: Merge.rc:1670
+#: Merge.rc:1411 Merge.rc:1492 Merge.rc:1670
 msgid "Since last week"
 msgstr "지난주부터"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1413
-#: Merge.rc:1494
-#: Merge.rc:1672
+#: Merge.rc:1413 Merge.rc:1494 Merge.rc:1672
 msgid "&Month"
 msgstr "월(&M)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_BEFORE_THIS
-#: Merge.rc:1415
-#: Merge.rc:1496
-#: Merge.rc:1674
+#: Merge.rc:1415 Merge.rc:1496 Merge.rc:1674
 msgid "Before this month"
 msgstr "이번 달 전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_THIS
-#: Merge.rc:1416
-#: Merge.rc:1497
-#: Merge.rc:1675
+#: Merge.rc:1416 Merge.rc:1497 Merge.rc:1675
 msgid "This month"
 msgstr "이번 달"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_BEFORE_LAST
-#: Merge.rc:1417
-#: Merge.rc:1498
-#: Merge.rc:1676
+#: Merge.rc:1417 Merge.rc:1498 Merge.rc:1676
 msgid "Before last month"
 msgstr "지난달 이전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_LAST
-#: Merge.rc:1418
-#: Merge.rc:1499
-#: Merge.rc:1677
+#: Merge.rc:1418 Merge.rc:1499 Merge.rc:1677
 msgid "Last month"
 msgstr "지난달"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_SINCE_LAST
-#: Merge.rc:1419
-#: Merge.rc:1500
-#: Merge.rc:1678
+#: Merge.rc:1419 Merge.rc:1500 Merge.rc:1678
 msgid "Since last month"
 msgstr "지난달부터"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1421
-#: Merge.rc:1502
-#: Merge.rc:1680
+#: Merge.rc:1421 Merge.rc:1502 Merge.rc:1680
 msgid "&Year"
 msgstr "년(&Y)"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_BEFORE_THIS
-#: Merge.rc:1423
-#: Merge.rc:1504
-#: Merge.rc:1682
+#: Merge.rc:1423 Merge.rc:1504 Merge.rc:1682
 msgid "Before this year"
 msgstr "올해 이전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_THIS
-#: Merge.rc:1424
-#: Merge.rc:1505
-#: Merge.rc:1683
+#: Merge.rc:1424 Merge.rc:1505 Merge.rc:1683
 msgid "This year"
 msgstr "올해"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_BEFORE_LAST
-#: Merge.rc:1425
-#: Merge.rc:1506
-#: Merge.rc:1684
+#: Merge.rc:1425 Merge.rc:1506 Merge.rc:1684
 msgid "Before last year"
 msgstr "작년 이전"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_LAST
-#: Merge.rc:1426
-#: Merge.rc:1507
-#: Merge.rc:1685
+#: Merge.rc:1426 Merge.rc:1507 Merge.rc:1685
 msgid "Last year"
 msgstr "작년"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_SINCE_LAST
-#: Merge.rc:1427
-#: Merge.rc:1508
-#: Merge.rc:1686
+#: Merge.rc:1427 Merge.rc:1508 Merge.rc:1686
 msgid "Since last year"
 msgstr "작년부터"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_RANGE
-#: Merge.rc:1429
-#: Merge.rc:1510
-#: Merge.rc:1688
+#: Merge.rc:1429 Merge.rc:1510 Merge.rc:1688
 msgid "&Custom Range..."
 msgstr "사용자 지정 범위(&C)..."
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1431
-#: Merge.rc:1589
+#: Merge.rc:1431 Merge.rc:1589
 msgid "&Attributes"
 msgstr "속성(&A)"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_READONLY
-#: Merge.rc:1433
-#: Merge.rc:1607
+#: Merge.rc:1433 Merge.rc:1607
 msgid "Read-only files"
 msgstr "읽기 전용 파일"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_READONLY
-#: Merge.rc:1434
-#: Merge.rc:1608
+#: Merge.rc:1434 Merge.rc:1608
 msgid "Not read-only files"
 msgstr "읽기 전용 파일 아님"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_HIDDEN
-#: Merge.rc:1435
-#: Merge.rc:1609
+#: Merge.rc:1435 Merge.rc:1609
 msgid "Hidden files"
 msgstr "숨김 파일"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_HIDDEN
-#: Merge.rc:1436
-#: Merge.rc:1610
+#: Merge.rc:1436 Merge.rc:1610
 msgid "Not hidden files"
 msgstr "숨김 파일 아님"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_SYSTEM
-#: Merge.rc:1437
-#: Merge.rc:1611
+#: Merge.rc:1437 Merge.rc:1611
 msgid "System files"
 msgstr "시스템 파일"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_SYSTEM
-#: Merge.rc:1438
-#: Merge.rc:1612
+#: Merge.rc:1438 Merge.rc:1612
 msgid "Not system files"
 msgstr "시스템 파일 아님"
 
@@ -3193,10 +2721,7 @@ msgid "100000 or more"
 msgstr "100000 이상"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_PROPS
-#: Merge.rc:1467
-#: Merge.rc:1594
-#: Merge.rc:1761
-#: Merge.rc:1778
+#: Merge.rc:1467 Merge.rc:1594 Merge.rc:1761 Merge.rc:1778
 msgid "Additional &Properties..."
 msgstr "추가 속성(&P)..."
 
@@ -3271,142 +2796,104 @@ msgid "Add &Difference Condition"
 msgstr "차이 조건 추가(&D)"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_EQUAL
-#: Merge.rc:1553
-#: Merge.rc:1570
-#: Merge.rc:1591
-#: Merge.rc:1696
-#: Merge.rc:1717
+#: Merge.rc:1553 Merge.rc:1570 Merge.rc:1591 Merge.rc:1696 Merge.rc:1717
 #: Merge.rc:1742
 msgid "Equal"
 msgstr "같음"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_NOT_EQUAL
-#: Merge.rc:1554
-#: Merge.rc:1571
-#: Merge.rc:1592
-#: Merge.rc:1697
-#: Merge.rc:1718
+#: Merge.rc:1554 Merge.rc:1571 Merge.rc:1592 Merge.rc:1697 Merge.rc:1718
 #: Merge.rc:1743
 msgid "Not Equal"
 msgstr "같지 않음"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_LESS
-#: Merge.rc:1555
-#: Merge.rc:1572
-#: Merge.rc:1698
-#: Merge.rc:1719
-#: Merge.rc:1744
+#: Merge.rc:1555 Merge.rc:1572 Merge.rc:1698 Merge.rc:1719 Merge.rc:1744
 msgid "Less Than"
 msgstr "보다 작음"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_LESS_EQUAL
-#: Merge.rc:1556
-#: Merge.rc:1573
-#: Merge.rc:1699
-#: Merge.rc:1720
-#: Merge.rc:1745
+#: Merge.rc:1556 Merge.rc:1573 Merge.rc:1699 Merge.rc:1720 Merge.rc:1745
 msgid "Less Than or Equal to"
 msgstr "보다 작거나 같음"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_GREATER
-#: Merge.rc:1557
-#: Merge.rc:1574
-#: Merge.rc:1700
-#: Merge.rc:1721
-#: Merge.rc:1746
+#: Merge.rc:1557 Merge.rc:1574 Merge.rc:1700 Merge.rc:1721 Merge.rc:1746
 msgid "Greater Than"
 msgstr "보다 큼"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_GREATER_EQUAL
-#: Merge.rc:1558
-#: Merge.rc:1575
-#: Merge.rc:1701
-#: Merge.rc:1722
-#: Merge.rc:1747
+#: Merge.rc:1558 Merge.rc:1575 Merge.rc:1701 Merge.rc:1722 Merge.rc:1747
 msgid "Greater Than or Equal to"
 msgstr "보다 크거나 같음"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_10B
-#: Merge.rc:1560
-#: Merge.rc:1703
+#: Merge.rc:1560 Merge.rc:1703
 msgid "Less than 10B"
 msgstr "10B 미만"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_10B
-#: Merge.rc:1561
-#: Merge.rc:1704
+#: Merge.rc:1561 Merge.rc:1704
 msgid "10B or more"
 msgstr "10B 이상"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_100B
-#: Merge.rc:1562
-#: Merge.rc:1705
+#: Merge.rc:1562 Merge.rc:1705
 msgid "Less than 100B"
 msgstr "100B 미만"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_100B
-#: Merge.rc:1563
-#: Merge.rc:1706
+#: Merge.rc:1563 Merge.rc:1706
 msgid "100B or more"
 msgstr "100B 이상"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1SECOND
-#: Merge.rc:1577
-#: Merge.rc:1724
+#: Merge.rc:1577 Merge.rc:1724
 msgid "Less than 1 second"
 msgstr "1초 미만"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1SECOND
-#: Merge.rc:1578
-#: Merge.rc:1725
+#: Merge.rc:1578 Merge.rc:1725
 msgid "1 second or more"
 msgstr "1초 이상"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
-#: Merge.rc:1579
-#: Merge.rc:1726
+#: Merge.rc:1579 Merge.rc:1726
 msgid "Less than 1 minute"
 msgstr "1분 미만"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1MINUTE
-#: Merge.rc:1580
-#: Merge.rc:1727
+#: Merge.rc:1580 Merge.rc:1727
 msgid "1 minute or more"
 msgstr "1분 이상"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1HOUR
-#: Merge.rc:1581
-#: Merge.rc:1728
+#: Merge.rc:1581 Merge.rc:1728
 msgid "Less than 1 hour"
 msgstr "1시간 미만"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1HOUR
-#: Merge.rc:1582
-#: Merge.rc:1729
+#: Merge.rc:1582 Merge.rc:1729
 msgid "1 hour or more"
 msgstr "1시간 이상"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1DAY
-#: Merge.rc:1583
-#: Merge.rc:1730
+#: Merge.rc:1583 Merge.rc:1730
 msgid "Less than 1 day"
 msgstr "1일 미만"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1DAY
-#: Merge.rc:1584
-#: Merge.rc:1731
+#: Merge.rc:1584 Merge.rc:1731
 msgid "1 day or more"
 msgstr "1일 이상"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1WEEK
-#: Merge.rc:1585
-#: Merge.rc:1732
+#: Merge.rc:1585 Merge.rc:1732
 msgid "Less than 1 week"
 msgstr "1주 미만"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1WEEK
-#: Merge.rc:1586
-#: Merge.rc:1733
+#: Merge.rc:1586 Merge.rc:1733
 msgid "1 week or more"
 msgstr "1주 이상"
 
@@ -3433,12 +2920,12 @@ msgstr "대상: 모두(&A)"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
 #: Merge.rc:1620
 msgid "Binary files only"
-msgstr ""
+msgstr "바이너리 파일만"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1621
 msgid "Text files only"
-msgstr ""
+msgstr "텍스트 파일만"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CLEAR
 #: Merge.rc:1755
@@ -3546,11 +3033,7 @@ msgid "Open Regex Replace Lists Folder..."
 msgstr "정규식 대체 목록 폴더 열기..."
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
-#: Merge.rc:1799
-#: Merge.rc:1995
-#: Merge.rc:2014
-#: Merge.rc:2042
-#: Merge.rc:2585
+#: Merge.rc:1799 Merge.rc:1995 Merge.rc:2014 Merge.rc:2042 Merge.rc:2585
 #, c-format
 msgid "Match &case"
 msgstr "대소문자 구분(&C)"
@@ -3627,23 +3110,10 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "WinMerge 홈페이지 방문!"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:1938
-#: Merge.rc:2080
-#: Merge.rc:2431
-#: Merge.rc:2455
-#: Merge.rc:2469
-#: Merge.rc:2497
-#: Merge.rc:2588
-#: Merge.rc:2613
-#: Merge.rc:2674
-#: Merge.rc:2691
-#: Merge.rc:2703
-#: Merge.rc:2867
-#: Merge.rc:2927
-#: Merge.rc:3062
-#: Merge.rc:3104
-#: Merge.rc:3147
-#: Merge.rc:3197
+#: Merge.rc:1938 Merge.rc:2080 Merge.rc:2431 Merge.rc:2455 Merge.rc:2469
+#: Merge.rc:2497 Merge.rc:2588 Merge.rc:2613 Merge.rc:2674 Merge.rc:2691
+#: Merge.rc:2703 Merge.rc:2867 Merge.rc:2927 Merge.rc:3062 Merge.rc:3104
+#: Merge.rc:3147 Merge.rc:3197
 #, c-format
 msgid "OK"
 msgstr "확인"
@@ -3655,8 +3125,7 @@ msgid "Contributors"
 msgstr "기여자"
 
 #. IDD_SELECT_FILES_OR_FOLDERS
-#: Merge.rc:1945
-#: Merge.rc:3070
+#: Merge.rc:1945 Merge.rc:3070
 #, c-format
 msgid "Select Files or Folders"
 msgstr "파일 또는 폴더 선택"
@@ -3680,9 +3149,7 @@ msgid "Swap 1st | 2nd"
 msgstr "첫 번째와 두 번째 맞바꾸기"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE1
-#: Merge.rc:1954
-#: Merge.rc:2310
-#: Merge.rc:2413
+#: Merge.rc:1954 Merge.rc:2310 Merge.rc:2413
 #, c-format
 msgid "&Browse..."
 msgstr "찾아보기(&B)..."
@@ -3706,8 +3173,7 @@ msgid "Swap 2nd | 3rd"
 msgstr "두 번째와 세 번째 맞바꾸기"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_FILTER_USER_BROWSE
-#: Merge.rc:1960
-#: Merge.rc:2315
+#: Merge.rc:1960 Merge.rc:2315
 #, c-format
 msgid "B&rowse..."
 msgstr "찾아보기(&R)..."
@@ -3731,9 +3197,7 @@ msgid "Swap 1st | 3rd"
 msgstr "첫 번째와 세 번째 맞바꾸기"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_BROWSE
-#: Merge.rc:1966
-#: Merge.rc:2685
-#: Merge.rc:2883
+#: Merge.rc:1966 Merge.rc:2685 Merge.rc:2883
 #, c-format
 msgid "Browse..."
 msgstr "찾아보기..."
@@ -3767,26 +3231,10 @@ msgid "Se&lect..."
 msgstr "선택(&L)..."
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:1981
-#: Merge.rc:2001
-#: Merge.rc:2025
-#: Merge.rc:2046
-#: Merge.rc:2081
-#: Merge.rc:2432
-#: Merge.rc:2456
-#: Merge.rc:2470
-#: Merge.rc:2498
-#: Merge.rc:2551
-#: Merge.rc:2589
-#: Merge.rc:2614
-#: Merge.rc:2675
-#: Merge.rc:2692
-#: Merge.rc:2704
-#: Merge.rc:2868
-#: Merge.rc:2928
-#: Merge.rc:3087
-#: Merge.rc:3105
-#: Merge.rc:3148
+#: Merge.rc:1981 Merge.rc:2001 Merge.rc:2025 Merge.rc:2046 Merge.rc:2081
+#: Merge.rc:2432 Merge.rc:2456 Merge.rc:2470 Merge.rc:2498 Merge.rc:2551
+#: Merge.rc:2589 Merge.rc:2614 Merge.rc:2675 Merge.rc:2692 Merge.rc:2704
+#: Merge.rc:2868 Merge.rc:2928 Merge.rc:3087 Merge.rc:3105 Merge.rc:3148
 #: Merge.rc:3198
 #, c-format
 msgid "Cancel"
@@ -3799,9 +3247,7 @@ msgid "Status:"
 msgstr "상태:"
 
 #. IDD_PLUGINS_LIST, ID_HELP
-#: Merge.rc:1983
-#: Merge.rc:2082
-#: Merge.rc:2929
+#: Merge.rc:1983 Merge.rc:2082 Merge.rc:2929
 #, c-format
 msgid "Help"
 msgstr "도움말"
@@ -3818,25 +3264,19 @@ msgid "Find"
 msgstr "찾기"
 
 #. IDD_EDIT_MARKER, IDC_STATIC
-#: Merge.rc:1992
-#: Merge.rc:2009
-#: Merge.rc:2037
+#: Merge.rc:1992 Merge.rc:2009 Merge.rc:2037
 #, c-format
 msgid "Fi&nd what:"
 msgstr "찾을 내용(&N) :"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_WHOLE_WORD
-#: Merge.rc:1994
-#: Merge.rc:2013
-#: Merge.rc:2041
+#: Merge.rc:1994 Merge.rc:2013 Merge.rc:2041
 #, c-format
 msgid "Match &whole word only"
 msgstr "전체 단어만 일치(&W)"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_REGEXP
-#: Merge.rc:1996
-#: Merge.rc:2015
-#: Merge.rc:2043
+#: Merge.rc:1996 Merge.rc:2015 Merge.rc:2043
 #, c-format
 msgid "Regular &expression"
 msgstr "정규식 사용(&E)"
@@ -3854,8 +3294,7 @@ msgid "&Don't close this dialog"
 msgstr "이 대화 상자를 닫지 않음(&D)"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SKIP
-#: Merge.rc:1999
-#: Merge.rc:2021
+#: Merge.rc:1999 Merge.rc:2021
 #, c-format
 msgid "&Find Next"
 msgstr "다음 찾기(&F)"
@@ -3914,8 +3353,7 @@ msgid "Replace &All"
 msgstr "모두 바꿈(&A)"
 
 #. IDS_OPTIONSPG_MARKERCOLORS
-#: Merge.rc:2030
-#: Merge.rc:4209
+#: Merge.rc:2030 Merge.rc:4209
 #, c-format
 msgid "Markers"
 msgstr "마커"
@@ -3927,8 +3365,7 @@ msgid "Enable &markers"
 msgstr "마커 사용함(&M)"
 
 #. IDD_FILTERS_LINEFILTERS, IDC_LFILTER_ADDBTN
-#: Merge.rc:2035
-#: Merge.rc:2057
+#: Merge.rc:2035 Merge.rc:2057
 #, c-format
 msgid "New"
 msgstr "새로 만들기"
@@ -3940,18 +3377,13 @@ msgid "&Background color:"
 msgstr "배경 색상(&B):"
 
 #. IDS_MESSAGEBOX_OK
-#: Merge.rc:2044
-#: Merge.rc:2829
-#: Merge.rc:3086
-#: Merge.rc:4171
+#: Merge.rc:2044 Merge.rc:2829 Merge.rc:3086 Merge.rc:4171
 #, c-format
 msgid "&Ok"
 msgstr "확인(&O)"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:2045
-#: Merge.rc:2525
-#: Merge.rc:3199
+#: Merge.rc:2045 Merge.rc:2525 Merge.rc:3199
 #, c-format
 msgid "&Apply"
 msgstr "적용(&A)"
@@ -3974,16 +3406,13 @@ msgid "Regular Expressions (one per line):"
 msgstr "정규식 (매 줄마다 적용):"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_EDIT
-#: Merge.rc:2058
-#: Merge.rc:2924
+#: Merge.rc:2058 Merge.rc:2924
 #, c-format
 msgid "Edit"
 msgstr "편집"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_REMOVE
-#: Merge.rc:2059
-#: Merge.rc:2071
-#: Merge.rc:2925
+#: Merge.rc:2059 Merge.rc:2071 Merge.rc:2925
 #, c-format
 msgid "Remove"
 msgstr "제거"
@@ -4004,8 +3433,7 @@ msgid "Enable"
 msgstr "사용함"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_ADD
-#: Merge.rc:2070
-#: Merge.rc:2923
+#: Merge.rc:2070 Merge.rc:2923
 msgid "Add"
 msgstr "추가"
 
@@ -4033,10 +3461,7 @@ msgid "Export..."
 msgstr "내보내기..."
 
 #. IDS_OPTIONSPG_GENCOMPARE
-#: Merge.rc:2092
-#: Merge.rc:4199
-#: Merge.rc:4202
-#: Merge.rc:4219
+#: Merge.rc:2092 Merge.rc:4199 Merge.rc:4202 Merge.rc:4219
 #, c-format
 msgid "General"
 msgstr "일반"
@@ -4109,35 +3534,16 @@ msgid "Language:"
 msgstr "언어:"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2119
-#: Merge.rc:2299
-#: Merge.rc:2321
-#: Merge.rc:2352
-#: Merge.rc:2369
-#: Merge.rc:2386
-#: Merge.rc:2394
-#: Merge.rc:2430
-#: Merge.rc:2454
-#: Merge.rc:2633
-#: Merge.rc:2644
-#: Merge.rc:2653
-#: Merge.rc:2887
-#: Merge.rc:2922
-#: Merge.rc:2985
-#: Merge.rc:3010
-#: Merge.rc:3024
-#: Merge.rc:3038
-#: Merge.rc:3054
+#: Merge.rc:2119 Merge.rc:2299 Merge.rc:2321 Merge.rc:2352 Merge.rc:2369
+#: Merge.rc:2386 Merge.rc:2394 Merge.rc:2430 Merge.rc:2454 Merge.rc:2633
+#: Merge.rc:2644 Merge.rc:2653 Merge.rc:2887 Merge.rc:2922 Merge.rc:2985
+#: Merge.rc:3010 Merge.rc:3024 Merge.rc:3038 Merge.rc:3054
 #, c-format
 msgid "Defaults"
 msgstr "기본값"
 
 #. IDS_OPTIONSPG_COLORS
-#: Merge.rc:2124
-#: Merge.rc:2140
-#: Merge.rc:2267
-#: Merge.rc:2292
-#: Merge.rc:4205
+#: Merge.rc:2124 Merge.rc:2140 Merge.rc:2267 Merge.rc:2292 Merge.rc:4205
 #, c-format
 msgid "Colors"
 msgstr "색상"
@@ -4173,10 +3579,7 @@ msgid "Delete &current scheme..."
 msgstr "현재 구성표 삭제(&C)..."
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_BACKGROUND_COLUMN_LABEL
-#: Merge.rc:2143
-#: Merge.rc:2238
-#: Merge.rc:2258
-#: Merge.rc:2272
+#: Merge.rc:2143 Merge.rc:2238 Merge.rc:2258 Merge.rc:2272
 #, c-format
 msgid "Background"
 msgstr "배경색"
@@ -4188,11 +3591,7 @@ msgid "Deleted"
 msgstr "삭제됨"
 
 #. IDS_OPTIONSPG_TEXTCOLORS
-#: Merge.rc:2145
-#: Merge.rc:2207
-#: Merge.rc:2239
-#: Merge.rc:2273
-#: Merge.rc:4207
+#: Merge.rc:2145 Merge.rc:2207 Merge.rc:2239 Merge.rc:2273 Merge.rc:4207
 #, c-format
 msgid "Text"
 msgstr "텍스트"
@@ -4252,10 +3651,7 @@ msgid "Selected Word Diff:"
 msgstr "선택된 단어 차이:"
 
 #. IDD_INPUTBOX
-#: Merge.rc:2195
-#: Merge.rc:2230
-#: Merge.rc:2251
-#: Merge.rc:3099
+#: Merge.rc:2195 Merge.rc:2230 Merge.rc:2251 Merge.rc:3099
 #, c-format
 msgid "Dialog"
 msgstr "대화 상자"
@@ -4315,15 +3711,8 @@ msgid "User 2:"
 msgstr "사용자 2:"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2209
-#: Merge.rc:2211
-#: Merge.rc:2213
-#: Merge.rc:2215
-#: Merge.rc:2217
-#: Merge.rc:2219
-#: Merge.rc:2221
-#: Merge.rc:2223
-#: Merge.rc:2225
+#: Merge.rc:2209 Merge.rc:2211 Merge.rc:2213 Merge.rc:2215 Merge.rc:2217
+#: Merge.rc:2219 Merge.rc:2221 Merge.rc:2223 Merge.rc:2225
 #, c-format
 msgid "Bold"
 msgstr "굵게"
@@ -4353,8 +3742,7 @@ msgid "Selection:"
 msgstr "선택:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2245
-#: Merge.rc:2286
+#: Merge.rc:2245 Merge.rc:2286
 #, c-format
 msgid "Margin:"
 msgstr "여백:"
@@ -4414,10 +3802,7 @@ msgid "&Use custom system colors"
 msgstr "사용자 지정 시스템 색상 사용 (일부 UI 요소는 적용되지 않을 수 있습니다)"
 
 #. IDS_PRPCAT_SYSTEM
-#: Merge.rc:2304
-#: Merge.rc:4211
-#: Merge.rc:4212
-#: Merge.rc:4657
+#: Merge.rc:2304 Merge.rc:4211 Merge.rc:4212 Merge.rc:4657
 #, c-format
 msgid "System"
 msgstr "시스템"
@@ -4464,15 +3849,13 @@ msgid "C&ustom folder:"
 msgstr "사용자 지정 폴더(&U):"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE2
-#: Merge.rc:2320
-#: Merge.rc:2416
+#: Merge.rc:2320 Merge.rc:2416
 #, c-format
 msgid "Br&owse..."
 msgstr "찾아보기(&O)..."
 
 #. IDS_OPTIONSPG_COMPARE
-#: Merge.rc:2326
-#: Merge.rc:4200
+#: Merge.rc:2326 Merge.rc:4200
 #, c-format
 msgid "Compare"
 msgstr "비교"
@@ -4568,8 +3951,7 @@ msgid "Completely unhighlight the ignored differences"
 msgstr "무시된 차이 강조하지 않음"
 
 #. IDS_OPTIONSPG_EDITOR
-#: Merge.rc:2357
-#: Merge.rc:4201
+#: Merge.rc:2357 Merge.rc:4201
 #, c-format
 msgid "Editor"
 msgstr "편집기"
@@ -4662,8 +4044,7 @@ msgid "Some messages can be hidden by the user. Press Reset to make all messages
 msgstr "WinMerge를 사용하면 몇 가지 일반 메시지 상자를 숨길 수 있습니다. 모든 메시지 상자를 다시 표시하려면 재설정 버튼을 누릅니다."
 
 #. IDD_SELECT_FILES_OR_FOLDERS, IDC_RESET
-#: Merge.rc:2402
-#: Merge.rc:3085
+#: Merge.rc:2402 Merge.rc:3085
 #, c-format
 msgid "Reset"
 msgstr "재설정"
@@ -4693,8 +4074,7 @@ msgid "&Swap"
 msgstr "맞바꾸기(&S)"
 
 #. IDD_DIRCMP_REPORT, IDC_REPORT_COPYCLIPBOARD
-#: Merge.rc:2418
-#: Merge.rc:2690
+#: Merge.rc:2418 Merge.rc:2690
 #, c-format
 msgid "&Copy to clipboard"
 msgstr "클립보드로 복사(&C)"
@@ -4781,8 +4161,7 @@ msgid "Select Plugin"
 msgstr "플러그인 선택"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2478
-#: Merge.rc:3115
+#: Merge.rc:2478 Merge.rc:3115
 msgid "Plugin &name:"
 msgstr "플러그인 이름(&N):"
 
@@ -4792,22 +4171,19 @@ msgid "&Target files:"
 msgstr "대상 파일(&T):"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2482
-#: Merge.rc:3117
+#: Merge.rc:2482 Merge.rc:3117
 #, c-format
 msgid "Extensions list:"
 msgstr "확장자 목록:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2484
-#: Merge.rc:3119
+#: Merge.rc:2484 Merge.rc:3119
 #, c-format
 msgid "Description:"
 msgstr "설명:"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2486
-#: Merge.rc:3121
+#: Merge.rc:2486 Merge.rc:3121
 msgid "Default arguments:"
 msgstr "기본 인수:"
 
@@ -4822,8 +4198,7 @@ msgid "&Open files in same window type after unpacking"
 msgstr "압축을 푼 후 동일한 창 유형의 파일 열기(&O)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_PIPELINE_STATIC
-#: Merge.rc:2492
-#: Merge.rc:3129
+#: Merge.rc:2492 Merge.rc:3129
 msgid "&Plugin pipeline:"
 msgstr "플러그인 파이프라인(&P):"
 
@@ -4851,8 +4226,7 @@ msgid "Continue"
 msgstr "계속"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2509
-#: Merge.rc:2973
+#: Merge.rc:2509 Merge.rc:2973
 msgid "C&PU cores to use:"
 msgstr "사용할 CPU 코어 수(&N):"
 
@@ -4869,9 +4243,7 @@ msgid "Items compared:"
 msgstr "비교된 항목:"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2526
-#: Merge.rc:2846
-#: Merge.rc:5328
+#: Merge.rc:2526 Merge.rc:2846 Merge.rc:5328
 #, c-format
 msgid "&Close"
 msgstr "닫기(&C)"
@@ -4915,8 +4287,7 @@ msgid "&Go to"
 msgstr "이동(&G)"
 
 #. IDS_PROJECT_ITEM_FILE_FILTER
-#: Merge.rc:2556
-#: Merge.rc:4321
+#: Merge.rc:2556 Merge.rc:4321
 msgid "File Filters"
 msgstr "파일 필터"
 
@@ -4987,37 +4358,31 @@ msgstr "표현식:"
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2595
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "비교 결과 필터링"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2598
 msgid "&Include"
-msgstr ""
+msgstr "포함(&I)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
 #: Merge.rc:2599
 msgid "&Exclude"
-msgstr ""
+msgstr "제외(&E)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
 #: Merge.rc:2600
 msgid "Comparison Results"
-msgstr ""
+msgstr "비교 결과"
 
 #. IDS_IDENTICAL
-#: Merge.rc:2601
-#: Merge.rc:2733
-#: Merge.rc:2794
-#: Merge.rc:4698
+#: Merge.rc:2601 Merge.rc:2733 Merge.rc:2794 Merge.rc:4698
 #, c-format
 msgid "Identical"
 msgstr "동일"
 
 #. IDS_DIFFERENT
-#: Merge.rc:2602
-#: Merge.rc:2714
-#: Merge.rc:2755
-#: Merge.rc:4708
+#: Merge.rc:2602 Merge.rc:2714 Merge.rc:2755 Merge.rc:4708
 #, c-format
 msgid "Different"
 msgstr "다름"
@@ -5025,57 +4390,55 @@ msgstr "다름"
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2603
 msgid "Left only"
-msgstr ""
+msgstr "왼쪽만"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2604
 msgid "Right only"
-msgstr ""
+msgstr "오른쪽만"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2605
 msgid "Skipped"
-msgstr ""
+msgstr "건너뜀"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2606
 msgid "Middle only"
-msgstr ""
+msgstr "중간만"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2607
 msgid "Left only (different)"
-msgstr ""
+msgstr "왼쪽만 (차이)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2608
 msgid "Middle only (different)"
-msgstr ""
+msgstr "중간만 (차이)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2609
 msgid "Right only (different)"
-msgstr ""
+msgstr "오른쪽만 (차이)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2610
 msgid "Left only (missing)"
-msgstr ""
+msgstr "왼쪽만 (누락)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2611
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "중간만 (누락)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2612
 msgid "Right only (missing)"
-msgstr ""
+msgstr "오른쪽만 (누락)"
 
 #. IDS_OPTIONSPG_CODEPAGE
-#: Merge.rc:2619
-#: Merge.rc:2811
-#: Merge.rc:4213
+#: Merge.rc:2619 Merge.rc:2811 Merge.rc:4213
 #, c-format
 msgid "Codepage"
 msgstr "코드페이지"
@@ -5129,8 +4492,7 @@ msgstr ""
 "세션을 다시 시작해야 합니다."
 
 #. IDS_OPTIONSPG_ARCHIVE
-#: Merge.rc:2638
-#: Merge.rc:4214
+#: Merge.rc:2638 Merge.rc:4214
 #, c-format
 msgid "Archive Support"
 msgstr "압축 지원"
@@ -5267,66 +4629,55 @@ msgid "Private Filter (current user only)"
 msgstr "개인 필터 (현재 사용자만)"
 
 #. IDD_COMPARE_STATISTICS3
-#: Merge.rc:2709
-#: Merge.rc:2750
+#: Merge.rc:2709 Merge.rc:2750
 #, c-format
 msgid "Compare Statistics"
 msgstr "통계 비교"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2712
-#: Merge.rc:2753
+#: Merge.rc:2712 Merge.rc:2753
 #, c-format
 msgid "Folders:"
 msgstr "폴더:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2713
-#: Merge.rc:2754
+#: Merge.rc:2713 Merge.rc:2754
 #, c-format
 msgid "Files:"
 msgstr "파일:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2719
-#: Merge.rc:2738
-#: Merge.rc:2760
-#: Merge.rc:2799
+#: Merge.rc:2719 Merge.rc:2738 Merge.rc:2760 Merge.rc:2799
 #, c-format
 msgid "Binary:"
 msgstr "바이너리:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2722
-#: Merge.rc:2763
+#: Merge.rc:2722 Merge.rc:2763
 #, c-format
 msgid "Unique"
 msgstr "고유한"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2723
-#: Merge.rc:2764
+#: Merge.rc:2723 Merge.rc:2764
 #, c-format
 msgid "Left:"
 msgstr "왼쪽:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2728
-#: Merge.rc:2774
+#: Merge.rc:2728 Merge.rc:2774
 #, c-format
 msgid "Right:"
 msgstr "오른쪽:"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2742
-#: Merge.rc:2803
+#: Merge.rc:2742 Merge.rc:2803
 #, c-format
 msgid "Total:"
 msgstr "전체:"
 
 #. IDD_COMPARE_STATISTICS3, IDOK
-#: Merge.rc:2745
-#: Merge.rc:2806
+#: Merge.rc:2745 Merge.rc:2806
 #, c-format
 msgid "Close"
 msgstr "닫기"
@@ -5362,9 +4713,7 @@ msgid "Affects"
 msgstr "적용"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_RIGHT_FILES_LABEL
-#: Merge.rc:2816
-#: Merge.rc:2818
-#: Merge.rc:2820
+#: Merge.rc:2816 Merge.rc:2818 Merge.rc:2820
 #, c-format
 msgid "(Affects)"
 msgstr "(적용)"
@@ -5394,8 +4743,7 @@ msgid "&Use same codepage for both"
 msgstr "양쪽에 같은 코드페이지 사용(&U)"
 
 #. IDS_MESSAGEBOX_CANCEL
-#: Merge.rc:2830
-#: Merge.rc:4172
+#: Merge.rc:2830 Merge.rc:4172
 #, c-format
 msgid "&Cancel"
 msgstr "취소(&C)"
@@ -5436,9 +4784,7 @@ msgid "&Test"
 msgstr "테스트(&T)"
 
 #. IDS_OPTIONSPG_TABLECOMPARE
-#: Merge.rc:2851
-#: Merge.rc:2990
-#: Merge.rc:4228
+#: Merge.rc:2851 Merge.rc:2990 Merge.rc:4228
 msgid "Table"
 msgstr "테이블"
 
@@ -5463,28 +4809,22 @@ msgid "Custom &Delimiter-Separated Values"
 msgstr "사용자 지정 구분 기호로 구분된 값(&D)"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:2859
-#: Merge.rc:2861
-#: Merge.rc:2996
-#: Merge.rc:3004
+#: Merge.rc:2859 Merge.rc:2861 Merge.rc:2996 Merge.rc:3004
 msgid "D&elimiter character:"
 msgstr "구분 기호(&E)"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_COMPARETABLE_ALLOWNEWLINE
-#: Merge.rc:2863
-#: Merge.rc:3006
+#: Merge.rc:2863 Merge.rc:3006
 msgid "&Allow newlines in quotes"
 msgstr "따옴표에 새 줄 허용(&A)"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:2865
-#: Merge.rc:3008
+#: Merge.rc:2865 Merge.rc:3008
 msgid "&Quote character:"
 msgstr "따옴표 기호(&Q)"
 
 #. IDS_OPTIONSPG_BACKUPS
-#: Merge.rc:2873
-#: Merge.rc:4216
+#: Merge.rc:2873 Merge.rc:4216
 #, c-format
 msgid "Backup Files"
 msgstr "파일 백업"
@@ -5543,8 +4883,7 @@ msgid "A&ppend timestamp"
 msgstr "타임스탬프 추가(&P)"
 
 #. IDS_CONFIRM_COPY_CAPTION
-#: Merge.rc:2892
-#: Merge.rc:4565
+#: Merge.rc:2892 Merge.rc:4565
 #, c-format
 msgid "Confirm Copy"
 msgstr "복사 확인"
@@ -5568,8 +4907,7 @@ msgid "To right"
 msgstr "오른쪽으로"
 
 #. IDS_MESSAGEBOX_DONT_ASK_AGAIN
-#: Merge.rc:2901
-#: Merge.rc:4191
+#: Merge.rc:2901 Merge.rc:4191
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "다시 묻지 않음.(&Q)"
@@ -5587,8 +4925,7 @@ msgid "No"
 msgstr "아니요"
 
 #. IDS_PROJECT_ITEM_PLUGIN
-#: Merge.rc:2909
-#: Merge.rc:4323
+#: Merge.rc:2909 Merge.rc:4323
 #, c-format
 msgid "Plugins"
 msgstr "플러그인"
@@ -5600,8 +4937,7 @@ msgid "&Enable plugins"
 msgstr "플러그인 사용함(&E)"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2913
-#: Merge.rc:3113
+#: Merge.rc:2913 Merge.rc:3113
 msgid "Plugin &type:"
 msgstr "플러그인(&T):"
 
@@ -5616,14 +4952,12 @@ msgid "&Plugin arguments:"
 msgstr "플러그인 인수(&P):"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_AUTOMATIC
-#: Merge.rc:2920
-#: Merge.rc:3134
+#: Merge.rc:2920 Merge.rc:3134
 msgid "Enable &automatic unpacking/prediffing"
 msgstr "플러그인의 자동 압축 풀기/사전 차이 사용함(&A)"
 
 #. IDS_OPTIONSPG_SHELL
-#: Merge.rc:2934
-#: Merge.rc:4217
+#: Merge.rc:2934 Merge.rc:4217
 #, c-format
 msgid "Shell Integration"
 msgstr "셸 통합"
@@ -5694,8 +5028,7 @@ msgid "Clear all recent items"
 msgstr "최근 항목 모두 지우기"
 
 #. IDS_OPTIONSPG_FOLDERCOMPARE
-#: Merge.rc:2954
-#: Merge.rc:4225
+#: Merge.rc:2954 Merge.rc:4225
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "폴더"
@@ -5765,9 +5098,7 @@ msgid "M&erge renames and moves:"
 msgstr "이름 바꾸기 및 이동 병합(&E):"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:2994
-#: Merge.rc:2999
-#: Merge.rc:3002
+#: Merge.rc:2994 Merge.rc:2999 Merge.rc:3002
 msgid "File patterns:"
 msgstr "파일 패턴:"
 
@@ -5777,8 +5108,7 @@ msgid "Custom Delimiter-Separated Values"
 msgstr "사용자 지정 구분 기호로 구분된 값"
 
 #. IDS_OPTIONSPG_BINARYCOMPARE
-#: Merge.rc:3015
-#: Merge.rc:4227
+#: Merge.rc:3015 Merge.rc:4227
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "바이너리"
@@ -5814,9 +5144,7 @@ msgid "&Character Set..."
 msgstr "문자셋(&C)..."
 
 #. IDS_PRPCAT_IMAGE
-#: Merge.rc:3029
-#: Merge.rc:4226
-#: Merge.rc:4665
+#: Merge.rc:3029 Merge.rc:4226 Merge.rc:4665
 msgid "Image"
 msgstr "이미지"
 
@@ -5837,8 +5165,7 @@ msgid "OCR result:"
 msgstr "OCR 결과:"
 
 #. IDS_OPTIONSPG_WEBPAGECOMPARE
-#: Merge.rc:3043
-#: Merge.rc:4229
+#: Merge.rc:3043 Merge.rc:4229
 msgid "Webpage"
 msgstr "웹페이지"
 
@@ -6214,8 +5541,7 @@ msgid "Compare/Merge"
 msgstr "비교/병합"
 
 #. IDS_OPTIONSPG_SYNTAXCOLORS
-#: Merge.rc:4204
-#: Merge.rc:4208
+#: Merge.rc:4204 Merge.rc:4208
 #, c-format
 msgid "Syntax"
 msgstr "구문"
@@ -6236,8 +5562,7 @@ msgid "Project"
 msgstr "프로젝트"
 
 #. IDS_COLHDR_NSDIFFS
-#: Merge.rc:4218
-#: Merge.rc:4640
+#: Merge.rc:4218 Merge.rc:4640
 #, c-format
 msgid "Differences"
 msgstr "차이"
@@ -6314,8 +5639,7 @@ msgstr ""
 "1 - %1의 값을 사용하세요."
 
 #. IDS_PROJECT_OPEN
-#: Merge.rc:4262
-#: Merge.rc:4318
+#: Merge.rc:4262 Merge.rc:4318
 #, c-format
 msgid "Open"
 msgstr "열기"
@@ -6393,15 +5717,13 @@ msgid "File Type"
 msgstr "파일 유형"
 
 #. IDS_COLHDR_EXTENSION
-#: Merge.rc:4304
-#: Merge.rc:4597
+#: Merge.rc:4304 Merge.rc:4597
 #, c-format
 msgid "Extension"
 msgstr "확장자"
 
 #. IDS_PRPCAT_MESSAGE
-#: Merge.rc:4310
-#: Merge.rc:4669
+#: Merge.rc:4310 Merge.rc:4669
 msgid "Message"
 msgstr "메시지"
 
@@ -6441,8 +5763,7 @@ msgid "Hidden Items"
 msgstr "숨겨진 항목"
 
 #. IDS_PLUGINSLIST_NAME
-#: Merge.rc:4331
-#: Merge.rc:4956
+#: Merge.rc:4331 Merge.rc:4956
 #, c-format
 msgid "Name"
 msgstr "이름"
@@ -6466,8 +5787,7 @@ msgid "[F] "
 msgstr "[F] "
 
 #. IDS_PLUGINSLIST_DESC
-#: Merge.rc:4335
-#: Merge.rc:4958
+#: Merge.rc:4335 Merge.rc:4958
 #, c-format
 msgid "Description"
 msgstr "설명"
@@ -7106,22 +6426,19 @@ msgid "Left to Middle (%1)"
 msgstr "왼쪽에서 가운데로 (%1)"
 
 #. IDS_MOVE_LEFT_TO
-#: Merge.rc:4507
-#: Merge.rc:4539
+#: Merge.rc:4507 Merge.rc:4539
 #, c-format
 msgid "Left to... (%1)"
 msgstr "왼쪽에서... (%1)"
 
 #. IDS_MOVE_MIDDLE_TO
-#: Merge.rc:4508
-#: Merge.rc:4540
+#: Merge.rc:4508 Merge.rc:4540
 #, c-format
 msgid "Middle to... (%1)"
 msgstr "가운데에서... (%1)"
 
 #. IDS_MOVE_RIGHT_TO
-#: Merge.rc:4509
-#: Merge.rc:4541
+#: Merge.rc:4509 Merge.rc:4541
 #, c-format
 msgid "Right to... (%1)"
 msgstr "오른쪽에서... (%1)"
@@ -7492,16 +6809,13 @@ msgid "Binary"
 msgstr "바이너리"
 
 #. IDS_PLUGINS_TYPE_UNPACKER
-#: Merge.rc:4642
-#: Merge.rc:4959
+#: Merge.rc:4642 Merge.rc:4959
 #, c-format
 msgid "Unpacker"
 msgstr "압축 풀기"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4643
-#: Merge.rc:4960
-#: Merge.rc:5267
+#: Merge.rc:4643 Merge.rc:4960 Merge.rc:5267
 #, c-format
 msgid "Prediffer"
 msgstr "사전 차이"
@@ -9095,8 +8409,7 @@ msgid "Ins/Del Detection"
 msgstr "삽입/삭제 감지"
 
 #. IDS_OVERLAY_MODE_NONE
-#: Merge.rc:5189
-#: Merge.rc:5194
+#: Merge.rc:5189 Merge.rc:5194
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
 msgstr "없음"
@@ -10494,7 +9807,7 @@ msgstr "일부 필드 무시 - 플러그인 이름 또는 플러그인 인수에
 
 #: Strings.rc:189
 msgid "Ignore leading line numbers (e.g., NC, BASIC)."
-msgstr "이 플러그인은 텍스트 파일 (예: NC 및 BASIC 파일)의 선행 라인 번호를 무시합니다."
+msgstr "이 플러그인은 텍스트 파일 (예: NC 및 BASIC 파일)의 선행 줄 번호를 무시합니다."
 
 #. IDS_PLUGIN_DESCRIPTION50
 #: Strings.rc:190
@@ -10571,9 +9884,7 @@ msgid "Update external references (links)"
 msgstr "외부 참조 (링크) 업데이트"
 
 #. IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR3
-#: Strings.rc:214
-#: Strings.rc:237
-#: Strings.rc:254
+#: Strings.rc:214 Strings.rc:237 Strings.rc:254
 msgid "Compare document properties"
 msgstr "문서 속성 비교"
 
@@ -10607,10 +9918,7 @@ msgid "Compare formulas"
 msgstr "공식 비교"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR4
-#: Strings.rc:222
-#: Strings.rc:242
-#: Strings.rc:261
-#: Strings.rc:274
+#: Strings.rc:222 Strings.rc:242 Strings.rc:261 Strings.rc:274
 msgid "Compare texts in shapes"
 msgstr "도형의 텍스트 비교"
 
@@ -10619,10 +9927,7 @@ msgstr "도형의 텍스트 비교"
 msgid "Compare headers and footers"
 msgstr "머리글과 바닥글 비교"
 
-#: Strings.rc:225
-#: Strings.rc:245
-#: Strings.rc:265
-#: Strings.rc:277
+#: Strings.rc:225 Strings.rc:245 Strings.rc:265 Strings.rc:277
 msgid ""
 "Cannot get Macros.\r\n"
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
@@ -10641,10 +9946,7 @@ msgid "Include sheet order number in filename"
 msgstr "파일 이름에 시트 주문 번호 포함"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR5
-#: Strings.rc:232
-#: Strings.rc:243
-#: Strings.rc:263
-#: Strings.rc:275
+#: Strings.rc:232 Strings.rc:243 Strings.rc:263 Strings.rc:275
 msgid "Compare VBA macros"
 msgstr "VBA 매크로 비교"
 
