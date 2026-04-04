@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include "DirScan.h"
+#include <atomic>
 #include <cassert>
 #include <memory>
 #define POCO_NO_UNWINDOWS 1
