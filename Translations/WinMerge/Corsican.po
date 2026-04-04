@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
-"POT-Creation-Date: 2026-03-15 06:29+0000\n"
-"PO-Revision-Date: 2026-03-16 18:00+0100\n"
+"POT-Creation-Date: 2026-04-04 12:53+0000\n"
+"PO-Revision-Date: 2026-04-04 12:34+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -25,81 +25,67 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#: Merge.rc:26
-#: Merge.rc:59
-#: Merge.rc:5453
+#: Merge.rc:26 Merge.rc:59 Merge.rc:5453
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CORSICAN, SUBLANG_DEFAULT"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_MIDDLE_R
-#: Merge.rc:79
-#: Merge.rc:87
+#: Merge.rc:79 Merge.rc:87
 msgid "Copy to Middle"
 msgstr "Cupià versu u centru"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_RIGHT_M
-#: Merge.rc:80
-#: Merge.rc:84
+#: Merge.rc:80 Merge.rc:84
 msgid "C&opy to Right\tAlt+Right"
 msgstr "Cupià versu a diri&tta\tAlt+Diritta"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_FROM_MIDDLE_R
-#: Merge.rc:81
-#: Merge.rc:89
+#: Merge.rc:81 Merge.rc:89
 msgid "Copy from Middle"
 msgstr "Cupià da u centru"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_FROM_RIGHT_M
-#: Merge.rc:82
-#: Merge.rc:86
+#: Merge.rc:82 Merge.rc:86
 msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr "Cupià da a d&iritta\tAlt+Maius+Manca"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_TO_LEFT_R
-#: Merge.rc:83
-#: Merge.rc:88
+#: Merge.rc:83 Merge.rc:88
 msgid "Cop&y to Left\tAlt+Left"
 msgstr "Cupià versu a &manca\tAlt+Manca"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_FROM_LEFT_R
-#: Merge.rc:85
-#: Merge.rc:90
+#: Merge.rc:85 Merge.rc:90
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Cupià da a ma&nca\tAlt+Maius+Diritta"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_MIDDLE_R
-#: Merge.rc:92
-#: Merge.rc:100
+#: Merge.rc:92 Merge.rc:100
 msgid "Copy Selected Lines to Middle"
 msgstr "Cupià e linee selezziunate versu u centru"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_RIGHT_M
-#: Merge.rc:93
-#: Merge.rc:97
+#: Merge.rc:93 Merge.rc:97
 msgid "Copy Selected Lines to Right"
 msgstr "Cupià e linee selezziunate versu a diritta"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_MIDDLE_R
-#: Merge.rc:94
-#: Merge.rc:102
+#: Merge.rc:94 Merge.rc:102
 msgid "Copy Selected Lines from Middle"
 msgstr "Cupià e linee selezziunate da u centru"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_RIGHT_M
-#: Merge.rc:95
-#: Merge.rc:99
+#: Merge.rc:95 Merge.rc:99
 msgid "Copy Selected Lines from Right"
 msgstr "Cupià e linee selezziunate da a diritta"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_TO_LEFT_R
-#: Merge.rc:96
-#: Merge.rc:101
+#: Merge.rc:96 Merge.rc:101
 msgid "Copy Selected Lines to Left"
 msgstr "Cupià e linee selezziunate versu a manca"
 
 #. IDR_POPUP_MERGEVIEW, ID_COPY_LINES_FROM_LEFT_R
-#: Merge.rc:98
-#: Merge.rc:103
+#: Merge.rc:98 Merge.rc:103
 msgid "Copy Selected Lines from Left"
 msgstr "Cupià e linee selezziunate da a manca"
 
@@ -124,8 +110,7 @@ msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+&3"
 msgstr "Cupià a sfarenza selezziunata (diritta) in u preme’papei\tCtrl+&3"
 
 #. IDR_MERGEDOCTYPE, ID_SELECTLINEDIFF
-#: Merge.rc:110
-#: Merge.rc:673
+#: Merge.rc:110 Merge.rc:673
 msgid "Select Line &Difference\tF4"
 msgstr "&Selezziunà a sfarenza di linea\tF4"
 
@@ -155,8 +140,7 @@ msgid "Cu&t"
 msgstr "&Taglià"
 
 #. IDR_POPUP_DIRVIEW
-#: Merge.rc:118
-#: Merge.rc:943
+#: Merge.rc:118 Merge.rc:943
 msgid "&Copy"
 msgstr "&Cupià"
 
@@ -166,31 +150,17 @@ msgid "&Paste"
 msgstr "&Incullà"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:121
-#: Merge.rc:875
-#: Merge.rc:882
+#: Merge.rc:121 Merge.rc:875 Merge.rc:882
 msgid "&Scripts"
 msgstr "S&cenarii"
 
 #. IDS_NO_EDIT_SCRIPTS
-#: Merge.rc:123
-#: Merge.rc:338
-#: Merge.rc:447
-#: Merge.rc:654
-#: Merge.rc:659
-#: Merge.rc:865
-#: Merge.rc:877
-#: Merge.rc:884
-#: Merge.rc:940
-#: Merge.rc:1183
-#: Merge.rc:5028
+#: Merge.rc:123 Merge.rc:338 Merge.rc:447 Merge.rc:654 Merge.rc:659 Merge.rc:865 Merge.rc:877 Merge.rc:884 Merge.rc:940 Merge.rc:1183 Merge.rc:5028
 msgid "< Empty >"
 msgstr "<Viotu>"
 
 #. IDR_POPUP_LOCATIONBAR, ID_EDIT_WMGOTO
-#: Merge.rc:126
-#: Merge.rc:691
-#: Merge.rc:1081
+#: Merge.rc:126 Merge.rc:691 Merge.rc:1081
 msgid "&Go to...\tCtrl+G"
 msgstr "&Andà à…\tCtrl+G"
 
@@ -210,40 +180,27 @@ msgid "Op&en"
 msgstr "&Apre"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT
-#: Merge.rc:132
-#: Merge.rc:981
-#: Merge.rc:988
-#: Merge.rc:995
+#: Merge.rc:132 Merge.rc:981 Merge.rc:988 Merge.rc:995
 msgid "With &Registered Application"
 msgstr "Cù l’&appiecazione assuciata"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_WITHEDITOR
-#: Merge.rc:133
-#: Merge.rc:982
-#: Merge.rc:989
-#: Merge.rc:996
+#: Merge.rc:133 Merge.rc:982 Merge.rc:989 Merge.rc:996
 msgid "With &External Editor\tCtrl+Alt+E"
 msgstr "Cù un &editore esternu\tCtrl+Alt+E"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_WITH
-#: Merge.rc:134
-#: Merge.rc:983
-#: Merge.rc:990
-#: Merge.rc:997
+#: Merge.rc:134 Merge.rc:983 Merge.rc:990 Merge.rc:997
 msgid "&With..."
 msgstr "&Cù…"
 
 #. IDR_POPUP_DIRVIEW, ID_DIR_OPEN_RIGHT_PARENT_FOLDER
-#: Merge.rc:135
-#: Merge.rc:984
-#: Merge.rc:991
-#: Merge.rc:998
+#: Merge.rc:135 Merge.rc:984 Merge.rc:991 Merge.rc:998
 msgid "Open &Parent Folder..."
 msgstr "Apre u cartulare di &livellu superiore…"
 
 #. IDR_POPUP_IMG_CTXT, ID_FILE_SHELLMENU
-#: Merge.rc:137
-#: Merge.rc:1239
+#: Merge.rc:137 Merge.rc:1239
 msgid "S&hell Menu"
 msgstr "&Listinu Shell"
 
@@ -258,8 +215,7 @@ msgid "Auto-Fit All Columns"
 msgstr "Adattà autumaticamente tutte e culonne"
 
 #. IDR_POPUP_WEBPAGEDIFFVIEW, ID_WEB_VIEWDIFFERENCES
-#: Merge.rc:154
-#: Merge.rc:271
+#: Merge.rc:154 Merge.rc:271
 msgid "View &Differences"
 msgstr "Affissà e &sfarenze"
 
@@ -279,12 +235,7 @@ msgid "Ins&ertion/Deletion Detection"
 msgstr "Avventata d’inserzione o di squassatura"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_NONE
-#: Merge.rc:176
-#: Merge.rc:209
-#: Merge.rc:216
-#: Merge.rc:358
-#: Merge.rc:507
-#: Merge.rc:751
+#: Merge.rc:176 Merge.rc:209 Merge.rc:216 Merge.rc:358 Merge.rc:507 Merge.rc:751
 msgid "&None"
 msgstr "&Nisuna"
 
@@ -299,17 +250,12 @@ msgid "&Horizontal"
 msgstr "&Orizuntale"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_PREVPAGE
-#: Merge.rc:181
-#: Merge.rc:189
-#: Merge.rc:1230
+#: Merge.rc:181 Merge.rc:189 Merge.rc:1230
 msgid "&Previous Page"
 msgstr "Pagina &precedente"
 
 #. IDS_PREVIEWBAR_NEXTPAGE
-#: Merge.rc:182
-#: Merge.rc:190
-#: Merge.rc:1231
-#: Merge.rc:5322
+#: Merge.rc:182 Merge.rc:190 Merge.rc:1231 Merge.rc:5322
 msgid "&Next Page"
 msgstr "Pagina &seguente"
 
@@ -319,50 +265,42 @@ msgid "&Active Pane"
 msgstr "Pannellu &attivu"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_RIGHT_90
-#: Merge.rc:185
-#: Merge.rc:1225
+#: Merge.rc:185 Merge.rc:1225
 msgid "Rotate &Right 90deg"
 msgstr "Girà à &diritta di 90°"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_ROTATE_LEFT_90
-#: Merge.rc:186
-#: Merge.rc:1226
+#: Merge.rc:186 Merge.rc:1226
 msgid "Rotate &Left 90deg"
 msgstr "Girà à &manca di 90°"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_FLIP_VERTICALLY
-#: Merge.rc:187
-#: Merge.rc:1227
+#: Merge.rc:187 Merge.rc:1227
 msgid "Flip V&ertically"
 msgstr "Rivultà v&erticalmente"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_CURPANE_FLIP_HORIZONTALLY
-#: Merge.rc:188
-#: Merge.rc:1228
+#: Merge.rc:188 Merge.rc:1228
 msgid "Flip H&orizontally"
 msgstr "Rivultà o&rizuntalmente"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:193
-#: Merge.rc:699
+#: Merge.rc:193 Merge.rc:699
 msgid "&Zoom"
 msgstr "&Ingrandamentu"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_ZOOMIN
-#: Merge.rc:202
-#: Merge.rc:701
+#: Merge.rc:202 Merge.rc:701
 msgid "Zoom &In\tCtrl++"
 msgstr "Ingrandamentu &più forte\tCtrl++"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_ZOOMOUT
-#: Merge.rc:203
-#: Merge.rc:702
+#: Merge.rc:203 Merge.rc:702
 msgid "Zoom &Out\tCtrl+-"
 msgstr "Ingrandamentu &menu forte\tCtrl+-"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_ZOOMNORMAL, Zoom to normal
-#: Merge.rc:205
-#: Merge.rc:704
+#: Merge.rc:205 Merge.rc:704
 msgid "&Normal\tCtrl+*"
 msgstr "&Nurmale\tCtrl+*"
 
@@ -387,33 +325,27 @@ msgid "Dragging &Mode"
 msgstr "&Modu di trascinatura"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_MOVE
-#: Merge.rc:217
-#: Merge.rc:955
-#: Merge.rc:1233
+#: Merge.rc:217 Merge.rc:955 Merge.rc:1233
 msgid "&Move"
 msgstr "&Dispiazzà"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
-#: Merge.rc:218
-#: Merge.rc:1234
+#: Merge.rc:218 Merge.rc:1234
 msgid "&Adjust Offset"
 msgstr "&Adattà u spustime"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
-#: Merge.rc:219
-#: Merge.rc:1235
+#: Merge.rc:219 Merge.rc:1235
 msgid "&Vertical Wipe"
 msgstr "Squassatura &verticale"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
-#: Merge.rc:220
-#: Merge.rc:1236
+#: Merge.rc:220 Merge.rc:1236
 msgid "&Horizontal Wipe"
 msgstr "Squassatura &orizuntale"
 
 #. IDR_POPUP_IMG_CTXT, ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
-#: Merge.rc:221
-#: Merge.rc:1237
+#: Merge.rc:221 Merge.rc:1237
 msgid "Rectangle &Select"
 msgstr "&Selezzione rettangulare"
 
@@ -448,44 +380,37 @@ msgid "Compare Extracted &Text from Images"
 msgstr "Paragunà u &testu estrattu da e fiure"
 
 #. IDD_OPEN, IDOK
-#: Merge.rc:272
-#: Merge.rc:1980
+#: Merge.rc:272 Merge.rc:1980
 msgid "Co&mpare"
 msgstr "&Paragunà"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_SCREENSHOTS
-#: Merge.rc:274
-#: Merge.rc:1247
+#: Merge.rc:274 Merge.rc:1247
 msgid "&Screenshots"
 msgstr "Catture di &screnu"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
-#: Merge.rc:275
-#: Merge.rc:1248
+#: Merge.rc:275 Merge.rc:1248
 msgid "&Full Size Screenshots"
 msgstr "Cattu&re di screnu in dimensione sana"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_HTMLS
-#: Merge.rc:276
-#: Merge.rc:1249
+#: Merge.rc:276 Merge.rc:1249
 msgid "&HTMLs"
 msgstr "&HTML"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_TEXTS
-#: Merge.rc:277
-#: Merge.rc:1250
+#: Merge.rc:277 Merge.rc:1250
 msgid "&Texts"
 msgstr "&Testi"
 
 #. IDR_POPUP_WEBPAGE_COMPARE, ID_WEB_COMPARE_RESOURCETREES
-#: Merge.rc:278
-#: Merge.rc:1251
+#: Merge.rc:278 Merge.rc:1251
 msgid "&Resource Trees"
 msgstr "&Arburi di risorse"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_SIZE
-#: Merge.rc:280
-#: Merge.rc:1775
+#: Merge.rc:280 Merge.rc:1775
 msgid "&Size"
 msgstr "&Dimensione"
 
@@ -500,32 +425,27 @@ msgid "&Event Sync"
 msgstr "&Sincrunizazione d’evenimentu"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_ENABLED
-#: Merge.rc:291
-#: Merge.rc:1259
+#: Merge.rc:291 Merge.rc:1259
 msgid "&Enabled"
 msgstr "&Attivatu"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_SCROLL
-#: Merge.rc:293
-#: Merge.rc:1261
+#: Merge.rc:293 Merge.rc:1261
 msgid "&Scroll"
 msgstr "&Sfilà"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_CLICK
-#: Merge.rc:294
-#: Merge.rc:1262
+#: Merge.rc:294 Merge.rc:1262
 msgid "&Click"
 msgstr "&Cliccu"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_INPUT
-#: Merge.rc:295
-#: Merge.rc:1263
+#: Merge.rc:295 Merge.rc:1263
 msgid "&Input"
 msgstr "&Entrata"
 
 #. IDR_POPUP_WEBPAGE_SYNC_EVENTS, ID_WEB_SYNC_GOBACKFORWARD
-#: Merge.rc:296
-#: Merge.rc:1264
+#: Merge.rc:296 Merge.rc:1264
 msgid "&Go Back/Forward"
 msgstr "&Ritornu o in avanti"
 
@@ -555,132 +475,67 @@ msgid "&All Profiles"
 msgstr "T&utti i prufili"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:310
-#: Merge.rc:411
-#: Merge.rc:586
+#: Merge.rc:310 Merge.rc:411 Merge.rc:586
 msgid "&File"
 msgstr "&Schedariu"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:312
-#: Merge.rc:413
-#: Merge.rc:588
+#: Merge.rc:312 Merge.rc:413 Merge.rc:588
 msgid "&New"
 msgstr "&Novu"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TEXT
-#: Merge.rc:314
-#: Merge.rc:322
-#: Merge.rc:415
-#: Merge.rc:423
-#: Merge.rc:590
-#: Merge.rc:598
-#: Merge.rc:649
-#: Merge.rc:935
-#: Merge.rc:1159
-#: Merge.rc:1171
+#: Merge.rc:314 Merge.rc:322 Merge.rc:415 Merge.rc:423 Merge.rc:590 Merge.rc:598 Merge.rc:649 Merge.rc:935 Merge.rc:1159 Merge.rc:1171
 msgid "&Text"
 msgstr "&Testu"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_TABLE
-#: Merge.rc:315
-#: Merge.rc:323
-#: Merge.rc:416
-#: Merge.rc:424
-#: Merge.rc:591
-#: Merge.rc:599
-#: Merge.rc:650
-#: Merge.rc:936
-#: Merge.rc:1160
-#: Merge.rc:1172
+#: Merge.rc:315 Merge.rc:323 Merge.rc:416 Merge.rc:424 Merge.rc:591 Merge.rc:599 Merge.rc:650 Merge.rc:936 Merge.rc:1160 Merge.rc:1172
 msgid "T&able"
 msgstr "Ta&vulone"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_HEX
-#: Merge.rc:316
-#: Merge.rc:324
-#: Merge.rc:417
-#: Merge.rc:425
-#: Merge.rc:592
-#: Merge.rc:600
-#: Merge.rc:651
-#: Merge.rc:937
-#: Merge.rc:1161
-#: Merge.rc:1173
+#: Merge.rc:316 Merge.rc:324 Merge.rc:417 Merge.rc:425 Merge.rc:592 Merge.rc:600 Merge.rc:651 Merge.rc:937 Merge.rc:1161 Merge.rc:1173
 msgid "&Binary"
 msgstr "&Binariu"
 
 #. IDS_IMAGE_MENU
-#: Merge.rc:317
-#: Merge.rc:325
-#: Merge.rc:418
-#: Merge.rc:426
-#: Merge.rc:593
-#: Merge.rc:601
-#: Merge.rc:652
-#: Merge.rc:938
-#: Merge.rc:1162
-#: Merge.rc:1174
-#: Merge.rc:5123
+#: Merge.rc:317 Merge.rc:325 Merge.rc:418 Merge.rc:426 Merge.rc:593 Merge.rc:601 Merge.rc:652 Merge.rc:938 Merge.rc:1162 Merge.rc:1174 Merge.rc:5123
 msgid "&Image"
 msgstr "&Fiura"
 
 #. IDR_POPUP_COMPARE, ID_MERGE_COMPARE_WEBPAGE
-#: Merge.rc:318
-#: Merge.rc:326
-#: Merge.rc:419
-#: Merge.rc:427
-#: Merge.rc:594
-#: Merge.rc:602
-#: Merge.rc:653
-#: Merge.rc:939
-#: Merge.rc:1163
-#: Merge.rc:1175
+#: Merge.rc:318 Merge.rc:326 Merge.rc:419 Merge.rc:427 Merge.rc:594 Merge.rc:602 Merge.rc:653 Merge.rc:939 Merge.rc:1163 Merge.rc:1175
 msgid "&Webpage"
 msgstr "Pagina &web"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:320
-#: Merge.rc:421
-#: Merge.rc:596
+#: Merge.rc:320 Merge.rc:421 Merge.rc:596
 msgid "New (&3 panes)"
 msgstr "Novu (&3 pannelli)"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_OPEN
-#: Merge.rc:328
-#: Merge.rc:429
-#: Merge.rc:604
+#: Merge.rc:328 Merge.rc:429 Merge.rc:604
 msgid "&Open...\tCtrl+O"
 msgstr "A&pre…\tCtrl+O"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_OPENCONFLICT
-#: Merge.rc:329
-#: Merge.rc:430
-#: Merge.rc:605
+#: Merge.rc:329 Merge.rc:430 Merge.rc:605
 msgid "Open Conflic&t File..."
 msgstr "Apre u schedariu in &cunflittu…"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_OPENCLIPBOARD
-#: Merge.rc:330
-#: Merge.rc:431
-#: Merge.rc:606
+#: Merge.rc:330 Merge.rc:431 Merge.rc:606
 msgid "Open C&lipboard"
 msgstr "Apre u preme’pape&i"
 
 #. IDR_POPUP_PROJECT, ID_FILE_OPENPROJECT
-#: Merge.rc:332
-#: Merge.rc:433
-#: Merge.rc:608
-#: Merge.rc:1191
+#: Merge.rc:332 Merge.rc:433 Merge.rc:608 Merge.rc:1191
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Apre u prughje&ttu…\tCtrl+J"
 
 #. IDD_OPEN, ID_SAVE_PROJECT
-#: Merge.rc:333
-#: Merge.rc:434
-#: Merge.rc:609
-#: Merge.rc:1193
-#: Merge.rc:1979
+#: Merge.rc:333 Merge.rc:434 Merge.rc:609 Merge.rc:1193 Merge.rc:1979
 msgid "Sa&ve Project..."
 msgstr "Arregistrà u prug&hjettu…"
 
@@ -690,331 +545,237 @@ msgid "Recent Projects"
 msgstr "Prughjetti recenti"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:336
-#: Merge.rc:445
-#: Merge.rc:657
+#: Merge.rc:336 Merge.rc:445 Merge.rc:657
 msgid "Recent F&iles or Folders"
 msgstr "Sche&darii o cartulari recenti"
 
 #. IDR_MERGEDOCTYPE, ID_APP_EXIT
-#: Merge.rc:341
-#: Merge.rc:450
-#: Merge.rc:662
+#: Merge.rc:341 Merge.rc:450 Merge.rc:662
 msgid "E&xit\tCtrl+Q"
 msgstr "&Esce\tCtrl+Q"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:343
-#: Merge.rc:452
-#: Merge.rc:664
+#: Merge.rc:343 Merge.rc:452 Merge.rc:664
 msgid "&Edit"
 msgstr "&Mudificà"
 
 #. IDR_MERGEDOCTYPE, ID_EDIT_PASTE
-#: Merge.rc:345
-#: Merge.rc:671
+#: Merge.rc:345 Merge.rc:671
 msgid "&Paste\tCtrl+V"
 msgstr "&Incullà\tCtrl+V"
 
 #. IDR_MERGEDOCTYPE, ID_OPTIONS
-#: Merge.rc:347
-#: Merge.rc:456
-#: Merge.rc:693
+#: Merge.rc:347 Merge.rc:456 Merge.rc:693
 msgid "&Options...\tCtrl+,"
 msgstr "&Ozzioni…\tCtrl+,"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:349
-#: Merge.rc:458
-#: Merge.rc:695
+#: Merge.rc:349 Merge.rc:458 Merge.rc:695
 msgid "&View"
 msgstr "&Vista"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:351
-#: Merge.rc:500
-#: Merge.rc:744
+#: Merge.rc:351 Merge.rc:500 Merge.rc:744
 msgid "Ta&b Bar"
 msgstr "Barra d’&unghjette"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_TAB_BAR
-#: Merge.rc:353
-#: Merge.rc:502
-#: Merge.rc:746
+#: Merge.rc:353 Merge.rc:502 Merge.rc:746
 msgid "&View Tab Bar"
 msgstr "&Affissà a barra d’unghjetta"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_TAB_BAR_ON_TITLE_BAR
-#: Merge.rc:354
-#: Merge.rc:503
-#: Merge.rc:747
+#: Merge.rc:354 Merge.rc:503 Merge.rc:747
 msgid "&On Title Bar"
 msgstr "&Nant’à a barra di titulu"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:356
-#: Merge.rc:505
-#: Merge.rc:749
+#: Merge.rc:356 Merge.rc:505 Merge.rc:749
 msgid "&Toolbar"
 msgstr "Barra d’a&ttrezzi"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_SMALL
-#: Merge.rc:359
-#: Merge.rc:508
-#: Merge.rc:752
+#: Merge.rc:359 Merge.rc:508 Merge.rc:752
 msgid "&Small"
 msgstr "&Chjuca"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_MEDIUM
-#: Merge.rc:360
-#: Merge.rc:509
-#: Merge.rc:753
+#: Merge.rc:360 Merge.rc:509 Merge.rc:753
 msgid "&Medium"
 msgstr "Me&diana"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_BIG
-#: Merge.rc:361
-#: Merge.rc:510
-#: Merge.rc:754
+#: Merge.rc:361 Merge.rc:510 Merge.rc:754
 msgid "&Big"
 msgstr "&Maiò"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLBAR_HUGE
-#: Merge.rc:362
-#: Merge.rc:511
-#: Merge.rc:755
+#: Merge.rc:362 Merge.rc:511 Merge.rc:755
 msgid "&Huge"
 msgstr "&Tamanta"
 
 #. IDS_VIEW_MENU_BAR
-#: Merge.rc:364
-#: Merge.rc:513
-#: Merge.rc:757
-#: Merge.rc:5357
+#: Merge.rc:364 Merge.rc:513 Merge.rc:757 Merge.rc:5357
 msgid "Men&u Bar"
 msgstr "Barra di &listinu"
 
 #. IDR_DIRDOCTYPE, ID_VIEW_OUTPUT_BAR
-#: Merge.rc:365
-#: Merge.rc:515
+#: Merge.rc:365 Merge.rc:515
 msgid "&Output Pane"
 msgstr "Pannellu d’&esciuta"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_STATUS_BAR
-#: Merge.rc:366
-#: Merge.rc:516
-#: Merge.rc:758
+#: Merge.rc:366 Merge.rc:516 Merge.rc:758
 msgid "&Status Bar"
 msgstr "&Barra di statu"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:368
-#: Merge.rc:539
-#: Merge.rc:847
+#: Merge.rc:368 Merge.rc:539 Merge.rc:847
 msgid "&Tools"
 msgstr "&Attrezzi"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLS_FILTERS
-#: Merge.rc:370
-#: Merge.rc:542
-#: Merge.rc:849
+#: Merge.rc:370 Merge.rc:542 Merge.rc:849
 msgid "&Filters..."
 msgstr "&Filtri…"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEPATCH
-#: Merge.rc:371
-#: Merge.rc:543
-#: Merge.rc:850
+#: Merge.rc:371 Merge.rc:543 Merge.rc:850
 msgid "&Generate Patch..."
 msgstr "Ingenerà e &currezzioni…"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:373
-#: Merge.rc:546
-#: Merge.rc:853
+#: Merge.rc:373 Merge.rc:546 Merge.rc:853
 msgid "&Plugins"
 msgstr "&Estensioni"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_SETTINGS
-#: Merge.rc:375
-#: Merge.rc:548
-#: Merge.rc:855
-#: Merge.rc:2494
-#: Merge.rc:2926
+#: Merge.rc:375 Merge.rc:548 Merge.rc:855 Merge.rc:2494 Merge.rc:2926
 msgid "P&lugin Settings..."
 msgstr "Parametri di l’&estensioni…"
 
 #. IDR_MERGEDOCTYPE, ID_PREDIFFER_MANUAL
-#: Merge.rc:377
-#: Merge.rc:550
-#: Merge.rc:857
+#: Merge.rc:377 Merge.rc:550 Merge.rc:857
 msgid "Ma&nual Prediffer"
 msgstr "Preparagone &manuale"
 
 #. IDR_MERGEDOCTYPE, ID_PREDIFFER_AUTO
-#: Merge.rc:378
-#: Merge.rc:551
-#: Merge.rc:858
+#: Merge.rc:378 Merge.rc:551 Merge.rc:858
 msgid "A&utomatic Prediffer"
 msgstr "Preparagone &autumaticu"
 
 #. IDR_MERGEDOCTYPE, ID_UNPACK_MANUAL
-#: Merge.rc:380
-#: Merge.rc:553
-#: Merge.rc:860
+#: Merge.rc:380 Merge.rc:553 Merge.rc:860
 msgid "&Manual Unpacking"
 msgstr "Spacchittera ma&nuale"
 
 #. IDR_MERGEDOCTYPE, ID_UNPACK_AUTO
-#: Merge.rc:381
-#: Merge.rc:554
-#: Merge.rc:861
+#: Merge.rc:381 Merge.rc:554 Merge.rc:861
 msgid "&Automatic Unpacking"
 msgstr "Spacchittera a&utumatica"
 
 #. IDR_MERGEDOCTYPE, ID_RELOAD_PLUGINS
-#: Merge.rc:383
-#: Merge.rc:558
-#: Merge.rc:889
+#: Merge.rc:383 Merge.rc:558 Merge.rc:889
 msgid "&Reload Plugins"
 msgstr "&Ricaricà l’estensioni"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:385
-#: Merge.rc:560
-#: Merge.rc:891
+#: Merge.rc:385 Merge.rc:560 Merge.rc:891
 msgid "&Window"
 msgstr "F&inestra"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_CLOSE
-#: Merge.rc:387
-#: Merge.rc:562
-#: Merge.rc:893
+#: Merge.rc:387 Merge.rc:562 Merge.rc:893
 msgid "Cl&ose\tCtrl+W"
 msgstr "&Chjode\tCtrl+W"
 
 #. IDR_MERGEDOCTYPE, ID_WINDOW_CLOSEALL
-#: Merge.rc:388
-#: Merge.rc:563
-#: Merge.rc:894
+#: Merge.rc:388 Merge.rc:563 Merge.rc:894
 msgid "Clo&se All"
 msgstr "&Tuttu chjode"
 
 #. IDR_MERGEDOCTYPE, ID_NEXT_PANE
-#: Merge.rc:390
-#: Merge.rc:565
-#: Merge.rc:896
+#: Merge.rc:390 Merge.rc:565 Merge.rc:896
 msgid "Change &Pane\tF6"
 msgstr "Cambià di &pannellu\tF6"
 
 #. IDR_MERGEDOCTYPE, ID_WINDOW_TILE_HORZ
-#: Merge.rc:392
-#: Merge.rc:567
-#: Merge.rc:900
+#: Merge.rc:392 Merge.rc:567 Merge.rc:900
 msgid "Tile &Horizontally"
 msgstr "Musaica &orizuntale"
 
 #. IDR_MERGEDOCTYPE, ID_WINDOW_TILE_VERT
-#: Merge.rc:393
-#: Merge.rc:568
-#: Merge.rc:901
+#: Merge.rc:393 Merge.rc:568 Merge.rc:901
 msgid "Tile &Vertically"
 msgstr "Musaica &verticale"
 
 #. IDR_MERGEDOCTYPE, ID_WINDOW_CASCADE
-#: Merge.rc:394
-#: Merge.rc:569
-#: Merge.rc:902
+#: Merge.rc:394 Merge.rc:569 Merge.rc:902
 msgid "&Cascade"
 msgstr "C&ascata"
 
 #. IDS_MESSAGEBOX_HELP
-#: Merge.rc:396
-#: Merge.rc:571
-#: Merge.rc:904
-#: Merge.rc:3200
-#: Merge.rc:4189
+#: Merge.rc:396 Merge.rc:571 Merge.rc:904 Merge.rc:3200 Merge.rc:4189
 msgid "&Help"
 msgstr "Ai&utu"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_CONTENTS
-#: Merge.rc:398
-#: Merge.rc:573
-#: Merge.rc:906
+#: Merge.rc:398 Merge.rc:573 Merge.rc:906
 msgid "&WinMerge Help\tF1"
 msgstr "Aiutu &WinMerge\tF1"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_RELEASENOTES
-#: Merge.rc:400
-#: Merge.rc:575
-#: Merge.rc:908
+#: Merge.rc:400 Merge.rc:575 Merge.rc:908
 msgid "R&elease Notes"
 msgstr "&Note di versione"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_TRANSLATIONS
-#: Merge.rc:401
-#: Merge.rc:576
-#: Merge.rc:909
+#: Merge.rc:401 Merge.rc:576 Merge.rc:909
 msgid "&Translations"
 msgstr "&Traduzzioni"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_GETCONFIG
-#: Merge.rc:402
-#: Merge.rc:577
-#: Merge.rc:910
+#: Merge.rc:402 Merge.rc:577 Merge.rc:910
 msgid "C&onfiguration"
 msgstr "&Cunfigurazione"
 
 #. IDR_MERGEDOCTYPE, ID_HELP_GNULICENSE
-#: Merge.rc:404
-#: Merge.rc:579
-#: Merge.rc:912
+#: Merge.rc:404 Merge.rc:579 Merge.rc:912
 msgid "&GNU General Public License"
 msgstr "&Licenza publica generale GNU"
 
 #. IDR_MERGEDOCTYPE, ID_APP_ABOUT
-#: Merge.rc:405
-#: Merge.rc:580
-#: Merge.rc:913
+#: Merge.rc:405 Merge.rc:580 Merge.rc:913
 msgid "&About WinMerge..."
 msgstr "&Apprupositu di WinMerge…"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:436
-#: Merge.rc:629
+#: Merge.rc:436 Merge.rc:629
 msgid "&Read-Only"
 msgstr "&Lettura sola"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_LEFT_READONLY
-#: Merge.rc:438
-#: Merge.rc:631
+#: Merge.rc:438 Merge.rc:631
 msgid "L&eft Read-Only"
 msgstr "Schedariu à &manca in lettura sola"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_MIDDLE_READONLY
-#: Merge.rc:439
-#: Merge.rc:632
+#: Merge.rc:439 Merge.rc:632
 msgid "M&iddle Read-Only"
 msgstr "Schedariu à u &centru in lettura sola"
 
 #. IDR_MERGEDOCTYPE, ID_FILE_RIGHT_READONLY
-#: Merge.rc:440
-#: Merge.rc:633
+#: Merge.rc:440 Merge.rc:633
 msgid "Ri&ght Read-Only"
 msgstr "Schedariu à &diritta in lettura sola"
 
 #. IDD_ENCODINGERROR, IDC_FILEENCODING
-#: Merge.rc:443
-#: Merge.rc:646
-#: Merge.rc:1038
-#: Merge.rc:3063
+#: Merge.rc:443 Merge.rc:646 Merge.rc:1038 Merge.rc:3063
 msgid "&File Encoding..."
 msgstr "Cudifica&zione di schedariu…"
 
 #. IDR_POPUP_OUTPUTVIEW, ID_EDIT_SELECT_ALL
-#: Merge.rc:454
-#: Merge.rc:674
-#: Merge.rc:1343
+#: Merge.rc:454 Merge.rc:674 Merge.rc:1343
 msgid "Select &All\tCtrl+A"
 msgstr "T&uttu selezziunà\tCtrl+A"
 
@@ -1126,41 +887,35 @@ msgstr "&Ripiegà tutti i sottucartulari"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:488
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "Affissà i cartulari &vioti"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
-#: Merge.rc:490
-#: Merge.rc:697
+#: Merge.rc:490 Merge.rc:697
 msgid "Select &Font..."
 msgstr "Selezziunà a &grafia…"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_USEDEFAULTFONT
-#: Merge.rc:491
-#: Merge.rc:698
+#: Merge.rc:491 Merge.rc:698
 msgid "Use Default Font"
 msgstr "Impiegà a grafia pre&definita"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:493
-#: Merge.rc:736
+#: Merge.rc:493 Merge.rc:736
 msgid "Sw&ap Panes"
 msgstr "Scambià i &pannelli"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP12
-#: Merge.rc:495
-#: Merge.rc:738
+#: Merge.rc:495 Merge.rc:738
 msgid "Swap &1st | 2nd"
 msgstr "Scambià &1ᵘ | 2ᵘ"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP23
-#: Merge.rc:496
-#: Merge.rc:739
+#: Merge.rc:496 Merge.rc:739
 msgid "Swap &2nd | 3rd"
 msgstr "Scambià &2ᵘ | 3ᵘ"
 
 #. IDR_MERGEDOCTYPE, ID_SWAPPANES_SWAP13
-#: Merge.rc:497
-#: Merge.rc:740
+#: Merge.rc:497 Merge.rc:740
 msgid "Swap 1st | &3rd"
 msgstr "Scambià 1ᵘ | &3ᵘ"
 
@@ -1175,20 +930,17 @@ msgid "Com&pare Statistics..."
 msgstr "Statistiche di &paragone…"
 
 #. IDR_MERGEDOCTYPE, ID_REFRESH
-#: Merge.rc:520
-#: Merge.rc:763
+#: Merge.rc:520 Merge.rc:763
 msgid "Refresh\tF5"
 msgstr "Attualiz&à\tF5"
 
 #. IDR_POPUP_DIRVIEW, ID_RESCAN
-#: Merge.rc:521
-#: Merge.rc:1030
+#: Merge.rc:521 Merge.rc:1030
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "Attuali&zà a selezzione\tCtrl+F5"
 
 #. IDR_MERGEDOCTYPE
-#: Merge.rc:523
-#: Merge.rc:765
+#: Merge.rc:523 Merge.rc:765
 msgid "&Merge"
 msgstr "&Fusione"
 
@@ -1198,44 +950,37 @@ msgid "Co&mpare\tEnter"
 msgstr "Para&gunà\tEntrée"
 
 #. IDR_MERGEDOCTYPE, ID_NEXTDIFF
-#: Merge.rc:527
-#: Merge.rc:767
+#: Merge.rc:527 Merge.rc:767
 msgid "&Next Difference\tAlt+Down"
 msgstr "Sfarenza &seguente\tAlt+Inghjò"
 
 #. IDR_MERGEDOCTYPE, ID_PREVDIFF
-#: Merge.rc:528
-#: Merge.rc:768
+#: Merge.rc:528 Merge.rc:768
 msgid "&Previous Difference\tAlt+Up"
 msgstr "Sfarenza p&recedente\tAlt+Insù"
 
 #. IDR_MERGEDOCTYPE, ID_FIRSTDIFF
-#: Merge.rc:530
-#: Merge.rc:773
+#: Merge.rc:530 Merge.rc:773
 msgid "&First Difference\tAlt+Home"
 msgstr "&Prima sfarenza\tAlt+Accolta"
 
 #. IDR_MERGEDOCTYPE, ID_CURDIFF
-#: Merge.rc:531
-#: Merge.rc:774
+#: Merge.rc:531 Merge.rc:774
 msgid "&Current Difference\tAlt+Enter"
 msgstr "Sfaren&za currente\tAlt+Entre"
 
 #. IDR_MERGEDOCTYPE, ID_LASTDIFF
-#: Merge.rc:532
-#: Merge.rc:775
+#: Merge.rc:532 Merge.rc:775
 msgid "&Last Difference\tAlt+End"
 msgstr "&Ultima sfarenza\tAlt+Fine"
 
 #. IDR_MERGEDOCTYPE, ID_L2R
-#: Merge.rc:534
-#: Merge.rc:830
+#: Merge.rc:534 Merge.rc:830
 msgid "Copy to &Right\tAlt+Right"
 msgstr "Cupià versu a &diritta\tAlt+Diritta"
 
 #. IDR_MERGEDOCTYPE, ID_R2L
-#: Merge.rc:535
-#: Merge.rc:831
+#: Merge.rc:535 Merge.rc:831
 msgid "Copy to L&eft\tAlt+Left"
 msgstr "Cupià versu a &manca\tAlt+Manca"
 
@@ -1245,21 +990,17 @@ msgid "&Delete\tDel"
 msgstr "S&quassà\tSupp"
 
 #. IDR_POPUP_DIRVIEW, ID_TOOLS_CUSTOMIZECOLUMNS
-#: Merge.rc:541
-#: Merge.rc:1042
+#: Merge.rc:541 Merge.rc:1042
 msgid "&Customize Columns..."
 msgstr "&Persunalizà e culonne…"
 
 #. IDR_MERGEDOCTYPE, ID_TOOLS_GENERATEREPORT
-#: Merge.rc:544
-#: Merge.rc:851
+#: Merge.rc:544 Merge.rc:851
 msgid "Generate &Report..."
 msgstr "Ingenerà un &raportu…"
 
 #. IDD_ENCODINGERROR, IDC_PLUGIN
-#: Merge.rc:556
-#: Merge.rc:867
-#: Merge.rc:3064
+#: Merge.rc:556 Merge.rc:867 Merge.rc:3064
 msgid "&Edit with Unpacker..."
 msgstr "Mu&dificà cù u spacchittadore…"
 
@@ -1274,20 +1015,17 @@ msgid "Sav&e"
 msgstr "Arre&gistrà"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_LEFT
-#: Merge.rc:614
-#: Merge.rc:1201
+#: Merge.rc:614 Merge.rc:1201
 msgid "Save &Left"
 msgstr "Arregistrà à &manca"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_MIDDLE
-#: Merge.rc:615
-#: Merge.rc:1202
+#: Merge.rc:615 Merge.rc:1202
 msgid "Save &Middle"
 msgstr "Arregistrà à u &centru"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVE_RIGHT
-#: Merge.rc:616
-#: Merge.rc:1203
+#: Merge.rc:616 Merge.rc:1203
 msgid "Save &Right"
 msgstr "Arregistrà à &diritta"
 
@@ -1297,20 +1035,17 @@ msgid "Save &As"
 msgstr "Arregistrà cù u n&ome"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_LEFT
-#: Merge.rc:620
-#: Merge.rc:1205
+#: Merge.rc:620 Merge.rc:1205
 msgid "Save &Left As..."
 msgstr "Arregistrà à &manca cù u nome..."
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_MIDDLE
-#: Merge.rc:621
-#: Merge.rc:1206
+#: Merge.rc:621 Merge.rc:1206
 msgid "Save &Middle As..."
 msgstr "Arregistrà à u &centru cù u nome…"
 
 #. IDR_POPUP_SAVE, ID_FILE_SAVEAS_RIGHT
-#: Merge.rc:622
-#: Merge.rc:1207
+#: Merge.rc:622 Merge.rc:1207
 msgid "Save &Right As..."
 msgstr "Arregistrà à &diritta cù u nome…"
 
@@ -1365,8 +1100,7 @@ msgid "Cu&t\tCtrl+X"
 msgstr "&Taglià\tCtrl+X"
 
 #. IDR_POPUP_OUTPUTVIEW, ID_EDIT_COPY
-#: Merge.rc:670
-#: Merge.rc:1342
+#: Merge.rc:670 Merge.rc:1342
 msgid "&Copy\tCtrl+C"
 msgstr "&Cupià\tCtrl+C"
 
@@ -1531,8 +1265,7 @@ msgid "Lo&cation Pane"
 msgstr "Pannellu di pusizi&one"
 
 #. IDS_OUTPUTBAR_CAPTION
-#: Merge.rc:761
-#: Merge.rc:4902
+#: Merge.rc:761 Merge.rc:4902
 msgid "Output Pane"
 msgstr "Pannellu d’esciuta"
 
@@ -1617,24 +1350,12 @@ msgid "Copy from &Left to"
 msgstr "Cupià da a &manca versu"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_MIDDLE_BTN
-#: Merge.rc:799
-#: Merge.rc:810
-#: Merge.rc:815
-#: Merge.rc:826
-#: Merge.rc:970
-#: Merge.rc:2545
-#: Merge.rc:2817
+#: Merge.rc:799 Merge.rc:810 Merge.rc:815 Merge.rc:826 Merge.rc:970 Merge.rc:2545 Merge.rc:2817
 msgid "&Middle"
 msgstr "&Centru"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_RIGHT_BTN
-#: Merge.rc:800
-#: Merge.rc:805
-#: Merge.rc:816
-#: Merge.rc:821
-#: Merge.rc:971
-#: Merge.rc:2546
-#: Merge.rc:2819
+#: Merge.rc:800 Merge.rc:805 Merge.rc:816 Merge.rc:821 Merge.rc:971 Merge.rc:2546 Merge.rc:2819
 msgid "&Right"
 msgstr "&Diritta"
 
@@ -1644,13 +1365,7 @@ msgid "Copy from &Middle to"
 msgstr "Cupià da u &centru versu"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_AFFECTS_LEFT_BTN
-#: Merge.rc:804
-#: Merge.rc:809
-#: Merge.rc:820
-#: Merge.rc:825
-#: Merge.rc:969
-#: Merge.rc:2544
-#: Merge.rc:2815
+#: Merge.rc:804 Merge.rc:809 Merge.rc:820 Merge.rc:825 Merge.rc:969 Merge.rc:2544 Merge.rc:2815
 msgid "&Left"
 msgstr "&Manca"
 
@@ -1770,8 +1485,7 @@ msgid "Compare in New &Window"
 msgstr "Paragunà in una nova &finestra"
 
 #. IDR_POPUP_DIRVIEW, ID_MERGE_COMPARE_NONHORIZONTALLY
-#: Merge.rc:924
-#: Merge.rc:931
+#: Merge.rc:924 Merge.rc:931
 msgid "Compare Non-hor&izontally..."
 msgstr "Paragunà micca &orizuntalmente…"
 
@@ -1806,86 +1520,61 @@ msgid "Co&mpare As"
 msgstr "Paragunà cum’&è"
 
 #. IDS_COPY_LEFT_TO_MIDDLE2
-#: Merge.rc:945
-#: Merge.rc:957
-#: Merge.rc:4502
+#: Merge.rc:945 Merge.rc:957 Merge.rc:4502
 #, c-format
 msgid "Left to Middle (%1 of %2)"
 msgstr "Da manca à centru (%1 nant’à %2)"
 
 #. IDS_COPY_LEFT_TO_RIGHT2
-#: Merge.rc:946
-#: Merge.rc:958
-#: Merge.rc:4501
+#: Merge.rc:946 Merge.rc:958 Merge.rc:4501
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "Da manca à diritta (%1 nant’à %2)"
 
 #. IDS_MOVE_LEFT_TO2
-#: Merge.rc:947
-#: Merge.rc:959
-#: Merge.rc:1022
-#: Merge.rc:4513
-#: Merge.rc:4542
+#: Merge.rc:947 Merge.rc:959 Merge.rc:1022 Merge.rc:4513 Merge.rc:4542
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "Da manca à… (%1 nant’à %2)"
 
 #. IDS_COPY_MIDDLE_TO_LEFT2
-#: Merge.rc:948
-#: Merge.rc:960
-#: Merge.rc:4499
+#: Merge.rc:948 Merge.rc:960 Merge.rc:4499
 #, c-format
 msgid "Middle to Left (%1 of %2)"
 msgstr "Da centru à manca (%1 nant’à %2)"
 
 #. IDS_COPY_MIDDLE_TO_RIGHT2
-#: Merge.rc:949
-#: Merge.rc:961
-#: Merge.rc:4500
+#: Merge.rc:949 Merge.rc:961 Merge.rc:4500
 #, c-format
 msgid "Middle to Right (%1 of %2)"
 msgstr "Da centru à diritta (%1 nant’à %2)"
 
 #. IDS_MOVE_MIDDLE_TO2
-#: Merge.rc:950
-#: Merge.rc:962
-#: Merge.rc:1023
-#: Merge.rc:4514
-#: Merge.rc:4543
+#: Merge.rc:950 Merge.rc:962 Merge.rc:1023 Merge.rc:4514 Merge.rc:4543
 #, c-format
 msgid "Middle to... (%1 of %2)"
 msgstr "Da centru à… (%1 nant’à %2)"
 
 #. IDS_COPY_RIGHT_TO_MIDDLE2
-#: Merge.rc:951
-#: Merge.rc:963
-#: Merge.rc:4498
+#: Merge.rc:951 Merge.rc:963 Merge.rc:4498
 #, c-format
 msgid "Right to Middle (%1 of %2)"
 msgstr "Da diritta à centru (%1 nant’à %2)"
 
 #. IDS_COPY_RIGHT_TO_LEFT2
-#: Merge.rc:952
-#: Merge.rc:964
-#: Merge.rc:4497
+#: Merge.rc:952 Merge.rc:964 Merge.rc:4497
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "Da diritta à manca (%1 nant’à %2)"
 
 #. IDS_MOVE_RIGHT_TO2
-#: Merge.rc:953
-#: Merge.rc:965
-#: Merge.rc:1024
-#: Merge.rc:4515
-#: Merge.rc:4544
+#: Merge.rc:953 Merge.rc:965 Merge.rc:1024 Merge.rc:4515 Merge.rc:4544
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Da diritta à… (%1 nant’à %2)"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_MARKER_DELETE
-#: Merge.rc:967
-#: Merge.rc:2036
+#: Merge.rc:967 Merge.rc:2036
 msgid "&Delete"
 msgstr "&Squassà"
 
@@ -1900,8 +1589,7 @@ msgid "&All"
 msgstr "T&uttu"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SCOPE_SELECTION
-#: Merge.rc:974
-#: Merge.rc:2019
+#: Merge.rc:974 Merge.rc:2019
 msgid "&Selection"
 msgstr "Sele&zzione"
 
@@ -1936,41 +1624,31 @@ msgid "Cop&y Paths"
 msgstr "Cupià i c&hjassi"
 
 #. IDS_DEL_LEFT_FMT2
-#: Merge.rc:1003
-#: Merge.rc:1012
-#: Merge.rc:4530
+#: Merge.rc:1003 Merge.rc:1012 Merge.rc:4530
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "Manca (%1 nant’à %2)"
 
 #. IDS_DEL_MIDDLE_FMT2
-#: Merge.rc:1004
-#: Merge.rc:1013
-#: Merge.rc:4531
+#: Merge.rc:1004 Merge.rc:1013 Merge.rc:4531
 #, c-format
 msgid "Middle (%1 of %2)"
 msgstr "Centru (%1 nant’à %2)"
 
 #. IDS_DEL_RIGHT_FMT2
-#: Merge.rc:1005
-#: Merge.rc:1014
-#: Merge.rc:4532
+#: Merge.rc:1005 Merge.rc:1014 Merge.rc:4532
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "Diritta (%1 nant’à %2)"
 
 #. IDS_DEL_BOTH_FMT2
-#: Merge.rc:1006
-#: Merge.rc:1015
-#: Merge.rc:4533
+#: Merge.rc:1006 Merge.rc:1015 Merge.rc:4533
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "Tramindui (%1 nant’à %2)"
 
 #. IDS_DEL_ALL_FMT2
-#: Merge.rc:1007
-#: Merge.rc:1016
-#: Merge.rc:4538
+#: Merge.rc:1007 Merge.rc:1016 Merge.rc:4538
 #, c-format
 msgid "All (%1 of %2)"
 msgstr "Tutti (%1 nant’à %2)"
@@ -1996,22 +1674,19 @@ msgid "&Zip"
 msgstr "C&umprime"
 
 #. IDS_COPY_BOTH_TO2
-#: Merge.rc:1025
-#: Merge.rc:4516
+#: Merge.rc:1025 Merge.rc:4516
 #, c-format
 msgid "Both to... (%1 of %2)"
 msgstr "Tramindui versu… (%1 nant’à %2)"
 
 #. IDS_COPY_ALL_TO2
-#: Merge.rc:1026
-#: Merge.rc:4517
+#: Merge.rc:1026 Merge.rc:4517
 #, c-format
 msgid "All to... (%1 of %2)"
 msgstr "Tutti versu… (%1 nant’à %2)"
 
 #. IDS_COPY_DIFFERENCES_TO2
-#: Merge.rc:1027
-#: Merge.rc:4518
+#: Merge.rc:1027 Merge.rc:4518
 #, c-format
 msgid "Differences to... (%1 of %2)"
 msgstr "Sfarenze versu… (%1 nant’à %2)"
@@ -2077,26 +1752,17 @@ msgid "Unpacker Settings"
 msgstr "Parametri di u spacchittadore"
 
 #. IDS_USERCHOICE_NONE
-#: Merge.rc:1064
-#: Merge.rc:1070
-#: Merge.rc:1789
-#: Merge.rc:1793
-#: Merge.rc:5030
+#: Merge.rc:1064 Merge.rc:1070 Merge.rc:1789 Merge.rc:1793 Merge.rc:5030
 msgid "<None>"
 msgstr "<nisunu>"
 
 #. IDS_USERCHOICE_AUTOMATIC
-#: Merge.rc:1065
-#: Merge.rc:1071
-#: Merge.rc:5031
+#: Merge.rc:1065 Merge.rc:1071 Merge.rc:5031
 msgid "<Automatic>"
 msgstr "<autumaticu>"
 
 #. IDD_OPEN, IDC_SELECT_PREDIFFER
-#: Merge.rc:1066
-#: Merge.rc:1072
-#: Merge.rc:1970
-#: Merge.rc:1974
+#: Merge.rc:1066 Merge.rc:1072 Merge.rc:1970 Merge.rc:1974
 msgid "&Select..."
 msgstr "&Selezziunà…"
 
@@ -2126,142 +1792,107 @@ msgid "&All Moved Blocks"
 msgstr "&Tutti i blocchi dispiazzati"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS
-#: Merge.rc:1094
-#: Merge.rc:1127
+#: Merge.rc:1094 Merge.rc:1127
 msgid "W&hitespaces"
 msgstr "Spazii &bianchi"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
-#: Merge.rc:1096
-#: Merge.rc:1129
+#: Merge.rc:1096 Merge.rc:1129
 msgid "Com&pare"
 msgstr "&Paragunà"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
-#: Merge.rc:1097
-#: Merge.rc:1130
+#: Merge.rc:1097 Merge.rc:1130
 msgid "I&gnore Changes"
 msgstr "I&gnurà i cambiamenti"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL
-#: Merge.rc:1098
-#: Merge.rc:1131
+#: Merge.rc:1098 Merge.rc:1131
 msgid "Ig&nore All"
 msgstr "&Tuttu ignurà"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES
-#: Merge.rc:1100
-#: Merge.rc:1133
+#: Merge.rc:1100 Merge.rc:1133
 msgid "Ignore Blan&k Lines"
 msgstr "Ignurà e linee &bianche"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE
-#: Merge.rc:1101
-#: Merge.rc:1134
+#: Merge.rc:1101 Merge.rc:1134
 msgid "Ignore &Case"
 msgstr "Ignurà a &cassa"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL
-#: Merge.rc:1102
-#: Merge.rc:1135
+#: Merge.rc:1102 Merge.rc:1135
 msgid "Igno&re EOL Differences (Windows/Unix/Mac)"
 msgstr "Ignurà e sfarenze di &fine di linea (Windows/Unix/Mac)"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
-#: Merge.rc:1103
-#: Merge.rc:1136
+#: Merge.rc:1103 Merge.rc:1136
 msgid "Ignore Codepage &Differences"
 msgstr "Ignurà e &sfarenze di pagina di codice"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
-#: Merge.rc:1104
-#: Merge.rc:1137
+#: Merge.rc:1104 Merge.rc:1137
 msgid "Ignore Num&bers"
 msgstr "Ignurà i &numeri"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
-#: Merge.rc:1105
-#: Merge.rc:1138
+#: Merge.rc:1105 Merge.rc:1138
 msgid "Ignore C&omment Differences"
 msgstr "Ignurà e sfarenze di c&ummentu"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_MISSING_TRAILING_EOL
-#: Merge.rc:1106
-#: Merge.rc:1139
+#: Merge.rc:1106 Merge.rc:1139
 msgid "Ignore &Missing Trailing EOL"
 msgstr "Ignurà e fini di &linea assente"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS, ID_PROJECT_DIFF_OPTIONS_IGNORE_LINE_BREAKS
-#: Merge.rc:1107
-#: Merge.rc:1140
+#: Merge.rc:1107 Merge.rc:1140
 msgid "Ignore Line &Breaks (Treat as Spaces)"
 msgstr "Ignurà i s&alti di linea (cunsideralli cum’è spazii)"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_RECURS_CHECK
-#: Merge.rc:1109
-#: Merge.rc:2963
+#: Merge.rc:1109 Merge.rc:2963
 msgid "&Include Subfolders"
 msgstr "&Include i sottucartulari"
 
 #. IDR_POPUP_PROJECT_DIFF_OPTIONS
-#: Merge.rc:1110
-#: Merge.rc:1142
+#: Merge.rc:1110 Merge.rc:1142
 msgid "&Compare Method"
 msgstr "&Metoda di paragone"
 
 #. IDS_COMPMETHOD_FULL_CONTENTS
-#: Merge.rc:1112
-#: Merge.rc:1144
-#: Merge.rc:1328
-#: Merge.rc:4282
+#: Merge.rc:1112 Merge.rc:1144 Merge.rc:1328 Merge.rc:4282
 msgid "Full Contents"
 msgstr "Cuntenutu sanu"
 
 #. IDS_COMPMETHOD_QUICK_CONTENTS
-#: Merge.rc:1113
-#: Merge.rc:1145
-#: Merge.rc:1329
-#: Merge.rc:4283
+#: Merge.rc:1113 Merge.rc:1145 Merge.rc:1329 Merge.rc:4283
 msgid "Quick Contents"
 msgstr "Cuntenutu rapidu"
 
 #. IDS_COMPMETHOD_BINARY_CONTENTS
-#: Merge.rc:1114
-#: Merge.rc:1146
-#: Merge.rc:1330
-#: Merge.rc:4284
+#: Merge.rc:1114 Merge.rc:1146 Merge.rc:1330 Merge.rc:4284
 msgid "Binary Contents"
 msgstr "Cuntenutu binariu"
 
 #. IDS_COMPMETHOD_MODDATE
-#: Merge.rc:1115
-#: Merge.rc:1147
-#: Merge.rc:1331
-#: Merge.rc:4285
+#: Merge.rc:1115 Merge.rc:1147 Merge.rc:1331 Merge.rc:4285
 msgid "Modified Date"
 msgstr "Data di mudificazione"
 
 #. IDS_COMPMETHOD_DATESIZE
-#: Merge.rc:1116
-#: Merge.rc:1148
-#: Merge.rc:1332
-#: Merge.rc:4286
+#: Merge.rc:1116 Merge.rc:1148 Merge.rc:1332 Merge.rc:4286
 msgid "Modified Date and Size"
 msgstr "Data di mudificazione è dimensione"
 
 #. IDS_COMPMETHOD_SIZE
-#: Merge.rc:1117
-#: Merge.rc:1149
-#: Merge.rc:1333
-#: Merge.rc:4287
+#: Merge.rc:1117 Merge.rc:1149 Merge.rc:1333 Merge.rc:4287
 msgid "Size"
 msgstr "Dimensione"
 
 #. IDS_COMPMETHOD_EXISTENCE
-#: Merge.rc:1118
-#: Merge.rc:1150
-#: Merge.rc:1334
-#: Merge.rc:4288
+#: Merge.rc:1118 Merge.rc:1150 Merge.rc:1334 Merge.rc:4288
 msgid "Existence"
 msgstr "Esistenza"
 
@@ -2271,62 +1902,52 @@ msgid "&Load Project..."
 msgstr "&Caricà u prughjettu…"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARGALL
-#: Merge.rc:1272
-#: Merge.rc:1301
+#: Merge.rc:1272 Merge.rc:1301
 msgid "${*} - All Arguments"
 msgstr "${*} - Tutti i parametri"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG1
-#: Merge.rc:1273
-#: Merge.rc:1302
+#: Merge.rc:1273 Merge.rc:1302
 msgid "${1} - First Argument"
 msgstr "${1} - U primu parametru"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG2
-#: Merge.rc:1274
-#: Merge.rc:1303
+#: Merge.rc:1274 Merge.rc:1303
 msgid "${2} - Second Argument"
 msgstr "${2} - U secondu parametru"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG3
-#: Merge.rc:1275
-#: Merge.rc:1304
+#: Merge.rc:1275 Merge.rc:1304
 msgid "${3} - Third Argument"
 msgstr "${3} - U terzu parametru"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG4
-#: Merge.rc:1276
-#: Merge.rc:1305
+#: Merge.rc:1276 Merge.rc:1305
 msgid "${4} - Fourth Argument"
 msgstr "${4} - U quartu parametru"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG5
-#: Merge.rc:1277
-#: Merge.rc:1306
+#: Merge.rc:1277 Merge.rc:1306
 msgid "${5} - Fifth Argument"
 msgstr "${5} - U quintu parametru"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG6
-#: Merge.rc:1278
-#: Merge.rc:1307
+#: Merge.rc:1278 Merge.rc:1307
 msgid "${6} - Sixth Argument"
 msgstr "${6} - U sestu parametru"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG7
-#: Merge.rc:1279
-#: Merge.rc:1308
+#: Merge.rc:1279 Merge.rc:1308
 msgid "${7} - Seventh Argument"
 msgstr "${7} - U settimu parametru"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG8
-#: Merge.rc:1280
-#: Merge.rc:1309
+#: Merge.rc:1280 Merge.rc:1309
 msgid "${8} - Eighth Argument"
 msgstr "${8} - L’ottesimu parametru"
 
 #. IDR_POPUP_PLUGIN_COMMAND_LINE_MENU, ID_PLUGIN_COMMAND_LINE_ARG9
-#: Merge.rc:1281
-#: Merge.rc:1310
+#: Merge.rc:1281 Merge.rc:1310
 msgid "${9} - Ninth Argument"
 msgstr "${9} - U novesimu parametru"
 
@@ -2481,368 +2102,262 @@ msgid "Add &File Condition"
 msgstr "Aghjunghje una cundizione di &schedariu"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1372
-#: Merge.rc:1551
+#: Merge.rc:1372 Merge.rc:1551
 msgid "File &Size"
 msgstr "&Dimensione di schedariu"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_1KB
-#: Merge.rc:1374
-#: Merge.rc:1527
-#: Merge.rc:1564
-#: Merge.rc:1629
-#: Merge.rc:1707
+#: Merge.rc:1374 Merge.rc:1527 Merge.rc:1564 Merge.rc:1629 Merge.rc:1707
 msgid "Less than 1KB"
 msgstr "Inferiore à 1 Ko"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_1KB
-#: Merge.rc:1375
-#: Merge.rc:1528
-#: Merge.rc:1565
-#: Merge.rc:1630
-#: Merge.rc:1708
+#: Merge.rc:1375 Merge.rc:1528 Merge.rc:1565 Merge.rc:1630 Merge.rc:1708
 msgid "1KB or more"
 msgstr "1 Ko è più"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_10KB
-#: Merge.rc:1376
-#: Merge.rc:1529
-#: Merge.rc:1631
+#: Merge.rc:1376 Merge.rc:1529 Merge.rc:1631
 msgid "Less than 10KB"
 msgstr "Inferiore à 10 Ko"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_10KB
-#: Merge.rc:1377
-#: Merge.rc:1530
-#: Merge.rc:1632
+#: Merge.rc:1377 Merge.rc:1530 Merge.rc:1632
 msgid "10KB or more"
 msgstr "10 Ko è più"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_100KB
-#: Merge.rc:1378
-#: Merge.rc:1531
-#: Merge.rc:1633
+#: Merge.rc:1378 Merge.rc:1531 Merge.rc:1633
 msgid "Less than 100KB"
 msgstr "Inferiore à 100 Ko"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_100KB
-#: Merge.rc:1379
-#: Merge.rc:1532
-#: Merge.rc:1634
+#: Merge.rc:1379 Merge.rc:1532 Merge.rc:1634
 msgid "100KB or more"
 msgstr "100 Ko è più"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_1MB
-#: Merge.rc:1380
-#: Merge.rc:1533
-#: Merge.rc:1635
+#: Merge.rc:1380 Merge.rc:1533 Merge.rc:1635
 msgid "Less than 1MB"
 msgstr "Inferiore à 1 Mo"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_1MB
-#: Merge.rc:1381
-#: Merge.rc:1534
-#: Merge.rc:1636
+#: Merge.rc:1381 Merge.rc:1534 Merge.rc:1636
 msgid "1MB or more"
 msgstr "1 Mo è più"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_10MB
-#: Merge.rc:1382
-#: Merge.rc:1535
-#: Merge.rc:1637
+#: Merge.rc:1382 Merge.rc:1535 Merge.rc:1637
 msgid "Less than 10MB"
 msgstr "Inferiore à 10 Mo"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_10MB
-#: Merge.rc:1383
-#: Merge.rc:1536
-#: Merge.rc:1638
+#: Merge.rc:1383 Merge.rc:1536 Merge.rc:1638
 msgid "10MB or more"
 msgstr "10 Mo è più"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_100MB
-#: Merge.rc:1384
-#: Merge.rc:1537
-#: Merge.rc:1639
+#: Merge.rc:1384 Merge.rc:1537 Merge.rc:1639
 msgid "Less than 100MB"
 msgstr "Inferiore à 100 Mo"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_100MB
-#: Merge.rc:1385
-#: Merge.rc:1538
-#: Merge.rc:1640
+#: Merge.rc:1385 Merge.rc:1538 Merge.rc:1640
 msgid "100MB or more"
 msgstr "100 Mo è più"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_LT_1GB
-#: Merge.rc:1386
-#: Merge.rc:1539
-#: Merge.rc:1641
+#: Merge.rc:1386 Merge.rc:1539 Merge.rc:1641
 msgid "Less than 1GB"
 msgstr "Inferiore à 1 Go"
 
 #. IDR_POPUP_FILTERMENU_SIZE, ID_FILTERMENU_SIZE_GE_1GB
-#: Merge.rc:1387
-#: Merge.rc:1642
+#: Merge.rc:1387 Merge.rc:1642
 msgid "1GB or more"
 msgstr "1 Go è più"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_RANGE
-#: Merge.rc:1388
-#: Merge.rc:1465
-#: Merge.rc:1517
-#: Merge.rc:1523
-#: Merge.rc:1540
-#: Merge.rc:1566
-#: Merge.rc:1587
-#: Merge.rc:1643
-#: Merge.rc:1709
-#: Merge.rc:1734
+#: Merge.rc:1388 Merge.rc:1465 Merge.rc:1517 Merge.rc:1523 Merge.rc:1540 Merge.rc:1566 Merge.rc:1587 Merge.rc:1643 Merge.rc:1709 Merge.rc:1734
 msgid "Custom Range..."
 msgstr "Intervallu persunalizatu…"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1390
-#: Merge.rc:1471
-#: Merge.rc:1568
+#: Merge.rc:1390 Merge.rc:1471 Merge.rc:1568
 msgid "&Last Modified"
 msgstr "&Ultima mudificazione"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1392
-#: Merge.rc:1473
-#: Merge.rc:1651
+#: Merge.rc:1392 Merge.rc:1473 Merge.rc:1651
 msgid "&Hour"
 msgstr "&Ora"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_HOUR_BEFORE_1
-#: Merge.rc:1394
-#: Merge.rc:1475
-#: Merge.rc:1653
+#: Merge.rc:1394 Merge.rc:1475 Merge.rc:1653
 msgid "More than 1 hour ago"
 msgstr "Più di un’ora fà"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_HOUR_WITHIN_1
-#: Merge.rc:1395
-#: Merge.rc:1476
-#: Merge.rc:1654
+#: Merge.rc:1395 Merge.rc:1476 Merge.rc:1654
 msgid "Within 1 hour"
 msgstr "In l’ora"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1397
-#: Merge.rc:1478
-#: Merge.rc:1656
+#: Merge.rc:1397 Merge.rc:1478 Merge.rc:1656
 msgid "&Day"
 msgstr "&Ghjornu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_BEFORE_TODAY
-#: Merge.rc:1399
-#: Merge.rc:1480
-#: Merge.rc:1658
+#: Merge.rc:1399 Merge.rc:1480 Merge.rc:1658
 msgid "Before today"
 msgstr "Nanzu oghje"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_TODAY
-#: Merge.rc:1400
-#: Merge.rc:1481
-#: Merge.rc:1659
+#: Merge.rc:1400 Merge.rc:1481 Merge.rc:1659
 msgid "Today"
 msgstr "Oghje"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_BEFORE_YESTERDAY
-#: Merge.rc:1401
-#: Merge.rc:1482
-#: Merge.rc:1660
+#: Merge.rc:1401 Merge.rc:1482 Merge.rc:1660
 msgid "Before yesterday"
 msgstr "Nanzu à eri"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_YESTERDAY
-#: Merge.rc:1402
-#: Merge.rc:1483
-#: Merge.rc:1661
+#: Merge.rc:1402 Merge.rc:1483 Merge.rc:1661
 msgid "Yesterday"
 msgstr "Eri"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_DAY_SINCE_YESTERDAY
-#: Merge.rc:1403
-#: Merge.rc:1484
-#: Merge.rc:1662
+#: Merge.rc:1403 Merge.rc:1484 Merge.rc:1662
 msgid "Since yesterday"
 msgstr "Dapoi eri"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1405
-#: Merge.rc:1486
-#: Merge.rc:1664
+#: Merge.rc:1405 Merge.rc:1486 Merge.rc:1664
 msgid "&Week"
 msgstr "&Settimana"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_BEFORE_THIS
-#: Merge.rc:1407
-#: Merge.rc:1488
-#: Merge.rc:1666
+#: Merge.rc:1407 Merge.rc:1488 Merge.rc:1666
 msgid "Before this week"
 msgstr "Nanzu à quista settimana"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_THIS
-#: Merge.rc:1408
-#: Merge.rc:1489
-#: Merge.rc:1667
+#: Merge.rc:1408 Merge.rc:1489 Merge.rc:1667
 msgid "This week"
 msgstr "Sta settimana"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_BEFORE_LAST
-#: Merge.rc:1409
-#: Merge.rc:1490
-#: Merge.rc:1668
+#: Merge.rc:1409 Merge.rc:1490 Merge.rc:1668
 msgid "Before last week"
 msgstr "Nanzu à a settimana scorsa"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_LAST
-#: Merge.rc:1410
-#: Merge.rc:1491
-#: Merge.rc:1669
+#: Merge.rc:1410 Merge.rc:1491 Merge.rc:1669
 msgid "Last week"
 msgstr "A settimana scorsa"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_WEEK_SINCE_LAST
-#: Merge.rc:1411
-#: Merge.rc:1492
-#: Merge.rc:1670
+#: Merge.rc:1411 Merge.rc:1492 Merge.rc:1670
 msgid "Since last week"
 msgstr "Dapoi a settimana scorsa"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1413
-#: Merge.rc:1494
-#: Merge.rc:1672
+#: Merge.rc:1413 Merge.rc:1494 Merge.rc:1672
 msgid "&Month"
 msgstr "&Mese"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_BEFORE_THIS
-#: Merge.rc:1415
-#: Merge.rc:1496
-#: Merge.rc:1674
+#: Merge.rc:1415 Merge.rc:1496 Merge.rc:1674
 msgid "Before this month"
 msgstr "Nanzu à quistu mese"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_THIS
-#: Merge.rc:1416
-#: Merge.rc:1497
-#: Merge.rc:1675
+#: Merge.rc:1416 Merge.rc:1497 Merge.rc:1675
 msgid "This month"
 msgstr "Stu mese"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_BEFORE_LAST
-#: Merge.rc:1417
-#: Merge.rc:1498
-#: Merge.rc:1676
+#: Merge.rc:1417 Merge.rc:1498 Merge.rc:1676
 msgid "Before last month"
 msgstr "Nanzu à u mese scorsu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_LAST
-#: Merge.rc:1418
-#: Merge.rc:1499
-#: Merge.rc:1677
+#: Merge.rc:1418 Merge.rc:1499 Merge.rc:1677
 msgid "Last month"
 msgstr "U mese scorsu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_MONTH_SINCE_LAST
-#: Merge.rc:1419
-#: Merge.rc:1500
-#: Merge.rc:1678
+#: Merge.rc:1419 Merge.rc:1500 Merge.rc:1678
 msgid "Since last month"
 msgstr "Dapoi u mese scorsu"
 
 #. IDR_POPUP_FILTERMENU_DATE
-#: Merge.rc:1421
-#: Merge.rc:1502
-#: Merge.rc:1680
+#: Merge.rc:1421 Merge.rc:1502 Merge.rc:1680
 msgid "&Year"
 msgstr "&Annu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_BEFORE_THIS
-#: Merge.rc:1423
-#: Merge.rc:1504
-#: Merge.rc:1682
+#: Merge.rc:1423 Merge.rc:1504 Merge.rc:1682
 msgid "Before this year"
 msgstr "Nanzu à quist’annu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_THIS
-#: Merge.rc:1424
-#: Merge.rc:1505
-#: Merge.rc:1683
+#: Merge.rc:1424 Merge.rc:1505 Merge.rc:1683
 msgid "This year"
 msgstr "Quist’annu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_BEFORE_LAST
-#: Merge.rc:1425
-#: Merge.rc:1506
-#: Merge.rc:1684
+#: Merge.rc:1425 Merge.rc:1506 Merge.rc:1684
 msgid "Before last year"
 msgstr "Nanzu à l’annu scorsu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_LAST
-#: Merge.rc:1426
-#: Merge.rc:1507
-#: Merge.rc:1685
+#: Merge.rc:1426 Merge.rc:1507 Merge.rc:1685
 msgid "Last year"
 msgstr "L’annu scorsu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_YEAR_SINCE_LAST
-#: Merge.rc:1427
-#: Merge.rc:1508
-#: Merge.rc:1686
+#: Merge.rc:1427 Merge.rc:1508 Merge.rc:1686
 msgid "Since last year"
 msgstr "Dapoi l’annu scorsu"
 
 #. IDR_POPUP_FILTERMENU_DATE, ID_FILTERMENU_DATE_RANGE
-#: Merge.rc:1429
-#: Merge.rc:1510
-#: Merge.rc:1688
+#: Merge.rc:1429 Merge.rc:1510 Merge.rc:1688
 msgid "&Custom Range..."
 msgstr "Intervallu persunalizatu…"
 
 #. IDR_POPUP_FILTERMENU
-#: Merge.rc:1431
-#: Merge.rc:1589
+#: Merge.rc:1431 Merge.rc:1589
 msgid "&Attributes"
 msgstr "&Attributi"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_READONLY
-#: Merge.rc:1433
-#: Merge.rc:1607
+#: Merge.rc:1433 Merge.rc:1607
 msgid "Read-only files"
 msgstr "Schedarii in lettura sola"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_READONLY
-#: Merge.rc:1434
-#: Merge.rc:1608
+#: Merge.rc:1434 Merge.rc:1608
 msgid "Not read-only files"
 msgstr "Schedarii micca in lettura sola"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_HIDDEN
-#: Merge.rc:1435
-#: Merge.rc:1609
+#: Merge.rc:1435 Merge.rc:1609
 msgid "Hidden files"
 msgstr "Schedarii piattati"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_HIDDEN
-#: Merge.rc:1436
-#: Merge.rc:1610
+#: Merge.rc:1436 Merge.rc:1610
 msgid "Not hidden files"
 msgstr "Schedarii micca piattati"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_SYSTEM
-#: Merge.rc:1437
-#: Merge.rc:1611
+#: Merge.rc:1437 Merge.rc:1611
 msgid "System files"
 msgstr "Schedarii di u sistema"
 
 #. IDR_POPUP_FILTERMENU_ATTR, ID_FILTERMENU_ATTR_NOT_SYSTEM
-#: Merge.rc:1438
-#: Merge.rc:1612
+#: Merge.rc:1438 Merge.rc:1612
 msgid "Not system files"
 msgstr "Schedarii micca di u sistema"
 
@@ -2957,10 +2472,7 @@ msgid "100000 or more"
 msgstr "100000 è più"
 
 #. IDR_POPUP_RENAMEMOVE_MENU, ID_RENAME_MOVE_KEY_MENU_PROPS
-#: Merge.rc:1467
-#: Merge.rc:1594
-#: Merge.rc:1761
-#: Merge.rc:1778
+#: Merge.rc:1467 Merge.rc:1594 Merge.rc:1761 Merge.rc:1778
 msgid "Additional &Properties..."
 msgstr "&Pruprietà addiziunale…"
 
@@ -3035,142 +2547,102 @@ msgid "Add &Difference Condition"
 msgstr "Aghjunghje una cundizione di s&farenza"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_EQUAL
-#: Merge.rc:1553
-#: Merge.rc:1570
-#: Merge.rc:1591
-#: Merge.rc:1696
-#: Merge.rc:1717
-#: Merge.rc:1742
+#: Merge.rc:1553 Merge.rc:1570 Merge.rc:1591 Merge.rc:1696 Merge.rc:1717 Merge.rc:1742
 msgid "Equal"
 msgstr "Uguale"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_NOT_EQUAL
-#: Merge.rc:1554
-#: Merge.rc:1571
-#: Merge.rc:1592
-#: Merge.rc:1697
-#: Merge.rc:1718
-#: Merge.rc:1743
+#: Merge.rc:1554 Merge.rc:1571 Merge.rc:1592 Merge.rc:1697 Merge.rc:1718 Merge.rc:1743
 msgid "Not Equal"
 msgstr "Micca uguale"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_LESS
-#: Merge.rc:1555
-#: Merge.rc:1572
-#: Merge.rc:1698
-#: Merge.rc:1719
-#: Merge.rc:1744
+#: Merge.rc:1555 Merge.rc:1572 Merge.rc:1698 Merge.rc:1719 Merge.rc:1744
 msgid "Less Than"
 msgstr "Hè inferiore à"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_LESS_EQUAL
-#: Merge.rc:1556
-#: Merge.rc:1573
-#: Merge.rc:1699
-#: Merge.rc:1720
-#: Merge.rc:1745
+#: Merge.rc:1556 Merge.rc:1573 Merge.rc:1699 Merge.rc:1720 Merge.rc:1745
 msgid "Less Than or Equal to"
 msgstr "Hè inferiore o uguale à"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_GREATER
-#: Merge.rc:1557
-#: Merge.rc:1574
-#: Merge.rc:1700
-#: Merge.rc:1721
-#: Merge.rc:1746
+#: Merge.rc:1557 Merge.rc:1574 Merge.rc:1700 Merge.rc:1721 Merge.rc:1746
 msgid "Greater Than"
 msgstr "Hè superiore à"
 
 #. IDR_POPUP_FILTERMENU_DIFF_PROP, ID_FILTERMENU_DIFF_PROP_GREATER_EQUAL
-#: Merge.rc:1558
-#: Merge.rc:1575
-#: Merge.rc:1701
-#: Merge.rc:1722
-#: Merge.rc:1747
+#: Merge.rc:1558 Merge.rc:1575 Merge.rc:1701 Merge.rc:1722 Merge.rc:1747
 msgid "Greater Than or Equal to"
 msgstr "Hè superiore o uguale à"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_10B
-#: Merge.rc:1560
-#: Merge.rc:1703
+#: Merge.rc:1560 Merge.rc:1703
 msgid "Less than 10B"
 msgstr "Inferiore à 10 o"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_10B
-#: Merge.rc:1561
-#: Merge.rc:1704
+#: Merge.rc:1561 Merge.rc:1704
 msgid "10B or more"
 msgstr "10 o è più"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_LT_100B
-#: Merge.rc:1562
-#: Merge.rc:1705
+#: Merge.rc:1562 Merge.rc:1705
 msgid "Less than 100B"
 msgstr "Inferiore à 100 o"
 
 #. IDR_POPUP_FILTERMENU_DIFF_SIZE, ID_FILTERMENU_DIFF_SIZE_GE_100B
-#: Merge.rc:1563
-#: Merge.rc:1706
+#: Merge.rc:1563 Merge.rc:1706
 msgid "100B or more"
 msgstr "100 o è più"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1SECOND
-#: Merge.rc:1577
-#: Merge.rc:1724
+#: Merge.rc:1577 Merge.rc:1724
 msgid "Less than 1 second"
 msgstr "Menu d’1 seconda"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1SECOND
-#: Merge.rc:1578
-#: Merge.rc:1725
+#: Merge.rc:1578 Merge.rc:1725
 msgid "1 second or more"
 msgstr "1 seconda è più"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1MINUTE
-#: Merge.rc:1579
-#: Merge.rc:1726
+#: Merge.rc:1579 Merge.rc:1726
 msgid "Less than 1 minute"
 msgstr "Menu d’1 minutu"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1MINUTE
-#: Merge.rc:1580
-#: Merge.rc:1727
+#: Merge.rc:1580 Merge.rc:1727
 msgid "1 minute or more"
 msgstr "1 minutu è più"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1HOUR
-#: Merge.rc:1581
-#: Merge.rc:1728
+#: Merge.rc:1581 Merge.rc:1728
 msgid "Less than 1 hour"
 msgstr "Menu d’1 ora"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1HOUR
-#: Merge.rc:1582
-#: Merge.rc:1729
+#: Merge.rc:1582 Merge.rc:1729
 msgid "1 hour or more"
 msgstr "1 ora è più"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1DAY
-#: Merge.rc:1583
-#: Merge.rc:1730
+#: Merge.rc:1583 Merge.rc:1730
 msgid "Less than 1 day"
 msgstr "Menu d’1 ghjornu"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1DAY
-#: Merge.rc:1584
-#: Merge.rc:1731
+#: Merge.rc:1584 Merge.rc:1731
 msgid "1 day or more"
 msgstr "1 ghjornu è più"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_LT_1WEEK
-#: Merge.rc:1585
-#: Merge.rc:1732
+#: Merge.rc:1585 Merge.rc:1732
 msgid "Less than 1 week"
 msgstr "Menu d’1 settimana"
 
 #. IDR_POPUP_FILTERMENU_DIFF_DATE, ID_FILTERMENU_DIFF_DATE_GE_1WEEK
-#: Merge.rc:1586
-#: Merge.rc:1733
+#: Merge.rc:1586 Merge.rc:1733
 msgid "1 week or more"
 msgstr "1 settimana è più"
 
@@ -3197,12 +2669,12 @@ msgstr "Destinazione : &Tutte"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
 #: Merge.rc:1620
 msgid "Binary files only"
-msgstr ""
+msgstr "Solu i schedarii binarii"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1621
 msgid "Text files only"
-msgstr ""
+msgstr "Solu i schedarii di testu"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CLEAR
 #: Merge.rc:1755
@@ -3310,11 +2782,7 @@ msgid "Open Regex Replace Lists Folder..."
 msgstr "Apre u cartulare di e liste di rimpiazzamentu regex…"
 
 #. IDD_FILTERS_CONDITION, IDC_CONDITION_MATCHCASE
-#: Merge.rc:1799
-#: Merge.rc:1995
-#: Merge.rc:2014
-#: Merge.rc:2042
-#: Merge.rc:2585
+#: Merge.rc:1799 Merge.rc:1995 Merge.rc:2014 Merge.rc:2042 Merge.rc:2585
 msgid "Match &case"
 msgstr "&Rispettà Maiuscule è minuscule"
 
@@ -3389,23 +2857,8 @@ msgid "Visit the WinMerge Homepage!"
 msgstr "Scuprite a pagina d’accolta di WinMerge !"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDOK
-#: Merge.rc:1938
-#: Merge.rc:2080
-#: Merge.rc:2431
-#: Merge.rc:2455
-#: Merge.rc:2469
-#: Merge.rc:2497
-#: Merge.rc:2588
-#: Merge.rc:2613
-#: Merge.rc:2674
-#: Merge.rc:2691
-#: Merge.rc:2703
-#: Merge.rc:2867
-#: Merge.rc:2927
-#: Merge.rc:3062
-#: Merge.rc:3104
-#: Merge.rc:3147
-#: Merge.rc:3197
+#: Merge.rc:1938 Merge.rc:2080 Merge.rc:2431 Merge.rc:2455 Merge.rc:2469 Merge.rc:2497 Merge.rc:2588 Merge.rc:2613 Merge.rc:2674 Merge.rc:2691 Merge.rc:2703 Merge.rc:2867 Merge.rc:2927
+#: Merge.rc:3062 Merge.rc:3104 Merge.rc:3147 Merge.rc:3197
 msgid "OK"
 msgstr "Vai"
 
@@ -3415,8 +2868,7 @@ msgid "Contributors"
 msgstr "Cuntribuenti"
 
 #. IDD_SELECT_FILES_OR_FOLDERS
-#: Merge.rc:1945
-#: Merge.rc:3070
+#: Merge.rc:1945 Merge.rc:3070
 msgid "Select Files or Folders"
 msgstr "Selezziunà schedarii o cartulari"
 
@@ -3436,9 +2888,7 @@ msgid "Swap 1st | 2nd"
 msgstr "Scambià 1ᵘ | 2ᵘ"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE1
-#: Merge.rc:1954
-#: Merge.rc:2310
-#: Merge.rc:2413
+#: Merge.rc:1954 Merge.rc:2310 Merge.rc:2413
 msgid "&Browse..."
 msgstr "&Navigà…"
 
@@ -3458,8 +2908,7 @@ msgid "Swap 2nd | 3rd"
 msgstr "Scambià 2ᵘ | 3ᵘ"
 
 #. IDD_PROPPAGE_SYSTEM, IDC_FILTER_USER_BROWSE
-#: Merge.rc:1960
-#: Merge.rc:2315
+#: Merge.rc:1960 Merge.rc:2315
 msgid "B&rowse..."
 msgstr "N&avigà…"
 
@@ -3479,9 +2928,7 @@ msgid "Swap 1st | 3rd"
 msgstr "Scambià 1ᵘ | 3ᵘ"
 
 #. IDD_PROPPAGE_BACKUPS, IDC_BACKUP_BROWSE
-#: Merge.rc:1966
-#: Merge.rc:2685
-#: Merge.rc:2883
+#: Merge.rc:1966 Merge.rc:2685 Merge.rc:2883
 msgid "Browse..."
 msgstr "Na&vigà…"
 
@@ -3511,27 +2958,8 @@ msgid "Se&lect..."
 msgstr "Sele&zziunà…"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDCANCEL
-#: Merge.rc:1981
-#: Merge.rc:2001
-#: Merge.rc:2025
-#: Merge.rc:2046
-#: Merge.rc:2081
-#: Merge.rc:2432
-#: Merge.rc:2456
-#: Merge.rc:2470
-#: Merge.rc:2498
-#: Merge.rc:2551
-#: Merge.rc:2589
-#: Merge.rc:2614
-#: Merge.rc:2675
-#: Merge.rc:2692
-#: Merge.rc:2704
-#: Merge.rc:2868
-#: Merge.rc:2928
-#: Merge.rc:3087
-#: Merge.rc:3105
-#: Merge.rc:3148
-#: Merge.rc:3198
+#: Merge.rc:1981 Merge.rc:2001 Merge.rc:2025 Merge.rc:2046 Merge.rc:2081 Merge.rc:2432 Merge.rc:2456 Merge.rc:2470 Merge.rc:2498 Merge.rc:2551 Merge.rc:2589 Merge.rc:2614 Merge.rc:2675
+#: Merge.rc:2692 Merge.rc:2704 Merge.rc:2868 Merge.rc:2928 Merge.rc:3087 Merge.rc:3105 Merge.rc:3148 Merge.rc:3198
 msgid "Cancel"
 msgstr "Abbandunà"
 
@@ -3541,9 +2969,7 @@ msgid "Status:"
 msgstr "Statu :"
 
 #. IDD_PLUGINS_LIST, ID_HELP
-#: Merge.rc:1983
-#: Merge.rc:2082
-#: Merge.rc:2929
+#: Merge.rc:1983 Merge.rc:2082 Merge.rc:2929
 msgid "Help"
 msgstr "Aiutu"
 
@@ -3558,23 +2984,17 @@ msgid "Find"
 msgstr "Circà"
 
 #. IDD_EDIT_MARKER, IDC_STATIC
-#: Merge.rc:1992
-#: Merge.rc:2009
-#: Merge.rc:2037
+#: Merge.rc:1992 Merge.rc:2009 Merge.rc:2037
 msgid "Fi&nd what:"
 msgstr "Cosa circà :"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_WHOLE_WORD
-#: Merge.rc:1994
-#: Merge.rc:2013
-#: Merge.rc:2041
+#: Merge.rc:1994 Merge.rc:2013 Merge.rc:2041
 msgid "Match &whole word only"
 msgstr "&Currispundenza di a parolla sana"
 
 #. IDD_EDIT_MARKER, IDC_EDIT_REGEXP
-#: Merge.rc:1996
-#: Merge.rc:2015
-#: Merge.rc:2043
+#: Merge.rc:1996 Merge.rc:2015 Merge.rc:2043
 msgid "Regular &expression"
 msgstr "&Espressione regulare"
 
@@ -3589,8 +3009,7 @@ msgid "&Don't close this dialog"
 msgstr "Ùn chjode micca stu &dialogu"
 
 #. IDD_EDIT_REPLACE, IDC_EDIT_SKIP
-#: Merge.rc:1999
-#: Merge.rc:2021
+#: Merge.rc:1999 Merge.rc:2021
 msgid "&Find Next"
 msgstr "Circà &seguente"
 
@@ -3640,8 +3059,7 @@ msgid "Replace &All"
 msgstr "&Tuttu rimpiazzà"
 
 #. IDS_OPTIONSPG_MARKERCOLORS
-#: Merge.rc:2030
-#: Merge.rc:4209
+#: Merge.rc:2030 Merge.rc:4209
 msgid "Markers"
 msgstr "Marcatori"
 
@@ -3651,8 +3069,7 @@ msgid "Enable &markers"
 msgstr "Attivà i &marcatori"
 
 #. IDD_FILTERS_LINEFILTERS, IDC_LFILTER_ADDBTN
-#: Merge.rc:2035
-#: Merge.rc:2057
+#: Merge.rc:2035 Merge.rc:2057
 msgid "New"
 msgstr "Novu"
 
@@ -3662,17 +3079,12 @@ msgid "&Background color:"
 msgstr "Culore di u &fondu :"
 
 #. IDS_MESSAGEBOX_OK
-#: Merge.rc:2044
-#: Merge.rc:2829
-#: Merge.rc:3086
-#: Merge.rc:4171
+#: Merge.rc:2044 Merge.rc:2829 Merge.rc:3086 Merge.rc:4171
 msgid "&Ok"
 msgstr "&Vai"
 
 #. IDD_PLUGINS_EDITPLUGIN
-#: Merge.rc:2045
-#: Merge.rc:2525
-#: Merge.rc:3199
+#: Merge.rc:2045 Merge.rc:2525 Merge.rc:3199
 msgid "&Apply"
 msgstr "&Appiecà"
 
@@ -3692,15 +3104,12 @@ msgid "Regular Expressions (one per line):"
 msgstr "Espressioni regulare (una à a linea) :"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_EDIT
-#: Merge.rc:2058
-#: Merge.rc:2924
+#: Merge.rc:2058 Merge.rc:2924
 msgid "Edit"
 msgstr "Mudificà"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_REMOVE
-#: Merge.rc:2059
-#: Merge.rc:2071
-#: Merge.rc:2925
+#: Merge.rc:2059 Merge.rc:2071 Merge.rc:2925
 msgid "Remove"
 msgstr "Caccià"
 
@@ -3720,8 +3129,7 @@ msgid "Enable"
 msgstr "Attivà"
 
 #. IDD_PLUGINS_LIST, IDC_PLUGIN_ADD
-#: Merge.rc:2070
-#: Merge.rc:2923
+#: Merge.rc:2070 Merge.rc:2923
 msgid "Add"
 msgstr "Aghjunghje"
 
@@ -3746,10 +3154,7 @@ msgid "Export..."
 msgstr "Espurtà…"
 
 #. IDS_OPTIONSPG_GENCOMPARE
-#: Merge.rc:2092
-#: Merge.rc:4199
-#: Merge.rc:4202
-#: Merge.rc:4219
+#: Merge.rc:2092 Merge.rc:4199 Merge.rc:4202 Merge.rc:4219
 msgid "General"
 msgstr "Generale"
 
@@ -3814,34 +3219,13 @@ msgid "Language:"
 msgstr "Lingua :"
 
 #. IDD_PROPPAGE_COMPARE_WEBPAGE, IDC_COMPARE_DEFAULTS
-#: Merge.rc:2119
-#: Merge.rc:2299
-#: Merge.rc:2321
-#: Merge.rc:2352
-#: Merge.rc:2369
-#: Merge.rc:2386
-#: Merge.rc:2394
-#: Merge.rc:2430
-#: Merge.rc:2454
-#: Merge.rc:2633
-#: Merge.rc:2644
-#: Merge.rc:2653
-#: Merge.rc:2887
-#: Merge.rc:2922
-#: Merge.rc:2985
-#: Merge.rc:3010
-#: Merge.rc:3024
-#: Merge.rc:3038
-#: Merge.rc:3054
+#: Merge.rc:2119 Merge.rc:2299 Merge.rc:2321 Merge.rc:2352 Merge.rc:2369 Merge.rc:2386 Merge.rc:2394 Merge.rc:2430 Merge.rc:2454 Merge.rc:2633 Merge.rc:2644 Merge.rc:2653 Merge.rc:2887
+#: Merge.rc:2922 Merge.rc:2985 Merge.rc:3010 Merge.rc:3024 Merge.rc:3038 Merge.rc:3054
 msgid "Defaults"
 msgstr "Predefinizioni"
 
 #. IDS_OPTIONSPG_COLORS
-#: Merge.rc:2124
-#: Merge.rc:2140
-#: Merge.rc:2267
-#: Merge.rc:2292
-#: Merge.rc:4205
+#: Merge.rc:2124 Merge.rc:2140 Merge.rc:2267 Merge.rc:2292 Merge.rc:4205
 msgid "Colors"
 msgstr "Culori"
 
@@ -3876,10 +3260,7 @@ msgid "Delete &current scheme..."
 msgstr "Sq&uassà u ghjocu attuale…"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_BACKGROUND_COLUMN_LABEL
-#: Merge.rc:2143
-#: Merge.rc:2238
-#: Merge.rc:2258
-#: Merge.rc:2272
+#: Merge.rc:2143 Merge.rc:2238 Merge.rc:2258 Merge.rc:2272
 msgid "Background"
 msgstr "Sfondu"
 
@@ -3889,11 +3270,7 @@ msgid "Deleted"
 msgstr "Squassatu"
 
 #. IDS_OPTIONSPG_TEXTCOLORS
-#: Merge.rc:2145
-#: Merge.rc:2207
-#: Merge.rc:2239
-#: Merge.rc:2273
-#: Merge.rc:4207
+#: Merge.rc:2145 Merge.rc:2207 Merge.rc:2239 Merge.rc:2273 Merge.rc:4207
 msgid "Text"
 msgstr "Testu"
 
@@ -3943,10 +3320,7 @@ msgid "Selected Word Diff:"
 msgstr "Sfarenza di parolla selezziunata :"
 
 #. IDD_INPUTBOX
-#: Merge.rc:2195
-#: Merge.rc:2230
-#: Merge.rc:2251
-#: Merge.rc:3099
+#: Merge.rc:2195 Merge.rc:2230 Merge.rc:2251 Merge.rc:3099
 msgid "Dialog"
 msgstr "Dialogu"
 
@@ -3996,15 +3370,7 @@ msgid "User 2:"
 msgstr "Utilizatore 2 :"
 
 #. IDD_PROPPAGE_COLORS_SYNTAX, IDC_SCOLOR_USER2_BOLD
-#: Merge.rc:2209
-#: Merge.rc:2211
-#: Merge.rc:2213
-#: Merge.rc:2215
-#: Merge.rc:2217
-#: Merge.rc:2219
-#: Merge.rc:2221
-#: Merge.rc:2223
-#: Merge.rc:2225
+#: Merge.rc:2209 Merge.rc:2211 Merge.rc:2213 Merge.rc:2215 Merge.rc:2217 Merge.rc:2219 Merge.rc:2221 Merge.rc:2223 Merge.rc:2225
 msgid "Bold"
 msgstr "Grassu"
 
@@ -4029,8 +3395,7 @@ msgid "Selection:"
 msgstr "Selezzione :"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
-#: Merge.rc:2245
-#: Merge.rc:2286
+#: Merge.rc:2245 Merge.rc:2286
 msgid "Margin:"
 msgstr "Margine :"
 
@@ -4085,10 +3450,7 @@ msgid "&Use custom system colors"
 msgstr "&Impiegà i culori persunalizati di u sistema (certi elementi di l’interfaccia grafica puderianu ùn esse appiecati)"
 
 #. IDS_PRPCAT_SYSTEM
-#: Merge.rc:2304
-#: Merge.rc:4211
-#: Merge.rc:4212
-#: Merge.rc:4657
+#: Merge.rc:2304 Merge.rc:4211 Merge.rc:4212 Merge.rc:4657
 msgid "System"
 msgstr "Sistema"
 
@@ -4128,14 +3490,12 @@ msgid "C&ustom folder:"
 msgstr "Cartulare &persunalizatu :"
 
 #. IDD_GENERATE_PATCH, IDC_DIFF_BROWSE_FILE2
-#: Merge.rc:2320
-#: Merge.rc:2416
+#: Merge.rc:2320 Merge.rc:2416
 msgid "Br&owse..."
 msgstr "Na&vigà…"
 
 #. IDS_OPTIONSPG_COMPARE
-#: Merge.rc:2326
-#: Merge.rc:4200
+#: Merge.rc:2326 Merge.rc:4200
 msgid "Compare"
 msgstr "Paragunà"
 
@@ -4225,8 +3585,7 @@ msgid "Completely unhighlight the ignored differences"
 msgstr "Caccià a messa in evidenza di e sfarenze ignurate"
 
 #. IDS_OPTIONSPG_EDITOR
-#: Merge.rc:2357
-#: Merge.rc:4201
+#: Merge.rc:2357 Merge.rc:4201
 msgid "Editor"
 msgstr "Editore"
 
@@ -4306,8 +3665,7 @@ msgid "Some messages can be hidden by the user. Press Reset to make all messages
 msgstr "Certi messaghji ponu esse piattati da l’utilizatore. Appughjate nant’à u buttone « Reinizià » per rendeli tutti torna videvule."
 
 #. IDD_SELECT_FILES_OR_FOLDERS, IDC_RESET
-#: Merge.rc:2402
-#: Merge.rc:3085
+#: Merge.rc:2402 Merge.rc:3085
 msgid "Reset"
 msgstr "Reinizià"
 
@@ -4332,8 +3690,7 @@ msgid "&Swap"
 msgstr "&Scambià"
 
 #. IDD_DIRCMP_REPORT, IDC_REPORT_COPYCLIPBOARD
-#: Merge.rc:2418
-#: Merge.rc:2690
+#: Merge.rc:2418 Merge.rc:2690
 msgid "&Copy to clipboard"
 msgstr "&Cupià in u preme’papei"
 
@@ -4408,8 +3765,7 @@ msgid "Select Plugin"
 msgstr "Selezziunà u modulu d’estensione"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2478
-#: Merge.rc:3115
+#: Merge.rc:2478 Merge.rc:3115
 msgid "Plugin &name:"
 msgstr "Nome di u modulu :"
 
@@ -4419,20 +3775,17 @@ msgid "&Target files:"
 msgstr "Schedarii di destina&zione :"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2482
-#: Merge.rc:3117
+#: Merge.rc:2482 Merge.rc:3117
 msgid "Extensions list:"
 msgstr "Lista di l’estensioni :"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2484
-#: Merge.rc:3119
+#: Merge.rc:2484 Merge.rc:3119
 msgid "Description:"
 msgstr "Discrizzione :"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2486
-#: Merge.rc:3121
+#: Merge.rc:2486 Merge.rc:3121
 msgid "Default arguments:"
 msgstr "Parametri predefiniti :"
 
@@ -4447,8 +3800,7 @@ msgid "&Open files in same window type after unpacking"
 msgstr "&Apre i schedarii in u listessu tipu di finestra dopu à a spacchittera"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_PIPELINE_STATIC
-#: Merge.rc:2492
-#: Merge.rc:3129
+#: Merge.rc:2492 Merge.rc:3129
 msgid "&Plugin pipeline:"
 msgstr "&Cundottu di modulu :"
 
@@ -4473,8 +3825,7 @@ msgid "Continue"
 msgstr "Cuntinuà"
 
 #. IDD_PROPPAGE_COMPARE_FOLDER, IDC_STATIC
-#: Merge.rc:2509
-#: Merge.rc:2973
+#: Merge.rc:2509 Merge.rc:2973
 msgid "C&PU cores to use:"
 msgstr "&N° di cori CPU à impiegà :"
 
@@ -4489,9 +3840,7 @@ msgid "Items compared:"
 msgstr "Elementi paragunati :"
 
 #. IDS_PREVIEWBAR_CLOSE
-#: Merge.rc:2526
-#: Merge.rc:2846
-#: Merge.rc:5328
+#: Merge.rc:2526 Merge.rc:2846 Merge.rc:5328
 msgid "&Close"
 msgstr "&Chjode"
 
@@ -4531,8 +3880,7 @@ msgid "&Go to"
 msgstr "&Andà à"
 
 #. IDS_PROJECT_ITEM_FILE_FILTER
-#: Merge.rc:2556
-#: Merge.rc:4321
+#: Merge.rc:2556 Merge.rc:4321
 msgid "File Filters"
 msgstr "Filtri di schedariu"
 
@@ -4599,93 +3947,85 @@ msgstr "Spressione :"
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2595
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Filtru da u risultatu di u paragone"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2598
 msgid "&Include"
-msgstr ""
+msgstr "&Include"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
 #: Merge.rc:2599
 msgid "&Exclude"
-msgstr ""
+msgstr "&Esclude"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
 #: Merge.rc:2600
 msgid "Comparison Results"
-msgstr ""
+msgstr "Risultati di paragone"
 
 #. IDS_IDENTICAL
-#: Merge.rc:2601
-#: Merge.rc:2733
-#: Merge.rc:2794
-#: Merge.rc:4698
+#: Merge.rc:2601 Merge.rc:2733 Merge.rc:2794 Merge.rc:4698
 msgid "Identical"
 msgstr "Identichi"
 
 #. IDS_DIFFERENT
-#: Merge.rc:2602
-#: Merge.rc:2714
-#: Merge.rc:2755
-#: Merge.rc:4708
+#: Merge.rc:2602 Merge.rc:2714 Merge.rc:2755 Merge.rc:4708
 msgid "Different"
 msgstr "Sfarente"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2603
 msgid "Left only"
-msgstr ""
+msgstr "Solu à manca"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2604
 msgid "Right only"
-msgstr ""
+msgstr "Solu à diritta"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2605
 msgid "Skipped"
-msgstr ""
+msgstr "Tralasciatu"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2606
 msgid "Middle only"
-msgstr ""
+msgstr "Solu à u centru"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2607
 msgid "Left only (different)"
-msgstr ""
+msgstr "Solu à manca (sfarente)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2608
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Solu à u centru (sfarente)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2609
 msgid "Right only (different)"
-msgstr ""
+msgstr "Solu à diritta (sfarente)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2610
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Solu à manca (assente)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2611
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Solu à u centru (assente)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2612
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Solu à diritta (assente)"
 
 #. IDS_OPTIONSPG_CODEPAGE
-#: Merge.rc:2619
-#: Merge.rc:2811
-#: Merge.rc:4213
+#: Merge.rc:2619 Merge.rc:2811 Merge.rc:4213
 msgid "Codepage"
 msgstr "Pagina di codice"
 
@@ -4733,8 +4073,7 @@ msgstr ""
 "Rilanciu richiestu."
 
 #. IDS_OPTIONSPG_ARCHIVE
-#: Merge.rc:2638
-#: Merge.rc:4214
+#: Merge.rc:2638 Merge.rc:4214
 msgid "Archive Support"
 msgstr "Permette l’archiviera"
 
@@ -4849,58 +4188,47 @@ msgid "Private Filter (current user only)"
 msgstr "Filtru privatu (solu per l’utilizatore attuale)"
 
 #. IDD_COMPARE_STATISTICS3
-#: Merge.rc:2709
-#: Merge.rc:2750
+#: Merge.rc:2709 Merge.rc:2750
 msgid "Compare Statistics"
 msgstr "Statistiche di paragone"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2712
-#: Merge.rc:2753
+#: Merge.rc:2712 Merge.rc:2753
 msgid "Folders:"
 msgstr "Cartulari :"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2713
-#: Merge.rc:2754
+#: Merge.rc:2713 Merge.rc:2754
 msgid "Files:"
 msgstr "Schedarii :"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2719
-#: Merge.rc:2738
-#: Merge.rc:2760
-#: Merge.rc:2799
+#: Merge.rc:2719 Merge.rc:2738 Merge.rc:2760 Merge.rc:2799
 msgid "Binary:"
 msgstr "Binariu :"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2722
-#: Merge.rc:2763
+#: Merge.rc:2722 Merge.rc:2763
 msgid "Unique"
 msgstr "Unicu"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2723
-#: Merge.rc:2764
+#: Merge.rc:2723 Merge.rc:2764
 msgid "Left:"
 msgstr "Manca :"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2728
-#: Merge.rc:2774
+#: Merge.rc:2728 Merge.rc:2774
 msgid "Right:"
 msgstr "Diritta :"
 
 #. IDD_COMPARE_STATISTICS3, IDC_STATIC
-#: Merge.rc:2742
-#: Merge.rc:2803
+#: Merge.rc:2742 Merge.rc:2803
 msgid "Total:"
 msgstr "Tutale :"
 
 #. IDD_COMPARE_STATISTICS3, IDOK
-#: Merge.rc:2745
-#: Merge.rc:2806
+#: Merge.rc:2745 Merge.rc:2806
 msgid "Close"
 msgstr "Chjode"
 
@@ -4930,9 +4258,7 @@ msgid "Affects"
 msgstr "Tocchi"
 
 #. IDD_LOAD_SAVE_CODEPAGE, IDC_RIGHT_FILES_LABEL
-#: Merge.rc:2816
-#: Merge.rc:2818
-#: Merge.rc:2820
+#: Merge.rc:2816 Merge.rc:2818 Merge.rc:2820
 msgid "(Affects)"
 msgstr "(Tocchi)"
 
@@ -4957,8 +4283,7 @@ msgid "&Use same codepage for both"
 msgstr "&Impiegà a listessa pagina di codice per tramindui"
 
 #. IDS_MESSAGEBOX_CANCEL
-#: Merge.rc:2830
-#: Merge.rc:4172
+#: Merge.rc:2830 Merge.rc:4172
 msgid "&Cancel"
 msgstr "&Abbandunà"
 
@@ -4993,9 +4318,7 @@ msgid "&Test"
 msgstr "&Pruvà"
 
 #. IDS_OPTIONSPG_TABLECOMPARE
-#: Merge.rc:2851
-#: Merge.rc:2990
-#: Merge.rc:4228
+#: Merge.rc:2851 Merge.rc:2990 Merge.rc:4228
 msgid "Table"
 msgstr "Tavulone"
 
@@ -5020,28 +4343,22 @@ msgid "Custom &Delimiter-Separated Values"
 msgstr "Persunalizà delimitatore è &staccamentu"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:2859
-#: Merge.rc:2861
-#: Merge.rc:2996
-#: Merge.rc:3004
+#: Merge.rc:2859 Merge.rc:2861 Merge.rc:2996 Merge.rc:3004
 msgid "D&elimiter character:"
 msgstr "Caratteru &delimitatore :"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_COMPARETABLE_ALLOWNEWLINE
-#: Merge.rc:2863
-#: Merge.rc:3006
+#: Merge.rc:2863 Merge.rc:3006
 msgid "&Allow newlines in quotes"
 msgstr "&Permette i salti di linea in e citazioni"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:2865
-#: Merge.rc:3008
+#: Merge.rc:2865 Merge.rc:3008
 msgid "&Quote character:"
 msgstr "&Caratteru di citazione :"
 
 #. IDS_OPTIONSPG_BACKUPS
-#: Merge.rc:2873
-#: Merge.rc:4216
+#: Merge.rc:2873 Merge.rc:4216
 msgid "Backup Files"
 msgstr "Schedarii di salvaguardia"
 
@@ -5091,8 +4408,7 @@ msgid "A&ppend timestamp"
 msgstr "Aghjunghje una stampiglia di &tempu"
 
 #. IDS_CONFIRM_COPY_CAPTION
-#: Merge.rc:2892
-#: Merge.rc:4565
+#: Merge.rc:2892 Merge.rc:4565
 msgid "Confirm Copy"
 msgstr "Cunfirmazione di copia"
 
@@ -5112,8 +4428,7 @@ msgid "To right"
 msgstr "Da a diritta"
 
 #. IDS_MESSAGEBOX_DONT_ASK_AGAIN
-#: Merge.rc:2901
-#: Merge.rc:4191
+#: Merge.rc:2901 Merge.rc:4191
 msgid "Don't ask this &question again."
 msgstr "Ùn mi &dumandà più."
 
@@ -5128,8 +4443,7 @@ msgid "No"
 msgstr "Nò"
 
 #. IDS_PROJECT_ITEM_PLUGIN
-#: Merge.rc:2909
-#: Merge.rc:4323
+#: Merge.rc:2909 Merge.rc:4323
 msgid "Plugins"
 msgstr "Moduli d’estensione"
 
@@ -5139,8 +4453,7 @@ msgid "&Enable plugins"
 msgstr "&Attivà i moduli d’estensione"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_STATIC
-#: Merge.rc:2913
-#: Merge.rc:3113
+#: Merge.rc:2913 Merge.rc:3113
 msgid "Plugin &type:"
 msgstr "Tipu di &modulu d’estensione :"
 
@@ -5155,14 +4468,12 @@ msgid "&Plugin arguments:"
 msgstr "Parametri di u modulu d’estensione :"
 
 #. IDD_PLUGINS_EDITPLUGIN, IDC_PLUGIN_AUTOMATIC
-#: Merge.rc:2920
-#: Merge.rc:3134
+#: Merge.rc:2920 Merge.rc:3134
 msgid "Enable &automatic unpacking/prediffing"
 msgstr "Attivà spacchittera è preparagone &autumatichi"
 
 #. IDS_OPTIONSPG_SHELL
-#: Merge.rc:2934
-#: Merge.rc:4217
+#: Merge.rc:2934 Merge.rc:4217
 msgid "Shell Integration"
 msgstr "Integrazione à u listinu cuntestuale"
 
@@ -5227,8 +4538,7 @@ msgid "Clear all recent items"
 msgstr "Squassà tutti l’elementi recenti"
 
 #. IDS_OPTIONSPG_FOLDERCOMPARE
-#: Merge.rc:2954
-#: Merge.rc:4225
+#: Merge.rc:2954 Merge.rc:4225
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Cartulare"
@@ -5294,9 +4604,7 @@ msgid "M&erge renames and moves:"
 msgstr "&Fusione di e rinuminazioni è i dispiazzamenti :"
 
 #. IDD_PROPPAGE_COMPARE_TABLE, IDC_STATIC
-#: Merge.rc:2994
-#: Merge.rc:2999
-#: Merge.rc:3002
+#: Merge.rc:2994 Merge.rc:2999 Merge.rc:3002
 msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
 
@@ -5306,8 +4614,7 @@ msgid "Custom Delimiter-Separated Values"
 msgstr "Persunalizà delimitatore è &staccamentu"
 
 #. IDS_OPTIONSPG_BINARYCOMPARE
-#: Merge.rc:3015
-#: Merge.rc:4227
+#: Merge.rc:3015 Merge.rc:4227
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binariu"
@@ -5338,9 +4645,7 @@ msgid "&Character Set..."
 msgstr "Inseme di &caratteri…"
 
 #. IDS_PRPCAT_IMAGE
-#: Merge.rc:3029
-#: Merge.rc:4226
-#: Merge.rc:4665
+#: Merge.rc:3029 Merge.rc:4226 Merge.rc:4665
 msgid "Image"
 msgstr "Fiura"
 
@@ -5360,8 +4665,7 @@ msgid "OCR result:"
 msgstr "Risultatu OCR :"
 
 #. IDS_OPTIONSPG_WEBPAGECOMPARE
-#: Merge.rc:3043
-#: Merge.rc:4229
+#: Merge.rc:3043 Merge.rc:4229
 msgid "Webpage"
 msgstr "Pagina web"
 
@@ -5710,8 +5014,7 @@ msgid "Compare/Merge"
 msgstr "Paragunà/Fusione"
 
 #. IDS_OPTIONSPG_SYNTAXCOLORS
-#: Merge.rc:4204
-#: Merge.rc:4208
+#: Merge.rc:4204 Merge.rc:4208
 msgid "Syntax"
 msgstr "Sintassa"
 
@@ -5731,8 +5034,7 @@ msgid "Project"
 msgstr "Prughjettu"
 
 #. IDS_COLHDR_NSDIFFS
-#: Merge.rc:4218
-#: Merge.rc:4640
+#: Merge.rc:4218 Merge.rc:4640
 msgid "Differences"
 msgstr "Sfarenze"
 
@@ -5802,8 +5104,7 @@ msgstr ""
 "Ci vole à impiegà da 1 à %1."
 
 #. IDS_PROJECT_OPEN
-#: Merge.rc:4262
-#: Merge.rc:4318
+#: Merge.rc:4262 Merge.rc:4318
 msgid "Open"
 msgstr "Apre"
 
@@ -5873,14 +5174,12 @@ msgid "File Type"
 msgstr "Tipu di schedariu"
 
 #. IDS_COLHDR_EXTENSION
-#: Merge.rc:4304
-#: Merge.rc:4597
+#: Merge.rc:4304 Merge.rc:4597
 msgid "Extension"
 msgstr "Estensione"
 
 #. IDS_PRPCAT_MESSAGE
-#: Merge.rc:4310
-#: Merge.rc:4669
+#: Merge.rc:4310 Merge.rc:4669
 msgid "Message"
 msgstr "Messaghju"
 
@@ -5920,8 +5219,7 @@ msgid "Hidden Items"
 msgstr "Elementi piattati"
 
 #. IDS_PLUGINSLIST_NAME
-#: Merge.rc:4331
-#: Merge.rc:4956
+#: Merge.rc:4331 Merge.rc:4956
 msgid "Name"
 msgstr "Nome"
 
@@ -5941,8 +5239,7 @@ msgid "[F] "
 msgstr "[F] "
 
 #. IDS_PLUGINSLIST_DESC
-#: Merge.rc:4335
-#: Merge.rc:4958
+#: Merge.rc:4335 Merge.rc:4958
 msgid "Description"
 msgstr "Discrizzione"
 
@@ -6537,22 +5834,19 @@ msgid "Left to Middle (%1)"
 msgstr "Da manca à centru (%1)"
 
 #. IDS_MOVE_LEFT_TO
-#: Merge.rc:4507
-#: Merge.rc:4539
+#: Merge.rc:4507 Merge.rc:4539
 #, c-format
 msgid "Left to... (%1)"
 msgstr "Da manca à… (%1)"
 
 #. IDS_MOVE_MIDDLE_TO
-#: Merge.rc:4508
-#: Merge.rc:4540
+#: Merge.rc:4508 Merge.rc:4540
 #, c-format
 msgid "Middle to... (%1)"
 msgstr "Da centru à… (%1)"
 
 #. IDS_MOVE_RIGHT_TO
-#: Merge.rc:4509
-#: Merge.rc:4541
+#: Merge.rc:4509 Merge.rc:4541
 #, c-format
 msgid "Right to... (%1)"
 msgstr "Da diritta à… (%1)"
@@ -6890,15 +6184,12 @@ msgid "Binary"
 msgstr "Binariu"
 
 #. IDS_PLUGINS_TYPE_UNPACKER
-#: Merge.rc:4642
-#: Merge.rc:4959
+#: Merge.rc:4642 Merge.rc:4959
 msgid "Unpacker"
 msgstr "Spacchittadore"
 
 #. IDS_PLUGIN_TYPE4
-#: Merge.rc:4643
-#: Merge.rc:4960
-#: Merge.rc:5267
+#: Merge.rc:4643 Merge.rc:4960 Merge.rc:5267
 msgid "Prediffer"
 msgstr "Preparagone"
 
@@ -7164,7 +6455,7 @@ msgstr " (manca è centru sò identichi)"
 #. IDS_PATH_MISMATCH
 #: Merge.rc:4714
 msgid " (paths differ)"
-msgstr "(sfarenza di i chjassi)"
+msgstr " (sfarenza di i chjassi)"
 
 #. IDS_TEXT_FILES_DIFF
 #: Merge.rc:4715
@@ -7244,7 +6535,7 @@ msgstr "(%1 elementi)"
 #: Merge.rc:4729
 #, c-format
 msgid "%1 (set %2): "
-msgstr "%1 (inseme %2):"
+msgstr "%1 (inseme %2) : "
 
 #. IDS_SWITCH_FLAT_MODE
 #: Merge.rc:4730
@@ -8373,8 +7664,7 @@ msgid "Ins/Del Detection"
 msgstr "Avventata d’inserzione è di squassatura"
 
 #. IDS_OVERLAY_MODE_NONE
-#: Merge.rc:5189
-#: Merge.rc:5194
+#: Merge.rc:5189 Merge.rc:5194
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
 msgstr "Nisunu"
@@ -8716,12 +8006,12 @@ msgstr "Paragunà %1"
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN
 #: Merge.rc:5290
 msgid "&Filter by This Column"
-msgstr ""
+msgstr "&Filtru da sta culonna"
 
 #. IDS_FILTERMENU_FILTER_BY_THIS_COLUMN2
 #: Merge.rc:5291
 msgid "&Filter by This Column..."
-msgstr ""
+msgstr "&Filtru da sta culonna…"
 
 #. IDS_CLIPBOARDHISTORY_TIME
 #: Merge.rc:5296
@@ -9062,7 +8352,7 @@ msgstr "Nome di pruprietà inaccettevule"
 #. IDS_FILTER_ERROR_INVALID_DIRECTIVE
 #: Merge.rc:5393
 msgid "Invalid directive"
-msgstr ""
+msgstr "Direttiva inaccettevule"
 
 #. IDS_FILTER_OP_EQUALS
 #: Merge.rc:5398
@@ -9127,22 +8417,22 @@ msgstr "Ùn cuntene micca (regex)"
 #. IDS_FILTER_OP_LIKE
 #: Merge.rc:5410
 msgid "Match (wildcard)"
-msgstr ""
+msgstr "Currisponde (caratteru genericu)"
 
 #. IDS_FILTER_OP_NOT_LIKE
 #: Merge.rc:5411
 msgid "Not match (wildcard)"
-msgstr ""
+msgstr "Ùn currisponde (caratteru genericu)"
 
 #. IDS_FILTER_OP_MATCHES
 #: Merge.rc:5412
 msgid "Match (regex)"
-msgstr ""
+msgstr "Currisponde (espressione regex)"
 
 #. IDS_FILTER_OP_NOT_MATCHES
 #: Merge.rc:5413
 msgid "Not match (regex)"
-msgstr ""
+msgstr "Ùn currisponde (espressione regex)"
 
 #. IDS_COLORMODE_LIGHT
 #: Merge.rc:5418
@@ -9847,9 +9137,7 @@ msgid "Update external references (links)"
 msgstr "Rinnovà e referenze esterne (liami)"
 
 #. IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR3
-#: Strings.rc:214
-#: Strings.rc:237
-#: Strings.rc:254
+#: Strings.rc:214 Strings.rc:237 Strings.rc:254
 msgid "Compare document properties"
 msgstr "Paragunà i pruprietà di u ducumentu"
 
@@ -9883,10 +9171,7 @@ msgid "Compare formulas"
 msgstr "Paragunà e formule"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR4
-#: Strings.rc:222
-#: Strings.rc:242
-#: Strings.rc:261
-#: Strings.rc:274
+#: Strings.rc:222 Strings.rc:242 Strings.rc:261 Strings.rc:274
 msgid "Compare texts in shapes"
 msgstr "Paragunà i testi in e forme"
 
@@ -9895,10 +9180,7 @@ msgstr "Paragunà i testi in e forme"
 msgid "Compare headers and footers"
 msgstr "Paragunà intestature è bassi di pagina"
 
-#: Strings.rc:225
-#: Strings.rc:245
-#: Strings.rc:265
-#: Strings.rc:277
+#: Strings.rc:225 Strings.rc:245 Strings.rc:265 Strings.rc:277
 msgid ""
 "Cannot get Macros.\r\n"
 "Enable 'Trust access to Visual Basic Project' in MS Office Macro Security."
@@ -9917,10 +9199,7 @@ msgid "Include sheet order number in filename"
 msgstr "Include u numeru d’ordine di u fogliu in u nome di schedariu"
 
 #. IDS_PLUGIN_COMPAREMSVISIOFILES_STR5
-#: Strings.rc:232
-#: Strings.rc:243
-#: Strings.rc:263
-#: Strings.rc:275
+#: Strings.rc:232 Strings.rc:243 Strings.rc:263 Strings.rc:275
 msgid "Compare VBA macros"
 msgstr "Paragunà e prucedure VBA"
 
