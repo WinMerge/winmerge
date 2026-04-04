@@ -124,9 +124,8 @@ copy "Build\ShellExtension\WinMergeContextMenuPackage.msix" "%DISTDIR%\%PLATFORM
 
 rem Translations
 echo Copy Translations...
-copy Build\%PLATFORM%\Release\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
-copy Translations\ShellExtension\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\ShellExtension" > NUL
-powershell -ExecutionPolicy RemoteSigned -File "%~dp0Translations\StripPoComments.ps1" "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages"
+copy BuildTmp\Translations\WinMerge\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
+copy BuildTmp\Translations\ShellExtension\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\ShellExtension\" > NUL
 
 rem ColorSchemes
 echo Copy ColorSchemes...

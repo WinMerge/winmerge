@@ -1,8 +1,4 @@
-if not exist "BuildTmp\Translations\WinMerge" mkdir "BuildTmp\Translations\WinMerge" 2> NUL
-if not exist "BuildTmp\Translations\ShellExtension" mkdir "BuildTmp\Translations\ShellExtension" 2> NUL
-copy Translations\WinMerge\*.po BuildTmp\Translations\WinMerge\ > NUL
-copy Translations\ShellExtension\*.po BuildTmp\Translations\ShellExtension\ > NUL
-powershell.exe -ExecutionPolicy RemoteSigned -File "%~dp0Translations\StripPoComments.ps1" "%~dp0BuildTmp\Translations"
+
 
 if "%1" == "" (
   call :BuildInstaller x86
