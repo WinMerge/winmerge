@@ -303,97 +303,97 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\RegularExpression.cpp">
       <Filter>RegularExpression\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_auto_possess.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_auto_possess.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_chartables.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_chartables.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_chkdint.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_chkdint.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_compile.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_compile.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_config.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_config.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_context.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_context.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_convert.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_convert.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_dfa_match.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_dfa_match.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_error.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_error.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_extuni.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_extuni.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_find_bracket.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_find_bracket.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_compile.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_jit_compile.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_match.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_jit_match.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_misc.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_jit_misc.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_maketables.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_maketables.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_match.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_match.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_match_data.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_match_data.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_newline.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_newline.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ord2utf.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_ord2utf.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_pattern_info.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_pattern_info.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_script_run.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_script_run.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_serialize.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_serialize.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_string_utils.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_string_utils.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_study.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_study.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_substitute.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_substitute.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_substring.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_substring.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_tables.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_tables.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ucd.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_ucd.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ucptables.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_ucptables.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_valid_utf.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_valid_utf.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_xclass.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_xclass.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\RandomStream.cpp">
@@ -568,7 +568,7 @@
       <Filter>URI\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\PocoFoundation.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2.c" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Any.h">
@@ -844,16 +844,16 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\SharedMemory_WIN32.h">
       <Filter>Processes\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2.h">
       <Filter>RegularExpression\PCRE Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_internal.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_internal.h">
       <Filter>RegularExpression\PCRE Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_intmodedep.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_intmodedep.h">
       <Filter>RegularExpression\PCRE Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_ucp.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_ucp.h">
       <Filter>RegularExpression\PCRE Header Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)src\ucp.h">
@@ -862,7 +862,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RegularExpression.h">
       <Filter>RegularExpression\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_config.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_config.h">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\RandomStream.h">

@@ -13,6 +13,7 @@
 #include "DiffItem.h"
 #include "paths.h"
 #include "unicoder.h"
+#include "FileTransform.h"
 #include <string>
 #include <variant>
 #include <Poco/RegularExpression.h>
@@ -973,6 +974,28 @@ static auto ContentField(int index, const FilterExpression* ctxt, const DIFFITEM
 	return content;
 }
 
+static auto UnpackerField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.isDirectory())
+		return std::monostate{};
+	PackingInfo* pInfoUnpacker = nullptr;
+	PrediffingInfo* pInfoPrediffer = nullptr;
+	String filteredFilenames = ctxt->ctxt->GetFilteredFilenames(di);
+	const_cast<CDiffContext*>(ctxt->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
+	return pInfoUnpacker ? ucr::toUTF8(pInfoUnpacker->GetPluginPipeline()) : std::string("");
+}
+
+static auto PredifferField(int index, const FilterExpression* ctxt, const DIFFITEM& di) -> ValueType
+{
+	if (di.diffcode.isDirectory())
+		return std::monostate{};
+	PackingInfo* pInfoUnpacker = nullptr;
+	PrediffingInfo* pInfoPrediffer = nullptr;
+	String filteredFilenames = ctxt->ctxt->GetFilteredFilenames(di);
+	const_cast<CDiffContext*>(ctxt->ctxt)->FetchPluginInfos(filteredFilenames, &pInfoUnpacker, &pInfoPrediffer);
+	return pInfoPrediffer ? ucr::toUTF8(pInfoPrediffer->GetPluginPipeline()) : std::string("");
+}
+
 FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(ctxt), field(v)
 {
 	int prefixlen = 0;
@@ -1090,6 +1113,16 @@ FieldNode::FieldNode(const FilterExpression* ctxt, const std::string& v) : ctxt(
 	}
 	else if (strcmp(p, "content") == 0)
 		functmp = ContentField;
+	else if (strcmp(p, "unpacker") == 0)
+	{
+		functmp = UnpackerField;
+		side = -2;
+	}
+	else if (strcmp(p, "prediffer") == 0)
+	{
+		functmp = PredifferField;
+		side = -2;
+	}
 	else
 		throw std::runtime_error("Invalid field name: " + std::string(v.begin(), v.end()));
 	if (prefixlen > 0)

@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include "DirScan.h"
+#include <atomic>
 #include <cassert>
 #include <memory>
 #define POCO_NO_UNWINDOWS 1
@@ -75,8 +76,8 @@ private:
 class DiffWorker: public Runnable
 {
 public:
-	DiffWorker(NotificationQueue& queue, CDiffContext *pCtxt, int id):
-	  m_queue(queue), m_pCtxt(pCtxt), m_id(id) {}
+	DiffWorker(NotificationQueue& queue, CDiffContext *pCtxt, int id, std::atomic<bool>& terminate):
+	  m_queue(queue), m_pCtxt(pCtxt), m_id(id), m_terminate(terminate) {}
 
 	void run()
 	{
@@ -85,9 +86,22 @@ public:
 		// when we exit the thread, we delete this and release the scripts
 		CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
 
-		AutoPtr<Notification> pNf(m_queue.waitDequeueNotification());
-		while (pNf.get() != nullptr)
+		while (!m_terminate)
 		{
+			// Check idle status BEFORE dequeuing to prevent idle workers from processing items
+			if (m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
+			{
+				m_pCtxt->m_pCompareStats->BeginCompare(nullptr, m_id);
+				// Poll at short interval to react quickly when thread count increases
+				while (!m_pCtxt->ShouldAbort() && m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id) && !m_terminate)
+					Poco::Thread::sleep(10);
+				continue;
+			}
+
+			// Use a short timeout so workers can detect being made idle while waiting for work
+			AutoPtr<Notification> pNf(m_queue.waitDequeueNotification(10));
+			if (!pNf) continue;
+
 			WorkNotification* pWorkNf = dynamic_cast<WorkNotification*>(pNf.get());
 			if (pWorkNf != nullptr) {
 				m_pCtxt->m_pCompareStats->BeginCompare(&pWorkNf->data(), m_id);
@@ -95,14 +109,6 @@ public:
 					CompareDiffItem(fc, pWorkNf->data());
 				pWorkNf->queueResult().enqueueNotification(new WorkCompletedNotification(pWorkNf->data()));
 			}
-			if (m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
-			{
-				m_pCtxt->m_pCompareStats->BeginCompare(nullptr, m_id);
-				while (!m_pCtxt->ShouldAbort() && m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
-					Poco::Thread::sleep(10);
-			}
-
-			pNf = m_queue.waitDequeueNotification();
 		}
 	}
 
@@ -110,6 +116,7 @@ private:
 	NotificationQueue& m_queue;
 	CDiffContext *m_pCtxt;
 	int m_id;
+	std::atomic<bool>& m_terminate;
 };
 
 typedef std::shared_ptr<DiffWorker> DiffWorkerPtr;
@@ -459,6 +466,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
 	const int compareMethod = myStruct->context->GetCompareMethod();
 	int nworkers = 1;
+	int maxWorkers = 4;
 
 	if (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT)
 	{
@@ -466,23 +474,30 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 		if (nworkers <= 0)
 			nworkers += Environment::processorCount();
 		nworkers = std::clamp(nworkers, 1, static_cast<int>(Environment::processorCount()));
+		maxWorkers = std::clamp(nworkers * 2, 1, static_cast<int>(Environment::processorCount()));
 	}
 
-	ThreadPool threadPool(nworkers, nworkers);
+	ThreadPool threadPool(maxWorkers, maxWorkers);
 	std::vector<DiffWorkerPtr> workers;
 	NotificationQueue queue;
-	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
-	workers.reserve(nworkers);
-	for (int i = 0; i < nworkers; ++i)
+	std::atomic<bool> terminate{ false };
+
+	// Create all workers at maximum capacity
+	myStruct->context->m_pCompareStats->SetCompareThreadCount(maxWorkers);
+	workers.reserve(maxWorkers);
+	for (int i = 0; i < maxWorkers; ++i)
 	{
-		workers.emplace_back(std::make_shared<DiffWorker>(queue, myStruct->context, i));
+		workers.emplace_back(std::make_shared<DiffWorker>(queue, myStruct->context, i, terminate));
 		threadPool.start(*workers[i]);
 	}
+
+	// Set idle threads for workers beyond initial count
+	myStruct->context->m_pCompareStats->SetIdleCompareThreadCount(maxWorkers - nworkers);
 
 	int res = CompareItems(queue, myStruct, parentdiffpos);
 
 	myStruct->context->m_pCompareStats->SetIdleCompareThreadCount(0);
-	Thread::sleep(100);
+	terminate = true;
 	queue.wakeUpAll();
 	threadPool.joinAll();
 

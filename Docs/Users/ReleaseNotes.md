@@ -1,140 +1,113 @@
-# WinMerge 2.16.54 Release Notes
+# WinMerge 2.16.55 Beta Release Notes
 
 * [About This Release](#about-this-release)
-* [What Is New in 2.16.54](#what-is-new-in-21654)
-* [What Is New in 2.16.53 beta?](#what-is-new-in-21653-beta)
+* [What Is New in 2.16.55 beta?](#what-is-new-in-21655-beta)
 * [Known issues](#known-issues)
 
-January 2026
+April 2026
 
 ## About This Release
 
-This is a WinMerge 2.16.54 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.54
+## What Is New in 2.16.55 Beta
 
 ### General
 
-* BugFix: Cyrilic shortcuts do not work for main menukeyboard shortcuts
-* BugFix: 2 recent-entries per project (#2990)
-* Updated expat to version 2.7.3
+* Fix incorrect GetAsyncKeyState usage for modifier key detection (PR #3257)
 
-### Folder compare
-
-* Add logInfo, logWarn, logError functions to filter expressions (PR #3131)
-* Add new filter expression functions
-    (if, ifEach, choose, chooseEach, andEach, orEach, notEach) (PR #3132)
-* Add BaseName/IsFolder and new string transformation functions to filters
-    (PR #3146)
-* Add experimental customizable rename/move detection for folder comparison
-    (PR #3126)
-
-### Options window
-
-* Adjusted the height of the Options dialog and the position of the Defaults
-    button
-
-### Shell extension
-
-* BugFix: Add-AppxPackage fails if path ends with backslash (PR #3145)
-
-### Installer
-
-* Removed build-time tools (lemon.exe, re2c.exe) from the installer package.
-
-### Translations
-
-* New translation: Vietnamese (PR #3142)
-* Translation updates:
-  * Brazilian (PR #3150)
-  * Chinese Simplified (PR #3156)
-  * French (PR #3137)
-  * German (PR #3148)
-  * Hungarian (PR #3149)
-  * Italian (PR #3147)
-  * Japanese
-  * Korean (PR #3125,#3127)
-  * Lithuanian (PR #3144,#3153)
-  * Polish (PR #3154,#3155)
-  * Turkish (PR #3152)
-  * Ukrainian (PR #3130)
-
-## What Is New in 2.16.53 Beta
-
-### General
-
-* Allow comparing files by editing header path (Ctrl+L / Alt+D) (PR #3093)
+* Update POCO C++ Libraries to 1.15.1 (PR #3292)
 
 ### File compare
 
-* Async binary comparison for “Selected files are identical” dialog
-    (PR #3060)
+* BugFix: Fix keyboard input issue after Alt+mouse operations (PR #3254)
 
-### Binary compare
+* BugFix: Register self-compare in MRU and refactor command line parameter
+    buil… (PR #3266)
+    
+* Refactor save confirmation logic using SaveClosingDlg::ShowAndSave
+    (PR #3256)
 
-* BugFix: Fixed crash when an error occurs while opening files in the binary
-    comparison window.
-
+* Enable IME text reconversion in editor view (PR #3214)
+    
 ### Image compare
 
-* [ImageCompare] Problems with unsupported formats (#3044)
+* BugFix: Fix crash caused by OnClose being called twice in image compare
+    window (PR #3255)
 
-* Update freeimage to 3.19.10
-
-### Webpage compare
-
-* BugFix: Fixed garbled filenames displayed in Web comparison tabs and header
-    bar
+* Speedup image comparision slider during WipeEffect (PR winimerge/#33)
 
 ### Folder compare
 
-* BugFix: This line cannot be displayed correctly after translation.
-    msgid "Failed to extract archive.\nCompare as text file?" (#3073)
+* BugFix: Fix an issue where skipped items were not properly filtered during
+    folder/file comparison. (PR #3267)
 
-* BugFix: Unexpected file closure when moving files from a comparison (#3088)
+* BugFix: Fix potential hang in DiffWorker shutdown (PR #3300)
 
-* Add Display Filter to Folder Compare (PR #3106)
+* Extend “Merge renamed items” option to support moved items (PR #3181)
 
-* Add folder statistics filter attributes and helper menu (PR #3111)
+* Refactor compare engines to use DiffContext (PR #3197)
 
-* Introduce isWithin() and inRange() for explicit inclusive/exclusive range
-    checks (PR #3124)
+* Refactor compare engines to write results into DIFFITEM and add
+    FullQuickCompare (PR #3201)
+    
+* Add e:/e!: filter prefixes for files and directories (PR #3205)
 
-### Options dialog
+* Add replaceWithList and regexReplaceWithList filter functions (PR #3213)
 
-* Add option to select user data location (AppData or Documents) (PR #3078)
+* Add Replace Lists menu for Rename/Move detection keys (PR #3215)
+
+* Make replace and replaceWithList case-insensitive (PR #3222)
+
+* Add directives (@cs, @ci, @name) to filter expressions (PR #3253)
+
+* Add "Filter by This Column" to folder view header context menu (PR #3268)
+
+* Add display filter attributes and UI for filtering by comparison results
+    (PR #3284)
+
+* Add ability to hide empty folders in tree mode (PR #3293)
+
+* Add Unpacker and Prediffer fields to file filter expressions (PR #3295)
+
+* Enable dynamic increase/decrease of compare threads (PR #3304)
 
 ### Plugins
 
-* CompareMSExcelFiles: Replace line breaks with space in MSExcel formulas
-    (PR #3028)
+* Add PrettifyPO and ValidatePO plugins for .po/.pot files (PR #3190)
 
-* Updated jq to 1.8.1
+* Feature request: In CompareMSExcelFiles do not append a sheet order number
+    to individual tsv, txt or html files (#3212)
+
+* Add CFR Java decompiler plugin for .class file comparison (PR #3242,#3243)
 
 ### Translations
 
 * Translation updates:
+  * Brazilian (PR #3185,#3194,#3219,#3231,#3245,#3275,#3287,#3303)
+  * Chinese Simplified (PR #3183,#3191,#3220,#3228,#3244)
+  * Corsican (PR #3259,#3299)
+  * French (PR #3239)
+  * German (PR #3187,#3196,#3217,#3232,#3237,#3251,#3274,#3288,#3297)
+  * Hungarian (PR #3186,#3238,#3252)
+  * Italian (PR #3199,#3218,#3229,#3235,#3236,#3246,#3249,#3269,#3272,#3285,#3302)
+  * Japanese (PR #3258)
+  * Korean (PR #3247,#3279,#3301)
+  * Lithuanian (PR #3184,#3192,#3230,#3276,#3290)
+  * Polish (PR #3233,#3273)
+  * Russian (PR #3226,#3281)
+  * Turkish (PR #3204,#3221,#3227,#3250,#3271,#3286,#3298)
+  * Ukrainian (PR #)
 
-  * Brazilian (PR #3034,#3064,#3085,#3101,#3107,#3121)
-  * Chinese Simplified (PR #3035,#3077,#3086,#3097,#3123)
-  * Chinese Traditional (PR #3052,#3073,WinMerge/frhed#26)
-  * Corsican (PR #3119)
-  * French (PR #3072,#3105,#3106)
-  * German (PR #3037,#3068,#3081,#3098,#3108,#3115)
-  * Hungarian (PR #3036,#3061,#3080,#3100,#3116)
-  * Italian (PR #3033,#3062,#3099,#3113,#3118)
-  * Japanese
-  * Korean (PR #3062,#3082)
-  * Lithuanian (PR #3032,#3065,#3087,#3104,#3114)
-  * Polish (PR #3050,#3089,#3103,#3112,#3122)
-  * Turkish (PR #3043,#3063,#3083,#3102,#3111,#3117)
+### Documentation
 
-### Manual
+* Added: Community standard files (like issue templates, pr template).
+    (PR #3225)
 
-* Added FAQ about file selection order in Windows Explorer. (#3090,#3094)
+* Add context IDs to PO files & strip comments for releases (PR #3296)
 
 ## Known issues
 

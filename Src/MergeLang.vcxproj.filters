@@ -253,6 +253,9 @@
     <None Include="..\Translations\ShellExtension\Hebrew.po">
       <Filter>Translations\ShellExtension</Filter>
     </None>
+    <None Include="..\Translations\StripPoComments.ps1">
+      <Filter>Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource FIles">

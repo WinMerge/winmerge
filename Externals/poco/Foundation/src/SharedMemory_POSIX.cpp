@@ -28,7 +28,7 @@ namespace Poco {
 SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, SharedMemory::AccessMode mode, const void* addrHint, bool server):
 	_size(size),
 	_fd(-1),
-	_address(0),
+	_address(nullptr),
 	_access(mode),
 	_name("/"),
 	_fileMapped(false),
@@ -64,9 +64,9 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 
 
 SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessMode mode, const void* addrHint):
-	_size(size),
+	_size(0),
 	_fd(-1),
-	_address(0),
+	_address(nullptr),
 	_access(mode),
 	_name(file.path()),
 	_fileMapped(true),
@@ -75,9 +75,7 @@ SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessM
 	if (!file.exists() || !file.isFile())
 		throw FileNotFoundException(file.path());
 
-	size_t filesize = file.getSize();
-	if (_size == 0 || filesize < _size)
-		_size = filesize;
+	_size = file.getSize();
 	int flag = O_RDONLY;
 	if (mode == SharedMemory::AM_WRITE)
 		flag = O_RDWR;

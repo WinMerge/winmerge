@@ -105,6 +105,7 @@ struct DirViewFilterSettings
 		show_missing_left_only = getoptbool(OPT_SHOW_MISSING_LEFT_ONLY);
 		show_missing_middle_only = getoptbool(OPT_SHOW_MISSING_MIDDLE_ONLY);
 		show_missing_right_only = getoptbool(OPT_SHOW_MISSING_RIGHT_ONLY);
+		show_empty_folders = getoptbool(OPT_SHOW_EMPTY_FOLDERS);
 		tree_mode = getoptbool(OPT_TREE_MODE);
 	};
 	bool show_skipped;
@@ -120,6 +121,7 @@ struct DirViewFilterSettings
 	bool show_missing_left_only;
 	bool show_missing_middle_only;
 	bool show_missing_right_only;
+	bool show_empty_folders;
 	bool tree_mode;
 	FileFilterHelper displayFilterHelper; /**< File filter helper */
 };

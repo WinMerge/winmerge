@@ -124,8 +124,8 @@ copy "Build\ShellExtension\WinMergeContextMenuPackage.msix" "%DISTDIR%\%PLATFORM
 
 rem Translations
 echo Copy Translations...
-copy Build\%PLATFORM%\Release\Languages\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
-copy Translations\ShellExtension\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\ShellExtension" > NUL
+copy Build\Translations\WinMerge\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\" > NUL
+copy Build\Translations\ShellExtension\*.po "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Languages\ShellExtension\" > NUL
 
 rem ColorSchemes
 echo Copy ColorSchemes...

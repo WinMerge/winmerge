@@ -261,6 +261,7 @@ popd
     <None Include="..\Translations\ShellExtension\Ukrainian.po" />
     <None Include="..\Translations\ShellExtension\Vietnamese.po" />
     <None Include="..\Translations\ShellExtension\UpdatePoFilesFromPotFile.ps1" />
+    <None Include="..\Translations\StripPoComments.ps1" />
     <None Include="..\Translations\WinMerge\Arabic.po" />
     <None Include="..\Translations\WinMerge\Basque.po" />
     <None Include="..\Translations\WinMerge\Brazilian.po" />

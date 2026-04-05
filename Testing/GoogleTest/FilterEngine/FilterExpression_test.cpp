@@ -35,7 +35,7 @@ TEST_P(FilterExpressionTest, Literals)
 	int tzd;
 	di.diffFileInfo[0].filename = L"Alice.txt";
 	di.diffFileInfo[0].size = 1000;
-	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34:56", tzd);
+	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34", tzd);
 	dt0 -= Poco::Timezone::tzd() * 1000;
 	di.diffFileInfo[0].mtime = dt0.timestamp();
 	di.diffFileInfo[1].filename = L"Alice.txt";
@@ -540,7 +540,7 @@ TEST_P(FilterExpressionTest, Literals)
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("d\"20250527T123456+0000\" == d\"20250527T213456+0900\""));
 	EXPECT_TRUE(fe.Evaluate(di));
-	EXPECT_TRUE(fe.Parse("d\"2025-05-27T01:02:03+09:00\" != d\"2025-05-27T01:02:03z\""));
+	EXPECT_TRUE(fe.Parse("d\"2025-05-27T01:02:03+09:00\" != d\"2025-05-27T01:02:03Z\""));
 	EXPECT_TRUE(fe.Evaluate(di));
 	EXPECT_TRUE(fe.Parse("d\"2025-05-27\" == d\"2025-05-27 00:00:01\""));
 	EXPECT_FALSE(fe.Evaluate(di));
@@ -1214,7 +1214,7 @@ TEST_P(FilterExpressionTest, Test1)
 	int tzd = 0;
 	di.diffFileInfo[0].filename = L"Alice.txt";
 	di.diffFileInfo[0].size = 1000;
-	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34:56", tzd);
+	Poco::DateTime dt0 = Poco::DateTimeParser::parse("%Y-%m-%d %H:%M", "2025-05-16 15:34", tzd);
 	dt0.makeUTC(Poco::Timezone::tzd());
 	di.diffFileInfo[0].mtime = dt0.timestamp();
 	di.diffFileInfo[1].filename = L"Alice.txt";

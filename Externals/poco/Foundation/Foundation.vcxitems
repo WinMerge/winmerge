@@ -206,127 +206,127 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\Path_WIN32U.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_auto_possess.c">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_chartables.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_auto_possess.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_chkdint.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_chartables.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_compile.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_chkdint.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_config.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_compile.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_context.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_config.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_convert.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_context.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_dfa_match.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_convert.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_error.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_dfa_match.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_extuni.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_error.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_find_bracket.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_extuni.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_compile.c">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_match.c">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_jit_misc.c">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_maketables.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_find_bracket.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_match.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_jit_compile.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_jit_match.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_jit_misc.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_maketables.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_match_data.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_match.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_newline.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_match_data.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ord2utf.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_newline.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_pattern_info.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_ord2utf.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_script_run.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_pattern_info.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_serialize.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_script_run.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_string_utils.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_serialize.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_study.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_string_utils.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_substitute.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_study.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_substring.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_substitute.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_tables.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_substring.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ucd.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_tables.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_ucptables.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_ucd.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_valid_utf.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_ucptables.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)src\pcre2_xclass.c">
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_valid_utf.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_xclass.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -663,13 +663,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Windows1250Encoding.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Windows1251Encoding.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\Poco\Windows1252Encoding.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_config.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_config.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_internal.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_intmodedep.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)src\pcre2_ucp.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_internal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_intmodedep.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\dependencies\pcre2\src\pcre2_ucp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)src\ucp.h" />
   </ItemGroup>
 </Project>

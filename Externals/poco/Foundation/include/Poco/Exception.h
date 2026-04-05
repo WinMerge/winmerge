@@ -20,6 +20,7 @@
 
 #include "Poco/Foundation.h"
 #include <stdexcept>
+#include <typeinfo>
 
 
 namespace Poco {
@@ -43,7 +44,7 @@ public:
 	Exception(const Exception& exc);
 		/// Copy constructor.
 
-	~Exception() noexcept;
+	~Exception() noexcept override;
 		/// Destroys the exception and deletes the nested exception.
 
 	Exception& operator = (const Exception& exc);
@@ -55,7 +56,7 @@ public:
 	virtual const char* className() const noexcept;
 		/// Returns the name of the exception class.
 
-	virtual const char* what() const noexcept;
+	const char* what() const noexcept override;
 		/// Returns a static string describing the exception.
 		///
 		/// Same as name(), but for compatibility with std::exception.
@@ -230,6 +231,7 @@ POCO_DECLARE_EXCEPTION(Foundation_API, RegularExpressionException, RuntimeExcept
 POCO_DECLARE_EXCEPTION(Foundation_API, LibraryLoadException, RuntimeException)
 POCO_DECLARE_EXCEPTION(Foundation_API, LibraryAlreadyLoadedException, RuntimeException)
 POCO_DECLARE_EXCEPTION(Foundation_API, NoThreadAvailableException, RuntimeException)
+POCO_DECLARE_EXCEPTION(Foundation_API, ThreadInterruptedException, RuntimeException)
 POCO_DECLARE_EXCEPTION(Foundation_API, PropertyNotSupportedException, RuntimeException)
 POCO_DECLARE_EXCEPTION(Foundation_API, PoolOverflowException, RuntimeException)
 POCO_DECLARE_EXCEPTION(Foundation_API, NoPermissionException, RuntimeException)

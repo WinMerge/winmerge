@@ -74,7 +74,7 @@ public:
 
 	Notification* dequeueNotification();
 		/// Dequeues the next pending notification.
-		/// Returns 0 (null) if no notification is available.
+		/// Returns nullptr if no notification is available.
 		/// The caller gains ownership of the notification and
 		/// is expected to release it when done with it.
 		///
@@ -88,7 +88,7 @@ public:
 		/// to be enqueued.
 		/// The caller gains ownership of the notification and
 		/// is expected to release it when done with it.
-		/// This method returns 0 (null) if wakeUpWaitingThreads()
+		/// This method returns nullptr if wakeUpWaitingThreads()
 		/// has been called by another thread.
 		///
 		/// It is highly recommended that the result is immediately
@@ -139,16 +139,17 @@ protected:
 	Notification::Ptr dequeueOne();
 
 private:
-	typedef std::deque<Notification::Ptr> NfQueue;
+	using NfQueue = std::deque<Notification::Ptr>;
 	struct WaitInfo
 	{
 		Notification::Ptr pNf;
 		Event             nfAvailable;
 	};
-	typedef std::deque<WaitInfo*> WaitQueue;
+	using WaitQueue = std::deque<WaitInfo *>;
 
 	NfQueue           _nfQueue;
 	WaitQueue         _waitQueue;
+	bool              _wokeUp = false;
 	mutable FastMutex _mutex;
 };
 

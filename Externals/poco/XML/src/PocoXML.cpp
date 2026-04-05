@@ -31,5 +31,3 @@
 #include "ParserEngine.cpp"
 #include "XMLException.cpp"
 #include "XMLWriter.cpp"
-// Expat
-#include "xmlparse.cpp"

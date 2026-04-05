@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define PCRE2_STATIC
 // Core
 #include "Ascii.cpp"
 #include "AtomicCounter.cpp"
@@ -50,6 +52,7 @@
 #include "PipeImpl.cpp"
 #include "Process.cpp"
 #include "SharedMemory.cpp"
+#include "IOLock.cpp"
 // RegularExpression
 #include "RegularExpression.cpp"
 // Streams

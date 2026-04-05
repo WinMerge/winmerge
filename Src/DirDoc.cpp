@@ -1174,10 +1174,20 @@ void CDirDoc::OnBnClickedComparisonContinue()
 void CDirDoc::OnCbnSelChangeCPUCores()
 {
 	auto* pCmpProgressBar = GetCompProgressBar();
-	if (pCmpProgressBar == nullptr)
+	if (pCmpProgressBar == nullptr || m_pCtxt == nullptr)
 		return;
-	m_pCtxt->m_pCompareStats->SetIdleCompareThreadCount(
-		m_pCtxt->m_pCompareStats->GetCompareThreadCount() - pCmpProgressBar->GetNumberOfCPUCoresToUse()
-	);
+
+	int requestedCores = pCmpProgressBar->GetNumberOfCPUCoresToUse();
+	int totalThreads = m_pCtxt->m_pCompareStats->GetCompareThreadCount();
+
+	if (totalThreads <= 0)
+		return;
+
+	// Clamp requested cores to valid range [1, totalThreads]
+	requestedCores = std::clamp(requestedCores, 1, totalThreads);
+
+	PauseCurrentScan();
+	m_pCtxt->m_pCompareStats->SetIdleCompareThreadCount(totalThreads - requestedCores);
+	ContinueCurrentScan();
 }
 

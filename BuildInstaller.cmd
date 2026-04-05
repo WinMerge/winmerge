@@ -1,3 +1,5 @@
+
+
 if "%1" == "" (
   call :BuildInstaller x86
   call :BuildInstaller x64
@@ -23,11 +25,11 @@ set PLATFORM=%1
 if "%PLATFORM%" == "ARM64" (
   for %%i in ("%LOCALAPPDATA%\Programs" "%ProgramFiles(x86)%" "%ProgramFiles%") do (
     if exist "%%~i\Inno Setup 6\iscc.exe" (
-      "%%~i\Inno Setup 6\iscc.exe" "Installer\innosetup\WinMerge%PLATFORM%.is6.iss" || pause
+      "%%~i\Inno Setup 6\iscc.exe" /DTranslationsDir=..\..\Build\Translations "Installer\innosetup\WinMerge%PLATFORM%.is6.iss" || pause
       goto :eof
     ) else (
       if exist "%%~i\Inno Setup 5\iscc.exe" (
-        "%%~i\Inno Setup 5\iscc.exe" "Installer\innosetup\WinMerge%PLATFORM%.iss" || pause
+        "%%~i\Inno Setup 5\iscc.exe" /DTranslationsDir=..\..\Build\Translations "Installer\innosetup\WinMerge%PLATFORM%.iss" || pause
         goto :eof
       )
     )
@@ -39,7 +41,7 @@ if "%PLATFORM%" == "ARM64" (
   echo ============================================================
   for %%i in ("%ProgramFiles(x86)%" "%ProgramFiles%") do (
     if exist "%%~i\Inno Setup 5\iscc.exe" (
-      "%%~i\Inno Setup 5\iscc.exe" "Installer\innosetup\WinMerge%PLATFORM%.iss" || pause
+      "%%~i\Inno Setup 5\iscc.exe" /DTranslationsDir=..\..\Build\Translations "Installer\innosetup\WinMerge%PLATFORM%.iss" || pause
       goto :eof
     )
   )

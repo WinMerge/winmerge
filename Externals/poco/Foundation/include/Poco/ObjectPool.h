@@ -206,6 +206,10 @@ public:
 		}
 	}
 
+	ObjectPool() = delete;
+	ObjectPool(const ObjectPool&) = delete;
+	ObjectPool& operator=(const ObjectPool&) = delete;
+
 	P borrowObject(long timeoutMilliseconds = 0)
 		/// Obtains an object from the pool, or creates a new object if
 		/// possible.
@@ -221,14 +225,14 @@ public:
 		{
 			if (timeoutMilliseconds == 0)
 			{
-				return 0;
+				return nullptr;
 			}
 			while (_size >= _peakCapacity && _pool.empty())
 			{
 				if (!_availableCondition.tryWait(_mutex, timeoutMilliseconds))
 				{
 					// timeout
-					return 0;
+					return nullptr;
 				}
 			}
 		}
@@ -322,10 +326,6 @@ protected:
 	}
 
 private:
-	ObjectPool();
-	ObjectPool(const ObjectPool&);
-	ObjectPool& operator = (const ObjectPool&);
-
 	F _factory;
 	std::size_t _capacity;
 	std::size_t _peakCapacity;

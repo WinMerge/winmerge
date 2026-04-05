@@ -150,8 +150,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -194,8 +194,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -236,8 +236,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -277,8 +277,8 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -319,8 +319,8 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -365,8 +365,8 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -408,8 +408,8 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -450,8 +450,8 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\Poco\XML\include;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\Externals\Poco\Foundation\include;.\ExpatMapLib;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\Poco\XML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;WINVER=0x0501;_WINDOWS;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

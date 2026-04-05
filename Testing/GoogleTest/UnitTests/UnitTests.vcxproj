@@ -185,7 +185,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -216,7 +216,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -245,7 +245,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -274,7 +274,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -302,7 +302,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -332,7 +332,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -360,7 +360,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -388,7 +388,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\poco\dependencies\pcre2\src;..\..\..\Externals\poco\dependencies\expat\src;..\..\..\Externals\poco\dependencies\v8_double_conversion\src;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;POCO_NO_AUTOMATIC_LIBS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
