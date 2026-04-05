@@ -466,6 +466,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
 	const int compareMethod = myStruct->context->GetCompareMethod();
 	int nworkers = 1;
+	int maxWorkers = 4;
 
 	if (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT)
 	{
@@ -473,11 +474,8 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 		if (nworkers <= 0)
 			nworkers += Environment::processorCount();
 		nworkers = std::clamp(nworkers, 1, static_cast<int>(Environment::processorCount()));
+		maxWorkers = std::clamp(nworkers * 2, 1, static_cast<int>(Environment::processorCount()));
 	}
-
-	const int maxWorkers = (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT)
-		? static_cast<int>(Environment::processorCount())
-		: nworkers;
 
 	ThreadPool threadPool(maxWorkers, maxWorkers);
 	std::vector<DiffWorkerPtr> workers;
