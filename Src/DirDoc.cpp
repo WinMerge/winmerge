@@ -1183,6 +1183,8 @@ void CDirDoc::OnCbnSelChangeCPUCores()
 	// Clamp requested cores to valid range [1, totalThreads]
 	requestedCores = std::clamp(requestedCores, 1, totalThreads);
 
+	PauseCurrentScan();
 	m_pCtxt->m_pCompareStats->SetIdleCompareThreadCount(totalThreads - requestedCores);
+	ContinueCurrentScan();
 }
 
