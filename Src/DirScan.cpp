@@ -88,7 +88,18 @@ public:
 
 		while (!m_terminate)
 		{
-			AutoPtr<Notification> pNf(m_queue.waitDequeueNotification());
+			// Check idle status BEFORE dequeuing to prevent idle workers from processing items
+			if (m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
+			{
+				m_pCtxt->m_pCompareStats->BeginCompare(nullptr, m_id);
+				// Poll at short interval to react quickly when thread count increases
+				while (!m_pCtxt->ShouldAbort() && m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id) && !m_terminate)
+					Poco::Thread::sleep(10);
+				continue;
+			}
+
+			// Use a short timeout so workers can detect being made idle while waiting for work
+			AutoPtr<Notification> pNf(m_queue.waitDequeueNotification(10));
 			if (!pNf) continue;
 
 			WorkNotification* pWorkNf = dynamic_cast<WorkNotification*>(pNf.get());
@@ -97,12 +108,6 @@ public:
 				if (!m_pCtxt->ShouldAbort())
 					CompareDiffItem(fc, pWorkNf->data());
 				pWorkNf->queueResult().enqueueNotification(new WorkCompletedNotification(pWorkNf->data()));
-			}
-			if (m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
-			{
-				m_pCtxt->m_pCompareStats->BeginCompare(nullptr, m_id);
-				while (!m_pCtxt->ShouldAbort() && m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id) && !m_terminate)
-					Poco::Thread::sleep(10);
 			}
 		}
 	}
@@ -470,7 +475,9 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 		nworkers = std::clamp(nworkers, 1, static_cast<int>(Environment::processorCount()));
 	}
 
-	const int maxWorkers = std::clamp(nworkers * 2, 4, static_cast<int>(Environment::processorCount()));
+	const int maxWorkers = (compareMethod == CMP_CONTENT || compareMethod == CMP_QUICK_CONTENT)
+		? static_cast<int>(Environment::processorCount())
+		: nworkers;
 
 	ThreadPool threadPool(maxWorkers, maxWorkers);
 	std::vector<DiffWorkerPtr> workers;

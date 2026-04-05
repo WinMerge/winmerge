@@ -1180,6 +1180,9 @@ void CDirDoc::OnCbnSelChangeCPUCores()
 	int requestedCores = pCmpProgressBar->GetNumberOfCPUCoresToUse();
 	int totalThreads = m_pCtxt->m_pCompareStats->GetCompareThreadCount();
 
+	if (totalThreads <= 0)
+		return;
+
 	// Clamp requested cores to valid range [1, totalThreads]
 	requestedCores = std::clamp(requestedCores, 1, totalThreads);
 
