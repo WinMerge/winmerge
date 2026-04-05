@@ -470,17 +470,24 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 		nworkers = std::clamp(nworkers, 1, static_cast<int>(Environment::processorCount()));
 	}
 
-	ThreadPool threadPool(nworkers, nworkers);
+	const int maxWorkers = std::clamp(nworkers * 2, 4, static_cast<int>(Environment::processorCount()));
+
+	ThreadPool threadPool(maxWorkers, maxWorkers);
 	std::vector<DiffWorkerPtr> workers;
 	NotificationQueue queue;
 	std::atomic<bool> terminate{ false };
-	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
-	workers.reserve(nworkers);
-	for (int i = 0; i < nworkers; ++i)
+
+	// Create all workers at maximum capacity
+	myStruct->context->m_pCompareStats->SetCompareThreadCount(maxWorkers);
+	workers.reserve(maxWorkers);
+	for (int i = 0; i < maxWorkers; ++i)
 	{
 		workers.emplace_back(std::make_shared<DiffWorker>(queue, myStruct->context, i, terminate));
 		threadPool.start(*workers[i]);
 	}
+
+	// Set idle threads for workers beyond initial count
+	myStruct->context->m_pCompareStats->SetIdleCompareThreadCount(maxWorkers - nworkers);
 
 	int res = CompareItems(queue, myStruct, parentdiffpos);
 

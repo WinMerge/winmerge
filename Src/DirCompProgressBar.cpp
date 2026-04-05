@@ -169,7 +169,7 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 			// Start comparing, init progressDlg
 			SetProgressState(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
 			SetNumberOfCPUCoresToUseMax(m_pCompareStats->GetCompareThreadCount());
-			SetNumberOfCPUCoresToUse(m_pCompareStats->GetCompareThreadCount());
+			SetNumberOfCPUCoresToUse(m_pCompareStats->GetCompareThreadCount() - m_pCompareStats->GetIdleCompareThreadCount());
 			m_prevState = CompareStats::STATE_COMPARE;
 		}
 		// Comparing items
