@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://github.com/WinMerge/winmerge/issues/\n"
 "POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2026-03-27 00:00+0000\n"
+"PO-Revision-Date: 2026-04-07 00:00+0000\n"
 "Last-Translator: Dmitriy Rublev\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -887,7 +887,7 @@ msgstr "С&вернуть подпапки"
 #. IDR_DIRDOCTYPE, ID_VIEW_SHOW_EMPTY_FOLDERS
 #: Merge.rc:488
 msgid "Show &Empty Folders"
-msgstr ""
+msgstr "Показать пустые папки"
 
 #. IDR_MERGEDOCTYPE, ID_VIEW_SELECTFONT
 #: Merge.rc:490 Merge.rc:697
@@ -2669,12 +2669,12 @@ msgstr "Назначение: Все"
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_BINARY_ONLY
 #: Merge.rc:1620
 msgid "Binary files only"
-msgstr ""
+msgstr "Только двоичные файлы"
 
 #. IDR_POPUP_FILTERMENU_BINARY, ID_FILTERMENU_TEXT_ONLY
 #: Merge.rc:1621
 msgid "Text files only"
-msgstr ""
+msgstr "Только текстовые файлы"
 
 #. IDR_POPUP_ADDCMPMENU, ID_ADDCMPMENU_CLEAR
 #: Merge.rc:1755
@@ -3434,7 +3434,7 @@ msgstr "Элементы отличаются:"
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
 #: Merge.rc:2280
 msgid "Items missing:"
-msgstr "Элементы существуют не все:"
+msgstr "Элементы отсутствуют:"
 
 #. IDD_PROPPAGE_COLORS_DIR, IDC_STATIC
 #: Merge.rc:2283
@@ -3944,22 +3944,22 @@ msgstr "Выражение:"
 #. IDD_COMPARISON_RESULT_FILTER
 #: Merge.rc:2595
 msgid "Filter by Comparison Result"
-msgstr ""
+msgstr "Фильтр по результатам сравнения"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_INCLUDE
 #: Merge.rc:2598
 msgid "&Include"
-msgstr ""
+msgstr "Включить"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_RADIO_EXCLUDE
 #: Merge.rc:2599
 msgid "&Exclude"
-msgstr ""
+msgstr "Исключить"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_STATIC
 #: Merge.rc:2600
 msgid "Comparison Results"
-msgstr ""
+msgstr "Результаты сравнения"
 
 #. IDS_IDENTICAL
 #: Merge.rc:2601 Merge.rc:2733 Merge.rc:2794 Merge.rc:4698
@@ -3974,52 +3974,52 @@ msgstr "Отличаются"
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY
 #: Merge.rc:2603
 msgid "Left only"
-msgstr ""
+msgstr "Только слева"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY
 #: Merge.rc:2604
 msgid "Right only"
-msgstr ""
+msgstr "Только справа"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_SKIPPED
 #: Merge.rc:2605
 msgid "Skipped"
-msgstr ""
+msgstr "Пропущено"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY
 #: Merge.rc:2606
 msgid "Middle only"
-msgstr ""
+msgstr "Только в центре"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_DIFFERENT
 #: Merge.rc:2607
 msgid "Left only (different)"
-msgstr ""
+msgstr "Только слева (отличия)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_DIFFERENT
 #: Merge.rc:2608
 msgid "Middle only (different)"
-msgstr ""
+msgstr "Только в центре (отличия)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_DIFFERENT
 #: Merge.rc:2609
 msgid "Right only (different)"
-msgstr ""
+msgstr "Только справа (отличия)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_LEFT_ONLY_MISSING
 #: Merge.rc:2610
 msgid "Left only (missing)"
-msgstr ""
+msgstr "Только слева (отсутствуют)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_MIDDLE_ONLY_MISSING
 #: Merge.rc:2611
 msgid "Middle only (missing)"
-msgstr ""
+msgstr "Только в центре (отсутствуют)"
 
 #. IDD_COMPARISON_RESULT_FILTER, IDC_CHECK_RIGHT_ONLY_MISSING
 #: Merge.rc:2612
 msgid "Right only (missing)"
-msgstr ""
+msgstr "Только справа (отсутствуют)"
 
 #. IDS_OPTIONSPG_CODEPAGE
 #: Merge.rc:2619 Merge.rc:2811 Merge.rc:4213
