@@ -13,6 +13,7 @@
 #include "stdafx.h"
 #include "FileSaveHelper.h"
 #include "UnicodeString.h"
+#include "FileTransform.h"
 #include "paths.h"
 #include "TFile.h"
 #include "Plugins.h"
@@ -191,7 +192,8 @@ bool RemoveReadOnlyAttribute(const String& path)
 		status.m_mtime = 0; // Avoid unwanted changes
 		status.m_attribute &= ~CFile::readOnly;
 
-		return !!CFile::SetStatus(path.c_str(), status);
+		CFile::SetStatus(path.c_str(), status);
+		return true;
 	}
 	catch (...)
 	{
