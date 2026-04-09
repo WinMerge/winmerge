@@ -122,7 +122,10 @@ BackupResult CreateBackup(const String& sourcePath, const BackupOptions& options
 	if ((bakPath.length() + filename.length() + ext.length()) < MAX_PATH_FULL)
 	{
 		pathOk = true;
-		bakPath = paths::ConcatPath(bakPath, filename + _T(".") + ext);
+		String backupFilename = filename;
+		if (!ext.empty())
+			backupFilename += _T(".") + ext;
+		bakPath = paths::ConcatPath(bakPath, backupFilename);
 		result.backupPath = bakPath;
 	}
 
