@@ -919,10 +919,9 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="7zCommon.cpp">
-    </ClCompile>
-    <ClCompile Include="AboutDlg.cpp">
-    </ClCompile>
+    <ClCompile Include="7zCommon.cpp" />
+    <ClCompile Include="AboutDlg.cpp" />
+    <ClCompile Include="FileSaveHelper.cpp" />
     <ClCompile Include="BasicFlatStatusBar.cpp" />
     <ClCompile Include="ClipboardHistory.cpp" />
     <ClCompile Include="ColorSchemes.cpp">
@@ -1505,6 +1504,7 @@
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="FileSaveHelper.h" />
     <ClInclude Include="BasicFlatStatusBar.h" />
     <ClInclude Include="ClipboardHistory.h" />
     <ClInclude Include="ColorSchemes.h" />

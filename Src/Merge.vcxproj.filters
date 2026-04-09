@@ -375,6 +375,9 @@
     <ClCompile Include="Common\SuperComboBox.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FileSaveHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
@@ -1087,6 +1090,9 @@
     </ClInclude>
     <ClInclude Include="Common\SuperComboBox.h">
       <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSaveHelper.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AboutDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>

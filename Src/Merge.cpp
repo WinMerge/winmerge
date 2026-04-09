@@ -72,14 +72,12 @@
 #include "Logger.h"
 #include "ColorSchemes.h"
 #include "CrashLogger.h"
+#include "FileSaveHelper.h"
 #include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-/** @brief Backup file extension. */
-static const tchar_t BACKUP_FILE_EXT[] = _T("bak");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
@@ -1228,97 +1226,29 @@ void CMergeApp::ShowHelp(const tchar_t* helpLocation /*= nullptr*/)
  */
 bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 {
-	// If user doesn't want to backups in folder compare, return
-	// success so operations don't abort.
-	if (bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FOLDERCMP)))
-		return true;
-	// Likewise if user doesn't want backups in file compare
-	else if (!bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FILECMP)))
-		return true;
+	// Prepare backup options from registry settings
+	FileSaveHelper::BackupOptions options;
+	options.enableBackup = bFolder ?
+		GetOptionsMgr()->GetBool(OPT_BACKUP_FOLDERCMP) :
+		GetOptionsMgr()->GetBool(OPT_BACKUP_FILECMP);
+	options.location = GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION);
+	options.globalFolder = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
+	options.addBakExtension = GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK);
+	options.addTimestamp = GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_TIME);
 
-	// create backup copy of file if destination file exists
-	if (paths::DoesPathExist(pszPath) == paths::IS_EXISTING_FILE)
+	// Perform the backup
+	FileSaveHelper::BackupResult result = FileSaveHelper::CreateBackup(pszPath, options);
+
+	// If backup failed, prompt user
+	if (!result.success && result.attempted)
 	{
-		String bakPath;
-		String path;
-		String filename;
-		String ext;
-
-		paths::SplitFilename(paths::GetLongPath(pszPath), &path, &filename, &ext);
-
-		// Determine backup folder
-		if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
-			PropBackups::FOLDER_ORIGINAL)
-		{
-			// Put backups to same folder than original file
-			bakPath = std::move(path);
-		}
-		else if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
-			PropBackups::FOLDER_GLOBAL)
-		{
-			// Put backups to global folder defined in options
-			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
-			if (bakPath.empty())
-				bakPath = std::move(path);
-			else
-				bakPath = paths::GetLongPath(bakPath);
-
-			paths::CreateIfNeeded(bakPath);
-		}
-		else
-		{
-			_RPTF0(_CRT_ERROR, "Unknown backup location!");
-		}
-
-		bool success = false;
-		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
-		{
-			// Don't add dot if there is no existing extension
-			if (ext.size() > 0)
-				ext += _T(".");
-			ext += BACKUP_FILE_EXT;
-		}
-
-		// Append time to filename if wanted so
-		// NOTE just adds timestamp at the moment as I couldn't figure out
-		// nice way to add a real time (invalid chars etc).
-		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_TIME))
-		{
-			struct tm tm;
-			time_t curtime = 0;
-			time(&curtime);
-			::localtime_s(&tm, &curtime);
-			CString timestr;
-			timestr.Format(_T("%04d%02d%02d%02d%02d%02d"), tm.tm_year+1900, tm.tm_mon+1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
-			filename += _T("-");
-			filename += timestr;
-		}
-
-		// Append filename and extension (+ optional .bak) to path
-		if ((bakPath.length() + filename.length() + ext.length())
-			< MAX_PATH_FULL)
-		{
-			success = true;
-			bakPath = paths::ConcatPath(bakPath, filename + _T(".") + ext);
-		}
-
-		if (success)
-		{
-			success = !!CopyFileW(TFile(pszPath).wpath().c_str(), TFile(bakPath).wpath().c_str(), FALSE);
-		}
-
-		if (!success)
-		{
-			String msg = strutils::format_string1(
-				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
-				pszPath + _T("\n(\u2192 ") + bakPath + _T(")"));
-			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_BACKUP_FAILED_PROMPT) != IDYES)
-				return false;
-		}
-		return true;
+		String msg = strutils::format_string1(
+			_("Unable to backup original file:\n%1\n\nContinue anyway?"),
+			result.sourcePath + (result.backupPath.empty() ? _T("") : (_T("\n(\u2192 ") + result.backupPath + _T(")"))));
+		if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_BACKUP_FAILED_PROMPT) != IDYES)
+			return false;
 	}
 
-	// we got here because we're either not backing up of there was nothing to backup
 	return true;
 }
 
@@ -1341,84 +1271,70 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 {
 	CFileStatus status;
 	int nRetVal = IDOK;
-	bool bFileRO = false;
-	bool bFileExists = false;
 	String s;
-	String str;
 
-	if (!strSavePath.empty())
-	{
-		try
-		{
-			TFile file(strSavePath);
-			bFileExists = file.exists();
-			if (bFileExists)
-				bFileRO = !file.canWrite();
-		}
-		catch (...)
-		{
-		}
-	}
+	if (strSavePath.empty())
+		return nRetVal;
 
-	if (bFileExists && bFileRO)
+	// Check if file is readonly using FileSaveHelper
+	FileSaveHelper::ReadOnlyCheckResult roCheck = FileSaveHelper::CheckReadOnly(strSavePath);
+
+	if (roCheck.exists && roCheck.isReadOnly)
 	{
 		UINT userChoice = 0;
 
 		// Don't ask again if its already asked
 		if (bApplyToAll)
+		{
 			userChoice = IDYES;
+		}
 		else
 		{
+			// Get message and flags from FileSaveHelper
+			String message = FileSaveHelper::GetReadOnlyOverrideMessage(strSavePath, bMultiFile);
+			UINT flags = FileSaveHelper::GetReadOnlyMessageBoxFlags(bMultiFile);
+
 			// Prompt for user choice
-			if (bMultiFile)
-			{
-				// Multiple files or folder
-				str = strutils::format_string1(_("%1\nis read-only. Override?"), strSavePath);
-				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
-						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
-						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
-			}
-			else
-			{
-				// Single file
-				str = strutils::format_string1(_("%1 is read-only. Override? Or 'No' to save as new filename?"), strSavePath);
-				userChoice = AfxMessageBox(str.c_str(), MB_YESNOCANCEL |
-						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
-						IDS_SAVEREADONLY_FMT);
-			}
+			UINT msgboxId = bMultiFile ? IDS_SAVEREADONLY_MULTI : IDS_SAVEREADONLY_FMT;
+			userChoice = AfxMessageBox(message.c_str(), flags, msgboxId);
 		}
-		switch (userChoice)
+
+		// Interpret user choice using FileSaveHelper
+		FileSaveHelper::UserChoiceResult choice = FileSaveHelper::InterpretUserChoice(userChoice, bMultiFile);
+
+		if (choice.applyToAll)
+			bApplyToAll = true;
+
+		switch (choice.action)
 		{
-		// Overwrite read-only file
-		case IDYESTOALL:
-			bApplyToAll = true;  // Don't ask again (no break here)
-			[[fallthrough]];
-		case IDYES:
-			CFile::GetStatus(strSavePath.c_str(), status);
-			status.m_mtime = 0;		// Avoid unwanted changes
-			status.m_attribute &= ~CFile::readOnly;
-			CFile::SetStatus(strSavePath.c_str(), status);
-			nRetVal = IDYES;
+		case FileSaveHelper::ReadOnlyAction::RemoveReadOnly:
+			// Remove readonly attribute and continue
+			if (FileSaveHelper::RemoveReadOnlyAttribute(strSavePath))
+				nRetVal = IDYES;
+			else
+				nRetVal = IDCANCEL;
 			break;
 
-		// Save to new filename (single) /skip this item (multiple)
-		case IDNO:
-			if (!bMultiFile)
+		case FileSaveHelper::ReadOnlyAction::SelectNew:
+			// Single file: Select new filename
+			if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, strSavePath.c_str()))
 			{
-				if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, strSavePath.c_str()))
-				{
-					strSavePath = s;
-					nRetVal = IDNO;
-				}
-				else
-					nRetVal = IDCANCEL;
+				strSavePath = s;
+				nRetVal = IDNO;
 			}
 			else
-				nRetVal = IDNO;
+			{
+				nRetVal = IDCANCEL;
+			}
 			break;
 
-		// Cancel saving
-		case IDCANCEL:
+		case FileSaveHelper::ReadOnlyAction::Skip:
+			// Multiple files: Skip this item
+			nRetVal = IDNO;
+			break;
+
+		case FileSaveHelper::ReadOnlyAction::Cancel:
+			// Cancel operation
 			nRetVal = IDCANCEL;
 			break;
 		}
@@ -1428,14 +1344,7 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 
 String CMergeApp::GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin)
 {
-	String pluginName = plugin.GetPluginPipeline();
-	return strutils::format_string2(
-		pane == 0 ? 
-			_("Plugin '%2' cannot pack changes to left file into '%1'.\n\nOriginal unchanged. Save unpacked version?")
-			: (pane == paneCount - 1) ? 
-				_("Plugin '%2' cannot pack changes to right file into '%1'.\n\nOriginal unchanged. Save unpacked version?")
-				: _("Plugin '%2' cannot pack changes to middle file into '%1'.\n\nOriginal unchanged. Save unpacked version?"),
-		path, pluginName);
+	return FileSaveHelper::GetPackingErrorMessage(pane, paneCount, path, plugin);
 }
 
 /**
