@@ -507,7 +507,7 @@ cartella.</para></listitem>
 tutte le sottocartelle.</para></listitem>
             </varlistentry>
             <varlistentry>
-              <term><varname>RecursiveItems</varname></term>
+              <term><varname>TotalSize</varname></term>
               <listitem><para>Dimensione totale di tutti i file direttamente contenuti nella cartella, in
 byte.</para></listitem>
             </varlistentry>
@@ -591,7 +591,7 @@ I seguenti attributi sono progettati per essere usati solo nei filtri
 i prefissi <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>,
 <guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>,
 <guilabel>de:</guilabel> o <guilabel>de!:</guilabel> in il campo
-Filtro). Non devono essere uszati nelle regole di inclusione/esclusione del
+Filtro). Non devono essere usati nelle regole di inclusione/esclusione del
 filtro file (<nomefile>.flt</nomefile>), poiché richiedono che il confronto
 venga prima completato e potrebbero causare comportamenti imprevisti.</para>
 
@@ -730,7 +730,7 @@ visualizzare tutti i file in cui è stato usato un decompressore.</para>
             </varlistentry>
 
             <varlistentry>
-              <term><varname>Prediffere</varname></term>
+              <term><varname>Prediffer</varname></term>
               <listitem>
                 <para>
 Restituisce il nome del plugin prediffer usato per il confronto dei file o
@@ -1128,7 +1128,7 @@ stringhe convertite.</para>
           </varlistentry>
           <varlistentry>
             <term>
-<function>toSimplifiedChinese</function>(<replaceable>str</replaceable>)</term>
+<function>toTraditionalChinese</function>(<replaceable>str</replaceable>)</term>
             <listitem>
               <para>
 Converte i caratteri cinesi semplificati in caratteri cinesi tradizionali.I
@@ -1431,7 +1431,7 @@ File con estensioni da 'a' a 'm' e dimensioni inferiori a 1 MB</para></listitem>
 file senza distinzione tra maiuscole e minuscole</para></listitem>
           <listitem><para><literal>toHalfWidth(Name) come "*.txt"</literal> - Corrisponde dopo la
 conversione da larghezza intera a mezza larghezza</para></listitem>
-          <listitem><para><literal>Diverso</literal>: visualizza solo file/cartelle differenti (solo
+          <listitem><para><literal>Different</literal>: visualizza solo file/cartelle differenti (solo
 filtro di visualizzazione)</para></listitem>
           <listitem><para><literal>Identical</literal>: visualizza solo file/cartelle identici (solo
 filtro di visualizzazione)</para></listitem>

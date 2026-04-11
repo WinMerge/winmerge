@@ -15022,7 +15022,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:481
 msgid "<varname>TotalSize</varname>"
-msgstr "<varname>RecursiveItems</varname>"
+msgstr "<varname>TotalSize</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:482
@@ -15180,8 +15180,8 @@ msgstr ""
 "tramite i prefissi <guilabel>e:</guilabel>, <guilabel>e!:</guilabel>, "
 "<guilabel>fe:</guilabel>, <guilabel>fe!:</guilabel>, <guilabel>de:</"
 "guilabel> o <guilabel>de!:</guilabel> in il campo Filtro). Non devono essere "
-"uszati nelle regole di inclusione/esclusione del filtro file (<nomefile>."
-"flt</nomefile>), poiché richiedono che il confronto venga prima completato e "
+"usati nelle regole di inclusione/esclusione del filtro file (<nomefile>.flt</"
+"nomefile>), poiché richiedono che il confronto venga prima completato e "
 "potrebbero causare comportamenti imprevisti."
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
@@ -15400,7 +15400,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:682
 msgid "<varname>Prediffer</varname>"
-msgstr "<varname>Prediffere</varname>"
+msgstr "<varname>Prediffer</varname>"
 
 #. type: Content of: <article><section><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:685
@@ -16192,7 +16192,7 @@ msgstr ""
 msgid ""
 "<function>toTraditionalChinese</function>(<replaceable>str</replaceable>)"
 msgstr ""
-"<function>toSimplifiedChinese</function>(<replaceable>str</replaceable>)"
+"<function>toTraditionalChinese</function>(<replaceable>str</replaceable>)"
 
 #. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
 #: English/Filters.xml:1059
@@ -17096,7 +17096,7 @@ msgid ""
 "<literal>Different</literal> - Show only files/folders that are different "
 "(Display filter only)"
 msgstr ""
-"<literal>Diverso</literal>: visualizza solo file/cartelle differenti (solo "
+"<literal>Different</literal>: visualizza solo file/cartelle differenti (solo "
 "filtro di visualizzazione)"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
